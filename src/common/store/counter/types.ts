@@ -1,3 +1,7 @@
+export interface State {
+    val: number
+}
+
 export enum ActionTypes {
     SET_COUNTER = '@counter/SET_COUNTER',
     INCREMENT_COUNTER = '@counter/INCREMENT_COUNTER',

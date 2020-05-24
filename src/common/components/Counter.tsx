@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
+import {State as CounterState} from "../store/counter/types";
 
 interface Props {
     incrementCounter: () => void
     decrementCounter: () => void,
-    counter: number
+    counter: CounterState
 }
 
 export default class Counter extends Component<Props> {
@@ -11,7 +12,7 @@ export default class Counter extends Component<Props> {
         const {incrementCounter, decrementCounter, counter} = this.props;
         return (
             <div>
-                Clicked: {counter} times
+                Clicked: {counter.val} times
                 {' '}
                 <button onClick={incrementCounter}>+</button>
                 {' '}

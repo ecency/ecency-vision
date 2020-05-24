@@ -30,7 +30,7 @@ server
 
         fetchCounter().then(counter => {
             // Compile an initial state
-            const preloadedState = {counter};
+            const preloadedState = {counter: {val: 1}};
 
             // Create a new Redux store instance
             const store = configureStore(preloadedState);

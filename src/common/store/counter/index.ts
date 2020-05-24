@@ -1,14 +1,18 @@
 import {Dispatch} from 'redux';
-import {Actions, ActionTypes, IncrementAction, DecrementAction} from './types';
+import {State, Actions, ActionTypes, IncrementAction, DecrementAction} from './types';
 
-export default (state: number = 0, action: Actions) => {
+export const initialState: State = {
+    val: 0
+};
+
+export default (state: State = initialState, action: Actions) => {
     switch (action.type) {
         case ActionTypes.SET_COUNTER:
             return action.value;
         case ActionTypes.INCREMENT_COUNTER:
-            return state + 1;
+            return {...state, val: state.val + 1};
         case ActionTypes.DECREMENT_COUNTER:
-            return state - 1;
+            return {...state, val: state.val - 1};
         default:
             return state;
     }
