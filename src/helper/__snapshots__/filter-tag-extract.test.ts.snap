@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`1 - home 1`] = `
+Object {
+  "filter": "hot",
+  "tag": "",
+}
+`;
+
+exports[`10 - filter 1`] = `
+Object {
+  "filter": "trending",
+  "tag": "",
+}
+`;
+
+exports[`11 - filter 1`] = `
+Object {
+  "filter": "hot",
+  "tag": "",
+}
+`;
+
+exports[`20 - filter + tag 1`] = `
+Object {
+  "filter": "trending",
+  "tag": "esteem",
+}
+`;
+
+exports[`21 - filter + tag 1`] = `
+Object {
+  "filter": "hot",
+  "tag": "photography",
+}
+`;
+
+exports[`30 - user 1`] = `
+Object {
+  "filter": "blog",
+  "tag": "@talhasch",
+}
+`;
+
+exports[`40 - user feed 1`] = `
+Object {
+  "filter": "feed",
+  "tag": "@talhasch",
+}
+`;
+
+exports[`60 - user section 1`] = `
+Object {
+  "filter": "comments",
+  "tag": "@talhasch",
+}
+`;
+
+exports[`64 - user wallet section 1`] = `null`;
+
+exports[`90 - wrong paths 1`] = `null`;
+
+exports[`91 - wrong paths 1`] = `null`;
+
+exports[`92 - wrong paths 1`] = `null`;

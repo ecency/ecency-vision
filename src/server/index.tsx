@@ -12,6 +12,8 @@ import configureStore from '../common/store/configure';
 
 import App from '../common/app';
 
+import {initialState as globalInitialState} from '../common/store/global/index';
+
 let assets: any;
 
 const syncLoadAssets = () => {
@@ -34,7 +36,10 @@ server
 
         fetchCounter().then(counter => {
             // Compile an initial state
-            const preLoadedState = {counter: {val: counter}};
+            const preLoadedState = {
+                counter: {val: counter},
+                global: globalInitialState
+            };
 
             // Create a new Redux store instance
             const store = configureStore(preLoadedState);
