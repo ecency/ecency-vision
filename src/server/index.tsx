@@ -3,11 +3,12 @@ import React from 'react';
 import {Provider} from 'react-redux';
 import {renderToString} from 'react-dom/server';
 import {StaticRouter} from 'react-router-dom';
+
 import serialize from 'serialize-javascript';
 
-import App from '../common/app';
-
 import configureStore from '../common/store/configure';
+
+import App from '../common/app';
 
 let assets: any;
 
@@ -31,7 +32,7 @@ server
 
         fetchCounter().then(counter => {
             // Compile an initial state
-            const preLoadedState = {counter: {val: 1}};
+            const preLoadedState = {counter: {val: counter}};
 
             // Create a new Redux store instance
             const store = configureStore(preLoadedState);
@@ -72,8 +73,6 @@ server
             </body>
         </html>`);
         });
-
-
     });
 
 export default server;
