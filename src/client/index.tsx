@@ -5,7 +5,6 @@ import {Provider} from 'react-redux';
 import configureStore from '../common/store/configure';
 import Root from '../common/root';
 
-
 const store = configureStore(window['__PRELOADED_STATE__']);
 
 hydrate(
@@ -20,7 +19,7 @@ hydrate(
 );
 
 if (module.hot) {
-    module.hot.accept('../common/containers/App', () => {
+    module.hot.accept('../common/root', () => {
         hydrate(
             (
                 <Provider store={store}>
