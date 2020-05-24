@@ -1,16 +1,37 @@
-import {SET_COUNTER, INCREMENT_COUNTER, DECREMENT_COUNTER} from './actions';
+import {Dispatch} from 'redux';
+import {Actions, ActionTypes, IncrementAction, DecrementAction} from './types';
 
-const counter = (state = 0, action: any) => {
+export default (state: number = 0, action: Actions) => {
     switch (action.type) {
-        case SET_COUNTER:
-            return action.payload;
-        case INCREMENT_COUNTER:
+        case ActionTypes.SET_COUNTER:
+            return action.value;
+        case ActionTypes.INCREMENT_COUNTER:
             return state + 1;
-        case DECREMENT_COUNTER:
+        case ActionTypes.DECREMENT_COUNTER:
             return state - 1;
         default:
             return state;
     }
 };
 
-export default counter;
+/* Actions */
+export const increment = () => (dispatch: Dispatch) => {
+    dispatch(incrementAct());
+};
+
+export const decrement = () => (dispatch: Dispatch) => {
+    dispatch(decrementAct());
+};
+
+/* Action Creators */
+export const incrementAct = (): IncrementAction => {
+    return {
+        type: ActionTypes.INCREMENT_COUNTER
+    }
+};
+
+export const decrementAct = (): DecrementAction => {
+    return {
+        type: ActionTypes.DECREMENT_COUNTER
+    }
+};
