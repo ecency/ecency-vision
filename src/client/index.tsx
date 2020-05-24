@@ -2,8 +2,10 @@ import React from 'react';
 import {hydrate} from 'react-dom';
 import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
+
 import configureStore from '../common/store/configure';
-import Root from '../common/root';
+
+import App from '../common/app';
 
 const store = configureStore(window['__PRELOADED_STATE__']);
 
@@ -11,7 +13,7 @@ hydrate(
     (
         <Provider store={store}>
             <BrowserRouter>
-                <Root/>
+                <App/>
             </BrowserRouter>
         </Provider>
     ),
@@ -19,12 +21,12 @@ hydrate(
 );
 
 if (module.hot) {
-    module.hot.accept('../common/root', () => {
+    module.hot.accept('../common/app', () => {
         hydrate(
             (
                 <Provider store={store}>
                     <BrowserRouter>
-                        <Root/>
+                        <App/>
                     </BrowserRouter>
                 </Provider>
             ),

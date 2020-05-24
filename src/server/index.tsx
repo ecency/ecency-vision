@@ -5,7 +5,7 @@ import {renderToString} from 'react-dom/server';
 import {StaticRouter} from 'react-router-dom';
 import serialize from 'serialize-javascript';
 
-import Root from '../common/root';
+import App from '../common/app';
 
 import configureStore from '../common/store/configure';
 
@@ -42,7 +42,7 @@ server
             const markup = renderToString(
                 <Provider store={store}>
                     <StaticRouter location={req.url} context={context}>
-                        <Root/>
+                        <App/>
                     </StaticRouter>
                 </Provider>
             );
