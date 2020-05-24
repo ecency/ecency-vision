@@ -4,7 +4,7 @@ import {Provider} from 'react-redux';
 import configureStore from '../common/store/configure';
 import App from '../common/containers/App';
 
-const store = configureStore(window.__PRELOADED_STATE__);
+const store = configureStore(window['__PRELOADED_STATE__']);
 
 hydrate(
     (

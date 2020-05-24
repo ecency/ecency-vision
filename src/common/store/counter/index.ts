@@ -15,11 +15,11 @@ export default (state: number = 0, action: Actions) => {
 };
 
 /* Actions */
-export const increment = () => (dispatch: Dispatch) => {
+export const incrementCounter = () => (dispatch: Dispatch) => {
     dispatch(incrementAct());
 };
 
-export const decrement = () => (dispatch: Dispatch) => {
+export const decrementCounter = () => (dispatch: Dispatch) => {
     dispatch(decrementAct());
 };
 

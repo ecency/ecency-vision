@@ -17,7 +17,7 @@ syncLoadAssets();
 
 const fetchCounter = (): Promise<number> => {
     return new Promise(((resolve) => {
-        resolve(10);
+        resolve(18);
     }))
 };
 
