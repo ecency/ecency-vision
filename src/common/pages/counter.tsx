@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import {AppState} from '../store/index';
 import {State as CounterState} from '../store/counter/types';
 import {incrementCounter, decrementCounter} from '../store/counter/index';
+import {Link} from "react-router-dom";
 
 interface Props {
     incrementCounter: () => void
@@ -18,6 +19,7 @@ export class Counter extends Component<Props> {
         const {incrementCounter, decrementCounter, counter} = this.props;
         return (
             <div>
+                <p><Link to="/">HOME</Link> | Counter</p>
                 Clicked: {counter.val} times
                 {' '}
                 <button onClick={incrementCounter}>+</button>
