@@ -7,6 +7,11 @@ import configureStore from '../common/store/configure';
 
 import App from '../common/app';
 
+import 'typeface-ibm-plex-sans';
+
+import '../style/theme-day.scss';
+import '../style/theme-night.scss';
+
 const store = configureStore(window['__PRELOADED_STATE__']);
 
 hydrate(

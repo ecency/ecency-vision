@@ -1,0 +1,29 @@
+@import 'colors';
+
+$font-family-base: 'IBM Plex Sans', sans-serif;
+
+$primary: $dark-sky-blue;
+
+$input-bg: $white-three;
+$input-box-shadow: none;
+$input-focus-box-shadow: none;
+
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import '~bootstrap/scss/reboot';
+
+
+.theme-day {
+  @import '~bootstrap/scss/buttons';
+  @import '~bootstrap/scss/forms';
+  @import '~bootstrap/scss/input-group';
+  @import '~bootstrap/scss/tooltip';
+
+  background: $white-two;
+  color: $charcoal-grey;
+}
+
+
+@import 'base';
+@import 'components.scss';

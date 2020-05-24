@@ -1,0 +1,30 @@
+@import 'colors';
+
+$font-family-base: 'IBM Plex Sans', sans-serif;
+
+$primary: $dusk-blue;
+
+$input-bg: lighten($powder-blue, 2);
+$input-border-color: $dusk-blue;
+$input-box-shadow: none;
+$input-focus-box-shadow: none;
+$input-color: $dark-two;
+
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import '~bootstrap/scss/reboot';
+
+
+.theme-night {
+  @import '~bootstrap/scss/buttons';
+  @import '~bootstrap/scss/forms';
+  @import '~bootstrap/scss/input-group';
+  @import '~bootstrap/scss/tooltip';
+
+  background: $dark-six;
+  color: $silver;
+}
+
+@import 'base';
+@import 'components';

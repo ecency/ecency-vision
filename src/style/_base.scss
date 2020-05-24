@@ -1,0 +1,24 @@
+
+html {
+  scroll-behavior: smooth;
+  text-shadow: rgba(0, 0, 0, 0.01) 0 0 1px;
+  -webkit-text-size-adjust: 100%;
+  font-variant-ligatures: none;
+  -webkit-font-variant-ligatures: none;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+
+#root {
+  min-width: 320px;
+}
+
+.btn svg {
+  width: 20px;
+}
+
+.app-content {
+  padding: 0 30px;
+}
