@@ -4,6 +4,8 @@ import {Provider} from 'react-redux';
 import {renderToString} from 'react-dom/server';
 import {StaticRouter} from 'react-router-dom';
 
+import {Helmet} from 'react-helmet';
+
 import serialize from 'serialize-javascript';
 
 import configureStore from '../common/store/configure';
@@ -51,12 +53,15 @@ server
             // Grab the initial state from our Redux store
             const finalState = store.getState();
 
+            const helmet = Helmet.renderStatic();
+            const headHelmet = helmet.meta.toString() + helmet.title.toString() + helmet.link.toString();
+
             res.send(`<!doctype html>
             <html lang="">
             <head>
                 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
                 <meta charSet='utf-8' />
-                <title>Razzle Redux Example</title>
+                ${headHelmet}
                 <meta name="viewport" content="width=device-width, initial-scale=1">
                 ${assets.client.css
                 ? `<link rel="stylesheet" href="${assets.client.css}">`
