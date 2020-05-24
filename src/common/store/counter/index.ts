@@ -5,10 +5,8 @@ export const initialState: State = {
     val: 0
 };
 
-export default (state: State = initialState, action: Actions) => {
+export default (state: State = initialState, action: Actions): State => {
     switch (action.type) {
-        case ActionTypes.SET_COUNTER:
-            return action.value;
         case ActionTypes.INCREMENT_COUNTER:
             return {...state, val: state.val + 1};
         case ActionTypes.DECREMENT_COUNTER:

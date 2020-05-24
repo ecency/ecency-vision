@@ -30,10 +30,10 @@ server
 
         fetchCounter().then(counter => {
             // Compile an initial state
-            const preloadedState = {counter: {val: 1}};
+            const preLoadedState = {counter: {val: 1}};
 
             // Create a new Redux store instance
-            const store = configureStore(preloadedState);
+            const store = configureStore(preLoadedState);
 
             // Render the component to a string
             const markup = renderToString(
