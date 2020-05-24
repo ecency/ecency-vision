@@ -2,9 +2,10 @@ import express from 'express';
 import React from 'react';
 import {Provider} from 'react-redux';
 import {renderToString} from 'react-dom/server';
+import {StaticRouter} from 'react-router-dom';
 import serialize from 'serialize-javascript';
 
-import App from '../common/containers/App';
+import Root from '../common/root';
 
 import configureStore from '../common/store/configure';
 
@@ -35,10 +36,14 @@ server
             // Create a new Redux store instance
             const store = configureStore(preLoadedState);
 
+            const context = {};
+
             // Render the component to a string
             const markup = renderToString(
                 <Provider store={store}>
-                    <App/>
+                    <StaticRouter location={req.url} context={context}>
+                        <Root/>
+                    </StaticRouter>
                 </Provider>
             );
 
