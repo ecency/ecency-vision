@@ -1,7 +1,7 @@
 import React from 'react';
 import {hydrate} from 'react-dom';
 import {Provider} from 'react-redux';
-import configureStore from '../common/store/';
+import configureStore from '../common/store/configure';
 import App from '../common/containers/App';
 
 const store = configureStore(window.__PRELOADED_STATE__);

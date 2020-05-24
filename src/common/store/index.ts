@@ -1,23 +1,8 @@
-import {createStore, applyMiddleware} from 'redux';
-import thunk from 'redux-thunk';
-import rootReducer from './root';
+import { combineReducers } from 'redux';
+import counter from './counter';
 
-const configureStore = (preloadedState: any) => {
-    const store = createStore(
-        rootReducer,
-        preloadedState,
-        applyMiddleware(thunk)
-    );
+const rootReducer = combineReducers({
+    counter,
+});
 
-    if (module.hot) {
-        // Enable Webpack hot module replacement for reducers
-        module.hot.accept('./root', () => {
-            const nextRootReducer = require('./root').default;
-            store.replaceReducer(nextRootReducer);
-        });
-    }
-
-    return store;
-};
-
-export default configureStore;
+export default rootReducer;

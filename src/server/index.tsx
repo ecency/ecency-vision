@@ -6,7 +6,7 @@ import serialize from 'serialize-javascript';
 
 import App from '../common/containers/App';
 
-import configureStore from '../common/store';
+import configureStore from '../common/store/configure';
 
 let assets: any;
 
