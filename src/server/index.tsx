@@ -72,7 +72,7 @@ server
                 ? `<script src="${assets.client.js}" defer></script>`
                 : `<script src="${assets.client.js}" defer crossorigin></script>`}
             </head>
-            <body>
+            <body class="theme-day">
                 <div id="root">${markup}</div>
                 <script>
                   window.__PRELOADED_STATE__ = ${serialize(finalState)}

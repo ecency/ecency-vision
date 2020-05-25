@@ -3,7 +3,7 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 
 const resources = {
     enUs: {
-        translation: require('../locales/en-US.json')
+        translation: require('./locales/en-US.json')
     }
 };
 
