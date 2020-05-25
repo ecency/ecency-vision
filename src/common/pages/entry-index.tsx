@@ -36,6 +36,7 @@ class EntryIndexPage extends Component<Props> {
 
     render() {
 
+
         const {trendingTags, global} = this.props;
 
         return (
