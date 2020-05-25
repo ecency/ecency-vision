@@ -13,6 +13,9 @@ import configureStore from '../common/store/configure';
 import App from '../common/app';
 
 import {initialState as globalInitialState} from '../common/store/global/index';
+import {initialState as trendingTagsInitialState} from '../common/store/trending-tags/index';
+
+import {getTrendingTags} from '../common/api/hive';
 
 let assets: any;
 
@@ -34,11 +37,12 @@ server
     .use(express.static(process.env.RAZZLE_PUBLIC_DIR!))
     .get('/*', (req: express.Request, res: express.Response) => {
 
-        fetchCounter().then(counter => {
+        getTrendingTags().then(tags => {
             // Compile an initial state
             const preLoadedState = {
-                counter: {val: counter},
-                global: globalInitialState
+                counter: {val: 1},
+                global: globalInitialState,
+                trendingTags: {...trendingTagsInitialState, list: tags}
             };
 
             // Create a new Redux store instance
