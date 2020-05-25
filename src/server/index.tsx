@@ -64,36 +64,35 @@ server
     .disable('x-powered-by')
     .use(express.static(process.env.RAZZLE_PUBLIC_DIR!))
     .use(cookieParser())
-    .get('/*', (req: express.Request, res: express.Response) => {
+    .get('/*', async (req: express.Request, res: express.Response) => {
 
+        const tags = await hiveApi.getTrendingTags();
 
-        hiveApi.getTrendingTags().then(tags => {
+        const preLoadedState = {
+            counter: {val: 1},
+            global: makeGlobalState(req),
+            trendingTags: {...trendingTagsInitialState, list: tags},
+            communities: communitiesInitialState
+        };
 
-            const preLoadedState = {
-                counter: {val: 1},
-                global: makeGlobalState(req),
-                trendingTags: {...trendingTagsInitialState, list: tags},
-                communities: communitiesInitialState
-            };
+        const store = configureStore(preLoadedState);
 
-            const store = configureStore(preLoadedState);
+        const context = {};
 
-            const context = {};
+        const markup = renderToString(
+            <Provider store={store}>
+                <StaticRouter location={req.url} context={context}>
+                    <App/>
+                </StaticRouter>
+            </Provider>
+        );
 
-            const markup = renderToString(
-                <Provider store={store}>
-                    <StaticRouter location={req.url} context={context}>
-                        <App/>
-                    </StaticRouter>
-                </Provider>
-            );
+        const finalState = store.getState();
 
-            const finalState = store.getState();
+        const helmet = Helmet.renderStatic();
+        const headHelmet = helmet.meta.toString() + helmet.title.toString() + helmet.link.toString();
 
-            const helmet = Helmet.renderStatic();
-            const headHelmet = helmet.meta.toString() + helmet.title.toString() + helmet.link.toString();
-
-            res.send(`<!doctype html>
+        res.send(`<!doctype html>
             <html lang="">
             <head>
                 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -101,11 +100,11 @@ server
                 ${headHelmet}
                 <meta name="viewport" content="width=device-width, initial-scale=1">
                 ${assets.client.css
-                ? `<link rel="stylesheet" href="${assets.client.css}">`
-                : ''}
+            ? `<link rel="stylesheet" href="${assets.client.css}">`
+            : ''}
                   ${process.env.NODE_ENV === 'production'
-                ? `<script src="${assets.client.js}" defer></script>`
-                : `<script src="${assets.client.js}" defer crossorigin></script>`}
+            ? `<script src="${assets.client.js}" defer></script>`
+            : `<script src="${assets.client.js}" defer crossorigin></script>`}
             </head>
             <body class="theme-day">
                 <div id="root">${markup}</div>
@@ -114,7 +113,6 @@ server
                 </script>
             </body>
         </html>`);
-        });
     });
 
 export default server;
