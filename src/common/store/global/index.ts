@@ -21,10 +21,8 @@ export const initialState: State = {
 
 export default (state: State = initialState, action: Actions): State => {
     switch (action.type) {
-        case ActionTypes.INIT:
         case ActionTypes.LOCATION_CHANGE: {
-            const u = new URL(window.location.href);
-            const pathname = u.pathname;
+            const pathname = new URL(window.location.href).pathname;
             const params = filterTagExtract(pathname);
 
             if (!params) {
