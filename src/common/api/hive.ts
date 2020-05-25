@@ -49,8 +49,9 @@ export const getDiscussions = (what: DiscussionQueryCategory, query: DisqussionQ
     client.database.getDiscussions(what, query);
 
 
-export const getTrendingTags = (afterTag: string = '', limit: number = 50): Promise<TrendingTag[]> =>
-    client.database.call('get_trending_tags', [afterTag, limit]).then();
+export const getTrendingTags = (afterTag: string = '', limit: number = 50): Promise<string[]> =>
+    client.database.call('get_trending_tags', [afterTag, limit])
+        .then((t: TrendingTag[]) => t.filter(x => x.name !== '').map(x => x.name));
 
 export const getCommunity = (name: string): Promise<Community | null> => {
     return axios

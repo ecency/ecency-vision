@@ -67,7 +67,7 @@ export const fetchAct = (): FetchAction => {
     }
 };
 
-export const fetchedAct = (tags: TrendingTag[]): FetchedAction => {
+export const fetchedAct = (tags: string[]): FetchedAction => {
     return {
         type: ActionTypes.FETCHED,
         tags

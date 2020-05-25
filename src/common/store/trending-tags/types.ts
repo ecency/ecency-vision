@@ -1,7 +1,7 @@
 import {TrendingTag} from '../../api/hive';
 
 export interface State {
-    list: TrendingTag[],
+    list: string[],
     loading: boolean,
     error: boolean
 }
@@ -18,7 +18,7 @@ export interface FetchAction {
 
 export interface FetchedAction {
     type: ActionTypes.FETCHED;
-    tags: TrendingTag[]
+    tags: string[]
 }
 
 export interface FetchErrorAction {
