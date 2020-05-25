@@ -1,6 +1,6 @@
 import {Dispatch} from 'redux';
 
-import {getTrendingTags, TrendingTag} from '../../api/hive';
+import {getTrendingTags} from '../../api/hive';
 
 import {AppState} from '../index';
 

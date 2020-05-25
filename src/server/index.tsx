@@ -14,6 +14,7 @@ import App from '../common/app';
 
 import {initialState as globalInitialState} from '../common/store/global/index';
 import {initialState as trendingTagsInitialState} from '../common/store/trending-tags/index';
+import {initialState as communitiesInitialState} from '../common/store/communities/index';
 
 import {getTrendingTags} from '../common/api/hive';
 
@@ -42,7 +43,8 @@ server
             const preLoadedState = {
                 counter: {val: 1},
                 global: globalInitialState,
-                trendingTags: {...trendingTagsInitialState, list: tags}
+                trendingTags: {...trendingTagsInitialState, list: tags},
+                communities: communitiesInitialState
             };
 
             // Create a new Redux store instance
