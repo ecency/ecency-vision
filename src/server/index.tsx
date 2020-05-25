@@ -1,22 +1,21 @@
 import express from 'express';
-import cookieParser from 'cookie-parser';
 
 import React from 'react';
 import {Provider} from 'react-redux';
 import {renderToString} from 'react-dom/server';
 import {StaticRouter} from 'react-router-dom';
-
 import {Helmet} from 'react-helmet';
 
 import serialize from 'serialize-javascript';
+import cookieParser from 'cookie-parser';
 
 import themes from '../common/constants/themes.json';
 import defaults from '../common/constants/defaults.json';
 import filters from '../common/constants/filters.json';
 
-import configureStore from '../common/store/configure';
-
 import App from '../common/app';
+
+import configureStore from '../common/store/configure';
 
 import {State as GlobalState} from '../common/store/global/types';
 import {initialState as globalInitialState} from '../common/store/global/index';
@@ -67,6 +66,8 @@ server
     .get('/*', async (req: express.Request, res: express.Response) => {
 
         const tags = await hiveApi.getTrendingTags();
+        // const communities = await hiveApi.getCommunities();
+
 
         const preLoadedState = {
             counter: {val: 1},

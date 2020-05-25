@@ -68,3 +68,20 @@ export const getCommunity = (name: string): Promise<Community | null> => {
             return null;
         })
 };
+
+
+export const getCommunities = (): Promise<Community[] | null> => {
+    return axios
+        .post(pickAServer(), {
+            jsonrpc: '2.0',
+            method: 'bridge.list_communities',
+            params: {sort: 'rank'},
+            id: 1
+        }).then(resp => {
+            if (resp.data.result) {
+                return resp.data.result;
+            }
+
+            return null;
+        })
+};
