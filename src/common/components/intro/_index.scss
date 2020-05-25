@@ -1,0 +1,233 @@
+@keyframes shake0 {
+  10%, 90% {
+    transform: translate3d(-10px, 0, 0);
+  }
+
+  20%, 80% {
+    transform: translate3d(10px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-10px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(10px, 0, 0);
+  }
+}
+
+@keyframes shake1 {
+  10%, 90% {
+    transform: translate3d(10px, 0, 0);
+  }
+
+  20%, 80% {
+    transform: translate3d(-10px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(10px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(-10px, 0, 0);
+  }
+}
+
+.intro {
+  box-sizing: content-box;
+  margin: 0 auto 30px auto;
+  position: relative;
+  max-width: 1190px;
+  background: $white;
+  height: 180px;
+
+  @media (min-width: $md-break) {
+    height: 240px;
+  }
+
+  @media (min-width: $lg-break) {
+    height: 280px;
+  }
+
+  @media (min-width: $xl-break) {
+    border-radius: $border-radius;
+    height: 300px;
+  }
+
+
+  .hide-intro {
+    right: 10px;
+    top: 10px;
+    width: 30px;
+    height: 30px;
+    background: $silver;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    svg {
+      color: $white;
+      width: 22px;
+    }
+
+    &:hover {
+      background: darken($silver, 6);
+    }
+  }
+
+  .friends {
+    position: absolute;
+    right: 10px;
+    top: 40px;
+    height: 210px;
+    display: none;
+    z-index: 6;
+
+    @media (min-width: $lg-break) {
+      display: block;
+    }
+
+    @media (min-width: $xl-break) {
+      height: 280px;
+      top: 10px;
+      right: 6px;
+    }
+  }
+
+  .intro-header {
+    color: $primary;
+    font-size: 34px;
+    font-weight: 700;
+    position: absolute;
+    left: 110px;
+    top: 50px;
+    z-index: 5;
+
+    @media (min-width: $md-break) {
+      left: 170px;
+      top: 70px;
+      font-size: 46px;
+    }
+
+    @media (min-width: $lg-break) {
+      font-size: 45px;
+      left: 180px;
+      top: 90px;
+    }
+
+    @media (min-width: $xl-break) {
+      left: 240px;
+      top: 100px;
+      font-size: 52px;
+    }
+  }
+
+  .intro-sub-header {
+    color: $steel-grey;
+    font-size: 18px;
+    position: absolute;
+    left: 110px;
+    top: 100px;
+    z-index: 5;
+
+    @media (min-width: $md-break) {
+      font-size: 26px;
+      left: 170px;
+      top: 130px;
+    }
+
+    @media (min-width: $lg-break) {
+      font-size: 25px;
+      left: 180px;
+      top: 150px;
+    }
+
+    @media (min-width: $xl-break) {
+      left: 240px;
+      top: 180px;
+      font-size: 28px;
+    }
+  }
+
+  .cloud-1 {
+    animation: shake0 26s cubic-bezier(.36, .07, .19, .97) infinite;
+    background: url(../../img/cloud1.png) no-repeat;
+    background-size: 100%;
+    height: 35px;
+    position: absolute;
+    right: 14%;
+    top: 4%;
+    width: 47px;
+    z-index: 3;
+
+    @media (min-width: $sm-break) {
+      width: 70px;
+      height: 52px;
+      right: 12%;
+    }
+
+    @media (min-width: $md-break) {
+      width: 100px;
+      height: 74px;
+    }
+
+    @media (min-width: $lg-break) {
+      right: 32%;
+      top: 18%;
+    }
+  }
+
+  .cloud-2 {
+    animation: shake1 26s cubic-bezier(.36, .07, .19, .97) infinite;
+    background: url(../../img/cloud2.png) no-repeat;
+    background-size: 100%;
+    height: 30px;
+    left: 6%;
+    position: absolute;
+    top: 12%;
+    width: 44px;
+    z-index: 3;
+
+    @media (min-width: $sm-break) {
+      width: 64px;
+      height: 44px;
+      left: 12%;
+    }
+
+    @media (min-width: $lg-break) {
+      width: 90px;
+      height: 62px;
+    }
+  }
+
+  .cloud-3 {
+    animation: shake0 26s cubic-bezier(.36, .07, .19, .97) infinite;
+    background: url(../../img/cloud3.png) no-repeat;
+    background-size: 100%;
+    height: 84px;
+    left: 0;
+    position: absolute;
+    top: 44%;
+    width: 100px;
+    z-index: 3;
+
+    @media (min-width: $sm-break) {
+      left: 0;
+    }
+
+    @media (min-width: $md-break) {
+      width: 144px;
+      height: 121px;
+      left: 2%;
+    }
+
+    @media (min-width: $lg-break) {
+      top: 50%;
+    }
+  }
+}
