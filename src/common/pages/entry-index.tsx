@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 import {AnyAction, bindActionCreators, Dispatch} from 'redux';
+import {connect} from 'react-redux';
+import {Location, History} from 'history';
 
 import {Helmet} from 'react-helmet';
 
@@ -16,6 +17,7 @@ import {fetchCommunity} from '../store/communities';
 import Theme from '../components/theme';
 import NavBar from '../components/navbar';
 import Intro from '../components/intro';
+import TagLink, {makePath} from '../components/tag-link';
 
 interface Props {
     history: History,
@@ -34,6 +36,8 @@ class EntryIndexPage extends Component<Props> {
 
     render() {
 
+        const {trendingTags, global} = this.props;
+
         return (
             <div>
                 <Helmet>
@@ -43,6 +47,22 @@ class EntryIndexPage extends Component<Props> {
                 <Theme {...this.props} />
                 <NavBar {...this.props} />
                 <Intro {...this.props} />
+
+                <div className="app-content">
+                    <div className="trending-tag-list">
+                        <h2 className="list-header">Popular Tags</h2>
+                        {trendingTags.list.map(t => {
+                            const cls = `tag-list-item ${
+                                global.tag === t ? 'selected-item' : ''
+                            }`;
+                            return (
+                                <TagLink {...this.props} tag={t} key={t}>
+                                    <a href={makePath(global.filter, t)} className={cls}>{t}</a>
+                                </TagLink>
+                            );
+                        })}
+                    </div>
+                </div>
 
             </div>
         )

@@ -1,0 +1,54 @@
+.trending-tag-list {
+  width: 230px;
+
+  .list-header {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 31px 0;
+
+    @include themify(day) {
+      color: $steel-grey;
+    }
+
+    @include themify(night) {
+      color: $metallic-blue;
+    }
+  }
+
+  .tag-list-item {
+    border-radius: 25px;
+    color: $silver;
+    cursor: pointer;
+    display: table;
+    margin-bottom: 8px;
+    padding: 4px 12px;
+    text-decoration: none;
+    transition: 0.5s;
+
+    @include themify(day) {
+      background: $white;
+      border: solid 1px $white-four;
+    }
+
+    @include themify(night) {
+      background: $dark-grey-blue;
+      border: solid 1px $dark-two;
+    }
+
+    &.selected-item {
+      color: $dark-sky-blue;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    &:hover {
+      @include themify(day) {
+        background: darken($white, 4);
+      }
+
+      @include themify(night) {
+        background: darken($dark-grey-blue, 4);
+      }
+    }
+  }
+}
