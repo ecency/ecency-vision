@@ -1,0 +1,75 @@
+.nav-bar {
+  align-items: center;
+  display: flex;
+  height: 90px;
+  justify-content: space-between;
+  padding: 0 30px;
+  user-select: none;
+  margin-bottom: 30px;
+
+  .brand {
+    background-size: 100%;
+    height: 54px;
+    width: 54px;
+    background: url(../../../img/logo-circle.svg) no-repeat left;
+    text-decoration: none;
+
+    .brand-text {
+      font-family: 'Arial Black', 'Arial Bold', Gadget, sans-serif;
+      padding-left: 60px;
+      font-size: 32px;
+      display: none;
+
+      @media (min-width: $sm-break) {
+        display: block;
+      }
+
+      @include themify(day) {
+        color: #004bd8;
+      }
+
+      @include themify(night) {
+        color: $white;
+      }
+    }
+
+    @media (min-width: $sm-break) {
+      width: auto;
+    }
+  }
+
+  .search-bar {
+    flex-grow: 1;
+    max-width: 180px;
+
+    @media (min-width: $sm-break) {
+      max-width: 300px;
+    }
+
+    @media (min-width: $md-break) {
+      max-width: 340px;
+    }
+
+    @media (min-width: $lg-break) {
+      max-width: 400px;
+    }
+  }
+
+  .switch-theme {
+    cursor: pointer;
+
+    svg {
+      width: 26px;
+      height: 26px;
+    }
+
+    @include themify(day) {
+      color: $silver;
+    }
+
+    @include themify(night) {
+      color: $white-five;
+      opacity: 0.5;
+    }
+  }
+}
