@@ -1,3 +1,5 @@
+import Cookies from 'js-cookie'
+
 import {Dispatch} from 'redux';
 
 import defaults from '../../constants/defaults.json';
@@ -10,27 +12,11 @@ import {Actions, ActionTypes, State, ThemeChangeAction, IntroHideAction} from '.
 
 import filterTagExtract from '../../helper/filter-tag-extract';
 
-import {lsGet, lsSet} from '../../util/ls';
-
-const readTheme = (): string => {
-    const userTheme = lsGet('theme');
-    if (userTheme === null) {
-        return defaults.theme;
-    }
-
-    return themes.includes(userTheme) ? userTheme : defaults.theme;
-};
-
-const readIntro = (): boolean => {
-    const val = lsGet('hide-intro');
-    return !val;
-};
-
 export const initialState: State = {
     filter: defaults.filter,
     tag: '',
-    theme: readTheme(),
-    intro: readIntro()
+    theme: defaults.theme,
+    intro: true
 };
 
 export default (state: State = initialState, action: Actions): State => {
@@ -72,13 +58,13 @@ export const toggleTheme = () => (dispatch: Dispatch, getState: () => AppState) 
     const {theme} = global;
     const newTheme = theme === themes[0] ? themes[1] : themes[0];
 
-    lsSet('theme', newTheme);
+    Cookies.set('theme', newTheme);
 
     dispatch(themeChangeAct(newTheme));
 };
 
 export const hideIntro = () => (dispatch: Dispatch) => {
-    lsSet('hide-intro', '1');
+    Cookies.set('hide-intro', '1');
     dispatch(hideIntroAct());
 };
 

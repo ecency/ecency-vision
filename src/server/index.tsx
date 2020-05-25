@@ -1,4 +1,6 @@
 import express from 'express';
+import cookieParser from 'cookie-parser';
+
 import React from 'react';
 import {Provider} from 'react-redux';
 import {renderToString} from 'react-dom/server';
@@ -8,15 +10,22 @@ import {Helmet} from 'react-helmet';
 
 import serialize from 'serialize-javascript';
 
+import themes from '../common/constants/themes.json';
+import defaults from '../common/constants/defaults.json';
+import filters from '../common/constants/filters.json';
+
 import configureStore from '../common/store/configure';
 
 import App from '../common/app';
 
+import {State as GlobalState} from '../common/store/global/types';
 import {initialState as globalInitialState} from '../common/store/global/index';
 import {initialState as trendingTagsInitialState} from '../common/store/trending-tags/index';
 import {initialState as communitiesInitialState} from '../common/store/communities/index';
 
-import {getTrendingTags} from '../common/api/hive';
+import filterTagExtract from '../common/helper/filter-tag-extract';
+
+import * as hiveApi from '../common/api/hive';
 
 let assets: any;
 
@@ -27,16 +36,42 @@ syncLoadAssets();
 
 const server = express();
 
+const makeGlobalState = (req: express.Request): GlobalState => {
+    const theme = req.cookies['theme'] && themes.includes(req.cookies['theme']) ? req.cookies['theme'] : defaults.theme;
+    const intro = !req.cookies['hide-intro'];
+    let filter = '';
+    let tag = '';
+
+    const params = filterTagExtract(req.url);
+    if (params) {
+        const {filter: _filter, tag: _tag} = params;
+        if (filters.includes(_filter)) {
+            filter = _filter;
+            tag = _tag;
+        }
+    }
+
+    return {
+        ...globalInitialState,
+        theme,
+        intro,
+        filter,
+        tag
+    }
+};
+
 server
     .disable('x-powered-by')
     .use(express.static(process.env.RAZZLE_PUBLIC_DIR!))
+    .use(cookieParser())
     .get('/*', (req: express.Request, res: express.Response) => {
 
-        getTrendingTags().then(tags => {
+
+        hiveApi.getTrendingTags().then(tags => {
 
             const preLoadedState = {
                 counter: {val: 1},
-                global: globalInitialState,
+                global: makeGlobalState(req),
                 trendingTags: {...trendingTagsInitialState, list: tags},
                 communities: communitiesInitialState
             };
