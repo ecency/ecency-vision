@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import {State as GlobalState} from '../../store/global/types';
 import {Location, History} from 'history';
-import {State as CommunitiesState} from "../../store/communities/types";
+import {State as CommunitiesState} from '../../store/communities/types';
 
 export const makePath = (filter: string, tag: string): string => {
     return `/${filter}/${tag}`;
@@ -18,52 +18,12 @@ interface Props {
     fetchCommunity: (name: string) => void
 }
 
-interface State {
-    label: string
-}
-
-export default class TagLink extends Component<Props, State> {
-    state: State = {
-        label: ''
-    };
-
+export default class TagLink extends Component<Props> {
     componentDidMount() {
-        const {tag} = this.props;
+        const {communities, tag} = this.props;
 
-        if (tag.startsWith('hive-')) {
+        if (tag.startsWith('hive-') && !communities.list[tag]) {
             this.props.fetchCommunity(tag);
-        }
-    }
-
-    shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
-        const {label} = this.state;
-        const {tag, children} = this.props;
-
-        // tag changed.
-        if (children.props.className !== nextProps.children.props.className) {
-            return true;
-        }
-
-        // already got label. skip.
-        if (label !== '') {
-            return false;
-        }
-
-        // if the tag in communities store
-        return !!nextProps.communities.list[tag];
-    }
-
-    componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>): void {
-        const {label} = this.state;
-        if (label !== '') {
-            return;
-        }
-
-        const {tag} = this.props;
-        const {communities} = this.props;
-
-        if (communities.list[tag]) {
-            this.setState({label: communities.list[tag].title})
         }
     }
 
@@ -84,8 +44,7 @@ export default class TagLink extends Component<Props, State> {
     };
 
     render() {
-        const {children, global, tag} = this.props;
-        const {label} = this.state;
+        const {children, global, tag, communities} = this.props;
 
         const {filter} = global;
 
@@ -93,8 +52,9 @@ export default class TagLink extends Component<Props, State> {
 
         const props = Object.assign({}, children.props, {href, onClick: this.clicked});
 
-        if (label) {
-            props.children = label;
+        const communityTitle = communities.list[tag]?.title;
+        if (communityTitle) {
+            props.children = communityTitle;
         }
 
         return React.createElement('a', props);

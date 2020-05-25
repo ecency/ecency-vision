@@ -66,14 +66,22 @@ server
     .get('/*', async (req: express.Request, res: express.Response) => {
 
         const tags = await hiveApi.getTrendingTags();
-        // const communities = await hiveApi.getCommunities();
+        const communities = await hiveApi.getCommunities();
+        const communityList = {};
 
+        if (communities) {
+            communities.forEach(x => {
+                communityList[x.name] = x;
+            })
+        }
+
+        const globalState = makeGlobalState(req);
 
         const preLoadedState = {
             counter: {val: 1},
-            global: makeGlobalState(req),
+            global: globalState,
             trendingTags: {...trendingTagsInitialState, list: tags},
-            communities: communitiesInitialState
+            communities: {...communitiesInitialState, list: communityList}
         };
 
         const store = configureStore(preLoadedState);
@@ -107,13 +115,14 @@ server
             ? `<script src="${assets.client.js}" defer></script>`
             : `<script src="${assets.client.js}" defer crossorigin></script>`}
             </head>
-            <body class="theme-day">
+            <body class="${`theme-${globalState.theme}`}">
                 <div id="root">${markup}</div>
                 <script>
                   window.__PRELOADED_STATE__ = ${serialize(finalState)}
                 </script>
             </body>
         </html>`);
-    });
+    }
+);
 
 export default server;
