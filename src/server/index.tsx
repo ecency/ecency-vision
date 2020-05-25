@@ -100,15 +100,18 @@ server
             const helmet = Helmet.renderStatic();
             const headHelmet = helmet.meta.toString() + helmet.title.toString() + helmet.link.toString();
 
-            res.send(`<!doctype html>
-            <html lang="">
+            res.send(`<!DOCTYPE html>
+            <html lang="en">
             <head>
-                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-                <meta charSet='utf-8' />
+                <meta charset="utf-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <link rel="icon" href="/favicon.png" />
+                <meta name="theme-color" content="#000000" />
+                <link rel="apple-touch-icon" href="/logo192.png" />
+                <link rel="manifest" href="/manifest.json" />
                 ${headHelmet}
-                <meta name="viewport" content="width=device-width, initial-scale=1">
                 ${assets.client.css ? `<link rel="stylesheet" href="${assets.client.css}">` : ''}
-                  ${process.env.NODE_ENV === 'production' ? `<script src="${assets.client.js}" defer></script>` : `<script src="${assets.client.js}" defer crossorigin></script>`}
+                ${process.env.NODE_ENV === 'production' ? `<script src="${assets.client.js}" defer></script>` : `<script src="${assets.client.js}" defer crossorigin></script>`}
             </head>
             <body class="${`theme-${globalState.theme}`}">
                 <div id="root">${markup}</div>
