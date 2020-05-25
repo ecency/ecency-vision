@@ -1,4 +1,4 @@
-import filters from './constants/filters.json';
+import filters from '../common/constants/filters.json';
 
 export default {
     HOME: `/`,

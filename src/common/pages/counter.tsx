@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import {bindActionCreators, AnyAction, Dispatch} from 'redux';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
 import {AppState} from '../store/index';
 import {State as CounterState} from '../store/counter/types';
 import {incrementCounter, decrementCounter} from '../store/counter/index';
-import {Link} from "react-router-dom";
+
 import {Helmet} from "react-helmet";
 
 interface Props {

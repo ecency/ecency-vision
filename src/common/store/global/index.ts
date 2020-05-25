@@ -1,16 +1,16 @@
 import {Dispatch} from 'redux';
 
-import defaults from '../../../constants/defaults.json';
-import filters from '../../../constants/filters.json';
-import themes from '../../../constants/themes.json';
+import defaults from '../../constants/defaults.json';
+import filters from '../../constants/filters.json';
+import themes from '../../constants/themes.json';
 
 import {AppState} from '../index';
 
 import {Actions, ActionTypes, State, ThemeChangeAction, IntroHideAction} from './types';
 
-import filterTagExtract from '../../../helper/filter-tag-extract';
+import filterTagExtract from '../../helper/filter-tag-extract';
 
-import {lsGet, lsSet} from "../../../util/ls";
+import {lsGet, lsSet} from '../../util/ls';
 
 const readTheme = (): string => {
     const userTheme = lsGet('theme');
