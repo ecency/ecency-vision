@@ -25,12 +25,6 @@ const syncLoadAssets = () => {
 };
 syncLoadAssets();
 
-const fetchCounter = (): Promise<number> => {
-    return new Promise(((resolve) => {
-        resolve(18);
-    }))
-};
-
 const server = express();
 
 server
@@ -39,7 +33,7 @@ server
     .get('/*', (req: express.Request, res: express.Response) => {
 
         getTrendingTags().then(tags => {
-            // Compile an initial state
+
             const preLoadedState = {
                 counter: {val: 1},
                 global: globalInitialState,
@@ -47,12 +41,10 @@ server
                 communities: communitiesInitialState
             };
 
-            // Create a new Redux store instance
             const store = configureStore(preLoadedState);
 
             const context = {};
 
-            // Render the component to a string
             const markup = renderToString(
                 <Provider store={store}>
                     <StaticRouter location={req.url} context={context}>
@@ -61,7 +53,6 @@ server
                 </Provider>
             );
 
-            // Grab the initial state from our Redux store
             const finalState = store.getState();
 
             const helmet = Helmet.renderStatic();
