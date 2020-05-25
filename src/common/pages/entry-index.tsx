@@ -13,6 +13,7 @@ import {toggleTheme, hideIntro} from '../store/global';
 import {fetchTrendingTags} from '../store/trending-tags';
 import {fetchCommunity} from '../store/communities';
 
+import Theme from '../components/theme';
 import NavBar from '../components/navbar';
 
 interface Props {
@@ -38,6 +39,7 @@ class EntryIndexPage extends Component<Props> {
                     <title>Home</title>
                 </Helmet>
 
+                <Theme {...this.props} />
                 <NavBar {...this.props} />
 
             </div>
