@@ -1,5 +1,3 @@
-import {TrendingTag} from '../../api/hive';
-
 export interface State {
     list: string[],
     loading: boolean,
