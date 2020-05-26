@@ -8,7 +8,7 @@ import reducer, {
 
 import {locationChangeAct} from '../common';
 
-import {ActionTypes, State} from './types';
+import {State} from './types';
 
 
 let state: State = initialState;

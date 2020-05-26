@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`1- default state 1`] = `
+Object {
+  "filter": "hot",
+  "intro": true,
+  "tag": "",
+  "theme": "day",
+}
+`;
+
+exports[`2- location change. should change filter and tag 1`] = `
+Object {
+  "filter": "trending",
+  "intro": true,
+  "tag": "bitcoin",
+  "theme": "day",
+}
+`;
+
+exports[`3- theme change 1`] = `
+Object {
+  "filter": "trending",
+  "intro": true,
+  "tag": "bitcoin",
+  "theme": "night",
+}
+`;
+
+exports[`4- hide intro 1`] = `
+Object {
+  "filter": "trending",
+  "intro": false,
+  "tag": "bitcoin",
+  "theme": "night",
+}
+`;

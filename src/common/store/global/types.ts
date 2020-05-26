@@ -8,13 +8,8 @@ export interface State {
 }
 
 export enum ActionTypes {
-    INIT = '@@INIT',
     THEME_CHANGE = '@global/THEME_CHANGE',
     INTRO_HIDE = '@global/INTRO_HIDE',
-}
-
-export interface InitAction {
-    type: ActionTypes.INIT;
 }
 
 export interface ThemeChangeAction {
@@ -27,4 +22,4 @@ export interface IntroHideAction {
 }
 
 
-export type Actions = InitAction | LocationChangeAction | ThemeChangeAction | IntroHideAction
+export type Actions = LocationChangeAction | ThemeChangeAction | IntroHideAction
