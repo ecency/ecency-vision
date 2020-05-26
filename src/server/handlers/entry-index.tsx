@@ -25,7 +25,8 @@ import {render} from '../template';
 
 export default async (req: express.Request, res: express.Response) => {
     const params = filterTagExtract(req.url)!;
-    const {filter, tag} = params;
+    const {filter, tag} = req.params;
+
 
     const entries = await hiveApi.getPostsRanked(filter, tag);
     const tags = await hiveApi.getTrendingTags();

@@ -9,10 +9,12 @@ import {AppState} from '../store';
 import {State as GlobalState} from '../store/global/types';
 import {State as TrendingTagsState} from '../store/trending-tags/types';
 import {State as CommunitiesState} from '../store/communities/types';
+import {State as EntriesState} from '../store/entries/types';
 
 import {toggleTheme, hideIntro} from '../store/global';
 import {fetchTrendingTags} from '../store/trending-tags';
 import {fetchCommunity} from '../store/communities';
+import {makeGroupKey} from '../store/entries/index';
 
 import Theme from '../components/theme';
 import NavBar from '../components/navbar';
@@ -25,6 +27,7 @@ interface Props {
     global: GlobalState,
     trendingTags: TrendingTagsState,
     communities: CommunitiesState,
+    entries: EntriesState,
     toggleTheme: () => void
     hideIntro: () => void,
     fetchTrendingTags: () => void,
@@ -38,6 +41,12 @@ class EntryIndexPage extends Component<Props> {
 
 
         const {trendingTags, global} = this.props;
+
+        const {filter, tag} = global;
+
+        const groupKey = makeGroupKey(filter, tag);
+
+
 
         return (
             <div>
