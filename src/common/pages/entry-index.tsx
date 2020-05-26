@@ -36,15 +36,19 @@ interface Props {
 
 
 class EntryIndexPage extends Component<Props> {
-
     render() {
-
-
-        const {trendingTags, global} = this.props;
-
+        const {trendingTags, global, entries} = this.props;
         const {filter, tag} = global;
 
         const groupKey = makeGroupKey(filter, tag);
+
+        const data = entries[groupKey];
+        if (data === undefined) {
+            return null;
+        }
+
+        const entryList = data.entries;
+        const loading = data.loading;
 
 
 
@@ -83,7 +87,8 @@ class EntryIndexPage extends Component<Props> {
 const mapStateToProps = (state: AppState) => ({
     global: state.global,
     trendingTags: state.trendingTags,
-    communities: state.communities
+    communities: state.communities,
+    entries: state.entries
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
