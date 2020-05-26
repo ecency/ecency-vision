@@ -1,14 +1,18 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
 
-import EntryIndex from './pages/entry-index';
+import EntryIndexContainer from './pages/entry-index';
 
+import routes from './routes';
 
 const App = () => {
     return (
         <>
             <Switch>
-                <Route path="/" exact={true} component={EntryIndex}/>
+                <Route exact={true} path={routes.HOME} component={EntryIndexContainer}/>
+                <Route exact={true} strict={true} path={routes.FILTER} component={EntryIndexContainer}/>
+                <Route exact={true} strict={true} path={routes.FILTER_TAG} component={EntryIndexContainer}/>
+
             </Switch>
         </>
     );
