@@ -24,9 +24,8 @@ import filterTagExtract from '../../common/helper/filter-tag-extract';
 import {render} from '../template';
 
 export default async (req: express.Request, res: express.Response) => {
-    const params = filterTagExtract(req.url)!;
-    const {filter, tag} = req.params;
-
+    const params = filterTagExtract(req.originalUrl)!;
+    const {filter, tag} = params;
 
     const entries = await hiveApi.getPostsRanked(filter, tag);
     const tags = await hiveApi.getTrendingTags();

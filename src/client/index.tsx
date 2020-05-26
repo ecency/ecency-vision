@@ -1,9 +1,9 @@
 import React from 'react';
 import {hydrate} from 'react-dom';
-import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
-
+import {ConnectedRouter} from 'connected-react-router';
 import configureStore from '../common/store/configure';
+import {history} from '../common/store/index';
 
 import App from '../common/app';
 
@@ -17,9 +17,9 @@ const store = configureStore(window['__PRELOADED_STATE__']);
 hydrate(
     (
         <Provider store={store}>
-            <BrowserRouter>
+            <ConnectedRouter history={history!}>
                 <App/>
-            </BrowserRouter>
+            </ConnectedRouter>
         </Provider>
     ),
     document.getElementById('root')
@@ -30,9 +30,9 @@ if (module.hot) {
         hydrate(
             (
                 <Provider store={store}>
-                    <BrowserRouter>
+                    <ConnectedRouter history={history!}>
                         <App/>
-                    </BrowserRouter>
+                    </ConnectedRouter>
                 </Provider>
             ),
             document.getElementById('root')

@@ -1,9 +1,16 @@
 import {createStore, applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer, {AppState} from './index';
+import {history} from './index';
+import {connectRouter, routerMiddleware} from 'connected-react-router';
 
 const enhancers = [];
-const middleware = [thunk];
+let middleware = [thunk];
+
+if (history) {
+    // @ts-ignore
+    middleware = [...middleware, routerMiddleware(history)]
+}
 
 if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined') {
     const devToolsExtension = window['__REDUX_DEVTOOLS_EXTENSION__'];
