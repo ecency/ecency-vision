@@ -48,6 +48,21 @@ export const setAddress = (address: string) => {
 export const getDiscussions = (what: DiscussionQueryCategory, query: DisqussionQuery): Promise<Discussion[]> =>
     client.database.getDiscussions(what, query);
 
+export const getPostsRanked = (sort: string, tag: string='', observer: string=''): Promise<Discussion[]> =>
+    axios
+        .post(pickAServer(), {
+            jsonrpc: '2.0',
+            method: 'bridge.get_ranked_posts',
+            params: {sort, tag, observer},
+            id: 1
+        }).then(resp => {
+        if (resp.data.result) {
+            return resp.data.result;
+        }
+
+        return null;
+    });
+
 
 export const getTrendingTags = (afterTag: string = '', limit: number = 50): Promise<string[]> =>
     client.database.call('get_trending_tags', [afterTag, limit])
