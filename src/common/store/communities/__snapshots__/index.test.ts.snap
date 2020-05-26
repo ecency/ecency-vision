@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`1- default state 1`] = `
+Object {
+  "list": Object {},
+}
+`;
+
+exports[`1- fetched 1`] = `
+Object {
+  "list": Object {
+    "hive-1234": Object {
+      "title": "bitcoin",
+    },
+  },
+}
+`;
+
+exports[`2- fetched 1`] = `
+Object {
+  "list": Object {
+    "hive-1234": Object {
+      "title": "bitcoin",
+    },
+    "hive-2345": Object {
+      "title": "photography",
+    },
+  },
+}
+`;
