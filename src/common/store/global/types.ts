@@ -1,3 +1,5 @@
+import {LocationChangeAction} from '../common';
+
 export interface State {
     filter: string,
     tag: string,
@@ -7,7 +9,6 @@ export interface State {
 
 export enum ActionTypes {
     INIT = '@@INIT',
-    LOCATION_CHANGE = '@@router/LOCATION_CHANGE',
     THEME_CHANGE = '@global/THEME_CHANGE',
     INTRO_HIDE = '@global/INTRO_HIDE',
 }
@@ -15,11 +16,6 @@ export enum ActionTypes {
 export interface InitAction {
     type: ActionTypes.INIT;
 }
-
-export interface LocationChangeAction {
-    type: ActionTypes.LOCATION_CHANGE;
-}
-
 
 export interface ThemeChangeAction {
     type: ActionTypes.THEME_CHANGE;

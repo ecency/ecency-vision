@@ -19,7 +19,6 @@ export enum ActionTypes {
     FETCHED = '@entries/FETCHED',
     FETCH_ERROR = '@entries/FETCH_ERROR',
     INVALIDATE = '@entries/INVALIDATE',
-    UPDATE = '@entries/UPDATE',
 }
 
 export interface FetchAction {

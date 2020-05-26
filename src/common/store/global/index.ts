@@ -3,12 +3,13 @@ import Cookies from 'js-cookie'
 import {Dispatch} from 'redux';
 
 import defaults from '../../constants/defaults.json';
-import filters from '../../constants/filters.json';
 import themes from '../../constants/themes.json';
 
 import {AppState} from '../index';
 
 import {Actions, ActionTypes, State, ThemeChangeAction, IntroHideAction} from './types';
+
+import {CommonActionTypes} from '../common';
 
 import filterTagExtract from '../../helper/filter-tag-extract';
 
@@ -21,8 +22,8 @@ export const initialState: State = {
 
 export default (state: State = initialState, action: Actions): State => {
     switch (action.type) {
-        case ActionTypes.LOCATION_CHANGE: {
-            const pathname = new URL(window.location.href).pathname;
+        case CommonActionTypes.LOCATION_CHANGE: {
+            const {pathname} = action.payload.location;
             const params = filterTagExtract(pathname);
 
             if (!params) {
@@ -30,10 +31,6 @@ export default (state: State = initialState, action: Actions): State => {
             }
 
             const {filter, tag} = params;
-
-            if (!filters.includes(filter)) {
-                return state;
-            }
 
             return {...state, filter: filter, tag: tag};
         }
