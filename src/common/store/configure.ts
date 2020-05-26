@@ -1,14 +1,14 @@
-import {createStore, applyMiddleware, compose} from 'redux';
+import {createStore, applyMiddleware, compose, Middleware} from 'redux';
 import thunk from 'redux-thunk';
-import rootReducer, {AppState} from './index';
-import {history} from './index';
-import {connectRouter, routerMiddleware} from 'connected-react-router';
+import {routerMiddleware} from 'connected-react-router';
+
+import rootReducer, {AppState, history} from './index';
 
 const enhancers = [];
-let middleware = [thunk];
+let middleware: Middleware[] = [thunk];
 
+// history is active only client side
 if (history) {
-    // @ts-ignore
     middleware = [...middleware, routerMiddleware(history)]
 }
 

@@ -2,6 +2,7 @@ import React from 'react';
 import {hydrate} from 'react-dom';
 import {Provider} from 'react-redux';
 import {ConnectedRouter} from 'connected-react-router';
+
 import configureStore from '../common/store/configure';
 import {history} from '../common/store/index';
 
