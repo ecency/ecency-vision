@@ -1,6 +1,8 @@
 import {Helmet} from 'react-helmet';
-import {AppState} from '../common/store/index';
+
 import serialize from 'serialize-javascript';
+
+import {AppState} from '../common/store/index';
 
 let assets: any;
 
@@ -10,7 +12,7 @@ const syncLoadAssets = () => {
 syncLoadAssets();
 
 
-export const render  = (markup:string, state: AppState) => {
+export const render = (markup: string, state: AppState) => {
     const helmet = Helmet.renderStatic();
     const headHelmet = helmet.meta.toString() + helmet.title.toString() + helmet.link.toString();
 
