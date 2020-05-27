@@ -3,10 +3,10 @@ import {LocationChangeAction} from '../common';
 
 type Modify<T, R> = Omit<T, keyof R> & R;
 
-interface Entry extends Modify<Discussion, {
+export interface Entry extends Modify<Discussion, {
     author_payout_value: Asset | string;
     payout_at: string,
-    json_metadata: {}
+    json_metadata: any
 }> {
 }
 
