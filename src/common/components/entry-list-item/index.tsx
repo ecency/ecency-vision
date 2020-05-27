@@ -20,11 +20,11 @@ import EntryPayout from '../entry-payout/index';
 
 import parseDate from '../../helper/parse-date';
 import parseToken from '../../helper/parse-token';
-import sumTotal from '../../helper/sum-total';
+import appName from '../../helper/app-name';
 
 import {_t} from '../../i18n/index';
 
-import {repeatSvg} from '../../../svg';
+import {repeatSvg, peopleSvg, commentSvg} from '../../../svg';
 
 const fallbackImage = require('../../img/fallback.png');
 const noImage = require('../../img/noimage.png');
@@ -50,6 +50,11 @@ export default class EntryListItem extends Component<Props> {
         const {entry, asAuthor, promoted} = this.props;
         const img: string = catchPostImage(entry, 600, 500) || noImage;
         const summary: string = postBodySummary(entry, 200);
+
+        const voteCount = entry.active_votes.length;
+        const contentCount = entry.children;
+
+        const app = appName(entry?.json_metadata?.app);
 
         const reputation = Math.floor(entry.author_reputation);
         const date = moment(parseDate(entry.created));
@@ -136,8 +141,15 @@ export default class EntryListItem extends Component<Props> {
                             <EntryVoteBtn {...this.props} />
                         </div>
                         <a className={`total-payout ${isPayoutDeclined ? 'payout-declined' : ''}`}>
-                            <EntryPayout {...this.props} entry={entry} />
+                            <EntryPayout {...this.props} entry={entry}/>
                         </a>
+                        <a className="voters">
+                            {peopleSvg}{' '}{voteCount}
+                        </a>
+                        <a className="comments">
+                            {commentSvg}{' '}{contentCount}
+                        </a>
+                        <div className="app">{app}</div>
                     </div>
                 </div>
             </div>

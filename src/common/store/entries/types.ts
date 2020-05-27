@@ -1,9 +1,13 @@
 import {Asset, Discussion} from '@esteemapp/dhive';
 import {LocationChangeAction} from '../common';
 
-export interface Entry extends Discussion {
+type Modify<T, R> = Omit<T, keyof R> & R;
+
+interface Entry extends Modify<Discussion, {
     author_payout_value: Asset | string;
-    payout_at: string
+    payout_at: string,
+    json_metadata: {}
+}> {
 }
 
 export interface EntryGroup {

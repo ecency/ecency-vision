@@ -89,3 +89,12 @@ export const repeatSvg = <svg viewBox="0 0 24 24">
 export const chevronUpSvg = <svg viewBox="0 0 24 24">
     <path fill="currentColor" d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"/>
 </svg>;
+
+export const peopleSvg = <svg viewBox="0 0 24 24">
+    <path fill="currentColor"
+          d="M16 17V19H2V17S2 13 9 13 16 17 16 17M12.5 7.5A3.5 3.5 0 1 0 9 11A3.5 3.5 0 0 0 12.5 7.5M15.94 13A5.32 5.32 0 0 1 18 17V19H22V17S22 13.37 15.94 13M15 4A3.39 3.39 0 0 0 13.07 4.59A5 5 0 0 1 13.07 10.41A3.39 3.39 0 0 0 15 11A3.5 3.5 0 0 0 15 4Z"/>
+</svg>;
+
+export const commentSvg = <svg  viewBox="0 0 24 24">
+    <path fill="currentColor" d="M18,8H6V6H18V8M18,11H6V9H18V11M18,14H6V12H18V14M22,4A2,2 0 0,0 20,2H4A2,2 0 0,0 2,4V16A2,2 0 0,0 4,18H18L22,22V4Z"/>
+</svg>;
