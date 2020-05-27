@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {Client, DiscussionQueryCategory, DisqussionQuery, Discussion} from '@esteemapp/dhive';
+import {Client, DiscussionQueryCategory, DisqussionQuery, Discussion, ExtendedAccount} from '@esteemapp/dhive';
 
 
 export interface TrendingTag {
@@ -48,7 +48,10 @@ export const setAddress = (address: string) => {
 export const getDiscussions = (what: DiscussionQueryCategory, query: DisqussionQuery): Promise<Discussion[]> =>
     client.database.getDiscussions(what, query);
 
-export const getPostsRanked = (sort: string, tag: string='', observer: string=''): Promise<Discussion[]> =>
+export const getAccount = (username: string): Promise<ExtendedAccount> =>
+    client.database.getAccounts([username]).then(resp => resp[0]);
+
+export const getPostsRanked = (sort: string, tag: string = '', observer: string = ''): Promise<Discussion[]> =>
     axios
         .post(pickAServer(), {
             jsonrpc: '2.0',

@@ -13,6 +13,7 @@
     "@esteemapp/esteem-render-helpers": "^1.4.1",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
+    "connected-react-router": "^6.8.0",
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
     "i18next": "^19.4.4",
