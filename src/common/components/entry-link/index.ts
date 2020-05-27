@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import {History} from 'history';
 
-import {Discussion} from '@esteemapp/dhive';
+import {Entry} from '../../store/entries/types';
 
 import {getContent} from '../../api/hive';
 
@@ -11,7 +11,7 @@ export const makePath = (category: string, author: string, permlink: string, toR
     `/${category}/@${author}/${permlink}${toReplies ? '#replies' : ''}`;
 
 
-interface PartialDiscussion {
+interface PartialEntry {
     category: string;
     author: string;
     permlink: string;
@@ -20,7 +20,7 @@ interface PartialDiscussion {
 interface Props {
     history: History,
     children: JSX.Element,
-    entry: Discussion | PartialDiscussion,
+    entry: Entry | PartialEntry,
     toReplies: boolean
 }
 
@@ -37,7 +37,7 @@ export default class EntryLink extends Component<Props> {
         let {entry: _entry} = this.props;
 
         if (!('title' in _entry)) {
-            // Get full content if the "entry" passed is "PartialDiscussion"
+            // Get full content if the "entry" passed is "PartialEntry"
             try {
                 _entry = await getContent(_entry.author, _entry.permlink);
             } catch (e) {

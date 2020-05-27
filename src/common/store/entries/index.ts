@@ -1,7 +1,6 @@
 import update from 'immutability-helper';
-import {Discussion} from '@esteemapp/dhive';
 
-import {Actions, ActionTypes, FetchAction, FetchErrorAction, FetchedAction, InvalidateAction, State} from './types';
+import {Actions, ActionTypes, FetchAction, FetchErrorAction, FetchedAction, InvalidateAction, State, Entry} from './types';
 
 import {CommonActionTypes} from '../common';
 
@@ -84,7 +83,7 @@ export const fetchErrorAct = (groupKey: string, error: Error): FetchErrorAction 
     }
 };
 
-export const fetchedAct = (groupKey: string, entries: Discussion[], hasMore: boolean): FetchedAction => {
+export const fetchedAct = (groupKey: string, entries: Entry[], hasMore: boolean): FetchedAction => {
     return {
         type: ActionTypes.FETCHED,
         groupKey,

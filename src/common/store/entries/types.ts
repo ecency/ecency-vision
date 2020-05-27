@@ -1,8 +1,12 @@
-import {Discussion} from '@esteemapp/dhive';
+import {Asset, Discussion} from '@esteemapp/dhive';
 import {LocationChangeAction} from '../common';
 
+export interface Entry extends Discussion {
+    author_payout_value: Asset | string;
+}
+
 export interface EntryGroup {
-    entries: Discussion[],
+    entries: Entry[],
     error: Error | null,
     loading: boolean,
     hasMore: boolean
@@ -35,7 +39,7 @@ export interface FetchErrorAction {
 export interface FetchedAction {
     type: ActionTypes.FETCHED;
     groupKey: string;
-    entries: Discussion[];
+    entries: Entry[];
     hasMore: boolean
 }
 

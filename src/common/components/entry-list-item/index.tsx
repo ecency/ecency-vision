@@ -3,8 +3,7 @@ import {History, Location} from 'history';
 
 import moment from 'moment';
 
-import {Discussion} from '@esteemapp/dhive';
-
+import {Entry} from '../../store/entries/types';
 import {State as GlobalState} from '../../store/global/types';
 import {State as CommunitiesState} from '../../store/communities/types';
 
@@ -34,7 +33,7 @@ interface Props {
     location: Location,
     global: GlobalState,
     communities: CommunitiesState,
-    entry: Discussion,
+    entry: Entry,
     asAuthor: string,
     promoted: boolean,
     fetchCommunity: (name: string) => void
@@ -74,7 +73,7 @@ export default class EntryListItem extends Component<Props> {
             [reBlogged] = entry.reblogged_by;
         }
 
-        /*
+
         const pending_payout = parseToken(entry.pending_payout_value);
         const author_payout = parseToken(entry.author_payout_value!);
         const curator_payout = parseToken(entry.curator_payout_value);
@@ -82,7 +81,7 @@ export default class EntryListItem extends Component<Props> {
 
         console.log(total_payout)
 
-         */
+
 
         return (
             <div className={`entry-list-item ${promoted ? 'promoted-item' : ''}`}>
