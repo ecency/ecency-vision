@@ -36,7 +36,6 @@ export default class DownloadTrigger extends Component <Props, State> {
             {modal &&
             <Modal
               show={true}
-              footer={false}
               onHide={() => {
                   this.toggle();
               }}
