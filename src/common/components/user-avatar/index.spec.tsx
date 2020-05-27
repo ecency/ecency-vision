@@ -5,7 +5,7 @@ import TestRenderer from 'react-test-renderer';
 
 describe('UserAvatar', () => {
     it('(1) Should render small size', () => {
-        const props = {user: 'good-karma', size: 'small'};
+        const props = {username: 'good-karma', size: 'small'};
         const renderer = TestRenderer.create(
             <UserAvatar {...props}/>
         );
@@ -14,7 +14,7 @@ describe('UserAvatar', () => {
 
 
     it('(2) Should render normal size', () => {
-        const props = {user: 'good-karma', size: 'normal'};
+        const props = {username: 'good-karma', size: 'normal'};
         const renderer = TestRenderer.create(
             <UserAvatar {...props}/>
         );
@@ -22,7 +22,7 @@ describe('UserAvatar', () => {
     });
 
     it('(3) Should render medium size', () => {
-        const props = {user: 'good-karma', size: 'medium'};
+        const props = {username: 'good-karma', size: 'medium'};
         const renderer = TestRenderer.create(
             <UserAvatar {...props}/>
         );
@@ -30,7 +30,7 @@ describe('UserAvatar', () => {
     });
 
     it('(4) Should render large size', () => {
-        const props = {user: 'good-karma', size: 'large'};
+        const props = {username: 'good-karma', size: 'large'};
         const renderer = TestRenderer.create(
             <UserAvatar {...props}/>
         );
@@ -38,7 +38,7 @@ describe('UserAvatar', () => {
     });
 
     it('(5) Should render xlarge size', () => {
-        const props = {user: 'good-karma', size: 'xLarge'};
+        const props = {username: 'good-karma', size: 'xLarge'};
         const renderer = TestRenderer.create(
             <UserAvatar {...props}/>
         );

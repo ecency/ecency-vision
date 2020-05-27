@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 
 interface Props {
-    user: string,
+    username: string,
     size: string,
-    onClick?: () => void
+    onClick: (e: React.MouseEvent<HTMLElement>) => void
 }
 
 export default class UserAvatar extends Component<Props> {
@@ -13,7 +13,7 @@ export default class UserAvatar extends Component<Props> {
     };
 
     render() {
-        const {user, size, onClick} = this.props;
+        const {username, size, onClick} = this.props;
         const imgSize = size === 'xLarge' ? 'large' : 'medium';
         const cls = `user-avatar ${size}`;
 
@@ -23,7 +23,7 @@ export default class UserAvatar extends Component<Props> {
                   key="user-avatar-image"
                   className={cls}
                   style={{
-                      backgroundImage: `url('https://images.esteem.app/u/${user}/avatar/${imgSize}')`
+                      backgroundImage: `url('https://images.esteem.app/u/${username}/avatar/${imgSize}')`
                   }}
             />
         );
