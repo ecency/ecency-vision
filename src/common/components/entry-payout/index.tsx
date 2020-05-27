@@ -19,16 +19,49 @@ interface Props {
     entry: Entry,
 }
 
-export default class EntryPayout extends Component<Props> {
+export class EntryPayoutDetail extends Component<Props> {
     render() {
-
         const {entry} = this.props;
 
-        const isPayoutDeclined = parseToken(entry.max_accepted_payout) === 0;
         const payoutDate = moment(parseDate(entry.payout_at));
 
         const pendingPayout = parseToken(entry.pending_payout_value);
         const promotedPayout = parseToken(entry.promoted);
+        const authorPayout = parseToken(entry.author_payout_value);
+        const curatorPayout = parseToken(entry.curator_payout_value);
+
+        return (
+            <div className="payout-popover-content">
+                <p>
+                    <span className="label">{_t('entry-payout.potential-payout')}</span>
+                    <span className="value"><FormattedCurrency {...this.props} value={pendingPayout} fixAt={3}/></span>
+                </p>
+                <p>
+                    <span className="label">{_t('entry-payout.promoted')}</span>
+                    <span className="value"><FormattedCurrency {...this.props} value={promotedPayout} fixAt={3}/></span>
+                </p>
+                <p>
+                    <span className="label">{_t('entry-payout.author-payout')}</span>
+                    <span className="value"><FormattedCurrency {...this.props} value={authorPayout} fixAt={3}/></span>
+                </p>
+                <p>
+                    <span className="label">{_t('entry-payout.curation-payout')}</span>
+                    <span className="value"><FormattedCurrency {...this.props} value={curatorPayout} fixAt={3}/></span>
+                </p>
+                <p>
+                    <span className="label">{_t('entry-payout.payout-date')}</span>
+                    <span className="value">{payoutDate.fromNow()}</span>
+                </p>
+            </div>
+        )
+    }
+}
+
+export default class EntryPayout extends Component<Props> {
+    render() {
+        const {entry} = this.props;
+
+        const pendingPayout = parseToken(entry.pending_payout_value);
         const authorPayout = parseToken(entry.author_payout_value);
         const curatorPayout = parseToken(entry.curator_payout_value);
 
@@ -37,28 +70,7 @@ export default class EntryPayout extends Component<Props> {
         const popover = (
             <Popover id={`payout-popover`}>
                 <Popover.Content>
-                    <div className="payout-popover-content">
-                        <p>
-                            <span className="label">{_t('entry-payout.potential-payout')}</span>
-                            <span className="value"><FormattedCurrency {...this.props} value={pendingPayout} fixAt={3}/></span>
-                        </p>
-                        <p>
-                            <span className="label">{_t('entry-payout.promoted')}</span>
-                            <span className="value"><FormattedCurrency {...this.props} value={promotedPayout} fixAt={3}/></span>
-                        </p>
-                        <p>
-                            <span className="label">{_t('entry-payout.author-payout')}</span>
-                            <span className="value"><FormattedCurrency {...this.props} value={authorPayout} fixAt={3}/></span>
-                        </p>
-                        <p>
-                            <span className="label">{_t('entry-payout.curation-payout')}</span>
-                            <span className="value"><FormattedCurrency {...this.props} value={curatorPayout} fixAt={3}/></span>
-                        </p>
-                        <p>
-                            <span className="label">{_t('entry-payout.payout-date')}</span>
-                            <span className="value">{payoutDate.fromNow()}</span>
-                        </p>
-                    </div>
+                    <EntryPayoutDetail {...this.props} />
                 </Popover.Content>
             </Popover>
         );

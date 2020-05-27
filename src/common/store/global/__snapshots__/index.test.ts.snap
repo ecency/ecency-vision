@@ -2,6 +2,9 @@
 
 exports[`1- default state 1`] = `
 Object {
+  "currency": "usd",
+  "currencyRate": 1,
+  "currencySymbol": "$",
   "filter": "hot",
   "intro": true,
   "tag": "",
@@ -11,6 +14,9 @@ Object {
 
 exports[`2- location change. should change filter and tag 1`] = `
 Object {
+  "currency": "usd",
+  "currencyRate": 1,
+  "currencySymbol": "$",
   "filter": "trending",
   "intro": true,
   "tag": "bitcoin",
@@ -20,6 +26,9 @@ Object {
 
 exports[`3- theme change 1`] = `
 Object {
+  "currency": "usd",
+  "currencyRate": 1,
+  "currencySymbol": "$",
   "filter": "trending",
   "intro": true,
   "tag": "bitcoin",
@@ -29,6 +38,9 @@ Object {
 
 exports[`4- hide intro 1`] = `
 Object {
+  "currency": "usd",
+  "currencyRate": 1,
+  "currencySymbol": "$",
   "filter": "trending",
   "intro": false,
   "tag": "bitcoin",

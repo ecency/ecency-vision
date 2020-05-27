@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+<span
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onMouseOut={[Function]}
+  onMouseOver={[Function]}
+>
+  $ 14.26
+</span>
+`;
+
+exports[`(2) Detail render 1`] = `
+<div
+  className="payout-popover-content"
+>
+  <p>
+    <span
+      className="label"
+    >
+      Potential Payout
+    </span>
+    <span
+      className="value"
+    >
+      $ 14.264
+    </span>
+  </p>
+  <p>
+    <span
+      className="label"
+    >
+      Promoted
+    </span>
+    <span
+      className="value"
+    >
+      $ 0.000
+    </span>
+  </p>
+  <p>
+    <span
+      className="label"
+    >
+      Author Payout
+    </span>
+    <span
+      className="value"
+    >
+      $ 0.000
+    </span>
+  </p>
+  <p>
+    <span
+      className="label"
+    >
+      Curation Payout
+    </span>
+    <span
+      className="value"
+    >
+      $ 0.000
+    </span>
+  </p>
+  <p>
+    <span
+      className="label"
+    >
+      Payout
+    </span>
+    <span
+      className="value"
+    >
+      in 7 days
+    </span>
+  </p>
+</div>
+`;
