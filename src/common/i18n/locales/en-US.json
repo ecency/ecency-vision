@@ -7,6 +7,9 @@
     "reblogged": "reblogged by {{n}}",
     "promoted": "sponsored"
   },
+  "entry-reblog": {
+    "reblog": "Reblog"
+  },
   "entry-payout": {
     "potential-payout": "Potential Payout",
     "promoted": "Promoted",

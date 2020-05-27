@@ -15,7 +15,7 @@ import TagLink from '../tag-link/index';
 import UserAvatar from '../user-avatar/index';
 import EntryLink from '../entry-link/index';
 import EntryVoteBtn from '../entry-vote-btn/index';
-import FormattedCurrency from '../formatted-currency/index';
+import EntryReblogBtn from '../entry-reblog-btn/index';
 import EntryPayout from '../entry-payout/index';
 
 import parseDate from '../../helper/parse-date';
@@ -149,6 +149,7 @@ export default class EntryListItem extends Component<Props> {
                         <a className="comments">
                             {commentSvg}{' '}{contentCount}
                         </a>
+                        <EntryReblogBtn {...this.props}/>
                         <div className="app">{app}</div>
                     </div>
                 </div>
