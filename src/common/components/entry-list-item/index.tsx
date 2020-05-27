@@ -1,9 +1,12 @@
 import React, {Component} from 'react'
 import {History, Location} from 'history';
-import {Discussion} from '@esteemapp/dhive';
+
 import moment from 'moment';
 
+import {Discussion} from '@esteemapp/dhive';
+
 import {State as GlobalState} from '../../store/global/types';
+import {State as CommunitiesState} from '../../store/communities/types';
 
 // @ts-ignore
 import {catchPostImage, postBodySummary} from '@esteemapp/esteem-render-helpers';
@@ -14,15 +17,13 @@ import UserAvatar from '../user-avatar/index';
 import EntryLink from '../entry-link/index';
 
 import parseDate from '../../helper/parse-date';
-import {State as CommunitiesState} from "../../store/communities/types";
 
 import {_t} from '../../i18n/index';
 
-import {repeatSvg} from "../../../svg";
+import {repeatSvg} from '../../../svg';
 
 const fallbackImage = require('../../img/fallback.png');
 const noImage = require('../../img/noimage.png');
-
 
 interface Props {
     history: History,
