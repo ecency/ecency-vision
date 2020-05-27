@@ -1,7 +1,7 @@
 import {Dispatch} from 'redux';
-import {Community, getCommunity} from '../../api/hive';
+import {getCommunity} from '../../api/hive';
 
-import {Actions, ActionTypes, State, FetchedAction} from './types';
+import {Community, Actions, ActionTypes, State, FetchedAction} from './types';
 
 export const initialState: State = {
     list: {}

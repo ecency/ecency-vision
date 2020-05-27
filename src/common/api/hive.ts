@@ -2,32 +2,13 @@ import axios from 'axios';
 import {Client, ExtendedAccount} from '@esteemapp/dhive';
 
 import {Entry} from '../store/entries/types';
-
+import {Community} from '../store/communities/types';
 
 export interface TrendingTag {
     comments: number,
     name: string,
     top_posts: number,
     total_payouts: string
-}
-
-export interface Community {
-    about: string,
-    avatar_url: string,
-    created_at: string,
-    description: string,
-    flag_text: string,
-    id: number,
-    is_nsfw: boolean,
-    lang: string,
-    name: string,
-    num_authors: number,
-    num_pending: number,
-    subscribers: number,
-    sum_pending: number,
-    team: Array<Array<string>>,
-    title: string,
-    type_id: number
 }
 
 const DEFAULT_SERVERS = [
