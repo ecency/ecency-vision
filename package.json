@@ -10,6 +10,7 @@
     "start:prod": "NODE_ENV=production node build/server.js"
   },
   "dependencies": {
+    "@esteemapp/esteem-render-helpers": "^1.4.1",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
     "cookie-parser": "^1.4.5",
@@ -48,9 +49,9 @@
     "@types/react-test-renderer": "^16.9.2",
     "@types/serialize-javascript": "^1.5.0",
     "@types/webpack-env": "^1.14.0",
-    "react-test-renderer": "^16.13.1",
     "razzle": "^3.0.0",
     "razzle-plugin-typescript": "^3.0.0",
+    "react-test-renderer": "^16.13.1",
     "ts-jest": "^23.10.5",
     "tslint": "^5.18.0",
     "tslint-react": "^4.0.0",
