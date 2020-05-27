@@ -1,0 +1,60 @@
+.download-dialog-content{
+  padding: 20px;
+
+
+  .downloads-title {
+    color: $dark-sky-blue;
+    font-size: 42px;
+    font-weight: 400;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .downloads-text {
+    color: $steel-grey;
+    font-weight: 300;
+    margin-bottom: 22px;
+    text-align: center;
+  }
+
+  .download-buttons {
+    display: flex;
+    justify-content: center;
+    padding: 0 10px;
+
+    @media (min-width: $md-break) {
+      padding: 0;
+    }
+
+    .download-button {
+      border-radius: 32px;
+      color: #fff;
+      display: block;
+      line-height: 100%;
+      padding: 20px 0;
+      text-align: center;
+      width: 120px;
+
+      @media (min-width: $md-break) {
+        width: 140px;
+      }
+
+      &:not(:last-child) {
+        margin-right: 10px;
+      }
+
+      &.btn-desktop {
+        background: $dark-sky-blue;
+      }
+
+      &.btn-ios {
+        background: #A7ADAF;
+      }
+
+      &.btn-android {
+        background: #ADC548;
+      }
+    }
+
+  }
+}

@@ -15,6 +15,7 @@ import AccountLink from '../account-link/index';
 import TagLink from '../tag-link/index';
 import UserAvatar from '../user-avatar/index';
 import EntryLink from '../entry-link/index';
+import EntryVoteBtn from "../entry-vote-btn/index";
 
 import parseDate from '../../helper/parse-date';
 
@@ -124,6 +125,12 @@ export default class EntryListItem extends Component<Props> {
                         <EntryLink{...this.props} entry={entry}>
                             <div className="item-body">{summary}</div>
                         </EntryLink>
+                    </div>
+
+                    <div className="item-controls">
+                        <div className="voting">
+                            <EntryVoteBtn {...this.props} />
+                        </div>
                     </div>
                 </div>
             </div>
