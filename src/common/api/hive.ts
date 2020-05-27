@@ -3,13 +3,7 @@ import {Client, ExtendedAccount} from '@esteemapp/dhive';
 
 import {Entry} from '../store/entries/types';
 import {Community} from '../store/communities/types';
-
-export interface TrendingTag {
-    comments: number,
-    name: string,
-    top_posts: number,
-    total_payouts: string
-}
+import {TrendingTag} from '../store/trending-tags/types';
 
 const DEFAULT_SERVERS = [
     'https://anyx.io',
