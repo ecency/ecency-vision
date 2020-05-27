@@ -53,10 +53,13 @@
     "razzle": "^3.0.0",
     "razzle-plugin-typescript": "^3.0.0",
     "react-test-renderer": "^16.13.1",
-    "ts-jest": "^23.10.5",
+    "ts-jest": "^26.0.0",
     "tslint": "^5.18.0",
     "tslint-react": "^4.0.0",
     "typescript": "^3.5.3"
+  },
+  "resolutions": {
+    "jest": "^26.0.0"
   },
   "jest": {
     "transform": {
