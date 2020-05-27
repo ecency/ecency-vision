@@ -4,7 +4,10 @@ export interface State {
     filter: string,
     tag: string,
     theme: string,
-    intro: boolean
+    intro: boolean,
+    currency: string,
+    currencyRate: number,
+    currencySymbol: string
 }
 
 export enum ActionTypes {

@@ -17,7 +17,10 @@ export const initialState: State = {
     filter: defaults.filter,
     tag: '',
     theme: defaults.theme,
-    intro: true
+    intro: true,
+    currency: defaults.currency.currency,
+    currencyRate: defaults.currency.rate,
+    currencySymbol: defaults.currency.symbol
 };
 
 export default (state: State = initialState, action: Actions): State => {
