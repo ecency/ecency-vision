@@ -16,6 +16,7 @@ import UserAvatar from '../user-avatar/index';
 import EntryLink from '../entry-link/index';
 import EntryVoteBtn from '../entry-vote-btn/index';
 import FormattedCurrency from '../formatted-currency/index';
+import EntryPayout from '../entry-payout/index';
 
 import parseDate from '../../helper/parse-date';
 import parseToken from '../../helper/parse-token';
@@ -55,7 +56,6 @@ export default class EntryListItem extends Component<Props> {
         const dateRelative = date.fromNow();
         const dateFormatted = date.format('LLLL');
 
-        const totalPayout = sumTotal(entry);
         const isPayoutDeclined = parseToken(entry.max_accepted_payout) === 0;
 
         const isChild = !!entry.parent_author;
@@ -72,16 +72,6 @@ export default class EntryListItem extends Component<Props> {
         if (entry.reblogged_by && entry.reblogged_by.length > 0) {
             [reBlogged] = entry.reblogged_by;
         }
-
-
-        const pending_payout = parseToken(entry.pending_payout_value);
-        const author_payout = parseToken(entry.author_payout_value!);
-        const curator_payout = parseToken(entry.curator_payout_value);
-        const total_payout = pending_payout + author_payout + curator_payout;
-
-        console.log(total_payout)
-
-
 
         return (
             <div className={`entry-list-item ${promoted ? 'promoted-item' : ''}`}>
@@ -141,17 +131,12 @@ export default class EntryListItem extends Component<Props> {
                             <div className="item-body">{summary}</div>
                         </EntryLink>
                     </div>
-
                     <div className="item-controls">
                         <div className="voting">
                             <EntryVoteBtn {...this.props} />
                         </div>
-                        <a
-                            className={`total-payout ${
-                                isPayoutDeclined ? 'payout-declined' : ''
-                            }`}
-                        >
-                            <FormattedCurrency {...this.props} value={totalPayout}/>
+                        <a className={`total-payout ${isPayoutDeclined ? 'payout-declined' : ''}`}>
+                            <EntryPayout {...this.props} entry={entry} />
                         </a>
                     </div>
                 </div>

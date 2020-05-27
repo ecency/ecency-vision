@@ -3,6 +3,7 @@ import {LocationChangeAction} from '../common';
 
 export interface Entry extends Discussion {
     author_payout_value: Asset | string;
+    payout_at: string
 }
 
 export interface EntryGroup {

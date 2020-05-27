@@ -6,5 +6,12 @@
   "entry-list-item": {
     "reblogged": "reblogged by {{n}}",
     "promoted": "sponsored"
+  },
+  "entry-payout": {
+    "potential-payout": "Potential Payout",
+    "promoted": "Promoted",
+    "author-payout": "Author Payout",
+    "curation-payout": "Curation Payout",
+    "payout-date": "Payout"
   }
 }

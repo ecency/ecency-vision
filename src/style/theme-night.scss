@@ -13,6 +13,10 @@ $input-box-shadow: none;
 $input-focus-box-shadow: none;
 $input-color: $dark-two;
 
+$popover-border-color: $dark-two;
+$popover-bg: lighten($dark-six, 2);
+$popover-body-color: $silver;
+
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';
 @import '~bootstrap/scss/mixins';
@@ -26,6 +30,7 @@ $input-color: $dark-two;
   @import '~bootstrap/scss/input-group';
   @import '~bootstrap/scss/tooltip';
   @import '~bootstrap/scss/modal';
+  @import '~bootstrap/scss/popover';
 
   background: $dark-six;
   color: $silver;
