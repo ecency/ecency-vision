@@ -51,6 +51,9 @@ export const getDiscussions = (what: DiscussionQueryCategory, query: DisqussionQ
 export const getAccount = (username: string): Promise<ExtendedAccount> =>
     client.database.getAccounts([username]).then(resp => resp[0]);
 
+export const getContent = (username: string, permlink: string): Promise<Discussion> =>
+    client.call('condenser_api', 'get_content', [username, permlink]);
+
 export const getPostsRanked = (sort: string, tag: string = '', observer: string = ''): Promise<Discussion[]> =>
     axios
         .post(pickAServer(), {
