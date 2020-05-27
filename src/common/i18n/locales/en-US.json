@@ -2,5 +2,9 @@
   "navbar": {
     "change-theme": "Change Theme",
     "search-placeholder": "Search ecency"
+  },
+  "entry-list-item": {
+    "reblogged": "reblogged by {{n}}",
+    "promoted": "sponsored"
   }
 }

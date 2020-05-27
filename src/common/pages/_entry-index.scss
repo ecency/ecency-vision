@@ -1,6 +1,7 @@
 .trending-tag-list {
-  width: 230px;
+  width: 200px;
   flex-grow: 0;
+  margin-right: 10px;
 
   .list-header {
     font-size: 18px;
@@ -52,4 +53,10 @@
       }
     }
   }
+}
+
+.entry-list {
+  flex-grow: 1;
+
+  width: calc(100% - 210px);
 }

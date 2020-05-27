@@ -20,6 +20,7 @@ import Theme from '../components/theme';
 import NavBar from '../components/navbar';
 import Intro from '../components/intro';
 import TagLink, {makePath} from '../components/tag-link';
+import EntryListItem from '../components/entry-list-item';
 
 interface Props {
     history: History,
@@ -51,7 +52,6 @@ class EntryIndexPage extends Component<Props> {
         const loading = data.loading;
 
 
-
         return (
             <div>
                 <Helmet>
@@ -74,6 +74,16 @@ class EntryIndexPage extends Component<Props> {
                                     <a href={makePath(global.filter, t)} className={cls}>{t}</a>
                                 </TagLink>
                             );
+                        })}
+                    </div>
+
+                    <div className={`entry-list ${loading ? 'loading' : ''}`}>
+
+                        {entryList.map(e => {
+                            return <EntryListItem
+                                key={`${e.author}-${e.permlink}`}
+                                {...this.props}
+                                entry={e}/>
                         })}
                     </div>
                 </div>
