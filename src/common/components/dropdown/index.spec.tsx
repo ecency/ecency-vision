@@ -20,14 +20,20 @@ const props = {
     ]
 };
 
+const component = renderer.create(<MyDropDown {...props}/>);
+
 it('(1) Default render', () => {
-    const component = renderer.create(<MyDropDown {...props}/>);
     expect(component.toJSON()).toMatchSnapshot();
 });
 
-it('(2) Toggle menu ', () => {
-    const component = renderer.create(<MyDropDown {...props}/>);
+it('(2) Show menu', () => {
     // @ts-ignore
-    component.getInstance().toggleMenu();
+    component.getInstance().showMenu();
+    expect(component.toJSON()).toMatchSnapshot();
+});
+
+it('(3) Hide menu', () => {
+    // @ts-ignore
+    component.getInstance().hideMenu();
     expect(component.toJSON()).toMatchSnapshot();
 });

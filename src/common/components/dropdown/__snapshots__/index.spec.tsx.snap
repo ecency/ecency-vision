@@ -30,7 +30,7 @@ exports[`(1) Default render 1`] = `
 </div>
 `;
 
-exports[`(2) Toggle menu  1`] = `
+exports[`(2) Show menu 1`] = `
 <div
   className="custom-dropdown"
   onMouseEnter={[Function]}
@@ -87,6 +87,36 @@ exports[`(2) Toggle menu  1`] = `
           </span>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(3) Hide menu 1`] = `
+<div
+  className="custom-dropdown"
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
+  <div
+    className="dropdown-btn "
+  >
+    <div
+      className="label"
+    >
+      Trending
+    </div>
+    <div
+      className="menu-down"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M7,10L12,15L17,10H7Z"
+          fill="currentColor"
+        />
+      </svg>
     </div>
   </div>
 </div>
