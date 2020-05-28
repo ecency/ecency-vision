@@ -18,7 +18,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 30px;
+    padding: 0 20px;
     height: 100%;
 
     .brand {
@@ -133,8 +133,7 @@
 
     .search-bar {
       flex-grow: 0;
-
-      margin-right: 10px;
+      margin-right: 20px;
       position: relative;
 
 
@@ -175,12 +174,12 @@
       }
 
       .form-control {
-       width: 140px;
+        width: 200px;
         padding-left: 40px;
         transition: 0.4s;
 
         &:focus {
-         width: 300px;
+          width: 300px;
         }
       }
     }
