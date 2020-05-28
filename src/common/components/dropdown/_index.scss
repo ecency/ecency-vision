@@ -1,0 +1,108 @@
+.custom-dropdown {
+  display: inline-flex;
+  position: relative;
+
+  .dropdown-btn {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+
+    .label {
+      font-size: 18px;
+      margin-right: 6px;
+      font-weight: 500;
+      line-height: 100%;
+    }
+
+    .menu-down {
+      align-items: center;
+      background: transparent;
+      border-radius: 50%;
+      display: flex;
+      height: 28px;
+      justify-content: center;
+      transition: 0.5s;
+      width: 28px;
+      user-select: none;
+
+      svg {
+        width: 20px;
+      }
+    }
+
+    @include themify(day) {
+      color: $dark-sky-blue;
+    }
+
+    @include themify(night) {
+      color: $pastel-blue;
+    }
+
+    &.hover,
+    &:hover {
+      .menu-down {
+        @include themify(day) {
+          background: $duck-egg-blue;
+        }
+
+        @include themify(night) {
+          background: $dark-grey-blue;
+        }
+      }
+    }
+  }
+
+  .the-menu {
+    position: absolute;
+    width: 100%;
+    top: 28px;
+    z-index: 1;
+  }
+
+  .menu-inner {
+    margin-left: calc(100% - 30px);
+    margin-top: 4px;
+    display: table;
+    background: $white;
+    box-shadow: $box-shadow;
+    border-radius: $border-radius;
+  }
+
+  .menu-list {
+    padding: 18px 40px 18px 0;
+
+    .menu-item {
+      cursor: pointer;
+      color: $warm-grey;
+      font-weight: 500;
+      border-top-right-radius: 25px;
+      border-bottom-right-radius: 25px;
+
+      &:not(:last-child) {
+        margin-bottom: 10px;
+      }
+
+      .item-inner {
+        margin-left: 20px;
+        padding: 8px 20px;
+        border-radius: 25px;
+        display: block;
+      }
+
+      &.active {
+        .item-inner {
+          background: $dark-sky-blue;
+          color: $white;
+        }
+      }
+
+      &:hover:not(.active) {
+        background: lighten($dark-sky-blue, 40);
+        color: $dark-sky-blue;
+      }
+    }
+  }
+}
+
+// @shadow-1-down: 0 2px 8px rgba(0, 0, 0, 0.15);
+// @shadow-color: rgba(0, 0, 0, 0.15);

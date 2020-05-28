@@ -21,6 +21,11 @@ import NavBar from '../components/navbar';
 import Intro from '../components/intro';
 import TagLink, {makePath} from '../components/tag-link';
 import EntryListItem from '../components/entry-list-item';
+import DropDown from '../components/dropdown/index';
+
+import filters from '../constants/filters.json'
+
+import {_t} from "../i18n/index";
 
 interface Props {
     history: History,
@@ -51,6 +56,16 @@ class EntryIndexPage extends Component<Props> {
         const entryList = data.entries;
         const loading = data.loading;
 
+        const menuConfig = {
+            label: _t(`entry-index.filter-${filter}`),
+            items: filters.map(x => {
+                return {
+                    label: _t(`entry-index.filter-${x}`),
+                    href: `/${x}`,
+                    active: filter === x
+                }
+            })
+        };
 
         return (
             <div>
@@ -78,6 +93,10 @@ class EntryIndexPage extends Component<Props> {
                     </div>
 
                     <div className={`entry-list ${loading ? 'loading' : ''}`}>
+
+                        <div>
+                            <DropDown {...menuConfig}/>
+                        </div>
 
                         {entryList.map(e => {
                             return <EntryListItem

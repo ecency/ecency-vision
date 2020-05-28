@@ -16,5 +16,13 @@
     "author-payout": "Author Payout",
     "curation-payout": "Curation Payout",
     "payout-date": "Payout"
+  },
+  "entry-index": {
+    "tags": "Popular Tags",
+    "filter-trending": "Trending",
+    "filter-hot": "Hot",
+    "filter-created": "New",
+    "filter-promoted": "Promoted",
+    "filter-feed": "Feed"
   }
 }
