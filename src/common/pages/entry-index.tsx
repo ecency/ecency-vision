@@ -23,11 +23,9 @@ import TagLink, {makePath} from '../components/tag-link';
 import EntryListItem from '../components/entry-list-item';
 import DropDown from '../components/dropdown/index';
 
-
 import {_t} from '../i18n/index';
 
-import filters from '../constants/filters.json'
-
+import filters from '../constants/filters.json';
 
 interface Props {
     history: History,
@@ -94,11 +92,9 @@ class EntryIndexPage extends Component<Props> {
                     </div>
 
                     <div className={`page-content ${loading ? 'loading' : ''}`}>
-
                         <div className="page-tools">
                             <DropDown {...{...this.props, ...menuConfig}}/>
                         </div>
-
                         {entryList.map(e => {
                             return <EntryListItem
                                 key={`${e.author}-${e.permlink}`}
@@ -107,7 +103,6 @@ class EntryIndexPage extends Component<Props> {
                         })}
                     </div>
                 </div>
-
             </div>
         )
     }
