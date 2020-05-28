@@ -1,27 +1,33 @@
 import React from 'react';
 
 import MyDropDown from './index';
-import TestRenderer from 'react-test-renderer';
+import renderer from 'react-test-renderer';
 import {createBrowserHistory} from 'history';
 
-it('(1) Render', () => {
-    const props = {
-        history: createBrowserHistory(),
-        label: 'Trending',
-        items: [
-            {
-                label: 'Trending',
-                href: '/trending',
-                active: true
-            },
-            {
-                label: 'Hot',
-                href: '/hot'
-            }
-        ]
-    };
-    const renderer = TestRenderer.create(
-        <MyDropDown {...props}/>
-    );
-    expect(renderer.toJSON()).toMatchSnapshot();
+const props = {
+    history: createBrowserHistory(),
+    label: 'Trending',
+    items: [
+        {
+            label: 'Trending',
+            href: '/trending',
+            active: true
+        },
+        {
+            label: 'Hot',
+            href: '/hot'
+        }
+    ]
+};
+
+it('(1) Default render', () => {
+    const component = renderer.create(<MyDropDown {...props}/>);
+    expect(component.toJSON()).toMatchSnapshot();
+});
+
+it('(2) Toggle menu ', () => {
+    const component = renderer.create(<MyDropDown {...props}/>);
+    // @ts-ignore
+    component.getInstance().toggleMenu();
+    expect(component.toJSON()).toMatchSnapshot();
 });

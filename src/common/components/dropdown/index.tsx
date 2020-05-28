@@ -32,19 +32,26 @@ export default class MyDropDown extends Component<Props> {
             this.timer = null;
         }
 
-        this.setState({menu: true});
+        this.toggleMenu();
     };
 
     mouseLeave = () => {
         this.timer = setTimeout(() => {
-            this.setState({menu: false});
+            this.toggleMenu();
         }, 500);
+    };
+
+
+    toggleMenu = () => {
+        const {menu} = this.state;
+        this.setState({menu: !menu});
     };
 
     itemClicked = (i: MenuItem) => {
         const {history} = this.props;
         history.push(i.href);
-        this.setState({menu: false});
+
+        this.toggleMenu();
     };
 
     render() {
