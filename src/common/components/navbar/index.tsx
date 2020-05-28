@@ -32,8 +32,6 @@ export default class NavBar extends Component <Props> {
             <div className="main-menu">
                 <Link className="menu-item" to="/">Posts</Link>
                 <Link className="menu-item" to="/communities">Communities</Link>
-
-                <Link className="menu-item" to="/about">About</Link>
                 <a className="menu-item downloads" href="#">
                     <span className="label">Downloads</span>
                     <span className="icons">
@@ -42,6 +40,7 @@ export default class NavBar extends Component <Props> {
                         <span className="img-desktop">{desktopSvg}</span>
                     </span>
                 </a>
+                <Link className="menu-item" to="/about">About</Link>
             </div>
 
             <div className="search-bar">
