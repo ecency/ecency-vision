@@ -51,8 +51,6 @@ export default class MyDropDown extends Component<Props> {
         const {label, items} = this.props;
         const {menu} = this.state;
 
-        console.log(this.timer)
-
         return (
             <div className="custom-dropdown" onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave}>
                 <div className={`dropdown-btn ${menu ? 'hover' : ''}`}>
