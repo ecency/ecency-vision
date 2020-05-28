@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {History} from 'history';
 
 import {menuDownSvg} from '../../../svg';
 
@@ -9,6 +10,7 @@ interface MenuItem {
 }
 
 interface Props {
+    history: History,
     label: string,
     items: MenuItem[]
 }
@@ -18,23 +20,38 @@ interface State {
 }
 
 export default class MyDropDown extends Component<Props> {
-
     state: State = {
         menu: false
     };
 
+    timer: any = null;
+
     mouseEnter = () => {
+        if (this.timer) {
+            clearTimeout(this.timer);
+            this.timer = null;
+        }
+
         this.setState({menu: true});
     };
 
     mouseLeave = () => {
+        this.timer = setTimeout(() => {
+            this.setState({menu: false});
+        }, 500);
+    };
+
+    itemClicked = (i: MenuItem) => {
+        const {history} = this.props;
+        history.push(i.href);
         this.setState({menu: false});
     };
 
     render() {
         const {label, items} = this.props;
-        // const {menu} = this.state;
-        const menu = true;
+        const {menu} = this.state;
+
+        console.log(this.timer)
 
         return (
             <div className="custom-dropdown" onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave}>
@@ -50,6 +67,9 @@ export default class MyDropDown extends Component<Props> {
                                 {items.map((i, k) => {
                                     return <div key={k}
                                                 className={`menu-item ${i.active ? 'active' : ''}`}
+                                                onClick={() => {
+                                                    this.itemClicked(i);
+                                                }}
                                     ><span className="item-inner">{i.label}</span></div>
                                 })}
                             </div>

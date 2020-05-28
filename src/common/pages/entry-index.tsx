@@ -23,9 +23,11 @@ import TagLink, {makePath} from '../components/tag-link';
 import EntryListItem from '../components/entry-list-item';
 import DropDown from '../components/dropdown/index';
 
+
+import {_t} from '../i18n/index';
+
 import filters from '../constants/filters.json'
 
-import {_t} from "../i18n/index";
 
 interface Props {
     history: History,
@@ -39,7 +41,6 @@ interface Props {
     fetchTrendingTags: () => void,
     fetchCommunity: (name: string) => void
 }
-
 
 class EntryIndexPage extends Component<Props> {
     render() {
@@ -95,7 +96,7 @@ class EntryIndexPage extends Component<Props> {
                     <div className={`entry-list ${loading ? 'loading' : ''}`}>
 
                         <div>
-                            <DropDown {...menuConfig}/>
+                            <DropDown {...{...this.props, ...menuConfig}}/>
                         </div>
 
                         {entryList.map(e => {

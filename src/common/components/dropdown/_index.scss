@@ -63,9 +63,16 @@
     margin-left: calc(100% - 30px);
     margin-top: 4px;
     display: table;
-    background: $white;
     box-shadow: $box-shadow;
     border-radius: $border-radius;
+
+    @include themify(day) {
+      background: $white;
+    }
+
+    @include themify(night) {
+      background: lighten($dark-six, 5);
+    }
   }
 
   .menu-list {
@@ -73,10 +80,17 @@
 
     .menu-item {
       cursor: pointer;
-      color: $warm-grey;
       font-weight: 500;
       border-top-right-radius: 25px;
       border-bottom-right-radius: 25px;
+
+      @include themify(day) {
+        color: $warm-grey;
+      }
+
+      @include themify(night) {
+        color: $silver;
+      }
 
       &:not(:last-child) {
         margin-bottom: 10px;
@@ -91,18 +105,28 @@
 
       &.active {
         .item-inner {
-          background: $dark-sky-blue;
           color: $white;
+
+          @include themify(day) {
+            background: $dark-sky-blue;
+          }
+
+          @include themify(night) {
+            background: $metallic-blue;
+          }
         }
       }
 
       &:hover:not(.active) {
-        background: lighten($dark-sky-blue, 40);
-        color: $dark-sky-blue;
+        @include themify(day) {
+          background: lighten($dark-sky-blue, 40);
+          color: $dark-sky-blue;
+        }
+
+        @include themify(night) {
+          background: lighten($dark-six, 12);
+        }
       }
     }
   }
 }
-
-// @shadow-1-down: 0 2px 8px rgba(0, 0, 0, 0.15);
-// @shadow-color: rgba(0, 0, 0, 0.15);
