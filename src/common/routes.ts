@@ -1,4 +1,6 @@
-import filters from '../common/constants/filters.json';
+import {Filter} from './store/global/types';
+
+const filters = Object.values(Filter);
 
 export default {
     HOME: `/`,

@@ -11,6 +11,7 @@ import {initialState as globalInitialState} from '../../common/store/global/inde
 import {initialState as trendingTagsInitialState} from '../../common/store/trending-tags/index';
 import {initialState as communitiesInitialState} from '../../common/store/communities/index';
 
+import {Filter} from '../../common/store/global/types';
 import {makeGroupKey} from '../../common/store/entries/index';
 
 import {readGlobalCookies} from '../helper';
@@ -39,7 +40,7 @@ export default async (req: express.Request, res: express.Response) => {
     }
 
     const preLoadedState = {
-        global: {...globalInitialState, ...readGlobalCookies(req), ...{filter, tag}},
+        global: {...globalInitialState, ...readGlobalCookies(req), ...{filter: Filter[filter], tag}},
         trendingTags: {...trendingTagsInitialState, list: tags},
         communities: {...communitiesInitialState, list: communityList},
         entries: {

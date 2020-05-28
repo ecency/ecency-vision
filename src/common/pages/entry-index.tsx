@@ -6,7 +6,7 @@ import {Location, History} from 'history';
 import {Helmet} from 'react-helmet';
 
 import {AppState} from '../store';
-import {State as GlobalState} from '../store/global/types';
+import {State as GlobalState, Filter} from '../store/global/types';
 import {State as TrendingTagsState} from '../store/trending-tags/types';
 import {State as CommunitiesState} from '../store/communities/types';
 import {State as EntriesState} from '../store/entries/types';
@@ -26,7 +26,7 @@ import ListStyleToggle from '../components/list-style-toggle/index';
 
 import {_t} from '../i18n';
 
-import filters from '../constants/filters.json';
+const filters = Object.values(Filter);
 
 interface Props {
     history: History,

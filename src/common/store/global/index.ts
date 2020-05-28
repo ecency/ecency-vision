@@ -6,14 +6,18 @@ import defaults from '../../constants/defaults.json';
 
 import {AppState} from '../index';
 
-import {State, ListStyle, Theme, Actions, ActionTypes, IntroHideAction, ListStyleChangeAction, ThemeChangeAction} from './types';
+import {
+    ListStyle, Theme, Filter,
+    State,
+    Actions, ActionTypes, IntroHideAction, ListStyleChangeAction, ThemeChangeAction
+} from './types';
 
 import {CommonActionTypes} from '../common';
 
 import filterTagExtract from '../../helper/filter-tag-extract';
 
 export const initialState: State = {
-    filter: defaults.filter,
+    filter: Filter[defaults.filter],
     tag: '',
     theme: Theme[defaults.theme],
     listStyle: ListStyle[defaults.listStyle],
@@ -35,7 +39,7 @@ export default (state: State = initialState, action: Actions): State => {
 
             const {filter, tag} = params;
 
-            return {...state, filter: filter, tag: tag};
+            return {...state, filter: Filter[filter], tag: tag};
         }
         case ActionTypes.THEME_CHANGE: {
             const {theme} = action;

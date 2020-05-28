@@ -10,8 +10,15 @@ export enum Theme {
     night = 'night'
 }
 
+export enum Filter {
+    trending = 'trending',
+    hot = 'hot',
+    created = 'created',
+    promoted = 'promoted'
+}
+
 export interface State {
-    filter: string,
+    filter: Filter,
     tag: string,
     theme: Theme,
     listStyle: ListStyle,
