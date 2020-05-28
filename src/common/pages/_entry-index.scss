@@ -6,7 +6,11 @@
   .list-header {
     font-size: 18px;
     font-weight: 700;
-    margin: 0 0 31px 0;
+    margin: 0 0 20px 0;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    line-height: 100%;
 
     @include themify(day) {
       color: $steel-grey;
@@ -55,8 +59,23 @@
   }
 }
 
-.entry-list {
+.page-content {
   flex-grow: 1;
 
   width: calc(100% - 210px);
+
+  .page-tools {
+    align-items: center;
+    display: flex;
+    height: 50px;
+    justify-content: space-between;
+
+    @include themify(day) {
+      border-bottom: 1px solid $white-three;
+    }
+
+    @include themify(night) {
+      border-bottom: 1px solid $dark-two;
+    }
+  }
 }

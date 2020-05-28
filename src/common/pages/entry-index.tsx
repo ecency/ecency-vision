@@ -93,9 +93,9 @@ class EntryIndexPage extends Component<Props> {
                         })}
                     </div>
 
-                    <div className={`entry-list ${loading ? 'loading' : ''}`}>
+                    <div className={`page-content ${loading ? 'loading' : ''}`}>
 
-                        <div>
+                        <div className="page-tools">
                             <DropDown {...{...this.props, ...menuConfig}}/>
                         </div>
 

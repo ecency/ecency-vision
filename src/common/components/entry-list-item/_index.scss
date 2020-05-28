@@ -1,5 +1,4 @@
 .entry-list-item {
-  border-bottom: 1px solid #e7e7e7;
   margin-top: 20px;
   padding: 0 6px 16px 6px;
 
@@ -12,7 +11,7 @@
   }
 
   @include themify(day) {
-    border-bottom: 1px solid $white-four;
+    border-bottom: 1px solid $white-three;
   }
 
   @include themify(night) {
