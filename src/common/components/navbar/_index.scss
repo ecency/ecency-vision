@@ -1,7 +1,7 @@
 .nav-bar {
   align-items: center;
   display: flex;
-  height: 60px;
+  height: 64px;
   justify-content: space-between;
   padding: 0 30px;
   user-select: none;
@@ -48,20 +48,117 @@
     }
   }
 
-  .search-bar {
+  .main-menu {
     flex-grow: 1;
-    max-width: 180px;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    align-items: center;
+
+    .menu-item {
+      color: $gunmetal;
+
+      &:hover {
+        color: $warm-grey;
+      }
+
+      &:not(:last-child) {
+        margin-right: 20px;
+      }
+
+      &.downloads {
+        background: linear-gradient(270deg, #2D5AA0 4.68%, #357CE6 98.13%);
+        border-radius: 25px;
+        padding: 8px 12px;
+        color: $white;
+        display: flex;
+        align-items: center;
+
+
+        &:hover {
+          background: linear-gradient(120deg, #2D5AA0 4.68%, #357CE6 98.13%);
+        }
+
+        .label {
+          margin-right: 10px;
+        }
+
+        .icons {
+          display: flex;
+          align-items: center;
+
+          .img-apple {
+            margin-right: 15px;
+
+            svg {
+              height: 16px;
+              margin-top: -2px;
+            }
+          }
+
+          .img-google {
+            margin-right: 12px;
+
+            svg {
+              height: 14px;
+            }
+          }
+
+          .img-desktop {
+            svg {
+              height: 14px;
+            }
+          }
+        }
+      }
+
+    }
+  }
+
+  .search-bar {
+    flex-grow: 0;
+
+    margin-right: 10px;
+    position: relative;
+
 
     @media (min-width: $sm-break) {
-      max-width: 300px;
+      // max-width: 300px;
     }
 
     @media (min-width: $md-break) {
-      max-width: 340px;
+      //max-width: 340px;
     }
 
     @media (min-width: $lg-break) {
-      max-width: 400px;
+      //max-width: 400px;
+    }
+
+    .prepend {
+      position: absolute;
+      left: 0;
+      top: 0;
+
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      color: $warm-grey;
+
+      svg {
+        width: 22px;
+      }
+    }
+
+    .form-control {
+      max-width: 140px;
+      padding-left: 40px;
+      transition: 0.4s;
+
+      &:focus {
+        max-width: 220px;
+      }
     }
   }
 
@@ -69,8 +166,8 @@
     cursor: pointer;
 
     svg {
-      width: 26px;
-      height: 26px;
+      width: 24px;
+      height: 24px;
     }
 
     @include themify(day) {

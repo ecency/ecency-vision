@@ -1,7 +1,7 @@
 {
   "navbar": {
     "change-theme": "Change Theme",
-    "search-placeholder": "Search ecency"
+    "search-placeholder": "Search"
   },
   "entry-list-item": {
     "reblogged": "reblogged by {{n}}",
