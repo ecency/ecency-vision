@@ -2,7 +2,6 @@
   height: 64px;
   user-select: none;
   margin-bottom: 30px;
-  display: none;
 
   @include themify(day) {
     background: $white-two;
@@ -40,7 +39,7 @@
         display: none;
         padding-top: 4px;
 
-        @media (min-width: $sm-break) {
+        @media (min-width: $lg-break) {
           display: block;
         }
 
@@ -53,17 +52,21 @@
         }
       }
 
-      @media (min-width: $sm-break) {
+      @media (min-width: $lg-break) {
         width: auto;
       }
     }
 
     .main-menu {
       flex-grow: 1;
-      display: flex;
       justify-content: center;
       height: 100%;
       align-items: center;
+      display: none;
+
+      @media (min-width: $md-break) {
+        display: flex;
+      }
 
       .menu-item {
         @include themify(day) {
@@ -138,21 +141,7 @@
 
     .search-bar {
       flex-grow: 0;
-      margin-right: 20px;
       position: relative;
-
-
-      @media (min-width: $sm-break) {
-        // max-width: 300px;
-      }
-
-      @media (min-width: $md-break) {
-        //max-width: 340px;
-      }
-
-      @media (min-width: $lg-break) {
-        //max-width: 400px;
-      }
 
       .prepend {
         position: absolute;
@@ -179,23 +168,42 @@
       }
 
       .form-control {
-        width: 200px;
+        width: 140px;
         padding-left: 40px;
         transition: 0.4s;
 
-        &:focus {
-          width: 300px;
+        @media (min-width: $xsm-break) {
+          width: 170px;
+        }
+
+        @media (min-width: $sm-break) {
+          width: 200px;
+        }
+
+        @media (min-width: $md-break) {
+          width: 150px;
+          margin-right: 20px;
+        }
+
+        @media (min-width: $lg-break) {
+          width: 200px;
+        }
+
+        @media (min-width: $xl-break) {
+          &:focus {
+            width: 300px;
+          }
         }
       }
     }
 
-    .switch-theme {
-      cursor: pointer;
+    .alt-controls {
+      display: flex;
+      align-items: center;
+    }
 
-      svg {
-        width: 24px;
-        height: 24px;
-      }
+    .switch-theme, .sm-menu-toggle {
+      cursor: pointer;
 
       @include themify(day) {
         color: $silver;
@@ -204,6 +212,30 @@
       @include themify(night) {
         color: $duck-egg-blue;
         opacity: 0.8;
+      }
+    }
+
+    .switch-theme {
+      margin-right: 20px;
+
+      svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      @media (min-width: $md-break) {
+        margin-right: 0;
+      }
+    }
+
+    .sm-menu-toggle {
+      svg {
+        width: 30px;
+        height: 30px;
+      }
+
+      @media (min-width: $md-break) {
+        display: none;
       }
     }
   }

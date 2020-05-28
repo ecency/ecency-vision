@@ -8,7 +8,7 @@ import ToolTip from '../../components/tooltip';
 
 import {_t} from '../../i18n';
 
-import {magnifySvg, brightnessSvg, appleSvg, googleSvg, desktopSvg} from '../../../svg';
+import {magnifySvg, viewHeadLineSvg, brightnessSvg, appleSvg, googleSvg, desktopSvg} from '../../../svg';
 
 interface Props {
     toggleTheme: () => void
@@ -45,24 +45,17 @@ export default class NavBar extends Component <Props> {
                 </div>
 
                 <div className="search-bar">
-
-                    <span className="prepend">
-                            {magnifySvg}
-                    </span>
-
-                    <FormControl
-                        placeholder={_t('navbar.search-placeholder')}
-                    />
-
+                    <span className="prepend">{magnifySvg}</span>
+                    <FormControl placeholder={_t('navbar.search-placeholder')}/>
                 </div>
 
                 <div className="alt-controls">
-            <span className="switch-theme"
-                  onClick={this.changeTheme}>
-                <ToolTip content={_t('navbar.change-theme')} placement="left">
-                {brightnessSvg}
-                </ToolTip>
-            </span>
+                    <div className="switch-theme" onClick={this.changeTheme}>
+                        <ToolTip content={_t('navbar.change-theme')} placement="left">
+                            {brightnessSvg}
+                        </ToolTip>
+                    </div>
+                    <div className="sm-menu-toggle">{viewHeadLineSvg}</div>
                 </div>
             </div>
         </div>
