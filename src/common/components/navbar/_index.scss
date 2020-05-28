@@ -2,6 +2,7 @@
   height: 64px;
   user-select: none;
   margin-bottom: 30px;
+  display: none;
 
   @include themify(day) {
     background: $white-two;
@@ -18,8 +19,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 20px;
+    padding: 0 10px;
     height: 100%;
+
+    @media (min-width: $lg-break) {
+      padding: 0 20px;
+    }
 
     .brand {
       background-size: 100%;

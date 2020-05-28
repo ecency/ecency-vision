@@ -1,7 +1,17 @@
 .trending-tag-list {
-  width: 200px;
   flex-grow: 0;
   margin-right: 10px;
+  display: none;
+
+
+  @media (min-width: $md-break) {
+    width: 170px;
+    display: block;
+  }
+
+  @media (min-width: $lg-break) {
+    width: 200px;
+  }
 
   .list-header {
     font-size: 18px;
@@ -27,9 +37,15 @@
     cursor: pointer;
     display: table;
     margin-bottom: 8px;
-    padding: 4px 12px;
+    padding: 4px 8px;
     text-decoration: none;
     transition: 0.5s;
+    font-size: 90%;
+
+    @media (min-width: $lg-break) {
+      font-size: $font-size-base;
+      padding: 4px 12px;
+    }
 
     @include themify(day) {
       background: $white;
@@ -61,7 +77,15 @@
 
 .page-content {
   flex-grow: 1;
-  width: calc(100% - 210px);
+  width: 100%;
+
+  @media (min-width: $md-break) {
+    width: calc(100% - 180px);
+  }
+
+  @media (min-width: $lg-break) {
+    width: calc(100% - 210px);
+  }
 
   .page-tools {
     align-items: center;

@@ -1,13 +1,14 @@
 .list-style-toggle {
   cursor: pointer;
   padding: 2px;
+  display: none;
 
   svg {
     width: 24px;
     height: 24px;
   }
 
-  @media (min-width: $sm-break) {
+  @media (min-width: $md-break) {
     display: block;
   }
 

@@ -1,3 +1,4 @@
+@import 'variables';
 
 html {
   scroll-behavior: smooth;
@@ -10,7 +11,6 @@ html {
   -webkit-font-smoothing: antialiased;
 }
 
-
 #root {
   min-width: 320px;
 }
@@ -20,8 +20,12 @@ html {
 }
 
 .app-content {
-  padding: 0 20px;
+  padding: 0 10px;
   margin: 0 auto 30px auto;
   display: flex;
   max-width: 1400px;
+
+  @media (min-width: $lg-break) {
+    padding: 0 20px;
+  }
 }
