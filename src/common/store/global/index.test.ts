@@ -1,6 +1,6 @@
-import reducer, {initialState, themeChangeAct, hideIntroAct} from './index';
+import reducer, {initialState, themeChangeAct, hideIntroAct, listStyleChangeAct} from './index';
 
-import {State} from './types';
+import {State, ListStyle} from './types';
 import {locationChangeAct} from '../common';
 
 let state: State = initialState;
@@ -21,5 +21,10 @@ it('3- theme change', () => {
 
 it('4- hide intro', () => {
     state = reducer(state, hideIntroAct());
+    expect(state).toMatchSnapshot();
+});
+
+it('5- list style change', () => {
+    state = reducer(state, listStyleChangeAct(ListStyle.grid));
     expect(state).toMatchSnapshot();
 });

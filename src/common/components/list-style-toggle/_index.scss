@@ -1,0 +1,34 @@
+.list-style-toggle {
+  display: none;
+  align-items: center;
+  font-size: 22px;
+  justify-content: center;
+  cursor: pointer;
+
+  svg {
+    height: 24px;
+  }
+
+  @media (min-width: $sm-break) {
+    display: inline-flex;
+  }
+
+  @include themify(day) {
+    color: $light-periwinkle;
+  }
+
+  @include themify(night) {
+    color: $metallic-blue;
+  }
+
+  &.toggled {
+    border-radius: 5px;
+    @include themify(day) {
+      background: lighten($light-periwinkle, 10);
+    }
+
+    @include themify(night) {
+      background: darken($metallic-blue, 10);
+    }
+  }
+}

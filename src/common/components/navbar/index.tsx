@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import {Link} from 'react-router-dom';
 
-import {InputGroup, FormControl, Button} from 'react-bootstrap';
+import {FormControl} from 'react-bootstrap';
 
 import ToolTip from '../../components/tooltip';
 
@@ -11,7 +11,7 @@ import {_t} from '../../i18n';
 import {magnifySvg, brightnessSvg, appleSvg, googleSvg, desktopSvg} from '../../../svg';
 
 interface Props {
-    toggleTheme: () => any
+    toggleTheme: () => void
 }
 
 export default class NavBar extends Component <Props> {
@@ -50,9 +50,9 @@ export default class NavBar extends Component <Props> {
                             {magnifySvg}
                     </span>
 
-                    <FormControl
-                        placeholder={_t('navbar.search-placeholder')}
-                    />
+                <FormControl
+                    placeholder={_t('navbar.search-placeholder')}
+                />
 
             </div>
 

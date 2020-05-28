@@ -7,6 +7,7 @@ Object {
   "currencySymbol": "$",
   "filter": "hot",
   "intro": true,
+  "listStyle": "row",
   "tag": "",
   "theme": "day",
 }
@@ -19,6 +20,7 @@ Object {
   "currencySymbol": "$",
   "filter": "trending",
   "intro": true,
+  "listStyle": "row",
   "tag": "bitcoin",
   "theme": "day",
 }
@@ -31,6 +33,7 @@ Object {
   "currencySymbol": "$",
   "filter": "trending",
   "intro": true,
+  "listStyle": "row",
   "tag": "bitcoin",
   "theme": "night",
 }
@@ -43,6 +46,20 @@ Object {
   "currencySymbol": "$",
   "filter": "trending",
   "intro": false,
+  "listStyle": "row",
+  "tag": "bitcoin",
+  "theme": "night",
+}
+`;
+
+exports[`5- list style change 1`] = `
+Object {
+  "currency": "usd",
+  "currencyRate": 1,
+  "currencySymbol": "$",
+  "filter": "trending",
+  "intro": false,
+  "listStyle": "grid",
   "tag": "bitcoin",
   "theme": "night",
 }

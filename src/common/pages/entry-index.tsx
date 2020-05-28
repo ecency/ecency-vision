@@ -11,19 +11,20 @@ import {State as TrendingTagsState} from '../store/trending-tags/types';
 import {State as CommunitiesState} from '../store/communities/types';
 import {State as EntriesState} from '../store/entries/types';
 
-import {toggleTheme, hideIntro} from '../store/global';
+import {toggleTheme, hideIntro, toggleListStyle} from '../store/global';
 import {fetchTrendingTags} from '../store/trending-tags';
 import {fetchCommunity} from '../store/communities';
-import {makeGroupKey} from '../store/entries/index';
+import {makeGroupKey} from '../store/entries';
 
 import Theme from '../components/theme';
 import NavBar from '../components/navbar';
 import Intro from '../components/intro';
 import TagLink, {makePath} from '../components/tag-link';
 import EntryListItem from '../components/entry-list-item';
-import DropDown from '../components/dropdown/index';
+import DropDown from '../components/dropdown';
+import ListStyleToggle from '../components/list-style-toggle';
 
-import {_t} from '../i18n/index';
+import {_t} from '../i18n';
 
 import filters from '../constants/filters.json';
 
@@ -36,6 +37,7 @@ interface Props {
     entries: EntriesState,
     toggleTheme: () => void
     hideIntro: () => void,
+    toggleListStyle: () => void,
     fetchTrendingTags: () => void,
     fetchCommunity: (name: string) => void
 }
@@ -94,6 +96,8 @@ class EntryIndexPage extends Component<Props> {
                     <div className={`page-content ${loading ? 'loading' : ''}`}>
                         <div className="page-tools">
                             <DropDown {...{...this.props, ...menuConfig}}/>
+
+                            <ListStyleToggle {...this.props} />
                         </div>
                         {entryList.map(e => {
                             return <EntryListItem
@@ -121,6 +125,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
         {
             toggleTheme,
             hideIntro,
+            toggleListStyle,
             fetchTrendingTags,
             fetchCommunity
         },

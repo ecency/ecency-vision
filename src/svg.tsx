@@ -102,3 +102,7 @@ export const commentSvg = <svg viewBox="0 0 24 24">
 export const menuDownSvg = <svg viewBox="0 0 24 24">
     <path fill="currentColor" d="M7,10L12,15L17,10H7Z"/>
 </svg>;
+
+export const viewModuleSvg = <svg viewBox="0 0 24 24">
+    <path fill="currentColor" d="M16,5V11H21V5M10,11H15V5H10M16,18H21V12H16M10,18H15V12H10M4,18H9V12H4M4,11H9V5H4V11Z"/>
+</svg>;

@@ -7,7 +7,7 @@ import themes from '../../constants/themes.json';
 
 import {AppState} from '../index';
 
-import {Actions, ActionTypes, State, ThemeChangeAction, IntroHideAction} from './types';
+import {Actions, ActionTypes, IntroHideAction, ListStyle, ListStyleChangeAction, State, ThemeChangeAction} from './types';
 
 import {CommonActionTypes} from '../common';
 
@@ -17,6 +17,7 @@ export const initialState: State = {
     filter: defaults.filter,
     tag: '',
     theme: defaults.theme,
+    listStyle: ListStyle[defaults.listStyle],
     intro: true,
     currency: defaults.currency.currency,
     currencyRate: defaults.currency.rate,
@@ -44,6 +45,10 @@ export default (state: State = initialState, action: Actions): State => {
         case ActionTypes.INTRO_HIDE: {
             return {...state, intro: false};
         }
+        case ActionTypes.LIST_STYLE_CHANGE: {
+            const {listStyle} = action;
+            return {...state, listStyle};
+        }
         default:
             return state;
     }
@@ -60,6 +65,18 @@ export const toggleTheme = () => (dispatch: Dispatch, getState: () => AppState) 
 
     dispatch(themeChangeAct(newTheme));
 };
+
+export const toggleListStyle = () => (dispatch: Dispatch, getState: () => AppState) => {
+    const {global} = getState();
+
+    const {listStyle} = global;
+    const newStyle = listStyle === ListStyle.row ? ListStyle.grid : ListStyle.row;
+
+    Cookies.set('list-style', newStyle);
+
+    dispatch(listStyleChangeAct(newStyle));
+};
+
 
 export const hideIntro = () => (dispatch: Dispatch) => {
     Cookies.set('hide-intro', '1');
@@ -80,3 +97,12 @@ export const hideIntroAct = (): IntroHideAction => {
         type: ActionTypes.INTRO_HIDE,
     }
 };
+
+export const listStyleChangeAct = (listStyle: ListStyle): ListStyleChangeAction => {
+    return {
+        type: ActionTypes.LIST_STYLE_CHANGE,
+        listStyle
+    }
+};
+
+
