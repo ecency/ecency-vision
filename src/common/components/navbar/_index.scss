@@ -1,12 +1,7 @@
 .nav-bar {
-  align-items: center;
-  display: flex;
   height: 64px;
-  justify-content: space-between;
-  padding: 0 30px;
   user-select: none;
   margin-bottom: 30px;
-
 
   @include themify(day) {
     background: $white-two;
@@ -17,187 +12,195 @@
     background: $dark-two;
   }
 
+  .nav-bar-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    height: 100%;
 
-  .brand {
-    background-size: 100%;
-    height: 44px;
-    width: 44px;
-    background: url(../../img/logo-circle.svg) no-repeat left;
-    text-decoration: none;
+    .brand {
+      background-size: 100%;
+      height: 44px;
+      width: 44px;
+      background: url(../../img/logo-circle.svg) no-repeat left;
+      text-decoration: none;
 
-    .brand-text {
-      font-family: 'Arial Black', 'Arial Bold', Gadget, sans-serif;
-      padding-left: 54px;
-      font-size: 26px;
-      display: none;
-      padding-top: 4px;
+      .brand-text {
+        font-family: 'Arial Black', 'Arial Bold', Gadget, sans-serif;
+        padding-left: 54px;
+        font-size: 26px;
+        display: none;
+        padding-top: 4px;
+
+        @media (min-width: $sm-break) {
+          display: block;
+        }
+
+        @include themify(day) {
+          color: #004bd8;
+        }
+
+        @include themify(night) {
+          color: $white;
+        }
+      }
 
       @media (min-width: $sm-break) {
-        display: block;
-      }
-
-      @include themify(day) {
-        color: #004bd8;
-      }
-
-      @include themify(night) {
-        color: $white;
+        width: auto;
       }
     }
 
-    @media (min-width: $sm-break) {
-      width: auto;
+    .main-menu {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      height: 100%;
+      align-items: center;
+
+      .menu-item {
+        @include themify(day) {
+          color: $gunmetal;
+
+          &:hover {
+            color: $warm-grey;
+          }
+        }
+
+        @include themify(night) {
+          color: $duck-egg-blue;
+
+          &:hover {
+            color: $silver;
+          }
+        }
+
+
+        &:not(:last-child) {
+          margin-right: 20px;
+        }
+
+        &.downloads {
+          background: linear-gradient(270deg, #2D5AA0 4.68%, #357CE6 98.13%);
+          border-radius: 25px;
+          padding: 8px 12px;
+          color: $white;
+          display: flex;
+          align-items: center;
+
+          &:hover {
+            background: linear-gradient(120deg, #2D5AA0 4.68%, #357CE6 98.13%);
+            color: $white;
+          }
+
+          .label {
+            margin-right: 10px;
+          }
+
+          .icons {
+            display: flex;
+            align-items: center;
+
+            .img-apple {
+              margin-right: 15px;
+
+              svg {
+                height: 16px;
+                margin-top: -2px;
+              }
+            }
+
+            .img-google {
+              margin-right: 12px;
+
+              svg {
+                height: 14px;
+              }
+            }
+
+            .img-desktop {
+              svg {
+                height: 14px;
+              }
+            }
+          }
+        }
+
+      }
     }
-  }
 
-  .main-menu {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    height: 100%;
-    align-items: center;
+    .search-bar {
+      flex-grow: 0;
 
-    .menu-item {
-      @include themify(day) {
-        color: $gunmetal;
+      margin-right: 10px;
+      position: relative;
 
-        &:hover {
+
+      @media (min-width: $sm-break) {
+        // max-width: 300px;
+      }
+
+      @media (min-width: $md-break) {
+        //max-width: 340px;
+      }
+
+      @media (min-width: $lg-break) {
+        //max-width: 400px;
+      }
+
+      .prepend {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        color: $warm-grey;
+
+        @include themify(day) {
           color: $warm-grey;
         }
 
+        @include themify(night) {
+          color: $dark-six;
+        }
+
+        svg {
+          width: 22px;
+        }
+      }
+
+      .form-control {
+       width: 140px;
+        padding-left: 40px;
+        transition: 0.4s;
+
+        &:focus {
+         width: 300px;
+        }
+      }
+    }
+
+    .switch-theme {
+      cursor: pointer;
+
+      svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      @include themify(day) {
+        color: $silver;
       }
 
       @include themify(night) {
         color: $duck-egg-blue;
-
-        &:hover {
-          color: $silver;
-        }
+        opacity: 0.8;
       }
-
-
-      &:not(:last-child) {
-        margin-right: 20px;
-      }
-
-      &.downloads {
-        background: linear-gradient(270deg, #2D5AA0 4.68%, #357CE6 98.13%);
-        border-radius: 25px;
-        padding: 8px 12px;
-        color: $white;
-        display: flex;
-        align-items: center;
-
-
-        &:hover {
-          background: linear-gradient(120deg, #2D5AA0 4.68%, #357CE6 98.13%);
-        }
-
-        .label {
-          margin-right: 10px;
-        }
-
-        .icons {
-          display: flex;
-          align-items: center;
-
-          .img-apple {
-            margin-right: 15px;
-
-            svg {
-              height: 16px;
-              margin-top: -2px;
-            }
-          }
-
-          .img-google {
-            margin-right: 12px;
-
-            svg {
-              height: 14px;
-            }
-          }
-
-          .img-desktop {
-            svg {
-              height: 14px;
-            }
-          }
-        }
-      }
-
-    }
-  }
-
-  .search-bar {
-    flex-grow: 0;
-
-    margin-right: 10px;
-    position: relative;
-
-
-    @media (min-width: $sm-break) {
-      // max-width: 300px;
-    }
-
-    @media (min-width: $md-break) {
-      //max-width: 340px;
-    }
-
-    @media (min-width: $lg-break) {
-      //max-width: 400px;
-    }
-
-    .prepend {
-      position: absolute;
-      left: 0;
-      top: 0;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 44px;
-      color: $warm-grey;
-
-      @include themify(day) {
-        color: $warm-grey;
-      }
-
-      @include themify(night) {
-        color: $dark-six;
-      }
-
-      svg {
-        width: 22px;
-      }
-    }
-
-    .form-control {
-      max-width: 140px;
-      padding-left: 40px;
-      transition: 0.4s;
-
-      &:focus {
-        max-width: 300px;
-      }
-    }
-  }
-
-  .switch-theme {
-    cursor: pointer;
-
-    svg {
-      width: 24px;
-      height: 24px;
-    }
-
-    @include themify(day) {
-      color: $silver;
-    }
-
-    @include themify(night) {
-      color: $duck-egg-blue;
-      opacity: 0.8;
     }
   }
 }
