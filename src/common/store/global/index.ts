@@ -3,7 +3,6 @@ import Cookies from 'js-cookie'
 import {Dispatch} from 'redux';
 
 import defaults from '../../constants/defaults.json';
-import themes from '../../constants/themes.json';
 
 import {AppState} from '../index';
 

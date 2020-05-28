@@ -11,18 +11,18 @@ import {State as TrendingTagsState} from '../store/trending-tags/types';
 import {State as CommunitiesState} from '../store/communities/types';
 import {State as EntriesState} from '../store/entries/types';
 
-import {toggleTheme, hideIntro, toggleListStyle} from '../store/global';
-import {fetchTrendingTags} from '../store/trending-tags';
-import {fetchCommunity} from '../store/communities';
-import {makeGroupKey} from '../store/entries';
+import {toggleTheme, hideIntro, toggleListStyle} from '../store/global/index';
+import {fetchTrendingTags} from '../store/trending-tags/index';
+import {fetchCommunity} from '../store/communities/index';
+import {makeGroupKey} from '../store/entries/index';
 
-import Theme from '../components/theme';
-import NavBar from '../components/navbar';
-import Intro from '../components/intro';
-import TagLink, {makePath} from '../components/tag-link';
-import EntryListItem from '../components/entry-list-item';
-import DropDown from '../components/dropdown';
-import ListStyleToggle from '../components/list-style-toggle';
+import Theme from '../components/theme/index';
+import NavBar from '../components/navbar/index';
+import Intro from '../components/intro/index';
+import TagLink, {makePath} from '../components/tag-link/index';
+import EntryListItem from '../components/entry-list-item/index';
+import DropDown from '../components/dropdown/index';
+import ListStyleToggle from '../components/list-style-toggle/index';
 
 import {_t} from '../i18n';
 
@@ -96,7 +96,6 @@ class EntryIndexPage extends Component<Props> {
                     <div className={`page-content ${loading ? 'loading' : ''}`}>
                         <div className="page-tools">
                             <DropDown {...{...this.props, ...menuConfig}}/>
-
                             <ListStyleToggle {...this.props} />
                         </div>
                         {entryList.map(e => {
