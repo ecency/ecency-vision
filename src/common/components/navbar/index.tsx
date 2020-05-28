@@ -8,7 +8,7 @@ import ToolTip from '../../components/tooltip';
 
 import {_t} from '../../i18n';
 
-import {magnifySvg, viewHeadLineSvg, brightnessSvg, appleSvg, googleSvg, desktopSvg} from '../../../svg';
+import {magnifySvg, brightnessSvg, appleSvg, googleSvg, desktopSvg} from '../../../svg';
 
 interface Props {
     toggleTheme: () => void
@@ -24,40 +24,36 @@ export default class NavBar extends Component <Props> {
     };
 
     render() {
+        const menu = <>
+            <Link className="menu-item" to="/">Global</Link>
+            <a className="menu-item downloads" href="#">
+                <span className="label">Downloads</span>
+                <span className="icons">
+                        <span className="img-apple">{appleSvg}</span>
+                        <span className="img-google">{googleSvg}</span>
+                        <span className="img-desktop">{desktopSvg}</span>
+                    </span>
+            </a>
+            <Link className="menu-item" to="/about">About</Link>
+        </>;
+
         return <div className="nav-bar">
             <div className="nav-bar-inner">
                 <Link to="/" className="brand">
                     <span className="brand-text">ecency</span>
                 </Link>
-
-                <div className="main-menu">
-                    <Link className="menu-item" to="/">Posts</Link>
-                    <Link className="menu-item" to="/communities">Communities</Link>
-                    <a className="menu-item downloads" href="#">
-                        <span className="label">Downloads</span>
-                        <span className="icons">
-                        <span className="img-apple">{appleSvg}</span>
-                        <span className="img-google">{googleSvg}</span>
-                        <span className="img-desktop">{desktopSvg}</span>
-                    </span>
-                    </a>
-                    <Link className="menu-item" to="/about">About</Link>
-                </div>
-
+                <div className="nav-menu">{menu}</div>
                 <div className="search-bar">
                     <span className="prepend">{magnifySvg}</span>
                     <FormControl placeholder={_t('navbar.search-placeholder')}/>
                 </div>
-
-                <div className="alt-controls">
-                    <div className="switch-theme" onClick={this.changeTheme}>
-                        <ToolTip content={_t('navbar.change-theme')} placement="left">
-                            {brightnessSvg}
-                        </ToolTip>
-                    </div>
-                    <div className="sm-menu-toggle">{viewHeadLineSvg}</div>
+                <div className="switch-theme" onClick={this.changeTheme}>
+                    <ToolTip content={_t('navbar.change-theme')} placement="left">
+                        {brightnessSvg}
+                    </ToolTip>
                 </div>
             </div>
+            <div className="sm-nav-menu">{menu}</div>
         </div>
     }
 }

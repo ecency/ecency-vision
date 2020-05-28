@@ -1,7 +1,84 @@
+@mixin menu-item() {
+  @include themify(day) {
+    color: $gunmetal;
+
+    &:hover {
+      color: $warm-grey;
+    }
+  }
+
+  @include themify(night) {
+    color: $duck-egg-blue;
+
+    &:hover {
+      color: $silver;
+    }
+  }
+
+  &:not(:last-child) {
+    margin-right: 14px;
+
+    @media (min-width: $xsm-break) {
+      margin-right: 20px;
+    }
+  }
+
+  &.downloads {
+    background: linear-gradient(270deg, #2D5AA0 4.68%, #357CE6 98.13%);
+    border-radius: 25px;
+    padding: 8px 12px;
+    color: $white;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      background: linear-gradient(120deg, #2D5AA0 4.68%, #357CE6 98.13%);
+      color: $white;
+    }
+
+    .label {
+      margin-right: 10px;
+    }
+
+    .icons {
+      display: flex;
+      align-items: center;
+
+      .img-apple {
+        margin-right: 15px;
+
+        svg {
+          height: 16px;
+          margin-top: -2px;
+        }
+      }
+
+      .img-google {
+        margin-right: 12px;
+
+        svg {
+          height: 14px;
+        }
+      }
+
+      .img-desktop {
+        svg {
+          height: 14px;
+        }
+      }
+    }
+  }
+}
+
 .nav-bar {
   height: 64px;
   user-select: none;
-  margin-bottom: 30px;
+  margin-bottom: 54px;
+  position: relative;
+
+  @media (min-width: $md-break) {
+    margin-bottom: 30px;
+  }
 
   @include themify(day) {
     background: $white-two;
@@ -57,7 +134,7 @@
       }
     }
 
-    .main-menu {
+    .nav-menu {
       flex-grow: 1;
       justify-content: center;
       height: 100%;
@@ -69,73 +146,7 @@
       }
 
       .menu-item {
-        @include themify(day) {
-          color: $gunmetal;
-
-          &:hover {
-            color: $warm-grey;
-          }
-        }
-
-        @include themify(night) {
-          color: $duck-egg-blue;
-
-          &:hover {
-            color: $silver;
-          }
-        }
-
-
-        &:not(:last-child) {
-          margin-right: 20px;
-        }
-
-        &.downloads {
-          background: linear-gradient(270deg, #2D5AA0 4.68%, #357CE6 98.13%);
-          border-radius: 25px;
-          padding: 8px 12px;
-          color: $white;
-          display: flex;
-          align-items: center;
-
-          &:hover {
-            background: linear-gradient(120deg, #2D5AA0 4.68%, #357CE6 98.13%);
-            color: $white;
-          }
-
-          .label {
-            margin-right: 10px;
-          }
-
-          .icons {
-            display: flex;
-            align-items: center;
-
-            .img-apple {
-              margin-right: 15px;
-
-              svg {
-                height: 16px;
-                margin-top: -2px;
-              }
-            }
-
-            .img-google {
-              margin-right: 12px;
-
-              svg {
-                height: 14px;
-              }
-            }
-
-            .img-desktop {
-              svg {
-                height: 14px;
-              }
-            }
-          }
-        }
-
+        @include menu-item;
       }
     }
 
@@ -197,13 +208,15 @@
       }
     }
 
-    .alt-controls {
-      display: flex;
-      align-items: center;
-    }
 
-    .switch-theme, .sm-menu-toggle {
+    .switch-theme {
       cursor: pointer;
+
+
+      svg {
+        width: 24px;
+        height: 24px;
+      }
 
       @include themify(day) {
         color: $silver;
@@ -214,29 +227,24 @@
         opacity: 0.8;
       }
     }
+  }
 
-    .switch-theme {
-      margin-right: 20px;
+  .sm-nav-menu {
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: absolute;
+    top: 76px;
+    left: 0;
+    width: 100%;
 
-      svg {
-        width: 24px;
-        height: 24px;
-      }
-
-      @media (min-width: $md-break) {
-        margin-right: 0;
-      }
+    @media (min-width: $md-break) {
+      display: none;
     }
 
-    .sm-menu-toggle {
-      svg {
-        width: 30px;
-        height: 30px;
-      }
-
-      @media (min-width: $md-break) {
-        display: none;
-      }
+    .menu-item {
+      @include menu-item;
     }
   }
 }
