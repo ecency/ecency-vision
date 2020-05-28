@@ -1,16 +1,21 @@
 import express from 'express';
 
-import themes from '../common/constants/themes.json';
+import {ListStyle, Theme} from '../common/store/global/types';
+
 import defaults from '../common/constants/defaults.json';
 
 export interface GlobalCookies {
-    theme: string,
+    theme: Theme,
+    listStyle: ListStyle,
     intro: boolean
 }
 
 export const readGlobalCookies = (req: express.Request): GlobalCookies => {
-    const theme = req.cookies['theme'] && themes.includes(req.cookies['theme']) ? req.cookies['theme'] : defaults.theme;
-    const intro = !req.cookies['hide-intro'];
+    const _c = (k: string): any => req.cookies[k];
 
-    return {theme, intro}
+    const theme = _c('theme') && Object.values(Theme).includes(_c('theme')) ? _c('theme') : defaults.theme;
+    const intro = !_c('hide-intro');
+    const listStyle = _c('list-style') && Object.values(ListStyle).includes(_c('list-style')) ? _c('list-style') : defaults.listStyle;
+
+    return {theme: Theme[theme], listStyle: ListStyle[listStyle], intro};
 };

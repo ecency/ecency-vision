@@ -1,6 +1,6 @@
 import reducer, {initialState, themeChangeAct, hideIntroAct, listStyleChangeAct} from './index';
 
-import {State, ListStyle} from './types';
+import {State, Theme, ListStyle} from './types';
 import {locationChangeAct} from '../common';
 
 let state: State = initialState;
@@ -15,7 +15,7 @@ it('2- location change. should change filter and tag', () => {
 });
 
 it('3- theme change', () => {
-    state = reducer(state, themeChangeAct('night'));
+    state = reducer(state, themeChangeAct(Theme.night));
     expect(state).toMatchSnapshot();
 });
 
