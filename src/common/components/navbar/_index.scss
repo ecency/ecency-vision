@@ -7,8 +7,10 @@
   user-select: none;
   margin-bottom: 30px;
 
+
   @include themify(day) {
     background: $white-two;
+    box-shadow: 0 0 2px 1px $white-six;
   }
 
   @include themify(night) {
@@ -56,11 +58,23 @@
     align-items: center;
 
     .menu-item {
-      color: $gunmetal;
+      @include themify(day) {
+        color: $gunmetal;
 
-      &:hover {
-        color: $warm-grey;
+        &:hover {
+          color: $warm-grey;
+        }
+
       }
+
+      @include themify(night) {
+        color: $duck-egg-blue;
+
+        &:hover {
+          color: $silver;
+        }
+      }
+
 
       &:not(:last-child) {
         margin-right: 20px;
@@ -138,13 +152,20 @@
       position: absolute;
       left: 0;
       top: 0;
-
       height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
       width: 44px;
       color: $warm-grey;
+
+      @include themify(day) {
+        color: $warm-grey;
+      }
+
+      @include themify(night) {
+        color: $dark-six;
+      }
 
       svg {
         width: 22px;
@@ -175,8 +196,8 @@
     }
 
     @include themify(night) {
-      color: $white-five;
-      opacity: 0.5;
+      color: $duck-egg-blue;
+      opacity: 0.8;
     }
   }
 }
