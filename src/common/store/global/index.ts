@@ -7,7 +7,7 @@ import themes from '../../constants/themes.json';
 
 import {AppState} from '../index';
 
-import {Actions, ActionTypes, IntroHideAction, ListStyle, ListStyleChangeAction, State, ThemeChangeAction} from './types';
+import {State, ListStyle, Theme, Actions, ActionTypes, IntroHideAction, ListStyleChangeAction, ThemeChangeAction} from './types';
 
 import {CommonActionTypes} from '../common';
 
@@ -16,7 +16,7 @@ import filterTagExtract from '../../helper/filter-tag-extract';
 export const initialState: State = {
     filter: defaults.filter,
     tag: '',
-    theme: defaults.theme,
+    theme: Theme[defaults.theme],
     listStyle: ListStyle[defaults.listStyle],
     intro: true,
     currency: defaults.currency.currency,
@@ -59,7 +59,7 @@ export const toggleTheme = () => (dispatch: Dispatch, getState: () => AppState) 
     const {global} = getState();
 
     const {theme} = global;
-    const newTheme = theme === themes[0] ? themes[1] : themes[0];
+    const newTheme = (theme === Theme.day ? Theme.night : Theme.day);
 
     Cookies.set('theme', newTheme);
 
@@ -85,7 +85,7 @@ export const hideIntro = () => (dispatch: Dispatch) => {
 
 
 /* Action Creators */
-export const themeChangeAct = (theme: string): ThemeChangeAction => {
+export const themeChangeAct = (theme: Theme): ThemeChangeAction => {
     return {
         type: ActionTypes.THEME_CHANGE,
         theme

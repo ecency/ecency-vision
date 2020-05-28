@@ -5,10 +5,15 @@ export enum ListStyle {
     grid = 'grid'
 }
 
+export enum Theme {
+    day = 'day',
+    night = 'night'
+}
+
 export interface State {
     filter: string,
     tag: string,
-    theme: string,
+    theme: Theme,
     listStyle: ListStyle,
     intro: boolean,
     currency: string,
@@ -24,7 +29,7 @@ export enum ActionTypes {
 
 export interface ThemeChangeAction {
     type: ActionTypes.THEME_CHANGE;
-    theme: string;
+    theme: Theme;
 }
 
 export interface IntroHideAction {
