@@ -1,16 +1,14 @@
 .list-style-toggle {
-  display: none;
-  align-items: center;
-  font-size: 22px;
-  justify-content: center;
   cursor: pointer;
+  padding: 2px;
 
   svg {
+    width: 24px;
     height: 24px;
   }
 
   @media (min-width: $sm-break) {
-    display: inline-flex;
+    display: block;
   }
 
   @include themify(day) {
