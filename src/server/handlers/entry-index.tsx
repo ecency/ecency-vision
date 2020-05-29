@@ -49,16 +49,14 @@ export default async (req: express.Request, res: express.Response) => {
 
     let communities: Community[] | undefined = cache.get('communities');
     if (communities === undefined) {
-        communities = await hiveApi.getCommunities('', 32);
+        // only top 20 community for optimized output.
+        communities = await hiveApi.getCommunities('', 20);
         cache.set('communities', communities, 86400);
     }
 
     const communityList = {};
-
     if (communities) {
-        communities.forEach(x => {
-            communityList[x.name] = x;
-        })
+        communities.forEach(x => communityList[x.name] = x)
     }
 
     const preLoadedState = {
