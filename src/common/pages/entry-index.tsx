@@ -77,7 +77,7 @@ class EntryIndexPage extends Component<Props> {
             items: filters.map(x => {
                 return {
                     label: _t(`entry-index.filter-${x}`),
-                    href: `/${x}`,
+                    href: tag ? `/${x}/${tag}` : `/${x}`,
                     active: filter === x
                 }
             })
