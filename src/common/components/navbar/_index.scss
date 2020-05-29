@@ -74,7 +74,7 @@
 
       @media (min-width: $lg-break) {
         margin-right: 0;
-        width: 210px; // auto;
+        width: 230px;
       }
     }
 
@@ -163,11 +163,11 @@
 
         @media (min-width: $lg-break) {
           width: 200px;
-          margin-right: 40px;
         }
 
         @media (min-width: $xl-break) {
           width: 340px;
+          margin-right: 40px;
         }
       }
     }
@@ -190,6 +190,10 @@
 
       @media (min-width: $lg-break) {
         padding: 8px 20px;
+
+      }
+
+      @media (min-width: $xl-break) {
         margin-right: 40px;
       }
 
