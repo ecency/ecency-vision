@@ -45,6 +45,15 @@ interface Props {
 }
 
 class EntryIndexPage extends Component<Props> {
+    componentDidUpdate(prevProps: Readonly<Props>): void {
+        const {global} = this.props;
+        const {global: oGlobal} = prevProps;
+
+        if (!(global.filter === oGlobal.filter && global.tag === oGlobal.tag)) {
+            // load
+        }
+    }
+
     render() {
         const {trendingTags, global, entries} = this.props;
         const {filter, tag} = global;
