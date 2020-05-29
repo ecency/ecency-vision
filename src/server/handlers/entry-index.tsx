@@ -49,7 +49,7 @@ export default async (req: express.Request, res: express.Response) => {
 
     let communities: Community[] | undefined = cache.get('communities');
     if (communities === undefined) {
-        communities = await hiveApi.getCommunities();
+        communities = await hiveApi.getCommunities('', 32);
         cache.set('communities', communities, 86400);
     }
 

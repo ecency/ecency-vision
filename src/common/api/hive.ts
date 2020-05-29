@@ -72,12 +72,15 @@ export const getCommunity = (name: string): Promise<Community | undefined> => {
 };
 
 
-export const getCommunities = (): Promise<Community[] | undefined> => {
+export const getCommunities = (
+    last: string = '', limit: number = 100,
+    query: string = '', sort: string = 'rank',
+    observer: string = ''): Promise<Community[] | undefined> => {
     return axios
         .post(pickAServer(), {
             jsonrpc: '2.0',
             method: 'bridge.list_communities',
-            params: {sort: 'rank'},
+            params: {last, limit, query, sort, observer},
             id: 1
         }).then(resp => {
             if (resp.data.result) {
