@@ -91,7 +91,11 @@
     align-items: center;
     display: flex;
     height: 50px;
-    justify-content: space-between;
+    justify-content: center;
+
+    @media (min-width: $md-break) {
+      justify-content: space-between;
+    }
 
     @include themify(day) {
       border-bottom: 1px solid $white-three;
