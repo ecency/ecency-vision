@@ -19,6 +19,10 @@ html {
   width: 20px;
 }
 
+.flex-spacer {
+  flex-grow: 1;
+}
+
 .app-content {
   padding: 0 10px;
   margin: 0 auto 30px auto;

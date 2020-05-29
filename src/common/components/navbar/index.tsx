@@ -24,28 +24,28 @@ export default class NavBar extends Component <Props> {
     };
 
     render() {
-        const menu = <>
-            <Link className="menu-item" to="/">Global</Link>
-            <a className="menu-item downloads" href="#">
-                <span className="label">Downloads</span>
-                <span className="icons">
+        return <div className="nav-bar">
+            <div className="nav-bar-inner">
+                <Link to="/" className="brand">
+                    {/* <span className="brand-text">ecency</span> */}
+                </Link>
+                <div className="text-menu">
+                    <Link className="menu-item" to="/">Global</Link>
+                    <Link className="menu-item" to="/">Communities</Link>
+                    <Link className="menu-item" to="/about">About</Link>
+                </div>
+                <div className="flex-spacer"/>
+                <div className="search-bar">
+                    <span className="prepend">{magnifySvg}</span>
+                    <FormControl placeholder={_t('navbar.search-placeholder')}/>
+                </div>
+                <div className="downloads">
+                    <span className="label">Downloads</span>
+                    <span className="icons">
                         <span className="img-apple">{appleSvg}</span>
                         <span className="img-google">{googleSvg}</span>
                         <span className="img-desktop">{desktopSvg}</span>
                     </span>
-            </a>
-            <Link className="menu-item" to="/about">About</Link>
-        </>;
-
-        return <div className="nav-bar">
-            <div className="nav-bar-inner">
-                <Link to="/" className="brand">
-                    <span className="brand-text">ecency</span>
-                </Link>
-                <div className="nav-menu">{menu}</div>
-                <div className="search-bar">
-                    <span className="prepend">{magnifySvg}</span>
-                    <FormControl placeholder={_t('navbar.search-placeholder')}/>
                 </div>
                 <div className="switch-theme" onClick={this.changeTheme}>
                     <ToolTip content={_t('navbar.change-theme')} placement="left">
@@ -53,7 +53,7 @@ export default class NavBar extends Component <Props> {
                     </ToolTip>
                 </div>
             </div>
-            <div className="sm-nav-menu">{menu}</div>
+
         </div>
     }
 }
