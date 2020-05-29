@@ -53,7 +53,7 @@ export const getTrendingTags = (afterTag: string = '', limit: number = 50): Prom
     client.database.call('get_trending_tags', [afterTag, limit])
         .then((t: TrendingTag[]) => t.filter(x => x.name !== '').map(x => x.name));
 
-export const getCommunity = (name: string): Promise<Community | null> => {
+export const getCommunity = (name: string): Promise<Community | undefined> => {
     return axios
         .post(pickAServer(), {
             jsonrpc: '2.0',
@@ -65,12 +65,12 @@ export const getCommunity = (name: string): Promise<Community | null> => {
                 return resp.data.result;
             }
 
-            return null;
+            return undefined;
         })
 };
 
 
-export const getCommunities = (): Promise<Community[] | null> => {
+export const getCommunities = (): Promise<Community[] | undefined> => {
     return axios
         .post(pickAServer(), {
             jsonrpc: '2.0',
@@ -82,6 +82,6 @@ export const getCommunities = (): Promise<Community[] | null> => {
                 return resp.data.result;
             }
 
-            return null;
+            return undefined;
         })
 };
