@@ -1,10 +1,16 @@
 import update from 'immutability-helper';
 
+import {Dispatch} from 'redux';
+
+import {AppState} from '../index';
+
 import {Actions, ActionTypes, FetchAction, FetchErrorAction, FetchedAction, InvalidateAction, State, Entry} from './types';
 
 import {CommonActionTypes} from '../common';
 
 import filterTagExtract from '../../helper/filter-tag-extract';
+
+import {getPostsRanked} from '../../api/hive';
 
 export const makeGroupKey = (what: string, tag: string = ''): string => {
     if (tag) {
@@ -65,6 +71,42 @@ export default (state: State = initialState, action: Actions): State => {
             return state;
     }
 }
+
+
+/* Actions */
+export const fetchEntries = (what: string = '', tag: string = '', more: boolean = false) =>
+    (dispatch: Dispatch, getState: () => AppState) => {
+        const {entries} = getState();
+        const pageSize = 20;
+
+        const groupKey = makeGroupKey(what, tag);
+
+        const theEntries = entries[groupKey].entries;
+
+        if (!more && theEntries.length > 0) {
+            return;
+        }
+
+        const lastEntry = theEntries.pop();
+
+        let start_author = '';
+        let start_permlink = '';
+
+        if (lastEntry) {
+            start_author = lastEntry.author;
+            start_permlink = lastEntry.permlink;
+        }
+
+        dispatch(fetchAct(groupKey));
+
+        // TODO: get_account_posts will be used for account posts
+
+        getPostsRanked(what, start_author, start_permlink, pageSize, tag).then(resp => {
+            dispatch(fetchedAct(groupKey, resp, resp.length >= pageSize));
+        }).catch((e) => {
+            dispatch(fetchErrorAct(groupKey, e));
+        });
+    };
 
 /* Action Creators */
 

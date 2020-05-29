@@ -13,8 +13,7 @@ export enum Theme {
 export enum Filter {
     trending = 'trending',
     hot = 'hot',
-    created = 'created',
-    promoted = 'promoted'
+    created = 'created'
 }
 
 export interface State {

@@ -14,7 +14,7 @@ import {State as EntriesState} from '../store/entries/types';
 import {hideIntro, toggleListStyle, toggleTheme} from '../store/global/index';
 import {fetchTrendingTags} from '../store/trending-tags/index';
 import {fetchCommunity} from '../store/communities/index';
-import {makeGroupKey} from '../store/entries/index';
+import {makeGroupKey, fetchEntries} from '../store/entries/index';
 
 import Theme from '../components/theme/index';
 import NavBar from '../components/navbar/index';
@@ -41,15 +41,17 @@ interface Props {
     hideIntro: () => void,
     toggleListStyle: () => void,
     fetchTrendingTags: () => void,
-    fetchCommunity: (name: string) => void
+    fetchCommunity: (name: string) => void,
+    fetchEntries: (what: string, tag: string, more: boolean) => void
 }
 
 class EntryIndexPage extends Component<Props> {
     componentDidUpdate(prevProps: Readonly<Props>): void {
-        const {global} = this.props;
+        const {global, fetchEntries} = this.props;
         const {global: oGlobal} = prevProps;
 
         if (!(global.filter === oGlobal.filter && global.tag === oGlobal.tag)) {
+            fetchEntries(global.filter, global.tag, false);
             // load
         }
     }
@@ -134,7 +136,8 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
             hideIntro,
             toggleListStyle,
             fetchTrendingTags,
-            fetchCommunity
+            fetchCommunity,
+            fetchEntries
         },
         dispatch
     );
