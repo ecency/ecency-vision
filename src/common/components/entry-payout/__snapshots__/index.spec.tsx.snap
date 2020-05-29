@@ -72,7 +72,7 @@ exports[`(2) Detail render 1`] = `
     <span
       className="value"
     >
-      in 5 days
+      in 4 days
     </span>
   </p>
 </div>

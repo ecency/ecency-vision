@@ -3,6 +3,12 @@ import React from 'react';
 import EntryPayout, {EntryPayoutDetail} from './index';
 import TestRenderer from 'react-test-renderer';
 
+jest.mock('moment', () => () => ({
+    fromNow: () => 'in 4 days',
+    format: (f: string, s: string) => '2020-01-01 23:12:00'
+}));
+
+
 it('(1) Default render', () => {
     const props = {
         global: {
