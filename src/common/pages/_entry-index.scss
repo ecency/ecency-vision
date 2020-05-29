@@ -106,6 +106,12 @@
     }
   }
 
+  &.loading {
+    .page-tools {
+      border-bottom: none;
+    }
+  }
+
   @media (min-width: $lg-break) {
     .entry-list {
       .entry-list-body.grid-view {
