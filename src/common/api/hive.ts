@@ -33,12 +33,14 @@ export const getAccount = (username: string): Promise<ExtendedAccount> =>
 export const getContent = (username: string, permlink: string): Promise<Entry> =>
     client.call('condenser_api', 'get_content', [username, permlink]);
 
-export const getPostsRanked = (sort: string, tag: string = '', observer: string = ''): Promise<Entry[]> =>
+export const getPostsRanked = (
+    sort: string, start_author: string = '', start_permlink: string = '',
+    limit: number = 20, tag: string = '', observer: string = ''): Promise<Entry[]> =>
     axios
         .post(pickAServer(), {
             jsonrpc: '2.0',
             method: 'bridge.get_ranked_posts',
-            params: {sort, tag, observer},
+            params: {sort, start_author, start_permlink, limit, tag, observer},
             id: 1
         }).then(resp => {
         if (resp.data.result) {

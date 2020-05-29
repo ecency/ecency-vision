@@ -31,18 +31,26 @@ export default async (req: express.Request, res: express.Response) => {
     const params = filterTagExtract(req.originalUrl)!;
     const {filter, tag} = params;
 
-    const entries = await hiveApi.getPostsRanked(filter, tag);
+    let entries = await hiveApi.getPostsRanked(filter, '', '', 13, tag);
+
+    // some optimization to reduce server output size.
+    entries = entries.map(x => {
+        return {
+            ...x,
+            ...{active_votes: []} // remove active votes
+        }
+    });
 
     let tags: string[] | undefined = cache.get('trending-tags');
     if (tags === undefined) {
         tags = await hiveApi.getTrendingTags();
-        cache.set('trending-tags', tags, 86400)
+        cache.set('trending-tags', tags, 86400);
     }
 
     let communities: Community[] | undefined = cache.get('communities');
     if (communities === undefined) {
         communities = await hiveApi.getCommunities();
-        cache.set('communities', communities, 86400)
+        cache.set('communities', communities, 86400);
     }
 
     const communityList = {};
