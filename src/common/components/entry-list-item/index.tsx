@@ -8,7 +8,8 @@ import {State as GlobalState} from '../../store/global/types';
 import {State as CommunitiesState} from '../../store/communities/types';
 
 // @ts-ignore
-import {catchPostImage, postBodySummary} from '@esteemapp/esteem-render-helpers';
+import {catchPostImage, postBodySummary, setProxyBase} from '@esteemapp/esteem-render-helpers';
+setProxyBase('https://images.hive.blog/');
 
 import AccountLink from '../account-link/index';
 import TagLink from '../tag-link/index';
