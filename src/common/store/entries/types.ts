@@ -6,7 +6,10 @@ type Modify<T, R> = Omit<T, keyof R> & R;
 export interface Entry extends Modify<Discussion, {
     author_payout_value: Asset | string;
     payout_at: string,
-    json_metadata: any
+    json_metadata: any,
+    stats: {
+        total_votes: number
+    }
 }> {
 }
 

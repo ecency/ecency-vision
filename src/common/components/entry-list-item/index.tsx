@@ -59,9 +59,6 @@ export default class EntryListItem extends Component<Props> {
         const img: string = catchPostImage(entry, 600, 500) || noImage;
         const summary: string = postBodySummary(entry, 200);
 
-        const voteCount = entry.active_votes.length;
-        const contentCount = entry.children;
-
         const app = appName(entry?.json_metadata?.app);
 
         const reputation = Math.floor(entry.author_reputation);
@@ -152,10 +149,10 @@ export default class EntryListItem extends Component<Props> {
                             <EntryPayout {...this.props} entry={entry}/>
                         </a>
                         <a className="voters">
-                            {peopleSvg}{' '}{voteCount}
+                            {peopleSvg}{' '}{entry.stats.total_votes}
                         </a>
                         <a className="comments">
-                            {commentSvg}{' '}{contentCount}
+                            {commentSvg}{' '}{entry.children}
                         </a>
                         <EntryReblogBtn {...this.props}/>
                         <div className="app">{app}</div>
