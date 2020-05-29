@@ -25,6 +25,8 @@ import DropDown from '../components/dropdown/index';
 import ListStyleToggle from '../components/list-style-toggle/index';
 import LinearProgress from '../components/linear-progress/index';
 import EntryListLoadingItem from '../components/entry-list-loading-item/index';
+import DetectBottom from '../components/detect-bottom/index';
+
 
 import {_t} from '../i18n';
 
@@ -62,6 +64,20 @@ class EntryIndexPage extends Component<Props> {
         }
     }
 
+    bottomReached = () => {
+
+        const {global, entries, fetchEntries} = this.props;
+        const {filter, tag} = global;
+        const groupKey = makeGroupKey(filter, tag);
+
+        const data = entries[groupKey];
+        const {loading, hasMore} = data;
+
+        if (!loading && hasMore) {
+            fetchEntries(filter, tag, true);
+        }
+    };
+
     render() {
         const {trendingTags, global, entries} = this.props;
         const {filter, tag} = global;
@@ -92,11 +108,9 @@ class EntryIndexPage extends Component<Props> {
                 <Helmet>
                     <title>Home</title>
                 </Helmet>
-
                 <Theme {...this.props} />
                 <NavBar {...this.props} />
                 <Intro {...this.props} />
-
                 <div className="app-content">
                     <div className="trending-tag-list">
                         <h2 className="list-header">Popular Tags</h2>
@@ -126,8 +140,11 @@ class EntryIndexPage extends Component<Props> {
                                 {entryList.map(e => <EntryListItem key={`${e.author}-${e.permlink}`} {...this.props} entry={e}/>)}
                             </div>
                         </div>
+
+                        {loading && entryList.length > 0 ? <LinearProgress/> : ''}
                     </div>
                 </div>
+                <DetectBottom onBottom={this.bottomReached}/>
             </>
         )
     }
