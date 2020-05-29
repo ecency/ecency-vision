@@ -105,4 +105,15 @@
       border-bottom: 1px solid $dark-two;
     }
   }
+
+  @media (min-width: $lg-break) {
+    .entry-list {
+      .entry-list-body.grid-view {
+        align-content: stretch;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+      }
+    }
+  }
 }

@@ -99,7 +99,7 @@ class EntryIndexPage extends Component<Props> {
                             <ListStyleToggle {...this.props} />
                         </div>
                         <div className={_c(`entry-list ${loading ? 'loading' : ''}`)}>
-                            <div className={_c(`entry-list-body ${global.listStyle === ListStyle.grid ? ListStyle.grid : ''}`)}>
+                            <div className={_c(`entry-list-body ${global.listStyle === ListStyle.grid ? 'grid-view' : ''}`)}>
                                 {entryList.map(e => <EntryListItem key={`${e.author}-${e.permlink}`} {...this.props} entry={e}/>)}
                             </div>
                         </div>

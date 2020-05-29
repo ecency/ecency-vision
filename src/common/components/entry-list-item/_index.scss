@@ -270,6 +270,7 @@
 
       .reblog-btn {
         cursor: pointer;
+
         .inner-btn {
           align-items: center;
           color: $steel-grey;
@@ -307,7 +308,6 @@
 .grid-view {
   @media (min-width: $sm-break) {
     .entry-list-item {
-
       @media (min-width: $lg-break) {
         margin-right: 2%;
         padding-right: 0;
@@ -339,7 +339,7 @@
           width: 100%;
 
           @media (min-width: $xxl-break) {
-            height: 200px;
+            height: 240px;
           }
         }
 
