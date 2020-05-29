@@ -179,16 +179,16 @@
       }
 
       .form-control {
-        width: 140px;
+        width: 170px;
         padding-left: 40px;
         transition: 0.4s;
 
         @media (min-width: $xsm-break) {
-          width: 170px;
+          width: 200px;
         }
 
         @media (min-width: $sm-break) {
-          width: 200px;
+          width: 320px;
         }
 
         @media (min-width: $md-break) {
