@@ -1,12 +1,14 @@
 
 .nav-bar {
-  height: 64px;
   user-select: none;
   margin-bottom: 54px;
   position: relative;
+  padding: 16px 0;
 
   @media (min-width: $md-break) {
+    padding: 0;
     margin-bottom: 30px;
+    height: 64px;
   }
 
   @include themify(day) {
@@ -24,8 +26,14 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 10px;
-    height: 100%;
+    flex-direction: column;
+
+    @media (min-width: $md-break) {
+      height: 100%;
+      padding: 0 10px;
+      flex-direction: row;
+    }
+
 
     @media (min-width: $lg-break) {
       padding: 0 20px;
@@ -37,6 +45,7 @@
       width: 44px;
       background: url(../../img/logo-circle.svg) no-repeat left;
       text-decoration: none;
+      margin-bottom: 24px;
 
       .brand-text {
         font-family: 'Arial Black', 'Arial Bold', Gadget, sans-serif;
@@ -58,7 +67,13 @@
         }
       }
 
+      @media (min-width: $md-break) {
+        margin-bottom: 0;
+        margin-right: 30px;
+      }
+
       @media (min-width: $lg-break) {
+        margin-right: 0;
         width: 210px; // auto;
       }
     }
@@ -67,10 +82,12 @@
       justify-content: center;
       height: 100%;
       align-items: center;
-      display: none;
+      display: flex;
+      margin-bottom: 20px;
 
       @media (min-width: $md-break) {
         display: flex;
+        margin-bottom: 0;
       }
 
       .menu-item {
@@ -91,13 +108,9 @@
         }
 
         &:not(:last-child) {
-          margin-right: 14px;
+          margin-right: 20px;
 
-          @media (min-width: $xsm-break) {
-            margin-right: 20px;
-          }
-
-          @media (min-width: $xl-break) {
+          @media (min-width: $lg-break) {
             margin-right: 24px;
           }
         }
@@ -106,6 +119,10 @@
 
     .search-bar {
       position: relative;
+      margin-bottom: 20px;
+      @media (min-width: $md-break) {
+        margin-bottom: 0;
+      }
 
       .prepend {
         position: absolute;
@@ -132,29 +149,25 @@
       }
 
       .form-control {
-        width: 170px;
+        width: 200px;
         padding-left: 40px;
-
-        @media (min-width: $xsm-break) {
-          width: 200px;
-        }
 
         @media (min-width: $sm-break) {
           width: 320px;
         }
 
         @media (min-width: $md-break) {
-          width: 150px;
+          width: 170px;
           margin-right: 20px;
         }
 
         @media (min-width: $lg-break) {
           width: 200px;
+          margin-right: 40px;
         }
 
         @media (min-width: $xl-break) {
           width: 340px;
-          margin-right: 40px;
         }
       }
     }
@@ -162,12 +175,23 @@
     .downloads {
       background: linear-gradient(270deg, #2D5AA0 4.68%, #357CE6 98.13%);
       border-radius: 25px;
-      padding: 8px 20px;
+      padding: 8px 12px;
       color: $white;
       display: flex;
       align-items: center;
-      margin-right: 40px;
       cursor: pointer;
+      width: 200px;
+
+      @media (min-width: $md-break) {
+        width: auto;
+        margin-right: 20px;
+      }
+
+
+      @media (min-width: $lg-break) {
+        padding: 8px 20px;
+        margin-right: 40px;
+      }
 
       &:hover {
         background: linear-gradient(120deg, #2D5AA0 4.68%, #357CE6 98.13%);
@@ -209,7 +233,15 @@
 
     .switch-theme {
       cursor: pointer;
+      position: absolute;
+      right: 20px;
+      top: 24px;
 
+      @media (min-width: $md-break) {
+        position: relative;
+        top: auto;
+        right: auto;
+      }
 
       svg {
         width: 24px;
@@ -226,6 +258,4 @@
       }
     }
   }
-
-
 }
