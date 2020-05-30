@@ -23,7 +23,7 @@ import EntryLink from "../entry-link/index";
 import EntryVoteBtn from "../entry-vote-btn/index";
 import EntryReblogBtn from "../entry-reblog-btn/index";
 import EntryPayout from "../entry-payout/index";
-import EntryVoters from "../entry-voters";
+import EntryVotes from "../entry-votes";
 
 import parseDate from "../../helper/parse-date";
 import parseAsset from "../../helper/parse-asset";
@@ -160,8 +160,8 @@ export default class EntryListItem extends Component<Props> {
             >
               <EntryPayout {...this.props} entry={entry} />
             </span>
-            <span className="voters">
-              <EntryVoters {...this.props} entry={entry}></EntryVoters>
+            <span className="votes">
+              <EntryVotes {...this.props} entry={entry}></EntryVotes>
             </span>
             <a className="comments">
               {commentSvg} {entry.children}

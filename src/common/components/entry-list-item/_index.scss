@@ -245,7 +245,7 @@
       }
 
       .total-payout,
-      .voters,
+      .votes,
       .comments {
         margin-right: 15px;
 
@@ -254,7 +254,7 @@
         }
       }
 
-      .voters {
+      .votes {
         .inner-btn{
           display: flex;
           cursor: pointer;
@@ -265,7 +265,7 @@
         }
       }
 
-      .voters,
+      .votes,
       .comments,
       .reblog-btn {
         align-items: center;

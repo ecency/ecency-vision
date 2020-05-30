@@ -13,7 +13,7 @@ export default class EntryListLoadingItem extends Component {
                     </div>
                     <div className="item-controls">
                         <div className="total-payout" />
-                        <div className="voters" />
+                        <div className="votes" />
                         <div className="comments" />
                         <div className="app" />
                     </div>

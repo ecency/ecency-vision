@@ -64,7 +64,7 @@ interface DetailState {
   page: number;
 }
 
-export class EntryVotersDetail extends Component<DetailProps, DetailState> {
+export class EntryVotesDetail extends Component<DetailProps, DetailState> {
   state: DetailState = {
     loading: false,
     votes: [],
@@ -107,12 +107,12 @@ export class EntryVotersDetail extends Component<DetailProps, DetailState> {
                 if (loading) {
                   return <span>&nbsp;</span>;
                 }
-                return _t("entry-voters.title", { n: votes.length });
+                return _t("entry-votes.title", { n: votes.length });
               })()}
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <div className="voters-dialog-content">
+            <div className="votes-dialog-content">
               {(() => {
                 if (loading) {
                   return <Spinner animation="grow" variant="primary" />;
@@ -135,8 +135,8 @@ export class EntryVotersDetail extends Component<DetailProps, DetailState> {
                     <Table borderless={true} striped={true}>
                       <thead>
                         <tr>
-                          <th>{_t("entry-voters.voter")}</th>
-                          <th>{_t("entry-voters.reward")}</th>
+                          <th>{_t("entry-votes.voter")}</th>
+                          <th>{_t("entry-votes.reward")}</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -161,7 +161,7 @@ export class EntryVotersDetail extends Component<DetailProps, DetailState> {
                         ))}
                       </tbody>
                     </Table>
-                    <div className="voters-pagination">
+                    <div className="votes-pagination">
                       <Button size="sm" disabled={!hasPrev} onClick={this.prev}>
                         {chevronLeftSvg}
                       </Button>
@@ -193,7 +193,7 @@ interface State {
   visible: boolean;
 }
 
-export default class EntryVoters extends Component<Props, State> {
+export default class EntryVotes extends Component<Props, State> {
   state: State = {
     visible: false,
   };
@@ -215,7 +215,7 @@ export default class EntryVoters extends Component<Props, State> {
 
     if (entry.stats.total_votes === 0) {
       return (
-        <Tooltip content={_t("entry-voters.title-empty")}>
+        <Tooltip content={_t("entry-votes.title-empty")}>
           <span className="inner-btn no-data">{child}</span>
         </Tooltip>
       );
@@ -224,14 +224,14 @@ export default class EntryVoters extends Component<Props, State> {
     return (
       <>
         <Tooltip
-          content={_t("entry-voters.title", { n: entry.stats.total_votes })}
+          content={_t("entry-votes.title", { n: entry.stats.total_votes })}
         >
           <span className="inner-btn" onClick={this.toggle}>
             {child}
           </span>
         </Tooltip>
         {visible && (
-          <EntryVotersDetail
+          <EntryVotesDetail
             {...this.props}
             entry={entry}
             onHide={this.toggle}

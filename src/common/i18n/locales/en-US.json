@@ -25,7 +25,7 @@
     "filter-promoted": "Promoted",
     "filter-feed": "Feed"
   },
-  "entry-voters": {
+  "entry-votes": {
     "title": "{{n}} Votes ",
     "title-empty": "No Votes",
     "voter": "Voter",
