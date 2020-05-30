@@ -9,7 +9,7 @@ import {State as GlobalState} from '../../store/global/types';
 
 import FormattedCurrency from '../formatted-currency/index';
 
-import parseToken from '../../helper/parse-token';
+import parseAsset from '../../helper/parse-asset';
 import parseDate from '../../helper/parse-date';
 
 import {_t} from '../../i18n/index';
@@ -25,10 +25,10 @@ export class EntryPayoutDetail extends Component<Props> {
 
         const payoutDate = moment(parseDate(entry.payout_at));
 
-        const pendingPayout = parseToken(entry.pending_payout_value);
-        const promotedPayout = parseToken(entry.promoted);
-        const authorPayout = parseToken(entry.author_payout_value);
-        const curatorPayout = parseToken(entry.curator_payout_value);
+        const pendingPayout = parseAsset(entry.pending_payout_value).value;
+        const promotedPayout = parseAsset(entry.promoted).value;
+        const authorPayout = parseAsset(entry.author_payout_value).value;
+        const curatorPayout = parseAsset(entry.curator_payout_value).value;
 
         return (
             <div className="payout-popover-content">
@@ -61,10 +61,10 @@ export default class EntryPayout extends Component<Props> {
     render() {
         const {entry} = this.props;
 
-        const pendingPayout = parseToken(entry.pending_payout_value);
-        const authorPayout = parseToken(entry.author_payout_value);
-        const curatorPayout = parseToken(entry.curator_payout_value);
-
+        const pendingPayout = parseAsset(entry.pending_payout_value).value;
+        const authorPayout = parseAsset(entry.author_payout_value).value;
+        const curatorPayout = parseAsset(entry.curator_payout_value).value;
+        
         const totalPayout = pendingPayout + authorPayout + curatorPayout;
 
         const popover = (

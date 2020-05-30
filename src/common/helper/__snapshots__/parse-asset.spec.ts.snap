@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Parse token (1) should parse 1`] = `
+Object {
+  "symbol": "HBD",
+  "value": 18.494,
+}
+`;
+
+exports[`Parse token (2) should parse 1`] = `
+Object {
+  "symbol": "HIVE",
+  "value": 0.012,
+}
+`;

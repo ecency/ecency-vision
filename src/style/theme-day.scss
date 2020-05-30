@@ -22,6 +22,7 @@ $popover-body-color: $gunmetal;
 @import '~bootstrap/scss/variables';
 @import '~bootstrap/scss/mixins';
 @import '~bootstrap/scss/reboot';
+@import '~bootstrap/scss/type';
 @import '~bootstrap/scss/transitions';
 
 
@@ -30,8 +31,10 @@ $popover-body-color: $gunmetal;
   @import '~bootstrap/scss/forms';
   @import '~bootstrap/scss/input-group';
   @import '~bootstrap/scss/tooltip';
+  @import '~bootstrap/scss/close';
   @import '~bootstrap/scss/modal';
   @import '~bootstrap/scss/popover';
+  @import '~bootstrap/scss/utilities';
 
   background: $white;
   color: $charcoal-grey;
@@ -39,4 +42,4 @@ $popover-body-color: $gunmetal;
 
 @import 'bootstrap';
 @import 'base';
-@import 'components.scss';
+@import 'components';

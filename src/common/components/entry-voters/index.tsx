@@ -4,48 +4,19 @@ import { Modal } from 'react-bootstrap';
 
 import { Entry } from '../../store/entries/types';
 
-import {getPost} from '../../api/hive';
+import { getPost } from '../../api/hive';
 
-/*
+import parseAsset from '../../helper/parse-asset';
 
-export const prepareVotes = entry => {
-    const totalPayout =
-      parseToken(entry.pending_payout_value) +
-      parseToken(entry.total_payout_value) +
-      parseToken(entry.curator_payout_value);
-  
-    const voteRshares = entry.active_votes.reduce(
-      (a, b) => a + parseFloat(b.rshares),
-      0
-    );
-    const ratio = totalPayout / voteRshares;
-  
-    return entry.active_votes
-      .map(a => {
-        const rew = a.rshares * ratio;
-  
-        return Object.assign({}, a, {
-          reputation: authorReputation(a.reputation),
-          reward: rew,
-          time: parseDate(a.time),
-          percent: a.percent / 100
-        });
-      })
-      .sort((a, b) => {
-        const keyA = a.reward;
-        const keyB = b.reward;
-  
-        if (keyA > keyB) return -1;
-        if (keyA < keyB) return 1;
-        return 0;
-      });
-  };
+import parseDate from '../../helper/parse-date';
 
-*/
+
+
 
 interface Vote {
     voter: string,
-    rshares: string
+    rshares: string,
+    reward?: number
 }
 
 interface Props {
@@ -58,29 +29,61 @@ interface State {
     votes: Vote[]
 }
 
+export const prepareVotes = (entry: Entry, votes: Vote[]) => {
+    const totalPayout =
+        parseAsset(entry.pending_payout_value).value +
+        parseAsset(entry.author_payout_value).value +
+        parseAsset(entry.curator_payout_value).value;
+
+    const voteRshares = votes.reduce(
+        (a, b) => a + parseFloat(b.rshares),
+        0
+    );
+    const ratio = totalPayout / voteRshares;
+
+    return votes.map(a => {
+        const rew = parseFloat(a.rshares) * ratio;
+
+        return Object.assign({}, a, {
+            reward: rew,
+        });
+    })
+        .sort((a, b) => {
+            const keyA = a.reward;
+            const keyB = b.reward;
+
+            if (keyA > keyB) return -1;
+            if (keyA < keyB) return 1;
+            return 0;
+        });
+};
+
+
 export default class EntryVoters extends Component<Props, State> {
     state: State = {
         visible: false,
         votes: []
     }
 
-    componentDidMount(){
+    componentDidMount() {
         console.log("mount")
     }
 
     show = () => {
         this.setState({ visible: true });
 
-        const {entry} = this.props;
+        const { entry } = this.props;
         getPost(entry.author, entry.permlink).then(r => {
-            console.log(r)
-            this.setState({votes: r.active_votes});
+
+            this.setState({ votes: r.active_votes });
+
+            console.log(r);
         })
     };
 
     hide = () => {
         this.setState({ visible: false });
-        this.setState({votes: []});
+        this.setState({ votes: [] });
     };
 
     render() {
@@ -91,12 +94,15 @@ export default class EntryVoters extends Component<Props, State> {
             onClick: this.show
         });
 
-        console.log(votes)
-
         return <>
             {clonedChildren}
             {visible && (
-                <Modal onHide={this.hide} show={true} centered>
+                <Modal onHide={this.hide} size="sm" show={true} centered={true}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>
+                            Voters {votes.length}
+                        </Modal.Title>
+                    </Modal.Header>
                     <Modal.Body>
                         Henlo
                     </Modal.Body>
