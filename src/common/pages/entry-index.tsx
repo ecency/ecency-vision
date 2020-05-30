@@ -17,13 +17,12 @@ import Theme from '../components/theme/index';
 import NavBar from '../components/navbar/index';
 import Intro from '../components/intro/index';
 import TagLink, {makePath} from '../components/tag-link/index';
-import EntryListItem from '../components/entry-list-item/index';
 import DropDown from '../components/dropdown/index';
 import ListStyleToggle from '../components/list-style-toggle/index';
 import LinearProgress from '../components/linear-progress/index';
 import EntryListLoadingItem from '../components/entry-list-loading-item/index';
 import DetectBottom from '../components/detect-bottom/index';
-import EntryList from '../components/entry-list/index';
+import EntryListContent from '../components/entry-list/index';
 
 import {_t} from '../i18n';
 
@@ -117,22 +116,18 @@ class EntryIndexPage extends Component<Props> {
                             );
                         })}
                     </div>
-
-                    <div className={_c(`page-content ${loading ? 'loading' : ''}`)}>
+                    <div className={_c(`entry-page-content ${loading ? 'loading' : ''}`)}>
                         <div className="page-tools">
                             <DropDown {...{...this.props, ...dropDownConfig}}/>
                             <ListStyleToggle {...this.props} />
                         </div>
-
                         {loading && entryList.length === 0 ? <LinearProgress/> : ''}
-
                         <div className={_c(`entry-list ${loading ? 'loading' : ''}`)}>
                             <div className={_c(`entry-list-body ${global.listStyle === ListStyle.grid ? 'grid-view' : ''}`)}>
                                 {(loading && entryList.length === 0) && <EntryListLoadingItem/>}
-                                <EntryList {...this.props} entries={entryList}/>
+                                <EntryListContent {...this.props} entries={entryList}/>
                             </div>
                         </div>
-
                         {loading && entryList.length > 0 ? <LinearProgress/> : ''}
                     </div>
                 </div>

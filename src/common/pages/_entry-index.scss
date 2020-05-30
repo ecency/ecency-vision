@@ -75,9 +75,10 @@
   }
 }
 
-.page-content {
+.entry-page-content {
   flex-grow: 1;
   width: 100%;
+  padding-bottom: 60px;
 
   @media (min-width: $md-break) {
     width: calc(100% - 180px);

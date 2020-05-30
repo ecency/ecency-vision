@@ -15,7 +15,7 @@ interface Props {
     entries: Entry[]
 }
 
-export default class EntryList extends Component<Props> {
+export default class EntryListContent extends Component<Props> {
     shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<{}>, nextContext: any): boolean {
         return !isEqual(this.props.entries, nextProps.entries)
             || !isEqual(this.props.global, nextProps.global);
