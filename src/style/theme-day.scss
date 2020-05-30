@@ -19,10 +19,12 @@ $popover-border-color: $white-three;
 $popover-bg: $white;
 $popover-body-color: $gunmetal;
 
-$modal-inner-padding:   0;
 $modal-content-bg: $white;
+$modal-header-border-color: null default;
 
 $table-accent-bg: $white-three;
+
+$close-color: null default;
 
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';

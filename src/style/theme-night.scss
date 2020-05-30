@@ -19,10 +19,12 @@ $popover-border-color: $dark-two;
 $popover-bg: lighten($dark-six, 2);
 $popover-body-color: $silver;
 
-$modal-inner-padding:   0;
 $modal-content-bg: lighten($dark-six, 2);
+$modal-header-border-color: $dark-two;
 
 $table-accent-bg: $dark-six;
+
+$close-color:  $silver;
 
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';
