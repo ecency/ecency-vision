@@ -37,7 +37,6 @@ interface Props {
     history: History,
     location: Location,
     global: GlobalState,
-    communities: CommunitiesState,
     entry: Entry,
     asAuthor: string,
     promoted: boolean,

@@ -39,7 +39,6 @@ interface Props {
     location: Location,
     global: GlobalState,
     trendingTags: TrendingTagsState,
-    communities: CommunitiesState,
     entries: EntriesState,
     toggleTheme: () => void
     hideIntro: () => void,
@@ -154,7 +153,6 @@ class EntryIndexPage extends Component<Props> {
 const mapStateToProps = (state: AppState) => ({
     global: state.global,
     trendingTags: state.trendingTags,
-    communities: state.communities,
     entries: state.entries
 });
 

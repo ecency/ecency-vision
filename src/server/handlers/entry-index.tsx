@@ -47,22 +47,12 @@ export default async (req: express.Request, res: express.Response) => {
         cache.set('trending-tags', tags, 86400);
     }
 
-    let communities: Community[] | undefined = cache.get('communities');
-    if (communities === undefined) {
-        // only top 20 community for optimized output.
-        communities = await hiveApi.getCommunities('', 20);
-        cache.set('communities', communities, 86400);
-    }
-
-    const communityList = {};
-    if (communities) {
-        communities.forEach(x => communityList[x.name] = x)
-    }
+    // TODO: promoted posts
 
     const preLoadedState = {
         global: {...globalInitialState, ...readGlobalCookies(req), ...{filter: Filter[filter], tag}},
         trendingTags: {...trendingTagsInitialState, list: tags},
-        communities: {...communitiesInitialState, list: communityList},
+        communities: {...communitiesInitialState},
         entries: {
             [`${makeGroupKey(filter, tag)}`]: {
                 entries: entries,
