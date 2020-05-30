@@ -27,6 +27,8 @@
   },
   "entry-voters": {
     "detail-title": "Voters",
-    "detail-title-n": "Voters ({{n}})"
+    "detail-title-n": "Voters ({{n}})",
+    "voter": "Voter",
+    "reward": "Reward"
   }
 }

@@ -132,6 +132,12 @@ export class EntryVotersDetail extends Component<DetailProps, DetailState> {
                 return (
                   <>
                     <Table borderless={true} striped={true}>
+                      <thead>
+                        <tr>
+                          <th>{_t("entry-voters.voter")}</th>
+                          <th>{_t("entry-voters.reward")}</th>
+                        </tr>
+                      </thead>
                       <tbody>
                         {list.map((v, i) => (
                           <tr key={i}>
