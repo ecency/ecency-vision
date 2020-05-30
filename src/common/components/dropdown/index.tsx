@@ -51,10 +51,12 @@ export default class MyDropDown extends Component<Props> {
     };
 
     itemClicked = (i: MenuItem) => {
-        const {history} = this.props;
-        history.push(i.href);
-
         this.hideMenu();
+
+        setTimeout(() => {
+            const {history} = this.props;
+            history.push(i.href);
+        }, 200)
     };
 
     render() {
