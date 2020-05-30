@@ -24,5 +24,9 @@
     "filter-created": "New",
     "filter-promoted": "Promoted",
     "filter-feed": "Feed"
+  },
+  "entry-voters": {
+    "detail-title": "Voters",
+    "detail-title-n": "Voters ({{n}})"
   }
 }

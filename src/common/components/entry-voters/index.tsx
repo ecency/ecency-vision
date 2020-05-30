@@ -10,6 +10,8 @@ import parseAsset from '../../helper/parse-asset';
 
 import FormattedCurrency from '../formatted-currency';
 
+import { _t } from '../../i18n';
+
 import { chevronLeftSvg, chevronRightSvg } from '../../../svg';
 
 interface Vote {
@@ -71,7 +73,7 @@ export class EntryVotersDetail extends Component<DetailProps, DetailState>{
         getPost(entry.author, entry.permlink).then(r => {
             this.setState({ votes: prepareVotes(entry, r.active_votes) });
         }).finally(() => {
-             this.setState({ loading: false });
+            this.setState({ loading: false });
         });
     }
 
@@ -87,17 +89,23 @@ export class EntryVotersDetail extends Component<DetailProps, DetailState>{
 
     render() {
         const { onHide } = this.props;
-        const { votes } = this.state;
+        const { votes, loading } = this.state;
 
         return (
             <>
                 <Modal onHide={onHide} show={true} centered={true}>
                     <Modal.Header closeButton={true}>
-                        <Modal.Title>Voters {votes.length}</Modal.Title>
+                        <Modal.Title>
+                            {(() => {
+                                if (loading) {
+                                    return _t('entry-voters.detail-title');
+                                }
+                                return _t('entry-voters.detail-title-n', { n: votes.length });
+                            })()}
+                        </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         {(() => {
-                            const { loading } = this.state;
                             console.log(loading);
                             if (loading) {
                                 return <div className="voters-list loading"> <Spinner animation="grow" variant="primary" /></div>;
