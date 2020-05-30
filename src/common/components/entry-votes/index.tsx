@@ -4,6 +4,7 @@ import { History } from "history";
 
 import { Modal, Table, Button, Spinner } from "react-bootstrap";
 
+import { State as GlobalState } from "../../store/global/types";
 import { Entry } from "../../store/entries/types";
 
 import UserAvatar from "../user-avatar/index";
@@ -54,8 +55,8 @@ export const prepareVotes = (entry: Entry, votes: Vote[]): Vote[] => {
 
 interface DetailProps {
   history: History;
+  global: GlobalState;
   entry: Entry;
-  onHide: () => void;
 }
 
 interface DetailState {
@@ -77,12 +78,18 @@ export class EntryVotesDetail extends Component<DetailProps, DetailState> {
     this.setState({ loading: true });
     getPost(entry.author, entry.permlink)
       .then((r) => {
-        this.setState({ votes: prepareVotes(entry, r.active_votes) });
+        this.setVotes(r.active_votes);
       })
       .finally(() => {
         this.setState({ loading: false });
       });
   }
+
+  setVotes = (votes: Vote[]) => {
+    const { entry } = this.props;
+
+    this.setState({ votes: prepareVotes(entry, votes), loading: false });
+  };
 
   prev = () => {
     const { page } = this.state;
@@ -95,90 +102,75 @@ export class EntryVotesDetail extends Component<DetailProps, DetailState> {
   };
 
   render() {
-    const { onHide } = this.props;
     const { loading, votes, page } = this.state;
 
     return (
       <>
-        <Modal onHide={onHide} show={true} centered={true}>
-          <Modal.Header closeButton={true}>
-            <Modal.Title>
-              {(() => {
-                if (loading) {
-                  return <span>&nbsp;</span>;
-                }
-                return _t("entry-votes.title", { n: votes.length });
-              })()}
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <div className="votes-dialog-content">
-              {(() => {
-                if (loading) {
-                  return <Spinner animation="grow" variant="primary" />;
-                }
+        <div className="votes-dialog-content">
+          {(() => {
+            if (loading) {
+              return <Spinner animation="grow" variant="primary" />;
+            }
 
-                const { page } = this.state;
+            const { page } = this.state;
 
-                const pageSize = 6;
-                const totalPages = Math.ceil(votes.length / pageSize);
+            const pageSize = 6;
+            const totalPages = Math.ceil(votes.length / pageSize);
 
-                const start = page * pageSize;
+            const start = page * pageSize;
 
-                const hasPrev = page !== 0;
-                const hasNext = page + 1 !== totalPages;
+            const hasPrev = page !== 0;
+            const hasNext = page + 1 !== totalPages;
 
-                const list = votes.slice(start, start + pageSize);
+            const list = votes.slice(start, start + pageSize);
 
-                return (
-                  <>
-                    <Table borderless={true} striped={true}>
-                      <thead>
-                        <tr>
-                          <th>{_t("entry-votes.voter")}</th>
-                          <th>{_t("entry-votes.reward")}</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {list.map((v, i) => (
-                          <tr key={i}>
-                            <td className="voter-cell">
-                              <AccountLink {...this.props} username={v.voter}>
-                                <span className="account">
-                                  <UserAvatar username={v.voter} size="small" />{" "}
-                                  {v.voter}
-                                </span>
-                              </AccountLink>
-                            </td>
-                            <td className="reward-cell">
-                              <FormattedCurrency
-                                {...this.props}
-                                value={v.reward}
-                                fixAt={3}
-                              />
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </Table>
-                    <div className="votes-pagination">
-                      <Button size="sm" disabled={!hasPrev} onClick={this.prev}>
-                        {chevronLeftSvg}
-                      </Button>
-                      <div className="page-numbers">
-                        <span className="current-page"> {page + 1}</span> /{" "}
-                        {totalPages}
-                      </div>
-                      <Button size="sm" disabled={!hasNext} onClick={this.next}>
-                        {chevronRightSvg}
-                      </Button>
-                    </div>
-                  </>
-                );
-              })()}
-            </div>
-          </Modal.Body>
-        </Modal>
+            return (
+              <>
+                <Table borderless={true} striped={true}>
+                  <thead>
+                    <tr>
+                      <th>{_t("entry-votes.voter")}</th>
+                      <th>{_t("entry-votes.reward")}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {list.map((v, i) => (
+                      <tr key={i}>
+                        <td className="voter-cell">
+                          <AccountLink {...this.props} username={v.voter}>
+                            <span className="account">
+                              <UserAvatar username={v.voter} size="small" />{" "}
+                              {v.voter}
+                            </span>
+                          </AccountLink>
+                        </td>
+                        <td className="reward-cell">
+                          <FormattedCurrency
+                            {...this.props}
+                            value={v.reward}
+                            fixAt={3}
+                          />
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </Table>
+                <div className="votes-pagination">
+                  <Button size="sm" disabled={!hasPrev} onClick={this.prev}>
+                    {chevronLeftSvg}
+                  </Button>
+                  <div className="page-numbers">
+                    <span className="current-page"> {page + 1}</span> /{" "}
+                    {totalPages}
+                  </div>
+                  <Button size="sm" disabled={!hasNext} onClick={this.next}>
+                    {chevronRightSvg}
+                  </Button>
+                </div>
+              </>
+            );
+          })()}
+        </div>
       </>
     );
   }
@@ -186,6 +178,7 @@ export class EntryVotesDetail extends Component<DetailProps, DetailState> {
 
 interface Props {
   history: History;
+  global: GlobalState;
   entry: Entry;
 }
 
@@ -231,11 +224,16 @@ export default class EntryVotes extends Component<Props, State> {
           </span>
         </Tooltip>
         {visible && (
-          <EntryVotesDetail
-            {...this.props}
-            entry={entry}
-            onHide={this.toggle}
-          />
+          <Modal onHide={this.toggle} show={true} centered={true}>
+            <Modal.Header closeButton={true}>
+              <Modal.Title>
+                {_t("entry-votes.title", { n: entry.stats.total_votes })}
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <EntryVotesDetail {...this.props} entry={entry} />
+            </Modal.Body>
+          </Modal>
         )}
       </>
     );

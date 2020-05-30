@@ -1,0 +1,728 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+<span
+  className="inner-btn"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onMouseOut={[Function]}
+  onMouseOver={[Function]}
+>
+  <svg
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M16 17V19H2V17S2 13 9 13 16 17 16 17M12.5 7.5A3.5 3.5 0 1 0 9 11A3.5 3.5 0 0 0 12.5 7.5M15.94 13A5.32 5.32 0 0 1 18 17V19H22V17S22 13.37 15.94 13M15 4A3.39 3.39 0 0 0 13.07 4.59A5 5 0 0 1 13.07 10.41A3.39 3.39 0 0 0 15 11A3.5 3.5 0 0 0 15 4Z"
+      fill="currentColor"
+    />
+  </svg>
+   
+  10
+</span>
+`;
+
+exports[`(2) No votes 1`] = `
+<span
+  className="inner-btn no-data"
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onMouseOut={[Function]}
+  onMouseOver={[Function]}
+>
+  <svg
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M16 17V19H2V17S2 13 9 13 16 17 16 17M12.5 7.5A3.5 3.5 0 1 0 9 11A3.5 3.5 0 0 0 12.5 7.5M15.94 13A5.32 5.32 0 0 1 18 17V19H22V17S22 13.37 15.94 13M15 4A3.39 3.39 0 0 0 13.07 4.59A5 5 0 0 1 13.07 10.41A3.39 3.39 0 0 0 15 11A3.5 3.5 0 0 0 15 4Z"
+      fill="currentColor"
+    />
+  </svg>
+   
+  0
+</span>
+`;
+
+exports[`(3) Default render of detail 1`] = `
+<div
+  className="votes-dialog-content"
+>
+  <div
+    className="spinner-grow text-primary"
+  />
+</div>
+`;
+
+exports[`(4) Render of detail with votes 1`] = `
+<div
+  className="votes-dialog-content"
+>
+  <table
+    className="table table-striped table-borderless"
+  >
+    <thead>
+      <tr>
+        <th>
+          Voter
+        </th>
+        <th>
+          Reward
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td
+          className="voter-cell"
+        >
+          <a
+            className="account"
+            href="/@user1"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              role="none"
+              style={
+                Object {
+                  "backgroundImage": "url('https://images.esteem.app/u/user1/avatar/medium')",
+                }
+              }
+            />
+             
+            user1
+          </a>
+        </td>
+        <td
+          className="reward-cell"
+        >
+          $ 13.671
+        </td>
+      </tr>
+      <tr>
+        <td
+          className="voter-cell"
+        >
+          <a
+            className="account"
+            href="/@user7"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              role="none"
+              style={
+                Object {
+                  "backgroundImage": "url('https://images.esteem.app/u/user7/avatar/medium')",
+                }
+              }
+            />
+             
+            user7
+          </a>
+        </td>
+        <td
+          className="reward-cell"
+        >
+          $ 0.281
+        </td>
+      </tr>
+      <tr>
+        <td
+          className="voter-cell"
+        >
+          <a
+            className="account"
+            href="/@user4"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              role="none"
+              style={
+                Object {
+                  "backgroundImage": "url('https://images.esteem.app/u/user4/avatar/medium')",
+                }
+              }
+            />
+             
+            user4
+          </a>
+        </td>
+        <td
+          className="reward-cell"
+        >
+          $ 0.040
+        </td>
+      </tr>
+      <tr>
+        <td
+          className="voter-cell"
+        >
+          <a
+            className="account"
+            href="/@user6"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              role="none"
+              style={
+                Object {
+                  "backgroundImage": "url('https://images.esteem.app/u/user6/avatar/medium')",
+                }
+              }
+            />
+             
+            user6
+          </a>
+        </td>
+        <td
+          className="reward-cell"
+        >
+          $ 0.036
+        </td>
+      </tr>
+      <tr>
+        <td
+          className="voter-cell"
+        >
+          <a
+            className="account"
+            href="/@user5"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              role="none"
+              style={
+                Object {
+                  "backgroundImage": "url('https://images.esteem.app/u/user5/avatar/medium')",
+                }
+              }
+            />
+             
+            user5
+          </a>
+        </td>
+        <td
+          className="reward-cell"
+        >
+          $ 0.010
+        </td>
+      </tr>
+      <tr>
+        <td
+          className="voter-cell"
+        >
+          <a
+            className="account"
+            href="/@user2"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              role="none"
+              style={
+                Object {
+                  "backgroundImage": "url('https://images.esteem.app/u/user2/avatar/medium')",
+                }
+              }
+            />
+             
+            user2
+          </a>
+        </td>
+        <td
+          className="reward-cell"
+        >
+          $ 0.008
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div
+    className="votes-pagination"
+  >
+    <button
+      className="btn btn-primary btn-sm"
+      disabled={true}
+      onClick={[Function]}
+      type="button"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"
+          fill="currentColor"
+        />
+      </svg>
+    </button>
+    <div
+      className="page-numbers"
+    >
+      <span
+        className="current-page"
+      >
+         
+        1
+      </span>
+       /
+       
+      2
+    </div>
+    <button
+      className="btn btn-primary btn-sm"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"
+          fill="currentColor"
+        />
+      </svg>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`(5) Move next on detail 1`] = `
+<div
+  className="votes-dialog-content"
+>
+  <table
+    className="table table-striped table-borderless"
+  >
+    <thead>
+      <tr>
+        <th>
+          Voter
+        </th>
+        <th>
+          Reward
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td
+          className="voter-cell"
+        >
+          <a
+            className="account"
+            href="/@user8"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              role="none"
+              style={
+                Object {
+                  "backgroundImage": "url('https://images.esteem.app/u/user8/avatar/medium')",
+                }
+              }
+            />
+             
+            user8
+          </a>
+        </td>
+        <td
+          className="reward-cell"
+        >
+          $ 0.006
+        </td>
+      </tr>
+      <tr>
+        <td
+          className="voter-cell"
+        >
+          <a
+            className="account"
+            href="/@user9"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              role="none"
+              style={
+                Object {
+                  "backgroundImage": "url('https://images.esteem.app/u/user9/avatar/medium')",
+                }
+              }
+            />
+             
+            user9
+          </a>
+        </td>
+        <td
+          className="reward-cell"
+        >
+          $ 0.003
+        </td>
+      </tr>
+      <tr>
+        <td
+          className="voter-cell"
+        >
+          <a
+            className="account"
+            href="/@user10"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              role="none"
+              style={
+                Object {
+                  "backgroundImage": "url('https://images.esteem.app/u/user10/avatar/medium')",
+                }
+              }
+            />
+             
+            user10
+          </a>
+        </td>
+        <td
+          className="reward-cell"
+        >
+          $ 0.001
+        </td>
+      </tr>
+      <tr>
+        <td
+          className="voter-cell"
+        >
+          <a
+            className="account"
+            href="/@user3"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              role="none"
+              style={
+                Object {
+                  "backgroundImage": "url('https://images.esteem.app/u/user3/avatar/medium')",
+                }
+              }
+            />
+             
+            user3
+          </a>
+        </td>
+        <td
+          className="reward-cell"
+        >
+          $ 0.000
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div
+    className="votes-pagination"
+  >
+    <button
+      className="btn btn-primary btn-sm"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"
+          fill="currentColor"
+        />
+      </svg>
+    </button>
+    <div
+      className="page-numbers"
+    >
+      <span
+        className="current-page"
+      >
+         
+        2
+      </span>
+       /
+       
+      2
+    </div>
+    <button
+      className="btn btn-primary btn-sm"
+      disabled={true}
+      onClick={[Function]}
+      type="button"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"
+          fill="currentColor"
+        />
+      </svg>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`(6) Move prev on detail 1`] = `
+<div
+  className="votes-dialog-content"
+>
+  <table
+    className="table table-striped table-borderless"
+  >
+    <thead>
+      <tr>
+        <th>
+          Voter
+        </th>
+        <th>
+          Reward
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td
+          className="voter-cell"
+        >
+          <a
+            className="account"
+            href="/@user1"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              role="none"
+              style={
+                Object {
+                  "backgroundImage": "url('https://images.esteem.app/u/user1/avatar/medium')",
+                }
+              }
+            />
+             
+            user1
+          </a>
+        </td>
+        <td
+          className="reward-cell"
+        >
+          $ 13.671
+        </td>
+      </tr>
+      <tr>
+        <td
+          className="voter-cell"
+        >
+          <a
+            className="account"
+            href="/@user7"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              role="none"
+              style={
+                Object {
+                  "backgroundImage": "url('https://images.esteem.app/u/user7/avatar/medium')",
+                }
+              }
+            />
+             
+            user7
+          </a>
+        </td>
+        <td
+          className="reward-cell"
+        >
+          $ 0.281
+        </td>
+      </tr>
+      <tr>
+        <td
+          className="voter-cell"
+        >
+          <a
+            className="account"
+            href="/@user4"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              role="none"
+              style={
+                Object {
+                  "backgroundImage": "url('https://images.esteem.app/u/user4/avatar/medium')",
+                }
+              }
+            />
+             
+            user4
+          </a>
+        </td>
+        <td
+          className="reward-cell"
+        >
+          $ 0.040
+        </td>
+      </tr>
+      <tr>
+        <td
+          className="voter-cell"
+        >
+          <a
+            className="account"
+            href="/@user6"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              role="none"
+              style={
+                Object {
+                  "backgroundImage": "url('https://images.esteem.app/u/user6/avatar/medium')",
+                }
+              }
+            />
+             
+            user6
+          </a>
+        </td>
+        <td
+          className="reward-cell"
+        >
+          $ 0.036
+        </td>
+      </tr>
+      <tr>
+        <td
+          className="voter-cell"
+        >
+          <a
+            className="account"
+            href="/@user5"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              role="none"
+              style={
+                Object {
+                  "backgroundImage": "url('https://images.esteem.app/u/user5/avatar/medium')",
+                }
+              }
+            />
+             
+            user5
+          </a>
+        </td>
+        <td
+          className="reward-cell"
+        >
+          $ 0.010
+        </td>
+      </tr>
+      <tr>
+        <td
+          className="voter-cell"
+        >
+          <a
+            className="account"
+            href="/@user2"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              role="none"
+              style={
+                Object {
+                  "backgroundImage": "url('https://images.esteem.app/u/user2/avatar/medium')",
+                }
+              }
+            />
+             
+            user2
+          </a>
+        </td>
+        <td
+          className="reward-cell"
+        >
+          $ 0.008
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div
+    className="votes-pagination"
+  >
+    <button
+      className="btn btn-primary btn-sm"
+      disabled={true}
+      onClick={[Function]}
+      type="button"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"
+          fill="currentColor"
+        />
+      </svg>
+    </button>
+    <div
+      className="page-numbers"
+    >
+      <span
+        className="current-page"
+      >
+         
+        1
+      </span>
+       /
+       
+      2
+    </div>
+    <button
+      className="btn btn-primary btn-sm"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"
+          fill="currentColor"
+        />
+      </svg>
+    </button>
+  </div>
+</div>
+`;
