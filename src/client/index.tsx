@@ -15,16 +15,6 @@ import '../style/theme-night.scss';
 
 const store = configureStore(window['__PRELOADED_STATE__']);
 
-// Scroll page to top on every location change if there is no hash in new location.
-history!.listen((location, action) => {
-    if (location.hash === '') {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    }
-});
-
 hydrate(
     (
         <Provider store={store}>
