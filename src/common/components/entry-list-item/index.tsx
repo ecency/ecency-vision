@@ -161,7 +161,7 @@ export default class EntryListItem extends Component<Props> {
               <EntryPayout {...this.props} entry={entry} />
             </span>
             <span className="votes">
-              <EntryVotes {...this.props} entry={entry}></EntryVotes>
+              <EntryVotes {...this.props} entry={entry} />
             </span>
             <a className="comments">
               {commentSvg} {entry.children}
