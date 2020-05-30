@@ -70,29 +70,22 @@ const component = renderer.create(<EntryVotesDetail {...detailProps} />);
 
 it("(3) Default render of detail", () => {
   expect(component.toJSON()).toMatchSnapshot();
-
-  // @ts-ignore
-  //component.getInstance().setVotes(votes);
 });
 
 it("(4) Render of detail with votes", () => {
   // @ts-ignore
   component.getInstance().setVotes(votes);
-
   expect(component.toJSON()).toMatchSnapshot();
 });
 
 it("(5) Move next on detail", () => {
   // @ts-ignore
   component.getInstance().next();
-
   expect(component.toJSON()).toMatchSnapshot();
 });
 
 it("(6) Move prev on detail", () => {
-    // @ts-ignore
-    component.getInstance().prev();
-  
-    expect(component.toJSON()).toMatchSnapshot();
-  });
-  
+  // @ts-ignore
+  component.getInstance().prev();
+  expect(component.toJSON()).toMatchSnapshot();
+});
