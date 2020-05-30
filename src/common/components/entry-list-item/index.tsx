@@ -99,7 +99,7 @@ export default class EntryListItem extends Component<Props> {
                     </AccountLink>
                     <TagLink {...this.props} tag={entry.category}>
                         <a className="category">
-                            {entry.category}
+                            {entry.community_title || entry.category}
                         </a>
                     </TagLink>
                     {!isVisited && <span className="read-mark"/>}

@@ -9,7 +9,8 @@ export interface Entry extends Modify<Discussion, {
     json_metadata: any,
     stats: {
         total_votes: number
-    }
+    },
+    community_title?: string
 }> {
 }
 
