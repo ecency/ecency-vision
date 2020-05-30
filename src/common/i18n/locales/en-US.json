@@ -26,8 +26,8 @@
     "filter-feed": "Feed"
   },
   "entry-voters": {
-    "detail-title": "Voters",
-    "detail-title-n": "Voters ({{n}})",
+    "title": "{{n}} Votes ",
+    "title-empty": "No Votes",
     "voter": "Voter",
     "reward": "Reward"
   }

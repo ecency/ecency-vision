@@ -9,6 +9,7 @@ import { Entry } from "../../store/entries/types";
 import UserAvatar from "../user-avatar/index";
 import FormattedCurrency from "../formatted-currency";
 import AccountLink from "../account-link/index";
+import Tooltip from "../tooltip";
 
 import { getPost } from "../../api/hive";
 
@@ -16,7 +17,7 @@ import parseAsset from "../../helper/parse-asset";
 
 import { _t } from "../../i18n";
 
-import { chevronLeftSvg, chevronRightSvg } from "../../../svg";
+import { peopleSvg, chevronLeftSvg, chevronRightSvg } from "../../../svg";
 
 interface Vote {
   voter: string;
@@ -104,9 +105,9 @@ export class EntryVotersDetail extends Component<DetailProps, DetailState> {
             <Modal.Title>
               {(() => {
                 if (loading) {
-                  return _t("entry-voters.detail-title");
+                  return <span>&nbsp;</span>;
                 }
-                return _t("entry-voters.detail-title-n", { n: votes.length });
+                return _t("entry-voters.title", { n: votes.length });
               })()}
             </Modal.Title>
           </Modal.Header>
@@ -186,7 +187,6 @@ export class EntryVotersDetail extends Component<DetailProps, DetailState> {
 interface Props {
   history: History;
   entry: Entry;
-  children: JSX.Element;
 }
 
 interface State {
@@ -204,16 +204,32 @@ export default class EntryVoters extends Component<Props, State> {
   };
 
   render() {
-    const { children, entry } = this.props;
+    const { entry } = this.props;
     const { visible } = this.state;
 
-    const clonedChildren = React.cloneElement(children, {
-      onClick: this.toggle,
-    });
+    const child = (
+      <>
+        {peopleSvg} {entry.stats.total_votes}
+      </>
+    );
+
+    if (entry.stats.total_votes === 0) {
+      return (
+        <Tooltip content={_t("entry-voters.title-empty")}>
+          <span className="inner-btn">{child}</span>
+        </Tooltip>
+      );
+    }
 
     return (
       <>
-        {clonedChildren}
+        <Tooltip
+          content={_t("entry-voters.title", { n: entry.stats.total_votes })}
+        >
+          <span className="inner-btn with-votes" onClick={this.toggle}>
+            {child}
+          </span>
+        </Tooltip>
         {visible && (
           <EntryVotersDetail
             {...this.props}

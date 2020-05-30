@@ -255,7 +255,14 @@
       }
 
       .voters {
-        cursor: pointer;
+        .inner-btn{
+          display: flex;
+       
+
+          &.with-votes{
+            cursor: pointer;
+          }
+        }
       }
 
       .voters,
