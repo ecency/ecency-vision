@@ -107,7 +107,6 @@ export class EntryVotersDetail extends Component<DetailProps, DetailState>{
                     <Modal.Body>
                         <div className="voters-dialog-content">
                             {(() => {
-                                console.log(loading);
                                 if (loading) {
                                     return <Spinner animation="grow" variant="primary" />;
                                 }
