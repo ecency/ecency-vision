@@ -1,3 +1,13 @@
+.voters-list{
+    min-height: 290px;
+
+    &.loading{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
 .voters-pagination{
     display: flex;
     align-items: center;
