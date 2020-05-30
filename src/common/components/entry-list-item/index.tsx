@@ -37,8 +37,7 @@ interface Props {
     global: GlobalState,
     entry: Entry,
     asAuthor: string,
-    promoted: boolean,
-    fetchCommunity: (name: string) => void
+    promoted: boolean
 }
 
 export default class EntryListItem extends Component<Props> {

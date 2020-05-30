@@ -8,12 +8,9 @@ import {Helmet} from 'react-helmet';
 import {AppState} from '../store';
 import {Filter, ListStyle, State as GlobalState} from '../store/global/types';
 import {State as TrendingTagsState} from '../store/trending-tags/types';
-import {State as CommunitiesState} from '../store/communities/types';
 import {State as EntriesState} from '../store/entries/types';
 
 import {hideIntro, toggleListStyle, toggleTheme} from '../store/global/index';
-import {fetchTrendingTags} from '../store/trending-tags/index';
-import {fetchCommunity} from '../store/communities/index';
 import {makeGroupKey, fetchEntries} from '../store/entries/index';
 
 import Theme from '../components/theme/index';
@@ -43,8 +40,6 @@ interface Props {
     toggleTheme: () => void
     hideIntro: () => void,
     toggleListStyle: () => void,
-    fetchTrendingTags: () => void,
-    fetchCommunity: (name: string) => void,
     fetchEntries: (what: string, tag: string, more: boolean) => void
 }
 
@@ -162,8 +157,6 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
             toggleTheme,
             hideIntro,
             toggleListStyle,
-            fetchTrendingTags,
-            fetchCommunity,
             fetchEntries
         },
         dispatch
