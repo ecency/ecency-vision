@@ -184,6 +184,7 @@ export class EntryVotersDetail extends Component<DetailProps, DetailState> {
 }
 
 interface Props {
+  history: History;
   entry: Entry;
   children: JSX.Element;
 }
