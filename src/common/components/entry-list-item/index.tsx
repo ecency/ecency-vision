@@ -19,6 +19,7 @@ import EntryLink from '../entry-link/index';
 import EntryVoteBtn from '../entry-vote-btn/index';
 import EntryReblogBtn from '../entry-reblog-btn/index';
 import EntryPayout from '../entry-payout/index';
+import EntryVoters from '../entry-voters';
 
 import parseDate from '../../helper/parse-date';
 import parseToken from '../../helper/parse-token';
@@ -144,9 +145,13 @@ export default class EntryListItem extends Component<Props> {
                         <a className={`total-payout ${isPayoutDeclined ? 'payout-declined' : ''}`}>
                             <EntryPayout {...this.props} entry={entry}/>
                         </a>
+                        <EntryVoters {...this.props} entry={entry}>
                         <a className="voters">
-                            {peopleSvg}{' '}{entry.stats.total_votes}
+                           
+                                <>{peopleSvg}{' '}{entry.stats.total_votes}</>
+                    
                         </a>
+                        </EntryVoters>
                         <a className="comments">
                             {commentSvg}{' '}{entry.children}
                         </a>

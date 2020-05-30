@@ -1,9 +1,9 @@
 import axios from 'axios';
-import {Client, ExtendedAccount} from '@esteemapp/dhive';
+import { Client, ExtendedAccount } from '@esteemapp/dhive';
 
-import {Entry} from '../store/entries/types';
-import {Community} from '../store/communities/types';
-import {TrendingTag} from '../store/trending-tags/types';
+import { Entry } from '../store/entries/types';
+import { Community } from '../store/communities/types';
+import { TrendingTag } from '../store/trending-tags/types';
 
 const DEFAULT_SERVERS = [
     'https://anyx.io',
@@ -40,16 +40,31 @@ export const getPostsRanked = (
         .post(pickAServer(), {
             jsonrpc: '2.0',
             method: 'bridge.get_ranked_posts',
-            params: {sort, start_author, start_permlink, limit, tag, observer},
+            params: { sort, start_author, start_permlink, limit, tag, observer },
             id: 1
         }).then(resp => {
-        if (resp.data.result) {
-            return resp.data.result;
-        }
+            if (resp.data.result) {
+                return resp.data.result;
+            }
 
-        return null;
-    });
+            return null;
+        });
 
+export const getPost = (
+    author: string = '', permlink: string = '', observer: string = ''): Promise<Entry> =>
+    axios
+        .post(pickAServer(), {
+            jsonrpc: '2.0',
+            method: 'bridge.get_post',
+            params: { author, permlink, observer },
+            id: 1
+        }).then(resp => {
+            if (resp.data.result) {
+                return resp.data.result;
+            }
+
+            return null;
+        });
 
 export const getTrendingTags = (afterTag: string = '', limit: number = 50): Promise<string[]> =>
     client.database.call('get_trending_tags', [afterTag, limit])
@@ -60,7 +75,7 @@ export const getCommunity = (name: string): Promise<Community | undefined> => {
         .post(pickAServer(), {
             jsonrpc: '2.0',
             method: 'bridge.get_community',
-            params: {name, observer: ''},
+            params: { name, observer: '' },
             id: 1
         }).then(resp => {
             if (resp.data.result) {
@@ -80,7 +95,7 @@ export const getCommunities = (
         .post(pickAServer(), {
             jsonrpc: '2.0',
             method: 'bridge.list_communities',
-            params: {last, limit, query, sort, observer},
+            params: { last, limit, query, sort, observer },
             id: 1
         }).then(resp => {
             if (resp.data.result) {
