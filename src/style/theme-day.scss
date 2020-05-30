@@ -14,7 +14,7 @@ $input-border-color: $white-four;
 $input-box-shadow: none;
 $input-focus-box-shadow: none;
 
-$popover-border-color: $white-four;
+$popover-border-color: $white-three;
 $popover-bg: $white-two;
 $popover-body-color: $gunmetal;
 
@@ -37,6 +37,6 @@ $popover-body-color: $gunmetal;
   color: $charcoal-grey;
 }
 
-
+@import 'bootstrap';
 @import 'base';
 @import 'components.scss';
