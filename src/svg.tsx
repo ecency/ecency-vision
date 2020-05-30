@@ -80,14 +80,20 @@ export const closeSvg = <svg viewBox="0 0 24 24">
     <path fill="currentColor" d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/>
 </svg>;
 
-
 export const repeatSvg = <svg viewBox="0 0 24 24">
     <path fill="currentColor" d="M17,17H7V14L3,18L7,22V19H19V13H17M7,7H17V10L21,6L17,2V5H5V11H7V7Z"/>
 </svg>;
 
-
 export const chevronUpSvg = <svg viewBox="0 0 24 24">
     <path fill="currentColor" d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"/>
+</svg>;
+
+export const chevronLeftSvg = <svg viewBox="0 0 24 24">
+    <path fill="currentColor" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" />
+</svg>;
+
+export const chevronRightSvg = <svg viewBox="0 0 24 24">
+    <path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
 </svg>;
 
 export const peopleSvg = <svg viewBox="0 0 24 24">
@@ -106,7 +112,6 @@ export const menuDownSvg = <svg viewBox="0 0 24 24">
 export const viewModuleSvg = <svg viewBox="0 0 24 24">
     <path fill="currentColor" d="M16,5V11H21V5M10,11H15V5H10M16,18H21V12H16M10,18H15V12H10M4,18H9V12H4M4,11H9V5H4V11Z"/>
 </svg>;
-
 
 export const viewHeadLineSvg = <svg viewBox="0 0 24 24">
     <path fill="currentColor" d="M4,5V7H21V5M4,11H21V9H4M4,19H21V17H4M4,15H21V13H4V15Z"/>

@@ -1,0 +1,13 @@
+.voters-pagination{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .page-numbers{
+        margin: 0 10px;
+
+        .current-page{
+            font-weight: 500;
+        }
+    }
+}

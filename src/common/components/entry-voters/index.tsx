@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Modal } from 'react-bootstrap';
+import { Modal, Table, Pagination, Button } from 'react-bootstrap';
 
 import { Entry } from '../../store/entries/types';
 
@@ -8,10 +8,9 @@ import { getPost } from '../../api/hive';
 
 import parseAsset from '../../helper/parse-asset';
 
-import parseDate from '../../helper/parse-date';
+import FormattedCurrency from '../formatted-currency';
 
-
-
+import {chevronLeftSvg, chevronRightSvg} from '../../../svg';
 
 interface Vote {
     voter: string,
@@ -19,17 +18,7 @@ interface Vote {
     reward?: number
 }
 
-interface Props {
-    entry: Entry,
-    children: JSX.Element
-}
-
-interface State {
-    visible: boolean,
-    votes: Vote[]
-}
-
-export const prepareVotes = (entry: Entry, votes: Vote[]) => {
+export const prepareVotes = (entry: Entry, votes: Vote[]): Vote[] => {
     const totalPayout =
         parseAsset(entry.pending_payout_value).value +
         parseAsset(entry.author_payout_value).value +
@@ -47,47 +36,95 @@ export const prepareVotes = (entry: Entry, votes: Vote[]) => {
         return Object.assign({}, a, {
             reward: rew,
         });
-    })
-        .sort((a, b) => {
-            const keyA = a.reward;
-            const keyB = b.reward;
+    }).sort((a, b) => {
+        const keyA = a.reward;
+        const keyB = b.reward;
 
-            if (keyA > keyB) return -1;
-            if (keyA < keyB) return 1;
-            return 0;
-        });
+        if (keyA > keyB) return -1;
+        if (keyA < keyB) return 1;
+        return 0;
+    });
 };
 
 
-export default class EntryVoters extends Component<Props, State> {
-    state: State = {
+export class EntryVotersDetail extends Component<{ votes: Vote[] }, { page: number }>{
+    state = {
+        page: 0
+    }
+
+    prev = () => {
+        const { page } = this.state;
+        this.setState({ page: page - 1 });
+    }
+
+    next = () => {
+        const { page } = this.state;
+        this.setState({ page: page + 1 });
+    }
+
+    render() {
+        const { votes } = this.props;
+        const { page } = this.state;
+
+        const pageSize = 10;
+        const totalPages = Math.ceil(votes.length / pageSize);
+
+        const start = page * pageSize;
+
+        const hasPrev = page !== 0;
+        const hasNext = page + 1 !== totalPages;
+
+        const votes_ = votes.slice(start, start + pageSize)
+
+        return (
+            <>
+                <Table borderless={true} striped={true}>
+                    <tbody>
+                        {votes_.map((v, i) => (<tr key={i}>
+                            <td>{v.voter}</td>
+                            <td><FormattedCurrency {...this.props} value={v.reward} /></td>
+                        </tr>))}
+                    </tbody>
+                </Table>
+                
+                <div className="voters-pagination">
+                        <Button size="sm" disabled={!hasPrev} onClick={this.prev}>{chevronLeftSvg}</Button>
+                    <div className="page-numbers">
+                        <span className="current-page"> {page + 1}</span> / {totalPages}
+                    </div>
+                    <Button size="sm" disabled={!hasNext} onClick={this.next}>{chevronRightSvg}</Button>
+                </div>
+            </>
+        )
+    }
+}
+
+interface Props {
+    entry: Entry,
+    children: JSX.Element
+}
+
+
+export default class EntryVoters extends Component<Props, { visible: boolean, votes: Vote[] }> {
+
+    state = {
         visible: false,
         votes: []
     }
 
-    componentDidMount() {
-        console.log("mount")
-    }
-
     show = () => {
-        this.setState({ visible: true });
-
         const { entry } = this.props;
         getPost(entry.author, entry.permlink).then(r => {
-
-            this.setState({ votes: r.active_votes });
-
-            console.log(r);
-        })
+            this.setState({ visible: true, votes: prepareVotes(entry, r.active_votes) });
+        });
     };
 
     hide = () => {
-        this.setState({ visible: false });
-        this.setState({ votes: [] });
+        this.setState({ visible: false, votes: [] });
     };
 
     render() {
-        const { entry, children } = this.props;
+        const { children } = this.props;
         const { visible, votes } = this.state;
 
         const clonedChildren = React.cloneElement(children, {
@@ -97,14 +134,12 @@ export default class EntryVoters extends Component<Props, State> {
         return <>
             {clonedChildren}
             {visible && (
-                <Modal onHide={this.hide} size="sm" show={true} centered={true}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>
-                            Voters {votes.length}
-                        </Modal.Title>
+                <Modal onHide={this.hide} show={true} centered={true}>
+                    <Modal.Header closeButton={true}>
+                        <Modal.Title>Voters {votes.length}</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        Henlo
+                        <EntryVotersDetail {...this.props} votes={votes} />
                     </Modal.Body>
                 </Modal>
             )}
