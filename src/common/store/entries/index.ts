@@ -87,7 +87,7 @@ export const fetchEntries = (what: string = '', tag: string = '', more: boolean 
             return;
         }
 
-        const lastEntry = theEntries.pop();
+        const lastEntry = theEntries[theEntries.length - 1];
 
         let start_author = '';
         let start_permlink = '';

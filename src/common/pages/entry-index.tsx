@@ -23,7 +23,7 @@ import ListStyleToggle from '../components/list-style-toggle/index';
 import LinearProgress from '../components/linear-progress/index';
 import EntryListLoadingItem from '../components/entry-list-loading-item/index';
 import DetectBottom from '../components/detect-bottom/index';
-
+import EntryList from '../components/entry-list/index';
 
 import {_t} from '../i18n';
 
@@ -53,7 +53,7 @@ class EntryIndexPage extends Component<Props> {
 
             window.scrollTo({
                 top: 0,
-                behavior: "smooth"
+                behavior: 'smooth'
             });
         }
     }
@@ -128,10 +128,8 @@ class EntryIndexPage extends Component<Props> {
 
                         <div className={_c(`entry-list ${loading ? 'loading' : ''}`)}>
                             <div className={_c(`entry-list-body ${global.listStyle === ListStyle.grid ? 'grid-view' : ''}`)}>
-
                                 {(loading && entryList.length === 0) && <EntryListLoadingItem/>}
-
-                                {entryList.map(e => <EntryListItem key={`${e.author}-${e.permlink}`} {...this.props} entry={e}/>)}
+                                <EntryList {...this.props} entries={entryList}/>
                             </div>
                         </div>
 
