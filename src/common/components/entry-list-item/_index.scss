@@ -257,10 +257,10 @@
       .voters {
         .inner-btn{
           display: flex;
-       
+          cursor: pointer;
 
-          &.with-votes{
-            cursor: pointer;
+          &.no-data{
+            cursor: default;
           }
         }
       }

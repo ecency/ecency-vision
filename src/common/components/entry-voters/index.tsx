@@ -216,7 +216,7 @@ export default class EntryVoters extends Component<Props, State> {
     if (entry.stats.total_votes === 0) {
       return (
         <Tooltip content={_t("entry-voters.title-empty")}>
-          <span className="inner-btn">{child}</span>
+          <span className="inner-btn no-data">{child}</span>
         </Tooltip>
       );
     }
@@ -226,7 +226,7 @@ export default class EntryVoters extends Component<Props, State> {
         <Tooltip
           content={_t("entry-voters.title", { n: entry.stats.total_votes })}
         >
-          <span className="inner-btn with-votes" onClick={this.toggle}>
+          <span className="inner-btn" onClick={this.toggle}>
             {child}
           </span>
         </Tooltip>
