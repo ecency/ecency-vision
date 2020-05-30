@@ -1,26 +1,37 @@
-.voters-dialog-content{
-    min-height: 310px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+.voters-dialog-content {
+  min-height: 310px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 
-    .reward-cell{
-        width: 120px;
+  .reward-cell {
+    width: 120px;
+  }
+
+  .voter-cell {
+    .account {
+      display: flex;
+      align-items: center;
+
+      .user-avatar {
+        margin-right: 6px;
+      }
     }
+  }
 }
 
-.voters-pagination{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    user-select: none;
+.voters-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
 
-    .page-numbers{
-        margin: 0 10px;
+  .page-numbers {
+    margin: 0 10px;
 
-        .current-page{
-            font-weight: 500;
-        }
+    .current-page {
+      font-weight: 500;
     }
+  }
 }
