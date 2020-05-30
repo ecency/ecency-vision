@@ -7,11 +7,9 @@ import isEqual from 'react-fast-compare';
 
 import {Entry} from '../../store/entries/types';
 import {State as GlobalState} from '../../store/global/types';
-import {State as CommunitiesState} from '../../store/communities/types';
 
 // @ts-ignore
 import {catchPostImage, postBodySummary, setProxyBase} from '@esteemapp/esteem-render-helpers';
-
 setProxyBase('https://images.hive.blog/');
 
 import AccountLink from '../account-link/index';

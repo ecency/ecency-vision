@@ -7,21 +7,14 @@ import {createBrowserHistory} from 'history';
 it('(1) Default render', () => {
     const props = {
         history: createBrowserHistory(),
-        location: {
-            pathname: '/'
-        },
         global: {
             tag: 'bitcoin',
             filter: 'hot'
         },
-        communities: {list: {}},
-        tag: 'bitcoin',
-        children: <span>bitcoin</span>,
-        fetchCommunity: () => {
-        }
+        tag: 'bitcoin'
     };
 
     // @ts-ignore
-    const renderer = TestRenderer.create(<TagLink {...props}/>);
+    const renderer = TestRenderer.create(<TagLink {...props}><span>bitcoin</span></TagLink>);
     expect(renderer.toJSON()).toMatchSnapshot();
 });
