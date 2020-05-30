@@ -89,7 +89,7 @@ export class EntryVotersDetail extends Component<DetailProps, DetailState>{
 
     render() {
         const { onHide } = this.props;
-        const { votes, loading } = this.state;
+        const { loading, votes, page } = this.state;
 
         return (
             <>
@@ -105,44 +105,44 @@ export class EntryVotersDetail extends Component<DetailProps, DetailState>{
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        {(() => {
-                            console.log(loading);
-                            if (loading) {
-                                return <div className="voters-list loading"> <Spinner animation="grow" variant="primary" /></div>;
-                            }
+                        <div className="voters-dialog-content">
+                            {(() => {
+                                console.log(loading);
+                                if (loading) {
+                                    return <Spinner animation="grow" variant="primary" />;
+                                }
 
-                            const { page } = this.state;
+                                const { page } = this.state;
 
-                            const pageSize = 6;
-                            const totalPages = Math.ceil(votes.length / pageSize);
+                                const pageSize = 6;
+                                const totalPages = Math.ceil(votes.length / pageSize);
 
-                            const start = page * pageSize;
+                                const start = page * pageSize;
 
-                            const hasPrev = page !== 0;
-                            const hasNext = page + 1 !== totalPages;
+                                const hasPrev = page !== 0;
+                                const hasNext = page + 1 !== totalPages;
 
-                            const list = votes.slice(start, start + pageSize);
+                                const list = votes.slice(start, start + pageSize);
 
-                            return <>
-                                <div className="voters-list">
+                                return <>
                                     <Table borderless={true} striped={true}>
                                         <tbody>
                                             {list.map((v, i) => (<tr key={i}>
                                                 <td>{v.voter}</td>
-                                                <td><FormattedCurrency {...this.props} value={v.reward} /></td>
+                                                <td className="reward-cell"><FormattedCurrency {...this.props} value={v.reward} fixAt={3} /></td>
                                             </tr>))}
                                         </tbody>
                                     </Table>
-                                </div>
-                                <div className="voters-pagination">
-                                    <Button size="sm" disabled={!hasPrev} onClick={this.prev}>{chevronLeftSvg}</Button>
-                                    <div className="page-numbers">
-                                        <span className="current-page"> {page + 1}</span> / {totalPages}
+                                    <div className="voters-pagination">
+                                        <Button size="sm" disabled={!hasPrev} onClick={this.prev}>{chevronLeftSvg}</Button>
+                                        <div className="page-numbers">
+                                            <span className="current-page"> {page + 1}</span> / {totalPages}
+                                        </div>
+                                        <Button size="sm" disabled={!hasNext} onClick={this.next}>{chevronRightSvg}</Button>
                                     </div>
-                                    <Button size="sm" disabled={!hasNext} onClick={this.next}>{chevronRightSvg}</Button>
-                                </div>
-                            </>
-                        })()}
+                                </>
+                            })()}
+                        </div>
                     </Modal.Body>
                 </Modal>
             </>

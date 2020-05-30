@@ -58,15 +58,14 @@
           font-weight: 500;
 
           &::before {
-            content: '(';
+            content: "(";
           }
 
           &::after {
-            content: ')';
+            content: ")";
           }
         }
       }
-
     }
 
     .category {
@@ -178,29 +177,22 @@
     }
 
     .item-summary {
-
       @media (min-width: $sm-break) {
         float: right;
         width: calc(100% - 147px);
       }
 
       .item-title {
-        color: $charcoal-grey;
-      }
-
-      .item-title,
-      .item-body {
-        cursor: pointer;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        width: 100%;
-        display: block;
-      }
-
-      .item-title {
         font-weight: 700;
         margin-bottom: 9px;
+
+        @include themify(day) {
+          color: $charcoal-grey;
+        }
+
+        @include themify(night) {
+          color: $silver;
+        }
       }
 
       .item-body {
@@ -212,6 +204,16 @@
         @include themify(night) {
           color: $silver;
         }
+      }
+
+      .item-title,
+      .item-body {
+        cursor: pointer;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 100%;
+        display: block;
       }
     }
 
@@ -242,12 +244,18 @@
         }
       }
 
-      .total-payout, .voters, .comments {
+      .total-payout,
+      .voters,
+      .comments {
         margin-right: 15px;
 
         @media (min-width: $sm-break) {
           margin-right: 25px;
         }
+      }
+
+      .voters {
+        cursor: pointer;
       }
 
       .voters,
