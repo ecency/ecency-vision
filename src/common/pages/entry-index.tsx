@@ -5,6 +5,8 @@ import { History, Location } from "history";
 
 import { Helmet } from "react-helmet";
 
+import { Button } from "react-bootstrap";
+
 import { AppState } from "../store";
 import { Filter, ListStyle, State as GlobalState } from "../store/global/types";
 import { State as TrendingTagsState } from "../store/trending-tags/types";
@@ -24,12 +26,17 @@ import LinearProgress from "../components/linear-progress/index";
 import EntryListLoadingItem from "../components/entry-list-loading-item/index";
 import DetectBottom from "../components/detect-bottom/index";
 import EntryListContent from "../components/entry-list/index";
+import DownloadTrigger from "../components/download-trigger";
 
 import { getCommunity } from "../api/hive";
 
 import { _t } from "../i18n";
 
 import _c from "../util/fix-class-names";
+
+import ln2list from "../util/nl2list";
+
+import { accountGroupSvg } from "../../svg";
 
 const filters = Object.values(Filter);
 
@@ -79,9 +86,8 @@ class EntryIndexPage extends Component<Props, State> {
   detectCommunity = () => {
     const { global } = this.props;
 
-    this.setState({ community: null });
-
     if (!global.tag.startsWith("hive-")) {
+      this.setState({ community: null });
       return;
     }
 
@@ -174,6 +180,71 @@ class EntryIndexPage extends Component<Props, State> {
             </div>
             {loading && entryList.length > 0 ? <LinearProgress /> : ""}
           </div>
+          {community && (
+            <div className="community-card">
+              <h2 className="community-title">
+                {accountGroupSvg} {community.title}
+              </h2>
+
+              <div className="community-panel">
+                <div className="community-about">{community.about}</div>
+
+                <div className="community-stats">
+                  <div className="community-stat">
+                    <span className="stat-text">
+                      {community.subscribers} subscribers
+                    </span>
+                  </div>
+
+                  <div className="community-stat">
+                    <span className="stat-text">
+                      {community.sum_pending} pending rewards
+                    </span>
+                  </div>
+
+                  <div className="community-stat">
+                    <span className="stat-text">
+                      {community.num_authors} active posters
+                    </span>
+                  </div>
+                </div>
+
+                <DownloadTrigger>
+                  <Button variant="primary" block={true}>
+                    Subscribe
+                  </Button>
+                </DownloadTrigger>
+                <DownloadTrigger>
+                  <Button variant="primary" block={true}>
+                    New Post
+                  </Button>
+                </DownloadTrigger>
+              </div>
+
+              <div className="community-panel">
+                <div className="community-section">
+                  <h4 className="section-header">Description</h4>
+                  {ln2list(community.description).map((x) => (
+                    <p>{x}</p>
+                  ))}
+                </div>
+
+                <div className="community-section">
+                  <h4 className="section-header">Rules</h4>
+                  <ol>
+                    {ln2list(community.flag_text).map((x) => (
+                      <li>{x}</li>
+                    ))}
+                  </ol>
+                </div>
+
+                <div className="community-section">
+                  <h4 className="section-header">Language</h4>
+                  {community.lang}
+                </div>
+              </div>
+            </div>
+          )}
         </div>
         <DetectBottom onBottom={this.bottomReached} />
       </>
