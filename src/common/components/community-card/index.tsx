@@ -23,7 +23,7 @@ interface Props {
 export default class CommunityCard extends Component<Props> {
   render() {
     const { community } = this.props;
-    console.log(community);
+    
     return (
       <div className="community-card">
         <h2 className="community-title">
@@ -54,7 +54,6 @@ export default class CommunityCard extends Component<Props> {
               if (m[0].startsWith("hive-")) {
                 return null;
               }
-
               return (
                 <div className="team-member" key={i}>
                   <AccountLink {...this.props} username={m[0]}>
