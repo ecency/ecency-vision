@@ -24,22 +24,18 @@ export default class CommunityCard extends Component<Props> {
   render() {
     const { community } = this.props;
 
-    console.log(community);
     return (
       <div className="community-card">
         <h2 className="community-title">
           {accountGroupSvg} {community.title}
         </h2>
-
         <div className="community-panel">
           <div className="section-about">{community.about}</div>
-
           <div className="section-stats">
             <div className="stat">{community.subscribers} subscribers</div>
             <div className="stat">{community.sum_pending} pending rewards</div>
             <div className="stat">{community.num_authors} active posters</div>
           </div>
-
           <div className="section-controls">
             <DownloadTrigger>
               <Button variant="primary" block={true}>
@@ -52,11 +48,10 @@ export default class CommunityCard extends Component<Props> {
               </Button>
             </DownloadTrigger>
           </div>
-
           <div className="section-team">
             <h4 className="section-header">Leadership</h4>
-            {community.team.map((m) => (
-              <div className="team-member">
+            {community.team.map((m, i) => (
+              <div className="team-member" key={i}>
                 <AccountLink {...this.props} username={m[0]}>
                   <a className="username">{`@${m[0]}`}</a>
                 </AccountLink>
