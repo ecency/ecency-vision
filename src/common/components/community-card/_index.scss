@@ -7,13 +7,14 @@
     align-items: center;
     line-height: 100%;
     height: 50px;
-    color: $dark-sky-blue;
 
     @include themify(day) {
+      color: $dark-sky-blue;
       border-bottom: 1px solid $white-three;
     }
 
     @include themify(night) {
+      color: $pastel-blue;
       border-bottom: 1px solid $dark-two;
     }
 
