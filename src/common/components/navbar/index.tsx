@@ -31,7 +31,7 @@ export default class NavBar extends Component <Props> {
                 </Link>
                 <div className="text-menu">
                     <Link className="menu-item" to="/">Global</Link>
-                    <Link className="menu-item" to="/">Communities</Link>
+                    <Link className="menu-item" to="/communities">Communities</Link>
                     <Link className="menu-item" to="/about">About</Link>
                 </div>
                 <div className="flex-spacer"/>
