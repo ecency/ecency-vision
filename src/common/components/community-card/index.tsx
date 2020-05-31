@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 import { History } from "history";
 
+import isEqual from "react-fast-compare";
+
 import numeral from "numeral";
 
 import { Button } from "react-bootstrap";
@@ -23,6 +25,10 @@ interface Props {
 }
 
 export default class CommunityCard extends Component<Props> {
+  shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
+    return !isEqual(this.props.community, nextProps.community);
+  }
+
   render() {
     const { community } = this.props;
 
