@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@esteemapp/esteem-render-helpers": "^1.4.1",
+    "@types/numeral": "^0.0.28",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
     "connected-react-router": "^6.8.0",

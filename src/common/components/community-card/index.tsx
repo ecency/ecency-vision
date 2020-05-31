@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 import { History } from "history";
 
+import numeral from "numeral";
+
 import { Button } from "react-bootstrap";
 
 import { State as GlobalState } from "../../store/global/types";
@@ -23,7 +25,11 @@ interface Props {
 export default class CommunityCard extends Component<Props> {
   render() {
     const { community } = this.props;
-    
+
+    const subscribers = numeral(community.subscribers).format();
+    const rewards = numeral(community.sum_pending).format();
+    const authors = numeral(community.num_authors).format();
+
     return (
       <div className="community-card">
         <h2 className="community-title">
@@ -32,9 +38,9 @@ export default class CommunityCard extends Component<Props> {
         <div className="community-panel">
           <div className="section-about">{community.about}</div>
           <div className="section-stats">
-            <div className="stat">{community.subscribers} subscribers</div>
-            <div className="stat">{community.sum_pending} pending rewards</div>
-            <div className="stat">{community.num_authors} active posters</div>
+            <div className="stat">{subscribers} subscribers</div>
+            <div className="stat">{`$${rewards}`} pending rewards</div>
+            <div className="stat">{authors} active posters</div>
           </div>
           <div className="section-controls">
             <DownloadTrigger>
