@@ -70,7 +70,7 @@ export const getTrendingTags = (afterTag: string = '', limit: number = 50): Prom
     client.database.call('get_trending_tags', [afterTag, limit])
         .then((t: TrendingTag[]) => t.filter(x => x.name !== '').map(x => x.name));
 
-export const getCommunity = (name: string): Promise<Community | undefined> => {
+export const getCommunity = (name: string): Promise<Community > => {
     return axios
         .post(pickAServer(), {
             jsonrpc: '2.0',
@@ -78,11 +78,7 @@ export const getCommunity = (name: string): Promise<Community | undefined> => {
             params: { name, observer: '' },
             id: 1
         }).then(resp => {
-            if (resp.data.result) {
-                return resp.data.result;
-            }
-
-            return undefined;
+            return resp.data.result;
         })
 };
 
