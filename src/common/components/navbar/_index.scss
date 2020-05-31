@@ -1,4 +1,3 @@
-
 .nav-bar {
   user-select: none;
   margin-bottom: 20px;
@@ -34,7 +33,6 @@
       flex-direction: row;
     }
 
-
     @media (min-width: $lg-break) {
       padding: 0 20px;
     }
@@ -47,26 +45,6 @@
       text-decoration: none;
       margin-bottom: 24px;
 
-      .brand-text {
-        font-family: 'Arial Black', 'Arial Bold', Gadget, sans-serif;
-        padding-left: 54px;
-        font-size: 26px;
-        display: none;
-        padding-top: 4px;
-
-        @media (min-width: $lg-break) {
-          display: block;
-        }
-
-        @include themify(day) {
-          color: #004bd8;
-        }
-
-        @include themify(night) {
-          color: $white;
-        }
-      }
-
       @media (min-width: $md-break) {
         margin-bottom: 0;
         margin-right: 30px;
@@ -74,7 +52,7 @@
 
       @media (min-width: $lg-break) {
         margin-right: 0;
-        width: 230px;
+        width: 210px;
       }
     }
 
@@ -173,7 +151,7 @@
     }
 
     .downloads {
-      background: linear-gradient(270deg, #2D5AA0 4.68%, #357CE6 98.13%);
+      background: linear-gradient(270deg, #2d5aa0 4.68%, #357ce6 98.13%);
       border-radius: 25px;
       padding: 8px 12px;
       color: $white;
@@ -187,10 +165,8 @@
         margin-right: 20px;
       }
 
-
       @media (min-width: $lg-break) {
         padding: 8px 20px;
-
       }
 
       @media (min-width: $xl-break) {
@@ -198,7 +174,7 @@
       }
 
       &:hover {
-        background: linear-gradient(120deg, #2D5AA0 4.68%, #357CE6 98.13%);
+        background: linear-gradient(120deg, #2d5aa0 4.68%, #357ce6 98.13%);
         color: $white;
       }
 
