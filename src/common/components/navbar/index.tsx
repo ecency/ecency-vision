@@ -8,7 +8,7 @@ import ToolTip from '../../components/tooltip';
 
 import {_t} from '../../i18n';
 
-import {magnifySvg, brightnessSvg, appleSvg, googleSvg, desktopSvg} from '../../../svg';
+import {magnifySvg, brightnessSvg, appleSvg, googleSvg, desktopSvg} from '../../img/svg';
 
 interface Props {
     toggleTheme: () => void

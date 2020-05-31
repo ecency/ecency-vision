@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import DownloadTrigger from '../download-trigger';
 
-import {chevronUpSvg} from '../../../svg';
+import {chevronUpSvg} from '../../img/svg';
 
 export default class EntryVoteBtn extends Component {
     render() {

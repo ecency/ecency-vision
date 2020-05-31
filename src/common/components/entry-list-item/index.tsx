@@ -31,7 +31,7 @@ import appName from "../../helper/app-name";
 
 import { _t } from "../../i18n/index";
 
-import { repeatSvg, peopleSvg, commentSvg } from "../../../svg";
+import { repeatSvg, peopleSvg, commentSvg } from "../../img/svg";
 
 const fallbackImage = require("../../img/fallback.png");
 const noImage = require("../../img/noimage.png");

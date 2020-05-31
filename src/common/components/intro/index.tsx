@@ -5,7 +5,7 @@ import {State as GlobalState} from '../../store/global/types';
 // @ts-ignore
 import friends from '../../img/friends.jpg';
 
-import {closeSvg} from '../../../svg';
+import {closeSvg} from '../../img/svg';
 
 
 interface Props {

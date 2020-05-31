@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import {State as GlobalState} from '../../store/global/types';
 import {ListStyle} from '../../store/global/types';
 
-import {viewModuleSvg} from '../../../svg';
+import {viewModuleSvg} from '../../img/svg';
 
 interface Props {
     global: GlobalState,

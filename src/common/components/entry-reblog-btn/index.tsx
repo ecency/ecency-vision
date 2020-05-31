@@ -6,7 +6,7 @@ import DownloadTrigger from '../download-trigger';
 
 import {_t} from '../../i18n/index';
 
-import {repeatSvg} from '../../../svg';
+import {repeatSvg} from '../../img/svg';
 
 export default class EntryReblogBtn extends Component {
     render() {

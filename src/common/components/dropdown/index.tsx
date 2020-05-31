@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {History} from 'history';
 
-import {menuDownSvg} from '../../../svg';
+import {menuDownSvg} from '../../img/svg';
 
 interface MenuItem {
     label: string,

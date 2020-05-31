@@ -12,7 +12,7 @@ import DownloadTrigger from "../download-trigger";
 
 import ln2list from "../../util/nl2list";
 
-import { accountGroupSvg } from "../../../svg";
+import { accountGroupSvg } from "../../img/svg";
 
 interface Props {
   history: History;

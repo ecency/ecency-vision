@@ -18,7 +18,7 @@ import parseAsset from "../../helper/parse-asset";
 
 import { _t } from "../../i18n";
 
-import { peopleSvg, chevronLeftSvg, chevronRightSvg } from "../../../svg";
+import { peopleSvg, chevronLeftSvg, chevronRightSvg } from "../../img/svg";
 
 interface Vote {
   voter: string;
