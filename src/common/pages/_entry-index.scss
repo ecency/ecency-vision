@@ -88,6 +88,13 @@
     width: calc(100% - 230px);
   }
 
+  .community-sm {
+    margin-bottom: 20px;
+    @media (min-width: $xl-break) {
+      display: none;
+    }
+  }
+
   .page-tools {
     align-items: center;
     display: flex;

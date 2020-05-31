@@ -1,0 +1,112 @@
+.community-card-sm {
+  .community-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 100%;
+    height: 40px;
+    text-align: center;
+
+    @media (min-width: $md-break) {
+      height: 50px;
+      margin: 0 0 20px 0;
+      justify-content: flex-start;
+    }
+
+    @include themify(day) {
+      color: $dark-sky-blue;
+      border-bottom: 1px solid $white-three;
+    }
+
+    @include themify(night) {
+      color: $pastel-blue;
+      border-bottom: 1px solid $dark-two;
+    }
+
+    svg {
+      height: 20px;
+      margin-right: 10px;
+    }
+  }
+
+  .community-panel {
+    border-radius: 6px;
+    padding: 10px;
+    text-align: center;
+    line-height: 1.7;
+
+    @media (min-width: $md-break) {
+      display: flex;
+      text-align: left;
+    }
+
+    @include themify(day) {
+      background: lighten($white-three, 2);
+    }
+
+    @include themify(night) {
+      background: lighten($dark-two, 2);
+    }
+
+    .infromation {
+      flex-grow: 1;
+      margin-right: 6px;
+
+      .section-about {
+        margin-bottom: 10px;
+
+        @media (min-width: $md-break) {
+          margin-bottom: 4px;
+        }
+      }
+
+      .section-stats {
+        margin-bottom: 20px;
+
+        @media (min-width: $md-break) {
+          display: flex;
+          margin-bottom: 0;
+        }
+
+        .stat {
+          font-size: 14px;
+          margin-bottom: 2px;
+
+          @media (min-width: $md-break) {
+            opacity: 0.7;
+
+            &:not(:last-child) {
+              margin-right: 6px;
+
+              &:after {
+                content: "•";
+                margin-left: 6px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .controls {
+      display: flex;
+      justify-content: center;
+
+      @media (max-width: $md-break - 1px) {
+        .btn:first-child {
+          margin-right: 10px;
+        }
+      }
+
+      @media (min-width: $md-break) {
+        flex-direction: column;
+        .btn:first-child {
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+}

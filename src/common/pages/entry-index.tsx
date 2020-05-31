@@ -25,6 +25,7 @@ import EntryListLoadingItem from "../components/entry-list-loading-item/index";
 import DetectBottom from "../components/detect-bottom/index";
 import EntryListContent from "../components/entry-list/index";
 import CommunityCard from "../components/community-card";
+import CommunityCardSm from "../components/community-card-sm";
 
 import { getCommunity } from "../api/hive";
 
@@ -155,6 +156,11 @@ class EntryIndexPage extends Component<Props, State> {
             })}
           </div>
           <div className={_c(`entry-page-content ${loading ? "loading" : ""}`)}>
+            {community && (
+              <div className="community-sm">
+                <CommunityCardSm {...this.props} community={community} />
+              </div>
+            )}
             <div className="page-tools">
               <DropDown {...{ ...this.props, ...dropDownConfig }} />
               <ListStyleToggle {...this.props} />
