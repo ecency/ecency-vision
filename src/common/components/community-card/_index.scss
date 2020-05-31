@@ -24,12 +24,19 @@
   }
 
   .community-panel {
-    background: lighten($white-three, 2);
     border-radius: 12px;
     padding: 10px;
     margin-bottom: 20px;
     font-size: 96%;
     line-height: 1.7;
+
+    @include themify(day) {
+      background: lighten($white-three, 2);
+    }
+
+    @include themify(night) {
+      background: lighten($dark-two, 2);
+    }
   }
 
   .section-header {
@@ -63,7 +70,7 @@
       white-space: nowrap;
       color: $steel-grey;
       margin-bottom: 4px;
-      
+
       .username {
         margin-right: 6px;
       }
@@ -72,7 +79,7 @@
         text-transform: uppercase;
       }
       .extra {
-        border: 1px solid lighten($dark-sky-blue, 20);
+        border: 1px solid lighten($green1, 1);
         padding: 0 2px;
         border-radius: 6px;
       }
