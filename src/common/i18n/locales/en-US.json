@@ -30,5 +30,16 @@
     "title-empty": "No Votes",
     "voter": "Voter",
     "reward": "Reward"
+  },
+  "community": {
+    "n-subscribers": "{{n}} subscribers",
+    "n-rewards": "${{n}} pending rewards",
+    "n-authors": "{{n}} active posters",
+    "subscribe": "Subscribe",
+    "post": "New Post",
+    "team": "Leadership",
+    "description": "Description",
+    "rules": "Rules",
+    "lang": "Language"
   }
 }
