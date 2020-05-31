@@ -130,8 +130,6 @@ class EntryIndexPage extends Component<Props, State> {
 
     const { community } = this.state;
 
-    console.log(community);
-
     return (
       <>
         <Helmet>

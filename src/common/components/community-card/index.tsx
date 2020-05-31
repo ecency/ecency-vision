@@ -22,7 +22,6 @@ import { accountGroupSvg } from "../../img/svg";
 
 interface Props {
   history: History;
-  global: GlobalState;
   community: Community;
 }
 
