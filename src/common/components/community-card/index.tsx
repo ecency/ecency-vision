@@ -23,7 +23,7 @@ interface Props {
 export default class CommunityCard extends Component<Props> {
   render() {
     const { community } = this.props;
-
+    console.log(community);
     return (
       <div className="community-card">
         <h2 className="community-title">
@@ -50,14 +50,21 @@ export default class CommunityCard extends Component<Props> {
           </div>
           <div className="section-team">
             <h4 className="section-header">Leadership</h4>
-            {community.team.map((m, i) => (
-              <div className="team-member" key={i}>
-                <AccountLink {...this.props} username={m[0]}>
-                  <a className="username">{`@${m[0]}`}</a>
-                </AccountLink>
-                <span className="role">{m[1]}</span>
-              </div>
-            ))}
+            {community.team.map((m, i) => {
+              if (m[0].startsWith("hive-")) {
+                return null;
+              }
+
+              return (
+                <div className="team-member" key={i}>
+                  <AccountLink {...this.props} username={m[0]}>
+                    <a className="username">{`@${m[0]}`}</a>
+                  </AccountLink>
+                  <span className="role">{m[1]}</span>
+                  {m[2] !== "" && <span className="extra">{m[2]}</span>}
+                </div>
+              );
+            })}
           </div>
         </div>
         <div className="community-panel">

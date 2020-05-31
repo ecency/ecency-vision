@@ -59,9 +59,22 @@
   .section-team {
     .team-member {
       font-size: 14px;
+      overflow: hidden;
+      white-space: nowrap;
       color: $steel-grey;
+      margin-bottom: 4px;
+      
       .username {
         margin-right: 6px;
+      }
+      .role {
+        margin-right: 6px;
+        text-transform: uppercase;
+      }
+      .extra {
+        border: 1px solid lighten($dark-sky-blue, 20);
+        padding: 0 2px;
+        border-radius: 6px;
       }
     }
   }
