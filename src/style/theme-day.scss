@@ -2,7 +2,6 @@
 
 $font-family-base: 'IBM Plex Sans', sans-serif;
 
-$body-color: $charcoal-grey;
 $primary: $dark-sky-blue;
 
 $link-hover-decoration: none;
@@ -47,7 +46,7 @@ $close-color: null default;
   @import '~bootstrap/scss/utilities';
 
   background: $white;
-  color: $charcoal-grey;
+  color: lighten($charcoal-grey, 10);
 }
 
 @import 'bootstrap';
