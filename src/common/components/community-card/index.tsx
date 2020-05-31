@@ -87,24 +87,32 @@ export default class CommunityCard extends Component<Props> {
           </div>
         </div>
         <div className="community-panel">
-          <div className="section-description">
-            <h4 className="section-header">{_t("community.description")}</h4>
-            {ln2list(community.description).map((x, i) => (
-              <p key={i}>{x}</p>
-            ))}
-          </div>
-          <div className="section-rules">
-            <h4 className="section-header">{_t("community.rules")}</h4>
-            <ol>
-              {ln2list(community.flag_text).map((x, i) => (
-                <li key={i}>{x}</li>
+          {community.description.trim() !== "" && (
+            <div className="section-description">
+              <h4 className="section-header">{_t("community.description")}</h4>
+              {ln2list(community.description).map((x, i) => (
+                <p key={i}>{x}</p>
               ))}
-            </ol>
-          </div>
-          <div className="section-lang">
-            <h4 className="section-header">{_t("community.lang")}</h4>
-            {community.lang}
-          </div>
+            </div>
+          )}
+
+          {community.flag_text.trim() !== "" && (
+            <div className="section-rules">
+              <h4 className="section-header">{_t("community.rules")}</h4>
+              <ol>
+                {ln2list(community.flag_text).map((x, i) => (
+                  <li key={i}>{x}</li>
+                ))}
+              </ol>
+            </div>
+          )}
+          
+          {community.lang.trim() !== "" && (
+            <div className="section-lang">
+              <h4 className="section-header">{_t("community.lang")}</h4>
+              {community.lang}
+            </div>
+          )}
         </div>
       </div>
     );
