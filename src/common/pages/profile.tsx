@@ -3,11 +3,13 @@ import { AnyAction, bindActionCreators, Dispatch } from "redux";
 import { connect } from "react-redux";
 import { History, Location } from "history";
 
+import { match } from "react-router";
+
 import { AppState } from "../store";
 import { Filter, ListStyle, State as GlobalState } from "../store/global/types";
 import { State as TrendingTagsState } from "../store/trending-tags/types";
 import { State as EntriesState } from "../store/entries/types";
-import { State as CommunityState } from "../store/community/types";
+import { State as ProfilesState } from "../store/profiles/types";
 
 import { hideIntro, toggleListStyle, toggleTheme } from "../store/global/index";
 import { makeGroupKey, fetchEntries } from "../store/entries/index";
@@ -23,19 +25,24 @@ import LinearProgress from "../components/linear-progress/index";
 import EntryListLoadingItem from "../components/entry-list-loading-item/index";
 import DetectBottom from "../components/detect-bottom/index";
 import EntryListContent from "../components/entry-list/index";
-import TrendingTagsCard from "../components/trending-tags-card";
-import CommunityCard from "../components/community-card";
-import CommunityCardSm from "../components/community-card-sm";
 
 import { _t } from "../i18n";
 
 import _c from "../util/fix-class-names";
+import { stat } from "fs";
+
+interface MatchParams {
+  username: string;
+  section?: string;
+}
 
 interface Props {
   history: History;
   location: Location;
+  match: match<MatchParams>;
   global: GlobalState;
   entries: EntriesState;
+  profiles: ProfilesState;
   toggleTheme: () => void;
   toggleListStyle: () => void;
   fetchEntries: (what: string, tag: string, more: boolean) => void;
@@ -66,7 +73,14 @@ class ProfilePage extends Component<Props> {
   };
 
   render() {
-    const { global, entries } = this.props;
+    const { global, entries, profiles, match } = this.props;
+
+    const username = match.params.username.replace("@", "");
+    const profile = profiles.find((x) => x.name === username);
+    if (!profile) {
+      return "404";
+    }
+
     const { filter, tag } = global;
 
     const groupKey = makeGroupKey(filter, tag);
@@ -98,6 +112,7 @@ class ProfilePage extends Component<Props> {
 const mapStateToProps = (state: AppState) => ({
   global: state.global,
   entries: state.entries,
+  profiles: state.profiles,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
