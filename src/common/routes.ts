@@ -15,6 +15,5 @@ export default {
     FILTER_TAG: `/:filter(${filters.join('|')})/:tag`,
     ENTRY: `/:category/:username(@[\\w\\.\\d-]+)/:permlink`,
     USER: `/:username(@[\\w\\.\\d-]+)`,
-    USER_FEED: `/:username(@[\\w\\.\\d-]+)/:section(feed)`,
-    USER_SECTION: `/:username(@[\\w\\.\\d-]+)/:section(blog|comments|replies|wallet)`,
+    USER_SECTION: `/:username(@[\\w\\.\\d-]+)/:section(feed|blog|comments|replies|wallet)`,
 };

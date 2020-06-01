@@ -39,7 +39,7 @@ export default (state: State = initialState, action: Actions): State => {
 
             const {filter, tag} = params;
 
-            return {...state, filter: Filter[filter], tag: tag};
+            return {...state, filter: Filter[filter] || '', tag: tag};
         }
         case ActionTypes.THEME_CHANGE: {
             const {theme} = action;

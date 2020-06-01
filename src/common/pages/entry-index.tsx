@@ -52,6 +52,11 @@ class EntryIndexPage extends Component<Props> {
     const { global, fetchEntries, fetchCommunity } = this.props;
     const { global: pGlobal } = prevProps;
 
+    // page changed.
+    if (!global.filter) {
+      return;
+    }
+
     if (!(global.filter === pGlobal.filter && global.tag === pGlobal.tag)) {
       fetchEntries(global.filter, global.tag, false);
 
@@ -134,7 +139,7 @@ class EntryIndexPage extends Component<Props> {
         <Theme {...this.props} />
         <NavBar {...this.props} />
         <Intro {...this.props} />
-        <div className="app-content">
+        <div className="app-content entry-index">
           <div className="tags-side">
             <TrendingTagsCard {...this.props} />
           </div>
