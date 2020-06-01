@@ -26,7 +26,7 @@ export interface Profile {
 export type State = Profile[];
 
 export enum ActionTypes {
-  ADD = "@account/ADD",
+  ADD = "@profiles/ADD",
 }
 
 export interface AddAction {

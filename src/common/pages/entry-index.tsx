@@ -5,6 +5,7 @@ import { History, Location } from "history";
 
 import { AppState } from "../store";
 import { Filter, ListStyle, State as GlobalState } from "../store/global/types";
+import { Profile } from "../store/profiles/types";
 import { State as TrendingTagsState } from "../store/trending-tags/types";
 import { State as EntriesState } from "../store/entries/types";
 import { State as CommunityState } from "../store/community/types";
@@ -12,6 +13,7 @@ import { State as CommunityState } from "../store/community/types";
 import { hideIntro, toggleListStyle, toggleTheme } from "../store/global/index";
 import { makeGroupKey, fetchEntries } from "../store/entries/index";
 import { fetchCommunity } from "../store/community/index";
+import { addProfile } from "../store/profiles/index";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
@@ -27,7 +29,7 @@ import TrendingTagsCard from "../components/trending-tags-card";
 import CommunityCard from "../components/community-card";
 import CommunityCardSm from "../components/community-card-sm";
 
-import {getProfile} from '../api/hive';
+import { getProfile } from "../api/hive";
 
 import { _t } from "../i18n";
 
@@ -47,6 +49,7 @@ interface Props {
   toggleListStyle: () => void;
   fetchEntries: (what: string, tag: string, more: boolean) => void;
   fetchCommunity: () => void;
+  addProfile: (data: Profile) => void;
 }
 
 class EntryIndexPage extends Component<Props> {
@@ -197,6 +200,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       toggleListStyle,
       fetchEntries,
       fetchCommunity,
+      addProfile,
     },
     dispatch
   );

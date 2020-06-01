@@ -9,7 +9,7 @@ import configureStore from "../../common/store/configure";
 
 import { initialState as globalInitialState } from "../../common/store/global/index";
 import { initialState as trendingTagsInitialState } from "../../common/store/trending-tags/index";
-import { initialState as communityInitialState } from "../../common/store/community/index";
+import { initialState as profilesInitialState } from "../../common/store/profiles/index";
 
 import { Filter } from "../../common/store/global/types";
 import { Entry } from "../../common/store/entries/types";
@@ -73,6 +73,7 @@ export default async (req: express.Request, res: express.Response) => {
     },
     trendingTags: { ...trendingTagsInitialState, list: tags },
     community,
+    profiles: profilesInitialState,
     entries: {
       [`${makeGroupKey(filter, tag)}`]: {
         entries: entries,

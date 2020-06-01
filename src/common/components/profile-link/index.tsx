@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { History } from "history";
 
+import { Profile } from "../../store/profiles/types";
+
 import { getProfile } from "../../api/hive";
 
 export const makePath = (username: string) => `/@${username}`;
@@ -9,6 +11,7 @@ interface Props {
   history: History;
   children: JSX.Element;
   username: string;
+  addProfile: (data: Profile) => void;
 }
 
 export default class ProfileLink extends Component<Props> {
@@ -17,7 +20,7 @@ export default class ProfileLink extends Component<Props> {
   goProfile = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
 
-    const { username, history } = this.props;
+    const { username, history, addProfile } = this.props;
 
     let profile;
 
@@ -27,10 +30,12 @@ export default class ProfileLink extends Component<Props> {
       return;
     }
 
+    addProfile(profile!);
+
     // TODO: set user reducer here
     //  setVisitingAccount(account);
 
-    history.push(makePath(username));
+    // history.push(makePath(username));
   };
 
   render() {

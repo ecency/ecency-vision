@@ -2,7 +2,7 @@ import axios from "axios";
 import { Client } from "@esteemapp/dhive";
 
 import { Entry } from "../store/entries/types";
-import { Profile } from "../store/profile/types";
+import { Profile } from "../store/profiles/types";
 import { Community } from "../store/community/types";
 import { TrendingTag } from "../store/trending-tags/types";
 
