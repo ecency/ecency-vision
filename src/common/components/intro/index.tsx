@@ -2,8 +2,7 @@ import React from 'react';
 
 import {State as GlobalState} from '../../store/global/types';
 
-// @ts-ignore
-import friends from '../../img/friends.jpg';
+const friends = require('../../img/friends.jpg');
 
 import {closeSvg} from '../../img/svg';
 
