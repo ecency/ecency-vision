@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {History} from 'history';
 
-import { Account } from "../../store/accounts/types";
+import { Profile } from "../../store/accounts/types";
 
-import {getAccount} from '../../api/hive';
+import {getProfile} from '../../api/hive';
 
 export const makePath = (username: string) => `/@${username}`;
 
@@ -11,7 +11,7 @@ interface Props {
     history: History,
     children: JSX.Element,
     username: string,
-    account: Account | null,
+    account: Profile | null,
     onClick: (e: React.MouseEvent<HTMLElement>) => void,
     afterClick: (e: React.MouseEvent<HTMLElement>) => void
 }
@@ -37,7 +37,7 @@ export default class AccountLink extends Component<Props> {
 
         if (!account) {
             try {
-                account = await getAccount(username);
+                account = await getProfile(username);
             } catch (err) {
                 account = null;
             }

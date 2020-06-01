@@ -16,7 +16,7 @@ export interface Entry extends Modify<Discussion, {
 
 export interface EntryGroup {
     entries: Entry[],
-    error: Error | null,
+    error: string | null,
     loading: boolean,
     hasMore: boolean
 }
@@ -42,7 +42,7 @@ export interface FetchAction {
 export interface FetchErrorAction {
     type: ActionTypes.FETCH_ERROR;
     groupKey: string;
-    error: Error;
+    error: string;
 }
 
 export interface FetchedAction {

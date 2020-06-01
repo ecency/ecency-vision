@@ -35,7 +35,7 @@ export default async (req: express.Request, res: express.Response) => {
   let entries: Entry[];
 
   try {
-    entries = await hiveApi.getPostsRanked(filter, "", "", 13, tag);
+    entries = (await hiveApi.getPostsRanked(filter, "", "", 13, tag)) || [];
   } catch (e) {
     entries = [];
   }

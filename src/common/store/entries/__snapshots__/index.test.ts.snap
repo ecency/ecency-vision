@@ -68,7 +68,7 @@ exports[`6- fetch error. should toggle "loading" and add error object to the gro
 Object {
   "hot": Object {
     "entries": Array [],
-    "error": [Error: fetch error],
+    "error": "fetch error",
     "hasMore": false,
     "loading": false,
   },
@@ -85,7 +85,7 @@ exports[`7- start fetching. 1`] = `
 Object {
   "hot": Object {
     "entries": Array [],
-    "error": [Error: fetch error],
+    "error": "fetch error",
     "hasMore": false,
     "loading": false,
   },
@@ -102,7 +102,7 @@ exports[`8- fetched. 1`] = `
 Object {
   "hot": Object {
     "entries": Array [],
-    "error": [Error: fetch error],
+    "error": "fetch error",
     "hasMore": false,
     "loading": false,
   },
@@ -136,7 +136,7 @@ exports[`9- start fetching again (simulates user scrolling down) 1`] = `
 Object {
   "hot": Object {
     "entries": Array [],
-    "error": [Error: fetch error],
+    "error": "fetch error",
     "hasMore": false,
     "loading": false,
   },
@@ -170,7 +170,7 @@ exports[`10- fetched. should ignore posts already in store. 1`] = `
 Object {
   "hot": Object {
     "entries": Array [],
-    "error": [Error: fetch error],
+    "error": "fetch error",
     "hasMore": false,
     "loading": false,
   },
@@ -208,7 +208,7 @@ exports[`11- invalidate. should reset the group. 1`] = `
 Object {
   "hot": Object {
     "entries": Array [],
-    "error": [Error: fetch error],
+    "error": "fetch error",
     "hasMore": false,
     "loading": false,
   },

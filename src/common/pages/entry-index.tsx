@@ -27,6 +27,8 @@ import TrendingTagsCard from "../components/trending-tags-card";
 import CommunityCard from "../components/community-card";
 import CommunityCardSm from "../components/community-card-sm";
 
+import {getProfile} from '../api/hive';
+
 import { _t } from "../i18n";
 
 import _c from "../util/fix-class-names";

@@ -39,7 +39,7 @@ it('5- start fetching. should toggle "loading"', () => {
 });
 
 it('6- fetch error. should toggle "loading" and add error object to the group.', () => {
-    const act = fetchErrorAct('hot', Error('fetch error'));
+    const act = fetchErrorAct('hot', 'fetch error');
     state = reducer(state, act);
     expect(state).toMatchSnapshot();
 });
