@@ -8,6 +8,11 @@ export default (state: State = initialState, action: Actions): State => {
   switch (action.type) {
     case ActionTypes.ADD: {
       const { data } = action;
+      
+      if (state.find((x) => x.name === data.name) !== undefined) {
+        return state;
+      }
+
       return [...state, data];
     }
     default:
