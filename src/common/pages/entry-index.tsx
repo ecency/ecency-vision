@@ -3,8 +3,6 @@ import { AnyAction, bindActionCreators, Dispatch } from "redux";
 import { connect } from "react-redux";
 import { History, Location } from "history";
 
-import { Helmet } from "react-helmet";
-
 import { AppState } from "../store";
 import { Filter, ListStyle, State as GlobalState } from "../store/global/types";
 import { State as TrendingTagsState } from "../store/trending-tags/types";
@@ -15,6 +13,7 @@ import { hideIntro, toggleListStyle, toggleTheme } from "../store/global/index";
 import { makeGroupKey, fetchEntries } from "../store/entries/index";
 import { fetchCommunity } from "../store/community/index";
 
+import Meta from "../components/meta";
 import Theme from "../components/theme/index";
 import NavBar from "../components/navbar/index";
 import Intro from "../components/intro/index";
@@ -105,11 +104,33 @@ class EntryIndexPage extends Component<Props> {
       }),
     };
 
+    //  Meta config
+    const fC = filter.charAt(0).toUpperCase() + filter.slice(1).toLowerCase();
+    const f_ = filter.toLowerCase();
+    const t_ = tag.toLowerCase();
+
+    let title = `${fC} topics`;
+    let description = `${fC} topics`;
+    let url = `https://ecency.com/${f_}`;
+
+    if (tag) {
+      if (community) {
+        title = `${community.title} / ${f_}`;
+        description = `${fC} ${community.title} topics`;
+      } else {
+        title = `#${t_} / ${f_}`;
+        description = `${fC} topics with #${t_} tag`;
+      }
+
+      url = `https://ecency.com/${f_}/${t_}`;
+    }
+
+    const metaProps = { title, description, url };
+
     return (
       <>
-        <Helmet>
-          <title>Home</title>
-        </Helmet>
+        <Meta {...metaProps} />
+
         <Theme {...this.props} />
         <NavBar {...this.props} />
         <Intro {...this.props} />
