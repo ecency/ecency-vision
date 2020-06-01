@@ -4,13 +4,13 @@ import {createBrowserHistory, History} from 'history';
 
 import global from './global';
 import trendingTags from './trending-tags';
-import communities from './communities';
+import community from './community';
 import entries from './entries';
 
 let reducers = {
     global,
     trendingTags,
-    communities,
+    community,
     entries
 };
 

@@ -8,8 +8,7 @@ import numeral from "numeral";
 
 import { Button } from "react-bootstrap";
 
-import { State as GlobalState } from "../../store/global/types";
-import { Community } from "../../store/communities/types";
+import { Community } from "../../store/community/types";
 
 import AccountLink from "../account-link";
 import DownloadTrigger from "../download-trigger";

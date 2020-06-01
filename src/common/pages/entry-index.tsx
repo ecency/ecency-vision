@@ -9,10 +9,11 @@ import { AppState } from "../store";
 import { Filter, ListStyle, State as GlobalState } from "../store/global/types";
 import { State as TrendingTagsState } from "../store/trending-tags/types";
 import { State as EntriesState } from "../store/entries/types";
-import { Community } from "../store/communities/types";
+import { State as CommunityState, Community } from "../store/community/types";
 
 import { hideIntro, toggleListStyle, toggleTheme } from "../store/global/index";
 import { makeGroupKey, fetchEntries } from "../store/entries/index";
+import { fetchCommunity } from "../store/community/index";
 
 import Theme from "../components/theme/index";
 import NavBar from "../components/navbar/index";
@@ -41,27 +42,17 @@ interface Props {
   global: GlobalState;
   trendingTags: TrendingTagsState;
   entries: EntriesState;
+  community: CommunityState | null;
   toggleTheme: () => void;
   hideIntro: () => void;
   toggleListStyle: () => void;
   fetchEntries: (what: string, tag: string, more: boolean) => void;
+  fetchCommunity: () => void;
 }
 
-interface State {
-  community: Community | null;
-}
-
-class EntryIndexPage extends Component<Props, State> {
-  state: State = {
-    community: null,
-  };
-
-  componentDidMount() {
-    this.detectCommunity();
-  }
-
+class EntryIndexPage extends Component<Props> {
   componentDidUpdate(prevProps: Readonly<Props>): void {
-    const { global, fetchEntries } = this.props;
+    const { global, fetchEntries, fetchCommunity } = this.props;
     const { global: pGlobal } = prevProps;
 
     if (!(global.filter === pGlobal.filter && global.tag === pGlobal.tag)) {
@@ -74,11 +65,12 @@ class EntryIndexPage extends Component<Props, State> {
     }
 
     if (global.tag !== pGlobal.tag) {
-      this.detectCommunity();
+      fetchCommunity();
     }
   }
 
   detectCommunity = () => {
+    /*
     const { global } = this.props;
 
     if (!global.tag.startsWith("hive-")) {
@@ -87,8 +79,13 @@ class EntryIndexPage extends Component<Props, State> {
     }
 
     getCommunity(global.tag).then((community) => {
+      if (!community) {
+        this.setState({ community: null });
+        return;
+      }
       this.setState({ community });
     });
+    */
   };
 
   bottomReached = () => {
@@ -105,7 +102,7 @@ class EntryIndexPage extends Component<Props, State> {
   };
 
   render() {
-    const { trendingTags, global, entries } = this.props;
+    const { trendingTags, global, entries, community } = this.props;
     const { filter, tag } = global;
 
     const groupKey = makeGroupKey(filter, tag);
@@ -128,8 +125,6 @@ class EntryIndexPage extends Component<Props, State> {
         };
       }),
     };
-
-    const { community } = this.state;
 
     return (
       <>
@@ -196,6 +191,7 @@ const mapStateToProps = (state: AppState) => ({
   global: state.global,
   trendingTags: state.trendingTags,
   entries: state.entries,
+  community: state.community,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
@@ -205,6 +201,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       hideIntro,
       toggleListStyle,
       fetchEntries,
+      fetchCommunity,
     },
     dispatch
   );

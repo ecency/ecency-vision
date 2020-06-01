@@ -8,7 +8,7 @@ import numeral from "numeral";
 
 import { Button } from "react-bootstrap";
 
-import { Community } from "../../store/communities/types";
+import { Community } from "../../store/community/types";
 
 import DownloadTrigger from "../download-trigger";
 
