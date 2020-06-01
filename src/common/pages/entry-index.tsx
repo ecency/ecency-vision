@@ -69,25 +69,6 @@ class EntryIndexPage extends Component<Props> {
     }
   }
 
-  detectCommunity = () => {
-    /*
-    const { global } = this.props;
-
-    if (!global.tag.startsWith("hive-")) {
-      this.setState({ community: null });
-      return;
-    }
-
-    getCommunity(global.tag).then((community) => {
-      if (!community) {
-        this.setState({ community: null });
-        return;
-      }
-      this.setState({ community });
-    });
-    */
-  };
-
   bottomReached = () => {
     const { global, entries, fetchEntries } = this.props;
     const { filter, tag } = global;
