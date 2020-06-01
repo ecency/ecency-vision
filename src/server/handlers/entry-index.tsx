@@ -12,6 +12,7 @@ import { initialState as trendingTagsInitialState } from "../../common/store/tre
 import { initialState as communityInitialState } from "../../common/store/community/index";
 
 import { Filter } from "../../common/store/global/types";
+import { Entry } from "../../common/store/entries/types";
 import { Community } from "../../common/store/community/types";
 import { makeGroupKey } from "../../common/store/entries/index";
 
@@ -31,7 +32,13 @@ export default async (req: express.Request, res: express.Response) => {
   const params = filterTagExtract(req.originalUrl)!;
   const { filter, tag } = params;
 
-  let entries = await hiveApi.getPostsRanked(filter, "", "", 13, tag);
+  let entries: Entry[];
+
+  try {
+    entries = await hiveApi.getPostsRanked(filter, "", "", 13, tag);
+  } catch (e) {
+    entries = [];
+  }
 
   // some optimization to reduce server output size.
   entries = entries.map((x) => {
@@ -40,6 +47,15 @@ export default async (req: express.Request, res: express.Response) => {
       ...{ active_votes: [] }, // remove active votes
     };
   });
+
+  let community: Community | null = null;
+  if (tag.startsWith("hive-")) {
+    try {
+      community = await hiveApi.getCommunity(tag);
+    } catch (e) {
+      community = null;
+    }
+  }
 
   let tags: string[] | undefined = cache.get("trending-tags");
   if (tags === undefined) {
@@ -56,7 +72,7 @@ export default async (req: express.Request, res: express.Response) => {
       ...{ filter: Filter[filter], tag },
     },
     trendingTags: { ...trendingTagsInitialState, list: tags },
-    community: communityInitialState,
+    community,
     entries: {
       [`${makeGroupKey(filter, tag)}`]: {
         entries: entries,

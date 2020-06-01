@@ -90,7 +90,7 @@ export const getTrendingTags = (
       t.filter((x) => x.name !== "").map((x) => x.name)
     );
 
-export const getCommunity = (name: string): Promise<Community | undefined> => {
+export const getCommunity = (name: string): Promise<Community | null> => {
   return axios
     .post(pickAServer(), {
       jsonrpc: "2.0",
@@ -99,7 +99,7 @@ export const getCommunity = (name: string): Promise<Community | undefined> => {
       id: 1,
     })
     .then((resp) => {
-      return resp?.data?.result;
+      return resp?.data?.result || null;
     });
 };
 
