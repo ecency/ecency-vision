@@ -84,19 +84,5 @@ export default async (req: express.Request, res: express.Response) => {
     },
   };
 
-  const store = configureStore(preLoadedState);
-
-  const context = {};
-
-  const markup = renderToString(
-    <Provider store={store}>
-      <StaticRouter location={req.url} context={context}>
-        <App />
-      </StaticRouter>
-    </Provider>
-  );
-
-  const finalState = store.getState();
-
-  res.send(render(markup, finalState));
+  res.send(render(req, preLoadedState));
 };
