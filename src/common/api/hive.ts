@@ -64,7 +64,7 @@ export const getPost = (
   author: string = "",
   permlink: string = "",
   observer: string = ""
-): Promise<Entry> =>
+): Promise<Entry | null> =>
   axios
     .post(pickAServer(), {
       jsonrpc: "2.0",
@@ -73,11 +73,7 @@ export const getPost = (
       id: 1,
     })
     .then((resp) => {
-      if (resp.data.result) {
-        return resp.data.result;
-      }
-
-      return null;
+      return resp?.data?.result || null;
     });
 
 export const getTrendingTags = (
@@ -109,7 +105,7 @@ export const getCommunities = (
   query: string = "",
   sort: string = "rank",
   observer: string = ""
-): Promise<Community[] | undefined> => {
+): Promise<Community[] | null> => {
   return axios
     .post(pickAServer(), {
       jsonrpc: "2.0",
@@ -118,6 +114,6 @@ export const getCommunities = (
       id: 1,
     })
     .then((resp) => {
-      return resp?.data?.result;
+      return resp?.data?.result || null;
     });
 };

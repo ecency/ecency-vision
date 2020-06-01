@@ -78,7 +78,9 @@ export class EntryVotesDetail extends Component<DetailProps, DetailState> {
     this.setState({ loading: true });
     getPost(entry.author, entry.permlink)
       .then((r) => {
-        this.setVotes(r.active_votes);
+        if (r) {
+          this.setVotes(r.active_votes);
+        }
       })
       .finally(() => {
         this.setState({ loading: false });
