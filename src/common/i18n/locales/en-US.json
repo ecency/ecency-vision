@@ -33,7 +33,7 @@
   },
   "community": {
     "n-subscribers": "{{n}} subscribers",
-    "n-rewards": "${{n}} pending rewards",
+    "n-rewards": "{{n}} pending rewards",
     "n-authors": "{{n}} active posters",
     "subscribe": "Subscribe",
     "post": "New Post",

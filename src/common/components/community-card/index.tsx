@@ -49,7 +49,7 @@ export default class CommunityCard extends Component<Props> {
               {_t("community.n-subscribers", { n: subscribers })}
             </div>
             <div className="stat">
-              {_t("community.n-rewards", { n: rewards })}
+              {"$"} {_t("community.n-rewards", { n: rewards })}
             </div>
             <div className="stat">
               {_t("community.n-authors", { n: authors })}
@@ -105,7 +105,7 @@ export default class CommunityCard extends Component<Props> {
               </ol>
             </div>
           )}
-          
+
           {community.lang.trim() !== "" && (
             <div className="section-lang">
               <h4 className="section-header">{_t("community.lang")}</h4>

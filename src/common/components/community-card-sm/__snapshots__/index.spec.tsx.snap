@@ -40,7 +40,9 @@ exports[`(1) Default render 1`] = `
         <div
           className="stat"
         >
-          $17,370 pending rewards
+          $
+           
+          17,370 pending rewards
         </div>
         <div
           className="stat"

@@ -46,7 +46,7 @@ export default class CommunityCardSm extends Component<Props> {
                 {_t("community.n-subscribers", { n: subscribers })}
               </div>
               <div className="stat">
-                {_t("community.n-rewards", { n: rewards })}
+                {"$"} {_t("community.n-rewards", { n: rewards })}
               </div>
               <div className="stat">
                 {_t("community.n-authors", { n: authors })}
