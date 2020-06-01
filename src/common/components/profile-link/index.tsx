@@ -1,64 +1,47 @@
-import React, {Component} from 'react';
-import {History} from 'history';
+import React, { Component } from "react";
+import { History } from "history";
 
-import { Profile } from "../../store/profile/types";
-
-import {getProfile} from '../../api/hive';
+import { getProfile } from "../../api/hive";
 
 export const makePath = (username: string) => `/@${username}`;
 
 interface Props {
-    history: History,
-    children: JSX.Element,
-    username: string,
-    account: Profile | null,
-    onClick: (e: React.MouseEvent<HTMLElement>) => void,
-    afterClick: (e: React.MouseEvent<HTMLElement>) => void
+  history: History;
+  children: JSX.Element;
+  username: string;
 }
 
 export default class ProfileLink extends Component<Props> {
-    public static defaultProps = {
-        account: null,
-        onClick: () => {
-        },
-        afterClick: () => {
+  public static defaultProps = {};
 
-        }
-    };
+  goProfile = async (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
 
-    goProfile = async (e: React.MouseEvent<HTMLElement>) => {
-        e.preventDefault();
+    const { username, history } = this.props;
 
-        const {username, history, onClick, afterClick} = this.props;
+    let profile;
 
-        onClick(e);
-
-        let {account} = this.props;
-
-        if (!account) {
-            try {
-                account = await getProfile(username);
-            } catch (err) {
-                account = null;
-            }
-        }
-
-        if (account) {
-            // TODO: set user reducer here
-            //  setVisitingAccount(account);
-        }
-
-        history.push(makePath(username));
-
-        afterClick(e);
-    };
-
-    render() {
-        const {children, username} = this.props;
-        const href = makePath(username);
-
-        const props = Object.assign({}, children.props, {href, onClick: this.goProfile});
-
-        return React.createElement('a', props);
+    try {
+      profile = await getProfile(username);
+    } catch (err) {
+      return;
     }
+
+    // TODO: set user reducer here
+    //  setVisitingAccount(account);
+
+    history.push(makePath(username));
+  };
+
+  render() {
+    const { children, username } = this.props;
+    const href = makePath(username);
+
+    const props = Object.assign({}, children.props, {
+      href,
+      onClick: this.goProfile,
+    });
+
+    return React.createElement("a", props);
+  }
 }

@@ -23,29 +23,15 @@ export interface Profile {
   };
 }
 
-export interface State {
-  data: Account;
-  loading: boolean;
-  error: boolean;
-}
+export type State = Profile[];
 
 export enum ActionTypes {
-  FETCH = "@account/FETCH",
-  FETCHED = "@account/FETCHED",
-  FETCH_ERROR = "@account/FETCH_ERROR",
+  ADD = "@account/ADD",
 }
 
-export interface FetchAction {
-  type: ActionTypes.FETCH;
+export interface AddAction {
+  type: ActionTypes.ADD;
+  data: Profile;
 }
 
-export interface FetchedAction {
-  type: ActionTypes.FETCHED;
-  data: Account;
-}
-
-export interface FetchErrorAction {
-  type: ActionTypes.FETCH_ERROR;
-}
-
-export type Actions = FetchAction | FetchedAction | FetchErrorAction;
+export type Actions = AddAction; // | .. | ..

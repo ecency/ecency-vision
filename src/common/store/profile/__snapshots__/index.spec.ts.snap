@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`1- default state 1`] = `Array []`;
+
+exports[`2- addAct 1`] = `
+Array [
+  Object {
+    "id": 12,
+  },
+]
+`;
+
+exports[`3- addAct 1`] = `
+Array [
+  Object {
+    "id": 12,
+  },
+  Object {
+    "id": 13,
+  },
+]
+`;
