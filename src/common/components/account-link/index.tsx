@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {History} from 'history';
-import {ExtendedAccount} from '@esteemapp/dhive';
+
+import { Account } from "../../store/accounts/types";
 
 import {getAccount} from '../../api/hive';
 
@@ -10,7 +11,7 @@ interface Props {
     history: History,
     children: JSX.Element,
     username: string,
-    account: ExtendedAccount | null,
+    account: Account | null,
     onClick: (e: React.MouseEvent<HTMLElement>) => void,
     afterClick: (e: React.MouseEvent<HTMLElement>) => void
 }

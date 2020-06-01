@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 
 import EntryIndexContainer from "./pages/entry-index";
-import UserProfileContainer from "./pages/user-profile";
+import ProfileContainer from "./pages/profile";
 
 import routes from "./routes";
 
@@ -31,13 +31,13 @@ const App = () => {
           exact={true}
           strict={true}
           path={routes.USER}
-          component={UserProfileContainer}
+          component={ProfileContainer}
         />
         <Route
           exact={true}
           strict={true}
           path={routes.USER_SECTION}
-          component={UserProfileContainer}
+          component={ProfileContainer}
         />
       </Switch>
     </>

@@ -1,7 +1,8 @@
 import axios from "axios";
-import { Client, ExtendedAccount } from "@esteemapp/dhive";
+import { Client } from "@esteemapp/dhive";
 
 import { Entry } from "../store/entries/types";
+import { Account } from "../store/accounts/types";
 import { Community } from "../store/community/types";
 import { TrendingTag } from "../store/trending-tags/types";
 
@@ -28,7 +29,7 @@ export const getDiscussions = (what: DiscussionQueryCategory, query: DisqussionQ
     client.database.getDiscussions(what, query);
 */
 
-export const getAccount = (username: string): Promise<ExtendedAccount> =>
+export const getAccount = (username: string): Promise<Account> =>
   client.database.getAccounts([username]).then((resp) => resp[0]);
 
 export const getContent = (

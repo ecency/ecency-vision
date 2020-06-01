@@ -41,7 +41,7 @@ interface Props {
   fetchEntries: (what: string, tag: string, more: boolean) => void;
 }
 
-class UserProfilePage extends Component<Props> {
+class ProfilePage extends Component<Props> {
   componentDidUpdate(prevProps: Readonly<Props>): void {
     /*
     const { global, fetchEntries, fetchCommunity } = this.props;
@@ -110,4 +110,4 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserProfilePage);
+export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage);
