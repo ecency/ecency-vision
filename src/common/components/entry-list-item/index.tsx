@@ -8,6 +8,8 @@ import isEqual from "react-fast-compare";
 import { Entry } from "../../store/entries/types";
 import { State as GlobalState } from "../../store/global/types";
 
+import { Profile } from "../../store/profiles/types";
+
 import {
   catchPostImage,
   postBodySummary,
@@ -43,6 +45,7 @@ interface Props {
   entry: Entry;
   asAuthor: string;
   promoted: boolean;
+  addProfile: (data: Profile) => void;
 }
 
 export default class EntryListItem extends Component<Props> {

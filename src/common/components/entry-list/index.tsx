@@ -4,6 +4,7 @@ import {History, Location} from 'history';
 import isEqual from 'react-fast-compare';
 
 import {State as GlobalState} from '../../store/global/types';
+import {Profile} from '../../store/profiles/types';
 
 import {Entry} from '../../store/entries/types';
 import EntryListItem from '../entry-list-item/index';
@@ -12,7 +13,8 @@ interface Props {
     history: History,
     location: Location,
     global: GlobalState,
-    entries: Entry[]
+    entries: Entry[],
+    addProfile: (data: Profile) => void;
 }
 
 export default class EntryListContent extends Component<Props> {

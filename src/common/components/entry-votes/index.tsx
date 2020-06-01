@@ -6,6 +6,7 @@ import { Modal, Table, Button, Spinner } from "react-bootstrap";
 
 import { State as GlobalState } from "../../store/global/types";
 import { Entry } from "../../store/entries/types";
+import { Profile } from "../../store/profiles/types";
 
 import UserAvatar from "../user-avatar/index";
 import FormattedCurrency from "../formatted-currency";
@@ -57,6 +58,7 @@ interface DetailProps {
   history: History;
   global: GlobalState;
   entry: Entry;
+  addProfile: (data: Profile) => void;
 }
 
 interface DetailState {
@@ -182,6 +184,7 @@ interface Props {
   history: History;
   global: GlobalState;
   entry: Entry;
+  addProfile: (data: Profile) => void;
 }
 
 interface State {
