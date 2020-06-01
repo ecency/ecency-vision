@@ -16,7 +16,7 @@ import {
 } from "@esteemapp/esteem-render-helpers";
 setProxyBase("https://images.hive.blog/");
 
-import AccountLink from "../account-link/index";
+import ProfileLink from "../profile-link/index";
 import TagLink from "../tag-link/index";
 import UserAvatar from "../user-avatar/index";
 import EntryLink from "../entry-link/index";
@@ -94,7 +94,7 @@ export default class EntryListItem extends Component<Props> {
     return (
       <div className={`entry-list-item ${promoted ? "promoted-item" : ""}`}>
         <div className="item-header">
-          <AccountLink {...this.props} username={entry.author}>
+          <ProfileLink {...this.props} username={entry.author}>
             <div className="author-part">
               <div className="author-avatar">
                 <UserAvatar username={entry.author} size="small" />
@@ -104,7 +104,7 @@ export default class EntryListItem extends Component<Props> {
                 <span className="author-reputation">{reputation}</span>
               </div>
             </div>
-          </AccountLink>
+          </ProfileLink>
           <TagLink {...this.props} tag={entry.category}>
             <a className="category">
               {entry.community_title || entry.category}

@@ -10,7 +10,7 @@ import { Button } from "react-bootstrap";
 
 import { Community } from "../../store/community/types";
 
-import AccountLink from "../account-link";
+import ProfileLink from "../profile-link";
 import DownloadTrigger from "../download-trigger";
 
 import ln2list from "../../util/nl2list";
@@ -74,9 +74,9 @@ export default class CommunityCard extends Component<Props> {
               }
               return (
                 <div className="team-member" key={i}>
-                  <AccountLink {...this.props} username={m[0]}>
+                  <ProfileLink {...this.props} username={m[0]}>
                     <a className="username">{`@${m[0]}`}</a>
-                  </AccountLink>
+                  </ProfileLink>
                   <span className="role">{m[1]}</span>
                   {m[2] !== "" && <span className="extra">{m[2]}</span>}
                 </div>

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {History} from 'history';
 
-import { Profile } from "../../store/accounts/types";
+import { Profile } from "../../store/profile/types";
 
 import {getProfile} from '../../api/hive';
 
@@ -16,7 +16,7 @@ interface Props {
     afterClick: (e: React.MouseEvent<HTMLElement>) => void
 }
 
-export default class AccountLink extends Component<Props> {
+export default class ProfileLink extends Component<Props> {
     public static defaultProps = {
         account: null,
         onClick: () => {

@@ -9,7 +9,7 @@ import { Entry } from "../../store/entries/types";
 
 import UserAvatar from "../user-avatar/index";
 import FormattedCurrency from "../formatted-currency";
-import AccountLink from "../account-link/index";
+import ProfileLink from "../profile-link/index";
 import Tooltip from "../tooltip";
 
 import { getPost } from "../../api/hive";
@@ -139,12 +139,12 @@ export class EntryVotesDetail extends Component<DetailProps, DetailState> {
                     {list.map((v, i) => (
                       <tr key={i}>
                         <td className="voter-cell">
-                          <AccountLink {...this.props} username={v.voter}>
+                          <ProfileLink {...this.props} username={v.voter}>
                             <span className="account">
                               <UserAvatar username={v.voter} size="small" />{" "}
                               {v.voter}
                             </span>
-                          </AccountLink>
+                          </ProfileLink>
                         </td>
                         <td className="reward-cell">
                           <FormattedCurrency
