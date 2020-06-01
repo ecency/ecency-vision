@@ -32,10 +32,7 @@ export default class ProfileLink extends Component<Props> {
 
     addProfile(profile!);
 
-    // TODO: set user reducer here
-    //  setVisitingAccount(account);
-
-    // history.push(makePath(username));
+    history.push(makePath(username));
   };
 
   render() {
