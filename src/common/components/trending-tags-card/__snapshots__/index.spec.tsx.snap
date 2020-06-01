@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+<div
+  className="trending-tags-card"
+>
+  <h2
+    className="list-header"
+  >
+    Popular Tags
+  </h2>
+  <a
+    className="tag-list-item"
+    href="/hot/art"
+    onClick={[Function]}
+  >
+    art
+  </a>
+  <a
+    className="tag-list-item"
+    href="/hot/hive"
+    onClick={[Function]}
+  >
+    hive
+  </a>
+  <a
+    className="tag-list-item"
+    href="/hot/news"
+    onClick={[Function]}
+  >
+    news
+  </a>
+</div>
+`;
+
+exports[`(2) Selected tag 1`] = `
+<div
+  className="trending-tags-card"
+>
+  <h2
+    className="list-header"
+  >
+    Popular Tags
+  </h2>
+  <a
+    className="tag-list-item"
+    href="/hot/art"
+    onClick={[Function]}
+  >
+    art
+  </a>
+  <a
+    className="tag-list-item selected-item"
+    href="/hot/hive"
+    onClick={[Function]}
+  >
+    hive
+  </a>
+  <a
+    className="tag-list-item"
+    href="/hot/news"
+    onClick={[Function]}
+  >
+    news
+  </a>
+</div>
+`;
