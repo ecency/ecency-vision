@@ -47,6 +47,15 @@ export default (location: string): FilterTag | null => {
     };
   }
 
+  re = pathToRegexp(routes.USER_FEED);
+  params = re.exec(location);
+  if (params && params[1] && params[2]) {
+    return {
+      filter: params[2],
+      tag: params[1],
+    };
+  }
+
   re = pathToRegexp(routes.USER_SECTION);
   params = re.exec(location);
   if (
