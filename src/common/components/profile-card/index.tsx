@@ -9,7 +9,10 @@ import Tooltip from "../tooltip";
 
 import accountReputation from "../../helper/account-reputation";
 
+import defaults from "../../constants/defaults.json";
+
 import { vpMana } from "../../api/hive";
+
 import { _t } from "../../i18n";
 
 import {
@@ -37,7 +40,7 @@ export default class ProfileCard extends Component<Props> {
     const location = account?.profile?.location;
     const website = account?.profile?.website;
     const created = moment(new Date(account.created));
-    const rss_link = "https://esteem.app/@" + account.name + "/rss";
+    const rss_link = `${defaults.baseUrl}/@${account.name}/rss`;
 
     return (
       <div className="profile-card">
@@ -58,12 +61,13 @@ export default class ProfileCard extends Component<Props> {
           </Tooltip>
         </div>
 
-        {name && <div className="full-name">{name}</div>}
-       
-        {about && <div className="about">{about}</div>}
-       
-        {(name || about) && <div className="divider" />}
-       
+        {(name || about) && (
+          <div className="basic-info">
+            {name && <div className="full-name">{name}</div>}
+            {about && <div className="about">{about}</div>}
+          </div>
+        )}
+
         <div className="stats">
           <div className="stat">
             <Tooltip content={_t("account.post-count")}>
@@ -72,7 +76,6 @@ export default class ProfileCard extends Component<Props> {
               </span>
             </Tooltip>
           </div>
-          <div />
 
           {follow_stats?.follower_count !== undefined && (
             <div className="stat">
@@ -94,9 +97,7 @@ export default class ProfileCard extends Component<Props> {
             </div>
           )}
         </div>
-       
-        <div className="divider" />
-       
+
         <div className="account-props">
           {location && (
             <div className="account-prop">

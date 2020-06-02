@@ -8,5 +8,5 @@
     "symbol": "$"
   },
   "locale": "en-US",
-  "server": "https://api.hive.blog"
+  "baseUrl": "https://ecency.com"
 }

@@ -1,14 +1,13 @@
 .profile-card {
   .profile-avatar {
-    float: left;
-    height: 128px;
-    margin: 0 10px 24px 0;
-    position: relative;
     width: 128px;
+    height: 128px;
+    margin: 0 auto 26px auto;
+    position: relative;
 
     @media (min-width: $md-break) {
       float: none;
-      margin-right: 0;
+      margin: 0 0 26px 0;
     }
 
     .user-avatar {
@@ -30,27 +29,14 @@
     }
   }
 
-  .divider {
-    height: 1px;
-    margin: 20px 0;
-    overflow: hidden;
-
-    @include themify(day) {
-      background: $white-four;
-    }
-
-    @include themify(night) {
-      background: $dark-two;
-    }
-  }
-
   .username {
-    font-size: 16px;
+    font-size: 22px; // 16px;
     font-weight: 600;
-    margin-bottom: 12px;
-    padding-top: 40px;
+    margin-bottom: 24px; // 12px;
+    text-align: center;
 
     @media (min-width: $md-break) {
+      text-align: left;
       padding-top: 0;
       font-size: 18px;
       font-weight: 700;
@@ -72,7 +58,12 @@
   .vpower-line {
     background: $duck-egg-blue;
     height: 2px;
-    margin-bottom: 8px;
+    width: 300px;
+    margin: 0 auto 8px auto;
+
+    @media (min-width: $md-break) {
+      width: auto;
+    }
 
     .vpower-line-inner {
       background: $dark-sky-blue;
@@ -86,34 +77,57 @@
     flex-shrink: 0;
     font-size: 12px;
     font-weight: 500;
-    margin-bottom: 22px;
+    margin-bottom: 24px;
+    text-align: center;
+
+    @media (min-width: $md-break) {
+      text-align: left;
+    }
 
     &:after {
       content: "%";
     }
   }
 
-  .full-name {
-    color: $dark-sky-blue;
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 12px;
+  .basic-info {
+    padding-bottom: 16px;
+    margin-bottom: 16px;
 
-    @media (min-width: $md-break) {
-      font-size: 18px;
-      font-weight: 700;
+    @include themify(day) {
+      border-bottom: 1px solid $white-three;
     }
-  }
 
-  .about {
-    color: $dark-sky-blue;
-    opacity: 0.5;
+    @include themify(night) {
+      border-bottom: 1px solid $dark-two;
+    }
+
+    .full-name {
+      color: $dark-sky-blue;
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      text-align: center;
+
+      @media (min-width: $md-break) {
+        font-size: 16px;
+        text-align: left;
+      }
+    }
+
+    .about {
+      color: $dark-sky-blue;
+      opacity: 0.5;
+      text-align: center;
+
+      @media (min-width: $md-break) {
+        text-align: left;
+      }
+    }
   }
 
   .stats,
   .account-props {
     color: $steel-grey;
-    display: grid;
 
     a {
       color: $steel-grey;
@@ -127,13 +141,31 @@
   }
 
   .stats {
-    grid-template-columns: auto auto;
-    grid-gap: 20px 10px;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
     cursor: default;
+
+    display: flex;
+    justify-content: space-evenly;
+
+    @media (min-width: $md-break) {
+      display: grid;
+      grid-template-columns: auto auto;
+      grid-gap: 20px 20px;
+      justify-content: flex-start;
+    }
+
+    @include themify(day) {
+      border-bottom: 1px solid $white-three;
+    }
+
+    @include themify(night) {
+      border-bottom: 1px solid $dark-two;
+    }
 
     .stat {
       span {
-        display: flex;
+        display: inline-flex;
         align-items: center;
         line-height: 100%;
       }
@@ -143,7 +175,11 @@
   .account-props {
     color: $steel-grey;
     grid-gap: 20px;
+    display: none;
 
+    @media (min-width: $md-break) {
+      display: grid;
+    }
     .prop {
       display: flex;
       align-items: center;
