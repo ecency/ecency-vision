@@ -1,2 +1,16 @@
 .profile-page {
+  .profile-side {
+    @media (min-width: $md-break) {
+      width: 198px;
+      margin-right: 30px;
+    }
+
+    @media (min-width: $lg-break) {
+      width: 208px;
+    }
+  }
+
+  .content-side {
+    flex-grow: 1;
+  }
 }

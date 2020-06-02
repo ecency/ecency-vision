@@ -27,6 +27,8 @@ import EntryListLoadingItem from "../components/entry-list-loading-item/index";
 import DetectBottom from "../components/detect-bottom/index";
 import EntryListContent from "../components/entry-list/index";
 
+import ProfileCard from "../components/profile-card";
+
 import { _t } from "../i18n";
 
 import _c from "../util/fix-class-names";
@@ -104,7 +106,11 @@ class ProfilePage extends Component<Props> {
         <Theme {...this.props} />
         <NavBar {...this.props} />
 
-        <div className="app-content profile-page">henlo</div>
+        <div className="app-content profile-page">
+          <div className="profile-side">
+            <ProfileCard {...this.props} profile={profile} />
+          </div>
+        </div>
         <DetectBottom onBottom={this.bottomReached} />
       </>
     );

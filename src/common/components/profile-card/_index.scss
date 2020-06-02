@@ -1,0 +1,57 @@
+.profile-card {
+  .profile-avatar {
+    float: left;
+    height: 128px;
+    margin: 0 10px 24px 0;
+    position: relative;
+    width: 128px;
+
+    @media (min-width: $md-break) {
+      float: none;
+      margin-right: 0;
+    }
+
+    .user-avatar {
+      border: 3px solid $duck-egg-blue;
+      height: 128px;
+      width: 128px;
+    }
+
+    .reputation {
+      background: $dark-sky-blue;
+      border-radius: 25px;
+      bottom: 2px;
+      color: $white;
+      font-weight: 700;
+      left: 0;
+      line-height: 1em;
+      padding: 4px 12px;
+      position: absolute;
+    }
+  }
+
+  .username {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    padding-top: 40px;
+
+    @media (min-width: $md-break) {
+      padding-top: 0;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    @include themify(day) {
+      color: $charcoal-grey;
+    }
+
+    @include themify(night) {
+      color: $pinkish-grey;
+    }
+
+    &:before {
+      content: "@";
+    }
+  }
+}
