@@ -144,7 +144,7 @@ class EntryIndexPage extends Component<Props> {
         <Theme {...this.props} />
         <NavBar {...this.props} />
         <Intro {...this.props} />
-        <div className="app-content entry-index">
+        <div className="app-content entry-index-page">
           <div className="tags-side">
             <TrendingTagsCard {...this.props} />
           </div>

@@ -21,6 +21,7 @@ import { cache } from "../cache";
 export default async (req: express.Request, res: express.Response) => {
   const params = filterTagExtract(req.originalUrl)!;
   const { filter, tag } = params;
+
   const username = tag.replace("@", "");
 
   let entries: Entry[];

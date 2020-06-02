@@ -18,6 +18,7 @@ import { fetchCommunity } from "../store/community/index";
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
 import NavBar from "../components/navbar/index";
+import NotFound from "../components/404";
 import Intro from "../components/intro/index";
 import DropDown from "../components/dropdown/index";
 import ListStyleToggle from "../components/list-style-toggle/index";
@@ -77,8 +78,9 @@ class ProfilePage extends Component<Props> {
 
     const username = match.params.username.replace("@", "");
     const profile = profiles.find((x) => x.name === username);
+
     if (!profile) {
-      return "404";
+      return <NotFound />;
     }
 
     const { filter, tag } = global;
@@ -86,8 +88,9 @@ class ProfilePage extends Component<Props> {
     const groupKey = makeGroupKey(filter, tag);
 
     const data = entries[groupKey];
+    
     if (data === undefined) {
-      // return null;
+      return null;
     }
 
     const entryList = data?.entries;
@@ -102,9 +105,7 @@ class ProfilePage extends Component<Props> {
         <Theme {...this.props} />
         <NavBar {...this.props} />
 
-        <div className="app-content">
-          henlo
-        </div>
+        <div className="app-content profile-page">henlo</div>
         <DetectBottom onBottom={this.bottomReached} />
       </>
     );
