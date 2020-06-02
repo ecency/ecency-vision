@@ -74,6 +74,20 @@ export const getPostsRanked = (
     observer,
   });
 
+export const getAccountPosts = (
+  sort: string,
+  account: string,
+  start_author: string = "",
+  start_permlink: string = "",
+  limit: number = 20,
+  observer: string = ""
+): Promise<Entry[] | null> =>
+  bridgeApiCall<Entry[] | null>("bridge.get_account_posts", {
+    sort,
+    account,
+    observer,
+  });
+
 export const getPost = (
   author: string = "",
   permlink: string = "",

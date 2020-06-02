@@ -102,7 +102,9 @@ class ProfilePage extends Component<Props> {
         <Theme {...this.props} />
         <NavBar {...this.props} />
 
-        <div className="app-content"></div>
+        <div className="app-content">
+          henlo
+        </div>
         <DetectBottom onBottom={this.bottomReached} />
       </>
     );

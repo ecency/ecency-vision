@@ -2,11 +2,12 @@ import express from "express";
 
 import { initialState as globalInitialState } from "../../common/store/global/index";
 import { initialState as trendingTagsInitialState } from "../../common/store/trending-tags/index";
+import { initialState as communityInitialState } from "../../common/store/community/index";
 import { initialState as profilesInitialState } from "../../common/store/profiles/index";
 
 import { Filter } from "../../common/store/global/types";
 import { Entry } from "../../common/store/entries/types";
-import { Community } from "../../common/store/community/types";
+import { Profile } from "../../common/store/profiles/types";
 import { makeGroupKey } from "../../common/store/entries/index";
 
 import { readGlobalCookies, optimizeEntries } from "../helper";
@@ -22,29 +23,24 @@ import { cache } from "../cache";
 export default async (req: express.Request, res: express.Response) => {
   const params = filterTagExtract(req.originalUrl)!;
   const { filter, tag } = params;
+  const username = tag.replace("@", "");
 
   let entries: Entry[];
 
   try {
-    entries = (await hiveApi.getPostsRanked(filter, "", "", 13, tag)) || [];
+    entries = (await hiveApi.getAccountPosts(filter, username, "", "", 10)) || [];
   } catch (e) {
     entries = [];
   }
 
-  let community: Community | null = null;
-  if (tag.startsWith("hive-")) {
-    try {
-      community = await hiveApi.getCommunity(tag);
-    } catch (e) {
-      community = null;
-    }
-  }
+  let profiles = [];
 
-  let tags: string[] | undefined = cache.get("trending-tags");
-  if (tags === undefined) {
-    tags = await hiveApi.getTrendingTags();
-    cache.set("trending-tags", tags, 86400);
-  }
+  try {
+    let profile = (await hiveApi.getProfile(username)) || null;
+    if (profile) {
+      profiles.push(profile);
+    }
+  } catch (e) {}
 
   // TODO: promoted posts
 
@@ -54,9 +50,9 @@ export default async (req: express.Request, res: express.Response) => {
       ...readGlobalCookies(req),
       ...{ filter: Filter[filter], tag },
     },
-    trendingTags: { ...trendingTagsInitialState, list: tags },
-    community,
-    profiles: profilesInitialState,
+    trendingTags: { ...trendingTagsInitialState },
+    community: communityInitialState,
+    profiles: profiles,
     entries: {
       [`${makeGroupKey(filter, tag)}`]: {
         entries: optimizeEntries(entries),
