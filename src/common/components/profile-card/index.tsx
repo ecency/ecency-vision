@@ -98,26 +98,26 @@ export default class ProfileCard extends Component<Props> {
           )}
         </div>
 
-        <div className="account-props">
+        <div className="extra-props">
           {location && (
-            <div className="account-prop">
+            <div className="prop">
               {nearMeSvg} {location}
             </div>
           )}
           {website && (
-            <div className="account-prop">
+            <div className="prop">
               {earthSvg}
               <a target="_external" className="website-link" href={website}>
                 {website}
               </a>
             </div>
           )}
-          <div className="account-prop">
+          <div className="prop">
             {calendarRangeSvg} {created.format("LL")}
           </div>
-          <div className="account-prop">
+          <div className="prop">
             {rssSvg}
-            <a target="_external" className="website-link" href={rss_link}>
+            <a target="_external" href={rss_link}>
               RSS feed
             </a>
           </div>

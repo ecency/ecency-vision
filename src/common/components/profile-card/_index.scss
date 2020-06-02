@@ -89,7 +89,8 @@
     }
   }
 
-  .basic-info {
+  .basic-info,
+  .stats {
     padding-bottom: 16px;
     margin-bottom: 16px;
 
@@ -100,7 +101,9 @@
     @include themify(night) {
       border-bottom: 1px solid $dark-two;
     }
+  }
 
+  .basic-info {
     .full-name {
       color: $dark-sky-blue;
       font-size: 20px;
@@ -126,7 +129,7 @@
   }
 
   .stats,
-  .account-props {
+  .extra-props {
     color: $steel-grey;
 
     a {
@@ -137,14 +140,12 @@
       color: $silver;
       height: 16px;
       margin-right: 6px;
+      flex-shrink: 0;
     }
   }
 
   .stats {
-    padding-bottom: 16px;
-    margin-bottom: 16px;
     cursor: default;
-
     display: flex;
     justify-content: space-evenly;
 
@@ -153,14 +154,6 @@
       grid-template-columns: auto auto;
       grid-gap: 20px 20px;
       justify-content: flex-start;
-    }
-
-    @include themify(day) {
-      border-bottom: 1px solid $white-three;
-    }
-
-    @include themify(night) {
-      border-bottom: 1px solid $dark-two;
     }
 
     .stat {
@@ -172,7 +165,7 @@
     }
   }
 
-  .account-props {
+  .extra-props {
     color: $steel-grey;
     grid-gap: 20px;
     display: none;
@@ -180,9 +173,18 @@
     @media (min-width: $md-break) {
       display: grid;
     }
+
     .prop {
-      display: flex;
+      display: inline-flex;
       align-items: center;
+      overflow: hidden;
+      white-space: nowrap;
+
+      .website-link {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
   }
 }
