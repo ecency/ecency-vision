@@ -6,7 +6,6 @@ import { initialState as communityInitialState } from "../../common/store/commun
 
 import { Filter } from "../../common/store/global/types";
 import { Entry } from "../../common/store/entries/types";
-import { Profile } from "../../common/store/profiles/types";
 import { makeGroupKey } from "../../common/store/entries/index";
 
 import { readGlobalCookies, optimizeEntries } from "../helper";
