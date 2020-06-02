@@ -1,27 +1,6 @@
-export interface Profile {
-  id: number;
-  name: string;
-  created: string;
-  active: string;
-  post_count: number;
-  reputation: number;
-  stats: {
-    sp: number;
-    rank: number;
-    following: number;
-    followers: number;
-  };
-  metadata: {
-    profile: {
-      name?: string;
-      about?: string;
-      website?: string;
-      location?: string;
-      cover_image?: string;
-      profile_image?: string;
-    };
-  };
-}
+import {ExtendedAccount} from '@esteemapp/dhive';
+
+export interface Profile extends ExtendedAccount{}
 
 export type State = Profile[];
 
