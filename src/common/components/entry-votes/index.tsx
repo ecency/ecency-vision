@@ -13,7 +13,7 @@ import FormattedCurrency from "../formatted-currency";
 import ProfileLink from "../profile-link/index";
 import Tooltip from "../tooltip";
 
-import { getPost } from "../../api/hive";
+import { getPost } from "../../api/bridge";
 
 import parseAsset from "../../helper/parse-asset";
 

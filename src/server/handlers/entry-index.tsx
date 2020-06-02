@@ -12,6 +12,7 @@ import { makeGroupKey } from "../../common/store/entries/index";
 import { readGlobalCookies, optimizeEntries } from "../helper";
 
 import * as hiveApi from "../../common/api/hive";
+import * as bridgeApi from "../../common/api/bridge";
 
 import filterTagExtract from "../../common/helper/filter-tag-extract";
 
@@ -26,7 +27,7 @@ export default async (req: express.Request, res: express.Response) => {
   let entries: Entry[];
 
   try {
-    entries = (await hiveApi.getPostsRanked(filter, "", "", 13, tag)) || [];
+    entries = (await bridgeApi.getPostsRanked(filter, "", "", 13, tag)) || [];
   } catch (e) {
     entries = [];
   }
@@ -34,7 +35,7 @@ export default async (req: express.Request, res: express.Response) => {
   let community: Community | null = null;
   if (tag.startsWith("hive-")) {
     try {
-      community = await hiveApi.getCommunity(tag);
+      community = await bridgeApi.getCommunity(tag);
     } catch (e) {
       community = null;
     }

@@ -10,7 +10,7 @@ import { makeGroupKey } from "../../common/store/entries/index";
 
 import { readGlobalCookies, optimizeEntries } from "../helper";
 
-import * as hiveApi from "../../common/api/hive";
+import * as hiveApi from "../../common/api/bridge";
 
 import filterTagExtract from "../../common/helper/filter-tag-extract";
 

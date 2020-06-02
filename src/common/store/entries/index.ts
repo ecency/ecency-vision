@@ -19,7 +19,7 @@ import { CommonActionTypes } from "../common";
 
 import filterTagExtract from "../../helper/filter-tag-extract";
 
-import { getPostsRanked } from "../../api/hive";
+import { getPostsRanked } from "../../api/bridge";
 
 export const makeGroupKey = (what: string, tag: string = ""): string => {
   if (tag) {

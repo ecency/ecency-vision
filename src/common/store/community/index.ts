@@ -1,5 +1,5 @@
 import { Dispatch } from "redux";
-import { getCommunity } from "../../api/hive";
+import { getCommunity } from "../../api/bridge";
 
 import { AppState } from "../index";
 

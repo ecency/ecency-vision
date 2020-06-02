@@ -5,7 +5,7 @@ import isEqual from 'react-fast-compare';
 
 import {State as GlobalState} from '../../store/global/types';
 
-import {getCommunity} from '../../api/hive';
+import {getCommunity} from '../../api/bridge';
 
 export const makePath = (filter: string, tag: string): string => {
     return `/${filter}/${tag}`;

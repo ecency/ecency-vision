@@ -3,7 +3,7 @@ import { History } from "history";
 
 import { Profile } from "../../store/profiles/types";
 
-import { getProfile } from "../../api/hive";
+import { getProfile } from "../../api/bridge";
 
 export const makePath = (username: string) => `/@${username}`;
 
