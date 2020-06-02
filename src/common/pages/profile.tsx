@@ -30,7 +30,6 @@ import EntryListContent from "../components/entry-list/index";
 import { _t } from "../i18n";
 
 import _c from "../util/fix-class-names";
-import { stat } from "fs";
 
 interface MatchParams {
   username: string;
@@ -88,7 +87,7 @@ class ProfilePage extends Component<Props> {
     const groupKey = makeGroupKey(filter, tag);
 
     const data = entries[groupKey];
-    
+
     if (data === undefined) {
       return null;
     }
