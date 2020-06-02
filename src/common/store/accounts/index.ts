@@ -1,6 +1,6 @@
 import { Dispatch } from "redux";
 
-import { Profile, State, Actions, ActionTypes, AddAction } from "./types";
+import { Account, State, Actions, ActionTypes, AddAction } from "./types";
 
 export const initialState: State = [];
 
@@ -21,12 +21,12 @@ export default (state: State = initialState, action: Actions): State => {
 };
 
 /* Actions */
-export const addProfile = (data: Profile) => (dispatch: Dispatch) => {
+export const addAccount = (data: Account) => (dispatch: Dispatch) => {
   dispatch(addAct(data));
 };
 
 /* Action Creators */
-export const addAct = (data: Profile): AddAction => {
+export const addAct = (data: Account): AddAction => {
   return {
     type: ActionTypes.ADD,
     data,

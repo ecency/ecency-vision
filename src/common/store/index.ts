@@ -6,14 +6,14 @@ import global from './global';
 import trendingTags from './trending-tags';
 import community from './community';
 import entries from './entries';
-import profiles from './profiles';
+import accounts from './accounts';
 
 let reducers = {
     global,
     trendingTags,
     community,
     entries,
-    profiles
+    accounts
 };
 
 export let history: History | undefined;

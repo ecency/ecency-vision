@@ -1,7 +1,6 @@
 import axios from "axios";
 
 import { Entry } from "../store/entries/types";
-import { Profile } from "../store/profiles/types";
 import { Community } from "../store/community/types";
 
 import SERVERS from "../constants/servers.json";
@@ -19,12 +18,6 @@ const bridgeApiCall = <T>(endpoint: string, params: {}): Promise<T> =>
     .then((resp) => {
       return resp?.data?.result || null;
     });
-
-export const getProfile = (username: string, observer: string = ""): Promise<Profile | null> =>
-  bridgeApiCall<Profile | null>("bridge.get_profile", {
-    account: username,
-    observer,
-  });
 
 export const getPostsRanked = (
   sort: string,

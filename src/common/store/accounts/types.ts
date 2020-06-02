@@ -1,16 +1,16 @@
 import {ExtendedAccount} from '@esteemapp/dhive';
 
-export interface Profile extends ExtendedAccount{}
+export interface Account extends ExtendedAccount{}
 
-export type State = Profile[];
+export type State = Account[];
 
 export enum ActionTypes {
-  ADD = "@profiles/ADD",
+  ADD = "@accounts/ADD",
 }
 
 export interface AddAction {
   type: ActionTypes.ADD;
-  data: Profile;
+  data: Account;
 }
 
 export type Actions = AddAction; // | .. | ..

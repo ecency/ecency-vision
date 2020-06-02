@@ -35,7 +35,7 @@ it("(1) Default render", () => {
   const props = {
     history: createBrowserHistory(),
     community,
-    addProfile: () => {},
+    addAccount: () => {},
   };
 
   const component = renderer.create(<CommunityCard {...props} />);

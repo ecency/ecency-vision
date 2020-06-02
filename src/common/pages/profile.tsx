@@ -9,7 +9,7 @@ import { AppState } from "../store";
 import { Filter, ListStyle, State as GlobalState } from "../store/global/types";
 import { State as TrendingTagsState } from "../store/trending-tags/types";
 import { State as EntriesState } from "../store/entries/types";
-import { State as ProfilesState } from "../store/profiles/types";
+import { State as AccountsState } from "../store/accounts/types";
 
 import { hideIntro, toggleListStyle, toggleTheme } from "../store/global/index";
 import { makeGroupKey, fetchEntries } from "../store/entries/index";
@@ -44,7 +44,7 @@ interface Props {
   match: match<MatchParams>;
   global: GlobalState;
   entries: EntriesState;
-  profiles: ProfilesState;
+  accounts: AccountsState;
   toggleTheme: () => void;
   toggleListStyle: () => void;
   fetchEntries: (what: string, tag: string, more: boolean) => void;
@@ -75,12 +75,12 @@ class ProfilePage extends Component<Props> {
   };
 
   render() {
-    const { global, entries, profiles, match } = this.props;
+    const { global, entries, accounts, match } = this.props;
 
     const username = match.params.username.replace("@", "");
-    const profile = profiles.find((x) => x.name === username);
+    const account = accounts.find((x) => x.name === username);
 
-    if (!profile) {
+    if (!account) {
       return <NotFound />;
     }
 
@@ -108,7 +108,7 @@ class ProfilePage extends Component<Props> {
 
         <div className="app-content profile-page">
           <div className="profile-side">
-            <ProfileCard {...this.props} profile={profile} />
+            <ProfileCard {...this.props} account={account} />
           </div>
         </div>
         <DetectBottom onBottom={this.bottomReached} />
@@ -120,7 +120,7 @@ class ProfilePage extends Component<Props> {
 const mapStateToProps = (state: AppState) => ({
   global: state.global,
   entries: state.entries,
-  profiles: state.profiles,
+  accounts: state.accounts,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>

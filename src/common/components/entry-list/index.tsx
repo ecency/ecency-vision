@@ -4,7 +4,7 @@ import {History, Location} from 'history';
 import isEqual from 'react-fast-compare';
 
 import {State as GlobalState} from '../../store/global/types';
-import {Profile} from '../../store/profiles/types';
+import {Account} from '../../store/accounts/types';
 
 import {Entry} from '../../store/entries/types';
 import EntryListItem from '../entry-list-item/index';
@@ -14,7 +14,7 @@ interface Props {
     location: Location,
     global: GlobalState,
     entries: Entry[],
-    addProfile: (data: Profile) => void;
+    addAccount: (data: Account) => void;
 }
 
 export default class EntryListContent extends Component<Props> {

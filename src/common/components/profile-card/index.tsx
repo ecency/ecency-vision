@@ -1,24 +1,28 @@
 import React, { Component } from "react";
 
-import { Profile } from "../../store/profiles/types";
+import { Account } from "../../store/accounts/types";
 import UserAvatar from "../user-avatar";
 
+import accountReputation from "../../helper/account-reputation";
+
 interface Props {
-  profile: Profile;
+  account: Account;
 }
 
 export default class ProfileCard extends Component<Props> {
   render() {
-    const { profile } = this.props;
-    console.log(profile);
+    const { account } = this.props;
+
+    console.log(typeof account.reputation);
+
     return (
       <div className="profile-card">
         <div className="profile-avatar">
-          <UserAvatar {...this.props} username={profile.name} size="xLarge" />
-          <div className="reputation">{Math.floor(profile.reputation)}</div>
+          <UserAvatar {...this.props} username={account.name} size="xLarge" />
+          <div className="reputation">{accountReputation(account.reputation)}</div>
         </div>
-     
-        <div className="username">{profile.name}</div>
+
+        <div className="username">{account.name}</div>
       </div>
     );
   }

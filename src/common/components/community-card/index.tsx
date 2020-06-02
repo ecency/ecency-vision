@@ -8,7 +8,7 @@ import numeral from "numeral";
 
 import { Button } from "react-bootstrap";
 
-import { Profile } from "../../store/profiles/types";
+import { Account } from "../../store/accounts/types";
 import { Community } from "../../store/community/types";
 
 import ProfileLink from "../profile-link";
@@ -23,7 +23,7 @@ import { accountGroupSvg } from "../../img/svg";
 interface Props {
   history: History;
   community: Community;
-  addProfile: (data: Profile) => void;
+  addAccount: (data: Account) => void;
 }
 
 export default class CommunityCard extends Component<Props> {

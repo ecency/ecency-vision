@@ -10,7 +10,8 @@ import { makeGroupKey } from "../../common/store/entries/index";
 
 import { readGlobalCookies, optimizeEntries } from "../helper";
 
-import * as hiveApi from "../../common/api/bridge";
+import * as hiveApi from "../../common/api/hive";
+import * as bridgeApi from "../../common/api/bridge";
 
 import filterTagExtract from "../../common/helper/filter-tag-extract";
 
@@ -27,17 +28,17 @@ export default async (req: express.Request, res: express.Response) => {
   let entries: Entry[];
 
   try {
-    entries = (await hiveApi.getAccountPosts(filter, username, "", "", 10)) || [];
+    entries = (await bridgeApi.getAccountPosts(filter, username, "", "", 10)) || [];
   } catch (e) {
     entries = [];
   }
 
-  let profiles = [];
+  let accounts = [];
 
   try {
-    let profile = (await hiveApi.getProfile(username)) || null;
-    if (profile) {
-      profiles.push(profile);
+    let account = await hiveApi.getAccount(username);
+    if (account) {
+      accounts.push(account);
     }
   } catch (e) {}
 
@@ -51,7 +52,7 @@ export default async (req: express.Request, res: express.Response) => {
     },
     trendingTags: { ...trendingTagsInitialState },
     community: communityInitialState,
-    profiles: profiles,
+    accounts: accounts,
     entries: {
       [`${makeGroupKey(filter, tag)}`]: {
         entries: optimizeEntries(entries),

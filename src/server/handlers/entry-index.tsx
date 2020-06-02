@@ -2,7 +2,7 @@ import express from "express";
 
 import { initialState as globalInitialState } from "../../common/store/global/index";
 import { initialState as trendingTagsInitialState } from "../../common/store/trending-tags/index";
-import { initialState as profilesInitialState } from "../../common/store/profiles/index";
+import { initialState as accountsInitialState } from "../../common/store/accounts/index";
 
 import { Filter } from "../../common/store/global/types";
 import { Entry } from "../../common/store/entries/types";
@@ -57,7 +57,7 @@ export default async (req: express.Request, res: express.Response) => {
     },
     trendingTags: { ...trendingTagsInitialState, list: tags },
     community,
-    profiles: profilesInitialState,
+    accounts: accountsInitialState,
     entries: {
       [`${makeGroupKey(filter, tag)}`]: {
         entries: optimizeEntries(entries),
