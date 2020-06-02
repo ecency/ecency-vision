@@ -30,6 +30,20 @@
     }
   }
 
+  .divider {
+    height: 1px;
+    margin: 20px 0;
+    overflow: hidden;
+
+    @include themify(day) {
+      background: $white-four;
+    }
+
+    @include themify(night) {
+      background: $dark-two;
+    }
+  }
+
   .username {
     font-size: 16px;
     font-weight: 600;
@@ -52,6 +66,87 @@
 
     &:before {
       content: "@";
+    }
+  }
+
+  .vpower-line {
+    background: $duck-egg-blue;
+    height: 2px;
+    margin-bottom: 8px;
+
+    .vpower-line-inner {
+      background: $dark-sky-blue;
+      height: 2px;
+    }
+  }
+
+  .vpower-percentage {
+    color: $dark-sky-blue;
+    cursor: default;
+    flex-shrink: 0;
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 22px;
+
+    &:after {
+      content: "%";
+    }
+  }
+
+  .full-name {
+    color: $dark-sky-blue;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 12px;
+
+    @media (min-width: $md-break) {
+      font-size: 18px;
+      font-weight: 700;
+    }
+  }
+
+  .about {
+    color: $dark-sky-blue;
+    opacity: 0.5;
+  }
+
+  .stats,
+  .account-props {
+    color: $steel-grey;
+    display: grid;
+
+    a {
+      color: $steel-grey;
+    }
+
+    svg {
+      color: $silver;
+      height: 16px;
+      margin-right: 6px;
+    }
+  }
+
+  .stats {
+    grid-template-columns: auto auto;
+    grid-gap: 20px 10px;
+    cursor: default;
+
+    .stat {
+      span {
+        display: flex;
+        align-items: center;
+        line-height: 100%;
+      }
+    }
+  }
+
+  .account-props {
+    color: $steel-grey;
+    grid-gap: 20px;
+
+    .prop {
+      display: flex;
+      align-items: center;
     }
   }
 }

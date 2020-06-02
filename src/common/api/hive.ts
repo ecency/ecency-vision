@@ -1,11 +1,11 @@
 import { Client } from "@esteemapp/dhive";
 
 import { TrendingTag } from "../store/trending-tags/types";
-import { Account } from "../store/accounts/types";
+import { Account, AccountProfile, AccountFollowStats } from "../store/accounts/types";
 
 import SERVERS from "../constants/servers.json";
 
-let client = new Client(SERVERS, {
+export let client = new Client(SERVERS, {
   timeout: 3000,
 });
 
@@ -15,3 +15,26 @@ export const getTrendingTags = (afterTag: string = "", limit: number = 50): Prom
 export const getAccounts = (usernames: string[]): Promise<Account[]> => client.database.getAccounts(usernames);
 
 export const getAccount = (username: string): Promise<Account> => client.database.getAccounts([username]).then((resp) => resp[0]);
+
+export const getAccountFull = (username: string): Promise<Account> =>
+  getAccount(username).then(async (account) => {
+    let profile: AccountProfile | undefined;
+    try {
+      profile = JSON.parse(account.json_metadata).profile;
+    } catch (e) {}
+
+    let follow_stats: AccountFollowStats | undefined;
+    try {
+      follow_stats = await getFollowCount(username);
+    } catch (e) {}
+
+    return { ...account, profile, follow_stats };
+  });
+
+export const getFollowCount = (username: string): Promise<AccountFollowStats> => client.database.call("get_follow_count", [username]);
+
+export const vpMana = (account: Account): number => {
+  const calc = client.rc.calculateVPMana(account);
+  const { percentage } = calc;
+  return percentage / 100;
+};

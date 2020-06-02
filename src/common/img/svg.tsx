@@ -51,10 +51,7 @@ export const newsSvg = (
 
 export const mailSvg = (
   <svg viewBox="0 0 15 12">
-    <path
-      d="M0 0V11.25H15V0H0ZM13.4487 1.25L7.5 6.07063L1.55125 1.25H13.4487ZM1.25 10V2.61438L7.5 7.67937L13.75 2.61438V10H1.25Z"
-      fill="currentColor"
-    />
+    <path d="M0 0V11.25H15V0H0ZM13.4487 1.25L7.5 6.07063L1.55125 1.25H13.4487ZM1.25 10V2.61438L7.5 7.67937L13.75 2.61438V10H1.25Z" fill="currentColor" />
   </svg>
 );
 
@@ -100,10 +97,7 @@ export const discordSvg = (
 
 export const informationSvg = (
   <svg viewBox="0 0 24 24">
-    <path
-      fill="currentColor"
-      d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
-    />
+    <path fill="currentColor" d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
   </svg>
 );
 
@@ -136,46 +130,31 @@ export const magnifySvg = (
 
 export const closeSvg = (
   <svg viewBox="0 0 24 24">
-    <path
-      fill="currentColor"
-      d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
-    />
+    <path fill="currentColor" d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
   </svg>
 );
 
 export const repeatSvg = (
   <svg viewBox="0 0 24 24">
-    <path
-      fill="currentColor"
-      d="M17,17H7V14L3,18L7,22V19H19V13H17M7,7H17V10L21,6L17,2V5H5V11H7V7Z"
-    />
+    <path fill="currentColor" d="M17,17H7V14L3,18L7,22V19H19V13H17M7,7H17V10L21,6L17,2V5H5V11H7V7Z" />
   </svg>
 );
 
 export const chevronUpSvg = (
   <svg viewBox="0 0 24 24">
-    <path
-      fill="currentColor"
-      d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-    />
+    <path fill="currentColor" d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z" />
   </svg>
 );
 
 export const chevronLeftSvg = (
   <svg viewBox="0 0 24 24">
-    <path
-      fill="currentColor"
-      d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"
-    />
+    <path fill="currentColor" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" />
   </svg>
 );
 
 export const chevronRightSvg = (
   <svg viewBox="0 0 24 24">
-    <path
-      fill="currentColor"
-      d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"
-    />
+    <path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
   </svg>
 );
 
@@ -190,10 +169,7 @@ export const peopleSvg = (
 
 export const commentSvg = (
   <svg viewBox="0 0 24 24">
-    <path
-      fill="currentColor"
-      d="M18,8H6V6H18V8M18,11H6V9H18V11M18,14H6V12H18V14M22,4A2,2 0 0,0 20,2H4A2,2 0 0,0 2,4V16A2,2 0 0,0 4,18H18L22,22V4Z"
-    />
+    <path fill="currentColor" d="M18,8H6V6H18V8M18,11H6V9H18V11M18,14H6V12H18V14M22,4A2,2 0 0,0 20,2H4A2,2 0 0,0 2,4V16A2,2 0 0,0 4,18H18L22,22V4Z" />
   </svg>
 );
 
@@ -205,19 +181,13 @@ export const menuDownSvg = (
 
 export const viewModuleSvg = (
   <svg viewBox="0 0 24 24">
-    <path
-      fill="currentColor"
-      d="M16,5V11H21V5M10,11H15V5H10M16,18H21V12H16M10,18H15V12H10M4,18H9V12H4M4,11H9V5H4V11Z"
-    />
+    <path fill="currentColor" d="M16,5V11H21V5M10,11H15V5H10M16,18H21V12H16M10,18H15V12H10M4,18H9V12H4M4,11H9V5H4V11Z" />
   </svg>
 );
 
 export const viewHeadLineSvg = (
   <svg viewBox="0 0 24 24">
-    <path
-      fill="currentColor"
-      d="M4,5V7H21V5M4,11H21V9H4M4,19H21V17H4M4,15H21V13H4V15Z"
-    />
+    <path fill="currentColor" d="M4,5V7H21V5M4,11H21V9H4M4,19H21V17H4M4,15H21V13H4V15Z" />
   </svg>
 );
 
@@ -229,3 +199,56 @@ export const accountGroupSvg = (
     />
   </svg>
 );
+
+export const formatListBulledttedSvg = (
+  <svg viewBox="0 0 24 24">
+    <path
+      fill="currentColor"
+      d="M7,5H21V7H7V5M7,13V11H21V13H7M4,4.5A1.5,1.5 0 0,1 5.5,6A1.5,1.5 0 0,1 4,7.5A1.5,1.5 0 0,1 2.5,6A1.5,1.5 0 0,1 4,4.5M4,10.5A1.5,1.5 0 0,1 5.5,12A1.5,1.5 0 0,1 4,13.5A1.5,1.5 0 0,1 2.5,12A1.5,1.5 0 0,1 4,10.5M7,19V17H21V19H7M4,16.5A1.5,1.5 0 0,1 5.5,18A1.5,1.5 0 0,1 4,19.5A1.5,1.5 0 0,1 2.5,18A1.5,1.5 0 0,1 4,16.5Z"
+    />
+  </svg>
+);
+
+export const accountMultipleSvg = (
+  <svg viewBox="0 0 24 24">
+    <path
+      fill="currentColor"
+      d="M16 17V19H2V17S2 13 9 13 16 17 16 17M12.5 7.5A3.5 3.5 0 1 0 9 11A3.5 3.5 0 0 0 12.5 7.5M15.94 13A5.32 5.32 0 0 1 18 17V19H22V17S22 13.37 15.94 13M15 4A3.39 3.39 0 0 0 13.07 4.59A5 5 0 0 1 13.07 10.41A3.39 3.39 0 0 0 15 11A3.5 3.5 0 0 0 15 4Z"
+    />
+  </svg>
+);
+
+export const accountPlusSvg = (
+  <svg viewBox="0 0 24 24">
+    <path
+      fill="currentColor"
+      d="M15,14C12.33,14 7,15.33 7,18V20H23V18C23,15.33 17.67,14 15,14M6,10V7H4V10H1V12H4V15H6V12H9V10M15,12A4,4 0 0,0 19,8A4,4 0 0,0 15,4A4,4 0 0,0 11,8A4,4 0 0,0 15,12Z"
+    />
+  </svg>
+);
+
+export const nearMeSvg = (
+  <svg viewBox="0 0 24 24">
+    <path fill="currentColor" d="M21,3L3,10.53V11.5L9.84,14.16L12.5,21H13.46L21,3Z" />
+  </svg>
+);
+
+export const calendarRangeSvg = (
+  <svg viewBox="0 0 24 24">
+    <path
+      fill="currentColor"
+      d="M9,10H7V12H9V10M13,10H11V12H13V10M17,10H15V12H17V10M19,3H18V1H16V3H8V1H6V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M19,19H5V8H19V19Z"
+    />
+  </svg>
+);
+
+export const rssSvg = (
+  <svg viewBox="0 0 24 24">
+    <path
+      fill="currentColor"
+      d="M6.18,15.64A2.18,2.18 0 0,1 8.36,17.82C8.36,19 7.38,20 6.18,20C5,20 4,19 4,17.82A2.18,2.18 0 0,1 6.18,15.64M4,4.44A15.56,15.56 0 0,1 19.56,20H16.73A12.73,12.73 0 0,0 4,7.27V4.44M4,10.1A9.9,9.9 0 0,1 13.9,20H11.07A7.07,7.07 0 0,0 4,12.93V10.1Z"
+    />
+  </svg>
+);
+
+ 

@@ -3,7 +3,7 @@ import { History } from "history";
 
 import { Account } from "../../store/accounts/types";
 
-import { getAccount } from "../../api/hive";
+import { getAccountFull } from "../../api/hive";
 
 export const makePath = (username: string) => `/@${username}`;
 
@@ -25,7 +25,7 @@ export default class ProfileLink extends Component<Props> {
     let profile;
 
     try {
-      profile = await getAccount(username);
+      profile = await getAccountFull(username);
     } catch (err) {
       return;
     }

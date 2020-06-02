@@ -41,5 +41,11 @@
     "description": "Description",
     "rules": "Rules",
     "lang": "Language"
+  },
+  "account": {
+    "voting-power": "Voting Power",
+    "post-count": "Post Count",
+    "followers": "Followers",
+    "following": "Following"
   }
 }

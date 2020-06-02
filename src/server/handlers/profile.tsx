@@ -36,7 +36,7 @@ export default async (req: express.Request, res: express.Response) => {
   let accounts = [];
 
   try {
-    let account = await hiveApi.getAccount(username);
+    let account = await hiveApi.getAccountFull(username);
     if (account) {
       accounts.push(account);
     }
