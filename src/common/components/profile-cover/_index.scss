@@ -1,12 +1,8 @@
 .profile-cover {
-  display: none;
+  display: block;
   height: 134px;
   position: relative;
   width: 100%;
-
-  @media (min-width: $md-break) {
-    display: block;
-  }
 
   .cover-image {
     background-color: $white-three;
