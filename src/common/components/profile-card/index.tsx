@@ -56,7 +56,7 @@ export default class ProfileCard extends Component<Props> {
         </div>
 
         <div className="vpower-percentage">
-          <Tooltip content={_t("account.voting-power")}>
+          <Tooltip content={_t("profile.voting-power")}>
             <span>{vPower.toFixed(2)}</span>
           </Tooltip>
         </div>
@@ -70,7 +70,7 @@ export default class ProfileCard extends Component<Props> {
 
         <div className="stats">
           <div className="stat">
-            <Tooltip content={_t("account.post-count")}>
+            <Tooltip content={_t("profile.post-count")}>
               <span>
                 {formatListBulledttedSvg} {numeral(account.post_count).format()}
               </span>
@@ -79,7 +79,7 @@ export default class ProfileCard extends Component<Props> {
 
           {follow_stats?.follower_count !== undefined && (
             <div className="stat">
-              <Tooltip content={_t("account.followers")}>
+              <Tooltip content={_t("profile.followers")}>
                 <span>
                   {accountMultipleSvg} {numeral(follow_stats?.follower_count).format()}
                 </span>
@@ -89,7 +89,7 @@ export default class ProfileCard extends Component<Props> {
 
           {follow_stats?.following_count !== undefined && (
             <div className="stat">
-              <Tooltip content={_t("account.following")}>
+              <Tooltip content={_t("profile.following")}>
                 <span>
                   {accountPlusSvg} {numeral(follow_stats?.following_count).format()}
                 </span>

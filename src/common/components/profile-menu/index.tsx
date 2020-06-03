@@ -36,7 +36,7 @@ export default class ProfileLink extends Component<Props> {
           {["blog", "comments", "replies", "wallet"].map((s, k) => {
             return (
               <Link key={k} className={`menu-item ${section === s && "selected-item"}`} to={`/@${username}/${s}`}>
-                {_t(`account.section-${s}`)}
+                {_t(`profile.section-${s}`)}
               </Link>
             );
           })}
