@@ -55,22 +55,17 @@ interface Props {
 
 class ProfilePage extends Component<Props> {
   componentDidUpdate(prevProps: Readonly<Props>): void {
-    /*
-    const { global, fetchEntries, fetchCommunity } = this.props;
-    const { global: pGlobal } = prevProps;
-
-    if (!(global.filter === pGlobal.filter && global.tag === pGlobal.tag)) {
-      fetchEntries(global.filter, global.tag, false);
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
+    const { match } = this.props;
+    if (match.params.section === "wallet") {
+      return;
     }
 
-    if (global.tag !== pGlobal.tag) {
-      fetchCommunity();
-    }*/
+    const { global, fetchEntries } = this.props;
+    const { global: pGlobal } = prevProps;
+
+    if (!(global.filter === pGlobal.filter)) {
+      fetchEntries(global.filter, global.tag, false);
+    }
   }
 
   bottomReached = () => {
@@ -127,7 +122,6 @@ class ProfilePage extends Component<Props> {
             <ProfileMenu {...this.props} username={username} section={section} />
             <ProfileCover {...this.props} account={account} />
 
-            {loading && entryList.length === 0 ? <LinearProgress /> : ""}
             <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>
               <div className={_c(`entry-list-body ${global.listStyle === ListStyle.grid ? "grid-view" : ""}`)}>
                 {loading && entryList.length === 0 && <EntryListLoadingItem />}
@@ -136,7 +130,6 @@ class ProfilePage extends Component<Props> {
             </div>
             {loading && entryList.length > 0 ? <LinearProgress /> : ""}
             <DetectBottom onBottom={this.bottomReached} />
-            
           </div>
         </div>
       </>

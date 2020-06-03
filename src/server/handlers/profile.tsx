@@ -15,22 +15,30 @@ import * as bridgeApi from "../../common/api/bridge";
 
 import filterTagExtract from "../../common/helper/filter-tag-extract";
 
+import defaults from "../../common/constants/defaults.json";
+
 import { render } from "../template";
 
 import { cache } from "../cache";
 
 export default async (req: express.Request, res: express.Response) => {
   const params = filterTagExtract(req.originalUrl)!;
-  const { filter, tag } = params;
+  let entries: Entry[] = [];
 
-  const username = tag.replace("@", "");
+  let filter = defaults.filter;
+  let tag = "";
 
-  let entries: Entry[];
+  const { username, section = "blog" } = req.params;
 
-  try {
-    entries = (await bridgeApi.getAccountPosts(filter, username, "", "", 10)) || [];
-  } catch (e) {
-    entries = [];
+  // blog or comments or replies section
+  if (params) {
+    ({ filter, tag } = params);
+
+    try {
+      entries = (await bridgeApi.getAccountPosts(section, username, "", "", 10)) || [];
+    } catch (e) {
+      entries = [];
+    }
   }
 
   let accounts = [];
