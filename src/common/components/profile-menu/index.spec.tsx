@@ -5,17 +5,16 @@ import { StaticRouter } from "react-router-dom";
 import ProfileMenu from "./index";
 import TestRenderer from "react-test-renderer";
 
+import { globalInstance } from "../../helper/test-helper";
+
 it("(1) Render", () => {
   const props = {
-    global: {
-      listStyle: "row",
-    },
+    global: { ...globalInstance },
     username: "username",
     section: "blog",
     toggleListStyle: () => {},
   };
 
-  // @ts-ignore
   const comp = <ProfileMenu {...props} />;
 
   const renderer = TestRenderer.create(
