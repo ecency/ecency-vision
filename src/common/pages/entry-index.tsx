@@ -103,7 +103,7 @@ class EntryIndexPage extends Component<Props> {
 
     const dropDownConfig = {
       label: _t(`entry-index.filter-${filter}`),
-      items: filters.map((x) => {
+      items: [Filter.trending, Filter.hot, Filter.created].map((x) => {
         return {
           label: _t(`entry-index.filter-${x}`),
           href: tag ? `/${x}/${tag}` : `/${x}`,
@@ -158,13 +158,7 @@ class EntryIndexPage extends Component<Props> {
             </div>
             {loading && entryList.length === 0 ? <LinearProgress /> : ""}
             <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>
-              <div
-                className={_c(
-                  `entry-list-body ${
-                    global.listStyle === ListStyle.grid ? "grid-view" : ""
-                  }`
-                )}
-              >
+              <div className={_c(`entry-list-body ${global.listStyle === ListStyle.grid ? "grid-view" : ""}`)}>
                 {loading && entryList.length === 0 && <EntryListLoadingItem />}
                 <EntryListContent {...this.props} entries={entryList} />
               </div>
