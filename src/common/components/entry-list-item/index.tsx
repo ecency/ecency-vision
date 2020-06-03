@@ -10,7 +10,7 @@ import { State as GlobalState } from "../../store/global/types";
 
 import { Account } from "../../store/accounts/types";
 
-import defaults from '../../constants/defaults.json';
+import defaults from "../../constants/defaults.json";
 
 import {
   catchPostImage,
@@ -56,15 +56,8 @@ export default class EntryListItem extends Component<Props> {
     promoted: false,
   };
 
-  shouldComponentUpdate(
-    nextProps: Readonly<Props>,
-    nextState: Readonly<{}>,
-    nextContext: any
-  ): boolean {
-    return (
-      !isEqual(this.props.entry, nextProps.entry) ||
-      !isEqual(this.props.global, nextProps.global)
-    );
+  shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<{}>, nextContext: any): boolean {
+    return !isEqual(this.props.entry, nextProps.entry) || !isEqual(this.props.global, nextProps.global);
   }
 
   render() {
@@ -83,7 +76,7 @@ export default class EntryListItem extends Component<Props> {
 
     const isChild = !!entry.parent_author;
 
-    const title = isChild ? `RE: ${entry.root_title}` : entry.title;
+    const title = entry.title;
 
     const isVisited = false;
 
@@ -105,15 +98,12 @@ export default class EntryListItem extends Component<Props> {
                 <UserAvatar username={entry.author} size="small" />
               </div>
               <div className="author">
-                {entry.author}{" "}
-                <span className="author-reputation">{reputation}</span>
+                {entry.author} <span className="author-reputation">{reputation}</span>
               </div>
             </div>
           </ProfileLink>
           <TagLink {...this.props} tag={entry.category}>
-            <a className="category">
-              {entry.community_title || entry.category}
-            </a>
+            <a className="category">{entry.community_title || entry.category}</a>
           </TagLink>
           {!isVisited && <span className="read-mark" />}
           <span className="date" title={dateFormatted}>
@@ -158,11 +148,7 @@ export default class EntryListItem extends Component<Props> {
             <span className="voting">
               <EntryVoteBtn {...this.props} />
             </span>
-            <span
-              className={`total-payout ${
-                isPayoutDeclined ? "payout-declined" : ""
-              }`}
-            >
+            <span className={`total-payout ${isPayoutDeclined ? "payout-declined" : ""}`}>
               <EntryPayout {...this.props} entry={entry} />
             </span>
             <span className="votes">
