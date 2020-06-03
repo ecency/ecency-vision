@@ -1,6 +1,7 @@
 import express from "express";
 
 import { initialState as globalInitialState } from "../../common/store/global/index";
+import { initialState as entriesInitialState } from "../../common/store/entries/index";
 import { initialState as trendingTagsInitialState } from "../../common/store/trending-tags/index";
 import { initialState as communityInitialState } from "../../common/store/community/index";
 
@@ -23,22 +24,34 @@ import { cache } from "../cache";
 
 export default async (req: express.Request, res: express.Response) => {
   const params = filterTagExtract(req.originalUrl)!;
-  let entries: Entry[] = [];
 
   let filter = defaults.filter;
   let tag = "";
 
   const { username, section = "blog" } = req.params;
 
+  let entries = {};
+
   // blog or comments or replies section
   if (params) {
     ({ filter, tag } = params);
 
+    let entryList: Entry[] = [];
+
     try {
-      entries = (await bridgeApi.getAccountPosts(section, username, "", "", 10)) || [];
+      entryList = (await bridgeApi.getAccountPosts(section, username, "", "", 10)) || [];
     } catch (e) {
-      entries = [];
+      entryList = [];
     }
+
+    entries = {
+      [`${makeGroupKey(filter, tag)}`]: {
+        entries: optimizeEntries(entryList),
+        error: null,
+        loading: false,
+        hasMore: true,
+      },
+    };
   }
 
   let accounts = [];
@@ -61,14 +74,7 @@ export default async (req: express.Request, res: express.Response) => {
     trendingTags: { ...trendingTagsInitialState },
     community: communityInitialState,
     accounts: accounts,
-    entries: {
-      [`${makeGroupKey(filter, tag)}`]: {
-        entries: optimizeEntries(entries),
-        error: null,
-        loading: false,
-        hasMore: true,
-      },
-    },
+    entries,
   };
 
   res.send(render(req, preLoadedState));
