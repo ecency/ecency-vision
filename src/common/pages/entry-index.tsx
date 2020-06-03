@@ -33,8 +33,6 @@ import { _t } from "../i18n";
 
 import _c from "../util/fix-class-names";
 
-const filters = Object.values(Filter);
-
 interface Props {
   history: History;
   location: Location;
@@ -51,6 +49,11 @@ interface Props {
 }
 
 class EntryIndexPage extends Component<Props> {
+  componentDidMount() {
+    const { global, fetchEntries } = this.props;
+    fetchEntries(global.filter, global.tag, false);
+  }
+
   componentDidUpdate(prevProps: Readonly<Props>): void {
     const { global, fetchEntries, fetchCommunity } = this.props;
     const { global: pGlobal } = prevProps;

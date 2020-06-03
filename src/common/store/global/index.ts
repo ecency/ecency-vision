@@ -33,8 +33,6 @@ export default (state: State = initialState, action: Actions): State => {
             const {pathname} = action.payload.location;
             const params = filterTagExtract(pathname);
             
-            console.log(params);
-            
             if (!params) {
                 return state;
             }
