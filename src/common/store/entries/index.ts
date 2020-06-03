@@ -19,7 +19,7 @@ import { CommonActionTypes } from "../common";
 
 import filterTagExtract from "../../helper/filter-tag-extract";
 
-import { getPostsRanked } from "../../api/bridge";
+import { getPostsRanked, getAccountPosts } from "../../api/bridge";
 
 export const makeGroupKey = (what: string, tag: string = ""): string => {
   if (tag) {
@@ -74,11 +74,7 @@ export default (state: State = initialState, action: Actions): State => {
 
       // Filter entries
       const newEntries = entries.filter((x) => {
-        return (
-          state[groupKey].entries.find(
-            (y) => y.author == x.author && y.permlink == x.permlink
-          ) === undefined
-        );
+        return state[groupKey].entries.find((y) => y.author == x.author && y.permlink == x.permlink) === undefined;
       });
 
       return update(merged, {
@@ -100,11 +96,10 @@ export default (state: State = initialState, action: Actions): State => {
 };
 
 /* Actions */
-export const fetchEntries = (
-  what: string = "",
-  tag: string = "",
-  more: boolean = false
-) => (dispatch: Dispatch, getState: () => AppState) => {
+export const fetchEntries = (what: string = "", tag: string = "", more: boolean = false) => (
+  dispatch: Dispatch,
+  getState: () => AppState
+) => {
   const { entries } = getState();
   const pageSize = 20;
 
@@ -128,18 +123,25 @@ export const fetchEntries = (
 
   dispatch(fetchAct(groupKey));
 
-  // TODO: get_account_posts will be used for account posts
+  let prms: Promise<Entry[] | null>;
+  if (tag.startsWith("@")) {
+    const username = tag.replace("@", "");
 
-  getPostsRanked(what, start_author, start_permlink, pageSize, tag)
+    prms = getAccountPosts(what, username, start_author, start_permlink);
+  } else {
+    prms = getPostsRanked(what, start_author, start_permlink, pageSize, tag);
+  }
+
+  prms
     .then((resp) => {
       if (resp) {
         dispatch(fetchedAct(groupKey, resp, resp.length >= pageSize));
       } else {
-        dispatch(fetchErrorAct(groupKey, 'server error'));
+        dispatch(fetchErrorAct(groupKey, "server error"));
       }
     })
     .catch((e) => {
-      dispatch(fetchErrorAct(groupKey, 'network error'));
+      dispatch(fetchErrorAct(groupKey, "network error"));
     });
 };
 
@@ -152,10 +154,7 @@ export const fetchAct = (groupKey: string): FetchAction => {
   };
 };
 
-export const fetchErrorAct = (
-  groupKey: string,
-  error: string
-): FetchErrorAction => {
+export const fetchErrorAct = (groupKey: string, error: string): FetchErrorAction => {
   return {
     type: ActionTypes.FETCH_ERROR,
     groupKey,
@@ -163,11 +162,7 @@ export const fetchErrorAct = (
   };
 };
 
-export const fetchedAct = (
-  groupKey: string,
-  entries: Entry[],
-  hasMore: boolean
-): FetchedAction => {
+export const fetchedAct = (groupKey: string, entries: Entry[], hasMore: boolean): FetchedAction => {
   return {
     type: ActionTypes.FETCHED,
     groupKey,

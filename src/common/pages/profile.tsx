@@ -9,7 +9,7 @@ import { AppState } from "../store";
 import { Filter, ListStyle, State as GlobalState } from "../store/global/types";
 import { State as TrendingTagsState } from "../store/trending-tags/types";
 import { State as EntriesState } from "../store/entries/types";
-import { State as AccountsState } from "../store/accounts/types";
+import { Account, State as AccountsState } from "../store/accounts/types";
 
 import { hideIntro, toggleListStyle, toggleTheme } from "../store/global/index";
 import { makeGroupKey, fetchEntries } from "../store/entries/index";
@@ -50,6 +50,7 @@ interface Props {
   toggleTheme: () => void;
   toggleListStyle: () => void;
   fetchEntries: (what: string, tag: string, more: boolean) => void;
+  addAccount: (data: Account) => void;
 }
 
 class ProfilePage extends Component<Props> {
@@ -73,7 +74,16 @@ class ProfilePage extends Component<Props> {
   }
 
   bottomReached = () => {
-    return true;
+    const { global, entries, fetchEntries } = this.props;
+    const { filter, tag } = global;
+    const groupKey = makeGroupKey(filter, tag);
+
+    const data = entries[groupKey];
+    const { loading, hasMore } = data;
+
+    if (!loading && hasMore) {
+      fetchEntries(filter, tag, true);
+    }
   };
 
   render() {
@@ -116,9 +126,19 @@ class ProfilePage extends Component<Props> {
           <div className="content-side">
             <ProfileMenu {...this.props} username={username} section={section} />
             <ProfileCover {...this.props} account={account} />
+
+            {loading && entryList.length === 0 ? <LinearProgress /> : ""}
+            <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>
+              <div className={_c(`entry-list-body ${global.listStyle === ListStyle.grid ? "grid-view" : ""}`)}>
+                {loading && entryList.length === 0 && <EntryListLoadingItem />}
+                <EntryListContent {...this.props} entries={entryList} />
+              </div>
+            </div>
+            {loading && entryList.length > 0 ? <LinearProgress /> : ""}
+            <DetectBottom onBottom={this.bottomReached} />
+            
           </div>
         </div>
-        <DetectBottom onBottom={this.bottomReached} />
       </>
     );
   }

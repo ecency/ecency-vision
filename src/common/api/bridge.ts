@@ -47,6 +47,9 @@ export const getAccountPosts = (
   bridgeApiCall<Entry[] | null>("bridge.get_account_posts", {
     sort,
     account,
+    start_author,
+    start_permlink,
+    limit,
     observer,
   });
 
