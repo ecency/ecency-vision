@@ -4,6 +4,10 @@ import EntryVotes, { EntryVotesDetail } from "./index";
 import renderer from "react-test-renderer";
 import { createBrowserHistory } from "history";
 
+jest.mock("../../constants/defaults.json", () => ({
+  imageServer: "https://images.esteem.app",
+}));
+
 const entry = {
   pending_payout_value: "14.057 HBD",
   author_payout_value: "0.000 HBD",

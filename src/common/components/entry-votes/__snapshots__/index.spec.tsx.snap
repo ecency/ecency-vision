@@ -86,7 +86,7 @@ exports[`(4) Render of detail with votes 1`] = `
               role="none"
               style={
                 Object {
-                  "backgroundImage": "url(https://images.hive.blog/u/user1/avatar/medium)",
+                  "backgroundImage": "url(https://images.esteem.app/u/user1/avatar/medium)",
                 }
               }
             />
@@ -115,7 +115,7 @@ exports[`(4) Render of detail with votes 1`] = `
               role="none"
               style={
                 Object {
-                  "backgroundImage": "url(https://images.hive.blog/u/user7/avatar/medium)",
+                  "backgroundImage": "url(https://images.esteem.app/u/user7/avatar/medium)",
                 }
               }
             />
@@ -144,7 +144,7 @@ exports[`(4) Render of detail with votes 1`] = `
               role="none"
               style={
                 Object {
-                  "backgroundImage": "url(https://images.hive.blog/u/user4/avatar/medium)",
+                  "backgroundImage": "url(https://images.esteem.app/u/user4/avatar/medium)",
                 }
               }
             />
@@ -173,7 +173,7 @@ exports[`(4) Render of detail with votes 1`] = `
               role="none"
               style={
                 Object {
-                  "backgroundImage": "url(https://images.hive.blog/u/user6/avatar/medium)",
+                  "backgroundImage": "url(https://images.esteem.app/u/user6/avatar/medium)",
                 }
               }
             />
@@ -202,7 +202,7 @@ exports[`(4) Render of detail with votes 1`] = `
               role="none"
               style={
                 Object {
-                  "backgroundImage": "url(https://images.hive.blog/u/user5/avatar/medium)",
+                  "backgroundImage": "url(https://images.esteem.app/u/user5/avatar/medium)",
                 }
               }
             />
@@ -231,7 +231,7 @@ exports[`(4) Render of detail with votes 1`] = `
               role="none"
               style={
                 Object {
-                  "backgroundImage": "url(https://images.hive.blog/u/user2/avatar/medium)",
+                  "backgroundImage": "url(https://images.esteem.app/u/user2/avatar/medium)",
                 }
               }
             />
@@ -330,7 +330,7 @@ exports[`(5) Move next on detail 1`] = `
               role="none"
               style={
                 Object {
-                  "backgroundImage": "url(https://images.hive.blog/u/user8/avatar/medium)",
+                  "backgroundImage": "url(https://images.esteem.app/u/user8/avatar/medium)",
                 }
               }
             />
@@ -359,7 +359,7 @@ exports[`(5) Move next on detail 1`] = `
               role="none"
               style={
                 Object {
-                  "backgroundImage": "url(https://images.hive.blog/u/user9/avatar/medium)",
+                  "backgroundImage": "url(https://images.esteem.app/u/user9/avatar/medium)",
                 }
               }
             />
@@ -388,7 +388,7 @@ exports[`(5) Move next on detail 1`] = `
               role="none"
               style={
                 Object {
-                  "backgroundImage": "url(https://images.hive.blog/u/user10/avatar/medium)",
+                  "backgroundImage": "url(https://images.esteem.app/u/user10/avatar/medium)",
                 }
               }
             />
@@ -417,7 +417,7 @@ exports[`(5) Move next on detail 1`] = `
               role="none"
               style={
                 Object {
-                  "backgroundImage": "url(https://images.hive.blog/u/user3/avatar/medium)",
+                  "backgroundImage": "url(https://images.esteem.app/u/user3/avatar/medium)",
                 }
               }
             />
@@ -516,7 +516,7 @@ exports[`(6) Move prev on detail 1`] = `
               role="none"
               style={
                 Object {
-                  "backgroundImage": "url(https://images.hive.blog/u/user1/avatar/medium)",
+                  "backgroundImage": "url(https://images.esteem.app/u/user1/avatar/medium)",
                 }
               }
             />
@@ -545,7 +545,7 @@ exports[`(6) Move prev on detail 1`] = `
               role="none"
               style={
                 Object {
-                  "backgroundImage": "url(https://images.hive.blog/u/user7/avatar/medium)",
+                  "backgroundImage": "url(https://images.esteem.app/u/user7/avatar/medium)",
                 }
               }
             />
@@ -574,7 +574,7 @@ exports[`(6) Move prev on detail 1`] = `
               role="none"
               style={
                 Object {
-                  "backgroundImage": "url(https://images.hive.blog/u/user4/avatar/medium)",
+                  "backgroundImage": "url(https://images.esteem.app/u/user4/avatar/medium)",
                 }
               }
             />
@@ -603,7 +603,7 @@ exports[`(6) Move prev on detail 1`] = `
               role="none"
               style={
                 Object {
-                  "backgroundImage": "url(https://images.hive.blog/u/user6/avatar/medium)",
+                  "backgroundImage": "url(https://images.esteem.app/u/user6/avatar/medium)",
                 }
               }
             />
@@ -632,7 +632,7 @@ exports[`(6) Move prev on detail 1`] = `
               role="none"
               style={
                 Object {
-                  "backgroundImage": "url(https://images.hive.blog/u/user5/avatar/medium)",
+                  "backgroundImage": "url(https://images.esteem.app/u/user5/avatar/medium)",
                 }
               }
             />
@@ -661,7 +661,7 @@ exports[`(6) Move prev on detail 1`] = `
               role="none"
               style={
                 Object {
-                  "backgroundImage": "url(https://images.hive.blog/u/user2/avatar/medium)",
+                  "backgroundImage": "url(https://images.esteem.app/u/user2/avatar/medium)",
                 }
               }
             />

@@ -3,6 +3,10 @@ import React from "react";
 import ProfileCard from "./index";
 import renderer from "react-test-renderer";
 
+jest.mock("../../constants/defaults.json", () => ({
+  imageServer: "https://images.esteem.app",
+}));
+
 const account = {
   active: {
     account_auths: [],

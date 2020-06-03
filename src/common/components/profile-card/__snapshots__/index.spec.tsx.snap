@@ -13,7 +13,7 @@ exports[`(1) Default render 1`] = `
       role="none"
       style={
         Object {
-          "backgroundImage": "url(https://images.hive.blog/u/talhasch/avatar/large)",
+          "backgroundImage": "url(https://images.esteem.app/u/talhasch/avatar/large)",
         }
       }
     />
@@ -195,7 +195,7 @@ exports[`(1) Default render 1`] = `
         />
       </svg>
       <a
-        href="https://ecency.com/@talhasch/rss"
+        href="undefined/@talhasch/rss"
         target="_external"
       >
         RSS feed
