@@ -40,7 +40,7 @@ export default class ProfileCard extends Component<Props> {
     const location = account?.profile?.location;
     const website = account?.profile?.website;
     const created = moment(new Date(account.created));
-    const rss_link = `${defaults.baseUrl}/@${account.name}/rss`;
+    const rss_link = `${defaults.base}/@${account.name}/rss`;
 
     return (
       <div className="profile-card">

@@ -8,6 +8,6 @@
     "symbol": "$"
   },
   "locale": "en-US",
-  "baseUrl": "https://ecency.com",
+  "base": "https://ecency.com",
   "imageServer":"https://images.hive.blog"
 }
