@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 
+import defaults from '../../constants/defaults.json';
+
 interface Props {
     username: string,
     size: string,
@@ -16,6 +18,7 @@ export default class UserAvatar extends Component<Props> {
         const {username, size, onClick} = this.props;
         const imgSize = size === 'xLarge' ? 'large' : 'medium';
         const cls = `user-avatar ${size}`;
+        const imageSrc = `${defaults.imageServer}/u/${username}/avatar/${imgSize}`;
 
         return (
             <span onClick={onClick}
@@ -23,7 +26,7 @@ export default class UserAvatar extends Component<Props> {
                   key="user-avatar-image"
                   className={cls}
                   style={{
-                      backgroundImage: `url('https://images.esteem.app/u/${username}/avatar/${imgSize}')`
+                      backgroundImage: `url(${imageSrc})`
                   }}
             />
         );

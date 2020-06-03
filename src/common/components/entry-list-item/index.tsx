@@ -10,13 +10,15 @@ import { State as GlobalState } from "../../store/global/types";
 
 import { Account } from "../../store/accounts/types";
 
+import defaults from '../../constants/defaults.json';
+
 import {
   catchPostImage,
   postBodySummary,
   setProxyBase,
   // @ts-ignore
 } from "@esteemapp/esteem-render-helpers";
-setProxyBase("https://images.hive.blog/");
+setProxyBase(defaults.imageServer);
 
 import ProfileLink from "../profile-link/index";
 import TagLink from "../tag-link/index";
