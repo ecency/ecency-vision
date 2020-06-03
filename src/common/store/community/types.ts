@@ -12,6 +12,7 @@ export interface Community {
   num_pending: number;
   subscribers: number;
   sum_pending: number;
+  settings?: any;
   team: Array<Array<string>>;
   title: string;
   type_id: number;
