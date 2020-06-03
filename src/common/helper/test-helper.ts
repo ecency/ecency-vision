@@ -47,19 +47,51 @@ export const entryInstance1: Entry = {
   replies: [],
   active_votes: [
     {
-      voter: "blocktrades",
+      voter: "user1",
       rshares: "34273117581576",
     },
     {
-      voter: "tombstone",
+      voter: "user2",
       rshares: "2269348064337",
-    }
+    },
+    {
+      voter: "user3",
+      rshares: "19969726098",
+    },
+    {
+      voter: "user4",
+      rshares: "725359024516",
+    },
+    {
+      voter: "user5",
+      rshares: "24029616493",
+    },
+    {
+      voter: "user6",
+      rshares: "1485954337",
+    },
+    {
+      voter: "user7",
+      rshares: "1281560607198",
+    },
+    {
+      voter: "user8",
+      rshares: "554323413016",
+    },
+    {
+      voter: "user9",
+      rshares: "140063022903",
+    },
+    {
+      voter: "user10",
+      rshares: "542424211",
+    },
   ],
   author_reputation: 76.58,
   stats: {
     hide: false,
     gray: false,
-    total_votes: 2,
+    total_votes: 10,
     flag_weight: 1.0,
   },
   beneficiaries: [

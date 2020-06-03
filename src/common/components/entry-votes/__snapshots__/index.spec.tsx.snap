@@ -97,123 +97,7 @@ exports[`(4) Render of detail with votes 1`] = `
         <td
           className="reward-cell"
         >
-          $ 13.671
-        </td>
-      </tr>
-      <tr>
-        <td
-          className="voter-cell"
-        >
-          <a
-            className="account"
-            href="/@user7"
-            onClick={[Function]}
-          >
-            <span
-              className="user-avatar small"
-              onClick={[Function]}
-              role="none"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.esteem.app/u/user7/avatar/medium)",
-                }
-              }
-            />
-             
-            user7
-          </a>
-        </td>
-        <td
-          className="reward-cell"
-        >
-          $ 0.281
-        </td>
-      </tr>
-      <tr>
-        <td
-          className="voter-cell"
-        >
-          <a
-            className="account"
-            href="/@user4"
-            onClick={[Function]}
-          >
-            <span
-              className="user-avatar small"
-              onClick={[Function]}
-              role="none"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.esteem.app/u/user4/avatar/medium)",
-                }
-              }
-            />
-             
-            user4
-          </a>
-        </td>
-        <td
-          className="reward-cell"
-        >
-          $ 0.040
-        </td>
-      </tr>
-      <tr>
-        <td
-          className="voter-cell"
-        >
-          <a
-            className="account"
-            href="/@user6"
-            onClick={[Function]}
-          >
-            <span
-              className="user-avatar small"
-              onClick={[Function]}
-              role="none"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.esteem.app/u/user6/avatar/medium)",
-                }
-              }
-            />
-             
-            user6
-          </a>
-        </td>
-        <td
-          className="reward-cell"
-        >
-          $ 0.036
-        </td>
-      </tr>
-      <tr>
-        <td
-          className="voter-cell"
-        >
-          <a
-            className="account"
-            href="/@user5"
-            onClick={[Function]}
-          >
-            <span
-              className="user-avatar small"
-              onClick={[Function]}
-              role="none"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.esteem.app/u/user5/avatar/medium)",
-                }
-              }
-            />
-             
-            user5
-          </a>
-        </td>
-        <td
-          className="reward-cell"
-        >
-          $ 0.010
+          $ 109.122
         </td>
       </tr>
       <tr>
@@ -242,7 +126,123 @@ exports[`(4) Render of detail with votes 1`] = `
         <td
           className="reward-cell"
         >
-          $ 0.008
+          $ 7.225
+        </td>
+      </tr>
+      <tr>
+        <td
+          className="voter-cell"
+        >
+          <a
+            className="account"
+            href="/@user7"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              role="none"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.esteem.app/u/user7/avatar/medium)",
+                }
+              }
+            />
+             
+            user7
+          </a>
+        </td>
+        <td
+          className="reward-cell"
+        >
+          $ 4.080
+        </td>
+      </tr>
+      <tr>
+        <td
+          className="voter-cell"
+        >
+          <a
+            className="account"
+            href="/@user4"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              role="none"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.esteem.app/u/user4/avatar/medium)",
+                }
+              }
+            />
+             
+            user4
+          </a>
+        </td>
+        <td
+          className="reward-cell"
+        >
+          $ 2.309
+        </td>
+      </tr>
+      <tr>
+        <td
+          className="voter-cell"
+        >
+          <a
+            className="account"
+            href="/@user8"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              role="none"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.esteem.app/u/user8/avatar/medium)",
+                }
+              }
+            />
+             
+            user8
+          </a>
+        </td>
+        <td
+          className="reward-cell"
+        >
+          $ 1.765
+        </td>
+      </tr>
+      <tr>
+        <td
+          className="voter-cell"
+        >
+          <a
+            className="account"
+            href="/@user9"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              role="none"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.esteem.app/u/user9/avatar/medium)",
+                }
+              }
+            />
+             
+            user9
+          </a>
+        </td>
+        <td
+          className="reward-cell"
+        >
+          $ 0.446
         </td>
       </tr>
     </tbody>
@@ -321,7 +321,7 @@ exports[`(5) Move next on detail 1`] = `
         >
           <a
             className="account"
-            href="/@user8"
+            href="/@user5"
             onClick={[Function]}
           >
             <span
@@ -330,76 +330,18 @@ exports[`(5) Move next on detail 1`] = `
               role="none"
               style={
                 Object {
-                  "backgroundImage": "url(https://images.esteem.app/u/user8/avatar/medium)",
+                  "backgroundImage": "url(https://images.esteem.app/u/user5/avatar/medium)",
                 }
               }
             />
              
-            user8
+            user5
           </a>
         </td>
         <td
           className="reward-cell"
         >
-          $ 0.006
-        </td>
-      </tr>
-      <tr>
-        <td
-          className="voter-cell"
-        >
-          <a
-            className="account"
-            href="/@user9"
-            onClick={[Function]}
-          >
-            <span
-              className="user-avatar small"
-              onClick={[Function]}
-              role="none"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.esteem.app/u/user9/avatar/medium)",
-                }
-              }
-            />
-             
-            user9
-          </a>
-        </td>
-        <td
-          className="reward-cell"
-        >
-          $ 0.003
-        </td>
-      </tr>
-      <tr>
-        <td
-          className="voter-cell"
-        >
-          <a
-            className="account"
-            href="/@user10"
-            onClick={[Function]}
-          >
-            <span
-              className="user-avatar small"
-              onClick={[Function]}
-              role="none"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.esteem.app/u/user10/avatar/medium)",
-                }
-              }
-            />
-             
-            user10
-          </a>
-        </td>
-        <td
-          className="reward-cell"
-        >
-          $ 0.001
+          $ 0.077
         </td>
       </tr>
       <tr>
@@ -428,7 +370,65 @@ exports[`(5) Move next on detail 1`] = `
         <td
           className="reward-cell"
         >
-          $ 0.000
+          $ 0.064
+        </td>
+      </tr>
+      <tr>
+        <td
+          className="voter-cell"
+        >
+          <a
+            className="account"
+            href="/@user6"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              role="none"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.esteem.app/u/user6/avatar/medium)",
+                }
+              }
+            />
+             
+            user6
+          </a>
+        </td>
+        <td
+          className="reward-cell"
+        >
+          $ 0.005
+        </td>
+      </tr>
+      <tr>
+        <td
+          className="voter-cell"
+        >
+          <a
+            className="account"
+            href="/@user10"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              role="none"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.esteem.app/u/user10/avatar/medium)",
+                }
+              }
+            />
+             
+            user10
+          </a>
+        </td>
+        <td
+          className="reward-cell"
+        >
+          $ 0.002
         </td>
       </tr>
     </tbody>
@@ -527,123 +527,7 @@ exports[`(6) Move prev on detail 1`] = `
         <td
           className="reward-cell"
         >
-          $ 13.671
-        </td>
-      </tr>
-      <tr>
-        <td
-          className="voter-cell"
-        >
-          <a
-            className="account"
-            href="/@user7"
-            onClick={[Function]}
-          >
-            <span
-              className="user-avatar small"
-              onClick={[Function]}
-              role="none"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.esteem.app/u/user7/avatar/medium)",
-                }
-              }
-            />
-             
-            user7
-          </a>
-        </td>
-        <td
-          className="reward-cell"
-        >
-          $ 0.281
-        </td>
-      </tr>
-      <tr>
-        <td
-          className="voter-cell"
-        >
-          <a
-            className="account"
-            href="/@user4"
-            onClick={[Function]}
-          >
-            <span
-              className="user-avatar small"
-              onClick={[Function]}
-              role="none"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.esteem.app/u/user4/avatar/medium)",
-                }
-              }
-            />
-             
-            user4
-          </a>
-        </td>
-        <td
-          className="reward-cell"
-        >
-          $ 0.040
-        </td>
-      </tr>
-      <tr>
-        <td
-          className="voter-cell"
-        >
-          <a
-            className="account"
-            href="/@user6"
-            onClick={[Function]}
-          >
-            <span
-              className="user-avatar small"
-              onClick={[Function]}
-              role="none"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.esteem.app/u/user6/avatar/medium)",
-                }
-              }
-            />
-             
-            user6
-          </a>
-        </td>
-        <td
-          className="reward-cell"
-        >
-          $ 0.036
-        </td>
-      </tr>
-      <tr>
-        <td
-          className="voter-cell"
-        >
-          <a
-            className="account"
-            href="/@user5"
-            onClick={[Function]}
-          >
-            <span
-              className="user-avatar small"
-              onClick={[Function]}
-              role="none"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.esteem.app/u/user5/avatar/medium)",
-                }
-              }
-            />
-             
-            user5
-          </a>
-        </td>
-        <td
-          className="reward-cell"
-        >
-          $ 0.010
+          $ 109.122
         </td>
       </tr>
       <tr>
@@ -672,7 +556,123 @@ exports[`(6) Move prev on detail 1`] = `
         <td
           className="reward-cell"
         >
-          $ 0.008
+          $ 7.225
+        </td>
+      </tr>
+      <tr>
+        <td
+          className="voter-cell"
+        >
+          <a
+            className="account"
+            href="/@user7"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              role="none"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.esteem.app/u/user7/avatar/medium)",
+                }
+              }
+            />
+             
+            user7
+          </a>
+        </td>
+        <td
+          className="reward-cell"
+        >
+          $ 4.080
+        </td>
+      </tr>
+      <tr>
+        <td
+          className="voter-cell"
+        >
+          <a
+            className="account"
+            href="/@user4"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              role="none"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.esteem.app/u/user4/avatar/medium)",
+                }
+              }
+            />
+             
+            user4
+          </a>
+        </td>
+        <td
+          className="reward-cell"
+        >
+          $ 2.309
+        </td>
+      </tr>
+      <tr>
+        <td
+          className="voter-cell"
+        >
+          <a
+            className="account"
+            href="/@user8"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              role="none"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.esteem.app/u/user8/avatar/medium)",
+                }
+              }
+            />
+             
+            user8
+          </a>
+        </td>
+        <td
+          className="reward-cell"
+        >
+          $ 1.765
+        </td>
+      </tr>
+      <tr>
+        <td
+          className="voter-cell"
+        >
+          <a
+            className="account"
+            href="/@user9"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              role="none"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.esteem.app/u/user9/avatar/medium)",
+                }
+              }
+            />
+             
+            user9
+          </a>
+        </td>
+        <td
+          className="reward-cell"
+        >
+          $ 0.446
         </td>
       </tr>
     </tbody>
