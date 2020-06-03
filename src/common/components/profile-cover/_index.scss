@@ -1,0 +1,29 @@
+.profile-cover {
+  display: none;
+  height: 134px;
+  position: relative;
+  width: 100%;
+
+  @media (min-width: $md-break) {
+    display: block;
+  }
+
+  .cover-image {
+    background-color: $white-three;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 3px;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+  }
+
+  .follow-controls-holder {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: 2;
+  }
+}

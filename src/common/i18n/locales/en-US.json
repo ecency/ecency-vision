@@ -51,5 +51,11 @@
     "section-comments": "Comments",
     "section-replies": "Replies",
     "section-wallet": "Wallet"
+  },
+  "follow-controls": {
+    "follow": "Follow",
+    "unFollow": "Unfollow",
+    "mute": "Mute",
+    "unMute": "Unmute"
   }
 }

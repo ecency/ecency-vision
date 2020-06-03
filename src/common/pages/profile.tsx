@@ -29,6 +29,7 @@ import EntryListContent from "../components/entry-list/index";
 
 import ProfileCard from "../components/profile-card";
 import ProfileMenu from "../components/profile-menu";
+import ProfileCover from "../components/profile-cover";
 
 import { _t } from "../i18n";
 
@@ -114,6 +115,7 @@ class ProfilePage extends Component<Props> {
           </div>
           <div className="content-side">
             <ProfileMenu {...this.props} username={username} section={section} />
+            <ProfileCover {...this.props} account={account} />
           </div>
         </div>
         <DetectBottom onBottom={this.bottomReached} />

@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+<div
+  className="profile-cover"
+>
+  <div
+    className="cover-image"
+    style={
+      Object {
+        "backgroundImage": "url('https://images.esteem.app/0x0/https://img.esteem.app/rwd380.jpg')",
+      }
+    }
+  />
+  <div
+    className="follow-controls-holder"
+  >
+    <button
+      className="btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Follow
+    </button>
+  </div>
+</div>
+`;
+
+exports[`(2) No bg image - Day theme 1`] = `
+<div
+  className="profile-cover"
+>
+  <div
+    className="cover-image"
+    style={
+      Object {
+        "backgroundImage": "url('cover-fallback-day.png')",
+      }
+    }
+  />
+  <div
+    className="follow-controls-holder"
+  >
+    <button
+      className="btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Follow
+    </button>
+  </div>
+</div>
+`;
+
+exports[`(3) No bg image - Night theme 1`] = `
+<div
+  className="profile-cover"
+>
+  <div
+    className="cover-image"
+    style={
+      Object {
+        "backgroundImage": "url('cover-fallback-night.png')",
+      }
+    }
+  />
+  <div
+    className="follow-controls-holder"
+  >
+    <button
+      className="btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Follow
+    </button>
+  </div>
+</div>
+`;
