@@ -19,6 +19,7 @@
 
   .content-side {
     flex-grow: 1;
+    padding-bottom: 60px;
 
     @media (min-width: $lg-break) {
       .entry-list {
