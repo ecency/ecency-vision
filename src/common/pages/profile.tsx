@@ -28,6 +28,7 @@ import DetectBottom from "../components/detect-bottom/index";
 import EntryListContent from "../components/entry-list/index";
 
 import ProfileCard from "../components/profile-card";
+import ProfileMenu from "../components/profile-menu";
 
 import { _t } from "../i18n";
 
@@ -78,6 +79,7 @@ class ProfilePage extends Component<Props> {
     const { global, entries, accounts, match } = this.props;
 
     const username = match.params.username.replace("@", "");
+    const { section = "blog" } = match.params;
     const account = accounts.find((x) => x.name === username);
 
     if (!account) {
@@ -109,6 +111,9 @@ class ProfilePage extends Component<Props> {
         <div className="app-content profile-page">
           <div className="profile-side">
             <ProfileCard {...this.props} account={account} />
+          </div>
+          <div className="content-side">
+            <ProfileMenu {...this.props} username={username} section={section} />
           </div>
         </div>
         <DetectBottom onBottom={this.bottomReached} />

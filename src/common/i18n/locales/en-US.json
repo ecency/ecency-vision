@@ -46,6 +46,10 @@
     "voting-power": "Voting Power",
     "post-count": "Post Count",
     "followers": "Followers",
-    "following": "Following"
+    "following": "Following",
+    "section-blog": "Blog",
+    "section-comments": "Comments",
+    "section-replies": "Replies",
+    "section-wallet": "Wallet"
   }
 }

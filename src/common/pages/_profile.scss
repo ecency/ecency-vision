@@ -1,6 +1,9 @@
 .profile-page {
-
   flex-direction: column;
+
+  @media (min-width: $md-break) {
+    flex-direction: row;
+  }
 
   .profile-side {
     
@@ -16,6 +19,5 @@
 
   .content-side {
     flex-grow: 1;
-  }
-  
+  } 
 }

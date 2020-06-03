@@ -1,0 +1,63 @@
+.profile-menu {
+  display: flex;
+  height: 50px;
+  margin-bottom: 10px;
+
+  @include themify(day) {
+    border-bottom: 1px solid $white-four;
+  }
+
+  @include themify(night) {
+    border-bottom: 1px solid $dark-two;
+  }
+
+  .profile-menu-items {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 6px;
+    width: 100%;
+
+    @media (min-width: $md-break) {
+      flex-shrink: 0;
+      padding: 0;
+      justify-content: flex-start;
+      width: auto;
+    }
+
+    .menu-item {
+      align-items: center;
+      color: $steel-grey;
+      display: flex;
+      font-size: 16px;
+      height: 50px;
+      padding: 0 12px;
+
+      @media (min-width: $xsm-break) {
+        padding: 0 16px;
+      }
+
+      @media (min-width: $md-break) {
+        margin-right: 16px;
+      }
+
+      &.selected-item {
+        border-bottom: 2px solid $dark-sky-blue;
+        color: $dark-sky-blue;
+        font-weight: 700;
+        pointer-events: none;
+      }
+    }
+  }
+
+  .page-tools {
+    align-items: center;
+    display: none;
+    flex-grow: 1;
+    justify-content: flex-end;
+    padding-right: 18px;
+
+    @media (min-width: $md-break) {
+      display: flex;
+    }
+  }
+}
