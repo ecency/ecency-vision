@@ -19,7 +19,7 @@ interface Props {
   toggleListStyle: () => void;
 }
 
-export default class ProfileLink extends Component<Props> {
+export default class ProfileMenu extends Component<Props> {
   shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
     return (
       !isEqual(this.props.username, nextProps.username) ||

@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Render 1`] = `
+<div
+  className="profile-menu"
+>
+  <div
+    className="profile-menu-items"
+  >
+    <a
+      className="menu-item selected-item"
+      href="/@username/blog"
+      onClick={[Function]}
+    >
+      Blog
+    </a>
+    <a
+      className="menu-item false"
+      href="/@username/comments"
+      onClick={[Function]}
+    >
+      Comments
+    </a>
+    <a
+      className="menu-item false"
+      href="/@username/replies"
+      onClick={[Function]}
+    >
+      Replies
+    </a>
+    <a
+      className="menu-item false"
+      href="/@username/wallet"
+      onClick={[Function]}
+    >
+      Wallet
+    </a>
+  </div>
+  <div
+    className="page-tools"
+  >
+    <span
+      className="list-style-toggle "
+      onClick={[Function]}
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M16,5V11H21V5M10,11H15V5H10M16,18H21V12H16M10,18H15V12H10M4,18H9V12H4M4,11H9V5H4V11Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+  </div>
+</div>
+`;
