@@ -54,6 +54,16 @@ interface Props {
 }
 
 class ProfilePage extends Component<Props> {
+  componentDidMount() {
+    const { match } = this.props;
+    if (match.params.section === "wallet") {
+      return;
+    }
+
+    const { global, fetchEntries } = this.props;
+    fetchEntries(global.filter, global.tag, false);
+  }
+
   componentDidUpdate(prevProps: Readonly<Props>): void {
     const { match } = this.props;
     if (match.params.section === "wallet") {
