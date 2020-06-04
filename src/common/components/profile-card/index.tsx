@@ -36,14 +36,20 @@ export default class ProfileCard extends Component<Props> {
     const vPower = 11; //vpMana(account);
     const name = account?.profile?.name;
     const about = account?.profile?.about;
+    
     const follow_stats = account?.follow_stats;
     const location = account?.profile?.location;
     const website = account?.profile?.website;
-    const created = moment(new Date()); // moment(new Date(account.created));
-    const reputation = "16"; // accountReputation(account.reputation);
-    const post_count = "1"; // numeral(account.post_count).format();
-    const follower_count = "1"; // numeral(follow_stats?.follower_count).format()
-    const following_count = "1"; // numeral(follow_stats?.following_count).format()
+
+    const reputation = account.reputation ? accountReputation(account.reputation) : undefined;
+    const post_count = account.post_count ? numeral(account.post_count).format() : undefined;
+    const follower_count = account.follow_stats?.follower_count
+      ? numeral(follow_stats?.follower_count).format()
+      : undefined;
+    const following_count = account.follow_stats?.following_count
+      ? numeral(follow_stats?.following_count).format()
+      : undefined;
+      
     const rss_link = `${defaults.base}/@${account.name}/rss`;
 
     return (
@@ -72,35 +78,37 @@ export default class ProfileCard extends Component<Props> {
           </div>
         )}
 
-        <div className="stats">
-          <div className="stat">
-            <Tooltip content={_t("profile.post-count")}>
-              <span>
-                {formatListBulledttedSvg} {post_count}
-              </span>
-            </Tooltip>
+        {follow_stats && (
+          <div className="stats">
+            <div className="stat">
+              <Tooltip content={_t("profile.post-count")}>
+                <span>
+                  {formatListBulledttedSvg} {post_count}
+                </span>
+              </Tooltip>
+            </div>
+
+            {follow_stats?.follower_count !== undefined && (
+              <div className="stat">
+                <Tooltip content={_t("profile.followers")}>
+                  <span>
+                    {accountMultipleSvg} {follower_count}
+                  </span>
+                </Tooltip>
+              </div>
+            )}
+
+            {follow_stats?.following_count !== undefined && (
+              <div className="stat">
+                <Tooltip content={_t("profile.following")}>
+                  <span>
+                    {accountPlusSvg} {following_count}
+                  </span>
+                </Tooltip>
+              </div>
+            )}
           </div>
-
-          {follow_stats?.follower_count !== undefined && (
-            <div className="stat">
-              <Tooltip content={_t("profile.followers")}>
-                <span>
-                  {accountMultipleSvg} {follower_count}
-                </span>
-              </Tooltip>
-            </div>
-          )}
-
-          {follow_stats?.following_count !== undefined && (
-            <div className="stat">
-              <Tooltip content={_t("profile.following")}>
-                <span>
-                  {accountPlusSvg} {following_count}
-                </span>
-              </Tooltip>
-            </div>
-          )}
-        </div>
+        )}
 
         <div className="extra-props">
           {location && (
@@ -116,9 +124,13 @@ export default class ProfileCard extends Component<Props> {
               </a>
             </div>
           )}
-          <div className="prop">
-            {calendarRangeSvg} {created.format("LL")}
-          </div>
+
+          {account.created && (
+            <div className="prop">
+              {calendarRangeSvg} {moment(new Date(account.created)).format("LL")}
+            </div>
+          )}
+
           <div className="prop">
             {rssSvg}
             <a target="_external" href={rss_link}>

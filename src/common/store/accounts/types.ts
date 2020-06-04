@@ -19,7 +19,14 @@ export interface Account {
 
   post_count?: string;
   created?: string;
+  reputation?: string;
   json_metadata?: string;
+  vesting_shares?: string;
+  delegated_vesting_shares?: string;
+  received_vesting_shares?: string;
+  vesting_withdraw_rate?: string;
+  to_withdraw?: number;
+  withdrawn?: number;
 
   profile?: AccountProfile;
   follow_stats?: AccountFollowStats;

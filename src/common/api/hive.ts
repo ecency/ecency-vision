@@ -5,6 +5,8 @@ import { Account, AccountProfile, AccountFollowStats } from "../store/accounts/t
 
 import SERVERS from "../constants/servers.json";
 
+import parseAsset from "../helper/parse-asset";
+
 export let client = new Client(SERVERS, {
   timeout: 3000,
 });
@@ -22,6 +24,12 @@ export const getAccounts = (usernames: string[]): Promise<Account[]> => {
         post_count: x.post_count,
         created: x.created,
         json_metadata: x.json_metadata,
+        vesting_shares: x.vesting_shares,
+        delegated_vesting_shares: x.delegated_vesting_shares,
+        received_vesting_shares: x.received_vesting_shares,
+        vesting_withdraw_rate: x.vesting_withdraw_rate,
+        to_withdraw: x.to_withdraw,
+        withdrawn: x.withdrawn,
       };
     })
   );
