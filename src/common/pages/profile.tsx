@@ -13,6 +13,7 @@ import { Account, State as AccountsState } from "../store/accounts/types";
 import { toggleListStyle, toggleTheme } from "../store/global";
 import { makeGroupKey, fetchEntries } from "../store/entries";
 import { addAccount } from "../store/accounts";
+import { fetchDynamicProps } from "../store/dynamic-props";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme";
@@ -48,12 +49,16 @@ interface Props {
   toggleListStyle: () => void;
   fetchEntries: (what: string, tag: string, more: boolean) => void;
   addAccount: (data: Account) => void;
+  fetchDynamicProps: () => void;
 }
 
 class ProfilePage extends Component<Props> {
   componentDidMount() {
     const { match } = this.props;
+
     if (match.params.section === "wallet") {
+      const { fetchDynamicProps } = this.props;
+      fetchDynamicProps();
       return;
     }
 
@@ -64,6 +69,8 @@ class ProfilePage extends Component<Props> {
   componentDidUpdate(prevProps: Readonly<Props>): void {
     const { match } = this.props;
     if (match.params.section === "wallet") {
+      const { fetchDynamicProps } = this.props;
+      fetchDynamicProps();
       return;
     }
 
@@ -164,6 +171,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       toggleListStyle,
       fetchEntries,
       addAccount,
+      fetchDynamicProps,
     },
     dispatch
   );

@@ -9,6 +9,23 @@ export let client = new Client(SERVERS, {
   timeout: 3000,
 });
 
+export interface DynamicGlobalProperties {
+  total_vesting_fund_steem: string;
+  total_vesting_shares: string;
+}
+
+export interface FeedHistory {
+  current_median_history: {
+    base: string;
+    quote: string;
+  };
+}
+
+export interface RewardFund {
+  recent_claims: string;
+  reward_balance: string;
+}
+
 export const getTrendingTags = (afterTag: string = "", limit: number = 50): Promise<string[]> =>
   client.database
     .call("get_trending_tags", [afterTag, limit])
@@ -54,15 +71,19 @@ export const getAccountFull = (username: string): Promise<Account> =>
 export const getFollowCount = (username: string): Promise<AccountFollowStats> =>
   client.database.call("get_follow_count", [username]);
 
+export const getDynamicGlobalProperties = (): Promise<DynamicGlobalProperties> =>
+  client.database.getDynamicGlobalProperties().then((r: any) => ({
+    total_vesting_fund_steem: r.total_vesting_fund_steem,
+    total_vesting_shares: r.total_vesting_shares,
+  }));
+
+export const getFeedHistory = (): Promise<FeedHistory> => client.database.call("get_feed_history");
+
+export const getRewardFund = (): Promise<RewardFund> => client.database.call("get_reward_fund", ["post"]);
+
 export const vpMana = (account: Account): number => {
   // @ts-ignore "Account" is compatible with dhive's "ExtendedAccount"
   const calc = client.rc.calculateVPMana(account);
   const { percentage } = calc;
   return percentage / 100;
 };
-
-export const getDynamicGlobalProperties = () => client.database.getDynamicGlobalProperties();
-
-export const getFeedHistory = () => client.database.call("get_feed_history");
-
-export const getRewardFund = () => client.database.call("get_reward_fund", ["post"]);

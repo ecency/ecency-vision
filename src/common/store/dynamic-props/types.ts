@@ -2,7 +2,6 @@ export interface DynamicProps {
   hivePerMVests: number;
   base: number;
   quote: number;
-  fundRecentClaims: number;
   fundRewardBalance: number;
 }
 
