@@ -72,7 +72,7 @@ export default class EntryListItem extends Component<Props> {
     const dateRelative = date.fromNow();
     const dateFormatted = date.format("LLLL");
 
-    const isPayoutDeclined = parseAsset(entry.max_accepted_payout).value === 0;
+    const isPayoutDeclined = parseAsset(entry.max_accepted_payout).amount === 0;
 
     const isChild = !!entry.parent_author;
 

@@ -29,9 +29,9 @@ interface Vote {
 
 export const prepareVotes = (entry: Entry, votes: Vote[]): Vote[] => {
   const totalPayout =
-    parseAsset(entry.pending_payout_value).value +
-    parseAsset(entry.author_payout_value).value +
-    parseAsset(entry.curator_payout_value).value;
+    parseAsset(entry.pending_payout_value).amount +
+    parseAsset(entry.author_payout_value).amount +
+    parseAsset(entry.curator_payout_value).amount;
 
   const voteRshares = votes.reduce((a, b) => a + parseFloat(b.rshares), 0);
   const ratio = totalPayout / voteRshares;

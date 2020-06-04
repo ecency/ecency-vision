@@ -25,10 +25,10 @@ export class EntryPayoutDetail extends Component<Props> {
 
     const payoutDate = moment(parseDate(entry.payout_at));
 
-    const pendingPayout = parseAsset(entry.pending_payout_value).value;
-    const promotedPayout = parseAsset(entry.promoted).value;
-    const authorPayout = parseAsset(entry.author_payout_value).value;
-    const curatorPayout = parseAsset(entry.curator_payout_value).value;
+    const pendingPayout = parseAsset(entry.pending_payout_value).amount;
+    const promotedPayout = parseAsset(entry.promoted).amount;
+    const authorPayout = parseAsset(entry.author_payout_value).amount;
+    const curatorPayout = parseAsset(entry.curator_payout_value).amount;
 
     return (
       <div className="payout-popover-content">
@@ -69,9 +69,9 @@ export default class EntryPayout extends Component<Props> {
   render() {
     const { entry } = this.props;
 
-    const pendingPayout = parseAsset(entry.pending_payout_value).value;
-    const authorPayout = parseAsset(entry.author_payout_value).value;
-    const curatorPayout = parseAsset(entry.curator_payout_value).value;
+    const pendingPayout = parseAsset(entry.pending_payout_value).amount;
+    const authorPayout = parseAsset(entry.author_payout_value).amount;
+    const curatorPayout = parseAsset(entry.curator_payout_value).amount;
 
     const totalPayout = pendingPayout + authorPayout + curatorPayout;
 
