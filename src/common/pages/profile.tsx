@@ -13,7 +13,7 @@ import { Account, State as AccountsState } from "../store/accounts/types";
 
 import { hideIntro, toggleListStyle, toggleTheme } from "../store/global/index";
 import { makeGroupKey, fetchEntries } from "../store/entries/index";
-import { fetchCommunity } from "../store/community/index";
+import { addAccount } from "../store/accounts/index";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
@@ -159,6 +159,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       toggleTheme,
       toggleListStyle,
       fetchEntries,
+      addAccount
     },
     dispatch
   );

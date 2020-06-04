@@ -25,7 +25,7 @@ export interface Account {
   vesting_withdraw_rate?: string;
   to_withdraw?: number;
   withdrawn?: number;
-  voting_manabar: {
+  voting_manabar?: {
     current_mana: string | number;
     last_update_time: number;
   };

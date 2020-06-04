@@ -3,8 +3,6 @@ import { History } from "history";
 
 import { Account } from "../../store/accounts/types";
 
-import { getAccountFull } from "../../api/hive";
-
 export const makePath = (username: string) => `/@${username}`;
 
 interface Props {
@@ -22,19 +20,14 @@ export default class ProfileLink extends Component<Props> {
 
     const { username, history, addAccount } = this.props;
 
-    /*
-    let profile;
-
-    try {
-      profile = await getAccountFull(username);
-    } catch (err) {
-      return;
-    }
-    */
-
     addAccount({ name: username });
 
     history.push(makePath(username));
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   render() {
