@@ -102,19 +102,6 @@ class ProfilePage extends Component<Props> {
       return <NotFound />;
     }
 
-    const { filter, tag } = global;
-
-    const groupKey = makeGroupKey(filter, tag);
-
-    const data = entries[groupKey];
-
-    if (data === undefined) {
-      return null;
-    }
-
-    const entryList = data?.entries;
-    const loading = data?.loading;
-
     //  Meta config
     const metaProps = {};
 
@@ -131,15 +118,35 @@ class ProfilePage extends Component<Props> {
           <div className="content-side">
             <ProfileMenu {...this.props} username={username} section={section} />
             <ProfileCover {...this.props} account={account} />
+            {(() => {
+              if (section === "wallet") {
+                return "wallet";
+              }
 
-            <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>
-              <div className={_c(`entry-list-body ${global.listStyle === ListStyle.grid ? "grid-view" : ""}`)}>
-                {loading && entryList.length === 0 && <EntryListLoadingItem />}
-                <EntryListContent {...this.props} entries={entryList} />
-              </div>
-            </div>
-            {loading && entryList.length > 0 ? <LinearProgress /> : ""}
-            <DetectBottom onBottom={this.bottomReached} />
+              const { filter, tag } = global;
+              const groupKey = makeGroupKey(filter, tag);
+              const data = entries[groupKey];
+
+              if (data !== undefined) {
+                const entryList = data?.entries;
+                const loading = data?.loading;
+
+                return (
+                  <>
+                    <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>
+                      <div className={_c(`entry-list-body ${global.listStyle === ListStyle.grid ? "grid-view" : ""}`)}>
+                        {loading && entryList.length === 0 && <EntryListLoadingItem />}
+                        <EntryListContent {...this.props} entries={entryList} />
+                      </div>
+                    </div>
+                    {loading && entryList.length > 0 ? <LinearProgress /> : ""}
+                    <DetectBottom onBottom={this.bottomReached} />
+                  </>
+                );
+              }
+
+              return null;
+            })()}
           </div>
         </div>
       </>
@@ -159,7 +166,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       toggleTheme,
       toggleListStyle,
       fetchEntries,
-      addAccount
+      addAccount,
     },
     dispatch
   );
