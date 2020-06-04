@@ -34,30 +34,12 @@ export default class ProfileCard extends Component<Props> {
     const { account } = this.props;
 
     const vPower = account.__loaded ? vpMana(account) : 100;
-    
-    const name = account?.profile?.name;
-    const about = account?.profile?.about;
-
-    const follow_stats = account?.follow_stats;
-    const location = account?.profile?.location;
-    const website = account?.profile?.website;
-
-    const reputation = account.reputation ? accountReputation(account.reputation) : undefined;
-    const post_count = account.post_count ? numeral(account.post_count).format() : undefined;
-    const follower_count = account.follow_stats?.follower_count
-      ? numeral(follow_stats?.follower_count).format()
-      : undefined;
-    const following_count = account.follow_stats?.following_count
-      ? numeral(follow_stats?.following_count).format()
-      : undefined;
-
-    const rss_link = `${defaults.base}/@${account.name}/rss`;
 
     return (
       <div className="profile-card">
         <div className="profile-avatar">
           <UserAvatar {...this.props} username={account.name} size="xLarge" />
-          {reputation && <div className="reputation">{reputation}</div>}
+          {account.reputation && <div className="reputation">{accountReputation(account.reputation)}</div>}
         </div>
 
         <div className="username">{account.name}</div>
@@ -72,38 +54,38 @@ export default class ProfileCard extends Component<Props> {
           </Tooltip>
         </div>
 
-        {(name || about) && (
+        {(account.profile?.name || account.profile?.about) && (
           <div className="basic-info">
-            {name && <div className="full-name">{name}</div>}
-            {about && <div className="about">{about}</div>}
+            {account.profile?.name && <div className="full-name">{account.profile.name}</div>}
+            {account.profile?.about && <div className="about">{account.profile.about}</div>}
           </div>
         )}
 
-        {follow_stats && (
+        {account.__loaded && (
           <div className="stats">
             <div className="stat">
               <Tooltip content={_t("profile.post-count")}>
                 <span>
-                  {formatListBulledttedSvg} {post_count}
+                  {formatListBulledttedSvg} {numeral(account.post_count).format()}
                 </span>
               </Tooltip>
             </div>
 
-            {follow_stats?.follower_count !== undefined && (
+            {account.follow_stats?.follower_count !== undefined && (
               <div className="stat">
                 <Tooltip content={_t("profile.followers")}>
                   <span>
-                    {accountMultipleSvg} {follower_count}
+                    {accountMultipleSvg} {numeral(account.follow_stats.follower_count).format()}
                   </span>
                 </Tooltip>
               </div>
             )}
 
-            {follow_stats?.following_count !== undefined && (
+            {account.follow_stats?.following_count !== undefined && (
               <div className="stat">
                 <Tooltip content={_t("profile.following")}>
                   <span>
-                    {accountPlusSvg} {following_count}
+                    {accountPlusSvg} {numeral(account.follow_stats.following_count).format()}
                   </span>
                 </Tooltip>
               </div>
@@ -112,16 +94,17 @@ export default class ProfileCard extends Component<Props> {
         )}
 
         <div className="extra-props">
-          {location && (
+          {account.profile?.location && (
             <div className="prop">
-              {nearMeSvg} {location}
+              {nearMeSvg} {account.profile.location}
             </div>
           )}
-          {website && (
+
+          {account.profile?.website && (
             <div className="prop">
               {earthSvg}
-              <a target="_external" className="website-link" href={website}>
-                {website}
+              <a target="_external" className="website-link" href={account.profile.website}>
+                {account.profile.website}
               </a>
             </div>
           )}
@@ -134,7 +117,7 @@ export default class ProfileCard extends Component<Props> {
 
           <div className="prop">
             {rssSvg}
-            <a target="_external" href={rss_link}>
+            <a target="_external" href={`${defaults.base}/@${account.name}/rss`}>
               RSS feed
             </a>
           </div>

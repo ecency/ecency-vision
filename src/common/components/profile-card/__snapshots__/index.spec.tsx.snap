@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`(1) Default render 1`] = `
+exports[`(1) Render with not loaded data 1`] = `
 <div
   className="profile-card"
 >
@@ -13,20 +13,15 @@ exports[`(1) Default render 1`] = `
       role="none"
       style={
         Object {
-          "backgroundImage": "url(https://images.esteem.app/u/talhasch/avatar/large)",
+          "backgroundImage": "url(https://images.esteem.app/u/user1/avatar/large)",
         }
       }
     />
-    <div
-      className="reputation"
-    >
-      38
-    </div>
   </div>
   <div
     className="username"
   >
-    talhasch
+    user1
   </div>
   <div
     className="vpower-line"
@@ -53,17 +48,94 @@ exports[`(1) Default render 1`] = `
     </span>
   </div>
   <div
+    className="extra-props"
+  >
+    <div
+      className="prop"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M6.18,15.64A2.18,2.18 0 0,1 8.36,17.82C8.36,19 7.38,20 6.18,20C5,20 4,19 4,17.82A2.18,2.18 0 0,1 6.18,15.64M4,4.44A15.56,15.56 0 0,1 19.56,20H16.73A12.73,12.73 0 0,0 4,7.27V4.44M4,10.1A9.9,9.9 0 0,1 13.9,20H11.07A7.07,7.07 0 0,0 4,12.93V10.1Z"
+          fill="currentColor"
+        />
+      </svg>
+      <a
+        href="https://ecency.com/@user1/rss"
+        target="_external"
+      >
+        RSS feed
+      </a>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(2) Render with loaded data 1`] = `
+<div
+  className="profile-card"
+>
+  <div
+    className="profile-avatar"
+  >
+    <span
+      className="user-avatar xLarge"
+      onClick={[Function]}
+      role="none"
+      style={
+        Object {
+          "backgroundImage": "url(https://images.esteem.app/u/user1/avatar/large)",
+        }
+      }
+    />
+    <div
+      className="reputation"
+    >
+      38
+    </div>
+  </div>
+  <div
+    className="username"
+  >
+    user1
+  </div>
+  <div
+    className="vpower-line"
+  >
+    <div
+      className="vpower-line-inner"
+      style={
+        Object {
+          "width": "94.68%",
+        }
+      }
+    />
+  </div>
+  <div
+    className="vpower-percentage"
+  >
+    <span
+      onBlur={[Function]}
+      onFocus={[Function]}
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
+    >
+      94.68
+    </span>
+  </div>
+  <div
     className="basic-info"
   >
     <div
       className="full-name"
     >
-      Talha B.
+      Foo Bar
     </div>
     <div
       className="about"
     >
-      Founder @runkod, Software Developer @esteemapp, Lifelong Learner
+      Lorem ipsum dolor sit amet
     </div>
   </div>
   <div
@@ -87,7 +159,7 @@ exports[`(1) Default render 1`] = `
           />
         </svg>
          
-        212
+        4,353
       </span>
     </div>
     <div
@@ -108,7 +180,7 @@ exports[`(1) Default render 1`] = `
           />
         </svg>
          
-        210
+        33,497
       </span>
     </div>
     <div
@@ -129,7 +201,7 @@ exports[`(1) Default render 1`] = `
           />
         </svg>
          
-        29
+        165
       </span>
     </div>
   </div>
@@ -148,7 +220,7 @@ exports[`(1) Default render 1`] = `
         />
       </svg>
        
-      Istanbul
+      Hive
     </div>
     <div
       className="prop"
@@ -163,10 +235,10 @@ exports[`(1) Default render 1`] = `
       </svg>
       <a
         className="website-link"
-        href="https://github.com/talhasch"
+        href="https://esteem.app"
         target="_external"
       >
-        https://github.com/talhasch
+        https://esteem.app
       </a>
     </div>
     <div
@@ -181,7 +253,7 @@ exports[`(1) Default render 1`] = `
         />
       </svg>
        
-      January 29, 2018
+      July 7, 2016
     </div>
     <div
       className="prop"
@@ -195,7 +267,7 @@ exports[`(1) Default render 1`] = `
         />
       </svg>
       <a
-        href="https://ecency.com/@talhasch/rss"
+        href="https://ecency.com/@user1/rss"
         target="_external"
       >
         RSS feed
