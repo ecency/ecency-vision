@@ -33,7 +33,8 @@ export default class ProfileCard extends Component<Props> {
   render() {
     const { account } = this.props;
 
-    const vPower = account.__loaded ? vpMana(account) : undefined;
+    const vPower = account.__loaded ? vpMana(account) : 100;
+    
     const name = account?.profile?.name;
     const about = account?.profile?.about;
 
@@ -56,24 +57,20 @@ export default class ProfileCard extends Component<Props> {
       <div className="profile-card">
         <div className="profile-avatar">
           <UserAvatar {...this.props} username={account.name} size="xLarge" />
-          <div className="reputation">{reputation}</div>
+          {reputation && <div className="reputation">{reputation}</div>}
         </div>
 
         <div className="username">{account.name}</div>
 
-        {vPower && (
-          <>
-            <div className="vpower-line">
-              <div className="vpower-line-inner" style={{ width: `${vPower}%` }} />
-            </div>
+        <div className="vpower-line">
+          <div className="vpower-line-inner" style={{ width: `${vPower}%` }} />
+        </div>
 
-            <div className="vpower-percentage">
-              <Tooltip content={_t("profile.voting-power")}>
-                <span>{vPower.toFixed(2)}</span>
-              </Tooltip>
-            </div>
-          </>
-        )}
+        <div className="vpower-percentage">
+          <Tooltip content={_t("profile.voting-power")}>
+            <span>{vPower.toFixed(2)}</span>
+          </Tooltip>
+        </div>
 
         {(name || about) && (
           <div className="basic-info">

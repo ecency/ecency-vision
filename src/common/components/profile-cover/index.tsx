@@ -27,18 +27,30 @@ interface Props {
   account: Account;
 }
 
+interface CSSProperties {
+  backgroundImage?: string
+}
+
 export default class ProfileCover extends Component<Props> {
   render() {
     const { global, account } = this.props;
+    let bgImage = "";
 
-    let bgImage = global.theme === "day" ? coverFallbackDay : coverFallbackNight;
-    if (account.profile?.cover_image) {
-      bgImage = proxifyImageSrc(account.profile.cover_image);
+    if (account.__loaded) {
+      bgImage = global.theme === "day" ? coverFallbackDay : coverFallbackNight;
+      if (account.profile?.cover_image) {
+        bgImage = proxifyImageSrc(account.profile.cover_image);
+      }
+    }
+
+    const style: CSSProperties = {};
+    if(bgImage){
+      style.backgroundImage  =  `url('${bgImage}')`
     }
 
     return (
       <div className="profile-cover">
-        <div className="cover-image" style={{ backgroundImage: `url('${bgImage}')` }} />
+        <div className="cover-image" style={style} />
         <div className="follow-controls-holder">
           <DownloadTrigger>
             <Button>{_t("follow-controls.follow")}</Button>
