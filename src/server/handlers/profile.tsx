@@ -1,13 +1,13 @@
 import express from "express";
 
-import { initialState as globalInitialState } from "../../common/store/global/index";
-import { initialState as entriesInitialState } from "../../common/store/entries/index";
-import { initialState as trendingTagsInitialState } from "../../common/store/trending-tags/index";
-import { initialState as communityInitialState } from "../../common/store/community/index";
+import { initialState as globalInitialState } from "../../common/store/global";
+import { initialState as dynamicPropsInitialState } from "../../common/store/dynamic-props";
+import { initialState as trendingTagsInitialState } from "../../common/store/trending-tags";
+import { initialState as communityInitialState } from "../../common/store/community";
 
 import { Filter } from "../../common/store/global/types";
 import { Entry } from "../../common/store/entries/types";
-import { makeGroupKey } from "../../common/store/entries/index";
+import { makeGroupKey } from "../../common/store/entries";
 
 import { readGlobalCookies, optimizeEntries } from "../helper";
 
@@ -71,6 +71,7 @@ export default async (req: express.Request, res: express.Response) => {
       ...readGlobalCookies(req),
       ...{ filter: Filter[filter], tag },
     },
+    dynamicProps: dynamicPropsInitialState,
     trendingTags: { ...trendingTagsInitialState },
     community: communityInitialState,
     accounts: accounts,

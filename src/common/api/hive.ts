@@ -60,3 +60,9 @@ export const vpMana = (account: Account): number => {
   const { percentage } = calc;
   return percentage / 100;
 };
+
+export const getDynamicGlobalProperties = () => client.database.getDynamicGlobalProperties();
+
+export const getFeedHistory = () => client.database.call("get_feed_history");
+
+export const getRewardFund = () => client.database.call("get_reward_fund", ["post"]);
