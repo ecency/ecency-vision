@@ -5,7 +5,6 @@
   width: 100%;
 
   .cover-image {
-    background-color: transparent;
     background-position: 50% 50%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -14,6 +13,14 @@
     position: absolute;
     width: 100%;
     z-index: 1;
+
+    @include themify(day) {
+      background-color: $white-three;
+    }
+
+    @include themify(night) {
+      background-color: $dark;
+    }
   }
 
   .follow-controls-holder {

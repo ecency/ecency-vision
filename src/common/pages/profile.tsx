@@ -73,7 +73,7 @@ class ProfilePage extends Component<Props> {
     const { global, fetchEntries } = this.props;
     const { global: pGlobal } = prevProps;
 
-    if (!(global.filter === pGlobal.filter)) {
+    if (!(global.filter === pGlobal.filter && global.tag === pGlobal.tag)) {
       fetchEntries(global.filter, global.tag, false);
     }
   }
