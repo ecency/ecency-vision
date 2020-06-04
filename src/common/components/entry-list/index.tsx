@@ -1,35 +1,36 @@
-import React, {Component} from 'react';
-import {History, Location} from 'history';
+import React, { Component } from "react";
+import { History, Location } from "history";
 
-import isEqual from 'react-fast-compare';
+import isEqual from "react-fast-compare";
 
-import {State as GlobalState} from '../../store/global/types';
-import {Account} from '../../store/accounts/types';
+import { State as GlobalState } from "../../store/global/types";
+import { Account } from "../../store/accounts/types";
 
-import {Entry} from '../../store/entries/types';
-import EntryListItem from '../entry-list-item/index';
+import { Entry } from "../../store/entries/types";
+import EntryListItem from "../entry-list-item/index";
 
 interface Props {
-    history: History,
-    location: Location,
-    global: GlobalState,
-    entries: Entry[],
-    addAccount: (data: Account) => void;
+  history: History;
+  location: Location;
+  global: GlobalState;
+  entries: Entry[];
+  addAccount: (data: Account) => void;
 }
 
 export default class EntryListContent extends Component<Props> {
-    shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<{}>, nextContext: any): boolean {
-        return !isEqual(this.props.entries, nextProps.entries)
-            || !isEqual(this.props.global, nextProps.global);
-    }
+  shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<{}>, nextContext: any): boolean {
+    return !isEqual(this.props.entries, nextProps.entries) || !isEqual(this.props.global, nextProps.global);
+  }
 
-    render() {
-        const {entries} = this.props;
+  render() {
+    const { entries } = this.props;
 
-        return (
-            <>
-                {entries.map(e => <EntryListItem key={`${e.author}-${e.permlink}`} {...this.props} entry={e}/>)}
-            </>
-        )
-    }
+    return (
+      <>
+        {entries.map((e) => (
+          <EntryListItem key={`${e.author}-${e.permlink}`} {...this.props} entry={e} />
+        ))}
+      </>
+    );
+  }
 }

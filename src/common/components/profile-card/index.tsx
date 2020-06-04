@@ -33,20 +33,24 @@ export default class ProfileCard extends Component<Props> {
   render() {
     const { account } = this.props;
 
-    const vPower = vpMana(account);
+    const vPower = 11; //vpMana(account);
     const name = account?.profile?.name;
     const about = account?.profile?.about;
     const follow_stats = account?.follow_stats;
     const location = account?.profile?.location;
     const website = account?.profile?.website;
-    const created = moment(new Date(account.created));
+    const created = moment(new Date()); // moment(new Date(account.created));
+    const reputation = "16"; // accountReputation(account.reputation);
+    const post_count = "1"; // numeral(account.post_count).format();
+    const follower_count = "1"; // numeral(follow_stats?.follower_count).format()
+    const following_count = "1"; // numeral(follow_stats?.following_count).format()
     const rss_link = `${defaults.base}/@${account.name}/rss`;
 
     return (
       <div className="profile-card">
         <div className="profile-avatar">
           <UserAvatar {...this.props} username={account.name} size="xLarge" />
-          <div className="reputation">{accountReputation(account.reputation)}</div>
+          <div className="reputation">{reputation}</div>
         </div>
 
         <div className="username">{account.name}</div>
@@ -72,7 +76,7 @@ export default class ProfileCard extends Component<Props> {
           <div className="stat">
             <Tooltip content={_t("profile.post-count")}>
               <span>
-                {formatListBulledttedSvg} {numeral(account.post_count).format()}
+                {formatListBulledttedSvg} {post_count}
               </span>
             </Tooltip>
           </div>
@@ -81,7 +85,7 @@ export default class ProfileCard extends Component<Props> {
             <div className="stat">
               <Tooltip content={_t("profile.followers")}>
                 <span>
-                  {accountMultipleSvg} {numeral(follow_stats?.follower_count).format()}
+                  {accountMultipleSvg} {follower_count}
                 </span>
               </Tooltip>
             </div>
@@ -91,7 +95,7 @@ export default class ProfileCard extends Component<Props> {
             <div className="stat">
               <Tooltip content={_t("profile.following")}>
                 <span>
-                  {accountPlusSvg} {numeral(follow_stats?.following_count).format()}
+                  {accountPlusSvg} {following_count}
                 </span>
               </Tooltip>
             </div>

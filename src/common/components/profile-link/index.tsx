@@ -22,6 +22,7 @@ export default class ProfileLink extends Component<Props> {
 
     const { username, history, addAccount } = this.props;
 
+    /*
     let profile;
 
     try {
@@ -29,8 +30,9 @@ export default class ProfileLink extends Component<Props> {
     } catch (err) {
       return;
     }
+    */
 
-    addAccount(profile!);
+    addAccount({ name: username });
 
     history.push(makePath(username));
   };

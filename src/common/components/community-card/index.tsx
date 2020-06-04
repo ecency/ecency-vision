@@ -46,15 +46,11 @@ export default class CommunityCard extends Component<Props> {
         <div className="community-panel">
           <div className="section-about">{community.about}</div>
           <div className="section-stats">
-            <div className="stat">
-              {_t("community.n-subscribers", { n: subscribers })}
-            </div>
+            <div className="stat">{_t("community.n-subscribers", { n: subscribers })}</div>
             <div className="stat">
               {"$"} {_t("community.n-rewards", { n: rewards })}
             </div>
-            <div className="stat">
-              {_t("community.n-authors", { n: authors })}
-            </div>
+            <div className="stat">{_t("community.n-authors", { n: authors })}</div>
           </div>
           <div className="section-controls">
             <DownloadTrigger>

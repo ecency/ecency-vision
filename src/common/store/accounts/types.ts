@@ -14,7 +14,13 @@ export interface AccountFollowStats {
   following_count: number;
 }
 
-export interface Account extends ExtendedAccount {
+export interface Account {
+  name: string;
+
+  post_count?: string;
+  created?: string;
+  json_metadata?: string;
+
   profile?: AccountProfile;
   follow_stats?: AccountFollowStats;
 }

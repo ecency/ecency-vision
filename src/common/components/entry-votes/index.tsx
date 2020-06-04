@@ -143,17 +143,12 @@ export class EntryVotesDetail extends Component<DetailProps, DetailState> {
                         <td className="voter-cell">
                           <ProfileLink {...this.props} username={v.voter}>
                             <span className="account">
-                              <UserAvatar username={v.voter} size="small" />{" "}
-                              {v.voter}
+                              <UserAvatar username={v.voter} size="small" /> {v.voter}
                             </span>
                           </ProfileLink>
                         </td>
                         <td className="reward-cell">
-                          <FormattedCurrency
-                            {...this.props}
-                            value={v.reward}
-                            fixAt={3}
-                          />
+                          <FormattedCurrency {...this.props} value={v.reward} fixAt={3} />
                         </td>
                       </tr>
                     ))}
@@ -164,8 +159,7 @@ export class EntryVotesDetail extends Component<DetailProps, DetailState> {
                     {chevronLeftSvg}
                   </Button>
                   <div className="page-numbers">
-                    <span className="current-page"> {page + 1}</span> /{" "}
-                    {totalPages}
+                    <span className="current-page"> {page + 1}</span> / {totalPages}
                   </div>
                   <Button size="sm" disabled={!hasNext} onClick={this.next}>
                     {chevronRightSvg}
@@ -221,9 +215,7 @@ export default class EntryVotes extends Component<Props, State> {
 
     return (
       <>
-        <Tooltip
-          content={_t("entry-votes.title", { n: entry.stats.total_votes })}
-        >
+        <Tooltip content={_t("entry-votes.title", { n: entry.stats.total_votes })}>
           <span className="inner-btn" onClick={this.toggle}>
             {child}
           </span>
@@ -231,9 +223,7 @@ export default class EntryVotes extends Component<Props, State> {
         {visible && (
           <Modal onHide={this.toggle} show={true} centered={true}>
             <Modal.Header closeButton={true}>
-              <Modal.Title>
-                {_t("entry-votes.title", { n: entry.stats.total_votes })}
-              </Modal.Title>
+              <Modal.Title>{_t("entry-votes.title", { n: entry.stats.total_votes })}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
               <EntryVotesDetail {...this.props} entry={entry} />
