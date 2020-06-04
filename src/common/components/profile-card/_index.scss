@@ -1,4 +1,8 @@
 .profile-card {
+  @media (min-width: $md-break) {
+    padding-top: 16px;
+  }
+
   .profile-avatar {
     width: 128px;
     height: 128px;

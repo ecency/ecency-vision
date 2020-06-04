@@ -37,7 +37,8 @@
       }
 
       @media (min-width: $md-break) {
-        margin-right: 16px;
+        margin-right: 32px;
+        padding: 0;
       }
 
       &.selected-item {
