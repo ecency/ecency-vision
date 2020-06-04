@@ -2,6 +2,8 @@ import { Dispatch } from "redux";
 
 import { Account, State, Actions, ActionTypes, AddAction } from "./types";
 
+import { getAccountFull } from "../../api/hive";
+
 export const initialState: State = [];
 
 export default (state: State = initialState, action: Actions): State => {
@@ -9,11 +11,8 @@ export default (state: State = initialState, action: Actions): State => {
     case ActionTypes.ADD: {
       const { data } = action;
 
-      if (state.find((x) => x.name === data.name) !== undefined) {
-        return state;
-      }
-
-      return [...state, data];
+      return [...state.filter((x) => x.name !== data.name), data];
+      
     }
     default:
       return state;
@@ -23,6 +22,10 @@ export default (state: State = initialState, action: Actions): State => {
 /* Actions */
 export const addAccount = (data: Account) => (dispatch: Dispatch) => {
   dispatch(addAct(data));
+
+  getAccountFull(data.name).then((a) => {
+    dispatch(addAct(a));
+  });
 };
 
 /* Action Creators */

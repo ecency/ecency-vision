@@ -1,5 +1,3 @@
-import { ExtendedAccount } from "@esteemapp/dhive";
-
 export interface AccountProfile {
   about?: string;
   cover_image?: string;
@@ -27,9 +25,15 @@ export interface Account {
   vesting_withdraw_rate?: string;
   to_withdraw?: number;
   withdrawn?: number;
+  voting_manabar: {
+    current_mana: string | number;
+    last_update_time: number;
+  };
 
   profile?: AccountProfile;
   follow_stats?: AccountFollowStats;
+
+  __loaded?: boolean;
 }
 
 export type State = Account[];

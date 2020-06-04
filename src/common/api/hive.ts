@@ -5,8 +5,6 @@ import { Account, AccountProfile, AccountFollowStats } from "../store/accounts/t
 
 import SERVERS from "../constants/servers.json";
 
-import parseAsset from "../helper/parse-asset";
-
 export let client = new Client(SERVERS, {
   timeout: 3000,
 });
@@ -17,21 +15,22 @@ export const getTrendingTags = (afterTag: string = "", limit: number = 50): Prom
     .then((t: TrendingTag[]) => t.filter((x) => x.name !== "").map((x) => x.name));
 
 export const getAccounts = (usernames: string[]): Promise<Account[]> => {
-  return client.database.getAccounts(usernames).then((resp: any[]) =>
-    resp.map((x) => {
-      return {
-        name: x.name,
-        post_count: x.post_count,
-        created: x.created,
-        json_metadata: x.json_metadata,
-        vesting_shares: x.vesting_shares,
-        delegated_vesting_shares: x.delegated_vesting_shares,
-        received_vesting_shares: x.received_vesting_shares,
-        vesting_withdraw_rate: x.vesting_withdraw_rate,
-        to_withdraw: x.to_withdraw,
-        withdrawn: x.withdrawn,
-      };
-    })
+  return client.database.getAccounts(usernames).then((resp: any[]): Account[] =>
+    resp.map((x) => ({
+      name: x.name,
+      post_count: x.post_count,
+      created: x.created,
+      reputation: x.reputation,
+      json_metadata: x.json_metadata,
+      vesting_shares: x.vesting_shares,
+      delegated_vesting_shares: x.delegated_vesting_shares,
+      received_vesting_shares: x.received_vesting_shares,
+      vesting_withdraw_rate: x.vesting_withdraw_rate,
+      to_withdraw: x.to_withdraw,
+      withdrawn: x.withdrawn,
+      voting_manabar: x.voting_manabar,
+      __loaded: true,
+    }))
   );
 };
 
@@ -56,10 +55,8 @@ export const getFollowCount = (username: string): Promise<AccountFollowStats> =>
   client.database.call("get_follow_count", [username]);
 
 export const vpMana = (account: Account): number => {
-  return 0;
-  /*
+  // @ts-ignore "Account" is compatible with dhive's "ExtendedAccount"
   const calc = client.rc.calculateVPMana(account);
   const { percentage } = calc;
   return percentage / 100;
-  */
 };

@@ -33,10 +33,10 @@ export default class ProfileCard extends Component<Props> {
   render() {
     const { account } = this.props;
 
-    const vPower = 11; //vpMana(account);
+    const vPower = account.__loaded ? vpMana(account) : undefined;
     const name = account?.profile?.name;
     const about = account?.profile?.about;
-    
+
     const follow_stats = account?.follow_stats;
     const location = account?.profile?.location;
     const website = account?.profile?.website;
@@ -49,7 +49,7 @@ export default class ProfileCard extends Component<Props> {
     const following_count = account.follow_stats?.following_count
       ? numeral(follow_stats?.following_count).format()
       : undefined;
-      
+
     const rss_link = `${defaults.base}/@${account.name}/rss`;
 
     return (
@@ -61,15 +61,19 @@ export default class ProfileCard extends Component<Props> {
 
         <div className="username">{account.name}</div>
 
-        <div className="vpower-line">
-          <div className="vpower-line-inner" style={{ width: `${vPower}%` }} />
-        </div>
+        {vPower && (
+          <>
+            <div className="vpower-line">
+              <div className="vpower-line-inner" style={{ width: `${vPower}%` }} />
+            </div>
 
-        <div className="vpower-percentage">
-          <Tooltip content={_t("profile.voting-power")}>
-            <span>{vPower.toFixed(2)}</span>
-          </Tooltip>
-        </div>
+            <div className="vpower-percentage">
+              <Tooltip content={_t("profile.voting-power")}>
+                <span>{vPower.toFixed(2)}</span>
+              </Tooltip>
+            </div>
+          </>
+        )}
 
         {(name || about) && (
           <div className="basic-info">
