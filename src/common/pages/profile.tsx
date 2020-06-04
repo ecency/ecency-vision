@@ -6,30 +6,27 @@ import { History, Location } from "history";
 import { match } from "react-router";
 
 import { AppState } from "../store";
-import { Filter, ListStyle, State as GlobalState } from "../store/global/types";
-import { State as TrendingTagsState } from "../store/trending-tags/types";
+import { ListStyle, State as GlobalState } from "../store/global/types";
 import { State as EntriesState } from "../store/entries/types";
 import { Account, State as AccountsState } from "../store/accounts/types";
 
-import { hideIntro, toggleListStyle, toggleTheme } from "../store/global/index";
-import { makeGroupKey, fetchEntries } from "../store/entries/index";
-import { addAccount } from "../store/accounts/index";
+import { toggleListStyle, toggleTheme } from "../store/global";
+import { makeGroupKey, fetchEntries } from "../store/entries";
+import { addAccount } from "../store/accounts";
 
 import Meta from "../components/meta";
-import Theme from "../components/theme/index";
-import NavBar from "../components/navbar/index";
+import Theme from "../components/theme";
+import NavBar from "../components/navbar";
 import NotFound from "../components/404";
-import Intro from "../components/intro/index";
-import DropDown from "../components/dropdown/index";
-import ListStyleToggle from "../components/list-style-toggle/index";
 import LinearProgress from "../components/linear-progress/index";
-import EntryListLoadingItem from "../components/entry-list-loading-item/index";
-import DetectBottom from "../components/detect-bottom/index";
-import EntryListContent from "../components/entry-list/index";
+import EntryListLoadingItem from "../components/entry-list-loading-item";
+import DetectBottom from "../components/detect-bottom";
+import EntryListContent from "../components/entry-list";
 
 import ProfileCard from "../components/profile-card";
 import ProfileMenu from "../components/profile-menu";
 import ProfileCover from "../components/profile-cover";
+import Wallet from "../components/wallet";
 
 import { _t } from "../i18n";
 
@@ -120,7 +117,7 @@ class ProfilePage extends Component<Props> {
             <ProfileCover {...this.props} account={account} />
             {(() => {
               if (section === "wallet") {
-                return "wallet";
+                return <Wallet {...this.props} account={account} />;
               }
 
               const { filter, tag } = global;
