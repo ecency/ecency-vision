@@ -121,7 +121,7 @@ class ProfilePage extends Component<Props> {
           </div>
           <div className="content-side">
             <ProfileMenu {...this.props} username={username} section={section} />
-            <ProfileCover {...this.props} account={account} />
+            {section !== "wallet" && <ProfileCover {...this.props} account={account} />}
             {(() => {
               if (section === "wallet") {
                 return <Wallet {...this.props} account={account} />;

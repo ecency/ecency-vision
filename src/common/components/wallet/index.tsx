@@ -31,13 +31,13 @@ export default class ProfilePage extends Component<Props> {
     }
 
     const { hivePerMVests, base, quote } = dynamicProps;
-    const { currency } = global;
+    const { currencySymbol } = global;
 
     const rewardHiveBalance = parseAsset(account.reward_steem_balance).amount;
     const rewardHbdBalance = parseAsset(account.reward_sbd_balance).amount;
-    const rewardVestingSteem = parseAsset(account.reward_vesting_steem).amount;
+    const rewardVestingHive = parseAsset(account.reward_vesting_steem).amount;
 
-    const hasUnclaimedRewards = rewardHiveBalance > 0 || rewardHbdBalance > 0 || rewardVestingSteem > 0;
+    const hasUnclaimedRewards = rewardHiveBalance > 0 || rewardHbdBalance > 0 || rewardVestingHive > 0;
 
     const balance = parseAsset(account.balance).amount;
 
@@ -79,14 +79,17 @@ export default class ProfilePage extends Component<Props> {
               <div className="rewards">
                 {rewardHiveBalance > 0 && <span className="reward-type">{`${rewardHiveBalance} HIVE`}</span>}
                 {rewardHbdBalance > 0 && <span className="reward-type">{`${rewardHbdBalance} HBD`}</span>}
-                {rewardVestingSteem > 0 && <span className="reward-type">{`${rewardVestingSteem} HP`}</span>}
+                {rewardVestingHive > 0 && <span className="reward-type">{`${rewardVestingHive} HP`}</span>}
               </div>
             </div>
           )}
 
           <div className="estimated-value">
             <Tooltip content={_t("wallet.estimated-value")}>
-              <span>{numeral(estimatedValue).format("$0,0.000")}</span>
+              <span>
+                {currencySymbol}
+                {numeral(estimatedValue).format("0,0.000")}
+              </span>
             </Tooltip>
           </div>
         </div>
