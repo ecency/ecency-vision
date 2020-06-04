@@ -11,7 +11,13 @@ export const initialState: State = {
 };
 
 export default (state: State = initialState, action: Actions): State => {
-  return state;
+  switch (action.type) {
+    case ActionTypes.FETCHED: {
+      return { ...action.props };
+    }
+    default:
+      return state;
+  }
 };
 
 /* Actions */
@@ -20,7 +26,6 @@ export const fetchDynamicProps = () => (dispatch: Dispatch) => {
 };
 
 /* Action Creators */
-
 export const fetchedAct = (props: DynamicProps): FetchedAction => {
   return {
     type: ActionTypes.FETCHED,
