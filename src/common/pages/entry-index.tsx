@@ -13,6 +13,7 @@ import { State as CommunityState } from "../store/community/types";
 import { hideIntro, toggleListStyle, toggleTheme } from "../store/global/index";
 import { makeGroupKey, fetchEntries } from "../store/entries/index";
 import { fetchCommunity } from "../store/community/index";
+import { fetchTrendingTags } from "../store/trending-tags";
 import { addAccount } from "../store/accounts/index";
 
 import Meta from "../components/meta";
@@ -45,17 +46,19 @@ interface Props {
   toggleListStyle: () => void;
   fetchEntries: (what: string, tag: string, more: boolean) => void;
   fetchCommunity: () => void;
+  fetchTrendingTags: () => void;
   addAccount: (data: Account) => void;
 }
 
 class EntryIndexPage extends Component<Props> {
   componentDidMount() {
-    const { global, fetchEntries } = this.props;
+    const { global, fetchEntries, fetchTrendingTags } = this.props;
     fetchEntries(global.filter, global.tag, false);
+    fetchTrendingTags();
   }
 
   componentDidUpdate(prevProps: Readonly<Props>): void {
-    const { global, fetchEntries, fetchCommunity } = this.props;
+    const { global, fetchEntries, fetchCommunity, fetchTrendingTags } = this.props;
     const { global: pGlobal } = prevProps;
 
     // page changed.
@@ -195,6 +198,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       toggleListStyle,
       fetchEntries,
       fetchCommunity,
+      fetchTrendingTags,
       addAccount,
     },
     dispatch

@@ -42,7 +42,7 @@ export default (state: State = initialState, action: Actions): State => {
 }
 
 /* Actions */
-export const fetchTrendingTags = (afterTag: string = '', limit: number = 100) =>
+export const fetchTrendingTags = () =>
     (dispatch: Dispatch, getState: () => AppState) => {
         const {trendingTags} = getState();
 
@@ -52,7 +52,7 @@ export const fetchTrendingTags = (afterTag: string = '', limit: number = 100) =>
 
         dispatch(fetchAct());
 
-        return getTrendingTags(afterTag, limit).then(tags => {
+        return getTrendingTags().then(tags => {
             dispatch(fetchedAct(tags));
             return tags
         }).catch(() => {
