@@ -27,10 +27,6 @@ interface Props {
   account: Account;
 }
 
-interface CSSProperties {
-  backgroundImage?: string
-}
-
 export default class ProfileCover extends Component<Props> {
   render() {
     const { global, account } = this.props;
@@ -43,9 +39,9 @@ export default class ProfileCover extends Component<Props> {
       }
     }
 
-    const style: CSSProperties = {};
-    if(bgImage){
-      style.backgroundImage  =  `url('${bgImage}')`
+    let style = {};
+    if (bgImage) {
+      style = { backgroundImage: `url('${bgImage}')` };
     }
 
     return (

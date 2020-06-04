@@ -8,20 +8,17 @@ it("1- default state", () => {
   expect(state).toMatchSnapshot();
 });
 
-it("2- addAct", () => {
-  // @ts-ignore
-  state = reducer(state, addAct({ id: 12, name: "user1" }));
+it("2- addAct - should add account", () => {
+  state = reducer(state, addAct({ name: "user1" }));
   expect(state).toMatchSnapshot();
 });
 
-it("3- addAct", () => {
-  // @ts-ignore
-  state = reducer(state, addAct({ id: 13, name: "user2" }));
+it("3- addAct - should add account", () => {
+  state = reducer(state, addAct({ name: "user2" }));
   expect(state).toMatchSnapshot();
 });
 
-it("4- addAct", () => {
-  // @ts-ignore
-  state = reducer(state, addAct({ id: 12, name: "user1" }));
+it("4- addAct - should update account", () => {
+  state = reducer(state, addAct({ name: "user1", post_count: 10, __loaded: true }));
   expect(state).toMatchSnapshot();
 });

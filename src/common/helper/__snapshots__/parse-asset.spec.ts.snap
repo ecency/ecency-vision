@@ -2,14 +2,14 @@
 
 exports[`Parse token (1) should parse 1`] = `
 Object {
+  "amount": 18.494,
   "symbol": "HBD",
-  "value": 18.494,
 }
 `;
 
 exports[`Parse token (2) should parse 1`] = `
 Object {
+  "amount": 0.012,
   "symbol": "HIVE",
-  "value": 0.012,
 }
 `;

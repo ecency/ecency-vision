@@ -274,8 +274,7 @@ exports[`(4) Render of detail with votes 1`] = `
          
         1
       </span>
-       /
-       
+       / 
       2
     </div>
     <button
@@ -460,8 +459,7 @@ exports[`(5) Move next on detail 1`] = `
          
         2
       </span>
-       /
-       
+       / 
       2
     </div>
     <button
@@ -704,8 +702,7 @@ exports[`(6) Move prev on detail 1`] = `
          
         1
       </span>
-       /
-       
+       / 
       2
     </div>
     <button

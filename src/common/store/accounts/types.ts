@@ -15,7 +15,7 @@ export interface AccountFollowStats {
 export interface Account {
   name: string;
 
-  post_count?: string;
+  post_count?: number;
   created?: string;
   reputation?: string;
   json_metadata?: string;

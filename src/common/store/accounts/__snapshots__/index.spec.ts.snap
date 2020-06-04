@@ -2,37 +2,34 @@
 
 exports[`1- default state 1`] = `Array []`;
 
-exports[`2- addAct 1`] = `
+exports[`2- addAct - should add account 1`] = `
 Array [
   Object {
-    "id": 12,
     "name": "user1",
   },
 ]
 `;
 
-exports[`3- addAct 1`] = `
+exports[`3- addAct - should add account 1`] = `
 Array [
   Object {
-    "id": 12,
     "name": "user1",
   },
   Object {
-    "id": 13,
     "name": "user2",
   },
 ]
 `;
 
-exports[`4- addAct 1`] = `
+exports[`4- addAct - should update account 1`] = `
 Array [
   Object {
-    "id": 12,
-    "name": "user1",
+    "name": "user2",
   },
   Object {
-    "id": 13,
-    "name": "user2",
+    "__loaded": true,
+    "name": "user1",
+    "post_count": 10,
   },
 ]
 `;
