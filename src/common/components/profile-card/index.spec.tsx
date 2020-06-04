@@ -10,6 +10,9 @@ jest.mock("../../constants/defaults.json", () => ({
   base: "https://ecency.com",
 }));
 
+// Mock for manabar calculation
+Date.now = jest.fn(() => 1591276905521); 
+
 it("(1) Render with not loaded data", () => {
   const account: Account = {
     name: "user1",

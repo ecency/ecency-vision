@@ -107,7 +107,7 @@ exports[`(2) Render with loaded data 1`] = `
       className="vpower-line-inner"
       style={
         Object {
-          "width": "94.68%",
+          "width": "94.76%",
         }
       }
     />
@@ -121,7 +121,7 @@ exports[`(2) Render with loaded data 1`] = `
       onMouseOut={[Function]}
       onMouseOver={[Function]}
     >
-      94.68
+      94.76
     </span>
   </div>
   <div
