@@ -9,6 +9,7 @@ import { AppState } from "../store";
 import { ListStyle, State as GlobalState } from "../store/global/types";
 import { State as EntriesState } from "../store/entries/types";
 import { Account, State as AccountsState } from "../store/accounts/types";
+import { DynamicProps } from "../store/dynamic-props/types";
 
 import { toggleListStyle, toggleTheme } from "../store/global";
 import { makeGroupKey, fetchEntries } from "../store/entries";
@@ -43,6 +44,7 @@ interface Props {
   location: Location;
   match: match<MatchParams>;
   global: GlobalState;
+  dynamicProps: DynamicProps;
   entries: EntriesState;
   accounts: AccountsState;
   toggleTheme: () => void;
@@ -69,8 +71,6 @@ class ProfilePage extends Component<Props> {
   componentDidUpdate(prevProps: Readonly<Props>): void {
     const { match } = this.props;
     if (match.params.section === "wallet") {
-      const { fetchDynamicProps } = this.props;
-      fetchDynamicProps();
       return;
     }
 
@@ -162,6 +162,7 @@ const mapStateToProps = (state: AppState) => ({
   global: state.global,
   entries: state.entries,
   accounts: state.accounts,
+  dynamicProps: state.dynamicProps,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>

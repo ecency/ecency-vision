@@ -19,7 +19,15 @@ export interface Account {
   created?: string;
   reputation?: string;
   json_metadata?: string;
+  reward_steem_balance?: string;
+  reward_sbd_balance?: string;
+  reward_vesting_steem?: string;
+  balance?: string;
   vesting_shares?: string;
+  sbd_balance?: string;
+  savings_balance?: string;
+  savings_sbd_balance?: string;
+  next_vesting_withdrawal?: string;
   delegated_vesting_shares?: string;
   received_vesting_shares?: string;
   vesting_withdraw_rate?: string;

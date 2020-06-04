@@ -52,6 +52,10 @@
     "section-replies": "Replies",
     "section-wallet": "Wallet"
   },
+  "wallet": {
+    "unclaimed-rewards": "Unclaimed rewards",
+    "estimated-value": "The estimated value is based on a 7 day average value of HIVE."
+  },
   "follow-controls": {
     "follow": "Follow",
     "unFollow": "Unfollow",

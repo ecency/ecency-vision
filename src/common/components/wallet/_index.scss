@@ -1,0 +1,99 @@
+.wallet {
+  .first-row {
+    padding: 4px 0 14px 0;
+    text-align: center;
+
+    @media (min-width: $md-break) {
+      align-items: center;
+      display: flex;
+    }
+
+    @include themify(day) {
+      border-bottom: 1px solid $white-four;
+    }
+
+    @include themify(night) {
+      border-bottom: 1px solid $dark-two;
+    }
+
+    .unclaimed-rewards {
+      @media (min-width: $md-break) {
+        display: flex;
+        align-items: center;
+      }
+
+      .title {
+        font-size: 16px;
+        font-weight: 500;
+        margin-right: 17px;
+        margin-bottom: 10px;
+
+        @media (min-width: $md-break) {
+          margin-bottom: 0;
+        }
+
+        @media (min-width: $lg-break) {
+          font-size: 18px;
+          font-weight: 700;
+        }
+
+        @include themify(day) {
+          color: $steel-grey;
+        }
+
+        @include themify(night) {
+          color: $metallic-blue;
+        }
+      }
+
+      .rewards {
+        align-items: center;
+        background-color: $dark-sky-blue;
+        border-radius: 25px;
+        color: $white;
+        display: inline-flex;
+        font-weight: 500;
+        height: 51px;
+        padding: 0 8px;
+        text-align: center;
+        margin-bottom: 20px;
+
+        @media (min-width: $md-break) {
+          display: flex;
+          margin-bottom: 0;
+        }
+
+        @media (min-width: $lg-break) {
+          font-weight: 700;
+          padding: 0 12px;
+        }
+
+        .reward-type {
+          margin-right: 10px;
+
+          &:last-of-type {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+
+    .estimated-value {
+      color: $dark-sky-blue;
+      flex-grow: 1;
+      font-size: 20px;
+      font-weight: 500;
+      cursor: default;
+
+      @media (min-width: $md-break) {
+        text-align: right;
+        font-size: 22px;
+        font-weight: 700;
+      }
+
+      @media (min-width: $lg-break) {
+        font-size: 24px;
+      }
+    }
+  }
+}
