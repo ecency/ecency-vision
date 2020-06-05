@@ -56,16 +56,13 @@ interface Props {
 
 class ProfilePage extends Component<Props> {
   componentDidMount() {
-    const { match } = this.props;
+    const { global, fetchDynamicProps } = this.props;
 
-    if (match.params.section === "wallet") {
-      const { fetchDynamicProps } = this.props;
-      fetchDynamicProps();
-      return;
-    }
-
-    const { global, fetchEntries } = this.props;
+    // fetch posts
     fetchEntries(global.filter, global.tag, false);
+
+    // fetch global props for wallet
+    fetchDynamicProps();
   }
 
   componentDidUpdate(prevProps: Readonly<Props>): void {
