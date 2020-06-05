@@ -54,7 +54,21 @@
   },
   "wallet": {
     "unclaimed-rewards": "Unclaimed rewards",
-    "estimated-value": "The estimated value is based on a 7 day average value of HIVE."
+    "estimated": "Estimated Account Value",
+    "estimated-description": "The estimated value is based on a 7 day average value of HIVE.",
+    "hive": "HIVE",
+    "hive-description": "HIVE are tradeable tokens that may be transferred at anytime.HIVE can be converted to Hive Power in a process called powering up.",
+    "hive-power": "HIVE POWER",
+    "hive-power-description": "Hive Power are influence tokens that earn more power for holding long term and voting on posts. The more Hive Power one holds, the more one can influence other’s rewards and earn rewards for accurate voting.",
+    "hive-power-delegated": "Delegated Hive Power",
+    "hive-power-received": "Received Hive Power",
+    "next-power-down-amount": "Next power down amount",
+    "hive-power-total": "Total Hive Power",
+    "hive-dollars": "HIVE DOLLARS",
+    "hive-dollars-description": "Tokens worth about $1.00 of HIVE.",
+    "savings": "SAVINGS",
+    "savings-description": "Balance subject to 3 day withdraw waiting period.",
+    "next-power-down": "The next power down is {{time}} {{amount}}"
   },
   "follow-controls": {
     "follow": "Follow",

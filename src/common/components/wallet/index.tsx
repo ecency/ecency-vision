@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 import numeral from "numeral";
 
+import moment from "moment";
+
 import { State as GlobalState } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
@@ -72,27 +74,121 @@ export default class ProfilePage extends Component<Props> {
 
     return (
       <div className="wallet">
-        <div className="first-row">
-          {hasUnclaimedRewards && (
-            <div className="unclaimed-rewards">
-              <div className="title">{_t("wallet.unclaimed-rewards")}</div>
-              <div className="rewards">
-                {rewardHiveBalance > 0 && <span className="reward-type">{`${rewardHiveBalance} HIVE`}</span>}
-                {rewardHbdBalance > 0 && <span className="reward-type">{`${rewardHbdBalance} HBD`}</span>}
-                {rewardVestingHive > 0 && <span className="reward-type">{`${rewardVestingHive} HP`}</span>}
-              </div>
-            </div>
-          )}
-
-          <div className="estimated-value">
-            <Tooltip content={_t("wallet.estimated-value")}>
-              <span>
-                {currencySymbol}
-                {numeral(estimatedValue).format("0,0.000")}
-              </span>
-            </Tooltip>
+        <div className="balance-row estimated">
+          <div className="balance-info">
+            <div className="title">{_t("wallet.estimated")}</div>
+            <div className="description" dangerouslySetInnerHTML={{ __html: _t("wallet.estimated-description") }} />
+          </div>
+          <div className="balance-values">
+            <span>
+              {currencySymbol} {numeral(estimatedValue).format("0,0.000")}
+            </span>
           </div>
         </div>
+
+        <div className="balance-row hive alternative">
+          <div className="balance-info">
+            <div className="title">{_t("wallet.hive")}</div>
+            <div className="description" dangerouslySetInnerHTML={{ __html: _t("wallet.hive-description") }} />
+          </div>
+          <div className="balance-values">
+            <span>
+              {" "}
+              {numeral(balance).format("0,0.000")} {"HIVE"}
+            </span>
+          </div>
+        </div>
+
+        <div className="balance-row hive-power">
+          <div className="balance-info">
+            <div className="title">{_t("wallet.hive-power")}</div>
+            <div className="description" dangerouslySetInnerHTML={{ __html: _t("wallet.hive-power-description") }} />
+          </div>
+
+          <div className="balance-values">
+            <div className="amount">
+              {numeral(vestsToSp(vestingShares, hivePerMVests)).format("0,0.000")} {"HP"}
+            </div>
+
+            {vestingSharesDelegated > 0 && (
+              <div className="amount delegated-shares">
+                <Tooltip content={_t("wallet.hive-power-delegated")} placement="left">
+                  <span className="btn-delegated">
+                    {"-"} {numeral(vestsToSp(vestingSharesDelegated, hivePerMVests)).format("0,0.000")} {"HP"}
+                  </span>
+                </Tooltip>
+              </div>
+            )}
+
+            {vestingSharesReceived > 0 && (
+              <div className="amount received-shares">
+                <Tooltip content={_t("wallet.hive-power-received")} placement="left">
+                  <span className="btn-delegatee" role="none">
+                    {"+"} {numeral(vestsToSp(vestingSharesReceived, hivePerMVests)).format("0,0.000")}
+                    {"HP"}
+                  </span>
+                </Tooltip>
+              </div>
+            )}
+
+            {vestingSharesWithdrawal > 0 && (
+              <div className="amount next-power-down-amount">
+                <Tooltip content={_t("wallet.next-power-down-amount")} placement="left">
+                  <span>
+                    {"-"} {numeral(vestsToSp(vestingSharesWithdrawal, hivePerMVests)).format("0,0.000")} {"HP"}
+                  </span>
+                </Tooltip>
+              </div>
+            )}
+
+            {(vestingSharesDelegated > 0 || vestingSharesReceived > 0 || vestingSharesWithdrawal > 0) && (
+              <div className="amount total-hive-power">
+                <Tooltip content={_t("wallet.hive-power-total")} placement="left">
+                  <span>
+                    {"="} {numeral(vestsToSp(vestingSharesTotal, hivePerMVests)).format("0,0.000")} {"HP"}
+                  </span>
+                </Tooltip>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div className="balance-row hive-dollars alternative">
+          <div className="balance-info">
+            <div className="title">{_t("wallet.hive-dollars")}</div>
+            <div className="description" dangerouslySetInnerHTML={{ __html: _t("wallet.hive-dollars-description") }} />
+          </div>
+          <div className="balance-values">
+            <span>
+              {"$"}
+              {numeral(sbdBalance).format("0,0.000")}
+            </span>
+          </div>
+        </div>
+
+        <div className="balance-row savings">
+          <div className="balance-info">
+            <div className="title">{_t("wallet.savings")}</div>
+            <div className="description" dangerouslySetInnerHTML={{ __html: _t("wallet.savings-description") }} />
+          </div>
+          <div className="balance-values">
+            <div className="amount">
+              {numeral(savingBalance).format("0,0.000")} {"HIVE"}
+            </div>
+            <div className="amount">
+              {"$"} {numeral(savingBalanceSbd).format("0,0.000")}
+            </div>
+          </div>
+        </div>
+
+        {showPowerDown && (
+          <div className="next-power-down">
+            {_t("wallet.next-power-down", {
+              time: moment(nextVestingWithdrawal).fromNow(),
+              amount: `${numeral(vestsToSp(vestingSharesWithdrawal, hivePerMVests)).format("0,0.000")} HIVE`,
+            })}
+          </div>
+        )}
       </div>
     );
   }

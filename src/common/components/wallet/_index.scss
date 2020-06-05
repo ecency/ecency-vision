@@ -1,99 +1,88 @@
 .wallet {
-  .first-row {
-    padding: 4px 0 14px 0;
-    text-align: center;
+  margin-top: 20px;
 
-    @media (min-width: $md-break) {
-      align-items: center;
-      display: flex;
-    }
+  .balance-row {
+    border-radius: 12px;
+    margin-bottom: 20px;
+    padding: 20px 10px;
+    display: flex;
+    justify-content: space-around;
+    cursor: default;
 
-    @include themify(day) {
-      border-bottom: 1px solid $white-four;
-    }
-
-    @include themify(night) {
-      border-bottom: 1px solid $dark-two;
-    }
-
-    .unclaimed-rewards {
-      @media (min-width: $md-break) {
-        display: flex;
-        align-items: center;
-      }
+    .balance-info {
+      flex-grow: 1;
 
       .title {
-        font-size: 16px;
         font-weight: 500;
-        margin-right: 17px;
         margin-bottom: 10px;
 
-        @media (min-width: $md-break) {
-          margin-bottom: 0;
-        }
-
-        @media (min-width: $lg-break) {
-          font-size: 18px;
-          font-weight: 700;
-        }
-
         @include themify(day) {
-          color: $steel-grey;
+          color: $charcoal-grey;
         }
 
         @include themify(night) {
-          color: $metallic-blue;
+          color: $powder-blue;
         }
       }
 
-      .rewards {
-        align-items: center;
-        background-color: $dark-sky-blue;
-        border-radius: 25px;
-        color: $white;
-        display: inline-flex;
-        font-weight: 500;
-        height: 51px;
-        padding: 0 8px;
-        text-align: center;
-        margin-bottom: 20px;
+      .description {
+        font-size: 94%;
+        color: $steel-grey;
+        line-height: 1.5;
+        max-width: 600px;
+      }
+    }
 
-        @media (min-width: $md-break) {
-          display: flex;
-          margin-bottom: 0;
+    .balance-values {
+      color: $dark-sky-blue;
+      font-weight: 500;
+      display: flex;
+      flex-direction: column;
+
+      .amount {
+        display: flex;
+        justify-content: flex-end;
+        &:not(:last-child) {
+          margin-bottom: 12px;
         }
 
-        @media (min-width: $lg-break) {
-          font-weight: 700;
-          padding: 0 12px;
+        &.delegated-shares,
+        &.received-shares,
+        &.next-power-down-amount {
+          color: $steel-grey;
         }
 
-        .reward-type {
-          margin-right: 10px;
-
-          &:last-of-type {
-            margin-right: 0;
-          }
+        .btn-delegated,
+        .btn-delegatee {
+          border-bottom: 1px dashed $steel-grey;
+          cursor: pointer;
         }
       }
     }
 
-    .estimated-value {
-      color: $dark-sky-blue;
-      flex-grow: 1;
-      font-size: 20px;
-      font-weight: 500;
-      cursor: default;
-
-      @media (min-width: $md-break) {
-        text-align: right;
-        font-size: 22px;
-        font-weight: 700;
+    &.alternative {
+      @include themify(day) {
+        background: $white-three;
       }
 
-      @media (min-width: $lg-break) {
-        font-size: 24px;
+      @include themify(night) {
+        background: lighten($dark-six, 4);
       }
+    }
+  }
+
+  .next-power-down {
+    align-items: center;
+    box-sizing: content-box;
+    display: flex;
+    padding: 10px;
+
+    @include themify(day) {
+      color: $steel-grey;
+    }
+
+    @include themify(night) {
+      color: $metallic-blue;
     }
   }
 }
