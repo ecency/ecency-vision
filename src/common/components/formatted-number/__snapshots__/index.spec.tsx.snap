@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`(1) FormattedNumber 1`] = `"1,250.000"`;
-
-exports[`(2) FormattedNumber - with fraction digits 1`] = `"1,250.00"`;
-
-exports[`(3) FormattedNumber - with prefix 1`] = `"$ 100.000"`;
-
-exports[`(4) FormattedNumber - with suffix 1`] = `"HIVE 100.000"`;

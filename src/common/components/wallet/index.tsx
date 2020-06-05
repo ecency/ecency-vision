@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 
-import numeral from "numeral";
-
 import moment from "moment";
 
 import { State as GlobalState } from "../../store/global/types";
@@ -9,12 +7,14 @@ import { Account } from "../../store/accounts/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
 
 import Tooltip from "../tooltip";
+import FormattedCurrency from "../formatted-currency";
 
 import parseAsset from "../../helper/parse-asset";
 import { vestsToSp } from "../../helper/vesting";
-
 import parseDate from "../../helper/parse-date";
 import isEmptyDate from "../../helper/is-empty-date";
+
+import formattedNumber from "../../util/formatted-number";
 
 import { _t } from "../../i18n";
 
@@ -26,20 +26,22 @@ interface Props {
 
 export default class ProfilePage extends Component<Props> {
   render() {
-    const { global, dynamicProps, account } = this.props;
+    const { dynamicProps, account } = this.props;
 
     if (!account.__loaded) {
       return null;
     }
 
     const { hivePerMVests, base, quote } = dynamicProps;
-    const { currencySymbol } = global;
 
+    /* 
+    Will need this
     const rewardHiveBalance = parseAsset(account.reward_steem_balance).amount;
     const rewardHbdBalance = parseAsset(account.reward_sbd_balance).amount;
     const rewardVestingHive = parseAsset(account.reward_vesting_steem).amount;
-
+    
     const hasUnclaimedRewards = rewardHiveBalance > 0 || rewardHbdBalance > 0 || rewardVestingHive > 0;
+    */
 
     const balance = parseAsset(account.balance).amount;
 
@@ -81,7 +83,7 @@ export default class ProfilePage extends Component<Props> {
           </div>
           <div className="balance-values">
             <div className="amount estimated-value">
-              {currencySymbol} {numeral(estimatedValue).format("0,0.000")}
+              <FormattedCurrency {...this.props} value={estimatedValue} fixAt={3} />
             </div>
           </div>
         </div>
@@ -92,10 +94,7 @@ export default class ProfilePage extends Component<Props> {
             <div className="description" dangerouslySetInnerHTML={{ __html: _t("wallet.hive-description") }} />
           </div>
           <div className="balance-values">
-            <div className="amount">
-              {" "}
-              {numeral(balance).format("0,0.000")} {"HIVE"}
-            </div>
+            <div className="amount">{formattedNumber(balance, { suffix: "HIVE" })}</div>
           </div>
         </div>
 
@@ -106,15 +105,13 @@ export default class ProfilePage extends Component<Props> {
           </div>
 
           <div className="balance-values">
-            <div className="amount">
-              {numeral(vestsToSp(vestingShares, hivePerMVests)).format("0,0.000")} {"HP"}
-            </div>
+            <div className="amount">{formattedNumber(vestsToSp(vestingShares, hivePerMVests), { suffix: "HP" })}</div>
 
             {vestingSharesDelegated > 0 && (
               <div className="amount delegated-shares">
                 <Tooltip content={_t("wallet.hive-power-delegated")} placement="left">
                   <span className="btn-delegated">
-                    {"-"} {numeral(vestsToSp(vestingSharesDelegated, hivePerMVests)).format("0,0.000")} {"HP"}
+                    {formattedNumber(vestsToSp(vestingSharesDelegated, hivePerMVests), { prefix: "-", suffix: "HP" })}
                   </span>
                 </Tooltip>
               </div>
@@ -124,8 +121,7 @@ export default class ProfilePage extends Component<Props> {
               <div className="amount received-shares">
                 <Tooltip content={_t("wallet.hive-power-received")} placement="left">
                   <span className="btn-delegatee" role="none">
-                    {"+"} {numeral(vestsToSp(vestingSharesReceived, hivePerMVests)).format("0,0.000")}
-                    {"HP"}
+                    {formattedNumber(vestsToSp(vestingSharesReceived, hivePerMVests), { prefix: "+", suffix: "HP" })}
                   </span>
                 </Tooltip>
               </div>
@@ -135,7 +131,7 @@ export default class ProfilePage extends Component<Props> {
               <div className="amount next-power-down-amount">
                 <Tooltip content={_t("wallet.next-power-down-amount")} placement="left">
                   <span>
-                    {"-"} {numeral(vestsToSp(vestingSharesWithdrawal, hivePerMVests)).format("0,0.000")} {"HP"}
+                    {formattedNumber(vestsToSp(vestingSharesWithdrawal, hivePerMVests), { prefix: "-", suffix: "HP" })}
                   </span>
                 </Tooltip>
               </div>
@@ -145,7 +141,7 @@ export default class ProfilePage extends Component<Props> {
               <div className="amount total-hive-power">
                 <Tooltip content={_t("wallet.hive-power-total")} placement="left">
                   <span>
-                    {"="} {numeral(vestsToSp(vestingSharesTotal, hivePerMVests)).format("0,0.000")} {"HP"}
+                    {formattedNumber(vestsToSp(vestingSharesTotal, hivePerMVests), { prefix: "=", suffix: "HP" })}
                   </span>
                 </Tooltip>
               </div>
@@ -159,10 +155,7 @@ export default class ProfilePage extends Component<Props> {
             <div className="description" dangerouslySetInnerHTML={{ __html: _t("wallet.hive-dollars-description") }} />
           </div>
           <div className="balance-values">
-            <span>
-              {"$"}
-              {numeral(sbdBalance).format("0,0.000")}
-            </span>
+            <div className="amount">{formattedNumber(sbdBalance, { prefix: "$" })}</div>
           </div>
         </div>
 
@@ -172,12 +165,8 @@ export default class ProfilePage extends Component<Props> {
             <div className="description" dangerouslySetInnerHTML={{ __html: _t("wallet.savings-description") }} />
           </div>
           <div className="balance-values">
-            <div className="amount">
-              {numeral(savingBalance).format("0,0.000")} {"HIVE"}
-            </div>
-            <div className="amount">
-              {"$"} {numeral(savingBalanceSbd).format("0,0.000")}
-            </div>
+            <div className="amount">{formattedNumber(savingBalance, { suffix: "HIVE" })}</div>
+            <div className="amount">{formattedNumber(savingBalanceSbd, { suffix: "$" })}</div>
           </div>
         </div>
 
@@ -185,7 +174,7 @@ export default class ProfilePage extends Component<Props> {
           <div className="next-power-down">
             {_t("wallet.next-power-down", {
               time: moment(nextVestingWithdrawal).fromNow(),
-              amount: `${numeral(vestsToSp(vestingSharesWithdrawal, hivePerMVests)).format("0,0.000")} HIVE`,
+              amount: formattedNumber(vestsToSp(vestingSharesWithdrawal, hivePerMVests), { prefix: "HIVE" }),
             })}
           </div>
         )}
