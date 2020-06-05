@@ -58,7 +58,7 @@ export default class ProfilePage extends Component<Props> {
     const totalSbd = sbdBalance + savingBalanceSbd;
 
     const estimatedValue = totalHive * pricePerHive + totalSbd;
-    const showPowerDown = account.next_vesting_withdrawal !== "1969-12-31T23:59:59";
+    const showPowerDown = !isEmptyDate(account.next_vesting_withdrawal);
     const nextVestingWithdrawal = parseDate(account.next_vesting_withdrawal!);
 
     // Math.min: 14th week powerdown: https://github.com/steemit/steem/issues/3237
@@ -74,32 +74,32 @@ export default class ProfilePage extends Component<Props> {
 
     return (
       <div className="wallet">
-        <div className="balance-row estimated">
+        <div className="balance-row estimated alternative">
           <div className="balance-info">
             <div className="title">{_t("wallet.estimated")}</div>
             <div className="description" dangerouslySetInnerHTML={{ __html: _t("wallet.estimated-description") }} />
           </div>
           <div className="balance-values">
-            <span>
+            <div className="amount estimated-value">
               {currencySymbol} {numeral(estimatedValue).format("0,0.000")}
-            </span>
+            </div>
           </div>
         </div>
 
-        <div className="balance-row hive alternative">
+        <div className="balance-row hive">
           <div className="balance-info">
             <div className="title">{_t("wallet.hive")}</div>
             <div className="description" dangerouslySetInnerHTML={{ __html: _t("wallet.hive-description") }} />
           </div>
           <div className="balance-values">
-            <span>
+            <div className="amount">
               {" "}
               {numeral(balance).format("0,0.000")} {"HIVE"}
-            </span>
+            </div>
           </div>
         </div>
 
-        <div className="balance-row hive-power">
+        <div className="balance-row hive-power alternative">
           <div className="balance-info">
             <div className="title">{_t("wallet.hive-power")}</div>
             <div className="description" dangerouslySetInnerHTML={{ __html: _t("wallet.hive-power-description") }} />
@@ -153,7 +153,7 @@ export default class ProfilePage extends Component<Props> {
           </div>
         </div>
 
-        <div className="balance-row hive-dollars alternative">
+        <div className="balance-row hive-dollars">
           <div className="balance-info">
             <div className="title">{_t("wallet.hive-dollars")}</div>
             <div className="description" dangerouslySetInnerHTML={{ __html: _t("wallet.hive-dollars-description") }} />
@@ -166,7 +166,7 @@ export default class ProfilePage extends Component<Props> {
           </div>
         </div>
 
-        <div className="balance-row savings">
+        <div className="balance-row savings alternative">
           <div className="balance-info">
             <div className="title">{_t("wallet.savings")}</div>
             <div className="description" dangerouslySetInnerHTML={{ __html: _t("wallet.savings-description") }} />

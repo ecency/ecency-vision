@@ -39,7 +39,7 @@ export default class ProfileCard extends Component<Props> {
       <div className="profile-card">
         <div className="profile-avatar">
           <UserAvatar {...this.props} username={account.name} size="xLarge" />
-          {account.reputation && <div className="reputation">{accountReputation(account.reputation)}</div>}
+          {account.__loaded && <div className="reputation">{accountReputation(account.reputation!)}</div>}
         </div>
 
         <div className="username">{account.name}</div>
