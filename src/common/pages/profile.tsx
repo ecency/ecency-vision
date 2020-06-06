@@ -56,7 +56,7 @@ interface Props {
 
 class ProfilePage extends Component<Props> {
   componentDidMount() {
-    const { global, fetchDynamicProps } = this.props;
+    const { global, fetchEntries, fetchDynamicProps } = this.props;
 
     // fetch posts
     fetchEntries(global.filter, global.tag, false);
