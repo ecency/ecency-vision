@@ -4,7 +4,7 @@ interface BaseTransaction {
   timestamp: string;
 }
 
-interface CurationReward extends BaseTransaction {
+export interface CurationReward extends BaseTransaction {
   type: "curation_reward";
   comment_author: string;
   comment_permlink: string;
@@ -12,7 +12,7 @@ interface CurationReward extends BaseTransaction {
   reward: string;
 }
 
-interface AuthorReward extends BaseTransaction {
+export interface AuthorReward extends BaseTransaction {
   type: "author_reward";
   author: string;
   permlink: string;
@@ -21,8 +21,9 @@ interface AuthorReward extends BaseTransaction {
   vesting_payout: string;
 }
 
-interface CommentBenefactor extends BaseTransaction {
+export interface CommentBenefactor extends BaseTransaction {
   type: "comment_benefactor_reward";
+  benefactor: string;
   author: string;
   permlink: string;
   sbd_payout: string;
@@ -30,7 +31,7 @@ interface CommentBenefactor extends BaseTransaction {
   vesting_payout: string;
 }
 
-interface ClaimRewardBalance extends BaseTransaction {
+export interface ClaimRewardBalance extends BaseTransaction {
   type: "claim_reward_balance";
   account: string;
   reward_sbd: string;
@@ -38,7 +39,7 @@ interface ClaimRewardBalance extends BaseTransaction {
   reward_vests: string;
 }
 
-interface Transfer extends BaseTransaction {
+export interface Transfer extends BaseTransaction {
   type: "transfer";
   amount: string;
   memo: string;
@@ -46,7 +47,7 @@ interface Transfer extends BaseTransaction {
   to: string;
 }
 
-interface TransferToVesting extends BaseTransaction {
+export interface TransferToVesting extends BaseTransaction {
   type: "transfer_to_vesting";
   amount: string;
   memo?: string;
@@ -54,13 +55,13 @@ interface TransferToVesting extends BaseTransaction {
   to: string;
 }
 
-interface WithdrawVesting extends BaseTransaction {
+export interface WithdrawVesting extends BaseTransaction {
   type: "withdraw_vesting";
   acc: string;
   vesting_shares: string;
 }
 
-interface FillOrder extends BaseTransaction {
+export interface FillOrder extends BaseTransaction {
   type: "fill_order";
   current_pays: string;
   open_pays: string;

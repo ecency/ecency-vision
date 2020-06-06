@@ -1,7 +1,7 @@
 import { State as GlobalState, Filter, Theme, ListStyle } from "../store/global/types";
 import { Entry } from "../store/entries/types";
 import { Community } from "../store/community/types";
-import { Account } from "../store/accounts/types";
+import { DynamicProps } from "../store/dynamic-props/types";
 
 export const globalInstance: GlobalState = {
   filter: Filter.hot,
@@ -130,4 +130,11 @@ export const communityInstance1: Community = {
     ["hive-148441", "owner", ""],
     ["bluemist", "admin", ""],
   ],
+};
+
+export const dynamicPropsIntance1: DynamicProps = {
+  hivePerMVests: 513.7574961580294,
+  base: 0.252,
+  quote: 1,
+  fundRewardBalance: 848692.443,
 };

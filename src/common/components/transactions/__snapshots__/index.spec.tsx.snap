@@ -1,0 +1,408 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) curation_reward 1`] = `
+<div
+  className="transaction-list-item"
+>
+  <div
+    className="transaction-icon"
+  >
+    <svg
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M15.58,16.8L12,14.5L8.42,16.8L9.5,12.68L6.21,10L10.46,9.74L12,5.8L13.54,9.74L17.79,10L14.5,12.68M20,12C20,10.89 20.9,10 22,10V6C22,4.89 21.1,4 20,4H4A2,2 0 0,0 2,6V10C3.11,10 4,10.9 4,12A2,2 0 0,1 2,14V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V14A2,2 0 0,1 20,12Z"
+        fill="currentColor"
+      />
+    </svg>
+  </div>
+  <div
+    className="transaction-title"
+  >
+    <div
+      className="transaction-name"
+    >
+      Curation Reward
+    </div>
+    <div
+      className="transaction-date"
+    >
+      2 hours ago
+    </div>
+  </div>
+  <div
+    className="transaction-numbers"
+  >
+    17.241 HP
+  </div>
+  <div
+    className="transaction-details"
+  >
+    @user2/hquwxmvg
+  </div>
+</div>
+`;
+
+exports[`(2) author_reward 1`] = `
+<div
+  className="transaction-list-item"
+>
+  <div
+    className="transaction-icon"
+  >
+    <svg
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M15.58,16.8L12,14.5L8.42,16.8L9.5,12.68L6.21,10L10.46,9.74L12,5.8L13.54,9.74L17.79,10L14.5,12.68M20,12C20,10.89 20.9,10 22,10V6C22,4.89 21.1,4 20,4H4A2,2 0 0,0 2,6V10C3.11,10 4,10.9 4,12A2,2 0 0,1 2,14V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V14A2,2 0 0,1 20,12Z"
+        fill="currentColor"
+      />
+    </svg>
+  </div>
+  <div
+    className="transaction-title"
+  >
+    <div
+      className="transaction-name"
+    >
+      Author Reward
+    </div>
+    <div
+      className="transaction-date"
+    >
+      2 hours ago
+    </div>
+  </div>
+  <div
+    className="transaction-numbers"
+  >
+    <span
+      className="number"
+    >
+      4.174 HBD
+    </span>
+    <span
+      className="number"
+    >
+      16.311 HP
+       
+    </span>
+  </div>
+  <div
+    className="transaction-details"
+  >
+    @user1/lorem-ipsum-dolor
+  </div>
+</div>
+`;
+
+exports[`(3) comment_benefactor_reward 1`] = `
+<div
+  className="transaction-list-item"
+>
+  <div
+    className="transaction-icon"
+  >
+    <svg
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M18,8H6V6H18V8M18,11H6V9H18V11M18,14H6V12H18V14M22,4A2,2 0 0,0 20,2H4A2,2 0 0,0 2,4V16A2,2 0 0,0 4,18H18L22,22V4Z"
+        fill="currentColor"
+      />
+    </svg>
+  </div>
+  <div
+    className="transaction-title"
+  >
+    <div
+      className="transaction-name"
+    >
+      Comment Benefactor Reward
+    </div>
+    <div
+      className="transaction-date"
+    >
+      2 hours ago
+    </div>
+  </div>
+  <div
+    className="transaction-numbers"
+  >
+    <span
+      className="number"
+    >
+      0.002 HP
+       
+    </span>
+  </div>
+  <div
+    className="transaction-details"
+  >
+    @xxxthorxxx/re-nonameslefttouse-2020530t135919321z
+  </div>
+</div>
+`;
+
+exports[`(4) comment_benefactor_reward 1`] = `
+<div
+  className="transaction-list-item"
+>
+  <div
+    className="transaction-icon"
+  >
+    <svg
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M15.58,16.8L12,14.5L8.42,16.8L9.5,12.68L6.21,10L10.46,9.74L12,5.8L13.54,9.74L17.79,10L14.5,12.68M20,12C20,10.89 20.9,10 22,10V6C22,4.89 21.1,4 20,4H4A2,2 0 0,0 2,6V10C3.11,10 4,10.9 4,12A2,2 0 0,1 2,14V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V14A2,2 0 0,1 20,12Z"
+        fill="currentColor"
+      />
+    </svg>
+  </div>
+  <div
+    className="transaction-title"
+  >
+    <div
+      className="transaction-name"
+    >
+      Claim rewards
+    </div>
+    <div
+      className="transaction-date"
+    >
+      2 hours ago
+    </div>
+  </div>
+  <div
+    className="transaction-numbers"
+  >
+    <span
+      className="number"
+    >
+      0.414 HP
+    </span>
+  </div>
+  <div
+    className="transaction-details"
+  />
+</div>
+`;
+
+exports[`(5) transfer 1`] = `
+<div
+  className="transaction-list-item"
+>
+  <div
+    className="transaction-icon"
+  >
+    <svg
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M9 14H2V16H9V19L13 15L9 11V14M15 13V10H22V8H15V5L11 9L15 13Z"
+        fill="currentColor"
+      />
+    </svg>
+  </div>
+  <div
+    className="transaction-title"
+  >
+    <div
+      className="transaction-name"
+    >
+      Transfer
+    </div>
+    <div
+      className="transaction-date"
+    >
+      2 hours ago
+    </div>
+  </div>
+  <div
+    className="transaction-numbers"
+  >
+    <span
+      className="number"
+    >
+      192.425 HIVE
+    </span>
+  </div>
+  <div
+    className="transaction-details"
+  >
+    <span>
+      lorem-ipsum-dolor
+       
+      <br />
+       
+      <br />
+      <strong>
+        @
+        user1
+      </strong>
+       -&gt; 
+      <strong>
+        @
+        user2
+      </strong>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`(6) transfer_to_vesting 1`] = `
+<div
+  className="transaction-list-item"
+>
+  <div
+    className="transaction-icon"
+  >
+    <svg
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M9 14H2V16H9V19L13 15L9 11V14M15 13V10H22V8H15V5L11 9L15 13Z"
+        fill="currentColor"
+      />
+    </svg>
+  </div>
+  <div
+    className="transaction-title"
+  >
+    <div
+      className="transaction-name"
+    >
+      Transfer to vesting
+    </div>
+    <div
+      className="transaction-date"
+    >
+      2 hours ago
+    </div>
+  </div>
+  <div
+    className="transaction-numbers"
+  >
+    <span
+      className="number"
+    >
+      82.203 HIVE
+    </span>
+  </div>
+  <div
+    className="transaction-details"
+  >
+    <span>
+      <strong>
+        @
+        user1
+      </strong>
+       -&gt; 
+      <strong>
+        @
+        user2
+      </strong>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`(7) withdraw_vesting 1`] = `
+<div
+  className="transaction-list-item"
+>
+  <div
+    className="transaction-icon"
+  >
+    <svg
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M3,6H21V18H3V6M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9M7,8A2,2 0 0,1 5,10V14A2,2 0 0,1 7,16H17A2,2 0 0,1 19,14V10A2,2 0 0,1 17,8H7Z"
+        fill="currentColor"
+      />
+    </svg>
+  </div>
+  <div
+    className="transaction-title"
+  >
+    <div
+      className="transaction-name"
+    >
+      Withdraw vesting
+    </div>
+    <div
+      className="transaction-date"
+    >
+      2 hours ago
+    </div>
+  </div>
+  <div
+    className="transaction-numbers"
+  >
+    <span
+      className="number"
+    >
+      0.414 HP
+    </span>
+  </div>
+  <div
+    className="transaction-details"
+  >
+    <span>
+      <strong>
+        @
+        user1
+      </strong>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`(8) fill_order 1`] = `
+<div
+  className="transaction-list-item"
+>
+  <div
+    className="transaction-icon"
+  >
+    <svg
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M3,15H21V13H3V15M3,19H21V17H3V19M3,11H21V9H3V11M3,5V7H21V5H3Z"
+        fill="currentColor"
+      />
+    </svg>
+  </div>
+  <div
+    className="transaction-title"
+  >
+    <div
+      className="transaction-name"
+    >
+      Fill order
+    </div>
+    <div
+      className="transaction-date"
+    >
+      2 hours ago
+    </div>
+  </div>
+  <div
+    className="transaction-numbers"
+  >
+    <span
+      className="number"
+    >
+      foo
+       = 
+      bar
+    </span>
+  </div>
+  <div
+    className="transaction-details"
+  />
+</div>
+`;
