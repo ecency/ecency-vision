@@ -1,22 +1,80 @@
-export interface Transaction {
-  0: number;
+interface BaseTransaction {
+  num: number;
+  type: string;
+  timestamp: string;
 }
 
-export interface AuthorRewardTransaction extends Transaction {
-  1: {
-    op: [
-      "author_reward",
-      {
-        author: string;
-        permlink: string;
-        sbd_payout: string;
-        steem_payout: string;
-        vesting_payout: string;
-      }
-    ];
-    timestamp: string;
-  };
+interface CurationReward extends BaseTransaction {
+  type: "curation_reward";
+  comment_author: string;
+  comment_permlink: string;
+  curator: string;
+  reward: string;
 }
+
+interface AuthorReward extends BaseTransaction {
+  type: "author_reward";
+  author: string;
+  permlink: string;
+  sbd_payout: string;
+  steem_payout: string;
+  vesting_payout: string;
+}
+
+interface CommentBenefactor extends BaseTransaction {
+  type: "comment_benefactor_reward";
+  author: string;
+  permlink: string;
+  sbd_payout: string;
+  steem_payout: string;
+  vesting_payout: string;
+}
+
+interface ClaimRewardBalance extends BaseTransaction {
+  type: "claim_reward_balance";
+  account: string;
+  reward_sbd: string;
+  reward_steem: string;
+  reward_vests: string;
+}
+
+interface Transfer extends BaseTransaction {
+  type: "transfer";
+  amount: string;
+  memo: string;
+  from: string;
+  to: string;
+}
+
+interface TransferToVesting extends BaseTransaction {
+  type: "transfer_to_vesting";
+  amount: string;
+  memo: string;
+  from: string;
+  to: string;
+}
+
+interface WithdrawVesting extends BaseTransaction {
+  type: "withdraw_vesting";
+  acc: string;
+  vesting_shares: string;
+}
+
+interface FillOrder extends BaseTransaction {
+  type: "fill_order";
+  current_pays: string;
+  open_pays: string;
+}
+
+export type Transaction =
+  | CurationReward
+  | AuthorReward
+  | CommentBenefactor
+  | ClaimRewardBalance
+  | Transfer
+  | TransferToVesting
+  | WithdrawVesting
+  | FillOrder;
 
 export interface State {
   list: Transaction[];

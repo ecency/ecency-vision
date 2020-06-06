@@ -85,7 +85,7 @@ export const getDynamicGlobalProperties = (): Promise<DynamicGlobalProperties> =
     total_vesting_shares: r.total_vesting_shares,
   }));
 
-  export const getState = (path:string):Promise<any> => client.database.getState(path);
+export const getState = (path: string): Promise<any> => client.database.getState(path);
 
 export const getFeedHistory = (): Promise<FeedHistory> => client.database.call("get_feed_history");
 

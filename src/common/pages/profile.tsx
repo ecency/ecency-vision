@@ -10,6 +10,7 @@ import { ListStyle, State as GlobalState } from "../store/global/types";
 import { State as EntriesState } from "../store/entries/types";
 import { Account, State as AccountsState } from "../store/accounts/types";
 import { DynamicProps } from "../store/dynamic-props/types";
+import { State as TransactionsState } from "../store/transactions/types";
 
 import { toggleListStyle, toggleTheme } from "../store/global";
 import { makeGroupKey, fetchEntries } from "../store/entries";
@@ -48,6 +49,7 @@ interface Props {
   dynamicProps: DynamicProps;
   entries: EntriesState;
   accounts: AccountsState;
+  transactions: TransactionsState;
   toggleTheme: () => void;
   toggleListStyle: () => void;
   fetchEntries: (what: string, tag: string, more: boolean) => void;
@@ -59,16 +61,18 @@ interface Props {
 
 class ProfilePage extends Component<Props> {
   componentDidMount() {
-    const { global, fetchEntries, fetchDynamicProps, fetchTransactions } = this.props;
+    const { match, global, fetchEntries, fetchDynamicProps, fetchTransactions } = this.props;
 
-    // fetch posts
-    fetchEntries(global.filter, global.tag, false);
+    if (match.params.section !== "wallet") {
+      // fetch posts
+      fetchEntries(global.filter, global.tag, false);
+    }
 
     // fetch global props for wallet
     fetchDynamicProps();
 
     // fetch wallet transactions
-    fetchTransactions(global.tag);
+    fetchTransactions(match.params.username);
   }
 
   componentDidUpdate(prevProps: Readonly<Props>): void {
@@ -179,6 +183,7 @@ const mapStateToProps = (state: AppState) => ({
   entries: state.entries,
   accounts: state.accounts,
   dynamicProps: state.dynamicProps,
+  transactions: state.transactions,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>

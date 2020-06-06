@@ -5,9 +5,11 @@ import moment from "moment";
 import { State as GlobalState } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
+import { State as TransactionsState } from "../../store/transactions/types";
 
 import Tooltip from "../tooltip";
 import FormattedCurrency from "../formatted-currency";
+import Transactions from "../transactions";
 
 import parseAsset from "../../helper/parse-asset";
 import { vestsToSp } from "../../helper/vesting";
@@ -21,6 +23,7 @@ import { _t } from "../../i18n";
 interface Props {
   global: GlobalState;
   dynamicProps: DynamicProps;
+  transactions: TransactionsState;
   account: Account;
 }
 
@@ -178,6 +181,8 @@ export default class ProfilePage extends Component<Props> {
             })}
           </div>
         )}
+
+        <Transactions {...this.props} />
       </div>
     );
   }

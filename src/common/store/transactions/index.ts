@@ -62,9 +62,22 @@ export const fetchTransactions = (username: string) => (dispatch: Dispatch) => {
 
       const { transfer_history: transferHistory } = accounts[name];
 
-      const transactions: Transaction[] = transferHistory.slice(Math.max(transferHistory.length - 50, 0));
+      const transfers = transferHistory.slice(Math.max(transferHistory.length - 50, 0));
+      transfers.sort((a: any, b: any) => b[0] - a[0]);
 
-      transactions.sort((a, b) => b[0] - a[0]);
+      const transactions: Transaction[] = transfers.map((tr: any) => {
+        const { op } = tr[1];
+        const { timestamp } = tr[1];
+        const opName = op[0];
+        const opData = op[1];
+
+        return {
+          num: tr[0],
+          type: opName,
+          timestamp,
+          ...opData,
+        };
+      });
 
       dispatch(fetchedAct(transactions));
     })
