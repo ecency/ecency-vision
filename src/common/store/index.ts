@@ -8,6 +8,7 @@ import trendingTags from "./trending-tags";
 import community from "./community";
 import entries from "./entries";
 import accounts from "./accounts";
+import transactions from "./transactions";
 
 let reducers = {
   global,
@@ -16,6 +17,7 @@ let reducers = {
   community,
   entries,
   accounts,
+  transactions,
 };
 
 export let history: History | undefined;

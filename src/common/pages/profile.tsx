@@ -15,6 +15,7 @@ import { toggleListStyle, toggleTheme } from "../store/global";
 import { makeGroupKey, fetchEntries } from "../store/entries";
 import { addAccount } from "../store/accounts";
 import { fetchDynamicProps } from "../store/dynamic-props";
+import { fetchTransactions, resetTransactions } from "../store/transactions";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme";
@@ -52,31 +53,49 @@ interface Props {
   fetchEntries: (what: string, tag: string, more: boolean) => void;
   addAccount: (data: Account) => void;
   fetchDynamicProps: () => void;
+  fetchTransactions: (username: string) => void;
+  resetTransactions: () => void;
 }
 
 class ProfilePage extends Component<Props> {
   componentDidMount() {
-    const { global, fetchEntries, fetchDynamicProps } = this.props;
+    const { global, fetchEntries, fetchDynamicProps, fetchTransactions } = this.props;
 
     // fetch posts
     fetchEntries(global.filter, global.tag, false);
 
     // fetch global props for wallet
     fetchDynamicProps();
+
+    // fetch wallet transactions
+    fetchTransactions(global.tag);
   }
 
   componentDidUpdate(prevProps: Readonly<Props>): void {
-    const { match } = this.props;
+    const { match, global, fetchEntries, fetchTransactions, resetTransactions } = this.props;
+    const { global: pGlobal } = prevProps;
+
+    // username changed reset and fetch wallet transactions
+    if (global.tag !== pGlobal.tag) {
+      resetTransactions();
+      fetchTransactions(global.tag);
+    }
+
     if (match.params.section === "wallet") {
       return;
     }
 
-    const { global, fetchEntries } = this.props;
-    const { global: pGlobal } = prevProps;
-
+    // filter or username changed. fetch posts.
     if (!(global.filter === pGlobal.filter && global.tag === pGlobal.tag)) {
       fetchEntries(global.filter, global.tag, false);
     }
+  }
+
+  componentWillUnmount() {
+    const { resetTransactions } = this.props;
+
+    // reset transactions on unload
+    resetTransactions();
   }
 
   bottomReached = () => {
@@ -170,6 +189,8 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       fetchEntries,
       addAccount,
       fetchDynamicProps,
+      fetchTransactions,
+      resetTransactions,
     },
     dispatch
   );
