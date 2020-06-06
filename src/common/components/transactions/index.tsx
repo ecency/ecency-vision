@@ -98,8 +98,12 @@ export class TransactionRow extends Component<RowProps> {
 
       details = (
         <span>
-          {tr.memo} <br />
-          <br /> <strong>@{tr.from}</strong> -&gt; <strong>@{tr.to}</strong>
+          {tr.memo ? (
+            <>
+              {tr.memo} <br /> <br />
+            </>
+          ) : null}
+          <strong>@{tr.from}</strong> -&gt; <strong>@{tr.to}</strong>
         </span>
       );
 
@@ -162,7 +166,6 @@ interface Props {
 export default class Transactions extends Component<Props> {
   render() {
     const { transactions } = this.props;
-
     const { list, loading } = transactions;
 
     return (

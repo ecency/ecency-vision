@@ -49,7 +49,7 @@ interface Transfer extends BaseTransaction {
 interface TransferToVesting extends BaseTransaction {
   type: "transfer_to_vesting";
   amount: string;
-  memo: string;
+  memo?: string;
   from: string;
   to: string;
 }

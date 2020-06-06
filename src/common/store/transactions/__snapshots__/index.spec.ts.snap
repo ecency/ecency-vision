@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`1- default state 1`] = `
+Object {
+  "error": false,
+  "list": Array [],
+  "loading": false,
+}
+`;
+
+exports[`2- fetch 1`] = `
+Object {
+  "error": false,
+  "list": Array [],
+  "loading": true,
+}
+`;
+
+exports[`3- fetch error 1`] = `
+Object {
+  "error": true,
+  "list": Array [],
+  "loading": false,
+}
+`;
+
+exports[`4- fetch 1`] = `
+Object {
+  "error": false,
+  "list": Array [],
+  "loading": true,
+}
+`;
+
+exports[`5- fetched 1`] = `
+Object {
+  "error": false,
+  "list": Array [
+    Object {
+      "comment_author": "user1",
+      "comment_permlink": "re-foo-qb4wuu",
+      "curator": "user2",
+      "num": 3204035,
+      "reward": "12061.044067 VESTS",
+      "timestamp": "2020-06-06T07:59:18",
+      "type": "curation_reward",
+    },
+    Object {
+      "amount": "43.101 HIVE",
+      "from": "user3",
+      "num": 3204009,
+      "timestamp": "2020-06-06T07:46:06",
+      "to": "user4",
+      "type": "transfer_to_vesting",
+    },
+  ],
+  "loading": false,
+}
+`;
+
+exports[`6- reset 1`] = `
+Object {
+  "error": false,
+  "list": Array [],
+  "loading": false,
+}
+`;
