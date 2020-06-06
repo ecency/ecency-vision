@@ -5,11 +5,13 @@ import moment from "moment";
 import { DynamicProps } from "../../store/dynamic-props/types";
 import { Transaction, State as TransactionState } from "../../store/transactions/types";
 
-import formattedNumber from "../../util/formatted-number";
+import LinearProgress from "../linear-progress";
 
 import parseAsset from "../../helper/parse-asset";
 import parseDate from "../../helper/parse-date";
 import { vestsToSp } from "../../helper/vesting";
+
+import formattedNumber from "../../util/formatted-number";
 
 import { ticketSvg, commentSvg, compareHorizontalSvg, cashSvg, reOrderHorizontalSvg } from "../../img/svg";
 
@@ -161,19 +163,14 @@ export default class Transactions extends Component<Props> {
   render() {
     const { transactions } = this.props;
 
-    const { list } = transactions;
-
-    console.log(transactions);
-
-    if (list.length === 0) {
-      return null;
-    }
+    const { list, loading } = transactions;
 
     return (
       <div className="transaction-list">
         <div className="transaction-list-header">
           <h2>{_t("transactions.title")} </h2>
         </div>
+        {loading && <LinearProgress />}
         {list.map((x, k) => (
           <TransactionRow {...this.props} key={k} transaction={x} />
         ))}
