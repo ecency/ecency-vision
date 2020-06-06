@@ -21,8 +21,8 @@ export interface Community {
 export interface State extends Community {}
 
 export enum ActionTypes {
-  FETCHED = "@communities/FETCHED",
-  RESET = "@communities/RESET",
+  FETCHED = "@community/FETCHED",
+  RESET = "@community/RESET",
 }
 
 export interface FetchedAction {

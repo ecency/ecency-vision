@@ -12,7 +12,7 @@ import { State as CommunityState } from "../store/community/types";
 
 import { hideIntro, toggleListStyle, toggleTheme } from "../store/global/index";
 import { makeGroupKey, fetchEntries } from "../store/entries/index";
-import { fetchCommunity } from "../store/community/index";
+import { fetchCommunity, resetCommunity } from "../store/community/index";
 import { fetchTrendingTags } from "../store/trending-tags";
 import { addAccount } from "../store/accounts/index";
 
@@ -46,19 +46,21 @@ interface Props {
   toggleListStyle: () => void;
   fetchEntries: (what: string, tag: string, more: boolean) => void;
   fetchCommunity: () => void;
+  resetCommunity: () => void;
   fetchTrendingTags: () => void;
   addAccount: (data: Account) => void;
 }
 
 class EntryIndexPage extends Component<Props> {
   componentDidMount() {
-    const { global, fetchEntries, fetchTrendingTags } = this.props;
+    const { global, fetchEntries, fetchTrendingTags, fetchCommunity } = this.props;
     fetchEntries(global.filter, global.tag, false);
     fetchTrendingTags();
+    fetchCommunity();
   }
 
   componentDidUpdate(prevProps: Readonly<Props>): void {
-    const { global, fetchEntries, fetchCommunity, fetchTrendingTags } = this.props;
+    const { global, fetchEntries, fetchCommunity } = this.props;
     const { global: pGlobal } = prevProps;
 
     // page changed.
@@ -78,6 +80,11 @@ class EntryIndexPage extends Component<Props> {
     if (global.tag !== pGlobal.tag) {
       fetchCommunity();
     }
+  }
+
+  componentWillUnmount() {
+    const { resetCommunity } = this.props;
+    resetCommunity();
   }
 
   bottomReached = () => {
@@ -198,6 +205,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       toggleListStyle,
       fetchEntries,
       fetchCommunity,
+      resetCommunity,
       fetchTrendingTags,
       addAccount,
     },
