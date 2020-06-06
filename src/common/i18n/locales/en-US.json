@@ -71,7 +71,7 @@
     "next-power-down": "The next power down is {{time}} {{amount}}"
   },
   "transactions": {
-    "title": "Transactions",
+    "title": "HISTORY",
     "type-curation_reward": "Curation Reward",
     "type-author_reward": "Author Reward",
     "type-comment_benefactor_reward": "Comment Benefactor Reward",

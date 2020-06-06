@@ -22,7 +22,11 @@ export const initialState: State = {
 export default (state: State = initialState, action: Actions): State => {
   switch (action.type) {
     case ActionTypes.FETCH: {
-      return { ...initialState };
+      return {
+        list: [],
+        loading: true,
+        error: false,
+      };
     }
     case ActionTypes.FETCHED: {
       return {

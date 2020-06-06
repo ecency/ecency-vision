@@ -1,8 +1,22 @@
 .transaction-list {
   .transaction-list-header {
     h2 {
-      font-size: 18px;
-      margin-bottom: 16px;
+      font-size: 20px;
+      font-weight: 500;
+      margin: 30px 10px 16px;
+      text-align: center;
+
+      @include themify(day) {
+        color: $charcoal-grey;
+      }
+
+      @include themify(night) {
+        color: $powder-blue;
+      }
+
+      @media (min-width: $lg-break) {
+        text-align: left;
+      }
     }
   }
 
@@ -15,7 +29,7 @@
 
     @media (min-width: $lg-break) {
       font-size: 16px;
-      padding: 16px;
+      padding: 20px 10px;
     }
 
     .transaction-icon {
@@ -114,7 +128,7 @@
       }
     }
 
-    &:nth-child(odd) {
+    &:nth-child(even) {
       @include themify(day) {
         background: $white-three;
       }
@@ -125,7 +139,7 @@
     }
 
     @include themify(day) {
-      &:nth-child(even) {
+      &:nth-child(odd) {
         .transaction-icon {
           background-color: $white-three;
         }

@@ -163,6 +163,8 @@ export default class Transactions extends Component<Props> {
 
     const { list } = transactions;
 
+    console.log(transactions);
+
     if (list.length === 0) {
       return null;
     }
@@ -172,7 +174,6 @@ export default class Transactions extends Component<Props> {
         <div className="transaction-list-header">
           <h2>{_t("transactions.title")} </h2>
         </div>
-
         {list.map((x, k) => (
           <TransactionRow {...this.props} key={k} transaction={x} />
         ))}
