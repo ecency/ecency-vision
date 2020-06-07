@@ -214,10 +214,7 @@ class EntryPage extends Component<Props> {
               </div>
             </div>
 
-            <div
-              className="entry-body markdown-view user-selectable"
-              dangerouslySetInnerHTML={renderedBody}
-            />
+            <div className="entry-body markdown-view user-selectable" dangerouslySetInnerHTML={renderedBody} />
 
             <div className={`entry-footer ${repliesLoading ? "loading" : ""}`}>
               <div className="entry-tags">
@@ -260,17 +257,12 @@ class EntryPage extends Component<Props> {
                 <div className="voting">
                   <EntryVoteBtn {...this.props} />
                 </div>
-                <EntryPayout {...this.props} entry={entry}>
-                  <a className={`total-payout ${isPayoutDeclined ? "payout-declined" : ""}`}>
-                    <FormattedCurrency {...this.props} value={totalPayout} />
-                  </a>
-                </EntryPayout>
-                <EntryVotes {...this.props} entry={entry}>
-                  <a className="voters">
-                    <i className="mi">people</i>
-                    {voteCount}
-                  </a>
-                </EntryVotes>
+                <span className={`total-payout ${isPayoutDeclined ? "payout-declined" : ""}`}>
+                  <EntryPayout {...this.props} entry={entry} />
+                </span>
+                <span className="votes">
+                  <EntryVotes {...this.props} entry={entry} />
+                </span>
 
                 <EntryReblogBtn {...this.props} />
                 <div className="sub-menu">

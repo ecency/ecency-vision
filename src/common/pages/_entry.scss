@@ -421,7 +421,7 @@
           }
         }
 
-        .voters {
+        .votes {
           align-items: center;
           color: $steel-grey;
           display: flex;
@@ -431,9 +431,10 @@
             font-weight: 500;
           }
 
-          .mi {
-            margin-right: 5px;
+          svg {
             opacity: 0.5;
+            margin-right: 5px;
+            height: 14px;
           }
         }
 
@@ -444,12 +445,19 @@
             display: flex;
           }
 
+          svg {
+            opacity: 0.5;
+            margin-right: 5px;
+            height: 14px;
+          }
+
           &:hover {
             .inner-btn {
               color: $dark-sky-blue;
             }
           }
         }
+
         .sub-menu {
           align-items: center;
           display: flex;
