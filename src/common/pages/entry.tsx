@@ -113,8 +113,8 @@ class EntryPage extends Component<Props> {
     }
 
     const reputation = Math.floor(entry.author_reputation);
-    const created = moment(parseDate(entry.created));
-    const last_update = parseDate(entry.updated);
+    const published = moment(parseDate(entry.created));
+    const modified = moment(parseDate(entry.updated));
 
     const renderedBody = { __html: renderPostBody(entry) };
 
@@ -135,7 +135,8 @@ class EntryPage extends Component<Props> {
       url,
       canonical: url,
       image: catchPostImage(entry.body),
-      published: created.toISOString(),
+      published: published.toISOString(),
+      modified: modified.toISOString(),
       tag: tags[0],
       keywords: tags.join(", "),
     };
@@ -194,8 +195,8 @@ class EntryPage extends Component<Props> {
                   <a className="category">{entry.category}</a>
                 </TagLink>
                 <span className="separator" />
-                <span className="date" title={created.format("LLLL")}>
-                  {created.fromNow()}
+                <span className="date" title={published.format("LLLL")}>
+                  {published.fromNow()}
                 </span>
               </div>
             </div>
@@ -210,9 +211,9 @@ class EntryPage extends Component<Props> {
               </div>
               <div className="entry-info">
                 <div className="left-side">
-                  <div className="date" title={created.format("LLLL")}>
+                  <div className="date" title={published.format("LLLL")}>
                     {timeSvg}
-                    {created.fromNow()}
+                    {published.fromNow()}
                   </div>
                   <span className="separator" />
                   <ProfileLink {...this.props} username={entry.author}>
