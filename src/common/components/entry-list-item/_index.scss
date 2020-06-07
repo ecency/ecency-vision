@@ -2,7 +2,6 @@
   margin-top: 20px;
   padding: 0 6px 16px 6px;
 
-
   @media (min-width: $sm-break) {
     padding: 0 6px 16px 0;
   }
@@ -229,16 +228,13 @@
 
       .comments {
         margin-right: 15px;
+        align-items: center;
+        color: $steel-grey;
+        display: flex;
 
         @media (min-width: $sm-break) {
           margin-right: 25px;
         }
-      }
-
-      .comments {
-        align-items: center;
-        color: $steel-grey;
-        display: flex;
 
         @include themify(night) {
           font-weight: 500;
@@ -251,8 +247,6 @@
           margin-top: 2px;
         }
       }
-
-     
 
       .app {
         display: none;
