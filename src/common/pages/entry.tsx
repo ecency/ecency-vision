@@ -14,6 +14,7 @@ import {
   renderPostBody,
   setProxyBase,
   catchPostImage,
+  postBodySummary,
   // @ts-ignore
 } from "@esteemapp/esteem-render-helpers";
 setProxyBase(defaults.imageServer);
@@ -48,6 +49,7 @@ import parseDate from "../helper/parse-date";
 import parseAsset from "../helper/parse-asset";
 
 import _c from "../util/fix-class-names";
+import truncate from "../util/truncate";
 
 import { makeShareUrlReddit, makeShareUrlTwitter, makeShareUrlFacebook } from "../helper/url-share";
 
@@ -115,7 +117,7 @@ class EntryPage extends Component<Props> {
     const last_update = parseDate(entry.updated);
 
     const renderedBody = { __html: renderPostBody(entry) };
-    const image = catchPostImage(entry.body);
+
     const isComment = entry.parent_author !== undefined;
 
     // Sometimes tag list comes with duplicate items
@@ -124,7 +126,15 @@ class EntryPage extends Component<Props> {
 
     const repliesLoading = false;
 
-    const metaProps = {};
+    //  Meta config
+
+    const title = truncate(entry.title, 60);
+    const description = truncate(postBodySummary(entry.body, 210), 200);
+    const image = catchPostImage(entry.body);
+    const [tag] = tags;
+    const keywords = tags.join(", ");
+
+    const metaProps = { title, description, image, tag, keywords };
 
     return (
       <>
