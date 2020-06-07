@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { AnyAction, bindActionCreators, Dispatch } from "redux";
 import { connect } from "react-redux";
 import { History, Location } from "history";
-import { Link } from "react-router-dom";
 
 import { match } from "react-router";
 
@@ -27,7 +26,7 @@ import { Entry, State as EntriesState } from "../store/entries/types";
 import { toggleTheme } from "../store/global/index";
 import { addAccount } from "../store/accounts/index";
 
-import EntryLink, { makePath as makeEntryPath } from "../components/entry-link";
+import { makePath as makeEntryPath } from "../components/entry-link";
 import ProfileLink from "../components/profile-link";
 import UserAvatar from "../components/user-avatar";
 import TagLink from "../components/tag-link";
@@ -36,7 +35,6 @@ import EntryReblogBtn from "../components/entry-reblog-btn/index";
 import EntryPayout from "../components/entry-payout/index";
 import EntryVotes from "../components/entry-votes";
 import DownloadTrigger from "../components/download-trigger";
-import FormattedCurrency from "../components/formatted-currency";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
