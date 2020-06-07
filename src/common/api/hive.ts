@@ -26,6 +26,14 @@ export interface RewardFund {
   reward_balance: string;
 }
 
+export interface VestingDelegation {
+  delegatee: string;
+  delegator: string;
+  id: number;
+  min_delegation_time: string;
+  vesting_shares: string;
+}
+
 export const getTrendingTags = (afterTag: string = "", limit: number = 50): Promise<string[]> =>
   client.database
     .call("get_trending_tags", [afterTag, limit])
@@ -90,6 +98,12 @@ export const getState = (path: string): Promise<any> => client.database.getState
 export const getFeedHistory = (): Promise<FeedHistory> => client.database.call("get_feed_history");
 
 export const getRewardFund = (): Promise<RewardFund> => client.database.call("get_reward_fund", ["post"]);
+
+export const getVestingDelegations = (
+  username: string,
+  from: string = "",
+  limit: number = 50
+): Promise<VestingDelegation[]> => client.database.call("get_vesting_delegations", [username, from, limit]);
 
 export const vpMana = (account: Account): number => {
   // @ts-ignore "Account" is compatible with dhive's "ExtendedAccount"
