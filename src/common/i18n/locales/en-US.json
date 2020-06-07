@@ -31,6 +31,10 @@
     "voter": "Voter",
     "reward": "Reward"
   },
+  "entry": {
+    "reply": "Reply",
+    "via-app": "via <span class=\"app-name\">{{app}}</span>"
+  },
   "community": {
     "n-subscribers": "{{n}} subscribers",
     "n-rewards": "{{n}} pending rewards",

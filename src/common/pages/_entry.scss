@@ -421,6 +421,7 @@
             align-items: center;
             display: flex;
             height: 100%;
+            color: $primary;
 
             &:not(:last-child) {
               margin-right: 16px;

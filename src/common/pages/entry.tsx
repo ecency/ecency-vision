@@ -241,7 +241,7 @@ class EntryPage extends Component<Props> {
                   {app && (
                     <>
                       <span className="separator" />
-                      <div className="app">{_t("entry.via-app", { app })}</div>
+                      <div className="app" dangerouslySetInnerHTML={{ __html: _t("entry.via-app", { app }) }} />
                     </>
                   )}
                 </div>
