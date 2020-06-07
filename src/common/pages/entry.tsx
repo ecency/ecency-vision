@@ -118,13 +118,9 @@ class EntryPage extends Component<Props> {
 
     const renderedBody = { __html: renderPostBody(entry) };
 
-    const isComment = entry.parent_author !== undefined;
-
     // Sometimes tag list comes with duplicate items
     const tags = [...new Set(entry.json_metadata.tags)];
-    const { app } = entry.json_metadata;
-
-    const repliesLoading = false;
+    const app = entry.json_metadata?.app;
 
     //  Meta config
     const url = `${defaults.base}${makeEntryPath(entry.category, entry.author, entry.permlink)}`;
@@ -144,14 +140,13 @@ class EntryPage extends Component<Props> {
     return (
       <>
         <Meta {...metaProps} />
-
         <Theme {...this.props} />
         <NavBar {...this.props} />
 
         <div className="app-content entry-page">
           <div className="the-entry">
             <div className="entry-header">
-              {isComment && (
+              {entry.parent_author !== undefined && (
                 <div className="comment-entry-header">
                   <div className="comment-entry-header-title">RE: {entry.title}</div>
                   <div className="comment-entry-header-info">{_t("entry.comment-entry-title")}</div>
@@ -171,9 +166,7 @@ class EntryPage extends Component<Props> {
                 </div>
               )}
 
-              <h1 className="entry-title">
-                <span itemProp="headline name">{entry.title}</span>
-              </h1>
+              <h1 className="entry-title">{entry.title}</h1>
 
               <div className="entry-info">
                 <ProfileLink {...this.props} username={entry.author}>
@@ -182,11 +175,7 @@ class EntryPage extends Component<Props> {
                       <UserAvatar username={entry.author} size="medium" />
                     </div>
                     <div className="author">
-                      <span className="author-name">
-                        <span itemProp="author">
-                          <span itemProp="name">{entry.author}</span>
-                        </span>
-                      </span>
+                      <span className="author-name">{entry.author}</span>
                       <span className="author-reputation">{reputation}</span>
                     </div>
                   </div>
@@ -201,7 +190,7 @@ class EntryPage extends Component<Props> {
               </div>
             </div>
             <div className="entry-body markdown-view user-selectable" dangerouslySetInnerHTML={renderedBody} />
-            <div className={`entry-footer ${repliesLoading ? "loading" : ""}`}>
+            <div className="entry-footer">
               <div className="entry-tags">
                 {tags.map((t) => (
                   <TagLink {...this.props} tag={t} key={t}>
