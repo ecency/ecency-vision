@@ -30,7 +30,7 @@ export const fetchDynamicProps = () => async (dispatch: Dispatch) => {
   const rewardFund = await getRewardFund();
 
   const hivePerMVests =
-    (parseAsset(globalDynamic.total_vesting_fund_steem).amount /
+    (parseAsset(globalDynamic.total_vesting_fund_hive).amount /
       parseAsset(globalDynamic.total_vesting_shares).amount) *
     1e6;
   const base = parseAsset(feedHistory.current_median_history.base).amount;

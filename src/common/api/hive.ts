@@ -10,7 +10,7 @@ export let client = new Client(SERVERS, {
 });
 
 export interface DynamicGlobalProperties {
-  total_vesting_fund_steem: string;
+  total_vesting_fund_hive: string;
   total_vesting_shares: string;
 }
 
@@ -89,7 +89,7 @@ export const getFollowCount = (username: string): Promise<AccountFollowStats> =>
 
 export const getDynamicGlobalProperties = (): Promise<DynamicGlobalProperties> =>
   client.database.getDynamicGlobalProperties().then((r: any) => ({
-    total_vesting_fund_steem: r.total_vesting_fund_steem,
+    total_vesting_fund_hive: r.total_vesting_fund_hive || r.total_vesting_fund_steem,
     total_vesting_shares: r.total_vesting_shares,
   }));
 
