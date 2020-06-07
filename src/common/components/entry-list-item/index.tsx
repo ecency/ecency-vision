@@ -145,9 +145,7 @@ export default class EntryListItem extends Component<Props> {
             </EntryLink>
           </div>
           <div className="item-controls">
-            <span className="voting">
-              <EntryVoteBtn {...this.props} />
-            </span>
+            <EntryVoteBtn {...this.props} />
             <span className={`total-payout ${isPayoutDeclined ? "payout-declined" : ""}`}>
               <EntryPayout {...this.props} entry={entry} />
             </span>
