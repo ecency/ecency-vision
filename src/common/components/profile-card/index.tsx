@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 
+import { Button } from "react-bootstrap";
+
+import DownloadTrigger from "../download-trigger";
+
 import moment from "moment";
 import numeral from "numeral";
 
@@ -37,6 +41,12 @@ export default class ProfileCard extends Component<Props> {
 
     return (
       <div className="profile-card">
+        <div className="follow-controls">
+          <DownloadTrigger>
+            <Button variant="primary">{accountPlusSvg}</Button>
+          </DownloadTrigger>
+        </div>
+
         <div className="profile-avatar">
           <UserAvatar {...this.props} username={account.name} size="xLarge" />
           {account.__loaded && <div className="reputation">{accountReputation(account.reputation!)}</div>}
