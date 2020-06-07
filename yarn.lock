@@ -995,6 +995,11 @@
     url "^0.11.0"
     xmldom "^0.1.27"
 
+"@hivechain/hivescript@^1.1.8":
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/@hivechain/hivescript/-/hivescript-1.1.8.tgz#2b302dd2ba796a1a3fa91ba6e7ee92358b6adcd0"
+  integrity sha512-e2wKVzUK1zIiGI89h/DBY4XDqdmXWHz/6pjNbi+v5SnssO6eoUBh91FlOAXDQbWkC30XIuhCgOkkC127T51a9g==
+
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@istanbuljs/load-nyc-config/-/load-nyc-config-1.1.0.tgz#fd3db1d59ecf7cf121e80650bb86712f9b55eced"

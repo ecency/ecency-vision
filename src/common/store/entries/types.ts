@@ -20,6 +20,7 @@ export interface EntryStat {
 export interface JsonMetadata {
   tags: string[];
   app: string;
+  canonical_url?: string;
 }
 
 export interface Entry {

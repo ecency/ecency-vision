@@ -12,6 +12,7 @@ interface Props {
   tag?: string;
   keywords?: string;
   image?: string;
+  published?: string;
   rss?: string;
 }
 
@@ -19,7 +20,7 @@ const title_ = (s: string): string => `${s} - ecency`;
 
 export default class Meta extends Component<Props> {
   render() {
-    const { title, description, url, canonical, tag, keywords } = this.props;
+    const { title, description, url, canonical, tag, keywords, published } = this.props;
     let { image } = this.props;
 
     if (!image) {
@@ -72,6 +73,12 @@ export default class Meta extends Component<Props> {
         {keywords && (
           <Helmet>
             <meta name="keywords" content={keywords} />
+          </Helmet>
+        )}
+
+        {published && (
+          <Helmet>
+            <meta name="article:published_time" content={published} />
           </Helmet>
         )}
 

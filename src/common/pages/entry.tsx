@@ -127,14 +127,18 @@ class EntryPage extends Component<Props> {
     const repliesLoading = false;
 
     //  Meta config
+    const url = `${defaults.base}${makeEntryPath(entry.category, entry.author, entry.permlink)}`;
 
-    const title = truncate(entry.title, 60);
-    const description = truncate(postBodySummary(entry.body, 210), 200);
-    const image = catchPostImage(entry.body);
-    const [tag] = tags;
-    const keywords = tags.join(", ");
-
-    const metaProps = { title, description, image, tag, keywords };
+    const metaProps = {
+      title: truncate(entry.title, 60),
+      description: truncate(postBodySummary(entry.body, 210), 200),
+      url,
+      canonical: url,
+      image: catchPostImage(entry.body),
+      published: created.toISOString(),
+      tag: tags[0],
+      keywords: tags.join(", "),
+    };
 
     return (
       <>
