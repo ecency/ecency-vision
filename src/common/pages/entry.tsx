@@ -254,16 +254,9 @@ class EntryPage extends Component<Props> {
                 </div>
               </div>
               <div className="entry-controls">
-                <div className="voting">
-                  <EntryVoteBtn {...this.props} />
-                </div>
-                <span className={`total-payout ${isPayoutDeclined ? "payout-declined" : ""}`}>
-                  <EntryPayout {...this.props} entry={entry} />
-                </span>
-                <span className="votes">
-                  <EntryVotes {...this.props} entry={entry} />
-                </span>
-
+                <EntryVoteBtn {...this.props} />
+                <EntryPayout {...this.props} entry={entry} />
+                <EntryVotes {...this.props} entry={entry} />
                 <EntryReblogBtn {...this.props} />
                 <div className="sub-menu">
                   <a

@@ -1,0 +1,29 @@
+.entry-reblog-btn {
+  align-items: center;
+  color: $steel-grey;
+  display: flex;
+  cursor: pointer;
+
+  @include themify(night) {
+    font-weight: 500;
+  }
+
+  svg {
+    height: 14px;
+    opacity: 0.5;
+    margin-right: 5px;
+    margin-top: 2px;
+  }
+
+  .inner-btn {
+    align-items: center;
+    color: $steel-grey;
+    display: flex;
+  }
+
+  &:hover {
+    .inner-btn {
+      color: $dark-sky-blue;
+    }
+  }
+}

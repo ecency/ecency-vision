@@ -2,9 +2,6 @@
   margin-top: 20px;
   padding: 0 6px 16px 6px;
 
-  svg {
-    height: 14px;
-  }
 
   @media (min-width: $sm-break) {
     padding: 0 6px 16px 0;
@@ -237,8 +234,7 @@
         }
       }
 
-      .comments,
-      .reblog-btn {
+      .comments {
         align-items: center;
         color: $steel-grey;
         display: flex;
@@ -248,27 +244,14 @@
         }
 
         svg {
+          height: 14px;
           opacity: 0.5;
           margin-right: 5px;
           margin-top: 2px;
         }
       }
 
-      .reblog-btn {
-        cursor: pointer;
-
-        .inner-btn {
-          align-items: center;
-          color: $steel-grey;
-          display: flex;
-        }
-
-        &:hover {
-          .inner-btn {
-            color: $dark-sky-blue;
-          }
-        }
-      }
+     
 
       .app {
         display: none;

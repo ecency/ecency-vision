@@ -11,7 +11,7 @@ import {repeatSvg} from '../../img/svg';
 export default class EntryReblogBtn extends Component {
     render() {
         return (
-            <div className="reblog-btn">
+            <div className="entry-reblog-btn">
                 <DownloadTrigger>
                     <a className="inner-btn">
                         <Tooltip content={_t('entry-reblog.reblog')}>

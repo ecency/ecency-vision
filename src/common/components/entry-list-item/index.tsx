@@ -145,9 +145,7 @@ export default class EntryListItem extends Component<Props> {
           <div className="item-controls">
             <EntryVoteBtn {...this.props} />
             <EntryPayout {...this.props} entry={entry} />
-            <span className="votes">
-              <EntryVotes {...this.props} entry={entry} />
-            </span>
+            <EntryVotes {...this.props} entry={entry} />
             <a className="comments">
               {commentSvg} {entry.children}
             </a>
