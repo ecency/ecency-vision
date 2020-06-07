@@ -35,3 +35,33 @@
     }
   }
 }
+
+.entry-votes {
+  margin-right: 15px;
+  align-items: center;
+  color: $steel-grey;
+  display: flex;
+
+  @media (min-width: $sm-break) {
+    margin-right: 25px;
+  }
+
+  @include themify(night) {
+    font-weight: 500;
+  }
+
+  svg {
+    opacity: 0.5;
+    margin-right: 5px;
+    margin-top: 2px;
+  }
+
+  .inner-btn {
+    display: flex;
+    cursor: pointer;
+
+    &.no-data {
+      cursor: default;
+    }
+  }
+}

@@ -207,19 +207,23 @@ export default class EntryVotes extends Component<Props, State> {
 
     if (entry.stats.total_votes === 0) {
       return (
-        <Tooltip content={_t("entry-votes.title-empty")}>
-          <span className="inner-btn no-data">{child}</span>
-        </Tooltip>
+        <div className="entry-votes">
+          <Tooltip content={_t("entry-votes.title-empty")}>
+            <span className="inner-btn no-data">{child}</span>
+          </Tooltip>
+        </div>
       );
     }
 
     return (
       <>
-        <Tooltip content={_t("entry-votes.title", { n: entry.stats.total_votes })}>
-          <span className="inner-btn" onClick={this.toggle}>
-            {child}
-          </span>
-        </Tooltip>
+        <div className="entry-votes">
+          <Tooltip content={_t("entry-votes.title", { n: entry.stats.total_votes })}>
+            <span className="inner-btn" onClick={this.toggle}>
+              {child}
+            </span>
+          </Tooltip>
+        </div>
         {visible && (
           <Modal onHide={this.toggle} show={true} centered={true}>
             <Modal.Header closeButton={true}>

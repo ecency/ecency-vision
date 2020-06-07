@@ -229,7 +229,6 @@
         width: calc(100% - 147px);
       }
 
-      .votes,
       .comments {
         margin-right: 15px;
 
@@ -238,18 +237,6 @@
         }
       }
 
-      .votes {
-        .inner-btn {
-          display: flex;
-          cursor: pointer;
-
-          &.no-data {
-            cursor: default;
-          }
-        }
-      }
-
-      .votes,
       .comments,
       .reblog-btn {
         align-items: center;
