@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { AnyAction, bindActionCreators, Dispatch } from "redux";
 import { connect } from "react-redux";
 import { History, Location } from "history";
+import { Link } from "react-router-dom";
 
 import { match } from "react-router";
 
@@ -25,7 +26,7 @@ import { Entry, State as EntriesState } from "../store/entries/types";
 import { toggleTheme } from "../store/global/index";
 import { addAccount } from "../store/accounts/index";
 
-import EntryLink from "../components/entry-link";
+import EntryLink, { makePath as makeEntryPath } from "../components/entry-link";
 import ProfileLink from "../components/profile-link";
 import UserAvatar from "../components/user-avatar";
 import TagLink from "../components/tag-link";
@@ -115,22 +116,15 @@ class EntryPage extends Component<Props> {
 
     const renderedBody = { __html: renderPostBody(entry) };
     const image = catchPostImage(entry.body);
-    const isComment = false;
+    const isComment = entry.parent_author !== undefined;
 
     // Sometimes tag list comes with duplicate items
     const tags = [...new Set(entry.json_metadata.tags)];
     const { app } = entry.json_metadata;
-    const totalPayout = 0;
-    const isPayoutDeclined = parseAsset(entry.max_accepted_payout).amount === 0;
-    const voteCount = entry.active_votes.length;
-
-    const toolTipDate = created.format("LLLL");
 
     const repliesLoading = false;
 
     const metaProps = {};
-
-    console.log(entry);
 
     return (
       <>
@@ -139,50 +133,28 @@ class EntryPage extends Component<Props> {
         <Theme {...this.props} />
         <NavBar {...this.props} />
 
-        <div className="app-content entry-page" itemScope itemType="http://schema.org/Article">
+        <div className="app-content entry-page">
           <div className="the-entry">
             <div className="entry-header">
-              {/* 
-                {isComment && (
-                  <div className="comment-entry-header">
-                    <div className="comment-entry-header-title">
-                      {' '}
-                      RE: {entry.root_title}
-                    </div>
-                    <div className="comment-entry-header-info">
-                      <FormattedMessage id="entry.comment-entry-title"/>
-                    </div>
-                    <p className="comment-entry-root-title">
-                      {' '}
-                      {entry.root_title}
-                    </p>
-                    <ul className="comment-entry-opts">
+              {isComment && (
+                <div className="comment-entry-header">
+                  <div className="comment-entry-header-title">RE: {entry.title}</div>
+                  <div className="comment-entry-header-info">{_t("entry.comment-entry-title")}</div>
+                  <p className="comment-entry-root-title">{entry.title}</p>
+                  <ul className="comment-entry-opts">
+                    <li>
+                      <a href={entry.url}>{_t("entry.comment-entry-go-root")}</a>
+                    </li>
+                    {entry.depth > 1 && (
                       <li>
-                        <EntryLink
-                          {...this.props}
-                          author={rootAuthor.replace('@', '')}
-                          permlink={rootPermlink}>
-                          <a>
-                            <FormattedMessage id="entry.comment-entry-go-root"/>
-                          </a>
-                        </EntryLink>
+                        <a href={makeEntryPath(entry.category, entry.parent_author!, entry.parent_permlink!)}>
+                          {_t("entry.comment-entry-go-parent")}
+                        </a>
                       </li>
-                      {!hideParentLink && (
-                        <li>
-                          <EntryLink
-                            {...this.props}
-                            author={entry.parent_author}
-                            permlink={entry.parent_permlink}>
-                            <a>
-                              <FormattedMessage id="entry.comment-entry-go-parent"/>
-                            </a>
-                          </EntryLink>
-                        </li>
-                      )}
-                    </ul>
-                  </div>
-                )}
-                      */}
+                    )}
+                  </ul>
+                </div>
+              )}
 
               <h1 className="entry-title">
                 <span itemProp="headline name">{entry.title}</span>
@@ -208,14 +180,12 @@ class EntryPage extends Component<Props> {
                   <a className="category">{entry.category}</a>
                 </TagLink>
                 <span className="separator" />
-                <span className="date" title={toolTipDate}>
+                <span className="date" title={created.format("LLLL")}>
                   {created.fromNow()}
                 </span>
               </div>
             </div>
-
             <div className="entry-body markdown-view user-selectable" dangerouslySetInnerHTML={renderedBody} />
-
             <div className={`entry-footer ${repliesLoading ? "loading" : ""}`}>
               <div className="entry-tags">
                 {tags.map((t) => (
@@ -226,7 +196,7 @@ class EntryPage extends Component<Props> {
               </div>
               <div className="entry-info">
                 <div className="left-side">
-                  <div className="date" title={toolTipDate}>
+                  <div className="date" title={created.format("LLLL")}>
                     {timeSvg}
                     {created.fromNow()}
                   </div>

@@ -44,6 +44,7 @@ export interface Entry {
   max_accepted_payout: string;
   net_rshares: number;
   parent_author?: string;
+  parent_permlink?: string;
   payout: number;
   payout_at: string;
   pending_payout_value: string;

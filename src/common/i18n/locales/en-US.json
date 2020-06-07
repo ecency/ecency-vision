@@ -33,7 +33,10 @@
   },
   "entry": {
     "reply": "Reply",
-    "via-app": "via <span class=\"app-name\">{{app}}</span>"
+    "via-app": "via <span class=\"app-name\">{{app}}</span>",
+    "comment-entry-title": "You are viewing a single comment's thread from: ",
+    "comment-entry-go-root": "View the full context",
+    "comment-entry-go-parent": "View the direct parent"
   },
   "community": {
     "n-subscribers": "{{n}} subscribers",
