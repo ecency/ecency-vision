@@ -52,17 +52,17 @@ export default class ProfilePage extends Component<Props> {
     const vestingSharesDelegated = parseAsset(account.delegated_vesting_shares).amount;
     const vestingSharesReceived = parseAsset(account.received_vesting_shares).amount;
 
-    const sbdBalance = parseAsset(account.sbd_balance).amount;
+    const hbdBalance = parseAsset(account.sbd_balance).amount;
     const savingBalance = parseAsset(account.savings_balance).amount;
-    const savingBalanceSbd = parseAsset(account.savings_sbd_balance).amount;
+    const savingBalanceHbd = parseAsset(account.savings_sbd_balance).amount;
 
     const pricePerHive = base / quote;
 
     const totalHive = vestsToSp(vestingShares, hivePerMVests) + balance + savingBalance;
 
-    const totalSbd = sbdBalance + savingBalanceSbd;
+    const totalHbd = hbdBalance + savingBalanceHbd;
 
-    const estimatedValue = totalHive * pricePerHive + totalSbd;
+    const estimatedValue = totalHive * pricePerHive + totalHbd;
     const showPowerDown = !isEmptyDate(account.next_vesting_withdrawal);
     const nextVestingWithdrawal = parseDate(account.next_vesting_withdrawal!);
 
@@ -158,7 +158,7 @@ export default class ProfilePage extends Component<Props> {
             <div className="description" dangerouslySetInnerHTML={{ __html: _t("wallet.hive-dollars-description") }} />
           </div>
           <div className="balance-values">
-            <div className="amount">{formattedNumber(sbdBalance, { prefix: "$" })}</div>
+            <div className="amount">{formattedNumber(hbdBalance, { prefix: "$" })}</div>
           </div>
         </div>
 
@@ -169,7 +169,7 @@ export default class ProfilePage extends Component<Props> {
           </div>
           <div className="balance-values">
             <div className="amount">{formattedNumber(savingBalance, { suffix: "HIVE" })}</div>
-            <div className="amount">{formattedNumber(savingBalanceSbd, { suffix: "$" })}</div>
+            <div className="amount">{formattedNumber(savingBalanceHbd, { suffix: "$" })}</div>
           </div>
         </div>
 
