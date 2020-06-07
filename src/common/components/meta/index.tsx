@@ -16,7 +16,7 @@ interface Props {
   rss?: string;
 }
 
-const title_ = (s: string): string => `${s} - ecency`;
+const title_ = (s: string): string => `${s} - ${defaults.name}`;
 
 export default class Meta extends Component<Props> {
   render() {
@@ -30,10 +30,10 @@ export default class Meta extends Component<Props> {
     return (
       <>
         <Helmet>
-          <meta property="og:site_name" content="ecency" />
+          <meta property="og:site_name" content={defaults.name} />
           <meta property="og:type" content="website" />
           <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:site" content="@esteem_app" />
+          <meta name="twitter:site" content={defaults.twitterHandle} />
         </Helmet>
 
         {title && (

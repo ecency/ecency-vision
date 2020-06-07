@@ -8,7 +8,8 @@
     "symbol": "$"
   },
   "locale": "en-US",
-  "name": "ecency",
   "base": "https://ecency.com",
-  "imageServer": "https://images.hive.blog"
+  "imageServer": "https://images.hive.blog",
+  "name": "ecency",
+  "twitterHandle": "@ecency_app"
 }
