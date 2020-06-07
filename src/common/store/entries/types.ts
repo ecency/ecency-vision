@@ -17,6 +17,11 @@ export interface EntryStat {
   total_votes: number;
 }
 
+export interface JsonMetadata {
+  tags: string[];
+  app: string;
+}
+
 export interface Entry {
   active_votes: EntryVote[];
   author: string;
@@ -35,7 +40,7 @@ export interface Entry {
   curator_payout_value: string;
   depth: number;
   is_paidout: boolean;
-  json_metadata: any;
+  json_metadata: JsonMetadata;
   max_accepted_payout: string;
   net_rshares: number;
   parent_author?: string;
