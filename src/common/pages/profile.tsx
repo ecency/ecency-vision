@@ -79,8 +79,8 @@ class ProfilePage extends Component<Props> {
     const { match, global, fetchEntries, fetchTransactions, resetTransactions } = this.props;
     const { global: pGlobal } = prevProps;
 
-    // username changed reset and fetch wallet transactions
-    if (global.tag !== pGlobal.tag) {
+    // username changed. re-fetch wallet transactions
+    if (match.params.username !== prevProps.match.params.username) {
       resetTransactions();
       fetchTransactions(global.tag);
     }
