@@ -8,6 +8,7 @@ import { Filter } from "../common/store/global/types";
 
 import entryIndexHandler from "./handlers/entry-index";
 import profileHandler from "./handlers/profile";
+import entryHandler from "./handlers/entry";
 
 const server = express();
 
@@ -31,6 +32,13 @@ server
       "^/@:username/:section(blog|comments|replies|wallet)$", // /@esteemapp/comments
     ],
     profileHandler
+  )
+  .use(
+    [
+      "^/:category/@:author/:permlink$", // /esteem/@esteemapp/rss-feeds-added-into-esteem-website
+      "^/@:author/:permlink$", // /@esteemapp/rss-feeds-added-into-esteem-website
+    ],
+    entryHandler
   );
 
 export default server;
