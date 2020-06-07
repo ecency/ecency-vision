@@ -1,0 +1,203 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default Render 1`] = `
+<div
+  className="wallet"
+>
+  <div
+    className="balance-row estimated alternative"
+  >
+    <div
+      className="balance-info"
+    >
+      <div
+        className="title"
+      >
+        Estimated Account Value
+      </div>
+      <div
+        className="description"
+      >
+        The estimated value is based on a 7 day average value of HIVE.
+      </div>
+    </div>
+    <div
+      className="balance-values"
+    >
+      <div
+        className="amount estimated-value"
+      >
+        $ 11,264.462
+      </div>
+    </div>
+  </div>
+  <div
+    className="balance-row hive"
+  >
+    <div
+      className="balance-info"
+    >
+      <div
+        className="title"
+      >
+        HIVE
+      </div>
+      <div
+        className="description"
+      >
+        HIVE are tradeable tokens that may be transferred at anytime.HIVE can be converted to Hive Power in a process called powering up.
+      </div>
+    </div>
+    <div
+      className="balance-values"
+    >
+      <div
+        className="amount"
+      >
+        0.000 HIVE
+      </div>
+    </div>
+  </div>
+  <div
+    className="balance-row hive-power alternative"
+  >
+    <div
+      className="balance-info"
+    >
+      <div
+        className="title"
+      >
+        HIVE POWER
+      </div>
+      <div
+        className="description"
+      >
+        Hive Power are influence tokens that earn more power for holding long term and voting on posts. The more Hive Power one holds, the more one can influence other’s rewards and earn rewards for accurate voting.
+      </div>
+    </div>
+    <div
+      className="balance-values"
+    >
+      <div
+        className="amount"
+      >
+        42,924.395 HP
+      </div>
+      <div
+        className="amount received-shares"
+      >
+        <span
+          className="btn-delegatee"
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
+          role="none"
+        >
+          + 5.095 HP
+        </span>
+      </div>
+      <div
+        className="amount next-power-down-amount"
+      >
+        <span
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
+        >
+          - 3,626.559 HP
+        </span>
+      </div>
+      <div
+        className="amount total-hive-power"
+      >
+        <span
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
+        >
+          = 39,302.931 HP
+        </span>
+      </div>
+    </div>
+  </div>
+  <div
+    className="balance-row hive-dollars"
+  >
+    <div
+      className="balance-info"
+    >
+      <div
+        className="title"
+      >
+        HIVE DOLLARS
+      </div>
+      <div
+        className="description"
+      >
+        Tokens worth about $1.00 of HIVE.
+      </div>
+    </div>
+    <div
+      className="balance-values"
+    >
+      <div
+        className="amount"
+      >
+        $ 447.514
+      </div>
+    </div>
+  </div>
+  <div
+    className="balance-row savings alternative"
+  >
+    <div
+      className="balance-info"
+    >
+      <div
+        className="title"
+      >
+        SAVINGS
+      </div>
+      <div
+        className="description"
+      >
+        Balance subject to 3 day withdraw waiting period.
+      </div>
+    </div>
+    <div
+      className="balance-values"
+    >
+      <div
+        className="amount"
+      >
+        0.001 HIVE
+      </div>
+      <div
+        className="amount"
+      >
+        0.000 $
+      </div>
+    </div>
+  </div>
+  <div
+    className="next-power-down"
+  >
+    The next power down is in 5 days HIVE 3,626.559
+  </div>
+  <div
+    className="transaction-list"
+  >
+    <div
+      className="transaction-list-header"
+    >
+      <h2>
+        HISTORY
+         
+      </h2>
+    </div>
+  </div>
+</div>
+`;

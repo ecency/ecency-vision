@@ -27,7 +27,7 @@ interface Props {
   account: Account;
 }
 
-export default class ProfilePage extends Component<Props> {
+export default class Wallet extends Component<Props> {
   render() {
     const { dynamicProps, account } = this.props;
 
@@ -82,7 +82,7 @@ export default class ProfilePage extends Component<Props> {
         <div className="balance-row estimated alternative">
           <div className="balance-info">
             <div className="title">{_t("wallet.estimated")}</div>
-            <div className="description" dangerouslySetInnerHTML={{ __html: _t("wallet.estimated-description") }} />
+            <div className="description">{_t("wallet.estimated-description")}</div>
           </div>
           <div className="balance-values">
             <div className="amount estimated-value">
@@ -94,7 +94,7 @@ export default class ProfilePage extends Component<Props> {
         <div className="balance-row hive">
           <div className="balance-info">
             <div className="title">{_t("wallet.hive")}</div>
-            <div className="description" dangerouslySetInnerHTML={{ __html: _t("wallet.hive-description") }} />
+            <div className="description">{_t("wallet.hive-description")}</div>
           </div>
           <div className="balance-values">
             <div className="amount">{formattedNumber(balance, { suffix: "HIVE" })}</div>
@@ -104,7 +104,7 @@ export default class ProfilePage extends Component<Props> {
         <div className="balance-row hive-power alternative">
           <div className="balance-info">
             <div className="title">{_t("wallet.hive-power")}</div>
-            <div className="description" dangerouslySetInnerHTML={{ __html: _t("wallet.hive-power-description") }} />
+            <div className="description">{_t("wallet.hive-power-description")}</div>
           </div>
 
           <div className="balance-values">
@@ -155,7 +155,7 @@ export default class ProfilePage extends Component<Props> {
         <div className="balance-row hive-dollars">
           <div className="balance-info">
             <div className="title">{_t("wallet.hive-dollars")}</div>
-            <div className="description" dangerouslySetInnerHTML={{ __html: _t("wallet.hive-dollars-description") }} />
+            <div className="description">{_t("wallet.hive-dollars-description")}</div>
           </div>
           <div className="balance-values">
             <div className="amount">{formattedNumber(hbdBalance, { prefix: "$" })}</div>
@@ -165,7 +165,7 @@ export default class ProfilePage extends Component<Props> {
         <div className="balance-row savings alternative">
           <div className="balance-info">
             <div className="title">{_t("wallet.savings")}</div>
-            <div className="description" dangerouslySetInnerHTML={{ __html: _t("wallet.savings-description") }} />
+            <div className="description">{_t("wallet.savings-description")}</div>
           </div>
           <div className="balance-values">
             <div className="amount">{formattedNumber(savingBalance, { suffix: "HIVE" })}</div>
