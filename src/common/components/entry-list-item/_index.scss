@@ -178,7 +178,7 @@
 
     .item-summary {
       display: grid;
-      
+
       @media (min-width: $sm-break) {
         float: right;
         width: calc(100% - 147px);
@@ -229,21 +229,6 @@
         width: calc(100% - 147px);
       }
 
-
-      .total-payout {
-        color: $steel-grey;
-
-        @include themify(night) {
-          font-weight: 500;
-        }
-
-        &.payout-declined {
-          color: lighten($steel-grey, 15);
-          text-decoration: line-through;
-        }
-      }
-
-      .total-payout,
       .votes,
       .comments {
         margin-right: 15px;
@@ -254,11 +239,11 @@
       }
 
       .votes {
-        .inner-btn{
+        .inner-btn {
           display: flex;
           cursor: pointer;
 
-          &.no-data{
+          &.no-data {
             cursor: default;
           }
         }

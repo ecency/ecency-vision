@@ -1,3 +1,21 @@
+.entry-payout {
+  color: $steel-grey;
+  margin-right: 15px;
+
+  @media (min-width: $sm-break) {
+    margin-right: 25px;
+  }
+
+  @include themify(night) {
+    font-weight: 500;
+  }
+
+  &.payout-declined {
+    color: lighten($steel-grey, 15);
+    text-decoration: line-through;
+  }
+}
+
 .payout-popover-content {
   width: 290px;
 
