@@ -219,6 +219,7 @@
     .item-controls {
       cursor: default;
       display: flex;
+      align-items: center;
       font-size: 90%;
 
       @media (min-width: $sm-break) {

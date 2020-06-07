@@ -396,67 +396,7 @@
       .entry-controls {
         align-items: center;
         display: flex;
-        font-size: 13px;
         width: 100%;
-
-        @media (min-width: $sm-break) {
-          font-size: 15px;
-        }
-
-        .voting {
-          margin-right: 10px;
-        }
-
-        .total-payout {
-          color: $steel-grey;
-          margin-right: 25px;
-
-          @include themify(night) {
-            font-weight: 500;
-          }
-
-          &.payout-declined {
-            color: lighten($steel-grey, 15);
-            text-decoration: line-through;
-          }
-        }
-
-        .votes {
-          align-items: center;
-          color: $steel-grey;
-          display: flex;
-          margin-right: 25px;
-
-          @include themify(night) {
-            font-weight: 500;
-          }
-
-          svg {
-            opacity: 0.5;
-            margin-right: 5px;
-            height: 14px;
-          }
-        }
-
-        .reblog-btn {
-          .inner-btn {
-            align-items: center;
-            color: $steel-grey;
-            display: flex;
-          }
-
-          svg {
-            opacity: 0.5;
-            margin-right: 5px;
-            height: 14px;
-          }
-
-          &:hover {
-            .inner-btn {
-              color: $dark-sky-blue;
-            }
-          }
-        }
 
         .sub-menu {
           align-items: center;

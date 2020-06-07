@@ -54,11 +54,11 @@
     height: 14px;
     opacity: 0.5;
     margin-right: 5px;
-    margin-top: 2px;
   }
 
   .inner-btn {
     display: flex;
+    align-items: center;
     cursor: pointer;
 
     &.no-data {
