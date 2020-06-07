@@ -72,8 +72,6 @@ export default class EntryListItem extends Component<Props> {
     const dateRelative = date.fromNow();
     const dateFormatted = date.format("LLLL");
 
-    const isPayoutDeclined = parseAsset(entry.max_accepted_payout).amount === 0;
-
     const isChild = !!entry.parent_author;
 
     const title = entry.title;
@@ -146,9 +144,7 @@ export default class EntryListItem extends Component<Props> {
           </div>
           <div className="item-controls">
             <EntryVoteBtn {...this.props} />
-            <span className={`total-payout ${isPayoutDeclined ? "payout-declined" : ""}`}>
-              <EntryPayout {...this.props} entry={entry} />
-            </span>
+            <EntryPayout {...this.props} entry={entry} />
             <span className="votes">
               <EntryVotes {...this.props} entry={entry} />
             </span>

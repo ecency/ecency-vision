@@ -69,6 +69,8 @@ export default class EntryPayout extends Component<Props> {
   render() {
     const { entry } = this.props;
 
+    const isPayoutDeclined = parseAsset(entry.max_accepted_payout).amount === 0;
+
     const pendingPayout = parseAsset(entry.pending_payout_value).amount;
     const authorPayout = parseAsset(entry.author_payout_value).amount;
     const curatorPayout = parseAsset(entry.curator_payout_value).amount;
@@ -85,7 +87,7 @@ export default class EntryPayout extends Component<Props> {
 
     return (
       <OverlayTrigger trigger={["hover", "focus"]} placement="bottom" overlay={popover}>
-        <div className="entry-payout">
+        <div className={`entry-payout ${isPayoutDeclined ? "payout-declined" : ""}`}>
           <FormattedCurrency {...this.props} value={totalPayout} />
         </div>
       </OverlayTrigger>
