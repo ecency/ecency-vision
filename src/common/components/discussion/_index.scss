@@ -1,17 +1,3 @@
-.vertical-separator {
-  height: 14px;
-  margin: 0 12px;
-  width: 1px;
-
-  @include themify(day) {
-    background: lighten($steel-grey, 40);
-  }
-
-  @include themify(night) {
-    background: $dark-grey-blue;
-  }
-}
-
 .discussion {
   margin-bottom: 30px;
   margin-top: 15px;
@@ -58,10 +44,11 @@
     .discussion-item {
       @include clearfix();
 
+      border-left: 1px dotted transparent;
+
       .item-inner {
         @include clearfix();
-        margin-bottom: 15px;
-        padding: 3px;
+        padding: 3px 3px 15px 0;
 
         .item-header,
         .item-controls {
@@ -165,13 +152,11 @@
           align-items: center;
           display: flex;
           width: 100%;
-          font-size: 13px;
+          font-size: 96%;
 
           @media (min-width: $sm-break) {
             font-size: 14px;
           }
-
-          
 
           .reply-btn {
             align-items: center;
@@ -179,6 +164,21 @@
             cursor: pointer;
             display: flex;
           }
+        }
+      }
+
+      .discussion-item {
+        // Add extra left padding and guide lines to sub items
+
+        @include themify(day) {
+          border-color: $white-two;
+        }
+        @include themify(night) {
+          border-color: lighten($dark-six, 12);
+        }
+
+        .item-inner {
+          padding-left: 13px;
         }
       }
 
