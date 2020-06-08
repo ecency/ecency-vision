@@ -60,6 +60,12 @@ export const getPost = (author: string = "", permlink: string = "", observer: st
     observer,
   });
 
+export const getDiscussion = (author: string, permlink: string): Promise<Record<string, Entry> | null> =>
+  bridgeApiCall<Record<string, Entry> | null>("bridge.get_discussion", {
+    author,
+    permlink,
+  });
+
 export const getCommunity = (name: string, observer: string = ""): Promise<Community | null> =>
   bridgeApiCall<Community | null>("bridge.get_community", { name, observer });
 

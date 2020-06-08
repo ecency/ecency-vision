@@ -35,6 +35,7 @@ import EntryReblogBtn from "../components/entry-reblog-btn/index";
 import EntryPayout from "../components/entry-payout/index";
 import EntryVotes from "../components/entry-votes";
 import DownloadTrigger from "../components/download-trigger";
+import Discussion from "../components/discussion";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
@@ -44,7 +45,6 @@ import NotFound from "../components/404";
 import { _t } from "../i18n";
 
 import parseDate from "../helper/parse-date";
-import parseAsset from "../helper/parse-asset";
 
 import _c from "../util/fix-class-names";
 import truncate from "../util/truncate";
@@ -258,6 +258,8 @@ class EntryPage extends Component<Props> {
                 </div>
               </div>
             </div>
+
+            <Discussion {...this.props} parent={entry} />
           </div>
         </div>
       </>

@@ -17,20 +17,6 @@
   }
 }
 
-.vertical-separator {
-  height: 14px;
-  margin: 0 12px;
-  width: 1px;
-
-  @include themify(day) {
-    background: lighten($steel-grey, 40);
-  }
-
-  @include themify(night) {
-    background: $dark-grey-blue;
-  }
-}
-
 .entry-page {
   .the-entry {
     margin: auto;

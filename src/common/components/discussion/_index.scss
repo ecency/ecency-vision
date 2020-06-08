@@ -1,0 +1,204 @@
+.vertical-separator {
+  height: 14px;
+  margin: 0 12px;
+  width: 1px;
+
+  @include themify(day) {
+    background: lighten($steel-grey, 40);
+  }
+
+  @include themify(night) {
+    background: $dark-grey-blue;
+  }
+}
+
+.discussion {
+  margin-bottom: 30px;
+  margin-top: 15px;
+
+  .entry-replies-header {
+    align-items: center;
+    color: $steel-grey;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+
+    .reply-count {
+      align-items: center;
+      display: flex;
+      font-size: 14px;
+
+      @media (min-width: $sm-break) {
+        font-size: 16px;
+      }
+
+      .mi {
+        margin-right: 4px;
+        opacity: 0.5;
+      }
+    }
+
+    .sort-order {
+      .label {
+        margin-right: 5px;
+      }
+
+      .label,
+      .ant-select {
+        font-size: 14px;
+
+        @media (min-width: $sm-break) {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+
+  .discussion-list {
+    .discussion-item {
+      @include clearfix();
+
+      .item-inner {
+        @include clearfix();
+        margin-bottom: 15px;
+        padding: 3px;
+
+        .item-header,
+        .item-controls {
+          color: $steel-grey;
+        }
+
+        .item-body,
+        .item-controls {
+          margin-left: 34px;
+
+          @media (min-width: $md-break) {
+            margin-left: 50px;
+          }
+        }
+
+        .item-header {
+          align-items: center;
+          display: flex;
+          font-size: 14px;
+          margin-bottom: 3px;
+
+          .author-part {
+            align-items: center;
+            cursor: pointer;
+            display: flex;
+            position: relative;
+
+            .author-avatar {
+              border-radius: 50%;
+              float: left;
+              left: 0;
+              position: absolute;
+              top: 0;
+              width: 24px;
+              z-index: 2;
+
+              .user-avatar {
+                width: 24px;
+                height: 24px;
+              }
+
+              @media (min-width: $md-break) {
+                width: 40px;
+
+                .user-avatar {
+                  width: 40px;
+                  height: 40px;
+                }
+              }
+            }
+
+            .author {
+              align-items: center;
+              display: inline-flex;
+              margin-left: 34px;
+
+              @media (min-width: $md-break) {
+                margin-left: 50px;
+              }
+
+              .author-name {
+                font-weight: 700;
+                margin-right: 2px;
+              }
+
+              @include themify(day) {
+                color: $charcoal-grey;
+              }
+
+              @include themify(night) {
+                color: $pinkish-grey;
+              }
+
+              .author-reputation {
+                color: $steel-grey;
+                font-size: 14px;
+                font-weight: 500;
+
+                &::before {
+                  content: "(";
+                }
+
+                &::after {
+                  content: ")";
+                }
+              }
+            }
+          }
+
+          .separator {
+            @extend .circle-separator;
+          }
+        }
+
+        .item-body {
+          @include clearfix();
+          padding: 0.2em 0;
+        }
+
+        .item-controls {
+          align-items: center;
+          display: flex;
+          width: 100%;
+          font-size: 13px;
+
+          @media (min-width: $sm-break) {
+            font-size: 14px;
+          }
+
+          
+
+          .reply-btn {
+            align-items: center;
+            color: lighten($steel-grey, 10);
+            cursor: pointer;
+            display: flex;
+          }
+        }
+      }
+
+      .item-show-more {
+        margin-left: 50px;
+        margin-bottom: 10px;
+      }
+
+      .discussion-list {
+        @include clearfix();
+        margin-left: 10px;
+
+        @media (min-width: $sm-break) {
+          margin-left: 20px;
+        }
+
+        @media (min-width: $md-break) {
+          margin-left: 50px;
+        }
+      }
+    }
+  }
+}
