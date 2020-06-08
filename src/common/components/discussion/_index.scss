@@ -45,6 +45,7 @@
         .item-content {
           flex-grow: 1;
           font-size: 13px;
+          overflow: hidden;
 
           @media (min-width: $md-break) {
             font-size: initial;
@@ -53,7 +54,6 @@
           .item-header {
             display: flex;
             flex-direction: column;
-            margin-bottom: 3px;
 
             @media (min-width: $md-break) {
               align-items: center;
@@ -105,7 +105,7 @@
           }
 
           .item-body {
-            margin: 10px 0;
+            margin: 10px 0 14px 0;
           }
 
           .item-controls {
@@ -141,7 +141,7 @@
             }
 
             @include themify(day) {
-              border-color: lighten($white-four, 5);
+              border-color: lighten($white-four, 0);
             }
             @include themify(night) {
               border-color: lighten($dark-six, 12);
