@@ -56,41 +56,40 @@ export class Item extends Component<ItemProps> {
     const { discussion, entry } = this.props;
     const created = moment(parseDate(entry.created));
     const renderedBody = { __html: renderPostBody(entry) };
+    const reputation = Math.floor(entry.author_reputation);
 
     return (
       <div className="discussion-item">
         <div className="item-inner">
-          <div className="item-header">
-            <ProfileLink {...this.props} username={entry.author}>
-              <div className="author-part">
-                <div className="author-avatar">
-                  <UserAvatar username={entry.author} size="medium" />
-                </div>
+          <div className="item-figure">
+            <UserAvatar username={entry.author} size="medium" />
+          </div>
+          <div className="item-content">
+            <div className="item-header">
+              <ProfileLink {...this.props} username={entry.author}>
                 <div className="author">
                   <span className="author-name">{entry.author}</span>
-                  <span className="author-reputation">{entry.author_reputation}</span>
+                  <span className="author-reputation">{reputation}</span>
                 </div>
-              </div>
-            </ProfileLink>
-            <span className="separator" />
-            <EntryLink {...this.props} entry={entry}>
-              <span className="date" title={created.format("LLLL")}>
-                {created.fromNow()}
-              </span>
-            </EntryLink>
-          </div>
-          <div className="item-body markdown-view mini-markdown" dangerouslySetInnerHTML={renderedBody} />
-          <div className="item-controls">
-            <EntryVoteBtn {...this.props} />
-            <EntryPayout {...this.props} entry={entry} />
-        
-            <EntryVotes {...this.props} entry={entry} />
-     
-            <DownloadTrigger>
-              <span className="reply-btn" role="none">
-                {_t("entry.reply")}
-              </span>
-            </DownloadTrigger>
+              </ProfileLink>
+              <span className="separator" />
+              <EntryLink {...this.props} entry={entry}>
+                <span className="date" title={created.format("LLLL")}>
+                  {created.fromNow()}
+                </span>
+              </EntryLink>
+            </div>
+            <div className="item-body markdown-view mini-markdown" dangerouslySetInnerHTML={renderedBody} />
+            <div className="item-controls">
+              <EntryVoteBtn {...this.props} />
+              <EntryPayout {...this.props} entry={entry} />
+              <EntryVotes {...this.props} entry={entry} />
+              <DownloadTrigger>
+                <span className="reply-btn" role="none">
+                  {_t("entry.reply")}
+                </span>
+              </DownloadTrigger>
+            </div>
           </div>
         </div>
 

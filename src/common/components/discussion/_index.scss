@@ -12,102 +12,57 @@
     .reply-count {
       align-items: center;
       display: flex;
-      font-size: 14px;
-
-      @media (min-width: $sm-break) {
-        font-size: 16px;
-      }
 
       .mi {
         margin-right: 4px;
         opacity: 0.5;
       }
     }
-
-    .sort-order {
-      .label {
-        margin-right: 5px;
-      }
-
-      .label,
-      .ant-select {
-        font-size: 14px;
-
-        @media (min-width: $sm-break) {
-          font-size: 16px;
-        }
-      }
-    }
   }
 
   .discussion-list {
     .discussion-item {
-      @include clearfix();
-
-      border-left: 1px dotted transparent;
-
       .item-inner {
-        @include clearfix();
-        padding: 3px 3px 15px 0;
+        display: flex;
+        padding: 12px 0;
 
-        .item-header,
-        .item-controls {
-          color: $steel-grey;
-        }
+        .item-figure {
+          flex-grow: 0;
+          flex-shrink: 0;
+          margin-right: 10px;
 
-        .item-body,
-        .item-controls {
-          margin-left: 34px;
+          .user-avatar {
+            width: 24px;
+            height: 24px;
 
-          @media (min-width: $md-break) {
-            margin-left: 50px;
+            @media (min-width: $md-break) {
+              width: 40px;
+              height: 40px;
+            }
           }
         }
 
-        .item-header {
-          align-items: center;
-          display: flex;
-          font-size: 14px;
-          margin-bottom: 3px;
+        .item-content {
+          flex-grow: 1;
+          font-size: 13px;
 
-          .author-part {
-            align-items: center;
-            cursor: pointer;
+          @media (min-width: $md-break) {
+            font-size: initial;
+          }
+
+          .item-header {
             display: flex;
-            position: relative;
+            flex-direction: column;
+            margin-bottom: 3px;
 
-            .author-avatar {
-              border-radius: 50%;
-              float: left;
-              left: 0;
-              position: absolute;
-              top: 0;
-              width: 24px;
-              z-index: 2;
-
-              .user-avatar {
-                width: 24px;
-                height: 24px;
-              }
-
-              @media (min-width: $md-break) {
-                width: 40px;
-
-                .user-avatar {
-                  width: 40px;
-                  height: 40px;
-                }
-              }
+            @media (min-width: $md-break) {
+              align-items: center;
+              flex-direction: row;
             }
 
             .author {
               align-items: center;
               display: inline-flex;
-              margin-left: 34px;
-
-              @media (min-width: $md-break) {
-                margin-left: 50px;
-              }
 
               .author-name {
                 font-weight: 700;
@@ -124,7 +79,139 @@
 
               .author-reputation {
                 color: $steel-grey;
-                font-size: 14px;
+                font-weight: 500;
+
+                &::before {
+                  content: "(";
+                }
+
+                &::after {
+                  content: ")";
+                }
+              }
+            }
+
+            .separator {
+              @extend .circle-separator;
+              display: none;
+              @media (min-width: $md-break) {
+                display: block;
+              }
+            }
+
+            .date {
+              opacity: 0.7;
+            }
+          }
+
+          .item-body {
+            margin: 10px 0;
+          }
+
+          .item-controls {
+            align-items: center;
+            display: flex;
+            width: 100%;
+
+            .reply-btn {
+              align-items: center;
+              color: lighten($steel-grey, 10);
+              cursor: pointer;
+              display: flex;
+            }
+          }
+        }
+      }
+
+      .discussion-list {
+        @include clearfix();
+        margin-left: 20px;
+
+        @media (min-width: $md-break) {
+          margin-left: 50px;
+        }
+
+        @media (min-width: $md-break) {
+          .discussion-item {
+            // Add extra left padding and guide lines to sub items
+            border-left: 1px dotted transparent;
+
+            .item-inner {
+              padding-left: 13px;
+            }
+
+            @include themify(day) {
+              border-color: lighten($white-four, 5);
+            }
+            @include themify(night) {
+              border-color: lighten($dark-six, 12);
+            }
+          }
+        }
+      }
+
+      /*
+
+      @include clearfix();
+      border-left: 1px dotted transparent;
+
+      .item-inner {
+        @include clearfix();
+        padding: 3px 3px 15px 0;
+        margin-top: 4px;
+        font-size: 12px;
+
+        .item-header,
+        .item-controls {
+          color: $steel-grey;
+        }
+
+
+        .item-body,
+        .item-controls {
+          padding-left: 50px;
+        }
+
+        .item-header {
+          align-items: center;
+          display: flex;
+          margin-bottom: 3px;
+
+          .author-part {
+            align-items: center;
+            cursor: pointer;
+            display: flex;
+            position: relative;
+
+            .author-avatar {
+              border-radius: 50%;
+              float: left;
+              left: 0;
+              position: absolute;
+              top: 0;
+              width: 40px;
+              z-index: 2;
+            }
+
+            .author {
+              align-items: center;
+              display: inline-flex;
+
+              .author-name {
+                font-weight: 700;
+                margin-right: 2px;
+              }
+
+              @include themify(day) {
+                color: $charcoal-grey;
+              }
+
+              @include themify(night) {
+                color: $pinkish-grey;
+              }
+
+              .author-reputation {
+                color: $steel-grey;
                 font-weight: 500;
 
                 &::before {
@@ -145,18 +232,14 @@
 
         .item-body {
           @include clearfix();
-          padding: 0.2em 0;
+          padding: 4px 0;
+          font-size: 12px !important;
         }
 
         .item-controls {
           align-items: center;
           display: flex;
           width: 100%;
-          font-size: 96%;
-
-          @media (min-width: $sm-break) {
-            font-size: 14px;
-          }
 
           .reply-btn {
             align-items: center;
@@ -167,38 +250,16 @@
         }
       }
 
-      .discussion-item {
-        // Add extra left padding and guide lines to sub items
-
-        @include themify(day) {
-          border-color: $white-two;
-        }
-        @include themify(night) {
-          border-color: lighten($dark-six, 12);
-        }
-
-        .item-inner {
-          padding-left: 13px;
-        }
-      }
+     
 
       .item-show-more {
         margin-left: 50px;
         margin-bottom: 10px;
       }
 
-      .discussion-list {
-        @include clearfix();
-        margin-left: 10px;
+      
 
-        @media (min-width: $sm-break) {
-          margin-left: 20px;
-        }
-
-        @media (min-width: $md-break) {
-          margin-left: 50px;
-        }
-      }
+      */
     }
   }
 }

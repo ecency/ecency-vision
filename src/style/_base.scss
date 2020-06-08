@@ -38,10 +38,6 @@ html {
 .markdown-view {
   @include clearfix();
 
-  @media (min-width: $md-break) {
-    font-size: 18px;
-  }
-
   word-wrap: break-word;
 
   br {
@@ -98,10 +94,6 @@ html {
   }
 
   blockquote {
-    @media (min-width: $md-break) {
-      font-size: 18px;
-    }
-
     padding-left: 10px;
     border-left-width: 4px;
     border-left-style: solid;
@@ -129,10 +121,6 @@ html {
 
   ul li,
   ol li {
-    @media (min-width: $md-break) {
-      font-size: 18px;
-    }
-
     line-height: 150%;
     margin: 0 0 1rem 0;
   }
@@ -298,7 +286,6 @@ html {
 
     .open-external {
       bottom: -24px;
-      font-size: 16px;
       height: 22px;
       position: absolute;
       width: 22px;
@@ -316,12 +303,7 @@ html {
   }
 
   &.mini-markdown {
-    font-size: 14px;
     word-wrap: break-word;
-
-    blockquote {
-      font-size: 14px;
-    }
 
     p {
       margin: 0 0 0.6rem 0;
