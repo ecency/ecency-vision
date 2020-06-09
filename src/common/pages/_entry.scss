@@ -261,7 +261,7 @@
       .entry-info {
         @include clearfix();
         color: $steel-grey;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
         display: flex;
         justify-content: space-between;
         flex-direction: column;
@@ -333,7 +333,6 @@
 
             .author-reputation {
               color: $steel-grey;
-              font-size: 14px;
               font-weight: 500;
 
               &::before {
@@ -385,7 +384,11 @@
           align-items: center;
           display: flex;
           justify-content: flex-end;
-          margin-left: 5%;
+          flex-grow: 1;
+
+          @media (min-width: $sm-break) {
+            margin-left: 5%;
+          }
 
           svg {
             height: 18px;
@@ -408,7 +411,11 @@
             cursor: pointer;
 
             &:not(:last-child) {
-              margin-right: 16px;
+              margin-right: 14px;
+
+              @media (min-width: $sm-break) {
+                margin-right: 16px;
+              }
             }
 
             &:hover {
