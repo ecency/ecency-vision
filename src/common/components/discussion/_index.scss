@@ -52,6 +52,10 @@
       .order-label {
         white-space: nowrap;
         margin-right: 6px;
+        display: none;
+        @media (min-width: $sm-break) {
+          display: block;
+        }
       }
     }
   }
