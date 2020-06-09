@@ -211,6 +211,10 @@ export default class Discussion extends Component<Props> {
     const { parent } = this.props;
     const { discussion, loading, order } = this.state;
 
+    if (parent.children === 0) {
+      return <div className="discussion" />;
+    }
+
     return (
       <div className={_c(`discussion ${loading ? "loading" : ""} `)}>
         {loading && <LinearProgress />}
