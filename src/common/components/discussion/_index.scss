@@ -81,10 +81,11 @@
         .item-content {
           flex-grow: 1;
           font-size: 13px;
-          overflow: hidden;
+          width: calc(100% - 34px);
 
           @media (min-width: $md-break) {
             font-size: initial;
+            width: calc(100% - 50px);
           }
 
           .item-header {
