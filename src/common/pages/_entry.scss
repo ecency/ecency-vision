@@ -218,6 +218,11 @@
     .entry-footer {
       @include clearfix();
       padding-bottom: 5px;
+      font-size: 90%;
+
+      @media (min-width: $sm-break) {
+        font-size: initial;
+      }
 
       .entry-tags {
         align-items: flex-start;
@@ -257,10 +262,18 @@
         @include clearfix();
         color: $steel-grey;
         margin-bottom: 20px;
-        font-size: 13px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
 
-        @media (min-width: $sm-break) {
-          font-size: 15px;
+        svg {
+          width: 16px;
+          height: 16px;
+          margin-right: 4px;
+        }
+
+        @media (min-width: $md-break) {
+          flex-direction: row;
         }
 
         @include themify(day) {
@@ -271,22 +284,21 @@
           color: $pinkish-grey;
         }
 
+        .separator {
+          @extend .circle-separator;
+        }
+
         .left-side {
           align-items: center;
           display: flex;
-
-          @media (min-width: $sm-break) {
-            float: left;
-            width: 90%;
-          }
+          flex-grow: 1;
+          flex-shrink: 0;
 
           .separator {
-            @extend .circle-separator;
-
             &:first-of-type {
               display: none;
 
-              @media (min-width: $xsm-break) {
+              @media (min-width: $sm-break) {
                 display: block;
               }
             }
@@ -295,12 +307,6 @@
           .date {
             align-items: center;
             display: inline-flex;
-
-            svg {
-              width: 16px;
-              height: 16px;
-              margin-right: 4px;
-            }
           }
 
           .author {
@@ -308,7 +314,7 @@
             cursor: pointer;
             display: none;
 
-            @media (min-width: $xsm-break) {
+            @media (min-width: $sm-break) {
               display: inline-flex;
             }
 
@@ -350,18 +356,22 @@
         }
 
         .right-side {
-          float: right;
-          justify-content: flex-end;
-          width: 10%;
-          display: none;
+          display: flex;
+          align-items: center;
+          flex-grow: 0;
+          flex-shrink: 0;
+          margin-top: 20px;
 
-          @media (min-width: $sm-break) {
-            align-items: center;
-            display: flex;
+          @media (min-width: $md-break) {
+            justify-content: flex-end;
+            margin-top: 0;
           }
 
-          .reply-btn {
+          .reply-btn,
+          .reblog-btn {
             cursor: pointer;
+            display: flex;
+            align-items: center;
           }
         }
       }
@@ -395,6 +405,7 @@
             display: flex;
             height: 100%;
             color: $primary;
+            cursor: pointer;
 
             &:not(:last-child) {
               margin-right: 16px;

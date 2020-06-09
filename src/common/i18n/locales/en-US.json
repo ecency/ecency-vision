@@ -1,4 +1,8 @@
 {
+  "g": {
+    "reply": "Reply",
+    "reblog": "Reblog"
+  },
   "navbar": {
     "change-theme": "Change Theme",
     "search-placeholder": "Search"
@@ -32,7 +36,6 @@
     "reward": "Reward"
   },
   "entry": {
-    "reply": "Reply",
     "via-app": "via <span class=\"app-name\">{{app}}</span>",
     "comment-entry-title": "You are viewing a single comment's thread from: ",
     "comment-entry-go-root": "View the full context",

@@ -29,6 +29,11 @@
     justify-content: space-between;
     margin-bottom: 15px;
     padding-top: 15px;
+    font-size: 90%;
+
+    @media (min-width: $sm-break) {
+      font-size: initial;
+    }
 
     .count {
       align-items: center;

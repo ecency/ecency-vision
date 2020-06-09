@@ -45,13 +45,12 @@ import NotFound from "../components/404";
 import { _t } from "../i18n";
 
 import parseDate from "../helper/parse-date";
+import { makeShareUrlReddit, makeShareUrlTwitter, makeShareUrlFacebook } from "../helper/url-share";
 
 import _c from "../util/fix-class-names";
 import truncate from "../util/truncate";
 
-import { makeShareUrlReddit, makeShareUrlTwitter, makeShareUrlFacebook } from "../helper/url-share";
-
-import { timeSvg, redditSvg, facebookSvg, twitterSvg } from "../img/svg";
+import { timeSvg, redditSvg, facebookSvg, twitterSvg, replySvg, repeatSvg } from "../img/svg";
 
 interface MatchParams {
   category: string;
@@ -219,8 +218,14 @@ class EntryPage extends Component<Props> {
                 </div>
                 <div className="right-side">
                   <DownloadTrigger>
-                    <span className="reply-btn" role="none">
-                      {_t("entry.reply")}
+                    <span className="reply-btn">
+                      {replySvg} {_t("g.reply")}
+                    </span>
+                  </DownloadTrigger>
+                  <span className="separator" />
+                  <DownloadTrigger>
+                    <span className="reblog-btn">
+                      {repeatSvg} {_t("g.reblog")}
                     </span>
                   </DownloadTrigger>
                 </div>
@@ -229,7 +234,6 @@ class EntryPage extends Component<Props> {
                 <EntryVoteBtn {...this.props} />
                 <EntryPayout {...this.props} entry={entry} />
                 <EntryVotes {...this.props} entry={entry} />
-                <EntryReblogBtn {...this.props} />
                 <div className="sub-menu">
                   <a
                     className="sub-menu-item"
