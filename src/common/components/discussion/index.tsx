@@ -67,7 +67,7 @@ export class Item extends Component<ItemProps> {
     const reputation = Math.floor(entry.author_reputation);
 
     return (
-      <div className="discussion-item">
+      <div className={`discussion-item depth-${entry.depth}`}>
         <div className="item-inner">
           <div className="item-figure">
             <UserAvatar username={entry.author} size="medium" />
@@ -94,7 +94,7 @@ export class Item extends Component<ItemProps> {
               <EntryVotes {...this.props} entry={entry} />
               <DownloadTrigger>
                 <span className="reply-btn" role="none">
-                  {_t("entry.reply")}
+                  {_t("g.reply")}
                 </span>
               </DownloadTrigger>
             </div>

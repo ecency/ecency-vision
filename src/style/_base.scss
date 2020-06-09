@@ -1,5 +1,5 @@
 @import "variables";
-@import 'mixins';
+@import "mixins";
 
 html {
   scroll-behavior: smooth;
@@ -250,10 +250,13 @@ html {
   .markdown-video-link {
     background: #000;
     display: block;
-    height: 360px;
-    max-width: 600px;
+    height: 200px;
     width: 100%;
     position: relative;
+
+    @media (min-width: $md-break) {
+      height: 360px;
+    }
 
     .markdown-video-play {
       position: absolute;
@@ -338,11 +341,6 @@ html {
         max-height: 400px;
         max-width: 400px;
       }
-    }
-
-    .markdown-video-link {
-      height: 200px;
-      width: 240px;
     }
   }
 
