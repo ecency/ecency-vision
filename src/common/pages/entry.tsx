@@ -113,7 +113,7 @@ class EntryPage extends Component<Props> {
     const published = moment(parseDate(entry.created));
     const modified = moment(parseDate(entry.updated));
 
-    const renderedBody = { __html: renderPostBody(entry) };
+    const renderedBody = { __html: renderPostBody(entry, false) };
 
     // Sometimes tag list comes with duplicate items
     const tags = [...new Set(entry.json_metadata.tags)];
