@@ -63,7 +63,7 @@ export class Item extends Component<ItemProps> {
   render() {
     const { discussion, entry } = this.props;
     const created = moment(parseDate(entry.created));
-    const renderedBody = { __html: renderPostBody(entry, false) };
+    const renderedBody = { __html: renderPostBody(entry.body, false) };
     const reputation = Math.floor(entry.author_reputation);
     const readMore = entry.children > 0 && entry.depth > 5;
     const showSubList = !readMore && entry.children > 0;
