@@ -2,9 +2,14 @@ import parseAsset from "./parse-asset";
 
 import { Entry } from "../store/entries/types";
 
-type sortOrder = "trending" | "author_reputation" | "votes" | "created";
+export enum SortOrder {
+  trending = "trending",
+  author_reputation = "author_reputation",
+  votes = "votes",
+  created = "created",
+}
 
-export default (discussion: Entry[], order: sortOrder) => {
+export default (discussion: Entry[], order: SortOrder) => {
   const allPayout = (c: Entry) =>
     parseAsset(c.pending_payout_value).amount +
     parseAsset(c.author_payout_value).amount +

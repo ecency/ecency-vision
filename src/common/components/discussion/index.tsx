@@ -2,7 +2,11 @@ import React, { Component } from "react";
 
 import { History } from "history";
 
+import isEqual from "react-fast-compare";
+
 import moment from "moment";
+
+import { Form, FormControl } from "react-bootstrap";
 
 import defaults from "../../constants/defaults.json";
 
@@ -16,13 +20,12 @@ setProxyBase(defaults.imageServer);
 import { Entry } from "../../store/entries/types";
 
 import { Account } from "../../store/accounts/types";
+
 import { State as GlobalState } from "../../store/global/types";
 
 import { getDiscussion } from "../../api/bridge";
 
-import parseAsset from "../../helper/parse-asset";
-
-import sortDiscussion from "../../helper/discussion-sort";
+import sortDiscussion, { SortOrder } from "../../helper/discussion-sort";
 
 import ProfileLink from "../profile-link";
 
@@ -37,7 +40,12 @@ import EntryReblogBtn from "../entry-reblog-btn/index";
 import EntryPayout from "../entry-payout/index";
 import EntryVotes from "../entry-votes";
 import DownloadTrigger from "../download-trigger";
+import LinearProgress from "../linear-progress";
+
 import { _t } from "../../i18n";
+import _c from "../../util/fix-class-names";
+
+import { commentSvg } from "../../img/svg";
 
 interface ItemProps {
   history: History;
@@ -48,8 +56,8 @@ interface ItemProps {
 }
 
 export class Item extends Component<ItemProps> {
-  shouldComponentUpdate(): boolean {
-    return false;
+  shouldComponentUpdate(nextProps: Readonly<ItemProps>): boolean {
+    return !isEqual(this.props.global, nextProps.global) || !isEqual(this.props.entry, nextProps.entry);
   }
 
   render() {
@@ -116,7 +124,7 @@ export class List extends Component<ListProps> {
     );
 
     if (filtered.length === 0) {
-      // return null;
+      return null;
     }
 
     return (
@@ -139,12 +147,14 @@ interface Props {
 interface State {
   discussion: Entry[];
   loading: boolean;
+  order: string;
 }
 
 export default class Discussion extends Component<Props> {
   state: State = {
     discussion: [],
     loading: false,
+    order: "trending",
   };
 
   _mounted: boolean = true;
@@ -152,7 +162,9 @@ export default class Discussion extends Component<Props> {
   componentDidMount() {
     const { parent } = this.props;
     const { author, permlink } = parent;
+    const { order } = this.state;
 
+    this.stateSet({ loading: true });
     getDiscussion(author, permlink)
       .then((resp) => {
         if (resp) {
@@ -161,21 +173,33 @@ export default class Discussion extends Component<Props> {
             discussion.push(resp[d]);
           }
 
-          sortDiscussion(discussion, "trending");
-
-          // const discussion = Object.keys(d).map((x) => d[x]);
+          sortDiscussion(discussion, SortOrder[order]);
 
           this.stateSet({ discussion, loading: false });
         }
       })
       .catch(() => {
-        this.setState({ loading: false });
+        this.stateSet({ loading: false });
       });
   }
 
   componentWillUnmount() {
     this._mounted = false;
   }
+
+  orderChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    const order = e.target.value;
+
+    this.stateSet({ order, loading: true });
+
+    setTimeout(() => {
+      const { discussion } = this.state;
+
+      sortDiscussion(discussion, SortOrder[order]);
+
+      this.stateSet({ discussion, loading: false });
+    }, 500);
+  };
 
   stateSet = (obj: {}, cb = undefined) => {
     if (this._mounted) {
@@ -185,14 +209,25 @@ export default class Discussion extends Component<Props> {
 
   render() {
     const { parent } = this.props;
-    const { discussion, loading } = this.state;
-
-    if (loading) {
-      return null;
-    }
+    const { discussion, loading, order } = this.state;
 
     return (
-      <div className="discussion">
+      <div className={_c(`discussion ${loading ? "loading" : ""} `)}>
+        {loading && <LinearProgress />}
+        <div className="discussion-header">
+          <div className="count">
+            {commentSvg} {_t("discussion.count", { n: parent.children })}
+          </div>
+          <div className="order">
+            <span className="order-label">{_t("discussion.order")}</span>
+            <Form.Control as="select" size="sm" value={order} onChange={this.orderChanged} disabled={loading}>
+              <option value="trending">{_t("discussion.order-trending")}</option>
+              <option value="author_reputation">{_t("discussion.order-reputation")}</option>
+              <option value="votes">{_t("discussion.order-votes")}</option>
+              <option value="created">{_t("discussion.order-created")}</option>
+            </Form.Control>
+          </div>
+        </div>
         <List {...this.props} parent={parent} discussion={discussion} />
       </div>
     );

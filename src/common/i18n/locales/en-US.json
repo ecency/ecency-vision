@@ -38,6 +38,14 @@
     "comment-entry-go-root": "View the full context",
     "comment-entry-go-parent": "View the direct parent"
   },
+  "discussion": {
+    "count": "{{n}} Replies",
+    "order": "Sort Order",
+    "order-trending": "Trending",
+    "order-reputation": "Reputation",
+    "order-votes": "Votes",
+    "order-created": "Age"
+  },
   "community": {
     "n-subscribers": "{{n}} subscribers",
     "n-rewards": "{{n}} pending rewards",

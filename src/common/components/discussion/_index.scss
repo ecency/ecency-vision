@@ -1,21 +1,52 @@
 .discussion {
   margin-bottom: 30px;
   margin-top: 15px;
+  position: relative;
 
-  .entry-replies-header {
+  @include themify(day) {
+    border-top: 1px solid $white-three;
+  }
+
+  @include themify(night) {
+    border-top: 1px solid $dark-two;
+  }
+
+  &.loading {
+    border-color: transparent;
+  }
+
+  // fix progress bar to top
+  .linear-progress {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  .discussion-header {
     align-items: center;
     color: $steel-grey;
     display: flex;
     justify-content: space-between;
     margin-bottom: 15px;
+    padding-top: 15px;
 
-    .reply-count {
+    .count {
       align-items: center;
       display: flex;
 
-      .mi {
-        margin-right: 4px;
+      svg {
+        height: 16px;
+        margin-right: 6px;
         opacity: 0.5;
+      }
+    }
+    .order {
+      display: flex;
+      align-items: center;
+
+      .order-label {
+        white-space: nowrap;
+        margin-right: 6px;
       }
     }
   }

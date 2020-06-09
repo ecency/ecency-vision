@@ -217,18 +217,7 @@
 
     .entry-footer {
       @include clearfix();
-
-      padding-bottom: 15px;
-
-      &:not(.loading) {
-        @include themify(day) {
-          border-bottom: 1px solid $white-four;
-        }
-
-        @include themify(night) {
-          border-bottom: 1px solid $dark-two;
-        }
-      }
+      padding-bottom: 5px;
 
       .entry-tags {
         align-items: flex-start;
