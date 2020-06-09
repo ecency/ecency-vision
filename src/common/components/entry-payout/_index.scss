@@ -1,6 +1,7 @@
 .entry-payout {
   color: $steel-grey;
   margin-right: 15px;
+  cursor: default;
 
   @media (min-width: $sm-break) {
     margin-right: 25px;

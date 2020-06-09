@@ -86,7 +86,7 @@ export default class EntryPayout extends Component<Props> {
     );
 
     return (
-      <OverlayTrigger trigger={["hover", "focus"]} placement="bottom" overlay={popover}>
+      <OverlayTrigger trigger={["hover", "focus"]} overlay={popover}>
         <div className={`entry-payout ${isPayoutDeclined ? "payout-declined" : ""}`}>
           <FormattedCurrency {...this.props} value={totalPayout} />
         </div>
