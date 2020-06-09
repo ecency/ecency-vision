@@ -170,7 +170,11 @@
 
       .discussion-list {
         @include clearfix();
-        margin-left: 20px;
+        margin-left: 18px;
+
+        @media (min-width: $sm-break) {
+          margin-left: 24px;
+        }
 
         @media (min-width: $md-break) {
           margin-left: 50px;
