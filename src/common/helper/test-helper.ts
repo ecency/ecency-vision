@@ -23,16 +23,8 @@ export const entryInstance1: Entry = {
   body:
     "Hey developers,\n\n![awesome-hive.png](https://images.esteem.app/DQmetNmv6rtcRxueXJSNm7ErLLKNYGJETxsNSoehn6xk9BC/awesome-hive.png)\n\nI just created [Awesome-Hive](https://github.com/ledgerconnect/awesome-hive), list of services and apps on Hive.\n\nIf you don't know about Awesome project, take a look at here: https://project-awesome.org/\n\nProject contains list of services and links to various tools and libraries. Quite useful if you are developing or learning some new programming languages or skills. So we now have `awesome-hive` list, feel free to submit your pull request to add your apps, services. \n\nI will submit PR to project awesome in 30 days to list Hive in decentralized systems section. One of the requirements, awesome list should be around for more than 30 days. So I ask anyone with service, tools, dapps to submit pull request to https://github.com/ledgerconnect/awesome-hive so we have complete list of services by end of June.\n\nIn 30 days, we will PR to official project awesome list. More awareness about awesome Hive! Meanwhile, let's complete `awesome-hive` together! \ud83d\ude0e \ud83d\ude47 \ud83d\ude4f \n\n## Hive on!",
   json_metadata: {
-    links: [
-      "https://github.com/ledgerconnect/awesome-hive",
-      "https://project-awesome.org/",
-      "https://github.com/ledgerconnect/awesome-hive",
-    ],
-    image: ["https://images.esteem.app/DQmetNmv6rtcRxueXJSNm7ErLLKNYGJETxsNSoehn6xk9BC/awesome-hive.png"],
     tags: ["hive", "hiveio", "awesome", "devs", "development", "list"],
     app: "esteem/2.2.7-surfer",
-    format: "markdown+html",
-    community: "esteem.app",
   },
   created: "2020-06-01T05:53:33",
   updated: "2020-06-01T14:41:15",
