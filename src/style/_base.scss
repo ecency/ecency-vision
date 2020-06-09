@@ -38,7 +38,7 @@ html {
 .markdown-view {
   @include clearfix();
 
-  word-break: break-all !important;
+  word-break: break-word !important;
 
   br {
     font-size: 100%;
