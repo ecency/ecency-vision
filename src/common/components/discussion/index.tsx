@@ -65,6 +65,8 @@ export class Item extends Component<ItemProps> {
     const created = moment(parseDate(entry.created));
     const renderedBody = { __html: renderPostBody(entry) };
     const reputation = Math.floor(entry.author_reputation);
+    const readMore = entry.children > 0 && entry.depth > 5;
+    const showSubList = !readMore && entry.children > 0;
 
     return (
       <div className={`discussion-item depth-${entry.depth}`}>
@@ -98,10 +100,17 @@ export class Item extends Component<ItemProps> {
                 </span>
               </DownloadTrigger>
             </div>
+            {readMore && (
+              <div className="read-more">
+                <EntryLink {...this.props} entry={entry}>
+                  <a>{_t("discussion.read-more")}</a>
+                </EntryLink>
+              </div>
+            )}
           </div>
         </div>
 
-        <List {...this.props} parent={entry} discussion={discussion} />
+        {showSubList && <List {...this.props} parent={entry} discussion={discussion} />}
       </div>
     );
   }

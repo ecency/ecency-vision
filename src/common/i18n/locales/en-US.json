@@ -47,7 +47,8 @@
     "order-trending": "Trending",
     "order-reputation": "Reputation",
     "order-votes": "Votes",
-    "order-created": "Age"
+    "order-created": "Age",
+    "read-more": "...read more replies..."
   },
   "community": {
     "n-subscribers": "{{n}} subscribers",
