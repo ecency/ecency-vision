@@ -181,7 +181,8 @@ export default class Discussion extends Component<Props> {
           for (const d in resp) {
             discussion.push(resp[d]);
           }
-
+          
+          // TODO: Consider immutability
           sortDiscussion(discussion, SortOrder[order]);
 
           this.stateSet({ discussion, loading: false });
@@ -204,6 +205,7 @@ export default class Discussion extends Component<Props> {
     setTimeout(() => {
       const { discussion } = this.state;
 
+      // TODO: Consider immutability
       sortDiscussion(discussion, SortOrder[order]);
 
       this.stateSet({ discussion, loading: false });
