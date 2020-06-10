@@ -136,7 +136,6 @@ class ProfilePage extends Component<Props, State> {
       } catch (e) {}
 
       this.stateSet({ loading: false });
-      return true;
     }
 
     return true;
