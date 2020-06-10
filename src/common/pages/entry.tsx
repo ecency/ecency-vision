@@ -36,6 +36,7 @@ import EntryPayout from "../components/entry-payout/index";
 import EntryVotes from "../components/entry-votes";
 import DownloadTrigger from "../components/download-trigger";
 import Discussion from "../components/discussion";
+import MdHandler from "../components/md-handler";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
@@ -138,6 +139,7 @@ class EntryPage extends Component<Props> {
       <>
         <Meta {...metaProps} />
         <Theme {...this.props} />
+        <MdHandler {...this.props} />
         <NavBar {...this.props} />
 
         <div className="app-content entry-page">
