@@ -14,7 +14,7 @@ export default class MdHandler extends Component<Props> {
     document.removeEventListener("click", this.clicked);
   }
 
-  clicked = (e: MouseEvent) => {
+  clicked = (e: MouseEvent): void => {
     let el = e.target as HTMLElement;
 
     // A element can be wrapped with inline element. Look parent elements.
@@ -58,7 +58,7 @@ export default class MdHandler extends Component<Props> {
       if (videoHref) {
         window.open(videoHref);
         e.preventDefault();
-        return false;
+        return;
       }
     }
   };
