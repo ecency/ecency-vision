@@ -6,7 +6,7 @@ import { initialState as trendingTagsInitialState } from "../../common/store/tre
 import { initialState as communityInitialState } from "../../common/store/community";
 import { initialState as transactionsInitialState } from "../../common/store/transactions";
 
-import { Filter } from "../../common/store/global/types";
+import { ProfileFilter } from "../../common/store/global/types";
 import { Entry } from "../../common/store/entries/types";
 import { makeGroupKey } from "../../common/store/entries";
 
@@ -24,19 +24,12 @@ import { render } from "../template";
 import { cache } from "../cache";
 
 export default async (req: express.Request, res: express.Response) => {
-  const params = filterTagExtract(req.originalUrl)!;
-
-  let filter = defaults.filter;
-  let tag = "";
-
   const { username, section = "blog" } = req.params;
 
   let entries = {};
 
   // blog or comments or replies section
-  if (params) {
-    ({ filter, tag } = params);
-
+  if (ProfileFilter[section]) {
     let entryList: Entry[] = [];
 
     try {
@@ -46,7 +39,7 @@ export default async (req: express.Request, res: express.Response) => {
     }
 
     entries = {
-      [`${makeGroupKey(filter, tag)}`]: {
+      [`${makeGroupKey(section, username)}`]: {
         entries: optimizeEntries(entryList),
         error: null,
         loading: false,
@@ -66,11 +59,14 @@ export default async (req: express.Request, res: express.Response) => {
 
   // TODO: promoted posts
 
+  const filter = ProfileFilter[section] || defaults.filter;
+  const tag = ProfileFilter[section] ? username : "";
+
   const preLoadedState = {
     global: {
       ...globalInitialState,
       ...readGlobalCookies(req),
-      ...{ filter: Filter[filter], tag },
+      ...{ filter, tag },
     },
     dynamicProps: dynamicPropsInitialState,
     trendingTags: { ...trendingTagsInitialState },

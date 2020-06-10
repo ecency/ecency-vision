@@ -10,7 +10,20 @@ export enum Theme {
   night = "night",
 }
 
-export enum Filter {
+export enum EntryFilter {
+  trending = "trending",
+  hot = "hot",
+  created = "created",
+}
+
+export enum ProfileFilter {
+  blog = "blog",
+  comments = "comments",
+  replies = "replies",
+}
+
+// TODO: Find a proper way to merge EntryFilter and ProfileFilter
+export enum AllFilter {
   trending = "trending",
   hot = "hot",
   created = "created",
@@ -20,7 +33,7 @@ export enum Filter {
 }
 
 export interface State {
-  filter: Filter;
+  filter: EntryFilter | ProfileFilter | AllFilter;
   tag: string;
   theme: Theme;
   listStyle: ListStyle;

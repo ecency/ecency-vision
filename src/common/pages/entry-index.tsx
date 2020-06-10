@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { History, Location } from "history";
 
 import { AppState } from "../store";
-import { Filter, ListStyle, State as GlobalState } from "../store/global/types";
+import { EntryFilter, ListStyle, State as GlobalState } from "../store/global/types";
 import { Account } from "../store/accounts/types";
 import { State as TrendingTagsState } from "../store/trending-tags/types";
 import { State as EntriesState } from "../store/entries/types";
@@ -116,7 +116,7 @@ class EntryIndexPage extends Component<Props> {
 
     const dropDownConfig = {
       label: _t(`entry-index.filter-${filter}`),
-      items: [Filter.trending, Filter.hot, Filter.created].map((x) => {
+      items: [EntryFilter.trending, EntryFilter.hot, EntryFilter.created].map((x) => {
         return {
           label: _t(`entry-index.filter-${x}`),
           href: tag ? `/${x}/${tag}` : `/${x}`,

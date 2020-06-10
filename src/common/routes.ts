@@ -1,6 +1,6 @@
-import { Filter } from "./store/global/types";
+import { EntryFilter } from "./store/global/types";
 
-const filters = Object.values(Filter);
+const filters = Object.values(EntryFilter);
 
 export default {
   HOME: `/`,

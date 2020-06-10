@@ -4,7 +4,7 @@ import React from "react";
 
 import cookieParser from "cookie-parser";
 
-import { Filter } from "../common/store/global/types";
+import { EntryFilter, ProfileFilter } from "../common/store/global/types";
 
 import entryIndexHandler from "./handlers/entry-index";
 import profileHandler from "./handlers/profile";
@@ -12,7 +12,8 @@ import entryHandler from "./handlers/entry";
 
 const server = express();
 
-const filters = Object.values(Filter);
+const entryFilters = Object.values(EntryFilter);
+const profileFilters = Object.values(ProfileFilter);
 
 server
   .disable("x-powered-by")
@@ -21,15 +22,15 @@ server
   .use(
     [
       "^/$", // index
-      `^/:filter(${filters.join("|")})$`, // /trending
-      `^/:filter(${filters.join("|")})/:tag$`, //  /trending/esteem
+      `^/:filter(${entryFilters.join("|")})$`, // /trending
+      `^/:filter(${entryFilters.join("|")})/:tag$`, //  /trending/esteem
     ],
     entryIndexHandler
   )
   .use(
     [
       "^/@:username$", // /@esteemapp
-      "^/@:username/:section(blog|comments|replies|wallet)$", // /@esteemapp/comments
+      `^/@:username/:section(${profileFilters.join("|")}|wallet)$`, // /@esteemapp/comments
     ],
     profileHandler
   )

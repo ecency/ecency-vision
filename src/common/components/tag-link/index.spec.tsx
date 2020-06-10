@@ -6,7 +6,7 @@ import { createBrowserHistory } from "history";
 
 import { globalInstance } from "../../helper/test-helper";
 
-import { Filter } from "../../store/global/types";
+import { EntryFilter } from "../../store/global/types";
 
 it("(1) Default render", () => {
   const props = {
@@ -14,7 +14,7 @@ it("(1) Default render", () => {
     global: {
       ...globalInstance,
       ...{
-        filter: Filter.hot,
+        filter: EntryFilter.hot,
         tag: "bitcoin",
       },
     },

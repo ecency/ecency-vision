@@ -1,10 +1,10 @@
-import { State as GlobalState, Filter, Theme, ListStyle } from "../store/global/types";
+import { State as GlobalState, EntryFilter, Theme, ListStyle } from "../store/global/types";
 import { Entry } from "../store/entries/types";
 import { Community } from "../store/community/types";
 import { DynamicProps } from "../store/dynamic-props/types";
 
 export const globalInstance: GlobalState = {
-  filter: Filter.hot,
+  filter: EntryFilter.hot,
   tag: "",
   theme: Theme.day,
   listStyle: ListStyle.row,
