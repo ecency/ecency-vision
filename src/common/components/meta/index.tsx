@@ -21,7 +21,7 @@ const title_ = (s: string): string => `${s} - ${defaults.name}`;
 
 export default class Meta extends Component<Props> {
   render() {
-    const { title, description, url, canonical, tag, keywords, published, modified } = this.props;
+    const { title, description, url, canonical, tag, keywords, published, modified, rss } = this.props;
     let { image } = this.props;
 
     if (!image) {
@@ -87,6 +87,12 @@ export default class Meta extends Component<Props> {
         {modified && (
           <Helmet>
             <meta itemProp="dateModified" content={modified} />
+          </Helmet>
+        )}
+
+        {rss && (
+          <Helmet>
+            <link rel="alternate" type="application/rss+xml" href={rss} />
           </Helmet>
         )}
 

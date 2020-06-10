@@ -34,6 +34,8 @@ import Wallet from "../components/wallet";
 
 import { getAccountFull } from "../api/hive";
 
+import defaults from "../constants/defaults.json";
+
 import { _t } from "../i18n";
 
 import _c from "../util/fix-class-names";
@@ -177,7 +179,16 @@ class ProfilePage extends Component<Props, State> {
     }
 
     //  Meta config
-    const metaProps = {};
+    const url = `${defaults.base}/@${username}${section ? `/${section}` : ""}`;
+    const metaProps = {
+      title: account.profile?.name || account.name,
+      description: account.profile?.about || "",
+      url,
+      canonical: url,
+      image: `${defaults.imageServer}/u/${username}/avatar/large`,
+      rss: `${defaults.base}/@${username}/rss`,
+      keywords: `${username}, ${username}'s blog`,
+    };
 
     return (
       <>
