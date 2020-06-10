@@ -72,18 +72,19 @@
         }
 
         .stat {
-          font-size: 14px;
+          font-size: 13px;
           margin-bottom: 2px;
 
           @media (min-width: $md-break) {
             opacity: 0.7;
+            margin-bottom: 0;
 
             &:not(:last-child) {
-              margin-right: 6px;
+              margin-right: 4px;
 
               &:after {
                 content: "•";
-                margin-left: 6px;
+                margin-left: 4px;
               }
             }
           }
