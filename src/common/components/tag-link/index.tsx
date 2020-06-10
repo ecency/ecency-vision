@@ -29,6 +29,8 @@ export default class TagLink extends Component<Props, State> {
     i: 0,
   };
 
+  _mounted: boolean = true;
+
   shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>, nextContext: any): boolean {
     return !isEqual(this.props.children, nextProps.children) || !isEqual(this.state, nextState);
   }
@@ -41,11 +43,15 @@ export default class TagLink extends Component<Props, State> {
         getCommunity(tag).then((c) => {
           if (c) {
             cache[tag] = c.title;
-            this.setState({ i: Date.now() }); // trigger render
+            this.stateSet({ i: Date.now() }); // trigger render
           }
         });
       }
     }
+  }
+
+  componentWillUnmount() {
+    this._mounted = false;
   }
 
   clicked = (e: React.MouseEvent<HTMLElement>) => {
@@ -57,6 +63,12 @@ export default class TagLink extends Component<Props, State> {
     const newLoc = makePath(filter, tag);
 
     history.push(newLoc);
+  };
+
+  stateSet = (obj: {}, cb = undefined) => {
+    if (this._mounted) {
+      this.setState(obj, cb);
+    }
   };
 
   render() {
