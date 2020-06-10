@@ -1,4 +1,4 @@
-import { LocationChangeAction } from "../common";
+import { LocationChangeAction, InitAction } from "../common";
 
 export interface EntryBeneficiaryRoute {
   account: string;
@@ -102,4 +102,10 @@ export interface InvalidateAction {
   groupKey: string;
 }
 
-export type Actions = LocationChangeAction | FetchAction | FetchedAction | FetchErrorAction | InvalidateAction;
+export type Actions =
+  | LocationChangeAction
+  | InitAction
+  | FetchAction
+  | FetchedAction
+  | FetchErrorAction
+  | InvalidateAction;

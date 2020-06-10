@@ -32,6 +32,17 @@ export const initialState: State = {};
 
 export default (state: State = initialState, action: Actions): State => {
   switch (action.type) {
+    case CommonActionTypes.INIT: {
+      if (state["__manual__"] === undefined) {
+        return update(state, {
+          ["__manual__"]: {
+            $set: { entries: [], error: null, loading: false, hasMore: false },
+          },
+        });
+      }
+
+      return state;
+    }
     case CommonActionTypes.LOCATION_CHANGE: {
       const { pathname } = action.payload.location;
       const params = filterTagExtract(pathname);
@@ -143,6 +154,10 @@ export const fetchEntries = (what: string = "", tag: string = "", more: boolean 
     .catch((e) => {
       dispatch(fetchErrorAct(groupKey, "network error"));
     });
+};
+
+export const addEntry = (entry: Entry) => (dispatch: Dispatch) => {
+  dispatch(fetchedAct("__manual__", [entry], false));
 };
 
 /* Action Creators */

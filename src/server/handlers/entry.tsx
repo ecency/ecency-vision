@@ -27,7 +27,7 @@ export default async (req: express.Request, res: express.Response) => {
 
   if (entry) {
     entries = {
-      [`__initial__`]: {
+      [`__manual__`]: {
         entries: [entry],
         error: null,
         loading: false,

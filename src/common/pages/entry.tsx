@@ -25,27 +25,31 @@ import { Entry, State as EntriesState } from "../store/entries/types";
 
 import { toggleTheme } from "../store/global/index";
 import { addAccount } from "../store/accounts/index";
+import { addEntry } from "../store/entries/index";
 
 import { makePath as makeEntryPath } from "../components/entry-link";
 import ProfileLink from "../components/profile-link";
 import UserAvatar from "../components/user-avatar";
 import TagLink from "../components/tag-link";
 import EntryVoteBtn from "../components/entry-vote-btn/index";
-import EntryReblogBtn from "../components/entry-reblog-btn/index";
 import EntryPayout from "../components/entry-payout/index";
 import EntryVotes from "../components/entry-votes";
 import DownloadTrigger from "../components/download-trigger";
 import Discussion from "../components/discussion";
 import MdHandler from "../components/md-handler";
+import LinearProgress from "../components/linear-progress";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
 import NavBar from "../components/navbar/index";
 import NotFound from "../components/404";
 
+import { getPost } from "../api/bridge";
+
 import { _t } from "../i18n";
 
 import parseDate from "../helper/parse-date";
+
 import { makeShareUrlReddit, makeShareUrlTwitter, makeShareUrlFacebook } from "../helper/url-share";
 
 import _c from "../util/fix-class-names";
@@ -67,14 +71,77 @@ interface Props {
   entries: EntriesState;
   toggleTheme: () => void;
   addAccount: (data: Account) => void;
+  addEntry: (entry: Entry) => void;
 }
 
-class EntryPage extends Component<Props> {
-  componentDidMount() {}
+interface State {
+  loading: boolean;
+}
 
-  componentDidUpdate(prevProps: Readonly<Props>): void {}
+class EntryPage extends Component<Props, State> {
+  state: State = {
+    loading: false,
+  };
 
-  componentWillUnmount() {}
+  _mounted: boolean = true;
+
+  componentDidMount() {
+    this.ensureEntry();
+  }
+
+  componentDidUpdate(prevProps: Readonly<Props>): void {
+    const { location } = this.props;
+    if (location.pathname !== prevProps.location.pathname) {
+      this.ensureEntry();
+    }
+  }
+
+  componentWillUnmount() {
+    this._mounted = false;
+  }
+
+  stateSet = (obj: {}, cb = undefined) => {
+    if (this._mounted) {
+      this.setState(obj, cb);
+    }
+  };
+
+  ensureEntry = () => {
+    const { match, addEntry } = this.props;
+
+    if (!this.getEntry()) {
+      this.stateSet({ loading: true });
+
+      const { username, permlink } = match.params;
+
+      getPost(username.replace("@", ""), permlink)
+        .then((entry) => {
+          if (entry) {
+            addEntry(entry);
+          }
+        })
+        .finally(() => {
+          this.stateSet({ loading: false });
+        });
+    }
+  };
+
+  getEntry = (): Entry | undefined => {
+    const { entries, match } = this.props;
+    const { username, permlink } = match.params;
+
+    const groupKeys = Object.keys(entries);
+    let entry: Entry | undefined = undefined;
+
+    for (const k of groupKeys) {
+      entry = entries[k].entries.find((x) => x.author === username.replace("@", "") && x.permlink === permlink);
+      if (entry) {
+        break;
+      }
+    }
+
+    return entry;
+  };
 
   shareReddit = (entry: Entry) => {
     const u = makeShareUrlReddit(entry.category, entry.author, entry.permlink, entry.title);
@@ -92,19 +159,13 @@ class EntryPage extends Component<Props> {
   };
 
   render() {
-    const { entries, match } = this.props;
-    const { username, permlink } = match.params;
-    const author = username.replace("@", "");
+    const { loading } = this.state;
 
-    const groupKeys = Object.keys(entries);
-    let entry: Entry | undefined = undefined;
-
-    for (const k of groupKeys) {
-      entry = entries[k].entries.find((x) => x.author === author && x.permlink === permlink);
-      if (entry) {
-        break;
-      }
+    if (loading) {
+      return <LinearProgress />;
     }
+
+    const entry = this.getEntry();
 
     if (!entry) {
       return <NotFound />;
@@ -283,6 +344,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
     {
       toggleTheme,
       addAccount,
+      addEntry,
     },
     dispatch
   );
