@@ -169,11 +169,27 @@ export default class Discussion extends Component<Props> {
   _mounted: boolean = true;
 
   componentDidMount() {
+    this.fetch();
+  }
+
+  componentDidUpdate(prevProps: Readonly<Props>): void {
+    const { parent } = this.props;
+    if (parent.url !== prevProps.parent.url) {
+      this.fetch();
+    }
+  }
+
+  componentWillUnmount() {
+    this._mounted = false;
+  }
+
+  fetch = () => {
     const { parent } = this.props;
     const { author, permlink } = parent;
-    const { order } = this.state;
+    const order = "trending";
 
-    this.stateSet({ loading: true });
+    this.stateSet({ discussion: [], loading: true, order });
+
     getDiscussion(author, permlink)
       .then((resp) => {
         if (resp) {
@@ -181,7 +197,7 @@ export default class Discussion extends Component<Props> {
           for (const d in resp) {
             discussion.push(resp[d]);
           }
-          
+
           // TODO: Consider immutability
           sortDiscussion(discussion, SortOrder[order]);
 
@@ -191,11 +207,7 @@ export default class Discussion extends Component<Props> {
       .catch(() => {
         this.stateSet({ loading: false });
       });
-  }
-
-  componentWillUnmount() {
-    this._mounted = false;
-  }
+  };
 
   orderChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
     const order = e.target.value;
