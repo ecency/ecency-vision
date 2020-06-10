@@ -247,6 +247,23 @@ html {
     cursor: pointer;
   }
 
+  .markdown-external-link {
+    &:after {
+      display: inline-block;
+      opacity: 0.6;
+      height: 12px;
+      width: 12px;
+      margin: 0 4px;
+      content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' viewBox='0 0 24 24'%3E%3Cpath fill='%23357ce6' d='M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z' /%3E%3C/svg%3E");
+    }
+
+    &:hover {
+      &:after {
+        opacity: 1;
+      }
+    }
+  }
+
   .markdown-video-link {
     background: #000;
     display: block;
