@@ -32,6 +32,8 @@ import ProfileMenu from "../components/profile-menu";
 import ProfileCover from "../components/profile-cover";
 import Wallet from "../components/wallet";
 
+import { getAccountFull } from "../api/hive";
+
 import { _t } from "../i18n";
 
 import _c from "../util/fix-class-names";
@@ -59,8 +61,20 @@ interface Props {
   resetTransactions: () => void;
 }
 
-class ProfilePage extends Component<Props> {
-  componentDidMount() {
+interface State {
+  loading: boolean;
+}
+
+class ProfilePage extends Component<Props, State> {
+  state: State = {
+    loading: false,
+  };
+
+  _mounted: boolean = true;
+
+  async componentDidMount() {
+    await this.ensureAccount();
+
     const { match, global, fetchEntries, fetchDynamicProps, fetchTransactions } = this.props;
 
     if (match.params.section !== "wallet") {
@@ -100,7 +114,39 @@ class ProfilePage extends Component<Props> {
 
     // reset transactions on unload
     resetTransactions();
+
+    this._mounted = false;
   }
+
+  ensureAccount = async () => {
+    const { match, accounts, addAccount } = this.props;
+
+    const username = match.params.username.replace("@", "");
+    const account = accounts.find((x) => x.name === username);
+
+    if (!account) {
+      this.stateSet({ loading: true });
+
+      try {
+        const data = await getAccountFull(username);
+        // make sure acccount exists
+        if (data.name === username) {
+          addAccount(data);
+        }
+      } catch (e) {}
+
+      this.stateSet({ loading: false });
+      return true;
+    }
+
+    return true;
+  };
+
+  stateSet = (obj: {}, cb = undefined) => {
+    if (this._mounted) {
+      this.setState(obj, cb);
+    }
+  };
 
   bottomReached = () => {
     const { global, entries, fetchEntries } = this.props;
@@ -117,6 +163,11 @@ class ProfilePage extends Component<Props> {
 
   render() {
     const { global, entries, accounts, match } = this.props;
+    const { loading } = this.state;
+
+    if (loading) {
+      return <LinearProgress />;
+    }
 
     const username = match.params.username.replace("@", "");
     const { section = "blog" } = match.params;

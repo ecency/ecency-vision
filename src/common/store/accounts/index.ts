@@ -12,7 +12,6 @@ export default (state: State = initialState, action: Actions): State => {
       const { data } = action;
 
       return [...state.filter((x) => x.name !== data.name), data];
-      
     }
     default:
       return state;
@@ -22,6 +21,11 @@ export default (state: State = initialState, action: Actions): State => {
 /* Actions */
 export const addAccount = (data: Account) => (dispatch: Dispatch) => {
   dispatch(addAct(data));
+
+  if (data.__loaded) {
+    dispatch(addAct(data));
+    return;
+  }
 
   getAccountFull(data.name).then((a) => {
     dispatch(addAct(a));
