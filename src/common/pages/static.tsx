@@ -165,7 +165,9 @@ class AboutPage extends Component<Props> {
 class GuestPostPage extends Component<Props> {
   render() {
     //  Meta config
-    const metaProps = {};
+    const metaProps = {
+      title: "Guest Posts",
+    };
 
     return (
       <>
@@ -194,7 +196,9 @@ class GuestPostPage extends Component<Props> {
 class ContributePage extends Component<Props> {
   render() {
     //  Meta config
-    const metaProps = {};
+    const metaProps = {
+      title: "Contribute",
+    };
 
     return (
       <>
@@ -254,7 +258,9 @@ class ContributePage extends Component<Props> {
 class PrivacyPage extends Component<Props> {
   render() {
     //  Meta config
-    const metaProps = {};
+    const metaProps = {
+      title: "Privacy Policy",
+    };
 
     return (
       <>
@@ -458,7 +464,9 @@ class PrivacyPage extends Component<Props> {
 class WhitePaperPage extends Component<Props> {
   render() {
     //  Meta config
-    const metaProps = {};
+    const metaProps = {
+      title: "Whitepaper",
+    };
 
     return (
       <>
@@ -494,7 +502,9 @@ class WhitePaperPage extends Component<Props> {
 class TosPage extends Component<Props> {
   render() {
     //  Meta config
-    const metaProps = {};
+    const metaProps = {
+      title: "Terms Of Service",
+    };
 
     return (
       <>
