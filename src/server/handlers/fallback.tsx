@@ -10,12 +10,17 @@ import { initialState as entriesInitialState } from "../../common/store/entries"
 
 import { render } from "../template";
 
+import { readGlobalCookies } from "../helper";
+
 export default async (req: express.Request, res: express.Response) => {
   // TODO: promoted posts
 
   const preLoadedState = {
-    global: { ...globalInitialState },
-    dynamicProps: dynamicPropsInitialState,
+    global: {
+      ...globalInitialState,
+      ...readGlobalCookies(req),
+    },
+    dynamicProps: { ...dynamicPropsInitialState },
     trendingTags: { ...trendingTagsInitialState },
     community: communityInitialState,
     accounts: [...accountsInitialState],
