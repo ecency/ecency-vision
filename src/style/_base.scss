@@ -20,6 +20,10 @@ html {
   width: 20px;
 }
 
+select {
+  border-radius: 0.2rem !important;
+}
+
 .flex-spacer {
   flex-grow: 1;
 }

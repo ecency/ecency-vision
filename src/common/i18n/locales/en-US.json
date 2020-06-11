@@ -1,11 +1,11 @@
 {
   "g": {
     "reply": "Reply",
-    "reblog": "Reblog"
+    "reblog": "Reblog",
+    "search": "Search"
   },
   "navbar": {
-    "change-theme": "Change Theme",
-    "search-placeholder": "Search"
+    "change-theme": "Change Theme"
   },
   "entry-list-item": {
     "reblogged": "by {{n}}",
@@ -61,6 +61,12 @@
     "description": "Description",
     "rules": "Rules",
     "lang": "Language"
+  },
+  "communities": {
+    "title": "Communities",
+    "sort-rank": "Rank",
+    "sort-subs": "Subscribers",
+    "sort-new": "New"
   },
   "profile": {
     "voting-power": "Voting Power",

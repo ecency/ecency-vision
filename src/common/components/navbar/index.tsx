@@ -55,7 +55,7 @@ export default class NavBar extends Component<Props> {
           <div className="flex-spacer" />
           <div className="search-bar">
             <span className="prepend">{magnifySvg}</span>
-            <FormControl placeholder={_t("navbar.search-placeholder")} />
+            <FormControl placeholder={_t("g.search")} />
           </div>
           <DownloadTrigger>
             <div className="downloads">

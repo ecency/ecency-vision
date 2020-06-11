@@ -1,0 +1,36 @@
+.communities-page {
+  flex-direction: block;
+  .community-list {
+    background: $white-two;
+    max-width: 600px;
+    width: 100%;
+    margin: auto;
+    padding: 20px;
+    border-radius: 12px;
+
+    .list-header {
+      margin-bottom: 20px;
+
+      .list-title {
+        color: $dark-sky-blue;
+        font-size: 26px;
+        margin: 0;
+      }
+    }
+
+    .list-form {
+      display: flex;
+      justify-content: space-between;
+
+      .search-box {
+        max-width: 400px;
+        margin-right: 60px;
+        flex-grow: 1;
+      }
+
+      .sort-box {
+        flex-grow: 0;
+      }
+    }
+  }
+}
