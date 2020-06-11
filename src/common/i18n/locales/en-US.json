@@ -8,7 +8,7 @@
     "search-placeholder": "Search"
   },
   "entry-list-item": {
-    "reblogged": "reblogged by {{n}}",
+    "reblogged": "by {{n}}",
     "promoted": "sponsored",
     "pinned": "Pinned Post"
   },
