@@ -295,16 +295,18 @@
         }
       }
 
-      @media (min-width: $xxl-break) {
-        margin-right: 1%;
-        width: 32.6%;
-
-        &:nth-child(2n) {
+      &:not(.with-community) {
+        @media (min-width: $xxl-break) {
           margin-right: 1%;
-        }
+          width: 32.6%;
 
-        &:nth-child(3n) {
-          margin-right: 0;
+          &:nth-child(2n) {
+            margin-right: 1%;
+          }
+
+          &:nth-child(3n) {
+            margin-right: 0;
+          }
         }
       }
 

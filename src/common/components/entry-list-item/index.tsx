@@ -20,6 +20,8 @@ import {
 } from "@esteemapp/esteem-render-helpers";
 setProxyBase(defaults.imageServer);
 
+import { State as CommunityState } from "../../store/community/types";
+
 import ProfileLink from "../profile-link/index";
 import TagLink from "../tag-link/index";
 import UserAvatar from "../user-avatar/index";
@@ -35,6 +37,8 @@ import appName from "../../helper/app-name";
 
 import { _t } from "../../i18n/index";
 
+import _c from "../../util/fix-class-names";
+
 import { repeatSvg, peopleSvg, commentSvg } from "../../img/svg";
 
 const fallbackImage = require("../../img/fallback.png");
@@ -44,6 +48,7 @@ interface Props {
   history: History;
   location: Location;
   global: GlobalState;
+  community?: CommunityState;
   entry: Entry;
   asAuthor: string;
   promoted: boolean;
@@ -57,11 +62,15 @@ export default class EntryListItem extends Component<Props> {
   };
 
   shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<{}>, nextContext: any): boolean {
-    return !isEqual(this.props.entry, nextProps.entry) || !isEqual(this.props.global, nextProps.global);
+    return (
+      !isEqual(this.props.entry, nextProps.entry) ||
+      !isEqual(this.props.community, nextProps.community) ||
+      !isEqual(this.props.global, nextProps.global)
+    );
   }
 
   render() {
-    const { entry, asAuthor, promoted } = this.props;
+    const { entry, community, asAuthor, promoted } = this.props;
     const img: string = catchPostImage(entry, 600, 500) || noImage;
     const summary: string = postBodySummary(entry, 200);
 
@@ -77,7 +86,7 @@ export default class EntryListItem extends Component<Props> {
     const title = entry.title;
 
     const isVisited = false;
-    const isPinned = entry.stats?.is_pinned;
+    const isPinned = community && entry.stats?.is_pinned;
 
     let reBlogged: string | undefined;
     if (asAuthor && asAuthor !== entry.author && !isChild) {
@@ -88,8 +97,9 @@ export default class EntryListItem extends Component<Props> {
       [reBlogged] = entry.reblogged_by;
     }
 
+    const cls = `entry-list-item ${promoted ? "promoted-item" : ""} ${community ? "with-community" : ""}`;
     return (
-      <div className={`entry-list-item ${promoted ? "promoted-item" : ""}`}>
+      <div className={_c(cls)}>
         <div className="item-header">
           <div className="author-part">
             <ProfileLink {...this.props} username={entry.author}>

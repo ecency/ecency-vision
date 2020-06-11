@@ -9,17 +9,24 @@ import { Account } from "../../store/accounts/types";
 import { Entry } from "../../store/entries/types";
 import EntryListItem from "../entry-list-item/index";
 
+import { State as CommunityState } from "../../store/community/types";
+
 interface Props {
   history: History;
   location: Location;
   global: GlobalState;
   entries: Entry[];
+  community?: CommunityState;
   addAccount: (data: Account) => void;
 }
 
 export default class EntryListContent extends Component<Props> {
   shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<{}>, nextContext: any): boolean {
-    return !isEqual(this.props.entries, nextProps.entries) || !isEqual(this.props.global, nextProps.global);
+    return (
+      !isEqual(this.props.entries, nextProps.entries) ||
+      !isEqual(this.props.community, nextProps.community) ||
+      !isEqual(this.props.global, nextProps.global)
+    );
   }
 
   render() {
