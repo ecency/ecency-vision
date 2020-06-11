@@ -21,7 +21,7 @@
 
     .community-sm {
       margin-bottom: 20px;
-      @media (min-width: $xl-break) {
+      @media (min-width: $lg-break) {
         display: none;
       }
     }
@@ -70,7 +70,7 @@
     flex-shrink: 0;
     display: none;
 
-    @media (min-width: $xl-break) {
+    @media (min-width: $lg-break) {
       display: block;
     }
   }

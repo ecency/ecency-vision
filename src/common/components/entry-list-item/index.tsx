@@ -39,7 +39,7 @@ import { _t } from "../../i18n/index";
 
 import _c from "../../util/fix-class-names";
 
-import { repeatSvg, peopleSvg, commentSvg } from "../../img/svg";
+import { repeatSvg, pinSvg, commentSvg } from "../../img/svg";
 
 const fallbackImage = require("../../img/fallback.png");
 const noImage = require("../../img/noimage.png");
@@ -122,7 +122,7 @@ export default class EntryListItem extends Component<Props> {
           <span className="date" title={dateFormatted}>
             {dateRelative}
           </span>
-          {isPinned && <span className="pinned">pinned</span>}
+          {isPinned && <span className="pinned">{pinSvg}</span>}
           {reBlogged && (
             <span className="reblogged">
               {repeatSvg} {_t("entry-list-item.reblogged", { n: reBlogged })}

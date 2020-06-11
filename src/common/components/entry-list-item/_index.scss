@@ -22,7 +22,6 @@
     align-items: center;
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
     font-size: 90%;
     margin-bottom: 14px;
     overflow: hidden;
@@ -31,7 +30,8 @@
       align-items: center;
       cursor: pointer;
       display: flex;
-      margin-right: 10px;
+
+      flex-shrink: 0;
 
       .author-avatar {
         margin-right: 8px;
@@ -68,7 +68,6 @@
       border-radius: 25px;
       display: none;
       flex-shrink: 0;
-      margin-right: 12px;
       padding: 2px 8px;
       transition: 0.5s;
 
@@ -101,20 +100,11 @@
       flex-grow: 1;
     }
 
-    .promoted {
-      font-size: 90%;
-      background: $dark-sky-blue;
-      color: $white;
-      padding: 2px 6px;
-      border-radius: 12px;
-    }
-
     .read-mark {
       background-color: $dark-sky-blue;
       border-radius: 50%;
       flex-shrink: 0;
       height: 4px;
-      margin-right: 12px;
       width: 4px;
     }
 
@@ -125,17 +115,11 @@
     }
 
     .pinned {
-      display: inline-flex;
-      margin-left: 12px;
-      background-color: $green1;
-      padding: 2px 4px;
-      font-size: 12px;
-      border-radius: 6px;
-      display: none;
-      color: $white;
+      color: $red4;
+      transform: rotate(45deg);
 
-      @media (min-width: $sm-break) {
-        display: block;
+      svg {
+        height: 16px;
       }
     }
 
@@ -144,13 +128,33 @@
       color: $steel-grey;
       display: inline-flex;
       flex-shrink: 0;
-      margin-left: 12px;
       line-height: 100%;
 
       svg {
         height: 14px;
         margin: 3px 4px 0 0;
       }
+    }
+
+    .author-part,
+    .category,
+    .read-mark,
+    .date,
+    .pinned,
+    .reblogged {
+      margin-right: 8px;
+
+      @media (min-width: $sm-break) {
+        margin-right: 12px;
+      }
+    }
+
+    .promoted {
+      font-size: 90%;
+      background: $dark-sky-blue;
+      color: $white;
+      padding: 2px 6px;
+      border-radius: 12px;
     }
   }
 
@@ -233,6 +237,8 @@
       display: flex;
       align-items: center;
       font-size: 90%;
+      white-space: nowrap;
+      overflow: hidden;
 
       @media (min-width: $sm-break) {
         float: right;
@@ -285,7 +291,7 @@
 .grid-view {
   @media (min-width: $sm-break) {
     .entry-list-item {
-      @media (min-width: $lg-break) {
+      @media (min-width: $xl-break) {
         margin-right: 2%;
         padding-right: 0;
         width: 49%;
