@@ -9,6 +9,7 @@ import { EntryFilter, ProfileFilter } from "../common/store/global/types";
 import entryIndexHandler from "./handlers/entry-index";
 import profileHandler from "./handlers/profile";
 import entryHandler from "./handlers/entry";
+import fallbackHandler from "./handlers/fallback";
 
 const server = express();
 
@@ -40,6 +41,7 @@ server
       "^/@:author/:permlink$", // /@esteemapp/rss-feeds-added-into-esteem-website
     ],
     entryHandler
-  );
+  )
+  .get("*", fallbackHandler);
 
 export default server;

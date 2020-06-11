@@ -45,11 +45,27 @@ export default class Meta extends Component<Props> {
           </Helmet>
         )}
 
+        {!title && (
+          <Helmet>
+            <title>{defaults.title}</title>
+            <meta property="og:title" content={defaults.title} />
+            <meta name="twitter:title" content={defaults.title} />
+          </Helmet>
+        )}
+
         {description && (
           <Helmet>
             <meta name="description" content={description} />
             <meta property="og:description" content={description} />
             <meta name="twitter:description" content={description} />
+          </Helmet>
+        )}
+
+        {!description && (
+          <Helmet>
+            <meta name="description" content={defaults.description} />
+            <meta property="og:description" content={defaults.description} />
+            <meta name="twitter:description" content={defaults.description} />
           </Helmet>
         )}
 
