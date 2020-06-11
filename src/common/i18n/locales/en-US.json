@@ -9,7 +9,8 @@
   },
   "entry-list-item": {
     "reblogged": "reblogged by {{n}}",
-    "promoted": "sponsored"
+    "promoted": "sponsored",
+    "pinned": "Pinned Post"
   },
   "entry-reblog": {
     "reblog": "Reblog"

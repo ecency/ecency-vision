@@ -28,9 +28,7 @@
 
     .author-part {
       align-items: center;
-      cursor: pointer;
       display: flex;
-
       flex-shrink: 0;
 
       .author-avatar {
@@ -51,7 +49,7 @@
         .author-reputation {
           color: $steel-grey;
           font-weight: 500;
-          margin-left: 2px;
+          margin-left: 4px;
 
           &::before {
             content: "(";

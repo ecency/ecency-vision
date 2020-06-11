@@ -30,6 +30,7 @@ import EntryVoteBtn from "../entry-vote-btn/index";
 import EntryReblogBtn from "../entry-reblog-btn/index";
 import EntryPayout from "../entry-payout/index";
 import EntryVotes from "../entry-votes";
+import Tooltip from "../tooltip";
 
 import parseDate from "../../helper/parse-date";
 import parseAsset from "../../helper/parse-asset";
@@ -114,7 +115,6 @@ export default class EntryListItem extends Component<Props> {
               </div>
             </ProfileLink>
           </div>
-
           <TagLink {...this.props} tag={entry.category}>
             <a className="category">{entry.community_title || entry.category}</a>
           </TagLink>
@@ -122,7 +122,11 @@ export default class EntryListItem extends Component<Props> {
           <span className="date" title={dateFormatted}>
             {dateRelative}
           </span>
-          {isPinned && <span className="pinned">{pinSvg}</span>}
+          {isPinned && (
+            <Tooltip content={_t("entry-list-item.pinned")}>
+              <span className="pinned">{pinSvg}</span>
+            </Tooltip>
+          )}
           {reBlogged && (
             <span className="reblogged">
               {repeatSvg} {_t("entry-list-item.reblogged", { n: reBlogged })}
