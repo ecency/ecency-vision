@@ -16,7 +16,7 @@ interface Props {
   location: Location;
   global: GlobalState;
   entries: Entry[];
-  community?: CommunityState;
+  community?: CommunityState | null;
   addAccount: (data: Account) => void;
 }
 

@@ -49,7 +49,7 @@ interface Props {
   history: History;
   location: Location;
   global: GlobalState;
-  community?: CommunityState;
+  community?: CommunityState | null;
   entry: Entry;
   asAuthor: string;
   promoted: boolean;

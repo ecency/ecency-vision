@@ -16,8 +16,8 @@ import { _t } from "../i18n";
 
 import { blogSvg, newsSvg, mailSvg, twitterSvg, githubSvg, telegramSvg, discordSvg } from "../img/svg";
 
-import surferSs from "../img/surfer-ss.jpg";
-import mobileSs from "../img/mobile-ss.jpg";
+const surferSs = require("../img/surfer-ss.jpg");
+const mobileSs = require("../img/mobile-ss.jpg");
 
 interface Props {
   history: History;
