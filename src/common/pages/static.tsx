@@ -455,6 +455,77 @@ class PrivacyPage extends Component<Props> {
   }
 }
 
+class WhitePaperPage extends Component<Props> {
+  render() {
+    //  Meta config
+    const metaProps = {};
+
+    return (
+      <>
+        <Meta {...metaProps} />
+        <Theme {...this.props} />
+        <NavBar {...this.props} />
+
+        <div className="app-content static-page white-paper-page">
+          <div className="static-content">
+            <h1 className="page-title">Whitepaper</h1>
+
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+          </div>
+        </div>
+      </>
+    );
+  }
+}
+
+class TosPage extends Component<Props> {
+  render() {
+    //  Meta config
+    const metaProps = {};
+
+    return (
+      <>
+        <Meta {...metaProps} />
+        <Theme {...this.props} />
+        <NavBar {...this.props} />
+
+        <div className="app-content static-page white-paper-page">
+          <div className="static-content">
+            <h1 className="page-title">Terms Of Service</h1>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+          </div>
+        </div>
+      </>
+    );
+  }
+}
+
 const mapStateToProps = (state: AppState) => ({
   global: state.global,
 });
@@ -478,3 +549,9 @@ export { ContributePageContainer };
 
 const PrivacyPageContainer = connect(mapStateToProps, mapDispatchToProps)(PrivacyPage);
 export { PrivacyPageContainer };
+
+const WhitePaperPageContainer = connect(mapStateToProps, mapDispatchToProps)(WhitePaperPage);
+export { WhitePaperPageContainer };
+
+const TosPageContainer = connect(mapStateToProps, mapDispatchToProps)(TosPage);
+export { TosPageContainer };

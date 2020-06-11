@@ -4,7 +4,14 @@ import { Route, Switch } from "react-router-dom";
 import EntryIndexContainer from "./pages/entry-index";
 import ProfileContainer from "./pages/profile";
 import EntryContainer from "./pages/entry";
-import { AboutPageContainer, GuestPostPageContainer, ContributePageContainer, PrivacyPageContainer } from "./pages/static";
+import {
+  AboutPageContainer,
+  GuestPostPageContainer,
+  ContributePageContainer,
+  PrivacyPageContainer,
+  WhitePaperPageContainer,
+  TosPageContainer,
+} from "./pages/static";
 
 import routes from "./routes";
 
@@ -23,13 +30,10 @@ const App = () => {
         <Route exact={true} path={routes.GUESTS} component={GuestPostPageContainer} />
         <Route exact={true} path={routes.CONTRIBUTE} component={ContributePageContainer} />
         <Route exact={true} path={routes.PRIVACY} component={PrivacyPageContainer} />
-
-        {/* 
-        <Route exact={true} path={routes.SIGN_UP} component={SignUpPageContainer} />
         <Route exact={true} path={routes.WHITE_PAPER} component={WhitePaperPageContainer} />
-        
         <Route exact={true} path={routes.TOS} component={TosPageContainer} />
-        */}
+
+        {/*  <Route exact={true} path={routes.SIGN_UP} component={SignUpPageContainer} /> */}
       </Switch>
     </>
   );
