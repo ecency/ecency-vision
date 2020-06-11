@@ -14,7 +14,7 @@ import NavBar from "../components/navbar/index";
 
 import { _t } from "../i18n";
 
-import {blogSvg, newsSvg, mailSvg, twitterSvg, githubSvg, telegramSvg, discordSvg} from '../img/svg';
+import { blogSvg, newsSvg, mailSvg, twitterSvg, githubSvg, telegramSvg, discordSvg } from "../img/svg";
 
 import surferSs from "../img/surfer-ss.jpg";
 import mobileSs from "../img/mobile-ss.jpg";
@@ -101,35 +101,90 @@ class AboutPage extends Component<Props> {
           <img src={mobileSs} className="mobile-ss" alt="Esteem Mobile" />
 
           <div className="contacts">
-                <h2 className="contacts-title">Contacts</h2>
-                <div className="contacts-links">
-                    <a className="contacts-link" target="_blank" href="https://esteem.app/@good-karma"
-                       rel="noopener noreferrer">
-                        {blogSvg} Founder's blog
-                    </a>
-                    <a className="contacts-link" target="_blank" href="https://esteem.app/@esteemapp" rel="noopener noreferrer">
-                        {newsSvg} News on Hive
-                    </a>
-                    <a className="contacts-link" target="_blank" href="mailto:info@esteem.app?subject=Feedback"
-                       rel="noopener noreferrer">
-                        {mailSvg} Email us
-                    </a>
-                    <a className="contacts-link" target="_blank" href="https://twitter.com/esteem_app"
-                       rel="noopener noreferrer">
-                        {twitterSvg} Twitter
-                    </a>
-                    <a className="contacts-link" target="_blank" href="https://github.com/esteemapp" rel="noopener noreferrer">
-                        {githubSvg} Github
-                    </a>
-                    <a className="contacts-link" target="_blank" href="https://t.me/esteemapp" rel="noopener noreferrer">
-                        {telegramSvg} Telegram
-                    </a>
-                    <a className="contacts-link" target="_blank" href="https://discordapp.com/invite/9cdhjc7"
-                       rel="noopener noreferrer">
-                        {discordSvg} Discord
-                    </a>
-                </div>
+            <h2 className="contacts-title">Contacts</h2>
+            <div className="contacts-links">
+              <a
+                className="contacts-link"
+                target="_blank"
+                href="https://esteem.app/@good-karma"
+                rel="noopener noreferrer"
+              >
+                {blogSvg} Founder's blog
+              </a>
+              <a
+                className="contacts-link"
+                target="_blank"
+                href="https://esteem.app/@esteemapp"
+                rel="noopener noreferrer"
+              >
+                {newsSvg} News on Hive
+              </a>
+              <a
+                className="contacts-link"
+                target="_blank"
+                href="mailto:info@esteem.app?subject=Feedback"
+                rel="noopener noreferrer"
+              >
+                {mailSvg} Email us
+              </a>
+              <a
+                className="contacts-link"
+                target="_blank"
+                href="https://twitter.com/esteem_app"
+                rel="noopener noreferrer"
+              >
+                {twitterSvg} Twitter
+              </a>
+              <a
+                className="contacts-link"
+                target="_blank"
+                href="https://github.com/esteemapp"
+                rel="noopener noreferrer"
+              >
+                {githubSvg} Github
+              </a>
+              <a className="contacts-link" target="_blank" href="https://t.me/esteemapp" rel="noopener noreferrer">
+                {telegramSvg} Telegram
+              </a>
+              <a
+                className="contacts-link"
+                target="_blank"
+                href="https://discordapp.com/invite/9cdhjc7"
+                rel="noopener noreferrer"
+              >
+                {discordSvg} Discord
+              </a>
             </div>
+          </div>
+        </div>
+      </>
+    );
+  }
+}
+
+class GuestPostPage extends Component<Props> {
+  render() {
+    //  Meta config
+    const metaProps = {};
+
+    return (
+      <>
+        <Meta {...metaProps} />
+        <Theme {...this.props} />
+        <NavBar {...this.props} />
+
+        <div className="app-content static-page guest-post-page">
+          <iframe
+            title="Esteem contribution form"
+            src="https://docs.google.com/forms/d/e/1FAIpQLSf3Pt8DQ79edkQK7XHrlIZkZYcueJvgJso6OXz2pgGCplLbaA/viewform?embedded=true"
+            width="640"
+            height="956"
+            frameBorder={0}
+            marginHeight={0}
+            marginWidth={0}
+          >
+            Loading…
+          </iframe>
         </div>
       </>
     );
@@ -150,3 +205,6 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
 
 const AboutContainer = connect(mapStateToProps, mapDispatchToProps)(AboutPage);
 export { AboutContainer };
+
+const GuestPostContainer = connect(mapStateToProps, mapDispatchToProps)(GuestPostPage);
+export { GuestPostContainer };
