@@ -69,7 +69,7 @@ export default class EntryListItem extends Component<Props> {
 
     const reputation = Math.floor(entry.author_reputation);
     const date = moment(parseDate(entry.created));
-    const dateRelative = date.fromNow();
+    const dateRelative = date.fromNow(true);
     const dateFormatted = date.format("LLLL");
 
     const isChild = !!entry.parent_author;
@@ -77,6 +77,7 @@ export default class EntryListItem extends Component<Props> {
     const title = entry.title;
 
     const isVisited = false;
+    const isPinned = entry.stats?.is_pinned;
 
     let reBlogged: string | undefined;
     if (asAuthor && asAuthor !== entry.author && !isChild) {
@@ -90,16 +91,20 @@ export default class EntryListItem extends Component<Props> {
     return (
       <div className={`entry-list-item ${promoted ? "promoted-item" : ""}`}>
         <div className="item-header">
-          <ProfileLink {...this.props} username={entry.author}>
-            <div className="author-part">
-              <div className="author-avatar">
+          <div className="author-part">
+            <ProfileLink {...this.props} username={entry.author}>
+              <a className="author-avatar">
                 <UserAvatar username={entry.author} size="small" />
-              </div>
+              </a>
+            </ProfileLink>
+            <ProfileLink {...this.props} username={entry.author}>
               <div className="author">
-                {entry.author} <span className="author-reputation">{reputation}</span>
+                {entry.author}
+                <span className="author-reputation">{reputation}</span>
               </div>
-            </div>
-          </ProfileLink>
+            </ProfileLink>
+          </div>
+
           <TagLink {...this.props} tag={entry.category}>
             <a className="category">{entry.community_title || entry.category}</a>
           </TagLink>
@@ -107,6 +112,7 @@ export default class EntryListItem extends Component<Props> {
           <span className="date" title={dateFormatted}>
             {dateRelative}
           </span>
+          {isPinned && <span className="pinned">pinned</span>}
           {reBlogged && (
             <span className="reblogged">
               {repeatSvg} {_t("entry-list-item.reblogged", { n: reBlogged })}

@@ -15,6 +15,7 @@ export interface EntryStat {
   gray: boolean;
   hide: boolean;
   total_votes: number;
+  is_pinned?: boolean
 }
 
 export interface JsonMetadata {
