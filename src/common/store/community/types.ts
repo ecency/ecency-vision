@@ -1,5 +1,6 @@
 export interface Community {
   about: string;
+  admins?: string[];
   avatar_url: string;
   created_at: string;
   description: string;

@@ -66,7 +66,12 @@
     "title": "Communities",
     "sort-rank": "Rank",
     "sort-subs": "Subscribers",
-    "sort-new": "New"
+    "sort-new": "New",
+    "n-subscribers": "{{n}} subscribers",
+    "n-authors": "{{n}} posters",
+    "n-posts": "{{n}} posts",
+    "admins": "admins:",
+    "subscribe": "Subscribe"
   },
   "profile": {
     "voting-power": "Voting Power",

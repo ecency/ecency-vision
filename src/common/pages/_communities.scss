@@ -2,7 +2,7 @@
   flex-direction: block;
   .community-list {
     background: $white-two;
-    max-width: 600px;
+    max-width: 680px;
     width: 100%;
     margin: auto;
     padding: 20px;
@@ -30,6 +30,70 @@
 
       .sort-box {
         flex-grow: 0;
+      }
+    }
+
+    .list-items {
+      padding-top: 20px;
+
+      .list-item {
+        display: flex;
+        margin-top: 26px;
+        line-height: 1.7;
+
+        .item-content {
+          flex-grow: 1;
+
+          .item-title {
+            color: $dark-sky-blue;
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 6px;
+          }
+
+          .item-about {
+            margin-bottom: 1px;
+          }
+
+          .item-stats,
+          .item-admins {
+            font-size: 80%;
+            display: flex;
+            color: $warm-grey;
+          }
+
+          .item-stats {
+            .stat {
+              &:not(:last-child) {
+                margin-right: 6px;
+                &:after {
+                  margin-left: 6px;
+                  content: "•";
+                }
+              }
+            }
+          }
+
+          .item-admins {
+            .admin {
+              margin-left: 4px;
+
+              &:not(:last-child) {
+                &:after {
+                  content: ",";
+                }
+              }
+            }
+          }
+        }
+
+        .item-controls {
+          width: 120px;
+          flex-shrink: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
       }
     }
   }
