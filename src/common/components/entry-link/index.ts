@@ -45,11 +45,6 @@ export default class EntryLink extends Component<Props> {
     const { category, author, permlink } = _entry;
 
     history.push(makePath(category, author, permlink, toReplies));
-
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
   };
 
   render() {

@@ -70,11 +70,6 @@ class EntryIndexPage extends Component<Props> {
 
     if (!(global.filter === pGlobal.filter && global.tag === pGlobal.tag)) {
       fetchEntries(global.filter, global.tag, false);
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
     }
 
     if (global.tag !== pGlobal.tag) {

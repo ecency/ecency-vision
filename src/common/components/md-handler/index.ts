@@ -41,11 +41,6 @@ export default class MdHandler extends Component<Props> {
       }
       const { history } = this.props;
       history.push(href);
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
     }
 
     if (el.classList.contains("markdown-video-link")) {

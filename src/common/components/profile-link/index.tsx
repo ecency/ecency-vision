@@ -23,11 +23,6 @@ export default class ProfileLink extends Component<Props> {
     addAccount({ name: username });
 
     history.push(makePath(username));
-
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
   };
 
   render() {

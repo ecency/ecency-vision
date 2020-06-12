@@ -1,42 +1,48 @@
-import React from 'react';
-import {hydrate} from 'react-dom';
-import {Provider} from 'react-redux';
-import {ConnectedRouter} from 'connected-react-router';
+import React from "react";
+import { hydrate } from "react-dom";
+import { Provider } from "react-redux";
+import { ConnectedRouter } from "connected-react-router";
 
-import configureStore from '../common/store/configure';
-import {history} from '../common/store/index';
+import configureStore from "../common/store/configure";
 
-import App from '../common/app';
+import { history } from "../common/store/index";
 
-import 'typeface-ibm-plex-sans';
+import App from "../common/app";
 
-import '../style/theme-day.scss';
-import '../style/theme-night.scss';
+import "typeface-ibm-plex-sans";
 
-const store = configureStore(window['__PRELOADED_STATE__']);
+import "../style/theme-day.scss";
+import "../style/theme-night.scss";
+
+const store = configureStore(window["__PRELOADED_STATE__"]);
+
+history!.listen((location, action) => {
+  if (action === "PUSH") {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
+});
 
 hydrate(
-    (
-        <Provider store={store}>
-            <ConnectedRouter history={history!}>
-                <App/>
-            </ConnectedRouter>
-        </Provider>
-    ),
-    document.getElementById('root')
+  <Provider store={store}>
+    <ConnectedRouter history={history!}>
+      <App />
+    </ConnectedRouter>
+  </Provider>,
+  document.getElementById("root")
 );
 
 if (module.hot) {
-    module.hot.accept('../common/app', () => {
-        hydrate(
-            (
-                <Provider store={store}>
-                    <ConnectedRouter history={history!}>
-                        <App/>
-                    </ConnectedRouter>
-                </Provider>
-            ),
-            document.getElementById('root')
-        );
-    });
+  module.hot.accept("../common/app", () => {
+    hydrate(
+      <Provider store={store}>
+        <ConnectedRouter history={history!}>
+          <App />
+        </ConnectedRouter>
+      </Provider>,
+      document.getElementById("root")
+    );
+  });
 }
