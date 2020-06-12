@@ -1,7 +1,5 @@
 import express from "express";
 
-import React from "react";
-
 import cookieParser from "cookie-parser";
 
 import { EntryFilter, ProfileFilter } from "../common/store/global/types";
@@ -10,7 +8,7 @@ import entryIndexHandler from "./handlers/entry-index";
 import profileHandler from "./handlers/profile";
 import entryHandler from "./handlers/entry";
 import fallbackHandler from "./handlers/fallback";
-import { entryRssHandler } from "./handlers/rss";
+import { entryRssHandler, authorRssHandler } from "./handlers/rss";
 
 const server = express();
 
@@ -21,6 +19,19 @@ server
   .disable("x-powered-by")
   .use(express.static(process.env.RAZZLE_PUBLIC_DIR!))
   .use(cookieParser())
+  .use(
+    [
+      `^/:filter(${entryFilters.join("|")})/:tag/rss.xml$`, // /trending/esteem/rss.xml
+    ],
+    entryRssHandler
+  )
+  .use(
+    [
+      "^/@:author/:section(feed|blog)/rss.xml$", // /blog/@esteemapp/rss.xml
+      "^/@:author/rss.xml$", // @esteemapp/rss.xml
+    ],
+    authorRssHandler
+  )
   .use(
     [
       "^/$", // index
@@ -42,12 +53,6 @@ server
       "^/@:author/:permlink$", // /@esteemapp/rss-feeds-added-into-esteem-website
     ],
     entryHandler
-  )
-  .use(
-    [
-      `^/:filter(${entryFilters.join("|")})/:tag/rss.xml$`, // /trending/esteem/rss.xml
-    ],
-    entryRssHandler
   )
   .get("*", fallbackHandler);
 
