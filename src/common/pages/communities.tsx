@@ -3,7 +3,7 @@ import { AnyAction, bindActionCreators, Dispatch } from "redux";
 import { connect } from "react-redux";
 import { History, Location } from "history";
 
-import {  FormControl } from "react-bootstrap";
+import { FormControl } from "react-bootstrap";
 
 import { AppState } from "../store";
 import { State as GlobalState } from "../store/global/types";
@@ -24,6 +24,8 @@ import { _t } from "../i18n";
 import _c from "../util/fix-class-names";
 
 import { getCommunities } from "../api/bridge";
+
+import { magnifySvg } from "../img/svg";
 
 interface Props {
   history: History;
@@ -120,6 +122,7 @@ class EntryIndexPage extends Component<Props> {
             </div>
             <div className="list-form">
               <div className="search-box">
+                <span className="prepend">{magnifySvg}</span>
                 <FormControl placeholder={_t("g.search")} value={query} onChange={this.queryChanged} />
               </div>
               <div className="sort-box">
