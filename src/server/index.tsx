@@ -10,6 +10,7 @@ import entryIndexHandler from "./handlers/entry-index";
 import profileHandler from "./handlers/profile";
 import entryHandler from "./handlers/entry";
 import fallbackHandler from "./handlers/fallback";
+import { entryRssHandler } from "./handlers/rss";
 
 const server = express();
 
@@ -41,6 +42,12 @@ server
       "^/@:author/:permlink$", // /@esteemapp/rss-feeds-added-into-esteem-website
     ],
     entryHandler
+  )
+  .use(
+    [
+      `^/:filter(${entryFilters.join("|")})/:tag/rss.xml$`, // /trending/esteem/rss.xml
+    ],
+    entryRssHandler
   )
   .get("*", fallbackHandler);
 
