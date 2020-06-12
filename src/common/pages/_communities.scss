@@ -1,12 +1,23 @@
 .communities-page {
   flex-direction: block;
   .community-list {
-    background: $white-two;
+    @include themify(day) {
+      background-color: $white-two;
+    }
+
+    @include themify(night) {
+      background-color: lighten($dark-six, 4);
+    }
+
     max-width: 680px;
     width: 100%;
     margin: auto;
-    padding: 20px;
+    padding: 20px 10px;
     border-radius: 12px;
+
+    @media (min-width: $md-break) {
+      padding: 20px;
+    }
 
     .list-header {
       margin-bottom: 20px;
@@ -39,11 +50,23 @@
 
       .list-item {
         display: flex;
+        flex-direction: column;
         margin-top: 26px;
         line-height: 1.7;
+        word-break: break-word;
+
+        @media (min-width: $md-break) {
+          flex-direction: row;
+        }
 
         .item-content {
           flex-grow: 1;
+          margin-bottom: 6px;
+
+          @media (min-width: $md-break) {
+            margin-right: 30px;
+            margin-bottom: 0;
+          }
 
           .item-title {
             color: $dark-sky-blue;
@@ -58,18 +81,26 @@
 
           .item-stats,
           .item-admins {
+            flex-wrap: wrap;
             font-size: 80%;
             display: flex;
-            color: $warm-grey;
+            color: $steel-grey;
           }
 
           .item-stats {
             .stat {
               &:not(:last-child) {
-                margin-right: 6px;
+                margin-right: 2px;
+                @media (min-width: $md-break) {
+                  margin-right: 6px;
+                }
                 &:after {
-                  margin-left: 6px;
+                  margin-left: 2px;
                   content: "•";
+
+                  @media (min-width: $md-break) {
+                    margin-right: 6px;
+                  }
                 }
               }
             }
@@ -81,6 +112,7 @@
 
               &:not(:last-child) {
                 &:after {
+                  color: $steel-grey;
                   content: ",";
                 }
               }
@@ -89,11 +121,14 @@
         }
 
         .item-controls {
-          width: 120px;
           flex-shrink: 0;
           display: flex;
-          justify-content: center;
-          align-items: center;
+
+          @media (min-width: $md-break) {
+            width: 120px;
+            justify-content: center;
+            align-items: center;
+          }
         }
       }
     }
