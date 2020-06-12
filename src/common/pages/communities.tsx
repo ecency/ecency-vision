@@ -18,7 +18,7 @@ import Theme from "../components/theme/index";
 import NavBar from "../components/navbar/index";
 import ProfileLink from "../components/profile-link";
 import DownloadTrigger from "../components/download-trigger";
-
+import LinearProgress from "../components/linear-progress";
 import { makePath } from "../components/tag-link";
 
 import defaults from "../constants/defaults.json";
@@ -30,6 +30,7 @@ import _c from "../util/fix-class-names";
 import formattedNumber from "../util/formatted-number";
 
 import { getCommunities } from "../api/bridge";
+import { threadId } from "worker_threads";
 
 interface Props {
   history: History;
@@ -54,6 +55,7 @@ class EntryIndexPage extends Component<Props> {
     sort: "rank",
   };
 
+  _timer: any = null;
   _mounted: boolean = true;
 
   componentDidMount() {
@@ -64,7 +66,7 @@ class EntryIndexPage extends Component<Props> {
     this._mounted = false;
   }
 
-  stateSet = (obj: {}, cb = undefined) => {
+  stateSet = (obj: {}, cb: () => void = () => {}) => {
     if (this._mounted) {
       this.setState(obj, cb);
     }
@@ -83,6 +85,25 @@ class EntryIndexPage extends Component<Props> {
       .finally(() => {
         this.stateSet({ loading: false });
       });
+  };
+
+  queryChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    if (this._timer) {
+      clearTimeout(this._timer);
+      this._timer = null;
+    }
+
+    this.stateSet({ query: e.target.value }, () => {
+      this._timer = setTimeout(() => {
+        this.fetch();
+      }, 1000);
+    });
+  };
+
+  sortChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    this.stateSet({ sort: e.target.value }, (): void => {
+      this.fetch();
+    });
   };
 
   render() {
@@ -106,16 +127,17 @@ class EntryIndexPage extends Component<Props> {
             </div>
             <div className="list-form">
               <div className="search-box">
-                <FormControl placeholder={_t("g.search")} />
+                <FormControl placeholder={_t("g.search")} value={query} onChange={this.queryChanged} />
               </div>
               <div className="sort-box">
-                <Form.Control as="select">
+                <Form.Control as="select" value={sort} onChange={this.sortChanged} disabled={loading}>
                   <option value="rank">{_t("communities.sort-rank")}</option>
                   <option value="subs">{_t("communities.sort-subs")}</option>
                   <option value="new">{_t("communities.sort-new")}</option>
                 </Form.Control>
               </div>
             </div>
+            {loading && <LinearProgress />}
             <div className="list-items">
               {list.map((x, i) => {
                 const nOpts = { fractionDigits: 0 };
