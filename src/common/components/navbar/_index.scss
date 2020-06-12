@@ -96,39 +96,14 @@
     }
 
     .search-bar {
-      position: relative;
       margin-bottom: 20px;
+
       @media (min-width: $md-break) {
         margin-bottom: 0;
       }
 
-      .prepend {
-        position: absolute;
-        left: 0;
-        top: 0;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 44px;
-        color: $warm-grey;
-
-        @include themify(day) {
-          color: $warm-grey;
-        }
-
-        @include themify(night) {
-          color: $dark-six;
-        }
-
-        svg {
-          width: 22px;
-        }
-      }
-
       .form-control {
         width: 200px;
-        padding-left: 40px;
 
         @media (min-width: $sm-break) {
           width: 320px;

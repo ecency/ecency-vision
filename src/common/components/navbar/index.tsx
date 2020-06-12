@@ -6,27 +6,18 @@ import { FormControl } from "react-bootstrap";
 
 import ToolTip from "../tooltip";
 import DownloadTrigger from "../download-trigger";
+import SearchBox from "../search-box";
 
 import { _t } from "../../i18n";
 
-import {
-  magnifySvg,
-  brightnessSvg,
-  appleSvg,
-  googleSvg,
-  desktopSvg,
-} from "../../img/svg";
+import { magnifySvg, brightnessSvg, appleSvg, googleSvg, desktopSvg } from "../../img/svg";
 
 interface Props {
   toggleTheme: () => void;
 }
 
 export default class NavBar extends Component<Props> {
-  shouldComponentUpdate(
-    nextProps: Readonly<Props>,
-    nextState: Readonly<{}>,
-    nextContext: any
-  ): boolean {
+  shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<{}>, nextContext: any): boolean {
     return false;
   }
 
@@ -54,8 +45,7 @@ export default class NavBar extends Component<Props> {
           </div>
           <div className="flex-spacer" />
           <div className="search-bar">
-            <span className="prepend">{magnifySvg}</span>
-            <FormControl placeholder={_t("g.search")} />
+            <SearchBox placeholder={_t("g.search")} />
           </div>
           <DownloadTrigger>
             <div className="downloads">
