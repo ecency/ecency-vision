@@ -1,0 +1,31 @@
+.search-box {
+  position: relative;
+
+  .prepend {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    color: $warm-grey;
+
+    @include themify(day) {
+      color: $warm-grey;
+    }
+
+    @include themify(night) {
+      color: $dark-six;
+    }
+
+    svg {
+      width: 22px;
+    }
+  }
+
+  .form-control {
+    padding-left: 40px;
+  }
+}

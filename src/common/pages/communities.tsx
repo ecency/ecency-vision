@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { AnyAction, bindActionCreators, Dispatch } from "redux";
 import { connect } from "react-redux";
-import { History, Location } from "history";
+import { History } from "history";
 
 import { FormControl } from "react-bootstrap";
 
@@ -18,6 +18,7 @@ import Theme from "../components/theme/index";
 import NavBar from "../components/navbar/index";
 import LinearProgress from "../components/linear-progress";
 import CommunityListItem from "../components/community-list-item";
+import SearchBox from "../components/search-box";
 
 import { _t } from "../i18n";
 
@@ -25,11 +26,8 @@ import _c from "../util/fix-class-names";
 
 import { getCommunities } from "../api/bridge";
 
-import { magnifySvg } from "../img/svg";
-
 interface Props {
   history: History;
-  location: Location;
   global: GlobalState;
   toggleTheme: () => void;
   addAccount: (data: Account) => void;
@@ -42,7 +40,7 @@ interface State {
   sort: string;
 }
 
-class EntryIndexPage extends Component<Props> {
+class EntryIndexPage extends Component<Props, State> {
   state: State = {
     list: [],
     loading: false,
@@ -121,11 +119,10 @@ class EntryIndexPage extends Component<Props> {
               <h1 className="list-title">{_t("communities.title")}</h1>
             </div>
             <div className="list-form">
-              <div className="search-box">
-                <span className="prepend">{magnifySvg}</span>
-                <FormControl placeholder={_t("g.search")} value={query} onChange={this.queryChanged} />
+              <div className="search">
+                <SearchBox placeholder={_t("g.search")} value={query} onChange={this.queryChanged} />
               </div>
-              <div className="sort-box">
+              <div className="sort">
                 <FormControl as="select" value={sort} onChange={this.sortChanged} disabled={loading}>
                   <option value="rank">{_t("communities.sort-rank")}</option>
                   <option value="subs">{_t("communities.sort-subs")}</option>
