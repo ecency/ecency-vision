@@ -5,6 +5,8 @@ import EntryIndexContainer from "./pages/entry-index";
 import ProfileContainer from "./pages/profile";
 import EntryContainer from "./pages/entry";
 import CommunitiesContainer from "./pages/communities";
+import NotFound from "./components/404";
+
 import {
   AboutPageContainer,
   GuestPostPageContainer,
@@ -33,6 +35,7 @@ const App = () => {
         <Route exact={true} strict={true} path={routes.PRIVACY} component={PrivacyPageContainer} />
         <Route exact={true} strict={true} path={routes.WHITE_PAPER} component={WhitePaperPageContainer} />
         <Route exact={true} strict={true} path={routes.TOS} component={TosPageContainer} />
+        <Route component={() => <NotFound />} />
       </Switch>
     </>
   );
