@@ -45,20 +45,20 @@ export default class CommunityListItem extends Component<Props> {
     const posts = formattedNumber(community.num_pending, nOpts);
 
     return (
-      <div className="list-item">
+      <div className="community-list-item">
         <div className="item-content">
           <h2 className="item-title">
             <Link to={makePath(defaults.filter, community.name)}>{community.title}</Link>
           </h2>
           <div className="item-about">{community.about}</div>
           <div className="item-stats">
-            <div className="stat">{_t("communities.n-subscribers", { n: subscribers })}</div>
-            <div className="stat">{_t("communities.n-authors", { n: authors })}</div>
-            <div className="stat">{_t("communities.n-posts", { n: posts })}</div>
+            <div className="stat">{_t("community.n-subscribers", { n: subscribers })}</div>
+            <div className="stat">{_t("community.n-authors", { n: authors })}</div>
+            <div className="stat">{_t("community.n-posts", { n: posts })}</div>
           </div>
           {community.admins && (
             <div className="item-admins">
-              {_t("communities.admins")}
+              {_t("community.admins")}
               {community.admins.map((x, i) => (
                 <ProfileLink key={i} {...this.props} username={x}>
                   <a className="admin">{x}</a>
@@ -69,7 +69,7 @@ export default class CommunityListItem extends Component<Props> {
         </div>
         <div className="item-controls">
           <DownloadTrigger>
-            <Button>{_t("communities.subscribe")}</Button>
+            <Button>{_t("community.subscribe")}</Button>
           </DownloadTrigger>
         </div>
       </div>

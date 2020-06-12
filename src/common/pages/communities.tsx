@@ -3,7 +3,7 @@ import { AnyAction, bindActionCreators, Dispatch } from "redux";
 import { connect } from "react-redux";
 import { History, Location } from "history";
 
-import { Form, FormControl } from "react-bootstrap";
+import {  FormControl } from "react-bootstrap";
 
 import { AppState } from "../store";
 import { State as GlobalState } from "../store/global/types";
@@ -123,11 +123,11 @@ class EntryIndexPage extends Component<Props> {
                 <FormControl placeholder={_t("g.search")} value={query} onChange={this.queryChanged} />
               </div>
               <div className="sort-box">
-                <Form.Control as="select" value={sort} onChange={this.sortChanged} disabled={loading}>
+                <FormControl as="select" value={sort} onChange={this.sortChanged} disabled={loading}>
                   <option value="rank">{_t("communities.sort-rank")}</option>
                   <option value="subs">{_t("communities.sort-subs")}</option>
                   <option value="new">{_t("communities.sort-new")}</option>
-                </Form.Control>
+                </FormControl>
               </div>
             </div>
             {loading && <LinearProgress />}

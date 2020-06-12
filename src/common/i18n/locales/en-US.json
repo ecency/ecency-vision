@@ -53,25 +53,22 @@
   },
   "community": {
     "n-subscribers": "{{n}} subscribers",
-    "n-rewards": "{{n}} pending rewards",
-    "n-authors": "{{n}} active posters",
+    "n-rewards": "{{n}} rewards",
+    "n-authors": "{{n}} posters",
+    "n-posts": "{{n}} posts",
     "subscribe": "Subscribe",
     "post": "New Post",
     "team": "Leadership",
     "description": "Description",
     "rules": "Rules",
-    "lang": "Language"
+    "lang": "Language",
+    "admins": "admins:"
   },
   "communities": {
     "title": "Communities",
     "sort-rank": "Rank",
     "sort-subs": "Subscribers",
-    "sort-new": "New",
-    "n-subscribers": "{{n}} subscribers",
-    "n-authors": "{{n}} posters",
-    "n-posts": "{{n}} posts",
-    "admins": "admins:",
-    "subscribe": "Subscribe"
+    "sort-new": "New"
   },
   "profile": {
     "voting-power": "Voting Power",
