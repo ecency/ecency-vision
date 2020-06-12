@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+<div
+  className="community-list-item"
+>
+  <div
+    className="item-content"
+  >
+    <h2
+      className="item-title"
+    >
+      <a
+        href="/hot/hive-148441"
+        onClick={[Function]}
+      >
+        GEMS
+      </a>
+    </h2>
+    <div
+      className="item-about"
+    >
+      To highlight true Gems of Hive community with User Retention as primary objective.
+    </div>
+    <div
+      className="item-stats"
+    >
+      <div
+        className="stat"
+      >
+        4,086 subscribers
+      </div>
+      <div
+        className="stat"
+      >
+        1,796 posters
+      </div>
+      <div
+        className="stat"
+      >
+        12,481 posts
+      </div>
+    </div>
+  </div>
+  <div
+    className="item-controls"
+  >
+    <button
+      className="btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Subscribe
+    </button>
+  </div>
+</div>
+`;

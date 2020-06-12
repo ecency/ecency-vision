@@ -42,12 +42,12 @@ exports[`(1) Default render 1`] = `
         >
           $
            
-          17,370 pending rewards
+          17,370 rewards
         </div>
         <div
           className="stat"
         >
-          1,796 active posters
+          1,796 posters
         </div>
       </div>
     </div>

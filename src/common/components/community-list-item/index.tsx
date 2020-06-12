@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 
-import { History, Location } from "history";
+import { History } from "history";
 import { Link } from "react-router-dom";
 
 import { Button } from "react-bootstrap";
 
 import isEqual from "react-fast-compare";
 
-import { State as GlobalState } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
 import { Community } from "../../store/community/types";
 
@@ -25,8 +24,6 @@ import formattedNumber from "../../util/formatted-number";
 
 interface Props {
   history: History;
-  location: Location;
-  global: GlobalState;
   community: Community;
   addAccount: (data: Account) => void;
 }
