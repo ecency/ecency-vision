@@ -68,7 +68,8 @@
     "title": "Communities",
     "sort-rank": "Rank",
     "sort-subs": "Subscribers",
-    "sort-new": "New"
+    "sort-new": "New",
+    "no-results": "No results found"
   },
   "profile": {
     "voting-power": "Voting Power",

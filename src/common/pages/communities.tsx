@@ -101,6 +101,7 @@ class EntryIndexPage extends Component<Props, State> {
 
   render() {
     const { list, loading, query, sort } = this.state;
+    const noResults = !loading && list.length === 0;
 
     //  Meta config
     const metaProps = {
@@ -132,6 +133,7 @@ class EntryIndexPage extends Component<Props, State> {
             </div>
             {loading && <LinearProgress />}
             <div className="list-items">
+              {noResults && <div className="no-results">{_t("communities.no-results")}</div>}
               {list.map((x, i) => (
                 <CommunityListItem {...this.props} key={i} community={x} />
               ))}
