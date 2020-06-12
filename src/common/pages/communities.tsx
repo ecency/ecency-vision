@@ -121,7 +121,7 @@ class EntryIndexPage extends Component<Props, State> {
             </div>
             <div className="list-form">
               <div className="search">
-                <SearchBox placeholder={_t("g.search")} value={query} onChange={this.queryChanged} />
+                <SearchBox placeholder={_t("g.search")} value={query} onChange={this.queryChanged} readOnly={loading} />
               </div>
               <div className="sort">
                 <FormControl as="select" value={sort} onChange={this.sortChanged} disabled={loading}>
