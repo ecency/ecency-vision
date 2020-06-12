@@ -69,7 +69,7 @@
       padding: 2px 8px;
       transition: 0.5s;
 
-      @media (min-width: $xsm-break) {
+      @media (min-width: $sm-break) {
         display: block;
       }
 
@@ -271,7 +271,7 @@
         flex-grow: 1;
         text-align: right;
 
-        @media (min-width: $xsm-break) {
+        @media (min-width: $sm-break) {
           display: block;
         }
 
