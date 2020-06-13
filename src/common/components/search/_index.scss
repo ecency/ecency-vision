@@ -1,0 +1,65 @@
+.autocomplete-search {
+  position: relative;
+  display: block;
+  height: auto;
+
+  .autocomplete-list {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    box-shadow: $box-shadow;
+    z-index: 1;
+    border-radius: $border-radius;
+    max-height: 200px;
+    overflow-x: auto;
+
+    @include themify(day) {
+      background: $white;
+    }
+
+    @include themify(night) {
+      background: lighten($dark-six, 5);
+    }
+
+    .list-item {
+      padding: 8px 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+
+      &:first-child {
+        border-top-left-radius: $border-radius;
+        border-top-right-radius: $border-radius;
+      }
+
+      &:last-child {
+        border-bottom-left-radius: $border-radius;
+        border-bottom-right-radius: $border-radius;
+      }
+
+      .user-avatar {
+        margin-right: 6px;
+        width: 32px;
+        height: 32px;
+      }
+
+      @include themify(day) {
+        color: $warm-grey;
+
+        &:hover {
+          background: $dark-sky-blue;
+          color: $white;
+        }
+      }
+
+      @include themify(night) {
+        color: $silver;
+
+        &:hover {
+          background: $metallic-blue;
+        }
+      }
+    }
+  }
+}

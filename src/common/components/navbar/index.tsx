@@ -8,7 +8,7 @@ import { State as GlobalState, Theme } from "../../store/global/types";
 
 import ToolTip from "../tooltip";
 import DownloadTrigger from "../download-trigger";
-import SearchBox from "../search-box";
+import Search from "../search";
 
 import { _t } from "../../i18n";
 
@@ -48,7 +48,7 @@ export default class NavBar extends Component<Props> {
           </div>
           <div className="flex-spacer" />
           <div className="search-bar">
-            <SearchBox placeholder={_t("g.search")} />
+            <Search />
           </div>
           <DownloadTrigger>
             <div className="downloads">

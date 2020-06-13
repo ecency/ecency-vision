@@ -39,6 +39,9 @@ export const getTrendingTags = (afterTag: string = "", limit: number = 50): Prom
     .call("get_trending_tags", [afterTag, limit])
     .then((t: TrendingTag[]) => t.filter((x) => x.name !== "").map((x) => x.name));
 
+export const lookupAccounts = (q: string, limit = 50): Promise<string[]> =>
+  client.database.call("lookup_accounts", [q, limit]);
+
 export const getAccounts = (usernames: string[]): Promise<Account[]> => {
   return client.database.getAccounts(usernames).then((resp: any[]): Account[] =>
     resp.map((x) => ({

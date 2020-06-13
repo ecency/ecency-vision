@@ -97,31 +97,25 @@
 
     .search-bar {
       margin-bottom: 20px;
+      width: 200px;
+
+      @media (min-width: $sm-break) {
+        width: 320px;
+      }
 
       @media (min-width: $md-break) {
+        width: 170px;
+        margin-right: 20px;
         margin-bottom: 0;
       }
 
-      .form-control {
+      @media (min-width: $lg-break) {
         width: 200px;
+      }
 
-        @media (min-width: $sm-break) {
-          width: 320px;
-        }
-
-        @media (min-width: $md-break) {
-          width: 170px;
-          margin-right: 20px;
-        }
-
-        @media (min-width: $lg-break) {
-          width: 200px;
-        }
-
-        @media (min-width: $xl-break) {
-          width: 340px;
-          margin-right: 40px;
-        }
+      @media (min-width: $xl-break) {
+        width: 340px;
+        margin-right: 40px;
       }
     }
 
