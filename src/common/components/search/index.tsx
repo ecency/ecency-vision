@@ -197,9 +197,9 @@ export default class Search extends Component<Props, State> {
         {hasFocus && suggestions.length > 0 && (
           <div className="autocomplete-list">
             <div className="list-header">
-              {mode === "tag" && <span>Tags</span>}
-              {mode === "account" && <span>Users</span>}
-              {mode === "comm" && <span>Communities</span>}
+              {mode === "tag" && <span>{_t("search.header-tag")}</span>}
+              {mode === "account" && <span>{_t("search.header-account")}</span>}
+              {mode === "comm" && <span>{_t("search.header-community")}</span>}
             </div>
             <div className="list-body">
               {(() => {

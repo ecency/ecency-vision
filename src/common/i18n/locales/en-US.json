@@ -12,6 +12,11 @@
     "day-theme": "Day Theme",
     "night-theme": "Night Theme"
   },
+  "search": {
+    "header-tag": "Tags",
+    "header-account": "Users",
+    "header-community": "Communities"
+  },
   "entry-list-item": {
     "reblogged": "by {{n}}",
     "promoted": "sponsored",
