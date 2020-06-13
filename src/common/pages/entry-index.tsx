@@ -125,8 +125,8 @@ class EntryIndexPage extends Component<Props> {
 
     //  Meta config
     const fC = capitalize(filter);
-    let title = `${fC} topics`;
-    let description = `${fC} topics`;
+    let title = _t("entry-index.title", { f: fC });
+    let description = _t("entry-index.description", { f: fC });
     let url = `${defaults.base}/${filter}`;
     let rss = "";
 
@@ -135,11 +135,11 @@ class EntryIndexPage extends Component<Props> {
       rss = `${defaults.base}/${filter}/${tag}/rss.xml`;
 
       if (community) {
-        title = `${community.title} / ${filter}`;
-        description = `${fC} ${community.title} topics`;
+        title = `${community.title.trim()} / ${filter}`;
+        description = _t("entry-index.description", { f: `${fC} ${community.title.trim()}` });
       } else {
         title = `#${tag} / ${filter}`;
-        description = `${fC} topics with #${tag} tag`;
+        description = _t("entry-index.description-tag", { f: fC, t: tag });
       }
     }
 
