@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 import { History } from "history";
 
+import isEqual from "react-fast-compare";
+
 import { FormControl } from "react-bootstrap";
 
 import { Community } from "../../store/community/types";
@@ -46,6 +48,10 @@ export default class Search extends Component<Props, State> {
 
   componentWillUnmount() {
     this._mounted = false;
+  }
+
+  shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
+    return !isEqual(this.state, nextState);
   }
 
   stateSet = (obj: {}, cb: () => void = () => {}) => {
@@ -154,14 +160,6 @@ export default class Search extends Component<Props, State> {
     if (e.keyCode === 13) {
       const { query } = this.state;
       window.location.href = `https://search.esteem.app/search?q=${decodeURIComponent(query)}`;
-    }
-
-    if (e.keyCode === 38) {
-      console.log("up");
-    }
-
-    if (e.keyCode === 40) {
-        console.log("down");
     }
   };
 
