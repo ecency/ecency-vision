@@ -49,6 +49,7 @@ import { getPost } from "../api/bridge";
 import { _t } from "../i18n";
 
 import parseDate from "../helper/parse-date";
+import entryCanonical from "../helper/entry-canonical";
 
 import { makeShareUrlReddit, makeShareUrlTwitter, makeShareUrlFacebook } from "../helper/url-share";
 
@@ -182,7 +183,7 @@ class EntryPage extends Component<Props, State> {
     const app = entry.json_metadata?.app;
 
     //  Meta config
-    const url = `${defaults.base}${makeEntryPath(entry.category, entry.author, entry.permlink)}`;
+    const url = entryCanonical(entry) || "";
 
     const metaProps = {
       title: truncate(entry.title, 60),
