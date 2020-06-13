@@ -150,7 +150,12 @@ export default class Search extends Component<Props, State> {
     }, 500);
   };
 
-  go = () => {};
+  onKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      const { query } = this.state;
+      window.location.href = `https://search.esteem.app/search?q=${decodeURIComponent(query)}`;
+    }
+  };
 
   userSelected = (name: string) => {
     const loc = makePathProfile(name);
@@ -181,6 +186,7 @@ export default class Search extends Component<Props, State> {
           onChange={this.queryChanged}
           onFocus={this.onFocus}
           onBlur={this.onBlur}
+          onKeyDown={this.onKeyDown}
         />
         {hasFocus && suggestions.length > 0 && (
           <div className="autocomplete-list">
