@@ -1,6 +1,6 @@
-@import 'colors';
+@import "colors";
 
-$font-family-base: 'IBM Plex Sans', sans-serif;
+$font-family-base: "IBM Plex Sans", sans-serif;
 
 $primary: $dark-sky-blue;
 
@@ -26,29 +26,34 @@ $table-accent-bg: $white-three;
 
 $close-color: null default;
 
-@import '~bootstrap/scss/functions';
-@import '~bootstrap/scss/variables';
-@import '~bootstrap/scss/mixins';
-@import '~bootstrap/scss/reboot';
-@import '~bootstrap/scss/type';
-@import '~bootstrap/scss/transitions';
+$tooltip-bg: $dusk-blue;
+$tooltip-color: $white;
+$tooltip-arrow-width: 0;
+$tooltip-arrow-height: 0;
+
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/type";
+@import "~bootstrap/scss/transitions";
 
 .theme-day {
-  @import '~bootstrap/scss/buttons';
-  @import '~bootstrap/scss/forms';
-  @import '~bootstrap/scss/input-group';
-  @import '~bootstrap/scss/tooltip';
-  @import '~bootstrap/scss/close';
-  @import '~bootstrap/scss/modal';
-  @import '~bootstrap/scss/popover';
-  @import '~bootstrap/scss/tables';
-  @import '~bootstrap/scss/spinners';
-  @import '~bootstrap/scss/utilities';
+  @import "~bootstrap/scss/buttons";
+  @import "~bootstrap/scss/forms";
+  @import "~bootstrap/scss/input-group";
+  @import "~bootstrap/scss/tooltip";
+  @import "~bootstrap/scss/close";
+  @import "~bootstrap/scss/modal";
+  @import "~bootstrap/scss/popover";
+  @import "~bootstrap/scss/tables";
+  @import "~bootstrap/scss/spinners";
+  @import "~bootstrap/scss/utilities";
 
   background: $white;
   color: lighten($charcoal-grey, 10);
 }
 
-@import 'bootstrap';
-@import 'base';
-@import 'components';
+@import "bootstrap";
+@import "base";
+@import "components";
