@@ -11,8 +11,6 @@
     box-shadow: $box-shadow;
     z-index: 1;
     border-radius: $border-radius;
-    max-height: 200px;
-    overflow-x: auto;
 
     @include themify(day) {
       background: $white;
@@ -22,42 +20,52 @@
       background: lighten($dark-six, 5);
     }
 
-    .list-item {
+    .list-header {
       padding: 8px 20px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
+      font-weight: 500;
+      background: $dark-sky-blue;
+      color: $white;
+      border-top-left-radius: $border-radius;
+      border-top-right-radius: $border-radius;
+    }
 
-      &:first-child {
-        border-top-left-radius: $border-radius;
-        border-top-right-radius: $border-radius;
-      }
+    .list-body {
+      max-height: 200px;
+      overflow-x: auto;
 
-      &:last-child {
-        border-bottom-left-radius: $border-radius;
-        border-bottom-right-radius: $border-radius;
-      }
+      .list-item {
+        padding: 8px 20px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
 
-      .user-avatar {
-        margin-right: 6px;
-        width: 32px;
-        height: 32px;
-      }
-
-      @include themify(day) {
-        color: $warm-grey;
-
-        &:hover {
-          background: $dark-sky-blue;
-          color: $white;
+        &:last-child {
+          border-bottom-left-radius: $border-radius;
+          border-bottom-right-radius: $border-radius;
         }
-      }
 
-      @include themify(night) {
-        color: $silver;
+        .user-avatar {
+          margin-right: 6px;
+          width: 32px;
+          height: 32px;
+        }
 
-        &:hover {
-          background: $metallic-blue;
+        @include themify(day) {
+          color: $warm-grey;
+
+          &:hover {
+            background: lighten($dark-sky-blue, 10);
+            color: $white;
+          }
+        }
+
+        @include themify(night) {
+          color: $silver;
+
+          &:hover {
+            background: $metallic-blue;
+            color: $white;
+          }
         }
       }
     }

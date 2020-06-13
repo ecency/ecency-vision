@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import { History } from "history";
+
 import { Link } from "react-router-dom";
 
 import isEqual from "react-fast-compare";
@@ -15,6 +17,7 @@ import { _t } from "../../i18n";
 import { brightnessSvg, appleSvg, googleSvg, desktopSvg } from "../../img/svg";
 
 interface Props {
+  history: History;
   global: GlobalState;
   toggleTheme: () => void;
 }
@@ -48,7 +51,7 @@ export default class NavBar extends Component<Props> {
           </div>
           <div className="flex-spacer" />
           <div className="search-bar">
-            <Search />
+            <Search {...this.props} />
           </div>
           <DownloadTrigger>
             <div className="downloads">
