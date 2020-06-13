@@ -33,6 +33,9 @@ import CommunityCardSm from "../components/community-card-sm";
 import { _t } from "../i18n";
 
 import _c from "../util/fix-class-names";
+import capitalize from "../util/capitalize";
+
+import defaults from "../constants/defaults.json";
 
 interface Props {
   history: History;
@@ -121,27 +124,26 @@ class EntryIndexPage extends Component<Props> {
     };
 
     //  Meta config
-    const fC = filter.charAt(0).toUpperCase() + filter.slice(1).toLowerCase();
-    const f_ = filter.toLowerCase();
-    const t_ = tag.toLowerCase();
-
+    const fC = capitalize(filter);
     let title = `${fC} topics`;
     let description = `${fC} topics`;
-    let url = `https://ecency.com/${f_}`;
+    let url = `${defaults.base}/${filter}`;
+    let rss = "";
 
     if (tag) {
+      url = `${defaults.base}/${filter}/${tag}`;
+      rss = `${defaults.base}/${filter}/${tag}/rss.xml`;
+
       if (community) {
-        title = `${community.title} / ${f_}`;
+        title = `${community.title} / ${filter}`;
         description = `${fC} ${community.title} topics`;
       } else {
-        title = `#${t_} / ${f_}`;
-        description = `${fC} topics with #${t_} tag`;
+        title = `#${tag} / ${filter}`;
+        description = `${fC} topics with #${tag} tag`;
       }
-
-      url = `https://ecency.com/${f_}/${t_}`;
     }
 
-    const metaProps = { title, description, url };
+    const metaProps = { title, description, url, rss };
 
     return (
       <>

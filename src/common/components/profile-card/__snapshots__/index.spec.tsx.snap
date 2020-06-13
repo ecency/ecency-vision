@@ -81,7 +81,7 @@ exports[`(1) Render with not loaded data 1`] = `
         />
       </svg>
       <a
-        href="https://ecency.com/@user1/rss"
+        href="https://ecency.com/@user1/rss.xml"
         target="_external"
       >
         RSS feed
@@ -305,7 +305,7 @@ exports[`(2) Render with loaded data 1`] = `
         />
       </svg>
       <a
-        href="https://ecency.com/@user1/rss"
+        href="https://ecency.com/@user1/rss.xml"
         target="_external"
       >
         RSS feed
