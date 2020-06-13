@@ -151,9 +151,17 @@ export default class Search extends Component<Props, State> {
   };
 
   onKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") {
+    if (e.keyCode === 13) {
       const { query } = this.state;
       window.location.href = `https://search.esteem.app/search?q=${decodeURIComponent(query)}`;
+    }
+
+    if (e.keyCode === 38) {
+      console.log("up");
+    }
+
+    if (e.keyCode === 40) {
+        console.log("down");
     }
   };
 
