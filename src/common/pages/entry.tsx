@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { AnyAction, bindActionCreators, Dispatch } from "redux";
 import { connect } from "react-redux";
 import { History, Location } from "history";
+import { Link } from "react-router-dom";
 
 import { match } from "react-router";
 
@@ -214,13 +215,13 @@ class EntryPage extends Component<Props, State> {
                   <p className="comment-entry-root-title">{entry.title}</p>
                   <ul className="comment-entry-opts">
                     <li>
-                      <a href={entry.url}>{_t("entry.comment-entry-go-root")}</a>
+                      <Link to={entry.url}>{_t("entry.comment-entry-go-root")}</Link>
                     </li>
                     {entry.depth > 1 && (
                       <li>
-                        <a href={makeEntryPath(entry.category, entry.parent_author!, entry.parent_permlink!)}>
+                        <Link to={makeEntryPath(entry.category, entry.parent_author!, entry.parent_permlink!)}>
                           {_t("entry.comment-entry-go-parent")}
-                        </a>
+                        </Link>
                       </li>
                     )}
                   </ul>
