@@ -54,7 +54,7 @@ export default class MyDropDown extends Component<Props> {
     setTimeout(() => {
       const { history } = this.props;
       history.push(i.href);
-    }, 200);
+    }, 510); // wait until menu transition ends (0.5s)
   };
 
   render() {
