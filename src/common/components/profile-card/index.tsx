@@ -127,7 +127,7 @@ export default class ProfileCard extends Component<Props> {
 
           <div className="prop">
             {rssSvg}
-            <a target="_external" href={`${defaults.base}/@${account.name}/rss`}>
+            <a target="_external" href={`${defaults.base}/@${account.name}/rss.xml`}>
               RSS feed
             </a>
           </div>
