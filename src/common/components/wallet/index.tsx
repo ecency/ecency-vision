@@ -112,7 +112,7 @@ export default class Wallet extends Component<Props> {
 
             {vestingSharesDelegated > 0 && (
               <div className="amount delegated-shares">
-                <Tooltip content={_t("wallet.hive-power-delegated")} placement="left">
+                <Tooltip content={_t("wallet.hive-power-delegated")}>
                   <span className="btn-delegated">
                     {formattedNumber(vestsToSp(vestingSharesDelegated, hivePerMVests), { prefix: "-", suffix: "HP" })}
                   </span>
@@ -122,7 +122,7 @@ export default class Wallet extends Component<Props> {
 
             {vestingSharesReceived > 0 && (
               <div className="amount received-shares">
-                <Tooltip content={_t("wallet.hive-power-received")} placement="left">
+                <Tooltip content={_t("wallet.hive-power-received")}>
                   <span className="btn-delegatee" role="none">
                     {formattedNumber(vestsToSp(vestingSharesReceived, hivePerMVests), { prefix: "+", suffix: "HP" })}
                   </span>
@@ -132,7 +132,7 @@ export default class Wallet extends Component<Props> {
 
             {vestingSharesWithdrawal > 0 && (
               <div className="amount next-power-down-amount">
-                <Tooltip content={_t("wallet.next-power-down-amount")} placement="left">
+                <Tooltip content={_t("wallet.next-power-down-amount")}>
                   <span>
                     {formattedNumber(vestsToSp(vestingSharesWithdrawal, hivePerMVests), { prefix: "-", suffix: "HP" })}
                   </span>
@@ -142,7 +142,7 @@ export default class Wallet extends Component<Props> {
 
             {(vestingSharesDelegated > 0 || vestingSharesReceived > 0 || vestingSharesWithdrawal > 0) && (
               <div className="amount total-hive-power">
-                <Tooltip content={_t("wallet.hive-power-total")} placement="left">
+                <Tooltip content={_t("wallet.hive-power-total")}>
                   <span>
                     {formattedNumber(vestsToSp(vestingSharesTotal, hivePerMVests), { prefix: "=", suffix: "HP" })}
                   </span>

@@ -63,11 +63,11 @@ export default class NavBar extends Component<Props> {
               </span>
             </div>
           </DownloadTrigger>
-          <div className="switch-theme" onClick={this.changeTheme}>
-            <ToolTip content={themeText} placement="left">
+          <ToolTip content={themeText}>
+            <div className="switch-theme" onClick={this.changeTheme}>
               {brightnessSvg}
-            </ToolTip>
-          </div>
+            </div>
+          </ToolTip>
         </div>
       </div>
     );

@@ -26,11 +26,6 @@ $table-accent-bg: $dark-six;
 
 $close-color: $silver;
 
-$tooltip-bg: $light-periwinkle;
-$tooltip-color: $dark-indigo;
-$tooltip-arrow-width: 0;
-$tooltip-arrow-height: 0;
-
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";
@@ -42,7 +37,6 @@ $tooltip-arrow-height: 0;
   @import "~bootstrap/scss/buttons";
   @import "~bootstrap/scss/forms";
   @import "~bootstrap/scss/input-group";
-  @import "~bootstrap/scss/tooltip";
   @import "~bootstrap/scss/close";
   @import "~bootstrap/scss/modal";
   @import "~bootstrap/scss/popover";
