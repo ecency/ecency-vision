@@ -58,10 +58,7 @@ exports[`(1) Render with not loaded data 1`] = `
     className="vpower-percentage"
   >
     <span
-      onBlur={[Function]}
-      onFocus={[Function]}
-      onMouseOut={[Function]}
-      onMouseOver={[Function]}
+      title="Voting Power"
     >
       100.00
     </span>
@@ -154,10 +151,7 @@ exports[`(2) Render with loaded data 1`] = `
     className="vpower-percentage"
   >
     <span
-      onBlur={[Function]}
-      onFocus={[Function]}
-      onMouseOut={[Function]}
-      onMouseOver={[Function]}
+      title="Voting Power"
     >
       94.76
     </span>
@@ -183,10 +177,7 @@ exports[`(2) Render with loaded data 1`] = `
       className="stat"
     >
       <span
-        onBlur={[Function]}
-        onFocus={[Function]}
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
+        title="Post Count"
       >
         <svg
           viewBox="0 0 24 24"
@@ -204,10 +195,7 @@ exports[`(2) Render with loaded data 1`] = `
       className="stat"
     >
       <span
-        onBlur={[Function]}
-        onFocus={[Function]}
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
+        title="Followers"
       >
         <svg
           viewBox="0 0 24 24"
@@ -225,10 +213,7 @@ exports[`(2) Render with loaded data 1`] = `
       className="stat"
     >
       <span
-        onBlur={[Function]}
-        onFocus={[Function]}
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
+        title="Following"
       >
         <svg
           viewBox="0 0 24 24"

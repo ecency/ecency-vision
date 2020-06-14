@@ -104,11 +104,8 @@ exports[`(1) Render List 1`] = `
           >
             <span
               className="inner-btn"
-              onBlur={[Function]}
               onClick={[Function]}
-              onFocus={[Function]}
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
+              title="2 Votes "
             >
               <svg
                 viewBox="0 0 24 24"
@@ -233,11 +230,8 @@ exports[`(1) Render List 1`] = `
           >
             <span
               className="inner-btn"
-              onBlur={[Function]}
               onClick={[Function]}
-              onFocus={[Function]}
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
+              title="2 Votes "
             >
               <svg
                 viewBox="0 0 24 24"
@@ -362,11 +356,8 @@ exports[`(1) Render List 1`] = `
           >
             <span
               className="inner-btn"
-              onBlur={[Function]}
               onClick={[Function]}
-              onFocus={[Function]}
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
+              title="1 Votes "
             >
               <svg
                 viewBox="0 0 24 24"
@@ -491,11 +482,8 @@ exports[`(1) Render List 1`] = `
           >
             <span
               className="inner-btn"
-              onBlur={[Function]}
               onClick={[Function]}
-              onFocus={[Function]}
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
+              title="1 Votes "
             >
               <svg
                 viewBox="0 0 24 24"
@@ -620,11 +608,8 @@ exports[`(1) Render List 1`] = `
           >
             <span
               className="inner-btn"
-              onBlur={[Function]}
               onClick={[Function]}
-              onFocus={[Function]}
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
+              title="1 Votes "
             >
               <svg
                 viewBox="0 0 24 24"
@@ -749,10 +734,7 @@ exports[`(1) Render List 1`] = `
           >
             <span
               className="inner-btn no-data"
-              onBlur={[Function]}
-              onFocus={[Function]}
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
+              title="No Votes"
             >
               <svg
                 viewBox="0 0 24 24"
@@ -877,10 +859,7 @@ exports[`(1) Render List 1`] = `
           >
             <span
               className="inner-btn no-data"
-              onBlur={[Function]}
-              onFocus={[Function]}
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
+              title="No Votes"
             >
               <svg
                 viewBox="0 0 24 24"
@@ -1007,10 +986,7 @@ exports[`(1) Render List 1`] = `
               >
                 <span
                   className="inner-btn no-data"
-                  onBlur={[Function]}
-                  onFocus={[Function]}
-                  onMouseOut={[Function]}
-                  onMouseOver={[Function]}
+                  title="No Votes"
                 >
                   <svg
                     viewBox="0 0 24 24"
@@ -1138,10 +1114,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
           >
             <span
               className="inner-btn no-data"
-              onBlur={[Function]}
-              onFocus={[Function]}
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
+              title="No Votes"
             >
               <svg
                 viewBox="0 0 24 24"

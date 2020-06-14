@@ -20,6 +20,7 @@ exports[`(1) Default render 1`] = `
       </svg>
     </span>
     <input
+      autoComplete="off"
       className="form-control"
       onBlur={[Function]}
       onChange={[Function]}
@@ -52,6 +53,7 @@ exports[`(2) With query 1`] = `
       </svg>
     </span>
     <input
+      autoComplete="off"
       className="form-control"
       onBlur={[Function]}
       onChange={[Function]}
@@ -84,6 +86,7 @@ exports[`(3) With account suggestions 1`] = `
       </svg>
     </span>
     <input
+      autoComplete="off"
       className="form-control"
       onBlur={[Function]}
       onChange={[Function]}
@@ -171,6 +174,7 @@ exports[`(4) With tag suggestions 1`] = `
       </svg>
     </span>
     <input
+      autoComplete="off"
       className="form-control"
       onBlur={[Function]}
       onChange={[Function]}
@@ -238,6 +242,7 @@ exports[`(5) With community suggestions 1`] = `
       </svg>
     </span>
     <input
+      autoComplete="off"
       className="form-control"
       onBlur={[Function]}
       onChange={[Function]}

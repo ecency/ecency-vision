@@ -6,11 +6,8 @@ exports[`(1) Default render 1`] = `
 >
   <span
     className="inner-btn"
-    onBlur={[Function]}
     onClick={[Function]}
-    onFocus={[Function]}
-    onMouseOut={[Function]}
-    onMouseOver={[Function]}
+    title="10 Votes "
   >
     <svg
       viewBox="0 0 24 24"
@@ -32,10 +29,7 @@ exports[`(2) No votes 1`] = `
 >
   <span
     className="inner-btn no-data"
-    onBlur={[Function]}
-    onFocus={[Function]}
-    onMouseOut={[Function]}
-    onMouseOver={[Function]}
+    title="No Votes"
   >
     <svg
       viewBox="0 0 24 24"

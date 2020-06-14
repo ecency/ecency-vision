@@ -88,11 +88,8 @@ exports[`(1) Default Render 1`] = `
       >
         <span
           className="btn-delegatee"
-          onBlur={[Function]}
-          onFocus={[Function]}
-          onMouseOut={[Function]}
-          onMouseOver={[Function]}
           role="none"
+          title="Received Hive Power"
         >
           + 5.095 HP
         </span>
@@ -101,10 +98,7 @@ exports[`(1) Default Render 1`] = `
         className="amount next-power-down-amount"
       >
         <span
-          onBlur={[Function]}
-          onFocus={[Function]}
-          onMouseOut={[Function]}
-          onMouseOver={[Function]}
+          title="Next power down amount"
         >
           - 3,626.559 HP
         </span>
@@ -113,10 +107,7 @@ exports[`(1) Default Render 1`] = `
         className="amount total-hive-power"
       >
         <span
-          onBlur={[Function]}
-          onFocus={[Function]}
-          onMouseOut={[Function]}
-          onMouseOver={[Function]}
+          title="Total Hive Power"
         >
           = 39,302.931 HP
         </span>
