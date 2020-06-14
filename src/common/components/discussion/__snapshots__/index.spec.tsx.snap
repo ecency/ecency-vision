@@ -105,7 +105,7 @@ exports[`(1) Render List 1`] = `
             <span
               className="inner-btn"
               onClick={[Function]}
-              title="2 Votes "
+              title="2 Votes"
             >
               <svg
                 viewBox="0 0 24 24"
@@ -231,7 +231,7 @@ exports[`(1) Render List 1`] = `
             <span
               className="inner-btn"
               onClick={[Function]}
-              title="2 Votes "
+              title="2 Votes"
             >
               <svg
                 viewBox="0 0 24 24"
@@ -357,7 +357,7 @@ exports[`(1) Render List 1`] = `
             <span
               className="inner-btn"
               onClick={[Function]}
-              title="1 Votes "
+              title="1 Vote"
             >
               <svg
                 viewBox="0 0 24 24"
@@ -483,7 +483,7 @@ exports[`(1) Render List 1`] = `
             <span
               className="inner-btn"
               onClick={[Function]}
-              title="1 Votes "
+              title="1 Vote"
             >
               <svg
                 viewBox="0 0 24 24"
@@ -609,7 +609,7 @@ exports[`(1) Render List 1`] = `
             <span
               className="inner-btn"
               onClick={[Function]}
-              title="1 Votes "
+              title="1 Vote"
             >
               <svg
                 viewBox="0 0 24 24"

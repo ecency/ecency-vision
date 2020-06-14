@@ -199,6 +199,13 @@ export default class EntryVotes extends Component<Props, State> {
     const { entry } = this.props;
     const { visible } = this.state;
 
+    const title =
+      entry.stats.total_votes === 0
+        ? _t("entry-votes.title-empty")
+        : entry.stats.total_votes === 1
+        ? _t("entry-votes.title")
+        : _t("entry-votes.title-n", { n: entry.stats.total_votes });
+
     const child = (
       <>
         {peopleSvg} {entry.stats.total_votes}
@@ -208,7 +215,7 @@ export default class EntryVotes extends Component<Props, State> {
     if (entry.stats.total_votes === 0) {
       return (
         <div className="entry-votes">
-          <Tooltip content={_t("entry-votes.title-empty")}>
+          <Tooltip content={title}>
             <span className="inner-btn no-data">{child}</span>
           </Tooltip>
         </div>
@@ -218,7 +225,7 @@ export default class EntryVotes extends Component<Props, State> {
     return (
       <>
         <div className="entry-votes">
-          <Tooltip content={_t("entry-votes.title", { n: entry.stats.total_votes })}>
+          <Tooltip content={title}>
             <span className="inner-btn" onClick={this.toggle}>
               {child}
             </span>
@@ -227,7 +234,7 @@ export default class EntryVotes extends Component<Props, State> {
         {visible && (
           <Modal onHide={this.toggle} show={true} centered={true}>
             <Modal.Header closeButton={true}>
-              <Modal.Title>{_t("entry-votes.title", { n: entry.stats.total_votes })}</Modal.Title>
+              <Modal.Title>{title}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
               <EntryVotesDetail {...this.props} entry={entry} />

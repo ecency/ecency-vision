@@ -46,7 +46,8 @@
     "description-tag": "{{f}} topics with #{{t}} tag"
   },
   "entry-votes": {
-    "title": "{{n}} Votes ",
+    "title": "1 Vote",
+    "title-n": "{{n}} Votes",
     "title-empty": "No Votes",
     "voter": "Voter",
     "reward": "Reward"

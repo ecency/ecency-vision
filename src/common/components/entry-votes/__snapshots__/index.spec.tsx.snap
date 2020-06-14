@@ -7,7 +7,7 @@ exports[`(1) Default render 1`] = `
   <span
     className="inner-btn"
     onClick={[Function]}
-    title="10 Votes "
+    title="10 Votes"
   >
     <svg
       viewBox="0 0 24 24"
