@@ -18,10 +18,13 @@ const store = configureStore(window["__PRELOADED_STATE__"]);
 
 history!.listen((location, action) => {
   if (action === "PUSH") {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    // Scroll to top on every push action
+    setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }, 100);
   }
 });
 
