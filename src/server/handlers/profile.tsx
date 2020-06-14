@@ -25,6 +25,7 @@ import { cache } from "../cache";
 
 export default async (req: express.Request, res: express.Response) => {
   const { username, section = "blog" } = req.params;
+  const address = `@${username}`;
 
   let entries = {};
 
@@ -39,7 +40,7 @@ export default async (req: express.Request, res: express.Response) => {
     }
 
     entries = {
-      [`${makeGroupKey(section, username)}`]: {
+      [`${makeGroupKey(section, address)}`]: {
         entries: optimizeEntries(entryList),
         error: null,
         loading: false,
@@ -60,7 +61,7 @@ export default async (req: express.Request, res: express.Response) => {
   // TODO: promoted posts
 
   const filter = ProfileFilter[section] || defaults.filter;
-  const tag = ProfileFilter[section] ? username : "";
+  const tag = ProfileFilter[section] ? address : "";
 
   const preLoadedState = {
     global: {
