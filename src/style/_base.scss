@@ -30,6 +30,36 @@ select {
   padding-right: 30px !important;
 }
 
+/* table customizations */
+.react-bootstrap-table {
+  td,
+  th {
+    white-space: nowrap;
+  }
+
+  thead {
+    .sortable {
+      cursor: pointer;
+      .table-sort-caret {
+        margin-left: 10px;
+
+        svg {
+          height: 16px;
+          opacity: 0.3;
+        }
+
+        &.active {
+          svg {
+            opacity: 0.8;
+            color: $primary;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Utility classes */
 .flex-spacer {
   flex-grow: 1;
 }

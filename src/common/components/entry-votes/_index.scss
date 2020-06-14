@@ -1,15 +1,14 @@
 .votes-dialog-content {
-  min-height: 411px;
+  min-height: 503px;
+  font-size: 96%;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   align-items: center;
-
-  .reward-cell {
-    width: 120px;
-  }
+  justify-content: center;
 
   .voter-cell {
+    width: 200px;
+    font-weight: 500;
+
     .account {
       display: flex;
       align-items: center;
@@ -18,6 +17,14 @@
         margin-right: 6px;
       }
     }
+  }
+
+  .reward-cell {
+    width: 180px;
+  }
+
+  .percent-cell {
+    width: 180px;
   }
 }
 

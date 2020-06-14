@@ -2,7 +2,12 @@ import React, { Component } from "react";
 
 import { History } from "history";
 
-import { Modal, Table, Button, Spinner } from "react-bootstrap";
+import moment from "moment";
+
+import BootstrapTable from "react-bootstrap-table-next";
+import paginationFactory from "react-bootstrap-table2-paginator";
+
+import { Modal, Spinner } from "react-bootstrap";
 
 import { State as GlobalState } from "../../store/global/types";
 import { Entry } from "../../store/entries/types";
@@ -13,19 +18,17 @@ import FormattedCurrency from "../formatted-currency";
 import ProfileLink from "../profile-link/index";
 import Tooltip from "../tooltip";
 
-import { getPost } from "../../api/bridge";
+import { Vote, getActiveVotes } from "../../api/hive";
 
 import parseAsset from "../../helper/parse-asset";
 
+import parseDate from "../../helper/parse-date";
+
+import formattedNumber from "../../util/formatted-number";
+
 import { _t } from "../../i18n";
 
-import { peopleSvg, chevronLeftSvg, chevronRightSvg } from "../../img/svg";
-
-interface Vote {
-  voter: string;
-  rshares: string;
-  reward?: number;
-}
+import { peopleSvg, chevronUpSvg, chevronDownSvg } from "../../img/svg";
 
 export const prepareVotes = (entry: Entry, votes: Vote[]): Vote[] => {
   const totalPayout =
@@ -42,6 +45,8 @@ export const prepareVotes = (entry: Entry, votes: Vote[]): Vote[] => {
 
       return Object.assign({}, a, {
         reward: rew,
+        time: parseDate(a.time),
+        percent: a.percent / 100,
       });
     })
     .sort((a, b) => {
@@ -64,25 +69,21 @@ interface DetailProps {
 interface DetailState {
   loading: boolean;
   votes: Vote[];
-  page: number;
 }
 
 export class EntryVotesDetail extends Component<DetailProps, DetailState> {
   state: DetailState = {
     loading: false,
     votes: [],
-    page: 0,
   };
 
   componentDidMount() {
     const { entry } = this.props;
 
     this.setState({ loading: true });
-    getPost(entry.author, entry.permlink)
+    getActiveVotes(entry.author, entry.permlink)
       .then((r) => {
-        if (r) {
-          this.setVotes(r.active_votes);
-        }
+        this.setVotes(r);
       })
       .finally(() => {
         this.setState({ loading: false });
@@ -95,81 +96,104 @@ export class EntryVotesDetail extends Component<DetailProps, DetailState> {
     this.setState({ votes: prepareVotes(entry, votes), loading: false });
   };
 
-  prev = () => {
-    const { page } = this.state;
-    this.setState({ page: page - 1 });
-  };
-
-  next = () => {
-    const { page } = this.state;
-    this.setState({ page: page + 1 });
+  sortCaret = (order: string) => {
+    if (!order)
+      return (
+        <span className="table-sort-caret">
+          {chevronDownSvg} {chevronUpSvg}
+        </span>
+      );
+    else if (order === "asc") return <span className="table-sort-caret active">{chevronUpSvg}</span>;
+    else if (order === "desc") return <span className="table-sort-caret active">{chevronDownSvg}</span>;
+    return null;
   };
 
   render() {
-    const { loading, votes, page } = this.state;
+    const { loading, votes } = this.state;
+
+    if (loading) {
+      return (
+        <div className="votes-dialog-content">
+          <Spinner animation="grow" variant="primary" />
+        </div>
+      );
+    }
+
+    const columns = [
+      {
+        dataField: "voter",
+        text: _t("entry-votes.voter"),
+        classes: "voter-cell",
+        formatter: (cell: any, row: Vote) => {
+          return (
+            <ProfileLink {...this.props} username={row.voter}>
+              <span className="account">
+                <UserAvatar username={row.voter} size="small" /> {row.voter}
+              </span>
+            </ProfileLink>
+          );
+        },
+      },
+      {
+        dataField: "reward",
+        text: _t("entry-votes.reward"),
+        classes: "reward-cell",
+        sort: true,
+        sortCaret: this.sortCaret,
+        formatter: (cell: any, row: Vote) => {
+          return <FormattedCurrency {...this.props} value={row.reward} fixAt={3} />;
+        },
+      },
+      {
+        dataField: "percent",
+        text: _t("entry-votes.percent"),
+        classes: "percent-cell",
+        sort: true,
+        sortCaret: this.sortCaret,
+        formatter: (cell: any, row: Vote) => {
+          return formattedNumber(row.percent, { fractionDigits: 1, suffix: "%" });
+        },
+      },
+      {
+        dataField: "time",
+        text: _t("entry-votes.time"),
+        classes: "time-cell",
+        sort: true,
+        sortCaret: this.sortCaret,
+        formatter: (cell: any, row: Vote) => {
+          return (
+            <Tooltip content={moment(row.time).format("LLLL")}>
+              <span>{moment(row.time).fromNow()}</span>
+            </Tooltip>
+          );
+        },
+      },
+    ];
+
+    const sort = {
+      dataField: "reward",
+      order: "desc",
+    };
+
+    const pagination = {
+      sizePerPage: 8,
+      hideSizePerPage: true,
+    };
 
     return (
-      <>
-        <div className="votes-dialog-content">
-          {(() => {
-            if (loading) {
-              return <Spinner animation="grow" variant="primary" />;
-            }
-
-            const { page } = this.state;
-
-            const pageSize = 6;
-            const totalPages = Math.ceil(votes.length / pageSize);
-
-            const start = page * pageSize;
-
-            const hasPrev = page !== 0;
-            const hasNext = page + 1 !== totalPages;
-
-            const list = votes.slice(start, start + pageSize);
-
-            return (
-              <>
-                <Table borderless={true} striped={true}>
-                  <thead>
-                    <tr>
-                      <th>{_t("entry-votes.voter")}</th>
-                      <th>{_t("entry-votes.reward")}</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {list.map((v, i) => (
-                      <tr key={i}>
-                        <td className="voter-cell">
-                          <ProfileLink {...this.props} username={v.voter}>
-                            <span className="account">
-                              <UserAvatar username={v.voter} size="small" /> {v.voter}
-                            </span>
-                          </ProfileLink>
-                        </td>
-                        <td className="reward-cell">
-                          <FormattedCurrency {...this.props} value={v.reward} fixAt={3} />
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </Table>
-                <div className="votes-pagination">
-                  <Button size="sm" disabled={!hasPrev} onClick={this.prev}>
-                    {chevronLeftSvg}
-                  </Button>
-                  <div className="page-numbers">
-                    <span className="current-page"> {page + 1}</span> / {totalPages}
-                  </div>
-                  <Button size="sm" disabled={!hasNext} onClick={this.next}>
-                    {chevronRightSvg}
-                  </Button>
-                </div>
-              </>
-            );
-          })()}
+      <div className="votes-dialog-content">
+        <div className="table-responsive">
+          <BootstrapTable
+            bordered={false}
+            // @ts-ignore this is about the library
+            defaultSorted={[sort]}
+            keyField="voter"
+            data={votes}
+            columns={columns}
+            pagination={paginationFactory(pagination)}
+          />
         </div>
-      </>
+      </div>
     );
   }
 }
@@ -232,7 +256,7 @@ export default class EntryVotes extends Component<Props, State> {
           </Tooltip>
         </div>
         {visible && (
-          <Modal onHide={this.toggle} show={true} centered={true}>
+          <Modal onHide={this.toggle} show={true} centered={true} size="lg">
             <Modal.Header closeButton={true}>
               <Modal.Title>{title}</Modal.Title>
             </Modal.Header>

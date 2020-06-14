@@ -9,6 +9,15 @@ export let client = new Client(SERVERS, {
   timeout: 3000,
 });
 
+export interface Vote {
+  percent: number;
+  rshares: string;
+  time: string;
+  voter: string;
+  weight: number;
+  reward?: number;
+}
+
 export interface DynamicGlobalProperties {
   total_vesting_fund_hive: string;
   total_vesting_shares: string;
@@ -33,6 +42,9 @@ export interface VestingDelegation {
   min_delegation_time: string;
   vesting_shares: string;
 }
+
+export const getActiveVotes = (author: string, permlink: string):Promise<Vote[]> =>
+  client.database.call("get_active_votes", [author, permlink]);
 
 export const getTrendingTags = (afterTag: string = "", limit: number = 50): Promise<string[]> =>
   client.database

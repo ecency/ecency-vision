@@ -53,7 +53,9 @@
     "title-n": "{{n}} Votes",
     "title-empty": "No Votes",
     "voter": "Voter",
-    "reward": "Reward"
+    "percent": "Percent",
+    "reward": "Reward",
+    "time": "Time"
   },
   "entry": {
     "via-app": "via <span class=\"app-name\">{{app}}</span>",

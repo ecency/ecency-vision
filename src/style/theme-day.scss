@@ -26,6 +26,9 @@ $table-accent-bg: $white-three;
 
 $close-color: null default;
 
+$table-color: darken($steel-grey, 10);
+$table-border-color: $white-three;
+
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";
@@ -42,6 +45,7 @@ $close-color: null default;
   @import "~bootstrap/scss/popover";
   @import "~bootstrap/scss/tables";
   @import "~bootstrap/scss/spinners";
+  @import "~bootstrap/scss/pagination";
   @import "~bootstrap/scss/utilities";
 
   background: $white;
