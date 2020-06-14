@@ -370,6 +370,10 @@
             cursor: pointer;
             display: flex;
             align-items: center;
+
+            &:hover {
+              color: $dark-sky-blue;
+            }
           }
         }
       }
