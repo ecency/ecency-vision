@@ -193,6 +193,7 @@ export default class Search extends Component<Props, State> {
           onFocus={this.onFocus}
           onBlur={this.onBlur}
           onKeyDown={this.onKeyDown}
+          autoComplete="off"
         />
         {hasFocus && suggestions.length > 0 && (
           <div className="autocomplete-list">
