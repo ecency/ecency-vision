@@ -244,6 +244,10 @@
         width: calc(100% - 147px);
       }
 
+      svg {
+        height: 14px !important;
+      }
+
       .replies {
         margin-right: 15px;
 
@@ -262,7 +266,6 @@
           }
 
           svg {
-            height: 14px;
             opacity: 0.5;
             margin-right: 5px;
             margin-top: 2px;

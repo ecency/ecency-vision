@@ -39,6 +39,7 @@ import DownloadTrigger from "../components/download-trigger";
 import Discussion from "../components/discussion";
 import MdHandler from "../components/md-handler";
 import LinearProgress from "../components/linear-progress";
+import EntryReblogBtn from "../components/entry-reblog-btn/index";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
@@ -283,16 +284,12 @@ class EntryPage extends Component<Props, State> {
                 </div>
                 <div className="right-side">
                   <DownloadTrigger>
-                    <span className="reply-btn">
+                    <a className="reply-btn">
                       {replySvg} {_t("g.reply")}
-                    </span>
+                    </a>
                   </DownloadTrigger>
                   <span className="separator" />
-                  <DownloadTrigger>
-                    <span className="reblog-btn">
-                      {repeatSvg} {_t("g.reblog")}
-                    </span>
-                  </DownloadTrigger>
+                  <EntryReblogBtn {...this.props} />
                 </div>
               </div>
               <div className="entry-controls">
