@@ -110,6 +110,7 @@ export class EntryVotesDetail extends Component<DetailProps, DetailState> {
 
   render() {
     const { loading, votes } = this.state;
+    const pageSize = 8;
 
     if (loading) {
       return (
@@ -176,23 +177,25 @@ export class EntryVotesDetail extends Component<DetailProps, DetailState> {
     };
 
     const pagination = {
-      sizePerPage: 8,
+      sizePerPage: pageSize,
       hideSizePerPage: true,
     };
 
+    const tableProps = {
+      bordered: false,
+      defaultSorted: [sort],
+      keyField: "voter",
+      data: votes,
+      columns,
+      pagination: votes.length > pageSize ? paginationFactory(pagination) : undefined,
+    };
+
+    // @ts-ignore this is about the library's defaultSorted typing issue
+    const table = <BootstrapTable {...tableProps} />;
+
     return (
       <div className="votes-dialog-content">
-        <div className="table-responsive">
-          <BootstrapTable
-            bordered={false}
-            // @ts-ignore this is about the library
-            defaultSorted={[sort]}
-            keyField="voter"
-            data={votes}
-            columns={columns}
-            pagination={paginationFactory(pagination)}
-          />
-        </div>
+        <div className="table-responsive">{table}</div>
       </div>
     );
   }
@@ -256,7 +259,7 @@ export default class EntryVotes extends Component<Props, State> {
           </Tooltip>
         </div>
         {visible && (
-          <Modal onHide={this.toggle} show={true} centered={true} size="lg">
+          <Modal onHide={this.toggle} show={true} centered={true} size="lg" animation={false}>
             <Modal.Header closeButton={true}>
               <Modal.Title>{title}</Modal.Title>
             </Modal.Header>

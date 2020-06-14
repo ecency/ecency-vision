@@ -52,15 +52,3 @@ it("(4) Render of detail with votes", () => {
   instance.setVotes(entryInstance1.active_votes);
   expect(component.toJSON()).toMatchSnapshot();
 });
-
-it("(5) Move next on detail", () => {
-  const instance: any = component.getInstance();
-  instance.next();
-  expect(component.toJSON()).toMatchSnapshot();
-});
-
-it("(6) Move prev on detail", () => {
-  const instance: any = component.getInstance();
-  instance.prev();
-  expect(component.toJSON()).toMatchSnapshot();
-});
