@@ -21,8 +21,8 @@
     "reblogged": "by {{n}}",
     "promoted": "sponsored",
     "pinned": "Pinned Post",
-    "replies": "{{n}} responses",
-    "no-replies": "No responses yet"
+    "replies": "{{n}} responses. Click to respond.",
+    "no-replies": "No responses yet. Click to respond."
   },
   "entry-reblog": {
     "reblog": "Reblog"
