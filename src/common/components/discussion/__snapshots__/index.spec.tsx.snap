@@ -13,16 +13,21 @@ exports[`(1) Render List 1`] = `
       <div
         className="item-figure"
       >
-        <span
-          className="user-avatar medium"
+        <a
+          href="/@behiver"
           onClick={[Function]}
-          role="none"
-          style={
-            Object {
-              "backgroundImage": "url(https://images.hive.blog/u/behiver/avatar/medium)",
+        >
+          <span
+            className="user-avatar medium"
+            onClick={[Function]}
+            role="none"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.hive.blog/u/behiver/avatar/medium)",
+              }
             }
-          }
-        />
+          />
+        </a>
       </div>
       <div
         className="item-content"
@@ -139,16 +144,21 @@ exports[`(1) Render List 1`] = `
       <div
         className="item-figure"
       >
-        <span
-          className="user-avatar medium"
+        <a
+          href="/@irisworld"
           onClick={[Function]}
-          role="none"
-          style={
-            Object {
-              "backgroundImage": "url(https://images.hive.blog/u/irisworld/avatar/medium)",
+        >
+          <span
+            className="user-avatar medium"
+            onClick={[Function]}
+            role="none"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.hive.blog/u/irisworld/avatar/medium)",
+              }
             }
-          }
-        />
+          />
+        </a>
       </div>
       <div
         className="item-content"
@@ -265,16 +275,21 @@ exports[`(1) Render List 1`] = `
       <div
         className="item-figure"
       >
-        <span
-          className="user-avatar medium"
+        <a
+          href="/@trincowski"
           onClick={[Function]}
-          role="none"
-          style={
-            Object {
-              "backgroundImage": "url(https://images.hive.blog/u/trincowski/avatar/medium)",
+        >
+          <span
+            className="user-avatar medium"
+            onClick={[Function]}
+            role="none"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.hive.blog/u/trincowski/avatar/medium)",
+              }
             }
-          }
-        />
+          />
+        </a>
       </div>
       <div
         className="item-content"
@@ -391,16 +406,21 @@ exports[`(1) Render List 1`] = `
       <div
         className="item-figure"
       >
-        <span
-          className="user-avatar medium"
+        <a
+          href="/@foxkoit"
           onClick={[Function]}
-          role="none"
-          style={
-            Object {
-              "backgroundImage": "url(https://images.hive.blog/u/foxkoit/avatar/medium)",
+        >
+          <span
+            className="user-avatar medium"
+            onClick={[Function]}
+            role="none"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.hive.blog/u/foxkoit/avatar/medium)",
+              }
             }
-          }
-        />
+          />
+        </a>
       </div>
       <div
         className="item-content"
@@ -517,16 +537,21 @@ exports[`(1) Render List 1`] = `
       <div
         className="item-figure"
       >
-        <span
-          className="user-avatar medium"
+        <a
+          href="/@ardpien"
           onClick={[Function]}
-          role="none"
-          style={
-            Object {
-              "backgroundImage": "url(https://images.hive.blog/u/ardpien/avatar/medium)",
+        >
+          <span
+            className="user-avatar medium"
+            onClick={[Function]}
+            role="none"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.hive.blog/u/ardpien/avatar/medium)",
+              }
             }
-          }
-        />
+          />
+        </a>
       </div>
       <div
         className="item-content"
@@ -643,16 +668,21 @@ exports[`(1) Render List 1`] = `
       <div
         className="item-figure"
       >
-        <span
-          className="user-avatar medium"
+        <a
+          href="/@forykw"
           onClick={[Function]}
-          role="none"
-          style={
-            Object {
-              "backgroundImage": "url(https://images.hive.blog/u/forykw/avatar/medium)",
+        >
+          <span
+            className="user-avatar medium"
+            onClick={[Function]}
+            role="none"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.hive.blog/u/forykw/avatar/medium)",
+              }
             }
-          }
-        />
+          />
+        </a>
       </div>
       <div
         className="item-content"
@@ -768,16 +798,21 @@ exports[`(1) Render List 1`] = `
       <div
         className="item-figure"
       >
-        <span
-          className="user-avatar medium"
+        <a
+          href="/@brittandjosie"
           onClick={[Function]}
-          role="none"
-          style={
-            Object {
-              "backgroundImage": "url(https://images.hive.blog/u/brittandjosie/avatar/medium)",
+        >
+          <span
+            className="user-avatar medium"
+            onClick={[Function]}
+            role="none"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.hive.blog/u/brittandjosie/avatar/medium)",
+              }
             }
-          }
-        />
+          />
+        </a>
       </div>
       <div
         className="item-content"
@@ -895,16 +930,21 @@ exports[`(1) Render List 1`] = `
           <div
             className="item-figure"
           >
-            <span
-              className="user-avatar medium"
+            <a
+              href="/@ardpien"
               onClick={[Function]}
-              role="none"
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.hive.blog/u/ardpien/avatar/medium)",
+            >
+              <span
+                className="user-avatar medium"
+                onClick={[Function]}
+                role="none"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.hive.blog/u/ardpien/avatar/medium)",
+                  }
                 }
-              }
-            />
+              />
+            </a>
           </div>
           <div
             className="item-content"
@@ -1022,16 +1062,21 @@ exports[`(1) Render List 1`] = `
       <div
         className="item-figure"
       >
-        <span
-          className="user-avatar medium"
+        <a
+          href="/@iliyan90"
           onClick={[Function]}
-          role="none"
-          style={
-            Object {
-              "backgroundImage": "url(https://images.hive.blog/u/iliyan90/avatar/medium)",
+        >
+          <span
+            className="user-avatar medium"
+            onClick={[Function]}
+            role="none"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.hive.blog/u/iliyan90/avatar/medium)",
+              }
             }
-          }
-        />
+          />
+        </a>
       </div>
       <div
         className="item-content"

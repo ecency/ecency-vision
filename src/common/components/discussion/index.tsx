@@ -72,7 +72,11 @@ export class Item extends Component<ItemProps> {
       <div className={`discussion-item depth-${entry.depth}`}>
         <div className="item-inner">
           <div className="item-figure">
-            <UserAvatar username={entry.author} size="medium" />
+            <ProfileLink {...this.props} username={entry.author}>
+              <a>
+                <UserAvatar username={entry.author} size="medium" />
+              </a>
+            </ProfileLink>
           </div>
           <div className="item-content">
             <div className="item-header">
