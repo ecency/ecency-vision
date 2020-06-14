@@ -1,33 +1,50 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 
-import {State as GlobalState} from '../../store/global/types';
-import {ListStyle} from '../../store/global/types';
+import isEqual from "react-fast-compare";
 
-import {viewModuleSvg} from '../../img/svg';
+import { State as GlobalState } from "../../store/global/types";
+
+import { ListStyle } from "../../store/global/types";
+
+import Tooltip from "../tooltip";
+
+import { _t } from "../../i18n";
+
+import _c from "../../util/fix-class-names";
+
+import { viewModuleSvg } from "../../img/svg";
 
 interface Props {
-    global: GlobalState,
-    toggleListStyle: () => void
+  global: GlobalState;
+  toggleListStyle: () => void;
 }
 
 export default class ListStyleToggle extends Component<Props> {
-    changeStyle = () => {
-        const {toggleListStyle} = this.props;
+  shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
+    return !isEqual(this.props.global.listStyle, nextProps.global.listStyle);
+  }
 
-        toggleListStyle();
-    };
+  changeStyle = () => {
+    const { toggleListStyle } = this.props;
 
-    render() {
-        const {global} = this.props;
-        const {listStyle} = global;
+    toggleListStyle();
+  };
 
-        return (
-            <span
-                className={`list-style-toggle ${listStyle === ListStyle.grid ? 'toggled' : ''}`}
-                onClick={() => {
-                    this.changeStyle();
-                }}
-            >{viewModuleSvg}</span>
-        );
-    }
+  render() {
+    const { global } = this.props;
+    const { listStyle } = global;
+
+    return (
+      <Tooltip content={_t("list-style.title")}>
+        <span
+          className={_c(`list-style-toggle ${listStyle === ListStyle.grid ? "toggled" : ""}`)}
+          onClick={() => {
+            this.changeStyle();
+          }}
+        >
+          {viewModuleSvg}
+        </span>
+      </Tooltip>
+    );
+  }
 }

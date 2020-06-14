@@ -40,8 +40,9 @@ exports[`(1) Render 1`] = `
     className="page-tools"
   >
     <span
-      className="list-style-toggle "
+      className="list-style-toggle"
       onClick={[Function]}
+      title="Toggle list style"
     >
       <svg
         viewBox="0 0 24 24"
