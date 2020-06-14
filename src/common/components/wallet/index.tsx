@@ -69,10 +69,7 @@ export default class Wallet extends Component<Props> {
     // Math.min: 14th week powerdown: https://github.com/steemit/steem/issues/3237
     // "?:": to_withdraw & withdrawn is integer 0 not string with no powerdown
     const vestingSharesWithdrawal = showPowerDown
-      ? Math.min(
-          parseAsset(account.vesting_withdraw_rate).amount,
-          (parseAsset(account.to_withdraw).amount - parseAsset(account.withdrawn).amount) / 100000
-        )
+      ? Math.min(parseAsset(account.vesting_withdraw_rate).amount, (account.to_withdraw! - account.withdrawn!) / 100000)
       : 0;
 
     const vestingSharesTotal = vestingShares - vestingSharesDelegated + vestingSharesReceived - vestingSharesWithdrawal;

@@ -31,8 +31,8 @@ export interface Account {
   delegated_vesting_shares?: string;
   received_vesting_shares?: string;
   vesting_withdraw_rate?: string;
-  to_withdraw?: string | number;
-  withdrawn?: string | number;
+  to_withdraw?: number;
+  withdrawn?: number;
   voting_manabar?: {
     current_mana: string | number;
     last_update_time: number;

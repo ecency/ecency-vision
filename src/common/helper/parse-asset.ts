@@ -9,6 +9,9 @@ interface Asset {
 }
 
 export default (strVal: any): Asset => {
+    if(typeof strVal !== 'string'){
+       // console.log(strVal);
+    }
     const sp = strVal.split(' ');
     return {
         amount: parseFloat(sp[0]),
