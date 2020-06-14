@@ -29,6 +29,11 @@ $close-color: null default;
 $table-color: darken($steel-grey, 10);
 $table-border-color: $white-three;
 
+$pagination-bg: $white;
+$pagination-border-color: $white-four;
+$pagination-hover-bg: $white-three;
+$pagination-hover-border-color: $white-four;
+
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";

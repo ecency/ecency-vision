@@ -19,7 +19,7 @@ $popover-bg: lighten($dark-six, 2);
 $popover-body-color: $silver;
 
 $modal-content-bg: lighten($dark-six, 2);
-$modal-header-border-color: $dark-two;
+$modal-header-border-color: null default;
 $modal-content-border-color: $dark-two;
 
 $table-accent-bg: $dark-six;
@@ -28,6 +28,11 @@ $close-color: $silver;
 
 $table-color: $silver;
 $table-border-color: lighten($dark-six, 10);
+
+$pagination-bg: lighten($dark-six, 10);
+$pagination-border-color: $dark-six;
+$pagination-hover-bg: $dark-six;
+$pagination-hover-border-color: transparent;
 
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
