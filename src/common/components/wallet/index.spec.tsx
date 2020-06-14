@@ -24,10 +24,10 @@ it("(1) Default Render", () => {
     savings_balance: "0.001 HIVE",
     savings_sbd_balance: "0.000 HBD",
     sbd_balance: "447.514 HBD",
-    to_withdraw: "91765607000000",
+    to_withdraw: 91765607000000,
     vesting_shares: "83549915.208336 VESTS",
     vesting_withdraw_rate: "7058892.846154 VESTS",
-    withdrawn: "56471142769232",
+    withdrawn: 56471142769232,
     __loaded: true,
   };
 
