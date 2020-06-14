@@ -251,15 +251,15 @@
       .replies {
         margin-right: 15px;
 
+        @media (min-width: $sm-break) {
+          margin-right: 25px;
+        }
+
         .inner {
           align-items: center;
           color: $steel-grey;
           display: flex;
           cursor: pointer;
-
-          @media (min-width: $sm-break) {
-            margin-right: 25px;
-          }
 
           @include themify(night) {
             font-weight: 500;
