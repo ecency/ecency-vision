@@ -171,7 +171,9 @@ export default class EntryListItem extends Component<Props> {
                 <Tooltip
                   content={
                     entry.children > 0
-                      ? _t("entry-list-item.replies", { n: entry.children })
+                      ? entry.children === 1
+                        ? _t("entry-list-item.replies")
+                        : _t("entry-list-item.replies-n", { n: entry.children })
                       : _t("entry-list-item.no-replies")
                   }
                 >
