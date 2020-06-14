@@ -20,7 +20,9 @@
   "entry-list-item": {
     "reblogged": "by {{n}}",
     "promoted": "sponsored",
-    "pinned": "Pinned Post"
+    "pinned": "Pinned Post",
+    "replies": "{{n}} responses",
+    "no-replies": "No responses yet"
   },
   "entry-reblog": {
     "reblog": "Reblog"

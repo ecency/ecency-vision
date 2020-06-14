@@ -244,25 +244,29 @@
         width: calc(100% - 147px);
       }
 
-      .comments {
+      .replies {
         margin-right: 15px;
-        align-items: center;
-        color: $steel-grey;
-        display: flex;
 
-        @media (min-width: $sm-break) {
-          margin-right: 25px;
-        }
+        .inner {
+          align-items: center;
+          color: $steel-grey;
+          display: flex;
+          cursor: pointer;
 
-        @include themify(night) {
-          font-weight: 500;
-        }
+          @media (min-width: $sm-break) {
+            margin-right: 25px;
+          }
 
-        svg {
-          height: 14px;
-          opacity: 0.5;
-          margin-right: 5px;
-          margin-top: 2px;
+          @include themify(night) {
+            font-weight: 500;
+          }
+
+          svg {
+            height: 14px;
+            opacity: 0.5;
+            margin-right: 5px;
+            margin-top: 2px;
+          }
         }
       }
 

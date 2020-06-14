@@ -166,9 +166,22 @@ export default class EntryListItem extends Component<Props> {
             <EntryVoteBtn {...this.props} />
             <EntryPayout {...this.props} entry={entry} />
             <EntryVotes {...this.props} entry={entry} />
-            <a className="comments">
-              {commentSvg} {entry.children}
-            </a>
+            <EntryLink {...this.props} entry={entry}>
+              <a className="replies">
+                <Tooltip
+                  content={
+                    entry.children > 0
+                      ? _t("entry-list-item.replies", { n: entry.children })
+                      : _t("entry-list-item.no-replies")
+                  }
+                >
+                  <span className="inner">
+                    {commentSvg} {entry.children}
+                  </span>
+                </Tooltip>
+              </a>
+            </EntryLink>
+
             <EntryReblogBtn {...this.props} />
             <div className="app">{app}</div>
           </div>
