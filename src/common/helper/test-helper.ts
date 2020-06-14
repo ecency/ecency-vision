@@ -2,6 +2,7 @@ import { State as GlobalState, EntryFilter, Theme, ListStyle } from "../store/gl
 import { Entry } from "../store/entries/types";
 import { Community } from "../store/community/types";
 import { DynamicProps } from "../store/dynamic-props/types";
+import { Vote } from "../../common/api/hive";
 
 export const globalInstance: GlobalState = {
   filter: EntryFilter.hot,
@@ -99,6 +100,23 @@ export const entryInstance1: Entry = {
   url: "/hive/@good-karma/awesome-hive",
   blacklists: [],
 };
+
+export const votesInstance1: Vote[] = [
+  {
+    voter: "user1",
+    weight: 40289,
+    rshares: "84880616925",
+    percent: 40,
+    time: "2020-06-14T15:19:51",
+  },
+  {
+    voter: "user2",
+    weight: 0,
+    rshares: "39117096",
+    percent: 10000,
+    time: "2020-06-14T15:15:15",
+  },
+];
 
 export const discussionInstace1: Entry[] = [
   {

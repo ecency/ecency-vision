@@ -45,7 +45,7 @@ export const prepareVotes = (entry: Entry, votes: Vote[]): Vote[] => {
 
       return Object.assign({}, a, {
         reward: rew,
-        time: parseDate(a.time),
+        timestamp: parseDate(a.time).getTime(),
         percent: a.percent / 100,
       });
     })
@@ -110,7 +110,6 @@ export class EntryVotesDetail extends Component<DetailProps, DetailState> {
 
   render() {
     const { loading, votes } = this.state;
-    const pageSize = 8;
 
     if (loading) {
       return (
@@ -119,6 +118,8 @@ export class EntryVotesDetail extends Component<DetailProps, DetailState> {
         </div>
       );
     }
+
+    const pageSize = 8;
 
     const columns = [
       {
@@ -156,15 +157,15 @@ export class EntryVotesDetail extends Component<DetailProps, DetailState> {
         },
       },
       {
-        dataField: "time",
+        dataField: "timestamp",
         text: _t("entry-votes.time"),
         classes: "time-cell",
         sort: true,
         sortCaret: this.sortCaret,
         formatter: (cell: any, row: Vote) => {
           return (
-            <Tooltip content={moment(row.time).format("LLLL")}>
-              <span>{moment(row.time).fromNow()}</span>
+            <Tooltip content={moment(row.timestamp).format("LLLL")}>
+              <span>{moment(row.timestamp).fromNow()}</span>
             </Tooltip>
           );
         },

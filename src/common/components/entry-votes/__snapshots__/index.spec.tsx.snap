@@ -188,20 +188,20 @@ exports[`(4) Render of detail with votes 1`] = `
             <td
               className="reward-cell"
             >
-              $ 109.122
+              $ 125.037
             </td>
             <td
               className="percent-cell"
             >
-              0.0 %
+              0.4 %
             </td>
             <td
               className="time-cell"
             >
               <span
-                title="Saturday, January 1, 2000 2:00 AM"
+                title="2020-01-01 23:12:00"
               >
-                20 years ago
+                3 days ago
               </span>
             </td>
           </tr>
@@ -234,352 +234,25 @@ exports[`(4) Render of detail with votes 1`] = `
             <td
               className="reward-cell"
             >
-              $ 7.225
+              $ 0.058
             </td>
             <td
               className="percent-cell"
             >
-              0.0 %
+              100.0 %
             </td>
             <td
               className="time-cell"
             >
               <span
-                title="Saturday, January 1, 2000 2:00 AM"
+                title="2020-01-01 23:12:00"
               >
-                20 years ago
-              </span>
-            </td>
-          </tr>
-          <tr
-            className={null}
-            style={Object {}}
-          >
-            <td
-              className="voter-cell"
-            >
-              <a
-                className="account"
-                href="/@user7"
-                onClick={[Function]}
-              >
-                <span
-                  className="user-avatar small"
-                  onClick={[Function]}
-                  role="none"
-                  style={
-                    Object {
-                      "backgroundImage": "url(https://images.esteem.app/u/user7/avatar/medium)",
-                    }
-                  }
-                />
-                 
-                user7
-              </a>
-            </td>
-            <td
-              className="reward-cell"
-            >
-              $ 4.080
-            </td>
-            <td
-              className="percent-cell"
-            >
-              0.0 %
-            </td>
-            <td
-              className="time-cell"
-            >
-              <span
-                title="Saturday, January 1, 2000 2:00 AM"
-              >
-                20 years ago
-              </span>
-            </td>
-          </tr>
-          <tr
-            className={null}
-            style={Object {}}
-          >
-            <td
-              className="voter-cell"
-            >
-              <a
-                className="account"
-                href="/@user4"
-                onClick={[Function]}
-              >
-                <span
-                  className="user-avatar small"
-                  onClick={[Function]}
-                  role="none"
-                  style={
-                    Object {
-                      "backgroundImage": "url(https://images.esteem.app/u/user4/avatar/medium)",
-                    }
-                  }
-                />
-                 
-                user4
-              </a>
-            </td>
-            <td
-              className="reward-cell"
-            >
-              $ 2.309
-            </td>
-            <td
-              className="percent-cell"
-            >
-              0.0 %
-            </td>
-            <td
-              className="time-cell"
-            >
-              <span
-                title="Saturday, January 1, 2000 2:00 AM"
-              >
-                20 years ago
-              </span>
-            </td>
-          </tr>
-          <tr
-            className={null}
-            style={Object {}}
-          >
-            <td
-              className="voter-cell"
-            >
-              <a
-                className="account"
-                href="/@user8"
-                onClick={[Function]}
-              >
-                <span
-                  className="user-avatar small"
-                  onClick={[Function]}
-                  role="none"
-                  style={
-                    Object {
-                      "backgroundImage": "url(https://images.esteem.app/u/user8/avatar/medium)",
-                    }
-                  }
-                />
-                 
-                user8
-              </a>
-            </td>
-            <td
-              className="reward-cell"
-            >
-              $ 1.765
-            </td>
-            <td
-              className="percent-cell"
-            >
-              0.0 %
-            </td>
-            <td
-              className="time-cell"
-            >
-              <span
-                title="Saturday, January 1, 2000 2:00 AM"
-              >
-                20 years ago
-              </span>
-            </td>
-          </tr>
-          <tr
-            className={null}
-            style={Object {}}
-          >
-            <td
-              className="voter-cell"
-            >
-              <a
-                className="account"
-                href="/@user9"
-                onClick={[Function]}
-              >
-                <span
-                  className="user-avatar small"
-                  onClick={[Function]}
-                  role="none"
-                  style={
-                    Object {
-                      "backgroundImage": "url(https://images.esteem.app/u/user9/avatar/medium)",
-                    }
-                  }
-                />
-                 
-                user9
-              </a>
-            </td>
-            <td
-              className="reward-cell"
-            >
-              $ 0.446
-            </td>
-            <td
-              className="percent-cell"
-            >
-              0.0 %
-            </td>
-            <td
-              className="time-cell"
-            >
-              <span
-                title="Saturday, January 1, 2000 2:00 AM"
-              >
-                20 years ago
-              </span>
-            </td>
-          </tr>
-          <tr
-            className={null}
-            style={Object {}}
-          >
-            <td
-              className="voter-cell"
-            >
-              <a
-                className="account"
-                href="/@user5"
-                onClick={[Function]}
-              >
-                <span
-                  className="user-avatar small"
-                  onClick={[Function]}
-                  role="none"
-                  style={
-                    Object {
-                      "backgroundImage": "url(https://images.esteem.app/u/user5/avatar/medium)",
-                    }
-                  }
-                />
-                 
-                user5
-              </a>
-            </td>
-            <td
-              className="reward-cell"
-            >
-              $ 0.077
-            </td>
-            <td
-              className="percent-cell"
-            >
-              0.0 %
-            </td>
-            <td
-              className="time-cell"
-            >
-              <span
-                title="Saturday, January 1, 2000 2:00 AM"
-              >
-                20 years ago
-              </span>
-            </td>
-          </tr>
-          <tr
-            className={null}
-            style={Object {}}
-          >
-            <td
-              className="voter-cell"
-            >
-              <a
-                className="account"
-                href="/@user3"
-                onClick={[Function]}
-              >
-                <span
-                  className="user-avatar small"
-                  onClick={[Function]}
-                  role="none"
-                  style={
-                    Object {
-                      "backgroundImage": "url(https://images.esteem.app/u/user3/avatar/medium)",
-                    }
-                  }
-                />
-                 
-                user3
-              </a>
-            </td>
-            <td
-              className="reward-cell"
-            >
-              $ 0.064
-            </td>
-            <td
-              className="percent-cell"
-            >
-              0.0 %
-            </td>
-            <td
-              className="time-cell"
-            >
-              <span
-                title="Saturday, January 1, 2000 2:00 AM"
-              >
-                20 years ago
+                3 days ago
               </span>
             </td>
           </tr>
         </tbody>
       </table>
-    </div>
-    <div
-      className="row react-bootstrap-table-pagination"
-    >
-      <div
-        className="col-md-6 col-xs-6 col-sm-6 col-lg-6"
-      />
-      <div
-        className="react-bootstrap-table-pagination-list col-md-6 col-xs-6 col-sm-6 col-lg-6"
-      >
-        <ul
-          className="pagination react-bootstrap-table-page-btns-ul"
-        >
-          <li
-            className="active page-item"
-            title="1"
-          >
-            <a
-              className="page-link"
-              href="#"
-              onClick={[Function]}
-            >
-              1
-            </a>
-          </li>
-          <li
-            className="page-item"
-            title="2"
-          >
-            <a
-              className="page-link"
-              href="#"
-              onClick={[Function]}
-            >
-              2
-            </a>
-          </li>
-          <li
-            className="page-item"
-            title="next page"
-          >
-            <a
-              className="page-link"
-              href="#"
-              onClick={[Function]}
-            >
-              &gt;
-            </a>
-          </li>
-        </ul>
-      </div>
     </div>
   </div>
 </div>
