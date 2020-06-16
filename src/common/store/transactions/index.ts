@@ -2,9 +2,9 @@ import { Dispatch } from "redux";
 
 import {
   Transaction,
+  Transactions,
   Actions,
   ActionTypes,
-  State,
   FetchAction,
   FetchedAction,
   FetchErrorAction,
@@ -13,13 +13,13 @@ import {
 
 import { getState } from "../../api/hive";
 
-export const initialState: State = {
+export const initialState: Transactions = {
   list: [],
   loading: false,
   error: false,
 };
 
-export default (state: State = initialState, action: Actions): State => {
+export default (state: Transactions = initialState, action: Actions): Transactions => {
   switch (action.type) {
     case ActionTypes.FETCH: {
       return {

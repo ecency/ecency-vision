@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import moment from "moment";
 
 import { DynamicProps } from "../../store/dynamic-props/types";
-import { Transaction, State as TransactionState } from "../../store/transactions/types";
+import { Transaction, Transactions } from "../../store/transactions/types";
 
 import LinearProgress from "../linear-progress";
 
@@ -160,10 +160,10 @@ export class TransactionRow extends Component<RowProps> {
 
 interface Props {
   dynamicProps: DynamicProps;
-  transactions: TransactionState;
+  transactions: Transactions;
 }
 
-export default class Transactions extends Component<Props> {
+export default class TransactionList extends Component<Props> {
   render() {
     const { transactions } = this.props;
     const { list, loading } = transactions;

@@ -77,7 +77,7 @@ export type Transaction =
   | WithdrawVesting
   | FillOrder;
 
-export interface State {
+export interface Transactions {
   list: Transaction[];
   loading: boolean;
   error: boolean;

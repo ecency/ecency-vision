@@ -7,11 +7,11 @@ import moment from "moment";
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
-import { State as TransactionsState } from "../../store/transactions/types";
+import { Transactions } from "../../store/transactions/types";
 
 import Tooltip from "../tooltip";
 import FormattedCurrency from "../formatted-currency";
-import Transactions from "../transactions";
+import TransactionList from "../transactions";
 import DelegatedVesting from "../delegated-vesting";
 import ReceivedVesting from "../received-vesting";
 
@@ -28,7 +28,7 @@ interface Props {
   history: History;
   global: Global;
   dynamicProps: DynamicProps;
-  transactions: TransactionsState;
+  transactions: Transactions;
   account: Account;
   addAccount: (data: Account) => void;
 }
@@ -205,7 +205,8 @@ export default class Wallet extends Component<Props, State> {
           </div>
         )}
 
-        <Transactions {...this.props} />
+        <TransactionList {...this.props} />
+
         {this.state.delegatedList && (
           <DelegatedVesting {...this.props} account={account} onHide={this.toggleDelegatedList} />
         )}

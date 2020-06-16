@@ -10,7 +10,7 @@ import { ListStyle, Global } from "../store/global/types";
 import { Entries } from "../store/entries/types";
 import { Account, Accounts } from "../store/accounts/types";
 import { DynamicProps } from "../store/dynamic-props/types";
-import { State as TransactionsState } from "../store/transactions/types";
+import { Transactions } from "../store/transactions/types";
 
 import { toggleListStyle, toggleTheme } from "../store/global";
 import { makeGroupKey, fetchEntries } from "../store/entries";
@@ -53,7 +53,7 @@ interface Props {
   dynamicProps: DynamicProps;
   entries: Entries;
   accounts: Accounts;
-  transactions: TransactionsState;
+  transactions: Transactions;
   toggleTheme: () => void;
   toggleListStyle: () => void;
   fetchEntries: (what: string, tag: string, more: boolean) => void;
