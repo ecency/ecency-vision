@@ -1,5 +1,7 @@
 import React from "react";
 
+import { createBrowserHistory } from "history";
+
 import { Account } from "../../store/accounts/types";
 
 import ProfileCard from "./index";
@@ -11,7 +13,7 @@ jest.mock("../../constants/defaults.json", () => ({
 }));
 
 // Mock for manabar calculation
-Date.now = jest.fn(() => 1591276905521); 
+Date.now = jest.fn(() => 1591276905521);
 
 it("(1) Render with not loaded data", () => {
   const account: Account = {
@@ -19,7 +21,9 @@ it("(1) Render with not loaded data", () => {
   };
 
   const props = {
+    history: createBrowserHistory(),
     account,
+    addAccount: () => {},
   };
 
   const component = renderer.create(<ProfileCard {...props} />);
@@ -50,7 +54,9 @@ it("(2) Render with loaded data", () => {
   };
 
   const props = {
+    history: createBrowserHistory(),
     account,
+    addAccount: () => {},
   };
 
   const component = renderer.create(<ProfileCard {...props} />);
