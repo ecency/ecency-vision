@@ -10,6 +10,13 @@ jest.mock("../../constants/defaults.json", () => ({
   imageServer: "https://images.esteem.app",
 }));
 
+jest.mock("../../api/hive", () => ({
+  getVestingDelegations: () =>
+    new Promise((resolve) => {
+      resolve(delegatedVestingInstance);
+    }),
+}));
+
 const detailProps = {
   history: createBrowserHistory(),
   account: { name: "foo" },
@@ -20,13 +27,6 @@ const detailProps = {
 
 const component = renderer.create(<List {...detailProps} />);
 
-it("(3) Default render of list", () => {
-  expect(component.toJSON()).toMatchSnapshot();
-});
-
-it("(4) Render of detail with data", () => {
-  const instance: any = component.getInstance();
-  instance.setState({ loading: false });
-  instance.setData(delegatedVestingInstance);
+it("(1) Full render", () => {
   expect(component.toJSON()).toMatchSnapshot();
 });

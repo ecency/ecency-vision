@@ -1,16 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`(3) Default render of list 1`] = `
-<div
-  className="dialog-loading"
->
-  <div
-    className="spinner-grow text-primary"
-  />
-</div>
-`;
-
-exports[`(4) Render of detail with data 1`] = `
+exports[`(1) Full render 1`] = `
 <div
   className="delegated-vesting-content"
 >
