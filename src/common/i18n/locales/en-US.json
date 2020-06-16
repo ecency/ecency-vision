@@ -131,6 +131,9 @@
     "type-withdraw_vesting": "Withdraw vesting",
     "type-fill_order": "Fill order"
   },
+  "delegated-vesting": {
+    "title": "Delegated Hive Power"
+  },
   "follow-controls": {
     "follow": "Follow",
     "unFollow": "Unfollow",

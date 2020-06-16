@@ -32,35 +32,56 @@ select {
 
 /* table customizations */
 .react-bootstrap-table {
-  td,
-  th {
-    white-space: nowrap;
-  }
+  table {
+    margin-bottom: 0 !important;
 
-  thead {
-    .sortable {
-      cursor: pointer;
-      .table-sort-caret {
-        margin-left: 10px;
+    td,
+    th {
+      white-space: nowrap;
+    }
 
-        svg {
-          height: 16px;
-          opacity: 0.3;
-        }
+    thead {
+      .sortable {
+        cursor: pointer;
+        .table-sort-caret {
+          margin-left: 10px;
 
-        &.active {
           svg {
-            opacity: 0.8;
-            color: $primary;
+            height: 16px;
+            opacity: 0.3;
+          }
+
+          &.active {
+            svg {
+              opacity: 0.8;
+              color: $primary;
+            }
           }
         }
       }
-    }
 
-    th:focus {
-      outline: none;
+      th:focus {
+        outline: none;
+      }
     }
   }
+}
+
+.react-bootstrap-table-pagination {
+  display: flex;
+  justify-content: center;
+
+  .react-bootstrap-table-page-btns-ul {
+    margin: 10px 0 0 0;
+  }
+}
+
+/* common class for modal dialog loading indicator */
+.dialog-loading {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Utility classes */

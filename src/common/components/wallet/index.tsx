@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import { History } from "history";
+
 import moment from "moment";
 
 import { State as GlobalState } from "../../store/global/types";
@@ -10,6 +12,7 @@ import { State as TransactionsState } from "../../store/transactions/types";
 import Tooltip from "../tooltip";
 import FormattedCurrency from "../formatted-currency";
 import Transactions from "../transactions";
+import DelegatedVestingList from "../delegated-vesting-list";
 
 import parseAsset from "../../helper/parse-asset";
 import { vestsToSp } from "../../helper/vesting";
@@ -21,13 +24,28 @@ import formattedNumber from "../../util/formatted-number";
 import { _t } from "../../i18n";
 
 interface Props {
+  history: History;
   global: GlobalState;
   dynamicProps: DynamicProps;
   transactions: TransactionsState;
   account: Account;
+  addAccount: (data: Account) => void;
 }
 
-export default class Wallet extends Component<Props> {
+interface State {
+  delegatedList: boolean;
+}
+
+export default class Wallet extends Component<Props, State> {
+  state: State = {
+    delegatedList: false,
+  };
+
+  toggleDelegatedList = () => {
+    const { delegatedList } = this.state;
+    this.setState({ delegatedList: !delegatedList });
+  };
+
   render() {
     const { dynamicProps, account } = this.props;
 
@@ -110,7 +128,7 @@ export default class Wallet extends Component<Props> {
             {vestingSharesDelegated > 0 && (
               <div className="amount delegated-shares">
                 <Tooltip content={_t("wallet.hive-power-delegated")}>
-                  <span className="btn-delegated">
+                  <span className="btn-delegated" onClick={this.toggleDelegatedList}>
                     {formattedNumber(vestsToSp(vestingSharesDelegated, hivePerMVests), { prefix: "-", suffix: "HP" })}
                   </span>
                 </Tooltip>
@@ -180,6 +198,9 @@ export default class Wallet extends Component<Props> {
         )}
 
         <Transactions {...this.props} />
+        {this.state.delegatedList && (
+          <DelegatedVestingList {...this.props} account={account} onHide={this.toggleDelegatedList} />
+        )}
       </div>
     );
   }

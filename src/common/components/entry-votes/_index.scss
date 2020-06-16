@@ -1,19 +1,5 @@
 .votes-dialog-content {
   font-size: 96%;
-  display: flex;
-  justify-content: center;
-  min-height: 513px;
-
-  .table-responsive {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    .react-bootstrap-table {
-      width: 100%;
-      min-height: 460px;
-    }
-  }
 
   .voter-cell {
     width: 200px;
