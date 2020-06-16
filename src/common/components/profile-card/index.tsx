@@ -9,7 +9,6 @@ import { Button } from "react-bootstrap";
 import DownloadTrigger from "../download-trigger";
 
 import moment from "moment";
-import numeral from "numeral";
 
 import { Account } from "../../store/accounts/types";
 import UserAvatar from "../user-avatar";
@@ -17,6 +16,8 @@ import Tooltip from "../tooltip";
 import { Followers, Following } from "../friends";
 
 import accountReputation from "../../helper/account-reputation";
+
+import formattedNumber from "../../util/formatted-number";
 
 import defaults from "../../constants/defaults.json";
 
@@ -115,7 +116,7 @@ export default class ProfileCard extends Component<Props, State> {
             <div className="stat">
               <Tooltip content={_t("profile.post-count")}>
                 <span>
-                  {formatListBulledttedSvg} {numeral(account.post_count).format()}
+                  {formatListBulledttedSvg} {formattedNumber(account.post_count!, { fractionDigits: 0 })}
                 </span>
               </Tooltip>
             </div>
@@ -124,7 +125,7 @@ export default class ProfileCard extends Component<Props, State> {
               <div className="stat followers">
                 <Tooltip content={_t("profile.followers")}>
                   <span onClick={this.toggleFollowers}>
-                    {accountMultipleSvg} {numeral(account.follow_stats.follower_count).format()}
+                    {accountMultipleSvg} {formattedNumber(account.follow_stats.follower_count, { fractionDigits: 0 })}
                   </span>
                 </Tooltip>
               </div>
@@ -134,7 +135,7 @@ export default class ProfileCard extends Component<Props, State> {
               <div className="stat following">
                 <Tooltip content={_t("profile.following")}>
                   <span onClick={this.toggleFollowing}>
-                    {accountPlusSvg} {numeral(account.follow_stats.following_count).format()}
+                    {accountPlusSvg} {formattedNumber(account.follow_stats.following_count, { fractionDigits: 0 })}
                   </span>
                 </Tooltip>
               </div>
