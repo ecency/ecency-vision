@@ -192,9 +192,10 @@ exports[`(2) Render with loaded data 1`] = `
       </span>
     </div>
     <div
-      className="stat"
+      className="stat followers"
     >
       <span
+        onClick={[Function]}
         title="Followers"
       >
         <svg
@@ -210,9 +211,10 @@ exports[`(2) Render with loaded data 1`] = `
       </span>
     </div>
     <div
-      className="stat"
+      className="stat following"
     >
       <span
+        onClick={[Function]}
         title="Following"
       >
         <svg

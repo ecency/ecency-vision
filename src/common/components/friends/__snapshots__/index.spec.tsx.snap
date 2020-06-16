@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(3) Default render of list 1`] = `
+<div
+  className="friends-content"
+>
+  <div
+    className="loading"
+  >
+    <div
+      className="linear-progress"
+    >
+      <div
+        className="bar bar1"
+      />
+      <div
+        className="bar bar2"
+      />
+    </div>
+  </div>
+  <div
+    className="friends-list"
+  >
+    <div
+      className="friend-search-box"
+    >
+      <input
+        className="form-control"
+        disabled={true}
+        onChange={[Function]}
+        onKeyDown={[Function]}
+        placeholder="Search users"
+        value=""
+      />
+    </div>
+    <div
+      className="friends-list-body"
+    />
+  </div>
+</div>
+`;
