@@ -77,23 +77,35 @@ export class EntryVotesDetail extends Component<DetailProps, DetailState> {
     votes: [],
   };
 
+  _mounted: boolean = true;
+
   componentDidMount() {
     const { entry } = this.props;
 
-    this.setState({ loading: true });
+    this.stateSet({ loading: true });
     getActiveVotes(entry.author, entry.permlink)
       .then((r) => {
         this.setVotes(r);
       })
       .finally(() => {
-        this.setState({ loading: false });
+        this.stateSet({ loading: false });
       });
   }
+
+  componentWillUnmount() {
+    this._mounted = false;
+  }
+
+  stateSet = (obj: {}, cb: () => void = () => {}) => {
+    if (this._mounted) {
+      this.setState(obj, cb);
+    }
+  };
 
   setVotes = (votes: Vote[]) => {
     const { entry } = this.props;
 
-    this.setState({ votes: prepareVotes(entry, votes), loading: false });
+    this.stateSet({ votes: prepareVotes(entry, votes), loading: false });
   };
 
   sortCaret = (order: string) => {
@@ -118,8 +130,6 @@ export class EntryVotesDetail extends Component<DetailProps, DetailState> {
         </div>
       );
     }
-
-    const pageSize = 8;
 
     const columns = [
       {
@@ -178,7 +188,7 @@ export class EntryVotesDetail extends Component<DetailProps, DetailState> {
     };
 
     const pagination = {
-      sizePerPage: pageSize,
+      sizePerPage: 8,
       hideSizePerPage: true,
     };
 
@@ -188,7 +198,7 @@ export class EntryVotesDetail extends Component<DetailProps, DetailState> {
       keyField: "voter",
       data: votes,
       columns,
-      pagination: votes.length > pageSize ? paginationFactory(pagination) : undefined,
+      pagination: votes.length > pagination.sizePerPage ? paginationFactory(pagination) : undefined,
     };
 
     // @ts-ignore this is about the library's defaultSorted typing issue
