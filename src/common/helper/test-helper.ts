@@ -3,6 +3,7 @@ import { Entry } from "../store/entries/types";
 import { Community } from "../store/community/types";
 import { DynamicProps } from "../store/dynamic-props/types";
 import { Vote, DelegatedVestingShare } from "../../common/api/hive";
+import { ReceivedVestingShare } from "../../common/api/private";
 
 export const globalInstance: GlobalState = {
   filter: EntryFilter.hot,
@@ -118,7 +119,7 @@ export const votesInstance1: Vote[] = [
   },
 ];
 
-export const vestingDelegationInstance1: DelegatedVestingShare[] = [
+export const delegatedVestingInstance: DelegatedVestingShare[] = [
   {
     id: 1327252,
     delegator: "esteemapp",
@@ -149,10 +150,43 @@ export const vestingDelegationInstance1: DelegatedVestingShare[] = [
   },
   {
     id: 1330486,
-    delegator: "joythewanderer",
+    delegator: "esteemapp",
     delegatee: "user5",
     vesting_shares: "1957.888055 VESTS",
     min_delegation_time: "2020-03-24T12:42:39",
+  },
+];
+
+export const receivedVestingInstance: ReceivedVestingShare[] = [
+  {
+    delegator: "user1",
+    delegatee: "esteemapp",
+    vesting_shares: "14848.000000 VESTS",
+    timestamp: "2020-02-24T09:53:57",
+  },
+  {
+    delegator: "user2",
+    delegatee: "esteemapp",
+    vesting_shares: "191778.000000 VESTS",
+    timestamp: "2020-03-13T08:34:57",
+  },
+  {
+    delegator: "user3",
+    delegatee: "esteemapp",
+    vesting_shares: "29326.000000 VESTS",
+    timestamp: "2020-02-18T18:32:06",
+  },
+  {
+    delegator: "user4",
+    delegatee: "esteemapp",
+    vesting_shares: "27751.000000 VESTS",
+    timestamp: "2020-02-17T09:28:12",
+  },
+  {
+    delegator: "user5",
+    delegatee: "esteemapp",
+    vesting_shares: "1957.888055 VESTS",
+    timestamp: "2020-03-24T12:42:39",
   },
 ];
 
