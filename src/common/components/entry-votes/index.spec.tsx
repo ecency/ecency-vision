@@ -15,6 +15,13 @@ jest.mock("moment", () => () => ({
   format: (f: string, s: string) => "2020-01-01 23:12:00",
 }));
 
+jest.mock("../../api/hive", () => ({
+  getActiveVotes: () =>
+    new Promise((resolve) => {
+      resolve(votesInstance1);
+    }),
+}));
+
 it("(1) Default render", () => {
   const props = {
     history: createBrowserHistory(),
@@ -48,12 +55,6 @@ const detailProps = {
 
 const component = renderer.create(<EntryVotesDetail {...detailProps} />);
 
-it("(3) Default render of detail", () => {
-  expect(component.toJSON()).toMatchSnapshot();
-});
-
-it("(4) Render of detail with votes", () => {
-  const instance: any = component.getInstance();
-  instance.setVotes(votesInstance1);
+it("(3) Render of detail with votes", () => {
   expect(component.toJSON()).toMatchSnapshot();
 });

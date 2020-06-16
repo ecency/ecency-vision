@@ -45,17 +45,7 @@ exports[`(2) No votes 1`] = `
 </div>
 `;
 
-exports[`(3) Default render of detail 1`] = `
-<div
-  className="dialog-loading"
->
-  <div
-    className="spinner-grow text-primary"
-  />
-</div>
-`;
-
-exports[`(4) Render of detail with votes 1`] = `
+exports[`(3) Render of detail with votes 1`] = `
 <div
   className="votes-dialog-content"
 >
