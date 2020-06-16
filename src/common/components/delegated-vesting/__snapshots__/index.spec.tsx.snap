@@ -1,0 +1,231 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(3) Default render of list 1`] = `
+<div
+  className="dialog-loading"
+>
+  <div
+    className="spinner-grow text-primary"
+  />
+</div>
+`;
+
+exports[`(4) Render of detail with data 1`] = `
+<div
+  className="delegated-vesting-content"
+>
+  <div
+    className="table-responsive"
+  >
+    <div
+      className="react-bootstrap-table"
+    >
+      <table
+        className="table"
+      >
+        <thead>
+          <tr>
+            <th
+              tabIndex={0}
+            >
+              
+            </th>
+            <th
+              tabIndex={0}
+            >
+              
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            className={null}
+            style={Object {}}
+          >
+            <td
+              className="delegatee-cell"
+            >
+              <a
+                className="account"
+                href="/@user2"
+                onClick={[Function]}
+              >
+                <span
+                  className="user-avatar small"
+                  onClick={[Function]}
+                  role="none"
+                  style={
+                    Object {
+                      "backgroundImage": "url(https://images.esteem.app/u/user2/avatar/medium)",
+                    }
+                  }
+                />
+                 
+                user2
+              </a>
+            </td>
+            <td
+              className="vesting-shares-cell"
+            >
+              98.527 HP
+               
+              <br />
+              <small>
+                191778.000000 VESTS
+              </small>
+            </td>
+          </tr>
+          <tr
+            className={null}
+            style={Object {}}
+          >
+            <td
+              className="delegatee-cell"
+            >
+              <a
+                className="account"
+                href="/@user3"
+                onClick={[Function]}
+              >
+                <span
+                  className="user-avatar small"
+                  onClick={[Function]}
+                  role="none"
+                  style={
+                    Object {
+                      "backgroundImage": "url(https://images.esteem.app/u/user3/avatar/medium)",
+                    }
+                  }
+                />
+                 
+                user3
+              </a>
+            </td>
+            <td
+              className="vesting-shares-cell"
+            >
+              15.066 HP
+               
+              <br />
+              <small>
+                29326.000000 VESTS
+              </small>
+            </td>
+          </tr>
+          <tr
+            className={null}
+            style={Object {}}
+          >
+            <td
+              className="delegatee-cell"
+            >
+              <a
+                className="account"
+                href="/@user4"
+                onClick={[Function]}
+              >
+                <span
+                  className="user-avatar small"
+                  onClick={[Function]}
+                  role="none"
+                  style={
+                    Object {
+                      "backgroundImage": "url(https://images.esteem.app/u/user4/avatar/medium)",
+                    }
+                  }
+                />
+                 
+                user4
+              </a>
+            </td>
+            <td
+              className="vesting-shares-cell"
+            >
+              14.257 HP
+               
+              <br />
+              <small>
+                27751.000000 VESTS
+              </small>
+            </td>
+          </tr>
+          <tr
+            className={null}
+            style={Object {}}
+          >
+            <td
+              className="delegatee-cell"
+            >
+              <a
+                className="account"
+                href="/@user1"
+                onClick={[Function]}
+              >
+                <span
+                  className="user-avatar small"
+                  onClick={[Function]}
+                  role="none"
+                  style={
+                    Object {
+                      "backgroundImage": "url(https://images.esteem.app/u/user1/avatar/medium)",
+                    }
+                  }
+                />
+                 
+                user1
+              </a>
+            </td>
+            <td
+              className="vesting-shares-cell"
+            >
+              7.628 HP
+               
+              <br />
+              <small>
+                14848.000000 VESTS
+              </small>
+            </td>
+          </tr>
+          <tr
+            className={null}
+            style={Object {}}
+          >
+            <td
+              className="delegatee-cell"
+            >
+              <a
+                className="account"
+                href="/@user5"
+                onClick={[Function]}
+              >
+                <span
+                  className="user-avatar small"
+                  onClick={[Function]}
+                  role="none"
+                  style={
+                    Object {
+                      "backgroundImage": "url(https://images.esteem.app/u/user5/avatar/medium)",
+                    }
+                  }
+                />
+                 
+                user5
+              </a>
+            </td>
+            <td
+              className="vesting-shares-cell"
+            >
+              1.006 HP
+               
+              <br />
+              <small>
+                1957.888055 VESTS
+              </small>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+`;

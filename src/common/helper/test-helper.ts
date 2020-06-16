@@ -2,7 +2,7 @@ import { State as GlobalState, EntryFilter, Theme, ListStyle } from "../store/gl
 import { Entry } from "../store/entries/types";
 import { Community } from "../store/community/types";
 import { DynamicProps } from "../store/dynamic-props/types";
-import { Vote } from "../../common/api/hive";
+import { Vote, VestingDelegation } from "../../common/api/hive";
 
 export const globalInstance: GlobalState = {
   filter: EntryFilter.hot,
@@ -115,6 +115,44 @@ export const votesInstance1: Vote[] = [
     rshares: "39117096",
     percent: 10000,
     time: "2020-06-14T15:15:15",
+  },
+];
+
+export const vestingDelegationInstance1: VestingDelegation[] = [
+  {
+    id: 1327252,
+    delegator: "esteemapp",
+    delegatee: "user1",
+    vesting_shares: "14848.000000 VESTS",
+    min_delegation_time: "2020-02-24T09:53:57",
+  },
+  {
+    id: 1329459,
+    delegator: "esteemapp",
+    delegatee: "user2",
+    vesting_shares: "191778.000000 VESTS",
+    min_delegation_time: "2020-03-13T08:34:57",
+  },
+  {
+    id: 1325910,
+    delegator: "esteemapp",
+    delegatee: "user3",
+    vesting_shares: "29326.000000 VESTS",
+    min_delegation_time: "2020-02-18T18:32:06",
+  },
+  {
+    id: 1325312,
+    delegator: "esteemapp",
+    delegatee: "user4",
+    vesting_shares: "27751.000000 VESTS",
+    min_delegation_time: "2020-02-17T09:28:12",
+  },
+  {
+    id: 1330486,
+    delegator: "joythewanderer",
+    delegatee: "user5",
+    vesting_shares: "1957.888055 VESTS",
+    min_delegation_time: "2020-03-24T12:42:39",
   },
 ];
 

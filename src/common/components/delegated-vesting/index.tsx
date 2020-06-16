@@ -46,7 +46,7 @@ export class List extends Component<ListProps, ListState> {
     const { account } = this.props;
 
     this.setState({ loading: true });
-    getVestingDelegations(account.name, '', 250)
+    getVestingDelegations(account.name, "", 250)
       .then((data) => {
         this.setData(data);
       })
@@ -141,7 +141,7 @@ export class List extends Component<ListProps, ListState> {
     const table = <BootstrapTable {...tableProps} />;
 
     return (
-      <div className="delegated-vesting-dialog-content">
+      <div className="delegated-vesting-content">
         <div className="table-responsive">{table}</div>
       </div>
     );
