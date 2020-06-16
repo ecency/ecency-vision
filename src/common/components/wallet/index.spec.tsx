@@ -3,6 +3,9 @@ import React from "react";
 import Wallet from "./index";
 
 import TestRenderer from "react-test-renderer";
+
+import { createBrowserHistory } from "history";
+
 import { initialState as transactionsInitialState } from "../../store/transactions/index";
 
 import { globalInstance, dynamicPropsIntance1 } from "../../helper/test-helper";
@@ -32,10 +35,12 @@ it("(1) Default Render", () => {
   };
 
   const props = {
+    history: createBrowserHistory(),
     global: globalInstance,
     dynamicProps: dynamicPropsIntance1,
     transactions: transactionsInitialState,
     account,
+    addAccount: () => {}
   };
 
   const renderer = TestRenderer.create(<Wallet {...props} />);
