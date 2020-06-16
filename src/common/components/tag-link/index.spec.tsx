@@ -8,6 +8,13 @@ import { globalInstance } from "../../helper/test-helper";
 
 import { EntryFilter } from "../../store/global/types";
 
+jest.mock("../../api/bridge", () => ({
+  getCommunity: () =>
+    new Promise((resolve) => {
+      resolve(null);
+    }),
+}));
+
 it("(1) Default render", () => {
   const props = {
     history: createBrowserHistory(),
