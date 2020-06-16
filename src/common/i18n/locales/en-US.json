@@ -134,6 +134,9 @@
   "delegated-vesting": {
     "title": "Delegated Hive Power"
   },
+  "received-vesting": {
+    "title": "Received Hive Power"
+  },
   "follow-controls": {
     "follow": "Follow",
     "unFollow": "Unfollow",

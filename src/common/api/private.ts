@@ -8,4 +8,4 @@ export interface ReceivedVestingShare {
 }
 
 export const getReceivedVestingShares = (username: string): Promise<ReceivedVestingShare[]> =>
-  axios.get(`/received-vesting/${username}`).then((resp) => resp.data);
+  axios.get(`/received-vesting/${username}`).then((resp) => resp.data.list);

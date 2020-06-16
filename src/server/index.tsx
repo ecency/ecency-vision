@@ -55,7 +55,7 @@ server
     ],
     entryHandler
   )
-  .get("^/received-vesting/@:username$", receivedVestingHandler)
+  .get("^/received-vesting/:username$", receivedVestingHandler)
   .get("*", fallbackHandler);
 
 export default server;

@@ -13,6 +13,7 @@ import Tooltip from "../tooltip";
 import FormattedCurrency from "../formatted-currency";
 import Transactions from "../transactions";
 import DelegatedVesting from "../delegated-vesting";
+import ReceivedVesting from "../received-vesting";
 
 import parseAsset from "../../helper/parse-asset";
 import { vestsToSp } from "../../helper/vesting";
@@ -34,16 +35,23 @@ interface Props {
 
 interface State {
   delegatedList: boolean;
+  receivedList: boolean;
 }
 
 export default class Wallet extends Component<Props, State> {
   state: State = {
     delegatedList: false,
+    receivedList: false,
   };
 
   toggleDelegatedList = () => {
     const { delegatedList } = this.state;
     this.setState({ delegatedList: !delegatedList });
+  };
+
+  toggleReceivedList = () => {
+    const { receivedList } = this.state;
+    this.setState({ receivedList: !receivedList });
   };
 
   render() {
@@ -138,7 +146,7 @@ export default class Wallet extends Component<Props, State> {
             {vestingSharesReceived > 0 && (
               <div className="amount received-shares">
                 <Tooltip content={_t("wallet.hive-power-received")}>
-                  <span className="btn-delegatee" role="none">
+                  <span className="btn-delegatee" onClick={this.toggleReceivedList}>
                     {formattedNumber(vestsToSp(vestingSharesReceived, hivePerMVests), { prefix: "+", suffix: "HP" })}
                   </span>
                 </Tooltip>
@@ -200,6 +208,9 @@ export default class Wallet extends Component<Props, State> {
         <Transactions {...this.props} />
         {this.state.delegatedList && (
           <DelegatedVesting {...this.props} account={account} onHide={this.toggleDelegatedList} />
+        )}
+        {this.state.receivedList && (
+          <ReceivedVesting {...this.props} account={account} onHide={this.toggleReceivedList} />
         )}
       </div>
     );
