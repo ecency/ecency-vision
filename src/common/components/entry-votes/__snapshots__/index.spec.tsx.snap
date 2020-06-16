@@ -47,7 +47,7 @@ exports[`(2) No votes 1`] = `
 
 exports[`(3) Default render of detail 1`] = `
 <div
-  className="votes-dialog-content"
+  className="dialog-loading"
 >
   <div
     className="spinner-grow text-primary"

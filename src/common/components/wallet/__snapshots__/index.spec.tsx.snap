@@ -88,7 +88,7 @@ exports[`(1) Default Render 1`] = `
       >
         <span
           className="btn-delegatee"
-          role="none"
+          onClick={[Function]}
           title="Received Hive Power"
         >
           + 5.095 HP
