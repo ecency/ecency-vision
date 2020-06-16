@@ -49,6 +49,15 @@ export default class ProfileCard extends Component<Props, State> {
     followingList: false,
   };
 
+  componentDidUpdate(prevProps: Readonly<Props>): void {
+  
+    // Hide dialogs when account change
+    if (this.props.account.name !== prevProps.account.name) {
+      this.setState({ followersList: false });
+      this.setState({ followingList: false });
+    }
+  }
+
   toggleFollowers = () => {
     const { followersList } = this.state;
     this.setState({ followersList: !followersList });
