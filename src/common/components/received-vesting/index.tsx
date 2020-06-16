@@ -41,25 +41,37 @@ export class List extends Component<ListProps, ListState> {
     data: [],
   };
 
+  _mounted: boolean = true;
+
   componentDidMount() {
     const { account } = this.props;
 
-    this.setState({ loading: true });
+    this.stateSet({ loading: true });
     getReceivedVestingShares(account.name)
       .then((data) => {
         this.setData(data);
       })
       .finally(() => {
-        this.setState({ loading: false });
+        this.stateSet({ loading: false });
       });
-  }
+  };
+
+  componentWillUnmount() {
+    this._mounted = false;
+  };
+
+  stateSet = (obj: {}, cb: () => void = () => {}) => {
+    if (this._mounted) {
+      this.setState(obj, cb);
+    }
+  };
 
   setData = (data: ReceivedVestingShare[]) => {
     data.sort((a, b) => {
       return parseAsset(b.vesting_shares).amount - parseAsset(a.vesting_shares).amount;
     });
 
-    this.setState({ data });
+    this.stateSet({ data });
   };
 
   render() {
