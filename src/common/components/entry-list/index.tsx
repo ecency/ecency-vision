@@ -5,18 +5,17 @@ import isEqual from "react-fast-compare";
 
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
-
 import { Entry } from "../../store/entries/types";
-import EntryListItem from "../entry-list-item/index";
+import { Community } from "../../store/community/types";
 
-import { State as CommunityState } from "../../store/community/types";
+import EntryListItem from "../entry-list-item/index";
 
 interface Props {
   history: History;
   location: Location;
   global: Global;
   entries: Entry[];
-  community?: CommunityState | null;
+  community?: Community | null;
   addAccount: (data: Account) => void;
 }
 

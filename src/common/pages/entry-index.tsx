@@ -8,7 +8,7 @@ import { EntryFilter, ListStyle, Global } from "../store/global/types";
 import { Account } from "../store/accounts/types";
 import { TrendingTags } from "../store/trending-tags/types";
 import { Entries } from "../store/entries/types";
-import { State as CommunityState } from "../store/community/types";
+import { Community } from "../store/community/types";
 
 import { hideIntro, toggleListStyle, toggleTheme } from "../store/global/index";
 import { makeGroupKey, fetchEntries } from "../store/entries/index";
@@ -43,7 +43,7 @@ interface Props {
   global: Global;
   trendingTags: TrendingTags;
   entries: Entries;
-  community: CommunityState | null;
+  community: Community | null;
   toggleTheme: () => void;
   hideIntro: () => void;
   toggleListStyle: () => void;

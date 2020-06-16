@@ -7,8 +7,8 @@ import isEqual from "react-fast-compare";
 
 import { Entry } from "../../store/entries/types";
 import { Global } from "../../store/global/types";
-
 import { Account } from "../../store/accounts/types";
+import { Community } from "../../store/community/types";
 
 import defaults from "../../constants/defaults.json";
 
@@ -19,8 +19,6 @@ import {
   // @ts-ignore
 } from "@esteemapp/esteem-render-helpers";
 setProxyBase(defaults.imageServer);
-
-import { State as CommunityState } from "../../store/community/types";
 
 import ProfileLink from "../profile-link/index";
 import TagLink from "../tag-link/index";
@@ -49,7 +47,7 @@ interface Props {
   history: History;
   location: Location;
   global: Global;
-  community?: CommunityState | null;
+  community?: Community | null;
   entry: Entry;
   asAuthor: string;
   promoted: boolean;

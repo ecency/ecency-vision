@@ -19,8 +19,6 @@ export interface Community {
   type_id: number;
 }
 
-export interface State extends Community {}
-
 export enum ActionTypes {
   FETCHED = "@community/FETCHED",
   RESET = "@community/RESET",

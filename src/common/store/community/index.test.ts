@@ -1,8 +1,6 @@
 import reducer, { initialState, fetchedAct, resetAct } from "./index";
 
-import { State } from "./types";
-
-let state: State | null = initialState;
+let state = initialState;
 
 it("1- default state", () => {
   expect(state).toMatchSnapshot();

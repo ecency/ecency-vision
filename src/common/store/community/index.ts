@@ -3,11 +3,11 @@ import { getCommunity } from "../../api/bridge";
 
 import { AppState } from "../index";
 
-import { Community, Actions, ActionTypes, State, FetchedAction, ResetAction } from "./types";
+import { Community, Actions, ActionTypes, FetchedAction, ResetAction } from "./types";
 
-export const initialState: State | null = null;
+export const initialState: Community | null = null;
 
-export default (state: State | null = initialState, action: Actions): State | null => {
+export default (state: Community | null = initialState, action: Actions): Community | null => {
   switch (action.type) {
     case ActionTypes.FETCHED: {
       const { data } = action;
