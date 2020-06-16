@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 import { History } from "history";
 
+import isEqual from "react-fast-compare";
+
 import { Button } from "react-bootstrap";
 
 import DownloadTrigger from "../download-trigger";
@@ -49,8 +51,11 @@ export default class ProfileCard extends Component<Props, State> {
     followingList: false,
   };
 
+  shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
+    return !isEqual(this.props.account, nextProps.account) || !isEqual(this.state, nextState);
+  }
+
   componentDidUpdate(prevProps: Readonly<Props>): void {
-  
     // Hide dialogs when account change
     if (this.props.account.name !== prevProps.account.name) {
       this.setState({ followersList: false });
