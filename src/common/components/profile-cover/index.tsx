@@ -4,7 +4,7 @@ import { Button } from "react-bootstrap";
 
 import DownloadTrigger from "../download-trigger";
 
-import { State as GlobalState } from "../../store/global/types";
+import { Global } from "../../store/global/types";
 
 import { Account } from "../../store/accounts/types";
 
@@ -23,7 +23,7 @@ const coverFallbackDay = require("../../img/cover-fallback-day.png");
 const coverFallbackNight = require("../../img/cover-fallback-night.png");
 
 interface Props {
-  global: GlobalState;
+  global: Global;
   account: Account;
 }
 

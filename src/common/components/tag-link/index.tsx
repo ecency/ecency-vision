@@ -3,7 +3,7 @@ import { History } from "history";
 
 import isEqual from "react-fast-compare";
 
-import { State as GlobalState } from "../../store/global/types";
+import { Global } from "../../store/global/types";
 
 import { getCommunity } from "../../api/bridge";
 
@@ -12,7 +12,7 @@ export const makePath = (filter: string, tag: string): string => {
 };
 
 interface Props {
-  global: GlobalState;
+  global: Global;
   history: History;
   tag: string;
   children: JSX.Element;

@@ -7,7 +7,7 @@ import paginationFactory from "react-bootstrap-table2-paginator";
 
 import { Modal, Spinner } from "react-bootstrap";
 
-import { State as GlobalState } from "../../store/global/types";
+import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
 
@@ -154,7 +154,7 @@ export class List extends Component<ListProps, ListState> {
 
 interface Props {
   history: History;
-  global: GlobalState;
+  global: Global;
   dynamicProps: DynamicProps;
   account: Account;
   addAccount: (data: Account) => void;

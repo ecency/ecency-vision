@@ -9,7 +9,7 @@ import paginationFactory from "react-bootstrap-table2-paginator";
 
 import { Modal, Spinner } from "react-bootstrap";
 
-import { State as GlobalState } from "../../store/global/types";
+import { Global } from "../../store/global/types";
 import { Entry } from "../../store/entries/types";
 import { Account } from "../../store/accounts/types";
 
@@ -61,7 +61,7 @@ export const prepareVotes = (entry: Entry, votes: Vote[]): Vote[] => {
 
 interface DetailProps {
   history: History;
-  global: GlobalState;
+  global: Global;
   entry: Entry;
   addAccount: (data: Account) => void;
 }
@@ -214,7 +214,7 @@ export class EntryVotesDetail extends Component<DetailProps, DetailState> {
 
 interface Props {
   history: History;
-  global: GlobalState;
+  global: Global;
   entry: Entry;
   addAccount: (data: Account) => void;
 }

@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 import isEqual from "react-fast-compare";
 
-import { State as GlobalState, Theme } from "../../store/global/types";
+import { Global, Theme } from "../../store/global/types";
 
 import ToolTip from "../tooltip";
 import DownloadTrigger from "../download-trigger";
@@ -18,7 +18,7 @@ import { brightnessSvg, appleSvg, googleSvg, desktopSvg } from "../../img/svg";
 
 interface Props {
   history: History;
-  global: GlobalState;
+  global: Global;
   toggleTheme: () => void;
 }
 

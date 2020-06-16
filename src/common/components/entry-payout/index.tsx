@@ -5,7 +5,7 @@ import moment from "moment";
 import { Popover, OverlayTrigger } from "react-bootstrap";
 
 import { Entry } from "../../store/entries/types";
-import { State as GlobalState } from "../../store/global/types";
+import { Global } from "../../store/global/types";
 
 import FormattedCurrency from "../formatted-currency/index";
 
@@ -15,7 +15,7 @@ import parseDate from "../../helper/parse-date";
 import { _t } from "../../i18n/index";
 
 interface Props {
-  global: GlobalState;
+  global: Global;
   entry: Entry;
 }
 

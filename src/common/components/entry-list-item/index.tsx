@@ -6,7 +6,7 @@ import moment from "moment";
 import isEqual from "react-fast-compare";
 
 import { Entry } from "../../store/entries/types";
-import { State as GlobalState } from "../../store/global/types";
+import { Global } from "../../store/global/types";
 
 import { Account } from "../../store/accounts/types";
 
@@ -48,7 +48,7 @@ const noImage = require("../../img/noimage.png");
 interface Props {
   history: History;
   location: Location;
-  global: GlobalState;
+  global: Global;
   community?: CommunityState | null;
   entry: Entry;
   asAuthor: string;

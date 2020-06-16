@@ -1,8 +1,8 @@
 import {useEffect} from 'react';
-import {State as GlobalState} from '../../store/global/types';
+import {Global} from '../../store/global/types';
 
 interface Props {
-    global: GlobalState
+    global: Global
 }
 
 export default (props: Props) => {

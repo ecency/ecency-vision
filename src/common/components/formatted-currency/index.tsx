@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 
-import { State as GlobalState } from "../../store/global/types";
+import { Global } from "../../store/global/types";
 
 import formattedNumber from "../../util/formatted-number";
 
 interface Props {
-  global: GlobalState;
+  global: Global;
   value: number;
   fixAt: number;
 }

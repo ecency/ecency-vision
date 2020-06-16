@@ -32,7 +32,7 @@ export enum AllFilter {
   replies = "replies",
 }
 
-export interface State {
+export interface Global {
   filter: EntryFilter | ProfileFilter | AllFilter;
   tag: string;
   theme: Theme;

@@ -4,7 +4,7 @@ import { History } from "history";
 
 import moment from "moment";
 
-import { State as GlobalState } from "../../store/global/types";
+import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
 import { State as TransactionsState } from "../../store/transactions/types";
@@ -26,7 +26,7 @@ import { _t } from "../../i18n";
 
 interface Props {
   history: History;
-  global: GlobalState;
+  global: Global;
   dynamicProps: DynamicProps;
   transactions: TransactionsState;
   account: Account;

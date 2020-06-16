@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { History } from "history";
 
-import { State as GlobalState } from "../../store/global/types";
+import { Global } from "../../store/global/types";
 import { State as TrendingTagsState } from "../../store/trending-tags/types";
 
 import TagLink, { makePath } from "../tag-link/index";
@@ -11,7 +11,7 @@ import _c from "../../util/fix-class-names";
 
 interface Props {
   history: History;
-  global: GlobalState;
+  global: Global;
   trendingTags: TrendingTagsState;
 }
 

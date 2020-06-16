@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { History, Location } from "history";
 
 import { AppState } from "../store";
-import { State as GlobalState } from "../store/global/types";
+import { Global } from "../store/global/types";
 
 import { toggleTheme } from "../store/global/index";
 
@@ -22,7 +22,7 @@ const mobileSs = require("../img/mobile-ss.jpg");
 interface Props {
   history: History;
   location: Location;
-  global: GlobalState;
+  global: Global;
   toggleTheme: () => void;
 }
 

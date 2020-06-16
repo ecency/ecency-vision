@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {State as GlobalState} from '../../store/global/types';
+import {Global} from '../../store/global/types';
 
 const friends = require('../../img/friends.jpg');
 
@@ -8,7 +8,7 @@ import {closeSvg} from '../../img/svg';
 
 
 interface Props {
-    global: GlobalState
+    global: Global
     hideIntro: () => any
 }
 

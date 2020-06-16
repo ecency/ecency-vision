@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import isEqual from "react-fast-compare";
 
-import { State as GlobalState } from "../../store/global/types";
+import { Global } from "../../store/global/types";
 
 import { ListStyle } from "../../store/global/types";
 
@@ -15,7 +15,7 @@ import _c from "../../util/fix-class-names";
 import { viewModuleSvg } from "../../img/svg";
 
 interface Props {
-  global: GlobalState;
+  global: Global;
   toggleListStyle: () => void;
 }
 

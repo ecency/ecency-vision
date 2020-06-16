@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { History, Location } from "history";
 
 import { AppState } from "../store";
-import { EntryFilter, ListStyle, State as GlobalState } from "../store/global/types";
+import { EntryFilter, ListStyle, Global } from "../store/global/types";
 import { Account } from "../store/accounts/types";
 import { State as TrendingTagsState } from "../store/trending-tags/types";
 import { State as EntriesState } from "../store/entries/types";
@@ -40,7 +40,7 @@ import defaults from "../constants/defaults.json";
 interface Props {
   history: History;
   location: Location;
-  global: GlobalState;
+  global: Global;
   trendingTags: TrendingTagsState;
   entries: EntriesState;
   community: CommunityState | null;

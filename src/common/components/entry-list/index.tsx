@@ -3,7 +3,7 @@ import { History, Location } from "history";
 
 import isEqual from "react-fast-compare";
 
-import { State as GlobalState } from "../../store/global/types";
+import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
 
 import { Entry } from "../../store/entries/types";
@@ -14,7 +14,7 @@ import { State as CommunityState } from "../../store/community/types";
 interface Props {
   history: History;
   location: Location;
-  global: GlobalState;
+  global: Global;
   entries: Entry[];
   community?: CommunityState | null;
   addAccount: (data: Account) => void;

@@ -1,11 +1,11 @@
-import { State as GlobalState, EntryFilter, Theme, ListStyle } from "../store/global/types";
+import { Global, EntryFilter, Theme, ListStyle } from "../store/global/types";
 import { Entry } from "../store/entries/types";
 import { Community } from "../store/community/types";
 import { DynamicProps } from "../store/dynamic-props/types";
 import { Vote, DelegatedVestingShare } from "../../common/api/hive";
 import { ReceivedVestingShare } from "../../common/api/private";
 
-export const globalInstance: GlobalState = {
+export const globalInstance: Global = {
   filter: EntryFilter.hot,
   tag: "",
   theme: Theme.day,

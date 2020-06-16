@@ -6,7 +6,7 @@ import { History, Location } from "history";
 import { match } from "react-router";
 
 import { AppState } from "../store";
-import { ListStyle, State as GlobalState } from "../store/global/types";
+import { ListStyle, Global } from "../store/global/types";
 import { State as EntriesState } from "../store/entries/types";
 import { Account, State as AccountsState } from "../store/accounts/types";
 import { DynamicProps } from "../store/dynamic-props/types";
@@ -49,7 +49,7 @@ interface Props {
   history: History;
   location: Location;
   match: match<MatchParams>;
-  global: GlobalState;
+  global: Global;
   dynamicProps: DynamicProps;
   entries: EntriesState;
   accounts: AccountsState;

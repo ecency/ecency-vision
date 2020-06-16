@@ -21,7 +21,7 @@ import { Entry } from "../../store/entries/types";
 
 import { Account } from "../../store/accounts/types";
 
-import { State as GlobalState } from "../../store/global/types";
+import { Global } from "../../store/global/types";
 
 import { getDiscussion } from "../../api/bridge";
 
@@ -49,7 +49,7 @@ import { commentSvg } from "../../img/svg";
 
 interface ItemProps {
   history: History;
-  global: GlobalState;
+  global: Global;
   discussion: Entry[];
   entry: Entry;
   addAccount: (data: Account) => void;
@@ -122,7 +122,7 @@ export class Item extends Component<ItemProps> {
 
 interface ListProps {
   history: History;
-  global: GlobalState;
+  global: Global;
   discussion: Entry[];
   parent: Entry;
   addAccount: (data: Account) => void;
@@ -152,7 +152,7 @@ export class List extends Component<ListProps> {
 
 interface Props {
   history: History;
-  global: GlobalState;
+  global: Global;
   parent: Entry;
   addAccount: (data: Account) => void;
 }

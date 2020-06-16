@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import isEqual from "react-fast-compare";
 
-import { State as GlobalState } from "../../store/global/types";
+import { Global } from "../../store/global/types";
 
 import ListStyleToggle from "../list-style-toggle/index";
 
@@ -13,7 +13,7 @@ import { _t } from "../../i18n";
 import _c from "../../util/fix-class-names";
 
 interface Props {
-  global: GlobalState;
+  global: Global;
   username: string;
   section: string;
   toggleListStyle: () => void;

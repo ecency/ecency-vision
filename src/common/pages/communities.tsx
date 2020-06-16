@@ -6,7 +6,7 @@ import { History } from "history";
 import { FormControl } from "react-bootstrap";
 
 import { AppState } from "../store";
-import { State as GlobalState } from "../store/global/types";
+import { Global } from "../store/global/types";
 import { Account } from "../store/accounts/types";
 import { Community } from "../store/community/types";
 
@@ -28,7 +28,7 @@ import { getCommunities } from "../api/bridge";
 
 interface Props {
   history: History;
-  global: GlobalState;
+  global: Global;
   toggleTheme: () => void;
   addAccount: (data: Account) => void;
 }
