@@ -9,6 +9,7 @@ import profileHandler from "./handlers/profile";
 import entryHandler from "./handlers/entry";
 import fallbackHandler from "./handlers/fallback";
 import { entryRssHandler, authorRssHandler } from "./handlers/rss";
+import { receivedVestingHandler } from "./handlers/private-api";
 
 const server = express();
 
@@ -54,6 +55,7 @@ server
     ],
     entryHandler
   )
+  .get("^/received-vesting/@:username$", receivedVestingHandler)
   .get("*", fallbackHandler);
 
 export default server;
