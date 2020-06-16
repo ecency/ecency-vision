@@ -113,7 +113,7 @@ export class EntryVotesDetail extends Component<DetailProps, DetailState> {
 
     if (loading) {
       return (
-        <div className="votes-dialog-content">
+        <div className="dialog-loading">
           <Spinner animation="grow" variant="primary" />
         </div>
       );
