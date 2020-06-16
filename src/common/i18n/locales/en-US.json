@@ -137,6 +137,13 @@
   "received-vesting": {
     "title": "Received Hive Power"
   },
+  "friends": {
+    "followers": "Followers ({{n}})",
+    "following": "Following ({{n}})",
+    "load-more": "Load More",
+    "search-placeholder": "Search users",
+    "empty-list": "Nothing here"
+  },
   "follow-controls": {
     "follow": "Follow",
     "unFollow": "Unfollow",

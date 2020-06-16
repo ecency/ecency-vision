@@ -44,6 +44,12 @@ export interface DelegatedVestingShare {
   vesting_shares: string;
 }
 
+export interface Follow {
+  follower: string;
+  following: string;
+  what: string[];
+}
+
 export const getActiveVotes = (author: string, permlink: string): Promise<Vote[]> =>
   client.database.call("get_active_votes", [author, permlink]);
 
@@ -57,29 +63,42 @@ export const lookupAccounts = (q: string, limit = 50): Promise<string[]> =>
 
 export const getAccounts = (usernames: string[]): Promise<Account[]> => {
   return client.database.getAccounts(usernames).then((resp: any[]): Account[] =>
-    resp.map((x) => ({
-      name: x.name,
-      post_count: x.post_count,
-      created: x.created,
-      reputation: x.reputation,
-      json_metadata: x.json_metadata,
-      reward_steem_balance: x.reward_steem_balance,
-      reward_sbd_balance: x.reward_sbd_balance,
-      reward_vesting_steem: x.reward_vesting_steem,
-      balance: x.balance,
-      sbd_balance: x.sbd_balance,
-      savings_balance: x.savings_balance,
-      savings_sbd_balance: x.savings_sbd_balance,
-      next_vesting_withdrawal: x.next_vesting_withdrawal,
-      vesting_shares: x.vesting_shares,
-      delegated_vesting_shares: x.delegated_vesting_shares,
-      received_vesting_shares: x.received_vesting_shares,
-      vesting_withdraw_rate: x.vesting_withdraw_rate,
-      to_withdraw: x.to_withdraw,
-      withdrawn: x.withdrawn,
-      voting_manabar: x.voting_manabar,
-      __loaded: true,
-    }))
+    resp.map((x) => {
+      const account = {
+        name: x.name,
+        post_count: x.post_count,
+        created: x.created,
+        reputation: x.reputation,
+        json_metadata: x.json_metadata,
+        reward_steem_balance: x.reward_steem_balance,
+        reward_sbd_balance: x.reward_sbd_balance,
+        reward_vesting_steem: x.reward_vesting_steem,
+        balance: x.balance,
+        sbd_balance: x.sbd_balance,
+        savings_balance: x.savings_balance,
+        savings_sbd_balance: x.savings_sbd_balance,
+        next_vesting_withdrawal: x.next_vesting_withdrawal,
+        vesting_shares: x.vesting_shares,
+        delegated_vesting_shares: x.delegated_vesting_shares,
+        received_vesting_shares: x.received_vesting_shares,
+        vesting_withdraw_rate: x.vesting_withdraw_rate,
+        to_withdraw: x.to_withdraw,
+        withdrawn: x.withdrawn,
+        voting_manabar: x.voting_manabar,
+        __loaded: true,
+      };
+
+      let profile: AccountProfile | undefined;
+      try {
+        profile = JSON.parse(x.json_metadata!).profile;
+      } catch (e) {}
+
+      if (profile) {
+        return { ...account, profile };
+      }
+
+      return account;
+    })
   );
 };
 
@@ -87,21 +106,30 @@ export const getAccount = (username: string): Promise<Account> => getAccounts([u
 
 export const getAccountFull = (username: string): Promise<Account> =>
   getAccount(username).then(async (account) => {
-    let profile: AccountProfile | undefined;
-    try {
-      profile = JSON.parse(account.json_metadata!).profile;
-    } catch (e) {}
-
     let follow_stats: AccountFollowStats | undefined;
     try {
       follow_stats = await getFollowCount(username);
     } catch (e) {}
 
-    return { ...account, profile, follow_stats };
+    return { ...account, follow_stats };
   });
 
 export const getFollowCount = (username: string): Promise<AccountFollowStats> =>
   client.database.call("get_follow_count", [username]);
+
+export const getFollowing = (
+  follower: string,
+  startFollowing: string,
+  followType = "blog",
+  limit = 100
+): Promise<Follow[]> => client.database.call("get_following", [follower, startFollowing, followType, limit]);
+
+export const getFollowers = (
+  following: string,
+  startFollowing: string,
+  followType = "blog",
+  limit = 100
+): Promise<Follow[]> => client.database.call("get_followers", [following, startFollowing, followType, limit]);
 
 export const getDynamicGlobalProperties = (): Promise<DynamicGlobalProperties> =>
   client.database.getDynamicGlobalProperties().then((r: any) => ({

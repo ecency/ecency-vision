@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import { History } from "history";
+
 import { Button } from "react-bootstrap";
 
 import DownloadTrigger from "../download-trigger";
@@ -10,6 +12,7 @@ import numeral from "numeral";
 import { Account } from "../../store/accounts/types";
 import UserAvatar from "../user-avatar";
 import Tooltip from "../tooltip";
+import { Followers } from "../friends";
 
 import accountReputation from "../../helper/account-reputation";
 
@@ -30,10 +33,32 @@ import {
 } from "../../img/svg";
 
 interface Props {
+  history: History;
   account: Account;
+  addAccount: (data: Account) => void;
 }
 
-export default class ProfileCard extends Component<Props> {
+interface State {
+  followersList: boolean;
+  followingList: boolean;
+}
+
+export default class ProfileCard extends Component<Props, State> {
+  state: State = {
+    followersList: false,
+    followingList: false,
+  };
+
+  toggleFollowers = () => {
+    const { followersList } = this.state;
+    this.setState({ followersList: !followersList });
+  };
+
+  toggleFollowing = () => {
+    const { followingList } = this.state;
+    this.setState({ followingList: !followingList });
+  };
+
   render() {
     const { account } = this.props;
 
@@ -82,9 +107,9 @@ export default class ProfileCard extends Component<Props> {
             </div>
 
             {account.follow_stats?.follower_count !== undefined && (
-              <div className="stat">
+              <div className="stat followers">
                 <Tooltip content={_t("profile.followers")}>
-                  <span>
+                  <span onClick={this.toggleFollowers}>
                     {accountMultipleSvg} {numeral(account.follow_stats.follower_count).format()}
                   </span>
                 </Tooltip>
@@ -92,9 +117,9 @@ export default class ProfileCard extends Component<Props> {
             )}
 
             {account.follow_stats?.following_count !== undefined && (
-              <div className="stat">
+              <div className="stat following">
                 <Tooltip content={_t("profile.following")}>
-                  <span>
+                  <span onClick={this.toggleFollowing}>
                     {accountPlusSvg} {numeral(account.follow_stats.following_count).format()}
                   </span>
                 </Tooltip>
@@ -132,6 +157,7 @@ export default class ProfileCard extends Component<Props> {
             </a>
           </div>
         </div>
+        {this.state.followersList && <Followers {...this.props} account={account} onHide={this.toggleFollowers} />}
       </div>
     );
   }

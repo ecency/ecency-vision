@@ -178,6 +178,13 @@
         align-items: center;
         line-height: 100%;
       }
+
+      &.followers,
+      &.following {
+        span {
+          cursor: pointer;
+        }
+      }
     }
   }
 
