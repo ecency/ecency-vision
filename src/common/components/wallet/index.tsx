@@ -12,7 +12,7 @@ import { State as TransactionsState } from "../../store/transactions/types";
 import Tooltip from "../tooltip";
 import FormattedCurrency from "../formatted-currency";
 import Transactions from "../transactions";
-import DelegatedVestingList from "../delegated-vesting-list";
+import DelegatedVesting from "../delegated-vesting";
 
 import parseAsset from "../../helper/parse-asset";
 import { vestsToSp } from "../../helper/vesting";
@@ -199,7 +199,7 @@ export default class Wallet extends Component<Props, State> {
 
         <Transactions {...this.props} />
         {this.state.delegatedList && (
-          <DelegatedVestingList {...this.props} account={account} onHide={this.toggleDelegatedList} />
+          <DelegatedVesting {...this.props} account={account} onHide={this.toggleDelegatedList} />
         )}
       </div>
     );

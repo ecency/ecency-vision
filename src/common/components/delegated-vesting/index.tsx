@@ -46,7 +46,7 @@ export class List extends Component<ListProps, ListState> {
     const { account } = this.props;
 
     this.setState({ loading: true });
-    getVestingDelegations(account.name)
+    getVestingDelegations(account.name, '', 250)
       .then((data) => {
         this.setData(data);
       })
@@ -157,7 +157,7 @@ interface Props {
   onHide: () => void;
 }
 
-export default class DelegatedVestingList extends Component<Props> {
+export default class DelegatedVesting extends Component<Props> {
   render() {
     const { account, onHide } = this.props;
 
