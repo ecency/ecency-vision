@@ -1,12 +1,12 @@
 import { Dispatch } from "redux";
 
-import { Account, State, Actions, ActionTypes, AddAction } from "./types";
+import { Account, Accounts, Actions, ActionTypes, AddAction } from "./types";
 
 import { getAccountFull } from "../../api/hive";
 
-export const initialState: State = [];
+export const initialState: Accounts = [];
 
-export default (state: State = initialState, action: Actions): State => {
+export default (state: Accounts = initialState, action: Actions): Accounts => {
   switch (action.type) {
     case ActionTypes.ADD: {
       const { data } = action;

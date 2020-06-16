@@ -1,8 +1,8 @@
 import reducer, { initialState, addAct } from "./index";
 
-import { State } from "./types";
+import { Accounts } from "./types";
 
-let state: State = [];
+let state: Accounts = [];
 
 it("1- default state", () => {
   expect(state).toMatchSnapshot();

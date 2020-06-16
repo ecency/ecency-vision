@@ -8,7 +8,7 @@ import { match } from "react-router";
 import { AppState } from "../store";
 import { ListStyle, Global } from "../store/global/types";
 import { Entries } from "../store/entries/types";
-import { Account, State as AccountsState } from "../store/accounts/types";
+import { Account, Accounts } from "../store/accounts/types";
 import { DynamicProps } from "../store/dynamic-props/types";
 import { State as TransactionsState } from "../store/transactions/types";
 
@@ -52,7 +52,7 @@ interface Props {
   global: Global;
   dynamicProps: DynamicProps;
   entries: Entries;
-  accounts: AccountsState;
+  accounts: Accounts;
   transactions: TransactionsState;
   toggleTheme: () => void;
   toggleListStyle: () => void;

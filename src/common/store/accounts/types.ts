@@ -44,7 +44,7 @@ export interface Account {
   __loaded?: boolean;
 }
 
-export type State = Account[];
+export type Accounts = Account[];
 
 export enum ActionTypes {
   ADD = "@accounts/ADD",
