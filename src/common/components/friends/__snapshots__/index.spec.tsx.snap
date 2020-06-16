@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`(3) Default render of list 1`] = `
+exports[`(1) Render list 1`] = `
 <div
   className="friends-content"
 >
@@ -22,13 +22,97 @@ exports[`(3) Default render of list 1`] = `
     <div
       className="friends-list-body"
     >
-      <div
-        className="empty-list"
+      <a
+        className="friends-list-item"
+        href="/@user1"
+        onClick={[Function]}
       >
-         
-        Nothing here
-      </div>
+        <span
+          className="user-avatar large"
+          onClick={[Function]}
+          role="none"
+          style={
+            Object {
+              "backgroundImage": "url(https://images.esteem.app/u/user1/avatar/medium)",
+            }
+          }
+        />
+        <div
+          className="friend-name"
+        >
+          user1
+        </div>
+        <div
+          className="friend-full-name"
+        >
+          User One
+        </div>
+      </a>
+      <a
+        className="friends-list-item"
+        href="/@user2"
+        onClick={[Function]}
+      >
+        <span
+          className="user-avatar large"
+          onClick={[Function]}
+          role="none"
+          style={
+            Object {
+              "backgroundImage": "url(https://images.esteem.app/u/user2/avatar/medium)",
+            }
+          }
+        />
+        <div
+          className="friend-name"
+        >
+          user2
+        </div>
+        <div
+          className="friend-full-name"
+        >
+          User Two
+        </div>
+      </a>
+      <a
+        className="friends-list-item"
+        href="/@user3"
+        onClick={[Function]}
+      >
+        <span
+          className="user-avatar large"
+          onClick={[Function]}
+          role="none"
+          style={
+            Object {
+              "backgroundImage": "url(https://images.esteem.app/u/user3/avatar/medium)",
+            }
+          }
+        />
+        <div
+          className="friend-name"
+        >
+          user3
+        </div>
+        <div
+          className="friend-full-name"
+        >
+          User Three
+        </div>
+      </a>
     </div>
+  </div>
+  <div
+    className="load-more"
+  >
+    <button
+      className="btn btn-primary"
+      disabled={true}
+      onClick={[Function]}
+      type="button"
+    >
+      Load More
+    </button>
   </div>
 </div>
 `;

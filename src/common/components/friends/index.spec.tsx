@@ -10,20 +10,44 @@ jest.mock("../../constants/defaults.json", () => ({
   imageServer: "https://images.esteem.app",
 }));
 
-jest.mock("../../api/hive", () => () => ({
-  getFollowers: () => [
-    {
-      follower: "foo",
-      following: "user1",
-      what: ["blog"],
-    },
-  ],
-  getAccounts: () => [
-    {
-      name: "user1",
-      profile: { name: "User One" },
-    },
-  ],
+jest.mock("../../api/hive", () => ({
+  getFollowers: () =>
+    new Promise((resolve) => {
+      resolve([
+        {
+          follower: "foo",
+          following: "user1",
+          what: ["blog"],
+        },
+        {
+          follower: "bar",
+          following: "user2",
+          what: ["blog"],
+        },
+        {
+          follower: "baz",
+          following: "user3",
+          what: ["blog"],
+        },
+      ]);
+    }),
+  getAccounts: () =>
+    new Promise((resolve) => {
+      resolve([
+        {
+          name: "user1",
+          profile: { name: "User One" },
+        },
+        {
+          name: "user2",
+          profile: { name: "User Two" },
+        },
+        {
+          name: "user3",
+          profile: { name: "User Three" },
+        },
+      ]);
+    }),
 }));
 
 const props = {
@@ -34,6 +58,6 @@ const props = {
 
 const component = renderer.create(<List {...props} mode="follower" />);
 
-it("(3) Default render of list", () => {
+it("(1) Render list", () => {
   expect(component.toJSON()).toMatchSnapshot();
 });
