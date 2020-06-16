@@ -69,7 +69,7 @@ export interface EntryGroup {
   hasMore: boolean;
 }
 
-export interface State extends Record<string, EntryGroup> {}
+export interface Entries extends Record<string, EntryGroup> {}
 
 // TODO: Implement UPDATE action
 

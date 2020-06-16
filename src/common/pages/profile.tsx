@@ -7,7 +7,7 @@ import { match } from "react-router";
 
 import { AppState } from "../store";
 import { ListStyle, Global } from "../store/global/types";
-import { State as EntriesState } from "../store/entries/types";
+import { Entries } from "../store/entries/types";
 import { Account, State as AccountsState } from "../store/accounts/types";
 import { DynamicProps } from "../store/dynamic-props/types";
 import { State as TransactionsState } from "../store/transactions/types";
@@ -51,7 +51,7 @@ interface Props {
   match: match<MatchParams>;
   global: Global;
   dynamicProps: DynamicProps;
-  entries: EntriesState;
+  entries: Entries;
   accounts: AccountsState;
   transactions: TransactionsState;
   toggleTheme: () => void;

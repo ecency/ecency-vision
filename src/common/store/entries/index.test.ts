@@ -8,10 +8,8 @@ import reducer, {
 
 import {locationChangeAct} from '../common';
 
-import {State} from './types';
 
-
-let state: State = initialState;
+let state = initialState;
 
 it('1- default state', () => {
     expect(state).toMatchSnapshot();

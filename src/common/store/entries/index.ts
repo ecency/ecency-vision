@@ -11,7 +11,7 @@ import {
   FetchErrorAction,
   FetchedAction,
   InvalidateAction,
-  State,
+  Entries,
   Entry,
 } from "./types";
 
@@ -28,9 +28,9 @@ export const makeGroupKey = (what: string, tag: string = ""): string => {
   return `${what}`;
 };
 
-export const initialState: State = {};
+export const initialState: Entries = {};
 
-export default (state: State = initialState, action: Actions): State => {
+export default (state: Entries = initialState, action: Actions): Entries => {
   switch (action.type) {
     case CommonActionTypes.INIT: {
       if (state["__manual__"] === undefined) {

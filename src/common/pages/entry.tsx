@@ -22,7 +22,7 @@ setProxyBase(defaults.imageServer);
 import { AppState } from "../store";
 import { Global } from "../store/global/types";
 import { Account } from "../store/accounts/types";
-import { Entry, State as EntriesState } from "../store/entries/types";
+import { Entry, Entries } from "../store/entries/types";
 
 import { toggleTheme } from "../store/global/index";
 import { addAccount } from "../store/accounts/index";
@@ -71,7 +71,7 @@ interface Props {
   location: Location;
   match: match<MatchParams>;
   global: Global;
-  entries: EntriesState;
+  entries: Entries;
   toggleTheme: () => void;
   addAccount: (data: Account) => void;
   addEntry: (entry: Entry) => void;
