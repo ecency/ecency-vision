@@ -5,20 +5,6 @@ exports[`(3) Default render of list 1`] = `
   className="friends-content"
 >
   <div
-    className="loading"
-  >
-    <div
-      className="linear-progress"
-    >
-      <div
-        className="bar bar1"
-      />
-      <div
-        className="bar bar2"
-      />
-    </div>
-  </div>
-  <div
     className="friends-list"
   >
     <div
@@ -26,7 +12,7 @@ exports[`(3) Default render of list 1`] = `
     >
       <input
         className="form-control"
-        disabled={true}
+        disabled={false}
         onChange={[Function]}
         onKeyDown={[Function]}
         placeholder="Search users"
@@ -35,7 +21,14 @@ exports[`(3) Default render of list 1`] = `
     </div>
     <div
       className="friends-list-body"
-    />
+    >
+      <div
+        className="empty-list"
+      >
+         
+        Nothing here
+      </div>
+    </div>
   </div>
 </div>
 `;

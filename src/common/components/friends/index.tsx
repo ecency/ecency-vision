@@ -90,6 +90,7 @@ export class List extends Component<ListProps, ListState> {
   fetchFirst = async () => {
     this.stateSet({ loading: true, data: [], hasMore: false });
     let data: Friend[];
+
     try {
       data = await this.fetch();
     } catch (e) {
