@@ -220,7 +220,7 @@ interface Props {
 export class Followers extends Component<Props> {
   render() {
     const { account, onHide } = this.props;
-    const title = _t("friends.followers", { n: account.follow_stats?.follower_count });
+    const title = _t("friends.followers", { n: account.follow_stats?.follower_count! });
 
     return (
       <>
@@ -230,6 +230,26 @@ export class Followers extends Component<Props> {
           </Modal.Header>
           <Modal.Body>
             <List {...this.props} mode="follower" />
+          </Modal.Body>
+        </Modal>
+      </>
+    );
+  }
+}
+
+export class Following extends Component<Props> {
+  render() {
+    const { account, onHide } = this.props;
+    const title = _t("friends.following", { n: account.follow_stats?.following_count! });
+
+    return (
+      <>
+        <Modal onHide={onHide} show={true} centered={true} animation={false} size="lg">
+          <Modal.Header closeButton={true}>
+            <Modal.Title>{title}</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <List {...this.props} mode="following" />
           </Modal.Body>
         </Modal>
       </>

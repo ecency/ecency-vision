@@ -12,7 +12,7 @@ import numeral from "numeral";
 import { Account } from "../../store/accounts/types";
 import UserAvatar from "../user-avatar";
 import Tooltip from "../tooltip";
-import { Followers } from "../friends";
+import { Followers, Following } from "../friends";
 
 import accountReputation from "../../helper/account-reputation";
 
@@ -158,6 +158,7 @@ export default class ProfileCard extends Component<Props, State> {
           </div>
         </div>
         {this.state.followersList && <Followers {...this.props} account={account} onHide={this.toggleFollowers} />}
+        {this.state.followingList && <Following {...this.props} account={account} onHide={this.toggleFollowing} />}
       </div>
     );
   }
