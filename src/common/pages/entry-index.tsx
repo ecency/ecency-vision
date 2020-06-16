@@ -6,7 +6,7 @@ import { History, Location } from "history";
 import { AppState } from "../store";
 import { EntryFilter, ListStyle, Global } from "../store/global/types";
 import { Account } from "../store/accounts/types";
-import { State as TrendingTagsState } from "../store/trending-tags/types";
+import { TrendingTags } from "../store/trending-tags/types";
 import { Entries } from "../store/entries/types";
 import { State as CommunityState } from "../store/community/types";
 
@@ -41,7 +41,7 @@ interface Props {
   history: History;
   location: Location;
   global: Global;
-  trendingTags: TrendingTagsState;
+  trendingTags: TrendingTags;
   entries: Entries;
   community: CommunityState | null;
   toggleTheme: () => void;

@@ -1,81 +1,81 @@
-import {Dispatch} from 'redux';
+import { Dispatch } from "redux";
 
-import {getTrendingTags} from '../../api/hive';
+import { getTrendingTags } from "../../api/hive";
 
-import {AppState} from '../index';
+import { AppState } from "../index";
 
-import {Actions, ActionTypes, State, FetchAction, FetchedAction, FetchErrorAction} from './types';
+import { TrendingTags, Actions, ActionTypes, FetchAction, FetchedAction, FetchErrorAction } from "./types";
 
-
-export const initialState: State = {
-    list: [],
-    loading: false,
-    error: false
+export const initialState: TrendingTags = {
+  list: [],
+  loading: false,
+  error: false,
 };
 
-export default (state: State = initialState, action: Actions): State => {
-    switch (action.type) {
-        case ActionTypes.FETCH: {
-            return {
-                list: [],
-                loading: true,
-                error: false
-            };
-        }
-        case ActionTypes.FETCHED: {
-            return {
-                list: action.tags,
-                loading: false,
-                error: false
-            };
-        }
-        case ActionTypes.FETCH_ERROR: {
-            return {
-                list: [],
-                loading: false,
-                error: true
-            };
-        }
-        default:
-            return state;
+export default (state: TrendingTags = initialState, action: Actions): TrendingTags => {
+  switch (action.type) {
+    case ActionTypes.FETCH: {
+      return {
+        list: [],
+        loading: true,
+        error: false,
+      };
     }
-}
+    case ActionTypes.FETCHED: {
+      return {
+        list: action.tags,
+        loading: false,
+        error: false,
+      };
+    }
+    case ActionTypes.FETCH_ERROR: {
+      return {
+        list: [],
+        loading: false,
+        error: true,
+      };
+    }
+    default:
+      return state;
+  }
+};
 
 /* Actions */
-export const fetchTrendingTags = () =>
-    (dispatch: Dispatch, getState: () => AppState) => {
-        const {trendingTags} = getState();
+export const fetchTrendingTags = () => (dispatch: Dispatch, getState: () => AppState) => {
+  const { trendingTags } = getState();
 
-        if (trendingTags.list.length >= 1 || trendingTags.loading) {
-            return;
-        }
+  if (trendingTags.list.length >= 1 || trendingTags.loading) {
+    return;
+  }
 
-        dispatch(fetchAct());
+  dispatch(fetchAct());
 
-        return getTrendingTags().then(tags => {
-            dispatch(fetchedAct(tags));
-            return tags
-        }).catch(() => {
-            dispatch(fetchErrorAct());
-        });
-    };
+  return getTrendingTags()
+    .then((tags) => {
+      dispatch(fetchedAct(tags));
+      return tags;
+    })
+    .catch(() => {
+      dispatch(fetchErrorAct());
+    });
+};
 
 /* Action Creators */
 export const fetchAct = (): FetchAction => {
-    return {
-        type: ActionTypes.FETCH
-    }
+  return {
+    type: ActionTypes.FETCH,
+  };
 };
 
 export const fetchedAct = (tags: string[]): FetchedAction => {
-    return {
-        type: ActionTypes.FETCHED,
-        tags
-    }
+  return {
+    type: ActionTypes.FETCHED,
+    tags,
+  };
 };
 
 export const fetchErrorAct = (): FetchErrorAction => {
-    return {
-        type: ActionTypes.FETCH_ERROR
-    }
+  return {
+    type: ActionTypes.FETCH_ERROR,
+  };
 };
