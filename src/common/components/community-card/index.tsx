@@ -4,8 +4,6 @@ import { History } from "history";
 
 import isEqual from "react-fast-compare";
 
-import numeral from "numeral";
-
 import { Button } from "react-bootstrap";
 
 import { Account } from "../../store/accounts/types";
@@ -15,6 +13,7 @@ import ProfileLink from "../profile-link";
 import DownloadTrigger from "../download-trigger";
 
 import ln2list from "../../util/nl2list";
+import formattedNumber from "../../util/formatted-number";
 
 import { _t } from "../../i18n";
 
@@ -34,9 +33,9 @@ export default class CommunityCard extends Component<Props> {
   render() {
     const { community } = this.props;
 
-    const subscribers = numeral(community.subscribers).format();
-    const rewards = numeral(community.sum_pending).format();
-    const authors = numeral(community.num_authors).format();
+    const subscribers = formattedNumber(community.subscribers, { fractionDigits: 0 });
+    const rewards = formattedNumber(community.sum_pending, { fractionDigits: 0 });
+    const authors = formattedNumber(community.num_authors, { fractionDigits: 0 });
 
     return (
       <div className="community-card">
