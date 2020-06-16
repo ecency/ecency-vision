@@ -2,7 +2,7 @@ import { State as GlobalState, EntryFilter, Theme, ListStyle } from "../store/gl
 import { Entry } from "../store/entries/types";
 import { Community } from "../store/community/types";
 import { DynamicProps } from "../store/dynamic-props/types";
-import { Vote, VestingDelegation } from "../../common/api/hive";
+import { Vote, DelegatedVestingShare } from "../../common/api/hive";
 
 export const globalInstance: GlobalState = {
   filter: EntryFilter.hot,
@@ -118,7 +118,7 @@ export const votesInstance1: Vote[] = [
   },
 ];
 
-export const vestingDelegationInstance1: VestingDelegation[] = [
+export const vestingDelegationInstance1: DelegatedVestingShare[] = [
   {
     id: 1327252,
     delegator: "esteemapp",

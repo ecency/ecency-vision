@@ -36,10 +36,10 @@ export interface RewardFund {
   reward_balance: string;
 }
 
-export interface VestingDelegation {
+export interface DelegatedVestingShare {
+  id: number;
   delegatee: string;
   delegator: string;
-  id: number;
   min_delegation_time: string;
   vesting_shares: string;
 }
@@ -119,7 +119,7 @@ export const getVestingDelegations = (
   username: string,
   from: string = "",
   limit: number = 50
-): Promise<VestingDelegation[]> => client.database.call("get_vesting_delegations", [username, from, limit]);
+): Promise<DelegatedVestingShare[]> => client.database.call("get_vesting_delegations", [username, from, limit]);
 
 export const vpMana = (account: Account): number => {
   // @ts-ignore "Account" is compatible with dhive's "ExtendedAccount"

@@ -14,7 +14,7 @@ import { DynamicProps } from "../../store/dynamic-props/types";
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 
-import { VestingDelegation, getVestingDelegations } from "../../api/hive";
+import { DelegatedVestingShare, getVestingDelegations } from "../../api/hive";
 
 import { _t } from "../../i18n";
 
@@ -33,7 +33,7 @@ interface ListProps {
 
 interface ListState {
   loading: boolean;
-  data: VestingDelegation[];
+  data: DelegatedVestingShare[];
 }
 
 export class List extends Component<ListProps, ListState> {
@@ -55,7 +55,7 @@ export class List extends Component<ListProps, ListState> {
       });
   }
 
-  setData = (data: VestingDelegation[]) => {
+  setData = (data: DelegatedVestingShare[]) => {
     data.sort((a, b) => {
       return parseAsset(b.vesting_shares).amount - parseAsset(a.vesting_shares).amount;
     });
@@ -82,7 +82,7 @@ export class List extends Component<ListProps, ListState> {
         dataField: "delegatee",
         text: "",
         classes: "delegatee-cell",
-        formatter: (cell: any, row: VestingDelegation) => {
+        formatter: (cell: any, row: DelegatedVestingShare) => {
           return (
             <ProfileLink {...this.props} username={row.delegatee}>
               <span className="account">
@@ -103,7 +103,7 @@ export class List extends Component<ListProps, ListState> {
 
           return parseAsset(b).amount - parseAsset(a).amount;
         },
-        formatter: (cell: any, row: VestingDelegation) => {
+        formatter: (cell: any, row: DelegatedVestingShare) => {
           const vestingShares = parseAsset(row.vesting_shares).amount;
 
           return (
