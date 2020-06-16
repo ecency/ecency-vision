@@ -116,25 +116,17 @@ export class List extends Component<ListProps, ListState> {
       },
     ];
 
-    const pageSize = 8;
-
-    const sort = {
-      dataField: "vesting_shares",
-      order: "desc",
-    };
-
     const pagination = {
-      sizePerPage: pageSize,
+      sizePerPage: 8,
       hideSizePerPage: true,
     };
 
     const tableProps = {
       bordered: false,
-      defaultSorted: [sort],
       keyField: "delegatee",
       data,
       columns,
-      pagination: data.length > pageSize ? paginationFactory(pagination) : undefined,
+      pagination: data.length > pagination.sizePerPage ? paginationFactory(pagination) : undefined,
     };
 
     // @ts-ignore this is about the library's defaultSorted typing issue
@@ -165,7 +157,7 @@ export default class DelegatedVesting extends Component<Props> {
       <>
         <Modal onHide={onHide} show={true} centered={true} animation={false}>
           <Modal.Header closeButton={true}>
-            <Modal.Title>{_t("delegated-vesting.title", { n: account.name })}</Modal.Title>
+            <Modal.Title>{_t("delegated-vesting.title")}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <List {...this.props} />
