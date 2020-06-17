@@ -308,7 +308,7 @@
       }
 
       &:not(.with-community) {
-        @media (min-width: $xxl-break) {
+        @media (min-width: $xxxl-break) {
           margin-right: 1%;
           width: 32.6%;
 
@@ -329,7 +329,7 @@
           margin: 0 0 10px 0;
           width: 100%;
 
-          @media (min-width: $xxl-break) {
+          @media (min-width: $xxxl-break) {
             height: 240px;
           }
         }

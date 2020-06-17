@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 import { History } from "history";
 
+import { Button } from "react-bootstrap";
+
 import { Link } from "react-router-dom";
 
 import isEqual from "react-fast-compare";
@@ -14,7 +16,7 @@ import Search from "../search";
 
 import { _t } from "../../i18n";
 
-import { brightnessSvg, appleSvg, googleSvg, desktopSvg } from "../../img/svg";
+import { brightnessSvg, appleSvg, googleSvg, desktopSvg, pencilOutlineSvg } from "../../img/svg";
 
 interface Props {
   history: History;
@@ -63,6 +65,11 @@ export default class NavBar extends Component<Props> {
               </span>
             </div>
           </DownloadTrigger>
+          <div className="login-required">
+            <Button variant="outline-primary">Login</Button>
+            <Button variant="primary">Signup</Button>
+            <Button variant="outline-secondary">{pencilOutlineSvg}</Button>
+          </div>
           <ToolTip content={themeText}>
             <div className="switch-theme" onClick={this.changeTheme}>
               {brightnessSvg}
