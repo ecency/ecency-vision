@@ -2,12 +2,15 @@
   "g": {
     "reply": "Reply",
     "search": "Search",
-    "downloads": "Downloads"
+    "downloads": "Downloads",
+    "login": "Login",
+    "signup": "Signup"
   },
   "navbar": {
     "global": "Global",
     "communities": "Communities",
     "about": "About",
+    "post": "Create Post",
     "day-theme": "Day Theme",
     "night-theme": "Night Theme"
   },

@@ -66,9 +66,11 @@ export default class NavBar extends Component<Props> {
             </div>
           </DownloadTrigger>
           <div className="login-required">
-            <Button variant="outline-primary">Login</Button>
-            <Button variant="primary">Signup</Button>
-            <Button variant="outline-secondary">{pencilOutlineSvg}</Button>
+            <Button variant="outline-primary">{_t("g.login")}</Button>
+            <Button variant="primary">{_t("g.signup")}</Button>
+            <ToolTip content={_t("navbar.post")}>
+              <Button variant="outline-primary">{pencilOutlineSvg}</Button>
+            </ToolTip>
           </div>
           <ToolTip content={themeText}>
             <div className="switch-theme" onClick={this.changeTheme}>
