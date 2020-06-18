@@ -69,7 +69,7 @@ export default class NavBar extends Component<Props> {
             <Button variant="outline-primary">{_t("g.login")}</Button>
             <Button variant="primary">{_t("g.signup")}</Button>
             <ToolTip content={_t("navbar.post")}>
-              <Button variant="outline-primary">{pencilOutlineSvg}</Button>
+              <Link className="btn btn-outline-primary" to="/submit">{pencilOutlineSvg}</Link>
             </ToolTip>
           </div>
           <ToolTip content={themeText}>

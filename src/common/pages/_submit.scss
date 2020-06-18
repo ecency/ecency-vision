@@ -1,0 +1,36 @@
+.submit-page {
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+
+  // bottom margin height  - navbar
+  height: calc(100% - 330px);
+  @media (min-width: $md-break) {
+    height: calc(100% - 104px) !important;
+  }
+
+  @media (min-width: $lg-break) {
+    flex-direction: row;
+  }
+
+  .editor-side,
+  .preview-side {
+    background: red; // $white-two;
+    padding: 12px;
+    border-radius: $input-border-radius / 2;
+    flex-basis: 49%;
+  }
+
+  .editor-side {
+    height: 100%;
+  }
+
+  .preview-side {
+    height: 100%;
+    margin-bottom: 4px;
+
+    @media (min-width: $lg-break) {
+      margin-bottom: 0;
+    }
+  }
+}

@@ -19,4 +19,5 @@ export default {
   USER_FEED: `/:username(@[\\w\\.\\d-]+)/:section(feed)`,
   USER_SECTION: `/:username(@[\\w\\.\\d-]+)/:section(${profileFilters.join("|")}|wallet)`,
   COMMUNITIES: `/communities`,
+  SUBMIT: `/submit`,
 };
