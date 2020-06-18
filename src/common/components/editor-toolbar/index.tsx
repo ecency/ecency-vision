@@ -1,6 +1,7 @@
 import React, { Component, MouseEvent } from "react";
 
 import Tooltip from "../tooltip";
+import EmojiPicker from "../emoji-picker";
 
 import { _t } from "../../i18n";
 
@@ -15,6 +16,7 @@ import {
   linkSvg,
   imageSvg,
   gridSvg,
+  emoticonHappyOutlineSvg
 } from "../../img/svg";
 
 export default class EditorToolbar extends Component {
@@ -41,6 +43,10 @@ export default class EditorToolbar extends Component {
   table1 = () => {};
 
   table2 = () => {};
+
+  emojiPicked = (e:string) => {
+
+  }
 
   render() {
     return (
@@ -162,6 +168,13 @@ export default class EditorToolbar extends Component {
                   {_t("editor-toolbar.table-1-col")}
                 </div>
               </div>
+            </div>
+          </Tooltip>
+
+          <Tooltip content={_t("editor-toolbar.emoji")}>
+            <div className="editor-tool" role="none">
+              {emoticonHappyOutlineSvg}
+              <EmojiPicker {...this.props} onPick={this.emojiPicked} />
             </div>
           </Tooltip>
         </div>

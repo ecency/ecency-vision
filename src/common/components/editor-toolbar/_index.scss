@@ -68,8 +68,7 @@
         &:not(:last-child) {
           margin-bottom: 8px;
         }
-        &:first-child {
-        }
+
         &:hover {
           @include themify(day) {
             background: darken($white-three, 5);
@@ -82,6 +81,10 @@
       }
     }
 
+    .emoji-picker {
+      top: 44px;
+    }
+
     &:hover {
       .sub-tool-menu {
         display: block;
@@ -90,10 +93,6 @@
       .emoji-picker {
         display: block;
       }
-    }
-
-    .emoji-picker {
-      top: 44px;
     }
   }
 
