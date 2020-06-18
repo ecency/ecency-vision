@@ -8,6 +8,8 @@ import { _t } from "../../i18n";
 
 import { getEmojiData } from "../../api/misc";
 
+import * as ls from "../../util/local-storage";
+
 interface Emoji {
   a: string;
   b: string;
@@ -81,6 +83,18 @@ export default class EmojiPicker extends Component<Props> {
     this.setState({ filter: e.target.value });
   };
 
+  clicked = (id: string, native: string) => {
+    const recent = ls.get("recent-emoji", []);
+    if (!recent.includes(id)) {
+      const newRecent = [...new Set([id, ...recent])].slice(0, 18);
+      ls.set("recent-emoji", newRecent);
+      this.forceUpdate(); // Re-render recent list
+    }
+
+    const { onPick } = this.props;
+    onPick(native);
+  };
+
   renderEmoji = (emoji: string) => {
     const { data } = this.state;
     const em = data!.emojis[emoji];
@@ -94,8 +108,7 @@ export default class EmojiPicker extends Component<Props> {
     return (
       <div
         onClick={() => {
-          const { onPick } = this.props;
-          onPick(native);
+          this.clicked(emoji, native);
         }}
         key={emoji}
         className="emoji"
@@ -111,6 +124,8 @@ export default class EmojiPicker extends Component<Props> {
     if (!data || !cache) {
       return null;
     }
+
+    const recent: string[] = ls.get("recent-emoji", []);
 
     return (
       <div className="emoji-picker">
@@ -134,11 +149,16 @@ export default class EmojiPicker extends Component<Props> {
                 </div>
               </div>
             );
-          }
-
-          if (!filter) {
+          } else {
             return (
               <div className="emoji-cat-list">
+                {recent.length > 0 && (
+                  <div className="emoji-cat">
+                    <div className="cat-title">{_t("emoji-picker.recently-used")}</div>
+                    <div className="emoji-list">{recent.map((emoji) => this.renderEmoji(emoji))}</div>
+                  </div>
+                )}
+
                 {data.categories.map((cat) => (
                   <div className="emoji-cat" key={cat.id}>
                     <div className="cat-title">{cat.name}</div>
@@ -148,8 +168,6 @@ export default class EmojiPicker extends Component<Props> {
               </div>
             );
           }
-
-          return null;
         })()}
       </div>
     );
