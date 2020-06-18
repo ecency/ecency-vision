@@ -68,7 +68,7 @@ class SubmitPage extends Component<Props, State> {
               <Form.Control placeholder={_t("submit.title-placeholder")} autoFocus={true} />
             </div>
             <div className="body-input">
-              <Form.Control as="textarea" placeholder={_t("submit.body-placeholder")} />
+              <Form.Control className="editor" as="textarea" placeholder={_t("submit.body-placeholder")} />
             </div>
             <div className="tags"></div>
           </div>

@@ -16,37 +16,98 @@ import {
   linkSvg,
   imageSvg,
   gridSvg,
-  emoticonHappyOutlineSvg
+  emoticonHappyOutlineSvg,
 } from "../../img/svg";
 
-export default class EditorToolbar extends Component {
-  bold = () => {};
-
-  italic = () => {};
-
-  header = (n: number) => {};
-
-  code = () => {};
-
-  quote = () => {};
-
-  ol = () => {};
-
-  ul = () => {};
-
-  link = () => {};
-
-  image = () => {};
-
-  table = () => {};
-
-  table1 = () => {};
-
-  table2 = () => {};
-
-  emojiPicked = (e:string) => {
-
+export const insertText = (before: string, after: string = "") => {
+  const txtEl: HTMLTextAreaElement | null = document.querySelector(".editor");
+  if (!txtEl) {
+    return;
   }
+
+  const startPos = txtEl.selectionStart;
+  const endPos = txtEl.selectionEnd;
+  const selText = txtEl.value.substring(startPos, endPos);
+
+  let insertText = `${before}${selText}${after}`;
+
+  const newStartPos = startPos + before.length;
+  const newEndPos = newStartPos + selText.length;
+
+  txtEl.focus();
+
+  document.execCommand("insertText", false, insertText);
+
+  txtEl.selectionStart = newStartPos;
+  txtEl.selectionEnd = newEndPos;
+};
+
+export default class EditorToolbar extends Component {
+  bold = () => {
+    insertText("**", "**");
+  };
+
+  italic = () => {
+    insertText("*", "*");
+  };
+
+  header = (w: number) => {
+    const h = "#".repeat(w);
+    insertText(`${h} `);
+  };
+
+  code = () => {
+    insertText("<code>", "</code>");
+  };
+
+  quote = () => {
+    insertText(">");
+  };
+
+  ol = () => {
+    insertText("1. item1\n2. item2\n3. item3");
+  };
+
+  ul = () => {
+    insertText("* item1\n* item2\n* item3");
+  };
+
+  link = () => {
+    insertText("[", "](https://)");
+  };
+
+  image = (name = "", url = "url") => {
+    insertText(`![${name}`, `](${url})`);
+  };
+
+  table = (e: React.SyntheticEvent<MouseEvent>) => {
+    e.stopPropagation();
+    const t =
+      "\n|\tColumn 1\t|\tColumn 2\t|\tColumn 3\t|\n" +
+      "|\t------------\t|\t------------\t|\t------------\t|\n" +
+      "|\t     Text     \t|\t     Text     \t|\t     Text     \t|\n";
+    insertText(t);
+  };
+
+  table1 = (e: React.SyntheticEvent<MouseEvent>) => {
+    e.stopPropagation();
+
+    const t = "\n|\tColumn 1\t|\n" + "|\t------------\t|\n" + "|\t     Text     \t|\n";
+    insertText(t);
+  };
+
+  table2 = (e: React.SyntheticEvent<MouseEvent>) => {
+    e.stopPropagation();
+    const t =
+      "\n|\tColumn 1\t|\tColumn 2\t|\n" +
+      "|\t------------\t|\t------------\t|\n" +
+      "|\t     Text     \t|\t     Text     \t|\n";
+    insertText(t);
+  };
+
+  emojiPicked = (e: string) => {
+    insertText(e);
+  };
 
   render() {
     return (
