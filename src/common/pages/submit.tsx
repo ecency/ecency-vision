@@ -16,6 +16,7 @@ import Meta from "../components/meta";
 import Theme from "../components/theme/index";
 import NavBar from "../components/navbar/index";
 import FullHeight from "../components/full-height";
+import EditorToolbar from "../components/editor-toolbar";
 
 import { _t } from "../i18n";
 
@@ -61,7 +62,9 @@ class SubmitPage extends Component<Props, State> {
         <NavBar {...this.props} />
 
         <div className="app-content submit-page">
-          <div className="editor-side"></div>
+          <div className="editor-side">
+            <EditorToolbar />
+          </div>
           <div className="flex-spacer" />
           <div className="preview-side"></div>
         </div>

@@ -349,3 +349,84 @@ export const pencilOutlineSvg = (
     />
   </svg>
 );
+
+export const formatBoldSvg = (
+  <svg viewBox="0 0 24 24">
+    <path
+      fill="currentColor"
+      d="M13.5,15.5H10V12.5H13.5A1.5,1.5 0 0,1 15,14A1.5,1.5 0 0,1 13.5,15.5M10,6.5H13A1.5,1.5 0 0,1 14.5,8A1.5,1.5 0 0,1 13,9.5H10M15.6,10.79C16.57,10.11 17.25,9 17.25,8C17.25,5.74 15.5,4 13.25,4H7V18H14.04C16.14,18 17.75,16.3 17.75,14.21C17.75,12.69 16.89,11.39 15.6,10.79Z"
+    />
+  </svg>
+);
+
+export const formatItalicSvg = (
+  <svg viewBox="0 0 24 24">
+    <path fill="currentColor" d="M10,4V7H12.21L8.79,15H6V18H14V15H11.79L15.21,7H18V4H10Z" />
+  </svg>
+);
+
+export const formatTitleSvg = (
+  <svg viewBox="0 0 24 24">
+    <path fill="currentColor" d="M5,4V7H10.5V19H13.5V7H19V4H5Z" />
+  </svg>
+);
+
+export const codeTagsSvg = (
+  <svg viewBox="0 0 24 24">
+    <path
+      fill="currentColor"
+      d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"
+    />
+  </svg>
+);
+
+export const formatQuoteCloseSvg = (
+  <svg viewBox="0 0 24 24">
+    <path fill="currentColor" d="M14,17H17L19,13V7H13V13H16M6,17H9L11,13V7H5V13H8L6,17Z" />
+  </svg>
+);
+
+export const formatListNumberedSvg = (
+  <svg viewBox="0 0 24 24">
+    <path
+      fill="currentColor"
+      d="M7,13V11H21V13H7M7,19V17H21V19H7M7,7V5H21V7H7M3,8V5H2V4H4V8H3M2,17V16H5V20H2V19H4V18.5H3V17.5H4V17H2M4.25,10A0.75,0.75 0 0,1 5,10.75C5,10.95 4.92,11.14 4.79,11.27L3.12,13H5V14H2V13.08L4,11H2V10H4.25Z"
+    />
+  </svg>
+);
+
+export const formatListBulletedSvg = (
+  <svg viewBox="0 0 24 24">
+    <path
+      fill="currentColor"
+      d="M7,5H21V7H7V5M7,13V11H21V13H7M4,4.5A1.5,1.5 0 0,1 5.5,6A1.5,1.5 0 0,1 4,7.5A1.5,1.5 0 0,1 2.5,6A1.5,1.5 0 0,1 4,4.5M4,10.5A1.5,1.5 0 0,1 5.5,12A1.5,1.5 0 0,1 4,13.5A1.5,1.5 0 0,1 2.5,12A1.5,1.5 0 0,1 4,10.5M7,19V17H21V19H7M4,16.5A1.5,1.5 0 0,1 5.5,18A1.5,1.5 0 0,1 4,19.5A1.5,1.5 0 0,1 2.5,18A1.5,1.5 0 0,1 4,16.5Z"
+    />
+  </svg>
+);
+
+export const linkSvg = (
+  <svg viewBox="0 0 24 24">
+    <path
+      fill="currentColor"
+      d="M3.9,12C3.9,10.29 5.29,8.9 7,8.9H11V7H7A5,5 0 0,0 2,12A5,5 0 0,0 7,17H11V15.1H7C5.29,15.1 3.9,13.71 3.9,12M8,13H16V11H8V13M17,7H13V8.9H17C18.71,8.9 20.1,10.29 20.1,12C20.1,13.71 18.71,15.1 17,15.1H13V17H17A5,5 0 0,0 22,12A5,5 0 0,0 17,7Z"
+    />
+  </svg>
+);
+
+export const imageSvg = (
+  <svg viewBox="0 0 24 24">
+    <path
+      fill="currentColor"
+      d="M8.5,13.5L11,16.5L14.5,12L19,18H5M21,19V5C21,3.89 20.1,3 19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19Z"
+    />
+  </svg>
+);
+
+export const gridSvg = (
+  <svg viewBox="0 0 24 24">
+    <path
+      fill="currentColor"
+      d="M10,4V8H14V4H10M16,4V8H20V4H16M16,10V14H20V10H16M16,16V20H20V16H16M14,20V16H10V20H14M8,20V16H4V20H8M8,14V10H4V14H8M8,8V4H4V8H8M10,14H14V10H10V14M4,2H20A2,2 0 0,1 22,4V20A2,2 0 0,1 20,22H4C2.92,22 2,21.1 2,20V4A2,2 0 0,1 4,2Z"
+    />
+  </svg>
+);

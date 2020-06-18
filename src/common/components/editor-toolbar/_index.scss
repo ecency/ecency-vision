@@ -1,0 +1,113 @@
+.editor-toolbar {
+  align-items: center;
+  display: flex;
+  height: 44px;
+
+  @include themify(day) {
+    background: $white-three;
+  }
+
+  @include themify(night) {
+    background: lighten($dark-six, 4);
+  }
+
+  .editor-tool {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    position: relative;
+    width: 39px;
+    flex-shrink: 0;
+
+    @include themify(day) {
+      color: $steel-grey;
+
+      &:hover {
+        background: darken($white-three, 5);
+      }
+    }
+
+    @include themify(night) {
+      color: $pinkish-grey;
+
+      &:hover {
+        background: darken($dark-six, 8);
+      }
+    }
+
+    svg {
+      height: 22px;
+    }
+
+    .sub-tool-menu {
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      display: none;
+      left: 0;
+      padding: 6px;
+      position: absolute;
+      top: 100%;
+      white-space: nowrap;
+      width: auto;
+      z-index: 2;
+      min-width: 100%;
+
+      @include themify(day) {
+        background: $white-three;
+      }
+
+      @include themify(night) {
+        background: lighten($dark-six, 4);
+      }
+
+      .sub-tool-menu-item {
+        padding: 3px;
+
+        &:not(:last-child) {
+          margin-bottom: 8px;
+        }
+        &:first-child {
+        }
+        &:hover {
+          @include themify(day) {
+            background: darken($white-three, 5);
+          }
+
+          @include themify(night) {
+            background: lighten($dark-six, 8);
+          }
+        }
+      }
+    }
+
+    &:hover {
+      .sub-tool-menu {
+        display: block;
+      }
+
+      .emoji-picker {
+        display: block;
+      }
+    }
+
+    .emoji-picker {
+      top: 44px;
+    }
+  }
+
+  .tool-separator {
+    height: 24px;
+    margin: 0 6px;
+    width: 1px;
+
+    @include themify(day) {
+      background: $white-four;
+    }
+
+    @include themify(night) {
+      background: $dark-two;
+    }
+  }
+}

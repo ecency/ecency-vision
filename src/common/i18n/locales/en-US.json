@@ -152,5 +152,23 @@
     "unFollow": "Unfollow",
     "mute": "Mute",
     "unMute": "Unmute"
+  },
+  "editor-toolbar":{
+    "bold": "Bold",
+    "italic": "Italic",
+    "header": "Heading",
+    "code": "Code",
+    "quote": "Quote",
+    "ul": "Unordered List",
+    "ol": "Ordered List",
+    "link": "Link",
+    "image": "Image",
+    "table": "Table",
+    "table-3-col": "3 columns",
+    "table-2-col": "2 columns",
+    "table-1-col": "1 column",
+    "upload": "Upload",
+    "gallery": "Gallery",
+    "emoji": "Emoji"
   }
 }
