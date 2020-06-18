@@ -10,6 +10,8 @@ import { getEmojiData } from "../../api/misc";
 
 import * as ls from "../../util/local-storage";
 
+import { inputReplacer } from "../../util/input-util";
+
 interface Emoji {
   a: string;
   b: string;
@@ -33,17 +35,13 @@ interface EmojiCacheItem {
   keywords: string[];
 }
 
-interface Props {
-  onPick: (e: string) => void;
-}
-
 interface State {
   data: EmojiData | null;
   cache: EmojiCacheItem[] | null;
   filter: string;
 }
 
-export default class EmojiPicker extends Component<Props> {
+export default class EmojiPicker extends Component {
   state: State = {
     data: null,
     cache: null,
@@ -51,14 +49,30 @@ export default class EmojiPicker extends Component<Props> {
   };
 
   _mounted: boolean = true;
+  _target: HTMLInputElement | null = null;
 
   componentDidMount() {
     getEmojiData().then((data) => this.setData(data));
+
+    this.watchTarget(); // initial
+    document.querySelectorAll(".accepts-emoji").forEach((i) => {
+      i.addEventListener("focus", this.watchTarget);
+    });
   }
 
   componentWillUnmount() {
     this._mounted = false;
+
+    document.querySelectorAll(".accepts-emoji").forEach((i) => {
+      i.removeEventListener("focus", this.watchTarget);
+    });
   }
+
+  watchTarget = () => {
+    if (document.activeElement && document.activeElement.classList.contains("accepts-emoji")) {
+      this._target = document.activeElement as HTMLInputElement;
+    }
+  };
 
   stateSet = (obj: {}, cb: () => void = () => {}) => {
     if (this._mounted) {
@@ -91,8 +105,9 @@ export default class EmojiPicker extends Component<Props> {
       this.forceUpdate(); // Re-render recent list
     }
 
-    const { onPick } = this.props;
-    onPick(native);
+    inputReplacer(this._target!, native);
+    //const { onPick } = this.props;
+    //onPick(native);
   };
 
   renderEmoji = (emoji: string) => {

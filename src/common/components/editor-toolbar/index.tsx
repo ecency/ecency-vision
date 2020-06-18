@@ -19,27 +19,15 @@ import {
   emoticonHappyOutlineSvg,
 } from "../../img/svg";
 
-export const insertText = (before: string, after: string = "") => {
-  const txtEl: HTMLTextAreaElement | null = document.querySelector(".editor");
-  if (!txtEl) {
+import { inputReplacer } from "../../util/input-util";
+
+const insertText = (before: string, after: string = "") => {
+  const el: HTMLInputElement | null = document.querySelector("#the-editor");
+  if (!el) {
     return;
   }
 
-  const startPos = txtEl.selectionStart;
-  const endPos = txtEl.selectionEnd;
-  const selText = txtEl.value.substring(startPos, endPos);
-
-  let insertText = `${before}${selText}${after}`;
-
-  const newStartPos = startPos + before.length;
-  const newEndPos = newStartPos + selText.length;
-
-  txtEl.focus();
-
-  document.execCommand("insertText", false, insertText);
-
-  txtEl.selectionStart = newStartPos;
-  txtEl.selectionEnd = newEndPos;
+  inputReplacer(el, before, after);
 };
 
 export default class EditorToolbar extends Component {
@@ -80,7 +68,7 @@ export default class EditorToolbar extends Component {
     insertText(`![${name}`, `](${url})`);
   };
 
-  table = (e: React.SyntheticEvent<MouseEvent>) => {
+  table = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
     const t =
       "\n|\tColumn 1\t|\tColumn 2\t|\tColumn 3\t|\n" +
@@ -89,24 +77,20 @@ export default class EditorToolbar extends Component {
     insertText(t);
   };
 
-  table1 = (e: React.SyntheticEvent<MouseEvent>) => {
+  table1 = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
 
     const t = "\n|\tColumn 1\t|\n" + "|\t------------\t|\n" + "|\t     Text     \t|\n";
     insertText(t);
   };
 
-  table2 = (e: React.SyntheticEvent<MouseEvent>) => {
+  table2 = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
     const t =
       "\n|\tColumn 1\t|\tColumn 2\t|\n" +
       "|\t------------\t|\t------------\t|\n" +
       "|\t     Text     \t|\t     Text     \t|\n";
     insertText(t);
-  };
-
-  emojiPicked = (e: string) => {
-    insertText(e);
   };
 
   render() {
@@ -147,29 +131,23 @@ export default class EditorToolbar extends Component {
               </div>
             </div>
           </Tooltip>
-
           <div className="tool-separator" />
-
           <Tooltip content={_t("editor-toolbar.code")}>
             <div className="editor-tool" onClick={this.code}>
               {codeTagsSvg}
             </div>
           </Tooltip>
-
           <Tooltip content={_t("editor-toolbar.quote")}>
             <div className="editor-tool" onClick={this.quote}>
               {formatQuoteCloseSvg}
             </div>
           </Tooltip>
-
           <div className="tool-separator" />
-
           <Tooltip content={_t("editor-toolbar.ol")}>
             <div className="editor-tool" onClick={this.ol}>
               {formatListNumberedSvg}
             </div>
           </Tooltip>
-
           <Tooltip content={_t("editor-toolbar.ul")}>
             <div className="editor-tool" onClick={this.ul}>
               {formatListBulletedSvg}
@@ -181,7 +159,6 @@ export default class EditorToolbar extends Component {
               {linkSvg}
             </div>
           </Tooltip>
-
           <Tooltip content={_t("editor-toolbar.image")}>
             <div
               className="editor-tool"
@@ -214,7 +191,6 @@ export default class EditorToolbar extends Component {
               </div>
             </div>
           </Tooltip>
-
           <Tooltip content={_t("editor-toolbar.table")}>
             <div className="editor-tool" onClick={this.table}>
               {gridSvg}
@@ -231,11 +207,10 @@ export default class EditorToolbar extends Component {
               </div>
             </div>
           </Tooltip>
-
           <Tooltip content={_t("editor-toolbar.emoji")}>
             <div className="editor-tool" role="none">
               {emoticonHappyOutlineSvg}
-              <EmojiPicker {...this.props} onPick={this.emojiPicked} />
+              <EmojiPicker {...this.props} />
             </div>
           </Tooltip>
         </div>

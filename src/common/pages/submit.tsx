@@ -65,10 +65,15 @@ class SubmitPage extends Component<Props, State> {
           <div className="editor-side">
             <EditorToolbar />
             <div className="title-input">
-              <Form.Control placeholder={_t("submit.title-placeholder")} autoFocus={true} />
+              <Form.Control className="accepts-emoji" placeholder={_t("submit.title-placeholder")} autoFocus={true} />
             </div>
             <div className="body-input">
-              <Form.Control className="editor" as="textarea" placeholder={_t("submit.body-placeholder")} />
+              <Form.Control
+                id="the-editor"
+                className="accepts-emoji"
+                as="textarea"
+                placeholder={_t("submit.body-placeholder")}
+              />
             </div>
             <div className="tags"></div>
           </div>
