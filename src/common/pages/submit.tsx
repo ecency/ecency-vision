@@ -3,7 +3,7 @@ import { AnyAction, bindActionCreators, Dispatch } from "redux";
 import { connect } from "react-redux";
 import { History } from "history";
 
-import { FormControl } from "react-bootstrap";
+import { Form, FormControl } from "react-bootstrap";
 
 import { AppState } from "../store";
 import { Global } from "../store/global/types";
@@ -64,6 +64,13 @@ class SubmitPage extends Component<Props, State> {
         <div className="app-content submit-page">
           <div className="editor-side">
             <EditorToolbar />
+            <div className="title-input">
+              <Form.Control placeholder={_t("submit.title-placeholder")} autoFocus={true} />
+            </div>
+            <div className="body-input">
+              <Form.Control as="textarea" placeholder={_t("submit.body-placeholder")} />
+            </div>
+            <div className="tags"></div>
           </div>
           <div className="flex-spacer" />
           <div className="preview-side"></div>

@@ -12,7 +12,7 @@
   }
 
   @include themify(night) {
-    background: lighten($dark-six, 4);
+    background: $dark-two;
   }
 
   .emoji-cat-list {

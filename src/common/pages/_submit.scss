@@ -15,14 +15,56 @@
 
   .editor-side,
   .preview-side {
-    background: red; // $white-two;
-    padding: 12px;
     border-radius: $input-border-radius / 2;
     flex-basis: 49%;
+    overflow: hidden;
+
+    @include themify(day) {
+      background: $white-two;
+    }
+
+    @include themify(night) {
+      background: lighten($dark-six, 4);
+    }
   }
 
   .editor-side {
     height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .title-input,
+    .body-input {
+      margin-top: 20px;
+
+      .form-control {
+        border-radius: 8px;
+        background: transparent;
+        border: none;
+
+        @include themify(night) {
+          color: $silver;
+        }
+      }
+    }
+
+    .title-input {
+      .form-control {
+        font-size: 24px;
+        font-weight: 700;
+      }
+    }
+
+    .body-input {
+      flex-grow: 1;
+
+      textarea {
+        resize: none;
+        height: 100%;
+        font-size: 20px;
+        line-height: 1.5;
+      }
+    }
   }
 
   .preview-side {

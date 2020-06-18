@@ -175,5 +175,9 @@
     "filter-placeholder": "Filter",
     "filter-no-match": "No match",
     "recently-used": "Recently Used"
+  },
+  "submit": {
+    "title-placeholder": "Title",
+    "body-placeholder": "Post Content"
   }
 }
