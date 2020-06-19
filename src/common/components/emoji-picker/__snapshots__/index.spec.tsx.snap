@@ -23,6 +23,7 @@ exports[`(1) Default full render 1`] = `
       className="form-control"
       onChange={[Function]}
       placeholder="Filter"
+      type="text"
       value=""
     />
   </div>
@@ -11121,6 +11122,7 @@ exports[`(2) Filter 1`] = `
       className="form-control"
       onChange={[Function]}
       placeholder="Filter"
+      type="text"
       value="dog"
     />
   </div>
@@ -11190,6 +11192,7 @@ exports[`(3) Filter - No result 1`] = `
       className="form-control"
       onChange={[Function]}
       placeholder="Filter"
+      type="text"
       value="loremipsumdolorsit"
     />
   </div>
