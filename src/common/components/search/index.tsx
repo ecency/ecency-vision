@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { History } from "history";
+import { History, Location } from "history";
 
 import isEqual from "react-fast-compare";
 
@@ -10,6 +10,7 @@ import { Community } from "../../store/community/types";
 
 import SearchBox from "../search-box";
 import UserAvatar from "../user-avatar";
+import SuggestionList from "../suggestion-list";
 import { makePath as makePathTag } from "../tag-link";
 import { makePath as makePathProfile } from "../profile-link";
 
@@ -22,6 +23,7 @@ import { getCommunities } from "../../api/bridge";
 
 interface Props {
   history: History;
+  location: Location;
 }
 
 interface State {
@@ -29,17 +31,15 @@ interface State {
   suggestions: string[] | Community[];
   tags: string[];
   loading: boolean;
-  hasFocus: boolean;
   mode: string;
 }
 
 export default class Search extends Component<Props, State> {
-  state = {
+  state: State = {
     query: "",
     suggestions: [],
     tags: [],
     loading: false,
-    hasFocus: false,
     mode: "",
   };
 
@@ -51,7 +51,20 @@ export default class Search extends Component<Props, State> {
   }
 
   shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
-    return !isEqual(this.state, nextState);
+    return !isEqual(this.state, nextState) || !isEqual(this.props.location.pathname, nextProps.location.pathname);
+  }
+
+  componentDidUpdate(prevProps: Readonly<Props>): void {
+    if (this.props.location.pathname !== prevProps.location.pathname) {
+      // Reset state when location change
+      this.stateSet({
+        query: "",
+        suggestions: [],
+        tags: [],
+        loading: false,
+        mode: "",
+      });
+    }
   }
 
   stateSet = (obj: {}, cb: () => void = () => {}) => {
@@ -146,16 +159,6 @@ export default class Search extends Component<Props, State> {
     });
   };
 
-  onFocus = () => {
-    this.stateSet({ hasFocus: true });
-  };
-
-  onBlur = () => {
-    setTimeout(() => {
-      this.stateSet({ hasFocus: false });
-    }, 500);
-  };
-
   onKeyDown = (e: React.KeyboardEvent) => {
     if (e.keyCode === 13) {
       const { query } = this.state;
@@ -163,7 +166,7 @@ export default class Search extends Component<Props, State> {
     }
   };
 
-  userSelected = (name: string) => {
+  accountSelected = (name: string) => {
     const loc = makePathProfile(name);
     const { history } = this.props;
     history.push(loc);
@@ -182,85 +185,64 @@ export default class Search extends Component<Props, State> {
   };
 
   render() {
-    const { query, suggestions, hasFocus, mode } = this.state;
+    const { query, suggestions, mode } = this.state;
+
+    let suggestionProps = {};
+
+    switch (mode) {
+      case "account":
+        suggestionProps = {
+          header: _t("search.header-account"),
+          renderer: (i: string) => {
+            const name = i.replace("@", "");
+            return (
+              <>
+                <UserAvatar username={name} size="small" />
+                <span style={{ marginLeft: "8px" }}>{name}</span>
+              </>
+            );
+          },
+          onSelect: (i: string) => {
+            this.accountSelected(i.replace("@", ""));
+            this.stateSet({ query: "" });
+          },
+        };
+        break;
+      case "tag":
+        suggestionProps = {
+          header: _t("search.header-tag"),
+          onSelect: (i: string) => {
+            this.tagSelected(i.replace("#", ""));
+            this.stateSet({ query: "" });
+          },
+        };
+        break;
+      case "comm":
+        suggestionProps = {
+          header: _t("search.header-community"),
+          renderer: (i: Community) => {
+            return i.title;
+          },
+          onSelect: (i: Community) => {
+            this.communitySelected(i);
+            this.stateSet({ query: "" });
+          },
+        };
+        break;
+    }
 
     return (
-      <div className="autocomplete-search">
-        <SearchBox
-          placeholder={_t("g.search")}
-          value={query}
-          onChange={this.queryChanged}
-          onFocus={this.onFocus}
-          onBlur={this.onBlur}
-          onKeyDown={this.onKeyDown}
-          autoComplete="off"
-        />
-        {hasFocus && suggestions.length > 0 && (
-          <div className="autocomplete-list">
-            <div className="list-header">
-              {mode === "tag" && <span>{_t("search.header-tag")}</span>}
-              {mode === "account" && <span>{_t("search.header-account")}</span>}
-              {mode === "comm" && <span>{_t("search.header-community")}</span>}
-            </div>
-            <div className="list-body">
-              {(() => {
-                if (mode === "account") {
-                  return suggestions.map((x: string, i) => {
-                    const name = x.replace("@", "");
-                    return (
-                      <div
-                        key={i}
-                        className="list-item"
-                        onClick={() => {
-                          this.userSelected(name);
-                        }}
-                      >
-                        {x.startsWith("@") && <UserAvatar username={name} size="small" />}
-                        <span className="item-label">{name}</span>
-                      </div>
-                    );
-                  });
-                }
-
-                if (mode === "tag") {
-                  return suggestions.map((x: string, i) => {
-                    const tag = x.replace("#", "");
-                    return (
-                      <div
-                        key={i}
-                        className="list-item"
-                        onClick={() => {
-                          this.tagSelected(tag);
-                        }}
-                      >
-                        <span className="item-label">{tag}</span>
-                      </div>
-                    );
-                  });
-                }
-
-                if (mode === "comm") {
-                  return suggestions.map((x: Community, i) => {
-                    return (
-                      <div
-                        key={i}
-                        className="list-item"
-                        onClick={() => {
-                          this.communitySelected(x);
-                        }}
-                      >
-                        <span className="item-label">{x.title}</span>
-                      </div>
-                    );
-                  });
-                }
-
-                return null;
-              })()}
-            </div>
-          </div>
-        )}
-      </div>
+      <>
+        <SuggestionList items={suggestions} {...suggestionProps}>
+          <SearchBox
+            placeholder={_t("g.search")}
+            value={query}
+            onChange={this.queryChanged}
+            onKeyDown={this.onKeyDown}
+            autoComplete="off"
+          />
+        </SuggestionList>
+      </>
     );
   }
 }

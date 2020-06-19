@@ -80,7 +80,7 @@ exports[`(1) Full render 1`] = `
               role="none"
               style={
                 Object {
-                  "backgroundImage": "url(https://images.hive.blog/u/behiver/avatar/medium)",
+                  "backgroundImage": "url(https://images.ecency.com/u/behiver/avatar/medium)",
                 }
               }
             />
@@ -211,7 +211,7 @@ exports[`(1) Full render 1`] = `
               role="none"
               style={
                 Object {
-                  "backgroundImage": "url(https://images.hive.blog/u/irisworld/avatar/medium)",
+                  "backgroundImage": "url(https://images.ecency.com/u/irisworld/avatar/medium)",
                 }
               }
             />
@@ -342,7 +342,7 @@ exports[`(1) Full render 1`] = `
               role="none"
               style={
                 Object {
-                  "backgroundImage": "url(https://images.hive.blog/u/trincowski/avatar/medium)",
+                  "backgroundImage": "url(https://images.ecency.com/u/trincowski/avatar/medium)",
                 }
               }
             />
@@ -473,7 +473,7 @@ exports[`(1) Full render 1`] = `
               role="none"
               style={
                 Object {
-                  "backgroundImage": "url(https://images.hive.blog/u/foxkoit/avatar/medium)",
+                  "backgroundImage": "url(https://images.ecency.com/u/foxkoit/avatar/medium)",
                 }
               }
             />
@@ -604,7 +604,7 @@ exports[`(1) Full render 1`] = `
               role="none"
               style={
                 Object {
-                  "backgroundImage": "url(https://images.hive.blog/u/ardpien/avatar/medium)",
+                  "backgroundImage": "url(https://images.ecency.com/u/ardpien/avatar/medium)",
                 }
               }
             />
@@ -735,7 +735,7 @@ exports[`(1) Full render 1`] = `
               role="none"
               style={
                 Object {
-                  "backgroundImage": "url(https://images.hive.blog/u/forykw/avatar/medium)",
+                  "backgroundImage": "url(https://images.ecency.com/u/forykw/avatar/medium)",
                 }
               }
             />
@@ -865,7 +865,7 @@ exports[`(1) Full render 1`] = `
               role="none"
               style={
                 Object {
-                  "backgroundImage": "url(https://images.hive.blog/u/brittandjosie/avatar/medium)",
+                  "backgroundImage": "url(https://images.ecency.com/u/brittandjosie/avatar/medium)",
                 }
               }
             />
@@ -997,7 +997,7 @@ exports[`(1) Full render 1`] = `
                   role="none"
                   style={
                     Object {
-                      "backgroundImage": "url(https://images.hive.blog/u/ardpien/avatar/medium)",
+                      "backgroundImage": "url(https://images.ecency.com/u/ardpien/avatar/medium)",
                     }
                   }
                 />
@@ -1129,7 +1129,7 @@ exports[`(1) Full render 1`] = `
               role="none"
               style={
                 Object {
-                  "backgroundImage": "url(https://images.hive.blog/u/iliyan90/avatar/medium)",
+                  "backgroundImage": "url(https://images.ecency.com/u/iliyan90/avatar/medium)",
                 }
               }
             />

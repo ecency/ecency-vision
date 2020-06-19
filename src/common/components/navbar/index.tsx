@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { History } from "history";
+import { History, Location } from "history";
 
 import { Button } from "react-bootstrap";
 
@@ -20,6 +20,7 @@ import { brightnessSvg, appleSvg, googleSvg, desktopSvg, pencilOutlineSvg } from
 
 interface Props {
   history: History;
+  location: Location;
   global: Global;
   toggleTheme: () => void;
 }

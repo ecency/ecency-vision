@@ -9,7 +9,7 @@ import { Account } from "../../store/accounts/types";
 import { globalInstance } from "../../helper/test-helper";
 
 jest.mock("../../constants/defaults.json", () => ({
-  imageServer: "https://images.esteem.app",
+  imageServer: "https://images.ecency.com",
 }));
 
 it("(1) Render with loaded account object", () => {

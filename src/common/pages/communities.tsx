@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { AnyAction, bindActionCreators, Dispatch } from "redux";
 import { connect } from "react-redux";
-import { History } from "history";
+import { History, Location } from "history";
 
 import { FormControl } from "react-bootstrap";
 
@@ -28,6 +28,7 @@ import { getCommunities } from "../api/bridge";
 
 interface Props {
   history: History;
+  location: Location;
   global: Global;
   toggleTheme: () => void;
   addAccount: (data: Account) => void;

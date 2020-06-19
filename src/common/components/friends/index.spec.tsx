@@ -7,7 +7,7 @@ import renderer from "react-test-renderer";
 import { createBrowserHistory } from "history";
 
 jest.mock("../../constants/defaults.json", () => ({
-  imageServer: "https://images.esteem.app",
+  imageServer: "https://images.ecency.com",
 }));
 
 jest.mock("../../api/hive", () => ({
