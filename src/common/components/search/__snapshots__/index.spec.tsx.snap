@@ -119,7 +119,7 @@ exports[`(3) With account suggestions 1`] = `
           role="none"
           style={
             Object {
-              "backgroundImage": "url(https://images.hive.blog/u/foo/avatar/medium)",
+              "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
             }
           }
         />
@@ -139,7 +139,7 @@ exports[`(3) With account suggestions 1`] = `
           role="none"
           style={
             Object {
-              "backgroundImage": "url(https://images.hive.blog/u/foox/avatar/medium)",
+              "backgroundImage": "url(https://images.ecency.com/u/foox/avatar/medium)",
             }
           }
         />

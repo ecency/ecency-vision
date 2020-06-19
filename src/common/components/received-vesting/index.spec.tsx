@@ -7,7 +7,7 @@ import { createBrowserHistory } from "history";
 import { dynamicPropsIntance1, receivedVestingInstance } from "../../helper/test-helper";
 
 jest.mock("../../constants/defaults.json", () => ({
-  imageServer: "https://images.esteem.app",
+  imageServer: "https://images.ecency.com",
 }));
 
 jest.mock("../../api/private", () => ({

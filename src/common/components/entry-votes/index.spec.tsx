@@ -7,7 +7,7 @@ import { createBrowserHistory } from "history";
 import { globalInstance, entryInstance1, votesInstance1 } from "../../helper/test-helper";
 
 jest.mock("../../constants/defaults.json", () => ({
-  imageServer: "https://images.esteem.app",
+  imageServer: "https://images.ecency.com",
 }));
 
 jest.mock("moment", () => () => ({
