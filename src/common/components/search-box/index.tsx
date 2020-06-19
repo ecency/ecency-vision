@@ -11,7 +11,7 @@ export default class SearchBox extends Component<Props> {
     return (
       <div className="search-box">
         <span className="prepend">{magnifySvg}</span>
-        <FormControl {...this.props} />
+        <FormControl type="text" {...this.props} />
       </div>
     );
   }

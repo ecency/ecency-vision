@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { History } from "history";
+import { History, Location } from "history";
 
 import { Link } from "react-router-dom";
 
@@ -18,6 +18,7 @@ import { brightnessSvg, appleSvg, googleSvg, desktopSvg } from "../../img/svg";
 
 interface Props {
   history: History;
+  location: Location;
   global: Global;
   toggleTheme: () => void;
 }

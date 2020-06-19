@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+<div
+  className="suggestion"
+>
+  <span>
+    children
+  </span>
+</div>
+`;
+
+exports[`(2) Show list 1`] = `
+<div
+  className="suggestion"
+>
+  <span>
+    children
+  </span>
+  <div
+    className="suggestion-list"
+  >
+    <div
+      className="list-header"
+    >
+      My List
+    </div>
+    <div
+      className="list-body"
+    >
+      <a
+        className="list-item"
+        href="#"
+        onClick={[Function]}
+      >
+         
+        # foo
+      </a>
+      <a
+        className="list-item"
+        href="#"
+        onClick={[Function]}
+      >
+         
+        # bar
+      </a>
+      <a
+        className="list-item"
+        href="#"
+        onClick={[Function]}
+      >
+         
+        # baz
+      </a>
+    </div>
+  </div>
+</div>
+`;

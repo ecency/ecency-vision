@@ -18,6 +18,7 @@ exports[`(1) Default Render 1`] = `
   </span>
   <input
     className="form-control"
+    type="text"
   />
 </div>
 `;
