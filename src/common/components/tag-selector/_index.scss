@@ -3,17 +3,17 @@
 
   .tag-list {
     flex-grow: 1;
-    display: none;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
 
     .tag-item {
-      margin-right: 4px;
       color: $white;
       padding: 0 4px;
       padding: 4px 8px 4px 12px;
-      margin-bottom: 2px;
+      margin: 0 4px 2px 0;
       border-radius: 12px;
       font-size: 14px;
       line-height: 1em;
@@ -21,10 +21,8 @@
       flex-wrap: wrap;
       align-items: center;
 
-      // TagLink
-      a {
-        color: $white;
-        pointer-events: none;
+      &.tag-item-ghost {
+        background-color: $primary !important;
       }
 
       @include themify(day) {
@@ -33,6 +31,14 @@
 
       @include themify(night) {
         background-color: lighten($dark-grey-blue, 10);
+      }
+
+      .item-inner {
+        // TagLink
+        a {
+          color: $white;
+          pointer-events: none;
+        }
       }
 
       .item-delete {

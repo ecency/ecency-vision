@@ -2,7 +2,11 @@ import React, { Component } from "react";
 
 import { History } from "history";
 
-import { Form, FormControl } from "react-bootstrap";
+import isEqual from "react-fast-compare";
+
+import { FormControl } from "react-bootstrap";
+
+import { ReactSortable, ItemInterface } from "react-sortablejs";
 
 import { Global } from "../../store/global/types";
 
@@ -31,6 +35,10 @@ export default class TagSelector extends Component<Props, State> {
     blur: false,
     value: "",
   };
+
+  shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<{}>): boolean {
+    return !isEqual(this.props.tags, nextProps.tags) || !isEqual(this.state, nextState);
+  }
 
   onFocus = () => {
     this.setState({ blur: true });
@@ -65,6 +73,12 @@ export default class TagSelector extends Component<Props, State> {
     onChange(newTags);
   };
 
+  onSort = (items: ItemInterface[]) => {
+    const { onChange } = this.props;
+    const newTags = items.map((x: ItemInterface) => x.name);
+    onChange(newTags);
+  };
+
   render() {
     const { tags } = this.props;
     const { blur, value } = this.state;
@@ -88,7 +102,14 @@ export default class TagSelector extends Component<Props, State> {
             placeholder={placeholder}
           />
           {tags.length > 0 && (
-            <div className="tag-list">
+            <ReactSortable
+              animation={200}
+              swapThreshold={1}
+              ghostClass="tag-item-ghost"
+              className="tag-list"
+              list={[...tags.map((x) => ({ id: x, name: x }))]}
+              setList={this.onSort}
+            >
               {tags.map((x) => {
                 return (
                   <div key={x} className="tag-item">
@@ -108,7 +129,7 @@ export default class TagSelector extends Component<Props, State> {
                   </div>
                 );
               })}
-            </div>
+            </ReactSortable>
           )}
         </div>
       </>
