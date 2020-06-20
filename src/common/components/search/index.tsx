@@ -7,6 +7,7 @@ import isEqual from "react-fast-compare";
 import { FormControl } from "react-bootstrap";
 
 import { Community } from "../../store/community/types";
+import { TrendingTags } from "../../store/trending-tags/types";
 
 import SearchBox from "../search-box";
 import UserAvatar from "../user-avatar";
@@ -18,18 +19,19 @@ import { _t } from "../../i18n";
 
 import defaults from "../../constants/defaults.json";
 
-import { getTrendingTags, lookupAccounts } from "../../api/hive";
+import { lookupAccounts } from "../../api/hive";
 import { getCommunities } from "../../api/bridge";
 
 interface Props {
   history: History;
   location: Location;
+  trendingTags: TrendingTags;
+  fetchTrendingTags: () => void;
 }
 
 interface State {
   query: string;
   suggestions: string[] | Community[];
-  tags: string[];
   loading: boolean;
   mode: string;
 }
@@ -38,7 +40,6 @@ export default class Search extends Component<Props, State> {
   state: State = {
     query: "",
     suggestions: [],
-    tags: [],
     loading: false,
     mode: "",
   };
@@ -46,12 +47,21 @@ export default class Search extends Component<Props, State> {
   _timer: any = null;
   _mounted: boolean = true;
 
+  componentDidMount() {
+    const { fetchTrendingTags } = this.props;
+    fetchTrendingTags();
+  }
+
   componentWillUnmount() {
     this._mounted = false;
   }
 
   shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
-    return !isEqual(this.state, nextState) || !isEqual(this.props.location.pathname, nextProps.location.pathname);
+    return (
+      !isEqual(this.state, nextState) ||
+      !isEqual(this.props.location.pathname, nextProps.location.pathname) ||
+      !isEqual(this.props.trendingTags, nextProps.trendingTags)
+    );
   }
 
   componentDidUpdate(prevProps: Readonly<Props>): void {
@@ -60,7 +70,6 @@ export default class Search extends Component<Props, State> {
       this.stateSet({
         query: "",
         suggestions: [],
-        tags: [],
         loading: false,
         mode: "",
       });
@@ -73,20 +82,9 @@ export default class Search extends Component<Props, State> {
     }
   };
 
-  suggestTags = () => {
-    const { query, tags } = this.state;
-    const tag = query.replace("#", "");
-    const suggestions = tags
-      .filter((x: string) => x.toLowerCase().indexOf(tag.toLowerCase()) === 0)
-      .filter((x: string) => x.indexOf("hive-") === -1)
-      .map((x) => `#${x}`)
-      .slice(0, 20);
-
-    this.stateSet({ mode: "tag", suggestions });
-  };
-
   fetchSuggestions = () => {
-    const { query, tags, loading } = this.state;
+    const { query, loading } = this.state;
+    const { trendingTags } = this.props;
 
     if (loading) {
       return;
@@ -94,18 +92,14 @@ export default class Search extends Component<Props, State> {
 
     // # Tags
     if (query.startsWith("#")) {
-      if (tags.length === 0) {
-        this.stateSet({ loading: true });
-        getTrendingTags("", 250)
-          .then((tags) => {
-            this.stateSet({ tags }, this.suggestTags);
-          })
-          .finally(() => {
-            this.stateSet({ loading: false });
-          });
-      } else {
-        this.suggestTags();
-      }
+      const tag = query.replace("#", "");
+      const suggestions = trendingTags.list
+        .filter((x: string) => x.toLowerCase().indexOf(tag.toLowerCase()) === 0)
+        .filter((x: string) => x.indexOf("hive-") === -1)
+        .map((x) => `#${x}`)
+        .slice(0, 20);
+
+      this.stateSet({ mode: "tag", suggestions });
 
       return;
     }

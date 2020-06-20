@@ -22,10 +22,8 @@ export default class TrendingTagsCard extends Component<Props> {
     return (
       <div className="trending-tags-card">
         <h2 className="list-header">Popular Tags</h2>
-        {trendingTags.list.map((t) => {
-          const cls = _c(
-            `tag-list-item ${global.tag === t ? "selected-item" : ""}`
-          );
+        {trendingTags.list.slice(0, 50).map((t) => {
+          const cls = _c(`tag-list-item ${global.tag === t ? "selected-item" : ""}`);
           return (
             <Tag {...this.props} tag={t} key={t} type="link">
               <a href={makePath(global.filter, t)} className={cls}>

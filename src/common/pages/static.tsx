@@ -5,8 +5,10 @@ import { History, Location } from "history";
 
 import { AppState } from "../store";
 import { Global } from "../store/global/types";
+import { TrendingTags } from "../store/trending-tags/types";
 
 import { toggleTheme } from "../store/global/index";
+import { fetchTrendingTags } from "../store/trending-tags";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
@@ -23,7 +25,9 @@ interface Props {
   history: History;
   location: Location;
   global: Global;
+  trendingTags: TrendingTags;
   toggleTheme: () => void;
+  fetchTrendingTags: () => void;
 }
 
 class AboutPage extends Component<Props> {
@@ -538,12 +542,14 @@ class TosPage extends Component<Props> {
 
 const mapStateToProps = (state: AppState) => ({
   global: state.global,
+  trendingTags: state.trendingTags,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
   bindActionCreators(
     {
       toggleTheme,
+      fetchTrendingTags
     },
     dispatch
   );

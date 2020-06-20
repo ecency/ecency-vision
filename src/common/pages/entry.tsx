@@ -23,10 +23,12 @@ import { AppState } from "../store";
 import { Global } from "../store/global/types";
 import { Account } from "../store/accounts/types";
 import { Entry, Entries } from "../store/entries/types";
+import { TrendingTags } from "../store/trending-tags/types";
 
 import { toggleTheme } from "../store/global/index";
 import { addAccount } from "../store/accounts/index";
 import { addEntry } from "../store/entries/index";
+import { fetchTrendingTags } from "../store/trending-tags";
 
 import { makePath as makeEntryPath } from "../components/entry-link";
 import ProfileLink from "../components/profile-link";
@@ -71,10 +73,12 @@ interface Props {
   location: Location;
   match: match<MatchParams>;
   global: Global;
+  trendingTags: TrendingTags;
   entries: Entries;
   toggleTheme: () => void;
   addAccount: (data: Account) => void;
   addEntry: (entry: Entry) => void;
+  fetchTrendingTags: () => void;
 }
 
 interface State {
@@ -335,6 +339,7 @@ class EntryPage extends Component<Props, State> {
 
 const mapStateToProps = (state: AppState) => ({
   global: state.global,
+  trendingTags: state.trendingTags,
   entries: state.entries,
 });
 
@@ -344,6 +349,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       toggleTheme,
       addAccount,
       addEntry,
+      fetchTrendingTags,
     },
     dispatch
   );
