@@ -10,7 +10,7 @@ import { ReactSortable, ItemInterface } from "react-sortablejs";
 
 import { Global } from "../../store/global/types";
 
-import TagLink from "../tag-link";
+import Tag from "../tag";
 
 import { _t } from "../../i18n";
 
@@ -123,9 +123,9 @@ export default class TagSelector extends Component<Props, State> {
                 return (
                   <div key={x} className="tag-item">
                     <div className="item-inner">
-                      <TagLink {...this.props} tag={x}>
+                      <Tag {...this.props} tag={x}>
                         <span>{x}</span>
-                      </TagLink>
+                      </Tag>
                     </div>
                     <span
                       className="item-delete"
