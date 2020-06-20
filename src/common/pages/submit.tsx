@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { AnyAction, bindActionCreators, Dispatch } from "redux";
 import { connect } from "react-redux";
-import { History } from "history";
+import { History, Location } from "history";
 
 import { Form, FormControl } from "react-bootstrap";
 
@@ -17,6 +17,7 @@ import Theme from "../components/theme/index";
 import NavBar from "../components/navbar/index";
 import FullHeight from "../components/full-height";
 import EditorToolbar from "../components/editor-toolbar";
+import TagSelector from "../components/tag-selector";
 
 import { _t } from "../i18n";
 
@@ -24,15 +25,20 @@ import _c from "../util/fix-class-names";
 
 interface Props {
   history: History;
+  location: Location;
   global: Global;
   toggleTheme: () => void;
   addAccount: (data: Account) => void;
 }
 
-interface State {}
+interface State {
+  tags: string[];
+}
 
 class SubmitPage extends Component<Props, State> {
-  state: State = {};
+  state: State = {
+    tags: [],
+  };
 
   _mounted: boolean = true;
 
@@ -49,6 +55,8 @@ class SubmitPage extends Component<Props, State> {
   };
 
   render() {
+    const { tags } = this.state;
+
     //  Meta config
     const metaProps = {
       title: "Create a post",
@@ -67,6 +75,15 @@ class SubmitPage extends Component<Props, State> {
             <div className="title-input">
               <Form.Control className="accepts-emoji" placeholder={_t("submit.title-placeholder")} autoFocus={true} />
             </div>
+            <div className="tag-input">
+              <TagSelector
+                {...this.props}
+                tags={tags}
+                onChange={(tags: string[]) => {
+                  this.setState({ tags });
+                }}
+              />
+            </div>
             <div className="body-input">
               <Form.Control
                 id="the-editor"
@@ -75,7 +92,6 @@ class SubmitPage extends Component<Props, State> {
                 placeholder={_t("submit.body-placeholder")}
               />
             </div>
-            <div className="tags"></div>
           </div>
           <div className="flex-spacer" />
           <div className="preview-side"></div>

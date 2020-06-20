@@ -1,0 +1,64 @@
+.tag-selector {
+  display: flex;
+
+  .tag-list {
+    flex-grow: 1;
+    display: none;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    .tag-item {
+      margin-right: 4px;
+      color: $white;
+      padding: 0 4px;
+      padding: 4px 8px 4px 12px;
+      margin-bottom: 2px;
+      border-radius: 12px;
+      font-size: 14px;
+      line-height: 1em;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+
+      // TagLink
+      a {
+        color: $white;
+        pointer-events: none;
+      }
+
+      @include themify(day) {
+        background-color: darken($silver, 10);
+      }
+
+      @include themify(night) {
+        background-color: lighten($dark-grey-blue, 10);
+      }
+
+      .item-delete {
+        margin-left: 4px;
+        cursor: pointer;
+        font-size: 11px;
+        opacity: 0.4;
+
+        svg {
+          height: 14px;
+        }
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  &.has-tags {
+    .form-control {
+      width: 100px;
+    }
+
+    .tag-list {
+      display: flex;
+    }
+  }
+}

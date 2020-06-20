@@ -179,5 +179,10 @@
   "submit": {
     "title-placeholder": "Title",
     "body-placeholder": "Post Content"
+  },
+  "tag-selector": {
+    "placeholder-empty": "Tags. First tag is main category. Sortable.",
+    "placeholder-focus": "Enter tag",
+    "placeholder-has-tags": "Add More"
   }
 }

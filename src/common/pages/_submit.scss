@@ -34,8 +34,9 @@
     flex-direction: column;
 
     .title-input,
-    .body-input {
-      margin-top: 20px;
+    .body-input,
+    .tag-input {
+      margin-top: 10px;
 
       .form-control {
         border-radius: 8px;
@@ -61,7 +62,6 @@
       textarea {
         resize: none;
         height: 100%;
-        font-size: 20px;
         line-height: 1.5;
       }
     }
