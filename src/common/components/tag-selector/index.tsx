@@ -49,7 +49,7 @@ export default class TagSelector extends Component<Props, State> {
   };
 
   onChange = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
-    const value = e.target.value.trim();
+    const value = e.target.value.toLocaleLowerCase().trim();
     this.setState({ value });
   };
 
@@ -60,8 +60,17 @@ export default class TagSelector extends Component<Props, State> {
   };
 
   add = () => {
-    const { value } = this.state;
     const { tags, onChange } = this.props;
+    const { value } = this.state;
+
+    if (value === "") {
+      return;
+    }
+
+    if (tags.includes(value)) {
+      return;
+    }
+
     const newTags = [...tags, value];
     onChange(newTags);
     this.setState({ value: "" });
@@ -98,7 +107,7 @@ export default class TagSelector extends Component<Props, State> {
             onKeyDown={this.onKeyDown}
             onChange={this.onChange}
             value={value}
-            maxLength={20}
+            maxLength={24}
             placeholder={placeholder}
           />
           {tags.length > 0 && (
