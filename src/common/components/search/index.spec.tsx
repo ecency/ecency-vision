@@ -4,11 +4,13 @@ import Search from "./index";
 import renderer from "react-test-renderer";
 import { createBrowserHistory, createLocation } from "history";
 
-import { communityInstance1 } from "../../helper/test-helper";
+import { initialState as trendingTags } from "../../store/trending-tags";
 
 const props = {
   history: createBrowserHistory(),
   location: createLocation({}),
+  trendingTags,
+  fetchTrendingTags: () => {},
 };
 
 const component = renderer.create(<Search {...props} />);

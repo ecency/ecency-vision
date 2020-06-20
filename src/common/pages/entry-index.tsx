@@ -10,22 +10,22 @@ import { TrendingTags } from "../store/trending-tags/types";
 import { Entries } from "../store/entries/types";
 import { Community } from "../store/community/types";
 
-import { hideIntro, toggleListStyle, toggleTheme } from "../store/global/index";
-import { makeGroupKey, fetchEntries } from "../store/entries/index";
-import { fetchCommunity, resetCommunity } from "../store/community/index";
+import { hideIntro, toggleListStyle, toggleTheme } from "../store/global";
+import { makeGroupKey, fetchEntries } from "../store/entries";
+import { fetchCommunity, resetCommunity } from "../store/community";
 import { fetchTrendingTags } from "../store/trending-tags";
-import { addAccount } from "../store/accounts/index";
+import { addAccount } from "../store/accounts";
 
 import Meta from "../components/meta";
-import Theme from "../components/theme/index";
-import NavBar from "../components/navbar/index";
-import Intro from "../components/intro/index";
-import DropDown from "../components/dropdown/index";
-import ListStyleToggle from "../components/list-style-toggle/index";
-import LinearProgress from "../components/linear-progress/index";
-import EntryListLoadingItem from "../components/entry-list-loading-item/index";
-import DetectBottom from "../components/detect-bottom/index";
-import EntryListContent from "../components/entry-list/index";
+import Theme from "../components/theme";
+import NavBar from "../components/navbar";
+import Intro from "../components/intro";
+import DropDown from "../components/dropdown";
+import ListStyleToggle from "../components/list-style-toggle";
+import LinearProgress from "../components/linear-progress";
+import EntryListLoadingItem from "../components/entry-list-loading-item";
+import DetectBottom from "../components/detect-bottom";
+import EntryListContent from "../components/entry-list";
 import TrendingTagsCard from "../components/trending-tags-card";
 import CommunityCard from "../components/community-card";
 import CommunityCardSm from "../components/community-card-sm";
@@ -56,9 +56,8 @@ interface Props {
 
 class EntryIndexPage extends Component<Props> {
   componentDidMount() {
-    const { global, fetchEntries, fetchTrendingTags, fetchCommunity } = this.props;
+    const { global, fetchEntries, fetchCommunity } = this.props;
     fetchEntries(global.filter, global.tag, false);
-    fetchTrendingTags();
     fetchCommunity();
   }
 

@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import isEqual from "react-fast-compare";
 
 import { Global, Theme } from "../../store/global/types";
+import { TrendingTags } from "../../store/trending-tags/types";
 
 import ToolTip from "../tooltip";
 import DownloadTrigger from "../download-trigger";
@@ -20,12 +21,14 @@ interface Props {
   history: History;
   location: Location;
   global: Global;
+  trendingTags: TrendingTags;
+  fetchTrendingTags: () => void;
   toggleTheme: () => void;
 }
 
 export default class NavBar extends Component<Props> {
   shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
-    return !isEqual(this.props.global, nextProps.global);
+    return !isEqual(this.props.global, nextProps.global) || !isEqual(this.props.trendingTags, nextProps.trendingTags);
   }
 
   changeTheme = () => {

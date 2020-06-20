@@ -53,7 +53,7 @@ export interface Follow {
 export const getActiveVotes = (author: string, permlink: string): Promise<Vote[]> =>
   client.database.call("get_active_votes", [author, permlink]);
 
-export const getTrendingTags = (afterTag: string = "", limit: number = 50): Promise<string[]> =>
+export const getTrendingTags = (afterTag: string = "", limit: number = 250): Promise<string[]> =>
   client.database
     .call("get_trending_tags", [afterTag, limit])
     .then((t: TrendingTag[]) => t.filter((x) => x.name !== "").map((x) => x.name));
