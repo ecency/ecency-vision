@@ -31,7 +31,7 @@ import { addEntry } from "../store/entries/index";
 import { makePath as makeEntryPath } from "../components/entry-link";
 import ProfileLink from "../components/profile-link";
 import UserAvatar from "../components/user-avatar";
-import TagLink from "../components/tag-link";
+import Tag from "../components/tag";
 import EntryVoteBtn from "../components/entry-vote-btn/index";
 import EntryPayout from "../components/entry-payout/index";
 import EntryVotes from "../components/entry-votes";
@@ -243,9 +243,9 @@ class EntryPage extends Component<Props, State> {
                     </div>
                   </div>
                 </ProfileLink>
-                <TagLink {...this.props} tag={entry.category}>
+                <Tag {...this.props} tag={entry.category} type="link">
                   <a className="category">{entry.category}</a>
-                </TagLink>
+                </Tag>
                 <span className="separator" />
                 <span className="date" title={published.format("LLLL")}>
                   {published.fromNow()}
@@ -256,9 +256,9 @@ class EntryPage extends Component<Props, State> {
             <div className="entry-footer">
               <div className="entry-tags">
                 {tags.map((t) => (
-                  <TagLink {...this.props} tag={t} key={t}>
+                  <Tag {...this.props} tag={t} key={t} type="link">
                     <div className="entry-tag">{t}</div>
-                  </TagLink>
+                  </Tag>
                 ))}
               </div>
               <div className="entry-info">

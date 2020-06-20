@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Link 1`] = `
+<a
+  href="/hot/bitcoin"
+  onClick={[Function]}
+>
+  bitcoin
+</a>
+`;
+
+exports[`(2) Span 1`] = `
+<span>
+  bitcoin
+</span>
+`;
+
+exports[`(3) Community as Link 1`] = `
+<span>
+  hive-2321
+</span>
+`;

@@ -5,7 +5,7 @@ import { History } from "history";
 import { Global } from "../../store/global/types";
 import { TrendingTags } from "../../store/trending-tags/types";
 
-import TagLink, { makePath } from "../tag-link/index";
+import Tag, { makePath } from "../tag";
 
 import _c from "../../util/fix-class-names";
 
@@ -27,11 +27,11 @@ export default class TrendingTagsCard extends Component<Props> {
             `tag-list-item ${global.tag === t ? "selected-item" : ""}`
           );
           return (
-            <TagLink {...this.props} tag={t} key={t}>
+            <Tag {...this.props} tag={t} key={t} type="link">
               <a href={makePath(global.filter, t)} className={cls}>
                 {t}
               </a>
-            </TagLink>
+            </Tag>
           );
         })}
       </div>
