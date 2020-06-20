@@ -21,7 +21,7 @@ import {
 setProxyBase(defaults.imageServer);
 
 import ProfileLink from "../profile-link/index";
-import TagLink from "../tag-link/index";
+import Tag from "../tag";
 import UserAvatar from "../user-avatar/index";
 import EntryLink from "../entry-link/index";
 import EntryVoteBtn from "../entry-vote-btn/index";
@@ -113,9 +113,9 @@ export default class EntryListItem extends Component<Props> {
               </div>
             </ProfileLink>
           </div>
-          <TagLink {...this.props} tag={entry.category}>
+          <Tag {...this.props} tag={entry.category} type="link">
             <a className="category">{entry.community_title || entry.category}</a>
-          </TagLink>
+          </Tag>
           {!isVisited && <span className="read-mark" />}
           <span className="date" title={dateFormatted}>
             {dateRelative}

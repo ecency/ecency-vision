@@ -16,23 +16,20 @@ interface Props {
   history: History;
   tag: string;
   children: JSX.Element;
-}
-
-interface State {
-  i: number;
+  type?: "link" | "span";
 }
 
 const cache = {};
 
-export default class TagLink extends Component<Props, State> {
-  state: State = {
-    i: 0,
+export default class TagLink extends Component<Props> {
+  public static defaultProps: Partial<Props> = {
+    type: "link",
   };
 
   _mounted: boolean = true;
 
-  shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>, nextContext: any): boolean {
-    return !isEqual(this.props.children, nextProps.children) || !isEqual(this.state, nextState);
+  shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
+    return !isEqual(this.props.children, nextProps.children);
   }
 
   componentDidMount(): void {
@@ -43,7 +40,7 @@ export default class TagLink extends Component<Props, State> {
         getCommunity(tag).then((c) => {
           if (c) {
             cache[tag] = c.title;
-            this.stateSet({ i: Date.now() }); // trigger render
+            this.forceUpdate(); // trigger render
           }
         });
       }
@@ -72,18 +69,30 @@ export default class TagLink extends Component<Props, State> {
   };
 
   render() {
-    const { children, global, tag } = this.props;
+    const { children, global, tag, type } = this.props;
 
     const { filter } = global;
 
     const href = makePath(filter, tag);
 
-    const props = Object.assign({}, children.props, { href, onClick: this.clicked });
+    if (type === "link") {
+      const props = Object.assign({}, children.props, { href, onClick: this.clicked });
 
-    if (cache[tag]) {
-      props.children = cache[tag];
+      if (cache[tag]) {
+        props.children = cache[tag];
+      }
+
+      return React.createElement("a", props);
+    } else if (type === "span") {
+      const props = Object.assign({}, children.props);
+
+      if (cache[tag]) {
+        props.children = cache[tag];
+      }
+
+      return React.createElement("span", props);
+    } else {
+      return null;
     }
-
-    return React.createElement("a", props);
   }
 }

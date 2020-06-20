@@ -11,7 +11,7 @@ import { Community } from "../../store/community/types";
 import SearchBox from "../search-box";
 import UserAvatar from "../user-avatar";
 import SuggestionList from "../suggestion-list";
-import { makePath as makePathTag } from "../tag-link";
+import { makePath as makePathTag } from "../tag";
 import { makePath as makePathProfile } from "../profile-link";
 
 import { _t } from "../../i18n";

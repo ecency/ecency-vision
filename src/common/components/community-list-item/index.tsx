@@ -12,7 +12,7 @@ import { Community } from "../../store/community/types";
 
 import ProfileLink from "../../components/profile-link";
 import DownloadTrigger from "../../components/download-trigger";
-import { makePath } from "../../components/tag-link";
+import { makePath } from "../../components/tag";
 
 import defaults from "../../constants/defaults.json";
 
