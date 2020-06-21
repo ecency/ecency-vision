@@ -26,7 +26,6 @@ export default class SuggestionList extends Component<Props> {
     const input = this.getPossibleInput();
     if (input) {
       input.addEventListener("focus", this.watchInputFocus);
-      input.addEventListener("blur", this.watchInputBlur);
     }
   }
 
@@ -37,7 +36,6 @@ export default class SuggestionList extends Component<Props> {
     const input = this.getPossibleInput();
     if (input) {
       input.removeEventListener("focus", this.watchInputFocus);
-      input.removeEventListener("blur", this.watchInputBlur);
     }
   }
 
@@ -106,10 +104,6 @@ export default class SuggestionList extends Component<Props> {
 
   watchInputFocus = (e: Event) => {
     this.setState({ showList: true });
-  };
-
-  watchInputBlur = (e: Event) => {
-    this.setState({ showList: false });
   };
 
   render() {
