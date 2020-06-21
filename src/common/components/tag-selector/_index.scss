@@ -1,6 +1,4 @@
 .tag-selector {
-  display: flex;
-
   .tag-list {
     flex-grow: 1;
     display: flex;
@@ -59,12 +57,25 @@
   }
 
   &.has-tags {
+    display: flex;
+
     .form-control {
       width: 100px;
     }
 
     .tag-list {
       display: flex;
+    }
+  }
+
+  .suggestion-list {
+    left: 6px;
+    width: 300px;
+
+    svg {
+      height: 14px;
+      margin-right: 6px;
+      opacity: 0.6;
     }
   }
 }

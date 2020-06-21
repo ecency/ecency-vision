@@ -9,18 +9,21 @@ import { FormControl } from "react-bootstrap";
 import { ReactSortable, ItemInterface } from "react-sortablejs";
 
 import { Global } from "../../store/global/types";
+import { TrendingTags } from "../../store/trending-tags/types";
 
 import Tag from "../tag";
+import SuggestionList from "../suggestion-list";
 
 import { _t } from "../../i18n";
 
 import _c from "../../util/fix-class-names";
 
-import { closeSvg } from "../../img/svg";
+import { closeSvg, accountGroupSvg, poundSvg } from "../../img/svg";
 
 interface Props {
   global: Global;
   history: History;
+  trendingTags: TrendingTags;
   tags: string[];
   onChange: (tags: string[]) => void;
 }
@@ -55,25 +58,27 @@ export default class TagSelector extends Component<Props, State> {
 
   onKeyDown = (e: React.KeyboardEvent) => {
     if (e.keyCode === 13) {
-      this.add();
+      const { value } = this.state;
+      this.add(value);
     }
   };
 
-  add = () => {
+  add = (value: string): boolean => {
     const { tags, onChange } = this.props;
-    const { value } = this.state;
 
     if (value === "") {
-      return;
+      return false;
     }
 
     if (tags.includes(value)) {
-      return;
+      return false;
     }
 
     const newTags = [...tags, value];
     onChange(newTags);
+
     this.setState({ value: "" });
+    return true;
   };
 
   delete = (tag: string) => {
@@ -89,7 +94,7 @@ export default class TagSelector extends Component<Props, State> {
   };
 
   render() {
-    const { tags } = this.props;
+    const { tags, trendingTags } = this.props;
     const { blur, value } = this.state;
     const placeholder =
       tags.length > 0
@@ -98,18 +103,49 @@ export default class TagSelector extends Component<Props, State> {
         ? _t("tag-selector.placeholder-focus")
         : _t("tag-selector.placeholder-empty");
 
+    const suggestions = trendingTags.list
+      .filter((x: string) => x.toLowerCase().indexOf(value.toLowerCase()) === 0)
+      .filter((x: string) => !tags.includes(x))
+      .slice(0, 40);
+
     return (
       <>
         <div className={_c(`tag-selector ${tags.length > 0 ? "has-tags" : ""}`)}>
-          <FormControl
-            onFocus={this.onFocus}
-            onBlur={this.onBlur}
-            onKeyDown={this.onKeyDown}
-            onChange={this.onChange}
-            value={value}
-            maxLength={24}
-            placeholder={placeholder}
-          />
+          <SuggestionList
+            renderer={(x: string) => {
+              if (x.startsWith("hive-")) {
+                return (
+                  <>
+                    {accountGroupSvg}
+                    <Tag type="span" {...this.props} tag={x}>
+                      <span>{x}</span>
+                    </Tag>
+                    <span className="flex-spacer" />
+                    <small>{x}</small>
+                  </>
+                );
+              }
+              return (
+                <>
+                  {poundSvg} {x}
+                </>
+              );
+            }}
+            items={suggestions}
+            header={_t("tag-selector.suggestion-header")}
+            onSelect={this.add}
+          >
+            <FormControl
+              type="text"
+              onFocus={this.onFocus}
+              onBlur={this.onBlur}
+              onKeyDown={this.onKeyDown}
+              onChange={this.onChange}
+              value={value}
+              maxLength={24}
+              placeholder={placeholder}
+            />
+          </SuggestionList>
           {tags.length > 0 && (
             <ReactSortable
               animation={200}
