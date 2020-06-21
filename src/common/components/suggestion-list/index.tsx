@@ -22,17 +22,33 @@ export default class SuggestionList extends Component<Props> {
   componentDidMount() {
     document.addEventListener("keydown", this.watchKb);
     document.addEventListener("click", this.watchClick);
+
+    const input = this.getPossibleInput();
+    if (input) {
+      input.addEventListener("focus", this.watchInputFocus);
+      input.addEventListener("blur", this.watchInputBlur);
+    }
   }
 
   componentWillUnmount() {
     document.removeEventListener("keydown", this.watchKb);
     document.removeEventListener("click", this.watchClick);
+
+    const input = this.getPossibleInput();
+    if (input) {
+      input.removeEventListener("focus", this.watchInputFocus);
+      input.removeEventListener("blur", this.watchInputBlur);
+    }
   }
 
+  getPossibleInput = (): HTMLInputElement | null => {
+    return this.parent.current?.querySelector("input[type='text']") as HTMLInputElement;
+  };
+
   focusInput = () => {
-    const el = this.parent.current?.querySelector("input[type='text']") as HTMLInputElement;
-    if (el) {
-      el.focus();
+    const input = this.getPossibleInput();
+    if (input) {
+      input.focus();
     }
   };
 
@@ -86,6 +102,14 @@ export default class SuggestionList extends Component<Props> {
     const target = e.target as Element;
     const showList = this.parent.current?.contains(target);
     this.setState({ showList });
+  };
+
+  watchInputFocus = (e: Event) => {
+    this.setState({ showList: true });
+  };
+
+  watchInputBlur = (e: Event) => {
+    this.setState({ showList: false });
   };
 
   render() {
