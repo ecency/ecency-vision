@@ -81,6 +81,11 @@ export default class SuggestionList extends Component<Props> {
   };
 
   watchKb = (e: KeyboardEvent) => {
+    const { showList } = this.state;
+    if (!showList) {
+      return;
+    }
+
     switch (e.keyCode) {
       case 38:
         e.preventDefault();
@@ -97,9 +102,14 @@ export default class SuggestionList extends Component<Props> {
   };
 
   watchClick = (e: MouseEvent) => {
+    const { showList } = this.state;
+    if (!showList) {
+      return;
+    }
+
     const target = e.target as Element;
-    const showList = this.parent.current?.contains(target);
-    this.setState({ showList });
+    const val = this.parent.current?.contains(target);
+    this.setState({ showList: val });
   };
 
   watchInputFocus = (e: Event) => {
