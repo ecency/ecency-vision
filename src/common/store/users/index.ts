@@ -4,7 +4,7 @@ import { User, Actions, AddAction, RefreshAction, ActionTypes } from "./types";
 
 import * as ls from "../../util/local-storage";
 
-export const initialState: User[] = [];
+export const initialState: User[] = typeof window !== "undefined" ? (ls.getByPrefix("user_") as User[]) : [];
 
 export default (state: User[] = initialState, action: Actions): User[] => {
   switch (action.type) {

@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`1- default state 1`] = `
+Array [
+  Object {
+    "accessToken": "access token",
+    "expiresIn": "a date",
+    "refreshToken": "refresh token",
+    "username": "user1",
+  },
+  Object {
+    "accessToken": "access token",
+    "expiresIn": "a date",
+    "refreshToken": "refresh token",
+    "username": "user2",
+  },
+]
+`;
