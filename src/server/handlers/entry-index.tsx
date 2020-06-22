@@ -24,7 +24,7 @@ import { render } from "../template";
 import { cache } from "../cache";
 
 export default async (req: express.Request, res: express.Response) => {
-  const params = filterTagExtract(req.originalUrl)!;
+  const params = filterTagExtract(req.originalUrl.split('?')[0])!;
   const { filter, tag } = params;
 
   let entries: Entry[];

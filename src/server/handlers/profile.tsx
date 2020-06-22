@@ -16,8 +16,6 @@ import { readGlobalCookies, optimizeEntries } from "../helper";
 import * as hiveApi from "../../common/api/hive";
 import * as bridgeApi from "../../common/api/bridge";
 
-import filterTagExtract from "../../common/helper/filter-tag-extract";
-
 import defaults from "../../common/constants/defaults.json";
 
 import { render } from "../template";
