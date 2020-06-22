@@ -1,0 +1,134 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) No tags 1`] = `
+<div
+  className="tag-selector"
+>
+  <div
+    className="suggestion"
+  >
+    <input
+      autoComplete="off"
+      className="form-control"
+      id="the-tag-input"
+      maxLength={24}
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      placeholder="Tags. First tag is main category. Sortable."
+      type="text"
+      value=""
+    />
+  </div>
+</div>
+`;
+
+exports[`(2) With tags 1`] = `
+<div
+  className="tag-selector has-tags"
+>
+  <div
+    className="suggestion"
+  >
+    <input
+      autoComplete="off"
+      className="form-control"
+      id="the-tag-input"
+      maxLength={24}
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      placeholder="Add More"
+      type="text"
+      value=""
+    />
+  </div>
+  <div
+    className="tag-list"
+  >
+    <div
+      className="tag-item"
+      data-id="foo"
+    >
+      <div
+        className="item-inner"
+      >
+        <a
+          href="/hot/foo"
+          onClick={[Function]}
+        >
+          foo
+        </a>
+      </div>
+      <span
+        className="item-delete"
+        onClick={[Function]}
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+    </div>
+    <div
+      className="tag-item"
+      data-id="bar"
+    >
+      <div
+        className="item-inner"
+      >
+        <a
+          href="/hot/bar"
+          onClick={[Function]}
+        >
+          bar
+        </a>
+      </div>
+      <span
+        className="item-delete"
+        onClick={[Function]}
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(3) No tags with focus 1`] = `
+<div
+  className="tag-selector"
+>
+  <div
+    className="suggestion"
+  >
+    <input
+      autoComplete="off"
+      className="form-control"
+      id="the-tag-input"
+      maxLength={24}
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      placeholder="Enter tag"
+      type="text"
+      value=""
+    />
+  </div>
+</div>
+`;
+

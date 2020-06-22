@@ -83,6 +83,7 @@ class SubmitPage extends Component<Props, State> {
               <TagSelector
                 {...this.props}
                 tags={tags}
+                maxItem={10}
                 onChange={(tags: string[]) => {
                   this.setState({ tags });
                 }}
@@ -116,7 +117,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       toggleTheme,
       hideIntro,
       addAccount,
-      fetchTrendingTags
+      fetchTrendingTags,
     },
     dispatch
   );

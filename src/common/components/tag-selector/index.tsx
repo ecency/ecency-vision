@@ -25,17 +25,18 @@ interface Props {
   history: History;
   trendingTags: TrendingTags;
   tags: string[];
+  maxItem: number;
   onChange: (tags: string[]) => void;
 }
 
 interface State {
-  blur: boolean;
+  hasFocus: boolean;
   value: string;
 }
 
 export default class TagSelector extends Component<Props, State> {
   state: State = {
-    blur: false,
+    hasFocus: false,
     value: "",
   };
 
@@ -43,12 +44,17 @@ export default class TagSelector extends Component<Props, State> {
     return !isEqual(this.props.tags, nextProps.tags) || !isEqual(this.state, nextState);
   }
 
+  focusInput = () => {
+    const input = document.getElementById("the-tag-input");
+    input?.focus();
+  };
+
   onFocus = () => {
-    this.setState({ blur: true });
+    this.setState({ hasFocus: true });
   };
 
   onBlur = () => {
-    this.setState({ blur: false });
+    this.setState({ hasFocus: false });
   };
 
   onChange = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
@@ -64,13 +70,18 @@ export default class TagSelector extends Component<Props, State> {
   };
 
   add = (value: string): boolean => {
-    const { tags, onChange } = this.props;
+    const { tags, maxItem, onChange } = this.props;
 
     if (value === "") {
       return false;
     }
 
     if (tags.includes(value)) {
+      return false;
+    }
+
+    if (tags.length >= maxItem) {
+      console.log("Max n tags");
       return false;
     }
 
@@ -95,18 +106,22 @@ export default class TagSelector extends Component<Props, State> {
 
   render() {
     const { tags, trendingTags } = this.props;
-    const { blur, value } = this.state;
+    const { hasFocus, value } = this.state;
     const placeholder =
       tags.length > 0
         ? _t("tag-selector.placeholder-has-tags")
-        : blur
+        : hasFocus
         ? _t("tag-selector.placeholder-focus")
         : _t("tag-selector.placeholder-empty");
 
-    const suggestions = trendingTags.list
-      .filter((x: string) => x.toLowerCase().indexOf(value.toLowerCase()) === 0)
-      .filter((x: string) => !tags.includes(x))
-      .slice(0, 40);
+    let suggestions: string[] = [];
+
+    if (value) {
+      suggestions = trendingTags.list
+        .filter((x: string) => x.toLowerCase().indexOf(value.toLowerCase()) === 0)
+        .filter((x: string) => !tags.includes(x))
+        .slice(0, 40);
+    }
 
     return (
       <>
@@ -133,7 +148,14 @@ export default class TagSelector extends Component<Props, State> {
             }}
             items={suggestions}
             header={_t("tag-selector.suggestion-header")}
-            onSelect={this.add}
+            onSelect={(value: string) => {
+              if (this.add(value)) {
+                setTimeout(() => {
+                  // delay focus due to click out issue on suggestion list
+                  this.focusInput();
+                }, 200);
+              }
+            }}
           >
             <FormControl
               type="text"
@@ -144,6 +166,8 @@ export default class TagSelector extends Component<Props, State> {
               value={value}
               maxLength={24}
               placeholder={placeholder}
+              autoComplete="off"
+              id="the-tag-input"
             />
           </SuggestionList>
           {tags.length > 0 && (

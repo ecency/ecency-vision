@@ -1,4 +1,5 @@
 import { Global, EntryFilter, Theme, ListStyle } from "../store/global/types";
+import { TrendingTags } from "../store/trending-tags/types";
 import { Entry } from "../store/entries/types";
 import { Community } from "../store/community/types";
 import { DynamicProps } from "../store/dynamic-props/types";
@@ -15,6 +16,12 @@ export const globalInstance: Global = {
   currencyRate: 1,
   currencySymbol: "$",
 };
+
+export const TrendingTagsInstance: TrendingTags ={
+  list: ['foo', 'bar', 'baz'],
+  error: false,
+  loading: false
+}
 
 export const entryInstance1: Entry = {
   post_id: 86342505,
