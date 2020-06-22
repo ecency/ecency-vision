@@ -5,6 +5,7 @@ import { initialState as dynamicPropsInitialState } from "../../common/store/dyn
 import { initialState as trendingTagsInitialState } from "../../common/store/trending-tags";
 import { initialState as communityInitialState } from "../../common/store/community";
 import { initialState as transactionsInitialState } from "../../common/store/transactions";
+import { initialState as usersInitialState } from "../../common/store/users";
 
 import { ProfileFilter } from "../../common/store/global/types";
 import { Entry } from "../../common/store/entries/types";
@@ -74,6 +75,7 @@ export default async (req: express.Request, res: express.Response) => {
     community: communityInitialState,
     accounts: accounts,
     transactions: { ...transactionsInitialState },
+    users: usersInitialState,
     entries,
   };
 

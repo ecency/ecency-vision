@@ -15,3 +15,11 @@ export const remove = (k: string): void => {
   const key = `${PREFIX}_${k}`;
   localStorage.removeItem(key);
 };
+
+export const getByPrefix = (prefix: string): any[] => {
+  const prefKey = `${PREFIX}_${prefix}`;
+
+  return Object.keys(localStorage)
+    .filter((key) => key.indexOf(prefKey) === 0)
+    .map((key) => JSON.parse(localStorage[key]));
+};

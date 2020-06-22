@@ -9,6 +9,7 @@ import community from "./community";
 import entries from "./entries";
 import accounts from "./accounts";
 import transactions from "./transactions";
+import users from "./users";
 
 let reducers = {
   global,
@@ -18,6 +19,7 @@ let reducers = {
   entries,
   accounts,
   transactions,
+  users,
 };
 
 export let history: History | undefined;

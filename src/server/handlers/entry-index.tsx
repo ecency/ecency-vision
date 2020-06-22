@@ -5,6 +5,7 @@ import { initialState as dynamicPropsInitialState } from "../../common/store/dyn
 import { initialState as trendingTagsInitialState } from "../../common/store/trending-tags";
 import { initialState as accountsInitialState } from "../../common/store/accounts";
 import { initialState as transactionsInitialState } from "../../common/store/transactions";
+import { initialState as usersInitialState } from "../../common/store/users";
 
 import { EntryFilter } from "../../common/store/global/types";
 import { Entry } from "../../common/store/entries/types";
@@ -62,6 +63,7 @@ export default async (req: express.Request, res: express.Response) => {
     community,
     accounts: accountsInitialState,
     transactions: { ...transactionsInitialState },
+    users: usersInitialState,
     entries: {
       [`${makeGroupKey(filter, tag)}`]: {
         entries: optimizeEntries(entries),
