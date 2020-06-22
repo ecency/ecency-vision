@@ -45,6 +45,7 @@ $pagination-hover-border-color: $white-four;
 @import "~bootstrap/scss/transitions";
 
 .theme-day {
+  @import "~bootstrap/scss/alert";
   @import "~bootstrap/scss/buttons";
   @import "~bootstrap/scss/forms";
   @import "~bootstrap/scss/input-group";

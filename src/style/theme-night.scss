@@ -45,6 +45,7 @@ $pagination-hover-border-color: transparent;
 @import "~bootstrap/scss/transitions";
 
 .theme-night {
+  @import "~bootstrap/scss/alert";
   @import "~bootstrap/scss/buttons";
   @import "~bootstrap/scss/forms";
   @import "~bootstrap/scss/input-group";

@@ -13,6 +13,7 @@ import { TrendingTags } from "../../store/trending-tags/types";
 
 import Tag from "../tag";
 import SuggestionList from "../suggestion-list";
+import { error } from "../feedback";
 
 import { _t } from "../../i18n";
 
@@ -81,7 +82,7 @@ export default class TagSelector extends Component<Props, State> {
     }
 
     if (tags.length >= maxItem) {
-      console.log("Max n tags");
+      error(_t("tag-selector.error-max", { n: maxItem }));
       return false;
     }
 

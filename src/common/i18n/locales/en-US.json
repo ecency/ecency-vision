@@ -184,6 +184,7 @@
     "placeholder-empty": "Tags. First tag is main category. Sortable.",
     "placeholder-focus": "Enter tag",
     "placeholder-has-tags": "Add More",
-    "suggestion-header": "Tags/Communities"
+    "suggestion-header": "Tags/Communities",
+    "error-max": "Max {{n}} tags"
   }
 }

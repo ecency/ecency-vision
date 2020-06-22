@@ -15,8 +15,9 @@ import { addAccount } from "../store/accounts/index";
 import { fetchTrendingTags } from "../store/trending-tags";
 
 import Meta from "../components/meta";
-import Theme from "../components/theme/index";
-import NavBar from "../components/navbar/index";
+import Theme from "../components/theme";
+import Feedback from "../components/feedback";
+import NavBar from "../components/navbar";
 import FullHeight from "../components/full-height";
 import EditorToolbar from "../components/editor-toolbar";
 import TagSelector from "../components/tag-selector";
@@ -71,6 +72,7 @@ class SubmitPage extends Component<Props, State> {
         <Meta {...metaProps} />
         <FullHeight />
         <Theme {...this.props} />
+        <Feedback />
         <NavBar {...this.props} />
 
         <div className="app-content submit-page">
