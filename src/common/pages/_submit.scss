@@ -17,7 +17,10 @@
   .preview-side {
     border-radius: $input-border-radius / 2;
     flex-basis: 49%;
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
+    height: 100%;
 
     @include themify(day) {
       background: $white-two;
@@ -29,10 +32,6 @@
   }
 
   .editor-side {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-
     .title-input,
     .body-input,
     .tag-input {
@@ -58,21 +57,93 @@
 
     .body-input {
       flex-grow: 1;
+      display: flex;
 
       textarea {
         resize: none;
-        height: 100%;
+
         line-height: 1.5;
+        flex-grow: 1;
       }
     }
   }
 
   .preview-side {
-    height: 100%;
     margin-bottom: 4px;
 
     @media (min-width: $lg-break) {
       margin-bottom: 0;
+    }
+
+    .preview-header {
+      height: 44px;
+      display: flex;
+      align-items: center;
+      padding: 0 8px;
+      flex-shrink: 0;
+
+      .preview-header-title {
+        color: $dark-sky-blue;
+        font-size: 18px;
+        font-weight: 500;
+        margin: 0;
+      }
+    }
+
+    .preview-title,
+    .preview-tags,
+    .preview-body {
+      padding: 5px 12px;
+      margin-top: 10px;
+   
+    }
+
+    .preview-title {
+      font-size: 24px;
+      font-weight: 700;
+      overflow: hidden;
+      white-space: nowrap;
+      height: 43px;
+      flex-shrink: 0;
+
+      @include themify(day) {
+        color: $charcoal-grey;
+      }
+
+      @include themify(night) {
+        color: $pinkish-grey;
+      }
+    }
+
+    .preview-tags {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      min-height: 33px;
+      flex-shrink: 0;
+
+      .preview-tag {
+        border-radius: 25px;
+        color: $white;
+        font-size: 14px;
+        line-height: 1em;
+        margin: 0 4px 2px 0;
+        padding: 4px 12px;
+
+        @include themify(day) {
+          background-color: $silver;
+        }
+
+        @include themify(night) {
+          background-color: $metallic-blue;
+        }
+      }
+    }
+
+    .preview-body {
+      overflow-x: auto;
+      flex-grow: 1;
+
     }
   }
 }

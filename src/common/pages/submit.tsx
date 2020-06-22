@@ -3,7 +3,18 @@ import { AnyAction, bindActionCreators, Dispatch } from "redux";
 import { connect } from "react-redux";
 import { History, Location } from "history";
 
+import isEqual from "react-fast-compare";
+
 import { Form, FormControl } from "react-bootstrap";
+
+import defaults from "../constants/defaults.json";
+
+import {
+  renderPostBody,
+  setProxyBase,
+  // @ts-ignore
+} from "@esteemapp/esteem-render-helpers";
+setProxyBase(defaults.imageServer);
 
 import { AppState } from "../store";
 import { Global } from "../store/global/types";
@@ -21,10 +32,51 @@ import NavBar from "../components/navbar";
 import FullHeight from "../components/full-height";
 import EditorToolbar from "../components/editor-toolbar";
 import TagSelector from "../components/tag-selector";
+import Tag from "../components/tag";
 
 import { _t } from "../i18n";
 
 import _c from "../util/fix-class-names";
+
+interface PreviewContentProps {
+  title: string;
+  tags: string[];
+  body: string;
+}
+
+class PreviewContent extends Component<PreviewContentProps> {
+  shouldComponentUpdate(nextProps: Readonly<PreviewContentProps>): boolean {
+    return (
+      !isEqual(this.props.title, nextProps.title) ||
+      !isEqual(this.props.tags, nextProps.tags) ||
+      !isEqual(this.props.body, nextProps.body)
+    );
+  }
+
+  render() {
+    const { title, tags, body } = this.props;
+
+    return (
+      <>
+        <div className="preview-title">{title}</div>
+
+        <div className="preview-tags">
+          {tags.map((x) => {
+            return (
+              <span className="preview-tag">
+                <Tag type="span" {...this.props} tag={x}>
+                  <span>{x}</span>
+                </Tag>
+              </span>
+            );
+          })}
+        </div>
+
+        <div className="preview-body markdown-view" dangerouslySetInnerHTML={{ __html: renderPostBody(body) }} />
+      </>
+    );
+  }
+}
 
 interface Props {
   history: History;
@@ -37,30 +89,64 @@ interface Props {
 }
 
 interface State {
+  title: string;
   tags: string[];
+  body: string;
+  preview: {
+    title: string;
+    tags: string[];
+    body: string;
+  };
 }
 
 class SubmitPage extends Component<Props, State> {
   state: State = {
+    title: "",
     tags: [],
+    body: "",
+    preview: {
+      title: "",
+      tags: [],
+      body: "",
+    },
   };
 
-  _mounted: boolean = true;
+  _updateTimer: any = null;
 
-  componentDidMount() {}
+  titleChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    const { value: title } = e.target;
+    this.setState({ title }, () => {
+      this.updatePreview();
+    });
+  };
 
-  componentWillUnmount() {
-    this._mounted = false;
-  }
+  tagsChanged = (tags: string[]) => {
+    this.setState({ tags }, () => {
+      this.updatePreview();
+    });
+  };
 
-  stateSet = (obj: {}, cb: () => void = () => {}) => {
-    if (this._mounted) {
-      this.setState(obj, cb);
+  bodyChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    const { value: body } = e.target;
+    this.setState({ body }, () => {
+      this.updatePreview();
+    });
+  };
+
+  updatePreview = () => {
+    if (this._updateTimer) {
+      clearTimeout(this._updateTimer);
+      this._updateTimer = null;
     }
+
+    this._updateTimer = setTimeout(() => {
+      const { title, tags, body } = this.state;
+      this.setState({ preview: { title, tags, body } });
+    }, 500);
   };
 
   render() {
-    const { tags } = this.state;
+    const { title, tags, body, preview } = this.state;
 
     //  Meta config
     const metaProps = {
@@ -79,17 +165,16 @@ class SubmitPage extends Component<Props, State> {
           <div className="editor-side">
             <EditorToolbar />
             <div className="title-input">
-              <Form.Control className="accepts-emoji" placeholder={_t("submit.title-placeholder")} autoFocus={true} />
+              <Form.Control
+                className="accepts-emoji"
+                placeholder={_t("submit.title-placeholder")}
+                autoFocus={true}
+                value={title}
+                onChange={this.titleChanged}
+              />
             </div>
             <div className="tag-input">
-              <TagSelector
-                {...this.props}
-                tags={tags}
-                maxItem={10}
-                onChange={(tags: string[]) => {
-                  this.setState({ tags });
-                }}
-              />
+              <TagSelector {...this.props} tags={tags} maxItem={10} onChange={this.tagsChanged} />
             </div>
             <div className="body-input">
               <Form.Control
@@ -97,11 +182,18 @@ class SubmitPage extends Component<Props, State> {
                 className="accepts-emoji"
                 as="textarea"
                 placeholder={_t("submit.body-placeholder")}
+                value={body}
+                onChange={this.bodyChanged}
               />
             </div>
           </div>
           <div className="flex-spacer" />
-          <div className="preview-side"></div>
+          <div className="preview-side">
+            <div className="preview-header">
+              <h2 className="preview-header-title">Preview</h2>
+            </div>
+            <PreviewContent {...this.props} {...preview} />
+          </div>
         </div>
       </>
     );

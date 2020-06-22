@@ -31,6 +31,10 @@ const insertText = (before: string, after: string = "") => {
 };
 
 export default class EditorToolbar extends Component {
+  shouldComponentUpdate() {
+    return false;
+  }
+  
   bold = () => {
     insertText("**", "**");
   };
