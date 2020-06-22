@@ -14,6 +14,7 @@ import { TrendingTags } from "../../store/trending-tags/types";
 import ToolTip from "../tooltip";
 import DownloadTrigger from "../download-trigger";
 import Search from "../search";
+import LoginRequired from "../login-required";
 
 import { _t } from "../../i18n";
 
@@ -70,10 +71,14 @@ export default class NavBar extends Component<Props> {
             </div>
           </DownloadTrigger>
           <div className="login-required">
-            <Button variant="outline-primary">{_t("g.login")}</Button>
+            <LoginRequired>
+              <Button variant="outline-primary">{_t("g.login")}</Button>
+            </LoginRequired>
             <Button variant="primary">{_t("g.signup")}</Button>
             <ToolTip content={_t("navbar.post")}>
-              <Link className="btn btn-outline-primary" to="/submit">{pencilOutlineSvg}</Link>
+              <Link className="btn btn-outline-primary" to="/submit">
+                {pencilOutlineSvg}
+              </Link>
             </ToolTip>
           </div>
           <ToolTip content={themeText}>
