@@ -10,10 +10,13 @@ import { Global } from "../store/global/types";
 import { Account } from "../store/accounts/types";
 import { Community } from "../store/community/types";
 import { TrendingTags } from "../store/trending-tags/types";
+import { User } from "../store/users/types";
+import { ActiveUser } from "../store/active-user/types";
 
 import { hideIntro, toggleTheme } from "../store/global/index";
 import { addAccount } from "../store/accounts/index";
 import { fetchTrendingTags } from "../store/trending-tags";
+import { setActiveUser } from "../store/active-user";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
@@ -33,9 +36,12 @@ interface Props {
   location: Location;
   global: Global;
   trendingTags: TrendingTags;
+  users: User[];
+  activeUser: ActiveUser | null;
   toggleTheme: () => void;
   addAccount: (data: Account) => void;
   fetchTrendingTags: () => void;
+  setActiveUser: (name?: string) => void;
 }
 
 interface State {
@@ -45,7 +51,7 @@ interface State {
   sort: string;
 }
 
-class EntryIndexPage extends Component<Props, State> {
+class CommunitiesPage extends Component<Props, State> {
   state: State = {
     list: [],
     loading: false,
@@ -153,6 +159,8 @@ class EntryIndexPage extends Component<Props, State> {
 const mapStateToProps = (state: AppState) => ({
   global: state.global,
   trendingTags: state.trendingTags,
+  users: state.users,
+  activeUser: state.activeUser,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
@@ -161,9 +169,10 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       toggleTheme,
       hideIntro,
       addAccount,
-      fetchTrendingTags
+      fetchTrendingTags,
+      setActiveUser,
     },
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(EntryIndexPage);
+export default connect(mapStateToProps, mapDispatchToProps)(CommunitiesPage);

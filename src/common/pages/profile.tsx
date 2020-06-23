@@ -12,6 +12,8 @@ import { Account, Accounts } from "../store/accounts/types";
 import { DynamicProps } from "../store/dynamic-props/types";
 import { Transactions } from "../store/transactions/types";
 import { TrendingTags } from "../store/trending-tags/types";
+import { User } from "../store/users/types";
+import { ActiveUser } from "../store/active-user/types";
 
 import { toggleListStyle, toggleTheme } from "../store/global";
 import { makeGroupKey, fetchEntries } from "../store/entries";
@@ -19,6 +21,7 @@ import { addAccount } from "../store/accounts";
 import { fetchDynamicProps } from "../store/dynamic-props";
 import { fetchTransactions, resetTransactions } from "../store/transactions";
 import { fetchTrendingTags } from "../store/trending-tags";
+import { setActiveUser } from "../store/active-user";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme";
@@ -57,6 +60,8 @@ interface Props {
   entries: Entries;
   accounts: Accounts;
   transactions: Transactions;
+  users: User[];
+  activeUser: ActiveUser | null;
   toggleTheme: () => void;
   toggleListStyle: () => void;
   fetchEntries: (what: string, tag: string, more: boolean) => void;
@@ -65,6 +70,7 @@ interface Props {
   fetchTransactions: (username: string) => void;
   resetTransactions: () => void;
   fetchTrendingTags: () => void;
+  setActiveUser: (name?: string) => void;
 }
 
 interface State {
@@ -250,6 +256,8 @@ const mapStateToProps = (state: AppState) => ({
   dynamicProps: state.dynamicProps,
   transactions: state.transactions,
   trendingTags: state.trendingTags,
+  users: state.users,
+  activeUser: state.activeUser,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
@@ -263,6 +271,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       fetchTransactions,
       resetTransactions,
       fetchTrendingTags,
+      setActiveUser,
     },
     dispatch
   );

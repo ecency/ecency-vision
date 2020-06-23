@@ -9,12 +9,15 @@ import { Account } from "../store/accounts/types";
 import { TrendingTags } from "../store/trending-tags/types";
 import { Entries } from "../store/entries/types";
 import { Community } from "../store/community/types";
+import { User } from "../store/users/types";
+import { ActiveUser } from "../store/active-user/types";
 
 import { hideIntro, toggleListStyle, toggleTheme } from "../store/global";
 import { makeGroupKey, fetchEntries } from "../store/entries";
 import { fetchCommunity, resetCommunity } from "../store/community";
 import { fetchTrendingTags } from "../store/trending-tags";
 import { addAccount } from "../store/accounts";
+import { setActiveUser } from "../store/active-user";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme";
@@ -44,6 +47,8 @@ interface Props {
   trendingTags: TrendingTags;
   entries: Entries;
   community: Community | null;
+  users: User[];
+  activeUser: ActiveUser | null;
   toggleTheme: () => void;
   hideIntro: () => void;
   toggleListStyle: () => void;
@@ -52,6 +57,7 @@ interface Props {
   resetCommunity: () => void;
   fetchTrendingTags: () => void;
   addAccount: (data: Account) => void;
+  setActiveUser: (name?: string) => void;
 }
 
 class EntryIndexPage extends Component<Props> {
@@ -191,6 +197,8 @@ const mapStateToProps = (state: AppState) => ({
   trendingTags: state.trendingTags,
   entries: state.entries,
   community: state.community,
+  users: state.users,
+  activeUser: state.activeUser,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
@@ -204,6 +212,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       resetCommunity,
       fetchTrendingTags,
       addAccount,
+      setActiveUser,
     },
     dispatch
   );

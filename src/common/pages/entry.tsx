@@ -24,11 +24,14 @@ import { Global } from "../store/global/types";
 import { Account } from "../store/accounts/types";
 import { Entry, Entries } from "../store/entries/types";
 import { TrendingTags } from "../store/trending-tags/types";
+import { User } from "../store/users/types";
+import { ActiveUser } from "../store/active-user/types";
 
 import { toggleTheme } from "../store/global/index";
 import { addAccount } from "../store/accounts/index";
 import { addEntry } from "../store/entries/index";
 import { fetchTrendingTags } from "../store/trending-tags";
+import { setActiveUser } from "../store/active-user";
 
 import { makePath as makeEntryPath } from "../components/entry-link";
 import ProfileLink from "../components/profile-link";
@@ -75,10 +78,13 @@ interface Props {
   global: Global;
   trendingTags: TrendingTags;
   entries: Entries;
+  users: User[];
+  activeUser: ActiveUser | null;
   toggleTheme: () => void;
   addAccount: (data: Account) => void;
   addEntry: (entry: Entry) => void;
   fetchTrendingTags: () => void;
+  setActiveUser: (name?: string) => void;
 }
 
 interface State {
@@ -341,6 +347,8 @@ const mapStateToProps = (state: AppState) => ({
   global: state.global,
   trendingTags: state.trendingTags,
   entries: state.entries,
+  users: state.users,
+  activeUser: state.activeUser,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
@@ -350,6 +358,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       addAccount,
       addEntry,
       fetchTrendingTags,
+      setActiveUser,
     },
     dispatch
   );

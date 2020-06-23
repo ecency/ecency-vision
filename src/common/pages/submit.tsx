@@ -20,10 +20,13 @@ import { AppState } from "../store";
 import { Global } from "../store/global/types";
 import { Account } from "../store/accounts/types";
 import { TrendingTags } from "../store/trending-tags/types";
+import { User } from "../store/users/types";
+import { ActiveUser } from "../store/active-user/types";
 
 import { hideIntro, toggleTheme } from "../store/global/index";
 import { addAccount } from "../store/accounts/index";
 import { fetchTrendingTags } from "../store/trending-tags";
+import { setActiveUser } from "../store/active-user";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme";
@@ -83,9 +86,12 @@ interface Props {
   location: Location;
   global: Global;
   trendingTags: TrendingTags;
+  users: User[];
+  activeUser: ActiveUser | null;
   toggleTheme: () => void;
   addAccount: (data: Account) => void;
   fetchTrendingTags: () => void;
+  setActiveUser: (name?: string) => void;
 }
 
 interface State {
@@ -203,6 +209,8 @@ class SubmitPage extends Component<Props, State> {
 const mapStateToProps = (state: AppState) => ({
   global: state.global,
   trendingTags: state.trendingTags,
+  users: state.users,
+  activeUser: state.activeUser,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
@@ -212,6 +220,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       hideIntro,
       addAccount,
       fetchTrendingTags,
+      setActiveUser,
     },
     dispatch
   );
