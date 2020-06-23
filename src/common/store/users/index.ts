@@ -1,6 +1,6 @@
 import { Dispatch } from "redux";
 
-import { User, Actions, AddAction, RefreshAction, ActionTypes } from "./types";
+import { User, Actions, AddAction, ReloadAction, ActionTypes } from "./types";
 
 import * as ls from "../../util/local-storage";
 
@@ -11,7 +11,7 @@ export const initialState: User[] = typeof window !== "undefined" ?  (ls.getByPr
 export default (state: User[] = initialState, action: Actions): User[] => {
   switch (action.type) {
     case ActionTypes.ADD:
-    case ActionTypes.REFRESH: {
+    case ActionTypes.RELOAD: {
       return ls.getByPrefix("user_").map((x) => decodeObj(x)) as User[];
     }
     default:
@@ -27,7 +27,7 @@ export const addUser = (user: User) => async (dispatch: Dispatch) => {
 
 export const deleteUser = (username: string) => async (dispatch: Dispatch) => {
   ls.remove(`user_${username}`);
-  dispatch(refreshAct());
+  dispatch(reloadAct());
 };
 
 /* Action Creators */
@@ -38,8 +38,8 @@ export const addAct = (user: User): AddAction => {
   };
 };
 
-export const refreshAct = (): RefreshAction => {
+export const reloadAct = (): ReloadAction => {
   return {
-    type: ActionTypes.REFRESH,
+    type: ActionTypes.RELOAD,
   };
 };

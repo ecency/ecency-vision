@@ -4,6 +4,8 @@ import { Provider } from "react-redux";
 import { ConnectedRouter } from "connected-react-router";
 
 import configureStore from "../common/store/configure";
+import { reloadAct as reloadUsers } from "../common/store/users";
+import { reloadAct as reloadActiveUser } from "../common/store/active-user";
 
 import { history } from "../common/store/index";
 
@@ -27,6 +29,10 @@ history!.listen((location, action) => {
     }, 100);
   }
 });
+
+// Since user data stored on local storage, state reload should be triggered on page load.
+store.dispatch(reloadUsers());
+store.dispatch(reloadActiveUser());
 
 hydrate(
   <Provider store={store}>

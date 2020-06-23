@@ -7,7 +7,7 @@ export interface User {
 
 export enum ActionTypes {
   ADD = "@users/ADD",
-  REFRESH = "@users/REFRESH",
+  RELOAD = "@users/RELOAD",
 }
 
 export interface AddAction {
@@ -15,8 +15,8 @@ export interface AddAction {
   user: User;
 }
 
-export interface RefreshAction {
-  type: ActionTypes.REFRESH;
+export interface ReloadAction {
+  type: ActionTypes.RELOAD;
 }
 
-export type Actions = AddAction | RefreshAction;
+export type Actions = AddAction | ReloadAction;

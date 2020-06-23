@@ -139,6 +139,42 @@
       }
     }
 
+    .switch-theme {
+      cursor: pointer;
+      position: absolute;
+      right: 20px;
+      top: 24px;
+
+      @media (min-width: $md-break) {
+        position: relative;
+        top: auto;
+        right: auto;
+        margin-right: 10px;
+      }
+
+      @media (min-width: $xl-break) {
+        margin-right: 22px;
+      }
+
+      @media (min-width: $xxl-break) {
+        margin-right: 40px;
+      }
+
+      svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      @include themify(day) {
+        color: $silver;
+      }
+
+      @include themify(night) {
+        color: $duck-egg-blue;
+        opacity: 0.8;
+      }
+    }
+
     .downloads {
       background: linear-gradient(270deg, #2d5aa0 4.68%, #357ce6 98.13%);
       border-radius: 25px;
@@ -162,10 +198,6 @@
 
       @media (min-width: $xl-break) {
         margin-right: 22px;
-      }
-
-      @media (min-width: $xxl-break) {
-        margin-right: 40px;
       }
 
       &:hover {
@@ -207,6 +239,7 @@
     }
 
     .login-required {
+      margin-bottom: 10px;
       .btn {
         &:not(:last-child) {
           margin-right: 4px;
@@ -215,6 +248,7 @@
 
       @media (min-width: $md-break) {
         margin-right: 10px;
+        margin-bottom: 0;
       }
 
       @media (min-width: $xl-break) {
@@ -227,30 +261,49 @@
       }
     }
 
-    .switch-theme {
-      cursor: pointer;
-      position: absolute;
-      right: 20px;
-      top: 24px;
+    .user-nav {
+      align-items: center;
+      border-radius: 25px;
+      display: flex;
+      flex-shrink: 0;
+      justify-content: center;
+      padding: 2px 3px;
+      margin-top: 10px;
+      padding-left: 12px;
 
-      @media (min-width: $md-break) {
-        position: relative;
-        top: auto;
-        right: auto;
+      .user-avatar {
+        width: 34px;
+        height: 34px;
       }
 
-      svg {
-        width: 24px;
-        height: 24px;
+      @media (min-width: $md-break) {
+        margin-left: 10px;
+        margin-top: 0;
+      }
+
+      @media (min-width: $xl-break) {
+        margin-left: 22px;
       }
 
       @include themify(day) {
-        color: $silver;
+        background-image: linear-gradient(to left, $dusk-blue, $dark-sky-blue);
       }
 
       @include themify(night) {
-        color: $duck-egg-blue;
-        opacity: 0.8;
+        background-image: linear-gradient(to left, $dark-indigo, $dusky-blue);
+      }
+
+      .user-wallet,
+      .activities,
+      .points {
+        color: $white;
+        display: flex;
+        align-items: center;
+        margin-right: 12px;
+
+        svg {
+          height: 14px;
+        }
       }
     }
   }

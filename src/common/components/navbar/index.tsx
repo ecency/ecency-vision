@@ -10,28 +10,39 @@ import isEqual from "react-fast-compare";
 
 import { Global, Theme } from "../../store/global/types";
 import { TrendingTags } from "../../store/trending-tags/types";
+import { User } from "../../store/users/types";
+import { ActiveUser } from "../../store/active-user/types";
 
 import ToolTip from "../tooltip";
 import DownloadTrigger from "../download-trigger";
 import Search from "../search";
 import LoginRequired from "../login-required";
+import UserAvatar from "../user-avatar";
 
 import { _t } from "../../i18n";
 
-import { brightnessSvg, appleSvg, googleSvg, desktopSvg, pencilOutlineSvg } from "../../img/svg";
+import { brightnessSvg, appleSvg, googleSvg, desktopSvg, pencilOutlineSvg, creditCardSvg } from "../../img/svg";
 
 interface Props {
   history: History;
   location: Location;
   global: Global;
   trendingTags: TrendingTags;
+  users: User[];
+  activeUser: ActiveUser | null;
   fetchTrendingTags: () => void;
   toggleTheme: () => void;
+  setActiveUser: (name?: string) => void;
 }
 
 export default class NavBar extends Component<Props> {
   shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
-    return !isEqual(this.props.global, nextProps.global) || !isEqual(this.props.trendingTags, nextProps.trendingTags);
+    return (
+      !isEqual(this.props.global, nextProps.global) ||
+      !isEqual(this.props.trendingTags, nextProps.trendingTags) ||
+      !isEqual(this.props.users, nextProps.users) ||
+      !isEqual(this.props.activeUser, nextProps.activeUser)
+    );
   }
 
   changeTheme = () => {
@@ -39,7 +50,7 @@ export default class NavBar extends Component<Props> {
   };
 
   render() {
-    const { global } = this.props;
+    const { global, activeUser } = this.props;
     const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
     return (
       <div className="nav-bar">
@@ -60,6 +71,11 @@ export default class NavBar extends Component<Props> {
           <div className="search-bar">
             <Search {...this.props} />
           </div>
+          <ToolTip content={themeText}>
+            <div className="switch-theme" onClick={this.changeTheme}>
+              {brightnessSvg}
+            </div>
+          </ToolTip>
           <DownloadTrigger>
             <div className="downloads">
               <span className="label">{_t("g.downloads")}</span>
@@ -70,22 +86,30 @@ export default class NavBar extends Component<Props> {
               </span>
             </div>
           </DownloadTrigger>
-          <div className="login-required">
-            <LoginRequired>
-              <Button variant="outline-primary">{_t("g.login")}</Button>
-            </LoginRequired>
-            <Button variant="primary">{_t("g.signup")}</Button>
+
+          {!activeUser && (
+            <div className="login-required">
+              <LoginRequired {...this.props}>
+                <Button variant="outline-primary">{_t("g.login")}</Button>
+              </LoginRequired>
+              <Button variant="primary">{_t("g.signup")}</Button>
+            </div>
+          )}
+          <div className="submit-post">
             <ToolTip content={_t("navbar.post")}>
               <Link className="btn btn-outline-primary" to="/submit">
                 {pencilOutlineSvg}
               </Link>
             </ToolTip>
           </div>
-          <ToolTip content={themeText}>
-            <div className="switch-theme" onClick={this.changeTheme}>
-              {brightnessSvg}
+
+          {activeUser && (
+            <div className="user-nav">
+              <span className="user-wallet">{creditCardSvg}</span>
+              <UserAvatar username={activeUser.name} size="medium" />
             </div>
-          </ToolTip>
+          )}
+          
         </div>
       </div>
     );
