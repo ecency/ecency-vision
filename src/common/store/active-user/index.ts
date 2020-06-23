@@ -34,13 +34,13 @@ export default (state: ActiveUser | null = initialState, action: Actions): Activ
 };
 
 /* Actions */
-export const setActiveUser = (name: string) => async (dispatch: Dispatch) => {
-  ls.set("active_user", name);
-  dispatch(reloadAct());
-};
+export const setActiveUser = (name?: string) => async (dispatch: Dispatch) => {
+  if (name) {
+    ls.set("active_user", name);
+  } else {
+    ls.remove("active_user");
+  }
 
-export const resetActiveUser = () => async (dispatch: Dispatch) => {
-  ls.remove("active_user");
   dispatch(reloadAct());
 };
 
