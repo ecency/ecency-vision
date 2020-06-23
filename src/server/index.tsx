@@ -9,7 +9,7 @@ import profileHandler from "./handlers/profile";
 import entryHandler from "./handlers/entry";
 import fallbackHandler from "./handlers/fallback";
 import { entryRssHandler, authorRssHandler } from "./handlers/rss";
-import { receivedVestingHandler } from "./handlers/private-api";
+import { receivedVestingHandler, hsTokenRefresh } from "./handlers/private-api";
 
 const server = express();
 
@@ -19,6 +19,7 @@ const profileFilters = Object.values(ProfileFilter);
 server
   .disable("x-powered-by")
   .use(express.static(process.env.RAZZLE_PUBLIC_DIR!))
+  .use(express.json())
   .use(cookieParser())
   .use(
     [
@@ -55,7 +56,8 @@ server
     ],
     entryHandler
   )
-  .get("^/received-vesting/:username$", receivedVestingHandler)
+  .get("^/api/received-vesting/:username$", receivedVestingHandler)
+  .post("^/api/hs-token-refresh$", hsTokenRefresh)
   .get("*", fallbackHandler);
 
 export default server;

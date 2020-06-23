@@ -4,13 +4,15 @@ import { User, Actions, AddAction, RefreshAction, ActionTypes } from "./types";
 
 import * as ls from "../../util/local-storage";
 
-export const initialState: User[] = typeof window !== "undefined" ? (ls.getByPrefix("user_") as User[]) : [];
+import { encodeObj, decodeObj } from "../../util/encoder";
+
+export const initialState: User[] = typeof window !== "undefined" ?  (ls.getByPrefix("user_").map((x) => decodeObj(x)) as User[]) : [];
 
 export default (state: User[] = initialState, action: Actions): User[] => {
   switch (action.type) {
     case ActionTypes.ADD:
     case ActionTypes.REFRESH: {
-      return ls.getByPrefix("user_") as User[];
+      return ls.getByPrefix("user_").map((x) => decodeObj(x)) as User[];
     }
     default:
       return state;
@@ -19,7 +21,7 @@ export default (state: User[] = initialState, action: Actions): User[] => {
 
 /* Actions */
 export const addUser = (user: User) => async (dispatch: Dispatch) => {
-  ls.set(`user_${user.username}`, user);
+  ls.set(`user_${user.username}`, encodeObj(user));
   dispatch(addAct(user));
 };
 

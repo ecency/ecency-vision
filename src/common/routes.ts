@@ -12,6 +12,7 @@ export default {
   WHITE_PAPER: `/whitepaper`,
   PRIVACY: `/privacy-policy`,
   TOS: `/terms-of-service`,
+  AUTH: `/auth`,
   FILTER: `/:filter(${entryFilters.join("|")})`,
   FILTER_TAG: `/:filter(${entryFilters.join("|")})/:tag`,
   ENTRY: `/:category/:username(@[\\w\\.\\d-]+)/:permlink`,

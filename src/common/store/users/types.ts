@@ -2,7 +2,7 @@ export interface User {
   username: string;
   accessToken: string;
   refreshToken: string;
-  expiresIn: string;
+  expiresIn: number;
 }
 
 export enum ActionTypes {

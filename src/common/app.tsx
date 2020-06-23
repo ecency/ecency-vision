@@ -5,6 +5,7 @@ import EntryIndexContainer from "./pages/entry-index";
 import ProfileContainer from "./pages/profile";
 import EntryContainer from "./pages/entry";
 import CommunitiesContainer from "./pages/communities";
+import AuthContainer from "./pages/auth";
 import SubmitContainer from "./pages/submit";
 import NotFound from "./components/404";
 
@@ -30,6 +31,7 @@ const App = () => {
         <Route exact={true} strict={true} path={routes.USER_SECTION} component={ProfileContainer} />
         <Route exact={true} strict={true} path={routes.ENTRY} component={EntryContainer} />
         <Route exact={true} strict={true} path={routes.COMMUNITIES} component={CommunitiesContainer} />
+        <Route exact={true} strict={true} path={routes.AUTH} component={AuthContainer} />
         <Route exact={true} strict={true} path={routes.SUBMIT} component={SubmitContainer} />
         <Route exact={true} strict={true} path={routes.ABOUT} component={AboutPageContainer} />
         <Route exact={true} strict={true} path={routes.GUESTS} component={GuestPostPageContainer} />

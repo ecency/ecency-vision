@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { hsLogin } from "../../helper/hive-signer";
+import { getAuthUrl } from "../../helper/hive-signer";
 
 interface Props {
   children: JSX.Element;
@@ -8,7 +8,7 @@ interface Props {
 
 export default class LoginRequired extends Component<Props> {
   clicked = () => {
-    hsLogin()
+    window.location.href = getAuthUrl();
   };
   render() {
     const { children } = this.props;
