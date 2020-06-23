@@ -1,5 +1,4 @@
-import reducer, { initialState, addAct, refreshAct } from "./index";
-import { encodeObj } from "../../util/encoder";
+import { initialState } from "./index";
 
 jest.mock("../../util/local-storage", () => ({
   getByPrefix: () => {
