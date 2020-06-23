@@ -7,6 +7,7 @@ import { initialState as accountsInitialState } from "../../common/store/account
 import { initialState as communityInitialState } from "../../common/store/community";
 import { initialState as transactionsInitialState } from "../../common/store/transactions";
 import { initialState as usersInitialState } from "../../common/store/users";
+import { initialState as activeUserInitialState } from "../../common/store/active-user";
 
 import { Entry } from "../../common/store/entries/types";
 
@@ -50,6 +51,7 @@ export default async (req: express.Request, res: express.Response) => {
     accounts: [...accountsInitialState],
     transactions: { ...transactionsInitialState },
     users: usersInitialState,
+    activeUser: activeUserInitialState,
     entries,
   };
 

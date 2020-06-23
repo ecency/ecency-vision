@@ -6,6 +6,7 @@ import { initialState as trendingTagsInitialState } from "../../common/store/tre
 import { initialState as communityInitialState } from "../../common/store/community";
 import { initialState as transactionsInitialState } from "../../common/store/transactions";
 import { initialState as usersInitialState } from "../../common/store/users";
+import { initialState as activeUserInitialState } from "../../common/store/active-user";
 
 import { ProfileFilter } from "../../common/store/global/types";
 import { Entry } from "../../common/store/entries/types";
@@ -74,6 +75,7 @@ export default async (req: express.Request, res: express.Response) => {
     accounts: accounts,
     transactions: { ...transactionsInitialState },
     users: usersInitialState,
+    activeUser: activeUserInitialState,
     entries,
   };
 

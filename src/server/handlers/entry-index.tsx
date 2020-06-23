@@ -6,6 +6,7 @@ import { initialState as trendingTagsInitialState } from "../../common/store/tre
 import { initialState as accountsInitialState } from "../../common/store/accounts";
 import { initialState as transactionsInitialState } from "../../common/store/transactions";
 import { initialState as usersInitialState } from "../../common/store/users";
+import { initialState as activeUserInitialState } from "../../common/store/active-user";
 
 import { EntryFilter } from "../../common/store/global/types";
 import { Entry } from "../../common/store/entries/types";
@@ -24,7 +25,7 @@ import { render } from "../template";
 import { cache } from "../cache";
 
 export default async (req: express.Request, res: express.Response) => {
-  const params = filterTagExtract(req.originalUrl.split('?')[0])!;
+  const params = filterTagExtract(req.originalUrl.split("?")[0])!;
   const { filter, tag } = params;
 
   let entries: Entry[];
@@ -64,6 +65,7 @@ export default async (req: express.Request, res: express.Response) => {
     accounts: accountsInitialState,
     transactions: { ...transactionsInitialState },
     users: usersInitialState,
+    activeUser: activeUserInitialState,
     entries: {
       [`${makeGroupKey(filter, tag)}`]: {
         entries: optimizeEntries(entries),

@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`1- default state 1`] = `
+Object {
+  "data": Object {
+    "name": "foo",
+  },
+  "name": "foo",
+}
+`;
+
+exports[`2- reloadAct 1`] = `
+Object {
+  "data": Object {
+    "name": "foo",
+  },
+  "name": "foo",
+}
+`;
+
+exports[`3- updateAct 1`] = `
+Object {
+  "data": Object {
+    "__loaded": true,
+    "name": "foo",
+    "post_count": 10,
+  },
+  "name": "foo",
+}
+`;
