@@ -1,20 +1,11 @@
 import reducer, { initialState, addAct, refreshAct } from "./index";
+import { encodeObj } from "../../util/encoder";
 
 jest.mock("../../util/local-storage", () => ({
   getByPrefix: () => {
     return [
-      {
-        username: "user1",
-        accessToken: "access token",
-        refreshToken: "refresh token",
-        expiresIn: "a date",
-      },
-      {
-        username: "user2",
-        accessToken: "access token",
-        refreshToken: "refresh token",
-        expiresIn: "a date",
-      },
+      "eyJ1c2VybmFtZSI6InVzZXIxIiwiYWNjZXNzVG9rZW4iOiJhY2Nlc3MgdG9rZW4iLCJyZWZyZXNoVG9rZW4iOiJyZWZyZXNoIHRva2VuIiwiZXhwaXJlc0luIjoiYSBkYXRlIn0=",
+      "eyJ1c2VybmFtZSI6InVzZXIyIiwiYWNjZXNzVG9rZW4iOiJhY2Nlc3MgdG9rZW4iLCJyZWZyZXNoVG9rZW4iOiJyZWZyZXNoIHRva2VuIiwiZXhwaXJlc0luIjoiYSBkYXRlIn0=",
     ];
   },
 }));
