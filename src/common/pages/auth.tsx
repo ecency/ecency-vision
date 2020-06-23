@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import { AnyAction, bindActionCreators, Dispatch } from "redux";
 import { connect } from "react-redux";
 import { History, Location } from "history";
@@ -10,6 +10,7 @@ import { Global } from "../store/global/types";
 import { User } from "../store/users/types";
 
 import { addUser } from "../store/users";
+import { setActiveUser } from "../store/active-user";
 
 import { hsTokenRenew } from "../api/private";
 
@@ -18,11 +19,12 @@ interface Props {
   location: Location;
   global: Global;
   addUser: (user: User) => void;
+  setActiveUser: (name: string) => void;
 }
 
 class AuthPage extends Component<Props> {
   componentDidMount() {
-    const { location, history, addUser } = this.props;
+    const { location, history, addUser, setActiveUser } = this.props;
     const qs = queryString.parse(location.search);
     const code = qs.code as string;
     if (code) {
@@ -36,6 +38,7 @@ class AuthPage extends Component<Props> {
           };
 
           addUser(user);
+          setActiveUser(user.username);
           history.push("/");
         })
         .catch(() => {
@@ -56,6 +59,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
   bindActionCreators(
     {
       addUser,
+      setActiveUser,
     },
     dispatch
   );
