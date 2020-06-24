@@ -19,6 +19,9 @@
     "header-account": "Users",
     "header-community": "Communities"
   },
+  "user-nav": {
+    "wallet": "Wallet"
+  },
   "entry-list-item": {
     "reblogged": "by {{n}}",
     "promoted": "sponsored",

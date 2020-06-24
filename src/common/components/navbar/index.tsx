@@ -17,11 +17,11 @@ import ToolTip from "../tooltip";
 import DownloadTrigger from "../download-trigger";
 import Search from "../search";
 import LoginRequired from "../login-required";
-import UserAvatar from "../user-avatar";
+import UserNav from "../user-nav";
 
 import { _t } from "../../i18n";
 
-import { brightnessSvg, appleSvg, googleSvg, desktopSvg, pencilOutlineSvg, creditCardSvg } from "../../img/svg";
+import { brightnessSvg, appleSvg, googleSvg, desktopSvg, pencilOutlineSvg } from "../../img/svg";
 
 interface Props {
   history: History;
@@ -104,13 +104,7 @@ export default class NavBar extends Component<Props> {
             </ToolTip>
           </div>
 
-          {activeUser && (
-            <div className="user-nav">
-              <span className="user-wallet">{creditCardSvg}</span>
-              <UserAvatar username={activeUser.name} size="medium" />
-            </div>
-          )}
-          
+          {activeUser && <UserNav {...this.props} activeUser={activeUser} />}
         </div>
       </div>
     );
