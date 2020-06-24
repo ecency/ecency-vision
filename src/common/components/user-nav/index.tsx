@@ -18,7 +18,7 @@ interface Props {
   location: Location;
   users: User[];
   activeUser: ActiveUser;
-  setActiveUser: (name?: string) => void;
+  setActiveUser: (name: string | null) => void;
 }
 
 export default class UserNav extends Component<Props> {
@@ -38,7 +38,10 @@ export default class UserNav extends Component<Props> {
         },
         {
           label: "Logout",
-          onClick: () => {},
+          onClick: () => {
+            const { setActiveUser } = this.props;
+            setActiveUser();
+          },
         },
       ],
     };

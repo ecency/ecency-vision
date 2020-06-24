@@ -84,7 +84,7 @@ interface Props {
   addAccount: (data: Account) => void;
   addEntry: (entry: Entry) => void;
   fetchTrendingTags: () => void;
-  setActiveUser: (name?: string) => void;
+  setActiveUser: (name: string | null) => void;
 }
 
 interface State {

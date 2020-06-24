@@ -13,7 +13,7 @@ interface Props {
   users: User[];
   activeUser: ActiveUser | null;
   children: JSX.Element;
-  setActiveUser: (name?: string) => void;
+  setActiveUser: (name: string | null) => void;
   onHide: () => void;
   onLogin: () => void;
 }
@@ -22,7 +22,7 @@ export default class Login extends Component<Props> {
   shouldComponentUpdate() {
     return false;
   }
-  
+
   render() {
     const { onHide } = this.props;
     return (

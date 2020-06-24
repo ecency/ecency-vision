@@ -11,7 +11,7 @@ interface Props {
   users: User[];
   activeUser: ActiveUser | null;
   children: JSX.Element;
-  setActiveUser: (name?: string) => void;
+  setActiveUser: (name: string | null) => void;
 }
 
 interface State {

@@ -32,7 +32,7 @@ interface Props {
   activeUser: ActiveUser | null;
   fetchTrendingTags: () => void;
   toggleTheme: () => void;
-  setActiveUser: (name?: string) => void;
+  setActiveUser: (name: string | null) => void;
 }
 
 export default class NavBar extends Component<Props> {

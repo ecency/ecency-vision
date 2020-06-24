@@ -34,7 +34,7 @@ export default (state: ActiveUser | null = initialState, action: Actions): Activ
 };
 
 /* Actions */
-export const setActiveUser = (name?: string) => async (dispatch: Dispatch) => {
+export const setActiveUser = (name: string | null) => async (dispatch: Dispatch) => {
   if (name) {
     ls.set("active_user", name);
   } else {

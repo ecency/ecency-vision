@@ -91,7 +91,7 @@ interface Props {
   toggleTheme: () => void;
   addAccount: (data: Account) => void;
   fetchTrendingTags: () => void;
-  setActiveUser: (name?: string) => void;
+  setActiveUser: (name: string | null) => void;
 }
 
 interface State {

@@ -33,7 +33,7 @@ interface Props {
   activeUser: ActiveUser | null;
   toggleTheme: () => void;
   fetchTrendingTags: () => void;
-  setActiveUser: (name?: string) => void;
+  setActiveUser: (name: string | null) => void;
 }
 
 class AboutPage extends Component<Props> {

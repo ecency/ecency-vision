@@ -57,7 +57,7 @@ interface Props {
   resetCommunity: () => void;
   fetchTrendingTags: () => void;
   addAccount: (data: Account) => void;
-  setActiveUser: (name?: string) => void;
+  setActiveUser: (name: string | null) => void;
 }
 
 class EntryIndexPage extends Component<Props> {
