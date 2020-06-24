@@ -4,7 +4,8 @@
     "search": "Search",
     "downloads": "Downloads",
     "login": "Login",
-    "signup": "Signup"
+    "signup": "Signup",
+    "delete": "Delete"
   },
   "navbar": {
     "global": "Global",

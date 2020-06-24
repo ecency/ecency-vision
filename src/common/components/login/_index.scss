@@ -91,13 +91,13 @@
           justify-content: center;
           width: 24px;
 
-          .mi {
+          svg {
             color: $white;
-            font-size: 16px;
+            height: 16px;
           }
 
           &:hover {
-            .mi {
+            svg {
               color: lighten($red2, 10);
             }
           }

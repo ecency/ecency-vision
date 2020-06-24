@@ -6,10 +6,13 @@ import { User } from "../../store/users/types";
 import { ActiveUser } from "../../store/active-user/types";
 
 import UserAvatar from "../user-avatar";
+import Tooltip from "../tooltip";
 
 import { getAuthUrl } from "../../helper/hive-signer";
 
 import { _t } from "../../i18n";
+
+import { deleteForeverSvg } from "../../img/svg";
 
 const hsLogo = require("../../img/hive-signer.svg");
 
@@ -35,6 +38,17 @@ export class UserItem extends Component<UserItemprops> {
         <span className="username">@{user.username}</span>
         {activeUser && activeUser.name === user.username && <div className="check-mark" />}
         <div className="flex-spacer " />
+
+        <div
+          className="btn-delete"
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+        >
+          <Tooltip content={_t("g.delete")}>
+            <span>{deleteForeverSvg}</span>
+          </Tooltip>
+        </div>
       </div>
     );
   }
