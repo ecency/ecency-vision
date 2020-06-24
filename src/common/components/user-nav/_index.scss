@@ -7,10 +7,12 @@
   padding: 2px 3px;
   margin-top: 10px;
   padding-left: 12px;
+  position: relative;
 
   .user-avatar {
     width: 34px;
     height: 34px;
+    cursor: pointer;
   }
 
   @media (min-width: $md-break) {

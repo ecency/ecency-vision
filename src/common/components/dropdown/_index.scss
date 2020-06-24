@@ -1,6 +1,7 @@
 .custom-dropdown {
   display: inline-flex;
   position: relative;
+  border-radius: 6px;
 
   .dropdown-btn {
     display: inline-flex;
@@ -54,9 +55,20 @@
 
   .the-menu {
     position: absolute;
-    width: 100%;
-    top: 28px;
-    z-index: 1;
+    top: 100%;
+    z-index: 111;
+  }
+
+  &.float-left {
+    .the-menu {
+      left: 0;
+    }
+  }
+
+  &.float-right {
+    .the-menu {
+      right: 0;
+    }
   }
 
   .menu-inner {
@@ -71,6 +83,15 @@
 
     @include themify(night) {
       background: lighten($dark-six, 5);
+    }
+
+    .menu-header {
+      padding: 8px 20px;
+      font-weight: 500;
+      background: $dark-sky-blue;
+      color: $white;
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
     }
   }
 
@@ -100,6 +121,7 @@
         padding: 8px 20px;
         border-radius: 25px;
         display: block;
+        white-space: nowrap;
       }
 
       &.active {

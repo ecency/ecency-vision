@@ -168,7 +168,7 @@ class EntryIndexPage extends Component<Props> {
               </div>
             )}
             <div className="page-tools">
-              <DropDown {...{ ...this.props, ...dropDownConfig }} />
+              <DropDown {...{ ...this.props, ...dropDownConfig }} float="left" />
               <ListStyleToggle {...this.props} />
             </div>
             {loading && entryList.length === 0 ? <LinearProgress /> : ""}
