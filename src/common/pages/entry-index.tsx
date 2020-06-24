@@ -18,6 +18,7 @@ import { fetchCommunity, resetCommunity } from "../store/community";
 import { fetchTrendingTags } from "../store/trending-tags";
 import { addAccount } from "../store/accounts";
 import { setActiveUser } from "../store/active-user";
+import { deleteUser } from "../store/users";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme";
@@ -58,6 +59,7 @@ interface Props {
   fetchTrendingTags: () => void;
   addAccount: (data: Account) => void;
   setActiveUser: (name: string | null) => void;
+  deleteUser: (username: string) => void;
 }
 
 class EntryIndexPage extends Component<Props> {
@@ -213,6 +215,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       fetchTrendingTags,
       addAccount,
       setActiveUser,
+      deleteUser,
     },
     dispatch
   );

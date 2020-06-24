@@ -12,6 +12,7 @@ import { ActiveUser } from "../store/active-user/types";
 import { toggleTheme } from "../store/global/index";
 import { fetchTrendingTags } from "../store/trending-tags";
 import { setActiveUser } from "../store/active-user";
+import { deleteUser } from "../store/users";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
@@ -34,6 +35,7 @@ interface Props {
   toggleTheme: () => void;
   fetchTrendingTags: () => void;
   setActiveUser: (name: string | null) => void;
+  deleteUser: (username: string) => void;
 }
 
 class AboutPage extends Component<Props> {
@@ -559,6 +561,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       toggleTheme,
       fetchTrendingTags,
       setActiveUser,
+      deleteUser
     },
     dispatch
   );

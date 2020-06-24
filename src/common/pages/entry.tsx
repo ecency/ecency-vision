@@ -32,6 +32,7 @@ import { addAccount } from "../store/accounts/index";
 import { addEntry } from "../store/entries/index";
 import { fetchTrendingTags } from "../store/trending-tags";
 import { setActiveUser } from "../store/active-user";
+import { deleteUser } from "../store/users";
 
 import { makePath as makeEntryPath } from "../components/entry-link";
 import ProfileLink from "../components/profile-link";
@@ -85,6 +86,7 @@ interface Props {
   addEntry: (entry: Entry) => void;
   fetchTrendingTags: () => void;
   setActiveUser: (name: string | null) => void;
+  deleteUser: (username: string) => void;
 }
 
 interface State {
@@ -359,6 +361,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       addEntry,
       fetchTrendingTags,
       setActiveUser,
+      deleteUser,
     },
     dispatch
   );

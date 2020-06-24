@@ -27,6 +27,7 @@ import { hideIntro, toggleTheme } from "../store/global/index";
 import { addAccount } from "../store/accounts/index";
 import { fetchTrendingTags } from "../store/trending-tags";
 import { setActiveUser } from "../store/active-user";
+import { deleteUser } from "../store/users";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme";
@@ -92,6 +93,7 @@ interface Props {
   addAccount: (data: Account) => void;
   fetchTrendingTags: () => void;
   setActiveUser: (name: string | null) => void;
+  deleteUser: (username: string) => void;
 }
 
 interface State {
@@ -221,6 +223,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       addAccount,
       fetchTrendingTags,
       setActiveUser,
+      deleteUser
     },
     dispatch
   );

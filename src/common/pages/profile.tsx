@@ -22,6 +22,7 @@ import { fetchDynamicProps } from "../store/dynamic-props";
 import { fetchTransactions, resetTransactions } from "../store/transactions";
 import { fetchTrendingTags } from "../store/trending-tags";
 import { setActiveUser } from "../store/active-user";
+import { deleteUser } from "../store/users";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme";
@@ -71,6 +72,7 @@ interface Props {
   resetTransactions: () => void;
   fetchTrendingTags: () => void;
   setActiveUser: (name: string | null) => void;
+  deleteUser: (username: string) => void;
 }
 
 interface State {
@@ -272,6 +274,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       resetTransactions,
       fetchTrendingTags,
       setActiveUser,
+      deleteUser
     },
     dispatch
   );
