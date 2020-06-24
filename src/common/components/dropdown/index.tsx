@@ -26,6 +26,19 @@ export default class MyDropDown extends Component<Props> {
 
   _timer: any = null;
 
+  mouseClick = () => {
+    const { menu } = this.state;
+    if (menu) {
+      return;
+    }
+
+    if (this._timer) {
+      clearTimeout(this._timer);
+    }
+
+    this.showMenu();
+  };
+
   mouseEnter = () => {
     this._timer = setTimeout(() => {
       this.showMenu();
@@ -62,7 +75,12 @@ export default class MyDropDown extends Component<Props> {
     const { menu } = this.state;
 
     return (
-      <div className="custom-dropdown" onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave}>
+      <div
+        className="custom-dropdown"
+        onClick={this.mouseClick}
+        onMouseEnter={this.mouseEnter}
+        onMouseLeave={this.mouseLeave}
+      >
         <div className={`dropdown-btn ${menu ? "hover" : ""}`}>
           <div className="label">{label}</div>
           <div className="menu-down">{menuDownSvg}</div>
