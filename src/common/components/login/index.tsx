@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 
-import { Modal, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
+
+import isEqual from "react-fast-compare";
 
 import { User } from "../../store/users/types";
 import { ActiveUser } from "../../store/active-user/types";
 
 import UserAvatar from "../user-avatar";
 import Tooltip from "../tooltip";
+import PopoverConfirm from "../popover-confirm";
 
 import { getAuthUrl } from "../../helper/hive-signer";
 
@@ -20,6 +23,7 @@ interface UserItemprops {
   user: User;
   activeUser: ActiveUser | null;
   onSelect: (user: User) => void;
+  onDelete: (user: User) => void;
 }
 
 export class UserItem extends Component<UserItemprops> {
@@ -38,17 +42,23 @@ export class UserItem extends Component<UserItemprops> {
         <span className="username">@{user.username}</span>
         {activeUser && activeUser.name === user.username && <div className="check-mark" />}
         <div className="flex-spacer " />
-
-        <div
-          className="btn-delete"
-          onClick={(e) => {
-            e.stopPropagation();
+        <PopoverConfirm
+          onConfirm={() => {
+            const { onDelete } = this.props;
+            onDelete(user);
           }}
         >
-          <Tooltip content={_t("g.delete")}>
-            <span>{deleteForeverSvg}</span>
-          </Tooltip>
-        </div>
+          <div
+            className="btn-delete"
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+          >
+            <Tooltip content={_t("g.delete")}>
+              <span>{deleteForeverSvg}</span>
+            </Tooltip>
+          </div>
+        </PopoverConfirm>
       </div>
     );
   }
@@ -58,13 +68,14 @@ interface Props {
   users: User[];
   activeUser: ActiveUser | null;
   setActiveUser: (name: string | null) => void;
+  deleteUser: (username: string) => void;
   onHide: () => void;
   onLogin: () => void;
 }
 
 export default class Login extends Component<Props> {
-  shouldComponentUpdate() {
-    return false;
+  shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
+    return !isEqual(this.props.users, nextProps.users) || !isEqual(this.props.activeUser, nextProps.activeUser);
   }
 
   render() {
@@ -87,6 +98,14 @@ export default class Login extends Component<Props> {
                           const { setActiveUser, onLogin } = this.props;
                           setActiveUser(user.username);
                           onLogin();
+                        }}
+                        onDelete={(user) => {
+                          const { activeUser, deleteUser, setActiveUser } = this.props;
+                          deleteUser(user.username);
+
+                          if (activeUser && user.username === activeUser.name) {
+                            setActiveUser(null);
+                          }
                         }}
                       />
                     );

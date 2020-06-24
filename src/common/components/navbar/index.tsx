@@ -33,6 +33,7 @@ interface Props {
   fetchTrendingTags: () => void;
   toggleTheme: () => void;
   setActiveUser: (name: string | null) => void;
+  deleteUser: (username: string) => void;
 }
 
 export default class NavBar extends Component<Props> {

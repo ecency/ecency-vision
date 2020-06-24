@@ -20,6 +20,7 @@ interface Props {
   users: User[];
   activeUser: ActiveUser;
   setActiveUser: (name: string | null) => void;
+  deleteUser: (username: string) => void;
 }
 
 interface State {
@@ -33,7 +34,6 @@ export default class UserNav extends Component<Props, State> {
 
   toggleLogin = () => {
     const { login } = this.state;
-    console.log(login);
     this.setState({ login: !login });
   };
 
