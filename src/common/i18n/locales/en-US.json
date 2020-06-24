@@ -22,6 +22,12 @@
   "user-nav": {
     "wallet": "Wallet"
   },
+  "login": {
+    "users-title": "Login As",
+    "signup-text-1": "Don't have an account?",
+    "signup-text-2": "Sign up now!",
+    "or": "OR"
+  },
   "entry-list-item": {
     "reblogged": "by {{n}}",
     "promoted": "sponsored",
