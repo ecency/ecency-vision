@@ -30,10 +30,6 @@ history!.listen((location, action) => {
   }
 });
 
-// Since user data stored on local storage, state reload should be triggered on page load.
-store.dispatch(reloadUsers());
-store.dispatch(reloadActiveUser());
-
 hydrate(
   <Provider store={store}>
     <ConnectedRouter history={history!}>
@@ -42,6 +38,10 @@ hydrate(
   </Provider>,
   document.getElementById("root")
 );
+
+// Since user data stored on local storage, state should be reloaded on first load.
+store.dispatch(reloadUsers());
+store.dispatch(reloadActiveUser());
 
 if (module.hot) {
   module.hot.accept("../common/app", () => {

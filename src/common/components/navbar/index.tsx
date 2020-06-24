@@ -95,6 +95,7 @@ export default class NavBar extends Component<Props> {
               <Button variant="primary">{_t("g.signup")}</Button>
             </div>
           )}
+
           <div className="submit-post">
             <ToolTip content={_t("navbar.post")}>
               <Link className="btn btn-outline-primary" to="/submit">
