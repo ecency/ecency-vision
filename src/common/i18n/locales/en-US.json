@@ -27,7 +27,8 @@
     "users-title": "Login As",
     "signup-text-1": "Don't have an account?",
     "signup-text-2": "Sign up now!",
-    "or": "OR"
+    "or": "OR",
+    "with-hivesigner": "Login with hivesigner"
   },
   "entry-list-item": {
     "reblogged": "by {{n}}",

@@ -1,170 +1,180 @@
-.login-dialog-content {
-  max-height: 400px;
-  overflow-y: auto;
-
-  p {
-    color: $steel-grey;
-    margin: 0;
-    text-align: center;
+.login-modal {
+  .modal-header {
+  
+    .close {
+      padding-top: 6px;
+      padding-bottom: 6px;
+    }
   }
+  .modal-body {
+    padding-top: 6px;
+    max-height: 400px;
+    overflow-y: auto;
 
-  .user-list {
-    width: 240px;
-    margin: 0 auto;
-
-    .user-list-header {
-      font-size: 18px;
-      font-weight: 500;
-      margin-bottom: 10px;
+    p {
+      color: $steel-grey;
+      margin: 0;
       text-align: center;
-
-      @include themify(day) {
-        color: $steel-grey;
-      }
-
-      @include themify(night) {
-        color: $metallic-blue;
-      }
     }
 
-    .user-list-body {
-      .user-list-item {
-        align-items: center;
-        border-radius: 25px;
-        cursor: pointer;
-        display: flex;
-        font-size: 16px;
-        line-height: 16px;
+    .user-list {
+      width: 240px;
+      margin: 0 auto;
+
+      .user-list-header {
+        font-size: 18px;
+        font-weight: 500;
         margin-bottom: 10px;
-        padding: 10px;
-        position: relative;
-        transition: 0.5s;
+        text-align: center;
 
         @include themify(day) {
-          background: $duck-egg-blue;
-          color: $dark-sky-blue;
+          color: $steel-grey;
         }
 
         @include themify(night) {
-          background: $metallic-blue;
-          color: $powder-blue;
+          color: $metallic-blue;
         }
+      }
 
-        &:hover {
+      .user-list-body {
+        .user-list-item {
+          align-items: center;
+          border-radius: 25px;
+          cursor: pointer;
+          display: flex;
+          font-size: 16px;
+          line-height: 16px;
+          margin-bottom: 10px;
+          padding: 10px;
+          position: relative;
+          transition: 0.5s;
+
           @include themify(day) {
-            background: lighten($dark-sky-blue, 30);
+            background: $duck-egg-blue;
+            color: $dark-sky-blue;
           }
 
           @include themify(night) {
-            background: darken($metallic-blue, 16);
-          }
-        }
-
-        .user-avatar {
-          margin-right: 10px;
-        }
-
-        .username {
-          font-weight: 500;
-        }
-
-        .space {
-          flex-grow: 1;
-        }
-
-        .check-mark {
-          background: $dark-sky-blue;
-          border-radius: 50%;
-          height: 5px;
-          left: -14px;
-          position: absolute;
-          top: calc(50% - 2.5px);
-          width: 5px;
-        }
-
-        .btn-delete {
-          align-items: center;
-          border-radius: 50%;
-          cursor: pointer;
-          display: none;
-          height: 24px;
-          justify-content: center;
-          width: 24px;
-
-          svg {
-            color: $white;
-            height: 16px;
+            background: $metallic-blue;
+            color: $powder-blue;
           }
 
           &:hover {
-            svg {
-              color: lighten($red2, 10);
+            @include themify(day) {
+              background: lighten($dark-sky-blue, 30);
+            }
+
+            @include themify(night) {
+              background: darken($metallic-blue, 16);
             }
           }
 
-          @include themify(day) {
-            background: darken($duck-egg-blue, 20);
-
-            &:hover {
-              background: $duck-egg-blue;
-            }
+          .user-avatar {
+            margin-right: 10px;
           }
 
-          @include themify(night) {
-            background: darken($metallic-blue, 3);
-
-            &:hover {
-              background: $metallic-blue;
-            }
+          .username {
+            font-weight: 500;
           }
-        }
 
-        &:hover {
+          .space {
+            flex-grow: 1;
+          }
+
+          .check-mark {
+            background: $dark-sky-blue;
+            border-radius: 50%;
+            height: 5px;
+            left: -14px;
+            position: absolute;
+            top: calc(50% - 2.5px);
+            width: 5px;
+          }
+
           .btn-delete {
-            display: flex;
+            align-items: center;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            height: 24px;
+            justify-content: center;
+            width: 24px;
+
+            svg {
+              color: $white;
+              height: 16px;
+            }
+
+            &:hover {
+              svg {
+                color: lighten($red2, 10);
+              }
+            }
+
+            @include themify(day) {
+              background: darken($duck-egg-blue, 20);
+
+              &:hover {
+                background: $duck-egg-blue;
+              }
+            }
+
+            @include themify(night) {
+              background: darken($metallic-blue, 3);
+
+              &:hover {
+                background: $metallic-blue;
+              }
+            }
+          }
+
+          &:hover {
+            .btn-delete {
+              display: flex;
+            }
           }
         }
       }
     }
-  }
 
-  .hs-login {
-    margin: 0 auto 26px auto;
-    display: flex;
-    justify-content: center;
+    .hs-login {
+      margin: 0 auto 26px auto;
+      display: flex;
+      justify-content: center;
 
-    .hs-logo {
-      height: 14px;
-      margin-right: 6px;
+      .hs-logo {
+        height: 14px;
+        margin-right: 6px;
+      }
     }
-  }
 
-  .or-divider {
-    position: relative;
-    margin: 20px auto;
-    width: 300px;
-    height: 50px;
-    line-height: 50px;
-    text-align: center;
-    color: $silver;
-  }
+    .or-divider {
+      position: relative;
+      margin: 20px auto;
+      width: 300px;
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      color: $silver;
+    }
 
-  .or-divider::before,
-  .or-divider::after {
-    position: absolute;
-    width: 130px;
-    height: 1px;
-    top: 24px;
-    background-color: $white-four;
+    .or-divider::before,
+    .or-divider::after {
+      position: absolute;
+      width: 130px;
+      height: 1px;
+      top: 24px;
+      background-color: $white-four;
 
-    content: "";
-  }
+      content: "";
+    }
 
-  .or-divider::before {
-    left: 0;
-  }
+    .or-divider::before {
+      left: 0;
+    }
 
-  .or-divider::after {
-    right: 0;
+    .or-divider::after {
+      right: 0;
+    }
   }
 }

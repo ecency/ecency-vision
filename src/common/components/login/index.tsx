@@ -41,7 +41,7 @@ export class UserItem extends Component<UserItemprops> {
         <UserAvatar {...this.props} username={user.username} size="normal" />
         <span className="username">@{user.username}</span>
         {activeUser && activeUser.name === user.username && <div className="check-mark" />}
-        <div className="flex-spacer " />
+        <div className="flex-spacer" />
         <PopoverConfirm
           onConfirm={() => {
             const { onDelete } = this.props;
@@ -64,6 +64,70 @@ export class UserItem extends Component<UserItemprops> {
   }
 }
 
+interface LoginProps {
+  users: User[];
+  activeUser: ActiveUser | null;
+  setActiveUser: (name: string | null) => void;
+  deleteUser: (username: string) => void;
+  onLogin: () => void;
+}
+
+export class Login extends Component<LoginProps> {
+  shouldComponentUpdate(nextProps: Readonly<LoginProps>): boolean {
+    return !isEqual(this.props.users, nextProps.users) || !isEqual(this.props.activeUser, nextProps.activeUser);
+  }
+
+  render() {
+    const { users } = this.props;
+    return (
+      <>
+        {users.length > 0 && (
+          <>
+            <div className="user-list">
+              <div className="user-list-header">{_t("login.users-title")}</div>
+              <div className="user-list-body">
+                {users.map((u) => {
+                  return (
+                    <UserItem
+                      key={u.username}
+                      {...this.props}
+                      user={u}
+                      onSelect={(user) => {
+                        const { setActiveUser, onLogin } = this.props;
+                        setActiveUser(user.username);
+                        onLogin();
+                      }}
+                      onDelete={(user) => {
+                        const { activeUser, deleteUser, setActiveUser } = this.props;
+                        deleteUser(user.username);
+
+                        if (activeUser && user.username === activeUser.name) {
+                          setActiveUser(null);
+                        }
+                      }}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+            <div className="or-divider">{_t("login.or")}</div>
+          </>
+        )}
+        <div className="hs-login">
+          <a className="btn btn-outline-primary" href={getAuthUrl()}>
+            <img src={hsLogo} className="hs-logo" /> {_t('login.with-hivesigner')}
+          </a>
+        </div>
+        <p>
+          {_t("login.signup-text-1")}
+          &nbsp;
+          <a href="#">{_t("login.signup-text-2")}</a>
+        </p>
+      </>
+    );
+  }
+}
+
 interface Props {
   users: User[];
   activeUser: ActiveUser | null;
@@ -73,58 +137,14 @@ interface Props {
   onLogin: () => void;
 }
 
-export default class Login extends Component<Props> {
-  shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
-    return !isEqual(this.props.users, nextProps.users) || !isEqual(this.props.activeUser, nextProps.activeUser);
-  }
-
+export default class LoginDialog extends Component<Props> {
   render() {
-    const { users, onHide } = this.props;
+    const { onHide } = this.props;
     return (
-      <Modal show={true} centered={true} onHide={onHide}>
-        <Modal.Body className="login-dialog-content">
-          {users.length > 0 && (
-            <>
-              <div className="user-list">
-                <div className="user-list-header">{_t("login.users-title")}</div>
-                <div className="user-list-body">
-                  {users.map((u) => {
-                    return (
-                      <UserItem
-                        key={u.username}
-                        {...this.props}
-                        user={u}
-                        onSelect={(user) => {
-                          const { setActiveUser, onLogin } = this.props;
-                          setActiveUser(user.username);
-                          onLogin();
-                        }}
-                        onDelete={(user) => {
-                          const { activeUser, deleteUser, setActiveUser } = this.props;
-                          deleteUser(user.username);
-
-                          if (activeUser && user.username === activeUser.name) {
-                            setActiveUser(null);
-                          }
-                        }}
-                      />
-                    );
-                  })}
-                </div>
-              </div>
-              <div className="or-divider">{_t("login.or")}</div>
-            </>
-          )}
-          <div className="hs-login">
-            <a className="btn btn-outline-primary" href={getAuthUrl()}>
-              <img src={hsLogo} className="hs-logo" /> Login with hivesigner
-            </a>
-          </div>
-          <p>
-            {_t("login.signup-text-1")}
-            &nbsp;
-            <a href="#">{_t("login.signup-text-2")}</a>
-          </p>
+      <Modal show={true} centered={true} onHide={onHide} className="login-modal">
+        <Modal.Header closeButton={true} />
+        <Modal.Body>
+          <Login {...this.props} />
         </Modal.Body>
       </Modal>
     );
