@@ -1,0 +1,291 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+Array [
+  <div
+    className="hs-login"
+  >
+    <a
+      className="btn btn-outline-primary"
+      href="https://hivesigner.com/oauth2/authorize?client_id=ecency.app&redirect_uri=http%3A%2F%2Flocalhost%2Fauth&response_type=code&scope=vote%2Ccomment%2Cdelete_comment%2Ccomment_options%2Ccustom_json%2Cclaim_reward_balance%2Coffline"
+    >
+      <img
+        className="hs-logo"
+        src="hive-signer.svg"
+      />
+       
+      Login with hivesigner
+    </a>
+  </div>,
+  <p>
+    Don't have an account?
+     
+    <a
+      href="#"
+    >
+      Sign up now!
+    </a>
+  </p>,
+]
+`;
+
+exports[`(2) With users 1`] = `
+Array [
+  <div
+    className="user-list"
+  >
+    <div
+      className="user-list-header"
+    >
+      Login As
+    </div>
+    <div
+      className="user-list-body"
+    >
+      <div
+        className="user-list-item "
+        onClick={[Function]}
+      >
+        <span
+          className="user-avatar normal"
+          onClick={[Function]}
+          role="none"
+          style={
+            Object {
+              "backgroundImage": "url(https://images.ecency.com/u/user1/avatar/medium)",
+            }
+          }
+        />
+        <span
+          className="username"
+        >
+          @
+          user1
+        </span>
+        <div
+          className="flex-spacer"
+        />
+        <div
+          className="btn-delete"
+          onClick={[Function]}
+        >
+          <span
+            title="Delete"
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+      <div
+        className="user-list-item "
+        onClick={[Function]}
+      >
+        <span
+          className="user-avatar normal"
+          onClick={[Function]}
+          role="none"
+          style={
+            Object {
+              "backgroundImage": "url(https://images.ecency.com/u/user2/avatar/medium)",
+            }
+          }
+        />
+        <span
+          className="username"
+        >
+          @
+          user2
+        </span>
+        <div
+          className="flex-spacer"
+        />
+        <div
+          className="btn-delete"
+          onClick={[Function]}
+        >
+          <span
+            title="Delete"
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>,
+  <div
+    className="or-divider"
+  >
+    OR
+  </div>,
+  <div
+    className="hs-login"
+  >
+    <a
+      className="btn btn-outline-primary"
+      href="https://hivesigner.com/oauth2/authorize?client_id=ecency.app&redirect_uri=http%3A%2F%2Flocalhost%2Fauth&response_type=code&scope=vote%2Ccomment%2Cdelete_comment%2Ccomment_options%2Ccustom_json%2Cclaim_reward_balance%2Coffline"
+    >
+      <img
+        className="hs-logo"
+        src="hive-signer.svg"
+      />
+       
+      Login with hivesigner
+    </a>
+  </div>,
+  <p>
+    Don't have an account?
+     
+    <a
+      href="#"
+    >
+      Sign up now!
+    </a>
+  </p>,
+]
+`;
+
+exports[`(3) With users and active user 1`] = `
+Array [
+  <div
+    className="user-list"
+  >
+    <div
+      className="user-list-header"
+    >
+      Login As
+    </div>
+    <div
+      className="user-list-body"
+    >
+      <div
+        className="user-list-item "
+        onClick={[Function]}
+      >
+        <span
+          className="user-avatar normal"
+          onClick={[Function]}
+          role="none"
+          style={
+            Object {
+              "backgroundImage": "url(https://images.ecency.com/u/user1/avatar/medium)",
+            }
+          }
+        />
+        <span
+          className="username"
+        >
+          @
+          user1
+        </span>
+        <div
+          className="flex-spacer"
+        />
+        <div
+          className="btn-delete"
+          onClick={[Function]}
+        >
+          <span
+            title="Delete"
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+      <div
+        className="user-list-item active"
+        onClick={[Function]}
+      >
+        <span
+          className="user-avatar normal"
+          onClick={[Function]}
+          role="none"
+          style={
+            Object {
+              "backgroundImage": "url(https://images.ecency.com/u/user2/avatar/medium)",
+            }
+          }
+        />
+        <span
+          className="username"
+        >
+          @
+          user2
+        </span>
+        <div
+          className="check-mark"
+        />
+        <div
+          className="flex-spacer"
+        />
+        <div
+          className="btn-delete"
+          onClick={[Function]}
+        >
+          <span
+            title="Delete"
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>,
+  <div
+    className="or-divider"
+  >
+    OR
+  </div>,
+  <div
+    className="hs-login"
+  >
+    <a
+      className="btn btn-outline-primary"
+      href="https://hivesigner.com/oauth2/authorize?client_id=ecency.app&redirect_uri=http%3A%2F%2Flocalhost%2Fauth&response_type=code&scope=vote%2Ccomment%2Cdelete_comment%2Ccomment_options%2Ccustom_json%2Cclaim_reward_balance%2Coffline"
+    >
+      <img
+        className="hs-logo"
+        src="hive-signer.svg"
+      />
+       
+      Login with hivesigner
+    </a>
+  </div>,
+  <p>
+    Don't have an account?
+     
+    <a
+      href="#"
+    >
+      Sign up now!
+    </a>
+  </p>,
+]
+`;
