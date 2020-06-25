@@ -5,13 +5,12 @@ import { ActiveUser } from "../../store/active-user/types";
 
 import Login from "../login";
 
-import { getAuthUrl } from "../../helper/hive-signer";
-
 interface Props {
   users: User[];
   activeUser: ActiveUser | null;
   children: JSX.Element;
   setActiveUser: (name: string | null) => void;
+  deleteUser: (username: string) => void;
 }
 
 interface State {
@@ -26,8 +25,6 @@ export default class LoginRequired extends Component<Props, State> {
   toggle = () => {
     const { loginVisible } = this.state;
     this.setState({ loginVisible: !loginVisible });
-
-    // window.location.href = getAuthUrl();
   };
 
   render() {
