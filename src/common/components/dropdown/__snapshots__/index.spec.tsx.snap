@@ -124,3 +124,53 @@ exports[`(3) Hide menu 1`] = `
   </div>
 </div>
 `;
+
+exports[`(4) With custom label and header text 1`] = `
+<div
+  className="custom-dropdown float-left"
+  onClick={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
+  <span>
+    open menu
+  </span>
+  <div
+    className="the-menu"
+  >
+    <div
+      className="menu-inner"
+    >
+      <div
+        className="menu-header"
+      >
+        My menu
+      </div>
+      <div
+        className="menu-list"
+      >
+        <div
+          className="menu-item active"
+          onClick={[Function]}
+        >
+          <span
+            className="item-inner"
+          >
+            Trending
+          </span>
+        </div>
+        <div
+          className="menu-item "
+          onClick={[Function]}
+        >
+          <span
+            className="item-inner"
+          >
+            Hot
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -37,3 +37,12 @@ it("(3) Hide menu", () => {
   instance.hideMenu();
   expect(component.toJSON()).toMatchSnapshot();
 });
+
+it("(4) With custom label and header text", () => {
+  const component2 = renderer.create(
+    <MyDropDown {...props} float="left" label={<span>open menu</span>} header="My menu" />
+  );
+  const instance: any = component2.getInstance();
+  instance.showMenu();
+  expect(component2.toJSON()).toMatchSnapshot();
+});
