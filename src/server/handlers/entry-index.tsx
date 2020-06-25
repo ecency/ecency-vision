@@ -31,7 +31,11 @@ export default async (req: express.Request, res: express.Response) => {
   let entries: Entry[];
 
   try {
-    entries = (await bridgeApi.getPostsRanked(filter, "", "", 13, tag)) || [];
+    if (filter === "feed") {
+      entries = (await bridgeApi.getAccountPosts(filter, tag.replace("@", ""), "", "", 13)) || [];
+    } else {
+      entries = (await bridgeApi.getPostsRanked(filter, "", "", 13, tag)) || [];
+    }
   } catch (e) {
     entries = [];
   }
@@ -57,7 +61,7 @@ export default async (req: express.Request, res: express.Response) => {
     global: {
       ...globalInitialState,
       ...readGlobalCookies(req),
-      ...{ filter: EntryFilter[filter], tag },
+      ...{ filter: (filter === "feed" ? filter : EntryFilter[filter]), tag },
     },
     dynamicProps: dynamicPropsInitialState,
     trendingTags: { ...trendingTagsInitialState, list: tags },

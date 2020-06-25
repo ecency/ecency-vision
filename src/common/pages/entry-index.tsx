@@ -107,7 +107,7 @@ class EntryIndexPage extends Component<Props> {
   };
 
   render() {
-    const { global, entries, community } = this.props;
+    const { global, entries, community, activeUser } = this.props;
     const { filter, tag } = global;
 
     const groupKey = makeGroupKey(filter, tag);
@@ -122,13 +122,24 @@ class EntryIndexPage extends Component<Props> {
 
     const dropDownConfig = {
       label: _t(`entry-index.filter-${filter}`),
-      items: [EntryFilter.trending, EntryFilter.hot, EntryFilter.created].map((x) => {
-        return {
-          label: _t(`entry-index.filter-${x}`),
-          href: tag ? `/${x}/${tag}` : `/${x}`,
-          active: filter === x,
-        };
-      }),
+      items: [
+        ...(activeUser
+          ? [
+              {
+                label: _t('entry-index.feed'),
+                href: `/@${activeUser.username}/feed`,
+                active: filter === "feed" && activeUser.username === tag.replace("@", ""),
+              },
+            ]
+          : []),
+        ...[EntryFilter.trending, EntryFilter.hot, EntryFilter.created].map((x) => {
+          return {
+            label: _t(`entry-index.filter-${x}`),
+            href: (tag && filter !== "feed") ? `/${x}/${tag}` : `/${x}`,
+            active: filter === x,
+          };
+        }),
+      ],
     };
 
     //  Meta config

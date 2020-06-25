@@ -49,6 +49,7 @@
     "payout-date": "Payout"
   },
   "entry-index": {
+    "feed": "Feed",
     "tags": "Popular Tags",
     "filter-trending": "Trending",
     "filter-hot": "Hot",

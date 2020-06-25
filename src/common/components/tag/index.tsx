@@ -7,7 +7,12 @@ import { Global } from "../../store/global/types";
 
 import { getCommunity } from "../../api/bridge";
 
+import defaults from "../../constants/defaults.json";
+
 export const makePath = (filter: string, tag: string): string => {
+  if (filter === "feed") {
+    return `/${defaults.filter}/${tag}`;
+  }
   return `/${filter}/${tag}`;
 };
 

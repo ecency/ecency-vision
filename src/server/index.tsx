@@ -39,6 +39,7 @@ server
       "^/$", // index
       `^/:filter(${entryFilters.join("|")})$`, // /trending
       `^/:filter(${entryFilters.join("|")})/:tag$`, //  /trending/esteem
+      `^/@:tag/:filter(feed)$`, //  /@user/feed
     ],
     entryIndexHandler
   )

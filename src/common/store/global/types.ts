@@ -30,6 +30,7 @@ export enum AllFilter {
   blog = "blog",
   comments = "comments",
   replies = "replies",
+  feed = "feed"
 }
 
 export interface Global {
