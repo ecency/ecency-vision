@@ -6,7 +6,7 @@ import { createBrowserHistory } from "history";
 
 import { globalInstance, communityInstance1 } from "../../helper/test-helper";
 
-import { EntryFilter } from "../../store/global/types";
+import { EntryFilter, AllFilter } from "../../store/global/types";
 
 jest.mock("../../api/bridge", () => ({
   getCommunity: () =>
@@ -73,6 +73,27 @@ it("(3) Community as Link", () => {
   const renderer = TestRenderer.create(
     <Tag {...props} type="span">
       <span>hive-2321</span>
+    </Tag>
+  );
+  expect(renderer.toJSON()).toMatchSnapshot();
+});
+
+it("(4) Should use default filter if the globl filter is 'feed'", () => {
+  const props = {
+    history: createBrowserHistory(),
+    global: {
+      ...globalInstance,
+      ...{
+        filter: AllFilter.feed,
+        tag: "bitcoin",
+      },
+    },
+    tag: "bitcoin"
+  };
+
+  const renderer = TestRenderer.create(
+    <Tag {...props} type="link">
+      <span>bitcoin</span>
     </Tag>
   );
   expect(renderer.toJSON()).toMatchSnapshot();

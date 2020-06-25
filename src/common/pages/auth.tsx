@@ -46,8 +46,8 @@ class AuthPage extends Component<Props> {
           getAccount(user.username).then((r) => {
             updateActiveUser(r);
           });
-          
-          history.push("/");
+
+          history.push(`/@${user.username}/feed`);
         })
         .catch(() => {
           history.push("/");

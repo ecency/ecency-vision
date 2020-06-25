@@ -20,3 +20,12 @@ exports[`(3) Community as Link 1`] = `
   hive-2321
 </span>
 `;
+
+exports[`(4) Should use default filter if the globl filter is 'feed' 1`] = `
+<a
+  href="/hot/bitcoin"
+  onClick={[Function]}
+>
+  bitcoin
+</a>
+`;
