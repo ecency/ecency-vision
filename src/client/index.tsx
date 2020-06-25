@@ -5,7 +5,9 @@ import { ConnectedRouter } from "connected-react-router";
 
 import configureStore from "../common/store/configure";
 import { reloadAct as reloadUsers } from "../common/store/users";
-import { reloadAct as reloadActiveUser } from "../common/store/active-user";
+import { reloadAct as reloadActiveUser, updateAct } from "../common/store/active-user";
+
+import { getAccount } from "../common/api/hive";
 
 import { history } from "../common/store/index";
 
@@ -42,6 +44,18 @@ hydrate(
 // Since user data stored on local storage, state should be reloaded on first load.
 store.dispatch(reloadUsers());
 store.dispatch(reloadActiveUser());
+
+// Active user updater
+const updateActiveUser = () => {
+  const state = store.getState();
+  if (state.activeUser) {
+    getAccount(state.activeUser.username).then((r) => {
+      store.dispatch(updateAct(r));
+    });
+  }
+};
+updateActiveUser();
+setInterval(updateActiveUser, 60 * 60);
 
 if (module.hot) {
   module.hot.accept("../common/app", () => {
