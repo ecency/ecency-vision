@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 import { Popover, OverlayTrigger, Button } from "react-bootstrap";
 
+import { _t } from "../../i18n";
+
 interface Props {
   children: JSX.Element;
   onConfirm?: () => void;
@@ -60,13 +62,13 @@ export default class PopoverConfirm extends Component<Props> {
           e.stopPropagation();
         }}
       >
-        <Popover.Title>Are you sure?</Popover.Title>
+        <Popover.Title>{_t("confirm.title")}</Popover.Title>
         <Popover.Content>
           <Button size="sm" variant="primary" style={{ marginRight: "10px" }} onClick={this.confirm}>
-            Confirm
+            {_t("confirm.ok")}
           </Button>
           <Button size="sm" variant="secondary" onClick={this.cancel}>
-            Cancel
+            {_t("confirm.cancel")}
           </Button>
         </Popover.Content>
       </Popover>

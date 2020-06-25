@@ -7,6 +7,11 @@
     "signup": "Signup",
     "delete": "Delete"
   },
+  "confirm": {
+    "title": "Are you sure?",
+    "ok": "Confirm",
+    "cancel": "Cancel"
+  },
   "navbar": {
     "global": "Global",
     "communities": "Communities",
