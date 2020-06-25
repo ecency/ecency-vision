@@ -5,6 +5,7 @@ import { Modal } from "react-bootstrap";
 import isEqual from "react-fast-compare";
 
 import { User } from "../../store/users/types";
+import { Account } from "../../store/accounts/types";
 import { ActiveUser } from "../../store/active-user/types";
 
 import UserAvatar from "../user-avatar";
@@ -12,6 +13,8 @@ import Tooltip from "../tooltip";
 import PopoverConfirm from "../popover-confirm";
 
 import { getAuthUrl } from "../../helper/hive-signer";
+
+import { getAccount } from "../../api/hive";
 
 import { _t } from "../../i18n";
 
@@ -68,6 +71,7 @@ interface LoginProps {
   users: User[];
   activeUser: ActiveUser | null;
   setActiveUser: (username: string | null) => void;
+  updateActiveUser: (data: Account) => void;
   deleteUser: (username: string) => void;
   onLogin: () => void;
 }
@@ -93,9 +97,12 @@ export class Login extends Component<LoginProps> {
                       {...this.props}
                       user={u}
                       onSelect={(user) => {
-                        const { setActiveUser, onLogin } = this.props;
+                        const { setActiveUser, updateActiveUser, onLogin } = this.props;
                         setActiveUser(user.username);
                         onLogin();
+                        getAccount(user.username).then((r) => {
+                          updateActiveUser(r);
+                        });
                       }}
                       onDelete={(user) => {
                         const { activeUser, deleteUser, setActiveUser } = this.props;
@@ -115,7 +122,7 @@ export class Login extends Component<LoginProps> {
         )}
         <div className="hs-login">
           <a className="btn btn-outline-primary" href={getAuthUrl()}>
-            <img src={hsLogo} className="hs-logo" /> {_t('login.with-hivesigner')}
+            <img src={hsLogo} className="hs-logo" /> {_t("login.with-hivesigner")}
           </a>
         </div>
         <p>
@@ -132,6 +139,7 @@ interface Props {
   users: User[];
   activeUser: ActiveUser | null;
   setActiveUser: (username: string | null) => void;
+  updateActiveUser: (data: Account) => void;
   deleteUser: (username: string) => void;
   onHide: () => void;
   onLogin: () => void;

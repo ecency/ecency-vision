@@ -10,6 +10,7 @@ import isEqual from "react-fast-compare";
 
 import { Global, Theme } from "../../store/global/types";
 import { TrendingTags } from "../../store/trending-tags/types";
+import { Account } from "../../store/accounts/types";
 import { User } from "../../store/users/types";
 import { ActiveUser } from "../../store/active-user/types";
 
@@ -33,6 +34,7 @@ interface Props {
   fetchTrendingTags: () => void;
   toggleTheme: () => void;
   setActiveUser: (username: string | null) => void;
+  updateActiveUser: (data: Account) => void;
   deleteUser: (username: string) => void;
 }
 

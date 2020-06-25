@@ -7,10 +7,13 @@ import queryString from "query-string";
 
 import { AppState } from "../store";
 import { Global } from "../store/global/types";
+import { Account } from "../store/accounts/types";
 import { User } from "../store/users/types";
 
 import { addUser } from "../store/users";
-import { setActiveUser } from "../store/active-user";
+import { setActiveUser, updateActiveUser } from "../store/active-user";
+
+import { getAccount } from "../api/hive";
 
 import { hsTokenRenew } from "../api/private";
 
@@ -20,11 +23,12 @@ interface Props {
   global: Global;
   addUser: (user: User) => void;
   setActiveUser: (username: string | null) => void;
+  updateActiveUser: (data: Account) => void;
 }
 
 class AuthPage extends Component<Props> {
   componentDidMount() {
-    const { location, history, addUser, setActiveUser } = this.props;
+    const { location, history, addUser, setActiveUser, updateActiveUser } = this.props;
     const qs = queryString.parse(location.search);
     const code = qs.code as string;
     if (code) {
@@ -39,6 +43,10 @@ class AuthPage extends Component<Props> {
 
           addUser(user);
           setActiveUser(user.username);
+          getAccount(user.username).then((r) => {
+            updateActiveUser(r);
+          });
+          
           history.push("/");
         })
         .catch(() => {
@@ -60,6 +68,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
     {
       addUser,
       setActiveUser,
+      updateActiveUser,
     },
     dispatch
   );

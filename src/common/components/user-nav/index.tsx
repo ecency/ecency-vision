@@ -3,6 +3,7 @@ import { History, Location } from "history";
 import { Link } from "react-router-dom";
 
 import { User } from "../../store/users/types";
+import { Account } from "../../store/accounts/types";
 import { ActiveUser } from "../../store/active-user/types";
 
 import ToolTip from "../tooltip";
@@ -20,6 +21,7 @@ interface Props {
   users: User[];
   activeUser: ActiveUser;
   setActiveUser: (username: string | null) => void;
+  updateActiveUser: (data: Account) => void;
   deleteUser: (username: string) => void;
 }
 

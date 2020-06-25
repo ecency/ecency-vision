@@ -31,7 +31,7 @@ import { toggleTheme } from "../store/global/index";
 import { addAccount } from "../store/accounts/index";
 import { addEntry } from "../store/entries/index";
 import { fetchTrendingTags } from "../store/trending-tags";
-import { setActiveUser } from "../store/active-user";
+import { setActiveUser, updateActiveUser } from "../store/active-user";
 import { deleteUser } from "../store/users";
 
 import { makePath as makeEntryPath } from "../components/entry-link";
@@ -86,6 +86,7 @@ interface Props {
   addEntry: (entry: Entry) => void;
   fetchTrendingTags: () => void;
   setActiveUser: (username: string | null) => void;
+  updateActiveUser: (data: Account) => void;
   deleteUser: (username: string) => void;
 }
 
@@ -361,6 +362,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       addEntry,
       fetchTrendingTags,
       setActiveUser,
+      updateActiveUser,
       deleteUser,
     },
     dispatch

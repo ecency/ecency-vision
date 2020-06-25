@@ -6,12 +6,13 @@ import { History, Location } from "history";
 import { AppState } from "../store";
 import { Global } from "../store/global/types";
 import { TrendingTags } from "../store/trending-tags/types";
+import { Account } from "../store/accounts/types";
 import { User } from "../store/users/types";
 import { ActiveUser } from "../store/active-user/types";
 
 import { toggleTheme } from "../store/global/index";
 import { fetchTrendingTags } from "../store/trending-tags";
-import { setActiveUser } from "../store/active-user";
+import { setActiveUser, updateActiveUser } from "../store/active-user";
 import { deleteUser } from "../store/users";
 
 import Meta from "../components/meta";
@@ -35,6 +36,7 @@ interface Props {
   toggleTheme: () => void;
   fetchTrendingTags: () => void;
   setActiveUser: (username: string | null) => void;
+  updateActiveUser: (data: Account) => void;
   deleteUser: (username: string) => void;
 }
 
@@ -561,6 +563,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       toggleTheme,
       fetchTrendingTags,
       setActiveUser,
+      updateActiveUser,
       deleteUser
     },
     dispatch

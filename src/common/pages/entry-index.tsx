@@ -17,7 +17,7 @@ import { makeGroupKey, fetchEntries } from "../store/entries";
 import { fetchCommunity, resetCommunity } from "../store/community";
 import { fetchTrendingTags } from "../store/trending-tags";
 import { addAccount } from "../store/accounts";
-import { setActiveUser } from "../store/active-user";
+import { setActiveUser, updateActiveUser } from "../store/active-user";
 import { deleteUser } from "../store/users";
 
 import Meta from "../components/meta";
@@ -59,6 +59,7 @@ interface Props {
   fetchTrendingTags: () => void;
   addAccount: (data: Account) => void;
   setActiveUser: (username: string | null) => void;
+  updateActiveUser: (data: Account) => void;
   deleteUser: (username: string) => void;
 }
 
@@ -215,6 +216,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       fetchTrendingTags,
       addAccount,
       setActiveUser,
+      updateActiveUser,
       deleteUser,
     },
     dispatch

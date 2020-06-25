@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import { User } from "../../store/users/types";
+import { Account } from "../../store/accounts/types";
 import { ActiveUser } from "../../store/active-user/types";
 
 import Login from "../login";
@@ -10,6 +11,7 @@ interface Props {
   activeUser: ActiveUser | null;
   children: JSX.Element;
   setActiveUser: (username: string | null) => void;
+  updateActiveUser: (data: Account) => void;
   deleteUser: (username: string) => void;
   onLogin?: () => void;
 }
