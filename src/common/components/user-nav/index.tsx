@@ -19,7 +19,7 @@ interface Props {
   location: Location;
   users: User[];
   activeUser: ActiveUser;
-  setActiveUser: (name: string | null) => void;
+  setActiveUser: (username: string | null) => void;
   deleteUser: (username: string) => void;
 }
 

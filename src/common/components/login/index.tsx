@@ -67,7 +67,7 @@ export class UserItem extends Component<UserItemprops> {
 interface LoginProps {
   users: User[];
   activeUser: ActiveUser | null;
-  setActiveUser: (name: string | null) => void;
+  setActiveUser: (username: string | null) => void;
   deleteUser: (username: string) => void;
   onLogin: () => void;
 }
@@ -131,7 +131,7 @@ export class Login extends Component<LoginProps> {
 interface Props {
   users: User[];
   activeUser: ActiveUser | null;
-  setActiveUser: (name: string | null) => void;
+  setActiveUser: (username: string | null) => void;
   deleteUser: (username: string) => void;
   onHide: () => void;
   onLogin: () => void;

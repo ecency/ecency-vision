@@ -42,7 +42,7 @@ interface Props {
   toggleTheme: () => void;
   addAccount: (data: Account) => void;
   fetchTrendingTags: () => void;
-  setActiveUser: (name: string | null) => void;
+  setActiveUser: (username: string | null) => void;
   deleteUser: (username: string) => void;
 }
 

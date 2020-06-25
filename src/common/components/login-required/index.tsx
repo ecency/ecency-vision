@@ -9,7 +9,7 @@ interface Props {
   users: User[];
   activeUser: ActiveUser | null;
   children: JSX.Element;
-  setActiveUser: (name: string | null) => void;
+  setActiveUser: (username: string | null) => void;
   deleteUser: (username: string) => void;
 }
 

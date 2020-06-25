@@ -19,7 +19,7 @@ interface Props {
   location: Location;
   global: Global;
   addUser: (user: User) => void;
-  setActiveUser: (name: string | null) => void;
+  setActiveUser: (username: string | null) => void;
 }
 
 class AuthPage extends Component<Props> {

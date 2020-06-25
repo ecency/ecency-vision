@@ -71,7 +71,7 @@ interface Props {
   fetchTransactions: (username: string) => void;
   resetTransactions: () => void;
   fetchTrendingTags: () => void;
-  setActiveUser: (name: string | null) => void;
+  setActiveUser: (username: string | null) => void;
   deleteUser: (username: string) => void;
 }
 

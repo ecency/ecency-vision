@@ -58,7 +58,7 @@ interface Props {
   resetCommunity: () => void;
   fetchTrendingTags: () => void;
   addAccount: (data: Account) => void;
-  setActiveUser: (name: string | null) => void;
+  setActiveUser: (username: string | null) => void;
   deleteUser: (username: string) => void;
 }
 

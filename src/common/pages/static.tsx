@@ -34,7 +34,7 @@ interface Props {
   activeUser: ActiveUser | null;
   toggleTheme: () => void;
   fetchTrendingTags: () => void;
-  setActiveUser: (name: string | null) => void;
+  setActiveUser: (username: string | null) => void;
   deleteUser: (username: string) => void;
 }
 
