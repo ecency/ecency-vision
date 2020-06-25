@@ -76,7 +76,7 @@ export default class MyDropDown extends Component<Props> {
       if (i.onClick) {
         i.onClick();
       }
-    }, 510); // wait until menu transition ends (0.5s)
+    }, 100);
   };
 
   render() {
