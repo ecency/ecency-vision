@@ -11,6 +11,7 @@ interface Props {
   children: JSX.Element;
   setActiveUser: (username: string | null) => void;
   deleteUser: (username: string) => void;
+  onLogin?: () => void;
 }
 
 interface State {
@@ -42,7 +43,20 @@ export default class LoginRequired extends Component<Props, State> {
     return (
       <>
         {clonedChildren}
-        {loginVisible && <Login {...this.props} onHide={this.toggle} onLogin={this.toggle} />}
+        {loginVisible && (
+          <Login
+            {...this.props}
+            onHide={this.toggle}
+            onLogin={() => {
+              this.toggle();
+
+              const { onLogin } = this.props;
+              if (onLogin) {
+                onLogin();
+              }
+            }}
+          />
+        )}
       </>
     );
   }
