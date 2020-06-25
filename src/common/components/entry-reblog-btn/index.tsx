@@ -1,8 +1,13 @@
 import React, { Component } from "react";
 
-import Tooltip from "../tooltip";
+import { Account } from "../../store/accounts/types";
+import { User } from "../../store/users/types";
+import { ActiveUser } from "../../store/active-user/types";
 
+import Tooltip from "../tooltip";
 import DownloadTrigger from "../download-trigger";
+import LoginRequired from "../login-required";
+import PopoverConfirm from '../popover-confirm';
 
 import { _t } from "../../i18n/index";
 
@@ -10,36 +15,37 @@ import { repeatSvg } from "../../img/svg";
 
 interface Props {
   text: boolean;
+  users: User[];
+  activeUser: ActiveUser | null;
+  setActiveUser: (username: string | null) => void;
+  updateActiveUser: (data: Account) => void;
+  deleteUser: (username: string) => void;
 }
 
 export default class EntryReblogBtn extends Component<Props> {
-  public static defaultProps: Props = {
-    text: true,
+  reblog = () => {
+    console.log("reblogged");
   };
 
   render() {
-    const { text } = this.props;
+    const { text, activeUser } = this.props;
 
-    if (text) {
-      return (
-        <DownloadTrigger>
-          <div className="entry-reblog-btn">
-            <a className="inner-btn">
-              {repeatSvg} {_t("entry-reblog.reblog")}
-            </a>
-          </div>
-        </DownloadTrigger>
-      );
+    const content = (
+      <div className="entry-reblog-btn" onClick={this.reblog}>
+        <Tooltip content={_t("entry-reblog.reblog")}>
+          <a className="inner-btn">
+            {repeatSvg} {text ? _t("entry-reblog.reblog") : ""}
+          </a>
+        </Tooltip>
+      </div>
+    );
+
+    if (!activeUser) {
+      return <LoginRequired {...this.props}>{content}</LoginRequired>;
     }
 
-    return (
-      <DownloadTrigger>
-        <div className="entry-reblog-btn">
-          <Tooltip content={_t("entry-reblog.reblog")}>
-            <a className="inner-btn">{repeatSvg}</a>
-          </Tooltip>
-        </div>
-      </DownloadTrigger>
-    );
+    return <PopoverConfirm onConfirm={this.reblog} titleText="Reblog?">
+      {content}
+    </PopoverConfirm>
   }
 }

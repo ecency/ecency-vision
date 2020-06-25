@@ -7,6 +7,8 @@ import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
 import { Entry } from "../../store/entries/types";
 import { Community } from "../../store/community/types";
+import { User } from "../../store/users/types";
+import { ActiveUser } from "../../store/active-user/types";
 
 import EntryListItem from "../entry-list-item/index";
 
@@ -16,7 +18,12 @@ interface Props {
   global: Global;
   entries: Entry[];
   community?: Community | null;
+  users: User[];
+  activeUser: ActiveUser | null;
   addAccount: (data: Account) => void;
+  setActiveUser: (username: string | null) => void;
+  updateActiveUser: (data: Account) => void;
+  deleteUser: (username: string) => void;
 }
 
 export default class EntryListContent extends Component<Props> {
@@ -24,7 +31,8 @@ export default class EntryListContent extends Component<Props> {
     return (
       !isEqual(this.props.entries, nextProps.entries) ||
       !isEqual(this.props.community, nextProps.community) ||
-      !isEqual(this.props.global, nextProps.global)
+      !isEqual(this.props.global, nextProps.global)||
+      !isEqual(this.props.activeUser, nextProps.activeUser)
     );
   }
 

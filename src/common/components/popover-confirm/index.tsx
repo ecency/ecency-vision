@@ -5,6 +5,9 @@ import { Popover, OverlayTrigger, Button } from "react-bootstrap";
 import { _t } from "../../i18n";
 
 interface Props {
+  titleText?: string;
+  okText?: string;
+  cancelText?: string;
   children: JSX.Element;
   onConfirm?: () => void;
   onCancel?: () => void;
@@ -47,7 +50,7 @@ export default class PopoverConfirm extends Component<Props> {
   };
 
   render() {
-    const { children } = this.props;
+    const { titleText, okText, cancelText, children } = this.props;
     const { show } = this.state;
 
     const clonedChildren = React.cloneElement(children, {
@@ -62,13 +65,13 @@ export default class PopoverConfirm extends Component<Props> {
           e.stopPropagation();
         }}
       >
-        <Popover.Title>{_t("confirm.title")}</Popover.Title>
+        <Popover.Title>{titleText || _t("confirm.title")}</Popover.Title>
         <Popover.Content>
           <Button size="sm" variant="primary" style={{ marginRight: "10px" }} onClick={this.confirm}>
-            {_t("confirm.ok")}
+            {okText || _t("confirm.ok")}
           </Button>
           <Button size="sm" variant="secondary" onClick={this.cancel}>
-            {_t("confirm.cancel")}
+            {cancelText || _t("confirm.cancel")}
           </Button>
         </Popover.Content>
       </Popover>
@@ -80,7 +83,7 @@ export default class PopoverConfirm extends Component<Props> {
 
     return (
       <>
-        <OverlayTrigger defaultShow={true} trigger={[]} placement="right" overlay={popover}>
+        <OverlayTrigger defaultShow={true} trigger={[]} placement="left" overlay={popover}>
           {children}
         </OverlayTrigger>
       </>
