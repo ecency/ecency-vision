@@ -20,7 +20,7 @@ const props = {
   ],
 };
 
-const component = renderer.create(<MyDropDown {...props} />);
+const component = renderer.create(<MyDropDown {...props} float="left" />);
 
 it("(1) Default render", () => {
   expect(component.toJSON()).toMatchSnapshot();

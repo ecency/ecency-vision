@@ -5,7 +5,7 @@ Object {
   "data": Object {
     "name": "foo",
   },
-  "name": "foo",
+  "username": "foo",
 }
 `;
 
@@ -14,7 +14,7 @@ Object {
   "data": Object {
     "name": "foo",
   },
-  "name": "foo",
+  "username": "foo",
 }
 `;
 
@@ -25,6 +25,6 @@ Object {
     "name": "foo",
     "post_count": 10,
   },
-  "name": "foo",
+  "username": "foo",
 }
 `;
