@@ -55,7 +55,7 @@ const updateActiveUser = () => {
   }
 };
 updateActiveUser();
-setInterval(updateActiveUser, 60 * 60);
+setInterval(updateActiveUser, 60 * 60 * 1000);
 
 if (module.hot) {
   module.hot.accept("../common/app", () => {
