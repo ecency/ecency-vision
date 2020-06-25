@@ -32,7 +32,7 @@ export class UserItem extends Component<UserItemprops> {
 
     return (
       <div
-        className={`user-list-item ${activeUser && activeUser.name === user.username ? "active" : ""}`}
+        className={`user-list-item ${activeUser && activeUser.username === user.username ? "active" : ""}`}
         onClick={() => {
           const { onSelect } = this.props;
           onSelect(user);
@@ -40,7 +40,7 @@ export class UserItem extends Component<UserItemprops> {
       >
         <UserAvatar {...this.props} username={user.username} size="normal" />
         <span className="username">@{user.username}</span>
-        {activeUser && activeUser.name === user.username && <div className="check-mark" />}
+        {activeUser && activeUser.username === user.username && <div className="check-mark" />}
         <div className="flex-spacer" />
         <PopoverConfirm
           onConfirm={() => {
@@ -101,7 +101,7 @@ export class Login extends Component<LoginProps> {
                         const { activeUser, deleteUser, setActiveUser } = this.props;
                         deleteUser(user.username);
 
-                        if (activeUser && user.username === activeUser.name) {
+                        if (activeUser && user.username === activeUser.username) {
                           setActiveUser(null);
                         }
                       }}

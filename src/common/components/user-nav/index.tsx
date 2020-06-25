@@ -42,11 +42,11 @@ export default class UserNav extends Component<Props, State> {
     const { login } = this.state;
 
     const dropDownConfig = {
-      label: <UserAvatar username={activeUser.name} size="medium" />,
+      label: <UserAvatar username={activeUser.username} size="medium" />,
       items: [
         {
           label: "Profile",
-          href: `/@${activeUser.name}`,
+          href: `/@${activeUser.username}`,
         },
         {
           label: "Login As",
@@ -66,11 +66,11 @@ export default class UserNav extends Component<Props, State> {
       <>
         <div className="user-nav">
           <ToolTip content={_t("user-nav.wallet")}>
-            <Link to={`/@${activeUser.name}/wallet`} className="user-wallet">
+            <Link to={`/@${activeUser.username}/wallet`} className="user-wallet">
               {creditCardSvg}
             </Link>
           </ToolTip>
-          <DropDown {...{ ...this.props, ...dropDownConfig }} float="right" header={`@${activeUser.name}`} />
+          <DropDown {...{ ...this.props, ...dropDownConfig }} float="right" header={`@${activeUser.username}`} />
         </div>
         {login && <Login {...this.props} onHide={this.toggleLogin} onLogin={this.toggleLogin} />}
       </>

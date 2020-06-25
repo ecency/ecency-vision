@@ -1,7 +1,7 @@
 import { Account } from "../accounts/types";
 
 export interface ActiveUser {
-  name: string;
+  username: string;
   data: Account;
 }
 

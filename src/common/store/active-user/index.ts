@@ -9,7 +9,7 @@ const load = (): ActiveUser | null => {
   const name = ls.get("active_user");
   if (name && ls.get(`user_${name}`)) {
     return {
-      name,
+      username: name,
       data: { name },
     };
   }
