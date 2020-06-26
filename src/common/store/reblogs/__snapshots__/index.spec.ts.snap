@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`1- default state 1`] = `
+Array [
+  Object {
+    "account": "lorem",
+    "author": "ipsum",
+    "permlink": "dolor",
+  },
+  Object {
+    "account": "foo",
+    "author": "bar",
+    "permlink": "baz",
+  },
+]
+`;
