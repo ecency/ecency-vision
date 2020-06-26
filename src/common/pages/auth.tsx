@@ -41,6 +41,8 @@ class AuthPage extends Component<Props> {
             expiresIn: x.expires_in,
           };
 
+          console.log(x.access_token)
+
           addUser(user);
           setActiveUser(user.username);
           getAccount(user.username).then((r) => {

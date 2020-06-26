@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 
+import { Entry } from "../../store/entries/types";
 import { Account } from "../../store/accounts/types";
 import { User } from "../../store/users/types";
 import { ActiveUser } from "../../store/active-user/types";
@@ -8,12 +9,15 @@ import Tooltip from "../tooltip";
 import LoginRequired from "../login-required";
 import PopoverConfirm from "../popover-confirm";
 
+import { reblog } from "../../api/operations";
+
 import { _t } from "../../i18n/index";
 
 import { repeatSvg } from "../../img/svg";
 
 interface Props {
   text: boolean;
+  entry: Entry;
   users: User[];
   activeUser: ActiveUser | null;
   setActiveUser: (username: string | null) => void;
@@ -23,7 +27,9 @@ interface Props {
 
 export default class EntryReblogBtn extends Component<Props> {
   reblog = () => {
-    console.log("reblogged");
+    const { entry, users, activeUser } = this.props;
+    const user = users.find((x) => x.username === activeUser?.username)!;
+    reblog(user, entry.author, entry.permlink);
   };
 
   render() {

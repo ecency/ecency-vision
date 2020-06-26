@@ -302,7 +302,7 @@ class EntryPage extends Component<Props, State> {
                     </a>
                   </DownloadTrigger>
                   <span className="separator" />
-                  <EntryReblogBtn {...this.props} text={true} />
+                  <EntryReblogBtn {...this.props} text={true} entry={entry} />
                 </div>
               </div>
               <div className="entry-controls">
