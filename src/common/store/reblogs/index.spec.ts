@@ -1,4 +1,4 @@
-import reducer, { initialState } from "./index";
+import reducer, { initialState, reloadAct } from "./index";
 
 jest.mock("../../util/local-storage", () => ({
   get: () => {
@@ -20,5 +20,10 @@ jest.mock("../../util/local-storage", () => ({
 let state = initialState;
 
 it("1- default state", () => {
+  expect(state).toMatchSnapshot();
+});
+
+it("2- reloadAct", () => {
+  state = reducer(state, reloadAct());
   expect(state).toMatchSnapshot();
 });

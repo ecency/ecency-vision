@@ -6,7 +6,7 @@ import * as ls from "../../util/local-storage";
 
 import { encodeObj, decodeObj } from "../../util/encoder";
 
-export const initialState: User[] = typeof window !== "undefined" ?  (ls.getByPrefix("user_").map((x) => decodeObj(x)) as User[]) : [];
+export const initialState: User[] = [];
 
 export default (state: User[] = initialState, action: Actions): User[] => {
   switch (action.type) {

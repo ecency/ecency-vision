@@ -17,7 +17,7 @@ const load = (): ActiveUser | null => {
   return null;
 };
 
-export const initialState: ActiveUser | null = typeof window !== "undefined" ? load() : null;
+export const initialState: ActiveUser | null = null;
 
 export default (state: ActiveUser | null = initialState, action: Actions): ActiveUser | null => {
   switch (action.type) {

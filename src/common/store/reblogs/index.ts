@@ -8,7 +8,7 @@ const load = (): Reblog[] => {
   return ls.get("reblogs");
 };
 
-export const initialState: Reblog[] = typeof window !== "undefined" ? load() : [];
+export const initialState: Reblog[] = [];
 
 export default (state: Reblog[] = initialState, action: Actions): Reblog[] => {
   switch (action.type) {
