@@ -1,0 +1,116 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) No active user 1`] = `
+<div
+  className="entry-reblog-btn"
+  onClick={[Function]}
+>
+  <a
+    className="inner-btn"
+    title="Reblog"
+  >
+    <svg
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M17,17H7V14L3,18L7,22V19H19V13H17M7,7H17V10L21,6L17,2V5H5V11H7V7Z"
+        fill="currentColor"
+      />
+    </svg>
+     
+    
+  </a>
+</div>
+`;
+
+exports[`(2) With text 1`] = `
+<div
+  className="entry-reblog-btn"
+  onClick={[Function]}
+>
+  <a
+    className="inner-btn"
+    title="Reblog"
+  >
+    <svg
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M17,17H7V14L3,18L7,22V19H19V13H17M7,7H17V10L21,6L17,2V5H5V11H7V7Z"
+        fill="currentColor"
+      />
+    </svg>
+     
+    Reblog
+  </a>
+</div>
+`;
+
+exports[`(3) Active user. Not reblogged 1`] = `
+<div
+  className="entry-reblog-btn"
+  onClick={[Function]}
+>
+  <a
+    className="inner-btn"
+    title="Reblog"
+  >
+    <svg
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M17,17H7V14L3,18L7,22V19H19V13H17M7,7H17V10L21,6L17,2V5H5V11H7V7Z"
+        fill="currentColor"
+      />
+    </svg>
+     
+    
+  </a>
+</div>
+`;
+
+exports[`(4) Active user. Reblogged 1`] = `
+<div
+  className="entry-reblog-btn reblogged"
+  onClick={[Function]}
+>
+  <a
+    className="inner-btn"
+    title="Reblog"
+  >
+    <svg
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M17,17H7V14L3,18L7,22V19H19V13H17M7,7H17V10L21,6L17,2V5H5V11H7V7Z"
+        fill="currentColor"
+      />
+    </svg>
+     
+    
+  </a>
+</div>
+`;
+
+exports[`(5) Reblogging 1`] = `
+<div
+  className="entry-reblog-btn in-progress"
+  onClick={[Function]}
+>
+  <a
+    className="inner-btn"
+    title="Reblog"
+  >
+    <svg
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M17,17H7V14L3,18L7,22V19H19V13H17M7,7H17V10L21,6L17,2V5H5V11H7V7Z"
+        fill="currentColor"
+      />
+    </svg>
+     
+    
+  </a>
+</div>
+`;
