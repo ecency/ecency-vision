@@ -9,8 +9,9 @@ import { Reblog } from "../../store/reblogs/types";
 import Tooltip from "../tooltip";
 import LoginRequired from "../login-required";
 import PopoverConfirm from "../popover-confirm";
+import { error, success } from "../feedback";
 
-import { reblog } from "../../api/operations";
+import { reblog, formatError } from "../../api/operations";
 
 import { _t } from "../../i18n/index";
 
@@ -30,19 +31,47 @@ interface Props {
   addReblog: (account: string, author: string, permlink: string) => void;
 }
 
+interface State {
+  inProgress: boolean;
+}
+
 export default class EntryReblogBtn extends Component<Props> {
+  state: State = {
+    inProgress: false,
+  };
+
+  _mounted: boolean = true;
+
+  componentWillUnmount() {
+    this._mounted = false;
+  }
+
+  stateSet = (obj: {}, cb: () => void = () => {}) => {
+    if (this._mounted) {
+      this.setState(obj, cb);
+    }
+  };
   reblog = () => {
     const { entry, users, activeUser, addReblog } = this.props;
     const user = users.find((x) => x.username === activeUser?.username)!;
+
+    this.stateSet({ inProgress: true });
     reblog(user, entry.author, entry.permlink)
       .then(() => {
         addReblog(activeUser?.username!, entry.author, entry.permlink);
+        success(_t("entry-reblog.success"));
       })
-      .catch((e) => {});
+      .catch((e) => {
+        error(formatError(e));
+      })
+      .finally(() => {
+        this.stateSet({ inProgress: false });
+      });
   };
 
   render() {
     const { text, activeUser, entry, reblogs } = this.props;
+    const { inProgress } = this.state;
 
     const reblogged =
       activeUser &&
@@ -51,7 +80,7 @@ export default class EntryReblogBtn extends Component<Props> {
       ) !== undefined;
 
     const content = (
-      <div className={_c(`entry-reblog-btn ${reblogged ? "reblogged" : ""}`)}>
+      <div className={_c(`entry-reblog-btn ${reblogged ? "reblogged" : ""} ${inProgress ? "in-progress" : ""} `)}>
         <Tooltip content={_t("entry-reblog.reblog")}>
           <a className="inner-btn">
             {repeatSvg} {text ? _t("entry-reblog.reblog") : ""}

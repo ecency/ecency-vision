@@ -24,6 +24,7 @@ import { addReblog } from "../store/reblogs";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme";
+import Feedback from "../components/feedback";
 import NavBar from "../components/navbar";
 import Intro from "../components/intro";
 import DropDown from "../components/dropdown";
@@ -173,6 +174,7 @@ class EntryIndexPage extends Component<Props> {
         <Meta {...metaProps} />
 
         <Theme {...this.props} />
+        <Feedback />
         <NavBar {...this.props} />
         <Intro {...this.props} />
         <div className="app-content entry-index-page">

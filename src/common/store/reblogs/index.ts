@@ -5,7 +5,7 @@ import { Reblog, Actions, ActionTypes, ReloadAction } from "./types";
 import * as ls from "../../util/local-storage";
 
 const load = (): Reblog[] => {
-  return ls.get("reblogs");
+  return ls.get("reblogs") || [];
 };
 
 export const initialState: Reblog[] = [];

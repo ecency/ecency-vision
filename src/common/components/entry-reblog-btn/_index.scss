@@ -1,3 +1,21 @@
+@keyframes reblog-in-progress {
+  0% {
+    color: $dark-sky-blue;
+  }
+  25% {
+    color: transparent;
+  }
+  50% {
+    color: $dark-sky-blue;
+  }
+  75% {
+    color: transparent;
+  }
+  100% {
+    color: $dark-sky-blue;
+  }
+}
+
 .entry-reblog-btn {
   align-items: center;
   color: $steel-grey;
@@ -10,7 +28,7 @@
 
   svg {
     height: 16px;
-    opacity: 0.5;
+    opacity: 0.8;
     margin-top: 2px;
   }
 
@@ -28,6 +46,18 @@
   }
 
   &.reblogged {
+    pointer-events: none;
+
+    svg {
+      opacity: 1;
+    }
+  }
+
+  &.in-progress {
+    .inner-btn {
+      animation: reblog-in-progress 5s infinite;
+    }
+
     pointer-events: none;
 
     svg {

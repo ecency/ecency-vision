@@ -1,5 +1,5 @@
 .feedback-container {
-  position: absolute;
+  position: fixed;
   z-index: 9000;
   left: calc(50% - 150px);
   width: 300px;
@@ -9,5 +9,19 @@
   @media (min-width: $md-break) {
     left: calc(50% - 250px);
     width: 500px;
+  }
+
+  .alert {
+    .alert-inner {
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      overflow: hidden;
+      svg {
+        flex-shrink: 0;
+        height: 16px;
+        margin-right: 6px;
+      }
+    }
   }
 }

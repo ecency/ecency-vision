@@ -4,10 +4,22 @@ import { Alert } from "react-bootstrap";
 
 import random from "../../util/rnd";
 
+import { checkSvg, alertCircleSvg } from "../../img/svg";
+
 export const error = (message: string) => {
   const detail: FeedbackObject = {
     id: random(),
     type: "error",
+    message,
+  };
+  const ev = new CustomEvent("feedback", { detail });
+  window.dispatchEvent(ev);
+};
+
+export const success = (message: string) => {
+  const detail: FeedbackObject = {
+    id: random(),
+    type: "success",
     message,
   };
   const ev = new CustomEvent("feedback", { detail });
@@ -69,10 +81,20 @@ export default class Feedback extends Component<Props, State> {
       <div className="feedback-container">
         {list.map((x) => {
           switch (x.type) {
+            case "success":
+              return (
+                <Alert key={x.id} variant="success">
+                  <div className="alert-inner">
+                    {checkSvg} {x.message}
+                  </div>
+                </Alert>
+              );
             case "error":
               return (
                 <Alert key={x.id} variant="danger">
-                  {x.message}
+                  <div className="alert-inner">
+                    {alertCircleSvg} {x.message}
+                  </div>
                 </Alert>
               );
             default:

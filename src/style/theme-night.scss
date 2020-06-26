@@ -3,6 +3,8 @@
 $font-family-base: "IBM Plex Sans", sans-serif;
 
 $primary: $dark-sky-blue;
+$success: $green1 ;
+$danger: $red2;
 
 $link-hover-decoration: none;
 $line-height-base: 1.2;
@@ -39,6 +41,9 @@ $pagination-bg: lighten($dark-six, 10);
 $pagination-border-color: $dark-six;
 $pagination-hover-bg: $dark-six;
 $pagination-hover-border-color: transparent;
+
+$alert-padding-y: 0.6rem;
+$alert-padding-x: 0.6rem;
 
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";

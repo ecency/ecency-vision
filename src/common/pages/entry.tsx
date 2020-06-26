@@ -51,6 +51,7 @@ import EntryReblogBtn from "../components/entry-reblog-btn/index";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
+import Feedback from "../components/feedback";
 import NavBar from "../components/navbar/index";
 import NotFound from "../components/404";
 
@@ -220,6 +221,7 @@ class EntryPage extends Component<Props, State> {
       <>
         <Meta {...metaProps} />
         <Theme {...this.props} />
+        <Feedback />
         <MdHandler {...this.props} />
         <NavBar {...this.props} />
 

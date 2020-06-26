@@ -46,7 +46,8 @@
   "entry-reblog": {
     "reblog": "Reblog",
     "confirm-title": "Reblog to @{{n}}'s blog?",
-    "confirm-ok": "Reblog"
+    "confirm-ok": "Reblog",
+    "success": "Reblogged!"
   },
   "entry-payout": {
     "potential-payout": "Potential Payout",

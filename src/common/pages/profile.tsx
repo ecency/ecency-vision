@@ -28,6 +28,7 @@ import { addReblog } from "../store/reblogs";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme";
+import Feedback from "../components/feedback";
 import NavBar from "../components/navbar";
 import NotFound from "../components/404";
 import LinearProgress from "../components/linear-progress/index";
@@ -211,6 +212,7 @@ class ProfilePage extends Component<Props, State> {
       <>
         <Meta {...metaProps} />
         <Theme {...this.props} />
+        <Feedback />
         <NavBar {...this.props} />
 
         <div className="app-content profile-page">
