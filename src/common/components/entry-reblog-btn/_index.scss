@@ -20,9 +20,18 @@
     display: flex;
   }
 
-  &:hover {
+  &:hover,
+  &.reblogged {
     .inner-btn {
       color: $dark-sky-blue;
+    }
+  }
+
+  &.reblogged {
+    pointer-events: none;
+
+    svg {
+      opacity: 1;
     }
   }
 }
