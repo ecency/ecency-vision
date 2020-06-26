@@ -14,6 +14,7 @@ import { Transactions } from "../store/transactions/types";
 import { TrendingTags } from "../store/trending-tags/types";
 import { User } from "../store/users/types";
 import { ActiveUser } from "../store/active-user/types";
+import { Reblog } from "../store/reblogs/types";
 
 import { toggleListStyle, toggleTheme } from "../store/global";
 import { makeGroupKey, fetchEntries } from "../store/entries";
@@ -23,6 +24,7 @@ import { fetchTransactions, resetTransactions } from "../store/transactions";
 import { fetchTrendingTags } from "../store/trending-tags";
 import { setActiveUser, updateActiveUser } from "../store/active-user";
 import { deleteUser } from "../store/users";
+import { addReblog } from "../store/reblogs";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme";
@@ -63,6 +65,7 @@ interface Props {
   transactions: Transactions;
   users: User[];
   activeUser: ActiveUser | null;
+  reblogs: Reblog[];
   toggleTheme: () => void;
   toggleListStyle: () => void;
   fetchEntries: (what: string, tag: string, more: boolean) => void;
@@ -74,6 +77,7 @@ interface Props {
   setActiveUser: (username: string | null) => void;
   updateActiveUser: (data: Account) => void;
   deleteUser: (username: string) => void;
+  addReblog: (account: string, author: string, permlink: string) => void;
 }
 
 interface State {
@@ -261,6 +265,7 @@ const mapStateToProps = (state: AppState) => ({
   trendingTags: state.trendingTags,
   users: state.users,
   activeUser: state.activeUser,
+  reblogs: state.reblogs,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
@@ -276,7 +281,8 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       fetchTrendingTags,
       setActiveUser,
       updateActiveUser,
-      deleteUser
+      deleteUser,
+      addReblog,
     },
     dispatch
   );

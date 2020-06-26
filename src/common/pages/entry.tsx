@@ -26,6 +26,7 @@ import { Entry, Entries } from "../store/entries/types";
 import { TrendingTags } from "../store/trending-tags/types";
 import { User } from "../store/users/types";
 import { ActiveUser } from "../store/active-user/types";
+import { Reblog } from "../store/reblogs/types";
 
 import { toggleTheme } from "../store/global/index";
 import { addAccount } from "../store/accounts/index";
@@ -33,6 +34,7 @@ import { addEntry } from "../store/entries/index";
 import { fetchTrendingTags } from "../store/trending-tags";
 import { setActiveUser, updateActiveUser } from "../store/active-user";
 import { deleteUser } from "../store/users";
+import { addReblog } from "../store/reblogs";
 
 import { makePath as makeEntryPath } from "../components/entry-link";
 import ProfileLink from "../components/profile-link";
@@ -81,6 +83,7 @@ interface Props {
   entries: Entries;
   users: User[];
   activeUser: ActiveUser | null;
+  reblogs: Reblog[];
   toggleTheme: () => void;
   addAccount: (data: Account) => void;
   addEntry: (entry: Entry) => void;
@@ -88,6 +91,7 @@ interface Props {
   setActiveUser: (username: string | null) => void;
   updateActiveUser: (data: Account) => void;
   deleteUser: (username: string) => void;
+  addReblog: (account: string, author: string, permlink: string) => void;
 }
 
 interface State {
@@ -352,6 +356,7 @@ const mapStateToProps = (state: AppState) => ({
   entries: state.entries,
   users: state.users,
   activeUser: state.activeUser,
+  reblogs: state.reblogs,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
@@ -364,6 +369,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       setActiveUser,
       updateActiveUser,
       deleteUser,
+      addReblog,
     },
     dispatch
   );

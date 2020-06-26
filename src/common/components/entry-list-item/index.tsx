@@ -11,6 +11,7 @@ import { Account } from "../../store/accounts/types";
 import { Community } from "../../store/community/types";
 import { User } from "../../store/users/types";
 import { ActiveUser } from "../../store/active-user/types";
+import { Reblog } from "../../store/reblogs/types";
 
 import defaults from "../../constants/defaults.json";
 
@@ -52,6 +53,7 @@ interface Props {
   community?: Community | null;
   users: User[];
   activeUser: ActiveUser | null;
+  reblogs: Reblog[];
   entry: Entry;
   asAuthor: string;
   promoted: boolean;
@@ -59,6 +61,7 @@ interface Props {
   setActiveUser: (username: string | null) => void;
   updateActiveUser: (data: Account) => void;
   deleteUser: (username: string) => void;
+  addReblog: (account: string, author: string, permlink: string) => void;
 }
 
 export default class EntryListItem extends Component<Props> {
@@ -72,7 +75,8 @@ export default class EntryListItem extends Component<Props> {
       !isEqual(this.props.entry, nextProps.entry) ||
       !isEqual(this.props.community, nextProps.community) ||
       !isEqual(this.props.global, nextProps.global) ||
-      !isEqual(this.props.activeUser, nextProps.activeUser)
+      !isEqual(this.props.activeUser, nextProps.activeUser) ||
+      !isEqual(this.props.reblogs, nextProps.reblogs)
     );
   }
 

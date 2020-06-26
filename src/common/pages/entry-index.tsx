@@ -11,6 +11,7 @@ import { Entries } from "../store/entries/types";
 import { Community } from "../store/community/types";
 import { User } from "../store/users/types";
 import { ActiveUser } from "../store/active-user/types";
+import { Reblog } from "../store/reblogs/types";
 
 import { hideIntro, toggleListStyle, toggleTheme } from "../store/global";
 import { makeGroupKey, fetchEntries } from "../store/entries";
@@ -19,6 +20,7 @@ import { fetchTrendingTags } from "../store/trending-tags";
 import { addAccount } from "../store/accounts";
 import { setActiveUser, updateActiveUser } from "../store/active-user";
 import { deleteUser } from "../store/users";
+import { addReblog } from "../store/reblogs";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme";
@@ -50,6 +52,7 @@ interface Props {
   community: Community | null;
   users: User[];
   activeUser: ActiveUser | null;
+  reblogs: Reblog[];
   toggleTheme: () => void;
   hideIntro: () => void;
   toggleListStyle: () => void;
@@ -61,6 +64,7 @@ interface Props {
   setActiveUser: (username: string | null) => void;
   updateActiveUser: (data: Account) => void;
   deleteUser: (username: string) => void;
+  addReblog: (account: string, author: string, permlink: string) => void;
 }
 
 class EntryIndexPage extends Component<Props> {
@@ -126,7 +130,7 @@ class EntryIndexPage extends Component<Props> {
         ...(activeUser
           ? [
               {
-                label: _t('entry-index.feed'),
+                label: _t("entry-index.feed"),
                 href: `/@${activeUser.username}/feed`,
                 active: filter === "feed" && activeUser.username === tag.replace("@", ""),
               },
@@ -135,7 +139,7 @@ class EntryIndexPage extends Component<Props> {
         ...[EntryFilter.trending, EntryFilter.hot, EntryFilter.created].map((x) => {
           return {
             label: _t(`entry-index.filter-${x}`),
-            href: (tag && filter !== "feed") ? `/${x}/${tag}` : `/${x}`,
+            href: tag && filter !== "feed" ? `/${x}/${tag}` : `/${x}`,
             active: filter === x,
           };
         }),
@@ -213,6 +217,7 @@ const mapStateToProps = (state: AppState) => ({
   community: state.community,
   users: state.users,
   activeUser: state.activeUser,
+  reblogs: state.reblogs,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
@@ -229,6 +234,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       setActiveUser,
       updateActiveUser,
       deleteUser,
+      addReblog,
     },
     dispatch
   );
