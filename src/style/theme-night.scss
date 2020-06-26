@@ -16,10 +16,13 @@ $input-color: $dark-two;
 $input-placeholder-color: $steel-grey;
 
 $btn-border-radius: 25px;
+$btn-border-radius-sm: 25px;
 
 $popover-border-color: $dark-two;
-$popover-bg: lighten($dark-six, 2);
+$popover-bg: lighten($dark-six, 6);
 $popover-body-color: $silver;
+$popover-header-bg: lighten($dark-six, 2);
+$popover-arrow-color: lighten($dark-six, 2);
 
 $modal-content-bg: lighten($dark-six, 2);
 $modal-header-border-color: null default;

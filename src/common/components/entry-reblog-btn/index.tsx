@@ -5,9 +5,8 @@ import { User } from "../../store/users/types";
 import { ActiveUser } from "../../store/active-user/types";
 
 import Tooltip from "../tooltip";
-import DownloadTrigger from "../download-trigger";
 import LoginRequired from "../login-required";
-import PopoverConfirm from '../popover-confirm';
+import PopoverConfirm from "../popover-confirm";
 
 import { _t } from "../../i18n/index";
 
@@ -31,7 +30,7 @@ export default class EntryReblogBtn extends Component<Props> {
     const { text, activeUser } = this.props;
 
     const content = (
-      <div className="entry-reblog-btn" onClick={this.reblog}>
+      <div className="entry-reblog-btn">
         <Tooltip content={_t("entry-reblog.reblog")}>
           <a className="inner-btn">
             {repeatSvg} {text ? _t("entry-reblog.reblog") : ""}
@@ -44,8 +43,14 @@ export default class EntryReblogBtn extends Component<Props> {
       return <LoginRequired {...this.props}>{content}</LoginRequired>;
     }
 
-    return <PopoverConfirm onConfirm={this.reblog} titleText="Reblog?">
-      {content}
-    </PopoverConfirm>
+    return (
+      <PopoverConfirm
+        onConfirm={this.reblog}
+        titleText={_t("entry-reblog.confirm-title", { n: activeUser.username })}
+        okText={_t("entry-reblog.confirm-ok")}
+      >
+        {content}
+      </PopoverConfirm>
+    );
   }
 }

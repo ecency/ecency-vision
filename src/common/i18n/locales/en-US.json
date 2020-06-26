@@ -44,7 +44,9 @@
     "no-replies": "No responses yet. Click to respond."
   },
   "entry-reblog": {
-    "reblog": "Reblog"
+    "reblog": "Reblog",
+    "confirm-title": "Reblog to @{{n}}'s blog?",
+    "confirm-ok": "Reblog"
   },
   "entry-payout": {
     "potential-payout": "Potential Payout",

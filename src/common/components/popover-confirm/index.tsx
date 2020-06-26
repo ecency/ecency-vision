@@ -67,12 +67,14 @@ export default class PopoverConfirm extends Component<Props> {
       >
         <Popover.Title>{titleText || _t("confirm.title")}</Popover.Title>
         <Popover.Content>
-          <Button size="sm" variant="primary" style={{ marginRight: "10px" }} onClick={this.confirm}>
-            {okText || _t("confirm.ok")}
-          </Button>
-          <Button size="sm" variant="secondary" onClick={this.cancel}>
-            {cancelText || _t("confirm.cancel")}
-          </Button>
+          <div style={{ textAlign: "center" }}>
+            <Button size="sm" variant="primary" style={{ marginRight: "10px" }} onClick={this.confirm}>
+              {okText || _t("confirm.ok")}
+            </Button>
+            <Button size="sm" variant="secondary" onClick={this.cancel}>
+              {cancelText || _t("confirm.cancel")}
+            </Button>
+          </div>
         </Popover.Content>
       </Popover>
     );
@@ -83,7 +85,7 @@ export default class PopoverConfirm extends Component<Props> {
 
     return (
       <>
-        <OverlayTrigger defaultShow={true} trigger={[]} placement="left" overlay={popover}>
+        <OverlayTrigger defaultShow={true} trigger={[]} placement="bottom" overlay={popover}>
           {children}
         </OverlayTrigger>
       </>
