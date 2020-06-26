@@ -4,6 +4,7 @@ import { Entry } from "../../store/entries/types";
 import { Account } from "../../store/accounts/types";
 import { User } from "../../store/users/types";
 import { ActiveUser } from "../../store/active-user/types";
+import { Reblog } from "../../store/reblogs/types";
 
 import Tooltip from "../tooltip";
 import LoginRequired from "../login-required";
@@ -20,20 +21,26 @@ interface Props {
   entry: Entry;
   users: User[];
   activeUser: ActiveUser | null;
+  reblogs: Reblog[];
   setActiveUser: (username: string | null) => void;
   updateActiveUser: (data: Account) => void;
   deleteUser: (username: string) => void;
+  addReblog: (account: string, author: string, permlink: string) => void;
 }
 
 export default class EntryReblogBtn extends Component<Props> {
   reblog = () => {
-    const { entry, users, activeUser } = this.props;
+    const { entry, users, activeUser, addReblog } = this.props;
     const user = users.find((x) => x.username === activeUser?.username)!;
-    reblog(user, entry.author, entry.permlink);
+    reblog(user, entry.author, entry.permlink).then(() => {
+      addReblog(activeUser?.username!, entry.author, entry.permlink);
+    }).catch((e)=>{
+      
+    })
   };
 
   render() {
-    const { text, activeUser } = this.props;
+    const { text, activeUser, reblogs } = this.props;
 
     const content = (
       <div className="entry-reblog-btn">
