@@ -38,6 +38,7 @@ import EditorToolbar from "../components/editor-toolbar";
 import TagSelector from "../components/tag-selector";
 import Tag from "../components/tag";
 import LoginRequired from "../components/login-required";
+import WordCount from "../components/word-counter";
 import { makePath as makePathEntry } from "../components/entry-link";
 import { error, success } from "../components/feedback";
 
@@ -206,13 +207,14 @@ class SubmitPage extends Component<Props, State> {
 
   publish = async (): Promise<void> => {
     const { activeUser, users, history } = this.props;
+    const { title, tags, body, reward } = this.state;
+    
     const user = users.find((x) => x.username === activeUser?.username)!;
 
     this.stateSet({ inProgress: true });
 
-    const { title, tags, body, reward } = this.state;
-    let permlink = createPermlink(title);
     const { username: author } = user;
+    let permlink = createPermlink(title);
 
     // If permlink has already used create it again with random suffix
     let c;
@@ -235,7 +237,7 @@ class SubmitPage extends Component<Props, State> {
     comment(user, "", parentPermlink, permlink, title, body, jsonMeta, options)
       .then(() => {
         success(_t("submit.success"));
-        
+
         const newLoc = makePathEntry(parentPermlink, author, permlink);
         history.push(newLoc);
       })
@@ -308,6 +310,8 @@ class SubmitPage extends Component<Props, State> {
           <div className="preview-side">
             <div className="preview-header">
               <h2 className="preview-header-title">{_t("submit.preview")}</h2>
+
+              <WordCount selector='.preview-body' watch={true} />
             </div>
             <PreviewContent {...this.props} {...preview} />
             <div className="bottom-toolbar">

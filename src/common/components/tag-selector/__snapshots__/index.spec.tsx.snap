@@ -55,12 +55,9 @@ exports[`(2) With tags 1`] = `
       <div
         className="item-inner"
       >
-        <a
-          href="/hot/foo"
-          onClick={[Function]}
-        >
+        <span>
           foo
-        </a>
+        </span>
       </div>
       <span
         className="item-delete"
@@ -83,12 +80,9 @@ exports[`(2) With tags 1`] = `
       <div
         className="item-inner"
       >
-        <a
-          href="/hot/bar"
-          onClick={[Function]}
-        >
+        <span>
           bar
-        </a>
+        </span>
       </div>
       <span
         className="item-delete"
@@ -131,4 +125,3 @@ exports[`(3) No tags with focus 1`] = `
   </div>
 </div>
 `;
-

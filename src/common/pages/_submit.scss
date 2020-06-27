@@ -76,7 +76,7 @@
       }
     }
 
-    .bottom-toolbar {     
+    .bottom-toolbar {
       .reward {
         font-weight: 500;
         display: flex;
@@ -101,14 +101,24 @@
       height: 44px;
       display: flex;
       align-items: center;
+      justify-content: space-between;
       padding: 0 8px;
       flex-shrink: 0;
-  
+
       .preview-header-title {
         color: $dark-sky-blue;
         font-size: 18px;
         font-weight: 500;
         margin: 0;
+      }
+
+      .words-count {
+        color: lighten($steel-grey, 10);
+        margin-right: 20px;
+
+        .words {
+          margin-right: 10px;
+        }
       }
     }
 
