@@ -95,15 +95,15 @@ export const makeCommentOptions = (author: string, permlink: string, rewardType:
   switch (rewardType) {
     case "sp":
       opt.max_accepted_payout = "1000000.000 HBD";
-      opt.percent_steem_dollars = 0;
+      opt.percent_hbd = 0;
       break;
     case "dp":
       opt.max_accepted_payout = "0.000 HBD";
-      opt.percent_steem_dollars = 10000;
+      opt.percent_hbd = 10000;
       break;
     case "default":
       opt.max_accepted_payout = "1000000.000 HBD";
-      opt.percent_steem_dollars = 10000;
+      opt.percent_hbd = 10000;
       break;
   }
 
