@@ -38,6 +38,7 @@ import EditorToolbar from "../components/editor-toolbar";
 import TagSelector from "../components/tag-selector";
 import Tag from "../components/tag";
 import LoginRequired from "../components/login-required";
+import { makePath as makePathEntry } from "../components/entry-link";
 import { error, success } from "../components/feedback";
 
 import { createPermlink, extractMetaData, makeJsonMetaData, makeCommentOptions } from "../helper/posting";
@@ -203,19 +204,20 @@ class SubmitPage extends Component<Props, State> {
     }, 500);
   };
 
-  publish = async (): Promise<any> => {
-    const { activeUser, users } = this.props;
+  publish = async (): Promise<void> => {
+    const { activeUser, users, history } = this.props;
     const user = users.find((x) => x.username === activeUser?.username)!;
 
     this.stateSet({ inProgress: true });
-    
+
     const { title, tags, body, reward } = this.state;
     let permlink = createPermlink(title);
+    const { username: author } = user;
 
     // If permlink has already used create it again with random suffix
     let c;
     try {
-      c = await getPost(user.username, permlink);
+      c = await getPost(author, permlink);
     } catch (e) {
       c = null;
     }
@@ -227,12 +229,15 @@ class SubmitPage extends Component<Props, State> {
     const [parentPermlink] = tags;
     const meta = extractMetaData(body);
     const jsonMeta = makeJsonMetaData(meta, tags, version);
-    const options = makeCommentOptions(user.username, permlink, reward);
+    const options = makeCommentOptions(author, permlink, reward);
 
     this.stateSet({ inProgress: true });
     comment(user, "", parentPermlink, permlink, title, body, jsonMeta, options)
       .then(() => {
         success(_t("submit.success"));
+        
+        const newLoc = makePathEntry(parentPermlink, author, permlink);
+        history.push(newLoc);
       })
       .catch((e) => {
         error(formatError(e));
