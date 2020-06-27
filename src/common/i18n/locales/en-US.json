@@ -202,7 +202,11 @@
     "reward": "Reward",
     "reward-default": "Default 50% / 50%",
     "reward-sp": "Power Up 100%",
-    "reward-dp": "Decline Payout"
+    "reward-dp": "Decline Payout",
+    "preview": "Preview",
+    "publish": "Publish",
+    "clear": "Clear All",
+    "success": "Post Published"
   },
   "tag-selector": {
     "placeholder-empty": "Tags. First tag is main category. Sortable.",

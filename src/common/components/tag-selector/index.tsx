@@ -184,7 +184,7 @@ export default class TagSelector extends Component<Props, State> {
                 return (
                   <div key={x} className="tag-item">
                     <div className="item-inner">
-                      <Tag {...this.props} tag={x}>
+                      <Tag {...this.props} tag={x} type="span">
                         <span>{x}</span>
                       </Tag>
                     </div>

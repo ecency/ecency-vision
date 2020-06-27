@@ -51,6 +51,7 @@ export default class EntryReblogBtn extends Component<Props> {
       this.setState(obj, cb);
     }
   };
+  
   reblog = () => {
     const { entry, users, activeUser, addReblog } = this.props;
     const user = users.find((x) => x.username === activeUser?.username)!;

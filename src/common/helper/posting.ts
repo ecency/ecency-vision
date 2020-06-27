@@ -4,7 +4,7 @@ import { MetaData, CommentOptions, RewardType } from "../api/operations";
 
 const permlinkRnd = () => (Math.random() + 1).toString(16).substring(2);
 
-export const createPermlink = (title: string, random = false): string => {
+export const createPermlink = (title: string, random: boolean = false): string => {
   const slug = getSlug(title);
   let perm = slug.toString();
 
@@ -88,7 +88,7 @@ export const makeCommentOptions = (author: string, permlink: string, rewardType:
     author,
     permlink,
     max_accepted_payout: "1000000.000 HBD",
-    percent_steem_dollars: 10000,
+    percent_hbd: 10000,
     extensions: [[0, { beneficiaries: [{ account: "ecency", weight: 300 }] }]],
   };
 

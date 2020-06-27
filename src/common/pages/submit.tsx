@@ -5,7 +5,7 @@ import { History, Location } from "history";
 
 import isEqual from "react-fast-compare";
 
-import { Form, FormControl, Button } from "react-bootstrap";
+import { Form, FormControl, Button, Spinner } from "react-bootstrap";
 
 import defaults from "../constants/defaults.json";
 
@@ -38,10 +38,12 @@ import EditorToolbar from "../components/editor-toolbar";
 import TagSelector from "../components/tag-selector";
 import Tag from "../components/tag";
 import LoginRequired from "../components/login-required";
+import { error, success } from "../components/feedback";
 
 import { createPermlink, extractMetaData, makeJsonMetaData, makeCommentOptions } from "../helper/posting";
 
-import { RewardType, comment } from "../api/operations";
+import { RewardType, comment, formatError } from "../api/operations";
+import { getPost } from "../api/bridge";
 
 import { _t } from "../i18n";
 
@@ -108,6 +110,7 @@ interface Props {
 interface State extends PostBase {
   reward: RewardType;
   preview: PostBase;
+  inProgress: boolean;
 }
 
 class SubmitPage extends Component<Props, State> {
@@ -116,6 +119,7 @@ class SubmitPage extends Component<Props, State> {
     tags: [],
     body: "",
     reward: "default",
+    inProgress: false,
     preview: {
       title: "",
       tags: [],
@@ -124,6 +128,17 @@ class SubmitPage extends Component<Props, State> {
   };
 
   _updateTimer: any = null;
+  _mounted: boolean = true;
+
+  componentWillUnmount() {
+    this._mounted = false;
+  }
+
+  stateSet = (obj: {}, cb: () => void = () => {}) => {
+    if (this._mounted) {
+      this.setState(obj, cb);
+    }
+  };
 
   componentDidMount = (): void => {
     this.loadLocalDraft();
@@ -136,7 +151,7 @@ class SubmitPage extends Component<Props, State> {
     }
 
     const { title, tags, body } = localDraft;
-    this.setState({ title, tags, body });
+    this.stateSet({ title, tags, body });
   };
 
   saveLocalDraft = (): void => {
@@ -147,27 +162,32 @@ class SubmitPage extends Component<Props, State> {
 
   titleChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
     const { value: title } = e.target;
-    this.setState({ title }, () => {
+    this.stateSet({ title }, () => {
       this.updatePreview();
     });
   };
 
   tagsChanged = (tags: string[]): void => {
-    this.setState({ tags }, () => {
+    this.stateSet({ tags }, () => {
       this.updatePreview();
     });
   };
 
   bodyChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
     const { value: body } = e.target;
-    this.setState({ body }, () => {
+    this.stateSet({ body }, () => {
       this.updatePreview();
     });
   };
 
   rewardChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
     const reward = e.target.value as RewardType;
-    this.setState({ reward });
+    this.stateSet({ reward });
+  };
+
+  clear = (): void => {
+    this.stateSet({ title: "", tags: [], body: "" });
+    this.updatePreview();
   };
 
   updatePreview = (): void => {
@@ -178,32 +198,52 @@ class SubmitPage extends Component<Props, State> {
 
     this._updateTimer = setTimeout(() => {
       const { title, tags, body } = this.state;
-      this.setState({ preview: { title, tags, body } });
+      this.stateSet({ preview: { title, tags, body } });
       this.saveLocalDraft();
     }, 500);
   };
 
-  publish = (): void => {
+  publish = async (): Promise<any> => {
     const { activeUser, users } = this.props;
     const user = users.find((x) => x.username === activeUser?.username)!;
 
+    this.stateSet({ inProgress: true });
+    
     const { title, tags, body, reward } = this.state;
+    let permlink = createPermlink(title);
+
+    // If permlink has already used create it again with random suffix
+    let c;
+    try {
+      c = await getPost(user.username, permlink);
+    } catch (e) {
+      c = null;
+    }
+
+    if (c && c.author) {
+      permlink = createPermlink(title, true);
+    }
 
     const [parentPermlink] = tags;
-    let permlink = createPermlink(title);
     const meta = extractMetaData(body);
     const jsonMeta = makeJsonMetaData(meta, tags, version);
     const options = makeCommentOptions(user.username, permlink, reward);
 
-    /*
-    comment(user, "", parentPermlink, permlink, title, body, jsonMeta, options).then(() => {
-      console.log("published");
-    });
-    */
+    this.stateSet({ inProgress: true });
+    comment(user, "", parentPermlink, permlink, title, body, jsonMeta, options)
+      .then(() => {
+        success(_t("submit.success"));
+      })
+      .catch((e) => {
+        error(formatError(e));
+      })
+      .finally(() => {
+        this.stateSet({ inProgress: false });
+      });
   };
 
   render() {
-    const { title, tags, body, reward, preview } = this.state;
+    const { title, tags, body, reward, preview, inProgress } = this.state;
 
     //  Meta config
     const metaProps = {
@@ -254,18 +294,27 @@ class SubmitPage extends Component<Props, State> {
                   <option key="dp">{_t("submit.reward-dp")}</option>
                 </Form.Control>
               </div>
+              <Button variant="light" onClick={this.clear}>
+                {_t("submit.clear")}
+              </Button>
             </div>
           </div>
           <div className="flex-spacer" />
           <div className="preview-side">
             <div className="preview-header">
-              <h2 className="preview-header-title">Preview</h2>
+              <h2 className="preview-header-title">{_t("submit.preview")}</h2>
             </div>
             <PreviewContent {...this.props} {...preview} />
             <div className="bottom-toolbar">
+              <span />
               <LoginRequired {...this.props}>
-                <Button onClick={this.publish} disabled={!canPublish}>
-                  Publish
+                <Button
+                  className="d-inline-flex align-items-center"
+                  onClick={this.publish}
+                  disabled={!canPublish || inProgress}
+                >
+                  {inProgress && <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: "6px" }} />}
+                  {_t("submit.publish")}
                 </Button>
               </LoginRequired>
             </div>
