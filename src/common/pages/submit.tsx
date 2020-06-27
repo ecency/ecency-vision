@@ -5,7 +5,7 @@ import { History, Location } from "history";
 
 import isEqual from "react-fast-compare";
 
-import { Form, FormControl } from "react-bootstrap";
+import { Form, FormControl, Button } from "react-bootstrap";
 
 import defaults from "../constants/defaults.json";
 
@@ -37,19 +37,27 @@ import FullHeight from "../components/full-height";
 import EditorToolbar from "../components/editor-toolbar";
 import TagSelector from "../components/tag-selector";
 import Tag from "../components/tag";
+import LoginRequired from "../components/login-required";
+
+import { createPermlink, extractMetaData, makeJsonMetaData, makeCommentOptions } from "../helper/posting";
+
+import { RewardType, comment } from "../api/operations";
 
 import { _t } from "../i18n";
 
 import _c from "../util/fix-class-names";
+import * as ls from "../util/local-storage";
 
-interface PreviewContentProps {
+import { version } from "../../../package.json";
+
+interface PostBase {
   title: string;
   tags: string[];
   body: string;
 }
 
-class PreviewContent extends Component<PreviewContentProps> {
-  shouldComponentUpdate(nextProps: Readonly<PreviewContentProps>): boolean {
+class PreviewContent extends Component<PostBase> {
+  shouldComponentUpdate(nextProps: Readonly<PostBase>): boolean {
     return (
       !isEqual(this.props.title, nextProps.title) ||
       !isEqual(this.props.tags, nextProps.tags) ||
@@ -67,7 +75,7 @@ class PreviewContent extends Component<PreviewContentProps> {
         <div className="preview-tags">
           {tags.map((x) => {
             return (
-              <span className="preview-tag">
+              <span className="preview-tag" key={x}>
                 <Tag type="span" {...this.props} tag={x}>
                   <span>{x}</span>
                 </Tag>
@@ -97,15 +105,9 @@ interface Props {
   deleteUser: (username: string) => void;
 }
 
-interface State {
-  title: string;
-  tags: string[];
-  body: string;
-  preview: {
-    title: string;
-    tags: string[];
-    body: string;
-  };
+interface State extends PostBase {
+  reward: RewardType;
+  preview: PostBase;
 }
 
 class SubmitPage extends Component<Props, State> {
@@ -113,6 +115,7 @@ class SubmitPage extends Component<Props, State> {
     title: "",
     tags: [],
     body: "",
+    reward: "default",
     preview: {
       title: "",
       tags: [],
@@ -122,27 +125,52 @@ class SubmitPage extends Component<Props, State> {
 
   _updateTimer: any = null;
 
-  titleChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+  componentDidMount = (): void => {
+    this.loadLocalDraft();
+  };
+
+  loadLocalDraft = (): void => {
+    const localDraft = ls.get("local_draft") as PostBase;
+    if (!localDraft) {
+      return;
+    }
+
+    const { title, tags, body } = localDraft;
+    this.setState({ title, tags, body });
+  };
+
+  saveLocalDraft = (): void => {
+    const { title, tags, body } = this.state;
+    const localDraft: PostBase = { title, tags, body };
+    ls.set("local_draft", localDraft);
+  };
+
+  titleChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
     const { value: title } = e.target;
     this.setState({ title }, () => {
       this.updatePreview();
     });
   };
 
-  tagsChanged = (tags: string[]) => {
+  tagsChanged = (tags: string[]): void => {
     this.setState({ tags }, () => {
       this.updatePreview();
     });
   };
 
-  bodyChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+  bodyChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
     const { value: body } = e.target;
     this.setState({ body }, () => {
       this.updatePreview();
     });
   };
 
-  updatePreview = () => {
+  rewardChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+    const reward = e.target.value as RewardType;
+    this.setState({ reward });
+  };
+
+  updatePreview = (): void => {
     if (this._updateTimer) {
       clearTimeout(this._updateTimer);
       this._updateTimer = null;
@@ -151,16 +179,38 @@ class SubmitPage extends Component<Props, State> {
     this._updateTimer = setTimeout(() => {
       const { title, tags, body } = this.state;
       this.setState({ preview: { title, tags, body } });
+      this.saveLocalDraft();
     }, 500);
   };
 
+  publish = (): void => {
+    const { activeUser, users } = this.props;
+    const user = users.find((x) => x.username === activeUser?.username)!;
+
+    const { title, tags, body, reward } = this.state;
+
+    const [parentPermlink] = tags;
+    let permlink = createPermlink(title);
+    const meta = extractMetaData(body);
+    const jsonMeta = makeJsonMetaData(meta, tags, version);
+    const options = makeCommentOptions(user.username, permlink, reward);
+
+    /*
+    comment(user, "", parentPermlink, permlink, title, body, jsonMeta, options).then(() => {
+      console.log("published");
+    });
+    */
+  };
+
   render() {
-    const { title, tags, body, preview } = this.state;
+    const { title, tags, body, reward, preview } = this.state;
 
     //  Meta config
     const metaProps = {
       title: "Create a post",
     };
+
+    const canPublish = title.trim() !== "" && tags.length > 0 && tags.length <= 10 && body.trim() !== "";
 
     return (
       <>
@@ -195,6 +245,16 @@ class SubmitPage extends Component<Props, State> {
                 onChange={this.bodyChanged}
               />
             </div>
+            <div className="bottom-toolbar">
+              <div className="reward">
+                <span>{_t("submit.reward")}</span>
+                <Form.Control as="select" value={reward} onChange={this.rewardChanged}>
+                  <option key="default">{_t("submit.reward-default")}</option>
+                  <option key="sp">{_t("submit.reward-sp")}</option>
+                  <option key="dp">{_t("submit.reward-dp")}</option>
+                </Form.Control>
+              </div>
+            </div>
           </div>
           <div className="flex-spacer" />
           <div className="preview-side">
@@ -202,6 +262,13 @@ class SubmitPage extends Component<Props, State> {
               <h2 className="preview-header-title">Preview</h2>
             </div>
             <PreviewContent {...this.props} {...preview} />
+            <div className="bottom-toolbar">
+              <LoginRequired {...this.props}>
+                <Button onClick={this.publish} disabled={!canPublish}>
+                  Publish
+                </Button>
+              </LoginRequired>
+            </div>
           </div>
         </div>
       </>
@@ -225,7 +292,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       fetchTrendingTags,
       setActiveUser,
       updateActiveUser,
-      deleteUser
+      deleteUser,
     },
     dispatch
   );

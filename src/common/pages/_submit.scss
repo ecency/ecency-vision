@@ -29,6 +29,14 @@
     @include themify(night) {
       background: lighten($dark-six, 4);
     }
+
+    .bottom-toolbar {
+      height: 44px;
+      flex-shrink: 0;
+      padding: 0 12px;
+      display: flex;
+      align-items: center;
+    }
   }
 
   .editor-side {
@@ -66,6 +74,19 @@
         flex-grow: 1;
       }
     }
+
+    .bottom-toolbar {
+      .reward {
+        font-weight: 500;
+        display: flex;
+        width: 250px;
+        align-items: center;
+
+        select {
+          margin-left: 10px;
+        }
+      }
+    }
   }
 
   .preview-side {
@@ -81,7 +102,7 @@
       align-items: center;
       padding: 0 8px;
       flex-shrink: 0;
-
+  
       .preview-header-title {
         color: $dark-sky-blue;
         font-size: 18px;
@@ -95,7 +116,6 @@
     .preview-body {
       padding: 5px 12px;
       margin-top: 10px;
-   
     }
 
     .preview-title {

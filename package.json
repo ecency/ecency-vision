@@ -16,6 +16,7 @@
     "@types/react-bootstrap-table-next": "^4.0.4",
     "@types/react-bootstrap-table2-paginator": "^2.1.1",
     "@types/rss": "^0.0.28",
+    "@types/speakingurl": "^13.0.2",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
     "connected-react-router": "^6.8.0",
@@ -45,6 +46,7 @@
     "redux-thunk": "^2.3.0",
     "rss": "^1.2.2",
     "serialize-javascript": "^3.0.0",
+    "speakingurl": "^14.0.1",
     "typeface-ibm-plex-sans": "^0.0.75"
   },
   "devDependencies": {
