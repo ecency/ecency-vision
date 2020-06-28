@@ -48,6 +48,7 @@ import Discussion from "../components/discussion";
 import MdHandler from "../components/md-handler";
 import LinearProgress from "../components/linear-progress";
 import EntryReblogBtn from "../components/entry-reblog-btn/index";
+import EntryEditBtn from "../components/entry-edit-btn/index";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
@@ -202,6 +203,13 @@ class EntryPage extends Component<Props, State> {
     const tags = [...new Set(entry.json_metadata.tags)];
     const app = entry.json_metadata?.app;
 
+    const isComment = entry.parent_author !== undefined;
+
+    const { activeUser } = this.props;
+
+    const editable = activeUser && !isComment && activeUser.username === entry.author;
+    const ownEntry = activeUser && activeUser.username === entry.author;
+
     //  Meta config
     const url = entryCanonical(entry) || "";
 
@@ -228,7 +236,7 @@ class EntryPage extends Component<Props, State> {
         <div className="app-content entry-page">
           <div className="the-entry">
             <div className="entry-header">
-              {entry.parent_author !== undefined && (
+              {isComment && (
                 <div className="comment-entry-header">
                   <div className="comment-entry-header-title">RE: {entry.title}</div>
                   <div className="comment-entry-header-info">{_t("entry.comment-entry-title")}</div>
@@ -303,12 +311,22 @@ class EntryPage extends Component<Props, State> {
                 </div>
                 <div className="right-side">
                   <DownloadTrigger>
-                    <a className="reply-btn">
+                    <a href="#" className="reply-btn">
                       {replySvg} {_t("g.reply")}
                     </a>
                   </DownloadTrigger>
-                  <span className="separator" />
-                  <EntryReblogBtn {...this.props} text={true} entry={entry} />
+                  {editable && (
+                    <>
+                      <span className="separator" />
+                      <EntryEditBtn entry={entry} />
+                    </>
+                  )}
+                  {!ownEntry && (
+                    <>
+                      <span className="separator" />
+                      <EntryReblogBtn {...this.props} text={true} entry={entry} />
+                    </>
+                  )}
                 </div>
               </div>
               <div className="entry-controls">

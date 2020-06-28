@@ -21,4 +21,5 @@ export default {
   USER_SECTION: `/:username(@[\\w\\.\\d-]+)/:section(${profileFilters.join("|")}|wallet)`,
   COMMUNITIES: `/communities`,
   SUBMIT: `/submit`,
+  EDIT: `/:username(@[\\w\\.\\d-]+)/:permlink/edit`,
 };
