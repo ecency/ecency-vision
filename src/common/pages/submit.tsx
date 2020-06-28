@@ -228,6 +228,8 @@ class SubmitPage extends Component<Props, State> {
       permlink = createPermlink(title, true);
     }
 
+    console.log(permlink)
+
     const [parentPermlink] = tags;
     const meta = extractMetaData(body);
     const jsonMeta = makeJsonMetaData(meta, tags, version);
