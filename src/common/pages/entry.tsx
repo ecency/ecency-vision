@@ -49,6 +49,7 @@ import MdHandler from "../components/md-handler";
 import LinearProgress from "../components/linear-progress";
 import EntryReblogBtn from "../components/entry-reblog-btn/index";
 import EntryEditBtn from "../components/entry-edit-btn/index";
+import EntryDeleteBtn from "../components/entry-delete-btn";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
@@ -325,6 +326,12 @@ class EntryPage extends Component<Props, State> {
                     <>
                       <span className="separator" />
                       <EntryReblogBtn {...this.props} text={true} entry={entry} />
+                    </>
+                  )}
+                  {ownEntry && (
+                    <>
+                      <span className="separator" />
+                      <EntryDeleteBtn {...this.props} entry={entry} />
                     </>
                   )}
                 </div>

@@ -78,3 +78,18 @@ export const comment = (
 
   return client.broadcast(opArray);
 };
+
+export const deleteComment = (user: User, author: string, permlink: string): Promise<any> => {
+  var client = new hs.Client({
+    accessToken: user.accessToken,
+  });
+
+  const params = {
+    author,
+    permlink,
+  };
+
+  const opArray = [["delete_comment", params]];
+
+  return client.broadcast(opArray);
+};

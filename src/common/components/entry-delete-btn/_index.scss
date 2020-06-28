@@ -1,0 +1,42 @@
+@keyframes delete-in-progress {
+  0% {
+    color: $dark-sky-blue;
+  }
+  25% {
+    color: transparent;
+  }
+  50% {
+    color: $dark-sky-blue;
+  }
+  75% {
+    color: transparent;
+  }
+  100% {
+    color: $dark-sky-blue;
+  }
+}
+
+.entry-delete-btn {
+  color: $steel-grey;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+
+  @include themify(night) {
+    font-weight: 500;
+  }
+
+  svg {
+    height: 16px;
+    opacity: 0.8;
+  }
+
+  &.in-progress {
+    animation: reblog-in-progress 5s infinite;
+    pointer-events: none;
+
+    svg {
+      opacity: 1;
+    }
+  }
+}
