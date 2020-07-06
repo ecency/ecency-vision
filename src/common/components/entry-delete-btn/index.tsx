@@ -68,7 +68,7 @@ export default class EntryDeleteBtn extends Component<Props> {
 
     return (
       <PopoverConfirm onConfirm={this.delete}>
-        <a className={_c(`entry-delete-btn ${inProgress ? "in-progress" : ""} `)}>{deleteForeverSvg} Delete</a>
+        <a className={_c(`entry-delete-btn ${inProgress ? "in-progress" : ""} `)}>{deleteForeverSvg} {_t("entry-delete.label")}</a>
       </PopoverConfirm>
     );
   }

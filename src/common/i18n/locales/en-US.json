@@ -51,6 +51,7 @@
     "success": "Reblogged!"
   },
   "entry-delete": {
+    "label": "Delete",
     "success": "Deleted"
   },
   "entry-payout": {
