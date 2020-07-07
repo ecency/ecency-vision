@@ -50,6 +50,9 @@ export interface Follow {
   what: string[];
 }
 
+export const getPost = (username: string, permlink: string): Promise<any> =>
+  client.call("condenser_api", "get_content", [username, permlink]);
+
 export const getActiveVotes = (author: string, permlink: string): Promise<Vote[]> =>
   client.database.call("get_active_votes", [author, permlink]);
 

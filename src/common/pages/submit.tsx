@@ -22,9 +22,11 @@ import { Account } from "../store/accounts/types";
 import { TrendingTags } from "../store/trending-tags/types";
 import { User } from "../store/users/types";
 import { ActiveUser } from "../store/active-user/types";
+import { Entry } from "../store/entries/types";
 
 import { hideIntro, toggleTheme } from "../store/global/index";
 import { addAccount } from "../store/accounts/index";
+import { addEntry } from "../store/entries/index";
 import { fetchTrendingTags } from "../store/trending-tags";
 import { setActiveUser, updateActiveUser } from "../store/active-user";
 import { deleteUser } from "../store/users";
@@ -45,7 +47,8 @@ import { error, success } from "../components/feedback";
 import { createPermlink, extractMetaData, makeJsonMetaData, makeCommentOptions } from "../helper/posting";
 
 import { RewardType, comment, formatError } from "../api/operations";
-import { getPost } from "../api/bridge";
+import * as bridgeApi from "../api/bridge";
+import * as hiveApi from "../api/hive";
 
 import { _t } from "../i18n";
 
@@ -103,6 +106,7 @@ interface Props {
   activeUser: ActiveUser | null;
   toggleTheme: () => void;
   addAccount: (data: Account) => void;
+  addEntry: (entry: Entry) => void;
   fetchTrendingTags: () => void;
   setActiveUser: (username: string | null) => void;
   updateActiveUser: (data: Account) => void;
@@ -206,9 +210,9 @@ class SubmitPage extends Component<Props, State> {
   };
 
   publish = async (): Promise<void> => {
-    const { activeUser, users, history } = this.props;
+    const { activeUser, users, history, addEntry } = this.props;
     const { title, tags, body, reward } = this.state;
-    
+
     const user = users.find((x) => x.username === activeUser?.username)!;
 
     this.stateSet({ inProgress: true });
@@ -219,7 +223,7 @@ class SubmitPage extends Component<Props, State> {
     // If permlink has already used create it again with random suffix
     let c;
     try {
-      c = await getPost(author, permlink);
+      c = await bridgeApi.getPost(author, permlink);
     } catch (e) {
       c = null;
     }
@@ -228,8 +232,6 @@ class SubmitPage extends Component<Props, State> {
       permlink = createPermlink(title, true);
     }
 
-    console.log(permlink)
-
     const [parentPermlink] = tags;
     const meta = extractMetaData(body);
     const jsonMeta = makeJsonMetaData(meta, tags, version);
@@ -237,17 +239,23 @@ class SubmitPage extends Component<Props, State> {
 
     this.stateSet({ inProgress: true });
     comment(user, "", parentPermlink, permlink, title, body, jsonMeta, options)
-      .then(() => {
+      .then(() => hiveApi.getPost(author, permlink))
+      .then((post: any) => bridgeApi.normalizePost(post))
+      .then((entry: Entry | null) => {
+        this.stateSet({ inProgress: false });
+
         success(_t("submit.success"));
+
+        if (entry) {
+          addEntry(entry);
+        }
 
         const newLoc = makePathEntry(parentPermlink, author, permlink);
         history.push(newLoc);
       })
       .catch((e) => {
-        error(formatError(e));
-      })
-      .finally(() => {
         this.stateSet({ inProgress: false });
+        error(formatError(e));
       });
   };
 
@@ -313,7 +321,7 @@ class SubmitPage extends Component<Props, State> {
             <div className="preview-header">
               <h2 className="preview-header-title">{_t("submit.preview")}</h2>
 
-              <WordCount selector='.preview-body' watch={true} />
+              <WordCount selector=".preview-body" watch={true} />
             </div>
             <PreviewContent {...this.props} {...preview} />
             <div className="bottom-toolbar">
@@ -349,6 +357,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       toggleTheme,
       hideIntro,
       addAccount,
+      addEntry,
       fetchTrendingTags,
       setActiveUser,
       updateActiveUser,

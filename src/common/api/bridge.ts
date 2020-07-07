@@ -83,3 +83,8 @@ export const getCommunities = (
     sort,
     observer,
   });
+
+export const normalizePost = (post: any): Promise<Entry | null> =>
+  bridgeApiCall<Entry | null>("bridge.normalize_post", {
+    post,
+  });
