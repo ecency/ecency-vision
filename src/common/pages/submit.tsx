@@ -28,7 +28,7 @@ import { Entry } from "../store/entries/types";
 
 import { hideIntro, toggleTheme } from "../store/global/index";
 import { addAccount } from "../store/accounts/index";
-import { addEntry } from "../store/entries/index";
+import { addEntry, updateEntry } from "../store/entries/index";
 import { fetchTrendingTags } from "../store/trending-tags";
 import { setActiveUser, updateActiveUser } from "../store/active-user";
 import { deleteUser } from "../store/users";
@@ -115,6 +115,7 @@ interface Props {
   toggleTheme: () => void;
   addAccount: (data: Account) => void;
   addEntry: (entry: Entry) => void;
+  updateEntry: (entry: Entry) => void;
   fetchTrendingTags: () => void;
   setActiveUser: (username: string | null) => void;
   updateActiveUser: (data: Account) => void;
@@ -286,7 +287,7 @@ class SubmitPage extends Component<Props, State> {
       .then((entry: Entry | null) => {
         this.stateSet({ inProgress: false });
 
-        success(_t("submit.success"));
+        success(_t("submit.published"));
 
         if (entry) {
           addEntry(entry);
@@ -302,8 +303,10 @@ class SubmitPage extends Component<Props, State> {
   };
 
   update = async (): Promise<void> => {
-    const { activeUser, global } = this.props;
+    const { activeUser, users, updateEntry, history } = this.props;
     const { title, tags, body, editingEntry } = this.state;
+
+    const user = users.find((x) => x.username === activeUser?.username)!;
 
     if (!editingEntry) {
       return;
@@ -318,8 +321,28 @@ class SubmitPage extends Component<Props, State> {
     }
 
     const meta = extractMetaData(body);
+    const jsonMeta = Object.assign({}, json_metadata, meta, { tags });
 
-    console.log(category);
+    this.stateSet({ inProgress: true });
+    comment(user, "", category, permlink, title, body, jsonMeta, null)
+      .then(() => hiveApi.getPost(author, permlink))
+      .then((post: any) => bridgeApi.normalizePost(post))
+      .then((entry: Entry | null) => {
+        this.stateSet({ inProgress: false });
+
+        success(_t("submit.updated"));
+
+        if (entry) {
+          updateEntry(entry);
+        }
+
+        const newLoc = makePathEntry(category, author, permlink);
+        history.push(newLoc);
+      })
+      .catch((e) => {
+        this.stateSet({ inProgress: false });
+        error(formatError(e));
+      });
   };
 
   cancelUpdate = () => {
@@ -457,6 +480,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       hideIntro,
       addAccount,
       addEntry,
+      updateEntry,
       fetchTrendingTags,
       setActiveUser,
       updateActiveUser,
