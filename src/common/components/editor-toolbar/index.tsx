@@ -34,7 +34,7 @@ export default class EditorToolbar extends Component {
   shouldComponentUpdate() {
     return false;
   }
-  
+
   bold = () => {
     insertText("**", "**");
   };
@@ -95,6 +95,11 @@ export default class EditorToolbar extends Component {
       "|\t------------\t|\t------------\t|\n" +
       "|\t     Text     \t|\t     Text     \t|\n";
     insertText(t);
+  };
+
+  fileInputChanged = (e: Event): void => {
+    const files = (e.target as HTMLInputElement).files!;
+
   };
 
   render() {
@@ -176,7 +181,8 @@ export default class EditorToolbar extends Component {
                   className="sub-tool-menu-item"
                   onClick={(e: React.MouseEvent<HTMLElement>) => {
                     e.stopPropagation();
-                    // document.getElementById("file-input").click();
+                    const el = document.getElementById("file-input");
+                    if (el) el.click();
                   }}
                 >
                   {_t("editor-toolbar.upload")}
@@ -218,6 +224,7 @@ export default class EditorToolbar extends Component {
             </div>
           </Tooltip>
         </div>
+        <input type="file" id="file-input" onChange={this.fileInputChanged} style={{ display: "none" }} />
       </>
     );
   }
