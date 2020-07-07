@@ -15,7 +15,7 @@ export interface EntryStat {
   gray: boolean;
   hide: boolean;
   total_votes: number;
-  is_pinned?: boolean
+  is_pinned?: boolean;
 }
 
 export interface JsonMetadata {
@@ -71,13 +71,12 @@ export interface EntryGroup {
 
 export interface Entries extends Record<string, EntryGroup> {}
 
-// TODO: Implement UPDATE action
-
 export enum ActionTypes {
   FETCH = "@entries/FETCH",
   FETCHED = "@entries/FETCHED",
   FETCH_ERROR = "@entries/FETCH_ERROR",
   INVALIDATE = "@entries/INVALIDATE",
+  UPDATE = "@entries/UPDATE",
 }
 
 export interface FetchAction {
@@ -103,10 +102,16 @@ export interface InvalidateAction {
   groupKey: string;
 }
 
+export interface UpdateAction {
+  type: ActionTypes.UPDATE;
+  entry: Entry;
+}
+
 export type Actions =
   | LocationChangeAction
   | InitAction
   | FetchAction
   | FetchedAction
   | FetchErrorAction
-  | InvalidateAction;
+  | InvalidateAction
+  | UpdateAction;

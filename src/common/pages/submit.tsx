@@ -3,6 +3,8 @@ import { AnyAction, bindActionCreators, Dispatch } from "redux";
 import { connect } from "react-redux";
 import { History, Location } from "history";
 
+import { match } from "react-router";
+
 import isEqual from "react-fast-compare";
 
 import { Form, FormControl, Button, Spinner } from "react-bootstrap";
@@ -44,7 +46,7 @@ import WordCount from "../components/word-counter";
 import { makePath as makePathEntry } from "../components/entry-link";
 import { error, success } from "../components/feedback";
 
-import { createPermlink, extractMetaData, makeJsonMetaData, makeCommentOptions } from "../helper/posting";
+import { createPermlink, extractMetaData, makeJsonMetaData, makeCommentOptions, createPatch } from "../helper/posting";
 
 import { RewardType, comment, formatError } from "../api/operations";
 import * as bridgeApi from "../api/bridge";
@@ -97,9 +99,15 @@ class PreviewContent extends Component<PostBase> {
   }
 }
 
+interface MatchParams {
+  permlink: string;
+  username: string;
+}
+
 interface Props {
   history: History;
   location: Location;
+  match: match<MatchParams>;
   global: Global;
   trendingTags: TrendingTags;
   users: User[];
@@ -117,6 +125,8 @@ interface State extends PostBase {
   reward: RewardType;
   preview: PostBase;
   inProgress: boolean;
+  editMode: boolean;
+  editingEntry: Entry | null;
 }
 
 class SubmitPage extends Component<Props, State> {
@@ -126,6 +136,8 @@ class SubmitPage extends Component<Props, State> {
     body: "",
     reward: "default",
     inProgress: false,
+    editMode: false,
+    editingEntry: null,
     preview: {
       title: "",
       tags: [],
@@ -148,6 +160,34 @@ class SubmitPage extends Component<Props, State> {
 
   componentDidMount = (): void => {
     this.loadLocalDraft();
+
+    // wait to load active user on page load
+    setTimeout(this.detectEntry, 200);
+  };
+
+  detectEntry = async () => {
+    const { match, activeUser } = this.props;
+    const { path, params } = match;
+
+    if (activeUser && path.endsWith("/edit") && params.username && params.permlink) {
+      let entry;
+      try {
+        entry = await bridgeApi.normalizePost(await hiveApi.getPost(params.username.replace("@", ""), params.permlink));
+      } catch (e) {
+        error(formatError(e));
+        return;
+      }
+
+      if (!entry) {
+        return;
+      }
+
+      const { title, body } = entry;
+      let tags = entry.json_metadata?.tags || [];
+      tags = [...new Set(tags)];
+
+      this.stateSet({ title, tags, body, editMode: true, editingEntry: entry }, this.updatePreview);
+    }
   };
 
   loadLocalDraft = (): void => {
@@ -203,9 +243,11 @@ class SubmitPage extends Component<Props, State> {
     }
 
     this._updateTimer = setTimeout(() => {
-      const { title, tags, body } = this.state;
+      const { title, tags, body, editMode } = this.state;
       this.stateSet({ preview: { title, tags, body } });
-      this.saveLocalDraft();
+      if (!editMode) {
+        this.saveLocalDraft();
+      }
     }, 500);
   };
 
@@ -259,8 +301,40 @@ class SubmitPage extends Component<Props, State> {
       });
   };
 
+  update = async (): Promise<void> => {
+    const { activeUser, global } = this.props;
+    const { title, tags, body, editingEntry } = this.state;
+
+    if (!editingEntry) {
+      return;
+    }
+
+    const { body: oldBody, author, permlink, category, json_metadata } = editingEntry;
+
+    let newBody = body;
+    const patch = createPatch(oldBody, newBody.trim());
+    if (patch && patch.length < Buffer.from(editingEntry.body, "utf-8").length) {
+      newBody = patch;
+    }
+
+    const meta = extractMetaData(body);
+
+    console.log(category);
+  };
+
+  cancelUpdate = () => {
+    const { history } = this.props;
+    const { editingEntry } = this.state;
+    if (!editingEntry) {
+      return;
+    }
+
+    const newLoc = makePathEntry(editingEntry?.category!, editingEntry.author, editingEntry.permlink);
+    history.push(newLoc);
+  };
+
   render() {
-    const { title, tags, body, reward, preview, inProgress } = this.state;
+    const { title, tags, body, reward, preview, inProgress, editMode } = this.state;
 
     //  Meta config
     const metaProps = {
@@ -268,6 +342,7 @@ class SubmitPage extends Component<Props, State> {
     };
 
     const canPublish = title.trim() !== "" && tags.length > 0 && tags.length <= 10 && body.trim() !== "";
+    const spinner = <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: "6px" }} />;
 
     return (
       <>
@@ -302,19 +377,21 @@ class SubmitPage extends Component<Props, State> {
                 onChange={this.bodyChanged}
               />
             </div>
-            <div className="bottom-toolbar">
-              <div className="reward">
-                <span>{_t("submit.reward")}</span>
-                <Form.Control as="select" value={reward} onChange={this.rewardChanged}>
-                  <option key="default">{_t("submit.reward-default")}</option>
-                  <option key="sp">{_t("submit.reward-sp")}</option>
-                  <option key="dp">{_t("submit.reward-dp")}</option>
-                </Form.Control>
+            {!editMode && (
+              <div className="bottom-toolbar">
+                <div className="reward">
+                  <span>{_t("submit.reward")}</span>
+                  <Form.Control as="select" value={reward} onChange={this.rewardChanged}>
+                    <option key="default">{_t("submit.reward-default")}</option>
+                    <option key="sp">{_t("submit.reward-sp")}</option>
+                    <option key="dp">{_t("submit.reward-dp")}</option>
+                  </Form.Control>
+                </div>
+                <Button variant="light" onClick={this.clear}>
+                  {_t("submit.clear")}
+                </Button>
               </div>
-              <Button variant="light" onClick={this.clear}>
-                {_t("submit.clear")}
-              </Button>
-            </div>
+            )}
           </div>
           <div className="flex-spacer" />
           <div className="preview-side">
@@ -325,17 +402,39 @@ class SubmitPage extends Component<Props, State> {
             </div>
             <PreviewContent {...this.props} {...preview} />
             <div className="bottom-toolbar">
-              <span />
-              <LoginRequired {...this.props}>
-                <Button
-                  className="d-inline-flex align-items-center"
-                  onClick={this.publish}
-                  disabled={!canPublish || inProgress}
-                >
-                  {inProgress && <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: "6px" }} />}
-                  {_t("submit.publish")}
-                </Button>
-              </LoginRequired>
+              {!editMode && (
+                <>
+                  <span />
+                  <LoginRequired {...this.props}>
+                    <Button
+                      className="d-inline-flex align-items-center"
+                      onClick={this.publish}
+                      disabled={!canPublish || inProgress}
+                    >
+                      {inProgress && spinner}
+                      {_t("submit.publish")}
+                    </Button>
+                  </LoginRequired>
+                </>
+              )}
+
+              {editMode && (
+                <>
+                  <Button variant="outline-secondary" onClick={this.cancelUpdate}>
+                    {_t("submit.cancel-update")}
+                  </Button>
+                  <LoginRequired {...this.props}>
+                    <Button
+                      className="d-inline-flex align-items-center"
+                      onClick={this.update}
+                      disabled={!canPublish || inProgress}
+                    >
+                      {inProgress && spinner}
+                      {_t("submit.update")}
+                    </Button>
+                  </LoginRequired>
+                </>
+              )}
             </div>
           </div>
         </div>

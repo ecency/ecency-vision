@@ -1,5 +1,7 @@
 import getSlug from "speakingurl";
 
+import { diff_match_patch } from "diff-match-patch";
+
 import { MetaData, CommentOptions, RewardType } from "../api/operations";
 
 const permlinkRnd = () => (Math.random() + 1).toString(16).substring(2);
@@ -108,4 +110,12 @@ export const makeCommentOptions = (author: string, permlink: string, rewardType:
   }
 
   return opt;
+};
+
+export const createPatch = (text1: string, text2: string): string | undefined => {
+  const dmp = new diff_match_patch();
+  if (text1 === "") return undefined;
+  const patches = dmp.patch_make(text1, text2);
+  const patch = dmp.patch_toText(patches);
+  return patch;
 };

@@ -110,18 +110,22 @@ Object {
     "entries": Array [
       Object {
         "author": "lorem",
+        "payout": 1,
         "permlink": "lorem-ipsum-dolor-sit-amet",
       },
       Object {
         "author": "consectetur",
+        "payout": 1,
         "permlink": "consectetur-adipiscing elit-in-vel-enim-libero",
       },
       Object {
         "author": "nam",
+        "payout": 1,
         "permlink": "tempor-nibh-eget-enim-vulputate",
       },
       Object {
         "author": "vivamus",
+        "payout": 1,
         "permlink": "vivamus-ornare-at-tortor-eu-vestibulum",
       },
     ],
@@ -144,18 +148,22 @@ Object {
     "entries": Array [
       Object {
         "author": "lorem",
+        "payout": 1,
         "permlink": "lorem-ipsum-dolor-sit-amet",
       },
       Object {
         "author": "consectetur",
+        "payout": 1,
         "permlink": "consectetur-adipiscing elit-in-vel-enim-libero",
       },
       Object {
         "author": "nam",
+        "payout": 1,
         "permlink": "tempor-nibh-eget-enim-vulputate",
       },
       Object {
         "author": "vivamus",
+        "payout": 1,
         "permlink": "vivamus-ornare-at-tortor-eu-vestibulum",
       },
     ],
@@ -178,22 +186,27 @@ Object {
     "entries": Array [
       Object {
         "author": "lorem",
+        "payout": 1,
         "permlink": "lorem-ipsum-dolor-sit-amet",
       },
       Object {
         "author": "consectetur",
+        "payout": 1,
         "permlink": "consectetur-adipiscing elit-in-vel-enim-libero",
       },
       Object {
         "author": "nam",
+        "payout": 1,
         "permlink": "tempor-nibh-eget-enim-vulputate",
       },
       Object {
         "author": "vivamus",
+        "payout": 1,
         "permlink": "vivamus-ornare-at-tortor-eu-vestibulum",
       },
       Object {
         "author": "donec",
+        "payout": 1,
         "permlink": "donec-bibendum-tortor-ultricies",
       },
     ],
@@ -204,8 +217,179 @@ Object {
 }
 `;
 
-exports[`11- invalidate. should reset the group. 1`] = `
+exports[`11- location change for an extra group 1`] = `
 Object {
+  "created-bitcoin": Object {
+    "entries": Array [],
+    "error": null,
+    "hasMore": false,
+    "loading": false,
+  },
+  "hot": Object {
+    "entries": Array [],
+    "error": "fetch error",
+    "hasMore": false,
+    "loading": false,
+  },
+  "trending-bitcoin": Object {
+    "entries": Array [
+      Object {
+        "author": "lorem",
+        "payout": 1,
+        "permlink": "lorem-ipsum-dolor-sit-amet",
+      },
+      Object {
+        "author": "consectetur",
+        "payout": 1,
+        "permlink": "consectetur-adipiscing elit-in-vel-enim-libero",
+      },
+      Object {
+        "author": "nam",
+        "payout": 1,
+        "permlink": "tempor-nibh-eget-enim-vulputate",
+      },
+      Object {
+        "author": "vivamus",
+        "payout": 1,
+        "permlink": "vivamus-ornare-at-tortor-eu-vestibulum",
+      },
+      Object {
+        "author": "donec",
+        "payout": 1,
+        "permlink": "donec-bibendum-tortor-ultricies",
+      },
+    ],
+    "error": null,
+    "hasMore": false,
+    "loading": false,
+  },
+}
+`;
+
+exports[`12- fetched another group. 1`] = `
+Object {
+  "created-bitcoin": Object {
+    "entries": Array [
+      Object {
+        "author": "nam",
+        "payout": 1,
+        "permlink": "tempor-nibh-eget-enim-vulputate",
+      },
+    ],
+    "error": null,
+    "hasMore": false,
+    "loading": false,
+  },
+  "hot": Object {
+    "entries": Array [],
+    "error": "fetch error",
+    "hasMore": false,
+    "loading": false,
+  },
+  "trending-bitcoin": Object {
+    "entries": Array [
+      Object {
+        "author": "lorem",
+        "payout": 1,
+        "permlink": "lorem-ipsum-dolor-sit-amet",
+      },
+      Object {
+        "author": "consectetur",
+        "payout": 1,
+        "permlink": "consectetur-adipiscing elit-in-vel-enim-libero",
+      },
+      Object {
+        "author": "nam",
+        "payout": 1,
+        "permlink": "tempor-nibh-eget-enim-vulputate",
+      },
+      Object {
+        "author": "vivamus",
+        "payout": 1,
+        "permlink": "vivamus-ornare-at-tortor-eu-vestibulum",
+      },
+      Object {
+        "author": "donec",
+        "payout": 1,
+        "permlink": "donec-bibendum-tortor-ultricies",
+      },
+    ],
+    "error": null,
+    "hasMore": false,
+    "loading": false,
+  },
+}
+`;
+
+exports[`13- update a particular entry. 1`] = `
+Object {
+  "created-bitcoin": Object {
+    "entries": Array [
+      Object {
+        "author": "nam",
+        "payout": 1.2,
+        "permlink": "tempor-nibh-eget-enim-vulputate",
+      },
+    ],
+    "error": null,
+    "hasMore": false,
+    "loading": false,
+  },
+  "hot": Object {
+    "entries": Array [],
+    "error": "fetch error",
+    "hasMore": false,
+    "loading": false,
+  },
+  "trending-bitcoin": Object {
+    "entries": Array [
+      Object {
+        "author": "lorem",
+        "payout": 1,
+        "permlink": "lorem-ipsum-dolor-sit-amet",
+      },
+      Object {
+        "author": "consectetur",
+        "payout": 1,
+        "permlink": "consectetur-adipiscing elit-in-vel-enim-libero",
+      },
+      Object {
+        "author": "nam",
+        "payout": 1.2,
+        "permlink": "tempor-nibh-eget-enim-vulputate",
+      },
+      Object {
+        "author": "vivamus",
+        "payout": 1,
+        "permlink": "vivamus-ornare-at-tortor-eu-vestibulum",
+      },
+      Object {
+        "author": "donec",
+        "payout": 1,
+        "permlink": "donec-bibendum-tortor-ultricies",
+      },
+    ],
+    "error": null,
+    "hasMore": false,
+    "loading": false,
+  },
+}
+`;
+
+exports[`14- invalidate. should reset the group. 1`] = `
+Object {
+  "created-bitcoin": Object {
+    "entries": Array [
+      Object {
+        "author": "nam",
+        "payout": 1.2,
+        "permlink": "tempor-nibh-eget-enim-vulputate",
+      },
+    ],
+    "error": null,
+    "hasMore": false,
+    "loading": false,
+  },
   "hot": Object {
     "entries": Array [],
     "error": "fetch error",

@@ -11,6 +11,7 @@ import {
   FetchErrorAction,
   FetchedAction,
   InvalidateAction,
+  UpdateAction,
   Entries,
   Entry,
 } from "./types";
@@ -101,6 +102,29 @@ export default (state: Entries = initialState, action: Actions): Entries => {
         },
       });
     }
+    case ActionTypes.UPDATE: {
+      const { entry } = action;
+
+      // TODO: Find better approach for immutabilty than JSON
+      const st = JSON.parse(JSON.stringify(state));
+
+      const groupKeys = Object.keys(st);
+
+      // Iterate over all groups and update the entry
+      for (const k of groupKeys) {
+        st[k].entries = st[k].entries.map(
+          (e: Entry): Entry => {
+            if (e.author === entry.author && e.permlink === entry.permlink) {
+              return entry;
+            }
+
+            return e;
+          }
+        );
+      }
+
+      return JSON.parse(JSON.stringify(st));
+    }
     default:
       return state;
   }
@@ -138,7 +162,7 @@ export const fetchEntries = (what: string = "", tag: string = "", more: boolean 
   if (tag.startsWith("@")) {
     // @username/blog|replies|comments|feed
     const username = tag.replace("@", "");
-    
+
     prms = getAccountPosts(what, username, start_author, start_permlink);
   } else {
     // trending/tag
@@ -160,6 +184,10 @@ export const fetchEntries = (what: string = "", tag: string = "", more: boolean 
 
 export const addEntry = (entry: Entry) => (dispatch: Dispatch) => {
   dispatch(fetchedAct("__manual__", [entry], false));
+};
+
+export const updateEntry = (entry: Entry) => (dispatch: Dispatch) => {
+  dispatch(updateAct(entry));
 };
 
 /* Action Creators */
@@ -192,5 +220,12 @@ export const invalidateAct = (groupKey: string): InvalidateAction => {
   return {
     type: ActionTypes.INVALIDATE,
     groupKey,
+  };
+};
+
+export const updateAct = (entry: Entry): UpdateAction => {
+  return {
+    type: ActionTypes.UPDATE,
+    entry,
   };
 };

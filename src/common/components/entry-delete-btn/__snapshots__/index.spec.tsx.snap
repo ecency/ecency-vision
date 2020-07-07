@@ -13,6 +13,7 @@ exports[`(1) Default render 1`] = `
       fill="currentColor"
     />
   </svg>
-   Delete
+   
+  Delete
 </a>
 `;
