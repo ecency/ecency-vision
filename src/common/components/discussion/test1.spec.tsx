@@ -6,7 +6,7 @@ import renderer from "react-test-renderer";
 
 import { createBrowserHistory } from "history";
 
-import { globalInstance, discussionInstace1 } from "../../helper/test-helper";
+import { globalInstance, discussionInstace1, dynamicPropsIntance1 } from "../../helper/test-helper";
 
 jest.mock("moment", () => () => ({
   fromNow: () => "3 days ago",
@@ -26,6 +26,9 @@ const [parent] = discussionInstace1;
 const props = {
   history: createBrowserHistory(),
   global: globalInstance,
+  dynamicProps: dynamicPropsIntance1,
+  users: [],
+  activeUser: null,
   parent,
   addAccount: () => {},
 };

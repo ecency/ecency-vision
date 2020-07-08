@@ -5,6 +5,7 @@ import isEqual from "react-fast-compare";
 
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
+import { DynamicProps } from "../../store/dynamic-props/types";
 import { Entry } from "../../store/entries/types";
 import { Community } from "../../store/community/types";
 import { User } from "../../store/users/types";
@@ -17,6 +18,7 @@ interface Props {
   history: History;
   location: Location;
   global: Global;
+  dynamicProps: DynamicProps;
   entries: Entry[];
   community?: Community | null;
   users: User[];
@@ -35,6 +37,7 @@ export default class EntryListContent extends Component<Props> {
       !isEqual(this.props.entries, nextProps.entries) ||
       !isEqual(this.props.community, nextProps.community) ||
       !isEqual(this.props.global, nextProps.global) ||
+      !isEqual(this.props.dynamicProps, nextProps.dynamicProps) ||
       !isEqual(this.props.activeUser, nextProps.activeUser) ||
       !isEqual(this.props.reblogs, nextProps.reblogs)
     );

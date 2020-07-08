@@ -6,6 +6,7 @@ import { History, Location } from "history";
 import { AppState } from "../store";
 import { EntryFilter, ListStyle, Global } from "../store/global/types";
 import { Account } from "../store/accounts/types";
+import { DynamicProps } from "../store/dynamic-props/types";
 import { TrendingTags } from "../store/trending-tags/types";
 import { Entries } from "../store/entries/types";
 import { Community } from "../store/community/types";
@@ -49,6 +50,7 @@ interface Props {
   location: Location;
   global: Global;
   trendingTags: TrendingTags;
+  dynamicProps: DynamicProps;
   entries: Entries;
   community: Community | null;
   users: User[];
@@ -215,6 +217,7 @@ class EntryIndexPage extends Component<Props> {
 const mapStateToProps = (state: AppState) => ({
   global: state.global,
   trendingTags: state.trendingTags,
+  dynamicProps: state.dynamicProps,
   entries: state.entries,
   community: state.community,
   users: state.users,

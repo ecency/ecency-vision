@@ -1,43 +1,226 @@
 .entry-vote-btn {
   margin-right: 10px;
+}
 
-  .btn-up-vote {
-    align-items: center;
-    border-radius: 50%;
+.btn-vote {
+  align-items: center;
+  border-radius: 50%;
+  display: flex;
+  height: 18px;
+  justify-content: center;
+  text-decoration: none;
+  width: 18px;
+  cursor: pointer;
+
+  .btn-inner {
     display: flex;
-    height: 18px;
-    justify-content: center;
-    text-decoration: none;
-    width: 18px;
-    border: 1px solid rgba($dark-sky-blue, 0.8);
-    cursor: pointer;
+  }
+
+  svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  &.in-progress {
+    animation: up-voting-color-change 5s infinite;
+    pointer-events: none;
+  }
+
+  &.disabled {
+    pointer-events: none;
+  }
+}
+
+.btn-up-vote {
+  border: 1px solid rgba($dark-sky-blue, 0.8);
+
+  .btn-inner {
+    color: rgba($dark-sky-blue, 0.8);
+  }
+
+  &:hover,
+  &.voted {
+    background-color: $dark-sky-blue;
 
     .btn-inner {
-      display: flex;
-      color: rgba($dark-sky-blue, 0.8);
+      color: $white;
     }
+  }
+}
 
-    svg {
-      width: 14px;
-      height: 14px;
+.btn-down-vote {
+  border: 1px solid rgba($red2, 0.8);
+
+  .btn-inner {
+    color: rgba($red2, 0.8);
+  }
+
+  &:hover,
+  &.voted {
+    background-color: $red2;
+
+    .btn-inner {
+      color: $white;
     }
+  }
 
-    &.in-progress {
-      animation: up-voting-color-change 5s infinite;
-      pointer-events: none;
+  svg {
+    transform: rotate(180deg);
+  }
+}
+
+.vote-btn-lg {
+  height: 26px;
+  width: 26px;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.voting-controls {
+  display: flex;
+
+  .btn-up-vote,
+  .estimated,
+  .slider,
+  .percentage {
+    margin-right: 8px;
+  }
+
+  .estimated,
+  .slider,
+  .percentage {
+    display: flex;
+    align-items: center;
+  }
+
+  .slider {
+    flex-grow: 1;
+    input[type="range"] {
+      width: 100%;
     }
+  }
+}
 
-    &.disabled {
-      pointer-events: none;
-    }
+.vote-modal {
+  .modal-content {
+    border: none;
+    border-radius: 12px;
+    padding: 6px;
+  }
+}
 
-    &:hover,
-    &.voted {
-      background-color: $dark-sky-blue;
+// Range styles
 
-      .btn-inner {
-        color: $white;
-      }
-    }
+.voting-controls-up,
+.voting-controls-down {
+  input[type="range"] {
+    width: 100%;
+    margin: 5.5px 0;
+    background-color: transparent;
+    -webkit-appearance: none;
+  }
+
+  input[type="range"]:focus {
+    outline: none;
+  }
+  input[type="range"]::-webkit-slider-runnable-track {
+    background: #bdc3c7;
+    border: 0;
+    border-radius: 20px;
+    width: 100%;
+    height: 9px;
+    cursor: pointer;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    margin-top: -5.5px;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ffffff;
+    border-radius: 20px;
+    cursor: pointer;
+    -webkit-appearance: none;
+  }
+
+  input[type="range"]:focus::-webkit-slider-runnable-track {
+    background: #e6e9ea;
+  }
+
+  input[type="range"]::-moz-range-track {
+    background: #bdc3c7;
+    border: 0;
+    border-radius: 20px;
+    width: 100%;
+    height: 9px;
+    cursor: pointer;
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ffffff;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+
+  input[type="range"]::-ms-track {
+    background: transparent;
+    border-color: transparent;
+    border-width: 6.4px 0;
+    color: transparent;
+    width: 100%;
+    height: 9px;
+    cursor: pointer;
+  }
+  input[type="range"]::-ms-fill-lower {
+    background: #949da4;
+    border: 0;
+    border-radius: 40px;
+  }
+  input[type="range"]::-ms-fill-upper {
+    background: #bdc3c7;
+    border: 0;
+    border-radius: 40px;
+  }
+
+  input[type="range"]::-ms-thumb {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ffffff;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 0px;
+    /*Needed to keep the Edge thumb centred*/
+  }
+}
+
+.voting-controls-up {
+  input[type="range"]::-webkit-slider-thumb {
+    background: $dark-sky-blue;
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    background: $dark-sky-blue;
+  }
+
+  input[type="range"]::-ms-thumb {
+    background: $dark-sky-blue;
+  }
+}
+
+.voting-controls-down {
+  input[type="range"]::-webkit-slider-thumb {
+    background: $red4;
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    background: $red4;
+  }
+
+  input[type="range"]::-ms-thumb {
+    background: $red4;
   }
 }

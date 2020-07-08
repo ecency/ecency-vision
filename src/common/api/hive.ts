@@ -1,7 +1,10 @@
 import { Client } from "@esteemapp/dhive";
 
 import { TrendingTag } from "../store/trending-tags/types";
+import { DynamicProps } from "../store/dynamic-props/types";
 import { Account, AccountProfile, AccountFollowStats } from "../store/accounts/types";
+
+import parseAsset from "../helper/parse-asset";
 
 import SERVERS from "../constants/servers.json";
 
@@ -145,6 +148,22 @@ export const getState = (path: string): Promise<any> => client.database.getState
 export const getFeedHistory = (): Promise<FeedHistory> => client.database.call("get_feed_history");
 
 export const getRewardFund = (): Promise<RewardFund> => client.database.call("get_reward_fund", ["post"]);
+
+export const getDynamicProps = async (): Promise<DynamicProps> => {
+  const globalDynamic = await getDynamicGlobalProperties();
+  const feedHistory = await getFeedHistory();
+  const rewardFund = await getRewardFund();
+
+  const hivePerMVests =
+    (parseAsset(globalDynamic.total_vesting_fund_hive).amount / parseAsset(globalDynamic.total_vesting_shares).amount) *
+    1e6;
+  const base = parseAsset(feedHistory.current_median_history.base).amount;
+  const quote = parseAsset(feedHistory.current_median_history.quote).amount;
+  const fundRecentClaims = parseFloat(rewardFund.recent_claims);
+  const fundRewardBalance = parseAsset(rewardFund.reward_balance).amount;
+
+  return { hivePerMVests, base, quote, fundRecentClaims, fundRewardBalance };
+};
 
 export const getVestingDelegations = (
   username: string,

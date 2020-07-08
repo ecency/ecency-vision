@@ -19,7 +19,6 @@ import { Reblog } from "../store/reblogs/types";
 import { toggleListStyle, toggleTheme } from "../store/global";
 import { makeGroupKey, fetchEntries } from "../store/entries";
 import { addAccount } from "../store/accounts";
-import { fetchDynamicProps } from "../store/dynamic-props";
 import { fetchTransactions, resetTransactions } from "../store/transactions";
 import { fetchTrendingTags } from "../store/trending-tags";
 import { setActiveUser, updateActiveUser } from "../store/active-user";
@@ -71,7 +70,6 @@ interface Props {
   toggleListStyle: () => void;
   fetchEntries: (what: string, tag: string, more: boolean) => void;
   addAccount: (data: Account) => void;
-  fetchDynamicProps: () => void;
   fetchTransactions: (username: string) => void;
   resetTransactions: () => void;
   fetchTrendingTags: () => void;
@@ -95,15 +93,12 @@ class ProfilePage extends Component<Props, State> {
   async componentDidMount() {
     await this.ensureAccount();
 
-    const { match, global, fetchEntries, fetchDynamicProps, fetchTransactions } = this.props;
+    const { match, global, fetchEntries, fetchTransactions } = this.props;
 
     if (match.params.section !== "wallet") {
       // fetch posts
       fetchEntries(global.filter, global.tag, false);
     }
-
-    // fetch global props for wallet
-    fetchDynamicProps();
 
     // fetch wallet transactions
     fetchTransactions(match.params.username);
@@ -277,7 +272,6 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       toggleListStyle,
       fetchEntries,
       addAccount,
-      fetchDynamicProps,
       fetchTransactions,
       resetTransactions,
       fetchTrendingTags,

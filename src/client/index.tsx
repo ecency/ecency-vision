@@ -7,8 +7,9 @@ import configureStore from "../common/store/configure";
 import { reloadAct as reloadUsers } from "../common/store/users";
 import { reloadAct as reloadActiveUser, updateAct as updateActiveUserAct } from "../common/store/active-user";
 import { reloadAct as reloadReblogs } from "../common/store/reblogs";
+import { fetchedAct as loadDynamicProps } from "../common/store/dynamic-props";
 
-import { getAccount } from "../common/api/hive";
+import { getAccount, getDynamicProps } from "../common/api/hive";
 
 import { history } from "../common/store/index";
 
@@ -46,6 +47,11 @@ hydrate(
 store.dispatch(reloadUsers());
 store.dispatch(reloadActiveUser());
 store.dispatch(reloadReblogs());
+
+// Load dynamic props
+getDynamicProps().then((resp) => {
+  store.dispatch(loadDynamicProps(resp));
+});
 
 // Active user updater
 const updateActiveUser = () => {

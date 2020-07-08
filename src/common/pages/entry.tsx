@@ -22,6 +22,7 @@ setProxyBase(defaults.imageServer);
 import { AppState } from "../store";
 import { Global } from "../store/global/types";
 import { Account } from "../store/accounts/types";
+import { DynamicProps } from "../store/dynamic-props/types";
 import { Entry, Entries } from "../store/entries/types";
 import { TrendingTags } from "../store/trending-tags/types";
 import { User } from "../store/users/types";
@@ -83,6 +84,7 @@ interface Props {
   match: match<MatchParams>;
   global: Global;
   trendingTags: TrendingTags;
+  dynamicProps: DynamicProps;
   entries: Entries;
   users: User[];
   activeUser: ActiveUser | null;
@@ -337,7 +339,7 @@ class EntryPage extends Component<Props, State> {
                 </div>
               </div>
               <div className="entry-controls">
-                <EntryVoteBtn {...this.props} />
+                <EntryVoteBtn {...this.props} entry={entry} />
                 <EntryPayout {...this.props} entry={entry} />
                 <EntryVotes {...this.props} entry={entry} />
                 <div className="sub-menu">
@@ -380,6 +382,7 @@ class EntryPage extends Component<Props, State> {
 const mapStateToProps = (state: AppState) => ({
   global: state.global,
   trendingTags: state.trendingTags,
+  dynamicProps: state.dynamicProps,
   entries: state.entries,
   users: state.users,
   activeUser: state.activeUser,

@@ -17,11 +17,11 @@ export const globalInstance: Global = {
   currencySymbol: "$",
 };
 
-export const TrendingTagsInstance: TrendingTags ={
-  list: ['foo', 'bar', 'baz'],
+export const TrendingTagsInstance: TrendingTags = {
+  list: ["foo", "bar", "baz"],
   error: false,
-  loading: false
-}
+  loading: false,
+};
 
 export const entryInstance1: Entry = {
   post_id: 86342505,
@@ -551,5 +551,6 @@ export const dynamicPropsIntance1: DynamicProps = {
   hivePerMVests: 513.7574961580294,
   base: 0.252,
   quote: 1,
+  fundRecentClaims: 413504197028183900,
   fundRewardBalance: 848692.443,
 };

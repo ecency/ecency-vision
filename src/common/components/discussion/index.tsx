@@ -18,10 +18,11 @@ import {
 setProxyBase(defaults.imageServer);
 
 import { Entry } from "../../store/entries/types";
-
 import { Account } from "../../store/accounts/types";
-
+import { DynamicProps } from "../../store/dynamic-props/types";
 import { Global } from "../../store/global/types";
+import { User } from "../../store/users/types";
+import { ActiveUser } from "../../store/active-user/types";
 
 import { getDiscussion } from "../../api/bridge";
 
@@ -50,6 +51,9 @@ import { commentSvg } from "../../img/svg";
 interface ItemProps {
   history: History;
   global: Global;
+  dynamicProps: DynamicProps;
+  users: User[];
+  activeUser: ActiveUser | null;
   discussion: Entry[];
   entry: Entry;
   addAccount: (data: Account) => void;
@@ -95,7 +99,7 @@ export class Item extends Component<ItemProps> {
             </div>
             <div className="item-body markdown-view mini-markdown" dangerouslySetInnerHTML={renderedBody} />
             <div className="item-controls">
-              <EntryVoteBtn {...this.props} />
+              <EntryVoteBtn {...this.props} entry={entry} />
               <EntryPayout {...this.props} entry={entry} />
               <EntryVotes {...this.props} entry={entry} />
               <DownloadTrigger>
@@ -123,6 +127,9 @@ export class Item extends Component<ItemProps> {
 interface ListProps {
   history: History;
   global: Global;
+  dynamicProps: DynamicProps;
+  users: User[];
+  activeUser: ActiveUser | null;
   discussion: Entry[];
   parent: Entry;
   addAccount: (data: Account) => void;
@@ -153,6 +160,9 @@ export class List extends Component<ListProps> {
 interface Props {
   history: History;
   global: Global;
+  dynamicProps: DynamicProps;
+  users: User[];
+  activeUser: ActiveUser | null;
   parent: Entry;
   addAccount: (data: Account) => void;
 }
