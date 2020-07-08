@@ -86,7 +86,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
 
   render() {
     const { onHide } = this.props;
-    const { upSliderVal, mode } = this.state;
+    const { upSliderVal, downSliderVal, mode } = this.state;
 
     return (
       <Modal className="vote-modal" onHide={onHide} show={true} centered={true} animation={false}>
@@ -135,11 +135,11 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                 step={0.1}
                 min={0.1}
                 max={100}
-                value={upSliderVal}
-                onChange={this.upSliderChanged}
+                value={downSliderVal}
+                onChange={this.downSliderChanged}
               />
             </div>
-            <div className="percentage">{`${upSliderVal.toFixed(1)}%`}</div>
+            <div className="percentage">{`-${downSliderVal.toFixed(1)}%`}</div>
             <div className="btn-vote btn-down-vote vote-btn-lg">
               <span className="btn-inner">{chevronUpSvg}</span>
             </div>
