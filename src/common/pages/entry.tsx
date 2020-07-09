@@ -31,7 +31,7 @@ import { Reblog } from "../store/reblogs/types";
 
 import { toggleTheme } from "../store/global/index";
 import { addAccount } from "../store/accounts/index";
-import { addEntry } from "../store/entries/index";
+import { addEntry, updateEntry } from "../store/entries/index";
 import { fetchTrendingTags } from "../store/trending-tags";
 import { setActiveUser, updateActiveUser } from "../store/active-user";
 import { deleteUser } from "../store/users";
@@ -92,6 +92,7 @@ interface Props {
   toggleTheme: () => void;
   addAccount: (data: Account) => void;
   addEntry: (entry: Entry) => void;
+  updateEntry: (entry: Entry) => void;
   fetchTrendingTags: () => void;
   setActiveUser: (username: string | null) => void;
   updateActiveUser: (data: Account) => void;
@@ -181,6 +182,22 @@ class EntryPage extends Component<Props, State> {
   shareFacebook = (entry: Entry) => {
     const u = makeShareUrlFacebook(entry.category, entry.author, entry.permlink);
     window.open(u, "_blank");
+  };
+
+  afterVote = (firstTime: boolean) => {
+    if (firstTime) {
+      const entry = this.getEntry()!;
+
+       // increment vote count of entry on first voting
+       const {  updateEntry } = this.props;
+       const { stats } = entry;
+       const newStats = { ...stats, total_votes: stats.total_votes + 1 };
+       const newEntry = { ...entry, stats: newStats };
+ 
+       updateEntry(newEntry);
+
+       this.forceUpdate();
+    }
   };
 
   render() {
@@ -339,7 +356,7 @@ class EntryPage extends Component<Props, State> {
                 </div>
               </div>
               <div className="entry-controls">
-                <EntryVoteBtn {...this.props} entry={entry} />
+                <EntryVoteBtn {...this.props} entry={entry} afterVote={this.afterVote} />
                 <EntryPayout {...this.props} entry={entry} />
                 <EntryVotes {...this.props} entry={entry} />
                 <div className="sub-menu">
@@ -395,6 +412,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       toggleTheme,
       addAccount,
       addEntry,
+      updateEntry,
       fetchTrendingTags,
       setActiveUser,
       updateActiveUser,

@@ -220,6 +220,7 @@ interface Props {
   setActiveUser: (username: string | null) => void;
   updateActiveUser: (data: Account) => void;
   deleteUser: (username: string) => void;
+  afterVote: (firstTime: boolean) => void;
 }
 
 interface State {
@@ -267,23 +268,17 @@ export default class EntryVoteBtn extends Component<Props, State> {
 
   vote = (percent: number) => {
     const { upVoted, downVoted } = this.isVoted();
-    const { entry, users, activeUser } = this.props;
+    const { entry, users, activeUser, afterVote } = this.props;
     const user = users.find((x) => x.username === activeUser?.username)!;
     const weight = percent * 100;
 
     this.stateSet({ inProgress: true });
 
     vote(user, entry.author, entry.permlink, weight)
-      .then((r) => {
-        if (!(upVoted || downVoted)) {
-          const { stats } = entry;
-          const newStats = { ...stats, total_votes: stats.total_votes + 1 };
-          const newEntry = { ...entry, stats: newStats };
-          // update entry here...
-        }
-        
+      .then(() => {
         this.fetchVotes();
         this.stateSet({ inProgress: false });
+        afterVote(!(upVoted || downVoted));
       })
       .catch((e) => {
         this.stateSet({ inProgress: false });

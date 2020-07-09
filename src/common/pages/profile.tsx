@@ -7,7 +7,7 @@ import { match } from "react-router";
 
 import { AppState } from "../store";
 import { ListStyle, Global } from "../store/global/types";
-import { Entries } from "../store/entries/types";
+import { Entries, Entry } from "../store/entries/types";
 import { Account, Accounts } from "../store/accounts/types";
 import { DynamicProps } from "../store/dynamic-props/types";
 import { Transactions } from "../store/transactions/types";
@@ -19,6 +19,7 @@ import { Reblog } from "../store/reblogs/types";
 import { toggleListStyle, toggleTheme } from "../store/global";
 import { makeGroupKey, fetchEntries } from "../store/entries";
 import { addAccount } from "../store/accounts";
+import { updateEntry } from "../store/entries/index";
 import { fetchTransactions, resetTransactions } from "../store/transactions";
 import { fetchTrendingTags } from "../store/trending-tags";
 import { setActiveUser, updateActiveUser } from "../store/active-user";
@@ -70,6 +71,7 @@ interface Props {
   toggleListStyle: () => void;
   fetchEntries: (what: string, tag: string, more: boolean) => void;
   addAccount: (data: Account) => void;
+  updateEntry: (entry: Entry) => void;
   fetchTransactions: (username: string) => void;
   resetTransactions: () => void;
   fetchTrendingTags: () => void;
@@ -272,6 +274,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       toggleListStyle,
       fetchEntries,
       addAccount,
+      updateEntry,
       fetchTransactions,
       resetTransactions,
       fetchTrendingTags,

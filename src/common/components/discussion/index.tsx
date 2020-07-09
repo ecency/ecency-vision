@@ -57,6 +57,9 @@ interface ItemProps {
   discussion: Entry[];
   entry: Entry;
   addAccount: (data: Account) => void;
+  setActiveUser: (username: string | null) => void;
+  updateActiveUser: (data: Account) => void;
+  deleteUser: (username: string) => void;
 }
 
 export class Item extends Component<ItemProps> {
@@ -99,7 +102,7 @@ export class Item extends Component<ItemProps> {
             </div>
             <div className="item-body markdown-view mini-markdown" dangerouslySetInnerHTML={renderedBody} />
             <div className="item-controls">
-              <EntryVoteBtn {...this.props} entry={entry} />
+              <EntryVoteBtn {...this.props} entry={entry} afterVote={()=>{}} />
               <EntryPayout {...this.props} entry={entry} />
               <EntryVotes {...this.props} entry={entry} />
               <DownloadTrigger>
@@ -133,6 +136,9 @@ interface ListProps {
   discussion: Entry[];
   parent: Entry;
   addAccount: (data: Account) => void;
+  setActiveUser: (username: string | null) => void;
+  updateActiveUser: (data: Account) => void;
+  deleteUser: (username: string) => void;
 }
 
 export class List extends Component<ListProps> {
@@ -165,6 +171,9 @@ interface Props {
   activeUser: ActiveUser | null;
   parent: Entry;
   addAccount: (data: Account) => void;
+  setActiveUser: (username: string | null) => void;
+  updateActiveUser: (data: Account) => void;
+  deleteUser: (username: string) => void;
 }
 
 interface State {

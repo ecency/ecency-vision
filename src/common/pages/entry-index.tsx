@@ -8,7 +8,7 @@ import { EntryFilter, ListStyle, Global } from "../store/global/types";
 import { Account } from "../store/accounts/types";
 import { DynamicProps } from "../store/dynamic-props/types";
 import { TrendingTags } from "../store/trending-tags/types";
-import { Entries } from "../store/entries/types";
+import { Entries, Entry } from "../store/entries/types";
 import { Community } from "../store/community/types";
 import { User } from "../store/users/types";
 import { ActiveUser } from "../store/active-user/types";
@@ -19,6 +19,7 @@ import { makeGroupKey, fetchEntries } from "../store/entries";
 import { fetchCommunity, resetCommunity } from "../store/community";
 import { fetchTrendingTags } from "../store/trending-tags";
 import { addAccount } from "../store/accounts";
+import { updateEntry } from "../store/entries/index";
 import { setActiveUser, updateActiveUser } from "../store/active-user";
 import { deleteUser } from "../store/users";
 import { addReblog } from "../store/reblogs";
@@ -64,6 +65,7 @@ interface Props {
   resetCommunity: () => void;
   fetchTrendingTags: () => void;
   addAccount: (data: Account) => void;
+  updateEntry: (entry: Entry) => void;
   setActiveUser: (username: string | null) => void;
   updateActiveUser: (data: Account) => void;
   deleteUser: (username: string) => void;
@@ -236,6 +238,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       resetCommunity,
       fetchTrendingTags,
       addAccount,
+      updateEntry,
       setActiveUser,
       updateActiveUser,
       deleteUser,

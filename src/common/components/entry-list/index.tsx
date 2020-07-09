@@ -25,6 +25,7 @@ interface Props {
   activeUser: ActiveUser | null;
   reblogs: Reblog[];
   addAccount: (data: Account) => void;
+  updateEntry: (entry: Entry) => void;
   setActiveUser: (username: string | null) => void;
   updateActiveUser: (data: Account) => void;
   deleteUser: (username: string) => void;

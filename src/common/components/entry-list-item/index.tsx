@@ -60,6 +60,7 @@ interface Props {
   asAuthor: string;
   promoted: boolean;
   addAccount: (data: Account) => void;
+  updateEntry: (entry: Entry) => void;
   setActiveUser: (username: string | null) => void;
   updateActiveUser: (data: Account) => void;
   deleteUser: (username: string) => void;
@@ -82,6 +83,18 @@ export default class EntryListItem extends Component<Props> {
       !isEqual(this.props.reblogs, nextProps.reblogs)
     );
   }
+
+  afterVote = (firstTime: boolean) => {
+    if (firstTime) {
+      // increment vote count of entry on first voting
+      const { entry, updateEntry } = this.props;
+      const { stats } = entry;
+      const newStats = { ...stats, total_votes: stats.total_votes + 1 };
+      const newEntry = { ...entry, stats: newStats };
+
+      updateEntry(newEntry);
+    }
+  };
 
   render() {
     const { entry, community, asAuthor, promoted } = this.props;
@@ -176,7 +189,7 @@ export default class EntryListItem extends Component<Props> {
             </EntryLink>
           </div>
           <div className="item-controls">
-            <EntryVoteBtn {...this.props} />
+            <EntryVoteBtn {...this.props} afterVote={this.afterVote} />
             <EntryPayout {...this.props} entry={entry} />
             <EntryVotes {...this.props} entry={entry} />
             <EntryLink {...this.props} entry={entry}>
