@@ -311,7 +311,7 @@ export default class EntryVoteBtn extends Component<Props, State> {
     const { dialog, inProgress } = this.state;
     const { upVoted, downVoted } = this.isVoted();
 
-    let cls = `btn-vote btn-up-vote ${inProgress ? "in-progress" : ""}`;
+    let cls = _c(`btn-vote btn-up-vote ${inProgress ? "in-progress" : ""}`);
 
     if (upVoted || downVoted) {
       cls = _c(`btn-vote ${upVoted ? "btn-up-vote" : "btn-down-vote"} ${inProgress ? "in-progress" : ""} voted`);

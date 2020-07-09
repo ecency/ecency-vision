@@ -133,10 +133,10 @@ exports[`(1) Full render 1`] = `
           >
             <div
               className="entry-vote-btn"
+              onClick={[Function]}
             >
-              <span
-                className="btn-up-vote"
-                onClick={[Function]}
+              <div
+                className="btn-vote btn-up-vote"
               >
                 <span
                   className="btn-inner"
@@ -150,7 +150,7 @@ exports[`(1) Full render 1`] = `
                     />
                   </svg>
                 </span>
-              </span>
+              </div>
             </div>
             <div
               className="entry-payout "
@@ -264,10 +264,10 @@ exports[`(1) Full render 1`] = `
           >
             <div
               className="entry-vote-btn"
+              onClick={[Function]}
             >
-              <span
-                className="btn-up-vote"
-                onClick={[Function]}
+              <div
+                className="btn-vote btn-up-vote"
               >
                 <span
                   className="btn-inner"
@@ -281,7 +281,7 @@ exports[`(1) Full render 1`] = `
                     />
                   </svg>
                 </span>
-              </span>
+              </div>
             </div>
             <div
               className="entry-payout "
@@ -395,10 +395,10 @@ exports[`(1) Full render 1`] = `
           >
             <div
               className="entry-vote-btn"
+              onClick={[Function]}
             >
-              <span
-                className="btn-up-vote"
-                onClick={[Function]}
+              <div
+                className="btn-vote btn-up-vote"
               >
                 <span
                   className="btn-inner"
@@ -412,7 +412,7 @@ exports[`(1) Full render 1`] = `
                     />
                   </svg>
                 </span>
-              </span>
+              </div>
             </div>
             <div
               className="entry-payout "
@@ -526,10 +526,10 @@ exports[`(1) Full render 1`] = `
           >
             <div
               className="entry-vote-btn"
+              onClick={[Function]}
             >
-              <span
-                className="btn-up-vote"
-                onClick={[Function]}
+              <div
+                className="btn-vote btn-up-vote"
               >
                 <span
                   className="btn-inner"
@@ -543,7 +543,7 @@ exports[`(1) Full render 1`] = `
                     />
                   </svg>
                 </span>
-              </span>
+              </div>
             </div>
             <div
               className="entry-payout "
@@ -657,10 +657,10 @@ exports[`(1) Full render 1`] = `
           >
             <div
               className="entry-vote-btn"
+              onClick={[Function]}
             >
-              <span
-                className="btn-up-vote"
-                onClick={[Function]}
+              <div
+                className="btn-vote btn-up-vote"
               >
                 <span
                   className="btn-inner"
@@ -674,7 +674,7 @@ exports[`(1) Full render 1`] = `
                     />
                   </svg>
                 </span>
-              </span>
+              </div>
             </div>
             <div
               className="entry-payout "
@@ -788,10 +788,10 @@ exports[`(1) Full render 1`] = `
           >
             <div
               className="entry-vote-btn"
+              onClick={[Function]}
             >
-              <span
-                className="btn-up-vote"
-                onClick={[Function]}
+              <div
+                className="btn-vote btn-up-vote"
               >
                 <span
                   className="btn-inner"
@@ -805,7 +805,7 @@ exports[`(1) Full render 1`] = `
                     />
                   </svg>
                 </span>
-              </span>
+              </div>
             </div>
             <div
               className="entry-payout "
@@ -918,10 +918,10 @@ exports[`(1) Full render 1`] = `
           >
             <div
               className="entry-vote-btn"
+              onClick={[Function]}
             >
-              <span
-                className="btn-up-vote"
-                onClick={[Function]}
+              <div
+                className="btn-vote btn-up-vote"
               >
                 <span
                   className="btn-inner"
@@ -935,7 +935,7 @@ exports[`(1) Full render 1`] = `
                     />
                   </svg>
                 </span>
-              </span>
+              </div>
             </div>
             <div
               className="entry-payout "
@@ -1050,10 +1050,10 @@ exports[`(1) Full render 1`] = `
               >
                 <div
                   className="entry-vote-btn"
+                  onClick={[Function]}
                 >
-                  <span
-                    className="btn-up-vote"
-                    onClick={[Function]}
+                  <div
+                    className="btn-vote btn-up-vote"
                   >
                     <span
                       className="btn-inner"
@@ -1067,7 +1067,7 @@ exports[`(1) Full render 1`] = `
                         />
                       </svg>
                     </span>
-                  </span>
+                  </div>
                 </div>
                 <div
                   className="entry-payout "
@@ -1183,10 +1183,10 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
           >
             <div
               className="entry-vote-btn"
+              onClick={[Function]}
             >
-              <span
-                className="btn-up-vote"
-                onClick={[Function]}
+              <div
+                className="btn-vote btn-up-vote"
               >
                 <span
                   className="btn-inner"
@@ -1200,7 +1200,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                     />
                   </svg>
                 </span>
-              </span>
+              </div>
             </div>
             <div
               className="entry-payout "
