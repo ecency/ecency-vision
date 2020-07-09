@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Popover, OverlayTrigger, Button, Modal, Form, FormControl } from "react-bootstrap";
+import { Modal, Form, FormControl } from "react-bootstrap";
 
 import { Entry } from "../../store/entries/types";
 import { User } from "../../store/users/types";
@@ -15,6 +15,8 @@ import parseAsset from "../../helper/parse-asset";
 import isEmptyDate from "../../helper/is-empty-date";
 import { vestsToRshares } from "../../helper/vesting";
 
+import * as ls from "../../util/local-storage";
+
 import _c from "../../util/fix-class-names";
 
 import { chevronUpSvg } from "../../img/svg";
@@ -24,6 +26,7 @@ type Mode = "up" | "down";
 interface VoteDialogProps {
   activeUser: ActiveUser | null;
   dynamicProps: DynamicProps;
+  entry: Entry;
   onHide: () => void;
 }
 
@@ -36,15 +39,14 @@ interface VoteDialogState {
 
 export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
   state: VoteDialogState = {
-    upSliderVal: 100,
-    downSliderVal: 100,
+    upSliderVal: ls.get("voting-percentage", 100),
+    downSliderVal: ls.get("voting-percentage-neg", -100),
     estimated: 0,
     mode: "up",
   };
 
-  /*
-  estimate = (w: number): number => {
-    const { activeUser, dynamicProps } = this.props;
+  estimate = (weight: number): number => {
+    const { entry, activeUser, dynamicProps } = this.props;
     if (!activeUser) {
       return 0;
     }
@@ -52,32 +54,58 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     const { fundRecentClaims, fundRewardBalance, base, quote } = dynamicProps;
     const { data: account } = activeUser;
 
-    const votingPower = vpMana(account);
-
     const totalVests =
       parseAsset(account.vesting_shares).amount +
       parseAsset(account.received_vesting_shares).amount -
       parseAsset(account.delegated_vesting_shares).amount;
 
-    const votePct = w * 100;
+    const userVestingShares = totalVests * 1e6;
 
-    const rShares = vestsToRshares(totalVests, votingPower, votePct);
-    return (rShares / fundRecentClaims) * fundRewardBalance * (base / quote);
+    const userVotingPower = vpMana(account) * Math.abs(weight);
+    const voteEffectiveShares = userVestingShares * (userVotingPower / 10000) * 0.02;
+
+    const postRshares = entry.net_rshares;
+
+    const sign = weight < 0 ? -1 : 1;
+
+    // reward curve algorithm (no idea whats going on here)
+    const CURVE_CONSTANT = 2000000000000;
+    const CURVE_CONSTANT_X4 = 4 * CURVE_CONSTANT;
+    const SQUARED_CURVE_CONSTANT = CURVE_CONSTANT * CURVE_CONSTANT;
+
+    const postRsharesNormalized = postRshares + CURVE_CONSTANT;
+    const postRsharesAfterVoteNormalized = postRshares + voteEffectiveShares + CURVE_CONSTANT;
+    const postRsharesCurve =
+      (postRsharesNormalized * postRsharesNormalized - SQUARED_CURVE_CONSTANT) / (postRshares + CURVE_CONSTANT_X4);
+    const postRsharesCurveAfterVote =
+      (postRsharesAfterVoteNormalized * postRsharesAfterVoteNormalized - SQUARED_CURVE_CONSTANT) /
+      (postRshares + voteEffectiveShares + CURVE_CONSTANT_X4);
+
+    const voteClaim = postRsharesCurveAfterVote - postRsharesCurve;
+
+    const proportion = voteClaim / fundRecentClaims;
+    const fullVote = proportion * fundRewardBalance;
+
+    const voteValue = fullVote * (base / quote);
+
+    if (sign > 0) {
+      return Math.max(voteValue * sign, 0);
+    }
+
+    return voteValue * sign;
   };
-  */
-
-  componentDidMount() {
-    // console.log(this.estimate(1000));
-  }
 
   upSliderChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
     const upSliderVal = Number(e.target.value);
     this.setState({ upSliderVal });
+    ls.set("voting-percentage", upSliderVal);
+    this.estimate(upSliderVal);
   };
 
   downSliderChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
     const downSliderVal = Number(e.target.value);
     this.setState({ downSliderVal });
+    ls.set("voting-percentage-neg", downSliderVal);
   };
 
   changeMode = (m: Mode) => {
@@ -95,6 +123,10 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
             <div className="btn-vote btn-up-vote vote-btn-lg">
               <span className="btn-inner">{chevronUpSvg}</span>
             </div>
+            <div className="estimated">
+              <FormattedCurrency {...this.props} value={this.estimate(upSliderVal)} fixAt={3} />
+            </div>
+
             <div className="slider slider-up">
               <Form.Control
                 type="range"
@@ -128,18 +160,21 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
             >
               <span className="btn-inner">{chevronUpSvg}</span>
             </div>
+            <div className="estimated">
+              <FormattedCurrency {...this.props} value={this.estimate(downSliderVal)} fixAt={3} />
+            </div>
             <div className="slider slider-down">
               <Form.Control
                 type="range"
                 custom
                 step={0.1}
-                min={0.1}
-                max={100}
+                min={-100}
+                max={-0.1}
                 value={downSliderVal}
                 onChange={this.downSliderChanged}
               />
             </div>
-            <div className="percentage">{`-${downSliderVal.toFixed(1)}%`}</div>
+            <div className="percentage">{`${downSliderVal.toFixed(1)}%`}</div>
             <div className="btn-vote btn-down-vote vote-btn-lg">
               <span className="btn-inner">{chevronUpSvg}</span>
             </div>
@@ -215,8 +250,11 @@ export default class EntryVoteBtn extends Component<Props, State> {
   };
 
   render() {
+    const { entry } = this.props;
     const { dialog } = this.state;
     const { upVoted, downVoted } = this.isVoted();
+
+    // console.log(typeof entry.net_rshares)
 
     return (
       <>
