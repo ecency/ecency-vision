@@ -54,6 +54,9 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     const { fundRecentClaims, fundRewardBalance, base, quote } = dynamicProps;
     const { data: account } = activeUser;
 
+    const sign = weight < 0 ? -1 : 1;
+    const postRshares = entry.net_rshares;
+
     const totalVests =
       parseAsset(account.vesting_shares).amount +
       parseAsset(account.received_vesting_shares).amount -
@@ -63,10 +66,6 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
 
     const userVotingPower = vpMana(account) * Math.abs(weight);
     const voteEffectiveShares = userVestingShares * (userVotingPower / 10000) * 0.02;
-
-    const postRshares = entry.net_rshares;
-
-    const sign = weight < 0 ? -1 : 1;
 
     // reward curve algorithm (no idea whats going on here)
     const CURVE_CONSTANT = 2000000000000;
