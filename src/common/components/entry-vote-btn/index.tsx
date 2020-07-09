@@ -266,6 +266,7 @@ export default class EntryVoteBtn extends Component<Props, State> {
   };
 
   vote = (percent: number) => {
+    const { upVoted, downVoted } = this.isVoted();
     const { entry, users, activeUser } = this.props;
     const user = users.find((x) => x.username === activeUser?.username)!;
     const weight = percent * 100;
@@ -274,6 +275,13 @@ export default class EntryVoteBtn extends Component<Props, State> {
 
     vote(user, entry.author, entry.permlink, weight)
       .then((r) => {
+        if (!(upVoted || downVoted)) {
+          const { stats } = entry;
+          const newStats = { ...stats, total_votes: stats.total_votes + 1 };
+          const newEntry = { ...entry, stats: newStats };
+          // update entry here...
+        }
+        
         this.fetchVotes();
         this.stateSet({ inProgress: false });
       })
@@ -311,7 +319,7 @@ export default class EntryVoteBtn extends Component<Props, State> {
     let cls = `btn-vote btn-up-vote ${inProgress ? "in-progress" : ""}`;
 
     if (upVoted || downVoted) {
-      cls = _c(`btn-vote ${upVoted ? "btn-up-vote" : "btn-down-vote"}  voted`);
+      cls = _c(`btn-vote ${upVoted ? "btn-up-vote" : "btn-down-vote"} ${inProgress ? "in-progress" : ""} voted`);
     }
 
     return (
