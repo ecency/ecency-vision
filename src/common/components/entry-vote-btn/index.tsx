@@ -34,7 +34,7 @@ const getVoteValue = (type: "up" | "down", username: string, def: number): numbe
 type Mode = "up" | "down";
 
 interface VoteDialogProps {
-  activeUser: ActiveUser | null;
+  activeUser: ActiveUser;
   dynamicProps: DynamicProps;
   entry: Entry;
   onClick: (percent: number) => void;
@@ -308,6 +308,7 @@ export default class EntryVoteBtn extends Component<Props, State> {
   };
 
   render() {
+    const { activeUser } = this.props;
     const { dialog, inProgress } = this.state;
     const { upVoted, downVoted } = this.isVoted();
 
@@ -327,7 +328,9 @@ export default class EntryVoteBtn extends Component<Props, State> {
           </div>
         </LoginRequired>
 
-        {dialog && <VoteDialog {...this.props} onHide={this.toggleDialog} onClick={this.vote} />}
+        {dialog && activeUser && (
+          <VoteDialog {...this.props} activeUser={activeUser} onHide={this.toggleDialog} onClick={this.vote} />
+        )}
       </>
     );
   }
