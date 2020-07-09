@@ -1,6 +1,6 @@
-import { combineReducers } from "redux";
-import { connectRouter } from "connected-react-router";
-import { createBrowserHistory, History } from "history";
+import {combineReducers} from "redux";
+import {connectRouter} from "connected-react-router";
+import {createBrowserHistory, History} from "history";
 
 import global from "./global";
 import dynamicProps from "./dynamic-props";
@@ -12,28 +12,30 @@ import transactions from "./transactions";
 import users from "./users";
 import activeUser from "./active-user";
 import reblogs from "./reblogs";
+import discussions from "./discussions";
 
 let reducers = {
-  global,
-  dynamicProps,
-  trendingTags,
-  community,
-  entries,
-  accounts,
-  transactions,
-  users,
-  activeUser,
-  reblogs
+    global,
+    dynamicProps,
+    trendingTags,
+    community,
+    entries,
+    accounts,
+    transactions,
+    users,
+    activeUser,
+    reblogs,
+    discussions
 };
 
 export let history: History | undefined;
 
 // create browser history on client side
 if (typeof window !== "undefined") {
-  history = createBrowserHistory();
+    history = createBrowserHistory();
 
-  // @ts-ignore
-  reducers = { router: connectRouter(history), ...reducers };
+    // @ts-ignore
+    reducers = {router: connectRouter(history), ...reducers};
 }
 
 const rootReducer = combineReducers(reducers);
