@@ -93,3 +93,13 @@ export const deleteComment = (user: User, author: string, permlink: string): Pro
 
   return client.broadcast(opArray);
 };
+
+export const vote = (user: User, author: string, permlink: string, weight: number): Promise<any> => {
+  var client = new hs.Client({
+    accessToken: user.accessToken,
+  });
+
+  const voter = user.username;
+
+  return client.vote(voter, author, permlink, weight);
+};

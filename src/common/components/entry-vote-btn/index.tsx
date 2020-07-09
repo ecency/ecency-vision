@@ -10,8 +10,10 @@ import { DynamicProps } from "../../store/dynamic-props/types";
 
 import FormattedCurrency from "../formatted-currency";
 import LoginRequired from "../login-required";
+import { error } from "../feedback";
 
 import { getActiveVotes, Vote, vpMana } from "../../api/hive";
+import { vote, formatError } from "../../api/operations";
 
 import parseAsset from "../../helper/parse-asset";
 
@@ -21,8 +23,8 @@ import _c from "../../util/fix-class-names";
 
 import { chevronUpSvg } from "../../img/svg";
 
-const setVoteValue = (type: "up" | "down", username: string, weight: number) => {
-  ls.set(`vote-value-${type}-${username}`, weight);
+const setVoteValue = (type: "up" | "down", username: string, value: number) => {
+  ls.set(`vote-value-${type}-${username}`, value);
 };
 
 const getVoteValue = (type: "up" | "down", username: string, def: number): number => {
@@ -35,7 +37,7 @@ interface VoteDialogProps {
   activeUser: ActiveUser | null;
   dynamicProps: DynamicProps;
   entry: Entry;
-  onVote: (weight: number) => void;
+  onClick: (percent: number) => void;
   onHide: () => void;
 }
 
@@ -54,7 +56,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     mode: "up",
   };
 
-  estimate = (weight: number): number => {
+  estimate = (percent: number): number => {
     const { entry, activeUser, dynamicProps } = this.props;
     if (!activeUser) {
       return 0;
@@ -63,7 +65,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     const { fundRecentClaims, fundRewardBalance, base, quote } = dynamicProps;
     const { data: account } = activeUser;
 
-    const sign = weight < 0 ? -1 : 1;
+    const sign = percent < 0 ? -1 : 1;
     const postRshares = entry.net_rshares;
 
     const totalVests =
@@ -73,7 +75,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
 
     const userVestingShares = totalVests * 1e6;
 
-    const userVotingPower = vpMana(account) * Math.abs(weight);
+    const userVotingPower = vpMana(account) * Math.abs(percent);
     const voteEffectiveShares = userVestingShares * (userVotingPower / 10000) * 0.02;
 
     // reward curve algorithm (no idea whats going on here)
@@ -124,13 +126,17 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
   };
 
   upVoteClicked = () => {
+    const { onClick, onHide } = this.props;
     const { upSliderVal } = this.state;
-    console.log(upSliderVal);
+    onClick(upSliderVal);
+    onHide();
   };
 
   downVoteClicked = () => {
+    const { onClick, onHide } = this.props;
     const { downSliderVal } = this.state;
-    console.log(downSliderVal);
+    onClick(downSliderVal);
+    onHide();
   };
 
   render() {
@@ -219,12 +225,14 @@ interface Props {
 interface State {
   votes: Vote[];
   dialog: boolean;
+  inProgress: boolean;
 }
 
 export default class EntryVoteBtn extends Component<Props, State> {
   state: State = {
     votes: [],
     dialog: false,
+    inProgress: false,
   };
 
   _mounted: boolean = true;
@@ -243,7 +251,8 @@ export default class EntryVoteBtn extends Component<Props, State> {
   };
 
   componentDidMount = () => {
-    this.fetchVotes();
+    // wait to load active user on page load
+    setTimeout(this.fetchVotes, 200);
   };
 
   componentWillUnmount() {
@@ -254,6 +263,24 @@ export default class EntryVoteBtn extends Component<Props, State> {
     if (this._mounted) {
       this.setState(obj, cb);
     }
+  };
+
+  vote = (percent: number) => {
+    const { entry, users, activeUser } = this.props;
+    const user = users.find((x) => x.username === activeUser?.username)!;
+    const weight = percent * 100;
+
+    this.stateSet({ inProgress: true });
+
+    vote(user, entry.author, entry.permlink, weight)
+      .then((r) => {
+        this.fetchVotes();
+        this.stateSet({ inProgress: false });
+      })
+      .catch((e) => {
+        this.stateSet({ inProgress: false });
+        error(formatError(e));
+      });
   };
 
   isVoted = () => {
@@ -278,21 +305,26 @@ export default class EntryVoteBtn extends Component<Props, State> {
   };
 
   render() {
-    const { entry } = this.props;
-    const { dialog } = this.state;
+    const { dialog, inProgress } = this.state;
     const { upVoted, downVoted } = this.isVoted();
+
+    let cls = `btn-vote btn-up-vote ${inProgress ? "in-progress" : ""}`;
+
+    if (upVoted || downVoted) {
+      cls = _c(`btn-vote ${upVoted ? "btn-up-vote" : "btn-down-vote"}  voted`);
+    }
 
     return (
       <>
         <LoginRequired {...this.props}>
           <div className="entry-vote-btn" onClick={this.toggleDialog}>
-            <div className="btn-vote btn-up-vote">
+            <div className={cls}>
               <span className="btn-inner">{chevronUpSvg}</span>
             </div>
           </div>
         </LoginRequired>
 
-        {dialog && <VoteDialog {...this.props} onHide={this.toggleDialog} />}
+        {dialog && <VoteDialog {...this.props} onHide={this.toggleDialog} onClick={this.vote} />}
       </>
     );
   }
