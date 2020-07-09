@@ -38,8 +38,8 @@ import Tooltip from "../tooltip";
 import parseDate from "../../helper/parse-date";
 import appName from "../../helper/app-name";
 
-import {getPost} from "../../api/hive";
-import {normalizePost} from "../../api/bridge";
+import * as hiveApi from "../../api/hive";
+import * as bridgeApi from "../../api/bridge";
 
 import {_t} from "../../i18n/index";
 
@@ -87,16 +87,14 @@ export default class EntryListItem extends Component<Props> {
         );
     }
 
-    afterVote = (firstTime: boolean) => {
-        if (firstTime) {
-            // update the entry app globe
-            const {entry, updateEntry} = this.props;
-            getPost(entry.author, entry.permlink)
-                .then(p => normalizePost(p))
-                .then(r => {
-                    if (r) updateEntry(r)
-                });
-        }
+    afterVote = () => {
+        // update the entry
+        const {entry, updateEntry} = this.props;
+        hiveApi.getPost(entry.author, entry.permlink)
+            .then(p => bridgeApi.normalizePost(p))
+            .then(r => {
+                if (r) updateEntry(r)
+            });
     };
 
     render() {

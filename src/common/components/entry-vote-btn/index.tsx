@@ -214,7 +214,7 @@ interface Props {
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data: Account) => void;
     deleteUser: (username: string) => void;
-    afterVote: (firstTime: boolean) => void;
+    afterVote: () => void;
 }
 
 interface State {
@@ -280,7 +280,7 @@ export default class EntryVoteBtn extends Component<Props, State> {
             .then(() => {
                 this.fetchVotes();
                 this.stateSet({inProgress: false});
-                afterVote(!(upVoted || downVoted));
+                afterVote();
             })
             .catch((e) => {
                 this.stateSet({inProgress: false});
