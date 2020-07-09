@@ -246,7 +246,7 @@ export default class EntryVoteBtn extends Component<Props, State> {
     };
 
     componentDidUpdate(prevProps: Readonly<Props>) {
-        if (prevProps.activeUser?.username !== this.props.activeUser?.username) {
+        if ((prevProps.activeUser?.username !== this.props.activeUser?.username) && this.state.votes.length === 0) {
             this.fetchVotes();
         }
     }
@@ -330,7 +330,7 @@ export default class EntryVoteBtn extends Component<Props, State> {
                     </div>
                 </LoginRequired>
 
-                {dialog && activeUser && (
+                {(dialog && activeUser) && (
                     <Modal className="vote-modal" onHide={this.toggleDialog} show={true} centered={true} animation={false}>
                         <VoteDialog {...this.props} activeUser={activeUser} onClick={this.vote}/>
                     </Modal>
