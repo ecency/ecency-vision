@@ -245,10 +245,14 @@ export default class EntryVoteBtn extends Component<Props, State> {
         }
     };
 
-    componentDidMount = () => {
+    componentDidUpdate(prevProps: Readonly<Props>) {
+        if (prevProps.activeUser?.username !== this.props.activeUser?.username) {
+            this.fetchVotes();
+        }
+    }
 
-        // Wait to load active user on page load
-        setTimeout(this.fetchVotes, 200);
+    componentDidMount = () => {
+        this.fetchVotes();
     };
 
     componentWillUnmount() {
