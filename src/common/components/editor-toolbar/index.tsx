@@ -97,7 +97,7 @@ export default class EditorToolbar extends Component {
     insertText(t);
   };
 
-  fileInputChanged = (e: Event): void => {
+  fileInputChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const files = (e.target as HTMLInputElement).files!;
 
   };

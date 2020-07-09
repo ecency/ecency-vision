@@ -31,6 +31,9 @@ const props = {
   activeUser: null,
   parent,
   addAccount: () => {},
+  setActiveUser: () => {},
+  updateActiveUser: () => {},
+  deleteUser: () => {},
 };
 
 const component = renderer.create(<Discussion {...props} />);

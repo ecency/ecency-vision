@@ -157,7 +157,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
             <div className="slider slider-up">
               <Form.Control
                 type="range"
-                custom
+                custom={true}
                 step={0.1}
                 min={0.1}
                 max={100}
@@ -193,7 +193,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
             <div className="slider slider-down">
               <Form.Control
                 type="range"
-                custom
+                custom={true}
                 step={0.1}
                 min={-100}
                 max={-0.1}
