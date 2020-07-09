@@ -1,0 +1,129 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Vote Dialog (1) Up vote 1`] = `
+<div
+  className="voting-controls voting-controls-up"
+>
+  <div
+    className="btn-vote btn-up-vote vote-btn-lg"
+    onClick={[Function]}
+  >
+    <span
+      className="btn-inner"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+  </div>
+  <div
+    className="estimated"
+  >
+    $ 0.805
+  </div>
+  <div
+    className="slider slider-up"
+  >
+    <input
+      className="custom-range"
+      max={100}
+      min={0.1}
+      onChange={[Function]}
+      step={0.1}
+      type="range"
+      value={100}
+    />
+  </div>
+  <div
+    className="percentage"
+  >
+    100.0%
+  </div>
+  <div
+    className="btn-vote btn-down-vote vote-btn-lg"
+    onClick={[Function]}
+  >
+    <span
+      className="btn-inner"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Vote Dialog (2) Down vote 1`] = `
+<div
+  className="voting-controls voting-controls-down"
+>
+  <div
+    className="btn-vote btn-up-vote vote-btn-lg"
+    onClick={[Function]}
+  >
+    <span
+      className="btn-inner"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+  </div>
+  <div
+    className="estimated"
+  >
+    $ -0.805
+  </div>
+  <div
+    className="slider slider-down"
+  >
+    <input
+      className="custom-range"
+      max={-0.1}
+      min={-100}
+      onChange={[Function]}
+      step={0.1}
+      type="range"
+      value={-100}
+    />
+  </div>
+  <div
+    className="percentage"
+  >
+    -100.0%
+  </div>
+  <div
+    className="btn-vote btn-down-vote vote-btn-lg"
+    onClick={[Function]}
+  >
+    <span
+      className="btn-inner"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+  </div>
+</div>
+`;
