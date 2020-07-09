@@ -2,18 +2,18 @@ import React, { Component } from "react";
 
 import { Modal, Form, FormControl } from "react-bootstrap";
 
+import { Account } from "../../store/accounts/types";
 import { Entry } from "../../store/entries/types";
 import { User } from "../../store/users/types";
 import { ActiveUser } from "../../store/active-user/types";
 import { DynamicProps } from "../../store/dynamic-props/types";
 
 import FormattedCurrency from "../formatted-currency";
+import LoginRequired from "../login-required";
 
 import { getActiveVotes, Vote, vpMana } from "../../api/hive";
 
 import parseAsset from "../../helper/parse-asset";
-import isEmptyDate from "../../helper/is-empty-date";
-import { vestsToRshares } from "../../helper/vesting";
 
 import * as ls from "../../util/local-storage";
 
@@ -21,12 +21,21 @@ import _c from "../../util/fix-class-names";
 
 import { chevronUpSvg } from "../../img/svg";
 
+const setVoteValue = (type: "up" | "down", username: string, weight: number) => {
+  ls.set(`vote-value-${type}-${username}`, weight);
+};
+
+const getVoteValue = (type: "up" | "down", username: string, def: number): number => {
+  return ls.get(`vote-value-${type}-${username}`, def);
+};
+
 type Mode = "up" | "down";
 
 interface VoteDialogProps {
   activeUser: ActiveUser | null;
   dynamicProps: DynamicProps;
   entry: Entry;
+  onVote: (weight: number) => void;
   onHide: () => void;
 }
 
@@ -39,8 +48,8 @@ interface VoteDialogState {
 
 export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
   state: VoteDialogState = {
-    upSliderVal: ls.get("voting-percentage", 100),
-    downSliderVal: ls.get("voting-percentage-neg", -100),
+    upSliderVal: getVoteValue("up", this.props.activeUser?.username!, 100),
+    downSliderVal: getVoteValue("down", this.props.activeUser?.username!, -100),
     estimated: 0,
     mode: "up",
   };
@@ -97,18 +106,31 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
   upSliderChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
     const upSliderVal = Number(e.target.value);
     this.setState({ upSliderVal });
-    ls.set("voting-percentage", upSliderVal);
-    this.estimate(upSliderVal);
+
+    const { activeUser } = this.props;
+    setVoteValue("up", activeUser?.username!, upSliderVal);
   };
 
   downSliderChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
     const downSliderVal = Number(e.target.value);
     this.setState({ downSliderVal });
-    ls.set("voting-percentage-neg", downSliderVal);
+
+    const { activeUser } = this.props;
+    setVoteValue("down", activeUser?.username!, downSliderVal);
   };
 
   changeMode = (m: Mode) => {
     this.setState({ mode: m });
+  };
+
+  upVoteClicked = () => {
+    const { upSliderVal } = this.state;
+    console.log(upSliderVal);
+  };
+
+  downVoteClicked = () => {
+    const { downSliderVal } = this.state;
+    console.log(downSliderVal);
   };
 
   render() {
@@ -119,7 +141,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
       <Modal className="vote-modal" onHide={onHide} show={true} centered={true} animation={false}>
         {mode === "up" && (
           <div className="voting-controls voting-controls-up">
-            <div className="btn-vote btn-up-vote vote-btn-lg">
+            <div className="btn-vote btn-up-vote vote-btn-lg" onClick={this.upVoteClicked}>
               <span className="btn-inner">{chevronUpSvg}</span>
             </div>
             <div className="estimated">
@@ -174,7 +196,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
               />
             </div>
             <div className="percentage">{`${downSliderVal.toFixed(1)}%`}</div>
-            <div className="btn-vote btn-down-vote vote-btn-lg">
+            <div className="btn-vote btn-down-vote vote-btn-lg" onClick={this.downVoteClicked}>
               <span className="btn-inner">{chevronUpSvg}</span>
             </div>
           </div>
@@ -189,6 +211,9 @@ interface Props {
   entry: Entry;
   users: User[];
   activeUser: ActiveUser | null;
+  setActiveUser: (username: string | null) => void;
+  updateActiveUser: (data: Account) => void;
+  deleteUser: (username: string) => void;
 }
 
 interface State {
@@ -204,7 +229,7 @@ export default class EntryVoteBtn extends Component<Props, State> {
 
   _mounted: boolean = true;
 
-  componentDidMount = () => {
+  fetchVotes = () => {
     const { activeUser, entry, users } = this.props;
 
     if (activeUser) {
@@ -215,6 +240,10 @@ export default class EntryVoteBtn extends Component<Props, State> {
         this.stateSet({ votes });
       });
     }
+  };
+
+  componentDidMount = () => {
+    this.fetchVotes();
   };
 
   componentWillUnmount() {
@@ -253,15 +282,15 @@ export default class EntryVoteBtn extends Component<Props, State> {
     const { dialog } = this.state;
     const { upVoted, downVoted } = this.isVoted();
 
-    // console.log(typeof entry.net_rshares)
-
     return (
       <>
-        <div className="entry-vote-btn" onClick={this.toggleDialog}>
-          <div className="btn-vote btn-up-vote">
-            <span className="btn-inner">{chevronUpSvg}</span>
+        <LoginRequired {...this.props}>
+          <div className="entry-vote-btn" onClick={this.toggleDialog}>
+            <div className="btn-vote btn-up-vote">
+              <span className="btn-inner">{chevronUpSvg}</span>
+            </div>
           </div>
-        </div>
+        </LoginRequired>
 
         {dialog && <VoteDialog {...this.props} onHide={this.toggleDialog} />}
       </>
