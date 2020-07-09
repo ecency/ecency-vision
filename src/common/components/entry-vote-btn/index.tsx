@@ -236,17 +236,18 @@ export default class EntryVoteBtn extends Component<Props, State> {
         const {activeUser, entry, users} = this.props;
 
         if (activeUser) {
-            const usernames = users.map((x) => x.username);
+            const userNames = users.map((x) => x.username);
 
             getActiveVotes(entry.author, entry.permlink).then((resp) => {
-                const votes = resp.filter((x) => usernames.includes(x.voter));
+                const votes = resp.filter((x) => userNames.includes(x.voter));
                 this.stateSet({votes});
             });
         }
     };
 
     componentDidMount = () => {
-        // wait to load active user on page load
+
+        // Wait to load active user on page load
         setTimeout(this.fetchVotes, 200);
     };
 

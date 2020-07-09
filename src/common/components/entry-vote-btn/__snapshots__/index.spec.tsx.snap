@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Vote Dialog (1) Up vote 1`] = `
+exports[`(1) Dialog (1) Up vote 1`] = `
 <div
   className="voting-controls voting-controls-up"
 >
@@ -24,7 +24,7 @@ exports[`Vote Dialog (1) Up vote 1`] = `
   <div
     className="estimated"
   >
-    $ 0.805
+    $ 0.040
   </div>
   <div
     className="slider slider-up"
@@ -64,7 +64,7 @@ exports[`Vote Dialog (1) Up vote 1`] = `
 </div>
 `;
 
-exports[`Vote Dialog (2) Down vote 1`] = `
+exports[`(1) Dialog (2) Down vote 1`] = `
 <div
   className="voting-controls voting-controls-down"
 >
@@ -88,7 +88,7 @@ exports[`Vote Dialog (2) Down vote 1`] = `
   <div
     className="estimated"
   >
-    $ -0.805
+    $ -0.040
   </div>
   <div
     className="slider slider-down"
@@ -111,6 +111,54 @@ exports[`Vote Dialog (2) Down vote 1`] = `
   <div
     className="btn-vote btn-down-vote vote-btn-lg"
     onClick={[Function]}
+  >
+    <span
+      className="btn-inner"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`(2) Btn - No active user (1) Render 1`] = `
+<div
+  className="entry-vote-btn"
+  onClick={[Function]}
+>
+  <div
+    className="btn-vote btn-up-vote"
+  >
+    <span
+      className="btn-inner"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`(3) Btn - Up voted (1) Render 1`] = `
+<div
+  className="entry-vote-btn"
+  onClick={[Function]}
+>
+  <div
+    className="btn-vote btn-up-vote voted"
   >
     <span
       className="btn-inner"

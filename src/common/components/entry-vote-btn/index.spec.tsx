@@ -1,30 +1,24 @@
 import React from "react";
 
-import {VoteDialog} from "./index";
+import EntryVoteBtn, {VoteDialog} from "./index";
 
 import renderer from "react-test-renderer";
 
-import {createBrowserHistory} from "history";
+import {globalInstance, dynamicPropsIntance1, entryInstance1} from "../../helper/test-helper";
 
-import {globalInstance, discussionInstace1, dynamicPropsIntance1, entryInstance1} from "../../helper/test-helper";
 import {Account} from "../../store/accounts/types";
 
-/*
-jest.mock("moment", () => () => ({
-  fromNow: () => "3 days ago",
-  format: (f: string, s: string) => "2020-01-01 23:12:00",
+
+jest.mock("../../api/hive", () => ({
+    vpMana: () => 5,
+    getActiveVotes: () =>
+        new Promise((resolve) => {
+            resolve([{voter: "user1", percent: 10}]);
+        }),
 }));
 
-jest.mock("../../api/bridge", () => ({
-  getDiscussion: () =>
-    new Promise((resolve) => {
-      const [, ...replies] = discussionInstace1;
-      resolve(replies);
-    }),
-}));
-*/
 
-describe('Vote Dialog', () => {
+describe('(1) Dialog', () => {
 
     const data: Account = {
         name: "user1",
@@ -47,7 +41,6 @@ describe('Vote Dialog', () => {
         follow_stats: {follower_count: 33497, following_count: 165},
         __loaded: true,
     };
-
 
     const props = {
         activeUser: {username: "user1", data},
@@ -73,4 +66,53 @@ describe('Vote Dialog', () => {
 
 });
 
+describe('(2) Btn - No active user', () => {
+    const props = {
+        global: globalInstance,
+        dynamicProps: dynamicPropsIntance1,
+        entry: entryInstance1,
+        users: [],
+        activeUser: null,
+        setActiveUser: () => {
+        },
+        updateActiveUser: () => {
+        },
+        deleteUser: () => {
+        },
+        afterVote: () => {
+        }
+    };
+
+    const component = renderer.create(<EntryVoteBtn {...props} />);
+
+    it("(1) Render", () => {
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+});
+
+describe('(3) Btn - Up voted', () => {
+
+    const props = {
+        global: globalInstance,
+        dynamicProps: dynamicPropsIntance1,
+        entry: entryInstance1,
+        users: [{username: 'user1', accessToken: 's', refreshToken: 'b', expiresIn: 1}],
+        activeUser: {username: "user1", data: {name: "user1"}},
+        setActiveUser: () => {
+        },
+        updateActiveUser: () => {
+        },
+        deleteUser: () => {
+        },
+        afterVote: () => {
+        }
+    };
+
+    const component = renderer.create(<EntryVoteBtn {...props} />);
+    const instance: any = component.getInstance();
+
+    it("(1) Render", () => {
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+});
 
