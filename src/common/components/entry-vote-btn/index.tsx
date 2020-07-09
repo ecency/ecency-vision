@@ -38,7 +38,6 @@ interface VoteDialogProps {
   dynamicProps: DynamicProps;
   entry: Entry;
   onClick: (percent: number) => void;
-  onHide: () => void;
 }
 
 interface VoteDialogState {
@@ -126,25 +125,22 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
   };
 
   upVoteClicked = () => {
-    const { onClick, onHide } = this.props;
+    const { onClick } = this.props;
     const { upSliderVal } = this.state;
     onClick(upSliderVal);
-    onHide();
   };
 
   downVoteClicked = () => {
-    const { onClick, onHide } = this.props;
+    const { onClick } = this.props;
     const { downSliderVal } = this.state;
     onClick(downSliderVal);
-    onHide();
   };
 
   render() {
-    const { onHide } = this.props;
     const { upSliderVal, downSliderVal, mode } = this.state;
 
     return (
-      <Modal className="vote-modal" onHide={onHide} show={true} centered={true} animation={false}>
+      <>
         {mode === "up" && (
           <div className="voting-controls voting-controls-up">
             <div className="btn-vote btn-up-vote vote-btn-lg" onClick={this.upVoteClicked}>
@@ -207,7 +203,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
             </div>
           </div>
         )}
-      </Modal>
+      </>
     );
   }
 }
@@ -267,6 +263,8 @@ export default class EntryVoteBtn extends Component<Props, State> {
   };
 
   vote = (percent: number) => {
+    this.toggleDialog();
+
     const { upVoted, downVoted } = this.isVoted();
     const { entry, users, activeUser, afterVote } = this.props;
     const user = users.find((x) => x.username === activeUser?.username)!;
@@ -329,7 +327,9 @@ export default class EntryVoteBtn extends Component<Props, State> {
         </LoginRequired>
 
         {dialog && activeUser && (
-          <VoteDialog {...this.props} activeUser={activeUser} onHide={this.toggleDialog} onClick={this.vote} />
+          <Modal className="vote-modal" onHide={this.toggleDialog} show={true} centered={true} animation={false}>
+            <VoteDialog {...this.props} activeUser={activeUser} onClick={this.vote} />
+          </Modal>
         )}
       </>
     );
