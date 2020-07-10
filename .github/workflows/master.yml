@@ -1,0 +1,47 @@
+name: Staging CI/CD
+on:
+  push:
+    branches:
+      - development
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [8.x, 10.x, 12.x]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: npm install, build, lint and test
+      run: |
+        yarn
+        yarn build --if-present
+        yarn lint --if-present
+        yarn test --if-present
+      env:
+        CI: true
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: SSH and deploy node app
+      uses: appleboy/ssh-action@5711a203b3207eb1c6cebec6ac2152ab210ec3ae
+      env:
+        STAGING_PORT: ${{secrets.STAGING_PORT}}
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.SSH_PORT }}
+        envs: STAGING_PORT
+        script: |
+          cd ~/ecency-vision
+          git pull origin master
+          yarn
+          yarn build
+          export PORT=$STAGING_PORT
+          yarn start:prod
