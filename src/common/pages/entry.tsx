@@ -39,7 +39,7 @@ import {fetchTrendingTags} from "../store/trending-tags";
 import {setActiveUser, updateActiveUser} from "../store/active-user";
 import {deleteUser} from "../store/users";
 import {addReblog} from "../store/reblogs";
-import {fetchDiscussion, sortDiscussion, resetDiscussion} from "../store/discussion";
+import {fetchDiscussion, sortDiscussion, resetDiscussion, updateReply} from "../store/discussion";
 
 import {makePath as makeEntryPath} from "../components/entry-link";
 import ProfileLink from "../components/profile-link";
@@ -106,6 +106,7 @@ interface Props {
     fetchDiscussion: (parent_author: string, parent_permlink: string) => void;
     sortDiscussion: (order: SortOrder) => void;
     resetDiscussion: () => void;
+    updateReply: (reply: Entry) => void;
 }
 
 interface State {
@@ -415,7 +416,8 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
             addReblog,
             fetchDiscussion,
             resetDiscussion,
-            sortDiscussion
+            sortDiscussion,
+            updateReply
         },
         dispatch
     );

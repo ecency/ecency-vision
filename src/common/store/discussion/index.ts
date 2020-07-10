@@ -70,7 +70,6 @@ export const fetchDiscussion = (parent_author: string, parent_permlink: string) 
 
     getDiscussion(parent_author, parent_permlink)
         .then((resp) => {
-
             if (resp) {
                 let list: Entry[] = [];
 
@@ -102,6 +101,21 @@ export const sortDiscussion = (order: SortOrder) => (dispatch: Dispatch, getStat
 export const resetDiscussion = () => (dispatch: Dispatch) => {
     dispatch(resetAct());
 };
+
+export const updateReply = (reply: Entry) => (dispatch: Dispatch, getState: () => AppState) => {
+    const {discussion} = getState();
+    const list: Entry[] = clone(discussion.list);
+
+    const newList = list.map((x: Entry) => {
+        if (x.author === reply.author && x.permlink === x.permlink) {
+            return reply;
+        }
+
+        return x;
+    });
+
+    dispatch(fetchedAct(newList));
+}
 
 /* Action Creators */
 export const fetchAct = (): FetchAction => {

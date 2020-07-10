@@ -38,6 +38,9 @@ import parseDate from "../../helper/parse-date";
 import {_t} from "../../i18n";
 import _c from "../../util/fix-class-names";
 
+import * as hiveApi from "../../api/hive";
+import * as bridgeApi from "../../api/bridge";
+
 import {commentSvg} from "../../img/svg";
 
 setProxyBase(defaults.imageServer);
@@ -54,6 +57,7 @@ interface ItemProps {
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data: Account) => void;
     deleteUser: (username: string) => void;
+    updateReply: (reply: Entry) => void;
 }
 
 export class Item extends Component<ItemProps> {
@@ -61,6 +65,16 @@ export class Item extends Component<ItemProps> {
         return !isEqual(this.props.global, nextProps.global) ||
             !isEqual(this.props.entry, nextProps.entry) ||
             !isEqual(this.props.activeUser?.username, nextProps.activeUser?.username)
+    }
+
+    afterVote = () => {
+        const {entry, updateReply} = this.props;
+
+        hiveApi.getPost(entry.author, entry.permlink)
+            .then(p => bridgeApi.normalizePost(p))
+            .then(r => {
+                if (r) updateReply(r);
+            });
     }
 
     render() {
@@ -98,8 +112,7 @@ export class Item extends Component<ItemProps> {
                         </div>
                         <div className="item-body markdown-view mini-markdown" dangerouslySetInnerHTML={renderedBody}/>
                         <div className="item-controls">
-                            <EntryVoteBtn {...this.props} entry={entry} afterVote={() => {
-                            }}/>
+                            <EntryVoteBtn {...this.props} entry={entry} afterVote={this.afterVote}/>
                             <EntryPayout {...this.props} entry={entry}/>
                             <EntryVotes {...this.props} entry={entry}/>
                             <DownloadTrigger>
@@ -137,6 +150,7 @@ interface ListProps {
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data: Account) => void;
     deleteUser: (username: string) => void;
+    updateReply: (reply: Entry) => void;
 }
 
 export class List extends Component<ListProps> {
@@ -179,6 +193,7 @@ interface Props {
     fetchDiscussion: (parent_author: string, parent_permlink: string) => void;
     sortDiscussion: (order: SortOrder) => void;
     resetDiscussion: () => void;
+    updateReply: (reply: Entry) => void;
 }
 
 
