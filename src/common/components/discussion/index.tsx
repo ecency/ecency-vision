@@ -58,7 +58,9 @@ interface ItemProps {
 
 export class Item extends Component<ItemProps> {
     shouldComponentUpdate(nextProps: Readonly<ItemProps>): boolean {
-        return !isEqual(this.props.global, nextProps.global) || !isEqual(this.props.entry, nextProps.entry);
+        return !isEqual(this.props.global, nextProps.global) ||
+            !isEqual(this.props.entry, nextProps.entry) ||
+            !isEqual(this.props.activeUser?.username, nextProps.activeUser?.username)
     }
 
     render() {
