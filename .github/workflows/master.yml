@@ -18,9 +18,7 @@ jobs:
     - name: npm install, build, lint and test
       run: |
         yarn
-        yarn build --if-present
-        yarn lint --if-present
-        yarn test --if-present
+        yarn test --runInBand --coverage
       env:
         CI: true
 
