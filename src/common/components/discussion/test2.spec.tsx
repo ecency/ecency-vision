@@ -2,35 +2,49 @@ import React from "react";
 
 import Discussion from "./index";
 
+import {Discussion as DiscussionType, SortOrder} from '../../store/discussion/types'
+
 import renderer from "react-test-renderer";
 
-import { createBrowserHistory } from "history";
+import {createBrowserHistory} from "history";
 
-import { globalInstance, discussionInstace1, dynamicPropsIntance1 } from "../../helper/test-helper";
+import {globalInstance, discussionInstace1, dynamicPropsIntance1} from "../../helper/test-helper";
 
-jest.mock("../../api/bridge", () => ({
-  getDiscussion: () =>
-    new Promise((resolve) => {
-      resolve([]);
-    }),
-}));
 const [parent] = discussionInstace1;
 
+const discussion: DiscussionType = {
+    list: [],
+    loading: false,
+    error: false,
+    order: SortOrder.trending
+}
+
 const props = {
-  history: createBrowserHistory(),
-  global: globalInstance,
-  dynamicProps: dynamicPropsIntance1,
-  users: [],
-  activeUser: null,
-  parent: { ...parent, children: 0 },
-  addAccount: () => {},
-  setActiveUser: () => {},
-  updateActiveUser: () => {},
-  deleteUser: () => {},
+    history: createBrowserHistory(),
+    global: globalInstance,
+    dynamicProps: dynamicPropsIntance1,
+    users: [],
+    activeUser: null,
+    parent: {...parent, children: 0},
+    discussion,
+    addAccount: () => {
+    },
+    setActiveUser: () => {
+    },
+    updateActiveUser: () => {
+    },
+    deleteUser: () => {
+    },
+    fetchDiscussion: () => {
+    },
+    sortDiscussion: () => {
+    },
+    resetDiscussion: () => {
+    }
 };
 
 const component = renderer.create(<Discussion {...props} />);
 
 it("(1) Empty list", () => {
-  expect(component.toJSON()).toMatchSnapshot();
+    expect(component.toJSON()).toMatchSnapshot();
 });

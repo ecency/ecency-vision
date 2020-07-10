@@ -1,10 +1,11 @@
 import React, {Component} from "react";
+
 import {AnyAction, bindActionCreators, Dispatch} from "redux";
 import {connect} from "react-redux";
-import {History, Location} from "history";
 import {Link} from "react-router-dom";
-
 import {match} from "react-router";
+
+import {History, Location} from "history";
 
 import moment from "moment";
 
@@ -29,14 +30,16 @@ import {TrendingTags} from "../store/trending-tags/types";
 import {User} from "../store/users/types";
 import {ActiveUser} from "../store/active-user/types";
 import {Reblog} from "../store/reblogs/types";
+import {Discussion as DiscussionType, SortOrder} from "../store/discussion/types";
 
-import {toggleTheme} from "../store/global/index";
-import {addAccount} from "../store/accounts/index";
-import {addEntry, updateEntry} from "../store/entries/index";
+import {toggleTheme} from "../store/global";
+import {addAccount} from "../store/accounts";
+import {addEntry, updateEntry} from "../store/entries";
 import {fetchTrendingTags} from "../store/trending-tags";
 import {setActiveUser, updateActiveUser} from "../store/active-user";
 import {deleteUser} from "../store/users";
 import {addReblog} from "../store/reblogs";
+import {fetchDiscussion, sortDiscussion, resetDiscussion} from "../store/discussion";
 
 import {makePath as makeEntryPath} from "../components/entry-link";
 import ProfileLink from "../components/profile-link";
@@ -71,7 +74,7 @@ import {makeShareUrlReddit, makeShareUrlTwitter, makeShareUrlFacebook} from "../
 
 import truncate from "../util/truncate";
 
-import {timeSvg, redditSvg, facebookSvg, twitterSvg, replySvg, repeatSvg} from "../img/svg";
+import {timeSvg, redditSvg, facebookSvg, twitterSvg, replySvg} from "../img/svg";
 
 interface MatchParams {
     category: string;
@@ -90,6 +93,7 @@ interface Props {
     users: User[];
     activeUser: ActiveUser | null;
     reblogs: Reblog[];
+    discussion: DiscussionType;
     toggleTheme: () => void;
     addAccount: (data: Account) => void;
     addEntry: (entry: Entry) => void;
@@ -99,6 +103,9 @@ interface Props {
     updateActiveUser: (data: Account) => void;
     deleteUser: (username: string) => void;
     addReblog: (account: string, author: string, permlink: string) => void;
+    fetchDiscussion: (parent_author: string, parent_permlink: string) => void;
+    sortDiscussion: (order: SortOrder) => void;
+    resetDiscussion: () => void;
 }
 
 interface State {
@@ -272,9 +279,7 @@ class EntryPage extends Component<Props, State> {
                                     </ul>
                                 </div>
                             )}
-
                             <h1 className="entry-title">{entry.title}</h1>
-
                             <div className="entry-info">
                                 <ProfileLink {...this.props} username={entry.author}>
                                     <div className="author-part">
@@ -355,28 +360,22 @@ class EntryPage extends Component<Props, State> {
                                 <EntryPayout {...this.props} entry={entry}/>
                                 <EntryVotes {...this.props} entry={entry}/>
                                 <div className="sub-menu">
-                                    <a
-                                        className="sub-menu-item"
-                                        onClick={() => {
-                                            this.shareReddit(entry!);
-                                        }}
-                                    >
+                                    <a className="sub-menu-item"
+                                       onClick={() => {
+                                           this.shareReddit(entry!);
+                                       }}>
                                         {redditSvg}
                                     </a>
-                                    <a
-                                        className="sub-menu-item"
-                                        onClick={() => {
-                                            this.shareTwitter(entry!);
-                                        }}
-                                    >
+                                    <a className="sub-menu-item"
+                                       onClick={() => {
+                                           this.shareTwitter(entry!);
+                                       }}>
                                         {twitterSvg}
                                     </a>
-                                    <a
-                                        className="sub-menu-item"
-                                        onClick={() => {
-                                            this.shareFacebook(entry!);
-                                        }}
-                                    >
+                                    <a className="sub-menu-item"
+                                       onClick={() => {
+                                           this.shareFacebook(entry!);
+                                       }}>
                                         {facebookSvg}
                                     </a>
                                 </div>
@@ -399,6 +398,7 @@ const mapStateToProps = (state: AppState) => ({
     users: state.users,
     activeUser: state.activeUser,
     reblogs: state.reblogs,
+    discussion: state.discussion
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
@@ -413,6 +413,9 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
             updateActiveUser,
             deleteUser,
             addReblog,
+            fetchDiscussion,
+            resetDiscussion,
+            sortDiscussion
         },
         dispatch
     );

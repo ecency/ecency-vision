@@ -25,9 +25,7 @@ it("4- fetch", () => {
 });
 
 it("5- fetched", () => {
-    const list: Record<string, Entry> = {
-        '@foo/bar': entryInstance1
-    };
+    const list = [entryInstance1];
     state = reducer(state, fetchedAct(list));
     expect(state).toMatchSnapshot();
 });

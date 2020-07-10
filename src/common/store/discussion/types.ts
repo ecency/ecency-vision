@@ -1,9 +1,17 @@
 import {Entry} from "../entries/types";
 
-export interface Discussions {
-    list: Record<string, Entry>;
+export enum SortOrder {
+    trending = "trending",
+    author_reputation = "author_reputation",
+    votes = "votes",
+    created = "created",
+}
+
+export interface Discussion {
+    list: Entry[];
     loading: boolean;
     error: boolean;
+    order: SortOrder
 }
 
 export enum ActionTypes {
@@ -11,6 +19,7 @@ export enum ActionTypes {
     FETCHED = "@discussions/FETCHED",
     FETCH_ERROR = "@discussions/FETCH_ERROR",
     RESET = "@discussions/RESET",
+    SET_ORDER = "@discussions/SET_ORDER",
 }
 
 export interface FetchAction {
@@ -19,7 +28,7 @@ export interface FetchAction {
 
 export interface FetchedAction {
     type: ActionTypes.FETCHED;
-    list: Record<string, Entry>;
+    list: Entry[];
 }
 
 export interface FetchErrorAction {
@@ -30,4 +39,10 @@ export interface ResetAction {
     type: ActionTypes.RESET;
 }
 
-export type Actions = FetchAction | FetchedAction | FetchErrorAction | ResetAction;
+export interface SetOrderAction {
+    type: ActionTypes.SET_ORDER;
+    list: Entry[];
+    order: SortOrder;
+}
+
+export type Actions = FetchAction | FetchedAction | FetchErrorAction | ResetAction | SetOrderAction;

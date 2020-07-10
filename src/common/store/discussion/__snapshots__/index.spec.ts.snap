@@ -3,40 +3,44 @@
 exports[`1- default state 1`] = `
 Object {
   "error": false,
-  "list": Object {},
+  "list": Array [],
   "loading": false,
+  "order": "trending",
 }
 `;
 
 exports[`2- fetch 1`] = `
 Object {
   "error": false,
-  "list": Object {},
+  "list": Array [],
   "loading": true,
+  "order": "trending",
 }
 `;
 
 exports[`3- fetch error 1`] = `
 Object {
   "error": true,
-  "list": Object {},
+  "list": Array [],
   "loading": false,
+  "order": "trending",
 }
 `;
 
 exports[`4- fetch 1`] = `
 Object {
   "error": false,
-  "list": Object {},
+  "list": Array [],
   "loading": true,
+  "order": "trending",
 }
 `;
 
 exports[`5- fetched 1`] = `
 Object {
   "error": false,
-  "list": Object {
-    "@foo/bar": Object {
+  "list": Array [
+    Object {
       "active_votes": Array [
         Object {
           "rshares": "34273117581576",
@@ -141,15 +145,17 @@ In 30 days, we will PR to official project awesome list. More awareness about aw
       "updated": "2020-06-01T14:41:15",
       "url": "/hive/@good-karma/awesome-hive",
     },
-  },
+  ],
   "loading": false,
+  "order": "trending",
 }
 `;
 
 exports[`6- reset 1`] = `
 Object {
   "error": false,
-  "list": Object {},
+  "list": Array [],
   "loading": false,
+  "order": "trending",
 }
 `;

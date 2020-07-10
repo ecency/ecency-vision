@@ -10,7 +10,7 @@ import {initialState as entriesInitialState} from "../../common/store/entries";
 import {initialState as usersInitialState} from "../../common/store/users";
 import {initialState as activeUserInitialState} from "../../common/store/active-user";
 import {initialState as reblogsInitialState} from "../../common/store/reblogs";
-import {initialState as discussionsInitialState} from "../../common/store/discussions";
+import {initialState as discussionInitialState} from "../../common/store/discussion";
 
 import {render} from "../template";
 
@@ -32,7 +32,7 @@ export default async (req: express.Request, res: express.Response) => {
         users: usersInitialState,
         activeUser: activeUserInitialState,
         reblogs: reblogsInitialState,
-        discussions: discussionsInitialState,
+        discussion: discussionInitialState,
         entries: {...entriesInitialState},
     };
 

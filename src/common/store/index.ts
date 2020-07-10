@@ -12,7 +12,7 @@ import transactions from "./transactions";
 import users from "./users";
 import activeUser from "./active-user";
 import reblogs from "./reblogs";
-import discussions from "./discussions";
+import discussion from "./discussion";
 
 let reducers = {
     global,
@@ -25,7 +25,7 @@ let reducers = {
     users,
     activeUser,
     reblogs,
-    discussions
+    discussion
 };
 
 export let history: History | undefined;
