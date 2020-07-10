@@ -42,4 +42,4 @@ jobs:
           yarn
           yarn build
           export PORT=$STAGING_PORT
-          yarn start:prod
+          pm2 restart master
