@@ -66,23 +66,21 @@ import NotFound from "../components/404";
 
 import * as hiveApi from "../api/hive";
 import * as bridgeApi from "../api/bridge";
-
-import * as ls from "../util/local-storage";
-
-import {_t} from "../i18n";
+import {comment, formatError} from "../api/operations";
 
 import parseDate from "../helper/parse-date";
 import entryCanonical from "../helper/entry-canonical";
-
-import {comment, formatError} from "../api/operations";
 
 import {makeJsonMetadataReply, createReplyPermlink, makeCommentOptions} from "../helper/posting";
 
 import {makeShareUrlReddit, makeShareUrlTwitter, makeShareUrlFacebook} from "../helper/url-share";
 
 import truncate from "../util/truncate";
+import * as ls from "../util/local-storage";
 
 import {timeSvg, redditSvg, facebookSvg, twitterSvg} from "../img/svg";
+
+import {_t} from "../i18n";
 
 import {version} from "../../../package.json";
 
@@ -258,17 +256,13 @@ class EntryPage extends Component<Props, State> {
         }).then((entry) => {
             return bridgeApi.normalizePost(entry); // normalize
         }).then((nEntry) => {
-            console.log(nEntry);
-
             if (nEntry) {
                 updateEntry(nEntry); // update store for the entry
             }
 
-            this.forceUpdate();
-
-            this.stateSet({replying: false});
-
             ls.remove(`reply_draft_${entry.author}_${entry.permlink}`); // remove reply draft
+
+            this.stateSet({replying: false}); // done
         }).catch((e) => {
             error(formatError(e));
             this.stateSet({replying: false});

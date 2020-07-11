@@ -204,7 +204,7 @@ export default class Discussion extends Component<Props> {
 
     componentDidUpdate(prevProps: Readonly<Props>): void {
         const {parent} = this.props;
-        if (parent.url !== prevProps.parent.url) {
+        if (!isEqual(parent, prevProps.parent)) {
             this.fetch();
         }
     }
