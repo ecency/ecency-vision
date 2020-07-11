@@ -1,15 +1,6 @@
 .discussion {
   margin-bottom: 30px;
-  margin-top: 15px;
   position: relative;
-
-  @include themify(day) {
-    border-top: 1px solid $white-three;
-  }
-
-  @include themify(night) {
-    border-top: 1px solid $dark-two;
-  }
 
   &.loading {
     border-color: transparent;
@@ -45,6 +36,7 @@
         opacity: 0.5;
       }
     }
+
     .order {
       display: flex;
       align-items: center;
@@ -299,14 +291,14 @@
         }
       }
 
-     
+
 
       .item-show-more {
         margin-left: 50px;
         margin-bottom: 10px;
       }
 
-      
+
 
       */
     }

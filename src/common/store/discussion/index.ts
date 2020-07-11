@@ -117,6 +117,13 @@ export const updateReply = (reply: Entry) => (dispatch: Dispatch, getState: () =
     dispatch(fetchedAct(newList));
 }
 
+export const addReply = (reply: Entry) => (dispatch: Dispatch, getState: () => AppState) => {
+    const {discussion} = getState();
+    const list: Entry[] = clone(discussion.list);
+    const newList = [reply, ...list];
+    dispatch(fetchedAct(newList));
+}
+
 /* Action Creators */
 export const fetchAct = (): FetchAction => {
     return {

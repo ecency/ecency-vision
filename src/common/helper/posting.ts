@@ -83,33 +83,56 @@ export const makeJsonMetaData = (meta: MetaData, tags: string[], appVer: string)
     community: "ecency.app",
   });
 
-export const makeCommentOptions = (author: string, permlink: string, rewardType: RewardType): CommentOptions => {
-  const opt: CommentOptions = {
-    allow_curation_rewards: true,
-    allow_votes: true,
-    author,
-    permlink,
-    max_accepted_payout: "1000000.000 HBD",
-    percent_steem_dollars: 10000,
-    extensions: [[0, { beneficiaries: [{ account: "ecency", weight: 300 }] }]],
-  };
+export const makeJsonMetadataReply = (tags: string[], appVer: string) => ({
+    tags,
+    app: `ecency/${appVer}-vision`,
+    format: 'markdown+html',
+    community: "ecency.app",
+});
 
-  switch (rewardType) {
-    case "sp":
-      opt.max_accepted_payout = "1000000.000 HBD";
-      opt.percent_steem_dollars = 0;
-      break;
-    case "dp":
-      opt.max_accepted_payout = "0.000 HBD";
-      opt.percent_steem_dollars = 10000;
-      break;
-    case "default":
-      opt.max_accepted_payout = "1000000.000 HBD";
-      opt.percent_steem_dollars = 10000;
-      break;
-  }
+export const makeCommentOptions = (author: string, permlink: string, rewardType?: RewardType): CommentOptions => {
+    const opt: CommentOptions = {
+        allow_curation_rewards: true,
+        allow_votes: true,
+        author,
+        permlink,
+        max_accepted_payout: "1000000.000 HBD",
+        percent_steem_dollars: 10000,
+        extensions: [[0, {beneficiaries: [{account: "ecency", weight: 300}]}]],
+    };
 
-  return opt;
+    switch (rewardType) {
+        case "sp":
+            opt.max_accepted_payout = "1000000.000 HBD";
+            opt.percent_steem_dollars = 0;
+            break;
+        case "dp":
+            opt.max_accepted_payout = "0.000 HBD";
+            opt.percent_steem_dollars = 10000;
+            break;
+        case "default":
+            opt.max_accepted_payout = "1000000.000 HBD";
+            opt.percent_steem_dollars = 10000;
+            break;
+    }
+
+    return opt;
+};
+
+export const createReplyPermlink = (toAuthor: string) => {
+    const t = new Date(Date.now());
+
+    const timeFormat = `${t.getFullYear().toString()}${(
+        t.getMonth() + 1
+    ).toString()}${t
+        .getDate()
+        .toString()}t${t
+        .getHours()
+        .toString()}${t
+        .getMinutes()
+        .toString()}${t.getSeconds().toString()}${t.getMilliseconds().toString()}z`;
+
+    return `re-${toAuthor.replace(/\./g, '')}-${timeFormat}`;
 };
 
 export const createPatch = (text1: string, text2: string): string | undefined => {

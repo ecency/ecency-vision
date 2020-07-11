@@ -91,6 +91,11 @@
     "comment-entry-go-root": "View the full context",
     "comment-entry-go-parent": "View the direct parent"
   },
+  "comment": {
+    "body-placeholder": "Write your reply here",
+    "preview": "Preview",
+    "reply": "Reply"
+  },
   "discussion": {
     "count": "{{n}} Replies",
     "order": "Sort Order",

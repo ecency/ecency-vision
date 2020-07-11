@@ -6,6 +6,8 @@ exports[`createPermlink non-latin chars (1)  1`] = `"f38c58113ff7e"`;
 
 exports[`createPermlink random (1)  1`] = `"lorem-ipsum-dolor-sit-amet-f38c58113ff7eest"`;
 
+exports[`createReplyPermlink (1)  1`] = `"re-good-karma-2018921t150500z"`;
+
 exports[`extractMetadata (1)  1`] = `
 Object {
   "images": Array [
@@ -125,6 +127,18 @@ Object {
   "users": Array [
     "lorem",
     "ipsum",
+  ],
+}
+`;
+
+exports[`makeJsonMetadataReply (1) 1`] = `
+Object {
+  "app": "ecency/1.1-vision",
+  "community": "ecency.app",
+  "format": "markdown+html",
+  "tags": Array [
+    "foo",
+    "bar",
   ],
 }
 `;

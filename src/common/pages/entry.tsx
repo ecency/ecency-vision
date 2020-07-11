@@ -31,6 +31,7 @@ import {User} from "../store/users/types";
 import {ActiveUser} from "../store/active-user/types";
 import {Reblog} from "../store/reblogs/types";
 import {Discussion as DiscussionType, SortOrder} from "../store/discussion/types";
+import {error, success} from "../components/feedback";
 
 import {toggleTheme} from "../store/global";
 import {addAccount} from "../store/accounts";
@@ -39,22 +40,23 @@ import {fetchTrendingTags} from "../store/trending-tags";
 import {setActiveUser, updateActiveUser} from "../store/active-user";
 import {deleteUser} from "../store/users";
 import {addReblog} from "../store/reblogs";
-import {fetchDiscussion, sortDiscussion, resetDiscussion, updateReply} from "../store/discussion";
+import {fetchDiscussion, sortDiscussion, resetDiscussion, updateReply, addReply} from "../store/discussion";
 
 import {makePath as makeEntryPath} from "../components/entry-link";
+
 import ProfileLink from "../components/profile-link";
 import UserAvatar from "../components/user-avatar";
 import Tag from "../components/tag";
 import EntryVoteBtn from "../components/entry-vote-btn/index";
 import EntryPayout from "../components/entry-payout/index";
 import EntryVotes from "../components/entry-votes";
-import DownloadTrigger from "../components/download-trigger";
 import Discussion from "../components/discussion";
 import MdHandler from "../components/md-handler";
 import LinearProgress from "../components/linear-progress";
 import EntryReblogBtn from "../components/entry-reblog-btn/index";
 import EntryEditBtn from "../components/entry-edit-btn/index";
 import EntryDeleteBtn from "../components/entry-delete-btn";
+import Comment from "../components/comment"
 
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
@@ -65,16 +67,24 @@ import NotFound from "../components/404";
 import * as hiveApi from "../api/hive";
 import * as bridgeApi from "../api/bridge";
 
+import * as ls from "../util/local-storage";
+
 import {_t} from "../i18n";
 
 import parseDate from "../helper/parse-date";
 import entryCanonical from "../helper/entry-canonical";
 
+import {comment, formatError} from "../api/operations";
+
+import {makeJsonMetadataReply, createReplyPermlink, makeCommentOptions} from "../helper/posting";
+
 import {makeShareUrlReddit, makeShareUrlTwitter, makeShareUrlFacebook} from "../helper/url-share";
 
 import truncate from "../util/truncate";
 
-import {timeSvg, redditSvg, facebookSvg, twitterSvg, replySvg} from "../img/svg";
+import {timeSvg, redditSvg, facebookSvg, twitterSvg} from "../img/svg";
+
+import {version} from "../../../package.json";
 
 interface MatchParams {
     category: string;
@@ -107,15 +117,18 @@ interface Props {
     sortDiscussion: (order: SortOrder) => void;
     resetDiscussion: () => void;
     updateReply: (reply: Entry) => void;
+    addReply: (reply: Entry) => void;
 }
 
 interface State {
     loading: boolean;
+    replying: boolean
 }
 
 class EntryPage extends Component<Props, State> {
     state: State = {
         loading: false,
+        replying: false,
     };
 
     _mounted: boolean = true;
@@ -205,8 +218,70 @@ class EntryPage extends Component<Props, State> {
             });
     };
 
+    replySubmitted = (text: string) => {
+        const entry = this.getEntry()!;
+        const {activeUser, users, addReply} = this.props;
+
+        const user = users.find((x) => x.username === activeUser?.username)!;
+
+        const {author: parentAuthor, permlink: parentPermlink} = entry;
+        const author = activeUser?.username!;
+        const permlink = createReplyPermlink(entry.author);
+        const options = makeCommentOptions(author, permlink);
+
+        const jsonMeta = makeJsonMetadataReply(
+            entry.json_metadata.tags || ['ecency'],
+            version
+        );
+
+        this.stateSet({replying: true});
+
+        comment(
+            user,
+            parentAuthor,
+            parentPermlink,
+            permlink,
+            '',
+            text,
+            jsonMeta,
+            options,
+        ).then(() => {
+            return hiveApi.getPost(author, permlink); // get reply
+        }).then((reply) => {
+            return bridgeApi.normalizePost(reply); // normalize
+        }).then((nReply) => {
+            if (nReply) {
+                addReply(nReply); // add new reply to store
+            }
+
+            return hiveApi.getPost(entry.author, entry.permlink) // get entry
+        }).then((entry) => {
+            return bridgeApi.normalizePost(entry); // normalize
+        }).then((nEntry) => {
+            console.log(nEntry);
+
+            if (nEntry) {
+                updateEntry(nEntry); // update store for the entry
+            }
+
+            this.forceUpdate();
+
+            this.stateSet({replying: false});
+
+            ls.remove(`reply_draft_${entry.author}_${entry.permlink}`); // remove reply draft
+        }).catch((e) => {
+            error(formatError(e));
+            this.stateSet({replying: false});
+        })
+    }
+
+    replyTextChanged = (text: string) => {
+        const entry = this.getEntry()!;
+        ls.set(`reply_draft_${entry.author}_${entry.permlink}`, text);
+    }
+
     render() {
-        const {loading} = this.state;
+        const {loading, replying} = this.state;
 
         if (loading) {
             return <LinearProgress/>;
@@ -331,11 +406,6 @@ class EntryPage extends Component<Props, State> {
                                     )}
                                 </div>
                                 <div className="right-side">
-                                    <DownloadTrigger>
-                                        <a href="#" className="reply-btn">
-                                            {replySvg} {_t("g.reply")}
-                                        </a>
-                                    </DownloadTrigger>
                                     {editable && (
                                         <>
                                             <span className="separator"/>
@@ -382,7 +452,12 @@ class EntryPage extends Component<Props, State> {
                                 </div>
                             </div>
                         </div>
-
+                        <Comment {...this.props}
+                                 defText={ls.get(`reply_draft_${entry.author}_${entry.permlink}`) || ''}
+                                 onChange={this.replyTextChanged}
+                                 onSubmit={this.replySubmitted}
+                                 disabled={replying}
+                        />
                         <Discussion {...this.props} parent={entry}/>
                     </div>
                 </div>
@@ -417,7 +492,8 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
             fetchDiscussion,
             resetDiscussion,
             sortDiscussion,
-            updateReply
+            updateReply,
+            addReply
         },
         dispatch
     );
