@@ -32,6 +32,7 @@ import EntryPayout from "../entry-payout/index";
 import EntryVotes from "../entry-votes";
 import DownloadTrigger from "../download-trigger";
 import LinearProgress from "../linear-progress";
+import Comment from "../comment"
 
 import parseDate from "../../helper/parse-date";
 
@@ -41,7 +42,14 @@ import _c from "../../util/fix-class-names";
 import * as hiveApi from "../../api/hive";
 import * as bridgeApi from "../../api/bridge";
 
+import * as ls from "../../util/local-storage";
+
 import {commentSvg} from "../../img/svg";
+import {createReplyPermlink, makeCommentOptions, makeJsonMetadataReply} from "../../helper/posting";
+import {version} from "../../../../package.json";
+import {comment, formatError} from "../../api/operations";
+
+import {error} from "../feedback";
 
 setProxyBase(defaults.imageServer);
 
@@ -58,14 +66,40 @@ interface ItemProps {
     updateActiveUser: (data: Account) => void;
     deleteUser: (username: string) => void;
     updateReply: (reply: Entry) => void;
+    addReply: (reply: Entry) => void;
 }
 
-export class Item extends Component<ItemProps> {
-    shouldComponentUpdate(nextProps: Readonly<ItemProps>): boolean {
-        return !isEqual(this.props.global, nextProps.global) ||
-            !isEqual(this.props.entry, nextProps.entry) ||
-            !isEqual(this.props.activeUser?.username, nextProps.activeUser?.username)
+interface ItemState {
+    reply: boolean;
+    replying: boolean
+}
+
+export class Item extends Component<ItemProps, ItemState> {
+    state: ItemState = {
+        reply: false,
+        replying: false
     }
+
+    _mounted: boolean = true;
+
+    shouldComponentUpdate(nextProps: Readonly<ItemProps>, nextState: Readonly<ItemState>): boolean {
+        return !isEqual(this.props.global, nextProps.global) ||
+            !isEqual(this.props.discussion, nextProps.discussion) ||
+            !isEqual(this.props.entry, nextProps.entry) ||
+            !isEqual(this.props.activeUser?.username, nextProps.activeUser?.username) ||
+            !isEqual(this.state, nextState)
+    }
+
+    componentWillUnmount() {
+        this._mounted = false;
+    }
+
+    stateSet = (obj: {}, cb: () => void = () => {
+    }) => {
+        if (this._mounted) {
+            this.setState(obj, cb);
+        }
+    };
 
     afterVote = () => {
         const {entry, updateReply} = this.props;
@@ -77,8 +111,65 @@ export class Item extends Component<ItemProps> {
             });
     }
 
+    toggleReply = () => {
+        const {reply} = this.state;
+        this.stateSet({reply: !reply});
+    }
+
+    replyTextChanged = (text: string) => {
+        const {entry} = this.props;
+        ls.set(`reply_draft_${entry.author}_${entry.permlink}`, text);
+    }
+
+    replySubmitted = (text: string) => {
+        const {entry} = this.props;
+        const {activeUser, users, addReply, updateReply} = this.props;
+
+        const user = users.find((x) => x.username === activeUser?.username)!;
+
+        const {author: parentAuthor, permlink: parentPermlink} = entry;
+        const author = activeUser?.username!;
+        const permlink = createReplyPermlink(entry.author);
+        const options = makeCommentOptions(author, permlink);
+
+        const jsonMeta = makeJsonMetadataReply(
+            entry.json_metadata.tags || ['ecency'],
+            version
+        );
+
+        this.stateSet({replying: true});
+
+        comment(
+            user,
+            parentAuthor,
+            parentPermlink,
+            permlink,
+            '',
+            text,
+            jsonMeta,
+            options,
+        ).then(() => {
+            return hiveApi.getPost(author, permlink); // get new reply
+        }).then((reply) => {
+            return bridgeApi.normalizePost(reply); // normalize
+        }).then((nReply) => {
+            if (nReply) {
+                addReply(nReply); // add new reply to store
+            }
+
+            ls.remove(`reply_draft_${entry.author}_${entry.permlink}`); // remove reply draft
+            this.stateSet({replying: false}); // done
+            this.toggleReply(); // close comment box
+        }).catch((e) => {
+            error(formatError(e));
+            this.stateSet({replying: false});
+        })
+    }
+
     render() {
         const {entry} = this.props;
+        const {reply, replying} = this.state;
+
         const created = moment(parseDate(entry.created));
         const renderedBody = {__html: renderPostBody(entry.body, false)};
         const reputation = Math.floor(entry.author_reputation);
@@ -115,11 +206,9 @@ export class Item extends Component<ItemProps> {
                             <EntryVoteBtn {...this.props} entry={entry} afterVote={this.afterVote}/>
                             <EntryPayout {...this.props} entry={entry}/>
                             <EntryVotes {...this.props} entry={entry}/>
-                            <DownloadTrigger>
-                                <span className="reply-btn" role="none">
+                            <span className="reply-btn" onClick={this.toggleReply}>
                                   {_t("g.reply")}
-                                </span>
-                            </DownloadTrigger>
+                            </span>
                         </div>
                         {readMore && (
                             <div className="read-more">
@@ -130,6 +219,16 @@ export class Item extends Component<ItemProps> {
                         )}
                     </div>
                 </div>
+
+                {reply && (
+                    <Comment {...this.props}
+                             defText={ls.get(`reply_draft_${entry.author}_${entry.permlink}`) || ''}
+                             onChange={this.replyTextChanged}
+                             onSubmit={this.replySubmitted}
+                             disabled={replying}
+                    />
+                )}
+
 
                 {showSubList && <List {...this.props} parent={entry}/>}
             </div>
@@ -151,6 +250,7 @@ interface ListProps {
     updateActiveUser: (data: Account) => void;
     deleteUser: (username: string) => void;
     updateReply: (reply: Entry) => void;
+    addReply: (reply: Entry) => void;
 }
 
 export class List extends Component<ListProps> {
@@ -194,6 +294,7 @@ interface Props {
     sortDiscussion: (order: SortOrder) => void;
     resetDiscussion: () => void;
     updateReply: (reply: Entry) => void;
+    addReply: (reply: Entry) => void;
 }
 
 
