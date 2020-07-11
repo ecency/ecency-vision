@@ -30,7 +30,6 @@ import UserAvatar from "../user-avatar";
 import EntryVoteBtn from "../entry-vote-btn/index";
 import EntryPayout from "../entry-payout/index";
 import EntryVotes from "../entry-votes";
-import DownloadTrigger from "../download-trigger";
 import LinearProgress from "../linear-progress";
 import Comment from "../comment"
 
@@ -41,15 +40,17 @@ import _c from "../../util/fix-class-names";
 
 import * as hiveApi from "../../api/hive";
 import * as bridgeApi from "../../api/bridge";
+import {comment, formatError} from "../../api/operations";
 
 import * as ls from "../../util/local-storage";
 
-import {commentSvg} from "../../img/svg";
 import {createReplyPermlink, makeCommentOptions, makeJsonMetadataReply} from "../../helper/posting";
-import {version} from "../../../../package.json";
-import {comment, formatError} from "../../api/operations";
 
 import {error} from "../feedback";
+
+import {commentSvg} from "../../img/svg";
+
+import {version} from "../../../../package.json";
 
 setProxyBase(defaults.imageServer);
 
@@ -74,6 +75,13 @@ interface ItemState {
     replying: boolean
 }
 
+const isChildrenSame = (entry: Entry, prevDiscussion: DiscussionType, discussion: DiscussionType): boolean => {
+    const children: Entry[] = discussion.list.filter(x => x.parent_author === entry.author && x.parent_permlink === entry.permlink);
+    const prevChildren: Entry[] = prevDiscussion.list.filter(x => x.parent_author === entry.author && x.parent_permlink === entry.permlink);
+
+    return isEqual(children, prevChildren);
+}
+
 export class Item extends Component<ItemProps, ItemState> {
     state: ItemState = {
         reply: false,
@@ -84,7 +92,7 @@ export class Item extends Component<ItemProps, ItemState> {
 
     shouldComponentUpdate(nextProps: Readonly<ItemProps>, nextState: Readonly<ItemState>): boolean {
         return !isEqual(this.props.global, nextProps.global) ||
-            !isEqual(this.props.discussion, nextProps.discussion) ||
+            !isChildrenSame(this.props.entry, this.props.discussion, nextProps.discussion) ||
             !isEqual(this.props.entry, nextProps.entry) ||
             !isEqual(this.props.activeUser?.username, nextProps.activeUser?.username) ||
             !isEqual(this.state, nextState)
@@ -123,7 +131,7 @@ export class Item extends Component<ItemProps, ItemState> {
 
     replySubmitted = (text: string) => {
         const {entry} = this.props;
-        const {activeUser, users, addReply, updateReply} = this.props;
+        const {activeUser, users, addReply} = this.props;
 
         const user = users.find((x) => x.username === activeUser?.username)!;
 

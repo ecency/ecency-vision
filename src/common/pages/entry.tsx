@@ -218,7 +218,7 @@ class EntryPage extends Component<Props, State> {
 
     replySubmitted = (text: string) => {
         const entry = this.getEntry()!;
-        const {activeUser, users, addReply} = this.props;
+        const {activeUser, users, addReply, updateEntry} = this.props;
 
         const user = users.find((x) => x.username === activeUser?.username)!;
 
