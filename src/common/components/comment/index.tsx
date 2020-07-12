@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-import {Form, FormControl, Button} from "react-bootstrap";
+import {Form, FormControl, Button, Spinner} from "react-bootstrap";
 
 import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
@@ -90,8 +90,7 @@ export default class Comment extends Component<Props, State> {
             this.updatePreview();
         });
     };
-
-
+    
     updatePreview = (): void => {
         if (this._updateTimer) {
             clearTimeout(this._updateTimer);
@@ -141,7 +140,9 @@ export default class Comment extends Component<Props, State> {
                             <Button className="btn-cancel" size="sm" variant="outline-primary" disabled={inProgress} onClick={this.cancel}>{_t('g.cancel')}</Button>
                         )}
                         <LoginRequired {...this.props}>
-                            <Button className="btn-submit" size="sm" disabled={inProgress} onClick={this.submit}>{_t('comment.reply')}</Button>
+                            <Button className="btn-submit" size="sm" disabled={inProgress} onClick={this.submit}>
+                                {inProgress && (<Spinner animation="grow" variant="light" size="sm" style={{marginRight: "6px"}}/>)} {_t('comment.reply')}
+                            </Button>
                         </LoginRequired>
                     </div>
                     <CommentPreview text={preview}/>
