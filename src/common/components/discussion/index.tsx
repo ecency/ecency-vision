@@ -2,8 +2,6 @@ import React, {Component} from "react";
 
 import {History} from "history";
 
-import isEqual from "react-fast-compare";
-
 import moment from "moment";
 
 import {Form, FormControl} from "react-bootstrap";
@@ -54,6 +52,25 @@ import {version} from "../../../../package.json";
 
 setProxyBase(defaults.imageServer);
 
+
+interface ItemBodyProps {
+    entry: Entry;
+}
+
+export class ItemBody extends Component<ItemBodyProps> {
+    shouldComponentUpdate(nextProps: Readonly<ItemBodyProps>): boolean {
+        return this.props.entry.body !== nextProps.entry.body;
+    }
+
+    render() {
+        const {entry} = this.props;
+        const renderedBody = {__html: renderPostBody(entry.body, false)};
+
+        return <div className="item-body markdown-view mini-markdown" dangerouslySetInnerHTML={renderedBody}/>
+    }
+}
+
+
 interface ItemProps {
     history: History;
     global: Global;
@@ -82,13 +99,6 @@ export class Item extends Component<ItemProps, ItemState> {
     }
 
     _mounted: boolean = true;
-
-    shouldComponentUpdate(nextProps: Readonly<ItemProps>, nextState: Readonly<ItemState>): boolean {
-        return !isEqual(this.props.global, nextProps.global) ||
-            !isEqual(this.props.entry, nextProps.entry) ||
-            !isEqual(this.props.activeUser?.username, nextProps.activeUser?.username) ||
-            !isEqual(this.state, nextState);
-    }
 
     componentWillUnmount() {
         this._mounted = false;
@@ -209,7 +219,7 @@ export class Item extends Component<ItemProps, ItemState> {
                                 </span>
                             </EntryLink>
                         </div>
-                        <div className="item-body markdown-view mini-markdown" dangerouslySetInnerHTML={renderedBody}/>
+                        <ItemBody entry={entry}/>
                         <div className="item-controls">
                             <EntryVoteBtn {...this.props} entry={entry} afterVote={this.afterVote}/>
                             <EntryPayout {...this.props} entry={entry}/>
