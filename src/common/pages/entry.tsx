@@ -450,7 +450,7 @@ class EntryPage extends Component<Props, State> {
                                  defText={ls.get(`reply_draft_${entry.author}_${entry.permlink}`) || ''}
                                  onChange={this.replyTextChanged}
                                  onSubmit={this.replySubmitted}
-                                 disabled={replying}
+                                 inProgress={replying}
                         />
                         <Discussion {...this.props} parent={entry}/>
                     </div>

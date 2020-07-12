@@ -47,7 +47,7 @@ export class CommentPreview extends Component<PreviewProps> {
 
 interface Props {
     defText: string;
-    disabled: boolean;
+    inProgress: boolean;
     cancellable?: boolean;
     users: User[];
     activeUser: ActiveUser | null;
@@ -118,7 +118,7 @@ export default class Comment extends Component<Props, State> {
     }
 
     render() {
-        const {disabled, cancellable} = this.props;
+        const {inProgress, cancellable} = this.props;
         const {text, preview} = this.state;
 
         return (
@@ -133,15 +133,15 @@ export default class Comment extends Component<Props, State> {
                             placeholder={_t("comment.body-placeholder")}
                             value={text}
                             onChange={this.textChanged}
-                            disabled={disabled}
+                            disabled={inProgress}
                         />
                     </div>
                     <div className="comment-buttons">
                         {cancellable && (
-                            <Button className="btn-cancel" size="sm" variant="outline-primary" disabled={disabled} onClick={this.cancel}>{_t('g.cancel')}</Button>
+                            <Button className="btn-cancel" size="sm" variant="outline-primary" disabled={inProgress} onClick={this.cancel}>{_t('g.cancel')}</Button>
                         )}
                         <LoginRequired {...this.props}>
-                            <Button className="btn-submit" size="sm" disabled={disabled} onClick={this.submit}>{_t('comment.reply')}</Button>
+                            <Button className="btn-submit" size="sm" disabled={inProgress} onClick={this.submit}>{_t('comment.reply')}</Button>
                         </LoginRequired>
                     </div>
                     <CommentPreview text={preview}/>

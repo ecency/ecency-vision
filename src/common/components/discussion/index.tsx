@@ -244,7 +244,7 @@ export class Item extends Component<ItemProps, ItemState> {
                              onChange={this.replyTextChanged}
                              onSubmit={this.submitReply}
                              onCancel={this.toggleReply}
-                             disabled={replying}
+                             inProgress={replying}
                     />
                 )}
 
