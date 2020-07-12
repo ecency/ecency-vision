@@ -124,7 +124,7 @@ export default class Comment extends Component<Props, State> {
         return (
             <>
                 <div className="comment-box">
-                    <EditorToolbar/>
+                    <EditorToolbar sm={true}/>
                     <div className="comment-body">
                         <Form.Control
                             id="the-editor"

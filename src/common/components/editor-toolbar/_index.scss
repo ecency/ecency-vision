@@ -106,4 +106,24 @@
       background: $dark-two;
     }
   }
+
+  &.toolbar-sm {
+    height: 34px;
+
+    .editor-tool {
+      width: 29px;
+
+      svg {
+        height: 18px;
+      }
+    }
+
+    .emoji-picker {
+      top: 34px
+    }
+
+    .tool-separator {
+      height: 18px;
+    }
+  }
 }
