@@ -131,7 +131,7 @@ export class Item extends Component<ItemProps, ItemState> {
         ls.set(`reply_draft_${entry.author}_${entry.permlink}`, text);
     }
 
-    replySubmitted = (text: string) => {
+    submitReply = (text: string) => {
         const {entry} = this.props;
         const {activeUser, users, addReply, updateReply} = this.props;
 
@@ -242,7 +242,7 @@ export class Item extends Component<ItemProps, ItemState> {
                     <Comment {...this.props}
                              defText={ls.get(`reply_draft_${entry.author}_${entry.permlink}`) || ''}
                              onChange={this.replyTextChanged}
-                             onSubmit={this.replySubmitted}
+                             onSubmit={this.submitReply}
                              disabled={replying}
                     />
                 )}
