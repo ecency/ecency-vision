@@ -1,6 +1,5 @@
 {
   "g": {
-    "reply": "Reply",
     "edit": "Edit",
     "search": "Search",
     "downloads": "Downloads",
@@ -104,7 +103,8 @@
     "order-reputation": "Reputation",
     "order-votes": "Votes",
     "order-created": "Age",
-    "read-more": "...read more replies..."
+    "read-more": "...read more replies...",
+    "reply": "Reply"
   },
   "community": {
     "n-subscribers": "{{n}} subscribers",

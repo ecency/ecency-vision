@@ -224,7 +224,7 @@ export class Item extends Component<ItemProps, ItemState> {
                             <EntryPayout {...this.props} entry={entry}/>
                             <EntryVotes {...this.props} entry={entry}/>
                             <span className="reply-btn" onClick={this.toggleReply}>
-                                  {_t("g.reply")}
+                                  {_t("discussion.reply")}
                             </span>
                         </div>
                         {readMore && (
@@ -248,7 +248,7 @@ export class Item extends Component<ItemProps, ItemState> {
                              autoFocus={true}
                     />
                 )}
-                
+
                 {showSubList && <List {...this.props} parent={entry}/>}
             </div>
         );
