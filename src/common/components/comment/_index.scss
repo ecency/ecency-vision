@@ -17,10 +17,17 @@
   }
 
   .comment-body {
-    background: $white-two;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
     margin-bottom: 4px;
+
+    @include themify(day) {
+      background: $white-two;
+    }
+
+    @include themify(night) {
+      background: lighten($dark-two, 6);
+    }
 
     .form-control {
       background: transparent;
