@@ -160,6 +160,11 @@
         }
       }
 
+      .comment-box {
+        padding-left: 20px;
+        border-bottom: none;
+      }
+
       .discussion-list {
         @include clearfix();
         margin-left: 18px;
@@ -190,117 +195,6 @@
           }
         }
       }
-
-      /*
-
-      @include clearfix();
-      border-left: 1px dotted transparent;
-
-      .item-inner {
-        @include clearfix();
-        padding: 3px 3px 15px 0;
-        margin-top: 4px;
-        font-size: 12px;
-
-        .item-header,
-        .item-controls {
-          color: $steel-grey;
-        }
-
-
-        .item-body,
-        .item-controls {
-          padding-left: 50px;
-        }
-
-        .item-header {
-          align-items: center;
-          display: flex;
-          margin-bottom: 3px;
-
-          .author-part {
-            align-items: center;
-            cursor: pointer;
-            display: flex;
-            position: relative;
-
-            .author-avatar {
-              border-radius: 50%;
-              float: left;
-              left: 0;
-              position: absolute;
-              top: 0;
-              width: 40px;
-              z-index: 2;
-            }
-
-            .author {
-              align-items: center;
-              display: inline-flex;
-
-              .author-name {
-                font-weight: 700;
-                margin-right: 2px;
-              }
-
-              @include themify(day) {
-                color: $charcoal-grey;
-              }
-
-              @include themify(night) {
-                color: $pinkish-grey;
-              }
-
-              .author-reputation {
-                color: $steel-grey;
-                font-weight: 500;
-
-                &::before {
-                  content: "(";
-                }
-
-                &::after {
-                  content: ")";
-                }
-              }
-            }
-          }
-
-          .separator {
-            @extend .circle-separator;
-          }
-        }
-
-        .item-body {
-          @include clearfix();
-          padding: 4px 0;
-          font-size: 12px !important;
-        }
-
-        .item-controls {
-          align-items: center;
-          display: flex;
-          width: 100%;
-
-          .reply-btn {
-            align-items: center;
-            color: lighten($steel-grey, 10);
-            cursor: pointer;
-            display: flex;
-          }
-        }
-      }
-
-
-
-      .item-show-more {
-        margin-left: 50px;
-        margin-bottom: 10px;
-      }
-
-
-
-      */
     }
   }
 }
