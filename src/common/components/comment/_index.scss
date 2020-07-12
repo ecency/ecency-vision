@@ -1,6 +1,7 @@
 .comment-box {
   margin: 15px 0;
   padding-bottom: 10px;
+  overflow: hidden;
 
   @include themify(day) {
     border-bottom: 1px solid $white-three;
@@ -11,21 +12,32 @@
   }
 
   .editor-toolbar {
-    border-radius: 8px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
   }
 
   .comment-body {
+    background: $white-two;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    margin-bottom: 4px;
+
     .form-control {
       background: transparent;
       border: none;
       resize: none;
       line-height: 1.5;
       border-radius: 0 0;
-      height: 90px;
-      padding: 4px 0;
+      height: 60px;
+      padding: 4px;
+      transition: height .3s;
 
       @include themify(night) {
         color: $silver;
+      }
+
+      &.expanded {
+        height: 120px;
       }
     }
   }

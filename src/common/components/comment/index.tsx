@@ -128,7 +128,7 @@ export default class Comment extends Component<Props, State> {
                     <div className="comment-body">
                         <Form.Control
                             id="the-editor"
-                            className="accepts-emoji"
+                            className={`accepts-emoji ${text.length > 20 ? 'expanded' : ''}`}
                             as="textarea"
                             placeholder={_t("comment.body-placeholder")}
                             value={text}
