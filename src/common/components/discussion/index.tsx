@@ -75,13 +75,6 @@ interface ItemState {
     replying: boolean
 }
 
-const isChildrenSame = (entry: Entry, prevDiscussion: DiscussionType, discussion: DiscussionType): boolean => {
-    const children: Entry[] = discussion.list.filter(x => x.parent_author === entry.author && x.parent_permlink === entry.permlink);
-    const prevChildren: Entry[] = prevDiscussion.list.filter(x => x.parent_author === entry.author && x.parent_permlink === entry.permlink);
-
-    return isEqual(children, prevChildren);
-}
-
 export class Item extends Component<ItemProps, ItemState> {
     state: ItemState = {
         reply: false,
@@ -92,10 +85,9 @@ export class Item extends Component<ItemProps, ItemState> {
 
     shouldComponentUpdate(nextProps: Readonly<ItemProps>, nextState: Readonly<ItemState>): boolean {
         return !isEqual(this.props.global, nextProps.global) ||
-            !isChildrenSame(this.props.entry, this.props.discussion, nextProps.discussion) ||
             !isEqual(this.props.entry, nextProps.entry) ||
             !isEqual(this.props.activeUser?.username, nextProps.activeUser?.username) ||
-            !isEqual(this.state, nextState)
+            !isEqual(this.state, nextState);
     }
 
     componentWillUnmount() {
@@ -131,7 +123,7 @@ export class Item extends Component<ItemProps, ItemState> {
 
     replySubmitted = (text: string) => {
         const {entry} = this.props;
-        const {activeUser, users, addReply} = this.props;
+        const {activeUser, users, addReply, updateReply} = this.props;
 
         const user = users.find((x) => x.username === activeUser?.username)!;
 
@@ -163,6 +155,14 @@ export class Item extends Component<ItemProps, ItemState> {
         }).then((nReply) => {
             if (nReply) {
                 addReply(nReply); // add new reply to store
+            }
+
+            return hiveApi.getPost(parentAuthor, parentPermlink) // get the reply
+        }).then((entry) => {
+            return bridgeApi.normalizePost(entry); // normalize
+        }).then((nEntry) => {
+            if (nEntry) {
+                updateReply(nEntry); // update store for the reply
             }
 
             ls.remove(`reply_draft_${entry.author}_${entry.permlink}`); // remove reply draft
@@ -313,7 +313,7 @@ export default class Discussion extends Component<Props> {
 
     componentDidUpdate(prevProps: Readonly<Props>): void {
         const {parent} = this.props;
-        if (!isEqual(parent, prevProps.parent)) {
+        if (parent.url !== prevProps.parent.url) { // url changed
             this.fetch();
         }
     }

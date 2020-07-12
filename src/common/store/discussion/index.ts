@@ -107,7 +107,7 @@ export const updateReply = (reply: Entry) => (dispatch: Dispatch, getState: () =
     const list: Entry[] = clone(discussion.list);
 
     const newList = list.map((x: Entry) => {
-        if (x.author === reply.author && x.permlink === x.permlink) {
+        if (x.author === reply.author && x.permlink === reply.permlink) {
             return reply;
         }
 
