@@ -48,13 +48,15 @@ export class CommentPreview extends Component<PreviewProps> {
 interface Props {
     defText: string;
     disabled: boolean;
+    cancellable?: boolean;
     users: User[];
     activeUser: ActiveUser | null;
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data: Account) => void;
     deleteUser: (username: string) => void;
-    onChange: (text: string) => void
-    onSubmit: (text: string) => void
+    onChange: (text: string) => void;
+    onSubmit: (text: string) => void;
+    onCancel?: () => void
 }
 
 interface State {
@@ -110,8 +112,13 @@ export default class Comment extends Component<Props, State> {
         onSubmit(text);
     }
 
+    cancel = () => {
+        const {onCancel} = this.props;
+        if (onCancel) onCancel();
+    }
+
     render() {
-        const {disabled} = this.props;
+        const {disabled, cancellable} = this.props;
         const {text, preview} = this.state;
 
         return (
@@ -129,13 +136,14 @@ export default class Comment extends Component<Props, State> {
                             disabled={disabled}
                         />
                     </div>
-                    {text !== '' && (
-                        <div className="comment-buttons">
-                            <LoginRequired {...this.props}>
-                                <Button size="sm" disabled={disabled} onClick={this.submit}>{_t('comment.reply')}</Button>
-                            </LoginRequired>
-                        </div>
-                    )}
+                    <div className="comment-buttons">
+                        {cancellable && (
+                            <Button className="btn-cancel" size="sm" variant="outline-primary" disabled={disabled} onClick={this.cancel}>{_t('g.cancel')}</Button>
+                        )}
+                        <LoginRequired {...this.props}>
+                            <Button className="btn-submit" size="sm" disabled={disabled} onClick={this.submit}>{_t('comment.reply')}</Button>
+                        </LoginRequired>
+                    </div>
                     <CommentPreview text={preview}/>
                 </div>
             </>

@@ -6,7 +6,8 @@
     "downloads": "Downloads",
     "login": "Login",
     "signup": "Signup",
-    "delete": "Delete"
+    "delete": "Delete",
+    "cancel": "Cancel"
   },
   "confirm": {
     "title": "Are you sure?",

@@ -30,9 +30,13 @@
     }
   }
 
-  .comment-buttons{
+  .comment-buttons {
     display: flex;
     justify-content: flex-end;
+
+    .btn-cancel {
+      margin-right: 6px;
+    }
   }
 
   .comment-preview {

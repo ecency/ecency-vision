@@ -189,7 +189,6 @@ export class Item extends Component<ItemProps, ItemState> {
         const {reply, replying} = this.state;
 
         const created = moment(parseDate(entry.created));
-        const renderedBody = {__html: renderPostBody(entry.body, false)};
         const reputation = Math.floor(entry.author_reputation);
         const readMore = entry.children > 0 && entry.depth > 5;
         const showSubList = !readMore && entry.children > 0;
@@ -241,8 +240,10 @@ export class Item extends Component<ItemProps, ItemState> {
                 {reply && (
                     <Comment {...this.props}
                              defText={ls.get(`reply_draft_${entry.author}_${entry.permlink}`) || ''}
+                             cancellable={true}
                              onChange={this.replyTextChanged}
                              onSubmit={this.submitReply}
+                             onCancel={this.toggleReply}
                              disabled={replying}
                     />
                 )}
