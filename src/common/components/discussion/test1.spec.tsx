@@ -46,6 +46,12 @@ const props = {
     sortDiscussion: () => {
     },
     resetDiscussion: () => {
+    },
+    updateReply: () => {
+
+    },
+    addReply: () => {
+
     }
 };
 

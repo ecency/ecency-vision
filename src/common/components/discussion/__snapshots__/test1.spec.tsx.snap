@@ -183,7 +183,6 @@ exports[`(1) Full render 1`] = `
             <span
               className="reply-btn"
               onClick={[Function]}
-              role="none"
             >
               Reply
             </span>
@@ -313,7 +312,6 @@ exports[`(1) Full render 1`] = `
             <span
               className="reply-btn"
               onClick={[Function]}
-              role="none"
             >
               Reply
             </span>
@@ -445,7 +443,6 @@ exports[`(1) Full render 1`] = `
                 <span
                   className="reply-btn"
                   onClick={[Function]}
-                  role="none"
                 >
                   Reply
                 </span>
@@ -578,7 +575,6 @@ exports[`(1) Full render 1`] = `
             <span
               className="reply-btn"
               onClick={[Function]}
-              role="none"
             >
               Reply
             </span>
@@ -709,7 +705,6 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             <span
               className="reply-btn"
               onClick={[Function]}
-              role="none"
             >
               Reply
             </span>
@@ -840,7 +835,6 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             <span
               className="reply-btn"
               onClick={[Function]}
-              role="none"
             >
               Reply
             </span>
@@ -971,7 +965,6 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             <span
               className="reply-btn"
               onClick={[Function]}
-              role="none"
             >
               Reply
             </span>
@@ -1102,7 +1095,6 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             <span
               className="reply-btn"
               onClick={[Function]}
-              role="none"
             >
               Reply
             </span>
@@ -1233,7 +1225,6 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             <span
               className="reply-btn"
               onClick={[Function]}
-              role="none"
             >
               Reply
             </span>
