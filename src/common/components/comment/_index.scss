@@ -1,7 +1,6 @@
 .comment-box {
   margin: 15px 0;
   padding-bottom: 10px;
-  overflow: hidden;
 
   @include themify(day) {
     border-bottom: 1px solid $white-three;
