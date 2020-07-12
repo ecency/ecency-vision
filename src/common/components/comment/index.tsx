@@ -49,6 +49,7 @@ interface Props {
     defText: string;
     inProgress: boolean;
     cancellable?: boolean;
+    autoFocus?: boolean;
     users: User[];
     activeUser: ActiveUser | null;
     setActiveUser: (username: string | null) => void;
@@ -90,7 +91,7 @@ export default class Comment extends Component<Props, State> {
             this.updatePreview();
         });
     };
-    
+
     updatePreview = (): void => {
         if (this._updateTimer) {
             clearTimeout(this._updateTimer);
@@ -117,7 +118,7 @@ export default class Comment extends Component<Props, State> {
     }
 
     render() {
-        const {inProgress, cancellable} = this.props;
+        const {inProgress, cancellable, autoFocus} = this.props;
         const {text, preview} = this.state;
 
         return (
@@ -133,6 +134,7 @@ export default class Comment extends Component<Props, State> {
                             value={text}
                             onChange={this.textChanged}
                             disabled={inProgress}
+                            autoFocus={autoFocus}
                         />
                     </div>
                     <div className="comment-buttons">

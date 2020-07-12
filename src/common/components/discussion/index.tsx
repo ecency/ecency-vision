@@ -245,10 +245,10 @@ export class Item extends Component<ItemProps, ItemState> {
                              onSubmit={this.submitReply}
                              onCancel={this.toggleReply}
                              inProgress={replying}
+                             autoFocus={true}
                     />
                 )}
-
-
+                
                 {showSubList && <List {...this.props} parent={entry}/>}
             </div>
         );
