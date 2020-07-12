@@ -103,7 +103,7 @@
     }
 
     @include themify(night) {
-      background: $dark-two;
+      background: lighten($dark-two, 6);
     }
   }
 
