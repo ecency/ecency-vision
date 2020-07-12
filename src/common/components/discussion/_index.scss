@@ -146,11 +146,27 @@
             display: flex;
             width: 100%;
 
-            .reply-btn {
-              align-items: center;
+            .reply-btn, .edit-btn, .delete-btn {
               color: lighten($steel-grey, 10);
               cursor: pointer;
-              display: flex;
+
+              &:hover {
+                color: $steel-grey;
+              }
+
+              &.disabled {
+                opacity: 0.4;
+                cursor: not-allowed;
+              }
+            }
+
+            .edit-btn, .delete-btn {
+              margin-left: 16px;
+              color: lighten($steel-grey, 10);
+
+              svg {
+                height: 14px;
+              }
             }
           }
 

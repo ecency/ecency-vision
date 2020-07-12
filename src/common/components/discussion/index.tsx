@@ -46,7 +46,7 @@ import {createReplyPermlink, makeCommentOptions, makeJsonMetadataReply} from "..
 
 import {error} from "../feedback";
 
-import {commentSvg} from "../../img/svg";
+import {commentSvg, pencilOutlineSvg, deleteForeverSvg} from "../../img/svg";
 
 import {version} from "../../../../package.json";
 
@@ -89,13 +89,15 @@ interface ItemProps {
 
 interface ItemState {
     reply: boolean;
-    replying: boolean
+    edit: boolean;
+    inProgress: boolean;
 }
 
 export class Item extends Component<ItemProps, ItemState> {
     state: ItemState = {
         reply: false,
-        replying: false
+        edit: false,
+        inProgress: false,
     }
 
     _mounted: boolean = true;
@@ -122,8 +124,19 @@ export class Item extends Component<ItemProps, ItemState> {
     }
 
     toggleReply = () => {
-        const {reply} = this.state;
+        const {reply, edit} = this.state;
+        if (edit) {
+            return;
+        }
         this.stateSet({reply: !reply});
+    }
+
+    toggleEdit = () => {
+        const {edit, reply} = this.state;
+        if (reply) {
+            return;
+        }
+        this.stateSet({edit: !edit});
     }
 
     replyTextChanged = (text: string) => {
@@ -147,7 +160,7 @@ export class Item extends Component<ItemProps, ItemState> {
             version
         );
 
-        this.stateSet({replying: true});
+        this.stateSet({inProgress: true});
 
         comment(
             user,
@@ -176,22 +189,72 @@ export class Item extends Component<ItemProps, ItemState> {
             }
 
             ls.remove(`reply_draft_${entry.author}_${entry.permlink}`); // remove reply draft
-            this.stateSet({replying: false}); // done
+            this.stateSet({inProgress: false}); // done
             this.toggleReply(); // close comment box
         }).catch((e) => {
             error(formatError(e));
-            this.stateSet({replying: false});
+            this.stateSet({inProgress: false});
+        })
+    }
+
+    updateReply = (text: string) => {
+        const {entry} = this.props;
+        const {activeUser, users, updateReply} = this.props;
+
+        const user = users.find((x) => x.username === activeUser?.username)!;
+
+        const {author, permlink, parent_author: parentAuthor, parent_permlink: parentPermlink} = entry;
+        const jsonMeta = makeJsonMetadataReply(
+            entry.json_metadata.tags || ['ecency'],
+            version
+        );
+        let options = null;
+
+        const bExist = entry.beneficiaries.some(
+            x => x && x.account === 'ecency'
+        );
+
+        if (!bExist) {
+            options = makeCommentOptions(author, permlink);
+        }
+
+        this.stateSet({inProgress: true});
+
+        comment(
+            user,
+            parentAuthor!,
+            parentPermlink!,
+            permlink,
+            '',
+            text,
+            jsonMeta,
+            options,
+        ).then(() => {
+            return hiveApi.getPost(author, permlink); // get the reply
+        }).then((reply) => {
+            return bridgeApi.normalizePost(reply); // normalize
+        }).then((nReply) => {
+            if (nReply) {
+                updateReply(nReply); // update store
+            }
+
+            this.stateSet({inProgress: false}); // done
+            this.toggleEdit(); // close comment box
+        }).catch((e) => {
+            error(formatError(e));
+            this.stateSet({inProgress: false});
         })
     }
 
     render() {
-        const {entry} = this.props;
-        const {reply, replying} = this.state;
+        const {entry, activeUser} = this.props;
+        const {reply, edit, inProgress} = this.state;
 
         const created = moment(parseDate(entry.created));
         const reputation = Math.floor(entry.author_reputation);
         const readMore = entry.children > 0 && entry.depth > 5;
         const showSubList = !readMore && entry.children > 0;
+        const canEdit = activeUser && activeUser.username === entry.author;
 
         return (
             <div className={`discussion-item depth-${entry.depth}`}>
@@ -223,9 +286,19 @@ export class Item extends Component<ItemProps, ItemState> {
                             <EntryVoteBtn {...this.props} entry={entry} afterVote={this.afterVote}/>
                             <EntryPayout {...this.props} entry={entry}/>
                             <EntryVotes {...this.props} entry={entry}/>
-                            <span className="reply-btn" onClick={this.toggleReply}>
-                                  {_t("discussion.reply")}
-                            </span>
+                            <a className={_c(`reply-btn ${edit ? 'disabled' : ''}`)} onClick={this.toggleReply}>
+                                {_t("discussion.reply")}
+                            </a>
+                            {canEdit && (
+                                <>
+                                    <a title={_t('g.edit')} className={_c(`edit-btn ${reply ? 'disabled' : ''}`)} onClick={this.toggleEdit}>
+                                        {pencilOutlineSvg}
+                                    </a>
+                                    <a title={_t('g.delete')} className="delete-btn">
+                                        {deleteForeverSvg}
+                                    </a>
+                                </>
+                            )}
                         </div>
                         {readMore && (
                             <div className="read-more">
@@ -244,7 +317,18 @@ export class Item extends Component<ItemProps, ItemState> {
                              onChange={this.replyTextChanged}
                              onSubmit={this.submitReply}
                              onCancel={this.toggleReply}
-                             inProgress={replying}
+                             inProgress={inProgress}
+                             autoFocus={true}
+                    />
+                )}
+
+                {edit && (
+                    <Comment {...this.props}
+                             defText={entry.body}
+                             cancellable={true}
+                             onSubmit={this.updateReply}
+                             onCancel={this.toggleEdit}
+                             inProgress={inProgress}
                              autoFocus={true}
                     />
                 )}

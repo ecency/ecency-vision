@@ -55,7 +55,7 @@ interface Props {
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data: Account) => void;
     deleteUser: (username: string) => void;
-    onChange: (text: string) => void;
+    onChange?: (text: string) => void;
     onSubmit: (text: string) => void;
     onCancel?: () => void
 }
@@ -102,7 +102,7 @@ export default class Comment extends Component<Props, State> {
             const {onChange} = this.props;
             const {text} = this.state;
             this.setState({preview: text});
-            onChange(text);
+            if (onChange) onChange(text);
         }, 500);
     };
 
