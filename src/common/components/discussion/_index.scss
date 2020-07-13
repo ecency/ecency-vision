@@ -2,6 +2,14 @@
   margin-bottom: 30px;
   position: relative;
 
+  @include themify(day) {
+    border-top: 1px solid $white-three;
+  }
+
+  @include themify(night) {
+    border-top: 1px solid $dark-two;
+  }
+
   &.loading {
     border-color: transparent;
   }
