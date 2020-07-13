@@ -179,7 +179,7 @@
 
             .delete-btn {
               &.in-progress {
-                animation: anim-fadein-out 5s infinite;
+                animation: anim-fadein-out 2s infinite;
                 cursor: default;
               }
             }
