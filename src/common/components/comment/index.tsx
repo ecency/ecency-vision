@@ -48,16 +48,16 @@ export class CommentPreview extends Component<PreviewProps> {
 interface Props {
     defText: string;
     submitText: string;
-    inProgress: boolean;
-    cancellable?: boolean;
-    autoFocus?: boolean;
     users: User[];
     activeUser: ActiveUser | null;
+    inProgress?: boolean;
+    cancellable?: boolean;
+    autoFocus?: boolean;
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data: Account) => void;
     deleteUser: (username: string) => void;
-    onChange?: (text: string) => void;
     onSubmit: (text: string) => void;
+    onChange?: (text: string) => void;
     onCancel?: () => void
 }
 
