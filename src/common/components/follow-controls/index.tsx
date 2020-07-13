@@ -239,38 +239,38 @@ export default class FollowControls extends Component<Props, State> {
 
         if (fetching) {
             return (
-                <div>
+                <>
                     <Button variant="primary" disabled={true} style={{marginRight: '5px'}}>
                         {followMsg}
                     </Button>
                     <Button disabled={true}>{muteMsg}</Button>
-                </div>
+                </>
             );
         }
 
         if (following) {
             return (
-                <div>
+                <>
                     {btnUnfollow}
                     {btnMute}
-                </div>
+                </>
             );
         }
 
         if (muted) {
             return (
-                <div>
+                <>
                     {btnFollow}
                     {btnUnMute}
-                </div>
+                </>
             );
         }
 
         return (
-            <div>
+            <>
                 {btnFollow}
                 {btnMute}
-            </div>
+            </>
         );
     }
 }

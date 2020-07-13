@@ -3,75 +3,99 @@ import React from "react";
 import ProfileCover from "./index";
 import renderer from "react-test-renderer";
 
-import { Theme } from "../../store/global/types";
-import { Account } from "../../store/accounts/types";
+import {Theme} from "../../store/global/types";
+import {Account} from "../../store/accounts/types";
 
-import { globalInstance } from "../../helper/test-helper";
+import {globalInstance} from "../../helper/test-helper";
 
 jest.mock("../../constants/defaults.json", () => ({
-  imageServer: "https://images.ecency.com",
+    imageServer: "https://images.ecency.com",
 }));
 
-it("(1) Render with loaded account object", () => {
-  const account: Account = {
-    name: "user1",
-    profile: {
-      cover_image: "https://img.esteem.app/rwd380.jpg",
+jest.mock("../../api/hive", () => ({
+    getFollowing: () =>
+        new Promise((resolve) => {
+            resolve([]);
+        }),
+}));
+
+
+const defProps = {
+    global: {...globalInstance},
+    users: [],
+    activeUser: null,
+    setActiveUser: () => {
     },
-    __loaded: true,
-  };
+    updateActiveUser: () => {
+    },
+    deleteUser: () => {
+    }
+};
 
-  const props = {
-    global: { ...globalInstance },
-    account,
-  };
+it("(1) Render with loaded account object", () => {
+    const account: Account = {
+        name: "user1",
+        profile: {
+            cover_image: "https://img.esteem.app/rwd380.jpg",
+        },
+        __loaded: true,
+    };
 
-  const component = renderer.create(<ProfileCover {...props} />);
-  expect(component.toJSON()).toMatchSnapshot();
+    const props = {
+        ...defProps,
+        account,
+    };
+
+    const component = renderer.create(<ProfileCover {...props} />);
+    expect(component.toJSON()).toMatchSnapshot();
 });
+
 
 it("(2) Render with mot loaded account object", () => {
-  const account: Account = {
-    name: "user1",
-  };
+    const account: Account = {
+        name: "user1",
+    };
 
-  const props = {
-    global: { ...globalInstance },
-    account,
-  };
+    const props = {
+        ...defProps,
+        account,
+    };
 
-  const component = renderer.create(<ProfileCover {...props} />);
-  expect(component.toJSON()).toMatchSnapshot();
+    const component = renderer.create(<ProfileCover {...props} />);
+    expect(component.toJSON()).toMatchSnapshot();
 });
 
+
 it("(3) No bg image - Day theme", () => {
-  const account: Account = {
-    name: "user1",
-    profile: {},
-    __loaded: true,
-  };
+    const account: Account = {
+        name: "user1",
+        profile: {},
+        __loaded: true,
+    };
 
-  const props = {
-    global: { ...globalInstance },
-    account,
-  };
+    const props = {
+        ...defProps,
+        account,
+    };
 
-  const component = renderer.create(<ProfileCover {...props} />);
-  expect(component.toJSON()).toMatchSnapshot();
+    const component = renderer.create(<ProfileCover {...props} />);
+    expect(component.toJSON()).toMatchSnapshot();
 });
 
 it("(4) No bg image - Night theme", () => {
-  const account: Account = {
-    name: "user1",
-    profile: {},
-    __loaded: true,
-  };
+    const account: Account = {
+        name: "user1",
+        profile: {},
+        __loaded: true,
+    };
 
-  const props = {
-    global: { ...globalInstance, ...{ theme: Theme.night } },
-    account,
-  };
+    const props = {
+        ...defProps,
+        global: {...globalInstance, ...{theme: Theme.night}},
+        account,
+    };
 
-  const component = renderer.create(<ProfileCover {...props} />);
-  expect(component.toJSON()).toMatchSnapshot();
+    const component = renderer.create(<ProfileCover {...props} />);
+    expect(component.toJSON()).toMatchSnapshot();
 });
+

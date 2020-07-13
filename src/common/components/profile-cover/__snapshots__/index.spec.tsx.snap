@@ -19,9 +19,22 @@ exports[`(1) Render with loaded account object 1`] = `
       className="btn btn-primary"
       disabled={false}
       onClick={[Function]}
+      style={
+        Object {
+          "marginRight": "5px",
+        }
+      }
       type="button"
     >
       Follow
+    </button>
+    <button
+      className="btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Mute
     </button>
   </div>
 </div>
@@ -42,9 +55,22 @@ exports[`(2) Render with mot loaded account object 1`] = `
       className="btn btn-primary"
       disabled={false}
       onClick={[Function]}
+      style={
+        Object {
+          "marginRight": "5px",
+        }
+      }
       type="button"
     >
       Follow
+    </button>
+    <button
+      className="btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Mute
     </button>
   </div>
 </div>
@@ -69,9 +95,22 @@ exports[`(3) No bg image - Day theme 1`] = `
       className="btn btn-primary"
       disabled={false}
       onClick={[Function]}
+      style={
+        Object {
+          "marginRight": "5px",
+        }
+      }
       type="button"
     >
       Follow
+    </button>
+    <button
+      className="btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Mute
     </button>
   </div>
 </div>
@@ -96,9 +135,22 @@ exports[`(4) No bg image - Night theme 1`] = `
       className="btn btn-primary"
       disabled={false}
       onClick={[Function]}
+      style={
+        Object {
+          "marginRight": "5px",
+        }
+      }
       type="button"
     >
       Follow
+    </button>
+    <button
+      className="btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Mute
     </button>
   </div>
 </div>

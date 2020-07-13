@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`FollowControls (1) Default render. No active user. 1`] = `
-<div>
+Array [
   <button
     className="btn btn-primary"
     disabled={false}
@@ -14,7 +14,7 @@ exports[`FollowControls (1) Default render. No active user. 1`] = `
     type="button"
   >
     Follow
-  </button>
+  </button>,
   <button
     className="btn btn-primary"
     disabled={false}
@@ -22,12 +22,12 @@ exports[`FollowControls (1) Default render. No active user. 1`] = `
     type="button"
   >
     Mute
-  </button>
-</div>
+  </button>,
+]
 `;
 
 exports[`FollowControls (2) Default Render with active account. 1`] = `
-<div>
+Array [
   <button
     className="btn btn-primary"
     disabled={false}
@@ -40,7 +40,7 @@ exports[`FollowControls (2) Default Render with active account. 1`] = `
     type="button"
   >
     Follow
-  </button>
+  </button>,
   <button
     className="btn btn-primary"
     disabled={false}
@@ -48,12 +48,12 @@ exports[`FollowControls (2) Default Render with active account. 1`] = `
     type="button"
   >
     Mute
-  </button>
-</div>
+  </button>,
+]
 `;
 
 exports[`FollowControls (2) Following. 1`] = `
-<div>
+Array [
   <button
     className="btn btn-primary"
     disabled={false}
@@ -66,7 +66,7 @@ exports[`FollowControls (2) Following. 1`] = `
     type="button"
   >
     Unfollow
-  </button>
+  </button>,
   <button
     className="btn btn-primary"
     disabled={false}
@@ -74,12 +74,12 @@ exports[`FollowControls (2) Following. 1`] = `
     type="button"
   >
     Mute
-  </button>
-</div>
+  </button>,
+]
 `;
 
 exports[`FollowControls (2) Muted. 1`] = `
-<div>
+Array [
   <button
     className="btn btn-primary"
     disabled={false}
@@ -92,7 +92,7 @@ exports[`FollowControls (2) Muted. 1`] = `
     type="button"
   >
     Follow
-  </button>
+  </button>,
   <button
     className="btn btn-primary"
     disabled={false}
@@ -100,6 +100,6 @@ exports[`FollowControls (2) Muted. 1`] = `
     type="button"
   >
     Unmute
-  </button>
-</div>
+  </button>,
+]
 `;
