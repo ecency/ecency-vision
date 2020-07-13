@@ -75,6 +75,7 @@ describe('makeJsonMetadataReply', () => {
     });
 });
 
+/*
 describe('createReplyPermlink', () => {
     // @ts-ignore
     jest.spyOn(Date, 'now').mockImplementation(() => {
@@ -85,3 +86,4 @@ describe('createReplyPermlink', () => {
         expect(createReplyPermlink('good-karma')).toMatchSnapshot();
     });
 });
+*/
