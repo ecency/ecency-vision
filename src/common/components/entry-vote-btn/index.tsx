@@ -2,6 +2,8 @@ import React, {Component} from "react";
 
 import {Modal, Form, FormControl} from "react-bootstrap";
 
+import isEqual from "react-fast-compare";
+
 import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 import {Entry} from "../../store/entries/types";
@@ -246,7 +248,12 @@ export default class EntryVoteBtn extends Component<Props, State> {
     };
 
     componentDidUpdate(prevProps: Readonly<Props>) {
-        if ((prevProps.activeUser?.username !== this.props.activeUser?.username) && this.state.votes.length === 0) {
+        if (
+            // user changed while vote count is zero
+            ((prevProps.activeUser?.username !== this.props.activeUser?.username) && this.state.votes.length === 0) ||
+            // or entry changed
+            !isEqual(this.props.entry, prevProps.entry)
+        ) {
             this.fetchVotes();
         }
     }
