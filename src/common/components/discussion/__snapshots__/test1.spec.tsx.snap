@@ -180,12 +180,12 @@ exports[`(1) Full render 1`] = `
                 0
               </span>
             </div>
-            <span
+            <a
               className="reply-btn"
               onClick={[Function]}
             >
               Reply
-            </span>
+            </a>
           </div>
         </div>
       </div>
@@ -309,12 +309,12 @@ exports[`(1) Full render 1`] = `
                 0
               </span>
             </div>
-            <span
+            <a
               className="reply-btn"
               onClick={[Function]}
             >
               Reply
-            </span>
+            </a>
           </div>
         </div>
       </div>
@@ -440,12 +440,12 @@ exports[`(1) Full render 1`] = `
                     0
                   </span>
                 </div>
-                <span
+                <a
                   className="reply-btn"
                   onClick={[Function]}
                 >
                   Reply
-                </span>
+                </a>
               </div>
             </div>
           </div>
@@ -572,12 +572,12 @@ exports[`(1) Full render 1`] = `
                 1
               </span>
             </div>
-            <span
+            <a
               className="reply-btn"
               onClick={[Function]}
             >
               Reply
-            </span>
+            </a>
           </div>
         </div>
       </div>
@@ -702,12 +702,12 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 0
               </span>
             </div>
-            <span
+            <a
               className="reply-btn"
               onClick={[Function]}
             >
               Reply
-            </span>
+            </a>
           </div>
         </div>
       </div>
@@ -832,12 +832,12 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 1
               </span>
             </div>
-            <span
+            <a
               className="reply-btn"
               onClick={[Function]}
             >
               Reply
-            </span>
+            </a>
           </div>
         </div>
       </div>
@@ -962,12 +962,12 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 1
               </span>
             </div>
-            <span
+            <a
               className="reply-btn"
               onClick={[Function]}
             >
               Reply
-            </span>
+            </a>
           </div>
         </div>
       </div>
@@ -1092,12 +1092,12 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 2
               </span>
             </div>
-            <span
+            <a
               className="reply-btn"
               onClick={[Function]}
             >
               Reply
-            </span>
+            </a>
           </div>
         </div>
       </div>
@@ -1222,12 +1222,12 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
                 2
               </span>
             </div>
-            <span
+            <a
               className="reply-btn"
               onClick={[Function]}
             >
               Reply
-            </span>
+            </a>
           </div>
         </div>
       </div>
