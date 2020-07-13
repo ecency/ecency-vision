@@ -50,10 +50,6 @@
     "confirm-ok": "Reblog",
     "success": "Reblogged!"
   },
-  "entry-delete": {
-    "label": "Delete",
-    "success": "Deleted"
-  },
   "entry-payout": {
     "potential-payout": "Potential Payout",
     "promoted": "Promoted",

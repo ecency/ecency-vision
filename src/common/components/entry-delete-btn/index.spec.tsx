@@ -6,6 +6,7 @@ import TestRenderer from "react-test-renderer";
 import {entryInstance1} from "../../helper/test-helper";
 
 const defProps = {
+    children: <a>delete</a>,
     entry: {...entryInstance1},
     users: [],
     activeUser: null,

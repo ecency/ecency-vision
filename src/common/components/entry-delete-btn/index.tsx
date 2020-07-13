@@ -5,17 +5,15 @@ import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
 
 import PopoverConfirm from "../popover-confirm";
-import {error, success} from "../feedback";
+
+import {error} from "../feedback";
 
 import {deleteComment, formatError} from "../../api/operations";
 
-import {_t} from "../../i18n";
-
 import _c from "../../util/fix-class-names";
 
-import {deleteForeverSvg} from "../../img/svg";
-
 interface Props {
+    children: JSX.Element;
     entry: Entry;
     users: User[];
     activeUser: ActiveUser | null;
@@ -51,23 +49,29 @@ export default class EntryDeleteBtn extends Component<Props> {
         this.stateSet({inProgress: true});
         deleteComment(user, entry.author, entry.permlink)
             .then(() => {
-                success(_t("entry-delete.success"));
                 onSuccess();
+                this.stateSet({inProgress: false});
             })
             .catch((e) => {
                 error(formatError(e));
-            })
-            .finally(() => {
                 this.stateSet({inProgress: false});
-            });
+            })
     };
 
     render() {
+        const {children} = this.props;
         const {inProgress} = this.state;
+
+        const {className} = children.props;
+        const baseCls = className ? className.replace("in-progress") : "";
+
+        const clonedChildren = React.cloneElement(children, {
+            className: _c(`${baseCls} ${inProgress ? "in-progress" : ""}`)
+        });
 
         return (
             <PopoverConfirm onConfirm={this.delete}>
-                <a className={_c(`entry-delete-btn ${inProgress ? "in-progress" : ""} `)}>{deleteForeverSvg} {_t("entry-delete.label")}</a>
+                {clonedChildren}
             </PopoverConfirm>
         );
     }

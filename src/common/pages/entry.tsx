@@ -419,7 +419,9 @@ class EntryPage extends Component<Props, State> {
                                             <EntryDeleteBtn {...this.props} entry={entry} onSuccess={() => {
                                                 const {history} = this.props;
                                                 history.push('/');
-                                            }}/>
+                                            }}>
+                                                <a>delete</a>
+                                            </EntryDeleteBtn>
                                         </>
                                     )}
                                 </div>
