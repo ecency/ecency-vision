@@ -124,6 +124,17 @@ export const addReply = (reply: Entry) => (dispatch: Dispatch, getState: () => A
     dispatch(fetchedAct(newList));
 }
 
+export const deleteReply = (reply: Entry) => (dispatch: Dispatch, getState: () => AppState) => {
+    const {discussion} = getState();
+    const list: Entry[] = clone(discussion.list);
+
+    const newList = list.filter((x: Entry) => {
+        return !(x.author === reply.author && x.permlink === reply.permlink)
+    });
+
+    dispatch(fetchedAct(newList));
+}
+
 /* Action Creators */
 export const fetchAct = (): FetchAction => {
     return {

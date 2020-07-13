@@ -30,6 +30,7 @@ import EntryPayout from "../entry-payout/index";
 import EntryVotes from "../entry-votes";
 import LinearProgress from "../linear-progress";
 import Comment from "../comment"
+import EntryDeleteBtn from "../entry-delete-btn";
 
 import parseDate from "../../helper/parse-date";
 
@@ -85,6 +86,7 @@ interface ItemProps {
     deleteUser: (username: string) => void;
     updateReply: (reply: Entry) => void;
     addReply: (reply: Entry) => void;
+    deleteReply: (reply: Entry) => void;
 }
 
 interface ItemState {
@@ -246,6 +248,11 @@ export class Item extends Component<ItemProps, ItemState> {
         })
     }
 
+    deleted = () => {
+        const {entry, deleteReply} = this.props;
+        deleteReply(entry);
+    }
+
     render() {
         const {entry, activeUser} = this.props;
         const {reply, edit, inProgress} = this.state;
@@ -294,9 +301,11 @@ export class Item extends Component<ItemProps, ItemState> {
                                     <a title={_t('g.edit')} className={_c(`edit-btn ${reply ? 'disabled' : ''}`)} onClick={this.toggleEdit}>
                                         {pencilOutlineSvg}
                                     </a>
-                                    <a title={_t('g.delete')} className="delete-btn">
-                                        {deleteForeverSvg}
-                                    </a>
+                                    <EntryDeleteBtn {...this.props} entry={entry} onSuccess={this.deleted}>
+                                        <a title={_t('g.delete')} className="delete-btn">
+                                            {deleteForeverSvg}
+                                        </a>
+                                    </EntryDeleteBtn>
                                 </>
                             )}
                         </div>
@@ -354,6 +363,7 @@ interface ListProps {
     deleteUser: (username: string) => void;
     updateReply: (reply: Entry) => void;
     addReply: (reply: Entry) => void;
+    deleteReply: (reply: Entry) => void;
 }
 
 export class List extends Component<ListProps> {
@@ -398,6 +408,7 @@ interface Props {
     resetDiscussion: () => void;
     updateReply: (reply: Entry) => void;
     addReply: (reply: Entry) => void;
+    deleteReply: (reply: Entry) => void;
 }
 
 

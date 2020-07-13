@@ -40,7 +40,7 @@ import {fetchTrendingTags} from "../store/trending-tags";
 import {setActiveUser, updateActiveUser} from "../store/active-user";
 import {deleteUser} from "../store/users";
 import {addReblog} from "../store/reblogs";
-import {fetchDiscussion, sortDiscussion, resetDiscussion, updateReply, addReply} from "../store/discussion";
+import {fetchDiscussion, sortDiscussion, resetDiscussion, updateReply, addReply, deleteReply} from "../store/discussion";
 
 import {makePath as makeEntryPath} from "../components/entry-link";
 
@@ -116,6 +116,7 @@ interface Props {
     resetDiscussion: () => void;
     updateReply: (reply: Entry) => void;
     addReply: (reply: Entry) => void;
+    deleteReply: (reply: Entry) => void;
 }
 
 interface State {
@@ -490,7 +491,8 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
             resetDiscussion,
             sortDiscussion,
             updateReply,
-            addReply
+            addReply,
+            deleteReply
         },
         dispatch
     );
