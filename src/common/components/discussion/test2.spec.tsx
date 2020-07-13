@@ -46,6 +46,9 @@ const props = {
     },
     addReply: () => {
 
+    },
+    deleteReply: () => {
+
     }
 };
 
