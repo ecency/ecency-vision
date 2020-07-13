@@ -307,8 +307,9 @@ class EntryPage extends Component<Props, State> {
 
         const {activeUser} = this.props;
 
-        const editable = activeUser && !isComment && activeUser.username === entry.author;
         const ownEntry = activeUser && activeUser.username === entry.author;
+        const editable = ownEntry && !isComment;
+
 
         //  Meta config
         const url = entryCanonical(entry) || "";
@@ -406,23 +407,18 @@ class EntryPage extends Component<Props, State> {
                                     )}
                                 </div>
                                 <div className="right-side">
-                                    {editable && (
-                                        <>
-                                            <EntryEditBtn entry={entry}/>
-                                        </>
-                                    )}
-                                    {!ownEntry && (
-                                        <>
-                                            <span className="separator"/>
-                                            <EntryReblogBtn {...this.props} text={true} entry={entry}/>
-                                        </>
-                                    )}
                                     {ownEntry && (
                                         <>
+                                            {editable && (<EntryEditBtn entry={entry}/>)}
                                             <span className="separator"/>
                                             <EntryDeleteBtn {...this.props} entry={entry} onSuccess={this.deleted}>
                                                 <a title={_t('g.delete')} className="delete-btn">{deleteForeverSvg}</a>
                                             </EntryDeleteBtn>
+                                        </>
+                                    )}
+                                    {!ownEntry && (
+                                        <>
+                                            <EntryReblogBtn {...this.props} text={true} entry={entry}/>
                                         </>
                                     )}
                                 </div>
