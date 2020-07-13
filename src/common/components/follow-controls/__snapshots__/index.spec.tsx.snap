@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FollowControls (1) Default render. No active user. 1`] = `
+<div>
+  <button
+    className="btn btn-primary"
+    disabled={false}
+    onClick={[Function]}
+    style={
+      Object {
+        "marginRight": "5px",
+      }
+    }
+    type="button"
+  >
+    Follow
+  </button>
+  <button
+    className="btn btn-primary"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    Mute
+  </button>
+</div>
+`;
+
+exports[`FollowControls (2) Default Render with active account. 1`] = `
+<div>
+  <button
+    className="btn btn-primary"
+    disabled={false}
+    onClick={[Function]}
+    style={
+      Object {
+        "marginRight": "5px",
+      }
+    }
+    type="button"
+  >
+    Follow
+  </button>
+  <button
+    className="btn btn-primary"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    Mute
+  </button>
+</div>
+`;
+
+exports[`FollowControls (2) Following. 1`] = `
+<div>
+  <button
+    className="btn btn-primary"
+    disabled={false}
+    onClick={[Function]}
+    style={
+      Object {
+        "marginRight": "5px",
+      }
+    }
+    type="button"
+  >
+    Unfollow
+  </button>
+  <button
+    className="btn btn-primary"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    Mute
+  </button>
+</div>
+`;
+
+exports[`FollowControls (2) Muted. 1`] = `
+<div>
+  <button
+    className="btn btn-primary"
+    disabled={false}
+    onClick={[Function]}
+    style={
+      Object {
+        "marginRight": "5px",
+      }
+    }
+    type="button"
+  >
+    Follow
+  </button>
+  <button
+    className="btn btn-primary"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    Unmute
+  </button>
+</div>
+`;
