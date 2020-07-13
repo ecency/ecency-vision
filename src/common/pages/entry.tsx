@@ -415,7 +415,10 @@ class EntryPage extends Component<Props, State> {
                                     {ownEntry && (
                                         <>
                                             <span className="separator"/>
-                                            <EntryDeleteBtn {...this.props} entry={entry}/>
+                                            <EntryDeleteBtn {...this.props} entry={entry} onSuccess={() => {
+                                                const {history} = this.props;
+                                                history.push('/');
+                                            }}/>
                                         </>
                                     )}
                                 </div>
