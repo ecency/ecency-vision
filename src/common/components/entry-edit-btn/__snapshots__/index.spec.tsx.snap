@@ -5,6 +5,7 @@ exports[`(1) Default render 1`] = `
   className="entry-edit-btn"
   href="/@good-karma/awesome-hive/edit"
   onClick={[Function]}
+  title="Edit"
 >
   <svg
     viewBox="0 0 24 24"
@@ -14,7 +15,5 @@ exports[`(1) Default render 1`] = `
       fill="currentColor"
     />
   </svg>
-   
-  Edit
 </a>
 `;
