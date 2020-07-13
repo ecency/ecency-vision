@@ -47,6 +47,7 @@ export class CommentPreview extends Component<PreviewProps> {
 
 interface Props {
     defText: string;
+    submitText: string;
     inProgress: boolean;
     cancellable?: boolean;
     autoFocus?: boolean;
@@ -118,7 +119,7 @@ export default class Comment extends Component<Props, State> {
     }
 
     render() {
-        const {inProgress, cancellable, autoFocus} = this.props;
+        const {inProgress, cancellable, autoFocus, submitText} = this.props;
         const {text, preview} = this.state;
 
         return (
@@ -143,7 +144,7 @@ export default class Comment extends Component<Props, State> {
                         )}
                         <LoginRequired {...this.props}>
                             <Button className="btn-submit" size="sm" disabled={inProgress} onClick={this.submit}>
-                                {inProgress && (<Spinner animation="grow" variant="light" size="sm" style={{marginRight: "6px"}}/>)} {_t('comment.reply')}
+                                {inProgress && (<Spinner animation="grow" variant="light" size="sm" style={{marginRight: "6px"}}/>)} {submitText}
                             </Button>
                         </LoginRequired>
                     </div>

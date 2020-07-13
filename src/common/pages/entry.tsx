@@ -451,6 +451,7 @@ class EntryPage extends Component<Props, State> {
                         </div>
                         <Comment {...this.props}
                                  defText={ls.get(`reply_draft_${entry.author}_${entry.permlink}`) || ''}
+                                 submitText={_t('g.reply')}
                                  onChange={this.replyTextChanged}
                                  onSubmit={this.replySubmitted}
                                  inProgress={replying}

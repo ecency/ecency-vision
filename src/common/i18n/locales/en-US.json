@@ -6,7 +6,9 @@
     "login": "Login",
     "signup": "Signup",
     "delete": "Delete",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "reply": "Reply",
+    "update": "Update"
   },
   "confirm": {
     "title": "Are you sure?",
@@ -89,8 +91,7 @@
   },
   "comment": {
     "body-placeholder": "Write your reply here",
-    "preview": "Preview",
-    "reply": "Reply"
+    "preview": "Preview"
   },
   "discussion": {
     "count": "{{n}} Replies",
@@ -99,8 +100,7 @@
     "order-reputation": "Reputation",
     "order-votes": "Votes",
     "order-created": "Age",
-    "read-more": "...read more replies...",
-    "reply": "Reply"
+    "read-more": "...read more replies..."
   },
   "community": {
     "n-subscribers": "{{n}} subscribers",
@@ -212,7 +212,6 @@
     "reward-dp": "Decline Payout",
     "preview": "Preview",
     "publish": "Publish",
-    "update": "Update",
     "cancel-update": "Cancel",
     "clear": "Clear All",
     "published": "Post Published",

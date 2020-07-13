@@ -294,7 +294,7 @@ export class Item extends Component<ItemProps, ItemState> {
                             <EntryPayout {...this.props} entry={entry}/>
                             <EntryVotes {...this.props} entry={entry}/>
                             <a className={_c(`reply-btn ${edit ? 'disabled' : ''}`)} onClick={this.toggleReply}>
-                                {_t("discussion.reply")}
+                                {_t("g.reply")}
                             </a>
                             {canEdit && (
                                 <>
@@ -322,6 +322,7 @@ export class Item extends Component<ItemProps, ItemState> {
                 {reply && (
                     <Comment {...this.props}
                              defText={ls.get(`reply_draft_${entry.author}_${entry.permlink}`) || ''}
+                             submitText={_t('g.reply')}
                              cancellable={true}
                              onChange={this.replyTextChanged}
                              onSubmit={this.submitReply}
@@ -334,6 +335,7 @@ export class Item extends Component<ItemProps, ItemState> {
                 {edit && (
                     <Comment {...this.props}
                              defText={entry.body}
+                             submitText={_t('g.update')}
                              cancellable={true}
                              onSubmit={this.updateReply}
                              onCancel={this.toggleEdit}
