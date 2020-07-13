@@ -1,21 +1,3 @@
-@keyframes delete-in-progress {
-  0% {
-    color: $dark-sky-blue;
-  }
-  25% {
-    color: transparent;
-  }
-  50% {
-    color: $dark-sky-blue;
-  }
-  75% {
-    color: transparent;
-  }
-  100% {
-    color: $dark-sky-blue;
-  }
-}
-
 .entry-delete-btn {
   color: $steel-grey;
   display: inline-flex;
@@ -32,7 +14,7 @@
   }
 
   &.in-progress {
-    animation: reblog-in-progress 5s infinite;
+    animation: anim-fadein-out 5s infinite;
     pointer-events: none;
 
     svg {

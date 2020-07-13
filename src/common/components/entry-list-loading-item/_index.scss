@@ -1,18 +1,6 @@
-@keyframes item-loading-fadein-out {
-  0% {
-    opacity: 0.3;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0.3;
-  }
-}
-
 .entry-list-loading-item {
   @include clearfix();
-  animation: item-loading-fadein-out 2s infinite;
+  animation: anim-fadein-out 2s infinite;
 
   margin-top: 20px;
   padding: 0 0 16px 6px;

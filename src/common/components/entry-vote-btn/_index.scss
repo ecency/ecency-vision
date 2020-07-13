@@ -1,12 +1,3 @@
-@keyframes voting-color-change {
-  from {
-    opacity: 0.1;
-  }
-  to {
-    opacity: 0.7;
-  }
-}
-
 .entry-vote-btn {
   margin-right: 10px;
 }
@@ -31,7 +22,7 @@
   }
 
   &.in-progress {
-    animation: voting-color-change 1s infinite;
+    animation: anim-fadein-out 1s infinite;
     pointer-events: none;
   }
 
