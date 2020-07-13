@@ -168,6 +168,13 @@
                 height: 14px;
               }
             }
+
+            .delete-btn {
+              &.in-progress {
+                animation: anim-fadein-out 5s infinite;
+                cursor: default;
+              }
+            }
           }
 
           .read-more {

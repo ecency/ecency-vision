@@ -69,6 +69,10 @@ export default class EntryDeleteBtn extends Component<Props> {
             className: _c(`${baseCls} ${inProgress ? "in-progress" : ""}`)
         });
 
+        if (inProgress) {
+            return clonedChildren
+        }
+
         return (
             <PopoverConfirm onConfirm={this.delete}>
                 {clonedChildren}

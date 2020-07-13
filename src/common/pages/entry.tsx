@@ -78,7 +78,7 @@ import {makeShareUrlReddit, makeShareUrlTwitter, makeShareUrlFacebook} from "../
 import truncate from "../util/truncate";
 import * as ls from "../util/local-storage";
 
-import {timeSvg, redditSvg, facebookSvg, twitterSvg} from "../img/svg";
+import {timeSvg, redditSvg, facebookSvg, twitterSvg, deleteForeverSvg} from "../img/svg";
 
 import {_t} from "../i18n";
 
@@ -275,6 +275,11 @@ class EntryPage extends Component<Props, State> {
         ls.set(`reply_draft_${entry.author}_${entry.permlink}`, text);
     }
 
+    deleted = () => {
+        const {history} = this.props;
+        history.push('/');
+    }
+
     render() {
         const {loading, replying} = this.state;
 
@@ -403,7 +408,6 @@ class EntryPage extends Component<Props, State> {
                                 <div className="right-side">
                                     {editable && (
                                         <>
-                                            <span className="separator"/>
                                             <EntryEditBtn entry={entry}/>
                                         </>
                                     )}
@@ -416,11 +420,8 @@ class EntryPage extends Component<Props, State> {
                                     {ownEntry && (
                                         <>
                                             <span className="separator"/>
-                                            <EntryDeleteBtn {...this.props} entry={entry} onSuccess={() => {
-                                                const {history} = this.props;
-                                                history.push('/');
-                                            }}>
-                                                <a>delete</a>
+                                            <EntryDeleteBtn {...this.props} entry={entry} onSuccess={this.deleted}>
+                                                <a title={_t('g.delete')} className="delete-btn">{deleteForeverSvg}</a>
                                             </EntryDeleteBtn>
                                         </>
                                     )}
