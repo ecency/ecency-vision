@@ -26,7 +26,7 @@ interface Props {
 
 interface State {
     fetching: boolean,
-    processing: boolean,
+    inProgress: boolean,
     following: boolean,
     muted: boolean
 }
@@ -34,7 +34,7 @@ interface State {
 export default class FollowControls extends Component<Props, State> {
     state: State = {
         fetching: false,
-        processing: false,
+        inProgress: false,
         following: false,
         muted: false
     }
@@ -70,7 +70,7 @@ export default class FollowControls extends Component<Props, State> {
     fetch = async () => {
         this.stateSet({
             fetching: true,
-            processing: false,
+            inProgress: false,
             following: false,
             muted: false
         })
@@ -146,14 +146,14 @@ export default class FollowControls extends Component<Props, State> {
         const {activeUser, users, targetUsername} = this.props;
         const user = users.find((x) => x.username === activeUser?.username)!;
 
-        this.stateSet({processing: true});
+        this.stateSet({inProgress: true});
         try {
             await follow(user, targetUsername);
             this.stateSet({following: true, muted: false});
         } catch (err) {
             error(formatError(err));
         } finally {
-            this.stateSet({processing: false});
+            this.stateSet({inProgress: false});
         }
     };
 
@@ -161,14 +161,14 @@ export default class FollowControls extends Component<Props, State> {
         const {activeUser, users, targetUsername} = this.props;
         const user = users.find((x) => x.username === activeUser?.username)!;
 
-        this.stateSet({processing: true});
+        this.stateSet({inProgress: true});
         try {
             await unFollow(user, targetUsername);
             this.stateSet({following: false, muted: false});
         } catch (err) {
             error(formatError(err));
         } finally {
-            this.stateSet({processing: false});
+            this.stateSet({inProgress: false});
         }
     };
 
@@ -176,19 +176,19 @@ export default class FollowControls extends Component<Props, State> {
         const {activeUser, users, targetUsername} = this.props;
         const user = users.find((x) => x.username === activeUser?.username)!;
 
-        this.stateSet({processing: true});
+        this.stateSet({inProgress: true});
         try {
             await ignore(user, targetUsername);
             this.stateSet({following: false, muted: true});
         } catch (err) {
             error(formatError(err));
         } finally {
-            this.stateSet({processing: false});
+            this.stateSet({inProgress: false});
         }
     };
 
     render() {
-        const {following, muted, fetching, processing} = this.state;
+        const {following, muted, fetching, inProgress} = this.state;
 
         const followMsg = _t('follow-controls.follow');
         const unFollowMsg = _t('follow-controls.unFollow');
@@ -200,7 +200,7 @@ export default class FollowControls extends Component<Props, State> {
                 <Button
                     variant="primary"
                     style={{marginRight: '5px'}}
-                    disabled={processing}
+                    disabled={inProgress}
                     onClick={this.follow}
                 >
                     {followMsg}
@@ -213,7 +213,7 @@ export default class FollowControls extends Component<Props, State> {
                 <Button
                     variant="primary"
                     style={{marginRight: '5px'}}
-                    disabled={processing}
+                    disabled={inProgress}
                     onClick={this.unFollow}
                 >
                     {unFollowMsg}
@@ -223,7 +223,7 @@ export default class FollowControls extends Component<Props, State> {
 
         const btnMute = (
             <LoginRequired {...this.props}>
-                <Button disabled={processing} onClick={this.mute}>
+                <Button disabled={inProgress} onClick={this.mute}>
                     {muteMsg}
                 </Button>
             </LoginRequired>
@@ -231,7 +231,7 @@ export default class FollowControls extends Component<Props, State> {
 
         const btnUnMute = (
             <LoginRequired {...this.props} >
-                <Button disabled={processing} onClick={this.unFollow}>
+                <Button disabled={inProgress} onClick={this.unFollow}>
                     {unMuteMsg}
                 </Button>
             </LoginRequired>
