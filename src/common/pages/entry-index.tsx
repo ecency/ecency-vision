@@ -173,6 +173,8 @@ class EntryIndexPage extends Component<Props> {
 
     const metaProps = { title, description, url, rss };
 
+    const promoted = entries['__promoted__'] ? entries['__promoted__'].entries : [];
+
     return (
       <>
         <Meta {...metaProps} />
@@ -199,7 +201,7 @@ class EntryIndexPage extends Component<Props> {
             <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>
               <div className={_c(`entry-list-body ${global.listStyle === ListStyle.grid ? "grid-view" : ""}`)}>
                 {loading && entryList.length === 0 && <EntryListLoadingItem />}
-                <EntryListContent {...this.props} entries={entryList} />
+                <EntryListContent {...this.props} entries={entryList} promotedEntries={promoted} />
               </div>
             </div>
             {loading && entryList.length > 0 ? <LinearProgress /> : ""}

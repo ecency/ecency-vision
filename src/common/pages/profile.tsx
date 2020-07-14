@@ -19,7 +19,7 @@ import { Reblog } from "../store/reblogs/types";
 import { toggleListStyle, toggleTheme } from "../store/global";
 import { makeGroupKey, fetchEntries } from "../store/entries";
 import { addAccount } from "../store/accounts";
-import { updateEntry } from "../store/entries/index";
+import { updateEntry } from "../store/entries";
 import { fetchTransactions, resetTransactions } from "../store/transactions";
 import { fetchTrendingTags } from "../store/trending-tags";
 import { setActiveUser, updateActiveUser } from "../store/active-user";
@@ -44,8 +44,6 @@ import Wallet from "../components/wallet";
 import { getAccountFull } from "../api/hive";
 
 import defaults from "../constants/defaults.json";
-
-import { _t } from "../i18n";
 
 import _c from "../util/fix-class-names";
 
@@ -205,6 +203,8 @@ class ProfilePage extends Component<Props, State> {
       keywords: `${username}, ${username}'s blog`,
     };
 
+    const promoted = entries['__promoted__'] ? entries['__promoted__'].entries : [];
+
     return (
       <>
         <Meta {...metaProps} />
@@ -237,7 +237,7 @@ class ProfilePage extends Component<Props, State> {
                     <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>
                       <div className={_c(`entry-list-body ${global.listStyle === ListStyle.grid ? "grid-view" : ""}`)}>
                         {loading && entryList.length === 0 && <EntryListLoadingItem />}
-                        <EntryListContent {...this.props} entries={entryList} />
+                        <EntryListContent {...this.props} entries={entryList} promotedEntries={promoted} />
                       </div>
                     </div>
                     {loading && entryList.length > 0 ? <LinearProgress /> : ""}
