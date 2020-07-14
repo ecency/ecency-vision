@@ -61,7 +61,7 @@
   },
   "entry-index": {
     "feed": "Feed",
-    "tags": "Popular Tags",
+    "tags": "Popular",
     "filter-trending": "Trending",
     "filter-hot": "Hot",
     "filter-created": "New",
@@ -128,6 +128,7 @@
     "followers": "Followers",
     "following": "Following",
     "section-blog": "Blog",
+    "section-posts": "Posts",
     "section-comments": "Comments",
     "section-replies": "Replies",
     "section-wallet": "Wallet"

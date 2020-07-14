@@ -26,7 +26,7 @@ import {render} from "../template";
 import {cache} from "../cache";
 
 export default async (req: express.Request, res: express.Response) => {
-    const {username, section = "blog"} = req.params;
+    const {username, section = "posts"} = req.params;
     const address = `@${username}`;
 
     let entries = {};

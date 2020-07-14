@@ -17,7 +17,7 @@ export enum EntryFilter {
 }
 
 export enum ProfileFilter {
-  blog = "blog",
+  posts = "posts",
   comments = "comments",
   replies = "replies",
 }
@@ -27,7 +27,9 @@ export enum AllFilter {
   trending = "trending",
   hot = "hot",
   created = "created",
+  muted = "muted",
   blog = "blog",
+  posts = "posts",
   comments = "comments",
   replies = "replies",
   feed = "feed"

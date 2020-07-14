@@ -9,10 +9,10 @@ exports[`(1) Render 1`] = `
   >
     <a
       className="menu-item selected-item"
-      href="/@username/blog"
+      href="/@username/posts"
       onClick={[Function]}
     >
-      Blog
+      Posts
     </a>
     <a
       className="menu-item false"
