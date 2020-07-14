@@ -42,7 +42,7 @@ export default (location: string): FilterTag | null => {
   params = re.exec(location);
   if (params && params[1]) {
     return {
-      filter: "blog",
+      filter: "posts",
       tag: params[1],
     };
   }
@@ -62,7 +62,7 @@ export default (location: string): FilterTag | null => {
     params &&
     params[1] &&
     params[2] &&
-    ["feed", "blog", "comments", "replies"].includes(params[2])
+    ["feed", "posts", "comments", "replies"].includes(params[2])
   ) {
     return {
       filter: params[2],

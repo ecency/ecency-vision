@@ -29,7 +29,7 @@ server
   )
   .use(
     [
-      "^/@:author/:section(feed|blog)/rss.xml$", // /blog/@esteemapp/rss.xml
+      "^/@:author/:section(feed|blog|posts)/rss.xml$", // /posts/@esteemapp/rss.xml
       "^/@:author/rss.xml$", // @esteemapp/rss.xml
     ],
     authorRssHandler

@@ -60,7 +60,7 @@ export const entryRssHandler = async (req: express.Request, res: express.Respons
 };
 
 export const authorRssHandler = async (req: express.Request, res: express.Response) => {
-  const { author, section = "blog" } = req.params;
+  const { author, section = "posts" } = req.params;
 
   let entries;
 

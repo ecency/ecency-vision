@@ -160,7 +160,7 @@ export const fetchEntries = (what: string = "", tag: string = "", more: boolean 
 
     let prms: Promise<Entry[] | null>;
     if (tag.startsWith("@")) {
-        // @username/blog|replies|comments|feed
+        // @username/posts|replies|comments|feed
         const username = tag.replace("@", "");
 
         prms = getAccountPosts(what, username, start_author, start_permlink);

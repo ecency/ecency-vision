@@ -33,7 +33,7 @@ export default class ProfileMenu extends Component<Props> {
     return (
       <div className="profile-menu">
         <div className="profile-menu-items">
-          {["blog", "comments", "replies", "wallet"].map((s, k) => {
+          {["posts", "comments", "replies", "wallet"].map((s, k) => {
             return (
               <Link key={k} className={`menu-item ${section === s && "selected-item"}`} to={`/@${username}/${s}`}>
                 {_t(`profile.section-${s}`)}

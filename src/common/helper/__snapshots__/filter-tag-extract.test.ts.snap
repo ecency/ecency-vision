@@ -37,7 +37,7 @@ Object {
 
 exports[`30 - user 1`] = `
 Object {
-  "filter": "blog",
+  "filter": "posts",
   "tag": "@talhasch",
 }
 `;

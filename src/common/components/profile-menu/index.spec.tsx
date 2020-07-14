@@ -11,7 +11,7 @@ it("(1) Render", () => {
   const props = {
     global: { ...globalInstance },
     username: "username",
-    section: "blog",
+    section: "posts",
     toggleListStyle: () => {},
   };
 
