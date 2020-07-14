@@ -14,6 +14,7 @@ import {initialState as discussionInitialState} from "../../common/store/discuss
 import {Entry} from "../../common/store/entries/types";
 
 import {readGlobalCookies} from "../helper";
+import {getPromotedEntries} from "../../common/helper/promoted";
 
 import * as bridgeApi from "../../common/api/bridge";
 
@@ -57,7 +58,18 @@ export default async (req: express.Request, res: express.Response) => {
         activeUser: activeUserInitialState,
         reblogs: reblogsInitialState,
         discussion: discussionInitialState,
-        entries,
+        promotedEntries: getPromotedEntries(),
+        entries: {
+            ...entries,
+            ...{
+                ['__promoted__']: {
+                    entries: getPromotedEntries(),
+                    error: null,
+                    loading: false,
+                    hasMore: true,
+                }
+            }
+        },
     };
 
     res.send(render(req, preLoadedState));

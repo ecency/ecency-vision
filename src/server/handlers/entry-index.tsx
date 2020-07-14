@@ -16,6 +16,7 @@ import {Community} from "../../common/store/community/types";
 import {makeGroupKey} from "../../common/store/entries";
 
 import {readGlobalCookies, optimizeEntries} from "../helper";
+import {getPromotedEntries} from "../../common/helper/promoted";
 
 import * as hiveApi from "../../common/api/hive";
 import * as bridgeApi from "../../common/api/bridge";
@@ -57,8 +58,6 @@ export default async (req: express.Request, res: express.Response) => {
         cache.set("trending-tag", tags, 86400);
     }
 
-    // TODO: promoted posts
-
     const preLoadedState = {
         global: {
             ...globalInitialState,
@@ -81,6 +80,12 @@ export default async (req: express.Request, res: express.Response) => {
                 loading: false,
                 hasMore: true,
             },
+            ['__promoted__']: {
+                entries: getPromotedEntries(),
+                error: null,
+                loading: false,
+                hasMore: true,
+            }
         },
     };
 

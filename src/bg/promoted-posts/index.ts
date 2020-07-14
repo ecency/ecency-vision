@@ -4,7 +4,7 @@ import config from "../../config";
 import {Entry} from "../../common/store/entries/types";
 
 import {getPost} from "../../common/api/bridge";
-import {setPromotedPosts, getDbPath} from "../../common/helper/promoted-posts";
+import {setPromotedEntries, getDbPath} from "../../common/helper/promoted";
 
 const client = axios.create({
     baseURL: config.privateApiAddr,
@@ -24,7 +24,7 @@ const main = async () => {
 
     const prms = promoted.map(x => getPost(x.author, x.permlink));
     const entries = await Promise.all(prms) as Entry[];
-    setPromotedPosts(entries);
+    setPromotedEntries(entries);
     console.log(`👍 Saved to ${getDbPath()}`);
 }
 

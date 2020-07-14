@@ -24,6 +24,7 @@ import defaults from "../../common/constants/defaults.json";
 import {render} from "../template";
 
 import {cache} from "../cache";
+import {getPromotedEntries} from "../../common/helper/promoted";
 
 export default async (req: express.Request, res: express.Response) => {
     const {username, section = "blog"} = req.params;
@@ -61,8 +62,6 @@ export default async (req: express.Request, res: express.Response) => {
     } catch (e) {
     }
 
-    // TODO: promoted posts
-
     const filter = ProfileFilter[section] || defaults.filter;
     const tag = ProfileFilter[section] ? address : "";
 
@@ -81,7 +80,17 @@ export default async (req: express.Request, res: express.Response) => {
         activeUser: activeUserInitialState,
         reblogs: reblogsInitialState,
         discussion: discussionInitialState,
-        entries,
+        entries: {
+            ...entries,
+            ...{
+                ['__promoted__']: {
+                    entries: getPromotedEntries(),
+                    error: null,
+                    loading: false,
+                    hasMore: true,
+                }
+            }
+        },
     };
 
     res.send(render(req, preLoadedState));

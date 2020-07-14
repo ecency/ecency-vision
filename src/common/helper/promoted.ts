@@ -4,9 +4,9 @@ import fs from "fs";
 
 import {Entry} from "../store/entries/types";
 
-export const getDbPath = (): string => path.join(os.tmpdir(), 'promoted-posts.json');
+export const getDbPath = (): string => path.join(os.tmpdir(), 'promoted.json');
 
-export const getPromotedPosts = (): Entry[] => {
+export const getPromotedEntries = (): Entry[] => {
     if (fs.existsSync(getDbPath())) {
         const contents = fs.readFileSync(getDbPath(), 'utf-8');
         return JSON.parse(contents) as Entry[];
@@ -15,7 +15,7 @@ export const getPromotedPosts = (): Entry[] => {
     return [];
 }
 
-export const setPromotedPosts = (entries: Entry[]) => {
+export const setPromotedEntries = (entries: Entry[]) => {
     const data = JSON.stringify(entries)
     fs.writeFileSync(getDbPath(), data);
 }

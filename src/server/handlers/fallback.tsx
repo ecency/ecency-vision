@@ -15,10 +15,9 @@ import {initialState as discussionInitialState} from "../../common/store/discuss
 import {render} from "../template";
 
 import {readGlobalCookies} from "../helper";
+import {getPromotedEntries} from "../../common/helper/promoted";
 
 export default async (req: express.Request, res: express.Response) => {
-    // TODO: promoted posts
-
     const preLoadedState = {
         global: {
             ...globalInitialState,
@@ -33,7 +32,15 @@ export default async (req: express.Request, res: express.Response) => {
         activeUser: activeUserInitialState,
         reblogs: reblogsInitialState,
         discussion: discussionInitialState,
-        entries: {...entriesInitialState},
+        entries: {
+            ...entriesInitialState,
+            ['__promoted__']: {
+                entries: getPromotedEntries(),
+                error: null,
+                loading: false,
+                hasMore: true,
+            }
+        },
     };
 
     res.send(render(req, preLoadedState));
