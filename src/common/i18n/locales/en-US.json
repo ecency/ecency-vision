@@ -137,6 +137,8 @@
   },
   "wallet": {
     "unclaimed-rewards": "Unclaimed rewards",
+    "claim-reward-balance": "Claim reward balance",
+    "claim-reward-balance-ok": "Reward balance claimed",
     "estimated": "Estimated Account Value",
     "estimated-description": "The estimated value is based on a 7 day average value of HIVE.",
     "hive": "HIVE",

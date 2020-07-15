@@ -22,6 +22,7 @@ export interface Account {
   reward_steem_balance?: string;
   reward_sbd_balance?: string;
   reward_vesting_steem?: string;
+  reward_vesting_balance?: string;
   balance?: string;
   vesting_shares?: string;
   sbd_balance?: string;

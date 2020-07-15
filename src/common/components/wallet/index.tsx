@@ -17,323 +17,392 @@ import TransactionList from "../transactions";
 import DelegatedVesting from "../delegated-vesting";
 import ReceivedVesting from "../received-vesting";
 import DropDown from "../dropdown";
+import {error, success} from "../feedback";
 
 import parseAsset from "../../helper/parse-asset";
 import {vestsToSp} from "../../helper/vesting";
 import parseDate from "../../helper/parse-date";
 import isEmptyDate from "../../helper/is-empty-date";
 
+import {getAccount} from "../../api/hive";
+import {claimRewardBalance, formatError} from "../../api/operations";
+
 import formattedNumber from "../../util/formatted-number";
 
 import {_t} from "../../i18n";
 
+import {plusCircle} from "../../img/svg";
+
 interface Props {
-  history: History;
-  global: Global;
-  dynamicProps: DynamicProps;
-  users: User[];
-  activeUser: ActiveUser | null;
-  transactions: Transactions;
-  account: Account;
-  addAccount: (data: Account) => void;
+    history: History;
+    global: Global;
+    dynamicProps: DynamicProps;
+    users: User[];
+    activeUser: ActiveUser | null;
+    transactions: Transactions;
+    account: Account;
+    addAccount: (data: Account) => void;
+    updateActiveUser: (data: Account) => void;
 }
 
 interface State {
-  delegatedList: boolean;
-  receivedList: boolean;
+    delegatedList: boolean;
+    receivedList: boolean;
+    claiming: boolean;
 }
 
 export default class Wallet extends Component<Props, State> {
-  state: State = {
-    delegatedList: false,
-    receivedList: false,
-  };
+    state: State = {
+        delegatedList: false,
+        receivedList: false,
+        claiming: false,
+    };
 
-  toggleDelegatedList = () => {
-    const { delegatedList } = this.state;
-    this.setState({ delegatedList: !delegatedList });
-  };
+    toggleDelegatedList = () => {
+        const {delegatedList} = this.state;
+        this.setState({delegatedList: !delegatedList});
+    };
 
-  toggleReceivedList = () => {
-    const { receivedList } = this.state;
-    this.setState({ receivedList: !receivedList });
-  };
+    toggleReceivedList = () => {
+        const {receivedList} = this.state;
+        this.setState({receivedList: !receivedList});
+    };
 
-  render() {
-    const { dynamicProps, account, activeUser } = this.props;
+    claimRewardBalance = () => {
+        const {activeUser, updateActiveUser, users} = this.props;
+        const {claiming} = this.state;
 
-    if (!account.__loaded) {
-      return null;
+        if (claiming || !activeUser) {
+            return;
+        }
+
+        const user = users.find((x) => x.username === activeUser?.username)!;
+
+        this.setState({claiming: true});
+
+        return getAccount(activeUser.username)
+            .then(account => {
+                const {
+                    reward_steem_balance: hiveBalance,
+                    reward_sbd_balance: hbdBalance,
+                    reward_vesting_balance: vestingBalance
+                } = account;
+
+                return claimRewardBalance(user, hiveBalance!, hbdBalance!, vestingBalance!)
+            }).then(() => getAccount(activeUser.username))
+            .then(account => {
+                success(_t('wallet.claim-reward-balance-ok'));
+                this.setState({claiming: false});
+                updateActiveUser(account);
+            }).catch(err => {
+                error(formatError(err));
+                this.setState({claiming: false});
+            })
     }
 
-    const { hivePerMVests, base, quote } = dynamicProps;
+    render() {
+        const {dynamicProps, account, activeUser} = this.props;
+        const {claiming} = this.state;
 
-    /*
-    Will need this
-    const rewardHiveBalance = parseAsset(account.reward_steem_balance).amount;
-    const rewardHbdBalance = parseAsset(account.reward_sbd_balance).amount;
-    const rewardVestingHive = parseAsset(account.reward_vesting_steem).amount;
+        if (!account.__loaded) {
+            return null;
+        }
 
-    const hasUnclaimedRewards = rewardHiveBalance > 0 || rewardHbdBalance > 0 || rewardVestingHive > 0;
-    */
+        const {hivePerMVests, base, quote} = dynamicProps;
+        const isMyPage = activeUser && activeUser.username === account.name;
 
-    const balance = parseAsset(account.balance).amount;
+        const rewardHiveBalance = parseAsset(account.reward_steem_balance).amount;
+        const rewardHbdBalance = parseAsset(account.reward_sbd_balance).amount;
+        const rewardVestingHive = parseAsset(account.reward_vesting_steem).amount;
+        const hasUnclaimedRewards = rewardHiveBalance > 0 || rewardHbdBalance > 0 || rewardVestingHive > 0;
 
-    const vestingShares = parseAsset(account.vesting_shares).amount;
-    const vestingSharesDelegated = parseAsset(account.delegated_vesting_shares).amount;
-    const vestingSharesReceived = parseAsset(account.received_vesting_shares).amount;
+        const balance = parseAsset(account.balance).amount;
 
-    const hbdBalance = parseAsset(account.sbd_balance).amount;
-    const savingBalance = parseAsset(account.savings_balance).amount;
-    const savingBalanceHbd = parseAsset(account.savings_sbd_balance).amount;
+        const vestingShares = parseAsset(account.vesting_shares).amount;
+        const vestingSharesDelegated = parseAsset(account.delegated_vesting_shares).amount;
+        const vestingSharesReceived = parseAsset(account.received_vesting_shares).amount;
 
-    const pricePerHive = base / quote;
+        const hbdBalance = parseAsset(account.sbd_balance).amount;
+        const savingBalance = parseAsset(account.savings_balance).amount;
+        const savingBalanceHbd = parseAsset(account.savings_sbd_balance).amount;
 
-    const totalHive = vestsToSp(vestingShares, hivePerMVests) + balance + savingBalance;
+        const pricePerHive = base / quote;
 
-    const totalHbd = hbdBalance + savingBalanceHbd;
+        const totalHive = vestsToSp(vestingShares, hivePerMVests) + balance + savingBalance;
 
-    const estimatedValue = totalHive * pricePerHive + totalHbd;
-    const showPowerDown = !isEmptyDate(account.next_vesting_withdrawal);
-    const nextVestingWithdrawal = parseDate(account.next_vesting_withdrawal!);
+        const totalHbd = hbdBalance + savingBalanceHbd;
 
-    // Math.min: 14th week powerdown: https://github.com/steemit/steem/issues/3237
-    // "?:": to_withdraw & withdrawn is integer 0 not string with no powerdown
-    const vestingSharesWithdrawal = showPowerDown
-      ? Math.min(parseAsset(account.vesting_withdraw_rate).amount, (account.to_withdraw! - account.withdrawn!) / 100000)
-      : 0;
+        const estimatedValue = totalHive * pricePerHive + totalHbd;
+        const showPowerDown = !isEmptyDate(account.next_vesting_withdrawal);
+        const nextVestingWithdrawal = parseDate(account.next_vesting_withdrawal!);
 
-    const vestingSharesTotal = vestingShares - vestingSharesDelegated + vestingSharesReceived - vestingSharesWithdrawal;
+        // Math.min: 14th week powerdown: https://github.com/steemit/steem/issues/3237
+        // "?:": to_withdraw & withdrawn is integer 0 not string with no powerdown
+        const vestingSharesWithdrawal = showPowerDown
+            ? Math.min(parseAsset(account.vesting_withdraw_rate).amount, (account.to_withdraw! - account.withdrawn!) / 100000)
+            : 0;
 
-    const isMyPage = activeUser && activeUser.username === account.name;
+        const vestingSharesTotal = vestingShares - vestingSharesDelegated + vestingSharesReceived - vestingSharesWithdrawal;
 
-    return (
-      <div className="wallet">
-        <div className="balance-row estimated alternative">
-          <div className="balance-info">
-            <div className="title">{_t("wallet.estimated")}</div>
-            <div className="description">{_t("wallet.estimated-description")}</div>
-          </div>
-          <div className="balance-values">
-            <div className="amount estimated-value">
-              <FormattedCurrency {...this.props} value={estimatedValue} fixAt={3} />
+        return (
+            <div className="wallet">
+
+                {hasUnclaimedRewards && (
+                    <div className="unclaimed-rewards">
+                        <div className="title">
+                            {_t('wallet.unclaimed-rewards')}
+                        </div>
+                        <div className="rewards">
+                            {rewardHiveBalance > 0 && (
+                                <span className="reward-type">{`${rewardHiveBalance} HIVE`}</span>
+                            )}
+                            {rewardHbdBalance > 0 && (
+                                <span className="reward-type">{`${rewardHbdBalance} HBD`}</span>
+                            )}
+                            {rewardVestingHive > 0 && (
+                                <span className="reward-type">{`${rewardVestingHive} HP`}</span>
+                            )}
+                            {isMyPage && (
+                                <Tooltip content={_t('wallet.claim-reward-balance')}>
+                                    <a
+                                        className={`claim-btn ${claiming ? 'in-progress' : ''}`}
+                                        onClick={this.claimRewardBalance}
+                                    >
+                                        {plusCircle}
+                                    </a>
+                                </Tooltip>
+                            )}
+
+                        </div>
+                    </div>
+                )}
+
+
+                <div className="balance-row estimated alternative">
+                    <div className="balance-info">
+                        <div className="title">{_t("wallet.estimated")}</div>
+                        <div className="description">{_t("wallet.estimated-description")}</div>
+                    </div>
+                    <div className="balance-values">
+                        <div className="amount estimated-value">
+                            <FormattedCurrency {...this.props} value={estimatedValue} fixAt={3}/>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="balance-row hive">
+                    <div className="balance-info">
+                        <div className="title">{_t("wallet.hive")}</div>
+                        <div className="description">{_t("wallet.hive-description")}</div>
+                    </div>
+                    <div className="balance-values">
+                        <div className="amount">
+                            {(() => {
+                                if (isMyPage) {
+                                    const dropDownConfig = {
+                                        label: '',
+                                        items: [
+                                            {
+                                                label: _t('wallet.transfer'),
+                                                onClick: () => {
+                                                    console.log("transfer clicked")
+                                                }
+                                            },
+                                            {
+                                                label: _t('wallet.transfer-to-savings'),
+                                                onClick: () => {
+                                                    console.log("transfer clicked")
+                                                }
+                                            },
+                                            {
+                                                label: _t('wallet.power-up'),
+                                                onClick: () => {
+                                                    console.log("transfer clicked")
+                                                }
+                                            },
+                                        ],
+                                    };
+                                    return <div className="amount-actions">
+                                        <DropDown {...{...this.props, ...dropDownConfig}} float="right"/>
+                                    </div>;
+                                }
+                                return null;
+                            })()}
+
+                            <span>{formattedNumber(balance, {suffix: "HIVE"})}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="balance-row hive-power alternative">
+                    <div className="balance-info">
+                        <div className="title">{_t("wallet.hive-power")}</div>
+                        <div className="description">{_t("wallet.hive-power-description")}</div>
+                    </div>
+
+                    <div className="balance-values">
+                        <div className="amount">{formattedNumber(vestsToSp(vestingShares, hivePerMVests), {suffix: "HP"})}</div>
+
+                        {vestingSharesDelegated > 0 && (
+                            <div className="amount delegated-shares">
+                                <Tooltip content={_t("wallet.hive-power-delegated")}>
+                                      <span className="btn-delegated" onClick={this.toggleDelegatedList}>
+                                        {formattedNumber(vestsToSp(vestingSharesDelegated, hivePerMVests), {prefix: "-", suffix: "HP"})}
+                                      </span>
+                                </Tooltip>
+                            </div>
+                        )}
+
+                        {vestingSharesReceived > 0 && (
+                            <div className="amount received-shares">
+                                <Tooltip content={_t("wallet.hive-power-received")}>
+                                  <span className="btn-delegatee" onClick={this.toggleReceivedList}>
+                                    {formattedNumber(vestsToSp(vestingSharesReceived, hivePerMVests), {prefix: "+", suffix: "HP"})}
+                                  </span>
+                                </Tooltip>
+                            </div>
+                        )}
+
+                        {vestingSharesWithdrawal > 0 && (
+                            <div className="amount next-power-down-amount">
+                                <Tooltip content={_t("wallet.next-power-down-amount")}>
+                                  <span>
+                                    {formattedNumber(vestsToSp(vestingSharesWithdrawal, hivePerMVests), {prefix: "-", suffix: "HP"})}
+                                  </span>
+                                </Tooltip>
+                            </div>
+                        )}
+
+                        {(vestingSharesDelegated > 0 || vestingSharesReceived > 0 || vestingSharesWithdrawal > 0) && (
+                            <div className="amount total-hive-power">
+                                <Tooltip content={_t("wallet.hive-power-total")}>
+                                  <span>
+                                    {formattedNumber(vestsToSp(vestingSharesTotal, hivePerMVests), {prefix: "=", suffix: "HP"})}
+                                  </span>
+                                </Tooltip>
+                            </div>
+                        )}
+                    </div>
+                </div>
+
+                <div className="balance-row hive-dollars">
+                    <div className="balance-info">
+                        <div className="title">{_t("wallet.hive-dollars")}</div>
+                        <div className="description">{_t("wallet.hive-dollars-description")}</div>
+                    </div>
+                    <div className="balance-values">
+                        <div className="amount">
+                            {(() => {
+                                if (isMyPage) {
+                                    const dropDownConfig = {
+                                        label: '',
+                                        items: [
+                                            {
+                                                label: _t('wallet.transfer'),
+                                                onClick: () => {
+                                                    console.log("transfer clicked")
+                                                }
+                                            },
+                                            {
+                                                label: _t('wallet.transfer-to-savings'),
+                                                onClick: () => {
+                                                    console.log("transfer clicked")
+                                                }
+                                            },
+                                            {
+                                                label: _t('wallet.convert'),
+                                                onClick: () => {
+                                                    console.log("Convert clicked")
+                                                }
+                                            },
+                                        ],
+                                    };
+
+                                    return <div className="amount-actions">
+                                        <DropDown {...{...this.props, ...dropDownConfig}} float="right"/>
+                                    </div>;
+                                }
+                                return null;
+                            })()}
+                            <span>{formattedNumber(hbdBalance, {prefix: "$"})}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="balance-row savings alternative">
+                    <div className="balance-info">
+                        <div className="title">{_t("wallet.savings")}</div>
+                        <div className="description">{_t("wallet.savings-description")}</div>
+                    </div>
+                    <div className="balance-values">
+                        <div className="amount">
+                            {(() => {
+                                if (isMyPage) {
+                                    const dropDownConfig = {
+                                        label: '',
+                                        items: [
+                                            {
+                                                label: _t('wallet.withdraw-hive'),
+                                                onClick: () => {
+                                                    console.log("transfer clicked")
+                                                }
+                                            }
+                                        ],
+                                    };
+
+                                    return <div className="amount-actions">
+                                        <DropDown {...{...this.props, ...dropDownConfig}} float="right"/>
+                                    </div>;
+                                }
+                                return null;
+                            })()}
+                            <span>{formattedNumber(savingBalance, {suffix: "HIVE"})}</span>
+                        </div>
+                        <div className="amount">
+                            {(() => {
+                                if (isMyPage) {
+                                    const dropDownConfig = {
+                                        label: '',
+                                        items: [
+                                            {
+                                                label: _t('wallet.withdraw-hbd'),
+                                                onClick: () => {
+                                                    console.log("transfer clicked")
+                                                }
+                                            },
+                                        ],
+                                    };
+
+                                    return <div className="amount-actions">
+                                        <DropDown {...{...this.props, ...dropDownConfig}} float="right"/>
+                                    </div>;
+                                }
+                                return null;
+                            })()}
+
+                            <span>{formattedNumber(savingBalanceHbd, {suffix: "$"})}</span>
+                        </div>
+                    </div>
+                </div>
+
+                {showPowerDown && (
+                    <div className="next-power-down">
+                        {_t("wallet.next-power-down", {
+                            time: moment(nextVestingWithdrawal).fromNow(),
+                            amount: formattedNumber(vestsToSp(vestingSharesWithdrawal, hivePerMVests), {prefix: "HIVE"}),
+                        })}
+                    </div>
+                )}
+
+                <TransactionList {...this.props} />
+
+                {this.state.delegatedList && (
+                    <DelegatedVesting {...this.props} account={account} onHide={this.toggleDelegatedList}/>
+                )}
+                {this.state.receivedList && (
+                    <ReceivedVesting {...this.props} account={account} onHide={this.toggleReceivedList}/>
+                )}
             </div>
-          </div>
-        </div>
-
-        <div className="balance-row hive">
-          <div className="balance-info">
-            <div className="title">{_t("wallet.hive")}</div>
-            <div className="description">{_t("wallet.hive-description")}</div>
-          </div>
-          <div className="balance-values">
-           <div className="amount">
-             {(() => {
-               if (isMyPage) {
-                 const dropDownConfig = {
-                   label: '',
-                   items: [
-                     {
-                       label: _t('wallet.transfer'),
-                       onClick: () => {
-                         console.log("transfer clicked")
-                       }
-                     },
-                     {
-                       label:  _t('wallet.transfer-to-savings'),
-                       onClick: () => {
-                         console.log("transfer clicked")
-                       }
-                     },
-                     {
-                       label: _t('wallet.power-up'),
-                       onClick: () => {
-                         console.log("transfer clicked")
-                       }
-                     },
-                   ],
-                 };
-                 return <div className="amount-actions">
-                   <DropDown {...{...this.props, ...dropDownConfig}} float="right"/>
-                 </div>;
-               }
-               return null;
-             })()}
-
-             <span>{formattedNumber(balance, { suffix: "HIVE" })}</span>
-           </div>
-          </div>
-        </div>
-
-        <div className="balance-row hive-power alternative">
-          <div className="balance-info">
-            <div className="title">{_t("wallet.hive-power")}</div>
-            <div className="description">{_t("wallet.hive-power-description")}</div>
-          </div>
-
-          <div className="balance-values">
-            <div className="amount">{formattedNumber(vestsToSp(vestingShares, hivePerMVests), { suffix: "HP" })}</div>
-
-            {vestingSharesDelegated > 0 && (
-              <div className="amount delegated-shares">
-                <Tooltip content={_t("wallet.hive-power-delegated")}>
-                  <span className="btn-delegated" onClick={this.toggleDelegatedList}>
-                    {formattedNumber(vestsToSp(vestingSharesDelegated, hivePerMVests), { prefix: "-", suffix: "HP" })}
-                  </span>
-                </Tooltip>
-              </div>
-            )}
-
-            {vestingSharesReceived > 0 && (
-              <div className="amount received-shares">
-                <Tooltip content={_t("wallet.hive-power-received")}>
-                  <span className="btn-delegatee" onClick={this.toggleReceivedList}>
-                    {formattedNumber(vestsToSp(vestingSharesReceived, hivePerMVests), { prefix: "+", suffix: "HP" })}
-                  </span>
-                </Tooltip>
-              </div>
-            )}
-
-            {vestingSharesWithdrawal > 0 && (
-              <div className="amount next-power-down-amount">
-                <Tooltip content={_t("wallet.next-power-down-amount")}>
-                  <span>
-                    {formattedNumber(vestsToSp(vestingSharesWithdrawal, hivePerMVests), { prefix: "-", suffix: "HP" })}
-                  </span>
-                </Tooltip>
-              </div>
-            )}
-
-            {(vestingSharesDelegated > 0 || vestingSharesReceived > 0 || vestingSharesWithdrawal > 0) && (
-              <div className="amount total-hive-power">
-                <Tooltip content={_t("wallet.hive-power-total")}>
-                  <span>
-                    {formattedNumber(vestsToSp(vestingSharesTotal, hivePerMVests), { prefix: "=", suffix: "HP" })}
-                  </span>
-                </Tooltip>
-              </div>
-            )}
-          </div>
-        </div>
-
-        <div className="balance-row hive-dollars">
-          <div className="balance-info">
-            <div className="title">{_t("wallet.hive-dollars")}</div>
-            <div className="description">{_t("wallet.hive-dollars-description")}</div>
-          </div>
-          <div className="balance-values">
-            <div className="amount">
-              {(() => {
-                if (isMyPage) {
-                  const dropDownConfig = {
-                    label: '',
-                    items: [
-                      {
-                        label: _t('wallet.transfer'),
-                        onClick: () => {
-                          console.log("transfer clicked")
-                        }
-                      },
-                      {
-                        label:  _t('wallet.transfer-to-savings'),
-                        onClick: () => {
-                          console.log("transfer clicked")
-                        }
-                      },
-                      {
-                        label:  _t('wallet.convert'),
-                        onClick: () => {
-                          console.log("Convert clicked")
-                        }
-                      },
-                    ],
-                  };
-
-                  return <div className="amount-actions">
-                    <DropDown {...{...this.props, ...dropDownConfig}} float="right"/>
-                  </div>;
-                }
-                return null;
-              })()}
-              <span>{formattedNumber(hbdBalance, { prefix: "$" })}</span>
-            </div>
-          </div>
-        </div>
-
-        <div className="balance-row savings alternative">
-          <div className="balance-info">
-            <div className="title">{_t("wallet.savings")}</div>
-            <div className="description">{_t("wallet.savings-description")}</div>
-          </div>
-          <div className="balance-values">
-            <div className="amount">
-              {(() => {
-                if (isMyPage) {
-                  const dropDownConfig = {
-                    label: '',
-                    items: [
-                      {
-                        label:  _t('wallet.withdraw-hive'),
-                        onClick: () => {
-                          console.log("transfer clicked")
-                        }
-                      }
-                    ],
-                  };
-
-                  return <div className="amount-actions">
-                    <DropDown {...{...this.props, ...dropDownConfig}} float="right"/>
-                  </div>;
-                }
-                return null;
-              })()}
-              <span>{formattedNumber(savingBalance, { suffix: "HIVE" })}</span>
-            </div>
-            <div className="amount">
-              {(() => {
-                if (isMyPage) {
-                  const dropDownConfig = {
-                    label: '',
-                    items: [
-                      {
-                        label:  _t('wallet.withdraw-hbd'),
-                        onClick: () => {
-                          console.log("transfer clicked")
-                        }
-                      },
-                    ],
-                  };
-
-                  return <div className="amount-actions">
-                    <DropDown {...{...this.props, ...dropDownConfig}} float="right"/>
-                  </div>;
-                }
-                return null;
-              })()}
-
-              <span>{formattedNumber(savingBalanceHbd, {suffix: "$"})}</span>
-            </div>
-          </div>
-        </div>
-
-        {showPowerDown && (
-          <div className="next-power-down">
-            {_t("wallet.next-power-down", {
-              time: moment(nextVestingWithdrawal).fromNow(),
-              amount: formattedNumber(vestsToSp(vestingSharesWithdrawal, hivePerMVests), { prefix: "HIVE" }),
-            })}
-          </div>
-        )}
-
-        <TransactionList {...this.props} />
-
-        {this.state.delegatedList && (
-          <DelegatedVesting {...this.props} account={account} onHide={this.toggleDelegatedList} />
-        )}
-        {this.state.receivedList && (
-          <ReceivedVesting {...this.props} account={account} onHide={this.toggleReceivedList} />
-        )}
-      </div>
-    );
-  }
+        );
+    }
 }

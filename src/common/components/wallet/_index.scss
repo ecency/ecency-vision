@@ -1,6 +1,63 @@
 .wallet {
   margin-top: 20px;
 
+  .unclaimed-rewards {
+    align-items: center;
+    display: flex;
+    margin-bottom: 20px;
+
+    .title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-right: 17px;
+
+      @include themify(day) {
+        color: $steel-grey;
+      }
+
+      @include themify(night) {
+        color: $metallic-blue;
+      }
+    }
+
+    .rewards {
+      align-items: center;
+      background-color: $dark-sky-blue;
+      border-radius: 25px;
+      color: $white;
+      display: flex;
+      font-weight: 700;
+      height: 51px;
+      padding: 0 12px 0 24px;
+
+      .reward-type {
+        margin-right: 5px;
+
+        &:last-of-type {
+          margin-right: 12px;
+        }
+      }
+
+      .claim-btn {
+        color: $white;
+        cursor: pointer;
+
+        svg {
+          height: 26px;
+        }
+
+        &:hover {
+          color: lighten($dark-sky-blue, 30);
+        }
+
+        &.in-progress {
+          animation: anim-fadein-out 2s infinite;
+          pointer-events: none;
+        }
+      }
+    }
+  }
+
   .balance-row {
     border-radius: 12px;
     margin-bottom: 20px;

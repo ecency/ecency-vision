@@ -136,3 +136,17 @@ export const ignore = (user: User, following: string): Promise<any> => {
 
     return client.ignore(follower, following);
 }
+
+
+export const claimRewardBalance = (user: User, rewardHive: string, rewardHbd: string, rewardVests: string): Promise<any> => {
+    const client = new hs.Client({
+        accessToken: user.accessToken,
+    });
+
+    return client.claimRewardBalance(
+        user.username,
+        rewardHive,
+        rewardHbd,
+        rewardVests
+    );
+}

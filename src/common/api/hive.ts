@@ -80,6 +80,7 @@ export const getAccounts = (usernames: string[]): Promise<Account[]> => {
         reward_steem_balance: x.reward_steem_balance,
         reward_sbd_balance: x.reward_sbd_balance,
         reward_vesting_steem: x.reward_vesting_steem,
+        reward_vesting_balance: x.reward_vesting_balance,
         balance: x.balance,
         sbd_balance: x.sbd_balance,
         savings_balance: x.savings_balance,
