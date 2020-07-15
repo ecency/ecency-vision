@@ -45,7 +45,7 @@ export default class UserNav extends Component<Props, State> {
         const {activeUser} = this.props;
         const {login} = this.state;
 
-        let hasUnclaimedRewards = true;
+        let hasUnclaimedRewards = false;
         const {data: account} = activeUser;
 
         if (account.__loaded) {
