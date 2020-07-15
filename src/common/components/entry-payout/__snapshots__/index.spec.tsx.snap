@@ -20,7 +20,7 @@ exports[`(2) Detail render 1`] = `
     <span
       className="label"
     >
-      Potential Payout
+      Pending Payout
     </span>
     <span
       className="value"
@@ -32,36 +32,27 @@ exports[`(2) Detail render 1`] = `
     <span
       className="label"
     >
-      Promoted
+      Beneficiary
     </span>
     <span
       className="value"
     >
-      $ 0.000
+      esteemapp
+      : 
+      3
+      %
     </span>
   </p>
   <p>
     <span
       className="label"
     >
-      Author Payout
+      Breakdown
     </span>
     <span
       className="value"
     >
-      $ 0.000
-    </span>
-  </p>
-  <p>
-    <span
-      className="label"
-    >
-      Curation Payout
-    </span>
-    <span
-      className="value"
-    >
-      $ 0.000
+      7.132 HBD 28.302 HP
     </span>
   </p>
   <p>

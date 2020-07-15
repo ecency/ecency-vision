@@ -53,11 +53,13 @@
     "success": "Reblogged!"
   },
   "entry-payout": {
-    "potential-payout": "Potential Payout",
+    "pending-payout": "Pending Payout",
     "promoted": "Promoted",
     "author-payout": "Author Payout",
-    "curation-payout": "Curation Payout",
-    "payout-date": "Payout"
+    "curators-payout": "Curators Payout",
+    "payout-date": "Payout",
+    "beneficiary": "Beneficiary",
+    "breakdown": "Breakdown"
   },
   "entry-index": {
     "feed": "Feed",

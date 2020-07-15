@@ -4,6 +4,7 @@ export interface DynamicProps {
   quote: number;
   fundRewardBalance: number;
   fundRecentClaims: number;
+  hbdPrintRate: number;
 }
 
 export type State = DynamicProps;

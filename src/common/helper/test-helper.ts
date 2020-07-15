@@ -553,4 +553,5 @@ export const dynamicPropsIntance1: DynamicProps = {
   quote: 1,
   fundRecentClaims: 413504197028183900,
   fundRewardBalance: 848692.443,
+  hbdPrintRate: 10000,
 };

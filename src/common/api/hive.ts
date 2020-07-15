@@ -23,6 +23,7 @@ export interface Vote {
 }
 
 export interface DynamicGlobalProperties {
+  hbd_print_rate: number;
   total_vesting_fund_hive: string;
   total_vesting_shares: string;
 }
@@ -141,6 +142,7 @@ export const getDynamicGlobalProperties = (): Promise<DynamicGlobalProperties> =
   client.database.getDynamicGlobalProperties().then((r: any) => ({
     total_vesting_fund_hive: r.total_vesting_fund_hive || r.total_vesting_fund_steem,
     total_vesting_shares: r.total_vesting_shares,
+    hbd_print_rate: r.hbd_print_rate || r.sbd_print_rate,
   }));
 
 export const getState = (path: string): Promise<any> => client.database.getState(path);
@@ -161,8 +163,8 @@ export const getDynamicProps = async (): Promise<DynamicProps> => {
   const quote = parseAsset(feedHistory.current_median_history.quote).amount;
   const fundRecentClaims = parseFloat(rewardFund.recent_claims);
   const fundRewardBalance = parseAsset(rewardFund.reward_balance).amount;
-
-  return { hivePerMVests, base, quote, fundRecentClaims, fundRewardBalance };
+  const hbdPrintRate = globalDynamic.hbd_print_rate;
+  return { hivePerMVests, base, quote, fundRecentClaims, fundRewardBalance, hbdPrintRate };
 };
 
 export const getVestingDelegations = (
