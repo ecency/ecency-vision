@@ -52,7 +52,12 @@ exports[`(2) Detail render 1`] = `
     <span
       className="value"
     >
-      7.132 HBD 28.302 HP
+      7.132 HBD
+       
+      <br />
+      28.302 HP
+       
+      <br />
     </span>
   </p>
   <p>
