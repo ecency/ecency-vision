@@ -36,7 +36,7 @@ interface Props {
 
 export default class ProfileCover extends Component<Props> {
     render() {
-        const {global, account} = this.props;
+        const {global, account, activeUser} = this.props;
         let bgImage = "";
 
         if (account.__loaded) {
@@ -51,11 +51,13 @@ export default class ProfileCover extends Component<Props> {
             style = {backgroundImage: `url('${bgImage}')`};
         }
 
+        const hideControls = activeUser && activeUser.username === account.name;
+
         return (
             <div className="profile-cover">
                 <div className="cover-image" style={style}/>
                 <div className="follow-controls-holder">
-                    <FollowControls {...this.props} targetUsername={account.name}/>
+                    {!hideControls && <FollowControls {...this.props} targetUsername={account.name}/>}
                 </div>
             </div>
         );
