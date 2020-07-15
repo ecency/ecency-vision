@@ -154,7 +154,7 @@ export default class Wallet extends Component<Props, State> {
                    ],
                  };
                  return <div className="amount-actions">
-                   <DropDown {...{...this.props, ...dropDownConfig}} float="left"/>
+                   <DropDown {...{...this.props, ...dropDownConfig}} float="right"/>
                  </div>;
                }
                return null;

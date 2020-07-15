@@ -57,9 +57,16 @@
         justify-content: center;
         font-size: 18px;
         align-items: center;
+        position: relative;
 
         .amount-actions {
           margin-right: 6px;
+
+          @media (max-width: $lg-break - 1px) {
+            position: absolute;
+            right: -80px;
+            top: -3px;
+          }
         }
 
         @media (min-width: $lg-break) {
