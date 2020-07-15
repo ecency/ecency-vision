@@ -56,6 +56,11 @@
         display: flex;
         justify-content: center;
         font-size: 18px;
+        align-items: center;
+
+        .amount-actions {
+          margin-right: 6px;
+        }
 
         @media (min-width: $lg-break) {
           justify-content: flex-end;

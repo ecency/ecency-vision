@@ -1,33 +1,38 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 
-import { History } from "history";
+import {History} from "history";
 
 import moment from "moment";
 
-import { Global } from "../../store/global/types";
-import { Account } from "../../store/accounts/types";
-import { DynamicProps } from "../../store/dynamic-props/types";
-import { Transactions } from "../../store/transactions/types";
+import {Global} from "../../store/global/types";
+import {Account} from "../../store/accounts/types";
+import {DynamicProps} from "../../store/dynamic-props/types";
+import {Transactions} from "../../store/transactions/types";
+import {User} from "../../store/users/types";
+import {ActiveUser} from "../../store/active-user/types";
 
 import Tooltip from "../tooltip";
 import FormattedCurrency from "../formatted-currency";
 import TransactionList from "../transactions";
 import DelegatedVesting from "../delegated-vesting";
 import ReceivedVesting from "../received-vesting";
+import DropDown from "../dropdown";
 
 import parseAsset from "../../helper/parse-asset";
-import { vestsToSp } from "../../helper/vesting";
+import {vestsToSp} from "../../helper/vesting";
 import parseDate from "../../helper/parse-date";
 import isEmptyDate from "../../helper/is-empty-date";
 
 import formattedNumber from "../../util/formatted-number";
 
-import { _t } from "../../i18n";
+import {_t} from "../../i18n";
 
 interface Props {
   history: History;
   global: Global;
   dynamicProps: DynamicProps;
+  users: User[];
+  activeUser: ActiveUser | null;
   transactions: Transactions;
   account: Account;
   addAccount: (data: Account) => void;
@@ -55,7 +60,7 @@ export default class Wallet extends Component<Props, State> {
   };
 
   render() {
-    const { dynamicProps, account } = this.props;
+    const { dynamicProps, account, activeUser } = this.props;
 
     if (!account.__loaded) {
       return null;
@@ -63,12 +68,12 @@ export default class Wallet extends Component<Props, State> {
 
     const { hivePerMVests, base, quote } = dynamicProps;
 
-    /* 
+    /*
     Will need this
     const rewardHiveBalance = parseAsset(account.reward_steem_balance).amount;
     const rewardHbdBalance = parseAsset(account.reward_sbd_balance).amount;
     const rewardVestingHive = parseAsset(account.reward_vesting_steem).amount;
-    
+
     const hasUnclaimedRewards = rewardHiveBalance > 0 || rewardHbdBalance > 0 || rewardVestingHive > 0;
     */
 
@@ -100,6 +105,8 @@ export default class Wallet extends Component<Props, State> {
 
     const vestingSharesTotal = vestingShares - vestingSharesDelegated + vestingSharesReceived - vestingSharesWithdrawal;
 
+    const isMyPage = activeUser && activeUser.username === account.name;
+
     return (
       <div className="wallet">
         <div className="balance-row estimated alternative">
@@ -120,7 +127,41 @@ export default class Wallet extends Component<Props, State> {
             <div className="description">{_t("wallet.hive-description")}</div>
           </div>
           <div className="balance-values">
-            <div className="amount">{formattedNumber(balance, { suffix: "HIVE" })}</div>
+           <div className="amount">
+             {(() => {
+               if (isMyPage) {
+                 const dropDownConfig = {
+                   label: '',
+                   items: [
+                     {
+                       label: _t('wallet.transfer'),
+                       onClick: () => {
+                         console.log("transfer clicked")
+                       }
+                     },
+                     {
+                       label:  _t('wallet.transfer-to-savings'),
+                       onClick: () => {
+                         console.log("transfer clicked")
+                       }
+                     },
+                     {
+                       label: _t('wallet.power-up'),
+                       onClick: () => {
+                         console.log("transfer clicked")
+                       }
+                     },
+                   ],
+                 };
+                 return <div className="amount-actions">
+                   <DropDown {...{...this.props, ...dropDownConfig}} float="left"/>
+                 </div>;
+               }
+               return null;
+             })()}
+
+             <span>{formattedNumber(balance, { suffix: "HIVE" })}</span>
+           </div>
           </div>
         </div>
 
@@ -181,7 +222,41 @@ export default class Wallet extends Component<Props, State> {
             <div className="description">{_t("wallet.hive-dollars-description")}</div>
           </div>
           <div className="balance-values">
-            <div className="amount">{formattedNumber(hbdBalance, { prefix: "$" })}</div>
+            <div className="amount">
+              {(() => {
+                if (isMyPage) {
+                  const dropDownConfig = {
+                    label: '',
+                    items: [
+                      {
+                        label: _t('wallet.transfer'),
+                        onClick: () => {
+                          console.log("transfer clicked")
+                        }
+                      },
+                      {
+                        label:  _t('wallet.transfer-to-savings'),
+                        onClick: () => {
+                          console.log("transfer clicked")
+                        }
+                      },
+                      {
+                        label:  _t('wallet.convert'),
+                        onClick: () => {
+                          console.log("Convert clicked")
+                        }
+                      },
+                    ],
+                  };
+
+                  return <div className="amount-actions">
+                    <DropDown {...{...this.props, ...dropDownConfig}} float="right"/>
+                  </div>;
+                }
+                return null;
+              })()}
+              <span>{formattedNumber(hbdBalance, { prefix: "$" })}</span>
+            </div>
           </div>
         </div>
 
@@ -191,8 +266,53 @@ export default class Wallet extends Component<Props, State> {
             <div className="description">{_t("wallet.savings-description")}</div>
           </div>
           <div className="balance-values">
-            <div className="amount">{formattedNumber(savingBalance, { suffix: "HIVE" })}</div>
-            <div className="amount">{formattedNumber(savingBalanceHbd, { suffix: "$" })}</div>
+            <div className="amount">
+              {(() => {
+                if (isMyPage) {
+                  const dropDownConfig = {
+                    label: '',
+                    items: [
+                      {
+                        label:  _t('wallet.withdraw-hive'),
+                        onClick: () => {
+                          console.log("transfer clicked")
+                        }
+                      }
+                    ],
+                  };
+
+                  return <div className="amount-actions">
+                    <DropDown {...{...this.props, ...dropDownConfig}} float="right"/>
+                  </div>;
+                }
+                return null;
+              })()}
+              <span>{formattedNumber(savingBalance, { suffix: "HIVE" })}</span>
+            </div>
+            <div className="amount">
+              {(() => {
+                if (isMyPage) {
+                  const dropDownConfig = {
+                    label: '',
+                    items: [
+                      {
+                        label:  _t('wallet.withdraw-hbd'),
+                        onClick: () => {
+                          console.log("transfer clicked")
+                        }
+                      },
+                    ],
+                  };
+
+                  return <div className="amount-actions">
+                    <DropDown {...{...this.props, ...dropDownConfig}} float="right"/>
+                  </div>;
+                }
+                return null;
+              })()}
+
+              <span>{formattedNumber(savingBalanceHbd, {suffix: "$"})}</span>
+            </div>
           </div>
         </div>
 
