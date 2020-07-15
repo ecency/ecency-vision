@@ -10,7 +10,7 @@ export const initialState: State = {
   quote: 1,
   fundRecentClaims: 1,
   fundRewardBalance: 1,
-  hbdPrintRate: 1
+  hbdPrintRate: 1,
 };
 
 export default (state: State = initialState, action: Actions): State => {
