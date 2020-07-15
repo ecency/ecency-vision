@@ -43,6 +43,9 @@ it("(1) Default Render", () => {
         transactions: transactionsInitialState,
         account,
         addAccount: () => {
+        },
+        updateActiveUser: () => {
+
         }
     };
 

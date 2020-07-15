@@ -49,6 +49,7 @@ interface State {
     delegatedList: boolean;
     receivedList: boolean;
     claiming: boolean;
+    claimed: boolean;
 }
 
 export default class Wallet extends Component<Props, State> {
@@ -56,16 +57,29 @@ export default class Wallet extends Component<Props, State> {
         delegatedList: false,
         receivedList: false,
         claiming: false,
+        claimed: false
+    };
+
+    _mounted: boolean = true;
+
+    componentWillUnmount() {
+        this._mounted = false;
+    }
+
+    stateSet = (obj: {}, cb: () => void = () => {}) => {
+        if (this._mounted) {
+            this.setState(obj, cb);
+        }
     };
 
     toggleDelegatedList = () => {
         const {delegatedList} = this.state;
-        this.setState({delegatedList: !delegatedList});
+        this.stateSet({delegatedList: !delegatedList});
     };
 
     toggleReceivedList = () => {
         const {receivedList} = this.state;
-        this.setState({receivedList: !receivedList});
+        this.stateSet({receivedList: !receivedList});
     };
 
     claimRewardBalance = () => {
@@ -78,7 +92,7 @@ export default class Wallet extends Component<Props, State> {
 
         const user = users.find((x) => x.username === activeUser?.username)!;
 
-        this.setState({claiming: true});
+        this.stateSet({claiming: true});
 
         return getAccount(activeUser.username)
             .then(account => {
@@ -92,17 +106,17 @@ export default class Wallet extends Component<Props, State> {
             }).then(() => getAccount(activeUser.username))
             .then(account => {
                 success(_t('wallet.claim-reward-balance-ok'));
-                this.setState({claiming: false});
+                this.stateSet({claiming: false, claimed: true});
                 updateActiveUser(account);
             }).catch(err => {
                 error(formatError(err));
-                this.setState({claiming: false});
+                this.stateSet({claiming: false});
             })
     }
 
     render() {
         const {dynamicProps, account, activeUser} = this.props;
-        const {claiming} = this.state;
+        const {claiming, claimed} = this.state;
 
         if (!account.__loaded) {
             return null;
@@ -147,7 +161,7 @@ export default class Wallet extends Component<Props, State> {
         return (
             <div className="wallet">
 
-                {hasUnclaimedRewards && (
+                {(hasUnclaimedRewards && !claimed) && (
                     <div className="unclaimed-rewards">
                         <div className="title">
                             {_t('wallet.unclaimed-rewards')}
@@ -172,7 +186,6 @@ export default class Wallet extends Component<Props, State> {
                                     </a>
                                 </Tooltip>
                             )}
-
                         </div>
                     </div>
                 )}
