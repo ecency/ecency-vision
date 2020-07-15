@@ -54,7 +54,9 @@ exports[`(1) Default Render 1`] = `
       <div
         className="amount"
       >
-        0.000 HIVE
+        <span>
+          0.000 HIVE
+        </span>
       </div>
     </div>
   </div>
@@ -137,7 +139,9 @@ exports[`(1) Default Render 1`] = `
       <div
         className="amount"
       >
-        $ 447.514
+        <span>
+          $ 447.514
+        </span>
       </div>
     </div>
   </div>
@@ -164,12 +168,16 @@ exports[`(1) Default Render 1`] = `
       <div
         className="amount"
       >
-        0.001 HIVE
+        <span>
+          0.001 HIVE
+        </span>
       </div>
       <div
         className="amount"
       >
-        0.000 $
+        <span>
+          0.000 $
+        </span>
       </div>
     </div>
   </div>
