@@ -40,7 +40,8 @@ exports[`(2) Detail render 1`] = `
       esteemapp
       : 
       3
-      %
+      % 
+      <br />
     </span>
   </p>
   <p>

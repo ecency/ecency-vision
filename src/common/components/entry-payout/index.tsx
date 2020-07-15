@@ -87,13 +87,12 @@ export class EntryPayoutDetail extends Component<Props> {
                   <span className="value"><FormattedCurrency {...this.props} value={curatorPayout} fixAt={3}/></span>
                 </p>
                 }
-                {beneficiary.length > 0 && beneficiary.map((key, i) => {
-                    return (<p key={`beneficiary-${i}`}>
+                {beneficiary.length > 0 && (
+                    <p>
                         <span className="label">{_t("entry-payout.beneficiary")}</span>
-                        <span className="value">{key.account}: {(key.weight / 100).toFixed(0)}%</span>
-                    </p>)
-                })
-                }
+                        <span className="value">{beneficiary.map(((x, i) => <Fragment key={i}>{x.account}: {(x.weight / 100).toFixed(0)}% <br/></Fragment>))}</span>
+                    </p>
+                )}
                 {breakdownPayout.length > 0 && (
                     <p>
                         <span className="label">{_t("entry-payout.breakdown")}</span>
