@@ -4,6 +4,7 @@
     "search": "Search",
     "downloads": "Downloads",
     "login": "Login",
+    "login-as": "Login As",
     "signup": "Signup",
     "delete": "Delete",
     "cancel": "Cancel",
@@ -29,10 +30,12 @@
     "header-community": "Communities"
   },
   "user-nav": {
-    "wallet": "Wallet"
+    "wallet": "Wallet",
+    "unclaimed-points-notice": "You have unclaimed points",
+    "profile": "Profile",
+    "logout": "Logout"
   },
   "login": {
-    "users-title": "Login As",
     "signup-text-1": "Don't have an account?",
     "signup-text-2": "Sign up now!",
     "or": "OR",

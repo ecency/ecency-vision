@@ -44,4 +44,18 @@
       height: 16px;
     }
   }
+
+  .user-wallet {
+    position: relative;
+
+    .reward-badge {
+      background: $red4;
+      border-radius: 50%;
+      height: 5px;
+      position: absolute;
+      width: 5px;
+      right: -1px;
+      top: 0;
+    }
+  }
 }

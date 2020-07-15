@@ -88,7 +88,7 @@ export class Login extends Component<LoginProps> {
         {users.length > 0 && (
           <>
             <div className="user-list">
-              <div className="user-list-header">{_t("login.users-title")}</div>
+              <div className="user-list-header">{_t("g.login-as")}</div>
               <div className="user-list-body">
                 {users.map((u) => {
                   return (
