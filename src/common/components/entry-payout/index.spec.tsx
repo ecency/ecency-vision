@@ -3,7 +3,7 @@ import React from "react";
 import EntryPayout, { EntryPayoutDetail } from "./index";
 import TestRenderer from "react-test-renderer";
 
-import { globalInstance, entryInstance1 } from "../../helper/test-helper";
+import { globalInstance, entryInstance1, dynamicPropsIntance1 } from "../../helper/test-helper";
 
 jest.mock("moment", () => () => ({
   fromNow: () => "in 4 days",
@@ -13,6 +13,7 @@ jest.mock("moment", () => () => ({
 it("(1) Default render", () => {
   const props = {
     global: { ...globalInstance },
+    dynamicProps: { ...dynamicPropsIntance1 },
     entry: {
       ...entryInstance1,
       ...{
@@ -32,6 +33,7 @@ it("(1) Default render", () => {
 it("(2) Detail render", () => {
   const props = {
     global: { ...globalInstance },
+    dynamicProps: { ...dynamicPropsIntance1 },
     entry: {
       ...entryInstance1,
       ...{

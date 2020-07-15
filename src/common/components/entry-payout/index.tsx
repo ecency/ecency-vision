@@ -6,6 +6,7 @@ import { Popover, OverlayTrigger } from "react-bootstrap";
 
 import { Entry } from "../../store/entries/types";
 import { Global } from "../../store/global/types";
+import { DynamicProps } from "../../store/dynamic-props/types";
 
 import FormattedCurrency from "../formatted-currency/index";
 
@@ -16,12 +17,15 @@ import { _t } from "../../i18n/index";
 
 interface Props {
   global: Global;
+  dynamicProps: DynamicProps;
   entry: Entry;
 }
 
 export class EntryPayoutDetail extends Component<Props> {
   render() {
     const { entry, dynamicProps } = this.props;
+
+    const { base, quote, hbdPrintRate } = dynamicProps;
 
     const payoutDate = moment(parseDate(entry.payout_at));
 
@@ -34,9 +38,9 @@ export class EntryPayoutDetail extends Component<Props> {
     const HBD_PRINT_RATE_MAX = 10000;
     const percent_hive_dollars = (entry.percent_hbd || entry.percent_steem_dollars) / 20000;
     const pending_payout_hbd = pendingPayout * (percent_hive_dollars);
-    const price_per_hive = dynamicProps.base / dynamicProps.quote;
+    const price_per_hive = base / quote;
     const pending_payout_hp = (pendingPayout - pending_payout_hbd) / price_per_hive;
-    const pending_payout_printed_hbd = pending_payout_hbd * (dynamicProps.hbdPrintRate / HBD_PRINT_RATE_MAX);
+    const pending_payout_printed_hbd = pending_payout_hbd * (hbdPrintRate / HBD_PRINT_RATE_MAX);
     const pending_payout_printed_hive =
       (pending_payout_hbd - pending_payout_printed_hbd) / price_per_hive;
     
