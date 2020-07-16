@@ -193,7 +193,8 @@
     "confirm-title": "Confirm your transaction",
     "confirm-sub-title": "Please, check if everything is correct",
     "confirm": "Confirm",
-    "back": "Back"
+    "back": "Back",
+    "recent-transfers": "Recent transfers"
   },
   "transactions": {
     "title": "HISTORY",

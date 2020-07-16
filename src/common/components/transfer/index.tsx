@@ -5,6 +5,7 @@ import {Modal, Form, Row, Col, InputGroup, FormControl, Button} from "react-boot
 import {Account} from '../../store/accounts/types'
 import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
+import {Transactions} from "../../store/transactions/types";
 
 import LinearProgress from "../linear-progress";
 import UserAvatar from "../user-avatar";
@@ -14,16 +15,18 @@ import amountFormatCheck from '../../helper/amount-format-check';
 import parseAsset from "../../helper/parse-asset";
 import formattedNumber from "../../util/formatted-number";
 
-import {getAccount} from "../../api/hive";
+import {getAccount, getState} from "../../api/hive";
 
 import {formatError} from "../../api/operations";
-
 
 import {_t} from "../../i18n";
 
 import badActors from '../../constants/bad-actors.json';
 
 import {arrowRightSvg} from "../../img/svg";
+import SuggestionList from "../suggestion-list";
+import {Community} from "../../store/community/types";
+
 
 export type TransferMode = 'transfer' | 'transfer-saving' | 'convert' | 'withdraw-saving' | 'power-up';
 export type TransferAsset = 'HIVE' | 'HBD';
@@ -76,6 +79,7 @@ interface Props {
     asset: TransferAsset,
     users: User[];
     activeUser: ActiveUser;
+    transactions: Transactions;
 }
 
 interface State {
@@ -91,6 +95,7 @@ interface State {
     inProgress: boolean;
 }
 
+
 export class TransferDialog extends Component<Props, State> {
     state: State = {
         step: 1,
@@ -102,7 +107,7 @@ export class TransferDialog extends Component<Props, State> {
         amount: '0.001',
         amountError: '',
         memo: '',
-        inProgress: false
+        inProgress: false,
     }
 
     _timer: any = null;
@@ -126,23 +131,40 @@ export class TransferDialog extends Component<Props, State> {
 
     toChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
         const {value: to} = e.target;
+        this.stateSet({to}, this.handleTo);
+    };
 
-        this.stateSet({to});
+    toSelected = (to: string) => {
+        this.stateSet({to}, this.handleTo);
+    }
+
+    amountChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+        const {value: amount} = e.target;
+        this.stateSet({amount}, () => {
+            this.checkAmount();
+        });
+    };
+
+    memoChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+        const {value: memo} = e.target;
+        this.setState({memo});
+    };
+
+    handleTo = () => {
+        const {to} = this.state;
 
         if (this._timer) {
             clearTimeout(this._timer);
         }
 
         if (to === '') {
-            this.stateSet({toWarning: '', toError: ''});
+            this.stateSet({toWarning: '', toError: '', toData: null});
             return;
         }
 
         this._timer = setTimeout(() => {
             if (badActors.includes(to)) {
-                this.stateSet({
-                    toWarning: _t("transfer.to-bad-actor")
-                });
+                this.stateSet({toWarning: _t("transfer.to-bad-actor")});
             } else {
                 this.stateSet({toWarning: ''});
             }
@@ -168,19 +190,7 @@ export class TransferDialog extends Component<Props, State> {
                     this.stateSet({inProgress: false});
                 });
         }, 500);
-    };
-
-    amountChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
-        const {value: amount} = e.target;
-        this.stateSet({amount}, () => {
-            this.checkAmount();
-        });
-    };
-
-    memoChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
-        const {value: memo} = e.target;
-        this.setState({memo});
-    };
+    }
 
     checkAmount = () => {
         const {amount} = this.state;
@@ -256,8 +266,22 @@ export class TransferDialog extends Component<Props, State> {
     }
 
     render() {
-        const {mode, activeUser} = this.props;
+        const {mode, activeUser, transactions} = this.props;
         const {step, asset, to, toError, toWarning, amount, amountError, memo, inProgress} = this.state;
+
+        const recent = [...new Set(
+            transactions.list
+                .filter(x => x.type === 'transfer' && x.from === activeUser.username)
+                .map(x => x.type === 'transfer' ? x.to : '')
+        )]
+
+        const suggestionProps = {
+            header: _t('transfer.recent-transfers'),
+            renderer: (i: string) => {
+                return <><UserAvatar username={i} size="small"/> <span style={{marginLeft: '4px'}}>{i}</span></>;
+            },
+            onSelect: this.toSelected,
+        };
 
         return <div className="transfer-dialog-content">
             {step === 1 && (
@@ -302,18 +326,21 @@ export class TransferDialog extends Component<Props, State> {
                                     {_t("transfer.to")}
                                 </Form.Label>
                                 <Col sm="10">
-                                    <InputGroup>
-                                        <InputGroup.Prepend>
-                                            <InputGroup.Text>@</InputGroup.Text>
-                                        </InputGroup.Prepend>
-                                        <Form.Control
-                                            autoFocus={true}
-                                            placeholder={_t("transfer.to-placeholder")}
-                                            value={to}
-                                            onChange={this.toChanged}
-                                            className={toError ? "is-invalid" : ""}
-                                        />
-                                    </InputGroup>
+                                    <SuggestionList items={recent} {...suggestionProps}>
+                                        <InputGroup>
+                                            <InputGroup.Prepend>
+                                                <InputGroup.Text>@</InputGroup.Text>
+                                            </InputGroup.Prepend>
+                                            <Form.Control
+                                                type="text"
+                                                autoFocus={true}
+                                                placeholder={_t("transfer.to-placeholder")}
+                                                value={to}
+                                                onChange={this.toChanged}
+                                                className={toError ? "is-invalid" : ""}
+                                            />
+                                        </InputGroup>
+                                    </SuggestionList>
                                 </Col>
                             </Form.Group>
                             {toWarning && (
