@@ -247,7 +247,7 @@ export default class Wallet extends Component<Props, State> {
                                             {
                                                 label: _t('wallet.power-up'),
                                                 onClick: () => {
-                                                    this.openTransferDialog('transfer-saving', 'HIVE');
+                                                    this.openTransferDialog('power-up', 'HIVE');
                                                 }
                                             },
                                         ],

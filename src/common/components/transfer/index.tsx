@@ -10,12 +10,13 @@ import {Transactions} from "../../store/transactions/types";
 import LinearProgress from "../linear-progress";
 import UserAvatar from "../user-avatar";
 import {success, error} from "../feedback";
+import SuggestionList from "../suggestion-list";
 
 import amountFormatCheck from '../../helper/amount-format-check';
 import parseAsset from "../../helper/parse-asset";
 import formattedNumber from "../../util/formatted-number";
 
-import {getAccount, getState} from "../../api/hive";
+import {getAccount} from "../../api/hive";
 
 import {formatError} from "../../api/operations";
 
@@ -24,9 +25,6 @@ import {_t} from "../../i18n";
 import badActors from '../../constants/bad-actors.json';
 
 import {arrowRightSvg} from "../../img/svg";
-import SuggestionList from "../suggestion-list";
-import {Community} from "../../store/community/types";
-
 
 export type TransferMode = 'transfer' | 'transfer-saving' | 'convert' | 'withdraw-saving' | 'power-up';
 export type TransferAsset = 'HIVE' | 'HBD';
@@ -47,13 +45,11 @@ class AssetSwitch extends Component<{
 
         return (
             <div className="asset-switch">
-                <a
-                    onClick={() => this.clicked('HIVE')}
-                    className={`asset ${selected === 'HIVE' ? 'selected' : ''}`}
+                <a onClick={() => this.clicked('HIVE')}
+                   className={`asset ${selected === 'HIVE' ? 'selected' : ''}`}
                 >HIVE</a>
-                <a
-                    onClick={() => this.clicked('HBD')}
-                    className={`asset ${selected === 'HBD' ? 'selected' : ''}`}
+                <a onClick={() => this.clicked('HBD')}
+                   className={`asset ${selected === 'HBD' ? 'selected' : ''}`}
                 >HBD</a>
             </div>
         );
@@ -112,6 +108,15 @@ export class TransferDialog extends Component<Props, State> {
 
     _timer: any = null;
     _mounted: boolean = true;
+
+    componentDidMount() {
+        const {mode, activeUser} = this.props;
+
+        // auto fill
+        if (mode !== 'transfer') {
+            this.stateSet({to: activeUser.username, toData: activeUser.data});
+        }
+    }
 
     componentWillUnmount() {
         this._mounted = false;
@@ -301,7 +306,7 @@ export class TransferDialog extends Component<Props, State> {
                                 {mode === 'transfer-saving' && _t('transfer.transfer-saving-sub-title')}
                                 {mode === 'withdraw-saving' && _t('transfer.withdraw-saving-sub-title')}
                                 {mode === 'power-up' && _t('transfer.power-up-sub-title')}
-                                {mode === 'convert' && _t('transfer.convert-sub-titles')}
+                                {mode === 'convert' && _t('transfer.convert-sub-title')}
                             </div>
                         </div>
                     </div>
@@ -321,34 +326,40 @@ export class TransferDialog extends Component<Props, State> {
                                     </InputGroup>
                                 </Col>
                             </Form.Group>
-                            <Form.Group as={Row}>
-                                <Form.Label column={true} sm="2">
-                                    {_t("transfer.to")}
-                                </Form.Label>
-                                <Col sm="10">
-                                    <SuggestionList items={recent} {...suggestionProps}>
-                                        <InputGroup>
-                                            <InputGroup.Prepend>
-                                                <InputGroup.Text>@</InputGroup.Text>
-                                            </InputGroup.Prepend>
-                                            <Form.Control
-                                                type="text"
-                                                autoFocus={true}
-                                                placeholder={_t("transfer.to-placeholder")}
-                                                value={to}
-                                                onChange={this.toChanged}
-                                                className={toError ? "is-invalid" : ""}
-                                            />
-                                        </InputGroup>
-                                    </SuggestionList>
-                                </Col>
-                            </Form.Group>
-                            {toWarning && (
-                                <FormText msg={toWarning} type="danger"/>
+
+                            {mode === 'transfer' && (
+                                <>
+                                    <Form.Group as={Row}>
+                                        <Form.Label column={true} sm="2">
+                                            {_t("transfer.to")}
+                                        </Form.Label>
+                                        <Col sm="10">
+                                            <SuggestionList items={recent} {...suggestionProps}>
+                                                <InputGroup>
+                                                    <InputGroup.Prepend>
+                                                        <InputGroup.Text>@</InputGroup.Text>
+                                                    </InputGroup.Prepend>
+                                                    <Form.Control
+                                                        type="text"
+                                                        autoFocus={true}
+                                                        placeholder={_t("transfer.to-placeholder")}
+                                                        value={to}
+                                                        onChange={this.toChanged}
+                                                        className={toError ? "is-invalid" : ""}
+                                                    />
+                                                </InputGroup>
+                                            </SuggestionList>
+                                        </Col>
+                                    </Form.Group>
+                                    {toWarning && (
+                                        <FormText msg={toWarning} type="danger"/>
+                                    )}
+                                    {toError && (
+                                        <FormText msg={toError} type="danger"/>
+                                    )}
+                                </>
                             )}
-                            {toError && (
-                                <FormText msg={toError} type="danger"/>
-                            )}
+
                             <Form.Group as={Row}>
                                 <Form.Label column={true} sm="2">
                                     {_t("transfer.amount")}
@@ -359,10 +370,13 @@ export class TransferDialog extends Component<Props, State> {
                                             <InputGroup.Text>@</InputGroup.Text>
                                         </InputGroup.Prepend>
                                         <Form.Control
+                                            type="text"
                                             placeholder={_t("transfer.amount-placeholder")}
                                             value={amount}
                                             onChange={this.amountChanged}
-                                            className={amountError ? "is-invalid" : ""}/>
+                                            className={amountError ? "is-invalid" : ""}
+                                            autoFocus={(mode !== 'transfer')}
+                                        />
                                     </InputGroup>
                                     {mode !== 'power-up' && (
                                         <AssetSwitch
