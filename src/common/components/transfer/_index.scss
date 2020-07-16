@@ -11,7 +11,6 @@
       right: 0;
       top: 0;
       z-index: 10;
-
     }
   }
 
@@ -75,15 +74,17 @@
         padding: 24px 32px;
         margin-bottom: 40px;
 
-        .transfer-alert {
-          margin-bottom: 20px;
-        }
-
         .transfer-form {
+          .form-group {
+            margin: 16px 0 0 0;
+          }
+
+
           .balance {
             font-weight: 300;
-            margin: 12px 0 24px 100px;
             cursor: pointer;
+            margin: 16px 0 0 0;
+            padding-left: 20px;
 
             @include themify(day) {
               color: $charcoal-grey;
@@ -95,114 +96,6 @@
 
             .balance-num {
               color: $dark-sky-blue;
-            }
-          }
-
-          .form-item {
-            align-items: baseline;
-            display: flex;
-            margin-bottom: 16px;
-
-            .form-label {
-              flex-grow: 0;
-              flex-shrink: 0;
-              width: 100px;
-
-              @include themify(day) {
-                color: $steel-grey;
-              }
-
-              @include themify(night) {
-                color: $silver;
-              }
-            }
-
-            .form-input {
-              flex-grow: 1;
-
-              .input-help {
-                font-weight: 300;
-                margin: 12px 0;
-
-                @include themify(day) {
-                  color: $charcoal-grey;
-                }
-
-                @include themify(night) {
-                  color: $pinkish-grey;
-                }
-              }
-            }
-
-            &.has-error {
-              .form-input {
-                input[type='text'] {
-                  border-color: $red2;
-                }
-
-                .input-help {
-                  color: $red2;
-                }
-              }
-            }
-
-            .select-from {
-              width: 100%;
-            }
-
-            &.item-amount {
-              .txt-amount {
-                width: 200px;
-              }
-
-              .asset-switch {
-                flex-grow: 1;
-
-                .asset {
-                  border-radius: 25px;
-                  padding: 3px 6px;
-
-                  @include themify(day) {
-                    color: $steel-grey;
-                  }
-
-                  @include themify(night) {
-                    color: $silver;
-                  }
-
-                  &:not(:last-child) {
-                    margin-right: 8px;
-                  }
-
-                  &.selected {
-                    background-color: $silver;
-
-                    @include themify(day) {
-                      color: $white;
-                    }
-
-                    @include themify(night) {
-                      color: $dark;
-                    }
-                  }
-                }
-              }
-            }
-          }
-
-          .form-controls {
-            align-items: center;
-
-            display: flex;
-            justify-content: center;
-
-            .btn-back {
-              color: $silver;
-              margin-right: 10px;
-
-              &:hover {
-                color: $charcoal-grey;
-              }
             }
           }
         }
@@ -293,9 +186,9 @@
       }
     }
 
-
     .asset-switch {
       flex-grow: 1;
+      margin-left: 4px;
 
       .asset {
         border-radius: 25px;
@@ -326,6 +219,10 @@
           }
         }
       }
+    }
+
+    .tr-form-text {
+      padding-left: 20px;
     }
   }
 }

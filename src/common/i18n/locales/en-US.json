@@ -188,7 +188,8 @@
     "balance": "Balance",
     "memo": "Memo",
     "memo-placeholder": "enter your notes here",
-    "memo-help": "This memo is public"
+    "memo-help": "This memo is public",
+    "next": "Next"
   },
   "transactions": {
     "title": "HISTORY",

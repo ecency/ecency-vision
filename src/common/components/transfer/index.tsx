@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
-import {Modal, Form, Row, Col, InputGroup, FormControl} from "react-bootstrap";
+import {Modal, Form, Row, Col, InputGroup, FormControl, Button} from "react-bootstrap";
 import LinearProgress from "../linear-progress";
 import amountFormatCheck from '../../helper/amount-format-check';
 import parseAsset from "../../helper/parse-asset";
@@ -37,17 +37,26 @@ class AssetSwitch extends Component<{
                 <a
                     onClick={() => this.clicked('HIVE')}
                     className={`asset ${selected === 'HIVE' ? 'selected' : ''}`}
-                >
-                    HIVE
-                </a>
+                >HIVE</a>
                 <a
                     onClick={() => this.clicked('HBD')}
                     className={`asset ${selected === 'HBD' ? 'selected' : ''}`}
-                >
-                    HBD
-                </a>
+                >HBD</a>
             </div>
         );
+    }
+}
+
+class FormText extends Component<{
+    msg: string,
+    type: "danger" | "warning" | "muted";
+}> {
+    render() {
+        return <Row>
+            <Col md={{span: 10, offset: 2}}>
+                <Form.Text className={`text-${this.props.type} tr-form-text`}>{this.props.msg}</Form.Text>
+            </Col>
+        </Row>
     }
 }
 
@@ -67,7 +76,8 @@ interface State {
     toError: string,
     toWarning: string,
     amount: string,
-    amountError: string | null;
+    amountError: string;
+    memo: string,
     inProgress: boolean;
 }
 
@@ -80,7 +90,8 @@ export class TransferDialog extends Component<Props, State> {
         toError: '',
         toWarning: '',
         amount: '0.001',
-        amountError: null,
+        amountError: '',
+        memo: '',
         inProgress: false
     }
 
@@ -91,8 +102,7 @@ export class TransferDialog extends Component<Props, State> {
         this._mounted = false;
     }
 
-    stateSet = (obj: {}, cb: () => void = () => {
-    }) => {
+    stateSet = (obj: {}, cb?: () => void) => {
         if (this._mounted) {
             this.setState(obj, cb);
         }
@@ -111,6 +121,11 @@ export class TransferDialog extends Component<Props, State> {
 
         if (this._timer) {
             clearTimeout(this._timer);
+        }
+
+        if (to === '') {
+            this.stateSet({toWarning: '', toError: ''});
+            return;
         }
 
         this._timer = setTimeout(() => {
@@ -152,13 +167,21 @@ export class TransferDialog extends Component<Props, State> {
         });
     };
 
+    memoChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+        const {value: memo} = e.target;
+        this.setState({memo});
+    };
+
     checkAmount = () => {
         const {amount} = this.state;
 
+        if (amount === '') {
+            this.stateSet({amountError: ''});
+            return;
+        }
+
         if (!amountFormatCheck(amount)) {
-            this.stateSet({
-                amountError: _t("transfer.wrong-amount")
-            });
+            this.stateSet({amountError: _t("transfer.wrong-amount")});
             return;
         }
 
@@ -166,22 +189,24 @@ export class TransferDialog extends Component<Props, State> {
         if (dotParts.length > 1) {
             const precision = dotParts[1];
             if (precision.length > 3) {
-                this.stateSet({
-                    amountError: _t("transfer.amount-precision-error")
-                });
+                this.stateSet({amountError: _t("transfer.amount-precision-error")});
                 return;
             }
         }
 
         if (parseFloat(amount) > this.getBalance()) {
-            this.stateSet({
-                amountError: _t("transfer.insufficient-funds")
-            });
-
+            this.stateSet({amountError: _t("transfer.insufficient-funds")});
             return;
         }
 
-        this.stateSet({amountError: null});
+        this.stateSet({amountError: ''});
+    };
+
+    copyBalance = () => {
+        const balance = this.getBalance();
+        this.stateSet({amount: String(balance)}, () => {
+            this.checkAmount();
+        });
     };
 
     getBalance = (): number => {
@@ -199,15 +224,18 @@ export class TransferDialog extends Component<Props, State> {
         return parseAsset(account[k]).amount;
     };
 
+    canSubmit = () => {
+        const {toData, toError, amountError, inProgress} = this.state;
+        return toData && !toError && !amountError && !inProgress;
+    };
+
     render() {
         const {mode, activeUser} = this.props;
-        const {step, asset, to, toError, toWarning, amount, amountError, inProgress} = this.state;
+        const {step, asset, to, toError, toWarning, amount, amountError, memo, inProgress} = this.state;
 
         return <div className="transfer-dialog-content">
             {step === 1 && (
-                <div
-                    className={`transfer-box ${inProgress ? 'in-progress' : ''}`}
-                >
+                <div className={`transfer-box ${inProgress ? 'in-progress' : ''}`}>
                     <div className="transfer-box-header">
                         <div className="step-no">1</div>
                         <div className="box-titles">
@@ -259,30 +287,30 @@ export class TransferDialog extends Component<Props, State> {
                                             onChange={this.toChanged}
                                             className={toError ? "is-invalid" : ""}
                                         />
-                                        {toWarning && (
-                                            <Form.Text className="text-danger">{toWarning}</Form.Text>
-                                        )}
-                                        {toError && (
-                                            <Form.Text className="text-danger">{toError}</Form.Text>
-                                        )}
                                     </InputGroup>
                                 </Col>
                             </Form.Group>
+                            {toWarning && (
+                                <FormText msg={toWarning} type="danger"/>
+                            )}
+                            {toError && (
+                                <FormText msg={toError} type="danger"/>
+                            )}
                             <Form.Group as={Row}>
                                 <Form.Label column={true} sm="2">
                                     {_t("transfer.amount")}
                                 </Form.Label>
-                                <Col sm="6">
+                                <Col sm="10" className="d-flex align-items-center">
                                     <InputGroup>
                                         <InputGroup.Prepend>
                                             <InputGroup.Text>@</InputGroup.Text>
                                         </InputGroup.Prepend>
-                                        <Form.Control placeholder={_t("transfer.amount-placeholder")} value={amount} onChange={this.amountChanged}
-                                                      className={amountError ? "is-invalid" : ""}/>
+                                        <Form.Control
+                                            placeholder={_t("transfer.amount-placeholder")}
+                                            value={amount}
+                                            onChange={this.amountChanged}
+                                            className={amountError ? "is-invalid" : ""}/>
                                     </InputGroup>
-                                    {amountError && (<Form.Text className="text-danger">{amountError}</Form.Text>)}
-                                </Col>
-                                <Col sm="4" className="d-flex align-items-center">
                                     {mode !== 'power-up' && (
                                         <AssetSwitch
                                             selected={asset}
@@ -291,16 +319,31 @@ export class TransferDialog extends Component<Props, State> {
                                     )}
                                 </Col>
                             </Form.Group>
-
+                            {amountError && (<FormText msg={amountError} type="danger"/>)}
+                            <Row>
+                                <Col md={{span: 10, offset: 2}} onClick={this.copyBalance}>
+                                    <div className="balance">
+                                        {_t("transfer.balance")}{": "}
+                                        <span className="balance-num">{this.getBalance()} {asset}</span>
+                                    </div>
+                                </Col>
+                            </Row>
                             <Form.Group as={Row}>
                                 <Form.Label column={true} sm="2">
                                     {_t("transfer.memo")}
                                 </Form.Label>
                                 <Col sm="10">
-                                    <Form.Control placeholder={_t("transfer.memo-placeholder")}/>
-                                    <Form.Text className="text-muted">
-                                        {_t("transfer.memo-help")}
-                                    </Form.Text>
+                                    <Form.Control
+                                        placeholder={_t("transfer.memo-placeholder")}
+                                        value={memo}
+                                        onChange={this.memoChanged}
+                                    />
+                                </Col>
+                            </Form.Group>
+                            <FormText msg={_t("transfer.memo-help")} type="muted"/>
+                            <Form.Group as={Row}>
+                                <Col sm={{span: 10, offset: 2}}>
+                                    <Button disabled={!this.canSubmit()}>{_t('transfer.next')}</Button>
                                 </Col>
                             </Form.Group>
                         </div>
@@ -320,7 +363,7 @@ export default class Transfer extends Component<Props> {
     render() {
         const {onHide} = this.props;
         return (
-            <Modal animation={false} show={true} centered={true} onHide={onHide} keyboard={false} className="transfer-dialog">
+            <Modal animation={false} show={true} centered={true} onHide={onHide} keyboard={false} className="transfer-dialog" size="lg">
                 <Modal.Header closeButton={true}/>
                 <Modal.Body>
                     <TransferDialog {...this.props} />
