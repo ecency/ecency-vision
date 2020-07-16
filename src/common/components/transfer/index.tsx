@@ -7,19 +7,23 @@ import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
 
 import LinearProgress from "../linear-progress";
+import UserAvatar from "../user-avatar";
 import {success, error} from "../feedback";
 
 import amountFormatCheck from '../../helper/amount-format-check';
 import parseAsset from "../../helper/parse-asset";
+import formattedNumber from "../../util/formatted-number";
 
 import {getAccount} from "../../api/hive";
 
 import {formatError} from "../../api/operations";
 
+
 import {_t} from "../../i18n";
 
 import badActors from '../../constants/bad-actors.json';
 
+import {arrowRightSvg} from "../../img/svg";
 
 export type TransferMode = 'transfer' | 'transfer-saving' | 'convert' | 'withdraw-saving' | 'power-up';
 export type TransferAsset = 'HIVE' | 'HBD';
@@ -235,6 +239,22 @@ export class TransferDialog extends Component<Props, State> {
         return toData && !toError && !amountError && !inProgress;
     };
 
+    next = () => {
+        // make sure 3 decimals in amount
+        const {amount} = this.state;
+        const fixedAmount = formattedNumber(amount, {fractionDigits: 3});
+
+        this.setState({step: 2, amount: fixedAmount});
+    };
+
+    back = () => {
+        this.setState({step: 1});
+    };
+
+    confirm = () => {
+
+    }
+
     render() {
         const {mode, activeUser} = this.props;
         const {step, asset, to, toError, toWarning, amount, amountError, memo, inProgress} = this.state;
@@ -349,11 +369,60 @@ export class TransferDialog extends Component<Props, State> {
                             <FormText msg={_t("transfer.memo-help")} type="muted"/>
                             <Form.Group as={Row}>
                                 <Col sm={{span: 10, offset: 2}}>
-                                    <Button disabled={!this.canSubmit()}>{_t('transfer.next')}</Button>
+                                    <Button onClick={this.next} disabled={!this.canSubmit()}>{_t('transfer.next')}</Button>
                                 </Col>
                             </Form.Group>
                         </div>
                     </Form>
+                </div>
+            )}
+
+            {step === 2 && (
+                <div className="transfer-box">
+                    <div className="transfer-box-header">
+                        <div className="step-no">2</div>
+                        <div className="box-titles">
+                            <div className="main-title">
+                                {_t('transfer.confirm-title')}
+                            </div>
+                            <div className="sub-title">
+                                {_t('transfer.confirm-sub-title')}
+                            </div>
+                        </div>
+                    </div>
+                    <div className="transfer-box-body">
+                        <div className="confirmation">
+                            <div className="users">
+                                <div className="from-user">
+                                    <UserAvatar
+                                        {...this.props}
+                                        username={activeUser.username}
+                                        size="xLarge"
+                                    />
+                                </div>
+                                <div className="arrow">{arrowRightSvg}</div>
+                                <div className="to-user">
+                                    <UserAvatar {...this.props} username={to} size="xLarge"/>
+                                </div>
+                            </div>
+                            <div className="amount">
+                                {amount} {asset}
+                            </div>
+                            {memo && <div className="memo">{memo}</div>}
+                        </div>
+                        <div className="d-flex justify-content-center">
+                            <Button variant="outline-secondary" disabled={inProgress} onClick={this.back}>
+                                {_t("transfer.back")}
+                            </Button>
+                            <span className="hr-6px-btn-spacer"/>
+                            <Button disabled={inProgress}>
+                                {inProgress && (
+                                    <span>spinner</span>
+                                )}
+                                {_t("transfer.confirm")}
+                            </Button>
+                        </div>
+                    </div>
                 </div>
             )}
         </div>
