@@ -392,7 +392,7 @@ export class TransferDialog extends Component<Props, State> {
                                 <Col md={{span: 10, offset: 2}} onClick={this.copyBalance}>
                                     <div className="balance">
                                         {_t("transfer.balance")}{": "}
-                                        <span className="balance-num">{this.getBalance()} {asset}</span>
+                                        <span className="balance-num">{formattedNumber(this.getBalance(), {fractionDigits: 3})} {asset}</span>
                                     </div>
                                 </Col>
                             </Row>
