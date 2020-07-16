@@ -1,1 +1,1 @@
-export default v => /^\d+(\.\d+)?$/.test(v);
+export default (v: string) => /^\d+(\.\d+)?$/.test(v);
