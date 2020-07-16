@@ -105,15 +105,18 @@ class ProfilePage extends Component<Props, State> {
   }
 
   componentDidUpdate(prevProps: Readonly<Props>): void {
-    const { match, global, fetchEntries, fetchTransactions, resetTransactions } = this.props;
-    const { global: pGlobal } = prevProps;
+    const {match, global, fetchEntries, fetchTransactions, resetTransactions} = this.props;
+    const {global: pGlobal} = prevProps;
 
     // username changed. re-fetch wallet transactions
     if (match.params.username !== prevProps.match.params.username) {
-      resetTransactions();
-      fetchTransactions(global.tag);
+      this.ensureAccount().then(() => {
+        resetTransactions();
+        fetchTransactions(global.tag);
+      });
     }
 
+    // Wallet is not a correct filter to fetch posts
     if (match.params.section === "wallet") {
       return;
     }
