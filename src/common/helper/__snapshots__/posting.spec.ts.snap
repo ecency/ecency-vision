@@ -48,7 +48,7 @@ Object {
         "beneficiaries": Array [
           Object {
             "account": "ecency",
-            "weight": 300,
+            "weight": 100,
           },
         ],
       },
@@ -72,7 +72,7 @@ Object {
         "beneficiaries": Array [
           Object {
             "account": "ecency",
-            "weight": 300,
+            "weight": 100,
           },
         ],
       },
@@ -96,7 +96,7 @@ Object {
         "beneficiaries": Array [
           Object {
             "account": "ecency",
-            "weight": 300,
+            "weight": 100,
           },
         ],
       },

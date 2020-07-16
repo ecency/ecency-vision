@@ -98,7 +98,7 @@ export const makeCommentOptions = (author: string, permlink: string, rewardType?
         permlink,
         max_accepted_payout: "1000000.000 HBD",
         percent_steem_dollars: 10000,
-        extensions: [[0, {beneficiaries: [{account: "ecency", weight: 300}]}]],
+        extensions: [[0, {beneficiaries: [{account: "ecency", weight: 100}]}]],
     };
 
     switch (rewardType) {
