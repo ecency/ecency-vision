@@ -116,6 +116,9 @@ export class TransferDialog extends Component<Props, State> {
         if (mode !== 'transfer') {
             this.stateSet({to: activeUser.username, toData: activeUser.data});
         }
+
+        // initial balance check
+        this.checkAmount();
     }
 
     componentWillUnmount() {
@@ -229,7 +232,7 @@ export class TransferDialog extends Component<Props, State> {
 
     copyBalance = () => {
         const balance = this.getBalance();
-        this.stateSet({amount: String(balance)}, () => {
+        this.stateSet({amount: formattedNumber(balance, {fractionDigits: 3})}, () => {
             this.checkAmount();
         });
     };
