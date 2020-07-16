@@ -330,19 +330,19 @@ export default class Wallet extends Component<Props, State> {
                                             {
                                                 label: _t('wallet.transfer'),
                                                 onClick: () => {
-                                                    console.log("transfer clicked")
+                                                    this.openTransferDialog('transfer', 'HBD');
                                                 }
                                             },
                                             {
                                                 label: _t('wallet.transfer-to-savings'),
                                                 onClick: () => {
-                                                    console.log("transfer clicked")
+                                                    this.openTransferDialog('transfer-saving', 'HBD');
                                                 }
                                             },
                                             {
                                                 label: _t('wallet.convert'),
                                                 onClick: () => {
-                                                    console.log("Convert clicked")
+                                                    this.openTransferDialog('convert', 'HBD');
                                                 }
                                             },
                                         ],
@@ -374,7 +374,7 @@ export default class Wallet extends Component<Props, State> {
                                             {
                                                 label: _t('wallet.withdraw-hive'),
                                                 onClick: () => {
-                                                    console.log("transfer clicked")
+                                                    this.openTransferDialog('withdraw-saving', 'HIVE');
                                                 }
                                             }
                                         ],
@@ -397,7 +397,7 @@ export default class Wallet extends Component<Props, State> {
                                             {
                                                 label: _t('wallet.withdraw-hbd'),
                                                 onClick: () => {
-                                                    console.log("transfer clicked")
+                                                    this.openTransferDialog('withdraw-saving', 'HBD');
                                                 }
                                             },
                                         ],
