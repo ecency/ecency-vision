@@ -1,15 +1,26 @@
 .transfer-dialog {
+
+  .modal-header {
+    padding: 0;
+    position: relative;
+
+    .close {
+      padding: 8px;
+      margin: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: 10;
+
+    }
+  }
+
   .transfer-dialog-content {
     .transfer-box {
-      border-radius: 4px;
-      box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
-      margin: 50px auto 0 auto;
-      width: 540px;
 
       .transfer-box-header {
         align-items: center;
         display: flex;
-        padding: 15px 27px;
 
         @include themify(day) {
           border-bottom: 1px solid $white-four;
@@ -278,6 +289,41 @@
       &.in-progress {
         .transfer-box-body {
           border-top: none;
+        }
+      }
+    }
+
+
+    .asset-switch {
+      flex-grow: 1;
+
+      .asset {
+        border-radius: 25px;
+        padding: 3px 6px;
+        cursor: pointer;
+
+        @include themify(day) {
+          color: $steel-grey;
+        }
+
+        @include themify(night) {
+          color: $silver;
+        }
+
+        &:not(:last-child) {
+          margin-right: 8px;
+        }
+
+        &.selected {
+          background-color: $silver;
+
+          @include themify(day) {
+            color: $white;
+          }
+
+          @include themify(night) {
+            color: $dark;
+          }
         }
       }
     }

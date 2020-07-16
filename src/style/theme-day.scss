@@ -64,6 +64,7 @@ $alert-padding-x: 0.6rem;
   @import "~bootstrap/scss/spinners";
   @import "~bootstrap/scss/pagination";
   @import "~bootstrap/scss/utilities";
+  @import "~bootstrap/scss/grid";
 
   background: $white;
   color: lighten($charcoal-grey, 10);

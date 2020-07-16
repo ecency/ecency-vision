@@ -17,6 +17,7 @@ import TransactionList from "../transactions";
 import DelegatedVesting from "../delegated-vesting";
 import ReceivedVesting from "../received-vesting";
 import DropDown from "../dropdown";
+import Transfer, {TransferMode, TransferAsset} from "../transfer";
 import {error, success} from "../feedback";
 
 import parseAsset from "../../helper/parse-asset";
@@ -50,6 +51,9 @@ interface State {
     receivedList: boolean;
     claiming: boolean;
     claimed: boolean;
+    transfer: boolean;
+    transferMode: null | TransferMode;
+    transferAsset: null | TransferAsset;
 }
 
 export default class Wallet extends Component<Props, State> {
@@ -57,7 +61,10 @@ export default class Wallet extends Component<Props, State> {
         delegatedList: false,
         receivedList: false,
         claiming: false,
-        claimed: false
+        claimed: false,
+        transfer: false,
+        transferMode: null,
+        transferAsset: null
     };
 
     _mounted: boolean = true;
@@ -66,7 +73,8 @@ export default class Wallet extends Component<Props, State> {
         this._mounted = false;
     }
 
-    stateSet = (obj: {}, cb: () => void = () => {}) => {
+    stateSet = (obj: {}, cb: () => void = () => {
+    }) => {
         if (this._mounted) {
             this.setState(obj, cb);
         }
@@ -114,9 +122,17 @@ export default class Wallet extends Component<Props, State> {
             })
     }
 
+    openTransferDialog = (mode: TransferMode, asset: TransferAsset) => {
+        this.stateSet({transfer: true, transferMode: mode, transferAsset: asset});
+    }
+
+    closeTransferDialog = () => {
+        this.stateSet({transfer: false, transferMode: null, transferAsset: null});
+    }
+
     render() {
         const {dynamicProps, account, activeUser} = this.props;
-        const {claiming, claimed} = this.state;
+        const {claiming, claimed, transfer, transferAsset, transferMode} = this.state;
 
         if (!account.__loaded) {
             return null;
@@ -161,6 +177,8 @@ export default class Wallet extends Component<Props, State> {
         return (
             <div className="wallet">
 
+                {transfer && <Transfer {...this.props} activeUser={activeUser!} mode={transferMode!} asset={transferAsset!} onHide={this.closeTransferDialog}/>}
+
                 {(hasUnclaimedRewards && !claimed) && (
                     <div className="unclaimed-rewards">
                         <div className="title">
@@ -190,7 +208,6 @@ export default class Wallet extends Component<Props, State> {
                     </div>
                 )}
 
-
                 <div className="balance-row estimated alternative">
                     <div className="balance-info">
                         <div className="title">{_t("wallet.estimated")}</div>
@@ -218,19 +235,19 @@ export default class Wallet extends Component<Props, State> {
                                             {
                                                 label: _t('wallet.transfer'),
                                                 onClick: () => {
-                                                    console.log("transfer clicked")
+                                                    this.openTransferDialog('transfer', 'HIVE');
                                                 }
                                             },
                                             {
                                                 label: _t('wallet.transfer-to-savings'),
                                                 onClick: () => {
-                                                    console.log("transfer clicked")
+                                                    this.openTransferDialog('transfer-saving', 'HIVE');
                                                 }
                                             },
                                             {
                                                 label: _t('wallet.power-up'),
                                                 onClick: () => {
-                                                    console.log("transfer clicked")
+                                                    this.openTransferDialog('transfer-saving', 'HIVE');
                                                 }
                                             },
                                         ],
