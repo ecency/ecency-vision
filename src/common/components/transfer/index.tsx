@@ -278,6 +278,7 @@ export class TransferDialog extends Component<Props, State> {
             transactions.list
                 .filter(x => x.type === 'transfer' && x.from === activeUser.username)
                 .map(x => x.type === 'transfer' ? x.to : '')
+                .reverse()
         )]
 
         const suggestionProps = {
