@@ -168,13 +168,16 @@ export default class TransactionList extends Component<Props> {
     const { transactions } = this.props;
     const { list, loading } = transactions;
 
+    // Top 50 transaction sorted by id
+    const trList = list.slice(Math.max(list.length - 50, 0)).sort((a: any, b: any) => b.num - a.num);
+
     return (
       <div className="transaction-list">
         <div className="transaction-list-header">
           <h2>{_t("transactions.title")} </h2>
         </div>
         {loading && <LinearProgress />}
-        {list.map((x, k) => (
+        {trList.map((x, k) => (
           <TransactionRow {...this.props} key={k} transaction={x} />
         ))}
       </div>

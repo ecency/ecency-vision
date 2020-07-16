@@ -64,10 +64,7 @@ export const fetchTransactions = (username: string) => (dispatch: Dispatch) => {
         return;
       }
 
-      const { transfer_history: transferHistory } = accounts[name];
-
-      const transfers = transferHistory; //.slice(Math.max(transferHistory.length - 50, 0));
-      transfers.sort((a: any, b: any) => b[0] - a[0]);
+      const { transfer_history: transfers } = accounts[name];
 
       const transactions: Transaction[] = transfers.map((tr: any) => {
         const { op } = tr[1];
