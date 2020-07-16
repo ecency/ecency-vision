@@ -10,7 +10,7 @@
     "start:prod": "NODE_ENV=production node build/server.js"
   },
   "dependencies": {
-    "@esteemapp/esteem-render-helpers": "^1.4.3",
+    "@esteemapp/esteem-render-helpers": "^1.4.4",
     "@hivechain/hivescript": "^1.1.8",
     "@types/diff-match-patch": "^1.0.32",
     "@types/numeral": "^0.0.28",
