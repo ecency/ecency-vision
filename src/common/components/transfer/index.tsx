@@ -1,19 +1,25 @@
 import React, {Component} from "react";
+
+import {Modal, Form, Row, Col, InputGroup, FormControl, Button} from "react-bootstrap";
+
+import {Account} from '../../store/accounts/types'
 import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
-import {Modal, Form, Row, Col, InputGroup, FormControl, Button} from "react-bootstrap";
+
 import LinearProgress from "../linear-progress";
+import {success, error} from "../feedback";
+
 import amountFormatCheck from '../../helper/amount-format-check';
 import parseAsset from "../../helper/parse-asset";
 
 import {getAccount} from "../../api/hive";
-import {_t} from "../../i18n";
-import {success, error} from "../feedback";
 
 import {formatError} from "../../api/operations";
 
+import {_t} from "../../i18n";
+
 import badActors from '../../constants/bad-actors.json';
-import {Account} from '../../store/accounts/types'
+
 
 export type TransferMode = 'transfer' | 'transfer-saving' | 'convert' | 'withdraw-saving' | 'power-up';
 export type TransferAsset = 'HIVE' | 'HBD';
@@ -102,9 +108,9 @@ export class TransferDialog extends Component<Props, State> {
         this._mounted = false;
     }
 
-    stateSet = (obj: {}, cb?: () => void) => {
+    stateSet = (state: {}, cb?: () => void) => {
         if (this._mounted) {
-            this.setState(obj, cb);
+            this.setState(state, cb);
         }
     };
 
