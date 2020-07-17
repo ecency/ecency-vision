@@ -278,8 +278,8 @@ export class TransferDialog extends Component<Props, State> {
     };
 
     canSubmit = () => {
-        const {toData, toError, amountError, inProgress} = this.state;
-        return toData && !toError && !amountError && !inProgress;
+        const {toData, toError, amountError, inProgress, amount} = this.state;
+        return toData && !toError && !amountError && !inProgress && parseFloat(amount) > 0;
     };
 
     next = () => {
@@ -511,10 +511,10 @@ export class TransferDialog extends Component<Props, State> {
                             </Form.Group>
                             {amountError && (<FormText msg={amountError} type="danger"/>)}
                             <Row>
-                                <Col md={{span: 10, offset: 2}} onClick={this.copyBalance}>
+                                <Col md={{span: 10, offset: 2}}>
                                     <div className="balance">
                                         {_t("transfer.balance")}{": "}
-                                        <span className="balance-num">{formattedNumber(this.getBalance(), {fractionDigits: 3})} {asset}</span>
+                                        <span onClick={this.copyBalance} className="balance-num">{formattedNumber(this.getBalance(), {fractionDigits: 3})} {asset}</span>
                                     </div>
                                 </Col>
                             </Row>

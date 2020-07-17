@@ -81,9 +81,9 @@
 
           .balance {
             font-weight: 300;
-            cursor: pointer;
             margin: 16px 0 0 0;
             padding-left: 20px;
+            display: table;
 
             @include themify(day) {
               color: $charcoal-grey;
@@ -95,6 +95,7 @@
 
             .balance-num {
               color: $dark-sky-blue;
+              cursor: pointer;
             }
           }
         }
