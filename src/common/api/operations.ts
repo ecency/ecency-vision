@@ -223,7 +223,7 @@ export const convert = (user: User, key: PrivateKey, amount: string) => {
         {
             owner,
             amount,
-            request_id: new Date().getTime() >>> 0
+            requestid: new Date().getTime() >>> 0
         }
     ]
 
@@ -236,7 +236,7 @@ export const convertHot = (user: User, amount: string) => {
     const op = ['convert', {
         owner,
         amount,
-        request_id: new Date().getTime() >>> 0
+        requestid: new Date().getTime() >>> 0
     }];
 
     return hs.sendOperation(op, {}, () => {
