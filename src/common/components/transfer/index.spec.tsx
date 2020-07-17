@@ -11,7 +11,8 @@ const defProps = {
         data: {
             name: 'foo',
             balance: '12.234 HIVE',
-            sbd_balance: '4321.212'
+            sbd_balance: '4321.212',
+            savings_balance: '2123.000 HIVE'
         }
     },
     transactions: {
@@ -63,7 +64,7 @@ describe('(1) Transfer', () => {
     });
 })
 
-describe('(2) Transfer to savings' , () => {
+describe('(2) Transfer to savings', () => {
     const mode: TransferMode = 'transfer-saving';
     const asset: TransferAsset = 'HBD';
 
@@ -82,8 +83,27 @@ describe('(2) Transfer to savings' , () => {
 })
 
 
-describe('(3) Convert' , () => {
+describe('(3) Convert', () => {
     const mode: TransferMode = 'convert';
+    const asset: TransferAsset = 'HIVE';
+
+    const props = {
+        mode,
+        asset,
+        ...defProps
+    };
+
+    const component = TestRenderer.create(<TransferDialog {...props} />);
+    const instance: any = component.getInstance();
+
+    it("(1) Step 1", () => {
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+})
+
+
+describe('(4) Withdraw saving', () => {
+    const mode: TransferMode = 'withdraw-saving';
     const asset: TransferAsset = 'HIVE';
 
     const props = {
