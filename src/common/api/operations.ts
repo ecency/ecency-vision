@@ -161,8 +161,7 @@ export const transfer = (user: User, to: string, amount: string, memo: string) =
         memo
     }];
 
-    return hs.sendOperation(op, {}, () => {
-    });
+    return hs.sendOperation(op, {});
 }
 
 export const transferToSavings = (user: User, to: string, amount: string, memo: string) => {

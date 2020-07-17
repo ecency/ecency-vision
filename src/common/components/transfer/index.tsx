@@ -276,9 +276,10 @@ export class TransferDialog extends Component<Props, State> {
 
         const user = users.find((x) => x.username === activeUser?.username)!;
 
+        let u = '';
         switch (mode) {
             case 'transfer':
-                transfer(user, to, fullAmount, memo);
+                u = transfer(user, to, fullAmount, memo);
                 break;
             case 'transfer-saving':
                 transferToSavings(user, to, fullAmount, memo);

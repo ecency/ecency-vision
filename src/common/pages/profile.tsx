@@ -112,7 +112,7 @@ class ProfilePage extends Component<Props, State> {
     if (match.params.username !== prevProps.match.params.username) {
       this.ensureAccount().then(() => {
         resetTransactions();
-        fetchTransactions(global.tag);
+        fetchTransactions(match.params.username);
       });
     }
 
