@@ -1,3 +1,9 @@
 .popover {
   box-shadow: $box-shadow;
 }
+
+.input-group-text {
+  svg {
+    height: 16px;
+  }
+}

@@ -39,7 +39,7 @@ import {_t} from "../../i18n";
 
 import badActors from '../../constants/bad-actors.json';
 
-import {arrowRightSvg} from "../../img/svg";
+import {arrowRightSvg, keySvg} from "../../img/svg";
 
 const hsLogo = require("../../img/hive-signer.svg");
 
@@ -605,7 +605,10 @@ export class TransferDialog extends Component<Props, State> {
                     </div>
                     <div className="transfer-box-body">
                         <div className="sign-tr">
-                            <InputGroup size="lg">
+                            <InputGroup>
+                                <InputGroup.Prepend>
+                                    <InputGroup.Text>{keySvg}</InputGroup.Text>
+                                </InputGroup.Prepend>
                                 <Form.Control
                                     value={privateKey}
                                     type="password"
@@ -618,7 +621,7 @@ export class TransferDialog extends Component<Props, State> {
                             </InputGroup>
                             <OrDivider/>
                             <div className="hs-sign">
-                                <Button size="lg" variant="outline-primary" onClick={this.signHs}>
+                                <Button variant="outline-primary" onClick={this.signHs}>
                                     <img src={hsLogo} className="hs-logo" alt="hivesigner"/> {_t("transfer.with-hivesigner")}
                                 </Button>
                             </div>
