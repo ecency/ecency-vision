@@ -60,10 +60,32 @@ export const getPost = (username: string, permlink: string): Promise<any> =>
 export const getActiveVotes = (author: string, permlink: string): Promise<Vote[]> =>
   client.database.call("get_active_votes", [author, permlink]);
 
+const shuffle = (array: any[]) => {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
 export const getTrendingTags = (afterTag: string = "", limit: number = 250): Promise<string[]> =>
   client.database
     .call("get_trending_tags", [afterTag, limit])
-    .then((t: TrendingTag[]) => t.filter((x) => x.name !== "").map((x) => x.name));
+    .then((t: TrendingTag[]) => {
+      const st = shuffle(t);
+      return st.filter((x) => x.name !== "").map((x) => x.name)}
+      );
 
 export const lookupAccounts = (q: string, limit = 50): Promise<string[]> =>
   client.database.call("lookup_accounts", [q, limit]);

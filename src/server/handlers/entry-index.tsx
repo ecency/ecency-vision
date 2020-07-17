@@ -55,7 +55,7 @@ export default async (req: express.Request, res: express.Response) => {
     let tags: string[] | undefined = cache.get("trending-tag");
     if (tags === undefined) {
         tags = await hiveApi.getTrendingTags();
-        cache.set("trending-tag", tags, 86400);
+        cache.set("trending-tag", tags, 7200);
     }
 
     const preLoadedState = {
