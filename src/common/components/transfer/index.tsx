@@ -332,7 +332,7 @@ export class TransferDialog extends Component<Props, State> {
                 prms = transferToSavings(user, key, to, fullAmount, memo);
                 break;
             case 'convert':
-                prms = convert(user, key, amount)
+                prms = convert(user, key, fullAmount)
                 break;
             case 'withdraw-saving':
                 prms = transferFromSavings(user, key, to, fullAmount, memo);
@@ -372,7 +372,7 @@ export class TransferDialog extends Component<Props, State> {
                 prms = transferToSavingsHot(user, to, fullAmount, memo);
                 break;
             case 'convert':
-                prms = convertHot(user, amount)
+                prms = convertHot(user, fullAmount)
                 break;
             case 'withdraw-saving':
                 prms = transferFromSavingsHot(user, to, fullAmount, memo);
