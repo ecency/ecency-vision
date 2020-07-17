@@ -464,7 +464,7 @@ export class TransferDialog extends Component<Props, State> {
                                                     </InputGroup.Prepend>
                                                     <Form.Control
                                                         type="text"
-                                                        autoFocus={true}
+                                                        autoFocus={to === ''}
                                                         placeholder={_t("transfer.to-placeholder")}
                                                         value={to}
                                                         onChange={this.toChanged}
