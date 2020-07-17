@@ -119,3 +119,22 @@ describe('(4) Withdraw saving', () => {
         expect(component.toJSON()).toMatchSnapshot();
     });
 })
+
+
+describe('(5) Power up', () => {
+    const mode: TransferMode = 'power-up';
+    const asset: TransferAsset = 'HIVE';
+
+    const props = {
+        mode,
+        asset,
+        ...defProps
+    };
+
+    const component = TestRenderer.create(<TransferDialog {...props} />);
+    const instance: any = component.getInstance();
+
+    it("(1) Step 1", () => {
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+})
