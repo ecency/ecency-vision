@@ -18,7 +18,7 @@ import formattedNumber from "../../util/formatted-number";
 
 import {getAccount} from "../../api/hive";
 
-import {formatError} from "../../api/operations";
+import {formatError, transfer, transferToSavings, transferFromSavings, transferToVesting, convert} from "../../api/operations";
 
 import {_t} from "../../i18n";
 
@@ -270,7 +270,31 @@ export class TransferDialog extends Component<Props, State> {
     };
 
     confirm = () => {
+        const {users, activeUser, mode} = this.props;
+        const {to, amount, asset, memo} = this.state;
+        const fullAmount = `${amount} ${asset}`;
 
+        const user = users.find((x) => x.username === activeUser?.username)!;
+
+        switch (mode) {
+            case 'transfer':
+                transfer(user, to, fullAmount, memo);
+                break;
+            case 'transfer-saving':
+                transferToSavings(user, to, fullAmount, memo);
+                break;
+            case 'convert':
+                convert(user, amount)
+                break;
+            case 'withdraw-saving':
+                transferFromSavings(user, to, fullAmount, memo);
+                break;
+            case 'power-up':
+                transferToVesting(user, to, fullAmount);
+                break;
+            default:
+                return;
+        }
     }
 
     render() {
@@ -460,7 +484,7 @@ export class TransferDialog extends Component<Props, State> {
                                 {_t("transfer.back")}
                             </Button>
                             <span className="hr-6px-btn-spacer"/>
-                            <Button disabled={inProgress}>
+                            <Button disabled={inProgress} onClick={this.confirm}>
                                 {inProgress && (
                                     <span>spinner</span>
                                 )}

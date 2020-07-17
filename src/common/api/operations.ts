@@ -150,3 +150,73 @@ export const claimRewardBalance = (user: User, rewardHive: string, rewardHbd: st
         rewardVests
     );
 }
+
+export const transfer = (user: User, to: string, amount: string, memo: string) => {
+    const from = user.username;
+
+    const op = ['transfer', {
+        from,
+        to,
+        amount,
+        memo
+    }];
+
+    return hs.sendOperation(op, {}, () => {
+    });
+}
+
+export const transferToSavings = (user: User, to: string, amount: string, memo: string) => {
+    const from = user.username;
+
+    const op = ['transfer_to_savings', {
+        from,
+        to,
+        amount,
+        memo
+    }];
+
+    return hs.sendOperation(op, {}, () => {
+    });
+}
+
+export const convert = (user: User, amount: string) => {
+    const owner = user.username;
+
+    const op = ['convert', {
+        owner,
+        amount,
+        request_id: new Date().getTime() >>> 0
+    }];
+
+    return hs.sendOperation(op, {}, () => {
+    });
+}
+
+export const transferFromSavings = (user: User, to: string, amount: string, memo: string) => {
+    const from = user.username;
+
+
+    const op = ['transfer_from_savings', {
+        from,
+        to,
+        amount,
+        memo,
+        request_id: new Date().getTime() >>> 0
+    }];
+
+    return hs.sendOperation(op, {}, () => {
+    });
+}
+
+export const transferToVesting = (user: User, to: string, amount: string) => {
+    const from = user.username;
+
+    const op = ['transfer_to_vesting', {
+        from,
+        to,
+        amount
+    }];
+
+    return hs.sendOperation(op, {}, () => {
+    });
+}
