@@ -70,9 +70,8 @@
       }
 
       .transfer-box-body {
-        border-top: 1px solid transparent;
         padding: 24px 32px;
-        margin-bottom: 40px;
+        margin: 1px 0 0 0;
 
         .transfer-form {
           .form-group {
@@ -196,8 +195,12 @@
       }
 
       &.in-progress {
+        .transfer-box-header {
+          border-bottom: 1px solid transparent;
+        }
+
         .transfer-box-body {
-          border-top: none;
+          margin-top: 0;
         }
       }
     }
