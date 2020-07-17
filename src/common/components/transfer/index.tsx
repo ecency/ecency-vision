@@ -1,5 +1,7 @@
 import React, {Component} from "react";
 
+import {PrivateKey} from "@esteemapp/dhive";
+
 import {Modal, Form, Row, Col, InputGroup, FormControl, Button} from "react-bootstrap";
 
 import {Account} from '../../store/accounts/types'
@@ -9,22 +11,37 @@ import {Transactions} from "../../store/transactions/types";
 
 import LinearProgress from "../linear-progress";
 import UserAvatar from "../user-avatar";
-import {success, error} from "../feedback";
 import SuggestionList from "../suggestion-list";
+import OrDivider from "../or-divider";
+import {error} from "../feedback";
 
 import amountFormatCheck from '../../helper/amount-format-check';
 import parseAsset from "../../helper/parse-asset";
 import formattedNumber from "../../util/formatted-number";
 
-import {getAccount} from "../../api/hive";
+import {getAccount, getAccountFull} from "../../api/hive";
 
-import {formatError, transfer, transferToSavings, transferFromSavings, transferToVesting, convert} from "../../api/operations";
+import {
+    transfer,
+    transferHot,
+    transferToSavings,
+    transferToSavingsHot,
+    transferFromSavings,
+    transferFromSavingsHot,
+    transferToVesting,
+    transferToVestingHot,
+    convert,
+    convertHot,
+    formatError
+} from "../../api/operations";
 
 import {_t} from "../../i18n";
 
 import badActors from '../../constants/bad-actors.json';
 
 import {arrowRightSvg} from "../../img/svg";
+
+const hsLogo = require("../../img/hive-signer.svg");
 
 export type TransferMode = 'transfer' | 'transfer-saving' | 'convert' | 'withdraw-saving' | 'power-up';
 export type TransferAsset = 'HIVE' | 'HBD';
@@ -76,10 +93,13 @@ interface Props {
     users: User[];
     activeUser: ActiveUser;
     transactions: Transactions;
+    addAccount: (data: Account) => void;
+    updateActiveUser: (data: Account) => void;
+    onHide: () => void;
 }
 
 interface State {
-    step: 1 | 2 | 3;
+    step: 1 | 2 | 3 | 4;
     asset: TransferAsset;
     to: string,
     toData: Account | null,
@@ -88,14 +108,14 @@ interface State {
     amount: string,
     amountError: string;
     memo: string,
+    privateKey: string;
     inProgress: boolean;
 }
 
-
-export class TransferDialog extends Component<Props, State> {
-    state: State = {
+const pureState = (props: Props): State => {
+    return {
         step: 1,
-        asset: this.props.asset,
+        asset: props.asset,
         to: '',
         toData: null,
         toError: '',
@@ -103,8 +123,13 @@ export class TransferDialog extends Component<Props, State> {
         amount: '0.001',
         amountError: '',
         memo: '',
+        privateKey: '',
         inProgress: false,
     }
+}
+
+export class TransferDialog extends Component<Props, State> {
+    state: State = pureState(this.props);
 
     _timer: any = null;
     _mounted: boolean = true;
@@ -270,37 +295,106 @@ export class TransferDialog extends Component<Props, State> {
     };
 
     confirm = () => {
+        this.setState({step: 3});
+    }
+
+    privateKeyChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+        const {value: privateKey} = e.target;
+        this.stateSet({privateKey});
+    }
+
+    sign = () => {
+        const {privateKey} = this.state;
+        let key: PrivateKey;
+
+        try {
+            key = PrivateKey.fromString(privateKey);
+        } catch (e) {
+            error('Invalid private key!');
+            return;
+        }
+
         const {users, activeUser, mode} = this.props;
         const {to, amount, asset, memo} = this.state;
         const fullAmount = `${amount} ${asset}`;
-
         const user = users.find((x) => x.username === activeUser?.username)!;
 
-        let u = '';
+        let prms: Promise<any>;
         switch (mode) {
             case 'transfer':
-                u = transfer(user, to, fullAmount, memo);
+                prms = transfer(user, key, to, fullAmount, memo)
                 break;
             case 'transfer-saving':
-                transferToSavings(user, to, fullAmount, memo);
+                prms = transferToSavings(user, key, to, fullAmount, memo);
                 break;
             case 'convert':
-                convert(user, amount)
+                prms = convert(user, key, amount)
                 break;
             case 'withdraw-saving':
-                transferFromSavings(user, to, fullAmount, memo);
+                prms = transferFromSavings(user, key, to, fullAmount, memo);
                 break;
             case 'power-up':
-                transferToVesting(user, to, fullAmount);
+                prms = transferToVesting(user, key, to, fullAmount);
                 break;
             default:
                 return;
         }
+
+        this.stateSet({inProgress: true});
+        prms.then(() => getAccountFull(activeUser.username))
+            .then((a) => {
+                const {addAccount, updateActiveUser} = this.props;
+                addAccount(a);
+                updateActiveUser(a);
+                this.stateSet({step: 4, inProgress: false});
+            }).catch(err => {
+            error(formatError(err));
+            this.stateSet({inProgress: false});
+        })
+    }
+
+    signHs = () => {
+        const {users, activeUser, mode, onHide} = this.props;
+        const {to, amount, asset, memo} = this.state;
+        const fullAmount = `${amount} ${asset}`;
+        const user = users.find((x) => x.username === activeUser?.username)!;
+
+        let prms: Promise<any>;
+        switch (mode) {
+            case 'transfer':
+                prms = transferHot(user, to, fullAmount, memo)
+                break;
+            case 'transfer-saving':
+                prms = transferToSavingsHot(user, to, fullAmount, memo);
+                break;
+            case 'convert':
+                prms = convertHot(user, amount)
+                break;
+            case 'withdraw-saving':
+                prms = transferFromSavingsHot(user, to, fullAmount, memo);
+                break;
+            case 'power-up':
+                prms = transferToVestingHot(user, to, fullAmount);
+                break;
+            default:
+                return;
+        }
+
+        onHide();
+    }
+
+    finish = () => {
+        const {onHide} = this.props;
+        onHide();
+    }
+
+    reset = () => {
+        this.stateSet(pureState(this.props));
     }
 
     render() {
         const {mode, activeUser, transactions} = this.props;
-        const {step, asset, to, toError, toWarning, amount, amountError, memo, inProgress} = this.state;
+        const {step, asset, to, toError, toWarning, amount, amountError, memo, privateKey, inProgress} = this.state;
 
         const recent = [...new Set(
             transactions.list
@@ -495,13 +589,74 @@ export class TransferDialog extends Component<Props, State> {
                     </div>
                 </div>
             )}
+
+            {step === 3 && (
+                <div className="transfer-box">
+                    <div className="transfer-box-header">
+                        <div className="step-no">3</div>
+                        <div className="box-titles">
+                            <div className="main-title">
+                                {_t('transfer.sign-title')}
+                            </div>
+                            <div className="sub-title">
+                                {_t('transfer.sign-sub-title')}
+                            </div>
+                        </div>
+                    </div>
+                    <div className="transfer-box-body">
+                        <div className="sign-tr">
+                            <InputGroup size="lg">
+                                <Form.Control
+                                    value={privateKey}
+                                    type="password"
+                                    autoFocus={true}
+                                    placeholder={_t('transfer.private-key-placeholder')}
+                                    onChange={this.privateKeyChanged}/>
+                                <InputGroup.Append>
+                                    <Button disabled={inProgress} onClick={this.sign}>{_t("transfer.sign")}</Button>
+                                </InputGroup.Append>
+                            </InputGroup>
+                            <OrDivider/>
+                            <div className="hs-sign">
+                                <Button size="lg" variant="outline-primary" onClick={this.signHs}>
+                                    <img src={hsLogo} className="hs-logo" alt="hivesigner"/> {_t("transfer.with-hivesigner")}
+                                </Button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {step === 4 && (
+                <div className="transfer-box">
+                    <div className="transfer-box-header">
+                        <div className="step-no">4</div>
+                        <div className="box-titles">
+                            <div className="main-title">
+                                {_t('transfer.success-title')}
+                            </div>
+                            <div className="sub-title">
+                                {_t('transfer.success-sub-title')}
+                            </div>
+                        </div>
+                    </div>
+                    <div className="transfer-box-body">
+                        <div className="success"
+                             dangerouslySetInnerHTML={{__html: _t("transfer.transfer-summary", {amount: `${amount} ${asset}`, from: activeUser.username, to})}}/>
+                        <div className="d-flex justify-content-center">
+                            <Button variant="outline-secondary" onClick={this.reset}>
+                                {_t("transfer.reset")}
+                            </Button>
+                            <span className="hr-6px-btn-spacer"/>
+                            <Button onClick={this.finish}>
+                                {_t("transfer.finish")}
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     }
-}
-
-
-interface Props {
-    onHide: () => void;
 }
 
 export default class Transfer extends Component<Props> {

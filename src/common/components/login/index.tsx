@@ -11,6 +11,7 @@ import { ActiveUser } from "../../store/active-user/types";
 import UserAvatar from "../user-avatar";
 import Tooltip from "../tooltip";
 import PopoverConfirm from "../popover-confirm";
+import OrDivider from "../or-divider";
 
 import { getAuthUrl } from "../../helper/hive-signer";
 
@@ -117,7 +118,7 @@ export class Login extends Component<LoginProps> {
                 })}
               </div>
             </div>
-            <div className="or-divider">{_t("login.or")}</div>
+            <OrDivider />
           </>
         )}
         <div className="hs-login">

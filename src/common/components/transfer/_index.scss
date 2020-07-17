@@ -155,6 +155,22 @@
           }
         }
 
+        .sign-tr {
+          max-width: 500px;
+          margin: auto;
+
+          .hs-sign {
+            margin: 0 auto 26px auto;
+            display: flex;
+            justify-content: center;
+
+            .hs-logo {
+              height: 14px;
+              margin-right: 6px;
+            }
+          }
+        }
+
         .success {
           font-size: 16px;
           margin-bottom: 30px;

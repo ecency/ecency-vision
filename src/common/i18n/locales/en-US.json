@@ -9,7 +9,8 @@
     "delete": "Delete",
     "cancel": "Cancel",
     "reply": "Reply",
-    "update": "Update"
+    "update": "Update",
+    "or": "OR"
   },
   "confirm": {
     "title": "Are you sure?",
@@ -38,7 +39,6 @@
   "login": {
     "signup-text-1": "Don't have an account?",
     "signup-text-2": "Sign up now!",
-    "or": "OR",
     "with-hivesigner": "Login with hivesigner"
   },
   "entry-list-item": {
@@ -194,7 +194,17 @@
     "confirm-sub-title": "Please, check if everything is correct",
     "confirm": "Confirm",
     "back": "Back",
-    "recent-transfers": "Recent transfers"
+    "recent-transfers": "Recent transfers",
+    "sign": "Sign",
+    "private-key-placeholder": "Enter active private key",
+    "with-hivesigner": "Sign with hivesigner",
+    "sign-title": "Sign transaction",
+    "sign-sub-title": "Sign your transaction",
+    "success-title": "Success",
+    "success-sub-title": "Transaction successful",
+    "transfer-summary": "Transferred <span class=\"amount\">{{amount}}</span> From <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
+    "reset": "Another transfer",
+    "finish": "Finish"
   },
   "transactions": {
     "title": "HISTORY",

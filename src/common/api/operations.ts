@@ -1,5 +1,9 @@
 const hs = require("hivesigner");
 
+import {Client as HiveClient, PrivateKey, Operation} from '@esteemapp/dhive';
+
+import SERVERS from "../constants/servers.json";
+
 export interface MetaData {
     links?: string[];
     images?: string[];
@@ -104,7 +108,6 @@ export const vote = (user: User, author: string, permlink: string, weight: numbe
     return client.vote(voter, author, permlink, weight);
 };
 
-
 export const follow = (user: User, following: string): Promise<any> => {
     const client = new hs.Client({
         accessToken: user.accessToken,
@@ -114,7 +117,6 @@ export const follow = (user: User, following: string): Promise<any> => {
 
     return client.follow(follower, following);
 }
-
 
 export const unFollow = (user: User, following: string): Promise<any> => {
     const client = new hs.Client({
@@ -126,7 +128,6 @@ export const unFollow = (user: User, following: string): Promise<any> => {
     return client.unfollow(follower, following);
 }
 
-
 export const ignore = (user: User, following: string): Promise<any> => {
     const client = new hs.Client({
         accessToken: user.accessToken,
@@ -136,7 +137,6 @@ export const ignore = (user: User, following: string): Promise<any> => {
 
     return client.ignore(follower, following);
 }
-
 
 export const claimRewardBalance = (user: User, rewardHive: string, rewardHbd: string, rewardVests: string): Promise<any> => {
     const client = new hs.Client({
@@ -151,7 +151,22 @@ export const claimRewardBalance = (user: User, rewardHive: string, rewardHbd: st
     );
 }
 
-export const transfer = (user: User, to: string, amount: string, memo: string) => {
+export const transfer = (user: User, key: PrivateKey, to: string, amount: string, memo: string): Promise<any> => {
+    const hClient = new HiveClient(SERVERS);
+
+    const from = user.username;
+
+    const args = {
+        from,
+        to,
+        amount,
+        memo
+    };
+
+    return hClient.broadcast.transfer(args, key);
+}
+
+export const transferHot = (user: User, to: string, amount: string, memo: string) => {
     const from = user.username;
 
     const op = ['transfer', {
@@ -161,10 +176,29 @@ export const transfer = (user: User, to: string, amount: string, memo: string) =
         memo
     }];
 
-    return hs.sendOperation(op, {});
+    return hs.sendOperation(op, {}, () => {
+    });
 }
 
-export const transferToSavings = (user: User, to: string, amount: string, memo: string) => {
+export const transferToSavings = (user: User, key: PrivateKey, to: string, amount: string, memo: string) => {
+    const hClient = new HiveClient(SERVERS);
+
+    const from = user.username;
+
+    const op: Operation = [
+        'transfer_to_savings',
+        {
+            from,
+            to,
+            amount,
+            memo
+        }
+    ]
+
+    return hClient.broadcast.sendOperations([op], key);
+}
+
+export const transferToSavingsHot = (user: User, to: string, amount: string, memo: string) => {
     const from = user.username;
 
     const op = ['transfer_to_savings', {
@@ -175,10 +209,28 @@ export const transferToSavings = (user: User, to: string, amount: string, memo: 
     }];
 
     return hs.sendOperation(op, {}, () => {
+    }, () => {
     });
 }
 
-export const convert = (user: User, amount: string) => {
+export const convert = (user: User, key: PrivateKey, amount: string) => {
+    const hClient = new HiveClient(SERVERS);
+
+    const owner = user.username;
+
+    const op: Operation = [
+        'convert',
+        {
+            owner,
+            amount,
+            request_id: new Date().getTime() >>> 0
+        }
+    ]
+
+    return hClient.broadcast.sendOperations([op], key);
+}
+
+export const convertHot = (user: User, amount: string) => {
     const owner = user.username;
 
     const op = ['convert', {
@@ -188,12 +240,31 @@ export const convert = (user: User, amount: string) => {
     }];
 
     return hs.sendOperation(op, {}, () => {
+    }, () => {
     });
 }
 
-export const transferFromSavings = (user: User, to: string, amount: string, memo: string) => {
+export const transferFromSavings = (user: User, key: PrivateKey, to: string, amount: string, memo: string) => {
+    const hClient = new HiveClient(SERVERS);
+
     const from = user.username;
 
+    const op: Operation = [
+        'transfer_from_savings',
+        {
+            from,
+            to,
+            amount,
+            memo,
+            request_id: new Date().getTime() >>> 0
+        }
+    ]
+
+    return hClient.broadcast.sendOperations([op], key);
+}
+
+export const transferFromSavingsHot = (user: User, to: string, amount: string, memo: string) => {
+    const from = user.username;
 
     const op = ['transfer_from_savings', {
         from,
@@ -204,10 +275,28 @@ export const transferFromSavings = (user: User, to: string, amount: string, memo
     }];
 
     return hs.sendOperation(op, {}, () => {
+    }, () => {
     });
 }
 
-export const transferToVesting = (user: User, to: string, amount: string) => {
+export const transferToVesting = (user: User, key: PrivateKey, to: string, amount: string) => {
+    const hClient = new HiveClient(SERVERS);
+
+    const from = user.username;
+
+    const op: Operation = [
+        'transfer_to_vesting',
+        {
+            from,
+            to,
+            amount
+        }
+    ]
+
+    return hClient.broadcast.sendOperations([op], key);
+}
+
+export const transferToVestingHot = (user: User, to: string, amount: string) => {
     const from = user.username;
 
     const op = ['transfer_to_vesting', {
@@ -217,5 +306,6 @@ export const transferToVesting = (user: User, to: string, amount: string) => {
     }];
 
     return hs.sendOperation(op, {}, () => {
+    }, () => {
     });
 }
