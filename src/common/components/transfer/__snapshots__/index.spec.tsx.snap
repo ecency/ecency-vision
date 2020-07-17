@@ -760,3 +760,165 @@ exports[`(2) Transfer to savings (1) Step 1 1`] = `
   </div>
 </div>
 `;
+
+exports[`(3) Convert (1) Step 1 1`] = `
+<div
+  className="transfer-dialog-content"
+>
+  <div
+    className="transfer-box "
+  >
+    <div
+      className="transfer-box-header"
+    >
+      <div
+        className="step-no"
+      >
+        1
+      </div>
+      <div
+        className="box-titles"
+      >
+        <div
+          className="main-title"
+        >
+          Convert
+        </div>
+        <div
+          className="sub-title"
+        >
+          Only recommended when HBD is below $1. You will get $1 of HIVE in 3.5 days.
+        </div>
+      </div>
+    </div>
+    <form
+      className="transfer-box-body"
+    >
+      <div
+        className="transfer-form"
+      >
+        <div
+          className="form-group row"
+        >
+          <label
+            className="form-label col-form-label col-sm-2"
+          >
+            From
+          </label>
+          <div
+            className="col-sm-10"
+          >
+            <div
+              className="input-group"
+            >
+              <div
+                className="input-group-prepend"
+              >
+                <span
+                  className="input-group-text"
+                >
+                  @
+                </span>
+              </div>
+              <input
+                className="form-control"
+                readOnly={true}
+                value="foo"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          className="form-group row"
+        >
+          <label
+            className="form-label col-form-label col-sm-2"
+          >
+            Amount
+          </label>
+          <div
+            className="d-flex align-items-center col-sm-10"
+          >
+            <div
+              className="input-group"
+            >
+              <div
+                className="input-group-prepend"
+              >
+                <span
+                  className="input-group-text"
+                >
+                  @
+                </span>
+              </div>
+              <input
+                autoFocus={true}
+                className="form-control"
+                onChange={[Function]}
+                placeholder="amount"
+                type="text"
+                value="0.001"
+              />
+            </div>
+            <div
+              className="asset-switch"
+            >
+              <a
+                className="asset "
+                onClick={[Function]}
+              >
+                HIVE
+              </a>
+              <a
+                className="asset selected"
+                onClick={[Function]}
+              >
+                HBD
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div
+          className="row"
+        >
+          <div
+            className="col-md-10 offset-md-2"
+          >
+            <div
+              className="balance"
+            >
+              Balance
+              : 
+              <span
+                className="balance-num"
+                onClick={[Function]}
+              >
+                4,321.212
+                 
+                HBD
+              </span>
+            </div>
+          </div>
+        </div>
+        <div
+          className="form-group row"
+        >
+          <div
+            className="col-sm-10 offset-sm-2"
+          >
+            <button
+              className="btn btn-primary"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              Next
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+`;

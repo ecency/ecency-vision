@@ -142,6 +142,10 @@ export class TransferDialog extends Component<Props, State> {
             this.stateSet({to: activeUser.username, toData: activeUser.data});
         }
 
+        if (mode === 'convert') {
+            this.stateSet({asset: 'HBD'})
+        }
+
         // initial balance check
         this.checkAmount();
     }
