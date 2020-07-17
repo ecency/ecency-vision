@@ -458,7 +458,7 @@ export class TransferDialog extends Component<Props, State> {
                                 </Col>
                             </Form.Group>
 
-                            {mode === 'transfer' && (
+                            {['transfer', 'transfer-saving', 'withdraw-saving', 'power-up'].includes(mode) && (
                                 <>
                                     <Form.Group as={Row}>
                                         <Form.Label column={true} sm="2">
@@ -526,19 +526,25 @@ export class TransferDialog extends Component<Props, State> {
                                     </div>
                                 </Col>
                             </Row>
-                            <Form.Group as={Row}>
-                                <Form.Label column={true} sm="2">
-                                    {_t("transfer.memo")}
-                                </Form.Label>
-                                <Col sm="10">
-                                    <Form.Control
-                                        placeholder={_t("transfer.memo-placeholder")}
-                                        value={memo}
-                                        onChange={this.memoChanged}
-                                    />
-                                </Col>
-                            </Form.Group>
-                            <FormText msg={_t("transfer.memo-help")} type="muted"/>
+
+                            {['transfer', 'transfer-saving', 'withdraw-saving'].includes(mode) && (
+                                <>
+                                    <Form.Group as={Row}>
+                                        <Form.Label column={true} sm="2">
+                                            {_t("transfer.memo")}
+                                        </Form.Label>
+                                        <Col sm="10">
+                                            <Form.Control
+                                                placeholder={_t("transfer.memo-placeholder")}
+                                                value={memo}
+                                                onChange={this.memoChanged}
+                                            />
+                                        </Col>
+                                    </Form.Group>
+                                    <FormText msg={_t("transfer.memo-help")} type="muted"/>
+                                </>
+                            )}
+
                             <Form.Group as={Row}>
                                 <Col sm={{span: 10, offset: 2}}>
                                     <Button onClick={this.next} disabled={!this.canSubmit()}>{_t('transfer.next')}</Button>
