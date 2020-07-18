@@ -3,7 +3,14 @@ import React, {Component} from "react";
 import Tooltip from "../tooltip";
 import EmojiPicker from "../emoji-picker";
 
+import {ActiveUser} from "../../store/active-user/types";
+
+import {uploadImage} from "../../api/ecency";
+
 import {_t} from "../../i18n";
+
+import {insertOrReplace, replace} from "../../util/input-util";
+import _c from '../../util/fix-class-names'
 
 import {
     formatBoldSvg,
@@ -18,20 +25,35 @@ import {
     gridSvg,
     emoticonHappyOutlineSvg,
 } from "../../img/svg";
+import {User} from "../../store/users/types";
 
-import {inputReplacer} from "../../util/input-util";
-import _c from '../../util/fix-class-names'
+
+const getTargetEl = (): HTMLInputElement | null => {
+    return document.querySelector("#the-editor");
+}
 
 const insertText = (before: string, after: string = "") => {
-    const el: HTMLInputElement | null = document.querySelector("#the-editor");
+    const el = getTargetEl();
     if (!el) {
         return;
     }
 
-    inputReplacer(el, before, after);
+    insertOrReplace(el, before, after);
 };
 
+const replaceText = (find: string, rep: string) => {
+    const el = getTargetEl();
+    if (!el) {
+        return;
+    }
+
+    replace(el, find, rep);
+}
+
+
 interface Props {
+    users: User[];
+    activeUser: ActiveUser | null;
     sm?: boolean
 }
 
@@ -103,8 +125,44 @@ export default class EditorToolbar extends Component<Props> {
     };
 
     fileInputChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
-        const files = (e.target as HTMLInputElement).files!;
+        const files = [...e.target.files]
+            .filter(i => this.checkFile(i.name))
+            .filter(i => i);
 
+        if (files.length > 0) {
+            e.stopPropagation();
+            e.preventDefault();
+        }
+
+        files.forEach(file => this.upload(file));
+    };
+
+    upload = async (file: File) => {
+        const {activeUser, users} = this.props;
+        const user = users.find((x) => x.username === activeUser?.username)!;
+
+        const tempImgTag = `![Uploading ${file.name} #${Math.floor(
+            Math.random() * 99
+        )}]()\n\n`;
+        insertText(tempImgTag);
+
+        let imageUrl: string;
+        try {
+            const resp = await uploadImage(file, user.accessToken)
+            imageUrl = resp.url;
+        } catch (e) {
+            return;
+        }
+
+        const imageName = imageUrl.split('/').pop();
+        const imgTag = `![${imageName}](${imageUrl})\n\n`;
+
+        replaceText(tempImgTag, imgTag);
+    };
+
+    checkFile = (filename: string) => {
+        const filenameLow = filename.toLowerCase();
+        return ['jpg', 'jpeg', 'gif', 'png'].some(el => filenameLow.endsWith(el));
     };
 
     render() {
@@ -180,8 +238,7 @@ export default class EditorToolbar extends Component<Props> {
                             className="editor-tool"
                             onClick={() => {
                                 this.image();
-                            }}
-                        >
+                            }}>
                             {imageSvg}
                             <div className="sub-tool-menu">
                                 <div
@@ -194,7 +251,7 @@ export default class EditorToolbar extends Component<Props> {
                                 >
                                     {_t("editor-toolbar.upload")}
                                 </div>
-                                {/* if active user */}
+                                {/* if active user
                                 <div
                                     className="sub-tool-menu-item"
                                     onClick={(e: React.MouseEvent<HTMLElement>) => {
@@ -204,7 +261,7 @@ export default class EditorToolbar extends Component<Props> {
                                 >
                                     {_t("editor-toolbar.gallery")}
                                 </div>
-                                {/* endif */}
+                                */}
                             </div>
                         </div>
                     </Tooltip>
@@ -231,7 +288,15 @@ export default class EditorToolbar extends Component<Props> {
                         </div>
                     </Tooltip>
                 </div>
-                <input type="file" id="file-input" onChange={this.fileInputChanged} style={{display: "none"}}/>
+                <input
+                    onChange={this.fileInputChanged}
+                    className="file-input"
+                    id="file-input"
+                    type="file"
+                    accept="image/*"
+                    multiple={true}
+                    style={{display: 'none'}}
+                />
             </>
         );
     }

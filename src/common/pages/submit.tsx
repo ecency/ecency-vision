@@ -377,7 +377,7 @@ class SubmitPage extends Component<Props, State> {
 
         <div className="app-content submit-page">
           <div className="editor-side">
-            <EditorToolbar />
+            <EditorToolbar {...this.props} />
             <div className="title-input">
               <Form.Control
                 className="accepts-emoji"

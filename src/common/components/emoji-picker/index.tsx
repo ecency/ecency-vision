@@ -10,7 +10,7 @@ import { getEmojiData } from "../../api/misc";
 
 import * as ls from "../../util/local-storage";
 
-import { inputReplacer } from "../../util/input-util";
+import { insertOrReplace } from "../../util/input-util";
 
 interface Emoji {
   a: string;
@@ -105,7 +105,7 @@ export default class EmojiPicker extends Component {
       this.forceUpdate(); // Re-render recent list
     }
 
-    inputReplacer(this._target!, native);
+    insertOrReplace(this._target!, native);
     //const { onPick } = this.props;
     //onPick(native);
   };
