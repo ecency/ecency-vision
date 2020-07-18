@@ -8,6 +8,7 @@ export default {
   ABOUT: `/about`,
   GUESTS: `/guest-posts`,
   CONTRIBUTE: `/contribute`,
+  FAQ: `/faq`,
   SIGN_UP: `/signup`,
   WHITE_PAPER: `/whitepaper`,
   PRIVACY: `/privacy-policy`,
