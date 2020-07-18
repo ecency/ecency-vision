@@ -1,9 +1,11 @@
 import i18n from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
+const enUs = require('./locales/en-US.json')
+
 const resources = {
     ['en-US']: {
-        translation: require('./locales/en-US.json')
+        translation: enUs
     }
 };
 

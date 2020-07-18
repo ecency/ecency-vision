@@ -238,12 +238,10 @@
       .faq-links {
         text-align: center;
 
-
         .faq-link {
           color: $charcoal-grey;
           font-size: 20px;
         }
-
       }
     }
 
@@ -310,6 +308,9 @@
 
   &.faq-page {
     .table-contents {
+      margin-top: 20px;
+      margin-bottom: 40px;
+
       li {
         padding: 6px 0;
 
@@ -322,6 +323,13 @@
     .faq-list {
       .faq-item {
         line-height: 1.5;
+        margin-bottom: 60px;
+
+        .faq-item-body {
+          img {
+            max-width: 100%;
+          }
+        }
       }
     }
   }

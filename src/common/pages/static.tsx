@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, Fragment} from "react";
 import {AnyAction, bindActionCreators, Dispatch} from "redux";
 import {connect} from "react-redux";
 import {History, Location} from "history";
@@ -27,6 +27,15 @@ import {blogSvg, newsSvg, mailSvg, twitterSvg, githubSvg, telegramSvg, discordSv
 const surferSs = require("../img/surfer-ss.jpg");
 const mobileSs = require("../img/mobile-ss.jpg");
 
+const faqKeys = [
+    'what-is-ecency',
+    'what-is-hive',
+    'what-is-difference',
+    'why-choose-ecency',
+    'how-ecency-works'
+]
+
+
 interface Props {
     history: History;
     location: Location;
@@ -44,7 +53,9 @@ interface Props {
 class AboutPage extends Component<Props> {
     render() {
         //  Meta config
-        const metaProps = {};
+        const metaProps = {
+            title: _t('static.about.page-title')
+        };
 
         return (
             <>
@@ -59,15 +70,8 @@ class AboutPage extends Component<Props> {
                             <div className="about-content">
                                 <div className="arrow-1"/>
                                 <div className="arrow-2"/>
-                                <h1 className="about-title">
-                                    What is <span>Esteem</span>
-                                </h1>
-                                <p>
-                                    Esteem is beautiful and handy wrapper interface around the Hive blockchain network allowing you to
-                                    create your own posts, surf your feeds, vote what you like, write comments, read replies, do all major
-                                    Hive functions in your daily social surfing as well as wallet actions and other extras such as search,
-                                    discover different tags etc.
-                                </p>
+                                <h1 className="about-title" dangerouslySetInnerHTML={{__html: _t('static.about.intro-title')}}/>
+                                <p>{_t('static.about.intro-content')}</p>
                             </div>
                             <div className="sub-cloud">
                                 <div className="cloud-1"/>
@@ -116,42 +120,35 @@ class AboutPage extends Component<Props> {
                     <img src={mobileSs} className="mobile-ss" alt="Esteem Mobile"/>
 
                     <div className="faq">
-                        <h2 className="faq-title">FAQ</h2>
+                        <h2 className="faq-title">{_t('static.about.faq-title')}</h2>
                         <div className="faq-links">
-                            <p>
-                                <Link className="faq-link" to="/faq#what-is-ecency">What is Ecency?</Link>
-                            </p>
-                            <p>
-                                <Link className="faq-link" to="/faq#what-is-hive">What is Hive?</Link>
-                            </p>
-                            <p>
-                                <Link className="faq-link" to="/faq#why-ecency">Why would I choose Ecency?</Link>
-                            </p>
-                            <p>
-                                <Link className="faq-link" to="/faq#how-ecency-works">How does Ecency work?</Link>
-                            </p>
-                            <p><Link to="/faq">All FAQs</Link></p>
+                            {faqKeys.slice(0, 4).map(x => {
+                                return <p key={x}>
+                                    <a className="faq-link" href={`/faq#${x}`}>{_t(`static.faq.${x}-header`)}</a>
+                                </p>
+                            })}
+                            <p><Link to="/faq">{_t('static.about.faqs')}</Link></p>
                         </div>
                     </div>
 
                     <div className="contacts">
-                        <h2 className="contacts-title">Contacts</h2>
+                        <h2 className="contacts-title">{_t('static.about.contact-title')}</h2>
                         <div className="contacts-links">
                             <a
                                 className="contacts-link"
                                 target="_blank"
-                                href="https://esteem.app/@good-karma"
+                                href="https://ecency.com/@good-karma"
                                 rel="noopener noreferrer"
                             >
-                                {blogSvg} Founder's blog
+                                {blogSvg} {_t('static.about.contact-blog')}
                             </a>
                             <a
                                 className="contacts-link"
                                 target="_blank"
-                                href="https://esteem.app/@esteemapp"
+                                href="https://ecency.com/@ecency"
                                 rel="noopener noreferrer"
                             >
-                                {newsSvg} News on Hive
+                                {newsSvg} {_t('static.about.contact-news')}
                             </a>
                             <a
                                 className="contacts-link"
@@ -159,7 +156,7 @@ class AboutPage extends Component<Props> {
                                 href="mailto:info@esteem.app?subject=Feedback"
                                 rel="noopener noreferrer"
                             >
-                                {mailSvg} Email us
+                                {mailSvg} {_t('static.about.contact-email')}
                             </a>
                             <a
                                 className="contacts-link"
@@ -172,7 +169,7 @@ class AboutPage extends Component<Props> {
                             <a
                                 className="contacts-link"
                                 target="_blank"
-                                href="https://github.com/esteemapp"
+                                href="https://github.com/ecency"
                                 rel="noopener noreferrer"
                             >
                                 {githubSvg} Github
@@ -577,7 +574,7 @@ class FaqPage extends Component<Props> {
     render() {
         //  Meta config
         const metaProps = {
-            title: "FAQ",
+            title: _t('static.faq.page-title')
         };
 
         return (
@@ -585,74 +582,22 @@ class FaqPage extends Component<Props> {
                 <Meta {...metaProps} />
                 <Theme {...this.props} />
                 <NavBar {...this.props} />
-
                 <div className="app-content static-page faq-page">
                     <div className="static-content">
-                        <h1 className="page-title">Ecency FAQ</h1>
-                        <h3>Table of Contents</h3>
-
+                        <h1 className="page-title">{_t('static.faq.page-title')}</h1>
+                        <h3>{_t('static.faq.page-sub-title')}</h3>
                         <ul className="table-contents">
-                            <li><a href="#what-is-ecency">What is Ecency?</a></li>
-                            <li><a href="#what-is-hive">What is Hive?</a></li>
-                            <li><a href="#what-is-difference">What's the difference between Ecency and other Hive interfaces?</a></li>
-                            <li><a href="#why-choose-ecency">Why would I choose Esteem over other interfaces?</a></li>
-                            <li><a href="#how-ecency-works">How does Ecency work?</a></li>
-                            <li><a href="#how-sign-in">How do I sign-in?</a></li>
+                            {faqKeys.map(x => {
+                                return <li key={x}><a href={`#${x}`}>{_t(`static.faq.${x}-header`)}</a></li>
+                            })}
                         </ul>
-
                         <div className="faq-list">
-                            <div className="faq-item" id="what-is-ecency">
-                                <h4>What is Ecency? </h4>
-                                <p>Esteem is a <a href="https://en.wikipedia.org/wiki/Blockchain" target="_blank">blockchain</a> based social application - powered by Hive.</p>
-                                <p>Esteem is all about respect and admiration. Our esteemed friends, supporters, contributors, users, investors deserve the highest respect. We hold
-                                    them in high esteem, means we give them a high value, admire their views. And we make it our mission to grow that relationship together for
-                                    better and free world.</p>
-                                <p>Project was initiated and founded by <a href="/@good-karma">@good-karma</a> in August 2016 as an alternative interface. Since then project has
-                                    grown to much larger list of contributors.</p>
-                            </div>
-
-                            <div className="faq-item" id="what-is-hive">
-                                <h4>What is Hive? </h4>
-                                <p>Hive is a blockchain that was designed to be application specific, focused on decentralized, uncensored social network where anyone can earn
-                                    rewards. Hive is not just social network blockchain anymore, with time it is finding new use cases and creation of new applications. The Hive
-                                    blockchain provides platform where user earns, stakes, holds a cryptocurrency token called HIVE, also influence on governance, content ranking,
-                                    etc. Blockchain holds and serves all data like vote on that content, content history, transfers, etc. and many other features you would find on
-                                    popular social networking sites.</p>
-                            </div>
-
-                            <div className="faq-item" id="what-is-difference">
-                                <h4>What's the difference between Ecency and other Hive interfaces?</h4>
-                                <p>The primary difference between Esteem and other interfaces are in features they each offer.
-                                    Esteem offers social experience where you can share any type of content, pictures, quick thoughts, short status updates from your mobile device
-                                    through app; while most other interfaces encourages users to create longer blog posts/articles with an emphasis on reading. Esteem offers
-                                    desktop application as well as mobile and website, combination of all products to give utility for different users. There are a lot more feature
-                                    set differences which you can find some of them below or under #esteem-features tag.
-                                </p>
-                            </div>
-
-                            <div className="faq-item" id="why-choose-ecency">
-                                <h4>Why would I choose Esteem over other interfaces?</h4>
-                                <p>The main reason is Esteem more suitable for mobile and desktop standalone app experience. Of course it really depends on your personal
-                                    preferences but some of the features that stands out are:
-                                </p>
-                                <ul>
-                                    <li> Security of your keys</li>
-                                    <li> Referral rewards</li>
-                                    <li> ESTM mining rewards</li>
-                                    <li> Drafts</li>
-                                    <li> Bookmarks</li>
-                                    <li> Scheduling posts</li>
-                                    <li> Multiple accounts</li>
-                                    <li> Push notifications</li>
-                                    <li> In-app picture uploads</li>
-                                    <li> Quicker funds transfer</li>
-                                    <li> 50+ languages</li>
-                                    <li> 10+ currencies to view rewards in</li>
-                                </ul>
-                                <p>
-                                    Different nodes connection setup when network experiencing high loads you can still access and use the server easily).
-                                </p>
-                            </div>
+                            {faqKeys.map(x => {
+                                return <div key={x} className="faq-item" id={x}>
+                                    <h4 className="faq-item-header">{_t(`static.faq.${x}-header`)}</h4>
+                                    <div className="faq-item-body" dangerouslySetInnerHTML={{__html: _t(`static.faq.${x}-body`)}}/>
+                                </div>
+                            })}
                         </div>
                     </div>
                 </div>

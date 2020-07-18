@@ -284,5 +284,32 @@
     "label": "{{n}} words",
     "read-time-less-1-min": "< 1 min read",
     "read-time-n-min": "~ {{n}} min read"
+  },
+  "static": {
+    "about": {
+      "page-title": "About",
+      "intro-title": "What is <span>Ecency</span>",
+      "intro-content": "Ecency is beautiful and handy wrapper interface around the Hive blockchain network allowing you to create your own posts, surf your feeds, vote what you like, write comments, read replies, do all major Hive functions in your daily social surfing as well as wallet actions and other extras such as search, discover different tags etc.",
+      "faq-title": "FAQ",
+      "faqs": "All FAQs",
+      "contact-title": "Contacts",
+      "contact-blog": "Founder's blog",
+      "contact-news": "News on Hive",
+      "contact-email": "Email us"
+    },
+    "faq": {
+      "page-title": "Ecency FAQ",
+      "page-sub-title": "Table of Contents",
+      "what-is-ecency-header": "What is Ecency?",
+      "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based social application - powered by Hive.</p><p>Ecency is all about respect and admiration. Our esteemed friends, supporters, contributors, users, investors deserve the highest respect. We hold them in high esteem, means we give them a high value, admire their views. And we make it our mission to grow that relationship together for better and free world.</p><p>Project was initiated and founded by <a href=\"/@good-karma\">@good-karma</a> in August 2016 as an alternative interface. Since then project has grown to much larger list of contributors.</p>",
+      "what-is-hive-header": "What is Hive?",
+      "what-is-hive-body": "<p>Hive is a blockchain that was designed to be application specific, focused on decentralized, uncensored social network where anyone can earn rewards. Hive is not just social network blockchain anymore, with time it is finding new use cases and creation of new applications. The Hive blockchain provides platform where user earns, stakes, holds a cryptocurrency token called HIVE, also influence on governance, content ranking, etc. Blockchain holds and serves all data like vote on that content, content history, transfers, etc. and many other features you would find on popular social networking sites.</p>",
+      "what-is-difference-header": "What's the difference between Ecency and other Hive interfaces?",
+      "what-is-difference-body": "<p><img src=\"https://images.ecency.com/0x0/https://img.esteem.app/dv8k6p.jpg\" /></p><p>The primary difference between Esteem and other interfaces are in features they each offer. Esteem offers social experience where you can share any type of content, pictures, quick thoughts, short status updates from your mobile device through app; while most other interfaces encourages users to create longer blog posts/articles with an emphasis on reading. Esteem offers desktop application as well as mobile and website, combination of all products to give utility for different users. There are a lot more feature set differences which you can find some of them below or under #esteem-features tag.</p>",
+      "why-choose-ecency-header": "Why would I choose Esteem over other interfaces?",
+      "why-choose-ecency-body": "<p><img src=\"https://images.ecency.com/0x0/https://img.esteem.app/jzjfcj.jpg\" /></p><p>The main reason is Esteem more suitable for mobile and desktop standalone app experience. Of course it really depends on your personal preferences but some of the features that stands out are:</p><ul><li> Security of your keys</li><li> Referral rewards</li><li> ESTM mining rewards</li><li> Drafts</li><li> Bookmarks</li><li> Scheduling posts</li><li> Multiple accounts</li><li> Push notifications</li><li> In-app picture uploads</li><li> Quicker funds transfer</li><li> 50+ languages</li><li> 10+ currencies to view rewards in</li></ul><p>Different nodes connection setup when network experiencing high loads you can still access and use the server easily).</p>",
+      "how-ecency-works-header": "How does Esteem work?",
+      "how-ecency-works-body":  "<p><img src=\"https://images.ecency.com/0x0/https://img.esteem.app/ponjgp.jpg\" /></p><p>Esteem reads the same data from Hive blockchain as other interfaces, and thus the same data is accessible and uncensored.<p>"
+    }
   }
 }
