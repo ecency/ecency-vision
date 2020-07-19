@@ -3,6 +3,7 @@ import React, {Component} from "react";
 import isEqual from "react-fast-compare";
 
 import {ActiveUser} from "../../store/active-user/types";
+import {User} from "../../store/users/types";
 
 import Tooltip from "../tooltip";
 import EmojiPicker from "../emoji-picker";
@@ -28,30 +29,6 @@ import {
     gridSvg,
     emoticonHappyOutlineSvg,
 } from "../../img/svg";
-import {User} from "../../store/users/types";
-
-
-const getTargetEl = (): HTMLInputElement | null => {
-    return document.querySelector("#the-editor");
-}
-
-const insertText = (before: string, after: string = "") => {
-    const el = getTargetEl();
-    if (!el) {
-        return;
-    }
-
-    insertOrReplace(el, before, after);
-};
-
-const replaceText = (find: string, rep: string) => {
-    const el = getTargetEl();
-    if (!el) {
-        return;
-    }
-
-    replace(el, find, rep);
-}
 
 
 interface Props {
@@ -61,12 +38,14 @@ interface Props {
 }
 
 export default class EditorToolbar extends Component<Props> {
+    holder = React.createRef<HTMLDivElement>();
+
     shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
         return !isEqual(this.props.activeUser, nextProps.activeUser);
     }
 
     componentDidMount() {
-        const el = getTargetEl();
+        const el = this.getTargetEl();
         if (el) {
             el.addEventListener('dragover', this.onDragOver);
             el.addEventListener('drop', this.drop);
@@ -74,10 +53,33 @@ export default class EditorToolbar extends Component<Props> {
     }
 
     componentWillUnmount() {
-        const el = getTargetEl();
+        const el = this.getTargetEl();
         if (el) {
             el.removeEventListener('dragover', this.onDragOver);
             el.removeEventListener('drop', this.drop);
+        }
+    }
+
+    getTargetEl = (): HTMLInputElement | null => {
+        const holder = this.holder.current;
+        if (!holder || !holder.parentElement) {
+            return null;
+        }
+
+        return holder.parentElement.querySelector('.the-editor');
+    }
+
+    insertText = (before: string, after: string = "") => {
+        const el = this.getTargetEl();
+        if (el) {
+            insertOrReplace(el, before, after);
+        }
+    };
+
+    replaceText = (find: string, rep: string) => {
+        const el = this.getTargetEl();
+        if (el) {
+            replace(el, find, rep);
         }
     }
 
@@ -119,40 +121,40 @@ export default class EditorToolbar extends Component<Props> {
     }
 
     bold = () => {
-        insertText("**", "**");
+        this.insertText("**", "**");
     };
 
     italic = () => {
-        insertText("*", "*");
+        this.insertText("*", "*");
     };
 
     header = (w: number) => {
         const h = "#".repeat(w);
-        insertText(`${h} `);
+        this.insertText(`${h} `);
     };
 
     code = () => {
-        insertText("<code>", "</code>");
+        this.insertText("<code>", "</code>");
     };
 
     quote = () => {
-        insertText(">");
+        this.insertText(">");
     };
 
     ol = () => {
-        insertText("1. item1\n2. item2\n3. item3");
+        this.insertText("1. item1\n2. item2\n3. item3");
     };
 
     ul = () => {
-        insertText("* item1\n* item2\n* item3");
+        this.insertText("* item1\n* item2\n* item3");
     };
 
     link = () => {
-        insertText("[", "](https://)");
+        this.insertText("[", "](https://)");
     };
 
     image = (name = "", url = "url") => {
-        insertText(`![${name}`, `](${url})`);
+        this.insertText(`![${name}`, `](${url})`);
     };
 
     table = (e: React.MouseEvent<HTMLElement>) => {
@@ -161,14 +163,14 @@ export default class EditorToolbar extends Component<Props> {
             "\n|\tColumn 1\t|\tColumn 2\t|\tColumn 3\t|\n" +
             "|\t------------\t|\t------------\t|\t------------\t|\n" +
             "|\t     Text     \t|\t     Text     \t|\t     Text     \t|\n";
-        insertText(t);
+        this.insertText(t);
     };
 
     table1 = (e: React.MouseEvent<HTMLElement>) => {
         e.stopPropagation();
 
         const t = "\n|\tColumn 1\t|\n" + "|\t------------\t|\n" + "|\t     Text     \t|\n";
-        insertText(t);
+        this.insertText(t);
     };
 
     table2 = (e: React.MouseEvent<HTMLElement>) => {
@@ -177,7 +179,7 @@ export default class EditorToolbar extends Component<Props> {
             "\n|\tColumn 1\t|\tColumn 2\t|\n" +
             "|\t------------\t|\t------------\t|\n" +
             "|\t     Text     \t|\t     Text     \t|\n";
-        insertText(t);
+        this.insertText(t);
     };
 
     fileInputChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -200,7 +202,7 @@ export default class EditorToolbar extends Component<Props> {
         const tempImgTag = `![Uploading ${file.name} #${Math.floor(
             Math.random() * 99
         )}]()\n\n`;
-        insertText(tempImgTag);
+        this.insertText(tempImgTag);
 
         let imageUrl: string;
         try {
@@ -213,7 +215,7 @@ export default class EditorToolbar extends Component<Props> {
         const imageName = imageUrl.split('/').pop();
         const imgTag = `![${imageName}](${imageUrl})\n\n`;
 
-        replaceText(tempImgTag, imgTag);
+        this.replaceText(tempImgTag, imgTag);
     };
 
     checkFile = (filename: string) => {
@@ -226,7 +228,7 @@ export default class EditorToolbar extends Component<Props> {
 
         return (
             <>
-                <div className={_c(`editor-toolbar ${sm ? 'toolbar-sm' : ''}`)}>
+                <div className={_c(`editor-toolbar ${sm ? 'toolbar-sm' : ''}`)} ref={this.holder}>
                     <Tooltip content={_t("editor-toolbar.bold")}>
                         <div className="editor-tool" onClick={this.bold}>
                             {formatBoldSvg}

@@ -393,7 +393,7 @@ class SubmitPage extends Component<Props, State> {
             <div className="body-input">
               <Form.Control
                 id="the-editor"
-                className="accepts-emoji"
+                className="the-editor accepts-emoji"
                 as="textarea"
                 placeholder={_t("submit.body-placeholder")}
                 value={body}
