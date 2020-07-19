@@ -1,16 +1,19 @@
 import React, {Component} from "react";
 
-import Tooltip from "../tooltip";
-import EmojiPicker from "../emoji-picker";
+import isEqual from "react-fast-compare";
 
 import {ActiveUser} from "../../store/active-user/types";
+
+import Tooltip from "../tooltip";
+import EmojiPicker from "../emoji-picker";
 
 import {uploadImage} from "../../api/ecency";
 
 import {_t} from "../../i18n";
 
 import {insertOrReplace, replace} from "../../util/input-util";
-import _c from '../../util/fix-class-names'
+
+import _c from "../../util/fix-class-names";
 
 import {
     formatBoldSvg,
@@ -58,8 +61,61 @@ interface Props {
 }
 
 export default class EditorToolbar extends Component<Props> {
-    shouldComponentUpdate() {
-        return false;
+    shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
+        return !isEqual(this.props.activeUser, nextProps.activeUser);
+    }
+
+    componentDidMount() {
+        const el = getTargetEl();
+        if (el) {
+            el.addEventListener('dragover', this.onDragOver);
+            el.addEventListener('drop', this.drop);
+        }
+    }
+
+    componentWillUnmount() {
+        const el = getTargetEl();
+        if (el) {
+            el.removeEventListener('dragover', this.onDragOver);
+            el.removeEventListener('drop', this.drop);
+        }
+    }
+
+    onDragOver = (e: DragEvent) => {
+        const {activeUser} = this.props;
+        if (!activeUser) {
+            return;
+        }
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (e.dataTransfer) {
+            e.dataTransfer.effectAllowed = 'copy';
+            e.dataTransfer.dropEffect = 'copy';
+        }
+    }
+
+    drop = (e: DragEvent) => {
+        const {activeUser} = this.props;
+        if (!activeUser) {
+            return;
+        }
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (!e.dataTransfer) {
+            return;
+        }
+
+        const files = [...e.dataTransfer.files]
+            .filter(i => this.checkFile(i.name))
+            .filter(i => i);
+
+        if (files.length > 0) {
+            files.forEach(file => this.upload(file));
+        }
     }
 
     bold = () => {
@@ -166,7 +222,7 @@ export default class EditorToolbar extends Component<Props> {
     };
 
     render() {
-        const {sm} = this.props;
+        const {sm, activeUser} = this.props;
 
         return (
             <>
@@ -240,29 +296,32 @@ export default class EditorToolbar extends Component<Props> {
                                 this.image();
                             }}>
                             {imageSvg}
-                            <div className="sub-tool-menu">
-                                <div
-                                    className="sub-tool-menu-item"
-                                    onClick={(e: React.MouseEvent<HTMLElement>) => {
-                                        e.stopPropagation();
-                                        const el = document.getElementById("file-input");
-                                        if (el) el.click();
-                                    }}
-                                >
-                                    {_t("editor-toolbar.upload")}
+
+                            {activeUser && (
+                                <div className="sub-tool-menu">
+                                    <div
+                                        className="sub-tool-menu-item"
+                                        onClick={(e: React.MouseEvent<HTMLElement>) => {
+                                            e.stopPropagation();
+                                            const el = document.getElementById("file-input");
+                                            if (el) el.click();
+                                        }}
+                                    >
+                                        {_t("editor-toolbar.upload")}
+                                    </div>
+                                    {/*
+                                        <div
+                                            className="sub-tool-menu-item"
+                                            onClick={(e: React.MouseEvent<HTMLElement>) => {
+                                                e.stopPropagation();
+                                                // this.setState({ galleryModalVisible: true });
+                                            }}
+                                        >
+                                            {_t("editor-toolbar.gallery")}
+                                        </div>
+                                    */}
                                 </div>
-                                {/* if active user
-                                <div
-                                    className="sub-tool-menu-item"
-                                    onClick={(e: React.MouseEvent<HTMLElement>) => {
-                                        e.stopPropagation();
-                                        // this.setState({ galleryModalVisible: true });
-                                    }}
-                                >
-                                    {_t("editor-toolbar.gallery")}
-                                </div>
-                                */}
-                            </div>
+                            )}
                         </div>
                     </Tooltip>
                     <Tooltip content={_t("editor-toolbar.table")}>

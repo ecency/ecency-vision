@@ -23,6 +23,9 @@ export const insertOrReplace = (txtEl: HTMLInputElement, before: string, after: 
 
 export const replace = (txtEl: HTMLInputElement, find: string, rep: string) => {
     const startPos = txtEl.value.indexOf(find);
+    if (startPos === -1) {
+        return;
+    }
     const endPos = startPos + find.length;
 
     txtEl.selectionStart = startPos;
