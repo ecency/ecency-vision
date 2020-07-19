@@ -150,7 +150,7 @@ export default class LoginDialog extends Component<Props> {
   render() {
     const { onHide } = this.props;
     return (
-      <Modal show={true} centered={true} onHide={onHide} className="login-modal">
+      <Modal show={true} centered={true} onHide={onHide} className="login-modal modal-thin-header">
         <Modal.Header closeButton={true} />
         <Modal.Body>
           <Login {...this.props} />

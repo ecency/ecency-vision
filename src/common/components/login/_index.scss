@@ -1,15 +1,5 @@
 .login-modal {
-  .modal-header {
-
-    .close {
-      padding-top: 6px;
-      padding-bottom: 6px;
-    }
-  }
   .modal-body {
-    padding-top: 6px;
-    max-height: 400px;
-    overflow-y: auto;
 
     p {
       color: $steel-grey;
@@ -19,12 +9,14 @@
 
     .user-list {
       width: 240px;
+      max-height: 400px;
+      overflow-y: auto;
       margin: 0 auto;
 
       .user-list-header {
         font-size: 18px;
         font-weight: 500;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
         text-align: center;
 
         @include themify(day) {

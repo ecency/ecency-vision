@@ -1,0 +1,19 @@
+.sign-up-modal {
+  .modal-body {
+
+    .form-header {
+      font-size: 22px;
+      font-weight: 500;
+      margin-bottom: 20px;
+      text-align: center;
+
+      @include themify(day) {
+        color: $steel-grey;
+      }
+
+      @include themify(night) {
+        color: $metallic-blue;
+      }
+    }
+  }
+}

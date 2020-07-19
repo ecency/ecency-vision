@@ -19,6 +19,7 @@ import DownloadTrigger from "../download-trigger";
 import Search from "../search";
 import LoginRequired from "../login-required";
 import UserNav from "../user-nav";
+import SignUp from "../sign-up";
 
 import {_t} from "../../i18n";
 
@@ -38,14 +39,23 @@ interface Props {
     deleteUser: (username: string) => void;
 }
 
-export default class NavBar extends Component<Props> {
-    shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
+interface State {
+    signUp: boolean
+}
+
+export default class NavBar extends Component<Props, State> {
+    state: State = {
+        signUp: false
+    };
+
+    shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
         return (
             !isEqual(this.props.global, nextProps.global) ||
             !isEqual(this.props.trendingTags, nextProps.trendingTags) ||
             !isEqual(this.props.users, nextProps.users) ||
             !isEqual(this.props.activeUser?.username, nextProps.activeUser?.username) ||
-            !isEqual(this.props.activeUser, nextProps.activeUser)
+            !isEqual(this.props.activeUser, nextProps.activeUser) ||
+            !isEqual(this.state, nextState)
         );
     }
 
@@ -53,7 +63,13 @@ export default class NavBar extends Component<Props> {
         this.props.toggleTheme();
     };
 
+    toggleSignUp = () => {
+        const {signUp} = this.state;
+        this.setState({signUp: !signUp});
+    }
+
     render() {
+        const {signUp} = this.state;
         const {global, activeUser} = this.props;
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
         return (
@@ -96,7 +112,9 @@ export default class NavBar extends Component<Props> {
                             <LoginRequired {...this.props}>
                                 <Button variant="outline-primary">{_t("g.login")}</Button>
                             </LoginRequired>
-                            <Button variant="primary">{_t("g.signup")}</Button>
+
+                            <Button variant="primary" onClick={this.toggleSignUp}>{_t("g.signup")}</Button>
+                            {signUp && <SignUp {...this.props} onHide={this.toggleSignUp}/>}
                         </div>
                     )}
 

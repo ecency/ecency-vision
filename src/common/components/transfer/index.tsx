@@ -684,7 +684,7 @@ export default class Transfer extends Component<Props> {
     render() {
         const {onHide} = this.props;
         return (
-            <Modal animation={false} show={true} centered={true} onHide={onHide} keyboard={false} className="transfer-dialog" size="lg">
+            <Modal animation={false} show={true} centered={true} onHide={onHide} keyboard={false} className="transfer-dialog modal-thin-header" size="lg">
                 <Modal.Header closeButton={true}/>
                 <Modal.Body>
                     <TransferDialog {...this.props} />
