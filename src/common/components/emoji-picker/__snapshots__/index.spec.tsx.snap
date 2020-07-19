@@ -20,9 +20,13 @@ exports[`(1) Default full render 1`] = `
       </svg>
     </span>
     <input
+      autoCapitalize="off"
+      autoComplete="off"
+      autoCorrect="off"
       className="form-control"
       onChange={[Function]}
       placeholder="Filter"
+      spellCheck="false"
       type="text"
       value=""
     />
@@ -11119,9 +11123,13 @@ exports[`(2) Filter 1`] = `
       </svg>
     </span>
     <input
+      autoCapitalize="off"
+      autoComplete="off"
+      autoCorrect="off"
       className="form-control"
       onChange={[Function]}
       placeholder="Filter"
+      spellCheck="false"
       type="text"
       value="dog"
     />
@@ -11189,9 +11197,13 @@ exports[`(3) Filter - No result 1`] = `
       </svg>
     </span>
     <input
+      autoCapitalize="off"
+      autoComplete="off"
+      autoCorrect="off"
       className="form-control"
       onChange={[Function]}
       placeholder="Filter"
+      spellCheck="false"
       type="text"
       value="loremipsumdolorsit"
     />

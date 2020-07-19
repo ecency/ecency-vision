@@ -163,22 +163,6 @@ exports[`(1) Default render 1`] = `
           fill="currentColor"
         />
       </svg>
-      <div
-        className="sub-tool-menu"
-      >
-        <div
-          className="sub-tool-menu-item"
-          onClick={[Function]}
-        >
-          Upload
-        </div>
-        <div
-          className="sub-tool-menu-item"
-          onClick={[Function]}
-        >
-          Gallery
-        </div>
-      </div>
     </div>
     <div
       className="editor-tool"
@@ -232,7 +216,10 @@ exports[`(1) Default render 1`] = `
     </div>
   </div>
   <input
+    accept="image/*"
+    className="file-input"
     id="file-input"
+    multiple={true}
     onChange={[Function]}
     style={
       Object {
@@ -245,8 +232,7 @@ exports[`(1) Default render 1`] = `
     className="comment-body"
   >
     <textarea
-      className="accepts-emoji  form-control"
-      id="the-editor"
+      className="the-editor accepts-emoji  form-control"
       onChange={[Function]}
       placeholder="Write your reply here"
       value=""
@@ -431,22 +417,6 @@ exports[`(2) Cancellable, in progress 1`] = `
           fill="currentColor"
         />
       </svg>
-      <div
-        className="sub-tool-menu"
-      >
-        <div
-          className="sub-tool-menu-item"
-          onClick={[Function]}
-        >
-          Upload
-        </div>
-        <div
-          className="sub-tool-menu-item"
-          onClick={[Function]}
-        >
-          Gallery
-        </div>
-      </div>
     </div>
     <div
       className="editor-tool"
@@ -500,7 +470,10 @@ exports[`(2) Cancellable, in progress 1`] = `
     </div>
   </div>
   <input
+    accept="image/*"
+    className="file-input"
     id="file-input"
+    multiple={true}
     onChange={[Function]}
     style={
       Object {
@@ -513,9 +486,8 @@ exports[`(2) Cancellable, in progress 1`] = `
     className="comment-body"
   >
     <textarea
-      className="accepts-emoji  form-control"
+      className="the-editor accepts-emoji  form-control"
       disabled={true}
-      id="the-editor"
       onChange={[Function]}
       placeholder="Write your reply here"
       value=""
