@@ -345,7 +345,9 @@ export default class EditorToolbar extends Component<Props> {
                     <Tooltip content={_t("editor-toolbar.emoji")}>
                         <div className="editor-tool" role="none">
                             {emoticonHappyOutlineSvg}
-                            <EmojiPicker {...this.props} />
+                            <EmojiPicker {...this.props} fallback={(e) => {
+                                this.insertText(e, '');
+                            }}/>
                         </div>
                     </Tooltip>
                 </div>

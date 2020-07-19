@@ -18,7 +18,7 @@ jest.mock("../../util/local-storage", () => ({
 }));
 
 const detailProps = {
-  onPick: () => {},
+  fallback: () => {},
 };
 
 const component = renderer.create(<EmojiPicker {...detailProps} />);
