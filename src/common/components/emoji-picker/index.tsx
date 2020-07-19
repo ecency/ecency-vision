@@ -144,7 +144,7 @@ export default class EmojiPicker extends Component {
 
     return (
       <div className="emoji-picker">
-        <SearchBox placeholder={_t("emoji-picker.filter-placeholder")} value={filter} onChange={this.filterChanged} />
+        <SearchBox autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false" placeholder={_t("emoji-picker.filter-placeholder")} value={filter} onChange={this.filterChanged} />
 
         {(() => {
           if (filter) {

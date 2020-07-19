@@ -1,7 +1,7 @@
 .editor-toolbar {
   align-items: center;
   display: flex;
-  height: 44px;
+  flex-wrap: wrap;
 
   @include themify(day) {
     background: $white-three;
@@ -15,7 +15,7 @@
     align-items: center;
     cursor: pointer;
     display: flex;
-    height: 100%;
+    height: 36px;
     justify-content: center;
     position: relative;
     width: 39px;
@@ -79,7 +79,7 @@
 
     .emoji-picker {
       display: none;
-      top: 44px;
+      top: 36px;
     }
 
     &:hover {
@@ -108,10 +108,10 @@
   }
 
   &.toolbar-sm {
-    height: 34px;
 
     .editor-tool {
       width: 29px;
+      height: 30px;
 
       svg {
         height: 18px;
@@ -119,7 +119,7 @@
     }
 
     .emoji-picker {
-      top: 34px
+      top: 30px
     }
 
     .tool-separator {

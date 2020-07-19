@@ -1,7 +1,7 @@
 .emoji-picker {
-  width: 300px;
+  width: 160px;
   position: absolute;
-  right: 0;
+  left: 0;
   z-index: 100;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
@@ -16,14 +16,14 @@
   }
 
   .emoji-cat-list {
-    height: 240px;
+    height: 134px;
     overflow: auto;
 
     .emoji-cat {
       .cat-title {
-        font-weight: 600;
-        font-size: 16px;
-        margin: 4px 0 10px 0;
+        font-weight: 500;
+        font-size: 14px;
+        margin: 4px 0 6px 0;
 
         @include themify(day) {
           color: $charcoal-grey;
@@ -41,8 +41,8 @@
 
         .emoji {
           cursor: pointer;
-          font-size: 22px;
-          margin: 5px 5px 3px 5px;
+          font-size: 18px;
+          margin: 3px 3px 1px 3px;
           align-items: center;
           justify-content: center;
           display: flex;
