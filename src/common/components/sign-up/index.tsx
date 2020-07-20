@@ -2,6 +2,8 @@ import React, {Component} from "react";
 
 import {Modal, Form, Button, FormControl} from "react-bootstrap";
 
+import {ToggleType} from "../../store/ui/types";
+
 import {error} from "../feedback";
 
 import {signUp} from "../../api/private";
@@ -12,7 +14,7 @@ import {checkSvg} from "../../img/svg";
 
 interface Props {
     defReferral: string;
-    onHide: () => void;
+    toggleUIProp: (what: ToggleType) => void;
 }
 
 interface State {
@@ -78,7 +80,11 @@ export class SignUp extends Component<Props, State> {
                 <div className="done text-center">
                     <p>{checkSvg} {_t('sign-up.success', {email})}</p>
                     <p>{_t('sign-up.success-2')}</p>
-                    <p><Button>{_t('sign-up.to-login')}</Button></p>
+                    <p><Button onClick={() => {
+                        const {toggleUIProp} = this.props;
+                        toggleUIProp('signUp');
+                        toggleUIProp('login');
+                    }}>{_t('sign-up.to-login')}</Button></p>
                 </div>
             </>
         }
@@ -117,10 +123,14 @@ export class SignUp extends Component<Props, State> {
 }
 
 export default class SignUpDialog extends Component<Props> {
+    hide = () => {
+        const {toggleUIProp} = this.props;
+        toggleUIProp('signUp');
+    }
+
     render() {
-        const {onHide} = this.props;
         return (
-            <Modal show={true} centered={true} onHide={onHide} animation={false} className="sign-up-modal modal-thin-header">
+            <Modal show={true} centered={true} onHide={this.hide} animation={false} className="sign-up-modal modal-thin-header">
                 <Modal.Header closeButton={true}/>
                 <Modal.Body>
                     <SignUp {...this.props} />

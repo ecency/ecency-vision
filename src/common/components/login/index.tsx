@@ -139,6 +139,9 @@ export class Login extends Component<LoginProps> {
                         e.preventDefault();
                         this.hide();
 
+                        const {toggleUIProp} = this.props;
+                        toggleUIProp("signUp");
+
                     }}>{_t("login.signup-text-2")}</a>
                 </p>
             </>

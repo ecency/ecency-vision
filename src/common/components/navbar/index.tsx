@@ -64,7 +64,6 @@ export default class NavBar extends Component<Props, State> {
         }
     }
 
-
     shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
         return (
             !isEqual(this.props.global, nextProps.global) ||
@@ -81,13 +80,8 @@ export default class NavBar extends Component<Props, State> {
         this.props.toggleTheme();
     };
 
-    toggleSignUp = () => {
-        const {signUp} = this.state;
-        this.setState({signUp: !signUp});
-    }
-
     render() {
-        const {signUp, refCode} = this.state;
+        const {refCode} = this.state;
         const {global, activeUser, ui} = this.props;
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
         return (
@@ -132,8 +126,10 @@ export default class NavBar extends Component<Props, State> {
                                 toggleUIProp('login');
                             }}>{_t("g.login")}</Button>
 
-                            <Button variant="primary" onClick={this.toggleSignUp}>{_t("g.signup")}</Button>
-                            {signUp && <SignUp {...this.props} onHide={this.toggleSignUp} defReferral={refCode}/>}
+                            <Button variant="primary" onClick={() => {
+                                const {toggleUIProp} = this.props;
+                                toggleUIProp('signUp');
+                            }}>{_t("g.signup")}</Button>
                         </div>
                     )}
 
@@ -148,6 +144,7 @@ export default class NavBar extends Component<Props, State> {
                     {activeUser && <UserNav {...this.props} activeUser={activeUser}/>}
                 </div>
                 {ui.login && <Login {...this.props} />}
+                {ui.signUp && <SignUp {...this.props} defReferral={refCode}/>}
             </div>
         );
     }
