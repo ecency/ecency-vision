@@ -6,7 +6,7 @@ import renderer from "react-test-renderer";
 import {Theme} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 
-import {globalInstance} from "../../helper/test-helper";
+import {globalInstance, UiInstance} from "../../helper/test-helper";
 
 jest.mock("../../constants/defaults.json", () => ({
     imageServer: "https://images.ecency.com",
@@ -24,11 +24,15 @@ const defProps = {
     global: {...globalInstance},
     users: [],
     activeUser: null,
+    ui: UiInstance,
     setActiveUser: () => {
     },
     updateActiveUser: () => {
     },
     deleteUser: () => {
+    },
+    toggleUIProp: () => {
+
     }
 };
 

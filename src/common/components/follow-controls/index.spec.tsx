@@ -1,7 +1,10 @@
 import React from 'react';
 import renderer from "react-test-renderer";
 
+import {UiInstance} from "../../helper/test-helper";
+
 import {ActiveUser} from "../../store/active-user/types";
+
 import FollowControls from './index';
 
 const allOver = () => new Promise((resolve) => setImmediate(resolve));
@@ -47,11 +50,15 @@ const defProps = {
     users: [],
     activeUser: null,
     targetUsername: 'bar',
+    ui: UiInstance,
     setActiveUser: () => {
     },
     updateActiveUser: () => {
     },
     deleteUser: () => {
+    },
+    toggleUIProp: () => {
+
     }
 };
 
