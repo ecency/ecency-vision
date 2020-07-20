@@ -89,7 +89,7 @@ export class Login extends Component<LoginProps> {
     }
 
     render() {
-        const {users} = this.props;
+        const {users, activeUser} = this.props;
         return (
             <>
                 {users.length > 0 && (
@@ -132,18 +132,20 @@ export class Login extends Component<LoginProps> {
                         <img src={hsLogo} className="hs-logo" alt="hivesigner"/> {_t("login.with-hivesigner")}
                     </a>
                 </div>
-                <p>
-                    {_t("login.signup-text-1")}
-                    &nbsp;
-                    <a href="#" onClick={(e: React.MouseEvent) => {
-                        e.preventDefault();
-                        this.hide();
+                {activeUser === null && (
+                    <p>
+                        {_t("login.signup-text-1")}
+                        &nbsp;
+                        <a href="#" onClick={(e: React.MouseEvent) => {
+                            e.preventDefault();
+                            this.hide();
 
-                        const {toggleUIProp} = this.props;
-                        toggleUIProp("signUp");
+                            const {toggleUIProp} = this.props;
+                            toggleUIProp("signUp");
 
-                    }}>{_t("login.signup-text-2")}</a>
-                </p>
+                        }}>{_t("login.signup-text-2")}</a>
+                    </p>
+                )}
             </>
         );
     }
