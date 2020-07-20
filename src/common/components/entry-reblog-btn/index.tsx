@@ -1,23 +1,24 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 
-import { Entry } from "../../store/entries/types";
-import { Account } from "../../store/accounts/types";
-import { User } from "../../store/users/types";
-import { ActiveUser } from "../../store/active-user/types";
-import { Reblog } from "../../store/reblogs/types";
+import {Entry} from "../../store/entries/types";
+import {Account} from "../../store/accounts/types";
+import {User} from "../../store/users/types";
+import {ActiveUser} from "../../store/active-user/types";
+import {Reblog} from "../../store/reblogs/types";
+import {UI, ToggleType} from "../../store/ui/types";
 
 import Tooltip from "../tooltip";
 import LoginRequired from "../login-required";
 import PopoverConfirm from "../popover-confirm";
-import { error, success } from "../feedback";
+import {error, success} from "../feedback";
 
-import { reblog, formatError } from "../../api/operations";
+import {reblog, formatError} from "../../api/operations";
 
-import { _t } from "../../i18n/index";
+import {_t} from "../../i18n";
 
 import _c from "../../util/fix-class-names";
 
-import { repeatSvg } from "../../img/svg";
+import {repeatSvg} from "../../img/svg";
 
 interface Props {
   text: boolean;
@@ -25,10 +26,12 @@ interface Props {
   users: User[];
   activeUser: ActiveUser | null;
   reblogs: Reblog[];
+  ui: UI;
   setActiveUser: (username: string | null) => void;
   updateActiveUser: (data: Account) => void;
   deleteUser: (username: string) => void;
   addReblog: (account: string, author: string, permlink: string) => void;
+  toggleUIProp: (what: ToggleType) => void;
 }
 
 interface State {
@@ -51,7 +54,7 @@ export default class EntryReblogBtn extends Component<Props> {
       this.setState(obj, cb);
     }
   };
-  
+
   reblog = () => {
     const { entry, users, activeUser, addReblog } = this.props;
     const user = users.find((x) => x.username === activeUser?.username)!;
