@@ -9,6 +9,7 @@ import {initialState as usersInitialState} from "../../common/store/users";
 import {initialState as activeUserInitialState} from "../../common/store/active-user";
 import {initialState as reblogsInitialState} from "../../common/store/reblogs";
 import {initialState as discussionInitialState} from "../../common/store/discussion";
+import {initialState as uiInitialState} from "../../common/store/ui";
 
 import {EntryFilter} from "../../common/store/global/types";
 import {Entry} from "../../common/store/entries/types";
@@ -73,6 +74,7 @@ export default async (req: express.Request, res: express.Response) => {
         activeUser: activeUserInitialState,
         reblogs: reblogsInitialState,
         discussion: discussionInitialState,
+        ui: uiInitialState,
         entries: {
             [`${makeGroupKey(filter, tag)}`]: {
                 entries: optimizeEntries(entries),

@@ -9,6 +9,7 @@ import {initialState as usersInitialState} from "../../common/store/users";
 import {initialState as activeUserInitialState} from "../../common/store/active-user";
 import {initialState as reblogsInitialState} from "../../common/store/reblogs";
 import {initialState as discussionInitialState} from "../../common/store/discussion";
+import {initialState as uiInitialState} from "../../common/store/ui";
 
 import {ProfileFilter} from "../../common/store/global/types";
 import {Entry} from "../../common/store/entries/types";
@@ -23,7 +24,6 @@ import defaults from "../../common/constants/defaults.json";
 
 import {render} from "../template";
 
-import {cache} from "../cache";
 import {getPromotedEntries} from "../../common/helper/promoted";
 
 export default async (req: express.Request, res: express.Response) => {
@@ -80,6 +80,7 @@ export default async (req: express.Request, res: express.Response) => {
         activeUser: activeUserInitialState,
         reblogs: reblogsInitialState,
         discussion: discussionInitialState,
+        ui: uiInitialState,
         entries: {
             ...entries,
             ...{
