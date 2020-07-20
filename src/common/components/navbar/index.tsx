@@ -20,7 +20,7 @@ import {UI, ToggleType} from "../../store/ui/types";
 import ToolTip from "../tooltip";
 import DownloadTrigger from "../download-trigger";
 import Search from "../search";
-import LoginRequired from "../login-required";
+import Login from "../login";
 import UserNav from "../user-nav";
 import SignUp from "../sign-up";
 
@@ -72,6 +72,7 @@ export default class NavBar extends Component<Props, State> {
             !isEqual(this.props.users, nextProps.users) ||
             !isEqual(this.props.activeUser?.username, nextProps.activeUser?.username) ||
             !isEqual(this.props.activeUser, nextProps.activeUser) ||
+            !isEqual(this.props.ui, nextProps.ui) ||
             !isEqual(this.state, nextState)
         );
     }
@@ -87,7 +88,7 @@ export default class NavBar extends Component<Props, State> {
 
     render() {
         const {signUp, refCode} = this.state;
-        const {global, activeUser} = this.props;
+        const {global, activeUser, ui} = this.props;
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
         return (
             <div className="nav-bar">
@@ -126,9 +127,10 @@ export default class NavBar extends Component<Props, State> {
 
                     {!activeUser && (
                         <div className="login-required">
-                            <LoginRequired {...this.props}>
-                                <Button variant="outline-primary">{_t("g.login")}</Button>
-                            </LoginRequired>
+                            <Button variant="outline-primary" onClick={() => {
+                                const {toggleUIProp} = this.props;
+                                toggleUIProp('login');
+                            }}>{_t("g.login")}</Button>
 
                             <Button variant="primary" onClick={this.toggleSignUp}>{_t("g.signup")}</Button>
                             {signUp && <SignUp {...this.props} onHide={this.toggleSignUp} defReferral={refCode}/>}
@@ -145,6 +147,7 @@ export default class NavBar extends Component<Props, State> {
 
                     {activeUser && <UserNav {...this.props} activeUser={activeUser}/>}
                 </div>
+                {ui.login && <Login {...this.props} />}
             </div>
         );
     }
