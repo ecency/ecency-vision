@@ -10,6 +10,7 @@ import {reloadAct as reloadReblogs} from "../common/store/reblogs";
 import {fetchedAct as loadDynamicProps} from "../common/store/dynamic-props";
 
 import {getAccount, getDynamicProps} from "../common/api/hive";
+import {usrActivity} from "../common/api/private";
 
 import {history} from "../common/store";
 
@@ -21,6 +22,7 @@ import "../style/theme-day.scss";
 import "../style/theme-night.scss";
 
 import './window';
+
 
 const store = configureStore(window["__PRELOADED_STATE__"]);
 
@@ -66,6 +68,17 @@ const updateActiveUser = () => {
 };
 updateActiveUser();
 setInterval(updateActiveUser, 60 * 1000);
+
+const checkIn = () => {
+    const state = store.getState();
+    if (state.activeUser) {
+        const users = state.users;
+        const user = users.find((x) => x.username === state.activeUser?.username)!;
+        usrActivity(user, 10).then();
+    }
+}
+checkIn();
+setInterval(checkIn, 1000 * 60 * 15 + 8);
 
 if (module.hot) {
     module.hot.accept("../common/app", () => {
