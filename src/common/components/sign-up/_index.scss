@@ -1,6 +1,5 @@
 .sign-up-modal {
   .modal-body {
-
     .form-header {
       font-size: 22px;
       font-weight: 500;
@@ -13,6 +12,14 @@
 
       @include themify(night) {
         color: $metallic-blue;
+      }
+    }
+
+    .done {
+      svg {
+        color: $green;
+        height: 20px;
+        margin-right: 10px;
       }
     }
   }

@@ -8,6 +8,8 @@ import {Link} from "react-router-dom";
 
 import isEqual from "react-fast-compare";
 
+import queryString from "query-string";
+
 import {Global, Theme} from "../../store/global/types";
 import {TrendingTags} from "../../store/trending-tags/types";
 import {Account} from "../../store/accounts/types";
@@ -41,12 +43,24 @@ interface Props {
 
 interface State {
     signUp: boolean
+    refCode: string
 }
 
 export default class NavBar extends Component<Props, State> {
     state: State = {
-        signUp: false
+        signUp: false,
+        refCode: ''
     };
+
+    componentDidMount() {
+        const {location} = this.props;
+        const qs = queryString.parse(location.search);
+        if (qs.referral) {
+            const refCode = qs.referral as string;
+            this.setState({signUp: true, refCode});
+        }
+    }
+
 
     shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
         return (
@@ -69,7 +83,7 @@ export default class NavBar extends Component<Props, State> {
     }
 
     render() {
-        const {signUp} = this.state;
+        const {signUp, refCode} = this.state;
         const {global, activeUser} = this.props;
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
         return (
@@ -114,7 +128,7 @@ export default class NavBar extends Component<Props, State> {
                             </LoginRequired>
 
                             <Button variant="primary" onClick={this.toggleSignUp}>{_t("g.signup")}</Button>
-                            {signUp && <SignUp {...this.props} onHide={this.toggleSignUp}/>}
+                            {signUp && <SignUp {...this.props} onHide={this.toggleSignUp} defReferral={refCode}/>}
                         </div>
                     )}
 
