@@ -1,18 +1,21 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 
-import { User } from "../../store/users/types";
-import { Account } from "../../store/accounts/types";
-import { ActiveUser } from "../../store/active-user/types";
+import {User} from "../../store/users/types";
+import {Account} from "../../store/accounts/types";
+import {ActiveUser} from "../../store/active-user/types";
+import {UI, ToggleType} from "../../store/ui/types";
 
 import Login from "../login";
 
 interface Props {
   users: User[];
   activeUser: ActiveUser | null;
+  ui: UI;
   children: JSX.Element;
   setActiveUser: (username: string | null) => void;
   updateActiveUser: (data: Account) => void;
   deleteUser: (username: string) => void;
+  toggleUIProp: (what: ToggleType) => void;
   onLogin?: () => void;
 }
 
