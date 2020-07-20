@@ -123,13 +123,16 @@ export class Login extends Component<LoginProps> {
         )}
         <div className="hs-login">
           <a className="btn btn-outline-primary" href={getAuthUrl()}>
-            <img src={hsLogo} className="hs-logo" /> {_t("login.with-hivesigner")}
+            <img src={hsLogo} className="hs-logo" alt="hivesigner" /> {_t("login.with-hivesigner")}
           </a>
         </div>
         <p>
           {_t("login.signup-text-1")}
           &nbsp;
-          <a href="#">{_t("login.signup-text-2")}</a>
+          <a href="#" onClick={(e:React.MouseEvent)=>{
+            e.preventDefault();
+
+          }}>{_t("login.signup-text-2")}</a>
         </p>
       </>
     );
