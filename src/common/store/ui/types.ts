@@ -18,3 +18,6 @@ export interface ToggleSignUpAct {
 
 
 export type Actions = ToggleLoginAct | ToggleSignUpAct;
+
+
+export type ToggleType = "login" | "signUp"

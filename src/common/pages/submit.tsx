@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import { AnyAction, bindActionCreators, Dispatch } from "redux";
-import { connect } from "react-redux";
-import { History, Location } from "history";
+import React, {Component} from "react";
+import {AnyAction, bindActionCreators, Dispatch} from "redux";
+import {connect} from "react-redux";
+import {History, Location} from "history";
 
-import { match } from "react-router";
+import {match} from "react-router";
 
 import isEqual from "react-fast-compare";
 
-import { Form, FormControl, Button, Spinner } from "react-bootstrap";
+import {Form, FormControl, Button, Spinner} from "react-bootstrap";
 
 import defaults from "../constants/defaults.json";
 
@@ -16,22 +16,25 @@ import {
   setProxyBase,
   // @ts-ignore
 } from "@esteemapp/esteem-render-helpers";
+
 setProxyBase(defaults.imageServer);
 
-import { AppState } from "../store";
-import { Global } from "../store/global/types";
-import { Account } from "../store/accounts/types";
-import { TrendingTags } from "../store/trending-tags/types";
-import { User } from "../store/users/types";
-import { ActiveUser } from "../store/active-user/types";
-import { Entry } from "../store/entries/types";
+import {AppState} from "../store";
+import {Global} from "../store/global/types";
+import {Account} from "../store/accounts/types";
+import {TrendingTags} from "../store/trending-tags/types";
+import {User} from "../store/users/types";
+import {ActiveUser} from "../store/active-user/types";
+import {Entry} from "../store/entries/types";
+import {UI, ToggleType} from "../store/ui/types";
 
-import { hideIntro, toggleTheme } from "../store/global/index";
-import { addAccount } from "../store/accounts/index";
-import { addEntry, updateEntry } from "../store/entries/index";
-import { fetchTrendingTags } from "../store/trending-tags";
-import { setActiveUser, updateActiveUser } from "../store/active-user";
-import { deleteUser } from "../store/users";
+import {hideIntro, toggleTheme} from "../store/global";
+import {addAccount} from "../store/accounts";
+import {addEntry, updateEntry} from "../store/entries";
+import {fetchTrendingTags} from "../store/trending-tags";
+import {setActiveUser, updateActiveUser} from "../store/active-user";
+import {deleteUser} from "../store/users";
+import {toggleUIProp} from "../store/ui";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme";
@@ -43,21 +46,20 @@ import TagSelector from "../components/tag-selector";
 import Tag from "../components/tag";
 import LoginRequired from "../components/login-required";
 import WordCount from "../components/word-counter";
-import { makePath as makePathEntry } from "../components/entry-link";
-import { error, success } from "../components/feedback";
+import {makePath as makePathEntry} from "../components/entry-link";
+import {error, success} from "../components/feedback";
 
-import { createPermlink, extractMetaData, makeJsonMetaData, makeCommentOptions, createPatch } from "../helper/posting";
+import {createPermlink, extractMetaData, makeJsonMetaData, makeCommentOptions, createPatch} from "../helper/posting";
 
-import { RewardType, comment, formatError } from "../api/operations";
+import {RewardType, comment, formatError} from "../api/operations";
 import * as bridgeApi from "../api/bridge";
 import * as hiveApi from "../api/hive";
 
-import { _t } from "../i18n";
+import {_t} from "../i18n";
 
-import _c from "../util/fix-class-names";
 import * as ls from "../util/local-storage";
 
-import { version } from "../../../package.json";
+import {version} from "../../../package.json";
 
 interface PostBase {
   title: string;
@@ -112,6 +114,7 @@ interface Props {
   trendingTags: TrendingTags;
   users: User[];
   activeUser: ActiveUser | null;
+  ui: UI;
   toggleTheme: () => void;
   addAccount: (data: Account) => void;
   addEntry: (entry: Entry) => void;
@@ -120,6 +123,7 @@ interface Props {
   setActiveUser: (username: string | null) => void;
   updateActiveUser: (data: Account) => void;
   deleteUser: (username: string) => void;
+  toggleUIProp: (what: ToggleType) => void;
 }
 
 interface State extends PostBase {
@@ -471,6 +475,7 @@ const mapStateToProps = (state: AppState) => ({
   trendingTags: state.trendingTags,
   users: state.users,
   activeUser: state.activeUser,
+  ui: state.ui
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
@@ -485,6 +490,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       setActiveUser,
       updateActiveUser,
       deleteUser,
+      toggleUIProp
     },
     dispatch
   );

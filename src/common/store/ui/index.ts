@@ -1,6 +1,6 @@
 import {Dispatch} from "redux";
 
-import {UI, Actions, ToggleLoginAct, ToggleSignUpAct, ActionTypes} from "./types";
+import {UI, Actions, ToggleLoginAct, ToggleSignUpAct, ActionTypes, ToggleType} from "./types";
 
 export const initialState: UI = {
     login: false,
@@ -22,7 +22,7 @@ export default (state: UI = initialState, action: Actions): UI => {
 
 
 /* Actions */
-export const toggleUIProp = (what: "login" | "signUp") => (dispatch: Dispatch) => {
+export const toggleUIProp = (what: ToggleType) => (dispatch: Dispatch) => {
     switch (what) {
         case 'login':
             dispatch(toggleLoginAct());
