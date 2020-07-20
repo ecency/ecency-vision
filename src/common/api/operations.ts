@@ -1,6 +1,6 @@
 const hs = require("hivesigner");
 
-import {Client as HiveClient, PrivateKey, Operation, TransactionConfirmation} from '@esteemapp/dhive';
+import {Client as HiveClient, PrivateKey, Operation, TransactionConfirmation} from '@hiveio/dhive';
 
 import {usrActivity} from "./private";
 
@@ -29,7 +29,8 @@ export interface CommentOptions {
     author: string;
     permlink: string;
     max_accepted_payout: string;
-    percent_steem_dollars: number;
+    percent_steem_dollars?: number;
+    percent_hbd?: number;
     extensions: Array<[0, { beneficiaries: BeneficiaryRoute[] }]>;
 }
 
@@ -172,7 +173,13 @@ export const claimRewardBalance = (user: User, rewardHive: string, rewardHbd: st
 
 export const transfer = (user: User, key: PrivateKey, to: string, amount: string, memo: string): Promise<TransactionConfirmation> => {
     const hClient = new HiveClient(SERVERS);
-
+    hClient.database.getVersion().then((res: any) => {
+        if (res.blockchain_version !== '0.23.0') {
+            // true: eclipse rebranded rpc nodes
+            // false: default old nodes (not necessary to call for old nodes)
+            hClient.updateOperations(true)
+        }
+    });
     const from = user.username;
 
     const args = {
@@ -199,9 +206,15 @@ export const transferHot = (user: User, to: string, amount: string, memo: string
     });
 }
 
-export const transferToSavings = (user: User, key: PrivateKey, to: string, amount: string, memo: string): Promise<TransactionConfirmation>  => {
+export const transferToSavings = (user: User, key: PrivateKey, to: string, amount: string, memo: string): Promise<TransactionConfirmation> => {
     const hClient = new HiveClient(SERVERS);
-
+    hClient.database.getVersion().then((res: any) => {
+        if (res.blockchain_version !== '0.23.0') {
+            // true: eclipse rebranded rpc nodes
+            // false: default old nodes (not necessary to call for old nodes)
+            hClient.updateOperations(true)
+        }
+    });
     const from = user.username;
 
     const op: Operation = [
@@ -232,9 +245,15 @@ export const transferToSavingsHot = (user: User, to: string, amount: string, mem
     });
 }
 
-export const convert = (user: User, key: PrivateKey, amount: string): Promise<TransactionConfirmation>  => {
+export const convert = (user: User, key: PrivateKey, amount: string): Promise<TransactionConfirmation> => {
     const hClient = new HiveClient(SERVERS);
-
+    hClient.database.getVersion().then((res: any) => {
+        if (res.blockchain_version !== '0.23.0') {
+            // true: eclipse rebranded rpc nodes
+            // false: default old nodes (not necessary to call for old nodes)
+            hClient.updateOperations(true)
+        }
+    });
     const owner = user.username;
 
     const op: Operation = [
@@ -263,9 +282,15 @@ export const convertHot = (user: User, amount: string) => {
     });
 }
 
-export const transferFromSavings = (user: User, key: PrivateKey, to: string, amount: string, memo: string): Promise<TransactionConfirmation>  => {
+export const transferFromSavings = (user: User, key: PrivateKey, to: string, amount: string, memo: string): Promise<TransactionConfirmation> => {
     const hClient = new HiveClient(SERVERS);
-
+    hClient.database.getVersion().then((res: any) => {
+        if (res.blockchain_version !== '0.23.0') {
+            // true: eclipse rebranded rpc nodes
+            // false: default old nodes (not necessary to call for old nodes)
+            hClient.updateOperations(true)
+        }
+    });
     const from = user.username;
 
     const op: Operation = [
@@ -298,9 +323,15 @@ export const transferFromSavingsHot = (user: User, to: string, amount: string, m
     });
 }
 
-export const transferToVesting = (user: User, key: PrivateKey, to: string, amount: string): Promise<TransactionConfirmation>  => {
+export const transferToVesting = (user: User, key: PrivateKey, to: string, amount: string): Promise<TransactionConfirmation> => {
     const hClient = new HiveClient(SERVERS);
-
+    hClient.database.getVersion().then((res: any) => {
+        if (res.blockchain_version !== '0.23.0') {
+            // true: eclipse rebranded rpc nodes
+            // false: default old nodes (not necessary to call for old nodes)
+            hClient.updateOperations(true)
+        }
+    });
     const from = user.username;
 
     const op: Operation = [

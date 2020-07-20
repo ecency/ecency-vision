@@ -16,7 +16,7 @@ it("(2) Not valid/registered app", () => {
 
 it("(3) Esteem", () => {
   const result = entryCanonical(entryInstance1);
-  expect(result).toBe("https://esteem.app/hive/@good-karma/awesome-hive");
+  expect(result).toBe("https://ecency.com/hive/@good-karma/awesome-hive");
 });
 
 it("(4) Hive", () => {

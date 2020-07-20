@@ -42,9 +42,9 @@ export default class UserNav extends Component<Props> {
         const {data: account} = activeUser;
 
         if (account.__loaded) {
-            const rewardHiveBalance = parseAsset(account.reward_steem_balance).amount;
-            const rewardHbdBalance = parseAsset(account.reward_sbd_balance).amount;
-            const rewardVestingHive = parseAsset(account.reward_vesting_steem).amount;
+            const rewardHiveBalance = parseAsset(account.reward_steem_balance || account.reward_hive_balance).amount;
+            const rewardHbdBalance = parseAsset(account.reward_sbd_balance || account.reward_hbd_balance).amount;
+            const rewardVestingHive = parseAsset(account.reward_vesting_steem || account.reward_vesting_hive).amount;
             hasUnclaimedRewards = rewardHiveBalance > 0 || rewardHbdBalance > 0 || rewardVestingHive > 0;
         }
 

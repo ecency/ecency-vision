@@ -71,8 +71,8 @@ export class TransactionRow extends Component<RowProps> {
     if (tr.type === "claim_reward_balance") {
       flag = true;
 
-      const reward_hbd = parseAsset(tr.reward_sbd);
-      const reward_hive = parseAsset(tr.reward_steem);
+      const reward_hbd = parseAsset(tr.reward_sbd || tr.reward_hbd);
+      const reward_hive = parseAsset(tr.reward_steem || tr.reward_hive);
       const reward_vests = parseAsset(tr.reward_vests);
 
       numbers = (

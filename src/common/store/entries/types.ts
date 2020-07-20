@@ -50,7 +50,7 @@ export interface Entry {
   payout: number;
   payout_at: string;
   pending_payout_value: string;
-  percent_steem_dollars: number;
+  percent_steem_dollars?: number;
   percent_hbd?: number,
   permlink: string;
   post_id: number;

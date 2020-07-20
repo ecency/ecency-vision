@@ -105,8 +105,8 @@ export default class Wallet extends Component<Props, State> {
         return getAccount(activeUser.username)
             .then(account => {
                 const {
-                    reward_steem_balance: hiveBalance,
-                    reward_sbd_balance: hbdBalance,
+                    reward_steem_balance: hiveBalance=account.reward_hive_balance,
+                    reward_sbd_balance: hbdBalance=account.reward_hbd_balance,
                     reward_vesting_balance: vestingBalance
                 } = account;
 
@@ -141,9 +141,9 @@ export default class Wallet extends Component<Props, State> {
         const {hivePerMVests, base, quote} = dynamicProps;
         const isMyPage = activeUser && activeUser.username === account.name;
 
-        const rewardHiveBalance = parseAsset(account.reward_steem_balance).amount;
-        const rewardHbdBalance = parseAsset(account.reward_sbd_balance).amount;
-        const rewardVestingHive = parseAsset(account.reward_vesting_steem).amount;
+        const rewardHiveBalance = parseAsset(account.reward_steem_balance || account.reward_hive_balance).amount;
+        const rewardHbdBalance = parseAsset(account.reward_sbd_balance || account.reward_hbd_balance).amount;
+        const rewardVestingHive = parseAsset(account.reward_vesting_steem || account.reward_vesting_hive).amount;
         const hasUnclaimedRewards = rewardHiveBalance > 0 || rewardHbdBalance > 0 || rewardVestingHive > 0;
 
         const balance = parseAsset(account.balance).amount;
@@ -152,9 +152,9 @@ export default class Wallet extends Component<Props, State> {
         const vestingSharesDelegated = parseAsset(account.delegated_vesting_shares).amount;
         const vestingSharesReceived = parseAsset(account.received_vesting_shares).amount;
 
-        const hbdBalance = parseAsset(account.sbd_balance).amount;
+        const hbdBalance = parseAsset(account.sbd_balance || account.hbd_balance).amount;
         const savingBalance = parseAsset(account.savings_balance).amount;
-        const savingBalanceHbd = parseAsset(account.savings_sbd_balance).amount;
+        const savingBalanceHbd = parseAsset(account.savings_sbd_balance || account.savings_hbd_balance).amount;
 
         const pricePerHive = base / quote;
 

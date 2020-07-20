@@ -969,19 +969,6 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
-"@esteemapp/dhive@^0.12.1":
-  version "0.12.1"
-  resolved "https://registry.yarnpkg.com/@esteemapp/dhive/-/dhive-0.12.1.tgz#44291cb646a46aee7468cac4e2556a8b019e56ee"
-  integrity sha512-VSnYZFuajSINIVOaQqwqBB19QwVzmthB3OcRjFphrSvj7mVGpOTm4JCdZxwvjmwlSLf56huNXKrl+dofVwr+yQ==
-  dependencies:
-    bs58 "^4.0.1"
-    bytebuffer "^5.0.1"
-    core-js "^2.5.0"
-    node-fetch "^2.1.2"
-    secp256k1 "^3.3.1"
-    verror "^1.10.0"
-    whatwg-fetch "^2.0.3"
-
 "@esteemapp/esteem-render-helpers@^1.4.4":
   version "1.4.4"
   resolved "https://registry.yarnpkg.com/@esteemapp/esteem-render-helpers/-/esteem-render-helpers-1.4.4.tgz#02360a8be20188009e4157d4956a7b74d473933f"
@@ -995,10 +982,24 @@
     url "^0.11.0"
     xmldom "^0.1.27"
 
-"@hivechain/hivescript@^1.1.8":
-  version "1.1.8"
-  resolved "https://registry.yarnpkg.com/@hivechain/hivescript/-/hivescript-1.1.8.tgz#2b302dd2ba796a1a3fa91ba6e7ee92358b6adcd0"
-  integrity sha512-e2wKVzUK1zIiGI89h/DBY4XDqdmXWHz/6pjNbi+v5SnssO6eoUBh91FlOAXDQbWkC30XIuhCgOkkC127T51a9g==
+"@hiveio/dhive@^0.14.1":
+  version "0.14.1"
+  resolved "https://registry.yarnpkg.com/@hiveio/dhive/-/dhive-0.14.1.tgz#1a6273d1544bd97bf2a047baa85a6afb4cecae78"
+  integrity sha512-80I1alxQW5Cnt61KvAuSa+dPH6V+JNrE/0vR+DgQGH9y8l3xmn+pr4TXNLtSvx37pI8Zt1UEPsgvren/R02WeQ==
+  dependencies:
+    bs58 "^4.0.1"
+    bytebuffer "^5.0.1"
+    core-js "^3.6.4"
+    cross-fetch "^3.0.4"
+    node-fetch "^2.6.0"
+    secp256k1 "^3.8.0"
+    verror "^1.10.0"
+    whatwg-fetch "^3.0.0"
+
+"@hiveio/hivescript@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@hiveio/hivescript/-/hivescript-1.2.0.tgz#fe05d189e5bba89aa191b5320610027115c6eb04"
+  integrity sha512-X4YFE+duQlgr9WqaZqsVUCldBZ3RJph89CakQk/kNF6MjsOHG8QUMbFmbL2NB1Y/DzeM5TvnDQybBd2wyGoiWA==
 
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"
@@ -3310,10 +3311,15 @@ core-js-compat@^3.6.2:
     browserslist "^4.8.5"
     semver "7.0.0"
 
-core-js@^2.4.0, core-js@^2.5.0:
+core-js@^2.4.0:
   version "2.6.11"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.11.tgz#38831469f9922bded8ee21c9dc46985e0399308c"
   integrity sha512-5wjnpaT/3dV+XB4borEsnAYQchn00XSgTAWKDkEqv+K8KevjbzmofK6hfJ9TZIlpj2N0xQpazy7PiRQiWHqzWg==
+
+core-js@^3.6.4:
+  version "3.6.5"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.6.5.tgz#7395dc273af37fb2e50e9bd3d9fe841285231d1a"
+  integrity sha512-vZVEEwZoIsI+vPEuoF9Iqf5H7/M3eeQqWlQnYa8FSKKePuYTf5MWnxb5SDAzCa60b3JBRS5g9b+Dq7b1y/RCrA==
 
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
@@ -3361,7 +3367,7 @@ create-hmac@^1.1.0, create-hmac@^1.1.4, create-hmac@^1.1.7:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-cross-fetch@^3.0.1:
+cross-fetch@^3.0.1, cross-fetch@^3.0.4:
   version "3.0.5"
   resolved "https://registry.yarnpkg.com/cross-fetch/-/cross-fetch-3.0.5.tgz#2739d2981892e7ab488a7ad03b92df2816e03f4c"
   integrity sha512-FFLcLtraisj5eteosnX1gf01qYDCOc4fDy0+euOt8Kn9YBY2NtXL/pCoYPavw24NIQkQqm5ZOLsGD5Zzj0gyew==
@@ -7188,7 +7194,7 @@ node-cache@^5.1.0:
   dependencies:
     clone "2.x"
 
-node-fetch@2.6.0, node-fetch@^2.1.2:
+node-fetch@2.6.0, node-fetch@^2.6.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.0.tgz#e633456386d4aa55863f676a7ab0daa8fdecb0fd"
   integrity sha512-8dG4H5ujfvFiqDmVu9fQ5bOHUC15JMjMY/Zumv26oOvvVJjM67KF8koCWIabKQ1GJIa9r2mMZscBq/TbdOcmNA==
@@ -9727,7 +9733,7 @@ scss-tokenizer@^0.2.3:
     js-base64 "^2.1.8"
     source-map "^0.4.2"
 
-secp256k1@^3.3.1:
+secp256k1@^3.8.0:
   version "3.8.0"
   resolved "https://registry.yarnpkg.com/secp256k1/-/secp256k1-3.8.0.tgz#28f59f4b01dbee9575f56a47034b7d2e3b3b352d"
   integrity sha512-k5ke5avRZbtl9Tqx/SA7CbY3NF6Ro+Sj9cZxezFzuBlLDmyqPiL8hJJ+EmzD8Ig4LUDByHJ3/iPOVoRixs/hmw==
@@ -11311,10 +11317,10 @@ whatwg-encoding@^1.0.5:
   dependencies:
     iconv-lite "0.4.24"
 
-whatwg-fetch@^2.0.3:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-2.0.4.tgz#dde6a5df315f9d39991aa17621853d720b85566f"
-  integrity sha512-dcQ1GWpOD/eEQ97k66aiEVpNnapVj90/+R+SXTPYGHpYBBypfKJEQjLrvMZ7YXbKm21gXd4NcuxUTjiv1YtLng==
+whatwg-fetch@^3.0.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-3.2.0.tgz#8e134f701f0a4ab5fda82626f113e2b647fd16dc"
+  integrity sha512-SdGPoQMMnzVYThUbSrEvqTlkvC1Ux27NehaJ/GUHBfNrh5Mjg+1/uRyFMwVnxO2MrikMWvWAqUGgQOfVU4hT7w==
 
 whatwg-mimetype@^2.3.0:
   version "2.3.0"

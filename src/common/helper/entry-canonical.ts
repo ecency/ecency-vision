@@ -1,6 +1,6 @@
 import { Entry } from "../store/entries/types";
 
-import apps from "@hivechain/hivescript/apps.json";
+import apps from "@hiveio/hivescript/apps.json";
 
 import defaults from "../../common/constants/defaults.json";
 

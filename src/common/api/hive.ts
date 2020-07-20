@@ -1,4 +1,4 @@
-import { Client } from "@esteemapp/dhive";
+import { Client } from "@hiveio/dhive";
 
 import { TrendingTag } from "../store/trending-tags/types";
 import { DynamicProps } from "../store/dynamic-props/types";
@@ -10,6 +10,13 @@ import SERVERS from "../constants/servers.json";
 
 export let client = new Client(SERVERS, {
   timeout: 3000,
+});
+client.database.getVersion().then((res: any) => {
+  if (res.blockchain_version !== '0.23.0') {
+    // true: eclipse rebranded rpc nodes
+    // false: default old nodes (not necessary to call for old nodes)
+    client.updateOperations(true);
+  }
 });
 
 export interface Vote {
@@ -99,14 +106,14 @@ export const getAccounts = (usernames: string[]): Promise<Account[]> => {
         created: x.created,
         reputation: x.reputation,
         json_metadata: x.json_metadata,
-        reward_steem_balance: x.reward_steem_balance,
-        reward_sbd_balance: x.reward_sbd_balance,
-        reward_vesting_steem: x.reward_vesting_steem,
+        reward_steem_balance: x.reward_steem_balance || x.reward_hive_balance,
+        reward_sbd_balance: x.reward_sbd_balance || x.reward_hbd_balance,
+        reward_vesting_steem: x.reward_vesting_steem || x.reward_vesting_hive,
         reward_vesting_balance: x.reward_vesting_balance,
         balance: x.balance,
-        sbd_balance: x.sbd_balance,
+        sbd_balance: x.sbd_balance || x.hbd_balance,
         savings_balance: x.savings_balance,
-        savings_sbd_balance: x.savings_sbd_balance,
+        savings_sbd_balance: x.savings_sbd_balance || x.savings_hbd_balance,
         next_vesting_withdrawal: x.next_vesting_withdrawal,
         vesting_shares: x.vesting_shares,
         delegated_vesting_shares: x.delegated_vesting_shares,

@@ -13,8 +13,8 @@ export interface AccountFollowStats {
 }
 
 export interface Account {
+  
   name: string;
-
   post_count?: number;
   created?: string;
   reputation?: string | number;
@@ -22,12 +22,17 @@ export interface Account {
   reward_steem_balance?: string;
   reward_sbd_balance?: string;
   reward_vesting_steem?: string;
+  reward_hbd_balance?: string;
+  reward_vesting_hive?: string;
+  reward_hive_balance?: string;
   reward_vesting_balance?: string;
   balance?: string;
   vesting_shares?: string;
   sbd_balance?: string;
+  hbd_balance?: string;
   savings_balance?: string;
   savings_sbd_balance?: string;
+  savings_hbd_balance?: string;
   next_vesting_withdrawal?: string;
   delegated_vesting_shares?: string;
   received_vesting_shares?: string;

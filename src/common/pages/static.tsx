@@ -34,7 +34,20 @@ const faqKeys = [
     'what-is-hive',
     'what-is-difference',
     'why-choose-ecency',
-    'how-ecency-works'
+    'how-ecency-works',
+    'how-to-join',
+    'how-to-signin',
+    'how-referrals-work',
+    'what-is-points',
+    'where-tokens-come',
+    'how-promotion-work',
+    'how-boosting-work',
+    'how-to-transfer',
+    'how-see-rewards',
+    'when-claim-rewards',
+    'what-is-rc',
+    'how-boost-account',
+    'what-spam-abuse',
 ]
 
 
