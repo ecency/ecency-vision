@@ -1,83 +1,65 @@
 import express from "express";
-import axios from "axios";
+import axios, {Method, AxiosRequestConfig} from "axios";
 import config from "../../config";
 import {getTokenUrl} from "../../common/helper/hive-signer";
 
-const client = axios.create({
-    baseURL: config.privateApiAddr,
-    responseType: "json",
-    headers: {
-        "Content-Type": "application/json",
-        ...config.privateApiAuth,
-    },
-});
-
-export const receivedVestingHandler = async (req: express.Request, res: express.Response) => {
-    const {username} = req.params;
-
-    let r;
-
-    try {
-        r = await client.get(`/delegatee_vesting_shares/${username}`);
-    } catch (e) {
-        res.status(500).send("Server Error");
-        return;
+const baseRequest = (url: string, method: Method, headers: any = {}, payload: any = {}): Promise<any> => {
+    const requestConf: AxiosRequestConfig = {
+        url,
+        method,
+        validateStatus: () => true,
+        responseType: "json",
+        headers: {...headers},
+        data: {...payload}
     }
 
-    return res.send(r.data);
+    return axios(requestConf).then(r => r.data);
+}
+
+const apiRequest = (endpoint: string, method: Method, extraHeaders: any = {}, payload: any = {}): Promise<any> => {
+    const url = `${config.privateApiAddr}/${endpoint}`;
+    const headers = {
+        "Content-Type": "application/json",
+        ...config.privateApiAuth,
+        ...extraHeaders
+    }
+
+    return baseRequest(url, method, headers, payload)
+}
+export const receivedVesting = async (req: express.Request, res: express.Response) => {
+    const {username} = req.params;
+
+    try {
+        return res.send(await apiRequest(`delegatee_vesting_shares/${username}`, "GET"))
+    } catch (e) {
+        return res.status(500).send("Server Error");
+    }
 };
 
 export const hsTokenRefresh = async (req: express.Request, res: express.Response) => {
     const {code} = req.body;
     if (!code) {
-        res.status(500).send("Bad Request");
+        res.status(400).send("Bad Request");
         return;
     }
-
-    let r: any;
 
     try {
-        const u = getTokenUrl(code, config.hsClientSecret);
-        r = await axios.get(u, {
-            validateStatus: (status) => {
-                return true;
-            },
-        });
+        return res.send(await baseRequest(getTokenUrl(code, config.hsClientSecret), "GET"))
     } catch (e) {
-        res.status(500).send("Server Error");
-        return;
+        return res.status(500).send("Server Error");
     }
-
-    return res.status(r.status).send(r.data);
 };
 
 
-export const createAccountHandler = async (req: express.Request, res: express.Response) => {
+export const createAccount = async (req: express.Request, res: express.Response) => {
     const {username, email, referral} = req.body;
 
-    const customClient = axios.create({
-        baseURL: config.privateApiAddr,
-        responseType: "json",
-        headers: {
-            "Content-Type": "application/json",
-            'X-Real-IP-V': req.headers['x-forwarded-for'] || '',
-            ...config.privateApiAuth,
-        },
-    });
-
-    let r;
+    const headers = {'X-Real-IP-V': req.headers['x-forwarded-for'] || ''};
+    const payload = {username, email, referral};
 
     try {
-        r = await customClient.post(`${config.privateApiAddr}/signup/account-create`, {
-            username, email, referral
-        });
-    } catch (err) {
-        if (err.response && err.response.data && err.response.data.message) {
-            return res.send(err.response.data);
-        } else {
-            return res.status(500).send("Server Error");
-        }
+        return res.send(await apiRequest(`signup/account-create`, "POST", headers, payload))
+    } catch (e) {
+        return res.status(500).send("Server Error");
     }
-
-    return res.send(r.data);
 };
