@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@esteemapp/esteem-render-helpers": "^1.4.4",
+    "@hiveio/dhive": "^0.14.1",
     "@hiveio/hivescript": "^1.2.0",
     "@types/diff-match-patch": "^1.0.32",
     "@types/numeral": "^0.0.28",
@@ -52,7 +53,6 @@
     "typeface-ibm-plex-sans": "^0.0.75"
   },
   "devDependencies": {
-    "@esteemapp/dhive": "^0.12.1",
     "@types/bytebuffer": "^5.0.41",
     "@types/cookie-parser": "^1.4.2",
     "@types/express": "^4.17.0",

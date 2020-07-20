@@ -1,4 +1,4 @@
-import { Client } from "@esteemapp/dhive";
+import { Client } from "@hiveio/dhive";
 
 import { TrendingTag } from "../store/trending-tags/types";
 import { DynamicProps } from "../store/dynamic-props/types";

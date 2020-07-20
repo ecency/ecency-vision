@@ -1,6 +1,6 @@
 const hs = require("hivesigner");
 
-import {Client as HiveClient, PrivateKey, Operation} from '@esteemapp/dhive';
+import {Client as HiveClient, PrivateKey, Operation} from '@hiveio/dhive';
 
 import SERVERS from "../constants/servers.json";
 

@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-import {PrivateKey} from "@esteemapp/dhive";
+import {PrivateKey} from "@hiveio/dhive";
 
 import {Modal, Form, Row, Col, InputGroup, FormControl, Button} from "react-bootstrap";
 
