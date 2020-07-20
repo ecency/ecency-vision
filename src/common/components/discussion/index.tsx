@@ -21,6 +21,7 @@ import {Global} from "../../store/global/types";
 import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {Discussion as DiscussionType, SortOrder} from "../../store/discussion/types";
+import {UI, ToggleType} from "../../store/ui/types";
 
 import ProfileLink from "../profile-link";
 import EntryLink from "../entry-link";
@@ -80,6 +81,7 @@ interface ItemProps {
     activeUser: ActiveUser | null;
     discussion: DiscussionType;
     entry: Entry;
+    ui: UI;
     addAccount: (data: Account) => void;
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data: Account) => void;
@@ -87,6 +89,7 @@ interface ItemProps {
     updateReply: (reply: Entry) => void;
     addReply: (reply: Entry) => void;
     deleteReply: (reply: Entry) => void;
+    toggleUIProp: (what: ToggleType) => void;
 }
 
 interface ItemState {
@@ -359,6 +362,7 @@ interface ListProps {
     activeUser: ActiveUser | null;
     discussion: DiscussionType;
     parent: Entry;
+    ui: UI;
     addAccount: (data: Account) => void;
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data: Account) => void;
@@ -366,6 +370,7 @@ interface ListProps {
     updateReply: (reply: Entry) => void;
     addReply: (reply: Entry) => void;
     deleteReply: (reply: Entry) => void;
+    toggleUIProp: (what: ToggleType) => void;
 }
 
 export class List extends Component<ListProps> {
@@ -401,6 +406,7 @@ interface Props {
     activeUser: ActiveUser | null;
     parent: Entry;
     discussion: DiscussionType;
+    ui: UI;
     addAccount: (data: Account) => void;
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data: Account) => void;
@@ -411,6 +417,7 @@ interface Props {
     updateReply: (reply: Entry) => void;
     addReply: (reply: Entry) => void;
     deleteReply: (reply: Entry) => void;
+    toggleUIProp: (what: ToggleType) => void;
 }
 
 
