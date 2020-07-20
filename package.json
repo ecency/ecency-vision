@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@esteemapp/esteem-render-helpers": "^1.4.4",
-    "@hivechain/hivescript": "^1.1.8",
+    "@hiveio/hivescript": "^1.2.0",
     "@types/diff-match-patch": "^1.0.32",
     "@types/numeral": "^0.0.28",
     "@types/react-bootstrap-table-next": "^4.0.4",
