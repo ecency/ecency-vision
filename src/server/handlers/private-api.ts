@@ -1,9 +1,11 @@
 import express from "express";
-import axios, {Method, AxiosRequestConfig} from "axios";
-import config from "../../config";
-import {getTokenUrl} from "../../common/helper/hive-signer";
+import axios, {Method, AxiosRequestConfig, AxiosResponse} from "axios";
 
-const baseRequest = (url: string, method: Method, headers: any = {}, payload: any = {}): Promise<any> => {
+import config from "../../config";
+
+import {getTokenUrl, decodeToken} from "../../common/helper/hive-signer";
+
+const baseRequest = (url: string, method: Method, headers: any = {}, payload: any = {}): Promise<AxiosResponse> => {
     const requestConf: AxiosRequestConfig = {
         url,
         method,
@@ -13,10 +15,10 @@ const baseRequest = (url: string, method: Method, headers: any = {}, payload: an
         data: {...payload}
     }
 
-    return axios(requestConf).then(r => r.data);
+    return axios(requestConf)
 }
 
-const apiRequest = (endpoint: string, method: Method, extraHeaders: any = {}, payload: any = {}): Promise<any> => {
+const apiRequest = (endpoint: string, method: Method, extraHeaders: any = {}, payload: any = {}): Promise<AxiosResponse> => {
     const url = `${config.privateApiAddr}/${endpoint}`;
     const headers = {
         "Content-Type": "application/json",
@@ -26,14 +28,19 @@ const apiRequest = (endpoint: string, method: Method, extraHeaders: any = {}, pa
 
     return baseRequest(url, method, headers, payload)
 }
+
+const pipe = (promise: Promise<AxiosResponse>, res: express.Response) => {
+    promise.then(r => {
+        res.status(r.status).send(r.data);
+    }).catch(() => {
+        res.status(500).send("Server Error");
+    });
+}
+
 export const receivedVesting = async (req: express.Request, res: express.Response) => {
     const {username} = req.params;
 
-    try {
-        return res.send(await apiRequest(`delegatee_vesting_shares/${username}`, "GET"))
-    } catch (e) {
-        return res.status(500).send("Server Error");
-    }
+    pipe(apiRequest(`delegatee_vesting_shares/${username}`, "GET"), res);
 };
 
 export const hsTokenRefresh = async (req: express.Request, res: express.Response) => {
@@ -43,11 +50,7 @@ export const hsTokenRefresh = async (req: express.Request, res: express.Response
         return;
     }
 
-    try {
-        return res.send(await baseRequest(getTokenUrl(code, config.hsClientSecret), "GET"))
-    } catch (e) {
-        return res.status(500).send("Server Error");
-    }
+    pipe(baseRequest(getTokenUrl(code, config.hsClientSecret), "GET"), res);
 };
 
 
@@ -57,9 +60,24 @@ export const createAccount = async (req: express.Request, res: express.Response)
     const headers = {'X-Real-IP-V': req.headers['x-forwarded-for'] || ''};
     const payload = {username, email, referral};
 
-    try {
-        return res.send(await apiRequest(`signup/account-create`, "POST", headers, payload))
-    } catch (e) {
-        return res.status(500).send("Server Error");
-    }
+    pipe(apiRequest(`signup/account-create`, "POST", headers, payload), res);
 };
+
+export const usrActivity = async (req: express.Request, res: express.Response) => {
+    const {code, ty, bl, tx} = req.body;
+    const dCode = decodeToken(code);
+
+    if (!dCode || dCode.signed_message.app !== "ecency.app") {
+        res.status(400).send("Bad Request");
+        return;
+    }
+
+    const [us,] = dCode['authors'];
+
+    const payload = {us, ty};
+
+    if (bl) payload['bl'] = bl;
+    if (tx) payload['tx'] = tx;
+
+    pipe(apiRequest(`usr-activity`, "POST", {}, payload), res);
+}
