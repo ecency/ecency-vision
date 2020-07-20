@@ -34,8 +34,10 @@ export interface CommentBenefactor extends BaseTransaction {
 export interface ClaimRewardBalance extends BaseTransaction {
   type: "claim_reward_balance";
   account: string;
-  reward_sbd: string;
-  reward_steem: string;
+  reward_sbd?: string;
+  reward_hbd?: string;
+  reward_steem?: string;
+  reward_hive?: string;
   reward_vests: string;
 }
 

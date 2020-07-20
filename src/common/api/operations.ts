@@ -25,7 +25,8 @@ export interface CommentOptions {
     author: string;
     permlink: string;
     max_accepted_payout: string;
-    percent_steem_dollars: number;
+    percent_steem_dollars?: number;
+    percent_hbd?: number;
     extensions: Array<[0, { beneficiaries: BeneficiaryRoute[] }]>;
 }
 

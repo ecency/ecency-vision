@@ -39,7 +39,7 @@ export class EntryPayoutDetail extends Component<Props> {
         const curatorPayout = parseAsset(entry.curator_payout_value).amount;
 
         const HBD_PRINT_RATE_MAX = 10000;
-        const percentHiveDollars = (entry.percent_hbd || entry.percent_steem_dollars) / 20000;
+        const percentHiveDollars = (entry.percent_hbd || entry.percent_steem_dollars || 10000) / 20000;
         const pendingPayoutHbd = pendingPayout * (percentHiveDollars);
         const pricePerHive = base / quote;
         const pendingPayoutHp = (pendingPayout - pendingPayoutHbd) / pricePerHive;
