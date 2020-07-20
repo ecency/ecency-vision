@@ -1,6 +1,10 @@
 const hs = require("hivesigner");
 
-import {Client as HiveClient, PrivateKey, Operation} from '@esteemapp/dhive';
+import {Client as HiveClient, PrivateKey, Operation, TransactionConfirmation} from '@esteemapp/dhive';
+
+import {usrActivity} from "./private";
+
+import {User} from "../store/users/types";
 
 import SERVERS from "../constants/servers.json";
 
@@ -31,20 +35,23 @@ export interface CommentOptions {
 
 export type RewardType = "default" | "sp" | "dp";
 
-import {User} from "../store/users/types";
-
 export const formatError = (err: any) => {
     if (err.error_description) {
         return err.error_description.substring(0, 80);
     }
 };
 
-export const reblog = (user: User, author: string, permlink: string): Promise<any> => {
+export const reblog = (user: User, author: string, permlink: string): Promise<TransactionConfirmation> => {
     const client = new hs.Client({
         accessToken: user.accessToken,
     });
 
-    return client.reblog(user.username, author, permlink);
+    return client.reblog(user.username, author, permlink)
+        .then((r: any) => r.result)
+        .then((r: TransactionConfirmation) => {
+            usrActivity(user, 130, r.block_num, r.id).then();
+            return r;
+        })
 };
 
 export const comment = (
@@ -56,7 +63,7 @@ export const comment = (
     body: string,
     jsonMetadata: MetaData,
     options: CommentOptions | null
-): Promise<any> => {
+): Promise<TransactionConfirmation> => {
     const {username: author} = user;
 
     const client = new hs.Client({
@@ -80,10 +87,16 @@ export const comment = (
         opArray.push(e);
     }
 
-    return client.broadcast(opArray);
+    return client.broadcast(opArray)
+        .then((r: any) => r.result)
+        .then((r: TransactionConfirmation) => {
+            const t = title ? 100 : 110;
+            usrActivity(user, t, r.block_num, r.id).then();
+            return r;
+        })
 };
 
-export const deleteComment = (user: User, author: string, permlink: string): Promise<any> => {
+export const deleteComment = (user: User, author: string, permlink: string): Promise<TransactionConfirmation> => {
     const client = new hs.Client({
         accessToken: user.accessToken,
     });
@@ -95,50 +108,56 @@ export const deleteComment = (user: User, author: string, permlink: string): Pro
 
     const opArray = [["delete_comment", params]];
 
-    return client.broadcast(opArray);
+    return client.broadcast(opArray).then((r: any) => r.result)
 };
 
-export const vote = (user: User, author: string, permlink: string, weight: number): Promise<any> => {
+
+export const vote = (user: User, author: string, permlink: string, weight: number): Promise<TransactionConfirmation> => {
     const client = new hs.Client({
         accessToken: user.accessToken,
     });
 
     const voter = user.username;
 
-    return client.vote(voter, author, permlink, weight);
+    return client.vote(voter, author, permlink, weight)
+        .then((r: any) => r.result)
+        .then((r: TransactionConfirmation) => {
+            usrActivity(user, 120, r.block_num, r.id).then();
+            return r;
+        })
 };
 
-export const follow = (user: User, following: string): Promise<any> => {
+export const follow = (user: User, following: string): Promise<TransactionConfirmation> => {
     const client = new hs.Client({
         accessToken: user.accessToken,
     });
 
     const follower = user.username;
 
-    return client.follow(follower, following);
+    return client.follow(follower, following).then((r: any) => r.result);
 }
 
-export const unFollow = (user: User, following: string): Promise<any> => {
+export const unFollow = (user: User, following: string): Promise<TransactionConfirmation> => {
     const client = new hs.Client({
         accessToken: user.accessToken,
     });
 
     const follower = user.username;
 
-    return client.unfollow(follower, following);
+    return client.unfollow(follower, following).then((r: any) => r.result);
 }
 
-export const ignore = (user: User, following: string): Promise<any> => {
+export const ignore = (user: User, following: string): Promise<TransactionConfirmation> => {
     const client = new hs.Client({
         accessToken: user.accessToken,
     });
 
     const follower = user.username;
 
-    return client.ignore(follower, following);
+    return client.ignore(follower, following).then((r: any) => r.result);
 }
 
-export const claimRewardBalance = (user: User, rewardHive: string, rewardHbd: string, rewardVests: string): Promise<any> => {
+export const claimRewardBalance = (user: User, rewardHive: string, rewardHbd: string, rewardVests: string): Promise<TransactionConfirmation> => {
     const client = new hs.Client({
         accessToken: user.accessToken,
     });
@@ -148,10 +167,10 @@ export const claimRewardBalance = (user: User, rewardHive: string, rewardHbd: st
         rewardHive,
         rewardHbd,
         rewardVests
-    );
+    ).then((r: any) => r.result);
 }
 
-export const transfer = (user: User, key: PrivateKey, to: string, amount: string, memo: string): Promise<any> => {
+export const transfer = (user: User, key: PrivateKey, to: string, amount: string, memo: string): Promise<TransactionConfirmation> => {
     const hClient = new HiveClient(SERVERS);
 
     const from = user.username;
@@ -180,7 +199,7 @@ export const transferHot = (user: User, to: string, amount: string, memo: string
     });
 }
 
-export const transferToSavings = (user: User, key: PrivateKey, to: string, amount: string, memo: string) => {
+export const transferToSavings = (user: User, key: PrivateKey, to: string, amount: string, memo: string): Promise<TransactionConfirmation>  => {
     const hClient = new HiveClient(SERVERS);
 
     const from = user.username;
@@ -213,7 +232,7 @@ export const transferToSavingsHot = (user: User, to: string, amount: string, mem
     });
 }
 
-export const convert = (user: User, key: PrivateKey, amount: string) => {
+export const convert = (user: User, key: PrivateKey, amount: string): Promise<TransactionConfirmation>  => {
     const hClient = new HiveClient(SERVERS);
 
     const owner = user.username;
@@ -244,7 +263,7 @@ export const convertHot = (user: User, amount: string) => {
     });
 }
 
-export const transferFromSavings = (user: User, key: PrivateKey, to: string, amount: string, memo: string) => {
+export const transferFromSavings = (user: User, key: PrivateKey, to: string, amount: string, memo: string): Promise<TransactionConfirmation>  => {
     const hClient = new HiveClient(SERVERS);
 
     const from = user.username;
@@ -279,7 +298,7 @@ export const transferFromSavingsHot = (user: User, to: string, amount: string, m
     });
 }
 
-export const transferToVesting = (user: User, key: PrivateKey, to: string, amount: string) => {
+export const transferToVesting = (user: User, key: PrivateKey, to: string, amount: string): Promise<TransactionConfirmation>  => {
     const hClient = new HiveClient(SERVERS);
 
     const from = user.username;

@@ -1,5 +1,7 @@
 import axios from "axios";
 
+import {User} from "../store/users/types";
+
 export interface ReceivedVestingShare {
     delegatee: string;
     delegator: string;
@@ -28,3 +30,18 @@ export const signUp = (username: string, email: string, referral: string): Promi
         .then(resp => {
             return resp;
         });
+
+
+export const usrActivity = (user: User, ty: number, bl: string | number = '', tx: string | number = '') => {
+    const params: {
+        code: string;
+        ty: number;
+        bl?: string | number;
+        tx?: string | number;
+    } = {code: user.accessToken, ty};
+
+    if (bl) params.bl = bl;
+    if (tx) params.tx = tx;
+
+    return axios.post(`/api/usr-activity`, params);
+};
