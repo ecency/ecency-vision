@@ -2,6 +2,8 @@ import getSlug from "speakingurl";
 
 import { diff_match_patch } from "diff-match-patch";
 
+import config from "../../config";
+
 import { MetaData, CommentOptions, RewardType } from "../api/operations";
 
 const permlinkRnd = () => (Math.random() + 1).toString(16).substring(2);
@@ -80,14 +82,14 @@ export const makeJsonMetaData = (meta: MetaData, tags: string[], appVer: string)
     tags,
     app: `ecency/${appVer}-vision`,
     format: "markdown+html",
-    community: "ecency.app",
+    community: config.masterAccount,
   });
 
 export const makeJsonMetadataReply = (tags: string[], appVer: string) => ({
     tags,
     app: `ecency/${appVer}-vision`,
     format: 'markdown+html',
-    community: "ecency.app",
+    community: config.masterAccount,
 });
 
 export const makeCommentOptions = (author: string, permlink: string, rewardType?: RewardType): CommentOptions => {

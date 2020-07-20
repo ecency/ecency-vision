@@ -1,5 +1,7 @@
+import config from "../../config";
+
 export const getAuthUrl = () => {
-    const app = "ecency.app";
+    const app = config.masterAccount;
     const scope = "vote,comment,delete_comment,comment_options,custom_json,claim_reward_balance,offline";
     const redir = `${window.location.origin}/auth`;
 
