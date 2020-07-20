@@ -11,6 +11,7 @@ import {Community} from "../../store/community/types";
 import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {Reblog} from "../../store/reblogs/types";
+import {UI, ToggleType} from "../../store/ui/types";
 
 import EntryListItem from "../entry-list-item/index";
 
@@ -25,12 +26,14 @@ interface Props {
     users: User[];
     activeUser: ActiveUser | null;
     reblogs: Reblog[];
+    ui: UI;
     addAccount: (data: Account) => void;
     updateEntry: (entry: Entry) => void;
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data: Account) => void;
     deleteUser: (username: string) => void;
     addReblog: (account: string, author: string, permlink: string) => void;
+    toggleUIProp: (what: ToggleType) => void;
 }
 
 export default class EntryListContent extends Component<Props> {

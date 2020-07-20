@@ -10,6 +10,7 @@ import {Entry} from "../../store/entries/types";
 import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
+import {UI, ToggleType} from "../../store/ui/types";
 
 import FormattedCurrency from "../formatted-currency";
 import LoginRequired from "../login-required";
@@ -213,9 +214,11 @@ interface Props {
     entry: Entry;
     users: User[];
     activeUser: ActiveUser | null;
+    ui: UI;
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data: Account) => void;
     deleteUser: (username: string) => void;
+    toggleUIProp: (what: ToggleType) => void;
     afterVote: () => void;
 }
 

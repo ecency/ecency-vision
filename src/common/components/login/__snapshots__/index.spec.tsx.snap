@@ -10,6 +10,7 @@ Array [
       href="https://hivesigner.com/oauth2/authorize?client_id=ecency.app&redirect_uri=http%3A%2F%2Flocalhost%2Fauth&response_type=code&scope=vote%2Ccomment%2Cdelete_comment%2Ccomment_options%2Ccustom_json%2Cclaim_reward_balance%2Coffline"
     >
       <img
+        alt="hivesigner"
         className="hs-logo"
         src="hive-signer.svg"
       />
@@ -22,6 +23,7 @@ Array [
      
     <a
       href="#"
+      onClick={[Function]}
     >
       Sign up now!
     </a>
@@ -139,6 +141,7 @@ Array [
       href="https://hivesigner.com/oauth2/authorize?client_id=ecency.app&redirect_uri=http%3A%2F%2Flocalhost%2Fauth&response_type=code&scope=vote%2Ccomment%2Cdelete_comment%2Ccomment_options%2Ccustom_json%2Cclaim_reward_balance%2Coffline"
     >
       <img
+        alt="hivesigner"
         className="hs-logo"
         src="hive-signer.svg"
       />
@@ -151,6 +154,7 @@ Array [
      
     <a
       href="#"
+      onClick={[Function]}
     >
       Sign up now!
     </a>
@@ -271,6 +275,7 @@ Array [
       href="https://hivesigner.com/oauth2/authorize?client_id=ecency.app&redirect_uri=http%3A%2F%2Flocalhost%2Fauth&response_type=code&scope=vote%2Ccomment%2Cdelete_comment%2Ccomment_options%2Ccustom_json%2Cclaim_reward_balance%2Coffline"
     >
       <img
+        alt="hivesigner"
         className="hs-logo"
         src="hive-signer.svg"
       />
@@ -278,14 +283,5 @@ Array [
       Login with hivesigner
     </a>
   </div>,
-  <p>
-    Don't have an account?
-     
-    <a
-      href="#"
-    >
-      Sign up now!
-    </a>
-  </p>,
 ]
 `;

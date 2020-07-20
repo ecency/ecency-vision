@@ -4,7 +4,7 @@ import EntryVoteBtn, {VoteDialog} from "./index";
 
 import renderer from "react-test-renderer";
 
-import {globalInstance, dynamicPropsIntance1, entryInstance1} from "../../helper/test-helper";
+import {globalInstance, dynamicPropsIntance1, entryInstance1, UiInstance} from "../../helper/test-helper";
 
 import {Account} from "../../store/accounts/types";
 
@@ -73,6 +73,7 @@ describe('(2) Btn - No active user', () => {
         entry: entryInstance1,
         users: [],
         activeUser: null,
+        ui: UiInstance,
         setActiveUser: () => {
         },
         updateActiveUser: () => {
@@ -80,6 +81,9 @@ describe('(2) Btn - No active user', () => {
         deleteUser: () => {
         },
         afterVote: () => {
+        },
+        toggleUIProp: () => {
+
         }
     };
 
@@ -98,6 +102,7 @@ describe('(3) Btn - Up voted', () => {
         entry: entryInstance1,
         users: [{username: 'user1', accessToken: 's', refreshToken: 'b', expiresIn: 1}],
         activeUser: {username: "user1", data: {name: "user1"}},
+        ui: UiInstance,
         setActiveUser: () => {
         },
         updateActiveUser: () => {
@@ -105,6 +110,9 @@ describe('(3) Btn - Up voted', () => {
         deleteUser: () => {
         },
         afterVote: () => {
+        },
+        toggleUIProp: () => {
+
         }
     };
 

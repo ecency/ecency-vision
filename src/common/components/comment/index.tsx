@@ -5,6 +5,7 @@ import {Form, FormControl, Button, Spinner} from "react-bootstrap";
 import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {Account} from "../../store/accounts/types";
+import {UI, ToggleType} from "../../store/ui/types";
 
 import EditorToolbar from "../editor-toolbar";
 import LoginRequired from "../login-required";
@@ -50,12 +51,14 @@ interface Props {
     submitText: string;
     users: User[];
     activeUser: ActiveUser | null;
+    ui: UI;
     inProgress?: boolean;
     cancellable?: boolean;
     autoFocus?: boolean;
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data: Account) => void;
     deleteUser: (username: string) => void;
+    toggleUIProp: (what: ToggleType) => void;
     onSubmit: (text: string) => void;
     onChange?: (text: string) => void;
     onCancel?: () => void

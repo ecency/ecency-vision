@@ -1,23 +1,25 @@
-import React, { Component } from "react";
-import { AnyAction, bindActionCreators, Dispatch } from "redux";
-import { connect } from "react-redux";
-import { History, Location } from "history";
+import React, {Component} from "react";
+import {AnyAction, bindActionCreators, Dispatch} from "redux";
+import {connect} from "react-redux";
+import {History, Location} from "history";
 
-import { FormControl } from "react-bootstrap";
+import {FormControl} from "react-bootstrap";
 
-import { AppState } from "../store";
-import { Global } from "../store/global/types";
-import { Account } from "../store/accounts/types";
-import { Community } from "../store/community/types";
-import { TrendingTags } from "../store/trending-tags/types";
-import { User } from "../store/users/types";
-import { ActiveUser } from "../store/active-user/types";
+import {AppState} from "../store";
+import {Global} from "../store/global/types";
+import {Account} from "../store/accounts/types";
+import {Community} from "../store/community/types";
+import {TrendingTags} from "../store/trending-tags/types";
+import {User} from "../store/users/types";
+import {ActiveUser} from "../store/active-user/types";
+import {UI, ToggleType} from "../store/ui/types";
 
-import { hideIntro, toggleTheme } from "../store/global/index";
-import { addAccount } from "../store/accounts/index";
-import { fetchTrendingTags } from "../store/trending-tags";
-import { setActiveUser, updateActiveUser } from "../store/active-user";
-import { deleteUser } from "../store/users";
+import {hideIntro, toggleTheme} from "../store/global";
+import {addAccount} from "../store/accounts";
+import {fetchTrendingTags} from "../store/trending-tags";
+import {setActiveUser, updateActiveUser} from "../store/active-user";
+import {deleteUser} from "../store/users";
+import {toggleUIProp} from "../store/ui";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
@@ -26,11 +28,9 @@ import LinearProgress from "../components/linear-progress";
 import CommunityListItem from "../components/community-list-item";
 import SearchBox from "../components/search-box";
 
-import { _t } from "../i18n";
+import {_t} from "../i18n";
 
-import _c from "../util/fix-class-names";
-
-import { getCommunities } from "../api/bridge";
+import {getCommunities} from "../api/bridge";
 
 interface Props {
   history: History;
@@ -39,12 +39,14 @@ interface Props {
   trendingTags: TrendingTags;
   users: User[];
   activeUser: ActiveUser | null;
+  ui: UI;
   toggleTheme: () => void;
   addAccount: (data: Account) => void;
   fetchTrendingTags: () => void;
   setActiveUser: (username: string | null) => void;
   updateActiveUser: (data: Account) => void;
   deleteUser: (username: string) => void;
+  toggleUIProp: (what: ToggleType) => void;
 }
 
 interface State {
@@ -164,6 +166,7 @@ const mapStateToProps = (state: AppState) => ({
   trendingTags: state.trendingTags,
   users: state.users,
   activeUser: state.activeUser,
+  ui: state.ui
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
@@ -176,6 +179,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       setActiveUser,
       updateActiveUser,
       deleteUser,
+      toggleUIProp
     },
     dispatch
   );

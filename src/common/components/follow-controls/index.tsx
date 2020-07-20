@@ -5,6 +5,7 @@ import {Button} from "react-bootstrap";
 import {Account} from "../../store/accounts/types";
 import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
+import {UI, ToggleType} from "../../store/ui/types";
 
 import LoginRequired from "../login-required";
 import {error} from "../feedback";
@@ -18,10 +19,12 @@ import {_t} from "../../i18n";
 interface Props {
     users: User[];
     activeUser: ActiveUser | null;
+    ui: UI;
     targetUsername: string;
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data: Account) => void;
     deleteUser: (username: string) => void;
+    toggleUIProp: (what: ToggleType) => void;
 }
 
 interface State {

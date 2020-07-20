@@ -1,13 +1,10 @@
 import React, {Component} from "react";
 
-import {Button} from "react-bootstrap";
-
-import DownloadTrigger from "../download-trigger";
-
 import {Global} from "../../store/global/types";
 import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {Account} from "../../store/accounts/types";
+import {UI, ToggleType} from "../../store/ui/types";
 
 import defaults from "../../constants/defaults.json";
 
@@ -29,9 +26,11 @@ interface Props {
     account: Account;
     users: User[];
     activeUser: ActiveUser | null;
+    ui: UI;
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data: Account) => void;
     deleteUser: (username: string) => void;
+    toggleUIProp: (what: ToggleType) => void;
 }
 
 export default class ProfileCover extends Component<Props> {

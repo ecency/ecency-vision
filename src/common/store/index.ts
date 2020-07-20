@@ -13,6 +13,7 @@ import users from "./users";
 import activeUser from "./active-user";
 import reblogs from "./reblogs";
 import discussion from "./discussion";
+import ui from "./ui";
 
 let reducers = {
     global,
@@ -25,7 +26,8 @@ let reducers = {
     users,
     activeUser,
     reblogs,
-    discussion
+    discussion,
+    ui
 };
 
 export let history: History | undefined;

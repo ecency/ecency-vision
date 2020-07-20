@@ -1,28 +1,30 @@
-import React, { Component } from "react";
-import { AnyAction, bindActionCreators, Dispatch } from "redux";
-import { connect } from "react-redux";
-import { History, Location } from "history";
+import React, {Component} from "react";
+import {AnyAction, bindActionCreators, Dispatch} from "redux";
+import {connect} from "react-redux";
+import {History, Location} from "history";
 
-import { AppState } from "../store";
-import { EntryFilter, ListStyle, Global } from "../store/global/types";
-import { Account } from "../store/accounts/types";
-import { DynamicProps } from "../store/dynamic-props/types";
-import { TrendingTags } from "../store/trending-tags/types";
-import { Entries, Entry } from "../store/entries/types";
-import { Community } from "../store/community/types";
-import { User } from "../store/users/types";
-import { ActiveUser } from "../store/active-user/types";
-import { Reblog } from "../store/reblogs/types";
+import {AppState} from "../store";
+import {EntryFilter, ListStyle, Global} from "../store/global/types";
+import {Account} from "../store/accounts/types";
+import {DynamicProps} from "../store/dynamic-props/types";
+import {TrendingTags} from "../store/trending-tags/types";
+import {Entries, Entry} from "../store/entries/types";
+import {Community} from "../store/community/types";
+import {User} from "../store/users/types";
+import {ActiveUser} from "../store/active-user/types";
+import {Reblog} from "../store/reblogs/types";
+import {UI, ToggleType} from "../store/ui/types";
 
-import { hideIntro, toggleListStyle, toggleTheme } from "../store/global";
-import { makeGroupKey, fetchEntries } from "../store/entries";
-import { fetchCommunity, resetCommunity } from "../store/community";
-import { fetchTrendingTags } from "../store/trending-tags";
-import { addAccount } from "../store/accounts";
-import { updateEntry } from "../store/entries/index";
-import { setActiveUser, updateActiveUser } from "../store/active-user";
-import { deleteUser } from "../store/users";
-import { addReblog } from "../store/reblogs";
+import {hideIntro, toggleListStyle, toggleTheme} from "../store/global";
+import {makeGroupKey, fetchEntries} from "../store/entries";
+import {fetchCommunity, resetCommunity} from "../store/community";
+import {fetchTrendingTags} from "../store/trending-tags";
+import {addAccount} from "../store/accounts";
+import {updateEntry} from "../store/entries";
+import {setActiveUser, updateActiveUser} from "../store/active-user";
+import {deleteUser} from "../store/users";
+import {addReblog} from "../store/reblogs";
+import {toggleUIProp} from "../store/ui";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme";
@@ -42,6 +44,7 @@ import CommunityCardSm from "../components/community-card-sm";
 import { _t } from "../i18n";
 
 import _c from "../util/fix-class-names";
+
 import capitalize from "../util/capitalize";
 
 import defaults from "../constants/defaults.json";
@@ -57,6 +60,7 @@ interface Props {
   users: User[];
   activeUser: ActiveUser | null;
   reblogs: Reblog[];
+  ui: UI;
   toggleTheme: () => void;
   hideIntro: () => void;
   toggleListStyle: () => void;
@@ -70,6 +74,7 @@ interface Props {
   updateActiveUser: (data: Account) => void;
   deleteUser: (username: string) => void;
   addReblog: (account: string, author: string, permlink: string) => void;
+  toggleUIProp: (what: ToggleType) => void;
 }
 
 class EntryIndexPage extends Component<Props> {
@@ -227,6 +232,7 @@ const mapStateToProps = (state: AppState) => ({
   users: state.users,
   activeUser: state.activeUser,
   reblogs: state.reblogs,
+  ui: state.ui
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
@@ -245,6 +251,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       updateActiveUser,
       deleteUser,
       addReblog,
+      toggleUIProp
     },
     dispatch
   );

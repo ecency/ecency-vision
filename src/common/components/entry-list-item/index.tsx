@@ -13,6 +13,7 @@ import {Community} from "../../store/community/types";
 import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {Reblog} from "../../store/reblogs/types";
+import {UI, ToggleType} from "../../store/ui/types";
 
 import defaults from "../../constants/defaults.json";
 
@@ -41,7 +42,7 @@ import appName from "../../helper/app-name";
 import * as hiveApi from "../../api/hive";
 import * as bridgeApi from "../../api/bridge";
 
-import {_t} from "../../i18n/index";
+import {_t} from "../../i18n";
 
 import _c from "../../util/fix-class-names";
 
@@ -60,6 +61,7 @@ interface Props {
     activeUser: ActiveUser | null;
     reblogs: Reblog[];
     entry: Entry;
+    ui: UI;
     asAuthor: string;
     promoted: boolean;
     addAccount: (data: Account) => void;
@@ -68,6 +70,7 @@ interface Props {
     updateActiveUser: (data: Account) => void;
     deleteUser: (username: string) => void;
     addReblog: (account: string, author: string, permlink: string) => void;
+    toggleUIProp: (what: ToggleType) => void;
 }
 
 export default class EntryListItem extends Component<Props> {

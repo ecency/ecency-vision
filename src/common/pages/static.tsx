@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from "react";
+import React, {Component} from "react";
 import {AnyAction, bindActionCreators, Dispatch} from "redux";
 import {connect} from "react-redux";
 import {History, Location} from "history";
@@ -10,11 +10,13 @@ import {TrendingTags} from "../store/trending-tags/types";
 import {Account} from "../store/accounts/types";
 import {User} from "../store/users/types";
 import {ActiveUser} from "../store/active-user/types";
+import {UI, ToggleType} from "../store/ui/types";
 
 import {toggleTheme} from "../store/global";
 import {fetchTrendingTags} from "../store/trending-tags";
 import {setActiveUser, updateActiveUser} from "../store/active-user";
 import {deleteUser} from "../store/users";
+import {toggleUIProp} from "../store/ui";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
@@ -43,11 +45,13 @@ interface Props {
     trendingTags: TrendingTags;
     users: User[];
     activeUser: ActiveUser | null;
+    ui: UI;
     toggleTheme: () => void;
     fetchTrendingTags: () => void;
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data: Account) => void;
     deleteUser: (username: string) => void;
+    toggleUIProp: (what: ToggleType) => void;
 }
 
 class AboutPage extends Component<Props> {
@@ -611,6 +615,7 @@ const mapStateToProps = (state: AppState) => ({
     trendingTags: state.trendingTags,
     users: state.users,
     activeUser: state.activeUser,
+    ui: state.ui
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
@@ -620,7 +625,8 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
             fetchTrendingTags,
             setActiveUser,
             updateActiveUser,
-            deleteUser
+            deleteUser,
+            toggleUIProp
         },
         dispatch
     );

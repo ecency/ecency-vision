@@ -5,17 +5,18 @@ import {Link} from "react-router-dom";
 import {User} from "../../store/users/types";
 import {Account} from "../../store/accounts/types";
 import {ActiveUser} from "../../store/active-user/types";
+import {ToggleType} from "../../store/ui/types";
 
 import ToolTip from "../tooltip";
 import UserAvatar from "../user-avatar";
 import DropDown from "../dropdown";
-import Login from "../login";
 
 import {_t} from "../../i18n";
 
 import {creditCardSvg} from "../../img/svg";
 
 import parseAsset from "../../helper/parse-asset";
+
 
 interface Props {
     history: History;
@@ -25,25 +26,17 @@ interface Props {
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data: Account) => void;
     deleteUser: (username: string) => void;
+    toggleUIProp: (what: ToggleType) => void;
 }
 
-interface State {
-    login: boolean;
-}
-
-export default class UserNav extends Component<Props, State> {
-    state: State = {
-        login: false,
-    };
-
+export default class UserNav extends Component<Props> {
     toggleLogin = () => {
-        const {login} = this.state;
-        this.setState({login: !login});
+        const {toggleUIProp} = this.props;
+        toggleUIProp('login');
     };
 
     render() {
         const {activeUser} = this.props;
-        const {login} = this.state;
 
         let hasUnclaimedRewards = false;
         const {data: account} = activeUser;
@@ -87,7 +80,6 @@ export default class UserNav extends Component<Props, State> {
                     </ToolTip>
                     <DropDown {...{...this.props, ...dropDownConfig}} float="right" header={`@${activeUser.username}`}/>
                 </div>
-                {login && <Login {...this.props} onHide={this.toggleLogin} onLogin={this.toggleLogin}/>}
             </>
         );
     }

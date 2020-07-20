@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`1- default state 1`] = `
+Object {
+  "login": false,
+  "signUp": false,
+}
+`;
+
+exports[`2- toggleLoginAct 1`] = `
+Object {
+  "login": true,
+  "signUp": false,
+}
+`;
+
+exports[`3- toggleSignUpAct 1`] = `
+Object {
+  "login": true,
+  "signUp": true,
+}
+`;
+
+exports[`4- toggleLoginAct 1`] = `
+Object {
+  "login": false,
+  "signUp": true,
+}
+`;

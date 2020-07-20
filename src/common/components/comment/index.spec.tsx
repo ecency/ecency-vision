@@ -1,13 +1,26 @@
 import React from "react";
 
 import Comment from "./index";
+
+import {UiInstance} from "../../helper/test-helper";
+
 import renderer from "react-test-renderer";
+
+import emojiData from "../../../../public/emoji.json";
+
+jest.mock("../../api/misc", () => ({
+    getEmojiData: () =>
+        new Promise((resolve) => {
+            resolve(emojiData);
+        }),
+}));
 
 const defProps = {
     defText: '',
     submitText: 'Reply',
     users: [],
     activeUser: null,
+    ui: UiInstance,
     setActiveUser: () => {
     },
     updateActiveUser: () => {
@@ -15,6 +28,9 @@ const defProps = {
     deleteUser: () => {
     },
     onSubmit: () => {
+
+    },
+    toggleUIProp: () => {
 
     }
 };

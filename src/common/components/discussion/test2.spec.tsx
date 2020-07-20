@@ -3,6 +3,7 @@ import React from "react";
 import Discussion from "./index";
 
 import {Discussion as DiscussionType, SortOrder} from '../../store/discussion/types'
+import {UiInstance} from "../../helper/test-helper";
 
 import renderer from "react-test-renderer";
 
@@ -27,6 +28,7 @@ const props = {
     activeUser: null,
     parent: {...parent, children: 0},
     discussion,
+    ui: UiInstance,
     addAccount: () => {
     },
     setActiveUser: () => {
@@ -48,6 +50,9 @@ const props = {
 
     },
     deleteReply: () => {
+
+    },
+    toggleUIProp: () => {
 
     }
 };

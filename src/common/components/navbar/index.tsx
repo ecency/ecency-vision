@@ -8,17 +8,21 @@ import {Link} from "react-router-dom";
 
 import isEqual from "react-fast-compare";
 
+import queryString from "query-string";
+
 import {Global, Theme} from "../../store/global/types";
 import {TrendingTags} from "../../store/trending-tags/types";
 import {Account} from "../../store/accounts/types";
 import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
+import {UI, ToggleType} from "../../store/ui/types";
 
 import ToolTip from "../tooltip";
 import DownloadTrigger from "../download-trigger";
 import Search from "../search";
-import LoginRequired from "../login-required";
+import Login from "../login";
 import UserNav from "../user-nav";
+import SignUp from "../sign-up";
 
 import {_t} from "../../i18n";
 
@@ -31,21 +35,32 @@ interface Props {
     trendingTags: TrendingTags;
     users: User[];
     activeUser: ActiveUser | null;
+    ui: UI;
     fetchTrendingTags: () => void;
     toggleTheme: () => void;
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data: Account) => void;
     deleteUser: (username: string) => void;
+    toggleUIProp: (what: ToggleType) => void;
 }
 
 export default class NavBar extends Component<Props> {
+    componentDidMount() {
+        const {location, toggleUIProp} = this.props;
+        const qs = queryString.parse(location.search);
+        if (qs.referral) {
+            toggleUIProp('signUp');
+        }
+    }
+
     shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
         return (
             !isEqual(this.props.global, nextProps.global) ||
             !isEqual(this.props.trendingTags, nextProps.trendingTags) ||
             !isEqual(this.props.users, nextProps.users) ||
             !isEqual(this.props.activeUser?.username, nextProps.activeUser?.username) ||
-            !isEqual(this.props.activeUser, nextProps.activeUser)
+            !isEqual(this.props.activeUser, nextProps.activeUser) ||
+            !isEqual(this.props.ui, nextProps.ui)
         );
     }
 
@@ -54,7 +69,7 @@ export default class NavBar extends Component<Props> {
     };
 
     render() {
-        const {global, activeUser} = this.props;
+        const {global, activeUser, ui} = this.props;
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
         return (
             <div className="nav-bar">
@@ -93,10 +108,15 @@ export default class NavBar extends Component<Props> {
 
                     {!activeUser && (
                         <div className="login-required">
-                            <LoginRequired {...this.props}>
-                                <Button variant="outline-primary">{_t("g.login")}</Button>
-                            </LoginRequired>
-                            <Button variant="primary">{_t("g.signup")}</Button>
+                            <Button variant="outline-primary" onClick={() => {
+                                const {toggleUIProp} = this.props;
+                                toggleUIProp('login');
+                            }}>{_t("g.login")}</Button>
+
+                            <Button variant="primary" onClick={() => {
+                                const {toggleUIProp} = this.props;
+                                toggleUIProp('signUp');
+                            }}>{_t("g.signup")}</Button>
                         </div>
                     )}
 
@@ -110,6 +130,8 @@ export default class NavBar extends Component<Props> {
 
                     {activeUser && <UserNav {...this.props} activeUser={activeUser}/>}
                 </div>
+                {ui.login && <Login {...this.props} />}
+                {ui.signUp && <SignUp {...this.props} />}
             </div>
         );
     }

@@ -9,7 +9,7 @@ const defProps = {
   setActiveUser: () => {},
   updateActiveUser: () => {},
   deleteUser: () => {},
-  onLogin: () => {},
+  toggleUIProp: () => {},
 };
 
 it("(1) Default render", () => {

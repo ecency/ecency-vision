@@ -31,7 +31,7 @@ import {User} from "../store/users/types";
 import {ActiveUser} from "../store/active-user/types";
 import {Reblog} from "../store/reblogs/types";
 import {Discussion as DiscussionType, SortOrder} from "../store/discussion/types";
-import {error, success} from "../components/feedback";
+import {UI, ToggleType} from "../store/ui/types";
 
 import {toggleTheme} from "../store/global";
 import {addAccount} from "../store/accounts";
@@ -41,6 +41,7 @@ import {setActiveUser, updateActiveUser} from "../store/active-user";
 import {deleteUser} from "../store/users";
 import {addReblog} from "../store/reblogs";
 import {fetchDiscussion, sortDiscussion, resetDiscussion, updateReply, addReply, deleteReply} from "../store/discussion";
+import {toggleUIProp} from "../store/ui";
 
 import {makePath as makeEntryPath} from "../components/entry-link";
 
@@ -57,6 +58,7 @@ import EntryReblogBtn from "../components/entry-reblog-btn/index";
 import EntryEditBtn from "../components/entry-edit-btn/index";
 import EntryDeleteBtn from "../components/entry-delete-btn";
 import Comment from "../components/comment"
+import {error} from "../components/feedback";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
@@ -102,6 +104,7 @@ interface Props {
     activeUser: ActiveUser | null;
     reblogs: Reblog[];
     discussion: DiscussionType;
+    ui: UI;
     toggleTheme: () => void;
     addAccount: (data: Account) => void;
     addEntry: (entry: Entry) => void;
@@ -117,6 +120,7 @@ interface Props {
     updateReply: (reply: Entry) => void;
     addReply: (reply: Entry) => void;
     deleteReply: (reply: Entry) => void;
+    toggleUIProp: (what: ToggleType) => void;
 }
 
 interface State {
@@ -472,7 +476,8 @@ const mapStateToProps = (state: AppState) => ({
     users: state.users,
     activeUser: state.activeUser,
     reblogs: state.reblogs,
-    discussion: state.discussion
+    discussion: state.discussion,
+    ui: state.ui
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
@@ -492,7 +497,8 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
             sortDiscussion,
             updateReply,
             addReply,
-            deleteReply
+            deleteReply,
+            toggleUIProp
         },
         dispatch
     );
