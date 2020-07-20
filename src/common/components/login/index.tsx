@@ -21,6 +21,7 @@ import {getAccount} from "../../api/hive";
 import {_t} from "../../i18n";
 
 import {deleteForeverSvg} from "../../img/svg";
+import {usrActivity} from "../../api/private";
 
 const hsLogo = require("../../img/hive-signer.svg");
 
@@ -108,6 +109,7 @@ export class Login extends Component<LoginProps> {
                                                 setActiveUser(user.username);
                                                 getAccount(user.username).then((r) => {
                                                     updateActiveUser(r);
+                                                    return usrActivity(user, 20);
                                                 });
                                                 this.hide();
                                             }}
