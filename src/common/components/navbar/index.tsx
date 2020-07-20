@@ -15,6 +15,7 @@ import {TrendingTags} from "../../store/trending-tags/types";
 import {Account} from "../../store/accounts/types";
 import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
+import {UI, ToggleType} from "../../store/ui/types";
 
 import ToolTip from "../tooltip";
 import DownloadTrigger from "../download-trigger";
@@ -34,11 +35,13 @@ interface Props {
     trendingTags: TrendingTags;
     users: User[];
     activeUser: ActiveUser | null;
+    ui: UI;
     fetchTrendingTags: () => void;
     toggleTheme: () => void;
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data: Account) => void;
     deleteUser: (username: string) => void;
+    toggleUIProp: (what: ToggleType) => void;
 }
 
 interface State {
