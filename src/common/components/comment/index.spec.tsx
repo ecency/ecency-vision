@@ -1,6 +1,9 @@
 import React from "react";
 
 import Comment from "./index";
+
+import {UiInstance} from "../../helper/test-helper";
+
 import renderer from "react-test-renderer";
 
 const defProps = {
@@ -8,6 +11,7 @@ const defProps = {
     submitText: 'Reply',
     users: [],
     activeUser: null,
+    ui: UiInstance,
     setActiveUser: () => {
     },
     updateActiveUser: () => {
@@ -15,6 +19,9 @@ const defProps = {
     deleteUser: () => {
     },
     onSubmit: () => {
+
+    },
+    toggleUIProp: () => {
 
     }
 };
