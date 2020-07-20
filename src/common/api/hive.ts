@@ -11,6 +11,13 @@ import SERVERS from "../constants/servers.json";
 export let client = new Client(SERVERS, {
   timeout: 3000,
 });
+client.database.getVersion().then((res: any) => {
+  if (res.blockchain_version !== '0.23.0') {
+    // true: eclipse rebranded rpc nodes
+    // false: default old nodes (not necessary to call for old nodes)
+    client.updateOperations(true);
+  }
+});
 
 export interface Vote {
   percent: number;
