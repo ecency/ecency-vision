@@ -2,6 +2,10 @@ import React, {Component} from "react";
 
 import {Modal, Form, Button, FormControl} from "react-bootstrap";
 
+import {Location} from "history";
+
+import queryString from "query-string";
+
 import {ToggleType} from "../../store/ui/types";
 
 import {error} from "../feedback";
@@ -12,8 +16,9 @@ import {_t} from "../../i18n";
 
 import {checkSvg} from "../../img/svg";
 
+
 interface Props {
-    defReferral: string;
+    location: Location;
     toggleUIProp: (what: ToggleType) => void;
 }
 
@@ -21,6 +26,7 @@ interface State {
     username: string;
     email: string;
     referral: string;
+    lockReferral: boolean;
     inProgress: boolean;
     done: boolean;
 }
@@ -31,9 +37,19 @@ export class SignUp extends Component<Props, State> {
     state: State = {
         username: '',
         email: '',
-        referral: this.props.defReferral || '',
+        referral: '',
+        lockReferral: false,
         inProgress: false,
         done: false
+    }
+
+    componentDidMount() {
+        const {location, toggleUIProp} = this.props;
+        const qs = queryString.parse(location.search);
+        if (qs.referral) {
+            const referral = qs.referral as string;
+            this.setState({referral});
+        }
     }
 
     usernameChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
@@ -71,8 +87,7 @@ export class SignUp extends Component<Props, State> {
     }
 
     render() {
-        const {defReferral} = this.props;
-        const {username, email, referral, inProgress, done} = this.state;
+        const {username, email, referral, lockReferral, inProgress, done} = this.state;
 
         if (done) {
             return <>
@@ -99,7 +114,7 @@ export class SignUp extends Component<Props, State> {
                         return;
                     }
 
-                    this.submit()
+                    this.submit();
                 }}>
                     <div className="form-header">{_t('sign-up.header')}</div>
                     <Form.Group>
@@ -109,7 +124,7 @@ export class SignUp extends Component<Props, State> {
                         <Form.Control type="email" placeholder={_t('sign-up.email')} value={email} onChange={this.emailChanged} required={true}/>
                     </Form.Group>
                     <Form.Group>
-                        <Form.Control type="text" placeholder={_t('sign-up.ref')} value={referral} onChange={this.refCodeChanged} disabled={defReferral !== ''}/>
+                        <Form.Control type="text" placeholder={_t('sign-up.ref')} value={referral} onChange={this.refCodeChanged} disabled={lockReferral}/>
                     </Form.Group>
                     <div className="d-flex justify-content-center">
                         <Button variant="primary" type="submit" disabled={inProgress}>

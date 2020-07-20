@@ -44,35 +44,23 @@ interface Props {
     toggleUIProp: (what: ToggleType) => void;
 }
 
-interface State {
-    signUp: boolean
-    refCode: string
-}
-
-export default class NavBar extends Component<Props, State> {
-    state: State = {
-        signUp: false,
-        refCode: ''
-    };
-
+export default class NavBar extends Component<Props> {
     componentDidMount() {
-        const {location} = this.props;
+        const {location, toggleUIProp} = this.props;
         const qs = queryString.parse(location.search);
         if (qs.referral) {
-            const refCode = qs.referral as string;
-            this.setState({signUp: true, refCode});
+            toggleUIProp('signUp');
         }
     }
 
-    shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
+    shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
         return (
             !isEqual(this.props.global, nextProps.global) ||
             !isEqual(this.props.trendingTags, nextProps.trendingTags) ||
             !isEqual(this.props.users, nextProps.users) ||
             !isEqual(this.props.activeUser?.username, nextProps.activeUser?.username) ||
             !isEqual(this.props.activeUser, nextProps.activeUser) ||
-            !isEqual(this.props.ui, nextProps.ui) ||
-            !isEqual(this.state, nextState)
+            !isEqual(this.props.ui, nextProps.ui)
         );
     }
 
@@ -81,7 +69,6 @@ export default class NavBar extends Component<Props, State> {
     };
 
     render() {
-        const {refCode} = this.state;
         const {global, activeUser, ui} = this.props;
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
         return (
@@ -144,7 +131,7 @@ export default class NavBar extends Component<Props, State> {
                     {activeUser && <UserNav {...this.props} activeUser={activeUser}/>}
                 </div>
                 {ui.login && <Login {...this.props} />}
-                {ui.signUp && <SignUp {...this.props} defReferral={refCode}/>}
+                {ui.signUp && <SignUp {...this.props} />}
             </div>
         );
     }
