@@ -44,11 +44,11 @@ export class SignUp extends Component<Props, State> {
     }
 
     componentDidMount() {
-        const {location, toggleUIProp} = this.props;
+        const {location} = this.props;
         const qs = queryString.parse(location.search);
         if (qs.referral) {
             const referral = qs.referral as string;
-            this.setState({referral});
+            this.setState({referral, lockReferral: true});
         }
     }
 
