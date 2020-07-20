@@ -23,6 +23,9 @@ const defProps = {
     },
     deleteUser: () => {
     },
+    toggleUIProp: () => {
+
+    }
 };
 
 it("(1) Default render", () => {
