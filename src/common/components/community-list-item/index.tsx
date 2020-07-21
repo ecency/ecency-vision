@@ -78,7 +78,7 @@ export default class CommunityListItem extends Component<Props> {
                     )}
                 </div>
                 <div className="item-controls">
-                    <SubscriptionBtn {...this.props} />
+                    <SubscriptionBtn {...this.props} buttonProps={{block: true}} />
                 </div>
             </div>
         );

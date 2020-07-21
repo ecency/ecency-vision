@@ -69,7 +69,7 @@ export default class CommunityCard extends Component<Props> {
                         <div className="stat">{_t("community.n-authors", {n: authors})}</div>
                     </div>
                     <div className="section-controls">
-                        <SubscriptionBtn {...this.props} />
+                        <SubscriptionBtn {...this.props} buttonProps={{block: true}}/>
                         <DownloadTrigger>
                             <Button variant="primary" block={true}>
                                 {_t("community.post")}

@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-import {Button, Spinner} from "react-bootstrap";
+import {Button, Spinner, ButtonProps} from "react-bootstrap";
 
 import {Subscription} from "../../store/subscriptions/types";
 import {Community} from "../../store/community/types";
@@ -22,6 +22,7 @@ interface Props {
     community: Community;
     ui: UI;
     subscriptions: Subscription[];
+    buttonProps?: ButtonProps;
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data: Account) => void;
     deleteUser: (username: string) => void;
@@ -87,11 +88,11 @@ export default class SubscriptionBtn extends Component<Props, State> {
 
     render() {
         const {hover, inProgress} = this.state;
-        const {subscriptions, community, activeUser} = this.props;
+        const {subscriptions, community, buttonProps} = this.props;
         const subscribed = subscriptions.find(x => x[0] === community.name) !== undefined;
 
         if (inProgress) {
-            return <Button disabled={true} block={true}>
+            return <Button disabled={true} {...buttonProps}>
                 <Spinner animation="grow" variant="light" size="sm"/>
             </Button>;
         }
@@ -101,13 +102,13 @@ export default class SubscriptionBtn extends Component<Props, State> {
                 onMouseEnter={this.toggleHover}
                 onMouseLeave={this.toggleHover}
                 onClick={this.unSubscribe}
-                variant={hover ? "outline-danger" : "outline-primary"} block={true}>
+                variant={hover ? "outline-danger" : "outline-primary"}{...buttonProps}>
                 {hover ? _t("community.unsubscribe") : _t("community.subscribed")}
             </Button>
         }
 
         return <LoginRequired {...this.props}>
-            <Button onClick={this.subscribe} block={true}>{_t("community.subscribe")}</Button>
+            <Button onClick={this.subscribe} {...buttonProps}>{_t("community.subscribe")}</Button>
         </LoginRequired>
     }
 }
