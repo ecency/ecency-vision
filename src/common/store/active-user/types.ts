@@ -1,22 +1,27 @@
-import { Account } from "../accounts/types";
+import {Account} from "../accounts/types";
 
 export interface ActiveUser {
-  username: string;
-  data: Account;
+    username: string;
+    data: Account;
 }
 
 export enum ActionTypes {
-  RELOAD = "@active-user/RELOAD",
-  UPDATE = "@active-user/UPDATE",
+    LOGIN = "@active-user/LOGIN",
+    LOGOUT = "@active-user/LOGOUT",
+    UPDATE = "@active-user/UPDATE",
 }
 
-export interface ReloadAction {
-  type: ActionTypes.RELOAD;
+export interface LoginAction {
+    type: ActionTypes.LOGIN;
+}
+
+export interface LogoutAction {
+    type: ActionTypes.LOGOUT;
 }
 
 export interface UpdateAction {
-  type: ActionTypes.UPDATE;
-  data: Account;
+    type: ActionTypes.UPDATE;
+    data: Account;
 }
 
-export type Actions = ReloadAction | UpdateAction;
+export type Actions = LoginAction | LogoutAction | UpdateAction;

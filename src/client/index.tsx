@@ -5,7 +5,7 @@ import {ConnectedRouter} from "connected-react-router";
 
 import configureStore from "../common/store/configure";
 import {reloadAct as reloadUsers} from "../common/store/users";
-import {reloadAct as reloadActiveUser, updateAct as updateActiveUserAct} from "../common/store/active-user";
+import {loginAct as loginActiveUser, updateAct as updateActiveUserAct} from "../common/store/active-user";
 import {reloadAct as reloadReblogs} from "../common/store/reblogs";
 import {fetchedAct as loadDynamicProps} from "../common/store/dynamic-props";
 
@@ -49,7 +49,7 @@ hydrate(
 
 // Initial state from browser's local storage
 store.dispatch(reloadUsers());
-store.dispatch(reloadActiveUser());
+store.dispatch(loginActiveUser());
 store.dispatch(reloadReblogs());
 
 // Load dynamic props

@@ -2,7 +2,7 @@
 
 exports[`1- default state 1`] = `null`;
 
-exports[`2- reloadAct 1`] = `
+exports[`2- loginAct 1`] = `
 Object {
   "data": Object {
     "name": "foo",
