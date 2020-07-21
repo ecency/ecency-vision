@@ -3,25 +3,40 @@ import React from "react";
 import CommunityListItem from "./index";
 import TestRenderer from "react-test-renderer";
 
-import { createBrowserHistory } from "history";
-import { StaticRouter } from "react-router-dom";
+import {createBrowserHistory} from "history";
+import {StaticRouter} from "react-router-dom";
 
-import { communityInstance1 } from "../../helper/test-helper";
+import {communityInstance1, UiInstance} from "../../helper/test-helper";
 
 it("(1) Default render", () => {
-  const props = {
-    history: createBrowserHistory(),
-    community: { ...communityInstance1 },
-    addAccount: () => {},
-  };
-  
-  const comp = <CommunityListItem {...props} />;
+    const props = {
+        history: createBrowserHistory(),
+        users: [],
+        activeUser: null,
+        community: {...communityInstance1},
+        ui: UiInstance,
+        subscriptions: [],
+        setActiveUser: () => {
+        },
+        updateActiveUser: () => {
+        },
+        deleteUser: () => {
+        },
+        toggleUIProp: () => {
+        },
+        addAccount: () => {
+        },
+        updateSubscriptions: () => {
+        }
+    };
 
-  const renderer = TestRenderer.create(
-    <StaticRouter location="/@username" context={{}}>
-      {comp}
-    </StaticRouter>
-  );
+    const comp = <CommunityListItem {...props} />;
 
-  expect(renderer.toJSON()).toMatchSnapshot();
+    const renderer = TestRenderer.create(
+        <StaticRouter location="/@username" context={{}}>
+            {comp}
+        </StaticRouter>
+    );
+
+    expect(renderer.toJSON()).toMatchSnapshot();
 });
