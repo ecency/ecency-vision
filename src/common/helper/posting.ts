@@ -82,14 +82,12 @@ export const makeJsonMetaData = (meta: MetaData, tags: string[], appVer: string)
     tags,
     app: `ecency/${appVer}-vision`,
     format: "markdown+html",
-    community: config.masterAccount,
   });
 
 export const makeJsonMetadataReply = (tags: string[], appVer: string) => ({
     tags,
     app: `ecency/${appVer}-vision`,
     format: 'markdown+html',
-    community: config.masterAccount,
 });
 
 export const makeCommentOptions = (author: string, permlink: string, rewardType?: RewardType): CommentOptions => {
