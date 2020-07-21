@@ -359,3 +359,27 @@ export const transferToVestingHot = (user: User, to: string, amount: string) => 
     }, () => {
     });
 }
+
+export const subscribe = (user: User, community: string): Promise<TransactionConfirmation> => {
+    const client = new hs.Client({
+        accessToken: user.accessToken,
+    });
+
+    const json = JSON.stringify([
+        'subscribe', {community}
+    ]);
+
+    return client.customJson([], [user.username], 'community', json);
+}
+
+export const unSubscribe = (user: User, community: string): Promise<TransactionConfirmation> => {
+    const client = new hs.Client({
+        accessToken: user.accessToken,
+    });
+
+    const json = JSON.stringify([
+        'unsubscribe', {community}
+    ]);
+
+    return client.customJson([], [user.username], 'community', json);
+}

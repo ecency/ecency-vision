@@ -1,4 +1,4 @@
-import {LogoutAction} from "../active-user/types";
+import {LoginAction, LogoutAction} from "../active-user/types";
 
 export type Subscription = Array<string>;
 
@@ -11,4 +11,4 @@ export interface UpdateAction {
     list: Subscription[]
 }
 
-export type Actions = UpdateAction | LogoutAction;
+export type Actions = UpdateAction | LoginAction | LogoutAction;

@@ -123,6 +123,8 @@
     "n-authors": "{{n}} posters",
     "n-posts": "{{n}} posts",
     "subscribe": "Subscribe",
+    "subscribed": "Joined",
+    "unsubscribe": "Leave",
     "post": "New Post",
     "team": "Leadership",
     "description": "Description",

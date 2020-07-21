@@ -1,7 +1,7 @@
 import {Dispatch} from "redux";
 
 import {ActionTypes as ActiveUserActionTypes} from "../active-user/types"
-import {Subscription, Actions, ActionTypes, UpdateAction} from "./types";
+import {Actions, ActionTypes, Subscription, UpdateAction} from "./types";
 
 export const initialState: Subscription[] = [];
 
@@ -9,6 +9,7 @@ export default (state: Subscription[] = initialState, action: Actions): Subscrip
     switch (action.type) {
         case ActionTypes.UPDATE:
             return [...action.list]
+        case ActiveUserActionTypes.LOGIN:
         case ActiveUserActionTypes.LOGOUT:
             return [];
         default:
