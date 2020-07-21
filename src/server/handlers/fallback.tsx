@@ -12,6 +12,7 @@ import {initialState as activeUserInitialState} from "../../common/store/active-
 import {initialState as reblogsInitialState} from "../../common/store/reblogs";
 import {initialState as discussionInitialState} from "../../common/store/discussion";
 import {initialState as uiInitialState} from "../../common/store/ui";
+import {initialState as subscriptionsInitialState} from "../../common/store/subscriptions";
 
 import {render} from "../template";
 
@@ -34,6 +35,7 @@ export default async (req: express.Request, res: express.Response) => {
         reblogs: reblogsInitialState,
         discussion: discussionInitialState,
         ui: uiInitialState,
+        subscriptions: subscriptionsInitialState,
         entries: {
             ...entriesInitialState,
             ['__promoted__']: {
