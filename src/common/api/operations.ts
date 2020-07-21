@@ -183,7 +183,7 @@ export const transferHot = (user: User, to: string, amount: string, memo: string
         memo
     }];
 
-    return hs.sendOperation(op, {}, () => {
+    return hs.sendOperation(op, {callback: `https://ecency.com/@${user.username}/wallet`}, () => {
     });
 }
 
@@ -221,7 +221,7 @@ export const transferToSavingsHot = (user: User, to: string, amount: string, mem
         memo
     }];
 
-    return hs.sendOperation(op, {}, () => {
+    return hs.sendOperation(op, {callback: `https://ecency.com/@${user.username}/wallet`}, () => {
     }, () => {
     });
 }
@@ -258,7 +258,7 @@ export const convertHot = (user: User, amount: string) => {
         requestid: new Date().getTime() >>> 0
     }];
 
-    return hs.sendOperation(op, {}, () => {
+    return hs.sendOperation(op, {callback: `https://ecency.com/@${user.username}/wallet`}, () => {
     }, () => {
     });
 }
@@ -299,7 +299,7 @@ export const transferFromSavingsHot = (user: User, to: string, amount: string, m
         request_id: new Date().getTime() >>> 0
     }];
 
-    return hs.sendOperation(op, {}, () => {
+    return hs.sendOperation(op, {callback: `https://ecency.com/@${user.username}/wallet`}, () => {
     }, () => {
     });
 }
@@ -336,7 +336,7 @@ export const transferToVestingHot = (user: User, to: string, amount: string) => 
         amount
     }];
 
-    return hs.sendOperation(op, {}, () => {
+    return hs.sendOperation(op, {callback: `https://ecency.com/@${user.username}/wallet`}, () => {
     }, () => {
     });
 }
