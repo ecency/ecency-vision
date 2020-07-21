@@ -46,7 +46,7 @@ exports[`(1) Default render 1`] = `
     className="item-controls"
   >
     <button
-      className="btn btn-primary"
+      className="btn btn-primary btn-block"
       disabled={false}
       onClick={[Function]}
       type="button"
