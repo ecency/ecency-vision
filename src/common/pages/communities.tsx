@@ -77,10 +77,7 @@ class CommunitiesPage extends Component<Props, State> {
 
     componentDidUpdate(prevProps: Readonly<Props>) {
         const {activeUser, updateSubscriptions} = this.props;
-        if (
-            // active user changed
-            (prevProps.activeUser?.username !== activeUser?.username)
-        ) {
+        if (prevProps.activeUser?.username !== activeUser?.username) {
             if (activeUser) {
                 getSubscriptions(activeUser.username).then(r => {
                     if (r) updateSubscriptions(r);
@@ -142,9 +139,6 @@ class CommunitiesPage extends Component<Props, State> {
         const metaProps = {
             title: _t("communities.title"),
         };
-
-        const {subscriptions} = this.props;
-        // console.log(subscriptions)
 
         return (
             <>

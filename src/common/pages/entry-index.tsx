@@ -14,6 +14,7 @@ import {User} from "../store/users/types";
 import {ActiveUser} from "../store/active-user/types";
 import {Reblog} from "../store/reblogs/types";
 import {UI, ToggleType} from "../store/ui/types";
+import {Subscription} from "../store/subscriptions/types";
 
 import {hideIntro, toggleListStyle, toggleTheme} from "../store/global";
 import {makeGroupKey, fetchEntries} from "../store/entries";
@@ -25,6 +26,7 @@ import {setActiveUser, updateActiveUser} from "../store/active-user";
 import {deleteUser} from "../store/users";
 import {addReblog} from "../store/reblogs";
 import {toggleUIProp} from "../store/ui";
+import {updateSubscriptions} from "../store/subscriptions";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme";
@@ -48,6 +50,8 @@ import _c from "../util/fix-class-names";
 import capitalize from "../util/capitalize";
 
 import defaults from "../constants/defaults.json";
+import {getSubscriptions} from "../api/bridge";
+
 
 interface Props {
   history: History;
@@ -61,6 +65,7 @@ interface Props {
   activeUser: ActiveUser | null;
   reblogs: Reblog[];
   ui: UI;
+  subscriptions: Subscription[];
   toggleTheme: () => void;
   hideIntro: () => void;
   toggleListStyle: () => void;
@@ -75,6 +80,7 @@ interface Props {
   deleteUser: (username: string) => void;
   addReblog: (account: string, author: string, permlink: string) => void;
   toggleUIProp: (what: ToggleType) => void;
+  updateSubscriptions: (list: Subscription[]) => void;
 }
 
 class EntryIndexPage extends Component<Props> {
@@ -85,7 +91,7 @@ class EntryIndexPage extends Component<Props> {
   }
 
   componentDidUpdate(prevProps: Readonly<Props>): void {
-    const { global, fetchEntries, fetchCommunity } = this.props;
+    const { global, activeUser, fetchEntries, fetchCommunity, updateSubscriptions } = this.props;
     const { global: pGlobal } = prevProps;
 
     // page changed.
@@ -99,6 +105,14 @@ class EntryIndexPage extends Component<Props> {
 
     if (global.tag !== pGlobal.tag) {
       fetchCommunity();
+    }
+
+    if (prevProps.activeUser?.username !== activeUser?.username) {
+      if (activeUser) {
+        getSubscriptions(activeUser.username).then(r => {
+          if (r) updateSubscriptions(r);
+        });
+      }
     }
   }
 
@@ -232,7 +246,8 @@ const mapStateToProps = (state: AppState) => ({
   users: state.users,
   activeUser: state.activeUser,
   reblogs: state.reblogs,
-  ui: state.ui
+  ui: state.ui,
+  subscriptions: state.subscriptions
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
@@ -251,7 +266,8 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       updateActiveUser,
       deleteUser,
       addReblog,
-      toggleUIProp
+      toggleUIProp,
+      updateSubscriptions
     },
     dispatch
   );

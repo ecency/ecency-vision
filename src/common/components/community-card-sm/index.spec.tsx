@@ -2,16 +2,35 @@ import React from "react";
 
 import CommunityCardSm from "./index";
 import renderer from "react-test-renderer";
-import { createBrowserHistory } from "history";
+import {createBrowserHistory} from "history";
 
-import { communityInstance1 } from "../../helper/test-helper";
+import {communityInstance1, UiInstance} from "../../helper/test-helper";
 
 it("(1) Default render", () => {
-  const props = {
-    history: createBrowserHistory(),
-    community: { ...communityInstance1 },
-  };
+    const props = {
+        history: createBrowserHistory(),
+        users: [],
+        activeUser: null,
+        community: {...communityInstance1},
+        ui: UiInstance,
+        subscriptions: [],
+        addAccount: () => {
+        },
+        setActiveUser: () => {
+        },
+        updateActiveUser: () => {
+        },
+        deleteUser: () => {
 
-  const component = renderer.create(<CommunityCardSm {...props} />);
-  expect(component.toJSON()).toMatchSnapshot();
+        },
+        toggleUIProp: () => {
+
+        },
+        updateSubscriptions: () => {
+
+        }
+    };
+
+    const component = renderer.create(<CommunityCardSm {...props} />);
+    expect(component.toJSON()).toMatchSnapshot();
 });
