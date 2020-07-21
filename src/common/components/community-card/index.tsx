@@ -4,8 +4,6 @@ import {History} from "history";
 
 import isEqual from "react-fast-compare";
 
-import {Button} from "react-bootstrap";
-
 import {Account} from "../../store/accounts/types";
 import {Community} from "../../store/community/types";
 import {User} from "../../store/users/types";
@@ -14,8 +12,8 @@ import {ToggleType, UI} from "../../store/ui/types";
 import {Subscription} from "../../store/subscriptions/types";
 
 import ProfileLink from "../profile-link";
-import DownloadTrigger from "../download-trigger";
 import SubscriptionBtn from "../subscription-btn";
+import CommunityPostBtn from "../community-post-btn";
 
 import ln2list from "../../util/nl2list";
 import formattedNumber from "../../util/formatted-number";
@@ -70,11 +68,7 @@ export default class CommunityCard extends Component<Props> {
                     </div>
                     <div className="section-controls">
                         <SubscriptionBtn {...this.props} buttonProps={{block: true}}/>
-                        <DownloadTrigger>
-                            <Button variant="primary" block={true}>
-                                {_t("community.post")}
-                            </Button>
-                        </DownloadTrigger>
+                        <CommunityPostBtn {...this.props} buttonProps={{block: true}}/>
                     </div>
                     <div className="section-team">
                         <h4 className="section-header">{_t("community.team")}</h4>

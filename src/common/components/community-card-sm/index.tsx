@@ -4,8 +4,6 @@ import {History} from "history";
 
 import isEqual from "react-fast-compare";
 
-import {Button} from "react-bootstrap";
-
 import {Community} from "../../store/community/types";
 import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
@@ -14,7 +12,7 @@ import {Subscription} from "../../store/subscriptions/types";
 import {Account} from "../../store/accounts/types";
 
 import SubscriptionBtn from "../subscription-btn";
-import DownloadTrigger from "../download-trigger";
+import CommunityPostBtn from "../community-post-btn";
 
 import {_t} from "../../i18n";
 
@@ -68,9 +66,7 @@ export default class CommunityCardSm extends Component<Props> {
                     </div>
                     <div className="controls">
                         <SubscriptionBtn {...this.props} />
-                        <DownloadTrigger>
-                            <Button variant="primary">{_t("community.post")}</Button>
-                        </DownloadTrigger>
+                        <CommunityPostBtn  {...this.props} />
                     </div>
                 </div>
             </div>
