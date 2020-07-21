@@ -82,8 +82,8 @@ export default class NavBar extends Component<Props> {
                         <Link className="menu-item" to="/communities">
                             {_t("navbar.communities")}
                         </Link>
-                        <Link className="menu-item" to="/about">
-                            {_t("navbar.about")}
+                        <Link className="menu-item" to="/faq">
+                            {_t("navbar.faq")}
                         </Link>
                     </div>
                     <div className="flex-spacer"/>
