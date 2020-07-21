@@ -1,83 +1,83 @@
 import express from "express";
-import axios from "axios";
+import axios, {Method, AxiosRequestConfig, AxiosResponse} from "axios";
+
 import config from "../../config";
-import {getTokenUrl} from "../../common/helper/hive-signer";
 
-const client = axios.create({
-    baseURL: config.privateApiAddr,
-    responseType: "json",
-    headers: {
-        "Content-Type": "application/json",
-        ...config.privateApiAuth,
-    },
-});
+import {getTokenUrl, decodeToken} from "../../common/helper/hive-signer";
 
-export const receivedVestingHandler = async (req: express.Request, res: express.Response) => {
-    const {username} = req.params;
-
-    let r;
-
-    try {
-        r = await client.get(`/delegatee_vesting_shares/${username}`);
-    } catch (e) {
-        res.status(500).send("Server Error");
-        return;
+const baseRequest = (url: string, method: Method, headers: any = {}, payload: any = {}): Promise<AxiosResponse> => {
+    const requestConf: AxiosRequestConfig = {
+        url,
+        method,
+        validateStatus: () => true,
+        responseType: "json",
+        headers: {...headers},
+        data: {...payload}
     }
 
-    return res.send(r.data);
+    return axios(requestConf)
+}
+
+const apiRequest = (endpoint: string, method: Method, extraHeaders: any = {}, payload: any = {}): Promise<AxiosResponse> => {
+    const url = `${config.privateApiAddr}/${endpoint}`;
+    const headers = {
+        "Content-Type": "application/json",
+        ...config.privateApiAuth,
+        ...extraHeaders
+    }
+
+    return baseRequest(url, method, headers, payload)
+}
+
+const pipe = (promise: Promise<AxiosResponse>, res: express.Response) => {
+    promise.then(r => {
+        res.status(r.status).send(r.data);
+    }).catch(() => {
+        res.status(500).send("Server Error");
+    });
+}
+
+export const receivedVesting = async (req: express.Request, res: express.Response) => {
+    const {username} = req.params;
+
+    pipe(apiRequest(`delegatee_vesting_shares/${username}`, "GET"), res);
 };
 
 export const hsTokenRefresh = async (req: express.Request, res: express.Response) => {
     const {code} = req.body;
     if (!code) {
-        res.status(500).send("Bad Request");
+        res.status(400).send("Bad Request");
         return;
     }
 
-    let r: any;
-
-    try {
-        const u = getTokenUrl(code, config.hsClientSecret);
-        r = await axios.get(u, {
-            validateStatus: (status) => {
-                return true;
-            },
-        });
-    } catch (e) {
-        res.status(500).send("Server Error");
-        return;
-    }
-
-    return res.status(r.status).send(r.data);
+    pipe(baseRequest(getTokenUrl(code, config.hsClientSecret), "GET"), res);
 };
 
 
-export const createAccountHandler = async (req: express.Request, res: express.Response) => {
+export const createAccount = async (req: express.Request, res: express.Response) => {
     const {username, email, referral} = req.body;
 
-    const customClient = axios.create({
-        baseURL: config.privateApiAddr,
-        responseType: "json",
-        headers: {
-            "Content-Type": "application/json",
-            'X-Real-IP-V': req.headers['x-forwarded-for'] || '',
-            ...config.privateApiAuth,
-        },
-    });
+    const headers = {'X-Real-IP-V': req.headers['x-forwarded-for'] || ''};
+    const payload = {username, email, referral};
 
-    let r;
+    pipe(apiRequest(`signup/account-create`, "POST", headers, payload), res);
+};
 
-    try {
-        r = await customClient.post(`${config.privateApiAddr}/signup/account-create`, {
-            username, email, referral
-        });
-    } catch (err) {
-        if (err.response && err.response.data && err.response.data.message) {
-            return res.send(err.response.data);
-        } else {
-            return res.status(500).send("Server Error");
-        }
+export const usrActivity = async (req: express.Request, res: express.Response) => {
+    const {code, ty, bl, tx} = req.body;
+    const dCode = decodeToken(code);
+
+    if (!dCode || dCode.signed_message.app !== config.masterAccount) {
+        res.status(400).send("Bad Request");
+        return;
     }
 
-    return res.send(r.data);
-};
+    const [us,] = dCode['authors'];
+
+    const payload = {us, ty};
+
+    if (bl) payload['bl'] = bl;
+    if (tx) payload['tx'] = tx;
+
+    pipe(apiRequest(`usr-activity`, "POST", {}, payload), res);
+}
