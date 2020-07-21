@@ -42,6 +42,8 @@ const faqKeys = [
     'where-tokens-come',
     'how-promotion-work',
     'how-boosting-work',
+    'can-guest-post',
+    'can-link-post',
     'how-to-transfer',
     'how-see-rewards',
     'when-claim-rewards',
