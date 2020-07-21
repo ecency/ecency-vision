@@ -27,8 +27,8 @@ export enum AllFilter {
   trending = "trending",
   hot = "hot",
   created = "created",
-  muted = "muted",
-  blog = "blog",
+  muted = "muted",  // To see muted accounts
+  blog = "blog",  // This might be deleted
   posts = "posts",
   comments = "comments",
   replies = "replies",
