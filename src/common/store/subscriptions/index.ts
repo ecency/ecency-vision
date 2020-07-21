@@ -17,7 +17,7 @@ export default (state: Subscription[] = initialState, action: Actions): Subscrip
 }
 
 /* Actions */
-export const updateSubscriptions = (list: Subscription[]) => async (dispatch: Dispatch) => {
+export const updateSubscriptions = (list: Subscription[]) => (dispatch: Dispatch) => {
     dispatch(updateAct(list));
 };
 

@@ -9,10 +9,11 @@ import isEqual from "react-fast-compare";
 
 import { Account } from "../../store/accounts/types";
 import { Community } from "../../store/community/types";
+import { Subscription } from "../../store/subscriptions/types";
 
 import ProfileLink from "../../components/profile-link";
 import DownloadTrigger from "../../components/download-trigger";
-import { makePath } from "../../components/tag";
+import { makePath } from "../tag";
 
 import defaults from "../../constants/defaults.json";
 
@@ -25,6 +26,7 @@ import formattedNumber from "../../util/formatted-number";
 interface Props {
   history: History;
   community: Community;
+  subscriptions: Subscription[];
   addAccount: (data: Account) => void;
 }
 
