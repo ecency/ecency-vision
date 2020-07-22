@@ -4,15 +4,17 @@ import { History } from "history";
 import isEqual from "react-fast-compare";
 
 import { Global } from "../../store/global/types";
+import {EntryFilter} from "../../store/global/types";
 
 import { getCommunity } from "../../api/bridge";
 
 import defaults from "../../constants/defaults.json";
 
 export const makePath = (filter: string, tag: string): string => {
-  if (filter === "feed") {
+  if (EntryFilter[filter] === undefined) {
     return `/${defaults.filter}/${tag}`;
   }
+
   return `/${filter}/${tag}`;
 };
 

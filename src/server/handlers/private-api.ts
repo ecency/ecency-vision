@@ -1,33 +1,11 @@
 import express from "express";
-import axios, {Method, AxiosRequestConfig, AxiosResponse} from "axios";
+import {AxiosResponse} from "axios";
 
 import config from "../../config";
 
 import {getTokenUrl, decodeToken} from "../../common/helper/hive-signer";
 
-const baseRequest = (url: string, method: Method, headers: any = {}, payload: any = {}): Promise<AxiosResponse> => {
-    const requestConf: AxiosRequestConfig = {
-        url,
-        method,
-        validateStatus: () => true,
-        responseType: "json",
-        headers: {...headers},
-        data: {...payload}
-    }
-
-    return axios(requestConf)
-}
-
-const apiRequest = (endpoint: string, method: Method, extraHeaders: any = {}, payload: any = {}): Promise<AxiosResponse> => {
-    const url = `${config.privateApiAddr}/${endpoint}`;
-    const headers = {
-        "Content-Type": "application/json",
-        ...config.privateApiAuth,
-        ...extraHeaders
-    }
-
-    return baseRequest(url, method, headers, payload)
-}
+import {apiRequest, baseApiRequest} from "../helper";
 
 const pipe = (promise: Promise<AxiosResponse>, res: express.Response) => {
     promise.then(r => {
@@ -50,7 +28,7 @@ export const hsTokenRefresh = async (req: express.Request, res: express.Response
         return;
     }
 
-    pipe(baseRequest(getTokenUrl(code, config.hsClientSecret), "GET"), res);
+    pipe(baseApiRequest(getTokenUrl(code, config.hsClientSecret), "GET"), res);
 };
 
 

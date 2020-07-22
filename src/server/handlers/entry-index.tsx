@@ -18,7 +18,7 @@ import {Community} from "../../common/store/community/types";
 import {makeGroupKey} from "../../common/store/entries";
 
 import {readGlobalCookies, optimizeEntries} from "../helper";
-import {getPromotedEntries} from "../../common/helper/promoted";
+import {getPromotedEntries} from "../helper";
 
 import * as hiveApi from "../../common/api/hive";
 import * as bridgeApi from "../../common/api/bridge";
@@ -85,7 +85,7 @@ export default async (req: express.Request, res: express.Response) => {
                 hasMore: true,
             },
             ['__promoted__']: {
-                entries: getPromotedEntries(),
+                entries: optimizeEntries(await getPromotedEntries()),
                 error: null,
                 loading: false,
                 hasMore: true,

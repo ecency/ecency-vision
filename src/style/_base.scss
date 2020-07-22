@@ -40,54 +40,6 @@ select {
   padding-right: 30px !important;
 }
 
-/* table customizations */
-.react-bootstrap-table {
-  table {
-    margin-bottom: 0 !important;
-
-    td,
-    th {
-      white-space: nowrap;
-    }
-
-    thead {
-      .sortable {
-        cursor: pointer;
-
-        .table-sort-caret {
-          margin-left: 10px;
-
-          svg {
-            height: 16px;
-            opacity: 0.3;
-          }
-
-          &.active {
-            svg {
-              opacity: 0.8;
-              color: $primary;
-            }
-          }
-        }
-      }
-
-      th:focus {
-        outline: none;
-      }
-    }
-  }
-}
-
-.react-bootstrap-table-pagination {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
-
-  .react-bootstrap-table-page-btns-ul {
-    margin: 10px 0 0 0;
-  }
-}
-
 /* common class for modal dialog loading indicator */
 .dialog-loading {
   height: 100px;

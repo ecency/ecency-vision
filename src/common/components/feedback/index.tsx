@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 
-import { Alert } from "react-bootstrap";
-
 import random from "../../util/rnd";
 
 import { checkSvg, alertCircleSvg } from "../../img/svg";
@@ -82,21 +80,17 @@ export default class Feedback extends Component<Props, State> {
         {list.map((x) => {
           switch (x.type) {
             case "success":
-              return (
-                <Alert key={x.id} variant="success">
-                  <div className="alert-inner">
-                    {checkSvg} {x.message}
-                  </div>
-                </Alert>
-              );
+                return (
+                    <div key={x.id} className="feedback-success">
+                        {checkSvg} {x.message}
+                    </div>
+                );
             case "error":
-              return (
-                <Alert key={x.id} variant="danger">
-                  <div className="alert-inner">
-                    {alertCircleSvg} {x.message}
-                  </div>
-                </Alert>
-              );
+                return (
+                    <div key={x.id} className="feedback-error">
+                        {alertCircleSvg} {x.message}
+                    </div>
+                );
             default:
               return null;
           }

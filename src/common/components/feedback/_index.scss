@@ -1,28 +1,46 @@
 .feedback-container {
   position: fixed;
   z-index: 9000;
-  left: calc(50% - 150px);
-  width: 300px;
-  height: 20px;
-  padding-top: 2px;
+  right: 20px;
+  bottom: 20px;
+  width: 260px;
 
   @media (min-width: $md-break) {
-    left: calc(50% - 250px);
     width: 500px;
   }
 
-  .alert {
-    .alert-inner {
-      display: flex;
-      align-items: center;
-      white-space: nowrap;
-      overflow: hidden;
-      font-size: 14px;
-      svg {
-        flex-shrink: 0;
-        height: 16px;
-        margin-right: 6px;
-      }
+  .feedback-success, .feedback-error {
+    box-shadow: $box-shadow;
+    border-radius: 6px;
+    padding: 8px 6px;
+    display: flex;
+    align-items: center;
+
+    @include themify(day) {
+      background: $white;
+      border: 1px solid $white-three;
+    }
+
+    @include themify(night) {
+      background: $dark;
+      border: 1px solid darken($dark, 6);
+    }
+
+    svg {
+      height: 20px;
+      margin-right: 6px;
+    }
+  }
+
+  .feedback-success {
+    svg {
+      color: $green1;
+    }
+  }
+
+  .feedback-error {
+    svg {
+      color: $red2;
     }
   }
 }

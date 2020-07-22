@@ -85,7 +85,8 @@
     "filter-feed": "Feed",
     "title": "{{f}} topics",
     "description": "{{f}} topics",
-    "description-tag": "{{f}} topics with #{{t}} tag"
+    "description-tag": "{{f}} topics with #{{t}} tag",
+    "description-user-feed": "{{u}}'s feed"
   },
   "list-style": {
     "title": "Toggle list style"

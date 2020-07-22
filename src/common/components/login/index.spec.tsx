@@ -7,6 +7,7 @@ const defProps = {
   users: [],
   activeUser: null,
   setActiveUser: () => {},
+  addUser: () => {},
   updateActiveUser: () => {},
   deleteUser: () => {},
   toggleUIProp: () => {},
