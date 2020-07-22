@@ -105,6 +105,7 @@ export const getAccounts = (usernames: string[]): Promise<Account[]> => {
         post_count: x.post_count,
         created: x.created,
         reputation: x.reputation,
+        posting_json_metadata: x.posting_json_metadata,
         json_metadata: x.json_metadata,
         reward_steem_balance: x.reward_steem_balance || x.reward_hive_balance,
         reward_sbd_balance: x.reward_sbd_balance || x.reward_hbd_balance,
@@ -127,9 +128,13 @@ export const getAccounts = (usernames: string[]): Promise<Account[]> => {
 
       let profile: AccountProfile | undefined;
       try {
-        profile = JSON.parse(x.json_metadata!).profile;
+        profile = JSON.parse(x.posting_json_metadata!).profile;
       } catch (e) {}
-
+      if (!profile) {
+        try {
+          profile = JSON.parse(x.json_metadata!).profile;
+        } catch (e) {}
+      }
       if (profile) {
         return { ...account, profile };
       }
