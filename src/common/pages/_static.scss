@@ -343,7 +343,9 @@
     .page-title {
       color: $dark-sky-blue !important;
     }
-
+    img {
+      max-width: 800px;
+    }
     h1 {
       font-size: 32px;
     }
