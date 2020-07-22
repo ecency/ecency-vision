@@ -178,15 +178,20 @@ class EntryIndexPage extends Component<Props> {
     let rss = "";
 
     if (tag) {
-      url = `${defaults.base}/${filter}/${tag}`;
-      rss = `${defaults.base}/${filter}/${tag}/rss.xml`;
-
-      if (community) {
-        title = `${community.title.trim()} / ${filter}`;
-        description = _t("entry-index.description", { f: `${fC} ${community.title.trim()}` });
+      if (tag.startsWith('@')) {
+        title = `${tag} / ${filter}`;
+        description = _t("entry-index.description-user-feed", {u: tag});
       } else {
-        title = `#${tag} / ${filter}`;
-        description = _t("entry-index.description-tag", { f: fC, t: tag });
+        url = `${defaults.base}/${filter}/${tag}`;
+        rss = `${defaults.base}/${filter}/${tag}/rss.xml`;
+
+        if (community) {
+          title = `${community.title.trim()} / ${filter}`;
+          description = _t("entry-index.description", {f: `${fC} ${community.title.trim()}`});
+        } else {
+          title = `#${tag} / ${filter}`;
+          description = _t("entry-index.description-tag", {f: fC, t: tag});
+        }
       }
     }
 
