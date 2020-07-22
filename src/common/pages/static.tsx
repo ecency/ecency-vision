@@ -107,7 +107,7 @@ class AboutPage extends Component<Props> {
                     <div className="downloads" id="downloads">
                         <h2 className="downloads-title">Downloads</h2>
                         <div className="downloads-text">
-                            Enjoy Esteem for iPhone, iPad and Android, as well as PC, Mac or Linux devices:
+                            Enjoy Ecency for iPhone, iPad and Android, as well as PC, Mac or Linux devices:
                         </div>
                         <div className="download-buttons">
                             <a
@@ -137,7 +137,7 @@ class AboutPage extends Component<Props> {
                         </div>
                     </div>
 
-                    <img src={mobileSs} className="mobile-ss" alt="Esteem Mobile"/>
+                    <img src={mobileSs} className="mobile-ss" alt="Ecency Mobile"/>
 
                     <div className="faq">
                         <h2 className="faq-title">{_t('static.about.faq-title')}</h2>
@@ -605,6 +605,7 @@ class FaqPage extends Component<Props> {
                 <div className="app-content static-page faq-page">
                     <div className="static-content">
                         <h1 className="page-title">{_t('static.faq.page-title')}</h1>
+                        <img src='https://images.ecency.com/DQmNx7o8eD4CkbCn1rw8fRo96jNwPwDP6aV3siaKz6YRRWA/FAQ4.jpg'/>
                         <h3>{_t('static.faq.page-sub-title')}</h3>
                         <ul className="table-contents">
                             {faqKeys.map(x => {
