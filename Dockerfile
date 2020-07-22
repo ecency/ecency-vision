@@ -1,20 +1,31 @@
-FROM node:12
+FROM node:12.16.2 as development
 
-ENV NODE_ENV production
+WORKDIR /var/app
 
-ENV APP_DIR /ecency
+COPY package.json yarn.lock ./
 
-RUN mkdir -p ${APP_DIR}
+RUN yarn install --non-interactive --frozen-lockfile --ignore-optional
 
-COPY . ${APP_DIR}
+COPY . .
 
-WORKDIR ${APP_DIR}
+RUN yarn build
 
-RUN yarn
+CMD [ "yarn", "run", "start" ]
 
-RUN yarn run build
+### REMOVE DEV DEPENDENCIES ##
+FROM development as dependencies
 
-EXPOSE 3000
+RUN yarn install --non-interactive --frozen-lockfile --ignore-optional
 
-CMD [ "node", "build/server.js" ]
+### BUILD MINIFIED PRODUCTION ##
+FROM node:12.16.2-alpine as production
 
+WORKDIR /var/app
+
+COPY --from=dependencies /var/app/package.json /var/app/package.json
+COPY --from=dependencies /var/app/public /var/app/public
+COPY --from=dependencies /var/app/build /var/app/build
+COPY --from=dependencies /var/app/src /var/app/src
+COPY --from=dependencies /var/app/node_modules /var/app/node_modules
+
+CMD [ "yarn", "run", "start:prod" ]
