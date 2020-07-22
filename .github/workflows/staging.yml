@@ -1,8 +1,8 @@
-name: Master CI/CD
+name: Staging CI/CD
 on:
   push:
     branches:
-      - master
+      - development
 jobs:
   tests:
     runs-on: ubuntu-latest
@@ -32,15 +32,15 @@ jobs:
       env:
         STAGING_PORT: ${{secrets.STAGING_PORT}}
       with:
-        host: ${{ secrets.SSH_PRODUCTION_HOST }}
+        host: ${{ secrets.SSH_STAGING_HOST }}
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         port: ${{ secrets.SSH_PORT }}
         envs: STAGING_PORT
         script: |
-          cd ~/vision-production
-          git pull origin master
+          cd ~/vision-staging
+          git pull origin development
           yarn
           yarn build
           export PORT=$STAGING_PORT
-          pm2 reload master
+          pm2 reload staging
