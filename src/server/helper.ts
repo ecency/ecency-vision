@@ -5,6 +5,11 @@ import { Entry } from "../common/store/entries/types";
 
 import defaults from "../common/constants/defaults.json";
 
+import {apiRequest} from "./handlers/private-api";
+import {getPost} from "../common/api/bridge";
+
+import {cache} from "./cache";
+
 export interface GlobalCookies {
   theme: Theme;
   listStyle: ListStyle;
@@ -29,3 +34,31 @@ export const optimizeEntries = (entries: Entry[]): Entry[] => {
     };
   });
 };
+
+export const fetchPromotedEntries = async (): Promise<Entry[]> => {
+    // fetch list from api
+    const list: { author: string, permlink: string }[] = (await apiRequest('promoted-posts?limit=200', 'GET')).data;
+
+    // random sort & random pick 6
+    const promoted = list.sort(() => Math.random() - 0.5).filter((x, i) => i < 6);
+
+    // get post data
+    const promises = promoted.map(x => getPost(x.author, x.permlink));
+
+    return await Promise.all(promises) as Entry[];
+}
+
+export const getPromotedEntries = async (): Promise<Entry[]> => {
+    let promoted: Entry[] | undefined = cache.get('promoted');
+    if (promoted === undefined) {
+        try {
+            promoted = await fetchPromotedEntries();
+            cache.set("promoted", promoted, 600);
+        } catch (e) {
+            promoted = [];
+        }
+    }
+
+    return promoted;
+}
+

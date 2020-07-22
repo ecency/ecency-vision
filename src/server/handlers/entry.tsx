@@ -15,8 +15,7 @@ import {initialState as subscriptionsInitialState} from "../../common/store/subs
 
 import {Entry} from "../../common/store/entries/types";
 
-import {readGlobalCookies} from "../helper";
-import {getPromotedEntries} from "../../common/helper/promoted";
+import {readGlobalCookies, getPromotedEntries, optimizeEntries} from "../helper";
 
 import * as bridgeApi from "../../common/api/bridge";
 
@@ -64,7 +63,7 @@ export default async (req: express.Request, res: express.Response) => {
             ...entries,
             ...{
                 ['__promoted__']: {
-                    entries: getPromotedEntries(),
+                    entries: optimizeEntries(await getPromotedEntries()),
                     error: null,
                     loading: false,
                     hasMore: true,

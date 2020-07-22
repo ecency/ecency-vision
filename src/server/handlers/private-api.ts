@@ -18,7 +18,7 @@ const baseRequest = (url: string, method: Method, headers: any = {}, payload: an
     return axios(requestConf)
 }
 
-const apiRequest = (endpoint: string, method: Method, extraHeaders: any = {}, payload: any = {}): Promise<AxiosResponse> => {
+export const apiRequest = (endpoint: string, method: Method, extraHeaders: any = {}, payload: any = {}): Promise<AxiosResponse> => {
     const url = `${config.privateApiAddr}/${endpoint}`;
     const headers = {
         "Content-Type": "application/json",

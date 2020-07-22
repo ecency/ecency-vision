@@ -16,7 +16,7 @@ import {ProfileFilter} from "../../common/store/global/types";
 import {Entry} from "../../common/store/entries/types";
 import {makeGroupKey} from "../../common/store/entries";
 
-import {readGlobalCookies, optimizeEntries} from "../helper";
+import {readGlobalCookies, getPromotedEntries, optimizeEntries} from "../helper";
 
 import * as hiveApi from "../../common/api/hive";
 import * as bridgeApi from "../../common/api/bridge";
@@ -24,8 +24,6 @@ import * as bridgeApi from "../../common/api/bridge";
 import defaults from "../../common/constants/defaults.json";
 
 import {render} from "../template";
-
-import {getPromotedEntries} from "../../common/helper/promoted";
 
 export default async (req: express.Request, res: express.Response) => {
     const {username, section = "posts"} = req.params;
@@ -87,7 +85,7 @@ export default async (req: express.Request, res: express.Response) => {
             ...entries,
             ...{
                 ['__promoted__']: {
-                    entries: getPromotedEntries(),
+                    entries: optimizeEntries(await getPromotedEntries()),
                     error: null,
                     loading: false,
                     hasMore: true,

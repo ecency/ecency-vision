@@ -16,8 +16,7 @@ import {initialState as subscriptionsInitialState} from "../../common/store/subs
 
 import {render} from "../template";
 
-import {readGlobalCookies} from "../helper";
-import {getPromotedEntries} from "../../common/helper/promoted";
+import {readGlobalCookies, getPromotedEntries, optimizeEntries} from "../helper";
 
 export default async (req: express.Request, res: express.Response) => {
     const preLoadedState = {
@@ -39,7 +38,7 @@ export default async (req: express.Request, res: express.Response) => {
         entries: {
             ...entriesInitialState,
             ['__promoted__']: {
-                entries: getPromotedEntries(),
+                entries: optimizeEntries(await getPromotedEntries()),
                 error: null,
                 loading: false,
                 hasMore: true,
