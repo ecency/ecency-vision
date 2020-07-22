@@ -45,7 +45,7 @@ export const usrActivity = async (req: express.Request, res: express.Response) =
     const {code, ty, bl, tx} = req.body;
     const dCode = decodeToken(code);
 
-    if (!dCode || dCode.signed_message.app !== config.masterAccount) {
+    if (!dCode || dCode.signed_message.app !== "ecency.app") {
         res.status(400).send("Bad Request");
         return;
     }

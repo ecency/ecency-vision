@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import config from '../../config';
+import defaults from "../constants/defaults.json";
 
 export const uploadImage = async (file: File, token: string): Promise<{
     url: string
@@ -8,7 +8,7 @@ export const uploadImage = async (file: File, token: string): Promise<{
     const fData = new FormData();
     fData.append('file', file);
 
-    const postUrl = `${config.imageServer}/hs/${token}`;
+    const postUrl = `${defaults.imageServer}/hs/${token}`;
 
     return axios.post(postUrl, fData, {
         headers: {
