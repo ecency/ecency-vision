@@ -2,6 +2,10 @@
   width: 160px;
   position: absolute;
   left: 0;
+  @media (min-width: $md-break) {
+    left: auto;
+    right: 0;
+  }
   z-index: 100;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
