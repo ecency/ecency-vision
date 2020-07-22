@@ -15,7 +15,7 @@ import {UI, ToggleType} from "../store/ui/types";
 import {toggleTheme} from "../store/global";
 import {fetchTrendingTags} from "../store/trending-tags";
 import {setActiveUser, updateActiveUser} from "../store/active-user";
-import {deleteUser} from "../store/users";
+import {deleteUser, addUser} from "../store/users";
 import {toggleUIProp} from "../store/ui";
 
 import Meta from "../components/meta";
@@ -63,6 +63,7 @@ interface Props {
     ui: UI;
     toggleTheme: () => void;
     fetchTrendingTags: () => void;
+    addUser: (user: User) => void;
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data: Account) => void;
     deleteUser: (username: string) => void;
@@ -638,6 +639,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
         {
             toggleTheme,
             fetchTrendingTags,
+            addUser,
             setActiveUser,
             updateActiveUser,
             deleteUser,

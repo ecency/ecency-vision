@@ -12,7 +12,12 @@ export interface ReceivedVestingShare {
 export const getReceivedVestingShares = (username: string): Promise<ReceivedVestingShare[]> =>
     axios.get(`/api/received-vesting/${username}`).then((resp) => resp.data.list);
 
-export const hsTokenRenew = (code: string) =>
+export const hsTokenRenew = (code: string): Promise<{
+    username: string;
+    access_token: string;
+    refresh_token: string;
+    expires_in: number;
+}> =>
     axios
         .post(`/api/hs-token-refresh`, {
             code,

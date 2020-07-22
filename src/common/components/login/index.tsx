@@ -17,6 +17,7 @@ import OrDivider from "../or-divider";
 import {getAuthUrl} from "../../helper/hive-signer";
 
 import {getAccount} from "../../api/hive";
+import {hsTokenRenew} from "../../api/private";
 
 import {_t} from "../../i18n";
 
@@ -73,6 +74,7 @@ export class UserItem extends Component<UserItemProps> {
 interface LoginProps {
     users: User[];
     activeUser: ActiveUser | null;
+    addUser: (user: User) => void;
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data: Account) => void;
     deleteUser: (username: string) => void;
@@ -105,12 +107,28 @@ export class Login extends Component<LoginProps> {
                                             {...this.props}
                                             user={u}
                                             onSelect={(user) => {
-                                                const {setActiveUser, updateActiveUser} = this.props;
+                                                const {setActiveUser, updateActiveUser, addUser} = this.props;
                                                 setActiveUser(user.username);
-                                                getAccount(user.username).then((r) => {
+
+                                                hsTokenRenew(user.refreshToken).then(x => {
+                                                    const user: User = {
+                                                        username: x.username,
+                                                        accessToken: x.access_token,
+                                                        refreshToken: x.refresh_token,
+                                                        expiresIn: x.expires_in,
+                                                    };
+
+                                                    // update the user with new token
+                                                    addUser(user);
+
+                                                    return getAccount(user.username);
+                                                }).then((r) => {
+                                                    // update active user
+
                                                     updateActiveUser(r);
                                                     return usrActivity(user, 20);
                                                 });
+
                                                 this.hide();
                                             }}
                                             onDelete={(user) => {
@@ -156,6 +174,7 @@ export class Login extends Component<LoginProps> {
 interface Props {
     users: User[];
     activeUser: ActiveUser | null;
+    addUser: (user: User) => void;
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data: Account) => void;
     deleteUser: (username: string) => void;

@@ -24,7 +24,7 @@ import {updateEntry} from "../store/entries";
 import {fetchTransactions, resetTransactions} from "../store/transactions";
 import {fetchTrendingTags} from "../store/trending-tags";
 import {setActiveUser, updateActiveUser} from "../store/active-user";
-import {deleteUser} from "../store/users";
+import {deleteUser, addUser} from "../store/users";
 import {addReblog} from "../store/reblogs";
 import {toggleUIProp} from "../store/ui";
 
@@ -76,6 +76,7 @@ interface Props {
   fetchTransactions: (username: string) => void;
   resetTransactions: () => void;
   fetchTrendingTags: () => void;
+  addUser: (user: User) => void;
   setActiveUser: (username: string | null) => void;
   updateActiveUser: (data: Account) => void;
   deleteUser: (username: string) => void;
@@ -286,6 +287,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       fetchTransactions,
       resetTransactions,
       fetchTrendingTags,
+      addUser,
       setActiveUser,
       updateActiveUser,
       deleteUser,
