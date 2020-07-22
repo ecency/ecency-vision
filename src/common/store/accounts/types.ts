@@ -19,6 +19,7 @@ export interface Account {
   created?: string;
   reputation?: string | number;
   json_metadata?: string;
+  posting_json_metadata?: string;
   reward_steem_balance?: string;
   reward_sbd_balance?: string;
   reward_vesting_steem?: string;
