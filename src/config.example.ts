@@ -1,3 +1,5 @@
+/* !!! DO NOT IMPORT config.js TO FRONTEND CODE !!! */
+
 export default {
     privateApiAddr: "https://domain.com/api",
     privateApiAuth: {user: "pass"},
