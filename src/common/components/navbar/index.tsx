@@ -28,6 +28,8 @@ import {_t} from "../../i18n";
 
 import {brightnessSvg, appleSvg, googleSvg, desktopSvg, pencilOutlineSvg} from "../../img/svg";
 
+const logo = require('../../img/logo-circle.svg');
+
 interface Props {
     history: History;
     location: Location;
@@ -74,7 +76,11 @@ export default class NavBar extends Component<Props> {
         return (
             <div className="nav-bar">
                 <div className="nav-bar-inner">
-                    <Link to="/" className="brand"/>
+                    <div className="brand">
+                        <Link to="/">
+                            <img src={logo} className="logo" alt="Logo"/>
+                        </Link>
+                    </div>
                     <div className="text-menu">
                         <Link className="menu-item" to="/">
                             {_t("navbar.global")}
