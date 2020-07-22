@@ -1,39 +1,65 @@
 import express from "express";
+import axios, {AxiosRequestConfig, AxiosResponse, Method} from "axios";
 
-import { ListStyle, Theme } from "../common/store/global/types";
-import { Entry } from "../common/store/entries/types";
+import {ListStyle, Theme} from "../common/store/global/types";
+import {Entry} from "../common/store/entries/types";
 
 import defaults from "../common/constants/defaults.json";
 
-import {apiRequest} from "./handlers/private-api";
 import {getPost} from "../common/api/bridge";
 
 import {cache} from "./cache";
 
+import config from "../config";
+
 export interface GlobalCookies {
-  theme: Theme;
-  listStyle: ListStyle;
-  intro: boolean;
+    theme: Theme;
+    listStyle: ListStyle;
+    intro: boolean;
 }
 
 export const readGlobalCookies = (req: express.Request): GlobalCookies => {
-  const _c = (k: string): any => req.cookies[k];
+    const _c = (k: string): any => req.cookies[k];
 
-  const theme = _c("theme") && Object.values(Theme).includes(_c("theme")) ? _c("theme") : defaults.theme;
-  const intro = !_c("hide-intro");
-  const listStyle = _c("list-style") && Object.values(ListStyle).includes(_c("list-style")) ? _c("list-style") : defaults.listStyle;
+    const theme = _c("theme") && Object.values(Theme).includes(_c("theme")) ? _c("theme") : defaults.theme;
+    const intro = !_c("hide-intro");
+    const listStyle = _c("list-style") && Object.values(ListStyle).includes(_c("list-style")) ? _c("list-style") : defaults.listStyle;
 
-  return { theme: Theme[theme], listStyle: ListStyle[listStyle], intro };
+    return {theme: Theme[theme], listStyle: ListStyle[listStyle], intro};
 };
 
 export const optimizeEntries = (entries: Entry[]): Entry[] => {
-  return entries.map((x) => {
-    return {
-      ...x,
-      ...{ active_votes: [] }, // remove active votes
-    };
-  });
+    return entries.map((x) => {
+        return {
+            ...x,
+            ...{active_votes: []}, // remove active votes
+        };
+    });
 };
+
+export const baseApiRequest = (url: string, method: Method, headers: any = {}, payload: any = {}): Promise<AxiosResponse> => {
+    const requestConf: AxiosRequestConfig = {
+        url,
+        method,
+        validateStatus: () => true,
+        responseType: "json",
+        headers: {...headers},
+        data: {...payload}
+    }
+
+    return axios(requestConf)
+}
+
+export const apiRequest = (endpoint: string, method: Method, extraHeaders: any = {}, payload: any = {}): Promise<AxiosResponse> => {
+    const url = `${config.privateApiAddr}/${endpoint}`;
+    const headers = {
+        "Content-Type": "application/json",
+        ...config.privateApiAuth,
+        ...extraHeaders
+    }
+
+    return baseApiRequest(url, method, headers, payload)
+}
 
 export const fetchPromotedEntries = async (): Promise<Entry[]> => {
     // fetch list from api
