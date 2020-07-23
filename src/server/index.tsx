@@ -9,7 +9,7 @@ import profileHandler from "./handlers/profile";
 import entryHandler from "./handlers/entry";
 import fallbackHandler from "./handlers/fallback";
 import {entryRssHandler, authorRssHandler} from "./handlers/rss";
-import {receivedVesting, hsTokenRefresh, createAccount, usrActivity} from "./handlers/private-api";
+import {receivedVesting, notifications, unreadNotificationCount, hsTokenRefresh, createAccount, usrActivity} from "./handlers/private-api";
 
 const server = express();
 
@@ -57,7 +57,9 @@ server
         ],
         entryHandler
     )
-    .get("^/api/received-vesting/:username$", receivedVesting)
+    .use("^/api/received-vesting/:username$", receivedVesting)
+    .use("^/api/activities/:username$", notifications)
+    .use("^/api/activities/:username/unread-count$", unreadNotificationCount)
     .post("^/api/account-create$", createAccount)
     .post("^/api/hs-token-refresh$", hsTokenRefresh)
     .post("^/api/usr-activity$", usrActivity)

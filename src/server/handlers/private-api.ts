@@ -17,9 +17,25 @@ const pipe = (promise: Promise<AxiosResponse>, res: express.Response) => {
 
 export const receivedVesting = async (req: express.Request, res: express.Response) => {
     const {username} = req.params;
-
     pipe(apiRequest(`delegatee_vesting_shares/${username}`, "GET"), res);
 };
+
+export const notifications = async (req: express.Request, res: express.Response) => {
+    const {username, since} = req.params;
+
+    let u = `activities/${username}`
+
+    if (since) {
+        u += `?since=${since}`;
+    }
+
+    pipe(apiRequest(u, "GET"), res);
+}
+
+export const unreadNotificationCount = async (req: express.Request, res: express.Response) => {
+    const {username} = req.params;
+    pipe(apiRequest(`activities/${username}/unread-count`, "GET"), res);
+}
 
 export const hsTokenRefresh = async (req: express.Request, res: express.Response) => {
     const {code} = req.body;
