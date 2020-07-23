@@ -279,10 +279,9 @@ export default class EntryVoteBtn extends Component<Props, State> {
     vote = (percent: number) => {
         this.toggleDialog();
 
-        const {upVoted, downVoted} = this.isVoted();
         const {entry, users, activeUser, afterVote} = this.props;
         const user = users.find((x) => x.username === activeUser?.username)!;
-        const weight = percent * 100;
+        const weight = Math.ceil(percent * 100);
 
         this.stateSet({inProgress: true});
 
