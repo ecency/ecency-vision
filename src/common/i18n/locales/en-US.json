@@ -300,6 +300,16 @@
     "read-time-less-1-min": "< 1 min read",
     "read-time-n-min": "~ {{n}} min read"
   },
+  "notification": {
+    "popup-title": "You have a new notification",
+    "voted": "{{source}} voted your post",
+    "mention-post": "{{source}} mentioned you in a post",
+    "mention-comment": "{{source}} mentioned you in a comment",
+    "followed": "{{source}} followed you",
+    "replied": "{{source}} replied you",
+    "reblogged": "{{source}} reblogged your post",
+    "transfer": "{{source}} sent you {{amount}}"
+  },
   "static": {
     "about": {
       "page-title": "About",
