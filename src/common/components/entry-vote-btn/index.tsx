@@ -154,6 +154,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                         </div>
                         <div className="slider slider-up">
                             <Form.Control
+                                autoFocus={true}
                                 type="range"
                                 custom={true}
                                 step={0.1}
