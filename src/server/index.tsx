@@ -58,11 +58,11 @@ server
         entryHandler
     )
     .use("^/api/received-vesting/:username$", receivedVesting)
-    .use("^/api/activities/:username$", notifications)
-    .use("^/api/activities/:username/unread-count$", unreadNotificationCount)
-    .post("^/api/account-create$", createAccount)
+    .post("^/api/activities/:username$", notifications)
+    .post("^/api/activities/:username/unread-count$", unreadNotificationCount)
     .post("^/api/hs-token-refresh$", hsTokenRefresh)
     .post("^/api/usr-activity$", usrActivity)
+    .post("^/api/account-create$", createAccount)
     .get("*", fallbackHandler);
 
 export default server;
