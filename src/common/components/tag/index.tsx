@@ -47,7 +47,10 @@ export default class TagLink extends Component<Props> {
         getCommunity(tag).then((c) => {
           if (c) {
             cache[tag] = c.title;
-            this.forceUpdate(); // trigger render
+
+            if(this._mounted){
+              this.forceUpdate(); // trigger render
+            }
           }
         });
       }
@@ -67,12 +70,6 @@ export default class TagLink extends Component<Props> {
     const newLoc = makePath(filter, tag);
 
     history.push(newLoc);
-  };
-
-  stateSet = (obj: {}, cb = undefined) => {
-    if (this._mounted) {
-      this.setState(obj, cb);
-    }
   };
 
   render() {
