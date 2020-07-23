@@ -43,4 +43,4 @@ jobs:
           yarn
           yarn build
           export PORT=$STAGING_PORT
-          pm2 reload master
+          NODE_ENV=production pm2 reload master --update-env
