@@ -33,6 +33,8 @@ export class DialogContent extends Component<NotificationProps> {
     }
 
     render() {
+        const {notifications} = this.props;
+        console.log(notifications)
 
         return (
             <>Henlo</>

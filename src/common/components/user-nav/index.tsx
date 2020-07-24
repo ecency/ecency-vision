@@ -49,7 +49,8 @@ export default class UserNav extends Component<Props> {
     }
 
     render() {
-        const {activeUser, ui} = this.props;
+        const {activeUser, ui, notifications} = this.props;
+        const {unread} = notifications;
 
         let hasUnclaimedRewards = false;
         const {data: account} = activeUser;
@@ -82,8 +83,6 @@ export default class UserNav extends Component<Props> {
             ],
         };
 
-        const unreadNotification = 3;
-
         return (
             <>
                 <div className="user-nav">
@@ -96,9 +95,9 @@ export default class UserNav extends Component<Props> {
 
                     <ToolTip content={_t("user-nav.notifications")}>
                         <span className="notifications" onClick={this.toggleNotifications}>
-                             {unreadNotification > 0 && (
+                             {unread > 0 && (
                                  <span className="notifications-badge">
-                                     {unreadNotification.toString().length < 3 ? unreadNotification : '...'}
+                                     {unread.toString().length < 3 ? unread : '...'}
                                  </span>
                              )}
                             {bellSvg}

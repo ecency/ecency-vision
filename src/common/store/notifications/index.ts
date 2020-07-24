@@ -1,5 +1,7 @@
 import {Dispatch} from "redux";
 
+import {ActionTypes as ActiveUserActionTypes} from "../active-user/types"
+
 import {
     Actions,
     ActionTypes,
@@ -51,6 +53,8 @@ export default (state: Notifications = initialState, action: Actions): Notificat
                 error: true
             };
         }
+        case ActiveUserActionTypes.LOGIN:
+        case ActiveUserActionTypes.LOGOUT:
         case ActionTypes.RESET: {
             return {...initialState}
         }
@@ -92,7 +96,7 @@ export const fetchUnreadNotificationCount = () => (dispatch: Dispatch, getState:
     const user = users.find((x) => x.username === activeUser?.username)!;
 
     getUnreadNotificationCount(user).then(count => {
-        setUnreadCountAct(count);
+        dispatch(setUnreadCountAct(count));
     })
 }
 

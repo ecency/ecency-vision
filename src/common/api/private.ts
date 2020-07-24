@@ -68,5 +68,5 @@ export const getNotifications = (user: User, filter: NotificationFilter | null, 
 
 export const getUnreadNotificationCount = (user: User): Promise<number> =>
     axios
-        .post(`/api/activities/${user.username}/unread-count`, {code: user.accessToken})
+        .post(`/api/notifications/${user.username}/unread-count`, {code: user.accessToken})
         .then(resp => resp.data.count);

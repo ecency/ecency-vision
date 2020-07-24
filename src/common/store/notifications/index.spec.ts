@@ -1,6 +1,7 @@
-import reducer, {initialState, fetchAct, fetchedAct, fetchErrorAct, resetAct, setFilterAct, setUnreadCountAct} from "./index";
+import reducer, {initialState, fetchAct, fetchedAct, fetchErrorAct, setFilterAct, setUnreadCountAct} from "./index";
 import {ApiNotification} from "./types";
-import {entryInstance1} from "../../helper/test-helper";
+
+import {logoutAct} from "../active-user";
 
 let state = initialState;
 
@@ -162,8 +163,9 @@ it("8- setUnreadCountAct", () => {
     expect(state).toMatchSnapshot();
 });
 
-it("9- resetAct", () => {
-    state = reducer(state, resetAct());
+
+it("9- logoutAct", () => {
+    state = reducer(state, logoutAct());
     expect(state).toMatchSnapshot();
 });
 

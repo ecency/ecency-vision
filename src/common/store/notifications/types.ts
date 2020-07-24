@@ -1,3 +1,6 @@
+import {LoginAction, LogoutAction} from "../active-user/types";
+import {UpdateAction} from "../subscriptions/types";
+
 // Web socket notification types
 
 interface BaseWsNotification {
@@ -217,4 +220,4 @@ export interface SetUnreadCountAction {
 }
 
 
-export type Actions = FetchAction | FetchedAction | FetchErrorAction | ResetAction | SetFilterAction | SetUnreadCountAction;
+export type Actions = FetchAction | FetchedAction | FetchErrorAction | ResetAction | SetFilterAction | SetUnreadCountAction | LoginAction | LogoutAction;

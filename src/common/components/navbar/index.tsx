@@ -70,7 +70,8 @@ export default class NavBar extends Component<Props> {
             !isEqual(this.props.users, nextProps.users) ||
             !isEqual(this.props.activeUser?.username, nextProps.activeUser?.username) ||
             !isEqual(this.props.activeUser, nextProps.activeUser) ||
-            !isEqual(this.props.ui, nextProps.ui)
+            !isEqual(this.props.ui, nextProps.ui) ||
+            !isEqual(this.props.notifications, nextProps.notifications)
         );
     }
 

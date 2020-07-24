@@ -39,6 +39,7 @@ export const notificationBody = (data: WsNotification): string => {
 
 interface Props {
     activeUser: ActiveUser | null;
+    fetchUnreadNotificationCount: () => void;
 }
 
 export default class NotificationHandler extends Component<Props> {
@@ -47,9 +48,15 @@ export default class NotificationHandler extends Component<Props> {
     }
 
     componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<{}>, snapshot?: any) {
-        if (this.props.activeUser?.username !== prevProps.activeUser?.username) {
+        const {activeUser, fetchUnreadNotificationCount} = this.props;
+
+        if (activeUser?.username !== prevProps.activeUser?.username) {
             this.nwsDisconnect();
             this.nwsConnect();
+
+            if (activeUser) {
+                fetchUnreadNotificationCount();
+            }
         }
     }
 

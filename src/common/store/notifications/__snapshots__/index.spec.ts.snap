@@ -478,7 +478,7 @@ Object {
 }
 `;
 
-exports[`9- resetAct 1`] = `
+exports[`9- logoutAct 1`] = `
 Object {
   "error": false,
   "filter": null,
