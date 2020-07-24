@@ -20,7 +20,11 @@ interface NotificationProps {
 export class DialogContent extends Component<NotificationProps> {
 
     componentDidMount() {
-        console.log("henlo")
+        const {notifications, fetchNotifications} = this.props;
+
+        if (notifications.list.length === 0) {
+            fetchNotifications(null);
+        }
     }
 
     hide = () => {

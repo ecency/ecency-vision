@@ -74,20 +74,24 @@ export default (state: Notifications = initialState, action: Actions): Notificat
 /* Actions */
 export const fetchNotifications = (since: number | null = null) => (dispatch: Dispatch, getState: () => AppState) => {
     dispatch(fetchAct());
-    const {notifications, activeUser} = getState();
+    const {notifications, activeUser, users} = getState();
 
     const {filter} = notifications;
 
-    getNotifications(activeUser?.username!, filter, since).then(r => {
+    const user = users.find((x) => x.username === activeUser?.username)!;
+
+    getNotifications(user, filter, since).then(r => {
         dispatch(fetchedAct(r));
     }).catch(() => {
         dispatch(fetchErrorAct());
     });
 }
 export const fetchUnreadNotificationCount = () => (dispatch: Dispatch, getState: () => AppState) => {
-    const {activeUser} = getState();
+    const {activeUser, users} = getState();
 
-    getUnreadNotificationCount(activeUser?.username!).then(count => {
+    const user = users.find((x) => x.username === activeUser?.username)!;
+
+    getUnreadNotificationCount(user).then(count => {
         setUnreadCountAct(count);
     })
 }

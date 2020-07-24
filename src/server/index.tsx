@@ -58,8 +58,8 @@ server
         entryHandler
     )
     .use("^/api/received-vesting/:username$", receivedVesting)
-    .post("^/api/activities/:username$", notifications)
-    .post("^/api/activities/:username/unread-count$", unreadNotificationCount)
+    .post("^/api/notifications/:username$", notifications)
+    .post("^/api/notifications/:username/unread-count$", unreadNotificationCount)
     .post("^/api/hs-token-refresh$", hsTokenRefresh)
     .post("^/api/usr-activity$", usrActivity)
     .post("^/api/account-create$", createAccount)
