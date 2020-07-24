@@ -23,7 +23,7 @@ import Search from "../search";
 import Login from "../login";
 import UserNav from "../user-nav";
 import SignUp from "../sign-up";
-import NotificationHandler from "../notification-handler";
+import WsNotificationHandler from "../ws-notification-handler";
 
 import {_t} from "../../i18n";
 
@@ -140,7 +140,7 @@ export default class NavBar extends Component<Props> {
                 </div>
                 {ui.login && <Login {...this.props} />}
                 {ui.signUp && <SignUp {...this.props} />}
-                <NotificationHandler {...this.props} />
+                <WsNotificationHandler {...this.props} />
             </div>
         );
     }
