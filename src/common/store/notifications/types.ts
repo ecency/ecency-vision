@@ -1,11 +1,12 @@
-interface BaseNotification {
-    event: "notify";
+// Web socket notification types
+
+interface BaseWsNotification {
     source: string;
     target: string;
     timestamp: string;
 }
 
-export interface VoteNotification extends BaseNotification {
+export interface WsVoteNotification extends BaseWsNotification {
     type: "vote",
     extra: {
         permlink: string;
@@ -15,7 +16,7 @@ export interface VoteNotification extends BaseNotification {
     }
 }
 
-export interface MentionNotification extends BaseNotification {
+export interface WsMentionNotification extends BaseWsNotification {
     type: "mention",
     extra: {
         permlink: string;
@@ -25,14 +26,14 @@ export interface MentionNotification extends BaseNotification {
     }
 }
 
-export interface FollowNotification extends BaseNotification {
+export interface WsFollowNotification extends BaseWsNotification {
     type: "follow",
     extra: {
         what: string[]
     }
 }
 
-export interface ReplyNotification extends BaseNotification {
+export interface WsReplyNotification extends BaseWsNotification {
     type: "reply",
     extra: {
         title: string;
@@ -46,7 +47,7 @@ export interface ReplyNotification extends BaseNotification {
     }
 }
 
-export interface ReblogNotification extends BaseNotification {
+export interface WsReblogNotification extends BaseWsNotification {
     type: "reblog";
     extra: {
         permlink: string;
@@ -56,7 +57,7 @@ export interface ReblogNotification extends BaseNotification {
 
 }
 
-export interface TransferNotification extends BaseNotification {
+export interface WsTransferNotification extends BaseWsNotification {
     type: "transfer";
     extra: {
         amount: string;
@@ -64,14 +65,117 @@ export interface TransferNotification extends BaseNotification {
     }
 }
 
-export type Notification = VoteNotification | MentionNotification | FollowNotification | ReplyNotification | ReblogNotification | TransferNotification;
+export interface WsSpinNotification extends BaseWsNotification {
+    type: "spin";
+}
+
+export interface WsInactiveNotification extends BaseWsNotification {
+    type: "inactive";
+}
+
+export type WsNotification =
+    WsVoteNotification
+    | WsMentionNotification
+    | WsFollowNotification
+    | WsReplyNotification
+    | WsReblogNotification
+    | WsTransferNotification
+    | WsSpinNotification
+    | WsInactiveNotification;
+
+// HTTP api notification types
+
+interface BaseAPiNotification {
+    id: string;
+    source: string;
+    read: 0 | 1;
+    timestamp: string; // iso formatted date
+    ts: number; // unix timestamp
+    gk: string; // group key
+    gkf: boolean; // group key flag. true when a new group started
+}
+
+export interface ApiVoteNotification extends BaseAPiNotification {
+    type: "vote" | "unvote",
+    voter: string;
+    weight: number;
+    author: string;
+    permlink: string;
+    title: string | null;
+    img_url: string | null;
+}
+
+export interface ApiMentionNotification extends BaseAPiNotification {
+    type: "mention",
+    author: string;
+    account: string;
+    permlink: string;
+    post: boolean;
+    title: string | null;
+    img_url: string | null;
+}
+
+export interface ApiFollowNotification extends BaseAPiNotification {
+    type: "follow" | "unfollow" | "ignore",
+    follower: string;
+    following: string;
+    blog: boolean;
+}
+
+export interface ApiReblogNotification extends BaseAPiNotification {
+    type: "reblog",
+    account: string;
+    author: string;
+    permlink: string;
+    title: string | null;
+    img_url: string | null;
+}
+
+export interface ApiReplyNotification extends BaseAPiNotification {
+    type: "reply",
+    author: string;
+    permlink: string;
+    title: string;
+    body: string;
+    json_metadata: string;
+    metadata: any;
+    parent_author: string;
+    parent_permlink: string;
+    parent_title: string | null;
+    parent_img_url: string | null;
+}
+
+export interface ApiTransferNotification extends BaseAPiNotification {
+    type: "transfer";
+    to: string;
+    amount: string;
+    memo: string | null;
+}
+
+export interface ApiSpinNotification extends BaseAPiNotification {
+    type: "spin";
+}
+
+export interface ApiInactiveNotification extends BaseAPiNotification {
+    type: "inactive";
+}
+
+export type ApiNotification =
+    ApiVoteNotification
+    | ApiMentionNotification
+    | ApiFollowNotification
+    | ApiReblogNotification
+    | ApiReplyNotification
+    | ApiTransferNotification
+    | ApiSpinNotification
+    | ApiInactiveNotification;
 
 export type NotificationFilter = 'vote' | 'mention' | 'follow' | 'reply' | 'reblog' | 'transfer';
 
 export interface Notifications {
     filter: NotificationFilter | null;
     unread: number;
-    list: Notification[];
+    list: ApiNotification[];
     loading: boolean,
     error: boolean
 }
@@ -91,7 +195,7 @@ export interface FetchAction {
 
 export interface FetchedAction {
     type: ActionTypes.FETCHED;
-    list: Notification[];
+    list: ApiNotification[];
 }
 
 export interface FetchErrorAction {

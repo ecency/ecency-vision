@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 
 import {ActiveUser} from "../../store/active-user/types";
-import {Notification as NotificationType} from "../../store/notifications/types";
+import {WsNotification} from "../../store/notifications/types";
 
 import defaults from "../../constants/defaults.json"
 
@@ -13,7 +13,7 @@ interface NwsWindow extends Window {
 
 declare var window: NwsWindow;
 
-export const notificationBody = (data: NotificationType): string => {
+export const notificationBody = (data: WsNotification): string => {
     const {source} = data;
 
     switch (data.type) {

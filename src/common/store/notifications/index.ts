@@ -3,15 +3,15 @@ import {Dispatch} from "redux";
 import {
     Actions,
     ActionTypes,
+    ApiNotification,
     FetchAction,
     FetchedAction,
     FetchErrorAction,
-    Notification,
+    NotificationFilter,
     Notifications,
     ResetAction,
     SetFilterAction,
-    SetUnreadCountAction,
-    NotificationFilter
+    SetUnreadCountAction
 } from "./types";
 
 import {AppState} from "../index";
@@ -47,7 +47,7 @@ export default (state: Notifications = initialState, action: Actions): Notificat
         case ActionTypes.FETCH_ERROR: {
             return {
                 ...state,
-                loading: true,
+                loading: false,
                 error: true
             };
         }
@@ -58,6 +58,12 @@ export default (state: Notifications = initialState, action: Actions): Notificat
             return {
                 ...state,
                 filter: action.filter
+            };
+        }
+        case ActionTypes.SET_UNREAD_COUNT: {
+            return {
+                ...state,
+                unread: action.count
             };
         }
         default:
@@ -101,7 +107,7 @@ export const fetchAct = (): FetchAction => {
     };
 };
 
-export const fetchedAct = (list: Notification[]): FetchedAction => {
+export const fetchedAct = (list: ApiNotification[]): FetchedAction => {
     return {
         type: ActionTypes.FETCHED,
         list,
