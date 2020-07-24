@@ -1,10 +1,11 @@
 import {Dispatch} from "redux";
 
-import {UI, Actions, ToggleLoginAct, ToggleSignUpAct, ActionTypes, ToggleType} from "./types";
+import {UI, Actions, ToggleLoginAct, ToggleSignUpAct, ToggleNotificationsAct, ActionTypes, ToggleType} from "./types";
 
 export const initialState: UI = {
     login: false,
-    signUp: false
+    signUp: false,
+    notifications: false
 };
 
 export default (state: UI = initialState, action: Actions): UI => {
@@ -15,6 +16,9 @@ export default (state: UI = initialState, action: Actions): UI => {
         case ActionTypes.TOGGLE_SIGN_UP:
             const {signUp} = state;
             return {...state, signUp: !signUp}
+        case ActionTypes.TOGGLE_NOTIFICATIONS:
+            const {notifications} = state;
+            return {...state, notifications: !notifications}
         default:
             return state;
     }
@@ -29,6 +33,9 @@ export const toggleUIProp = (what: ToggleType) => (dispatch: Dispatch) => {
             break;
         case "signUp":
             dispatch(toggleSignUpAct());
+            break;
+        case "notifications":
+            dispatch(toggleNotificationsAct());
             break;
         default:
             break;
@@ -45,5 +52,11 @@ export const toggleLoginAct = (): ToggleLoginAct => {
 export const toggleSignUpAct = (): ToggleSignUpAct => {
     return {
         type: ActionTypes.TOGGLE_SIGN_UP,
+    };
+};
+
+export const toggleNotificationsAct = (): ToggleNotificationsAct => {
+    return {
+        type: ActionTypes.TOGGLE_NOTIFICATIONS,
     };
 };
