@@ -6,12 +6,18 @@ import {User} from "../../store/users/types";
 import {Account} from "../../store/accounts/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {ToggleType} from "../../store/ui/types";
+import {Notifications} from "../../store/notifications/types";
 
 interface NotificationProps {
+    notifications: Notifications;
+    fetchNotifications: (since: number | null) => void;
+    fetchUnreadNotificationCount: () => void;
+    setNotificationsFilter: () => void;
+    resetNotifications: () => void;
     toggleUIProp: (what: ToggleType) => void;
 }
 
-export class Notifications extends Component<NotificationProps> {
+export class DialogContent extends Component<NotificationProps> {
 
     componentDidMount() {
         console.log("henlo")
@@ -31,6 +37,11 @@ export class Notifications extends Component<NotificationProps> {
 }
 
 interface Props {
+    notifications: Notifications;
+    fetchNotifications: (since: number | null) => void;
+    fetchUnreadNotificationCount: () => void;
+    setNotificationsFilter: () => void;
+    resetNotifications: () => void;
     toggleUIProp: (what: ToggleType) => void;
 }
 
@@ -45,7 +56,7 @@ export default class NotificationsDialog extends Component<Props> {
         return (
             <Modal show={true} centered={true} onHide={this.hide} className="notifications-modal drawer">
                 <Modal.Body>
-                    <Notifications {...this.props}/>
+                    <DialogContent {...this.props}/>
                 </Modal.Body>
             </Modal>
         );

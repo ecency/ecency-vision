@@ -16,6 +16,7 @@ import {Account} from "../../store/accounts/types";
 import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {UI, ToggleType} from "../../store/ui/types";
+import {Notifications} from "../../store/notifications/types";
 
 import ToolTip from "../tooltip";
 import DownloadTrigger from "../download-trigger";
@@ -39,12 +40,17 @@ interface Props {
     users: User[];
     activeUser: ActiveUser | null;
     ui: UI;
+    notifications: Notifications;
     fetchTrendingTags: () => void;
     toggleTheme: () => void;
     addUser: (user: User) => void;
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data: Account) => void;
     deleteUser: (username: string) => void;
+    fetchNotifications: (since: number | null) => void;
+    fetchUnreadNotificationCount: () => void;
+    setNotificationsFilter: () => void;
+    resetNotifications: () => void;
     toggleUIProp: (what: ToggleType) => void;
 }
 

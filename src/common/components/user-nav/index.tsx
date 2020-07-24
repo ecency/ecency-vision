@@ -6,11 +6,12 @@ import {User} from "../../store/users/types";
 import {Account} from "../../store/accounts/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {ToggleType, UI} from "../../store/ui/types";
+import {Notifications} from "../../store/notifications/types";
 
 import ToolTip from "../tooltip";
 import UserAvatar from "../user-avatar";
 import DropDown from "../dropdown";
-import Notifications from "../notifications";
+import UserNotifications from "../user-notifications";
 
 import {_t} from "../../i18n";
 
@@ -25,9 +26,14 @@ interface Props {
     users: User[];
     ui: UI;
     activeUser: ActiveUser;
+    notifications: Notifications;
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data: Account) => void;
     deleteUser: (username: string) => void;
+    fetchNotifications: (since: number | null) => void;
+    fetchUnreadNotificationCount: () => void;
+    setNotificationsFilter: () => void;
+    resetNotifications: () => void;
     toggleUIProp: (what: ToggleType) => void;
 }
 
@@ -101,7 +107,7 @@ export default class UserNav extends Component<Props> {
 
                     <DropDown {...{...this.props, ...dropDownConfig}} float="right" header={`@${activeUser.username}`}/>
                 </div>
-                {ui.notifications && <Notifications {...this.props} />}
+                {ui.notifications && <UserNotifications {...this.props} />}
             </>
         );
     }

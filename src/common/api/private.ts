@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import {User} from "../store/users/types";
-import {Notification as NotificationType, NotificationFilter} from "../store/notifications/types";
+import {ApiNotification, NotificationFilter} from "../store/notifications/types";
 
 export interface ReceivedVestingShare {
     delegatee: string;
@@ -52,7 +52,7 @@ export const usrActivity = (user: User, ty: number, bl: string | number = '', tx
     return axios.post(`/api/usr-activity`, params);
 };
 
-export const getNotifications = (username: string, filter: NotificationFilter | null, since: number | null = null): Promise<NotificationType[]> => {
+export const getNotifications = (username: string, filter: NotificationFilter | null, since: number | null = null): Promise<ApiNotification[]> => {
     let u = new URL(`/api/notifications/${username}`);
 
     if (filter) {

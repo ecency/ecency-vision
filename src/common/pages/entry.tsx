@@ -32,6 +32,7 @@ import {ActiveUser} from "../store/active-user/types";
 import {Reblog} from "../store/reblogs/types";
 import {Discussion as DiscussionType, SortOrder} from "../store/discussion/types";
 import {UI, ToggleType} from "../store/ui/types";
+import {Notifications} from "../store/notifications/types";
 
 import {toggleTheme} from "../store/global";
 import {addAccount} from "../store/accounts";
@@ -42,6 +43,7 @@ import {deleteUser, addUser} from "../store/users";
 import {addReblog} from "../store/reblogs";
 import {fetchDiscussion, sortDiscussion, resetDiscussion, updateReply, addReply, deleteReply} from "../store/discussion";
 import {toggleUIProp} from "../store/ui";
+import {fetchNotifications, fetchUnreadNotificationCount, setUnreadCountAct, resetNotifications} from "../store/notifications";
 
 import {makePath as makeEntryPath} from "../components/entry-link";
 
@@ -105,6 +107,7 @@ interface Props {
     reblogs: Reblog[];
     discussion: DiscussionType;
     ui: UI;
+    notifications: Notifications;
     toggleTheme: () => void;
     addAccount: (data: Account) => void;
     addEntry: (entry: Entry) => void;
@@ -122,6 +125,10 @@ interface Props {
     addReply: (reply: Entry) => void;
     deleteReply: (reply: Entry) => void;
     toggleUIProp: (what: ToggleType) => void;
+    fetchNotifications: (since: number | null) => void;
+    fetchUnreadNotificationCount: () => void;
+    setNotificationsFilter: () => void;
+    resetNotifications: () => void;
 }
 
 interface State {
@@ -478,7 +485,8 @@ const mapStateToProps = (state: AppState) => ({
     activeUser: state.activeUser,
     reblogs: state.reblogs,
     discussion: state.discussion,
-    ui: state.ui
+    ui: state.ui,
+    notifications: state.notifications
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
@@ -500,7 +508,11 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
             updateReply,
             addReply,
             deleteReply,
-            toggleUIProp
+            toggleUIProp,
+            fetchNotifications,
+            fetchUnreadNotificationCount,
+            setUnreadCountAct,
+            resetNotifications
         },
         dispatch
     );

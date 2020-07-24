@@ -9,7 +9,8 @@ import {ReceivedVestingShare} from "../api/private";
 
 export const UiInstance: UI = {
     login: false,
-    signUp: false
+    signUp: false,
+    notifications: false
 }
 
 export const globalInstance: Global = {
