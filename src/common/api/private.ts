@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import {User} from "../store/users/types";
+import {Notification as NotificationType, NotificationFilter} from "../store/notifications/types";
 
 export interface ReceivedVestingShare {
     delegatee: string;
@@ -50,3 +51,22 @@ export const usrActivity = (user: User, ty: number, bl: string | number = '', tx
 
     return axios.post(`/api/usr-activity`, params);
 };
+
+export const getNotifications = (username: string, filter: NotificationFilter | null, since: number | null = null): Promise<NotificationType[]> => {
+    let u = new URL(`/api/notifications/${username}`);
+
+    if (filter) {
+        u.searchParams.append("filter", filter);
+    }
+
+    if (since) {
+        u.searchParams.append("since", String(since));
+    }
+
+    return axios.get(u.href).then(resp => resp.data);
+};
+
+export const getUnreadNotificationCount = (username: string): Promise<number> =>
+    axios
+        .get(`/api/activities/${username}/unread-count`)
+        .then(resp => resp.data.count);
