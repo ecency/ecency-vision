@@ -46,7 +46,7 @@ exports[`(1) Full render 1`] = `
                   role="none"
                   style={
                     Object {
-                      "backgroundImage": "url(https://images.ecency.com/webp/u/user2/avatar/medium)",
+                      "backgroundImage": "url(https://images.ecency.com/webp/u/user2/avatar/small)",
                     }
                   }
                 />
@@ -83,7 +83,7 @@ exports[`(1) Full render 1`] = `
                   role="none"
                   style={
                     Object {
-                      "backgroundImage": "url(https://images.ecency.com/webp/u/user3/avatar/medium)",
+                      "backgroundImage": "url(https://images.ecency.com/webp/u/user3/avatar/small)",
                     }
                   }
                 />
@@ -120,7 +120,7 @@ exports[`(1) Full render 1`] = `
                   role="none"
                   style={
                     Object {
-                      "backgroundImage": "url(https://images.ecency.com/webp/u/user4/avatar/medium)",
+                      "backgroundImage": "url(https://images.ecency.com/webp/u/user4/avatar/small)",
                     }
                   }
                 />
@@ -157,7 +157,7 @@ exports[`(1) Full render 1`] = `
                   role="none"
                   style={
                     Object {
-                      "backgroundImage": "url(https://images.ecency.com/webp/u/user1/avatar/medium)",
+                      "backgroundImage": "url(https://images.ecency.com/webp/u/user1/avatar/small)",
                     }
                   }
                 />
@@ -194,7 +194,7 @@ exports[`(1) Full render 1`] = `
                   role="none"
                   style={
                     Object {
-                      "backgroundImage": "url(https://images.ecency.com/webp/u/user5/avatar/medium)",
+                      "backgroundImage": "url(https://images.ecency.com/webp/u/user5/avatar/small)",
                     }
                   }
                 />

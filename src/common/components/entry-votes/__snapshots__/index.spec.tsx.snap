@@ -167,7 +167,7 @@ exports[`(3) Render of detail with votes 1`] = `
                   role="none"
                   style={
                     Object {
-                      "backgroundImage": "url(https://images.ecency.com/webp/u/user1/avatar/medium)",
+                      "backgroundImage": "url(https://images.ecency.com/webp/u/user1/avatar/small)",
                     }
                   }
                 />
@@ -213,7 +213,7 @@ exports[`(3) Render of detail with votes 1`] = `
                   role="none"
                   style={
                     Object {
-                      "backgroundImage": "url(https://images.ecency.com/webp/u/user2/avatar/medium)",
+                      "backgroundImage": "url(https://images.ecency.com/webp/u/user2/avatar/small)",
                     }
                   }
                 />

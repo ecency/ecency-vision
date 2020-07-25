@@ -30,6 +30,7 @@ exports[`(1) Dialog (1) Up vote 1`] = `
     className="slider slider-up"
   >
     <input
+      autoFocus={true}
       className="custom-range"
       max={100}
       min={0.1}
