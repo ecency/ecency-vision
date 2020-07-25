@@ -8,7 +8,7 @@ import ProfileCard from "./index";
 import renderer from "react-test-renderer";
 
 jest.mock("../../constants/defaults.json", () => ({
-  imageServer: "https://images.ecency.com",
+  imageServer: "https://images.ecency.com/webp",
   base: "https://ecency.com",
 }));
 
