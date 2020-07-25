@@ -4,7 +4,7 @@ import UserAvatar from "./index";
 import TestRenderer from "react-test-renderer";
 
 jest.mock("../../constants/defaults.json", () => ({
-  imageServer: "https://images.ecency.com",
+  imageServer: "https://images.ecency.com/webp",
 }));
 
 describe("UserAvatar", () => {

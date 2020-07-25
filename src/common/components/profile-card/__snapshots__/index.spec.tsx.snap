@@ -32,7 +32,7 @@ exports[`(1) Render with not loaded data 1`] = `
       role="none"
       style={
         Object {
-          "backgroundImage": "url(https://images.ecency.com/u/user1/avatar/large)",
+          "backgroundImage": "url(https://images.ecency.com/webp/u/user1/avatar/large)",
         }
       }
     />
@@ -120,7 +120,7 @@ exports[`(2) Render with loaded data 1`] = `
       role="none"
       style={
         Object {
-          "backgroundImage": "url(https://images.ecency.com/u/user1/avatar/large)",
+          "backgroundImage": "url(https://images.ecency.com/webp/u/user1/avatar/large)",
         }
       }
     />
