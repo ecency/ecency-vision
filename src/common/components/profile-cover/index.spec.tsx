@@ -9,7 +9,7 @@ import {Account} from "../../store/accounts/types";
 import {globalInstance, UiInstance} from "../../helper/test-helper";
 
 jest.mock("../../constants/defaults.json", () => ({
-    imageServer: "https://images.ecency.com/webp",
+    imageServer: "https://images.ecency.com",
 }));
 
 jest.mock("../../api/hive", () => ({
