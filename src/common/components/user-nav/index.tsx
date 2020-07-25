@@ -30,6 +30,7 @@ interface Props {
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data: Account) => void;
     deleteUser: (username: string) => void;
+    addAccount: (data: Account) => void;
     fetchNotifications: (since: number | null) => void;
     fetchUnreadNotificationCount: () => void;
     setNotificationsFilter: () => void;

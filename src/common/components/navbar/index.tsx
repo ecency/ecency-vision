@@ -46,6 +46,7 @@ interface Props {
     addUser: (user: User) => void;
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data: Account) => void;
+    addAccount: (data: Account) => void;
     deleteUser: (username: string) => void;
     fetchNotifications: (since: number | null) => void;
     fetchUnreadNotificationCount: () => void;

@@ -1,5 +1,4 @@
 import {LoginAction, LogoutAction} from "../active-user/types";
-import {UpdateAction} from "../subscriptions/types";
 
 // Web socket notification types
 
@@ -76,6 +75,10 @@ export interface WsInactiveNotification extends BaseWsNotification {
     type: "inactive";
 }
 
+export interface WsReferralNotification extends BaseWsNotification {
+    type: "referral";
+}
+
 export type WsNotification =
     WsVoteNotification
     | WsMentionNotification
@@ -84,7 +87,8 @@ export type WsNotification =
     | WsReblogNotification
     | WsTransferNotification
     | WsSpinNotification
-    | WsInactiveNotification;
+    | WsInactiveNotification
+    | WsReferralNotification;
 
 // HTTP api notification types
 
@@ -163,6 +167,11 @@ export interface ApiInactiveNotification extends BaseAPiNotification {
     type: "inactive";
 }
 
+export interface ApiReferralNotification extends BaseAPiNotification {
+    type: "referral";
+}
+
+
 export type ApiNotification =
     ApiVoteNotification
     | ApiMentionNotification
@@ -171,7 +180,8 @@ export type ApiNotification =
     | ApiReplyNotification
     | ApiTransferNotification
     | ApiSpinNotification
-    | ApiInactiveNotification;
+    | ApiInactiveNotification
+    | ApiReferralNotification;
 
 export type NotificationFilter = 'vote' | 'mention' | 'follow' | 'reply' | 'reblog' | 'transfer';
 

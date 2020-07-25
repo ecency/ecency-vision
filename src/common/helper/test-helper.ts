@@ -6,6 +6,7 @@ import {DynamicProps} from "../store/dynamic-props/types";
 import {UI} from "../store/ui/types";
 import {Vote, DelegatedVestingShare} from "../api/hive";
 import {ReceivedVestingShare} from "../api/private";
+import {Notifications} from "../store/notifications/types";
 
 export const UiInstance: UI = {
     login: false,
@@ -562,3 +563,11 @@ export const dynamicPropsIntance1: DynamicProps = {
     fundRewardBalance: 848692.443,
     hbdPrintRate: 10000,
 };
+
+export const notificationsInstance1: Notifications = {
+    filter: null,
+    unread: 0,
+    list: [],
+    loading: false,
+    error: false
+}
