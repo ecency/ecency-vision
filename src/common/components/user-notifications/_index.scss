@@ -1,3 +1,10 @@
+
+.notifications-modal {
+  .modal-body {
+    padding: 0 !important;
+  }
+}
+
 .user-notification-list {
   &.empty-list {
     padding: 10px;
@@ -40,6 +47,7 @@
   .notification-list-item {
     @include clearfix();
     cursor: default;
+    font-size: 90%;
 
     &.not-read {
       @include themify(day) {
@@ -55,8 +63,13 @@
       @include clearfix();
       border-bottom-right-radius: 40px;
       border-top-right-radius: 40px;
-      margin-right: 40px;
-      padding: 14px 40px 15px 30px;
+      margin-right: 6px;
+      padding: 14px 10px;
+
+      @media (min-width: $md-break) {
+        margin-right: 40px;
+        padding: 14px 40px 15px 30px;
+      }
 
       .notification-control {
         align-items: center;
@@ -64,7 +77,11 @@
         float: left;
         height: 100%;
         padding-top: 18px;
-        width: 41px;
+        width: 24px;
+
+        @media (min-width: $md-break) {
+          width: 41px;
+        }
 
         .mark-read {
           background: $dark-sky-blue;

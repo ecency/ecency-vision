@@ -42,8 +42,8 @@
       width: 320px;
     }
 
-    @media (min-width: $xl-break) {
-      width: 400px;
+    @media (min-width: $md-break) {
+      width: 540px;
       max-width: unset;
     }
   }
