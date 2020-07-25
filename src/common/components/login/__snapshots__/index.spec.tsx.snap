@@ -54,7 +54,7 @@ Array [
           role="none"
           style={
             Object {
-              "backgroundImage": "url(https://images.ecency.com/webp/u/user1/avatar/normal)",
+              "backgroundImage": "url(https://images.ecency.com/webp/u/user1/avatar/small)",
             }
           }
         />
@@ -95,7 +95,7 @@ Array [
           role="none"
           style={
             Object {
-              "backgroundImage": "url(https://images.ecency.com/webp/u/user2/avatar/normal)",
+              "backgroundImage": "url(https://images.ecency.com/webp/u/user2/avatar/small)",
             }
           }
         />
@@ -185,7 +185,7 @@ Array [
           role="none"
           style={
             Object {
-              "backgroundImage": "url(https://images.ecency.com/webp/u/user1/avatar/normal)",
+              "backgroundImage": "url(https://images.ecency.com/webp/u/user1/avatar/small)",
             }
           }
         />
@@ -226,7 +226,7 @@ Array [
           role="none"
           style={
             Object {
-              "backgroundImage": "url(https://images.ecency.com/webp/u/user2/avatar/normal)",
+              "backgroundImage": "url(https://images.ecency.com/webp/u/user2/avatar/small)",
             }
           }
         />

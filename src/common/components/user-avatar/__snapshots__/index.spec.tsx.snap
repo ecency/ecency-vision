@@ -20,7 +20,7 @@ exports[`UserAvatar (2) Should render normal size 1`] = `
   role="none"
   style={
     Object {
-      "backgroundImage": "url(https://images.ecency.com/webp/u/good-karma/avatar/normal)",
+      "backgroundImage": "url(https://images.ecency.com/webp/u/good-karma/avatar/small)",
     }
   }
 />
@@ -46,7 +46,7 @@ exports[`UserAvatar (4) Should render large size 1`] = `
   role="none"
   style={
     Object {
-      "backgroundImage": "url(https://images.ecency.com/webp/u/good-karma/avatar/large)",
+      "backgroundImage": "url(https://images.ecency.com/webp/u/good-karma/avatar/medium)",
     }
   }
 />

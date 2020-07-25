@@ -33,7 +33,7 @@ exports[`(1) Render list 1`] = `
           role="none"
           style={
             Object {
-              "backgroundImage": "url(https://images.ecency.com/webp/u/user1/avatar/large)",
+              "backgroundImage": "url(https://images.ecency.com/webp/u/user1/avatar/medium)",
             }
           }
         />
@@ -59,7 +59,7 @@ exports[`(1) Render list 1`] = `
           role="none"
           style={
             Object {
-              "backgroundImage": "url(https://images.ecency.com/webp/u/user2/avatar/large)",
+              "backgroundImage": "url(https://images.ecency.com/webp/u/user2/avatar/medium)",
             }
           }
         />
@@ -85,7 +85,7 @@ exports[`(1) Render list 1`] = `
           role="none"
           style={
             Object {
-              "backgroundImage": "url(https://images.ecency.com/webp/u/user3/avatar/large)",
+              "backgroundImage": "url(https://images.ecency.com/webp/u/user3/avatar/medium)",
             }
           }
         />
