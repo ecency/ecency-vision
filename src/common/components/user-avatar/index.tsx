@@ -16,7 +16,7 @@ export default class UserAvatar extends Component<Props> {
 
     render() {
         const {username, size, onClick} = this.props;
-        const imgSize = size === 'xLarge' ? 'large' : 'medium';
+        const imgSize = size === 'xLarge' ? 'large' : (size ? size : 'medium');
         const cls = `user-avatar ${size}`;
         const imageSrc = `${defaults.imageServer}/u/${username}/avatar/${imgSize}`;
 
