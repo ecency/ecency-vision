@@ -206,7 +206,7 @@ class ProfilePage extends Component<Props, State> {
       description: account.profile?.about || "",
       url,
       canonical: url,
-      image: `${defaults.imageServer}/u/${username}/avatar/large`,
+      image: `${defaults.imageServer.replace('/webp', '')}/u/${username}/avatar/large`,
       rss: `${defaults.base}/@${username}/rss`,
       keywords: `${username}, ${username}'s blog`,
     };
