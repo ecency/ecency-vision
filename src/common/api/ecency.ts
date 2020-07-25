@@ -8,7 +8,7 @@ export const uploadImage = async (file: File, token: string): Promise<{
     const fData = new FormData();
     fData.append('file', file);
 
-    const postUrl = `${defaults.imageServer}/hs/${token}`;
+    const postUrl = `${defaults.imageServer.replace('/webp','')}/hs/${token}`;
 
     return axios.post(postUrl, fData, {
         headers: {
