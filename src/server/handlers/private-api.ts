@@ -42,12 +42,12 @@ export const notifications = async (req: express.Request, res: express.Response)
     if (!validateCode(req, res)) return;
 
     const {username} = req.params;
-    let {filter, since} = req.query;
+    const {filter, since} = req.query;
 
     let u = `activities/${username}`
 
     if (filter) {
-        u = `${(filter === 'votes' ? 'rvotes' : filter)}/${username}`
+        u = `${filter}/${username}`
     }
 
     if (since) {

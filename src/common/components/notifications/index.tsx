@@ -272,9 +272,10 @@ export class DialogContent extends Component<NotificationProps> {
 
     render() {
 
+        const filters:NotificationFilter[] = ['rvotes', 'replies', 'mentions', 'follows', 'reblogs', 'transfers'];
         const dropDownConfig = {
             label: '',
-            items: ['votes', 'replies', 'mentions', 'follows', 'reblogs', 'transfers'].map((f => {
+            items: ['rvotes', 'replies', 'mentions', 'follows', 'reblogs', 'transfers'].map((f => {
                 return {
                     label: _t(`notifications.type-${f}`),
                     onClick: () => {

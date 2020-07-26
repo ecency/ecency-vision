@@ -36,7 +36,7 @@ it("6- fetchedAct", () => {
 });
 
 it("7- setFilterAct", () => {
-    state = reducer(state, setFilterAct("vote"));
+    state = reducer(state, setFilterAct("rvotes"));
     expect(state).toMatchSnapshot();
 });
 

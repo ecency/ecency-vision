@@ -235,7 +235,7 @@ Object {
 exports[`7- setFilterAct 1`] = `
 Object {
   "error": false,
-  "filter": "vote",
+  "filter": "rvotes",
   "list": Array [],
   "loading": false,
   "unread": 0,
@@ -245,7 +245,7 @@ Object {
 exports[`8- setUnreadCountAct 1`] = `
 Object {
   "error": false,
-  "filter": "vote",
+  "filter": "rvotes",
   "list": Array [],
   "loading": false,
   "unread": 8,

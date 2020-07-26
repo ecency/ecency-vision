@@ -183,7 +183,7 @@ export type ApiNotification =
     | ApiInactiveNotification
     | ApiReferralNotification;
 
-export type NotificationFilter = 'vote' | 'mention' | 'follow' | 'reply' | 'reblog' | 'transfer';
+export type NotificationFilter = 'rvotes' | 'mentions' | 'follows' | 'replies' | 'reblogs' | 'transfers';
 
 export interface Notifications {
     filter: NotificationFilter | null;
