@@ -311,7 +311,7 @@
     "reblogged": "{{source}} reblogged your post",
     "transfer": "{{source}} sent you {{amount}}"
   },
-  "user-notifications": {
+  "notifications": {
     "type-all": "All Notifications",
     "type-votes": "Votes",
     "type-replies": "Replies",

@@ -11,7 +11,7 @@ import {NotificationFilter, Notifications} from "../../store/notifications/types
 import ToolTip from "../tooltip";
 import UserAvatar from "../user-avatar";
 import DropDown from "../dropdown";
-import UserNotifications from "../user-notifications";
+import UserNotifications from "../notifications";
 
 import {_t} from "../../i18n";
 
