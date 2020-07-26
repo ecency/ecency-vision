@@ -35,18 +35,24 @@ it("6- fetchedAct", () => {
     expect(state).toMatchSnapshot();
 });
 
-it("7- setFilterAct", () => {
+
+it("7- fetchedAct", () => {
+    state = reducer(state, fetchedAct([], NFetchMode.APPEND));
+    expect(state).toMatchSnapshot();
+});
+
+it("8- setFilterAct", () => {
     state = reducer(state, setFilterAct(NotificationFilter.VOTES));
     expect(state).toMatchSnapshot();
 });
 
-it("8- setUnreadCountAct", () => {
+it("9- setUnreadCountAct", () => {
     state = reducer(state, setUnreadCountAct(8));
     expect(state).toMatchSnapshot();
 });
 
 
-it("9- logoutAct", () => {
+it("10- logoutAct", () => {
     state = reducer(state, logoutAct());
     expect(state).toMatchSnapshot();
 });

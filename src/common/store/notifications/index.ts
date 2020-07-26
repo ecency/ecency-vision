@@ -26,6 +26,7 @@ export const initialState: Notifications = {
     list: [],
     loading: false,
     error: false,
+    hasMore: true
 };
 
 export default (state: Notifications = initialState, action: Actions): Notifications => {
@@ -64,7 +65,8 @@ export default (state: Notifications = initialState, action: Actions): Notificat
                 ...state,
                 loading: false,
                 error: false,
-                list: newList
+                list: newList,
+                hasMore: action.list.length !== 0
             };
         }
         case ActionTypes.FETCH_ERROR: {
@@ -82,6 +84,7 @@ export default (state: Notifications = initialState, action: Actions): Notificat
             return {
                 ...state,
                 list: [],
+                hasMore: true,
                 filter: action.filter
             };
         }
