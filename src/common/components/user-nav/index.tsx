@@ -34,7 +34,6 @@ interface Props {
     fetchNotifications: (since: number | null) => void;
     fetchUnreadNotificationCount: () => void;
     setNotificationsFilter: (filter: NotificationFilter | null) => void;
-    resetNotifications: () => void;
     toggleUIProp: (what: ToggleType) => void;
 }
 

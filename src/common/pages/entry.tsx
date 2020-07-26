@@ -32,7 +32,7 @@ import {ActiveUser} from "../store/active-user/types";
 import {Reblog} from "../store/reblogs/types";
 import {Discussion as DiscussionType, SortOrder} from "../store/discussion/types";
 import {UI, ToggleType} from "../store/ui/types";
-import {Notifications} from "../store/notifications/types";
+import {NotificationFilter, Notifications} from "../store/notifications/types";
 
 import {toggleTheme} from "../store/global";
 import {addAccount} from "../store/accounts";
@@ -43,7 +43,7 @@ import {deleteUser, addUser} from "../store/users";
 import {addReblog} from "../store/reblogs";
 import {fetchDiscussion, sortDiscussion, resetDiscussion, updateReply, addReply, deleteReply} from "../store/discussion";
 import {toggleUIProp} from "../store/ui";
-import {fetchNotifications, fetchUnreadNotificationCount, setUnreadCountAct, resetNotifications} from "../store/notifications";
+import {fetchNotifications, fetchUnreadNotificationCount, setNotificationsFilter} from "../store/notifications";
 
 import {makePath as makeEntryPath} from "../components/entry-link";
 
@@ -127,8 +127,7 @@ interface Props {
     toggleUIProp: (what: ToggleType) => void;
     fetchNotifications: (since: number | null) => void;
     fetchUnreadNotificationCount: () => void;
-    setNotificationsFilter: () => void;
-    resetNotifications: () => void;
+    setNotificationsFilter: (filter: NotificationFilter | null) => void;
 }
 
 interface State {
@@ -511,8 +510,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
             toggleUIProp,
             fetchNotifications,
             fetchUnreadNotificationCount,
-            setUnreadCountAct,
-            resetNotifications
+            setNotificationsFilter
         },
         dispatch
     );

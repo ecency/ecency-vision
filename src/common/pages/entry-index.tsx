@@ -28,7 +28,7 @@ import {deleteUser, addUser} from "../store/users";
 import {addReblog} from "../store/reblogs";
 import {toggleUIProp} from "../store/ui";
 import {updateSubscriptions} from "../store/subscriptions";
-import {fetchNotifications, fetchUnreadNotificationCount, setNotificationsFilter, resetNotifications} from "../store/notifications";
+import {fetchNotifications, fetchUnreadNotificationCount, setNotificationsFilter} from "../store/notifications";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme";
@@ -88,7 +88,6 @@ interface Props {
   fetchNotifications: (since: number | null) => void;
   fetchUnreadNotificationCount: () => void;
   setNotificationsFilter: (filter: NotificationFilter | null) => void;
-  resetNotifications: () => void;
 }
 
 class EntryIndexPage extends Component<Props> {
@@ -285,8 +284,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       updateSubscriptions,
       fetchNotifications,
       fetchUnreadNotificationCount,
-      setNotificationsFilter,
-      resetNotifications
+      setNotificationsFilter
     },
     dispatch
   );

@@ -11,7 +11,6 @@ import {
     FetchErrorAction,
     NotificationFilter,
     Notifications,
-    ResetAction,
     SetFilterAction,
     SetUnreadCountAction
 } from "./types";
@@ -54,8 +53,7 @@ export default (state: Notifications = initialState, action: Actions): Notificat
             };
         }
         case ActiveUserActionTypes.LOGIN:
-        case ActiveUserActionTypes.LOGOUT:
-        case ActionTypes.RESET: {
+        case ActiveUserActionTypes.LOGOUT: {
             return {...initialState}
         }
         case ActionTypes.SET_FILTER: {
@@ -100,10 +98,6 @@ export const fetchUnreadNotificationCount = () => (dispatch: Dispatch, getState:
     })
 }
 
-export const resetNotifications = () => (dispatch: Dispatch) => {
-    dispatch(resetAct());
-};
-
 export const setNotificationsFilter = (filter: NotificationFilter | null) => (dispatch: Dispatch) => {
     dispatch(setFilterAct(filter));
 }
@@ -125,12 +119,6 @@ export const fetchedAct = (list: ApiNotification[]): FetchedAction => {
 export const fetchErrorAct = (): FetchErrorAction => {
     return {
         type: ActionTypes.FETCH_ERROR,
-    };
-};
-
-export const resetAct = (): ResetAction => {
-    return {
-        type: ActionTypes.RESET,
     };
 };
 

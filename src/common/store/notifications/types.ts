@@ -197,7 +197,6 @@ export enum ActionTypes {
     FETCH = "@notifications/FETCH",
     FETCHED = "@notifications/FETCHED",
     FETCH_ERROR = "@notifications/FETCH_ERROR",
-    RESET = "@notifications/RESET",
     SET_FILTER = "@notifications/SET_FILTER",
     SET_UNREAD_COUNT = "@notifications/SET_UNREAD_COUNT",
 }
@@ -215,10 +214,6 @@ export interface FetchErrorAction {
     type: ActionTypes.FETCH_ERROR;
 }
 
-export interface ResetAction {
-    type: ActionTypes.RESET;
-}
-
 export interface SetFilterAction {
     type: ActionTypes.SET_FILTER;
     filter: NotificationFilter | null;
@@ -230,4 +225,4 @@ export interface SetUnreadCountAction {
 }
 
 
-export type Actions = FetchAction | FetchedAction | FetchErrorAction | ResetAction | SetFilterAction | SetUnreadCountAction | LoginAction | LogoutAction;
+export type Actions = FetchAction | FetchedAction | FetchErrorAction | SetFilterAction | SetUnreadCountAction | LoginAction | LogoutAction;

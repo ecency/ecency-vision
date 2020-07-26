@@ -251,7 +251,6 @@ interface NotificationProps {
     fetchNotifications: (since: number | null) => void;
     fetchUnreadNotificationCount: () => void;
     setNotificationsFilter: (filter: NotificationFilter | null) => void;
-    resetNotifications: () => void;
     toggleUIProp: (what: ToggleType) => void;
     addAccount: (data: Account) => void;
 }
@@ -279,8 +278,7 @@ export class DialogContent extends Component<NotificationProps> {
                 return {
                     label: _t(`user-notifications.type-${f}`),
                     onClick: () => {
-                        const {resetNotifications, setNotificationsFilter, fetchNotifications} = this.props;
-                        resetNotifications();
+                        const { setNotificationsFilter, fetchNotifications} = this.props;
                         setNotificationsFilter(f as NotificationFilter);
                         fetchNotifications(null);
                     }
@@ -327,7 +325,6 @@ interface Props {
     fetchNotifications: (since: number | null) => void;
     fetchUnreadNotificationCount: () => void;
     setNotificationsFilter: (filter: NotificationFilter | null) => void;
-    resetNotifications: () => void;
     toggleUIProp: (what: ToggleType) => void;
     addAccount: (data: Account) => void;
 }

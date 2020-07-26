@@ -16,7 +16,7 @@ import {User} from "../store/users/types";
 import {ActiveUser} from "../store/active-user/types";
 import {Reblog} from "../store/reblogs/types";
 import {UI, ToggleType} from "../store/ui/types";
-import {Notifications} from "../store/notifications/types";
+import {NotificationFilter, Notifications} from "../store/notifications/types";
 
 import {toggleListStyle, toggleTheme} from "../store/global";
 import {makeGroupKey, fetchEntries} from "../store/entries";
@@ -28,7 +28,7 @@ import {setActiveUser, updateActiveUser} from "../store/active-user";
 import {deleteUser, addUser} from "../store/users";
 import {addReblog} from "../store/reblogs";
 import {toggleUIProp} from "../store/ui";
-import {fetchNotifications, fetchUnreadNotificationCount, setUnreadCountAct, resetNotifications} from "../store/notifications";
+import {fetchNotifications, fetchUnreadNotificationCount, setNotificationsFilter} from "../store/notifications";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme";
@@ -87,8 +87,7 @@ interface Props {
   toggleUIProp: (what: ToggleType) => void;
   fetchNotifications: (since: number | null) => void;
   fetchUnreadNotificationCount: () => void;
-  setNotificationsFilter: () => void;
-  resetNotifications: () => void;
+  setNotificationsFilter: (filter: NotificationFilter | null) => void;
 }
 
 interface State {
@@ -303,8 +302,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       toggleUIProp,
       fetchNotifications,
       fetchUnreadNotificationCount,
-      setUnreadCountAct,
-      resetNotifications
+      setNotificationsFilter
     },
     dispatch
   );
