@@ -313,6 +313,7 @@
   },
   "notifications": {
     "type-all": "All Notifications",
+    "type-all-short": "All",
     "type-rvotes": "Votes",
     "type-replies": "Replies",
     "type-mentions": "Mentions",
