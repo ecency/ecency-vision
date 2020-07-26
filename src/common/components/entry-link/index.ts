@@ -20,6 +20,7 @@ interface Props {
   children: JSX.Element;
   entry: Entry | PartialEntry;
   toReplies: boolean;
+  afterClick?: () => void;
 }
 
 export default class EntryLink extends Component<Props> {
@@ -27,16 +28,19 @@ export default class EntryLink extends Component<Props> {
     toReplies: false,
   };
 
-  goEntry = async (e: React.MouseEvent<HTMLElement>) => {
+  clicked = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
 
-    const { history, toReplies } = this.props;
+    const { history, toReplies, afterClick } = this.props;
     let { entry: _entry } = this.props;
 
     if (!("title" in _entry)) {
       // Get full content if the "entry" passed is "PartialEntry"
       try {
-        const entry = await getPost(_entry.author, _entry.permlink);
+        const resp = await getPost(_entry.author, _entry.permlink);
+        if(resp){
+          _entry = resp
+        }
       } catch (e) {
         return;
       }
@@ -45,6 +49,8 @@ export default class EntryLink extends Component<Props> {
     const { category, author, permlink } = _entry;
 
     history.push(makePath(category, author, permlink, toReplies));
+
+    if(afterClick) afterClick();
   };
 
   render() {
@@ -52,7 +58,7 @@ export default class EntryLink extends Component<Props> {
 
     const href = makePath(entry.category, entry.author, entry.permlink, toReplies);
 
-    const props = Object.assign({}, children.props, { href, onClick: this.goEntry });
+    const props = Object.assign({}, children.props, { href, onClick: this.clicked });
 
     return React.createElement("a", props);
   }

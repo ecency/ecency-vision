@@ -50,9 +50,15 @@ class NotificationListItem extends Component<{
     history: History;
     notification: ApiNotification;
     addAccount: (data: Account) => void;
+    toggleUIProp: (what: ToggleType) => void;
 }> {
 
     markAsRead = () => {
+    }
+
+    afterClick = () => {
+        const {toggleUIProp} = this.props;
+        toggleUIProp("notifications");
     }
 
     render() {
@@ -71,7 +77,7 @@ class NotificationListItem extends Component<{
                     </div>
 
                     <div className="source">
-                        <ProfileLink {...this.props} username={notification.source}>
+                        <ProfileLink {...this.props} username={notification.source} afterClick={this.afterClick}>
                             <a className="source-avatar">
                                 <UserAvatar username={notification.source} size="medium"/>
                             </a>
@@ -82,7 +88,7 @@ class NotificationListItem extends Component<{
                     {(notification.type === 'vote' || notification.type === 'unvote') && (
                         <div className="item-content">
                             <div className="first-line">
-                                <ProfileLink {...this.props} username={notification.source}>
+                                <ProfileLink {...this.props} username={notification.source} afterClick={this.afterClick}>
                                     <a className="source-name"> {notification.source}</a>
                                 </ProfileLink>
                                 <span className="item-action">
@@ -92,7 +98,8 @@ class NotificationListItem extends Component<{
                             <div className="second-line">
                                 <EntryLink
                                     {...this.props}
-                                    entry={{category: 'category', author: notification.author, permlink: notification.permlink}}>
+                                    entry={{category: 'category', author: notification.author, permlink: notification.permlink}}
+                                    afterClick={this.afterClick}>
                                     <a className="post-link">{notification.permlink}</a>
                                 </EntryLink>
                             </div>
@@ -103,21 +110,23 @@ class NotificationListItem extends Component<{
                     {notification.type === 'reply' && (
                         <div className="item-content">
                             <div className="first-line">
-                                <ProfileLink {...this.props} username={notification.source}>
+                                <ProfileLink {...this.props} username={notification.source} afterClick={this.afterClick}>
                                     <a className="source-name"> {notification.source}</a>
                                 </ProfileLink>
                                 <span className="item-action">{_t('notifications.reply-str')}</span>
                                 <div className="vert-separator"/>
                                 <EntryLink
                                     {...this.props}
-                                    entry={{category: 'category', author: notification.parent_author, permlink: notification.parent_permlink}}>
+                                    entry={{category: 'category', author: notification.parent_author, permlink: notification.parent_permlink}}
+                                    afterClick={this.afterClick}>
                                     <a className="post-link">{notification.parent_permlink}</a>
                                 </EntryLink>
                             </div>
                             <div className="second-line">
                                 <EntryLink
                                     {...this.props}
-                                    entry={{category: 'category', author: notification.author, permlink: notification.permlink}}>
+                                    entry={{category: 'category', author: notification.author, permlink: notification.permlink}}
+                                    afterClick={this.afterClick}>
                                     <div className="markdown-view mini-markdown reply-body">
                                         {postBodySummary(notification.body, 100)}
                                     </div>
@@ -130,7 +139,7 @@ class NotificationListItem extends Component<{
                     {notification.type === 'mention' && (
                         <div className="item-content">
                             <div className="first-line">
-                                <ProfileLink {...this.props} username={notification.source}>
+                                <ProfileLink {...this.props} username={notification.source} afterClick={this.afterClick}>
                                     <a className="source-name"> {notification.source}</a>
                                 </ProfileLink>
                                 <span className="item-action">{_t('notifications.mention-str')}</span>
@@ -138,7 +147,8 @@ class NotificationListItem extends Component<{
                             <div className="second-line">
                                 <EntryLink
                                     {...this.props}
-                                    entry={{category: 'category', author: notification.author, permlink: notification.permlink}}>
+                                    entry={{category: 'category', author: notification.author, permlink: notification.permlink}}
+                                    afterClick={this.afterClick}>
                                     <a className="post-link">{notification.permlink}</a>
                                 </EntryLink>
                             </div>
@@ -149,7 +159,7 @@ class NotificationListItem extends Component<{
                     {(notification.type === 'follow' || notification.type === 'unfollow' || notification.type === 'ignore') && (
                         <div className="item-content">
                             <div className="first-line">
-                                <ProfileLink {...this.props} username={notification.source}>
+                                <ProfileLink {...this.props} username={notification.source} afterClick={this.afterClick}>
                                     <a className="source-name"> {notification.source}</a>
                                 </ProfileLink>
                             </div>
@@ -165,7 +175,7 @@ class NotificationListItem extends Component<{
                     {notification.type === 'reblog' && (
                         <div className="item-content">
                             <div className="first-line">
-                                <ProfileLink {...this.props} username={notification.source}>
+                                <ProfileLink {...this.props} username={notification.source} afterClick={this.afterClick}>
                                     <a className="source-name"> {notification.source}</a>
                                 </ProfileLink>
                                 <span className="item-action">{_t('notifications.reblog-str')}</span>
@@ -173,7 +183,8 @@ class NotificationListItem extends Component<{
                             <div className="second-line">
                                 <EntryLink
                                     {...this.props}
-                                    entry={{category: 'category', author: notification.author, permlink: notification.permlink}}>
+                                    entry={{category: 'category', author: notification.author, permlink: notification.permlink}}
+                                    afterClick={this.afterClick}>
                                     <a className="post-link">{notification.permlink}</a>
                                 </EntryLink>
                             </div>
@@ -184,7 +195,7 @@ class NotificationListItem extends Component<{
                     {notification.type === 'transfer' && (
                         <div className="item-content">
                             <div className="first-line">
-                                <ProfileLink {...this.props} username={notification.source}>
+                                <ProfileLink {...this.props} username={notification.source} afterClick={this.afterClick}>
                                     <a className="source-name"> {notification.source}</a>
                                 </ProfileLink>
                                 <span className="item-action">
@@ -206,7 +217,7 @@ class NotificationListItem extends Component<{
                     {notification.type === 'spin' && (
                         <div className="item-content">
                             <div className="first-line">
-                                <ProfileLink {...this.props} username={notification.source}>
+                                <ProfileLink {...this.props} username={notification.source} afterClick={this.afterClick}>
                                     <a className="source-name"> {notification.source}</a>
                                 </ProfileLink>
                                 <span className="item-action">{_t('notifications.spin-str')}</span>
@@ -218,7 +229,7 @@ class NotificationListItem extends Component<{
                     {notification.type === 'inactive' && (
                         <div className="item-content">
                             <div className="first-line">
-                                <ProfileLink {...this.props} username={notification.source}>
+                                <ProfileLink {...this.props} username={notification.source} afterClick={this.afterClick}>
                                     <a className="source-name"> {notification.source}</a>
                                 </ProfileLink>
                                 <span className="item-action">
@@ -232,7 +243,7 @@ class NotificationListItem extends Component<{
                     {notification.type === 'referral' && (
                         <div className="item-content">
                             <div className="first-line">
-                                <ProfileLink {...this.props} username={notification.source}>
+                                <ProfileLink {...this.props} username={notification.source} afterClick={this.afterClick}>
                                     <a className="source-name"> {notification.source}</a>
                                 </ProfileLink>
                                 <span className="item-action">{_t('notifications.referral-str')}</span>

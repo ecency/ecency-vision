@@ -10,19 +10,22 @@ interface Props {
   children: JSX.Element;
   username: string;
   addAccount: (data: Account) => void;
+  afterClick?: () => void;
 }
 
 export default class ProfileLink extends Component<Props> {
   public static defaultProps = {};
 
-  goProfile = async (e: React.MouseEvent<HTMLElement>) => {
+  clicked = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
 
-    const { username, history, addAccount } = this.props;
+    const { username, history, addAccount, afterClick } = this.props;
 
     addAccount({ name: username });
 
     history.push(makePath(username));
+
+    if(afterClick) afterClick();
   };
 
   render() {
@@ -31,7 +34,7 @@ export default class ProfileLink extends Component<Props> {
 
     const props = Object.assign({}, children.props, {
       href,
-      onClick: this.goProfile,
+      onClick: this.clicked,
     });
 
     return React.createElement("a", props);
