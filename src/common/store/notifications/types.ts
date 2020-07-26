@@ -183,13 +183,19 @@ export type ApiNotification =
     | ApiInactiveNotification
     | ApiReferralNotification;
 
-export type NotificationFilter = 'rvotes' | 'mentions' | 'follows' | 'replies' | 'reblogs' | 'transfers';
+export enum NotificationFilter {
+    VOTES = "rvotes",
+    MENTIONS = "mentions",
+    FOLLOWS = "follows",
+    REPLIES = "replies",
+    REBLOGS = "reblogs",
+    TRANSFERS = "transfers"
+}
 
 export enum NFetchMode {
     REPLACE = "REPLACE",
     APPEND = "APPEND"
 }
-
 
 export interface Notifications {
     filter: NotificationFilter | null;

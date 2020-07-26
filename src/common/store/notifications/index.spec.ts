@@ -1,5 +1,5 @@
 import reducer, {initialState, fetchAct, fetchedAct, fetchErrorAct, setFilterAct, setUnreadCountAct} from "./index";
-import {NFetchMode} from "./types";
+import {NFetchMode, NotificationFilter} from "./types";
 import {apiNotificationList1, apiNotificationList2} from "../../helper/test-helper";
 
 import {logoutAct} from "../active-user";
@@ -36,7 +36,7 @@ it("6- fetchedAct", () => {
 });
 
 it("7- setFilterAct", () => {
-    state = reducer(state, setFilterAct("rvotes"));
+    state = reducer(state, setFilterAct(NotificationFilter.VOTES));
     expect(state).toMatchSnapshot();
 });
 

@@ -282,7 +282,7 @@ export class DialogContent extends Component<NotificationProps> {
     }
 
     render() {
-        const filters: NotificationFilter[] = ['rvotes', 'replies', 'mentions', 'follows', 'reblogs', 'transfers'];
+        const filters = Object.values(NotificationFilter);
         const menuItems = [
             {
                 label: _t("notifications.type-all-short"),
