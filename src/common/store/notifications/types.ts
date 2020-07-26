@@ -185,6 +185,12 @@ export type ApiNotification =
 
 export type NotificationFilter = 'rvotes' | 'mentions' | 'follows' | 'replies' | 'reblogs' | 'transfers';
 
+export enum NFetchMode {
+    REPLACE = "REPLACE",
+    APPEND = "APPEND"
+}
+
+
 export interface Notifications {
     filter: NotificationFilter | null;
     unread: number;
@@ -208,6 +214,7 @@ export interface FetchAction {
 export interface FetchedAction {
     type: ActionTypes.FETCHED;
     list: ApiNotification[];
+    mode: NFetchMode
 }
 
 export interface FetchErrorAction {

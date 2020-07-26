@@ -9,6 +9,7 @@ import {
     FetchAction,
     FetchedAction,
     FetchErrorAction,
+    NFetchMode,
     NotificationFilter,
     Notifications,
     SetFilterAction,
@@ -37,7 +38,17 @@ export default (state: Notifications = initialState, action: Actions): Notificat
         }
         case ActionTypes.FETCHED: {
             const {list} = state;
-            const newList = [...list, ...action.list];
+            let newList: ApiNotification[] = []
+
+            switch (action.mode) {
+                case NFetchMode.APPEND:
+                    newList = [...list, ...action.list];
+                    break;
+                case NFetchMode.REPLACE:
+                    newList = [...action.list];
+                    break;
+            }
+
             return {
                 ...state,
                 loading: false,
@@ -59,7 +70,7 @@ export default (state: Notifications = initialState, action: Actions): Notificat
         case ActionTypes.SET_FILTER: {
             return {
                 ...state,
-                list:[],
+                list: [],
                 filter: action.filter
             };
         }
@@ -84,7 +95,13 @@ export const fetchNotifications = (since: number | null = null) => (dispatch: Di
     const user = users.find((x) => x.username === activeUser?.username)!;
 
     getNotifications(user, filter, since).then(r => {
-        dispatch(fetchedAct(r));
+
+        if (since) {
+            dispatch(fetchedAct(r, NFetchMode.APPEND));
+        } else {
+            dispatch(fetchedAct(r, NFetchMode.REPLACE));
+        }
+
     }).catch(() => {
         dispatch(fetchErrorAct());
     });
@@ -110,10 +127,11 @@ export const fetchAct = (): FetchAction => {
     };
 };
 
-export const fetchedAct = (list: ApiNotification[]): FetchedAction => {
+export const fetchedAct = (list: ApiNotification[], mode: NFetchMode): FetchedAction => {
     return {
         type: ActionTypes.FETCHED,
         list,
+        mode
     };
 };
 

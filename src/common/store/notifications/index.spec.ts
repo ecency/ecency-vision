@@ -1,5 +1,5 @@
 import reducer, {initialState, fetchAct, fetchedAct, fetchErrorAct, setFilterAct, setUnreadCountAct} from "./index";
-
+import {NFetchMode} from "./types";
 import {apiNotificationList1, apiNotificationList2} from "../../helper/test-helper";
 
 import {logoutAct} from "../active-user";
@@ -26,12 +26,12 @@ it("4- fetchAct", () => {
 });
 
 it("5- fetchedAct", () => {
-    state = reducer(state, fetchedAct(apiNotificationList1));
+    state = reducer(state, fetchedAct(apiNotificationList1, NFetchMode.REPLACE));
     expect(state).toMatchSnapshot();
 });
 
 it("6- fetchedAct", () => {
-    state = reducer(state, fetchedAct(apiNotificationList2));
+    state = reducer(state, fetchedAct(apiNotificationList2, NFetchMode.APPEND));
     expect(state).toMatchSnapshot();
 });
 
