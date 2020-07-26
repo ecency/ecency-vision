@@ -16,8 +16,9 @@ import {ApiNotification} from "../../store/notifications/types";
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 import EntryLink from "../entry-link";
-
 import LinearProgress from "../linear-progress";
+import DropDown from "../dropdown";
+import Tooltip from "../tooltip";
 
 import {
     postBodySummary,
@@ -25,7 +26,12 @@ import {
 } from "@esteemapp/esteem-render-helpers";
 
 import {_t} from "../../i18n";
-import DropDown from "../dropdown";
+
+import _c from '../../util/fix-class-names'
+
+import {syncSvg, checkSvg} from "../../img/svg";
+import {Simulate} from "react-dom/test-utils";
+import load = Simulate.load;
 
 
 const date2key = (s: string): string => {
@@ -276,6 +282,15 @@ export class DialogContent extends Component<NotificationProps> {
         }
     }
 
+    refresh = () => {
+        const {fetchNotifications} = this.props;
+        fetchNotifications(null);
+    }
+
+    markAsRead = () => {
+    }
+
+
     hide = () => {
         const {toggleUIProp} = this.props;
         toggleUIProp('login');
@@ -315,8 +330,18 @@ export class DialogContent extends Component<NotificationProps> {
         return (
             <div className="notification-list">
                 <div className="list-header">
-                    <span>{filter ? _t(`notifications.type-${filter}`) : _t('notifications.type-all')}</span>
-                    <DropDown {...{...this.props, ...dropDownConfig}} float="left"/>
+                    <div className="list-filter">
+                        <span>{filter ? _t(`notifications.type-${filter}`) : _t('notifications.type-all')}</span>
+                        <DropDown {...{...this.props, ...dropDownConfig}} float="left"/>
+                    </div>
+                    <div className="list-actions">
+                        <Tooltip content={_t("notifications.refresh")}>
+                            <span className={_c(`list-action ${loading ? 'disabled' : ''}`)} onClick={this.refresh}>{syncSvg}</span>
+                        </Tooltip>
+                        <Tooltip content={_t("notifications.mark-all-read")}>
+                            <span className={_c(`list-action ${loading ? 'disabled' : ''}`)} onClick={this.markAsRead}>{checkSvg}</span>
+                        </Tooltip>
+                    </div>
                 </div>
 
                 {loading && <LinearProgress/>}

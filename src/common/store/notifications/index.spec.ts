@@ -11,7 +11,7 @@ it("1- default state", () => {
 });
 
 it("2- fetchAct", () => {
-    state = reducer(state, fetchAct());
+    state = reducer(state, fetchAct(NFetchMode.REPLACE));
     expect(state).toMatchSnapshot();
 });
 
@@ -21,7 +21,7 @@ it("3- fetchErrorAct", () => {
 });
 
 it("4- fetchAct", () => {
-    state = reducer(state, fetchAct());
+    state = reducer(state, fetchAct(NFetchMode.REPLACE));
     expect(state).toMatchSnapshot();
 });
 

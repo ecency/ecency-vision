@@ -8,12 +8,9 @@
 .notification-list {
   .list-header {
     height: 75px;
-    padding-left: 16px;
-
-    align-items: center;
-    color: $dark-sky-blue;
     display: flex;
-    font-weight: 700;
+    align-items: center;
+    justify-content: space-between;
 
     @include themify(day) {
       border-bottom: 1px solid $white-three;
@@ -21,6 +18,34 @@
 
     @include themify(night) {
       border-bottom: solid 1px $dark-two;
+    }
+
+    .list-filter {
+      padding-left: 16px;
+      color: $dark-sky-blue;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+    }
+
+    .list-actions {
+      display: flex;
+      align-items: center;
+
+      .list-action {
+        margin-right: 16px;
+        cursor: pointer;
+
+        &.disabled {
+          pointer-events: none;
+          opacity: 0.3;
+        }
+      }
+
+      svg {
+        height: 18px;
+        color: $primary;
+      }
     }
   }
 

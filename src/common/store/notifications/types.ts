@@ -215,6 +215,7 @@ export enum ActionTypes {
 
 export interface FetchAction {
     type: ActionTypes.FETCH;
+    mode: NFetchMode
 }
 
 export interface FetchedAction {

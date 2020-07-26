@@ -31,10 +31,21 @@ export const initialState: Notifications = {
 export default (state: Notifications = initialState, action: Actions): Notifications => {
     switch (action.type) {
         case ActionTypes.FETCH: {
-            return {
-                ...state,
-                loading: true,
-            };
+            switch (action.mode) {
+                case NFetchMode.APPEND:
+                    return {
+                        ...state,
+                        loading: true,
+                    };
+                case NFetchMode.REPLACE:
+                    return {
+                        ...state,
+                        list: [],
+                        loading: true,
+                    };
+                default:
+                    return state;
+            }
         }
         case ActionTypes.FETCHED: {
             const {list} = state;
@@ -87,7 +98,13 @@ export default (state: Notifications = initialState, action: Actions): Notificat
 
 /* Actions */
 export const fetchNotifications = (since: number | null = null) => (dispatch: Dispatch, getState: () => AppState) => {
-    dispatch(fetchAct());
+
+    if (since) {
+        dispatch(fetchAct(NFetchMode.APPEND));
+    } else {
+        dispatch(fetchAct(NFetchMode.REPLACE));
+    }
+
     const {notifications, activeUser, users} = getState();
 
     const {filter} = notifications;
@@ -121,9 +138,10 @@ export const setNotificationsFilter = (filter: NotificationFilter | null) => (di
 }
 
 /* Action Creators */
-export const fetchAct = (): FetchAction => {
+export const fetchAct = (mode: NFetchMode): FetchAction => {
     return {
         type: ActionTypes.FETCH,
+        mode
     };
 };
 
