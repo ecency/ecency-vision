@@ -6,7 +6,7 @@ import {User} from "../../store/users/types";
 import {Account} from "../../store/accounts/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {ToggleType, UI} from "../../store/ui/types";
-import {Notifications} from "../../store/notifications/types";
+import {NotificationFilter, Notifications} from "../../store/notifications/types";
 
 import ToolTip from "../tooltip";
 import UserAvatar from "../user-avatar";
@@ -33,7 +33,7 @@ interface Props {
     addAccount: (data: Account) => void;
     fetchNotifications: (since: number | null) => void;
     fetchUnreadNotificationCount: () => void;
-    setNotificationsFilter: () => void;
+    setNotificationsFilter: (filter: NotificationFilter | null) => void;
     resetNotifications: () => void;
     toggleUIProp: (what: ToggleType) => void;
 }

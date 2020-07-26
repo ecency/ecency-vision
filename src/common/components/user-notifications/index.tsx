@@ -10,7 +10,7 @@ import {User} from "../../store/users/types";
 import {Account} from "../../store/accounts/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {ToggleType} from "../../store/ui/types";
-import {Notifications} from "../../store/notifications/types";
+import {NotificationFilter, Notifications} from "../../store/notifications/types";
 
 import {ApiNotification} from "../../store/notifications/types";
 import ProfileLink from "../profile-link";
@@ -25,6 +25,7 @@ import {
 } from "@esteemapp/esteem-render-helpers";
 
 import {_t} from "../../i18n";
+import DropDown from "../dropdown";
 
 
 class NotificationListItem extends Component<{
@@ -249,7 +250,7 @@ interface NotificationProps {
     notifications: Notifications;
     fetchNotifications: (since: number | null) => void;
     fetchUnreadNotificationCount: () => void;
-    setNotificationsFilter: () => void;
+    setNotificationsFilter: (filter: NotificationFilter | null) => void;
     resetNotifications: () => void;
     toggleUIProp: (what: ToggleType) => void;
     addAccount: (data: Account) => void;
@@ -271,11 +272,32 @@ export class DialogContent extends Component<NotificationProps> {
     }
 
     render() {
+
+        const dropDownConfig = {
+            label: '',
+            items: ['votes', 'replies', 'mentions', 'follows', 'reblogs', 'transfers'].map((f => {
+                return {
+                    label: _t(`user-notifications.type-${f}`),
+                    onClick: () => {
+                        const {resetNotifications, setNotificationsFilter, fetchNotifications} = this.props;
+                        resetNotifications();
+                        setNotificationsFilter(f as NotificationFilter);
+                        fetchNotifications(null);
+                    }
+                }
+            }))
+        };
+
         const {notifications} = this.props;
-        const {list, loading} = notifications;
+        const {list, loading, filter} = notifications;
 
         return (
             <>
+                <div className="notification-filter">
+                    <span>{filter ? _t(`user-notifications.type-${filter}`) : _t('user-notifications.type-all')}</span>
+                    <DropDown {...{...this.props, ...dropDownConfig}} float="left"/>
+                </div>
+
                 {loading && <LinearProgress/>}
 
                 {!loading && list.length === 0 && (
@@ -285,6 +307,7 @@ export class DialogContent extends Component<NotificationProps> {
                         </span>
                     </div>
                 )}
+
                 {list.length > 0 && (
                     <div className="user-notification-list">
                         {list.map(n => (
@@ -303,7 +326,7 @@ interface Props {
     notifications: Notifications;
     fetchNotifications: (since: number | null) => void;
     fetchUnreadNotificationCount: () => void;
-    setNotificationsFilter: () => void;
+    setNotificationsFilter: (filter: NotificationFilter | null) => void;
     resetNotifications: () => void;
     toggleUIProp: (what: ToggleType) => void;
     addAccount: (data: Account) => void;

@@ -5,6 +5,25 @@
   }
 }
 
+.notification-filter {
+  height: 75px;
+  padding-left: 16px;
+
+  align-items: center;
+  color: $dark-sky-blue;
+  display: flex;
+  font-weight: 700;
+
+  @include themify(day) {
+    border-bottom: 1px solid $white-three;
+  }
+
+  @include themify(night) {
+    border-bottom: solid 1px $dark-two;
+  }
+}
+
+
 .user-notification-list {
   &.empty-list {
     padding: 10px;

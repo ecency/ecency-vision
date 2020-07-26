@@ -15,7 +15,7 @@ import {ActiveUser} from "../store/active-user/types";
 import {Reblog} from "../store/reblogs/types";
 import {UI, ToggleType} from "../store/ui/types";
 import {Subscription} from "../store/subscriptions/types";
-import {Notifications} from "../store/notifications/types";
+import {Notifications, NotificationFilter} from "../store/notifications/types";
 
 import {hideIntro, toggleListStyle, toggleTheme} from "../store/global";
 import {makeGroupKey, fetchEntries} from "../store/entries";
@@ -28,7 +28,7 @@ import {deleteUser, addUser} from "../store/users";
 import {addReblog} from "../store/reblogs";
 import {toggleUIProp} from "../store/ui";
 import {updateSubscriptions} from "../store/subscriptions";
-import {fetchNotifications, fetchUnreadNotificationCount, setUnreadCountAct, resetNotifications} from "../store/notifications";
+import {fetchNotifications, fetchUnreadNotificationCount, setNotificationsFilter, resetNotifications} from "../store/notifications";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme";
@@ -87,7 +87,7 @@ interface Props {
   updateSubscriptions: (list: Subscription[]) => void;
   fetchNotifications: (since: number | null) => void;
   fetchUnreadNotificationCount: () => void;
-  setNotificationsFilter: () => void;
+  setNotificationsFilter: (filter: NotificationFilter | null) => void;
   resetNotifications: () => void;
 }
 
@@ -285,7 +285,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       updateSubscriptions,
       fetchNotifications,
       fetchUnreadNotificationCount,
-      setUnreadCountAct,
+      setNotificationsFilter,
       resetNotifications
     },
     dispatch

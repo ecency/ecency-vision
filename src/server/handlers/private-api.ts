@@ -41,9 +41,14 @@ export const receivedVesting = async (req: express.Request, res: express.Respons
 export const notifications = async (req: express.Request, res: express.Response) => {
     if (!validateCode(req, res)) return;
 
-    const {username, since} = req.params;
+    const {username} = req.params;
+    let {filter, since} = req.query;
 
     let u = `activities/${username}`
+
+    if (filter) {
+        u = `${(filter === 'votes' ? 'rvotes' : filter)}/${username}`
+    }
 
     if (since) {
         u += `?since=${since}`;
