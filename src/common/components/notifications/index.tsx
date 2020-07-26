@@ -28,29 +28,29 @@ import {_t} from "../../i18n";
 import DropDown from "../dropdown";
 
 
+const date2key = (s: string): string => {
+    if (s === 'Yesterday') {
+        return moment().subtract(1, 'days').fromNow();
+    }
+
+    if (s.indexOf('hours') > -1) {
+        const h = parseInt(s, 10);
+        return moment().subtract(h, 'hours').fromNow();
+
+    }
+
+    if (s.split('-').length === 3) {
+        return moment.utc(s).fromNow()
+    }
+
+    return s;
+};
+
 class NotificationListItem extends Component<{
     history: History;
     notification: ApiNotification;
     addAccount: (data: Account) => void;
 }> {
-    date2key = (s: string) => {
-
-        if (s === 'Yesterday') {
-            return moment().subtract(1, 'days').fromNow();
-        }
-
-        if (s.indexOf('hours') > -1) {
-            const h = parseInt(s, 10);
-            return moment().subtract(h, 'hours').fromNow();
-
-        }
-
-        if (s.split('-').length === 3) {
-            return moment.utc(s).fromNow()
-        }
-
-        return s;
-    };
 
     markAsRead = () => {
     }
@@ -59,12 +59,12 @@ class NotificationListItem extends Component<{
         const {notification} = this.props;
         return <>
             {notification.gkf && (
-                <div className="group-title">{this.date2key(notification.gk)}</div>
+                <div className="group-title">{date2key(notification.gk)}</div>
             )}
 
-            <div className={`notification-list-item ${notification.read === 0 ? 'not-read' : ' '}`}>
-                <div className="notification-inner">
-                    <div className="notification-control">
+            <div className={`list-item ${notification.read === 0 ? 'not-read' : ' '}`}>
+                <div className="item-inner">
+                    <div className="item-control">
                         {notification.read === 0 && (
                             <span onClick={this.markAsRead} className="mark-read"/>
                         )}
@@ -80,12 +80,12 @@ class NotificationListItem extends Component<{
 
                     {/* Votes */}
                     {(notification.type === 'vote' || notification.type === 'unvote') && (
-                        <div className="notification-content">
+                        <div className="item-content">
                             <div className="first-line">
                                 <ProfileLink {...this.props} username={notification.source}>
                                     <a className="source-name"> {notification.source}</a>
                                 </ProfileLink>
-                                <span className="notification-action">
+                                <span className="item-action">
                                     {_t('notifications.vote-str', {p: notification.weight / 100})}
                                 </span>
                             </div>
@@ -101,12 +101,12 @@ class NotificationListItem extends Component<{
 
                     {/* Replies */}
                     {notification.type === 'reply' && (
-                        <div className="notification-content ">
+                        <div className="item-content">
                             <div className="first-line">
                                 <ProfileLink {...this.props} username={notification.source}>
                                     <a className="source-name"> {notification.source}</a>
                                 </ProfileLink>
-                                <span className="notification-action">{_t('notifications.reply-str')}</span>
+                                <span className="item-action">{_t('notifications.reply-str')}</span>
                                 <div className="vert-separator"/>
                                 <EntryLink
                                     {...this.props}
@@ -128,12 +128,12 @@ class NotificationListItem extends Component<{
 
                     {/* Mentions */}
                     {notification.type === 'mention' && (
-                        <div className="notification-content">
+                        <div className="item-content">
                             <div className="first-line">
                                 <ProfileLink {...this.props} username={notification.source}>
                                     <a className="source-name"> {notification.source}</a>
                                 </ProfileLink>
-                                <span className="notification-action">{_t('notifications.mention-str')}</span>
+                                <span className="item-action">{_t('notifications.mention-str')}</span>
                             </div>
                             <div className="second-line">
                                 <EntryLink
@@ -147,7 +147,7 @@ class NotificationListItem extends Component<{
 
                     {/* Follows */}
                     {(notification.type === 'follow' || notification.type === 'unfollow' || notification.type === 'ignore') && (
-                        <div className="notification-content">
+                        <div className="item-content">
                             <div className="first-line">
                                 <ProfileLink {...this.props} username={notification.source}>
                                     <a className="source-name"> {notification.source}</a>
@@ -163,12 +163,12 @@ class NotificationListItem extends Component<{
 
                     {/* Reblogs */}
                     {notification.type === 'reblog' && (
-                        <div className="notification-content">
+                        <div className="item-content">
                             <div className="first-line">
                                 <ProfileLink {...this.props} username={notification.source}>
                                     <a className="source-name"> {notification.source}</a>
                                 </ProfileLink>
-                                <span className="notification-action">{_t('notifications.reblog-str')}</span>
+                                <span className="item-action">{_t('notifications.reblog-str')}</span>
                             </div>
                             <div className="second-line">
                                 <EntryLink
@@ -182,12 +182,12 @@ class NotificationListItem extends Component<{
 
                     {/* Transfer */}
                     {notification.type === 'transfer' && (
-                        <div className="notification-content">
+                        <div className="item-content">
                             <div className="first-line">
                                 <ProfileLink {...this.props} username={notification.source}>
                                     <a className="source-name"> {notification.source}</a>
                                 </ProfileLink>
-                                <span className="notification-action">
+                                <span className="item-action">
                                     {_t('notifications.transfer-str')} {' '}
                                     <span className="transfer-amount">{notification.amount}</span>
                                 </span>
@@ -204,24 +204,24 @@ class NotificationListItem extends Component<{
 
                     {/* Spin */}
                     {notification.type === 'spin' && (
-                        <div className="notification-content">
+                        <div className="item-content">
                             <div className="first-line">
                                 <ProfileLink {...this.props} username={notification.source}>
                                     <a className="source-name"> {notification.source}</a>
                                 </ProfileLink>
-                                <span className="notification-action">{_t('notifications.spin-str')}</span>
+                                <span className="item-action">{_t('notifications.spin-str')}</span>
                             </div>
                         </div>
                     )}
 
                     {/* Inactive */}
                     {notification.type === 'inactive' && (
-                        <div className="notification-content">
+                        <div className="item-content">
                             <div className="first-line">
                                 <ProfileLink {...this.props} username={notification.source}>
                                     <a className="source-name"> {notification.source}</a>
                                 </ProfileLink>
-                                <span className="notification-action">
+                                <span className="item-action">
                                     {_t('notifications.inactive-str')}
                                 </span>
                             </div>
@@ -230,12 +230,12 @@ class NotificationListItem extends Component<{
 
                     {/* Referral */}
                     {notification.type === 'referral' && (
-                        <div className="notification-content">
+                        <div className="item-content">
                             <div className="first-line">
                                 <ProfileLink {...this.props} username={notification.source}>
                                     <a className="source-name"> {notification.source}</a>
                                 </ProfileLink>
-                                <span className="notification-action">{_t('notifications.referral-str')}</span>
+                                <span className="item-action">{_t('notifications.referral-str')}</span>
                             </div>
                         </div>
                     )}
@@ -302,8 +302,8 @@ export class DialogContent extends Component<NotificationProps> {
         const {list, loading, filter} = notifications;
 
         return (
-            <>
-                <div className="notification-filter">
+            <div className="notification-list">
+                <div className="list-header">
                     <span>{filter ? _t(`notifications.type-${filter}`) : _t('notifications.type-all')}</span>
                     <DropDown {...{...this.props, ...dropDownConfig}} float="left"/>
                 </div>
@@ -311,7 +311,7 @@ export class DialogContent extends Component<NotificationProps> {
                 {loading && <LinearProgress/>}
 
                 {!loading && list.length === 0 && (
-                    <div className="notification-list empty-list">
+                    <div className="list-body empty-body">
                         <span className="empty-text">
                             {_t('activities.empty-list')}
                         </span>
@@ -319,14 +319,14 @@ export class DialogContent extends Component<NotificationProps> {
                 )}
 
                 {list.length > 0 && (
-                    <div className="notification-list">
+                    <div className="list-body">
                         {list.map(n => (
                             <NotificationListItem key={n.id} {...this.props} notification={n}/>
                         ))}
                     </div>
                 )}
                 {loading && list.length > 0 && <LinearProgress/>}
-            </>
+            </div>
         );
     }
 }
