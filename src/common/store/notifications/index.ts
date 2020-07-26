@@ -59,6 +59,7 @@ export default (state: Notifications = initialState, action: Actions): Notificat
         case ActionTypes.SET_FILTER: {
             return {
                 ...state,
+                list:[],
                 filter: action.filter
             };
         }
