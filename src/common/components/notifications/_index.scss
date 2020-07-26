@@ -6,6 +6,8 @@
 }
 
 .notification-list {
+  height: 100%;
+
   .list-header {
     height: 75px;
     display: flex;
@@ -50,6 +52,10 @@
   }
 
   .list-body {
+    height: calc(100% - 75px);
+    padding-bottom: 20px;
+    overflow-y: auto;
+
     &.empty-list {
       padding: 10px;
 
@@ -248,6 +254,12 @@
           }
         }
       }
+    }
+
+    .load-more {
+      width: 60%;
+      padding: 20px 0 0 0;
+      margin: auto;
     }
   }
 }

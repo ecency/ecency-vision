@@ -66,7 +66,7 @@ export default (state: Notifications = initialState, action: Actions): Notificat
                 loading: false,
                 error: false,
                 list: newList,
-                hasMore: action.list.length !== 0
+                hasMore: action.list.length === 50 // Api list size
             };
         }
         case ActionTypes.FETCH_ERROR: {
@@ -100,7 +100,7 @@ export default (state: Notifications = initialState, action: Actions): Notificat
 }
 
 /* Actions */
-export const fetchNotifications = (since: number | null = null) => (dispatch: Dispatch, getState: () => AppState) => {
+export const fetchNotifications = (since: string | null = null) => (dispatch: Dispatch, getState: () => AppState) => {
 
     if (since) {
         dispatch(fetchAct(NFetchMode.APPEND));

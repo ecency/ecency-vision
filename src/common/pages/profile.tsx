@@ -85,7 +85,7 @@ interface Props {
   deleteUser: (username: string) => void;
   addReblog: (account: string, author: string, permlink: string) => void;
   toggleUIProp: (what: ToggleType) => void;
-  fetchNotifications: (since: number | null) => void;
+  fetchNotifications: (since: string | null) => void;
   fetchUnreadNotificationCount: () => void;
   setNotificationsFilter: (filter: NotificationFilter | null) => void;
 }

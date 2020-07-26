@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-import {Modal} from "react-bootstrap";
+import {Button, Modal} from "react-bootstrap";
 
 import moment from "moment";
 
@@ -265,7 +265,7 @@ class NotificationListItem extends Component<{
 interface NotificationProps {
     history: History;
     notifications: Notifications;
-    fetchNotifications: (since: number | null) => void;
+    fetchNotifications: (since: string | null) => void;
     fetchUnreadNotificationCount: () => void;
     setNotificationsFilter: (filter: NotificationFilter | null) => void;
     toggleUIProp: (what: ToggleType) => void;
@@ -274,12 +274,29 @@ interface NotificationProps {
 
 export class DialogContent extends Component<NotificationProps> {
 
+
     componentDidMount() {
         const {notifications, fetchNotifications} = this.props;
 
         if (notifications.list.length === 0) {
             fetchNotifications(null);
         }
+    }
+
+    loadMore = () => {
+        const {notifications, fetchNotifications} = this.props;
+        if (!notifications.hasMore || notifications.loading) {
+            return;
+        }
+
+        const last = [...notifications.list].pop();
+        if (!last) {
+            return;
+        }
+
+        const {id: since} = last;
+
+        fetchNotifications(since);
     }
 
     refresh = () => {
@@ -325,7 +342,7 @@ export class DialogContent extends Component<NotificationProps> {
         };
 
         const {notifications} = this.props;
-        const {list, loading, filter} = notifications;
+        const {list, loading, filter, hasMore} = notifications;
 
         return (
             <div className="notification-list">
@@ -359,6 +376,12 @@ export class DialogContent extends Component<NotificationProps> {
                         {list.map(n => (
                             <NotificationListItem key={n.id} {...this.props} notification={n}/>
                         ))}
+
+                        {hasMore && (
+                            <div className="load-more">
+                                <Button disabled={loading} block={true} onClick={this.loadMore}>Load More</Button>
+                            </div>
+                        )}
                     </div>
                 )}
                 {loading && list.length > 0 && <LinearProgress/>}
@@ -370,7 +393,7 @@ export class DialogContent extends Component<NotificationProps> {
 interface Props {
     history: History;
     notifications: Notifications;
-    fetchNotifications: (since: number | null) => void;
+    fetchNotifications: (since: string | null) => void;
     fetchUnreadNotificationCount: () => void;
     setNotificationsFilter: (filter: NotificationFilter | null) => void;
     toggleUIProp: (what: ToggleType) => void;

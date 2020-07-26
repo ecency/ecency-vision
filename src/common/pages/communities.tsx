@@ -55,7 +55,7 @@ interface Props {
     deleteUser: (username: string) => void;
     toggleUIProp: (what: ToggleType) => void;
     updateSubscriptions: (list: Subscription[]) => void;
-    fetchNotifications: (since: number | null) => void;
+    fetchNotifications: (since: string | null) => void;
     fetchUnreadNotificationCount: () => void;
     setNotificationsFilter: (filter: NotificationFilter | null) => void;
 }

@@ -52,7 +52,7 @@ export const usrActivity = (user: User, ty: number, bl: string | number = '', tx
     return axios.post(`/api/usr-activity`, params);
 };
 
-export const getNotifications = (user: User, filter: NotificationFilter | null, since: number | null = null): Promise<ApiNotification[]> => {
+export const getNotifications = (user: User, filter: NotificationFilter | null, since: string | null = null): Promise<ApiNotification[]> => {
     let u = new URL(`${window.location.origin}/api/notifications/${user.username}`);
 
     if (filter) {

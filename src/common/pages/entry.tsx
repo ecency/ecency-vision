@@ -125,7 +125,7 @@ interface Props {
     addReply: (reply: Entry) => void;
     deleteReply: (reply: Entry) => void;
     toggleUIProp: (what: ToggleType) => void;
-    fetchNotifications: (since: number | null) => void;
+    fetchNotifications: (since: string | null) => void;
     fetchUnreadNotificationCount: () => void;
     setNotificationsFilter: (filter: NotificationFilter | null) => void;
 }

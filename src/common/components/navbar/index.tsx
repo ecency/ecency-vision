@@ -48,7 +48,7 @@ interface Props {
     updateActiveUser: (data: Account) => void;
     addAccount: (data: Account) => void;
     deleteUser: (username: string) => void;
-    fetchNotifications: (since: number | null) => void;
+    fetchNotifications: (since: string | null) => void;
     fetchUnreadNotificationCount: () => void;
     setNotificationsFilter: (filter: NotificationFilter | null) => void;
     toggleUIProp: (what: ToggleType) => void;
