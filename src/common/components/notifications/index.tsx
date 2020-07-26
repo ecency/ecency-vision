@@ -271,16 +271,15 @@ export class DialogContent extends Component<NotificationProps> {
     }
 
     render() {
-
-        const filters:NotificationFilter[] = ['rvotes', 'replies', 'mentions', 'follows', 'reblogs', 'transfers'];
+        const filters: NotificationFilter[] = ['rvotes', 'replies', 'mentions', 'follows', 'reblogs', 'transfers'];
         const dropDownConfig = {
             label: '',
-            items: ['rvotes', 'replies', 'mentions', 'follows', 'reblogs', 'transfers'].map((f => {
+            items: filters.map((f => {
                 return {
                     label: _t(`notifications.type-${f}`),
                     onClick: () => {
-                        const { setNotificationsFilter, fetchNotifications} = this.props;
-                        setNotificationsFilter(f as NotificationFilter);
+                        const {setNotificationsFilter, fetchNotifications} = this.props;
+                        setNotificationsFilter(f);
                         fetchNotifications(null);
                     }
                 }
