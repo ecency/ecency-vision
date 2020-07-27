@@ -201,15 +201,13 @@ export interface Notifications {
     filter: NotificationFilter | null;
     unread: number;
     list: ApiNotification[];
-    loading: boolean,
-    error: boolean,
+    inProgress: boolean,
     hasMore: boolean
 }
 
 export enum ActionTypes {
     FETCH = "@notifications/FETCH",
     FETCHED = "@notifications/FETCHED",
-    FETCH_ERROR = "@notifications/FETCH_ERROR",
     SET_FILTER = "@notifications/SET_FILTER",
     SET_UNREAD_COUNT = "@notifications/SET_UNREAD_COUNT",
     MARK = "@notifications/MARK",
@@ -224,10 +222,6 @@ export interface FetchedAction {
     type: ActionTypes.FETCHED;
     list: ApiNotification[];
     mode: NFetchMode
-}
-
-export interface FetchErrorAction {
-    type: ActionTypes.FETCH_ERROR;
 }
 
 export interface SetFilterAction {
@@ -246,4 +240,4 @@ export interface MarkAction {
 }
 
 
-export type Actions = FetchAction | FetchedAction | FetchErrorAction | SetFilterAction | SetUnreadCountAction | LoginAction | LogoutAction | MarkAction;
+export type Actions = FetchAction | FetchedAction | SetFilterAction | SetUnreadCountAction | LoginAction | LogoutAction | MarkAction;

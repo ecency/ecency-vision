@@ -8,7 +8,6 @@ import {
     ApiNotification,
     FetchAction,
     FetchedAction,
-    FetchErrorAction,
     NFetchMode,
     NotificationFilter,
     Notifications,
@@ -25,8 +24,7 @@ export const initialState: Notifications = {
     filter: null,
     unread: 0,
     list: [],
-    loading: false,
-    error: false,
+    inProgress: false,
     hasMore: true
 };
 
@@ -37,13 +35,13 @@ export default (state: Notifications = initialState, action: Actions): Notificat
                 case NFetchMode.APPEND:
                     return {
                         ...state,
-                        loading: true,
+                        inProgress: true,
                     };
                 case NFetchMode.REPLACE:
                     return {
                         ...state,
                         list: [],
-                        loading: true,
+                        inProgress: true,
                     };
                 default:
                     return state;
@@ -64,17 +62,9 @@ export default (state: Notifications = initialState, action: Actions): Notificat
 
             return {
                 ...state,
-                loading: false,
-                error: false,
+                inProgress: false,
                 list: newList,
                 hasMore: action.list.length === 50 // Api list size
-            };
-        }
-        case ActionTypes.FETCH_ERROR: {
-            return {
-                ...state,
-                loading: false,
-                error: true
             };
         }
         case ActiveUserActionTypes.LOGIN:
@@ -124,7 +114,7 @@ export const fetchNotifications = (since: string | null = null) => (dispatch: Di
         }
 
     }).catch(() => {
-        dispatch(fetchErrorAct());
+        dispatch(fetchedAct([], NFetchMode.APPEND));
     });
 }
 
@@ -165,12 +155,6 @@ export const fetchedAct = (list: ApiNotification[], mode: NFetchMode): FetchedAc
         type: ActionTypes.FETCHED,
         list,
         mode
-    };
-};
-
-export const fetchErrorAct = (): FetchErrorAction => {
-    return {
-        type: ActionTypes.FETCH_ERROR,
     };
 };
 
