@@ -53,20 +53,33 @@ export const usrActivity = (user: User, ty: number, bl: string | number = '', tx
 };
 
 export const getNotifications = (user: User, filter: NotificationFilter | null, since: string | null = null): Promise<ApiNotification[]> => {
-    let u = new URL(`${window.location.origin}/api/notifications/${user.username}`);
+    const data: { code: string; filter?: string, since?: string } = {code: user.accessToken};
 
     if (filter) {
-        u.searchParams.append("filter", filter);
+        data.filter = filter;
     }
 
     if (since) {
-        u.searchParams.append("since", String(since));
+        data.since = since;
     }
 
-    return axios.post(u.href, {code: user.accessToken}).then(resp => resp.data);
+    return axios.post(`/api/notifications`, data).then(resp => resp.data);
 };
 
-export const getUnreadNotificationCount = (user: User): Promise<number> =>
-    axios
-        .post(`/api/notifications/${user.username}/unread-count`, {code: user.accessToken})
+export const getUnreadNotificationCount = (user: User): Promise<number> => {
+    const data: { code: string; } = {code: user.accessToken};
+
+    return axios
+        .post(`/api/notifications/unread`, data)
         .then(resp => resp.data.count);
+}
+
+
+export const markNotifications = (user: User, id: string | null = null) => {
+    const data: { code: string; id?: string } = {code: user.accessToken}
+    if (id) {
+        data.id = id;
+    }
+
+    return axios.post(`/api/notifications/${user.username}`, data);
+};

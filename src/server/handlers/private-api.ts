@@ -39,9 +39,9 @@ export const receivedVesting = async (req: express.Request, res: express.Respons
 };
 
 export const notifications = async (req: express.Request, res: express.Response) => {
-    if (!validateCode(req, res)) return;
+    const username = validateCode(req, res);
+    if (!username) return;
 
-    const {username} = req.params;
     const {filter, since} = req.query;
 
     let u = `activities/${username}`
@@ -57,10 +57,25 @@ export const notifications = async (req: express.Request, res: express.Response)
     pipe(apiRequest(u, "GET"), res);
 }
 
-export const unreadNotificationCount = async (req: express.Request, res: express.Response) => {
-    if (!validateCode(req, res)) return;
-    const {username} = req.params;
+export const unreadNotifications = async (req: express.Request, res: express.Response) => {
+    const username = validateCode(req, res);
+    if (!username) return;
+
     pipe(apiRequest(`activities/${username}/unread-count`, "GET"), res);
+}
+
+export const markNotifications = async (req: express.Request, res: express.Response) => {
+    const username = validateCode(req, res);
+    if (!username) return;
+
+    const {id} = req.body;
+    const data: { id?: string } = {};
+
+    if (id) {
+        data.id = id;
+    }
+
+    pipe(apiRequest(`activities/${username}`, "PUT", {}, data), res);
 }
 
 export const hsTokenRefresh = async (req: express.Request, res: express.Response) => {
