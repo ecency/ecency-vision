@@ -8,6 +8,8 @@ import defaults from "../../constants/defaults.json"
 
 import {_t} from "../../i18n";
 
+const notificationSound = require("../../img/notification.mp3");
+
 interface NwsWindow extends Window {
     nws?: WebSocket | undefined;
 }
@@ -41,6 +43,7 @@ export const notificationBody = (data: WsNotification): string => {
 interface Props {
     activeUser: ActiveUser | null;
     ui: UI;
+    fetchNotifications: (since: string | null) => void;
     fetchUnreadNotificationCount: () => void;
     toggleUIProp: (what: ToggleType) => void;
 }
@@ -85,13 +88,16 @@ export default class NotificationHandler extends Component<Props> {
         }
 
         window.nws.onmessage = (evt: MessageEvent) => {
-            const {fetchUnreadNotificationCount} = this.props;
-
             const data = JSON.parse(evt.data);
             const msg = notificationBody(data);
 
             if (msg) {
+                const {fetchUnreadNotificationCount, fetchNotifications} = this.props;
+
                 fetchUnreadNotificationCount();
+                fetchNotifications(null);
+
+                this.playSound();
 
                 new Notification(_t('notification.popup-title'), {
                     body: msg
@@ -121,6 +127,16 @@ export default class NotificationHandler extends Component<Props> {
         };
     }
 
+    playSound = () => {
+        if ('Notification' in window) {
+            Notification.requestPermission().then((r) => {
+                if (r !== 'granted') return;
+                const el: HTMLAudioElement = document.getElementById('notification-audio')! as HTMLAudioElement;
+                el.play().then();
+            })
+        }
+    }
+
     nwsDisconnect = () => {
         if (window.nws !== undefined) {
             window.nws.close();
@@ -129,6 +145,6 @@ export default class NotificationHandler extends Component<Props> {
     }
 
     render() {
-        return null;
+        return <audio id="notification-audio" src={notificationSound}/>;
     }
 }

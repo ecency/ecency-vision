@@ -116,6 +116,11 @@ export default (state: Notifications = initialState, action: Actions): Notificat
 
 /* Actions */
 export const fetchNotifications = (since: string | null = null) => (dispatch: Dispatch, getState: () => AppState) => {
+    const {notifications} = getState();
+
+    if (notifications.loading) {
+        return;
+    }
 
     if (since) {
         dispatch(fetchAct(NFetchMode.APPEND));
@@ -123,7 +128,7 @@ export const fetchNotifications = (since: string | null = null) => (dispatch: Di
         dispatch(fetchAct(NFetchMode.REPLACE));
     }
 
-    const {notifications, activeUser, users} = getState();
+    const {activeUser, users} = getState();
 
     const {filter} = notifications;
 
