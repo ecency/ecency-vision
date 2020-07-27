@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 
 import {ActiveUser} from "../../store/active-user/types";
+import {ToggleType, UI} from "../../store/ui/types";
 import {WsNotification} from "../../store/notifications/types";
 
 import defaults from "../../constants/defaults.json"
@@ -39,7 +40,9 @@ export const notificationBody = (data: WsNotification): string => {
 
 interface Props {
     activeUser: ActiveUser | null;
+    ui: UI;
     fetchUnreadNotificationCount: () => void;
+    toggleUIProp: (what: ToggleType) => void;
 }
 
 export default class NotificationHandler extends Component<Props> {
@@ -82,14 +85,21 @@ export default class NotificationHandler extends Component<Props> {
         }
 
         window.nws.onmessage = (evt: MessageEvent) => {
+            const {fetchUnreadNotificationCount} = this.props;
+
             const data = JSON.parse(evt.data);
             const msg = notificationBody(data);
 
             if (msg) {
+                fetchUnreadNotificationCount();
+
                 new Notification(_t('notification.popup-title'), {
                     body: msg
                 }).onclick = () => {
-                    // Open activities here
+                    const {ui, toggleUIProp} = this.props;
+                    if (!ui.notifications) {
+                        toggleUIProp('notifications');
+                    }
                 };
             }
 
