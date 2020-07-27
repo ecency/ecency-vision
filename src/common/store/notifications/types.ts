@@ -212,6 +212,7 @@ export enum ActionTypes {
     FETCH_ERROR = "@notifications/FETCH_ERROR",
     SET_FILTER = "@notifications/SET_FILTER",
     SET_UNREAD_COUNT = "@notifications/SET_UNREAD_COUNT",
+    MARK = "@notifications/MARK",
 }
 
 export interface FetchAction {
@@ -239,5 +240,10 @@ export interface SetUnreadCountAction {
     count: number
 }
 
+export interface MarkAction {
+    type: ActionTypes.MARK;
+    id: string | null;
+}
 
-export type Actions = FetchAction | FetchedAction | FetchErrorAction | SetFilterAction | SetUnreadCountAction | LoginAction | LogoutAction;
+
+export type Actions = FetchAction | FetchedAction | FetchErrorAction | SetFilterAction | SetUnreadCountAction | LoginAction | LogoutAction | MarkAction;

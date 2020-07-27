@@ -13,12 +13,13 @@ import {
     NotificationFilter,
     Notifications,
     SetFilterAction,
-    SetUnreadCountAction
+    SetUnreadCountAction,
+    MarkAction
 } from "./types";
 
 import {AppState} from "../index";
 
-import {getNotifications, getUnreadNotificationCount} from "../../api/private";
+import {getNotifications, getUnreadNotificationCount, markNotifications as markNotificationsFn} from "../../api/private";
 
 export const initialState: Notifications = {
     filter: null,
@@ -126,6 +127,7 @@ export const fetchNotifications = (since: string | null = null) => (dispatch: Di
         dispatch(fetchErrorAct());
     });
 }
+
 export const fetchUnreadNotificationCount = () => (dispatch: Dispatch, getState: () => AppState) => {
     const {activeUser, users} = getState();
 
@@ -138,6 +140,16 @@ export const fetchUnreadNotificationCount = () => (dispatch: Dispatch, getState:
 
 export const setNotificationsFilter = (filter: NotificationFilter | null) => (dispatch: Dispatch) => {
     dispatch(setFilterAct(filter));
+}
+
+export const markNotifications = (id: string | null) => (dispatch: Dispatch, getState: () => AppState) => {
+    const {notifications, activeUser, users} = getState();
+
+    const user = users.find((x) => x.username === activeUser?.username)!;
+
+    markNotificationsFn(user, id).then(() => {
+
+    })
 }
 
 /* Action Creators */
@@ -175,3 +187,10 @@ export const setUnreadCountAct = (count: number): SetUnreadCountAction => {
         count
     };
 };
+
+export const markAct = (id: string | null): MarkAction => {
+    return {
+        type: ActionTypes.MARK,
+        id
+    };
+}
