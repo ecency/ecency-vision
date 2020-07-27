@@ -10,7 +10,7 @@ exports[`createReplyPermlink (1)  1`] = `"re-good-karma-2018921t150500z"`;
 
 exports[`extractMetadata (1)  1`] = `
 Object {
-  "images": Array [
+  "image": Array [
     "http://www.xx.com/a.png",
   ],
   "users": Array [
@@ -22,7 +22,7 @@ Object {
 
 exports[`extractMetadata (2)  1`] = `
 Object {
-  "images": Array [
+  "image": Array [
     "http://www.xx.com/a.png",
     "https://img.esteem.ws/h74zrad2fh.jpg",
   ],
