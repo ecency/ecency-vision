@@ -55,6 +55,7 @@ const date2key = (s: string): string => {
 class NotificationListItem extends Component<{
     history: History;
     notification: ApiNotification;
+    markNotifications: (id: string | null) => void;
     addAccount: (data: Account) => void;
     toggleUIProp: (what: ToggleType) => void;
 }> {
@@ -268,6 +269,7 @@ interface NotificationProps {
     fetchNotifications: (since: string | null) => void;
     fetchUnreadNotificationCount: () => void;
     setNotificationsFilter: (filter: NotificationFilter | null) => void;
+    markNotifications: (id: string | null) => void;
     toggleUIProp: (what: ToggleType) => void;
     addAccount: (data: Account) => void;
 }
@@ -396,6 +398,7 @@ interface Props {
     fetchNotifications: (since: string | null) => void;
     fetchUnreadNotificationCount: () => void;
     setNotificationsFilter: (filter: NotificationFilter | null) => void;
+    markNotifications: (id: string | null) => void;
     toggleUIProp: (what: ToggleType) => void;
     addAccount: (data: Account) => void;
 }

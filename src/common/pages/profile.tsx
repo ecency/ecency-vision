@@ -28,7 +28,7 @@ import {setActiveUser, updateActiveUser} from "../store/active-user";
 import {deleteUser, addUser} from "../store/users";
 import {addReblog} from "../store/reblogs";
 import {toggleUIProp} from "../store/ui";
-import {fetchNotifications, fetchUnreadNotificationCount, setNotificationsFilter} from "../store/notifications";
+import {fetchNotifications, fetchUnreadNotificationCount, setNotificationsFilter, markNotifications} from "../store/notifications";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme";
@@ -88,6 +88,7 @@ interface Props {
   fetchNotifications: (since: string | null) => void;
   fetchUnreadNotificationCount: () => void;
   setNotificationsFilter: (filter: NotificationFilter | null) => void;
+  markNotifications: (id: string | null) => void;
 }
 
 interface State {
@@ -302,7 +303,8 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       toggleUIProp,
       fetchNotifications,
       fetchUnreadNotificationCount,
-      setNotificationsFilter
+      setNotificationsFilter,
+      markNotifications
     },
     dispatch
   );

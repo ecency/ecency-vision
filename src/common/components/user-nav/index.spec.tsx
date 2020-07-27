@@ -38,6 +38,9 @@ const defProps = {
     setNotificationsFilter: () => {
 
     },
+    markNotifications: () => {
+
+    },
     toggleUIProp: () => {
 
     }

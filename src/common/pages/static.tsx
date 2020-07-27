@@ -19,7 +19,7 @@ import {fetchTrendingTags} from "../store/trending-tags";
 import {setActiveUser, updateActiveUser} from "../store/active-user";
 import {deleteUser, addUser} from "../store/users";
 import {toggleUIProp} from "../store/ui";
-import {fetchNotifications, fetchUnreadNotificationCount, setNotificationsFilter} from "../store/notifications";
+import {fetchNotifications, fetchUnreadNotificationCount, setNotificationsFilter, markNotifications} from "../store/notifications";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
@@ -76,6 +76,7 @@ interface Props {
     fetchNotifications: (since: string | null) => void;
     fetchUnreadNotificationCount: () => void;
     setNotificationsFilter: (filter: NotificationFilter | null) => void;
+    markNotifications: (id: string | null) => void;
 }
 
 class AboutPage extends Component<Props> {
@@ -657,7 +658,8 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
             toggleUIProp,
             fetchNotifications,
             fetchUnreadNotificationCount,
-            setNotificationsFilter
+            setNotificationsFilter,
+            markNotifications
         },
         dispatch
     );
