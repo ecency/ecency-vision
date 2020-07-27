@@ -211,6 +211,7 @@ export enum ActionTypes {
     SET_FILTER = "@notifications/SET_FILTER",
     SET_UNREAD_COUNT = "@notifications/SET_UNREAD_COUNT",
     MARK = "@notifications/MARK",
+    MARKED = "@notifications/MARKED",
 }
 
 export interface FetchAction {
@@ -239,5 +240,10 @@ export interface MarkAction {
     id: string | null;
 }
 
-
-export type Actions = FetchAction | FetchedAction | SetFilterAction | SetUnreadCountAction | LoginAction | LogoutAction | MarkAction;
+export type Actions = FetchAction
+    | FetchedAction
+    | SetFilterAction
+    | SetUnreadCountAction
+    | LoginAction
+    | LogoutAction
+    | MarkAction;

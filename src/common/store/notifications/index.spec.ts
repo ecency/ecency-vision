@@ -1,4 +1,4 @@
-import reducer, {initialState, fetchAct, fetchedAct, setFilterAct, setUnreadCountAct} from "./index";
+import reducer, {initialState, fetchAct, fetchedAct, setFilterAct, setUnreadCountAct, markAct} from "./index";
 import {NFetchMode, NotificationFilter} from "./types";
 import {apiNotificationList1, apiNotificationList2} from "../../helper/test-helper";
 
@@ -15,13 +15,23 @@ it("2- fetchAct", () => {
     expect(state).toMatchSnapshot();
 });
 
-it("5- fetchedAct", () => {
+it("3- fetchedAct", () => {
     state = reducer(state, fetchedAct(apiNotificationList1, NFetchMode.REPLACE));
     expect(state).toMatchSnapshot();
 });
 
-it("6- fetchedAct", () => {
+it("4- fetchedAct", () => {
     state = reducer(state, fetchedAct(apiNotificationList2, NFetchMode.APPEND));
+    expect(state).toMatchSnapshot();
+});
+
+it("5- markAct", () => {
+    state = reducer(state, markAct("m-49590315"));
+    expect(state).toMatchSnapshot();
+});
+
+it("6- markAct", () => {
+    state = reducer(state, markAct(null));
     expect(state).toMatchSnapshot();
 });
 

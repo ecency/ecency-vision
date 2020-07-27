@@ -8,12 +8,12 @@ import {
     ApiNotification,
     FetchAction,
     FetchedAction,
+    MarkAction,
     NFetchMode,
     NotificationFilter,
     Notifications,
     SetFilterAction,
-    SetUnreadCountAction,
-    MarkAction
+    SetUnreadCountAction
 } from "./types";
 
 import {AppState} from "../index";
@@ -85,6 +85,30 @@ export default (state: Notifications = initialState, action: Actions): Notificat
                 unread: action.count
             };
         }
+        case ActionTypes.MARK: {
+            let newList: ApiNotification[];
+
+            if (action.id) {
+                // mark specific
+                newList = state.list.map(x => {
+                    if (x.id === action.id) {
+                        return {...x, read: 1};
+                    }
+
+                    return {...x};
+                })
+            } else {
+                // mark all
+                newList = state.list.map((x) => {
+                    return {...x, read: 1};
+                })
+            }
+
+            return {
+                ...state,
+                list: newList
+            };
+        }
         default:
             return state;
     }
@@ -133,13 +157,13 @@ export const setNotificationsFilter = (filter: NotificationFilter | null) => (di
 }
 
 export const markNotifications = (id: string | null) => (dispatch: Dispatch, getState: () => AppState) => {
-    const {notifications, activeUser, users} = getState();
+    dispatch(markAct(id));
+
+    const {activeUser, users} = getState();
 
     const user = users.find((x) => x.username === activeUser?.username)!;
 
-    markNotificationsFn(user, id).then(() => {
-
-    })
+    markNotificationsFn(user, id).then()
 }
 
 /* Action Creators */
