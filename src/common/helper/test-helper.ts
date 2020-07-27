@@ -569,7 +569,8 @@ export const notificationsInstance1: Notifications = {
     unread: 0,
     list: [],
     loading: false,
-    error: false
+    error: false,
+    hasMore: true
 }
 
 
