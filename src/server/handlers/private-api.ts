@@ -42,7 +42,7 @@ export const notifications = async (req: express.Request, res: express.Response)
     const username = validateCode(req, res);
     if (!username) return;
 
-    const {filter, since} = req.query;
+    const {filter, since} = req.body;
 
     let u = `activities/${username}`
 
