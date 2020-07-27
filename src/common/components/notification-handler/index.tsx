@@ -145,6 +145,6 @@ export default class NotificationHandler extends Component<Props> {
     }
 
     render() {
-        return <audio id="notification-audio" src={notificationSound}/>;
+        return <audio id="notification-audio" autoPlay={false} src={notificationSound} style={{display: 'none'}}/>;
     }
 }
