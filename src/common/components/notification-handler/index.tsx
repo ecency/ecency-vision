@@ -10,6 +10,8 @@ import {_t} from "../../i18n";
 
 const notificationSound = require("../../img/notification.mp3");
 
+const logo = require('../../img/logo-circle.svg');
+
 interface NwsWindow extends Window {
     nws?: WebSocket | undefined;
 }
@@ -100,7 +102,8 @@ export default class NotificationHandler extends Component<Props> {
                 this.playSound();
 
                 new Notification(_t('notification.popup-title'), {
-                    body: msg
+                    body: msg,
+                    icon: logo
                 }).onclick = () => {
                     const {ui, toggleUIProp} = this.props;
                     if (!ui.notifications) {
@@ -132,6 +135,7 @@ export default class NotificationHandler extends Component<Props> {
             Notification.requestPermission().then((r) => {
                 if (r !== 'granted') return;
                 const el: HTMLAudioElement = document.getElementById('notification-audio')! as HTMLAudioElement;
+                el.muted = false;
                 el.play().then();
             })
         }
@@ -145,6 +149,6 @@ export default class NotificationHandler extends Component<Props> {
     }
 
     render() {
-        return <audio id="notification-audio" autoPlay={false} src={notificationSound} style={{display: 'none'}}/>;
+        return <audio id="notification-audio" autoPlay={false} src={notificationSound} muted={true} style={{display: 'none'}}/>;
     }
 }
