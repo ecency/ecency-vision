@@ -6,9 +6,7 @@ import moment from "moment";
 
 import {History} from "history";
 
-import {User} from "../../store/users/types";
 import {Account} from "../../store/accounts/types";
-import {ActiveUser} from "../../store/active-user/types";
 import {ToggleType} from "../../store/ui/types";
 import {NotificationFilter, Notifications} from "../../store/notifications/types";
 
@@ -30,9 +28,6 @@ import {_t} from "../../i18n";
 import _c from '../../util/fix-class-names'
 
 import {syncSvg, checkSvg} from "../../img/svg";
-import {Simulate} from "react-dom/test-utils";
-import load = Simulate.load;
-
 
 const date2key = (s: string): string => {
     if (s === 'Yesterday') {
@@ -61,6 +56,8 @@ class NotificationListItem extends Component<{
 }> {
 
     markAsRead = () => {
+        const {notification, markNotifications} = this.props;
+        markNotifications(notification.id);
     }
 
     afterClick = () => {
@@ -307,8 +304,9 @@ export class DialogContent extends Component<NotificationProps> {
     }
 
     markAsRead = () => {
+        const {markNotifications} = this.props;
+        markNotifications(null);
     }
-
 
     hide = () => {
         const {toggleUIProp} = this.props;

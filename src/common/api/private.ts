@@ -81,5 +81,5 @@ export const markNotifications = (user: User, id: string | null = null) => {
         data.id = id;
     }
 
-    return axios.post(`/api/notifications/${user.username}`, data);
+    return axios.post(`/api/notifications/mark`, data);
 };

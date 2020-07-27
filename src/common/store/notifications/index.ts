@@ -163,7 +163,11 @@ export const markNotifications = (id: string | null) => (dispatch: Dispatch, get
 
     const user = users.find((x) => x.username === activeUser?.username)!;
 
-    markNotificationsFn(user, id).then()
+    markNotificationsFn(user, id).then(() => {
+        return getUnreadNotificationCount(user)
+    }).then(count => {
+        dispatch(setUnreadCountAct(count));
+    })
 }
 
 /* Action Creators */
