@@ -201,7 +201,7 @@ export interface Notifications {
     filter: NotificationFilter | null;
     unread: number;
     list: ApiNotification[];
-    inProgress: boolean,
+    loading: boolean,
     hasMore: boolean
 }
 
@@ -210,8 +210,7 @@ export enum ActionTypes {
     FETCHED = "@notifications/FETCHED",
     SET_FILTER = "@notifications/SET_FILTER",
     SET_UNREAD_COUNT = "@notifications/SET_UNREAD_COUNT",
-    MARK = "@notifications/MARK",
-    MARKED = "@notifications/MARKED",
+    MARK = "@notifications/MARK"
 }
 
 export interface FetchAction {

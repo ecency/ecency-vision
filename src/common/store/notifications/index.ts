@@ -24,7 +24,7 @@ export const initialState: Notifications = {
     filter: null,
     unread: 0,
     list: [],
-    inProgress: false,
+    loading: false,
     hasMore: true
 };
 
@@ -35,13 +35,13 @@ export default (state: Notifications = initialState, action: Actions): Notificat
                 case NFetchMode.APPEND:
                     return {
                         ...state,
-                        inProgress: true,
+                        loading: true,
                     };
                 case NFetchMode.REPLACE:
                     return {
                         ...state,
                         list: [],
-                        inProgress: true,
+                        loading: true,
                     };
                 default:
                     return state;
@@ -62,7 +62,7 @@ export default (state: Notifications = initialState, action: Actions): Notificat
 
             return {
                 ...state,
-                inProgress: false,
+                loading: false,
                 list: newList,
                 hasMore: action.list.length === 50 // Api list size
             };

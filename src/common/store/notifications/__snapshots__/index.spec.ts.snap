@@ -4,8 +4,8 @@ exports[`1- default state 1`] = `
 Object {
   "filter": null,
   "hasMore": true,
-  "inProgress": false,
   "list": Array [],
+  "loading": false,
   "unread": 0,
 }
 `;
@@ -14,8 +14,8 @@ exports[`2- fetchAct 1`] = `
 Object {
   "filter": null,
   "hasMore": true,
-  "inProgress": true,
   "list": Array [],
+  "loading": true,
   "unread": 0,
 }
 `;
@@ -24,7 +24,6 @@ exports[`3- fetchedAct 1`] = `
 Object {
   "filter": null,
   "hasMore": false,
-  "inProgress": false,
   "list": Array [
     Object {
       "author": "good-karma",
@@ -85,6 +84,7 @@ Object {
       "type": "unfollow",
     },
   ],
+  "loading": false,
   "unread": 0,
 }
 `;
@@ -93,7 +93,6 @@ exports[`4- fetchedAct 1`] = `
 Object {
   "filter": null,
   "hasMore": false,
-  "inProgress": false,
   "list": Array [
     Object {
       "author": "good-karma",
@@ -208,6 +207,7 @@ Object {
       "type": "transfer",
     },
   ],
+  "loading": false,
   "unread": 0,
 }
 `;
@@ -216,7 +216,6 @@ exports[`5- markAct 1`] = `
 Object {
   "filter": null,
   "hasMore": false,
-  "inProgress": false,
   "list": Array [
     Object {
       "author": "good-karma",
@@ -331,6 +330,7 @@ Object {
       "type": "transfer",
     },
   ],
+  "loading": false,
   "unread": 0,
 }
 `;
@@ -339,7 +339,6 @@ exports[`6- markAct 1`] = `
 Object {
   "filter": null,
   "hasMore": false,
-  "inProgress": false,
   "list": Array [
     Object {
       "author": "good-karma",
@@ -454,6 +453,7 @@ Object {
       "type": "transfer",
     },
   ],
+  "loading": false,
   "unread": 0,
 }
 `;
@@ -462,8 +462,8 @@ exports[`8- setFilterAct 1`] = `
 Object {
   "filter": "rvotes",
   "hasMore": true,
-  "inProgress": false,
   "list": Array [],
+  "loading": false,
   "unread": 0,
 }
 `;
@@ -472,8 +472,8 @@ exports[`9- setUnreadCountAct 1`] = `
 Object {
   "filter": "rvotes",
   "hasMore": true,
-  "inProgress": false,
   "list": Array [],
+  "loading": false,
   "unread": 8,
 }
 `;
@@ -482,8 +482,8 @@ exports[`10- logoutAct 1`] = `
 Object {
   "filter": null,
   "hasMore": true,
-  "inProgress": false,
   "list": Array [],
+  "loading": false,
   "unread": 0,
 }
 `;

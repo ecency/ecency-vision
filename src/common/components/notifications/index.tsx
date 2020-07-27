@@ -285,7 +285,7 @@ export class DialogContent extends Component<NotificationProps> {
 
     loadMore = () => {
         const {notifications, fetchNotifications} = this.props;
-        if (!notifications.hasMore || notifications.inProgress) {
+        if (!notifications.hasMore || notifications.loading) {
             return;
         }
 
@@ -342,7 +342,7 @@ export class DialogContent extends Component<NotificationProps> {
         };
 
         const {notifications} = this.props;
-        const {list, inProgress, filter, hasMore} = notifications;
+        const {list, loading, filter, hasMore} = notifications;
 
         return (
             <div className="notification-list">
@@ -353,17 +353,17 @@ export class DialogContent extends Component<NotificationProps> {
                     </div>
                     <div className="list-actions">
                         <Tooltip content={_t("notifications.refresh")}>
-                            <span className={_c(`list-action ${inProgress ? 'disabled' : ''}`)} onClick={this.refresh}>{syncSvg}</span>
+                            <span className={_c(`list-action ${loading ? 'disabled' : ''}`)} onClick={this.refresh}>{syncSvg}</span>
                         </Tooltip>
                         <Tooltip content={_t("notifications.mark-all-read")}>
-                            <span className={_c(`list-action ${inProgress ? 'disabled' : ''}`)} onClick={this.markAsRead}>{checkSvg}</span>
+                            <span className={_c(`list-action ${loading ? 'disabled' : ''}`)} onClick={this.markAsRead}>{checkSvg}</span>
                         </Tooltip>
                     </div>
                 </div>
 
-                {inProgress && <LinearProgress/>}
+                {loading && <LinearProgress/>}
 
-                {!inProgress && list.length === 0 && (
+                {!loading && list.length === 0 && (
                     <div className="list-body empty-body">
                         <span className="empty-text">
                             {_t('activities.empty-list')}
@@ -379,12 +379,12 @@ export class DialogContent extends Component<NotificationProps> {
 
                         {hasMore && (
                             <div className="load-more">
-                                <Button disabled={inProgress} block={true} onClick={this.loadMore}>Load More</Button>
+                                <Button disabled={loading} block={true} onClick={this.loadMore}>Load More</Button>
                             </div>
                         )}
                     </div>
                 )}
-                {inProgress && list.length > 0 && <LinearProgress/>}
+                {loading && list.length > 0 && <LinearProgress/>}
             </div>
         );
     }
