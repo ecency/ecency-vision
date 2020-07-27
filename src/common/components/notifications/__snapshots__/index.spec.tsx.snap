@@ -1,0 +1,480 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) NotificationListItem (1) Vote  1`] = `
+<div
+  className="list-item not-read"
+>
+  <div
+    className="item-inner"
+  >
+    <div
+      className="item-control"
+    >
+      <span
+        className="mark-read"
+        onClick={[Function]}
+        title="Mark as Read"
+      />
+    </div>
+    <div
+      className="source"
+    >
+      <a
+        className="source-avatar"
+        href="/@fooo10"
+        onClick={[Function]}
+      >
+        <span
+          className="user-avatar medium"
+          onClick={[Function]}
+          role="none"
+          style={
+            Object {
+              "backgroundImage": "url(https://images.ecency.com/u/fooo10/avatar/medium)",
+            }
+          }
+        />
+      </a>
+    </div>
+    <div
+      className="item-content"
+    >
+      <div
+        className="first-line"
+      >
+        <a
+          className="source-name"
+          href="/@fooo10"
+          onClick={[Function]}
+        >
+           
+          fooo10
+        </a>
+        <span
+          className="item-action"
+        >
+          100% likes your post:
+        </span>
+      </div>
+      <div
+        className="second-line"
+      >
+        <a
+          className="post-link"
+          href="/category/@good-karma/update-on-hivesigner-integration-into-condenser"
+          onClick={[Function]}
+        >
+          update-on-hivesigner-integration-into-condenser
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(1) NotificationListItem (2) Mention  1`] = `
+<div
+  className="list-item not-read"
+>
+  <div
+    className="item-inner"
+  >
+    <div
+      className="item-control"
+    >
+      <span
+        className="mark-read"
+        onClick={[Function]}
+        title="Mark as Read"
+      />
+    </div>
+    <div
+      className="source"
+    >
+      <a
+        className="source-avatar"
+        href="/@ecency.stats"
+        onClick={[Function]}
+      >
+        <span
+          className="user-avatar medium"
+          onClick={[Function]}
+          role="none"
+          style={
+            Object {
+              "backgroundImage": "url(https://images.ecency.com/u/ecency.stats/avatar/medium)",
+            }
+          }
+        />
+      </a>
+    </div>
+    <div
+      className="item-content"
+    >
+      <div
+        className="first-line"
+      >
+        <a
+          className="source-name"
+          href="/@ecency.stats"
+          onClick={[Function]}
+        >
+           
+          ecency.stats
+        </a>
+        <span
+          className="item-action"
+        >
+          mentioned you in:
+        </span>
+      </div>
+      <div
+        className="second-line"
+      >
+        <a
+          className="post-link"
+          href="/category/@ecency.stats/daily-activities-points-2020-07-24"
+          onClick={[Function]}
+        >
+          daily-activities-points-2020-07-24
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(1) NotificationListItem (3) Follow  1`] = `
+<div
+  className="list-item not-read"
+>
+  <div
+    className="item-inner"
+  >
+    <div
+      className="item-control"
+    >
+      <span
+        className="mark-read"
+        onClick={[Function]}
+        title="Mark as Read"
+      />
+    </div>
+    <div
+      className="source"
+    >
+      <a
+        className="source-avatar"
+        href="/@fooo10"
+        onClick={[Function]}
+      >
+        <span
+          className="user-avatar medium"
+          onClick={[Function]}
+          role="none"
+          style={
+            Object {
+              "backgroundImage": "url(https://images.ecency.com/u/fooo10/avatar/medium)",
+            }
+          }
+        />
+      </a>
+    </div>
+    <div
+      className="item-content"
+    >
+      <div
+        className="first-line"
+      >
+        <a
+          className="source-name"
+          href="/@fooo10"
+          onClick={[Function]}
+        >
+           
+          fooo10
+        </a>
+      </div>
+      <div
+        className="second-line"
+      >
+        <span
+          className="follow-label"
+        >
+          followed
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(1) NotificationListItem (4) Unfollow  1`] = `
+<div
+  className="list-item"
+>
+  <div
+    className="item-inner"
+  >
+    <div
+      className="item-control"
+    />
+    <div
+      className="source"
+    >
+      <a
+        className="source-avatar"
+        href="/@fooo102"
+        onClick={[Function]}
+      >
+        <span
+          className="user-avatar medium"
+          onClick={[Function]}
+          role="none"
+          style={
+            Object {
+              "backgroundImage": "url(https://images.ecency.com/u/fooo102/avatar/medium)",
+            }
+          }
+        />
+      </a>
+    </div>
+    <div
+      className="item-content"
+    >
+      <div
+        className="first-line"
+      >
+        <a
+          className="source-name"
+          href="/@fooo102"
+          onClick={[Function]}
+        >
+           
+          fooo102
+        </a>
+      </div>
+      <div
+        className="second-line"
+      >
+        <span
+          className="unfollow-label"
+        >
+          unfollowed
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(1) NotificationListItem (5) Reply  1`] = `
+<div
+  className="list-item"
+>
+  <div
+    className="item-inner"
+  >
+    <div
+      className="item-control"
+    />
+    <div
+      className="source"
+    >
+      <a
+        className="source-avatar"
+        href="/@dunsky"
+        onClick={[Function]}
+      >
+        <span
+          className="user-avatar medium"
+          onClick={[Function]}
+          role="none"
+          style={
+            Object {
+              "backgroundImage": "url(https://images.ecency.com/u/dunsky/avatar/medium)",
+            }
+          }
+        />
+      </a>
+    </div>
+    <div
+      className="item-content"
+    >
+      <div
+        className="first-line"
+      >
+        <a
+          className="source-name"
+          href="/@dunsky"
+          onClick={[Function]}
+        >
+           
+          dunsky
+        </a>
+        <span
+          className="item-action"
+        >
+          replied to your post:
+        </span>
+        <div
+          className="vert-separator"
+        />
+        <a
+          className="post-link"
+          href="/category/@good-karma/re-dunsky-2020713t164324912z"
+          onClick={[Function]}
+        >
+          re-dunsky-2020713t164324912z
+        </a>
+      </div>
+      <div
+        className="second-line"
+      >
+        <a
+          className="markdown-view mini-markdown reply-body"
+          href="/category/@dunsky/re-good-karma-2020721t1915968z"
+          onClick={[Function]}
+        >
+          Testing replies from Ecency web interface 😎
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(1) NotificationListItem (6) Reblog  1`] = `
+<div
+  className="list-item not-read"
+>
+  <div
+    className="item-inner"
+  >
+    <div
+      className="item-control"
+    >
+      <span
+        className="mark-read"
+        onClick={[Function]}
+        title="Mark as Read"
+      />
+    </div>
+    <div
+      className="source"
+    >
+      <a
+        className="source-avatar"
+        href="/@foo220"
+        onClick={[Function]}
+      >
+        <span
+          className="user-avatar medium"
+          onClick={[Function]}
+          role="none"
+          style={
+            Object {
+              "backgroundImage": "url(https://images.ecency.com/u/foo220/avatar/medium)",
+            }
+          }
+        />
+      </a>
+    </div>
+    <div
+      className="item-content"
+    >
+      <div
+        className="first-line"
+      >
+        <a
+          className="source-name"
+          href="/@foo220"
+          onClick={[Function]}
+        >
+           
+          foo220
+        </a>
+        <span
+          className="item-action"
+        >
+          reblogged your post:
+        </span>
+      </div>
+      <div
+        className="second-line"
+      >
+        <a
+          className="post-link"
+          href="/category/@good-karma/update-on-hivesigner-integration-into-condenser"
+          onClick={[Function]}
+        >
+          update-on-hivesigner-integration-into-condenser
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(1) NotificationListItem (7) Transfer  1`] = `
+<div
+  className="list-item"
+>
+  <div
+    className="item-inner"
+  >
+    <div
+      className="item-control"
+    />
+    <div
+      className="source"
+    >
+      <a
+        className="source-avatar"
+        href="/@bar212"
+        onClick={[Function]}
+      >
+        <span
+          className="user-avatar medium"
+          onClick={[Function]}
+          role="none"
+          style={
+            Object {
+              "backgroundImage": "url(https://images.ecency.com/u/bar212/avatar/medium)",
+            }
+          }
+        />
+      </a>
+    </div>
+    <div
+      className="item-content"
+    >
+      <div
+        className="first-line"
+      >
+        <a
+          className="source-name"
+          href="/@bar212"
+          onClick={[Function]}
+        >
+           
+          bar212
+        </a>
+        <span
+          className="item-action"
+        >
+          sent you
+           
+           
+          <span
+            className="transfer-amount"
+          >
+            900.000 HBD
+          </span>
+        </span>
+      </div>
+      
+    </div>
+  </div>
+</div>
+`;

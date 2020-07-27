@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, Fragment} from "react";
 
 import {Button, Modal} from "react-bootstrap";
 
@@ -29,7 +29,7 @@ import _c from '../../util/fix-class-names'
 
 import {syncSvg, checkSvg} from "../../img/svg";
 
-const date2key = (s: string): string => {
+export const date2key = (s: string): string => {
     if (s === 'Yesterday') {
         return moment().subtract(1, 'days').fromNow();
     }
@@ -47,7 +47,7 @@ const date2key = (s: string): string => {
     return s;
 };
 
-class NotificationListItem extends Component<{
+export class NotificationListItem extends Component<{
     history: History;
     notification: ApiNotification;
     markNotifications: (id: string | null) => void;
@@ -68,15 +68,13 @@ class NotificationListItem extends Component<{
     render() {
         const {notification} = this.props;
         return <>
-            {notification.gkf && (
-                <div className="group-title">{date2key(notification.gk)}</div>
-            )}
-
-            <div className={`list-item ${notification.read === 0 ? 'not-read' : ' '}`}>
+            <div className={_c(`list-item ${notification.read === 0 ? 'not-read' : ' '}`)}>
                 <div className="item-inner">
                     <div className="item-control">
                         {notification.read === 0 && (
-                            <span onClick={this.markAsRead} className="mark-read"/>
+                            <Tooltip content={_t('notifications.mark-read')}>
+                                <span onClick={this.markAsRead} className="mark-read"/>
+                            </Tooltip>
                         )}
                     </div>
 
@@ -374,7 +372,10 @@ export class DialogContent extends Component<NotificationProps> {
                 {list.length > 0 && (
                     <div className="list-body">
                         {list.map(n => (
-                            <NotificationListItem key={n.id} {...this.props} notification={n}/>
+                            <Fragment key={n.id}>
+                                {n.gkf && (<div className="group-title">{date2key(n.gk)}</div>)}
+                                <NotificationListItem {...this.props} notification={n}/>
+                            </Fragment>
                         ))}
 
                         {hasMore && (
