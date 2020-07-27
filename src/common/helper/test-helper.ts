@@ -6,7 +6,15 @@ import {DynamicProps} from "../store/dynamic-props/types";
 import {UI} from "../store/ui/types";
 import {Vote, DelegatedVestingShare} from "../api/hive";
 import {ReceivedVestingShare} from "../api/private";
-import {ApiNotification, Notifications} from "../store/notifications/types";
+import {
+    ApiFollowNotification,
+    ApiMentionNotification,
+    ApiNotification,
+    ApiReblogNotification,
+    ApiReplyNotification, ApiTransferNotification,
+    ApiVoteNotification,
+    Notifications
+} from "../store/notifications/types";
 
 export const UiInstance: UI = {
     login: false,
@@ -572,122 +580,134 @@ export const notificationsInstance1: Notifications = {
     hasMore: true
 }
 
+export const apiVoteNotification: ApiVoteNotification = {
+    "id": "v-705431149",
+    "type": "vote",
+    "source": "fooo10",
+    "voter": "fooo10",
+    "weight": 10000,
+    "author": "good-karma",
+    "permlink": "update-on-hivesigner-integration-into-condenser",
+    "title": "Update on Hivesigner integration into Condenser",
+    "img_url": null,
+    "read": 0,
+    "timestamp": "2020-07-24T06:50:48+00:00",
+    "ts": 1595566248,
+    "gk": "2 hours",
+    "gkf": true
+}
+
+export const apiMentionNotification: ApiMentionNotification = {
+    "id": "m-49590315",
+    "type": "mention",
+    "source": "ecency.stats",
+    "author": "ecency.stats",
+    "account": "good-karma",
+    "permlink": "daily-activities-points-2020-07-24",
+    "post": true,
+    "title": "Daily activities [Points] - Jul 24",
+    "img_url": "https://images.ecency.com/0x0/https://img.esteem.app/08zx2x.jpg",
+    "read": 0,
+    "timestamp": "2020-07-24T01:10:09+00:00",
+    "ts": 1595545809,
+    "gk": "8 hours",
+    "gkf": true
+};
+
+export const apiFollowNotification: ApiFollowNotification = {
+    "id": "f-174272007",
+    "type": "follow",
+    "source": "fooo10",
+    "follower": "fooo10",
+    "following": "good-karma",
+    "blog": true,
+    "read": 0,
+    "timestamp": "2020-07-24T06:08:24+00:00",
+    "ts": 1595563704,
+    "gk": "2 hours",
+    "gkf": true
+}
+
+export const apiUnfollowNotification: ApiFollowNotification = {
+    "id": "f-174258147",
+    "type": "unfollow",
+    "source": "fooo102",
+    "follower": "fooo102",
+    "following": "good-karma",
+    "blog": false,
+    "read": 1,
+    "timestamp": "2020-07-19T05:07:09+00:00",
+    "ts": 1595128029,
+    "gk": "2020-07-19",
+    "gkf": false
+}
+
+export const apiReplyNotification: ApiReplyNotification = {
+    "id": "rr-108155773",
+    "type": "reply",
+    "source": "dunsky",
+    "author": "dunsky",
+    "permlink": "re-good-karma-2020721t1915968z",
+    "title": "",
+    "body": "Testing replies from Ecency web interface \ud83d\ude0e",
+    "json_metadata": "{\"tags\": [\"ecency\"], \"app\": \"ecency/0.0.1-vision\", \"format\": \"markdown+html\"}",
+    "metadata": {
+        "tags": [
+            "ecency"
+        ],
+        "app": "ecency/0.0.1-vision",
+        "format": "markdown+html"
+    },
+    "parent_author": "good-karma",
+    "parent_permlink": "re-dunsky-2020713t164324912z",
+    "parent_title": null,
+    "parent_img_url": null,
+    "read": 1,
+    "timestamp": "2020-07-21T16:02:00+00:00",
+    "ts": 1595340120,
+    "gk": "2020-07-21",
+    "gkf": false
+}
+
+export const apiReblogNotification: ApiReblogNotification = {
+    "id": "r-10661404",
+    "type": "reblog",
+    "source": "foo220",
+    "account": "foo220",
+    "author": "good-karma",
+    "permlink": "update-on-hivesigner-integration-into-condenser",
+    "title": "Update on Hivesigner integration into Condenser",
+    "img_url": null,
+    "read": 0,
+    "timestamp": "2020-07-23T13:36:06+00:00",
+    "ts": 1595504166,
+    "gk": "Yesterday",
+    "gkf": true
+}
+
+export const apiTransferNotification: ApiTransferNotification = {
+    "id": "t-62284775",
+    "type": "transfer",
+    "source": "bar212",
+    "to": "good-karma",
+    "amount": "900.000 HBD",
+    "memo": "",
+    "read": 1,
+    "timestamp": "2020-07-20T09:30:21+00:00",
+    "ts": 1595230221,
+    "gk": "2020-07-20",
+    "gkf": true
+}
 
 export const apiNotificationList1: ApiNotification[] = [
-    {
-        "id": "v-705431149",
-        "type": "vote",
-        "source": "fooo10",
-        "voter": "fooo10",
-        "weight": 10000,
-        "author": "good-karma",
-        "permlink": "update-on-hivesigner-integration-into-condenser",
-        "title": "Update on Hivesigner integration into Condenser",
-        "img_url": null,
-        "read": 0,
-        "timestamp": "2020-07-24T06:50:48+00:00",
-        "ts": 1595566248,
-        "gk": "2 hours",
-        "gkf": true
-    },
-    {
-        "id": "m-49590315",
-        "type": "mention",
-        "source": "ecency.stats",
-        "author": "ecency.stats",
-        "account": "good-karma",
-        "permlink": "daily-activities-points-2020-07-24",
-        "post": true,
-        "title": "Daily activities [Points] - Jul 24",
-        "img_url": "https://images.ecency.com/0x0/https://img.esteem.app/08zx2x.jpg",
-        "read": 0,
-        "timestamp": "2020-07-24T01:10:09+00:00",
-        "ts": 1595545809,
-        "gk": "8 hours",
-        "gkf": true
-    },
-    {
-        "id": "f-174272007",
-        "type": "follow",
-        "source": "fooo10",
-        "follower": "fooo10",
-        "following": "good-karma",
-        "blog": true,
-        "read": 0,
-        "timestamp": "2020-07-24T06:08:24+00:00",
-        "ts": 1595563704,
-        "gk": "2 hours",
-        "gkf": true
-    },
-    {
-        "id": "f-174258147",
-        "type": "unfollow",
-        "source": "fooo102",
-        "follower": "fooo102",
-        "following": "good-karma",
-        "blog": false,
-        "read": 1,
-        "timestamp": "2020-07-19T05:07:09+00:00",
-        "ts": 1595128029,
-        "gk": "2020-07-19",
-        "gkf": false
-    },
-
+    apiVoteNotification,
+    apiMentionNotification,
+    apiFollowNotification,
+    apiUnfollowNotification
 ]
 
 export const apiNotificationList2: ApiNotification[] = [
-    {
-        "id": "rr-108155773",
-        "type": "reply",
-        "source": "dunsky",
-        "author": "dunsky",
-        "permlink": "re-good-karma-2020721t1915968z",
-        "title": "",
-        "body": "Testing replies from Ecency web interface \ud83d\ude0e",
-        "json_metadata": "{\"tags\": [\"ecency\"], \"app\": \"ecency/0.0.1-vision\", \"format\": \"markdown+html\"}",
-        "metadata": {
-            "tags": [
-                "ecency"
-            ],
-            "app": "ecency/0.0.1-vision",
-            "format": "markdown+html"
-        },
-        "parent_author": "good-karma",
-        "parent_permlink": "re-dunsky-2020713t164324912z",
-        "parent_title": null,
-        "parent_img_url": null,
-        "read": 1,
-        "timestamp": "2020-07-21T16:02:00+00:00",
-        "ts": 1595340120,
-        "gk": "2020-07-21",
-        "gkf": false
-    },
-    {
-        "id": "r-10661404",
-        "type": "reblog",
-        "source": "foo220",
-        "account": "foo220",
-        "author": "good-karma",
-        "permlink": "update-on-hivesigner-integration-into-condenser",
-        "title": "Update on Hivesigner integration into Condenser",
-        "img_url": null,
-        "read": 0,
-        "timestamp": "2020-07-23T13:36:06+00:00",
-        "ts": 1595504166,
-        "gk": "Yesterday",
-        "gkf": true
-    },
-    {
-        "id": "t-62284775",
-        "type": "transfer",
-        "source": "bar212",
-        "to": "good-karma",
-        "amount": "900.000 HBD",
-        "memo": "",
-        "read": 1,
-        "timestamp": "2020-07-20T09:30:21+00:00",
-        "ts": 1595230221,
-        "gk": "2020-07-20",
-        "gkf": true
-    },
+    apiReplyNotification,
+    apiReblogNotification,
+    apiTransferNotification
 ]
