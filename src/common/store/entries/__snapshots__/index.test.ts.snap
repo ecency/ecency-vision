@@ -1,9 +1,36 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`1- default state 1`] = `Object {}`;
+exports[`1- default state 1`] = `
+Object {
+  "__manual__": Object {
+    "entries": Array [],
+    "error": null,
+    "hasMore": false,
+    "loading": false,
+  },
+  "__promoted__": Object {
+    "entries": Array [],
+    "error": null,
+    "hasMore": false,
+    "loading": false,
+  },
+}
+`;
 
 exports[`2- location change. should create a group with default filter. 1`] = `
 Object {
+  "__manual__": Object {
+    "entries": Array [],
+    "error": null,
+    "hasMore": false,
+    "loading": false,
+  },
+  "__promoted__": Object {
+    "entries": Array [],
+    "error": null,
+    "hasMore": false,
+    "loading": false,
+  },
   "hot": Object {
     "entries": Array [],
     "error": null,
@@ -15,6 +42,18 @@ Object {
 
 exports[`3- location change. should create a group with the filter and tag given. 1`] = `
 Object {
+  "__manual__": Object {
+    "entries": Array [],
+    "error": null,
+    "hasMore": false,
+    "loading": false,
+  },
+  "__promoted__": Object {
+    "entries": Array [],
+    "error": null,
+    "hasMore": false,
+    "loading": false,
+  },
   "hot": Object {
     "entries": Array [],
     "error": null,
@@ -32,6 +71,18 @@ Object {
 
 exports[`4- location change with invalid filter. state should state same. 1`] = `
 Object {
+  "__manual__": Object {
+    "entries": Array [],
+    "error": null,
+    "hasMore": false,
+    "loading": false,
+  },
+  "__promoted__": Object {
+    "entries": Array [],
+    "error": null,
+    "hasMore": false,
+    "loading": false,
+  },
   "hot": Object {
     "entries": Array [],
     "error": null,
@@ -49,6 +100,18 @@ Object {
 
 exports[`5- start fetching. should toggle "loading" 1`] = `
 Object {
+  "__manual__": Object {
+    "entries": Array [],
+    "error": null,
+    "hasMore": false,
+    "loading": false,
+  },
+  "__promoted__": Object {
+    "entries": Array [],
+    "error": null,
+    "hasMore": false,
+    "loading": false,
+  },
   "hot": Object {
     "entries": Array [],
     "error": null,
@@ -66,6 +129,18 @@ Object {
 
 exports[`6- fetch error. should toggle "loading" and add error object to the group. 1`] = `
 Object {
+  "__manual__": Object {
+    "entries": Array [],
+    "error": null,
+    "hasMore": false,
+    "loading": false,
+  },
+  "__promoted__": Object {
+    "entries": Array [],
+    "error": null,
+    "hasMore": false,
+    "loading": false,
+  },
   "hot": Object {
     "entries": Array [],
     "error": "fetch error",
@@ -83,6 +158,18 @@ Object {
 
 exports[`7- start fetching. 1`] = `
 Object {
+  "__manual__": Object {
+    "entries": Array [],
+    "error": null,
+    "hasMore": false,
+    "loading": false,
+  },
+  "__promoted__": Object {
+    "entries": Array [],
+    "error": null,
+    "hasMore": false,
+    "loading": false,
+  },
   "hot": Object {
     "entries": Array [],
     "error": "fetch error",
@@ -100,6 +187,18 @@ Object {
 
 exports[`8- fetched. 1`] = `
 Object {
+  "__manual__": Object {
+    "entries": Array [],
+    "error": null,
+    "hasMore": false,
+    "loading": false,
+  },
+  "__promoted__": Object {
+    "entries": Array [],
+    "error": null,
+    "hasMore": false,
+    "loading": false,
+  },
   "hot": Object {
     "entries": Array [],
     "error": "fetch error",
@@ -138,6 +237,18 @@ Object {
 
 exports[`9- start fetching again (simulates user scrolling down) 1`] = `
 Object {
+  "__manual__": Object {
+    "entries": Array [],
+    "error": null,
+    "hasMore": false,
+    "loading": false,
+  },
+  "__promoted__": Object {
+    "entries": Array [],
+    "error": null,
+    "hasMore": false,
+    "loading": false,
+  },
   "hot": Object {
     "entries": Array [],
     "error": "fetch error",
@@ -176,6 +287,18 @@ Object {
 
 exports[`10- fetched. should ignore posts already in store. 1`] = `
 Object {
+  "__manual__": Object {
+    "entries": Array [],
+    "error": null,
+    "hasMore": false,
+    "loading": false,
+  },
+  "__promoted__": Object {
+    "entries": Array [],
+    "error": null,
+    "hasMore": false,
+    "loading": false,
+  },
   "hot": Object {
     "entries": Array [],
     "error": "fetch error",
@@ -219,6 +342,18 @@ Object {
 
 exports[`11- location change for an extra group 1`] = `
 Object {
+  "__manual__": Object {
+    "entries": Array [],
+    "error": null,
+    "hasMore": false,
+    "loading": false,
+  },
+  "__promoted__": Object {
+    "entries": Array [],
+    "error": null,
+    "hasMore": false,
+    "loading": false,
+  },
   "created-bitcoin": Object {
     "entries": Array [],
     "error": null,
@@ -268,6 +403,18 @@ Object {
 
 exports[`12- fetched another group. 1`] = `
 Object {
+  "__manual__": Object {
+    "entries": Array [],
+    "error": null,
+    "hasMore": false,
+    "loading": false,
+  },
+  "__promoted__": Object {
+    "entries": Array [],
+    "error": null,
+    "hasMore": false,
+    "loading": false,
+  },
   "created-bitcoin": Object {
     "entries": Array [
       Object {
@@ -323,6 +470,18 @@ Object {
 
 exports[`13- update a particular entry. 1`] = `
 Object {
+  "__manual__": Object {
+    "entries": Array [],
+    "error": null,
+    "hasMore": false,
+    "loading": false,
+  },
+  "__promoted__": Object {
+    "entries": Array [],
+    "error": null,
+    "hasMore": false,
+    "loading": false,
+  },
   "created-bitcoin": Object {
     "entries": Array [
       Object {
@@ -378,6 +537,18 @@ Object {
 
 exports[`14- invalidate. should reset the group. 1`] = `
 Object {
+  "__manual__": Object {
+    "entries": Array [],
+    "error": null,
+    "hasMore": false,
+    "loading": false,
+  },
+  "__promoted__": Object {
+    "entries": Array [],
+    "error": null,
+    "hasMore": false,
+    "loading": false,
+  },
   "created-bitcoin": Object {
     "entries": Array [
       Object {
