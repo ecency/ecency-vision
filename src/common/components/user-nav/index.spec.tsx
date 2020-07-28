@@ -6,22 +6,40 @@ import {createBrowserHistory, createLocation} from "history";
 import UserNav from "./index";
 import renderer from "react-test-renderer";
 
+import {notificationsInstance1, UiInstance} from "../../helper/test-helper";
 
 const defProps = {
     history: createBrowserHistory(),
     location: createLocation({}),
     users: [],
+    ui: UiInstance,
     activeUser: {
         username: "foo",
         data: {
             name: "foo"
         }
     },
+    notifications: notificationsInstance1,
     setActiveUser: () => {
     },
     updateActiveUser: () => {
     },
     deleteUser: () => {
+    },
+    addAccount: () => {
+
+    },
+    fetchNotifications: () => {
+
+    },
+    fetchUnreadNotificationCount: () => {
+
+    },
+    setNotificationsFilter: () => {
+
+    },
+    markNotifications: () => {
+
     },
     toggleUIProp: () => {
 

@@ -10,7 +10,7 @@ import SERVERS from "../constants/servers.json";
 
 export interface MetaData {
     links?: string[];
-    images?: string[];
+    image?: string[];
     users?: string[];
     tags?: string[];
     app?: string;

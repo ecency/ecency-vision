@@ -13,6 +13,7 @@ import {initialState as reblogsInitialState} from "../../common/store/reblogs";
 import {initialState as discussionInitialState} from "../../common/store/discussion";
 import {initialState as uiInitialState} from "../../common/store/ui";
 import {initialState as subscriptionsInitialState} from "../../common/store/subscriptions";
+import {initialState as notificationsInitialState} from "../../common/store/notifications";
 
 import {render} from "../template";
 
@@ -35,6 +36,7 @@ export default async (req: express.Request, res: express.Response) => {
         discussion: discussionInitialState,
         ui: uiInitialState,
         subscriptions: subscriptionsInitialState,
+        notifications: notificationsInitialState,
         entries: {
             ...entriesInitialState,
             ['__promoted__']: {

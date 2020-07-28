@@ -1,3 +1,5 @@
+@import "variables";
+
 .popover {
   box-shadow: $box-shadow;
 }
@@ -21,6 +23,45 @@
       top: 0;
       z-index: 10;
     }
+  }
+}
+
+// Custom modal
+.modal.drawer {
+  .modal-dialog {
+    height: 100%;
+    margin: auto;
+    position: fixed;
+    transform: translate3d(0%, 0, 0);
+    -ms-transform: translate3d(0%, 0, 0);
+    -o-transform: translate3d(0%, 0, 0);
+    -webkit-transform: translate3d(0%, 0, 0);
+    width: 90%;
+
+    @media (min-width: $sm-break) {
+      width: 320px;
+    }
+
+    @media (min-width: $md-break) {
+      width: 540px;
+      max-width: unset;
+    }
+  }
+
+  .modal-content {
+    border: none;
+    border-radius: 0;
+    height: 100%;
+  }
+
+  .modal-body {
+    border: none;
+    height: 100%;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  &.show .modal-dialog {
+    right: 0;
   }
 }
 

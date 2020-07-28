@@ -59,7 +59,7 @@ export const extractMetaData = (body: string): MetaData => {
     out.links = matchedLinks;
   }
   if (matchedImages.length) {
-    out.images = matchedImages;
+    out.image = matchedImages;
   }
 
   if (mUsers) {

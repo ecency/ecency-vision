@@ -5,15 +5,17 @@ import {Link} from "react-router-dom";
 import {User} from "../../store/users/types";
 import {Account} from "../../store/accounts/types";
 import {ActiveUser} from "../../store/active-user/types";
-import {ToggleType} from "../../store/ui/types";
+import {ToggleType, UI} from "../../store/ui/types";
+import {NotificationFilter, Notifications} from "../../store/notifications/types";
 
 import ToolTip from "../tooltip";
 import UserAvatar from "../user-avatar";
 import DropDown from "../dropdown";
+import UserNotifications from "../notifications";
 
 import {_t} from "../../i18n";
 
-import {creditCardSvg} from "../../img/svg";
+import {creditCardSvg, bellSvg} from "../../img/svg";
 
 import parseAsset from "../../helper/parse-asset";
 
@@ -22,10 +24,17 @@ interface Props {
     history: History;
     location: Location;
     users: User[];
+    ui: UI;
     activeUser: ActiveUser;
+    notifications: Notifications;
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data: Account) => void;
     deleteUser: (username: string) => void;
+    addAccount: (data: Account) => void;
+    fetchNotifications: (since: string | null) => void;
+    fetchUnreadNotificationCount: () => void;
+    setNotificationsFilter: (filter: NotificationFilter | null) => void;
+    markNotifications: (id: string | null) => void;
     toggleUIProp: (what: ToggleType) => void;
 }
 
@@ -35,8 +44,14 @@ export default class UserNav extends Component<Props> {
         toggleUIProp('login');
     };
 
+    toggleNotifications = () => {
+        const {toggleUIProp} = this.props;
+        toggleUIProp('notifications');
+    }
+
     render() {
-        const {activeUser} = this.props;
+        const {activeUser, ui, notifications} = this.props;
+        const {unread} = notifications;
 
         let hasUnclaimedRewards = false;
         const {data: account} = activeUser;
@@ -78,8 +93,21 @@ export default class UserNav extends Component<Props> {
                             {creditCardSvg}
                         </Link>
                     </ToolTip>
+
+                    <ToolTip content={_t("user-nav.notifications")}>
+                        <span className="notifications" onClick={this.toggleNotifications}>
+                             {unread > 0 && (
+                                 <span className="notifications-badge">
+                                     {unread.toString().length < 3 ? unread : '...'}
+                                 </span>
+                             )}
+                            {bellSvg}
+                        </span>
+                    </ToolTip>
+
                     <DropDown {...{...this.props, ...dropDownConfig}} float="right" header={`@${activeUser.username}`}/>
                 </div>
+                {ui.notifications && <UserNotifications {...this.props} />}
             </>
         );
     }

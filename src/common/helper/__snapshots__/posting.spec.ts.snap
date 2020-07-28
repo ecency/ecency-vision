@@ -1,5 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`createPatch (1)  1`] = `
+"@@ -6,16 +6,17 @@
+  ipsum d
++o
+ lor sit 
+"
+`;
+
 exports[`createPermlink (1)  1`] = `"lorem-ipsum-dolor-sit-amet"`;
 
 exports[`createPermlink non-latin chars (1)  1`] = `"f38c58113ff7e"`;
@@ -10,7 +18,7 @@ exports[`createReplyPermlink (1)  1`] = `"re-good-karma-2018921t150500z"`;
 
 exports[`extractMetadata (1)  1`] = `
 Object {
-  "images": Array [
+  "image": Array [
     "http://www.xx.com/a.png",
   ],
   "users": Array [
@@ -22,7 +30,7 @@ Object {
 
 exports[`extractMetadata (2)  1`] = `
 Object {
-  "images": Array [
+  "image": Array [
     "http://www.xx.com/a.png",
     "https://img.esteem.ws/h74zrad2fh.jpg",
   ],

@@ -1,4 +1,4 @@
-import {createPermlink, extractMetaData, makeJsonMetaData, makeCommentOptions, makeJsonMetadataReply, createReplyPermlink} from "./posting";
+import {createPermlink, extractMetaData, makeJsonMetaData, makeCommentOptions, makeJsonMetadataReply, createReplyPermlink, createPatch} from "./posting";
 
 describe("createPermlink", () => {
     it("(1) ", () => {
@@ -83,5 +83,13 @@ describe('createReplyPermlink', () => {
 
     it('(1) ', () => {
         expect(createReplyPermlink('good-karma')).toMatchSnapshot();
+    });
+});
+
+describe('createPatch', () => {
+    it('(1) ', () => {
+        expect(
+            createPatch('lorem ipsum dlor sit amet', 'lorem ipsum dolor sit amet')
+        ).toMatchSnapshot();
     });
 });
