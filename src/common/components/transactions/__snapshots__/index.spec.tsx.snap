@@ -38,7 +38,16 @@ exports[`(1) curation_reward 1`] = `
   <div
     className="transaction-details"
   >
-    @user2/hquwxmvg
+    <span>
+      <a
+        href="/curation/@user2/hquwxmvg"
+      >
+        @
+        user2
+        /
+        hquwxmvg
+      </a>
+    </span>
   </div>
 </div>
 `;
@@ -91,7 +100,16 @@ exports[`(2) author_reward 1`] = `
   <div
     className="transaction-details"
   >
-    @user1/lorem-ipsum-dolor
+    <span>
+      <a
+        href="/reward/@user1/lorem-ipsum-dolor"
+      >
+        @
+        user1
+        /
+        lorem-ipsum-dolor
+      </a>
+    </span>
   </div>
 </div>
 `;
@@ -139,7 +157,16 @@ exports[`(3) comment_benefactor_reward 1`] = `
   <div
     className="transaction-details"
   >
-    @xxxthorxxx/re-nonameslefttouse-2020530t135919321z
+    <span>
+      <a
+        href="/reward/@xxxthorxxx/re-nonameslefttouse-2020530t135919321z"
+      >
+        @
+        xxxthorxxx
+        /
+        re-nonameslefttouse-2020530t135919321z
+      </a>
+    </span>
   </div>
 </div>
 `;
