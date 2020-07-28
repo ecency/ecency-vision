@@ -36,7 +36,11 @@ export class TransactionRow extends Component<RowProps> {
       flag = true;
 
       numbers = <>{formattedNumber(vestsToSp(parseAsset(tr.reward).amount, hivePerMVests), { suffix: "HP" })}</>;
-      details = `@${tr.comment_author}/${tr.comment_permlink}`;
+      details = (
+        <span>
+          <a href={`/curation/@${tr.comment_author}/${tr.comment_permlink}`}>@{tr.comment_author}/{tr.comment_permlink}</a>  
+        </span>
+      );
     }
 
     if (tr.type === "author_reward" || tr.type === "comment_benefactor_reward") {
@@ -61,7 +65,11 @@ export class TransactionRow extends Component<RowProps> {
         </>
       );
 
-      details = `@${tr.author}/${tr.permlink}`;
+      details = (
+        <span>
+          <a href={`/reward/@${tr.author}/${tr.permlink}`}>@{tr.author}/{tr.permlink}</a>  
+        </span>
+      );
     }
 
     if (tr.type === "comment_benefactor_reward") {
