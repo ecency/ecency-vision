@@ -34,6 +34,7 @@
   "user-nav": {
     "wallet": "Wallet",
     "unclaimed-points-notice": "You have unclaimed points",
+    "notifications": "Notifications",
     "profile": "Profile",
     "logout": "Logout"
   },
@@ -299,6 +300,41 @@
     "label": "{{n}} words",
     "read-time-less-1-min": "< 1 min read",
     "read-time-n-min": "~ {{n}} min read"
+  },
+  "notification": {
+    "popup-title": "You have a new notification",
+    "voted": "{{source}} voted your post",
+    "mention-post": "{{source}} mentioned you in a post",
+    "mention-comment": "{{source}} mentioned you in a comment",
+    "followed": "{{source}} followed you",
+    "replied": "{{source}} replied you",
+    "reblogged": "{{source}} reblogged your post",
+    "transfer": "{{source}} sent you {{amount}}"
+  },
+  "notifications": {
+    "type-all": "All Notifications",
+    "type-all-short": "All",
+    "type-rvotes": "Votes",
+    "type-replies": "Replies",
+    "type-mentions": "Mentions",
+    "type-follows": "Follows",
+    "type-reblogs": "Reblogs",
+    "type-transfers": "Transfers",
+    "vote-str": "{{p}}% likes your post:",
+    "reply-str": "replied to your post:",
+    "mention-str": "mentioned you in:",
+    "followed-str": "followed",
+    "unfollowed-str": "unfollowed",
+    "ignored-str": "ignored",
+    "reblog-str": "reblogged your post:",
+    "transfer-str": "sent you",
+    "spin-str": "Time to earn more ESTM, Play Spin on Ecency Mobile",
+    "inactive-str": "Be active! Write a post, continue earning",
+    "referral-str": "joined with your referral, welcome them",
+    "empty-list": "Nothing here",
+    "refresh": "Refresh",
+    "mark-all-read": "Mark All as Read",
+    "mark-read": "Mark as Read"
   },
   "static": {
     "about": {

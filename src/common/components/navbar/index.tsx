@@ -16,6 +16,7 @@ import {Account} from "../../store/accounts/types";
 import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {UI, ToggleType} from "../../store/ui/types";
+import {NotificationFilter, Notifications} from "../../store/notifications/types";
 
 import ToolTip from "../tooltip";
 import DownloadTrigger from "../download-trigger";
@@ -23,6 +24,7 @@ import Search from "../search";
 import Login from "../login";
 import UserNav from "../user-nav";
 import SignUp from "../sign-up";
+import NotificationHandler from "../notification-handler"
 
 import {_t} from "../../i18n";
 
@@ -38,12 +40,18 @@ interface Props {
     users: User[];
     activeUser: ActiveUser | null;
     ui: UI;
+    notifications: Notifications;
     fetchTrendingTags: () => void;
     toggleTheme: () => void;
     addUser: (user: User) => void;
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data: Account) => void;
+    addAccount: (data: Account) => void;
     deleteUser: (username: string) => void;
+    fetchNotifications: (since: string | null) => void;
+    fetchUnreadNotificationCount: () => void;
+    setNotificationsFilter: (filter: NotificationFilter | null) => void;
+    markNotifications: (id: string | null) => void;
     toggleUIProp: (what: ToggleType) => void;
 }
 
@@ -63,7 +71,8 @@ export default class NavBar extends Component<Props> {
             !isEqual(this.props.users, nextProps.users) ||
             !isEqual(this.props.activeUser?.username, nextProps.activeUser?.username) ||
             !isEqual(this.props.activeUser, nextProps.activeUser) ||
-            !isEqual(this.props.ui, nextProps.ui)
+            !isEqual(this.props.ui, nextProps.ui) ||
+            !isEqual(this.props.notifications, nextProps.notifications)
         );
     }
 
@@ -139,6 +148,7 @@ export default class NavBar extends Component<Props> {
                 </div>
                 {ui.login && <Login {...this.props} />}
                 {ui.signUp && <SignUp {...this.props} />}
+                <NotificationHandler {...this.props} />
             </div>
         );
     }

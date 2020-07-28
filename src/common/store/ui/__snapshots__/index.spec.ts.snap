@@ -3,6 +3,7 @@
 exports[`1- default state 1`] = `
 Object {
   "login": false,
+  "notifications": false,
   "signUp": false,
 }
 `;
@@ -10,6 +11,7 @@ Object {
 exports[`2- toggleLoginAct 1`] = `
 Object {
   "login": true,
+  "notifications": false,
   "signUp": false,
 }
 `;
@@ -17,6 +19,7 @@ Object {
 exports[`3- toggleSignUpAct 1`] = `
 Object {
   "login": true,
+  "notifications": false,
   "signUp": true,
 }
 `;
@@ -24,6 +27,15 @@ Object {
 exports[`4- toggleLoginAct 1`] = `
 Object {
   "login": false,
+  "notifications": false,
+  "signUp": true,
+}
+`;
+
+exports[`5- toggleNotificationsAct 1`] = `
+Object {
+  "login": false,
+  "notifications": true,
   "signUp": true,
 }
 `;

@@ -15,6 +15,7 @@ import {ActiveUser} from "../store/active-user/types";
 import {Reblog} from "../store/reblogs/types";
 import {UI, ToggleType} from "../store/ui/types";
 import {Subscription} from "../store/subscriptions/types";
+import {Notifications, NotificationFilter} from "../store/notifications/types";
 
 import {hideIntro, toggleListStyle, toggleTheme} from "../store/global";
 import {makeGroupKey, fetchEntries} from "../store/entries";
@@ -27,6 +28,7 @@ import {deleteUser, addUser} from "../store/users";
 import {addReblog} from "../store/reblogs";
 import {toggleUIProp} from "../store/ui";
 import {updateSubscriptions} from "../store/subscriptions";
+import {fetchNotifications, fetchUnreadNotificationCount, setNotificationsFilter, markNotifications} from "../store/notifications";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme";
@@ -66,6 +68,7 @@ interface Props {
   reblogs: Reblog[];
   ui: UI;
   subscriptions: Subscription[];
+  notifications: Notifications;
   toggleTheme: () => void;
   hideIntro: () => void;
   toggleListStyle: () => void;
@@ -82,6 +85,10 @@ interface Props {
   addReblog: (account: string, author: string, permlink: string) => void;
   toggleUIProp: (what: ToggleType) => void;
   updateSubscriptions: (list: Subscription[]) => void;
+  fetchNotifications: (since: string | null) => void;
+  fetchUnreadNotificationCount: () => void;
+  setNotificationsFilter: (filter: NotificationFilter | null) => void;
+  markNotifications: (id: string | null) => void
 }
 
 class EntryIndexPage extends Component<Props> {
@@ -253,7 +260,8 @@ const mapStateToProps = (state: AppState) => ({
   activeUser: state.activeUser,
   reblogs: state.reblogs,
   ui: state.ui,
-  subscriptions: state.subscriptions
+  subscriptions: state.subscriptions,
+  notifications: state.notifications
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
@@ -274,7 +282,11 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       deleteUser,
       addReblog,
       toggleUIProp,
-      updateSubscriptions
+      updateSubscriptions,
+      fetchNotifications,
+      fetchUnreadNotificationCount,
+      setNotificationsFilter,
+      markNotifications
     },
     dispatch
   );
