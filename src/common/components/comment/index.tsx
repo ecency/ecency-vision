@@ -92,6 +92,9 @@ export default class Comment extends Component<Props, State> {
     textChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
         const {value: text} = e.target;
         this.setState({text}, () => {
+            const {onChange} = this.props;
+            if (onChange) onChange(text);
+
             this.updatePreview();
         });
     };
@@ -103,10 +106,8 @@ export default class Comment extends Component<Props, State> {
         }
 
         this._updateTimer = setTimeout(() => {
-            const {onChange} = this.props;
             const {text} = this.state;
             this.setState({preview: text});
-            if (onChange) onChange(text);
         }, 500);
     };
 
