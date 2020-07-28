@@ -31,21 +31,23 @@ export const makeGroupKey = (what: string, tag: string = ""): string => {
     return `${what}`;
 };
 
-export const initialState: Entries = {};
+export const initialState: Entries = {
+    "__manual__": {
+        entries: [],
+        error: null,
+        loading: false,
+        hasMore: false
+    },
+    "__promoted__": {
+        entries: [],
+        error: null,
+        loading: false,
+        hasMore: false
+    }
+};
 
 export default (state: Entries = initialState, action: Actions): Entries => {
     switch (action.type) {
-        case CommonActionTypes.INIT: {
-            if (state["__manual__"] === undefined) {
-                return update(state, {
-                    ["__manual__"]: {
-                        $set: {entries: [], error: null, loading: false, hasMore: false},
-                    },
-                });
-            }
-
-            return state;
-        }
         case CommonActionTypes.LOCATION_CHANGE: {
             const {pathname} = action.payload.location;
             const params = filterTagExtract(pathname);

@@ -205,7 +205,7 @@ class EntryIndexPage extends Component<Props> {
 
     const metaProps = { title, description, url, rss };
 
-    const promoted = entries['__promoted__'] ? entries['__promoted__'].entries : [];
+    const promoted = entries['__promoted__'].entries;
 
     return (
       <>
