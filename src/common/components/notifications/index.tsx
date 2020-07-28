@@ -270,8 +270,6 @@ interface NotificationProps {
 }
 
 export class DialogContent extends Component<NotificationProps> {
-
-
     componentDidMount() {
         const {notifications, fetchNotifications} = this.props;
 
@@ -340,7 +338,7 @@ export class DialogContent extends Component<NotificationProps> {
         };
 
         const {notifications} = this.props;
-        const {list, loading, filter, hasMore} = notifications;
+        const {list, loading, filter, hasMore, unread} = notifications;
 
         return (
             <div className="notification-list">
@@ -354,7 +352,7 @@ export class DialogContent extends Component<NotificationProps> {
                             <span className={_c(`list-action ${loading ? 'disabled' : ''}`)} onClick={this.refresh}>{syncSvg}</span>
                         </Tooltip>
                         <Tooltip content={_t("notifications.mark-all-read")}>
-                            <span className={_c(`list-action ${loading ? 'disabled' : ''}`)} onClick={this.markAsRead}>{checkSvg}</span>
+                            <span className={_c(`list-action ${loading || unread === 0 ? 'disabled' : ''}`)} onClick={this.markAsRead}>{checkSvg}</span>
                         </Tooltip>
                     </div>
                 </div>
@@ -362,9 +360,9 @@ export class DialogContent extends Component<NotificationProps> {
                 {loading && <LinearProgress/>}
 
                 {!loading && list.length === 0 && (
-                    <div className="list-body empty-body">
+                    <div className="list-body empty-list">
                         <span className="empty-text">
-                            {_t('activities.empty-list')}
+                            {_t('notifications.empty-list')}
                         </span>
                     </div>
                 )}
