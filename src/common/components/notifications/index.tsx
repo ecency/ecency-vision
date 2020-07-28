@@ -63,6 +63,7 @@ export class NotificationListItem extends Component<{
     afterClick = () => {
         const {toggleUIProp} = this.props;
         toggleUIProp("notifications");
+        this.markAsRead();
     }
 
     render() {
