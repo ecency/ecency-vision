@@ -57,7 +57,10 @@ export class NotificationListItem extends Component<{
 
     markAsRead = () => {
         const {notification, markNotifications} = this.props;
-        markNotifications(notification.id);
+
+        if (notification.read === 0) {
+            markNotifications(notification.id);
+        }
     }
 
     afterClick = () => {
