@@ -12,6 +12,7 @@ import {initialState as discussionInitialState} from "../../common/store/discuss
 import {initialState as uiInitialState} from "../../common/store/ui";
 import {initialState as subscriptionsInitialState} from "../../common/store/subscriptions";
 import {initialState as notificationsInitialState} from "../../common/store/notifications";
+import {initialState as entriesInitialState} from "../../common/store/entries";
 
 import {EntryFilter} from "../../common/store/global/types";
 import {Entry} from "../../common/store/entries/types";
@@ -80,6 +81,7 @@ export default async (req: express.Request, res: express.Response) => {
         subscriptions: subscriptionsInitialState,
         notifications: notificationsInitialState,
         entries: {
+            ...entriesInitialState,
             [`${makeGroupKey(filter, tag)}`]: {
                 entries: optimizeEntries(entries),
                 error: null,

@@ -218,7 +218,7 @@ class ProfilePage extends Component<Props, State> {
       keywords: `${username}, ${username}'s blog`,
     };
 
-    const promoted = entries['__promoted__'] ? entries['__promoted__'].entries : [];
+    const promoted = entries['__promoted__'].entries;
 
     return (
       <>
