@@ -353,7 +353,7 @@ class SubmitPage extends Component<Props, State> {
         const jsonMeta = Object.assign({}, json_metadata, meta, {tags});
 
         this.stateSet({inProgress: true});
-        comment(user, "", category, permlink, title, body, jsonMeta, null)
+        comment(user, "", category, permlink, title, newBody, jsonMeta, null)
             .then(() => hiveApi.getPost(author, permlink))
             .then((post: any) => bridgeApi.normalizePost(post))
             .then((entry: Entry | null) => {
