@@ -29,6 +29,7 @@ import {User} from "../store/users/types";
 import {ActiveUser} from "../store/active-user/types";
 import {Entry} from "../store/entries/types";
 import {UI, ToggleType} from "../store/ui/types";
+import {NotificationFilter, Notifications} from "../store/notifications/types";
 
 import {hideIntro, toggleTheme} from "../store/global";
 import {addAccount} from "../store/accounts";
@@ -37,6 +38,7 @@ import {fetchTrendingTags} from "../store/trending-tags";
 import {setActiveUser, updateActiveUser} from "../store/active-user";
 import {deleteUser, addUser} from "../store/users";
 import {toggleUIProp} from "../store/ui";
+import {fetchNotifications, fetchUnreadNotificationCount, setNotificationsFilter, markNotifications} from "../store/notifications";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme";
@@ -118,6 +120,7 @@ interface Props {
     users: User[];
     activeUser: ActiveUser | null;
     ui: UI;
+    notifications: Notifications;
     toggleTheme: () => void;
     addAccount: (data: Account) => void;
     addEntry: (entry: Entry) => void;
@@ -128,6 +131,10 @@ interface Props {
     updateActiveUser: (data: Account) => void;
     deleteUser: (username: string) => void;
     toggleUIProp: (what: ToggleType) => void;
+    fetchNotifications: (since: string | null) => void;
+    fetchUnreadNotificationCount: () => void;
+    setNotificationsFilter: (filter: NotificationFilter | null) => void;
+    markNotifications: (id: string | null) => void;
 }
 
 interface State extends PostBase {
@@ -493,7 +500,8 @@ const mapStateToProps = (state: AppState) => ({
     trendingTags: state.trendingTags,
     users: state.users,
     activeUser: state.activeUser,
-    ui: state.ui
+    ui: state.ui,
+    notifications: state.notifications
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
@@ -509,7 +517,11 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
             setActiveUser,
             updateActiveUser,
             deleteUser,
-            toggleUIProp
+            toggleUIProp,
+            fetchNotifications,
+            fetchUnreadNotificationCount,
+            setNotificationsFilter,
+            markNotifications
         },
         dispatch
     );

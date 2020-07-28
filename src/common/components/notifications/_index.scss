@@ -1,0 +1,257 @@
+
+.notifications-modal {
+  .modal-body {
+    padding: 0 !important;
+  }
+}
+
+.notification-list {
+  height: 100%;
+
+  .list-header {
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @include themify(day) {
+      border-bottom: 1px solid $white-three;
+    }
+
+    @include themify(night) {
+      border-bottom: solid 1px $dark-two;
+    }
+
+    .list-filter {
+      padding-left: 16px;
+      color: $dark-sky-blue;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+    }
+
+    .list-actions {
+      display: flex;
+      align-items: center;
+
+      .list-action {
+        margin-right: 16px;
+        cursor: pointer;
+
+        &.disabled {
+          pointer-events: none;
+          opacity: 0.3;
+        }
+      }
+
+      svg {
+        height: 18px;
+        color: $primary;
+      }
+    }
+  }
+
+  .list-body {
+    height: calc(100% - 75px);
+    padding-bottom: 20px;
+    overflow-y: auto;
+
+    &.empty-list {
+      padding: 10px;
+    }
+
+    .group-title {
+      font-size: 16px;
+      font-weight: 500;
+      padding: 16px;
+
+      &:first-letter {
+        text-transform: capitalize;
+      }
+
+      @include themify(day) {
+        border-bottom: 1px solid $white-four;
+        border-top: 1px solid $white-four;
+        color: $steel-grey;
+      }
+
+      @include themify(night) {
+        border-bottom: 1px solid $metallic-blue;
+        border-top: 1px solid $metallic-blue;
+        color: $powder-blue;
+      }
+
+      &:first-child {
+        border-top: 0;
+      }
+    }
+
+    .list-item {
+      @include clearfix();
+      cursor: default;
+      font-size: 90%;
+
+      &.not-read {
+        @include themify(day) {
+          background: $duck-egg-blue;
+        }
+
+        @include themify(night) {
+          background: darken($metallic-blue, 16);
+        }
+      }
+
+      .item-inner {
+        @include clearfix();
+        border-bottom-right-radius: 40px;
+        border-top-right-radius: 40px;
+        margin-right: 6px;
+        padding: 14px 10px;
+
+        @media (min-width: $md-break) {
+          margin-right: 40px;
+          padding: 14px 40px 15px 30px;
+        }
+
+        .item-control {
+          align-items: center;
+          display: flex;
+          float: left;
+          height: 100%;
+          padding-top: 18px;
+          width: 24px;
+
+          @media (min-width: $md-break) {
+            width: 41px;
+          }
+
+          .mark-read {
+            background: $dark-sky-blue;
+            border-radius: 50%;
+            cursor: pointer;
+            height: 4px;
+            margin-left: 5px;
+            width: 4px;
+          }
+        }
+
+        .source {
+          cursor: pointer;
+          float: left;
+          margin-right: 10px;
+          width: 40px;
+        }
+
+        .item-content {
+          float: left;
+          width: calc(100% - 94px);
+
+          @include themify(day) {
+            color: $charcoal-grey;
+
+            a {
+              color: $charcoal-grey;
+            }
+          }
+
+          @include themify(night) {
+            color: $pinkish-grey;
+
+            a {
+              color: $pinkish-grey;
+            }
+          }
+
+          .first-line,
+          .second-line {
+          }
+
+          .first-line {
+            margin-bottom: 4px;
+
+            .source-name {
+              cursor: pointer;
+              font-weight: 700;
+              margin-right: 4px;
+            }
+
+            .item-action {
+              margin-right: 10px;
+              opacity: 0.8;
+            }
+          }
+
+          .vert-separator {
+            height: 4px;
+          }
+
+          .post-link {
+            display: inline-block;
+            font-weight: 500;
+            max-width: 98%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+
+          .transfer-amount {
+            font-weight: 500;
+          }
+
+          .second-line {
+            .reply-body,
+            .transfer-memo {
+              border-left: 5px solid lighten($steel-grey, 30);
+              color: $steel-grey;
+              cursor: pointer;
+              font-size: 13px;
+              padding-left: 10px;
+            }
+
+            .follow-label,
+            .unfollow-label,
+            .ignore-label {
+              border-radius: 25px;
+              color: $white;
+              display: inline-block;
+              font-size: 12px;
+              padding: 2px 6px;
+            }
+
+            .follow-label {
+              background: $dark-sky-blue;
+            }
+
+            .unfollow-label {
+              background: $silver;
+            }
+
+            .ignore-label {
+              background: $red3;
+            }
+          }
+        }
+      }
+
+      &:not(.not-read) {
+        .item-inner {
+          &:hover {
+            @include themify(day) {
+              background: $white-three;
+            }
+
+            @include themify(night) {
+              background: darken($metallic-blue, 16);
+            }
+          }
+        }
+      }
+    }
+
+    .load-more {
+      width: 60%;
+      padding: 20px 0 0 0;
+      margin: auto;
+    }
+  }
+}

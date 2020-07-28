@@ -33,7 +33,7 @@
   }
 
   .user-wallet,
-  .activities,
+  .notifications,
   .points {
     color: $white;
     display: flex;
@@ -41,7 +41,7 @@
     margin-right: 12px;
 
     svg {
-      height: 16px;
+      height: 18px;
     }
   }
 
@@ -56,6 +56,29 @@
       width: 5px;
       right: -1px;
       top: 0;
+    }
+  }
+
+  .notifications {
+    cursor: pointer;
+    position: relative;
+
+    .notifications-badge {
+      background: $red4;
+      border-radius: 50%;
+      color: $white;
+      font-size: 10px;
+      height: 14px;
+      position: absolute;
+      right: -5px;
+      text-align: center;
+      top: -3px;
+      width: 14px;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
     }
   }
 }

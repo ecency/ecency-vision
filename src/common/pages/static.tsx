@@ -11,12 +11,15 @@ import {Account} from "../store/accounts/types";
 import {User} from "../store/users/types";
 import {ActiveUser} from "../store/active-user/types";
 import {UI, ToggleType} from "../store/ui/types";
+import {NotificationFilter, Notifications} from "../store/notifications/types";
 
 import {toggleTheme} from "../store/global";
+import {addAccount} from "../store/accounts";
 import {fetchTrendingTags} from "../store/trending-tags";
 import {setActiveUser, updateActiveUser} from "../store/active-user";
 import {deleteUser, addUser} from "../store/users";
 import {toggleUIProp} from "../store/ui";
+import {fetchNotifications, fetchUnreadNotificationCount, setNotificationsFilter, markNotifications} from "../store/notifications";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
@@ -61,13 +64,19 @@ interface Props {
     users: User[];
     activeUser: ActiveUser | null;
     ui: UI;
+    notifications: Notifications;
     toggleTheme: () => void;
     fetchTrendingTags: () => void;
     addUser: (user: User) => void;
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data: Account) => void;
     deleteUser: (username: string) => void;
+    addAccount: (data: Account) => void;
     toggleUIProp: (what: ToggleType) => void;
+    fetchNotifications: (since: string | null) => void;
+    fetchUnreadNotificationCount: () => void;
+    setNotificationsFilter: (filter: NotificationFilter | null) => void;
+    markNotifications: (id: string | null) => void;
 }
 
 class AboutPage extends Component<Props> {
@@ -632,7 +641,8 @@ const mapStateToProps = (state: AppState) => ({
     trendingTags: state.trendingTags,
     users: state.users,
     activeUser: state.activeUser,
-    ui: state.ui
+    ui: state.ui,
+    notifications: state.notifications
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
@@ -644,7 +654,12 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
             setActiveUser,
             updateActiveUser,
             deleteUser,
-            toggleUIProp
+            addAccount,
+            toggleUIProp,
+            fetchNotifications,
+            fetchUnreadNotificationCount,
+            setNotificationsFilter,
+            markNotifications
         },
         dispatch
     );

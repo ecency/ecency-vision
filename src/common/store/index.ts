@@ -15,6 +15,7 @@ import reblogs from "./reblogs";
 import discussion from "./discussion";
 import ui from "./ui";
 import subscriptions from "./subscriptions";
+import notifications from "./notifications";
 
 let reducers = {
     global,
@@ -29,7 +30,8 @@ let reducers = {
     reblogs,
     discussion,
     ui,
-    subscriptions
+    subscriptions,
+    notifications
 };
 
 export let history: History | undefined;
