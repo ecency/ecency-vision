@@ -69,6 +69,10 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
         const {fundRecentClaims, fundRewardBalance, base, quote} = dynamicProps;
         const {data: account} = activeUser;
 
+        if (!account.__loaded) {
+            return 0;
+        }
+
         const sign = percent < 0 ? -1 : 1;
         const postRshares = entry.net_rshares;
 
