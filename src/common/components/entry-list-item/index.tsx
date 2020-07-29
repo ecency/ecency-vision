@@ -85,7 +85,7 @@ export default class EntryListItem extends Component<Props> {
             !isEqual(this.props.community, nextProps.community) ||
             !isEqual(this.props.global, nextProps.global) ||
             !isEqual(this.props.dynamicProps, nextProps.dynamicProps) ||
-            !isEqual(this.props.activeUser?.username, nextProps.activeUser?.username) ||
+            !isEqual(this.props.activeUser, nextProps.activeUser) ||
             !isEqual(this.props.reblogs, nextProps.reblogs)
         );
     }
