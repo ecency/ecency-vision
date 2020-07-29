@@ -83,11 +83,13 @@ export default class NavBar extends Component<Props> {
     render() {
         const {global, activeUser, ui} = this.props;
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
+        const logoHref = activeUser ? `/@${activeUser.username}/feed` : '/';
+
         return (
             <div className="nav-bar">
                 <div className="nav-bar-inner">
                     <div className="brand">
-                        <Link to="/">
+                        <Link to={logoHref}>
                             <img src={logo} className="logo" alt="Logo"/>
                         </Link>
                     </div>
