@@ -24,7 +24,7 @@ import * as bridgeApi from "../../common/api/bridge";
 import {render} from "../template";
 
 export default async (req: express.Request, res: express.Response) => {
-    const {author, permlink} = req.params;
+    const {category, author, permlink} = req.params;
     let entry: Entry | null = null;
 
     try {
@@ -35,6 +35,12 @@ export default async (req: express.Request, res: express.Response) => {
     let entries = {};
 
     if (entry) {
+
+        if (!category) {
+            res.redirect(`/${entry.category}/@${author}/${permlink}`);
+            return;
+        }
+
         entries = {
             [`__manual__`]: {
                 entries: [entry],
