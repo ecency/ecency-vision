@@ -1,52 +1,33 @@
 import express from "express";
 
-import {initialState as globalInitialState} from "../../common/store/global";
-import {initialState as dynamicPropsInitialState} from "../../common/store/dynamic-props";
-import {initialState as trendingTagsInitialState} from "../../common/store/trending-tags";
-import {initialState as accountsInitialState} from "../../common/store/accounts";
-import {initialState as transactionsInitialState} from "../../common/store/transactions";
-import {initialState as communityInitialState} from "../../common/store/community";
-import {initialState as entriesInitialState} from "../../common/store/entries";
-import {initialState as usersInitialState} from "../../common/store/users";
-import {initialState as activeUserInitialState} from "../../common/store/active-user";
-import {initialState as reblogsInitialState} from "../../common/store/reblogs";
-import {initialState as discussionInitialState} from "../../common/store/discussion";
-import {initialState as uiInitialState} from "../../common/store/ui";
-import {initialState as subscriptionsInitialState} from "../../common/store/subscriptions";
-import {initialState as notificationsInitialState} from "../../common/store/notifications";
+import {AppState} from "../../common/store";
 
-import {render} from "../template";
+import {makePreloadedState} from "../state";
 
 import {readGlobalCookies, getPromotedEntries, optimizeEntries} from "../helper";
 
+import {render} from "../template";
+
 export default async (req: express.Request, res: express.Response) => {
-    const preLoadedState = {
+
+    const state = makePreloadedState();
+
+    const preLoadedState: AppState = {
+        ...state,
         global: {
-            ...globalInitialState,
+            ...state.global,
             ...readGlobalCookies(req),
         },
-        dynamicProps: {...dynamicPropsInitialState},
-        trendingTags: {...trendingTagsInitialState},
-        community: communityInitialState,
-        accounts: [...accountsInitialState],
-        transactions: {...transactionsInitialState},
-        users: usersInitialState,
-        activeUser: activeUserInitialState,
-        reblogs: reblogsInitialState,
-        discussion: discussionInitialState,
-        ui: uiInitialState,
-        subscriptions: subscriptionsInitialState,
-        notifications: notificationsInitialState,
         entries: {
-            ...entriesInitialState,
-            ['__promoted__']: {
+            ...state.entries,
+            ["__promoted__"]: {
                 entries: optimizeEntries(await getPromotedEntries()),
                 error: null,
                 loading: false,
                 hasMore: true,
             }
         },
-    };
+    }
 
     res.send(render(req, preLoadedState));
 };
