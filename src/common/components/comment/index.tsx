@@ -129,7 +129,7 @@ export default class Comment extends Component<Props, State> {
         return (
             <>
                 <div className="comment-box">
-                    <EditorToolbar {...this.props} sm={true}/>
+                    {EditorToolbar({...this.props, sm: true})}
                     <div className="comment-body">
                         <Form.Control
                             className={`the-editor accepts-emoji ${text.length > 20 ? 'expanded' : ''}`}

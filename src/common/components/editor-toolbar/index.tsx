@@ -37,7 +37,7 @@ interface Props {
     sm?: boolean
 }
 
-export default class EditorToolbar extends Component<Props> {
+export class EditorToolbar extends Component<Props> {
     holder = React.createRef<HTMLDivElement>();
 
     shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
@@ -363,4 +363,13 @@ export default class EditorToolbar extends Component<Props> {
             </>
         );
     }
+}
+
+export default (props: Props) => {
+    const p: Props = {
+        users: props.users,
+        activeUser: props.activeUser,
+        sm: props.sm
+    }
+    return <EditorToolbar {...p} />
 }

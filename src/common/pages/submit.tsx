@@ -17,6 +17,7 @@ import {
     setProxyBase,
     // @ts-ignore
 } from "@esteemapp/esteem-render-helpers";
+
 setProxyBase(defaults.imageServer);
 
 import {Entry} from "../store/entries/types";
@@ -367,7 +368,7 @@ class SubmitPage extends Component<Props, State> {
 
                 <div className="app-content submit-page">
                     <div className="editor-side">
-                        <EditorToolbar {...this.props} />
+                        {EditorToolbar({...this.props})}
                         <div className="title-input">
                             <Form.Control
                                 className="accepts-emoji"
