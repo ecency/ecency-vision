@@ -1,11 +1,8 @@
 import React, {Component} from "react";
 
-import {AnyAction, bindActionCreators, Dispatch} from "redux";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {match} from "react-router";
-
-import {History, Location} from "history";
 
 import moment from "moment";
 
@@ -18,32 +15,9 @@ import {
     postBodySummary,
     // @ts-ignore
 } from "@esteemapp/esteem-render-helpers";
-
 setProxyBase(defaults.imageServer);
 
-import {AppState} from "../store";
-import {Global} from "../store/global/types";
-import {Account} from "../store/accounts/types";
-import {DynamicProps} from "../store/dynamic-props/types";
-import {Entry, Entries} from "../store/entries/types";
-import {TrendingTags} from "../store/trending-tags/types";
-import {User} from "../store/users/types";
-import {ActiveUser} from "../store/active-user/types";
-import {Reblog} from "../store/reblogs/types";
-import {Discussion as DiscussionType, SortOrder} from "../store/discussion/types";
-import {UI, ToggleType} from "../store/ui/types";
-import {NotificationFilter, Notifications} from "../store/notifications/types";
-
-import {toggleTheme} from "../store/global";
-import {addAccount} from "../store/accounts";
-import {addEntry, updateEntry} from "../store/entries";
-import {fetchTrendingTags} from "../store/trending-tags";
-import {setActiveUser, updateActiveUser} from "../store/active-user";
-import {deleteUser, addUser} from "../store/users";
-import {addReblog} from "../store/reblogs";
-import {fetchDiscussion, sortDiscussion, resetDiscussion, updateReply, addReply, deleteReply} from "../store/discussion";
-import {toggleUIProp} from "../store/ui";
-import {fetchNotifications, fetchUnreadNotificationCount, setNotificationsFilter, markNotifications} from "../store/notifications";
+import {Entry} from "../store/entries/types";
 
 import {makePath as makeEntryPath} from "../components/entry-link";
 
@@ -88,47 +62,16 @@ import {_t} from "../i18n";
 
 import {version} from "../../../package.json";
 
+import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
+
 interface MatchParams {
     category: string;
     permlink: string;
     username: string;
 }
 
-interface Props {
-    history: History;
-    location: Location;
+interface Props extends PageProps {
     match: match<MatchParams>;
-    global: Global;
-    trendingTags: TrendingTags;
-    dynamicProps: DynamicProps;
-    entries: Entries;
-    users: User[];
-    activeUser: ActiveUser | null;
-    reblogs: Reblog[];
-    discussion: DiscussionType;
-    ui: UI;
-    notifications: Notifications;
-    toggleTheme: () => void;
-    addAccount: (data: Account) => void;
-    addEntry: (entry: Entry) => void;
-    updateEntry: (entry: Entry) => void;
-    fetchTrendingTags: () => void;
-    addUser: (user: User) => void;
-    setActiveUser: (username: string | null) => void;
-    updateActiveUser: (data: Account) => void;
-    deleteUser: (username: string) => void;
-    addReblog: (account: string, author: string, permlink: string) => void;
-    fetchDiscussion: (parent_author: string, parent_permlink: string) => void;
-    sortDiscussion: (order: SortOrder) => void;
-    resetDiscussion: () => void;
-    updateReply: (reply: Entry) => void;
-    addReply: (reply: Entry) => void;
-    deleteReply: (reply: Entry) => void;
-    toggleUIProp: (what: ToggleType) => void;
-    fetchNotifications: (since: string | null) => void;
-    fetchUnreadNotificationCount: () => void;
-    setNotificationsFilter: (filter: NotificationFilter | null) => void;
-    markNotifications: (id: string | null) => void;
 }
 
 interface State {
@@ -476,45 +419,5 @@ class EntryPage extends Component<Props, State> {
     }
 }
 
-const mapStateToProps = (state: AppState) => ({
-    global: state.global,
-    trendingTags: state.trendingTags,
-    dynamicProps: state.dynamicProps,
-    entries: state.entries,
-    users: state.users,
-    activeUser: state.activeUser,
-    reblogs: state.reblogs,
-    discussion: state.discussion,
-    ui: state.ui,
-    notifications: state.notifications
-});
 
-const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
-    bindActionCreators(
-        {
-            toggleTheme,
-            addAccount,
-            addEntry,
-            updateEntry,
-            fetchTrendingTags,
-            addUser,
-            setActiveUser,
-            updateActiveUser,
-            deleteUser,
-            addReblog,
-            fetchDiscussion,
-            resetDiscussion,
-            sortDiscussion,
-            updateReply,
-            addReply,
-            deleteReply,
-            toggleUIProp,
-            fetchNotifications,
-            fetchUnreadNotificationCount,
-            setNotificationsFilter,
-            markNotifications
-        },
-        dispatch
-    );
-
-export default connect(mapStateToProps, mapDispatchToProps)(EntryPage);
+export default connect(pageMapStateToProps, pageMapDispatchToProps)(EntryPage);

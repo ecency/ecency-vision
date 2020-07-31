@@ -1,7 +1,6 @@
 import React, {Component} from "react";
-import {AnyAction, bindActionCreators, Dispatch} from "redux";
+
 import {connect} from "react-redux";
-import {History, Location} from "history";
 
 import {match} from "react-router";
 
@@ -18,27 +17,9 @@ import {
     setProxyBase,
     // @ts-ignore
 } from "@esteemapp/esteem-render-helpers";
-
 setProxyBase(defaults.imageServer);
 
-import {AppState} from "../store";
-import {Global} from "../store/global/types";
-import {Account} from "../store/accounts/types";
-import {TrendingTags} from "../store/trending-tags/types";
-import {User} from "../store/users/types";
-import {ActiveUser} from "../store/active-user/types";
 import {Entry} from "../store/entries/types";
-import {UI, ToggleType} from "../store/ui/types";
-import {NotificationFilter, Notifications} from "../store/notifications/types";
-
-import {hideIntro, toggleTheme} from "../store/global";
-import {addAccount} from "../store/accounts";
-import {addEntry, updateEntry} from "../store/entries";
-import {fetchTrendingTags} from "../store/trending-tags";
-import {setActiveUser, updateActiveUser} from "../store/active-user";
-import {deleteUser, addUser} from "../store/users";
-import {toggleUIProp} from "../store/ui";
-import {fetchNotifications, fetchUnreadNotificationCount, setNotificationsFilter, markNotifications} from "../store/notifications";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme";
@@ -106,35 +87,15 @@ class PreviewContent extends Component<PostBase> {
     }
 }
 
+import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
+
 interface MatchParams {
     permlink: string;
     username: string;
 }
 
-interface Props {
-    history: History;
-    location: Location;
+interface Props extends PageProps {
     match: match<MatchParams>;
-    global: Global;
-    trendingTags: TrendingTags;
-    users: User[];
-    activeUser: ActiveUser | null;
-    ui: UI;
-    notifications: Notifications;
-    toggleTheme: () => void;
-    addAccount: (data: Account) => void;
-    addEntry: (entry: Entry) => void;
-    updateEntry: (entry: Entry) => void;
-    fetchTrendingTags: () => void;
-    addUser: (user: User) => void;
-    setActiveUser: (username: string | null) => void;
-    updateActiveUser: (data: Account) => void;
-    deleteUser: (username: string) => void;
-    toggleUIProp: (what: ToggleType) => void;
-    fetchNotifications: (since: string | null) => void;
-    fetchUnreadNotificationCount: () => void;
-    setNotificationsFilter: (filter: NotificationFilter | null) => void;
-    markNotifications: (id: string | null) => void;
 }
 
 interface State extends PostBase {
@@ -495,35 +456,4 @@ class SubmitPage extends Component<Props, State> {
     }
 }
 
-const mapStateToProps = (state: AppState) => ({
-    global: state.global,
-    trendingTags: state.trendingTags,
-    users: state.users,
-    activeUser: state.activeUser,
-    ui: state.ui,
-    notifications: state.notifications
-});
-
-const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
-    bindActionCreators(
-        {
-            toggleTheme,
-            hideIntro,
-            addAccount,
-            addEntry,
-            updateEntry,
-            fetchTrendingTags,
-            addUser,
-            setActiveUser,
-            updateActiveUser,
-            deleteUser,
-            toggleUIProp,
-            fetchNotifications,
-            fetchUnreadNotificationCount,
-            setNotificationsFilter,
-            markNotifications
-        },
-        dispatch
-    );
-
-export default connect(mapStateToProps, mapDispatchToProps)(SubmitPage);
+export default connect(pageMapStateToProps, pageMapDispatchToProps)(SubmitPage);

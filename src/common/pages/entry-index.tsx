@@ -1,34 +1,10 @@
 import React, {Component} from "react";
-import {AnyAction, bindActionCreators, Dispatch} from "redux";
+
 import {connect} from "react-redux";
-import {History, Location} from "history";
 
-import {AppState} from "../store";
-import {EntryFilter, ListStyle, Global} from "../store/global/types";
-import {Account} from "../store/accounts/types";
-import {DynamicProps} from "../store/dynamic-props/types";
-import {TrendingTags} from "../store/trending-tags/types";
-import {Entries, Entry} from "../store/entries/types";
-import {Community} from "../store/community/types";
-import {User} from "../store/users/types";
-import {ActiveUser} from "../store/active-user/types";
-import {Reblog} from "../store/reblogs/types";
-import {UI, ToggleType} from "../store/ui/types";
-import {Subscription} from "../store/subscriptions/types";
-import {Notifications, NotificationFilter} from "../store/notifications/types";
+import {EntryFilter, ListStyle} from "../store/global/types";
 
-import {hideIntro, toggleListStyle, toggleTheme} from "../store/global";
-import {makeGroupKey, fetchEntries} from "../store/entries";
-import {fetchCommunity, resetCommunity} from "../store/community";
-import {fetchTrendingTags} from "../store/trending-tags";
-import {addAccount} from "../store/accounts";
-import {updateEntry} from "../store/entries";
-import {setActiveUser, updateActiveUser} from "../store/active-user";
-import {deleteUser, addUser} from "../store/users";
-import {addReblog} from "../store/reblogs";
-import {toggleUIProp} from "../store/ui";
-import {updateSubscriptions} from "../store/subscriptions";
-import {fetchNotifications, fetchUnreadNotificationCount, setNotificationsFilter, markNotifications} from "../store/notifications";
+import {makeGroupKey} from "../store/entries";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme";
@@ -45,7 +21,7 @@ import TrendingTagsCard from "../components/trending-tags-card";
 import CommunityCard from "../components/community-card";
 import CommunityCardSm from "../components/community-card-sm";
 
-import { _t } from "../i18n";
+import {_t} from "../i18n";
 
 import _c from "../util/fix-class-names";
 
@@ -54,53 +30,19 @@ import capitalize from "../util/capitalize";
 import defaults from "../constants/defaults.json";
 import {getSubscriptions} from "../api/bridge";
 
+import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
-interface Props {
-  history: History;
-  location: Location;
-  global: Global;
-  trendingTags: TrendingTags;
-  dynamicProps: DynamicProps;
-  entries: Entries;
-  community: Community | null;
-  users: User[];
-  activeUser: ActiveUser | null;
-  reblogs: Reblog[];
-  ui: UI;
-  subscriptions: Subscription[];
-  notifications: Notifications;
-  toggleTheme: () => void;
-  hideIntro: () => void;
-  toggleListStyle: () => void;
-  fetchEntries: (what: string, tag: string, more: boolean) => void;
-  fetchCommunity: () => void;
-  resetCommunity: () => void;
-  fetchTrendingTags: () => void;
-  addAccount: (data: Account) => void;
-  updateEntry: (entry: Entry) => void;
-  addUser: (user: User) => void;
-  setActiveUser: (username: string | null) => void;
-  updateActiveUser: (data: Account) => void;
-  deleteUser: (username: string) => void;
-  addReblog: (account: string, author: string, permlink: string) => void;
-  toggleUIProp: (what: ToggleType) => void;
-  updateSubscriptions: (list: Subscription[]) => void;
-  fetchNotifications: (since: string | null) => void;
-  fetchUnreadNotificationCount: () => void;
-  setNotificationsFilter: (filter: NotificationFilter | null) => void;
-  markNotifications: (id: string | null) => void
-}
 
-class EntryIndexPage extends Component<Props> {
+class EntryIndexPage extends Component<PageProps> {
   componentDidMount() {
-    const { global, fetchEntries, fetchCommunity } = this.props;
+    const {global, fetchEntries, fetchCommunity} = this.props;
     fetchEntries(global.filter, global.tag, false);
     fetchCommunity();
   }
 
-  componentDidUpdate(prevProps: Readonly<Props>): void {
-    const { global, activeUser, fetchEntries, fetchCommunity, updateSubscriptions } = this.props;
-    const { global: pGlobal } = prevProps;
+  componentDidUpdate(prevProps: Readonly<PageProps>): void {
+    const {global, activeUser, fetchEntries, fetchCommunity, updateSubscriptions} = this.props;
+    const {global: pGlobal} = prevProps;
 
     // page changed.
     if (!global.filter) {
@@ -125,17 +67,17 @@ class EntryIndexPage extends Component<Props> {
   }
 
   componentWillUnmount() {
-    const { resetCommunity } = this.props;
+    const {resetCommunity} = this.props;
     resetCommunity();
   }
 
   bottomReached = () => {
-    const { global, entries, fetchEntries } = this.props;
-    const { filter, tag } = global;
+    const {global, entries, fetchEntries} = this.props;
+    const {filter, tag} = global;
     const groupKey = makeGroupKey(filter, tag);
 
     const data = entries[groupKey];
-    const { loading, hasMore } = data;
+    const {loading, hasMore} = data;
 
     if (!loading && hasMore) {
       fetchEntries(filter, tag, true);
@@ -143,8 +85,8 @@ class EntryIndexPage extends Component<Props> {
   };
 
   render() {
-    const { global, entries, community, activeUser } = this.props;
-    const { filter, tag } = global;
+    const {global, entries, community, activeUser} = this.props;
+    const {filter, tag} = global;
 
     const groupKey = makeGroupKey(filter, tag);
 
@@ -160,14 +102,14 @@ class EntryIndexPage extends Component<Props> {
       label: _t(`entry-index.filter-${filter}`),
       items: [
         ...(activeUser
-          ? [
+            ? [
               {
                 label: _t("entry-index.feed"),
                 href: `/@${activeUser.username}/feed`,
                 active: filter === "feed" && activeUser.username === tag.replace("@", ""),
               },
             ]
-          : []),
+            : []),
         ...[EntryFilter.trending, EntryFilter.hot, EntryFilter.created].map((x) => {
           return {
             label: _t(`entry-index.filter-${x}`),
@@ -180,8 +122,8 @@ class EntryIndexPage extends Component<Props> {
 
     //  Meta config
     const fC = capitalize(filter);
-    let title = _t("entry-index.title", { f: fC });
-    let description = _t("entry-index.description", { f: fC });
+    let title = _t("entry-index.title", {f: fC});
+    let description = _t("entry-index.description", {f: fC});
     let url = `${defaults.base}/${filter}`;
     let rss = "";
 
@@ -203,92 +145,52 @@ class EntryIndexPage extends Component<Props> {
       }
     }
 
-    const metaProps = { title, description, url, rss };
+    const metaProps = {title, description, url, rss};
 
     const promoted = entries['__promoted__'].entries;
 
     return (
-      <>
-        <Meta {...metaProps} />
+        <>
+          <Meta {...metaProps} />
 
-        <Theme {...this.props} />
-        <Feedback />
-        <NavBar {...this.props} />
-        <Intro {...this.props} />
-        <div className="app-content entry-index-page">
-          <div className="tags-side">
-            <TrendingTagsCard {...this.props} />
-          </div>
-          <div className={_c(`entry-page-content ${loading ? "loading" : ""}`)}>
+          <Theme {...this.props} />
+          <Feedback/>
+          <NavBar {...this.props} />
+          <Intro {...this.props} />
+          <div className="app-content entry-index-page">
+            <div className="tags-side">
+              <TrendingTagsCard {...this.props} />
+            </div>
+            <div className={_c(`entry-page-content ${loading ? "loading" : ""}`)}>
+              {community && (
+                  <div className="community-sm">
+                    <CommunityCardSm {...this.props} community={community}/>
+                  </div>
+              )}
+              <div className="page-tools">
+                <DropDown {...{...this.props, ...dropDownConfig}} float="left"/>
+                <ListStyleToggle {...this.props} />
+              </div>
+              {loading && entryList.length === 0 ? <LinearProgress/> : ""}
+              <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>
+                <div className={_c(`entry-list-body ${global.listStyle === ListStyle.grid ? "grid-view" : ""}`)}>
+                  {loading && entryList.length === 0 && <EntryListLoadingItem/>}
+                  <EntryListContent {...this.props} entries={entryList} promotedEntries={promoted}/>
+                </div>
+              </div>
+              {loading && entryList.length > 0 ? <LinearProgress/> : ""}
+            </div>
             {community && (
-              <div className="community-sm">
-                <CommunityCardSm {...this.props} community={community} />
-              </div>
+                <div className="community-side">
+                  <CommunityCard {...this.props} community={community}/>
+                </div>
             )}
-            <div className="page-tools">
-              <DropDown {...{ ...this.props, ...dropDownConfig }} float="left" />
-              <ListStyleToggle {...this.props} />
-            </div>
-            {loading && entryList.length === 0 ? <LinearProgress /> : ""}
-            <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>
-              <div className={_c(`entry-list-body ${global.listStyle === ListStyle.grid ? "grid-view" : ""}`)}>
-                {loading && entryList.length === 0 && <EntryListLoadingItem />}
-                <EntryListContent {...this.props} entries={entryList} promotedEntries={promoted} />
-              </div>
-            </div>
-            {loading && entryList.length > 0 ? <LinearProgress /> : ""}
           </div>
-          {community && (
-            <div className="community-side">
-              <CommunityCard {...this.props} community={community} />
-            </div>
-          )}
-        </div>
-        <DetectBottom onBottom={this.bottomReached} />
-      </>
+          <DetectBottom onBottom={this.bottomReached}/>
+        </>
     );
   }
 }
 
-const mapStateToProps = (state: AppState) => ({
-  global: state.global,
-  trendingTags: state.trendingTags,
-  dynamicProps: state.dynamicProps,
-  entries: state.entries,
-  community: state.community,
-  users: state.users,
-  activeUser: state.activeUser,
-  reblogs: state.reblogs,
-  ui: state.ui,
-  subscriptions: state.subscriptions,
-  notifications: state.notifications
-});
 
-const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
-  bindActionCreators(
-    {
-      toggleTheme,
-      hideIntro,
-      toggleListStyle,
-      fetchEntries,
-      fetchCommunity,
-      resetCommunity,
-      fetchTrendingTags,
-      addAccount,
-      updateEntry,
-      addUser,
-      setActiveUser,
-      updateActiveUser,
-      deleteUser,
-      addReblog,
-      toggleUIProp,
-      updateSubscriptions,
-      fetchNotifications,
-      fetchUnreadNotificationCount,
-      setNotificationsFilter,
-      markNotifications
-    },
-    dispatch
-  );
-
-export default connect(mapStateToProps, mapDispatchToProps)(EntryIndexPage);
+export default connect(pageMapStateToProps, pageMapDispatchToProps)(EntryIndexPage);
