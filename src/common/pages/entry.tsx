@@ -288,7 +288,7 @@ class EntryPage extends Component<Props, State> {
                 <Theme global={this.props.global}/>
                 <Feedback/>
                 <MdHandler {...this.props} />
-                <NavBar {...this.props} />
+                {NavBar({...this.props})}
 
                 <div className="app-content entry-page">
                     <div className="the-entry">

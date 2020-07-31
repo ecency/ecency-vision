@@ -110,7 +110,7 @@ class CommunitiesPage extends Component<PageProps, State> {
             <>
                 <Meta {...metaProps} />
                 <Theme global={this.props.global}/>
-                <NavBar {...this.props} />
+                {NavBar({...this.props})}
 
                 <div className="app-content communities-page">
                     <div className="community-list">

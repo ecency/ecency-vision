@@ -364,7 +364,7 @@ class SubmitPage extends Component<Props, State> {
                 <FullHeight/>
                 <Theme global={this.props.global}/>
                 <Feedback/>
-                <NavBar {...this.props} />
+                {NavBar({...this.props})}
 
                 <div className="app-content submit-page">
                     <div className="editor-side">

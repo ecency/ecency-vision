@@ -175,7 +175,7 @@ class ProfilePage extends Component<Props, State> {
                 <Meta {...metaProps} />
                 <Theme global={this.props.global}/>
                 <Feedback/>
-                <NavBar {...this.props} />
+                {NavBar({...this.props})}
 
                 <div className="app-content profile-page">
                     <div className="profile-side">

@@ -156,7 +156,7 @@ class EntryIndexPage extends Component<PageProps> {
 
                 <Theme global={this.props.global}/>
                 <Feedback/>
-                <NavBar {...this.props} />
+                {NavBar({...this.props})}
                 <Intro global={this.props.global} hideIntro={this.props.hideIntro}/>
                 <div className="app-content entry-index-page">
                     <div className="tags-side">
