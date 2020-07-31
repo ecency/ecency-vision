@@ -51,7 +51,7 @@ class AboutPage extends Component<PageProps> {
         return (
             <>
                 <Meta {...metaProps} />
-                <Theme {...this.props} />
+                <Theme global={this.props.global}/>
                 <NavBar {...this.props} />
 
                 <div className="app-content static-page about-page">
@@ -195,7 +195,7 @@ class GuestPostPage extends Component <PageProps> {
         return (
             <>
                 <Meta {...metaProps} />
-                <Theme {...this.props} />
+                <Theme global={this.props.global}/>
                 <NavBar {...this.props} />
 
                 <div className="app-content static-page guest-post-page">
@@ -226,7 +226,7 @@ class ContributePage extends Component<PageProps> {
         return (
             <>
                 <Meta {...metaProps} />
-                <Theme {...this.props} />
+                <Theme global={this.props.global}/>
                 <NavBar {...this.props} />
 
                 <div className="app-content static-page contribute-page">
@@ -288,7 +288,7 @@ class PrivacyPage extends Component<PageProps> {
         return (
             <>
                 <Meta {...metaProps} />
-                <Theme {...this.props} />
+                <Theme global={this.props.global}/>
                 <NavBar {...this.props} />
 
                 <div className="app-content static-page privacy-page">
@@ -494,7 +494,7 @@ class WhitePaperPage extends Component<PageProps> {
         return (
             <>
                 <Meta {...metaProps} />
-                <Theme {...this.props} />
+                <Theme global={this.props.global}/>
                 <NavBar {...this.props} />
 
                 <div className="app-content static-page white-paper-page">
@@ -532,7 +532,7 @@ class TosPage extends Component<PageProps> {
         return (
             <>
                 <Meta {...metaProps} />
-                <Theme {...this.props} />
+                <Theme global={this.props.global}/>
                 <NavBar {...this.props} />
 
                 <div className="app-content static-page white-paper-page">
@@ -569,7 +569,7 @@ class FaqPage extends Component<PageProps> {
         return (
             <>
                 <Meta {...metaProps} />
-                <Theme {...this.props} />
+                <Theme global={this.props.global}/>
                 <NavBar {...this.props} />
                 <div className="app-content static-page faq-page">
                     <div className="static-content">

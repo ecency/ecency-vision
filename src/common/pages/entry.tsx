@@ -284,7 +284,7 @@ class EntryPage extends Component<Props, State> {
         return (
             <>
                 <Meta {...metaProps} />
-                <Theme {...this.props} />
+                <Theme global={this.props.global}/>
                 <Feedback/>
                 <MdHandler {...this.props} />
                 <NavBar {...this.props} />

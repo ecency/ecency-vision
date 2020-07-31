@@ -361,7 +361,7 @@ class SubmitPage extends Component<Props, State> {
             <>
                 <Meta {...metaProps} />
                 <FullHeight/>
-                <Theme {...this.props} />
+                <Theme global={this.props.global}/>
                 <Feedback/>
                 <NavBar {...this.props} />
 

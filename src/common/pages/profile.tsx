@@ -173,7 +173,7 @@ class ProfilePage extends Component<Props, State> {
         return (
             <>
                 <Meta {...metaProps} />
-                <Theme {...this.props} />
+                <Theme global={this.props.global}/>
                 <Feedback/>
                 <NavBar {...this.props} />
 
