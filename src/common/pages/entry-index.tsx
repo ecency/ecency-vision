@@ -160,7 +160,7 @@ class EntryIndexPage extends Component<PageProps> {
                 <Intro global={this.props.global} hideIntro={this.props.hideIntro}/>
                 <div className="app-content entry-index-page">
                     <div className="tags-side">
-                        <TrendingTagsCard {...this.props} />
+                        <TrendingTagsCard history={this.props.history} global={this.props.global} trendingTags={this.props.trendingTags}/>
                     </div>
                     <div className={_c(`entry-page-content ${loading ? "loading" : ""}`)}>
                         {community && (
