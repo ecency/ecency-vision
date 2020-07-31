@@ -1,31 +1,20 @@
 import express from "express";
 
-import {initialState as globalInitialState} from "../../common/store/global";
-import {initialState as dynamicPropsInitialState} from "../../common/store/dynamic-props";
-import {initialState as trendingTagsInitialState} from "../../common/store/trending-tags";
-import {initialState as accountsInitialState} from "../../common/store/accounts";
-import {initialState as transactionsInitialState} from "../../common/store/transactions";
-import {initialState as usersInitialState} from "../../common/store/users";
-import {initialState as activeUserInitialState} from "../../common/store/active-user";
-import {initialState as reblogsInitialState} from "../../common/store/reblogs";
-import {initialState as discussionInitialState} from "../../common/store/discussion";
-import {initialState as uiInitialState} from "../../common/store/ui";
-import {initialState as subscriptionsInitialState} from "../../common/store/subscriptions";
-import {initialState as notificationsInitialState} from "../../common/store/notifications";
-import {initialState as entriesInitialState} from "../../common/store/entries";
-
+import {AppState} from "../../common/store";
 import {EntryFilter} from "../../common/store/global/types";
 import {Entry} from "../../common/store/entries/types";
 import {Community} from "../../common/store/community/types";
 import {makeGroupKey} from "../../common/store/entries";
 
-import {readGlobalCookies, optimizeEntries} from "../helper";
-import {getPromotedEntries} from "../helper";
-
 import * as hiveApi from "../../common/api/hive";
 import * as bridgeApi from "../../common/api/bridge";
 
 import filterTagExtract from "../../common/helper/filter-tag-extract";
+
+import {readGlobalCookies, optimizeEntries} from "../helper";
+import {getPromotedEntries} from "../helper";
+
+import {makePreloadedState} from "../state";
 
 import {render} from "../template";
 
@@ -62,40 +51,36 @@ export default async (req: express.Request, res: express.Response) => {
         cache.set("trending-tag", tags, 7200);
     }
 
-    const preLoadedState = {
+    const state = makePreloadedState();
+
+    const preLoadedState: AppState = {
+        ...state,
         global: {
-            ...globalInitialState,
+            ...state.global,
             ...readGlobalCookies(req),
             ...{filter: filter === "feed" ? filter : EntryFilter[filter], tag}, // TODO: AllFilter can be used
         },
-        dynamicProps: dynamicPropsInitialState,
-        trendingTags: {...trendingTagsInitialState, list: tags},
+        trendingTags: {
+            ...state.trendingTags,
+            list: tags
+        },
         community,
-        accounts: accountsInitialState,
-        transactions: {...transactionsInitialState},
-        users: usersInitialState,
-        activeUser: activeUserInitialState,
-        reblogs: reblogsInitialState,
-        discussion: discussionInitialState,
-        ui: uiInitialState,
-        subscriptions: subscriptionsInitialState,
-        notifications: notificationsInitialState,
         entries: {
-            ...entriesInitialState,
+            ...state.entries,
             [`${makeGroupKey(filter, tag)}`]: {
                 entries: optimizeEntries(entries),
                 error: null,
                 loading: false,
                 hasMore: true,
             },
-            ['__promoted__']: {
+            ["__promoted__"]: {
                 entries: optimizeEntries(await getPromotedEntries()),
                 error: null,
                 loading: false,
                 hasMore: true,
             }
-        },
-    };
+        }
+    }
 
     res.send(render(req, preLoadedState));
 };
