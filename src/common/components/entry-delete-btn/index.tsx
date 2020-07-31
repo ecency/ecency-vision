@@ -24,7 +24,7 @@ interface State {
     inProgress: boolean;
 }
 
-export default class EntryDeleteBtn extends Component<Props> {
+export class EntryDeleteBtn extends Component<Props> {
     state: State = {
         inProgress: false,
     };
@@ -79,4 +79,16 @@ export default class EntryDeleteBtn extends Component<Props> {
             </PopoverConfirm>
         );
     }
+}
+
+export default (props: Props) => {
+    const p: Props = {
+        children: props.children,
+        entry: props.entry,
+        users: props.users,
+        activeUser: props.activeUser,
+        onSuccess: props.onSuccess
+    }
+
+    return <EntryDeleteBtn {...p} />
 }

@@ -304,11 +304,12 @@ export class Item extends Component<ItemProps, ItemState> {
                                     <a title={_t('g.edit')} className={_c(`edit-btn ${reply ? 'disabled' : ''}`)} onClick={this.toggleEdit}>
                                         {pencilOutlineSvg}
                                     </a>
-                                    <EntryDeleteBtn {...this.props} entry={entry} onSuccess={this.deleted}>
-                                        <a title={_t('g.delete')} className="delete-btn">
-                                            {deleteForeverSvg}
-                                        </a>
-                                    </EntryDeleteBtn>
+                                    {EntryDeleteBtn({
+                                        ...this.props,
+                                        entry,
+                                        onSuccess: this.deleted,
+                                        children: <a title={_t('g.delete')} className="delete-btn">{deleteForeverSvg}</a>
+                                    })}
                                 </>
                             )}
                         </div>
