@@ -337,6 +337,7 @@ export class DialogContent extends Component<NotificationProps> {
         ]
 
         const dropDownConfig = {
+            history: this.props.history,
             label: '',
             items: menuItems
         };
@@ -349,7 +350,7 @@ export class DialogContent extends Component<NotificationProps> {
                 <div className="list-header">
                     <div className="list-filter">
                         <span>{filter ? _t(`notifications.type-${filter}`) : _t('notifications.type-all')}</span>
-                        <DropDown {...{...this.props, ...dropDownConfig}} float="left"/>
+                        <DropDown {...dropDownConfig} float="left"/>
                     </div>
                     <div className="list-actions">
                         <Tooltip content={_t("notifications.refresh")}>

@@ -99,6 +99,7 @@ class EntryIndexPage extends Component<PageProps> {
         const loading = data.loading;
 
         const dropDownConfig = {
+            history: this.props.history,
             label: _t(`entry-index.filter-${filter}`),
             items: [
                 ...(activeUser
@@ -168,7 +169,7 @@ class EntryIndexPage extends Component<PageProps> {
                             </div>
                         )}
                         <div className="page-tools">
-                            <DropDown {...{...this.props, ...dropDownConfig}} float="left"/>
+                            <DropDown {...dropDownConfig} float="left"/>
                             <ListStyleToggle {...this.props} />
                         </div>
                         {loading && entryList.length === 0 ? <LinearProgress/> : ""}

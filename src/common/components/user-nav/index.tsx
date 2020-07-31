@@ -64,6 +64,7 @@ export default class UserNav extends Component<Props> {
         }
 
         const dropDownConfig = {
+            history: this.props.history,
             label: <UserAvatar username={activeUser.username} size="medium"/>,
             items: [
                 {
@@ -105,7 +106,7 @@ export default class UserNav extends Component<Props> {
                         </span>
                     </ToolTip>
 
-                    <DropDown {...{...this.props, ...dropDownConfig}} float="right" header={`@${activeUser.username}`}/>
+                    <DropDown {...dropDownConfig} float="right" header={`@${activeUser.username}`}/>
                 </div>
                 {ui.notifications && <UserNotifications {...this.props} />}
             </>

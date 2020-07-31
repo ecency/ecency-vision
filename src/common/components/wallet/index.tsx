@@ -230,6 +230,7 @@ export default class Wallet extends Component<Props, State> {
                             {(() => {
                                 if (isMyPage) {
                                     const dropDownConfig = {
+                                        history: this.props.history,
                                         label: '',
                                         items: [
                                             {
@@ -253,7 +254,7 @@ export default class Wallet extends Component<Props, State> {
                                         ],
                                     };
                                     return <div className="amount-actions">
-                                        <DropDown {...{...this.props, ...dropDownConfig}} float="right"/>
+                                        <DropDown {...dropDownConfig} float="right"/>
                                     </div>;
                                 }
                                 return null;
@@ -325,6 +326,7 @@ export default class Wallet extends Component<Props, State> {
                             {(() => {
                                 if (isMyPage) {
                                     const dropDownConfig = {
+                                        history: this.props.history,
                                         label: '',
                                         items: [
                                             {
@@ -349,7 +351,7 @@ export default class Wallet extends Component<Props, State> {
                                     };
 
                                     return <div className="amount-actions">
-                                        <DropDown {...{...this.props, ...dropDownConfig}} float="right"/>
+                                        <DropDown {...dropDownConfig} float="right"/>
                                     </div>;
                                 }
                                 return null;
@@ -369,6 +371,7 @@ export default class Wallet extends Component<Props, State> {
                             {(() => {
                                 if (isMyPage) {
                                     const dropDownConfig = {
+                                        history: this.props.history,
                                         label: '',
                                         items: [
                                             {
@@ -381,7 +384,7 @@ export default class Wallet extends Component<Props, State> {
                                     };
 
                                     return <div className="amount-actions">
-                                        <DropDown {...{...this.props, ...dropDownConfig}} float="right"/>
+                                        <DropDown {...dropDownConfig} float="right"/>
                                     </div>;
                                 }
                                 return null;
@@ -392,6 +395,7 @@ export default class Wallet extends Component<Props, State> {
                             {(() => {
                                 if (isMyPage) {
                                     const dropDownConfig = {
+                                        history: this.props.history,
                                         label: '',
                                         items: [
                                             {
@@ -404,7 +408,7 @@ export default class Wallet extends Component<Props, State> {
                                     };
 
                                     return <div className="amount-actions">
-                                        <DropDown {...{...this.props, ...dropDownConfig}} float="right"/>
+                                        <DropDown {...dropDownConfig} float="right"/>
                                     </div>;
                                 }
                                 return null;
