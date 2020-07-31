@@ -299,8 +299,9 @@ export class DialogContent extends Component<NotificationProps> {
     }
 
     refresh = () => {
-        const {fetchNotifications} = this.props;
+        const {fetchNotifications, fetchUnreadNotificationCount} = this.props;
         fetchNotifications(null);
+        fetchUnreadNotificationCount();
     }
 
     markAsRead = () => {
