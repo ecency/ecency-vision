@@ -64,18 +64,6 @@ export class NavBar extends Component<Props> {
         }
     }
 
-    shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
-        return (
-            !isEqual(this.props.global, nextProps.global) ||
-            !isEqual(this.props.trendingTags, nextProps.trendingTags) ||
-            !isEqual(this.props.users, nextProps.users) ||
-            !isEqual(this.props.activeUser?.username, nextProps.activeUser?.username) ||
-            !isEqual(this.props.activeUser, nextProps.activeUser) ||
-            !isEqual(this.props.ui, nextProps.ui) ||
-            !isEqual(this.props.notifications, nextProps.notifications)
-        );
-    }
-
     changeTheme = () => {
         this.props.toggleTheme();
     };
