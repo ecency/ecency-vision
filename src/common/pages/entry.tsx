@@ -287,7 +287,7 @@ class EntryPage extends Component<Props, State> {
                 <Meta {...metaProps} />
                 <Theme global={this.props.global}/>
                 <Feedback/>
-                <MdHandler {...this.props} />
+                <MdHandler history={this.props.history} />
                 {NavBar({...this.props})}
 
                 <div className="app-content entry-page">
