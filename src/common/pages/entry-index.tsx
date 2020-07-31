@@ -170,7 +170,7 @@ class EntryIndexPage extends Component<PageProps> {
                         )}
                         <div className="page-tools">
                             <DropDown {...dropDownConfig} float="left"/>
-                            <ListStyleToggle {...this.props} />
+                            <ListStyleToggle global={this.props.global} toggleListStyle={this.props.toggleListStyle} />
                         </div>
                         {loading && entryList.length === 0 ? <LinearProgress/> : ""}
                         <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>
