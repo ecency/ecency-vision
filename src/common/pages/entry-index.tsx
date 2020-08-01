@@ -183,7 +183,7 @@ class EntryIndexPage extends Component<PageProps> {
                     </div>
                     {community && (
                         <div className="community-side">
-                            <CommunityCard {...this.props} community={community}/>
+                            {CommunityCard({...this.props, community})}
                         </div>
                     )}
                 </div>
