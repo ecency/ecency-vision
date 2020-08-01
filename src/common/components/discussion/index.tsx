@@ -331,30 +331,28 @@ export class Item extends Component<ItemProps, ItemState> {
                     </div>
                 </div>
 
-                {reply && (
-                    <Comment {...this.props}
-                             defText={ls.get(`reply_draft_${entry.author}_${entry.permlink}`) || ''}
-                             submitText={_t('g.reply')}
-                             cancellable={true}
-                             onChange={this.replyTextChanged}
-                             onSubmit={this.submitReply}
-                             onCancel={this.toggleReply}
-                             inProgress={inProgress}
-                             autoFocus={true}
-                    />
-                )}
+                {reply && Comment({
+                    ...this.props,
+                    defText: (ls.get(`reply_draft_${entry.author}_${entry.permlink}`) || ''),
+                    submitText: _t('g.reply'),
+                    cancellable: true,
+                    onChange: this.replyTextChanged,
+                    onSubmit: this.submitReply,
+                    onCancel: this.toggleReply,
+                    inProgress: inProgress,
+                    autoFocus: true
+                })}
 
-                {edit && (
-                    <Comment {...this.props}
-                             defText={entry.body}
-                             submitText={_t('g.update')}
-                             cancellable={true}
-                             onSubmit={this.updateReply}
-                             onCancel={this.toggleEdit}
-                             inProgress={inProgress}
-                             autoFocus={true}
-                    />
-                )}
+                {edit && Comment({
+                    ...this.props,
+                    defText: entry.body,
+                    submitText: _t('g.update'),
+                    cancellable: true,
+                    onSubmit: this.updateReply,
+                    onCancel: this.toggleEdit,
+                    inProgress: inProgress,
+                    autoFocus: true
+                })}
 
                 {showSubList && <List {...this.props} parent={entry}/>}
             </div>

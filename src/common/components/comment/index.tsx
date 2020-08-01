@@ -69,7 +69,7 @@ interface State {
     preview: string
 }
 
-export default class Comment extends Component<Props, State> {
+export class Comment extends Component<Props, State> {
     state: State = {
         text: '',
         preview: ''
@@ -156,4 +156,26 @@ export default class Comment extends Component<Props, State> {
             </>
         );
     }
+}
+
+export default (p: Props) => {
+    const props: Props = {
+        defText: p.defText,
+        submitText: p.submitText,
+        users: p.users,
+        activeUser: p.activeUser,
+        ui: p.ui,
+        inProgress: p.inProgress,
+        cancellable: p.cancellable,
+        autoFocus: p.autoFocus,
+        setActiveUser: p.setActiveUser,
+        updateActiveUser: p.updateActiveUser,
+        deleteUser: p.deleteUser,
+        toggleUIProp: p.toggleUIProp,
+        onSubmit: p.onSubmit,
+        onChange: p.onChange,
+        onCancel: p.onCancel
+    }
+
+    return <Comment {...props} />
 }
