@@ -428,7 +428,7 @@ interface Props {
 }
 
 
-export default class Discussion extends Component<Props> {
+export class Discussion extends Component<Props> {
     componentDidMount() {
         this.fetch();
     }
@@ -486,4 +486,30 @@ export default class Discussion extends Component<Props> {
             </div>
         );
     }
+}
+
+export default (p: Props) => {
+    const props: Props = {
+        history: p.history,
+        global: p.global,
+        dynamicProps: p.dynamicProps,
+        users: p.users,
+        activeUser: p.activeUser,
+        parent: p.parent,
+        discussion: p.discussion,
+        ui: p.ui,
+        addAccount: p.addAccount,
+        setActiveUser: p.setActiveUser,
+        updateActiveUser: p.updateActiveUser,
+        deleteUser: p.deleteUser,
+        fetchDiscussion: p.fetchDiscussion,
+        sortDiscussion: p.sortDiscussion,
+        resetDiscussion: p.resetDiscussion,
+        updateReply: p.updateReply,
+        addReply: p.addReply,
+        deleteReply: p.deleteReply,
+        toggleUIProp: p.toggleUIProp
+    }
+
+    return <Discussion {...props} />;
 }

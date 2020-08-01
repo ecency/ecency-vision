@@ -441,7 +441,10 @@ class EntryPage extends Component<Props, State> {
                             onSubmit: this.replySubmitted,
                             inProgress: replying
                         })}
-                        <Discussion {...this.props} parent={entry}/>
+                        {Discussion({
+                            ...this.props,
+                            parent: entry
+                        })}
                     </div>
                 </div>
             </>
