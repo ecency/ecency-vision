@@ -22,7 +22,7 @@ interface Props {
     afterClick?: () => void;
 }
 
-export default class EntryLink extends Component<Props> {
+export class EntryLink extends Component<Props> {
     clicked = async (e: React.MouseEvent<HTMLElement>) => {
         e.preventDefault();
 
@@ -57,4 +57,15 @@ export default class EntryLink extends Component<Props> {
 
         return React.createElement("a", props);
     }
+}
+
+export default (p: Props) => {
+    const props: Props = {
+        history: p.history,
+        children: p.children,
+        entry: p.entry,
+        afterClick: p.afterClick
+    }
+
+    return <EntryLink {...props} />;
 }

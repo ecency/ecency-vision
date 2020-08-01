@@ -169,8 +169,10 @@ export default class EntryListItem extends Component<Props> {
                 </div>
                 <div className="item-body">
                     <div className="item-image">
-                        <EntryLink {...this.props} entry={entry}>
-                            <div>
+                        {EntryLink({
+                            ...this.props,
+                            entry,
+                            children: <div>
                                 <img
                                     src={img}
                                     alt={title}
@@ -180,15 +182,19 @@ export default class EntryListItem extends Component<Props> {
                                     }}
                                 />
                             </div>
-                        </EntryLink>
+                        })}
                     </div>
                     <div className="item-summary">
-                        <EntryLink {...this.props} entry={entry}>
-                            <div className="item-title">{title}</div>
-                        </EntryLink>
-                        <EntryLink {...this.props} entry={entry}>
-                            <div className="item-body">{summary}</div>
-                        </EntryLink>
+                        {EntryLink({
+                            ...this.props,
+                            entry,
+                            children: <div className="item-title">{title}</div>
+                        })}
+                        {EntryLink({
+                            ...this.props,
+                            entry,
+                            children: <div className="item-body">{summary}</div>
+                        })}
                     </div>
                     <div className="item-controls">
                         {EntryVoteBtn({
@@ -203,8 +209,10 @@ export default class EntryListItem extends Component<Props> {
                             ...this.props,
                             entry
                         })}
-                        <EntryLink {...this.props} entry={entry}>
-                            <a className="replies">
+                        {EntryLink({
+                            ...this.props,
+                            entry,
+                            children: <a className="replies">
                                 <Tooltip
                                     content={
                                         entry.children > 0
@@ -218,7 +226,7 @@ export default class EntryListItem extends Component<Props> {
                                 </span>
                                 </Tooltip>
                             </a>
-                        </EntryLink>
+                        })}
                         {EntryReblogBtn({
                             ...this.props,
                             text: false

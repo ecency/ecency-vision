@@ -283,11 +283,13 @@ export class Item extends Component<ItemProps, ItemState> {
                                 </div>
                             })}
                             <span className="separator"/>
-                            <EntryLink {...this.props} entry={entry}>
-                                <span className="date" title={created.format("LLLL")}>
+                            {EntryLink({
+                                ...this.props,
+                                entry,
+                                children: <span className="date" title={created.format("LLLL")}>
                                   {created.fromNow()}
                                 </span>
-                            </EntryLink>
+                            })}
                         </div>
                         <ItemBody entry={entry}/>
                         <div className="item-controls">
@@ -323,9 +325,11 @@ export class Item extends Component<ItemProps, ItemState> {
                         </div>
                         {readMore && (
                             <div className="read-more">
-                                <EntryLink {...this.props} entry={entry}>
-                                    <a>{_t("discussion.read-more")}</a>
-                                </EntryLink>
+                                {EntryLink({
+                                    ...this.props,
+                                    entry,
+                                    children: <a>{_t("discussion.read-more")}</a>
+                                })}
                             </div>
                         )}
                     </div>

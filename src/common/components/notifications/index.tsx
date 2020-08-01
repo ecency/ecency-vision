@@ -110,12 +110,12 @@ export class NotificationListItem extends Component<{
                                 </span>
                             </div>
                             <div className="second-line">
-                                <EntryLink
-                                    {...this.props}
-                                    entry={{category: 'category', author: notification.author, permlink: notification.permlink}}
-                                    afterClick={this.afterClick}>
-                                    <a className="post-link">{notification.permlink}</a>
-                                </EntryLink>
+                                {EntryLink({
+                                    ...this.props,
+                                    entry: {category: 'category', author: notification.author, permlink: notification.permlink},
+                                    afterClick: this.afterClick,
+                                    children: <a className="post-link">{notification.permlink}</a>
+                                })}
                             </div>
                         </div>
                     )}
@@ -127,22 +127,22 @@ export class NotificationListItem extends Component<{
                                 {sourceLink}
                                 <span className="item-action">{_t('notifications.reply-str')}</span>
                                 <div className="vert-separator"/>
-                                <EntryLink
-                                    {...this.props}
-                                    entry={{category: 'category', author: notification.parent_author, permlink: notification.parent_permlink}}
-                                    afterClick={this.afterClick}>
-                                    <a className="post-link">{notification.parent_permlink}</a>
-                                </EntryLink>
+                                {EntryLink({
+                                    ...this.props,
+                                    entry: {category: 'category', author: notification.parent_author, permlink: notification.parent_permlink},
+                                    afterClick: this.afterClick,
+                                    children: <a className="post-link">{notification.parent_permlink}</a>
+                                })}
                             </div>
                             <div className="second-line">
-                                <EntryLink
-                                    {...this.props}
-                                    entry={{category: 'category', author: notification.author, permlink: notification.permlink}}
-                                    afterClick={this.afterClick}>
-                                    <div className="markdown-view mini-markdown reply-body">
+                                {EntryLink({
+                                    ...this.props,
+                                    entry: {category: 'category', author: notification.author, permlink: notification.permlink},
+                                    afterClick: this.afterClick,
+                                    children: <div className="markdown-view mini-markdown reply-body">
                                         {postBodySummary(notification.body, 100)}
                                     </div>
-                                </EntryLink>
+                                })}
                             </div>
                         </div>
                     )}
@@ -155,12 +155,12 @@ export class NotificationListItem extends Component<{
                                 <span className="item-action">{_t('notifications.mention-str')}</span>
                             </div>
                             <div className="second-line">
-                                <EntryLink
-                                    {...this.props}
-                                    entry={{category: 'category', author: notification.author, permlink: notification.permlink}}
-                                    afterClick={this.afterClick}>
-                                    <a className="post-link">{notification.permlink}</a>
-                                </EntryLink>
+                                {EntryLink({
+                                    ...this.props,
+                                    entry: {category: 'category', author: notification.author, permlink: notification.permlink},
+                                    afterClick: this.afterClick,
+                                    children: <a className="post-link">{notification.permlink}</a>
+                                })}
                             </div>
                         </div>
                     )}
@@ -187,12 +187,12 @@ export class NotificationListItem extends Component<{
                                 <span className="item-action">{_t('notifications.reblog-str')}</span>
                             </div>
                             <div className="second-line">
-                                <EntryLink
-                                    {...this.props}
-                                    entry={{category: 'category', author: notification.author, permlink: notification.permlink}}
-                                    afterClick={this.afterClick}>
-                                    <a className="post-link">{notification.permlink}</a>
-                                </EntryLink>
+                                {EntryLink({
+                                    ...this.props,
+                                    entry: {category: 'category', author: notification.author, permlink: notification.permlink},
+                                    afterClick: this.afterClick,
+                                    children: <a className="post-link">{notification.permlink}</a>
+                                })}
                             </div>
                         </div>
                     )}
