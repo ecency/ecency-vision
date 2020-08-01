@@ -199,7 +199,10 @@ export default class EntryListItem extends Component<Props> {
                             ...this.props,
                             entry
                         })}
-                        <EntryVotes {...this.props} entry={entry}/>
+                        {EntryVotes({
+                            ...this.props,
+                            entry
+                        })}
                         <EntryLink {...this.props} entry={entry}>
                             <a className="replies">
                                 <Tooltip

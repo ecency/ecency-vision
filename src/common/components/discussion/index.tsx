@@ -300,7 +300,10 @@ export class Item extends Component<ItemProps, ItemState> {
                                 ...this.props,
                                 entry
                             })}
-                            <EntryVotes {...this.props} entry={entry}/>
+                            {EntryVotes({
+                                ...this.props,
+                                entry
+                            })}
                             <a className={_c(`reply-btn ${edit ? 'disabled' : ''}`)} onClick={this.toggleReply}>
                                 {_t("g.reply")}
                             </a>

@@ -407,7 +407,10 @@ class EntryPage extends Component<Props, State> {
                                     ...this.props,
                                     entry
                                 })}
-                                <EntryVotes {...this.props} entry={entry}/>
+                                {EntryVotes({
+                                    ...this.props,
+                                    entry
+                                })}
                                 <div className="sub-menu">
                                     <a className="sub-menu-item"
                                        onClick={() => {

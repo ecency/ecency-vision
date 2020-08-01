@@ -222,7 +222,7 @@ interface State {
     visible: boolean;
 }
 
-export default class EntryVotes extends Component<Props, State> {
+export class EntryVotes extends Component<Props, State> {
     state: State = {
         visible: false,
     };
@@ -281,4 +281,15 @@ export default class EntryVotes extends Component<Props, State> {
             </>
         );
     }
+}
+
+export default (p: Props) => {
+    const props = {
+        history: p.history,
+        global: p.global,
+        entry: p.entry,
+        addAccount: p.addAccount
+    }
+
+    return <EntryVotes {...props} />;
 }
