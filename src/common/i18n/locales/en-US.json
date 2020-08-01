@@ -137,6 +137,7 @@
   },
   "communities": {
     "title": "Communities",
+    "sort-hot": "Hot",
     "sort-rank": "Rank",
     "sort-subs": "Subscribers",
     "sort-new": "New",
