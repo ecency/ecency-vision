@@ -1,6 +1,6 @@
 import React from "react";
 
-import EntryReblogBtn from "./index";
+import {EntryReblogBtn} from "./index";
 
 import TestRenderer from "react-test-renderer";
 
