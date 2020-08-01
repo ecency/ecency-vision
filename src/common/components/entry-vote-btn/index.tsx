@@ -233,7 +233,7 @@ interface State {
     inProgress: boolean;
 }
 
-export default class EntryVoteBtn extends Component<Props, State> {
+export class EntryVoteBtn extends Component<Props, State> {
     state: State = {
         votes: [],
         dialog: false,
@@ -352,4 +352,23 @@ export default class EntryVoteBtn extends Component<Props, State> {
             </>
         );
     }
+}
+
+
+export default (p: Props) => {
+    const props = {
+        global: p.global,
+        dynamicProps: p.dynamicProps,
+        entry: p.entry,
+        users: p.users,
+        activeUser: p.activeUser,
+        ui: p.ui,
+        setActiveUser: p.setActiveUser,
+        updateActiveUser: p.updateActiveUser,
+        deleteUser: p.deleteUser,
+        toggleUIProp: p.toggleUIProp,
+        afterVote: p.afterVote,
+    }
+
+    return <EntryVoteBtn {...props} />
 }

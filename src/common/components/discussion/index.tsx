@@ -291,7 +291,11 @@ export class Item extends Component<ItemProps, ItemState> {
                         </div>
                         <ItemBody entry={entry}/>
                         <div className="item-controls">
-                            <EntryVoteBtn {...this.props} entry={entry} afterVote={this.afterVote}/>
+                            {EntryVoteBtn({
+                                ...this.props,
+                                entry,
+                                afterVote: this.afterVote
+                            })}
                             <EntryPayout {...this.props} entry={entry}/>
                             <EntryVotes {...this.props} entry={entry}/>
                             <a className={_c(`reply-btn ${edit ? 'disabled' : ''}`)} onClick={this.toggleReply}>

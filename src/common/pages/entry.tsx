@@ -398,7 +398,11 @@ class EntryPage extends Component<Props, State> {
                                 </div>
                             </div>
                             <div className="entry-controls">
-                                <EntryVoteBtn {...this.props} entry={entry} afterVote={this.afterVote}/>
+                                {EntryVoteBtn({
+                                    ...this.props,
+                                    entry,
+                                    afterVote: this.afterVote
+                                })}
                                 <EntryPayout {...this.props} entry={entry}/>
                                 <EntryVotes {...this.props} entry={entry}/>
                                 <div className="sub-menu">
