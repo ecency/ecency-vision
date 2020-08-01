@@ -403,7 +403,10 @@ class EntryPage extends Component<Props, State> {
                                     entry,
                                     afterVote: this.afterVote
                                 })}
-                                <EntryPayout {...this.props} entry={entry}/>
+                                {EntryPayout({
+                                    ...this.props,
+                                    entry
+                                })}
                                 <EntryVotes {...this.props} entry={entry}/>
                                 <div className="sub-menu">
                                     <a className="sub-menu-item"

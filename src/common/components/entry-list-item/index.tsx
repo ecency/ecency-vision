@@ -195,7 +195,10 @@ export default class EntryListItem extends Component<Props> {
                             ...this.props,
                             afterVote: this.afterVote
                         })}
-                        <EntryPayout {...this.props} entry={entry}/>
+                        {EntryPayout({
+                            ...this.props,
+                            entry
+                        })}
                         <EntryVotes {...this.props} entry={entry}/>
                         <EntryLink {...this.props} entry={entry}>
                             <a className="replies">

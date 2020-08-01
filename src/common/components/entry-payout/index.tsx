@@ -108,7 +108,7 @@ export class EntryPayoutDetail extends Component<Props> {
     }
 }
 
-export default class EntryPayout extends Component<Props> {
+export class EntryPayout extends Component<Props> {
     render() {
         const {entry} = this.props;
 
@@ -136,4 +136,15 @@ export default class EntryPayout extends Component<Props> {
             </OverlayTrigger>
         );
     }
+}
+
+
+export default (p: Props) => {
+    const props = {
+        global: p.global,
+        dynamicProps: p.dynamicProps,
+        entry: p.entry
+    }
+
+    return <EntryPayout {...props} />
 }
