@@ -71,6 +71,20 @@ export class NotificationListItem extends Component<{
 
     render() {
         const {notification} = this.props;
+        const sourceLinkMain = ProfileLink({
+            ...this.props,
+            username: notification.source,
+            afterClick: this.afterClick,
+            children: <a className="source-avatar"><UserAvatar username={notification.source} size="medium"/></a>
+        });
+
+        const sourceLink = ProfileLink({
+            ...this.props,
+            username: notification.source,
+            afterClick: this.afterClick,
+            children: <a className="source-name"> {notification.source}</a>
+        });
+
         return <>
             <div className={_c(`list-item ${notification.read === 0 ? 'not-read' : ' '}`)}>
                 <div className="item-inner">
@@ -83,20 +97,14 @@ export class NotificationListItem extends Component<{
                     </div>
 
                     <div className="source">
-                        <ProfileLink {...this.props} username={notification.source} afterClick={this.afterClick}>
-                            <a className="source-avatar">
-                                <UserAvatar username={notification.source} size="medium"/>
-                            </a>
-                        </ProfileLink>
+                        {sourceLinkMain}
                     </div>
 
                     {/* Votes */}
                     {(notification.type === 'vote' || notification.type === 'unvote') && (
                         <div className="item-content">
                             <div className="first-line">
-                                <ProfileLink {...this.props} username={notification.source} afterClick={this.afterClick}>
-                                    <a className="source-name"> {notification.source}</a>
-                                </ProfileLink>
+                                {sourceLink}
                                 <span className="item-action">
                                     {_t('notifications.vote-str', {p: notification.weight / 100})}
                                 </span>
@@ -116,9 +124,7 @@ export class NotificationListItem extends Component<{
                     {notification.type === 'reply' && (
                         <div className="item-content">
                             <div className="first-line">
-                                <ProfileLink {...this.props} username={notification.source} afterClick={this.afterClick}>
-                                    <a className="source-name"> {notification.source}</a>
-                                </ProfileLink>
+                                {sourceLink}
                                 <span className="item-action">{_t('notifications.reply-str')}</span>
                                 <div className="vert-separator"/>
                                 <EntryLink
@@ -145,9 +151,7 @@ export class NotificationListItem extends Component<{
                     {notification.type === 'mention' && (
                         <div className="item-content">
                             <div className="first-line">
-                                <ProfileLink {...this.props} username={notification.source} afterClick={this.afterClick}>
-                                    <a className="source-name"> {notification.source}</a>
-                                </ProfileLink>
+                                {sourceLink}
                                 <span className="item-action">{_t('notifications.mention-str')}</span>
                             </div>
                             <div className="second-line">
@@ -165,9 +169,7 @@ export class NotificationListItem extends Component<{
                     {(notification.type === 'follow' || notification.type === 'unfollow' || notification.type === 'ignore') && (
                         <div className="item-content">
                             <div className="first-line">
-                                <ProfileLink {...this.props} username={notification.source} afterClick={this.afterClick}>
-                                    <a className="source-name"> {notification.source}</a>
-                                </ProfileLink>
+                                {sourceLink}
                             </div>
                             <div className="second-line">
                                 {notification.type === 'follow' && (<span className="follow-label">{_t('notifications.followed-str')}</span>)}
@@ -181,9 +183,7 @@ export class NotificationListItem extends Component<{
                     {notification.type === 'reblog' && (
                         <div className="item-content">
                             <div className="first-line">
-                                <ProfileLink {...this.props} username={notification.source} afterClick={this.afterClick}>
-                                    <a className="source-name"> {notification.source}</a>
-                                </ProfileLink>
+                                {sourceLink}
                                 <span className="item-action">{_t('notifications.reblog-str')}</span>
                             </div>
                             <div className="second-line">
@@ -201,9 +201,7 @@ export class NotificationListItem extends Component<{
                     {notification.type === 'transfer' && (
                         <div className="item-content">
                             <div className="first-line">
-                                <ProfileLink {...this.props} username={notification.source} afterClick={this.afterClick}>
-                                    <a className="source-name"> {notification.source}</a>
-                                </ProfileLink>
+                                {sourceLink}
                                 <span className="item-action">
                                     {_t('notifications.transfer-str')} {' '}
                                     <span className="transfer-amount">{notification.amount}</span>
@@ -223,9 +221,7 @@ export class NotificationListItem extends Component<{
                     {notification.type === 'spin' && (
                         <div className="item-content">
                             <div className="first-line">
-                                <ProfileLink {...this.props} username={notification.source} afterClick={this.afterClick}>
-                                    <a className="source-name"> {notification.source}</a>
-                                </ProfileLink>
+                                {sourceLink}
                                 <span className="item-action">{_t('notifications.spin-str')}</span>
                             </div>
                         </div>
@@ -235,9 +231,7 @@ export class NotificationListItem extends Component<{
                     {notification.type === 'inactive' && (
                         <div className="item-content">
                             <div className="first-line">
-                                <ProfileLink {...this.props} username={notification.source} afterClick={this.afterClick}>
-                                    <a className="source-name"> {notification.source}</a>
-                                </ProfileLink>
+                                {sourceLink}
                                 <span className="item-action">
                                     {_t('notifications.inactive-str')}
                                 </span>
@@ -249,9 +243,7 @@ export class NotificationListItem extends Component<{
                     {notification.type === 'referral' && (
                         <div className="item-content">
                             <div className="first-line">
-                                <ProfileLink {...this.props} username={notification.source} afterClick={this.afterClick}>
-                                    <a className="source-name"> {notification.source}</a>
-                                </ProfileLink>
+                                {sourceLink}
                                 <span className="item-action">{_t('notifications.referral-str')}</span>
                             </div>
                         </div>

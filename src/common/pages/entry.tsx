@@ -287,7 +287,7 @@ class EntryPage extends Component<Props, State> {
                 <Meta {...metaProps} />
                 <Theme global={this.props.global}/>
                 <Feedback/>
-                <MdHandler history={this.props.history} />
+                <MdHandler history={this.props.history}/>
                 {NavBar({...this.props})}
 
                 <div className="app-content entry-page">
@@ -314,8 +314,10 @@ class EntryPage extends Component<Props, State> {
                             )}
                             <h1 className="entry-title">{entry.title}</h1>
                             <div className="entry-info">
-                                <ProfileLink {...this.props} username={entry.author}>
-                                    <div className="author-part">
+                                {ProfileLink({
+                                    ...this.props,
+                                    username: entry.author,
+                                    children: <div className="author-part">
                                         <div className="author-avatar">
                                             <UserAvatar username={entry.author} size="medium"/>
                                         </div>
@@ -324,7 +326,7 @@ class EntryPage extends Component<Props, State> {
                                             <span className="author-reputation">{reputation}</span>
                                         </div>
                                     </div>
-                                </ProfileLink>
+                                })}
                                 <Tag {...this.props} tag={entry.category} type="link">
                                     <a className="category">{entry.category}</a>
                                 </Tag>
@@ -348,13 +350,14 @@ class EntryPage extends Component<Props, State> {
                                         {published.fromNow()}
                                     </div>
                                     <span className="separator"/>
-                                    <ProfileLink {...this.props} username={entry.author}>
-                                        <div className="author">
+                                    {ProfileLink({
+                                        ...this.props,
+                                        username: entry.author,
+                                        children: <div className="author">
                                             <span className="author-name">{entry.author}</span>
                                             <span className="author-reputation">{reputation}</span>
                                         </div>
-                                    </ProfileLink>
-
+                                    })}
                                     {app && (
                                         <>
                                             <span className="separator"/>

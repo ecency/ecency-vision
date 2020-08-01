@@ -270,20 +270,18 @@ export class Item extends Component<ItemProps, ItemState> {
             <div className={`discussion-item depth-${entry.depth}`}>
                 <div className="item-inner">
                     <div className="item-figure">
-                        <ProfileLink {...this.props} username={entry.author}>
-                            <a>
-                                <UserAvatar username={entry.author} size="medium"/>
-                            </a>
-                        </ProfileLink>
+                        {ProfileLink({...this.props, username: entry.author, children: <a><UserAvatar username={entry.author} size="medium"/></a>})}
                     </div>
                     <div className="item-content">
                         <div className="item-header">
-                            <ProfileLink {...this.props} username={entry.author}>
-                                <div className="author">
+                            {ProfileLink({
+                                ...this.props,
+                                username: entry.author,
+                                children: <div className="author">
                                     <span className="author-name">{entry.author}</span>
                                     <span className="author-reputation">{reputation}</span>
                                 </div>
-                            </ProfileLink>
+                            })}
                             <span className="separator"/>
                             <EntryLink {...this.props} entry={entry}>
                                 <span className="date" title={created.format("LLLL")}>

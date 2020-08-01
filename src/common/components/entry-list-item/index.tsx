@@ -133,17 +133,16 @@ export default class EntryListItem extends Component<Props> {
             <div className={_c(cls)}>
                 <div className="item-header">
                     <div className="author-part">
-                        <ProfileLink {...this.props} username={entry.author}>
-                            <a className="author-avatar">
-                                <UserAvatar username={entry.author} size="small"/>
-                            </a>
-                        </ProfileLink>
-                        <ProfileLink {...this.props} username={entry.author}>
-                            <div className="author">
-                                {entry.author}
-                                <span className="author-reputation">{reputation}</span>
-                            </div>
-                        </ProfileLink>
+                        {ProfileLink({
+                            ...this.props,
+                            username: entry.author,
+                            children: <a className="author-avatar"><UserAvatar username={entry.author} size="small"/></a>
+                        })}
+                        {ProfileLink({
+                            ...this.props,
+                            username: entry.author,
+                            children: <div className="author">{entry.author}<span className="author-reputation">{reputation}</span></div>
+                        })}
                     </div>
                     <Tag {...this.props} tag={entry.category} type="link">
                         <a className="category">{entry.community_title || entry.category}</a>

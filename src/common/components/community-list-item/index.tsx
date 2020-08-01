@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, Fragment} from "react";
 
 import {History} from "history";
 import {Link} from "react-router-dom";
@@ -70,15 +70,15 @@ export default class CommunityListItem extends Component<Props> {
                         <div className="item-admins">
                             {_t("community.admins")}
                             {community.admins.map((x, i) => (
-                                <ProfileLink key={i} {...this.props} username={x}>
-                                    <a className="admin">{x}</a>
-                                </ProfileLink>
+                                <Fragment key={i}>
+                                    {ProfileLink({...this.props, username: x, children: <a className="admin">{x}</a>})}
+                                </Fragment>
                             ))}
                         </div>
                     )}
                 </div>
                 <div className="item-controls">
-                    <SubscriptionBtn {...this.props} buttonProps={{block: true}} />
+                    <SubscriptionBtn {...this.props} buttonProps={{block: true}}/>
                 </div>
             </div>
         );

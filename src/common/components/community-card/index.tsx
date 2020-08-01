@@ -71,9 +71,7 @@ export class CommunityCard extends Component<Props> {
                             }
                             return (
                                 <div className="team-member" key={i}>
-                                    <ProfileLink {...this.props} username={m[0]}>
-                                        <a className="username">{`@${m[0]}`}</a>
-                                    </ProfileLink>
+                                    {ProfileLink({...this.props, username: m[0], children: <a className="username">{`@${m[0]}`}</a>})}
                                     <span className="role">{m[1]}</span>
                                     {m[2] !== "" && <span className="extra">{m[2]}</span>}
                                 </div>
