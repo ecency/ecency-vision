@@ -391,7 +391,12 @@ class SubmitPage extends Component<Props, State> {
                             />
                         </div>
                         <div className="tag-input">
-                            <TagSelector {...this.props} tags={tags} maxItem={10} onChange={this.tagsChanged}/>
+                            {TagSelector({
+                                ...this.props,
+                                tags,
+                                maxItem: 10,
+                                onChange: this.tagsChanged,
+                            })}
                         </div>
                         <div className="body-input">
                             <Form.Control

@@ -35,7 +35,7 @@ interface State {
     value: string;
 }
 
-export default class TagSelector extends Component<Props, State> {
+export class TagSelector extends Component<Props, State> {
     state: State = {
         hasFocus: false,
         value: "",
@@ -208,4 +208,17 @@ export default class TagSelector extends Component<Props, State> {
             </>
         );
     }
+}
+
+export default (p: Props) => {
+    const props: Props = {
+        global: p.global,
+        history: p.history,
+        trendingTags: p.trendingTags,
+        tags: p.tags,
+        maxItem: p.maxItem,
+        onChange: p.onChange
+    }
+
+    return <TagSelector {...props} />
 }
