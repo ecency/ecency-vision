@@ -53,6 +53,9 @@
     "success-2": "Follow instructions to complete signup process.",
     "to-login": "Back to Login"
   },
+  "trending-tags": {
+    "title": "Popular"
+  },
   "entry-list-item": {
     "reblogged": "by {{n}}",
     "promoted": "sponsored",
