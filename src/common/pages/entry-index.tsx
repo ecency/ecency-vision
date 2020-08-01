@@ -165,7 +165,7 @@ class EntryIndexPage extends Component<PageProps> {
                     <div className={_c(`entry-page-content ${loading ? "loading" : ""}`)}>
                         {community && (
                             <div className="community-sm">
-                                <CommunityCardSm {...this.props} community={community}/>
+                                {CommunityCardSm({...this.props, community: community})}
                             </div>
                         )}
                         <div className="page-tools">

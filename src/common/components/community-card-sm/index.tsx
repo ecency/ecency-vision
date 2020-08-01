@@ -34,7 +34,7 @@ interface Props {
     updateSubscriptions: (list: Subscription[]) => void;
 }
 
-export default class CommunityCardSm extends Component<Props> {
+export class CommunityCardSm extends Component<Props> {
     shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
         return !isEqual(this.props.community, nextProps.community) ||
             !isEqual(this.props.subscriptions, nextProps.subscriptions) ||
@@ -72,4 +72,22 @@ export default class CommunityCardSm extends Component<Props> {
             </div>
         );
     }
+}
+
+export default (p: Props) => {
+    const props = {
+        history: p.history,
+        users: p.users,
+        activeUser: p.activeUser,
+        community: p.community,
+        ui: p.ui,
+        subscriptions: p.subscriptions,
+        setActiveUser: p.setActiveUser,
+        updateActiveUser: p.updateActiveUser,
+        deleteUser: p.deleteUser,
+        toggleUIProp: p.toggleUIProp,
+        updateSubscriptions: p.updateSubscriptions
+    };
+
+    return <CommunityCardSm {...props} />;
 }
