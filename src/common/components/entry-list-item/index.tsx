@@ -144,9 +144,12 @@ export default class EntryListItem extends Component<Props> {
                             children: <div className="author">{entry.author}<span className="author-reputation">{reputation}</span></div>
                         })}
                     </div>
-                    <Tag {...this.props} tag={entry.category} type="link">
-                        <a className="category">{entry.community_title || entry.category}</a>
-                    </Tag>
+                    {Tag({
+                        ...this.props,
+                        tag: entry.category,
+                        type: "link",
+                        children: <a className="category">{entry.community_title || entry.category}</a>
+                    })}
                     {!isVisited && <span className="read-mark"/>}
                     <span className="date" title={dateFormatted}>{dateRelative}</span>
                     {isPinned && (

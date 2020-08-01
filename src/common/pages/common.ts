@@ -33,46 +33,6 @@ import {addReblog} from "../store/reblogs";
 import {fetchNotifications, fetchUnreadNotificationCount, setNotificationsFilter, markNotifications} from "../store/notifications";
 
 
-/*
-interface AuthProps {
-
-
-}
-
-interface CommunitiesProps {
-
-}
-
-interface EntryProps {
-
-    match: match<MatchParams>;
-
-
-}
-
-interface EntryIndexProps {
-
-
-}
-
-interface ProfileProps {
-    match: match<MatchParams>;
-
-
-}
-
-interface StaticProps {
-
-
-}
-
-interface SubmitProps {
-    match: match<MatchParams>;
-
-
-}
-*/
-
 export interface PageProps {
     history: History;
     location: Location;

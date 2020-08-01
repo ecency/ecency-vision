@@ -54,8 +54,13 @@ interface PostBase {
     body: string;
 }
 
-class PreviewContent extends Component<PostBase> {
-    shouldComponentUpdate(nextProps: Readonly<PostBase>): boolean {
+interface PreviewProps extends PostBase {
+    history: History;
+    global: Global;
+}
+
+class PreviewContent extends Component<PreviewProps> {
+    shouldComponentUpdate(nextProps: Readonly<PreviewProps>): boolean {
         return (
             !isEqual(this.props.title, nextProps.title) ||
             !isEqual(this.props.tags, nextProps.tags) ||
@@ -74,10 +79,15 @@ class PreviewContent extends Component<PostBase> {
                     {tags.map((x) => {
                         return (
                             <span className="preview-tag" key={x}>
-                <Tag type="span" {...this.props} tag={x}>
-                  <span>{x}</span>
-                </Tag>
-              </span>
+                                {
+                                    Tag({
+                                        ...this.props,
+                                        tag: x,
+                                        children: <span>{x}</span>,
+                                        type: "span"
+                                    })
+                                }
+                            </span>
                         );
                     })}
                 </div>
@@ -89,6 +99,8 @@ class PreviewContent extends Component<PostBase> {
 }
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
+import {History, Location} from "history";
+import {Global} from "../store/global/types";
 
 interface MatchParams {
     permlink: string;
@@ -414,7 +426,7 @@ class SubmitPage extends Component<Props, State> {
 
                             <WordCount selector=".preview-body" watch={true}/>
                         </div>
-                        <PreviewContent {...this.props} {...preview} />
+                        <PreviewContent history={this.props.history} global={this.props.global} {...preview} />
                         <div className="bottom-toolbar">
                             {!editMode && (
                                 <>

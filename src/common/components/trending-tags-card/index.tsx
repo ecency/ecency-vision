@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, Fragment} from "react";
 
 import {History} from "history";
 
@@ -26,13 +26,15 @@ export class TrendingTagsCard extends Component<Props> {
                 <h2 className="list-header">{_t('trending-tags.title')}</h2>
                 {trendingTags.list.slice(0, 50).map((t) => {
                     const cls = _c(`tag-list-item ${global.tag === t ? "selected-item" : ""}`);
-                    return (
-                        <Tag {...this.props} tag={t} key={t} type="link">
-                            <a href={makePath(global.filter, t)} className={cls}>
-                                {t}
-                            </a>
-                        </Tag>
-                    );
+
+                    return <Fragment key={t}>
+                        {Tag({
+                            ...this.props,
+                            tag: t,
+                            type: "link",
+                            children: <a href={makePath(global.filter, t)} className={cls}>{t}</a>
+                        })}
+                    </Fragment>
                 })}
             </div>
         );

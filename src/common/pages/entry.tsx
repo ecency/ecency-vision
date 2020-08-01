@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, Fragment} from "react";
 
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
@@ -327,9 +327,12 @@ class EntryPage extends Component<Props, State> {
                                         </div>
                                     </div>
                                 })}
-                                <Tag {...this.props} tag={entry.category} type="link">
-                                    <a className="category">{entry.category}</a>
-                                </Tag>
+                                {Tag({
+                                    ...this.props,
+                                    tag: entry.category,
+                                    type: "link",
+                                    children: <a className="category">{entry.category}</a>
+                                })}
                                 <span className="separator"/>
                                 <span className="date" title={published.format("LLLL")}>{published.fromNow()}</span>
                             </div>
@@ -338,9 +341,14 @@ class EntryPage extends Component<Props, State> {
                         <div className="entry-footer">
                             <div className="entry-tags">
                                 {tags.map((t) => (
-                                    <Tag {...this.props} tag={t} key={t} type="link">
-                                        <div className="entry-tag">{t}</div>
-                                    </Tag>
+                                    <Fragment key={t}>
+                                        {Tag({
+                                            ...this.props,
+                                            tag: t,
+                                            type: "link",
+                                            children: <div className="entry-tag">{t}</div>
+                                        })}
+                                    </Fragment>
                                 ))}
                             </div>
                             <div className="entry-info">
