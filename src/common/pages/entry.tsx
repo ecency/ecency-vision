@@ -388,7 +388,11 @@ class EntryPage extends Component<Props, State> {
                                     )}
                                     {!ownEntry && (
                                         <>
-                                            <EntryReblogBtn {...this.props} text={true} entry={entry}/>
+                                            {EntryReblogBtn({
+                                                ...this.props,
+                                                text: true,
+                                                entry
+                                            })}
                                         </>
                                     )}
                                 </div>

@@ -210,7 +210,10 @@ export default class EntryListItem extends Component<Props> {
                                 </Tooltip>
                             </a>
                         </EntryLink>
-                        <EntryReblogBtn {...this.props} text={false}/>
+                        {EntryReblogBtn({
+                            ...this.props,
+                            text: false
+                        })}
                         <div className="app">{app}</div>
                     </div>
                 </div>
