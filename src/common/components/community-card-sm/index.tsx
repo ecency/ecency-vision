@@ -2,8 +2,6 @@ import React, {Component} from "react";
 
 import {History} from "history";
 
-import isEqual from "react-fast-compare";
-
 import {Community} from "../../store/community/types";
 import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
@@ -35,12 +33,6 @@ interface Props {
 }
 
 export class CommunityCardSm extends Component<Props> {
-    shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
-        return !isEqual(this.props.community, nextProps.community) ||
-            !isEqual(this.props.subscriptions, nextProps.subscriptions) ||
-            !isEqual(this.props.activeUser?.username, nextProps.activeUser?.username)
-    }
-
     render() {
         const {community} = this.props;
 
@@ -75,7 +67,7 @@ export class CommunityCardSm extends Component<Props> {
 }
 
 export default (p: Props) => {
-    const props = {
+    const props: Props = {
         history: p.history,
         users: p.users,
         activeUser: p.activeUser,

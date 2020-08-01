@@ -2,8 +2,6 @@ import React, {Component} from "react";
 
 import {History} from "history";
 
-import isEqual from "react-fast-compare";
-
 import {Account} from "../../store/accounts/types";
 import {Community} from "../../store/community/types";
 import {User} from "../../store/users/types";
@@ -38,12 +36,7 @@ interface Props {
     updateSubscriptions: (list: Subscription[]) => void;
 }
 
-export default class CommunityCard extends Component<Props> {
-    shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
-        return !isEqual(this.props.community, nextProps.community) ||
-            !isEqual(this.props.subscriptions, nextProps.subscriptions) ||
-            !isEqual(this.props.activeUser?.username, nextProps.activeUser?.username)
-    }
+export class CommunityCard extends Component<Props> {
 
     render() {
         const {community} = this.props;
@@ -119,4 +112,24 @@ export default class CommunityCard extends Component<Props> {
             </div>
         );
     }
+}
+
+
+export default (p: Props) => {
+    const props: Props = {
+        history: p.history,
+        users: p.users,
+        activeUser: p.activeUser,
+        community: p.community,
+        ui: p.ui,
+        subscriptions: p.subscriptions,
+        addAccount: p.addAccount,
+        setActiveUser: p.setActiveUser,
+        updateActiveUser: p.updateActiveUser,
+        deleteUser: p.deleteUser,
+        toggleUIProp: p.toggleUIProp,
+        updateSubscriptions: p.updateSubscriptions
+    }
+
+    return <CommunityCard {...props} />;
 }
