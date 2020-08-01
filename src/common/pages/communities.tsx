@@ -73,7 +73,7 @@ class CommunitiesPage extends Component<Props, State> {
         list: [],
         loading: false,
         query: "",
-        sort: "rank",
+        sort: "hot",
     };
 
     _timer: any = null;
@@ -104,15 +104,32 @@ class CommunitiesPage extends Component<Props, State> {
             this.setState(obj, cb);
         }
     };
-
+    shuffle = (array: any[]) => {
+        var currentIndex = array.length, temporaryValue, randomIndex;
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+          // Pick a remaining element...
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex -= 1;
+          // And swap it with the current element.
+          temporaryValue = array[currentIndex];
+          array[currentIndex] = array[randomIndex];
+          array[randomIndex] = temporaryValue;
+        }
+        return array;
+    };
     fetch = () => {
         const {query, sort} = this.state;
-
         this.stateSet({loading: true});
-        getCommunities("", 100, query, sort)
+
+        getCommunities("", 100, query, sort==='hot'?'rank':sort)
             .then((r) => {
                 if (r) {
-                    this.stateSet({list: r});
+                    let shr = r;
+                    if (sort === 'hot') {
+                        shr = this.shuffle(r);    
+                    }
+                    this.stateSet({list: shr});
                 }
             })
             .finally(() => {
@@ -165,6 +182,7 @@ class CommunitiesPage extends Component<Props, State> {
                             </div>
                             <div className="sort">
                                 <FormControl as="select" value={sort} onChange={this.sortChanged} disabled={loading}>
+                                    <option value="hot">{_t("communities.sort-hot")}</option>
                                     <option value="rank">{_t("communities.sort-rank")}</option>
                                     <option value="subs">{_t("communities.sort-subs")}</option>
                                     <option value="new">{_t("communities.sort-new")}</option>
