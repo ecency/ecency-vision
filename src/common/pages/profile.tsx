@@ -179,7 +179,10 @@ class ProfilePage extends Component<Props, State> {
 
                 <div className="app-content profile-page">
                     <div className="profile-side">
-                        <ProfileCard {...this.props} account={account}/>
+                        {ProfileCard({
+                            ...this.props,
+                            account
+                        })}
                     </div>
                     <div className="content-side">
                         <ProfileMenu {...this.props} username={username} section={section}/>
