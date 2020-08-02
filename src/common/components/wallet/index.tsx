@@ -56,7 +56,7 @@ interface State {
     transferAsset: null | TransferAsset;
 }
 
-export default class Wallet extends Component<Props, State> {
+export class Wallet extends Component<Props, State> {
     state: State = {
         delegatedList: false,
         receivedList: false,
@@ -105,8 +105,8 @@ export default class Wallet extends Component<Props, State> {
         return getAccount(activeUser.username)
             .then(account => {
                 const {
-                    reward_steem_balance: hiveBalance=account.reward_hive_balance,
-                    reward_sbd_balance: hbdBalance=account.reward_hbd_balance,
+                    reward_steem_balance: hiveBalance = account.reward_hive_balance,
+                    reward_sbd_balance: hbdBalance = account.reward_hbd_balance,
                     reward_vesting_balance: vestingBalance
                 } = account;
 
@@ -439,4 +439,21 @@ export default class Wallet extends Component<Props, State> {
             </div>
         );
     }
+}
+
+
+export default (p: Props) => {
+    const props = {
+        history: p.history,
+        global: p.global,
+        dynamicProps: p.dynamicProps,
+        users: p.users,
+        activeUser: p.activeUser,
+        transactions: p.transactions,
+        account: p.account,
+        addAccount: p.addAccount,
+        updateActiveUser: p.updateActiveUser
+    }
+
+    return <Wallet {...props} />;
 }

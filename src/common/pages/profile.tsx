@@ -196,7 +196,10 @@ class ProfilePage extends Component<Props, State> {
                         })}
                         {(() => {
                             if (section === "wallet") {
-                                return <Wallet {...this.props} account={account}/>;
+                                return Wallet({
+                                    ...this.props,
+                                    account
+                                });
                             }
 
                             const {filter, tag} = global;
