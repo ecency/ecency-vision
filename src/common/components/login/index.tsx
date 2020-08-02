@@ -45,7 +45,7 @@ export class UserItem extends Component<UserItemProps> {
                     onSelect(user);
                 }}
             >
-                <UserAvatar {...this.props} username={user.username} size="normal"/>
+                <UserAvatar username={user.username} size="normal"/>
                 <span className="username">@{user.username}</span>
                 {activeUser && activeUser.username === user.username && <div className="check-mark"/>}
                 <div className="flex-spacer"/>

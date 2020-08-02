@@ -82,7 +82,7 @@ export class ProfileCard extends Component<Props, State> {
                 </div>
 
                 <div className="profile-avatar">
-                    <UserAvatar {...this.props} username={account.name} size="xLarge"/>
+                    <UserAvatar username={account.name} size="xLarge"/>
                     {account.__loaded && <div className="reputation">{accountReputation(account.reputation!)}</div>}
                 </div>
 
