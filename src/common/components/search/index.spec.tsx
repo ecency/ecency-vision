@@ -1,26 +1,27 @@
 import React from "react";
 
-import Search from "./index";
+import {Search} from "./index";
 import renderer from "react-test-renderer";
-import { createBrowserHistory, createLocation } from "history";
+import {createBrowserHistory, createLocation} from "history";
 
-import { initialState as trendingTags } from "../../store/trending-tags";
+import {initialState as trendingTags} from "../../store/trending-tags";
 
 const props = {
-  history: createBrowserHistory(),
-  location: createLocation({}),
-  trendingTags,
-  fetchTrendingTags: () => {},
+    history: createBrowserHistory(),
+    location: createLocation({}),
+    trendingTags,
+    fetchTrendingTags: () => {
+    },
 };
 
 const component = renderer.create(<Search {...props} />);
 
 it("(1) Default render", () => {
-  expect(component.toJSON()).toMatchSnapshot();
+    expect(component.toJSON()).toMatchSnapshot();
 });
 
 it("(2) With query", () => {
-  const instance: any = component.getInstance();
-  instance.setState({ query: "foo" });
-  expect(component.toJSON()).toMatchSnapshot();
+    const instance: any = component.getInstance();
+    instance.setState({query: "foo"});
+    expect(component.toJSON()).toMatchSnapshot();
 });

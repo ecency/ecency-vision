@@ -21,20 +21,3 @@ it('(1) Default Render', () => {
     );
     expect(renderer.toJSON()).toMatchSnapshot();
 });
-
-it('(2) Default Render', () => {
-    const props = {
-        history: createBrowserHistory(),
-        children: <span>click here</span>,
-        entry: {
-            category: 'photography',
-            author: 'foo',
-            permlink: 'foo-bar-baz'
-        },
-        toReplies: true
-    };
-    const renderer = TestRenderer.create(
-        <EntryLink {...props}/>
-    );
-    expect(renderer.toJSON()).toMatchSnapshot();
-});

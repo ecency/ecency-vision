@@ -8,12 +8,3 @@ exports[`(1) Default Render 1`] = `
   click here
 </a>
 `;
-
-exports[`(2) Default Render 1`] = `
-<a
-  href="/photography/@foo/foo-bar-baz#replies"
-  onClick={[Function]}
->
-  click here
-</a>
-`;

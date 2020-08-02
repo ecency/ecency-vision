@@ -1,49 +1,50 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
-import isEqual from "react-fast-compare";
-
-import { Global } from "../../store/global/types";
+import {Global} from "../../store/global/types";
 
 import ListStyleToggle from "../list-style-toggle/index";
 
-import { _t } from "../../i18n";
+import {_t} from "../../i18n";
 
 import _c from "../../util/fix-class-names";
 
 interface Props {
-  global: Global;
-  username: string;
-  section: string;
-  toggleListStyle: () => void;
+    global: Global;
+    username: string;
+    section: string;
+    toggleListStyle: () => void;
 }
 
-export default class ProfileMenu extends Component<Props> {
-  shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
-    return (
-      !isEqual(this.props.username, nextProps.username) ||
-      !isEqual(this.props.section, nextProps.section) ||
-      !isEqual(this.props.global, nextProps.global)
-    );
-  }
+export class ProfileMenu extends Component<Props> {
+    render() {
+        const {username, section} = this.props;
+        return (
+            <div className="profile-menu">
+                <div className="profile-menu-items">
+                    {["posts", "comments", "replies", "wallet"].map((s, k) => {
+                        return (
+                            <Link key={k} className={_c(`menu-item ${section === s && "selected-item"}`)} to={`/@${username}/${s}`}>
+                                {_t(`profile.section-${s}`)}
+                            </Link>
+                        );
+                    })}
+                </div>
 
-  render() {
-    const { username, section } = this.props;
-    return (
-      <div className="profile-menu">
-        <div className="profile-menu-items">
-          {["posts", "comments", "replies", "wallet"].map((s, k) => {
-            return (
-              <Link key={k} className={`menu-item ${section === s && "selected-item"}`} to={`/@${username}/${s}`}>
-                {_t(`profile.section-${s}`)}
-              </Link>
-            );
-          })}
-        </div>
+                <div className="page-tools">{section !== "wallet" && <ListStyleToggle global={this.props.global} toggleListStyle={this.props.toggleListStyle}/>}</div>
+            </div>
+        );
+    }
+}
 
-        <div className="page-tools">{section !== "wallet" && <ListStyleToggle {...this.props} />}</div>
-      </div>
-    );
-  }
+export default (p: Props) => {
+    const props: Props = {
+        global: p.global,
+        username: p.username,
+        section: p.section,
+        toggleListStyle: p.toggleListStyle,
+    }
+
+    return <ProfileMenu {...props} />
 }

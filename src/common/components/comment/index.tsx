@@ -69,7 +69,7 @@ interface State {
     preview: string
 }
 
-export default class Comment extends Component<Props, State> {
+export class Comment extends Component<Props, State> {
     state: State = {
         text: '',
         preview: ''
@@ -129,7 +129,7 @@ export default class Comment extends Component<Props, State> {
         return (
             <>
                 <div className="comment-box">
-                    <EditorToolbar {...this.props} sm={true}/>
+                    {EditorToolbar({...this.props, sm: true})}
                     <div className="comment-body">
                         <Form.Control
                             className={`the-editor accepts-emoji ${text.length > 20 ? 'expanded' : ''}`}
@@ -145,15 +145,38 @@ export default class Comment extends Component<Props, State> {
                         {cancellable && (
                             <Button className="btn-cancel" size="sm" variant="outline-primary" disabled={inProgress} onClick={this.cancel}>{_t('g.cancel')}</Button>
                         )}
-                        <LoginRequired {...this.props}>
-                            <Button className="btn-submit" size="sm" disabled={inProgress} onClick={this.submit}>
+                        {LoginRequired({
+                            ...this.props,
+                            children: <Button className="btn-submit" size="sm" disabled={inProgress} onClick={this.submit}>
                                 {inProgress && (<Spinner animation="grow" variant="light" size="sm" style={{marginRight: "6px"}}/>)} {submitText}
                             </Button>
-                        </LoginRequired>
+                        })}
                     </div>
                     <CommentPreview text={preview}/>
                 </div>
             </>
         );
     }
+}
+
+export default (p: Props) => {
+    const props: Props = {
+        defText: p.defText,
+        submitText: p.submitText,
+        users: p.users,
+        activeUser: p.activeUser,
+        ui: p.ui,
+        inProgress: p.inProgress,
+        cancellable: p.cancellable,
+        autoFocus: p.autoFocus,
+        setActiveUser: p.setActiveUser,
+        updateActiveUser: p.updateActiveUser,
+        deleteUser: p.deleteUser,
+        toggleUIProp: p.toggleUIProp,
+        onSubmit: p.onSubmit,
+        onChange: p.onChange,
+        onCancel: p.onCancel
+    }
+
+    return <Comment {...props} />
 }

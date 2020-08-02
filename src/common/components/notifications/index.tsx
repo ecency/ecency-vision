@@ -71,6 +71,20 @@ export class NotificationListItem extends Component<{
 
     render() {
         const {notification} = this.props;
+        const sourceLinkMain = ProfileLink({
+            ...this.props,
+            username: notification.source,
+            afterClick: this.afterClick,
+            children: <a className="source-avatar"><UserAvatar username={notification.source} size="medium"/></a>
+        });
+
+        const sourceLink = ProfileLink({
+            ...this.props,
+            username: notification.source,
+            afterClick: this.afterClick,
+            children: <a className="source-name"> {notification.source}</a>
+        });
+
         return <>
             <div className={_c(`list-item ${notification.read === 0 ? 'not-read' : ' '}`)}>
                 <div className="item-inner">
@@ -83,31 +97,25 @@ export class NotificationListItem extends Component<{
                     </div>
 
                     <div className="source">
-                        <ProfileLink {...this.props} username={notification.source} afterClick={this.afterClick}>
-                            <a className="source-avatar">
-                                <UserAvatar username={notification.source} size="medium"/>
-                            </a>
-                        </ProfileLink>
+                        {sourceLinkMain}
                     </div>
 
                     {/* Votes */}
                     {(notification.type === 'vote' || notification.type === 'unvote') && (
                         <div className="item-content">
                             <div className="first-line">
-                                <ProfileLink {...this.props} username={notification.source} afterClick={this.afterClick}>
-                                    <a className="source-name"> {notification.source}</a>
-                                </ProfileLink>
+                                {sourceLink}
                                 <span className="item-action">
                                     {_t('notifications.vote-str', {p: notification.weight / 100})}
                                 </span>
                             </div>
                             <div className="second-line">
-                                <EntryLink
-                                    {...this.props}
-                                    entry={{category: 'category', author: notification.author, permlink: notification.permlink}}
-                                    afterClick={this.afterClick}>
-                                    <a className="post-link">{notification.permlink}</a>
-                                </EntryLink>
+                                {EntryLink({
+                                    ...this.props,
+                                    entry: {category: 'category', author: notification.author, permlink: notification.permlink},
+                                    afterClick: this.afterClick,
+                                    children: <a className="post-link">{notification.permlink}</a>
+                                })}
                             </div>
                         </div>
                     )}
@@ -116,27 +124,25 @@ export class NotificationListItem extends Component<{
                     {notification.type === 'reply' && (
                         <div className="item-content">
                             <div className="first-line">
-                                <ProfileLink {...this.props} username={notification.source} afterClick={this.afterClick}>
-                                    <a className="source-name"> {notification.source}</a>
-                                </ProfileLink>
+                                {sourceLink}
                                 <span className="item-action">{_t('notifications.reply-str')}</span>
                                 <div className="vert-separator"/>
-                                <EntryLink
-                                    {...this.props}
-                                    entry={{category: 'category', author: notification.parent_author, permlink: notification.parent_permlink}}
-                                    afterClick={this.afterClick}>
-                                    <a className="post-link">{notification.parent_permlink}</a>
-                                </EntryLink>
+                                {EntryLink({
+                                    ...this.props,
+                                    entry: {category: 'category', author: notification.parent_author, permlink: notification.parent_permlink},
+                                    afterClick: this.afterClick,
+                                    children: <a className="post-link">{notification.parent_permlink}</a>
+                                })}
                             </div>
                             <div className="second-line">
-                                <EntryLink
-                                    {...this.props}
-                                    entry={{category: 'category', author: notification.author, permlink: notification.permlink}}
-                                    afterClick={this.afterClick}>
-                                    <div className="markdown-view mini-markdown reply-body">
+                                {EntryLink({
+                                    ...this.props,
+                                    entry: {category: 'category', author: notification.author, permlink: notification.permlink},
+                                    afterClick: this.afterClick,
+                                    children: <div className="markdown-view mini-markdown reply-body">
                                         {postBodySummary(notification.body, 100)}
                                     </div>
-                                </EntryLink>
+                                })}
                             </div>
                         </div>
                     )}
@@ -145,18 +151,16 @@ export class NotificationListItem extends Component<{
                     {notification.type === 'mention' && (
                         <div className="item-content">
                             <div className="first-line">
-                                <ProfileLink {...this.props} username={notification.source} afterClick={this.afterClick}>
-                                    <a className="source-name"> {notification.source}</a>
-                                </ProfileLink>
+                                {sourceLink}
                                 <span className="item-action">{_t('notifications.mention-str')}</span>
                             </div>
                             <div className="second-line">
-                                <EntryLink
-                                    {...this.props}
-                                    entry={{category: 'category', author: notification.author, permlink: notification.permlink}}
-                                    afterClick={this.afterClick}>
-                                    <a className="post-link">{notification.permlink}</a>
-                                </EntryLink>
+                                {EntryLink({
+                                    ...this.props,
+                                    entry: {category: 'category', author: notification.author, permlink: notification.permlink},
+                                    afterClick: this.afterClick,
+                                    children: <a className="post-link">{notification.permlink}</a>
+                                })}
                             </div>
                         </div>
                     )}
@@ -165,9 +169,7 @@ export class NotificationListItem extends Component<{
                     {(notification.type === 'follow' || notification.type === 'unfollow' || notification.type === 'ignore') && (
                         <div className="item-content">
                             <div className="first-line">
-                                <ProfileLink {...this.props} username={notification.source} afterClick={this.afterClick}>
-                                    <a className="source-name"> {notification.source}</a>
-                                </ProfileLink>
+                                {sourceLink}
                             </div>
                             <div className="second-line">
                                 {notification.type === 'follow' && (<span className="follow-label">{_t('notifications.followed-str')}</span>)}
@@ -181,18 +183,16 @@ export class NotificationListItem extends Component<{
                     {notification.type === 'reblog' && (
                         <div className="item-content">
                             <div className="first-line">
-                                <ProfileLink {...this.props} username={notification.source} afterClick={this.afterClick}>
-                                    <a className="source-name"> {notification.source}</a>
-                                </ProfileLink>
+                                {sourceLink}
                                 <span className="item-action">{_t('notifications.reblog-str')}</span>
                             </div>
                             <div className="second-line">
-                                <EntryLink
-                                    {...this.props}
-                                    entry={{category: 'category', author: notification.author, permlink: notification.permlink}}
-                                    afterClick={this.afterClick}>
-                                    <a className="post-link">{notification.permlink}</a>
-                                </EntryLink>
+                                {EntryLink({
+                                    ...this.props,
+                                    entry: {category: 'category', author: notification.author, permlink: notification.permlink},
+                                    afterClick: this.afterClick,
+                                    children: <a className="post-link">{notification.permlink}</a>
+                                })}
                             </div>
                         </div>
                     )}
@@ -201,9 +201,7 @@ export class NotificationListItem extends Component<{
                     {notification.type === 'transfer' && (
                         <div className="item-content">
                             <div className="first-line">
-                                <ProfileLink {...this.props} username={notification.source} afterClick={this.afterClick}>
-                                    <a className="source-name"> {notification.source}</a>
-                                </ProfileLink>
+                                {sourceLink}
                                 <span className="item-action">
                                     {_t('notifications.transfer-str')} {' '}
                                     <span className="transfer-amount">{notification.amount}</span>
@@ -223,9 +221,7 @@ export class NotificationListItem extends Component<{
                     {notification.type === 'spin' && (
                         <div className="item-content">
                             <div className="first-line">
-                                <ProfileLink {...this.props} username={notification.source} afterClick={this.afterClick}>
-                                    <a className="source-name"> {notification.source}</a>
-                                </ProfileLink>
+                                {sourceLink}
                                 <span className="item-action">{_t('notifications.spin-str')}</span>
                             </div>
                         </div>
@@ -235,9 +231,7 @@ export class NotificationListItem extends Component<{
                     {notification.type === 'inactive' && (
                         <div className="item-content">
                             <div className="first-line">
-                                <ProfileLink {...this.props} username={notification.source} afterClick={this.afterClick}>
-                                    <a className="source-name"> {notification.source}</a>
-                                </ProfileLink>
+                                {sourceLink}
                                 <span className="item-action">
                                     {_t('notifications.inactive-str')}
                                 </span>
@@ -249,9 +243,7 @@ export class NotificationListItem extends Component<{
                     {notification.type === 'referral' && (
                         <div className="item-content">
                             <div className="first-line">
-                                <ProfileLink {...this.props} username={notification.source} afterClick={this.afterClick}>
-                                    <a className="source-name"> {notification.source}</a>
-                                </ProfileLink>
+                                {sourceLink}
                                 <span className="item-action">{_t('notifications.referral-str')}</span>
                             </div>
                         </div>
@@ -338,6 +330,7 @@ export class DialogContent extends Component<NotificationProps> {
         ]
 
         const dropDownConfig = {
+            history: this.props.history,
             label: '',
             items: menuItems
         };
@@ -350,7 +343,7 @@ export class DialogContent extends Component<NotificationProps> {
                 <div className="list-header">
                     <div className="list-filter">
                         <span>{filter ? _t(`notifications.type-${filter}`) : _t('notifications.type-all')}</span>
-                        <DropDown {...{...this.props, ...dropDownConfig}} float="left"/>
+                        <DropDown {...dropDownConfig} float="left"/>
                     </div>
                     <div className="list-actions">
                         <Tooltip content={_t("notifications.refresh")}>

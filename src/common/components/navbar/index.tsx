@@ -55,25 +55,13 @@ interface Props {
     toggleUIProp: (what: ToggleType) => void;
 }
 
-export default class NavBar extends Component<Props> {
+export class NavBar extends Component<Props> {
     componentDidMount() {
         const {location, toggleUIProp} = this.props;
         const qs = queryString.parse(location.search);
         if (qs.referral) {
             toggleUIProp('signUp');
         }
-    }
-
-    shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
-        return (
-            !isEqual(this.props.global, nextProps.global) ||
-            !isEqual(this.props.trendingTags, nextProps.trendingTags) ||
-            !isEqual(this.props.users, nextProps.users) ||
-            !isEqual(this.props.activeUser?.username, nextProps.activeUser?.username) ||
-            !isEqual(this.props.activeUser, nextProps.activeUser) ||
-            !isEqual(this.props.ui, nextProps.ui) ||
-            !isEqual(this.props.notifications, nextProps.notifications)
-        );
     }
 
     changeTheme = () => {
@@ -106,7 +94,7 @@ export default class NavBar extends Component<Props> {
                     </div>
                     <div className="flex-spacer"/>
                     <div className="search-bar">
-                        <Search {...this.props} />
+                        {Search({...this.props})}
                     </div>
                     <ToolTip content={themeText}>
                         <div className="switch-theme" onClick={this.changeTheme}>
@@ -154,4 +142,31 @@ export default class NavBar extends Component<Props> {
             </div>
         );
     }
+}
+
+export default (p: Props) => {
+    const props: Props = {
+        history: p.history,
+        location: p.location,
+        global: p.global,
+        trendingTags: p.trendingTags,
+        users: p.users,
+        activeUser: p.activeUser,
+        ui: p.ui,
+        notifications: p.notifications,
+        fetchTrendingTags: p.fetchTrendingTags,
+        toggleTheme: p.toggleTheme,
+        addUser: p.addUser,
+        setActiveUser: p.setActiveUser,
+        updateActiveUser: p.updateActiveUser,
+        addAccount: p.addAccount,
+        deleteUser: p.deleteUser,
+        fetchNotifications: p.fetchNotifications,
+        fetchUnreadNotificationCount: p.fetchUnreadNotificationCount,
+        setNotificationsFilter: p.setNotificationsFilter,
+        markNotifications: p.markNotifications,
+        toggleUIProp: p.toggleUIProp,
+    }
+
+    return <NavBar {...props} />;
 }

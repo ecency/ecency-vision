@@ -1,8 +1,6 @@
 import React, {Component} from "react";
 import {History, Location} from "history";
 
-import isEqual from "react-fast-compare";
-
 import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
@@ -36,18 +34,7 @@ interface Props {
     toggleUIProp: (what: ToggleType) => void;
 }
 
-export default class EntryListContent extends Component<Props> {
-    shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<{}>, nextContext: any): boolean {
-        return (
-            !isEqual(this.props.entries, nextProps.entries) ||
-            !isEqual(this.props.community, nextProps.community) ||
-            !isEqual(this.props.global, nextProps.global) ||
-            !isEqual(this.props.dynamicProps, nextProps.dynamicProps) ||
-            !isEqual(this.props.activeUser, nextProps.activeUser) ||
-            !isEqual(this.props.reblogs, nextProps.reblogs)
-        );
-    }
-
+export class EntryListContent extends Component<Props> {
     render() {
         const {entries, promotedEntries} = this.props;
 
@@ -80,4 +67,29 @@ export default class EntryListContent extends Component<Props> {
             </>
         );
     }
+}
+
+export default (p: Props) => {
+    const props: Props = {
+        history: p.history,
+        location: p.location,
+        global: p.global,
+        dynamicProps: p.dynamicProps,
+        entries: p.entries,
+        promotedEntries: p.promotedEntries,
+        community: p.community,
+        users: p.users,
+        activeUser: p.activeUser,
+        reblogs: p.reblogs,
+        ui: p.ui,
+        addAccount: p.addAccount,
+        updateEntry: p.updateEntry,
+        setActiveUser: p.setActiveUser,
+        updateActiveUser: p.updateActiveUser,
+        deleteUser: p.deleteUser,
+        addReblog: p.addReblog,
+        toggleUIProp: p.toggleUIProp,
+    }
+
+    return <EntryListContent {...props} />;
 }
