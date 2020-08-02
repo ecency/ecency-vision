@@ -185,7 +185,11 @@ class ProfilePage extends Component<Props, State> {
                         })}
                     </div>
                     <div className="content-side">
-                        <ProfileMenu {...this.props} username={username} section={section}/>
+                        {ProfileMenu({
+                            ...this.props,
+                            username,
+                            section
+                        })}
                         <ProfileCover {...this.props} account={account}/>
                         {(() => {
                             if (section === "wallet") {
