@@ -58,7 +58,7 @@ export class CommunityCardSm extends Component<Props> {
                     </div>
                     <div className="controls">
                         <SubscriptionBtn {...this.props} />
-                        <CommunityPostBtn  {...this.props} />
+                        {CommunityPostBtn({...this.props})}
                     </div>
                 </div>
             </div>

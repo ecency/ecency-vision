@@ -61,7 +61,7 @@ export class CommunityCard extends Component<Props> {
                     </div>
                     <div className="section-controls">
                         <SubscriptionBtn {...this.props} buttonProps={{block: true}}/>
-                        <CommunityPostBtn {...this.props} buttonProps={{block: true}}/>
+                        {CommunityPostBtn({...this.props, buttonProps: {block: true}})}
                     </div>
                     <div className="section-team">
                         <h4 className="section-header">{_t("community.team")}</h4>
