@@ -95,7 +95,10 @@ export class EntryReblogBtn extends Component<Props> {
         );
 
         if (!activeUser) {
-            return <LoginRequired {...this.props}>{content}</LoginRequired>;
+            return LoginRequired({
+                ...this.props,
+                children: content
+            })
         }
 
         return (

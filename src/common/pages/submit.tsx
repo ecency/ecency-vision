@@ -436,8 +436,9 @@ class SubmitPage extends Component<Props, State> {
                             {!editMode && (
                                 <>
                                     <span/>
-                                    <LoginRequired {...this.props}>
-                                        <Button
+                                    {LoginRequired({
+                                        ...this.props,
+                                        children: <Button
                                             className="d-inline-flex align-items-center"
                                             onClick={this.publish}
                                             disabled={!canPublish || inProgress}
@@ -445,7 +446,7 @@ class SubmitPage extends Component<Props, State> {
                                             {inProgress && spinner}
                                             {_t("submit.publish")}
                                         </Button>
-                                    </LoginRequired>
+                                    })}
                                 </>
                             )}
 
@@ -454,8 +455,9 @@ class SubmitPage extends Component<Props, State> {
                                     <Button variant="outline-secondary" onClick={this.cancelUpdate}>
                                         {_t("submit.cancel-update")}
                                     </Button>
-                                    <LoginRequired {...this.props}>
-                                        <Button
+                                    {LoginRequired({
+                                        ...this.props,
+                                        children: <Button
                                             className="d-inline-flex align-items-center"
                                             onClick={this.update}
                                             disabled={!canPublish || inProgress}
@@ -463,7 +465,7 @@ class SubmitPage extends Component<Props, State> {
                                             {inProgress && spinner}
                                             {_t("submit.update")}
                                         </Button>
-                                    </LoginRequired>
+                                    })}
                                 </>
                             )}
                         </div>

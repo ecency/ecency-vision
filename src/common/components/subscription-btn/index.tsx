@@ -107,8 +107,9 @@ export default class SubscriptionBtn extends Component<Props, State> {
             </Button>
         }
 
-        return <LoginRequired {...this.props}>
-            <Button onClick={this.subscribe} {...buttonProps}>{_t("community.subscribe")}</Button>
-        </LoginRequired>
+        return LoginRequired({
+            ...this.props,
+            children: <Button onClick={this.subscribe} {...buttonProps}>{_t("community.subscribe")}</Button>
+        })
     }
 }

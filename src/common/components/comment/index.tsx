@@ -145,11 +145,12 @@ export class Comment extends Component<Props, State> {
                         {cancellable && (
                             <Button className="btn-cancel" size="sm" variant="outline-primary" disabled={inProgress} onClick={this.cancel}>{_t('g.cancel')}</Button>
                         )}
-                        <LoginRequired {...this.props}>
-                            <Button className="btn-submit" size="sm" disabled={inProgress} onClick={this.submit}>
+                        {LoginRequired({
+                            ...this.props,
+                            children: <Button className="btn-submit" size="sm" disabled={inProgress} onClick={this.submit}>
                                 {inProgress && (<Spinner animation="grow" variant="light" size="sm" style={{marginRight: "6px"}}/>)} {submitText}
                             </Button>
-                        </LoginRequired>
+                        })}
                     </div>
                     <CommentPreview text={preview}/>
                 </div>

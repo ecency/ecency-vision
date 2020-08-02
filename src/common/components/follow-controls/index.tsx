@@ -198,47 +198,43 @@ export default class FollowControls extends Component<Props, State> {
         const muteMsg = _t('follow-controls.mute');
         const unMuteMsg = _t('follow-controls.unMute');
 
-        const btnFollow = (
-            <LoginRequired {...this.props}>
-                <Button
-                    variant="primary"
-                    style={{marginRight: '5px'}}
-                    disabled={inProgress}
-                    onClick={this.follow}
-                >
-                    {followMsg}
-                </Button>
-            </LoginRequired>
-        );
+        const btnFollow = LoginRequired({
+            ...this.props,
+            children: <Button
+                variant="primary"
+                style={{marginRight: '5px'}}
+                disabled={inProgress}
+                onClick={this.follow}
+            >
+                {followMsg}
+            </Button>
+        });
 
-        const btnUnfollow = (
-            <LoginRequired {...this.props}>
-                <Button
-                    variant="primary"
-                    style={{marginRight: '5px'}}
-                    disabled={inProgress}
-                    onClick={this.unFollow}
-                >
-                    {unFollowMsg}
-                </Button>
-            </LoginRequired>
-        );
+        const btnUnfollow = LoginRequired({
+            ...this.props,
+            children: <Button
+                variant="primary"
+                style={{marginRight: '5px'}}
+                disabled={inProgress}
+                onClick={this.unFollow}
+            >
+                {unFollowMsg}
+            </Button>
+        });
 
-        const btnMute = (
-            <LoginRequired {...this.props}>
-                <Button disabled={inProgress} onClick={this.mute}>
-                    {muteMsg}
-                </Button>
-            </LoginRequired>
-        );
+        const btnMute = LoginRequired({
+            ...this.props,
+            children: <Button disabled={inProgress} onClick={this.mute}>
+                {muteMsg}
+            </Button>
+        });
 
-        const btnUnMute = (
-            <LoginRequired {...this.props} >
-                <Button disabled={inProgress} onClick={this.unFollow}>
-                    {unMuteMsg}
-                </Button>
-            </LoginRequired>
-        );
+        const btnUnMute = LoginRequired({
+            ...this.props,
+            children: <Button disabled={inProgress} onClick={this.unFollow}>
+                {unMuteMsg}
+            </Button>
+        });
 
         if (fetching) {
             return (

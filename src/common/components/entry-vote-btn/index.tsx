@@ -336,13 +336,14 @@ export class EntryVoteBtn extends Component<Props, State> {
 
         return (
             <>
-                <LoginRequired {...this.props}>
-                    <div className="entry-vote-btn" onClick={this.toggleDialog}>
+                {LoginRequired({
+                    ...this.props,
+                    children: <div className="entry-vote-btn" onClick={this.toggleDialog}>
                         <div className={cls}>
                             <span className="btn-inner">{chevronUpSvg}</span>
                         </div>
                     </div>
-                </LoginRequired>
+                })}
 
                 {(dialog && activeUser) && (
                     <Modal className="vote-modal" onHide={this.toggleDialog} show={true} centered={true} animation={false}>
