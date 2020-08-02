@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, Fragment} from "react";
 
 import {connect} from "react-redux";
 
@@ -133,7 +133,12 @@ class CommunitiesPage extends Component<PageProps, State> {
                         <div className="list-items">
                             {noResults && <div className="no-results">{_t("communities.no-results")}</div>}
                             {list.map((x, i) => (
-                                <CommunityListItem {...this.props} key={i} community={x}/>
+                                <Fragment key={i}>
+                                    {CommunityListItem({
+                                        ...this.props,
+                                        community: x
+                                    })}
+                                </Fragment>
                             ))}
                         </div>
                     </div>
