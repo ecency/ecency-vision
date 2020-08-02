@@ -94,7 +94,7 @@ export class NavBar extends Component<Props> {
                     </div>
                     <div className="flex-spacer"/>
                     <div className="search-bar">
-                        <Search {...this.props} />
+                        {Search({...this.props})}
                     </div>
                     <ToolTip content={themeText}>
                         <div className="switch-theme" onClick={this.changeTheme}>
