@@ -12,7 +12,7 @@ interface Props {
     entry: Entry;
 }
 
-export default class EntryEditBtn extends Component<Props> {
+export class EntryEditBtn extends Component<Props> {
     render() {
         const {entry} = this.props;
         return (
@@ -21,4 +21,12 @@ export default class EntryEditBtn extends Component<Props> {
             </Link>
         );
     }
+}
+
+export default (p: Props) => {
+    const props: Props = {
+        entry: p.entry
+    }
+
+    return <EntryEditBtn {...props} />
 }

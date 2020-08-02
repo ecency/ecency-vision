@@ -376,7 +376,7 @@ class EntryPage extends Component<Props, State> {
                                 <div className="right-side">
                                     {ownEntry && (
                                         <>
-                                            {editable && (<EntryEditBtn entry={entry}/>)}
+                                            {editable && EntryEditBtn({entry})}
                                             <span className="separator"/>
                                             {EntryDeleteBtn({
                                                 ...this.props,
