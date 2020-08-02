@@ -13,6 +13,17 @@ export interface ReceivedVestingShare {
 export const getReceivedVestingShares = (username: string): Promise<ReceivedVestingShare[]> =>
     axios.get(`/api/received-vesting/${username}`).then((resp) => resp.data.list);
 
+
+export interface PopularUser {
+    name: string,
+    about: string,
+    reputation: number
+}
+
+export const getPopularUsers = (): Promise<PopularUser[]> =>
+    axios.get(`/api/discover`).then((resp) => resp.data);
+
+
 export const hsTokenRenew = (code: string): Promise<{
     username: string;
     access_token: string;

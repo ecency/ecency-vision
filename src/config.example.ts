@@ -3,5 +3,6 @@
 export default {
     privateApiAddr: "https://domain.com/api",
     privateApiAuth: {user: "pass"},
-    hsClientSecret: "hivesignerclientsecret"
+    hsClientSecret: "hivesignerclientsecret",
+    hiveUri: "postgresql://dbuser:secretpassword@database.server.com:5432/hive"
 };
