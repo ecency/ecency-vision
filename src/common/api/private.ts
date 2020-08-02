@@ -23,6 +23,15 @@ export interface PopularUser {
 export const getPopularUsers = (): Promise<PopularUser[]> =>
     axios.get(`/api/discover`).then((resp) => resp.data);
 
+export interface LeaderBoardItem {
+    _id: string;
+    count: number;
+    points: string
+}
+
+export const getLeaderboard = (duration: string): Promise<LeaderBoardItem[]> => {
+    return axios.post(`/api/leaderboard`, {duration}).then(resp => resp.data);
+};
 
 export const hsTokenRenew = (code: string): Promise<{
     username: string;

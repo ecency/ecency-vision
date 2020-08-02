@@ -42,6 +42,11 @@ export const receivedVesting = async (req: express.Request, res: express.Respons
     pipe(apiRequest(`delegatee_vesting_shares/${username}`, "GET"), res);
 };
 
+export const leaderboard = async (req: express.Request, res: express.Response) => {
+    const {duration} = req.body;
+    pipe(apiRequest(`leaderboard?duration=${duration}`, "GET"), res);
+}
+
 export const notifications = async (req: express.Request, res: express.Response) => {
     const username = validateCode(req, res);
     if (!username) return;

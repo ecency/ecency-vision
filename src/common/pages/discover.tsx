@@ -6,7 +6,7 @@ import Meta from "../components/meta";
 import Theme from "../components/theme/index";
 import NavBar from "../components/navbar/index";
 
-import {getPopularUsers, PopularUser} from "../api/private";
+import {getPopularUsers, PopularUser, getLeaderboard, LeaderBoardItem} from "../api/private";
 
 import {_t} from "../i18n";
 
@@ -15,7 +15,8 @@ import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
 
 interface State {
-    popular: PopularUser
+    popular: PopularUser,
+    leaderboard: LeaderBoardItem[]
 }
 
 class DiscoverPage extends Component<PageProps> {
@@ -23,9 +24,16 @@ class DiscoverPage extends Component<PageProps> {
     _mounted: boolean = true;
 
     componentDidMount() {
-        getPopularUsers().then(r => {
-            console.log(r)
-        })
+        this.fetch();
+    }
+
+    fetch = () => {
+        getPopularUsers().then(popular => {
+            this.stateSet({popular});
+            return getLeaderboard("day")
+        }).then(leaderboard => {
+            this.stateSet({leaderboard});
+        });
     }
 
     componentWillUnmount() {
