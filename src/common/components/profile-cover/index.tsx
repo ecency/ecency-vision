@@ -33,7 +33,7 @@ interface Props {
     toggleUIProp: (what: ToggleType) => void;
 }
 
-export default class ProfileCover extends Component<Props> {
+export class ProfileCover extends Component<Props> {
     render() {
         const {global, account, activeUser} = this.props;
         let bgImage = "";
@@ -61,4 +61,20 @@ export default class ProfileCover extends Component<Props> {
             </div>
         );
     }
+}
+
+export default (p: Props) => {
+    const props: Props = {
+        global: p.global,
+        account: p.account,
+        users: p.users,
+        activeUser: p.activeUser,
+        ui: p.ui,
+        setActiveUser: p.setActiveUser,
+        updateActiveUser: p.updateActiveUser,
+        deleteUser: p.deleteUser,
+        toggleUIProp: p.toggleUIProp
+    }
+
+    return <ProfileCover {...props} />
 }

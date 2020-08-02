@@ -190,7 +190,10 @@ class ProfilePage extends Component<Props, State> {
                             username,
                             section
                         })}
-                        <ProfileCover {...this.props} account={account}/>
+                        {ProfileCover({
+                            ...this.props,
+                            account
+                        })}
                         {(() => {
                             if (section === "wallet") {
                                 return <Wallet {...this.props} account={account}/>;
