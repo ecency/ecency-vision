@@ -428,7 +428,7 @@ export class Wallet extends Component<Props, State> {
                     </div>
                 )}
 
-                <TransactionList {...this.props} />
+                {TransactionList({...this.props})}
 
                 {this.state.delegatedList && (
                     <DelegatedVesting {...this.props} account={account} onHide={this.toggleDelegatedList}/>
