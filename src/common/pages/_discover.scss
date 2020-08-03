@@ -34,5 +34,9 @@
 
   .popular-users {
     flex-grow: 1;
+
+    @media (min-width: $lg-break) {
+      margin-left: 10px;
+    }
   }
 }

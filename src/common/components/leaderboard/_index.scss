@@ -2,7 +2,7 @@
   height: 100%;
 
   .list-header {
-    height: 80px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -36,7 +36,7 @@
   }
 
   .list-body {
-    height: calc(100% - 80px);
+    height: calc(100% - 50px);
     padding: 20px 0 14px 0;
     overflow-x: auto;
 

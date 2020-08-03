@@ -3,11 +3,12 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 
 
-
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
 import NavBar from "../components/navbar/index";
 import LeaderBoard from "../components/leaderboard";
+import PopularUsers from "../components/popular-users";
+import FullHeight from "../components/full-height";
 
 import {getPopularUsers, PopularUser, getLeaderboard, LeaderBoardItem} from "../api/private";
 
@@ -15,13 +16,7 @@ import {_t} from "../i18n";
 
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
-import FullHeight from "../components/full-height";
 
-
-interface State {
-    popular: PopularUser,
-    leaderboard: LeaderBoardItem[]
-}
 
 class DiscoverPage extends Component<PageProps> {
 
@@ -52,7 +47,6 @@ class DiscoverPage extends Component<PageProps> {
 
 
     render() {
-
         //  Meta config
         const metaProps = {
             title: _t("discover.title"),
@@ -64,14 +58,12 @@ class DiscoverPage extends Component<PageProps> {
                 <FullHeight/>
                 <Theme global={this.props.global}/>
                 {NavBar({...this.props})}
-
                 <div className="app-content discover-page">
                     <div className="top-users">
                         {LeaderBoard({...this.props})}
                     </div>
-
                     <div className="popular-users">
-
+                        {PopularUsers({...this.props})}
                     </div>
                 </div>
             </>

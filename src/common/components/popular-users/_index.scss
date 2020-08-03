@@ -1,0 +1,51 @@
+.popular-users-list {
+  height: 100%;
+
+  .list-header {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @include themify(day) {
+      border-bottom: 1px solid lighten($dark-sky-blue, 28);
+    }
+
+    @include themify(night) {
+      border-bottom: 1px solid lighten($dark, 10);
+    }
+
+    .list-title {
+      color: $dark-sky-blue;
+      font-weight: 500;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &.loading {
+    .list-header {
+      border-bottom-color: transparent;
+    }
+  }
+
+  .list-body {
+    height: calc(100% - 50px);
+    padding: 20px 0 14px 0;
+    overflow-x: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
+
+
+    .list-item {
+      padding: 10px;
+      background: $white-three;
+      border-radius: 6px;
+
+    }
+  }
+
+}
