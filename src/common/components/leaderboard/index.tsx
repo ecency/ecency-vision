@@ -1,10 +1,7 @@
 import React, {Component} from "react";
 
-import {Row, Col} from "react-bootstrap";
-
 import UserAvatar from "../user-avatar";
 import ProfileLink from "../profile-link"
-
 
 import {getLeaderboard, LeaderBoardDuration, LeaderBoardItem} from "../../api/private";
 import {History} from "history";
@@ -116,7 +113,11 @@ export class LeaderBoard extends Component <Props, State> {
                             return <div className="list-item" key={i}>
                                 <div className="index">{i + 1}</div>
                                 <div className="avatar">
-                                    <UserAvatar size="medium" username={r._id}/>
+                                    {ProfileLink({
+                                        ...this.props,
+                                        username: r._id,
+                                        children: <a><UserAvatar size="medium" username={r._id}/></a>
+                                    })}
                                 </div>
                                 <div className="username">
                                     {ProfileLink({
