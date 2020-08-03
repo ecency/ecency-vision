@@ -1,8 +1,10 @@
 import React from 'react';
+import {Image} from "react-img-webp";
 
 import {Global} from '../../store/global/types';
 
 const friends = require('../../img/friends.jpg');
+const friendsWebp = require('../../img/friends-webp.webp');
 
 import {closeSvg} from '../../img/svg';
 
@@ -27,6 +29,6 @@ export default (props: Props) => {
         <div className="cloud-2"/>
         <div className="cloud-3"/>
 
-        <img alt="Friends" className="friends" src={friends}/>
+        <Image alt="Friends" className="friends" src={friends} webP={friendsWebp}/>
     </div>;
 };

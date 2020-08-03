@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Context} from "react-img-webp";
 
 import defaults from '../../constants/defaults.json';
 
@@ -7,7 +8,6 @@ interface Props {
     size: string,
     onClick: (e: React.MouseEvent<HTMLElement>) => void
 }
-
 export default class UserAvatar extends Component<Props> {
     public static defaultProps = {
         onClick: () => {
@@ -19,16 +19,21 @@ export default class UserAvatar extends Component<Props> {
         const imgSize = size === 'xLarge' ? 'large' : ((size === 'normal' || size === 'small') ? 'small' : 'medium');
         const cls = `user-avatar ${size}`;
         const imageSrc = `${defaults.imageServer}/u/${username}/avatar/${imgSize}`;
-
+        const imageSrcWebp = `${defaults.imageServer}/webp/u/${username}/avatar/${imgSize}`;
+        
         return (
-            <span onClick={onClick}
-                  role="none"
-                  key="user-avatar-image"
-                  className={cls}
-                  style={{
-                      backgroundImage: `url(${imageSrc})`
-                  }}
-            />
+            <Context.WebP.Consumer>
+                {(value) =>
+                    <span onClick={onClick}
+                        role="none"
+                        key="user-avatar-image"
+                        className={cls}
+                        style={{
+                            backgroundImage: `url(${value.supportWebP ? imageSrcWebp : imageSrc})`
+                        }}
+                    />
+                }
+            </Context.WebP.Consumer>
         );
     }
 }

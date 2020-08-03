@@ -969,10 +969,10 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
-"@esteemapp/esteem-render-helpers@^1.4.6":
-  version "1.4.6"
-  resolved "https://registry.yarnpkg.com/@esteemapp/esteem-render-helpers/-/esteem-render-helpers-1.4.6.tgz#efcceb9c73cc65a2c1d5dbb442711136d702eb3f"
-  integrity sha512-zzfVUg7hENu9rJmZ8sYUoL0n+u28z0UUX4R+GC/m9LzZy1Gp9CVilWkIUN9TXrBdC2WFw6kJWb0s9YWJtdn08g==
+"@esteemapp/esteem-render-helpers@^1.4.8":
+  version "1.4.8"
+  resolved "https://registry.yarnpkg.com/@esteemapp/esteem-render-helpers/-/esteem-render-helpers-1.4.8.tgz#a690c2605d337fcd4a038624173518225554d8de"
+  integrity sha512-CYl3lSlpa/yVKLaee/0t7xVFw8KGNNLm3kOU7UB5BCYD1iTFSd3v/abwi21uVyfSNhYWEP+QLvLPZC5TsIdApA==
   dependencies:
     he "^1.2.0"
     lru-cache "^5.1.1"
@@ -9038,6 +9038,11 @@ react-helmet@^6.0.0:
     prop-types "^15.7.2"
     react-fast-compare "^2.0.4"
     react-side-effect "^2.1.0"
+
+react-img-webp@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/react-img-webp/-/react-img-webp-2.0.2.tgz#d8b0e2ac436978bdd5b8ea74f1f80a6bf5dd99ba"
+  integrity sha512-mhqV89PuOr8bECEk5dx4ZSzuLH5z+1QnX76ytzBIpdDxhjKE1FPfu0V43mJIs4E2iYWp0hx4/Uk+DVB+5/vTRg==
 
 react-is@^16.12.0, react-is@^16.3.2, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.6, react-is@^16.9.0:
   version "16.13.1"
