@@ -1,0 +1,31 @@
+.discover-page {
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: $lg-break) {
+    flex-direction: row;
+    height: calc(100% - 104px) !important;
+  }
+
+  .top-users,
+  .popular-users {
+    padding: 0 10px;
+    height: 400px;
+
+    @media (min-width: $lg-break) {
+      height: 100%;
+      margin-bottom: 0;
+    }
+  }
+
+  .top-users {
+    flex-basis: 440px;
+    border-radius: 6px;
+    background: lighten($dark-sky-blue, 40);
+  }
+
+  .popular-users {
+    flex-grow: 1;
+  }
+}

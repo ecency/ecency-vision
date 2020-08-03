@@ -29,7 +29,9 @@ export interface LeaderBoardItem {
     points: string
 }
 
-export const getLeaderboard = (duration: string): Promise<LeaderBoardItem[]> => {
+export type LeaderBoardDuration = "day" | "week" | "month";
+
+export const getLeaderboard = (duration: LeaderBoardDuration): Promise<LeaderBoardItem[]> => {
     return axios.post(`/api/leaderboard`, {duration}).then(resp => resp.data);
 };
 
