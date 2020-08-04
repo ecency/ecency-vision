@@ -22,6 +22,7 @@
   .top-users {
     flex-basis: 440px;
     border-radius: 6px;
+    flex-shrink: 0;
 
     @include themify(day) {
       background: lighten($dark-sky-blue, 40);

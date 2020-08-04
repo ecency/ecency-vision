@@ -75,6 +75,21 @@ export class PopularUsers extends Component<Props, State> {
                                     username: r.name,
                                     children: <a><UserAvatar size="large" username={r.name}/></a>
                                 })}
+                                <div className="user-info">
+                                    {ProfileLink({
+                                        ...this.props,
+                                        username: r.name,
+                                        children: <a className="display-name">{r.display_name}</a>
+                                    })}
+
+                                    {ProfileLink({
+                                        ...this.props,
+                                        username: r.name,
+                                        children: <a className="name"> {'@'}{r.name}</a>
+                                    })}
+
+                                    <div className="about">{r.about}</div>
+                                </div>
                             </div>;
                         })}
                     </div>

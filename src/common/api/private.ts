@@ -16,12 +16,13 @@ export const getReceivedVestingShares = (username: string): Promise<ReceivedVest
 
 export interface PopularUser {
     name: string,
+    display_name: string,
     about: string,
     reputation: number
 }
 
 export const getPopularUsers = (): Promise<PopularUser[]> =>
-    axios.get(`/api/discover`).then((resp) => resp.data);
+    axios.get(`/api/popular-users`).then((resp) => resp.data);
 
 export interface LeaderBoardItem {
     _id: string;

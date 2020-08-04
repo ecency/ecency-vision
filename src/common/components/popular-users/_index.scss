@@ -35,17 +35,64 @@
     padding: 20px 0 14px 0;
     overflow-x: auto;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
     gap: 10px;
 
+    @media (min-width: $md-break) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: $lg-break) {
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: $xl-break) {
+      grid-template-columns: repeat(2, 1fr);
+    }
 
     .list-item {
       padding: 10px;
-      background: $white-three;
       border-radius: 6px;
+      display: flex;
 
+      @include themify(day) {
+        background: $white-three;
+      }
+
+      @include themify(night) {
+        background: lighten($dark-six, 6);
+      }
+
+      .user-avatar {
+        width: 80px;
+        display: block;
+        margin-right: 10px;
+      }
+
+      .user-info {
+        flex-grow: 1;
+        display: grid;
+
+        .display-name {
+          font-size: 18px;
+
+          @include themify(day) {
+            color: lighten($charcoal-grey, 10)
+          }
+
+          @include themify(night) {
+            color: $silver;
+          }
+        }
+
+        .about {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          opacity: 0.6;
+        }
+      }
     }
   }
-
 }

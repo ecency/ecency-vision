@@ -118,7 +118,7 @@ export const createAccount = async (req: express.Request, res: express.Response)
     pipe(apiRequest(`signup/account-create`, "POST", headers, payload), res);
 };
 
-export const discover = async (req: express.Request, res: express.Response) => {
+export const popularUsers = async (req: express.Request, res: express.Response) => {
 
     let discovery = cache.get("discovery");
 
@@ -129,7 +129,7 @@ export const discover = async (req: express.Request, res: express.Response) => {
 
         await client.connect();
 
-        const sql = `SELECT drv3.author AS name, ac.about, ac.reputation 
+        const sql = `SELECT drv3.author AS name, ac.display_name, ac.about, ac.reputation 
             FROM (
                SELECT DISTINCT author
                FROM (
@@ -147,7 +147,9 @@ export const discover = async (req: express.Request, res: express.Response) => {
                       ORDER BY author_rep DESC
                     ) AS drv2
             ) AS drv3
-            LEFT JOIN hive_accounts AS ac ON ac.name = drv3.author ORDER BY random() LIMIT 200;`;
+            LEFT JOIN hive_accounts AS ac ON ac.name = drv3.author 
+            WHERE ac.display_name!='' AND ac.about != '' 
+            ORDER BY random() LIMIT 200;`;
 
         let r: QueryResult;
 
