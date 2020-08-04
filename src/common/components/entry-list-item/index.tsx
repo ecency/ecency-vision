@@ -4,7 +4,6 @@ import {History, Location} from "history";
 import moment from "moment";
 
 import isEqual from "react-fast-compare";
-import {Image} from "react-img-webp";
 
 import {Entry} from "../../store/entries/types";
 import {Global} from "../../store/global/types";
@@ -104,7 +103,6 @@ export default class EntryListItem extends Component<Props> {
     render() {
         const {entry, community, asAuthor, promoted} = this.props;
         const img: string = catchPostImage(entry, 600, 500) || noImage;
-        const imgWebp: string = catchPostImage(entry, 600, 500, true) || noImage;
         const summary: string = postBodySummary(entry, 200);
 
         const app = appName(entry?.json_metadata?.app);
@@ -175,9 +173,8 @@ export default class EntryListItem extends Component<Props> {
                             ...this.props,
                             entry,
                             children: <div>
-                                <Image
+                                <img
                                     src={img}
-                                    webP={imgWebp}
                                     alt={title}
                                     onError={(e: React.SyntheticEvent) => {
                                         const target = e.target as HTMLImageElement;
