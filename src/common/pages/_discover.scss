@@ -11,7 +11,9 @@
   .top-users,
   .popular-users {
     padding: 0 10px;
-    height: 440px;
+    height: 460px;
+    border-radius: 6px;
+    margin-bottom: 20px;
 
     @media (min-width: $lg-break) {
       height: 100%;
@@ -21,7 +23,6 @@
 
   .top-users {
     flex-basis: 440px;
-    border-radius: 6px;
     flex-shrink: 0;
 
     @include themify(day) {
