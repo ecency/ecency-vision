@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import {canUseWebP} from "react-img-webp";
 
 import {Global} from "../../store/global/types";
 import {User} from "../../store/users/types";
@@ -33,29 +32,22 @@ interface Props {
     deleteUser: (username: string) => void;
     toggleUIProp: (what: ToggleType) => void;
 }
-const isBrowserSupportWebP = canUseWebP(); // if you want to detect webP support in other places
 
 export class ProfileCover extends Component<Props> {
     render() {
         const {global, account, activeUser} = this.props;
         let bgImage = "";
-        let bgImageWebp = "";
-        
+
         if (account.__loaded) {
             bgImage = global.theme === "day" ? coverFallbackDay : coverFallbackNight;
             if (account.profile?.cover_image) {
                 bgImage = proxifyImageSrc(account.profile.cover_image);
-                bgImageWebp = proxifyImageSrc(account.profile.cover_image, 0, 0, true);
             }
         }
 
         let style = {};
         if (bgImage) {
-            if (isBrowserSupportWebP) {
-                style = {backgroundImage: `url('${bgImageWebp}')`};
-            } else {
-                style = {backgroundImage: `url('${bgImage}')`};    
-            }
+            style = {backgroundImage: `url('${bgImage}')`};
         }
 
         const hideControls = activeUser && activeUser.username === account.name;
