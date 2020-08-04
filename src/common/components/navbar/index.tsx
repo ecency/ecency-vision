@@ -82,8 +82,8 @@ export class NavBar extends Component<Props> {
                         </Link>
                     </div>
                     <div className="text-menu">
-                        <Link className="menu-item" to="/">
-                            {_t("navbar.global")}
+                        <Link className="menu-item" to="/discover">
+                            {_t("navbar.discover")}
                         </Link>
                         <Link className="menu-item" to="/communities">
                             {_t("navbar.communities")}
@@ -119,7 +119,7 @@ export class NavBar extends Component<Props> {
                                 toggleUIProp('login');
                             }}>{_t("g.login")}</Button>
 
-                            <Button variant="primary" onClick={() => {
+                            <Button className="btn-sign-up" variant="primary" onClick={() => {
                                 const {toggleUIProp} = this.props;
                                 toggleUIProp('signUp');
                             }}>{_t("g.signup")}</Button>

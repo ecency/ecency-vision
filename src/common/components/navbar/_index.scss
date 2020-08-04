@@ -73,15 +73,6 @@
       }
 
       .menu-item {
-        &:first-child {
-          @media (min-width: $md-break) {
-            display: none;
-          }
-
-          @media (min-width: $xl-break) {
-            display: block;
-          }
-        }
 
         @include themify(day) {
           color: $gunmetal;
@@ -217,25 +208,25 @@
         align-items: center;
 
         .img-apple {
-          margin-right: 15px;
+          margin-right: 12px;
 
           svg {
-            height: 16px;
+            height: 14px;
             margin-top: -2px;
           }
         }
 
         .img-google {
-          margin-right: 12px;
+          margin-right: 8px;
 
           svg {
-            height: 14px;
+            height: 12px;
           }
         }
 
         .img-desktop {
           svg {
-            height: 14px;
+            height: 12px;
           }
         }
       }
@@ -243,10 +234,15 @@
 
     .login-required {
       margin-bottom: 10px;
+
       .btn {
         &:not(:last-child) {
           margin-right: 4px;
         }
+      }
+
+      .btn-sign-up{
+        display: none;
       }
 
       @media (min-width: $md-break) {
@@ -260,6 +256,10 @@
           &:not(:last-child) {
             margin-right: 10px;
           }
+        }
+
+        .btn-sign-up{
+          display: inline-block;
         }
       }
     }

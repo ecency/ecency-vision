@@ -9,7 +9,7 @@ import profileHandler from "./handlers/profile";
 import entryHandler from "./handlers/entry";
 import fallbackHandler from "./handlers/fallback";
 import {entryRssHandler, authorRssHandler} from "./handlers/rss";
-import {receivedVesting, notifications, markNotifications, unreadNotifications, hsTokenRefresh, createAccount, usrActivity} from "./handlers/private-api";
+import {receivedVesting, leaderboard, notifications, markNotifications, unreadNotifications, hsTokenRefresh, createAccount, usrActivity, popularUsers} from "./handlers/private-api";
 
 const server = express();
 
@@ -58,12 +58,14 @@ server
         entryHandler
     )
     .use("^/api/received-vesting/:username$", receivedVesting)
+    .post("^/api/leaderboard", leaderboard)
     .post("^/api/notifications$", notifications)
     .post("^/api/notifications/mark$", markNotifications)
     .post("^/api/notifications/unread$", unreadNotifications)
     .post("^/api/hs-token-refresh$", hsTokenRefresh)
     .post("^/api/usr-activity$", usrActivity)
     .post("^/api/account-create$", createAccount)
+    .get("^/api/popular-users", popularUsers)
     .get("*", fallbackHandler);
 
 export default server;
