@@ -10,7 +10,7 @@
     "start:prod": "NODE_ENV=production node build/server.js"
   },
   "dependencies": {
-    "@esteemapp/esteem-render-helpers": "^1.4.6",
+    "@esteemapp/esteem-render-helpers": "^1.5.2",
     "@hiveio/dhive": "^0.14.1",
     "@hiveio/hivescript": "^1.2.0",
     "@types/diff-match-patch": "^1.0.32",
@@ -45,6 +45,7 @@
     "react-dom": "^16.8.6",
     "react-fast-compare": "^3.2.0",
     "react-helmet": "^6.0.0",
+    "react-img-webp": "^2.0.2",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.0.1",
     "react-sortablejs": "^2.0.11",

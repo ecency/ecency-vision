@@ -29,7 +29,7 @@ interface State {
 class CommunitiesPage extends Component<PageProps, State> {
     state: State = {
         list: [],
-        loading: false,
+        loading: true,
         query: "",
         sort: "hot",
     };
@@ -56,38 +56,21 @@ class CommunitiesPage extends Component<PageProps, State> {
         this._mounted = false;
     }
 
-    stateSet = (obj: {}, cb: () => void = () => {
-    }) => {
+    stateSet = (state: {}, cb?: () => void) => {
         if (this._mounted) {
-            this.setState(obj, cb);
+            this.setState(state, cb);
         }
     };
-    shuffle = (array: any[]) => {
-        var currentIndex = array.length, temporaryValue, randomIndex;
-        // While there remain elements to shuffle...
-        while (0 !== currentIndex) {
-          // Pick a remaining element...
-          randomIndex = Math.floor(Math.random() * currentIndex);
-          currentIndex -= 1;
-          // And swap it with the current element.
-          temporaryValue = array[currentIndex];
-          array[currentIndex] = array[randomIndex];
-          array[randomIndex] = temporaryValue;
-        }
-        return array;
-    };
+
     fetch = () => {
         const {query, sort} = this.state;
         this.stateSet({loading: true});
 
-        getCommunities("", 100, query, sort==='hot'?'rank':sort)
+        getCommunities("", 100, query, (sort === "hot" ? "rank" : sort))
             .then((r) => {
                 if (r) {
-                    let shr = r;
-                    if (sort === 'hot') {
-                        shr = this.shuffle(r);    
-                    }
-                    this.stateSet({list: shr});
+                    const list = sort === "hot" ? r.sort(() => Math.random() - 0.5) : r;
+                    this.stateSet({list});
                 }
             })
             .finally(() => {
