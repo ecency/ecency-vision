@@ -3,6 +3,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 
 import {Link} from "react-router-dom";
+import {Image} from "react-img-webp";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
@@ -16,6 +17,9 @@ import {blogSvg, newsSvg, mailSvg, twitterSvg, githubSvg, telegramSvg, discordSv
 
 const surferSs = require("../img/surfer-ss.jpg");
 const mobileSs = require("../img/mobile-ss.jpg");
+
+const faq = require("../img/FAQ4.jpg");
+const faqWebp = require("../img/FAQ4-webp.webp");
 
 const faqKeys = [
     'what-is-ecency',
@@ -575,7 +579,7 @@ class FaqPage extends Component<PageProps> {
                 <div className="app-content static-page faq-page">
                     <div className="static-content">
                         <h1 className="page-title">{_t('static.faq.page-title')}</h1>
-                        <img src='https://images.ecency.com/DQmNx7o8eD4CkbCn1rw8fRo96jNwPwDP6aV3siaKz6YRRWA/FAQ4.jpg'/>
+                        <Image src={faq} webP={faqWebp}/>
                         <h3>{_t('static.faq.page-sub-title')}</h3>
                         <ul className="table-contents">
                             {faqKeys.map(x => {
