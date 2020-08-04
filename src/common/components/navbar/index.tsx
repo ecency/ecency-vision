@@ -119,7 +119,7 @@ export class NavBar extends Component<Props> {
                                 toggleUIProp('login');
                             }}>{_t("g.login")}</Button>
 
-                            <Button variant="primary" onClick={() => {
+                            <Button className="btn-sign-up" variant="primary" onClick={() => {
                                 const {toggleUIProp} = this.props;
                                 toggleUIProp('signUp');
                             }}>{_t("g.signup")}</Button>
