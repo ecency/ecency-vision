@@ -149,7 +149,7 @@ export const popularUsers = async (req: express.Request, res: express.Response) 
             ) AS drv3
             LEFT JOIN hive_accounts AS ac ON ac.name = drv3.author 
             WHERE ac.display_name!='' AND ac.about != '' 
-            ORDER BY random() LIMIT 200;`;
+            ORDER BY random() LIMIT 260;`;
 
         let r: QueryResult;
 

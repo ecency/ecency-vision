@@ -8,7 +8,7 @@ import _c from "../../util/fix-class-names";
 import {_t} from "../../i18n";
 import LinearProgress from "../linear-progress";
 import Tooltip from "../tooltip";
-import {informationSvg} from "../../img/svg";
+import {syncSvg} from "../../img/svg";
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 
@@ -19,13 +19,14 @@ interface Props {
 
 interface State {
     data: PopularUser[],
+    list: PopularUser[],
     loading: boolean
 }
 
 export class PopularUsers extends Component<Props, State> {
-
     state: State = {
         data: [],
+        list: [],
         loading: true
     }
 
@@ -49,26 +50,36 @@ export class PopularUsers extends Component<Props, State> {
         this.stateSet({loading: true, data: []});
 
         getPopularUsers().then(data => {
-            this.stateSet({data});
-            this.stateSet({loading: false});
+            this.stateSet({data, loading: false}, () => {
+                this.shuffle();
+            });
         });
     }
 
+    shuffle = () => {
+        const {data} = this.state;
+        const list = [...data].sort(() => Math.random() - 0.5).slice(0, 16);
+        this.stateSet({list});
+    }
+
     render() {
-        const {data, loading} = this.state;
+        const {list, loading} = this.state;
 
         return (
             <div className={_c(`popular-users-list ${loading ? "loading" : ""}`)}>
                 <div className="list-header">
                     <div className="list-title">
-                        Popular Users
+                        {_t('popular-users.title')}
+                    </div>
+                    <div className={_c(`list-refresh ${loading ? "disabled" : ""}`)} onClick={this.shuffle}>
+                        {syncSvg}
                     </div>
                 </div>
                 {loading && <LinearProgress/>}
 
-                {data.length > 0 && (
+                {list.length > 0 && (
                     <div className="list-body">
-                        {data.map((r, i) => {
+                        {list.map((r, i) => {
                             return <div className="list-item" key={i}>
                                 {ProfileLink({
                                     ...this.props,
@@ -81,20 +92,17 @@ export class PopularUsers extends Component<Props, State> {
                                         username: r.name,
                                         children: <a className="display-name">{r.display_name}</a>
                                     })}
-
                                     {ProfileLink({
                                         ...this.props,
                                         username: r.name,
                                         children: <a className="name"> {'@'}{r.name}</a>
                                     })}
-
                                     <div className="about">{r.about}</div>
                                 </div>
                             </div>;
                         })}
                     </div>
                 )}
-
             </div>
         );
     }

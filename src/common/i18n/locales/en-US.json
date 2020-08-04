@@ -352,6 +352,9 @@
     "header-score-tip": "Post + comments made by a user for selected period",
     "header-reward": "Reward"
   },
+  "popular-users": {
+    "title": "Popular Users"
+  },
   "discover": {
     "title": "Discover"
   },
