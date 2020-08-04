@@ -54,8 +54,10 @@ export class PopularUsers extends Component<Props, State> {
         this.stateSet({loading: true, data: []});
 
         getPopularUsers().then(data => {
-            this.stateSet({data, loading: false}, () => {
-                this.shuffle();
+            this.stateSet({
+                data,
+                list: [...data.slice(0, 20)],
+                loading: false
             });
         });
     }
