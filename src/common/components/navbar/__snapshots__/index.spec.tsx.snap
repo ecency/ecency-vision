@@ -26,10 +26,10 @@ exports[`(1) Default render 1`] = `
     >
       <a
         className="menu-item"
-        href="/"
+        href="/discover"
         onClick={[Function]}
       >
-        Global
+        Discover
       </a>
       <a
         className="menu-item"
@@ -168,7 +168,7 @@ exports[`(1) Default render 1`] = `
         Login
       </button>
       <button
-        className="btn btn-primary"
+        className="btn-sign-up btn btn-primary"
         disabled={false}
         onClick={[Function]}
         type="button"
@@ -236,10 +236,10 @@ exports[`(2) Night Theme 1`] = `
     >
       <a
         className="menu-item"
-        href="/"
+        href="/discover"
         onClick={[Function]}
       >
-        Global
+        Discover
       </a>
       <a
         className="menu-item"
@@ -378,7 +378,7 @@ exports[`(2) Night Theme 1`] = `
         Login
       </button>
       <button
-        className="btn btn-primary"
+        className="btn-sign-up btn btn-primary"
         disabled={false}
         onClick={[Function]}
         type="button"
@@ -446,10 +446,10 @@ exports[`(3) With active user 1`] = `
     >
       <a
         className="menu-item"
-        href="/"
+        href="/discover"
         onClick={[Function]}
       >
-        Global
+        Discover
       </a>
       <a
         className="menu-item"

@@ -3,14 +3,18 @@ import React, {Component} from "react";
 import {History} from "history";
 
 import {Account} from "../../store/accounts/types";
-import {getPopularUsers, PopularUser} from "../../api/private";
-import _c from "../../util/fix-class-names";
-import {_t} from "../../i18n";
+
 import LinearProgress from "../linear-progress";
-import Tooltip from "../tooltip";
-import {syncSvg} from "../../img/svg";
-import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
+import ProfileLink from "../profile-link";
+
+import {getPopularUsers, PopularUser} from "../../api/private";
+
+import _c from "../../util/fix-class-names";
+
+import {_t} from "../../i18n";
+
+import {syncSvg} from "../../img/svg";
 
 interface Props {
     history: History;
