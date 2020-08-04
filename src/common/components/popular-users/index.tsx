@@ -58,7 +58,7 @@ export class PopularUsers extends Component<Props, State> {
 
     shuffle = () => {
         const {data} = this.state;
-        const list = [...data].sort(() => Math.random() - 0.5).slice(0, 16);
+        const list = [...data].sort(() => Math.random() - 0.5).slice(0, 20);
         this.stateSet({list});
     }
 
