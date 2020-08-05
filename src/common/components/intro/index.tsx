@@ -24,7 +24,7 @@ export default (props: Props) => {
     return <div className="intro">
         <div className="hide-intro" onClick={hideIntro}>{closeSvg}</div>
         <h1 className="intro-header">Be rewarded</h1>
-        <h1 className="intro-sub-header">for your blogs, votes and any social activity</h1>
+        <h1 className="intro-sub-header">uncensored, decentralized, communities</h1>
         <div className="cloud-1"/>
         <div className="cloud-2"/>
         <div className="cloud-3"/>
