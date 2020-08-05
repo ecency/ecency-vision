@@ -1,22 +1,21 @@
-import tempEntry from './temp-entry';
+import tempEntry, {TempEntryProps} from './temp-entry';
 
 global.Date.now = jest.fn(() => new Date('2019-04-22T10:20:30Z').getTime());
 
 
 describe('tempEntry', () => {
     it('(1) Create temp entry', () => {
-        const input = {
+        const input: TempEntryProps = {
             author: {
                 name: "foo",
-                reputation: 24.33
+                reputation: "6550853848"
             },
             permlink: "lorem",
             parentAuthor: "",
             parentPermlink: "ecency",
             title: "a test post",
             body: "lorem ipsum dolor sit amet",
-            tags: ["ecency", "photography"],
-            category: "ecency"
+            tags: ["ecency", "photography"]
         }
         expect(tempEntry(input)).toMatchSnapshot();
     });

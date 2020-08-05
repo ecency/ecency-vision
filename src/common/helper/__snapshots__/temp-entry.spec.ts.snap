@@ -5,7 +5,7 @@ Object {
   "active_votes": Array [],
   "author": "foo",
   "author_payout_value": "0.000 HBD",
-  "author_reputation": 24.33,
+  "author_reputation": 32,
   "beneficiaries": Array [
     Object {
       "account": "ecency",
@@ -16,7 +16,7 @@ Object {
   "body": "lorem ipsum dolor sit amet",
   "category": "ecency",
   "children": 0,
-  "created": "2019-04-22T10:20:30.000Z",
+  "created": "2019-04-22T10:20:30",
   "curator_payout_value": "0.000 HBD",
   "depth": 0,
   "is_paidout": false,
@@ -30,8 +30,10 @@ Object {
   },
   "max_accepted_payout": "1000000.000 HBD",
   "net_rshares": 0,
+  "parent_author": "",
+  "parent_permlink": "ecency",
   "payout": 0,
-  "payout_at": "2019-04-29T10:20:30.000Z",
+  "payout_at": "2019-04-29T10:20:30",
   "pending_payout_value": "0.000 HBD",
   "percent_steem_dollars": 10000,
   "permlink": "lorem",
@@ -45,7 +47,7 @@ Object {
     "total_votes": 0,
   },
   "title": "a test post",
-  "updated": "2019-04-22T10:20:30.000Z",
+  "updated": "2019-04-22T10:20:30",
   "url": "/ecency/@foo/lorem",
 }
 `;
