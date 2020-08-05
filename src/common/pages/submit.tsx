@@ -413,9 +413,9 @@ class SubmitPage extends Component<Props, State> {
                                 <div className="reward">
                                     <span>{_t("submit.reward")}</span>
                                     <Form.Control as="select" value={reward} onChange={this.rewardChanged}>
-                                        <option key="default">{_t("submit.reward-default")}</option>
-                                        <option key="sp">{_t("submit.reward-sp")}</option>
-                                        <option key="dp">{_t("submit.reward-dp")}</option>
+                                        <option value="default">{_t("submit.reward-default")}</option>
+                                        <option value="sp">{_t("submit.reward-sp")}</option>
+                                        <option value="dp">{_t("submit.reward-dp")}</option>
                                     </Form.Control>
                                 </div>
                                 <Button variant="light" onClick={this.clear}>
