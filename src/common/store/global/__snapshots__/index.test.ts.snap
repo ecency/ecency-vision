@@ -8,6 +8,7 @@ Object {
   "filter": "hot",
   "intro": true,
   "listStyle": "row",
+  "searchIndexCount": 0,
   "tag": "",
   "theme": "day",
 }
@@ -21,6 +22,7 @@ Object {
   "filter": "trending",
   "intro": true,
   "listStyle": "row",
+  "searchIndexCount": 0,
   "tag": "bitcoin",
   "theme": "day",
 }
@@ -34,6 +36,7 @@ Object {
   "filter": "trending",
   "intro": true,
   "listStyle": "row",
+  "searchIndexCount": 0,
   "tag": "bitcoin",
   "theme": "night",
 }
@@ -47,6 +50,7 @@ Object {
   "filter": "trending",
   "intro": false,
   "listStyle": "row",
+  "searchIndexCount": 0,
   "tag": "bitcoin",
   "theme": "night",
 }
@@ -60,6 +64,7 @@ Object {
   "filter": "trending",
   "intro": false,
   "listStyle": "grid",
+  "searchIndexCount": 0,
   "tag": "bitcoin",
   "theme": "night",
 }

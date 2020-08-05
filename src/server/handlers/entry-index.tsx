@@ -51,7 +51,7 @@ export default async (req: express.Request, res: express.Response) => {
         cache.set("trending-tag", tags, 7200);
     }
 
-    const state = makePreloadedState();
+    const state = await makePreloadedState();
 
     const preLoadedState: AppState = {
         ...state,

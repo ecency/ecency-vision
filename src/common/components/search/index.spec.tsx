@@ -5,10 +5,12 @@ import renderer from "react-test-renderer";
 import {createBrowserHistory, createLocation} from "history";
 
 import {initialState as trendingTags} from "../../store/trending-tags";
+import {globalInstance} from "../../helper/test-helper";
 
 const props = {
     history: createBrowserHistory(),
     location: createLocation({}),
+    global: globalInstance,
     trendingTags,
     fetchTrendingTags: () => {
     },
