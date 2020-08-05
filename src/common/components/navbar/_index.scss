@@ -46,7 +46,7 @@
 
       @media (min-width: $md-break) {
         margin-bottom: 0;
-        margin-right: 10px;
+        margin-right: 14px;
       }
 
       @media (min-width: $lg-break) {
@@ -54,7 +54,7 @@
         width: 230px;
       }
 
-      .logo{
+      .logo {
         width: 44px;
         height: 44px;
       }
@@ -70,18 +70,10 @@
       @media (min-width: $md-break) {
         display: flex;
         margin-bottom: 0;
+        margin-right: 14px;
       }
 
       .menu-item {
-        &:first-child {
-          @media (min-width: $md-break) {
-            display: none;
-          }
-
-          @media (min-width: $xl-break) {
-            display: block;
-          }
-        }
 
         @include themify(day) {
           color: $gunmetal;
@@ -122,18 +114,19 @@
       }
 
       @media (min-width: $md-break) {
-        width: 106px;
-        margin-right: 10px;
+        margin-right: 14px;
         margin-bottom: 0;
+        flex-grow: 1;
       }
 
       @media (min-width: $lg-break) {
-        width: 114px;
+
       }
 
       @media (min-width: $xl-break) {
         width: 180px;
         margin-right: 22px;
+        flex-grow: 0;
       }
 
       @media (min-width: $xxl-break) {
@@ -152,7 +145,7 @@
         position: relative;
         top: auto;
         right: auto;
-        margin-right: 10px;
+        margin-right: 14px;
       }
 
       @media (min-width: $xl-break) {
@@ -192,15 +185,15 @@
       @media (min-width: $md-break) {
         width: auto;
         margin-bottom: 0;
-        margin-right: 10px;
-      }
-
-      @media (min-width: $lg-break) {
-        padding: 8px 20px;
+        margin-right: 14px;
+        display: block;
+        padding: 2px 12px;
       }
 
       @media (min-width: $xl-break) {
         margin-right: 22px;
+        padding: 8px 20px;
+        display: flex;
       }
 
       &:hover {
@@ -210,32 +203,52 @@
 
       .label {
         margin-right: 10px;
+
+
+        @media (min-width: $md-break) {
+          margin-right: 0;
+          text-align: center;
+          font-size: 14px;
+        }
+
+        @media (min-width: $xl-break) {
+          margin-right: 10px;
+          font-size: 16px;
+        }
       }
 
       .icons {
         display: flex;
         align-items: center;
 
+        @media (min-width: $md-break) {
+          justify-content: center;
+        }
+
+        @media (min-width: $xl-break) {
+          justify-content: flex-start;
+        }
+
         .img-apple {
-          margin-right: 15px;
+          margin-right: 12px;
 
           svg {
-            height: 16px;
+            height: 14px;
             margin-top: -2px;
           }
         }
 
         .img-google {
-          margin-right: 12px;
+          margin-right: 8px;
 
           svg {
-            height: 14px;
+            height: 12px;
           }
         }
 
         .img-desktop {
           svg {
-            height: 14px;
+            height: 12px;
           }
         }
       }
@@ -243,6 +256,8 @@
 
     .login-required {
       margin-bottom: 10px;
+      display: flex;
+
       .btn {
         &:not(:last-child) {
           margin-right: 4px;
@@ -250,7 +265,7 @@
       }
 
       @media (min-width: $md-break) {
-        margin-right: 10px;
+        margin-right: 14px;
         margin-bottom: 0;
       }
 

@@ -45,6 +45,8 @@
 @import '../common/components/transfer/index';
 @import '../common/components/or-divider/index';
 @import '../common/components/notifications/index';
+@import '../common/components/leaderboard';
+@import '../common/components/popular-users';
 
 @import '../common/pages/entry-index';
 @import '../common/pages/profile';
@@ -52,3 +54,4 @@
 @import '../common/pages/communities';
 @import '../common/pages/submit';
 @import '../common/pages/static';
+@import '../common/pages/discover';

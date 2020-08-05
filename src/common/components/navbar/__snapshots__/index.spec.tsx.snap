@@ -26,10 +26,10 @@ exports[`(1) Default render 1`] = `
     >
       <a
         className="menu-item"
-        href="/"
+        href="/discover"
         onClick={[Function]}
       >
-        Global
+        Discover
       </a>
       <a
         className="menu-item"
@@ -75,7 +75,7 @@ exports[`(1) Default render 1`] = `
             className="form-control"
             onChange={[Function]}
             onKeyDown={[Function]}
-            placeholder="Search"
+            placeholder="Search 10,000,000 posts"
             type="text"
             value=""
           />
@@ -236,10 +236,10 @@ exports[`(2) Night Theme 1`] = `
     >
       <a
         className="menu-item"
-        href="/"
+        href="/discover"
         onClick={[Function]}
       >
-        Global
+        Discover
       </a>
       <a
         className="menu-item"
@@ -285,7 +285,7 @@ exports[`(2) Night Theme 1`] = `
             className="form-control"
             onChange={[Function]}
             onKeyDown={[Function]}
-            placeholder="Search"
+            placeholder="Search 10,000,000 posts"
             type="text"
             value=""
           />
@@ -446,10 +446,10 @@ exports[`(3) With active user 1`] = `
     >
       <a
         className="menu-item"
-        href="/"
+        href="/discover"
         onClick={[Function]}
       >
-        Global
+        Discover
       </a>
       <a
         className="menu-item"
@@ -495,7 +495,7 @@ exports[`(3) With active user 1`] = `
             className="form-control"
             onChange={[Function]}
             onKeyDown={[Function]}
-            placeholder="Search"
+            placeholder="Search 10,000,000 posts"
             type="text"
             value=""
           />

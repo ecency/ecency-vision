@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`tempEntry (1) Create temp entry 1`] = `
+Object {
+  "active_votes": Array [],
+  "author": "foo",
+  "author_payout_value": "0.000 HBD",
+  "author_reputation": 32,
+  "beneficiaries": Array [
+    Object {
+      "account": "ecency",
+      "weight": 100,
+    },
+  ],
+  "blacklists": Array [],
+  "body": "lorem ipsum dolor sit amet",
+  "category": "ecency",
+  "children": 0,
+  "created": "2019-04-22T10:20:30",
+  "curator_payout_value": "0.000 HBD",
+  "depth": 0,
+  "is_paidout": false,
+  "json_metadata": Object {
+    "app": "ecency/3.0.1-vision",
+    "format": "markdown+html",
+    "tags": Array [
+      "ecency",
+      "photography",
+    ],
+  },
+  "max_accepted_payout": "1000000.000 HBD",
+  "net_rshares": 0,
+  "parent_author": "",
+  "parent_permlink": "ecency",
+  "payout": 0,
+  "payout_at": "2019-04-29T10:20:30",
+  "pending_payout_value": "0.000 HBD",
+  "percent_steem_dollars": 10000,
+  "permlink": "lorem",
+  "post_id": 1,
+  "promoted": "0.000 HBD",
+  "replies": Array [],
+  "stats": Object {
+    "flag_weight": 0,
+    "gray": false,
+    "hide": false,
+    "total_votes": 0,
+  },
+  "title": "a test post",
+  "updated": "2019-04-22T10:20:30",
+  "url": "/ecency/@foo/lorem",
+}
+`;
