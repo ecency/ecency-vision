@@ -168,7 +168,7 @@ exports[`(1) Default render 1`] = `
         Login
       </button>
       <button
-        className="btn-sign-up btn btn-primary"
+        className="btn btn-primary"
         disabled={false}
         onClick={[Function]}
         type="button"
@@ -378,7 +378,7 @@ exports[`(2) Night Theme 1`] = `
         Login
       </button>
       <button
-        className="btn-sign-up btn btn-primary"
+        className="btn btn-primary"
         disabled={false}
         onClick={[Function]}
         type="button"
