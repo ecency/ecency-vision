@@ -49,6 +49,7 @@ import {comment, formatError} from "../api/operations";
 
 import parseDate from "../helper/parse-date";
 import entryCanonical from "../helper/entry-canonical";
+import tempEntry from "../helper/temp-entry"
 
 import {makeJsonMetadataReply, createReplyPermlink, makeCommentOptions} from "../helper/posting";
 
@@ -183,9 +184,10 @@ class EntryPage extends Component<Props, State> {
         const author = activeUser?.username!;
         const permlink = createReplyPermlink(entry.author);
         const options = makeCommentOptions(author, permlink);
+        const tags = entry.json_metadata.tags || ['ecency'];
 
         const jsonMeta = makeJsonMetadataReply(
-            entry.json_metadata.tags || ['ecency'],
+            tags,
             version
         );
 
@@ -201,13 +203,17 @@ class EntryPage extends Component<Props, State> {
             jsonMeta,
             options,
         ).then(() => {
-            return hiveApi.getPost(author, permlink); // get reply
-        }).then((reply) => {
-            return bridgeApi.normalizePost(reply); // normalize
-        }).then((nReply) => {
-            if (nReply) {
-                addReply(nReply); // add new reply to store
-            }
+            const nReply = tempEntry({
+                author: activeUser?.data!,
+                permlink,
+                parentAuthor,
+                parentPermlink,
+                title: '',
+                body: text,
+                tags
+            });
+
+            addReply(nReply); // add new reply to store
 
             return hiveApi.getPost(entry.author, entry.permlink) // get entry
         }).then((entry) => {
