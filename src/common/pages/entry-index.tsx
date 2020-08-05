@@ -2,6 +2,10 @@ import React, {Component} from "react";
 
 import {connect} from "react-redux";
 
+import {History} from "history";
+
+import {Link} from "react-router-dom";
+
 import {EntryFilter, ListStyle} from "../store/global/types";
 
 import {makeGroupKey} from "../store/entries";
@@ -11,7 +15,7 @@ import Theme from "../components/theme";
 import Feedback from "../components/feedback";
 import NavBar from "../components/navbar";
 import Intro from "../components/intro";
-import DropDown from "../components/dropdown";
+import DropDown, {MenuItem} from "../components/dropdown";
 import ListStyleToggle from "../components/list-style-toggle";
 import LinearProgress from "../components/linear-progress";
 import EntryListLoadingItem from "../components/entry-list-loading-item";
@@ -98,7 +102,11 @@ class EntryIndexPage extends Component<PageProps> {
         const entryList = data.entries;
         const loading = data.loading;
 
-        const dropDownConfig = {
+        const menuConfig: {
+            history: History,
+            label: string,
+            items: MenuItem[]
+        } = {
             history: this.props.history,
             label: _t(`entry-index.filter-${filter}`),
             items: [
@@ -169,7 +177,18 @@ class EntryIndexPage extends Component<PageProps> {
                             </div>
                         )}
                         <div className="page-tools">
-                            <DropDown {...dropDownConfig} float="left"/>
+                            <div className="sm-menu">
+                                <DropDown {...menuConfig} float="left"/>
+                            </div>
+                            <div className="lg-menu">
+                                <ul className="nav nav-pills nav-fill">
+                                    {menuConfig.items.map((i, k) => {
+                                        return <li key={k} className="nav-item">
+                                            <Link to={i.href!} className={`nav-link ${i.active ? "active" : ""}`}>{i.label}</Link>
+                                        </li>
+                                    })}
+                                </ul>
+                            </div>
                             <ListStyleToggle global={this.props.global} toggleListStyle={this.props.toggleListStyle}/>
                         </div>
                         {loading && entryList.length === 0 ? <LinearProgress/> : ""}
