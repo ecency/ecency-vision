@@ -15,10 +15,15 @@ import {initialState as subscriptionsInitialState} from "../common/store/subscri
 import {initialState as notificationsInitialState} from "../common/store/notifications";
 import {initialState as entriesInitialState} from "../common/store/entries";
 
+import {getSearchIndexCount} from "./helper";
 
-export const makePreloadedState = (): AppState => {
+export const makePreloadedState = async (): Promise<AppState> => {
+
     return {
-        global: {...globalInitialState},
+        global: {
+            ...globalInitialState,
+            searchIndexCount: await getSearchIndexCount()
+        },
         dynamicProps: dynamicPropsInitialState,
         trendingTags: trendingTagsInitialState,
         community: communityInitialState,

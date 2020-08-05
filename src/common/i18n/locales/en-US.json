@@ -27,6 +27,8 @@
     "night-theme": "Night Theme"
   },
   "search": {
+    "placeholder": "Search",
+    "placeholder-count": "Search {{n}} posts",
     "header-tag": "Tags",
     "header-account": "Users",
     "header-community": "Communities"

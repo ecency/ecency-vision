@@ -88,3 +88,18 @@ export const getPromotedEntries = async (): Promise<Entry[]> => {
     return promoted.sort(() => Math.random() - 0.5);
 }
 
+
+export const getSearchIndexCount = async (): Promise<number> => {
+    let indexCount: number | undefined = cache.get("index-count");
+    if (indexCount === undefined) {
+        try {
+            indexCount = (await axios.get('https://hivesearcher.com/api/count').then(r => r.data)) as number
+        } catch (e) {
+            indexCount = 0;
+        }
+
+        cache.set("index-count", indexCount, 86400);
+    }
+
+    return indexCount;
+}

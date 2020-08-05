@@ -4,6 +4,9 @@ import {History, Location} from "history";
 
 import {FormControl} from "react-bootstrap";
 
+import numeral from "numeral";
+
+import {Global} from "../../store/global/types";
 import {Community} from "../../store/community/types";
 import {TrendingTags} from "../../store/trending-tags/types";
 
@@ -17,12 +20,15 @@ import {_t} from "../../i18n";
 
 import defaults from "../../constants/defaults.json";
 
+import formattedNumber from "../../util/formatted-number";
+
 import {lookupAccounts} from "../../api/hive";
 import {getCommunities} from "../../api/bridge";
 
 interface Props {
     history: History;
     location: Location;
+    global: Global;
     trendingTags: TrendingTags;
     fetchTrendingTags: () => void;
 }
@@ -170,6 +176,7 @@ export class Search extends Component<Props, State> {
     };
 
     render() {
+        const {global} = this.props;
         const {query, suggestions, mode} = this.state;
 
         let suggestionProps = {};
@@ -216,11 +223,15 @@ export class Search extends Component<Props, State> {
                 break;
         }
 
+        const placeholder = global.searchIndexCount > 0 ?
+            _t("search.placeholder-count", {n: numeral(global.searchIndexCount).format('0,0')}) :
+            _t("search.placeholder");
+
         return (
             <>
                 <SuggestionList items={suggestions} {...suggestionProps}>
                     <SearchBox
-                        placeholder={_t("g.search")}
+                        placeholder={placeholder}
                         value={query}
                         onChange={this.queryChanged}
                         onKeyDown={this.onKeyDown}
@@ -236,6 +247,7 @@ export default (p: Props) => {
     const props: Props = {
         history: p.history,
         location: p.location,
+        global: p.global,
         trendingTags: p.trendingTags,
         fetchTrendingTags: p.fetchTrendingTags
     }

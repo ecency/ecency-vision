@@ -44,6 +44,7 @@ export interface Global {
   currency: string;
   currencyRate: number;
   currencySymbol: string;
+  searchIndexCount: number;
 }
 
 export enum ActionTypes {
