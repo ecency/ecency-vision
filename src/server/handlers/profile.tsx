@@ -55,7 +55,7 @@ export default async (req: express.Request, res: express.Response) => {
     const filter = ProfileFilter[section] || defaults.filter;
     const tag = ProfileFilter[section] ? address : "";
 
-    const state = await makePreloadedState();
+    const state = await makePreloadedState(req);
 
     const preLoadedState: AppState = {
         ...state,

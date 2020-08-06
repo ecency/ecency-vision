@@ -41,7 +41,7 @@ export class ProfileCover extends Component<Props> {
         if (account.__loaded) {
             bgImage = global.theme === "day" ? coverFallbackDay : coverFallbackNight;
             if (account.profile?.cover_image) {
-                bgImage = proxifyImageSrc(account.profile.cover_image);
+                bgImage = proxifyImageSrc(account.profile.cover_image, 0, 0, global.canUseWebp?'webp':'match');
             }
         }
 

@@ -10,7 +10,7 @@ import {render} from "../template";
 
 export default async (req: express.Request, res: express.Response) => {
 
-    const state = await makePreloadedState();
+    const state = await makePreloadedState(req);
 
     const preLoadedState: AppState = {
         ...state,
