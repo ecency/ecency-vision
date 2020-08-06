@@ -7,7 +7,11 @@ const friends = require('../../img/friends.jpg');
 const friendsWebp = require('../../img/friends-webp.webp');
 
 import {closeSvg} from '../../img/svg';
-
+const request = {
+    headers: {
+        Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8"
+    }
+}
 
 interface Props {
     global: Global
@@ -29,6 +33,6 @@ export default (props: Props) => {
         <div className="cloud-2"/>
         <div className="cloud-3"/>
 
-        <Image alt="Friends" className="friends" src={friends} webP={friendsWebp}/>
+        <Image alt="Friends" className="friends" src={friends} webP={friendsWebp} />
     </div>;
 };

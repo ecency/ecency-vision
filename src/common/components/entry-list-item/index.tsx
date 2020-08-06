@@ -4,6 +4,7 @@ import {History, Location} from "history";
 import moment from "moment";
 
 import isEqual from "react-fast-compare";
+import {Context} from "react-img-webp";
 
 import {Entry} from "../../store/entries/types";
 import {Global} from "../../store/global/types";
@@ -50,7 +51,11 @@ import {repeatSvg, pinSvg, commentSvg} from "../../img/svg";
 
 const fallbackImage = require("../../img/fallback.png");
 const noImage = require("../../img/noimage.png");
-
+const request = {
+    headers: {
+        Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8"
+    }
+}
 interface Props {
     history: History;
     location: Location;
@@ -103,6 +108,7 @@ export default class EntryListItem extends Component<Props> {
     render() {
         const {entry, community, asAuthor, promoted} = this.props;
         const img: string = catchPostImage(entry, 600, 500) || noImage;
+        const imgWebp: string = catchPostImage(entry, 600, 500, 'webp') || noImage;
         const summary: string = postBodySummary(entry, 200);
 
         const app = appName(entry?.json_metadata?.app);
@@ -173,14 +179,13 @@ export default class EntryListItem extends Component<Props> {
                             ...this.props,
                             entry,
                             children: <div>
-                                <img
-                                    src={img}
-                                    alt={title}
+                                <Context.WebPController accept={request.headers.Accept}>
+                                    <Context.Image src={img} webP={imgWebp} alt={title}
                                     onError={(e: React.SyntheticEvent) => {
                                         const target = e.target as HTMLImageElement;
                                         target.src = fallbackImage;
-                                    }}
-                                />
+                                    }} />
+                                </Context.WebPController>
                             </div>
                         })}
                     </div>

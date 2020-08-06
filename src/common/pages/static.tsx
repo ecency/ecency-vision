@@ -3,7 +3,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 
 import {Link} from "react-router-dom";
-import {Image} from "react-img-webp";
+import {Image, Context} from "react-img-webp";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
@@ -562,7 +562,11 @@ class TosPage extends Component<PageProps> {
         );
     }
 }
-
+const request = {
+    headers: {
+        Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8"
+    }
+}
 class FaqPage extends Component<PageProps> {
     render() {
         //  Meta config
@@ -579,7 +583,9 @@ class FaqPage extends Component<PageProps> {
                 <div className="app-content static-page faq-page">
                     <div className="static-content">
                         <h1 className="page-title">{_t('static.faq.page-title')}</h1>
-                        <Image src={faq} webP={faqWebp}/>
+                        <Context.WebPController accept={request.headers.Accept}>
+                            <Context.Image src={faq} webP={faqWebp} />
+                        </Context.WebPController>
                         <h3>{_t('static.faq.page-sub-title')}</h3>
                         <ul className="table-contents">
                             {faqKeys.map(x => {
