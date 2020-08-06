@@ -99,7 +99,7 @@
           }
 
           @media (min-width: $xl-break) {
-            margin-right: 24px;
+            margin-right: 18px;
           }
         }
       }
@@ -107,7 +107,7 @@
 
     .search-bar {
       margin-bottom: 20px;
-      width: 200px;
+      width: 250px;
 
       @media (min-width: $sm-break) {
         width: 320px;
@@ -124,8 +124,8 @@
       }
 
       @media (min-width: $xl-break) {
-        width: 180px;
-        margin-right: 22px;
+        width: 240px;
+        margin-right: 18px;
         flex-grow: 0;
       }
 
@@ -149,7 +149,7 @@
       }
 
       @media (min-width: $xl-break) {
-        margin-right: 22px;
+        margin-right: 18px;
       }
 
       @media (min-width: $xxl-break) {
@@ -191,8 +191,8 @@
       }
 
       @media (min-width: $xl-break) {
-        margin-right: 22px;
-        padding: 8px 20px;
+        margin-right: 18px;
+        padding: 8px 16px;
         display: flex;
       }
 
@@ -204,7 +204,6 @@
       .label {
         margin-right: 10px;
 
-
         @media (min-width: $md-break) {
           margin-right: 0;
           text-align: center;
@@ -212,7 +211,7 @@
         }
 
         @media (min-width: $xl-break) {
-          margin-right: 10px;
+          margin-right: 6px;
           font-size: 16px;
         }
       }
@@ -230,7 +229,7 @@
         }
 
         .img-apple {
-          margin-right: 12px;
+          margin-right: 11px;
 
           svg {
             height: 14px;
@@ -239,7 +238,7 @@
         }
 
         .img-google {
-          margin-right: 8px;
+          margin-right: 7px;
 
           svg {
             height: 12px;
@@ -270,10 +269,10 @@
       }
 
       @media (min-width: $xl-break) {
-        margin-right: 22px;
+        margin-right: 18px;
         .btn {
           &:not(:last-child) {
-            margin-right: 10px;
+            margin-right: 6px;
           }
         }
       }
