@@ -8,6 +8,7 @@ import DownloadTrigger from "../download-trigger";
 
 import moment from "moment";
 
+import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 import UserAvatar from "../user-avatar";
 import Tooltip from "../tooltip";
@@ -34,6 +35,7 @@ import {
 } from "../../img/svg";
 
 interface Props {
+    global: Global;
     history: History;
     account: Account;
     addAccount: (data: Account) => void;
@@ -82,7 +84,7 @@ export class ProfileCard extends Component<Props, State> {
                 </div>
 
                 <div className="profile-avatar">
-                    <UserAvatar username={account.name} size="xLarge"/>
+                    {UserAvatar({...this.props, username: account.name, size: "xLarge"})}
                     {account.__loaded && <div className="reputation">{accountReputation(account.reputation!)}</div>}
                 </div>
 
@@ -175,6 +177,7 @@ export class ProfileCard extends Component<Props, State> {
 
 export default (p: Props) => {
     const props: Props = {
+        global: p.global,
         history: p.history,
         account: p.account,
         addAccount: p.addAccount,

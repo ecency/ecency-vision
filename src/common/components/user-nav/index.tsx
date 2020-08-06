@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {History, Location} from "history";
 import {Link} from "react-router-dom";
 
+import {Global} from "../../store/global/types";
 import {User} from "../../store/users/types";
 import {Account} from "../../store/accounts/types";
 import {ActiveUser} from "../../store/active-user/types";
@@ -21,6 +22,7 @@ import parseAsset from "../../helper/parse-asset";
 
 
 interface Props {
+    global: Global;
     history: History;
     location: Location;
     users: User[];
@@ -65,7 +67,7 @@ export default class UserNav extends Component<Props> {
 
         const dropDownConfig = {
             history: this.props.history,
-            label: <UserAvatar username={activeUser.username} size="medium"/>,
+            label: UserAvatar({...this.props, username: activeUser.username, size: "medium"}),
             items: [
                 {
                     label: _t('user-nav.profile'),

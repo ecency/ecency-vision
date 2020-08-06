@@ -1,9 +1,11 @@
 import React from 'react';
 
-import {NotificationListItem} from './index';
-
 import TestRenderer from 'react-test-renderer';
 import {createBrowserHistory} from 'history';
+
+import {globalInstance} from "../../helper/test-helper";
+
+import {NotificationListItem} from './index';
 
 import {
     apiVoteNotification,
@@ -19,6 +21,7 @@ import {
 describe('(1) NotificationListItem', () => {
 
     const defProps = {
+        global: globalInstance,
         history: createBrowserHistory(),
         markNotifications: () => {
 

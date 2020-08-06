@@ -6,6 +6,7 @@ import moment from "moment";
 
 import {History} from "history";
 
+import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 import {ToggleType} from "../../store/ui/types";
 import {NotificationFilter, Notifications} from "../../store/notifications/types";
@@ -48,6 +49,7 @@ export const date2key = (s: string): string => {
 };
 
 export class NotificationListItem extends Component<{
+    global: Global;
     history: History;
     notification: ApiNotification;
     markNotifications: (id: string | null) => void;
@@ -75,7 +77,7 @@ export class NotificationListItem extends Component<{
             ...this.props,
             username: notification.source,
             afterClick: this.afterClick,
-            children: <a className="source-avatar"><UserAvatar username={notification.source} size="medium"/></a>
+            children: <a className="source-avatar">{UserAvatar({...this.props, username: notification.source, size: "medium"})}</a>
         });
 
         const sourceLink = ProfileLink({
@@ -255,6 +257,7 @@ export class NotificationListItem extends Component<{
 }
 
 interface NotificationProps {
+    global: Global;
     history: History;
     notifications: Notifications;
     fetchNotifications: (since: string | null) => void;
@@ -388,6 +391,7 @@ export class DialogContent extends Component<NotificationProps> {
 }
 
 interface Props {
+    global: Global;
     history: History;
     notifications: Notifications;
     fetchNotifications: (since: string | null) => void;

@@ -6,6 +6,8 @@ import renderer from "react-test-renderer";
 
 import { createBrowserHistory } from "history";
 
+import {globalInstance} from "../../helper/test-helper";
+
 jest.mock("../../constants/defaults.json", () => ({
   imageServer: "https://images.ecency.com",
 }));
@@ -51,6 +53,7 @@ jest.mock("../../api/hive", () => ({
 }));
 
 const props = {
+  global: globalInstance,
   history: createBrowserHistory(),
   account: { name: "foo" },
   addAccount: () => {},

@@ -4,6 +4,7 @@ import {History} from "history";
 
 import {Modal, Button, FormControl} from "react-bootstrap";
 
+import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 
 import ProfileLink from "../profile-link";
@@ -20,6 +21,7 @@ interface Friend {
 }
 
 interface ListProps {
+    global: Global;
     history: History;
     account: Account;
     mode: "follower" | "following";
@@ -194,7 +196,7 @@ export class List extends Component<ListProps, ListState> {
                                             ...this.props,
                                             username: item.name,
                                             children: <div className="friends-list-item">
-                                                <UserAvatar username={item.name} size="large"/>
+                                                {UserAvatar({...this.props, username: item.name, size: "large"})}
                                                 <div className="friend-name">{item.name}</div>
                                                 <div className="friend-full-name">{item.fullName}</div>
                                             </div>
@@ -219,6 +221,7 @@ export class List extends Component<ListProps, ListState> {
 }
 
 interface Props {
+    global: Global;
     history: History;
     account: Account;
     addAccount: (data: Account) => void;

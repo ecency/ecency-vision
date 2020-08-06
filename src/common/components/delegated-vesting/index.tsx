@@ -26,6 +26,7 @@ import formattedNumber from "../../util/formatted-number";
 
 interface ListProps {
     history: History;
+    global: Global;
     account: Account;
     dynamicProps: DynamicProps;
     addAccount: (data: Account) => void;
@@ -100,7 +101,8 @@ export class List extends Component<ListProps, ListState> {
                         ...this.props,
                         username: row.delegatee,
                         children: <span className="account">
-                            <UserAvatar username={row.delegatee} size="small"/> {row.delegatee}
+                            {UserAvatar({...this.props, username: row.delegatee, size: "small"})}
+                            {row.delegatee}
                         </span>
                     })
                 },
