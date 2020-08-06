@@ -1,11 +1,13 @@
 import React, {Component} from "react";
+import {History} from "history";
+
+import {Global} from "../../store/global/types";
+import {Account} from "../../store/accounts/types";
 
 import UserAvatar from "../user-avatar";
 import ProfileLink from "../profile-link"
 
 import {getLeaderboard, LeaderBoardDuration, LeaderBoardItem} from "../../api/private";
-import {History} from "history";
-import {Account} from "../../store/accounts/types";
 
 import {informationSvg} from "../../img/svg";
 import DropDown from "../dropdown";
@@ -17,6 +19,7 @@ import {_t} from "../../i18n";
 import _c from "../../util/fix-class-names"
 
 interface Props {
+    global: Global;
     history: History;
     addAccount: (data: Account) => void;
 }
@@ -116,7 +119,7 @@ export class LeaderBoard extends Component <Props, State> {
                                     {ProfileLink({
                                         ...this.props,
                                         username: r._id,
-                                        children: <a><UserAvatar size="medium" username={r._id}/></a>
+                                        children: <a>{UserAvatar({...this.props, size: "medium", username: r._id})}</a>
                                     })}
                                 </div>
                                 <div className="username">
@@ -145,6 +148,7 @@ export class LeaderBoard extends Component <Props, State> {
 
 export default (p: Props) => {
     const props: Props = {
+        global: p.global,
         history: p.history,
         addAccount: p.addAccount
     };

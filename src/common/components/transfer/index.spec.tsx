@@ -2,9 +2,12 @@ import React from "react";
 
 import {TransferDialog, TransferAsset, TransferMode} from "./index";
 
+import {globalInstance} from "../../helper/test-helper";
+
 import TestRenderer from "react-test-renderer";
 
 const defProps = {
+    global: globalInstance,
     users: [],
     activeUser: {
         username: 'foo',

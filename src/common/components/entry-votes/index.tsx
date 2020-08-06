@@ -141,7 +141,7 @@ export class EntryVotesDetail extends Component<DetailProps, DetailState> {
                     return ProfileLink({
                         ...this.props,
                         username: row.voter,
-                        children: <span className="account"><UserAvatar username={row.voter} size="small"/> {row.voter}</span>
+                        children: <span className="account"> {UserAvatar({...this.props, username: row.voter, size:"small" })} {row.voter}</span>
                     })
                 },
             },

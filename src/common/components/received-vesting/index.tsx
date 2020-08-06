@@ -7,6 +7,7 @@ import paginationFactory from "react-bootstrap-table2-paginator";
 
 import {Modal, Spinner} from "react-bootstrap";
 
+import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
 
@@ -24,6 +25,7 @@ import parseAsset from "../../helper/parse-asset";
 import formattedNumber from "../../util/formatted-number";
 
 interface ListProps {
+    global: Global;
     history: History;
     account: Account;
     dynamicProps: DynamicProps;
@@ -98,7 +100,7 @@ export class List extends Component<ListProps, ListState> {
                     return ProfileLink({
                         ...this.props,
                         username: row.delegator,
-                        children: <span className="account"><UserAvatar username={row.delegator} size="small"/> {row.delegator}</span>
+                        children: <span className="account">{UserAvatar({...this.props, username: row.delegator, size: "small"})} {row.delegator}</span>
                     })
                 },
             },
@@ -151,6 +153,7 @@ export class List extends Component<ListProps, ListState> {
 }
 
 interface Props {
+    global: Global;
     history: History;
     dynamicProps: DynamicProps;
     account: Account;

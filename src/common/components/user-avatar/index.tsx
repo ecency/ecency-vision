@@ -1,28 +1,24 @@
 import React, {Component} from 'react';
 
+import {Global} from "../../store/global/types";
+
 import defaults from '../../constants/defaults.json';
 
 interface Props {
+    global: Global;
     username: string,
     size: string,
-    onClick: (e: React.MouseEvent<HTMLElement>) => void
 }
 
-export default class UserAvatar extends Component<Props> {
-    public static defaultProps = {
-        onClick: () => {
-        }
-    };
-
+export class UserAvatar extends Component<Props> {
     render() {
-        const {username, size, onClick} = this.props;
+        const {username, size, global} = this.props;
         const imgSize = size === 'xLarge' ? 'large' : ((size === 'normal' || size === 'small') ? 'small' : 'medium');
         const cls = `user-avatar ${size}`;
-        const imageSrc = `${defaults.imageServer}/u/${username}/avatar/${imgSize}`;
+        const imageSrc = `${defaults.imageServer}${global.canUseWebp ? "/webp" : ""}/u/${username}/avatar/${imgSize}`;
 
         return (
-            <span onClick={onClick}
-                  role="none"
+            <span role="none"
                   key="user-avatar-image"
                   className={cls}
                   style={{
@@ -31,4 +27,14 @@ export default class UserAvatar extends Component<Props> {
             />
         );
     }
+}
+
+export default (p: Props) => {
+    const props = {
+        global: p.global,
+        username: p.username,
+        size: p.size,
+    }
+
+    return <UserAvatar {...props} />
 }

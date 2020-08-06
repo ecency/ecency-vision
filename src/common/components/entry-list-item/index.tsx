@@ -137,7 +137,7 @@ export default class EntryListItem extends Component<Props> {
                         {ProfileLink({
                             ...this.props,
                             username: entry.author,
-                            children: <a className="author-avatar"><UserAvatar username={entry.author} size="small"/></a>
+                            children: <a className="author-avatar">{UserAvatar({...this.props, username: entry.author, size: "small"})}</a>
                         })}
                         {ProfileLink({
                             ...this.props,

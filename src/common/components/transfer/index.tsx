@@ -4,6 +4,7 @@ import {PrivateKey} from "@hiveio/dhive";
 
 import {Modal, Form, Row, Col, InputGroup, FormControl, Button} from "react-bootstrap";
 
+import {Global} from "../../store/global/types";
 import {Account} from '../../store/accounts/types'
 import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
@@ -88,6 +89,7 @@ class FormText extends Component<{
 
 
 interface Props {
+    global: Global;
     mode: TransferMode,
     asset: TransferAsset,
     users: User[];
@@ -418,7 +420,7 @@ export class TransferDialog extends Component<Props, State> {
         const suggestionProps = {
             header: _t('transfer.recent-transfers'),
             renderer: (i: string) => {
-                return <><UserAvatar username={i} size="small"/> <span style={{marginLeft: '4px'}}>{i}</span></>;
+                return <>{UserAvatar({...this.props, username:i, size:"small" })} <span style={{marginLeft: '4px'}}>{i}</span></>;
             },
             onSelect: this.toSelected,
         };
@@ -576,14 +578,11 @@ export class TransferDialog extends Component<Props, State> {
                         <div className="confirmation">
                             <div className="users">
                                 <div className="from-user">
-                                    <UserAvatar
-                                        username={activeUser.username}
-                                        size="xLarge"
-                                    />
+                                    {UserAvatar({...this.props, username: activeUser.username, size: "xLarge"})}
                                 </div>
                                 <div className="arrow">{arrowRightSvg}</div>
                                 <div className="to-user">
-                                    <UserAvatar username={to} size="xLarge"/>
+                                    {UserAvatar({...this.props, username: to, size: "xLarge"})}
                                 </div>
                             </div>
                             <div className="amount">

@@ -2,6 +2,8 @@ import React from 'react';
 import renderer from "react-test-renderer";
 import {createBrowserHistory} from "history";
 
+import {globalInstance} from "../../helper/test-helper";
+
 import {LeaderBoard} from './index';
 
 const allOver = () => new Promise((resolve) => setImmediate(resolve));
@@ -22,6 +24,7 @@ jest.mock("../../api/private", () => ({
 it('(1) Render with data.', async () => {
 
     const props = {
+        global: globalInstance,
         history: createBrowserHistory(),
         addAccount: () => {
         }
