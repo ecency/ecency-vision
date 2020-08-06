@@ -1,6 +1,6 @@
 {
   "name": "ecency-vision",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -10,11 +10,12 @@
     "start:prod": "NODE_ENV=production node build/server.js"
   },
   "dependencies": {
-    "@esteemapp/esteem-render-helpers": "^1.4.6",
+    "@esteemapp/esteem-render-helpers": "^1.5.5",
     "@hiveio/dhive": "^0.14.1",
     "@hiveio/hivescript": "^1.2.0",
     "@types/diff-match-patch": "^1.0.32",
     "@types/numeral": "^0.0.28",
+    "@types/pg": "^7.14.4",
     "@types/react-bootstrap-table-next": "^4.0.4",
     "@types/react-bootstrap-table2-paginator": "^2.1.1",
     "@types/rss": "^0.0.28",
@@ -34,6 +35,7 @@
     "node-cache": "^5.1.0",
     "numeral": "^2.0.6",
     "path-to-regexp": "^6.1.0",
+    "pg": "^8.3.0",
     "qs": "^6.9.4",
     "query-string": "^6.13.1",
     "react": "^16.8.6",
@@ -43,6 +45,7 @@
     "react-dom": "^16.8.6",
     "react-fast-compare": "^3.2.0",
     "react-helmet": "^6.0.0",
+    "react-img-webp": "^2.0.2",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.0.1",
     "react-sortablejs": "^2.0.11",

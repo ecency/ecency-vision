@@ -101,8 +101,9 @@ export default class EntryListItem extends Component<Props> {
     };
 
     render() {
-        const {entry, community, asAuthor, promoted} = this.props;
-        const img: string = catchPostImage(entry, 600, 500) || noImage;
+
+        const {entry, community, asAuthor, promoted, global} = this.props;
+        const img: string = (global.canUseWebp ? catchPostImage(entry, 600, 500, 'webp') : catchPostImage(entry, 600, 500)) || noImage;
         const summary: string = postBodySummary(entry, 200);
 
         const app = appName(entry?.json_metadata?.app);
@@ -133,21 +134,23 @@ export default class EntryListItem extends Component<Props> {
             <div className={_c(cls)}>
                 <div className="item-header">
                     <div className="author-part">
-                        <ProfileLink {...this.props} username={entry.author}>
-                            <a className="author-avatar">
-                                <UserAvatar username={entry.author} size="small"/>
-                            </a>
-                        </ProfileLink>
-                        <ProfileLink {...this.props} username={entry.author}>
-                            <div className="author">
-                                {entry.author}
-                                <span className="author-reputation">{reputation}</span>
-                            </div>
-                        </ProfileLink>
+                        {ProfileLink({
+                            ...this.props,
+                            username: entry.author,
+                            children: <a className="author-avatar">{UserAvatar({...this.props, username: entry.author, size: "small"})}</a>
+                        })}
+                        {ProfileLink({
+                            ...this.props,
+                            username: entry.author,
+                            children: <div className="author">{entry.author}<span className="author-reputation">{reputation}</span></div>
+                        })}
                     </div>
-                    <Tag {...this.props} tag={entry.category} type="link">
-                        <a className="category">{entry.community_title || entry.category}</a>
-                    </Tag>
+                    {Tag({
+                        ...this.props,
+                        tag: entry.category,
+                        type: "link",
+                        children: <a className="category">{entry.community_title || entry.category}</a>
+                    })}
                     {!isVisited && <span className="read-mark"/>}
                     <span className="date" title={dateFormatted}>{dateRelative}</span>
                     {isPinned && (
@@ -167,8 +170,10 @@ export default class EntryListItem extends Component<Props> {
                 </div>
                 <div className="item-body">
                     <div className="item-image">
-                        <EntryLink {...this.props} entry={entry}>
-                            <div>
+                        {EntryLink({
+                            ...this.props,
+                            entry,
+                            children: <div>
                                 <img
                                     src={img}
                                     alt={title}
@@ -178,22 +183,37 @@ export default class EntryListItem extends Component<Props> {
                                     }}
                                 />
                             </div>
-                        </EntryLink>
+                        })}
                     </div>
                     <div className="item-summary">
-                        <EntryLink {...this.props} entry={entry}>
-                            <div className="item-title">{title}</div>
-                        </EntryLink>
-                        <EntryLink {...this.props} entry={entry}>
-                            <div className="item-body">{summary}</div>
-                        </EntryLink>
+                        {EntryLink({
+                            ...this.props,
+                            entry,
+                            children: <div className="item-title">{title}</div>
+                        })}
+                        {EntryLink({
+                            ...this.props,
+                            entry,
+                            children: <div className="item-body">{summary}</div>
+                        })}
                     </div>
                     <div className="item-controls">
-                        <EntryVoteBtn {...this.props} afterVote={this.afterVote}/>
-                        <EntryPayout {...this.props} entry={entry}/>
-                        <EntryVotes {...this.props} entry={entry}/>
-                        <EntryLink {...this.props} entry={entry}>
-                            <a className="replies">
+                        {EntryVoteBtn({
+                            ...this.props,
+                            afterVote: this.afterVote
+                        })}
+                        {EntryPayout({
+                            ...this.props,
+                            entry
+                        })}
+                        {EntryVotes({
+                            ...this.props,
+                            entry
+                        })}
+                        {EntryLink({
+                            ...this.props,
+                            entry,
+                            children: <a className="replies">
                                 <Tooltip
                                     content={
                                         entry.children > 0
@@ -207,8 +227,11 @@ export default class EntryListItem extends Component<Props> {
                                 </span>
                                 </Tooltip>
                             </a>
-                        </EntryLink>
-                        <EntryReblogBtn {...this.props} text={false}/>
+                        })}
+                        {EntryReblogBtn({
+                            ...this.props,
+                            text: false
+                        })}
                         <div className="app">{app}</div>
                     </div>
                 </div>

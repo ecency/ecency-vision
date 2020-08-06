@@ -1,7 +1,6 @@
 import React, {Component} from "react";
-import {AnyAction, bindActionCreators, Dispatch} from "redux";
+
 import {connect} from "react-redux";
-import {History, Location} from "history";
 
 import {match} from "react-router";
 
@@ -21,24 +20,7 @@ import {
 
 setProxyBase(defaults.imageServer);
 
-import {AppState} from "../store";
-import {Global} from "../store/global/types";
-import {Account} from "../store/accounts/types";
-import {TrendingTags} from "../store/trending-tags/types";
-import {User} from "../store/users/types";
-import {ActiveUser} from "../store/active-user/types";
 import {Entry} from "../store/entries/types";
-import {UI, ToggleType} from "../store/ui/types";
-import {NotificationFilter, Notifications} from "../store/notifications/types";
-
-import {hideIntro, toggleTheme} from "../store/global";
-import {addAccount} from "../store/accounts";
-import {addEntry, updateEntry} from "../store/entries";
-import {fetchTrendingTags} from "../store/trending-tags";
-import {setActiveUser, updateActiveUser} from "../store/active-user";
-import {deleteUser, addUser} from "../store/users";
-import {toggleUIProp} from "../store/ui";
-import {fetchNotifications, fetchUnreadNotificationCount, setNotificationsFilter, markNotifications} from "../store/notifications";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme";
@@ -72,8 +54,13 @@ interface PostBase {
     body: string;
 }
 
-class PreviewContent extends Component<PostBase> {
-    shouldComponentUpdate(nextProps: Readonly<PostBase>): boolean {
+interface PreviewProps extends PostBase {
+    history: History;
+    global: Global;
+}
+
+class PreviewContent extends Component<PreviewProps> {
+    shouldComponentUpdate(nextProps: Readonly<PreviewProps>): boolean {
         return (
             !isEqual(this.props.title, nextProps.title) ||
             !isEqual(this.props.tags, nextProps.tags) ||
@@ -92,10 +79,15 @@ class PreviewContent extends Component<PostBase> {
                     {tags.map((x) => {
                         return (
                             <span className="preview-tag" key={x}>
-                <Tag type="span" {...this.props} tag={x}>
-                  <span>{x}</span>
-                </Tag>
-              </span>
+                                {
+                                    Tag({
+                                        ...this.props,
+                                        tag: x,
+                                        children: <span>{x}</span>,
+                                        type: "span"
+                                    })
+                                }
+                            </span>
                         );
                     })}
                 </div>
@@ -106,35 +98,17 @@ class PreviewContent extends Component<PostBase> {
     }
 }
 
+import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
+import {History, Location} from "history";
+import {Global} from "../store/global/types";
+
 interface MatchParams {
     permlink: string;
     username: string;
 }
 
-interface Props {
-    history: History;
-    location: Location;
+interface Props extends PageProps {
     match: match<MatchParams>;
-    global: Global;
-    trendingTags: TrendingTags;
-    users: User[];
-    activeUser: ActiveUser | null;
-    ui: UI;
-    notifications: Notifications;
-    toggleTheme: () => void;
-    addAccount: (data: Account) => void;
-    addEntry: (entry: Entry) => void;
-    updateEntry: (entry: Entry) => void;
-    fetchTrendingTags: () => void;
-    addUser: (user: User) => void;
-    setActiveUser: (username: string | null) => void;
-    updateActiveUser: (data: Account) => void;
-    deleteUser: (username: string) => void;
-    toggleUIProp: (what: ToggleType) => void;
-    fetchNotifications: (since: string | null) => void;
-    fetchUnreadNotificationCount: () => void;
-    setNotificationsFilter: (filter: NotificationFilter | null) => void;
-    markNotifications: (id: string | null) => void;
 }
 
 interface State extends PostBase {
@@ -400,13 +374,13 @@ class SubmitPage extends Component<Props, State> {
             <>
                 <Meta {...metaProps} />
                 <FullHeight/>
-                <Theme {...this.props} />
+                <Theme global={this.props.global}/>
                 <Feedback/>
-                <NavBar {...this.props} />
+                {NavBar({...this.props})}
 
                 <div className="app-content submit-page">
                     <div className="editor-side">
-                        <EditorToolbar {...this.props} />
+                        {EditorToolbar({...this.props})}
                         <div className="title-input">
                             <Form.Control
                                 className="accepts-emoji"
@@ -417,7 +391,12 @@ class SubmitPage extends Component<Props, State> {
                             />
                         </div>
                         <div className="tag-input">
-                            <TagSelector {...this.props} tags={tags} maxItem={10} onChange={this.tagsChanged}/>
+                            {TagSelector({
+                                ...this.props,
+                                tags,
+                                maxItem: 10,
+                                onChange: this.tagsChanged,
+                            })}
                         </div>
                         <div className="body-input">
                             <Form.Control
@@ -434,9 +413,9 @@ class SubmitPage extends Component<Props, State> {
                                 <div className="reward">
                                     <span>{_t("submit.reward")}</span>
                                     <Form.Control as="select" value={reward} onChange={this.rewardChanged}>
-                                        <option key="default">{_t("submit.reward-default")}</option>
-                                        <option key="sp">{_t("submit.reward-sp")}</option>
-                                        <option key="dp">{_t("submit.reward-dp")}</option>
+                                        <option value="default">{_t("submit.reward-default")}</option>
+                                        <option value="sp">{_t("submit.reward-sp")}</option>
+                                        <option value="dp">{_t("submit.reward-dp")}</option>
                                     </Form.Control>
                                 </div>
                                 <Button variant="light" onClick={this.clear}>
@@ -452,13 +431,14 @@ class SubmitPage extends Component<Props, State> {
 
                             <WordCount selector=".preview-body" watch={true}/>
                         </div>
-                        <PreviewContent {...this.props} {...preview} />
+                        <PreviewContent history={this.props.history} global={this.props.global} {...preview} />
                         <div className="bottom-toolbar">
                             {!editMode && (
                                 <>
                                     <span/>
-                                    <LoginRequired {...this.props}>
-                                        <Button
+                                    {LoginRequired({
+                                        ...this.props,
+                                        children: <Button
                                             className="d-inline-flex align-items-center"
                                             onClick={this.publish}
                                             disabled={!canPublish || inProgress}
@@ -466,7 +446,7 @@ class SubmitPage extends Component<Props, State> {
                                             {inProgress && spinner}
                                             {_t("submit.publish")}
                                         </Button>
-                                    </LoginRequired>
+                                    })}
                                 </>
                             )}
 
@@ -475,8 +455,9 @@ class SubmitPage extends Component<Props, State> {
                                     <Button variant="outline-secondary" onClick={this.cancelUpdate}>
                                         {_t("submit.cancel-update")}
                                     </Button>
-                                    <LoginRequired {...this.props}>
-                                        <Button
+                                    {LoginRequired({
+                                        ...this.props,
+                                        children: <Button
                                             className="d-inline-flex align-items-center"
                                             onClick={this.update}
                                             disabled={!canPublish || inProgress}
@@ -484,7 +465,7 @@ class SubmitPage extends Component<Props, State> {
                                             {inProgress && spinner}
                                             {_t("submit.update")}
                                         </Button>
-                                    </LoginRequired>
+                                    })}
                                 </>
                             )}
                         </div>
@@ -495,35 +476,4 @@ class SubmitPage extends Component<Props, State> {
     }
 }
 
-const mapStateToProps = (state: AppState) => ({
-    global: state.global,
-    trendingTags: state.trendingTags,
-    users: state.users,
-    activeUser: state.activeUser,
-    ui: state.ui,
-    notifications: state.notifications
-});
-
-const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
-    bindActionCreators(
-        {
-            toggleTheme,
-            hideIntro,
-            addAccount,
-            addEntry,
-            updateEntry,
-            fetchTrendingTags,
-            addUser,
-            setActiveUser,
-            updateActiveUser,
-            deleteUser,
-            toggleUIProp,
-            fetchNotifications,
-            fetchUnreadNotificationCount,
-            setNotificationsFilter,
-            markNotifications
-        },
-        dispatch
-    );
-
-export default connect(mapStateToProps, mapDispatchToProps)(SubmitPage);
+export default connect(pageMapStateToProps, pageMapDispatchToProps)(SubmitPage);

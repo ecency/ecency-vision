@@ -28,7 +28,7 @@ interface Props {
 
 const cache = {};
 
-export default class TagLink extends Component<Props> {
+export class TagLink extends Component<Props> {
     public static defaultProps: Partial<Props> = {
         type: "link",
     };
@@ -99,4 +99,17 @@ export default class TagLink extends Component<Props> {
             return null;
         }
     }
+}
+
+
+export default (p: Props) => {
+    const props: Props = {
+        global: p.global,
+        history: p.history,
+        tag: p.tag,
+        children: p.children,
+        type: p.type
+    }
+
+    return <TagLink {...props} />;
 }

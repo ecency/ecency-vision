@@ -2,8 +2,6 @@ import React, {Component} from "react";
 
 import {History} from "history";
 
-import isEqual from "react-fast-compare";
-
 import {Community} from "../../store/community/types";
 import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
@@ -34,13 +32,7 @@ interface Props {
     updateSubscriptions: (list: Subscription[]) => void;
 }
 
-export default class CommunityCardSm extends Component<Props> {
-    shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
-        return !isEqual(this.props.community, nextProps.community) ||
-            !isEqual(this.props.subscriptions, nextProps.subscriptions) ||
-            !isEqual(this.props.activeUser?.username, nextProps.activeUser?.username)
-    }
-
+export class CommunityCardSm extends Component<Props> {
     render() {
         const {community} = this.props;
 
@@ -66,10 +58,28 @@ export default class CommunityCardSm extends Component<Props> {
                     </div>
                     <div className="controls">
                         <SubscriptionBtn {...this.props} />
-                        <CommunityPostBtn  {...this.props} />
+                        {CommunityPostBtn({...this.props})}
                     </div>
                 </div>
             </div>
         );
     }
+}
+
+export default (p: Props) => {
+    const props: Props = {
+        history: p.history,
+        users: p.users,
+        activeUser: p.activeUser,
+        community: p.community,
+        ui: p.ui,
+        subscriptions: p.subscriptions,
+        setActiveUser: p.setActiveUser,
+        updateActiveUser: p.updateActiveUser,
+        deleteUser: p.deleteUser,
+        toggleUIProp: p.toggleUIProp,
+        updateSubscriptions: p.updateSubscriptions
+    };
+
+    return <CommunityCardSm {...props} />;
 }

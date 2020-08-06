@@ -2,12 +2,14 @@
 
 exports[`1- default state 1`] = `
 Object {
+  "canUseWebp": false,
   "currency": "usd",
   "currencyRate": 1,
   "currencySymbol": "$",
   "filter": "hot",
   "intro": true,
   "listStyle": "row",
+  "searchIndexCount": 0,
   "tag": "",
   "theme": "day",
 }
@@ -15,12 +17,14 @@ Object {
 
 exports[`2- location change. should change filter and tag 1`] = `
 Object {
+  "canUseWebp": false,
   "currency": "usd",
   "currencyRate": 1,
   "currencySymbol": "$",
   "filter": "trending",
   "intro": true,
   "listStyle": "row",
+  "searchIndexCount": 0,
   "tag": "bitcoin",
   "theme": "day",
 }
@@ -28,12 +32,14 @@ Object {
 
 exports[`3- theme change 1`] = `
 Object {
+  "canUseWebp": false,
   "currency": "usd",
   "currencyRate": 1,
   "currencySymbol": "$",
   "filter": "trending",
   "intro": true,
   "listStyle": "row",
+  "searchIndexCount": 0,
   "tag": "bitcoin",
   "theme": "night",
 }
@@ -41,12 +47,14 @@ Object {
 
 exports[`4- hide intro 1`] = `
 Object {
+  "canUseWebp": false,
   "currency": "usd",
   "currencyRate": 1,
   "currencySymbol": "$",
   "filter": "trending",
   "intro": false,
   "listStyle": "row",
+  "searchIndexCount": 0,
   "tag": "bitcoin",
   "theme": "night",
 }
@@ -54,12 +62,14 @@ Object {
 
 exports[`5- list style change 1`] = `
 Object {
+  "canUseWebp": false,
   "currency": "usd",
   "currencyRate": 1,
   "currencySymbol": "$",
   "filter": "trending",
   "intro": false,
   "listStyle": "grid",
+  "searchIndexCount": 0,
   "tag": "bitcoin",
   "theme": "night",
 }

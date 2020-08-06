@@ -1,29 +1,10 @@
-import React, {Component} from "react";
-import {AnyAction, bindActionCreators, Dispatch} from "redux";
+import React, {Component, Fragment} from "react";
+
 import {connect} from "react-redux";
-import {History, Location} from "history";
 
 import {FormControl} from "react-bootstrap";
 
-import {AppState} from "../store";
-import {Global} from "../store/global/types";
-import {Account} from "../store/accounts/types";
 import {Community} from "../store/community/types";
-import {TrendingTags} from "../store/trending-tags/types";
-import {User} from "../store/users/types";
-import {ActiveUser} from "../store/active-user/types";
-import {UI, ToggleType} from "../store/ui/types";
-import {Subscription} from "../store/subscriptions/types";
-import {NotificationFilter, Notifications} from "../store/notifications/types";
-
-import {hideIntro, toggleTheme} from "../store/global";
-import {addAccount} from "../store/accounts";
-import {fetchTrendingTags} from "../store/trending-tags";
-import {setActiveUser, updateActiveUser} from "../store/active-user";
-import {deleteUser, addUser} from "../store/users";
-import {toggleUIProp} from "../store/ui";
-import {updateSubscriptions} from "../store/subscriptions";
-import {fetchNotifications, fetchUnreadNotificationCount, setNotificationsFilter, markNotifications} from "../store/notifications";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
@@ -36,30 +17,7 @@ import {_t} from "../i18n";
 
 import {getCommunities, getSubscriptions} from "../api/bridge";
 
-interface Props {
-    history: History;
-    location: Location;
-    global: Global;
-    trendingTags: TrendingTags;
-    users: User[];
-    activeUser: ActiveUser | null;
-    ui: UI;
-    notifications: Notifications;
-    subscriptions: Subscription[];
-    toggleTheme: () => void;
-    addAccount: (data: Account) => void;
-    fetchTrendingTags: () => void;
-    addUser: (user: User) => void;
-    setActiveUser: (username: string | null) => void;
-    updateActiveUser: (data: Account) => void;
-    deleteUser: (username: string) => void;
-    toggleUIProp: (what: ToggleType) => void;
-    updateSubscriptions: (list: Subscription[]) => void;
-    fetchNotifications: (since: string | null) => void;
-    fetchUnreadNotificationCount: () => void;
-    setNotificationsFilter: (filter: NotificationFilter | null) => void;
-    markNotifications: (id: string | null) => void
-}
+import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
 interface State {
     list: Community[];
@@ -68,10 +26,10 @@ interface State {
     sort: string;
 }
 
-class CommunitiesPage extends Component<Props, State> {
+class CommunitiesPage extends Component<PageProps, State> {
     state: State = {
         list: [],
-        loading: false,
+        loading: true,
         query: "",
         sort: "hot",
     };
@@ -83,7 +41,7 @@ class CommunitiesPage extends Component<Props, State> {
         this.fetch();
     }
 
-    componentDidUpdate(prevProps: Readonly<Props>) {
+    componentDidUpdate(prevProps: Readonly<PageProps>) {
         const {activeUser, updateSubscriptions} = this.props;
         if (prevProps.activeUser?.username !== activeUser?.username) {
             if (activeUser) {
@@ -98,38 +56,21 @@ class CommunitiesPage extends Component<Props, State> {
         this._mounted = false;
     }
 
-    stateSet = (obj: {}, cb: () => void = () => {
-    }) => {
+    stateSet = (state: {}, cb?: () => void) => {
         if (this._mounted) {
-            this.setState(obj, cb);
+            this.setState(state, cb);
         }
     };
-    shuffle = (array: any[]) => {
-        var currentIndex = array.length, temporaryValue, randomIndex;
-        // While there remain elements to shuffle...
-        while (0 !== currentIndex) {
-          // Pick a remaining element...
-          randomIndex = Math.floor(Math.random() * currentIndex);
-          currentIndex -= 1;
-          // And swap it with the current element.
-          temporaryValue = array[currentIndex];
-          array[currentIndex] = array[randomIndex];
-          array[randomIndex] = temporaryValue;
-        }
-        return array;
-    };
+
     fetch = () => {
         const {query, sort} = this.state;
         this.stateSet({loading: true});
 
-        getCommunities("", 100, query, sort==='hot'?'rank':sort)
+        getCommunities("", 100, query, (sort === "hot" ? "rank" : sort))
             .then((r) => {
                 if (r) {
-                    let shr = r;
-                    if (sort === 'hot') {
-                        shr = this.shuffle(r);    
-                    }
-                    this.stateSet({list: shr});
+                    const list = sort === "hot" ? r.sort(() => Math.random() - 0.5) : r;
+                    this.stateSet({list});
                 }
             })
             .finally(() => {
@@ -168,8 +109,8 @@ class CommunitiesPage extends Component<Props, State> {
         return (
             <>
                 <Meta {...metaProps} />
-                <Theme {...this.props} />
-                <NavBar {...this.props} />
+                <Theme global={this.props.global}/>
+                {NavBar({...this.props})}
 
                 <div className="app-content communities-page">
                     <div className="community-list">
@@ -193,7 +134,12 @@ class CommunitiesPage extends Component<Props, State> {
                         <div className="list-items">
                             {noResults && <div className="no-results">{_t("communities.no-results")}</div>}
                             {list.map((x, i) => (
-                                <CommunityListItem {...this.props} key={i} community={x}/>
+                                <Fragment key={i}>
+                                    {CommunityListItem({
+                                        ...this.props,
+                                        community: x
+                                    })}
+                                </Fragment>
                             ))}
                         </div>
                     </div>
@@ -203,35 +149,4 @@ class CommunitiesPage extends Component<Props, State> {
     }
 }
 
-const mapStateToProps = (state: AppState) => ({
-    global: state.global,
-    trendingTags: state.trendingTags,
-    users: state.users,
-    activeUser: state.activeUser,
-    ui: state.ui,
-    subscriptions: state.subscriptions,
-    notifications: state.notifications
-});
-
-const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
-    bindActionCreators(
-        {
-            toggleTheme,
-            hideIntro,
-            addAccount,
-            fetchTrendingTags,
-            addUser,
-            setActiveUser,
-            updateActiveUser,
-            deleteUser,
-            toggleUIProp,
-            updateSubscriptions,
-            fetchNotifications,
-            fetchUnreadNotificationCount,
-            setNotificationsFilter,
-            markNotifications
-        },
-        dispatch
-    );
-
-export default connect(mapStateToProps, mapDispatchToProps)(CommunitiesPage);
+export default connect(pageMapStateToProps, pageMapDispatchToProps)(CommunitiesPage);

@@ -4,7 +4,7 @@ import { List } from "./index";
 import renderer from "react-test-renderer";
 import { createBrowserHistory } from "history";
 
-import { dynamicPropsIntance1, receivedVestingInstance } from "../../helper/test-helper";
+import { dynamicPropsIntance1, receivedVestingInstance, globalInstance } from "../../helper/test-helper";
 
 jest.mock("../../constants/defaults.json", () => ({
   imageServer: "https://images.ecency.com",
@@ -18,6 +18,7 @@ jest.mock("../../api/private", () => ({
 }));
 
 const detailProps = {
+  global: globalInstance,
   history: createBrowserHistory(),
   account: { name: "foo" },
   dynamicProps: dynamicPropsIntance1,

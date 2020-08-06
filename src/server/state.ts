@@ -1,3 +1,5 @@
+import express from "express";
+
 import {AppState} from "../common/store";
 
 import {initialState as globalInitialState} from "../common/store/global";
@@ -15,10 +17,16 @@ import {initialState as subscriptionsInitialState} from "../common/store/subscri
 import {initialState as notificationsInitialState} from "../common/store/notifications";
 import {initialState as entriesInitialState} from "../common/store/entries";
 
+import {getSearchIndexCount} from "./helper";
 
-export const makePreloadedState = (): AppState => {
+export const makePreloadedState = async (req: express.Request): Promise<AppState> => {
+
     return {
-        global: {...globalInitialState},
+        global: {
+            ...globalInitialState,
+            searchIndexCount: await getSearchIndexCount(),
+            canUseWebp: req.headers.accept !== undefined && req.headers.accept.indexOf("image/webp") !== -1
+        },
         dynamicProps: dynamicPropsInitialState,
         trendingTags: trendingTagsInitialState,
         community: communityInitialState,

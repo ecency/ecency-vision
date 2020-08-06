@@ -31,6 +31,8 @@ export const globalInstance: Global = {
     currency: "usd",
     currencyRate: 1,
     currencySymbol: "$",
+    searchIndexCount: 10000000,
+    canUseWebp: false
 };
 
 export const TrendingTagsInstance: TrendingTags = {

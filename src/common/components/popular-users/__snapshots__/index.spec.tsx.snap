@@ -1,0 +1,166 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Render with data. 1`] = `
+<div
+  className="popular-users-list"
+>
+  <div
+    className="list-header"
+  >
+    <div
+      className="list-title"
+    >
+      Popular Users
+    </div>
+    <div
+      className="list-refresh"
+      onClick={[Function]}
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M12,18A6,6 0 0,1 6,12C6,11 6.25,10.03 6.7,9.2L5.24,7.74C4.46,8.97 4,10.43 4,12A8,8 0 0,0 12,20V23L16,19L12,15M12,4V1L8,5L12,9V6A6,6 0 0,1 18,12C18,13 17.75,13.97 17.3,14.8L18.76,16.26C19.54,15.03 20,13.57 20,12A8,8 0 0,0 12,4Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </div>
+  <div
+    className="list-body"
+  >
+    <div
+      className="list-item"
+    >
+      <a
+        href="/@foo"
+        onClick={[Function]}
+      >
+        <span
+          className="user-avatar large"
+          onClick={[Function]}
+          role="none"
+          style={
+            Object {
+              "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+            }
+          }
+        />
+      </a>
+      <div
+        className="user-info"
+      >
+        <a
+          className="display-name"
+          href="/@foo"
+          onClick={[Function]}
+        >
+          Foo
+        </a>
+        <a
+          className="name"
+          href="/@foo"
+          onClick={[Function]}
+        >
+           
+          @
+          foo
+        </a>
+        <div
+          className="about"
+        >
+          Lorem ipsum dolor sit amet
+        </div>
+      </div>
+    </div>
+    <div
+      className="list-item"
+    >
+      <a
+        href="/@bar"
+        onClick={[Function]}
+      >
+        <span
+          className="user-avatar large"
+          onClick={[Function]}
+          role="none"
+          style={
+            Object {
+              "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
+            }
+          }
+        />
+      </a>
+      <div
+        className="user-info"
+      >
+        <a
+          className="display-name"
+          href="/@bar"
+          onClick={[Function]}
+        >
+          Bar
+        </a>
+        <a
+          className="name"
+          href="/@bar"
+          onClick={[Function]}
+        >
+           
+          @
+          bar
+        </a>
+        <div
+          className="about"
+        >
+          Lorem ipsum dolor sit amet
+        </div>
+      </div>
+    </div>
+    <div
+      className="list-item"
+    >
+      <a
+        href="/@baz"
+        onClick={[Function]}
+      >
+        <span
+          className="user-avatar large"
+          onClick={[Function]}
+          role="none"
+          style={
+            Object {
+              "backgroundImage": "url(https://images.ecency.com/u/baz/avatar/medium)",
+            }
+          }
+        />
+      </a>
+      <div
+        className="user-info"
+      >
+        <a
+          className="display-name"
+          href="/@baz"
+          onClick={[Function]}
+        >
+          Baz
+        </a>
+        <a
+          className="name"
+          href="/@baz"
+          onClick={[Function]}
+        >
+           
+          @
+          baz
+        </a>
+        <div
+          className="about"
+        >
+          Lorem ipsum dolor sit amet
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

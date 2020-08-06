@@ -270,32 +270,42 @@ export class Item extends Component<ItemProps, ItemState> {
             <div className={`discussion-item depth-${entry.depth}`}>
                 <div className="item-inner">
                     <div className="item-figure">
-                        <ProfileLink {...this.props} username={entry.author}>
-                            <a>
-                                <UserAvatar username={entry.author} size="medium"/>
-                            </a>
-                        </ProfileLink>
+                        {ProfileLink({...this.props, username: entry.author, children: <a>{UserAvatar({...this.props, username:entry.author, size:"medium" })}</a>})}
                     </div>
                     <div className="item-content">
                         <div className="item-header">
-                            <ProfileLink {...this.props} username={entry.author}>
-                                <div className="author">
+                            {ProfileLink({
+                                ...this.props,
+                                username: entry.author,
+                                children: <div className="author">
                                     <span className="author-name">{entry.author}</span>
                                     <span className="author-reputation">{reputation}</span>
                                 </div>
-                            </ProfileLink>
+                            })}
                             <span className="separator"/>
-                            <EntryLink {...this.props} entry={entry}>
-                                <span className="date" title={created.format("LLLL")}>
+                            {EntryLink({
+                                ...this.props,
+                                entry,
+                                children: <span className="date" title={created.format("LLLL")}>
                                   {created.fromNow()}
                                 </span>
-                            </EntryLink>
+                            })}
                         </div>
                         <ItemBody entry={entry}/>
                         <div className="item-controls">
-                            <EntryVoteBtn {...this.props} entry={entry} afterVote={this.afterVote}/>
-                            <EntryPayout {...this.props} entry={entry}/>
-                            <EntryVotes {...this.props} entry={entry}/>
+                            {EntryVoteBtn({
+                                ...this.props,
+                                entry,
+                                afterVote: this.afterVote
+                            })}
+                            {EntryPayout({
+                                ...this.props,
+                                entry
+                            })}
+                            {EntryVotes({
+                                ...this.props,
+                                entry
+                            })}
                             <a className={_c(`reply-btn ${edit ? 'disabled' : ''}`)} onClick={this.toggleReply}>
                                 {_t("g.reply")}
                             </a>
@@ -304,48 +314,49 @@ export class Item extends Component<ItemProps, ItemState> {
                                     <a title={_t('g.edit')} className={_c(`edit-btn ${reply ? 'disabled' : ''}`)} onClick={this.toggleEdit}>
                                         {pencilOutlineSvg}
                                     </a>
-                                    <EntryDeleteBtn {...this.props} entry={entry} onSuccess={this.deleted}>
-                                        <a title={_t('g.delete')} className="delete-btn">
-                                            {deleteForeverSvg}
-                                        </a>
-                                    </EntryDeleteBtn>
+                                    {EntryDeleteBtn({
+                                        ...this.props,
+                                        entry,
+                                        onSuccess: this.deleted,
+                                        children: <a title={_t('g.delete')} className="delete-btn">{deleteForeverSvg}</a>
+                                    })}
                                 </>
                             )}
                         </div>
                         {readMore && (
                             <div className="read-more">
-                                <EntryLink {...this.props} entry={entry}>
-                                    <a>{_t("discussion.read-more")}</a>
-                                </EntryLink>
+                                {EntryLink({
+                                    ...this.props,
+                                    entry,
+                                    children: <a>{_t("discussion.read-more")}</a>
+                                })}
                             </div>
                         )}
                     </div>
                 </div>
 
-                {reply && (
-                    <Comment {...this.props}
-                             defText={ls.get(`reply_draft_${entry.author}_${entry.permlink}`) || ''}
-                             submitText={_t('g.reply')}
-                             cancellable={true}
-                             onChange={this.replyTextChanged}
-                             onSubmit={this.submitReply}
-                             onCancel={this.toggleReply}
-                             inProgress={inProgress}
-                             autoFocus={true}
-                    />
-                )}
+                {reply && Comment({
+                    ...this.props,
+                    defText: (ls.get(`reply_draft_${entry.author}_${entry.permlink}`) || ''),
+                    submitText: _t('g.reply'),
+                    cancellable: true,
+                    onChange: this.replyTextChanged,
+                    onSubmit: this.submitReply,
+                    onCancel: this.toggleReply,
+                    inProgress: inProgress,
+                    autoFocus: true
+                })}
 
-                {edit && (
-                    <Comment {...this.props}
-                             defText={entry.body}
-                             submitText={_t('g.update')}
-                             cancellable={true}
-                             onSubmit={this.updateReply}
-                             onCancel={this.toggleEdit}
-                             inProgress={inProgress}
-                             autoFocus={true}
-                    />
-                )}
+                {edit && Comment({
+                    ...this.props,
+                    defText: entry.body,
+                    submitText: _t('g.update'),
+                    cancellable: true,
+                    onSubmit: this.updateReply,
+                    onCancel: this.toggleEdit,
+                    inProgress: inProgress,
+                    autoFocus: true
+                })}
 
                 {showSubList && <List {...this.props} parent={entry}/>}
             </div>
@@ -421,7 +432,7 @@ interface Props {
 }
 
 
-export default class Discussion extends Component<Props> {
+export class Discussion extends Component<Props> {
     componentDidMount() {
         this.fetch();
     }
@@ -479,4 +490,30 @@ export default class Discussion extends Component<Props> {
             </div>
         );
     }
+}
+
+export default (p: Props) => {
+    const props: Props = {
+        history: p.history,
+        global: p.global,
+        dynamicProps: p.dynamicProps,
+        users: p.users,
+        activeUser: p.activeUser,
+        parent: p.parent,
+        discussion: p.discussion,
+        ui: p.ui,
+        addAccount: p.addAccount,
+        setActiveUser: p.setActiveUser,
+        updateActiveUser: p.updateActiveUser,
+        deleteUser: p.deleteUser,
+        fetchDiscussion: p.fetchDiscussion,
+        sortDiscussion: p.sortDiscussion,
+        resetDiscussion: p.resetDiscussion,
+        updateReply: p.updateReply,
+        addReply: p.addReply,
+        deleteReply: p.deleteReply,
+        toggleUIProp: p.toggleUIProp
+    }
+
+    return <Discussion {...props} />;
 }

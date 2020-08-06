@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, Fragment} from "react";
 
 import {History} from "history";
 import {Link} from "react-router-dom";
@@ -39,7 +39,7 @@ interface Props {
     updateSubscriptions: (list: Subscription[]) => void;
 }
 
-export default class CommunityListItem extends Component<Props> {
+export class CommunityListItem extends Component<Props> {
     shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
         return !isEqual(this.props.community, nextProps.community) ||
             !isEqual(this.props.subscriptions, nextProps.subscriptions) ||
@@ -70,17 +70,36 @@ export default class CommunityListItem extends Component<Props> {
                         <div className="item-admins">
                             {_t("community.admins")}
                             {community.admins.map((x, i) => (
-                                <ProfileLink key={i} {...this.props} username={x}>
-                                    <a className="admin">{x}</a>
-                                </ProfileLink>
+                                <Fragment key={i}>
+                                    {ProfileLink({...this.props, username: x, children: <a className="admin">{x}</a>})}
+                                </Fragment>
                             ))}
                         </div>
                     )}
                 </div>
                 <div className="item-controls">
-                    <SubscriptionBtn {...this.props} buttonProps={{block: true}} />
+                    <SubscriptionBtn {...this.props} buttonProps={{block: true}}/>
                 </div>
             </div>
         );
     }
+}
+
+export default (p: Props) => {
+    const props: Props = {
+        history: p.history,
+        users: p.users,
+        activeUser: p.activeUser,
+        community: p.community,
+        ui: p.ui,
+        subscriptions: p.subscriptions,
+        setActiveUser: p.setActiveUser,
+        updateActiveUser: p.updateActiveUser,
+        deleteUser: p.deleteUser,
+        toggleUIProp: p.toggleUIProp,
+        addAccount: p.addAccount,
+        updateSubscriptions: p.updateSubscriptions
+    }
+
+    return <CommunityListItem {...props} />;
 }

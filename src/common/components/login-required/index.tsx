@@ -16,7 +16,7 @@ interface Props {
     toggleUIProp: (what: ToggleType) => void;
 }
 
-export default class LoginRequired extends Component<Props> {
+export class LoginRequired extends Component<Props> {
 
     toggle = () => {
         const {toggleUIProp} = this.props;
@@ -34,4 +34,19 @@ export default class LoginRequired extends Component<Props> {
             onClick: this.toggle,
         });
     }
+}
+
+export default (p: Props) => {
+    const props: Props = {
+        users: p.users,
+        activeUser: p.activeUser,
+        ui: p.ui,
+        children: p.children,
+        setActiveUser: p.setActiveUser,
+        updateActiveUser: p.updateActiveUser,
+        deleteUser: p.deleteUser,
+        toggleUIProp: p.toggleUIProp,
+    }
+
+    return <LoginRequired {...props} />
 }

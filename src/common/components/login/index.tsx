@@ -4,6 +4,7 @@ import {Modal} from "react-bootstrap";
 
 import isEqual from "react-fast-compare";
 
+import {Global} from "../../store/global/types";
 import {User} from "../../store/users/types";
 import {Account} from "../../store/accounts/types";
 import {ActiveUser} from "../../store/active-user/types";
@@ -27,6 +28,7 @@ import {usrActivity} from "../../api/private";
 const hsLogo = require("../../img/hive-signer.svg");
 
 interface UserItemProps {
+    global: Global;
     user: User;
     activeUser: ActiveUser | null;
     onSelect: (user: User) => void;
@@ -45,7 +47,7 @@ export class UserItem extends Component<UserItemProps> {
                     onSelect(user);
                 }}
             >
-                <UserAvatar {...this.props} username={user.username} size="normal"/>
+                {UserAvatar({...this.props, username: user.username, size: "normal"})}
                 <span className="username">@{user.username}</span>
                 {activeUser && activeUser.username === user.username && <div className="check-mark"/>}
                 <div className="flex-spacer"/>
@@ -72,6 +74,7 @@ export class UserItem extends Component<UserItemProps> {
 }
 
 interface LoginProps {
+    global: Global;
     users: User[];
     activeUser: ActiveUser | null;
     addUser: (user: User) => void;
@@ -172,6 +175,7 @@ export class Login extends Component<LoginProps> {
 }
 
 interface Props {
+    global: Global;
     users: User[];
     activeUser: ActiveUser | null;
     addUser: (user: User) => void;

@@ -1,29 +1,14 @@
 import React, {Component} from "react";
-import {AnyAction, bindActionCreators, Dispatch} from "redux";
+
 import {connect} from "react-redux";
-import {History, Location} from "history";
+
 import {Link} from "react-router-dom";
-
-import {AppState} from "../store";
-import {Global} from "../store/global/types";
-import {TrendingTags} from "../store/trending-tags/types";
-import {Account} from "../store/accounts/types";
-import {User} from "../store/users/types";
-import {ActiveUser} from "../store/active-user/types";
-import {UI, ToggleType} from "../store/ui/types";
-import {NotificationFilter, Notifications} from "../store/notifications/types";
-
-import {toggleTheme} from "../store/global";
-import {addAccount} from "../store/accounts";
-import {fetchTrendingTags} from "../store/trending-tags";
-import {setActiveUser, updateActiveUser} from "../store/active-user";
-import {deleteUser, addUser} from "../store/users";
-import {toggleUIProp} from "../store/ui";
-import {fetchNotifications, fetchUnreadNotificationCount, setNotificationsFilter, markNotifications} from "../store/notifications";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
 import NavBar from "../components/navbar/index";
+
+import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
 import {_t} from "../i18n";
 
@@ -31,6 +16,9 @@ import {blogSvg, newsSvg, mailSvg, twitterSvg, githubSvg, telegramSvg, discordSv
 
 const surferSs = require("../img/surfer-ss.jpg");
 const mobileSs = require("../img/mobile-ss.jpg");
+
+const faq = require("../img/FAQ4.jpg");
+const faqWebp = require("../img/FAQ4-webp.webp");
 
 const faqKeys = [
     'what-is-ecency',
@@ -56,30 +44,7 @@ const faqKeys = [
 ]
 
 
-interface Props {
-    history: History;
-    location: Location;
-    global: Global;
-    trendingTags: TrendingTags;
-    users: User[];
-    activeUser: ActiveUser | null;
-    ui: UI;
-    notifications: Notifications;
-    toggleTheme: () => void;
-    fetchTrendingTags: () => void;
-    addUser: (user: User) => void;
-    setActiveUser: (username: string | null) => void;
-    updateActiveUser: (data: Account) => void;
-    deleteUser: (username: string) => void;
-    addAccount: (data: Account) => void;
-    toggleUIProp: (what: ToggleType) => void;
-    fetchNotifications: (since: string | null) => void;
-    fetchUnreadNotificationCount: () => void;
-    setNotificationsFilter: (filter: NotificationFilter | null) => void;
-    markNotifications: (id: string | null) => void;
-}
-
-class AboutPage extends Component<Props> {
+class AboutPage extends Component<PageProps> {
     render() {
         //  Meta config
         const metaProps = {
@@ -89,8 +54,8 @@ class AboutPage extends Component<Props> {
         return (
             <>
                 <Meta {...metaProps} />
-                <Theme {...this.props} />
-                <NavBar {...this.props} />
+                <Theme global={this.props.global}/>
+                {NavBar({...this.props})}
 
                 <div className="app-content static-page about-page">
                     <div className="about-cloud">
@@ -223,8 +188,7 @@ class AboutPage extends Component<Props> {
     }
 }
 
-class GuestPostPage extends Component
-    <Props> {
+class GuestPostPage extends Component <PageProps> {
     render() {
         //  Meta config
         const metaProps = {
@@ -234,8 +198,8 @@ class GuestPostPage extends Component
         return (
             <>
                 <Meta {...metaProps} />
-                <Theme {...this.props} />
-                <NavBar {...this.props} />
+                <Theme global={this.props.global}/>
+                {NavBar({...this.props})}
 
                 <div className="app-content static-page guest-post-page">
                     <iframe
@@ -255,7 +219,7 @@ class GuestPostPage extends Component
     }
 }
 
-class ContributePage extends Component<Props> {
+class ContributePage extends Component<PageProps> {
     render() {
         //  Meta config
         const metaProps = {
@@ -265,8 +229,8 @@ class ContributePage extends Component<Props> {
         return (
             <>
                 <Meta {...metaProps} />
-                <Theme {...this.props} />
-                <NavBar {...this.props} />
+                <Theme global={this.props.global}/>
+                {NavBar({...this.props})}
 
                 <div className="app-content static-page contribute-page">
                     <div className="static-content">
@@ -317,7 +281,7 @@ class ContributePage extends Component<Props> {
     }
 }
 
-class PrivacyPage extends Component<Props> {
+class PrivacyPage extends Component<PageProps> {
     render() {
         //  Meta config
         const metaProps = {
@@ -327,8 +291,8 @@ class PrivacyPage extends Component<Props> {
         return (
             <>
                 <Meta {...metaProps} />
-                <Theme {...this.props} />
-                <NavBar {...this.props} />
+                <Theme global={this.props.global}/>
+                {NavBar({...this.props})}
 
                 <div className="app-content static-page privacy-page">
                     <div className="static-content">
@@ -523,7 +487,7 @@ class PrivacyPage extends Component<Props> {
     }
 }
 
-class WhitePaperPage extends Component<Props> {
+class WhitePaperPage extends Component<PageProps> {
     render() {
         //  Meta config
         const metaProps = {
@@ -533,8 +497,8 @@ class WhitePaperPage extends Component<Props> {
         return (
             <>
                 <Meta {...metaProps} />
-                <Theme {...this.props} />
-                <NavBar {...this.props} />
+                <Theme global={this.props.global}/>
+                {NavBar({...this.props})}
 
                 <div className="app-content static-page white-paper-page">
                     <div className="static-content">
@@ -561,7 +525,7 @@ class WhitePaperPage extends Component<Props> {
     }
 }
 
-class TosPage extends Component<Props> {
+class TosPage extends Component<PageProps> {
     render() {
         //  Meta config
         const metaProps = {
@@ -571,8 +535,8 @@ class TosPage extends Component<Props> {
         return (
             <>
                 <Meta {...metaProps} />
-                <Theme {...this.props} />
-                <NavBar {...this.props} />
+                <Theme global={this.props.global}/>
+                {NavBar({...this.props})}
 
                 <div className="app-content static-page white-paper-page">
                     <div className="static-content">
@@ -598,8 +562,7 @@ class TosPage extends Component<Props> {
     }
 }
 
-
-class FaqPage extends Component<Props> {
+class FaqPage extends Component<PageProps> {
     render() {
         //  Meta config
         const metaProps = {
@@ -609,12 +572,13 @@ class FaqPage extends Component<Props> {
         return (
             <>
                 <Meta {...metaProps} />
-                <Theme {...this.props} />
-                <NavBar {...this.props} />
+                <Theme global={this.props.global}/>
+                {NavBar({...this.props})}
+
                 <div className="app-content static-page faq-page">
                     <div className="static-content">
                         <h1 className="page-title">{_t('static.faq.page-title')}</h1>
-                        <img src='https://images.ecency.com/DQmNx7o8eD4CkbCn1rw8fRo96jNwPwDP6aV3siaKz6YRRWA/FAQ4.jpg'/>
+                        <img src={this.props.global.canUseWebp?faqWebp:faq}/>
                         <h3>{_t('static.faq.page-sub-title')}</h3>
                         <ul className="table-contents">
                             {faqKeys.map(x => {
@@ -636,51 +600,24 @@ class FaqPage extends Component<Props> {
     }
 }
 
-const mapStateToProps = (state: AppState) => ({
-    global: state.global,
-    trendingTags: state.trendingTags,
-    users: state.users,
-    activeUser: state.activeUser,
-    ui: state.ui,
-    notifications: state.notifications
-});
 
-const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
-    bindActionCreators(
-        {
-            toggleTheme,
-            fetchTrendingTags,
-            addUser,
-            setActiveUser,
-            updateActiveUser,
-            deleteUser,
-            addAccount,
-            toggleUIProp,
-            fetchNotifications,
-            fetchUnreadNotificationCount,
-            setNotificationsFilter,
-            markNotifications
-        },
-        dispatch
-    );
-
-const AboutPageContainer = connect(mapStateToProps, mapDispatchToProps)(AboutPage);
+const AboutPageContainer = connect(pageMapStateToProps, pageMapDispatchToProps)(AboutPage);
 export {AboutPageContainer};
 
-const GuestPostPageContainer = connect(mapStateToProps, mapDispatchToProps)(GuestPostPage);
+const GuestPostPageContainer = connect(pageMapStateToProps, pageMapDispatchToProps)(GuestPostPage);
 export {GuestPostPageContainer};
 
-const ContributePageContainer = connect(mapStateToProps, mapDispatchToProps)(ContributePage);
+const ContributePageContainer = connect(pageMapStateToProps, pageMapDispatchToProps)(ContributePage);
 export {ContributePageContainer};
 
-const PrivacyPageContainer = connect(mapStateToProps, mapDispatchToProps)(PrivacyPage);
+const PrivacyPageContainer = connect(pageMapStateToProps, pageMapDispatchToProps)(PrivacyPage);
 export {PrivacyPageContainer};
 
-const WhitePaperPageContainer = connect(mapStateToProps, mapDispatchToProps)(WhitePaperPage);
+const WhitePaperPageContainer = connect(pageMapStateToProps, pageMapDispatchToProps)(WhitePaperPage);
 export {WhitePaperPageContainer};
 
-const TosPageContainer = connect(mapStateToProps, mapDispatchToProps)(TosPage);
+const TosPageContainer = connect(pageMapStateToProps, pageMapDispatchToProps)(TosPage);
 export {TosPageContainer};
 
-const FaqPageContainer = connect(mapStateToProps, mapDispatchToProps)(FaqPage);
+const FaqPageContainer = connect(pageMapStateToProps, pageMapDispatchToProps)(FaqPage);
 export {FaqPageContainer};

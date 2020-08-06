@@ -3,6 +3,7 @@ import React from 'react';
 import {Global} from '../../store/global/types';
 
 const friends = require('../../img/friends.jpg');
+const friendsWebp = require('../../img/friends-webp.webp');
 
 import {closeSvg} from '../../img/svg';
 
@@ -22,11 +23,11 @@ export default (props: Props) => {
     return <div className="intro">
         <div className="hide-intro" onClick={hideIntro}>{closeSvg}</div>
         <h1 className="intro-header">Be rewarded</h1>
-        <h1 className="intro-sub-header">for your blogs, votes and any social activity</h1>
+        <h1 className="intro-sub-header">uncensored, decentralized, communities</h1>
         <div className="cloud-1"/>
         <div className="cloud-2"/>
         <div className="cloud-3"/>
 
-        <img alt="Friends" className="friends" src={friends}/>
+        <img alt="Friends" className="friends" src={props.global.canUseWebp?friendsWebp:friends}/>
     </div>;
 };

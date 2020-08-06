@@ -1,11 +1,8 @@
-import React, {Component} from "react";
+import React, {Component, Fragment} from "react";
 
-import {AnyAction, bindActionCreators, Dispatch} from "redux";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {match} from "react-router";
-
-import {History, Location} from "history";
 
 import moment from "moment";
 
@@ -21,29 +18,7 @@ import {
 
 setProxyBase(defaults.imageServer);
 
-import {AppState} from "../store";
-import {Global} from "../store/global/types";
-import {Account} from "../store/accounts/types";
-import {DynamicProps} from "../store/dynamic-props/types";
-import {Entry, Entries} from "../store/entries/types";
-import {TrendingTags} from "../store/trending-tags/types";
-import {User} from "../store/users/types";
-import {ActiveUser} from "../store/active-user/types";
-import {Reblog} from "../store/reblogs/types";
-import {Discussion as DiscussionType, SortOrder} from "../store/discussion/types";
-import {UI, ToggleType} from "../store/ui/types";
-import {NotificationFilter, Notifications} from "../store/notifications/types";
-
-import {toggleTheme} from "../store/global";
-import {addAccount} from "../store/accounts";
-import {addEntry, updateEntry} from "../store/entries";
-import {fetchTrendingTags} from "../store/trending-tags";
-import {setActiveUser, updateActiveUser} from "../store/active-user";
-import {deleteUser, addUser} from "../store/users";
-import {addReblog} from "../store/reblogs";
-import {fetchDiscussion, sortDiscussion, resetDiscussion, updateReply, addReply, deleteReply} from "../store/discussion";
-import {toggleUIProp} from "../store/ui";
-import {fetchNotifications, fetchUnreadNotificationCount, setNotificationsFilter, markNotifications} from "../store/notifications";
+import {Entry} from "../store/entries/types";
 
 import {makePath as makeEntryPath} from "../components/entry-link";
 
@@ -74,6 +49,7 @@ import {comment, formatError} from "../api/operations";
 
 import parseDate from "../helper/parse-date";
 import entryCanonical from "../helper/entry-canonical";
+import tempEntry from "../helper/temp-entry"
 
 import {makeJsonMetadataReply, createReplyPermlink, makeCommentOptions} from "../helper/posting";
 
@@ -88,47 +64,16 @@ import {_t} from "../i18n";
 
 import {version} from "../../../package.json";
 
+import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
+
 interface MatchParams {
     category: string;
     permlink: string;
     username: string;
 }
 
-interface Props {
-    history: History;
-    location: Location;
+interface Props extends PageProps {
     match: match<MatchParams>;
-    global: Global;
-    trendingTags: TrendingTags;
-    dynamicProps: DynamicProps;
-    entries: Entries;
-    users: User[];
-    activeUser: ActiveUser | null;
-    reblogs: Reblog[];
-    discussion: DiscussionType;
-    ui: UI;
-    notifications: Notifications;
-    toggleTheme: () => void;
-    addAccount: (data: Account) => void;
-    addEntry: (entry: Entry) => void;
-    updateEntry: (entry: Entry) => void;
-    fetchTrendingTags: () => void;
-    addUser: (user: User) => void;
-    setActiveUser: (username: string | null) => void;
-    updateActiveUser: (data: Account) => void;
-    deleteUser: (username: string) => void;
-    addReblog: (account: string, author: string, permlink: string) => void;
-    fetchDiscussion: (parent_author: string, parent_permlink: string) => void;
-    sortDiscussion: (order: SortOrder) => void;
-    resetDiscussion: () => void;
-    updateReply: (reply: Entry) => void;
-    addReply: (reply: Entry) => void;
-    deleteReply: (reply: Entry) => void;
-    toggleUIProp: (what: ToggleType) => void;
-    fetchNotifications: (since: string | null) => void;
-    fetchUnreadNotificationCount: () => void;
-    setNotificationsFilter: (filter: NotificationFilter | null) => void;
-    markNotifications: (id: string | null) => void;
 }
 
 interface State {
@@ -239,9 +184,10 @@ class EntryPage extends Component<Props, State> {
         const author = activeUser?.username!;
         const permlink = createReplyPermlink(entry.author);
         const options = makeCommentOptions(author, permlink);
+        const tags = entry.json_metadata.tags || ['ecency'];
 
         const jsonMeta = makeJsonMetadataReply(
-            entry.json_metadata.tags || ['ecency'],
+            tags,
             version
         );
 
@@ -257,13 +203,17 @@ class EntryPage extends Component<Props, State> {
             jsonMeta,
             options,
         ).then(() => {
-            return hiveApi.getPost(author, permlink); // get reply
-        }).then((reply) => {
-            return bridgeApi.normalizePost(reply); // normalize
-        }).then((nReply) => {
-            if (nReply) {
-                addReply(nReply); // add new reply to store
-            }
+            const nReply = tempEntry({
+                author: activeUser?.data!,
+                permlink,
+                parentAuthor,
+                parentPermlink,
+                title: '',
+                body: text,
+                tags
+            });
+
+            addReply(nReply); // add new reply to store
 
             return hiveApi.getPost(entry.author, entry.permlink) // get entry
         }).then((entry) => {
@@ -341,10 +291,10 @@ class EntryPage extends Component<Props, State> {
         return (
             <>
                 <Meta {...metaProps} />
-                <Theme {...this.props} />
+                <Theme global={this.props.global}/>
                 <Feedback/>
-                <MdHandler {...this.props} />
-                <NavBar {...this.props} />
+                <MdHandler history={this.props.history}/>
+                {NavBar({...this.props})}
 
                 <div className="app-content entry-page">
                     <div className="the-entry">
@@ -370,20 +320,25 @@ class EntryPage extends Component<Props, State> {
                             )}
                             <h1 className="entry-title">{entry.title}</h1>
                             <div className="entry-info">
-                                <ProfileLink {...this.props} username={entry.author}>
-                                    <div className="author-part">
+                                {ProfileLink({
+                                    ...this.props,
+                                    username: entry.author,
+                                    children: <div className="author-part">
                                         <div className="author-avatar">
-                                            <UserAvatar username={entry.author} size="medium"/>
+                                            {UserAvatar({...this.props, username: entry.author, size: "medium"})}
                                         </div>
                                         <div className="author">
                                             <span className="author-name">{entry.author}</span>
                                             <span className="author-reputation">{reputation}</span>
                                         </div>
                                     </div>
-                                </ProfileLink>
-                                <Tag {...this.props} tag={entry.category} type="link">
-                                    <a className="category">{entry.category}</a>
-                                </Tag>
+                                })}
+                                {Tag({
+                                    ...this.props,
+                                    tag: entry.category,
+                                    type: "link",
+                                    children: <a className="category">{entry.category}</a>
+                                })}
                                 <span className="separator"/>
                                 <span className="date" title={published.format("LLLL")}>{published.fromNow()}</span>
                             </div>
@@ -392,9 +347,14 @@ class EntryPage extends Component<Props, State> {
                         <div className="entry-footer">
                             <div className="entry-tags">
                                 {tags.map((t) => (
-                                    <Tag {...this.props} tag={t} key={t} type="link">
-                                        <div className="entry-tag">{t}</div>
-                                    </Tag>
+                                    <Fragment key={t}>
+                                        {Tag({
+                                            ...this.props,
+                                            tag: t,
+                                            type: "link",
+                                            children: <div className="entry-tag">{t}</div>
+                                        })}
+                                    </Fragment>
                                 ))}
                             </div>
                             <div className="entry-info">
@@ -404,13 +364,14 @@ class EntryPage extends Component<Props, State> {
                                         {published.fromNow()}
                                     </div>
                                     <span className="separator"/>
-                                    <ProfileLink {...this.props} username={entry.author}>
-                                        <div className="author">
+                                    {ProfileLink({
+                                        ...this.props,
+                                        username: entry.author,
+                                        children: <div className="author">
                                             <span className="author-name">{entry.author}</span>
                                             <span className="author-reputation">{reputation}</span>
                                         </div>
-                                    </ProfileLink>
-
+                                    })}
                                     {app && (
                                         <>
                                             <span className="separator"/>
@@ -421,24 +382,41 @@ class EntryPage extends Component<Props, State> {
                                 <div className="right-side">
                                     {ownEntry && (
                                         <>
-                                            {editable && (<EntryEditBtn entry={entry}/>)}
+                                            {editable && EntryEditBtn({entry})}
                                             <span className="separator"/>
-                                            <EntryDeleteBtn {...this.props} entry={entry} onSuccess={this.deleted}>
-                                                <a title={_t('g.delete')} className="delete-btn">{deleteForeverSvg}</a>
-                                            </EntryDeleteBtn>
+                                            {EntryDeleteBtn({
+                                                ...this.props,
+                                                entry,
+                                                onSuccess: this.deleted,
+                                                children: <a title={_t('g.delete')} className="delete-btn">{deleteForeverSvg}</a>
+                                            })}
                                         </>
                                     )}
                                     {!ownEntry && (
                                         <>
-                                            <EntryReblogBtn {...this.props} text={true} entry={entry}/>
+                                            {EntryReblogBtn({
+                                                ...this.props,
+                                                text: true,
+                                                entry
+                                            })}
                                         </>
                                     )}
                                 </div>
                             </div>
                             <div className="entry-controls">
-                                <EntryVoteBtn {...this.props} entry={entry} afterVote={this.afterVote}/>
-                                <EntryPayout {...this.props} entry={entry}/>
-                                <EntryVotes {...this.props} entry={entry}/>
+                                {EntryVoteBtn({
+                                    ...this.props,
+                                    entry,
+                                    afterVote: this.afterVote
+                                })}
+                                {EntryPayout({
+                                    ...this.props,
+                                    entry
+                                })}
+                                {EntryVotes({
+                                    ...this.props,
+                                    entry
+                                })}
                                 <div className="sub-menu">
                                     <a className="sub-menu-item"
                                        onClick={() => {
@@ -461,14 +439,18 @@ class EntryPage extends Component<Props, State> {
                                 </div>
                             </div>
                         </div>
-                        <Comment {...this.props}
-                                 defText={ls.get(`reply_draft_${entry.author}_${entry.permlink}`) || ''}
-                                 submitText={_t('g.reply')}
-                                 onChange={this.replyTextChanged}
-                                 onSubmit={this.replySubmitted}
-                                 inProgress={replying}
-                        />
-                        <Discussion {...this.props} parent={entry}/>
+                        {Comment({
+                            ...this.props,
+                            defText: (ls.get(`reply_draft_${entry.author}_${entry.permlink}`) || ''),
+                            submitText: _t('g.reply'),
+                            onChange: this.replyTextChanged,
+                            onSubmit: this.replySubmitted,
+                            inProgress: replying
+                        })}
+                        {Discussion({
+                            ...this.props,
+                            parent: entry
+                        })}
                     </div>
                 </div>
             </>
@@ -476,45 +458,5 @@ class EntryPage extends Component<Props, State> {
     }
 }
 
-const mapStateToProps = (state: AppState) => ({
-    global: state.global,
-    trendingTags: state.trendingTags,
-    dynamicProps: state.dynamicProps,
-    entries: state.entries,
-    users: state.users,
-    activeUser: state.activeUser,
-    reblogs: state.reblogs,
-    discussion: state.discussion,
-    ui: state.ui,
-    notifications: state.notifications
-});
 
-const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
-    bindActionCreators(
-        {
-            toggleTheme,
-            addAccount,
-            addEntry,
-            updateEntry,
-            fetchTrendingTags,
-            addUser,
-            setActiveUser,
-            updateActiveUser,
-            deleteUser,
-            addReblog,
-            fetchDiscussion,
-            resetDiscussion,
-            sortDiscussion,
-            updateReply,
-            addReply,
-            deleteReply,
-            toggleUIProp,
-            fetchNotifications,
-            fetchUnreadNotificationCount,
-            setNotificationsFilter,
-            markNotifications
-        },
-        dispatch
-    );
-
-export default connect(mapStateToProps, mapDispatchToProps)(EntryPage);
+export default connect(pageMapStateToProps, pageMapDispatchToProps)(EntryPage);

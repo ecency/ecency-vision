@@ -3,7 +3,7 @@ import { History } from "history";
 
 import { menuDownSvg } from "../../img/svg";
 
-interface MenuItem {
+export interface MenuItem {
   label: string;
   href?: string;
   onClick?: () => void;

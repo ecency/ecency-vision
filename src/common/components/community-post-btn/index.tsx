@@ -14,7 +14,7 @@ interface Props {
     buttonProps?: ButtonProps;
 }
 
-export default class CommunityPostBtn extends Component<Props> {
+export class CommunityPostBtn extends Component<Props> {
     clicked = () => {
         const {community, history} = this.props;
         history.push(`/submit?com=${community.name}`);
@@ -25,4 +25,14 @@ export default class CommunityPostBtn extends Component<Props> {
 
         return <Button onClick={this.clicked} {...buttonProps}>{_t("community.post")}</Button>
     }
+}
+
+export default (p: Props) => {
+    const props: Props = {
+        history: p.history,
+        community: p.community,
+        buttonProps: p.buttonProps
+    }
+
+    return <CommunityPostBtn {...props} />
 }
