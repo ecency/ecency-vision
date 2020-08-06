@@ -120,8 +120,6 @@ export class List extends Component<ListProps, ListState> {
             moreData = [];
         }
 
-        console.log(moreData);
-
         const newData = [...data, ...moreData.filter((a) => !data.find((b) => b.name === a.name))];
 
         this.stateSet({

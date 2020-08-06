@@ -2,6 +2,7 @@
 
 exports[`1- default state 1`] = `
 Object {
+  "canUseWebp": false,
   "currency": "usd",
   "currencyRate": 1,
   "currencySymbol": "$",
@@ -16,6 +17,7 @@ Object {
 
 exports[`2- location change. should change filter and tag 1`] = `
 Object {
+  "canUseWebp": false,
   "currency": "usd",
   "currencyRate": 1,
   "currencySymbol": "$",
@@ -30,6 +32,7 @@ Object {
 
 exports[`3- theme change 1`] = `
 Object {
+  "canUseWebp": false,
   "currency": "usd",
   "currencyRate": 1,
   "currencySymbol": "$",
@@ -44,6 +47,7 @@ Object {
 
 exports[`4- hide intro 1`] = `
 Object {
+  "canUseWebp": false,
   "currency": "usd",
   "currencyRate": 1,
   "currencySymbol": "$",
@@ -58,6 +62,7 @@ Object {
 
 exports[`5- list style change 1`] = `
 Object {
+  "canUseWebp": false,
   "currency": "usd",
   "currencyRate": 1,
   "currencySymbol": "$",
