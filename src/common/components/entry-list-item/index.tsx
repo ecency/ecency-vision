@@ -101,8 +101,9 @@ export default class EntryListItem extends Component<Props> {
     };
 
     render() {
-        const {entry, community, asAuthor, promoted} = this.props;
-        const img: string = catchPostImage(entry, 600, 500) || noImage;
+
+        const {entry, community, asAuthor, promoted, global} = this.props;
+        const img: string = (global.canUseWebp ? catchPostImage(entry, 600, 500, 'webp') : catchPostImage(entry, 600, 500)) || noImage;
         const summary: string = postBodySummary(entry, 200);
 
         const app = appName(entry?.json_metadata?.app);
