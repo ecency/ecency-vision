@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image} from "react-img-webp";
+import {Context} from "react-img-webp";
 
 import {Global} from '../../store/global/types';
 
@@ -32,7 +32,8 @@ export default (props: Props) => {
         <div className="cloud-1"/>
         <div className="cloud-2"/>
         <div className="cloud-3"/>
-
-        <Image alt="Friends" className="friends" src={friends} webP={friendsWebp} />
+        <Context.WebPController accept={request.headers.Accept}>
+            <Context.Image alt="Friends" className="friends" src={friends} webP={friendsWebp} />
+        </Context.WebPController>
     </div>;
 };
