@@ -130,7 +130,7 @@ export class LeaderBoard extends Component <Props, State> {
                                     {r.count}
                                 </div>
                                 <div className="points">
-                                    {r.points !== '0.000' && `${r.points} ESTM`}
+                                    {r.points !== '0.000' && `${r.points} POINTS`}
                                 </div>
                             </div>;
                         })}
