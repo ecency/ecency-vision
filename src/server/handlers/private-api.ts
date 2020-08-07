@@ -171,3 +171,12 @@ export const usrActivity = async (req: express.Request, res: express.Response) =
 
     pipe(apiRequest(`usr-activity`, "POST", {}, payload), res);
 };
+
+export const gallery = async (req: express.Request, res: express.Response) => {
+    const username = validateCode(req, res);
+    if (!username) return;
+
+    pipe(apiRequest(`images/${username}`, "GET"), res);
+}
+
+

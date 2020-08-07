@@ -106,3 +106,17 @@ export const markNotifications = (user: User, id: string | null = null) => {
 
     return axios.post(`/api/notifications/mark`, data);
 };
+
+
+export interface GalleryItem {
+    created: string
+    timestamp: number
+    url: string
+    _id: string
+}
+
+export const getGallery = (user: User): Promise<GalleryItem[]> => {
+    const data: { code: string; } = {code: user.accessToken};
+
+    return axios.post(`/api/gallery`, data).then(resp => resp.data);
+}

@@ -46,6 +46,11 @@ export default class UserNav extends Component<Props> {
         toggleUIProp('login');
     };
 
+    toggleGallery = () => {
+        const {toggleUIProp} = this.props;
+        toggleUIProp('gallery');
+    }
+
     toggleNotifications = () => {
         const {toggleUIProp} = this.props;
         toggleUIProp('notifications');
@@ -72,6 +77,10 @@ export default class UserNav extends Component<Props> {
                 {
                     label: _t('user-nav.profile'),
                     href: `/@${activeUser.username}`,
+                },
+                {
+                    label: _t('user-nav.gallery'),
+                    onClick: this.toggleGallery,
                 },
                 {
                     label: _t('g.login-as'),

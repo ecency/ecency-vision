@@ -24,6 +24,7 @@ import Search from "../search";
 import Login from "../login";
 import UserNav from "../user-nav";
 import SignUp from "../sign-up";
+import Gallery from "../gallery";
 import NotificationHandler from "../notification-handler"
 
 import {_t} from "../../i18n";
@@ -138,6 +139,7 @@ export class NavBar extends Component<Props> {
                 </div>
                 {ui.login && <Login {...this.props} />}
                 {ui.signUp && <SignUp {...this.props} />}
+                {activeUser && ui.gallery && <Gallery {...this.props} />}
                 <NotificationHandler {...this.props} />
             </div>
         );
