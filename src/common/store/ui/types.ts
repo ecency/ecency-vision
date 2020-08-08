@@ -1,15 +1,13 @@
 export interface UI {
     login: boolean;
     signUp: boolean;
-    notifications: boolean,
-    gallery: boolean
+    notifications: boolean
 }
 
 export enum ActionTypes {
     TOGGLE_LOGIN = "@ui/TOGGLE-LOGIN",
     TOGGLE_SIGN_UP = "@users/TOGGLE_SIGN_UP",
-    TOGGLE_NOTIFICATIONS = "@users/TOGGLE_NOTIFICATIONS",
-    TOGGLE_GALLERY = "@ui/TOGGLE_GALLERY",
+    TOGGLE_NOTIFICATIONS = "@users/TOGGLE_NOTIFICATIONS"
 }
 
 export interface ToggleLoginAct {
@@ -24,11 +22,7 @@ export interface ToggleNotificationsAct {
     type: ActionTypes.TOGGLE_NOTIFICATIONS;
 }
 
-export interface ToggleGalleryAct {
-    type: ActionTypes.TOGGLE_GALLERY;
-}
-
-export type Actions = ToggleLoginAct | ToggleSignUpAct | ToggleNotificationsAct | ToggleGalleryAct;
+export type Actions = ToggleLoginAct | ToggleSignUpAct | ToggleNotificationsAct;
 
 
-export type ToggleType = "login" | "signUp" | "notifications" | "gallery"
+export type ToggleType = "login" | "signUp" | "notifications"

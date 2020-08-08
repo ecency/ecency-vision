@@ -5,7 +5,6 @@ import {
     ToggleLoginAct,
     ToggleSignUpAct,
     ToggleNotificationsAct,
-    ToggleGalleryAct,
     ActionTypes,
     ToggleType
 } from "./types";
@@ -13,8 +12,7 @@ import {
 export const initialState: UI = {
     login: false,
     signUp: false,
-    notifications: false,
-    gallery: false
+    notifications: false
 };
 
 export default (state: UI = initialState, action: Actions): UI => {
@@ -28,9 +26,6 @@ export default (state: UI = initialState, action: Actions): UI => {
         case ActionTypes.TOGGLE_NOTIFICATIONS:
             const {notifications} = state;
             return {...state, notifications: !notifications}
-        case ActionTypes.TOGGLE_GALLERY:
-            const {gallery} = state;
-            return {...state, gallery: !gallery}
         default:
             return state;
     }
@@ -48,9 +43,6 @@ export const toggleUIProp = (what: ToggleType) => (dispatch: Dispatch) => {
             break;
         case "notifications":
             dispatch(toggleNotificationsAct());
-            break;
-        case "gallery":
-            dispatch(toggleGalleryAct());
             break;
         default:
             break;
@@ -73,11 +65,5 @@ export const toggleSignUpAct = (): ToggleSignUpAct => {
 export const toggleNotificationsAct = (): ToggleNotificationsAct => {
     return {
         type: ActionTypes.TOGGLE_NOTIFICATIONS,
-    };
-};
-
-export const toggleGalleryAct = (): ToggleGalleryAct => {
-    return {
-        type: ActionTypes.TOGGLE_GALLERY,
     };
 };
