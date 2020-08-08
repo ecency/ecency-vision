@@ -1,7 +1,5 @@
 {
   "g": {
-    "ok": "OK",
-    "are-you-sure": "Are you sure?",
     "edit": "Edit",
     "search": "Search",
     "downloads": "Downloads",
@@ -12,7 +10,8 @@
     "cancel": "Cancel",
     "reply": "Reply",
     "update": "Update",
-    "or": "OR"
+    "or": "OR",
+    "server-error": "Process could not be completed due to server error"
   },
   "confirm": {
     "title": "Are you sure?",

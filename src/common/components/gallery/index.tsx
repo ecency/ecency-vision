@@ -13,7 +13,7 @@ import Tooltip from "../tooltip";
 
 import {getImages, deleteImage, GalleryItem} from "../../api/private";
 
-import {success} from "../feedback";
+import {success, error} from "../feedback";
 
 import {_t} from "../../i18n";
 
@@ -50,7 +50,10 @@ export class Gallery extends Component<Props, State> {
         this.setState({loading: true});
         getImages(user).then(items => {
             this.setState({items: this.sort(items), loading: false});
-        });
+        }).catch(() => {
+            this.setState({loading: false});
+            error(_t('g.server-error'));
+        })
     }
 
     sort = (items: GalleryItem[]) =>
@@ -72,7 +75,9 @@ export class Gallery extends Component<Props, State> {
             const {items} = this.state;
             const nItems = [...items].filter(x => x._id !== item._id);
             this.setState({items: this.sort(nItems)});
-        });
+        }).catch(() => {
+            error(_t('g.server-error'));
+        })
     }
 
     render() {
@@ -93,18 +98,12 @@ export class Gallery extends Component<Props, State> {
                                          this.itemClicked(item);
                                      }}/>
                                 <div className="item-controls">
-                                    <PopoverConfirm
-                                        titleText={_t("g.are-you-sure")}
-                                        okText={_t("g.ok")}
-                                        cancelText={_t("g.cancel")}
-                                        onConfirm={() => {
-                                            this.delete(item);
-                                        }}>
-                                           <span className="btn-delete">
-                                               <Tooltip content={_t("g.delete")}>
-                                                   {deleteForeverSvg}
-                                               </Tooltip>
-                                           </span>
+                                    <PopoverConfirm onConfirm={() => {
+                                        this.delete(item);
+                                    }}>
+                                        <span className="btn-delete">
+                                            <Tooltip content={_t("g.delete")}>{deleteForeverSvg}</Tooltip>
+                                        </span>
                                     </PopoverConfirm>
                                 </div>
                             </div>
