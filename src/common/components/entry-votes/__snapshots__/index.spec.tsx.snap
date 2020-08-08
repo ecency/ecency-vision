@@ -161,10 +161,9 @@ exports[`(3) Render of detail with votes 1`] = `
                 href="/@user1"
                 onClick={[Function]}
               >
+                 
                 <span
                   className="user-avatar small"
-                  onClick={[Function]}
-                  role="none"
                   style={
                     Object {
                       "backgroundImage": "url(https://images.ecency.com/u/user1/avatar/small)",
@@ -207,10 +206,9 @@ exports[`(3) Render of detail with votes 1`] = `
                 href="/@user2"
                 onClick={[Function]}
               >
+                 
                 <span
                   className="user-avatar small"
-                  onClick={[Function]}
-                  role="none"
                   style={
                     Object {
                       "backgroundImage": "url(https://images.ecency.com/u/user2/avatar/small)",
