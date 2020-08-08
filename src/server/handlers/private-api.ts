@@ -195,7 +195,7 @@ export const imagesAdd = async (req: express.Request, res: express.Response) => 
 
     const {url} = req.body;
 
-    const data: { username: string, url: string } = {username, url};
+    const data = {username, image_url: url};
 
     pipe(apiRequest(`image`, "POST", {}, data), res);
 }

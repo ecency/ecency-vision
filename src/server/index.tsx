@@ -79,7 +79,7 @@ server
     .post("^/api/usr-activity$", usrActivity)
     .post("^/api/images$", images)
     .post("^/api/images-delete$", imagesDelete)
-    .post("^/api/images-add", imagesAdd)
+    .post("^/api/images-add$", imagesAdd)
     .post("^/api/account-create$", createAccount)
     .get("^/api/popular-users", popularUsers)
     .get("*", fallbackHandler);

@@ -10,6 +10,8 @@ import EmojiPicker from "../emoji-picker";
 
 import {uploadImage} from "../../api/ecency";
 
+import {addImage} from "../../api/private";
+
 import {_t} from "../../i18n";
 
 import {insertOrReplace, replace} from "../../util/input-util";
@@ -211,6 +213,8 @@ export class EditorToolbar extends Component<Props> {
         } catch (e) {
             return;
         }
+
+        addImage(user, imageUrl).then();
 
         const imageName = imageUrl.split('/').pop();
         const imgTag = `![${imageName}](${imageUrl})\n\n`;
