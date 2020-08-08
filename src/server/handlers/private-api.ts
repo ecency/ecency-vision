@@ -12,7 +12,7 @@ import {getTokenUrl, decodeToken} from "../../common/helper/hive-signer";
 
 import {apiRequest, baseApiRequest} from "../helper";
 
-const validateCode = (req: express.Request, res: express.Response): string | boolean => {
+const validateCode = (req: express.Request, res: express.Response): string | false => {
     const {code} = req.body;
 
     if (!code) {
@@ -172,11 +172,31 @@ export const usrActivity = async (req: express.Request, res: express.Response) =
     pipe(apiRequest(`usr-activity`, "POST", {}, payload), res);
 };
 
-export const gallery = async (req: express.Request, res: express.Response) => {
+export const images = async (req: express.Request, res: express.Response) => {
     const username = validateCode(req, res);
     if (!username) return;
 
     pipe(apiRequest(`images/${username}`, "GET"), res);
 }
 
+export const imagesDelete = async (req: express.Request, res: express.Response) => {
+    const username = validateCode(req, res);
+    if (!username) return;
+
+    const {id} = req.body;
+
+    pipe(apiRequest(`images/${username}/${id}`, "DELETE"), res);
+}
+
+
+export const imagesAdd = async (req: express.Request, res: express.Response) => {
+    const username = validateCode(req, res);
+    if (!username) return;
+
+    const {url} = req.body;
+
+    const data: { username: string, url: string } = {username, url};
+
+    pipe(apiRequest(`image`, "POST", {}, data), res);
+}
 

@@ -115,8 +115,20 @@ export interface GalleryItem {
     _id: string
 }
 
-export const getGallery = (user: User): Promise<GalleryItem[]> => {
+export const getImages = (user: User): Promise<GalleryItem[]> => {
     const data: { code: string; } = {code: user.accessToken};
 
-    return axios.post(`/api/gallery`, data).then(resp => resp.data);
+    return axios.post(`/api/images`, data).then(resp => resp.data);
+}
+
+export const deleteImage = (user: User, imageID: string): Promise<any> => {
+    const data = {code: user.accessToken, id: imageID};
+
+    return axios.post(`/api/images-delete`, data).then(resp => resp.data);
+}
+
+export const addImage = (user: User, url: string): Promise<any> => {
+    const data = {code: user.accessToken, url: url};
+
+    return axios.post(`/api/images-add`, data).then(resp => resp.data);
 }

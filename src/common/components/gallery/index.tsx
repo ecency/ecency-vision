@@ -11,7 +11,7 @@ import LinearProgress from "../linear-progress";
 import PopoverConfirm from "../popover-confirm";
 import Tooltip from "../tooltip";
 
-import {getGallery, GalleryItem} from "../../api/private";
+import {getImages, deleteImage, GalleryItem} from "../../api/private";
 
 import {success} from "../feedback";
 
@@ -48,7 +48,7 @@ export class Gallery extends Component<Props, State> {
         const user = users.find((x) => x.username === activeUser?.username)!;
 
         this.setState({loading: true});
-        getGallery(user).then(items => {
+        getImages(user).then(items => {
             this.setState({items: this.sort(items), loading: false});
         });
     }
@@ -65,7 +65,14 @@ export class Gallery extends Component<Props, State> {
     }
 
     delete = (item: GalleryItem) => {
+        const {users, activeUser} = this.props;
+        const user = users.find((x) => x.username === activeUser?.username)!;
 
+        deleteImage(user, item._id).then(() => {
+            const {items} = this.state;
+            const nItems = [...items].filter(x => x._id !== item._id);
+            this.setState({items: this.sort(nItems)});
+        });
     }
 
     render() {
