@@ -1,12 +1,11 @@
 import React, {Component} from "react";
 
-import isEqual from "react-fast-compare";
-
 import {ActiveUser} from "../../store/active-user/types";
 import {User} from "../../store/users/types";
 
 import Tooltip from "../tooltip";
 import EmojiPicker from "../emoji-picker";
+import Gallery from "../gallery";
 
 import {uploadImage} from "../../api/ecency";
 
@@ -39,11 +38,20 @@ interface Props {
     sm?: boolean
 }
 
+interface State {
+    gallery: boolean
+}
+
 export class EditorToolbar extends Component<Props> {
+    state: State = {
+        gallery: false,
+    }
+
     holder = React.createRef<HTMLDivElement>();
 
-    shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
-        return !isEqual(this.props.activeUser, nextProps.activeUser);
+    toggleGallery = () => {
+        const {gallery} = this.state;
+        this.setState({gallery: !gallery});
     }
 
     componentDidMount() {
@@ -228,6 +236,7 @@ export class EditorToolbar extends Component<Props> {
     };
 
     render() {
+        const {gallery} = this.state;
         const {sm, activeUser} = this.props;
 
         return (
@@ -315,17 +324,15 @@ export class EditorToolbar extends Component<Props> {
                                     >
                                         {_t("editor-toolbar.upload")}
                                     </div>
-                                    {/*
-                                        <div
-                                            className="sub-tool-menu-item"
-                                            onClick={(e: React.MouseEvent<HTMLElement>) => {
-                                                e.stopPropagation();
-                                                // this.setState({ galleryModalVisible: true });
-                                            }}
-                                        >
-                                            {_t("editor-toolbar.gallery")}
-                                        </div>
-                                    */}
+                                    <div
+                                        className="sub-tool-menu-item"
+                                        onClick={(e: React.MouseEvent<HTMLElement>) => {
+                                            e.stopPropagation();
+                                            this.toggleGallery();
+                                        }}
+                                    >
+                                        {_t("editor-toolbar.gallery")}
+                                    </div>
                                 </div>
                             )}
                         </div>
@@ -364,9 +371,13 @@ export class EditorToolbar extends Component<Props> {
                     multiple={true}
                     style={{display: 'none'}}
                 />
+                {(gallery && activeUser) && <Gallery {...this.props} onHide={this.toggleGallery} onPick={(url: string) => {
+                    this.insertText(url);
+                    this.toggleGallery();
+                }}/>}
             </>
         );
-    }
+    };
 }
 
 export default (props: Props) => {

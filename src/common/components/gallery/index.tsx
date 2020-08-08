@@ -2,7 +2,6 @@ import React, {Component} from "react";
 
 import {Modal} from "react-bootstrap";
 
-import {Global} from "../../store/global/types";
 import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
 
@@ -21,10 +20,10 @@ import {deleteForeverSvg} from "../../img/svg";
 import clipboard from "../../util/clipboard";
 
 interface Props {
-    global: Global;
     users: User[];
     activeUser: ActiveUser | null;
     onHide: () => void;
+    onPick?: (url: string) => void;
 }
 
 interface State {
@@ -61,6 +60,11 @@ export class Gallery extends Component<Props, State> {
         });
 
     itemClicked = (item: GalleryItem) => {
+        const {onPick} = this.props;
+        if(onPick){
+            onPick(item.url);
+            return;
+        }
 
         clipboard(item.url);
         success(_t('gallery.copied'));
@@ -116,7 +120,6 @@ export class Gallery extends Component<Props, State> {
 
 
 export default class GalleryDialog extends Component<Props> {
-
     hide = () => {
         const {onHide} = this.props;
         onHide();
