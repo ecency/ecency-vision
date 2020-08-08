@@ -61,7 +61,7 @@ export class Gallery extends Component<Props, State> {
 
     itemClicked = (item: GalleryItem) => {
         const {onPick} = this.props;
-        if(onPick){
+        if (onPick) {
             onPick(item.url);
             return;
         }
@@ -112,6 +112,11 @@ export class Gallery extends Component<Props, State> {
                             </div>
                         ))}
                     </div>
+                </div>
+            )}
+            {(!loading && items.length === 0) && (
+                <div className="gallery-list">
+                    {_t('gallery.empty-list')}
                 </div>
             )}
         </div>
