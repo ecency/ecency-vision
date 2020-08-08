@@ -139,7 +139,6 @@ export class NavBar extends Component<Props> {
                 </div>
                 {ui.login && <Login {...this.props} />}
                 {ui.signUp && <SignUp {...this.props} />}
-                {activeUser && ui.gallery && <Gallery {...this.props} />}
                 <NotificationHandler {...this.props} />
             </div>
         );

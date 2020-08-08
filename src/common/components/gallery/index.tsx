@@ -5,7 +5,6 @@ import {Modal} from "react-bootstrap";
 import {Global} from "../../store/global/types";
 import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
-import {ToggleType} from "../../store/ui/types";
 
 import LinearProgress from "../linear-progress";
 import PopoverConfirm from "../popover-confirm";
@@ -25,7 +24,7 @@ interface Props {
     global: Global;
     users: User[];
     activeUser: ActiveUser | null;
-    toggleUIProp: (what: ToggleType) => void;
+    onHide: () => void;
 }
 
 interface State {
@@ -119,8 +118,8 @@ export class Gallery extends Component<Props, State> {
 export default class GalleryDialog extends Component<Props> {
 
     hide = () => {
-        const {toggleUIProp} = this.props;
-        toggleUIProp('gallery');
+        const {onHide} = this.props;
+        onHide();
     }
 
     render() {
