@@ -42,15 +42,12 @@ exports[`(1) Full render 1`] = `
               >
                 <span
                   className="user-avatar small"
-                  onClick={[Function]}
-                  role="none"
                   style={
                     Object {
                       "backgroundImage": "url(https://images.ecency.com/u/user2/avatar/small)",
                     }
                   }
                 />
-                 
                 user2
               </a>
             </td>
@@ -79,15 +76,12 @@ exports[`(1) Full render 1`] = `
               >
                 <span
                   className="user-avatar small"
-                  onClick={[Function]}
-                  role="none"
                   style={
                     Object {
                       "backgroundImage": "url(https://images.ecency.com/u/user3/avatar/small)",
                     }
                   }
                 />
-                 
                 user3
               </a>
             </td>
@@ -116,15 +110,12 @@ exports[`(1) Full render 1`] = `
               >
                 <span
                   className="user-avatar small"
-                  onClick={[Function]}
-                  role="none"
                   style={
                     Object {
                       "backgroundImage": "url(https://images.ecency.com/u/user4/avatar/small)",
                     }
                   }
                 />
-                 
                 user4
               </a>
             </td>
@@ -153,15 +144,12 @@ exports[`(1) Full render 1`] = `
               >
                 <span
                   className="user-avatar small"
-                  onClick={[Function]}
-                  role="none"
                   style={
                     Object {
                       "backgroundImage": "url(https://images.ecency.com/u/user1/avatar/small)",
                     }
                   }
                 />
-                 
                 user1
               </a>
             </td>
@@ -190,15 +178,12 @@ exports[`(1) Full render 1`] = `
               >
                 <span
                   className="user-avatar small"
-                  onClick={[Function]}
-                  role="none"
                   style={
                     Object {
                       "backgroundImage": "url(https://images.ecency.com/u/user5/avatar/small)",
                     }
                   }
                 />
-                 
                 user5
               </a>
             </td>
