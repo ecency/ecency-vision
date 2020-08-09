@@ -75,7 +75,7 @@ export const comment = (
     const params = {
         parent_author: parentAuthor,
         parent_permlink: parentPermlink,
-        username,
+        author: username,
         permlink,
         title,
         body,
