@@ -15,6 +15,8 @@ import {_t} from "../../i18n";
 
 import {insertOrReplace, replace} from "../../util/input-util";
 
+import {getAccessToken} from "../../helper/user-token";
+
 import _c from "../../util/fix-class-names";
 
 import {
@@ -207,7 +209,8 @@ export class EditorToolbar extends Component<Props> {
 
     upload = async (file: File) => {
         const {activeUser, users} = this.props;
-        const user = users.find((x) => x.username === activeUser?.username)!;
+
+        const username = activeUser?.username!;
 
         const tempImgTag = `![Uploading ${file.name} #${Math.floor(
             Math.random() * 99
@@ -216,13 +219,13 @@ export class EditorToolbar extends Component<Props> {
 
         let imageUrl: string;
         try {
-            const resp = await uploadImage(file, user.accessToken)
+            const resp = await uploadImage(file, getAccessToken(username))
             imageUrl = resp.url;
         } catch (e) {
             return;
         }
 
-        addImage(user, imageUrl).then();
+        addImage(username, imageUrl).then();
 
         const imageName = imageUrl.split('/').pop();
         const imgTag = `![${imageName}](${imageUrl})\n\n`;

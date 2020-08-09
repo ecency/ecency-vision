@@ -129,7 +129,7 @@ export class Login extends Component<LoginProps> {
                                                     // update active user
 
                                                     updateActiveUser(r);
-                                                    return usrActivity(user, 20);
+                                                    return usrActivity(user.username, 20);
                                                 });
 
                                                 this.hide();

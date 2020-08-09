@@ -1,7 +1,10 @@
 import axios from "axios";
 
 import {User} from "../store/users/types";
+
 import {ApiNotification, NotificationFilter} from "../store/notifications/types";
+
+import {getAccessToken} from "../helper/user-token";
 
 export interface ReceivedVestingShare {
     delegatee: string;
@@ -61,13 +64,13 @@ export const signUp = (username: string, email: string, referral: string): Promi
         });
 
 
-export const usrActivity = (user: User, ty: number, bl: string | number = '', tx: string | number = '') => {
+export const usrActivity = (username: string, ty: number, bl: string | number = '', tx: string | number = '') => {
     const params: {
         code: string;
         ty: number;
         bl?: string | number;
         tx?: string | number;
-    } = {code: user.accessToken, ty};
+    } = {code: getAccessToken(username), ty};
 
     if (bl) params.bl = bl;
     if (tx) params.tx = tx;
@@ -75,8 +78,9 @@ export const usrActivity = (user: User, ty: number, bl: string | number = '', tx
     return axios.post(`/api/usr-activity`, params);
 };
 
-export const getNotifications = (user: User, filter: NotificationFilter | null, since: string | null = null): Promise<ApiNotification[]> => {
-    const data: { code: string; filter?: string, since?: string } = {code: user.accessToken};
+export const getNotifications = (username: string, filter: NotificationFilter | null, since: string | null = null): Promise<ApiNotification[]> => {
+
+    const data: { code: string; filter?: string, since?: string } = {code: getAccessToken(username)};
 
     if (filter) {
         data.filter = filter;
@@ -89,8 +93,8 @@ export const getNotifications = (user: User, filter: NotificationFilter | null, 
     return axios.post(`/api/notifications`, data).then(resp => resp.data);
 };
 
-export const getUnreadNotificationCount = (user: User): Promise<number> => {
-    const data: { code: string; } = {code: user.accessToken};
+export const getUnreadNotificationCount = (username: string): Promise<number> => {
+    const data = {code: getAccessToken(username)};
 
     return axios
         .post(`/api/notifications/unread`, data)
@@ -98,8 +102,8 @@ export const getUnreadNotificationCount = (user: User): Promise<number> => {
 }
 
 
-export const markNotifications = (user: User, id: string | null = null) => {
-    const data: { code: string; id?: string } = {code: user.accessToken}
+export const markNotifications = (username: string, id: string | null = null) => {
+    const data: { code: string; id?: string } = {code: getAccessToken(username)}
     if (id) {
         data.id = id;
     }
@@ -115,20 +119,20 @@ export interface GalleryItem {
     _id: string
 }
 
-export const getImages = (user: User): Promise<GalleryItem[]> => {
-    const data: { code: string; } = {code: user.accessToken};
+export const getImages = (username: string): Promise<GalleryItem[]> => {
+    const data = {code: getAccessToken(username)};
 
     return axios.post(`/api/images`, data).then(resp => resp.data);
 }
 
-export const deleteImage = (user: User, imageID: string): Promise<any> => {
-    const data = {code: user.accessToken, id: imageID};
+export const deleteImage = (username: string, imageID: string): Promise<any> => {
+    const data = {code: getAccessToken(username), id: imageID};
 
     return axios.post(`/api/images-delete`, data).then(resp => resp.data);
 }
 
-export const addImage = (user: User, url: string): Promise<any> => {
-    const data = {code: user.accessToken, url: url};
+export const addImage = (username: string, url: string): Promise<any> => {
+    const data = {code: getAccessToken(username), url: url};
 
     return axios.post(`/api/images-add`, data).then(resp => resp.data);
 }

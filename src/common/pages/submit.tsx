@@ -256,14 +256,12 @@ class SubmitPage extends Component<Props, State> {
     };
 
     publish = async (): Promise<void> => {
-        const {activeUser, users, history, addEntry} = this.props;
+        const {activeUser, history, addEntry} = this.props;
         const {title, tags, body, reward} = this.state;
-
-        const user = users.find((x) => x.username === activeUser?.username)!;
 
         this.stateSet({inProgress: true});
 
-        const {username: author} = user;
+        const author = activeUser?.username!;
         let permlink = createPermlink(title);
 
         // If permlink has already used create it again with random suffix
@@ -284,7 +282,7 @@ class SubmitPage extends Component<Props, State> {
         const options = makeCommentOptions(author, permlink, reward);
 
         this.stateSet({inProgress: true});
-        comment(user, "", parentPermlink, permlink, title, body, jsonMeta, options)
+        comment(author, "", parentPermlink, permlink, title, body, jsonMeta, options)
             .then(() => hiveApi.getPost(author, permlink))
             .then((post: any) => bridgeApi.normalizePost(post))
             .then((entry: Entry | null) => {
@@ -306,10 +304,8 @@ class SubmitPage extends Component<Props, State> {
     };
 
     update = async (): Promise<void> => {
-        const {activeUser, users, updateEntry, history} = this.props;
+        const {activeUser, updateEntry, history} = this.props;
         const {title, tags, body, editingEntry} = this.state;
-
-        const user = users.find((x) => x.username === activeUser?.username)!;
 
         if (!editingEntry) {
             return;
@@ -327,7 +323,7 @@ class SubmitPage extends Component<Props, State> {
         const jsonMeta = Object.assign({}, json_metadata, meta, {tags});
 
         this.stateSet({inProgress: true});
-        comment(user, "", category, permlink, title, newBody, jsonMeta, null)
+        comment(activeUser?.username!, "", category, permlink, title, newBody, jsonMeta, null)
             .then(() => hiveApi.getPost(author, permlink))
             .then((post: any) => bridgeApi.normalizePost(post))
             .then((entry: Entry | null) => {

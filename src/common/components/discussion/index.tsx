@@ -151,9 +151,7 @@ export class Item extends Component<ItemProps, ItemState> {
 
     submitReply = (text: string) => {
         const {entry} = this.props;
-        const {activeUser, users, addReply, updateReply} = this.props;
-
-        const user = users.find((x) => x.username === activeUser?.username)!;
+        const {activeUser, addReply, updateReply} = this.props;
 
         const {author: parentAuthor, permlink: parentPermlink} = entry;
         const author = activeUser?.username!;
@@ -168,7 +166,7 @@ export class Item extends Component<ItemProps, ItemState> {
         this.stateSet({inProgress: true});
 
         comment(
-            user,
+            author,
             parentAuthor,
             parentPermlink,
             permlink,
@@ -204,9 +202,7 @@ export class Item extends Component<ItemProps, ItemState> {
 
     updateReply = (text: string) => {
         const {entry} = this.props;
-        const {activeUser, users, updateReply} = this.props;
-
-        const user = users.find((x) => x.username === activeUser?.username)!;
+        const {activeUser, updateReply} = this.props;
 
         const {author, permlink, parent_author: parentAuthor, parent_permlink: parentPermlink} = entry;
         const jsonMeta = makeJsonMetadataReply(
@@ -226,7 +222,7 @@ export class Item extends Component<ItemProps, ItemState> {
         this.stateSet({inProgress: true});
 
         comment(
-            user,
+            activeUser?.username!,
             parentAuthor!,
             parentPermlink!,
             permlink,
@@ -270,7 +266,7 @@ export class Item extends Component<ItemProps, ItemState> {
             <div className={`discussion-item depth-${entry.depth}`}>
                 <div className="item-inner">
                     <div className="item-figure">
-                        {ProfileLink({...this.props, username: entry.author, children: <a>{UserAvatar({...this.props, username:entry.author, size:"medium" })}</a>})}
+                        {ProfileLink({...this.props, username: entry.author, children: <a>{UserAvatar({...this.props, username: entry.author, size: "medium"})}</a>})}
                     </div>
                     <div className="item-content">
                         <div className="item-header">

@@ -2,7 +2,6 @@ import React, {Component} from "react";
 
 import {Modal} from "react-bootstrap";
 
-import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
 
 import LinearProgress from "../linear-progress";
@@ -20,7 +19,6 @@ import {deleteForeverSvg} from "../../img/svg";
 import clipboard from "../../util/clipboard";
 
 interface Props {
-    users: User[];
     activeUser: ActiveUser | null;
     onHide: () => void;
     onPick?: (url: string) => void;
@@ -42,11 +40,10 @@ export class Gallery extends Component<Props, State> {
     }
 
     fetch = () => {
-        const {users, activeUser} = this.props;
-        const user = users.find((x) => x.username === activeUser?.username)!;
+        const {activeUser} = this.props;
 
         this.setState({loading: true});
-        getImages(user).then(items => {
+        getImages(activeUser?.username!).then(items => {
             console.log(JSON.stringify(items))
             this.setState({items: this.sort(items), loading: false});
         }).catch(() => {
@@ -72,10 +69,9 @@ export class Gallery extends Component<Props, State> {
     }
 
     delete = (item: GalleryItem) => {
-        const {users, activeUser} = this.props;
-        const user = users.find((x) => x.username === activeUser?.username)!;
+        const {activeUser} = this.props;
 
-        deleteImage(user, item._id).then(() => {
+        deleteImage(activeUser?.username!, item._id).then(() => {
             const {items} = this.state;
             const nItems = [...items].filter(x => x._id !== item._id);
             this.setState({items: this.sort(nItems)});
