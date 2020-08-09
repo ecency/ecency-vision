@@ -1,4 +1,4 @@
-.entry-list-item {
+@mixin entry-list-item {
   margin-top: 20px;
   padding: 0 6px 16px 6px;
 
@@ -290,6 +290,10 @@
       }
     }
   }
+}
+
+.entry-list-item {
+  @include entry-list-item;
 }
 
 .grid-view {

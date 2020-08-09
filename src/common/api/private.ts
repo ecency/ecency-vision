@@ -121,18 +121,30 @@ export interface GalleryItem {
 
 export const getImages = (username: string): Promise<GalleryItem[]> => {
     const data = {code: getAccessToken(username)};
-
     return axios.post(`/api/images`, data).then(resp => resp.data);
 }
 
 export const deleteImage = (username: string, imageID: string): Promise<any> => {
     const data = {code: getAccessToken(username), id: imageID};
-
     return axios.post(`/api/images-delete`, data).then(resp => resp.data);
 }
 
 export const addImage = (username: string, url: string): Promise<any> => {
     const data = {code: getAccessToken(username), url: url};
-
     return axios.post(`/api/images-add`, data).then(resp => resp.data);
+}
+
+export interface Draft {
+    body: string
+    created: string
+    post_type: string
+    tags: string
+    timestamp: number
+    title: string
+    _id: string
+}
+
+export const getDrafts = (username: string): Promise<Draft[]> => {
+    const data = {code: getAccessToken(username)};
+    return axios.post(`/api/drafts`, data).then(resp => resp.data);
 }

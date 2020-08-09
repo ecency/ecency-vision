@@ -40,6 +40,7 @@
     "notifications": "Notifications",
     "profile": "Profile",
     "gallery": "Gallery",
+    "drafts": "Drafts",
     "logout": "Logout"
   },
   "login": {
@@ -365,6 +366,10 @@
   "gallery": {
     "title": "Gallery",
     "copied": "Copied to clipboard",
+    "empty-list": "Nothing here"
+  },
+  "drafts": {
+    "title": "Drafts",
     "empty-list": "Nothing here"
   },
   "static": {

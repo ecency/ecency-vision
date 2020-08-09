@@ -200,3 +200,9 @@ export const imagesAdd = async (req: express.Request, res: express.Response) => 
     pipe(apiRequest(`image`, "POST", {}, data), res);
 }
 
+export const drafts = async (req: express.Request, res: express.Response) => {
+    const username = validateCode(req, res);
+    if (!username) return;
+
+    pipe(apiRequest(`drafts/${username}`, "GET"), res);
+}

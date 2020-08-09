@@ -1,0 +1,37 @@
+.drafts-modal {
+
+  .dialog-content {
+    height: 500px;
+    overflow: auto;
+
+    .drafts-list {
+      .drafts-list-body {
+        .drafts-list-item {
+          @include entry-list-item;
+
+          .item-controls {
+            display: block;
+
+            .btn-delete,
+            .btn-edit {
+              cursor: pointer;
+              margin-right: 12px;
+
+              svg {
+                height: 18px !important;
+              }
+
+              @include themify(day) {
+                color: $silver;
+              }
+
+              @include themify(night) {
+                color: $gunmetal;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
