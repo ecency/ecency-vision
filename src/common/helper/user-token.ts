@@ -4,16 +4,20 @@ import {decodeObj} from "../util/encoder";
 
 import * as ls from "../util/local-storage";
 
-export const getAccessToken = (username: string): string => {
+export const getUser = (username: string): User => {
     const raw = ls.get(`user_${username}`);
     if (!raw) {
         throw "User is not exists!";
     }
 
     try {
-        const user: User = decodeObj(raw) as User;
-        return user.accessToken;
+        return decodeObj(raw) as User;
     } catch (e) {
         throw "User is not exists!";
     }
 }
+
+export const getAccessToken = (username: string): string => getUser(username).accessToken;
+
+export const getRefreshToken = (username: string): string => getUser(username).refreshToken;
+
