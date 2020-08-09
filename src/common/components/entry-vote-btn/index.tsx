@@ -284,13 +284,12 @@ export class EntryVoteBtn extends Component<Props, State> {
     vote = (percent: number) => {
         this.toggleDialog();
 
-        const {entry, users, activeUser, afterVote} = this.props;
-        const user = users.find((x) => x.username === activeUser?.username)!;
+        const {entry, activeUser, afterVote} = this.props;
         const weight = Math.ceil(percent * 100);
 
         this.stateSet({inProgress: true});
 
-        vote(user, entry.author, entry.permlink, weight)
+        vote(activeUser?.username!, entry.author, entry.permlink, weight)
             .then(() => {
                 this.fetchVotes();
                 this.stateSet({inProgress: false});

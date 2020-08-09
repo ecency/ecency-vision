@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 
 import {Entry} from "../../store/entries/types";
-import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
 
 import PopoverConfirm from "../popover-confirm";
@@ -15,7 +14,6 @@ import _c from "../../util/fix-class-names";
 interface Props {
     children: JSX.Element;
     entry: Entry;
-    users: User[];
     activeUser: ActiveUser | null;
     onSuccess: () => void
 }
@@ -43,11 +41,10 @@ export class EntryDeleteBtn extends Component<Props> {
     };
 
     delete = () => {
-        const {entry, users, activeUser, onSuccess} = this.props;
-        const user = users.find((x) => x.username === activeUser?.username)!;
+        const {entry, activeUser, onSuccess} = this.props;
 
         this.stateSet({inProgress: true});
-        deleteComment(user, entry.author, entry.permlink)
+        deleteComment(activeUser?.username!, entry.author, entry.permlink)
             .then(() => {
                 onSuccess();
                 this.stateSet({inProgress: false});
@@ -85,7 +82,6 @@ export default (props: Props) => {
     const p: Props = {
         children: props.children,
         entry: props.entry,
-        users: props.users,
         activeUser: props.activeUser,
         onSuccess: props.onSuccess
     }

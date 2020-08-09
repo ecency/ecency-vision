@@ -128,13 +128,11 @@ export const fetchNotifications = (since: string | null = null) => (dispatch: Di
         dispatch(fetchAct(NFetchMode.REPLACE));
     }
 
-    const {activeUser, users} = getState();
+    const {activeUser} = getState();
 
     const {filter} = notifications;
 
-    const user = users.find((x) => x.username === activeUser?.username)!;
-
-    getNotifications(user, filter, since).then(r => {
+    getNotifications(activeUser?.username!, filter, since).then(r => {
 
         if (since) {
             dispatch(fetchedAct(r, NFetchMode.APPEND));
@@ -148,11 +146,9 @@ export const fetchNotifications = (since: string | null = null) => (dispatch: Di
 }
 
 export const fetchUnreadNotificationCount = () => (dispatch: Dispatch, getState: () => AppState) => {
-    const {activeUser, users} = getState();
+    const {activeUser} = getState();
 
-    const user = users.find((x) => x.username === activeUser?.username)!;
-
-    getUnreadNotificationCount(user).then(count => {
+    getUnreadNotificationCount(activeUser?.username!).then(count => {
         dispatch(setUnreadCountAct(count));
     })
 }
@@ -164,12 +160,10 @@ export const setNotificationsFilter = (filter: NotificationFilter | null) => (di
 export const markNotifications = (id: string | null) => (dispatch: Dispatch, getState: () => AppState) => {
     dispatch(markAct(id));
 
-    const {activeUser, users} = getState();
+    const {activeUser} = getState();
 
-    const user = users.find((x) => x.username === activeUser?.username)!;
-
-    markNotificationsFn(user, id).then(() => {
-        return getUnreadNotificationCount(user)
+    markNotificationsFn(activeUser?.username!, id).then(() => {
+        return getUnreadNotificationCount(activeUser?.username!)
     }).then(count => {
         dispatch(setUnreadCountAct(count));
     })

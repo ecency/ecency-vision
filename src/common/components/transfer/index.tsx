@@ -92,7 +92,6 @@ interface Props {
     global: Global;
     mode: TransferMode,
     asset: TransferAsset,
-    users: User[];
     activeUser: ActiveUser;
     transactions: Transactions;
     addAccount: (data: Account) => void;
@@ -320,27 +319,27 @@ export class TransferDialog extends Component<Props, State> {
             return;
         }
 
-        const {users, activeUser, mode} = this.props;
+        const {activeUser, mode} = this.props;
         const {to, amount, asset, memo} = this.state;
         const fullAmount = `${amount} ${asset}`;
-        const user = users.find((x) => x.username === activeUser?.username)!;
+        const username = activeUser?.username!
 
         let prms: Promise<any>;
         switch (mode) {
             case 'transfer':
-                prms = transfer(user, key, to, fullAmount, memo)
+                prms = transfer(username, key, to, fullAmount, memo)
                 break;
             case 'transfer-saving':
-                prms = transferToSavings(user, key, to, fullAmount, memo);
+                prms = transferToSavings(username, key, to, fullAmount, memo);
                 break;
             case 'convert':
-                prms = convert(user, key, fullAmount)
+                prms = convert(username, key, fullAmount)
                 break;
             case 'withdraw-saving':
-                prms = transferFromSavings(user, key, to, fullAmount, memo);
+                prms = transferFromSavings(username, key, to, fullAmount, memo);
                 break;
             case 'power-up':
-                prms = transferToVesting(user, key, to, fullAmount);
+                prms = transferToVesting(username, key, to, fullAmount);
                 break;
             default:
                 return;
@@ -360,27 +359,27 @@ export class TransferDialog extends Component<Props, State> {
     }
 
     signHs = () => {
-        const {users, activeUser, mode, onHide} = this.props;
+        const {activeUser, mode, onHide} = this.props;
         const {to, amount, asset, memo} = this.state;
         const fullAmount = `${amount} ${asset}`;
-        const user = users.find((x) => x.username === activeUser?.username)!;
+        const username = activeUser?.username!
 
         let prms: Promise<any>;
         switch (mode) {
             case 'transfer':
-                prms = transferHot(user, to, fullAmount, memo)
+                prms = transferHot(username, to, fullAmount, memo)
                 break;
             case 'transfer-saving':
-                prms = transferToSavingsHot(user, to, fullAmount, memo);
+                prms = transferToSavingsHot(username, to, fullAmount, memo);
                 break;
             case 'convert':
-                prms = convertHot(user, fullAmount)
+                prms = convertHot(username, fullAmount)
                 break;
             case 'withdraw-saving':
-                prms = transferFromSavingsHot(user, to, fullAmount, memo);
+                prms = transferFromSavingsHot(username, to, fullAmount, memo);
                 break;
             case 'power-up':
-                prms = transferToVestingHot(user, to, fullAmount);
+                prms = transferToVestingHot(username, to, fullAmount);
                 break;
             default:
                 return;
@@ -420,7 +419,7 @@ export class TransferDialog extends Component<Props, State> {
         const suggestionProps = {
             header: _t('transfer.recent-transfers'),
             renderer: (i: string) => {
-                return <>{UserAvatar({...this.props, username:i, size:"small" })} <span style={{marginLeft: '4px'}}>{i}</span></>;
+                return <>{UserAvatar({...this.props, username: i, size: "small"})} <span style={{marginLeft: '4px'}}>{i}</span></>;
             },
             onSelect: this.toSelected,
         };
