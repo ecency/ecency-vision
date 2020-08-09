@@ -1,6 +1,13 @@
 import {Dispatch} from "redux";
 
-import {UI, Actions, ToggleLoginAct, ToggleSignUpAct, ToggleNotificationsAct, ActionTypes, ToggleType} from "./types";
+import {
+    UI, Actions,
+    ToggleLoginAct,
+    ToggleSignUpAct,
+    ToggleNotificationsAct,
+    ActionTypes,
+    ToggleType
+} from "./types";
 
 export const initialState: UI = {
     login: false,
