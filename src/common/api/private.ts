@@ -148,3 +148,8 @@ export const getDrafts = (username: string): Promise<Draft[]> => {
     const data = {code: getAccessToken(username)};
     return axios.post(`/api/drafts`, data).then(resp => resp.data);
 }
+
+export const deleteDraft = (username: string, draftId: string): Promise<any> => {
+    const data = {code: getAccessToken(username), id: draftId};
+    return axios.post(`/api/drafts-delete`, data).then(resp => resp.data);
+}

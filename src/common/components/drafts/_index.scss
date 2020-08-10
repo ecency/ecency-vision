@@ -9,6 +9,14 @@
         .drafts-list-item {
           @include entry-list-item;
 
+          margin: 0 0 20px 0;
+
+          .item-body {
+            .item-title, .item-body {
+              cursor: default !important;
+            }
+          }
+
           .item-controls {
             display: block;
 

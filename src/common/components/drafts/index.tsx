@@ -14,18 +14,17 @@ import LinearProgress from "../linear-progress";
 import PopoverConfirm from "../popover-confirm";
 import Tooltip from "../tooltip";
 import Tag from "../tag";
-
-import {getDrafts, Draft} from "../../api/private";
-
-import accountReputation from "../../helper/account-reputation";
-
 import {error} from "../feedback";
 
 import {_t} from "../../i18n";
 
-import {deleteForeverSvg, pencilOutlineSvg} from "../../img/svg";
+import {getDrafts, Draft, deleteDraft} from "../../api/private";
+
+import accountReputation from "../../helper/account-reputation";
 
 import defaults from "../../constants/defaults.json";
+
+import {deleteForeverSvg, pencilOutlineSvg} from "../../img/svg";
 
 import {
     catchPostImage,
@@ -98,17 +97,17 @@ export class ListItem extends Component<ItemProps> {
                 </div>
                 <div className="item-controls">
                     <PopoverConfirm onConfirm={() => {
-                        editFn(draft);
-                    }}>
-                        <span className="btn-delete">
-                            <Tooltip content={_t("g.delete")}>{deleteForeverSvg}</Tooltip>
-                        </span>
-                    </PopoverConfirm>
-                    <span className="btn-edit" onClick={() => {
                         deleteFn(draft);
                     }}>
-                        <Tooltip content={_t("g.edit")}>{pencilOutlineSvg}</Tooltip>
-                    </span>
+                        <a className="btn-delete">
+                            <Tooltip content={_t("g.delete")}><span>{deleteForeverSvg}</span></Tooltip>
+                        </a>
+                    </PopoverConfirm>
+                    <a className="btn-edit" onClick={() => {
+                        editFn(draft);
+                    }}>
+                        <Tooltip content={_t("g.edit")}><span>{pencilOutlineSvg}</span></Tooltip>
+                    </a>
                 </div>
             </div>
         </div>
@@ -139,14 +138,6 @@ export class Drafts extends Component<Props, State> {
         this.fetch();
     }
 
-    delete = (item: Draft) => {
-
-    }
-
-    edit = () => {
-
-    }
-
     fetch = () => {
         const {activeUser} = this.props;
 
@@ -164,18 +155,20 @@ export class Drafts extends Component<Props, State> {
             return new Date(b.created).getTime() > new Date(a.created).getTime() ? 1 : -1;
         });
 
-    deletex = () => {
-        /*
+    delete = (item: Draft) => {
         const {activeUser} = this.props;
 
-        deleteImage(activeUser?.username!, item._id).then(() => {
+        deleteDraft(activeUser?.username!, item._id).then(() => {
             const {items} = this.state;
             const nItems = [...items].filter(x => x._id !== item._id);
             this.setState({items: this.sort(nItems)});
         }).catch(() => {
             error(_t('g.server-error'));
         })
-        */
+    }
+
+    edit = () => {
+
     }
 
     render() {
@@ -194,7 +187,7 @@ export class Drafts extends Component<Props, State> {
             )}
             {(!loading && items.length === 0) && (
                 <div className="drafts-list">
-                    {_t('draft.empty-list')}
+                    {_t('drafts.empty-list')}
                 </div>
             )}
         </div>
