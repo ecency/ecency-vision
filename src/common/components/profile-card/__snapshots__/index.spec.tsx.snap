@@ -28,7 +28,6 @@ exports[`(1) Render with not loaded data 1`] = `
   >
     <span
       className="user-avatar xLarge"
-      onClick={[Function]}
       role="none"
       style={
         Object {
@@ -116,7 +115,6 @@ exports[`(2) Render with loaded data 1`] = `
   >
     <span
       className="user-avatar xLarge"
-      onClick={[Function]}
       role="none"
       style={
         Object {

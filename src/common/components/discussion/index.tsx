@@ -57,6 +57,7 @@ setProxyBase(defaults.imageServer);
 
 interface ItemBodyProps {
     entry: Entry;
+    global: Global;
 }
 
 export class ItemBody extends Component<ItemBodyProps> {
@@ -65,8 +66,9 @@ export class ItemBody extends Component<ItemBodyProps> {
     }
 
     render() {
-        const {entry} = this.props;
-        const renderedBody = {__html: renderPostBody(entry.body, false)};
+        const {entry, global} = this.props;
+        console.log(global && global.canUseWebp);
+        const renderedBody = {__html: renderPostBody(entry.body, false, global.canUseWebp)};
 
         return <div className="item-body markdown-view mini-markdown" dangerouslySetInnerHTML={renderedBody}/>
     }
@@ -291,7 +293,7 @@ export class Item extends Component<ItemProps, ItemState> {
                                 </span>
                             })}
                         </div>
-                        <ItemBody entry={entry}/>
+                        <ItemBody {...this.props} entry={entry}/>
                         <div className="item-controls">
                             {EntryVoteBtn({
                                 ...this.props,

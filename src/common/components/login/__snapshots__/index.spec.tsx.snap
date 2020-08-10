@@ -50,7 +50,6 @@ Array [
       >
         <span
           className="user-avatar normal"
-          onClick={[Function]}
           role="none"
           style={
             Object {
@@ -91,7 +90,6 @@ Array [
       >
         <span
           className="user-avatar normal"
-          onClick={[Function]}
           role="none"
           style={
             Object {
@@ -181,7 +179,6 @@ Array [
       >
         <span
           className="user-avatar normal"
-          onClick={[Function]}
           role="none"
           style={
             Object {
@@ -222,7 +219,6 @@ Array [
       >
         <span
           className="user-avatar normal"
-          onClick={[Function]}
           role="none"
           style={
             Object {

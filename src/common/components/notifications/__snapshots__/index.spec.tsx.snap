@@ -26,7 +26,6 @@ exports[`(1) NotificationListItem (1) Vote  1`] = `
       >
         <span
           className="user-avatar medium"
-          onClick={[Function]}
           role="none"
           style={
             Object {
@@ -98,7 +97,6 @@ exports[`(1) NotificationListItem (2) Mention  1`] = `
       >
         <span
           className="user-avatar medium"
-          onClick={[Function]}
           role="none"
           style={
             Object {
@@ -170,7 +168,6 @@ exports[`(1) NotificationListItem (3) Follow  1`] = `
       >
         <span
           className="user-avatar medium"
-          onClick={[Function]}
           role="none"
           style={
             Object {
@@ -229,7 +226,6 @@ exports[`(1) NotificationListItem (4) Unfollow  1`] = `
       >
         <span
           className="user-avatar medium"
-          onClick={[Function]}
           role="none"
           style={
             Object {
@@ -288,7 +284,6 @@ exports[`(1) NotificationListItem (5) Reply  1`] = `
       >
         <span
           className="user-avatar medium"
-          onClick={[Function]}
           role="none"
           style={
             Object {
@@ -370,7 +365,6 @@ exports[`(1) NotificationListItem (6) Reblog  1`] = `
       >
         <span
           className="user-avatar medium"
-          onClick={[Function]}
           role="none"
           style={
             Object {
@@ -436,7 +430,6 @@ exports[`(1) NotificationListItem (7) Transfer  1`] = `
       >
         <span
           className="user-avatar medium"
-          onClick={[Function]}
           role="none"
           style={
             Object {

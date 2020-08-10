@@ -153,7 +153,7 @@ export class Search extends Component<Props, State> {
     onKeyDown = (e: React.KeyboardEvent) => {
         if (e.keyCode === 13) {
             const {query} = this.state;
-            window.location.href = `https://search.esteem.app/search?q=${decodeURIComponent(query)}`;
+            window.location.href = `https://hivesearcher.com/search?q=${decodeURIComponent(query)}`;
         }
     };
 

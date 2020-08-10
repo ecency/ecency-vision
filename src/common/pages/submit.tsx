@@ -69,7 +69,7 @@ class PreviewContent extends Component<PreviewProps> {
     }
 
     render() {
-        const {title, tags, body} = this.props;
+        const {title, tags, body, global} = this.props;
 
         return (
             <>
@@ -92,7 +92,7 @@ class PreviewContent extends Component<PreviewProps> {
                     })}
                 </div>
 
-                <div className="preview-body markdown-view" dangerouslySetInnerHTML={{__html: renderPostBody(body)}}/>
+                <div className="preview-body markdown-view" dangerouslySetInnerHTML={{__html: renderPostBody(body, false, global.canUseWebp)}}/>
             </>
         );
     }

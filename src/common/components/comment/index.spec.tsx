@@ -2,7 +2,7 @@ import React from "react";
 
 import Comment from "./index";
 
-import {UiInstance} from "../../helper/test-helper";
+import {UiInstance, globalInstance} from "../../helper/test-helper";
 
 import renderer from "react-test-renderer";
 
@@ -19,6 +19,7 @@ const defProps = {
     defText: '',
     submitText: 'Reply',
     users: [],
+    global: globalInstance,
     activeUser: null,
     ui: UiInstance,
     setActiveUser: () => {

@@ -76,7 +76,6 @@ exports[`(1) Full render 1`] = `
           >
             <span
               className="user-avatar medium"
-              onClick={[Function]}
               role="none"
               style={
                 Object {
@@ -205,7 +204,6 @@ exports[`(1) Full render 1`] = `
           >
             <span
               className="user-avatar medium"
-              onClick={[Function]}
               role="none"
               style={
                 Object {
@@ -336,7 +334,6 @@ exports[`(1) Full render 1`] = `
               >
                 <span
                   className="user-avatar medium"
-                  onClick={[Function]}
                   role="none"
                   style={
                     Object {
@@ -467,7 +464,6 @@ exports[`(1) Full render 1`] = `
           >
             <span
               className="user-avatar medium"
-              onClick={[Function]}
               role="none"
               style={
                 Object {
@@ -597,7 +593,6 @@ exports[`(1) Full render 1`] = `
           >
             <span
               className="user-avatar medium"
-              onClick={[Function]}
               role="none"
               style={
                 Object {
@@ -727,7 +722,6 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
           >
             <span
               className="user-avatar medium"
-              onClick={[Function]}
               role="none"
               style={
                 Object {
@@ -857,7 +851,6 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
           >
             <span
               className="user-avatar medium"
-              onClick={[Function]}
               role="none"
               style={
                 Object {
@@ -987,7 +980,6 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
           >
             <span
               className="user-avatar medium"
-              onClick={[Function]}
               role="none"
               style={
                 Object {
@@ -1117,7 +1109,6 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
           >
             <span
               className="user-avatar medium"
-              onClick={[Function]}
               role="none"
               style={
                 Object {

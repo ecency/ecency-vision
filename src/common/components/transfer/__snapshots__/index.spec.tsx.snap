@@ -278,7 +278,6 @@ exports[`(1) Transfer (2) Step 2 1`] = `
           >
             <span
               className="user-avatar xLarge"
-              onClick={[Function]}
               role="none"
               style={
                 Object {
@@ -306,7 +305,6 @@ exports[`(1) Transfer (2) Step 2 1`] = `
           >
             <span
               className="user-avatar xLarge"
-              onClick={[Function]}
               role="none"
               style={
                 Object {

@@ -38,7 +38,6 @@ exports[`(1) Render with data. 1`] = `
       >
         <span
           className="user-avatar large"
-          onClick={[Function]}
           role="none"
           style={
             Object {
@@ -82,7 +81,6 @@ exports[`(1) Render with data. 1`] = `
       >
         <span
           className="user-avatar large"
-          onClick={[Function]}
           role="none"
           style={
             Object {
@@ -126,7 +124,6 @@ exports[`(1) Render with data. 1`] = `
       >
         <span
           className="user-avatar large"
-          onClick={[Function]}
           role="none"
           style={
             Object {

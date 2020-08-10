@@ -161,9 +161,9 @@ exports[`(3) Render of detail with votes 1`] = `
                 href="/@user1"
                 onClick={[Function]}
               >
+                 
                 <span
                   className="user-avatar small"
-                  onClick={[Function]}
                   role="none"
                   style={
                     Object {
@@ -207,9 +207,9 @@ exports[`(3) Render of detail with votes 1`] = `
                 href="/@user2"
                 onClick={[Function]}
               >
+                 
                 <span
                   className="user-avatar small"
-                  onClick={[Function]}
                   role="none"
                   style={
                     Object {

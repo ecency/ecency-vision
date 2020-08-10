@@ -42,7 +42,6 @@ exports[`(1) Full render 1`] = `
               >
                 <span
                   className="user-avatar small"
-                  onClick={[Function]}
                   role="none"
                   style={
                     Object {
@@ -79,7 +78,6 @@ exports[`(1) Full render 1`] = `
               >
                 <span
                   className="user-avatar small"
-                  onClick={[Function]}
                   role="none"
                   style={
                     Object {
@@ -116,7 +114,6 @@ exports[`(1) Full render 1`] = `
               >
                 <span
                   className="user-avatar small"
-                  onClick={[Function]}
                   role="none"
                   style={
                     Object {
@@ -153,7 +150,6 @@ exports[`(1) Full render 1`] = `
               >
                 <span
                   className="user-avatar small"
-                  onClick={[Function]}
                   role="none"
                   style={
                     Object {
@@ -190,7 +186,6 @@ exports[`(1) Full render 1`] = `
               >
                 <span
                   className="user-avatar small"
-                  onClick={[Function]}
                   role="none"
                   style={
                     Object {

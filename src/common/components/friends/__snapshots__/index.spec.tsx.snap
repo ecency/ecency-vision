@@ -29,7 +29,6 @@ exports[`(1) Render list 1`] = `
       >
         <span
           className="user-avatar large"
-          onClick={[Function]}
           role="none"
           style={
             Object {
@@ -55,7 +54,6 @@ exports[`(1) Render list 1`] = `
       >
         <span
           className="user-avatar large"
-          onClick={[Function]}
           role="none"
           style={
             Object {
@@ -81,7 +79,6 @@ exports[`(1) Render list 1`] = `
       >
         <span
           className="user-avatar large"
-          onClick={[Function]}
           role="none"
           style={
             Object {

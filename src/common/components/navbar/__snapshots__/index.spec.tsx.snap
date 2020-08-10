@@ -635,7 +635,6 @@ exports[`(3) With active user 1`] = `
       >
         <span
           className="user-avatar medium"
-          onClick={[Function]}
           role="none"
           style={
             Object {
