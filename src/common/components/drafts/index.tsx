@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-import {History} from "history";
+import {History, Location} from "history";
 
 import moment from "moment";
 
@@ -117,6 +117,7 @@ export class ListItem extends Component<ItemProps> {
 interface Props {
     global: Global;
     history: History;
+    location: Location;
     activeUser: ActiveUser | null;
     onHide: () => void;
     onPick?: (url: string) => void;
@@ -156,12 +157,17 @@ export class Drafts extends Component<Props, State> {
         });
 
     delete = (item: Draft) => {
-        const {activeUser} = this.props;
+        const {activeUser, location, history} = this.props;
 
         deleteDraft(activeUser?.username!, item._id).then(() => {
             const {items} = this.state;
             const nItems = [...items].filter(x => x._id !== item._id);
             this.setState({items: this.sort(nItems)});
+
+            // if user editing the draft, redirect to submit page
+            if (location.pathname === `/draft/${item._id}`) {
+                history.push('/submit');
+            }
         }).catch(() => {
             error(_t('g.server-error'));
         })
