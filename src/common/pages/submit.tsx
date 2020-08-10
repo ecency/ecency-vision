@@ -438,11 +438,13 @@ class SubmitPage extends Component<Props, State> {
         let promise: Promise<any>;
 
         if (editingDraft) {
-            promise = updateDraft(activeUser?.username!, editingDraft._id, title, body, tagJ).then(r => {
-                console.log(r);
+            promise = updateDraft(activeUser?.username!, editingDraft._id, title, body, tagJ).then(() => {
+                success(_t('submit.draft-updated'));
             })
         } else {
             promise = addDraft(activeUser?.username!, title, body, tagJ).then(resp => {
+                success(_t('submit.draft-saved'));
+
                 const {drafts} = resp;
                 const draft = drafts[drafts.length - 1];
 
@@ -450,13 +452,11 @@ class SubmitPage extends Component<Props, State> {
             })
         }
 
-        promise
-            .then(() => success(_t('submit.draft-saved')))
-            .catch(() => error(_t('g.server-error')));
+        promise.catch(() => error(_t('g.server-error')));
     }
 
     render() {
-        const {title, tags, body, reward, preview, inProgress, editingEntry} = this.state;
+        const {title, tags, body, reward, preview, inProgress, editingEntry, editingDraft} = this.state;
 
         //  Meta config
         const metaProps = {
@@ -533,7 +533,9 @@ class SubmitPage extends Component<Props, State> {
                                 <>
                                     <span/>
                                     <div>
-                                        <Button variant="outline-primary" style={{marginRight: "6px"}} onClick={this.saveDraft}>{contentSaveSvg} {_t("submit.save-draft")}</Button>
+                                        <Button variant="outline-primary" style={{marginRight: "6px"}} onClick={this.saveDraft}>
+                                            {contentSaveSvg} {editingDraft === null ? _t("submit.save-draft") : _t("submit.update-draft")}
+                                        </Button>
                                         {LoginRequired({
                                             ...this.props,
                                             children: <Button
