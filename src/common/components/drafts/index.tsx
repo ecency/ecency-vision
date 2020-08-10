@@ -167,8 +167,11 @@ export class Drafts extends Component<Props, State> {
         })
     }
 
-    edit = () => {
+    edit = (item: Draft) => {
+        const {history, onHide} = this.props;
 
+        history.push(`/draft/${item._id}`);
+        onHide();
     }
 
     render() {

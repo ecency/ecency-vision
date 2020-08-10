@@ -35,6 +35,8 @@ import WordCount from "../components/word-counter";
 import {makePath as makePathEntry} from "../components/entry-link";
 import {error, success} from "../components/feedback";
 
+import {getDrafts, Draft} from "../api/private";
+
 import {createPermlink, extractMetaData, makeJsonMetaData, makeCommentOptions, createPatch} from "../helper/posting";
 
 import {RewardType, comment, formatError} from "../api/operations";
@@ -103,8 +105,9 @@ import {History, Location} from "history";
 import {Global} from "../store/global/types";
 
 interface MatchParams {
-    permlink: string;
-    username: string;
+    permlink?: string;
+    username?: string;
+    draftId?: string;
 }
 
 interface Props extends PageProps {
@@ -117,6 +120,7 @@ interface State extends PostBase {
     inProgress: boolean;
     editMode: boolean;
     editingEntry: Entry | null;
+    editingDraft: Draft | null;
 }
 
 class SubmitPage extends Component<Props, State> {
@@ -128,6 +132,7 @@ class SubmitPage extends Component<Props, State> {
         inProgress: false,
         editMode: false,
         editingEntry: null,
+        editingDraft: null,
         preview: {
             title: "",
             tags: [],
@@ -142,22 +147,38 @@ class SubmitPage extends Component<Props, State> {
         this._mounted = false;
     }
 
-    stateSet = (obj: {}, cb: () => void = () => {
-    }) => {
+    stateSet = (state: {}, cb?: () => void) => {
         if (this._mounted) {
-            this.setState(obj, cb);
+            this.setState(state, cb);
         }
     };
 
     componentDidMount = (): void => {
+        // draft from local storage
         this.loadLocalDraft();
 
+        // detect redirecting community
         this.detectCommunity();
 
-        // wait to load active user on page load
-        // TODO: Move to component did update
-        setTimeout(this.detectEntry, 200);
+        // detect editing post
+        this.detectEntry().then();
+
+        // detect editing draft
+        this.detectDraft().then();
     };
+
+    componentDidUpdate(prevProps: Readonly<Props>) {
+        const {activeUser} = this.props;
+
+        // once user change || initial load
+        if (activeUser?.username !== prevProps.activeUser?.username) {
+            // detect editing post
+            this.detectEntry().then();
+
+            // detect editing draft
+            this.detectDraft().then();
+        }
+    }
 
     detectEntry = async () => {
         const {match, activeUser} = this.props;
@@ -183,6 +204,38 @@ class SubmitPage extends Component<Props, State> {
             this.stateSet({title, tags, body, editMode: true, editingEntry: entry}, this.updatePreview);
         }
     };
+
+    detectDraft = async () => {
+        const {match, activeUser} = this.props;
+        const {path, params} = match;
+
+        if (activeUser && path.startsWith("/draft") && params.draftId) {
+
+            let drafts: Draft[];
+
+            try {
+                drafts = await getDrafts(activeUser.username);
+            } catch (err) {
+                drafts = [];
+            }
+
+            drafts = drafts.filter(x => x._id === params.draftId);
+            if (drafts.length === 1) {
+                const [draft] = drafts;
+                const {title, body} = draft;
+
+                let tags: string[];
+
+                try {
+                    tags = draft.tags.trim() ? draft.tags.split(/[ ,]+/) : [];
+                } catch (e) {
+                    tags = [];
+                }
+
+                this.stateSet({title, tags, body, editingDraft: draft}, this.updatePreview);
+            }
+        }
+    }
 
     detectCommunity = () => {
         const {location} = this.props;
