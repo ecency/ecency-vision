@@ -35,7 +35,7 @@ import WordCount from "../components/word-counter";
 import {makePath as makePathEntry} from "../components/entry-link";
 import {error, success} from "../components/feedback";
 
-import {getDrafts, Draft} from "../api/private";
+import {getDrafts, addDraft, updateDraft, Draft} from "../api/private";
 
 import {createPermlink, extractMetaData, makeJsonMetaData, makeCommentOptions, createPatch} from "../helper/posting";
 
@@ -423,6 +423,31 @@ class SubmitPage extends Component<Props, State> {
         history.push(newLoc);
     };
 
+    saveDraft = () => {
+        const {activeUser, history} = this.props;
+        const {title, body, tags, editingDraft} = this.state;
+        const tagJ = tags.join(' ')
+
+        let promise: Promise<any>;
+
+        if (editingDraft) {
+            promise = updateDraft(activeUser?.username!, editingDraft._id, title, body, tagJ).then(r => {
+                console.log(r);
+            })
+        } else {
+            promise = addDraft(activeUser?.username!, title, body, tagJ).then(resp => {
+                const {drafts} = resp;
+                const draft = drafts[drafts.length - 1];
+
+                history.push(`/draft/${draft._id}`);
+            })
+        }
+
+        promise
+            .then(() => success(_t('submit.draft-saved')))
+            .catch(() => error(_t('g.server-error')));
+    }
+
     render() {
         const {title, tags, body, reward, preview, inProgress, editMode} = this.state;
 
@@ -501,7 +526,7 @@ class SubmitPage extends Component<Props, State> {
                                 <>
                                     <span/>
                                     <div>
-                                        <Button variant="outline-primary" style={{marginRight: "6px"}}>{contentSaveSvg} {_t("submit.save-draft")}</Button>
+                                        <Button variant="outline-primary" style={{marginRight: "6px"}} onClick={this.saveDraft}>{contentSaveSvg} {_t("submit.save-draft")}</Button>
                                         {LoginRequired({
                                             ...this.props,
                                             children: <Button

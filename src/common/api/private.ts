@@ -149,6 +149,16 @@ export const getDrafts = (username: string): Promise<Draft[]> => {
     return axios.post(`/api/drafts`, data).then(resp => resp.data);
 }
 
+export const addDraft = (username: string, title: string, body: string, tags: string): Promise<{ drafts: Draft[] }> => {
+    const data = {code: getAccessToken(username), title, body, tags};
+    return axios.post(`/api/drafts-add`, data).then(resp => resp.data);
+}
+
+export const updateDraft = (username: string, draftId: string, title: string, body: string, tags: string): Promise<any> => {
+    const data = {code: getAccessToken(username), id: draftId, title, body, tags};
+    return axios.post(`/api/drafts-update`, data).then(resp => resp.data);
+}
+
 export const deleteDraft = (username: string, draftId: string): Promise<any> => {
     const data = {code: getAccessToken(username), id: draftId};
     return axios.post(`/api/drafts-delete`, data).then(resp => resp.data);

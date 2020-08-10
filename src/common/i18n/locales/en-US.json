@@ -294,6 +294,7 @@
     "publish": "Publish",
     "update": "Update",
     "save-draft": "SaveDraft",
+    "draft-saved": "Draft saved",
     "cancel-update": "Cancel",
     "clear": "Clear",
     "published": "Post Published",
