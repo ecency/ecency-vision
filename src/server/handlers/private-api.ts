@@ -201,6 +201,22 @@ export const drafts = async (req: express.Request, res: express.Response) => {
     pipe(apiRequest(`drafts/${username}`, "GET"), res);
 }
 
+export const draftsAdd = async (req: express.Request, res: express.Response) => {
+    const username = validateCode(req, res);
+    if (!username) return;
+    const {title, body, tags} = req.body;
+    const data = {username, title, body, tags};
+    pipe(apiRequest(`draft`, "POST", {}, data), res);
+}
+
+export const draftsUpdate = async (req: express.Request, res: express.Response) => {
+    const username = validateCode(req, res);
+    if (!username) return;
+    const {id, title, body, tags} = req.body;
+    const data = {username, title, body, tags};
+    pipe(apiRequest(`drafts/${username}/${id}`, "PUT", {}, data), res);
+}
+
 export const draftsDelete = async (req: express.Request, res: express.Response) => {
     const username = validateCode(req, res);
     if (!username) return;
