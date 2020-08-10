@@ -119,7 +119,6 @@ interface State extends PostBase {
     reward: RewardType;
     preview: PostBase;
     inProgress: boolean;
-    editMode: boolean;
     editingEntry: Entry | null;
     editingDraft: Draft | null;
 }
@@ -131,7 +130,6 @@ class SubmitPage extends Component<Props, State> {
         body: "",
         reward: "default",
         inProgress: false,
-        editMode: false,
         editingEntry: null,
         editingDraft: null,
         preview: {
@@ -155,10 +153,12 @@ class SubmitPage extends Component<Props, State> {
     };
 
     componentDidMount = (): void => {
-
         this.loadLocalDraft();
+
         this.detectCommunity();
+
         this.detectEntry().then();
+
         this.detectDraft().then();
     };
 
@@ -171,7 +171,7 @@ class SubmitPage extends Component<Props, State> {
             this.detectDraft().then();
         }
 
-        // once location change. only occurs once a draft picked on drafts dialog
+        // location change. only occurs once a draft picked on drafts dialog
         if (location.pathname !== prevProps.location.pathname) {
             this.detectDraft().then();
         }
@@ -212,7 +212,11 @@ class SubmitPage extends Component<Props, State> {
             let tags = entry.json_metadata?.tags || [];
             tags = [...new Set(tags)];
 
-            this.stateSet({title, tags, body, editMode: true, editingEntry: entry}, this.updatePreview);
+            this.stateSet({title, tags, body, editingEntry: entry}, this.updatePreview);
+        } else {
+            if (this.state.editingEntry) {
+                this.stateSet({editingEntry: null});
+            }
         }
     };
 
@@ -221,7 +225,6 @@ class SubmitPage extends Component<Props, State> {
         const {params} = match;
 
         if (this.isDraft()) {
-
             let drafts: Draft[];
 
             try {
@@ -244,6 +247,10 @@ class SubmitPage extends Component<Props, State> {
                 }
 
                 this.stateSet({title, tags, body, editingDraft: draft}, this.updatePreview);
+            }
+        } else {
+            if (this.state.editingDraft) {
+                this.stateSet({editingDraft: null});
             }
         }
     }
@@ -315,9 +322,9 @@ class SubmitPage extends Component<Props, State> {
         }
 
         this._updateTimer = setTimeout(() => {
-            const {title, tags, body, editMode} = this.state;
+            const {title, tags, body, editingEntry} = this.state;
             this.stateSet({preview: {title, tags, body}});
-            if (!editMode) {
+            if (editingEntry === null) {
                 this.saveLocalDraft();
             }
         }, 500);
@@ -449,7 +456,7 @@ class SubmitPage extends Component<Props, State> {
     }
 
     render() {
-        const {title, tags, body, reward, preview, inProgress, editMode} = this.state;
+        const {title, tags, body, reward, preview, inProgress, editingEntry} = this.state;
 
         //  Meta config
         const metaProps = {
@@ -497,7 +504,7 @@ class SubmitPage extends Component<Props, State> {
                                 onChange={this.bodyChanged}
                             />
                         </div>
-                        {!editMode && (
+                        {editingEntry === null && (
                             <div className="bottom-toolbar">
                                 <div className="reward">
                                     <span>{_t("submit.reward")}</span>
@@ -522,7 +529,7 @@ class SubmitPage extends Component<Props, State> {
                         </div>
                         <PreviewContent history={this.props.history} global={this.props.global} {...preview} />
                         <div className="bottom-toolbar">
-                            {!editMode && (
+                            {editingEntry === null && (
                                 <>
                                     <span/>
                                     <div>
@@ -542,7 +549,7 @@ class SubmitPage extends Component<Props, State> {
                                 </>
                             )}
 
-                            {editMode && (
+                            {editingEntry !== null && (
                                 <>
                                     <Button variant="outline-secondary" onClick={this.cancelUpdate}>
                                         {_t("submit.cancel-update")}
