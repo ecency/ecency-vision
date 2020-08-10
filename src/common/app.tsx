@@ -10,6 +10,8 @@ import AuthContainer from "./pages/auth";
 import SubmitContainer from "./pages/submit";
 import NotFound from "./components/404";
 
+import Tracker from "./tracker";
+
 import {
     AboutPageContainer,
     GuestPostPageContainer,
@@ -25,6 +27,7 @@ import routes from "./routes";
 const App = () => {
     return (
         <>
+            <Tracker/>
             <Switch>
                 <Route exact={true} path={routes.HOME} component={EntryIndexContainer}/>
                 <Route exact={true} strict={true} path={routes.FILTER} component={EntryIndexContainer}/>
