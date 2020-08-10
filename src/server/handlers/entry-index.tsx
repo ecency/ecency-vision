@@ -28,9 +28,9 @@ export default async (req: express.Request, res: express.Response) => {
 
     try {
         if (filter === "feed") {
-            entries = (await bridgeApi.getAccountPosts(filter, tag.replace("@", ""), "", "", 13)) || [];
+            entries = (await bridgeApi.getAccountPosts(filter, tag.replace("@", ""), "", "", 8)) || [];
         } else {
-            entries = (await bridgeApi.getPostsRanked(filter, "", "", 13, tag)) || [];
+            entries = (await bridgeApi.getPostsRanked(filter, "", "", 8, tag)) || [];
         }
     } catch (e) {
         entries = [];
