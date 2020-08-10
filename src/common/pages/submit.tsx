@@ -49,6 +49,7 @@ import * as ls from "../util/local-storage";
 
 import {version} from "../../../package.json";
 
+import {contentSaveSvg} from "../img/svg";
 
 interface PostBase {
     title: string;
@@ -154,40 +155,50 @@ class SubmitPage extends Component<Props, State> {
     };
 
     componentDidMount = (): void => {
-        // draft from local storage
+
         this.loadLocalDraft();
-
-        // detect redirecting community
         this.detectCommunity();
-
-        // detect editing post
         this.detectEntry().then();
-
-        // detect editing draft
         this.detectDraft().then();
     };
 
     componentDidUpdate(prevProps: Readonly<Props>) {
-        const {activeUser} = this.props;
+        const {activeUser, location} = this.props;
 
-        // once user change || initial load
+        // after first initial
         if (activeUser?.username !== prevProps.activeUser?.username) {
-            // detect editing post
             this.detectEntry().then();
+            this.detectDraft().then();
+        }
 
-            // detect editing draft
+        // once location change. only occurs once a draft picked on drafts dialog
+        if (location.pathname !== prevProps.location.pathname) {
             this.detectDraft().then();
         }
     }
 
-    detectEntry = async () => {
+    isEntry = (): boolean => {
         const {match, activeUser} = this.props;
         const {path, params} = match;
 
-        if (activeUser && path.endsWith("/edit") && params.username && params.permlink) {
+        return !!(activeUser && path.endsWith("/edit") && params.username && params.permlink);
+    }
+
+    isDraft = (): boolean => {
+        const {match, activeUser} = this.props;
+        const {path, params} = match;
+
+        return !!(activeUser && path.startsWith("/draft") && params.draftId);
+    }
+
+    detectEntry = async () => {
+        const {match} = this.props;
+        const {params} = match;
+
+        if (this.isEntry()) {
             let entry;
             try {
-                entry = await bridgeApi.normalizePost(await hiveApi.getPost(params.username.replace("@", ""), params.permlink));
+                entry = await bridgeApi.normalizePost(await hiveApi.getPost(params.username!.replace("@", ""), params.permlink!));
             } catch (e) {
                 error(formatError(e));
                 return;
@@ -207,14 +218,14 @@ class SubmitPage extends Component<Props, State> {
 
     detectDraft = async () => {
         const {match, activeUser} = this.props;
-        const {path, params} = match;
+        const {params} = match;
 
-        if (activeUser && path.startsWith("/draft") && params.draftId) {
+        if (this.isDraft()) {
 
             let drafts: Draft[];
 
             try {
-                drafts = await getDrafts(activeUser.username);
+                drafts = await getDrafts(activeUser?.username!);
             } catch (err) {
                 drafts = [];
             }
@@ -248,6 +259,10 @@ class SubmitPage extends Component<Props, State> {
     }
 
     loadLocalDraft = (): void => {
+        if (this.isEntry() || this.isDraft()) {
+            return;
+        }
+
         const localDraft = ls.get("local_draft") as PostBase;
         if (!localDraft) {
             return;
@@ -485,17 +500,20 @@ class SubmitPage extends Component<Props, State> {
                             {!editMode && (
                                 <>
                                     <span/>
-                                    {LoginRequired({
-                                        ...this.props,
-                                        children: <Button
-                                            className="d-inline-flex align-items-center"
-                                            onClick={this.publish}
-                                            disabled={!canPublish || inProgress}
-                                        >
-                                            {inProgress && spinner}
-                                            {_t("submit.publish")}
-                                        </Button>
-                                    })}
+                                    <div>
+                                        <Button variant="outline-primary" style={{marginRight: "6px"}}>{contentSaveSvg} {_t("submit.save-draft")}</Button>
+                                        {LoginRequired({
+                                            ...this.props,
+                                            children: <Button
+                                                className="d-inline-flex align-items-center"
+                                                onClick={this.publish}
+                                                disabled={!canPublish || inProgress}
+                                            >
+                                                {inProgress && spinner}
+                                                {_t("submit.publish")}
+                                            </Button>
+                                        })}
+                                    </div>
                                 </>
                             )}
 

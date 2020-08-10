@@ -293,6 +293,7 @@
     "preview": "Preview",
     "publish": "Publish",
     "update": "Update",
+    "save-draft": "SaveDraft",
     "cancel-update": "Cancel",
     "clear": "Clear",
     "published": "Post Published",
