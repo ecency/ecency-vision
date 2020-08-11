@@ -177,9 +177,7 @@ class EntryPage extends Component<Props, State> {
 
     replySubmitted = (text: string) => {
         const entry = this.getEntry()!;
-        const {activeUser, users, addReply, updateEntry} = this.props;
-
-        const user = users.find((x) => x.username === activeUser?.username)!;
+        const {activeUser, addReply, updateEntry} = this.props;
 
         const {author: parentAuthor, permlink: parentPermlink} = entry;
         const author = activeUser?.username!;
@@ -195,7 +193,7 @@ class EntryPage extends Component<Props, State> {
         this.stateSet({replying: true});
 
         comment(
-            user,
+            author,
             parentAuthor,
             parentPermlink,
             permlink,

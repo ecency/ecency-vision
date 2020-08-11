@@ -29,7 +29,6 @@ exports[`(1) Render list 1`] = `
       >
         <span
           className="user-avatar large"
-          role="none"
           style={
             Object {
               "backgroundImage": "url(https://images.ecency.com/u/user1/avatar/medium)",
@@ -54,7 +53,6 @@ exports[`(1) Render list 1`] = `
       >
         <span
           className="user-avatar large"
-          role="none"
           style={
             Object {
               "backgroundImage": "url(https://images.ecency.com/u/user2/avatar/medium)",
@@ -79,7 +77,6 @@ exports[`(1) Render list 1`] = `
       >
         <span
           className="user-avatar large"
-          role="none"
           style={
             Object {
               "backgroundImage": "url(https://images.ecency.com/u/user3/avatar/medium)",

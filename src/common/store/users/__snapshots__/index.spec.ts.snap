@@ -5,15 +5,15 @@ exports[`1- default state 1`] = `Array []`;
 exports[`2- reloadAct 1`] = `
 Array [
   Object {
-    "accessToken": "access token",
+    "accessToken": "",
     "expiresIn": "a date",
-    "refreshToken": "refresh token",
+    "refreshToken": "",
     "username": "user1",
   },
   Object {
-    "accessToken": "access token",
+    "accessToken": "",
     "expiresIn": "a date",
-    "refreshToken": "refresh token",
+    "refreshToken": "",
     "username": "user2",
   },
 ]

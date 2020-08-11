@@ -278,7 +278,6 @@ exports[`(1) Transfer (2) Step 2 1`] = `
           >
             <span
               className="user-avatar xLarge"
-              role="none"
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/large)",
@@ -305,7 +304,6 @@ exports[`(1) Transfer (2) Step 2 1`] = `
           >
             <span
               className="user-avatar xLarge"
-              role="none"
               style={
                 Object {
                   "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/large)",

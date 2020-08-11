@@ -42,7 +42,6 @@ exports[`(1) Full render 1`] = `
               >
                 <span
                   className="user-avatar small"
-                  role="none"
                   style={
                     Object {
                       "backgroundImage": "url(https://images.ecency.com/u/user2/avatar/small)",
@@ -78,7 +77,6 @@ exports[`(1) Full render 1`] = `
               >
                 <span
                   className="user-avatar small"
-                  role="none"
                   style={
                     Object {
                       "backgroundImage": "url(https://images.ecency.com/u/user3/avatar/small)",
@@ -114,7 +112,6 @@ exports[`(1) Full render 1`] = `
               >
                 <span
                   className="user-avatar small"
-                  role="none"
                   style={
                     Object {
                       "backgroundImage": "url(https://images.ecency.com/u/user4/avatar/small)",
@@ -150,7 +147,6 @@ exports[`(1) Full render 1`] = `
               >
                 <span
                   className="user-avatar small"
-                  role="none"
                   style={
                     Object {
                       "backgroundImage": "url(https://images.ecency.com/u/user1/avatar/small)",
@@ -186,7 +182,6 @@ exports[`(1) Full render 1`] = `
               >
                 <span
                   className="user-avatar small"
-                  role="none"
                   style={
                     Object {
                       "backgroundImage": "url(https://images.ecency.com/u/user5/avatar/small)",

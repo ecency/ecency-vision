@@ -38,7 +38,6 @@ exports[`(1) Render with data. 1`] = `
       >
         <span
           className="user-avatar large"
-          role="none"
           style={
             Object {
               "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
@@ -81,7 +80,6 @@ exports[`(1) Render with data. 1`] = `
       >
         <span
           className="user-avatar large"
-          role="none"
           style={
             Object {
               "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
@@ -124,7 +122,6 @@ exports[`(1) Render with data. 1`] = `
       >
         <span
           className="user-avatar large"
-          role="none"
           style={
             Object {
               "backgroundImage": "url(https://images.ecency.com/u/baz/avatar/medium)",

@@ -13,6 +13,8 @@ import ToolTip from "../tooltip";
 import UserAvatar from "../user-avatar";
 import DropDown from "../dropdown";
 import UserNotifications from "../notifications";
+import Gallery from "../gallery";
+import Drafts from "../drafts"
 
 import {_t} from "../../i18n";
 
@@ -40,11 +42,31 @@ interface Props {
     toggleUIProp: (what: ToggleType) => void;
 }
 
-export default class UserNav extends Component<Props> {
+interface State {
+    gallery: boolean,
+    drafts: boolean
+}
+
+export default class UserNav extends Component<Props, State> {
+    state: State = {
+        gallery: false,
+        drafts: false
+    }
+
     toggleLogin = () => {
         const {toggleUIProp} = this.props;
         toggleUIProp('login');
     };
+
+    toggleDrafts = () => {
+        const {drafts} = this.state;
+        this.setState({drafts: !drafts});
+    }
+
+    toggleGallery = () => {
+        const {gallery} = this.state;
+        this.setState({gallery: !gallery});
+    }
 
     toggleNotifications = () => {
         const {toggleUIProp} = this.props;
@@ -52,6 +74,7 @@ export default class UserNav extends Component<Props> {
     }
 
     render() {
+        const {gallery, drafts} = this.state;
         const {activeUser, ui, notifications} = this.props;
         const {unread} = notifications;
 
@@ -72,6 +95,14 @@ export default class UserNav extends Component<Props> {
                 {
                     label: _t('user-nav.profile'),
                     href: `/@${activeUser.username}`,
+                },
+                {
+                    label: _t('user-nav.drafts'),
+                    onClick: this.toggleDrafts,
+                },
+                {
+                    label: _t('user-nav.gallery'),
+                    onClick: this.toggleGallery,
                 },
                 {
                     label: _t('g.login-as'),
@@ -96,7 +127,6 @@ export default class UserNav extends Component<Props> {
                             {creditCardSvg}
                         </Link>
                     </ToolTip>
-
                     <ToolTip content={_t("user-nav.notifications")}>
                         <span className="notifications" onClick={this.toggleNotifications}>
                              {unread > 0 && (
@@ -107,10 +137,11 @@ export default class UserNav extends Component<Props> {
                             {bellSvg}
                         </span>
                     </ToolTip>
-
                     <DropDown {...dropDownConfig} float="right" header={`@${activeUser.username}`}/>
                 </div>
                 {ui.notifications && <UserNotifications {...this.props} />}
+                {gallery && <Gallery {...this.props} onHide={this.toggleGallery}/>}
+                {drafts && <Drafts {...this.props} onHide={this.toggleDrafts}/>}
             </>
         );
     }

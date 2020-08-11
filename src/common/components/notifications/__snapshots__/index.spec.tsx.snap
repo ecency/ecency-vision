@@ -26,7 +26,6 @@ exports[`(1) NotificationListItem (1) Vote  1`] = `
       >
         <span
           className="user-avatar medium"
-          role="none"
           style={
             Object {
               "backgroundImage": "url(https://images.ecency.com/u/fooo10/avatar/medium)",
@@ -97,7 +96,6 @@ exports[`(1) NotificationListItem (2) Mention  1`] = `
       >
         <span
           className="user-avatar medium"
-          role="none"
           style={
             Object {
               "backgroundImage": "url(https://images.ecency.com/u/ecency.stats/avatar/medium)",
@@ -168,7 +166,6 @@ exports[`(1) NotificationListItem (3) Follow  1`] = `
       >
         <span
           className="user-avatar medium"
-          role="none"
           style={
             Object {
               "backgroundImage": "url(https://images.ecency.com/u/fooo10/avatar/medium)",
@@ -226,7 +223,6 @@ exports[`(1) NotificationListItem (4) Unfollow  1`] = `
       >
         <span
           className="user-avatar medium"
-          role="none"
           style={
             Object {
               "backgroundImage": "url(https://images.ecency.com/u/fooo102/avatar/medium)",
@@ -284,7 +280,6 @@ exports[`(1) NotificationListItem (5) Reply  1`] = `
       >
         <span
           className="user-avatar medium"
-          role="none"
           style={
             Object {
               "backgroundImage": "url(https://images.ecency.com/u/dunsky/avatar/medium)",
@@ -365,7 +360,6 @@ exports[`(1) NotificationListItem (6) Reblog  1`] = `
       >
         <span
           className="user-avatar medium"
-          role="none"
           style={
             Object {
               "backgroundImage": "url(https://images.ecency.com/u/foo220/avatar/medium)",
@@ -430,7 +424,6 @@ exports[`(1) NotificationListItem (7) Transfer  1`] = `
       >
         <span
           className="user-avatar medium"
-          role="none"
           style={
             Object {
               "backgroundImage": "url(https://images.ecency.com/u/bar212/avatar/medium)",

@@ -4,6 +4,8 @@ import {Client as HiveClient, PrivateKey, Operation, TransactionConfirmation} fr
 
 import {usrActivity} from "./private";
 
+import {getAccessToken} from "../helper/user-token";
+
 import {User} from "../store/users/types";
 
 import SERVERS from "../constants/servers.json";
@@ -42,21 +44,21 @@ export const formatError = (err: any) => {
     }
 };
 
-export const reblog = (user: User, author: string, permlink: string): Promise<TransactionConfirmation> => {
+export const reblog = (username: string, author: string, permlink: string): Promise<TransactionConfirmation> => {
     const client = new hs.Client({
-        accessToken: user.accessToken,
+        accessToken: getAccessToken(username),
     });
 
-    return client.reblog(user.username, author, permlink)
+    return client.reblog(username, author, permlink)
         .then((r: any) => r.result)
         .then((r: TransactionConfirmation) => {
-            usrActivity(user, 130, r.block_num, r.id).then();
+            usrActivity(username, 130, r.block_num, r.id).then();
             return r;
         })
 };
 
 export const comment = (
-    user: User,
+    username: string,
     parentAuthor: string,
     parentPermlink: string,
     permlink: string,
@@ -65,16 +67,15 @@ export const comment = (
     jsonMetadata: MetaData,
     options: CommentOptions | null
 ): Promise<TransactionConfirmation> => {
-    const {username: author} = user;
 
     const client = new hs.Client({
-        accessToken: user.accessToken,
+        accessToken: getAccessToken(username),
     });
 
     const params = {
         parent_author: parentAuthor,
         parent_permlink: parentPermlink,
-        author,
+        author: username,
         permlink,
         title,
         body,
@@ -92,14 +93,14 @@ export const comment = (
         .then((r: any) => r.result)
         .then((r: TransactionConfirmation) => {
             const t = title ? 100 : 110;
-            usrActivity(user, t, r.block_num, r.id).then();
+            usrActivity(username, t, r.block_num, r.id).then();
             return r;
         })
 };
 
-export const deleteComment = (user: User, author: string, permlink: string): Promise<TransactionConfirmation> => {
+export const deleteComment = (username: string, author: string, permlink: string): Promise<TransactionConfirmation> => {
     const client = new hs.Client({
-        accessToken: user.accessToken,
+        accessToken: getAccessToken(username)
     });
 
     const params = {
@@ -113,65 +114,57 @@ export const deleteComment = (user: User, author: string, permlink: string): Pro
 };
 
 
-export const vote = (user: User, author: string, permlink: string, weight: number): Promise<TransactionConfirmation> => {
+export const vote = (username: string, author: string, permlink: string, weight: number): Promise<TransactionConfirmation> => {
     const client = new hs.Client({
-        accessToken: user.accessToken,
+        accessToken: getAccessToken(username),
     });
 
-    const voter = user.username;
-
-    return client.vote(voter, author, permlink, weight)
+    return client.vote(username, author, permlink, weight)
         .then((r: any) => r.result)
         .then((r: TransactionConfirmation) => {
-            usrActivity(user, 120, r.block_num, r.id).then();
+            usrActivity(username, 120, r.block_num, r.id).then();
             return r;
         })
 };
 
-export const follow = (user: User, following: string): Promise<TransactionConfirmation> => {
+export const follow = (follower: string, following: string): Promise<TransactionConfirmation> => {
     const client = new hs.Client({
-        accessToken: user.accessToken,
+        accessToken: getAccessToken(follower),
     });
-
-    const follower = user.username;
 
     return client.follow(follower, following).then((r: any) => r.result);
 }
 
-export const unFollow = (user: User, following: string): Promise<TransactionConfirmation> => {
+export const unFollow = (follower: string, following: string): Promise<TransactionConfirmation> => {
     const client = new hs.Client({
-        accessToken: user.accessToken,
+        accessToken: getAccessToken(follower),
     });
-
-    const follower = user.username;
 
     return client.unfollow(follower, following).then((r: any) => r.result);
 }
 
-export const ignore = (user: User, following: string): Promise<TransactionConfirmation> => {
+export const ignore = (follower: string, following: string): Promise<TransactionConfirmation> => {
     const client = new hs.Client({
-        accessToken: user.accessToken,
+        accessToken: getAccessToken(follower),
     });
-
-    const follower = user.username;
 
     return client.ignore(follower, following).then((r: any) => r.result);
 }
 
-export const claimRewardBalance = (user: User, rewardHive: string, rewardHbd: string, rewardVests: string): Promise<TransactionConfirmation> => {
+export const claimRewardBalance = (username: string, rewardHive: string, rewardHbd: string, rewardVests: string): Promise<TransactionConfirmation> => {
     const client = new hs.Client({
-        accessToken: user.accessToken,
+        accessToken: getAccessToken(username),
     });
 
     return client.claimRewardBalance(
-        user.username,
+        username,
         rewardHive,
         rewardHbd,
         rewardVests
     ).then((r: any) => r.result);
 }
 
-export const transfer = (user: User, key: PrivateKey, to: string, amount: string, memo: string): Promise<TransactionConfirmation> => {
+export const transfer = (from: string, key: PrivateKey, to: string, amount: string, memo: string): Promise<TransactionConfirmation> => {
     const hClient = new HiveClient(SERVERS);
     hClient.database.getVersion().then((res: any) => {
         if (res.blockchain_version !== '0.23.0') {
@@ -180,7 +173,6 @@ export const transfer = (user: User, key: PrivateKey, to: string, amount: string
             hClient.updateOperations(true)
         }
     });
-    const from = user.username;
 
     const args = {
         from,
@@ -192,8 +184,7 @@ export const transfer = (user: User, key: PrivateKey, to: string, amount: string
     return hClient.broadcast.transfer(args, key);
 }
 
-export const transferHot = (user: User, to: string, amount: string, memo: string) => {
-    const from = user.username;
+export const transferHot = (from: string, to: string, amount: string, memo: string) => {
 
     const op = ['transfer', {
         from,
@@ -202,11 +193,11 @@ export const transferHot = (user: User, to: string, amount: string, memo: string
         memo
     }];
 
-    return hs.sendOperation(op, {callback: `https://ecency.com/@${user.username}/wallet`}, () => {
+    return hs.sendOperation(op, {callback: `https://ecency.com/@${from}/wallet`}, () => {
     });
 }
 
-export const transferToSavings = (user: User, key: PrivateKey, to: string, amount: string, memo: string): Promise<TransactionConfirmation> => {
+export const transferToSavings = (from: string, key: PrivateKey, to: string, amount: string, memo: string): Promise<TransactionConfirmation> => {
     const hClient = new HiveClient(SERVERS);
     hClient.database.getVersion().then((res: any) => {
         if (res.blockchain_version !== '0.23.0') {
@@ -215,7 +206,6 @@ export const transferToSavings = (user: User, key: PrivateKey, to: string, amoun
             hClient.updateOperations(true)
         }
     });
-    const from = user.username;
 
     const op: Operation = [
         'transfer_to_savings',
@@ -230,8 +220,7 @@ export const transferToSavings = (user: User, key: PrivateKey, to: string, amoun
     return hClient.broadcast.sendOperations([op], key);
 }
 
-export const transferToSavingsHot = (user: User, to: string, amount: string, memo: string) => {
-    const from = user.username;
+export const transferToSavingsHot = (from: string, to: string, amount: string, memo: string) => {
 
     const op = ['transfer_to_savings', {
         from,
@@ -240,12 +229,12 @@ export const transferToSavingsHot = (user: User, to: string, amount: string, mem
         memo
     }];
 
-    return hs.sendOperation(op, {callback: `https://ecency.com/@${user.username}/wallet`}, () => {
+    return hs.sendOperation(op, {callback: `https://ecency.com/@${from}/wallet`}, () => {
     }, () => {
     });
 }
 
-export const convert = (user: User, key: PrivateKey, amount: string): Promise<TransactionConfirmation> => {
+export const convert = (owner: string, key: PrivateKey, amount: string): Promise<TransactionConfirmation> => {
     const hClient = new HiveClient(SERVERS);
     hClient.database.getVersion().then((res: any) => {
         if (res.blockchain_version !== '0.23.0') {
@@ -254,7 +243,6 @@ export const convert = (user: User, key: PrivateKey, amount: string): Promise<Tr
             hClient.updateOperations(true)
         }
     });
-    const owner = user.username;
 
     const op: Operation = [
         'convert',
@@ -268,8 +256,7 @@ export const convert = (user: User, key: PrivateKey, amount: string): Promise<Tr
     return hClient.broadcast.sendOperations([op], key);
 }
 
-export const convertHot = (user: User, amount: string) => {
-    const owner = user.username;
+export const convertHot = (owner: string, amount: string) => {
 
     const op = ['convert', {
         owner,
@@ -277,12 +264,12 @@ export const convertHot = (user: User, amount: string) => {
         requestid: new Date().getTime() >>> 0
     }];
 
-    return hs.sendOperation(op, {callback: `https://ecency.com/@${user.username}/wallet`}, () => {
+    return hs.sendOperation(op, {callback: `https://ecency.com/@${owner}/wallet`}, () => {
     }, () => {
     });
 }
 
-export const transferFromSavings = (user: User, key: PrivateKey, to: string, amount: string, memo: string): Promise<TransactionConfirmation> => {
+export const transferFromSavings = (from: string, key: PrivateKey, to: string, amount: string, memo: string): Promise<TransactionConfirmation> => {
     const hClient = new HiveClient(SERVERS);
     hClient.database.getVersion().then((res: any) => {
         if (res.blockchain_version !== '0.23.0') {
@@ -291,7 +278,6 @@ export const transferFromSavings = (user: User, key: PrivateKey, to: string, amo
             hClient.updateOperations(true)
         }
     });
-    const from = user.username;
 
     const op: Operation = [
         'transfer_from_savings',
@@ -307,8 +293,7 @@ export const transferFromSavings = (user: User, key: PrivateKey, to: string, amo
     return hClient.broadcast.sendOperations([op], key);
 }
 
-export const transferFromSavingsHot = (user: User, to: string, amount: string, memo: string) => {
-    const from = user.username;
+export const transferFromSavingsHot = (from: string, to: string, amount: string, memo: string) => {
 
     const op = ['transfer_from_savings', {
         from,
@@ -318,12 +303,12 @@ export const transferFromSavingsHot = (user: User, to: string, amount: string, m
         request_id: new Date().getTime() >>> 0
     }];
 
-    return hs.sendOperation(op, {callback: `https://ecency.com/@${user.username}/wallet`}, () => {
+    return hs.sendOperation(op, {callback: `https://ecency.com/@${from}/wallet`}, () => {
     }, () => {
     });
 }
 
-export const transferToVesting = (user: User, key: PrivateKey, to: string, amount: string): Promise<TransactionConfirmation> => {
+export const transferToVesting = (from: string, key: PrivateKey, to: string, amount: string): Promise<TransactionConfirmation> => {
     const hClient = new HiveClient(SERVERS);
     hClient.database.getVersion().then((res: any) => {
         if (res.blockchain_version !== '0.23.0') {
@@ -332,7 +317,6 @@ export const transferToVesting = (user: User, key: PrivateKey, to: string, amoun
             hClient.updateOperations(true)
         }
     });
-    const from = user.username;
 
     const op: Operation = [
         'transfer_to_vesting',
@@ -346,8 +330,7 @@ export const transferToVesting = (user: User, key: PrivateKey, to: string, amoun
     return hClient.broadcast.sendOperations([op], key);
 }
 
-export const transferToVestingHot = (user: User, to: string, amount: string) => {
-    const from = user.username;
+export const transferToVestingHot = (from: string, to: string, amount: string) => {
 
     const op = ['transfer_to_vesting', {
         from,
@@ -355,31 +338,31 @@ export const transferToVestingHot = (user: User, to: string, amount: string) => 
         amount
     }];
 
-    return hs.sendOperation(op, {callback: `https://ecency.com/@${user.username}/wallet`}, () => {
+    return hs.sendOperation(op, {callback: `https://ecency.com/@${from}/wallet`}, () => {
     }, () => {
     });
 }
 
-export const subscribe = (user: User, community: string): Promise<TransactionConfirmation> => {
+export const subscribe = (username: string, community: string): Promise<TransactionConfirmation> => {
     const client = new hs.Client({
-        accessToken: user.accessToken,
+        accessToken: getAccessToken(username),
     });
 
     const json = JSON.stringify([
         'subscribe', {community}
     ]);
 
-    return client.customJson([], [user.username], 'community', json);
+    return client.customJson([], [username], 'community', json);
 }
 
-export const unSubscribe = (user: User, community: string): Promise<TransactionConfirmation> => {
+export const unSubscribe = (username: string, community: string): Promise<TransactionConfirmation> => {
     const client = new hs.Client({
-        accessToken: user.accessToken,
+        accessToken: getAccessToken(username),
     });
 
     const json = JSON.stringify([
         'unsubscribe', {community}
     ]);
 
-    return client.customJson([], [user.username], 'community', json);
+    return client.customJson([], [username], 'community', json);
 }

@@ -1,18 +1,21 @@
 import React, {Component} from "react";
 
-import isEqual from "react-fast-compare";
-
 import {ActiveUser} from "../../store/active-user/types";
 import {User} from "../../store/users/types";
 
 import Tooltip from "../tooltip";
 import EmojiPicker from "../emoji-picker";
+import Gallery from "../gallery";
 
 import {uploadImage} from "../../api/ecency";
+
+import {addImage} from "../../api/private";
 
 import {_t} from "../../i18n";
 
 import {insertOrReplace, replace} from "../../util/input-util";
+
+import {getAccessToken} from "../../helper/user-token";
 
 import _c from "../../util/fix-class-names";
 
@@ -37,11 +40,20 @@ interface Props {
     sm?: boolean
 }
 
+interface State {
+    gallery: boolean
+}
+
 export class EditorToolbar extends Component<Props> {
+    state: State = {
+        gallery: false,
+    }
+
     holder = React.createRef<HTMLDivElement>();
 
-    shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
-        return !isEqual(this.props.activeUser, nextProps.activeUser);
+    toggleGallery = () => {
+        const {gallery} = this.state;
+        this.setState({gallery: !gallery});
     }
 
     componentDidMount() {
@@ -197,7 +209,8 @@ export class EditorToolbar extends Component<Props> {
 
     upload = async (file: File) => {
         const {activeUser, users} = this.props;
-        const user = users.find((x) => x.username === activeUser?.username)!;
+
+        const username = activeUser?.username!;
 
         const tempImgTag = `![Uploading ${file.name} #${Math.floor(
             Math.random() * 99
@@ -206,11 +219,13 @@ export class EditorToolbar extends Component<Props> {
 
         let imageUrl: string;
         try {
-            const resp = await uploadImage(file, user.accessToken)
+            const resp = await uploadImage(file, getAccessToken(username))
             imageUrl = resp.url;
         } catch (e) {
             return;
         }
+
+        addImage(username, imageUrl).then();
 
         const imageName = imageUrl.split('/').pop();
         const imgTag = `![${imageName}](${imageUrl})\n\n`;
@@ -224,6 +239,7 @@ export class EditorToolbar extends Component<Props> {
     };
 
     render() {
+        const {gallery} = this.state;
         const {sm, activeUser} = this.props;
 
         return (
@@ -311,17 +327,15 @@ export class EditorToolbar extends Component<Props> {
                                     >
                                         {_t("editor-toolbar.upload")}
                                     </div>
-                                    {/*
-                                        <div
-                                            className="sub-tool-menu-item"
-                                            onClick={(e: React.MouseEvent<HTMLElement>) => {
-                                                e.stopPropagation();
-                                                // this.setState({ galleryModalVisible: true });
-                                            }}
-                                        >
-                                            {_t("editor-toolbar.gallery")}
-                                        </div>
-                                    */}
+                                    <div
+                                        className="sub-tool-menu-item"
+                                        onClick={(e: React.MouseEvent<HTMLElement>) => {
+                                            e.stopPropagation();
+                                            this.toggleGallery();
+                                        }}
+                                    >
+                                        {_t("editor-toolbar.gallery")}
+                                    </div>
                                 </div>
                             )}
                         </div>
@@ -360,9 +374,13 @@ export class EditorToolbar extends Component<Props> {
                     multiple={true}
                     style={{display: 'none'}}
                 />
+                {(gallery && activeUser) && <Gallery {...this.props} onHide={this.toggleGallery} onPick={(url: string) => {
+                    this.insertText(url);
+                    this.toggleGallery();
+                }}/>}
             </>
         );
-    }
+    };
 }
 
 export default (props: Props) => {

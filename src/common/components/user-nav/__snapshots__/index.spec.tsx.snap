@@ -41,7 +41,6 @@ exports[`(1) Default render 1`] = `
   >
     <span
       className="user-avatar medium"
-      role="none"
       style={
         Object {
           "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
@@ -96,7 +95,6 @@ exports[`(2) Has rewards  1`] = `
   >
     <span
       className="user-avatar medium"
-      role="none"
       style={
         Object {
           "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
