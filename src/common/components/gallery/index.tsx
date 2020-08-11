@@ -44,7 +44,6 @@ export class Gallery extends Component<Props, State> {
 
         this.setState({loading: true});
         getImages(activeUser?.username!).then(items => {
-            console.log(JSON.stringify(items))
             this.setState({items: this.sort(items), loading: false});
         }).catch(() => {
             this.setState({loading: false});
