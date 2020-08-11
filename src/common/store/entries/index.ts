@@ -49,6 +49,7 @@ export const initialState: Entries = {
 export default (state: Entries = initialState, action: Actions): Entries => {
     switch (action.type) {
         case CommonActionTypes.LOCATION_CHANGE: {
+
             const {pathname} = action.payload.location;
             const params = filterTagExtract(pathname);
 
@@ -59,7 +60,8 @@ export default (state: Entries = initialState, action: Actions): Entries => {
             const {filter, tag} = params;
             const groupKey = makeGroupKey(filter, tag);
 
-            if (state[`${groupKey}`] === undefined) {
+            // Create a new group if group is not exists in store or PUSH action triggered.
+            if (state[`${groupKey}`] === undefined || action.payload.action === 'PUSH') {
                 return update(state, {
                     [`${groupKey}`]: {
                         $set: {entries: [], error: null, loading: false, hasMore: false},
