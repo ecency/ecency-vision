@@ -313,6 +313,12 @@ class SubmitPage extends Component<Props, State> {
     clear = (): void => {
         this.stateSet({title: "", tags: [], body: ""});
         this.updatePreview();
+
+        const {editingDraft} = this.state;
+        if (editingDraft) {
+            const {history} = this.props;
+            history.push('/submit');
+        }
     };
 
     updatePreview = (): void => {
