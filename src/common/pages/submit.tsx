@@ -118,8 +118,9 @@ interface Props extends PageProps {
 interface State extends PostBase {
     reward: RewardType;
     preview: PostBase;
-    inProgress: boolean;
+    posting: boolean;
     editingEntry: Entry | null;
+    saving: boolean;
     editingDraft: Draft | null;
 }
 
@@ -129,8 +130,9 @@ class SubmitPage extends Component<Props, State> {
         tags: [],
         body: "",
         reward: "default",
-        inProgress: false,
+        posting: false,
         editingEntry: null,
+        saving: false,
         editingDraft: null,
         preview: {
             title: "",
@@ -346,7 +348,7 @@ class SubmitPage extends Component<Props, State> {
         const {activeUser, history, addEntry} = this.props;
         const {title, tags, body, reward} = this.state;
 
-        this.stateSet({inProgress: true});
+        this.stateSet({posting: true});
 
         const author = activeUser?.username!;
         let permlink = createPermlink(title);
@@ -368,12 +370,12 @@ class SubmitPage extends Component<Props, State> {
         const jsonMeta = makeJsonMetaData(meta, tags, version);
         const options = makeCommentOptions(author, permlink, reward);
 
-        this.stateSet({inProgress: true});
+        this.stateSet({posting: true});
         comment(author, "", parentPermlink, permlink, title, body, jsonMeta, options)
             .then(() => hiveApi.getPost(author, permlink))
             .then((post: any) => bridgeApi.normalizePost(post))
             .then((entry: Entry | null) => {
-                this.stateSet({inProgress: false});
+                this.stateSet({posting: false});
 
                 success(_t("submit.published"));
 
@@ -385,7 +387,7 @@ class SubmitPage extends Component<Props, State> {
                 history.push(newLoc);
             })
             .catch((e) => {
-                this.stateSet({inProgress: false});
+                this.stateSet({posting: false});
                 error(formatError(e));
             });
     };
@@ -409,12 +411,12 @@ class SubmitPage extends Component<Props, State> {
         const meta = extractMetaData(body);
         const jsonMeta = Object.assign({}, json_metadata, meta, {tags});
 
-        this.stateSet({inProgress: true});
+        this.stateSet({posting: true});
         comment(activeUser?.username!, "", category, permlink, title, newBody, jsonMeta, null)
             .then(() => hiveApi.getPost(author, permlink))
             .then((post: any) => bridgeApi.normalizePost(post))
             .then((entry: Entry | null) => {
-                this.stateSet({inProgress: false});
+                this.stateSet({posting: false});
 
                 success(_t("submit.updated"));
 
@@ -426,7 +428,7 @@ class SubmitPage extends Component<Props, State> {
                 history.push(newLoc);
             })
             .catch((e) => {
-                this.stateSet({inProgress: false});
+                this.stateSet({posting: false});
                 error(formatError(e));
             });
     };
@@ -449,7 +451,7 @@ class SubmitPage extends Component<Props, State> {
 
         let promise: Promise<any>;
 
-        this.stateSet({inProgress: true});
+        this.stateSet({saving: true});
 
         if (editingDraft) {
             promise = updateDraft(activeUser?.username!, editingDraft._id, title, body, tagJ).then(() => {
@@ -466,11 +468,11 @@ class SubmitPage extends Component<Props, State> {
             })
         }
 
-        promise.catch(() => error(_t('g.server-error'))).finally(() => this.stateSet({inProgress: false}))
+        promise.catch(() => error(_t('g.server-error'))).finally(() => this.stateSet({saving: false}))
     }
 
     render() {
-        const {title, tags, body, reward, preview, inProgress, editingEntry, editingDraft} = this.state;
+        const {title, tags, body, reward, preview, posting, editingEntry, saving, editingDraft} = this.state;
 
         //  Meta config
         const metaProps = {
@@ -547,7 +549,7 @@ class SubmitPage extends Component<Props, State> {
                                 <>
                                     <span/>
                                     <div>
-                                        <Button variant="outline-primary" style={{marginRight: "6px"}} onClick={this.saveDraft} disabled={!canPublish || inProgress}>
+                                        <Button variant="outline-primary" style={{marginRight: "6px"}} onClick={this.saveDraft} disabled={!canPublish || saving || posting}>
                                             {contentSaveSvg} {editingDraft === null ? _t("submit.save-draft") : _t("submit.update-draft")}
                                         </Button>
                                         {LoginRequired({
@@ -555,9 +557,9 @@ class SubmitPage extends Component<Props, State> {
                                             children: <Button
                                                 className="d-inline-flex align-items-center"
                                                 onClick={this.publish}
-                                                disabled={!canPublish || inProgress}
+                                                disabled={!canPublish || posting || saving}
                                             >
-                                                {inProgress && spinner}
+                                                {posting && spinner}
                                                 {_t("submit.publish")}
                                             </Button>
                                         })}
@@ -575,9 +577,9 @@ class SubmitPage extends Component<Props, State> {
                                         children: <Button
                                             className="d-inline-flex align-items-center"
                                             onClick={this.update}
-                                            disabled={!canPublish || inProgress}
+                                            disabled={!canPublish || posting}
                                         >
-                                            {inProgress && spinner}
+                                            {posting && spinner}
                                             {_t("submit.update")}
                                         </Button>
                                     })}
