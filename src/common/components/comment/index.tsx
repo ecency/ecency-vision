@@ -21,9 +21,11 @@ import {
 setProxyBase(defaults.imageServer);
 
 import {_t} from "../../i18n";
+import {Global} from '../../store/global/types';
 
 interface PreviewProps {
-    text: string
+    text: string;
+    global: Global;
 }
 
 
@@ -33,7 +35,7 @@ export class CommentPreview extends Component<PreviewProps> {
     }
 
     render() {
-        const {text} = this.props;
+        const {text, global} = this.props;
 
         if (text === '') {
             return null;
@@ -41,7 +43,7 @@ export class CommentPreview extends Component<PreviewProps> {
 
         return <div className="comment-preview">
             <div className="comment-preview-header">{_t('comment.preview')}</div>
-            <div className="preview-body markdown-view" dangerouslySetInnerHTML={{__html: renderPostBody(text)}}/>
+            <div className="preview-body markdown-view" dangerouslySetInnerHTML={{__html: renderPostBody(text, false, global.canUseWebp)}}/>
         </div>;
     }
 }
@@ -52,6 +54,7 @@ interface Props {
     users: User[];
     activeUser: ActiveUser | null;
     ui: UI;
+    global: Global;
     inProgress?: boolean;
     cancellable?: boolean;
     autoFocus?: boolean;
@@ -152,7 +155,7 @@ export class Comment extends Component<Props, State> {
                             </Button>
                         })}
                     </div>
-                    <CommentPreview text={preview}/>
+                    <CommentPreview global={this.props.global} text={preview}/>
                 </div>
             </>
         );
@@ -166,6 +169,7 @@ export default (p: Props) => {
         users: p.users,
         activeUser: p.activeUser,
         ui: p.ui,
+        global: p.global,
         inProgress: p.inProgress,
         cancellable: p.cancellable,
         autoFocus: p.autoFocus,

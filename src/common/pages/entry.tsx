@@ -65,6 +65,7 @@ import {_t} from "../i18n";
 import {version} from "../../../package.json";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
+import { Global } from '../store/global/types';
 
 interface MatchParams {
     category: string;
@@ -242,6 +243,7 @@ class EntryPage extends Component<Props, State> {
 
     render() {
         const {loading, replying} = this.state;
+        const {global} = this.props;
 
         if (loading) {
             return <LinearProgress/>;
@@ -257,7 +259,7 @@ class EntryPage extends Component<Props, State> {
         const published = moment(parseDate(entry.created));
         const modified = moment(parseDate(entry.updated));
 
-        const renderedBody = {__html: renderPostBody(entry.body, false)};
+        const renderedBody = {__html: renderPostBody(entry.body, false, global.canUseWebp)};
 
         // Sometimes tag list comes with duplicate items
         const tags = [...new Set(entry.json_metadata.tags)];
