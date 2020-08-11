@@ -67,7 +67,7 @@ export class ItemBody extends Component<ItemBodyProps> {
 
     render() {
         const {entry, global} = this.props;
-        console.log(global && global.canUseWebp);
+
         const renderedBody = {__html: renderPostBody(entry.body, false, global.canUseWebp)};
 
         return <div className="item-body markdown-view mini-markdown" dangerouslySetInnerHTML={renderedBody}/>
@@ -293,7 +293,7 @@ export class Item extends Component<ItemProps, ItemState> {
                                 </span>
                             })}
                         </div>
-                        <ItemBody {...this.props} entry={entry}/>
+                        <ItemBody global={this.props.global} entry={entry}/>
                         <div className="item-controls">
                             {EntryVoteBtn({
                                 ...this.props,

@@ -75,7 +75,6 @@ interface MatchParams {
 
 interface Props extends PageProps {
     match: match<MatchParams>;
-    global: Global;
 }
 
 interface State {

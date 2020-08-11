@@ -21,7 +21,7 @@ import {
 setProxyBase(defaults.imageServer);
 
 import {_t} from "../../i18n";
-import { Global } from '../../store/global/types';
+import {Global} from '../../store/global/types';
 
 interface PreviewProps {
     text: string;
@@ -155,7 +155,7 @@ export class Comment extends Component<Props, State> {
                             </Button>
                         })}
                     </div>
-                    <CommentPreview {...this.props} text={preview}/>
+                    <CommentPreview global={this.props.global} text={preview}/>
                 </div>
             </>
         );
