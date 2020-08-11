@@ -112,27 +112,54 @@ export const markNotifications = (username: string, id: string | null = null) =>
 };
 
 
-export interface GalleryItem {
+export interface UserImage {
     created: string
     timestamp: number
     url: string
     _id: string
 }
 
-export const getImages = (username: string): Promise<GalleryItem[]> => {
+export const getImages = (username: string): Promise<UserImage[]> => {
     const data = {code: getAccessToken(username)};
-
     return axios.post(`/api/images`, data).then(resp => resp.data);
 }
 
 export const deleteImage = (username: string, imageID: string): Promise<any> => {
     const data = {code: getAccessToken(username), id: imageID};
-
     return axios.post(`/api/images-delete`, data).then(resp => resp.data);
 }
 
 export const addImage = (username: string, url: string): Promise<any> => {
     const data = {code: getAccessToken(username), url: url};
-
     return axios.post(`/api/images-add`, data).then(resp => resp.data);
+}
+
+export interface Draft {
+    body: string
+    created: string
+    post_type: string
+    tags: string
+    timestamp: number
+    title: string
+    _id: string
+}
+
+export const getDrafts = (username: string): Promise<Draft[]> => {
+    const data = {code: getAccessToken(username)};
+    return axios.post(`/api/drafts`, data).then(resp => resp.data);
+}
+
+export const addDraft = (username: string, title: string, body: string, tags: string): Promise<{ drafts: Draft[] }> => {
+    const data = {code: getAccessToken(username), title, body, tags};
+    return axios.post(`/api/drafts-add`, data).then(resp => resp.data);
+}
+
+export const updateDraft = (username: string, draftId: string, title: string, body: string, tags: string): Promise<any> => {
+    const data = {code: getAccessToken(username), id: draftId, title, body, tags};
+    return axios.post(`/api/drafts-update`, data).then(resp => resp.data);
+}
+
+export const deleteDraft = (username: string, draftId: string): Promise<any> => {
+    const data = {code: getAccessToken(username), id: draftId};
+    return axios.post(`/api/drafts-delete`, data).then(resp => resp.data);
 }

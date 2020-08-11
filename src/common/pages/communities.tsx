@@ -39,6 +39,13 @@ class CommunitiesPage extends Component<PageProps, State> {
 
     componentDidMount() {
         this.fetch();
+
+        const {activeUser, subscriptions, updateSubscriptions} = this.props;
+        if (activeUser && subscriptions.length === 0) {
+            getSubscriptions(activeUser.username).then(r => {
+                if (r) updateSubscriptions(r);
+            });
+        }
     }
 
     componentDidUpdate(prevProps: Readonly<PageProps>) {

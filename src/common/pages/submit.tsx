@@ -35,6 +35,8 @@ import WordCount from "../components/word-counter";
 import {makePath as makePathEntry} from "../components/entry-link";
 import {error, success} from "../components/feedback";
 
+import {getDrafts, addDraft, updateDraft, Draft} from "../api/private";
+
 import {createPermlink, extractMetaData, makeJsonMetaData, makeCommentOptions, createPatch} from "../helper/posting";
 
 import {RewardType, comment, formatError} from "../api/operations";
@@ -47,6 +49,7 @@ import * as ls from "../util/local-storage";
 
 import {version} from "../../../package.json";
 
+import {contentSaveSvg} from "../img/svg";
 
 interface PostBase {
     title: string;
@@ -103,8 +106,9 @@ import {History, Location} from "history";
 import {Global} from "../store/global/types";
 
 interface MatchParams {
-    permlink: string;
-    username: string;
+    permlink?: string;
+    username?: string;
+    draftId?: string;
 }
 
 interface Props extends PageProps {
@@ -114,9 +118,10 @@ interface Props extends PageProps {
 interface State extends PostBase {
     reward: RewardType;
     preview: PostBase;
-    inProgress: boolean;
-    editMode: boolean;
+    posting: boolean;
     editingEntry: Entry | null;
+    saving: boolean;
+    editingDraft: Draft | null;
 }
 
 class SubmitPage extends Component<Props, State> {
@@ -125,9 +130,10 @@ class SubmitPage extends Component<Props, State> {
         tags: [],
         body: "",
         reward: "default",
-        inProgress: false,
-        editMode: false,
+        posting: false,
         editingEntry: null,
+        saving: false,
+        editingDraft: null,
         preview: {
             title: "",
             tags: [],
@@ -142,10 +148,9 @@ class SubmitPage extends Component<Props, State> {
         this._mounted = false;
     }
 
-    stateSet = (obj: {}, cb: () => void = () => {
-    }) => {
+    stateSet = (state: {}, cb?: () => void) => {
         if (this._mounted) {
-            this.setState(obj, cb);
+            this.setState(state, cb);
         }
     };
 
@@ -154,25 +159,56 @@ class SubmitPage extends Component<Props, State> {
 
         this.detectCommunity();
 
-        // wait to load active user on page load
-        // TODO: Move to component did update
-        setTimeout(this.detectEntry, 200);
+        this.detectEntry().then();
+
+        this.detectDraft().then();
     };
 
-    detectEntry = async () => {
+    componentDidUpdate(prevProps: Readonly<Props>) {
+        const {activeUser, location} = this.props;
+
+        // after first initial
+        if (activeUser?.username !== prevProps.activeUser?.username) {
+            this.detectEntry().then();
+            this.detectDraft().then();
+        }
+
+        // location change. only occurs once a draft picked on drafts dialog
+        if (location.pathname !== prevProps.location.pathname) {
+            this.detectDraft().then();
+        }
+    }
+
+    isEntry = (): boolean => {
         const {match, activeUser} = this.props;
         const {path, params} = match;
 
-        if (activeUser && path.endsWith("/edit") && params.username && params.permlink) {
+        return !!(activeUser && path.endsWith("/edit") && params.username && params.permlink);
+    }
+
+    isDraft = (): boolean => {
+        const {match, activeUser} = this.props;
+        const {path, params} = match;
+
+        return !!(activeUser && path.startsWith("/draft") && params.draftId);
+    }
+
+    detectEntry = async () => {
+        const {match, history} = this.props;
+        const {params} = match;
+
+        if (this.isEntry()) {
             let entry;
             try {
-                entry = await bridgeApi.normalizePost(await hiveApi.getPost(params.username.replace("@", ""), params.permlink));
+                entry = await bridgeApi.normalizePost(await hiveApi.getPost(params.username!.replace("@", ""), params.permlink!));
             } catch (e) {
                 error(formatError(e));
                 return;
             }
 
             if (!entry) {
+                error('Could not fetch post data.');
+                history.push('/submit');
                 return;
             }
 
@@ -180,9 +216,52 @@ class SubmitPage extends Component<Props, State> {
             let tags = entry.json_metadata?.tags || [];
             tags = [...new Set(tags)];
 
-            this.stateSet({title, tags, body, editMode: true, editingEntry: entry}, this.updatePreview);
+            this.stateSet({title, tags, body, editingEntry: entry}, this.updatePreview);
+        } else {
+            if (this.state.editingEntry) {
+                this.stateSet({editingEntry: null});
+            }
         }
     };
+
+    detectDraft = async () => {
+        const {match, activeUser, history} = this.props;
+        const {params} = match;
+
+        if (this.isDraft()) {
+            let drafts: Draft[];
+
+            try {
+                drafts = await getDrafts(activeUser?.username!);
+            } catch (err) {
+                drafts = [];
+            }
+
+            drafts = drafts.filter(x => x._id === params.draftId);
+            if (drafts.length === 1) {
+                const [draft] = drafts;
+                const {title, body} = draft;
+
+                let tags: string[];
+
+                try {
+                    tags = draft.tags.trim() ? draft.tags.split(/[ ,]+/) : [];
+                } catch (e) {
+                    tags = [];
+                }
+
+                this.stateSet({title, tags, body, editingDraft: draft}, this.updatePreview);
+            } else {
+                error('Could not fetch draft data.');
+                history.push('/submit');
+                return;
+            }
+        } else {
+            if (this.state.editingDraft) {
+                this.stateSet({editingDraft: null});
+            }
+        }
+    }
 
     detectCommunity = () => {
         const {location} = this.props;
@@ -195,6 +274,10 @@ class SubmitPage extends Component<Props, State> {
     }
 
     loadLocalDraft = (): void => {
+        if (this.isEntry() || this.isDraft()) {
+            return;
+        }
+
         const localDraft = ls.get("local_draft") as PostBase;
         if (!localDraft) {
             return;
@@ -238,6 +321,12 @@ class SubmitPage extends Component<Props, State> {
     clear = (): void => {
         this.stateSet({title: "", tags: [], body: ""});
         this.updatePreview();
+
+        const {editingDraft} = this.state;
+        if (editingDraft) {
+            const {history} = this.props;
+            history.push('/submit');
+        }
     };
 
     updatePreview = (): void => {
@@ -247,9 +336,9 @@ class SubmitPage extends Component<Props, State> {
         }
 
         this._updateTimer = setTimeout(() => {
-            const {title, tags, body, editMode} = this.state;
+            const {title, tags, body, editingEntry} = this.state;
             this.stateSet({preview: {title, tags, body}});
-            if (!editMode) {
+            if (editingEntry === null) {
                 this.saveLocalDraft();
             }
         }, 500);
@@ -259,7 +348,7 @@ class SubmitPage extends Component<Props, State> {
         const {activeUser, history, addEntry} = this.props;
         const {title, tags, body, reward} = this.state;
 
-        this.stateSet({inProgress: true});
+        this.stateSet({posting: true});
 
         const author = activeUser?.username!;
         let permlink = createPermlink(title);
@@ -281,12 +370,12 @@ class SubmitPage extends Component<Props, State> {
         const jsonMeta = makeJsonMetaData(meta, tags, version);
         const options = makeCommentOptions(author, permlink, reward);
 
-        this.stateSet({inProgress: true});
+        this.stateSet({posting: true});
         comment(author, "", parentPermlink, permlink, title, body, jsonMeta, options)
             .then(() => hiveApi.getPost(author, permlink))
             .then((post: any) => bridgeApi.normalizePost(post))
             .then((entry: Entry | null) => {
-                this.stateSet({inProgress: false});
+                this.stateSet({posting: false});
 
                 success(_t("submit.published"));
 
@@ -298,7 +387,7 @@ class SubmitPage extends Component<Props, State> {
                 history.push(newLoc);
             })
             .catch((e) => {
-                this.stateSet({inProgress: false});
+                this.stateSet({posting: false});
                 error(formatError(e));
             });
     };
@@ -322,12 +411,12 @@ class SubmitPage extends Component<Props, State> {
         const meta = extractMetaData(body);
         const jsonMeta = Object.assign({}, json_metadata, meta, {tags});
 
-        this.stateSet({inProgress: true});
+        this.stateSet({posting: true});
         comment(activeUser?.username!, "", category, permlink, title, newBody, jsonMeta, null)
             .then(() => hiveApi.getPost(author, permlink))
             .then((post: any) => bridgeApi.normalizePost(post))
             .then((entry: Entry | null) => {
-                this.stateSet({inProgress: false});
+                this.stateSet({posting: false});
 
                 success(_t("submit.updated"));
 
@@ -339,7 +428,7 @@ class SubmitPage extends Component<Props, State> {
                 history.push(newLoc);
             })
             .catch((e) => {
-                this.stateSet({inProgress: false});
+                this.stateSet({posting: false});
                 error(formatError(e));
             });
     };
@@ -355,8 +444,35 @@ class SubmitPage extends Component<Props, State> {
         history.push(newLoc);
     };
 
+    saveDraft = () => {
+        const {activeUser, history} = this.props;
+        const {title, body, tags, editingDraft} = this.state;
+        const tagJ = tags.join(' ');
+
+        let promise: Promise<any>;
+
+        this.stateSet({saving: true});
+
+        if (editingDraft) {
+            promise = updateDraft(activeUser?.username!, editingDraft._id, title, body, tagJ).then(() => {
+                success(_t('submit.draft-updated'));
+            })
+        } else {
+            promise = addDraft(activeUser?.username!, title, body, tagJ).then(resp => {
+                success(_t('submit.draft-saved'));
+
+                const {drafts} = resp;
+                const draft = drafts[drafts.length - 1];
+
+                history.push(`/draft/${draft._id}`);
+            })
+        }
+
+        promise.catch(() => error(_t('g.server-error'))).finally(() => this.stateSet({saving: false}))
+    }
+
     render() {
-        const {title, tags, body, reward, preview, inProgress, editMode} = this.state;
+        const {title, tags, body, reward, preview, posting, editingEntry, saving, editingDraft} = this.state;
 
         //  Meta config
         const metaProps = {
@@ -404,7 +520,7 @@ class SubmitPage extends Component<Props, State> {
                                 onChange={this.bodyChanged}
                             />
                         </div>
-                        {!editMode && (
+                        {editingEntry === null && (
                             <div className="bottom-toolbar">
                                 <div className="reward">
                                     <span>{_t("submit.reward")}</span>
@@ -429,24 +545,29 @@ class SubmitPage extends Component<Props, State> {
                         </div>
                         <PreviewContent history={this.props.history} global={this.props.global} {...preview} />
                         <div className="bottom-toolbar">
-                            {!editMode && (
+                            {editingEntry === null && (
                                 <>
                                     <span/>
-                                    {LoginRequired({
-                                        ...this.props,
-                                        children: <Button
-                                            className="d-inline-flex align-items-center"
-                                            onClick={this.publish}
-                                            disabled={!canPublish || inProgress}
-                                        >
-                                            {inProgress && spinner}
-                                            {_t("submit.publish")}
+                                    <div>
+                                        <Button variant="outline-primary" style={{marginRight: "6px"}} onClick={this.saveDraft} disabled={!canPublish || saving || posting}>
+                                            {contentSaveSvg} {editingDraft === null ? _t("submit.save-draft") : _t("submit.update-draft")}
                                         </Button>
-                                    })}
+                                        {LoginRequired({
+                                            ...this.props,
+                                            children: <Button
+                                                className="d-inline-flex align-items-center"
+                                                onClick={this.publish}
+                                                disabled={!canPublish || posting || saving}
+                                            >
+                                                {posting && spinner}
+                                                {_t("submit.publish")}
+                                            </Button>
+                                        })}
+                                    </div>
                                 </>
                             )}
 
-                            {editMode && (
+                            {editingEntry !== null && (
                                 <>
                                     <Button variant="outline-secondary" onClick={this.cancelUpdate}>
                                         {_t("submit.cancel-update")}
@@ -456,9 +577,9 @@ class SubmitPage extends Component<Props, State> {
                                         children: <Button
                                             className="d-inline-flex align-items-center"
                                             onClick={this.update}
-                                            disabled={!canPublish || inProgress}
+                                            disabled={!canPublish || posting}
                                         >
-                                            {inProgress && spinner}
+                                            {posting && spinner}
                                             {_t("submit.update")}
                                         </Button>
                                     })}

@@ -8,7 +8,7 @@ import LinearProgress from "../linear-progress";
 import PopoverConfirm from "../popover-confirm";
 import Tooltip from "../tooltip";
 
-import {getImages, deleteImage, GalleryItem} from "../../api/private";
+import {getImages, deleteImage, UserImage} from "../../api/private";
 
 import {success, error} from "../feedback";
 
@@ -26,7 +26,7 @@ interface Props {
 
 interface State {
     loading: boolean,
-    items: GalleryItem[]
+    items: UserImage[]
 }
 
 export class Gallery extends Component<Props, State> {
@@ -44,7 +44,6 @@ export class Gallery extends Component<Props, State> {
 
         this.setState({loading: true});
         getImages(activeUser?.username!).then(items => {
-            console.log(JSON.stringify(items))
             this.setState({items: this.sort(items), loading: false});
         }).catch(() => {
             this.setState({loading: false});
@@ -52,12 +51,12 @@ export class Gallery extends Component<Props, State> {
         })
     }
 
-    sort = (items: GalleryItem[]) =>
+    sort = (items: UserImage[]) =>
         items.sort((a, b) => {
             return new Date(b.created).getTime() > new Date(a.created).getTime() ? 1 : -1;
         });
 
-    itemClicked = (item: GalleryItem) => {
+    itemClicked = (item: UserImage) => {
         const {onPick} = this.props;
         if (onPick) {
             onPick(item.url);
@@ -68,7 +67,7 @@ export class Gallery extends Component<Props, State> {
         success(_t('gallery.copied'));
     }
 
-    delete = (item: GalleryItem) => {
+    delete = (item: UserImage) => {
         const {activeUser} = this.props;
 
         deleteImage(activeUser?.username!, item._id).then(() => {

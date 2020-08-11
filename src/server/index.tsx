@@ -21,7 +21,11 @@ import {
     popularUsers,
     images,
     imagesDelete,
-    imagesAdd
+    imagesAdd,
+    drafts,
+    draftsAdd,
+    draftsUpdate,
+    draftsDelete
 } from "./handlers/private-api";
 
 const server = express();
@@ -80,6 +84,10 @@ server
     .post("^/api/images$", images)
     .post("^/api/images-delete$", imagesDelete)
     .post("^/api/images-add$", imagesAdd)
+    .post("^/api/drafts$", drafts)
+    .post("^/api/drafts-add$", draftsAdd)
+    .post("^/api/drafts-update$", draftsUpdate)
+    .post("^/api/drafts-delete$", draftsDelete)
     .post("^/api/account-create$", createAccount)
     .get("^/api/popular-users", popularUsers)
     .get("*", fallbackHandler);
