@@ -439,9 +439,11 @@ class SubmitPage extends Component<Props, State> {
     saveDraft = () => {
         const {activeUser, history} = this.props;
         const {title, body, tags, editingDraft} = this.state;
-        const tagJ = tags.join(' ')
+        const tagJ = tags.join(' ');
 
         let promise: Promise<any>;
+
+        this.stateSet({inProgress: true});
 
         if (editingDraft) {
             promise = updateDraft(activeUser?.username!, editingDraft._id, title, body, tagJ).then(() => {
@@ -458,7 +460,7 @@ class SubmitPage extends Component<Props, State> {
             })
         }
 
-        promise.catch(() => error(_t('g.server-error')));
+        promise.catch(() => error(_t('g.server-error'))).finally(() => this.stateSet({inProgress: false}))
     }
 
     render() {
@@ -539,7 +541,7 @@ class SubmitPage extends Component<Props, State> {
                                 <>
                                     <span/>
                                     <div>
-                                        <Button variant="outline-primary" style={{marginRight: "6px"}} onClick={this.saveDraft}>
+                                        <Button variant="outline-primary" style={{marginRight: "6px"}} onClick={this.saveDraft} disabled={!canPublish || inProgress}>
                                             {contentSaveSvg} {editingDraft === null ? _t("submit.save-draft") : _t("submit.update-draft")}
                                         </Button>
                                         {LoginRequired({
