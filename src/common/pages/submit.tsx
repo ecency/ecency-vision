@@ -192,7 +192,7 @@ class SubmitPage extends Component<Props, State> {
     }
 
     detectEntry = async () => {
-        const {match} = this.props;
+        const {match, history} = this.props;
         const {params} = match;
 
         if (this.isEntry()) {
@@ -205,6 +205,8 @@ class SubmitPage extends Component<Props, State> {
             }
 
             if (!entry) {
+                error('Could not fetch post data.');
+                history.push('/submit');
                 return;
             }
 
@@ -221,7 +223,7 @@ class SubmitPage extends Component<Props, State> {
     };
 
     detectDraft = async () => {
-        const {match, activeUser} = this.props;
+        const {match, activeUser, history} = this.props;
         const {params} = match;
 
         if (this.isDraft()) {
@@ -247,6 +249,10 @@ class SubmitPage extends Component<Props, State> {
                 }
 
                 this.stateSet({title, tags, body, editingDraft: draft}, this.updatePreview);
+            } else {
+                error('Could not fetch draft data.');
+                history.push('/submit');
+                return;
             }
         } else {
             if (this.state.editingDraft) {
