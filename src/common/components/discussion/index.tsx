@@ -98,8 +98,6 @@ interface ItemState {
     reply: boolean;
     edit: boolean;
     inProgress: boolean;
-    recentLoading: boolean;
-    recentEntries: Entry[];
 }
 
 export class Item extends Component<ItemProps, ItemState> {
@@ -107,8 +105,6 @@ export class Item extends Component<ItemProps, ItemState> {
         reply: false,
         edit: false,
         inProgress: false,
-        recentLoading: false,
-        recentEntries: [],
     }
 
     _mounted: boolean = true;
@@ -205,27 +201,7 @@ export class Item extends Component<ItemProps, ItemState> {
             this.stateSet({inProgress: false});
         })
     }
-    fetchRecent = () => {
-        const {entry} = this.props;
-        const {author, permlink} = entry;
-        
-        this.stateSet({ recentLoading: true });
-        let prms: Promise<Entry[] | null>;
-        prms = bridgeApi.getAccountPosts('posts', author, '', '', 3)
-        return prms
-            .then((resp) => {
-                const s = resp && resp
-                    .filter(r => r.permlink !== permlink)
-                    // exclude active user's posts
-                    .filter(r => r.author === author)
-                
-                this.stateSet({ recentEntries: s });
-                return resp;
-            })
-            .finally(() => {
-                this.stateSet({ recentLoading: false });
-            });
-    }
+
     updateReply = (text: string) => {
         const {entry} = this.props;
         const {activeUser, updateReply} = this.props;
@@ -272,7 +248,7 @@ export class Item extends Component<ItemProps, ItemState> {
 
     render() {
         const {entry, activeUser} = this.props;
-        const {reply, edit, inProgress, recentEntries, recentLoading} = this.state;
+        const {reply, edit, inProgress} = this.state;
 
         const created = moment(parseDate(entry.created));
         const reputation = Math.floor(entry.author_reputation);
@@ -348,67 +324,7 @@ export class Item extends Component<ItemProps, ItemState> {
                         )}
                     </div>
                 </div>
-                {recentEntries.length === 3 && (
-                    <div className="similar-entries-list">
-                        <div className="similar-entries-list-header">
-                        <div className="list-header-text">
-                            {_t("discussion.recent-posts", {n: entry.author})}
-                        </div>
-                        <a
-                            role="none"
-                            className={`reload-entries ${
-                            recentLoading ? 'reloading' : ''
-                            }`}
-                            onClick={this.fetchRecent}
-                        >
-                            <i className="mi">refresh</i>
-                        </a>
-                        </div>
-                        <div className="similar-entries-list-body">
-                        {recentEntries.map(en => {
-                            const enImg = catchPostImage(en, 300, 200) || noImage;
-                            const enCreated = parseDate(en.created);
-                            return (
-                            <EntryLink
-                                {...this.props}
-                                entry={en}
-                                author={en.author}
-                                permlink={en.permlink}
-                                key={`${en.author}-${en.permlink}`}
-                            >
-                                <div className="similar-entries-list-item">
-                                <div className="item-title">{en.title}</div>
-                                <div className="item-image">
-                                    <img
-                                    src={enImg}
-                                    alt=""
-                                    onError={e => {
-                                        e.target.src = fallbackImage;
-                                    }}
-                                    />
-                                </div>
-                                <div className="item-footer">
-                                    <span className="item-footer-author">
-                                    {en.author}
-                                    </span>
-                                    <span className="item-footer-date">
-                                    <FormattedRelative
-                                        updateInterval={0}
-                                        value={enCreated}
-                                        initialNow={Date.now()}
-                                    />
-                                    </span>
-                                    <span className="item-footer-comment-count">
-                                    <i className="mi">comment</i> {en.children}
-                                    </span>
-                                </div>
-                                </div>
-                            </EntryLink>
-                            );
-                        })}
-                        </div>
-                    </div>
-                )}
+
                 {reply && Comment({
                     ...this.props,
                     defText: (ls.get(`reply_draft_${entry.author}_${entry.permlink}`) || ''),
