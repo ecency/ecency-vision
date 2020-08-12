@@ -186,7 +186,6 @@ export const imagesDelete = async (req: express.Request, res: express.Response) 
     pipe(apiRequest(`images/${username}/${id}`, "DELETE"), res);
 }
 
-
 export const imagesAdd = async (req: express.Request, res: express.Response) => {
     const username = validateCode(req, res);
     if (!username) return;
@@ -222,4 +221,25 @@ export const draftsDelete = async (req: express.Request, res: express.Response) 
     if (!username) return;
     const {id} = req.body;
     pipe(apiRequest(`drafts/${username}/${id}`, "DELETE"), res);
+}
+
+export const bookmarks = async (req: express.Request, res: express.Response) => {
+    const username = validateCode(req, res);
+    if (!username) return;
+    pipe(apiRequest(`bookmarks/${username}`, "GET"), res);
+}
+
+export const bookmarksAdd = async (req: express.Request, res: express.Response) => {
+    const username = validateCode(req, res);
+    if (!username) return;
+    const {author, permlink} = req.body;
+    const data = {username, author, permlink, chain: 'steem'};
+    pipe(apiRequest(`bookmark`, "POST", {}, data), res);
+}
+
+export const bookmarksDelete = async (req: express.Request, res: express.Response) => {
+    const username = validateCode(req, res);
+    if (!username) return;
+    const {id} = req.body;
+    pipe(apiRequest(`bookmarks/${username}/${id}`, "DELETE"), res);
 }

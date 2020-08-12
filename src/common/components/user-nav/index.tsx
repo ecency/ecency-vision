@@ -14,7 +14,8 @@ import UserAvatar from "../user-avatar";
 import DropDown from "../dropdown";
 import UserNotifications from "../notifications";
 import Gallery from "../gallery";
-import Drafts from "../drafts"
+import Drafts from "../drafts";
+import Bookmarks from "../bookmarks"
 
 import {_t} from "../../i18n";
 
@@ -44,13 +45,15 @@ interface Props {
 
 interface State {
     gallery: boolean,
-    drafts: boolean
+    drafts: boolean,
+    bookmarks: boolean
 }
 
 export default class UserNav extends Component<Props, State> {
     state: State = {
         gallery: false,
-        drafts: false
+        drafts: false,
+        bookmarks: false
     }
 
     toggleLogin = () => {
@@ -68,13 +71,18 @@ export default class UserNav extends Component<Props, State> {
         this.setState({gallery: !gallery});
     }
 
+    toggleBookmarks = () => {
+        const {bookmarks} = this.state;
+        this.setState({bookmarks: !bookmarks});
+    }
+
     toggleNotifications = () => {
         const {toggleUIProp} = this.props;
         toggleUIProp('notifications');
     }
 
     render() {
-        const {gallery, drafts} = this.state;
+        const {gallery, drafts, bookmarks} = this.state;
         const {activeUser, ui, notifications} = this.props;
         const {unread} = notifications;
 
@@ -103,6 +111,10 @@ export default class UserNav extends Component<Props, State> {
                 {
                     label: _t('user-nav.gallery'),
                     onClick: this.toggleGallery,
+                },
+                {
+                    label: _t('user-nav.bookmarks'),
+                    onClick: this.toggleBookmarks,
                 },
                 {
                     label: _t('g.login-as'),
@@ -142,6 +154,7 @@ export default class UserNav extends Component<Props, State> {
                 {ui.notifications && <UserNotifications {...this.props} />}
                 {gallery && <Gallery {...this.props} onHide={this.toggleGallery}/>}
                 {drafts && <Drafts {...this.props} onHide={this.toggleDrafts}/>}
+                {bookmarks && <Bookmarks {...this.props} onHide={this.toggleBookmarks}/>}
             </>
         );
     }

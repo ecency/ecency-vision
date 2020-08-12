@@ -41,6 +41,7 @@
     "profile": "Profile",
     "gallery": "Gallery",
     "drafts": "Drafts",
+    "bookmarks": "Bookmarks",
     "logout": "Logout"
   },
   "login": {
@@ -68,6 +69,12 @@
     "replies": "1 response. Click to respond.",
     "replies-n": "{{n}} responses. Click to respond.",
     "no-replies": "No responses yet. Click to respond."
+  },
+  "bookmark-btn": {
+    "add": "Add to bookmarks",
+    "added": "Added to bookmarks",
+    "delete": "Remove from bookmarks",
+    "deleted": "Removed from bookmarks"
   },
   "entry-reblog": {
     "reblog": "Reblog",
@@ -374,6 +381,10 @@
   },
   "drafts": {
     "title": "Drafts",
+    "empty-list": "Nothing here"
+  },
+  "bookmarks": {
+    "title": "Bookmarks",
     "empty-list": "Nothing here"
   },
   "static": {
