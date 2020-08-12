@@ -126,7 +126,8 @@
     "order-reputation": "Reputation",
     "order-votes": "Votes",
     "order-created": "Age",
-    "read-more": "...read more replies..."
+    "read-more": "...read more replies...",
+    "recent-posts": "Recent posts by {{n}}"
   },
   "community": {
     "n-subscribers": "{{n}} subscribers",
