@@ -281,7 +281,7 @@ class EntryPage extends Component<Props, State> {
             description: truncate(postBodySummary(entry.body, 210), 200),
             url,
             canonical: url,
-            image: catchPostImage(entry.body),
+            image: catchPostImage(entry.body, 600, 500, global.canUseWebp ? 'webp' : 'match'),
             published: published.toISOString(),
             modified: modified.toISOString(),
             tag: tags[0],
