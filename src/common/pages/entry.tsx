@@ -51,7 +51,7 @@ import parseDate from "../helper/parse-date";
 import entryCanonical from "../helper/entry-canonical";
 import tempEntry from "../helper/temp-entry"
 
-import {makeJsonMetadataReply, createReplyPermlink, makeCommentOptions} from "../helper/posting";
+import {makeJsonMetadataReply, createReplyPermlink} from "../helper/posting";
 
 import {makeShareUrlReddit, makeShareUrlTwitter, makeShareUrlFacebook} from "../helper/url-share";
 
@@ -182,7 +182,7 @@ class EntryPage extends Component<Props, State> {
         const {author: parentAuthor, permlink: parentPermlink} = entry;
         const author = activeUser?.username!;
         const permlink = createReplyPermlink(entry.author);
-        const options = makeCommentOptions(author, permlink);
+        const options = null;
         const tags = entry.json_metadata.tags || ['ecency'];
 
         const jsonMeta = makeJsonMetadataReply(
