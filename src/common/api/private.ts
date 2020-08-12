@@ -163,3 +163,26 @@ export const deleteDraft = (username: string, draftId: string): Promise<any> => 
     const data = {code: getAccessToken(username), id: draftId};
     return axios.post(`/api/drafts-delete`, data).then(resp => resp.data);
 }
+
+export interface Bookmark {
+    _id: string,
+    author: string,
+    permlink: string,
+    timestamp: number,
+    created: string
+}
+
+export const getBookmarks = (username: string): Promise<Bookmark[]> => {
+    const data = {code: getAccessToken(username)};
+    return axios.post(`/api/bookmarks`, data).then(resp => resp.data);
+}
+
+export const addBookmark = (username: string, author: string, permlink: string): Promise<{ bookmarks: Bookmark[] }> => {
+    const data = {code: getAccessToken(username), author, permlink};
+    return axios.post(`/api/bookmarks-add`, data).then(resp => resp.data);
+}
+
+export const deleteBookmark = (username: string, bookmarkId: string): Promise<any> => {
+    const data = {code: getAccessToken(username), id: bookmarkId};
+    return axios.post(`/api/bookmarks-delete`, data).then(resp => resp.data);
+}
