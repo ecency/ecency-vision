@@ -46,8 +46,14 @@ export class BookmarkBtn extends Component<Props> {
     }
 
     componentDidUpdate(prevProps: Readonly<Props>) {
-        if (this.props.activeUser?.username !== prevProps.activeUser?.username) {
-            this.detect()
+        const {activeUser, entry} = this.props;
+        if (
+            // active user changed
+            (activeUser?.username !== prevProps.activeUser?.username) ||
+            // or entry changed
+            (!(entry.author === prevProps.entry.author && entry.permlink === prevProps.entry.permlink))
+        ) {
+            this.detect();
         }
     }
 
