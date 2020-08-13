@@ -36,6 +36,32 @@ exports[`(1) Render with loaded account object 1`] = `
     >
       Mute
     </button>
+    <span
+      className="favorite-btn"
+      onClick={[Function]}
+    >
+      <button
+        className="btn btn-primary"
+        disabled={false}
+        onClick={[Function]}
+        style={
+          Object {
+            "marginLeft": "5px",
+          }
+        }
+        title="Add to favorites"
+        type="button"
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"
+            fill="currentColor"
+          />
+        </svg>
+      </button>
+    </span>
   </div>
 </div>
 `;
@@ -72,6 +98,32 @@ exports[`(2) Render with mot loaded account object 1`] = `
     >
       Mute
     </button>
+    <span
+      className="favorite-btn"
+      onClick={[Function]}
+    >
+      <button
+        className="btn btn-primary"
+        disabled={false}
+        onClick={[Function]}
+        style={
+          Object {
+            "marginLeft": "5px",
+          }
+        }
+        title="Add to favorites"
+        type="button"
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"
+            fill="currentColor"
+          />
+        </svg>
+      </button>
+    </span>
   </div>
 </div>
 `;
@@ -112,6 +164,32 @@ exports[`(3) No bg image - Day theme 1`] = `
     >
       Mute
     </button>
+    <span
+      className="favorite-btn"
+      onClick={[Function]}
+    >
+      <button
+        className="btn btn-primary"
+        disabled={false}
+        onClick={[Function]}
+        style={
+          Object {
+            "marginLeft": "5px",
+          }
+        }
+        title="Add to favorites"
+        type="button"
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"
+            fill="currentColor"
+          />
+        </svg>
+      </button>
+    </span>
   </div>
 </div>
 `;
@@ -152,6 +230,32 @@ exports[`(4) No bg image - Night theme 1`] = `
     >
       Mute
     </button>
+    <span
+      className="favorite-btn"
+      onClick={[Function]}
+    >
+      <button
+        className="btn btn-primary"
+        disabled={false}
+        onClick={[Function]}
+        style={
+          Object {
+            "marginLeft": "5px",
+          }
+        }
+        title="Add to favorites"
+        type="button"
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"
+            fill="currentColor"
+          />
+        </svg>
+      </button>
+    </span>
   </div>
 </div>
 `;

@@ -5,7 +5,7 @@ exports[`(1) Default render. 1`] = `
   className="dialog-content"
 >
   <div
-    className="bookmarks-list"
+    className="dialog-list"
   >
     Nothing here
   </div>
@@ -17,14 +17,14 @@ exports[`(2) Test with data. 1`] = `
   className="dialog-content"
 >
   <div
-    className="bookmarks-list"
+    className="dialog-list"
   >
     <div
-      className="bookmarks-list-body"
+      className="dialog-list-body"
     >
       <div>
         <a
-          className="bookmarks-list-item"
+          className="dialog-list-item"
           href="/foo/@kommienezuspadt/iexnncxb"
           onClick={[Function]}
         >
@@ -40,7 +40,7 @@ exports[`(2) Test with data. 1`] = `
             className="item-body"
           >
             <span
-              className="author"
+              className="author with-slash"
             >
               kommienezuspadt
             </span>
@@ -54,7 +54,7 @@ exports[`(2) Test with data. 1`] = `
       </div>
       <div>
         <a
-          className="bookmarks-list-item"
+          className="dialog-list-item"
           href="/foo/@johnvibes/after-multiple-ft-hood-soldiers-murdered-2-more-soldiers-arrested-in-child-trafficking-sting"
           onClick={[Function]}
         >
@@ -70,7 +70,7 @@ exports[`(2) Test with data. 1`] = `
             className="item-body"
           >
             <span
-              className="author"
+              className="author with-slash"
             >
               johnvibes
             </span>
@@ -84,7 +84,7 @@ exports[`(2) Test with data. 1`] = `
       </div>
       <div>
         <a
-          className="bookmarks-list-item"
+          className="dialog-list-item"
           href="/foo/@acidyo/dissolution-f2p-crypto-futuristic-fps"
           onClick={[Function]}
         >
@@ -100,7 +100,7 @@ exports[`(2) Test with data. 1`] = `
             className="item-body"
           >
             <span
-              className="author"
+              className="author with-slash"
             >
               acidyo
             </span>
@@ -114,7 +114,7 @@ exports[`(2) Test with data. 1`] = `
       </div>
       <div>
         <a
-          className="bookmarks-list-item"
+          className="dialog-list-item"
           href="/foo/@bluemoon/on-an-island"
           onClick={[Function]}
         >
@@ -130,7 +130,7 @@ exports[`(2) Test with data. 1`] = `
             className="item-body"
           >
             <span
-              className="author"
+              className="author with-slash"
             >
               bluemoon
             </span>
@@ -144,7 +144,7 @@ exports[`(2) Test with data. 1`] = `
       </div>
       <div>
         <a
-          className="bookmarks-list-item"
+          className="dialog-list-item"
           href="/foo/@tarazkp/she-ll-be-apples"
           onClick={[Function]}
         >
@@ -160,7 +160,7 @@ exports[`(2) Test with data. 1`] = `
             className="item-body"
           >
             <span
-              className="author"
+              className="author with-slash"
             >
               tarazkp
             </span>
