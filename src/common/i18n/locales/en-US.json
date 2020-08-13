@@ -115,6 +115,9 @@
     "comment-entry-go-root": "View the full context",
     "comment-entry-go-parent": "View the direct parent"
   },
+  "similar-entries": {
+    "title": "Recent posts by @{{n}}"
+  },
   "comment": {
     "body-placeholder": "Write your reply here",
     "preview": "Preview"
@@ -126,8 +129,7 @@
     "order-reputation": "Reputation",
     "order-votes": "Votes",
     "order-created": "Age",
-    "read-more": "...read more replies...",
-    "recent-posts": "Recent posts by {{n}}"
+    "read-more": "...read more replies..."
   },
   "community": {
     "n-subscribers": "{{n}} subscribers",

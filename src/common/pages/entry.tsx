@@ -35,6 +35,8 @@ import EntryReblogBtn from "../components/entry-reblog-btn/index";
 import EntryEditBtn from "../components/entry-edit-btn/index";
 import EntryDeleteBtn from "../components/entry-delete-btn";
 import Comment from "../components/comment"
+import SimilarEntries from "../components/similar-entries";
+
 import {error} from "../components/feedback";
 
 import Meta from "../components/meta";
@@ -65,7 +67,7 @@ import {_t} from "../i18n";
 import {version} from "../../../package.json";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
-import { Global } from '../store/global/types';
+import {Global} from '../store/global/types';
 
 interface MatchParams {
     category: string;
@@ -446,6 +448,10 @@ class EntryPage extends Component<Props, State> {
                             onChange: this.replyTextChanged,
                             onSubmit: this.replySubmitted,
                             inProgress: replying
+                        })}
+                        {SimilarEntries({
+                            ...this.props,
+                            entry
                         })}
                         {Discussion({
                             ...this.props,
