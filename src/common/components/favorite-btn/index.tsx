@@ -2,20 +2,20 @@ import React, {Component} from "react";
 
 import {Button} from "react-bootstrap";
 
+import {Account} from "../../store/accounts/types";
 import {ActiveUser} from "../../store/active-user/types";
+import {ToggleType, UI} from "../../store/ui/types";
+import {User} from "../../store/users/types";
 
 import Tooltip from "../tooltip";
+import LoginRequired from "../login-required";
+import {error, success} from "../feedback";
 
 import {checkFavorite, addFavorite, deleteFavorite} from "../../api/private";
 
-import {starSvg, starOutlineSvg, bookmarkSvg} from "../../img/svg";
-
 import {_t} from "../../i18n";
-import {error, success} from "../feedback";
-import LoginRequired from "../login-required";
-import {User} from "../../store/users/types";
-import {ToggleType, UI} from "../../store/ui/types";
-import {Account} from "../../store/accounts/types";
+
+import {starSvg, starOutlineSvg} from "../../img/svg";
 
 interface Props {
     targetUsername: string;
@@ -34,12 +34,10 @@ export interface State {
 }
 
 export class FavoriteBtn extends Component<Props, State> {
-
     state: State = {
         favorited: false,
         inProgress: false
     }
-
 
     _mounted: boolean = true;
 
