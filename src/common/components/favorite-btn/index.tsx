@@ -6,7 +6,7 @@ import {ActiveUser} from "../../store/active-user/types";
 
 import Tooltip from "../tooltip";
 
-import {checkFavorite, addFavorite, deleteFavorite, deleteBookmark} from "../../api/private";
+import {checkFavorite, addFavorite, deleteFavorite} from "../../api/private";
 
 import {starSvg, starOutlineSvg, bookmarkSvg} from "../../img/svg";
 
@@ -68,7 +68,6 @@ export class FavoriteBtn extends Component<Props, State> {
 
         this.stateSet({inProgress: true});
         checkFavorite(activeUser?.username!, targetUsername).then(r => {
-            console.log(r)
             this.stateSet({favorited: r});
         }).finally(() => this.stateSet({inProgress: false}));
     }
@@ -121,7 +120,7 @@ export class FavoriteBtn extends Component<Props, State> {
             return LoginRequired({
                 ...this.props,
                 children: <span className="favorite-btn">
-                    <Tooltip content={_t('favorite-btn.delete')}>
+                    <Tooltip content={_t('favorite-btn.add')}>
                         <Button disabled={inProgress} onClick={this.delete} style={{marginLeft: '5px'}}>{starSvg}</Button>
                     </Tooltip>
                 </span>
