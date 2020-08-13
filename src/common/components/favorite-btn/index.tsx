@@ -119,7 +119,7 @@ export class FavoriteBtn extends Component<Props, State> {
                 ...this.props,
                 children: <span className="favorite-btn">
                     <Tooltip content={_t('favorite-btn.add')}>
-                        <Button disabled={inProgress} onClick={this.delete} style={{marginLeft: '5px'}}>{starSvg}</Button>
+                        <Button disabled={inProgress} onClick={this.delete}>{starOutlineSvg}</Button>
                     </Tooltip>
                 </span>
             })
