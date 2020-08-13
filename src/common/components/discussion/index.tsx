@@ -44,7 +44,7 @@ import {comment, formatError} from "../../api/operations";
 
 import * as ls from "../../util/local-storage";
 
-import {createReplyPermlink, makeCommentOptions, makeJsonMetadataReply} from "../../helper/posting";
+import {createReplyPermlink, makeJsonMetadataReply} from "../../helper/posting";
 
 import {error} from "../feedback";
 
@@ -158,7 +158,7 @@ export class Item extends Component<ItemProps, ItemState> {
         const {author: parentAuthor, permlink: parentPermlink} = entry;
         const author = activeUser?.username!;
         const permlink = createReplyPermlink(entry.author);
-        const options = makeCommentOptions(author, permlink);
+        const options = null;
 
         const jsonMeta = makeJsonMetadataReply(
             entry.json_metadata.tags || ['ecency'],
@@ -212,14 +212,6 @@ export class Item extends Component<ItemProps, ItemState> {
             version
         );
         let options = null;
-
-        const bExist = entry.beneficiaries.some(
-            x => x && x.account === 'ecency'
-        );
-
-        if (!bExist) {
-            options = makeCommentOptions(author, permlink);
-        }
 
         this.stateSet({inProgress: true});
 

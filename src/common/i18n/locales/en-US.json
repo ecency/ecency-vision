@@ -122,6 +122,9 @@
     "comment-entry-go-root": "View the full context",
     "comment-entry-go-parent": "View the direct parent"
   },
+  "similar-entries": {
+    "title": "Recent posts by @{{n}}"
+  },
   "comment": {
     "body-placeholder": "Write your reply here",
     "preview": "Preview"

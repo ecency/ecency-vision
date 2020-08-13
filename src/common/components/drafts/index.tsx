@@ -49,7 +49,7 @@ interface ItemProps {
 
 export class ListItem extends Component<ItemProps> {
     render() {
-        const {activeUser, draft, editFn, deleteFn} = this.props;
+        const {activeUser, draft, editFn, deleteFn, global} = this.props;
         const account = activeUser?.data!
 
         const author = account.name
@@ -57,7 +57,7 @@ export class ListItem extends Component<ItemProps> {
 
         const tags = draft.tags ? draft.tags.split(/[ ,]+/) : [];
         const tag = tags[0] || '';
-        const img = catchPostImage(draft.body) || noImage;
+        const img = catchPostImage(draft.body, 600, 500, global.canUseWebp ? 'webp' : 'match') || noImage;
         const summary = postBodySummary(draft.body, 200);
 
         const date = moment(new Date(draft.created));
