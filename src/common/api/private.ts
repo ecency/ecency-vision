@@ -186,3 +186,14 @@ export const deleteBookmark = (username: string, bookmarkId: string): Promise<an
     const data = {code: getAccessToken(username), id: bookmarkId};
     return axios.post(`/api/bookmarks-delete`, data).then(resp => resp.data);
 }
+
+export interface Favorite {
+    _id: string,
+    account: string,
+    timestamp: number,
+}
+
+export const getFavorites = (username: string): Promise<Favorite[]> => {
+    const data = {code: getAccessToken(username)};
+    return axios.post(`/api/favorites`, data).then(resp => resp.data);
+}

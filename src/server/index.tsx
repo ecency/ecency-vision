@@ -28,7 +28,11 @@ import {
     draftsDelete,
     bookmarks,
     bookmarksAdd,
-    bookmarksDelete
+    bookmarksDelete,
+    favorites,
+    favoritesCheck,
+    favoritesAdd,
+    favoritesDelete
 } from "./handlers/private-api";
 
 const server = express();
@@ -95,6 +99,10 @@ server
     .post("^/api/bookmarks-add$", bookmarksAdd)
     .post("^/api/bookmarks-delete$", bookmarksDelete)
     .post("^/api/account-create$", createAccount)
+    .post("^/api/favorites$", favorites)
+    .post("^/api/favoritesCheck$", favoritesCheck)
+    .post("^/api/favoritesAdd$", favoritesAdd)
+    .post("^/api/favoritesDelete$", favoritesDelete)
     .get("^/api/popular-users", popularUsers)
     .get("*", fallbackHandler);
 

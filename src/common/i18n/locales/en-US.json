@@ -390,6 +390,10 @@
     "title": "Bookmarks",
     "empty-list": "Nothing here"
   },
+  "favorites": {
+    "title": "Favorites",
+    "empty-list": "Nothing here"
+  },
   "static": {
     "about": {
       "page-title": "About",
