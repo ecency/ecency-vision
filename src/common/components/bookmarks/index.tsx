@@ -36,19 +36,31 @@ export class Bookmarks extends Component<BookmarksProps, BookmarksState> {
         items: []
     }
 
+    _mounted: boolean = true;
+
     componentDidMount() {
         this.fetch();
     }
 
+    componentWillUnmount() {
+        this._mounted = false;
+    }
+
+    stateSet = (state: {}, cb?: () => void) => {
+        if (this._mounted) {
+            this.setState(state, cb);
+        }
+    };
+
     fetch = () => {
         const {activeUser} = this.props;
 
-        this.setState({loading: true});
+        this.stateSet({loading: true});
         getBookmarks(activeUser?.username!).then(items => {
             const sorted = items.sort((a, b) => b.timestamp > a.timestamp ? 1 : -1);
-            this.setState({items: sorted, loading: false});
+            this.stateSet({items: sorted, loading: false});
         }).catch(() => {
-            this.setState({loading: false});
+            this.stateSet({loading: false});
             error(_t('g.server-error'));
         })
     }
@@ -121,19 +133,31 @@ export class Favorites extends Component<FavoritesProps, FavoritesState> {
         items: []
     }
 
+    _mounted: boolean = true;
+
     componentDidMount() {
         this.fetch();
     }
 
+    componentWillUnmount() {
+        this._mounted = false;
+    }
+
+    stateSet = (state: {}, cb?: () => void) => {
+        if (this._mounted) {
+            this.setState(state, cb);
+        }
+    };
+
     fetch = () => {
         const {activeUser} = this.props;
 
-        this.setState({loading: true});
+        this.stateSet({loading: true});
         getFavorites(activeUser?.username!).then(items => {
             const sorted = items.sort((a, b) => b.timestamp > a.timestamp ? 1 : -1);
-            this.setState({items: sorted, loading: false});
+            this.stateSet({items: sorted, loading: false});
         }).catch(() => {
-            this.setState({loading: false});
+            this.stateSet({loading: false});
             error(_t('g.server-error'));
         })
     }
