@@ -197,3 +197,18 @@ export const getFavorites = (username: string): Promise<Favorite[]> => {
     const data = {code: getAccessToken(username)};
     return axios.post(`/api/favorites`, data).then(resp => resp.data);
 }
+
+export const checkFavorite = (username: string, account: string): Promise<boolean> => {
+    const data = {code: getAccessToken(username), account};
+    return axios.post(`/api/favorites-check`, data).then(resp => resp.data);
+}
+
+export const addFavorite = (username: string, account: string): Promise<{ favorites: Favorite[] }> => {
+    const data = {code: getAccessToken(username), account};
+    return axios.post(`/api/favorites-add`, data).then(resp => resp.data);
+}
+
+export const deleteFavorite = (username: string, account: string): Promise<any> => {
+    const data = {code: getAccessToken(username), account};
+    return axios.post(`/api/favorites-delete`, data).then(resp => resp.data);
+}

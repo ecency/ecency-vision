@@ -253,7 +253,8 @@ export const favorites = async (req: express.Request, res: express.Response) => 
 export const favoritesCheck = async (req: express.Request, res: express.Response) => {
     const username = validateCode(req, res);
     if (!username) return;
-    pipe(apiRequest(`isfavorite/${username}`, "GET"), res);
+    const {account} = req.body;
+    pipe(apiRequest(`isfavorite/${username}/${account}`, "GET"), res);
 }
 
 export const favoritesAdd = async (req: express.Request, res: express.Response) => {
@@ -261,7 +262,7 @@ export const favoritesAdd = async (req: express.Request, res: express.Response) 
     if (!username) return;
     const {account} = req.body;
     const data = {username, account};
-    pipe(apiRequest(`bookmark`, "POST", {}, data), res);
+    pipe(apiRequest(`favorite`, "POST", {}, data), res);
 }
 
 export const favoritesDelete = async (req: express.Request, res: express.Response) => {

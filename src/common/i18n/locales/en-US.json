@@ -270,6 +270,12 @@
     "mute": "Mute",
     "unMute": "Unmute"
   },
+  "favorite-btn": {
+    "add": "Add to favorites",
+    "added": "Added to favorites",
+    "delete": "Remove from favorites",
+    "deleted": "Removed from favorites"
+  },
   "editor-toolbar": {
     "bold": "Bold",
     "italic": "Italic",

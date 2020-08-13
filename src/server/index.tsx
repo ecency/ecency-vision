@@ -100,9 +100,9 @@ server
     .post("^/api/bookmarks-delete$", bookmarksDelete)
     .post("^/api/account-create$", createAccount)
     .post("^/api/favorites$", favorites)
-    .post("^/api/favoritesCheck$", favoritesCheck)
-    .post("^/api/favoritesAdd$", favoritesAdd)
-    .post("^/api/favoritesDelete$", favoritesDelete)
+    .post("^/api/favorites-check$", favoritesCheck)
+    .post("^/api/favorites-add$", favoritesAdd)
+    .post("^/api/favorites-delete$", favoritesDelete)
     .get("^/api/popular-users", popularUsers)
     .get("*", fallbackHandler);
 
