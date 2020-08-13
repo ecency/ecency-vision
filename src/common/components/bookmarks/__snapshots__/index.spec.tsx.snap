@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`(1) Default render. 1`] = `
+exports[`(1) Bookmarks - No data. 1`] = `
 <div
   className="dialog-content"
 >
@@ -12,7 +12,7 @@ exports[`(1) Default render. 1`] = `
 </div>
 `;
 
-exports[`(2) Test with data. 1`] = `
+exports[`(2) Bookmarks - Test with data. 1`] = `
 <div
   className="dialog-content"
 >
@@ -168,6 +168,83 @@ exports[`(2) Test with data. 1`] = `
               className="permlink"
             >
               she-ll-be-apples
+            </span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(3) Favorites - No data. 1`] = `
+<div
+  className="dialog-content"
+>
+  <div
+    className="dialog-list"
+  >
+    Nothing here
+  </div>
+</div>
+`;
+
+exports[`(4) Favorites - Test with data. 1`] = `
+<div
+  className="dialog-content"
+>
+  <div
+    className="dialog-list"
+  >
+    <div
+      className="dialog-list-body"
+    >
+      <div>
+        <a
+          className="dialog-list-item"
+          href="/@purepinay"
+          onClick={[Function]}
+        >
+          <span
+            className="user-avatar medium"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/purepinay/avatar/medium)",
+              }
+            }
+          />
+          <div
+            className="item-body"
+          >
+            <span
+              className="author"
+            >
+              purepinay
+            </span>
+          </div>
+        </a>
+      </div>
+      <div>
+        <a
+          className="dialog-list-item"
+          href="/@kommienezuspadt"
+          onClick={[Function]}
+        >
+          <span
+            className="user-avatar medium"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/kommienezuspadt/avatar/medium)",
+              }
+            }
+          />
+          <div
+            className="item-body"
+          >
+            <span
+              className="author"
+            >
+              kommienezuspadt
             </span>
           </div>
         </a>
