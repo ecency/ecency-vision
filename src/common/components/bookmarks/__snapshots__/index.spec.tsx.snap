@@ -1,0 +1,178 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render. 1`] = `
+<div
+  className="dialog-content"
+>
+  <div
+    className="bookmarks-list"
+  >
+    Nothing here
+  </div>
+</div>
+`;
+
+exports[`(2) Test with data. 1`] = `
+<div
+  className="dialog-content"
+>
+  <div
+    className="bookmarks-list"
+  >
+    <div
+      className="bookmarks-list-body"
+    >
+      <div>
+        <a
+          className="bookmarks-list-item"
+          href="/foo/@kommienezuspadt/iexnncxb"
+          onClick={[Function]}
+        >
+          <span
+            className="user-avatar medium"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/kommienezuspadt/avatar/medium)",
+              }
+            }
+          />
+          <div
+            className="item-body"
+          >
+            <span
+              className="author"
+            >
+              kommienezuspadt
+            </span>
+            <span
+              className="permlink"
+            >
+              iexnncxb
+            </span>
+          </div>
+        </a>
+      </div>
+      <div>
+        <a
+          className="bookmarks-list-item"
+          href="/foo/@johnvibes/after-multiple-ft-hood-soldiers-murdered-2-more-soldiers-arrested-in-child-trafficking-sting"
+          onClick={[Function]}
+        >
+          <span
+            className="user-avatar medium"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/johnvibes/avatar/medium)",
+              }
+            }
+          />
+          <div
+            className="item-body"
+          >
+            <span
+              className="author"
+            >
+              johnvibes
+            </span>
+            <span
+              className="permlink"
+            >
+              after-multiple-ft-hood-soldiers-murdered-2-more-soldiers-arrested-in-child-trafficking-sting
+            </span>
+          </div>
+        </a>
+      </div>
+      <div>
+        <a
+          className="bookmarks-list-item"
+          href="/foo/@acidyo/dissolution-f2p-crypto-futuristic-fps"
+          onClick={[Function]}
+        >
+          <span
+            className="user-avatar medium"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/acidyo/avatar/medium)",
+              }
+            }
+          />
+          <div
+            className="item-body"
+          >
+            <span
+              className="author"
+            >
+              acidyo
+            </span>
+            <span
+              className="permlink"
+            >
+              dissolution-f2p-crypto-futuristic-fps
+            </span>
+          </div>
+        </a>
+      </div>
+      <div>
+        <a
+          className="bookmarks-list-item"
+          href="/foo/@bluemoon/on-an-island"
+          onClick={[Function]}
+        >
+          <span
+            className="user-avatar medium"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/bluemoon/avatar/medium)",
+              }
+            }
+          />
+          <div
+            className="item-body"
+          >
+            <span
+              className="author"
+            >
+              bluemoon
+            </span>
+            <span
+              className="permlink"
+            >
+              on-an-island
+            </span>
+          </div>
+        </a>
+      </div>
+      <div>
+        <a
+          className="bookmarks-list-item"
+          href="/foo/@tarazkp/she-ll-be-apples"
+          onClick={[Function]}
+        >
+          <span
+            className="user-avatar medium"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/tarazkp/avatar/medium)",
+              }
+            }
+          />
+          <div
+            className="item-body"
+          >
+            <span
+              className="author"
+            >
+              tarazkp
+            </span>
+            <span
+              className="permlink"
+            >
+              she-ll-be-apples
+            </span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;

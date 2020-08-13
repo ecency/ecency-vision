@@ -1,0 +1,62 @@
+.bookmarks-modal {
+  .dialog-content {
+    height: 500px;
+    overflow: auto;
+
+    .bookmarks-list {
+      .bookmarks-list-body {
+        .bookmarks-list-item {
+          align-items: center;
+          border-radius: 8px;
+          cursor: pointer;
+          display: flex;
+          margin-bottom: 10px;
+          padding: 3px;
+
+          @include themify(day) {
+            color: $dark-sky-blue;
+          }
+
+          @include themify(night) {
+            color: $powder-blue;
+          }
+
+          &:hover {
+            @include themify(day) {
+              background: $duck-egg-blue;
+            }
+
+            @include themify(night) {
+              background: $metallic-blue;
+            }
+          }
+
+          .user-avatar {
+            flex-shrink: 0;
+            margin-right: 10px;
+          }
+
+          .item-body {
+            font-size: 16px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: calc(100% - 50px);
+
+            .author {
+              font-weight: 700;
+
+              &:before {
+                content: '@';
+              }
+
+              &:after {
+                content: '/';
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

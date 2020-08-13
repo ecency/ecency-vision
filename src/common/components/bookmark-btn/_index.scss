@@ -1,0 +1,16 @@
+.bookmark-btn {
+  cursor: pointer;
+  color: $silver;
+
+  svg {
+    height: 20px;
+  }
+
+  &.bookmarked {
+    color: $dark-sky-blue;
+  }
+
+  &.in-progress {
+    pointer-events: none;
+  }
+}

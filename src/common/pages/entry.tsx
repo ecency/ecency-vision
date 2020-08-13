@@ -36,7 +36,7 @@ import EntryEditBtn from "../components/entry-edit-btn/index";
 import EntryDeleteBtn from "../components/entry-delete-btn";
 import Comment from "../components/comment"
 import SimilarEntries from "../components/similar-entries";
-
+import BookmarkBtn from "../components/bookmark-btn";
 import {error} from "../components/feedback";
 
 import Meta from "../components/meta";
@@ -343,6 +343,11 @@ class EntryPage extends Component<Props, State> {
                                 })}
                                 <span className="separator"/>
                                 <span className="date" title={published.format("LLLL")}>{published.fromNow()}</span>
+                                <span className="flex-spacer"/>
+                                {BookmarkBtn({
+                                    ...this.props,
+                                    entry: entry
+                                })}
                             </div>
                         </div>
                         <div className="entry-body markdown-view user-selectable" dangerouslySetInnerHTML={renderedBody}/>

@@ -59,7 +59,6 @@ it('(1) Default render.', async () => {
         history: createBrowserHistory(),
         location: createLocation({}),
         global: globalInstance,
-        users: [],
         activeUser: {username: "foo", data: {name: "foo"}},
         onHide: () => {
         }
@@ -77,7 +76,6 @@ it('(2) Test with data.', async () => {
         history: createBrowserHistory(),
         location: createLocation({}),
         global: globalInstance,
-        users: [],
         activeUser: {username: "foo", data: {name: "foo"}},
         onHide: () => {
         }
