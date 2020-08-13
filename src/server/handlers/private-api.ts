@@ -243,3 +243,31 @@ export const bookmarksDelete = async (req: express.Request, res: express.Respons
     const {id} = req.body;
     pipe(apiRequest(`bookmarks/${username}/${id}`, "DELETE"), res);
 }
+
+export const favorites = async (req: express.Request, res: express.Response) => {
+    const username = validateCode(req, res);
+    if (!username) return;
+    pipe(apiRequest(`favorites/${username}`, "GET"), res);
+}
+
+export const favoritesCheck = async (req: express.Request, res: express.Response) => {
+    const username = validateCode(req, res);
+    if (!username) return;
+    const {account} = req.body;
+    pipe(apiRequest(`isfavorite/${username}/${account}`, "GET"), res);
+}
+
+export const favoritesAdd = async (req: express.Request, res: express.Response) => {
+    const username = validateCode(req, res);
+    if (!username) return;
+    const {account} = req.body;
+    const data = {username, account};
+    pipe(apiRequest(`favorite`, "POST", {}, data), res);
+}
+
+export const favoritesDelete = async (req: express.Request, res: express.Response) => {
+    const username = validateCode(req, res);
+    if (!username) return;
+    const {account} = req.body;
+    pipe(apiRequest(`favoriteUser/${username}/${account}`, "DELETE"), res);
+}

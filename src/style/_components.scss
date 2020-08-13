@@ -2,7 +2,6 @@
 @import 'mixins';
 @import 'animation';
 
-
 @import '../common/components/404/index';
 @import '../common/components/navbar/index';
 @import '../common/components/user-nav/index';
@@ -52,6 +51,7 @@
 @import '../common/components/drafts';
 @import '../common/components/bookmarks';
 @import '../common/components/bookmark-btn';
+@import '../common/components/favorite-btn';
 
 @import '../common/pages/entry-index';
 @import '../common/pages/profile';

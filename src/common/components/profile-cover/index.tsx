@@ -17,6 +17,7 @@ import {
 setProxyBase(defaults.imageServer);
 
 import FollowControls from "../follow-controls";
+import FavoriteBtn from "../favorite-btn";
 
 const coverFallbackDay = require("../../img/cover-fallback-day.png");
 const coverFallbackNight = require("../../img/cover-fallback-night.png");
@@ -41,7 +42,7 @@ export class ProfileCover extends Component<Props> {
         if (account.__loaded) {
             bgImage = global.theme === "day" ? coverFallbackDay : coverFallbackNight;
             if (account.profile?.cover_image) {
-                bgImage = proxifyImageSrc(account.profile.cover_image, 0, 0, global.canUseWebp?'webp':'match');
+                bgImage = proxifyImageSrc(account.profile.cover_image, 0, 0, global.canUseWebp ? 'webp' : 'match');
             }
         }
 
@@ -56,7 +57,10 @@ export class ProfileCover extends Component<Props> {
             <div className="profile-cover">
                 <div className="cover-image" style={style}/>
                 <div className="follow-controls-holder">
-                    {!hideControls && <FollowControls {...this.props} targetUsername={account.name}/>}
+                    {!hideControls && <>
+                      <FollowControls {...this.props} targetUsername={account.name}/>
+                      <FavoriteBtn {...this.props} targetUsername={account.name}/>
+                    </>}
                 </div>
             </div>
         );

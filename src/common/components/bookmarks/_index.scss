@@ -1,11 +1,29 @@
 .bookmarks-modal {
+
+  .dialog-menu {
+    display: flex;
+    margin-bottom: 20px;
+
+    .menu-item {
+      font-size: 20px;
+      font-weight: 500;
+      margin-right: 20px;
+      cursor: pointer;
+
+      &:not(.active) {
+        color: $dark-sky-blue;
+        text-decoration: underline;
+      }
+    }
+  }
+
   .dialog-content {
     height: 500px;
     overflow: auto;
 
-    .bookmarks-list {
-      .bookmarks-list-body {
-        .bookmarks-list-item {
+    .dialog-list {
+      .dialog-list-body {
+        .dialog-list-item {
           align-items: center;
           border-radius: 8px;
           cursor: pointer;
@@ -50,7 +68,7 @@
                 content: '@';
               }
 
-              &:after {
+              &.with-slash:after {
                 content: '/';
               }
             }

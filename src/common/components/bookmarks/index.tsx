@@ -5,55 +5,66 @@ import {History} from "history";
 
 import {Global} from "../../store/global/types";
 import {ActiveUser} from "../../store/active-user/types";
+import {Account} from "../../store/accounts/types";
 
 import EntryLink from "../entry-link";
+import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 import LinearProgress from "../linear-progress";
 import {error} from "../feedback";
 
-import {getBookmarks, Bookmark} from "../../api/private";
+import {getBookmarks, Bookmark, getFavorites, Favorite} from "../../api/private";
 
 import {_t} from "../../i18n";
 
 
-interface Props {
+interface BookmarksProps {
     history: History;
     global: Global;
     activeUser: ActiveUser | null;
     onHide: () => void;
 }
 
-interface State {
+interface BookmarksState {
     loading: boolean,
     items: Bookmark[]
 }
 
-export class Bookmarks extends Component<Props, State> {
-    state: State = {
+export class Bookmarks extends Component<BookmarksProps, BookmarksState> {
+    state: BookmarksState = {
         loading: true,
         items: []
     }
+
+    _mounted: boolean = true;
 
     componentDidMount() {
         this.fetch();
     }
 
+    componentWillUnmount() {
+        this._mounted = false;
+    }
+
+    stateSet = (state: {}, cb?: () => void) => {
+        if (this._mounted) {
+            this.setState(state, cb);
+        }
+    };
+
     fetch = () => {
         const {activeUser} = this.props;
 
-        this.setState({loading: true});
+        this.stateSet({loading: true});
         getBookmarks(activeUser?.username!).then(items => {
-            this.setState({items: this.sort(items), loading: false});
+            const sorted = items.sort((a, b) => b.timestamp > a.timestamp ? 1 : -1);
+            this.stateSet({items: sorted, loading: false});
         }).catch(() => {
-            this.setState({loading: false});
+            this.stateSet({loading: false});
             error(_t('g.server-error'));
         })
     }
 
-    sort = (items: Bookmark[]) =>
-        items.sort((a, b) => {
-            return new Date(b.created).getTime() > new Date(a.created).getTime() ? 1 : -1;
-        });
 
     render() {
         const {items, loading} = this.state;
@@ -61,8 +72,8 @@ export class Bookmarks extends Component<Props, State> {
         return <div className="dialog-content">
             {loading && <LinearProgress/>}
             {items.length > 0 && (
-                <div className="bookmarks-list">
-                    <div className="bookmarks-list-body">
+                <div className="dialog-list">
+                    <div className="dialog-list-body">
                         {items.map(item => {
                             return <div key={item._id}>
                                 {EntryLink({
@@ -76,14 +87,14 @@ export class Bookmarks extends Component<Props, State> {
                                         const {onHide} = this.props;
                                         onHide();
                                     },
-                                    children: <div className="bookmarks-list-item">
+                                    children: <div className="dialog-list-item">
                                         {UserAvatar({
                                             ...this.props,
                                             username: item.author,
                                             size: "medium"
                                         })}
                                         <div className="item-body">
-                                            <span className="author">{item.author}</span>
+                                            <span className="author with-slash">{item.author}</span>
                                             <span className="permlink">{item.permlink}</span>
                                         </div>
                                     </div>
@@ -94,7 +105,7 @@ export class Bookmarks extends Component<Props, State> {
                 </div>
             )}
             {(!loading && items.length === 0) && (
-                <div className="bookmarks-list">
+                <div className="dialog-list">
                     {_t('bookmarks.empty-list')}
                 </div>
             )}
@@ -102,20 +113,143 @@ export class Bookmarks extends Component<Props, State> {
     }
 }
 
-export default class BookmarksDialog extends Component<Props> {
+
+interface FavoritesProps {
+    history: History;
+    global: Global;
+    activeUser: ActiveUser | null;
+    addAccount: (data: Account) => void;
+    onHide: () => void;
+}
+
+interface FavoritesState {
+    loading: boolean,
+    items: Favorite[]
+}
+
+export class Favorites extends Component<FavoritesProps, FavoritesState> {
+    state: FavoritesState = {
+        loading: true,
+        items: []
+    }
+
+    _mounted: boolean = true;
+
+    componentDidMount() {
+        this.fetch();
+    }
+
+    componentWillUnmount() {
+        this._mounted = false;
+    }
+
+    stateSet = (state: {}, cb?: () => void) => {
+        if (this._mounted) {
+            this.setState(state, cb);
+        }
+    };
+
+    fetch = () => {
+        const {activeUser} = this.props;
+
+        this.stateSet({loading: true});
+        getFavorites(activeUser?.username!).then(items => {
+            const sorted = items.sort((a, b) => b.timestamp > a.timestamp ? 1 : -1);
+            this.stateSet({items: sorted, loading: false});
+        }).catch(() => {
+            this.stateSet({loading: false});
+            error(_t('g.server-error'));
+        })
+    }
+
+    render() {
+        const {items, loading} = this.state;
+
+        return <div className="dialog-content">
+            {loading && <LinearProgress/>}
+            {items.length > 0 && (
+                <div className="dialog-list">
+                    <div className="dialog-list-body">
+                        {items.map(item => {
+                            return <div key={item._id}>
+                                {ProfileLink({
+                                    ...this.props,
+                                    username: item.account,
+                                    afterClick: () => {
+                                        const {onHide} = this.props;
+                                        onHide();
+                                    },
+                                    children: <div className="dialog-list-item">
+                                        {UserAvatar({
+                                            ...this.props,
+                                            username: item.account,
+                                            size: "medium"
+                                        })}
+                                        <div className="item-body">
+                                            <span className="author">{item.account}</span>
+                                        </div>
+                                    </div>
+                                })}
+                            </div>
+                        })}
+                    </div>
+                </div>
+            )}
+            {(!loading && items.length === 0) && (
+                <div className="dialog-list">
+                    {_t('favorites.empty-list')}
+                </div>
+            )}
+        </div>
+    }
+}
+
+
+interface DialogProps {
+    history: History;
+    global: Global;
+    activeUser: ActiveUser | null;
+    addAccount: (data: Account) => void;
+    onHide: () => void;
+}
+
+type DialogSection = "bookmarks" | "favorites"
+
+interface DialogState {
+    section: DialogSection
+}
+
+export default class BookmarksDialog extends Component<DialogProps, DialogState> {
+    state: DialogState = {
+        section: "bookmarks"
+    }
+
+    changeSection = (section: DialogSection) => {
+        this.setState({section});
+    }
+
     hide = () => {
         const {onHide} = this.props;
         onHide();
     }
 
     render() {
+        const {section} = this.state;
+
         return (
-            <Modal show={true} centered={true} onHide={this.hide} size="lg" className="bookmarks-modal">
-                <Modal.Header closeButton={true}>
-                    <Modal.Title>{_t('bookmarks.title')}</Modal.Title>
-                </Modal.Header>
+            <Modal show={true} centered={true} onHide={this.hide} size="lg" className="bookmarks-modal modal-thin-header">
+                <Modal.Header closeButton={true}/>
                 <Modal.Body>
-                    <Bookmarks {...this.props}/>
+                    <div className="dialog-menu">
+                        <div className={`menu-item ${section === "bookmarks" ? "active" : ""}`} onClick={() => {
+                            this.changeSection("bookmarks");
+                        }}>{_t("bookmarks.title")}</div>
+                        <div className={`menu-item ${section === "favorites" ? "active" : ""}`} onClick={() => {
+                            this.changeSection("favorites");
+                        }}>{_t("favorites.title")}</div>
+                    </div>
+                    {section === "bookmarks" && <Bookmarks {...this.props}/>}
+                    {section === "favorites" && <Favorites {...this.props}/>}
                 </Modal.Body>
             </Modal>
         );

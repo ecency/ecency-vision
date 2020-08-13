@@ -3,7 +3,7 @@ import renderer from "react-test-renderer";
 
 import {createBrowserHistory} from "history";
 
-import {Bookmarks} from './index';
+import {Bookmarks, Favorites} from './index';
 
 import {globalInstance} from "../../helper/test-helper";
 
@@ -52,9 +52,29 @@ jest.mock("../../api/private", () => ({
                 }])
             }
         }),
+
+    getFavorites: () =>
+        new Promise((resolve) => {
+            if (TEST_MODE === 0) {
+                resolve([]);
+            }
+
+            if (TEST_MODE === 1) {
+                resolve([
+                    {
+                        "account": "kommienezuspadt",
+                        "_id": "5f355a2cbaede01c77aa1954",
+                        "timestamp": 1597332012551
+                    }, {
+                        "account": "purepinay",
+                        "_id": "5f35622bbaede01c77aa1966",
+                        "timestamp": 1597334059308
+                    }])
+            }
+        })
 }));
 
-it('(1) Default render.', async () => {
+it('(1) Bookmarks - No data.', async () => {
     const props = {
         history: createBrowserHistory(),
         global: globalInstance,
@@ -68,7 +88,7 @@ it('(1) Default render.', async () => {
     expect(component.toJSON()).toMatchSnapshot();
 });
 
-it('(2) Test with data.', async () => {
+it('(2) Bookmarks - Test with data.', async () => {
     TEST_MODE = 1;
 
     const props = {
@@ -83,3 +103,41 @@ it('(2) Test with data.', async () => {
     await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });
+
+it('(3) Favorites - No data.', async () => {
+    TEST_MODE = 0;
+
+    const props = {
+        history: createBrowserHistory(),
+        global: globalInstance,
+        activeUser: {username: "foo", data: {name: "foo"}},
+        addAccount: () => {
+        },
+        onHide: () => {
+        }
+    };
+
+    const component = renderer.create(<Favorites {...props}/>);
+    await allOver();
+    expect(component.toJSON()).toMatchSnapshot();
+});
+
+
+it('(4) Favorites - Test with data.', async () => {
+    TEST_MODE = 1;
+
+    const props = {
+        history: createBrowserHistory(),
+        global: globalInstance,
+        activeUser: {username: "foo", data: {name: "foo"}},
+        addAccount: () => {
+        },
+        onHide: () => {
+        }
+    };
+
+    const component = renderer.create(<Favorites {...props}/>);
+    await allOver();
+    expect(component.toJSON()).toMatchSnapshot();
+});
+
