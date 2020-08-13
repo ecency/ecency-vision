@@ -969,10 +969,10 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
-"@esteemapp/esteem-render-helpers@^1.5.8":
-  version "1.5.8"
-  resolved "https://registry.yarnpkg.com/@esteemapp/esteem-render-helpers/-/esteem-render-helpers-1.5.8.tgz#970181b5d2d71e347859d917486f47cae9aac590"
-  integrity sha512-GE3Bsj8vSeyvVxgrfS/52h6GF5IlnQqL2C7T9Ek2eCO4sA627BvWg8ig8fqqeXCctCWUijhVIJ2pQKXlopcqjw==
+"@esteemapp/esteem-render-helpers@^1.5.9":
+  version "1.5.9"
+  resolved "https://registry.yarnpkg.com/@esteemapp/esteem-render-helpers/-/esteem-render-helpers-1.5.9.tgz#c870322d7b1085f89c648061c1b5d241bb056ac9"
+  integrity sha512-0cA6KLoNhjA7UbiwoaUhYz6ZGz6vPSWrZGc4KTa0SB2Vq6TS9Ac37iGyiLtuF0YeWR66xapi8TOzqR++iYqnew==
   dependencies:
     he "^1.2.0"
     lru-cache "^5.1.1"
