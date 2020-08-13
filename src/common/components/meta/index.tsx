@@ -16,10 +16,11 @@ interface Props {
   modified?: string;
   rss?: string;
 }
+
 const capitalize = (s: string) => {
-  if (typeof s !== 'string') return '';
   return s.charAt(0).toUpperCase() + s.slice(1);
 }
+
 const title_ = (s: string): string => `${s} | ${capitalize(defaults.name)}`;
 
 export default class Meta extends Component<Props> {
