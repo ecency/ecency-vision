@@ -44,7 +44,7 @@ import {comment, formatError} from "../../api/operations";
 
 import * as ls from "../../util/local-storage";
 
-import {createReplyPermlink, makeCommentOptions, makeJsonMetadataReply} from "../../helper/posting";
+import {createReplyPermlink, makeJsonMetadataReply} from "../../helper/posting";
 
 import {error} from "../feedback";
 
@@ -57,6 +57,7 @@ setProxyBase(defaults.imageServer);
 
 interface ItemBodyProps {
     entry: Entry;
+    global: Global;
 }
 
 export class ItemBody extends Component<ItemBodyProps> {
@@ -65,8 +66,9 @@ export class ItemBody extends Component<ItemBodyProps> {
     }
 
     render() {
-        const {entry} = this.props;
-        const renderedBody = {__html: renderPostBody(entry.body, false)};
+        const {entry, global} = this.props;
+
+        const renderedBody = {__html: renderPostBody(entry.body, false, global.canUseWebp)};
 
         return <div className="item-body markdown-view mini-markdown" dangerouslySetInnerHTML={renderedBody}/>
     }
@@ -151,14 +153,12 @@ export class Item extends Component<ItemProps, ItemState> {
 
     submitReply = (text: string) => {
         const {entry} = this.props;
-        const {activeUser, users, addReply, updateReply} = this.props;
-
-        const user = users.find((x) => x.username === activeUser?.username)!;
+        const {activeUser, addReply, updateReply} = this.props;
 
         const {author: parentAuthor, permlink: parentPermlink} = entry;
         const author = activeUser?.username!;
         const permlink = createReplyPermlink(entry.author);
-        const options = makeCommentOptions(author, permlink);
+        const options = null;
 
         const jsonMeta = makeJsonMetadataReply(
             entry.json_metadata.tags || ['ecency'],
@@ -168,7 +168,7 @@ export class Item extends Component<ItemProps, ItemState> {
         this.stateSet({inProgress: true});
 
         comment(
-            user,
+            author,
             parentAuthor,
             parentPermlink,
             permlink,
@@ -204,9 +204,7 @@ export class Item extends Component<ItemProps, ItemState> {
 
     updateReply = (text: string) => {
         const {entry} = this.props;
-        const {activeUser, users, updateReply} = this.props;
-
-        const user = users.find((x) => x.username === activeUser?.username)!;
+        const {activeUser, updateReply} = this.props;
 
         const {author, permlink, parent_author: parentAuthor, parent_permlink: parentPermlink} = entry;
         const jsonMeta = makeJsonMetadataReply(
@@ -215,18 +213,10 @@ export class Item extends Component<ItemProps, ItemState> {
         );
         let options = null;
 
-        const bExist = entry.beneficiaries.some(
-            x => x && x.account === 'ecency'
-        );
-
-        if (!bExist) {
-            options = makeCommentOptions(author, permlink);
-        }
-
         this.stateSet({inProgress: true});
 
         comment(
-            user,
+            activeUser?.username!,
             parentAuthor!,
             parentPermlink!,
             permlink,
@@ -270,7 +260,7 @@ export class Item extends Component<ItemProps, ItemState> {
             <div className={`discussion-item depth-${entry.depth}`}>
                 <div className="item-inner">
                     <div className="item-figure">
-                        {ProfileLink({...this.props, username: entry.author, children: <a>{UserAvatar({...this.props, username:entry.author, size:"medium" })}</a>})}
+                        {ProfileLink({...this.props, username: entry.author, children: <a>{UserAvatar({...this.props, username: entry.author, size: "medium"})}</a>})}
                     </div>
                     <div className="item-content">
                         <div className="item-header">
@@ -291,7 +281,7 @@ export class Item extends Component<ItemProps, ItemState> {
                                 </span>
                             })}
                         </div>
-                        <ItemBody entry={entry}/>
+                        <ItemBody global={this.props.global} entry={entry}/>
                         <div className="item-controls">
                             {EntryVoteBtn({
                                 ...this.props,

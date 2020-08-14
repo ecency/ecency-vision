@@ -17,7 +17,11 @@ interface Props {
   rss?: string;
 }
 
-const title_ = (s: string): string => `${s} - ${defaults.name}`;
+const capitalize = (s: string) => {
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
+const title_ = (s: string): string => `${s} | ${capitalize(defaults.name)}`;
 
 export default class Meta extends Component<Props> {
   render() {

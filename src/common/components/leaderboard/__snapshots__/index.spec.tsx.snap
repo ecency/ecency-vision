@@ -92,8 +92,6 @@ exports[`(1) Render with data. 1`] = `
         >
           <span
             className="user-avatar medium"
-            onClick={[Function]}
-            role="none"
             style={
               Object {
                 "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
@@ -120,7 +118,7 @@ exports[`(1) Render with data. 1`] = `
       <div
         className="points"
       >
-        121.325 ESTM
+        121.325 POINTS
       </div>
     </div>
     <div
@@ -140,8 +138,6 @@ exports[`(1) Render with data. 1`] = `
         >
           <span
             className="user-avatar medium"
-            onClick={[Function]}
-            role="none"
             style={
               Object {
                 "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
@@ -168,7 +164,7 @@ exports[`(1) Render with data. 1`] = `
       <div
         className="points"
       >
-        60.040 ESTM
+        60.040 POINTS
       </div>
     </div>
     <div
@@ -188,8 +184,6 @@ exports[`(1) Render with data. 1`] = `
         >
           <span
             className="user-avatar medium"
-            onClick={[Function]}
-            role="none"
             style={
               Object {
                 "backgroundImage": "url(https://images.ecency.com/u/baz/avatar/medium)",
@@ -216,7 +210,7 @@ exports[`(1) Render with data. 1`] = `
       <div
         className="points"
       >
-        44.707 ESTM
+        44.707 POINTS
       </div>
     </div>
     <div
@@ -236,8 +230,6 @@ exports[`(1) Render with data. 1`] = `
         >
           <span
             className="user-avatar medium"
-            onClick={[Function]}
-            role="none"
             style={
               Object {
                 "backgroundImage": "url(https://images.ecency.com/u/zoo/avatar/medium)",
@@ -264,7 +256,7 @@ exports[`(1) Render with data. 1`] = `
       <div
         className="points"
       >
-        55.040 ESTM
+        55.040 POINTS
       </div>
     </div>
   </div>

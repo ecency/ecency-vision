@@ -57,11 +57,10 @@ export class EntryReblogBtn extends Component<Props> {
     };
 
     reblog = () => {
-        const {entry, users, activeUser, addReblog} = this.props;
-        const user = users.find((x) => x.username === activeUser?.username)!;
+        const {entry, activeUser, addReblog} = this.props;
 
         this.stateSet({inProgress: true});
-        reblog(user, entry.author, entry.permlink)
+        reblog(activeUser?.username!, entry.author, entry.permlink)
             .then(() => {
                 addReblog(activeUser?.username!, entry.author, entry.permlink);
                 success(_t("entry-reblog.success"));

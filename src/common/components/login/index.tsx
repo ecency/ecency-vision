@@ -18,12 +18,13 @@ import OrDivider from "../or-divider";
 import {getAuthUrl} from "../../helper/hive-signer";
 
 import {getAccount} from "../../api/hive";
-import {hsTokenRenew} from "../../api/private";
+import {hsTokenRenew, usrActivity} from "../../api/private";
+
+import {getRefreshToken} from "../../helper/user-token";
 
 import {_t} from "../../i18n";
 
 import {deleteForeverSvg} from "../../img/svg";
-import {usrActivity} from "../../api/private";
 
 const hsLogo = require("../../img/hive-signer.svg");
 
@@ -113,7 +114,7 @@ export class Login extends Component<LoginProps> {
                                                 const {setActiveUser, updateActiveUser, addUser} = this.props;
                                                 setActiveUser(user.username);
 
-                                                hsTokenRenew(user.refreshToken).then(x => {
+                                                hsTokenRenew(getRefreshToken(user.username)).then(x => {
                                                     const user: User = {
                                                         username: x.username,
                                                         accessToken: x.access_token,
@@ -129,7 +130,7 @@ export class Login extends Component<LoginProps> {
                                                     // update active user
 
                                                     updateActiveUser(r);
-                                                    return usrActivity(user, 20);
+                                                    return usrActivity(user.username, 20);
                                                 });
 
                                                 this.hide();

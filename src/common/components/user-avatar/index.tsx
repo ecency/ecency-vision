@@ -18,13 +18,7 @@ export class UserAvatar extends Component<Props> {
         const imageSrc = `${defaults.imageServer}${global.canUseWebp ? "/webp" : ""}/u/${username}/avatar/${imgSize}`;
 
         return (
-            <span role="none"
-                  key="user-avatar-image"
-                  className={cls}
-                  style={{
-                      backgroundImage: `url(${imageSrc})`
-                  }}
-            />
+            <span className={cls} style={{backgroundImage: `url(${imageSrc})`}}/>
         );
     }
 }

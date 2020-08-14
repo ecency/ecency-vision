@@ -146,12 +146,11 @@ export default class FollowControls extends Component<Props, State> {
     };
 
     follow = async () => {
-        const {activeUser, users, targetUsername} = this.props;
-        const user = users.find((x) => x.username === activeUser?.username)!;
+        const {activeUser, targetUsername} = this.props;
 
         this.stateSet({inProgress: true});
         try {
-            await follow(user, targetUsername);
+            await follow(activeUser?.username!, targetUsername);
             this.stateSet({following: true, muted: false});
         } catch (err) {
             error(formatError(err));
@@ -161,12 +160,11 @@ export default class FollowControls extends Component<Props, State> {
     };
 
     unFollow = async () => {
-        const {activeUser, users, targetUsername} = this.props;
-        const user = users.find((x) => x.username === activeUser?.username)!;
+        const {activeUser, targetUsername} = this.props;
 
         this.stateSet({inProgress: true});
         try {
-            await unFollow(user, targetUsername);
+            await unFollow(activeUser?.username!, targetUsername);
             this.stateSet({following: false, muted: false});
         } catch (err) {
             error(formatError(err));
@@ -176,12 +174,11 @@ export default class FollowControls extends Component<Props, State> {
     };
 
     mute = async () => {
-        const {activeUser, users, targetUsername} = this.props;
-        const user = users.find((x) => x.username === activeUser?.username)!;
+        const {activeUser, targetUsername} = this.props;
 
         this.stateSet({inProgress: true});
         try {
-            await ignore(user, targetUsername);
+            await ignore(activeUser?.username!, targetUsername);
             this.stateSet({following: false, muted: true});
         } catch (err) {
             error(formatError(err));

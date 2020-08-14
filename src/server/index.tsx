@@ -9,7 +9,31 @@ import profileHandler from "./handlers/profile";
 import entryHandler from "./handlers/entry";
 import fallbackHandler from "./handlers/fallback";
 import {entryRssHandler, authorRssHandler} from "./handlers/rss";
-import {receivedVesting, leaderboard, notifications, markNotifications, unreadNotifications, hsTokenRefresh, createAccount, usrActivity, popularUsers} from "./handlers/private-api";
+import {
+    receivedVesting,
+    leaderboard,
+    notifications,
+    markNotifications,
+    unreadNotifications,
+    hsTokenRefresh,
+    createAccount,
+    usrActivity,
+    popularUsers,
+    images,
+    imagesDelete,
+    imagesAdd,
+    drafts,
+    draftsAdd,
+    draftsUpdate,
+    draftsDelete,
+    bookmarks,
+    bookmarksAdd,
+    bookmarksDelete,
+    favorites,
+    favoritesCheck,
+    favoritesAdd,
+    favoritesDelete
+} from "./handlers/private-api";
 
 const server = express();
 
@@ -64,7 +88,21 @@ server
     .post("^/api/notifications/unread$", unreadNotifications)
     .post("^/api/hs-token-refresh$", hsTokenRefresh)
     .post("^/api/usr-activity$", usrActivity)
+    .post("^/api/images$", images)
+    .post("^/api/images-delete$", imagesDelete)
+    .post("^/api/images-add$", imagesAdd)
+    .post("^/api/drafts$", drafts)
+    .post("^/api/drafts-add$", draftsAdd)
+    .post("^/api/drafts-update$", draftsUpdate)
+    .post("^/api/drafts-delete$", draftsDelete)
+    .post("^/api/bookmarks$", bookmarks)
+    .post("^/api/bookmarks-add$", bookmarksAdd)
+    .post("^/api/bookmarks-delete$", bookmarksDelete)
     .post("^/api/account-create$", createAccount)
+    .post("^/api/favorites$", favorites)
+    .post("^/api/favorites-check$", favoritesCheck)
+    .post("^/api/favorites-add$", favoritesAdd)
+    .post("^/api/favorites-delete$", favoritesDelete)
     .get("^/api/popular-users", popularUsers)
     .get("*", fallbackHandler);
 

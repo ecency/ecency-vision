@@ -49,19 +49,7 @@ Object {
   "allow_curation_rewards": true,
   "allow_votes": true,
   "author": "talhasch",
-  "extensions": Array [
-    Array [
-      0,
-      Object {
-        "beneficiaries": Array [
-          Object {
-            "account": "ecency",
-            "weight": 100,
-          },
-        ],
-      },
-    ],
-  ],
+  "extensions": Array [],
   "max_accepted_payout": "1000000.000 HBD",
   "percent_steem_dollars": 10000,
   "permlink": "lorem-ipsum-1",
@@ -73,19 +61,7 @@ Object {
   "allow_curation_rewards": true,
   "allow_votes": true,
   "author": "talhasch",
-  "extensions": Array [
-    Array [
-      0,
-      Object {
-        "beneficiaries": Array [
-          Object {
-            "account": "ecency",
-            "weight": 100,
-          },
-        ],
-      },
-    ],
-  ],
+  "extensions": Array [],
   "max_accepted_payout": "1000000.000 HBD",
   "percent_steem_dollars": 0,
   "permlink": "lorem-ipsum-1",
@@ -97,19 +73,7 @@ Object {
   "allow_curation_rewards": true,
   "allow_votes": true,
   "author": "talhasch",
-  "extensions": Array [
-    Array [
-      0,
-      Object {
-        "beneficiaries": Array [
-          Object {
-            "account": "ecency",
-            "weight": 100,
-          },
-        ],
-      },
-    ],
-  ],
+  "extensions": Array [],
   "max_accepted_payout": "0.000 HBD",
   "percent_steem_dollars": 10000,
   "permlink": "lorem-ipsum-1",

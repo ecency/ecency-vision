@@ -8,7 +8,6 @@ import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
 import {Transactions} from "../../store/transactions/types";
-import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
 
 import Tooltip from "../tooltip";
@@ -38,7 +37,7 @@ interface Props {
     history: History;
     global: Global;
     dynamicProps: DynamicProps;
-    users: User[];
+
     activeUser: ActiveUser | null;
     transactions: Transactions;
     account: Account;
@@ -91,18 +90,16 @@ export class Wallet extends Component<Props, State> {
     };
 
     claimRewardBalance = () => {
-        const {activeUser, updateActiveUser, users} = this.props;
+        const {activeUser, updateActiveUser} = this.props;
         const {claiming} = this.state;
 
         if (claiming || !activeUser) {
             return;
         }
 
-        const user = users.find((x) => x.username === activeUser?.username)!;
-
         this.stateSet({claiming: true});
 
-        return getAccount(activeUser.username)
+        return getAccount(activeUser?.username!)
             .then(account => {
                 const {
                     reward_steem_balance: hiveBalance = account.reward_hive_balance,
@@ -110,7 +107,7 @@ export class Wallet extends Component<Props, State> {
                     reward_vesting_balance: vestingBalance
                 } = account;
 
-                return claimRewardBalance(user, hiveBalance!, hbdBalance!, vestingBalance!)
+                return claimRewardBalance(activeUser?.username!, hiveBalance!, hbdBalance!, vestingBalance!)
             }).then(() => getAccount(activeUser.username))
             .then(account => {
                 success(_t('wallet.claim-reward-balance-ok'));
@@ -447,7 +444,6 @@ export default (p: Props) => {
         history: p.history,
         global: p.global,
         dynamicProps: p.dynamicProps,
-        users: p.users,
         activeUser: p.activeUser,
         transactions: p.transactions,
         account: p.account,

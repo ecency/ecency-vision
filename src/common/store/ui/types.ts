@@ -7,7 +7,7 @@ export interface UI {
 export enum ActionTypes {
     TOGGLE_LOGIN = "@ui/TOGGLE-LOGIN",
     TOGGLE_SIGN_UP = "@users/TOGGLE_SIGN_UP",
-    TOGGLE_NOTIFICATIONS = "@users/TOGGLE_NOTIFICATIONS",
+    TOGGLE_NOTIFICATIONS = "@users/TOGGLE_NOTIFICATIONS"
 }
 
 export interface ToggleLoginAct {

@@ -27,6 +27,9 @@ export class EntryLink extends Component<Props> {
         e.preventDefault();
 
         const {history, afterClick} = this.props;
+
+        if (afterClick) afterClick();
+
         let {entry: _entry} = this.props;
 
         if (!("title" in _entry)) {
@@ -44,8 +47,6 @@ export class EntryLink extends Component<Props> {
         const {category, author, permlink} = _entry;
 
         history.push(makePath(category, author, permlink));
-
-        if (afterClick) afterClick();
     };
 
     render() {

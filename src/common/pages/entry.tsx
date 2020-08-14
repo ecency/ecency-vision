@@ -35,6 +35,8 @@ import EntryReblogBtn from "../components/entry-reblog-btn/index";
 import EntryEditBtn from "../components/entry-edit-btn/index";
 import EntryDeleteBtn from "../components/entry-delete-btn";
 import Comment from "../components/comment"
+import SimilarEntries from "../components/similar-entries";
+import BookmarkBtn from "../components/bookmark-btn";
 import {error} from "../components/feedback";
 
 import Meta from "../components/meta";
@@ -51,7 +53,7 @@ import parseDate from "../helper/parse-date";
 import entryCanonical from "../helper/entry-canonical";
 import tempEntry from "../helper/temp-entry"
 
-import {makeJsonMetadataReply, createReplyPermlink, makeCommentOptions} from "../helper/posting";
+import {makeJsonMetadataReply, createReplyPermlink} from "../helper/posting";
 
 import {makeShareUrlReddit, makeShareUrlTwitter, makeShareUrlFacebook} from "../helper/url-share";
 
@@ -65,6 +67,7 @@ import {_t} from "../i18n";
 import {version} from "../../../package.json";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
+import {Global} from '../store/global/types';
 
 interface MatchParams {
     category: string;
@@ -176,14 +179,12 @@ class EntryPage extends Component<Props, State> {
 
     replySubmitted = (text: string) => {
         const entry = this.getEntry()!;
-        const {activeUser, users, addReply, updateEntry} = this.props;
-
-        const user = users.find((x) => x.username === activeUser?.username)!;
+        const {activeUser, addReply, updateEntry} = this.props;
 
         const {author: parentAuthor, permlink: parentPermlink} = entry;
         const author = activeUser?.username!;
         const permlink = createReplyPermlink(entry.author);
-        const options = makeCommentOptions(author, permlink);
+        const options = null;
         const tags = entry.json_metadata.tags || ['ecency'];
 
         const jsonMeta = makeJsonMetadataReply(
@@ -194,7 +195,7 @@ class EntryPage extends Component<Props, State> {
         this.stateSet({replying: true});
 
         comment(
-            user,
+            author,
             parentAuthor,
             parentPermlink,
             permlink,
@@ -244,6 +245,7 @@ class EntryPage extends Component<Props, State> {
 
     render() {
         const {loading, replying} = this.state;
+        const {global} = this.props;
 
         if (loading) {
             return <LinearProgress/>;
@@ -259,7 +261,7 @@ class EntryPage extends Component<Props, State> {
         const published = moment(parseDate(entry.created));
         const modified = moment(parseDate(entry.updated));
 
-        const renderedBody = {__html: renderPostBody(entry.body, false)};
+        const renderedBody = {__html: renderPostBody(entry.body, false, global.canUseWebp)};
 
         // Sometimes tag list comes with duplicate items
         const tags = [...new Set(entry.json_metadata.tags)];
@@ -277,11 +279,11 @@ class EntryPage extends Component<Props, State> {
         const url = entryCanonical(entry) || "";
 
         const metaProps = {
-            title: truncate(entry.title, 60),
+            title: `${truncate(entry.title, 60)} | by @${entry.author}`,
             description: truncate(postBodySummary(entry.body, 210), 200),
             url,
             canonical: url,
-            image: catchPostImage(entry.body),
+            image: catchPostImage(entry.body, 600, 500, global.canUseWebp ? 'webp' : 'match'),
             published: published.toISOString(),
             modified: modified.toISOString(),
             tag: tags[0],
@@ -341,6 +343,11 @@ class EntryPage extends Component<Props, State> {
                                 })}
                                 <span className="separator"/>
                                 <span className="date" title={published.format("LLLL")}>{published.fromNow()}</span>
+                                <span className="flex-spacer"/>
+                                {BookmarkBtn({
+                                    ...this.props,
+                                    entry: entry
+                                })}
                             </div>
                         </div>
                         <div className="entry-body markdown-view user-selectable" dangerouslySetInnerHTML={renderedBody}/>
@@ -446,6 +453,10 @@ class EntryPage extends Component<Props, State> {
                             onChange: this.replyTextChanged,
                             onSubmit: this.replySubmitted,
                             inProgress: replying
+                        })}
+                        {SimilarEntries({
+                            ...this.props,
+                            entry
                         })}
                         {Discussion({
                             ...this.props,

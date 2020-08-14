@@ -39,9 +39,15 @@ import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
 class EntryIndexPage extends Component<PageProps> {
     componentDidMount() {
-        const {global, fetchEntries, fetchCommunity} = this.props;
+        const {global, fetchEntries, fetchCommunity, activeUser, subscriptions, updateSubscriptions} = this.props;
         fetchEntries(global.filter, global.tag, false);
         fetchCommunity();
+
+        if (activeUser && subscriptions.length === 0) {
+            getSubscriptions(activeUser.username).then(r => {
+                if (r) updateSubscriptions(r);
+            });
+        }
     }
 
     componentDidUpdate(prevProps: Readonly<PageProps>): void {

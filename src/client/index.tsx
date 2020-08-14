@@ -72,9 +72,7 @@ setInterval(updateActiveUser, 60 * 1000);
 const checkIn = () => {
     const state = store.getState();
     if (state.activeUser) {
-        const users = state.users;
-        const user = users.find((x) => x.username === state.activeUser?.username)!;
-        usrActivity(user, 10).then();
+        usrActivity(state.activeUser?.username!, 10).then();
     }
 }
 checkIn();

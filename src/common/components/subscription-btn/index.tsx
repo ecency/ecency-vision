@@ -54,10 +54,9 @@ export default class SubscriptionBtn extends Component<Props, State> {
     };
 
     subscribe = () => {
-        const {users, community, activeUser, subscriptions, updateSubscriptions} = this.props;
-        const user = users.find((x) => x.username === activeUser?.username)!;
+        const {community, activeUser, subscriptions, updateSubscriptions} = this.props;
         this.stateSet({inProgress: true});
-        subscribe(user, community.name).then(() => {
+        subscribe(activeUser?.username!, community.name).then(() => {
             const s: Subscription = [community.name, community.title, "guest", ""];
             updateSubscriptions([...subscriptions, s]);
             this.stateSet({inProgress: false});
@@ -68,10 +67,9 @@ export default class SubscriptionBtn extends Component<Props, State> {
     }
 
     unSubscribe = () => {
-        const {users, community, activeUser, subscriptions, updateSubscriptions} = this.props;
-        const user = users.find((x) => x.username === activeUser?.username)!;
+        const {community, activeUser, subscriptions, updateSubscriptions} = this.props;
         this.stateSet({inProgress: true});
-        unSubscribe(user, community.name).then(() => {
+        unSubscribe(activeUser?.username!, community.name).then(() => {
             const s: Subscription[] = subscriptions.filter(x => x[0] !== community.name);
             updateSubscriptions([...s]);
             this.stateSet({inProgress: false});
