@@ -3,6 +3,10 @@
   display: flex;
   flex-wrap: wrap;
 
+  @media (max-width: $sm-break - 1px) {
+    justify-content: center;
+  }
+
   @include themify(day) {
     background: $white-three;
   }
