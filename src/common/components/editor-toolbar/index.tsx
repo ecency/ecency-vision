@@ -224,7 +224,7 @@ export class EditorToolbar extends Component<Props> {
             const resp = await uploadImage(file, getAccessToken(username))
             imageUrl = resp.url;
         } catch (e) {
-            if (e.response.status === 413) {
+            if (e.response?.status === 413) {
                 error(_t("editor-toolbar.image-error-size"));
             } else {
                 error(_t("editor-toolbar.image-error"));
