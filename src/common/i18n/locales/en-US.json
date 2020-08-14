@@ -292,7 +292,9 @@
     "table-1-col": "1 column",
     "upload": "Upload",
     "gallery": "Gallery",
-    "emoji": "Emoji"
+    "emoji": "Emoji",
+    "image-error": "Couldn't upload image.",
+    "image-error-size": "Image size is too large, try smaller size image again."
   },
   "emoji-picker": {
     "filter-placeholder": "Filter",
