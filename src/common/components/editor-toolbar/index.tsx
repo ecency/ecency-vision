@@ -11,6 +11,8 @@ import {uploadImage} from "../../api/ecency";
 
 import {addImage} from "../../api/private";
 
+import {error} from "../feedback";
+
 import {_t} from "../../i18n";
 
 import {insertOrReplace, replace} from "../../util/input-util";
@@ -222,6 +224,11 @@ export class EditorToolbar extends Component<Props> {
             const resp = await uploadImage(file, getAccessToken(username))
             imageUrl = resp.url;
         } catch (e) {
+            if (e.response?.status === 413) {
+                error(_t("editor-toolbar.image-error-size"));
+            } else {
+                error(_t("editor-toolbar.image-error"));
+            }
             return;
         }
 
