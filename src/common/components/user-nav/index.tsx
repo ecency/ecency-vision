@@ -98,7 +98,7 @@ export default class UserNav extends Component<Props, State> {
 
         const dropDownConfig = {
             history: this.props.history,
-            label: UserAvatar({...this.props, username: activeUser.username, size: "medium"}),
+            label: UserAvatar({...this.props, username: activeUser.username, size: "small"}),
             items: [
                 {
                     label: _t('user-nav.profile'),

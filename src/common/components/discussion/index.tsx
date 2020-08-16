@@ -260,7 +260,7 @@ export class Item extends Component<ItemProps, ItemState> {
             <div className={`discussion-item depth-${entry.depth}`}>
                 <div className="item-inner">
                     <div className="item-figure">
-                        {ProfileLink({...this.props, username: entry.author, children: <a>{UserAvatar({...this.props, username: entry.author, size: "medium"})}</a>})}
+                        {ProfileLink({...this.props, username: entry.author, children: <a>{UserAvatar({...this.props, username: entry.author, size: "small"})}</a>})}
                     </div>
                     <div className="item-content">
                         <div className="item-header">
