@@ -271,3 +271,13 @@ export const favoritesDelete = async (req: express.Request, res: express.Respons
     const {account} = req.body;
     pipe(apiRequest(`favoriteUser/${username}/${account}`, "DELETE"), res);
 }
+
+export const points = async (req: express.Request, res: express.Response) => {
+    const {username} = req.body;
+    pipe(apiRequest(`users/${username}`, "GET"), res);
+}
+
+export const pointList = async (req: express.Request, res: express.Response) => {
+    const {username} = req.body;
+    pipe(apiRequest(`users/${username}/points?size=50`, "GET"), res);
+}

@@ -212,3 +212,16 @@ export const deleteFavorite = (username: string, account: string): Promise<any> 
     const data = {code: getAccessToken(username), account};
     return axios.post(`/api/favorites-delete`, data).then(resp => resp.data);
 }
+
+export const getPoints = (username: string): Promise<{
+    points: string;
+    unclaimed_points: string;
+}> => {
+    const data = {username};
+    return axios.post(`/api/points`, data).then(resp => resp.data);
+}
+
+export const getPointList = (username: string): Promise<any> => {
+    const data = {username};
+    return axios.post(`/api/point-list`, data).then(resp => resp.data);
+}

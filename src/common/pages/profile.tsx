@@ -24,6 +24,7 @@ import ProfileCover from "../components/profile-cover";
 import Wallet from "../components/wallet";
 
 import {getAccountFull} from "../api/hive";
+import {getPoints} from "../api/private";
 
 import defaults from "../constants/defaults.json";
 
@@ -42,11 +43,15 @@ interface Props extends PageProps {
 
 interface State {
     loading: boolean;
+    points: string;
+    uPoints: string;
 }
 
 class ProfilePage extends Component<Props, State> {
     state: State = {
         loading: false,
+        points: "0.000",
+        uPoints: "0.000"
     };
 
     _mounted: boolean = true;
@@ -118,12 +123,17 @@ class ProfilePage extends Component<Props, State> {
             this.stateSet({loading: false});
         }
 
+        // Get points
+        getPoints(username).then(r => {
+            this.stateSet({points: r.points, uPoints: r.unclaimed_points});
+        })
+
         return true;
     };
 
-    stateSet = (obj: {}, cb = undefined) => {
+    stateSet = (state: {}, cb?: () => void) => {
         if (this._mounted) {
-            this.setState(obj, cb);
+            this.setState(state, cb);
         }
     };
 

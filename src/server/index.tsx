@@ -32,7 +32,9 @@ import {
     favorites,
     favoritesCheck,
     favoritesAdd,
-    favoritesDelete
+    favoritesDelete,
+    points,
+    pointList
 } from "./handlers/private-api";
 
 const server = express();
@@ -81,8 +83,9 @@ server
         ],
         entryHandler
     )
-    .use("^/api/received-vesting/:username$", receivedVesting)
-    .post("^/api/leaderboard", leaderboard)
+    .use("^/api/received-vesting/:username$", receivedVesting) // TODO. make it GET
+    .post("^/api/leaderboard$", leaderboard) // TODO: public data. make it GET.
+    .get("^/api/popular-users$", popularUsers)
     .post("^/api/notifications$", notifications)
     .post("^/api/notifications/mark$", markNotifications)
     .post("^/api/notifications/unread$", unreadNotifications)
@@ -103,7 +106,8 @@ server
     .post("^/api/favorites-check$", favoritesCheck)
     .post("^/api/favorites-add$", favoritesAdd)
     .post("^/api/favorites-delete$", favoritesDelete)
-    .get("^/api/popular-users", popularUsers)
+    .post("^/api/points$", points)
+    .post("^/api/point-list$", pointList)
     .get("*", fallbackHandler);
 
 export default server;
