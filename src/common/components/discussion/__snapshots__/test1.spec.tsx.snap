@@ -75,10 +75,10 @@ exports[`(1) Full render 1`] = `
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
+              className="user-avatar small"
               style={
                 Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/forykw/avatar/medium)",
+                  "backgroundImage": "url(https://images.ecency.com/u/forykw/avatar/small)",
                 }
               }
             />
@@ -202,10 +202,10 @@ exports[`(1) Full render 1`] = `
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
+              className="user-avatar small"
               style={
                 Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/brittandjosie/avatar/medium)",
+                  "backgroundImage": "url(https://images.ecency.com/u/brittandjosie/avatar/small)",
                 }
               }
             />
@@ -331,10 +331,10 @@ exports[`(1) Full render 1`] = `
                 onClick={[Function]}
               >
                 <span
-                  className="user-avatar medium"
+                  className="user-avatar small"
                   style={
                     Object {
-                      "backgroundImage": "url(https://images.ecency.com/u/ardpien/avatar/medium)",
+                      "backgroundImage": "url(https://images.ecency.com/u/ardpien/avatar/small)",
                     }
                   }
                 />
@@ -460,10 +460,10 @@ exports[`(1) Full render 1`] = `
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
+              className="user-avatar small"
               style={
                 Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/ardpien/avatar/medium)",
+                  "backgroundImage": "url(https://images.ecency.com/u/ardpien/avatar/small)",
                 }
               }
             />
@@ -588,10 +588,10 @@ exports[`(1) Full render 1`] = `
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
+              className="user-avatar small"
               style={
                 Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/iliyan90/avatar/medium)",
+                  "backgroundImage": "url(https://images.ecency.com/u/iliyan90/avatar/small)",
                 }
               }
             />
@@ -716,10 +716,10 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
+              className="user-avatar small"
               style={
                 Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/trincowski/avatar/medium)",
+                  "backgroundImage": "url(https://images.ecency.com/u/trincowski/avatar/small)",
                 }
               }
             />
@@ -844,10 +844,10 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
+              className="user-avatar small"
               style={
                 Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/foxkoit/avatar/medium)",
+                  "backgroundImage": "url(https://images.ecency.com/u/foxkoit/avatar/small)",
                 }
               }
             />
@@ -972,10 +972,10 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
+              className="user-avatar small"
               style={
                 Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/irisworld/avatar/medium)",
+                  "backgroundImage": "url(https://images.ecency.com/u/irisworld/avatar/small)",
                 }
               }
             />
@@ -1100,10 +1100,10 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             onClick={[Function]}
           >
             <span
-              className="user-avatar medium"
+              className="user-avatar small"
               style={
                 Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/behiver/avatar/medium)",
+                  "backgroundImage": "url(https://images.ecency.com/u/behiver/avatar/small)",
                 }
               }
             />

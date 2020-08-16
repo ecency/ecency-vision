@@ -634,10 +634,10 @@ exports[`(3) With active user 1`] = `
         onMouseLeave={[Function]}
       >
         <span
-          className="user-avatar medium"
+          className="user-avatar small"
           style={
             Object {
-              "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+              "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/small)",
             }
           }
         />
