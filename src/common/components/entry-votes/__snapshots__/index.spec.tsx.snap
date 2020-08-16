@@ -2,7 +2,7 @@
 
 exports[`(1) Default render 1`] = `
 <div
-  className="entry-votes"
+  className="entry-votes notranslate"
 >
   <span
     className="inner-btn"
@@ -25,7 +25,7 @@ exports[`(1) Default render 1`] = `
 
 exports[`(2) No votes 1`] = `
 <div
-  className="entry-votes"
+  className="entry-votes notranslate"
 >
   <span
     className="inner-btn no-data"
@@ -157,7 +157,7 @@ exports[`(3) Render of detail with votes 1`] = `
               className="voter-cell"
             >
               <a
-                className="account"
+                className="account notranslate"
                 href="/@user1"
                 onClick={[Function]}
               >
@@ -202,7 +202,7 @@ exports[`(3) Render of detail with votes 1`] = `
               className="voter-cell"
             >
               <a
-                className="account"
+                className="account notranslate"
                 href="/@user2"
                 onClick={[Function]}
               >

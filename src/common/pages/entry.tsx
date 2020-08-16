@@ -327,9 +327,9 @@ class EntryPage extends Component<Props, State> {
                                     username: entry.author,
                                     children: <div className="author-part">
                                         <div className="author-avatar">
-                                            {UserAvatar({...this.props, username: entry.author, size: "medium"})}
+                                            {UserAvatar({...this.props, username: entry.author, size: "small"})}
                                         </div>
-                                        <div className="author">
+                                        <div className="author notranslate">
                                             <span className="author-name">{entry.author}</span>
                                             <span className="author-reputation">{reputation}</span>
                                         </div>
@@ -374,7 +374,7 @@ class EntryPage extends Component<Props, State> {
                                     {ProfileLink({
                                         ...this.props,
                                         username: entry.author,
-                                        children: <div className="author">
+                                        children: <div className="author notranslate">
                                             <span className="author-name">{entry.author}</span>
                                             <span className="author-reputation">{reputation}</span>
                                         </div>

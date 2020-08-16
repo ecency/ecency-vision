@@ -21,7 +21,7 @@ Object {
   "depth": 0,
   "is_paidout": false,
   "json_metadata": Object {
-    "app": "ecency/3.0.2-vision",
+    "app": "ecency/3.0.3-vision",
     "format": "markdown+html",
     "tags": Array [
       "ecency",

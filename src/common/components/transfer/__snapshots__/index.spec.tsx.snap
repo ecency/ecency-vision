@@ -277,10 +277,10 @@ exports[`(1) Transfer (2) Step 2 1`] = `
             className="from-user"
           >
             <span
-              className="user-avatar xLarge"
+              className="user-avatar medium"
               style={
                 Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/large)",
+                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
                 }
               }
             />
@@ -303,10 +303,10 @@ exports[`(1) Transfer (2) Step 2 1`] = `
             className="to-user"
           >
             <span
-              className="user-avatar xLarge"
+              className="user-avatar medium"
               style={
                 Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/large)",
+                  "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
                 }
               }
             />

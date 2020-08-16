@@ -36,7 +36,7 @@ exports[`(1) Render list 1`] = `
           }
         />
         <div
-          className="friend-name"
+          className="friend-name notransalte"
         >
           user1
         </div>
@@ -60,7 +60,7 @@ exports[`(1) Render list 1`] = `
           }
         />
         <div
-          className="friend-name"
+          className="friend-name notransalte"
         >
           user2
         </div>
@@ -84,7 +84,7 @@ exports[`(1) Render list 1`] = `
           }
         />
         <div
-          className="friend-name"
+          className="friend-name notransalte"
         >
           user3
         </div>

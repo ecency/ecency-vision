@@ -141,7 +141,7 @@ export class EntryVotesDetail extends Component<DetailProps, DetailState> {
                     return ProfileLink({
                         ...this.props,
                         username: row.voter,
-                        children: <span className="account"> {UserAvatar({...this.props, username: row.voter, size:"small" })} {row.voter}</span>
+                        children: <span className="account notranslate"> {UserAvatar({...this.props, username: row.voter, size:"small" })} {row.voter}</span>
                     })
                 },
             },
@@ -251,7 +251,7 @@ export class EntryVotes extends Component<Props, State> {
 
         if (entry.stats.total_votes === 0) {
             return (
-                <div className="entry-votes">
+                <div className="entry-votes notranslate">
                     <Tooltip content={title}>
                         <span className="inner-btn no-data">{child}</span>
                     </Tooltip>
@@ -261,7 +261,7 @@ export class EntryVotes extends Component<Props, State> {
 
         return (
             <>
-                <div className="entry-votes">
+                <div className="entry-votes notranslate">
                     <Tooltip content={title}>
             <span className="inner-btn" onClick={this.toggle}>
               {child}

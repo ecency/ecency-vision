@@ -29,10 +29,10 @@ exports[`(2) Bookmarks - Test with data. 1`] = `
           onClick={[Function]}
         >
           <span
-            className="user-avatar medium"
+            className="user-avatar small"
             style={
               Object {
-                "backgroundImage": "url(https://images.ecency.com/u/kommienezuspadt/avatar/medium)",
+                "backgroundImage": "url(https://images.ecency.com/u/kommienezuspadt/avatar/small)",
               }
             }
           />
@@ -59,10 +59,10 @@ exports[`(2) Bookmarks - Test with data. 1`] = `
           onClick={[Function]}
         >
           <span
-            className="user-avatar medium"
+            className="user-avatar small"
             style={
               Object {
-                "backgroundImage": "url(https://images.ecency.com/u/johnvibes/avatar/medium)",
+                "backgroundImage": "url(https://images.ecency.com/u/johnvibes/avatar/small)",
               }
             }
           />
@@ -89,10 +89,10 @@ exports[`(2) Bookmarks - Test with data. 1`] = `
           onClick={[Function]}
         >
           <span
-            className="user-avatar medium"
+            className="user-avatar small"
             style={
               Object {
-                "backgroundImage": "url(https://images.ecency.com/u/acidyo/avatar/medium)",
+                "backgroundImage": "url(https://images.ecency.com/u/acidyo/avatar/small)",
               }
             }
           />
@@ -119,10 +119,10 @@ exports[`(2) Bookmarks - Test with data. 1`] = `
           onClick={[Function]}
         >
           <span
-            className="user-avatar medium"
+            className="user-avatar small"
             style={
               Object {
-                "backgroundImage": "url(https://images.ecency.com/u/bluemoon/avatar/medium)",
+                "backgroundImage": "url(https://images.ecency.com/u/bluemoon/avatar/small)",
               }
             }
           />
@@ -149,10 +149,10 @@ exports[`(2) Bookmarks - Test with data. 1`] = `
           onClick={[Function]}
         >
           <span
-            className="user-avatar medium"
+            className="user-avatar small"
             style={
               Object {
-                "backgroundImage": "url(https://images.ecency.com/u/tarazkp/avatar/medium)",
+                "backgroundImage": "url(https://images.ecency.com/u/tarazkp/avatar/small)",
               }
             }
           />
@@ -206,10 +206,10 @@ exports[`(4) Favorites - Test with data. 1`] = `
           onClick={[Function]}
         >
           <span
-            className="user-avatar medium"
+            className="user-avatar small"
             style={
               Object {
-                "backgroundImage": "url(https://images.ecency.com/u/purepinay/avatar/medium)",
+                "backgroundImage": "url(https://images.ecency.com/u/purepinay/avatar/small)",
               }
             }
           />
@@ -217,7 +217,7 @@ exports[`(4) Favorites - Test with data. 1`] = `
             className="item-body"
           >
             <span
-              className="author"
+              className="author notranslate"
             >
               purepinay
             </span>
@@ -231,10 +231,10 @@ exports[`(4) Favorites - Test with data. 1`] = `
           onClick={[Function]}
         >
           <span
-            className="user-avatar medium"
+            className="user-avatar small"
             style={
               Object {
-                "backgroundImage": "url(https://images.ecency.com/u/kommienezuspadt/avatar/medium)",
+                "backgroundImage": "url(https://images.ecency.com/u/kommienezuspadt/avatar/small)",
               }
             }
           />
@@ -242,7 +242,7 @@ exports[`(4) Favorites - Test with data. 1`] = `
             className="item-body"
           >
             <span
-              className="author"
+              className="author notranslate"
             >
               kommienezuspadt
             </span>

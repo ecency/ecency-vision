@@ -25,10 +25,10 @@ exports[`(1) NotificationListItem (1) Vote  1`] = `
         onClick={[Function]}
       >
         <span
-          className="user-avatar medium"
+          className="user-avatar small"
           style={
             Object {
-              "backgroundImage": "url(https://images.ecency.com/u/fooo10/avatar/medium)",
+              "backgroundImage": "url(https://images.ecency.com/u/fooo10/avatar/small)",
             }
           }
         />
@@ -95,10 +95,10 @@ exports[`(1) NotificationListItem (2) Mention  1`] = `
         onClick={[Function]}
       >
         <span
-          className="user-avatar medium"
+          className="user-avatar small"
           style={
             Object {
-              "backgroundImage": "url(https://images.ecency.com/u/ecency.stats/avatar/medium)",
+              "backgroundImage": "url(https://images.ecency.com/u/ecency.stats/avatar/small)",
             }
           }
         />
@@ -165,10 +165,10 @@ exports[`(1) NotificationListItem (3) Follow  1`] = `
         onClick={[Function]}
       >
         <span
-          className="user-avatar medium"
+          className="user-avatar small"
           style={
             Object {
-              "backgroundImage": "url(https://images.ecency.com/u/fooo10/avatar/medium)",
+              "backgroundImage": "url(https://images.ecency.com/u/fooo10/avatar/small)",
             }
           }
         />
@@ -222,10 +222,10 @@ exports[`(1) NotificationListItem (4) Unfollow  1`] = `
         onClick={[Function]}
       >
         <span
-          className="user-avatar medium"
+          className="user-avatar small"
           style={
             Object {
-              "backgroundImage": "url(https://images.ecency.com/u/fooo102/avatar/medium)",
+              "backgroundImage": "url(https://images.ecency.com/u/fooo102/avatar/small)",
             }
           }
         />
@@ -279,10 +279,10 @@ exports[`(1) NotificationListItem (5) Reply  1`] = `
         onClick={[Function]}
       >
         <span
-          className="user-avatar medium"
+          className="user-avatar small"
           style={
             Object {
-              "backgroundImage": "url(https://images.ecency.com/u/dunsky/avatar/medium)",
+              "backgroundImage": "url(https://images.ecency.com/u/dunsky/avatar/small)",
             }
           }
         />
@@ -359,10 +359,10 @@ exports[`(1) NotificationListItem (6) Reblog  1`] = `
         onClick={[Function]}
       >
         <span
-          className="user-avatar medium"
+          className="user-avatar small"
           style={
             Object {
-              "backgroundImage": "url(https://images.ecency.com/u/foo220/avatar/medium)",
+              "backgroundImage": "url(https://images.ecency.com/u/foo220/avatar/small)",
             }
           }
         />
@@ -423,10 +423,10 @@ exports[`(1) NotificationListItem (7) Transfer  1`] = `
         onClick={[Function]}
       >
         <span
-          className="user-avatar medium"
+          className="user-avatar small"
           style={
             Object {
-              "backgroundImage": "url(https://images.ecency.com/u/bar212/avatar/medium)",
+              "backgroundImage": "url(https://images.ecency.com/u/bar212/avatar/small)",
             }
           }
         />

@@ -36,7 +36,7 @@ exports[`(1) Full render 1`] = `
               className="delegator-cell"
             >
               <a
-                className="account"
+                className="account notranslate"
                 href="/@user2"
                 onClick={[Function]}
               >
@@ -71,7 +71,7 @@ exports[`(1) Full render 1`] = `
               className="delegator-cell"
             >
               <a
-                className="account"
+                className="account notranslate"
                 href="/@user3"
                 onClick={[Function]}
               >
@@ -106,7 +106,7 @@ exports[`(1) Full render 1`] = `
               className="delegator-cell"
             >
               <a
-                className="account"
+                className="account notranslate"
                 href="/@user4"
                 onClick={[Function]}
               >
@@ -141,7 +141,7 @@ exports[`(1) Full render 1`] = `
               className="delegator-cell"
             >
               <a
-                className="account"
+                className="account notranslate"
                 href="/@user1"
                 onClick={[Function]}
               >
@@ -176,7 +176,7 @@ exports[`(1) Full render 1`] = `
               className="delegator-cell"
             >
               <a
-                className="account"
+                className="account notranslate"
                 href="/@user5"
                 onClick={[Function]}
               >

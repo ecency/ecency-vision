@@ -56,7 +56,7 @@ exports[`(1) Render with data. 1`] = `
           Foo
         </a>
         <a
-          className="name"
+          className="name notranslate"
           href="/@foo"
           onClick={[Function]}
         >
@@ -98,7 +98,7 @@ exports[`(1) Render with data. 1`] = `
           Bar
         </a>
         <a
-          className="name"
+          className="name notranslate"
           href="/@bar"
           onClick={[Function]}
         >
@@ -140,7 +140,7 @@ exports[`(1) Render with data. 1`] = `
           Baz
         </a>
         <a
-          className="name"
+          className="name notranslate"
           href="/@baz"
           onClick={[Function]}
         >
