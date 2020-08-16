@@ -22,6 +22,7 @@ import ProfileCard from "../components/profile-card";
 import ProfileMenu from "../components/profile-menu";
 import ProfileCover from "../components/profile-cover";
 import Wallet from "../components/wallet";
+import Points from "../components/points";
 
 import {getAccountFull} from "../api/hive";
 import {getPoints} from "../api/private";
@@ -213,7 +214,13 @@ class ProfilePage extends Component<Props, State> {
                             }
 
                             if (section === "points") {
-                                return <span>Henlo</span>
+                                const {points, uPoints} = this.state;
+                                return Points({
+                                    ...this.props,
+                                    account,
+                                    points,
+                                    uPoints
+                                })
                             }
 
                             const {filter, tag} = global;

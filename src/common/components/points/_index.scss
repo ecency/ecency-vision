@@ -1,0 +1,128 @@
+.points-section {
+  padding-top: 20px;
+
+
+  .points {
+    margin-bottom: 30px;
+    text-align: center;
+
+    .points-val {
+      color: $dark-sky-blue;
+      display: inline-flex;
+      margin-bottom: 10px;
+      cursor: default;
+      position: relative;
+
+      .val {
+        font-size: 28px;
+        font-weight: 500;
+      }
+
+    }
+
+    .point-name {
+      font-weight: 700;
+      margin-bottom: 10px;
+
+      @include themify(day) {
+        color: darken($silver, 10);
+      }
+
+      @include themify(night) {
+        color: $metallic-blue;
+      }
+    }
+
+    .unclaimed {
+      align-items: center;
+      background-color: $dark-sky-blue;
+      border-radius: 25px;
+      color: $white;
+      display: inline-flex;
+      height: 51px;
+      margin-top: 10px;
+      padding: 0 24px;
+
+      .val {
+        font-size: 18px;
+        font-weight: 500;
+      }
+
+      .claim-btn {
+        color: $white;
+
+        svg {
+          height: 26px;
+        }
+
+        &:hover {
+          color: lighten($dark-sky-blue, 30);
+        }
+
+        &.in-progress {
+          animation: claiming-color-change 5s infinite;
+          pointer-events: none;
+        }
+      }
+
+
+      &.can-claim {
+        .val {
+          margin-right: 10px;
+        }
+      }
+    }
+
+    .get-estm {
+      margin: 10px 0;
+    }
+  }
+
+
+  .point-reward-types {
+    margin-bottom: 30px;
+    text-align: center;
+    cursor: default;
+
+    .point-reward-type {
+      align-items: center;
+      border-radius: 50%;
+      display: inline-flex;
+      height: 40px;
+      justify-content: center;
+      width: 40px;
+      color: $warm-grey;
+      position: relative;
+
+      svg {
+        height: 18px;
+      }
+
+      @include themify(day) {
+        background: $white-three;
+        color: $steel-grey;
+      }
+
+      @include themify(night) {
+        background: $metallic-blue;
+        color: lighten($metallic-blue, 40);
+      }
+
+      &:not(:last-child) {
+        margin-right: 30px;
+      }
+
+      .reward-num {
+        background: $dark-sky-blue;
+        position: absolute;
+        right: -30%;
+        bottom: 0;
+        color: $white;
+        font-size: 10px;
+        border-radius: 24px;
+        width: 24px;
+        padding: 1px 0;
+      }
+    }
+  }
+}
