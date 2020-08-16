@@ -91,7 +91,7 @@ exports[`(1) Full render 1`] = `
             className="item-header"
           >
             <a
-              className="author"
+              className="author notranslate"
               href="/@forykw"
               onClick={[Function]}
             >
@@ -151,7 +151,7 @@ exports[`(1) Full render 1`] = `
               </div>
             </div>
             <div
-              className="entry-payout "
+              className="entry-payout  notranslate"
               onBlur={[Function]}
               onFocus={[Function]}
               onMouseOut={[Function]}
@@ -160,7 +160,7 @@ exports[`(1) Full render 1`] = `
               $ 0.00
             </div>
             <div
-              className="entry-votes"
+              className="entry-votes notranslate"
             >
               <span
                 className="inner-btn no-data"
@@ -218,7 +218,7 @@ exports[`(1) Full render 1`] = `
             className="item-header"
           >
             <a
-              className="author"
+              className="author notranslate"
               href="/@brittandjosie"
               onClick={[Function]}
             >
@@ -278,7 +278,7 @@ exports[`(1) Full render 1`] = `
               </div>
             </div>
             <div
-              className="entry-payout "
+              className="entry-payout  notranslate"
               onBlur={[Function]}
               onFocus={[Function]}
               onMouseOut={[Function]}
@@ -287,7 +287,7 @@ exports[`(1) Full render 1`] = `
               $ 0.00
             </div>
             <div
-              className="entry-votes"
+              className="entry-votes notranslate"
             >
               <span
                 className="inner-btn no-data"
@@ -347,7 +347,7 @@ exports[`(1) Full render 1`] = `
                 className="item-header"
               >
                 <a
-                  className="author"
+                  className="author notranslate"
                   href="/@ardpien"
                   onClick={[Function]}
                 >
@@ -407,7 +407,7 @@ exports[`(1) Full render 1`] = `
                   </div>
                 </div>
                 <div
-                  className="entry-payout "
+                  className="entry-payout  notranslate"
                   onBlur={[Function]}
                   onFocus={[Function]}
                   onMouseOut={[Function]}
@@ -416,7 +416,7 @@ exports[`(1) Full render 1`] = `
                   $ 0.00
                 </div>
                 <div
-                  className="entry-votes"
+                  className="entry-votes notranslate"
                 >
                   <span
                     className="inner-btn no-data"
@@ -476,7 +476,7 @@ exports[`(1) Full render 1`] = `
             className="item-header"
           >
             <a
-              className="author"
+              className="author notranslate"
               href="/@ardpien"
               onClick={[Function]}
             >
@@ -536,7 +536,7 @@ exports[`(1) Full render 1`] = `
               </div>
             </div>
             <div
-              className="entry-payout "
+              className="entry-payout  notranslate"
               onBlur={[Function]}
               onFocus={[Function]}
               onMouseOut={[Function]}
@@ -545,7 +545,7 @@ exports[`(1) Full render 1`] = `
               $ 0.03
             </div>
             <div
-              className="entry-votes"
+              className="entry-votes notranslate"
             >
               <span
                 className="inner-btn"
@@ -604,7 +604,7 @@ exports[`(1) Full render 1`] = `
             className="item-header"
           >
             <a
-              className="author"
+              className="author notranslate"
               href="/@iliyan90"
               onClick={[Function]}
             >
@@ -665,7 +665,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               </div>
             </div>
             <div
-              className="entry-payout "
+              className="entry-payout  notranslate"
               onBlur={[Function]}
               onFocus={[Function]}
               onMouseOut={[Function]}
@@ -674,7 +674,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               $ 0.00
             </div>
             <div
-              className="entry-votes"
+              className="entry-votes notranslate"
             >
               <span
                 className="inner-btn no-data"
@@ -732,7 +732,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             className="item-header"
           >
             <a
-              className="author"
+              className="author notranslate"
               href="/@trincowski"
               onClick={[Function]}
             >
@@ -792,7 +792,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               </div>
             </div>
             <div
-              className="entry-payout "
+              className="entry-payout  notranslate"
               onBlur={[Function]}
               onFocus={[Function]}
               onMouseOut={[Function]}
@@ -801,7 +801,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               $ 0.03
             </div>
             <div
-              className="entry-votes"
+              className="entry-votes notranslate"
             >
               <span
                 className="inner-btn"
@@ -860,7 +860,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             className="item-header"
           >
             <a
-              className="author"
+              className="author notranslate"
               href="/@foxkoit"
               onClick={[Function]}
             >
@@ -920,7 +920,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               </div>
             </div>
             <div
-              className="entry-payout "
+              className="entry-payout  notranslate"
               onBlur={[Function]}
               onFocus={[Function]}
               onMouseOut={[Function]}
@@ -929,7 +929,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               $ 0.03
             </div>
             <div
-              className="entry-votes"
+              className="entry-votes notranslate"
             >
               <span
                 className="inner-btn"
@@ -988,7 +988,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             className="item-header"
           >
             <a
-              className="author"
+              className="author notranslate"
               href="/@irisworld"
               onClick={[Function]}
             >
@@ -1048,7 +1048,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               </div>
             </div>
             <div
-              className="entry-payout "
+              className="entry-payout  notranslate"
               onBlur={[Function]}
               onFocus={[Function]}
               onMouseOut={[Function]}
@@ -1057,7 +1057,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               $ 0.08
             </div>
             <div
-              className="entry-votes"
+              className="entry-votes notranslate"
             >
               <span
                 className="inner-btn"
@@ -1116,7 +1116,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
             className="item-header"
           >
             <a
-              className="author"
+              className="author notranslate"
               href="/@behiver"
               onClick={[Function]}
             >
@@ -1176,7 +1176,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               </div>
             </div>
             <div
-              className="entry-payout "
+              className="entry-payout  notranslate"
               onBlur={[Function]}
               onFocus={[Function]}
               onMouseOut={[Function]}
@@ -1185,7 +1185,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               $ 0.08
             </div>
             <div
-              className="entry-votes"
+              className="entry-votes notranslate"
             >
               <span
                 className="inner-btn"

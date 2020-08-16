@@ -217,7 +217,7 @@ exports[`(4) Favorites - Test with data. 1`] = `
             className="item-body"
           >
             <span
-              className="author"
+              className="author notranslate"
             >
               purepinay
             </span>
@@ -242,7 +242,7 @@ exports[`(4) Favorites - Test with data. 1`] = `
             className="item-body"
           >
             <span
-              className="author"
+              className="author notranslate"
             >
               kommienezuspadt
             </span>
