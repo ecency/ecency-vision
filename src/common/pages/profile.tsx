@@ -56,7 +56,7 @@ class ProfilePage extends Component<Props, State> {
 
         const {match, global, fetchEntries, fetchTransactions} = this.props;
 
-        if (match.params.section !== "wallet") {
+        if (!["wallet", "points"].includes(match.params.section || '')) {
             // fetch posts
             fetchEntries(global.filter, global.tag, false);
         }
@@ -77,8 +77,8 @@ class ProfilePage extends Component<Props, State> {
             });
         }
 
-        // Wallet is not a correct filter to fetch posts
-        if (match.params.section === "wallet") {
+        // Wallet and points are not a correct filter to fetch posts
+        if (["wallet", "points"].includes(match.params.section || '')) {
             return;
         }
 
@@ -200,6 +200,10 @@ class ProfilePage extends Component<Props, State> {
                                     ...this.props,
                                     account
                                 });
+                            }
+
+                            if (section === "points") {
+                                return <span>Henlo</span>
                             }
 
                             const {filter, tag} = global;

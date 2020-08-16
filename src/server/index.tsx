@@ -70,7 +70,7 @@ server
     .use(
         [
             "^/@:username$", // /@esteemapp
-            `^/@:username/:section(${profileFilters.join("|")}|wallet)$`, // /@esteemapp/comments
+            `^/@:username/:section(${profileFilters.join("|")}|wallet|points)$`, // /@esteemapp/comments
         ],
         profileHandler
     )
