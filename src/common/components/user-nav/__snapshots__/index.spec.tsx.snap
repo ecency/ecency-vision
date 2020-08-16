@@ -40,10 +40,10 @@ exports[`(1) Default render 1`] = `
     onMouseLeave={[Function]}
   >
     <span
-      className="user-avatar small"
+      className="user-avatar medium"
       style={
         Object {
-          "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/small)",
+          "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
         }
       }
     />
@@ -94,10 +94,10 @@ exports[`(2) Has rewards  1`] = `
     onMouseLeave={[Function]}
   >
     <span
-      className="user-avatar small"
+      className="user-avatar medium"
       style={
         Object {
-          "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/small)",
+          "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
         }
       }
     />
