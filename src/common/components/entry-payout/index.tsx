@@ -130,7 +130,7 @@ export class EntryPayout extends Component<Props> {
 
         return (
             <OverlayTrigger trigger={["hover", "focus"]} overlay={popover} delay={1000}>
-                <div className={`entry-payout ${isPayoutDeclined ? "payout-declined" : ""}`}>
+                <div className={`entry-payout ${isPayoutDeclined ? "payout-declined" : ""} notranslate`}>
                     <FormattedCurrency {...this.props} value={totalPayout}/>
                 </div>
             </OverlayTrigger>

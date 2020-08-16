@@ -104,7 +104,7 @@ export class PopularUsers extends Component<Props, State> {
                                     {ProfileLink({
                                         ...this.props,
                                         username: r.name,
-                                        children: <a className="name"> {'@'}{r.name}</a>
+                                        children: <a className="name notranslate"> {'@'}{r.name}</a>
                                     })}
                                     <div className="about">{r.about}</div>
                                 </div>

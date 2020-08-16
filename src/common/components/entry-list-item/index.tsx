@@ -142,7 +142,7 @@ export default class EntryListItem extends Component<Props> {
                         {ProfileLink({
                             ...this.props,
                             username: entry.author,
-                            children: <div className="author">{entry.author}<span className="author-reputation">{reputation}</span></div>
+                            children: <div className="author notranslate">{entry.author}<span className="author-reputation">{reputation}</span></div>
                         })}
                     </div>
                     {Tag({
@@ -213,7 +213,7 @@ export default class EntryListItem extends Component<Props> {
                         {EntryLink({
                             ...this.props,
                             entry,
-                            children: <a className="replies">
+                            children: <a className="replies notranslate">
                                 <Tooltip
                                     content={
                                         entry.children > 0

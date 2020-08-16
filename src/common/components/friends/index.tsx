@@ -197,7 +197,7 @@ export class List extends Component<ListProps, ListState> {
                                             username: item.name,
                                             children: <div className="friends-list-item">
                                                 {UserAvatar({...this.props, username: item.name, size: "large"})}
-                                                <div className="friend-name">{item.name}</div>
+                                                <div className="friend-name notransalte">{item.name}</div>
                                                 <div className="friend-full-name">{item.fullName}</div>
                                             </div>
                                         })

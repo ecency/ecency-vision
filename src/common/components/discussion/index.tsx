@@ -267,7 +267,7 @@ export class Item extends Component<ItemProps, ItemState> {
                             {ProfileLink({
                                 ...this.props,
                                 username: entry.author,
-                                children: <div className="author">
+                                children: <div className="author notranslate">
                                     <span className="author-name">{entry.author}</span>
                                     <span className="author-reputation">{reputation}</span>
                                 </div>

@@ -186,7 +186,7 @@ export class Favorites extends Component<FavoritesProps, FavoritesState> {
                                             size: "medium"
                                         })}
                                         <div className="item-body">
-                                            <span className="author">{item.account}</span>
+                                            <span className="author notranslate">{item.account}</span>
                                         </div>
                                     </div>
                                 })}
