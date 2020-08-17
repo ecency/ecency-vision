@@ -91,7 +91,7 @@ export class Bookmarks extends Component<BookmarksProps, BookmarksState> {
                                         {UserAvatar({
                                             ...this.props,
                                             username: item.author,
-                                            size: "medium"
+                                            size: "small"
                                         })}
                                         <div className="item-body">
                                             <span className="author with-slash">{item.author}</span>
@@ -183,10 +183,10 @@ export class Favorites extends Component<FavoritesProps, FavoritesState> {
                                         {UserAvatar({
                                             ...this.props,
                                             username: item.account,
-                                            size: "medium"
+                                            size: "small"
                                         })}
                                         <div className="item-body">
-                                            <span className="author">{item.account}</span>
+                                            <span className="author notranslate">{item.account}</span>
                                         </div>
                                     </div>
                                 })}

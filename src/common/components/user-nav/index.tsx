@@ -142,7 +142,7 @@ export default class UserNav extends Component<Props, State> {
                     <ToolTip content={_t("user-nav.notifications")}>
                         <span className="notifications" onClick={this.toggleNotifications}>
                              {unread > 0 && (
-                                 <span className="notifications-badge">
+                                 <span className="notifications-badge notranslate">
                                      {unread.toString().length < 3 ? unread : '...'}
                                  </span>
                              )}

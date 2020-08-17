@@ -577,11 +577,11 @@ export class TransferDialog extends Component<Props, State> {
                         <div className="confirmation">
                             <div className="users">
                                 <div className="from-user">
-                                    {UserAvatar({...this.props, username: activeUser.username, size: "xLarge"})}
+                                    {UserAvatar({...this.props, username: activeUser.username, size: "medium"})}
                                 </div>
                                 <div className="arrow">{arrowRightSvg}</div>
                                 <div className="to-user">
-                                    {UserAvatar({...this.props, username: to, size: "xLarge"})}
+                                    {UserAvatar({...this.props, username: to, size: "medium"})}
                                 </div>
                             </div>
                             <div className="amount">

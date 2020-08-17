@@ -77,7 +77,7 @@ export class NotificationListItem extends Component<{
             ...this.props,
             username: notification.source,
             afterClick: this.afterClick,
-            children: <a className="source-avatar">{UserAvatar({...this.props, username: notification.source, size: "medium"})}</a>
+            children: <a className="source-avatar">{UserAvatar({...this.props, username: notification.source, size: "small"})}</a>
         });
 
         const sourceLink = ProfileLink({
