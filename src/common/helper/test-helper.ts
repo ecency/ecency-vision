@@ -4,6 +4,7 @@ import {Entry} from "../store/entries/types";
 import {Community} from "../store/community/types";
 import {DynamicProps} from "../store/dynamic-props/types";
 import {UI} from "../store/ui/types";
+import {PointTransaction} from "../store/points/types";
 import {Vote, DelegatedVestingShare} from "../api/hive";
 import {ReceivedVestingShare} from "../api/private";
 import {
@@ -15,6 +16,7 @@ import {
     ApiVoteNotification,
     Notifications
 } from "../store/notifications/types";
+
 
 export const UiInstance: UI = {
     login: false,
@@ -712,4 +714,26 @@ export const apiNotificationList2: ApiNotification[] = [
     apiReplyNotification,
     apiReblogNotification,
     apiTransferNotification
+]
+
+
+export const pointTransactionsInstance: PointTransaction[] = [
+    {
+        amount: "0.250",
+        created: "2020-08-17T12:52:16.737322+02:00",
+        id: 5150947,
+        memo: null,
+        receiver: null,
+        sender: null,
+        type: 10,
+    },
+    {
+        amount: "0.750",
+        created: "2020-08-17T10:01:22.094361+02:00",
+        id: 5149418,
+        memo: null,
+        receiver: null,
+        sender: null,
+        type: 120,
+    }
 ]
