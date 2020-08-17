@@ -1,7 +1,6 @@
 .points-section {
   padding-top: 20px;
 
-
   .points {
     margin-bottom: 30px;
     text-align: center;
@@ -78,7 +77,6 @@
     }
   }
 
-
   .point-reward-types {
     margin-bottom: 30px;
     text-align: center;
@@ -122,6 +120,130 @@
         border-radius: 24px;
         width: 24px;
         padding: 1px 0;
+      }
+    }
+  }
+
+  .p-transaction-list {
+    margin: 0 29px 20px 0;
+
+    .transaction-list-header {
+      h2 {
+        font-size: 20px;
+        font-weight: 500;
+        margin: 30px 10px 16px;
+        text-align: center;
+
+        @include themify(day) {
+          color: $charcoal-grey;
+        }
+
+        @include themify(night) {
+          color: $powder-blue;
+        }
+
+        @media (min-width: $lg-break) {
+          text-align: left;
+        }
+      }
+    }
+
+    .transaction-list-item {
+      border-radius: 8px;
+      box-sizing: content-box;
+      display: flex;
+      padding: 16px;
+
+      .transaction-icon {
+        align-items: center;
+        border-radius: 50%;
+        display: flex;
+        font-size: 16px;
+        height: 32px;
+        justify-content: center;
+        margin-right: 10px;
+        width: 32px;
+
+        svg {
+          width: 16px;
+          height: 16px;
+        }
+
+        @include themify(day) {
+          background: $white;
+          color: $steel-grey;
+        }
+
+        @include themify(night) {
+          background: $metallic-blue;
+          color: lighten($metallic-blue, 40);
+        }
+      }
+
+      .transaction-title {
+        display: flex;
+        flex-direction: column;
+        font-weight: 500;
+        width: 30%;
+
+        .transaction-name {
+          @include themify(day) {
+            color: $steel-grey;
+          }
+
+          @include themify(night) {
+            color: $metallic-blue;
+          }
+        }
+
+        .transaction-date {
+          font-size: 12px;
+
+          @include themify(day) {
+            color: $silver;
+          }
+
+          @include themify(night) {
+            color: $warm-grey;
+          }
+        }
+      }
+
+      .transaction-numbers {
+        color: $dark-sky-blue;
+        flex-grow: 1;
+
+        font-weight: 500;
+        margin-right: 30px;
+        text-align: right;
+
+        .number {
+          margin-right: 4px;
+        }
+      }
+
+      .transaction-details {
+        color: $steel-grey;
+        width: 30%;
+        word-break: break-all;
+      }
+
+      &:nth-child(odd) {
+        @include themify(day) {
+          background: $white-three;
+        }
+
+        @include themify(night) {
+          background: lighten($dark-six, 4);
+        }
+      }
+
+      @include themify(day) {
+        &:nth-child(even) {
+          .transaction-icon {
+            background-color: $white-three;
+          }
+        }
       }
     }
   }

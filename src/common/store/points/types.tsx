@@ -10,7 +10,7 @@ export enum TransactionType {
     REFERRAL = 160,
     TRANSFER_SENT = 998,
     TRANSFER_INCOMING = 999,
-    OTHER = 991
+    MINTED = 991
 }
 
 export interface PointTransaction {
