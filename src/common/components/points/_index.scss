@@ -78,9 +78,22 @@
   }
 
   .point-reward-types {
-    margin-bottom: 30px;
-    text-align: center;
+    margin: 0 auto 50px auto;
     cursor: default;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    max-width: 320px;
+
+    @media (min-width: $sm-break) {
+      grid-template-columns: repeat(8, 1fr);
+      max-width: 520px;
+    }
+
+    @media (min-width: $lg-break) {
+      width: 600px;
+      max-width: none;
+    }
 
     .point-reward-type {
       align-items: center;
@@ -91,6 +104,7 @@
       width: 40px;
       color: $warm-grey;
       position: relative;
+      margin: auto;
 
       svg {
         height: 18px;
@@ -106,10 +120,6 @@
         color: lighten($metallic-blue, 40);
       }
 
-      &:not(:last-child) {
-        margin-right: 30px;
-      }
-
       .reward-num {
         background: $dark-sky-blue;
         position: absolute;
@@ -120,12 +130,13 @@
         border-radius: 24px;
         width: 24px;
         padding: 1px 0;
+        text-align: center;
       }
     }
   }
 
   .p-transaction-list {
-    margin: 0 29px 20px 0;
+    margin: 0 0 20px 0;
 
     .transaction-list-header {
       h2 {

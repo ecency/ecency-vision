@@ -2,9 +2,12 @@ import React, {Component} from "react";
 
 import moment from "moment";
 
+import {History} from "history";
+
 import {ActiveUser} from "../../store/active-user/types";
 import {Account} from "../../store/accounts/types";
 import {Points, PointTransaction, TransactionType} from "../../store/points/types"
+import DropDown from "../dropdown";
 
 import Tooltip from "../tooltip";
 
@@ -24,6 +27,7 @@ import {
     compareHorizontalSvg,
     cashSvg
 } from "../../img/svg";
+
 
 export class TransactionRow extends Component<{ tr: PointTransaction }> {
     render() {
@@ -114,6 +118,7 @@ export class TransactionRow extends Component<{ tr: PointTransaction }> {
 }
 
 interface Props {
+    history: History;
     activeUser: ActiveUser | null;
     account: Account;
     points: Points;
@@ -140,20 +145,27 @@ export class UserPoints extends Component<Props, State> {
     }
 
     render() {
-
         const {claiming, purchasing} = this.state;
         const {activeUser, account, points} = this.props;
 
         const isMyPage = activeUser && activeUser.username === account.name;
 
+        const dropDownConfig = {
+            history: this.props.history,
+            label: '',
+            items: [{
+                label: _t('points.transfer')
+            }]
+        };
+
         return (
             <div className="points-section">
                 <div className="points">
-                    <div className="point-name">eSteem Points</div>
+                    <div className="point-name">Ecency Points</div>
                     <div className="points-val">
                         <div className="val">{points.points} POINTS</div>
                         {isMyPage && (
-                            <span/>
+                            <DropDown {...dropDownConfig} float="right"/>
                         )}
                     </div>
                     <div className="clearfix"/>
@@ -280,6 +292,7 @@ export class UserPoints extends Component<Props, State> {
 
 export default (p: Props) => {
     const props = {
+        history: p.history,
         activeUser: p.activeUser,
         account: p.account,
         points: p.points

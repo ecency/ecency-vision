@@ -220,7 +220,8 @@
     "transfer-sent-list-desc": "Transfer to {{n}}",
     "transfer-incoming-list-desc": "Transfer from {{n}}",
     "delegation-list-desc": "Delegation reward",
-    "referral-list-desc": "Referral reward"
+    "referral-list-desc": "Referral reward",
+    "transfer": "Gift to someone"
   },
   "transfer": {
     "transfer-title": "Transfer to Account",
