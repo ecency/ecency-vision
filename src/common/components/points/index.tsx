@@ -17,6 +17,8 @@ import Tooltip from "../tooltip";
 
 import {_t} from "../../i18n";
 
+import {claimPoints} from "../../api/private";
+
 import {
     accountOutlineSvg,
     checkAllSvg,
@@ -147,6 +149,12 @@ export class UserPoints extends Component<Props, State> {
 
     claim = (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
+
+        const {activeUser} = this.props;
+
+        claimPoints(activeUser?.username!).then(r => {
+            console.log(r);
+        })
     }
 
     togglePurchase = (e: React.MouseEvent<HTMLAnchorElement>) => {
