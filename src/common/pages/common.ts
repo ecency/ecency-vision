@@ -16,6 +16,7 @@ import {Reblog} from "../store/reblogs/types";
 import {Discussion as DiscussionType, SortOrder} from "../store/discussion/types";
 import {Community} from "../store/community/types";
 import {Transactions} from "../store/transactions/types";
+import {Points} from "../store/points/types";
 
 
 import {toggleTheme, hideIntro, toggleListStyle} from "../store/global";
@@ -31,7 +32,7 @@ import {setActiveUser, updateActiveUser} from "../store/active-user";
 import {toggleUIProp} from "../store/ui";
 import {addReblog} from "../store/reblogs";
 import {fetchNotifications, fetchUnreadNotificationCount, setNotificationsFilter, markNotifications} from "../store/notifications";
-
+import {fetchPoints, resetPoints} from "../store/points";
 
 export interface PageProps {
     history: History;
@@ -93,6 +94,10 @@ export interface PageProps {
     fetchUnreadNotificationCount: () => void;
     setNotificationsFilter: (filter: NotificationFilter | null) => void;
     markNotifications: (id: string | null) => void;
+
+    points: Points;
+    fetchPoints: (username: string) => void;
+    resetPoints: () => void
 }
 
 export const pageMapStateToProps = (state: AppState) => ({
@@ -130,7 +135,9 @@ export const pageMapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
             fetchNotifications,
             fetchUnreadNotificationCount,
             setNotificationsFilter,
-            markNotifications
+            markNotifications,
+            fetchPoints,
+            resetPoints
         },
         dispatch
     );

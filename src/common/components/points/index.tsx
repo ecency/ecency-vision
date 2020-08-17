@@ -2,6 +2,7 @@ import React, {Component} from "react";
 
 import {ActiveUser} from "../../store/active-user/types";
 import {Account} from "../../store/accounts/types";
+import {Points} from "../../store/points/types"
 
 import Tooltip from "../tooltip";
 
@@ -12,8 +13,7 @@ import {plusCircle, pencilOutlineSvg, commentSvg, chevronUpSvg, repeatSvg, starO
 interface Props {
     activeUser: ActiveUser | null;
     account: Account;
-    points: string;
-    uPoints: string;
+    points: Points;
 }
 
 interface State {
@@ -21,7 +21,7 @@ interface State {
     purchasing: boolean
 }
 
-export class Points extends Component<Props, State> {
+export class UserPoints extends Component<Props, State> {
     state: State = {
         claiming: false,
         purchasing: false
@@ -39,16 +39,17 @@ export class Points extends Component<Props, State> {
     render() {
 
         const {claiming, purchasing} = this.state;
-        const {activeUser, account, points, uPoints} = this.props;
+        const {activeUser, account, points} = this.props;
 
         const isMyPage = activeUser && activeUser.username === account.name;
 
+        console.log(points.transactions)
         return (
             <div className="points-section">
                 <div className="points">
                     <div className="point-name">eSteem Points</div>
                     <div className="points-val">
-                        <div className="val">{points} POINTS</div>
+                        <div className="val">{points.points} POINTS</div>
                         {isMyPage && (
                             <span/>
                         )}
@@ -61,10 +62,10 @@ export class Points extends Component<Props, State> {
                                 <>
                                     <div className={`unclaimed ${isMyPage ? 'can-claim' : ''}`}>
                                         <div className="val">
-                                            {uPoints !== '0.000' && (
-                                                <div className="val">{uPoints}</div>
+                                            {points.uPoints !== '0.000' && (
+                                                <div className="val">{points.uPoints}</div>
                                             )}
-                                            {uPoints === '0.000' && (
+                                            {points.uPoints === '0.000' && (
                                                 <div className="val">
                                                     {_t('points.get')}
                                                 </div>
@@ -72,7 +73,7 @@ export class Points extends Component<Props, State> {
                                         </div>
                                         <a href="#" className={`claim-btn ${claiming ? 'in-progress' : ''}`}
                                            onClick={(e) => {
-                                               if (uPoints !== '0.000') {
+                                               if (points.uPoints !== '0.000') {
                                                    this.claim(e);
                                                    return;
                                                }
@@ -83,7 +84,7 @@ export class Points extends Component<Props, State> {
                                         </a>
                                     </div>
 
-                                    {uPoints !== '0.000' && (
+                                    {points.uPoints !== '0.000' && (
                                         <>
                                             <div className="clearfix"/>
                                             <div className="get-estm">
@@ -97,10 +98,10 @@ export class Points extends Component<Props, State> {
                             );
                         }
 
-                        if (uPoints !== '0.000') {
+                        if (points.uPoints !== '0.000') {
                             return (
                                 <div className="unclaimed">
-                                    <div className="val">{uPoints}</div>
+                                    <div className="val">{points.uPoints}</div>
                                 </div>
                             );
                         }
@@ -108,6 +109,7 @@ export class Points extends Component<Props, State> {
                         return null;
                     })()}
                 </div>
+
 
                 <div className="point-reward-types">
                     <Tooltip content={_t('points.post-desc')}>
@@ -168,10 +170,9 @@ export default (p: Props) => {
     const props = {
         activeUser: p.activeUser,
         account: p.account,
-        points: p.points,
-        uPoints: p.uPoints
+        points: p.points
     }
 
-    return <Points {...props} />;
+    return <UserPoints {...props} />;
 }
 

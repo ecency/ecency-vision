@@ -25,7 +25,6 @@ import Wallet from "../components/wallet";
 import Points from "../components/points";
 
 import {getAccountFull} from "../api/hive";
-import {getPoints} from "../api/private";
 
 import defaults from "../constants/defaults.json";
 
@@ -44,15 +43,11 @@ interface Props extends PageProps {
 
 interface State {
     loading: boolean;
-    points: string;
-    uPoints: string;
 }
 
 class ProfilePage extends Component<Props, State> {
     state: State = {
-        loading: false,
-        points: "0.000",
-        uPoints: "0.000"
+        loading: false
     };
 
     _mounted: boolean = true;
@@ -60,7 +55,7 @@ class ProfilePage extends Component<Props, State> {
     async componentDidMount() {
         await this.ensureAccount();
 
-        const {match, global, fetchEntries, fetchTransactions} = this.props;
+        const {match, global, fetchEntries, fetchTransactions, fetchPoints} = this.props;
 
         if (!["wallet", "points"].includes(match.params.section || '')) {
             // fetch posts
@@ -69,17 +64,23 @@ class ProfilePage extends Component<Props, State> {
 
         // fetch wallet transactions
         fetchTransactions(match.params.username);
+
+        // fetch points
+        fetchPoints(match.params.username);
     }
 
     componentDidUpdate(prevProps: Readonly<Props>): void {
-        const {match, global, fetchEntries, fetchTransactions, resetTransactions} = this.props;
+        const {match, global, fetchEntries, fetchTransactions, resetTransactions, fetchPoints, resetPoints} = this.props;
         const {global: pGlobal} = prevProps;
 
-        // username changed. re-fetch wallet transactions
+        // username changed. re-fetch wallet transactions and points
         if (match.params.username !== prevProps.match.params.username) {
             this.ensureAccount().then(() => {
                 resetTransactions();
                 fetchTransactions(match.params.username);
+
+                resetPoints();
+                fetchPoints(match.params.username);
             });
         }
 
@@ -95,10 +96,11 @@ class ProfilePage extends Component<Props, State> {
     }
 
     componentWillUnmount() {
-        const {resetTransactions} = this.props;
+        const {resetTransactions, resetPoints} = this.props;
 
-        // reset transactions on unload
+        // reset transactions and points on unload
         resetTransactions();
+        resetPoints();
 
         this._mounted = false;
     }
@@ -123,11 +125,6 @@ class ProfilePage extends Component<Props, State> {
 
             this.stateSet({loading: false});
         }
-
-        // Get points
-        getPoints(username).then(r => {
-            this.stateSet({points: r.points, uPoints: r.unclaimed_points});
-        })
 
         return true;
     };
@@ -214,12 +211,9 @@ class ProfilePage extends Component<Props, State> {
                             }
 
                             if (section === "points") {
-                                const {points, uPoints} = this.state;
                                 return Points({
                                     ...this.props,
-                                    account,
-                                    points,
-                                    uPoints
+                                    account
                                 })
                             }
 
