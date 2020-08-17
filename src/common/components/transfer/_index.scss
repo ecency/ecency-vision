@@ -56,7 +56,10 @@
       }
 
       .transfer-box-body {
-        padding: 24px 32px;
+        @media (min-width: $sm-break) {
+          padding: 24px 32px;
+        }
+
         margin: 1px 0 0 0;
 
         .transfer-form {
@@ -198,8 +201,14 @@
 
       .asset {
         border-radius: 25px;
-        padding: 3px 6px;
+        padding: 3px 3px;
+        font-size: 14px;
         cursor: pointer;
+
+        @media (min-width: $sm-break) {
+          padding: 3px 6px;
+          font-size: 16px;
+        }
 
         @include themify(day) {
           color: $steel-grey;
@@ -210,7 +219,11 @@
         }
 
         &:not(:last-child) {
-          margin-right: 8px;
+          margin-right: 4px;
+
+          @media (min-width: $sm-break) {
+            margin-right: 8px;
+          }
         }
 
         &.selected {

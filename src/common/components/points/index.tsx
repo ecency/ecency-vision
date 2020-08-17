@@ -6,8 +6,12 @@ import {History} from "history";
 
 import {ActiveUser} from "../../store/active-user/types";
 import {Account} from "../../store/accounts/types";
+import {Global} from "../../store/global/types";
+import {Transactions} from "../../store/transactions/types";
 import {Points, PointTransaction, TransactionType} from "../../store/points/types"
+
 import DropDown from "../dropdown";
+import Transfer from "../transfer";
 
 import Tooltip from "../tooltip";
 
@@ -118,21 +122,27 @@ export class TransactionRow extends Component<{ tr: PointTransaction }> {
 }
 
 interface Props {
+    global: Global;
     history: History;
     activeUser: ActiveUser | null;
     account: Account;
     points: Points;
+    transactions: Transactions;
+    addAccount: (data: Account) => void;
+    updateActiveUser: (data: Account) => void;
 }
 
 interface State {
     claiming: boolean,
-    purchasing: boolean
+    purchase: boolean,
+    transfer: boolean,
 }
 
 export class UserPoints extends Component<Props, State> {
     state: State = {
         claiming: false,
-        purchasing: false
+        purchase: false,
+        transfer: false
     }
 
     claim = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -141,11 +151,15 @@ export class UserPoints extends Component<Props, State> {
 
     togglePurchase = (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
+    }
 
+    toggleTransfer = () => {
+        const {transfer} = this.state;
+        this.setState({transfer: !transfer});
     }
 
     render() {
-        const {claiming, purchasing} = this.state;
+        const {claiming, transfer, purchase} = this.state;
         const {activeUser, account, points} = this.props;
 
         const isMyPage = activeUser && activeUser.username === account.name;
@@ -154,7 +168,8 @@ export class UserPoints extends Component<Props, State> {
             history: this.props.history,
             label: '',
             items: [{
-                label: _t('points.transfer')
+                label: _t('points.transfer'),
+                onClick: this.toggleTransfer
             }]
         };
 
@@ -285,6 +300,15 @@ export class UserPoints extends Component<Props, State> {
                         </div>
                     </div>
                 )}
+
+                {transfer && (<Transfer
+                    {...this.props}
+                    mode="transfer"
+                    asset="POINT"
+                    activeUser={this.props.activeUser!}
+                    pointAmount={points.points}
+                    onHide={this.toggleTransfer}/>)
+                }
             </div>
         );
     }
@@ -292,10 +316,14 @@ export class UserPoints extends Component<Props, State> {
 
 export default (p: Props) => {
     const props = {
+        global: p.global,
         history: p.history,
         activeUser: p.activeUser,
         account: p.account,
-        points: p.points
+        points: p.points,
+        transactions: p.transactions,
+        addAccount: p.addAccount,
+        updateActiveUser: p.updateActiveUser
     }
 
     return <UserPoints {...props} />;

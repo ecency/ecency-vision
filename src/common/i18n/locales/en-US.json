@@ -225,6 +225,7 @@
   },
   "transfer": {
     "transfer-title": "Transfer to Account",
+    "transfer-title-point": "Gift to Account",
     "transfer-sub-title": "Move funds to another Hive account",
     "transfer-saving-title": "Transfer to Savings",
     "transfer-saving-sub-title": "Protect funds by requiring a 3 day withdraw waiting period",
