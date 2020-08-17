@@ -30,6 +30,13 @@ exports[`(1) Render 1`] = `
     </a>
     <a
       className="menu-item false"
+      href="/@username/points"
+      onClick={[Function]}
+    >
+      Points
+    </a>
+    <a
+      className="menu-item false"
       href="/@username/wallet"
       onClick={[Function]}
     >

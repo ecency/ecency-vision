@@ -43,7 +43,6 @@ export class UserPoints extends Component<Props, State> {
 
         const isMyPage = activeUser && activeUser.username === account.name;
 
-        console.log(points.transactions)
         return (
             <div className="points-section">
                 <div className="points">
