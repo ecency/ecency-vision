@@ -449,7 +449,7 @@ export class TransferDialog extends Component<Props, State> {
                         <div className="step-no">1</div>
                         <div className="box-titles">
                             <div className="main-title">
-                                {mode === 'transfer' && asset === "POINT" ? _t('transfer.transfer-title-point') : _t('transfer.transfer-title')}
+                                {mode === 'transfer' && (asset === "POINT" ? _t('transfer.transfer-title-point') : _t('transfer.transfer-title'))}
                                 {mode === 'transfer-saving' && _t('transfer.transfer-saving-title')}
                                 {mode === 'withdraw-saving' && _t('transfer.withdraw-saving-title')}
                                 {mode === 'power-up' && _t('transfer.power-up-title')}
