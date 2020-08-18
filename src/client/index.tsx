@@ -22,6 +22,7 @@ import "../style/theme-day.scss";
 import "../style/theme-night.scss";
 
 import './window';
+import {UserPoints} from "../common/store/active-user/types";
 
 
 const store = configureStore(window["__PRELOADED_STATE__"]);
@@ -64,15 +65,23 @@ const updateActiveUser = async () => {
         const {username} = state.activeUser;
 
         let account;
-        let p;
         try {
             account = await getAccount(username);
-            p = await getPoints(username);
         } catch (e) {
             return;
         }
 
-        const points = {points: p.points, uPoints: p.unclaimed_points};
+        let points: UserPoints;
+        try {
+            const p = await getPoints(username);
+            points = {points: p.points, uPoints: p.unclaimed_points};
+        } catch (e) {
+            points = {
+                points: "0.000",
+                uPoints: "0.000"
+            };
+        }
+
         store.dispatch(updateActiveUserAct(account, points));
     }
 };
