@@ -231,3 +231,8 @@ export const claimPoints = (username: string): Promise<any> => {
     return axios.post(`/api/points-claim`, data).then(resp => resp.data);
 }
 
+export const calcPoints = (username: string, amount: string): Promise<{ usd: number, estm: number }> => {
+    const data = {code: getAccessToken(username), amount};
+    return axios.post(`/api/points-calc`, data).then(resp => resp.data);
+}
+

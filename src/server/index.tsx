@@ -35,7 +35,8 @@ import {
     favoritesDelete,
     points,
     pointList,
-    pointsClaim
+    pointsClaim,
+    pointsCalc
 } from "./handlers/private-api";
 
 const server = express();
@@ -110,6 +111,7 @@ server
     .post("^/api/points$", points)
     .post("^/api/point-list$", pointList)
     .post("^/api/points-claim$", pointsClaim)
+    .post("^/api/points-calc", pointsCalc)
     .get("*", fallbackHandler);
 
 export default server;

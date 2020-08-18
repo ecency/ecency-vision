@@ -288,3 +288,10 @@ export const pointsClaim = async (req: express.Request, res: express.Response) =
     const data = {us: username};
     pipe(apiRequest(`claim`, "PUT", {}, data), res);
 }
+
+export const pointsCalc = async (req: express.Request, res: express.Response) => {
+    const username = validateCode(req, res);
+    if (!username) return;
+    const {amount} = req.body;
+    pipe(apiRequest(`estm-calc?username=${username}&amount=${amount}`, "GET"), res);
+}

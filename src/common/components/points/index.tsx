@@ -13,6 +13,7 @@ import {Points, PointTransaction, TransactionType} from "../../store/points/type
 import DropDown from "../dropdown";
 import Transfer from "../transfer";
 import Tooltip from "../tooltip";
+import Purchase from "../purchase";
 import {success, error} from "../feedback";
 
 import {_t} from "../../i18n";
@@ -178,8 +179,11 @@ export class UserPoints extends Component<Props, State> {
         });
     }
 
-    togglePurchase = (e: React.MouseEvent<HTMLAnchorElement>) => {
-        e.preventDefault();
+    togglePurchase = (e?: React.MouseEvent<HTMLAnchorElement>) => {
+        if (e) e.preventDefault();
+
+        const {purchase} = this.state;
+        this.setState({purchase: !purchase});
     }
 
     toggleTransfer = () => {
@@ -338,6 +342,8 @@ export class UserPoints extends Component<Props, State> {
                     pointAmount={points.points}
                     onHide={this.toggleTransfer}/>)
                 }
+
+                {purchase && (<Purchase activeUser={this.props.activeUser!} onHide={this.togglePurchase}/>)}
             </div>
         );
     }
