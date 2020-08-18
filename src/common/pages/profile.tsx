@@ -198,7 +198,7 @@ class ProfilePage extends Component<Props, State> {
                             username,
                             section
                         })}
-                        {ProfileCover({
+                        {!["wallet", "points"].includes(section) && ProfileCover({
                             ...this.props,
                             account
                         })}
