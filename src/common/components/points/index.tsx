@@ -130,7 +130,7 @@ interface Props {
     account: Account;
     points: Points;
     transactions: Transactions;
-    fetchPoints: (username: string, transactions?: boolean) => void;
+    fetchPoints: (username: string) => void;
     addAccount: (data: Account) => void;
     updateActiveUser: (data: Account) => void;
 }

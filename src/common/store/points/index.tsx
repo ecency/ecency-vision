@@ -5,7 +5,7 @@ import {
     PointTransaction,
     Actions,
     ActionTypes,
-    FetchAction,
+    ResetAction,
     FetchedAction,
 } from "./types";
 
@@ -19,15 +19,15 @@ export const initialState: Points = {
 
 export default (state: Points = initialState, action: Actions): Points => {
     switch (action.type) {
-        case ActionTypes.FETCH: {
-            return {...initialState};
-        }
         case ActionTypes.FETCHED: {
             return {
                 points: action.points,
                 uPoints: action.uPoints,
                 transactions: action.transactions || [...state.transactions]
             }
+        }
+        case ActionTypes.RESET: {
+            return {...initialState};
         }
         default:
             return state;
@@ -36,9 +36,7 @@ export default (state: Points = initialState, action: Actions): Points => {
 
 /* Actions */
 
-export const fetchPoints = (username: string, transactions?: boolean) => async (dispatch: Dispatch) => {
-    dispatch(fetchAct());
-
+export const fetchPoints = (username: string) => async (dispatch: Dispatch) => {
     const name = username.replace("@", "");
 
     let points;
@@ -50,29 +48,26 @@ export const fetchPoints = (username: string, transactions?: boolean) => async (
 
     dispatch(fetchedAct(points.points, points.unclaimed_points));
 
-    if (transactions) {
-        let trx;
-        try {
-            trx = await getPointTransactions(name);
-        } catch (e) {
-            return;
-        }
-
-        dispatch(fetchedAct(points.points, points.unclaimed_points, trx));
+    let transactions;
+    try {
+        transactions = await getPointTransactions(name);
+    } catch (e) {
+        return;
     }
 
+    dispatch(fetchedAct(points.points, points.unclaimed_points, transactions));
 }
 
 
 export const resetPoints = () => (dispatch: Dispatch) => {
-    dispatch(fetchAct());
+    dispatch(resetAct());
 };
 
 
 /* Action Creators */
-export const fetchAct = (): FetchAction => {
+export const resetAct = (): ResetAction => {
     return {
-        type: ActionTypes.FETCH,
+        type: ActionTypes.RESET,
     };
 };
 

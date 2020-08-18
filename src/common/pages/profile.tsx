@@ -66,7 +66,7 @@ class ProfilePage extends Component<Props, State> {
         fetchTransactions(match.params.username);
 
         // fetch points
-        fetchPoints(match.params.username, true);
+        fetchPoints(match.params.username);
     }
 
     componentDidUpdate(prevProps: Readonly<Props>): void {
@@ -80,7 +80,7 @@ class ProfilePage extends Component<Props, State> {
                 fetchTransactions(match.params.username);
 
                 resetPoints();
-                fetchPoints(match.params.username, true);
+                fetchPoints(match.params.username);
             });
         }
 

@@ -30,12 +30,8 @@ export interface Points {
 }
 
 export enum ActionTypes {
-    FETCH = "@points/FETCH",
     FETCHED = "@points/FETCHED",
-}
-
-export interface FetchAction {
-    type: ActionTypes.FETCH;
+    RESET = "@points/RESET",
 }
 
 export interface FetchedAction {
@@ -45,4 +41,9 @@ export interface FetchedAction {
     transactions?: PointTransaction[];
 }
 
-export type Actions = FetchAction | FetchedAction ;
+export interface ResetAction {
+    type: ActionTypes.RESET;
+}
+
+
+export type Actions = FetchedAction | ResetAction;

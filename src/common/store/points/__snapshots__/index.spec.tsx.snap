@@ -35,7 +35,7 @@ Object {
 }
 `;
 
-exports[`3- fetch 1`] = `
+exports[`3- resetAct 1`] = `
 Object {
   "points": "0.000",
   "transactions": Array [],

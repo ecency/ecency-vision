@@ -1,6 +1,4 @@
-import reducer, {initialState, fetchAct, fetchedAct} from "./index";
-
-import {PointTransaction} from "./types";
+import reducer, {initialState, resetAct, fetchedAct} from "./index";
 
 import {pointTransactionsInstance} from "../../helper/test-helper";
 
@@ -16,7 +14,7 @@ it("2- fetched", () => {
     expect(state).toMatchSnapshot();
 });
 
-it("3- fetch", () => {
-    state = reducer(state, fetchAct());
+it("3- resetAct", () => {
+    state = reducer(state, resetAct());
     expect(state).toMatchSnapshot();
 });
