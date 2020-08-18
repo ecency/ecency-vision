@@ -26,13 +26,12 @@ export default (state: Points = initialState, action: Actions): Points => {
             return {
                 points: action.points,
                 uPoints: action.uPoints,
-                transactions: action.transactions || []
+                transactions: action.transactions || [...state.transactions]
             }
         }
         default:
             return state;
     }
-
 }
 
 /* Actions */
