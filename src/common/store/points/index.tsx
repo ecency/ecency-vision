@@ -37,14 +37,12 @@ export default (state: Points = initialState, action: Actions): Points => {
 
 /* Actions */
 
-export const fetchPoints = (username: string) => async (dispatch: Dispatch) => {
+export const fetchPoints = (username: string, transactions?: boolean) => async (dispatch: Dispatch) => {
     dispatch(fetchAct());
 
     const name = username.replace("@", "");
 
     let points;
-    let transactions;
-
     try {
         points = await getPoints(name);
     } catch (e) {
@@ -53,13 +51,17 @@ export const fetchPoints = (username: string) => async (dispatch: Dispatch) => {
 
     dispatch(fetchedAct(points.points, points.unclaimed_points));
 
-    try {
-        transactions = await getPointTransactions(name);
-    } catch (e) {
-        return;
+    if (transactions) {
+        let trx;
+        try {
+            trx = await getPointTransactions(name);
+        } catch (e) {
+            return;
+        }
+
+        dispatch(fetchedAct(points.points, points.unclaimed_points, trx));
     }
 
-    dispatch(fetchedAct(points.points, points.unclaimed_points, transactions));
 }
 
 
