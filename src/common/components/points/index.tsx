@@ -132,7 +132,7 @@ interface Props {
     transactions: Transactions;
     fetchPoints: (username: string) => void;
     addAccount: (data: Account) => void;
-    updateActiveUser: (data: Account) => void;
+    updateActiveUser: (data?: Account) => void;
 }
 
 interface State {
@@ -163,13 +163,14 @@ export class UserPoints extends Component<Props, State> {
     claim = (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
 
-        const {activeUser, fetchPoints} = this.props;
+        const {activeUser, fetchPoints, updateActiveUser} = this.props;
 
         this.stateSet({claiming: true});
         const username = activeUser?.username!
         claimPoints(username).then(() => {
             success(_t('points.claim-ok'));
             fetchPoints(username);
+            updateActiveUser();
         }).catch(() => {
             error(_t('g.server-error'));
         }).finally(() => {

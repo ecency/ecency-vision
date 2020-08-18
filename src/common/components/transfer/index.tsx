@@ -101,7 +101,7 @@ interface Props {
     transactions: Transactions;
     pointAmount?: string;
     addAccount: (data: Account) => void;
-    updateActiveUser: (data: Account) => void;
+    updateActiveUser: (data?: Account) => void;
     onHide: () => void;
 }
 

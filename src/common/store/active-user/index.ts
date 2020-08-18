@@ -1,9 +1,13 @@
 import {Dispatch} from "redux";
 
+import {AppState} from "../index";
 import {Account} from "../accounts/types";
-import {Actions, ActionTypes, ActiveUser, LoginAction, LogoutAction, UpdateAction} from "./types";
+import {Actions, ActionTypes, ActiveUser, UserPoints, LoginAction, LogoutAction, UpdateAction} from "./types";
 
 import * as ls from "../../util/local-storage";
+
+import {getAccount} from "../../api/hive";
+import {getPoints} from "../../api/private";
 
 const load = (): ActiveUser | null => {
     const name = ls.get("active_user");
@@ -11,6 +15,10 @@ const load = (): ActiveUser | null => {
         return {
             username: name,
             data: {name},
+            points: {
+                points: "0.000",
+                uPoints: "0.000"
+            }
         };
     }
 
@@ -26,8 +34,8 @@ export default (state: ActiveUser | null = initialState, action: Actions): Activ
             return load();
         }
         case ActionTypes.UPDATE: {
-            const {data} = action;
-            return Object.assign({}, state, {data});
+            const {data, points} = action;
+            return Object.assign({}, state, {data, points});
         }
         default:
             return state;
@@ -45,8 +53,38 @@ export const setActiveUser = (name: string | null) => async (dispatch: Dispatch)
     }
 };
 
-export const updateActiveUser = (data: Account) => async (dispatch: Dispatch) => {
-    dispatch(updateAct(data));
+export const updateActiveUser = (data?: Account) => async (dispatch: Dispatch, getState: () => AppState) => {
+    const {activeUser} = getState();
+    if (!activeUser) {
+        return;
+    }
+
+    let uData: Account | undefined = data;
+    if (!uData) {
+        try {
+            uData = await getAccount(activeUser.username);
+        } catch (e) {
+            uData = {
+                name: activeUser.username
+            }
+        }
+    }
+
+    let points: UserPoints;
+    try {
+        const r = await getPoints(activeUser.username)
+        points = {
+            points: r.points,
+            uPoints: r.unclaimed_points
+        }
+    } catch (e) {
+        points = {
+            points: "0.000",
+            uPoints: "0.000"
+        }
+    }
+
+    dispatch(updateAct(uData, points));
 };
 
 /* Action Creators */
@@ -62,9 +100,10 @@ export const logoutAct = (): LogoutAction => {
     };
 };
 
-export const updateAct = (data: Account): UpdateAction => {
+export const updateAct = (data: Account, points: UserPoints): UpdateAction => {
     return {
         type: ActionTypes.UPDATE,
         data,
+        points
     };
 };

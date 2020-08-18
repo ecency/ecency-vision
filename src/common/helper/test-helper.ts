@@ -16,7 +16,23 @@ import {
     ApiVoteNotification,
     Notifications
 } from "../store/notifications/types";
+import {ActiveUser} from "../store/active-user/types";
 
+
+export const activeUserMaker = (name: string): ActiveUser => {
+    return {
+        username: name,
+        data: {
+            name: name
+        },
+        points: {
+            points: "1.000",
+            uPoints: "0.500"
+        }
+    }
+}
+
+export const activeUserInstance: ActiveUser = activeUserMaker("foo");
 
 export const UiInstance: UI = {
     login: false,

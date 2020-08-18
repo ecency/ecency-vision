@@ -4,7 +4,7 @@ import EntryVoteBtn, {VoteDialog} from "./index";
 
 import renderer from "react-test-renderer";
 
-import {globalInstance, dynamicPropsIntance1, entryInstance1, UiInstance} from "../../helper/test-helper";
+import {globalInstance, dynamicPropsIntance1, entryInstance1, UiInstance, activeUserMaker} from "../../helper/test-helper";
 
 import {Account} from "../../store/accounts/types";
 
@@ -43,7 +43,7 @@ describe('(1) Dialog', () => {
     };
 
     const props = {
-        activeUser: {username: "user1", data},
+        activeUser: activeUserMaker("user1"),
         dynamicProps: dynamicPropsIntance1,
         global: globalInstance,
         entry: entryInstance1,
@@ -101,7 +101,7 @@ describe('(3) Btn - Up voted', () => {
         dynamicProps: dynamicPropsIntance1,
         entry: entryInstance1,
         users: [{username: 'user1', accessToken: 's', refreshToken: 'b', expiresIn: 1}],
-        activeUser: {username: "user1", data: {name: "user1"}},
+        activeUser: activeUserMaker("user1"),
         ui: UiInstance,
         setActiveUser: () => {
         },

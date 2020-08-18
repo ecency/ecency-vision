@@ -16,6 +16,10 @@ const defProps = {
             balance: '12.234 HIVE',
             sbd_balance: '4321.212',
             savings_balance: '2123.000 HIVE'
+        },
+        points: {
+            points: "0.000",
+            uPoints: "0.000"
         }
     },
     transactions: {

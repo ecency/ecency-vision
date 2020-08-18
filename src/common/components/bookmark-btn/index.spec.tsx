@@ -4,7 +4,7 @@ import {BookmarkBtn} from "./index";
 
 import TestRenderer from "react-test-renderer";
 
-import {entryInstance1, UiInstance} from "../../helper/test-helper";
+import {entryInstance1, UiInstance, activeUserInstance} from "../../helper/test-helper";
 
 const allOver = () => new Promise((resolve) => setImmediate(resolve));
 
@@ -55,12 +55,7 @@ it("(1) No active user", () => {
 it("(2) Not bookmarked", async () => {
     const props = {
         ...defProps,
-        activeUser: {
-            username: "foo",
-            data: {
-                name: "foo"
-            }
-        }
+        activeUser: {...activeUserInstance}
     };
 
     const component = TestRenderer.create(<BookmarkBtn {...props}/>);
@@ -75,12 +70,7 @@ it("(3) Bookmarked", async () => {
 
     const props = {
         ...defProps,
-        activeUser: {
-            username: "foo",
-            data: {
-                name: "foo"
-            }
-        }
+        activeUser: {...activeUserInstance}
     };
 
     const component = TestRenderer.create(<BookmarkBtn {...props}/>);

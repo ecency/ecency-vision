@@ -10,7 +10,7 @@ import {reloadAct as reloadReblogs} from "../common/store/reblogs";
 import {fetchedAct as loadDynamicProps} from "../common/store/dynamic-props";
 
 import {getAccount, getDynamicProps} from "../common/api/hive";
-import {usrActivity} from "../common/api/private";
+import {usrActivity, getPoints} from "../common/api/private";
 
 import {history} from "../common/store";
 
@@ -58,15 +58,25 @@ getDynamicProps().then((resp) => {
 });
 
 // Active user updater
-const updateActiveUser = () => {
+const updateActiveUser = async () => {
     const state = store.getState();
     if (state.activeUser) {
-        getAccount(state.activeUser.username).then((r) => {
-            store.dispatch(updateActiveUserAct(r));
-        });
+        const {username} = state.activeUser;
+
+        let account;
+        let p;
+        try {
+            account = await getAccount(username);
+            p = await getPoints(username);
+        } catch (e) {
+            return;
+        }
+
+        const points = {points: p.points, uPoints: p.unclaimed_points};
+        store.dispatch(updateActiveUserAct(account, points));
     }
 };
-updateActiveUser();
+updateActiveUser().then();
 setInterval(updateActiveUser, 60 * 1000);
 
 const checkIn = () => {

@@ -81,7 +81,7 @@ export interface PageProps {
 
     activeUser: ActiveUser | null;
     setActiveUser: (username: string | null) => void;
-    updateActiveUser: (data: Account) => void;
+    updateActiveUser: (data?: Account) => void;
 
     ui: UI;
     toggleUIProp: (what: ToggleType) => void;
