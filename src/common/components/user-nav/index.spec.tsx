@@ -14,7 +14,16 @@ const defProps = {
     location: createLocation({}),
     users: [],
     ui: UiInstance,
-    activeUser: {...activeUserInstance},
+    activeUser: {
+        username: "foo",
+        data: {
+            name: "foo",
+        },
+        points: {
+            points: "0.000",
+            uPoints: "0.000"
+        }
+    },
     notifications: notificationsInstance1,
     setActiveUser: () => {
     },
@@ -65,7 +74,7 @@ it("(2) Has rewards ", () => {
                 },
                 points: {
                     points: "0.000",
-                    uPoints: "0.000"
+                    uPoints: "1.500"
                 }
             }
         }

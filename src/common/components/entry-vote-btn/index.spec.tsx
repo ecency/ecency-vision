@@ -43,7 +43,7 @@ describe('(1) Dialog', () => {
     };
 
     const props = {
-        activeUser: activeUserMaker("user1"),
+        activeUser: {...activeUserMaker("user1"), ...{data}},
         dynamicProps: dynamicPropsIntance1,
         global: globalInstance,
         entry: entryInstance1,

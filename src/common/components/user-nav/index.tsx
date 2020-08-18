@@ -19,10 +19,9 @@ import Bookmarks from "../bookmarks"
 
 import {_t} from "../../i18n";
 
-import {creditCardSvg, gifCardSvg, bellSvg} from "../../img/svg";
-
 import parseAsset from "../../helper/parse-asset";
 
+import {creditCardSvg, gifCardSvg, bellSvg} from "../../img/svg";
 
 class WalletBadge extends Component<{
     activeUser: ActiveUser;
@@ -59,7 +58,7 @@ class PointsBadge extends Component<{ activeUser: ActiveUser }> {
         let hasUnclaimedPoints = activeUser.points.uPoints !== "0.000";
 
         return <>
-            <ToolTip content={hasUnclaimedPoints ? _t("user-nav.unclaimed-points-notice") : _t("user-nav.wallet")}>
+            <ToolTip content={hasUnclaimedPoints ? _t("user-nav.unclaimed-points-notice") : _t("user-nav.points")}>
                 <Link to={`/@${activeUser.username}/points`} className="user-points">
                     {hasUnclaimedPoints && <span className="reward-badge"/>}
                     {gifCardSvg}

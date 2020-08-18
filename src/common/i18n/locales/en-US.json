@@ -37,6 +37,7 @@
   "user-nav": {
     "wallet": "Wallet",
     "unclaimed-reward-notice": "You have unclaimed rewards",
+    "points": "Points",
     "unclaimed-points-notice": "You have unclaimed points",
     "notifications": "Notifications",
     "profile": "Profile",

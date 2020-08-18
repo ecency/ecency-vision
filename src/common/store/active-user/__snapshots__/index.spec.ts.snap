@@ -7,6 +7,10 @@ Object {
   "data": Object {
     "name": "foo",
   },
+  "points": Object {
+    "points": "0.000",
+    "uPoints": "0.000",
+  },
   "username": "foo",
 }
 `;
@@ -17,6 +21,10 @@ Object {
     "__loaded": true,
     "name": "foo",
     "post_count": 10,
+  },
+  "points": Object {
+    "points": "0.100",
+    "uPoints": "0.200",
   },
   "username": "foo",
 }
