@@ -12,8 +12,8 @@ import {Points, PointTransaction, TransactionType} from "../../store/points/type
 
 import DropDown from "../dropdown";
 import Transfer from "../transfer";
-
 import Tooltip from "../tooltip";
+import {success, error} from "../feedback";
 
 import {_t} from "../../i18n";
 
@@ -130,6 +130,7 @@ interface Props {
     account: Account;
     points: Points;
     transactions: Transactions;
+    fetchPoints: (username: string) => void;
     addAccount: (data: Account) => void;
     updateActiveUser: (data: Account) => void;
 }
@@ -147,14 +148,33 @@ export class UserPoints extends Component<Props, State> {
         transfer: false
     }
 
+    _mounted: boolean = true;
+
+    componentWillUnmount() {
+        this._mounted = false;
+    }
+
+    stateSet = (state: {}, cb?: () => void) => {
+        if (this._mounted) {
+            this.setState(state, cb);
+        }
+    };
+
     claim = (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
 
-        const {activeUser} = this.props;
+        const {activeUser, fetchPoints} = this.props;
 
-        claimPoints(activeUser?.username!).then(r => {
-            console.log(r);
-        })
+        this.stateSet({claiming: true});
+        const username = activeUser?.username!
+        claimPoints(username).then(() => {
+            success(_t('points.claim-ok'));
+            fetchPoints(username);
+        }).catch(() => {
+            error(_t('g.server-error'));
+        }).finally(() => {
+            this.setState({claiming: false});
+        });
     }
 
     togglePurchase = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -330,6 +350,7 @@ export default (p: Props) => {
         account: p.account,
         points: p.points,
         transactions: p.transactions,
+        fetchPoints: p.fetchPoints,
         addAccount: p.addAccount,
         updateActiveUser: p.updateActiveUser
     }
