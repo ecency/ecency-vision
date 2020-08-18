@@ -26,7 +26,7 @@ export default (state: Points = initialState, action: Actions): Points => {
             return {
                 points: action.points,
                 uPoints: action.uPoints,
-                transactions: action.transactions
+                transactions: action.transactions || []
             }
         }
         default:
@@ -47,6 +47,13 @@ export const fetchPoints = (username: string) => async (dispatch: Dispatch) => {
 
     try {
         points = await getPoints(name);
+    } catch (e) {
+        return;
+    }
+
+    dispatch(fetchedAct(points.points, points.unclaimed_points));
+
+    try {
         transactions = await getPointTransactions(name);
     } catch (e) {
         return;
@@ -68,7 +75,7 @@ export const fetchAct = (): FetchAction => {
     };
 };
 
-export const fetchedAct = (points: string, uPoints: string, transactions: PointTransaction[]): FetchedAction => {
+export const fetchedAct = (points: string, uPoints: string, transactions?: PointTransaction[]): FetchedAction => {
     return {
         type: ActionTypes.FETCHED,
         points,

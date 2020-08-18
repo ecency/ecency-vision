@@ -42,7 +42,7 @@ export interface FetchedAction {
     type: ActionTypes.FETCHED;
     points: string;
     uPoints: string;
-    transactions: PointTransaction[];
+    transactions?: PointTransaction[];
 }
 
 export type Actions = FetchAction | FetchedAction ;
