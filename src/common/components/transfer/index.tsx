@@ -92,11 +92,13 @@ class FormText extends Component<{
     }
 }
 
-
 interface Props {
     global: Global;
-    mode: TransferMode,
-    asset: TransferAsset,
+    mode: TransferMode;
+    asset: TransferAsset;
+    to?: string;
+    amount?: string;
+    memo?: string;
     activeUser: ActiveUser;
     transactions: Transactions;
     pointAmount?: string;
@@ -120,39 +122,36 @@ interface State {
 }
 
 const pureState = (props: Props): State => {
+    let _to: string = '';
+    let _toData: Account | null = null;
+
+    if (props.mode !== 'transfer') {
+        _to = props.activeUser.username;
+        _toData = props.activeUser.data
+    }
+
     return {
         step: 1,
-        asset: props.asset,
-        to: '',
-        toData: null,
+        asset: props.mode === 'convert' ? 'HBD' : props.asset,
+        to: props.to || _to,
+        toData: props.to ? {name: props.to} : _toData,
         toError: '',
         toWarning: '',
-        amount: '0.001',
+        amount: props.amount || '0.001',
         amountError: '',
-        memo: '',
+        memo: props.memo || '',
         privateKey: '',
         inProgress: false,
     }
 }
 
-export class TransferDialog extends Component<Props, State> {
+export class Transfer extends Component<Props, State> {
     state: State = pureState(this.props);
 
     _timer: any = null;
     _mounted: boolean = true;
 
     componentDidMount() {
-        const {mode, activeUser} = this.props;
-
-        // auto fill
-        if (mode !== 'transfer') {
-            this.stateSet({to: activeUser.username, toData: activeUser.data});
-        }
-
-        if (mode === 'convert') {
-            this.stateSet({asset: 'HBD'})
-        }
-
         // initial balance check
         this.checkAmount();
     }
@@ -695,14 +694,14 @@ export class TransferDialog extends Component<Props, State> {
     }
 }
 
-export default class Transfer extends Component<Props> {
+export default class TransferDialog extends Component<Props> {
     render() {
         const {onHide} = this.props;
         return (
             <Modal animation={false} show={true} centered={true} onHide={onHide} keyboard={false} className="transfer-dialog modal-thin-header" size="lg">
                 <Modal.Header closeButton={true}/>
                 <Modal.Body>
-                    <TransferDialog {...this.props} />
+                    <Transfer {...this.props} />
                 </Modal.Body>
             </Modal>
         );

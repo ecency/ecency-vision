@@ -1,6 +1,6 @@
 import React from "react";
 
-import {TransferDialog, TransferAsset, TransferMode} from "./index";
+import {Transfer, TransferAsset, TransferMode} from "./index";
 
 import {globalInstance} from "../../helper/test-helper";
 
@@ -48,7 +48,7 @@ describe('(1) Transfer', () => {
         ...defProps
     };
 
-    const component = TestRenderer.create(<TransferDialog {...props} />);
+    const component = TestRenderer.create(<Transfer {...props} />);
     const instance: any = component.getInstance();
 
     it("(1) Step 1", () => {
@@ -81,7 +81,7 @@ describe('(2) Transfer to savings', () => {
         ...defProps
     };
 
-    const component = TestRenderer.create(<TransferDialog {...props} />);
+    const component = TestRenderer.create(<Transfer {...props} />);
     const instance: any = component.getInstance();
 
     it("(1) Step 1", () => {
@@ -100,7 +100,7 @@ describe('(3) Convert', () => {
         ...defProps
     };
 
-    const component = TestRenderer.create(<TransferDialog {...props} />);
+    const component = TestRenderer.create(<Transfer {...props} />);
     const instance: any = component.getInstance();
 
     it("(1) Step 1", () => {
@@ -119,7 +119,7 @@ describe('(4) Withdraw saving', () => {
         ...defProps
     };
 
-    const component = TestRenderer.create(<TransferDialog {...props} />);
+    const component = TestRenderer.create(<Transfer {...props} />);
     const instance: any = component.getInstance();
 
     it("(1) Step 1", () => {
@@ -138,7 +138,7 @@ describe('(5) Power up', () => {
         ...defProps
     };
 
-    const component = TestRenderer.create(<TransferDialog {...props} />);
+    const component = TestRenderer.create(<Transfer {...props} />);
     const instance: any = component.getInstance();
 
     it("(1) Step 1", () => {

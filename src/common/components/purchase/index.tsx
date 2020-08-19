@@ -2,21 +2,32 @@ import React, {Component} from "react";
 
 import {Form, FormControl, Modal, Button} from "react-bootstrap";
 
+import {Global} from "../../store/global/types";
 import {ActiveUser} from "../../store/active-user/types";
+import {Transactions} from "../../store/transactions/types";
+import {Account} from "../../store/accounts/types";
 
-import _c from "../../util/fix-class-names"
+import {Transfer, TransferAsset} from "../transfer";
 
 import {calcPoints} from "../../api/private";
 
-import formattedNumber from "../../util/formatted-number"
+import {_t} from "../../i18n";
+
+import _c from "../../util/fix-class-names";
+import formattedNumber from "../../util/formatted-number";
 
 interface Props {
+    global: Global;
     activeUser: ActiveUser;
+    transactions: Transactions;
+    addAccount: (data: Account) => void;
+    updateActiveUser: (data?: Account) => void;
     onHide: () => void;
 }
 
 interface State {
-    asset: string,
+    submitted: boolean,
+    asset: TransferAsset,
     amount: number,
     points: number,
     usd: number
@@ -25,6 +36,7 @@ interface State {
 
 export class PurchaseDialog extends Component<Props, State> {
     state: State = {
+        submitted: false,
         asset: 'HIVE',
         amount: 250,
         points: 0,
@@ -48,9 +60,9 @@ export class PurchaseDialog extends Component<Props, State> {
         this.calc();
     }
 
-    setAsset = (asset: string) => {
+    setAsset = (asset: TransferAsset) => {
         this.stateSet({asset}, () => {
-            this.calc()
+            this.calc();
         });
     }
 
@@ -72,14 +84,20 @@ export class PurchaseDialog extends Component<Props, State> {
         });
     };
 
+    submit = () => {
+        this.stateSet({submitted: true});
+    }
+
     render() {
-        const sliderMin = 10;
-        const sliderMax = 10000;
-        const {asset, amount, points, usd} = this.state;
+        const {asset, amount, points, usd, submitted} = this.state;
+
+        if (submitted) {
+            return <Transfer {...this.props} asset={asset} mode="transfer" amount={`${amount}.000`} to="esteem.app" memo="estm-purchase"/>
+        }
 
         return <div className="purchase-dialog-content">
             <div className="curr-select">
-                <div className="curr-label">Select Asset</div>
+                <div className="curr-label">{_t('purchase.select-asset')}</div>
                 <div className="nav nav-pills">
                     <div className="nav-item">
                         <a href="#" onClick={e => {
@@ -95,10 +113,9 @@ export class PurchaseDialog extends Component<Props, State> {
                     </div>
                 </div>
             </div>
-
             <div className="input-amounts">
                 <div className="asset-amount">
-                    {`${amount} ${asset}`}
+                    {`${formattedNumber(amount, {fractionDigits: 3})} ${asset}`}
                 </div>
 
                 <div className="usd-amount">
@@ -111,19 +128,18 @@ export class PurchaseDialog extends Component<Props, State> {
                     autoFocus={true}
                     custom={true}
                     step={1}
-                    min={sliderMin}
-                    max={sliderMax}
+                    min={1}
+                    max={10000}
                     value={amount}
                     onChange={this.sliderChanged}
                 />
-                <div className="slider-hint">Move the slider to change amount.</div>
+                <div className="slider-hint">{_t('purchase.slider-hint')}</div>
             </div>
             <div className="point-amount">
                 {formattedNumber(points, {fractionDigits: 3})} {'POINTS'}
             </div>
-
             <div className="text-center">
-                <Button>Purchase</Button>
+                <Button onClick={this.submit}>{_t('purchase.submit')}</Button>
             </div>
         </div>
     }

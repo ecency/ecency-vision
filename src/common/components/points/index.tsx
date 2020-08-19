@@ -343,7 +343,7 @@ export class UserPoints extends Component<Props, State> {
                     onHide={this.toggleTransfer}/>)
                 }
 
-                {purchase && (<Purchase activeUser={this.props.activeUser!} onHide={this.togglePurchase}/>)}
+                {purchase && (<Purchase {...this.props} activeUser={this.props.activeUser!} onHide={this.togglePurchase}/>)}
             </div>
         );
     }

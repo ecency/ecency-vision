@@ -226,6 +226,11 @@
     "transfer": "Gift to someone",
     "claim-ok": "Points claimed"
   },
+  "purchase": {
+    "select-asset": "Select Asset",
+    "slider-hint": "Drag the slider to adjust the amount.",
+    "submit": "Purchase"
+  },
   "transfer": {
     "transfer-title": "Transfer to Account",
     "transfer-title-point": "Gift to Account",
