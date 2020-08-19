@@ -34,7 +34,7 @@ interface State {
 }
 
 
-export class PurchaseDialog extends Component<Props, State> {
+export class Purchase extends Component<Props, State> {
     state: State = {
         submitted: false,
         asset: 'HIVE',
@@ -145,14 +145,14 @@ export class PurchaseDialog extends Component<Props, State> {
     }
 }
 
-export default class Purchase extends Component<Props> {
+export default class PurchaseDialog extends Component<Props> {
     render() {
         const {onHide} = this.props;
         return (
             <Modal animation={false} show={true} centered={true} onHide={onHide} keyboard={false} className="purchase-dialog modal-thin-header" size="lg">
                 <Modal.Header closeButton={true}/>
                 <Modal.Body>
-                    <PurchaseDialog {...this.props} />
+                    <Purchase {...this.props} />
                 </Modal.Body>
             </Modal>
         );
