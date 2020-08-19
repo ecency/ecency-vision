@@ -1,10 +1,10 @@
 import axios from "axios";
 
-import {User} from "../store/users/types";
-
+import {PointTransaction} from "../store/points/types";
 import {ApiNotification, NotificationFilter} from "../store/notifications/types";
 
 import {getAccessToken} from "../helper/user-token";
+
 
 export interface ReceivedVestingShare {
     delegatee: string;
@@ -212,3 +212,27 @@ export const deleteFavorite = (username: string, account: string): Promise<any> 
     const data = {code: getAccessToken(username), account};
     return axios.post(`/api/favorites-delete`, data).then(resp => resp.data);
 }
+
+export const getPoints = (username: string): Promise<{
+    points: string;
+    unclaimed_points: string;
+}> => {
+    const data = {username};
+    return axios.post(`/api/points`, data).then(resp => resp.data);
+}
+
+export const getPointTransactions = (username: string): Promise<PointTransaction[]> => {
+    const data = {username};
+    return axios.post(`/api/point-list`, data).then(resp => resp.data);
+}
+
+export const claimPoints = (username: string): Promise<any> => {
+    const data = {code: getAccessToken(username)};
+    return axios.post(`/api/points-claim`, data).then(resp => resp.data);
+}
+
+export const calcPoints = (username: string, amount: string): Promise<{ usd: number, estm: number }> => {
+    const data = {code: getAccessToken(username), amount};
+    return axios.post(`/api/points-calc`, data).then(resp => resp.data);
+}
+

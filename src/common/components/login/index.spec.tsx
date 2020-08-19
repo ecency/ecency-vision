@@ -4,7 +4,7 @@ import renderer from "react-test-renderer";
 
 import {Login} from "./index";
 
-import {globalInstance} from "../../helper/test-helper";
+import {globalInstance, activeUserMaker} from "../../helper/test-helper";
 
 const defProps = {
     global: globalInstance,
@@ -65,12 +65,7 @@ it("(3) With users and active user", () => {
         },
     ];
 
-    const activeUser = {
-        username: "user2",
-        data: {
-            name: "user2",
-        },
-    };
+    const activeUser = activeUserMaker("user2");
 
     const props = {...defProps, users, activeUser};
 

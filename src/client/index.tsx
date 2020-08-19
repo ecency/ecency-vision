@@ -10,7 +10,7 @@ import {reloadAct as reloadReblogs} from "../common/store/reblogs";
 import {fetchedAct as loadDynamicProps} from "../common/store/dynamic-props";
 
 import {getAccount, getDynamicProps} from "../common/api/hive";
-import {usrActivity} from "../common/api/private";
+import {usrActivity, getPoints} from "../common/api/private";
 
 import {history} from "../common/store";
 
@@ -22,6 +22,7 @@ import "../style/theme-day.scss";
 import "../style/theme-night.scss";
 
 import './window';
+import {UserPoints} from "../common/store/active-user/types";
 
 
 const store = configureStore(window["__PRELOADED_STATE__"]);
@@ -58,15 +59,33 @@ getDynamicProps().then((resp) => {
 });
 
 // Active user updater
-const updateActiveUser = () => {
+const updateActiveUser = async () => {
     const state = store.getState();
     if (state.activeUser) {
-        getAccount(state.activeUser.username).then((r) => {
-            store.dispatch(updateActiveUserAct(r));
-        });
+        const {username} = state.activeUser;
+
+        let account;
+        try {
+            account = await getAccount(username);
+        } catch (e) {
+            return;
+        }
+
+        let points: UserPoints;
+        try {
+            const p = await getPoints(username);
+            points = {points: p.points, uPoints: p.unclaimed_points};
+        } catch (e) {
+            points = {
+                points: "0.000",
+                uPoints: "0.000"
+            };
+        }
+
+        store.dispatch(updateActiveUserAct(account, points));
     }
 };
-updateActiveUser();
+updateActiveUser().then();
 setInterval(updateActiveUser, 60 * 1000);
 
 const checkIn = () => {

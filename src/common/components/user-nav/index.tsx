@@ -19,10 +19,54 @@ import Bookmarks from "../bookmarks"
 
 import {_t} from "../../i18n";
 
-import {creditCardSvg, bellSvg} from "../../img/svg";
-
 import parseAsset from "../../helper/parse-asset";
 
+import {creditCardSvg, gifCardSvg, bellSvg} from "../../img/svg";
+
+class WalletBadge extends Component<{
+    activeUser: ActiveUser;
+}> {
+    render() {
+        const {activeUser} = this.props;
+
+        let hasUnclaimedRewards = false;
+        const {data: account} = activeUser;
+
+        if (account.__loaded) {
+            const rewardHiveBalance = parseAsset(account.reward_steem_balance || account.reward_hive_balance).amount;
+            const rewardHbdBalance = parseAsset(account.reward_sbd_balance || account.reward_hbd_balance).amount;
+            const rewardVestingHive = parseAsset(account.reward_vesting_steem || account.reward_vesting_hive).amount;
+            hasUnclaimedRewards = rewardHiveBalance > 0 || rewardHbdBalance > 0 || rewardVestingHive > 0;
+        }
+
+        return <>
+            <ToolTip content={hasUnclaimedRewards ? _t("user-nav.unclaimed-reward-notice") : _t("user-nav.wallet")}>
+                <Link to={`/@${activeUser.username}/wallet`} className="user-wallet">
+                    {hasUnclaimedRewards && <span className="reward-badge"/>}
+                    {creditCardSvg}
+                </Link>
+            </ToolTip>
+        </>
+    }
+}
+
+
+class PointsBadge extends Component<{ activeUser: ActiveUser }> {
+    render() {
+        const {activeUser} = this.props;
+
+        let hasUnclaimedPoints = activeUser.points.uPoints !== "0.000";
+
+        return <>
+            <ToolTip content={hasUnclaimedPoints ? _t("user-nav.unclaimed-points-notice") : _t("user-nav.points")}>
+                <Link to={`/@${activeUser.username}/points`} className="user-points">
+                    {hasUnclaimedPoints && <span className="reward-badge"/>}
+                    {gifCardSvg}
+                </Link>
+            </ToolTip>
+        </>
+    }
+}
 
 interface Props {
     global: Global;
@@ -33,7 +77,7 @@ interface Props {
     activeUser: ActiveUser;
     notifications: Notifications;
     setActiveUser: (username: string | null) => void;
-    updateActiveUser: (data: Account) => void;
+    updateActiveUser: (data?: Account) => void;
     deleteUser: (username: string) => void;
     addAccount: (data: Account) => void;
     fetchNotifications: (since: string | null) => void;
@@ -86,16 +130,6 @@ export default class UserNav extends Component<Props, State> {
         const {activeUser, ui, notifications} = this.props;
         const {unread} = notifications;
 
-        let hasUnclaimedRewards = false;
-        const {data: account} = activeUser;
-
-        if (account.__loaded) {
-            const rewardHiveBalance = parseAsset(account.reward_steem_balance || account.reward_hive_balance).amount;
-            const rewardHbdBalance = parseAsset(account.reward_sbd_balance || account.reward_hbd_balance).amount;
-            const rewardVestingHive = parseAsset(account.reward_vesting_steem || account.reward_vesting_hive).amount;
-            hasUnclaimedRewards = rewardHiveBalance > 0 || rewardHbdBalance > 0 || rewardVestingHive > 0;
-        }
-
         const dropDownConfig = {
             history: this.props.history,
             label: UserAvatar({...this.props, username: activeUser.username, size: "medium"}),
@@ -133,12 +167,8 @@ export default class UserNav extends Component<Props, State> {
         return (
             <>
                 <div className="user-nav">
-                    <ToolTip content={hasUnclaimedRewards ? _t("user-nav.unclaimed-points-notice") : _t("user-nav.wallet")}>
-                        <Link to={`/@${activeUser.username}/wallet`} className="user-wallet">
-                            {hasUnclaimedRewards && <span className="reward-badge"/>}
-                            {creditCardSvg}
-                        </Link>
-                    </ToolTip>
+                    <PointsBadge activeUser={activeUser}/>
+                    <WalletBadge activeUser={activeUser}/>
                     <ToolTip content={_t("user-nav.notifications")}>
                         <span className="notifications" onClick={this.toggleNotifications}>
                              {unread > 0 && (

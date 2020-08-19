@@ -32,7 +32,11 @@ import {
     favorites,
     favoritesCheck,
     favoritesAdd,
-    favoritesDelete
+    favoritesDelete,
+    points,
+    pointList,
+    pointsClaim,
+    pointsCalc
 } from "./handlers/private-api";
 
 const server = express();
@@ -70,7 +74,7 @@ server
     .use(
         [
             "^/@:username$", // /@esteemapp
-            `^/@:username/:section(${profileFilters.join("|")}|wallet)$`, // /@esteemapp/comments
+            `^/@:username/:section(${profileFilters.join("|")}|wallet|points)$`, // /@esteemapp/comments
         ],
         profileHandler
     )
@@ -81,8 +85,9 @@ server
         ],
         entryHandler
     )
-    .use("^/api/received-vesting/:username$", receivedVesting)
-    .post("^/api/leaderboard", leaderboard)
+    .use("^/api/received-vesting/:username$", receivedVesting) // TODO. make it GET
+    .post("^/api/leaderboard$", leaderboard) // TODO: public data. make it GET.
+    .get("^/api/popular-users$", popularUsers)
     .post("^/api/notifications$", notifications)
     .post("^/api/notifications/mark$", markNotifications)
     .post("^/api/notifications/unread$", unreadNotifications)
@@ -103,7 +108,10 @@ server
     .post("^/api/favorites-check$", favoritesCheck)
     .post("^/api/favorites-add$", favoritesAdd)
     .post("^/api/favorites-delete$", favoritesDelete)
-    .get("^/api/popular-users", popularUsers)
+    .post("^/api/points$", points)
+    .post("^/api/point-list$", pointList)
+    .post("^/api/points-claim$", pointsClaim)
+    .post("^/api/points-calc", pointsCalc)
     .get("*", fallbackHandler);
 
 export default server;

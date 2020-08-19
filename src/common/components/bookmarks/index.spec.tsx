@@ -5,7 +5,7 @@ import {createBrowserHistory} from "history";
 
 import {Bookmarks, Favorites} from './index';
 
-import {globalInstance} from "../../helper/test-helper";
+import {globalInstance, activeUserInstance} from "../../helper/test-helper";
 
 const allOver = () => new Promise((resolve) => setImmediate(resolve));
 
@@ -78,7 +78,7 @@ it('(1) Bookmarks - No data.', async () => {
     const props = {
         history: createBrowserHistory(),
         global: globalInstance,
-        activeUser: {username: "foo", data: {name: "foo"}},
+        activeUser: {...activeUserInstance},
         onHide: () => {
         }
     };
@@ -94,7 +94,7 @@ it('(2) Bookmarks - Test with data.', async () => {
     const props = {
         history: createBrowserHistory(),
         global: globalInstance,
-        activeUser: {username: "foo", data: {name: "foo"}},
+        activeUser: {...activeUserInstance},
         onHide: () => {
         }
     };
@@ -110,7 +110,7 @@ it('(3) Favorites - No data.', async () => {
     const props = {
         history: createBrowserHistory(),
         global: globalInstance,
-        activeUser: {username: "foo", data: {name: "foo"}},
+        activeUser: {...activeUserInstance},
         addAccount: () => {
         },
         onHide: () => {
@@ -129,7 +129,7 @@ it('(4) Favorites - Test with data.', async () => {
     const props = {
         history: createBrowserHistory(),
         global: globalInstance,
-        activeUser: {username: "foo", data: {name: "foo"}},
+        activeUser: {...activeUserInstance},
         addAccount: () => {
         },
         onHide: () => {

@@ -154,6 +154,12 @@ exports[`(1) Transfer (1) Step 1 1`] = `
               >
                 HBD
               </a>
+              <a
+                className="asset "
+                onClick={[Function]}
+              >
+                POINT
+              </a>
             </div>
           </div>
         </div>
@@ -677,6 +683,12 @@ exports[`(2) Transfer to savings (1) Step 1 1`] = `
               >
                 HBD
               </a>
+              <a
+                className="asset "
+                onClick={[Function]}
+              >
+                POINT
+              </a>
             </div>
           </div>
         </div>
@@ -696,7 +708,7 @@ exports[`(2) Transfer to savings (1) Step 1 1`] = `
                 className="balance-num"
                 onClick={[Function]}
               >
-                4,321.212
+                4321.212
                  
                 HBD
               </span>
@@ -871,6 +883,12 @@ exports[`(3) Convert (1) Step 1 1`] = `
               >
                 HBD
               </a>
+              <a
+                className="asset "
+                onClick={[Function]}
+              >
+                POINT
+              </a>
             </div>
           </div>
         </div>
@@ -890,7 +908,7 @@ exports[`(3) Convert (1) Step 1 1`] = `
                 className="balance-num"
                 onClick={[Function]}
               >
-                4,321.212
+                4321.212
                  
                 HBD
               </span>
@@ -1073,6 +1091,12 @@ exports[`(4) Withdraw saving (1) Step 1 1`] = `
               >
                 HBD
               </a>
+              <a
+                className="asset "
+                onClick={[Function]}
+              >
+                POINT
+              </a>
             </div>
           </div>
         </div>
@@ -1092,7 +1116,7 @@ exports[`(4) Withdraw saving (1) Step 1 1`] = `
                 className="balance-num"
                 onClick={[Function]}
               >
-                2,123.000
+                2123.000
                  
                 HIVE
               </span>

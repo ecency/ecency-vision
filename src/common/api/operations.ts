@@ -197,6 +197,43 @@ export const transferHot = (from: string, to: string, amount: string, memo: stri
     });
 }
 
+export const transferPoint = (from: string, key: PrivateKey, to: string, amount: string, memo: string): Promise<TransactionConfirmation> => {
+    const hClient = new HiveClient(SERVERS);
+
+    const json = JSON.stringify({
+        sender: from,
+        receiver: to,
+        amount,
+        memo
+    });
+
+    const op = {
+        id: 'esteem_point_transfer',
+        json,
+        required_auths: [from],
+        required_posting_auths: []
+    };
+
+    return hClient.broadcast.json(op, key);
+}
+
+export const transferPointHot = (from: string, to: string, amount: string, memo: string) => {
+    const json = JSON.stringify({
+        sender: from,
+        receiver: to,
+        amount,
+        memo
+    });
+
+    const webUrl = `https://hivesigner.com/sign/custom-json?authority=active&required_auths=%5B%22${from}%22%5D&required_posting_auths=%5B%5D&id=esteem_point_transfer&json=${encodeURIComponent(
+        json
+    )}`
+
+    const win = window.open(webUrl, '_blank');
+    return win!.focus();
+}
+
+
 export const transferToSavings = (from: string, key: PrivateKey, to: string, amount: string, memo: string): Promise<TransactionConfirmation> => {
     const hClient = new HiveClient(SERVERS);
     hClient.database.getVersion().then((res: any) => {

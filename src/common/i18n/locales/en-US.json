@@ -36,6 +36,8 @@
   },
   "user-nav": {
     "wallet": "Wallet",
+    "unclaimed-reward-notice": "You have unclaimed rewards",
+    "points": "Points",
     "unclaimed-points-notice": "You have unclaimed points",
     "notifications": "Notifications",
     "profile": "Profile",
@@ -170,6 +172,7 @@
     "section-posts": "Posts",
     "section-comments": "Comments",
     "section-replies": "Replies",
+    "section-points": "Points",
     "section-wallet": "Wallet"
   },
   "wallet": {
@@ -198,8 +201,39 @@
     "withdraw-hive": "Withdraw Hive",
     "withdraw-hbd": "Withdraw Hive Dollar"
   },
+  "points": {
+    "get": "GET POINTS",
+    "post-desc": "You can earn point by posting regularly. Posting gives you 15 points.",
+    "comment-desc": "Each comment you make helps you to grow your audience and make friendship but also earns you 5 points.",
+    "checkin-desc": "Checking in on Ecency gives you 0.25 points and helps you stay connected with your friends.",
+    "vote-desc": "By voting you give reward to other creators and show your appreciation but also earn 0.01 x vote weight points.",
+    "reblog-desc": "  Share what post you like with your friends and earn 1 points.",
+    "login-desc": "When you login into Ecency you are entitled to earn 100 points automatically.",
+    "checkin-extra-desc": "Consistent use of app gives you extra chances to earn more 10 points, be more active and earn more.",
+    "delegation-desc": "You can earn 1 point per day for each 100SP delegation.",
+    "history": "History",
+    "post-list-desc": "Points for post",
+    "comment-list-desc": "Points for comment",
+    "vote-list-desc": "Points for vote",
+    "reblog-list-desc": "Points for reblog",
+    "login-list-desc": "Points for login",
+    "checkin-list-desc": "Points for heartbeat",
+    "checkin-extra-list-desc": "Usage bonus",
+    "transfer-sent-list-desc": "Transfer to {{n}}",
+    "transfer-incoming-list-desc": "Transfer from {{n}}",
+    "delegation-list-desc": "Delegation reward",
+    "referral-list-desc": "Referral reward",
+    "transfer": "Gift to someone",
+    "claim-ok": "Points claimed"
+  },
+  "purchase": {
+    "select-asset": "Select Asset",
+    "slider-hint": "Drag the slider to adjust the amount.",
+    "submit": "Purchase"
+  },
   "transfer": {
     "transfer-title": "Transfer to Account",
+    "transfer-title-point": "Gift to Account",
     "transfer-sub-title": "Move funds to another Hive account",
     "transfer-saving-title": "Transfer to Savings",
     "transfer-saving-sub-title": "Protect funds by requiring a 3 day withdraw waiting period",

@@ -2,11 +2,12 @@ import React, {Component} from "react";
 
 import {PrivateKey} from "@hiveio/dhive";
 
+import numeral from "numeral";
+
 import {Modal, Form, Row, Col, InputGroup, FormControl, Button} from "react-bootstrap";
 
 import {Global} from "../../store/global/types";
 import {Account} from '../../store/accounts/types'
-import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {Transactions} from "../../store/transactions/types";
 
@@ -18,13 +19,14 @@ import {error} from "../feedback";
 
 import amountFormatCheck from '../../helper/amount-format-check';
 import parseAsset from "../../helper/parse-asset";
-import formattedNumber from "../../util/formatted-number";
 
 import {getAccount, getAccountFull} from "../../api/hive";
 
 import {
     transfer,
     transferHot,
+    transferPoint,
+    transferPointHot,
     transferToSavings,
     transferToSavingsHot,
     transferFromSavings,
@@ -45,7 +47,7 @@ import {arrowRightSvg, keySvg} from "../../img/svg";
 const hsLogo = require("../../img/hive-signer.svg");
 
 export type TransferMode = 'transfer' | 'transfer-saving' | 'convert' | 'withdraw-saving' | 'power-up';
-export type TransferAsset = 'HIVE' | 'HBD';
+export type TransferAsset = 'HIVE' | 'HBD' | 'POINT';
 
 
 class AssetSwitch extends Component<{
@@ -69,6 +71,9 @@ class AssetSwitch extends Component<{
                 <a onClick={() => this.clicked('HBD')}
                    className={`asset ${selected === 'HBD' ? 'selected' : ''}`}
                 >HBD</a>
+                <a onClick={() => this.clicked('POINT')}
+                   className={`asset ${selected === 'POINT' ? 'selected' : ''}`}
+                >POINT</a>
             </div>
         );
     }
@@ -87,15 +92,18 @@ class FormText extends Component<{
     }
 }
 
-
 interface Props {
     global: Global;
-    mode: TransferMode,
-    asset: TransferAsset,
+    mode: TransferMode;
+    asset: TransferAsset;
+    to?: string;
+    amount?: string;
+    memo?: string;
     activeUser: ActiveUser;
     transactions: Transactions;
+    pointAmount?: string;
     addAccount: (data: Account) => void;
-    updateActiveUser: (data: Account) => void;
+    updateActiveUser: (data?: Account) => void;
     onHide: () => void;
 }
 
@@ -114,39 +122,36 @@ interface State {
 }
 
 const pureState = (props: Props): State => {
+    let _to: string = '';
+    let _toData: Account | null = null;
+
+    if (props.mode !== 'transfer') {
+        _to = props.activeUser.username;
+        _toData = props.activeUser.data
+    }
+
     return {
         step: 1,
-        asset: props.asset,
-        to: '',
-        toData: null,
+        asset: props.mode === 'convert' ? 'HBD' : props.asset,
+        to: props.to || _to,
+        toData: props.to ? {name: props.to} : _toData,
         toError: '',
         toWarning: '',
-        amount: '0.001',
+        amount: props.amount || '0.001',
         amountError: '',
-        memo: '',
+        memo: props.memo || '',
         privateKey: '',
         inProgress: false,
     }
 }
 
-export class TransferDialog extends Component<Props, State> {
+export class Transfer extends Component<Props, State> {
     state: State = pureState(this.props);
 
     _timer: any = null;
     _mounted: boolean = true;
 
     componentDidMount() {
-        const {mode, activeUser} = this.props;
-
-        // auto fill
-        if (mode !== 'transfer') {
-            this.stateSet({to: activeUser.username, toData: activeUser.data});
-        }
-
-        if (mode === 'convert') {
-            this.stateSet({asset: 'HBD'})
-        }
-
         // initial balance check
         this.checkAmount();
     }
@@ -262,14 +267,18 @@ export class TransferDialog extends Component<Props, State> {
 
     copyBalance = () => {
         const balance = this.getBalance();
-        this.stateSet({amount: formattedNumber(balance, {fractionDigits: 3})}, () => {
+        this.stateSet({amount: numeral(balance).format('0.000')}, () => {
             this.checkAmount();
         });
     };
 
     getBalance = (): number => {
-        const {mode, activeUser} = this.props;
+        const {mode, activeUser, pointAmount} = this.props;
         const {asset} = this.state;
+
+        if (asset === 'POINT' && pointAmount) {
+            return parseAsset(pointAmount).amount;
+        }
 
         const {data: account} = activeUser;
 
@@ -290,7 +299,7 @@ export class TransferDialog extends Component<Props, State> {
     next = () => {
         // make sure 3 decimals in amount
         const {amount} = this.state;
-        const fixedAmount = formattedNumber(amount, {fractionDigits: 3});
+        const fixedAmount = numeral(amount).format("0.000");
 
         this.setState({step: 2, amount: fixedAmount});
     };
@@ -327,7 +336,11 @@ export class TransferDialog extends Component<Props, State> {
         let prms: Promise<any>;
         switch (mode) {
             case 'transfer':
-                prms = transfer(username, key, to, fullAmount, memo)
+                if (asset === "POINT") {
+                    prms = transferPoint(username, key, to, fullAmount, memo);
+                } else {
+                    prms = transfer(username, key, to, fullAmount, memo);
+                }
                 break;
             case 'transfer-saving':
                 prms = transferToSavings(username, key, to, fullAmount, memo);
@@ -367,7 +380,11 @@ export class TransferDialog extends Component<Props, State> {
         let prms: Promise<any>;
         switch (mode) {
             case 'transfer':
-                prms = transferHot(username, to, fullAmount, memo)
+                if (asset === "POINT") {
+                    transferPointHot(username, to, fullAmount, memo);
+                } else {
+                    prms = transferHot(username, to, fullAmount, memo);
+                }
                 break;
             case 'transfer-saving':
                 prms = transferToSavingsHot(username, to, fullAmount, memo);
@@ -431,7 +448,7 @@ export class TransferDialog extends Component<Props, State> {
                         <div className="step-no">1</div>
                         <div className="box-titles">
                             <div className="main-title">
-                                {mode === 'transfer' && _t('transfer.transfer-title')}
+                                {mode === 'transfer' && (asset === "POINT" ? _t('transfer.transfer-title-point') : _t('transfer.transfer-title'))}
                                 {mode === 'transfer-saving' && _t('transfer.transfer-saving-title')}
                                 {mode === 'withdraw-saving' && _t('transfer.withdraw-saving-title')}
                                 {mode === 'power-up' && _t('transfer.power-up-title')}
@@ -527,7 +544,7 @@ export class TransferDialog extends Component<Props, State> {
                                 <Col md={{span: 10, offset: 2}}>
                                     <div className="balance">
                                         {_t("transfer.balance")}{": "}
-                                        <span onClick={this.copyBalance} className="balance-num">{formattedNumber(this.getBalance(), {fractionDigits: 3})} {asset}</span>
+                                        <span onClick={this.copyBalance} className="balance-num">{numeral(this.getBalance()).format("0.000")} {asset}</span>
                                     </div>
                                 </Col>
                             </Row>
@@ -677,14 +694,14 @@ export class TransferDialog extends Component<Props, State> {
     }
 }
 
-export default class Transfer extends Component<Props> {
+export default class TransferDialog extends Component<Props> {
     render() {
         const {onHide} = this.props;
         return (
             <Modal animation={false} show={true} centered={true} onHide={onHide} keyboard={false} className="transfer-dialog modal-thin-header" size="lg">
                 <Modal.Header closeButton={true}/>
                 <Modal.Body>
-                    <TransferDialog {...this.props} />
+                    <Transfer {...this.props} />
                 </Modal.Body>
             </Modal>
         );

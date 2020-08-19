@@ -4,7 +4,7 @@ import {FavoriteBtn} from "./index";
 
 import TestRenderer from "react-test-renderer";
 
-import {entryInstance1, UiInstance} from "../../helper/test-helper";
+import {UiInstance, activeUserInstance} from "../../helper/test-helper";
 
 const allOver = () => new Promise((resolve) => setImmediate(resolve));
 
@@ -49,12 +49,7 @@ it("(1) No active user", () => {
 it("(2) Not Favorited", async () => {
     const props = {
         ...defProps,
-        activeUser: {
-            username: "foo",
-            data: {
-                name: "foo"
-            }
-        }
+        activeUser: {...activeUserInstance}
     };
 
     const component = TestRenderer.create(<FavoriteBtn {...props}/>);
@@ -69,12 +64,7 @@ it("(3) Favorited", async () => {
 
     const props = {
         ...defProps,
-        activeUser: {
-            username: "foo",
-            data: {
-                name: "foo"
-            }
-        }
+        activeUser: {...activeUserInstance}
     };
 
     const component = TestRenderer.create(<FavoriteBtn {...props}/>);

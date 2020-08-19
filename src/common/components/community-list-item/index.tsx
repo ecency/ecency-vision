@@ -32,7 +32,7 @@ interface Props {
     ui: UI;
     subscriptions: Subscription[];
     setActiveUser: (username: string | null) => void;
-    updateActiveUser: (data: Account) => void;
+    updateActiveUser: (data?: Account) => void;
     deleteUser: (username: string) => void;
     toggleUIProp: (what: ToggleType) => void;
     addAccount: (data: Account) => void;

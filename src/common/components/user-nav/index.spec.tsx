@@ -6,7 +6,7 @@ import {createBrowserHistory, createLocation} from "history";
 import UserNav from "./index";
 import renderer from "react-test-renderer";
 
-import {notificationsInstance1, UiInstance, globalInstance} from "../../helper/test-helper";
+import {notificationsInstance1, UiInstance, globalInstance, activeUserInstance} from "../../helper/test-helper";
 
 const defProps = {
     global: globalInstance,
@@ -17,7 +17,11 @@ const defProps = {
     activeUser: {
         username: "foo",
         data: {
-            name: "foo"
+            name: "foo",
+        },
+        points: {
+            points: "0.000",
+            uPoints: "0.000"
         }
     },
     notifications: notificationsInstance1,
@@ -67,6 +71,10 @@ it("(2) Has rewards ", () => {
                     reward_steem_balance: "0.000 HIVE",
                     reward_vesting_steem: "10.207 HIVE",
                     __loaded: true,
+                },
+                points: {
+                    points: "0.000",
+                    uPoints: "1.500"
                 }
             }
         }

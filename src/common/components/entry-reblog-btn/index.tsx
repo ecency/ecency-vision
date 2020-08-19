@@ -28,7 +28,7 @@ interface Props {
     reblogs: Reblog[];
     ui: UI;
     setActiveUser: (username: string | null) => void;
-    updateActiveUser: (data: Account) => void;
+    updateActiveUser: (data?: Account) => void;
     deleteUser: (username: string) => void;
     addReblog: (account: string, author: string, permlink: string) => void;
     toggleUIProp: (what: ToggleType) => void;

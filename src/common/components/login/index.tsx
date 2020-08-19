@@ -80,7 +80,7 @@ interface LoginProps {
     activeUser: ActiveUser | null;
     addUser: (user: User) => void;
     setActiveUser: (username: string | null) => void;
-    updateActiveUser: (data: Account) => void;
+    updateActiveUser: (data?: Account) => void;
     deleteUser: (username: string) => void;
     toggleUIProp: (what: ToggleType) => void;
 }
@@ -181,7 +181,7 @@ interface Props {
     activeUser: ActiveUser | null;
     addUser: (user: User) => void;
     setActiveUser: (username: string | null) => void;
-    updateActiveUser: (data: Account) => void;
+    updateActiveUser: (data?: Account) => void;
     deleteUser: (username: string) => void;
     toggleUIProp: (what: ToggleType) => void;
 }

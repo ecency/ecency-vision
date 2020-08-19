@@ -1,10 +1,9 @@
 import React from 'react';
 import renderer from "react-test-renderer";
-import {createBrowserHistory} from "history";
 
 import {Gallery} from './index';
 
-import {globalInstance} from "../../helper/test-helper";
+import {activeUserInstance} from "../../helper/test-helper";
 
 const allOver = () => new Promise((resolve) => setImmediate(resolve));
 
@@ -48,7 +47,7 @@ jest.mock("../../api/private", () => ({
 it('(1) Default render.', async () => {
     const props = {
         users: [],
-        activeUser: {username: "foo", data: {name: "foo"}},
+        activeUser: {...activeUserInstance},
         onHide: () => {
         }
     };
@@ -63,7 +62,7 @@ it('(2) Test with data.', async () => {
 
     const props = {
         users: [],
-        activeUser: {username: "foo", data: {name: "foo"}},
+        activeUser: {...activeUserInstance},
         onHide: () => {
         }
     };

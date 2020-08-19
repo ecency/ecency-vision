@@ -7,7 +7,7 @@ import NavBar from "./index";
 
 import {Theme} from "../../store/global/types";
 
-import {globalInstance, TrendingTagsInstance, UiInstance, notificationsInstance1} from "../../helper/test-helper";
+import {globalInstance, TrendingTagsInstance, UiInstance, notificationsInstance1, activeUserInstance} from "../../helper/test-helper";
 
 
 const defProps = {
@@ -85,12 +85,7 @@ it("(3) With active user", () => {
     const props = {
         ...defProps,
         ...{
-            activeUser: {
-                username: "foo",
-                data: {
-                    name: "foo"
-                }
-            }
+            activeUser: {...activeUserInstance}
         }
     }
     const component = <NavBar {...props} />;

@@ -5,7 +5,7 @@ import {createBrowserHistory, createLocation} from "history";
 
 import {Drafts} from './index';
 
-import {globalInstance} from "../../helper/test-helper";
+import {globalInstance, activeUserInstance} from "../../helper/test-helper";
 
 const allOver = () => new Promise((resolve) => setImmediate(resolve));
 
@@ -59,7 +59,7 @@ it('(1) Default render.', async () => {
         history: createBrowserHistory(),
         location: createLocation({}),
         global: globalInstance,
-        activeUser: {username: "foo", data: {name: "foo"}},
+        activeUser: {...activeUserInstance},
         onHide: () => {
         }
     };
@@ -76,7 +76,7 @@ it('(2) Test with data.', async () => {
         history: createBrowserHistory(),
         location: createLocation({}),
         global: globalInstance,
-        activeUser: {username: "foo", data: {name: "foo"}},
+        activeUser: {...activeUserInstance},
         onHide: () => {
         }
     };

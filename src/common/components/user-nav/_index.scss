@@ -33,6 +33,7 @@
   }
 
   .user-wallet,
+  .user-points,
   .notifications,
   .points {
     color: $white;
@@ -45,7 +46,8 @@
     }
   }
 
-  .user-wallet {
+  .user-wallet,
+  .user-points {
     position: relative;
 
     .reward-badge {

@@ -271,3 +271,27 @@ export const favoritesDelete = async (req: express.Request, res: express.Respons
     const {account} = req.body;
     pipe(apiRequest(`favoriteUser/${username}/${account}`, "DELETE"), res);
 }
+
+export const points = async (req: express.Request, res: express.Response) => {
+    const {username} = req.body;
+    pipe(apiRequest(`users/${username}`, "GET"), res);
+}
+
+export const pointList = async (req: express.Request, res: express.Response) => {
+    const {username} = req.body;
+    pipe(apiRequest(`users/${username}/points?size=50`, "GET"), res);
+}
+
+export const pointsClaim = async (req: express.Request, res: express.Response) => {
+    const username = validateCode(req, res);
+    if (!username) return;
+    const data = {us: username};
+    pipe(apiRequest(`claim`, "PUT", {}, data), res);
+}
+
+export const pointsCalc = async (req: express.Request, res: express.Response) => {
+    const username = validateCode(req, res);
+    if (!username) return;
+    const {amount} = req.body;
+    pipe(apiRequest(`estm-calc?username=${username}&amount=${amount}`, "GET"), res);
+}

@@ -42,7 +42,7 @@ interface Props {
     transactions: Transactions;
     account: Account;
     addAccount: (data: Account) => void;
-    updateActiveUser: (data: Account) => void;
+    updateActiveUser: (data?: Account) => void;
 }
 
 interface State {

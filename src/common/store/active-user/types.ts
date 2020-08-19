@@ -1,8 +1,14 @@
 import {Account} from "../accounts/types";
 
+export interface UserPoints {
+    points: string;
+    uPoints: string;
+}
+
 export interface ActiveUser {
     username: string;
     data: Account;
+    points: UserPoints;
 }
 
 export enum ActionTypes {
@@ -22,6 +28,7 @@ export interface LogoutAction {
 export interface UpdateAction {
     type: ActionTypes.UPDATE;
     data: Account;
+    points: UserPoints
 }
 
 export type Actions = LoginAction | LogoutAction | UpdateAction;
