@@ -306,6 +306,12 @@
     justify-content: center;
   }
 
+  &.tos-page {
+    h5, h6 {
+      font-weight: normal;
+    }
+  }
+
   &.faq-page {
     .table-contents {
       margin-top: 20px;
