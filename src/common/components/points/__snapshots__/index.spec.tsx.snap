@@ -103,7 +103,7 @@ exports[`(1) Default Render 1`] = `
     </div>
     <div
       className="point-reward-type"
-      title="Checking in on eSteem app gives you 0.25 points and helps you stay connected with your friends."
+      title="Checking in on Ecency gives you 0.25 points and helps you stay connected with your friends."
     >
       <svg
         viewBox="0 0 24 24"
@@ -121,7 +121,7 @@ exports[`(1) Default Render 1`] = `
     </div>
     <div
       className="point-reward-type"
-      title="When you login into eSteem app you are entitled to earn 100 points automatically."
+      title="When you login into Ecency you are entitled to earn 100 points automatically."
     >
       <svg
         viewBox="0 0 24 24"
@@ -420,7 +420,7 @@ exports[`(2) With active user 1`] = `
     </div>
     <div
       className="point-reward-type"
-      title="Checking in on eSteem app gives you 0.25 points and helps you stay connected with your friends."
+      title="Checking in on Ecency gives you 0.25 points and helps you stay connected with your friends."
     >
       <svg
         viewBox="0 0 24 24"
@@ -438,7 +438,7 @@ exports[`(2) With active user 1`] = `
     </div>
     <div
       className="point-reward-type"
-      title="When you login into eSteem app you are entitled to earn 100 points automatically."
+      title="When you login into Ecency you are entitled to earn 100 points automatically."
     >
       <svg
         viewBox="0 0 24 24"
@@ -750,7 +750,7 @@ exports[`(3) Active user with unclaimed points 1`] = `
     </div>
     <div
       className="point-reward-type"
-      title="Checking in on eSteem app gives you 0.25 points and helps you stay connected with your friends."
+      title="Checking in on Ecency gives you 0.25 points and helps you stay connected with your friends."
     >
       <svg
         viewBox="0 0 24 24"
@@ -768,7 +768,7 @@ exports[`(3) Active user with unclaimed points 1`] = `
     </div>
     <div
       className="point-reward-type"
-      title="When you login into eSteem app you are entitled to earn 100 points automatically."
+      title="When you login into Ecency you are entitled to earn 100 points automatically."
     >
       <svg
         viewBox="0 0 24 24"
