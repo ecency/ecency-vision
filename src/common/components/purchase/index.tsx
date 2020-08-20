@@ -133,7 +133,7 @@ export class Purchase extends Component<Props, State> {
                     value={amount}
                     onChange={this.sliderChanged}
                 />
-                <div className="slider-hint">{_t('purchase.slider-hint')}</div>
+                <Form.Text className="text-muted">{_t('purchase.slider-hint')}</Form.Text>
             </div>
             <div className="point-amount">
                 {formattedNumber(points, {fractionDigits: 3})} {'POINTS'}
