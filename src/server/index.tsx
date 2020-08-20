@@ -39,7 +39,9 @@ import {
     pointsCalc,
     promotePrice,
     promotedPost,
-    searchPath
+    searchPath,
+    boostOptions,
+    boostedPost
 } from "./handlers/private-api";
 
 const server = express();
@@ -118,6 +120,8 @@ server
     .post("^/api/promote-price$", promotePrice)
     .post("^/api/promoted-post$", promotedPost)
     .post("^/api/search-path$", searchPath)
+    .post("^/api/boost-options$", boostOptions)
+    .post("^/api/boosted-post$", boostedPost)
     .get("*", fallbackHandler);
 
 export default server;

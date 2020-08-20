@@ -302,6 +302,13 @@ export const promotePrice = async (req: express.Request, res: express.Response) 
     pipe(apiRequest(`promote-price`, "GET"), res);
 }
 
+export const promotedPost = async (req: express.Request, res: express.Response) => {
+    const username = validateCode(req, res);
+    if (!username) return;
+    const {author, permlink} = req.body;
+    pipe(apiRequest(`promoted-posts/${author}/${permlink}`, "GET"), res);
+}
+
 export const searchPath = async (req: express.Request, res: express.Response) => {
     const username = validateCode(req, res);
     if (!username) return;
@@ -314,9 +321,15 @@ export const searchPath = async (req: express.Request, res: express.Response) =>
     pipe(baseApiRequest(url, "POST", headers, {q}), res);
 }
 
-export const promotedPost = async (req: express.Request, res: express.Response) => {
+export const boostOptions = async (req: express.Request, res: express.Response) => {
+    const username = validateCode(req, res);
+    if (!username) return;
+    pipe(apiRequest(`boost-options`, "GET"), res);
+}
+
+export const boostedPost = async (req: express.Request, res: express.Response) => {
     const username = validateCode(req, res);
     if (!username) return;
     const {author, permlink} = req.body;
-    pipe(apiRequest(`promoted-posts/${author}/${permlink}`, "GET"), res);
+    pipe(apiRequest(`boosted-posts/${author}/${permlink}`, "GET"), res);
 }
