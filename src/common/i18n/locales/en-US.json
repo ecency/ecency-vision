@@ -15,7 +15,8 @@
     "day": "day",
     "days": "days",
     "finish": "Finish",
-    "next": "Next"
+    "next": "Next",
+    "back": "Back"
   },
   "confirm": {
     "title": "Are you sure?",
@@ -269,7 +270,6 @@
     "amount-placeholder": "amount",
     "wrong-amount": "Wrong amount value",
     "amount-precision-error": "Use only 3 digits of precision",
-    "insufficient-funds": "Insufficient funds",
     "balance": "Balance",
     "memo": "Memo",
     "memo-placeholder": "enter your notes here",
@@ -277,21 +277,12 @@
     "confirm-title": "Confirm your transaction",
     "confirm-sub-title": "Please, check if everything is correct",
     "confirm": "Confirm",
-    "back": "Back",
     "recent-transfers": "Recent transfers",
-    "sign": "Sign",
-    "private-key-placeholder": "Enter active private key",
-    "with-hivesigner": "Sign with hivesigner",
-    "sign-title": "Sign transaction",
-    "sign-sub-title": "Sign your transaction",
-    "success-title": "Success",
-    "success-sub-title": "Transaction successful",
     "transfer-summary": "Transferred <span class=\"amount\">{{amount}}</span> From <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "reset": "Another transfer",
-    "finish": "Finish"
+    "reset": "Another transfer"
   },
   "trx-common": {
-    "balance-error": "Insufficient funds",
+    "insufficient-funds": "Insufficient funds",
     "sign-title": "Sign transaction",
     "sign-sub-title": "Sign your transaction",
     "success-title": "Success",

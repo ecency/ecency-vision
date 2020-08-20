@@ -126,7 +126,7 @@ export class Promote extends Component<Props, State> {
         const {prices, balance} = this.state;
         const {price} = prices.find(x => x.duration === duration)!;
 
-        const balanceError = parseFloat(balance) < price ? _t('promote.balance-error') : "";
+        const balanceError = parseFloat(balance) < price ? _t('trx-common.insufficient-funds') : "";
 
         this.stateSet({balanceError});
     };

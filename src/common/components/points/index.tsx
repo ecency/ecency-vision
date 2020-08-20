@@ -350,7 +350,6 @@ export class UserPoints extends Component<Props, State> {
                     mode="transfer"
                     asset="POINT"
                     activeUser={this.props.activeUser!}
-                    pointAmount={points.points}
                     onHide={this.toggleTransfer}/>)
                 }
 
