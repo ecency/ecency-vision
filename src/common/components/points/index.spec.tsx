@@ -8,7 +8,7 @@ import {createBrowserHistory} from "history";
 
 import {initialState as transactionsInitialState} from "../../store/transactions/index";
 
-import {globalInstance, pointTransactionsInstance, activeUserMaker} from "../../helper/test-helper";
+import {globalInstance, pointTransactionsInstance, activeUserMaker, dynamicPropsIntance1} from "../../helper/test-helper";
 
 jest.mock("moment", () => () => ({
     fromNow: () => "5 days ago",
@@ -18,6 +18,7 @@ it("(1) Default Render", () => {
     const props = {
         history: createBrowserHistory(),
         global: globalInstance,
+        dynamicProps: dynamicPropsIntance1,
         activeUser: null,
         account: {
             name: "user1",
@@ -45,6 +46,7 @@ it("(2) With active user", () => {
     const props = {
         history: createBrowserHistory(),
         global: globalInstance,
+        dynamicProps: dynamicPropsIntance1,
         activeUser: activeUserMaker("user1"),
         account: {
             name: "user1",
@@ -73,6 +75,7 @@ it("(3) Active user with unclaimed points", () => {
     const props = {
         history: createBrowserHistory(),
         global: globalInstance,
+        dynamicProps: dynamicPropsIntance1,
         activeUser: activeUserMaker("user1"),
         account: {
             name: "user1",
