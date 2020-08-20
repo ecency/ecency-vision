@@ -246,13 +246,23 @@ export const getPromotePrice = (username: string): Promise<PromotePrice[]> => {
     return axios.post(`/api/promote-price`, data).then(resp => resp.data);
 }
 
+export const getPromotedPost = (username: string, author: string, permlink: string): Promise<{ author: string, permlink: string } | ''> => {
+    const data = {code: getAccessToken(username), author, permlink};
+    return axios.post(`/api/promoted-post`, data).then(resp => resp.data);
+}
+
+export const getBoostOptions = (username: string): Promise<number[]> => {
+    const data = {code: getAccessToken(username)};
+    return axios.post(`/api/boost-options`, data).then(resp => resp.data);
+}
+
+// TODO: check return type
+export const getBoostedPost = (username: string, author: string, permlink: string): Promise<{ author: string, permlink: string } | ''> => {
+    const data = {code: getAccessToken(username), author, permlink};
+    return axios.post(`/api/boosted-post`, data).then(resp => resp.data);
+}
 
 export const searchPath = (username: string, q: string): Promise<string[]> => {
     const data = {code: getAccessToken(username), q};
     return axios.post(`/api/search-path`, data).then(resp => resp.data);
-}
-
-export const getPromotedPost = (username: string, author: string, permlink: string): Promise<{ author: string, permlink: string } | ''> => {
-    const data = {code: getAccessToken(username), author, permlink};
-    return axios.post(`/api/promoted-post`, data).then(resp => resp.data);
 }

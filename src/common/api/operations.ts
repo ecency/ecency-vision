@@ -471,3 +471,40 @@ export const promoteHot = (user: string, author: string, permlink: string, durat
     const win = window.open(webUrl, '_blank');
     return win!.focus();
 }
+
+
+export const boost = async (key: PrivateKey, user: string, author: string, permlink: string, amount: string): Promise<TransactionConfirmation> => {
+    const hClient = await makeHiveClient();
+
+    const json = JSON.stringify({
+        user,
+        author,
+        permlink,
+        amount
+    });
+
+    const op = {
+        id: 'esteem_boost',
+        json,
+        required_auths: [user],
+        required_posting_auths: []
+    };
+
+    return hClient.broadcast.json(op, key);
+}
+
+export const boostHot = (user: string, author: string, permlink: string, amount: string) => {
+    const json = JSON.stringify({
+        user,
+        author,
+        permlink,
+        amount
+    });
+
+    const webUrl = `https://hivesigner.com/sign/custom-json?authority=active&required_auths=%5B%22${user}%22%5D&required_posting_auths=%5B%5D&id=esteem_boost&json=${encodeURIComponent(
+        json
+    )}`
+
+    const win = window.open(webUrl, '_blank');
+    return win!.focus();
+}
