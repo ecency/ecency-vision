@@ -256,7 +256,6 @@ export const getBoostOptions = (username: string): Promise<number[]> => {
     return axios.post(`/api/boost-options`, data).then(resp => resp.data);
 }
 
-// TODO: check return type
 export const getBoostedPost = (username: string, author: string, permlink: string): Promise<{ author: string, permlink: string } | ''> => {
     const data = {code: getAccessToken(username), author, permlink};
     return axios.post(`/api/boosted-post`, data).then(resp => resp.data);
