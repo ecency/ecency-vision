@@ -2,21 +2,23 @@ import React, {Component} from "react";
 
 import {Form, FormControl, Modal, Button, Col, Row} from "react-bootstrap";
 
-import {ActiveUser} from "../../store/active-user/types";
+import {PrivateKey} from "@hiveio/dhive";
 
+import {ActiveUser} from "../../store/active-user/types";
 
 import LinearProgress from "../linear-progress";
 import SuggestionList from "../suggestion-list";
+import KeyOrHot from "../key-or-hot";
 import {error} from "../feedback";
 
 import {searchPath, getPoints, getPromotePrice, PromotePrice, getPromotedPost} from "../../api/private";
-
 import {getPost} from "../../api/bridge";
+import {promote, promoteHot, formatError} from "../../api/operations";
 
-import {promote, formatError} from "../../api/operations";
 import {_t} from "../../i18n";
-
 import _c from "../../util/fix-class-names";
+
+import {checkAllSvg} from "../../img/svg";
 
 interface Props {
     activeUser: ActiveUser;
@@ -24,7 +26,6 @@ interface Props {
 }
 
 interface State {
-    loading: boolean;
     balance: string;
     balanceError: string;
     path: string;
@@ -33,13 +34,14 @@ interface State {
     prices: PromotePrice[];
     duration: number;
     inProgress: boolean;
-    success: boolean;
+    step: 1 | 2 | 3;
 }
 
 
+const pathComponents = (p: string): string[] => p.replace("@", "").split("/");
+
 export class Promote extends Component<Props, State> {
     state: State = {
-        loading: true,
         balance: "0.000",
         balanceError: "",
         path: "",
@@ -47,8 +49,8 @@ export class Promote extends Component<Props, State> {
         postError: "",
         prices: [],
         duration: 1,
-        inProgress: false,
-        success: false
+        inProgress: true,
+        step: 1
     }
 
     _timer: any = null;
@@ -77,7 +79,7 @@ export class Promote extends Component<Props, State> {
 
             return getPoints(activeUser.username);
         }).then(r => {
-            this.stateSet({balance: r.points, loading: false}, () => {
+            this.stateSet({balance: r.points, inProgress: false}, () => {
                 this.checkBalance();
             });
         }).catch(() => {
@@ -118,7 +120,6 @@ export class Promote extends Component<Props, State> {
         this.stateSet({path: path, paths: []});
     }
 
-
     checkBalance = () => {
         const {duration} = this.state;
 
@@ -135,15 +136,15 @@ export class Promote extends Component<Props, State> {
             return;
         }
 
-        const [author, permlink] = p.replace("@", "").split("/");
+        const [author, permlink] = pathComponents(p);
         return author.length >= 3 && permlink.length >= 3;
     };
 
-    submit = async () => {
+    next = async () => {
         const {activeUser} = this.props;
-        const {path, duration} = this.state;
+        const {path} = this.state;
 
-        const [author, permlink] = path.replace("@", "").split("/");
+        const [author, permlink] = pathComponents(path);
 
         this.stateSet({inProgress: true});
 
@@ -160,9 +161,17 @@ export class Promote extends Component<Props, State> {
             return;
         }
 
-        promote(activeUser.username, author, permlink, duration).then(r => {
-            console.log(r)
-            this.stateSet({success: true});
+        this.stateSet({inProgress: false, step: 2});
+    }
+
+    sign = (key: PrivateKey) => {
+        const {activeUser} = this.props;
+        const {path, duration} = this.state;
+        const [author, permlink] = pathComponents(path);
+
+        this.setState({inProgress: true});
+        promote(key, activeUser.username, author, permlink, duration).then(() => {
+            this.stateSet({step: 3});
         }).catch(err => {
             error(formatError(err));
         }).finally(() => {
@@ -170,52 +179,116 @@ export class Promote extends Component<Props, State> {
         });
     }
 
-    render() {
-        const {prices, balance, balanceError, path, paths, postError, duration, loading, inProgress} = this.state;
+    hotSign = () => {
+        const {activeUser, onHide} = this.props;
+        const {path, duration} = this.state;
+        const [author, permlink] = pathComponents(path);
 
-        if (loading) {
-            return <div className="promote-dialog-content"><LinearProgress/></div>;
-        }
+        promoteHot(activeUser.username, author, permlink, duration);
+        onHide();
+    }
+
+    finish = () => {
+        const {onHide} = this.props;
+        onHide();
+    }
+
+    render() {
+        const {prices, balance, balanceError, path, paths, postError, duration, inProgress, step} = this.state;
 
         const canSubmit = !postError && !balanceError && this.isValidPath(path);
 
         return <div className="promote-dialog-content">
-            <Form.Group as={Row}>
-                <Form.Label column={true} sm="2">{_t('promote.balance')}</Form.Label>
-                <Col sm="10">
-                    <Form.Control className={_c(`balance-input ${balanceError ? "is-invalid" : ""}`)} plaintext={true} readOnly={true} defaultValue={`${balance} POINTS`}/>
-                    <Form.Text className="text-danger">{balanceError || ""}</Form.Text>
-                </Col>
-            </Form.Group>
-            <Form.Group as={Row}>
-                <Form.Label column={true} sm="2">{_t('promote.post')}</Form.Label>
-                <Col sm="10">
-                    <SuggestionList items={paths} renderer={i => i} onSelect={this.pathSelected}>
-                        <Form.Control className={postError ? 'is-invalid' : ''} type="text" value={path} onChange={this.pathChanged} autoFocus={true}
-                                      placeholder={_t('promote.post-placeholder')}/>
-                    </SuggestionList>
-                    <Form.Text className="text-danger">{postError || ""}</Form.Text>
-                </Col>
-            </Form.Group>
-            <Form.Group as={Row}>
-                <Form.Label column={true} sm="2">{_t('promote.duration')}</Form.Label>
-                <Col sm="10">
-                    <Form.Control as="select" value={duration} onChange={this.durationChanged}>
-                        {prices.map(p => {
-                            const {duration: d, price: pr} = p;
-                            const label = `${d} ${d === 1 ? 'day' : 'days'} - ${pr} POINTS`
-                            return <option value={p.duration} key={p.duration}>{label}</option>
-                        })}
-                    </Form.Control>
-                    <Form.Text/>
-                </Col>
-            </Form.Group>
-            <Form.Group as={Row}>
-                <Form.Label column={true} sm="2"/>
-                <Col sm="10">
-                    <Button type="button" onClick={this.submit} disabled={!canSubmit || inProgress} variant="primary">{_t('promote.submit')}</Button>
-                </Col>
-            </Form.Group>
+            {step === 1 && (
+                <div className={`transaction-form ${inProgress ? 'in-progress' : ''}`}>
+                    <div className="transaction-form-header">
+                        <div className="step-no">1</div>
+                        <div className="box-titles">
+                            <div className="main-title">{_t('promote.title')}</div>
+                            <div className="sub-title">{_t('promote.sub-title')}</div>
+                        </div>
+                    </div>
+                    {inProgress && <LinearProgress/>}
+                    <div className="transaction-form-body">
+                        <Form.Group as={Row}>
+                            <Form.Label column={true} sm="2">{_t('promote.balance')}</Form.Label>
+                            <Col sm="10">
+                                <Form.Control className={_c(`balance-input ${balanceError ? "is-invalid" : ""}`)} plaintext={true} readOnly={true}
+                                              value={`${balance} POINTS`}/>
+                                {balanceError && <Form.Text className="text-danger">{balanceError}</Form.Text>}
+                            </Col>
+                        </Form.Group>
+                        <Form.Group as={Row}>
+                            <Form.Label column={true} sm="2">{_t('promote.post')}</Form.Label>
+                            <Col sm="10">
+                                <SuggestionList items={paths} renderer={i => i} onSelect={this.pathSelected}>
+                                    <Form.Control className={postError ? 'is-invalid' : ''} type="text" value={path} onChange={this.pathChanged}
+                                                  placeholder={_t('promote.post-placeholder')} disabled={inProgress}/>
+                                </SuggestionList>
+                                {postError && <Form.Text className="text-danger">{postError}</Form.Text>}
+                                {!postError && <Form.Text className="text-muted">{_t('promote.post-hint')}</Form.Text>}
+                            </Col>
+                        </Form.Group>
+                        <Form.Group as={Row}>
+                            <Form.Label column={true} sm="2">{_t('promote.duration')}</Form.Label>
+                            <Col sm="10">
+                                <Form.Control as="select" value={duration} onChange={this.durationChanged} disabled={inProgress}>
+                                    {prices.map(p => {
+                                        const {duration: d, price: pr} = p;
+                                        const label = `${d} ${d === 1 ? _t('g.day') : _t('g.days')} - ${pr} POINTS`
+                                        return <option value={p.duration} key={p.duration}>{label}</option>
+                                    })}
+                                </Form.Control>
+                            </Col>
+                        </Form.Group>
+                        <Form.Group as={Row}>
+                            <Form.Label column={true} sm="2"/>
+                            <Col sm="10">
+                                <Button type="button" onClick={this.next} disabled={!canSubmit || inProgress} variant="primary">{_t('g.next')}</Button>
+                            </Col>
+                        </Form.Group>
+                    </div>
+                </div>
+            )}
+
+            {step === 2 && (
+                <div className={`transaction-form ${inProgress ? 'in-progress' : ''}`}>
+                    <div className="transaction-form-header">
+                        <div className="step-no">2</div>
+                        <div className="box-titles">
+                            <div className="main-title">{_t('trx-common.sign-title')}</div>
+                            <div className="sub-title">{_t('trx-common.sign-sub-title')}</div>
+                        </div>
+                    </div>
+                    {inProgress && <LinearProgress/>}
+                    <div className="transaction-form-body">
+                        <KeyOrHot inProgress={inProgress} onKey={this.sign} onHot={this.hotSign}/>
+                    </div>
+                </div>
+            )}
+
+            {step === 3 && (
+                <div className={`transaction-form ${inProgress ? 'in-progress' : ''}`}>
+                    <div className="transaction-form-header">
+                        <div className="step-no">3</div>
+                        <div className="box-titles">
+                            <div className="main-title">{_t('trx-common.success-title')}</div>
+                            <div className="sub-title">{_t('trx-common.success-sub-title')}</div>
+                        </div>
+                    </div>
+                    {inProgress && <LinearProgress/>}
+                    <div className="transaction-form-body">
+                        <p className="d-flex justify-content-center align-content-center">
+                            <span className="svg-icon text-success">{checkAllSvg}</span> {_t("promote.success-message")}
+                        </p>
+                        <div className="d-flex justify-content-center">
+                            <Button onClick={this.finish}>
+                                {_t("g.finish")}
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     }
 }
@@ -224,8 +297,8 @@ export default class PromoteDialog extends Component<Props> {
     render() {
         const {onHide} = this.props;
         return (
-            <Modal animation={false} show={true} centered={true} onHide={onHide} keyboard={false} className="promote-dialog" size="lg">
-                <Modal.Header closeButton={true}><Modal.Title>{_t('promote.title')}</Modal.Title></Modal.Header>
+            <Modal animation={false} show={true} centered={true} onHide={onHide} keyboard={false} className="promote-dialog modal-thin-header" size="lg">
+                <Modal.Header closeButton={true}/>
                 <Modal.Body>
                     <Promote {...this.props} />
                 </Modal.Body>

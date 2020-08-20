@@ -38,6 +38,23 @@ export interface CommentOptions {
 
 export type RewardType = "default" | "sp" | "dp";
 
+const makeHiveClient = async (): Promise<HiveClient> => {
+    const hClient = new HiveClient(SERVERS);
+
+    try {
+        await hClient.database.getVersion().then((res: any) => {
+            if (res.blockchain_version !== '0.23.0') {
+                // true: eclipse rebranded rpc nodes
+                // false: default old nodes (not necessary to call for old nodes)
+                hClient.updateOperations(true)
+            }
+        });
+    } catch (e) {
+    }
+
+    return hClient;
+}
+
 export const formatError = (err: any) => {
     if (err.error_description) {
         return err.error_description.substring(0, 80);
@@ -404,7 +421,7 @@ export const unSubscribe = (username: string, community: string): Promise<Transa
 }
 
 
-export const promote = (username: string, author: string, permlink: string, duration: number): Promise<TransactionConfirmation> => {
+export const promoteX = (username: string, author: string, permlink: string, duration: number): Promise<TransactionConfirmation> => {
     const client = new hs.Client({
         accessToken: getAccessToken(username),
     });
@@ -417,4 +434,40 @@ export const promote = (username: string, author: string, permlink: string, dura
     });
 
     return client.customJson([username], [], 'esteem_promote', json);
+}
+
+export const promote = async (key: PrivateKey, user: string, author: string, permlink: string, duration: number): Promise<TransactionConfirmation> => {
+    const hClient = await makeHiveClient();
+
+    const json = JSON.stringify({
+        user,
+        author,
+        permlink,
+        duration
+    });
+
+    const op = {
+        id: 'esteem_promote',
+        json,
+        required_auths: [user],
+        required_posting_auths: []
+    };
+
+    return hClient.broadcast.json(op, key);
+}
+
+export const promoteHot = (user: string, author: string, permlink: string, duration: number) => {
+    const json = JSON.stringify({
+        user,
+        author,
+        permlink,
+        duration
+    });
+
+    const webUrl = `https://hivesigner.com/sign/custom-json?authority=active&required_auths=%5B%22${user}%22%5D&required_posting_auths=%5B%5D&id=esteem_promote&json=${encodeURIComponent(
+        json
+    )}`
+
+    const win = window.open(webUrl, '_blank');
+    return win!.focus();
 }

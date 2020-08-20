@@ -58,6 +58,23 @@ select {
   flex-grow: 0;
 }
 
+.svg-icon{
+  margin-right: 4px;
+
+  svg{
+    height: 16px;
+  }
+}
+
+.svg-icon-sm{
+  margin-right: 4px;
+
+  svg{
+    height: 13px;
+  }
+}
+
+// Adds external link icon to _blanl links
 a[target="_blank"] {
   &:after {
     display: inline-block;
@@ -75,6 +92,7 @@ a[target="_blank"] {
   }
 }
 
+// main layout
 .app-content {
   padding: 0 10px;
   margin: 0 auto 30px auto;
@@ -86,4 +104,84 @@ a[target="_blank"] {
   }
 }
 
+// markdown styles
 @import "markdown";
+
+
+// common transaction form. used in transfer, promote, boost
+
+.transaction-form {
+  .transaction-form-header {
+    align-items: center;
+    display: flex;
+
+    @include themify(day) {
+      border-bottom: 1px solid $white-four;
+    }
+
+    @include themify(night) {
+      border-bottom: 1px solid $dusky-blue-two;
+    }
+
+    .step-no {
+      color: $silver;
+      flex-grow: 0;
+      flex-shrink: 0;
+      font-size: 48px;
+      font-weight: 700;
+      margin-right: 8px;
+    }
+
+    .box-titles {
+      flex-grow: 1;
+
+      .main-title {
+        font-size: 16px;
+        font-weight: 500;
+        margin-bottom: 4px;
+
+        @include themify(day) {
+          color: $charcoal-grey;
+        }
+
+        @include themify(night) {
+          color: $pinkish-grey;
+        }
+      }
+
+      .sub-title {
+        font-weight: 300;
+
+        @include themify(day) {
+          color: $steel-grey;
+        }
+
+        @include themify(night) {
+          color: $metallic-blue;
+        }
+      }
+    }
+  }
+
+  .transaction-form-body {
+    @media (min-width: $sm-break) {
+      padding: 24px 32px;
+    }
+
+    margin: 1px 0 0 0;
+
+    .form-group {
+      margin: 16px 0 0 0;
+    }
+  }
+
+  &.in-progress {
+    .transaction-form-header {
+      border-bottom: 1px solid transparent;
+    }
+
+    .transaction-form-body {
+      margin-top: 0;
+    }
+  }
+}

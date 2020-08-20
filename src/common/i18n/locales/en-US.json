@@ -11,7 +11,11 @@
     "reply": "Reply",
     "update": "Update",
     "or": "OR",
-    "server-error": "Process could not be completed due to server error"
+    "server-error": "Process could not be completed due to server error",
+    "day": "day",
+    "days": "days",
+    "finish": "Finish",
+    "next": "Next"
   },
   "confirm": {
     "title": "Are you sure?",
@@ -234,14 +238,15 @@
   },
   "promote": {
     "title": "Promote",
+    "sub-title": "Promote your post",
     "balance": "Balance",
     "post": "Post",
+    "post-hint": "Autocomplete input",
     "post-placeholder": "author/permlink",
     "duration": "Duration",
-    "submit": "Submit",
-    "balance-error": "Insufficient funds",
     "post-error": "Not a valid post address",
-    "post-error-exists": "The post is already promoted"
+    "post-error-exists": "The post is already promoted",
+    "success-message": "Your request submitted. It will be activated in a couple minutes."
   },
   "transfer": {
     "transfer-title": "Transfer to Account",
@@ -269,7 +274,6 @@
     "memo": "Memo",
     "memo-placeholder": "enter your notes here",
     "memo-help": "This memo is public",
-    "next": "Next",
     "confirm-title": "Confirm your transaction",
     "confirm-sub-title": "Please, check if everything is correct",
     "confirm": "Confirm",
@@ -286,6 +290,13 @@
     "reset": "Another transfer",
     "finish": "Finish"
   },
+  "trx-common": {
+    "balance-error": "Insufficient funds",
+    "sign-title": "Sign transaction",
+    "sign-sub-title": "Sign your transaction",
+    "success-title": "Success",
+    "success-sub-title": "Transaction successful"
+  },
   "transactions": {
     "title": "HISTORY",
     "type-curation_reward": "Curation Reward",
@@ -296,6 +307,11 @@
     "type-transfer_to_vesting": "Transfer to vesting",
     "type-withdraw_vesting": "Withdraw vesting",
     "type-fill_order": "Fill order"
+  },
+  "key-or-hot": {
+    "sign": "Sign",
+    "key-placeholder": "Enter active private key",
+    "with-hivesigner": "Sign with hivesigner"
   },
   "delegated-vesting": {
     "title": "Delegated Hive Power"
