@@ -1,9 +1,12 @@
 import React, {Component} from "react";
 
+import isEqual from "react-fast-compare";
+
 import {Form, FormControl, Modal, Button, Col, Row} from "react-bootstrap";
 
 import {PrivateKey} from "@hiveio/dhive";
 
+import {Account} from "../../store/accounts/types";
 import {ActiveUser} from "../../store/active-user/types";
 
 import LinearProgress from "../linear-progress";
@@ -11,22 +14,23 @@ import SuggestionList from "../suggestion-list";
 import KeyOrHot from "../key-or-hot";
 import {error} from "../feedback";
 
-import {searchPath, getPoints, getPromotePrice, PromotePrice, getPromotedPost} from "../../api/private";
+import {searchPath, getPromotePrice, PromotePrice, getPromotedPost} from "../../api/private";
 import {getPost} from "../../api/bridge";
 import {promote, promoteHot, formatError} from "../../api/operations";
 
 import {_t} from "../../i18n";
+
 import _c from "../../util/fix-class-names";
 
 import {checkAllSvg} from "../../img/svg";
 
 interface Props {
     activeUser: ActiveUser;
+    updateActiveUser: (data?: Account) => void;
     onHide: () => void;
 }
 
 interface State {
-    balance: string;
     balanceError: string;
     path: string;
     postError: string;
@@ -42,7 +46,6 @@ const pathComponents = (p: string): string[] => p.replace("@", "").split("/");
 
 export class Promote extends Component<Props, State> {
     state: State = {
-        balance: "0.000",
         balanceError: "",
         path: "",
         paths: [],
@@ -67,19 +70,24 @@ export class Promote extends Component<Props, State> {
     };
 
     componentDidMount() {
-        this.init();
+        this.init().then(() => {
+            const {updateActiveUser} = this.props;
+            updateActiveUser();
+        })
+    }
+
+    componentDidUpdate(prevProps: Readonly<Props>) {
+        if (!isEqual(this.props.activeUser.points, prevProps.activeUser.points)) {
+            this.checkBalance();
+        }
     }
 
     init = () => {
         const {activeUser} = this.props;
 
-        getPromotePrice(activeUser.username).then(r => {
+        return getPromotePrice(activeUser.username).then(r => {
             const prices = r.sort((a, b) => a.duration - b.duration);
-            this.stateSet({prices, duration: prices[1].duration});
-
-            return getPoints(activeUser.username);
-        }).then(r => {
-            this.stateSet({balance: r.points, inProgress: false}, () => {
+            this.stateSet({prices, duration: prices[1].duration, inProgress: false}, () => {
                 this.checkBalance();
             });
         }).catch(() => {
@@ -121,12 +129,13 @@ export class Promote extends Component<Props, State> {
     }
 
     checkBalance = () => {
+        const {activeUser} = this.props;
         const {duration} = this.state;
 
-        const {prices, balance} = this.state;
+        const {prices} = this.state;
         const {price} = prices.find(x => x.duration === duration)!;
 
-        const balanceError = parseFloat(balance) < price ? _t('trx-common.insufficient-funds') : "";
+        const balanceError = parseFloat(activeUser.points.points) < price ? _t('trx-common.insufficient-funds') : "";
 
         this.stateSet({balanceError});
     };
@@ -151,13 +160,14 @@ export class Promote extends Component<Props, State> {
         // Check if post is valid
         const post = await getPost(author, permlink);
         if (!post) {
-            this.stateSet({postError: _t("promote.post-error"), inProgress: false});
+            this.stateSet({postError: _t("redeem-common.post-error"), inProgress: false});
             return;
         }
 
+        // Check if the post already promoted
         const promoted = await getPromotedPost(activeUser.username, author, permlink);
         if (promoted) {
-            this.stateSet({postError: _t("promote.post-error-exists"), inProgress: false});
+            this.stateSet({postError: _t("redeem-common.post-error-exists"), inProgress: false});
             return;
         }
 
@@ -194,7 +204,9 @@ export class Promote extends Component<Props, State> {
     }
 
     render() {
-        const {prices, balance, balanceError, path, paths, postError, duration, inProgress, step} = this.state;
+        const {activeUser} = this.props;
+
+        const {prices, balanceError, path, paths, postError, duration, inProgress, step} = this.state;
 
         const canSubmit = !postError && !balanceError && this.isValidPath(path);
 
@@ -211,22 +223,22 @@ export class Promote extends Component<Props, State> {
                     {inProgress && <LinearProgress/>}
                     <div className="transaction-form-body">
                         <Form.Group as={Row}>
-                            <Form.Label column={true} sm="2">{_t('promote.balance')}</Form.Label>
+                            <Form.Label column={true} sm="2">{_t('redeem-common.balance')}</Form.Label>
                             <Col sm="10">
                                 <Form.Control className={_c(`balance-input ${balanceError ? "is-invalid" : ""}`)} plaintext={true} readOnly={true}
-                                              value={`${balance} POINTS`}/>
+                                              value={`${activeUser.points.points} POINTS`}/>
                                 {balanceError && <Form.Text className="text-danger">{balanceError}</Form.Text>}
                             </Col>
                         </Form.Group>
                         <Form.Group as={Row}>
-                            <Form.Label column={true} sm="2">{_t('promote.post')}</Form.Label>
+                            <Form.Label column={true} sm="2">{_t('redeem-common.post')}</Form.Label>
                             <Col sm="10">
                                 <SuggestionList items={paths} renderer={i => i} onSelect={this.pathSelected}>
                                     <Form.Control className={postError ? 'is-invalid' : ''} type="text" value={path} onChange={this.pathChanged}
-                                                  placeholder={_t('promote.post-placeholder')} disabled={inProgress}/>
+                                                  placeholder={_t('redeem-common.post-placeholder')} disabled={inProgress}/>
                                 </SuggestionList>
                                 {postError && <Form.Text className="text-danger">{postError}</Form.Text>}
-                                {!postError && <Form.Text className="text-muted">{_t('promote.post-hint')}</Form.Text>}
+                                {!postError && <Form.Text className="text-muted">{_t('redeem-common.post-hint')}</Form.Text>}
                             </Col>
                         </Form.Group>
                         <Form.Group as={Row}>
@@ -279,7 +291,7 @@ export class Promote extends Component<Props, State> {
                     {inProgress && <LinearProgress/>}
                     <div className="transaction-form-body">
                         <p className="d-flex justify-content-center align-content-center">
-                            <span className="svg-icon text-success">{checkAllSvg}</span> {_t("promote.success-message")}
+                            <span className="svg-icon text-success">{checkAllSvg}</span> {_t("redeem-common.success-message")}
                         </p>
                         <div className="d-flex justify-content-center">
                             <Button onClick={this.finish}>
