@@ -7,6 +7,7 @@ import {History} from "history";
 import {ActiveUser} from "../../store/active-user/types";
 import {Account} from "../../store/accounts/types";
 import {Global} from "../../store/global/types";
+import {DynamicProps} from "../../store/dynamic-props/types";
 import {Transactions} from "../../store/transactions/types";
 import {Points, PointTransaction, TransactionType} from "../../store/points/types"
 
@@ -15,6 +16,7 @@ import Transfer from "../transfer";
 import Tooltip from "../tooltip";
 import Purchase from "../purchase";
 import Promote from "../promote";
+import Boost from "../boost";
 import {success, error} from "../feedback";
 
 import {_t} from "../../i18n";
@@ -127,6 +129,7 @@ export class TransactionRow extends Component<{ tr: PointTransaction }> {
 
 interface Props {
     global: Global;
+    dynamicProps: DynamicProps
     history: History;
     activeUser: ActiveUser | null;
     account: Account;
@@ -138,10 +141,11 @@ interface Props {
 }
 
 interface State {
-    claiming: boolean,
-    purchase: boolean,
-    promote: boolean,
-    transfer: boolean,
+    claiming: boolean;
+    purchase: boolean;
+    promote: boolean;
+    boost: boolean;
+    transfer: boolean;
 }
 
 export class UserPoints extends Component<Props, State> {
@@ -149,6 +153,7 @@ export class UserPoints extends Component<Props, State> {
         claiming: false,
         purchase: false,
         promote: false,
+        boost: false,
         transfer: false
     }
 
@@ -199,8 +204,13 @@ export class UserPoints extends Component<Props, State> {
         this.setState({transfer: !transfer});
     }
 
+    toggleBoost = () => {
+        const {boost} = this.state;
+        this.setState({boost: !boost});
+    }
+
     render() {
-        const {claiming, transfer, purchase, promote} = this.state;
+        const {claiming, transfer, purchase, promote, boost} = this.state;
         const {activeUser, account, points} = this.props;
 
         const isMyPage = activeUser && activeUser.username === account.name;
@@ -214,6 +224,9 @@ export class UserPoints extends Component<Props, State> {
             }, {
                 label: _t('points.promote'),
                 onClick: this.togglePromote
+            }, {
+                label: _t('points.boost'),
+                onClick: this.toggleBoost
             }]
         };
 
@@ -355,6 +368,7 @@ export class UserPoints extends Component<Props, State> {
 
                 {purchase && (<Purchase {...this.props} activeUser={this.props.activeUser!} onHide={this.togglePurchase}/>)}
                 {promote && (<Promote {...this.props} activeUser={this.props.activeUser!} onHide={this.togglePromote}/>)}
+                {boost && (<Boost {...this.props} activeUser={this.props.activeUser!} onHide={this.toggleBoost}/>)}
             </div>
         );
     }
@@ -363,6 +377,7 @@ export class UserPoints extends Component<Props, State> {
 export default (p: Props) => {
     const props = {
         global: p.global,
+        dynamicProps: p.dynamicProps,
         history: p.history,
         activeUser: p.activeUser,
         account: p.account,
