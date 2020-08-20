@@ -224,12 +224,24 @@
     "delegation-list-desc": "Delegation reward",
     "referral-list-desc": "Referral reward",
     "transfer": "Gift to someone",
-    "claim-ok": "Points claimed"
+    "claim-ok": "Points claimed",
+    "promote": "Promote"
   },
   "purchase": {
     "select-asset": "Select Asset",
     "slider-hint": "Drag the slider to adjust the amount.",
     "submit": "Purchase"
+  },
+  "promote": {
+    "title": "Promote",
+    "balance": "Balance",
+    "post": "Post",
+    "post-placeholder": "author/permlink",
+    "duration": "Duration",
+    "submit": "Submit",
+    "balance-error": "Insufficient funds",
+    "post-error": "Not a valid post address",
+    "post-error-exists": "The post is already promoted"
   },
   "transfer": {
     "transfer-title": "Transfer to Account",

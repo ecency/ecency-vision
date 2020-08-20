@@ -233,7 +233,6 @@ export const transferPointHot = (from: string, to: string, amount: string, memo:
     return win!.focus();
 }
 
-
 export const transferToSavings = (from: string, key: PrivateKey, to: string, amount: string, memo: string): Promise<TransactionConfirmation> => {
     const hClient = new HiveClient(SERVERS);
     hClient.database.getVersion().then((res: any) => {
@@ -402,4 +401,20 @@ export const unSubscribe = (username: string, community: string): Promise<Transa
     ]);
 
     return client.customJson([], [username], 'community', json);
+}
+
+
+export const promote = (username: string, author: string, permlink: string, duration: number): Promise<TransactionConfirmation> => {
+    const client = new hs.Client({
+        accessToken: getAccessToken(username),
+    });
+
+    const json = JSON.stringify({
+        username,
+        author,
+        permlink,
+        duration
+    });
+
+    return client.customJson([username], [], 'esteem_promote', json);
 }

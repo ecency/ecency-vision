@@ -236,3 +236,23 @@ export const calcPoints = (username: string, amount: string): Promise<{ usd: num
     return axios.post(`/api/points-calc`, data).then(resp => resp.data);
 }
 
+export interface PromotePrice {
+    duration: number,
+    price: number
+}
+
+export const getPromotePrice = (username: string): Promise<PromotePrice[]> => {
+    const data = {code: getAccessToken(username)};
+    return axios.post(`/api/promote-price`, data).then(resp => resp.data);
+}
+
+
+export const searchPath = (username: string, q: string): Promise<string[]> => {
+    const data = {code: getAccessToken(username), q};
+    return axios.post(`/api/search-path`, data).then(resp => resp.data);
+}
+
+export const getPromotedPost = (username: string, author: string, permlink: string): Promise<{ author: string, permlink: string } | ''> => {
+    const data = {code: getAccessToken(username), author, permlink};
+    return axios.post(`/api/promoted-post`, data).then(resp => resp.data);
+}

@@ -295,3 +295,28 @@ export const pointsCalc = async (req: express.Request, res: express.Response) =>
     const {amount} = req.body;
     pipe(apiRequest(`estm-calc?username=${username}&amount=${amount}`, "GET"), res);
 }
+
+export const promotePrice = async (req: express.Request, res: express.Response) => {
+    const username = validateCode(req, res);
+    if (!username) return;
+    pipe(apiRequest(`promote-price`, "GET"), res);
+}
+
+export const searchPath = async (req: express.Request, res: express.Response) => {
+    const username = validateCode(req, res);
+    if (!username) return;
+
+    const {q} = req.body;
+
+    const url = `${config.searchApiAddr}/search-path`;
+    const headers = {'Authorization': config.searchApiToken};
+
+    pipe(baseApiRequest(url, "POST", headers, {q}), res);
+}
+
+export const promotedPost = async (req: express.Request, res: express.Response) => {
+    const username = validateCode(req, res);
+    if (!username) return;
+    const {author, permlink} = req.body;
+    pipe(apiRequest(`promoted-posts/${author}/${permlink}`, "GET"), res);
+}

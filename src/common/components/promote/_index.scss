@@ -1,0 +1,25 @@
+.promote-dialog {
+  .promote-dialog-content {
+    min-height: 254px;
+
+    .balance-input {
+      color: $dark-sky-blue;
+      font-weight: 500;
+      cursor: default;
+
+      &.is-invalid {
+        color: $danger;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .form-text {
+      height: 20px;
+      display: flex;
+      align-items: center;
+    }
+  }
+}
