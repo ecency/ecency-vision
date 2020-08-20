@@ -6,8 +6,6 @@ import {usrActivity} from "./private";
 
 import {getAccessToken} from "../helper/user-token";
 
-import {User} from "../store/users/types";
-
 import SERVERS from "../constants/servers.json";
 
 export interface MetaData {
