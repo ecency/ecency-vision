@@ -181,16 +181,8 @@ export const claimRewardBalance = (username: string, rewardHive: string, rewardH
     ).then((r: any) => r.result);
 }
 
-export const transfer = (from: string, key: PrivateKey, to: string, amount: string, memo: string): Promise<TransactionConfirmation> => {
-    const hClient = new HiveClient(SERVERS);
-    hClient.database.getVersion().then((res: any) => {
-        if (res.blockchain_version !== '0.23.0') {
-            // true: eclipse rebranded rpc nodes
-            // false: default old nodes (not necessary to call for old nodes)
-            hClient.updateOperations(true)
-        }
-    });
-
+export const transfer = async (from: string, key: PrivateKey, to: string, amount: string, memo: string): Promise<TransactionConfirmation> => {
+    const hClient = await makeHiveClient();
     const args = {
         from,
         to,
@@ -250,15 +242,8 @@ export const transferPointHot = (from: string, to: string, amount: string, memo:
     return win!.focus();
 }
 
-export const transferToSavings = (from: string, key: PrivateKey, to: string, amount: string, memo: string): Promise<TransactionConfirmation> => {
-    const hClient = new HiveClient(SERVERS);
-    hClient.database.getVersion().then((res: any) => {
-        if (res.blockchain_version !== '0.23.0') {
-            // true: eclipse rebranded rpc nodes
-            // false: default old nodes (not necessary to call for old nodes)
-            hClient.updateOperations(true)
-        }
-    });
+export const transferToSavings = async (from: string, key: PrivateKey, to: string, amount: string, memo: string): Promise<TransactionConfirmation> => {
+    const hClient = await makeHiveClient();
 
     const op: Operation = [
         'transfer_to_savings',
@@ -287,15 +272,8 @@ export const transferToSavingsHot = (from: string, to: string, amount: string, m
     });
 }
 
-export const convert = (owner: string, key: PrivateKey, amount: string): Promise<TransactionConfirmation> => {
-    const hClient = new HiveClient(SERVERS);
-    hClient.database.getVersion().then((res: any) => {
-        if (res.blockchain_version !== '0.23.0') {
-            // true: eclipse rebranded rpc nodes
-            // false: default old nodes (not necessary to call for old nodes)
-            hClient.updateOperations(true)
-        }
-    });
+export const convert = async (owner: string, key: PrivateKey, amount: string): Promise<TransactionConfirmation> => {
+    const hClient = await makeHiveClient();
 
     const op: Operation = [
         'convert',
@@ -322,15 +300,8 @@ export const convertHot = (owner: string, amount: string) => {
     });
 }
 
-export const transferFromSavings = (from: string, key: PrivateKey, to: string, amount: string, memo: string): Promise<TransactionConfirmation> => {
-    const hClient = new HiveClient(SERVERS);
-    hClient.database.getVersion().then((res: any) => {
-        if (res.blockchain_version !== '0.23.0') {
-            // true: eclipse rebranded rpc nodes
-            // false: default old nodes (not necessary to call for old nodes)
-            hClient.updateOperations(true)
-        }
-    });
+export const transferFromSavings = async (from: string, key: PrivateKey, to: string, amount: string, memo: string): Promise<TransactionConfirmation> => {
+    const hClient = await makeHiveClient();
 
     const op: Operation = [
         'transfer_from_savings',
@@ -361,15 +332,8 @@ export const transferFromSavingsHot = (from: string, to: string, amount: string,
     });
 }
 
-export const transferToVesting = (from: string, key: PrivateKey, to: string, amount: string): Promise<TransactionConfirmation> => {
-    const hClient = new HiveClient(SERVERS);
-    hClient.database.getVersion().then((res: any) => {
-        if (res.blockchain_version !== '0.23.0') {
-            // true: eclipse rebranded rpc nodes
-            // false: default old nodes (not necessary to call for old nodes)
-            hClient.updateOperations(true)
-        }
-    });
+export const transferToVesting = async (from: string, key: PrivateKey, to: string, amount: string): Promise<TransactionConfirmation> => {
+    const hClient = await makeHiveClient();
 
     const op: Operation = [
         'transfer_to_vesting',
@@ -418,22 +382,6 @@ export const unSubscribe = (username: string, community: string): Promise<Transa
     ]);
 
     return client.customJson([], [username], 'community', json);
-}
-
-
-export const promoteX = (username: string, author: string, permlink: string, duration: number): Promise<TransactionConfirmation> => {
-    const client = new hs.Client({
-        accessToken: getAccessToken(username),
-    });
-
-    const json = JSON.stringify({
-        username,
-        author,
-        permlink,
-        duration
-    });
-
-    return client.customJson([username], [], 'esteem_promote', json);
 }
 
 export const promote = async (key: PrivateKey, user: string, author: string, permlink: string, duration: number): Promise<TransactionConfirmation> => {
