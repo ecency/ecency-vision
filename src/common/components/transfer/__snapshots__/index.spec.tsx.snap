@@ -5,10 +5,10 @@ exports[`(1) Transfer (1) Step 1 1`] = `
   className="transfer-dialog-content"
 >
   <div
-    className="transfer-box "
+    className="transaction-form "
   >
     <div
-      className="transfer-box-header"
+      className="transaction-form-header"
     >
       <div
         className="step-no"
@@ -31,208 +31,204 @@ exports[`(1) Transfer (1) Step 1 1`] = `
       </div>
     </div>
     <form
-      className="transfer-box-body"
+      className="transaction-form-body"
     >
       <div
-        className="transfer-form"
+        className="form-group row"
       >
-        <div
-          className="form-group row"
+        <label
+          className="form-label col-form-label col-sm-2"
         >
-          <label
-            className="form-label col-form-label col-sm-2"
-          >
-            From
-          </label>
-          <div
-            className="col-sm-10"
-          >
-            <div
-              className="input-group"
-            >
-              <div
-                className="input-group-prepend"
-              >
-                <span
-                  className="input-group-text"
-                >
-                  @
-                </span>
-              </div>
-              <input
-                className="form-control"
-                readOnly={true}
-                value="foo"
-              />
-            </div>
-          </div>
-        </div>
+          From
+        </label>
         <div
-          className="form-group row"
-        >
-          <label
-            className="form-label col-form-label col-sm-2"
-          >
-            To
-          </label>
-          <div
-            className="col-sm-10"
-          >
-            <div
-              className="suggestion"
-            >
-              <div
-                className="input-group"
-              >
-                <div
-                  className="input-group-prepend"
-                >
-                  <span
-                    className="input-group-text"
-                  >
-                    @
-                  </span>
-                </div>
-                <input
-                  autoFocus={true}
-                  className="form-control"
-                  onChange={[Function]}
-                  placeholder="username"
-                  type="text"
-                  value=""
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        
-        <div
-          className="form-group row"
-        >
-          <label
-            className="form-label col-form-label col-sm-2"
-          >
-            Amount
-          </label>
-          <div
-            className="d-flex align-items-center col-sm-10"
-          >
-            <div
-              className="input-group"
-            >
-              <div
-                className="input-group-prepend"
-              >
-                <span
-                  className="input-group-text"
-                >
-                  @
-                </span>
-              </div>
-              <input
-                autoFocus={false}
-                className="form-control"
-                onChange={[Function]}
-                placeholder="amount"
-                type="text"
-                value="0.001"
-              />
-            </div>
-            <div
-              className="asset-switch"
-            >
-              <a
-                className="asset selected"
-                onClick={[Function]}
-              >
-                HIVE
-              </a>
-              <a
-                className="asset "
-                onClick={[Function]}
-              >
-                HBD
-              </a>
-              <a
-                className="asset "
-                onClick={[Function]}
-              >
-                POINT
-              </a>
-            </div>
-          </div>
-        </div>
-        
-        <div
-          className="row"
+          className="col-sm-10"
         >
           <div
-            className="col-md-10 offset-md-2"
+            className="input-group"
           >
             <div
-              className="balance"
+              className="input-group-prepend"
             >
-              Balance
-              : 
               <span
-                className="balance-num"
-                onClick={[Function]}
+                className="input-group-text"
               >
-                12.234
-                 
-                HIVE
+                @
               </span>
             </div>
-          </div>
-        </div>
-        <div
-          className="form-group row"
-        >
-          <label
-            className="form-label col-form-label col-sm-2"
-          >
-            Memo
-          </label>
-          <div
-            className="col-sm-10"
-          >
             <input
               className="form-control"
-              onChange={[Function]}
-              placeholder="enter your notes here"
-              value=""
+              readOnly={true}
+              value="foo"
             />
           </div>
         </div>
+      </div>
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          To
+        </label>
         <div
-          className="row"
+          className="col-sm-10"
         >
           <div
-            className="col-md-10 offset-md-2"
+            className="suggestion"
           >
-            <small
-              className="text-muted tr-form-text form-text"
+            <div
+              className="input-group"
             >
-              This memo is public
-            </small>
+              <div
+                className="input-group-prepend"
+              >
+                <span
+                  className="input-group-text"
+                >
+                  @
+                </span>
+              </div>
+              <input
+                autoFocus={true}
+                className="form-control"
+                onChange={[Function]}
+                placeholder="username"
+                type="text"
+                value=""
+              />
+            </div>
           </div>
         </div>
+      </div>
+      
+      
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          Amount
+        </label>
         <div
-          className="form-group row"
+          className="d-flex align-items-center col-sm-10"
         >
           <div
-            className="col-sm-10 offset-sm-2"
+            className="input-group"
           >
-            <button
-              className="btn btn-primary"
-              disabled={true}
-              onClick={[Function]}
-              type="button"
+            <div
+              className="input-group-prepend"
             >
-              Next
-            </button>
+              <span
+                className="input-group-text"
+              >
+                @
+              </span>
+            </div>
+            <input
+              autoFocus={false}
+              className="form-control"
+              onChange={[Function]}
+              placeholder="amount"
+              type="text"
+              value="0.001"
+            />
           </div>
+          <div
+            className="asset-switch"
+          >
+            <a
+              className="asset selected"
+              onClick={[Function]}
+            >
+              HIVE
+            </a>
+            <a
+              className="asset "
+              onClick={[Function]}
+            >
+              HBD
+            </a>
+            <a
+              className="asset "
+              onClick={[Function]}
+            >
+              POINT
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div
+        className="row"
+      >
+        <div
+          className="col-md-10 offset-md-2"
+        >
+          <div
+            className="balance"
+          >
+            Balance
+            : 
+            <span
+              className="balance-num"
+              onClick={[Function]}
+            >
+              12.234
+               
+              HIVE
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          Memo
+        </label>
+        <div
+          className="col-sm-10"
+        >
+          <input
+            className="form-control"
+            onChange={[Function]}
+            placeholder="enter your notes here"
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        className="row"
+      >
+        <div
+          className="col-md-10 offset-md-2"
+        >
+          <small
+            className="text-muted tr-form-text form-text"
+          >
+            This memo is public
+          </small>
+        </div>
+      </div>
+      <div
+        className="form-group row"
+      >
+        <div
+          className="col-sm-10 offset-sm-2"
+        >
+          <button
+            className="btn btn-primary"
+            disabled={true}
+            onClick={[Function]}
+            type="button"
+          >
+            Next
+          </button>
         </div>
       </div>
     </form>
@@ -245,10 +241,10 @@ exports[`(1) Transfer (2) Step 2 1`] = `
   className="transfer-dialog-content"
 >
   <div
-    className="transfer-box"
+    className="transaction-form"
   >
     <div
-      className="transfer-box-header"
+      className="transaction-form-header"
     >
       <div
         className="step-no"
@@ -271,7 +267,7 @@ exports[`(1) Transfer (2) Step 2 1`] = `
       </div>
     </div>
     <div
-      className="transfer-box-body"
+      className="transaction-form-body"
     >
       <div
         className="confirmation"
@@ -360,10 +356,10 @@ exports[`(1) Transfer (3) Step 3 1`] = `
   className="transfer-dialog-content"
 >
   <div
-    className="transfer-box"
+    className="transaction-form"
   >
     <div
-      className="transfer-box-header"
+      className="transaction-form-header"
     >
       <div
         className="step-no"
@@ -386,10 +382,10 @@ exports[`(1) Transfer (3) Step 3 1`] = `
       </div>
     </div>
     <div
-      className="transfer-box-body"
+      className="transaction-form"
     >
       <div
-        className="sign-tr"
+        className="key-or-hot"
       >
         <div
           className="input-group"
@@ -465,10 +461,10 @@ exports[`(1) Transfer (4) Step 4 1`] = `
   className="transfer-dialog-content"
 >
   <div
-    className="transfer-box"
+    className="transaction-form"
   >
     <div
-      className="transfer-box-header"
+      className="transaction-form-header"
     >
       <div
         className="step-no"
@@ -491,7 +487,7 @@ exports[`(1) Transfer (4) Step 4 1`] = `
       </div>
     </div>
     <div
-      className="transfer-box-body"
+      className="transaction-form-body"
     >
       <div
         className="success"
@@ -534,10 +530,10 @@ exports[`(2) Transfer to savings (1) Step 1 1`] = `
   className="transfer-dialog-content"
 >
   <div
-    className="transfer-box "
+    className="transaction-form "
   >
     <div
-      className="transfer-box-header"
+      className="transaction-form-header"
     >
       <div
         className="step-no"
@@ -560,21 +556,52 @@ exports[`(2) Transfer to savings (1) Step 1 1`] = `
       </div>
     </div>
     <form
-      className="transfer-box-body"
+      className="transaction-form-body"
     >
       <div
-        className="transfer-form"
+        className="form-group row"
       >
-        <div
-          className="form-group row"
+        <label
+          className="form-label col-form-label col-sm-2"
         >
-          <label
-            className="form-label col-form-label col-sm-2"
-          >
-            From
-          </label>
+          From
+        </label>
+        <div
+          className="col-sm-10"
+        >
           <div
-            className="col-sm-10"
+            className="input-group"
+          >
+            <div
+              className="input-group-prepend"
+            >
+              <span
+                className="input-group-text"
+              >
+                @
+              </span>
+            </div>
+            <input
+              className="form-control"
+              readOnly={true}
+              value="foo"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          To
+        </label>
+        <div
+          className="col-sm-10"
+        >
+          <div
+            className="suggestion"
           >
             <div
               className="input-group"
@@ -589,179 +616,144 @@ exports[`(2) Transfer to savings (1) Step 1 1`] = `
                 </span>
               </div>
               <input
+                autoFocus={false}
                 className="form-control"
-                readOnly={true}
+                onChange={[Function]}
+                placeholder="username"
+                type="text"
                 value="foo"
               />
             </div>
           </div>
         </div>
-        <div
-          className="form-group row"
+      </div>
+      
+      
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
         >
-          <label
-            className="form-label col-form-label col-sm-2"
-          >
-            To
-          </label>
-          <div
-            className="col-sm-10"
-          >
-            <div
-              className="suggestion"
-            >
-              <div
-                className="input-group"
-              >
-                <div
-                  className="input-group-prepend"
-                >
-                  <span
-                    className="input-group-text"
-                  >
-                    @
-                  </span>
-                </div>
-                <input
-                  autoFocus={false}
-                  className="form-control"
-                  onChange={[Function]}
-                  placeholder="username"
-                  type="text"
-                  value="foo"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        
+          Amount
+        </label>
         <div
-          className="form-group row"
-        >
-          <label
-            className="form-label col-form-label col-sm-2"
-          >
-            Amount
-          </label>
-          <div
-            className="d-flex align-items-center col-sm-10"
-          >
-            <div
-              className="input-group"
-            >
-              <div
-                className="input-group-prepend"
-              >
-                <span
-                  className="input-group-text"
-                >
-                  @
-                </span>
-              </div>
-              <input
-                autoFocus={true}
-                className="form-control"
-                onChange={[Function]}
-                placeholder="amount"
-                type="text"
-                value="0.001"
-              />
-            </div>
-            <div
-              className="asset-switch"
-            >
-              <a
-                className="asset "
-                onClick={[Function]}
-              >
-                HIVE
-              </a>
-              <a
-                className="asset selected"
-                onClick={[Function]}
-              >
-                HBD
-              </a>
-              <a
-                className="asset "
-                onClick={[Function]}
-              >
-                POINT
-              </a>
-            </div>
-          </div>
-        </div>
-        
-        <div
-          className="row"
+          className="d-flex align-items-center col-sm-10"
         >
           <div
-            className="col-md-10 offset-md-2"
+            className="input-group"
           >
             <div
-              className="balance"
+              className="input-group-prepend"
             >
-              Balance
-              : 
               <span
-                className="balance-num"
-                onClick={[Function]}
+                className="input-group-text"
               >
-                4321.212
-                 
-                HBD
+                @
               </span>
             </div>
-          </div>
-        </div>
-        <div
-          className="form-group row"
-        >
-          <label
-            className="form-label col-form-label col-sm-2"
-          >
-            Memo
-          </label>
-          <div
-            className="col-sm-10"
-          >
             <input
+              autoFocus={true}
               className="form-control"
               onChange={[Function]}
-              placeholder="enter your notes here"
-              value=""
+              placeholder="amount"
+              type="text"
+              value="0.001"
             />
           </div>
-        </div>
-        <div
-          className="row"
-        >
           <div
-            className="col-md-10 offset-md-2"
+            className="asset-switch"
           >
-            <small
-              className="text-muted tr-form-text form-text"
-            >
-              This memo is public
-            </small>
-          </div>
-        </div>
-        <div
-          className="form-group row"
-        >
-          <div
-            className="col-sm-10 offset-sm-2"
-          >
-            <button
-              className="btn btn-primary"
-              disabled={false}
+            <a
+              className="asset "
               onClick={[Function]}
-              type="button"
             >
-              Next
-            </button>
+              HIVE
+            </a>
+            <a
+              className="asset selected"
+              onClick={[Function]}
+            >
+              HBD
+            </a>
+            <a
+              className="asset "
+              onClick={[Function]}
+            >
+              POINT
+            </a>
           </div>
+        </div>
+      </div>
+      
+      <div
+        className="row"
+      >
+        <div
+          className="col-md-10 offset-md-2"
+        >
+          <div
+            className="balance"
+          >
+            Balance
+            : 
+            <span
+              className="balance-num"
+              onClick={[Function]}
+            >
+              4321.212
+               
+              HBD
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          Memo
+        </label>
+        <div
+          className="col-sm-10"
+        >
+          <input
+            className="form-control"
+            onChange={[Function]}
+            placeholder="enter your notes here"
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        className="row"
+      >
+        <div
+          className="col-md-10 offset-md-2"
+        >
+          <small
+            className="text-muted tr-form-text form-text"
+          >
+            This memo is public
+          </small>
+        </div>
+      </div>
+      <div
+        className="form-group row"
+      >
+        <div
+          className="col-sm-10 offset-sm-2"
+        >
+          <button
+            className="btn btn-primary"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            Next
+          </button>
         </div>
       </div>
     </form>
@@ -774,10 +766,10 @@ exports[`(3) Convert (1) Step 1 1`] = `
   className="transfer-dialog-content"
 >
   <div
-    className="transfer-box "
+    className="transaction-form "
   >
     <div
-      className="transfer-box-header"
+      className="transaction-form-header"
     >
       <div
         className="step-no"
@@ -800,136 +792,132 @@ exports[`(3) Convert (1) Step 1 1`] = `
       </div>
     </div>
     <form
-      className="transfer-box-body"
+      className="transaction-form-body"
     >
       <div
-        className="transfer-form"
+        className="form-group row"
       >
-        <div
-          className="form-group row"
+        <label
+          className="form-label col-form-label col-sm-2"
         >
-          <label
-            className="form-label col-form-label col-sm-2"
-          >
-            From
-          </label>
-          <div
-            className="col-sm-10"
-          >
-            <div
-              className="input-group"
-            >
-              <div
-                className="input-group-prepend"
-              >
-                <span
-                  className="input-group-text"
-                >
-                  @
-                </span>
-              </div>
-              <input
-                className="form-control"
-                readOnly={true}
-                value="foo"
-              />
-            </div>
-          </div>
-        </div>
+          From
+        </label>
         <div
-          className="form-group row"
-        >
-          <label
-            className="form-label col-form-label col-sm-2"
-          >
-            Amount
-          </label>
-          <div
-            className="d-flex align-items-center col-sm-10"
-          >
-            <div
-              className="input-group"
-            >
-              <div
-                className="input-group-prepend"
-              >
-                <span
-                  className="input-group-text"
-                >
-                  @
-                </span>
-              </div>
-              <input
-                autoFocus={true}
-                className="form-control"
-                onChange={[Function]}
-                placeholder="amount"
-                type="text"
-                value="0.001"
-              />
-            </div>
-            <div
-              className="asset-switch"
-            >
-              <a
-                className="asset "
-                onClick={[Function]}
-              >
-                HIVE
-              </a>
-              <a
-                className="asset selected"
-                onClick={[Function]}
-              >
-                HBD
-              </a>
-              <a
-                className="asset "
-                onClick={[Function]}
-              >
-                POINT
-              </a>
-            </div>
-          </div>
-        </div>
-        
-        <div
-          className="row"
+          className="col-sm-10"
         >
           <div
-            className="col-md-10 offset-md-2"
+            className="input-group"
           >
             <div
-              className="balance"
+              className="input-group-prepend"
             >
-              Balance
-              : 
               <span
-                className="balance-num"
-                onClick={[Function]}
+                className="input-group-text"
               >
-                4321.212
-                 
-                HBD
+                @
               </span>
             </div>
+            <input
+              className="form-control"
+              readOnly={true}
+              value="foo"
+            />
           </div>
         </div>
+      </div>
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          Amount
+        </label>
         <div
-          className="form-group row"
+          className="d-flex align-items-center col-sm-10"
         >
           <div
-            className="col-sm-10 offset-sm-2"
+            className="input-group"
           >
-            <button
-              className="btn btn-primary"
-              disabled={false}
-              onClick={[Function]}
-              type="button"
+            <div
+              className="input-group-prepend"
             >
-              Next
-            </button>
+              <span
+                className="input-group-text"
+              >
+                @
+              </span>
+            </div>
+            <input
+              autoFocus={true}
+              className="form-control"
+              onChange={[Function]}
+              placeholder="amount"
+              type="text"
+              value="0.001"
+            />
           </div>
+          <div
+            className="asset-switch"
+          >
+            <a
+              className="asset "
+              onClick={[Function]}
+            >
+              HIVE
+            </a>
+            <a
+              className="asset selected"
+              onClick={[Function]}
+            >
+              HBD
+            </a>
+            <a
+              className="asset "
+              onClick={[Function]}
+            >
+              POINT
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div
+        className="row"
+      >
+        <div
+          className="col-md-10 offset-md-2"
+        >
+          <div
+            className="balance"
+          >
+            Balance
+            : 
+            <span
+              className="balance-num"
+              onClick={[Function]}
+            >
+              4321.212
+               
+              HBD
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="form-group row"
+      >
+        <div
+          className="col-sm-10 offset-sm-2"
+        >
+          <button
+            className="btn btn-primary"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            Next
+          </button>
         </div>
       </div>
     </form>
@@ -942,10 +930,10 @@ exports[`(4) Withdraw saving (1) Step 1 1`] = `
   className="transfer-dialog-content"
 >
   <div
-    className="transfer-box "
+    className="transaction-form "
   >
     <div
-      className="transfer-box-header"
+      className="transaction-form-header"
     >
       <div
         className="step-no"
@@ -968,21 +956,52 @@ exports[`(4) Withdraw saving (1) Step 1 1`] = `
       </div>
     </div>
     <form
-      className="transfer-box-body"
+      className="transaction-form-body"
     >
       <div
-        className="transfer-form"
+        className="form-group row"
       >
-        <div
-          className="form-group row"
+        <label
+          className="form-label col-form-label col-sm-2"
         >
-          <label
-            className="form-label col-form-label col-sm-2"
-          >
-            From
-          </label>
+          From
+        </label>
+        <div
+          className="col-sm-10"
+        >
           <div
-            className="col-sm-10"
+            className="input-group"
+          >
+            <div
+              className="input-group-prepend"
+            >
+              <span
+                className="input-group-text"
+              >
+                @
+              </span>
+            </div>
+            <input
+              className="form-control"
+              readOnly={true}
+              value="foo"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          To
+        </label>
+        <div
+          className="col-sm-10"
+        >
+          <div
+            className="suggestion"
           >
             <div
               className="input-group"
@@ -997,179 +1016,144 @@ exports[`(4) Withdraw saving (1) Step 1 1`] = `
                 </span>
               </div>
               <input
+                autoFocus={false}
                 className="form-control"
-                readOnly={true}
+                onChange={[Function]}
+                placeholder="username"
+                type="text"
                 value="foo"
               />
             </div>
           </div>
         </div>
-        <div
-          className="form-group row"
+      </div>
+      
+      
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
         >
-          <label
-            className="form-label col-form-label col-sm-2"
-          >
-            To
-          </label>
-          <div
-            className="col-sm-10"
-          >
-            <div
-              className="suggestion"
-            >
-              <div
-                className="input-group"
-              >
-                <div
-                  className="input-group-prepend"
-                >
-                  <span
-                    className="input-group-text"
-                  >
-                    @
-                  </span>
-                </div>
-                <input
-                  autoFocus={false}
-                  className="form-control"
-                  onChange={[Function]}
-                  placeholder="username"
-                  type="text"
-                  value="foo"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        
+          Amount
+        </label>
         <div
-          className="form-group row"
-        >
-          <label
-            className="form-label col-form-label col-sm-2"
-          >
-            Amount
-          </label>
-          <div
-            className="d-flex align-items-center col-sm-10"
-          >
-            <div
-              className="input-group"
-            >
-              <div
-                className="input-group-prepend"
-              >
-                <span
-                  className="input-group-text"
-                >
-                  @
-                </span>
-              </div>
-              <input
-                autoFocus={true}
-                className="form-control"
-                onChange={[Function]}
-                placeholder="amount"
-                type="text"
-                value="0.001"
-              />
-            </div>
-            <div
-              className="asset-switch"
-            >
-              <a
-                className="asset selected"
-                onClick={[Function]}
-              >
-                HIVE
-              </a>
-              <a
-                className="asset "
-                onClick={[Function]}
-              >
-                HBD
-              </a>
-              <a
-                className="asset "
-                onClick={[Function]}
-              >
-                POINT
-              </a>
-            </div>
-          </div>
-        </div>
-        
-        <div
-          className="row"
+          className="d-flex align-items-center col-sm-10"
         >
           <div
-            className="col-md-10 offset-md-2"
+            className="input-group"
           >
             <div
-              className="balance"
+              className="input-group-prepend"
             >
-              Balance
-              : 
               <span
-                className="balance-num"
-                onClick={[Function]}
+                className="input-group-text"
               >
-                2123.000
-                 
-                HIVE
+                @
               </span>
             </div>
-          </div>
-        </div>
-        <div
-          className="form-group row"
-        >
-          <label
-            className="form-label col-form-label col-sm-2"
-          >
-            Memo
-          </label>
-          <div
-            className="col-sm-10"
-          >
             <input
+              autoFocus={true}
               className="form-control"
               onChange={[Function]}
-              placeholder="enter your notes here"
-              value=""
+              placeholder="amount"
+              type="text"
+              value="0.001"
             />
           </div>
-        </div>
-        <div
-          className="row"
-        >
           <div
-            className="col-md-10 offset-md-2"
+            className="asset-switch"
           >
-            <small
-              className="text-muted tr-form-text form-text"
-            >
-              This memo is public
-            </small>
-          </div>
-        </div>
-        <div
-          className="form-group row"
-        >
-          <div
-            className="col-sm-10 offset-sm-2"
-          >
-            <button
-              className="btn btn-primary"
-              disabled={false}
+            <a
+              className="asset selected"
               onClick={[Function]}
-              type="button"
             >
-              Next
-            </button>
+              HIVE
+            </a>
+            <a
+              className="asset "
+              onClick={[Function]}
+            >
+              HBD
+            </a>
+            <a
+              className="asset "
+              onClick={[Function]}
+            >
+              POINT
+            </a>
           </div>
+        </div>
+      </div>
+      
+      <div
+        className="row"
+      >
+        <div
+          className="col-md-10 offset-md-2"
+        >
+          <div
+            className="balance"
+          >
+            Balance
+            : 
+            <span
+              className="balance-num"
+              onClick={[Function]}
+            >
+              2123.000
+               
+              HIVE
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          Memo
+        </label>
+        <div
+          className="col-sm-10"
+        >
+          <input
+            className="form-control"
+            onChange={[Function]}
+            placeholder="enter your notes here"
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        className="row"
+      >
+        <div
+          className="col-md-10 offset-md-2"
+        >
+          <small
+            className="text-muted tr-form-text form-text"
+          >
+            This memo is public
+          </small>
+        </div>
+      </div>
+      <div
+        className="form-group row"
+      >
+        <div
+          className="col-sm-10 offset-sm-2"
+        >
+          <button
+            className="btn btn-primary"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            Next
+          </button>
         </div>
       </div>
     </form>
@@ -1182,10 +1166,10 @@ exports[`(5) Power up (1) Step 1 1`] = `
   className="transfer-dialog-content"
 >
   <div
-    className="transfer-box "
+    className="transaction-form "
   >
     <div
-      className="transfer-box-header"
+      className="transaction-form-header"
     >
       <div
         className="step-no"
@@ -1208,21 +1192,52 @@ exports[`(5) Power up (1) Step 1 1`] = `
       </div>
     </div>
     <form
-      className="transfer-box-body"
+      className="transaction-form-body"
     >
       <div
-        className="transfer-form"
+        className="form-group row"
       >
-        <div
-          className="form-group row"
+        <label
+          className="form-label col-form-label col-sm-2"
         >
-          <label
-            className="form-label col-form-label col-sm-2"
-          >
-            From
-          </label>
+          From
+        </label>
+        <div
+          className="col-sm-10"
+        >
           <div
-            className="col-sm-10"
+            className="input-group"
+          >
+            <div
+              className="input-group-prepend"
+            >
+              <span
+                className="input-group-text"
+              >
+                @
+              </span>
+            </div>
+            <input
+              className="form-control"
+              readOnly={true}
+              value="foo"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          To
+        </label>
+        <div
+          className="col-sm-10"
+        >
+          <div
+            className="suggestion"
           >
             <div
               className="input-group"
@@ -1237,125 +1252,90 @@ exports[`(5) Power up (1) Step 1 1`] = `
                 </span>
               </div>
               <input
+                autoFocus={false}
                 className="form-control"
-                readOnly={true}
+                onChange={[Function]}
+                placeholder="username"
+                type="text"
                 value="foo"
               />
             </div>
           </div>
         </div>
-        <div
-          className="form-group row"
+      </div>
+      
+      
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
         >
-          <label
-            className="form-label col-form-label col-sm-2"
-          >
-            To
-          </label>
-          <div
-            className="col-sm-10"
-          >
-            <div
-              className="suggestion"
-            >
-              <div
-                className="input-group"
-              >
-                <div
-                  className="input-group-prepend"
-                >
-                  <span
-                    className="input-group-text"
-                  >
-                    @
-                  </span>
-                </div>
-                <input
-                  autoFocus={false}
-                  className="form-control"
-                  onChange={[Function]}
-                  placeholder="username"
-                  type="text"
-                  value="foo"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        
+          Amount
+        </label>
         <div
-          className="form-group row"
-        >
-          <label
-            className="form-label col-form-label col-sm-2"
-          >
-            Amount
-          </label>
-          <div
-            className="d-flex align-items-center col-sm-10"
-          >
-            <div
-              className="input-group"
-            >
-              <div
-                className="input-group-prepend"
-              >
-                <span
-                  className="input-group-text"
-                >
-                  @
-                </span>
-              </div>
-              <input
-                autoFocus={true}
-                className="form-control"
-                onChange={[Function]}
-                placeholder="amount"
-                type="text"
-                value="0.001"
-              />
-            </div>
-          </div>
-        </div>
-        
-        <div
-          className="row"
+          className="d-flex align-items-center col-sm-10"
         >
           <div
-            className="col-md-10 offset-md-2"
+            className="input-group"
           >
             <div
-              className="balance"
+              className="input-group-prepend"
             >
-              Balance
-              : 
               <span
-                className="balance-num"
-                onClick={[Function]}
+                className="input-group-text"
               >
-                12.234
-                 
-                HIVE
+                @
               </span>
             </div>
+            <input
+              autoFocus={true}
+              className="form-control"
+              onChange={[Function]}
+              placeholder="amount"
+              type="text"
+              value="0.001"
+            />
           </div>
         </div>
+      </div>
+      
+      <div
+        className="row"
+      >
         <div
-          className="form-group row"
+          className="col-md-10 offset-md-2"
         >
           <div
-            className="col-sm-10 offset-sm-2"
+            className="balance"
           >
-            <button
-              className="btn btn-primary"
-              disabled={false}
+            Balance
+            : 
+            <span
+              className="balance-num"
               onClick={[Function]}
-              type="button"
             >
-              Next
-            </button>
+              12.234
+               
+              HIVE
+            </span>
           </div>
+        </div>
+      </div>
+      <div
+        className="form-group row"
+      >
+        <div
+          className="col-sm-10 offset-sm-2"
+        >
+          <button
+            className="btn btn-primary"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            Next
+          </button>
         </div>
       </div>
     </form>

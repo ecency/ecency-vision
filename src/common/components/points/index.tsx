@@ -14,6 +14,7 @@ import DropDown from "../dropdown";
 import Transfer from "../transfer";
 import Tooltip from "../tooltip";
 import Purchase from "../purchase";
+import Promote from "../promote";
 import {success, error} from "../feedback";
 
 import {_t} from "../../i18n";
@@ -139,6 +140,7 @@ interface Props {
 interface State {
     claiming: boolean,
     purchase: boolean,
+    promote: boolean,
     transfer: boolean,
 }
 
@@ -146,6 +148,7 @@ export class UserPoints extends Component<Props, State> {
     state: State = {
         claiming: false,
         purchase: false,
+        promote: false,
         transfer: false
     }
 
@@ -186,13 +189,18 @@ export class UserPoints extends Component<Props, State> {
         this.setState({purchase: !purchase});
     }
 
+    togglePromote = () => {
+        const {promote} = this.state;
+        this.setState({promote: !promote});
+    }
+
     toggleTransfer = () => {
         const {transfer} = this.state;
         this.setState({transfer: !transfer});
     }
 
     render() {
-        const {claiming, transfer, purchase} = this.state;
+        const {claiming, transfer, purchase, promote} = this.state;
         const {activeUser, account, points} = this.props;
 
         const isMyPage = activeUser && activeUser.username === account.name;
@@ -203,6 +211,9 @@ export class UserPoints extends Component<Props, State> {
             items: [{
                 label: _t('points.transfer'),
                 onClick: this.toggleTransfer
+            }, {
+                label: _t('points.promote'),
+                onClick: this.togglePromote
             }]
         };
 
@@ -339,11 +350,11 @@ export class UserPoints extends Component<Props, State> {
                     mode="transfer"
                     asset="POINT"
                     activeUser={this.props.activeUser!}
-                    pointAmount={points.points}
                     onHide={this.toggleTransfer}/>)
                 }
 
                 {purchase && (<Purchase {...this.props} activeUser={this.props.activeUser!} onHide={this.togglePurchase}/>)}
+                {promote && (<Promote {...this.props} activeUser={this.props.activeUser!} onHide={this.togglePromote}/>)}
             </div>
         );
     }
