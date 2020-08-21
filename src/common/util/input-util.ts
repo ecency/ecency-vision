@@ -15,10 +15,18 @@ export const insertOrReplace = (txtEl: HTMLInputElement, before: string, after: 
 
     txtEl.focus();
 
-    document.execCommand("insertText", false, insertText);
+    if (typeof txtEl.setRangeText === "function") {
+        // Firefox
+        txtEl.setRangeText(insertText);
+        txtEl.setSelectionRange(newStartPos, newEndPos);
+    } else {
+        // Webkit
+        document.execCommand("insertText", false, insertText);
+        txtEl.selectionStart = newStartPos;
+        txtEl.selectionEnd = newEndPos;
+    }
 
-    txtEl.selectionStart = newStartPos;
-    txtEl.selectionEnd = newEndPos;
+    txtEl.dispatchEvent(new Event("change", {bubbles: true}));
 };
 
 export const replace = (txtEl: HTMLInputElement, find: string, rep: string) => {
@@ -28,8 +36,24 @@ export const replace = (txtEl: HTMLInputElement, find: string, rep: string) => {
     }
     const endPos = startPos + find.length;
 
-    txtEl.selectionStart = startPos;
-    txtEl.selectionEnd = endPos;
+    if (typeof txtEl.setRangeText === "function") {
+        // Firefox
+        txtEl.setSelectionRange(startPos, endPos);
+        txtEl.setRangeText(rep);
 
-    document.execCommand("insertText", false, rep);
+        const newPos = txtEl.value.length;
+        txtEl.setSelectionRange(newPos, newPos);
+    } else {
+        // Webkit
+        txtEl.selectionStart = startPos;
+        txtEl.selectionEnd = endPos;
+
+        document.execCommand("insertText", false, rep);
+
+        const newPos = txtEl.value.length;
+        txtEl.selectionStart = newPos;
+        txtEl.selectionEnd = newPos;
+    }
+
+    txtEl.dispatchEvent(new Event("change", {bubbles: true}));
 }
