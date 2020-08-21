@@ -576,7 +576,7 @@ class FaqPage extends Component<PageProps> {
                 <div className="app-content static-page faq-page">
                     <div className="static-content">
                         <h1 className="page-title">{_t('static.faq.page-title')}</h1>
-                        <img src={this.props.global.canUseWebp?faqWebp:faq} loading="lazy"/>
+                        <img src={this.props.global.canUseWebp?faqWebp:faq}/>
                         <h3>{_t('static.faq.page-sub-title')}</h3>
                         <ul className="table-contents">
                             {faqKeys.map(x => {
