@@ -225,6 +225,7 @@
     position: relative;
 
     @media (min-width: $md-break) {
+      width: 480px;
       height: 360px;
     }
 
