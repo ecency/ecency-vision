@@ -284,7 +284,7 @@ class SubmitPage extends Component<Props, State> {
         }
 
         const {title, tags, body} = localDraft;
-        this.stateSet({title, tags, body});
+        this.stateSet({title, tags, body}, this.updatePreview);
     };
 
     saveLocalDraft = (): void => {
