@@ -17,13 +17,15 @@
     align-items: center;
 
     @include themify(day) {
-      background: $white;
-      border: 1px solid $white-three;
+      background: $dark-two;
+      border: 1px solid $dark;
+      color: $white-four;
     }
 
     @include themify(night) {
-      background: $dark;
-      border: 1px solid darken($dark, 6);
+      background: $white-four;
+      border: 1px solid $warm-grey;
+      color: $dark
     }
 
     svg {

@@ -1,13 +1,7 @@
 .profile-cover {
-  display: block;
   height: 134px;
   position: relative;
   width: 100%;
-  display: none;
-
-  @media (min-width: $md-break) {
-    display: block;
-  }
 
   .cover-image {
     background-position: 50% 50%;

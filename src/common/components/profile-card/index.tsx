@@ -2,10 +2,6 @@ import React, {Component} from "react";
 
 import {History} from "history";
 
-import {Button} from "react-bootstrap";
-
-import DownloadTrigger from "../download-trigger";
-
 import moment from "moment";
 
 import {Global} from "../../store/global/types";
@@ -77,12 +73,6 @@ export class ProfileCard extends Component<Props, State> {
 
         return (
             <div className="profile-card">
-                <div className="follow-controls">
-                    <DownloadTrigger>
-                        <Button variant="primary">{accountPlusSvg}</Button>
-                    </DownloadTrigger>
-                </div>
-
                 <div className="profile-avatar">
                     {UserAvatar({...this.props, username: account.name, size: "xLarge"})}
                     {account.__loaded && <div className="reputation">{accountReputation(account.reputation!)}</div>}
