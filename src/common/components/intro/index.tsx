@@ -28,6 +28,6 @@ export default (props: Props) => {
         <div className="cloud-2"/>
         <div className="cloud-3"/>
 
-        <img alt="Friends" className="friends" src={props.global.canUseWebp?friendsWebp:friends}/>
+        <img alt="Friends" className="friends" loading="lazy" src={props.global.canUseWebp?friendsWebp:friends}/>
     </div>;
 };
