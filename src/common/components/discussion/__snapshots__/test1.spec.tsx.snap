@@ -122,7 +122,7 @@ exports[`(1) Full render 1`] = `
             className="item-body markdown-view mini-markdown"
             dangerouslySetInnerHTML={
               Object {
-                "__html": "<p>Prizes have consistently been very effective from <a class=\\"markdown-author-link\\" href=\\"/@esteemapp\\">@esteemapp</a> nicely done!</p>",
+                "__html": "<p><span>Prizes have consistently been very effective from <a class=\\"markdown-author-link\\" href=\\"/@esteemapp\\">@esteemapp</a> nicely done!</span></p>",
               }
             }
           />
@@ -249,7 +249,7 @@ exports[`(1) Full render 1`] = `
             className="item-body markdown-view mini-markdown"
             dangerouslySetInnerHTML={
               Object {
-                "__html": "<p><a class=\\"markdown-author-link\\" href=\\"/@ardpien\\">@ardpien</a> congrats on being one of the winners</p>",
+                "__html": "<p><span><a class=\\"markdown-author-link\\" href=\\"/@ardpien\\">@ardpien</a> congrats on being one of the winners</span></p>",
               }
             }
           />
@@ -378,7 +378,7 @@ exports[`(1) Full render 1`] = `
                 className="item-body markdown-view mini-markdown"
                 dangerouslySetInnerHTML={
                   Object {
-                    "__html": "<p>Thank you, Miss. <a class=\\"markdown-author-link\\" href=\\"/@birttandjosie\\">@birttandjosie</a>.</p>",
+                    "__html": "<p><span>Thank you, Miss. <a class=\\"markdown-author-link\\" href=\\"/@birttandjosie\\">@birttandjosie</a>.</span></p>",
                   }
                 }
               />
@@ -507,7 +507,7 @@ exports[`(1) Full render 1`] = `
             className="item-body markdown-view mini-markdown"
             dangerouslySetInnerHTML={
               Object {
-                "__html": "<p>😃 I am mentioned here. That's great! All thanks to ESTEEM for creating an awesome Discord server for us to talk in there and participate in activities. Thank You ESTEEM team :) and <a class=\\"markdown-author-link\\" href=\\"/@good-karma\\">@good-karma</a>.</p>",
+                "__html": "<p><span>😃 I am mentioned here. That's great! All thanks to ESTEEM for creating an awesome Discord server for us to talk in there and participate in activities. Thank You ESTEEM team :) and <a class=\\"markdown-author-link\\" href=\\"/@good-karma\\">@good-karma</a>.</span></p>",
               }
             }
           />
@@ -635,7 +635,7 @@ exports[`(1) Full render 1`] = `
             className="item-body markdown-view mini-markdown"
             dangerouslySetInnerHTML={
               Object {
-                "__html": "<p><a class=\\"markdown-author-link\\" href=\\"/@esteemapp\\">@esteemapp</a><br />
+                "__html": "<p><span><a class=\\"markdown-author-link\\" href=\\"/@esteemapp\\">@esteemapp</a></span><br />
 Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"markdown-post-link\\">click here</a></p>",
               }
             }

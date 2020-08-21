@@ -46,6 +46,7 @@ exports[`(3) Should render entries 1`] = `
         >
           <img
             alt="Awesome Hive"
+            loading="lazy"
             onError={[Function]}
             src="https://images.ecency.com/p/HNWT6DgoBc1692QWn5trsGLxi44TrGuNZJMEdibBBbUKuho3EaW43JV4QzaQ258PEGNV2u43KAhU8r3Vjno4cBP8JeTFkbS2SCMjZZPprKzfMSdteRxSZxuPku4?format=match&mode=fit&width=600&height=500"
           />
@@ -92,6 +93,7 @@ exports[`(3) Should render entries 1`] = `
         >
           <img
             alt="Awesome Hive"
+            loading="lazy"
             onError={[Function]}
             src="https://images.ecency.com/p/HNWT6DgoBc1692QWn5trsGLxi44TrGuNZJMEdibBBbUKuho3EaW43JV4QzaQ258PEGNV2u43KAhU8r3Vjno4cBP8JeTFkbS2SCMjZZPprKzfMSdteRxSZxuPku4?format=match&mode=fit&width=600&height=500"
           />
@@ -138,6 +140,7 @@ exports[`(3) Should render entries 1`] = `
         >
           <img
             alt="Awesome Hive"
+            loading="lazy"
             onError={[Function]}
             src="https://images.ecency.com/p/HNWT6DgoBc1692QWn5trsGLxi44TrGuNZJMEdibBBbUKuho3EaW43JV4QzaQ258PEGNV2u43KAhU8r3Vjno4cBP8JeTFkbS2SCMjZZPprKzfMSdteRxSZxuPku4?format=match&mode=fit&width=600&height=500"
           />
