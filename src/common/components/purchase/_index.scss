@@ -43,21 +43,6 @@
       input[type="range"] {
         width: 100%;
       }
-
-      .slider-hint {
-        color: $silver;
-        font-size: 14px;
-        margin-top: 6px;
-        text-align: center;
-
-        @include themify(day) {
-          color: darken($silver, 10);
-        }
-
-        @include themify(night) {
-          color: $metallic-blue;
-        }
-      }
     }
 
     .point-amount {

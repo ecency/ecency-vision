@@ -68,11 +68,11 @@ exports[`(1) Purchase 1`] = `
       type="range"
       value={250}
     />
-    <div
-      className="slider-hint"
+    <small
+      className="text-muted form-text"
     >
       Drag the slider to adjust the amount.
-    </div>
+    </small>
   </div>
   <div
     className="point-amount"

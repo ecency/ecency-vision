@@ -4,6 +4,8 @@ import {PrivateKey} from "@hiveio/dhive";
 
 import numeral from "numeral";
 
+import isEqual from "react-fast-compare";
+
 import {Modal, Form, Row, Col, InputGroup, FormControl, Button} from "react-bootstrap";
 
 import {Global} from "../../store/global/types";
@@ -37,8 +39,6 @@ import {
     convertHot,
     formatError
 } from "../../api/operations";
-
-import {getPoints} from "../../api/private";
 
 import {_t} from "../../i18n";
 
@@ -149,6 +149,15 @@ export class Transfer extends Component<Props, State> {
 
     componentDidMount() {
         this.checkAmount();
+
+        const {updateActiveUser} = this.props;
+        updateActiveUser();
+    }
+
+    componentDidUpdate(prevProps: Readonly<Props>) {
+        if (!isEqual(this.props.activeUser, prevProps.activeUser)) {
+            this.checkAmount();
+        }
     }
 
     componentWillUnmount() {
