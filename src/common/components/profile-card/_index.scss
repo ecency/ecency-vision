@@ -5,15 +5,6 @@
     padding-top: 16px;
   }
 
-  .follow-controls {
-    position: absolute;
-    right: 0;
-    top: 0;
-    @media (min-width: $md-break) {
-      display: none;
-    }
-  }
-
   .profile-avatar {
     width: 128px;
     height: 128px;
