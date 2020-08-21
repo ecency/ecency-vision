@@ -21,7 +21,7 @@
   }
 
   @media (min-width: $xl-break) {
-    margin-left: 22px;
+    margin-left: 18px;
   }
 
   @include themify(day) {
@@ -33,6 +33,7 @@
   }
 
   .user-wallet,
+  .user-points,
   .notifications,
   .points {
     color: $white;
@@ -45,7 +46,8 @@
     }
   }
 
-  .user-wallet {
+  .user-wallet,
+  .user-points {
     position: relative;
 
     .reward-badge {
@@ -56,6 +58,12 @@
       width: 5px;
       right: -1px;
       top: 0;
+    }
+  }
+
+  .user-points{
+    svg{
+      margin-top: -2px;
     }
   }
 

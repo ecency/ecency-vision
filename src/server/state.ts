@@ -16,6 +16,7 @@ import {initialState as uiInitialState} from "../common/store/ui";
 import {initialState as subscriptionsInitialState} from "../common/store/subscriptions";
 import {initialState as notificationsInitialState} from "../common/store/notifications";
 import {initialState as entriesInitialState} from "../common/store/entries";
+import {initialState as pointsInitialState} from "../common/store/points";
 
 import {getSearchIndexCount} from "./helper";
 
@@ -39,6 +40,7 @@ export const makePreloadedState = async (req: express.Request): Promise<AppState
         ui: uiInitialState,
         subscriptions: subscriptionsInitialState,
         notifications: notificationsInitialState,
-        entries: entriesInitialState
+        entries: entriesInitialState,
+        points: pointsInitialState
     }
 }

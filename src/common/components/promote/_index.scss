@@ -1,0 +1,17 @@
+.promote-dialog {
+  .promote-dialog-content {
+    .balance-input {
+      color: $dark-sky-blue;
+      font-weight: 500;
+      cursor: default;
+
+      &.is-invalid {
+        color: $danger;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}

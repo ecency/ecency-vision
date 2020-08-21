@@ -22,6 +22,7 @@ import ProfileCard from "../components/profile-card";
 import ProfileMenu from "../components/profile-menu";
 import ProfileCover from "../components/profile-cover";
 import Wallet from "../components/wallet";
+import Points from "../components/points";
 
 import {getAccountFull} from "../api/hive";
 
@@ -46,7 +47,7 @@ interface State {
 
 class ProfilePage extends Component<Props, State> {
     state: State = {
-        loading: false,
+        loading: false
     };
 
     _mounted: boolean = true;
@@ -54,31 +55,37 @@ class ProfilePage extends Component<Props, State> {
     async componentDidMount() {
         await this.ensureAccount();
 
-        const {match, global, fetchEntries, fetchTransactions} = this.props;
+        const {match, global, fetchEntries, fetchTransactions, fetchPoints} = this.props;
 
-        if (match.params.section !== "wallet") {
+        if (!["wallet", "points"].includes(match.params.section || '')) {
             // fetch posts
             fetchEntries(global.filter, global.tag, false);
         }
 
         // fetch wallet transactions
         fetchTransactions(match.params.username);
+
+        // fetch points
+        fetchPoints(match.params.username);
     }
 
     componentDidUpdate(prevProps: Readonly<Props>): void {
-        const {match, global, fetchEntries, fetchTransactions, resetTransactions} = this.props;
+        const {match, global, fetchEntries, fetchTransactions, resetTransactions, fetchPoints, resetPoints} = this.props;
         const {global: pGlobal} = prevProps;
 
-        // username changed. re-fetch wallet transactions
+        // username changed. re-fetch wallet transactions and points
         if (match.params.username !== prevProps.match.params.username) {
             this.ensureAccount().then(() => {
                 resetTransactions();
                 fetchTransactions(match.params.username);
+
+                resetPoints();
+                fetchPoints(match.params.username);
             });
         }
 
-        // Wallet is not a correct filter to fetch posts
-        if (match.params.section === "wallet") {
+        // Wallet and points are not a correct filter to fetch posts
+        if (["wallet", "points"].includes(match.params.section || '')) {
             return;
         }
 
@@ -89,10 +96,11 @@ class ProfilePage extends Component<Props, State> {
     }
 
     componentWillUnmount() {
-        const {resetTransactions} = this.props;
+        const {resetTransactions, resetPoints} = this.props;
 
-        // reset transactions on unload
+        // reset transactions and points on unload
         resetTransactions();
+        resetPoints();
 
         this._mounted = false;
     }
@@ -121,9 +129,9 @@ class ProfilePage extends Component<Props, State> {
         return true;
     };
 
-    stateSet = (obj: {}, cb = undefined) => {
+    stateSet = (state: {}, cb?: () => void) => {
         if (this._mounted) {
-            this.setState(obj, cb);
+            this.setState(state, cb);
         }
     };
 
@@ -190,7 +198,7 @@ class ProfilePage extends Component<Props, State> {
                             username,
                             section
                         })}
-                        {ProfileCover({
+                        {!["wallet", "points"].includes(section) && ProfileCover({
                             ...this.props,
                             account
                         })}
@@ -200,6 +208,13 @@ class ProfilePage extends Component<Props, State> {
                                     ...this.props,
                                     account
                                 });
+                            }
+
+                            if (section === "points") {
+                                return Points({
+                                    ...this.props,
+                                    account
+                                })
                             }
 
                             const {filter, tag} = global;

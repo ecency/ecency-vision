@@ -86,7 +86,7 @@ interface ItemProps {
     ui: UI;
     addAccount: (data: Account) => void;
     setActiveUser: (username: string | null) => void;
-    updateActiveUser: (data: Account) => void;
+    updateActiveUser: (data?: Account) => void;
     deleteUser: (username: string) => void;
     updateReply: (reply: Entry) => void;
     addReply: (reply: Entry) => void;
@@ -366,7 +366,7 @@ interface ListProps {
     ui: UI;
     addAccount: (data: Account) => void;
     setActiveUser: (username: string | null) => void;
-    updateActiveUser: (data: Account) => void;
+    updateActiveUser: (data?: Account) => void;
     deleteUser: (username: string) => void;
     updateReply: (reply: Entry) => void;
     addReply: (reply: Entry) => void;
@@ -410,7 +410,7 @@ interface Props {
     ui: UI;
     addAccount: (data: Account) => void;
     setActiveUser: (username: string | null) => void;
-    updateActiveUser: (data: Account) => void;
+    updateActiveUser: (data?: Account) => void;
     deleteUser: (username: string) => void;
     fetchDiscussion: (parent_author: string, parent_permlink: string) => void;
     sortDiscussion: (order: SortOrder) => void;

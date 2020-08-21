@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from "react-test-renderer";
 
-import {UiInstance} from "../../helper/test-helper";
+import {UiInstance, activeUserMaker} from "../../helper/test-helper";
 
 import {ActiveUser} from "../../store/active-user/types";
 
@@ -73,10 +73,7 @@ describe('FollowControls', () => {
     it('(2) Default Render with active account.', async () => {
         MOCK_MODE = 1;
 
-        const activeUser: ActiveUser = {
-            username: 'fooo1',
-            data: {name: 'fooo1'}
-        }
+        const activeUser = activeUserMaker("fooo1");
 
         const props = {
             ...defProps,
@@ -91,10 +88,7 @@ describe('FollowControls', () => {
     it('(2) Following.', async () => {
         MOCK_MODE = 2;
 
-        const activeUser: ActiveUser = {
-            username: 'fooo1',
-            data: {name: 'fooo1'}
-        }
+        const activeUser = activeUserMaker("fooo1");
 
         const props = {
             ...defProps,
@@ -109,10 +103,7 @@ describe('FollowControls', () => {
     it('(2) Muted.', async () => {
         MOCK_MODE = 3;
 
-        const activeUser: ActiveUser = {
-            username: 'fooo1',
-            data: {name: 'fooo1'}
-        }
+        const activeUser = activeUserMaker("fooo1");
 
         const props = {
             ...defProps,

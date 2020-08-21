@@ -26,6 +26,6 @@ it("2- loginAct", () => {
 });
 
 it("3- updateAct", () => {
-  state = reducer(state, updateAct({ name: "foo", post_count: 10, __loaded: true }));
+  state = reducer(state, updateAct({ name: "foo", post_count: 10, __loaded: true }, {points: "0.100", uPoints: "0.200"}));
   expect(state).toMatchSnapshot();
 });

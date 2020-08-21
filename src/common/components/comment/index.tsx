@@ -59,7 +59,7 @@ interface Props {
     cancellable?: boolean;
     autoFocus?: boolean;
     setActiveUser: (username: string | null) => void;
-    updateActiveUser: (data: Account) => void;
+    updateActiveUser: (data?: Account) => void;
     deleteUser: (username: string) => void;
     toggleUIProp: (what: ToggleType) => void;
     onSubmit: (text: string) => void;

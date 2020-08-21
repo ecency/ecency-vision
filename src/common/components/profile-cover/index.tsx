@@ -29,7 +29,7 @@ interface Props {
     activeUser: ActiveUser | null;
     ui: UI;
     setActiveUser: (username: string | null) => void;
-    updateActiveUser: (data: Account) => void;
+    updateActiveUser: (data?: Account) => void;
     deleteUser: (username: string) => void;
     toggleUIProp: (what: ToggleType) => void;
 }

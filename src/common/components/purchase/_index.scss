@@ -1,0 +1,55 @@
+
+.purchase-dialog {
+  .purchase-dialog-content {
+    padding: 30px 0;
+
+    .curr-select {
+      margin-bottom: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+
+      .curr-label {
+        font-weight: 500;
+        margin-bottom: 10px;
+        font-size: 1.2em;
+
+        @include themify(day) {
+          color: darken($silver, 10);
+        }
+
+        @include themify(night) {
+          color: $metallic-blue;
+        }
+      }
+    }
+
+    .input-amounts {
+      text-align: center;
+      margin-bottom: 20px;
+
+      .asset-amount {
+        color: $dark-sky-blue;
+        font-size: 1.4em;
+        margin-bottom: 6px;
+      }
+    }
+
+    .slider-area {
+      width: 90%;
+      margin: 0 auto 20px auto;
+
+      input[type="range"] {
+        width: 100%;
+      }
+    }
+
+    .point-amount {
+      color: $dark-sky-blue;
+      text-align: center;
+      font-size: 1.6em;
+      margin-bottom: 30px;
+    }
+  }
+}

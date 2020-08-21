@@ -182,6 +182,7 @@ export class TagSelector extends Component<Props, State> {
                             className="tag-list"
                             list={[...tags.map((x) => ({id: x, name: x}))]}
                             setList={this.onSort}
+                            handle=".item-inner"
                         >
                             {tags.map((x) => {
                                 return (

@@ -1,10 +1,10 @@
 import axios from "axios";
 
-import {User} from "../store/users/types";
-
+import {PointTransaction} from "../store/points/types";
 import {ApiNotification, NotificationFilter} from "../store/notifications/types";
 
 import {getAccessToken} from "../helper/user-token";
+
 
 export interface ReceivedVestingShare {
     delegatee: string;
@@ -211,4 +211,57 @@ export const addFavorite = (username: string, account: string): Promise<{ favori
 export const deleteFavorite = (username: string, account: string): Promise<any> => {
     const data = {code: getAccessToken(username), account};
     return axios.post(`/api/favorites-delete`, data).then(resp => resp.data);
+}
+
+export const getPoints = (username: string): Promise<{
+    points: string;
+    unclaimed_points: string;
+}> => {
+    const data = {username};
+    return axios.post(`/api/points`, data).then(resp => resp.data);
+}
+
+export const getPointTransactions = (username: string): Promise<PointTransaction[]> => {
+    const data = {username};
+    return axios.post(`/api/point-list`, data).then(resp => resp.data);
+}
+
+export const claimPoints = (username: string): Promise<any> => {
+    const data = {code: getAccessToken(username)};
+    return axios.post(`/api/points-claim`, data).then(resp => resp.data);
+}
+
+export const calcPoints = (username: string, amount: string): Promise<{ usd: number, estm: number }> => {
+    const data = {code: getAccessToken(username), amount};
+    return axios.post(`/api/points-calc`, data).then(resp => resp.data);
+}
+
+export interface PromotePrice {
+    duration: number,
+    price: number
+}
+
+export const getPromotePrice = (username: string): Promise<PromotePrice[]> => {
+    const data = {code: getAccessToken(username)};
+    return axios.post(`/api/promote-price`, data).then(resp => resp.data);
+}
+
+export const getPromotedPost = (username: string, author: string, permlink: string): Promise<{ author: string, permlink: string } | ''> => {
+    const data = {code: getAccessToken(username), author, permlink};
+    return axios.post(`/api/promoted-post`, data).then(resp => resp.data);
+}
+
+export const getBoostOptions = (username: string): Promise<number[]> => {
+    const data = {code: getAccessToken(username)};
+    return axios.post(`/api/boost-options`, data).then(resp => resp.data);
+}
+
+export const getBoostedPost = (username: string, author: string, permlink: string): Promise<{ author: string, permlink: string } | ''> => {
+    const data = {code: getAccessToken(username), author, permlink};
+    return axios.post(`/api/boosted-post`, data).then(resp => resp.data);
+}
+
+export const searchPath = (username: string, q: string): Promise<string[]> => {
+    const data = {code: getAccessToken(username), q};
+    return axios.post(`/api/search-path`, data).then(resp => resp.data);
 }

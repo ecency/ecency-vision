@@ -1,234 +1,151 @@
-.transfer-dialog {
+// do not wrap this. transfer also works in other dialogs.
 
-  .transfer-dialog-content {
-    .transfer-box {
+.transfer-dialog-content {
+  .balance {
+    font-weight: 300;
+    margin: 16px 0 0 0;
+    padding-left: 20px;
+    display: table;
 
-      .transfer-box-header {
-        align-items: center;
-        display: flex;
-
-        @include themify(day) {
-          border-bottom: 1px solid $white-four;
-        }
-
-        @include themify(night) {
-          border-bottom: 1px solid $dusky-blue-two;
-        }
-
-        .step-no {
-          color: $silver;
-          flex-grow: 0;
-          flex-shrink: 0;
-          font-size: 48px;
-          font-weight: 700;
-          margin-right: 8px;
-        }
-
-        .box-titles {
-          flex-grow: 1;
-
-          .main-title {
-            font-size: 16px;
-            font-weight: 500;
-            margin-bottom: 4px;
-
-            @include themify(day) {
-              color: $charcoal-grey;
-            }
-
-            @include themify(night) {
-              color: $pinkish-grey;
-            }
-          }
-
-          .sub-title {
-            font-weight: 300;
-
-            @include themify(day) {
-              color: $steel-grey;
-            }
-
-            @include themify(night) {
-              color: $metallic-blue;
-            }
-          }
-        }
-      }
-
-      .transfer-box-body {
-        padding: 24px 32px;
-        margin: 1px 0 0 0;
-
-        .transfer-form {
-          .form-group {
-            margin: 16px 0 0 0;
-          }
-
-
-          .balance {
-            font-weight: 300;
-            margin: 16px 0 0 0;
-            padding-left: 20px;
-            display: table;
-
-            @include themify(day) {
-              color: $charcoal-grey;
-            }
-
-            @include themify(night) {
-              color: $pinkish-grey;
-            }
-
-            .balance-num {
-              color: $dark-sky-blue;
-              cursor: pointer;
-            }
-          }
-        }
-
-        .confirmation {
-          margin-bottom: 30px;
-
-          .users {
-            display: flex;
-            justify-content: space-around;
-            margin-bottom: 20px;
-
-            .from-user,
-            .to-user,
-            .arrow {
-              height: 100px;
-              width: 100px;
-            }
-
-            .from-user,
-            .to-user {
-              cursor: pointer;
-
-              .user-avatar {
-                height: 100%;
-                width: 100%;
-              }
-            }
-
-            .arrow {
-              align-items: center;
-              color: $silver;
-              display: flex;
-              justify-content: center;
-              opacity: 0.4;
-
-              svg {
-                height: 60px;
-                width: 60px;
-              }
-            }
-          }
-
-          .amount {
-            color: $dark-sky-blue;
-            font-size: 22px;
-            font-weight: 500;
-            margin-bottom: 30px;
-            text-align: center;
-          }
-
-          .memo {
-            color: $warm-grey;
-            font-size: 16px;
-            text-align: center;
-            word-break: break-all;
-          }
-        }
-
-        .sign-tr {
-          max-width: 500px;
-          margin: auto;
-
-          .hs-sign {
-            margin: 0 auto 26px auto;
-            display: flex;
-            justify-content: center;
-
-            .hs-logo {
-              height: 14px;
-              margin-right: 6px;
-            }
-          }
-        }
-
-        .success {
-          font-size: 16px;
-          margin-bottom: 30px;
-          text-align: center;
-
-          @include themify(day) {
-            color: $charcoal-grey;
-          }
-
-          @include themify(night) {
-            color: $pinkish-grey;
-          }
-
-          .amount {
-            color: $dark-sky-blue;
-          }
-
-          .from-user,
-          .to-user {
-            font-weight: 700;
-          }
-        }
-      }
-
-      &.in-progress {
-        .transfer-box-header {
-          border-bottom: 1px solid transparent;
-        }
-
-        .transfer-box-body {
-          margin-top: 0;
-        }
-      }
+    @include themify(day) {
+      color: $charcoal-grey;
     }
 
-    .asset-switch {
-      flex-grow: 1;
-      margin-left: 4px;
-
-      .asset {
-        border-radius: 25px;
-        padding: 3px 6px;
-        cursor: pointer;
-
-        @include themify(day) {
-          color: $steel-grey;
-        }
-
-        @include themify(night) {
-          color: $silver;
-        }
-
-        &:not(:last-child) {
-          margin-right: 8px;
-        }
-
-        &.selected {
-          background-color: $silver;
-
-          @include themify(day) {
-            color: $white;
-          }
-
-          @include themify(night) {
-            color: $dark;
-          }
-        }
-      }
+    @include themify(night) {
+      color: $pinkish-grey;
     }
 
-    .tr-form-text {
-      padding-left: 20px;
+    .balance-num {
+      color: $dark-sky-blue;
+      cursor: pointer;
     }
   }
+
+  .confirmation {
+    margin-bottom: 30px;
+
+    .users {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 20px;
+
+      .from-user,
+      .to-user,
+      .arrow {
+        height: 100px;
+        width: 100px;
+      }
+
+      .from-user,
+      .to-user {
+        cursor: pointer;
+
+        .user-avatar {
+          height: 100%;
+          width: 100%;
+        }
+      }
+
+      .arrow {
+        align-items: center;
+        color: $silver;
+        display: flex;
+        justify-content: center;
+        opacity: 0.4;
+
+        svg {
+          height: 60px;
+          width: 60px;
+        }
+      }
+    }
+
+    .amount {
+      color: $dark-sky-blue;
+      font-size: 22px;
+      font-weight: 500;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .memo {
+      color: $warm-grey;
+      font-size: 16px;
+      text-align: center;
+      word-break: break-all;
+    }
+  }
+
+  .success {
+    font-size: 16px;
+    margin-bottom: 30px;
+    text-align: center;
+
+    @include themify(day) {
+      color: $charcoal-grey;
+    }
+
+    @include themify(night) {
+      color: $pinkish-grey;
+    }
+
+    .amount {
+      color: $dark-sky-blue;
+    }
+
+    .from-user,
+    .to-user {
+      font-weight: 700;
+    }
+  }
+
+  .asset-switch {
+    flex-grow: 1;
+    margin-left: 4px;
+
+    .asset {
+      border-radius: 25px;
+      padding: 3px 3px;
+      font-size: 14px;
+      cursor: pointer;
+
+      @media (min-width: $sm-break) {
+        padding: 3px 6px;
+        font-size: 16px;
+      }
+
+      @include themify(day) {
+        color: $steel-grey;
+      }
+
+      @include themify(night) {
+        color: $silver;
+      }
+
+      &:not(:last-child) {
+        margin-right: 4px;
+
+        @media (min-width: $sm-break) {
+          margin-right: 8px;
+        }
+      }
+
+      &.selected {
+        background-color: $silver;
+
+        @include themify(day) {
+          color: $white;
+        }
+
+        @include themify(night) {
+          color: $dark;
+        }
+      }
+    }
+  }
+
+  .tr-form-text {
+    padding-left: 20px;
+  }
 }
+

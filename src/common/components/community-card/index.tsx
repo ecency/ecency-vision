@@ -30,7 +30,7 @@ interface Props {
     subscriptions: Subscription[];
     addAccount: (data: Account) => void;
     setActiveUser: (username: string | null) => void;
-    updateActiveUser: (data: Account) => void;
+    updateActiveUser: (data?: Account) => void;
     deleteUser: (username: string) => void;
     toggleUIProp: (what: ToggleType) => void;
     updateSubscriptions: (list: Subscription[]) => void;
