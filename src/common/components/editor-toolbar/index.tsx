@@ -1,5 +1,7 @@
 import React, {Component} from "react";
 
+import isEqual from "react-fast-compare";
+
 import {ActiveUser} from "../../store/active-user/types";
 import {User} from "../../store/users/types";
 
@@ -52,6 +54,11 @@ export class EditorToolbar extends Component<Props> {
     }
 
     holder = React.createRef<HTMLDivElement>();
+
+    shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
+        return !isEqual(this.props.users, nextProps.users)
+            || !isEqual(this.props.activeUser, nextProps.activeUser);
+    }
 
     toggleGallery = () => {
         const {gallery} = this.state;

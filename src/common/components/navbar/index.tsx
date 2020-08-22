@@ -24,7 +24,7 @@ import Search from "../search";
 import Login from "../login";
 import UserNav from "../user-nav";
 import SignUp from "../sign-up";
-import Gallery from "../gallery";
+
 import NotificationHandler from "../notification-handler"
 
 import {_t} from "../../i18n";
@@ -63,6 +63,15 @@ export class NavBar extends Component<Props> {
         if (qs.referral) {
             toggleUIProp('signUp');
         }
+    }
+
+    shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
+        return !isEqual(this.props.global, nextProps.global)
+            || !isEqual(this.props.trendingTags, nextProps.trendingTags)
+            || !isEqual(this.props.users, nextProps.users)
+            || !isEqual(this.props.activeUser, nextProps.activeUser)
+            || !isEqual(this.props.ui, nextProps.ui)
+            || !isEqual(this.props.notifications, nextProps.notifications)
     }
 
     changeTheme = () => {
