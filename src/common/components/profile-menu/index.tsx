@@ -2,6 +2,10 @@ import React, {Component} from "react";
 
 import {Link} from "react-router-dom";
 
+import {Location} from "history";
+
+import isEqual from "react-fast-compare";
+
 import {Global} from "../../store/global/types";
 
 import ListStyleToggle from "../list-style-toggle/index";
@@ -11,6 +15,7 @@ import {_t} from "../../i18n";
 import _c from "../../util/fix-class-names";
 
 interface Props {
+    location: Location;
     global: Global;
     username: string;
     section: string;
@@ -18,6 +23,10 @@ interface Props {
 }
 
 export class ProfileMenu extends Component<Props> {
+    shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
+        return !isEqual(this.props.location, nextProps.location);
+    }
+
     render() {
         const {username, section} = this.props;
         return (
@@ -40,6 +49,7 @@ export class ProfileMenu extends Component<Props> {
 
 export default (p: Props) => {
     const props: Props = {
+        location: p.location,
         global: p.global,
         username: p.username,
         section: p.section,
