@@ -76,7 +76,7 @@ class AboutPage extends Component<PageProps> {
                         <div className="down-cloud"/>
                     </div>
 
-                    <img src={surferSs} className="surfer-ss" alt="Esteem Surfer"/>
+                    <img src={surferSs} loading="lazy" className="surfer-ss" alt="Esteem Surfer"/>
 
                     <div className="downloads" id="downloads">
                         <h2 className="downloads-title">Downloads</h2>
@@ -111,7 +111,7 @@ class AboutPage extends Component<PageProps> {
                         </div>
                     </div>
 
-                    <img src={mobileSs} className="mobile-ss" alt="Ecency Mobile"/>
+                    <img src={mobileSs} loading="lazy" className="mobile-ss" alt="Ecency Mobile"/>
 
                     <div className="faq">
                         <h2 className="faq-title">{_t('static.about.faq-title')}</h2>

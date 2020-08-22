@@ -73,6 +73,7 @@ exports[`(2) Test with data. 1`] = `
             <div>
               <img
                 alt="Aliquam luctus egestas enim"
+                loading="lazy"
                 onError={[Function]}
                 src="noimage.png"
               />
@@ -183,6 +184,7 @@ exports[`(2) Test with data. 1`] = `
             <div>
               <img
                 alt="Nam vel tincidunt ante, in mattis velit"
+                loading="lazy"
                 onError={[Function]}
                 src="noimage.png"
               />
@@ -293,6 +295,7 @@ exports[`(2) Test with data. 1`] = `
             <div>
               <img
                 alt="Nam quis enim laoreet"
+                loading="lazy"
                 onError={[Function]}
                 src="noimage.png"
               />
