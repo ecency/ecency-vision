@@ -1,27 +1,31 @@
 import React from "react";
 
-import { StaticRouter } from "react-router-dom";
+import {StaticRouter} from "react-router-dom";
+
+import {createLocation} from "history";
 
 import ProfileMenu from "./index";
 import TestRenderer from "react-test-renderer";
 
-import { globalInstance } from "../../helper/test-helper";
+import {globalInstance} from "../../helper/test-helper";
 
 it("(1) Render", () => {
-  const props = {
-    global: { ...globalInstance },
-    username: "username",
-    section: "posts",
-    toggleListStyle: () => {},
-  };
+    const props = {
+        location: createLocation({}),
+        global: {...globalInstance},
+        username: "username",
+        section: "posts",
+        toggleListStyle: () => {
+        },
+    };
 
-  const comp = <ProfileMenu {...props} />;
+    const comp = <ProfileMenu {...props} />;
 
-  const renderer = TestRenderer.create(
-    <StaticRouter location="/@username" context={{}}>
-      {comp}
-    </StaticRouter>
-  );
+    const renderer = TestRenderer.create(
+        <StaticRouter location="/@username" context={{}}>
+            {comp}
+        </StaticRouter>
+    );
 
-  expect(renderer.toJSON()).toMatchSnapshot();
+    expect(renderer.toJSON()).toMatchSnapshot();
 });
