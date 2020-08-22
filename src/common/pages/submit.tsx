@@ -353,12 +353,14 @@ class SubmitPage extends Component<Props, State> {
         const author = activeUser?.username!;
         let permlink = createPermlink(title);
 
-        // If permlink has already used create it again with random suffix
+        // If permlink has already used, create it again with random suffix
         let c;
         try {
             c = await bridgeApi.getPost(author, permlink);
         } catch (e) {
-            c = null;
+            error(_t("g.server-error"));
+            this.stateSet({posting: false});
+            return;
         }
 
         if (c && c.author) {
