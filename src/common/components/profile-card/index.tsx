@@ -2,6 +2,8 @@ import React, {Component} from "react";
 
 import {History} from "history";
 
+import isEqual from "react-fast-compare";
+
 import moment from "moment";
 
 import {Global} from "../../store/global/types";
@@ -56,6 +58,10 @@ export class ProfileCard extends Component<Props, State> {
         }
     }
 
+    shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
+        return !isEqual(this.props.account, nextProps.account) || !isEqual(this.state, nextState);
+    }
+
     toggleFollowers = () => {
         const {followersList} = this.state;
         this.setState({followersList: !followersList});
@@ -101,18 +107,18 @@ export class ProfileCard extends Component<Props, State> {
                     <div className="stats">
                         <div className="stat">
                             <Tooltip content={_t("profile.post-count")}>
-                <span>
-                  {formatListBulledttedSvg} {formattedNumber(account.post_count!, {fractionDigits: 0})}
-                </span>
+                                <span>
+                                    {formatListBulledttedSvg} {formattedNumber(account.post_count!, {fractionDigits: 0})}
+                                </span>
                             </Tooltip>
                         </div>
 
                         {account.follow_stats?.follower_count !== undefined && (
                             <div className="stat followers">
                                 <Tooltip content={_t("profile.followers")}>
-                  <span onClick={this.toggleFollowers}>
-                    {accountMultipleSvg} {formattedNumber(account.follow_stats.follower_count, {fractionDigits: 0})}
-                  </span>
+                                    <span onClick={this.toggleFollowers}>
+                                        {accountMultipleSvg} {formattedNumber(account.follow_stats.follower_count, {fractionDigits: 0})}
+                                    </span>
                                 </Tooltip>
                             </div>
                         )}
@@ -120,9 +126,9 @@ export class ProfileCard extends Component<Props, State> {
                         {account.follow_stats?.following_count !== undefined && (
                             <div className="stat following">
                                 <Tooltip content={_t("profile.following")}>
-                  <span onClick={this.toggleFollowing}>
-                    {accountPlusSvg} {formattedNumber(account.follow_stats.following_count, {fractionDigits: 0})}
-                  </span>
+                                    <span onClick={this.toggleFollowing}>
+                                        {accountPlusSvg} {formattedNumber(account.follow_stats.following_count, {fractionDigits: 0})}
+                                    </span>
                                 </Tooltip>
                             </div>
                         )}
