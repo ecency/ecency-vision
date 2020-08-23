@@ -1,5 +1,7 @@
 import React, {Component} from "react";
 
+import isEqual from "react-fast-compare";
+
 import {Global} from "../../store/global/types";
 import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
@@ -35,6 +37,15 @@ interface Props {
 }
 
 export class ProfileCover extends Component<Props> {
+
+    shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
+        return !isEqual(this.props.global, nextProps.global)
+            || !isEqual(this.props.account, nextProps.account)
+            || !isEqual(this.props.users, nextProps.users)
+            || !isEqual(this.props.activeUser, nextProps.activeUser)
+            || !isEqual(this.props.ui, nextProps.ui)
+    }
+
     render() {
         const {global, account, activeUser} = this.props;
         let bgImage = "";
