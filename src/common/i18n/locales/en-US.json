@@ -53,7 +53,7 @@
   },
   "login": {
     "title": "Welcome back!",
-    "with-user-pass": "Login with your username and password.",
+    "with-user-pass": "Login with your username and private key.",
     "username-placeholder": "username",
     "key-placeholder": "master or active private key",
     "login-info-1": "We don't store your private keys.",
