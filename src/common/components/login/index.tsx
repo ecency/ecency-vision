@@ -103,25 +103,77 @@ export class Login extends Component<LoginProps, State> {
         inProgress: false
     }
 
+    _mounted: boolean = true;
+
     shouldComponentUpdate(nextProps: Readonly<LoginProps>, nextState: Readonly<State>): boolean {
         return !isEqual(this.props.users, nextProps.users)
             || !isEqual(this.props.activeUser, nextProps.activeUser)
             || !isEqual(this.state, nextState);
     }
 
+    componentWillUnmount() {
+        this._mounted = false;
+    }
+
+    stateSet = (state: {}, cb?: () => void) => {
+        if (this._mounted) {
+            this.setState(state, cb);
+        }
+    };
+
     hide = () => {
         const {toggleUIProp} = this.props;
         toggleUIProp('login');
     }
 
+    userSelect = (user: User) => {
+        const {setActiveUser, updateActiveUser, addUser} = this.props;
+
+        // activate the user
+        setActiveUser(user.username);
+
+        // get access token from code
+        hsTokenRenew(getRefreshToken(user.username)).then(x => {
+            const user: User = {
+                username: x.username,
+                accessToken: x.access_token,
+                refreshToken: x.refresh_token,
+                expiresIn: x.expires_in,
+            };
+
+            // update the user with new token
+            addUser(user);
+
+            return getAccount(user.username);
+        }).then((r) => {
+            // update active user
+            updateActiveUser(r);
+
+            // login activity
+            return usrActivity(user.username, 20);
+        });
+
+        this.hide();
+    }
+
+    userDelete = (user: User) => {
+        const {activeUser, deleteUser, setActiveUser} = this.props;
+        deleteUser(user.username);
+
+        // logout if active user
+        if (activeUser && user.username === activeUser.username) {
+            setActiveUser(null);
+        }
+    }
+
     usernameChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
         const {value: username} = e.target;
-        this.setState({username: username.trim()});
+        this.stateSet({username: username.trim()});
     }
 
     keyChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
         const {value: key} = e.target;
-        this.setState({key: key.trim()});
+        this.stateSet({key: key.trim()});
     }
 
     inputKeyDown = (e: React.KeyboardEvent) => {
@@ -150,7 +202,7 @@ export class Login extends Component<LoginProps, State> {
 
         let account: Account;
 
-        this.setState({inProgress: true});
+        this.stateSet({inProgress: true});
 
         try {
             account = await getAccount(username);
@@ -158,7 +210,7 @@ export class Login extends Component<LoginProps, State> {
             error(_t('login.error-user-fetch'));
             return;
         } finally {
-            this.setState({inProgress: false});
+            this.stateSet({inProgress: false});
         }
 
         if (!(account && account.name === username)) {
@@ -189,20 +241,20 @@ export class Login extends Component<LoginProps, State> {
         const hasPostingPerm = account?.posting!.account_auths.filter(x => x[0] === "ecency.app").length > 0;
 
         if (!hasPostingPerm) {
-            this.setState({inProgress: true});
+            this.stateSet({inProgress: true});
             try {
                 await grantPostingPermission(activePrivateKey, account, "ecency.app")
             } catch (err) {
                 error(_t('login.error-permission'));
                 return;
             } finally {
-                this.setState({inProgress: false});
+                this.stateSet({inProgress: false});
             }
         }
 
         const code = makeHsCode(account, activePrivateKey);
 
-        this.setState({inProgress: true});
+        this.stateSet({inProgress: true});
 
         // get access token from code
         hsTokenRenew(code).then(x => {
@@ -231,7 +283,7 @@ export class Login extends Component<LoginProps, State> {
         }).catch(() => {
             error(_t('g.server-error'));
         }).finally(() => {
-            this.setState({inProgress: false});
+            this.stateSet({inProgress: false});
         });
     }
 
@@ -255,43 +307,8 @@ export class Login extends Component<LoginProps, State> {
                                             key={u.username}
                                             {...this.props}
                                             user={u}
-                                            onSelect={(user) => {
-                                                const {setActiveUser, updateActiveUser, addUser} = this.props;
-
-                                                // activate the user
-                                                setActiveUser(user.username);
-
-                                                // get access token from code
-                                                hsTokenRenew(getRefreshToken(user.username)).then(x => {
-                                                    const user: User = {
-                                                        username: x.username,
-                                                        accessToken: x.access_token,
-                                                        refreshToken: x.refresh_token,
-                                                        expiresIn: x.expires_in,
-                                                    };
-
-                                                    // update the user with new token
-                                                    addUser(user);
-
-                                                    return getAccount(user.username);
-                                                }).then((r) => {
-                                                    // update active user
-                                                    updateActiveUser(r);
-
-                                                    // login activity
-                                                    return usrActivity(user.username, 20);
-                                                });
-
-                                                this.hide();
-                                            }}
-                                            onDelete={(user) => {
-                                                const {activeUser, deleteUser, setActiveUser} = this.props;
-                                                deleteUser(user.username);
-
-                                                if (activeUser && user.username === activeUser.username) {
-                                                    setActiveUser(null);
-                                                }
-                                            }}
+                                            onSelect={this.userSelect}
+                                            onDelete={this.userDelete}
                                         />
                                     );
                                 })}
