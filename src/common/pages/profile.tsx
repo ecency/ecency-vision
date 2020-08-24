@@ -105,28 +105,31 @@ class ProfilePage extends Component<Props, State> {
         this._mounted = false;
     }
 
-    ensureAccount = async () => {
+    ensureAccount = () => {
         const {match, accounts, addAccount} = this.props;
 
         const username = match.params.username.replace("@", "");
         const account = accounts.find((x) => x.name === username);
 
         if (!account) {
+            // The account isn't in reducer. Fetch it and add to reducer.
             this.stateSet({loading: true});
 
-            try {
-                const data = await getAccountFull(username);
-                // make sure acccount exists
+            return getAccountFull(username).then(data => {
                 if (data.name === username) {
                     addAccount(data);
                 }
-            } catch (e) {
-            }
-
-            this.stateSet({loading: false});
+            }).finally(() => {
+                this.stateSet({loading: false});
+            });
+        } else {
+            // The account is in reducer. Update it.
+            return getAccountFull(username).then(data => {
+                if (data.name === username) {
+                    addAccount(data);
+                }
+            })
         }
-
-        return true;
     };
 
     stateSet = (state: {}, cb?: () => void) => {
