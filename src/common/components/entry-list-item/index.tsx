@@ -176,7 +176,6 @@ export default class EntryListItem extends Component<Props> {
                             children: <div>
                                 <img
                                     src={img}
-                                    loading="lazy"
                                     alt={title}
                                     onError={(e: React.SyntheticEvent) => {
                                         const target = e.target as HTMLImageElement;
