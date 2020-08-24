@@ -1,8 +1,10 @@
 import React, {Component} from "react";
 
-import {Modal} from "react-bootstrap";
+import {Modal, Form, Button, FormControl} from "react-bootstrap";
 
 import isEqual from "react-fast-compare";
+
+import {PrivateKey, PublicKey, cryptoUtils} from "@hiveio/dhive";
 
 import {Global} from "../../store/global/types";
 import {User} from "../../store/users/types";
@@ -14,11 +16,13 @@ import UserAvatar from "../user-avatar";
 import Tooltip from "../tooltip";
 import PopoverConfirm from "../popover-confirm";
 import OrDivider from "../or-divider";
+import {error} from "../feedback";
 
-import {getAuthUrl} from "../../helper/hive-signer";
+import {getAuthUrl, makeHsCode} from "../../helper/hive-signer";
 
 import {getAccount} from "../../api/hive";
 import {hsTokenRenew, usrActivity} from "../../api/private";
+import {grantPostingPermission, revokePostingPermission} from "../../api/operations";
 
 import {getRefreshToken} from "../../helper/user-token";
 
@@ -26,6 +30,7 @@ import {_t} from "../../i18n";
 
 import {deleteForeverSvg} from "../../img/svg";
 
+const logo = require('../../img/logo-circle.svg');
 const hsLogo = require("../../img/hive-signer.svg");
 
 interface UserItemProps {
@@ -85,9 +90,23 @@ interface LoginProps {
     toggleUIProp: (what: ToggleType) => void;
 }
 
-export class Login extends Component<LoginProps> {
-    shouldComponentUpdate(nextProps: Readonly<LoginProps>): boolean {
-        return !isEqual(this.props.users, nextProps.users) || !isEqual(this.props.activeUser, nextProps.activeUser);
+interface State {
+    username: string;
+    key: string;
+    inProgress: boolean;
+}
+
+export class Login extends Component<LoginProps, State> {
+    state: State = {
+        username: '',
+        key: '',
+        inProgress: false
+    }
+
+    shouldComponentUpdate(nextProps: Readonly<LoginProps>, nextState: Readonly<State>): boolean {
+        return !isEqual(this.props.users, nextProps.users)
+            || !isEqual(this.props.activeUser, nextProps.activeUser)
+            || !isEqual(this.state, nextState);
     }
 
     hide = () => {
@@ -95,10 +114,136 @@ export class Login extends Component<LoginProps> {
         toggleUIProp('login');
     }
 
+    usernameChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+        const {value: username} = e.target;
+        this.setState({username: username.trim()});
+    }
+
+    keyChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+        const {value: key} = e.target;
+        this.setState({key: key.trim()});
+    }
+
+    inputKeyDown = (e: React.KeyboardEvent) => {
+        if (e.key === 'Enter') {
+            this.login().then();
+        }
+    }
+
+    login = async () => {
+        const {username, key} = this.state;
+
+        if (username === '' || key === '') {
+            error(_t('login.error-fields-required'));
+            return;
+        }
+
+        // Warn if the code is a public key
+        try {
+            PublicKey.fromString(key);
+            error(_t('login.error-public-key'));
+            return;
+        } catch (e) {
+        }
+
+        const isMasterKey = !cryptoUtils.isWif(key);
+
+        let account: Account;
+
+        this.setState({inProgress: true});
+
+        try {
+            account = await getAccount(username);
+        } catch (err) {
+            error(_t('login.error-user-fetch'));
+            return;
+        } finally {
+            this.setState({inProgress: false});
+        }
+
+        if (!(account && account.name === username)) {
+            error(_t('login.error-user-not-found'));
+            return;
+        }
+
+        // Active public key of the account
+        const activePublic = account?.active!.key_auths.map(x => x[0]);
+
+        // Get active private key from user entered code
+        let activePrivateKey: PrivateKey;
+        if (isMasterKey) {
+            activePrivateKey = PrivateKey.fromLogin(account.name, key, 'active');
+        } else {
+            activePrivateKey = PrivateKey.fromString(key);
+        }
+
+        // Generate public key from the private key
+        const activePublicInput = activePrivateKey.createPublic().toString();
+
+        // Compare keys
+        if (!activePublic.includes(activePublicInput)) {
+            error(_t('login.error-authenticate')); // enter master or active key
+            return;
+        }
+
+        const hasPostingPerm = account?.posting!.account_auths.filter(x => x[0] === "ecency.app").length > 0;
+
+        if (!hasPostingPerm) {
+            this.setState({inProgress: true});
+            try {
+                await grantPostingPermission(activePrivateKey, account, "ecency.app")
+            } catch (err) {
+                error(_t('login.error-permission'));
+                return;
+            } finally {
+                this.setState({inProgress: false});
+            }
+        }
+
+        const code = makeHsCode(account, activePrivateKey);
+
+        this.setState({inProgress: true});
+
+        // get access token from code
+        hsTokenRenew(code).then(x => {
+            const {setActiveUser, updateActiveUser, addUser} = this.props;
+            const user: User = {
+                username: x.username,
+                accessToken: x.access_token,
+                refreshToken: x.refresh_token,
+                expiresIn: x.expires_in,
+            };
+
+            // add / update user data
+            addUser(user);
+
+            // activate user
+            setActiveUser(user.username);
+
+            // add account data of the user to the reducer
+            updateActiveUser(account);
+
+            // login activity
+            usrActivity(user.username, 20);
+
+            // done
+            this.hide();
+        }).catch(() => {
+            error(_t('g.server-error'));
+        }).finally(() => {
+            this.setState({inProgress: false});
+        });
+    }
+
     render() {
+        const {username, key, inProgress} = this.state;
         const {users, activeUser} = this.props;
         return (
             <>
+                <div className="dialog-header">
+                    <img src={logo} alt="Logo"/>
+                    <h2>{_t('login.title')}</h2>
+                </div>
                 {users.length > 0 && (
                     <>
                         <div className="user-list">
@@ -112,8 +257,11 @@ export class Login extends Component<LoginProps> {
                                             user={u}
                                             onSelect={(user) => {
                                                 const {setActiveUser, updateActiveUser, addUser} = this.props;
+
+                                                // activate the user
                                                 setActiveUser(user.username);
 
+                                                // get access token from code
                                                 hsTokenRenew(getRefreshToken(user.username)).then(x => {
                                                     const user: User = {
                                                         username: x.username,
@@ -128,8 +276,9 @@ export class Login extends Component<LoginProps> {
                                                     return getAccount(user.username);
                                                 }).then((r) => {
                                                     // update active user
-
                                                     updateActiveUser(r);
+
+                                                    // login activity
                                                     return usrActivity(user.username, 20);
                                                 });
 
@@ -151,14 +300,32 @@ export class Login extends Component<LoginProps> {
                         <OrDivider/>
                     </>
                 )}
+
+                <div className="login-form">
+                    <p className="login-form-text">{_t('login.with-user-pass')}</p>
+                    <Form.Group>
+                        <Form.Control type="text" value={username} onChange={this.usernameChanged} placeholder={_t('login.username-placeholder')} autoFocus={true}
+                                      onKeyDown={this.inputKeyDown}/>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Control type="password" value={key} onChange={this.keyChanged} placeholder={_t('login.key-placeholder')} onKeyDown={this.inputKeyDown}/>
+                    </Form.Group>
+                    <p className="login-form-text">{_t('login.login-info-1')} <a onClick={((e) => {
+                        e.preventDefault();
+                        this.hide();
+                        window.location.href = '/faq#login';
+                    })} href="#">{_t('login.login-info-2')}</a></p>
+                    <Button disabled={inProgress} block={true} onClick={this.login}>{_t('g.login')}</Button>
+                </div>
+                <OrDivider/>
                 <div className="hs-login">
                     <a className="btn btn-outline-primary" href={getAuthUrl()}>
-                        <img src={hsLogo} className="hs-logo" alt="hivesigner"/> {_t("login.with-hivesigner")}
+                        <img src={hsLogo} className="hs-logo" alt="hivesigner"/> {_t("login.with-hive-signer")}
                     </a>
                 </div>
                 {activeUser === null && (
                     <p>
-                        {_t("login.signup-text-1")}
+                        {_t("login.sign-up-text-1")}
                         &nbsp;
                         <a href="#" onClick={(e: React.MouseEvent) => {
                             e.preventDefault();
@@ -167,7 +334,7 @@ export class Login extends Component<LoginProps> {
                             const {toggleUIProp} = this.props;
                             toggleUIProp("signUp");
 
-                        }}>{_t("login.signup-text-2")}</a>
+                        }}>{_t("login.sign-up-text-2")}</a>
                     </p>
                 )}
             </>
@@ -195,7 +362,7 @@ export default class LoginDialog extends Component<Props> {
 
     render() {
         return (
-            <Modal show={true} centered={true} onHide={this.hide} className="login-modal modal-thin-header">
+            <Modal show={true} centered={true} onHide={this.hide} className="login-modal modal-thin-header" animation={false}>
                 <Modal.Header closeButton={true}/>
                 <Modal.Body>
                     <Login {...this.props}/>
