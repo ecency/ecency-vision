@@ -2,7 +2,7 @@ import React from "react";
 
 import {Purchase} from "./index";
 
-import {globalInstance, activeUserInstance} from "../../helper/test-helper";
+import {globalInstance} from "../../helper/test-helper";
 
 import TestRenderer from "react-test-renderer";
 
@@ -36,14 +36,14 @@ const defProps = {
         loading: false,
         error: false
     },
+    signingKey: '',
     addAccount: () => {
-
     },
     updateActiveUser: () => {
-
+    },
+    setSigningKey: () => {
     },
     onHide: () => {
-
     }
 };
 

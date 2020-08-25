@@ -14,6 +14,8 @@ import {keySvg} from "../../img/svg";
 const hsLogo = require("../../img/hive-signer.svg");
 
 interface Props {
+    signingKey: string;
+    setSigningKey: (key: string) => void;
     inProgress: boolean;
     onKey: (key: PrivateKey) => void;
     onHot: () => void;
@@ -23,9 +25,9 @@ interface State {
     key: string;
 }
 
-export default class KeyOrHot extends Component<Props, State> {
+export class KeyOrHot extends Component<Props, State> {
     state: State = {
-        key: ''
+        key: this.props.signingKey
     }
 
     keyChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
@@ -55,7 +57,7 @@ export default class KeyOrHot extends Component<Props, State> {
     }
 
     render() {
-        const {inProgress} = this.props;
+        const {inProgress, signingKey} = this.props;
         const {key} = this.state;
 
         return (
@@ -85,4 +87,17 @@ export default class KeyOrHot extends Component<Props, State> {
             </>
         );
     }
+}
+
+
+export default (p: Props) => {
+    const props = {
+        signingKey: p.signingKey,
+        setSigningKey: p.setSigningKey,
+        inProgress: p.inProgress,
+        onKey: p.onKey,
+        onHot: p.onHot
+    }
+
+    return <KeyOrHot {...props} />;
 }

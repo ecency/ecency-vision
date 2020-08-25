@@ -30,7 +30,9 @@ import {checkAllSvg} from "../../img/svg";
 interface Props {
     dynamicProps: DynamicProps;
     activeUser: ActiveUser;
+    signingKey: string;
     updateActiveUser: (data?: Account) => void;
+    setSigningKey: (key: string) => void;
     onHide: () => void;
 }
 
@@ -299,7 +301,12 @@ export class Boost extends Component<Props, State> {
                     </div>
                     {inProgress && <LinearProgress/>}
                     <div className="transaction-form-body">
-                        <KeyOrHot inProgress={inProgress} onKey={this.sign} onHot={this.hotSign}/>
+                        {KeyOrHot({
+                            ...this.props,
+                            inProgress,
+                            onKey: this.sign,
+                            onHot: this.hotSign
+                        })}
                     </div>
                 </div>
             )}

@@ -28,12 +28,16 @@ it("(1) Default Render", () => {
             uPoints: "0.000",
             transactions: [...pointTransactionsInstance]
         },
+        signingKey: '',
         transactions: transactionsInitialState,
         fetchPoints: () => {
         },
         addAccount: () => {
         },
         updateActiveUser: () => {
+
+        },
+        setSigningKey: () => {
 
         }
     };
@@ -56,12 +60,16 @@ it("(2) With active user", () => {
             uPoints: "0.000",
             transactions: [...pointTransactionsInstance]
         },
+        signingKey: '',
         transactions: transactionsInitialState,
         fetchPoints: () => {
         },
         addAccount: () => {
         },
         updateActiveUser: () => {
+
+        },
+        setSigningKey: () => {
 
         }
     };
@@ -85,12 +93,16 @@ it("(3) Active user with unclaimed points", () => {
             uPoints: "6.200",
             transactions: [...pointTransactionsInstance]
         },
+        signingKey: '',
         transactions: transactionsInitialState,
         fetchPoints: () => {
         },
         addAccount: () => {
         },
         updateActiveUser: () => {
+
+        },
+        setSigningKey: () => {
 
         }
     };
