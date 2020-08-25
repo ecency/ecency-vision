@@ -102,6 +102,7 @@ export const getAccounts = (usernames: string[]): Promise<Account[]> => {
     resp.map((x) => {
       const account = {
         name: x.name,
+        memo_key: x.memo_key,
         post_count: x.post_count,
         created: x.created,
         reputation: x.reputation,

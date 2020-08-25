@@ -13,8 +13,9 @@ export interface AccountFollowStats {
 }
 
 export interface Account {
-  
+
   name: string;
+  memo_key?: string;
   post_count?: number;
   created?: string;
   reputation?: string | number;

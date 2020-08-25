@@ -6,6 +6,8 @@ import {usrActivity} from "./private";
 
 import {getAccessToken} from "../helper/user-token";
 
+import {Account} from "../store/accounts/types";
+
 import SERVERS from "../constants/servers.json";
 
 export interface MetaData {
@@ -454,3 +456,32 @@ export const boostHot = (user: string, author: string, permlink: string, amount:
     const win = window.open(webUrl, '_blank');
     return win!.focus();
 }
+
+
+export const updateProfile = (account: Account, newProfile: {
+    name: string,
+    about: string,
+    website: string,
+    location: string,
+    cover_image: string,
+    profile_image: string,
+}): Promise<TransactionConfirmation> => {
+    if (!account.memo_key) {
+        throw "memo_key required with account instance";
+    }
+
+    const client = new hs.Client({
+        accessToken: getAccessToken(account.name)
+    });
+
+    const params = {
+        account: account.name,
+        json_metadata: '',
+        posting_json_metadata: JSON.stringify({profile: newProfile}),
+        extensions: []
+    };
+
+    const opArray = [["account_update2", params]];
+
+    return client.broadcast(opArray).then((r: any) => r.result)
+};

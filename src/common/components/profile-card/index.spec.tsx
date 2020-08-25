@@ -7,7 +7,7 @@ import {Account} from "../../store/accounts/types";
 import ProfileCard from "./index";
 import renderer from "react-test-renderer";
 
-import {globalInstance} from "../../helper/test-helper";
+import {globalInstance, activeUserInstance} from "../../helper/test-helper";
 
 jest.mock("../../constants/defaults.json", () => ({
     imageServer: "https://images.ecency.com",
@@ -25,9 +25,12 @@ it("(1) Render with not loaded data", () => {
     const props = {
         global: globalInstance,
         history: createBrowserHistory(),
+        activeUser: null,
         account,
         addAccount: () => {
         },
+        updateActiveUser: () => {
+        }
     };
 
     const component = renderer.create(<ProfileCard {...props} />);
@@ -61,8 +64,11 @@ it("(2) Render with loaded data", () => {
         global: globalInstance,
         history: createBrowserHistory(),
         account,
+        activeUser: null,
         addAccount: () => {
         },
+        updateActiveUser: () => {
+        }
     };
 
     const component = renderer.create(<ProfileCard {...props} />);
