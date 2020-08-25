@@ -105,7 +105,7 @@ export default class EntryListItem extends Component<Props> {
         const {entry, community, asAuthor, promoted, global} = this.props;
 
         const imgGrid: string = (global.canUseWebp ? catchPostImage(entry, 600, 500, 'webp') : catchPostImage(entry, 600, 500)) || noImage;
-        const imgRow: string = (global.canUseWebp ? catchPostImage(entry, 260, 200, 'webp') : catchPostImage(entry, 130, 100)) || noImage;
+        const imgRow: string = (global.canUseWebp ? catchPostImage(entry, 260, 200, 'webp') : catchPostImage(entry, 260, 200)) || noImage;
 
         const summary: string = postBodySummary(entry, 200);
 
