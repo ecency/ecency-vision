@@ -187,6 +187,7 @@ exports[`(1) Default render 1`] = `
     onClick={[Function]}
     type="button"
   >
+     
     Update
   </button>
 </div>

@@ -188,7 +188,8 @@
     "profile-image": "Profile Image",
     "website": "Website",
     "location": "Location",
-    "success": "Profile updated successfully!"
+    "uploaded": "Image uploaded",
+    "updated": "Profile updated successfully!"
   },
   "wallet": {
     "unclaimed-rewards": "Unclaimed rewards",

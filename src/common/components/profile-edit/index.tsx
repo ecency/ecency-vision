@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-import {Form, FormControl, InputGroup, Modal, Button} from "react-bootstrap";
+import {Form, FormControl, InputGroup, Modal, Button, Spinner} from "react-bootstrap";
 
 import {ActiveUser} from "../../store/active-user/types";
 import {Account} from "../../store/accounts/types";
@@ -67,6 +67,7 @@ class UploadButton extends Component<UploadButtonProps, UploadButtonState> {
 
         uploadImage(file, getAccessToken(activeUser.username)).then(r => {
             onEnd(r.url);
+            success(_t('profile-edit.uploaded'));
         }).catch(() => {
             error(_t('g.server-error'));
         }).finally(() => {
@@ -76,6 +77,7 @@ class UploadButton extends Component<UploadButtonProps, UploadButtonState> {
 
     render() {
         const {inProgress} = this.state;
+        const spinner = <Spinner animation="grow" variant="light" size="sm"/>;
 
         return (
             <>
@@ -84,7 +86,8 @@ class UploadButton extends Component<UploadButtonProps, UploadButtonState> {
                         onClick={() => {
                             this.upload();
                         }}>
-                    {uploadSvg}
+                    {inProgress && spinner}
+                    {!inProgress && uploadSvg}
                     <input
                         type="file"
                         ref={this.input}
@@ -113,12 +116,14 @@ interface State {
     coverImage: string,
     profileImage: string,
     inProgress: boolean,
+    uploading: boolean,
 }
 
 const pureState = (props: Props): State => {
     const profile = props.activeUser?.data?.profile!;
 
     return {
+        uploading: false,
         inProgress: false,
         name: profile.name!,
         about: profile.about!,
@@ -174,7 +179,7 @@ export class ProfileEdit extends Component<Props, State> {
 
         this.stateSet({inProgress: true});
         updateProfile(activeUser.data, newProfile).then(r => {
-            success(_t('profile-edit.success'));
+            success(_t('profile-edit.updated'));
             return getAccount(activeUser.username);
         }).then((account) => {
             // update reducers
@@ -198,8 +203,11 @@ export class ProfileEdit extends Component<Props, State> {
             location,
             coverImage,
             profileImage,
-            inProgress
+            inProgress,
+            uploading
         } = this.state;
+
+        const spinner = <Spinner animation="grow" variant="light" size="sm" style={{marginRight: "6px"}}/>;
 
         return <div className="profile-edit-dialog-content">
             <Form.Group>
@@ -218,10 +226,10 @@ export class ProfileEdit extends Component<Props, State> {
                     <InputGroup.Append>
                         <UploadButton {...this.props}
                                       onBegin={() => {
-                                          this.stateSet({inProgress: true});
+                                          this.stateSet({uploading: true});
                                       }}
                                       onEnd={(url) => {
-                                          this.stateSet({profileImage: url, inProgress: false});
+                                          this.stateSet({profileImage: url, uploading: false});
                                       }}/>
                     </InputGroup.Append>
                 </InputGroup>
@@ -233,10 +241,10 @@ export class ProfileEdit extends Component<Props, State> {
                     <InputGroup.Append>
                         <UploadButton {...this.props}
                                       onBegin={() => {
-                                          this.stateSet({inProgress: true});
+                                          this.stateSet({uploading: true});
                                       }}
                                       onEnd={(url) => {
-                                          this.stateSet({coverImage: url, inProgress: false});
+                                          this.stateSet({coverImage: url, uploading: false});
                                       }}/>
                     </InputGroup.Append>
                 </InputGroup>
@@ -249,7 +257,7 @@ export class ProfileEdit extends Component<Props, State> {
                 <Form.Label>{_t('profile-edit.location')}</Form.Label>
                 <Form.Control type="text" disabled={inProgress} value={location} maxLength={30} data-var="location" onChange={this.valueChanged}/>
             </Form.Group>
-            <Button onClick={this.update} disabled={inProgress}>{_t('g.update')}</Button>
+            <Button onClick={this.update} disabled={inProgress || uploading}>{inProgress && spinner} {_t('g.update')}</Button>
         </div>
     }
 }
