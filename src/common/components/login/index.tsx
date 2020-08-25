@@ -330,7 +330,7 @@ export class Login extends Component<LoginProps, State> {
                     <p className="login-form-text">{_t('login.login-info-1')} <a onClick={((e) => {
                         e.preventDefault();
                         this.hide();
-                        window.location.href = '/faq#login';
+                        window.location.href = '/faq#how-to-signin';
                     })} href="#">{_t('login.login-info-2')}</a></p>
                     <Button disabled={inProgress} block={true} onClick={this.login}>{_t('g.login')}</Button>
                 </div>
