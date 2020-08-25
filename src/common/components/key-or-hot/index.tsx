@@ -47,7 +47,10 @@ export class KeyOrHot extends Component<Props, State> {
             return;
         }
 
-        const {onKey} = this.props;
+        const {onKey, setSigningKey} = this.props;
+
+        setSigningKey(key);
+
         onKey(pKey);
     }
 
@@ -57,26 +60,31 @@ export class KeyOrHot extends Component<Props, State> {
     }
 
     render() {
-        const {inProgress, signingKey} = this.props;
+        const {inProgress} = this.props;
         const {key} = this.state;
 
         return (
             <>
                 <div className="key-or-hot">
-                    <InputGroup>
-                        <InputGroup.Prepend>
-                            <InputGroup.Text>{keySvg}</InputGroup.Text>
-                        </InputGroup.Prepend>
-                        <Form.Control
-                            value={key}
-                            type="password"
-                            autoFocus={true}
-                            placeholder={_t('key-or-hot.key-placeholder')}
-                            onChange={this.keyChanged}/>
-                        <InputGroup.Append>
-                            <Button disabled={inProgress} onClick={this.keyEntered}>{_t("key-or-hot.sign")}</Button>
-                        </InputGroup.Append>
-                    </InputGroup>
+                    <Form onSubmit={(e: React.FormEvent) => {
+                        e.preventDefault();
+                    }}>
+                        <InputGroup>
+                            <InputGroup.Prepend>
+                                <InputGroup.Text>{keySvg}</InputGroup.Text>
+                            </InputGroup.Prepend>
+                            <Form.Control
+                                value={key}
+                                type="password"
+                                autoFocus={true}
+                                autoComplete="off"
+                                placeholder={_t('key-or-hot.key-placeholder')}
+                                onChange={this.keyChanged}/>
+                            <InputGroup.Append>
+                                <Button disabled={inProgress} onClick={this.keyEntered}>{_t("key-or-hot.sign")}</Button>
+                            </InputGroup.Append>
+                        </InputGroup>
+                    </Form>
                     <OrDivider/>
                     <div className="hs-sign">
                         <Button variant="outline-primary" onClick={this.hotClicked}>
