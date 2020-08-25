@@ -103,7 +103,10 @@ export default class EntryListItem extends Component<Props> {
     render() {
 
         const {entry, community, asAuthor, promoted, global} = this.props;
-        const img: string = (global.canUseWebp ? catchPostImage(entry, 600, 500, 'webp') : catchPostImage(entry, 600, 500)) || noImage;
+
+        const imgGrid: string = (global.canUseWebp ? catchPostImage(entry, 600, 500, 'webp') : catchPostImage(entry, 600, 500)) || noImage;
+        const imgRow: string = (global.canUseWebp ? catchPostImage(entry, 260, 200, 'webp') : catchPostImage(entry, 260, 200)) || noImage;
+
         const summary: string = postBodySummary(entry, 200);
 
         const app = appName(entry?.json_metadata?.app);
@@ -129,6 +132,27 @@ export default class EntryListItem extends Component<Props> {
             [reBlogged] = entry.reblogged_by;
         }
 
+        let thumb: JSX.Element | null = null;
+        if (global.listStyle === 'grid') {
+            thumb = (
+                <img src={imgGrid} alt={title} onError={(e: React.SyntheticEvent) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = fallbackImage;
+                }}
+                />
+            );
+        }
+        if (global.listStyle === 'row') {
+            thumb = (
+                <picture>
+                    <source srcSet={imgRow} media="(min-width: 576px)"/>
+                    <img srcSet={imgGrid} alt={title} onError={(e: React.SyntheticEvent) => {
+                        const target = e.target as HTMLImageElement;
+                        target.src = fallbackImage;
+                    }}/>
+                </picture>
+            );
+        }
         const cls = `entry-list-item ${promoted ? "promoted-item" : ""} ${community ? "with-community" : ""}`;
         return (
             <div className={_c(cls)}>
@@ -174,14 +198,7 @@ export default class EntryListItem extends Component<Props> {
                             ...this.props,
                             entry,
                             children: <div>
-                                <img
-                                    src={img}
-                                    alt={title}
-                                    onError={(e: React.SyntheticEvent) => {
-                                        const target = e.target as HTMLImageElement;
-                                        target.src = fallbackImage;
-                                    }}
-                                />
+                                {thumb}
                             </div>
                         })}
                     </div>

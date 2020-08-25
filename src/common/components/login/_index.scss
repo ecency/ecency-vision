@@ -1,22 +1,38 @@
 .login-modal {
   .modal-body {
+    width: 100%;
+    max-width: 390px;
+    margin: auto;
+
+    .dialog-header {
+      text-align: center;
+      margin-bottom: 20px;
+
+      img {
+        height: 80px;
+        margin-bottom: 16px;
+      }
+
+      h2 {
+        margin: 0;
+        font-size: 24px;
+        font-weight: 500;
+      }
+    }
 
     p {
       color: $steel-grey;
-      margin: 0;
       text-align: center;
     }
 
     .user-list {
-      width: 240px;
-      max-height: 400px;
+      max-height: 200px;
       overflow-y: auto;
-      margin: 0 auto;
 
       .user-list-header {
         font-size: 18px;
         font-weight: 500;
-        margin-bottom: 20px;
+        margin-bottom: 14px;
         text-align: center;
 
         @include themify(day) {
@@ -36,10 +52,12 @@
           display: flex;
           font-size: 16px;
           line-height: 16px;
-          margin-bottom: 10px;
-          padding: 10px;
+          padding: 6px;
           position: relative;
-          transition: 0.5s;
+
+          &:not(:last-child) {
+            margin-bottom: 10px;
+          }
 
           @include themify(day) {
             background: $duck-egg-blue;
@@ -129,8 +147,16 @@
       }
     }
 
+    .login-form {
+      margin: auto;
+
+      .login-form-text {
+        font-size: 14px;
+      }
+    }
+
     .hs-login {
-      margin: 0 auto 26px auto;
+      margin: 0 auto 16px auto;
       display: flex;
       justify-content: center;
 

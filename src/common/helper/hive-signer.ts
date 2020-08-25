@@ -1,3 +1,9 @@
+import {cryptoUtils, PrivateKey} from "@hiveio/dhive";
+
+import {Account} from "../store/accounts/types";
+
+import {b64uEnc} from "../util/b64";
+
 export const getAuthUrl = () => {
     const app = "ecency.app";
     const scope = "vote,comment,delete_comment,comment_options,custom_json,claim_reward_balance,offline";
@@ -29,4 +35,24 @@ export const decodeToken = (code: string): {
     } catch (e) {
         return null;
     }
+}
+
+export const makeHsCode = (account: Account, privateKey: PrivateKey): string => {
+    const timestamp = new Date().getTime() / 1000;
+
+    const messageObj: {
+        signed_message: {
+            type: string;
+            app: string;
+        },
+        authors: string[];
+        timestamp: number;
+        signatures?: string[];
+    } = {signed_message: {type: 'code', app: "ecency.app"}, authors: [account.name], timestamp};
+
+    const hash = cryptoUtils.sha256(JSON.stringify(messageObj));
+    const signature = privateKey.sign(hash).toString();
+    messageObj.signatures = [signature];
+
+    return b64uEnc(JSON.stringify(messageObj));
 }

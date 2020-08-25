@@ -2,6 +2,8 @@ const hs = require("hivesigner");
 
 import {Client as HiveClient, PrivateKey, Operation, TransactionConfirmation} from '@hiveio/dhive';
 
+import {Account} from "../store/accounts/types";
+
 import {usrActivity} from "./private";
 
 import {getAccessToken} from "../helper/user-token";
@@ -420,7 +422,6 @@ export const promoteHot = (user: string, author: string, permlink: string, durat
     return win!.focus();
 }
 
-
 export const boost = async (key: PrivateKey, user: string, author: string, permlink: string, amount: string): Promise<TransactionConfirmation> => {
     const hClient = await makeHiveClient();
 
@@ -457,7 +458,6 @@ export const boostHot = (user: string, author: string, permlink: string, amount:
     return win!.focus();
 }
 
-
 export const updateProfile = (account: Account, newProfile: {
     name: string,
     about: string,
@@ -484,4 +484,60 @@ export const updateProfile = (account: Account, newProfile: {
     const opArray = [["account_update2", params]];
 
     return client.broadcast(opArray).then((r: any) => r.result)
+
+  
+export const grantPostingPermission = async (key: PrivateKey, account: Account, pAccount: string) => {
+    if (!account.posting || !account.memo_key || !account.json_metadata) {
+        throw "posting|memo_key|json_metadata required with account instance";
+    }
+
+    const hClient = await makeHiveClient();
+
+    const newPosting = Object.assign(
+        {},
+        {...account.posting},
+        {
+            account_auths: [
+                ...account.posting.account_auths,
+                [pAccount, account.posting.weight_threshold]
+            ]
+        }
+    );
+
+    // important!
+    newPosting.account_auths.sort((a, b) => (a[0] > b[0] ? 1 : -1));
+
+    return hClient.broadcast.updateAccount({
+        account: account.name,
+        posting: newPosting,
+        active: undefined,
+        memo_key: account.memo_key,
+        json_metadata: account.json_metadata
+    }, key);
+};
+
+export const revokePostingPermission = async (key: PrivateKey, account: Account, pAccount: string) => {
+    if (!account.posting || !account.memo_key || !account.json_metadata) {
+        throw "posting|memo_key|json_metadata required with account instance";
+    }
+
+    const hClient = await makeHiveClient();
+
+    const newPosting = Object.assign(
+        {},
+        {...account.posting},
+        {
+            account_auths: account.posting.account_auths.filter(x => x[0] !== pAccount)
+        }
+    );
+
+    return hClient.broadcast.updateAccount(
+        {
+            account: account.name,
+            posting: newPosting,
+            memo_key: account.memo_key,
+            json_metadata: account.json_metadata
+        },
+        key
+    );
 };
