@@ -93,7 +93,7 @@ export class ProfileCard extends Component<Props, State> {
 
         const vPower = account.__loaded ? vpMana(account) : 100;
 
-        const isMyProfile = activeUser && activeUser.username === account.name;
+        const isMyProfile = activeUser && activeUser.username === account.name && activeUser.data.profile;
 
         return (
             <div className="profile-card">
