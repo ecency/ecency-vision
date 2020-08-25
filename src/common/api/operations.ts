@@ -8,8 +8,6 @@ import {usrActivity} from "./private";
 
 import {getAccessToken} from "../helper/user-token";
 
-import {Account} from "../store/accounts/types";
-
 import SERVERS from "../constants/servers.json";
 
 export interface MetaData {
@@ -484,8 +482,8 @@ export const updateProfile = (account: Account, newProfile: {
     const opArray = [["account_update2", params]];
 
     return client.broadcast(opArray).then((r: any) => r.result)
+}
 
-  
 export const grantPostingPermission = async (key: PrivateKey, account: Account, pAccount: string) => {
     if (!account.posting || !account.memo_key || !account.json_metadata) {
         throw "posting|memo_key|json_metadata required with account instance";
