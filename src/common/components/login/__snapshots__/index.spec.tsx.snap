@@ -13,8 +13,9 @@ Array [
       Welcome back!
     </h2>
   </div>,
-  <div
+  <form
     className="login-form"
+    onSubmit={[Function]}
   >
     <p
       className="login-form-text"
@@ -38,6 +39,7 @@ Array [
       className="form-group"
     >
       <input
+        autoComplete="off"
         className="form-control"
         onChange={[Function]}
         onKeyDown={[Function]}
@@ -66,7 +68,7 @@ Array [
     >
       Login
     </button>
-  </div>,
+  </form>,
   <div
     className="or-divider"
   >
@@ -199,8 +201,9 @@ Array [
   >
     OR
   </div>,
-  <div
+  <form
     className="login-form"
+    onSubmit={[Function]}
   >
     <p
       className="login-form-text"
@@ -224,6 +227,7 @@ Array [
       className="form-group"
     >
       <input
+        autoComplete="off"
         className="form-control"
         onChange={[Function]}
         onKeyDown={[Function]}
@@ -252,7 +256,7 @@ Array [
     >
       Login
     </button>
-  </div>,
+  </form>,
   <div
     className="or-divider"
   >
@@ -388,8 +392,9 @@ Array [
   >
     OR
   </div>,
-  <div
+  <form
     className="login-form"
+    onSubmit={[Function]}
   >
     <p
       className="login-form-text"
@@ -413,6 +418,7 @@ Array [
       className="form-group"
     >
       <input
+        autoComplete="off"
         className="form-control"
         onChange={[Function]}
         onKeyDown={[Function]}
@@ -441,7 +447,7 @@ Array [
     >
       Login
     </button>
-  </div>,
+  </form>,
   <div
     className="or-divider"
   >

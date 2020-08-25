@@ -321,14 +321,17 @@ export class Login extends Component<LoginProps, State> {
                     </>
                 )}
 
-                <div className="login-form">
+                <Form className="login-form" onSubmit={(e: React.FormEvent) => {
+                    e.preventDefault();
+                }}>
                     <p className="login-form-text">{_t('login.with-user-pass')}</p>
                     <Form.Group>
                         <Form.Control type="text" value={username} onChange={this.usernameChanged} placeholder={_t('login.username-placeholder')} autoFocus={true}
                                       onKeyDown={this.inputKeyDown}/>
                     </Form.Group>
                     <Form.Group>
-                        <Form.Control type="password" value={key} onChange={this.keyChanged} placeholder={_t('login.key-placeholder')} onKeyDown={this.inputKeyDown}/>
+                        <Form.Control type="password" value={key} autoComplete="off" onChange={this.keyChanged} placeholder={_t('login.key-placeholder')}
+                                      onKeyDown={this.inputKeyDown}/>
                     </Form.Group>
                     <p className="login-form-text">{_t('login.login-info-1')} <a onClick={((e) => {
                         e.preventDefault();
@@ -336,7 +339,7 @@ export class Login extends Component<LoginProps, State> {
                         window.location.href = '/faq#how-to-signin';
                     })} href="#">{_t('login.login-info-2')}</a></p>
                     <Button disabled={inProgress} block={true} onClick={this.login}>{_t('g.login')}</Button>
-                </div>
+                </Form>
                 <OrDivider/>
                 <div className="hs-login">
                     <a className="btn btn-outline-primary" href={getAuthUrl()}>
