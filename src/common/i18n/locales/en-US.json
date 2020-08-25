@@ -190,7 +190,18 @@
     "section-comments": "Comments",
     "section-replies": "Replies",
     "section-points": "Points",
-    "section-wallet": "Wallet"
+    "section-wallet": "Wallet",
+    "edit": "Profile Edit"
+  },
+  "profile-edit": {
+    "name": "Display Name",
+    "about": "About",
+    "cover-image": "Cover Image",
+    "profile-image": "Profile Image",
+    "website": "Website",
+    "location": "Location",
+    "uploaded": "Image uploaded",
+    "updated": "Profile updated successfully!"
   },
   "wallet": {
     "unclaimed-rewards": "Unclaimed rewards",

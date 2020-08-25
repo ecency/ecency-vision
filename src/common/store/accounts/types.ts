@@ -15,7 +15,6 @@ export interface AccountFollowStats {
 }
 
 export interface Account {
-
   name: string;
   active?: Authority;
   posting?: Authority;
