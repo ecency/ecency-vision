@@ -32,8 +32,6 @@ it("(1) Default render", () => {
         }
     };
 
-    console.log(props.activeUser)
-
     const component = renderer.create(<ProfileEdit {...props} />);
     expect(component.toJSON()).toMatchSnapshot();
 });
