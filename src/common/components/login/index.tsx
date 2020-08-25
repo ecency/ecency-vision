@@ -292,10 +292,13 @@ export class Login extends Component<LoginProps, State> {
         const {users, activeUser} = this.props;
         return (
             <>
-                <div className="dialog-header">
-                    <img src={logo} alt="Logo"/>
-                    <h2>{_t('login.title')}</h2>
-                </div>
+                {users.length === 0 && (
+                    <div className="dialog-header">
+                        <img src={logo} alt="Logo"/>
+                        <h2>{_t('login.title')}</h2>
+                    </div>
+                )}
+
                 {users.length > 0 && (
                     <>
                         <div className="user-list">
