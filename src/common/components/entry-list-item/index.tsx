@@ -104,8 +104,8 @@ export default class EntryListItem extends Component<Props> {
 
         const {entry, community, asAuthor, promoted, global} = this.props;
 
-        const imgBlog: string = (global.canUseWebp ? catchPostImage(entry, 600, 500, 'webp') : catchPostImage(entry, 600, 500)) || noImage;
-        const imgList: string = (global.canUseWebp ? catchPostImage(entry, 130, 100, 'webp') : catchPostImage(entry, 130, 100)) || noImage;
+        const imgGrid: string = (global.canUseWebp ? catchPostImage(entry, 600, 500, 'webp') : catchPostImage(entry, 600, 500)) || noImage;
+        const imgRow: string = (global.canUseWebp ? catchPostImage(entry, 130, 100, 'webp') : catchPostImage(entry, 130, 100)) || noImage;
 
         const summary: string = postBodySummary(entry, 200);
 
@@ -135,7 +135,7 @@ export default class EntryListItem extends Component<Props> {
         let thumb = null;
         if (global.listStyle === 'grid') {
             thumb =  (
-                <img src={imgBlog} alt={title} onError={(e: React.SyntheticEvent) => {
+                <img src={imgGrid} alt={title} onError={(e: React.SyntheticEvent) => {
                         const target = e.target as HTMLImageElement;
                         target.src = fallbackImage;
                     }}
@@ -145,8 +145,8 @@ export default class EntryListItem extends Component<Props> {
         if (global.listStyle === 'row'){
             thumb = (
                 <picture >
-                    <source srcSet={imgList} media="(min-width: 576px)"/>
-                    <img srcSet={imgBlog} alt={title} onError={(e: React.SyntheticEvent) => {
+                    <source srcSet={imgRow} media="(min-width: 576px)"/>
+                    <img srcSet={imgGrid} alt={title} onError={(e: React.SyntheticEvent) => {
                         const target = e.target as HTMLImageElement;
                         target.src = fallbackImage;
                     }}/>
