@@ -37,12 +37,13 @@ interface Props {
     history: History;
     global: Global;
     dynamicProps: DynamicProps;
-
     activeUser: ActiveUser | null;
     transactions: Transactions;
     account: Account;
+    signingKey: string;
     addAccount: (data: Account) => void;
     updateActiveUser: (data?: Account) => void;
+    setSigningKey: (key: string) => void;
 }
 
 interface State {
@@ -447,8 +448,10 @@ export default (p: Props) => {
         activeUser: p.activeUser,
         transactions: p.transactions,
         account: p.account,
+        signingKey: p.signingKey,
         addAccount: p.addAccount,
-        updateActiveUser: p.updateActiveUser
+        updateActiveUser: p.updateActiveUser,
+        setSigningKey: p.setSigningKey
     }
 
     return <Wallet {...props} />;

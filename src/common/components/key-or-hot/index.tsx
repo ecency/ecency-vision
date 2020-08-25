@@ -14,6 +14,8 @@ import {keySvg} from "../../img/svg";
 const hsLogo = require("../../img/hive-signer.svg");
 
 interface Props {
+    signingKey: string;
+    setSigningKey: (key: string) => void;
     inProgress: boolean;
     onKey: (key: PrivateKey) => void;
     onHot: () => void;
@@ -23,9 +25,9 @@ interface State {
     key: string;
 }
 
-export default class KeyOrHot extends Component<Props, State> {
+export class KeyOrHot extends Component<Props, State> {
     state: State = {
-        key: ''
+        key: this.props.signingKey
     }
 
     keyChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
@@ -45,7 +47,10 @@ export default class KeyOrHot extends Component<Props, State> {
             return;
         }
 
-        const {onKey} = this.props;
+        const {onKey, setSigningKey} = this.props;
+
+        setSigningKey(key);
+
         onKey(pKey);
     }
 
@@ -61,20 +66,25 @@ export default class KeyOrHot extends Component<Props, State> {
         return (
             <>
                 <div className="key-or-hot">
-                    <InputGroup>
-                        <InputGroup.Prepend>
-                            <InputGroup.Text>{keySvg}</InputGroup.Text>
-                        </InputGroup.Prepend>
-                        <Form.Control
-                            value={key}
-                            type="password"
-                            autoFocus={true}
-                            placeholder={_t('key-or-hot.key-placeholder')}
-                            onChange={this.keyChanged}/>
-                        <InputGroup.Append>
-                            <Button disabled={inProgress} onClick={this.keyEntered}>{_t("key-or-hot.sign")}</Button>
-                        </InputGroup.Append>
-                    </InputGroup>
+                    <Form onSubmit={(e: React.FormEvent) => {
+                        e.preventDefault();
+                    }}>
+                        <InputGroup>
+                            <InputGroup.Prepend>
+                                <InputGroup.Text>{keySvg}</InputGroup.Text>
+                            </InputGroup.Prepend>
+                            <Form.Control
+                                value={key}
+                                type="password"
+                                autoFocus={true}
+                                autoComplete="off"
+                                placeholder={_t('key-or-hot.key-placeholder')}
+                                onChange={this.keyChanged}/>
+                            <InputGroup.Append>
+                                <Button disabled={inProgress} onClick={this.keyEntered}>{_t("key-or-hot.sign")}</Button>
+                            </InputGroup.Append>
+                        </InputGroup>
+                    </Form>
                     <OrDivider/>
                     <div className="hs-sign">
                         <Button variant="outline-primary" onClick={this.hotClicked}>
@@ -85,4 +95,17 @@ export default class KeyOrHot extends Component<Props, State> {
             </>
         );
     }
+}
+
+
+export default (p: Props) => {
+    const props = {
+        signingKey: p.signingKey,
+        setSigningKey: p.setSigningKey,
+        inProgress: p.inProgress,
+        onKey: p.onKey,
+        onHot: p.onHot
+    }
+
+    return <KeyOrHot {...props} />;
 }

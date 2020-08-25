@@ -33,6 +33,7 @@ import {toggleUIProp} from "../store/ui";
 import {addReblog} from "../store/reblogs";
 import {fetchNotifications, fetchUnreadNotificationCount, setNotificationsFilter, markNotifications} from "../store/notifications";
 import {fetchPoints, resetPoints} from "../store/points";
+import {setSigningKey} from "../store/signing-key";
 
 export interface PageProps {
     history: History;
@@ -98,6 +99,9 @@ export interface PageProps {
     points: Points;
     fetchPoints: (username: string) => void;
     resetPoints: () => void
+
+    signingKey: string;
+    setSigningKey: (key: string) => void;
 }
 
 export const pageMapStateToProps = (state: AppState) => ({
@@ -137,7 +141,8 @@ export const pageMapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
             setNotificationsFilter,
             markNotifications,
             fetchPoints,
-            resetPoints
+            resetPoints,
+            setSigningKey
         },
         dispatch
     );

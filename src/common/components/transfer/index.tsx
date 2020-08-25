@@ -45,6 +45,7 @@ import {_t} from "../../i18n";
 import badActors from '../../constants/bad-actors.json';
 
 import {arrowRightSvg} from "../../img/svg";
+import signingKey from "../../store/signing-key";
 
 export type TransferMode = 'transfer' | 'transfer-saving' | 'convert' | 'withdraw-saving' | 'power-up';
 export type TransferAsset = 'HIVE' | 'HBD' | 'POINT';
@@ -100,8 +101,10 @@ interface Props {
     memo?: string;
     activeUser: ActiveUser;
     transactions: Transactions;
+    signingKey: string;
     addAccount: (data: Account) => void;
     updateActiveUser: (data?: Account) => void;
+    setSigningKey: (key: string) => void;
     onHide: () => void;
 }
 
@@ -626,7 +629,12 @@ export class Transfer extends Component<Props, State> {
                         </div>
                     </div>
                     <div className="transaction-form">
-                        <KeyOrHot inProgress={inProgress} onKey={this.sign} onHot={this.signHs}/>
+                        {KeyOrHot({
+                            ...this.props,
+                            inProgress,
+                            onKey: this.sign,
+                            onHot: this.signHs
+                        })}
                     </div>
                 </div>
             )}

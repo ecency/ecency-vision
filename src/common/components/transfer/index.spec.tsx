@@ -27,14 +27,15 @@ const defProps = {
         loading: false,
         error: false
     },
+    signingKey: '',
     addAccount: () => {
-
     },
     updateActiveUser: () => {
+    },
+    setSigningKey: () => {
 
     },
     onHide: () => {
-
     }
 };
 

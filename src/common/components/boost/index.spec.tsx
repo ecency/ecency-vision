@@ -32,11 +32,12 @@ it("(1) Default render", async () => {
                 uPoints: "0.000"
             }
         },
+        signingKey: '',
         updateActiveUser: () => {
-
+        },
+        setSigningKey: () => {
         },
         onHide: () => {
-
         }
     };
 
@@ -62,8 +63,10 @@ it("(2) Insufficient Funds", async () => {
                 uPoints: "0.000"
             }
         },
+        signingKey: '',
         updateActiveUser: () => {
-
+        },
+        setSigningKey: () => {
         },
         onHide: () => {
 

@@ -134,10 +134,12 @@ interface Props {
     activeUser: ActiveUser | null;
     account: Account;
     points: Points;
+    signingKey: string;
     transactions: Transactions;
     fetchPoints: (username: string) => void;
     addAccount: (data: Account) => void;
     updateActiveUser: (data?: Account) => void;
+    setSigningKey: (key: string) => void;
 }
 
 interface State {
@@ -382,10 +384,12 @@ export default (p: Props) => {
         activeUser: p.activeUser,
         account: p.account,
         points: p.points,
+        signingKey: p.signingKey,
         transactions: p.transactions,
         fetchPoints: p.fetchPoints,
         addAccount: p.addAccount,
-        updateActiveUser: p.updateActiveUser
+        updateActiveUser: p.updateActiveUser,
+        setSigningKey: p.setSigningKey
     }
 
     return <UserPoints {...props} />;
