@@ -71,7 +71,7 @@ class ProfilePage extends Component<Props, State> {
 
     componentDidUpdate(prevProps: Readonly<Props>): void {
         const {match, global, fetchEntries, fetchTransactions, resetTransactions, fetchPoints, resetPoints} = this.props;
-        const {global: pGlobal} = prevProps;
+        const {match: prevMatch} = prevProps;
 
         // username changed. re-fetch wallet transactions and points
         if (match.params.username !== prevProps.match.params.username) {
@@ -90,7 +90,7 @@ class ProfilePage extends Component<Props, State> {
         }
 
         // filter or username changed. fetch posts.
-        if (!(global.filter === pGlobal.filter && global.tag === pGlobal.tag)) {
+        if (match.params.section !== prevMatch.params.section) {
             fetchEntries(global.filter, global.tag, false);
         }
     }
