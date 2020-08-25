@@ -105,7 +105,7 @@ export default class EntryListItem extends Component<Props> {
         const {entry, community, asAuthor, promoted, global} = this.props;
 
         const imgGrid: string = (global.canUseWebp ? catchPostImage(entry, 600, 500, 'webp') : catchPostImage(entry, 600, 500)) || noImage;
-        const imgRow: string = (global.canUseWebp ? catchPostImage(entry, 130, 100, 'webp') : catchPostImage(entry, 130, 100)) || noImage;
+        const imgRow: string = (global.canUseWebp ? catchPostImage(entry, 260, 200, 'webp') : catchPostImage(entry, 130, 100)) || noImage;
 
         const summary: string = postBodySummary(entry, 200);
 
@@ -132,19 +132,19 @@ export default class EntryListItem extends Component<Props> {
             [reBlogged] = entry.reblogged_by;
         }
 
-        let thumb = null;
+        let thumb: JSX.Element | null = null;
         if (global.listStyle === 'grid') {
-            thumb =  (
+            thumb = (
                 <img src={imgGrid} alt={title} onError={(e: React.SyntheticEvent) => {
-                        const target = e.target as HTMLImageElement;
-                        target.src = fallbackImage;
-                    }}
+                    const target = e.target as HTMLImageElement;
+                    target.src = fallbackImage;
+                }}
                 />
             );
-        } 
-        if (global.listStyle === 'row'){
+        }
+        if (global.listStyle === 'row') {
             thumb = (
-                <picture >
+                <picture>
                     <source srcSet={imgRow} media="(min-width: 576px)"/>
                     <img srcSet={imgGrid} alt={title} onError={(e: React.SyntheticEvent) => {
                         const target = e.target as HTMLImageElement;
@@ -152,7 +152,7 @@ export default class EntryListItem extends Component<Props> {
                     }}/>
                 </picture>
             );
-        }        
+        }
         const cls = `entry-list-item ${promoted ? "promoted-item" : ""} ${community ? "with-community" : ""}`;
         return (
             <div className={_c(cls)}>
