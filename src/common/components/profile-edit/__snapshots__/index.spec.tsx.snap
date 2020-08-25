@@ -1,0 +1,193 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+<div
+  className="profile-edit-dialog-content"
+>
+  <div
+    className="form-group"
+  >
+    <label
+      className="form-label"
+    >
+      Display Name
+    </label>
+    <input
+      className="form-control"
+      data-var="name"
+      disabled={false}
+      maxLength={30}
+      onChange={[Function]}
+      type="text"
+      value="Foo B."
+    />
+  </div>
+  <div
+    className="form-group"
+  >
+    <label
+      className="form-label"
+    >
+      About
+    </label>
+    <input
+      className="form-control"
+      data-var="about"
+      disabled={false}
+      maxLength={160}
+      onChange={[Function]}
+      type="text"
+      value="Lorem ipsum dolor sit amet"
+    />
+  </div>
+  <div
+    className="form-group"
+  >
+    <label
+      className="form-label"
+    >
+      Profile Image
+    </label>
+    <div
+      className="mb-3 input-group"
+    >
+      <input
+        className="form-control"
+        data-var="profileImage"
+        disabled={false}
+        maxLength={500}
+        onChange={[Function]}
+        placeholder="https://"
+        type="text"
+        value="https://www.imgur.com/profile-image.jpg"
+      />
+      <div
+        className="input-group-append"
+      >
+        <button
+          className="btn btn-primary btn-sm"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          <svg
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M9,16V10H5L12,3L19,10H15V16H9M5,20V18H19V20H5Z"
+              fill="currentColor"
+            />
+          </svg>
+          <input
+            accept="image/*"
+            onChange={[Function]}
+            style={
+              Object {
+                "display": "none",
+              }
+            }
+            type="file"
+          />
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    className="form-group"
+  >
+    <label
+      className="form-label"
+    >
+      Cover Image
+    </label>
+    <div
+      className="mb-3 input-group"
+    >
+      <input
+        className="form-control"
+        data-var="coverImage"
+        disabled={false}
+        maxLength={500}
+        onChange={[Function]}
+        placeholder="https://"
+        type="text"
+        value="https://www.imgur.com/cover-image.jpg"
+      />
+      <div
+        className="input-group-append"
+      >
+        <button
+          className="btn btn-primary btn-sm"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          <svg
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M9,16V10H5L12,3L19,10H15V16H9M5,20V18H19V20H5Z"
+              fill="currentColor"
+            />
+          </svg>
+          <input
+            accept="image/*"
+            onChange={[Function]}
+            style={
+              Object {
+                "display": "none",
+              }
+            }
+            type="file"
+          />
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    className="form-group"
+  >
+    <label
+      className="form-label"
+    >
+      Website
+    </label>
+    <input
+      className="form-control"
+      data-var="website"
+      disabled={false}
+      maxLength={100}
+      onChange={[Function]}
+      placeholder="https://"
+      type="text"
+      value="https://lipsum.com"
+    />
+  </div>
+  <div
+    className="form-group"
+  >
+    <label
+      className="form-label"
+    >
+      Location
+    </label>
+    <input
+      className="form-control"
+      data-var="location"
+      disabled={false}
+      maxLength={30}
+      onChange={[Function]}
+      type="text"
+      value="New York"
+    />
+  </div>
+  <button
+    className="btn btn-primary"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    Update
+  </button>
+</div>
+`;
