@@ -54,6 +54,7 @@ export class EditorToolbar extends Component<Props> {
     }
 
     holder = React.createRef<HTMLDivElement>();
+    fileInput = React.createRef<HTMLInputElement>();
 
     shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
         return !isEqual(this.props.users, nextProps.users)
@@ -336,10 +337,9 @@ export class EditorToolbar extends Component<Props> {
                                         className="sub-tool-menu-item"
                                         onClick={(e: React.MouseEvent<HTMLElement>) => {
                                             e.stopPropagation();
-                                            const el = document.getElementById("file-input");
+                                            const el = this.fileInput.current;
                                             if (el) el.click();
-                                        }}
-                                    >
+                                        }}>
                                         {_t("editor-toolbar.upload")}
                                     </div>
                                     <div
@@ -383,7 +383,7 @@ export class EditorToolbar extends Component<Props> {
                 <input
                     onChange={this.fileInputChanged}
                     className="file-input"
-                    id="file-input"
+                    ref={this.fileInput}
                     type="file"
                     accept="image/*"
                     multiple={true}
