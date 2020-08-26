@@ -390,7 +390,8 @@ export class EditorToolbar extends Component<Props> {
                     style={{display: 'none'}}
                 />
                 {(gallery && activeUser) && <Gallery {...this.props} onHide={this.toggleGallery} onPick={(url: string) => {
-                    this.insertText(url);
+                    const fileName = url.split("/").pop() || "";
+                    this.image(fileName, url);
                     this.toggleGallery();
                 }}/>}
             </>
