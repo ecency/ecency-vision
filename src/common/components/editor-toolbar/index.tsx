@@ -216,6 +216,9 @@ export class EditorToolbar extends Component<Props> {
         }
 
         files.forEach(file => this.upload(file));
+
+        // reset input
+        e.target.value = "";
     };
 
     upload = async (file: File) => {
