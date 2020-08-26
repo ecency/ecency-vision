@@ -37,6 +37,7 @@ import EntryDeleteBtn from "../components/entry-delete-btn";
 import Comment from "../components/comment"
 import SimilarEntries from "../components/similar-entries";
 import BookmarkBtn from "../components/bookmark-btn";
+import EntryHistoryBtn from "../components/entry-history-btn";
 import {error} from "../components/feedback";
 
 import Meta from "../components/meta";
@@ -145,7 +146,7 @@ class EntryPage extends Component<Props, State> {
     getEntry = (): Entry | undefined => {
         const {entries, match} = this.props;
         const {username, permlink} = match.params;
-        const author = username.replace("@", "") ;
+        const author = username.replace("@", "");
 
         const groupKeys = Object.keys(entries);
         let entry: Entry | undefined = undefined;
@@ -398,6 +399,7 @@ class EntryPage extends Component<Props, State> {
                                     )}
                                 </div>
                                 <div className="right-side">
+                                    <EntryHistoryBtn entry={entry} append={<span className="separator"/>}/>
                                     {ownEntry && (
                                         <>
                                             {editable && EntryEditBtn({entry})}
