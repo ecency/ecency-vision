@@ -5,7 +5,7 @@ exports[`(1) Should render null 1`] = `null`;
 exports[`(2) Should render button 1`] = `
 Array [
   <a
-    className="entry-history-btn"
+    className="edit-history-btn"
     href="#"
     onClick={[Function]}
     title="Show edit history"
