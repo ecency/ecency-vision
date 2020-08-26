@@ -20,7 +20,7 @@ interface State {
     dialog: boolean
 }
 
-export default class EntryHistoryBtn extends Component<Props, State> {
+export default class EditHistoryBtn extends Component<Props, State> {
     state: State = {
         shouldShow: false,
         dialog: false
@@ -76,7 +76,7 @@ export default class EntryHistoryBtn extends Component<Props, State> {
         return (
             <>
                 <Tooltip content={_t("entry.show-history")}>
-                    <a href="#" className="entry-history-btn" onClick={(e) => {
+                    <a href="#" className="edit-history-btn" onClick={(e) => {
                         e.preventDefault();
                         this.toggleDialog();
                     }}>
