@@ -55,9 +55,10 @@ export class EditorToolbar extends Component<Props> {
 
     holder = React.createRef<HTMLDivElement>();
 
-    shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
+    shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
         return !isEqual(this.props.users, nextProps.users)
-            || !isEqual(this.props.activeUser, nextProps.activeUser);
+            || !isEqual(this.props.activeUser, nextProps.activeUser)
+            || !isEqual(this.state, nextState);
     }
 
     toggleGallery = () => {
