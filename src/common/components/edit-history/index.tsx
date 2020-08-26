@@ -160,7 +160,6 @@ export class EditHistory extends Component<Props, State> {
         const title = {__html: showDiff ? selectedItem.titleDiff! : selectedItem.title};
         const body = {__html: showDiff ? selectedItem.bodyDiff! : renderPostBody(selectedItem.body)};
         const tags = {__html: showDiff ? selectedItem.tagsDiff! : selectedItem.tags};
-        const published = moment(selectedItem.timestamp);
 
         return <div className="edit-history-dialog-content">
             <div className="version-list-sm">
@@ -183,8 +182,9 @@ export class EditHistory extends Component<Props, State> {
                         {_t("edit-history.show-diff")}
                     </label>
                 </div>
-                {history.map(i => (
-                    <div
+                {history.map(i => {
+                    const date = moment(i.timestamp);
+                    return <div
                         key={i.v}
                         className={_c(`version-list-item ${selected === i.v ? 'selected' : ''}`)}
                         onClick={() => {
@@ -192,9 +192,9 @@ export class EditHistory extends Component<Props, State> {
                         }}>
                         <div className="item-icon">{historySvg}</div>
                         <div className="item-title">{_t("edit-history.version", {n: i.v})}</div>
-                        <div className="item-date">{published.format("LLL")}</div>
+                        <div className="item-date">{date.format("LLL")}</div>
                     </div>
-                ))}
+                })}
             </div>
             <div className="version-detail">
                 <h1 className="entry-title" dangerouslySetInnerHTML={title}/>

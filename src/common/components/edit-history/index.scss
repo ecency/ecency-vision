@@ -48,13 +48,13 @@
 
         .diff-select {
           padding-left: 40px;
-          margin: 20px 0 10px 0;
+          margin: 20px 0;
         }
 
         .version-list-item {
           display: grid;
           margin-bottom: 4px;
-          grid-template-columns: 40px auto;
+          grid-template-columns: 30px auto;
           grid-template-rows: 24px 24px;
           cursor: pointer;
           padding: 10px 0;
