@@ -142,6 +142,11 @@
     "comment-entry-go-parent": "View the direct parent",
     "show-history": "Show edit history"
   },
+  "edit-history": {
+    "title": "Edit History",
+    "show-diff": "Show Difference",
+    "version": "Version {{n}}"
+  },
   "similar-entries": {
     "title": "Recent posts by @{{n}}"
   },

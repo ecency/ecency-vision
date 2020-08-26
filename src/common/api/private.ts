@@ -266,17 +266,19 @@ export const searchPath = (username: string, q: string): Promise<string[]> => {
     return axios.post(`/api/search-path`, data).then(resp => resp.data);
 }
 
+export interface CommentHistoryListItem {
+    title: string;
+    body: string;
+    tags: string[];
+    timestamp: string;
+    v: number;
+}
+
 interface CommentHistory {
     meta: {
-        count: number
+        count: number;
     },
-    list: {
-        title: string,
-        body: string,
-        tags: string[],
-        timestamp: string,
-        v: number
-    }[]
+    list: CommentHistoryListItem[];
 }
 
 export const commentHistory = (author: string, permlink: string, onlyMeta: boolean = false): Promise<CommentHistory> => {

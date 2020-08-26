@@ -8,6 +8,8 @@ import {_t} from "../../i18n";
 
 import {commentHistory} from "../../api/private";
 
+import EditHistory from "../edit-history";
+
 import {historySvg} from "../../img/svg";
 
 interface Props {
@@ -16,13 +18,13 @@ interface Props {
 }
 
 interface State {
-    shouldShow: boolean,
+    visible: boolean,
     dialog: boolean
 }
 
 export default class EditHistoryBtn extends Component<Props, State> {
     state: State = {
-        shouldShow: false,
+        visible: false,
         dialog: false
     }
 
@@ -54,9 +56,9 @@ export default class EditHistoryBtn extends Component<Props, State> {
 
         this.stateSet({dialog: false});
         commentHistory(entry.author, entry.permlink).then(r => {
-            this.stateSet({shouldShow: r.meta.count > 1});
+            this.stateSet({visible: r.meta.count > 1});
         }).catch(() => {
-            this.stateSet({shouldShow: false});
+            this.stateSet({visible: false});
         });
     }
 
@@ -66,10 +68,10 @@ export default class EditHistoryBtn extends Component<Props, State> {
     }
 
     render() {
-        const {append} = this.props;
-        const {shouldShow} = this.state;
+        const {append, entry} = this.props;
+        const {visible, dialog} = this.state;
 
-        if (!shouldShow) {
+        if (!visible) {
             return null;
         }
 
@@ -84,6 +86,7 @@ export default class EditHistoryBtn extends Component<Props, State> {
                     </a>
                 </Tooltip>
                 {append || null}
+                {dialog && <EditHistory entry={entry} onHide={this.toggleDialog}/>}
             </>
         );
     }
