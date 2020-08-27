@@ -265,3 +265,23 @@ export const searchPath = (username: string, q: string): Promise<string[]> => {
     const data = {code: getAccessToken(username), q};
     return axios.post(`/api/search-path`, data).then(resp => resp.data);
 }
+
+export interface CommentHistoryListItem {
+    title: string;
+    body: string;
+    tags: string[];
+    timestamp: string;
+    v: number;
+}
+
+interface CommentHistory {
+    meta: {
+        count: number;
+    },
+    list: CommentHistoryListItem[];
+}
+
+export const commentHistory = (author: string, permlink: string, onlyMeta: boolean = false): Promise<CommentHistory> => {
+    const data = {author, permlink, onlyMeta: onlyMeta ? '1' : ''};
+    return axios.post(`/api/comment-history`, data).then(resp => resp.data);
+}

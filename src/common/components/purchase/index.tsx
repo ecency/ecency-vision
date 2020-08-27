@@ -20,8 +20,10 @@ interface Props {
     global: Global;
     activeUser: ActiveUser;
     transactions: Transactions;
+    signingKey: string;
     addAccount: (data: Account) => void;
     updateActiveUser: (data?: Account) => void;
+    setSigningKey: (key: string) => void;
     onHide: () => void;
 }
 

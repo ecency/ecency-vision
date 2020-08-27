@@ -84,7 +84,6 @@ export class ListItem extends Component<ItemProps> {
                         <img
                             alt={draft.title}
                             src={img}
-                            loading="lazy"
                             onError={(e: React.SyntheticEvent) => {
                                 const target = e.target as HTMLImageElement;
                                 target.src = fallbackImage;

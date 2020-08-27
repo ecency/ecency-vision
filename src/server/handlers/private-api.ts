@@ -333,3 +333,14 @@ export const boostedPost = async (req: express.Request, res: express.Response) =
     const {author, permlink} = req.body;
     pipe(apiRequest(`boosted-posts/${author}/${permlink}`, "GET"), res);
 }
+
+export const commentHistory = async (req: express.Request, res: express.Response) => {
+    const {author, permlink, onlyMeta} = req.body;
+
+    let u = `comment-history/${author}/${permlink}`;
+    if (onlyMeta === '1') {
+        u += '?only_meta=1';
+    }
+
+    pipe(apiRequest(u, "GET"), res);
+}

@@ -125,7 +125,6 @@ export class SimilarEntries extends Component<Props, State> {
                                         <div className="item-image">
                                             <img
                                                 src={img}
-                                                loading="lazy"
                                                 alt={en.title}
                                                 onError={(e: React.SyntheticEvent) => {
                                                     const target = e.target as HTMLImageElement;

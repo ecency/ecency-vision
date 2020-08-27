@@ -54,10 +54,12 @@ export class EditorToolbar extends Component<Props> {
     }
 
     holder = React.createRef<HTMLDivElement>();
+    fileInput = React.createRef<HTMLInputElement>();
 
-    shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
+    shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
         return !isEqual(this.props.users, nextProps.users)
-            || !isEqual(this.props.activeUser, nextProps.activeUser);
+            || !isEqual(this.props.activeUser, nextProps.activeUser)
+            || !isEqual(this.state, nextState);
     }
 
     toggleGallery = () => {
@@ -214,6 +216,9 @@ export class EditorToolbar extends Component<Props> {
         }
 
         files.forEach(file => this.upload(file));
+
+        // reset input
+        e.target.value = "";
     };
 
     upload = async (file: File) => {
@@ -335,10 +340,9 @@ export class EditorToolbar extends Component<Props> {
                                         className="sub-tool-menu-item"
                                         onClick={(e: React.MouseEvent<HTMLElement>) => {
                                             e.stopPropagation();
-                                            const el = document.getElementById("file-input");
+                                            const el = this.fileInput.current;
                                             if (el) el.click();
-                                        }}
-                                    >
+                                        }}>
                                         {_t("editor-toolbar.upload")}
                                     </div>
                                     <div
@@ -382,14 +386,15 @@ export class EditorToolbar extends Component<Props> {
                 <input
                     onChange={this.fileInputChanged}
                     className="file-input"
-                    id="file-input"
+                    ref={this.fileInput}
                     type="file"
                     accept="image/*"
                     multiple={true}
                     style={{display: 'none'}}
                 />
                 {(gallery && activeUser) && <Gallery {...this.props} onHide={this.toggleGallery} onPick={(url: string) => {
-                    this.insertText(url);
+                    const fileName = url.split("/").pop() || "";
+                    this.image(fileName, url);
                     this.toggleGallery();
                 }}/>}
             </>

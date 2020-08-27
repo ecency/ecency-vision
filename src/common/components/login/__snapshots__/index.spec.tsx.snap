@@ -3,6 +3,78 @@
 exports[`(1) Default render 1`] = `
 Array [
   <div
+    className="dialog-header"
+  >
+    <img
+      alt="Logo"
+      src="logo-circle.svg"
+    />
+    <h2>
+      Welcome back!
+    </h2>
+  </div>,
+  <form
+    className="login-form"
+    onSubmit={[Function]}
+  >
+    <p
+      className="login-form-text"
+    >
+      Login with your username and private key.
+    </p>
+    <div
+      className="form-group"
+    >
+      <input
+        autoFocus={true}
+        className="form-control"
+        onChange={[Function]}
+        onKeyDown={[Function]}
+        placeholder="username"
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="form-group"
+    >
+      <input
+        autoComplete="off"
+        className="form-control"
+        onChange={[Function]}
+        onKeyDown={[Function]}
+        placeholder="master or active private key"
+        type="password"
+        value=""
+      />
+    </div>
+    <p
+      className="login-form-text"
+    >
+      We don't store your private keys.
+       
+      <a
+        href="#"
+        onClick={[Function]}
+      >
+        More info
+      </a>
+    </p>
+    <button
+      className="btn btn-primary btn-block"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Login
+    </button>
+  </form>,
+  <div
+    className="or-divider"
+  >
+    OR
+  </div>,
+  <div
     className="hs-login"
   >
     <a
@@ -124,6 +196,67 @@ Array [
       </div>
     </div>
   </div>,
+  <div
+    className="or-divider"
+  >
+    OR
+  </div>,
+  <form
+    className="login-form"
+    onSubmit={[Function]}
+  >
+    <p
+      className="login-form-text"
+    >
+      Login with your username and private key.
+    </p>
+    <div
+      className="form-group"
+    >
+      <input
+        autoFocus={true}
+        className="form-control"
+        onChange={[Function]}
+        onKeyDown={[Function]}
+        placeholder="username"
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="form-group"
+    >
+      <input
+        autoComplete="off"
+        className="form-control"
+        onChange={[Function]}
+        onKeyDown={[Function]}
+        placeholder="master or active private key"
+        type="password"
+        value=""
+      />
+    </div>
+    <p
+      className="login-form-text"
+    >
+      We don't store your private keys.
+       
+      <a
+        href="#"
+        onClick={[Function]}
+      >
+        More info
+      </a>
+    </p>
+    <button
+      className="btn btn-primary btn-block"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Login
+    </button>
+  </form>,
   <div
     className="or-divider"
   >
@@ -254,6 +387,67 @@ Array [
       </div>
     </div>
   </div>,
+  <div
+    className="or-divider"
+  >
+    OR
+  </div>,
+  <form
+    className="login-form"
+    onSubmit={[Function]}
+  >
+    <p
+      className="login-form-text"
+    >
+      Login with your username and private key.
+    </p>
+    <div
+      className="form-group"
+    >
+      <input
+        autoFocus={true}
+        className="form-control"
+        onChange={[Function]}
+        onKeyDown={[Function]}
+        placeholder="username"
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="form-group"
+    >
+      <input
+        autoComplete="off"
+        className="form-control"
+        onChange={[Function]}
+        onKeyDown={[Function]}
+        placeholder="master or active private key"
+        type="password"
+        value=""
+      />
+    </div>
+    <p
+      className="login-form-text"
+    >
+      We don't store your private keys.
+       
+      <a
+        href="#"
+        onClick={[Function]}
+      >
+        More info
+      </a>
+    </p>
+    <button
+      className="btn btn-primary btn-block"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Login
+    </button>
+  </form>,
   <div
     className="or-divider"
   >

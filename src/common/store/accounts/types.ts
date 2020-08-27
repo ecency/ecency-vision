@@ -1,3 +1,5 @@
+import { Authority } from "@hiveio/dhive";
+
 export interface AccountProfile {
   about?: string;
   cover_image?: string;
@@ -13,8 +15,10 @@ export interface AccountFollowStats {
 }
 
 export interface Account {
-  
   name: string;
+  active?: Authority;
+  posting?: Authority;
+  memo_key?: string;
   post_count?: number;
   created?: string;
   reputation?: string | number;

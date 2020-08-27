@@ -37,6 +37,7 @@ import EntryDeleteBtn from "../components/entry-delete-btn";
 import Comment from "../components/comment"
 import SimilarEntries from "../components/similar-entries";
 import BookmarkBtn from "../components/bookmark-btn";
+import EditHistoryBtn from "../components/edit-history-btn";
 import {error} from "../components/feedback";
 
 import Meta from "../components/meta";
@@ -67,7 +68,6 @@ import {_t} from "../i18n";
 import {version} from "../../../package.json";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
-import {Global} from '../store/global/types';
 
 interface MatchParams {
     category: string;
@@ -114,14 +114,16 @@ class EntryPage extends Component<Props, State> {
     };
 
     ensureEntry = () => {
-        const {match, addEntry} = this.props;
+        const {match, addEntry, updateEntry} = this.props;
+        const entry = this.getEntry();
+        const {username, permlink} = match.params;
+        const author = username.replace("@", "");
 
-        if (!this.getEntry()) {
+        if (!entry) {
+            // The entry isn't in reducer. Fetch it and add to reducer.
             this.stateSet({loading: true});
 
-            const {username, permlink} = match.params;
-
-            bridgeApi.getPost(username.replace("@", ""), permlink)
+            bridgeApi.getPost(author, permlink)
                 .then((entry) => {
                     if (entry) {
                         addEntry(entry);
@@ -130,18 +132,27 @@ class EntryPage extends Component<Props, State> {
                 .finally(() => {
                     this.stateSet({loading: false});
                 });
+        } else {
+            // The entry is in reducer. Update it.
+            bridgeApi.getPost(author, permlink)
+                .then((entry) => {
+                    if (entry) {
+                        updateEntry(entry);
+                    }
+                });
         }
     };
 
     getEntry = (): Entry | undefined => {
         const {entries, match} = this.props;
         const {username, permlink} = match.params;
+        const author = username.replace("@", "");
 
         const groupKeys = Object.keys(entries);
         let entry: Entry | undefined = undefined;
 
         for (const k of groupKeys) {
-            entry = entries[k].entries.find((x) => x.author === username.replace("@", "") && x.permlink === permlink);
+            entry = entries[k].entries.find((x) => x.author === author && x.permlink === permlink);
             if (entry) {
                 break;
             }
@@ -244,6 +255,7 @@ class EntryPage extends Component<Props, State> {
     }
 
     render() {
+
         const {loading, replying} = this.state;
         const {global} = this.props;
 
@@ -387,6 +399,7 @@ class EntryPage extends Component<Props, State> {
                                     )}
                                 </div>
                                 <div className="right-side">
+                                    <EditHistoryBtn entry={entry} append={<span className="separator"/>}/>
                                     {ownEntry && (
                                         <>
                                             {editable && EntryEditBtn({entry})}

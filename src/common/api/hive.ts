@@ -100,8 +100,11 @@ export const lookupAccounts = (q: string, limit = 50): Promise<string[]> =>
 export const getAccounts = (usernames: string[]): Promise<Account[]> => {
   return client.database.getAccounts(usernames).then((resp: any[]): Account[] =>
     resp.map((x) => {
-      const account = {
+      const account:Account = {
         name: x.name,
+        active: x.active,
+        posting: x.posting,
+        memo_key: x.memo_key,
         post_count: x.post_count,
         created: x.created,
         reputation: x.reputation,

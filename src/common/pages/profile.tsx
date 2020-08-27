@@ -71,7 +71,7 @@ class ProfilePage extends Component<Props, State> {
 
     componentDidUpdate(prevProps: Readonly<Props>): void {
         const {match, global, fetchEntries, fetchTransactions, resetTransactions, fetchPoints, resetPoints} = this.props;
-        const {global: pGlobal} = prevProps;
+        const {match: prevMatch} = prevProps;
 
         // username changed. re-fetch wallet transactions and points
         if (match.params.username !== prevProps.match.params.username) {
@@ -90,7 +90,7 @@ class ProfilePage extends Component<Props, State> {
         }
 
         // filter or username changed. fetch posts.
-        if (!(global.filter === pGlobal.filter && global.tag === pGlobal.tag)) {
+        if (match.params.section !== prevMatch.params.section) {
             fetchEntries(global.filter, global.tag, false);
         }
     }
@@ -105,28 +105,31 @@ class ProfilePage extends Component<Props, State> {
         this._mounted = false;
     }
 
-    ensureAccount = async () => {
+    ensureAccount = () => {
         const {match, accounts, addAccount} = this.props;
 
         const username = match.params.username.replace("@", "");
         const account = accounts.find((x) => x.name === username);
 
         if (!account) {
+            // The account isn't in reducer. Fetch it and add to reducer.
             this.stateSet({loading: true});
 
-            try {
-                const data = await getAccountFull(username);
-                // make sure acccount exists
+            return getAccountFull(username).then(data => {
                 if (data.name === username) {
                     addAccount(data);
                 }
-            } catch (e) {
-            }
-
-            this.stateSet({loading: false});
+            }).finally(() => {
+                this.stateSet({loading: false});
+            });
+        } else {
+            // The account is in reducer. Update it.
+            return getAccountFull(username).then(data => {
+                if (data.name === username) {
+                    addAccount(data);
+                }
+            })
         }
-
-        return true;
     };
 
     stateSet = (state: {}, cb?: () => void) => {

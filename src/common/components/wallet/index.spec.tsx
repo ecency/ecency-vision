@@ -42,10 +42,12 @@ it("(1) Default Render", () => {
         activeUser: null,
         transactions: transactionsInitialState,
         account,
+        signingKey: '',
         addAccount: () => {
         },
         updateActiveUser: () => {
-
+        },
+        setSigningKey: () => {
         }
     };
 
