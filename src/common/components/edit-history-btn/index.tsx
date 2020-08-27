@@ -6,8 +6,6 @@ import Tooltip from "../tooltip";
 
 import {_t} from "../../i18n";
 
-import {commentHistory} from "../../api/private";
-
 import EditHistory from "../edit-history";
 
 import {historySvg} from "../../img/svg";
@@ -53,13 +51,13 @@ export default class EditHistoryBtn extends Component<Props, State> {
 
     detect = () => {
         const {entry} = this.props;
-
         this.stateSet({dialog: false});
-        commentHistory(entry.author, entry.permlink).then(r => {
-            this.stateSet({visible: r.meta.count > 1});
-        }).catch(() => {
+        // if comment dont show, otherwise always show
+        if (entry.parent_author) {
             this.stateSet({visible: false});
-        });
+        } else {
+            this.stateSet({visible: true});
+        }
     }
 
     toggleDialog = () => {

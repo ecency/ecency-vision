@@ -65,7 +65,7 @@ export class EditHistory extends Component<Props, State> {
     state: State = {
         history: [],
         selected: 1,
-        showDiff: false,
+        showDiff: true,
         loading: true
     }
 
