@@ -12,7 +12,7 @@ exports[`(1) Render with data 1`] = `
     >
       <label>
         <input
-          checked={false}
+          checked={true}
           onChange={[Function]}
           type="checkbox"
         />
@@ -47,7 +47,7 @@ exports[`(1) Render with data 1`] = `
     >
       <label>
         <input
-          checked={false}
+          checked={true}
           onChange={[Function]}
           type="checkbox"
         />
@@ -117,7 +117,7 @@ exports[`(1) Render with data 1`] = `
       className="entry-title"
       dangerouslySetInnerHTML={
         Object {
-          "__html": "a test post",
+          "__html": "<span>a test post</span>",
         }
       }
     />
@@ -136,7 +136,7 @@ exports[`(1) Render with data 1`] = `
       <span
         dangerouslySetInnerHTML={
           Object {
-            "__html": "ecency",
+            "__html": "<span>ecency</span>",
           }
         }
       />
@@ -145,8 +145,7 @@ exports[`(1) Render with data 1`] = `
       className="entry-body markdown-view"
       dangerouslySetInnerHTML={
         Object {
-          "__html": "<p>111XXX Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam rutrum eros eu sapien cursus ullamcorper ac eu justo. Fusce euismod semper tellus, et ornare libero pretium sed. Donec id bibendum orci. Quisque in interdum lectus.</p>
-<p>Fusce tortor lectus, maximus vitae mollis sit amet, vehicula in lectus. Sed viverra tincidunt pulvinar. Morbi ut odio turpis. Pellentesque feugiat id urna pretium elementum. Fusce mauris nisi, tincidunt non arcu ac, laoreet sollicitudin nisl. Quisque sed mattis felis, ut facilisis quam. Sed dictum eleifend bibendum. Pellentesque mattis turpis mauris, vel interdum mi egestas vel. Phasellus ultricies tristique interdum.</p>",
+          "__html": "<span>111XXX Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam rutrum eros eu sapien cursus ullamcorper ac eu justo. Fusce euismod semper tellus, et ornare libero pretium sed. Donec id bibendum orci. Quisque in interdum lectus. &nbsp;<br>&nbsp;<br>Fusce tortor lectus, maximus vitae mollis sit amet, vehicula in lectus. Sed viverra tincidunt pulvinar. Morbi ut odio turpis. Pellentesque feugiat id urna pretium elementum. Fusce mauris nisi, tincidunt non arcu ac, laoreet sollicitudin nisl. Quisque sed mattis felis, ut facilisis quam. Sed dictum eleifend bibendum. Pellentesque mattis turpis mauris, vel interdum mi egestas vel. Phasellus ultricies tristique interdum.&nbsp;<br>&nbsp;<br></span>",
         }
       }
     />
