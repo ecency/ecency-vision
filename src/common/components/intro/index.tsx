@@ -2,8 +2,8 @@ import React from 'react';
 
 import {Global} from '../../store/global/types';
 
-const friends = require('../../img/friends.jpg');
-const friendsWebp = require('../../img/friends-webp.webp');
+const friends = require('../../img/welcome_community.png');
+const friendsWebp = require('../../img/welcome_community.webp');
 
 import {closeSvg} from '../../img/svg';
 
@@ -22,8 +22,8 @@ export default (props: Props) => {
 
     return <div className="intro">
         <div className="hide-intro" onClick={hideIntro}>{closeSvg}</div>
-        <h1 className="intro-header">Be rewarded</h1>
-        <h1 className="intro-sub-header">uncensored, decentralized, communities</h1>
+        <h1 className="intro-header">Aspire to greatness</h1>
+        <h1 className="intro-sub-header">rewarding communities</h1>
         <div className="cloud-1"/>
         <div className="cloud-2"/>
         <div className="cloud-3"/>

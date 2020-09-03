@@ -1,6 +1,6 @@
 {
   "name": "ecency-vision",
-  "version": "3.0.5",
+  "version": "3.0.6",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -10,7 +10,7 @@
     "start:prod": "NODE_ENV=production node build/server.js"
   },
   "dependencies": {
-    "@esteemapp/esteem-render-helpers": "^1.6.4",
+    "@esteemapp/esteem-render-helpers": "^1.6.8",
     "@hiveio/dhive": "^0.14.1",
     "@hiveio/hivescript": "^1.2.0",
     "@types/diff-match-patch": "^1.0.32",

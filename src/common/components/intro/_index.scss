@@ -39,7 +39,15 @@
   margin: 0 auto 30px auto;
   position: relative;
   max-width: 1190px;
-  background: $white;
+  @include themify(day) {
+    background-color: $white;
+    color: $white;
+  }
+
+  @include themify(night) {
+    background-color: $dark-grey-blue;
+    color: $silver;
+  }
   height: 180px;
 
   @media (min-width: $md-break) {
@@ -133,7 +141,8 @@
     position: absolute;
     left: 110px;
     top: 100px;
-    z-index: 5;
+    padding-top: 25px;
+    z-index: 6;
 
     @media (min-width: $md-break) {
       font-size: 26px;
