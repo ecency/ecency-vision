@@ -5,6 +5,7 @@ import {History, Location} from "history";
 import {Global} from "../store/global/types";
 import {User} from "../store/users/types";
 import {Account, Accounts} from "../store/accounts/types";
+import {Community, Communities} from "../store/communities/types";
 import {TrendingTags} from "../store/trending-tags/types";
 import {ActiveUser} from "../store/active-user/types";
 import {ToggleType, UI} from "../store/ui/types";
@@ -24,6 +25,7 @@ import {updateSubscriptions} from "../store/subscriptions";
 import {fetchEntries, addEntry, updateEntry} from "../store/entries";
 import {fetchDiscussion, sortDiscussion, resetDiscussion, updateReply, addReply, deleteReply} from "../store/discussion";
 import {addAccount} from "../store/accounts";
+import {addCommunity} from "../store/communities";
 import {fetchTransactions, resetTransactions} from "../store/transactions";
 import {addUser, deleteUser} from "../store/users";
 import {setActiveUser, updateActiveUser} from "../store/active-user";
@@ -47,8 +49,6 @@ export interface PageProps {
     trendingTags: TrendingTags;
     fetchTrendingTags: () => void;
 
-    // community
-
     subscriptions: Subscription[];
     updateSubscriptions: (list: Subscription[]) => void;
 
@@ -67,6 +67,9 @@ export interface PageProps {
 
     accounts: Accounts;
     addAccount: (data: Account) => void;
+
+    communities: Communities;
+    addCommunity: (data: Community) => void;
 
     transactions: Transactions;
     fetchTransactions: (username: string) => void;
@@ -122,6 +125,7 @@ export const pageMapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
             addReply,
             deleteReply,
             addAccount,
+            addCommunity,
             fetchTransactions,
             resetTransactions,
             addUser,

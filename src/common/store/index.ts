@@ -9,6 +9,7 @@ import dynamicProps from "./dynamic-props";
 import trendingTags from "./trending-tags";
 import entries from "./entries";
 import accounts from "./accounts";
+import communities from "./communities";
 import transactions from "./transactions";
 import users from "./users";
 import activeUser from "./active-user";
@@ -28,6 +29,7 @@ let reducers = {
     trendingTags,
     entries,
     accounts,
+    communities,
     transactions,
     users,
     activeUser,
