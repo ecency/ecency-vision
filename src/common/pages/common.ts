@@ -14,14 +14,12 @@ import {DynamicProps} from "../store/dynamic-props/types";
 import {Entries, Entry} from "../store/entries/types";
 import {Reblog} from "../store/reblogs/types";
 import {Discussion as DiscussionType, SortOrder} from "../store/discussion/types";
-import {Community} from "../store/community/types";
 import {Transactions} from "../store/transactions/types";
 import {Points} from "../store/points/types";
 
 
 import {toggleTheme, hideIntro, toggleListStyle} from "../store/global";
 import {fetchTrendingTags} from "../store/trending-tags";
-import {fetchCommunity, resetCommunity} from "../store/community";
 import {updateSubscriptions} from "../store/subscriptions";
 import {fetchEntries, addEntry, updateEntry} from "../store/entries";
 import {fetchDiscussion, sortDiscussion, resetDiscussion, updateReply, addReply, deleteReply} from "../store/discussion";
@@ -49,9 +47,7 @@ export interface PageProps {
     trendingTags: TrendingTags;
     fetchTrendingTags: () => void;
 
-    community: Community | null;
-    fetchCommunity: () => void;
-    resetCommunity: () => void;
+    // community
 
     subscriptions: Subscription[];
     updateSubscriptions: (list: Subscription[]) => void;
@@ -115,8 +111,6 @@ export const pageMapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
             hideIntro,
             toggleListStyle,
             fetchTrendingTags,
-            fetchCommunity,
-            resetCommunity,
             updateSubscriptions,
             fetchEntries,
             addEntry,
