@@ -21,6 +21,7 @@ export default {
   USER_FEED: `/:username(@[\\w\\.\\d-]+)/:section(feed)`,
   USER_SECTION: `/:username(@[\\w\\.\\d-]+)/:section(${profileFilters.join("|")}|wallet|points)`,
   COMMUNITIES: `/communities`,
+  COMMUNITY: `/:filter(${entryFilters.join("|")})/:name(hive-[\\d]+)`,
   SUBMIT: `/submit`,
   EDIT: `/:username(@[\\w\\.\\d-]+)/:permlink/edit`,
   EDIT_DRAFT: `/draft/:draftId`,
