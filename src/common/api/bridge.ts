@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import {Entry} from "../store/entries/types";
-import {Community} from "../store/community/types";
+import {Community} from "../store/communities/types";
 import {Subscription} from "../store/subscriptions/types";
 
 import SERVERS from "../constants/servers.json";

@@ -1,7 +1,7 @@
 import {Global, EntryFilter, Theme, ListStyle} from "../store/global/types";
 import {TrendingTags} from "../store/trending-tags/types";
 import {Entry} from "../store/entries/types";
-import {Community} from "../store/community/types";
+import {Community} from "../store/communities/types";
 import {DynamicProps} from "../store/dynamic-props/types";
 import {UI} from "../store/ui/types";
 import {PointTransaction} from "../store/points/types";

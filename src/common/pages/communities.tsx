@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 
 import {FormControl} from "react-bootstrap";
 
-import {Community} from "../store/community/types";
+import {Community} from "../store/communities/types";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";

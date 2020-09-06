@@ -4,7 +4,7 @@ import {History} from "history";
 
 import {Button, ButtonProps} from "react-bootstrap";
 
-import {Community} from "../../store/community/types";
+import {Community} from "../../store/communities/types";
 
 import {_t} from "../../i18n";
 

@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 import isEqual from "react-fast-compare";
 
 import {Account} from "../../store/accounts/types";
-import {Community} from "../../store/community/types";
+import {Community} from "../../store/communities/types";
 import {Subscription} from "../../store/subscriptions/types";
 import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";

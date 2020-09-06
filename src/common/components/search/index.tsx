@@ -7,7 +7,7 @@ import {FormControl} from "react-bootstrap";
 import numeral from "numeral";
 
 import {Global} from "../../store/global/types";
-import {Community} from "../../store/community/types";
+import {Community} from "../../store/communities/types";
 import {TrendingTags} from "../../store/trending-tags/types";
 
 import SearchBox from "../search-box";
