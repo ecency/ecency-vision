@@ -1,61 +1,32 @@
-import { Dispatch } from "redux";
-import { getCommunity } from "../../api/bridge";
+import {Dispatch} from "redux";
 
-import { AppState } from "../index";
+import {Community, Communities, Actions, ActionTypes, AddAction} from "./types";
 
-import { Community, Actions, ActionTypes, FetchedAction, ResetAction } from "./types";
+export const initialState: Communities = [];
 
-export const initialState: Community | null = null;
+export default (state: Communities = initialState, action: Actions): Communities => {
+    switch (action.type) {
+        case ActionTypes.ADD: {
+            const {data} = action;
 
-export default (state: Community | null = initialState, action: Actions): Community | null => {
-  switch (action.type) {
-    case ActionTypes.FETCHED: {
-      const { data } = action;
-      return { ...data };
+            return [...state.filter((x) => x.name !== data.name), data];
+        }
+        default:
+            return state;
     }
-    case ActionTypes.RESET: {
-      return null;
-    }
-    default:
-      return state;
-  }
 };
 
 /* Actions */
-export const fetchCommunity = () => (dispatch: Dispatch, getState: () => AppState) => {
-  const { global } = getState();
-  const { tag } = global;
-
-  if (!tag.startsWith("hive-")) {
-    dispatch(resetAct());
-    return;
-  }
-
-  getCommunity(tag).then((r) => {
-    if (!r) {
-      dispatch(resetAct());
-      return;
-    }
-
-    dispatch(fetchedAct(r));
-  });
+export const addCommunity = (data: Community) => (dispatch: Dispatch) => {
+    dispatch(addAct(data));
 };
 
-export const resetCommunity = () => (dispatch: Dispatch) => {
-  dispatch(resetAct());
-};
 
 /* Action Creators */
 
-export const fetchedAct = (data: Community): FetchedAction => {
-  return {
-    type: ActionTypes.FETCHED,
-    data,
-  };
-};
-
-export const resetAct = (): ResetAction => {
-  return {
-    type: ActionTypes.RESET,
-  };
+export const addAct = (data: Community): AddAction => {
+    return {
+        type: ActionTypes.ADD,
+        data,
+    };
 };
