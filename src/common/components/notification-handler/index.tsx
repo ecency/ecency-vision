@@ -80,7 +80,7 @@ export default class NotificationHandler extends Component<Props> {
         }
 
         if ('Notification' in window) {
-            Notification.requestPermission().then();
+            Notification.requestPermission();
         }
 
         window.nws = new WebSocket(`${defaults.nwsServer}/ws?user=${activeUser.username}`);
@@ -132,7 +132,12 @@ export default class NotificationHandler extends Component<Props> {
 
     playSound = () => {
         if ('Notification' in window) {
-            Notification.requestPermission().then((r) => {
+            const req = Notification.requestPermission();
+            if (!req) {
+                // safari may return undefined instead of promise
+                return;
+            }
+            req.then((r) => {
                 if (r !== 'granted') return;
                 const el: HTMLAudioElement = document.getElementById('notification-audio')! as HTMLAudioElement;
                 el.muted = false;
