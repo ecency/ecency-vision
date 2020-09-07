@@ -1,0 +1,69 @@
+.community-card {
+  position: relative;
+
+  @media (min-width: $md-break) {
+    padding-top: 16px;
+  }
+
+  .community-avatar {
+    width: 128px;
+    height: 128px;
+    margin: 0 auto 26px auto;
+    position: relative;
+
+    @media (min-width: $md-break) {
+      float: none;
+      margin: 0 0 26px 0;
+    }
+
+    .user-avatar {
+      border: 3px solid $duck-egg-blue;
+      height: 128px;
+      width: 128px;
+      background-color: transparent;
+    }
+  }
+
+  .community-info {
+    text-align: center;
+    color: $dark-sky-blue;
+    margin-bottom: 24px;
+
+    @media (min-width: $md-break) {
+      text-align: left;
+    }
+
+    .title {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    .about {
+      font-weight: 300;
+    }
+  }
+
+  .community-section {
+    .section-header {
+      background: $white-three;
+      color: $steel-grey;
+      padding: 10px 10px 10px 20px;
+      border-radius: 18px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      margin-bottom: 14px;
+
+      svg {
+        height: 16px;
+        margin-right: 10px;
+      }
+    }
+
+    .section-content {
+      font-size: 90%;
+
+    }
+  }
+}

@@ -2,16 +2,18 @@ import express from "express";
 
 import {AppState} from "../../common/store";
 import {Community} from "../../common/store/communities/types";
+import {Entry} from "../../common/store/entries/types";
+
+import {makeGroupKey} from "../../common/store/entries";
 
 import * as bridgeApi from "../../common/api/bridge";
+import * as hiveApi from "../../common/api/hive";
 
 import {makePreloadedState} from "../state";
 
 import {readGlobalCookies, getPromotedEntries, optimizeEntries} from "../helper";
 
 import {render} from "../template";
-import {Entry} from "../../common/store/entries/types";
-import {makeGroupKey} from "../../common/store/entries";
 
 export default async (req: express.Request, res: express.Response) => {
     const {filter, name} = req.params;
@@ -21,6 +23,16 @@ export default async (req: express.Request, res: express.Response) => {
         const community = await bridgeApi.getCommunity(name);
         if (community) {
             communities = [community];
+        }
+    } catch (e) {
+    }
+
+    let accounts = [];
+
+    try {
+        let account = await hiveApi.getAccountFull(name);
+        if (account) {
+            accounts.push(account);
         }
     } catch (e) {
     }
@@ -56,7 +68,8 @@ export default async (req: express.Request, res: express.Response) => {
                 hasMore: true,
             }
         },
-        communities
+        communities,
+        accounts
     }
 
     res.send(render(req, preLoadedState));
