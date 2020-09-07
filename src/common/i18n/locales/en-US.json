@@ -163,6 +163,9 @@
     "order-created": "Age",
     "read-more": "...read more replies..."
   },
+  "community-page": {
+    "description": "{{f}} topics"
+  },
   "community": {
     "n-subscribers": "{{n}} subscribers",
     "n-rewards": "{{n}} rewards",
