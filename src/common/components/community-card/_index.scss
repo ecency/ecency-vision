@@ -6,8 +6,8 @@
   }
 
   .community-avatar {
-    width: 128px;
-    height: 128px;
+    width: 160px;
+    height: 160px;
     margin: 0 auto 26px auto;
     position: relative;
 
@@ -18,8 +18,8 @@
 
     .user-avatar {
       border: 3px solid $duck-egg-blue;
-      height: 128px;
-      width: 128px;
+      height: 160px;
+      width: 160px;
       background-color: transparent;
     }
   }
@@ -45,7 +45,7 @@
   }
 
   .community-section {
-    margin-bottom: 14px;
+    margin-bottom: 16px;
 
     .section-header {
       background: $white-three;
@@ -55,7 +55,7 @@
       font-weight: 500;
       display: flex;
       align-items: center;
-      margin-bottom: 14px;
+      margin-bottom: 10px;
 
       @media (min-width: $md-break) {
         border-radius: 0 18px 18px 0;
@@ -79,7 +79,7 @@
       overflow: hidden;
       white-space: nowrap;
       color: $steel-grey;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
 
       .username {
         margin-right: 6px;

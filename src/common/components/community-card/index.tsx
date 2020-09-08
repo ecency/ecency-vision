@@ -59,7 +59,7 @@ export class CommunityCard extends Component<Props> {
                 {community.description.trim() !== "" && (
                     <div className="community-section">
                         <div className="section-header">
-                            {informationOutlineSvg} Description
+                            {informationOutlineSvg} {_t('community.description')}
                         </div>
                         <div className="section-content">
                             {ln2list(community.description).map((x, i) => (
@@ -71,7 +71,7 @@ export class CommunityCard extends Component<Props> {
                 {community.flag_text.trim() !== "" && (
                     <div className="community-section">
                         <div className="section-header">
-                            {scriptTextOutlineSvg} Rules
+                            {scriptTextOutlineSvg} {_t('community.rules')}
                         </div>
                         <div className="section-content">
                             {ln2list(community.flag_text).map((x, i) => (
@@ -83,7 +83,7 @@ export class CommunityCard extends Component<Props> {
 
                 <div className="community-section section-team">
                     <div className="section-header">
-                        {accountGroupSvg} Team
+                        {accountGroupSvg} {_t('community.team')}
                     </div>
                     <div className="section-content">
                         {community.team.map((m, i) => {
@@ -104,7 +104,7 @@ export class CommunityCard extends Component<Props> {
                 {community.lang.trim() !== "" && (
                     <div className="community-section">
                         <div className="section-header">
-                            {earthSvg} Language
+                            {earthSvg}  {_t('community.lang')}
                         </div>
                         <div className="section-content">
                             {community.lang.toUpperCase()}

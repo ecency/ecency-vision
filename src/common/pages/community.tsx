@@ -154,7 +154,7 @@ class CommunityPage extends Component<Props, State> {
                 <Theme global={this.props.global}/>
                 <Feedback/>
                 {NavBar({...this.props})}
-                <div className="app-content profile-page">
+                <div className="app-content community-page">
                     <div className="profile-side">
                         {CommunityCard({
                             ...this.props,
