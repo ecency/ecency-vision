@@ -4,68 +4,37 @@ import {History} from "history";
 
 import isEqual from "react-fast-compare";
 
-import moment from "moment";
-
-import {Button} from "react-bootstrap";
 
 import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
-import {ActiveUser} from "../../store/active-user/types";
 import {Community} from "../../store/communities/types";
 
 import UserAvatar from "../user-avatar";
-import Tooltip from "../tooltip";
-import {Followers, Following} from "../friends";
-import ProfileEdit from "../profile-edit";
 
-import accountReputation from "../../helper/account-reputation";
+import ProfileLink from "../profile-link";
 
-import formattedNumber from "../../util/formatted-number";
-
-import defaults from "../../constants/defaults.json";
-
-import {vpMana} from "../../api/hive";
 import ln2list from "../../util/nl2list";
 
 import {_t} from "../../i18n";
 
 import {
-   informationSvg
+    informationOutlineSvg,
+    scriptTextOutlineSvg,
+    earthSvg,
+    accountGroupSvg
 } from "../../img/svg";
 
 interface Props {
+    history: History;
     global: Global;
-    community: Community
+    community: Community;
+    addAccount: (data: Account) => void;
 }
 
-interface State {
-
-}
-
-export class CommunityCard extends Component<Props, State> {
-    state: State = {};
-
-    /*
-    componentDidUpdate(prevProps: Readonly<Props>): void {
-        // Hide dialogs when account change
-        if (this.props.account.name !== prevProps.account.name) {
-            this.setState({followersList: false});
-            this.setState({followingList: false});
-        }
+export class CommunityCard extends Component<Props> {
+    shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
+        return !isEqual(this.props.community, nextProps.community);
     }
-
-    shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
-        return !isEqual(this.props.account, nextProps.account)
-            || !isEqual(this.props.activeUser, nextProps.activeUser)
-            || !isEqual(this.state, nextState);
-    }
-
-    toggleFollowers = () => {
-        const {followersList} = this.state;
-        this.setState({followersList: !followersList});
-    };
-     */
-
 
     render() {
         const {community} = this.props;
@@ -87,17 +56,61 @@ export class CommunityCard extends Component<Props, State> {
                         {community.about}
                     </div>
                 </div>
-                <div className="community-section">
-                    <div className="section-header">
-                        {informationSvg}  Description
+                {community.description.trim() !== "" && (
+                    <div className="community-section">
+                        <div className="section-header">
+                            {informationOutlineSvg} Description
+                        </div>
+                        <div className="section-content">
+                            {ln2list(community.description).map((x, i) => (
+                                <p key={i}>{x}</p>
+                            ))}
+                        </div>
                     </div>
+                )}
+                {community.flag_text.trim() !== "" && (
+                    <div className="community-section">
+                        <div className="section-header">
+                            {scriptTextOutlineSvg} Rules
+                        </div>
+                        <div className="section-content">
+                            {ln2list(community.flag_text).map((x, i) => (
+                                <p key={i}>{'- '}{x}</p>
+                            ))}
+                        </div>
+                    </div>
+                )}
 
+                <div className="community-section section-team">
+                    <div className="section-header">
+                        {accountGroupSvg} Team
+                    </div>
                     <div className="section-content">
-                        {ln2list(community.description).map((x, i) => (
-                            <p key={i}>{x}</p>
-                        ))}
+                        {community.team.map((m, i) => {
+                            if (m[0].startsWith("hive-")) {
+                                return null;
+                            }
+                            return (
+                                <div className="team-member" key={i}>
+                                    {ProfileLink({...this.props, username: m[0], children: <a className="username">{`@${m[0]}`}</a>})}
+                                    <span className="role">{m[1]}</span>
+                                    {m[2] !== "" && <span className="extra">{m[2]}</span>}
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
+
+                {community.lang.trim() !== "" && (
+                    <div className="community-section">
+                        <div className="section-header">
+                            {earthSvg} Language
+                        </div>
+                        <div className="section-content">
+                            {community.lang.toUpperCase()}
+                        </div>
+                    </div>
+                )}
             </div>
         );
     }
@@ -105,8 +118,10 @@ export class CommunityCard extends Component<Props, State> {
 
 export default (p: Props) => {
     const props: Props = {
+        history: p.history,
         global: p.global,
-        community: p.community
+        community: p.community,
+        addAccount: p.addAccount
     }
 
     return <CommunityCard {...props} />;
