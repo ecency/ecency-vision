@@ -1,0 +1,134 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render - With data. 1`] = `
+<div
+  className="dialog-content"
+>
+  <div
+    className="user-list-body"
+  >
+    <div
+      className="user-list"
+    >
+      <div
+        className="user-list-body"
+      >
+        <a
+          className="user-list-item"
+          href="/@foo"
+          onClick={[Function]}
+        >
+          <span
+            className="user-avatar large"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+              }
+            }
+          />
+          <div
+            className="friend-name notransalte"
+          >
+            foo
+          </div>
+        </a>
+        <a
+          className="user-list-item"
+          href="/@bar"
+          onClick={[Function]}
+        >
+          <span
+            className="user-avatar large"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
+              }
+            }
+          />
+          <div
+            className="friend-name notransalte"
+          >
+            bar
+          </div>
+        </a>
+        <a
+          className="user-list-item"
+          href="/@baz"
+          onClick={[Function]}
+        >
+          <span
+            className="user-avatar large"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/baz/avatar/medium)",
+              }
+            }
+          />
+          <div
+            className="friend-name notransalte"
+          >
+            baz
+          </div>
+        </a>
+        <a
+          className="user-list-item"
+          href="/@lorem"
+          onClick={[Function]}
+        >
+          <span
+            className="user-avatar large"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/lorem/avatar/medium)",
+              }
+            }
+          />
+          <div
+            className="friend-name notransalte"
+          >
+            lorem
+          </div>
+        </a>
+        <a
+          className="user-list-item"
+          href="/@ipsum"
+          onClick={[Function]}
+        >
+          <span
+            className="user-avatar large"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/ipsum/avatar/medium)",
+              }
+            }
+          />
+          <div
+            className="friend-name notransalte"
+          >
+            ipsum
+          </div>
+        </a>
+        <a
+          className="user-list-item"
+          href="/@dolor"
+          onClick={[Function]}
+        >
+          <span
+            className="user-avatar large"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/dolor/avatar/medium)",
+              }
+            }
+          />
+          <div
+            className="friend-name notransalte"
+          >
+            dolor
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;
