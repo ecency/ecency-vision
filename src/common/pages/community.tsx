@@ -13,6 +13,7 @@ import Theme from "../components/theme/index";
 import NavBar from "../components/navbar/index";
 import LinearProgress from "../components/linear-progress";
 import CommunityCard from "../components/community-card";
+import CommunityMenu from "../components/community-menu";
 import ProfileCover from "../components/profile-cover";
 
 import {_t} from "../i18n";
@@ -30,6 +31,7 @@ import {ListStyle} from "../store/global/types";
 import EntryListLoadingItem from "../components/entry-list-loading-item";
 import EntryListContent from "../components/entry-list";
 import DetectBottom from "../components/detect-bottom";
+import isEqual from "react-fast-compare";
 
 interface MatchParams {
     filter: string;
@@ -59,11 +61,11 @@ class CommunityPage extends Component<Props, State> {
     }
 
     componentDidUpdate(prevProps: Readonly<Props>): void {
-        const {match, fetchEntries} = this.props;
-        const {match: prevMatch} = prevProps;
+        const {location, match, fetchEntries} = this.props;
+        const {location: prevLocation} = prevProps;
 
-        // community changed. re-fetch
-        if (match.params.name !== prevMatch.params.name) {
+        // location (community or filter) changed. re-fetch
+        if (!isEqual(location, prevLocation)) {
             this.ensureData().then(() => {
                 fetchEntries(match.params.filter, match.params.name, false);
             });
@@ -119,7 +121,6 @@ class CommunityPage extends Component<Props, State> {
         }
     };
 
-
     render() {
         const {global, entries, communities, accounts, match} = this.props;
         const {loading} = this.state;
@@ -140,7 +141,7 @@ class CommunityPage extends Component<Props, State> {
         //  Meta config
         const fC = capitalize(filter);
         const title = `${community.title.trim()}`;
-        const description = _t("community-page.description", {f: `${fC} ${community.title.trim()}`});
+        const description = _t("community.page-description", {f: `${fC} ${community.title.trim()}`});
         const url = `${defaults.base}/${filter}/${community.name}`;
         const rss = `${defaults.base}/${filter}/${community.name}/rss.xml`;
 
@@ -162,6 +163,11 @@ class CommunityPage extends Component<Props, State> {
                         })}
                     </div>
                     <div className="content-side">
+                        {CommunityMenu({
+                            ...this.props,
+                            community
+                        })}
+
                         {ProfileCover({
                             ...this.props,
                             account

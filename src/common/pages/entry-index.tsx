@@ -92,7 +92,7 @@ class EntryIndexPage extends Component<PageProps> {
                 ...(activeUser
                     ? [
                         {
-                            label: _t("entry-index.feed"),
+                            label: _t("entry-filter.filter-feed"),
                             href: `/@${activeUser.username}/feed`,
                             active: filter === "feed" && activeUser.username === tag.replace("@", ""),
                         },
@@ -100,7 +100,7 @@ class EntryIndexPage extends Component<PageProps> {
                     : []),
                 ...[EntryFilter.trending, EntryFilter.hot, EntryFilter.created].map((x) => {
                     return {
-                        label: _t(`entry-index.filter-${x}`),
+                        label: _t(`entry-filter.filter-${x}`),
                         href: tag && filter !== "feed" ? `/${x}/${tag}` : `/${x}`,
                         active: filter === x,
                     };

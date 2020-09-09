@@ -23,6 +23,13 @@
     "ok": "Confirm",
     "cancel": "Cancel"
   },
+  "entry-filter": {
+    "filter-trending": "Trending",
+    "filter-hot": "Hot",
+    "filter-created": "New",
+    "filter-promoted": "Promoted",
+    "filter-feed": "Feed"
+  },
   "navbar": {
     "discover": "Discover",
     "communities": "Communities",
@@ -113,11 +120,6 @@
   "entry-index": {
     "feed": "Feed",
     "tags": "Popular",
-    "filter-trending": "Trending",
-    "filter-hot": "Hot",
-    "filter-created": "New",
-    "filter-promoted": "Promoted",
-    "filter-feed": "Feed",
     "title": "{{f}} topics",
     "description": "{{f}} topics",
     "description-tag": "{{f}} topics with #{{t}} tag",
@@ -163,10 +165,8 @@
     "order-created": "Age",
     "read-more": "...read more replies..."
   },
-  "community-page": {
-    "description": "{{f}} topics"
-  },
   "community": {
+    "page-description": "{{f}} topics",
     "n-subscribers": "{{n}} subscribers",
     "n-rewards": "{{n}} rewards",
     "n-authors": "{{n}} posters",
@@ -179,7 +179,10 @@
     "description": "Description",
     "rules": "Rules",
     "lang": "Language",
-    "admins": "admins:"
+    "admins": "admins:",
+    "posts": "Posts",
+    "subscribers": "Subscribers",
+    "activities": "Activities"
   },
   "communities": {
     "title": "Communities",
