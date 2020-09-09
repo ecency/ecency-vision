@@ -96,3 +96,11 @@ export const getSubscriptions = (
     bridgeApiCall<Subscription[] | null>("bridge.list_all_subscriptions", {
         account
     });
+
+
+export const getSubscribers = (
+    community: string
+): Promise<Subscription[] | null> =>
+    bridgeApiCall<Subscription[] | null>("bridge.list_subscribers", {
+        community
+    });

@@ -6,29 +6,45 @@ import isEqual from "react-fast-compare";
 
 import {EntryFilter, Global} from "../../store/global/types";
 import {Community} from "../../store/communities/types";
+import {Account} from "../../store/accounts/types";
 
 import ListStyleToggle from "../list-style-toggle/index";
+import Subscribers from "../community-subscribers";
 
 import {_t} from "../../i18n";
 
 import DropDown, {MenuItem} from "../dropdown";
+
 
 interface Props {
     history: History;
     location: Location;
     global: Global;
     community: Community;
+    addAccount: (data: Account) => void;
     toggleListStyle: () => void;
 }
 
-export class CommunityMenu extends Component<Props> {
-    shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
-        return !isEqual(this.props.location, nextProps.location)
-            || !isEqual(this.props.global, nextProps.global);
+interface State {
+    subscribers: boolean
+}
+
+export class CommunityMenu extends Component<Props, State> {
+    state: State = {
+        subscribers: false
     }
 
-    toggleSubscribers = (e: React.MouseEvent) => {
+    shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
+        return !isEqual(this.props.location, nextProps.location)
+            || !isEqual(this.props.global, nextProps.global)
+            || !isEqual(this.state, nextState);
+    }
+
+    toggleSubscribers = (e?: React.MouseEvent) => {
         if (e) e.preventDefault();
+
+        const {subscribers} = this.state;
+        this.setState({subscribers: !subscribers});
     }
 
     toggleActivities = (e: React.MouseEvent) => {
@@ -37,6 +53,8 @@ export class CommunityMenu extends Component<Props> {
 
     render() {
         const {community, global} = this.props;
+        const {subscribers} = this.state;
+
         const {filter} = global;
 
         const menuConfig: {
@@ -74,6 +92,7 @@ export class CommunityMenu extends Component<Props> {
                     <DropDown {...menuConfig} float="right"/>
                 </div>
                 <div className="page-tools"><ListStyleToggle global={this.props.global} toggleListStyle={this.props.toggleListStyle}/></div>
+                {subscribers && <Subscribers {...this.props} onHide={this.toggleSubscribers}/>}
             </div>
         );
     }
@@ -86,6 +105,7 @@ export default (p: Props) => {
         global: p.global,
         community: p.community,
         toggleListStyle: p.toggleListStyle,
+        addAccount: p.addAccount
     }
 
     return <CommunityMenu {...props} />
