@@ -35,61 +35,60 @@ class ListItem extends Component<ListItemProps> {
         const {notification} = this.props;
         const {msg} = notification;
 
-        const parts = msg.split(new RegExp(`(${patterns.join('|')})`));
+        const parts = msg.split(new RegExp(`(${patterns.join('|')})`, 'gi'));
 
-        return (
-            <span>
-                {' '}
-                {parts.map((part, i) => {
-                    if (patterns.includes(part.toLowerCase())) {
+        return <>{parts.map((part, i) => {
 
-                        // post link
-                        if (part.includes("/")) {
-                            const s = part.split("/")
-                            return <Fragment key={i}>{EntryLink({
-                                ...this.props,
-                                entry: {
-                                    category: "tag",
-                                    author: s[0].replace("@", ""),
-                                    permlink: s[1]
-                                },
-                                children: <>{part}</>
-                            })}</Fragment>
-                        }
+            if (part.trim() === '') {
+                return null;
+            }
 
-                        // user link
-                        return <Fragment key={i}>{ProfileLink({
-                            ...this.props,
-                            username: part.replace("@", ""),
-                            children: <>{part}</>
-                        })}</Fragment>
-                    }
+            if (patterns.includes(part.toLowerCase())) {
 
-                    return <span key={i}>{part}</span>
-                })}
-                {' '}
-            </span>
-        );
+                // post link
+                if (part.includes("/")) {
+                    const s = part.split("/")
+                    return <Fragment key={i}>{EntryLink({
+                        ...this.props,
+                        entry: {
+                            category: "tag",
+                            author: s[0].replace("@", ""),
+                            permlink: s[1]
+                        },
+                        children: <>{part}</>
+                    })}</Fragment>
+                }
+
+                // user link
+                return <Fragment key={i}>{ProfileLink({
+                    ...this.props,
+                    username: part.replace("@", ""),
+                    children: <>{part}</>
+                })}</Fragment>
+            }
+
+            return <span key={i}>{part}</span>
+        })}</>;
     }
 
     render() {
         const {notification} = this.props;
-        let mentions = notification.msg.match(/@[\w.\d-]+/)
+        let mentions = notification.msg.match(/@[\w.\d-]+/gi)
         if (!mentions) {
             return null;
         }
-        const [mention] = mentions;
 
-        const username = mention.replace('@', '');
-
-        // @username
-        const formatPatterns = [mention];
+        let formatPatterns = [];
 
         // @username/permlink
         if (notification.url.startsWith('@')) {
             formatPatterns.push(notification.url);
         }
 
+        // @usernames
+        formatPatterns = [...formatPatterns, ...mentions];
+
+        const username = mentions[0].replace('@', '');
         const msg = this.formatMessage(formatPatterns);
         const date = moment(notification.date);
 
@@ -103,9 +102,7 @@ class ListItem extends Component<ListItemProps> {
             </div>
             <div className="activity-content">
                 <div className="activity-msg">{msg}</div>
-                <div className="activity-date">
-                    {date.fromNow()}
-                </div>
+                <div className="activity-date">{date.fromNow()}</div>
             </div>
         </div>;
     }
