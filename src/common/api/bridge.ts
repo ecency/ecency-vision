@@ -54,6 +54,29 @@ export const getAccountPosts = (
         observer,
     });
 
+
+export interface AccountNotification {
+    date: string;
+    id: number;
+    msg: string;
+    score: number;
+    type: string;
+    url: string;
+}
+
+export const getAccountNotifications = (account: string, lastId: string | null = null, limit = 50): Promise<AccountNotification[] | null> => {
+    const params: { account: string, last_id?: string, limit: number } = {
+        account, limit
+    }
+
+    if (lastId) {
+        params.last_id = lastId;
+    }
+
+    return bridgeApiCall<AccountNotification[] | null>("bridge.account_notifications", params);
+}
+
+
 export const getPost = (author: string = "", permlink: string = "", observer: string = ""): Promise<Entry | null> =>
     bridgeApiCall<Entry | null>("bridge.get_post", {
         author,

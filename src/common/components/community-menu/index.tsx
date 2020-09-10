@@ -10,6 +10,7 @@ import {Account} from "../../store/accounts/types";
 
 import ListStyleToggle from "../list-style-toggle/index";
 import Subscribers from "../community-subscribers";
+import Activities from "../community-activities";
 
 import {_t} from "../../i18n";
 
@@ -26,12 +27,14 @@ interface Props {
 }
 
 interface State {
-    subscribers: boolean
+    subscribers: boolean;
+    activities: boolean;
 }
 
 export class CommunityMenu extends Component<Props, State> {
     state: State = {
-        subscribers: false
+        subscribers: false,
+        activities: false
     }
 
     shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
@@ -47,13 +50,16 @@ export class CommunityMenu extends Component<Props, State> {
         this.setState({subscribers: !subscribers});
     }
 
-    toggleActivities = (e: React.MouseEvent) => {
+    toggleActivities = (e?: React.MouseEvent) => {
         if (e) e.preventDefault();
+
+        const {activities} = this.state;
+        this.setState({activities: !activities});
     }
 
     render() {
         const {community, global} = this.props;
-        const {subscribers} = this.state;
+        const {subscribers, activities} = this.state;
 
         const {filter} = global;
 
@@ -93,6 +99,7 @@ export class CommunityMenu extends Component<Props, State> {
                 </div>
                 <div className="page-tools"><ListStyleToggle global={this.props.global} toggleListStyle={this.props.toggleListStyle}/></div>
                 {subscribers && <Subscribers {...this.props} onHide={this.toggleSubscribers}/>}
+                {activities && <Activities {...this.props} onHide={this.toggleActivities}/>}
             </div>
         );
     }
