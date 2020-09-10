@@ -210,7 +210,7 @@ export class List extends Component<ListProps, ListState> {
                     {data.length > 1 && !search && (
                         <div className="load-more">
                             <Button disabled={loading || !hasMore} onClick={this.fetchMore}>
-                                {_t("friends.load-more")}
+                                {_t("g.load-more")}
                             </Button>
                         </div>
                     )}

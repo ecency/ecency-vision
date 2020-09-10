@@ -1,13 +1,16 @@
-import React, {Component} from "react";
-import {Modal} from "react-bootstrap";
+import React, {Component, Fragment} from "react";
+import {Button, Modal} from "react-bootstrap";
 
 import {History} from "history";
+
+import moment from "moment";
 
 import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 import {Community} from "../../store/communities/types";
 
 import ProfileLink from "../profile-link";
+import EntryLink from "../entry-link";
 import UserAvatar from "../user-avatar";
 import LinearProgress from "../linear-progress";
 import {error} from "../feedback";
@@ -15,7 +18,6 @@ import {error} from "../feedback";
 import {getAccountNotifications, AccountNotification} from "../../api/bridge";
 
 import {_t} from "../../i18n";
-import moment from "moment";
 
 interface ListItemProps {
     history: History;
@@ -29,24 +31,42 @@ class ListItem extends Component<ListItemProps> {
         return false;
     }
 
-    formatMessage = (pattern: string): JSX.Element => {
+    formatMessage = (patterns: string[]): JSX.Element => {
         const {notification} = this.props;
         const {msg} = notification;
 
-        const parts = msg.split(new RegExp(`(${pattern})`, 'gi'));
+        const parts = msg.split(new RegExp(`(${patterns.join('|')})`));
 
         return (
             <span>
                 {' '}
-                {parts.map((part, i) => (
-                    <span
-                        key={i}
-                        style={
-                            part.toLowerCase() === pattern.toLowerCase() ? {fontWeight: 'bold'} : {}
-                        }>
-                    {part}
-                </span>
-                ))}
+                {parts.map((part, i) => {
+                    if (patterns.includes(part.toLowerCase())) {
+
+                        // post link
+                        if (part.includes("/")) {
+                            const s = part.split("/")
+                            return <Fragment key={i}>{EntryLink({
+                                ...this.props,
+                                entry: {
+                                    category: "tag",
+                                    author: s[0].replace("@", ""),
+                                    permlink: s[1]
+                                },
+                                children: <>{part}</>
+                            })}</Fragment>
+                        }
+
+                        // user link
+                        return <Fragment key={i}>{ProfileLink({
+                            ...this.props,
+                            username: part.replace("@", ""),
+                            children: <>{part}</>
+                        })}</Fragment>
+                    }
+
+                    return <span key={i}>{part}</span>
+                })}
                 {' '}
             </span>
         );
@@ -58,9 +78,19 @@ class ListItem extends Component<ListItemProps> {
         if (!mentions) {
             return null;
         }
+        const [mention] = mentions;
 
-        const username = mentions[0].replace('@', '');
-        const msg = this.formatMessage(username);
+        const username = mention.replace('@', '');
+
+        // @username
+        const formatPatterns = [mention];
+
+        // @username/permlink
+        if (notification.url.startsWith('@')) {
+            formatPatterns.push(notification.url);
+        }
+
+        const msg = this.formatMessage(formatPatterns);
         const date = moment(notification.date);
 
         return <div className="activity-list-item">
@@ -72,14 +102,10 @@ class ListItem extends Component<ListItemProps> {
                 })}
             </div>
             <div className="activity-content">
-                <div className="activity-msg">
-                    {msg}
-                </div>
-
+                <div className="activity-msg">{msg}</div>
                 <div className="activity-date">
                     {date.fromNow()}
                 </div>
-
             </div>
         </div>;
     }
@@ -96,12 +122,14 @@ interface Props {
 interface State {
     loading: boolean;
     items: AccountNotification[];
+    hasMore: boolean
 }
 
 export class Activities extends Component<Props, State> {
     state: State = {
         loading: true,
-        items: []
+        items: [],
+        hasMore: false
     }
 
     _mounted: boolean = true;
@@ -121,30 +149,40 @@ export class Activities extends Component<Props, State> {
     };
 
     fetch = () => {
-
+        const limit = 50;
+        const {items} = this.state;
         const {community} = this.props;
-        getAccountNotifications(community.name).then(r => {
-            this.stateSet({items: r, loading: false});
+
+        const lastId = items.length > 0 ? items[items.length - 1].id : null;
+
+        this.setState({loading: true});
+        getAccountNotifications(community.name, lastId, limit).then(r => {
+            if (r) {
+                const newItems = [...items, ...r]
+                this.stateSet({items: newItems, hasMore: r.length === limit});
+            }
         }).catch(() => {
-            this.stateSet({loading: false});
             error(_t('g.server-error'));
-        })
+        }).finally(() => {
+            this.stateSet({loading: false});
+        });
     }
 
     render() {
-        const {items, loading} = this.state;
+        const {items, loading, hasMore} = this.state;
 
         return <div className="dialog-content">
             {loading && <LinearProgress/>}
             <div className="activity-list">
                 <div className="activity-list-body">
-                    {items.length > 0 && (
-                        <>
-                            {items.map((item, i) => <ListItem key={i} {...this.props} notification={item}/>)}
-                        </>
-                    )}
+                    {items.length > 0 && items.map((item, i) => <ListItem key={i} {...this.props} notification={item}/>)}
                 </div>
             </div>
+            {hasMore && (<div className="load-more">
+                <Button disabled={loading || !hasMore} onClick={this.fetch}>
+                    {_t("g.load-more")}
+                </Button>
+            </div>)}
         </div>
     }
 }

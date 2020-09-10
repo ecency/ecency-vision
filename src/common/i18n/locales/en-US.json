@@ -16,7 +16,8 @@
     "days": "days",
     "finish": "Finish",
     "next": "Next",
-    "back": "Back"
+    "back": "Back",
+    "load-more": "Load More"
   },
   "confirm": {
     "title": "Are you sure?",
@@ -357,7 +358,6 @@
   "friends": {
     "followers": "Followers ({{n}})",
     "following": "Following ({{n}})",
-    "load-more": "Load More",
     "search-placeholder": "Search users",
     "empty-list": "Nothing here"
   },

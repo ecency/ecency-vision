@@ -64,8 +64,8 @@ export interface AccountNotification {
     url: string;
 }
 
-export const getAccountNotifications = (account: string, lastId: string | null = null, limit = 50): Promise<AccountNotification[] | null> => {
-    const params: { account: string, last_id?: string, limit: number } = {
+export const getAccountNotifications = (account: string, lastId: number | null = null, limit = 50): Promise<AccountNotification[] | null> => {
+    const params: { account: string, last_id?: number, limit: number } = {
         account, limit
     }
 

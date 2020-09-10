@@ -1,8 +1,9 @@
 .community-activities-modal {
   .dialog-content {
-    height: 500px;
+    height: 490px;
     overflow: auto;
     margin-top: 1px;
+
 
     .loading {
       position: absolute;
@@ -52,6 +53,10 @@
           }
         }
       }
+    }
+
+    .load-more {
+      text-align: center;
     }
   }
 }
