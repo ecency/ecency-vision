@@ -6,7 +6,6 @@ import {History} from "history";
 
 import isEqual from "react-fast-compare";
 
-
 import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 import {Community} from "../../store/communities/types";
@@ -24,7 +23,6 @@ import {
     scriptTextOutlineSvg,
     accountGroupSvg
 } from "../../img/svg";
-import {Activities} from "../community-activities";
 
 interface Props {
     history: History;
@@ -132,16 +130,6 @@ export class CommunityCard extends Component<Props, State> {
                             {team}
                         </div>
                     </div>
-                    {/*community.lang.trim() !== "" && (
-                        <div className="community-section">
-                            <div className="section-header">
-                                {earthSvg} {_t('community.lang')}
-                            </div>
-                            <div className="section-content">
-                                {community.lang.toUpperCase()}
-                            </div>
-                        </div>
-                    )*/}
                 </div>
 
                 {info && (

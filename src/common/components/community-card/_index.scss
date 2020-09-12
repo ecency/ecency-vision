@@ -47,11 +47,17 @@
   .community-sections {
     @media (max-width: $md-break - 1px) {
       display: flex;
-      justify-content: space-around;
+      justify-content: center;
     }
 
     .community-section {
       margin-bottom: 16px;
+
+      @media (max-width: $md-break - 1px) {
+        &:not(:last-child) {
+          margin-right: 4px;
+        }
+      }
 
       .section-header {
         background: $white-three;

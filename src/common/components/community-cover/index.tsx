@@ -25,6 +25,10 @@ setProxyBase(defaults.imageServer);
 import SubscriptionBtn from "../subscription-btn";
 import CommunityPostBtn from "../community-post-btn";
 
+import formattedNumber from "../../util/formatted-number";
+
+import {_t} from "../../i18n";
+
 const coverFallbackDay = require("../../img/cover-fallback-day.png");
 const coverFallbackNight = require("../../img/cover-fallback-night.png");
 
@@ -57,7 +61,7 @@ export class CommunityCover extends Component<Props> {
     }
 
     render() {
-        const {global, account} = this.props;
+        const {global, account, community} = this.props;
         let bgImage = "";
 
         if (account.__loaded) {
@@ -72,6 +76,9 @@ export class CommunityCover extends Component<Props> {
             style = {backgroundImage: `url('${bgImage}')`};
         }
 
+        const subscribers = formattedNumber(community.subscribers, {fractionDigits: 0});
+        const rewards = formattedNumber(community.sum_pending, {fractionDigits: 0});
+        const authors = formattedNumber(community.num_authors, {fractionDigits: 0});
 
         return (
             <div className="community-cover">
@@ -79,6 +86,30 @@ export class CommunityCover extends Component<Props> {
                 <div className="controls-holder">
                     <SubscriptionBtn {...this.props} />
                     {CommunityPostBtn({...this.props})}
+                </div>
+                <div className="community-stats">
+                    <div className="community-stat">
+                        <div className="stat-value">{subscribers}</div>
+                        <div className="stat-label">subscribers</div>
+                    </div>
+                    <div className="community-stat">
+                        <div className="stat-value">{"$"} {rewards}</div>
+                        <div className="stat-label">rewards</div>
+                    </div>
+                    <div className="community-stat">
+                        <div className="stat-value">{authors}</div>
+                        <div className="stat-label">authors</div>
+                    </div>
+                    {community.lang.trim() !== "" && (
+                        <div className="community-stat">
+                            <div className="stat-value">
+                                {community.lang.toUpperCase()}
+                            </div>
+                            <div className="stat-label">
+                                {_t('community.lang')}
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
         );
