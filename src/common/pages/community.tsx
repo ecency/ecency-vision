@@ -4,22 +4,18 @@ import {connect} from "react-redux";
 
 import {match} from "react-router";
 
-import {FormControl} from "react-bootstrap";
-
-import {Community} from "../store/communities/types";
-
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
 import NavBar from "../components/navbar/index";
 import LinearProgress from "../components/linear-progress";
 import CommunityCard from "../components/community-card";
 import CommunityMenu from "../components/community-menu";
-import ProfileCover from "../components/profile-cover";
+import CommunityCover from "../components/community-cover";
 
 import {_t} from "../i18n";
 import capitalize from "../util/capitalize";
 import {getCommunity, getSubscriptions} from "../api/bridge";
-import {getAccount, getAccountFull} from "../api/hive";
+import {getAccountFull} from "../api/hive";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 import NotFound from "../components/404";
@@ -56,19 +52,38 @@ class CommunityPage extends Component<Props, State> {
     async componentDidMount() {
         await this.ensureData();
 
+        // fetch blog posts.
         const {match, fetchEntries} = this.props;
         fetchEntries(match.params.filter, match.params.name, false);
+
+        // fetch subscriptions.
+        const {activeUser, subscriptions, updateSubscriptions} = this.props;
+        if (activeUser && subscriptions.length === 0) {
+            getSubscriptions(activeUser.username).then(r => {
+                if (r) updateSubscriptions(r);
+            });
+        }
     }
 
     componentDidUpdate(prevProps: Readonly<Props>): void {
         const {location, match, fetchEntries} = this.props;
         const {location: prevLocation} = prevProps;
 
-        // location (community or filter) changed. re-fetch
+        // location (community or filter) changed. re-fetch blog posts.
         if (!isEqual(location, prevLocation)) {
             this.ensureData().then(() => {
                 fetchEntries(match.params.filter, match.params.name, false);
             });
+        }
+
+        // re-fetch subscriptions once active user changed.
+        const {activeUser, updateSubscriptions} = this.props;
+        if (prevProps.activeUser?.username !== activeUser?.username) {
+            if (activeUser) {
+                getSubscriptions(activeUser.username).then(r => {
+                    if (r) updateSubscriptions(r);
+                });
+            }
         }
     }
 
@@ -168,9 +183,10 @@ class CommunityPage extends Component<Props, State> {
                             community
                         })}
 
-                        {ProfileCover({
+                        {CommunityCover({
                             ...this.props,
-                            account
+                            account,
+                            community
                         })}
 
                         {(() => {
