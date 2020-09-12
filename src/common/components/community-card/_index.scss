@@ -44,57 +44,86 @@
     }
   }
 
-  .community-section {
-    margin-bottom: 16px;
-
-    .section-header {
-      background: $white-three;
-      color: $steel-grey;
-      padding: 10px;
-      border-radius: 18px;
-      font-weight: 500;
+  .community-sections {
+    @media (max-width: $md-break - 1px) {
       display: flex;
-      align-items: center;
-      margin-bottom: 10px;
-
-      @media (min-width: $md-break) {
-        border-radius: 0 18px 18px 0;
-      }
-
-      svg {
-        height: 16px;
-        margin-right: 10px;
-      }
+      justify-content: space-around;
     }
 
-    .section-content {
-      font-size: 90%;
-      color: $steel-grey;
+    .community-section {
+      margin-bottom: 16px;
+
+      .section-header {
+        background: $white-three;
+        color: $steel-grey;
+        padding: 10px;
+        border-radius: 18px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+
+        svg {
+          height: 16px;
+          margin-right: 10px;
+        }
+
+        @media (max-width: $md-break - 1px) {
+          cursor: pointer;
+          font-size: 96%;
+          padding: 6px;
+
+          svg {
+            height: 14px;
+            margin-right: 6px;
+          }
+        }
+
+        @media (min-width: $md-break) {
+          border-radius: 0 18px 18px 0;
+          pointer-events: none;
+        }
+      }
+
+      .section-content {
+        @media (max-width: $md-break - 1px) {
+          display: none;
+        }
+
+        font-size: 90%;
+        color: $steel-grey;
+      }
     }
   }
+}
 
-  .section-team {
-    .team-member {
-      font-size: 14px;
-      overflow: hidden;
-      white-space: nowrap;
-      color: $steel-grey;
-      margin-bottom: 6px;
+.community-info-dialog {
+  .modal-body {
+    padding-top: 30px;
+  }
+}
 
-      .username {
-        margin-right: 6px;
-      }
+.community-card .section-team, .community-info-dialog {
+  .team-member {
+    font-size: 14px;
+    overflow: hidden;
+    white-space: nowrap;
+    color: $steel-grey;
+    margin-bottom: 6px;
 
-      .role {
-        margin-right: 6px;
-        text-transform: uppercase;
-      }
+    .username {
+      margin-right: 6px;
+    }
 
-      .extra {
-        border: 1px solid lighten($green1, 1);
-        padding: 0 2px;
-        border-radius: 6px;
-      }
+    .role {
+      margin-right: 6px;
+      text-transform: uppercase;
+    }
+
+    .extra {
+      border: 1px solid lighten($green1, 1);
+      padding: 0 2px;
+      border-radius: 6px;
     }
   }
 }
