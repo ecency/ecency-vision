@@ -11,12 +11,11 @@ import {Account} from "../../store/accounts/types";
 import {Community} from "../../store/communities/types";
 
 import UserAvatar from "../user-avatar";
-
 import ProfileLink from "../profile-link";
 
-import ln2list from "../../util/nl2list";
-
 import {_t} from "../../i18n";
+
+import ln2list from "../../util/nl2list";
 
 import {
     informationOutlineSvg,
@@ -31,8 +30,13 @@ interface Props {
     addAccount: (data: Account) => void;
 }
 
+interface DialogInfo {
+    title: string;
+    content: JSX.Element | null;
+}
+
 interface State {
-    info: JSX.Element | null
+    info: DialogInfo | null;
 }
 
 export class CommunityCard extends Component<Props, State> {
@@ -45,7 +49,7 @@ export class CommunityCard extends Component<Props, State> {
             || !isEqual(this.state, nextState);
     }
 
-    toggleInfo = (info: JSX.Element | null) => {
+    toggleInfo = (info: DialogInfo | null) => {
         this.setState({info});
     }
 
@@ -88,58 +92,48 @@ export class CommunityCard extends Component<Props, State> {
                     })}
                 </div>
                 <div className="community-info">
-                    <div className="title">
-                        {community.title}
-                    </div>
-                    <div className="about">
-                        {community.about}
-                    </div>
+                    <div className="title">{community.title}</div>
+                    <div className="about">{community.about}</div>
                 </div>
                 <div className="community-sections">
                     {description && (
                         <div className="community-section">
                             <div className="section-header" onClick={() => {
-                                this.toggleInfo(description);
+                                this.toggleInfo({title: _t('community.description'), content: description});
                             }}>
                                 {informationOutlineSvg} {_t('community.description')}
                             </div>
-                            <div className="section-content">
-                                {description}
-                            </div>
+                            <div className="section-content">{description}</div>
                         </div>
                     )}
                     {rules && (
                         <div className="community-section">
                             <div className="section-header" onClick={() => {
-                                this.toggleInfo(rules);
+                                this.toggleInfo({title: _t('community.rules'), content: rules});
                             }}>
                                 {scriptTextOutlineSvg} {_t('community.rules')}
                             </div>
-                            <div className="section-content">
-                                {rules}
-                            </div>
+                            <div className="section-content">{rules}</div>
                         </div>
                     )}
                     <div className="community-section section-team">
                         <div className="section-header" onClick={() => {
-                            this.toggleInfo(team);
+                            this.toggleInfo({title: _t('community.team'), content: team});
                         }}>
                             {accountGroupSvg} {_t('community.team')}
                         </div>
-                        <div className="section-content">
-                            {team}
-                        </div>
+                        <div className="section-content">{team}</div>
                     </div>
                 </div>
 
                 {info && (
                     <Modal show={true} centered={true} onHide={() => {
                         this.toggleInfo(null);
-                    }} animation={false} className="community-info-dialog modal-thin-header">
-                        <Modal.Header closeButton={true}/>
-                        <Modal.Body>
-                            {info}
-                        </Modal.Body>
+                    }} animation={false} className="community-info-dialog">
+                        <Modal.Header closeButton={true}>
+                            <Modal.Title>{info.title}</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>{info.content}</Modal.Body>
                     </Modal>
                 )}
             </div>
