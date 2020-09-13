@@ -160,7 +160,7 @@ class ProfilePage extends Component<Props, State> {
         }
 
         const username = match.params.username.replace("@", "");
-        const {section = "posts"} = match.params;
+        const {section = "posts", subsection = "posts"} = match.params;
         const account = accounts.find((x) => x.name === username);
 
         if (!account) {
@@ -199,7 +199,8 @@ class ProfilePage extends Component<Props, State> {
                         {ProfileMenu({
                             ...this.props,
                             username,
-                            section
+                            section,
+                            subsection
                         })}
                         {!["wallet", "points"].includes(section) && ProfileCover({
                             ...this.props,

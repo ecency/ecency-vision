@@ -19,6 +19,7 @@ interface Props {
     global: Global;
     username: string;
     section: string;
+    subsection: string;
     toggleListStyle: () => void;
 }
 
@@ -28,11 +29,11 @@ export class ProfileMenu extends Component<Props> {
     }
 
     render() {
-        const {username, section} = this.props;
+        const {username, section, subsection} = this.props;
         return (
             <div className="profile-menu">
                 <div className="profile-menu-items">
-                    {["posts", "comments", "replies", "points", "wallet"].map((s, k) => {
+                    {["posts", "points", "wallet"].map((s, k) => {
                         return (
                             <Link key={k} className={_c(`menu-item ${section === s && "selected-item"}`)} to={`/@${username}/${s}`}>
                                 {_t(`profile.section-${s}`)}
@@ -40,6 +41,17 @@ export class ProfileMenu extends Component<Props> {
                         );
                     })}
                 </div>
+                {section === 'posts' && subsection &&
+                    <div className="profile-submenu-items">
+                        {["blog", "posts", "comments", "replies"].map((s, k) => {
+                            return (
+                                <Link key={k} className={_c(`menu-item ${subsection === s && "selected-item"}`)} to={`/@${username}/${s}`}>
+                                    {_t(`profile.section-${s}`)}
+                                </Link>
+                            );
+                        })}
+                    </div>
+                }
 
                 <div className="page-tools">{section !== "wallet" && <ListStyleToggle global={this.props.global} toggleListStyle={this.props.toggleListStyle}/>}</div>
             </div>
@@ -53,6 +65,7 @@ export default (p: Props) => {
         global: p.global,
         username: p.username,
         section: p.section,
+        subsection: p.subsection,
         toggleListStyle: p.toggleListStyle,
     }
 

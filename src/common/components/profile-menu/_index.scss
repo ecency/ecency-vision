@@ -1,6 +1,7 @@
 .profile-menu {
-  display: flex;
-  height: 50px;
+  flex-wrap:wrap;
+  // display: flex;
+  height: 100px;
   margin-bottom: 10px;
 
   @include themify(day) {
@@ -12,6 +13,46 @@
   }
 
   .profile-menu-items {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 6px;
+    width: 100%;
+
+    @media (min-width: $md-break) {
+      flex-shrink: 0;
+      padding: 0;
+      justify-content: flex-start;
+      width: auto;
+    }
+
+    .menu-item {
+      align-items: center;
+      color: $steel-grey;
+      display: flex;
+      font-size: 14px;
+      height: 50px;
+      padding: 0 8px;
+
+      @media (min-width: $sm-break) {
+        padding: 0 16px;
+        font-size: 16px;
+      }
+
+      @media (min-width: $md-break) {
+        margin-right: 32px;
+        padding: 0;
+      }
+
+      &.selected-item {
+        border-bottom: 2px solid $dark-sky-blue;
+        color: $dark-sky-blue;
+        font-weight: 700;
+        pointer-events: none;
+      }
+    }
+  }
+  
+  .profile-submenu-items {
     display: flex;
     justify-content: space-between;
     padding: 0 6px;

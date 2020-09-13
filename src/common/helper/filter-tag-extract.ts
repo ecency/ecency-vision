@@ -62,7 +62,7 @@ export default (location: string): FilterTag | null => {
     params &&
     params[1] &&
     params[2] &&
-    ["feed", "posts", "comments", "replies"].includes(params[2])
+    ["feed", "blog", "posts", "comments", "replies"].includes(params[2])
   ) {
     return {
       filter: params[2],
