@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Render 1`] = `
+<div
+  className="community-menu"
+>
+  <div
+    className="menu-items"
+  >
+    <a
+      className="menu-item selected-item"
+      href="/hot/hive-148441"
+    >
+      Posts
+    </a>
+    <a
+      className="menu-item"
+      href="#"
+      onClick={[Function]}
+    >
+      Subscribers
+    </a>
+    <a
+      className="menu-item"
+      href="#"
+      onClick={[Function]}
+    >
+      Activities
+    </a>
+  </div>
+  <div
+    className="section-filter"
+  >
+    <div
+      className="custom-dropdown float-right"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <div
+        className="dropdown-btn "
+      >
+        <div
+          className="label"
+        >
+          Hot
+        </div>
+        <div
+          className="menu-down"
+        >
+          <svg
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M7,10L12,15L17,10H7Z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="page-tools"
+  >
+    <span
+      className="list-style-toggle"
+      onClick={[Function]}
+      title="Toggle list style"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M16,5V11H21V5M10,11H15V5H10M16,18H21V12H16M10,18H15V12H10M4,18H9V12H4M4,11H9V5H4V11Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+  </div>
+</div>
+`;
