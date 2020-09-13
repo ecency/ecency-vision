@@ -168,10 +168,6 @@
   },
   "community": {
     "page-description": "{{f}} topics",
-    "n-subscribers": "{{n}} subscribers",
-    "n-rewards": "{{n}} rewards",
-    "n-authors": "{{n}} posters",
-    "n-posts": "{{n}} posts",
     "subscribe": "Subscribe",
     "subscribed": "Joined",
     "unsubscribe": "Leave",
@@ -180,13 +176,18 @@
     "description": "Description",
     "rules": "Rules",
     "lang": "language",
-    "admins": "admins:",
     "posts": "Posts",
     "subscribers": "Subscribers",
-    "activities": "Activities"
+    "activities": "Activities",
+    "authors": "posters",
+    "rewards": "rewards"
   },
   "communities": {
     "title": "Communities",
+    "n-subscribers": "{{n}} subscribers",
+    "n-authors": "{{n}} posters",
+    "n-posts": "{{n}} posts",
+    "admins": "admins:",
     "sort-hot": "Hot",
     "sort-rank": "Rank",
     "sort-subs": "Subscribers",

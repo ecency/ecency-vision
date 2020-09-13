@@ -76,6 +76,7 @@
       }
 
       .stat-label {
+        text-transform: lowercase;
         @media (min-width: $md-break) {
           font-weight: 300;
           font-size: 90%;

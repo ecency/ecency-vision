@@ -90,15 +90,15 @@ export class CommunityCover extends Component<Props> {
                 <div className="community-stats">
                     <div className="community-stat">
                         <div className="stat-value">{subscribers}</div>
-                        <div className="stat-label">subscribers</div>
+                        <div className="stat-label">{_t('community.subscribers')}</div>
                     </div>
                     <div className="community-stat">
                         <div className="stat-value">{"$"} {rewards}</div>
-                        <div className="stat-label">rewards</div>
+                        <div className="stat-label">{_t('community.rewards')}</div>
                     </div>
                     <div className="community-stat">
                         <div className="stat-value">{authors}</div>
-                        <div className="stat-label">authors</div>
+                        <div className="stat-label">{_t('community.authors')}</div>
                     </div>
                     {community.lang.trim() !== "" && (
                         <div className="community-stat">
