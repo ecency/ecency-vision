@@ -236,7 +236,7 @@ export const transferPointHot = (from: string, to: string, amount: string, memo:
 
     const webUrl = `https://hivesigner.com/sign/custom-json?authority=active&required_auths=%5B%22${from}%22%5D&required_posting_auths=%5B%5D&id=esteem_point_transfer&json=${encodeURIComponent(
         json
-    )}`
+    )}&redirect_uri=https://ecency.com/@${from}/points`
 
     const win = window.open(webUrl, '_blank');
     return win!.focus();
@@ -414,7 +414,7 @@ export const promoteHot = (user: string, author: string, permlink: string, durat
 
     const webUrl = `https://hivesigner.com/sign/custom-json?authority=active&required_auths=%5B%22${user}%22%5D&required_posting_auths=%5B%5D&id=esteem_promote&json=${encodeURIComponent(
         json
-    )}`
+    )}&redirect_uri=https://ecency.com/@${user}/points`
 
     const win = window.open(webUrl, '_blank');
     return win!.focus();
@@ -450,7 +450,7 @@ export const boostHot = (user: string, author: string, permlink: string, amount:
 
     const webUrl = `https://hivesigner.com/sign/custom-json?authority=active&required_auths=%5B%22${user}%22%5D&required_posting_auths=%5B%5D&id=esteem_boost&json=${encodeURIComponent(
         json
-    )}`
+    )}&redirect_uri=https://ecency.com/@${user}/points`
 
     const win = window.open(webUrl, '_blank');
     return win!.focus();
