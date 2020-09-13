@@ -2,6 +2,9 @@ import tempEntry, {TempEntryProps} from './temp-entry';
 
 global.Date.now = jest.fn(() => new Date('2019-04-22T10:20:30Z').getTime());
 
+jest.mock("../../../package.json", () => ({
+    version: "3.0.4"
+}));
 
 describe('tempEntry', () => {
     it('(1) Create temp entry', () => {

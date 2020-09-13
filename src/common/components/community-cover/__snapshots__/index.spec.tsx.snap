@@ -32,6 +32,68 @@ exports[`(1) Render with loaded account object 1`] = `
       New Post
     </button>
   </div>
+  <div
+    className="community-stats"
+  >
+    <div
+      className="community-stat"
+    >
+      <div
+        className="stat-value"
+      >
+        4,086
+      </div>
+      <div
+        className="stat-label"
+      >
+        Subscribers
+      </div>
+    </div>
+    <div
+      className="community-stat"
+    >
+      <div
+        className="stat-value"
+      >
+        $
+         
+        17,370
+      </div>
+      <div
+        className="stat-label"
+      >
+        rewards
+      </div>
+    </div>
+    <div
+      className="community-stat"
+    >
+      <div
+        className="stat-value"
+      >
+        1,796
+      </div>
+      <div
+        className="stat-label"
+      >
+        posters
+      </div>
+    </div>
+    <div
+      className="community-stat"
+    >
+      <div
+        className="stat-value"
+      >
+        EN
+      </div>
+      <div
+        className="stat-label"
+      >
+        language
+      </div>
+    </div>
+  </div>
 </div>
 `;
 
@@ -62,6 +124,68 @@ exports[`(2) Render with not loaded account object 1`] = `
     >
       New Post
     </button>
+  </div>
+  <div
+    className="community-stats"
+  >
+    <div
+      className="community-stat"
+    >
+      <div
+        className="stat-value"
+      >
+        4,086
+      </div>
+      <div
+        className="stat-label"
+      >
+        Subscribers
+      </div>
+    </div>
+    <div
+      className="community-stat"
+    >
+      <div
+        className="stat-value"
+      >
+        $
+         
+        17,370
+      </div>
+      <div
+        className="stat-label"
+      >
+        rewards
+      </div>
+    </div>
+    <div
+      className="community-stat"
+    >
+      <div
+        className="stat-value"
+      >
+        1,796
+      </div>
+      <div
+        className="stat-label"
+      >
+        posters
+      </div>
+    </div>
+    <div
+      className="community-stat"
+    >
+      <div
+        className="stat-value"
+      >
+        EN
+      </div>
+      <div
+        className="stat-label"
+      >
+        language
+      </div>
+    </div>
   </div>
 </div>
 `;
@@ -98,6 +222,68 @@ exports[`(3) No bg image - Day theme 1`] = `
       New Post
     </button>
   </div>
+  <div
+    className="community-stats"
+  >
+    <div
+      className="community-stat"
+    >
+      <div
+        className="stat-value"
+      >
+        4,086
+      </div>
+      <div
+        className="stat-label"
+      >
+        Subscribers
+      </div>
+    </div>
+    <div
+      className="community-stat"
+    >
+      <div
+        className="stat-value"
+      >
+        $
+         
+        17,370
+      </div>
+      <div
+        className="stat-label"
+      >
+        rewards
+      </div>
+    </div>
+    <div
+      className="community-stat"
+    >
+      <div
+        className="stat-value"
+      >
+        1,796
+      </div>
+      <div
+        className="stat-label"
+      >
+        posters
+      </div>
+    </div>
+    <div
+      className="community-stat"
+    >
+      <div
+        className="stat-value"
+      >
+        EN
+      </div>
+      <div
+        className="stat-label"
+      >
+        language
+      </div>
+    </div>
+  </div>
 </div>
 `;
 
@@ -132,6 +318,68 @@ exports[`(4) No bg image - Night theme 1`] = `
     >
       New Post
     </button>
+  </div>
+  <div
+    className="community-stats"
+  >
+    <div
+      className="community-stat"
+    >
+      <div
+        className="stat-value"
+      >
+        4,086
+      </div>
+      <div
+        className="stat-label"
+      >
+        Subscribers
+      </div>
+    </div>
+    <div
+      className="community-stat"
+    >
+      <div
+        className="stat-value"
+      >
+        $
+         
+        17,370
+      </div>
+      <div
+        className="stat-label"
+      >
+        rewards
+      </div>
+    </div>
+    <div
+      className="community-stat"
+    >
+      <div
+        className="stat-value"
+      >
+        1,796
+      </div>
+      <div
+        className="stat-label"
+      >
+        posters
+      </div>
+    </div>
+    <div
+      className="community-stat"
+    >
+      <div
+        className="stat-value"
+      >
+        EN
+      </div>
+      <div
+        className="stat-label"
+      >
+        language
+      </div>
+    </div>
   </div>
 </div>
 `;
