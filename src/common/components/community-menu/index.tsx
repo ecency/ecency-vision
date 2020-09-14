@@ -84,16 +84,15 @@ export class CommunityMenu extends Component<Props, State> {
         return (
             <div className="community-menu">
                 <div className="menu-items">
-                    <a className="menu-item selected-item">
-
+                    <span className="menu-item selected-item">
                         <DropDown {...menuConfig} float="left"/>
-                    </a>
-                    <a href="#" className="menu-item" onClick={this.toggleSubscribers}>
+                    </span>
+                    <span className="menu-item" onClick={this.toggleSubscribers}>
                         {_t('community.subscribers')}
-                    </a>
-                    <a href="#" className="menu-item" onClick={this.toggleActivities}>
+                    </span>
+                    <span className="menu-item" onClick={this.toggleActivities}>
                         {_t('community.activities')}
-                    </a>
+                    </span>
                 </div>
 
                 <div className="page-tools"><ListStyleToggle global={this.props.global} toggleListStyle={this.props.toggleListStyle}/></div>

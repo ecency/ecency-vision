@@ -7,58 +7,50 @@ exports[`(1) Render 1`] = `
   <div
     className="menu-items"
   >
-    <a
+    <span
       className="menu-item selected-item"
-      href="/hot/hive-148441"
     >
-      Posts
-    </a>
-    <a
+      <div
+        className="custom-dropdown float-left"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        <div
+          className="dropdown-btn "
+        >
+          <div
+            className="label"
+          >
+            Hot
+          </div>
+          <div
+            className="menu-down"
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7,10L12,15L17,10H7Z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </span>
+    <span
       className="menu-item"
-      href="#"
       onClick={[Function]}
     >
       Subscribers
-    </a>
-    <a
+    </span>
+    <span
       className="menu-item"
-      href="#"
       onClick={[Function]}
     >
       Activities
-    </a>
-  </div>
-  <div
-    className="section-filter"
-  >
-    <div
-      className="custom-dropdown float-right"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <div
-        className="dropdown-btn "
-      >
-        <div
-          className="label"
-        >
-          Hot
-        </div>
-        <div
-          className="menu-down"
-        >
-          <svg
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M7,10L12,15L17,10H7Z"
-              fill="currentColor"
-            />
-          </svg>
-        </div>
-      </div>
-    </div>
+    </span>
   </div>
   <div
     className="page-tools"
