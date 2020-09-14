@@ -14,6 +14,7 @@ export enum EntryFilter {
   trending = "trending",
   hot = "hot",
   created = "created",
+  payout = "payout",
 }
 
 export enum ProfileFilter {
@@ -27,6 +28,7 @@ export enum AllFilter {
   trending = "trending",
   hot = "hot",
   created = "created",
+  payout = "payout",
   muted = "muted",  // To see muted accounts
   blog = "blog",  // This might be deleted
   posts = "posts",

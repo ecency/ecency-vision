@@ -71,7 +71,7 @@ export class CommunityMenu extends Component<Props, State> {
             history: this.props.history,
             label: filter === EntryFilter.trending ? _t('community.posts') : _t(`entry-filter.filter-${filter}`),
             items: [
-                ...[EntryFilter.trending, EntryFilter.hot, EntryFilter.created].map((x) => {
+                ...[EntryFilter.trending, EntryFilter.hot, EntryFilter.created, EntryFilter.payout].map((x) => {
                     return {
                         label: _t(`entry-filter.filter-${x}`),
                         href: `/${x}/${community.name}`,
