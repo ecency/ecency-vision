@@ -199,6 +199,7 @@ class CommunityPage extends Component<Props, State> {
 
                                 return (
                                     <>
+                                        {loading && entryList.length === 0 ? <LinearProgress/> : ""}
                                         <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>
                                             <div className={_c(`entry-list-body ${global.listStyle === ListStyle.grid ? "grid-view" : ""}`)}>
                                                 {loading && entryList.length === 0 && <EntryListLoadingItem/>}
