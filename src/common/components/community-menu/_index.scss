@@ -26,6 +26,12 @@
       height: 50px;
       padding: 0 8px;
 
+      .dropdown-btn {
+        .label {
+          font-size: 14px !important;
+        }
+      }
+
       &:hover {
         color: $dark-sky-blue;
       }
@@ -33,6 +39,12 @@
       @media (min-width: $sm-break) {
         padding: 0 16px;
         font-size: 16px;
+
+        .dropdown-btn {
+          .label {
+            font-size: 16px !important;
+          }
+        }
       }
 
       @media (min-width: $md-break) {
@@ -44,7 +56,7 @@
         border-bottom: 2px solid $dark-sky-blue;
         color: $dark-sky-blue;
         font-weight: 700;
-        pointer-events: none;
+
       }
     }
   }

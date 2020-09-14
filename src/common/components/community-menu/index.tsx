@@ -69,7 +69,7 @@ export class CommunityMenu extends Component<Props, State> {
             items: MenuItem[]
         } = {
             history: this.props.history,
-            label: _t(`entry-filter.filter-${filter}`),
+            label: filter === EntryFilter.trending ? _t('community.posts') : _t(`entry-filter.filter-${filter}`),
             items: [
                 ...[EntryFilter.trending, EntryFilter.hot, EntryFilter.created].map((x) => {
                     return {
@@ -84,8 +84,9 @@ export class CommunityMenu extends Component<Props, State> {
         return (
             <div className="community-menu">
                 <div className="menu-items">
-                    <a href={`/${filter}/${community.name}`} className="menu-item selected-item">
-                        {_t('community.posts')}
+                    <a className="menu-item selected-item">
+
+                        <DropDown {...menuConfig} float="left"/>
                     </a>
                     <a href="#" className="menu-item" onClick={this.toggleSubscribers}>
                         {_t('community.subscribers')}
@@ -94,9 +95,7 @@ export class CommunityMenu extends Component<Props, State> {
                         {_t('community.activities')}
                     </a>
                 </div>
-                <div className="section-filter">
-                    <DropDown {...menuConfig} float="right"/>
-                </div>
+
                 <div className="page-tools"><ListStyleToggle global={this.props.global} toggleListStyle={this.props.toggleListStyle}/></div>
                 {subscribers && <Subscribers {...this.props} onHide={this.toggleSubscribers}/>}
                 {activities && <Activities {...this.props} onHide={this.toggleActivities}/>}
