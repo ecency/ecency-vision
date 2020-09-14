@@ -84,13 +84,13 @@ export class CommunityMenu extends Component<Props, State> {
         return (
             <div className="community-menu">
                 <div className="menu-items">
-                    <span className="menu-item selected-item">
+                    <span className="community-menu-item selected-item">
                         <DropDown {...menuConfig} float="left"/>
                     </span>
-                    <span className="menu-item" onClick={this.toggleSubscribers}>
+                    <span className="community-menu-item" onClick={this.toggleSubscribers}>
                         {_t('community.subscribers')}
                     </span>
-                    <span className="menu-item" onClick={this.toggleActivities}>
+                    <span className="community-menu-item" onClick={this.toggleActivities}>
                         {_t('community.activities')}
                     </span>
                 </div>

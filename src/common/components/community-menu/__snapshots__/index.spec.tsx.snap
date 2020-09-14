@@ -8,7 +8,7 @@ exports[`(1) Render 1`] = `
     className="menu-items"
   >
     <span
-      className="menu-item selected-item"
+      className="community-menu-item selected-item"
     >
       <div
         className="custom-dropdown float-left"
@@ -40,13 +40,13 @@ exports[`(1) Render 1`] = `
       </div>
     </span>
     <span
-      className="menu-item"
+      className="community-menu-item"
       onClick={[Function]}
     >
       Subscribers
     </span>
     <span
-      className="menu-item"
+      className="community-menu-item"
       onClick={[Function]}
     >
       Activities
