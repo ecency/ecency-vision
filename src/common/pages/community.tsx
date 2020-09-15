@@ -28,10 +28,12 @@ import EntryListLoadingItem from "../components/entry-list-loading-item";
 import EntryListContent from "../components/entry-list";
 import DetectBottom from "../components/detect-bottom";
 import isEqual from "react-fast-compare";
+import CommunitySubscribers from "../components/community-subscribers";
 
 interface MatchParams {
     filter: string;
     name: string;
+    section?: string;
 }
 
 interface Props extends PageProps {
@@ -144,7 +146,7 @@ class CommunityPage extends Component<Props, State> {
             return <LinearProgress/>;
         }
 
-        const {name, filter} = match.params;
+        const {name, filter, section} = match.params;
 
         const community = communities.find((x) => x.name === name);
         const account = accounts.find((x) => x.name === name);
@@ -190,6 +192,15 @@ class CommunityPage extends Component<Props, State> {
                         })}
 
                         {(() => {
+
+                            if (section === 'subscribers') {
+                                return <CommunitySubscribers {...this.props} community={community}/>;
+                            }
+
+                            if (section === 'activities') {
+                                return null;
+                            }
+
                             const groupKey = makeGroupKey(filter, name);
                             const data = entries[groupKey];
 

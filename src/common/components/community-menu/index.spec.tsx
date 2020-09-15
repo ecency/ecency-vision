@@ -17,8 +17,6 @@ it("(1) Render", () => {
         community: {...communityInstance1},
         toggleListStyle: () => {
         },
-        addAccount: () => {
-        }
     };
 
     const comp = <CommunityMenu {...props} />;

@@ -1,77 +1,51 @@
-.subscribers-modal {
-  .dialog-content {
-    height: 500px;
-    overflow: auto;
-    margin-top: 1px;
+.community-subscribers {
+  .user-list {
+    .user-list-body {
+      display: grid;
+      margin-top: 10px;
+      grid-gap: 10px;
+      grid-template-columns: repeat(1, 1fr);
 
-    .loading {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 1px;
-    }
+      @media (min-width: $sm-break) {
+        grid-template-columns: repeat(2, 1fr);
+      }
 
-    .user-list {
-      .user-list-body {
-        display: grid;
-        padding: 10px;
-        grid-gap: 10px;
-        grid-template-columns: repeat(1, 1fr);
+      @media (min-width: $lg-break) {
+        grid-template-columns: repeat(4, 1fr);
+      }
 
-        @media (min-width: $sm-break) {
-          grid-template-columns: repeat(2, 1fr);
+      .user-list-item {
+        border-radius: 8px;
+        padding: 8px;
+        text-align: center;
+        cursor: pointer;
+
+        @include themify(day) {
+          background: $white-six;
         }
 
-        @media (min-width: $lg-break) {
-          grid-template-columns: repeat(4, 1fr);
+        @include themify(night) {
+          background: $dark;
         }
 
-        .user-list-item {
-          border-radius: 8px;
-          padding: 8px;
-          text-align: center;
-          cursor: pointer;
+        .user-avatar {
+          margin: 0 auto 12px auto;
+        }
+
+        .user-name {
+          font-weight: 500;
+          margin-bottom: 6px;
 
           @include themify(day) {
-            background: $white-six;
+            color: $charcoal-grey;
           }
 
           @include themify(night) {
-            background: lighten($dark-six, 1);
+            color: $pinkish-grey;
           }
 
-          .user-avatar {
-            margin: 0 auto 12px auto;
-          }
-
-          .user-name {
-            font-weight: 500;
-            margin-bottom: 6px;
-
-            @include themify(day) {
-              color: $charcoal-grey;
-            }
-
-            @include themify(night) {
-              color: $pinkish-grey;
-            }
-
-            &::before {
-              content: "@";
-            }
-          }
-
-          .user-full-name {
-            font-size: 95%;
-
-            @include themify(day) {
-              color: $steel-grey;
-            }
-
-            @include themify(night) {
-              color: $powder-blue;
-            }
+          &::before {
+            content: "@";
           }
         }
       }

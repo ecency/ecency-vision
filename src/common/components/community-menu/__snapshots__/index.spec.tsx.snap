@@ -41,13 +41,11 @@ exports[`(1) Render 1`] = `
     </span>
     <span
       className="community-menu-item"
-      onClick={[Function]}
     >
       Subscribers
     </span>
     <span
       className="community-menu-item"
-      onClick={[Function]}
     >
       Activities
     </span>

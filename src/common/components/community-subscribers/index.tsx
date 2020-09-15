@@ -1,5 +1,4 @@
 import React, {Component, Fragment} from "react";
-import {Modal} from "react-bootstrap";
 
 import {History} from "history";
 
@@ -17,13 +16,11 @@ import {getSubscribers} from "../../api/bridge";
 
 import {_t} from "../../i18n";
 
-
 interface Props {
     history: History;
     global: Global;
     community: Community;
     addAccount: (data: Account) => void;
-    onHide: () => void;
 }
 
 interface State {
@@ -66,7 +63,7 @@ export class Subscribers extends Component<Props, State> {
     render() {
         const {items, loading} = this.state;
 
-        return <div className="dialog-content">
+        return <div className="community-subscribers">
             {loading && <LinearProgress/>}
             <div className="user-list-body">
                 {items.length > 0 && (
@@ -81,7 +78,7 @@ export class Subscribers extends Component<Props, State> {
                                             username,
                                             children: <div className="user-list-item">
                                                 {UserAvatar({...this.props, username, size: "large"})}
-                                                <div className="friend-name notransalte">{username}</div>
+                                                <div className="user-name notransalte">{username}</div>
                                             </div>
                                         })
                                     }
@@ -96,22 +93,14 @@ export class Subscribers extends Component<Props, State> {
 }
 
 
-export default class SubscribersDialog extends Component<Props> {
-    hide = () => {
-        const {onHide} = this.props;
-        onHide();
+export default (p: Props) => {
+    const props: Props = {
+        history: p.history,
+        global: p.global,
+        community: p.community,
+        addAccount: p.addAccount
     }
 
-    render() {
-        return (
-            <Modal show={true} centered={true} onHide={this.hide} size="lg" animation={false} className="subscribers-modal">
-                <Modal.Header closeButton={true}>
-                    <Modal.Title>{_t('community.subscribers')}</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Subscribers {...this.props}/>
-                </Modal.Body>
-            </Modal>
-        );
-    }
+    return <Subscribers {...props} />
 }
+

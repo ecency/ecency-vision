@@ -30,8 +30,6 @@ it('(1) Default render - With data.', async () => {
         global: globalInstance,
         community: {...communityInstance1},
         addAccount: () => {
-        },
-        onHide: () => {
         }
     };
 

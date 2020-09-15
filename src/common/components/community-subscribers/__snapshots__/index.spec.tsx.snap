@@ -2,7 +2,7 @@
 
 exports[`(1) Default render - With data. 1`] = `
 <div
-  className="dialog-content"
+  className="community-subscribers"
 >
   <div
     className="user-list-body"
@@ -27,7 +27,7 @@ exports[`(1) Default render - With data. 1`] = `
             }
           />
           <div
-            className="friend-name notransalte"
+            className="user-name notransalte"
           >
             foo
           </div>
@@ -46,7 +46,7 @@ exports[`(1) Default render - With data. 1`] = `
             }
           />
           <div
-            className="friend-name notransalte"
+            className="user-name notransalte"
           >
             bar
           </div>
@@ -65,7 +65,7 @@ exports[`(1) Default render - With data. 1`] = `
             }
           />
           <div
-            className="friend-name notransalte"
+            className="user-name notransalte"
           >
             baz
           </div>
@@ -84,7 +84,7 @@ exports[`(1) Default render - With data. 1`] = `
             }
           />
           <div
-            className="friend-name notransalte"
+            className="user-name notransalte"
           >
             lorem
           </div>
@@ -103,7 +103,7 @@ exports[`(1) Default render - With data. 1`] = `
             }
           />
           <div
-            className="friend-name notransalte"
+            className="user-name notransalte"
           >
             ipsum
           </div>
@@ -122,7 +122,7 @@ exports[`(1) Default render - With data. 1`] = `
             }
           />
           <div
-            className="friend-name notransalte"
+            className="user-name notransalte"
           >
             dolor
           </div>

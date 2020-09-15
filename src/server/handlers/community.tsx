@@ -17,7 +17,7 @@ import {render} from "../template";
 import {EntryFilter} from "../../common/store/global/types";
 
 export default async (req: express.Request, res: express.Response) => {
-    const {filter, name} = req.params;
+    const {filter, name, section} = req.params;
 
     let communities: Community[] = [];
     try {
@@ -38,12 +38,14 @@ export default async (req: express.Request, res: express.Response) => {
     } catch (e) {
     }
 
-    let entries: Entry[];
+    let entries: Entry[] = [];
 
-    try {
-        entries = (await bridgeApi.getPostsRanked(filter, "", "", 8, name)) || [];
-    } catch (e) {
-        entries = [];
+    if (!section) {
+        try {
+            entries = (await bridgeApi.getPostsRanked(filter, "", "", 8, name)) || [];
+        } catch (e) {
+            entries = [];
+        }
     }
 
     const state = await makePreloadedState(req);
