@@ -39,7 +39,6 @@ export class CommunityMenu extends Component<Props> {
 
     render() {
         const {community, match} = this.props;
-
         const {filter, name, section} = match.params;
 
         const menuConfig: {
@@ -50,7 +49,7 @@ export class CommunityMenu extends Component<Props> {
             history: this.props.history,
             label: filter === EntryFilter.trending ? _t('community.posts') : _t(`entry-filter.filter-${filter}`),
             items: [
-                ...[EntryFilter.trending, EntryFilter.hot, EntryFilter.created, EntryFilter.payout].map((x) => {
+                ...[EntryFilter.trending, EntryFilter.hot, EntryFilter.created, EntryFilter.payout, EntryFilter.muted].map((x) => {
                     return {
                         label: _t(`entry-filter.filter-${x}`),
                         href: `/${x}/${community.name}`,

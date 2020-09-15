@@ -30,6 +30,7 @@
     "filter-created": "New",
     "filter-promoted": "Promoted",
     "filter-payout": "Payouts",
+    "filter-muted": "Muted",
     "filter-feed": "Feed"
   },
   "navbar": {
