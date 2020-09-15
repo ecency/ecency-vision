@@ -1,6 +1,81 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`(1) Render 1`] = `
+exports[`(1) Default render 1`] = `
+<div
+  className="community-menu"
+>
+  <div
+    className="menu-items"
+  >
+    <span
+      className="community-menu-item selected-item"
+    >
+      <div
+        className="custom-dropdown float-left"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        <div
+          className="dropdown-btn "
+        >
+          <div
+            className="label"
+          >
+            Posts
+          </div>
+          <div
+            className="menu-down"
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7,10L12,15L17,10H7Z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </span>
+    <a
+      className="community-menu-item"
+      href="/trending/hive-125125/subscribers"
+      onClick={[Function]}
+    >
+      Subscribers
+    </a>
+    <a
+      className="community-menu-item"
+      href="/trending/hive-125125/activities"
+      onClick={[Function]}
+    >
+      Activities
+    </a>
+  </div>
+  <div
+    className="page-tools"
+  >
+    <span
+      className="list-style-toggle"
+      onClick={[Function]}
+      title="Toggle list style"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M16,5V11H21V5M10,11H15V5H10M16,18H21V12H16M10,18H15V12H10M4,18H9V12H4M4,11H9V5H4V11Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`(2) Hot filter 1`] = `
 <div
   className="community-menu"
 >
@@ -39,16 +114,20 @@ exports[`(1) Render 1`] = `
         </div>
       </div>
     </span>
-    <span
+    <a
       className="community-menu-item"
+      href="/hot/hive-125125/subscribers"
+      onClick={[Function]}
     >
       Subscribers
-    </span>
-    <span
+    </a>
+    <a
       className="community-menu-item"
+      href="/hot/hive-125125/activities"
+      onClick={[Function]}
     >
       Activities
-    </span>
+    </a>
   </div>
   <div
     className="page-tools"
@@ -67,6 +146,38 @@ exports[`(1) Render 1`] = `
         />
       </svg>
     </span>
+  </div>
+</div>
+`;
+
+exports[`(3) In section 1`] = `
+<div
+  className="community-menu"
+>
+  <div
+    className="menu-items"
+  >
+    <a
+      className="community-menu-item"
+      href="/hot/hive-125125"
+      onClick={[Function]}
+    >
+      Posts
+    </a>
+    <a
+      className="community-menu-item"
+      href="/hot/hive-125125/subscribers"
+      onClick={[Function]}
+    >
+      Subscribers
+    </a>
+    <a
+      className="community-menu-item selected-item"
+      href="/hot/hive-125125/activities"
+      onClick={[Function]}
+    >
+      Activities
+    </a>
   </div>
 </div>
 `;
