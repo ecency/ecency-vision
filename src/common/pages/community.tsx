@@ -29,6 +29,7 @@ import EntryListContent from "../components/entry-list";
 import DetectBottom from "../components/detect-bottom";
 import isEqual from "react-fast-compare";
 import CommunitySubscribers from "../components/community-subscribers";
+import CommunityActivities from "../components/community-activities";
 
 interface MatchParams {
     filter: string;
@@ -192,13 +193,12 @@ class CommunityPage extends Component<Props, State> {
                         })}
 
                         {(() => {
-
                             if (section === 'subscribers') {
                                 return <CommunitySubscribers {...this.props} community={community}/>;
                             }
 
                             if (section === 'activities') {
-                                return null;
+                                return <CommunityActivities {...this.props} community={community}/>;
                             }
 
                             const groupKey = makeGroupKey(filter, name);

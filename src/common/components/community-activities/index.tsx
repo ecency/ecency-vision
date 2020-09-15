@@ -51,7 +51,7 @@ class ListItem extends Component<ListItemProps> {
                     return <Fragment key={i}>{EntryLink({
                         ...this.props,
                         entry: {
-                            category: "tag",
+                            category: "post",
                             author: s[0].replace("@", ""),
                             permlink: s[1]
                         },
@@ -113,7 +113,6 @@ interface Props {
     global: Global;
     community: Community;
     addAccount: (data: Account) => void;
-    onHide: () => void;
 }
 
 interface State {
@@ -168,7 +167,7 @@ export class Activities extends Component<Props, State> {
     render() {
         const {items, loading, hasMore} = this.state;
 
-        return <div className="dialog-content">
+        return <div className="community-activities">
             {loading && <LinearProgress/>}
             <div className="activity-list">
                 <div className="activity-list-body">
@@ -184,23 +183,13 @@ export class Activities extends Component<Props, State> {
     }
 }
 
-
-export default class ActivitiesDialog extends Component<Props> {
-    hide = () => {
-        const {onHide} = this.props;
-        onHide();
+export default (p: Props) => {
+    const props: Props = {
+        history: p.history,
+        global: p.global,
+        community: p.community,
+        addAccount: p.addAccount
     }
 
-    render() {
-        return (
-            <Modal show={true} centered={true} onHide={this.hide} animation={false} size="lg" className="community-activities-modal">
-                <Modal.Header closeButton={true}>
-                    <Modal.Title>{_t('community.activities')}</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Activities {...this.props}/>
-                </Modal.Body>
-            </Modal>
-        );
-    }
+    return <Activities {...props} />
 }
