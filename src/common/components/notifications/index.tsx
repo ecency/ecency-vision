@@ -363,7 +363,7 @@ export class DialogContent extends Component<NotificationProps> {
                 {!loading && list.length === 0 && (
                     <div className="list-body empty-list">
                         <span className="empty-text">
-                            {_t('notifications.empty-list')}
+                            {_t('g.empty-list')}
                         </span>
                     </div>
                 )}

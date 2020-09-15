@@ -362,8 +362,7 @@
   "friends": {
     "followers": "Followers ({{n}})",
     "following": "Following ({{n}})",
-    "search-placeholder": "Search users",
-    "empty-list": "Nothing here"
+    "search-placeholder": "Search users"
   },
   "follow-controls": {
     "follow": "Follow",
@@ -463,7 +462,6 @@
     "spin-str": "Time to earn more Points, Play Spin on Ecency Mobile app",
     "inactive-str": "Be active! Write a post, continue earning",
     "referral-str": "joined with your referral, welcome them",
-    "empty-list": "Nothing here",
     "refresh": "Refresh",
     "mark-all-read": "Mark All as Read",
     "mark-read": "Mark as Read"
@@ -488,20 +486,16 @@
   },
   "gallery": {
     "title": "Gallery",
-    "copied": "Copied to clipboard",
-    "empty-list": "Nothing here"
+    "copied": "Copied to clipboard"
   },
   "drafts": {
-    "title": "Drafts",
-    "empty-list": "Nothing here"
+    "title": "Drafts"
   },
   "bookmarks": {
-    "title": "Bookmarks",
-    "empty-list": "Nothing here"
+    "title": "Bookmarks"
   },
   "favorites": {
-    "title": "Favorites",
-    "empty-list": "Nothing here"
+    "title": "Favorites"
   },
   "static": {
     "about": {

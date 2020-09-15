@@ -187,7 +187,7 @@ export class List extends Component<ListProps, ListState> {
                         </div>
 
                         <div className="friends-list-body">
-                            {!loading && data.length === 0 && <div className="empty-list"> {_t("friends.empty-list")}</div>}
+                            {!loading && data.length === 0 && <div className="empty-list"> {_t("g.empty-list")}</div>}
 
                             {data.map((item) => (
                                 <Fragment key={item.name}>

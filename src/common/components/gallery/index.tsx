@@ -112,7 +112,7 @@ export class Gallery extends Component<Props, State> {
             )}
             {(!loading && items.length === 0) && (
                 <div className="gallery-list">
-                    {_t('gallery.empty-list')}
+                    {_t('g.empty-list')}
                 </div>
             )}
         </div>
