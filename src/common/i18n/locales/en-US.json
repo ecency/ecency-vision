@@ -17,7 +17,8 @@
     "finish": "Finish",
     "next": "Next",
     "back": "Back",
-    "load-more": "Load More"
+    "load-more": "Load More",
+    "empty-list": "Nothing here"
   },
   "confirm": {
     "title": "Are you sure?",

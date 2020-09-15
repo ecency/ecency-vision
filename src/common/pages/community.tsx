@@ -1,8 +1,8 @@
 import React, {Component} from "react";
-
 import {connect} from "react-redux";
-
 import {match} from "react-router";
+
+import {Alert} from "react-bootstrap";
 
 import {ListStyle} from "../store/global/types";
 import {makeGroupKey} from "../store/entries";
@@ -221,6 +221,7 @@ class CommunityPage extends Component<Props, State> {
 
                                 return (
                                     <>
+                                        {!loading && entryList.length === 0 ? <Alert variant="info">{_t('g.empty-list')}</Alert> : ""}
                                         {loading && entryList.length === 0 ? <LinearProgress/> : ""}
                                         <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>
                                             <div className={_c(`entry-list-body ${global.listStyle === ListStyle.grid ? "grid-view" : ""}`)}>
