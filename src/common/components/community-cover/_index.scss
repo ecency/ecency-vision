@@ -1,0 +1,88 @@
+.community-cover {
+  height: 134px;
+  position: relative;
+  width: 100%;
+  margin-bottom: 4px;
+
+  .cover-image {
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 3px;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+
+    @include themify(day) {
+      background-color: $white-three;
+    }
+
+    @include themify(night) {
+      background-color: $dark;
+    }
+  }
+
+  .controls-holder {
+    position: absolute;
+    right: 0;
+    top: 10px;
+    z-index: 3;
+
+    .btn {
+      margin-right: 10px;
+    }
+  }
+
+  .community-stats {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    height: 134px;
+    background: linear-gradient(320deg, rgba(255, 255, 255, 0) 32%, rgba(20, 20, 20, .70) 100%);
+
+    @media (min-width: $md-break) {
+      display: flex;
+      padding-top: 86px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0) 32%, rgba(20, 20, 20, .70) 100%);
+    }
+
+    .community-stat {
+      display: flex;
+      align-items: center;
+      color: $white-three;
+      padding: 7px 10px;
+
+      @media (min-width: $md-break) {
+        padding: 0;
+        width: 25%;
+        justify-content: center;
+        flex-direction: column;
+
+        &:not(:last-child) {
+          border-right: 2px solid $white-three;
+        }
+      }
+
+      .stat-value {
+        font-weight: 500;
+        margin-right: 6px;
+
+        @media (min-width: $md-break) {
+          margin-right: 0;
+          font-size: 20px;
+        }
+      }
+
+      .stat-label {
+        text-transform: lowercase;
+        @media (min-width: $md-break) {
+          font-weight: 300;
+          font-size: 90%;
+        }
+      }
+    }
+  }
+}

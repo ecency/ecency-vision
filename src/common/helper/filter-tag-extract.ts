@@ -59,10 +59,10 @@ export default (location: string): FilterTag | null => {
   re = pathToRegexp(routes.USER_SECTION);
   params = re.exec(location);
   if (
-    params &&
-    params[1] &&
-    params[2] &&
-    ["feed", "posts", "comments", "replies"].includes(params[2])
+      params &&
+      params[1] &&
+      params[2] &&
+      ["feed", "posts", "comments", "replies"].includes(params[2])
   ) {
     return {
       filter: params[2],

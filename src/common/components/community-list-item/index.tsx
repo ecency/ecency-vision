@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 import isEqual from "react-fast-compare";
 
 import {Account} from "../../store/accounts/types";
-import {Community} from "../../store/community/types";
+import {Community} from "../../store/communities/types";
 import {Subscription} from "../../store/subscriptions/types";
 import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
@@ -62,13 +62,13 @@ export class CommunityListItem extends Component<Props> {
                     </h2>
                     <div className="item-about">{community.about}</div>
                     <div className="item-stats">
-                        <div className="stat">{_t("community.n-subscribers", {n: subscribers})}</div>
-                        <div className="stat">{_t("community.n-authors", {n: authors})}</div>
-                        <div className="stat">{_t("community.n-posts", {n: posts})}</div>
+                        <div className="stat">{_t("communities.n-subscribers", {n: subscribers})}</div>
+                        <div className="stat">{_t("communities.n-authors", {n: authors})}</div>
+                        <div className="stat">{_t("communities.n-posts", {n: posts})}</div>
                     </div>
                     {community.admins && (
                         <div className="item-admins">
-                            {_t("community.admins")}
+                            {_t("communities.admins")}
                             {community.admins.map((x, i) => (
                                 <Fragment key={i}>
                                     {ProfileLink({...this.props, username: x, children: <a className="admin">{x}</a>})}

@@ -3,7 +3,7 @@ import React, {Component} from "react";
 import {Button, Spinner, ButtonProps} from "react-bootstrap";
 
 import {Subscription} from "../../store/subscriptions/types";
-import {Community} from "../../store/community/types";
+import {Community} from "../../store/communities/types";
 import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {ToggleType, UI} from "../../store/ui/types";

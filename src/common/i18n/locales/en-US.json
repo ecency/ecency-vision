@@ -16,12 +16,23 @@
     "days": "days",
     "finish": "Finish",
     "next": "Next",
-    "back": "Back"
+    "back": "Back",
+    "load-more": "Load More",
+    "empty-list": "Nothing here"
   },
   "confirm": {
     "title": "Are you sure?",
     "ok": "Confirm",
     "cancel": "Cancel"
+  },
+  "entry-filter": {
+    "filter-trending": "Trending",
+    "filter-hot": "Hot",
+    "filter-created": "New",
+    "filter-promoted": "Promoted",
+    "filter-payout": "Payouts",
+    "filter-muted": "Muted",
+    "filter-feed": "Feed"
   },
   "navbar": {
     "discover": "Discover",
@@ -113,11 +124,6 @@
   "entry-index": {
     "feed": "Feed",
     "tags": "Popular",
-    "filter-trending": "Trending",
-    "filter-hot": "Hot",
-    "filter-created": "New",
-    "filter-promoted": "Promoted",
-    "filter-feed": "Feed",
     "title": "{{f}} topics",
     "description": "{{f}} topics",
     "description-tag": "{{f}} topics with #{{t}} tag",
@@ -164,10 +170,7 @@
     "read-more": "...read more replies..."
   },
   "community": {
-    "n-subscribers": "{{n}} subscribers",
-    "n-rewards": "{{n}} rewards",
-    "n-authors": "{{n}} posters",
-    "n-posts": "{{n}} posts",
+    "page-description": "{{f}} topics",
     "subscribe": "Subscribe",
     "subscribed": "Joined",
     "unsubscribe": "Leave",
@@ -175,11 +178,19 @@
     "team": "Leadership",
     "description": "Description",
     "rules": "Rules",
-    "lang": "Language",
-    "admins": "admins:"
+    "lang": "language",
+    "posts": "Posts",
+    "subscribers": "Subscribers",
+    "activities": "Activities",
+    "authors": "posters",
+    "rewards": "rewards"
   },
   "communities": {
     "title": "Communities",
+    "n-subscribers": "{{n}} subscribers",
+    "n-authors": "{{n}} posters",
+    "n-posts": "{{n}} posts",
+    "admins": "admins:",
     "sort-hot": "Hot",
     "sort-rank": "Rank",
     "sort-subs": "Subscribers",
@@ -351,9 +362,7 @@
   "friends": {
     "followers": "Followers ({{n}})",
     "following": "Following ({{n}})",
-    "load-more": "Load More",
-    "search-placeholder": "Search users",
-    "empty-list": "Nothing here"
+    "search-placeholder": "Search users"
   },
   "follow-controls": {
     "follow": "Follow",
@@ -453,7 +462,6 @@
     "spin-str": "Time to earn more Points, Play Spin on Ecency Mobile app",
     "inactive-str": "Be active! Write a post, continue earning",
     "referral-str": "joined with your referral, welcome them",
-    "empty-list": "Nothing here",
     "refresh": "Refresh",
     "mark-all-read": "Mark All as Read",
     "mark-read": "Mark as Read"
@@ -478,20 +486,16 @@
   },
   "gallery": {
     "title": "Gallery",
-    "copied": "Copied to clipboard",
-    "empty-list": "Nothing here"
+    "copied": "Copied to clipboard"
   },
   "drafts": {
-    "title": "Drafts",
-    "empty-list": "Nothing here"
+    "title": "Drafts"
   },
   "bookmarks": {
-    "title": "Bookmarks",
-    "empty-list": "Nothing here"
+    "title": "Bookmarks"
   },
   "favorites": {
-    "title": "Favorites",
-    "empty-list": "Nothing here"
+    "title": "Favorites"
   },
   "static": {
     "about": {

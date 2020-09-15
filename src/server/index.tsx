@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import {EntryFilter, ProfileFilter} from "../common/store/global/types";
 
 import entryIndexHandler from "./handlers/entry-index";
+import communityHandler from "./handlers/community";
 import profileHandler from "./handlers/profile";
 import entryHandler from "./handlers/entry";
 import fallbackHandler from "./handlers/fallback";
@@ -67,6 +68,13 @@ server
             "^/@:author/rss.xml$", // @esteemapp/rss.xml
         ],
         authorRssHandler
+    )
+    .use(
+        [
+            `^/:filter(${entryFilters.join("|")})/:name(hive-[\\d]+)$`, //  /hot/hive-231312
+            `^/:filter(${entryFilters.join("|")})/:name(hive-[\\d]+)/:section(subscribers|activities)$`, //  /hot/hive-231312/subscribers
+        ],
+        communityHandler
     )
     .use(
         [

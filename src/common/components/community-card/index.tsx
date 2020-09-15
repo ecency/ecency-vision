@@ -1,133 +1,154 @@
 import React, {Component} from "react";
 
+import {Modal} from "react-bootstrap";
+
 import {History} from "history";
 
+import isEqual from "react-fast-compare";
+
+import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
-import {Community} from "../../store/community/types";
-import {User} from "../../store/users/types";
-import {ActiveUser} from "../../store/active-user/types";
-import {ToggleType, UI} from "../../store/ui/types";
-import {Subscription} from "../../store/subscriptions/types";
+import {Community} from "../../store/communities/types";
 
+import UserAvatar from "../user-avatar";
 import ProfileLink from "../profile-link";
-import SubscriptionBtn from "../subscription-btn";
-import CommunityPostBtn from "../community-post-btn";
-
-import ln2list from "../../util/nl2list";
-import formattedNumber from "../../util/formatted-number";
 
 import {_t} from "../../i18n";
 
-import {accountGroupSvg} from "../../img/svg";
+import ln2list from "../../util/nl2list";
 
+import {
+    informationOutlineSvg,
+    scriptTextOutlineSvg,
+    accountGroupSvg
+} from "../../img/svg";
 
 interface Props {
     history: History;
-    users: User[];
-    activeUser: ActiveUser | null;
+    global: Global;
     community: Community;
-    ui: UI;
-    subscriptions: Subscription[];
     addAccount: (data: Account) => void;
-    setActiveUser: (username: string | null) => void;
-    updateActiveUser: (data?: Account) => void;
-    deleteUser: (username: string) => void;
-    toggleUIProp: (what: ToggleType) => void;
-    updateSubscriptions: (list: Subscription[]) => void;
 }
 
-export class CommunityCard extends Component<Props> {
+interface DialogInfo {
+    title: string;
+    content: JSX.Element | null;
+}
+
+interface State {
+    info: DialogInfo | null;
+}
+
+export class CommunityCard extends Component<Props, State> {
+    state: State = {
+        info: null
+    }
+
+    shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
+        return !isEqual(this.props.community, nextProps.community)
+            || !isEqual(this.state, nextState);
+    }
+
+    toggleInfo = (info: DialogInfo | null) => {
+        this.setState({info});
+    }
 
     render() {
+        const {info} = this.state;
         const {community} = this.props;
 
-        const subscribers = formattedNumber(community.subscribers, {fractionDigits: 0});
-        const rewards = formattedNumber(community.sum_pending, {fractionDigits: 0});
-        const authors = formattedNumber(community.num_authors, {fractionDigits: 0});
+        const description: JSX.Element | null = community.description.trim() !== "" ?
+            <>{ln2list(community.description).map((x, i) => (
+                <p key={i}>{x}</p>
+            ))}</> : null;
+
+        const rules: JSX.Element | null = community.flag_text.trim() !== "" ?
+            <>{ln2list(community.flag_text).map((x, i) => (
+                <p key={i}>{'- '}{x}</p>
+            ))}</> : null;
+
+        const team: JSX.Element = <>{
+            community.team.map((m, i) => {
+                if (m[0].startsWith("hive-")) {
+                    return null;
+                }
+
+                return (
+                    <div className="team-member" key={i}>
+                        {ProfileLink({...this.props, username: m[0], children: <a className="username">{`@${m[0]}`}</a>})}
+                        <span className="role">{m[1]}</span>
+                        {m[2] !== "" && <span className="extra">{m[2]}</span>}
+                    </div>
+                );
+            })}</>;
 
         return (
             <div className="community-card">
-                <h2 className="community-title">
-                    {accountGroupSvg} {community.title}
-                </h2>
-                <div className="community-panel">
-                    <div className="section-about">{community.about}</div>
-                    <div className="section-stats">
-                        <div className="stat">{_t("community.n-subscribers", {n: subscribers})}</div>
-                        <div className="stat">
-                            {"$"} {_t("community.n-rewards", {n: rewards})}
+                <div className="community-avatar">
+                    {UserAvatar({
+                        ...this.props,
+                        username: community.name,
+                        size: "xLarge"
+                    })}
+                </div>
+                <div className="community-info">
+                    <div className="title">{community.title}</div>
+                    <div className="about">{community.about}</div>
+                </div>
+                <div className="community-sections">
+                    {description && (
+                        <div className="community-section">
+                            <div className="section-header" onClick={() => {
+                                this.toggleInfo({title: _t('community.description'), content: description});
+                            }}>
+                                {informationOutlineSvg} {_t('community.description')}
+                            </div>
+                            <div className="section-content">{description}</div>
                         </div>
-                        <div className="stat">{_t("community.n-authors", {n: authors})}</div>
-                    </div>
-                    <div className="section-controls">
-                        <SubscriptionBtn {...this.props} buttonProps={{block: true}}/>
-                        {CommunityPostBtn({...this.props, buttonProps: {block: true}})}
-                    </div>
-                    <div className="section-team">
-                        <h4 className="section-header">{_t("community.team")}</h4>
-                        {community.team.map((m, i) => {
-                            if (m[0].startsWith("hive-")) {
-                                return null;
-                            }
-                            return (
-                                <div className="team-member" key={i}>
-                                    {ProfileLink({...this.props, username: m[0], children: <a className="username">{`@${m[0]}`}</a>})}
-                                    <span className="role">{m[1]}</span>
-                                    {m[2] !== "" && <span className="extra">{m[2]}</span>}
-                                </div>
-                            );
-                        })}
+                    )}
+                    {rules && (
+                        <div className="community-section">
+                            <div className="section-header" onClick={() => {
+                                this.toggleInfo({title: _t('community.rules'), content: rules});
+                            }}>
+                                {scriptTextOutlineSvg} {_t('community.rules')}
+                            </div>
+                            <div className="section-content">{rules}</div>
+                        </div>
+                    )}
+                    <div className="community-section section-team">
+                        <div className="section-header" onClick={() => {
+                            this.toggleInfo({title: _t('community.team'), content: team});
+                        }}>
+                            {accountGroupSvg} {_t('community.team')}
+                        </div>
+                        <div className="section-content">{team}</div>
                     </div>
                 </div>
-                <div className="community-panel">
-                    {community.description.trim() !== "" && (
-                        <div className="section-description">
-                            <h4 className="section-header">{_t("community.description")}</h4>
-                            {ln2list(community.description).map((x, i) => (
-                                <p key={i}>{x}</p>
-                            ))}
-                        </div>
-                    )}
 
-                    {community.flag_text.trim() !== "" && (
-                        <div className="section-rules">
-                            <h4 className="section-header">{_t("community.rules")}</h4>
-                            <ol>
-                                {ln2list(community.flag_text).map((x, i) => (
-                                    <li key={i}>{x}</li>
-                                ))}
-                            </ol>
-                        </div>
-                    )}
-
-                    {community.lang.trim() !== "" && (
-                        <div className="section-lang">
-                            <h4 className="section-header">{_t("community.lang")}</h4>
-                            {community.lang}
-                        </div>
-                    )}
-                </div>
+                {info && (
+                    <Modal show={true} centered={true} onHide={() => {
+                        this.toggleInfo(null);
+                    }} animation={false} className="community-info-dialog">
+                        <Modal.Header closeButton={true}>
+                            <Modal.Title>{info.title}</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>{info.content}</Modal.Body>
+                    </Modal>
+                )}
             </div>
         );
     }
 }
 
-
 export default (p: Props) => {
     const props: Props = {
         history: p.history,
-        users: p.users,
-        activeUser: p.activeUser,
+        global: p.global,
         community: p.community,
-        ui: p.ui,
-        subscriptions: p.subscriptions,
-        addAccount: p.addAccount,
-        setActiveUser: p.setActiveUser,
-        updateActiveUser: p.updateActiveUser,
-        deleteUser: p.deleteUser,
-        toggleUIProp: p.toggleUIProp,
-        updateSubscriptions: p.updateSubscriptions
+        addAccount: p.addAccount
     }
 
     return <CommunityCard {...props} />;
 }
+

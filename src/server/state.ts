@@ -6,7 +6,7 @@ import {initialState as globalInitialState} from "../common/store/global";
 import {initialState as dynamicPropsInitialState} from "../common/store/dynamic-props";
 import {initialState as trendingTagsInitialState} from "../common/store/trending-tags";
 import {initialState as accountsInitialState} from "../common/store/accounts";
-import {initialState as communityInitialState} from "../common/store/community";
+import {initialState as communitiesInitialState} from "../common/store/communities";
 import {initialState as transactionsInitialState} from "../common/store/transactions";
 import {initialState as usersInitialState} from "../common/store/users";
 import {initialState as activeUserInitialState} from "../common/store/active-user";
@@ -31,8 +31,8 @@ export const makePreloadedState = async (req: express.Request): Promise<AppState
         },
         dynamicProps: dynamicPropsInitialState,
         trendingTags: trendingTagsInitialState,
-        community: communityInitialState,
         accounts: accountsInitialState,
+        communities: communitiesInitialState,
         transactions: transactionsInitialState,
         users: usersInitialState,
         activeUser: activeUserInitialState,

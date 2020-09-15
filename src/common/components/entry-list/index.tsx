@@ -5,7 +5,7 @@ import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
 import {Entry} from "../../store/entries/types";
-import {Community} from "../../store/community/types";
+import {Community} from "../../store/communities/types";
 import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {Reblog} from "../../store/reblogs/types";

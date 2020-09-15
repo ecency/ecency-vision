@@ -196,7 +196,7 @@ export class Drafts extends Component<Props, State> {
             )}
             {(!loading && items.length === 0) && (
                 <div className="drafts-list">
-                    {_t('drafts.empty-list')}
+                    {_t('g.empty-list')}
                 </div>
             )}
         </div>

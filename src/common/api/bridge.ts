@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import {Entry} from "../store/entries/types";
-import {Community} from "../store/community/types";
+import {Community} from "../store/communities/types";
 import {Subscription} from "../store/subscriptions/types";
 
 import SERVERS from "../constants/servers.json";
@@ -54,6 +54,29 @@ export const getAccountPosts = (
         observer,
     });
 
+
+export interface AccountNotification {
+    date: string;
+    id: number;
+    msg: string;
+    score: number;
+    type: string;
+    url: string;
+}
+
+export const getAccountNotifications = (account: string, lastId: number | null = null, limit = 50): Promise<AccountNotification[] | null> => {
+    const params: { account: string, last_id?: number, limit: number } = {
+        account, limit
+    }
+
+    if (lastId) {
+        params.last_id = lastId;
+    }
+
+    return bridgeApiCall<AccountNotification[] | null>("bridge.account_notifications", params);
+}
+
+
 export const getPost = (author: string = "", permlink: string = "", observer: string = ""): Promise<Entry | null> =>
     bridgeApiCall<Entry | null>("bridge.get_post", {
         author,
@@ -95,4 +118,12 @@ export const getSubscriptions = (
 ): Promise<Subscription[] | null> =>
     bridgeApiCall<Subscription[] | null>("bridge.list_all_subscriptions", {
         account
+    });
+
+
+export const getSubscribers = (
+    community: string
+): Promise<Subscription[] | null> =>
+    bridgeApiCall<Subscription[] | null>("bridge.list_subscribers", {
+        community
     });
