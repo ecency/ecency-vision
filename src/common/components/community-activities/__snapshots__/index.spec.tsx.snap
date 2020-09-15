@@ -2,7 +2,7 @@
 
 exports[`(1) Default render - With data. 1`] = `
 <div
-  className="dialog-content"
+  className="community-activities"
 >
   <div
     className="activity-list"
@@ -46,7 +46,7 @@ exports[`(1) Default render - With data. 1`] = `
                pin 
             </span>
             <a
-              href="/tag/@foo/bar-permlink"
+              href="/post/@foo/bar-permlink"
               onClick={[Function]}
             >
               @foo/bar-permlink
@@ -147,7 +147,7 @@ exports[`(1) Default render - With data. 1`] = `
                unpin 
             </span>
             <a
-              href="/tag/@foo/bar-permlink"
+              href="/post/@foo/bar-permlink"
               onClick={[Function]}
             >
               @foo/bar-permlink

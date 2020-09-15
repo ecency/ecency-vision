@@ -19,6 +19,8 @@ import {getAccountNotifications, AccountNotification} from "../../api/bridge";
 
 import {_t} from "../../i18n";
 
+import parseDate from "../../helper/parse-date";
+
 interface ListItemProps {
     history: History;
     global: Global;
@@ -90,7 +92,7 @@ class ListItem extends Component<ListItemProps> {
 
         const username = mentions[0].replace('@', '');
         const msg = this.formatMessage(formatPatterns);
-        const date = moment.utc(notification.date);
+        const date = moment(parseDate(notification.date));
 
         return <div className="activity-list-item">
             <div className="activity-user">
