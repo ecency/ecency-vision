@@ -57,6 +57,12 @@
         border-bottom: 2px solid $dark-sky-blue;
         color: $dark-sky-blue;
         font-weight: 700;
+
+        .dropdown-btn {
+          .label {
+            font-weight: 700;
+          }
+        }
       }
     }
   }
