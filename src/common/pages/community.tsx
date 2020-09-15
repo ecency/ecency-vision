@@ -69,14 +69,22 @@ class CommunityPage extends Component<Props, State> {
     }
 
     componentDidUpdate(prevProps: Readonly<Props>): void {
-        const {location, match, fetchEntries} = this.props;
-        const {location: prevLocation} = prevProps;
+        const {match, fetchEntries} = this.props;
+        const {match: prevMatch} = prevProps;
 
-        // location (community or filter) changed. re-fetch blog posts.
-        if (!isEqual(location, prevLocation)) {
-            this.ensureData().then(() => {
-                fetchEntries(match.params.filter, match.params.name, false);
-            });
+        const {filter, name, section} = match.params;
+        const {params: prevParams} = prevMatch;
+
+        // community changed. fetch community and account data.
+        if (name !== prevParams.name) {
+            this.ensureData().then();
+        }
+
+        if (
+            (prevParams.section && !section) || // user comes from subscriptions or activities section
+            filter !== prevParams.filter || name !== prevParams.name   // or community or filter changed
+        ) {
+            fetchEntries(match.params.filter, match.params.name, false);
         }
 
         // re-fetch subscriptions once active user changed.
