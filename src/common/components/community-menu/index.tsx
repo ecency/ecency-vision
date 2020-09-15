@@ -2,21 +2,30 @@ import React, {Component} from "react";
 
 import {History, Location} from "history";
 
+import {Link} from "react-router-dom";
+import {match} from "react-router";
 import isEqual from "react-fast-compare";
 
 import {EntryFilter, Global} from "../../store/global/types";
 import {Community} from "../../store/communities/types";
 
 import ListStyleToggle from "../list-style-toggle/index";
+import DropDown, {MenuItem} from "../dropdown";
 
 import {_t} from "../../i18n";
 
-import DropDown, {MenuItem} from "../dropdown";
+import _c from "../../util/fix-class-names";
 
+interface MatchParams {
+    filter: string;
+    name: string;
+    section?: string;
+}
 
 interface Props {
     history: History;
     location: Location;
+    match: match<MatchParams>;
     global: Global;
     community: Community;
     toggleListStyle: () => void;
@@ -29,9 +38,9 @@ export class CommunityMenu extends Component<Props> {
     }
 
     render() {
-        const {community, global} = this.props;
+        const {community, match} = this.props;
 
-        const {filter} = global;
+        const {filter, name, section} = match.params;
 
         const menuConfig: {
             history: History,
@@ -54,15 +63,23 @@ export class CommunityMenu extends Component<Props> {
         return (
             <div className="community-menu">
                 <div className="menu-items">
-                    <span className="community-menu-item selected-item">
+                    {(() => {
+                        if (section) {
+                            return <Link to={`/${filter}/${name}`} className="community-menu-item">
+                                {_t('community.posts')}
+                            </Link>;
+                        }
+
+                        return <span className="community-menu-item selected-item">
                         <DropDown {...menuConfig} float="left"/>
-                    </span>
-                    <span className="community-menu-item">
+                    </span>;
+                    })()}
+                    <Link to={`/${filter}/${name}/subscribers`} className={_c(`community-menu-item ${section === "subscribers" ? "selected-item" : ""}`)}>
                         {_t('community.subscribers')}
-                    </span>
-                    <span className="community-menu-item">
+                    </Link>
+                    <Link to={`/${filter}/${name}/activities`} className={_c(`community-menu-item ${section === "activities" ? "selected-item" : ""}`)}>
                         {_t('community.activities')}
-                    </span>
+                    </Link>
                 </div>
 
                 <div className="page-tools"><ListStyleToggle global={this.props.global} toggleListStyle={this.props.toggleListStyle}/></div>
@@ -75,6 +92,7 @@ export default (p: Props) => {
     const props: Props = {
         history: p.history,
         location: p.location,
+        match: p.match,
         global: p.global,
         community: p.community,
         toggleListStyle: p.toggleListStyle
