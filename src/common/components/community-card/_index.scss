@@ -60,14 +60,23 @@
       }
 
       .section-header {
-        background: $white-three;
-        color: $steel-grey;
+
         padding: 10px;
         border-radius: 18px;
         font-weight: 500;
         display: flex;
         align-items: center;
         margin-bottom: 10px;
+
+        @include themify(day) {
+          background: $white-three;
+          color: $steel-grey;
+        }
+
+        @include themify(night) {
+          background: $dark-two;
+          color: $silver;
+        }
 
         svg {
           height: 16px;
