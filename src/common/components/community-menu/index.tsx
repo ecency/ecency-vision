@@ -82,7 +82,7 @@ export class CommunityMenu extends Component<Props> {
                     </Link>
                 </div>
 
-                <div className="page-tools"><ListStyleToggle global={this.props.global} toggleListStyle={this.props.toggleListStyle}/></div>
+                {!section && <div className="page-tools"><ListStyleToggle global={this.props.global} toggleListStyle={this.props.toggleListStyle}/></div>}
             </div>
         );
     }
