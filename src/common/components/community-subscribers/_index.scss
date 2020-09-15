@@ -21,11 +21,11 @@
         cursor: pointer;
 
         @include themify(day) {
-          background: $white-six;
+          background: $white-three;
         }
 
         @include themify(night) {
-          background: $dark;
+          background: $dark-two;
         }
 
         .user-avatar {
