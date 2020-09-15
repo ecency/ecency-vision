@@ -1,8 +1,13 @@
-import React, {Component, Fragment} from "react";
+import React, {Component} from "react";
 
 import {connect} from "react-redux";
 
 import {match} from "react-router";
+
+import {ListStyle} from "../store/global/types";
+import {makeGroupKey} from "../store/entries";
+
+import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
@@ -11,25 +16,23 @@ import LinearProgress from "../components/linear-progress";
 import CommunityCard from "../components/community-card";
 import CommunityMenu from "../components/community-menu";
 import CommunityCover from "../components/community-cover";
-
-import {_t} from "../i18n";
-import capitalize from "../util/capitalize";
-import {getCommunity, getSubscriptions} from "../api/bridge";
-import {getAccountFull} from "../api/hive";
-
-import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 import NotFound from "../components/404";
-import defaults from "../constants/defaults.json";
 import Feedback from "../components/feedback";
-import {makeGroupKey} from "../store/entries";
-import _c from "../util/fix-class-names";
-import {ListStyle} from "../store/global/types";
 import EntryListLoadingItem from "../components/entry-list-loading-item";
 import EntryListContent from "../components/entry-list";
 import DetectBottom from "../components/detect-bottom";
-import isEqual from "react-fast-compare";
 import CommunitySubscribers from "../components/community-subscribers";
 import CommunityActivities from "../components/community-activities";
+
+import {getCommunity, getSubscriptions} from "../api/bridge";
+import {getAccountFull} from "../api/hive";
+
+import {_t} from "../i18n";
+
+import _c from "../util/fix-class-names";
+import capitalize from "../util/capitalize";
+
+import defaults from "../constants/defaults.json";
 
 interface MatchParams {
     filter: string;
