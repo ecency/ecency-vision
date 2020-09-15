@@ -90,7 +90,7 @@ class ListItem extends Component<ListItemProps> {
 
         const username = mentions[0].replace('@', '');
         const msg = this.formatMessage(formatPatterns);
-        const date = moment(notification.date);
+        const date = moment.utc(notification.date);
 
         return <div className="activity-list-item">
             <div className="activity-user">
