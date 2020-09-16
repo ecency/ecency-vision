@@ -7,6 +7,7 @@ import {match} from "react-router";
 import {ListStyle} from "../store/global/types";
 
 import {makeGroupKey} from "../store/entries";
+import {ProfileFilter} from "../store/global/types";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme";
@@ -56,17 +57,18 @@ class ProfilePage extends Component<Props, State> {
         await this.ensureAccount();
 
         const {match, global, fetchEntries, fetchTransactions, fetchPoints} = this.props;
+        const {username, section} = match.params
 
-        if (!["wallet", "points"].includes(match.params.section || '')) {
+        if (!section || (section && Object.keys(ProfileFilter).includes(section))) {
             // fetch posts
             fetchEntries(global.filter, global.tag, false);
         }
 
         // fetch wallet transactions
-        fetchTransactions(match.params.username);
+        fetchTransactions(username);
 
         // fetch points
-        fetchPoints(match.params.username);
+        fetchPoints(username);
     }
 
     componentDidUpdate(prevProps: Readonly<Props>): void {
@@ -87,7 +89,7 @@ class ProfilePage extends Component<Props, State> {
         }
 
         // Wallet and points are not a correct filter to fetch posts
-        if (["wallet", "points"].includes(section || '')) {
+        if (section && !Object.keys(ProfileFilter).includes(section)) {
             return;
         }
 
@@ -162,7 +164,7 @@ class ProfilePage extends Component<Props, State> {
         }
 
         const username = match.params.username.replace("@", "");
-        const {section = "blog"} = match.params;
+        const {section = ProfileFilter.blog} = match.params;
         const account = accounts.find((x) => x.name === username);
 
         if (!account) {
@@ -203,7 +205,7 @@ class ProfilePage extends Component<Props, State> {
                             username,
                             section
                         })}
-                        {!["wallet", "points"].includes(section) && ProfileCover({
+                        {ProfileFilter[section] && ProfileCover({
                             ...this.props,
                             account
                         })}
