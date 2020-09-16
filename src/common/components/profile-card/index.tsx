@@ -184,7 +184,7 @@ export class ProfileCard extends Component<Props, State> {
                 </div>
 
                 {isMyProfile && (
-                    <Button onClick={this.toggleProfileEdit}>{_t("profile.edit")}</Button>
+                    <div className="btn-controls"><Button size="sm" onClick={this.toggleProfileEdit}>{_t("profile.edit")}</Button></div>
                 )}
 
                 {this.state.followersList && <Followers {...this.props} account={account} onHide={this.toggleFollowers}/>}
