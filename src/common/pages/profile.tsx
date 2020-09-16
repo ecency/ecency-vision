@@ -7,6 +7,7 @@ import {match} from "react-router";
 import {ListStyle} from "../store/global/types";
 
 import {makeGroupKey} from "../store/entries";
+import {ProfileFilter} from "../store/global/types";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme";
@@ -21,6 +22,7 @@ import EntryListContent from "../components/entry-list";
 import ProfileCard from "../components/profile-card";
 import ProfileMenu from "../components/profile-menu";
 import ProfileCover from "../components/profile-cover";
+import ProfileCommunities from "../components/profile-communities";
 import Wallet from "../components/wallet";
 import Points from "../components/points";
 
@@ -56,41 +58,44 @@ class ProfilePage extends Component<Props, State> {
         await this.ensureAccount();
 
         const {match, global, fetchEntries, fetchTransactions, fetchPoints} = this.props;
+        const {username, section} = match.params
 
-        if (!["wallet", "points"].includes(match.params.section || '')) {
+        if (!section || (section && Object.keys(ProfileFilter).includes(section))) {
             // fetch posts
             fetchEntries(global.filter, global.tag, false);
         }
 
         // fetch wallet transactions
-        fetchTransactions(match.params.username);
+        fetchTransactions(username);
 
         // fetch points
-        fetchPoints(match.params.username);
+        fetchPoints(username);
     }
 
     componentDidUpdate(prevProps: Readonly<Props>): void {
         const {match, global, fetchEntries, fetchTransactions, resetTransactions, fetchPoints, resetPoints} = this.props;
         const {match: prevMatch} = prevProps;
 
+        const {username, section} = match.params;
+
         // username changed. re-fetch wallet transactions and points
-        if (match.params.username !== prevProps.match.params.username) {
+        if (username !== prevMatch.params.username) {
             this.ensureAccount().then(() => {
                 resetTransactions();
-                fetchTransactions(match.params.username);
+                fetchTransactions(username);
 
                 resetPoints();
-                fetchPoints(match.params.username);
+                fetchPoints(username);
             });
         }
 
         // Wallet and points are not a correct filter to fetch posts
-        if (["wallet", "points"].includes(match.params.section || '')) {
+        if (section && !Object.keys(ProfileFilter).includes(section)) {
             return;
         }
 
         // filter or username changed. fetch posts.
-        if (match.params.section !== prevMatch.params.section) {
+        if (section !== prevMatch.params.section || username !== prevMatch.params.username) {
             fetchEntries(global.filter, global.tag, false);
         }
     }
@@ -160,7 +165,7 @@ class ProfilePage extends Component<Props, State> {
         }
 
         const username = match.params.username.replace("@", "");
-        const {section = "posts"} = match.params;
+        const {section = ProfileFilter.blog} = match.params;
         const account = accounts.find((x) => x.name === username);
 
         if (!account) {
@@ -180,7 +185,6 @@ class ProfilePage extends Component<Props, State> {
         };
 
         const promoted = entries['__promoted__'].entries;
-
         return (
             <>
                 <Meta {...metaProps} />
@@ -201,11 +205,18 @@ class ProfilePage extends Component<Props, State> {
                             username,
                             section
                         })}
-                        {!["wallet", "points"].includes(section) && ProfileCover({
+                        {[...Object.keys(ProfileFilter), "communities"].includes(section) && ProfileCover({
                             ...this.props,
                             account
                         })}
                         {(() => {
+                            if (section === "points") {
+                                return Points({
+                                    ...this.props,
+                                    account
+                                })
+                            }
+
                             if (section === "wallet") {
                                 return Wallet({
                                     ...this.props,
@@ -213,8 +224,8 @@ class ProfilePage extends Component<Props, State> {
                                 });
                             }
 
-                            if (section === "points") {
-                                return Points({
+                            if (section === "communities") {
+                                return ProfileCommunities({
                                     ...this.props,
                                     account
                                 })

@@ -7,36 +7,54 @@ exports[`(1) Render 1`] = `
   <div
     className="profile-menu-items"
   >
+    <span
+      className="profile-menu-item selected-item"
+    >
+      <div
+        className="custom-dropdown float-left"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        <div
+          className="dropdown-btn "
+        >
+          <div
+            className="label"
+          >
+            Posts
+          </div>
+          <div
+            className="menu-down"
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7,10L12,15L17,10H7Z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </span>
     <a
-      className="menu-item selected-item"
-      href="/@username/posts"
+      className="profile-menu-item"
+      href="/@username/communities"
       onClick={[Function]}
     >
-      Posts
+      Communities
     </a>
     <a
-      className="menu-item false"
-      href="/@username/comments"
-      onClick={[Function]}
-    >
-      Comments
-    </a>
-    <a
-      className="menu-item false"
-      href="/@username/replies"
-      onClick={[Function]}
-    >
-      Replies
-    </a>
-    <a
-      className="menu-item false"
+      className="profile-menu-item"
       href="/@username/points"
       onClick={[Function]}
     >
       Points
     </a>
     <a
-      className="menu-item false"
+      className="profile-menu-item"
       href="/@username/wallet"
       onClick={[Function]}
     >
