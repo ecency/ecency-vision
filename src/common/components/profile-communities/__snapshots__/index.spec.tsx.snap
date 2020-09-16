@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render - With data. 1`] = `
+<div
+  className="profile-communities"
+>
+  <h2>
+    Subscriptions
+  </h2>
+  <ul
+    className="community-list"
+  >
+    <li>
+      <a
+        href="/trending/hive-125125"
+        onClick={[Function]}
+      >
+        Ecency
+      </a>
+       
+      <span
+        className="user-role"
+      >
+        admin
+      </span>
+    </li>
+    <li>
+      <a
+        href="/trending/hive-139531"
+        onClick={[Function]}
+      >
+        HiveDevs
+      </a>
+       
+      <span
+        className="user-role"
+      >
+        mod
+      </span>
+    </li>
+    <li>
+      <a
+        href="/trending/hive-102930"
+        onClick={[Function]}
+      >
+        Hive Improvement
+      </a>
+       
+      <span
+        className="user-role"
+      >
+        guest
+      </span>
+    </li>
+  </ul>
+</div>
+`;

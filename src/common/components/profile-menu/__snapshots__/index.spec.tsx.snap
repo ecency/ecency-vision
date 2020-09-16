@@ -40,14 +40,21 @@ exports[`(1) Render 1`] = `
       </div>
     </span>
     <a
-      className="profile-menu-item false"
+      className="profile-menu-item"
+      href="/@username/communities"
+      onClick={[Function]}
+    >
+      Communities
+    </a>
+    <a
+      className="profile-menu-item"
       href="/@username/points"
       onClick={[Function]}
     >
       Points
     </a>
     <a
-      className="profile-menu-item false"
+      className="profile-menu-item"
       href="/@username/wallet"
       onClick={[Function]}
     >
