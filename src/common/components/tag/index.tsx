@@ -12,7 +12,7 @@ import defaults from "../../constants/defaults.json";
 
 export const makePath = (filter: string, tag: string): string => {
     // trending is default filter for community pages
-    if (tag.startsWith('hive-')) {
+    if (/^hive-\d+/.test(tag)) {
         return `/${EntryFilter.trending}/${tag}`;
     }
 
