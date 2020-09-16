@@ -73,24 +73,26 @@ class ProfilePage extends Component<Props, State> {
         const {match, global, fetchEntries, fetchTransactions, resetTransactions, fetchPoints, resetPoints} = this.props;
         const {match: prevMatch} = prevProps;
 
+        const {username, section} = match.params;
+
         // username changed. re-fetch wallet transactions and points
-        if (match.params.username !== prevProps.match.params.username) {
+        if (username !== prevMatch.params.username) {
             this.ensureAccount().then(() => {
                 resetTransactions();
-                fetchTransactions(match.params.username);
+                fetchTransactions(username);
 
                 resetPoints();
-                fetchPoints(match.params.username);
+                fetchPoints(username);
             });
         }
 
         // Wallet and points are not a correct filter to fetch posts
-        if (["wallet", "points"].includes(match.params.section || '')) {
+        if (["wallet", "points"].includes(section || '')) {
             return;
         }
 
         // filter or username changed. fetch posts.
-        if (match.params.section !== prevMatch.params.section) {
+        if (section !== prevMatch.params.section || username !== prevMatch.params.username) {
             fetchEntries(global.filter, global.tag, false);
         }
     }
