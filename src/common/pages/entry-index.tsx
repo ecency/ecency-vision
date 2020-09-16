@@ -87,7 +87,7 @@ class EntryIndexPage extends Component<PageProps> {
             items: MenuItem[]
         } = {
             history: this.props.history,
-            label: _t(`entry-index.filter-${filter}`),
+            label: _t(`entry-filter.filter-${filter}`),
             items: [
                 ...(activeUser
                     ? [

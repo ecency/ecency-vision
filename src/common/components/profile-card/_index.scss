@@ -202,4 +202,14 @@
       }
     }
   }
+
+  .btn-controls {
+    text-align: center;
+    margin-bottom: 10px;
+
+    @media (min-width: $md-break) {
+      text-align: left;
+      margin: 0;
+    }
+  }
 }
