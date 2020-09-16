@@ -162,7 +162,7 @@ class ProfilePage extends Component<Props, State> {
         }
 
         const username = match.params.username.replace("@", "");
-        const {section = "posts"} = match.params;
+        const {section = "blog"} = match.params;
         const account = accounts.find((x) => x.name === username);
 
         if (!account) {

@@ -24,7 +24,7 @@
       width: auto;
     }
 
-    .menu-item {
+    .profile-menu-item {
       align-items: center;
       color: $steel-grey;
       display: flex;
@@ -32,9 +32,21 @@
       height: 50px;
       padding: 0 8px;
 
+      .dropdown-btn {
+        .label {
+          font-size: 14px !important;
+        }
+      }
+
       @media (min-width: $sm-break) {
         padding: 0 16px;
         font-size: 16px;
+
+        .dropdown-btn {
+          .label {
+            font-size: 16px !important;
+          }
+        }
       }
 
       @media (min-width: $md-break) {
@@ -46,7 +58,12 @@
         border-bottom: 2px solid $dark-sky-blue;
         color: $dark-sky-blue;
         font-weight: 700;
-        pointer-events: none;
+
+        .dropdown-btn {
+          .label {
+            font-weight: 700;
+          }
+        }
       }
     }
   }

@@ -31,6 +31,11 @@ it('30 - user', () => {
     expect(res).toMatchSnapshot();
 });
 
+it('35 - user posts', () => {
+    const res = extractFilterTag('/@talhasch/posts');
+    expect(res).toMatchSnapshot();
+});
+
 it('40 - user feed', () => {
     const res = extractFilterTag('/@talhasch/feed');
     expect(res).toMatchSnapshot();

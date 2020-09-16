@@ -37,6 +37,13 @@ Object {
 
 exports[`30 - user 1`] = `
 Object {
+  "filter": "blog",
+  "tag": "@talhasch",
+}
+`;
+
+exports[`35 - user posts 1`] = `
+Object {
   "filter": "posts",
   "tag": "@talhasch",
 }

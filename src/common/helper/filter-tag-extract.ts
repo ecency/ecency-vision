@@ -42,7 +42,7 @@ export default (location: string): FilterTag | null => {
   params = re.exec(location);
   if (params && params[1]) {
     return {
-      filter: "posts",
+      filter: "blog",
       tag: params[1],
     };
   }
