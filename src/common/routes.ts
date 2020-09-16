@@ -19,7 +19,7 @@ export default {
   ENTRY: `/:category/:username(@[\\w\\.\\d-]+)/:permlink`,
   USER: `/:username(@[\\w\\.\\d-]+)`,
   USER_FEED: `/:username(@[\\w\\.\\d-]+)/:section(feed)`,
-  USER_SECTION: `/:username(@[\\w\\.\\d-]+)/:section(${profileFilters.join("|")}|wallet|points)`,
+  USER_SECTION: `/:username(@[\\w\\.\\d-]+)/:section(${profileFilters.join("|")}|wallet|points|communities)`,
   COMMUNITIES: `/communities`,
   COMMUNITY: `/:filter(${entryFilters.join("|")})/:name(hive-[\\d]+)`,
   COMMUNITY_SECTION: `/:filter(${entryFilters.join("|")})/:name(hive-[\\d]+)/:section(subscribers|activities)`,

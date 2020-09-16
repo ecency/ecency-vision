@@ -22,6 +22,7 @@ import EntryListContent from "../components/entry-list";
 import ProfileCard from "../components/profile-card";
 import ProfileMenu from "../components/profile-menu";
 import ProfileCover from "../components/profile-cover";
+import ProfileCommunities from "../components/profile-communities";
 import Wallet from "../components/wallet";
 import Points from "../components/points";
 
@@ -184,7 +185,6 @@ class ProfilePage extends Component<Props, State> {
         };
 
         const promoted = entries['__promoted__'].entries;
-
         return (
             <>
                 <Meta {...metaProps} />
@@ -205,11 +205,18 @@ class ProfilePage extends Component<Props, State> {
                             username,
                             section
                         })}
-                        {ProfileFilter[section] && ProfileCover({
+                        {[...Object.keys(ProfileFilter), "communities"].includes(section) && ProfileCover({
                             ...this.props,
                             account
                         })}
                         {(() => {
+                            if (section === "points") {
+                                return Points({
+                                    ...this.props,
+                                    account
+                                })
+                            }
+
                             if (section === "wallet") {
                                 return Wallet({
                                     ...this.props,
@@ -217,8 +224,8 @@ class ProfilePage extends Component<Props, State> {
                                 });
                             }
 
-                            if (section === "points") {
-                                return Points({
+                            if (section === "communities") {
+                                return ProfileCommunities({
                                     ...this.props,
                                     account
                                 })

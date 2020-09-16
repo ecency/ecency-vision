@@ -206,9 +206,11 @@
     "section-posts": "Posts",
     "section-comments": "Comments",
     "section-replies": "Replies",
+    "section-communities": "Communities",
     "section-points": "Points",
     "section-wallet": "Wallet",
-    "edit": "Profile Edit"
+    "edit": "Profile Edit",
+    "communities-title": "Subscriptions"
   },
   "profile-edit": {
     "name": "Display Name",
