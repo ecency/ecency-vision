@@ -3,7 +3,7 @@ import React, {Component} from "react";
 import {Modal, Form, Row, Col, InputGroup, FormControl, Button} from "react-bootstrap";
 
 import {Global} from "../../store/global/types";
-import {Community} from "../../store/communities/types";
+import {Community, CommunityTeam} from "../../store/communities/types";
 import {Account} from '../../store/accounts/types'
 import {ActiveUser} from "../../store/active-user/types";
 
@@ -11,6 +11,8 @@ import LinearProgress from "../linear-progress";
 import {error} from "../feedback";
 
 import {getAccount} from "../../api/hive";
+
+import {clone} from "../../store/helper";
 
 import {
     setUserRole,
@@ -26,6 +28,7 @@ interface Props {
     user: string;
     role: string;
     roles: string[];
+    addCommunity: (data: Community) => void;
     onHide: () => void;
 }
 
@@ -69,7 +72,7 @@ export class CommunityRoleEdit extends Component<Props, State> {
 
     submit = async () => {
         const {user, role} = this.state;
-        const {community, activeUser} = this.props;
+        const {community, activeUser, addCommunity, onHide} = this.props;
 
         if (user.trim() === '') {
             this._input.current?.focus();
@@ -91,8 +94,14 @@ export class CommunityRoleEdit extends Component<Props, State> {
         }
 
         return setUserRole(activeUser.username, community.name, user, role)
-            .then(r => {
-                console.log(r)
+            .then(() => {
+                const team: CommunityTeam = clone(community.team);
+                const nTeam = team.find(x => x[0] === user) === undefined
+                    ? [...team, [user, role, ""]]
+                    : team.map(x => x[0] === user ? [x[0], role, x[2]] : x);
+                const nCom: Community = {...clone(community), team: nTeam};
+                addCommunity(nCom);
+                onHide();
             })
             .catch(err => error(formatError(err)))
             .finally(() => this.stateSet({inProgress: false}));

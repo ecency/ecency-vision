@@ -24,6 +24,7 @@ interface Props {
     community: Community;
     activeUser: ActiveUser | null;
     addAccount: (data: Account) => void;
+    addCommunity: (data: Community) => void;
 }
 
 interface State {
@@ -133,7 +134,8 @@ export default (p: Props) => {
         global: p.global,
         community: p.community,
         activeUser: p.activeUser,
-        addAccount: p.addAccount
+        addAccount: p.addAccount,
+        addCommunity: p.addCommunity
     }
 
     return <CommunityMenu {...props} />

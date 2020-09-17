@@ -1,3 +1,5 @@
+export type CommunityTeam = Array<Array<string>>;
+
 export interface Community {
     about: string;
     admins?: string[];
@@ -14,7 +16,7 @@ export interface Community {
     subscribers: number;
     sum_pending: number;
     settings?: any;
-    team: Array<Array<string>>;
+    team: CommunityTeam;
     title: string;
     type_id: number;
 }
