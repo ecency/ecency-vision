@@ -539,3 +539,15 @@ export const revokePostingPermission = async (key: PrivateKey, account: Account,
         key
     );
 };
+
+export const setUserRole = (username: string, community: string, account: string, role: string): Promise<TransactionConfirmation> => {
+    const client = new hs.Client({
+        accessToken: getAccessToken(username),
+    });
+
+    const json = JSON.stringify([
+        'setRole', {community, account, role}
+    ]);
+
+    return client.customJson([], [username], 'community', json);
+}

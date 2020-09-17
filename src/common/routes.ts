@@ -22,7 +22,7 @@ export default {
   USER_SECTION: `/:username(@[\\w\\.\\d-]+)/:section(${profileFilters.join("|")}|wallet|points|communities)`,
   COMMUNITIES: `/communities`,
   COMMUNITY: `/:filter(${entryFilters.join("|")})/:name(hive-[\\d]+)`,
-  COMMUNITY_SECTION: `/:filter(${entryFilters.join("|")})/:name(hive-[\\d]+)/:section(subscribers|activities)`,
+  COMMUNITY_SECTION: `/:filter(${entryFilters.join("|")})/:name(hive-[\\d]+)/:section(subscribers|activities|roles)`,
   SUBMIT: `/submit`,
   EDIT: `/:username(@[\\w\\.\\d-]+)/:permlink/edit`,
   EDIT_DRAFT: `/draft/:draftId`,

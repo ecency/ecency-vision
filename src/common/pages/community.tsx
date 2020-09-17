@@ -23,6 +23,7 @@ import EntryListContent from "../components/entry-list";
 import DetectBottom from "../components/detect-bottom";
 import CommunitySubscribers from "../components/community-subscribers";
 import CommunityActivities from "../components/community-activities";
+import CommunityRoles from "../components/community-roles";
 
 import {getCommunity, getSubscriptions} from "../api/bridge";
 import {getAccountFull} from "../api/hive";
@@ -112,7 +113,7 @@ class CommunityPage extends Component<Props, State> {
     };
 
     ensureData = (): Promise<void> => {
-        const {match, communities, addCommunity, accounts, addAccount} = this.props;
+        const {match, communities, addCommunity, accounts, addAccount, activeUser} = this.props;
 
         const name = match.params.name;
         const community = communities.find((x) => x.name === name);
@@ -123,7 +124,7 @@ class CommunityPage extends Component<Props, State> {
             this.stateSet({loading: true});
         }
 
-        return getCommunity(name).then((data) => {
+        return getCommunity(name, (activeUser ? activeUser.username : "")).then((data) => {
             if (data) {
                 addCommunity(data);
             }
@@ -210,6 +211,10 @@ class CommunityPage extends Component<Props, State> {
 
                             if (section === 'activities') {
                                 return <CommunityActivities {...this.props} community={community}/>;
+                            }
+
+                            if (section === 'roles') {
+                                return <CommunityRoles {...this.props} community={community}/>;
                             }
 
                             const groupKey = makeGroupKey(filter, name);
