@@ -5,6 +5,7 @@ import {match} from "react-router";
 import {Alert} from "react-bootstrap";
 
 import {ListStyle} from "../store/global/types";
+import {EntryFilter} from "../store/global/types";
 import {makeGroupKey} from "../store/entries";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
@@ -38,7 +39,6 @@ import defaults from "../constants/defaults.json";
 interface MatchParams {
     filter: string;
     name: string;
-    section?: string;
 }
 
 interface Props extends PageProps {
@@ -58,10 +58,13 @@ class CommunityPage extends Component<Props, State> {
 
     async componentDidMount() {
         await this.ensureData();
-
-        // fetch blog posts.
         const {match, fetchEntries} = this.props;
-        fetchEntries(match.params.filter, match.params.name, false);
+
+        const {filter, name} = match.params;
+        if (EntryFilter[filter]) {
+            // fetch blog posts.
+            fetchEntries(filter, name, false);
+        }
 
         // fetch subscriptions.
         const {activeUser, subscriptions, updateSubscriptions} = this.props;
@@ -76,7 +79,7 @@ class CommunityPage extends Component<Props, State> {
         const {match, fetchEntries} = this.props;
         const {match: prevMatch} = prevProps;
 
-        const {filter, name, section} = match.params;
+        const {filter, name} = match.params;
         const {params: prevParams} = prevMatch;
 
         // community changed. fetch community and account data.
@@ -84,10 +87,8 @@ class CommunityPage extends Component<Props, State> {
             this.ensureData().then();
         }
 
-        if (
-            (prevParams.section && !section) || // user comes from subscriptions or activities section
-            filter !== prevParams.filter || name !== prevParams.name   // or community or filter changed
-        ) {
+        //  community or filter changed
+        if ((filter !== prevParams.filter || name !== prevParams.name) && EntryFilter[filter]) {
             fetchEntries(match.params.filter, match.params.name, false);
         }
 
@@ -159,7 +160,7 @@ class CommunityPage extends Component<Props, State> {
             return <LinearProgress/>;
         }
 
-        const {name, filter, section} = match.params;
+        const {name, filter} = match.params;
 
         const community = communities.find((x) => x.name === name);
         const account = accounts.find((x) => x.name === name);
@@ -205,15 +206,15 @@ class CommunityPage extends Component<Props, State> {
                         })}
 
                         {(() => {
-                            if (section === 'subscribers') {
+                            if (filter === 'subscribers') {
                                 return <CommunitySubscribers {...this.props} community={community}/>;
                             }
 
-                            if (section === 'activities') {
+                            if (filter === 'activities') {
                                 return <CommunityActivities {...this.props} community={community}/>;
                             }
 
-                            if (section === 'roles') {
+                            if (filter === 'roles') {
                                 return <CommunityRoles {...this.props} community={community}/>;
                             }
 

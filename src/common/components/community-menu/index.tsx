@@ -19,7 +19,6 @@ import _c from "../../util/fix-class-names";
 interface MatchParams {
     filter: string;
     name: string;
-    section?: string;
 }
 
 interface Props {
@@ -39,7 +38,7 @@ export class CommunityMenu extends Component<Props> {
 
     render() {
         const {community, match} = this.props;
-        const {filter, name, section} = match.params;
+        const {filter, name} = match.params;
 
         const menuConfig: {
             history: History,
@@ -63,25 +62,21 @@ export class CommunityMenu extends Component<Props> {
             <div className="community-menu">
                 <div className="menu-items">
                     {(() => {
-                        if (section) {
-                            return <Link to={`/${filter}/${name}`} className="community-menu-item">
-                                {_t('community.posts')}
-                            </Link>;
+                        if (EntryFilter[filter]) {
+                            return <span className="community-menu-item selected-item"><DropDown {...menuConfig} float="left"/></span>;
                         }
 
-                        return <span className="community-menu-item selected-item">
-                        <DropDown {...menuConfig} float="left"/>
-                    </span>;
+                        return <Link to={`/trending/${name}`} className="community-menu-item">{_t('community.posts')}</Link>;
                     })()}
-                    <Link to={`/${filter}/${name}/subscribers`} className={_c(`community-menu-item ${section === "subscribers" ? "selected-item" : ""}`)}>
+                    <Link to={`/subscribers/${name}`} className={_c(`community-menu-item ${filter === "subscribers" ? "selected-item" : ""}`)}>
                         {_t('community.subscribers')}
                     </Link>
-                    <Link to={`/${filter}/${name}/activities`} className={_c(`community-menu-item ${section === "activities" ? "selected-item" : ""}`)}>
+                    <Link to={`/activities/${name}`} className={_c(`community-menu-item ${filter === "activities" ? "selected-item" : ""}`)}>
                         {_t('community.activities')}
                     </Link>
                 </div>
 
-                {!section && <div className="page-tools"><ListStyleToggle global={this.props.global} toggleListStyle={this.props.toggleListStyle}/></div>}
+                {EntryFilter[filter] && <div className="page-tools"><ListStyleToggle global={this.props.global} toggleListStyle={this.props.toggleListStyle}/></div>}
             </div>
         );
     }

@@ -38,7 +38,6 @@ const App = () => {
                 <Route exact={true} strict={true} path={routes.ENTRY} component={EntryContainer}/>
                 <Route exact={true} strict={true} path={routes.COMMUNITIES} component={CommunitiesContainer}/>
                 <Route exact={true} strict={true} path={routes.COMMUNITY} component={CommunityContainer}/>
-                <Route exact={true} strict={true} path={routes.COMMUNITY_SECTION} component={CommunityContainer}/>
                 <Route exact={true} strict={true} path={routes.FILTER_TAG} component={EntryIndexContainer}/>
                 <Route exact={true} strict={true} path={routes.DISCOVER} component={DiscoverContainer}/>
                 <Route exact={true} strict={true} path={routes.AUTH} component={AuthContainer}/>

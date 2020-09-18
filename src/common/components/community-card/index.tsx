@@ -89,7 +89,7 @@ export class CommunityCard extends Component<Props, State> {
                         {m[2] !== "" && <span className="extra">{m[2]}</span>}
                     </div>
                 );
-            })}{canEditTeam && <p><a href="#">{_t('community.edit-roles')}</a></p>}</>;
+            })}{canEditTeam && <p><Link to={`/roles/${community.name}`}>{_t('community.edit-roles')}</Link></p>}</>;
 
         return (
             <div className="community-card">

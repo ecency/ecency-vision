@@ -11,6 +11,7 @@ it("(1) Default render", () => {
         history: createBrowserHistory(),
         global: globalInstance,
         community: {...communityInstance1},
+        activeUser: null,
         addAccount: () => {
         }
     };
