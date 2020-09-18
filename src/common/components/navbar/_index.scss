@@ -1,10 +1,108 @@
+.nav-bar-toggle {
+  position: absolute;
+  z-index: 1;
+  top: 18px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+
+  svg {
+    height: 30px;
+
+    @include themify(day) {
+      color: $steel-grey;
+    }
+
+    @include themify(night) {
+      color: $duck-egg-blue;
+      opacity: 0.8;
+    }
+  }
+
+  @media (min-width: $md-break) {
+    display: none;
+  }
+}
+
+.nav-bar-sm {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 64px;
+
+  @include themify(day) {
+    background: $white-two;
+    box-shadow: 0 0 2px 1px $white-six;
+  }
+
+  @include themify(night) {
+    background: $dark-two;
+  }
+
+  @media (min-width: $md-break) {
+    display: none;
+  }
+
+  .brand {
+    height: 44px;
+    width: 44px;
+    text-decoration: none;
+    flex-shrink: 0;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    z-index: 1;
+
+    .logo {
+      width: 44px;
+      height: 44px;
+    }
+  }
+
+  .text-menu {
+    justify-content: center;
+    height: 100%;
+    align-items: center;
+    display: flex;
+
+    .menu-item {
+      @include themify(day) {
+        color: $gunmetal;
+
+        &:hover {
+          color: $warm-grey;
+        }
+      }
+
+      @include themify(night) {
+        color: $duck-egg-blue;
+      }
+
+      &:not(:last-child) {
+        margin-right: 8px;
+
+        @media (min-width: $sm-break) {
+          margin-right: 20px;
+        }
+      }
+    }
+  }
+}
+
 .nav-bar {
   user-select: none;
   margin-bottom: 20px;
   position: relative;
   padding: 16px 0;
 
+  &:not(.visible-sm) {
+    display: none;
+  }
+
   @media (min-width: $md-break) {
+    display: block !important;
     padding: 0;
     margin-bottom: 30px;
     height: 64px;
@@ -138,13 +236,13 @@
     .switch-theme {
       cursor: pointer;
       position: absolute;
-      right: 20px;
+      left: 20px;
       top: 24px;
 
       @media (min-width: $md-break) {
         position: relative;
         top: auto;
-        right: auto;
+        left: auto;
         margin-right: 14px;
       }
 
