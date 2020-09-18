@@ -1,11 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`(1) Default render 1`] = `
-<div
-  className="nav-bar"
->
+Array [
   <div
-    className="nav-bar-inner"
+    className="nav-bar-toggle"
+    onClick={[Function]}
+  >
+    <svg
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"
+        fill="currentColor"
+      />
+    </svg>
+  </div>,
+  <div
+    className="nav-bar-sm"
   >
     <div
       className="brand"
@@ -46,176 +57,234 @@ exports[`(1) Default render 1`] = `
         FAQ
       </a>
     </div>
+  </div>,
+  <div
+    className="nav-bar"
+  >
     <div
-      className="flex-spacer"
-    />
-    <div
-      className="search-bar"
+      className="nav-bar-inner"
     >
       <div
-        className="suggestion"
+        className="brand"
+      >
+        <a
+          href="/"
+          onClick={[Function]}
+        >
+          <img
+            alt="Logo"
+            className="logo"
+            src="logo-circle.svg"
+          />
+        </a>
+      </div>
+      <div
+        className="text-menu"
+      >
+        <a
+          className="menu-item"
+          href="/discover"
+          onClick={[Function]}
+        >
+          Discover
+        </a>
+        <a
+          className="menu-item"
+          href="/communities"
+          onClick={[Function]}
+        >
+          Communities
+        </a>
+        <a
+          className="menu-item"
+          href="/faq"
+          onClick={[Function]}
+        >
+          FAQ
+        </a>
+      </div>
+      <div
+        className="flex-spacer"
+      />
+      <div
+        className="search-bar"
       >
         <div
-          className="search-box"
+          className="suggestion"
         >
-          <span
-            className="prepend"
+          <div
+            className="search-box"
           >
-            <svg
-              viewBox="0 0 24 24"
+            <span
+              className="prepend"
             >
-              <path
-                d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"
-                fill="currentColor"
-              />
-            </svg>
-          </span>
-          <input
-            autoComplete="off"
-            className="form-control"
-            onChange={[Function]}
-            onKeyDown={[Function]}
-            placeholder="Search 10,000,000 posts"
-            type="text"
-            value=""
-          />
+              <svg
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+            <input
+              autoComplete="off"
+              className="form-control"
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              placeholder="Search 10,000,000 posts"
+              type="text"
+              value=""
+            />
+          </div>
         </div>
       </div>
-    </div>
-    <div
-      className="switch-theme"
-      onClick={[Function]}
-      title="Night Theme"
-    >
-      <svg
-        viewBox="0 0 24 24"
-      >
-        <path
-          d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z"
-          fill="currentColor"
-        />
-      </svg>
-    </div>
-    <div
-      className="downloads"
-      onClick={[Function]}
-    >
-      <span
-        className="label"
-      >
-        Downloads
-      </span>
-      <span
-        className="icons"
-      >
-        <span
-          className="img-apple"
-        >
-          <svg
-            fill="none"
-            viewBox="0 0 15 18"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              clipRule="evenodd"
-              d="M10.952 0c-.909.038-2.01.603-2.661 1.363-.586.675-1.097 1.753-.96 2.786 1.015.079 2.049-.514 2.68-1.274.63-.762 1.057-1.82.94-2.875zm-.257 17.976c1.23-.023 2.01-1.113 2.764-2.21.826-1.203 1.19-2.368 1.245-2.542l.006-.02-.004-.001c-.118-.048-2.397-.971-2.42-3.638-.022-2.203 1.742-3.299 1.936-3.42l.014-.008c-1.061-1.547-2.714-1.759-3.303-1.783-.86-.086-1.694.241-2.376.509-.434.17-.805.316-1.083.316-.308 0-.69-.151-1.119-.32-.56-.222-1.201-.476-1.863-.464-1.532.023-2.946.889-3.735 2.257-1.594 2.754-.409 6.836 1.144 9.07.76 1.092 1.663 2.321 2.851 2.277.531-.021.909-.181 1.3-.347.45-.192.919-.39 1.66-.39.707 0 1.154.192 1.584.378.411.177.807.347 1.399.336z"
-              fill="#fff"
-              fillRule="evenodd"
-            />
-          </svg>
-        </span>
-        <span
-          className="img-google"
-        >
-          <svg
-            fill="none"
-            viewBox="0 0 15 16"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              clipRule="evenodd"
-              d="M0 1.096v13.81c0 .48.278.896.682 1.094l7.99-8.002L.686 0A1.219 1.219 0 0 0 0 1.096zm2.473 14.49l8.734-5.05-1.846-1.848-6.888 6.897zm11.449-8.553a1.217 1.217 0 0 1 .013 1.926L12.08 10.03l-2.03-2.033 2.028-2.031 1.844 1.066zm-2.716-1.57L2.478.416 9.36 7.309l1.845-1.847z"
-              fill="#fff"
-              fillRule="evenodd"
-            />
-          </svg>
-        </span>
-        <span
-          className="img-desktop"
-        >
-          <svg
-            fill="none"
-            viewBox="0 0 16 16"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M14 1.333H2c-.733 0-1.333.6-1.333 1.334v8C.667 11.4 1.267 12 2 12h4.667v1.333H5.333v1.334h5.334v-1.334H9.333V12H14c.733 0 1.333-.6 1.333-1.333v-8c0-.734-.6-1.334-1.333-1.334zm0 9.334H2v-8h12v8z"
-              fill="#fff"
-            />
-          </svg>
-        </span>
-      </span>
-    </div>
-    <div
-      className="login-required"
-    >
-      <button
-        className="btn btn-outline-primary"
-        disabled={false}
+      <div
+        className="switch-theme"
         onClick={[Function]}
-        type="button"
-      >
-        Login
-      </button>
-      <button
-        className="btn btn-primary"
-        disabled={false}
-        onClick={[Function]}
-        type="button"
-      >
-        Signup
-      </button>
-    </div>
-    <div
-      className="submit-post"
-    >
-      <a
-        className="btn btn-outline-primary"
-        href="/submit"
-        onClick={[Function]}
-        title="Create Post"
+        title="Night Theme"
       >
         <svg
           viewBox="0 0 24 24"
         >
           <path
-            d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"
+            d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z"
             fill="currentColor"
           />
         </svg>
-      </a>
+      </div>
+      <div
+        className="downloads"
+        onClick={[Function]}
+      >
+        <span
+          className="label"
+        >
+          Downloads
+        </span>
+        <span
+          className="icons"
+        >
+          <span
+            className="img-apple"
+          >
+            <svg
+              fill="none"
+              viewBox="0 0 15 18"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                clipRule="evenodd"
+                d="M10.952 0c-.909.038-2.01.603-2.661 1.363-.586.675-1.097 1.753-.96 2.786 1.015.079 2.049-.514 2.68-1.274.63-.762 1.057-1.82.94-2.875zm-.257 17.976c1.23-.023 2.01-1.113 2.764-2.21.826-1.203 1.19-2.368 1.245-2.542l.006-.02-.004-.001c-.118-.048-2.397-.971-2.42-3.638-.022-2.203 1.742-3.299 1.936-3.42l.014-.008c-1.061-1.547-2.714-1.759-3.303-1.783-.86-.086-1.694.241-2.376.509-.434.17-.805.316-1.083.316-.308 0-.69-.151-1.119-.32-.56-.222-1.201-.476-1.863-.464-1.532.023-2.946.889-3.735 2.257-1.594 2.754-.409 6.836 1.144 9.07.76 1.092 1.663 2.321 2.851 2.277.531-.021.909-.181 1.3-.347.45-.192.919-.39 1.66-.39.707 0 1.154.192 1.584.378.411.177.807.347 1.399.336z"
+                fill="#fff"
+                fillRule="evenodd"
+              />
+            </svg>
+          </span>
+          <span
+            className="img-google"
+          >
+            <svg
+              fill="none"
+              viewBox="0 0 15 16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                clipRule="evenodd"
+                d="M0 1.096v13.81c0 .48.278.896.682 1.094l7.99-8.002L.686 0A1.219 1.219 0 0 0 0 1.096zm2.473 14.49l8.734-5.05-1.846-1.848-6.888 6.897zm11.449-8.553a1.217 1.217 0 0 1 .013 1.926L12.08 10.03l-2.03-2.033 2.028-2.031 1.844 1.066zm-2.716-1.57L2.478.416 9.36 7.309l1.845-1.847z"
+                fill="#fff"
+                fillRule="evenodd"
+              />
+            </svg>
+          </span>
+          <span
+            className="img-desktop"
+          >
+            <svg
+              fill="none"
+              viewBox="0 0 16 16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M14 1.333H2c-.733 0-1.333.6-1.333 1.334v8C.667 11.4 1.267 12 2 12h4.667v1.333H5.333v1.334h5.334v-1.334H9.333V12H14c.733 0 1.333-.6 1.333-1.333v-8c0-.734-.6-1.334-1.333-1.334zm0 9.334H2v-8h12v8z"
+                fill="#fff"
+              />
+            </svg>
+          </span>
+        </span>
+      </div>
+      <div
+        className="login-required"
+      >
+        <button
+          className="btn btn-outline-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Login
+        </button>
+        <button
+          className="btn btn-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Signup
+        </button>
+      </div>
+      <div
+        className="submit-post"
+      >
+        <a
+          className="btn btn-outline-primary"
+          href="/submit"
+          onClick={[Function]}
+          title="Create Post"
+        >
+          <svg
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"
+              fill="currentColor"
+            />
+          </svg>
+        </a>
+      </div>
     </div>
-  </div>
-  <audio
-    autoPlay={false}
-    id="notification-audio"
-    muted={true}
-    src="notification.mp3"
-    style={
-      Object {
-        "display": "none",
+    <audio
+      autoPlay={false}
+      id="notification-audio"
+      muted={true}
+      src="notification.mp3"
+      style={
+        Object {
+          "display": "none",
+        }
       }
-    }
-  />
-</div>
+    />
+  </div>,
+]
 `;
 
 exports[`(2) Night Theme 1`] = `
-<div
-  className="nav-bar"
->
+Array [
   <div
-    className="nav-bar-inner"
+    className="nav-bar-toggle"
+    onClick={[Function]}
+  >
+    <svg
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"
+        fill="currentColor"
+      />
+    </svg>
+  </div>,
+  <div
+    className="nav-bar-sm"
   >
     <div
       className="brand"
@@ -256,176 +325,234 @@ exports[`(2) Night Theme 1`] = `
         FAQ
       </a>
     </div>
+  </div>,
+  <div
+    className="nav-bar"
+  >
     <div
-      className="flex-spacer"
-    />
-    <div
-      className="search-bar"
+      className="nav-bar-inner"
     >
       <div
-        className="suggestion"
+        className="brand"
+      >
+        <a
+          href="/"
+          onClick={[Function]}
+        >
+          <img
+            alt="Logo"
+            className="logo"
+            src="logo-circle.svg"
+          />
+        </a>
+      </div>
+      <div
+        className="text-menu"
+      >
+        <a
+          className="menu-item"
+          href="/discover"
+          onClick={[Function]}
+        >
+          Discover
+        </a>
+        <a
+          className="menu-item"
+          href="/communities"
+          onClick={[Function]}
+        >
+          Communities
+        </a>
+        <a
+          className="menu-item"
+          href="/faq"
+          onClick={[Function]}
+        >
+          FAQ
+        </a>
+      </div>
+      <div
+        className="flex-spacer"
+      />
+      <div
+        className="search-bar"
       >
         <div
-          className="search-box"
+          className="suggestion"
         >
-          <span
-            className="prepend"
+          <div
+            className="search-box"
           >
-            <svg
-              viewBox="0 0 24 24"
+            <span
+              className="prepend"
             >
-              <path
-                d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"
-                fill="currentColor"
-              />
-            </svg>
-          </span>
-          <input
-            autoComplete="off"
-            className="form-control"
-            onChange={[Function]}
-            onKeyDown={[Function]}
-            placeholder="Search 10,000,000 posts"
-            type="text"
-            value=""
-          />
+              <svg
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+            <input
+              autoComplete="off"
+              className="form-control"
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              placeholder="Search 10,000,000 posts"
+              type="text"
+              value=""
+            />
+          </div>
         </div>
       </div>
-    </div>
-    <div
-      className="switch-theme"
-      onClick={[Function]}
-      title="Day Theme"
-    >
-      <svg
-        viewBox="0 0 24 24"
-      >
-        <path
-          d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z"
-          fill="currentColor"
-        />
-      </svg>
-    </div>
-    <div
-      className="downloads"
-      onClick={[Function]}
-    >
-      <span
-        className="label"
-      >
-        Downloads
-      </span>
-      <span
-        className="icons"
-      >
-        <span
-          className="img-apple"
-        >
-          <svg
-            fill="none"
-            viewBox="0 0 15 18"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              clipRule="evenodd"
-              d="M10.952 0c-.909.038-2.01.603-2.661 1.363-.586.675-1.097 1.753-.96 2.786 1.015.079 2.049-.514 2.68-1.274.63-.762 1.057-1.82.94-2.875zm-.257 17.976c1.23-.023 2.01-1.113 2.764-2.21.826-1.203 1.19-2.368 1.245-2.542l.006-.02-.004-.001c-.118-.048-2.397-.971-2.42-3.638-.022-2.203 1.742-3.299 1.936-3.42l.014-.008c-1.061-1.547-2.714-1.759-3.303-1.783-.86-.086-1.694.241-2.376.509-.434.17-.805.316-1.083.316-.308 0-.69-.151-1.119-.32-.56-.222-1.201-.476-1.863-.464-1.532.023-2.946.889-3.735 2.257-1.594 2.754-.409 6.836 1.144 9.07.76 1.092 1.663 2.321 2.851 2.277.531-.021.909-.181 1.3-.347.45-.192.919-.39 1.66-.39.707 0 1.154.192 1.584.378.411.177.807.347 1.399.336z"
-              fill="#fff"
-              fillRule="evenodd"
-            />
-          </svg>
-        </span>
-        <span
-          className="img-google"
-        >
-          <svg
-            fill="none"
-            viewBox="0 0 15 16"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              clipRule="evenodd"
-              d="M0 1.096v13.81c0 .48.278.896.682 1.094l7.99-8.002L.686 0A1.219 1.219 0 0 0 0 1.096zm2.473 14.49l8.734-5.05-1.846-1.848-6.888 6.897zm11.449-8.553a1.217 1.217 0 0 1 .013 1.926L12.08 10.03l-2.03-2.033 2.028-2.031 1.844 1.066zm-2.716-1.57L2.478.416 9.36 7.309l1.845-1.847z"
-              fill="#fff"
-              fillRule="evenodd"
-            />
-          </svg>
-        </span>
-        <span
-          className="img-desktop"
-        >
-          <svg
-            fill="none"
-            viewBox="0 0 16 16"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M14 1.333H2c-.733 0-1.333.6-1.333 1.334v8C.667 11.4 1.267 12 2 12h4.667v1.333H5.333v1.334h5.334v-1.334H9.333V12H14c.733 0 1.333-.6 1.333-1.333v-8c0-.734-.6-1.334-1.333-1.334zm0 9.334H2v-8h12v8z"
-              fill="#fff"
-            />
-          </svg>
-        </span>
-      </span>
-    </div>
-    <div
-      className="login-required"
-    >
-      <button
-        className="btn btn-outline-primary"
-        disabled={false}
+      <div
+        className="switch-theme"
         onClick={[Function]}
-        type="button"
-      >
-        Login
-      </button>
-      <button
-        className="btn btn-primary"
-        disabled={false}
-        onClick={[Function]}
-        type="button"
-      >
-        Signup
-      </button>
-    </div>
-    <div
-      className="submit-post"
-    >
-      <a
-        className="btn btn-outline-primary"
-        href="/submit"
-        onClick={[Function]}
-        title="Create Post"
+        title="Day Theme"
       >
         <svg
           viewBox="0 0 24 24"
         >
           <path
-            d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"
+            d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z"
             fill="currentColor"
           />
         </svg>
-      </a>
+      </div>
+      <div
+        className="downloads"
+        onClick={[Function]}
+      >
+        <span
+          className="label"
+        >
+          Downloads
+        </span>
+        <span
+          className="icons"
+        >
+          <span
+            className="img-apple"
+          >
+            <svg
+              fill="none"
+              viewBox="0 0 15 18"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                clipRule="evenodd"
+                d="M10.952 0c-.909.038-2.01.603-2.661 1.363-.586.675-1.097 1.753-.96 2.786 1.015.079 2.049-.514 2.68-1.274.63-.762 1.057-1.82.94-2.875zm-.257 17.976c1.23-.023 2.01-1.113 2.764-2.21.826-1.203 1.19-2.368 1.245-2.542l.006-.02-.004-.001c-.118-.048-2.397-.971-2.42-3.638-.022-2.203 1.742-3.299 1.936-3.42l.014-.008c-1.061-1.547-2.714-1.759-3.303-1.783-.86-.086-1.694.241-2.376.509-.434.17-.805.316-1.083.316-.308 0-.69-.151-1.119-.32-.56-.222-1.201-.476-1.863-.464-1.532.023-2.946.889-3.735 2.257-1.594 2.754-.409 6.836 1.144 9.07.76 1.092 1.663 2.321 2.851 2.277.531-.021.909-.181 1.3-.347.45-.192.919-.39 1.66-.39.707 0 1.154.192 1.584.378.411.177.807.347 1.399.336z"
+                fill="#fff"
+                fillRule="evenodd"
+              />
+            </svg>
+          </span>
+          <span
+            className="img-google"
+          >
+            <svg
+              fill="none"
+              viewBox="0 0 15 16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                clipRule="evenodd"
+                d="M0 1.096v13.81c0 .48.278.896.682 1.094l7.99-8.002L.686 0A1.219 1.219 0 0 0 0 1.096zm2.473 14.49l8.734-5.05-1.846-1.848-6.888 6.897zm11.449-8.553a1.217 1.217 0 0 1 .013 1.926L12.08 10.03l-2.03-2.033 2.028-2.031 1.844 1.066zm-2.716-1.57L2.478.416 9.36 7.309l1.845-1.847z"
+                fill="#fff"
+                fillRule="evenodd"
+              />
+            </svg>
+          </span>
+          <span
+            className="img-desktop"
+          >
+            <svg
+              fill="none"
+              viewBox="0 0 16 16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M14 1.333H2c-.733 0-1.333.6-1.333 1.334v8C.667 11.4 1.267 12 2 12h4.667v1.333H5.333v1.334h5.334v-1.334H9.333V12H14c.733 0 1.333-.6 1.333-1.333v-8c0-.734-.6-1.334-1.333-1.334zm0 9.334H2v-8h12v8z"
+                fill="#fff"
+              />
+            </svg>
+          </span>
+        </span>
+      </div>
+      <div
+        className="login-required"
+      >
+        <button
+          className="btn btn-outline-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Login
+        </button>
+        <button
+          className="btn btn-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Signup
+        </button>
+      </div>
+      <div
+        className="submit-post"
+      >
+        <a
+          className="btn btn-outline-primary"
+          href="/submit"
+          onClick={[Function]}
+          title="Create Post"
+        >
+          <svg
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"
+              fill="currentColor"
+            />
+          </svg>
+        </a>
+      </div>
     </div>
-  </div>
-  <audio
-    autoPlay={false}
-    id="notification-audio"
-    muted={true}
-    src="notification.mp3"
-    style={
-      Object {
-        "display": "none",
+    <audio
+      autoPlay={false}
+      id="notification-audio"
+      muted={true}
+      src="notification.mp3"
+      style={
+        Object {
+          "display": "none",
+        }
       }
-    }
-  />
-</div>
+    />
+  </div>,
+]
 `;
 
 exports[`(3) With active user 1`] = `
-<div
-  className="nav-bar"
->
+Array [
   <div
-    className="nav-bar-inner"
+    className="nav-bar-toggle"
+    onClick={[Function]}
+  >
+    <svg
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"
+        fill="currentColor"
+      />
+    </svg>
+  </div>,
+  <div
+    className="nav-bar-sm"
   >
     <div
       className="brand"
@@ -466,212 +593,259 @@ exports[`(3) With active user 1`] = `
         FAQ
       </a>
     </div>
+  </div>,
+  <div
+    className="nav-bar"
+  >
     <div
-      className="flex-spacer"
-    />
-    <div
-      className="search-bar"
+      className="nav-bar-inner"
     >
       <div
-        className="suggestion"
+        className="brand"
+      >
+        <a
+          href="/@foo/feed"
+          onClick={[Function]}
+        >
+          <img
+            alt="Logo"
+            className="logo"
+            src="logo-circle.svg"
+          />
+        </a>
+      </div>
+      <div
+        className="text-menu"
+      >
+        <a
+          className="menu-item"
+          href="/discover"
+          onClick={[Function]}
+        >
+          Discover
+        </a>
+        <a
+          className="menu-item"
+          href="/communities"
+          onClick={[Function]}
+        >
+          Communities
+        </a>
+        <a
+          className="menu-item"
+          href="/faq"
+          onClick={[Function]}
+        >
+          FAQ
+        </a>
+      </div>
+      <div
+        className="flex-spacer"
+      />
+      <div
+        className="search-bar"
       >
         <div
-          className="search-box"
+          className="suggestion"
+        >
+          <div
+            className="search-box"
+          >
+            <span
+              className="prepend"
+            >
+              <svg
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+            <input
+              autoComplete="off"
+              className="form-control"
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              placeholder="Search 10,000,000 posts"
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="switch-theme"
+        onClick={[Function]}
+        title="Night Theme"
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z"
+            fill="currentColor"
+          />
+        </svg>
+      </div>
+      <div
+        className="downloads"
+        onClick={[Function]}
+      >
+        <span
+          className="label"
+        >
+          Downloads
+        </span>
+        <span
+          className="icons"
         >
           <span
-            className="prepend"
+            className="img-apple"
           >
             <svg
-              viewBox="0 0 24 24"
+              fill="none"
+              viewBox="0 0 15 18"
+              xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"
-                fill="currentColor"
+                clipRule="evenodd"
+                d="M10.952 0c-.909.038-2.01.603-2.661 1.363-.586.675-1.097 1.753-.96 2.786 1.015.079 2.049-.514 2.68-1.274.63-.762 1.057-1.82.94-2.875zm-.257 17.976c1.23-.023 2.01-1.113 2.764-2.21.826-1.203 1.19-2.368 1.245-2.542l.006-.02-.004-.001c-.118-.048-2.397-.971-2.42-3.638-.022-2.203 1.742-3.299 1.936-3.42l.014-.008c-1.061-1.547-2.714-1.759-3.303-1.783-.86-.086-1.694.241-2.376.509-.434.17-.805.316-1.083.316-.308 0-.69-.151-1.119-.32-.56-.222-1.201-.476-1.863-.464-1.532.023-2.946.889-3.735 2.257-1.594 2.754-.409 6.836 1.144 9.07.76 1.092 1.663 2.321 2.851 2.277.531-.021.909-.181 1.3-.347.45-.192.919-.39 1.66-.39.707 0 1.154.192 1.584.378.411.177.807.347 1.399.336z"
+                fill="#fff"
+                fillRule="evenodd"
               />
             </svg>
           </span>
-          <input
-            autoComplete="off"
-            className="form-control"
-            onChange={[Function]}
-            onKeyDown={[Function]}
-            placeholder="Search 10,000,000 posts"
-            type="text"
-            value=""
+          <span
+            className="img-google"
+          >
+            <svg
+              fill="none"
+              viewBox="0 0 15 16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                clipRule="evenodd"
+                d="M0 1.096v13.81c0 .48.278.896.682 1.094l7.99-8.002L.686 0A1.219 1.219 0 0 0 0 1.096zm2.473 14.49l8.734-5.05-1.846-1.848-6.888 6.897zm11.449-8.553a1.217 1.217 0 0 1 .013 1.926L12.08 10.03l-2.03-2.033 2.028-2.031 1.844 1.066zm-2.716-1.57L2.478.416 9.36 7.309l1.845-1.847z"
+                fill="#fff"
+                fillRule="evenodd"
+              />
+            </svg>
+          </span>
+          <span
+            className="img-desktop"
+          >
+            <svg
+              fill="none"
+              viewBox="0 0 16 16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M14 1.333H2c-.733 0-1.333.6-1.333 1.334v8C.667 11.4 1.267 12 2 12h4.667v1.333H5.333v1.334h5.334v-1.334H9.333V12H14c.733 0 1.333-.6 1.333-1.333v-8c0-.734-.6-1.334-1.333-1.334zm0 9.334H2v-8h12v8z"
+                fill="#fff"
+              />
+            </svg>
+          </span>
+        </span>
+      </div>
+      <div
+        className="submit-post"
+      >
+        <a
+          className="btn btn-outline-primary"
+          href="/submit"
+          onClick={[Function]}
+          title="Create Post"
+        >
+          <svg
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"
+              fill="currentColor"
+            />
+          </svg>
+        </a>
+      </div>
+      <div
+        className="user-nav"
+      >
+        <a
+          className="user-points"
+          href="/@foo/points"
+          onClick={[Function]}
+          title="You have unclaimed points"
+        >
+          <span
+            className="reward-badge"
+          />
+          <svg
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M20,14H4V8H9.08L7,10.83L8.62,12L11,8.76L12,7.4L13,8.76L15.38,12L17,10.83L14.92,8H20M20,19H4V17H20M9,4A1,1 0 0,1 10,5A1,1 0 0,1 9,6A1,1 0 0,1 8,5A1,1 0 0,1 9,4M15,4A1,1 0 0,1 16,5A1,1 0 0,1 15,6A1,1 0 0,1 14,5A1,1 0 0,1 15,4M20,6H17.82C17.93,5.69 18,5.35 18,5A3,3 0 0,0 15,2C13.95,2 13.04,2.54 12.5,3.35L12,4L11.5,3.34C10.96,2.54 10.05,2 9,2A3,3 0 0,0 6,5C6,5.35 6.07,5.69 6.18,6H4C2.89,6 2,6.89 2,8V19C2,20.11 2.89,21 4,21H20C21.11,21 22,20.11 22,19V8C22,6.89 21.11,6 20,6Z"
+              fill="currentColor"
+            />
+          </svg>
+        </a>
+        <a
+          className="user-wallet"
+          href="/@foo/wallet"
+          onClick={[Function]}
+          title="Wallet"
+        >
+          <svg
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M20,8H4V6H20M20,18H4V12H20M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"
+              fill="currentColor"
+            />
+          </svg>
+        </a>
+        <span
+          className="notifications"
+          onClick={[Function]}
+          title="Notifications"
+        >
+          <svg
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M21,19V20H3V19L5,17V11C5,7.9 7.03,5.17 10,4.29C10,4.19 10,4.1 10,4A2,2 0 0,1 12,2A2,2 0 0,1 14,4C14,4.1 14,4.19 14,4.29C16.97,5.17 19,7.9 19,11V17L21,19M14,21A2,2 0 0,1 12,23A2,2 0 0,1 10,21"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+        <div
+          className="custom-dropdown float-right"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <span
+            className="user-avatar medium"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+              }
+            }
           />
         </div>
       </div>
     </div>
-    <div
-      className="switch-theme"
-      onClick={[Function]}
-      title="Night Theme"
-    >
-      <svg
-        viewBox="0 0 24 24"
-      >
-        <path
-          d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z"
-          fill="currentColor"
-        />
-      </svg>
-    </div>
-    <div
-      className="downloads"
-      onClick={[Function]}
-    >
-      <span
-        className="label"
-      >
-        Downloads
-      </span>
-      <span
-        className="icons"
-      >
-        <span
-          className="img-apple"
-        >
-          <svg
-            fill="none"
-            viewBox="0 0 15 18"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              clipRule="evenodd"
-              d="M10.952 0c-.909.038-2.01.603-2.661 1.363-.586.675-1.097 1.753-.96 2.786 1.015.079 2.049-.514 2.68-1.274.63-.762 1.057-1.82.94-2.875zm-.257 17.976c1.23-.023 2.01-1.113 2.764-2.21.826-1.203 1.19-2.368 1.245-2.542l.006-.02-.004-.001c-.118-.048-2.397-.971-2.42-3.638-.022-2.203 1.742-3.299 1.936-3.42l.014-.008c-1.061-1.547-2.714-1.759-3.303-1.783-.86-.086-1.694.241-2.376.509-.434.17-.805.316-1.083.316-.308 0-.69-.151-1.119-.32-.56-.222-1.201-.476-1.863-.464-1.532.023-2.946.889-3.735 2.257-1.594 2.754-.409 6.836 1.144 9.07.76 1.092 1.663 2.321 2.851 2.277.531-.021.909-.181 1.3-.347.45-.192.919-.39 1.66-.39.707 0 1.154.192 1.584.378.411.177.807.347 1.399.336z"
-              fill="#fff"
-              fillRule="evenodd"
-            />
-          </svg>
-        </span>
-        <span
-          className="img-google"
-        >
-          <svg
-            fill="none"
-            viewBox="0 0 15 16"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              clipRule="evenodd"
-              d="M0 1.096v13.81c0 .48.278.896.682 1.094l7.99-8.002L.686 0A1.219 1.219 0 0 0 0 1.096zm2.473 14.49l8.734-5.05-1.846-1.848-6.888 6.897zm11.449-8.553a1.217 1.217 0 0 1 .013 1.926L12.08 10.03l-2.03-2.033 2.028-2.031 1.844 1.066zm-2.716-1.57L2.478.416 9.36 7.309l1.845-1.847z"
-              fill="#fff"
-              fillRule="evenodd"
-            />
-          </svg>
-        </span>
-        <span
-          className="img-desktop"
-        >
-          <svg
-            fill="none"
-            viewBox="0 0 16 16"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M14 1.333H2c-.733 0-1.333.6-1.333 1.334v8C.667 11.4 1.267 12 2 12h4.667v1.333H5.333v1.334h5.334v-1.334H9.333V12H14c.733 0 1.333-.6 1.333-1.333v-8c0-.734-.6-1.334-1.333-1.334zm0 9.334H2v-8h12v8z"
-              fill="#fff"
-            />
-          </svg>
-        </span>
-      </span>
-    </div>
-    <div
-      className="submit-post"
-    >
-      <a
-        className="btn btn-outline-primary"
-        href="/submit"
-        onClick={[Function]}
-        title="Create Post"
-      >
-        <svg
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"
-            fill="currentColor"
-          />
-        </svg>
-      </a>
-    </div>
-    <div
-      className="user-nav"
-    >
-      <a
-        className="user-points"
-        href="/@foo/points"
-        onClick={[Function]}
-        title="You have unclaimed points"
-      >
-        <span
-          className="reward-badge"
-        />
-        <svg
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M20,14H4V8H9.08L7,10.83L8.62,12L11,8.76L12,7.4L13,8.76L15.38,12L17,10.83L14.92,8H20M20,19H4V17H20M9,4A1,1 0 0,1 10,5A1,1 0 0,1 9,6A1,1 0 0,1 8,5A1,1 0 0,1 9,4M15,4A1,1 0 0,1 16,5A1,1 0 0,1 15,6A1,1 0 0,1 14,5A1,1 0 0,1 15,4M20,6H17.82C17.93,5.69 18,5.35 18,5A3,3 0 0,0 15,2C13.95,2 13.04,2.54 12.5,3.35L12,4L11.5,3.34C10.96,2.54 10.05,2 9,2A3,3 0 0,0 6,5C6,5.35 6.07,5.69 6.18,6H4C2.89,6 2,6.89 2,8V19C2,20.11 2.89,21 4,21H20C21.11,21 22,20.11 22,19V8C22,6.89 21.11,6 20,6Z"
-            fill="currentColor"
-          />
-        </svg>
-      </a>
-      <a
-        className="user-wallet"
-        href="/@foo/wallet"
-        onClick={[Function]}
-        title="Wallet"
-      >
-        <svg
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M20,8H4V6H20M20,18H4V12H20M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"
-            fill="currentColor"
-          />
-        </svg>
-      </a>
-      <span
-        className="notifications"
-        onClick={[Function]}
-        title="Notifications"
-      >
-        <svg
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M21,19V20H3V19L5,17V11C5,7.9 7.03,5.17 10,4.29C10,4.19 10,4.1 10,4A2,2 0 0,1 12,2A2,2 0 0,1 14,4C14,4.1 14,4.19 14,4.29C16.97,5.17 19,7.9 19,11V17L21,19M14,21A2,2 0 0,1 12,23A2,2 0 0,1 10,21"
-            fill="currentColor"
-          />
-        </svg>
-      </span>
-      <div
-        className="custom-dropdown float-right"
-        onClick={[Function]}
-        onMouseEnter={[Function]}
-        onMouseLeave={[Function]}
-      >
-        <span
-          className="user-avatar medium"
-          style={
-            Object {
-              "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
-            }
-          }
-        />
-      </div>
-    </div>
-  </div>
-  <audio
-    autoPlay={false}
-    id="notification-audio"
-    muted={true}
-    src="notification.mp3"
-    style={
-      Object {
-        "display": "none",
+    <audio
+      autoPlay={false}
+      id="notification-audio"
+      muted={true}
+      src="notification.mp3"
+      style={
+        Object {
+          "display": "none",
+        }
       }
-    }
-  />
-</div>
+    />
+  </div>,
+]
 `;

@@ -29,7 +29,9 @@ import NotificationHandler from "../notification-handler"
 
 import {_t} from "../../i18n";
 
-import {brightnessSvg, appleSvg, googleSvg, desktopSvg, pencilOutlineSvg} from "../../img/svg";
+import _c from "../../util/fix-class-names";
+
+import {brightnessSvg, appleSvg, googleSvg, desktopSvg, pencilOutlineSvg, menuSvg, closeSvg} from "../../img/svg";
 
 const logo = require('../../img/logo-circle.svg');
 
@@ -56,7 +58,15 @@ interface Props {
     toggleUIProp: (what: ToggleType) => void;
 }
 
-export class NavBar extends Component<Props> {
+interface State {
+    smVisible: boolean
+}
+
+export class NavBar extends Component<Props, State> {
+    state: State = {
+        smVisible: false
+    }
+
     componentDidMount() {
         const {location, toggleUIProp} = this.props;
         const qs = queryString.parse(location.search);
@@ -65,91 +75,123 @@ export class NavBar extends Component<Props> {
         }
     }
 
-    shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
+    shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
         return !isEqual(this.props.global, nextProps.global)
             || !isEqual(this.props.trendingTags, nextProps.trendingTags)
             || !isEqual(this.props.users, nextProps.users)
             || !isEqual(this.props.activeUser, nextProps.activeUser)
             || !isEqual(this.props.ui, nextProps.ui)
             || !isEqual(this.props.notifications, nextProps.notifications)
+            || !isEqual(this.state, nextState)
     }
 
     changeTheme = () => {
         this.props.toggleTheme();
     };
 
+    toggleSmVisible = () => {
+        const {smVisible} = this.state;
+        this.setState({smVisible: !smVisible})
+    }
+
     render() {
         const {global, activeUser, ui} = this.props;
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
         const logoHref = activeUser ? `/@${activeUser.username}/feed` : '/';
 
+        const {smVisible} = this.state;
+
         return (
-            <div className="nav-bar">
-                <div className="nav-bar-inner">
-                    <div className="brand">
-                        <Link to={logoHref}>
-                            <img src={logo} className="logo" alt="Logo"/>
-                        </Link>
-                    </div>
-                    <div className="text-menu">
-                        <Link className="menu-item" to="/discover">
-                            {_t("navbar.discover")}
-                        </Link>
-                        <Link className="menu-item" to="/communities">
-                            {_t("navbar.communities")}
-                        </Link>
-                        <Link className="menu-item" to="/faq">
-                            {_t("navbar.faq")}
-                        </Link>
-                    </div>
-                    <div className="flex-spacer"/>
-                    <div className="search-bar">
-                        {Search({...this.props})}
-                    </div>
-                    <ToolTip content={themeText}>
-                        <div className="switch-theme" onClick={this.changeTheme}>
-                            {brightnessSvg}
+            <>
+                <div className="nav-bar-toggle" onClick={this.toggleSmVisible}>{smVisible ? closeSvg : menuSvg}</div>
+                {!smVisible && (
+                    <div className="nav-bar-sm">
+                        <div className="brand">
+                            <Link to={logoHref}>
+                                <img src={logo} className="logo" alt="Logo"/>
+                            </Link>
                         </div>
-                    </ToolTip>
-                    <DownloadTrigger>
-                        <div className="downloads">
-                            <span className="label">{_t("g.downloads")}</span>
-                            <span className="icons">
+
+                        <div className="text-menu">
+                            <Link className="menu-item" to="/discover">
+                                {_t("navbar.discover")}
+                            </Link>
+                            <Link className="menu-item" to="/communities">
+                                {_t("navbar.communities")}
+                            </Link>
+                            <Link className="menu-item" to="/faq">
+                                {_t("navbar.faq")}
+                            </Link>
+                        </div>
+                    </div>
+                )}
+                <div className={_c(`nav-bar ${smVisible ? "visible-sm" : ""}`)}>
+                    <div className="nav-bar-inner">
+                        <div className="brand">
+                            <Link to={logoHref}>
+                                <img src={logo} className="logo" alt="Logo"/>
+                            </Link>
+                        </div>
+                        <div className="text-menu">
+                            <Link className="menu-item" to="/discover">
+                                {_t("navbar.discover")}
+                            </Link>
+                            <Link className="menu-item" to="/communities">
+                                {_t("navbar.communities")}
+                            </Link>
+                            <Link className="menu-item" to="/faq">
+                                {_t("navbar.faq")}
+                            </Link>
+                        </div>
+                        <div className="flex-spacer"/>
+                        <div className="search-bar">
+                            {Search({...this.props})}
+                        </div>
+                        <ToolTip content={themeText}>
+                            <div className="switch-theme" onClick={this.changeTheme}>
+                                {brightnessSvg}
+                            </div>
+                        </ToolTip>
+                        <DownloadTrigger>
+                            <div className="downloads">
+                                <span className="label">{_t("g.downloads")}</span>
+                                <span className="icons">
                             <span className="img-apple">{appleSvg}</span>
                             <span className="img-google">{googleSvg}</span>
                             <span className="img-desktop">{desktopSvg}</span>
                           </span>
+                            </div>
+                        </DownloadTrigger>
+
+                        {!activeUser && (
+                            <div className="login-required">
+                                <Button variant="outline-primary" onClick={() => {
+                                    const {toggleUIProp} = this.props;
+                                    toggleUIProp('login');
+                                }}>{_t("g.login")}</Button>
+
+                                <Button variant="primary" onClick={() => {
+                                    const {toggleUIProp} = this.props;
+                                    toggleUIProp('signUp');
+                                }}>{_t("g.signup")}</Button>
+                            </div>
+                        )}
+
+                        <div className="submit-post">
+                            <ToolTip content={_t("navbar.post")}>
+                                <Link className="btn btn-outline-primary" to="/submit">
+                                    {pencilOutlineSvg}
+                                </Link>
+                            </ToolTip>
                         </div>
-                    </DownloadTrigger>
 
-                    {!activeUser && (
-                        <div className="login-required">
-                            <Button variant="outline-primary" onClick={() => {
-                                const {toggleUIProp} = this.props;
-                                toggleUIProp('login');
-                            }}>{_t("g.login")}</Button>
-
-                            <Button variant="primary" onClick={() => {
-                                const {toggleUIProp} = this.props;
-                                toggleUIProp('signUp');
-                            }}>{_t("g.signup")}</Button>
-                        </div>
-                    )}
-
-                    <div className="submit-post">
-                        <ToolTip content={_t("navbar.post")}>
-                            <Link className="btn btn-outline-primary" to="/submit">
-                                {pencilOutlineSvg}
-                            </Link>
-                        </ToolTip>
+                        {activeUser && <UserNav {...this.props} activeUser={activeUser}/>}
                     </div>
-
-                    {activeUser && <UserNav {...this.props} activeUser={activeUser}/>}
+                    {ui.login && <Login {...this.props} />}
+                    {ui.signUp && <SignUp {...this.props} />}
+                    <NotificationHandler {...this.props} />
                 </div>
-                {ui.login && <Login {...this.props} />}
-                {ui.signUp && <SignUp {...this.props} />}
-                <NotificationHandler {...this.props} />
-            </div>
+            </>
         );
     }
 }
