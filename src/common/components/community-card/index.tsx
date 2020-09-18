@@ -4,11 +4,14 @@ import {Modal} from "react-bootstrap";
 
 import {History} from "history";
 
+import {Link} from "react-router-dom";
+
 import isEqual from "react-fast-compare";
 
 import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
-import {Community} from "../../store/communities/types";
+import {Community, roleMap} from "../../store/communities/types";
+import {ActiveUser} from "../../store/active-user/types";
 
 import UserAvatar from "../user-avatar";
 import ProfileLink from "../profile-link";
@@ -27,6 +30,7 @@ interface Props {
     history: History;
     global: Global;
     community: Community;
+    activeUser: ActiveUser | null;
     addAccount: (data: Account) => void;
 }
 
@@ -46,7 +50,8 @@ export class CommunityCard extends Component<Props, State> {
 
     shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
         return !isEqual(this.props.community, nextProps.community)
-            || !isEqual(this.state, nextState);
+            || !isEqual(this.state, nextState)
+            || !isEqual(this.props.activeUser?.username, nextProps.activeUser?.username)
     }
 
     toggleInfo = (info: DialogInfo | null) => {
@@ -55,7 +60,7 @@ export class CommunityCard extends Component<Props, State> {
 
     render() {
         const {info} = this.state;
-        const {community} = this.props;
+        const {community, activeUser} = this.props;
 
         const description: JSX.Element | null = community.description.trim() !== "" ?
             <>{ln2list(community.description).map((x, i) => (
@@ -66,6 +71,10 @@ export class CommunityCard extends Component<Props, State> {
             <>{ln2list(community.flag_text).map((x, i) => (
                 <p key={i}>{'- '}{x}</p>
             ))}</> : null;
+
+        const role = community.team.find(x => x[0] === activeUser?.username);
+        const roleInTeam = role ? role[1] : null;
+        const canEditTeam = !!(roleInTeam && roleMap[roleInTeam]);
 
         const team: JSX.Element = <>{
             community.team.map((m, i) => {
@@ -80,7 +89,7 @@ export class CommunityCard extends Component<Props, State> {
                         {m[2] !== "" && <span className="extra">{m[2]}</span>}
                     </div>
                 );
-            })}</>;
+            })}{canEditTeam && <p><a href="#">{_t('community.edit-roles')}</a></p>}</>;
 
         return (
             <div className="community-card">
@@ -146,6 +155,7 @@ export default (p: Props) => {
         history: p.history,
         global: p.global,
         community: p.community,
+        activeUser: p.activeUser,
         addAccount: p.addAccount
     }
 

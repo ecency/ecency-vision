@@ -7,13 +7,13 @@ import isEqual from "react-fast-compare";
 import {Button} from "react-bootstrap";
 
 import {Global} from "../../store/global/types";
-import {Community} from "../../store/communities/types";
+import {Community, roleMap} from "../../store/communities/types";
 import {Account} from "../../store/accounts/types";
 import {ActiveUser} from "../../store/active-user/types";
 
-import ProfileLink from "../profile-link"
+import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
-import CommunityRoleEditDialog from "../community-role-edit"
+import CommunityRoleEditDialog from "../community-role-edit";
 
 import {_t} from "../../i18n";
 
@@ -55,34 +55,14 @@ export class CommunityMenu extends Component<Props, State> {
         this.setState({dialog: false, dialogUser: '', dialogRole: ''});
     }
 
-    getRoleInTeam = (): string | null => {
-        const {community, activeUser} = this.props;
-        let roleInTeam = null;
-        if (activeUser) {
-            const t = community.team.find(x => x[0] === activeUser.username);
-            if (t) {
-                roleInTeam = t[1]
-            }
-        }
-
-        return roleInTeam;
-    }
-
-    validRolesFor = (role: string): string[] => {
-        const permMap = {
-            owner: ['admin', 'mod', 'member', 'guest', 'muted'],
-            admin: ['mod', 'member', 'guest', 'muted'],
-            mod: ['member', 'guest', 'muted']
-        };
-
-        return permMap[role] || [];
-    }
-
     render() {
         const {dialog, dialogUser, dialogRole} = this.state;
         const {community, activeUser} = this.props;
-        const roleInTeam = this.getRoleInTeam();
-        const roles = roleInTeam ? this.validRolesFor(roleInTeam) : [];
+
+        const role = community.team.find(x => x[0] === activeUser?.username);
+        const roleInTeam = role ? role[1] : null;
+
+        const roles = roleInTeam ? roleMap[roleInTeam] : [];
 
         return (
             <div className="community-roles">
@@ -115,7 +95,7 @@ export class CommunityMenu extends Component<Props, State> {
                     })}
                     </tbody>
                 </table>
-                {roleInTeam && <Button onClick={() => {
+                {roles.length > 0 && <Button onClick={() => {
                     this.showDialog();
                 }}>{_t('community.roles-add')}</Button>}
 
