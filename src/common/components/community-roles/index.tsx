@@ -34,7 +34,7 @@ interface State {
 }
 
 
-export class CommunityMenu extends Component<Props, State> {
+export class CommunityRoles extends Component<Props, State> {
     state: State = {
         dialog: false,
         dialogUser: '',
@@ -118,5 +118,5 @@ export default (p: Props) => {
         addCommunity: p.addCommunity
     }
 
-    return <CommunityMenu {...props} />
+    return <CommunityRoles {...props} />
 }
