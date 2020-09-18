@@ -1,3 +1,20 @@
+export enum ROLES {
+    OWNER = "owner",
+    ADMIN = "admin",
+    MOD = "mod",
+    MEMBER = "member",
+    GUEST = "guest",
+    MUTED = "muted"
+}
+
+export const roleMap: Record<string, string[]> = {
+    [ROLES.OWNER]: [ROLES.ADMIN, ROLES.MOD, ROLES.MEMBER, ROLES.GUEST, ROLES.MUTED],
+    [ROLES.ADMIN]: [ROLES.MOD, ROLES.MEMBER, ROLES.GUEST, ROLES.MUTED],
+    [ROLES.MOD]: [ROLES.MEMBER, ROLES.GUEST, ROLES.MUTED]
+}
+
+export type CommunityTeam = Array<Array<string>>;
+
 export interface Community {
     about: string;
     admins?: string[];
@@ -14,7 +31,7 @@ export interface Community {
     subscribers: number;
     sum_pending: number;
     settings?: any;
-    team: Array<Array<string>>;
+    team: CommunityTeam;
     title: string;
     type_id: number;
 }

@@ -71,8 +71,7 @@ server
     )
     .use(
         [
-            `^/:filter(${entryFilters.join("|")})/:name(hive-[\\d]+)$`, //  /hot/hive-231312
-            `^/:filter(${entryFilters.join("|")})/:name(hive-[\\d]+)/:section(subscribers|activities)$`, //  /hot/hive-231312/subscribers
+            `^/:filter(${entryFilters.join("|")}|subscribers|activities|roles)/:name(hive-[\\d]+)$`, //  /hot/hive-231312
         ],
         communityHandler
     )

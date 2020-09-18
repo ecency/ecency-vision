@@ -18,7 +18,8 @@
     "next": "Next",
     "back": "Back",
     "load-more": "Load More",
-    "empty-list": "Nothing here"
+    "empty-list": "Nothing here",
+    "save": "Save"
   },
   "confirm": {
     "title": "Are you sure?",
@@ -176,6 +177,7 @@
     "unsubscribe": "Leave",
     "post": "New Post",
     "team": "Leadership",
+    "edit-roles": "edit roles",
     "description": "Description",
     "rules": "Rules",
     "lang": "language",
@@ -183,7 +185,19 @@
     "subscribers": "Subscribers",
     "activities": "Activities",
     "authors": "posters",
-    "rewards": "rewards"
+    "rewards": "rewards",
+    "roles-title": "User Roles",
+    "roles-account": "Account",
+    "roles-role": "Role",
+    "roles-account-title": "Title",
+    "roles-add": "Add User"
+  },
+  "community-role-edit": {
+    "title": "Set user role",
+    "username": "Username",
+    "role": "Role",
+    "user-not-found": "The user does not exist!",
+    "explanations": "<h3>Role Permissions</h3><p><strong>Owner</strong> - assign admins</p><p><strong>Admin</strong> - edit settings, assign mods</p><p><strong>Moderator</strong> - mute, pin, set user titles</p><p><strong>Member</strong> - listed on leadership team</p><p><strong>Guest</strong> - default; can post and comment</p><p><strong>Muted</strong> - new posts automatically muted</p>"
   },
   "communities": {
     "title": "Communities",
