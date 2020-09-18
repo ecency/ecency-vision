@@ -1,0 +1,111 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Render 1`] = `
+<div
+  className="community-role-edit-dialog-content"
+>
+  <div
+    className="user-role-form "
+  >
+    <div
+      className="form-group row"
+    >
+      <label
+        className="form-label col-form-label col-sm-2"
+      >
+        Username
+      </label>
+      <div
+        className="col-sm-10"
+      >
+        <div
+          className="input-group"
+        >
+          <div
+            className="input-group-prepend"
+          >
+            <span
+              className="input-group-text"
+            >
+              @
+            </span>
+          </div>
+          <input
+            autoFocus={false}
+            className="form-control"
+            onChange={[Function]}
+            placeholder="username"
+            type="text"
+            value="foo"
+          />
+        </div>
+        
+      </div>
+    </div>
+    <div
+      className="form-group row"
+    >
+      <label
+        className="form-label col-form-label col-sm-2"
+      >
+        Role
+      </label>
+      <div
+        className="col-sm-10"
+      >
+        <select
+          className="form-control"
+          onChange={[Function]}
+          value="mod"
+        >
+          <option
+            value="admin"
+          >
+            admin
+          </option>
+          <option
+            value="mod"
+          >
+            mod
+          </option>
+          <option
+            value="member"
+          >
+            member
+          </option>
+          <option
+            value="guest"
+          >
+            guest
+          </option>
+          <option
+            value="muted"
+          >
+            muted
+          </option>
+        </select>
+      </div>
+    </div>
+    <div
+      className="d-flex justify-content-end"
+    >
+      <button
+        className="btn btn-primary"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+  <div
+    className="explanations"
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "<h3>Role Permissions</h3><p><strong>Owner</strong> - assign admins</p><p><strong>Admin</strong> - edit settings, assign mods</p><p><strong>Moderator</strong> - mute, pin, set user titles</p><p><strong>Member</strong> - listed on leadership team</p><p><strong>Guest</strong> - default; can post and comment</p><p><strong>Muted</strong> - new posts automatically muted</p>",
+      }
+    }
+  />
+</div>
+`;
