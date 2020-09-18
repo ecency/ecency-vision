@@ -23,7 +23,7 @@ it("(1) Default render", () => {
         ...defProps,
         ...{
             match: {
-                path: "/:filter(trending|hot|created|payout|muted)/:name(hive-[\\d]+)/:section(subscribers|activities)",
+                path: "...",
                 url: "/trending/hive-125125",
                 isExact: true,
                 params: {filter: "trending", name: "hive-125125"}
@@ -48,7 +48,7 @@ it("(2) Hot filter", () => {
         ...defProps,
         ...{
             match: {
-                path: "/:filter(trending|hot|created|payout|muted)/:name(hive-[\\d]+)/:section(subscribers|activities)",
+                path: "...",
                 url: "/hot/hive-125125",
                 isExact: true,
                 params: {filter: "hot", name: "hive-125125"}
@@ -74,9 +74,9 @@ it("(3) In section", () => {
         ...{
             match: {
                 path: "...",
-                url: "/hot/hive-125125/activities",
+                url: "/activities/hive-125125",
                 isExact: true,
-                params: {filter: "hot", name: "hive-125125", section: "activities"}
+                params: {filter: "hot", name: "hive-125125"}
             },
         }
     };
