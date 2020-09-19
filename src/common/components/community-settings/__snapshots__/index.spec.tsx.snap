@@ -1,0 +1,242 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Render 1`] = `
+<div
+  className="community-settings-dialog-content"
+>
+  <form
+    className="settings-form "
+    onSubmit={[Function]}
+  >
+    <div
+      className="form-group row"
+    >
+      <label
+        className="form-label col-form-label col-sm-2"
+      >
+        Title
+      </label>
+      <div
+        className="col-sm-10"
+      >
+        <div
+          className="input-group"
+        >
+          <input
+            autoComplete="off"
+            className="form-control"
+            name="title"
+            onChange={[Function]}
+            required={true}
+            type="text"
+            value="GEMS"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      className="form-group row"
+    >
+      <label
+        className="form-label col-form-label col-sm-2"
+      >
+        About
+      </label>
+      <div
+        className="col-sm-10"
+      >
+        <div
+          className="input-group"
+        >
+          <input
+            autoComplete="off"
+            className="form-control"
+            name="about"
+            onChange={[Function]}
+            type="text"
+            value="To highlight true Gems of Hive community with User Retention as primary objective."
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      className="form-group row"
+    >
+      <label
+        className="form-label col-form-label col-sm-2"
+      >
+        Language
+      </label>
+      <div
+        className="col-sm-4"
+      >
+        <div
+          className="input-group"
+        >
+          <select
+            className="form-control"
+            name="lang"
+            onChange={[Function]}
+            value="en"
+          >
+            <option
+              value="en"
+            >
+              English
+            </option>
+            <option
+              value="kr"
+            >
+              Korean
+            </option>
+            <option
+              value="zh"
+            >
+              Chinese
+            </option>
+            <option
+              value="ms"
+            >
+              Malay
+            </option>
+            <option
+              value="pl"
+            >
+              Polish
+            </option>
+            <option
+              value="pt"
+            >
+              Portuguese
+            </option>
+            <option
+              value="ru"
+            >
+              Russian
+            </option>
+            <option
+              value="it"
+            >
+              Italian
+            </option>
+            <option
+              value="de"
+            >
+              German
+            </option>
+            <option
+              value="es"
+            >
+              Spanish
+            </option>
+            <option
+              value="sv"
+            >
+              Swedish
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div
+      className="form-group row"
+    >
+      <label
+        className="form-label col-form-label col-sm-2"
+      >
+        Description
+      </label>
+      <div
+        className="col-sm-10"
+      >
+        <div
+          className="input-group"
+        >
+          <textarea
+            className="form-control"
+            name="description"
+            onChange={[Function]}
+            value="This is a collective curation community formed by @appreciator, @rocky1 and @upmewhale. You can post your genuine and creative content in this community to get more support.
+
+
+You can post in languages other than English.
+
+There are not many restrictions but just few simple ones and we expect you to adhere to them
+
+Join our discord group to keep yourself updated:
+https://discord.gg/n98Kpmm"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      className="form-group row"
+    >
+      <label
+        className="form-label col-form-label col-sm-2"
+      >
+        Rules
+      </label>
+      <div
+        className="col-sm-10"
+      >
+        <div
+          className="input-group"
+        >
+          <textarea
+            className="form-control"
+            name="flag_text"
+            onChange={[Function]}
+            value="Plagiarism will be highly discouraged.
+Hate Speech is not allowed"
+          />
+        </div>
+        <small
+          className="form-text"
+        >
+          One per line
+        </small>
+      </div>
+    </div>
+    <div
+      className="form-group row"
+    >
+      <div
+        className="col-sm-10 offset-sm-2"
+      >
+        <div
+          className="form-check"
+        >
+          <input
+            checked={false}
+            className="form-check-input"
+            disabled={false}
+            id="check-nsfw"
+            name="is_nsfw"
+            onChange={[Function]}
+            type="checkbox"
+          />
+          <label
+            className="form-check-label"
+            htmlFor="check-nsfw"
+            title=""
+          >
+            NSFW
+          </label>
+        </div>
+      </div>
+    </div>
+    <div
+      className="d-flex justify-content-end"
+    >
+      <button
+        className="btn btn-primary"
+        disabled={false}
+        type="submit"
+      >
+        Save
+      </button>
+    </div>
+  </form>
+</div>
+`;

@@ -551,3 +551,15 @@ export const setUserRole = (username: string, community: string, account: string
 
     return client.customJson([], [username], 'community', json);
 }
+
+export const updateCommunity = (username: string, community: string, props: { title: string, about: string, lang: string, description: string, flag_text: string, is_nsfw: boolean }): Promise<TransactionConfirmation> => {
+    const client = new hs.Client({
+        accessToken: getAccessToken(username),
+    });
+
+    const json = JSON.stringify([
+        'updateProps', {community, props}
+    ]);
+
+    return client.customJson([], [username], 'community', json);
+}

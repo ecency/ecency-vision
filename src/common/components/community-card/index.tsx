@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-import {Modal} from "react-bootstrap";
+import {Button, Modal} from "react-bootstrap";
 
 import {History} from "history";
 
@@ -10,21 +10,18 @@ import isEqual from "react-fast-compare";
 
 import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
-import {Community, roleMap} from "../../store/communities/types";
+import {Community, roleMap, ROLES} from "../../store/communities/types";
 import {ActiveUser} from "../../store/active-user/types";
 
 import UserAvatar from "../user-avatar";
 import ProfileLink from "../profile-link";
+import CommunitySettings from "../community-settings";
 
 import {_t} from "../../i18n";
 
 import ln2list from "../../util/nl2list";
 
-import {
-    informationOutlineSvg,
-    scriptTextOutlineSvg,
-    accountGroupSvg
-} from "../../img/svg";
+import {accountGroupSvg, informationOutlineSvg, scriptTextOutlineSvg} from "../../img/svg";
 
 interface Props {
     history: History;
@@ -32,6 +29,7 @@ interface Props {
     community: Community;
     activeUser: ActiveUser | null;
     addAccount: (data: Account) => void;
+    addCommunity: (data: Community) => void;
 }
 
 interface DialogInfo {
@@ -41,11 +39,13 @@ interface DialogInfo {
 
 interface State {
     info: DialogInfo | null;
+    settings: boolean;
 }
 
 export class CommunityCard extends Component<Props, State> {
     state: State = {
-        info: null
+        info: null,
+        settings: false
     }
 
     shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
@@ -58,9 +58,19 @@ export class CommunityCard extends Component<Props, State> {
         this.setState({info});
     }
 
+    toggleSettings = () => {
+        const {settings} = this.state;
+        this.setState({settings: !settings});
+    }
+
     render() {
-        const {info} = this.state;
+        const {info, settings} = this.state;
         const {community, activeUser} = this.props;
+
+        const role = community.team.find(x => x[0] === activeUser?.username);
+        const roleInTeam = role ? role[1] : null;
+        const canEditTeam = !!(roleInTeam && roleMap[roleInTeam]);
+        const canEditCommunity = !!(roleInTeam && [ROLES.OWNER.toString(), ROLES.ADMIN.toString()].includes(roleInTeam));
 
         const description: JSX.Element | null = community.description.trim() !== "" ?
             <>{ln2list(community.description).map((x, i) => (
@@ -71,10 +81,6 @@ export class CommunityCard extends Component<Props, State> {
             <>{ln2list(community.flag_text).map((x, i) => (
                 <p key={i}>{'- '}{x}</p>
             ))}</> : null;
-
-        const role = community.team.find(x => x[0] === activeUser?.username);
-        const roleInTeam = role ? role[1] : null;
-        const canEditTeam = !!(roleInTeam && roleMap[roleInTeam]);
 
         const team: JSX.Element = <>{
             community.team.map((m, i) => {
@@ -89,7 +95,7 @@ export class CommunityCard extends Component<Props, State> {
                         {m[2] !== "" && <span className="extra">{m[2]}</span>}
                     </div>
                 );
-            })}{canEditTeam && <p><Link to={`/roles/${community.name}`}>{_t('community.edit-roles')}</Link></p>}</>;
+            })}</>;
 
         return (
             <div className="community-card">
@@ -103,6 +109,7 @@ export class CommunityCard extends Component<Props, State> {
                 <div className="community-info">
                     <div className="title">{community.title}</div>
                     <div className="about">{community.about}</div>
+                    {community.is_nsfw && <span className="nsfw">nsfw</span>}
                 </div>
                 <div className="community-sections">
                     {description && (
@@ -135,6 +142,17 @@ export class CommunityCard extends Component<Props, State> {
                     </div>
                 </div>
 
+                {(canEditCommunity || canEditTeam) && (
+                    <div className="community-controls">
+                        {canEditCommunity && (<p className="community-control" onClick={this.toggleSettings}>
+                            <Button size="sm">{_t('community.edit')}</Button>
+                        </p>)}
+                        {canEditTeam && (<p className="community-control">
+                            <Link className="btn btn-sm btn-primary" to={`/roles/${community.name}`}>{_t('community.edit-team')}</Link>
+                        </p>)}
+                    </div>
+                )}
+
                 {info && (
                     <Modal show={true} centered={true} onHide={() => {
                         this.toggleInfo(null);
@@ -145,6 +163,8 @@ export class CommunityCard extends Component<Props, State> {
                         <Modal.Body>{info.content}</Modal.Body>
                     </Modal>
                 )}
+
+                {settings && <CommunitySettings {...this.props} activeUser={activeUser!} community={community} onHide={this.toggleSettings}/>}
             </div>
         );
     }
@@ -156,7 +176,8 @@ export default (p: Props) => {
         global: p.global,
         community: p.community,
         activeUser: p.activeUser,
-        addAccount: p.addAccount
+        addAccount: p.addAccount,
+        addCommunity: p.addCommunity
     }
 
     return <CommunityCard {...props} />;
