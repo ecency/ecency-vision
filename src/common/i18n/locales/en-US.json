@@ -177,7 +177,8 @@
     "unsubscribe": "Leave",
     "post": "New Post",
     "team": "Leadership",
-    "edit-roles": "edit roles",
+    "edit": "Edit settings",
+    "edit-team": "Edit roles",
     "description": "Description",
     "rules": "Rules",
     "lang": "language",
@@ -198,6 +199,15 @@
     "role": "Role",
     "user-not-found": "The user does not exist!",
     "explanations": "<h3>Role Permissions</h3><p><strong>Owner</strong> - assign admins</p><p><strong>Admin</strong> - edit settings, assign mods</p><p><strong>Moderator</strong> - mute, pin, set user titles</p><p><strong>Member</strong> - listed on leadership team</p><p><strong>Guest</strong> - default; can post and comment</p><p><strong>Muted</strong> - new posts automatically muted</p>"
+  },
+  "community-settings": {
+    "dialog-title": "Community Settings",
+    "title": "Title",
+    "about": "About",
+    "lang": "Language",
+    "description": "Description",
+    "rules": "Rules",
+    "rules-help": "One per line"
   },
   "communities": {
     "title": "Communities",

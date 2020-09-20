@@ -15,21 +15,25 @@ it("(1) Default render", () => {
         community: {...communityInstance1},
         activeUser: null,
         addAccount: () => {
-        }
+        },
+        addCommunity: () => {
+        },
     };
 
     const component = renderer.create(<CommunityCard {...props} />);
     expect(component.toJSON()).toMatchSnapshot();
 });
 
-it("(2) Should show edit roles button", () => {
+it("(2) Should show edit buttons with nsfw label", () => {
     const props = {
         history: createBrowserHistory(),
         global: globalInstance,
-        community: {...communityInstance1},
+        community: {...communityInstance1, is_nsfw: true},
         activeUser: activeUserMaker("hive-148441"),
         addAccount: () => {
-        }
+        },
+        addCommunity: () => {
+        },
     };
 
     const component = renderer.create(
