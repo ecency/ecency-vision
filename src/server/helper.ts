@@ -28,6 +28,10 @@ export const readGlobalCookies = (req: express.Request): GlobalCookies => {
     return {theme: Theme[theme], listStyle: ListStyle[listStyle], intro};
 };
 
+export const getActiveUser = (req: express.Request): string | null => {
+    return req.cookies["active_user"] || null;
+};
+
 export const optimizeEntries = (entries: Entry[]): Entry[] => {
     return entries.map((x) => {
         return {

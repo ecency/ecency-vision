@@ -8,6 +8,7 @@ import * as ls from "../../util/local-storage";
 
 import {getAccount} from "../../api/hive";
 import {getPoints} from "../../api/private";
+import Cookies from "js-cookie";
 
 const load = (): ActiveUser | null => {
     const name = ls.get("active_user");
@@ -46,9 +47,11 @@ export default (state: ActiveUser | null = initialState, action: Actions): Activ
 export const setActiveUser = (name: string | null) => async (dispatch: Dispatch) => {
     if (name) {
         ls.set("active_user", name);
+        Cookies.set("active_user", name);
         dispatch(loginAct());
     } else {
         ls.remove("active_user");
+        Cookies.remove("active_user");
         dispatch(logoutAct());
     }
 };
