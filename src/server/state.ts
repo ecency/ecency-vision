@@ -19,9 +19,10 @@ import {initialState as entriesInitialState} from "../common/store/entries";
 import {initialState as pointsInitialState} from "../common/store/points";
 import {initialState as signingKeyInitialState} from "../common/store/signing-key";
 
-import {getSearchIndexCount} from "./helper";
+import {getSearchIndexCount, getActiveUser} from "./helper";
 
 export const makePreloadedState = async (req: express.Request): Promise<AppState> => {
+    const activeUser = getActiveUser(req);
 
     return {
         global: {
@@ -35,7 +36,14 @@ export const makePreloadedState = async (req: express.Request): Promise<AppState
         communities: communitiesInitialState,
         transactions: transactionsInitialState,
         users: usersInitialState,
-        activeUser: activeUserInitialState,
+        activeUser: activeUser ? {
+            username: activeUser,
+            data: {name: activeUser},
+            points: {
+                points: "0.000",
+                uPoints: "0.000"
+            }
+        } : activeUserInitialState,
         reblogs: reblogsInitialState,
         discussion: discussionInitialState,
         ui: uiInitialState,
