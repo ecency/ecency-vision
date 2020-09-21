@@ -19,6 +19,7 @@ import {
 setProxyBase(defaults.imageServer);
 
 import {Entry} from "../store/entries/types";
+import {Community} from "../store/communities/types";
 
 import {makePath as makeEntryPath} from "../components/entry-link";
 
@@ -114,33 +115,40 @@ class EntryPage extends Component<Props, State> {
     };
 
     ensureEntry = () => {
-        const {match, addEntry, updateEntry} = this.props;
+        const {match, addEntry, updateEntry, addCommunity, activeUser} = this.props;
         const entry = this.getEntry();
-        const {username, permlink} = match.params;
+        const {category, username, permlink} = match.params;
         const author = username.replace("@", "");
+
+        let reducerFn = updateEntry;
 
         if (!entry) {
             // The entry isn't in reducer. Fetch it and add to reducer.
             this.stateSet({loading: true});
 
-            bridgeApi.getPost(author, permlink)
-                .then((entry) => {
-                    if (entry) {
-                        addEntry(entry);
-                    }
-                })
-                .finally(() => {
-                    this.stateSet({loading: false});
-                });
-        } else {
-            // The entry is in reducer. Update it.
-            bridgeApi.getPost(author, permlink)
-                .then((entry) => {
-                    if (entry) {
-                        updateEntry(entry);
-                    }
-                });
+            reducerFn = addEntry;
         }
+
+        bridgeApi.getPost(author, permlink)
+            .then((entry) => {
+                if (entry) {
+                    reducerFn(entry);
+                }
+
+                if (/^hive-\d+/.test(category)) {
+                    return bridgeApi.getCommunity(category, activeUser?.username);
+                }
+
+                return null;
+            })
+            .then((data: Community | null) => {
+                if (data) {
+                    addCommunity(data);
+                }
+            })
+            .finally(() => {
+                this.stateSet({loading: false});
+            });
     };
 
     getEntry = (): Entry | undefined => {
@@ -160,6 +168,12 @@ class EntryPage extends Component<Props, State> {
 
         return entry;
     };
+
+    getCommunity = (): Community | undefined => {
+        const {communities, match} = this.props;
+        const {category} = match.params;
+        return communities.find((x) => x.name === category);
+    }
 
     shareReddit = (entry: Entry) => {
         const u = makeShareUrlReddit(entry.category, entry.author, entry.permlink, entry.title);
@@ -255,7 +269,6 @@ class EntryPage extends Component<Props, State> {
     }
 
     render() {
-
         const {loading, replying} = this.state;
         const {global} = this.props;
 
@@ -268,6 +281,8 @@ class EntryPage extends Component<Props, State> {
         if (!entry) {
             return <NotFound/>;
         }
+
+        const community = this.getCommunity();
 
         const reputation = Math.floor(entry.author_reputation);
         const published = moment(parseDate(entry.created));
