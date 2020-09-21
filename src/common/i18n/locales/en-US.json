@@ -225,6 +225,15 @@
     "pin": "Pin",
     "unpin": "Unpin"
   },
+  "mute-btn": {
+    "mute": "Mute",
+    "unmute": "Unmute",
+    "dialog-title-mute": "Mute post/comment",
+    "dialog-title-unmute": "Unmute post/comment",
+    "notes": "Notes",
+    "note-placeholder-mute": "Provide a note regarding your decision to mute this content.",
+    "note-placeholder-unmute": "Provide a note regarding your decision to unmute this content."
+  },
   "profile": {
     "voting-power": "Voting Power",
     "post-count": "Post Count",

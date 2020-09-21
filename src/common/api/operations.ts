@@ -575,3 +575,15 @@ export const pinPost = (username: string, community: string, account: string, pe
 
     return client.customJson([], [username], 'community', json);
 }
+
+export const mutePost = (username: string, community: string, account: string, permlink: string, notes: string, mute: boolean): Promise<TransactionConfirmation> => {
+    const client = new hs.Client({
+        accessToken: getAccessToken(username),
+    });
+
+    const json = JSON.stringify([
+        mute ? 'mutePost' : 'unmutePost', {community, account, permlink, notes}
+    ]);
+
+    return client.customJson([], [username], 'community', json);
+}

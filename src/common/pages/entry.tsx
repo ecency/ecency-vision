@@ -40,6 +40,7 @@ import SimilarEntries from "../components/similar-entries";
 import BookmarkBtn from "../components/bookmark-btn";
 import EditHistoryBtn from "../components/edit-history-btn";
 import PinBtn from "../components/pin-btn";
+import MuteBtn from "../components/mute-btn";
 import {error} from "../components/feedback";
 
 import Meta from "../components/meta";
@@ -445,6 +446,8 @@ class EntryPage extends Component<Props, State> {
                                         <>
                                             <span className="separator"/>
                                             <PinBtn {...this.props} community={community} entry={entry} activeUser={activeUser!}/>
+                                            <span className="separator"/>
+                                            <MuteBtn {...this.props} community={community} entry={entry} activeUser={activeUser!}/>
                                         </>
                                     )}
                                 </div>
