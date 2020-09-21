@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-import {Button, Col, Form, FormControl, InputGroup, Modal, Row} from "react-bootstrap";
+import {Button, Form, FormControl, InputGroup, Modal} from "react-bootstrap";
 
 import isEqual from "react-fast-compare";
 
@@ -16,8 +16,7 @@ import {_t} from "../../i18n";
 
 import _c from "../../util/fix-class-names";
 
-
-type DialogMode = "mute" | "unmute" | null;
+export type DialogMode = "mute" | "unmute";
 
 interface DialogProps {
     mode: DialogMode;
@@ -82,7 +81,7 @@ interface Props {
 
 interface State {
     dialog: boolean;
-    dialogMode: DialogMode;
+    dialogMode: DialogMode | null;
     inProgress: boolean;
 }
 
@@ -143,15 +142,16 @@ export class MuteBtn extends Component<Props, State> {
 
         const cls = _c(`mute-btn ${inProgress ? "in-progress" : ""}`);
 
-        const modal = dialog ? <Modal animation={false} show={true} centered={true} onHide={this.toggleDialog} keyboard={false} className="mute-dialog modal-thin-header">
-            <Modal.Header closeButton={true}/>
-            <Modal.Body>
-                <DialogBody mode={dialogMode} onSubmit={(value) => {
-                    this.toggleDialog();
-                    this.mute(dialogMode === "mute", value);
-                }}/>
-            </Modal.Body>
-        </Modal> : null;
+        const modal = (dialog && dialogMode) ?
+            <Modal animation={false} show={true} centered={true} onHide={this.toggleDialog} keyboard={false} className="mute-dialog modal-thin-header">
+                <Modal.Header closeButton={true}/>
+                <Modal.Body>
+                    <DialogBody mode={dialogMode} onSubmit={(value) => {
+                        this.toggleDialog();
+                        this.mute(dialogMode === "mute", value);
+                    }}/>
+                </Modal.Body>
+            </Modal> : null;
 
         if (isMuted) {
             return <>
