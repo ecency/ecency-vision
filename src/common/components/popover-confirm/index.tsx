@@ -24,6 +24,7 @@ export default class PopoverConfirm extends Component<Props> {
 
   toggle = (e?: React.MouseEvent) => {
     if (e) {
+      e.preventDefault();
       e.stopPropagation();
     }
 

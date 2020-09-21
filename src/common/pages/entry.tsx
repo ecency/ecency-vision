@@ -19,7 +19,7 @@ import {
 setProxyBase(defaults.imageServer);
 
 import {Entry} from "../store/entries/types";
-import {Community} from "../store/communities/types";
+import {Community, ROLES} from "../store/communities/types";
 
 import {makePath as makeEntryPath} from "../components/entry-link";
 
@@ -39,6 +39,7 @@ import Comment from "../components/comment"
 import SimilarEntries from "../components/similar-entries";
 import BookmarkBtn from "../components/bookmark-btn";
 import EditHistoryBtn from "../components/edit-history-btn";
+import PinBtn from "../components/pin-btn";
 import {error} from "../components/feedback";
 
 import Meta from "../components/meta";
@@ -301,6 +302,10 @@ class EntryPage extends Component<Props, State> {
         const ownEntry = activeUser && activeUser.username === entry.author;
         const editable = ownEntry && !isComment;
 
+        const canPinOrMute = activeUser && community ? !!community.team.find(m => {
+            return m[0] === activeUser.username &&
+                [ROLES.OWNER.toString(), ROLES.ADMIN.toString(), ROLES.MOD.toString()].includes(m[1])
+        }) : false;
 
         //  Meta config
         const url = entryCanonical(entry) || "";
@@ -434,6 +439,12 @@ class EntryPage extends Component<Props, State> {
                                                 text: true,
                                                 entry
                                             })}
+                                        </>
+                                    )}
+                                    {(community && canPinOrMute) && (
+                                        <>
+                                            <span className="separator"/>
+                                            <PinBtn {...this.props} community={community} entry={entry} activeUser={activeUser!}/>
                                         </>
                                     )}
                                 </div>

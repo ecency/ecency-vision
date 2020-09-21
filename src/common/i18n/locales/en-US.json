@@ -221,6 +221,10 @@
     "sort-new": "New",
     "no-results": "No results found"
   },
+  "pin-btn": {
+    "pin": "Pin",
+    "unpin": "Unpin"
+  },
   "profile": {
     "voting-power": "Voting Power",
     "post-count": "Post Count",
