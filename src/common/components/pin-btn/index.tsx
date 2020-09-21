@@ -14,6 +14,8 @@ import {error} from "../feedback";
 
 import {_t} from "../../i18n";
 
+import _c from "../../util/fix-class-names";
+
 interface Props {
     entry: Entry;
     community: Community;
@@ -25,7 +27,7 @@ interface State {
     inProgress: boolean
 }
 
-class PinBtn extends Component<Props, State> {
+export class PinBtn extends Component<Props, State> {
     state: State = {
         inProgress: false
     }
@@ -69,7 +71,7 @@ class PinBtn extends Component<Props, State> {
         const {inProgress} = this.state;
         const isPinned = entry.stats.is_pinned;
 
-        const cls = `pin-btn ${inProgress ? "in-progress" : ""}`;
+        const cls = _c(`pin-btn ${inProgress ? "in-progress" : ""}`);
 
         if (isPinned) {
             return <a href="#" className={cls} onClick={(e) => {
