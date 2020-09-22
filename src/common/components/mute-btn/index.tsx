@@ -77,7 +77,7 @@ interface Props {
     entry: Entry;
     community: Community;
     activeUser: ActiveUser;
-    updateEntry: (entry: Entry) => void;
+    onSuccess: (entry: Entry) => void;
 }
 
 interface State {
@@ -123,14 +123,14 @@ export class MuteBtn extends Component<Props, State> {
     }
 
     mute = (mute: boolean, notes: string) => {
-        const {entry, community, activeUser, updateEntry} = this.props;
+        const {entry, community, activeUser, onSuccess} = this.props;
 
         this.stateSet({inProgress: true});
         mutePost(activeUser.username, community.name, entry.author, entry.permlink, notes, mute)
             .then(() => {
                 const nStats: EntryStat = {...clone(entry.stats), gray: mute}
                 const nEntry: Entry = {...clone(entry), stats: nStats};
-                updateEntry(nEntry);
+                onSuccess(nEntry);
             })
             .catch(err => error(formatError(err)))
             .finally(() => this.stateSet({inProgress: false}));
@@ -179,7 +179,7 @@ export default (p: Props) => {
         entry: p.entry,
         community: p.community,
         activeUser: p.activeUser,
-        updateEntry: p.updateEntry
+        onSuccess: p.onSuccess
     }
 
     return <MuteBtn {...props} />;

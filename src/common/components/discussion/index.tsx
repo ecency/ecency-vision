@@ -4,7 +4,7 @@ import {History} from "history";
 
 import moment from "moment";
 
-import {Form, FormControl} from "react-bootstrap";
+import {Button, Form, FormControl} from "react-bootstrap";
 
 import defaults from "../../constants/defaults.json";
 
@@ -16,6 +16,7 @@ import {
 
 import {Entry} from "../../store/entries/types";
 import {Account} from "../../store/accounts/types";
+import {Community, ROLES} from "../../store/communities/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
 import {Global} from "../../store/global/types";
 import {User} from "../../store/users/types";
@@ -32,11 +33,11 @@ import EntryVotes from "../entry-votes";
 import LinearProgress from "../linear-progress";
 import Comment from "../comment"
 import EntryDeleteBtn from "../entry-delete-btn";
+import MuteBtn from "../mute-btn";
 
 import parseDate from "../../helper/parse-date";
 
 import {_t} from "../../i18n";
-import _c from "../../util/fix-class-names";
 
 import * as hiveApi from "../../api/hive";
 import * as bridgeApi from "../../api/bridge";
@@ -47,6 +48,8 @@ import * as ls from "../../util/local-storage";
 import {createReplyPermlink, makeJsonMetadataReply} from "../../helper/posting";
 
 import {error} from "../feedback";
+
+import _c from "../../util/fix-class-names"
 
 import {commentSvg, pencilOutlineSvg, deleteForeverSvg} from "../../img/svg";
 
@@ -83,6 +86,7 @@ interface ItemProps {
     activeUser: ActiveUser | null;
     discussion: DiscussionType;
     entry: Entry;
+    community: Community | null;
     ui: UI;
     addAccount: (data: Account) => void;
     setActiveUser: (username: string | null) => void;
@@ -98,6 +102,7 @@ interface ItemState {
     reply: boolean;
     edit: boolean;
     inProgress: boolean;
+    showIfHidden: boolean;
 }
 
 export class Item extends Component<ItemProps, ItemState> {
@@ -105,6 +110,7 @@ export class Item extends Component<ItemProps, ItemState> {
         reply: false,
         edit: false,
         inProgress: false,
+        showIfHidden: false
     }
 
     _mounted: boolean = true;
@@ -247,8 +253,8 @@ export class Item extends Component<ItemProps, ItemState> {
     }
 
     render() {
-        const {entry, activeUser} = this.props;
-        const {reply, edit, inProgress} = this.state;
+        const {entry, activeUser, community} = this.props;
+        const {reply, edit, inProgress, showIfHidden} = this.state;
 
         const created = moment(parseDate(entry.created));
         const reputation = Math.floor(entry.author_reputation);
@@ -256,8 +262,15 @@ export class Item extends Component<ItemProps, ItemState> {
         const showSubList = !readMore && entry.children > 0;
         const canEdit = activeUser && activeUser.username === entry.author;
 
+        const canMute = activeUser && community ? !!community.team.find(m => {
+            return m[0] === activeUser.username &&
+                [ROLES.OWNER.toString(), ROLES.ADMIN.toString(), ROLES.MOD.toString()].includes(m[1])
+        }) : false;
+
+        const isHidden = entry.stats.gray && !showIfHidden;
+
         return (
-            <div className={`discussion-item depth-${entry.depth}`}>
+            <div className={_c(`discussion-item depth-${entry.depth} ${isHidden ? "hidden-item" : ""}`)}>
                 <div className="item-inner">
                     <div className="item-figure">
                         {ProfileLink({...this.props, username: entry.author, children: <a>{UserAvatar({...this.props, username: entry.author, size: "small"})}</a>})}
@@ -281,38 +294,60 @@ export class Item extends Component<ItemProps, ItemState> {
                                 </span>
                             })}
                         </div>
-                        <ItemBody global={this.props.global} entry={entry}/>
-                        <div className="item-controls">
-                            {EntryVoteBtn({
-                                ...this.props,
-                                entry,
-                                afterVote: this.afterVote
-                            })}
-                            {EntryPayout({
-                                ...this.props,
-                                entry
-                            })}
-                            {EntryVotes({
-                                ...this.props,
-                                entry
-                            })}
-                            <a className={_c(`reply-btn ${edit ? 'disabled' : ''}`)} onClick={this.toggleReply}>
-                                {_t("g.reply")}
-                            </a>
-                            {canEdit && (
-                                <>
-                                    <a title={_t('g.edit')} className={_c(`edit-btn ${reply ? 'disabled' : ''}`)} onClick={this.toggleEdit}>
-                                        {pencilOutlineSvg}
-                                    </a>
-                                    {EntryDeleteBtn({
+                        {(() => {
+                            if (isHidden) {
+                                return <div className="reveal-item">
+                                    <Button variant="outline-danger" size="sm" onClick={() => {
+                                        this.stateSet({showIfHidden: true});
+                                    }}>{_t("discussion.reveal")}</Button>
+                                </div>
+                            }
+
+                            return <>
+                                <ItemBody global={this.props.global} entry={entry}/>
+                                <div className="item-controls">
+                                    {EntryVoteBtn({
                                         ...this.props,
                                         entry,
-                                        onSuccess: this.deleted,
-                                        children: <a title={_t('g.delete')} className="delete-btn">{deleteForeverSvg}</a>
+                                        afterVote: this.afterVote
                                     })}
-                                </>
-                            )}
-                        </div>
+                                    {EntryPayout({
+                                        ...this.props,
+                                        entry
+                                    })}
+                                    {EntryVotes({
+                                        ...this.props,
+                                        entry
+                                    })}
+                                    <a className={_c(`reply-btn ${edit ? 'disabled' : ''}`)} onClick={this.toggleReply}>
+                                        {_t("g.reply")}
+                                    </a>
+                                    {(community && canMute) && MuteBtn({
+                                        entry,
+                                        community: community!,
+                                        activeUser: activeUser!,
+                                        onSuccess: (entry) => {
+                                            const {updateReply} = this.props;
+                                            updateReply(entry);
+                                        }
+                                    })}
+                                    {canEdit && (
+                                        <>
+                                            <a title={_t('g.edit')} className={_c(`edit-btn ${reply ? 'disabled' : ''}`)} onClick={this.toggleEdit}>
+                                                {pencilOutlineSvg}
+                                            </a>
+                                            {EntryDeleteBtn({
+                                                ...this.props,
+                                                entry,
+                                                onSuccess: this.deleted,
+                                                children: <a title={_t('g.delete')} className="delete-btn">{deleteForeverSvg}</a>
+                                            })}
+                                        </>
+                                    )}
+                                </div>
+                            </>
+                        })()}
+
                         {readMore && (
                             <div className="read-more">
                                 {EntryLink({
@@ -363,6 +398,7 @@ interface ListProps {
     activeUser: ActiveUser | null;
     discussion: DiscussionType;
     parent: Entry;
+    community: Community | null;
     ui: UI;
     addAccount: (data: Account) => void;
     setActiveUser: (username: string | null) => void;
@@ -406,6 +442,7 @@ interface Props {
     users: User[];
     activeUser: ActiveUser | null;
     parent: Entry;
+    community: Community | null;
     discussion: DiscussionType;
     ui: UI;
     addAccount: (data: Account) => void;
@@ -490,6 +527,7 @@ export default (p: Props) => {
         users: p.users,
         activeUser: p.activeUser,
         parent: p.parent,
+        community: p.community,
         discussion: p.discussion,
         ui: p.ui,
         addAccount: p.addAccount,

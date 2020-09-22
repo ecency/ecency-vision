@@ -27,6 +27,7 @@ const props = {
     users: [],
     activeUser: null,
     parent: {...parent, children: 0},
+    community: null,
     discussion,
     ui: UiInstance,
     addAccount: () => {

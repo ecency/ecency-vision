@@ -175,10 +175,10 @@ class EntryPage extends Component<Props, State> {
         return entry;
     };
 
-    getCommunity = (): Community | undefined => {
+    getCommunity = (): Community | null => {
         const {communities, match} = this.props;
         const {category} = match.params;
-        return communities.find((x) => x.name === category);
+        return communities.find((x) => x.name === category) || null;
     }
 
     shareReddit = (entry: Entry) => {
@@ -345,7 +345,7 @@ class EntryPage extends Component<Props, State> {
                                     <span>{_t('entry.hidden-warning')}</span>
                                     <Button variant="danger" size="sm" onClick={() => {
                                         this.stateSet({showIfHidden: true});
-                                    }}>show</Button>
+                                    }}>{_t('g.show')}</Button>
                                 </div>
                             }
 
@@ -464,7 +464,10 @@ class EntryPage extends Component<Props, State> {
                                                     <span className="separator"/>
                                                     <PinBtn {...this.props} community={community} entry={entry} activeUser={activeUser!}/>
                                                     <span className="separator"/>
-                                                    <MuteBtn {...this.props} community={community} entry={entry} activeUser={activeUser!}/>
+                                                    <MuteBtn community={community} entry={entry} activeUser={activeUser!} onSuccess={(entry) => {
+                                                        const {updateEntry} = this.props;
+                                                        updateEntry(entry);
+                                                    }}/>
                                                 </>
                                             )}
                                         </div>
@@ -517,12 +520,13 @@ class EntryPage extends Component<Props, State> {
                                     ...this.props,
                                     entry
                                 })}
-                                {Discussion({
-                                    ...this.props,
-                                    parent: entry
-                                })}
                             </>
                         })()}
+                        {Discussion({
+                            ...this.props,
+                            parent: entry,
+                            community
+                        })}
                     </div>
                 </div>
             </>
