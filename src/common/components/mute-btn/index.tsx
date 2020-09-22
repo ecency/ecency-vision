@@ -50,6 +50,7 @@ export class DialogBody extends React.Component<DialogProps, DialogState> {
                         value={value}
                         placeholder={_t('mute-btn.notes')}
                         onChange={this.valueChanged}
+                        maxLength={120}
                     />
                 </InputGroup>
                 <Form.Text>
