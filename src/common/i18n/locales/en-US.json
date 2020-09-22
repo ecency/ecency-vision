@@ -147,7 +147,8 @@
     "comment-entry-title": "You are viewing a single comment's thread from: ",
     "comment-entry-go-root": "View the full context",
     "comment-entry-go-parent": "View the direct parent",
-    "show-history": "Show edit history"
+    "show-history": "Show edit history",
+    "hidden-warning": "This post was hidden due to low ratings."
   },
   "edit-history": {
     "title": "Edit History",
