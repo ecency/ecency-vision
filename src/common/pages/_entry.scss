@@ -32,6 +32,24 @@
       max-width: 800px;
     }
 
+    .hidden-warning {
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 6px;
+
+      @include themify(day) {
+        background-color: $white-three;
+        color: $charcoal-grey;
+      }
+
+      @include themify(night) {
+        background-color: $dark-grey-blue;
+        color: $white-five;
+      }
+    }
+
     .comment-entry-header {
       border-radius: 10px;
       padding: 20px;

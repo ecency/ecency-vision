@@ -145,6 +145,10 @@
             }
           }
 
+          .reveal-item {
+            margin-top: 12px;
+          }
+
           .item-body {
             margin: 10px 0 14px 0;
           }
@@ -154,7 +158,7 @@
             display: flex;
             width: 100%;
 
-            .reply-btn, .edit-btn, .delete-btn {
+            .reply-btn, .edit-btn, .delete-btn, .mute-btn {
               color: lighten($steel-grey, 10);
               cursor: pointer;
 
@@ -168,9 +172,13 @@
               }
             }
 
-            .edit-btn, .delete-btn {
-              margin-left: 16px;
+            .edit-btn, .delete-btn, .mute-btn {
+              margin-left: 10px;
               color: lighten($steel-grey, 10);
+
+              @media (min-width: $md-break) {
+                margin-left: 16px;
+              }
 
               svg {
                 height: 14px;
@@ -188,6 +196,12 @@
           .read-more {
             margin-top: 14px;
           }
+        }
+      }
+
+      &.hidden-item {
+        .item-inner {
+          opacity: 0.6;
         }
       }
 

@@ -2,14 +2,13 @@ import React from "react";
 
 import Discussion from "./index";
 
-import {Discussion as DiscussionType, SortOrder} from '../../store/discussion/types'
-import {UiInstance} from "../../helper/test-helper";
+import {Discussion as DiscussionType, SortOrder} from '../../store/discussion/types';
 
 import renderer from "react-test-renderer";
 
 import {createBrowserHistory} from "history";
 
-import {globalInstance, discussionInstace1, dynamicPropsIntance1} from "../../helper/test-helper";
+import {globalInstance, discussionInstace1, dynamicPropsIntance1, communityInstance1, activeUserMaker, UiInstance} from "../../helper/test-helper";
 
 jest.mock("moment", () => () => ({
     fromNow: () => "3 days ago",
@@ -34,6 +33,7 @@ const props = {
     activeUser: null,
     ui: UiInstance,
     parent,
+    community: null,
     discussion,
     addAccount: () => {
     },
@@ -50,21 +50,37 @@ const props = {
     resetDiscussion: () => {
     },
     updateReply: () => {
-
     },
     addReply: () => {
-
     },
     deleteReply: () => {
-
     },
     toggleUIProp: () => {
-
     }
 };
 
-const component = renderer.create(<Discussion {...props} />);
-
 it("(1) Full render", () => {
+    const component = renderer.create(<Discussion {...props} />);
+    expect(component.toJSON()).toMatchSnapshot();
+});
+
+it("(2) Show mute button, muted comment", () => {
+    let [reply] = replies;
+    reply = {...reply, stats: {...reply.stats, gray: true}}
+
+    const discussion: DiscussionType = {
+        list: [reply, replies[1]],
+        loading: false,
+        error: false,
+        order: SortOrder.trending
+    }
+
+    const nProps = {
+        ...props,
+        discussion,
+        activeUser: activeUserMaker("hive-148441"),
+        community: communityInstance1
+    }
+    const component = renderer.create(<Discussion {...nProps} />);
     expect(component.toJSON()).toMatchSnapshot();
 });

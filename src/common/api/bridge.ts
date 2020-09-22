@@ -90,7 +90,7 @@ export const getDiscussion = (author: string, permlink: string): Promise<Record<
         permlink,
     });
 
-export const getCommunity = (name: string, observer: string = ""): Promise<Community | null> =>
+export const getCommunity = (name: string, observer: string | undefined = ""): Promise<Community | null> =>
     bridgeApiCall<Community | null>("bridge.get_community", {name, observer});
 
 export const getCommunities = (
