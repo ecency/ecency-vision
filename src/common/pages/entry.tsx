@@ -462,12 +462,25 @@ class EntryPage extends Component<Props, State> {
                                             {(community && canPinOrMute) && (
                                                 <>
                                                     <span className="separator"/>
-                                                    <PinBtn {...this.props} community={community} entry={entry} activeUser={activeUser!}/>
+                                                    {PinBtn({
+                                                        community,
+                                                        entry,
+                                                        activeUser: activeUser!,
+                                                        onSuccess: (entry) => {
+                                                            const {updateEntry} = this.props;
+                                                            updateEntry(entry);
+                                                        }
+                                                    })}
                                                     <span className="separator"/>
-                                                    <MuteBtn community={community} entry={entry} activeUser={activeUser!} onSuccess={(entry) => {
-                                                        const {updateEntry} = this.props;
-                                                        updateEntry(entry);
-                                                    }}/>
+                                                    {MuteBtn({
+                                                        community,
+                                                        entry,
+                                                        activeUser: activeUser!,
+                                                        onSuccess: (entry) => {
+                                                            const {updateEntry} = this.props;
+                                                            updateEntry(entry);
+                                                        }
+                                                    })}
                                                 </>
                                             )}
                                         </div>

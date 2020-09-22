@@ -20,7 +20,7 @@ interface Props {
     entry: Entry;
     community: Community;
     activeUser: ActiveUser;
-    updateEntry: (entry: Entry) => void;
+    onSuccess: (entry: Entry) => void;
 }
 
 interface State {
@@ -52,7 +52,7 @@ export class PinBtn extends Component<Props, State> {
     };
 
     pin = (pin: boolean) => {
-        const {entry, community, activeUser, updateEntry} = this.props;
+        const {entry, community, activeUser, onSuccess} = this.props;
 
         this.stateSet({inProgress: true});
 
@@ -60,7 +60,7 @@ export class PinBtn extends Component<Props, State> {
             .then(() => {
                 const nStats: EntryStat = {...clone(entry.stats), is_pinned: pin}
                 const nEntry: Entry = {...clone(entry), stats: nStats};
-                updateEntry(nEntry);
+                onSuccess(nEntry);
             })
             .catch(err => error(formatError(err)))
             .finally(() => this.stateSet({inProgress: false}));
@@ -102,7 +102,7 @@ export default (p: Props) => {
         entry: p.entry,
         community: p.community,
         activeUser: p.activeUser,
-        updateEntry: p.updateEntry
+        onSuccess: p.onSuccess
     }
 
     return <PinBtn {...props} />;

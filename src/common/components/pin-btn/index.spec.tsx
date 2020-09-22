@@ -9,7 +9,7 @@ const defProps = {
     entry: {...entryInstance1},
     community: {...communityInstance1},
     activeUser: activeUserMaker("foo"),
-    updateEntry: () => {
+    onSuccess: () => {
     }
 };
 
