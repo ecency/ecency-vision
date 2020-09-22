@@ -31,6 +31,7 @@ it("(2) Should show 'unmute' label", () => {
 
 it("(3) Dialog body for 'mute'", () => {
     const props = {
+        entry: {...entryInstance1},
         mode: "mute" as DialogMode,
         onSubmit: () => {
         }
@@ -41,6 +42,7 @@ it("(3) Dialog body for 'mute'", () => {
 
 it("(4) Dialog body for 'unmute'", () => {
     const props = {
+        entry: {...entryInstance1},
         mode: "unmute" as DialogMode,
         onSubmit: () => {
         }

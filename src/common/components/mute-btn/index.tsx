@@ -19,6 +19,7 @@ import _c from "../../util/fix-class-names";
 export type DialogMode = "mute" | "unmute";
 
 interface DialogProps {
+    entry: Entry;
     mode: DialogMode;
     onSubmit: (notes: string) => void
 }
@@ -38,10 +39,11 @@ export class DialogBody extends React.Component<DialogProps, DialogState> {
     }
 
     render() {
-        const {mode} = this.props;
+        const {mode, entry} = this.props;
         const {value} = this.state;
-        return <>
+        return <div className="mute-form">
             <Form.Group>
+                <div className="entry-title">@{entry.author}/{entry.permlink}</div>
                 <InputGroup>
                     <Form.Control
                         type="text"
@@ -58,7 +60,7 @@ export class DialogBody extends React.Component<DialogProps, DialogState> {
                     {mode === "unmute" && _t('mute-btn.note-placeholder-unmute')}
                 </Form.Text>
             </Form.Group>
-            <div className="">
+            <div>
                 <Button
                     disabled={value.trim().length === 0}
                     onClick={() => {
@@ -69,7 +71,7 @@ export class DialogBody extends React.Component<DialogProps, DialogState> {
                     {mode === "unmute" && _t("mute-btn.unmute")}
                 </Button>
             </div>
-        </>
+        </div>
     }
 }
 
@@ -144,10 +146,10 @@ export class MuteBtn extends Component<Props, State> {
         const cls = _c(`mute-btn ${inProgress ? "in-progress" : ""}`);
 
         const modal = (dialog && dialogMode) ?
-            <Modal animation={false} show={true} centered={true} onHide={this.toggleDialog} keyboard={false} className="mute-dialog modal-thin-header">
+            <Modal animation={false} show={true} centered={true} onHide={this.toggleDialog} keyboard={false} className="mute-dialog modal-thin-header" size="lg">
                 <Modal.Header closeButton={true}/>
                 <Modal.Body>
-                    <DialogBody mode={dialogMode} onSubmit={(value) => {
+                    <DialogBody entry={entry} mode={dialogMode} onSubmit={(value) => {
                         this.toggleDialog();
                         this.mute(dialogMode === "mute", value);
                     }}/>
