@@ -228,14 +228,18 @@
     "about": "About",
     "fee": "Operation fee",
     "creator": "Creator",
-    "credentials": "Owner name / password",
-    "confirm-saved": "I have securely saved my owner name and password.",
-    "create": "Create Community",
+    "username": "Owner username",
+    "username-available": "Available.",
+    "username-not-available": "Not available.",
+    "username-wrong-format": "Not a valid format. hive-xxxxxx format required.",
+    "password": "Owner password",
+    "confirmation": "I have securely saved my owner username and password.",
+    "submit": "Create Community",
     "progress-account": "Creating account...",
     "progress-role": "Setting @{{u}} as admin...",
     "progress-props": "Updating community settings...",
-    "done": "Your community was created!",
-    "link-label": "Get started."
+    "done": "Your community was created 🎉",
+    "done-link-label": "Get started."
   },
   "profile": {
     "voting-power": "Voting Power",

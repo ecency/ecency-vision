@@ -2,6 +2,8 @@ import React, {Component, Fragment} from "react";
 
 import {connect} from "react-redux";
 
+import {Link} from "react-router-dom";
+
 import {Button, Form, FormControl, Modal, Spinner} from "react-bootstrap";
 
 import base58 from "bs58";
@@ -25,16 +27,18 @@ import {error} from "../components/feedback";
 
 import {_t} from "../i18n";
 
+import {getAccount} from "../api/hive";
 import {getCommunities, getSubscriptions} from "../api/bridge";
 import {formatError} from "../api/operations";
 import {client} from "../api/hive";
 
 import parseAsset from "../helper/parse-asset"
 
-import random from "../util/rnd"
+import random from "../util/rnd";
+
+import {checkSvg, alertCircleSvg} from "../img/svg";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
-import {Link} from "react-router-dom";
 
 interface State {
     list: Community[];
@@ -176,15 +180,15 @@ class CommunitiesPage extends Component<PageProps, State> {
 
 export default connect(pageMapStateToProps, pageMapDispatchToProps)(CommunitiesPage);
 
+const namePattern = "^hive-\\d{6}$";
 
 interface CreateState {
     fee: string;
     title: string;
     about: string;
-    credentials: {
-        username: string;
-        wif: string;
-    } | null;
+    username: string;
+    wif: string;
+    usernameStatus: null | "ok" | "conflict" | "not-valid";
     keyDialog: boolean;
     creatorKey: PrivateKey | null;
     done: boolean;
@@ -194,10 +198,12 @@ interface CreateState {
 
 class CommunityCreatePage extends Component<PageProps, CreateState> {
     state: CreateState = {
-        title: '',
-        about: '',
-        fee: '',
-        credentials: null,
+        fee: "",
+        title: "",
+        about: "",
+        username: "",
+        wif: "",
+        usernameStatus: null,
         keyDialog: false,
         creatorKey: null,
         done: false,
@@ -207,6 +213,7 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
 
     form = React.createRef<HTMLFormElement>();
 
+    _timer: any = null;
     _mounted: boolean = true;
 
     componentDidMount() {
@@ -227,11 +234,11 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
         }
     };
 
-    genOwnerName = (): string => {
+    genUsername = (): string => {
         return `hive-${Math.floor(Math.random() * 100000) + 100000}`;
     };
 
-    genOwnerWif = (): string => {
+    genWif = (): string => {
         return 'P' + base58.encode(cryptoUtils.sha256(random()));
     };
 
@@ -242,13 +249,41 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
         this.stateSet({[key]: value});
     }
 
+    usernameChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+        const {value: username} = e.target;
+        this.stateSet({username}, () => {
+            clearTimeout(this._timer);
+            this._timer = setTimeout(
+                this.checkUsername,
+                500
+            );
+        });
+    }
+
+    checkUsername = () => {
+        const {username} = this.state;
+        this.stateSet({usernameStatus: null});
+
+        const re = new RegExp(namePattern);
+
+        if (re.test(username)) {
+            getAccount(username).then(r => {
+                if (r) {
+                    this.stateSet({usernameStatus: "conflict"});
+                } else {
+                    this.stateSet({usernameStatus: "ok"});
+                }
+            })
+        } else {
+            this.stateSet({usernameStatus: "not-valid"});
+        }
+    }
+
     genCredentials = () => {
         this.stateSet({
-            credentials: {
-                username: this.genOwnerName(),
-                wif: this.genOwnerWif()
-            }
-        });
+            username: this.genUsername(),
+            wif: this.genWif(),
+        }, this.checkUsername);
     }
 
     toggleKeyDialog = () => {
@@ -258,10 +293,8 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
 
     submit = async () => {
         const {activeUser} = this.props;
-        const {fee, title, about, credentials, creatorKey} = this.state;
-        if (!credentials || !activeUser || !creatorKey) return;
-
-        const {username, wif} = credentials;
+        const {fee, title, about, username, wif, creatorKey} = this.state;
+        if (!activeUser || !creatorKey) return;
 
         this.stateSet({inProgress: true, progress: _t('communities-create.progress-account')});
 
@@ -348,7 +381,7 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
 
         const {activeUser} = this.props;
 
-        const {fee, title, about, credentials, keyDialog, done, inProgress, progress} = this.state;
+        const {fee, title, about, username, wif, usernameStatus, keyDialog, done, inProgress, progress} = this.state;
 
         return (
             <>
@@ -366,8 +399,8 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
                             return;
                         }
 
-                        const {credentials} = this.state;
-                        if (credentials === null) {
+                        const {wif} = this.state;
+                        if (wif === '') {
                             this.genCredentials();
                             return;
                         }
@@ -377,10 +410,10 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
                         <h1 className="form-title">{_t("communities-create.page-title")}</h1>
                         {(() => {
                             if (done) {
-                                const url = `/trending/${credentials?.username}`;
+                                const url = `/trending/${username}`;
                                 return <div className="done">
                                     <p>{_t("communities-create.done")}</p>
-                                    <p><strong><a href={url}>{_t("communities-create.link-label")}</a></strong></p>
+                                    <p><strong><a href={url}>{_t("communities-create.done-link-label")}</a></strong></p>
                                 </div>
                             }
 
@@ -411,7 +444,7 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
                                     />
                                 </Form.Group>
                                 {(() => {
-                                    if (activeUser && credentials) {
+                                    if (activeUser && wif) {
                                         return <>
                                             <Form.Group>
                                                 <Form.Label>{_t("communities-create.fee")}</Form.Label>
@@ -422,19 +455,35 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
                                                 <div className="creator">@{activeUser.username}</div>
                                             </Form.Group>
                                             <Form.Group>
-                                                <Form.Label>{_t("communities-create.credentials")}</Form.Label>
-                                                <pre className="credentials">
-                                                    <span>{credentials.username}</span>
-                                                    <span>{credentials.wif}</span>
-                                                </pre>
+                                                <Form.Label>{_t("communities-create.username")}</Form.Label>
+                                                <Form.Control
+                                                    type="text"
+                                                    autoComplete="off"
+                                                    value={username}
+                                                    maxLength={11}
+                                                    name="about"
+                                                    pattern={namePattern}
+                                                    title={_t("communities-create.username-wrong-format")}
+                                                    onChange={this.usernameChanged}
+                                                />
+                                                {usernameStatus === "ok" && (
+                                                    <Form.Text className="text-success">{checkSvg} {_t("communities-create.username-available")}</Form.Text>)}
+                                                {usernameStatus === "conflict" && (
+                                                    <Form.Text className="text-danger">{alertCircleSvg} {_t("communities-create.username-not-available")}</Form.Text>)}
+                                                {usernameStatus === "not-valid" && (
+                                                    <Form.Text className="text-danger">{alertCircleSvg} {_t("communities-create.username-wrong-format")}</Form.Text>)}
                                             </Form.Group>
                                             <Form.Group>
-                                                <label><input type="checkbox" required={true}/> {_t("communities-create.confirm-saved")}</label>
+                                                <Form.Label>{_t("communities-create.password")}</Form.Label>
+                                                <pre className="password"><span>{wif}</span></pre>
+                                            </Form.Group>
+                                            <Form.Group>
+                                                <label><input type="checkbox" required={true}/> {_t("communities-create.confirmation")}</label>
                                             </Form.Group>
                                             <Form.Group>
                                                 <Button type="submit" disabled={inProgress}>
                                                     {inProgress && (<Spinner animation="grow" variant="light" size="sm" style={{marginRight: "6px"}}/>)}
-                                                    {_t("communities-create.create")}</Button>
+                                                    {_t("communities-create.submit")}</Button>
                                             </Form.Group>
                                             {inProgress && <p>{progress}</p>}
                                         </>

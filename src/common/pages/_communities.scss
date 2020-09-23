@@ -72,13 +72,22 @@
 
     .form-group {
       margin-bottom: 30px;
+
+      .form-text {
+        display: flex;
+        align-items: center;
+        svg {
+          height: 14px;
+          margin-right: 4px;
+        }
+      }
     }
 
     .fee, .creator {
       font-weight: 500;
     }
 
-    .credentials {
+    .password {
       color: $red3;
       padding: 0 10px;
       border-radius: 6px;
