@@ -310,7 +310,7 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
             new_account_name: username,
             owner: Authority.from(ownerKey.createPublic()),
             active: Authority.from(activeKey.createPublic()),
-            posting: Authority.from(postingKey.createPublic()),
+            posting: {...Authority.from(postingKey.createPublic()), account_auths: [['ecency.app', 1]]},
             memo_key: memoKey.createPublic(),
             json_metadata: ""
         }];
@@ -371,6 +371,25 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
         });
 
         this.stateSet({inProgress: false, done: true});
+    }
+
+    submitHot = () => {
+        const {username, wif} = this.state;
+
+        const ownerKey = PrivateKey.fromLogin(username, wif, "owner");
+        const activeKey = PrivateKey.fromLogin(username, wif, "active");
+        const postingKey = PrivateKey.fromLogin(username, wif, "posting");
+        const memoKey = PrivateKey.fromLogin(username, wif, "memo");
+
+        const owner = Authority.from(ownerKey.createPublic());
+        const active = Authority.from(activeKey.createPublic());
+        const posting = {...Authority.from(postingKey.createPublic()), account_auths: [['ecency.app', 1]]}
+        const memo = memoKey.createPublic();
+
+        const u = `https://hivesigner.com/sign/account_create?new_account_name=${username}&owner=${JSON.stringify(owner)}&active=${JSON.stringify(active)}&posting=${JSON.stringify(posting)}&memo_key=${JSON.stringify(memo)}&json_metadata={}`;
+
+        const win = window.open(u, '_blank');
+        win!.focus();
     }
 
     render() {
@@ -514,12 +533,15 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
                             {KeyOrHot({
                                 ...this.props,
                                 inProgress: false,
-                                onlyKey: true,
                                 onKey: (key) => {
                                     this.toggleKeyDialog();
                                     this.stateSet({creatorKey: key}, () => {
                                         this.submit().then();
                                     });
+                                },
+                                onHot: () => {
+                                    this.toggleKeyDialog();
+                                    this.submitHot();
                                 }
                             })}
                         </Modal.Body>

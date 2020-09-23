@@ -17,7 +17,6 @@ interface Props {
     signingKey: string;
     setSigningKey: (key: string) => void;
     inProgress: boolean;
-    onlyKey?: boolean;
     onKey: (key: PrivateKey) => void;
     onHot?: () => void;
 }
@@ -63,7 +62,7 @@ export class KeyOrHot extends Component<Props, State> {
     }
 
     render() {
-        const {inProgress, onlyKey} = this.props;
+        const {inProgress} = this.props;
         const {key} = this.state;
 
         return (
@@ -88,16 +87,12 @@ export class KeyOrHot extends Component<Props, State> {
                             </InputGroup.Append>
                         </InputGroup>
                     </Form>
-                    {!onlyKey && (
-                        <>
-                            <OrDivider/>
-                            <div className="hs-sign">
-                                <Button variant="outline-primary" onClick={this.hotClicked}>
-                                    <img src={hsLogo} className="hs-logo" alt="hivesigner"/> {_t("key-or-hot.with-hivesigner")}
-                                </Button>
-                            </div>
-                        </>
-                    )}
+                    <OrDivider/>
+                    <div className="hs-sign">
+                        <Button variant="outline-primary" onClick={this.hotClicked}>
+                            <img src={hsLogo} className="hs-logo" alt="hivesigner"/> {_t("key-or-hot.with-hivesigner")}
+                        </Button>
+                    </div>
                 </div>
             </>
         );
@@ -110,7 +105,6 @@ export default (p: Props) => {
         signingKey: p.signingKey,
         setSigningKey: p.setSigningKey,
         inProgress: p.inProgress,
-        onlyKey: p.onlyKey,
         onKey: p.onKey,
         onHot: p.onHot
     }
