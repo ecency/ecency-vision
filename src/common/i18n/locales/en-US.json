@@ -254,7 +254,8 @@
     "section-points": "Points",
     "section-wallet": "Wallet",
     "edit": "Profile Edit",
-    "communities-title": "Subscriptions"
+    "communities-title": "Subscriptions",
+    "create-community": "Create a community"
   },
   "profile-edit": {
     "name": "Display Name",
