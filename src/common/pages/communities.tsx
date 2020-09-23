@@ -34,6 +34,7 @@ import parseAsset from "../helper/parse-asset"
 import random from "../util/rnd"
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
+import {Link} from "react-router-dom";
 
 interface State {
     list: Community[];
@@ -139,6 +140,7 @@ class CommunitiesPage extends Component<PageProps, State> {
                     <div className="community-list">
                         <div className="list-header">
                             <h1 className="list-title">{_t("communities.title")}</h1>
+                            <Link to="/communities/create" className="create-link">{_t('communities.create')}</Link>
                         </div>
                         <div className="list-form">
                             <div className="search">

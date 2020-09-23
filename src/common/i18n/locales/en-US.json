@@ -219,7 +219,8 @@
     "sort-rank": "Rank",
     "sort-subs": "Subscribers",
     "sort-new": "New",
-    "no-results": "No results found"
+    "no-results": "No results found",
+    "create": "Create community"
   },
   "communities-create": {
     "page-title": "Create a community",

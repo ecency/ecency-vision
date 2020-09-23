@@ -22,11 +22,19 @@
 
     .list-header {
       margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 
       .list-title {
         color: $dark-sky-blue;
         font-size: 26px;
         margin: 0;
+        flex-grow: 1;
+      }
+
+      .create-link {
+        font-size: 90%;
       }
     }
 
