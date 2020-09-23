@@ -181,10 +181,10 @@ interface CreateState {
     about: string;
     credentials: {
         username: string;
-        password: string;
+        wif: string;
     } | null;
     keyDialog: boolean;
-    key: PrivateKey | null;
+    creatorKey: PrivateKey | null;
     done: boolean;
     inProgress: boolean;
     progress: string;
@@ -197,7 +197,7 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
         fee: '',
         credentials: null,
         keyDialog: false,
-        key: null,
+        creatorKey: null,
         done: false,
         inProgress: false,
         progress: ''
@@ -229,25 +229,22 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
         return `hive-${Math.floor(Math.random() * 100000) + 100000}`;
     };
 
-    genOwnerWifPassword = (): string => {
+    genOwnerWif = (): string => {
         return 'P' + base58.encode(cryptoUtils.sha256(random()));
     };
 
-    titleChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
-        const {value: title} = e.target;
-        this.stateSet({title});
-    }
+    onInput = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+        const {target: el} = e;
+        const {name: key, value} = el;
 
-    aboutChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
-        const {value: about} = e.target;
-        this.stateSet({about});
+        this.stateSet({[key]: value});
     }
 
     genCredentials = () => {
         this.stateSet({
             credentials: {
                 username: this.genOwnerName(),
-                password: this.genOwnerWifPassword()
+                wif: this.genOwnerWif()
             }
         });
     }
@@ -259,18 +256,18 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
 
     submit = async () => {
         const {activeUser} = this.props;
-        const {fee, title, about, credentials, key} = this.state;
-        if (!credentials || !activeUser || !key) return;
+        const {fee, title, about, credentials, creatorKey} = this.state;
+        if (!credentials || !activeUser || !creatorKey) return;
 
-        const {username, password} = credentials;
+        const {username, wif} = credentials;
 
         this.stateSet({inProgress: true, progress: _t('communities-create.progress-account')});
 
         // Create account
-        const ownerKey = PrivateKey.fromLogin(username, password, "owner");
-        const activeKey = PrivateKey.fromLogin(username, password, "active");
-        const postingKey = PrivateKey.fromLogin(username, password, "posting");
-        const memoKey = PrivateKey.fromLogin(username, password, "memo");
+        const ownerKey = PrivateKey.fromLogin(username, wif, "owner");
+        const activeKey = PrivateKey.fromLogin(username, wif, "active");
+        const postingKey = PrivateKey.fromLogin(username, wif, "posting");
+        const memoKey = PrivateKey.fromLogin(username, wif, "memo");
 
         const operation: AccountCreateOperation = ["account_create", {
             fee: fee,
@@ -284,7 +281,7 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
         }];
 
         try {
-            await client.broadcast.sendOperations([operation], key);
+            await client.broadcast.sendOperations([operation], creatorKey);
         } catch (e) {
             error(formatError(e));
             this.stateSet({inProgress: false, progress: ''});
@@ -395,8 +392,9 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
                                         value={title}
                                         minLength={3}
                                         maxLength={20}
-                                        onChange={this.titleChanged}
+                                        onChange={this.onInput}
                                         required={true}
+                                        name="title"
                                     />
                                 </Form.Group>
                                 <Form.Group>
@@ -406,7 +404,8 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
                                         autoComplete="off"
                                         value={about}
                                         maxLength={120}
-                                        onChange={this.aboutChanged}
+                                        onChange={this.onInput}
+                                        name="about"
                                     />
                                 </Form.Group>
                                 {(() => {
@@ -424,7 +423,7 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
                                                 <Form.Label>{_t("communities-create.credentials")}</Form.Label>
                                                 <pre className="credentials">
                                                     <span>{credentials.username}</span>
-                                                    <span>{credentials.password}</span>
+                                                    <span>{credentials.wif}</span>
                                                 </pre>
                                             </Form.Group>
                                             <Form.Group>
@@ -467,7 +466,7 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
                                 onlyKey: true,
                                 onKey: (key) => {
                                     this.toggleKeyDialog();
-                                    this.stateSet({key}, () => {
+                                    this.stateSet({creatorKey: key}, () => {
                                         this.submit().then();
                                     });
                                 }
