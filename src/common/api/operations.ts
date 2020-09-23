@@ -55,10 +55,16 @@ const makeHiveClient = async (): Promise<HiveClient> => {
     return hClient;
 }
 
-export const formatError = (err: any) => {
+export const formatError = (err: any): string => {
     if (err.error_description) {
         return err.error_description.substring(0, 80);
     }
+
+    if (err.message) {
+        return err.message.substring(0, 80);
+    }
+
+    return '';
 };
 
 export const reblog = (username: string, author: string, permlink: string): Promise<TransactionConfirmation> => {

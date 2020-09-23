@@ -2,7 +2,13 @@ import React, {Component, Fragment} from "react";
 
 import {connect} from "react-redux";
 
-import {FormControl} from "react-bootstrap";
+import {Button, Form, FormControl, Modal, Spinner} from "react-bootstrap";
+
+import base58 from "bs58";
+
+import numeral from "numeral";
+
+import {PrivateKey, cryptoUtils, AccountCreateOperation, Authority} from "@hiveio/dhive";
 
 import {Community} from "../store/communities/types";
 
@@ -12,10 +18,20 @@ import NavBar from "../components/navbar/index";
 import LinearProgress from "../components/linear-progress";
 import CommunityListItem from "../components/community-list-item";
 import SearchBox from "../components/search-box";
+import KeyOrHot from "../components/key-or-hot";
+import LoginRequired from "../components/login-required";
+import Feedback from "../components/feedback";
+import {error} from "../components/feedback";
 
 import {_t} from "../i18n";
 
 import {getCommunities, getSubscriptions} from "../api/bridge";
+import {formatError} from "../api/operations";
+import {client} from "../api/hive";
+
+import parseAsset from "../helper/parse-asset"
+
+import random from "../util/rnd"
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
@@ -157,3 +173,311 @@ class CommunitiesPage extends Component<PageProps, State> {
 }
 
 export default connect(pageMapStateToProps, pageMapDispatchToProps)(CommunitiesPage);
+
+
+interface CreateState {
+    fee: string;
+    title: string;
+    about: string;
+    credentials: {
+        username: string;
+        password: string;
+    } | null;
+    keyDialog: boolean;
+    key: PrivateKey | null;
+    done: boolean;
+    inProgress: boolean;
+    progress: string;
+}
+
+class CommunityCreatePage extends Component<PageProps, CreateState> {
+    state: CreateState = {
+        title: '',
+        about: '',
+        fee: '',
+        credentials: null,
+        keyDialog: false,
+        key: null,
+        done: false,
+        inProgress: false,
+        progress: ''
+    }
+
+    form = React.createRef<HTMLFormElement>();
+
+    _mounted: boolean = true;
+
+    componentDidMount() {
+        client.database.getChainProperties().then(r => {
+            const asset = parseAsset(r.account_creation_fee.toString());
+            const fee = `${numeral(asset.amount).format('0.000')} ${asset.symbol}`;
+            this.stateSet({fee});
+        });
+    }
+
+    componentWillUnmount() {
+        this._mounted = false;
+    }
+
+    stateSet = (state: {}, cb?: () => void) => {
+        if (this._mounted) {
+            this.setState(state, cb);
+        }
+    };
+
+    genOwnerName = (): string => {
+        return `hive-${Math.floor(Math.random() * 100000) + 100000}`;
+    };
+
+    genOwnerWifPassword = (): string => {
+        return 'P' + base58.encode(cryptoUtils.sha256(random()));
+    };
+
+    titleChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+        const {value: title} = e.target;
+        this.stateSet({title});
+    }
+
+    aboutChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+        const {value: about} = e.target;
+        this.stateSet({about});
+    }
+
+    genCredentials = () => {
+        this.stateSet({
+            credentials: {
+                username: this.genOwnerName(),
+                password: this.genOwnerWifPassword()
+            }
+        });
+    }
+
+    toggleKeyDialog = () => {
+        const {keyDialog} = this.state;
+        this.stateSet({keyDialog: !keyDialog});
+    }
+
+    submit = async () => {
+        const {activeUser} = this.props;
+        const {fee, title, about, credentials, key} = this.state;
+        if (!credentials || !activeUser || !key) return;
+
+        const {username, password} = credentials;
+
+        this.stateSet({inProgress: true, progress: _t('communities-create.progress-account')});
+
+        // Create account
+        const ownerKey = PrivateKey.fromLogin(username, password, "owner");
+        const activeKey = PrivateKey.fromLogin(username, password, "active");
+        const postingKey = PrivateKey.fromLogin(username, password, "posting");
+        const memoKey = PrivateKey.fromLogin(username, password, "memo");
+
+        const operation: AccountCreateOperation = ["account_create", {
+            fee: fee,
+            creator: activeUser.username,
+            new_account_name: username,
+            owner: Authority.from(ownerKey.createPublic()),
+            active: Authority.from(activeKey.createPublic()),
+            posting: Authority.from(postingKey.createPublic()),
+            memo_key: memoKey.createPublic(),
+            json_metadata: ""
+        }];
+
+        try {
+            await client.broadcast.sendOperations([operation], key);
+        } catch (e) {
+            error(formatError(e));
+            this.stateSet({inProgress: false, progress: ''});
+            return;
+        }
+
+        // Add admin role
+        this.stateSet({progress: _t('communities-create.progress-role', {u: activeUser?.username})});
+
+        const roleParams = {
+            required_auths: [],
+            required_posting_auths: [username],
+            id: "community",
+            json: JSON.stringify(
+                ["setRole", {community: username, account: activeUser.username, role: "admin"}]
+            )
+        };
+
+        try {
+            await client.broadcast.sendOperations([["custom_json", {...roleParams}]], postingKey);
+        } catch (e) {
+            error(formatError(e));
+            this.stateSet({inProgress: false, progress: ''});
+            return;
+        }
+
+        // Update community props
+        this.stateSet({progress: _t('communities-create.progress-props')});
+
+        const propParams = {
+            required_auths: [],
+            required_posting_auths: [username],
+            id: "community",
+            json: JSON.stringify(
+                ["updateProps", {community: username, props: {title, about}}]
+            )
+        };
+
+        try {
+            await client.broadcast.sendOperations([["custom_json", {...propParams}]], postingKey);
+        } catch (e) {
+            error(formatError(e));
+            this.stateSet({inProgress: false, progress: ''});
+            return;
+        }
+
+        // Wait 3 seconds for hivemind synchronization
+        await new Promise((r) => {
+            setTimeout(() => {
+                r(true);
+            }, 3000);
+        });
+
+        this.stateSet({inProgress: false, done: true});
+    }
+
+    render() {
+        //  Meta config
+        const metaProps = {
+            title: _t("communities-create.page-title"),
+        };
+
+        const {activeUser} = this.props;
+
+        const {fee, title, about, credentials, keyDialog, done, inProgress, progress} = this.state;
+
+        return (
+            <>
+                <Meta {...metaProps} />
+                <Theme global={this.props.global}/>
+                <Feedback/>
+                {NavBar({...this.props})}
+
+                <div className="app-content communities-page">
+                    <Form ref={this.form} className={`community-form ${inProgress ? "in-progress" : ""}`} onSubmit={(e: React.FormEvent) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        if (!this.form.current?.checkValidity()) {
+                            return;
+                        }
+
+                        const {credentials} = this.state;
+                        if (credentials === null) {
+                            this.genCredentials();
+                            return;
+                        }
+
+                        this.toggleKeyDialog();
+                    }}>
+                        <h1 className="form-title">{_t("communities-create.page-title")}</h1>
+                        {(() => {
+                            if (done) {
+                                const url = `/trending/${credentials?.username}`;
+                                return <div className="done">
+                                    <p>{_t("communities-create.done")}</p>
+                                    <p><strong><a href={url}>{_t("communities-create.link-label")}</a></strong></p>
+                                </div>
+                            }
+
+                            return <>
+                                <Form.Group>
+                                    <Form.Label>{_t("communities-create.title")}</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        autoComplete="off"
+                                        autoFocus={true}
+                                        value={title}
+                                        minLength={3}
+                                        maxLength={20}
+                                        onChange={this.titleChanged}
+                                        required={true}
+                                    />
+                                </Form.Group>
+                                <Form.Group>
+                                    <Form.Label>{_t("communities-create.about")}</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        autoComplete="off"
+                                        value={about}
+                                        maxLength={120}
+                                        onChange={this.aboutChanged}
+                                    />
+                                </Form.Group>
+                                {(() => {
+                                    if (activeUser && credentials) {
+                                        return <>
+                                            <Form.Group>
+                                                <Form.Label>{_t("communities-create.fee")}</Form.Label>
+                                                <div className="fee">{fee}</div>
+                                            </Form.Group>
+                                            <Form.Group>
+                                                <Form.Label>{_t("communities-create.creator")}</Form.Label>
+                                                <div className="creator">@{activeUser.username}</div>
+                                            </Form.Group>
+                                            <Form.Group>
+                                                <Form.Label>{_t("communities-create.credentials")}</Form.Label>
+                                                <pre className="credentials">
+                                                    <span>{credentials.username}</span>
+                                                    <span>{credentials.password}</span>
+                                                </pre>
+                                            </Form.Group>
+                                            <Form.Group>
+                                                <label><input type="checkbox" required={true}/> {_t("communities-create.confirm-saved")}</label>
+                                            </Form.Group>
+                                            <Form.Group>
+                                                <Button type="submit" disabled={inProgress}>
+                                                    {inProgress && (<Spinner animation="grow" variant="light" size="sm" style={{marginRight: "6px"}}/>)}
+                                                    {_t("communities-create.create")}</Button>
+                                            </Form.Group>
+                                            {inProgress && <p>{progress}</p>}
+                                        </>
+                                    }
+
+                                    if (activeUser) {
+                                        return <Form.Group>
+                                            <Button type="submit">{_t('g.next')}</Button>
+                                        </Form.Group>
+                                    }
+
+                                    return <Form.Group>
+                                        {LoginRequired({
+                                            ...this.props,
+                                            children: <Button type="button">{_t('g.next')}</Button>
+                                        })}
+                                    </Form.Group>
+                                })()}
+                            </>
+                        })()}
+                    </Form>
+                </div>
+
+                {keyDialog && (
+                    <Modal animation={false} show={true} centered={true} onHide={this.toggleKeyDialog} keyboard={false} className="community-key-modal modal-thin-header">
+                        <Modal.Header closeButton={true}/>
+                        <Modal.Body>
+                            {KeyOrHot({
+                                ...this.props,
+                                inProgress: false,
+                                onlyKey: true,
+                                onKey: (key) => {
+                                    this.toggleKeyDialog();
+                                    this.stateSet({key}, () => {
+                                        this.submit().then();
+                                    });
+                                }
+                            })}
+                        </Modal.Body>
+                    </Modal>
+                )}
+            </>
+        )
+    }
+}
+
+export const CommunityCreateContainer = connect(pageMapStateToProps, pageMapDispatchToProps)(CommunityCreatePage);

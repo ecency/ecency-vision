@@ -4,7 +4,7 @@ import {Route, Switch} from "react-router-dom";
 import EntryIndexContainer from "./pages/entry-index";
 import ProfileContainer from "./pages/profile";
 import EntryContainer from "./pages/entry";
-import CommunitiesContainer from "./pages/communities";
+import CommunitiesContainer, {CommunityCreateContainer} from "./pages/communities";
 import CommunityContainer from "./pages/community";
 import DiscoverContainer from "./pages/discover";
 import AuthContainer from "./pages/auth";
@@ -37,6 +37,7 @@ const App = () => {
                 <Route exact={true} strict={true} path={routes.USER_SECTION} component={ProfileContainer}/>
                 <Route exact={true} strict={true} path={routes.ENTRY} component={EntryContainer}/>
                 <Route exact={true} strict={true} path={routes.COMMUNITIES} component={CommunitiesContainer}/>
+                <Route exact={true} strict={true} path={routes.COMMUNITIES_CREATE} component={CommunityCreateContainer}/>
                 <Route exact={true} strict={true} path={routes.COMMUNITY} component={CommunityContainer}/>
                 <Route exact={true} strict={true} path={routes.FILTER_TAG} component={EntryIndexContainer}/>
                 <Route exact={true} strict={true} path={routes.DISCOVER} component={DiscoverContainer}/>

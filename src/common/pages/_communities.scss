@@ -1,5 +1,5 @@
 .communities-page {
-  flex-direction: block;
+  flex-direction: column;
 
   .community-list {
     max-width: 680px;
@@ -49,5 +49,52 @@
     .list-items {
       padding-top: 20px;
     }
+  }
+
+  .community-form {
+    max-width: 500px;
+
+    .form-title {
+      font-size: 22px;
+      font-weight: 500;
+      margin: 0 0 26px 0;
+    }
+
+    .form-group {
+      margin-bottom: 30px;
+    }
+
+    .fee, .creator {
+      font-weight: 500;
+    }
+
+    .credentials {
+      color: $red3;
+      padding: 0 10px;
+      border-radius: 6px;
+      font-size: 90%;
+
+      span {
+        display: block;
+        margin: 10px 0;
+      }
+
+      @include themify(day) {
+        border: 1px solid darken($white-three, 10);
+        background: $white-three;
+      }
+
+      @include themify(night) {
+        border: 1px solid darken($dark-six, 10);
+        background: darken($dark-six, 2);
+      }
+    }
+  }
+}
+
+
+.community-key-modal {
+  .modal-body {
+    padding-top: 30px;
   }
 }
