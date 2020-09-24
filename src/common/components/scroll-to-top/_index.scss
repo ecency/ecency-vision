@@ -1,0 +1,25 @@
+.scroll-to-top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 40px;
+  height: 40px;
+  background: $dark-sky-blue;
+  color: $white;
+  border-radius: 50%;
+  box-shadow: $box-shadow;
+  z-index: 10;
+  display: none;
+  cursor: pointer;
+
+  &.visible {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}

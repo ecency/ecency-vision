@@ -25,6 +25,7 @@ import DetectBottom from "../components/detect-bottom";
 import CommunitySubscribers from "../components/community-subscribers";
 import CommunityActivities from "../components/community-activities";
 import CommunityRoles from "../components/community-roles";
+import ScrollToTop from "../components/scroll-to-top";
 
 import {getCommunity, getSubscriptions} from "../api/bridge";
 import {getAccountFull} from "../api/hive";
@@ -183,6 +184,7 @@ class CommunityPage extends Component<Props, State> {
         return (
             <>
                 <Meta {...metaProps} />
+                <ScrollToTop/>
                 <Theme global={this.props.global}/>
                 <Feedback/>
                 {NavBar({...this.props})}
