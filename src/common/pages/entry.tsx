@@ -39,12 +39,12 @@ import SimilarEntries from "../components/similar-entries";
 import BookmarkBtn from "../components/bookmark-btn";
 import EditHistoryBtn from "../components/edit-history-btn";
 import {error} from "../components/feedback";
-
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
 import Feedback from "../components/feedback";
 import NavBar from "../components/navbar/index";
 import NotFound from "../components/404";
+import ScrollToTop from "../components/scroll-to-top";
 
 import * as hiveApi from "../api/hive";
 import * as bridgeApi from "../api/bridge";
@@ -305,6 +305,7 @@ class EntryPage extends Component<Props, State> {
         return (
             <>
                 <Meta {...metaProps} />
+                <ScrollToTop/>
                 <Theme global={this.props.global}/>
                 <Feedback/>
                 <MdHandler history={this.props.history}/>

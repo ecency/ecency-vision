@@ -22,6 +22,7 @@ import EntryListLoadingItem from "../components/entry-list-loading-item";
 import DetectBottom from "../components/detect-bottom";
 import EntryListContent from "../components/entry-list";
 import TrendingTagsCard from "../components/trending-tags-card";
+import ScrollToTop from "../components/scroll-to-top";
 
 import {_t} from "../i18n";
 
@@ -135,7 +136,7 @@ class EntryIndexPage extends Component<PageProps> {
         return (
             <>
                 <Meta {...metaProps} />
-
+                <ScrollToTop/>
                 <Theme global={this.props.global}/>
                 <Feedback/>
                 {NavBar({...this.props})}

@@ -12,6 +12,7 @@ import NavBar from "../components/navbar/index";
 import LinearProgress from "../components/linear-progress";
 import CommunityListItem from "../components/community-list-item";
 import SearchBox from "../components/search-box";
+import ScrollToTop from "../components/scroll-to-top";
 
 import {_t} from "../i18n";
 
@@ -116,6 +117,7 @@ class CommunitiesPage extends Component<PageProps, State> {
         return (
             <>
                 <Meta {...metaProps} />
+                <ScrollToTop/>
                 <Theme global={this.props.global}/>
                 {NavBar({...this.props})}
 

@@ -523,6 +523,9 @@
   "favorites": {
     "title": "Favorites"
   },
+  "scroll-to-top": {
+    "title": "Scroll to Top"
+  },
   "static": {
     "about": {
       "page-title": "About",

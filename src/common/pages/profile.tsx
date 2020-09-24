@@ -18,13 +18,13 @@ import LinearProgress from "../components/linear-progress/index";
 import EntryListLoadingItem from "../components/entry-list-loading-item";
 import DetectBottom from "../components/detect-bottom";
 import EntryListContent from "../components/entry-list";
-
 import ProfileCard from "../components/profile-card";
 import ProfileMenu from "../components/profile-menu";
 import ProfileCover from "../components/profile-cover";
 import ProfileCommunities from "../components/profile-communities";
 import Wallet from "../components/wallet";
 import Points from "../components/points";
+import ScrollToTop from "../components/scroll-to-top";
 
 import {getAccountFull} from "../api/hive";
 
@@ -188,6 +188,7 @@ class ProfilePage extends Component<Props, State> {
         return (
             <>
                 <Meta {...metaProps} />
+                <ScrollToTop/>
                 <Theme global={this.props.global}/>
                 <Feedback/>
                 {NavBar({...this.props})}

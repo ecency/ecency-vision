@@ -7,6 +7,7 @@ import {Link} from "react-router-dom";
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
 import NavBar from "../components/navbar/index";
+import ScrollToTop from "../components/scroll-to-top";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
@@ -54,6 +55,7 @@ class AboutPage extends Component<PageProps> {
         return (
             <>
                 <Meta {...metaProps} />
+                <ScrollToTop/>
                 <Theme global={this.props.global}/>
                 {NavBar({...this.props})}
 
@@ -198,6 +200,7 @@ class GuestPostPage extends Component <PageProps> {
         return (
             <>
                 <Meta {...metaProps} />
+                <ScrollToTop/>
                 <Theme global={this.props.global}/>
                 {NavBar({...this.props})}
 
@@ -229,6 +232,7 @@ class ContributePage extends Component<PageProps> {
         return (
             <>
                 <Meta {...metaProps} />
+                <ScrollToTop/>
                 <Theme global={this.props.global}/>
                 {NavBar({...this.props})}
 
@@ -291,6 +295,7 @@ class PrivacyPage extends Component<PageProps> {
         return (
             <>
                 <Meta {...metaProps} />
+                <ScrollToTop/>
                 <Theme global={this.props.global}/>
                 {NavBar({...this.props})}
 
@@ -411,6 +416,7 @@ class WhitePaperPage extends Component<PageProps> {
         return (
             <>
                 <Meta {...metaProps} />
+                <ScrollToTop/>
                 <Theme global={this.props.global}/>
                 {NavBar({...this.props})}
 
@@ -449,6 +455,7 @@ class TosPage extends Component<PageProps> {
         return (
             <>
                 <Meta {...metaProps} />
+                <ScrollToTop/>
                 <Theme global={this.props.global}/>
                 {NavBar({...this.props})}
 
@@ -570,6 +577,7 @@ class FaqPage extends Component<PageProps> {
         return (
             <>
                 <Meta {...metaProps} />
+                <ScrollToTop/>
                 <Theme global={this.props.global}/>
                 {NavBar({...this.props})}
 
