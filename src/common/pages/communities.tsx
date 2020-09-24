@@ -312,7 +312,7 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
             activeAuthority: Authority.from(activeKey.createPublic()),
             postingAuthority: {
                 ...Authority.from(postingKey.createPublic()),
-                account_auths: [['ecency.app', 1], [activeUser!.username, 2]]
+                account_auths: [['ecency.app', 1], [activeUser!.username, 1]]
             } as Authority
         }
     }
@@ -404,11 +404,9 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
         const {ownerAuthority, activeAuthority, postingAuthority} = this.makeAuthorities(keys);
 
         const redir = `${window.location.origin}/trending/${username}`;
-        const u = `https://hivesigner.com/sign/account_create?new_account_name=${username}&owner=${JSON.stringify(ownerAuthority)}&active=${JSON.stringify(activeAuthority)}&posting=${JSON.stringify(postingAuthority)}&memo_key=${keys.memoKey.toString()}&json_metadata={}&redirect_uri=${encodeURIComponent(
+        const u = `https://hivesigner.com/sign/account_create?new_account_name=${username}&owner=${JSON.stringify(ownerAuthority)}&active=${JSON.stringify(activeAuthority)}&posting=${JSON.stringify(postingAuthority)}&memo_key=${keys.memoKey.createPublic().toString()}&json_metadata={}&redirect_uri=${encodeURIComponent(
             redir
         )}`;
-
-        console.log(u)
 
         const win = window.open(u, '_blank');
         win!.focus();
