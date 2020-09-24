@@ -13,6 +13,7 @@ import numeral from "numeral";
 import {PrivateKey, cryptoUtils, AccountCreateOperation, Authority} from "@hiveio/dhive";
 
 import {Community} from "../store/communities/types";
+import {User} from "../store/users/types";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
@@ -29,9 +30,12 @@ import {_t} from "../i18n";
 
 import {getAccount} from "../api/hive";
 import {getCommunities, getSubscriptions} from "../api/bridge";
-import {formatError} from "../api/operations";
+import {formatError, updateCommunity, setUserRole} from "../api/operations";
+import {hsTokenRenew} from "../api/private";
+
 import {client} from "../api/hive";
 
+import {makeHsCode} from "../helper/hive-signer";
 import parseAsset from "../helper/parse-asset"
 
 import random from "../util/rnd";
@@ -318,13 +322,13 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
     }
 
     submit = async () => {
-        const {activeUser} = this.props;
+        const {activeUser, addUser} = this.props;
         const {fee, title, about, username, creatorKey} = this.state;
         if (!activeUser || !creatorKey) return;
 
         this.stateSet({inProgress: true, progress: _t('communities-create.progress-account')});
 
-        // Create account
+        // create community account
         const keys = this.makePrivateKeys();
         const {ownerAuthority, activeAuthority, postingAuthority} = this.makeAuthorities(keys);
 
@@ -347,47 +351,52 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
             return;
         }
 
-        // Add admin role
+        this.stateSet({inProgress: true, progress: _t('communities-create.progress-user')});
+
+        // create hive signer code from active private key
+        const code = makeHsCode(username, keys.activeKey);
+
+        // get access token from code and create user object
+        let user: User;
+        try {
+            user = await hsTokenRenew(code).then(x => ({
+                username: x.username,
+                accessToken: x.access_token,
+                refreshToken: x.refresh_token,
+                expiresIn: x.expires_in,
+            }));
+        } catch (e) {
+            error(formatError(e));
+            this.stateSet({inProgress: false, progress: ''});
+            return;
+        }
+
+        // add community user to reducer
+        addUser(user);
+
+        // set admin role
         this.stateSet({progress: _t('communities-create.progress-role', {u: activeUser.username})});
 
-        const roleParams = {
-            required_auths: [],
-            required_posting_auths: [username],
-            id: "community",
-            json: JSON.stringify(
-                ["setRole", {community: username, account: activeUser.username, role: "admin"}]
-            )
-        };
-
         try {
-            await client.broadcast.sendOperations([["custom_json", {...roleParams}]], keys.postingKey);
+            await setUserRole(username, username, activeUser.username, "admin");
         } catch (e) {
             error(formatError(e));
             this.stateSet({inProgress: false, progress: ''});
             return;
         }
 
-        // Update community props
+        // update community props
         this.stateSet({progress: _t('communities-create.progress-props')});
 
-        const propParams = {
-            required_auths: [],
-            required_posting_auths: [username],
-            id: "community",
-            json: JSON.stringify(
-                ["updateProps", {community: username, props: {title, about}}]
-            )
-        };
-
         try {
-            await client.broadcast.sendOperations([["custom_json", {...propParams}]], keys.postingKey);
+            await updateCommunity(username, username, {title, about, lang: 'en', description: '', flag_text: '', is_nsfw: false});
         } catch (e) {
             error(formatError(e));
             this.stateSet({inProgress: false, progress: ''});
             return;
         }
 
-        // Wait 3 seconds for hivemind synchronization
+        // wait 3 seconds to hivemind synchronize community data
         await new Promise((r) => {
             setTimeout(() => {
                 r(true);
@@ -452,7 +461,7 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
                                 const url = `/trending/${username}`;
                                 return <div className="done">
                                     <p>{_t("communities-create.done")}</p>
-                                    <p><strong><a href={url}>{_t("communities-create.done-link-label")}</a></strong></p>
+                                    <p><strong><Link to={url}>{_t("communities-create.done-link-label")}</Link></strong></p>
                                 </div>
                             }
 
