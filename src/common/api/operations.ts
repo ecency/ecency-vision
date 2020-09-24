@@ -464,10 +464,6 @@ export const updateProfile = (account: Account, newProfile: {
     cover_image: string,
     profile_image: string,
 }): Promise<TransactionConfirmation> => {
-    if (!account.memo_key) {
-        throw "memo_key required with account instance";
-    }
-
     const client = new hs.Client({
         accessToken: getAccessToken(account.name)
     });
@@ -485,7 +481,7 @@ export const updateProfile = (account: Account, newProfile: {
 }
 
 export const grantPostingPermission = async (key: PrivateKey, account: Account, pAccount: string) => {
-    if (!account.posting || !account.memo_key || !account.json_metadata) {
+    if (account.posting === undefined || account.memo_key === undefined || account.json_metadata === undefined) {
         throw "posting|memo_key|json_metadata required with account instance";
     }
 
@@ -515,7 +511,7 @@ export const grantPostingPermission = async (key: PrivateKey, account: Account, 
 };
 
 export const revokePostingPermission = async (key: PrivateKey, account: Account, pAccount: string) => {
-    if (!account.posting || !account.memo_key || !account.json_metadata) {
+    if (account.posting === undefined || account.memo_key === undefined || account.json_metadata === undefined) {
         throw "posting|memo_key|json_metadata required with account instance";
     }
 
