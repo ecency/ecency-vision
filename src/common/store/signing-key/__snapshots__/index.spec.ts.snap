@@ -3,3 +3,5 @@
 exports[`1- default state 1`] = `""`;
 
 exports[`2- Set Act 1`] = `"swcdwedk23e21dwedewfckoefp"`;
+
+exports[`3- loginAct 1`] = `""`;

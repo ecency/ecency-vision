@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Should show 'mute' label 1`] = `
+<a
+  className="mute-btn"
+  href="#"
+  onClick={[Function]}
+>
+  Mute
+</a>
+`;
+
+exports[`(2) Should show 'unmute' label 1`] = `
+<a
+  className="mute-btn"
+  href="#"
+  onClick={[Function]}
+>
+  Unmute
+</a>
+`;
+
+exports[`(3) Dialog body for 'mute' 1`] = `
+<div
+  className="mute-form"
+>
+  <div
+    className="form-group"
+  >
+    <div
+      className="entry-title"
+    >
+      @
+      good-karma
+      /
+      awesome-hive
+    </div>
+    <div
+      className="input-group"
+    >
+      <input
+        autoComplete="off"
+        autoFocus={true}
+        className="form-control"
+        maxLength={120}
+        onChange={[Function]}
+        placeholder="Notes"
+        type="text"
+        value=""
+      />
+    </div>
+    <small
+      className="form-text"
+    >
+      Provide a note regarding your decision to mute this content.
+    </small>
+  </div>
+  <div>
+    <button
+      className="btn btn-primary"
+      disabled={true}
+      onClick={[Function]}
+      type="button"
+    >
+      Mute
+    </button>
+  </div>
+</div>
+`;
+
+exports[`(4) Dialog body for 'unmute' 1`] = `
+<div
+  className="mute-form"
+>
+  <div
+    className="form-group"
+  >
+    <div
+      className="entry-title"
+    >
+      @
+      good-karma
+      /
+      awesome-hive
+    </div>
+    <div
+      className="input-group"
+    >
+      <input
+        autoComplete="off"
+        autoFocus={true}
+        className="form-control"
+        maxLength={120}
+        onChange={[Function]}
+        placeholder="Notes"
+        type="text"
+        value=""
+      />
+    </div>
+    <small
+      className="form-text"
+    >
+      Provide a note regarding your decision to unmute this content.
+    </small>
+  </div>
+  <div>
+    <button
+      className="btn btn-primary"
+      disabled={true}
+      onClick={[Function]}
+      type="button"
+    >
+      Unmute
+    </button>
+  </div>
+</div>
+`;

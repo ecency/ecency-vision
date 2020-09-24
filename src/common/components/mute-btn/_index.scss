@@ -1,0 +1,31 @@
+.mute-btn {
+  color: $steel-grey;
+  display: inline-flex;
+  align-items: center;
+
+  &.in-progress {
+    animation: anim-fadein-out 2s infinite;
+    pointer-events: none;
+  }
+}
+
+.mute-dialog {
+  .modal-body {
+    padding-top: 40px;
+    text-align: center;
+
+    .mute-form {
+      max-width: 500px;
+      margin: auto;
+
+      .entry-title {
+        font-weight: 500;
+        margin-bottom: 12px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
+      }
+    }
+  }
+}

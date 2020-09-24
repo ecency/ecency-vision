@@ -19,7 +19,8 @@
     "back": "Back",
     "load-more": "Load More",
     "empty-list": "Nothing here",
-    "save": "Save"
+    "save": "Save",
+    "show": "Show"
   },
   "confirm": {
     "title": "Are you sure?",
@@ -147,7 +148,8 @@
     "comment-entry-title": "You are viewing a single comment's thread from: ",
     "comment-entry-go-root": "View the full context",
     "comment-entry-go-parent": "View the direct parent",
-    "show-history": "Show edit history"
+    "show-history": "Show edit history",
+    "hidden-warning": "This post was hidden due to low ratings."
   },
   "edit-history": {
     "title": "Edit History",
@@ -168,7 +170,8 @@
     "order-reputation": "Reputation",
     "order-votes": "Votes",
     "order-created": "Age",
-    "read-more": "...read more replies..."
+    "read-more": "...read more replies...",
+    "reveal": "Reveal comment"
   },
   "community": {
     "page-description": "{{f}} topics",
@@ -220,6 +223,19 @@
     "sort-subs": "Subscribers",
     "sort-new": "New",
     "no-results": "No results found"
+  },
+  "pin-btn": {
+    "pin": "Pin",
+    "unpin": "Unpin"
+  },
+  "mute-btn": {
+    "mute": "Mute",
+    "unmute": "Unmute",
+    "dialog-title-mute": "Mute post/comment",
+    "dialog-title-unmute": "Unmute post/comment",
+    "notes": "Notes",
+    "note-placeholder-mute": "Provide a note regarding your decision to mute this content.",
+    "note-placeholder-unmute": "Provide a note regarding your decision to unmute this content."
   },
   "profile": {
     "voting-power": "Voting Power",

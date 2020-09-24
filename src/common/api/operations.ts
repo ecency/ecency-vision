@@ -464,10 +464,6 @@ export const updateProfile = (account: Account, newProfile: {
     cover_image: string,
     profile_image: string,
 }): Promise<TransactionConfirmation> => {
-    if (!account.memo_key) {
-        throw "memo_key required with account instance";
-    }
-
     const client = new hs.Client({
         accessToken: getAccessToken(account.name)
     });
@@ -485,7 +481,7 @@ export const updateProfile = (account: Account, newProfile: {
 }
 
 export const grantPostingPermission = async (key: PrivateKey, account: Account, pAccount: string) => {
-    if (!account.posting || !account.memo_key || !account.json_metadata) {
+    if (account.posting === undefined || account.memo_key === undefined || account.json_metadata === undefined) {
         throw "posting|memo_key|json_metadata required with account instance";
     }
 
@@ -515,7 +511,7 @@ export const grantPostingPermission = async (key: PrivateKey, account: Account, 
 };
 
 export const revokePostingPermission = async (key: PrivateKey, account: Account, pAccount: string) => {
-    if (!account.posting || !account.memo_key || !account.json_metadata) {
+    if (account.posting === undefined || account.memo_key === undefined || account.json_metadata === undefined) {
         throw "posting|memo_key|json_metadata required with account instance";
     }
 
@@ -559,6 +555,30 @@ export const updateCommunity = (username: string, community: string, props: { ti
 
     const json = JSON.stringify([
         'updateProps', {community, props}
+    ]);
+
+    return client.customJson([], [username], 'community', json);
+}
+
+export const pinPost = (username: string, community: string, account: string, permlink: string, pin: boolean): Promise<TransactionConfirmation> => {
+    const client = new hs.Client({
+        accessToken: getAccessToken(username),
+    });
+
+    const json = JSON.stringify([
+        pin ? 'pinPost' : 'unpinPost', {community, account, permlink}
+    ]);
+
+    return client.customJson([], [username], 'community', json);
+}
+
+export const mutePost = (username: string, community: string, account: string, permlink: string, notes: string, mute: boolean): Promise<TransactionConfirmation> => {
+    const client = new hs.Client({
+        accessToken: getAccessToken(username),
+    });
+
+    const json = JSON.stringify([
+        mute ? 'mutePost' : 'unmutePost', {community, account, permlink, notes}
     ]);
 
     return client.customJson([], [username], 'community', json);

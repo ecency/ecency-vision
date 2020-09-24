@@ -126,7 +126,7 @@ class CommunityPage extends Component<Props, State> {
             this.stateSet({loading: true});
         }
 
-        return getCommunity(name, (activeUser ? activeUser.username : "")).then((data) => {
+        return getCommunity(name, activeUser?.username).then((data) => {
             if (data) {
                 addCommunity(data);
             }
