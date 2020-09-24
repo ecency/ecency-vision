@@ -40,6 +40,7 @@ import {checkSvg, alertCircleSvg} from "../img/svg";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
+
 interface State {
     list: Community[];
     loading: boolean;
@@ -291,27 +292,50 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
         this.stateSet({keyDialog: !keyDialog});
     }
 
+    makePrivateKeys = () => {
+        const {username, wif} = this.state;
+
+        return {
+            ownerKey: PrivateKey.fromLogin(username, wif, "owner"),
+            activeKey: PrivateKey.fromLogin(username, wif, "active"),
+            postingKey: PrivateKey.fromLogin(username, wif, "posting"),
+            memoKey: PrivateKey.fromLogin(username, wif, "memo")
+        }
+    }
+
+    makeAuthorities = (keys: { ownerKey: PrivateKey, activeKey: PrivateKey, postingKey: PrivateKey }) => {
+        const {activeUser} = this.props;
+        const {ownerKey, activeKey, postingKey} = keys;
+
+        return {
+            ownerAuthority: Authority.from(ownerKey.createPublic()),
+            activeAuthority: Authority.from(activeKey.createPublic()),
+            postingAuthority: {
+                ...Authority.from(postingKey.createPublic()),
+                account_auths: [['ecency.app', 1], [activeUser!.username, 2]]
+            } as Authority
+        }
+    }
+
     submit = async () => {
         const {activeUser} = this.props;
-        const {fee, title, about, username, wif, creatorKey} = this.state;
+        const {fee, title, about, username, creatorKey} = this.state;
         if (!activeUser || !creatorKey) return;
 
         this.stateSet({inProgress: true, progress: _t('communities-create.progress-account')});
 
         // Create account
-        const ownerKey = PrivateKey.fromLogin(username, wif, "owner");
-        const activeKey = PrivateKey.fromLogin(username, wif, "active");
-        const postingKey = PrivateKey.fromLogin(username, wif, "posting");
-        const memoKey = PrivateKey.fromLogin(username, wif, "memo");
+        const keys = this.makePrivateKeys();
+        const {ownerAuthority, activeAuthority, postingAuthority} = this.makeAuthorities(keys);
 
         const operation: AccountCreateOperation = ["account_create", {
             fee: fee,
             creator: activeUser.username,
             new_account_name: username,
-            owner: Authority.from(ownerKey.createPublic()),
-            active: Authority.from(activeKey.createPublic()),
-            posting: {...Authority.from(postingKey.createPublic()), account_auths: [['ecency.app', 1]]},
-            memo_key: memoKey.createPublic(),
+            owner: ownerAuthority,
+            active: activeAuthority,
+            posting: postingAuthority,
+            memo_key: keys.memoKey.createPublic(),
             json_metadata: ""
         }];
 
@@ -324,7 +348,7 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
         }
 
         // Add admin role
-        this.stateSet({progress: _t('communities-create.progress-role', {u: activeUser?.username})});
+        this.stateSet({progress: _t('communities-create.progress-role', {u: activeUser.username})});
 
         const roleParams = {
             required_auths: [],
@@ -336,7 +360,7 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
         };
 
         try {
-            await client.broadcast.sendOperations([["custom_json", {...roleParams}]], postingKey);
+            await client.broadcast.sendOperations([["custom_json", {...roleParams}]], keys.postingKey);
         } catch (e) {
             error(formatError(e));
             this.stateSet({inProgress: false, progress: ''});
@@ -356,7 +380,7 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
         };
 
         try {
-            await client.broadcast.sendOperations([["custom_json", {...propParams}]], postingKey);
+            await client.broadcast.sendOperations([["custom_json", {...propParams}]], keys.postingKey);
         } catch (e) {
             error(formatError(e));
             this.stateSet({inProgress: false, progress: ''});
@@ -374,19 +398,17 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
     }
 
     submitHot = () => {
-        const {username, wif} = this.state;
+        const {username} = this.state;
 
-        const ownerKey = PrivateKey.fromLogin(username, wif, "owner");
-        const activeKey = PrivateKey.fromLogin(username, wif, "active");
-        const postingKey = PrivateKey.fromLogin(username, wif, "posting");
-        const memoKey = PrivateKey.fromLogin(username, wif, "memo");
+        const keys = this.makePrivateKeys();
+        const {ownerAuthority, activeAuthority, postingAuthority} = this.makeAuthorities(keys);
 
-        const owner = Authority.from(ownerKey.createPublic());
-        const active = Authority.from(activeKey.createPublic());
-        const posting = {...Authority.from(postingKey.createPublic()), account_auths: [['ecency.app', 1]]}
-        const memo = memoKey.createPublic();
+        const redir = `${window.location.origin}/trending/${username}`;
+        const u = `https://hivesigner.com/sign/account_create?new_account_name=${username}&owner=${JSON.stringify(ownerAuthority)}&active=${JSON.stringify(activeAuthority)}&posting=${JSON.stringify(postingAuthority)}&memo_key=${keys.memoKey.toString()}&json_metadata={}&redirect_uri=${encodeURIComponent(
+            redir
+        )}`;
 
-        const u = `https://hivesigner.com/sign/account_create?new_account_name=${username}&owner=${JSON.stringify(owner)}&active=${JSON.stringify(active)}&posting=${JSON.stringify(posting)}&memo_key=${JSON.stringify(memo)}&json_metadata={}`;
+        console.log(u)
 
         const win = window.open(u, '_blank');
         win!.focus();
