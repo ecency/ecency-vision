@@ -85,4 +85,28 @@
       }
     }
   }
+
+  .btn-edit-cover-image {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $dark-sky-blue;
+    color: $white;
+    position: absolute;
+    z-index: 3;
+    left: 10px;
+    top: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: $box-shadow;
+    }
+
+    svg {
+      height: 16px;
+    }
+  }
 }

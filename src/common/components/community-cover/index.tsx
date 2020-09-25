@@ -24,13 +24,118 @@ setProxyBase(defaults.imageServer);
 
 import SubscriptionBtn from "../subscription-btn";
 import CommunityPostBtn from "../community-post-btn";
+import Tooltip from "../tooltip";
+import ImageUploadDialog from "../image-upload";
 
 import formattedNumber from "../../util/formatted-number";
 
+import {updateProfile} from "../../api/operations";
+import {error, success} from "../feedback";
+import {getAccount} from "../../api/hive";
+
 import {_t} from "../../i18n";
+
+import {pencilOutlineSvg} from "../../img/svg";
 
 const coverFallbackDay = require("../../img/cover-fallback-day.png");
 const coverFallbackNight = require("../../img/cover-fallback-night.png");
+
+interface EditCoverImageProps {
+    activeUser: ActiveUser;
+    community: Community;
+    account: Account;
+    addAccount: (data: Account) => void;
+}
+
+interface EditCoverImageState {
+    account: Account | null;
+    dialog: boolean;
+    inProgress: boolean;
+}
+
+class EditCoverImage extends React.Component<EditCoverImageProps, EditCoverImageState> {
+    state: EditCoverImageState = {
+        account: null,
+        dialog: false,
+        inProgress: false
+    }
+
+    _mounted: boolean = true;
+
+    componentWillUnmount() {
+        this._mounted = false;
+    }
+
+    stateSet = (state: {}, cb?: () => void) => {
+        if (this._mounted) {
+            this.setState(state, cb);
+        }
+    };
+
+    toggleDialog = () => {
+        const {dialog} = this.state;
+        this.stateSet({dialog: !dialog})
+    }
+
+    save = (url: string) => {
+        const {account} = this.props;
+        if (account.profile?.cover_image === url) {
+            this.toggleDialog();
+            return;
+        }
+
+        this.stateSet({inProgress: true});
+
+        const {addAccount} = this.props;
+        const {profile} = account;
+
+        const newProfile = {
+            name: profile?.name || '',
+            about: profile?.about || '',
+            cover_image: url,
+            profile_image: profile?.profile_image || '',
+            website: profile?.website || '',
+            location: profile?.location || '',
+        };
+
+        updateProfile(account, newProfile).then(r => {
+            success(_t('community-cover.cover-image-updated'));
+            return getAccount(account.name);
+        }).then((account) => {
+            // update reducer
+            addAccount(account);
+
+            // close dialog
+            this.toggleDialog();
+        }).catch(() => {
+            error(_t('g.server-error'));
+        }).finally(() => {
+            this.stateSet({inProgress: false});
+        });
+    }
+
+    render() {
+        const {activeUser, account} = this.props;
+        const {dialog, inProgress} = this.state;
+
+        return <>
+            <Tooltip content={_t('community-cover.cover-image-edit')}>
+                <div className="btn-edit-cover-image" onClick={this.toggleDialog}>{pencilOutlineSvg}</div>
+            </Tooltip>
+            {dialog && (
+                <ImageUploadDialog
+                    activeUser={activeUser!}
+                    title={_t('community-cover.cover-image')}
+                    defImage={account.profile?.cover_image || ""}
+                    inProgress={inProgress}
+                    onDone={this.save}
+                    onHide={this.toggleDialog}
+                />
+            )}
+        </>
+    }
+}
+
 
 interface Props {
     history: History;
@@ -46,6 +151,7 @@ interface Props {
     deleteUser: (username: string) => void;
     toggleUIProp: (what: ToggleType) => void;
     updateSubscriptions: (list: Subscription[]) => void;
+    addAccount: (data: Account) => void;
 }
 
 export class CommunityCover extends Component<Props> {
@@ -61,7 +167,7 @@ export class CommunityCover extends Component<Props> {
     }
 
     render() {
-        const {global, account, community} = this.props;
+        const {global, account, community, activeUser, users} = this.props;
         let bgImage = "";
 
         if (account.__loaded) {
@@ -80,6 +186,8 @@ export class CommunityCover extends Component<Props> {
         const rewards = formattedNumber(community.sum_pending, {fractionDigits: 0});
         const authors = formattedNumber(community.num_authors, {fractionDigits: 0});
 
+        const canUpdateCoverImage = activeUser && !!users.find(x => x.username === community.name);
+
         return (
             <div className="community-cover">
                 <div className="cover-image" style={style}/>
@@ -94,11 +202,11 @@ export class CommunityCover extends Component<Props> {
                     </div>
                     <div className="community-stat">
                         <div className="stat-value">{"$"} {rewards}</div>
-                        <div className="stat-label">{_t('community.rewards')}</div>
+                        <div className="stat-label">{_t('community-cover.rewards')}</div>
                     </div>
                     <div className="community-stat">
                         <div className="stat-value">{authors}</div>
-                        <div className="stat-label">{_t('community.authors')}</div>
+                        <div className="stat-label">{_t('community-cover.authors')}</div>
                     </div>
                     {community.lang.trim() !== "" && (
                         <div className="community-stat">
@@ -106,11 +214,13 @@ export class CommunityCover extends Component<Props> {
                                 {community.lang.toUpperCase()}
                             </div>
                             <div className="stat-label">
-                                {_t('community.lang')}
+                                {_t('community-cover.lang')}
                             </div>
                         </div>
                     )}
                 </div>
+
+                {canUpdateCoverImage && (<EditCoverImage {...this.props} activeUser={activeUser!}/>)}
             </div>
         );
     }
@@ -130,7 +240,8 @@ export default (p: Props) => {
         updateActiveUser: p.updateActiveUser,
         deleteUser: p.deleteUser,
         toggleUIProp: p.toggleUIProp,
-        updateSubscriptions: p.updateSubscriptions
+        updateSubscriptions: p.updateSubscriptions,
+        addAccount: p.addAccount
     }
 
     return <CommunityCover {...props} />

@@ -176,17 +176,22 @@
     "subscribed": "Joined",
     "unsubscribe": "Leave",
     "post": "New Post",
-    "lang": "language",
     "posts": "Posts",
     "subscribers": "Subscribers",
     "activities": "Activities",
-    "authors": "posters",
-    "rewards": "rewards",
     "roles-title": "User Roles",
     "roles-account": "Account",
     "roles-role": "Role",
     "roles-account-title": "Title",
     "roles-add": "Add User"
+  },
+  "community-cover": {
+    "rewards": "rewards",
+    "authors": "posters",
+    "lang": "language",
+    "cover-image": "Community cover image",
+    "cover-image-edit": "Edit cover image",
+    "cover-image-updated": "Cover image updated!"
   },
   "community-card": {
     "description": "Description",
