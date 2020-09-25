@@ -701,7 +701,7 @@ class CommunityCreateHSPage extends Component<PageProps, CreateHsState> {
             title: _t("communities-create.page-title"),
         };
 
-        const {inProgress, progress} = this.state;
+        const {inProgress, progress, done} = this.state;
 
         return <>
             <Meta {...metaProps} />
@@ -717,7 +717,16 @@ class CommunityCreateHSPage extends Component<PageProps, CreateHsState> {
                             return <p>{progress}</p>;
                         }
 
-                        return null;
+                        if (done) {
+                            return null;
+                        }
+
+                        return <div>
+                            <p className="text-danger">{_t('g.server-error')}</p>
+                            <p><Button size="sm" onClick={() => {
+                                window.location.reload();
+                            }}>{_t('g.try-again')}</Button></p>
+                        </div>
                     })()}
                 </div>
             </div>
