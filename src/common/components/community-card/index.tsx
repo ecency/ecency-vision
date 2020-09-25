@@ -233,7 +233,7 @@ export class CommunityCard extends Component<Props, State> {
                     {UserAvatar({
                         ...this.props,
                         username: community.name,
-                        size: "medium",
+                        size: "xLarge",
                         src: useNewImage ? account.profile?.profile_image : undefined
                     })}
                 </div>
