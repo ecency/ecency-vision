@@ -22,6 +22,7 @@ export default {
   USER_SECTION: `/:username(@[\\w\\.\\d-]+)/:section(${profileFilters.join("|")}|wallet|points|communities)`,
   COMMUNITIES: `/communities`,
   COMMUNITIES_CREATE: `/communities/create`,
+  COMMUNITIES_CREATE_HS: `/communities/create-hs`,
   COMMUNITY: `/:filter(${entryFilters.join("|")}|subscribers|activities|roles)/:name(hive-[\\d]+)`,
   SUBMIT: `/submit`,
   EDIT: `/:username(@[\\w\\.\\d-]+)/:permlink/edit`,

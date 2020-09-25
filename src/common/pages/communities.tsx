@@ -10,6 +10,8 @@ import base58 from "bs58";
 
 import numeral from "numeral";
 
+import queryString from "query-string";
+
 import {PrivateKey, cryptoUtils, AccountCreateOperation, Authority} from "@hiveio/dhive";
 
 import {Community} from "../store/communities/types";
@@ -407,15 +409,16 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
     }
 
     submitHot = () => {
-        const {username} = this.state;
+        const {username, title, about} = this.state;
 
         const keys = this.makePrivateKeys();
         const {ownerAuthority, activeAuthority, postingAuthority} = this.makeAuthorities(keys);
 
-        const redir = `${window.location.origin}/trending/${username}`;
-        const u = `https://hivesigner.com/sign/account_create?new_account_name=${username}&owner=${JSON.stringify(ownerAuthority)}&active=${JSON.stringify(activeAuthority)}&posting=${JSON.stringify(postingAuthority)}&memo_key=${keys.memoKey.createPublic().toString()}&json_metadata={}&redirect_uri=${encodeURIComponent(
-            redir
-        )}`;
+        // create hive signer code from active private key to use after redirection from hivesigner
+        const code = makeHsCode(username, keys.activeKey);
+
+        const redir = `${window.location.origin}/communities/create-hs?code=${code}&title=${encodeURIComponent(title)}&about=${encodeURIComponent(about)}`;
+        const u = `https://hivesigner.com/sign/account_create?new_account_name=${username}&owner=${JSON.stringify(ownerAuthority)}&active=${JSON.stringify(activeAuthority)}&posting=${JSON.stringify(postingAuthority)}&memo_key=${keys.memoKey.createPublic().toString()}&json_metadata={}&redirect_uri=${encodeURIComponent(redir)}`;
 
         const win = window.open(u, '_blank');
         win!.focus();
@@ -582,3 +585,138 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
 }
 
 export const CommunityCreateContainer = connect(pageMapStateToProps, pageMapDispatchToProps)(CommunityCreatePage);
+
+interface CreateHsState {
+    username: string;
+    done: boolean;
+    inProgress: boolean;
+    progress: string;
+}
+
+class CommunityCreateHSPage extends Component<PageProps, CreateHsState> {
+    state: CreateHsState = {
+        username: '',
+        done: false,
+        inProgress: false,
+        progress: ''
+    }
+
+    _mounted: boolean = true;
+
+    componentDidMount() {
+        this.handle().then();
+    }
+
+    componentWillUnmount() {
+        this._mounted = false;
+    }
+
+    stateSet = (state: {}, cb?: () => void) => {
+        if (this._mounted) {
+            this.setState(state, cb);
+        }
+    };
+
+    handle = async () => {
+        const {location, history, addUser, activeUser} = this.props;
+        const qs = queryString.parse(location.search);
+        const code = qs.code as string;
+        const title = (qs.title as string) || '';
+        const about = (qs.about as string) || '';
+
+        if (!code || !activeUser) {
+            history.push("/");
+            return;
+        }
+
+        this.stateSet({inProgress: true, progress: _t('communities-create.progress-user')});
+
+        // get access token from code and create user object
+        let user: User;
+        try {
+            user = await hsTokenRenew(code).then(x => ({
+                username: x.username,
+                accessToken: x.access_token,
+                refreshToken: x.refresh_token,
+                expiresIn: x.expires_in,
+            }));
+        } catch (e) {
+            error(formatError(e));
+            this.stateSet({inProgress: false, progress: ''});
+            return;
+        }
+
+        // add username to state
+        this.stateSet({username: user.username});
+
+        // add community user to reducer
+        addUser(user);
+
+        // set admin role
+        this.stateSet({progress: _t('communities-create.progress-role', {u: user.username})});
+
+        try {
+            await setUserRole(user.username, user.username, activeUser.username, "admin");
+        } catch (e) {
+            error(formatError(e));
+            this.stateSet({inProgress: false, progress: ''});
+            return;
+        }
+
+        // update community props
+        this.stateSet({progress: _t('communities-create.progress-props')});
+
+        try {
+            await updateCommunity(user.username, user.username, {title, about, lang: 'en', description: '', flag_text: '', is_nsfw: false});
+        } catch (e) {
+            error(formatError(e));
+            this.stateSet({inProgress: false, progress: ''});
+            return;
+        }
+
+        // wait 3 seconds to hivemind synchronize community data
+        await new Promise((r) => {
+            setTimeout(() => {
+                r(true);
+            }, 3000);
+        });
+
+        // done
+        this.stateSet({inProgress: false, done: true});
+
+        // redirect to community page
+        history.push(`/trending/${user.username}`);
+    }
+
+    render() {
+        //  Meta config
+        const metaProps = {
+            title: _t("communities-create.page-title"),
+        };
+
+        const {inProgress, progress} = this.state;
+
+        return <>
+            <Meta {...metaProps} />
+            <Theme global={this.props.global}/>
+            <Feedback/>
+            {NavBar({...this.props})}
+
+            <div className="app-content communities-page">
+                <div className="community-form">
+                    <h1 className="form-title">{_t("communities-create.page-title")}</h1>
+                    {(() => {
+                        if (inProgress) {
+                            return <p>{progress}</p>;
+                        }
+
+                        return null;
+                    })()}
+                </div>
+            </div>
+        </>
+    }
+}
+
+export const CommunityCreateHSContainer = connect(pageMapStateToProps, pageMapDispatchToProps)(CommunityCreateHSPage);
+
