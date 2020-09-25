@@ -46,6 +46,7 @@ import {checkSvg, alertCircleSvg} from "../img/svg";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
+const hs = require("hivesigner");
 
 interface State {
     list: Community[];
@@ -318,32 +319,38 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
             activeAuthority: Authority.from(activeKey.createPublic()),
             postingAuthority: {
                 ...Authority.from(postingKey.createPublic()),
-                account_auths: [['ecency.app', 1], [activeUser!.username, 1]]
+                account_auths: [['ecency.app', 1]]
             } as Authority
         }
     }
 
+    makeOperation = (auths: { ownerAuthority: Authority, activeAuthority: Authority, postingAuthority: Authority }, memoKey: PrivateKey): AccountCreateOperation => {
+        const {activeUser} = this.props;
+        const {fee, username} = this.state;
+
+        return ["account_create", {
+            fee: fee,
+            creator: activeUser!.username,
+            new_account_name: username,
+            owner: auths.ownerAuthority,
+            active: auths.activeAuthority,
+            posting: auths.postingAuthority,
+            memo_key: memoKey.createPublic(),
+            json_metadata: ""
+        }];
+    }
+
     submit = async () => {
         const {activeUser, addUser} = this.props;
-        const {fee, title, about, username, creatorKey} = this.state;
+        const {title, about, username, creatorKey} = this.state;
         if (!activeUser || !creatorKey) return;
 
         this.stateSet({inProgress: true, progress: _t('communities-create.progress-account')});
 
         // create community account
         const keys = this.makePrivateKeys();
-        const {ownerAuthority, activeAuthority, postingAuthority} = this.makeAuthorities(keys);
-
-        const operation: AccountCreateOperation = ["account_create", {
-            fee: fee,
-            creator: activeUser.username,
-            new_account_name: username,
-            owner: ownerAuthority,
-            active: activeAuthority,
-            posting: postingAuthority,
-            memo_key: keys.memoKey.createPublic(),
-            json_metadata: ""
-        }];
+        const auths = this.makeAuthorities(keys);
+        const operation = this.makeOperation(auths, keys.memoKey);
 
         try {
             await client.broadcast.sendOperations([operation], creatorKey);
@@ -412,16 +419,16 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
         const {username, title, about} = this.state;
 
         const keys = this.makePrivateKeys();
-        const {ownerAuthority, activeAuthority, postingAuthority} = this.makeAuthorities(keys);
+        const auths = this.makeAuthorities(keys);
+        const operation = this.makeOperation(auths, keys.memoKey);
 
         // create hive signer code from active private key to use after redirection from hivesigner
         const code = makeHsCode(username, keys.activeKey);
+        const callback = `${window.location.origin}/communities/create-hs?code=${code}&title=${encodeURIComponent(title)}&about=${encodeURIComponent(about)}`;
 
-        const redir = `${window.location.origin}/communities/create-hs?code=${code}&title=${encodeURIComponent(title)}&about=${encodeURIComponent(about)}`;
-        const u = `https://hivesigner.com/sign/account_create?new_account_name=${username}&owner=${JSON.stringify(ownerAuthority)}&active=${JSON.stringify(activeAuthority)}&posting=${JSON.stringify(postingAuthority)}&memo_key=${keys.memoKey.createPublic().toString()}&json_metadata={}&redirect_uri=${encodeURIComponent(redir)}`;
-
-        const win = window.open(u, '_blank');
-        win!.focus();
+        hs.sendOperation(operation, {callback}, () => {
+        }, () => {
+        });
     }
 
     render() {
