@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+<button
+  className="btn btn-primary btn-sm"
+  disabled={false}
+  onClick={[Function]}
+  type="button"
+>
+  <svg
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M9,16V10H5L12,3L19,10H15V16H9M5,20V18H19V20H5Z"
+      fill="currentColor"
+    />
+  </svg>
+  <input
+    accept="image/*"
+    onChange={[Function]}
+    style={
+      Object {
+        "display": "none",
+      }
+    }
+    type="file"
+  />
+</button>
+`;
