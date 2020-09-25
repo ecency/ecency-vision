@@ -188,7 +188,7 @@ class CommunitiesPage extends Component<PageProps, State> {
 
 export default connect(pageMapStateToProps, pageMapDispatchToProps)(CommunitiesPage);
 
-const namePattern = "^hive-\\d{6}$";
+const namePattern = "^hive-1\\d{5}$";
 
 interface CreateState {
     fee: string;

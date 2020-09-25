@@ -242,7 +242,7 @@
     "username": "Owner username",
     "username-available": "Available.",
     "username-not-available": "Not available.",
-    "username-wrong-format": "Not a valid format. hive-xxxxxx format required.",
+    "username-wrong-format": "Not a valid format. hive-1xxxxx format required.",
     "password": "Owner password",
     "confirmation": "I have securely saved my owner username and password.",
     "submit": "Create Community",
