@@ -660,7 +660,7 @@ class CommunityCreateHSPage extends Component<PageProps, CreateHsState> {
         addUser(user);
 
         // set admin role
-        this.stateSet({progress: _t('communities-create.progress-role', {u: user.username})});
+        this.stateSet({progress: _t('communities-create.progress-role', {u: activeUser.username})});
 
         try {
             await setUserRole(user.username, user.username, activeUser.username, "admin");
