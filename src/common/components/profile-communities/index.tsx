@@ -16,6 +16,7 @@ import {error} from "../feedback";
 import {getSubscriptions} from "../../api/bridge";
 
 import {_t} from "../../i18n";
+import {Link} from "react-router-dom";
 
 
 interface Props {
@@ -65,7 +66,10 @@ export class ProfileCommunities extends Component<Props, State> {
     };
 
     render() {
+        const {activeUser, account} = this.props;
         const {items, loading} = this.state;
+
+        const showCreateLink = activeUser && activeUser.username === account.name;
 
         return (
             <div className="profile-communities">
@@ -79,6 +83,7 @@ export class ProfileCommunities extends Component<Props, State> {
                         return <>
                             <h2>{_t('profile.communities-title')}</h2>
                             <p className="text-muted">{_t('g.empty-list')}</p>
+                            {showCreateLink && (<p><Link to="/communities/create" className="create-link">{_t('profile.create-community')}</Link></p>)}
                         </>
                     }
 
@@ -94,6 +99,7 @@ export class ProfileCommunities extends Component<Props, State> {
                                 })} <span className="user-role">{i[2]}</span></li>
                             })}
                         </ul>
+                        {showCreateLink && (<p><Link to="/communities/create" className="create-link">{_t('profile.create-community')}</Link></p>)}
                     </>
                 })()}
             </div>

@@ -252,7 +252,7 @@ export class Login extends Component<LoginProps, State> {
             }
         }
 
-        const code = makeHsCode(account, activePrivateKey);
+        const code = makeHsCode(account.name, activePrivateKey);
 
         this.stateSet({inProgress: true});
 

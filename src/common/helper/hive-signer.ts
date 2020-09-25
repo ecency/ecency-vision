@@ -37,7 +37,7 @@ export const decodeToken = (code: string): {
     }
 }
 
-export const makeHsCode = (account: Account, privateKey: PrivateKey): string => {
+export const makeHsCode = (account: string, privateKey: PrivateKey): string => {
     const timestamp = new Date().getTime() / 1000;
 
     const messageObj: {
@@ -48,7 +48,7 @@ export const makeHsCode = (account: Account, privateKey: PrivateKey): string => 
         authors: string[];
         timestamp: number;
         signatures?: string[];
-    } = {signed_message: {type: 'code', app: "ecency.app"}, authors: [account.name], timestamp};
+    } = {signed_message: {type: 'code', app: "ecency.app"}, authors: [account], timestamp};
 
     const hash = cryptoUtils.sha256(JSON.stringify(messageObj));
     const signature = privateKey.sign(hash).toString();

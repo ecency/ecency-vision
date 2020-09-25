@@ -20,6 +20,7 @@
     "load-more": "Load More",
     "empty-list": "Nothing here",
     "save": "Save",
+    "try-again": "Try again"
     "show": "Show"
   },
   "confirm": {
@@ -179,22 +180,32 @@
     "subscribed": "Joined",
     "unsubscribe": "Leave",
     "post": "New Post",
-    "team": "Leadership",
-    "edit": "Edit settings",
-    "edit-team": "Edit roles",
-    "description": "Description",
-    "rules": "Rules",
-    "lang": "language",
     "posts": "Posts",
     "subscribers": "Subscribers",
     "activities": "Activities",
-    "authors": "posters",
-    "rewards": "rewards",
     "roles-title": "User Roles",
     "roles-account": "Account",
     "roles-role": "Role",
     "roles-account-title": "Title",
     "roles-add": "Add User"
+  },
+  "community-cover": {
+    "rewards": "rewards",
+    "authors": "posters",
+    "lang": "language",
+    "cover-image": "Community cover image",
+    "cover-image-edit": "Edit cover image",
+    "cover-image-updated": "Cover image updated!"
+  },
+  "community-card": {
+    "description": "Description",
+    "rules": "Rules",
+    "team": "Leadership",
+    "edit": "Edit settings",
+    "edit-team": "Edit roles",
+    "profile-image": "Community profile image",
+    "profile-image-edit": "Edit profile image",
+    "profile-image-updated": "Profile image updated!"
   },
   "community-role-edit": {
     "title": "Set user role",
@@ -222,7 +233,28 @@
     "sort-rank": "Rank",
     "sort-subs": "Subscribers",
     "sort-new": "New",
-    "no-results": "No results found"
+    "no-results": "No results found",
+    "create": "Create community"
+  },
+  "communities-create": {
+    "page-title": "Create a community",
+    "title": "Title",
+    "about": "About",
+    "fee": "Operation fee",
+    "creator": "Creator",
+    "username": "Owner username",
+    "username-available": "Available.",
+    "username-not-available": "Not available.",
+    "username-wrong-format": "Not a valid format. hive-1xxxxx format required.",
+    "password": "Owner password",
+    "confirmation": "I have securely saved my owner username and password.",
+    "submit": "Create Community",
+    "progress-account": "Creating account...",
+    "progress-user": "Preparing user data...",
+    "progress-role": "Setting @{{u}} as admin...",
+    "progress-props": "Updating community settings...",
+    "done": "Your community was created 🎉",
+    "done-link-label": "Get started."
   },
   "pin-btn": {
     "pin": "Pin",
@@ -250,7 +282,8 @@
     "section-points": "Points",
     "section-wallet": "Wallet",
     "edit": "Profile Edit",
-    "communities-title": "Subscriptions"
+    "communities-title": "Subscriptions",
+    "create-community": "Create a community"
   },
   "profile-edit": {
     "name": "Display Name",
@@ -259,8 +292,10 @@
     "profile-image": "Profile Image",
     "website": "Website",
     "location": "Location",
-    "uploaded": "Image uploaded",
     "updated": "Profile updated successfully!"
+  },
+  "image-upload-button": {
+    "uploaded": "Image uploaded"
   },
   "wallet": {
     "unclaimed-rewards": "Unclaimed rewards",

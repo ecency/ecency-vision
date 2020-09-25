@@ -39,7 +39,9 @@ const defProps = {
     toggleUIProp: () => {
     },
     updateSubscriptions: () => {
-    }
+    },
+    addAccount: () => {
+    },
 };
 
 it("(1) Render with loaded account object", () => {
