@@ -190,7 +190,8 @@ class CommunityPage extends Component<Props, State> {
                     <div className="profile-side">
                         {CommunityCard({
                             ...this.props,
-                            community
+                            community,
+                            account
                         })}
                     </div>
                     <div className="content-side">

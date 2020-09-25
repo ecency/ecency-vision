@@ -77,7 +77,7 @@ export class ImageUpload extends Component<Props, State> {
                     </InputGroup.Append>
                 </InputGroup>
             </Form.Group>
-            <Button onClick={this.done} disabled={inProgress || uploading}>{(inProgress || uploading) && spinner} {_t('g.update')}</Button>
+            <Button onClick={this.done} disabled={inProgress || uploading}>{inProgress && spinner} {_t('g.save')}</Button>
         </div>
     }
 }

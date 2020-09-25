@@ -481,7 +481,7 @@ export const updateProfile = (account: Account, newProfile: {
     const params = {
         account: account.name,
         json_metadata: '',
-        posting_json_metadata: JSON.stringify({profile: newProfile}),
+        posting_json_metadata: JSON.stringify({profile: {...newProfile, version: 2}}),
         extensions: []
     };
 

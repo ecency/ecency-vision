@@ -62,7 +62,7 @@ export default class UploadButton extends Component<UploadButtonProps, UploadBut
 
         uploadImage(file, getAccessToken(activeUser.username)).then(r => {
             onEnd(r.url);
-            success(_t('profile-edit.uploaded'));
+            success(_t('image-upload-button.uploaded'));
         }).catch(() => {
             error(_t('g.server-error'));
         }).finally(() => {

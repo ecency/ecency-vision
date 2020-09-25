@@ -176,11 +176,6 @@
     "subscribed": "Joined",
     "unsubscribe": "Leave",
     "post": "New Post",
-    "team": "Leadership",
-    "edit": "Edit settings",
-    "edit-team": "Edit roles",
-    "description": "Description",
-    "rules": "Rules",
     "lang": "language",
     "posts": "Posts",
     "subscribers": "Subscribers",
@@ -192,6 +187,16 @@
     "roles-role": "Role",
     "roles-account-title": "Title",
     "roles-add": "Add User"
+  },
+  "community-card": {
+    "description": "Description",
+    "rules": "Rules",
+    "team": "Leadership",
+    "edit": "Edit settings",
+    "edit-team": "Edit roles",
+    "profile-image": "Community profile image",
+    "profile-image-edit": "Edit profile image",
+    "profile-image-updated": "Profile image updated!"
   },
   "community-role-edit": {
     "title": "Set user role",
@@ -265,8 +270,10 @@
     "profile-image": "Profile Image",
     "website": "Website",
     "location": "Location",
-    "uploaded": "Image uploaded",
     "updated": "Profile updated successfully!"
+  },
+  "image-upload-button": {
+    "uploaded": "Image uploaded"
   },
   "wallet": {
     "unclaimed-rewards": "Unclaimed rewards",
