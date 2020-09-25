@@ -27,6 +27,7 @@ import KeyOrHot from "../components/key-or-hot";
 import LoginRequired from "../components/login-required";
 import Feedback from "../components/feedback";
 import {error} from "../components/feedback";
+import ScrollToTop from "../components/scroll-to-top";
 
 import {_t} from "../i18n";
 
@@ -145,6 +146,7 @@ class CommunitiesPage extends Component<PageProps, State> {
         return (
             <>
                 <Meta {...metaProps} />
+                <ScrollToTop/>
                 <Theme global={this.props.global}/>
                 {NavBar({...this.props})}
 

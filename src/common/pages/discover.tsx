@@ -9,6 +9,7 @@ import NavBar from "../components/navbar/index";
 import LeaderBoard from "../components/leaderboard";
 import PopularUsers from "../components/popular-users";
 import FullHeight from "../components/full-height";
+import ScrollToTop from "../components/scroll-to-top";
 
 import {getPopularUsers, PopularUser, getLeaderboard, LeaderBoardItem} from "../api/private";
 
@@ -55,6 +56,7 @@ class DiscoverPage extends Component<PageProps> {
         return (
             <>
                 <Meta {...metaProps} />
+                <ScrollToTop/>
                 <FullHeight/>
                 <Theme global={this.props.global}/>
                 {NavBar({...this.props})}

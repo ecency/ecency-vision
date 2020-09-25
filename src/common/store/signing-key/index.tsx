@@ -6,6 +6,8 @@ import {
     SetAction
 } from "./types";
 
+import {ActionTypes as ActiveUserActionTypes} from "../active-user/types";
+
 
 export const initialState: string = '';
 
@@ -14,6 +16,9 @@ export default (state: string = initialState, action: Actions): string => {
         case ActionTypes.SET: {
             return action.key;
         }
+        case ActiveUserActionTypes.LOGIN:
+        case ActiveUserActionTypes.LOGOUT:
+            return initialState;
         default:
             return state;
     }

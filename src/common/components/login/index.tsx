@@ -22,7 +22,7 @@ import {getAuthUrl, makeHsCode} from "../../helper/hive-signer";
 
 import {getAccount} from "../../api/hive";
 import {hsTokenRenew, usrActivity} from "../../api/private";
-import {grantPostingPermission, revokePostingPermission} from "../../api/operations";
+import {grantPostingPermission} from "../../api/operations";
 
 import {getRefreshToken} from "../../helper/user-token";
 
