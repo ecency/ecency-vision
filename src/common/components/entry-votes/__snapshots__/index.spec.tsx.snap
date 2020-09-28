@@ -163,10 +163,10 @@ exports[`(3) Render of detail with votes 1`] = `
               >
                  
                 <span
-                  className="user-avatar small"
+                  className="user-avatar medium"
                   style={
                     Object {
-                      "backgroundImage": "url(https://images.ecency.com/u/user1/avatar/small)",
+                      "backgroundImage": "url(https://images.ecency.com/u/user1/avatar/medium)",
                     }
                   }
                 />
@@ -208,10 +208,10 @@ exports[`(3) Render of detail with votes 1`] = `
               >
                  
                 <span
-                  className="user-avatar small"
+                  className="user-avatar medium"
                   style={
                     Object {
-                      "backgroundImage": "url(https://images.ecency.com/u/user2/avatar/small)",
+                      "backgroundImage": "url(https://images.ecency.com/u/user2/avatar/medium)",
                     }
                   }
                 />

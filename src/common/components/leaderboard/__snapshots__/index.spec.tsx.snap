@@ -91,10 +91,10 @@ exports[`(1) Render with data. 1`] = `
           onClick={[Function]}
         >
           <span
-            className="user-avatar small"
+            className="user-avatar medium"
             style={
               Object {
-                "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/small)",
+                "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
               }
             }
           />
@@ -137,10 +137,10 @@ exports[`(1) Render with data. 1`] = `
           onClick={[Function]}
         >
           <span
-            className="user-avatar small"
+            className="user-avatar medium"
             style={
               Object {
-                "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/small)",
+                "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
               }
             }
           />
@@ -183,10 +183,10 @@ exports[`(1) Render with data. 1`] = `
           onClick={[Function]}
         >
           <span
-            className="user-avatar small"
+            className="user-avatar medium"
             style={
               Object {
-                "backgroundImage": "url(https://images.ecency.com/u/baz/avatar/small)",
+                "backgroundImage": "url(https://images.ecency.com/u/baz/avatar/medium)",
               }
             }
           />
@@ -229,10 +229,10 @@ exports[`(1) Render with data. 1`] = `
           onClick={[Function]}
         >
           <span
-            className="user-avatar small"
+            className="user-avatar medium"
             style={
               Object {
-                "backgroundImage": "url(https://images.ecency.com/u/zoo/avatar/small)",
+                "backgroundImage": "url(https://images.ecency.com/u/zoo/avatar/medium)",
               }
             }
           />
