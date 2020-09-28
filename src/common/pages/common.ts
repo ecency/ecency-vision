@@ -5,6 +5,7 @@ import {History, Location} from "history";
 import {Global} from "../store/global/types";
 import {User} from "../store/users/types";
 import {Account, Accounts} from "../store/accounts/types";
+import {Community, Communities} from "../store/communities/types";
 import {TrendingTags} from "../store/trending-tags/types";
 import {ActiveUser} from "../store/active-user/types";
 import {ToggleType, UI} from "../store/ui/types";
@@ -14,18 +15,17 @@ import {DynamicProps} from "../store/dynamic-props/types";
 import {Entries, Entry} from "../store/entries/types";
 import {Reblog} from "../store/reblogs/types";
 import {Discussion as DiscussionType, SortOrder} from "../store/discussion/types";
-import {Community} from "../store/community/types";
 import {Transactions} from "../store/transactions/types";
 import {Points} from "../store/points/types";
 
 
 import {toggleTheme, hideIntro, toggleListStyle} from "../store/global";
 import {fetchTrendingTags} from "../store/trending-tags";
-import {fetchCommunity, resetCommunity} from "../store/community";
 import {updateSubscriptions} from "../store/subscriptions";
 import {fetchEntries, addEntry, updateEntry} from "../store/entries";
 import {fetchDiscussion, sortDiscussion, resetDiscussion, updateReply, addReply, deleteReply} from "../store/discussion";
 import {addAccount} from "../store/accounts";
+import {addCommunity} from "../store/communities";
 import {fetchTransactions, resetTransactions} from "../store/transactions";
 import {addUser, deleteUser} from "../store/users";
 import {setActiveUser, updateActiveUser} from "../store/active-user";
@@ -49,10 +49,6 @@ export interface PageProps {
     trendingTags: TrendingTags;
     fetchTrendingTags: () => void;
 
-    community: Community | null;
-    fetchCommunity: () => void;
-    resetCommunity: () => void;
-
     subscriptions: Subscription[];
     updateSubscriptions: (list: Subscription[]) => void;
 
@@ -71,6 +67,9 @@ export interface PageProps {
 
     accounts: Accounts;
     addAccount: (data: Account) => void;
+
+    communities: Communities;
+    addCommunity: (data: Community) => void;
 
     transactions: Transactions;
     fetchTransactions: (username: string) => void;
@@ -115,8 +114,6 @@ export const pageMapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
             hideIntro,
             toggleListStyle,
             fetchTrendingTags,
-            fetchCommunity,
-            resetCommunity,
             updateSubscriptions,
             fetchEntries,
             addEntry,
@@ -128,6 +125,7 @@ export const pageMapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
             addReply,
             deleteReply,
             addAccount,
+            addCommunity,
             fetchTransactions,
             resetTransactions,
             addUser,

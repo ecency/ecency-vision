@@ -3,7 +3,6 @@ import express from "express";
 import {AppState} from "../../common/store";
 import {EntryFilter} from "../../common/store/global/types";
 import {Entry} from "../../common/store/entries/types";
-import {Community} from "../../common/store/community/types";
 import {makeGroupKey} from "../../common/store/entries";
 
 import * as hiveApi from "../../common/api/hive";
@@ -36,15 +35,6 @@ export default async (req: express.Request, res: express.Response) => {
         entries = [];
     }
 
-    let community: Community | null = null;
-    if (tag.startsWith("hive-")) {
-        try {
-            community = await bridgeApi.getCommunity(tag);
-        } catch (e) {
-            community = null;
-        }
-    }
-
     let tags: string[] | undefined = cache.get("trending-tag");
     if (tags === undefined) {
         tags = await hiveApi.getTrendingTags();
@@ -64,7 +54,6 @@ export default async (req: express.Request, res: express.Response) => {
             ...state.trendingTags,
             list: tags
         },
-        community,
         entries: {
             ...state.entries,
             [`${makeGroupKey(filter, tag)}`]: {

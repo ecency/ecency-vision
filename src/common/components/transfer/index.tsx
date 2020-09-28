@@ -431,7 +431,7 @@ export class Transfer extends Component<Props, State> {
         const suggestionProps = {
             header: _t('transfer.recent-transfers'),
             renderer: (i: string) => {
-                return <>{UserAvatar({...this.props, username: i, size: "small"})} <span style={{marginLeft: '4px'}}>{i}</span></>;
+                return <>{UserAvatar({...this.props, username: i, size: "medium"})} <span style={{marginLeft: '4px'}}>{i}</span></>;
             },
             onSelect: this.toSelected,
         };

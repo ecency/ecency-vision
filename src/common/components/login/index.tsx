@@ -22,7 +22,7 @@ import {getAuthUrl, makeHsCode} from "../../helper/hive-signer";
 
 import {getAccount} from "../../api/hive";
 import {hsTokenRenew, usrActivity} from "../../api/private";
-import {grantPostingPermission, revokePostingPermission} from "../../api/operations";
+import {grantPostingPermission} from "../../api/operations";
 
 import {getRefreshToken} from "../../helper/user-token";
 
@@ -53,7 +53,7 @@ export class UserItem extends Component<UserItemProps> {
                     onSelect(user);
                 }}
             >
-                {UserAvatar({...this.props, username: user.username, size: "normal"})}
+                {UserAvatar({...this.props, username: user.username, size: "medium"})}
                 <span className="username">@{user.username}</span>
                 {activeUser && activeUser.username === user.username && <div className="check-mark"/>}
                 <div className="flex-spacer"/>
@@ -252,7 +252,7 @@ export class Login extends Component<LoginProps, State> {
             }
         }
 
-        const code = makeHsCode(account, activePrivateKey);
+        const code = makeHsCode(account.name, activePrivateKey);
 
         this.stateSet({inProgress: true});
 

@@ -72,6 +72,7 @@ export class EditorToolbar extends Component<Props> {
         if (el) {
             el.addEventListener('dragover', this.onDragOver);
             el.addEventListener('drop', this.drop);
+            el.addEventListener('paste', this.onPaste);
         }
     }
 
@@ -80,6 +81,7 @@ export class EditorToolbar extends Component<Props> {
         if (el) {
             el.removeEventListener('dragover', this.onDragOver);
             el.removeEventListener('drop', this.drop);
+            el.removeEventListener('paste', this.onPaste);
         }
     }
 
@@ -141,6 +143,34 @@ export class EditorToolbar extends Component<Props> {
         if (files.length > 0) {
             files.forEach(file => this.upload(file));
         }
+    }
+
+    onPaste = (e: ClipboardEvent) => {
+        if (!e.clipboardData) {
+            return;
+        }
+
+        // when text copied from ms word, it adds screenshot of selected text to clipboard.
+        // check if data in clipboard is long string and skip upload.
+        // (i think no one uses more than 50 chars for a image file)
+        const txtData = e.clipboardData.getData('text/plain');
+        if (txtData.length >= 50) {
+            return;
+        }
+
+        const files = [...e.clipboardData.items]
+            .map(item =>
+                item.type.indexOf('image') !== -1 ? item.getAsFile() : null
+            )
+
+        if (files.length > 0) {
+            e.stopPropagation();
+            e.preventDefault();
+        }
+
+        files.forEach(file => {
+            if (file) this.upload(file).then();
+        });
     }
 
     bold = () => {

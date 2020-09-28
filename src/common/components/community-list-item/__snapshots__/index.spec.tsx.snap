@@ -11,7 +11,7 @@ exports[`(1) Default render 1`] = `
       className="item-title"
     >
       <a
-        href="/hot/hive-148441"
+        href="/trending/hive-148441"
         onClick={[Function]}
       >
         GEMS

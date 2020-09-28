@@ -18,7 +18,7 @@ interface Props {
     setSigningKey: (key: string) => void;
     inProgress: boolean;
     onKey: (key: PrivateKey) => void;
-    onHot: () => void;
+    onHot?: () => void;
 }
 
 interface State {
@@ -56,7 +56,9 @@ export class KeyOrHot extends Component<Props, State> {
 
     hotClicked = () => {
         const {onHot} = this.props;
-        onHot();
+        if (onHot) {
+            onHot();
+        }
     }
 
     render() {

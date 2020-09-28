@@ -1,0 +1,209 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render - With data. 1`] = `
+<div
+  className="community-activities"
+>
+  <div
+    className="activity-list"
+  >
+    <div
+      className="activity-list-body"
+    >
+      <div
+        className="activity-list-item"
+      >
+        <div
+          className="activity-user"
+        >
+          <a
+            href="/@foo"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar medium"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+                }
+              }
+            />
+          </a>
+        </div>
+        <div
+          className="activity-content"
+        >
+          <div
+            className="activity-msg"
+          >
+            <a
+              href="/@foo"
+              onClick={[Function]}
+            >
+              @foo
+            </a>
+            <span>
+               pin 
+            </span>
+            <a
+              href="/post/@foo/bar-permlink"
+              onClick={[Function]}
+            >
+              @foo/bar-permlink
+            </a>
+          </div>
+          <div
+            className="activity-date"
+          >
+            3 days ago
+          </div>
+        </div>
+      </div>
+      <div
+        className="activity-list-item"
+      >
+        <div
+          className="activity-user"
+        >
+          <a
+            href="/@foo"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar medium"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+                }
+              }
+            />
+          </a>
+        </div>
+        <div
+          className="activity-content"
+        >
+          <div
+            className="activity-msg"
+          >
+            <a
+              href="/@foo"
+              onClick={[Function]}
+            >
+              @foo
+            </a>
+            <span>
+               set 
+            </span>
+            <a
+              href="/@bar"
+              onClick={[Function]}
+            >
+              @bar
+            </a>
+            <span>
+               member
+            </span>
+          </div>
+          <div
+            className="activity-date"
+          >
+            3 days ago
+          </div>
+        </div>
+      </div>
+      <div
+        className="activity-list-item"
+      >
+        <div
+          className="activity-user"
+        >
+          <a
+            href="/@foo"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar medium"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+                }
+              }
+            />
+          </a>
+        </div>
+        <div
+          className="activity-content"
+        >
+          <div
+            className="activity-msg"
+          >
+            <a
+              href="/@foo"
+              onClick={[Function]}
+            >
+              @foo
+            </a>
+            <span>
+               unpin 
+            </span>
+            <a
+              href="/post/@foo/bar-permlink"
+              onClick={[Function]}
+            >
+              @foo/bar-permlink
+            </a>
+          </div>
+          <div
+            className="activity-date"
+          >
+            3 days ago
+          </div>
+        </div>
+      </div>
+      <div
+        className="activity-list-item"
+      >
+        <div
+          className="activity-user"
+        >
+          <a
+            href="/@foo"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar medium"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+                }
+              }
+            />
+          </a>
+        </div>
+        <div
+          className="activity-content"
+        >
+          <div
+            className="activity-msg"
+          >
+            <a
+              href="/@foo"
+              onClick={[Function]}
+            >
+              @foo
+            </a>
+            <span>
+               subscribed to Bar
+            </span>
+          </div>
+          <div
+            className="activity-date"
+          >
+            3 days ago
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

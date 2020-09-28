@@ -6,7 +6,7 @@ import {initialState as globalInitialState} from "../common/store/global";
 import {initialState as dynamicPropsInitialState} from "../common/store/dynamic-props";
 import {initialState as trendingTagsInitialState} from "../common/store/trending-tags";
 import {initialState as accountsInitialState} from "../common/store/accounts";
-import {initialState as communityInitialState} from "../common/store/community";
+import {initialState as communitiesInitialState} from "../common/store/communities";
 import {initialState as transactionsInitialState} from "../common/store/transactions";
 import {initialState as usersInitialState} from "../common/store/users";
 import {initialState as activeUserInitialState} from "../common/store/active-user";
@@ -19,9 +19,10 @@ import {initialState as entriesInitialState} from "../common/store/entries";
 import {initialState as pointsInitialState} from "../common/store/points";
 import {initialState as signingKeyInitialState} from "../common/store/signing-key";
 
-import {getSearchIndexCount} from "./helper";
+import {getSearchIndexCount, getActiveUser} from "./helper";
 
 export const makePreloadedState = async (req: express.Request): Promise<AppState> => {
+    const activeUser = getActiveUser(req);
 
     return {
         global: {
@@ -31,11 +32,18 @@ export const makePreloadedState = async (req: express.Request): Promise<AppState
         },
         dynamicProps: dynamicPropsInitialState,
         trendingTags: trendingTagsInitialState,
-        community: communityInitialState,
         accounts: accountsInitialState,
+        communities: communitiesInitialState,
         transactions: transactionsInitialState,
         users: usersInitialState,
-        activeUser: activeUserInitialState,
+        activeUser: activeUser ? {
+            username: activeUser,
+            data: {name: activeUser},
+            points: {
+                points: "0.000",
+                uPoints: "0.000"
+            }
+        } : activeUserInitialState,
         reblogs: reblogsInitialState,
         discussion: discussionInitialState,
         ui: uiInitialState,

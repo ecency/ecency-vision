@@ -7,9 +7,9 @@ import isEqual from "react-fast-compare";
 import global from "./global";
 import dynamicProps from "./dynamic-props";
 import trendingTags from "./trending-tags";
-import community from "./community";
 import entries from "./entries";
 import accounts from "./accounts";
+import communities from "./communities";
 import transactions from "./transactions";
 import users from "./users";
 import activeUser from "./active-user";
@@ -27,9 +27,9 @@ let reducers = {
     global,
     dynamicProps,
     trendingTags,
-    community,
     entries,
     accounts,
+    communities,
     transactions,
     users,
     activeUser,

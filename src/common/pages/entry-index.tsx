@@ -22,8 +22,7 @@ import EntryListLoadingItem from "../components/entry-list-loading-item";
 import DetectBottom from "../components/detect-bottom";
 import EntryListContent from "../components/entry-list";
 import TrendingTagsCard from "../components/trending-tags-card";
-import CommunityCard from "../components/community-card";
-import CommunityCardSm from "../components/community-card-sm";
+import ScrollToTop from "../components/scroll-to-top";
 
 import {_t} from "../i18n";
 
@@ -32,26 +31,18 @@ import _c from "../util/fix-class-names";
 import capitalize from "../util/capitalize";
 
 import defaults from "../constants/defaults.json";
-import {getSubscriptions} from "../api/bridge";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
 
 class EntryIndexPage extends Component<PageProps> {
     componentDidMount() {
-        const {global, fetchEntries, fetchCommunity, activeUser, subscriptions, updateSubscriptions} = this.props;
+        const {global, fetchEntries} = this.props;
         fetchEntries(global.filter, global.tag, false);
-        fetchCommunity();
-
-        if (activeUser && subscriptions.length === 0) {
-            getSubscriptions(activeUser.username).then(r => {
-                if (r) updateSubscriptions(r);
-            });
-        }
     }
 
     componentDidUpdate(prevProps: Readonly<PageProps>): void {
-        const {global, activeUser, fetchEntries, fetchCommunity, updateSubscriptions} = this.props;
+        const {global, fetchEntries} = this.props;
         const {global: pGlobal} = prevProps;
 
         // page changed.
@@ -62,23 +53,6 @@ class EntryIndexPage extends Component<PageProps> {
         if (!(global.filter === pGlobal.filter && global.tag === pGlobal.tag)) {
             fetchEntries(global.filter, global.tag, false);
         }
-
-        if (global.tag !== pGlobal.tag) {
-            fetchCommunity();
-        }
-
-        if (prevProps.activeUser?.username !== activeUser?.username) {
-            if (activeUser) {
-                getSubscriptions(activeUser.username).then(r => {
-                    if (r) updateSubscriptions(r);
-                });
-            }
-        }
-    }
-
-    componentWillUnmount() {
-        const {resetCommunity} = this.props;
-        resetCommunity();
     }
 
     bottomReached = () => {
@@ -95,7 +69,7 @@ class EntryIndexPage extends Component<PageProps> {
     };
 
     render() {
-        const {global, entries, community, activeUser} = this.props;
+        const {global, entries, activeUser} = this.props;
         const {filter, tag} = global;
 
         const groupKey = makeGroupKey(filter, tag);
@@ -114,12 +88,12 @@ class EntryIndexPage extends Component<PageProps> {
             items: MenuItem[]
         } = {
             history: this.props.history,
-            label: _t(`entry-index.filter-${filter}`),
+            label: _t(`entry-filter.filter-${filter}`),
             items: [
                 ...(activeUser
                     ? [
                         {
-                            label: _t("entry-index.feed"),
+                            label: _t("entry-filter.filter-feed"),
                             href: `/@${activeUser.username}/feed`,
                             active: filter === "feed" && activeUser.username === tag.replace("@", ""),
                         },
@@ -127,7 +101,7 @@ class EntryIndexPage extends Component<PageProps> {
                     : []),
                 ...[EntryFilter.trending, EntryFilter.hot, EntryFilter.created].map((x) => {
                     return {
-                        label: _t(`entry-index.filter-${x}`),
+                        label: _t(`entry-filter.filter-${x}`),
                         href: tag && filter !== "feed" ? `/${x}/${tag}` : `/${x}`,
                         active: filter === x,
                     };
@@ -147,16 +121,11 @@ class EntryIndexPage extends Component<PageProps> {
                 title = `${tag} / ${filter}`;
                 description = _t("entry-index.description-user-feed", {u: tag});
             } else {
+                title = `#${tag} / ${filter}`;
+                description = _t("entry-index.description-tag", {f: fC, t: tag});
+
                 url = `${defaults.base}/${filter}/${tag}`;
                 rss = `${defaults.base}/${filter}/${tag}/rss.xml`;
-
-                if (community) {
-                    title = `${community.title.trim()} / ${filter}`;
-                    description = _t("entry-index.description", {f: `${fC} ${community.title.trim()}`});
-                } else {
-                    title = `#${tag} / ${filter}`;
-                    description = _t("entry-index.description-tag", {f: fC, t: tag});
-                }
             }
         }
 
@@ -167,7 +136,7 @@ class EntryIndexPage extends Component<PageProps> {
         return (
             <>
                 <Meta {...metaProps} />
-
+                <ScrollToTop/>
                 <Theme global={this.props.global}/>
                 <Feedback/>
                 {NavBar({...this.props})}
@@ -177,11 +146,6 @@ class EntryIndexPage extends Component<PageProps> {
                         {TrendingTagsCard({...this.props})}
                     </div>
                     <div className={_c(`entry-page-content ${loading ? "loading" : ""}`)}>
-                        {community && (
-                            <div className="community-sm">
-                                {CommunityCardSm({...this.props, community})}
-                            </div>
-                        )}
                         <div className="page-tools">
                             <div className="sm-menu">
                                 <DropDown {...menuConfig} float="left"/>
@@ -206,11 +170,6 @@ class EntryIndexPage extends Component<PageProps> {
                         </div>
                         {loading && entryList.length > 0 ? <LinearProgress/> : ""}
                     </div>
-                    {community && (
-                        <div className="community-side">
-                            {CommunityCard({...this.props, community})}
-                        </div>
-                    )}
                 </div>
                 <DetectBottom onBottom={this.bottomReached}/>
             </>

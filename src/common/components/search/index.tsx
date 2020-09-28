@@ -7,7 +7,7 @@ import {FormControl} from "react-bootstrap";
 import numeral from "numeral";
 
 import {Global} from "../../store/global/types";
-import {Community} from "../../store/community/types";
+import {Community} from "../../store/communities/types";
 import {TrendingTags} from "../../store/trending-tags/types";
 
 import SearchBox from "../search-box";
@@ -189,7 +189,7 @@ export class Search extends Component<Props, State> {
                         const name = i.replace("@", "");
                         return (
                             <>
-                                {UserAvatar({...this.props, username: name, size: "small"})}
+                                {UserAvatar({...this.props, username: name, size: "medium"})}
                                 <span style={{marginLeft: "8px"}}>{name}</span>
                             </>
                         );

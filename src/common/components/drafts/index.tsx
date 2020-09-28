@@ -67,7 +67,7 @@ export class ListItem extends Component<ItemProps> {
         return <div className="drafts-list-item">
             <div className="item-header">
                 <div className="author-part">
-                    <a className="author-avatar">{UserAvatar({...this.props, username: author, size: "small"})}</a>
+                    <a className="author-avatar">{UserAvatar({...this.props, username: author, size: "medium"})}</a>
                     <a className="author">{author}<span className="author-reputation">{accountReputation(reputation!)}</span></a>
                 </div>
                 {Tag({
@@ -196,7 +196,7 @@ export class Drafts extends Component<Props, State> {
             )}
             {(!loading && items.length === 0) && (
                 <div className="drafts-list">
-                    {_t('drafts.empty-list')}
+                    {_t('g.empty-list')}
                 </div>
             )}
         </div>

@@ -1,0 +1,317 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+<div
+  className="community-roles"
+>
+  <h2>
+    User Roles
+  </h2>
+  <table
+    className="table table-striped table-bordered table-roles"
+  >
+    <thead>
+      <tr>
+        <th
+          style={
+            Object {
+              "width": "200px",
+            }
+          }
+        >
+          Account
+        </th>
+        <th
+          style={
+            Object {
+              "width": "74px",
+            }
+          }
+        >
+          Role
+        </th>
+        <th>
+          Title
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <a
+            className="user"
+            href="/@hive-148441"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar medium"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/hive-148441/avatar/medium)",
+                }
+              }
+            />
+             
+            <span
+              className="username"
+            >
+              hive-148441
+            </span>
+          </a>
+        </td>
+        <td>
+          owner
+        </td>
+        <td>
+          
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a
+            className="user"
+            href="/@bluemist"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar medium"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/bluemist/avatar/medium)",
+                }
+              }
+            />
+             
+            <span
+              className="username"
+            >
+              bluemist
+            </span>
+          </a>
+        </td>
+        <td>
+          admin
+        </td>
+        <td>
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`(2) Should not show add user button 1`] = `
+<div
+  className="community-roles"
+>
+  <h2>
+    User Roles
+  </h2>
+  <table
+    className="table table-striped table-bordered table-roles"
+  >
+    <thead>
+      <tr>
+        <th
+          style={
+            Object {
+              "width": "200px",
+            }
+          }
+        >
+          Account
+        </th>
+        <th
+          style={
+            Object {
+              "width": "74px",
+            }
+          }
+        >
+          Role
+        </th>
+        <th>
+          Title
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <a
+            className="user"
+            href="/@hive-148441"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar medium"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/hive-148441/avatar/medium)",
+                }
+              }
+            />
+             
+            <span
+              className="username"
+            >
+              hive-148441
+            </span>
+          </a>
+        </td>
+        <td>
+          owner
+        </td>
+        <td>
+          
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a
+            className="user"
+            href="/@bluemist"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar medium"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/bluemist/avatar/medium)",
+                }
+              }
+            />
+             
+            <span
+              className="username"
+            >
+              bluemist
+            </span>
+          </a>
+        </td>
+        <td>
+          admin
+        </td>
+        <td>
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`(3) Should show add user button 1`] = `
+<div
+  className="community-roles"
+>
+  <h2>
+    User Roles
+  </h2>
+  <table
+    className="table table-striped table-bordered table-roles"
+  >
+    <thead>
+      <tr>
+        <th
+          style={
+            Object {
+              "width": "200px",
+            }
+          }
+        >
+          Account
+        </th>
+        <th
+          style={
+            Object {
+              "width": "74px",
+            }
+          }
+        >
+          Role
+        </th>
+        <th>
+          Title
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <a
+            className="user"
+            href="/@hive-148441"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar medium"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/hive-148441/avatar/medium)",
+                }
+              }
+            />
+             
+            <span
+              className="username"
+            >
+              hive-148441
+            </span>
+          </a>
+        </td>
+        <td>
+          owner
+        </td>
+        <td>
+          
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a
+            className="user"
+            href="/@bluemist"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar medium"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/bluemist/avatar/medium)",
+                }
+              }
+            />
+             
+            <span
+              className="username"
+            >
+              bluemist
+            </span>
+          </a>
+        </td>
+        <td>
+          <a
+            href="#"
+            onClick={[Function]}
+          >
+            admin
+          </a>
+        </td>
+        <td>
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button
+    className="btn btn-primary"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    Add User
+  </button>
+</div>
+`;

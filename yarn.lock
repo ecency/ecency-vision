@@ -969,10 +969,10 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
-"@esteemapp/esteem-render-helpers@^1.6.8":
-  version "1.6.8"
-  resolved "https://registry.yarnpkg.com/@esteemapp/esteem-render-helpers/-/esteem-render-helpers-1.6.8.tgz#63e3bbbd6d3893d02be59163703b458623b4bf1f"
-  integrity sha512-W3VGIN+OUAZ0KnJT7aM3YkFPUjN6aQlHrsDSkHUkxD3l2lvHAB4PLLr1TBfDKTVTt0k5wK71GuUnpy5DO3sasg==
+"@esteemapp/esteem-render-helpers@1.6.9":
+  version "1.6.9"
+  resolved "https://registry.yarnpkg.com/@esteemapp/esteem-render-helpers/-/esteem-render-helpers-1.6.9.tgz#c02d89df3684f891e42965102d4baa573765b5f8"
+  integrity sha512-mUkryPuAJepBLLXpTrzKgTKyeMAUMWIoP7I1aIJukEfyDB3L/2lCO/HKI7s1o4kAFeUUg5z9tmTvFMOyUiTeBA==
   dependencies:
     he "^1.2.0"
     lru-cache "^5.1.1"
@@ -1342,6 +1342,13 @@
   dependencies:
     "@types/connect" "*"
     "@types/node" "*"
+
+"@types/bs58@^4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@types/bs58/-/bs58-4.0.1.tgz#3d51222aab067786d3bc3740a84a7f5a0effaa37"
+  integrity sha512-yfAgiWgVLjFCmRv8zAcOIHywYATEwiTVccTLnRp6UxTNavT55M9d/uhK3T03St/+8/z/wW+CRjGKUNmEqoHHCA==
+  dependencies:
+    base-x "^3.0.6"
 
 "@types/bytebuffer@^5.0.41":
   version "5.0.41"
@@ -2406,7 +2413,7 @@ balanced-match@^1.0.0:
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
   integrity sha1-ibTRmasr7kneFk6gK4nORi1xt2c=
 
-base-x@^3.0.2:
+base-x@^3.0.2, base-x@^3.0.6:
   version "3.0.8"
   resolved "https://registry.yarnpkg.com/base-x/-/base-x-3.0.8.tgz#1e1106c2537f0162e8b52474a557ebb09000018d"
   integrity sha512-Rl/1AWP4J/zRrk54hhlxH4drNxPJXYUaKffODVI53/dAsV4t9fBxyxYKAVPU1XBHxYwOWP9h9H0hM2MVw4YfJA==

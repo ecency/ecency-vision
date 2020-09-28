@@ -77,7 +77,7 @@ export class NotificationListItem extends Component<{
             ...this.props,
             username: notification.source,
             afterClick: this.afterClick,
-            children: <a className="source-avatar">{UserAvatar({...this.props, username: notification.source, size: "small"})}</a>
+            children: <a className="source-avatar">{UserAvatar({...this.props, username: notification.source, size: "medium"})}</a>
         });
 
         const sourceLink = ProfileLink({
@@ -363,7 +363,7 @@ export class DialogContent extends Component<NotificationProps> {
                 {!loading && list.length === 0 && (
                     <div className="list-body empty-list">
                         <span className="empty-text">
-                            {_t('notifications.empty-list')}
+                            {_t('g.empty-list')}
                         </span>
                     </div>
                 )}

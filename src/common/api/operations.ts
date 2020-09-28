@@ -55,10 +55,16 @@ const makeHiveClient = async (): Promise<HiveClient> => {
     return hClient;
 }
 
-export const formatError = (err: any) => {
+export const formatError = (err: any): string => {
     if (err.error_description) {
         return err.error_description.substring(0, 80);
     }
+
+    if (err.message) {
+        return err.message.substring(0, 80);
+    }
+
+    return '';
 };
 
 export const reblog = (username: string, author: string, permlink: string): Promise<TransactionConfirmation> => {
@@ -236,7 +242,7 @@ export const transferPointHot = (from: string, to: string, amount: string, memo:
 
     const webUrl = `https://hivesigner.com/sign/custom-json?authority=active&required_auths=%5B%22${from}%22%5D&required_posting_auths=%5B%5D&id=esteem_point_transfer&json=${encodeURIComponent(
         json
-    )}`
+    )}&redirect_uri=https://ecency.com/@${from}/points`
 
     const win = window.open(webUrl, '_blank');
     return win!.focus();
@@ -414,7 +420,7 @@ export const promoteHot = (user: string, author: string, permlink: string, durat
 
     const webUrl = `https://hivesigner.com/sign/custom-json?authority=active&required_auths=%5B%22${user}%22%5D&required_posting_auths=%5B%5D&id=esteem_promote&json=${encodeURIComponent(
         json
-    )}`
+    )}&redirect_uri=https://ecency.com/@${user}/points`
 
     const win = window.open(webUrl, '_blank');
     return win!.focus();
@@ -450,7 +456,7 @@ export const boostHot = (user: string, author: string, permlink: string, amount:
 
     const webUrl = `https://hivesigner.com/sign/custom-json?authority=active&required_auths=%5B%22${user}%22%5D&required_posting_auths=%5B%5D&id=esteem_boost&json=${encodeURIComponent(
         json
-    )}`
+    )}&redirect_uri=https://ecency.com/@${user}/points`
 
     const win = window.open(webUrl, '_blank');
     return win!.focus();
@@ -464,10 +470,6 @@ export const updateProfile = (account: Account, newProfile: {
     cover_image: string,
     profile_image: string,
 }): Promise<TransactionConfirmation> => {
-    if (!account.memo_key) {
-        throw "memo_key required with account instance";
-    }
-
     const client = new hs.Client({
         accessToken: getAccessToken(account.name)
     });
@@ -475,7 +477,7 @@ export const updateProfile = (account: Account, newProfile: {
     const params = {
         account: account.name,
         json_metadata: '',
-        posting_json_metadata: JSON.stringify({profile: newProfile}),
+        posting_json_metadata: JSON.stringify({profile: {...newProfile, version: 2}}),
         extensions: []
     };
 
@@ -485,7 +487,7 @@ export const updateProfile = (account: Account, newProfile: {
 }
 
 export const grantPostingPermission = async (key: PrivateKey, account: Account, pAccount: string) => {
-    if (!account.posting || !account.memo_key || !account.json_metadata) {
+    if (account.posting === undefined || account.memo_key === undefined || account.json_metadata === undefined) {
         throw "posting|memo_key|json_metadata required with account instance";
     }
 
@@ -515,7 +517,7 @@ export const grantPostingPermission = async (key: PrivateKey, account: Account, 
 };
 
 export const revokePostingPermission = async (key: PrivateKey, account: Account, pAccount: string) => {
-    if (!account.posting || !account.memo_key || !account.json_metadata) {
+    if (account.posting === undefined || account.memo_key === undefined || account.json_metadata === undefined) {
         throw "posting|memo_key|json_metadata required with account instance";
     }
 
@@ -539,3 +541,51 @@ export const revokePostingPermission = async (key: PrivateKey, account: Account,
         key
     );
 };
+
+export const setUserRole = (username: string, community: string, account: string, role: string): Promise<TransactionConfirmation> => {
+    const client = new hs.Client({
+        accessToken: getAccessToken(username),
+    });
+
+    const json = JSON.stringify([
+        'setRole', {community, account, role}
+    ]);
+
+    return client.customJson([], [username], 'community', json);
+}
+
+export const updateCommunity = (username: string, community: string, props: { title: string, about: string, lang: string, description: string, flag_text: string, is_nsfw: boolean }): Promise<TransactionConfirmation> => {
+    const client = new hs.Client({
+        accessToken: getAccessToken(username),
+    });
+
+    const json = JSON.stringify([
+        'updateProps', {community, props}
+    ]);
+
+    return client.customJson([], [username], 'community', json);
+}
+
+export const pinPost = (username: string, community: string, account: string, permlink: string, pin: boolean): Promise<TransactionConfirmation> => {
+    const client = new hs.Client({
+        accessToken: getAccessToken(username),
+    });
+
+    const json = JSON.stringify([
+        pin ? 'pinPost' : 'unpinPost', {community, account, permlink}
+    ]);
+
+    return client.customJson([], [username], 'community', json);
+}
+
+export const mutePost = (username: string, community: string, account: string, permlink: string, notes: string, mute: boolean): Promise<TransactionConfirmation> => {
+    const client = new hs.Client({
+        accessToken: getAccessToken(username),
+    });
+
+    const json = JSON.stringify([
+        mute ? 'mutePost' : 'unmutePost', {community, account, permlink, notes}
+    ]);
+
+    return client.customJson([], [username], 'community', json);
+}

@@ -19,13 +19,6 @@
     flex-grow: 1;
     padding-bottom: 60px;
 
-    .community-sm {
-      margin-bottom: 20px;
-      @media (min-width: $lg-break) {
-        display: none;
-      }
-    }
-
     .page-tools {
       align-items: center;
       display: flex;
@@ -78,18 +71,6 @@
           justify-content: flex-start;
         }
       }
-    }
-  }
-
-  .community-side {
-    width: 310px;
-    margin-left: 20px;
-    flex-grow: 0;
-    flex-shrink: 0;
-    display: none;
-
-    @media (min-width: $lg-break) {
-      display: block;
     }
   }
 }

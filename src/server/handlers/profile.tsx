@@ -17,7 +17,7 @@ import {makePreloadedState} from "../state";
 import {render} from "../template";
 
 export default async (req: express.Request, res: express.Response) => {
-    const {username, section = "posts"} = req.params;
+    const {username, section = "blog"} = req.params;
     const address = `@${username}`;
 
     let entries = {};

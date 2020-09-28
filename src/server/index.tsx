@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import {EntryFilter, ProfileFilter} from "../common/store/global/types";
 
 import entryIndexHandler from "./handlers/entry-index";
+import communityHandler from "./handlers/community";
 import profileHandler from "./handlers/profile";
 import entryHandler from "./handlers/entry";
 import fallbackHandler from "./handlers/fallback";
@@ -70,6 +71,12 @@ server
     )
     .use(
         [
+            `^/:filter(${entryFilters.join("|")}|subscribers|activities|roles)/:name(hive-[\\d]+)$`, //  /hot/hive-231312
+        ],
+        communityHandler
+    )
+    .use(
+        [
             "^/$", // index
             `^/:filter(${entryFilters.join("|")})$`, // /trending
             `^/:filter(${entryFilters.join("|")})/:tag$`, //  /trending/esteem
@@ -80,7 +87,7 @@ server
     .use(
         [
             "^/@:username$", // /@esteemapp
-            `^/@:username/:section(${profileFilters.join("|")}|wallet|points)$`, // /@esteemapp/comments
+            `^/@:username/:section(${profileFilters.join("|")}|communities|wallet|points)$`, // /@esteemapp/comments
         ],
         profileHandler
     )

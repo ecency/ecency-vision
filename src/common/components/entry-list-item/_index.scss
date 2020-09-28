@@ -37,6 +37,7 @@
 
       .author {
         font-weight: 700;
+        word-break: keep-all;
 
         @include themify(day) {
           color: $charcoal-grey;

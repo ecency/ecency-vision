@@ -24,8 +24,6 @@
 @import '../common/components/entry-list-loading-item/index';
 @import '../common/components/entry-votes/index';
 @import '../common/components/trending-tags-card/index';
-@import '../common/components/community-card/index';
-@import '../common/components/community-card-sm/index';
 @import '../common/components/community-list-item/index';
 @import '../common/components/profile-card/index';
 @import '../common/components/friends/index';
@@ -59,11 +57,24 @@
 @import '../common/components/promote';
 @import '../common/components/boost';
 @import '../common/components/key-or-hot';
+@import '../common/components/community-card';
+@import '../common/components/community-menu';
+@import '../common/components/community-subscribers';
+@import '../common/components/community-activities';
+@import '../common/components/community-cover';
+@import '../common/components/profile-communities';
+@import '../common/components/community-roles';
+@import '../common/components/community-role-edit';
+@import '../common/components/community-settings';
+@import '../common/components/scroll-to-top';
+@import '../common/components/pin-btn';
+@import '../common/components/mute-btn';
 
 @import '../common/pages/entry-index';
 @import '../common/pages/profile';
 @import '../common/pages/entry';
 @import '../common/pages/communities';
+@import '../common/pages/community';
 @import '../common/pages/submit';
 @import '../common/pages/static';
 @import '../common/pages/discover';

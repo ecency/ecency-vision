@@ -107,6 +107,11 @@ export const informationSvg = (
     </svg>
 );
 
+export const informationOutlineSvg = (<svg viewBox="0 0 24 24">
+    <path fill="currentColor"
+          d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"/>
+</svg>);
+
 export const earthSvg = (
     <svg viewBox="0 0 24 24">
         <path
@@ -566,4 +571,13 @@ export const historySvg = (<svg viewBox="0 0 24 24">
 export const tagSvg = (<svg viewBox="0 0 24 24">
     <path fill="currentColor"
           d="M5.5,7A1.5,1.5 0 0,1 4,5.5A1.5,1.5 0 0,1 5.5,4A1.5,1.5 0 0,1 7,5.5A1.5,1.5 0 0,1 5.5,7M21.41,11.58L12.41,2.58C12.05,2.22 11.55,2 11,2H4C2.89,2 2,2.89 2,4V11C2,11.55 2.22,12.05 2.59,12.41L11.58,21.41C11.95,21.77 12.45,22 13,22C13.55,22 14.05,21.77 14.41,21.41L21.41,14.41C21.78,14.05 22,13.55 22,13C22,12.44 21.77,11.94 21.41,11.58Z"/>
+</svg>);
+
+export const scriptTextOutlineSvg = (<svg viewBox="0 0 24 24">
+    <path fill="currentColor"
+          d="M15,20A1,1 0 0,0 16,19V4H8A1,1 0 0,0 7,5V16H5V5A3,3 0 0,1 8,2H19A3,3 0 0,1 22,5V6H20V5A1,1 0 0,0 19,4A1,1 0 0,0 18,5V9L18,19A3,3 0 0,1 15,22H5A3,3 0 0,1 2,19V18H13A2,2 0 0,0 15,20M9,6H14V8H9V6M9,10H14V12H9V10M9,14H14V16H9V14Z"/>
+</svg>);
+
+export const menuSvg = (<svg viewBox="0 0 24 24">
+    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"/>
 </svg>);
