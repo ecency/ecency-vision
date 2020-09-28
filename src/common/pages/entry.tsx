@@ -386,12 +386,6 @@ class EntryPage extends Component<Props, State> {
                                                 </div>
                                             </div>
                                         })}
-                                        {Tag({
-                                            ...this.props,
-                                            tag: entry.category,
-                                            type: "link",
-                                            children: <a className="category">{entry.category}</a>
-                                        })}
                                         <span className="separator"/>
                                         <span className="date" title={published.format("LLLL")}>{published.fromNow()}</span>
                                         <span className="flex-spacer"/>
@@ -404,6 +398,12 @@ class EntryPage extends Component<Props, State> {
                                 <div className="entry-body markdown-view user-selectable" dangerouslySetInnerHTML={renderedBody}/>
                                 <div className="entry-footer">
                                     <div className="entry-tags">
+                                        {!tags.find(x => x === entry?.category) && Tag({
+                                            ...this.props,
+                                            tag: entry.category,
+                                            type: "link",
+                                            children: <div className="entry-tag">{entry.category}</div>
+                                        })}
                                         {tags.map((t) => (
                                             <Fragment key={t}>
                                                 {Tag({
