@@ -100,7 +100,7 @@ export class List extends Component<ListProps, ListState> {
                     return ProfileLink({
                         ...this.props,
                         username: row.delegator,
-                        children: <span className="account notranslate">{UserAvatar({...this.props, username: row.delegator, size: "small"})} {row.delegator}</span>
+                        children: <span className="account notranslate">{UserAvatar({...this.props, username: row.delegator, size: "medium"})} {row.delegator}</span>
                     })
                 },
             },

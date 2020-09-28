@@ -84,7 +84,7 @@ export class CommunityRoles extends Component<Props, State> {
                                 {ProfileLink({
                                     ...this.props,
                                     username,
-                                    children: <a className="user">{UserAvatar({...this.props, username, size: "small"})} <span className="username">{username}</span></a>
+                                    children: <a className="user">{UserAvatar({...this.props, username, size: "medium"})} <span className="username">{username}</span></a>
                                 })}</td>
                             <td>{canEdit ? <a href="#" onClick={(e) => {
                                 e.preventDefault();

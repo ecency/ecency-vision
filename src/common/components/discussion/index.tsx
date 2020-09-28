@@ -273,7 +273,7 @@ export class Item extends Component<ItemProps, ItemState> {
             <div className={_c(`discussion-item depth-${entry.depth} ${isHidden ? "hidden-item" : ""}`)}>
                 <div className="item-inner">
                     <div className="item-figure">
-                        {ProfileLink({...this.props, username: entry.author, children: <a>{UserAvatar({...this.props, username: entry.author, size: "small"})}</a>})}
+                        {ProfileLink({...this.props, username: entry.author, children: <a>{UserAvatar({...this.props, username: entry.author, size: "medium"})}</a>})}
                     </div>
                     <div className="item-content">
                         <div className="item-header">

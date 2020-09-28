@@ -7,7 +7,7 @@ import defaults from '../../constants/defaults.json';
 interface Props {
     global: Global;
     username: string,
-    size: string,
+    size?: string,
     src?: string
 }
 
