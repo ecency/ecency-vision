@@ -149,11 +149,6 @@
           align-items: center;
           cursor: pointer;
           display: flex;
-          margin-right: 4px;
-
-          @media (min-width: $sm-break) {
-            margin-right: 10px;
-          }
 
           .author-avatar {
             margin-right: 6px;
@@ -171,6 +166,7 @@
             .author-name {
               font-weight: 700;
               margin-right: 2px;
+              word-break: keep-all;
             }
 
             @include themify(day) {
@@ -193,31 +189,6 @@
               &::after {
                 content: ")";
               }
-            }
-          }
-        }
-
-        .category {
-          background-color: $dark-sky-blue;
-          border-radius: 25px;
-          color: $white;
-          flex-shrink: 0;
-          font-size: 14px;
-          padding: 2px 8px;
-          transition: 0.5s;
-          display: none;
-
-          @media (min-width: $xsm-break) {
-            display: block;
-          }
-
-          &:hover {
-            @include themify(day) {
-              background-color: lighten($dark-sky-blue, 10);
-            }
-
-            @include themify(night) {
-              background-color: darken($dark-sky-blue, 10);
             }
           }
         }
@@ -257,6 +228,7 @@
           margin-bottom: 4px;
           margin-right: 12px;
           padding: 4px 12px;
+          word-break: keep-all;
 
           @media (min-width: $sm-break) {
             font-size: 16px;
