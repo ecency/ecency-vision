@@ -34,7 +34,7 @@ jobs:
       with:
         host: ${{ secrets.SSH_PRODUCTION_HOST }}
         username: ${{ secrets.SSH_USERNAME }}
-        key: ${{ secrets.SSH_KEY }}
+        key: ${{ secrets.SSH_PRODUCTION_KEY }}
         port: ${{ secrets.SSH_PORT }}
         envs: STAGING_PORT
         script: |
