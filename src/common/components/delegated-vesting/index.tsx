@@ -101,7 +101,7 @@ export class List extends Component<ListProps, ListState> {
                         ...this.props,
                         username: row.delegatee,
                         children: <span className="account">
-                            {UserAvatar({...this.props, username: row.delegatee, size: "small"})}
+                            {UserAvatar({...this.props, username: row.delegatee, size: "medium"})}
                             {row.delegatee}
                         </span>
                     })

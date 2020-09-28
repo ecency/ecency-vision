@@ -77,7 +77,7 @@ export class Subscribers extends Component<Props, State> {
                                             ...this.props,
                                             username,
                                             children: <div className="user-list-item">
-                                                {UserAvatar({...this.props, username, size: "large"})}
+                                                {UserAvatar({...this.props, username, size: "medium"})}
                                                 <div className="user-name notransalte">{username}</div>
                                             </div>
                                         })

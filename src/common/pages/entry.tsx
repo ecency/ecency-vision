@@ -378,7 +378,7 @@ class EntryPage extends Component<Props, State> {
                                             username: entry.author,
                                             children: <div className="author-part">
                                                 <div className="author-avatar">
-                                                    {UserAvatar({...this.props, username: entry.author, size: "small"})}
+                                                    {UserAvatar({...this.props, username: entry.author, size: "medium"})}
                                                 </div>
                                                 <div className="author notranslate">
                                                     <span className="author-name">{entry.author}</span>
