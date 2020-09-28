@@ -189,7 +189,7 @@ export class Search extends Component<Props, State> {
                         const name = i.replace("@", "");
                         return (
                             <>
-                                {UserAvatar({...this.props, username: name, size: "small"})}
+                                {UserAvatar({...this.props, username: name, size: "medium"})}
                                 <span style={{marginLeft: "8px"}}>{name}</span>
                             </>
                         );

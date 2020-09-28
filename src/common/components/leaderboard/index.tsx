@@ -119,7 +119,7 @@ export class LeaderBoard extends Component <Props, State> {
                                     {ProfileLink({
                                         ...this.props,
                                         username: r._id,
-                                        children: <a>{UserAvatar({...this.props, size: "small", username: r._id})}</a>
+                                        children: <a>{UserAvatar({...this.props, size: "medium", username: r._id})}</a>
                                     })}
                                 </div>
                                 <div className="username">

@@ -179,7 +179,7 @@ class ProfilePage extends Component<Props, State> {
             description: account.profile?.about || "",
             url,
             canonical: url,
-            image: `${defaults.imageServer}/u/${username}/avatar/large`,
+            image: `${defaults.imageServer}/u/${username}/avatar/medium`,
             rss: `${defaults.base}/@${username}/rss`,
             keywords: `${username}, ${username}'s blog`,
         };
