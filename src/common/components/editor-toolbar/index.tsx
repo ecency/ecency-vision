@@ -162,15 +162,16 @@ export class EditorToolbar extends Component<Props> {
             .map(item =>
                 item.type.indexOf('image') !== -1 ? item.getAsFile() : null
             )
+            .filter(i => i);
 
         if (files.length > 0) {
             e.stopPropagation();
             e.preventDefault();
-        }
 
-        files.forEach(file => {
-            if (file) this.upload(file).then();
-        });
+            files.forEach(file => {
+                if (file) this.upload(file).then();
+            });
+        }
     }
 
     bold = () => {
