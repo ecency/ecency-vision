@@ -25,10 +25,10 @@ const composedEnhancers = compose(
     ...enhancers
 );
 
-const configureStore = (preLoadedState: AppState) => {
+const configureStore = (preLoadedState: AppState | null = null) => {
     const store = createStore(
         rootReducer,
-        preLoadedState,
+        (preLoadedState || {}),
         composedEnhancers
     );
 
