@@ -1,6 +1,7 @@
 import {combineReducers} from "redux";
 import {connectRouter} from "connected-react-router";
-import {createBrowserHistory, History} from "history";
+import {createBrowserHistory, createMemoryHistory, History} from "history";
+
 
 import isEqual from "react-fast-compare";
 
@@ -46,7 +47,13 @@ export let history: History | undefined;
 
 // create browser history on client side
 if (typeof window !== "undefined") {
-    history = createBrowserHistory();
+    if (window.location.href.startsWith('file://')) {
+        // electron
+        history = createMemoryHistory();
+    } else {
+        // web
+        history = createBrowserHistory();
+    }
 
     // We need a customised history object since history pushes new state for same path.
     // See: https://github.com/ReactTraining/history/issues/470
@@ -82,6 +89,18 @@ if (typeof window !== "undefined") {
 
         _push(pathname, state);
     }
+
+    // scroll to top on every push action
+    history.listen((location, action) => {
+        if (action === "PUSH") {
+            setTimeout(() => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                });
+            }, 100);
+        }
+    });
 
     // @ts-ignore
     reducers = {router: connectRouter(history), ...reducers};

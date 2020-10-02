@@ -8,6 +8,7 @@ import {reloadAct as reloadUsers} from "../common/store/users";
 import {loginAct as loginActiveUser, updateAct as updateActiveUserAct} from "../common/store/active-user";
 import {reloadAct as reloadReblogs} from "../common/store/reblogs";
 import {fetchedAct as loadDynamicProps} from "../common/store/dynamic-props";
+import {UserPoints} from "../common/store/active-user/types";
 
 import {getAccount, getDynamicProps} from "../common/api/hive";
 import {usrActivity, getPoints} from "../common/api/private";
@@ -22,22 +23,8 @@ import "../style/theme-day.scss";
 import "../style/theme-night.scss";
 
 import './window';
-import {UserPoints} from "../common/store/active-user/types";
-
 
 const store = configureStore(window["__PRELOADED_STATE__"]);
-
-history!.listen((location, action) => {
-    if (action === "PUSH") {
-        // Scroll to top on every push action
-        setTimeout(() => {
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth",
-            });
-        }, 100);
-    }
-});
 
 hydrate(
     <Provider store={store}>
