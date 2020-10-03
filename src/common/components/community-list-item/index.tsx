@@ -15,6 +15,8 @@ import {ToggleType, UI} from "../../store/ui/types";
 
 import ProfileLink from "../../components/profile-link";
 import SubscriptionBtn from "../subscription-btn";
+import UserAvatar from "../user-avatar";
+import {Global} from "../../store/global/types";
 
 import {makePath} from "../tag";
 
@@ -26,6 +28,7 @@ import formattedNumber from "../../util/formatted-number";
 
 interface Props {
     history: History;
+    global: Global;
     users: User[];
     activeUser: ActiveUser | null;
     community: Community;
@@ -58,6 +61,7 @@ export class CommunityListItem extends Component<Props> {
             <div className="community-list-item">
                 <div className="item-content">
                     <h2 className="item-title">
+                        {UserAvatar({...this.props, username: community.name, size: "medium"})}
                         <Link to={makePath(defaults.filter, community.name)}>{community.title}</Link>
                     </h2>
                     <div className="item-about">{community.about}</div>
@@ -88,6 +92,7 @@ export class CommunityListItem extends Component<Props> {
 export default (p: Props) => {
     const props: Props = {
         history: p.history,
+        global: p.global,
         users: p.users,
         activeUser: p.activeUser,
         community: p.community,
