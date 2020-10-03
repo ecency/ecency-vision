@@ -11,10 +11,10 @@ exports[`(1) Default render 1`] = `
       className="item-title"
     >
       <span
-        className="user-avatar small"
+        className="user-avatar medium"
         style={
           Object {
-            "backgroundImage": "url(https://images.ecency.com/u/hive-148441/avatar/small)",
+            "backgroundImage": "url(https://images.ecency.com/u/hive-148441/avatar/medium)",
           }
         }
       />

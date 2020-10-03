@@ -61,7 +61,7 @@ export class CommunityListItem extends Component<Props> {
             <div className="community-list-item">
                 <div className="item-content">
                     <h2 className="item-title">
-                        {UserAvatar({...this.props, username: community.name, size: "small"})}
+                        {UserAvatar({...this.props, username: community.name, size: "medium"})}
                         <Link to={makePath(defaults.filter, community.name)}>{community.title}</Link>
                     </h2>
                     <div className="item-about">{community.about}</div>
