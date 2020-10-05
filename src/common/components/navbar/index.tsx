@@ -59,13 +59,18 @@ interface Props {
 }
 
 interface State {
-    smVisible: boolean
+    smVisible: boolean,
+    floating: boolean,
 }
 
 export class NavBar extends Component<Props, State> {
     state: State = {
-        smVisible: false
+        smVisible: false,
+        floating: false
     }
+
+    timer: any = null;
+    nav = React.createRef<HTMLDivElement>();
 
     componentDidMount() {
         const {location, toggleUIProp} = this.props;
@@ -73,6 +78,15 @@ export class NavBar extends Component<Props, State> {
         if (qs.referral) {
             toggleUIProp('signUp');
         }
+
+        this.detect();
+        window.addEventListener("scroll", this.scrollChanged);
+        window.addEventListener("resize", this.scrollChanged);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener("scroll", this.scrollChanged);
+        window.removeEventListener("resize", this.scrollChanged);
     }
 
     shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
@@ -83,6 +97,27 @@ export class NavBar extends Component<Props, State> {
             || !isEqual(this.props.ui, nextProps.ui)
             || !isEqual(this.props.notifications, nextProps.notifications)
             || !isEqual(this.state, nextState)
+    }
+
+    scrollChanged = () => {
+        clearTimeout(this.timer);
+        this.timer = setTimeout(this.detect, 100);
+    }
+
+    detect = () => {
+        const nav = this.nav.current;
+        if (!nav) return;
+
+        const limit = nav.clientHeight * 2;
+        const floating = window.scrollY >= limit;
+
+        if (floating) {
+            nav.classList.add("can-float");
+        } else {
+            nav.classList.remove("can-float");
+        }
+
+        this.setState({floating});
     }
 
     changeTheme = () => {
@@ -99,10 +134,11 @@ export class NavBar extends Component<Props, State> {
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
         const logoHref = activeUser ? `/@${activeUser.username}/feed` : '/';
 
-        const {smVisible} = this.state;
+        const {smVisible, floating} = this.state;
 
         return (
             <>
+                {floating && (<div className="nav-bar-rep"/>)}
                 <div className="nav-bar-toggle" onClick={this.toggleSmVisible}>{smVisible ? closeSvg : menuSvg}</div>
                 {!smVisible && (
                     <div className="nav-bar-sm">
@@ -125,7 +161,7 @@ export class NavBar extends Component<Props, State> {
                         </div>
                     </div>
                 )}
-                <div className={_c(`nav-bar ${smVisible ? "visible-sm" : ""}`)}>
+                <div ref={this.nav} className={_c(`nav-bar ${smVisible ? "visible-sm" : ""}`)}>
                     <div className="nav-bar-inner">
                         <div className="brand">
                             <Link to={logoHref}>
