@@ -415,7 +415,7 @@ exports[`(1) Transfer (3) Step 3 1`] = `
               autoFocus={true}
               className="form-control"
               onChange={[Function]}
-              placeholder="Enter active private key"
+              placeholder="Enter active/owner/master key"
               type="password"
               value=""
             />
