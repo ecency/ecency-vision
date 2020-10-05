@@ -2,7 +2,9 @@ import React, {Component} from "react";
 
 import {Button, Form, FormControl, InputGroup} from "react-bootstrap";
 
-import {PrivateKey} from "@hiveio/dhive";
+import {cryptoUtils, PrivateKey} from "@hiveio/dhive";
+
+import {ActiveUser} from "../../store/active-user/types";
 
 import OrDivider from "../or-divider";
 import {error} from "../feedback";
@@ -14,6 +16,7 @@ import {keySvg} from "../../img/svg";
 const hsLogo = require("../../img/hive-signer.svg");
 
 interface Props {
+    activeUser: ActiveUser;
     signingKey: string;
     setSigningKey: (key: string) => void;
     inProgress: boolean;
@@ -36,15 +39,22 @@ export class KeyOrHot extends Component<Props, State> {
     }
 
     keyEntered = () => {
+        const {activeUser} = this.props;
         const {key} = this.state;
 
         let pKey: PrivateKey;
 
-        try {
-            pKey = PrivateKey.fromString(key);
-        } catch (e) {
-            error('Invalid active private key!');
-            return;
+        if (cryptoUtils.isWif(key)) {
+            // wif
+            try {
+                pKey = PrivateKey.fromString(key);
+            } catch (e) {
+                error('Invalid active private key!');
+                return;
+            }
+        } else {
+            // master key
+            pKey = PrivateKey.fromLogin(activeUser.username, key, 'active');
         }
 
         const {onKey, setSigningKey} = this.props;
@@ -102,6 +112,7 @@ export class KeyOrHot extends Component<Props, State> {
 
 export default (p: Props) => {
     const props = {
+        activeUser: p.activeUser,
         signingKey: p.signingKey,
         setSigningKey: p.setSigningKey,
         inProgress: p.inProgress,

@@ -573,6 +573,7 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
                         <Modal.Body>
                             {KeyOrHot({
                                 ...this.props,
+                                activeUser: activeUser!,
                                 inProgress: false,
                                 onKey: (key) => {
                                     this.toggleKeyDialog();

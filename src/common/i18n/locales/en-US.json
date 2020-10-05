@@ -427,7 +427,7 @@
   },
   "key-or-hot": {
     "sign": "Sign",
-    "key-placeholder": "Enter active private key",
+    "key-placeholder": "Enter active/owner/master key",
     "with-hivesigner": "Sign with hivesigner"
   },
   "delegated-vesting": {

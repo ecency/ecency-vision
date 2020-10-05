@@ -23,6 +23,12 @@
       font-size: 20px;
       font-weight: 400;
       margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+
+      .user-avatar{
+        margin-right: 6px;
+      }
     }
 
     .item-about {

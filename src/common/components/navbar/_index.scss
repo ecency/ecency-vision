@@ -376,4 +376,35 @@
       }
     }
   }
+
+  &.can-float {
+    @media (min-width: $md-break) {
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      height: 64px;
+      width: 100%;
+      animation: anim-fadein .3s;
+
+      @include themify(day) {
+        background: $white-two;
+        box-shadow: 0 .5rem 1rem rgba($gray-500, .15)
+      }
+
+      @include themify(night) {
+        background: $dark-two;
+      }
+    }
+  }
+}
+
+.nav-bar-rep {
+  display: none;
+
+  @media (min-width: $md-break) {
+    display: block;
+    margin-bottom: 30px;
+    height: 64px;
+  }
 }
