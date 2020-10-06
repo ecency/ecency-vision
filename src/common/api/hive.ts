@@ -8,9 +8,10 @@ import parseAsset from "../helper/parse-asset";
 
 import SERVERS from "../constants/servers.json";
 
-export let client = new Client(SERVERS, {
+export const client = new Client(SERVERS, {
     timeout: 3000,
 });
+
 client.database.getVersion().then((res: any) => {
     if (res.blockchain_version !== '0.23.0') {
         // true: eclipse rebranded rpc nodes
