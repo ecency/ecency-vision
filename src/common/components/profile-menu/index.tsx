@@ -26,7 +26,8 @@ interface Props {
 
 export class ProfileMenu extends Component<Props> {
     shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
-        return !isEqual(this.props.location, nextProps.location);
+        return !isEqual(this.props.location, nextProps.location) ||
+            !isEqual(this.props.global, nextProps.global);
     }
 
     render() {
