@@ -200,6 +200,9 @@ class ProfilePage extends Component<Props, State> {
                             account
                         })}
                     </div>
+                    <span itemScope={true} itemType="http://schema.org/Person">
+                        <span itemProp="name">{account.profile?.name || account.name}</span>
+                    </span>
                     <div className="content-side">
                         {ProfileMenu({
                             ...this.props,
