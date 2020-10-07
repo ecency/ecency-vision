@@ -1,5 +1,7 @@
 import {Dispatch} from "redux";
 
+import Cookies from "js-cookie";
+
 import {AppState} from "../index";
 import {Account} from "../accounts/types";
 import {Actions, ActionTypes, ActiveUser, UserPoints, LoginAction, LogoutAction, UpdateAction} from "./types";
@@ -8,19 +10,22 @@ import * as ls from "../../util/local-storage";
 
 import {getAccount} from "../../api/hive";
 import {getPoints} from "../../api/private";
-import Cookies from "js-cookie";
+
+export const activeUserMaker = (name: string, points: string = "0.000", uPoints: string = "0.000"): ActiveUser => {
+    return {
+        username: name,
+        data: {name},
+        points: {
+            points,
+            uPoints
+        }
+    }
+}
 
 const load = (): ActiveUser | null => {
     const name = ls.get("active_user");
     if (name && ls.get(`user_${name}`)) {
-        return {
-            username: name,
-            data: {name},
-            points: {
-                points: "0.000",
-                uPoints: "0.000"
-            }
-        };
+        return activeUserMaker(name);
     }
 
     return null;

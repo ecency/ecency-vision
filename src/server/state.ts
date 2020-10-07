@@ -5,6 +5,7 @@ import {AppState} from "../common/store";
 import initialState from "../common/store/initial-state";
 
 import {Global, ListStyle, Theme} from "../common/store/global/types";
+import {activeUserMaker} from "../common/store/active-user";
 
 import defaults from "../common/constants/defaults.json";
 
@@ -31,13 +32,6 @@ export const makePreloadedState = async (req: express.Request): Promise<AppState
     return {
         ...initialState,
         global: globalState,
-        activeUser: activeUser ? {
-            username: activeUser,
-            data: {name: activeUser},
-            points: {
-                points: "0.000",
-                uPoints: "0.000"
-            }
-        } : initialState.activeUser,
+        activeUser: activeUser ? activeUserMaker(activeUser) : initialState.activeUser,
     }
 }

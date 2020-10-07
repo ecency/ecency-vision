@@ -9,6 +9,7 @@ import _c from 'js-cookie'
 import {AppState, history} from "../../common/store";
 import {ListStyle, Theme} from "../../common/store/global/types";
 import {Global} from "../../common/store/global/types";
+import {activeUserMaker} from "../../common/store/active-user";
 import configureStore from "../../common/store/configure";
 import initialState from "../../common/store/initial-state";
 
@@ -42,14 +43,7 @@ const activeUser = ls.get("active_user");
 const preloadedState: AppState = {
     ...initialState,
     global: globalState,
-    activeUser: activeUser ? {
-        username: activeUser,
-        data: {name: activeUser},
-        points: {
-            points: "0.000",
-            uPoints: "0.000"
-        }
-    } : initialState.activeUser,
+    activeUser: activeUser ? activeUserMaker(activeUser) : initialState.activeUser,
 }
 
 const store = configureStore(preloadedState);
