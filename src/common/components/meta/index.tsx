@@ -47,7 +47,6 @@ export default class Meta extends Component<Props> {
             <title>{title_(title)}</title>
             <meta property="og:title" content={title_(title)} />
             <meta name="twitter:title" content={title_(title)} />
-            <meta itemProp="headline name" content={title_(title)} />
           </Helmet>
         )}
 
@@ -122,7 +121,6 @@ export default class Meta extends Component<Props> {
         <Helmet>
           <meta property="og:image" content={image} />
           <meta name="twitter:image" content={image} />
-          <meta itemProp="image" content={image} />
         </Helmet>
       </>
     );

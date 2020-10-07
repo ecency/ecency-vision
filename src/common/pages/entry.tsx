@@ -404,7 +404,9 @@ class EntryPage extends Component<Props, State> {
                                             })}
                                         </div>
                                     </div>
+                                    <meta itemProp="headline name" content={entry.title} />
                                     <div itemProp="articleBody" className="entry-body markdown-view user-selectable" dangerouslySetInnerHTML={renderedBody}/>
+                                    <meta itemProp="image" content={metaProps.image} />
                                     <div className="entry-footer">
                                         <div className="entry-tags">
                                             {!tags.find(x => x === entry?.category) && Tag({
@@ -442,11 +444,8 @@ class EntryPage extends Component<Props, State> {
                                                 {app && (
                                                     <>
                                                         <span className="separator"/>
-                                                        <span itemProp="publisher" itemScope={true} itemType="http://schema.org/Organization">
-                                                            <meta itemProp="name" content={app.split('/')[0].toUpperCase()}/>
-                                                            <span itemProp="logo" itemScope={true} itemType="http://schema.org/ImageObject">
-                                                                <meta itemProp="url" content="https://ecency.com/og.jpg"/>
-                                                            </span>
+                                                        <span itemProp="publisher" itemScope={true} itemType="http://schema.org/Person">
+                                                            <meta itemProp="name" content={entry.author}/>
                                                         </span>
                                                         <div className="app" dangerouslySetInnerHTML={{__html: _t("entry.via-app", {app})}}/>
                                                     </>
