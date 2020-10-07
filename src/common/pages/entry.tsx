@@ -404,7 +404,9 @@ class EntryPage extends Component<Props, State> {
                                             })}
                                         </div>
                                     </div>
+                                    <meta itemProp="headline name" content={entry.title} />
                                     <div itemProp="articleBody" className="entry-body markdown-view user-selectable" dangerouslySetInnerHTML={renderedBody}/>
+                                    <meta itemProp="image" content={metaProps.image} />
                                     <div className="entry-footer">
                                         <div className="entry-tags">
                                             {!tags.find(x => x === entry?.category) && Tag({
