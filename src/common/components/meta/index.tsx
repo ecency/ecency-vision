@@ -47,6 +47,7 @@ export default class Meta extends Component<Props> {
             <title>{title_(title)}</title>
             <meta property="og:title" content={title_(title)} />
             <meta name="twitter:title" content={title_(title)} />
+            <meta itemProp="headline name" content={title_(title)} />
           </Helmet>
         )}
 
@@ -76,7 +77,8 @@ export default class Meta extends Component<Props> {
 
         {url && (
           <Helmet>
-            <meta property="og:url" content={url} />
+            <meta property="og:url" content={`${defaults.base}${url}`} />
+            <meta itemProp="mainEntityOfPage" itemScope itemType="http://schema.org/WebPage" itemID={`${defaults.base}${url}`}/>
           </Helmet>
         )}
 

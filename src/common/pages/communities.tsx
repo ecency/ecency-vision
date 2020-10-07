@@ -141,6 +141,9 @@ class CommunitiesPage extends Component<PageProps, State> {
         //  Meta config
         const metaProps = {
             title: _t("communities.title"),
+            url: "/communities",
+            canonical: "https://ecency.com/communities",
+            description: _t("communities.description"),
         };
 
         return (
@@ -437,6 +440,7 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
         //  Meta config
         const metaProps = {
             title: _t("communities-create.page-title"),
+            description: _t("communities-create.description"),
         };
 
         const {activeUser} = this.props;
@@ -702,6 +706,7 @@ class CommunityCreateHSPage extends Component<PageProps, CreateHsState> {
         //  Meta config
         const metaProps = {
             title: _t("communities-create.page-title"),
+            description: _t("communities-create.description"),
         };
 
         const {inProgress, progress, done} = this.state;

@@ -174,7 +174,7 @@ class CommunityPage extends Component<Props, State> {
         const fC = capitalize(filter);
         const title = `${community.title.trim()}`;
         const description = _t("community.page-description", {f: `${fC} ${community.title.trim()}`});
-        const url = `${defaults.base}/${filter}/${community.name}`;
+        const url = `/${filter}/${community.name}`;
         const rss = `${defaults.base}/${filter}/${community.name}/rss.xml`;
 
         const metaProps = {title, description, url, rss};
