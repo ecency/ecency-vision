@@ -50,6 +50,7 @@ export interface Global {
     currencySymbol: string;
     searchIndexCount: number;
     canUseWebp: boolean;
+    isElectron: boolean
 }
 
 export enum ActionTypes {

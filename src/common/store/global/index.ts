@@ -32,7 +32,8 @@ export const initialState: Global = {
   currencyRate: defaults.currency.rate,
   currencySymbol: defaults.currency.symbol,
   searchIndexCount: 0,
-  canUseWebp: false
+  canUseWebp: false,
+  isElectron: false,
 };
 
 export default (state: Global = initialState, action: Actions): Global => {

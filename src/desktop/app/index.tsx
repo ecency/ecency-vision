@@ -35,7 +35,8 @@ const globalState: Global = {
     ...initialState.global,
     theme: Theme[theme],
     listStyle: ListStyle[listStyle],
-    intro
+    intro,
+    isElectron: true
 };
 
 const activeUser = ls.get("active_user");
