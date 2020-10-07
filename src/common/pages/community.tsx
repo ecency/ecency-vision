@@ -202,6 +202,7 @@ class CommunityPage extends Component<Props, State> {
                         <span itemProp="logo" itemScope={true} itemType="http://schema.org/ImageObject">
                             <meta itemProp="url" content={image}/>
                         </span>
+                        <meta itemProp="url" content={`${defaults.base}${url}`} />
                     </span>
                     <div className="content-side">
                         {CommunityMenu({
