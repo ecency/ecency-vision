@@ -39,7 +39,8 @@ import {hsTokenRenew} from "../api/private";
 import {client} from "../api/hive";
 
 import {makeHsCode} from "../helper/hive-signer";
-import parseAsset from "../helper/parse-asset"
+import parseAsset from "../helper/parse-asset";
+import defaults from "../constants/defaults.json";
 
 import random from "../util/rnd";
 
@@ -142,7 +143,7 @@ class CommunitiesPage extends Component<PageProps, State> {
         const metaProps = {
             title: _t("communities.title"),
             url: "/communities",
-            canonical: "https://ecency.com/communities",
+            canonical: `${defaults.base}/communities`,
             description: _t("communities.description"),
         };
 
