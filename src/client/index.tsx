@@ -4,14 +4,8 @@ import {Provider} from "react-redux";
 import {ConnectedRouter} from "connected-react-router";
 
 import configureStore from "../common/store/configure";
-import {reloadAct as reloadUsers} from "../common/store/users";
-import {loginAct as loginActiveUser, updateAct as updateActiveUserAct} from "../common/store/active-user";
-import {reloadAct as reloadReblogs} from "../common/store/reblogs";
-import {fetchedAct as loadDynamicProps} from "../common/store/dynamic-props";
-import {UserPoints} from "../common/store/active-user/types";
 
-import {getAccount, getDynamicProps} from "../common/api/hive";
-import {usrActivity, getPoints} from "../common/api/private";
+import {clientStoreTasks} from "../common/store/helper";
 
 import {history} from "../common/store";
 
@@ -35,54 +29,7 @@ hydrate(
     document.getElementById("root")
 );
 
-// Initial state from browser's local storage
-store.dispatch(reloadUsers());
-store.dispatch(loginActiveUser());
-store.dispatch(reloadReblogs());
-
-// Load dynamic props
-getDynamicProps().then((resp) => {
-    store.dispatch(loadDynamicProps(resp));
-});
-
-// Active user updater
-const updateActiveUser = async () => {
-    const state = store.getState();
-    if (state.activeUser) {
-        const {username} = state.activeUser;
-
-        let account;
-        try {
-            account = await getAccount(username);
-        } catch (e) {
-            return;
-        }
-
-        let points: UserPoints;
-        try {
-            const p = await getPoints(username);
-            points = {points: p.points, uPoints: p.unclaimed_points};
-        } catch (e) {
-            points = {
-                points: "0.000",
-                uPoints: "0.000"
-            };
-        }
-
-        store.dispatch(updateActiveUserAct(account, points));
-    }
-};
-updateActiveUser().then();
-setInterval(updateActiveUser, 60 * 1000);
-
-const checkIn = () => {
-    const state = store.getState();
-    if (state.activeUser) {
-        usrActivity(state.activeUser?.username!, 10).then();
-    }
-}
-checkIn();
-setInterval(checkIn, 1000 * 60 * 15 + 8);
+clientStoreTasks(store);
 
 if (module.hot) {
     module.hot.accept("../common/app", () => {
