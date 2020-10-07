@@ -340,7 +340,7 @@ class EntryPage extends Component<Props, State> {
 
                 <div className="app-content entry-page">
                     <div className="the-entry">
-                        <span itemScope itemType="http://schema.org/Article">
+                        <span itemScope={true} itemType="http://schema.org/Article">
                             {(() => {
                                 if (isHidden && !showIfHidden) {
                                     return <div className="hidden-warning">
@@ -385,7 +385,7 @@ class EntryPage extends Component<Props, State> {
                                                     </div>
                                                     <div className="author notranslate">
                                                         <span className="author-name">
-                                                            <span itemProp="author" itemScope itemType="http://schema.org/Person">
+                                                            <span itemProp="author" itemScope={true} itemType="http://schema.org/Person">
                                                                 <span itemProp="name">
                                                                     {entry.author}
                                                                 </span>
@@ -442,9 +442,9 @@ class EntryPage extends Component<Props, State> {
                                                 {app && (
                                                     <>
                                                         <span className="separator"/>
-                                                        <span itemProp="publisher" itemScope itemType="http://schema.org/Organization">
+                                                        <span itemProp="publisher" itemScope={true} itemType="http://schema.org/Organization">
                                                             <meta itemProp="name" content={app.split('/')[0].toUpperCase()}/>
-                                                            <span itemProp="logo" itemScope itemType="http://schema.org/ImageObject">
+                                                            <span itemProp="logo" itemScope={true} itemType="http://schema.org/ImageObject">
                                                                 <meta itemProp="url" content="https://ecency.com/og.jpg"/>
                                                             </span>
                                                         </span>

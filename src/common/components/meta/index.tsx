@@ -78,7 +78,7 @@ export default class Meta extends Component<Props> {
         {url && (
           <Helmet>
             <meta property="og:url" content={`${defaults.base}${url}`} />
-            <meta itemProp="mainEntityOfPage" itemScope itemType="http://schema.org/WebPage" itemID={`${defaults.base}${url}`}/>
+            <meta itemProp="mainEntityOfPage" itemScope={true} itemType="http://schema.org/WebPage" itemID={`${defaults.base}${url}`}/>
           </Helmet>
         )}
 
