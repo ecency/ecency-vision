@@ -18,7 +18,7 @@ import {
 
 import {CommonActionTypes} from "../common";
 
-import {clone} from '../helper';
+import {clone} from '../util';
 
 import filterTagExtract from "../../helper/filter-tag-extract";
 

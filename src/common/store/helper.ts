@@ -8,10 +8,6 @@ import {getAccount} from "../api/hive";
 import {getPoints} from "../api/private";
 
 
-export const clone = (o: any) => {
-    return JSON.parse(JSON.stringify(o));
-};
-
 export const activeUserMaker = (name: string, points: string = "0.000", uPoints: string = "0.000"): ActiveUser => {
     return {
         username: name,

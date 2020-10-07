@@ -5,7 +5,7 @@ import isEqual from "react-fast-compare";
 import {Entry, EntryStat} from "../../store/entries/types";
 import {Community} from "../../store/communities/types";
 import {ActiveUser} from "../../store/active-user/types";
-import {clone} from "../../store/helper";
+import {clone} from "../../store/util";
 
 import PopoverConfirm from "../popover-confirm";
 
