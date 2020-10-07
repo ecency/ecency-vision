@@ -9,7 +9,8 @@ import _c from 'js-cookie'
 import {AppState, history} from "../../common/store";
 import {ListStyle, Theme} from "../../common/store/global/types";
 import {Global} from "../../common/store/global/types";
-import {activeUserMaker} from "../../common/store/active-user";
+import {loginAct as loginActiveUser} from "../../common/store/active-user";
+import {activeUserMaker} from "../../common/store/helper";
 import configureStore from "../../common/store/configure";
 import initialState from "../../common/store/initial-state";
 
@@ -23,6 +24,8 @@ import "typeface-ibm-plex-sans";
 
 import "../../style/theme-day.scss";
 import "../../style/theme-night.scss";
+import {reloadAct as reloadUsers} from "../../common/store/users";
+import {reloadAct as reloadReblogs} from "../../common/store/reblogs";
 
 
 // Create store
@@ -59,3 +62,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('root')
     );
 });
+
+// Initial state from browser's local storage
+store.dispatch(reloadUsers());
+store.dispatch(loginActiveUser());
+store.dispatch(reloadReblogs());

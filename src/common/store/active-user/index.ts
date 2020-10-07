@@ -11,16 +11,7 @@ import * as ls from "../../util/local-storage";
 import {getAccount} from "../../api/hive";
 import {getPoints} from "../../api/private";
 
-export const activeUserMaker = (name: string, points: string = "0.000", uPoints: string = "0.000"): ActiveUser => {
-    return {
-        username: name,
-        data: {name},
-        points: {
-            points,
-            uPoints
-        }
-    }
-}
+import {activeUserMaker} from "../helper";
 
 const load = (): ActiveUser | null => {
     const name = ls.get("active_user");
