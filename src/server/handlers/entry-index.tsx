@@ -10,7 +10,7 @@ import * as bridgeApi from "../../common/api/bridge";
 
 import filterTagExtract from "../../common/helper/filter-tag-extract";
 
-import {readGlobalCookies, optimizeEntries} from "../helper";
+import {optimizeEntries} from "../helper";
 import {getPromotedEntries} from "../helper";
 
 import {makePreloadedState} from "../state";
@@ -47,7 +47,6 @@ export default async (req: express.Request, res: express.Response) => {
         ...state,
         global: {
             ...state.global,
-            ...readGlobalCookies(req),
             ...{filter: filter === "feed" ? filter : EntryFilter[filter], tag}, // TODO: AllFilter can be used
         },
         trendingTags: {

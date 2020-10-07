@@ -4,7 +4,7 @@ import {AppState} from "../../common/store";
 
 import {makePreloadedState} from "../state";
 
-import {readGlobalCookies, getPromotedEntries, optimizeEntries} from "../helper";
+import {getPromotedEntries, optimizeEntries} from "../helper";
 
 import {render} from "../template";
 
@@ -16,7 +16,6 @@ export default async (req: express.Request, res: express.Response) => {
         ...state,
         global: {
             ...state.global,
-            ...readGlobalCookies(req),
         },
         entries: {
             ...state.entries,

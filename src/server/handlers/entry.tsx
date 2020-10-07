@@ -5,7 +5,7 @@ import {Entry} from "../../common/store/entries/types";
 
 import * as bridgeApi from "../../common/api/bridge";
 
-import {readGlobalCookies, getPromotedEntries, optimizeEntries} from "../helper";
+import {getPromotedEntries, optimizeEntries} from "../helper";
 
 import {makePreloadedState} from "../state";
 
@@ -45,7 +45,6 @@ export default async (req: express.Request, res: express.Response) => {
         ...state,
         global: {
             ...state.global,
-            ...readGlobalCookies(req),
         },
         entries: {
             ...state.entries,

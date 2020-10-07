@@ -7,7 +7,7 @@ import {makeGroupKey} from "../../common/store/entries";
 
 import defaults from "../../common/constants/defaults.json";
 
-import {readGlobalCookies, getPromotedEntries, optimizeEntries} from "../helper";
+import {getPromotedEntries, optimizeEntries} from "../helper";
 
 import * as hiveApi from "../../common/api/hive";
 import * as bridgeApi from "../../common/api/bridge";
@@ -61,7 +61,6 @@ export default async (req: express.Request, res: express.Response) => {
         ...state,
         global: {
             ...state.global,
-            ...readGlobalCookies(req),
             ...{filter, tag},
         },
         accounts: accounts,
