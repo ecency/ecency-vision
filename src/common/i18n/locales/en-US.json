@@ -44,7 +44,9 @@
     "faq": "FAQ",
     "post": "Create Post",
     "day-theme": "Day Theme",
-    "night-theme": "Night Theme"
+    "night-theme": "Night Theme",
+    "address-enter-url": "Enter url",
+    "address-enter-query": "Enter search query"
   },
   "search": {
     "placeholder": "Search",

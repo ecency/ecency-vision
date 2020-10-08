@@ -4,9 +4,11 @@ import {Link} from "react-router-dom";
 
 import {History, Location} from "history";
 
-import {Button} from "react-bootstrap";
+import {Button, Spinner} from "react-bootstrap";
 
 import isEqual from "react-fast-compare";
+
+import queryString from "query-string";
 
 import {Global, Theme} from "../../store/global/types";
 import {TrendingTags} from "../../store/trending-tags/types";
@@ -27,9 +29,238 @@ import {_t} from "../../i18n";
 
 import _c from "../../util/fix-class-names";
 
-import {brightnessSvg, pencilOutlineSvg, arrowLeftSvg, arrowRightSvg, refreshSvg} from "../../img/svg";
+import {brightnessSvg, pencilOutlineSvg, arrowLeftSvg, arrowRightSvg, refreshSvg, magnifySvg} from "../../img/svg";
 
 const logo = require('../../img/logo-circle.svg');
+
+interface AddressBarProps {
+    history: History;
+    location: Location;
+    activeUser: ActiveUser | null;
+}
+
+interface AddressBarState {
+    address: string;
+    realAddress: string;
+    addressType: "search" | "url";
+    changed: boolean;
+    inSearchPage: boolean;
+    inProgress: boolean;
+}
+
+const addressBarState = (props: AddressBarProps): AddressBarState => {
+    const inSearchPage = props.location.pathname.startsWith('/search');
+
+    return {
+        address: '',
+        realAddress: '',
+        addressType: inSearchPage ? 'search' : 'url',
+        changed: false,
+        inSearchPage,
+        inProgress: false
+    }
+}
+
+export class AddressBar extends Component<AddressBarProps, AddressBarState> {
+    state: AddressBarState = addressBarState(this.props);
+
+    componentDidMount() {
+        this.fixAddress();
+    }
+
+    shouldComponentUpdate(nextProps: Readonly<AddressBarProps>, nextState: Readonly<AddressBarState>) {
+        const {location} = this.props;
+
+        return (
+            !isEqual(location, nextProps.location) || !isEqual(this.state, nextState)
+        );
+    }
+
+    componentDidUpdate(prevProps: Readonly<AddressBarProps>) {
+        const {location} = this.props;
+
+        if (location !== prevProps.location) {
+            this.fixAddress();
+        }
+    }
+
+    fixAddress = () => {
+        const {history} = this.props;
+
+        // @ts-ignore
+        const {entries, index} = history;
+
+        const curPath = entries[index].pathname;
+        const address = curPath.replace('/', '');
+
+        console.log(curPath);
+
+        this.setState({address, realAddress: address});
+    };
+
+    addressChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
+        this.setState({
+            address: e.target.value,
+            changed: true
+        });
+    };
+
+    addressKeyup = async (e: React.KeyboardEvent<HTMLInputElement>) => {
+        /*
+        if (e.keyCode === 13) {
+            const {address, changed} = this.state;
+            const {history, activeUser} = this.props;
+
+            if (!changed) return;
+
+            if (address.trim() === '') {
+                return;
+            }
+
+            const a = addressParser(address);
+
+            if (a.type === 'filter') {
+                const {path} = a;
+                history.push(path);
+                return;
+            }
+
+            if (a.type === 'post') {
+                const {author, permlink} = a;
+
+                this.setState({inProgress: true});
+                const content = await getContent(author, permlink);
+                this.setState({inProgress: false});
+
+                if (content.id) {
+                    const path = `/${content.category}/@${content.author}/${
+                        content.permlink
+                    }`;
+                    history.push(path);
+                    return;
+                }
+            }
+
+            if (a.type === 'author') {
+                const {author, path} = a;
+
+                this.setState({inProgress: true});
+                const account = await getAccount(author);
+                this.setState({inProgress: false});
+
+                if (account) {
+                    history.push(path);
+                    return;
+                }
+            }
+
+            if (a === 'feed' && activeAccount) {
+                const p = `@${activeAccount.username}/feed`;
+                history.push(p);
+                return;
+            }
+
+            if (a === 'witnesses') {
+                const p = `/witnesses`;
+                history.push(p);
+                return;
+            }
+
+            if (a === 'sps') {
+                const p = `/sps`;
+                history.push(p);
+                return;
+            }
+
+            if (a === 'transfer' && activeAccount) {
+                const p = `/@${activeAccount.username}/transfer/hive`;
+                history.push(p);
+                return;
+            }
+
+            const q = address.replace(/\//g, ' ');
+
+            history.push(`/search?q=${encodeURIComponent(q)}&sort=${searchSort}`);
+        }
+
+        if (e.keyCode === 27) {
+            const {realAddress} = this.state;
+
+            this.setState({address: realAddress});
+        }
+        */
+    };
+
+
+    toggle = () => {
+        const {addressType} = this.state;
+
+        if (addressType === 'url') {
+            this.setState({addressType: 'search'}, () => {
+                // document.querySelector('#txt-search').focus();
+            });
+        }
+
+        if (addressType === 'search') {
+            this.setState({addressType: 'url'});
+        }
+    };
+
+    render() {
+        const {address, addressType, inSearchPage, inProgress} = this.state;
+        const styles = !inSearchPage ? {cursor: 'pointer'} : {};
+
+        let q = '';
+        if (location.pathname.startsWith('/search')) {
+            const qs = queryString.parse(location.search);
+            if (qs.q && typeof qs.q === "string") {
+                ({q} = qs);
+            }
+        }
+
+        return (
+            <div className="address">
+                <div className="pre-add-on" style={styles} onClick={this.toggle}>{magnifySvg}</div>
+
+                {addressType === 'url' && (
+                    <>
+                        <span className="protocol">ecency://</span>
+                        <input
+                            className="url"
+                            value={address}
+                            onChange={this.addressChanged}
+                            onKeyUp={this.addressKeyup}
+                            placeholder={_t('navbar.address-enter-url')}
+                            disabled={inProgress}
+                            spellCheck={false}
+                        />
+                        {inProgress && (
+                            <div className="in-progress">
+                                <Spinner animation="grow" variant="primary"/>
+                            </div>
+                        )}
+                    </>
+                )}
+
+                {addressType === 'search' && (
+                    <>
+                        <span className="protocol">search://</span>
+                        <input
+                            className="url"
+                            defaultValue={q}
+                            id="txt-search"
+                            onChange={this.addressChanged}
+                            onKeyUp={this.addressKeyup}
+                            placeholder={_t('navbar.address-enter-query')}
+                            disabled={inProgress}
+                            spellCheck={false}
+                        />
+                    </>
+                )}
+            </div>
+        )
+    }
+}
 
 interface NavControlsProps {
     history: History;
@@ -183,7 +414,7 @@ export class NavBar extends Component<Props, State> {
     };
 
     render() {
-        const {global, activeUser, ui} = this.props;
+        const {global, activeUser, history, location, ui} = this.props;
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
         const logoHref = activeUser ? `/@${activeUser.username}/feed` : '/';
 
@@ -199,13 +430,21 @@ export class NavBar extends Component<Props, State> {
                                 <img src={logo} className="logo" alt="Logo"/>
                             </Link>
                         </div>
+
                         <div className="nav-controls">
                             <NavControls
-                                history={this.props.history}
+                                history={history}
                                 reloading={this.props.reloading}
                                 reloadFn={this.props.reloadFn}/>
                         </div>
-                        <div className="address-bar"/>
+
+                        <div className="address-bar">
+                            <AddressBar
+                                history={history}
+                                location={location}
+                                activeUser={activeUser}/>
+                        </div>
+
                         <ToolTip content={themeText}>
                             <div className="switch-theme" onClick={this.changeTheme}>
                                 {brightnessSvg}
