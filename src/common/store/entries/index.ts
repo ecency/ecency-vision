@@ -194,6 +194,10 @@ export const updateEntry = (entry: Entry) => (dispatch: Dispatch) => {
     dispatch(updateAct(entry));
 };
 
+export const invalidateEntries = (groupKey: string) => (dispatch: Dispatch) => {
+    dispatch(invalidateAct(groupKey));
+};
+
 /* Action Creators */
 
 export const fetchAct = (groupKey: string): FetchAction => {

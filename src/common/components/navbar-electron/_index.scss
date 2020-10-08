@@ -29,11 +29,56 @@
       text-decoration: none;
       flex-shrink: 0;
       flex-grow: 0;
-      margin-right: 20px;
+      margin-right: 40px;
 
       .logo {
         width: 44px;
         height: 44px;
+      }
+    }
+
+    .nav-controls {
+      align-items: center;
+      display: flex;
+      flex-shrink: 0;
+      font-size: 24px;
+      height: 100%;
+      margin-right: 26px;
+
+      .back,
+      .forward,
+      .reload {
+        cursor: pointer;
+        display: flex;
+
+        svg {
+          height: 24px;
+          width: 24px;
+        }
+
+        @include themify(day) {
+          color: $steel-grey;
+        }
+
+        @include themify(night) {
+          color: $white-five;
+        }
+
+        &:not(:last-child) {
+          margin-right: 8px;
+        }
+
+        &.disabled {
+          pointer-events: none;
+
+          @include themify(day) {
+            color: $silver;
+          }
+
+          @include themify(night) {
+            opacity: 0.5;
+          }
+        }
       }
     }
 

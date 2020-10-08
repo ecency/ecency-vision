@@ -27,9 +27,76 @@ import {_t} from "../../i18n";
 
 import _c from "../../util/fix-class-names";
 
-import {brightnessSvg, pencilOutlineSvg} from "../../img/svg";
+import {brightnessSvg, pencilOutlineSvg, arrowLeftSvg, arrowRightSvg, refreshSvg} from "../../img/svg";
 
 const logo = require('../../img/logo-circle.svg');
+
+interface NavControlsProps {
+    history: History;
+    reloadFn: () => any,
+    reloading: boolean,
+}
+
+export class NavControls extends Component<NavControlsProps> {
+    shouldComponentUpdate(nextProps: Readonly<NavControlsProps>) {
+        const {history, reloading} = this.props;
+
+        return (
+            reloading !== nextProps.reloading || !isEqual(history, nextProps.history)
+        );
+    }
+
+    checkPathForBack = (path: string) => {
+        if (!path) {
+            return false;
+        }
+
+        return !['/'].includes(path);
+    };
+
+    goBack = () => {
+        const {history} = this.props;
+
+        history.goBack();
+    };
+
+    goForward = () => {
+        const {history} = this.props;
+
+        history.goForward();
+    };
+
+    refresh = () => {
+        const {reloadFn} = this.props;
+
+        reloadFn();
+    };
+
+    render() {
+        const {history, reloading} = this.props;
+
+        // @ts-ignore this is for making ide happy. code compiles without error.
+        const {entries, index} = history;
+
+        let canGoBack = false;
+        if (entries[index - 1]) {
+            canGoBack = this.checkPathForBack(entries[index - 1].pathname);
+        }
+
+        const canGoForward = !!entries[index + 1];
+
+        const backClassName = `back ${!canGoBack ? 'disabled' : ''}`;
+        const forwardClassName = `forward ${!canGoForward ? 'disabled' : ''}`;
+        const reloadClassName = `reload ${reloading ? 'disabled' : ''}`;
+
+        return (<div className="nav-controls">
+            <div className={backClassName} onClick={() => this.goBack()}>{arrowLeftSvg}</div>
+            <div className={forwardClassName} onClick={() => this.goForward()}>{arrowRightSvg}</div>
+            <div className={reloadClassName} onClick={() => this.refresh()}>{refreshSvg}</div>
+        </div>)
+    }
+}
+
 
 interface Props {
     history: History;
@@ -52,6 +119,8 @@ interface Props {
     setNotificationsFilter: (filter: NotificationFilter | null) => void;
     markNotifications: (id: string | null) => void;
     toggleUIProp: (what: ToggleType) => void;
+    reloadFn: () => any,
+    reloading: boolean,
 }
 
 interface State {
@@ -84,6 +153,7 @@ export class NavBar extends Component<Props, State> {
             || !isEqual(this.props.activeUser, nextProps.activeUser)
             || !isEqual(this.props.ui, nextProps.ui)
             || !isEqual(this.props.notifications, nextProps.notifications)
+            || !isEqual(this.props.reloading, nextProps.reloading)
             || !isEqual(this.state, nextState)
     }
 
@@ -128,6 +198,12 @@ export class NavBar extends Component<Props, State> {
                             <Link to={logoHref}>
                                 <img src={logo} className="logo" alt="Logo"/>
                             </Link>
+                        </div>
+                        <div className="nav-controls">
+                            <NavControls
+                                history={this.props.history}
+                                reloading={this.props.reloading}
+                                reloadFn={this.props.reloadFn}/>
                         </div>
                         <div className="address-bar"/>
                         <ToolTip content={themeText}>
@@ -192,6 +268,8 @@ export default (p: Props) => {
         setNotificationsFilter: p.setNotificationsFilter,
         markNotifications: p.markNotifications,
         toggleUIProp: p.toggleUIProp,
+        reloadFn: p.reloadFn,
+        reloading: p.reloading,
     }
 
     return <NavBar {...props} />;
