@@ -14,6 +14,7 @@ import Meta from "../components/meta";
 import Theme from "../components/theme";
 import Feedback from "../components/feedback";
 import NavBar from "../components/navbar";
+import NavBarElectron from "../components/navbar-electron";
 import Intro from "../components/intro";
 import DropDown, {MenuItem} from "../components/dropdown";
 import ListStyleToggle from "../components/list-style-toggle";
@@ -143,7 +144,7 @@ class EntryIndexPage extends Component<PageProps> {
                 <ScrollToTop/>
                 <Theme global={this.props.global}/>
                 <Feedback/>
-                {NavBar({...this.props})}
+                {global.isElectron ? NavBarElectron({...this.props}) : NavBar({...this.props})}
                 <Intro global={this.props.global} hideIntro={this.props.hideIntro}/>
                 <div className="app-content entry-index-page">
                     <div className="tags-side">

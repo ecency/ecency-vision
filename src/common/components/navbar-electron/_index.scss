@@ -1,0 +1,105 @@
+.nav-bar-electron {
+  padding: 0;
+  margin-bottom: 30px;
+  height: 64px;
+  position: relative;
+
+  @include themify(day) {
+    background: $white-two;
+    box-shadow: 0 0 2px 1px $white-six;
+  }
+
+  @include themify(night) {
+    background: $dark-two;
+  }
+
+  .nav-bar-inner {
+    max-width: 1600px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    padding: 0 20px;
+    flex-direction: row;
+
+    .brand {
+      height: 44px;
+      width: 44px;
+      text-decoration: none;
+      flex-shrink: 0;
+      flex-grow: 0;
+      margin-right: 20px;
+
+      .logo {
+        width: 44px;
+        height: 44px;
+      }
+    }
+
+    .address-bar {
+      flex-grow: 1;
+      height: 20px;
+    }
+
+    .switch-theme {
+      cursor: pointer;
+      position: relative;
+      margin-right: 18px;
+      flex-grow: 0;
+
+      svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      @include themify(day) {
+        color: $silver;
+      }
+
+      @include themify(night) {
+        color: $duck-egg-blue;
+        opacity: 0.8;
+      }
+    }
+
+    .login-required {
+      margin-right: 18px;
+      display: flex;
+
+      .btn {
+        &:not(:last-child) {
+          margin-right: 6px;
+        }
+      }
+    }
+  }
+
+  &.can-float {
+    @media (min-width: $md-break) {
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      height: 64px;
+      width: 100%;
+      animation: anim-fadein .3s;
+
+      @include themify(day) {
+        background: $white-two;
+        box-shadow: 0 .5rem 1rem rgba($gray-500, .15)
+      }
+
+      @include themify(night) {
+        background: $dark-two;
+      }
+    }
+  }
+}
+
+.nav-bar-electron-rep {
+  display: block;
+  margin-bottom: 30px;
+  height: 64px;
+}
+
