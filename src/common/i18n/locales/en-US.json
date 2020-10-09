@@ -129,7 +129,7 @@
     "tags": "Popular",
     "title": "{{f}} topics",
     "description": "{{f}} topics",
-    "description-tag": "{{f}} topics with #{{t}} tag",
+    "description-tag": "{{f}} #{{t}} topics",
     "description-user-feed": "{{u}}'s feed"
   },
   "list-style": {
