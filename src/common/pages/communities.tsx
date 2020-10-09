@@ -20,6 +20,7 @@ import {User} from "../store/users/types";
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
 import NavBar from "../components/navbar/index";
+import NavBarElectron from "../../desktop/app/components/navbar";
 import LinearProgress from "../components/linear-progress";
 import CommunityListItem from "../components/community-list-item";
 import SearchBox from "../components/search-box";
@@ -135,6 +136,7 @@ class CommunitiesPage extends Component<PageProps, State> {
     };
 
     render() {
+        const {global} = this.props;
         const {list, loading, query, sort} = this.state;
         const noResults = !loading && list.length === 0;
 
@@ -148,7 +150,13 @@ class CommunitiesPage extends Component<PageProps, State> {
                 <Meta {...metaProps} />
                 <ScrollToTop/>
                 <Theme global={this.props.global}/>
-                {NavBar({...this.props})}
+                {global.isElectron ?
+                    NavBarElectron({
+                        ...this.props,
+                        reloadFn: this.fetch,
+                        reloading: loading,
+                    }) :
+                    NavBar({...this.props})}
 
                 <div className="app-content communities-page">
                     <div className="community-list">
