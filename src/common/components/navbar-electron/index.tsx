@@ -29,6 +29,8 @@ import {_t} from "../../i18n";
 
 import _c from "../../util/fix-class-names";
 
+import defaults from "../../constants/defaults.json";
+
 import {brightnessSvg, pencilOutlineSvg, arrowLeftSvg, arrowRightSvg, refreshSvg, magnifySvg} from "../../img/svg";
 
 const logo = require('../../img/logo-circle.svg');
@@ -49,12 +51,13 @@ interface AddressBarState {
 }
 
 const addressBarState = (props: AddressBarProps): AddressBarState => {
-    const inSearchPage = props.location.pathname.startsWith('/search');
+    const {pathname} = props.location;
+    const inSearchPage = pathname.startsWith('/search');
 
     return {
         address: '',
         realAddress: '',
-        addressType: inSearchPage ? 'search' : 'url',
+        addressType: inSearchPage ? "search" : "url",
         changed: false,
         inSearchPage,
         inProgress: false
@@ -91,9 +94,7 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
         const {entries, index} = history;
 
         const curPath = entries[index].pathname;
-        const address = curPath.replace('/', '');
-
-        console.log(curPath);
+        const address = curPath === '/' ? `${defaults.filter}` : curPath.replace('/', '');
 
         this.setState({address, realAddress: address});
     };
@@ -182,13 +183,13 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
 
             history.push(`/search?q=${encodeURIComponent(q)}&sort=${searchSort}`);
         }
+        */
 
         if (e.keyCode === 27) {
             const {realAddress} = this.state;
 
             this.setState({address: realAddress});
         }
-        */
     };
 
 
@@ -236,7 +237,7 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
                         />
                         {inProgress && (
                             <div className="in-progress">
-                                <Spinner animation="grow" variant="primary"/>
+                                <Spinner animation="grow" variant="primary" size="sm"/>
                             </div>
                         )}
                     </>
