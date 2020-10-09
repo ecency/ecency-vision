@@ -8,6 +8,8 @@ import queryString from "query-string";
 
 import isEqual from "react-fast-compare";
 
+import {History} from "history";
+
 import {Form, FormControl, Button, Spinner} from "react-bootstrap";
 
 import defaults from "../constants/defaults.json";
@@ -21,11 +23,13 @@ import {
 setProxyBase(defaults.imageServer);
 
 import {Entry} from "../store/entries/types";
+import {Global} from "../store/global/types";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme";
 import Feedback from "../components/feedback";
 import NavBar from "../components/navbar";
+import NavBarElectron from "../../desktop/app/components/navbar";
 import FullHeight from "../components/full-height";
 import EditorToolbar from "../components/editor-toolbar";
 import TagSelector from "../components/tag-selector";
@@ -50,6 +54,8 @@ import * as ls from "../util/local-storage";
 import {version} from "../../../package.json";
 
 import {contentSaveSvg} from "../img/svg";
+
+import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
 interface PostBase {
     title: string;
@@ -100,10 +106,6 @@ class PreviewContent extends Component<PreviewProps> {
         );
     }
 }
-
-import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
-import {History, Location} from "history";
-import {Global} from "../store/global/types";
 
 interface MatchParams {
     permlink?: string;
@@ -481,6 +483,8 @@ class SubmitPage extends Component<Props, State> {
             title: "Create a post",
         };
 
+        const {global} = this.props;
+
         const canPublish = title.trim() !== "" && tags.length > 0 && tags.length <= 10 && body.trim() !== "";
         const spinner = <Spinner animation="grow" variant="light" size="sm" style={{marginRight: "6px"}}/>;
 
@@ -490,7 +494,11 @@ class SubmitPage extends Component<Props, State> {
                 <FullHeight/>
                 <Theme global={this.props.global}/>
                 <Feedback/>
-                {NavBar({...this.props})}
+                {global.isElectron ?
+                    NavBarElectron({
+                        ...this.props,
+                    }) :
+                    NavBar({...this.props})}
 
                 <div className="app-content submit-page">
                     <div className="editor-side">
