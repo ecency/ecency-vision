@@ -135,6 +135,7 @@
           flex-grow: 0;
           font-size: 90%;
           font-weight: 500;
+          user-select: none;
         }
 
         .url {
@@ -154,11 +155,6 @@
             color: $silver;
             padding-left: 10px;
           }
-        }
-
-        .in-progress {
-          margin-right: 10px;
-          opacity: 0.6;
         }
       }
     }

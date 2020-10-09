@@ -4,11 +4,9 @@ import {Link} from "react-router-dom";
 
 import {History, Location} from "history";
 
-import {Button, Spinner} from "react-bootstrap";
+import {Button} from "react-bootstrap";
 
 import isEqual from "react-fast-compare";
-
-import queryString from "query-string";
 
 import {pathToRegexp} from "path-to-regexp";
 
@@ -47,39 +45,23 @@ interface AddressBarProps {
 interface AddressBarState {
     address: string;
     realAddress: string;
-    addressType: "search" | "url";
     changed: boolean;
-    inSearchPage: boolean;
-    inProgress: boolean;
 }
 
-const addressBarState = (props: AddressBarProps): AddressBarState => {
-    const {pathname} = props.location;
-    const inSearchPage = pathname.startsWith('/search');
-
-    return {
-        address: '',
-        realAddress: '',
-        addressType: inSearchPage ? "search" : "url",
-        changed: false,
-        inSearchPage,
-        inProgress: false
-    }
-}
 
 export class AddressBar extends Component<AddressBarProps, AddressBarState> {
-    state: AddressBarState = addressBarState(this.props);
+    state: AddressBarState = {
+        address: '',
+        realAddress: '',
+        changed: false
+    }
 
     componentDidMount() {
         this.fixAddress();
     }
 
     shouldComponentUpdate(nextProps: Readonly<AddressBarProps>, nextState: Readonly<AddressBarState>) {
-        const {location} = this.props;
-
-        return (
-            !isEqual(location, nextProps.location) || !isEqual(this.state, nextState)
-        );
+        return !isEqual(this.state, nextState);
     }
 
     componentDidUpdate(prevProps: Readonly<AddressBarProps>) {
@@ -98,6 +80,15 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
 
         const curPath = entries[index].pathname;
         const address = curPath === '/' ? `${defaults.filter}` : curPath.replace('/', '');
+
+        /* persist search string
+        let q = '';
+        if (location.pathname.startsWith('/search')) {
+            const qs = queryString.parse(location.search);
+            if (qs.q && typeof qs.q === "string") {
+                ({q} = qs);
+            }
+        }*/
 
         this.setState({address, realAddress: address});
     };
@@ -130,6 +121,7 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
                 return;
             }
 
+            console.log("search");
             // history.push(`/search?q=${encodeURIComponent(q)}&sort=${searchSort}`);
         }
 
@@ -141,71 +133,21 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
     };
 
 
-    toggle = () => {
-        const {addressType} = this.state;
-
-        if (addressType === 'url') {
-            this.setState({addressType: 'search'}, () => {
-                // document.querySelector('#txt-search').focus();
-            });
-        }
-
-        if (addressType === 'search') {
-            this.setState({addressType: 'url'});
-        }
-    };
-
     render() {
-        const {address, addressType, inSearchPage, inProgress} = this.state;
-        const styles = !inSearchPage ? {cursor: 'pointer'} : {};
-
-        let q = '';
-        if (location.pathname.startsWith('/search')) {
-            const qs = queryString.parse(location.search);
-            if (qs.q && typeof qs.q === "string") {
-                ({q} = qs);
-            }
-        }
+        const {address} = this.state;
 
         return (
             <div className="address">
-                <div className="pre-add-on" style={styles} onClick={this.toggle}>{magnifySvg}</div>
-
-                {addressType === 'url' && (
-                    <>
-                        <span className="protocol">ecency://</span>
-                        <input
-                            className="url"
-                            value={address}
-                            onChange={this.addressChanged}
-                            onKeyUp={this.addressKeyup}
-                            placeholder={_t('navbar.address-enter-url')}
-                            disabled={inProgress}
-                            spellCheck={false}
-                        />
-                        {inProgress && (
-                            <div className="in-progress">
-                                <Spinner animation="grow" variant="primary" size="sm"/>
-                            </div>
-                        )}
-                    </>
-                )}
-
-                {addressType === 'search' && (
-                    <>
-                        <span className="protocol">search://</span>
-                        <input
-                            className="url"
-                            defaultValue={q}
-                            id="txt-search"
-                            onChange={this.addressChanged}
-                            onKeyUp={this.addressKeyup}
-                            placeholder={_t('navbar.address-enter-query')}
-                            disabled={inProgress}
-                            spellCheck={false}
-                        />
-                    </>
-                )}
+                <div className="pre-add-on">{magnifySvg}</div>
+                <span className="protocol">ecency://</span>
+                <input
+                    className="url"
+                    value={address}
+                    onChange={this.addressChanged}
+                    onKeyUp={this.addressKeyup}
+                    placeholder={_t('navbar.address-placeholder')}
+                    spellCheck={false}
+                />
             </div>
         )
     }
