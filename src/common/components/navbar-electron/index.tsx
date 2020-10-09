@@ -10,6 +10,8 @@ import isEqual from "react-fast-compare";
 
 import queryString from "query-string";
 
+import {pathToRegexp} from "path-to-regexp";
+
 import {Global, Theme} from "../../store/global/types";
 import {TrendingTags} from "../../store/trending-tags/types";
 import {Account} from "../../store/accounts/types";
@@ -31,6 +33,8 @@ import _c from "../../util/fix-class-names";
 
 import defaults from "../../constants/defaults.json";
 
+import routes from "../../routes";
+
 import {brightnessSvg, pencilOutlineSvg, arrowLeftSvg, arrowRightSvg, refreshSvg, magnifySvg} from "../../img/svg";
 
 const logo = require('../../img/logo-circle.svg');
@@ -38,7 +42,6 @@ const logo = require('../../img/logo-circle.svg');
 interface AddressBarProps {
     history: History;
     location: Location;
-    activeUser: ActiveUser | null;
 }
 
 interface AddressBarState {
@@ -107,10 +110,9 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
     };
 
     addressKeyup = async (e: React.KeyboardEvent<HTMLInputElement>) => {
-        /*
         if (e.keyCode === 13) {
             const {address, changed} = this.state;
-            const {history, activeUser} = this.props;
+            const {history} = this.props;
 
             if (!changed) return;
 
@@ -118,72 +120,18 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
                 return;
             }
 
-            const a = addressParser(address);
+            const url = new URL(address, 'https://ecency.com');
+            const pathMatch = !!Object.values(routes).find(p => {
+                return pathToRegexp(p).test(url.pathname)
+            });
 
-            if (a.type === 'filter') {
-                const {path} = a;
-                history.push(path);
+            if (pathMatch) {
+                history.push(url.pathname);
                 return;
             }
 
-            if (a.type === 'post') {
-                const {author, permlink} = a;
-
-                this.setState({inProgress: true});
-                const content = await getContent(author, permlink);
-                this.setState({inProgress: false});
-
-                if (content.id) {
-                    const path = `/${content.category}/@${content.author}/${
-                        content.permlink
-                    }`;
-                    history.push(path);
-                    return;
-                }
-            }
-
-            if (a.type === 'author') {
-                const {author, path} = a;
-
-                this.setState({inProgress: true});
-                const account = await getAccount(author);
-                this.setState({inProgress: false});
-
-                if (account) {
-                    history.push(path);
-                    return;
-                }
-            }
-
-            if (a === 'feed' && activeAccount) {
-                const p = `@${activeAccount.username}/feed`;
-                history.push(p);
-                return;
-            }
-
-            if (a === 'witnesses') {
-                const p = `/witnesses`;
-                history.push(p);
-                return;
-            }
-
-            if (a === 'sps') {
-                const p = `/sps`;
-                history.push(p);
-                return;
-            }
-
-            if (a === 'transfer' && activeAccount) {
-                const p = `/@${activeAccount.username}/transfer/hive`;
-                history.push(p);
-                return;
-            }
-
-            const q = address.replace(/\//g, ' ');
-
-            history.push(`/search?q=${encodeURIComponent(q)}&sort=${searchSort}`);
+            // history.push(`/search?q=${encodeURIComponent(q)}&sort=${searchSort}`);
         }
-        */
 
         if (e.keyCode === 27) {
             const {realAddress} = this.state;
@@ -440,10 +388,7 @@ export class NavBar extends Component<Props, State> {
                         </div>
 
                         <div className="address-bar">
-                            <AddressBar
-                                history={history}
-                                location={location}
-                                activeUser={activeUser}/>
+                            <AddressBar history={history} location={location}/>
                         </div>
 
                         <ToolTip content={themeText}>
