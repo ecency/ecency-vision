@@ -261,6 +261,10 @@ export class NavBar extends Component<Props, State> {
         this.detect();
         window.addEventListener("scroll", this.scrollChanged);
         window.addEventListener("resize", this.scrollChanged);
+
+        // fetch trending tags for global usage
+        const {fetchTrendingTags} = this.props;
+        fetchTrendingTags();
     }
 
     componentWillUnmount() {
