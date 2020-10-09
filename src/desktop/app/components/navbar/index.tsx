@@ -10,32 +10,32 @@ import isEqual from "react-fast-compare";
 
 import {pathToRegexp} from "path-to-regexp";
 
-import {Global, Theme} from "../../store/global/types";
-import {TrendingTags} from "../../store/trending-tags/types";
-import {Account} from "../../store/accounts/types";
-import {User} from "../../store/users/types";
-import {ActiveUser} from "../../store/active-user/types";
-import {UI, ToggleType} from "../../store/ui/types";
-import {NotificationFilter, Notifications} from "../../store/notifications/types";
+import {Global, Theme} from "../../../../common/store/global/types";
+import {TrendingTags} from "../../../../common/store/trending-tags/types";
+import {Account} from "../../../../common/store/accounts/types";
+import {User} from "../../../../common/store/users/types";
+import {ActiveUser} from "../../../../common/store/active-user/types";
+import {UI, ToggleType} from "../../../../common/store/ui/types";
+import {NotificationFilter, Notifications} from "../../../../common/store/notifications/types";
 
-import ToolTip from "../tooltip";
-import Login from "../login";
-import UserNav from "../user-nav";
-import SignUp from "../sign-up";
+import ToolTip from "../../../../common/components/tooltip";
+import Login from "../../../../common/components/login";
+import UserNav from "../../../../common/components/user-nav";
+import SignUp from "../../../../common/components/sign-up";
 
-import NotificationHandler from "../notification-handler";
+import NotificationHandler from "../../../../common/components/notification-handler";
 
-import {_t} from "../../i18n";
+import {_t} from "../../../../common/i18n";
 
-import _c from "../../util/fix-class-names";
+import _c from "../../../../common/util/fix-class-names";
 
-import defaults from "../../constants/defaults.json";
+import defaults from "../../../../common/constants/defaults.json";
 
-import routes from "../../routes";
+import routes from "../../../../common/routes";
 
-import {brightnessSvg, pencilOutlineSvg, arrowLeftSvg, arrowRightSvg, refreshSvg, magnifySvg} from "../../img/svg";
+import {brightnessSvg, pencilOutlineSvg, arrowLeftSvg, arrowRightSvg, refreshSvg, magnifySvg} from "../../../../common/img/svg";
 
-const logo = require('../../img/logo-circle.svg');
+const logo = require("../../../../common/img/logo-circle.svg");
 
 interface AddressBarProps {
     history: History;

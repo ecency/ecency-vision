@@ -14,7 +14,7 @@ import Meta from "../components/meta";
 import Theme from "../components/theme";
 import Feedback from "../components/feedback";
 import NavBar from "../components/navbar";
-import NavBarElectron from "../components/navbar-electron";
+import NavBarElectron from "../../desktop/app/components/navbar";
 import Intro from "../components/intro";
 import DropDown, {MenuItem} from "../components/dropdown";
 import ListStyleToggle from "../components/list-style-toggle";
