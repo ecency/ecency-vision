@@ -163,8 +163,8 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
 
 interface NavControlsProps {
     history: History;
-    reloadFn: () => any,
-    reloading: boolean,
+    reloadFn?: () => any,
+    reloading?: boolean,
 }
 
 export class NavControls extends Component<NavControlsProps> {
@@ -198,12 +198,13 @@ export class NavControls extends Component<NavControlsProps> {
 
     refresh = () => {
         const {reloadFn} = this.props;
-
-        reloadFn();
+        if (reloadFn) {
+            reloadFn();
+        }
     };
 
     render() {
-        const {history, reloading} = this.props;
+        const {history, reloadFn, reloading} = this.props;
 
         // @ts-ignore this is for making ide happy. code compiles without error.
         const {entries, index} = history;
@@ -217,7 +218,7 @@ export class NavControls extends Component<NavControlsProps> {
 
         const backClassName = `back ${!canGoBack ? 'disabled' : ''}`;
         const forwardClassName = `forward ${!canGoForward ? 'disabled' : ''}`;
-        const reloadClassName = `reload ${reloading ? 'disabled' : ''}`;
+        const reloadClassName = `reload ${!reloadFn || reloading ? 'disabled' : ''}`;
 
         return (<div className="nav-controls">
             <div className={backClassName} onClick={() => this.goBack()}>{arrowLeftSvg}</div>
@@ -249,8 +250,8 @@ interface Props {
     setNotificationsFilter: (filter: NotificationFilter | null) => void;
     markNotifications: (id: string | null) => void;
     toggleUIProp: (what: ToggleType) => void;
-    reloadFn: () => any,
-    reloading: boolean,
+    reloadFn?: () => any,
+    reloading?: boolean,
 }
 
 interface State {
