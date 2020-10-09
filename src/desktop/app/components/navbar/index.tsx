@@ -8,8 +8,6 @@ import {Button} from "react-bootstrap";
 
 import isEqual from "react-fast-compare";
 
-import {pathToRegexp} from "path-to-regexp";
-
 import {Global, Theme} from "../../../../common/store/global/types";
 import {TrendingTags} from "../../../../common/store/trending-tags/types";
 import {Account} from "../../../../common/store/accounts/types";
@@ -34,6 +32,9 @@ import defaults from "../../../../common/constants/defaults.json";
 import routes from "../../../../common/routes";
 
 import {brightnessSvg, pencilOutlineSvg, arrowLeftSvg, arrowRightSvg, refreshSvg, magnifySvg} from "../../../../common/img/svg";
+
+// why "require" instead "import" ? see: https://github.com/ReactTraining/react-router/issues/6203
+const pathToRegexp = require("path-to-regexp");
 
 const logo = require("../../../../common/img/logo-circle.svg");
 
@@ -100,7 +101,7 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
         });
     };
 
-    addressKeyup = async (e: React.KeyboardEvent<HTMLInputElement>) => {
+    addressKeyup = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.keyCode === 13) {
             const {address, changed} = this.state;
             const {history} = this.props;
@@ -111,8 +112,11 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
                 return;
             }
 
+            // website address is just a placeholder here
             const url = new URL(address, 'https://ecency.com');
-            const pathMatch = !!Object.values(routes).find(p => {
+
+            // check if entered value matches with a route
+            const pathMatch = Object.values(routes).find(p => {
                 return pathToRegexp(p).test(url.pathname)
             });
 

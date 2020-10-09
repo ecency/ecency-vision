@@ -48,6 +48,7 @@ import Meta from "../components/meta";
 import Theme from "../components/theme/index";
 import Feedback from "../components/feedback";
 import NavBar from "../components/navbar/index";
+import NavBarElectron from "../../desktop/app/components/navbar";
 import NotFound from "../components/404";
 import ScrollToTop from "../components/scroll-to-top";
 
@@ -274,12 +275,23 @@ class EntryPage extends Component<Props, State> {
         history.push('/');
     }
 
+    reload = () => {
+        this.stateSet({loading: true});
+        this.ensureEntry();
+    }
+
     render() {
         const {loading, replying, showIfHidden} = this.state;
         const {global} = this.props;
 
+        const navBar = global.isElectron ? NavBarElectron({
+            ...this.props,
+            reloadFn: this.reload,
+            reloading: loading,
+        }) : NavBar({...this.props});
+
         if (loading) {
-            return <LinearProgress/>;
+            return <>{navBar}<LinearProgress/></>;
         }
 
         const entry = this.getEntry();
@@ -336,8 +348,7 @@ class EntryPage extends Component<Props, State> {
                 <Theme global={this.props.global}/>
                 <Feedback/>
                 <MdHandler history={this.props.history}/>
-                {NavBar({...this.props})}
-
+                {navBar}
                 <div className="app-content entry-page">
                     <div className="the-entry">
                         {(() => {
