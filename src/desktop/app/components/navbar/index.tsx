@@ -62,7 +62,11 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
     }
 
     shouldComponentUpdate(nextProps: Readonly<AddressBarProps>, nextState: Readonly<AddressBarState>) {
-        return !isEqual(this.state, nextState);
+        const {location} = this.props;
+
+        return (
+            !isEqual(location, nextProps.location) || !isEqual(this.state, nextState)
+        );
     }
 
     componentDidUpdate(prevProps: Readonly<AddressBarProps>) {
@@ -278,6 +282,7 @@ export class NavBar extends Component<Props, State> {
 
     shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
         return !isEqual(this.props.global, nextProps.global)
+            || !isEqual(this.props.location, nextProps.location)
             || !isEqual(this.props.trendingTags, nextProps.trendingTags)
             || !isEqual(this.props.users, nextProps.users)
             || !isEqual(this.props.activeUser, nextProps.activeUser)

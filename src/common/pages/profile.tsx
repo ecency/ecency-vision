@@ -13,6 +13,7 @@ import Meta from "../components/meta";
 import Theme from "../components/theme";
 import Feedback from "../components/feedback";
 import NavBar from "../components/navbar";
+import NavBarElectron from "../../desktop/app/components/navbar";
 import NotFound from "../components/404";
 import LinearProgress from "../components/linear-progress/index";
 import EntryListLoadingItem from "../components/entry-list-loading-item";
@@ -110,6 +111,12 @@ class ProfilePage extends Component<Props, State> {
         this._mounted = false;
     }
 
+    stateSet = (state: {}, cb?: () => void) => {
+        if (this._mounted) {
+            this.setState(state, cb);
+        }
+    };
+
     ensureAccount = () => {
         const {match, accounts, addAccount} = this.props;
 
@@ -137,12 +144,6 @@ class ProfilePage extends Component<Props, State> {
         }
     };
 
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
-
     bottomReached = () => {
         const {global, entries, fetchEntries} = this.props;
         const {filter, tag} = global;
@@ -156,12 +157,42 @@ class ProfilePage extends Component<Props, State> {
         }
     };
 
+    reload = () => {
+        const {match, global, invalidateEntries, fetchEntries, resetTransactions, fetchTransactions, resetPoints, fetchPoints} = this.props;
+        const {username, section} = match.params
+
+        this.stateSet({loading: true});
+        this.ensureAccount().then(() => {
+            // reload transactions
+            resetTransactions();
+            fetchTransactions(username);
+
+            // reload points
+            resetPoints();
+            fetchPoints(username);
+
+            if (!section || (section && Object.keys(ProfileFilter).includes(section))) {
+                // reload posts
+                invalidateEntries(makeGroupKey(global.filter, global.tag));
+                fetchEntries(global.filter, global.tag, false);
+            }
+        }).finally(() => {
+            this.stateSet({loading: false});
+        });
+    }
+
     render() {
         const {global, entries, accounts, match} = this.props;
         const {loading} = this.state;
 
+        const navBar = global.isElectron ? NavBarElectron({
+            ...this.props,
+            reloadFn: this.reload,
+            reloading: loading,
+        }) : NavBar({...this.props});
+
         if (loading) {
-            return <LinearProgress/>;
+            return <>{navBar}<LinearProgress/></>;
         }
 
         const username = match.params.username.replace("@", "");
@@ -191,7 +222,7 @@ class ProfilePage extends Component<Props, State> {
                 <ScrollToTop/>
                 <Theme global={this.props.global}/>
                 <Feedback/>
-                {NavBar({...this.props})}
+                {navBar}
 
                 <div className="app-content profile-page">
                     <div className="profile-side">
