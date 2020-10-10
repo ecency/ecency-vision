@@ -349,6 +349,7 @@ class EntryPage extends Component<Props, State> {
                 <Feedback/>
                 <MdHandler history={this.props.history}/>
                 {navBar}
+
                 <div className="app-content entry-page">
                     <div className="the-entry">
                         {(() => {
