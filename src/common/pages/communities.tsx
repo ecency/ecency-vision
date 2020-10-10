@@ -447,16 +447,20 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
             title: _t("communities-create.page-title"),
         };
 
-        const {activeUser} = this.props;
+        const {activeUser, global} = this.props;
 
         const {fee, title, about, username, wif, usernameStatus, keyDialog, done, inProgress, progress} = this.state;
 
         return (
             <>
                 <Meta {...metaProps} />
-                <Theme global={this.props.global}/>
+                <Theme global={global}/>
                 <Feedback/>
-                {NavBar({...this.props})}
+                {global.isElectron ?
+                    NavBarElectron({
+                        ...this.props
+                    }) :
+                    NavBar({...this.props})}
 
                 <div className="app-content communities-page">
                     <Form ref={this.form} className={`community-form ${inProgress ? "in-progress" : ""}`} onSubmit={(e: React.FormEvent) => {
