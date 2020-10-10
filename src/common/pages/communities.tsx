@@ -716,13 +716,18 @@ class CommunityCreateHSPage extends Component<PageProps, CreateHsState> {
             title: _t("communities-create.page-title"),
         };
 
+        const {global} = this.props;
         const {inProgress, progress, done} = this.state;
 
         return <>
             <Meta {...metaProps} />
-            <Theme global={this.props.global}/>
+            <Theme global={global}/>
             <Feedback/>
-            {NavBar({...this.props})}
+            {global.isElectron ?
+                NavBarElectron({
+                    ...this.props
+                }) :
+                NavBar({...this.props})}
 
             <div className="app-content communities-page">
                 <div className="community-form">
