@@ -32,7 +32,7 @@ import defaults from "../../../../common/constants/defaults.json";
 
 import routes from "../../../../common/routes";
 
-import {brightnessSvg, pencilOutlineSvg, arrowLeftSvg, arrowRightSvg, refreshSvg, magnifySvg} from "../../../../common/img/svg";
+import {brightnessSvg, pencilOutlineSvg, arrowLeftSvg, arrowRightSvg, refreshSvg, magnifySvg, dotsHorizontal} from "../../../../common/img/svg";
 
 // why "require" instead "import" ? see: https://github.com/ReactTraining/react-router/issues/6203
 const pathToRegexp = require("path-to-regexp");
@@ -329,10 +329,12 @@ export class NavBar extends Component<Props, State> {
         const menuConfig: {
             history: History,
             label: string,
+            icon: JSX.Element,
             items: MenuItem[]
         } = {
             history: this.props.history,
             label: '',
+            icon: dotsHorizontal,
             items: [
                 {
                     label: _t("navbar.discover"),
