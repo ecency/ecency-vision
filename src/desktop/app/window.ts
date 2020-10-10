@@ -18,9 +18,7 @@ document.addEventListener('click', function (e) {
     }
 
     if ((el.classList && el.classList.contains('markdown-external-link')) ||
-        el.getAttribute('target') === '_external' ||
-        el.getAttribute('target') === '_blank'
-    ) {
+        el.getAttribute('target') === '_external') {
         const href = el.getAttribute('href');
         if (href) {
             shell.openExternal(href);

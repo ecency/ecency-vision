@@ -11,8 +11,8 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import path from 'path';
-import { app, BrowserWindow } from 'electron';
-import { autoUpdater } from 'electron-updater';
+import {app, BrowserWindow, shell} from 'electron';
+import {autoUpdater} from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 
@@ -90,6 +90,9 @@ const createWindow = async () => {
             mainWindow.show();
             mainWindow.focus();
         }
+    }).on('new-window', (e, url) => {
+        shell.openExternal(url);
+        e.preventDefault();
     });
 
     mainWindow.on('closed', () => {
@@ -101,7 +104,7 @@ const createWindow = async () => {
 
     // Remove this if your app does not use auto updates
     // eslint-disable-next-line
-   // new AppUpdater();
+    // new AppUpdater();
 };
 
 /**
