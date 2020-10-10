@@ -20,6 +20,7 @@ import ToolTip from "../../../../common/components/tooltip";
 import Login from "../../../../common/components/login";
 import UserNav from "../../../../common/components/user-nav";
 import SignUp from "../../../../common/components/sign-up";
+import DropDown, {MenuItem} from "../../../../common/components/dropdown";
 
 import NotificationHandler from "../../../../common/components/notification-handler";
 
@@ -325,6 +326,32 @@ export class NavBar extends Component<Props, State> {
 
         const {floating} = this.state;
 
+        const menuConfig: {
+            history: History,
+            label: string,
+            items: MenuItem[]
+        } = {
+            history: this.props.history,
+            label: '',
+            items: [
+                {
+                    label: _t("navbar.discover"),
+                    href: `/discover`,
+                    active: location.pathname === '/discover'
+                },
+                {
+                    label: _t("navbar.communities"),
+                    href: `/communities`,
+                    active: location.pathname === '/communities'
+                },
+                {
+                    label: _t("navbar.faq"),
+                    href: `/faq`,
+                    active: location.pathname === '/faq'
+                }
+            ],
+        };
+
         return (
             <>
                 {floating && (<div className="nav-bar-electron-rep"/>)}
@@ -345,6 +372,10 @@ export class NavBar extends Component<Props, State> {
 
                         <div className="address-bar">
                             <AddressBar history={history} location={location}/>
+                        </div>
+
+                        <div className="text-menu">
+                            <DropDown {...menuConfig} float="right"/>
                         </div>
 
                         <ToolTip content={themeText}>
