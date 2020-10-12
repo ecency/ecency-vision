@@ -9,7 +9,7 @@ import isElectron from "../util/is-electron";
 
 import defaults from "../constants/defaults.json";
 
-const _u = (endpoint: string): string => {
+export const _u = (endpoint: string): string => {
     let base = '';
 
     if (isElectron()) {
