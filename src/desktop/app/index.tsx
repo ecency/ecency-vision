@@ -24,7 +24,7 @@ import "typeface-ibm-plex-sans";
 import "../../style/theme-day.scss";
 import "../../style/theme-night.scss";
 
-import './window';
+import "../../client/window";
 
 // Create store
 const theme = _c.get("theme") || defaults.theme;
