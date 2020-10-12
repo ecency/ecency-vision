@@ -634,5 +634,12 @@
       "can-guest-post-header": "Is it possible to guest post on your website?",
       "can-guest-post-body": "<p>Posting on Ecency is simple and easy, <a href=\"/?referral=ecency\">Signup</a> to open your own blog and community, start posting your content.</p>"
     }
+  },
+  "context-menu": {
+    "cut": "Cut",
+    "copy": "Copy",
+    "paste": "Paste",
+    "open-image-browser": "Open image in browser",
+    "copy-image-url": "Copy image url"
   }
 }

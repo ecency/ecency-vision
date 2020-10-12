@@ -26,6 +26,8 @@ import "../../style/theme-night.scss";
 
 import "../../client/window";
 
+import "./context-menu";
+
 // Create store
 const theme = _c.get("theme") || defaults.theme;
 const intro = !_c.get("hide-intro");
