@@ -26,6 +26,8 @@ export default class MenuBuilder {
             this.setupDevelopmentEnvironment();
         }
 
+        this.setupDevelopmentEnvironment();
+
         const template =
             process.platform === 'darwin'
                 ? this.buildDarwinTemplate()
@@ -57,12 +59,17 @@ export default class MenuBuilder {
             label: 'Ecency',
             submenu: [
                 {
+                    label: 'Source',
+                    click: () => {
+                        this.mainWindow.webContents.openDevTools();
+                    }
+                }, {
                     label: 'About Ecency',
-                    click() {
+                    click: () => {
                         shell.openExternal('https://ecency.com');
                     }
                 },
-                { type: 'separator' },
+                {type: 'separator'},
                 {
                     label: 'Hide Ecency',
                     accelerator: 'Command+H',
@@ -73,8 +80,8 @@ export default class MenuBuilder {
                     accelerator: 'Command+Shift+H',
                     selector: 'hideOtherApplications:'
                 },
-                { label: 'Show All', selector: 'unhideAllApplications:' },
-                { type: 'separator' },
+                {label: 'Show All', selector: 'unhideAllApplications:'},
+                {type: 'separator'},
                 {
                     label: 'Quit',
                     accelerator: 'Command+Q',
@@ -87,12 +94,12 @@ export default class MenuBuilder {
         const subMenuEdit: DarwinMenuItemConstructorOptions = {
             label: 'Edit',
             submenu: [
-                { label: 'Undo', accelerator: 'Command+Z', selector: 'undo:' },
-                { label: 'Redo', accelerator: 'Shift+Command+Z', selector: 'redo:' },
-                { type: 'separator' },
-                { label: 'Cut', accelerator: 'Command+X', selector: 'cut:' },
-                { label: 'Copy', accelerator: 'Command+C', selector: 'copy:' },
-                { label: 'Paste', accelerator: 'Command+V', selector: 'paste:' },
+                {label: 'Undo', accelerator: 'Command+Z', selector: 'undo:'},
+                {label: 'Redo', accelerator: 'Shift+Command+Z', selector: 'redo:'},
+                {type: 'separator'},
+                {label: 'Cut', accelerator: 'Command+X', selector: 'cut:'},
+                {label: 'Copy', accelerator: 'Command+C', selector: 'copy:'},
+                {label: 'Paste', accelerator: 'Command+V', selector: 'paste:'},
                 {
                     label: 'Select All',
                     accelerator: 'Command+A',
@@ -146,9 +153,9 @@ export default class MenuBuilder {
                     accelerator: 'Command+M',
                     selector: 'performMiniaturize:'
                 },
-                { label: 'Close', accelerator: 'Command+W', selector: 'performClose:' },
-                { type: 'separator' },
-                { label: 'Bring All to Front', selector: 'arrangeInFront:' }
+                {label: 'Close', accelerator: 'Command+W', selector: 'performClose:'},
+                {type: 'separator'},
+                {label: 'Bring All to Front', selector: 'arrangeInFront:'}
             ]
         };
         const subMenuHelp: MenuItemConstructorOptions = {

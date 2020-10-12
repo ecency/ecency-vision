@@ -1,8 +1,12 @@
 {
   "scripts": {
+    "build": "concurrently \"yarn build-main\" \"yarn build-renderer\"",
     "build-dll": "cross-env NODE_ENV=development webpack --config ./configs/webpack.config.renderer.dev.dll.babel.js --colors",
+    "build-main": "cross-env NODE_ENV=production webpack --config ./configs/webpack.config.main.prod.babel.js --colors",
+    "build-renderer": "cross-env NODE_ENV=production webpack --config ./configs/webpack.config.renderer.prod.babel.js --colors",
     "start-main-dev": "cross-env START_HOT=1 NODE_ENV=development electron -r ./internals/scripts/BabelRegister ./app/main.dev.ts",
     "dev": "cross-env START_HOT=1 node -r @babel/register ./internals/scripts/CheckPortInUse.js && cross-env START_HOT=1 yarn start-renderer-dev",
+    "package": "yarn build && electron-builder build --publish never",
     "start-renderer-dev": "cross-env NODE_ENV=development webpack-dev-server --config configs/webpack.config.renderer.dev.babel.js"
   },
   "build": {
@@ -109,12 +113,18 @@
     "@teamsupercell/typings-for-css-modules-loader": "^2.2.1",
     "babel-plugin-dev-expression": "^0.2.2",
     "chalk": "^4.1.0",
+    "concurrently": "^5.3.0",
     "cross-env": "^7.0.2",
     "detect-port": "^1.3.0",
     "electron": "^8",
     "electron-builder": "^22.3.6",
     "electron-devtools-installer": "^2.2.4",
+    "mini-css-extract-plugin": "^0.9.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "rimraf": "^3.0.0",
+    "terser-webpack-plugin": "^3.0.7",
     "webpack": "^4.43.0",
+    "webpack-bundle-analyzer": "^3.8.0",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^5.0.9"

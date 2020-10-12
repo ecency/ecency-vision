@@ -1,1 +1,4 @@
 dll
+release
+app/dist
+app/main.prod.js
