@@ -11,9 +11,8 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import path from 'path';
-import {app, BrowserWindow, shell} from 'electron';
+import {app, BrowserWindow, ipcMain, shell} from 'electron';
 import {autoUpdater} from 'electron-updater';
-import log from 'electron-log';
 import MenuBuilder from './menu';
 
 
@@ -93,6 +92,19 @@ const createWindow = async () => {
 
         // Enable zoom
         mainWindow.webContents.setVisualZoomLevelLimits(1, 3);
+
+        // Auto updater checks
+        if (process.env.NODE_ENV === 'production') {
+            autoUpdater.autoDownload = false;
+
+            autoUpdater.checkForUpdates();
+
+            // run auto updater to check if is there a new version for each 4 hours
+            setInterval(() => {
+                autoUpdater.checkForUpdates();
+            }, 1000 * 60 * 240);
+        }
+
     }).on('new-window', (e, url) => {
         shell.openExternal(url);
         e.preventDefault();
@@ -104,10 +116,6 @@ const createWindow = async () => {
 
     const menuBuilder = new MenuBuilder(mainWindow);
     menuBuilder.buildMenu();
-
-    // Remove this if your app does not use auto updates
-    // eslint-disable-next-line
-    // new AppUpdater();
 };
 
 /**
@@ -129,4 +137,27 @@ app.on('activate', () => {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
     if (mainWindow === null) createWindow();
+});
+
+// Event handlers for auto updater
+autoUpdater.on('update-available', info => {
+    mainWindow!.webContents.send('update-available', info.releaseName);
+});
+
+autoUpdater.on('download-progress', progressObj => {
+    mainWindow!.webContents.send('download-progress', progressObj.percent);
+});
+
+autoUpdater.on('update-downloaded', () => {
+    mainWindow!.webContents.send('update-downloaded');
+});
+
+ipcMain.on('download-update', () => {
+    autoUpdater.downloadUpdate();
+    mainWindow!.webContents.send('download-started');
+});
+
+ipcMain.on('update-restart', () => {
+    autoUpdater.quitAndInstall();
+    console.log('Restart');
 });

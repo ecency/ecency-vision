@@ -4,9 +4,12 @@ import {render} from 'react-dom';
 import {Provider} from "react-redux";
 import {ConnectedRouter} from "connected-react-router";
 
+import {ipcRenderer} from "electron";
+
 import {AppState, history} from "../../common/store";
 import {ListStyle, Theme} from "../../common/store/global/types";
 import {Global} from "../../common/store/global/types";
+import {newVersionChangeAct} from "../../common/store/global";
 import {activeUserMaker, clientStoreTasks} from "../../common/store/helper";
 import configureStore from "../../common/store/configure";
 import initialState from "../../common/store/initial-state";
@@ -60,4 +63,10 @@ document.addEventListener('DOMContentLoaded', () => {
     );
 });
 
+// Initial or repeating storage tasks.
 clientStoreTasks(store);
+
+// Auto updater.
+ipcRenderer.on('update-available', (event: any, version: string) => {
+    store.dispatch(newVersionChangeAct(version));
+});

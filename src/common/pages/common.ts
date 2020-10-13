@@ -19,7 +19,7 @@ import {Transactions} from "../store/transactions/types";
 import {Points} from "../store/points/types";
 
 
-import {toggleTheme, hideIntro, toggleListStyle} from "../store/global";
+import {toggleTheme, hideIntro, toggleListStyle, dismissNewVersion} from "../store/global";
 import {fetchTrendingTags} from "../store/trending-tags";
 import {updateSubscriptions} from "../store/subscriptions";
 import {fetchEntries, addEntry, updateEntry, invalidateEntries} from "../store/entries";
@@ -43,6 +43,7 @@ export interface PageProps {
     toggleTheme: () => void;
     hideIntro: () => void;
     toggleListStyle: () => void;
+    dismissNewVersion: () => void;
 
     dynamicProps: DynamicProps;
 
@@ -114,6 +115,7 @@ export const pageMapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
             toggleTheme,
             hideIntro,
             toggleListStyle,
+            dismissNewVersion,
             fetchTrendingTags,
             updateSubscriptions,
             fetchEntries,

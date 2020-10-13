@@ -6,17 +6,7 @@ import defaults from "../../constants/defaults.json";
 
 import {AppState} from "../index";
 
-import {
-    ListStyle,
-    Theme,
-    AllFilter,
-    Global,
-    Actions,
-    ActionTypes,
-    IntroHideAction,
-    ListStyleChangeAction,
-    ThemeChangeAction,
-} from "./types";
+import {Actions, ActionTypes, AllFilter, Global, IntroHideAction, ListStyle, ListStyleChangeAction, NewVersionChangeAction, Theme, ThemeChangeAction} from "./types";
 
 import {CommonActionTypes} from "../common";
 
@@ -36,6 +26,7 @@ export const initialState: Global = {
     searchIndexCount: 0,
     canUseWebp: false,
     isElectron: false,
+    newVersion: null
 };
 
 export default (state: Global = initialState, action: Actions): Global => {
@@ -62,6 +53,10 @@ export default (state: Global = initialState, action: Actions): Global => {
         case ActionTypes.LIST_STYLE_CHANGE: {
             const {listStyle} = action;
             return {...state, listStyle};
+        }
+        case ActionTypes.NEW_VERSION_CHANGE: {
+            const {version} = action;
+            return {...state, newVersion: version};
         }
         default:
             return state;
@@ -101,6 +96,10 @@ export const hideIntro = () => (dispatch: Dispatch) => {
     dispatch(hideIntroAct());
 };
 
+export const dismissNewVersion = (version: string | null) => (dispatch: Dispatch) => {
+    dispatch(newVersionChangeAct(version));
+};
+
 /* Action Creators */
 export const themeChangeAct = (theme: Theme): ThemeChangeAction => {
     return {
@@ -119,5 +118,12 @@ export const listStyleChangeAct = (listStyle: ListStyle): ListStyleChangeAction 
     return {
         type: ActionTypes.LIST_STYLE_CHANGE,
         listStyle,
+    };
+};
+
+export const newVersionChangeAct = (version: string | null): NewVersionChangeAction => {
+    return {
+        type: ActionTypes.NEW_VERSION_CHANGE,
+        version,
     };
 };

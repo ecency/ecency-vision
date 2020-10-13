@@ -4,7 +4,6 @@
 
 @import '../common/components/404/index';
 @import '../common/components/navbar/index';
-@import '../desktop/app/components/navbar/index';
 @import '../common/components/user-nav/index';
 @import '../common/components/search/index';
 @import '../common/components/intro/index';
@@ -70,6 +69,9 @@
 @import '../common/components/scroll-to-top';
 @import '../common/components/pin-btn';
 @import '../common/components/mute-btn';
+
+@import '../desktop/app/components/navbar';
+@import '../desktop/app/components/updater';
 
 @import '../common/pages/entry-index';
 @import '../common/pages/profile';

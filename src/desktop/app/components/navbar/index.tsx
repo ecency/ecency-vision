@@ -21,6 +21,7 @@ import Login from "../../../../common/components/login";
 import UserNav from "../../../../common/components/user-nav";
 import SignUp from "../../../../common/components/sign-up";
 import DropDown, {MenuItem} from "../../../../common/components/dropdown";
+import Updater from "../updater";
 
 import NotificationHandler from "../../../../common/components/notification-handler";
 
@@ -251,6 +252,7 @@ interface Props {
     setNotificationsFilter: (filter: NotificationFilter | null) => void;
     markNotifications: (id: string | null) => void;
     toggleUIProp: (what: ToggleType) => void;
+    dismissNewVersion: () => void;
     reloadFn?: () => any,
     reloading?: boolean,
 }
@@ -415,6 +417,7 @@ export class NavBar extends Component<Props, State> {
                     {ui.signUp && <SignUp {...this.props} />}
                     <NotificationHandler {...this.props} />
                 </div>
+                {global.newVersion && <Updater global={global} dismissNewVersion={this.props.dismissNewVersion}/>}
             </>
         )
     }
@@ -442,6 +445,7 @@ export default (p: Props) => {
         setNotificationsFilter: p.setNotificationsFilter,
         markNotifications: p.markNotifications,
         toggleUIProp: p.toggleUIProp,
+        dismissNewVersion: p.dismissNewVersion,
         reloadFn: p.reloadFn,
         reloading: p.reloading,
     }
