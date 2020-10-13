@@ -221,9 +221,9 @@ export class NavControls extends Component<NavControlsProps> {
 
         const canGoForward = !!entries[index + 1];
 
-        const backClassName = `back ${!canGoBack ? 'disabled' : ''}`;
-        const forwardClassName = `forward ${!canGoForward ? 'disabled' : ''}`;
-        const reloadClassName = `reload ${!reloadFn || reloading ? 'disabled' : ''}`;
+        const backClassName = _c(`back ${!canGoBack ? 'disabled' : ''}`);
+        const forwardClassName = _c(`forward ${!canGoForward ? 'disabled' : ''}`);
+        const reloadClassName = _c(`reload ${!reloadFn || reloading ? 'disabled' : ''}`);
 
         return (<div className="nav-controls">
             <div className={backClassName} onClick={() => this.goBack()}>{arrowLeftSvg}</div>
