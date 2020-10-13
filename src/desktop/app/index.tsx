@@ -4,8 +4,6 @@ import {render} from 'react-dom';
 import {Provider} from "react-redux";
 import {ConnectedRouter} from "connected-react-router";
 
-import _c from 'js-cookie'
-
 import {AppState, history} from "../../common/store";
 import {ListStyle, Theme} from "../../common/store/global/types";
 import {Global} from "../../common/store/global/types";
@@ -29,9 +27,9 @@ import "../../client/window";
 import "./context-menu";
 
 // Create store
-const theme = _c.get("theme") || defaults.theme;
-const intro = !_c.get("hide-intro");
-const listStyle = _c.get("list-style") || defaults.listStyle;
+const theme = ls.get("theme") || defaults.theme;
+const intro = !ls.get("hide-intro");
+const listStyle = ls.get("list-style") || defaults.listStyle;
 
 const globalState: Global = {
     ...initialState.global,
