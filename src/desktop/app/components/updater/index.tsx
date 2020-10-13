@@ -42,12 +42,12 @@ export default class Updater extends Component<Props, State> {
         });
     };
 
-    onDownloadProgress = (event: any, perc: number) => {
+    onDownloadProgress = (event: any, percent: number) => {
         this.setState({
-            progress: perc
+            progress: percent
         });
 
-        if (perc >= 100) {
+        if (percent >= 100) {
             setTimeout(() => {
                 this.onUpdateDownloaded();
             }, 10000);
