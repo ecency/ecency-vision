@@ -79,7 +79,7 @@ const createWindow = async () => {
     mainWindow.loadURL(`file://${__dirname}/app.html`);
 
     // @TODO: Use 'ready-to-show' event
-    //        https://github.com/electron/electron/blob/master/docs/api/browser-window.md#using-ready-to-show-event
+    // https://github.com/electron/electron/blob/master/docs/api/browser-window.md#using-ready-to-show-event
     mainWindow.webContents.on('did-finish-load', () => {
         if (!mainWindow) {
             throw new Error('"mainWindow" is not defined');
@@ -90,6 +90,9 @@ const createWindow = async () => {
             mainWindow.show();
             mainWindow.focus();
         }
+
+        // Enable zoom
+        mainWindow.webContents.setVisualZoomLevelLimits(1, 3);
     }).on('new-window', (e, url) => {
         shell.openExternal(url);
         e.preventDefault();
