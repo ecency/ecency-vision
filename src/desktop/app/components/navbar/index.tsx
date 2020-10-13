@@ -235,7 +235,6 @@ interface Props {
     history: History;
     location: Location;
     global: Global;
-    trendingTags: TrendingTags;
     users: User[];
     activeUser: ActiveUser | null;
     ui: UI;
@@ -287,7 +286,6 @@ export class NavBar extends Component<Props, State> {
     shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
         return !isEqual(this.props.global, nextProps.global)
             || !isEqual(this.props.location, nextProps.location)
-            || !isEqual(this.props.trendingTags, nextProps.trendingTags)
             || !isEqual(this.props.users, nextProps.users)
             || !isEqual(this.props.activeUser, nextProps.activeUser)
             || !isEqual(this.props.ui, nextProps.ui)
@@ -428,7 +426,6 @@ export default (p: Props) => {
         history: p.history,
         location: p.location,
         global: p.global,
-        trendingTags: p.trendingTags,
         users: p.users,
         activeUser: p.activeUser,
         ui: p.ui,
