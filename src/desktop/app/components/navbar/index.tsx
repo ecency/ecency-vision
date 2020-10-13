@@ -166,26 +166,21 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
 
 interface NavControlsProps {
     history: History;
+    location: Location;
     reloadFn?: () => any,
     reloading?: boolean,
 }
 
 export class NavControls extends Component<NavControlsProps> {
     shouldComponentUpdate(nextProps: Readonly<NavControlsProps>) {
-        const {history, reloading} = this.props;
+        const {history, location, reloading} = this.props;
 
         return (
-            reloading !== nextProps.reloading || !isEqual(history, nextProps.history)
+            reloading !== nextProps.reloading
+            || !isEqual(history, nextProps.history)
+            || !isEqual(location, nextProps.location)
         );
     }
-
-    checkPathForBack = (path: string) => {
-        if (!path) {
-            return false;
-        }
-
-        return !['/'].includes(path);
-    };
 
     goBack = () => {
         const {history} = this.props;
@@ -214,11 +209,7 @@ export class NavControls extends Component<NavControlsProps> {
         // @ts-ignore
         const index = history.index || 0;
 
-        let canGoBack = false;
-        if (entries[index - 1]) {
-            canGoBack = this.checkPathForBack(entries[index - 1].pathname);
-        }
-
+        const canGoBack = !!entries[index - 1];
         const canGoForward = !!entries[index + 1];
 
         const backClassName = _c(`back ${!canGoBack ? 'disabled' : ''}`);
@@ -288,6 +279,7 @@ export class NavBar extends Component<Props, State> {
 
     shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
         return !isEqual(this.props.global, nextProps.global)
+            || !isEqual(this.props.history, nextProps.history)
             || !isEqual(this.props.location, nextProps.location)
             || !isEqual(this.props.users, nextProps.users)
             || !isEqual(this.props.activeUser, nextProps.activeUser)
@@ -371,6 +363,7 @@ export class NavBar extends Component<Props, State> {
                         <div className="nav-controls">
                             <NavControls
                                 history={history}
+                                location={location}
                                 reloading={this.props.reloading}
                                 reloadFn={this.props.reloadFn}/>
                         </div>
