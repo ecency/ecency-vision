@@ -9,7 +9,6 @@ import {Button} from "react-bootstrap";
 import isEqual from "react-fast-compare";
 
 import {Global, Theme} from "../../../../common/store/global/types";
-import {TrendingTags} from "../../../../common/store/trending-tags/types";
 import {Account} from "../../../../common/store/accounts/types";
 import {User} from "../../../../common/store/users/types";
 import {ActiveUser} from "../../../../common/store/active-user/types";
@@ -82,10 +81,12 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
     fixAddress = () => {
         const {history} = this.props;
 
+        // @ts-ignore this is for making ide happy. code compiles without error.
+        const entries = history.entries || {}
         // @ts-ignore
-        const {entries, index} = history;
+        const index = history.index || 0;
 
-        const curPath = entries[index].pathname;
+        const curPath = entries[index]?.pathname || '/';
         const address = curPath === '/' ? `${defaults.filter}` : curPath.replace('/', '');
 
         /* persist search string
@@ -209,7 +210,9 @@ export class NavControls extends Component<NavControlsProps> {
         const {history, reloadFn, reloading} = this.props;
 
         // @ts-ignore this is for making ide happy. code compiles without error.
-        const {entries, index} = history;
+        const entries = history.entries || {}
+        // @ts-ignore
+        const index = history.index || 0;
 
         let canGoBack = false;
         if (entries[index - 1]) {

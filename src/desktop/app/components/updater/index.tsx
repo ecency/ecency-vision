@@ -30,9 +30,10 @@ export default class Updater extends Component<Props, State> {
     }
 
     componentDidMount() {
-        ipcRenderer.on('download-started', this.onDownloadStarted);
-        ipcRenderer.on('download-progress', this.onDownloadProgress);
-        ipcRenderer.on('update-downloaded', this.onUpdateDownloaded);
+        // "?" is for to pass tests
+        ipcRenderer?.on('download-started', this.onDownloadStarted);
+        ipcRenderer?.on('download-progress', this.onDownloadProgress);
+        ipcRenderer?.on('update-downloaded', this.onUpdateDownloaded);
     }
 
     onDownloadStarted = () => {
