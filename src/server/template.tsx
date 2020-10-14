@@ -61,7 +61,6 @@ export const render = (req: express.Request, state: AppState) => {
                     ? `<script src="${assets.client.js}" defer></script>`
                     : `<script src="${assets.client.js}" defer crossorigin></script>`
                 }
-                <script data-ad-client="ca-pub-3274596509848547" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
             </head>
             <body class="${`theme-${state.global.theme}`}">
                 <div id="root">${markup}</div>
