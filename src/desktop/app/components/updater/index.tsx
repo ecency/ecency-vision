@@ -1,7 +1,5 @@
 import React, {Component} from "react";
 
-import {ipcRenderer} from "electron";
-
 import {Button, ProgressBar} from "react-bootstrap";
 
 import {Global} from "../../../../common/store/global/types";
@@ -31,9 +29,9 @@ export default class Updater extends Component<Props, State> {
 
     componentDidMount() {
         // "?" is for to pass tests
-        ipcRenderer?.on('download-started', this.onDownloadStarted);
-        ipcRenderer?.on('download-progress', this.onDownloadProgress);
-        ipcRenderer?.on('update-downloaded', this.onUpdateDownloaded);
+        window["ipcRenderer"]?.on('download-started', this.onDownloadStarted);
+        window["ipcRenderer"]?.on('download-progress', this.onDownloadProgress);
+        window["ipcRenderer"]?.on('update-downloaded', this.onUpdateDownloaded);
     }
 
     onDownloadStarted = () => {
@@ -63,7 +61,7 @@ export default class Updater extends Component<Props, State> {
     };
 
     begin = () => {
-        ipcRenderer.send('download-update');
+        window["ipcRenderer"]?.send('download-update');
     };
 
     dismiss = () => {
@@ -78,13 +76,18 @@ export default class Updater extends Component<Props, State> {
     };
 
     updateRestart = () => {
-        ipcRenderer.send('update-restart');
+        window["ipcRenderer"]?.send('update-restart');
     };
 
     render() {
-        const {downloading, completed, progress} = this.state;
         const {global} = this.props;
+        if (!global.newVersion) {
+            return null;
+        }
+
+        const {downloading, completed, progress} = this.state;
         const percent = Math.ceil(progress);
+
 
         return <div className="updater">
             {(!downloading && !completed) && (

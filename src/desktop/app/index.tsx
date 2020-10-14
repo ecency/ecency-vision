@@ -4,8 +4,6 @@ import {render} from 'react-dom';
 import {Provider} from "react-redux";
 import {ConnectedRouter} from "connected-react-router";
 
-import {ipcRenderer} from "electron";
-
 import {AppState, history} from "../../common/store";
 import {ListStyle, Theme} from "../../common/store/global/types";
 import {Global} from "../../common/store/global/types";
@@ -28,6 +26,9 @@ import "../../style/theme-night.scss";
 import "../../client/window";
 
 import "./context-menu";
+
+// If we load ipc renderer with "import" or "require" web app can't compile since it doesn't has electron as dependency.
+window["ipcRenderer"] = require("electron").ipcRenderer;
 
 // Create store
 const theme = ls.get("theme") || defaults.theme;
@@ -67,6 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
 clientStoreTasks(store);
 
 // Auto updater.
-ipcRenderer.on('update-available', (event: any, version: string) => {
+window["ipcRenderer"].on('update-available', (event: any, version: string) => {
     store.dispatch(newVersionChangeAct(version));
 });

@@ -96,8 +96,8 @@ export const hideIntro = () => (dispatch: Dispatch) => {
     dispatch(hideIntroAct());
 };
 
-export const dismissNewVersion = (version: string | null) => (dispatch: Dispatch) => {
-    dispatch(newVersionChangeAct(version));
+export const dismissNewVersion = () => (dispatch: Dispatch) => {
+    dispatch(newVersionChangeAct(null));
 };
 
 /* Action Creators */
