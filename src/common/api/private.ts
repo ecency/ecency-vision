@@ -302,3 +302,32 @@ export const commentHistory = (author: string, permlink: string, onlyMeta: boole
     const data = {author, permlink, onlyMeta: onlyMeta ? '1' : ''};
     return axios.post(_u(`/api/comment-history`), data).then(resp => resp.data);
 }
+
+export interface SearchResult {
+    title: string;
+    category: string;
+    author: string;
+    permlink: string;
+    author_rep: number;
+    children: number;
+    body: string;
+    created_at: string;
+    payout: number;
+    total_votes: number;
+    app:string;
+}
+
+export interface SearchResponse {
+    hits: number;
+    results: SearchResult[];
+    scroll_id?: string;
+    took: number;
+}
+
+export const search = (q: string, sort: string, scroll_id?: string): Promise<SearchResponse> => {
+    const data: { q: string, sort: string, scroll_id?: string } = {q, sort};
+    if (scroll_id) {
+        data.scroll_id = scroll_id
+    }
+    return axios.post(_u(`/api/search`), data).then(resp => resp.data);
+}

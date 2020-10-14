@@ -43,7 +43,8 @@ import {
     searchPath,
     boostOptions,
     boostedPost,
-    commentHistory
+    commentHistory,
+    search
 } from "./handlers/private-api";
 
 const server = express();
@@ -131,6 +132,7 @@ server
     .post("^/api/boost-options$", boostOptions)
     .post("^/api/boosted-post$", boostedPost)
     .post("^/api/comment-history$", commentHistory)
+    .post("^/api/search$", search)
     .get("*", fallbackHandler);
 
 export default server;

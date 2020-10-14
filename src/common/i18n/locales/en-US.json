@@ -562,6 +562,14 @@
   "discover": {
     "title": "Discover"
   },
+  "search-page": {
+    "title": "Search",
+    "n-results-for-q": "{{n}} result(s) for {{q}}",
+    "sort-by": "Sort by",
+    "sort-popularity": "Popularity",
+    "sort-relevance": "Relevance",
+    "sort-newest": "Date"
+  },
   "gallery": {
     "title": "Gallery",
     "copied": "Copied to clipboard"

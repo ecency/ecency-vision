@@ -344,3 +344,17 @@ export const commentHistory = async (req: express.Request, res: express.Response
 
     pipe(apiRequest(u, "GET"), res);
 }
+
+export const search = async (req: express.Request, res: express.Response) => {
+    const {q, sort, scroll_id} = req.body;
+
+    const url = `${config.searchApiAddr}/search`;
+    const headers = {'Authorization': config.searchApiToken};
+
+    const payload: { q: string, sort: string, scroll_id?: string } = {q, sort};
+    if (scroll_id) {
+        payload.scroll_id = scroll_id
+    }
+
+    pipe(baseApiRequest(url, "POST", headers, payload), res);
+}
