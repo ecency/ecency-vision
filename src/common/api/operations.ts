@@ -39,18 +39,7 @@ export interface CommentOptions {
 export type RewardType = "default" | "sp" | "dp";
 
 const makeHiveClient = async (): Promise<HiveClient> => {
-    const hClient = new HiveClient(SERVERS);
-
-    try {
-        await hClient.database.getVersion().then((res: any) => {
-            if (res.blockchain_version !== '0.23.0') {
-                // true: eclipse rebranded rpc nodes
-                // false: default old nodes (not necessary to call for old nodes)
-                hClient.updateOperations(true)
-            }
-        });
-    } catch (e) {
-    }
+    const hClient = new HiveClient(SERVERS, { rebrandedApi: true });
 
     return hClient;
 }
