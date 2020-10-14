@@ -28,7 +28,7 @@
     "cookie-parser": "^1.4.5",
     "diff-match-patch": "^1.0.5",
     "express": "^4.17.1",
-    "hivesigner": "^3.2.0",
+    "hivesigner": "^3.2.1",
     "i18next": "^19.4.4",
     "i18next-browser-languagedetector": "^4.2.0",
     "immutability-helper": "^3.0.2",
