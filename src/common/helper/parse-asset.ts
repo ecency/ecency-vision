@@ -9,8 +9,12 @@ interface Asset {
 }
 
 export default (strVal: any): Asset => {
-    if(typeof strVal !== 'string'){
-       // console.log(strVal);
+    if (typeof strVal !== 'string') {
+        // this is temporary during HF24 transition
+        return {
+            amount: 0,
+            symbol: Symbol.HIVE
+        }
     }
     const sp = strVal.split(' ');
     return {
