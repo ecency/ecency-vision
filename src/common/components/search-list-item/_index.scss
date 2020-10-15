@@ -1,0 +1,27 @@
+.search-list-item {
+  @include entry-list-item;
+
+  .item-controls {
+    svg {
+      height: 14px !important;
+      margin-right: 4px;
+      opacity: 0.6;
+    }
+
+    .result-payout, .result-votes, .result-replies {
+      color: $steel-grey;
+      display: flex;
+      align-items: center;
+    }
+
+    .result-payout, .result-votes {
+      margin-right: 15px;
+    }
+
+    .result-replies {
+      svg {
+        margin-top: 2px;
+      }
+    }
+  }
+}
