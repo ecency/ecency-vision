@@ -6,6 +6,8 @@ import queryString from "query-string";
 
 import {Form, FormControl} from "react-bootstrap";
 
+import numeral from "numeral";
+
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
 import NavBar from "../components/navbar/index";
@@ -146,17 +148,17 @@ class SearchPage extends Component<PageProps, State> {
                         if (hits === 0) {
                             return <div className="search-info">
                                 <div className="result-count">
-                                    {_t("search-page.n-results-for-q", {n: hits, q})}
+                                    {_t("search-page.n-results-for-q", {n: hits})}
                                 </div>
                             </div>
                         }
 
                         return <div className="search-info">
                             <div className="result-count">
-                                {_t("search-page.n-results-for-q", {n: hits, q})}
+                                {_t("search-page.n-results-for-q", {n: numeral(hits).format('0,0')})}
                             </div>
                             <div className="sort-by">
-                                <span className="label">{_t("search-page.sort-by")}</span>
+                                <div className="label">{_t("search-page.sort-by")}</div>
                                 <Form.Control as="select" value={sort} onChange={this.sortChanged}>
                                     {["popularity", "relevance", "newest"].map(s => {
                                         return <option value={s} key={s}> {_t(`search-page.sort-${s}`)}</option>
