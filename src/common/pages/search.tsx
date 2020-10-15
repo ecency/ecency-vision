@@ -148,7 +148,7 @@ class SearchPage extends Component<PageProps, State> {
                         if (hits === 0) {
                             return <div className="search-info">
                                 <div className="result-count">
-                                    {_t("search-page.n-results-for-q", {n: hits})}
+                                    {_t("search-page.no-result")}
                                 </div>
                             </div>
                         }

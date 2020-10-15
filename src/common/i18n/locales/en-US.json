@@ -565,6 +565,7 @@
   "search-page": {
     "title": "Search",
     "n-results-for-q": "{{n}} results",
+    "no-result": "No result",
     "sort-by": "sort by",
     "sort-popularity": "Popularity",
     "sort-relevance": "Relevance",
