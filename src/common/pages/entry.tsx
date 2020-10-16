@@ -60,7 +60,7 @@ import parseDate from "../helper/parse-date";
 import entryCanonical from "../helper/entry-canonical";
 import tempEntry from "../helper/temp-entry"
 
-import {makeJsonMetadataReply, createReplyPermlink} from "../helper/posting";
+import {makeJsonMetaDataReply, createReplyPermlink} from "../helper/posting";
 
 import {makeShareUrlReddit, makeShareUrlTwitter, makeShareUrlFacebook} from "../helper/url-share";
 
@@ -219,7 +219,7 @@ class EntryPage extends Component<Props, State> {
         const options = null;
         const tags = entry.json_metadata.tags || ['ecency'];
 
-        const jsonMeta = makeJsonMetadataReply(
+        const jsonMeta = makeJsonMetaDataReply(
             tags,
             version
         );
