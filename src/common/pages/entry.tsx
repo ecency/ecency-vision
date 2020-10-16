@@ -133,6 +133,16 @@ class EntryPage extends Component<Props, State> {
             this.stateSet({loading: true});
 
             reducerFn = addEntry;
+        } else {
+            const updated = moment.utc(entry.updated);
+            const now = moment.utc(Date.now())
+
+            const diffMs = now.diff(updated);
+            const duration = moment.duration(diffMs);
+            if (duration.asSeconds() < 10) {
+                // don't re-fetch recently updated post.
+                return;
+            }
         }
 
         bridgeApi.getPost(author, permlink)
