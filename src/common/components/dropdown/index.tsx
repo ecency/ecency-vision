@@ -8,6 +8,7 @@ export interface MenuItem {
   href?: string;
   onClick?: () => void;
   active?: boolean;
+  id?: string;
 }
 
 interface Props {

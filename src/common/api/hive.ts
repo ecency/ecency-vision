@@ -8,7 +8,7 @@ import parseAsset from "../helper/parse-asset";
 
 import SERVERS from "../constants/servers.json";
 
-export let client = new Client(SERVERS, {
+export const client = new Client(SERVERS, {
     timeout: 3000,
     rebrandedApi: true,
 });

@@ -32,6 +32,8 @@ import capitalize from "../util/capitalize";
 
 import defaults from "../constants/defaults.json";
 
+import {fireSvg, trendingUpSvg, historySvg, formatListBulletedSvg} from "../img/svg";
+
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
 
@@ -96,6 +98,7 @@ class EntryIndexPage extends Component<PageProps> {
                             label: _t("entry-filter.filter-feed"),
                             href: `/@${activeUser.username}/feed`,
                             active: filter === "feed" && activeUser.username === tag.replace("@", ""),
+                            id: "feed"
                         },
                     ]
                     : []),
@@ -104,6 +107,7 @@ class EntryIndexPage extends Component<PageProps> {
                         label: _t(`entry-filter.filter-${x}`),
                         href: tag && filter !== "feed" ? `/${x}/${tag}` : `/${x}`,
                         active: filter === x,
+                        id: x
                     };
                 }),
             ],
@@ -113,23 +117,26 @@ class EntryIndexPage extends Component<PageProps> {
         const fC = capitalize(filter);
         let title = _t("entry-index.title", {f: fC});
         let description = _t("entry-index.description", {f: fC});
-        let url = `${defaults.base}/${filter}`;
+        let url = `/${filter}`;
+        let canonical = `${defaults.base}/${filter}`;
         let rss = "";
 
         if (tag) {
             if (tag.startsWith('@')) {
                 title = `${tag} / ${filter}`;
                 description = _t("entry-index.description-user-feed", {u: tag});
+                canonical = `${defaults.base}/@${tag}/${filter}`;
             } else {
                 title = `#${tag} / ${filter}`;
                 description = _t("entry-index.description-tag", {f: fC, t: tag});
 
-                url = `${defaults.base}/${filter}/${tag}`;
+                url = `/${filter}/${tag}`;
+                canonical = `${defaults.base}/${filter}/${tag}`;
                 rss = `${defaults.base}/${filter}/${tag}/rss.xml`;
             }
         }
 
-        const metaProps = {title, description, url, rss};
+        const metaProps = {title, description, url, canonical, rss};
 
         const promoted = entries['__promoted__'].entries;
 
@@ -154,7 +161,12 @@ class EntryIndexPage extends Component<PageProps> {
                                 <ul className="nav nav-pills nav-fill">
                                     {menuConfig.items.map((i, k) => {
                                         return <li key={k} className="nav-item">
-                                            <Link to={i.href!} className={`nav-link ${i.active ? "active" : ""}`}>{i.label}</Link>
+                                            <Link to={i.href!} className={`nav-link link-${i.id} ${i.active ? "active" : ""}`}>
+                                                {i.id === "feed" && formatListBulletedSvg}
+                                                {i.id === "hot" && fireSvg}
+                                                {i.id === "trending" && trendingUpSvg}
+                                                {i.id === "created" && historySvg}
+                                                {i.label}</Link>
                                         </li>
                                     })}
                                 </ul>

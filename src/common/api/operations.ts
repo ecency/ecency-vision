@@ -1,14 +1,14 @@
 const hs = require("hivesigner");
 
-import {Client as HiveClient, PrivateKey, Operation, TransactionConfirmation} from '@hiveio/dhive';
+import {PrivateKey, Operation, TransactionConfirmation} from '@hiveio/dhive';
+
+import {client as hiveClient} from "./hive";
 
 import {Account} from "../store/accounts/types";
 
 import {usrActivity} from "./private";
 
 import {getAccessToken} from "../helper/user-token";
-
-import SERVERS from "../constants/servers.json";
 
 export interface MetaData {
     links?: string[];
@@ -37,12 +37,6 @@ export interface CommentOptions {
 }
 
 export type RewardType = "default" | "sp" | "dp";
-
-const makeHiveClient = async (): Promise<HiveClient> => {
-    const hClient = new HiveClient(SERVERS, { rebrandedApi: true });
-
-    return hClient;
-}
 
 export const formatError = (err: any): string => {
     if (err.error_description) {
@@ -176,8 +170,7 @@ export const claimRewardBalance = (username: string, rewardHive: string, rewardH
     ).then((r: any) => r.result);
 }
 
-export const transfer = async (from: string, key: PrivateKey, to: string, amount: string, memo: string): Promise<TransactionConfirmation> => {
-    const hClient = await makeHiveClient();
+export const transfer = (from: string, key: PrivateKey, to: string, amount: string, memo: string): Promise<TransactionConfirmation> => {
     const args = {
         from,
         to,
@@ -185,7 +178,7 @@ export const transfer = async (from: string, key: PrivateKey, to: string, amount
         memo
     };
 
-    return hClient.broadcast.transfer(args, key);
+    return hiveClient.broadcast.transfer(args, key);
 }
 
 export const transferHot = (from: string, to: string, amount: string, memo: string) => {
@@ -202,8 +195,6 @@ export const transferHot = (from: string, to: string, amount: string, memo: stri
 }
 
 export const transferPoint = (from: string, key: PrivateKey, to: string, amount: string, memo: string): Promise<TransactionConfirmation> => {
-    const hClient = new HiveClient(SERVERS);
-
     const json = JSON.stringify({
         sender: from,
         receiver: to,
@@ -218,7 +209,7 @@ export const transferPoint = (from: string, key: PrivateKey, to: string, amount:
         required_posting_auths: []
     };
 
-    return hClient.broadcast.json(op, key);
+    return hiveClient.broadcast.json(op, key);
 }
 
 export const transferPointHot = (from: string, to: string, amount: string, memo: string) => {
@@ -237,8 +228,7 @@ export const transferPointHot = (from: string, to: string, amount: string, memo:
     return win!.focus();
 }
 
-export const transferToSavings = async (from: string, key: PrivateKey, to: string, amount: string, memo: string): Promise<TransactionConfirmation> => {
-    const hClient = await makeHiveClient();
+export const transferToSavings = (from: string, key: PrivateKey, to: string, amount: string, memo: string): Promise<TransactionConfirmation> => {
 
     const op: Operation = [
         'transfer_to_savings',
@@ -250,7 +240,7 @@ export const transferToSavings = async (from: string, key: PrivateKey, to: strin
         }
     ]
 
-    return hClient.broadcast.sendOperations([op], key);
+    return hiveClient.broadcast.sendOperations([op], key);
 }
 
 export const transferToSavingsHot = (from: string, to: string, amount: string, memo: string) => {
@@ -267,9 +257,7 @@ export const transferToSavingsHot = (from: string, to: string, amount: string, m
     });
 }
 
-export const convert = async (owner: string, key: PrivateKey, amount: string): Promise<TransactionConfirmation> => {
-    const hClient = await makeHiveClient();
-
+export const convert = (owner: string, key: PrivateKey, amount: string): Promise<TransactionConfirmation> => {
     const op: Operation = [
         'convert',
         {
@@ -279,7 +267,7 @@ export const convert = async (owner: string, key: PrivateKey, amount: string): P
         }
     ]
 
-    return hClient.broadcast.sendOperations([op], key);
+    return hiveClient.broadcast.sendOperations([op], key);
 }
 
 export const convertHot = (owner: string, amount: string) => {
@@ -295,9 +283,7 @@ export const convertHot = (owner: string, amount: string) => {
     });
 }
 
-export const transferFromSavings = async (from: string, key: PrivateKey, to: string, amount: string, memo: string): Promise<TransactionConfirmation> => {
-    const hClient = await makeHiveClient();
-
+export const transferFromSavings = (from: string, key: PrivateKey, to: string, amount: string, memo: string): Promise<TransactionConfirmation> => {
     const op: Operation = [
         'transfer_from_savings',
         {
@@ -309,7 +295,7 @@ export const transferFromSavings = async (from: string, key: PrivateKey, to: str
         }
     ]
 
-    return hClient.broadcast.sendOperations([op], key);
+    return hiveClient.broadcast.sendOperations([op], key);
 }
 
 export const transferFromSavingsHot = (from: string, to: string, amount: string, memo: string) => {
@@ -327,9 +313,7 @@ export const transferFromSavingsHot = (from: string, to: string, amount: string,
     });
 }
 
-export const transferToVesting = async (from: string, key: PrivateKey, to: string, amount: string): Promise<TransactionConfirmation> => {
-    const hClient = await makeHiveClient();
-
+export const transferToVesting = (from: string, key: PrivateKey, to: string, amount: string): Promise<TransactionConfirmation> => {
     const op: Operation = [
         'transfer_to_vesting',
         {
@@ -339,7 +323,7 @@ export const transferToVesting = async (from: string, key: PrivateKey, to: strin
         }
     ]
 
-    return hClient.broadcast.sendOperations([op], key);
+    return hiveClient.broadcast.sendOperations([op], key);
 }
 
 export const transferToVestingHot = (from: string, to: string, amount: string) => {
@@ -379,8 +363,7 @@ export const unSubscribe = (username: string, community: string): Promise<Transa
     return client.customJson([], [username], 'community', json);
 }
 
-export const promote = async (key: PrivateKey, user: string, author: string, permlink: string, duration: number): Promise<TransactionConfirmation> => {
-    const hClient = await makeHiveClient();
+export const promote = (key: PrivateKey, user: string, author: string, permlink: string, duration: number): Promise<TransactionConfirmation> => {
 
     const json = JSON.stringify({
         user,
@@ -396,7 +379,7 @@ export const promote = async (key: PrivateKey, user: string, author: string, per
         required_posting_auths: []
     };
 
-    return hClient.broadcast.json(op, key);
+    return hiveClient.broadcast.json(op, key);
 }
 
 export const promoteHot = (user: string, author: string, permlink: string, duration: number) => {
@@ -415,9 +398,7 @@ export const promoteHot = (user: string, author: string, permlink: string, durat
     return win!.focus();
 }
 
-export const boost = async (key: PrivateKey, user: string, author: string, permlink: string, amount: string): Promise<TransactionConfirmation> => {
-    const hClient = await makeHiveClient();
-
+export const boost = (key: PrivateKey, user: string, author: string, permlink: string, amount: string): Promise<TransactionConfirmation> => {
     const json = JSON.stringify({
         user,
         author,
@@ -432,7 +413,7 @@ export const boost = async (key: PrivateKey, user: string, author: string, perml
         required_posting_auths: []
     };
 
-    return hClient.broadcast.json(op, key);
+    return hiveClient.broadcast.json(op, key);
 }
 
 export const boostHot = (user: string, author: string, permlink: string, amount: string) => {
@@ -475,12 +456,10 @@ export const updateProfile = (account: Account, newProfile: {
     return client.broadcast(opArray).then((r: any) => r.result)
 }
 
-export const grantPostingPermission = async (key: PrivateKey, account: Account, pAccount: string) => {
+export const grantPostingPermission = (key: PrivateKey, account: Account, pAccount: string) => {
     if (account.posting === undefined || account.memo_key === undefined || account.json_metadata === undefined) {
         throw "posting|memo_key|json_metadata required with account instance";
     }
-
-    const hClient = await makeHiveClient();
 
     const newPosting = Object.assign(
         {},
@@ -496,7 +475,7 @@ export const grantPostingPermission = async (key: PrivateKey, account: Account, 
     // important!
     newPosting.account_auths.sort((a, b) => (a[0] > b[0] ? 1 : -1));
 
-    return hClient.broadcast.updateAccount({
+    return hiveClient.broadcast.updateAccount({
         account: account.name,
         posting: newPosting,
         active: undefined,
@@ -505,12 +484,10 @@ export const grantPostingPermission = async (key: PrivateKey, account: Account, 
     }, key);
 };
 
-export const revokePostingPermission = async (key: PrivateKey, account: Account, pAccount: string) => {
+export const revokePostingPermission = (key: PrivateKey, account: Account, pAccount: string) => {
     if (account.posting === undefined || account.memo_key === undefined || account.json_metadata === undefined) {
         throw "posting|memo_key|json_metadata required with account instance";
     }
-
-    const hClient = await makeHiveClient();
 
     const newPosting = Object.assign(
         {},
@@ -520,7 +497,7 @@ export const revokePostingPermission = async (key: PrivateKey, account: Account,
         }
     );
 
-    return hClient.broadcast.updateAccount(
+    return hiveClient.broadcast.updateAccount(
         {
             account: account.name,
             posting: newPosting,

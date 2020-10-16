@@ -498,7 +498,8 @@ class SubmitPage extends Component<Props, State> {
 
         //  Meta config
         const metaProps = {
-            title: "Create a post",
+            title: _t("submit.page-title"),
+            description: _t("submit.page-description"),
         };
 
         const canPublish = title.trim() !== "" && tags.length > 0 && tags.length <= 10 && body.trim() !== "";
