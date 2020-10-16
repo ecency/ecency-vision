@@ -38,6 +38,7 @@ import LoginRequired from "../components/login-required";
 import WordCount from "../components/word-counter";
 import {makePath as makePathEntry} from "../components/entry-link";
 import {error, success} from "../components/feedback";
+import MdHandler from "../components/md-handler";
 
 import {getDrafts, addDraft, updateDraft, Draft} from "../api/private";
 
@@ -494,6 +495,7 @@ class SubmitPage extends Component<Props, State> {
                 <FullHeight/>
                 <Theme global={this.props.global}/>
                 <Feedback/>
+                {global.isElectron && <MdHandler history={this.props.history}/>}
                 {global.isElectron ?
                     NavBarElectron({
                         ...this.props,
