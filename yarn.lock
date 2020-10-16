@@ -969,10 +969,10 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
-"@esteemapp/esteem-render-helpers@1.7.0":
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/@esteemapp/esteem-render-helpers/-/esteem-render-helpers-1.7.0.tgz#1b82cf42d3bb15174b6baccf2d20fa5c3a3af071"
-  integrity sha512-Rq6SKAJ30wD+p5mgQN7xHKYlje1HMS0dqd05e/xkKqO3zaeage7piTAqDr04eGsZV4LYhy3yU6mk+upGVZmnOw==
+"@esteemapp/esteem-render-helpers@^1.8.0":
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/@esteemapp/esteem-render-helpers/-/esteem-render-helpers-1.8.0.tgz#3c5d03f401d306f615b191b0142d641260c36eb2"
+  integrity sha512-QZ6kxET6iK+OOI/pa8Q/FnNKHnrJMD2rpQcXkvhCVOhrXPq8FRwGByrpTRQT96ZtflgkaGEHiGfslmw2dFDIoA==
   dependencies:
     he "^1.2.0"
     lru-cache "^5.1.1"
@@ -5022,10 +5022,10 @@ hive-uri@^0.2.2:
   resolved "https://registry.yarnpkg.com/hive-uri/-/hive-uri-0.2.2.tgz#60d57a77a2c7a6394471f700e436f3f9822c737d"
   integrity sha512-95XH50GsJ+ZuWsLQaNcqYiZ6lmoVDawjG+BCgERqOkoy57b+OgHeNDPeYYY9qkNIi0ThcaYRi6RHVcLbI5EfBw==
 
-hivesigner@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/hivesigner/-/hivesigner-3.2.0.tgz#25f4e450716c53d2b16fd0edf085609e679c6ba0"
-  integrity sha512-yeEnTAL1gQjkHPLEY5Rt8GQB2pC2qi9fdFY3W8tDPFZjQgRW82SU9f08lf2xF6YJ7thAl/9yM24N9/78SK7vZw==
+hivesigner@^3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/hivesigner/-/hivesigner-3.2.1.tgz#1b75d3d0b2e1316fae4128e86831f88d6b3d4d88"
+  integrity sha512-udSCOByBW0pXkcNYhXjhLX1oSB3FIBt2DJPX6NO0M6/Q3hq1VBEgpuGpeZ//wjkZ+Ds/L6564RP/NpZIC8BF1w==
   dependencies:
     babel-runtime "^6.26.0"
     cross-fetch "^3.0.1"

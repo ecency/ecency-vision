@@ -133,6 +133,16 @@ class EntryPage extends Component<Props, State> {
             this.stateSet({loading: true});
 
             reducerFn = addEntry;
+        } else {
+            const updated = moment.utc(entry.updated);
+            const now = moment.utc(Date.now())
+
+            const diffMs = now.diff(updated);
+            const duration = moment.duration(diffMs);
+            if (duration.asSeconds() < 10) {
+                // don't re-fetch recently updated post.
+                return;
+            }
         }
 
         bridgeApi.getPost(author, permlink)
@@ -215,7 +225,6 @@ class EntryPage extends Component<Props, State> {
         const {author: parentAuthor, permlink: parentPermlink} = entry;
         const author = activeUser?.username!;
         const permlink = createReplyPermlink(entry.author);
-        const options = null;
         const tags = entry.json_metadata.tags || ['ecency'];
 
         const jsonMeta = makeJsonMetadataReply(
@@ -233,7 +242,7 @@ class EntryPage extends Component<Props, State> {
             '',
             text,
             jsonMeta,
-            options,
+            null,
         ).then(() => {
             const nReply = tempEntry({
                 author: activeUser?.data!,
@@ -246,20 +255,20 @@ class EntryPage extends Component<Props, State> {
             });
 
             addReply(nReply); // add new reply to store
-
-            return hiveApi.getPost(entry.author, entry.permlink) // get entry
-        }).then((entry) => {
-            return bridgeApi.normalizePost(entry); // normalize
-        }).then((nEntry) => {
-            if (nEntry) {
-                updateEntry(nEntry); // update store for the entry
-            }
-
             ls.remove(`reply_draft_${entry.author}_${entry.permlink}`); // remove reply draft
 
-            this.stateSet({replying: false}); // done
+            if (entry.children === 0) {
+                // Activate discussion section with first comment.
+
+                const nEntry: Entry = {
+                    ...entry,
+                    children: 1
+                }
+                updateEntry(nEntry);
+            }
         }).catch((e) => {
             error(formatError(e));
+        }).finally(() => {
             this.stateSet({replying: false});
         })
     }
@@ -300,7 +309,7 @@ class EntryPage extends Component<Props, State> {
         const tags = [...new Set(entry.json_metadata.tags)];
         const app = entry.json_metadata?.app;
 
-        const isComment = entry.parent_author !== undefined;
+        const isComment = !!entry.parent_author;
 
         const {activeUser} = this.props;
 

@@ -10,6 +10,8 @@ import isEqual from "react-fast-compare";
 
 import {Form, FormControl, Button, Spinner} from "react-bootstrap";
 
+import moment from "moment";
+
 import defaults from "../constants/defaults.json";
 
 import {
@@ -39,7 +41,10 @@ import {getDrafts, addDraft, updateDraft, Draft} from "../api/private";
 
 import {createPermlink, extractMetaData, makeJsonMetaData, makeCommentOptions, createPatch} from "../helper/posting";
 
+import tempEntry, {correctIsoDate} from "../helper/temp-entry";
+
 import {RewardType, comment, formatError} from "../api/operations";
+
 import * as bridgeApi from "../api/bridge";
 import * as hiveApi from "../api/hive";
 
@@ -104,6 +109,7 @@ class PreviewContent extends Component<PreviewProps> {
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 import {History, Location} from "history";
 import {Global} from "../store/global/types";
+import {Account} from "../store/accounts/types";
 
 interface MatchParams {
     permlink?: string;
@@ -374,23 +380,33 @@ class SubmitPage extends Component<Props, State> {
 
         this.stateSet({posting: true});
         comment(author, "", parentPermlink, permlink, title, body, jsonMeta, options)
-            .then(() => hiveApi.getPost(author, permlink))
-            .then((post: any) => bridgeApi.normalizePost(post))
-            .then((entry: Entry | null) => {
-                this.stateSet({posting: false});
+            .then(() => {
+
+                // Create entry object in store
+                const entry = {
+                    ...tempEntry({
+                        author: activeUser?.data!,
+                        permlink,
+                        parentAuthor: "",
+                        parentPermlink,
+                        title,
+                        body,
+                        tags
+                    }),
+                    max_accepted_payout: options.max_accepted_payout,
+                    percent_hbd: options.percent_hbd
+                };
+                addEntry(entry);
 
                 success(_t("submit.published"));
-
-                if (entry) {
-                    addEntry(entry);
-                }
-
                 const newLoc = makePathEntry(parentPermlink, author, permlink);
                 history.push(newLoc);
             })
             .catch((e) => {
-                this.stateSet({posting: false});
                 error(formatError(e));
+            })
+            .finally(() => {
+                this.stateSet({posting: false});
             });
     };
 
@@ -415,17 +431,21 @@ class SubmitPage extends Component<Props, State> {
 
         this.stateSet({posting: true});
         comment(activeUser?.username!, "", category, permlink, title, newBody, jsonMeta, null)
-            .then(() => hiveApi.getPost(author, permlink))
-            .then((post: any) => bridgeApi.normalizePost(post))
-            .then((entry: Entry | null) => {
+            .then(() => {
                 this.stateSet({posting: false});
 
-                success(_t("submit.updated"));
-
-                if (entry) {
-                    updateEntry(entry);
+                // Update the entry object in store
+                const entry: Entry = {
+                    ...editingEntry,
+                    title,
+                    body,
+                    category: tags[0],
+                    json_metadata: jsonMeta,
+                    updated: correctIsoDate(moment().toISOString())
                 }
+                updateEntry(entry);
 
+                success(_t("submit.updated"));
                 const newLoc = makePathEntry(category, author, permlink);
                 history.push(newLoc);
             })

@@ -165,7 +165,7 @@
     "preview": "Preview"
   },
   "discussion": {
-    "count": "{{n}} Replies",
+    "title": "Replies",
     "order": "Sort Order",
     "order-trending": "Trending",
     "order-reputation": "Reputation",
