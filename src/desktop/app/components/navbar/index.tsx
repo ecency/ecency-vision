@@ -8,6 +8,8 @@ import {Button} from "react-bootstrap";
 
 import isEqual from "react-fast-compare";
 
+import queryString from "query-string";
+
 import {Global, Theme} from "../../../../common/store/global/types";
 import {Account} from "../../../../common/store/accounts/types";
 import {User} from "../../../../common/store/users/types";
@@ -79,7 +81,7 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
     }
 
     fixAddress = () => {
-        const {history} = this.props;
+        const {history, location} = this.props;
 
         // @ts-ignore this is for making ide happy. code compiles without error.
         const entries = history.entries || {}
@@ -87,16 +89,15 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
         const index = history.index || 0;
 
         const curPath = entries[index]?.pathname || '/';
-        const address = curPath === '/' ? `${defaults.filter}` : curPath.replace('/', '');
+        let address = curPath === '/' ? `${defaults.filter}` : curPath.replace('/', '');
 
-        /* persist search string
-        let q = '';
-        if (location.pathname.startsWith('/search')) {
+        // persist search string
+        if (curPath.startsWith('/search')) {
             const qs = queryString.parse(location.search);
-            if (qs.q && typeof qs.q === "string") {
-                ({q} = qs);
+            if ((qs.q as string)) {
+                address = qs.q;
             }
-        }*/
+        }
 
         this.setState({address, realAddress: address});
     };
@@ -132,8 +133,7 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
                 return;
             }
 
-            console.log("search");
-            // history.push(`/search?q=${encodeURIComponent(q)}&sort=${searchSort}`);
+            history.push(`/search/?q=${encodeURIComponent(address)}`);
         }
 
         if (e.keyCode === 27) {
