@@ -17,7 +17,7 @@ export interface TempEntryProps {
     tags: string[]
 }
 
-const correctIsoDate = (d: string) => d.split('.')[0]
+export const correctIsoDate = (d: string): string => d.split('.')[0]
 
 export default (p: TempEntryProps): Entry => {
     const now = moment(Date.now());

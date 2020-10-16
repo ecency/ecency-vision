@@ -14,6 +14,8 @@ import {
     // @ts-ignore
 } from "@esteemapp/esteem-render-helpers";
 
+setProxyBase(defaults.imageServer);
+
 import {Entry} from "../../store/entries/types";
 import {Account} from "../../store/accounts/types";
 import {Community, ROLES} from "../../store/communities/types";
@@ -46,6 +48,7 @@ import {comment, formatError} from "../../api/operations";
 import * as ls from "../../util/local-storage";
 
 import {createReplyPermlink, makeJsonMetadataReply} from "../../helper/posting";
+import tempEntry from "../../helper/temp-entry";
 
 import {error} from "../feedback";
 
@@ -54,8 +57,6 @@ import _c from "../../util/fix-class-names"
 import {commentSvg, pencilOutlineSvg, deleteForeverSvg} from "../../img/svg";
 
 import {version} from "../../../../package.json";
-
-setProxyBase(defaults.imageServer);
 
 
 interface ItemBodyProps {
@@ -183,41 +184,46 @@ export class Item extends Component<ItemProps, ItemState> {
             jsonMeta,
             options,
         ).then(() => {
-            return hiveApi.getPost(author, permlink); // get new reply
-        }).then((reply) => {
-            return bridgeApi.normalizePost(reply); // normalize
-        }).then((nReply) => {
-            if (nReply) {
-                addReply(nReply); // add new reply to store
-            }
+            const nReply = tempEntry({
+                author: activeUser?.data!,
+                permlink,
+                parentAuthor,
+                parentPermlink,
+                title: '',
+                body: text,
+                tags: []
+            });
 
-            return hiveApi.getPost(parentAuthor, parentPermlink) // get the reply
-        }).then((entry) => {
-            return bridgeApi.normalizePost(entry); // normalize
-        }).then((nEntry) => {
-            if (nEntry) {
-                updateReply(nEntry); // update store for the reply
-            }
-
+            addReply(nReply); // add new reply to store
             ls.remove(`reply_draft_${entry.author}_${entry.permlink}`); // remove reply draft
-            this.stateSet({inProgress: false}); // done
             this.toggleReply(); // close comment box
+
+            if (entry.children === 0) {
+                console.log("holaaa")
+                // Update parent comment.
+                const nParentReply: Entry = {
+                    ...entry,
+                    children: 1
+                }
+
+                updateReply(nParentReply);
+            }
         }).catch((e) => {
             error(formatError(e));
+        }).finally(() => {
             this.stateSet({inProgress: false});
-        })
+        });
     }
 
     updateReply = (text: string) => {
         const {entry} = this.props;
         const {activeUser, updateReply} = this.props;
 
-        const {author, permlink, parent_author: parentAuthor, parent_permlink: parentPermlink} = entry;
+        const {permlink, parent_author: parentAuthor, parent_permlink: parentPermlink} = entry;
         const jsonMeta = makeJsonMetadataReply(
             entry.json_metadata.tags || ['ecency'],
             version
         );
-        let options = null;
 
         this.stateSet({inProgress: true});
 
@@ -229,22 +235,20 @@ export class Item extends Component<ItemProps, ItemState> {
             '',
             text,
             jsonMeta,
-            options,
+            null,
         ).then(() => {
-            return hiveApi.getPost(author, permlink); // get the reply
-        }).then((reply) => {
-            return bridgeApi.normalizePost(reply); // normalize
-        }).then((nReply) => {
-            if (nReply) {
-                updateReply(nReply); // update store
+            const nReply: Entry = {
+                ...entry,
+                body: text
             }
 
-            this.stateSet({inProgress: false}); // done
+            updateReply(nReply); // update store
             this.toggleEdit(); // close comment box
         }).catch((e) => {
             error(formatError(e));
+        }).finally(() => {
             this.stateSet({inProgress: false});
-        })
+        });
     }
 
     deleted = () => {
@@ -501,7 +505,7 @@ export class Discussion extends Component<Props> {
                 {loading && <LinearProgress/>}
                 <div className="discussion-header">
                     <div className="count">
-                        {commentSvg} {_t("discussion.count", {n: parent.children})}
+                        {commentSvg} {_t("discussion.title")}
                     </div>
                     <div className="order">
                         <span className="order-label">{_t("discussion.order")}</span>
