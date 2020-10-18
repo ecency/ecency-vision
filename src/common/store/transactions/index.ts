@@ -1,118 +1,126 @@
-import { Dispatch } from "redux";
+import {Dispatch} from "redux";
 
 import {
-  Transaction,
-  Transactions,
-  Actions,
-  ActionTypes,
-  FetchAction,
-  FetchedAction,
-  FetchErrorAction,
-  ResetAction,
+    Transaction,
+    Transactions,
+    Actions,
+    ActionTypes,
+    FetchAction,
+    FetchedAction,
+    FetchErrorAction,
+    ResetAction,
 } from "./types";
 
-import { getState } from "../../api/hive";
+import {getAccountHistory} from "../../api/hive";
 
 export const initialState: Transactions = {
-  list: [],
-  loading: false,
-  error: false,
+    list: [],
+    loading: false,
+    error: false,
 };
 
 export default (state: Transactions = initialState, action: Actions): Transactions => {
-  switch (action.type) {
-    case ActionTypes.FETCH: {
-      return {
-        list: [],
-        loading: true,
-        error: false,
-      };
+    switch (action.type) {
+        case ActionTypes.FETCH: {
+            return {
+                list: [],
+                loading: true,
+                error: false,
+            };
+        }
+        case ActionTypes.FETCHED: {
+            return {
+                list: action.transactions,
+                loading: false,
+                error: false,
+            };
+        }
+        case ActionTypes.FETCH_ERROR: {
+            return {
+                list: [],
+                loading: false,
+                error: true,
+            };
+        }
+        case ActionTypes.RESET: {
+            return {...initialState};
+        }
+        default:
+            return state;
     }
-    case ActionTypes.FETCHED: {
-      return {
-        list: action.transactions,
-        loading: false,
-        error: false,
-      };
-    }
-    case ActionTypes.FETCH_ERROR: {
-      return {
-        list: [],
-        loading: false,
-        error: true,
-      };
-    }
-    case ActionTypes.RESET: {
-      return { ...initialState };
-    }
-    default:
-      return state;
-  }
 };
 
 /* Actions */
 export const fetchTransactions = (username: string) => (dispatch: Dispatch) => {
-  dispatch(fetchAct());
+    dispatch(fetchAct());
 
-  const name = username.replace("@", "");
+    const name = username.replace("@", "");
 
-  getState(`/@${name}/transfers`)
-    .then((r) => {
-      const { accounts } = r;
+    getAccountHistory(name).then(r => {
 
-      if (Object.keys(accounts).length === 0) {
-        return;
-      }
+        const mapped: Transaction[] = r.map((x: any): Transaction[] | null => {
+            const {op} = x[1];
+            const {timestamp} = x[1];
+            const opName = op[0];
+            const opData = op[1];
 
-      const { transfer_history: transfers } = accounts[name];
+            if (["curation_reward",
+                "author_reward",
+                "comment_benefactor_reward",
+                "claim_reward_balance",
+                "transfer",
+                "transfer_to_vesting",
+                "withdraw_vesting",
+                "fill_order"].includes(opName)) {
+                return {
+                    num: x[0],
+                    type: opName,
+                    timestamp,
+                    ...opData,
+                };
+            }
 
-      const transactions: Transaction[] = transfers.map((tr: any) => {
-        const { op } = tr[1];
-        const { timestamp } = tr[1];
-        const opName = op[0];
-        const opData = op[1];
+            return null;
+        });
 
-        return {
-          num: tr[0],
-          type: opName,
-          timestamp,
-          ...opData,
-        };
-      });
+        const transactions: Transaction[] = mapped
+            .filter(x => x !== null)
+            .sort((a, b) => {
+                return a.num > b.num ? 1 : -1
+            });
 
-      dispatch(fetchedAct(transactions));
-    })
-    .catch(() => {
-      dispatch(fetchErrorAct());
+        dispatch(fetchedAct(transactions));
+    }).catch(() => {
+        dispatch(fetchErrorAct());
     });
 };
 
 export const resetTransactions = () => (dispatch: Dispatch) => {
-  dispatch(resetAct());
+    dispatch(resetAct());
 };
 
 /* Action Creators */
 export const fetchAct = (): FetchAction => {
-  return {
-    type: ActionTypes.FETCH,
-  };
+    return {
+        type: ActionTypes.FETCH,
+    };
 };
 
 export const fetchedAct = (transactions: Transaction[]): FetchedAction => {
-  return {
-    type: ActionTypes.FETCHED,
-    transactions,
-  };
+    return {
+        type: ActionTypes.FETCHED,
+        transactions,
+    };
 };
 
 export const fetchErrorAct = (): FetchErrorAction => {
-  return {
-    type: ActionTypes.FETCH_ERROR,
-  };
+    return {
+        type: ActionTypes.FETCH_ERROR,
+    };
 };
 
 export const resetAct = (): ResetAction => {
-  return {
-    type: ActionTypes.RESET,
-  };
+    return {
+        type: ActionTypes.RESET,
+    };
 };
