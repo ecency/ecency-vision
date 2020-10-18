@@ -309,6 +309,7 @@
     img {
       @media (min-width: $md-break) {
         width: 100%;
+        max-width: 400px;
       }
     }
 
