@@ -8,18 +8,19 @@ import {AppState, history} from "../../common/store";
 import {ListStyle, Theme} from "../../common/store/global/types";
 import {Global} from "../../common/store/global/types";
 import {newVersionChangeAct} from "../../common/store/global";
-import {fetchedAct as entriesFetchedAct} from "../../common/store/entries";
+
 import {activeUserMaker, clientStoreTasks} from "../../common/store/helper";
+
 import configureStore from "../../common/store/configure";
 import initialState from "../../common/store/initial-state";
 
 import App from "../../common/app";
 
-import {getPromotedEntries} from "../../common/api/private";
-
 import defaults from "../../common/constants/defaults.json";
 
 import * as ls from "../../common/util/local-storage";
+
+import {DesktopWindow} from "./window";
 
 import "typeface-ibm-plex-sans";
 
@@ -30,8 +31,11 @@ import "../../client/window";
 
 import "./context-menu";
 
-// If we load ipc renderer with "import" or "require" web app can't compile since it doesn't has electron as dependency.
-window["ipcRenderer"] = require("electron").ipcRenderer;
+declare var window: DesktopWindow;
+
+// Add electron dependencies into window.
+window.ipcRenderer = require("electron").ipcRenderer;
+window.remote = require("electron").remote;
 
 // Create store
 const theme = ls.get("theme") || defaults.theme;

@@ -79,7 +79,7 @@ Array [
   >
     <a
       className="btn btn-outline-primary"
-      href="https://hivesigner.com/oauth2/authorize?client_id=ecency.app&redirect_uri=http%3A%2F%2Flocalhost%2Fauth&response_type=code&scope=vote%2Ccomment%2Cdelete_comment%2Ccomment_options%2Ccustom_json%2Cclaim_reward_balance%2Coffline"
+      onClick={[Function]}
     >
       <img
         alt="hivesigner"
@@ -267,7 +267,7 @@ Array [
   >
     <a
       className="btn btn-outline-primary"
-      href="https://hivesigner.com/oauth2/authorize?client_id=ecency.app&redirect_uri=http%3A%2F%2Flocalhost%2Fauth&response_type=code&scope=vote%2Ccomment%2Cdelete_comment%2Ccomment_options%2Ccustom_json%2Cclaim_reward_balance%2Coffline"
+      onClick={[Function]}
     >
       <img
         alt="hivesigner"
@@ -458,7 +458,7 @@ Array [
   >
     <a
       className="btn btn-outline-primary"
-      href="https://hivesigner.com/oauth2/authorize?client_id=ecency.app&redirect_uri=http%3A%2F%2Flocalhost%2Fauth&response_type=code&scope=vote%2Ccomment%2Cdelete_comment%2Ccomment_options%2Ccustom_json%2Cclaim_reward_balance%2Coffline"
+      onClick={[Function]}
     >
       <img
         alt="hivesigner"
