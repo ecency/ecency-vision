@@ -8,11 +8,14 @@ import {AppState, history} from "../../common/store";
 import {ListStyle, Theme} from "../../common/store/global/types";
 import {Global} from "../../common/store/global/types";
 import {newVersionChangeAct} from "../../common/store/global";
+import {fetchedAct as entriesFetchedAct} from "../../common/store/entries";
 import {activeUserMaker, clientStoreTasks} from "../../common/store/helper";
 import configureStore from "../../common/store/configure";
 import initialState from "../../common/store/initial-state";
 
 import App from "../../common/app";
+
+import {getPromotedEntries} from "../../common/api/private";
 
 import defaults from "../../common/constants/defaults.json";
 
@@ -66,6 +69,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Initial or repeating storage tasks.
 clientStoreTasks(store);
+
+// Inject promoted entries to store
+getPromotedEntries().then(r => {
+    store.dispatch(entriesFetchedAct("__promoted__", r, false));
+})
 
 // Auto updater.
 window["ipcRenderer"].on('update-available', (event: any, version: string) => {
