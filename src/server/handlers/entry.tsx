@@ -5,8 +5,6 @@ import {Entry} from "../../common/store/entries/types";
 
 import * as bridgeApi from "../../common/api/bridge";
 
-import {getPromotedEntries, optimizeEntries} from "../helper";
-
 import {makePreloadedState} from "../state";
 
 import {render} from "../template";
@@ -48,15 +46,7 @@ export default async (req: express.Request, res: express.Response) => {
         },
         entries: {
             ...state.entries,
-            ...entries,
-            ...{
-                ["__promoted__"]: {
-                    entries: optimizeEntries(await getPromotedEntries()),
-                    error: null,
-                    loading: false,
-                    hasMore: true,
-                }
-            }
+            ...entries
         },
     }
 

@@ -7,7 +7,7 @@ import {makeGroupKey} from "../../common/store/entries";
 
 import defaults from "../../common/constants/defaults.json";
 
-import {getPromotedEntries, optimizeEntries} from "../helper";
+import {optimizeEntries} from "../helper";
 
 import * as hiveApi from "../../common/api/hive";
 import * as bridgeApi from "../../common/api/bridge";
@@ -66,15 +66,7 @@ export default async (req: express.Request, res: express.Response) => {
         accounts: accounts,
         entries: {
             ...state.entries,
-            ...entries,
-            ...{
-                ["__promoted__"]: {
-                    entries: optimizeEntries(await getPromotedEntries()),
-                    error: null,
-                    loading: false,
-                    hasMore: true,
-                }
-            }
+            ...entries
         },
     }
 

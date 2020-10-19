@@ -5,11 +5,11 @@ import {ActiveUser, UserPoints} from "./active-user/types";
 import {loginAct as loginActiveUser, updateAct as updateActiveUserAct} from "./active-user";
 
 import {getAccount, getDynamicProps} from "../api/hive";
-import {getPoints, usrActivity} from "../api/private";
+import {getPoints, usrActivity, getPromotedEntries} from "../api/private";
 import {reloadAct as reloadUsers} from "./users";
 import {reloadAct as reloadReblogs} from "./reblogs";
 import {fetchedAct as loadDynamicProps} from "./dynamic-props";
-
+import {fetchedAct as entriesFetchedAct} from "../../common/store/entries";
 
 export const activeUserMaker = (name: string, points: string = "0.000", uPoints: string = "0.000"): ActiveUser => {
     return {
@@ -21,7 +21,6 @@ export const activeUserMaker = (name: string, points: string = "0.000", uPoints:
         }
     }
 }
-
 
 export const activeUserUpdater = async (store: Store<AppState>) => {
     const state = store.getState();
@@ -76,4 +75,13 @@ export const clientStoreTasks = (store: Store<AppState>) => {
     }
     checkIn();
     setInterval(checkIn, 1000 * 60 * 15 + 8);
+
+    // Inject / update promoted entries to store
+    const promotedEntries = () => {
+        getPromotedEntries().then(r => {
+            store.dispatch(entriesFetchedAct("__promoted__", r, false));
+        })
+    }
+    promotedEntries();
+    setInterval(promotedEntries, 1000 * 60 * 5);
 }

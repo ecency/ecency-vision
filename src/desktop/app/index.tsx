@@ -70,11 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
 // Initial or repeating storage tasks.
 clientStoreTasks(store);
 
-// Inject promoted entries to store
-getPromotedEntries().then(r => {
-    store.dispatch(entriesFetchedAct("__promoted__", r, false));
-})
-
 // Auto updater.
 window["ipcRenderer"].on('update-available', (event: any, version: string) => {
     store.dispatch(newVersionChangeAct(version));
