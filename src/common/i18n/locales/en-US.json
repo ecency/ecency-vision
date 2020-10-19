@@ -130,7 +130,7 @@
     "tags": "Popular",
     "title": "{{f}} topics",
     "description": "{{f}} topics",
-    "description-tag": "{{f}} topics with #{{t}} tag",
+    "description-tag": "{{f}} #{{t}} topics",
     "description-user-feed": "{{u}}'s feed"
   },
   "list-style": {
@@ -166,7 +166,7 @@
     "preview": "Preview"
   },
   "discussion": {
-    "count": "{{n}} Replies",
+    "title": "Replies",
     "order": "Sort Order",
     "order-trending": "Trending",
     "order-reputation": "Reputation",
@@ -226,6 +226,7 @@
   },
   "communities": {
     "title": "Communities",
+    "description": "Best online, decentralized, immutable, rewarding communities",
     "n-subscribers": "{{n}} subscribers",
     "n-authors": "{{n}} posters",
     "n-posts": "{{n}} posts",
@@ -241,6 +242,7 @@
     "page-title": "Create a community",
     "title": "Title",
     "about": "About",
+    "description": "Create a best, decentralized, immutable, rewarding communities",
     "fee": "Operation fee",
     "creator": "Creator",
     "username": "Owner username",
@@ -480,6 +482,8 @@
     "recently-used": "Recently Used"
   },
   "submit": {
+    "page-title": "Create a post",
+    "page-description": "Publish an article, earn reward, uncensored, immutable, decentralized content!",
     "title-placeholder": "Title",
     "body-placeholder": "Post Content",
     "reward": "Reward",
@@ -560,7 +564,8 @@
     "title": "Popular Users"
   },
   "discover": {
-    "title": "Discover"
+    "title": "Discover",
+    "description": "Discover top online users"
   },
   "search-page": {
     "title": "Search",

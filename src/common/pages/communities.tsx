@@ -40,7 +40,8 @@ import {hsTokenRenew} from "../api/private";
 import {client} from "../api/hive";
 
 import {makeHsCode} from "../helper/hive-signer";
-import parseAsset from "../helper/parse-asset"
+import parseAsset from "../helper/parse-asset";
+import defaults from "../constants/defaults.json";
 
 import random from "../util/rnd";
 
@@ -143,6 +144,9 @@ class CommunitiesPage extends Component<PageProps, State> {
         //  Meta config
         const metaProps = {
             title: _t("communities.title"),
+            url: "/communities",
+            canonical: `${defaults.base}/communities`,
+            description: _t("communities.description"),
         };
 
         return (
@@ -445,6 +449,7 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
         //  Meta config
         const metaProps = {
             title: _t("communities-create.page-title"),
+            description: _t("communities-create.description"),
         };
 
         const {activeUser, global} = this.props;
@@ -714,6 +719,7 @@ class CommunityCreateHSPage extends Component<PageProps, CreateHsState> {
         //  Meta config
         const metaProps = {
             title: _t("communities-create.page-title"),
+            description: _t("communities-create.description"),
         };
 
         const {global} = this.props;

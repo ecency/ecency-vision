@@ -141,7 +141,7 @@ export class EntryVotesDetail extends Component<DetailProps, DetailState> {
                     return ProfileLink({
                         ...this.props,
                         username: row.voter,
-                        children: <span className="account notranslate"> {UserAvatar({...this.props, username: row.voter, size:"medium" })} {row.voter}</span>
+                        children: <span className="account notranslate"> {UserAvatar({...this.props, username: row.voter, size: "medium"})} {row.voter}</span>
                     })
                 },
             },
@@ -235,21 +235,22 @@ export class EntryVotes extends Component<Props, State> {
     render() {
         const {entry} = this.props;
         const {visible} = this.state;
+        const totalVotes = entry?.stats?.total_votes || 0; // this is temporary during HF24 transition
 
         const title =
-            entry.stats.total_votes === 0
+            totalVotes === 0
                 ? _t("entry-votes.title-empty")
-                : entry.stats.total_votes === 1
+                : totalVotes === 1
                 ? _t("entry-votes.title")
-                : _t("entry-votes.title-n", {n: entry.stats.total_votes});
+                : _t("entry-votes.title-n", {n: totalVotes});
 
         const child = (
             <>
-                {peopleSvg} {entry.stats.total_votes}
+                {peopleSvg} {totalVotes}
             </>
         );
 
-        if (entry.stats.total_votes === 0) {
+        if (totalVotes === 0) {
             return (
                 <div className="entry-votes notranslate">
                     <Tooltip content={title}>

@@ -196,10 +196,11 @@ class CommunityPage extends Component<Props, State> {
         const fC = capitalize(filter);
         const title = `${community.title.trim()}`;
         const description = _t("community.page-description", {f: `${fC} ${community.title.trim()}`});
-        const url = `${defaults.base}/${filter}/${community.name}`;
+        const url = `/${filter}/${community.name}`;
         const rss = `${defaults.base}/${filter}/${community.name}/rss.xml`;
+        const image = `${defaults.imageServer}/u/${community.name}/avatar/medium`;
 
-        const metaProps = {title, description, url, rss};
+        const metaProps = {title, description, url, rss, image};
 
         const promoted = entries['__promoted__'].entries;
 
@@ -219,6 +220,13 @@ class CommunityPage extends Component<Props, State> {
                             account
                         })}
                     </div>
+                    <span itemScope={true} itemType="http://schema.org/Organization">
+                        <meta itemProp="name" content={community.title.trim() || community.name} />
+                        <span itemProp="logo" itemScope={true} itemType="http://schema.org/ImageObject">
+                            <meta itemProp="url" content={image}/>
+                        </span>
+                        <meta itemProp="url" content={`${defaults.base}${url}`} />
+                    </span>
                     <div className="content-side">
                         {CommunityMenu({
                             ...this.props,

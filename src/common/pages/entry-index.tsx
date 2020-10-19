@@ -124,23 +124,26 @@ class EntryIndexPage extends Component<PageProps> {
         const fC = capitalize(filter);
         let title = _t("entry-index.title", {f: fC});
         let description = _t("entry-index.description", {f: fC});
-        let url = `${defaults.base}/${filter}`;
+        let url = `/${filter}`;
+        let canonical = `${defaults.base}/${filter}`;
         let rss = "";
 
         if (tag) {
             if (tag.startsWith('@')) {
                 title = `${tag} / ${filter}`;
                 description = _t("entry-index.description-user-feed", {u: tag});
+                canonical = `${defaults.base}/@${tag}/${filter}`;
             } else {
                 title = `#${tag} / ${filter}`;
                 description = _t("entry-index.description-tag", {f: fC, t: tag});
 
-                url = `${defaults.base}/${filter}/${tag}`;
+                url = `/${filter}/${tag}`;
+                canonical = `${defaults.base}/${filter}/${tag}`;
                 rss = `${defaults.base}/${filter}/${tag}/rss.xml`;
             }
         }
 
-        const metaProps = {title, description, url, rss};
+        const metaProps = {title, description, url, canonical, rss};
 
         const promoted = entries['__promoted__'].entries;
 

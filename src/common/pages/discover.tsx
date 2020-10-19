@@ -52,6 +52,7 @@ class DiscoverPage extends Component<PageProps> {
         //  Meta config
         const metaProps = {
             title: _t("discover.title"),
+            description: _t("discover.description"),
         };
 
         const {global} = this.props;

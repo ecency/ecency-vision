@@ -58,7 +58,7 @@ export const getPromotedEntries = async (): Promise<Entry[]> => {
     let promoted: Entry[] | undefined = cache.get('promoted');
     if (promoted === undefined) {
         try {
-            promoted = await fetchPromotedEntries()
+            promoted = (await fetchPromotedEntries()).filter(x => x);
             cache.set("promoted", promoted, 600);
         } catch (e) {
             promoted = [];

@@ -76,7 +76,8 @@ export default class Meta extends Component<Props> {
 
         {url && (
           <Helmet>
-            <meta property="og:url" content={url} />
+            <meta property="og:url" content={`${defaults.base}${url}`} />
+            <meta itemProp="mainEntityOfPage" itemScope={true} itemType="http://schema.org/WebPage" itemID={`${defaults.base}${url}`}/>
           </Helmet>
         )}
 
@@ -120,7 +121,6 @@ export default class Meta extends Component<Props> {
         <Helmet>
           <meta property="og:image" content={image} />
           <meta name="twitter:image" content={image} />
-          <meta itemProp="image" content={image} />
         </Helmet>
       </>
     );

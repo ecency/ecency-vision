@@ -1,4 +1,4 @@
-import {createPermlink, extractMetaData, makeJsonMetaData, makeCommentOptions, makeJsonMetadataReply, createReplyPermlink, createPatch} from "./posting";
+import {createPermlink, extractMetaData, makeJsonMetaData, makeCommentOptions, makeJsonMetaDataReply, createReplyPermlink, createPatch} from "./posting";
 
 describe("createPermlink", () => {
     it("(1) ", () => {
@@ -71,7 +71,7 @@ describe("makeCommentOptions", () => {
 
 describe('makeJsonMetadataReply', () => {
     it('(1)', () => {
-        expect(makeJsonMetadataReply(['foo', 'bar'], "1.1")).toMatchSnapshot();
+        expect(makeJsonMetaDataReply(['foo', 'bar'], "1.1")).toMatchSnapshot();
     });
 });
 
