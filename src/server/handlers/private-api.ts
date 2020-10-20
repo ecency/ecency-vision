@@ -10,7 +10,7 @@ import {cache} from "../cache";
 
 import {getTokenUrl, decodeToken} from "../../common/helper/hive-signer";
 
-import {apiRequest, baseApiRequest} from "../helper";
+import {apiRequest, baseApiRequest, getPromotedEntries} from "../helper";
 
 const validateCode = (req: express.Request, res: express.Response): string | false => {
     const {code} = req.body;
@@ -343,4 +343,23 @@ export const commentHistory = async (req: express.Request, res: express.Response
     }
 
     pipe(apiRequest(u, "GET"), res);
+}
+
+export const search = async (req: express.Request, res: express.Response) => {
+    const {q, sort, scroll_id} = req.body;
+
+    const url = `${config.searchApiAddr}/search`;
+    const headers = {'Authorization': config.searchApiToken};
+
+    const payload: { q: string, sort: string, scroll_id?: string } = {q, sort};
+    if (scroll_id) {
+        payload.scroll_id = scroll_id
+    }
+
+    pipe(baseApiRequest(url, "POST", headers, payload), res);
+}
+
+export const promotedEntries = async (req: express.Request, res: express.Response) => {
+    const posts = await getPromotedEntries();
+    res.send(posts);
 }

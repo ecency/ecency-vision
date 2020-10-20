@@ -5,6 +5,8 @@ import {Entry} from "../store/entries/types";
 
 import accountReputation from "./account-reputation";
 
+import isElectron from "../util/is-electron";
+
 import {version} from "../../../package.json";
 
 export interface TempEntryProps {
@@ -39,7 +41,7 @@ export default (p: TempEntryProps): Entry => {
         curator_payout_value: "0.000 HBD",
         depth: 0,
         is_paidout: false,
-        json_metadata: {app: `ecency/${version}-vision`, format: "markdown+html", tags: p.tags},
+        json_metadata: {app: `ecency/${version}-${isElectron() ? "surfer" : "vision"}`, format: "markdown+html", tags: p.tags},
         max_accepted_payout: "1000000.000 HBD",
         net_rshares: 0,
         payout: 0,

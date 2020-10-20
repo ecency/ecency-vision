@@ -13,6 +13,7 @@ import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
 import NavBar from "../components/navbar/index";
+import NavBarElectron from "../../desktop/app/components/navbar";
 import LinearProgress from "../components/linear-progress";
 import CommunityCard from "../components/community-card";
 import CommunityMenu from "../components/community-menu";
@@ -153,12 +154,33 @@ class CommunityPage extends Component<Props, State> {
         }
     };
 
+    reload = () => {
+        this.stateSet({loading: true});
+        this.ensureData().then(() => {
+            const {match, fetchEntries, invalidateEntries} = this.props;
+            const {filter, name} = match.params;
+
+            if (EntryFilter[filter]) {
+                invalidateEntries(makeGroupKey(filter, name));
+                fetchEntries(filter, name, false);
+            }
+        });
+    }
+
     render() {
         const {global, entries, communities, accounts, match} = this.props;
         const {loading} = this.state;
 
+        const navBar = global.isElectron ?
+            NavBarElectron({
+                ...this.props,
+                reloadFn: this.reload,
+                reloading: loading,
+            }) :
+            NavBar({...this.props})
+
         if (loading) {
-            return <LinearProgress/>;
+            return <>{navBar}<LinearProgress/></>;
         }
 
         const {name, filter} = match.params;
@@ -188,7 +210,8 @@ class CommunityPage extends Component<Props, State> {
                 <ScrollToTop/>
                 <Theme global={this.props.global}/>
                 <Feedback/>
-                {NavBar({...this.props})}
+                {navBar}
+
                 <div className="app-content community-page">
                     <div className="profile-side">
                         {CommunityCard({

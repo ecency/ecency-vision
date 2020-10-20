@@ -1,4 +1,4 @@
-import {createStore, applyMiddleware, compose, Middleware} from 'redux';
+import {createStore, applyMiddleware, compose, Middleware, Store} from 'redux';
 import thunk from 'redux-thunk';
 import {routerMiddleware} from 'connected-react-router';
 
@@ -25,7 +25,7 @@ const composedEnhancers = compose(
     ...enhancers
 );
 
-const configureStore = (preLoadedState: AppState) => {
+const configureStore = (preLoadedState: AppState): Store<AppState> => {
     const store = createStore(
         rootReducer,
         preLoadedState,

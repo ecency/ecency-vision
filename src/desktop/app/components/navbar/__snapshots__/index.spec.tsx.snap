@@ -1,0 +1,883 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+<div
+  className="nav-bar-electron"
+>
+  <div
+    className="nav-bar-inner"
+  >
+    <div
+      className="brand"
+    >
+      <a
+        href="/"
+        onClick={[Function]}
+      >
+        <img
+          alt="Logo"
+          className="logo"
+          src="logo-circle.svg"
+        />
+      </a>
+    </div>
+    <div
+      className="nav-controls"
+    >
+      <div
+        className="nav-controls"
+      >
+        <div
+          className="back disabled"
+          onClick={[Function]}
+        >
+          <svg
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+        <div
+          className="forward disabled"
+          onClick={[Function]}
+        >
+          <svg
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+        <div
+          className="reload"
+          onClick={[Function]}
+        >
+          <svg
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M17.65,6.35C16.2,4.9 14.21,4 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20C15.73,20 18.84,17.45 19.73,14H17.65C16.83,16.33 14.61,18 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6C13.66,6 15.14,6.69 16.22,7.78L13,11H20V4L17.65,6.35Z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div
+      className="address-bar"
+    >
+      <div
+        className="address"
+      >
+        <div
+          className="pre-add-on"
+        >
+          <svg
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+        <span
+          className="protocol"
+        >
+          ecency://
+        </span>
+        <input
+          className="url"
+          onChange={[Function]}
+          onKeyUp={[Function]}
+          placeholder="enter url or search query"
+          spellCheck={false}
+          value="hot"
+        />
+      </div>
+    </div>
+    <div
+      className="text-menu"
+    >
+      <div
+        className="custom-dropdown float-right"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        <div
+          className="dropdown-btn "
+        >
+          <div
+            className="label"
+          >
+            
+          </div>
+          <div
+            className="menu-down"
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="switch-theme"
+      onClick={[Function]}
+      title="Night Theme"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+    <div
+      className="login-required"
+    >
+      <button
+        className="btn btn-outline-primary"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        Login
+      </button>
+      <button
+        className="btn btn-primary"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        Signup
+      </button>
+    </div>
+    <div
+      className="submit-post"
+    >
+      <a
+        className="btn btn-outline-primary"
+        href="/submit"
+        onClick={[Function]}
+        title="Create Post"
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"
+            fill="currentColor"
+          />
+        </svg>
+      </a>
+    </div>
+  </div>
+  <audio
+    autoPlay={false}
+    id="notification-audio"
+    muted={true}
+    src="notification.mp3"
+    style={
+      Object {
+        "display": "none",
+      }
+    }
+  />
+</div>
+`;
+
+exports[`(2) With updater 1`] = `
+Array [
+  <div
+    className="nav-bar-electron"
+  >
+    <div
+      className="nav-bar-inner"
+    >
+      <div
+        className="brand"
+      >
+        <a
+          href="/"
+          onClick={[Function]}
+        >
+          <img
+            alt="Logo"
+            className="logo"
+            src="logo-circle.svg"
+          />
+        </a>
+      </div>
+      <div
+        className="nav-controls"
+      >
+        <div
+          className="nav-controls"
+        >
+          <div
+            className="back disabled"
+            onClick={[Function]}
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+          <div
+            className="forward disabled"
+            onClick={[Function]}
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+          <div
+            className="reload"
+            onClick={[Function]}
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M17.65,6.35C16.2,4.9 14.21,4 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20C15.73,20 18.84,17.45 19.73,14H17.65C16.83,16.33 14.61,18 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6C13.66,6 15.14,6.69 16.22,7.78L13,11H20V4L17.65,6.35Z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div
+        className="address-bar"
+      >
+        <div
+          className="address"
+        >
+          <div
+            className="pre-add-on"
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+          <span
+            className="protocol"
+          >
+            ecency://
+          </span>
+          <input
+            className="url"
+            onChange={[Function]}
+            onKeyUp={[Function]}
+            placeholder="enter url or search query"
+            spellCheck={false}
+            value="hot"
+          />
+        </div>
+      </div>
+      <div
+        className="text-menu"
+      >
+        <div
+          className="custom-dropdown float-right"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <div
+            className="dropdown-btn "
+          >
+            <div
+              className="label"
+            >
+              
+            </div>
+            <div
+              className="menu-down"
+            >
+              <svg
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="switch-theme"
+        onClick={[Function]}
+        title="Night Theme"
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z"
+            fill="currentColor"
+          />
+        </svg>
+      </div>
+      <div
+        className="login-required"
+      >
+        <button
+          className="btn btn-outline-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Login
+        </button>
+        <button
+          className="btn btn-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Signup
+        </button>
+      </div>
+      <div
+        className="submit-post"
+      >
+        <a
+          className="btn btn-outline-primary"
+          href="/submit"
+          onClick={[Function]}
+          title="Create Post"
+        >
+          <svg
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"
+              fill="currentColor"
+            />
+          </svg>
+        </a>
+      </div>
+    </div>
+    <audio
+      autoPlay={false}
+      id="notification-audio"
+      muted={true}
+      src="notification.mp3"
+      style={
+        Object {
+          "display": "none",
+        }
+      }
+    />
+  </div>,
+  <div
+    className="updater"
+  >
+    <p
+      className="info-text"
+    >
+      New version is available
+      <span
+        className="release-name"
+      >
+        3.5.1
+      </span>
+    </p>
+    <button
+      className="btn-update btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Update
+    </button>
+    <button
+      className="btn-dismiss btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Dismiss
+    </button>
+  </div>,
+]
+`;
+
+exports[`(3) Night Theme 1`] = `
+<div
+  className="nav-bar-electron"
+>
+  <div
+    className="nav-bar-inner"
+  >
+    <div
+      className="brand"
+    >
+      <a
+        href="/"
+        onClick={[Function]}
+      >
+        <img
+          alt="Logo"
+          className="logo"
+          src="logo-circle.svg"
+        />
+      </a>
+    </div>
+    <div
+      className="nav-controls"
+    >
+      <div
+        className="nav-controls"
+      >
+        <div
+          className="back disabled"
+          onClick={[Function]}
+        >
+          <svg
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+        <div
+          className="forward disabled"
+          onClick={[Function]}
+        >
+          <svg
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+        <div
+          className="reload"
+          onClick={[Function]}
+        >
+          <svg
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M17.65,6.35C16.2,4.9 14.21,4 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20C15.73,20 18.84,17.45 19.73,14H17.65C16.83,16.33 14.61,18 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6C13.66,6 15.14,6.69 16.22,7.78L13,11H20V4L17.65,6.35Z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div
+      className="address-bar"
+    >
+      <div
+        className="address"
+      >
+        <div
+          className="pre-add-on"
+        >
+          <svg
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+        <span
+          className="protocol"
+        >
+          ecency://
+        </span>
+        <input
+          className="url"
+          onChange={[Function]}
+          onKeyUp={[Function]}
+          placeholder="enter url or search query"
+          spellCheck={false}
+          value="hot"
+        />
+      </div>
+    </div>
+    <div
+      className="text-menu"
+    >
+      <div
+        className="custom-dropdown float-right"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        <div
+          className="dropdown-btn "
+        >
+          <div
+            className="label"
+          >
+            
+          </div>
+          <div
+            className="menu-down"
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="switch-theme"
+      onClick={[Function]}
+      title="Day Theme"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+    <div
+      className="login-required"
+    >
+      <button
+        className="btn btn-outline-primary"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        Login
+      </button>
+      <button
+        className="btn btn-primary"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        Signup
+      </button>
+    </div>
+    <div
+      className="submit-post"
+    >
+      <a
+        className="btn btn-outline-primary"
+        href="/submit"
+        onClick={[Function]}
+        title="Create Post"
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"
+            fill="currentColor"
+          />
+        </svg>
+      </a>
+    </div>
+  </div>
+  <audio
+    autoPlay={false}
+    id="notification-audio"
+    muted={true}
+    src="notification.mp3"
+    style={
+      Object {
+        "display": "none",
+      }
+    }
+  />
+</div>
+`;
+
+exports[`(4) With active user 1`] = `
+<div
+  className="nav-bar-electron"
+>
+  <div
+    className="nav-bar-inner"
+  >
+    <div
+      className="brand"
+    >
+      <a
+        href="/@foo/feed"
+        onClick={[Function]}
+      >
+        <img
+          alt="Logo"
+          className="logo"
+          src="logo-circle.svg"
+        />
+      </a>
+    </div>
+    <div
+      className="nav-controls"
+    >
+      <div
+        className="nav-controls"
+      >
+        <div
+          className="back disabled"
+          onClick={[Function]}
+        >
+          <svg
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+        <div
+          className="forward disabled"
+          onClick={[Function]}
+        >
+          <svg
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+        <div
+          className="reload"
+          onClick={[Function]}
+        >
+          <svg
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M17.65,6.35C16.2,4.9 14.21,4 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20C15.73,20 18.84,17.45 19.73,14H17.65C16.83,16.33 14.61,18 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6C13.66,6 15.14,6.69 16.22,7.78L13,11H20V4L17.65,6.35Z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div
+      className="address-bar"
+    >
+      <div
+        className="address"
+      >
+        <div
+          className="pre-add-on"
+        >
+          <svg
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+        <span
+          className="protocol"
+        >
+          ecency://
+        </span>
+        <input
+          className="url"
+          onChange={[Function]}
+          onKeyUp={[Function]}
+          placeholder="enter url or search query"
+          spellCheck={false}
+          value="hot"
+        />
+      </div>
+    </div>
+    <div
+      className="text-menu"
+    >
+      <div
+        className="custom-dropdown float-right"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        <div
+          className="dropdown-btn "
+        >
+          <div
+            className="label"
+          >
+            
+          </div>
+          <div
+            className="menu-down"
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="switch-theme"
+      onClick={[Function]}
+      title="Night Theme"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+    <div
+      className="submit-post"
+    >
+      <a
+        className="btn btn-outline-primary"
+        href="/submit"
+        onClick={[Function]}
+        title="Create Post"
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"
+            fill="currentColor"
+          />
+        </svg>
+      </a>
+    </div>
+    <div
+      className="user-nav"
+    >
+      <a
+        className="user-points"
+        href="/@foo/points"
+        onClick={[Function]}
+        title="You have unclaimed points"
+      >
+        <span
+          className="reward-badge"
+        />
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M20,14H4V8H9.08L7,10.83L8.62,12L11,8.76L12,7.4L13,8.76L15.38,12L17,10.83L14.92,8H20M20,19H4V17H20M9,4A1,1 0 0,1 10,5A1,1 0 0,1 9,6A1,1 0 0,1 8,5A1,1 0 0,1 9,4M15,4A1,1 0 0,1 16,5A1,1 0 0,1 15,6A1,1 0 0,1 14,5A1,1 0 0,1 15,4M20,6H17.82C17.93,5.69 18,5.35 18,5A3,3 0 0,0 15,2C13.95,2 13.04,2.54 12.5,3.35L12,4L11.5,3.34C10.96,2.54 10.05,2 9,2A3,3 0 0,0 6,5C6,5.35 6.07,5.69 6.18,6H4C2.89,6 2,6.89 2,8V19C2,20.11 2.89,21 4,21H20C21.11,21 22,20.11 22,19V8C22,6.89 21.11,6 20,6Z"
+            fill="currentColor"
+          />
+        </svg>
+      </a>
+      <a
+        className="user-wallet"
+        href="/@foo/wallet"
+        onClick={[Function]}
+        title="Wallet"
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M20,8H4V6H20M20,18H4V12H20M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"
+            fill="currentColor"
+          />
+        </svg>
+      </a>
+      <span
+        className="notifications"
+        onClick={[Function]}
+        title="Notifications"
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M21,19V20H3V19L5,17V11C5,7.9 7.03,5.17 10,4.29C10,4.19 10,4.1 10,4A2,2 0 0,1 12,2A2,2 0 0,1 14,4C14,4.1 14,4.19 14,4.29C16.97,5.17 19,7.9 19,11V17L21,19M14,21A2,2 0 0,1 12,23A2,2 0 0,1 10,21"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+      <div
+        className="custom-dropdown float-right"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        <span
+          className="user-avatar medium"
+          style={
+            Object {
+              "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+            }
+          }
+        />
+      </div>
+    </div>
+  </div>
+  <audio
+    autoPlay={false}
+    id="notification-audio"
+    muted={true}
+    src="notification.mp3"
+    style={
+      Object {
+        "display": "none",
+      }
+    }
+  />
+</div>
+`;

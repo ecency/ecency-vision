@@ -1,13 +1,10 @@
 import {cryptoUtils, PrivateKey} from "@hiveio/dhive";
 
-import {Account} from "../store/accounts/types";
-
 import {b64uEnc} from "../util/b64";
 
-export const getAuthUrl = () => {
+export const getAuthUrl = (redir: string = `${window.location.origin}/auth`) => {
     const app = "ecency.app";
     const scope = "vote,comment,delete_comment,comment_options,custom_json,claim_reward_balance,offline";
-    const redir = `${window.location.origin}/auth`;
 
     return `https://hivesigner.com/oauth2/authorize?client_id=${app}&redirect_uri=${encodeURIComponent(
         redir
@@ -17,7 +14,6 @@ export const getAuthUrl = () => {
 export const getTokenUrl = (code: string, secret: string) => {
     return `https://hivesigner.com/api/oauth2/token?code=${code}&client_secret=${secret}`;
 };
-
 
 export const decodeToken = (code: string): {
     signed_message: {

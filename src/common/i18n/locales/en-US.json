@@ -44,7 +44,8 @@
     "faq": "FAQ",
     "post": "Create Post",
     "day-theme": "Day Theme",
-    "night-theme": "Night Theme"
+    "night-theme": "Night Theme",
+    "address-placeholder": "enter url or search query"
   },
   "search": {
     "placeholder": "Search",
@@ -566,6 +567,15 @@
     "title": "Discover",
     "description": "Discover top online users"
   },
+  "search-page": {
+    "title": "Search",
+    "n-results-for-q": "{{n}} results",
+    "no-result": "No result",
+    "sort-by": "sort by",
+    "sort-popularity": "Popularity",
+    "sort-relevance": "Relevance",
+    "sort-newest": "Date"
+  },
   "gallery": {
     "title": "Gallery",
     "copied": "Copied to clipboard"
@@ -638,5 +648,20 @@
       "can-guest-post-header": "Is it possible to guest post on your website?",
       "can-guest-post-body": "<p>Posting on Ecency is simple and easy, <a href=\"/?referral=ecency\">Signup</a> to open your own blog and community, start posting your content.</p>"
     }
+  },
+  "context-menu": {
+    "cut": "Cut",
+    "copy": "Copy",
+    "paste": "Paste",
+    "open-image-browser": "Open image in browser",
+    "copy-image-url": "Copy image url"
+  },
+  "updater": {
+    "new-version-available": "New version is available",
+    "update": "Update",
+    "dismiss": "Dismiss",
+    "downloading": "Downloading new version...",
+    "download-completed": "Download is completed",
+    "restart": "Restart"
   }
 }

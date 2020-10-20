@@ -5,7 +5,7 @@ import {Entry} from "../entries/types";
 
 import {Actions, ActionTypes, Discussion, FetchAction, FetchedAction, FetchErrorAction, ResetAction, SetOrderAction, SortOrder,} from "./types";
 
-import {clone} from '../helper';
+import {clone} from '../util';
 import sorter from './sorter';
 
 import {getDiscussion} from "../../api/bridge";

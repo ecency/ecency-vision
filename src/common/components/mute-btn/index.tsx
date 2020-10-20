@@ -7,7 +7,7 @@ import isEqual from "react-fast-compare";
 import {Entry, EntryStat} from "../../store/entries/types";
 import {Community} from "../../store/communities/types";
 import {ActiveUser} from "../../store/active-user/types";
-import {clone} from "../../store/helper";
+import {clone} from "../../store/util";
 
 import {formatError, mutePost} from "../../api/operations";
 import {error} from "../feedback";

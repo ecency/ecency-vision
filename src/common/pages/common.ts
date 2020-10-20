@@ -19,10 +19,10 @@ import {Transactions} from "../store/transactions/types";
 import {Points} from "../store/points/types";
 
 
-import {toggleTheme, hideIntro, toggleListStyle} from "../store/global";
+import {toggleTheme, hideIntro, toggleListStyle, dismissNewVersion} from "../store/global";
 import {fetchTrendingTags} from "../store/trending-tags";
 import {updateSubscriptions} from "../store/subscriptions";
-import {fetchEntries, addEntry, updateEntry} from "../store/entries";
+import {fetchEntries, addEntry, updateEntry, invalidateEntries} from "../store/entries";
 import {fetchDiscussion, sortDiscussion, resetDiscussion, updateReply, addReply, deleteReply} from "../store/discussion";
 import {addAccount} from "../store/accounts";
 import {addCommunity} from "../store/communities";
@@ -43,6 +43,7 @@ export interface PageProps {
     toggleTheme: () => void;
     hideIntro: () => void;
     toggleListStyle: () => void;
+    dismissNewVersion: () => void;
 
     dynamicProps: DynamicProps;
 
@@ -56,6 +57,7 @@ export interface PageProps {
     fetchEntries: (what: string, tag: string, more: boolean) => void;
     addEntry: (entry: Entry) => void;
     updateEntry: (entry: Entry) => void;
+    invalidateEntries: (groupKey: string) => void;
 
     discussion: DiscussionType;
     fetchDiscussion: (parent_author: string, parent_permlink: string) => void;
@@ -113,11 +115,13 @@ export const pageMapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
             toggleTheme,
             hideIntro,
             toggleListStyle,
+            dismissNewVersion,
             fetchTrendingTags,
             updateSubscriptions,
             fetchEntries,
             addEntry,
             updateEntry,
+            invalidateEntries,
             fetchDiscussion,
             sortDiscussion,
             resetDiscussion,

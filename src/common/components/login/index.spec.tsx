@@ -2,11 +2,15 @@ import React from "react";
 
 import renderer from "react-test-renderer";
 
+import {createBrowserHistory} from "history";
+
 import {Login} from "./index";
 
 import {globalInstance, activeUserMaker} from "../../helper/test-helper";
 
+
 const defProps = {
+    history: createBrowserHistory(),
     global: globalInstance,
     users: [],
     activeUser: null,

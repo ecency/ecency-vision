@@ -43,7 +43,9 @@ import {
     searchPath,
     boostOptions,
     boostedPost,
-    commentHistory
+    commentHistory,
+    search,
+    promotedEntries
 } from "./handlers/private-api";
 
 const server = express();
@@ -101,6 +103,7 @@ server
     .use("^/api/received-vesting/:username$", receivedVesting) // TODO. make it GET
     .post("^/api/leaderboard$", leaderboard) // TODO: public data. make it GET.
     .get("^/api/popular-users$", popularUsers)
+    .get("^/api/promoted-entries$", promotedEntries)
     .post("^/api/notifications$", notifications)
     .post("^/api/notifications/mark$", markNotifications)
     .post("^/api/notifications/unread$", unreadNotifications)
@@ -131,6 +134,7 @@ server
     .post("^/api/boost-options$", boostOptions)
     .post("^/api/boosted-post$", boostedPost)
     .post("^/api/comment-history$", commentHistory)
+    .post("^/api/search$", search)
     .get("*", fallbackHandler);
 
 export default server;

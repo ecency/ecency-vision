@@ -24,6 +24,7 @@ import formattedNumber from "../../util/formatted-number";
 
 import {lookupAccounts} from "../../api/hive";
 import {getCommunities} from "../../api/bridge";
+import queryString from "query-string";
 
 interface Props {
     history: History;
@@ -54,6 +55,14 @@ export class Search extends Component<Props, State> {
     componentDidMount() {
         const {fetchTrendingTags} = this.props;
         fetchTrendingTags();
+
+        const {location} = this.props;
+
+        if (location.pathname.startsWith('/search')) {
+            const qs = queryString.parse(location.search);
+            const query = (qs.q as string) || '';
+            this.stateSet({query});
+        }
     }
 
     componentWillUnmount() {
@@ -152,8 +161,10 @@ export class Search extends Component<Props, State> {
 
     onKeyDown = (e: React.KeyboardEvent) => {
         if (e.keyCode === 13) {
+            const {history} = this.props;
             const {query} = this.state;
-            window.location.href = `https://hivesearcher.com/search?q=${decodeURIComponent(query)}`;
+
+            history.push(`/search/?q=${encodeURIComponent(query)}`);
         }
     };
 

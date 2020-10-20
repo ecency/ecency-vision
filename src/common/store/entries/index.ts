@@ -18,7 +18,7 @@ import {
 
 import {CommonActionTypes} from "../common";
 
-import {clone} from '../helper';
+import {clone} from '../util';
 
 import filterTagExtract from "../../helper/filter-tag-extract";
 
@@ -192,6 +192,10 @@ export const addEntry = (entry: Entry) => (dispatch: Dispatch) => {
 
 export const updateEntry = (entry: Entry) => (dispatch: Dispatch) => {
     dispatch(updateAct(entry));
+};
+
+export const invalidateEntries = (groupKey: string) => (dispatch: Dispatch) => {
+    dispatch(invalidateAct(groupKey));
 };
 
 /* Action Creators */

@@ -6,7 +6,7 @@ import {Global} from "../../store/global/types";
 import {Community} from "../../store/communities/types";
 import {ActiveUser} from "../../store/active-user/types";
 
-import {clone} from "../../store/helper";
+import {clone} from "../../store/util";
 
 import LinearProgress from "../linear-progress";
 import {error} from "../feedback";
