@@ -5,7 +5,7 @@ import moment from "moment";
 
 import isEqual from "react-fast-compare";
 
-import {Entry} from "../../store/entries/types";
+import {Entry, EntryVote} from "../../store/entries/types";
 import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
@@ -38,9 +38,6 @@ import Tooltip from "../tooltip";
 
 import parseDate from "../../helper/parse-date";
 import appName from "../../helper/app-name";
-
-import * as hiveApi from "../../api/hive";
-import * as bridgeApi from "../../api/bridge";
 
 import {_t} from "../../i18n";
 
@@ -90,14 +87,13 @@ export default class EntryListItem extends Component<Props> {
         );
     }
 
-    afterVote = () => {
-        // update the entry
+    afterVote = (votes: EntryVote[]) => {
         const {entry, updateEntry} = this.props;
-        hiveApi.getPost(entry.author, entry.permlink)
-            .then(p => bridgeApi.normalizePost(p))
-            .then(r => {
-                if (r) updateEntry(r)
-            });
+
+        updateEntry({
+            ...entry,
+            active_votes: votes
+        });
     };
 
     render() {

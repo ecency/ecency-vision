@@ -96,10 +96,9 @@ export class EntryVotesDetail extends Component<DetailProps, DetailState> {
         this._mounted = false;
     }
 
-    stateSet = (obj: {}, cb: () => void = () => {
-    }) => {
+    stateSet = (state: {}, cb?: () => void) => {
         if (this._mounted) {
-            this.setState(obj, cb);
+            this.setState(state, cb);
         }
     };
 
@@ -111,11 +110,7 @@ export class EntryVotesDetail extends Component<DetailProps, DetailState> {
 
     sortCaret = (order: string) => {
         if (!order)
-            return (
-                <span className="table-sort-caret">
-          {chevronDownSvg} {chevronUpSvg}
-        </span>
-            );
+            return (<span className="table-sort-caret">{chevronDownSvg} {chevronUpSvg}</span>);
         else if (order === "asc") return <span className="table-sort-caret active">{chevronUpSvg}</span>;
         else if (order === "desc") return <span className="table-sort-caret active">{chevronDownSvg}</span>;
         return null;
@@ -235,7 +230,7 @@ export class EntryVotes extends Component<Props, State> {
     render() {
         const {entry} = this.props;
         const {visible} = this.state;
-        const totalVotes = entry?.stats?.total_votes || 0; // this is temporary during HF24 transition
+        const totalVotes = entry.active_votes.length;
 
         const title =
             totalVotes === 0

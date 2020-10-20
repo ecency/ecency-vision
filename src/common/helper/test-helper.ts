@@ -478,7 +478,7 @@ export const discussionInstace1: Entry[] = [
         curator_payout_value: "0.000 HBD",
         promoted: "0.000 HBD",
         replies: [],
-        active_votes: [],
+        active_votes: [{voter: "foo", rshares: 123}, {voter: "bar", rshares: 123}],
         author_reputation: 65.01,
         stats: {hide: false, gray: false, total_votes: 2, flag_weight: 0},
         beneficiaries: [{account: "esteemapp", weight: 300}],

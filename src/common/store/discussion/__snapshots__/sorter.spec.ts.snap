@@ -54,7 +54,16 @@ Array [
     "url": "/esteem/@esteemapp/esteem-discord-monthly-giveaway-winners-21#@behiver/re-esteemapp-202066t85739415z",
   },
   Object {
-    "active_votes": Array [],
+    "active_votes": Array [
+      Object {
+        "rshares": 123,
+        "voter": "foo",
+      },
+      Object {
+        "rshares": 123,
+        "voter": "bar",
+      },
+    ],
     "author": "irisworld",
     "author_payout_value": "0.000 HBD",
     "author_reputation": 65.01,
@@ -546,7 +555,16 @@ Array [
     "url": "/esteem/@esteemapp/esteem-discord-monthly-giveaway-winners-21#@trincowski/re-esteemapp-202066t84137915z",
   },
   Object {
-    "active_votes": Array [],
+    "active_votes": Array [
+      Object {
+        "rshares": 123,
+        "voter": "foo",
+      },
+      Object {
+        "rshares": 123,
+        "voter": "bar",
+      },
+    ],
     "author": "irisworld",
     "author_payout_value": "0.000 HBD",
     "author_reputation": 65.01,
@@ -813,7 +831,16 @@ Bug report [click here](https://esteem.app/esteem/@iliyan90/bug-report-to-esteem
 exports[`(3) Sort author_repuvotestation 1`] = `
 Array [
   Object {
-    "active_votes": Array [],
+    "active_votes": Array [
+      Object {
+        "rshares": 123,
+        "voter": "foo",
+      },
+      Object {
+        "rshares": 123,
+        "voter": "bar",
+      },
+    ],
     "author": "irisworld",
     "author_payout_value": "0.000 HBD",
     "author_reputation": 65.01,
@@ -1525,7 +1552,16 @@ Bug report [click here](https://esteem.app/esteem/@iliyan90/bug-report-to-esteem
     "url": "/esteem/@esteemapp/esteem-discord-monthly-giveaway-winners-21#@foxkoit/re-esteemapp-202066t8590757z",
   },
   Object {
-    "active_votes": Array [],
+    "active_votes": Array [
+      Object {
+        "rshares": 123,
+        "voter": "foo",
+      },
+      Object {
+        "rshares": 123,
+        "voter": "bar",
+      },
+    ],
     "author": "irisworld",
     "author_payout_value": "0.000 HBD",
     "author_reputation": 65.01,
