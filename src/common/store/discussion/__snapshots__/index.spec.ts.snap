@@ -43,43 +43,43 @@ Object {
     Object {
       "active_votes": Array [
         Object {
-          "rshares": "34273117581576",
+          "rshares": 34273117581576,
           "voter": "user1",
         },
         Object {
-          "rshares": "2269348064337",
+          "rshares": 2269348064337,
           "voter": "user2",
         },
         Object {
-          "rshares": "19969726098",
+          "rshares": 19969726098,
           "voter": "user3",
         },
         Object {
-          "rshares": "725359024516",
+          "rshares": 725359024516,
           "voter": "user4",
         },
         Object {
-          "rshares": "24029616493",
+          "rshares": 24029616493,
           "voter": "user5",
         },
         Object {
-          "rshares": "1485954337",
+          "rshares": 1485954337,
           "voter": "user6",
         },
         Object {
-          "rshares": "1281560607198",
+          "rshares": 1281560607198,
           "voter": "user7",
         },
         Object {
-          "rshares": "554323413016",
+          "rshares": 554323413016,
           "voter": "user8",
         },
         Object {
-          "rshares": "140063022903",
+          "rshares": 140063022903,
           "voter": "user9",
         },
         Object {
-          "rshares": "542424211",
+          "rshares": 542424211,
           "voter": "user10",
         },
       ],

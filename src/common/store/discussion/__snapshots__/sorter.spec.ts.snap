@@ -5,11 +5,11 @@ Array [
   Object {
     "active_votes": Array [
       Object {
-        "rshares": "154659337454",
+        "rshares": 154659337454,
         "voter": "foxkoit",
       },
       Object {
-        "rshares": "118413204550",
+        "rshares": 118413204550,
         "voter": "jznsamuel",
       },
     ],
@@ -98,7 +98,7 @@ Array [
   Object {
     "active_votes": Array [
       Object {
-        "rshares": "116060350556",
+        "rshares": 116060350556,
         "voter": "jznsamuel",
       },
     ],
@@ -145,7 +145,7 @@ Array [
   Object {
     "active_votes": Array [
       Object {
-        "rshares": "117230405346",
+        "rshares": 117230405346,
         "voter": "jznsamuel",
       },
     ],
@@ -192,7 +192,7 @@ Array [
   Object {
     "active_votes": Array [
       Object {
-        "rshares": "114901996313",
+        "rshares": 114901996313,
         "voter": "jznsamuel",
       },
     ],
@@ -454,7 +454,7 @@ Array [
   Object {
     "active_votes": Array [
       Object {
-        "rshares": "117230405346",
+        "rshares": 117230405346,
         "voter": "jznsamuel",
       },
     ],
@@ -501,7 +501,7 @@ Array [
   Object {
     "active_votes": Array [
       Object {
-        "rshares": "116060350556",
+        "rshares": 116060350556,
         "voter": "jznsamuel",
       },
     ],
@@ -675,11 +675,11 @@ Bug report [click here](https://esteem.app/esteem/@iliyan90/bug-report-to-esteem
   Object {
     "active_votes": Array [
       Object {
-        "rshares": "154659337454",
+        "rshares": 154659337454,
         "voter": "foxkoit",
       },
       Object {
-        "rshares": "118413204550",
+        "rshares": 118413204550,
         "voter": "jznsamuel",
       },
     ],
@@ -726,7 +726,7 @@ Bug report [click here](https://esteem.app/esteem/@iliyan90/bug-report-to-esteem
   Object {
     "active_votes": Array [
       Object {
-        "rshares": "114901996313",
+        "rshares": 114901996313,
         "voter": "jznsamuel",
       },
     ],
@@ -857,11 +857,11 @@ Array [
   Object {
     "active_votes": Array [
       Object {
-        "rshares": "154659337454",
+        "rshares": 154659337454,
         "voter": "foxkoit",
       },
       Object {
-        "rshares": "118413204550",
+        "rshares": 118413204550,
         "voter": "jznsamuel",
       },
     ],
@@ -908,7 +908,7 @@ Array [
   Object {
     "active_votes": Array [
       Object {
-        "rshares": "114901996313",
+        "rshares": 114901996313,
         "voter": "jznsamuel",
       },
     ],
@@ -950,7 +950,7 @@ Array [
   Object {
     "active_votes": Array [
       Object {
-        "rshares": "116060350556",
+        "rshares": 116060350556,
         "voter": "jznsamuel",
       },
     ],
@@ -997,7 +997,7 @@ Array [
   Object {
     "active_votes": Array [
       Object {
-        "rshares": "117230405346",
+        "rshares": 117230405346,
         "voter": "jznsamuel",
       },
     ],
@@ -1348,7 +1348,7 @@ Array [
   Object {
     "active_votes": Array [
       Object {
-        "rshares": "114901996313",
+        "rshares": 114901996313,
         "voter": "jznsamuel",
       },
     ],
@@ -1433,7 +1433,7 @@ Bug report [click here](https://esteem.app/esteem/@iliyan90/bug-report-to-esteem
   Object {
     "active_votes": Array [
       Object {
-        "rshares": "116060350556",
+        "rshares": 116060350556,
         "voter": "jznsamuel",
       },
     ],
@@ -1480,7 +1480,7 @@ Bug report [click here](https://esteem.app/esteem/@iliyan90/bug-report-to-esteem
   Object {
     "active_votes": Array [
       Object {
-        "rshares": "117230405346",
+        "rshares": 117230405346,
         "voter": "jznsamuel",
       },
     ],
@@ -1569,11 +1569,11 @@ Bug report [click here](https://esteem.app/esteem/@iliyan90/bug-report-to-esteem
   Object {
     "active_votes": Array [
       Object {
-        "rshares": "154659337454",
+        "rshares": 154659337454,
         "voter": "foxkoit",
       },
       Object {
-        "rshares": "118413204550",
+        "rshares": 118413204550,
         "voter": "jznsamuel",
       },
     ],
