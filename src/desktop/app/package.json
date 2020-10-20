@@ -4,7 +4,7 @@
   "description": "Ecency desktop application reimagined for Windows, Mac, Linux users, start earning cryptocurrency!",
   "version": "3.0.7",
   "main": "./main.prod.js",
-  "author": "Esteem <info@ecency.com>",
+  "author": "Ecency <hello@ecency.com>",
   "scripts": {
     "electron-rebuild": "node -r ../internals/scripts/BabelRegister.js ../internals/scripts/ElectronRebuild.js",
     "postinstall": "yarn electron-rebuild"
