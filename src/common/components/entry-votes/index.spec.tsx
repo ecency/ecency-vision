@@ -38,7 +38,7 @@ it("(2) No votes", () => {
   const props = {
     history: createBrowserHistory(),
     global: { ...globalInstance },
-    entry: { ...entryInstance1, ...{ stats: { ...entryInstance1.stats, ...{ total_votes: 0 } } } },
+    entry: { ...entryInstance1, ...{ active_votes: [] } },
     addAccount: (data: any) => {},
   };
 

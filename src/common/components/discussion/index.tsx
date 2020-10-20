@@ -16,7 +16,7 @@ import {
 
 setProxyBase(defaults.imageServer);
 
-import {Entry} from "../../store/entries/types";
+import {Entry, EntryVote} from "../../store/entries/types";
 import {Account} from "../../store/accounts/types";
 import {Community, ROLES} from "../../store/communities/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
@@ -120,21 +120,19 @@ export class Item extends Component<ItemProps, ItemState> {
         this._mounted = false;
     }
 
-    stateSet = (obj: {}, cb: () => void = () => {
-    }) => {
+    stateSet = (state: {}, cb?: () => void) => {
         if (this._mounted) {
-            this.setState(obj, cb);
+            this.setState(state, cb);
         }
     };
 
-    afterVote = () => {
+    afterVote = (votes: EntryVote[]) => {
         const {entry, updateReply} = this.props;
 
-        hiveApi.getPost(entry.author, entry.permlink)
-            .then(p => bridgeApi.normalizePost(p))
-            .then(r => {
-                if (r) updateReply(r);
-            });
+        updateReply({
+            ...entry,
+            active_votes: votes
+        });
     }
 
     toggleReply = () => {

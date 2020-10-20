@@ -2,11 +2,9 @@ import React, {Component} from "react";
 
 import {Modal, Form, FormControl} from "react-bootstrap";
 
-import isEqual from "react-fast-compare";
-
 import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
-import {Entry} from "../../store/entries/types";
+import {Entry, EntryVote} from "../../store/entries/types";
 import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
@@ -16,7 +14,7 @@ import FormattedCurrency from "../formatted-currency";
 import LoginRequired from "../login-required";
 import {error} from "../feedback";
 
-import {getActiveVotes, Vote, vpMana} from "../../api/hive";
+import {vpMana} from "../../api/hive";
 import {vote, formatError} from "../../api/operations";
 
 import parseAsset from "../../helper/parse-asset";
@@ -224,60 +222,29 @@ interface Props {
     updateActiveUser: (data?: Account) => void;
     deleteUser: (username: string) => void;
     toggleUIProp: (what: ToggleType) => void;
-    afterVote: () => void;
+    afterVote: (votes: EntryVote[]) => void;
 }
 
 interface State {
-    votes: Vote[];
     dialog: boolean;
     inProgress: boolean;
 }
 
 export class EntryVoteBtn extends Component<Props, State> {
     state: State = {
-        votes: [],
         dialog: false,
         inProgress: false,
     };
 
     _mounted: boolean = true;
 
-    fetchVotes = () => {
-        const {activeUser, entry, users} = this.props;
-
-        if (activeUser) {
-            const userNames = users.map((x) => x.username);
-
-            getActiveVotes(entry.author, entry.permlink).then((resp) => {
-                const votes = resp.filter((x) => userNames.includes(x.voter));
-                this.stateSet({votes});
-            });
-        }
-    };
-
-    componentDidUpdate(prevProps: Readonly<Props>) {
-        if (
-            // user changed while vote count is zero
-            ((prevProps.activeUser?.username !== this.props.activeUser?.username) && this.state.votes.length === 0) ||
-            // or entry changed
-            !isEqual(this.props.entry, prevProps.entry)
-        ) {
-            this.fetchVotes();
-        }
-    }
-
-    componentDidMount = () => {
-        this.fetchVotes();
-    };
-
     componentWillUnmount() {
         this._mounted = false;
     }
 
-    stateSet = (obj: {}, cb: () => void = () => {
-    }) => {
+    stateSet = (state: {}, cb?: () => void) => {
         if (this._mounted) {
-            this.setState(obj, cb);
+            this.setState(state, cb);
         }
     };
 
@@ -288,16 +255,22 @@ export class EntryVoteBtn extends Component<Props, State> {
         const weight = Math.ceil(percent * 100);
 
         this.stateSet({inProgress: true});
+        const username = activeUser?.username!;
 
-        vote(activeUser?.username!, entry.author, entry.permlink, weight)
+        vote(username, entry.author, entry.permlink, weight)
             .then(() => {
-                this.fetchVotes();
-                this.stateSet({inProgress: false});
-                afterVote();
+                const votes: EntryVote[] = [
+                    ...entry.active_votes.filter((x) => x.voter !== username),
+                    {rshares: weight, voter: username}
+                ];
+
+                afterVote(votes);
             })
             .catch((e) => {
-                this.stateSet({inProgress: false});
                 error(formatError(e));
+            })
+            .finally(() => {
+                this.stateSet({inProgress: false});
             });
     };
 
@@ -308,11 +281,11 @@ export class EntryVoteBtn extends Component<Props, State> {
             return {upVoted: false, downVoted: false};
         }
 
-        const {votes} = this.state;
+        const {active_votes: votes} = this.props.entry;
 
-        const upVoted = votes.some((v) => v.voter === activeUser.username && v.percent > 0);
+        const upVoted = votes.some((v) => v.voter === activeUser.username && v.rshares > 0);
 
-        const downVoted = votes.some((v) => v.voter === activeUser.username && v.percent < 0);
+        const downVoted = votes.some((v) => v.voter === activeUser.username && v.rshares < 0);
 
         return {upVoted, downVoted};
     };
