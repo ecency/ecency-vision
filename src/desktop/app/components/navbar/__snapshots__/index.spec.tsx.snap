@@ -91,14 +91,22 @@ exports[`(1) Default render 1`] = `
         >
           ecency://
         </span>
-        <input
+        <div
           className="url"
-          onChange={[Function]}
-          onKeyUp={[Function]}
-          placeholder="enter url or search query"
-          spellCheck={false}
-          value="hot"
-        />
+        >
+          <div
+            className="suggestion"
+          >
+            <input
+              onChange={[Function]}
+              onKeyUp={[Function]}
+              placeholder="enter url or search query"
+              spellCheck={false}
+              type="text"
+              value="hot"
+            />
+          </div>
+        </div>
       </div>
     </div>
     <div
@@ -293,14 +301,22 @@ Array [
           >
             ecency://
           </span>
-          <input
+          <div
             className="url"
-            onChange={[Function]}
-            onKeyUp={[Function]}
-            placeholder="enter url or search query"
-            spellCheck={false}
-            value="hot"
-          />
+          >
+            <div
+              className="suggestion"
+            >
+              <input
+                onChange={[Function]}
+                onKeyUp={[Function]}
+                placeholder="enter url or search query"
+                spellCheck={false}
+                type="text"
+                value="hot"
+              />
+            </div>
+          </div>
         </div>
       </div>
       <div
@@ -525,14 +541,22 @@ exports[`(3) Night Theme 1`] = `
         >
           ecency://
         </span>
-        <input
+        <div
           className="url"
-          onChange={[Function]}
-          onKeyUp={[Function]}
-          placeholder="enter url or search query"
-          spellCheck={false}
-          value="hot"
-        />
+        >
+          <div
+            className="suggestion"
+          >
+            <input
+              onChange={[Function]}
+              onKeyUp={[Function]}
+              placeholder="enter url or search query"
+              spellCheck={false}
+              type="text"
+              value="hot"
+            />
+          </div>
+        </div>
       </div>
     </div>
     <div
@@ -726,14 +750,22 @@ exports[`(4) With active user 1`] = `
         >
           ecency://
         </span>
-        <input
+        <div
           className="url"
-          onChange={[Function]}
-          onKeyUp={[Function]}
-          placeholder="enter url or search query"
-          spellCheck={false}
-          value="hot"
-        />
+        >
+          <div
+            className="suggestion"
+          >
+            <input
+              onChange={[Function]}
+              onKeyUp={[Function]}
+              placeholder="enter url or search query"
+              spellCheck={false}
+              type="text"
+              value="hot"
+            />
+          </div>
+        </div>
       </div>
     </div>
     <div
