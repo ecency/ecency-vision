@@ -20,7 +20,7 @@ import {
 
 setProxyBase(defaults.imageServer);
 
-import {Entry} from "../store/entries/types";
+import {Entry, EntryVote} from "../store/entries/types";
 import {Community, ROLES} from "../store/communities/types";
 
 import {makePath as makeEntryPath} from "../components/entry-link";
@@ -206,16 +206,14 @@ class EntryPage extends Component<Props, State> {
         window.open(u, "_blank");
     };
 
-    afterVote = () => {
-        // update the entry
+    afterVote = (votes: EntryVote[]) => {
         const entry = this.getEntry()!;
         const {updateEntry} = this.props;
-        hiveApi.getPost(entry.author, entry.permlink)
-            .then(p => bridgeApi.normalizePost(p))
-            .then(r => {
-                if (r) updateEntry(r);
-                this.forceUpdate();
-            });
+
+        updateEntry({
+            ...entry,
+            active_votes: votes
+        });
     };
 
     replySubmitted = (text: string) => {
@@ -413,9 +411,9 @@ class EntryPage extends Component<Props, State> {
                                             })}
                                         </div>
                                     </div>
-                                    <meta itemProp="headline name" content={entry.title} />
+                                    <meta itemProp="headline name" content={entry.title}/>
                                     <div itemProp="articleBody" className="entry-body markdown-view user-selectable" dangerouslySetInnerHTML={renderedBody}/>
-                                    <meta itemProp="image" content={metaProps.image} />
+                                    <meta itemProp="image" content={metaProps.image}/>
                                     <div className="entry-footer">
                                         <div className="entry-tags">
                                             {!tags.find(x => x === entry?.category) && Tag({
@@ -525,21 +523,21 @@ class EntryPage extends Component<Props, State> {
                                             })}
                                             <div className="sub-menu">
                                                 <a className="sub-menu-item"
-                                                onClick={() => {
-                                                    this.shareReddit(entry!);
-                                                }}>
+                                                   onClick={() => {
+                                                       this.shareReddit(entry!);
+                                                   }}>
                                                     {redditSvg}
                                                 </a>
                                                 <a className="sub-menu-item"
-                                                onClick={() => {
-                                                    this.shareTwitter(entry!);
-                                                }}>
+                                                   onClick={() => {
+                                                       this.shareTwitter(entry!);
+                                                   }}>
                                                     {twitterSvg}
                                                 </a>
                                                 <a className="sub-menu-item"
-                                                onClick={() => {
-                                                    this.shareFacebook(entry!);
-                                                }}>
+                                                   onClick={() => {
+                                                       this.shareFacebook(entry!);
+                                                   }}>
                                                     {facebookSvg}
                                                 </a>
                                             </div>

@@ -33,12 +33,14 @@ export const getActiveUser = (req: express.Request): string | null => {
 };
 
 export const optimizeEntries = (entries: Entry[]): Entry[] => {
+    return entries;
+    /* Optimization disabled for now
     return entries.map((x) => {
         return {
             ...x,
             ...{active_votes: []}, // remove active votes
         };
-    });
+    }); */
 };
 
 export const baseApiRequest = (url: string, method: Method, headers: any = {}, payload: any = {}): Promise<AxiosResponse> => {
