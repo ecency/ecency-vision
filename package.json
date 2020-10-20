@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@esteemapp/esteem-render-helpers": "^1.8.0",
-    "@hiveio/dhive": "^0.14.1",
+    "@hiveio/dhive": "^0.14.8",
     "@hiveio/hivescript": "^1.2.0",
     "@types/bs58": "^4.0.1",
     "@types/diff-match-patch": "^1.0.32",

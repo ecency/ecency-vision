@@ -10,6 +10,7 @@ import SERVERS from "../constants/servers.json";
 
 export const client = new Client(SERVERS, {
     timeout: 3000,
+    consoleOnFailover: true,
     rebrandedApi: true,
 });
 
