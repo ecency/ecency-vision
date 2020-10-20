@@ -127,7 +127,6 @@
         align-items: center;
         display: flex;
         flex-grow: 1;
-        overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
 
@@ -139,30 +138,37 @@
         }
 
         .url {
-          background: transparent;
-          border: 0;
           flex-grow: 1;
           margin-right: 10px;
-          outline: none;
-          font-size: 90%;
-          color: $gray-600;
+          height: 100%;
 
-          &:focus {
+          input[type="text"] {
+            background: transparent;
+            border: 0;
             outline: none;
+            font-size: 90%;
+            color: $gray-600;
+            width: 100%;
+
+            &:focus {
+              outline: none;
+            }
+
+            &::placeholder {
+              color: $silver;
+              padding-left: 10px;
+            }
+
+            @include themify(day) {
+              color: $steel-grey;
+            }
+
+            @include themify(night) {
+              color: $white-five;
+            }
           }
 
-          &::placeholder {
-            color: $silver;
-            padding-left: 10px;
-          }
 
-          @include themify(day) {
-            color: $steel-grey;
-          }
-
-          @include themify(night) {
-            color: $white-five;
-          }
         }
       }
     }

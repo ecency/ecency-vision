@@ -8,7 +8,7 @@ import NavBar from "./index";
 import {Theme} from "../../../../common/store/global/types";
 
 import {globalInstance, UiInstance, notificationsInstance1, activeUserInstance} from "../../../../common/helper/test-helper";
-
+import {initialState as trendingTags} from "../../../../common/store/trending-tags";
 
 const defProps = {
     history: createBrowserHistory(),
@@ -18,6 +18,7 @@ const defProps = {
     activeUser: null,
     ui: UiInstance,
     notifications: notificationsInstance1,
+    trendingTags,
     fetchTrendingTags: () => {
     },
     toggleTheme: () => {

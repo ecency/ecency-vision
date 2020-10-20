@@ -11,6 +11,7 @@ import isEqual from "react-fast-compare";
 import queryString from "query-string";
 
 import {Global, Theme} from "../../../../common/store/global/types";
+import {TrendingTags} from "../../../../common/store/trending-tags/types";
 import {Account} from "../../../../common/store/accounts/types";
 import {User} from "../../../../common/store/users/types";
 import {ActiveUser} from "../../../../common/store/active-user/types";
@@ -22,6 +23,7 @@ import Login from "../../../../common/components/login";
 import UserNav from "../../../../common/components/user-nav";
 import SignUp from "../../../../common/components/sign-up";
 import DropDown, {MenuItem} from "../../../../common/components/dropdown";
+import SearchSuggester from "../../../../common/components/search-suggester";
 import Updater from "../updater";
 
 import NotificationHandler from "../../../../common/components/notification-handler";
@@ -44,6 +46,8 @@ const logo = require("../../../../common/img/logo-circle.svg");
 interface AddressBarProps {
     history: History;
     location: Location;
+    global: Global;
+    trendingTags: TrendingTags;
 }
 
 interface AddressBarState {
@@ -151,14 +155,18 @@ export class AddressBar extends Component<AddressBarProps, AddressBarState> {
             <div className="address">
                 <div className="pre-add-on">{magnifySvg}</div>
                 <span className="protocol">ecency://</span>
-                <input
-                    className="url"
-                    value={address}
-                    onChange={this.addressChanged}
-                    onKeyUp={this.addressKeyup}
-                    placeholder={_t('navbar.address-placeholder')}
-                    spellCheck={false}
-                />
+                <div className="url">
+                    <SearchSuggester {...this.props} value={address}>
+                        <input
+                            type="text"
+                            value={address}
+                            onChange={this.addressChanged}
+                            onKeyUp={this.addressKeyup}
+                            placeholder={_t('navbar.address-placeholder')}
+                            spellCheck={false}
+                        />
+                    </SearchSuggester>
+                </div>
             </div>
         )
     }
@@ -233,6 +241,7 @@ interface Props {
     activeUser: ActiveUser | null;
     ui: UI;
     notifications: Notifications;
+    trendingTags: TrendingTags;
     fetchTrendingTags: () => void;
     toggleTheme: () => void;
     addUser: (user: User) => void;
@@ -369,7 +378,7 @@ export class NavBar extends Component<Props, State> {
                         </div>
 
                         <div className="address-bar">
-                            <AddressBar history={history} location={location}/>
+                            <AddressBar history={history} location={location} global={global} trendingTags={this.props.trendingTags}/>
                         </div>
 
                         <div className="text-menu">
@@ -426,6 +435,7 @@ export default (p: Props) => {
         activeUser: p.activeUser,
         ui: p.ui,
         notifications: p.notifications,
+        trendingTags: p.trendingTags,
         fetchTrendingTags: p.fetchTrendingTags,
         toggleTheme: p.toggleTheme,
         addUser: p.addUser,
