@@ -74,6 +74,12 @@ document.addEventListener('DOMContentLoaded', () => {
         </Provider>,
         document.getElementById('root')
     );
+
+    // To prevent blinking on initial window load
+    document.body.style.visibility = 'hidden';
+    setTimeout(() => {
+        document.body.style.visibility = 'visible';
+    }, 300);
 });
 
 // Initial or repeating storage tasks.
