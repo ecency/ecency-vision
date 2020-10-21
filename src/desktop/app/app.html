@@ -16,6 +16,11 @@
           document.getElementsByTagName('head')[0].appendChild(link);
         }
       })();
+
+      window.protocolHandler = function (url) {
+        const ev = new CustomEvent('deep-link', {detail: {url}});
+        window.dispatchEvent(ev);
+      };
     </script>
 </head>
 <body>
