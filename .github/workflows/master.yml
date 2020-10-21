@@ -18,7 +18,10 @@ jobs:
     - name: npm install, lint and/or test
       run: |
         yarn
-        cp src/config.example.ts src/config.ts  
+        cd src/desktop
+        yarn
+        cd ../../
+        cp src/config.example.ts src/config.ts
         yarn test --runInBand --updateSnapshot
       env:
         CI: true
@@ -41,6 +44,9 @@ jobs:
           cd ~/vision-production
           git pull origin master
           yarn
+          cd src/desktop
+          yarn
+          cd ../../
           yarn build
           export PORT=$STAGING_PORT
           NODE_ENV=production pm2 reload master --update-env

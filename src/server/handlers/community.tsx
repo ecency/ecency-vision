@@ -11,7 +11,7 @@ import * as hiveApi from "../../common/api/hive";
 
 import {makePreloadedState} from "../state";
 
-import {readGlobalCookies, getPromotedEntries, optimizeEntries} from "../helper";
+import {optimizeEntries} from "../helper";
 
 import {render} from "../template";
 import {EntryFilter} from "../../common/store/global/types";
@@ -54,19 +54,12 @@ export default async (req: express.Request, res: express.Response) => {
         ...state,
         global: {
             ...state.global,
-            ...readGlobalCookies(req),
             ...{filter: EntryFilter[filter], tag: name}
         },
         entries: {
             ...state.entries,
             [`${makeGroupKey(filter, name)}`]: {
                 entries: optimizeEntries(entries),
-                error: null,
-                loading: false,
-                hasMore: true,
-            },
-            ["__promoted__"]: {
-                entries: optimizeEntries(await getPromotedEntries()),
                 error: null,
                 loading: false,
                 hasMore: true,

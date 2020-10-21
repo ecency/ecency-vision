@@ -12,7 +12,7 @@ import {error} from "../feedback";
 
 import {getAccount} from "../../api/hive";
 
-import {clone} from "../../store/helper";
+import {clone} from "../../store/util";
 
 import {
     setUserRole,

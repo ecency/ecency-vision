@@ -1,36 +1,12 @@
-import express from "express";
 import axios, {AxiosRequestConfig, AxiosResponse, Method} from "axios";
 
-import {ListStyle, Theme} from "../common/store/global/types";
 import {Entry} from "../common/store/entries/types";
-
-import defaults from "../common/constants/defaults.json";
 
 import {getPost} from "../common/api/bridge";
 
 import {cache} from "./cache";
 
 import config from "../config";
-
-export interface GlobalCookies {
-    theme: Theme;
-    listStyle: ListStyle;
-    intro: boolean;
-}
-
-export const readGlobalCookies = (req: express.Request): GlobalCookies => {
-    const _c = (k: string): any => req.cookies[k];
-
-    const theme = _c("theme") && Object.values(Theme).includes(_c("theme")) ? _c("theme") : defaults.theme;
-    const intro = !_c("hide-intro");
-    const listStyle = _c("list-style") && Object.values(ListStyle).includes(_c("list-style")) ? _c("list-style") : defaults.listStyle;
-
-    return {theme: Theme[theme], listStyle: ListStyle[listStyle], intro};
-};
-
-export const getActiveUser = (req: express.Request): string | null => {
-    return req.cookies["active_user"] || null;
-};
 
 export const optimizeEntries = (entries: Entry[]): Entry[] => {
     return entries;

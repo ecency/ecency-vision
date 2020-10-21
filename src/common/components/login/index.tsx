@@ -6,6 +6,8 @@ import isEqual from "react-fast-compare";
 
 import {PrivateKey, PublicKey, cryptoUtils} from "@hiveio/dhive";
 
+import {History} from "history";
+
 import {Global} from "../../store/global/types";
 import {User} from "../../store/users/types";
 import {Account} from "../../store/accounts/types";
@@ -19,6 +21,7 @@ import OrDivider from "../or-divider";
 import {error} from "../feedback";
 
 import {getAuthUrl, makeHsCode} from "../../helper/hive-signer";
+import {hsLogin} from "../../../desktop/app/helper/hive-signer";
 
 import {getAccount} from "../../api/hive";
 import {hsTokenRenew, usrActivity} from "../../api/private";
@@ -80,6 +83,7 @@ export class UserItem extends Component<UserItemProps> {
 }
 
 interface LoginProps {
+    history: History;
     global: Global;
     users: User[];
     activeUser: ActiveUser | null;
@@ -180,6 +184,21 @@ export class Login extends Component<LoginProps, State> {
         if (e.key === 'Enter') {
             this.login().then();
         }
+    }
+
+    hsLogin = () => {
+        const {global, history} = this.props;
+        if (global.isElectron) {
+            hsLogin().then(r => {
+                this.hide();
+                history.push(`/auth?code=${r.code}`);
+            }).catch((e) => {
+                error(e);
+            });
+            return;
+        }
+
+        window.location.href = getAuthUrl();
     }
 
     login = async () => {
@@ -336,13 +355,18 @@ export class Login extends Component<LoginProps, State> {
                     <p className="login-form-text">{_t('login.login-info-1')} <a onClick={((e) => {
                         e.preventDefault();
                         this.hide();
-                        window.location.href = '/faq#how-to-signin';
+                        const {history} = this.props;
+                        history.push("/faq#how-to-signin");
+                        setTimeout(() => {
+                            const el = document.getElementById("how-to-signin");
+                            if (el) el.scrollIntoView();
+                        }, 300)
                     })} href="#">{_t('login.login-info-2')}</a></p>
                     <Button disabled={inProgress} block={true} onClick={this.login}>{_t('g.login')}</Button>
                 </Form>
                 <OrDivider/>
                 <div className="hs-login">
-                    <a className="btn btn-outline-primary" href={getAuthUrl()}>
+                    <a className="btn btn-outline-primary" onClick={this.hsLogin}>
                         <img src={hsLogo} className="hs-logo" alt="hivesigner"/> {_t("login.with-hive-signer")}
                     </a>
                 </div>
@@ -366,6 +390,7 @@ export class Login extends Component<LoginProps, State> {
 }
 
 interface Props {
+    history: History;
     global: Global;
     users: User[];
     activeUser: ActiveUser | null;

@@ -28,4 +28,5 @@ export default {
   EDIT: `/:username(@[\\w\\.\\d-]+)/:permlink/edit`,
   EDIT_DRAFT: `/draft/:draftId`,
   DISCOVER: `/discover`,
+  SEARCH: `/search/`,
 };

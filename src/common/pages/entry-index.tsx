@@ -14,6 +14,7 @@ import Meta from "../components/meta";
 import Theme from "../components/theme";
 import Feedback from "../components/feedback";
 import NavBar from "../components/navbar";
+import NavBarElectron from "../../desktop/app/components/navbar";
 import Intro from "../components/intro";
 import DropDown, {MenuItem} from "../components/dropdown";
 import ListStyleToggle from "../components/list-style-toggle";
@@ -69,6 +70,12 @@ class EntryIndexPage extends Component<PageProps> {
             fetchEntries(filter, tag, true);
         }
     };
+
+    reload = () => {
+        const {global, fetchEntries, invalidateEntries} = this.props;
+        invalidateEntries(makeGroupKey(global.filter, global.tag));
+        fetchEntries(global.filter, global.tag, false);
+    }
 
     render() {
         const {global, entries, activeUser} = this.props;
@@ -146,7 +153,13 @@ class EntryIndexPage extends Component<PageProps> {
                 <ScrollToTop/>
                 <Theme global={this.props.global}/>
                 <Feedback/>
-                {NavBar({...this.props})}
+                {global.isElectron ?
+                    NavBarElectron({
+                        ...this.props,
+                        reloadFn: this.reload,
+                        reloading: loading,
+                    }) :
+                    NavBar({...this.props})}
                 <Intro global={this.props.global} hideIntro={this.props.hideIntro}/>
                 <div className="app-content entry-index-page">
                     <div className="tags-side">

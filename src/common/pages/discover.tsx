@@ -6,12 +6,13 @@ import {connect} from "react-redux";
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
 import NavBar from "../components/navbar/index";
+import NavBarElectron from "../../desktop/app/components/navbar";
 import LeaderBoard from "../components/leaderboard";
 import PopularUsers from "../components/popular-users";
 import FullHeight from "../components/full-height";
 import ScrollToTop from "../components/scroll-to-top";
 
-import {getPopularUsers, PopularUser, getLeaderboard, LeaderBoardItem} from "../api/private";
+import {getPopularUsers, getLeaderboard} from "../api/private";
 
 import {_t} from "../i18n";
 
@@ -54,13 +55,19 @@ class DiscoverPage extends Component<PageProps> {
             description: _t("discover.description"),
         };
 
+        const {global} = this.props;
+
         return (
             <>
                 <Meta {...metaProps} />
                 <ScrollToTop/>
                 <FullHeight/>
                 <Theme global={this.props.global}/>
-                {NavBar({...this.props})}
+                {global.isElectron ?
+                    NavBarElectron({
+                        ...this.props,
+                    }) :
+                    NavBar({...this.props})}
                 <div className="app-content discover-page">
                     <div className="top-users">
                         {LeaderBoard({...this.props})}

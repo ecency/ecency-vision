@@ -50,12 +50,15 @@ export interface Global {
     currencySymbol: string;
     searchIndexCount: number;
     canUseWebp: boolean;
+    isElectron: boolean;
+    newVersion: string | null;
 }
 
 export enum ActionTypes {
     THEME_CHANGE = "@global/THEME_CHANGE",
     INTRO_HIDE = "@global/INTRO_HIDE",
     LIST_STYLE_CHANGE = "@global/LIST_STYLE_CHANGE",
+    NEW_VERSION_CHANGE = "@global/NEW_VERSION_CHANGE",
 }
 
 export interface ThemeChangeAction {
@@ -72,4 +75,9 @@ export interface ListStyleChangeAction {
     listStyle: ListStyle;
 }
 
-export type Actions = LocationChangeAction | ThemeChangeAction | IntroHideAction | ListStyleChangeAction;
+export interface NewVersionChangeAction {
+    type: ActionTypes.NEW_VERSION_CHANGE;
+    version: string | null;
+}
+
+export type Actions = LocationChangeAction | ThemeChangeAction | IntroHideAction | ListStyleChangeAction | NewVersionChangeAction;

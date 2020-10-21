@@ -10,6 +10,6 @@ const handleDragOver = (e: DragEvent) => {
     e.dataTransfer.dropEffect = 'none';
 }
 
-document.body.addEventListener('dragover', handleDragOver);
-
-
+document.addEventListener("DOMContentLoaded", function () {
+    document.body.addEventListener('dragover', handleDragOver);
+});

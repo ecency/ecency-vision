@@ -47,7 +47,7 @@ import {comment, formatError} from "../../api/operations";
 
 import * as ls from "../../util/local-storage";
 
-import {createReplyPermlink, makeJsonMetadataReply} from "../../helper/posting";
+import {createReplyPermlink, makeJsonMetaDataReply} from "../../helper/posting";
 import tempEntry from "../../helper/temp-entry";
 
 import {error} from "../feedback";
@@ -165,7 +165,7 @@ export class Item extends Component<ItemProps, ItemState> {
         const permlink = createReplyPermlink(entry.author);
         const options = null;
 
-        const jsonMeta = makeJsonMetadataReply(
+        const jsonMeta = makeJsonMetaDataReply(
             entry.json_metadata.tags || ['ecency'],
             version
         );
@@ -218,7 +218,7 @@ export class Item extends Component<ItemProps, ItemState> {
         const {activeUser, updateReply} = this.props;
 
         const {permlink, parent_author: parentAuthor, parent_permlink: parentPermlink} = entry;
-        const jsonMeta = makeJsonMetadataReply(
+        const jsonMeta = makeJsonMetaDataReply(
             entry.json_metadata.tags || ['ecency'],
             version
         );

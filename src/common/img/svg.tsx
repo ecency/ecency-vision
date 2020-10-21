@@ -493,18 +493,19 @@ export const plusCircle = (
     </svg>
 );
 
-export const arrowRightSvg = (
-    <svg
-        className="fa-arrow-right"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 448 512"
-    >
-        <path
-            fill="currentColor"
-            d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"
-        />
+export const arrowLeftSvg = (<svg viewBox="0 0 24 24">
+    <path fill="currentColor" d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/>
+</svg>);
+
+export const arrowRightSvg = (<svg viewBox="0 0 24 24">
+        <path fill="currentColor" d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"/>
     </svg>
 );
+
+export const refreshSvg = (<svg viewBox="0 0 24 24">
+    <path fill="currentColor"
+          d="M17.65,6.35C16.2,4.9 14.21,4 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20C15.73,20 18.84,17.45 19.73,14H17.65C16.83,16.33 14.61,18 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6C13.66,6 15.14,6.69 16.22,7.78L13,11H20V4L17.65,6.35Z"/>
+</svg>);
 
 export const keySvg = (<svg viewBox="0 0 24 24">
     <path fill="currentColor"
@@ -589,4 +590,9 @@ export const fireSvg = (<svg viewBox="0 0 24 24">
 
 export const trendingUpSvg = (<svg viewBox="0 0 24 24">
     <path fill="currentColor" d="M16,6L18.29,8.29L13.41,13.17L9.41,9.17L2,16.59L3.41,18L9.41,12L13.41,16L19.71,9.71L22,12V6H16Z"/>
+</svg>);
+
+export const dotsHorizontal = (<svg viewBox="0 0 24 24">
+    <path fill="currentColor"
+          d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z"/>
 </svg>);

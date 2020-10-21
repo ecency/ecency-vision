@@ -1,0 +1,29 @@
+.search-page {
+  display: block;
+
+  .search-info {
+    text-align: center;
+    padding-bottom: 6px;
+    margin-bottom: 6px;
+
+    .result-count {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .sort-by {
+      width: 160px;
+      margin: auto;
+
+      .label {
+        margin-bottom: 4px;
+        font-size: 90%;
+      }
+    }
+  }
+
+  .search-list {
+
+  }
+}

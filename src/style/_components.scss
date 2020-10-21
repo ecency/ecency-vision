@@ -69,6 +69,10 @@
 @import '../common/components/scroll-to-top';
 @import '../common/components/pin-btn';
 @import '../common/components/mute-btn';
+@import '../common/components/search-list-item';
+
+@import '../desktop/app/components/navbar';
+@import '../desktop/app/components/updater';
 
 @import '../common/pages/entry-index';
 @import '../common/pages/profile';
@@ -78,3 +82,4 @@
 @import '../common/pages/submit';
 @import '../common/pages/static';
 @import '../common/pages/discover';
+@import '../common/pages/search';
