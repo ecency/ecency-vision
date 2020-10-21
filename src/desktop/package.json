@@ -89,8 +89,8 @@
     "publish": [
       {
         "provider": "github",
-        "owner": "esteemapp",
-        "repo": "esteem-surfer",
+        "owner": "ecency",
+        "repo": "ecency-vision",
         "vPrefixedTagName": false,
         "private": false,
         "releaseType": "draft",
