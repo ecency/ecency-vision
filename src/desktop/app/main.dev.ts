@@ -30,6 +30,53 @@ if (
     require('electron-debug')();
 }
 
+/**
+ * Deep linking
+ */
+
+let deepUrl: any;
+
+app.setAsDefaultProtocolClient('hive');
+app.setAsDefaultProtocolClient('ecency');
+app.setAsDefaultProtocolClient('esteem');
+
+const sendProtocolUrl2Window = (u: any): void => {
+    if (typeof u !== 'string') {
+        return;
+    }
+
+    const m = u.match(/(hive|ecency|esteem):\/\/[-a-zA-Z0-9@:%._+~#=/]{2,500}/gi);
+    if (!m) {
+        return;
+    }
+
+    if (m[0]) {
+        mainWindow!.webContents.executeJavaScript(`protocolHandler('${m[0]}')`);
+    }
+};
+
+const sLock = app.requestSingleInstanceLock();
+
+if (!sLock) {
+    app.quit();
+}
+
+app.on('open-url', (event, url) => {
+    event.preventDefault();
+
+    if (!mainWindow) {
+        deepUrl = url;
+        return;
+    }
+
+    if (mainWindow.isMinimized()) {
+        mainWindow.restore();
+    }
+    mainWindow.focus();
+
+    sendProtocolUrl2Window(url);
+});
+
 const installExtensions = async () => {
     const installer = require('electron-devtools-installer');
     const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
@@ -105,6 +152,17 @@ const createWindow = async () => {
             }, 1000 * 60 * 240);
         }
 
+        // Deeplink protocol handler for win32 and linux
+        if (process.platform === 'win32' || process.platform === 'linux') {
+            deepUrl = process.argv.slice(1);
+        }
+
+        if (deepUrl) {
+            setTimeout(() => {
+                sendProtocolUrl2Window(deepUrl);
+            }, 3000);
+        }
+
     }).on('new-window', (e, url) => {
         shell.openExternal(url);
         e.preventDefault();
@@ -139,7 +197,10 @@ app.on('activate', () => {
     if (mainWindow === null) createWindow();
 });
 
-// Event handlers for auto updater
+/**
+ * Event handlers for auto updater
+ */
+
 autoUpdater.on('update-available', info => {
     mainWindow!.webContents.send('update-available', info.releaseName);
 });

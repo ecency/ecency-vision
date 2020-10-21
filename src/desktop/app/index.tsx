@@ -4,6 +4,9 @@ import {render} from 'react-dom';
 import {Provider} from "react-redux";
 import {ConnectedRouter} from "connected-react-router";
 
+// why "require" instead "import" ? see: https://github.com/ReactTraining/react-router/issues/6203
+const pathToRegexp = require("path-to-regexp");
+
 import {AppState, history} from "../../common/store";
 import {ListStyle, Theme} from "../../common/store/global/types";
 import {Global} from "../../common/store/global/types";
@@ -19,6 +22,8 @@ import App from "../../common/app";
 import defaults from "../../common/constants/defaults.json";
 
 import * as ls from "../../common/util/local-storage";
+
+import routes from "../../common/routes";
 
 import {DesktopWindow} from "./window";
 
@@ -73,6 +78,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Initial or repeating storage tasks.
 clientStoreTasks(store);
+
+// Deep link handler
+window.addEventListener('deep-link', (e) => {
+    const urlToPath = (url: string): string => {
+        let path = url.split('://')[1];
+        // add "/" to beginning
+        if (!path.startsWith('/')) {
+            path = `/${path}`;
+        }
+
+        // remove last char if "/"
+        if (path.endsWith('/')) {
+            path = path.substring(0, path.length - 1);
+        }
+
+        return path;
+    }
+
+    const event = e as CustomEvent;
+    const {url} = event.detail;
+    const path = urlToPath(url);
+
+    // check if the link received matches with a route
+    const pathMatch = Object.values(routes).find(p => {
+        return pathToRegexp(p).test(path)
+    });
+
+    if (pathMatch) {
+        history!.push(path);
+    }
+});
 
 // Auto updater.
 window["ipcRenderer"].on('update-available', (event: any, version: string) => {
