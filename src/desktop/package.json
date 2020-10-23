@@ -4,6 +4,7 @@
   "description": "Ecency desktop application reimagined for Windows, Mac, Linux users, start earning cryptocurrency!",
   "private": false,
   "author": "Ecency <hello@ecency.com>",
+  "version": "3.0.7",
   "copyright": "© 2020, Ecency",
   "homepage": "https://ecency.com",
   "scripts": {
@@ -144,6 +145,5 @@
     "electron-updater": "^4.3.4",
     "react-hot-loader": "^4.12.21",
     "source-map-support": "^0.5.19"
-  },
-  "version": "0.0.0"
+  }
 }
