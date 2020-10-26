@@ -5,6 +5,7 @@ import {ConnectedRouter} from "connected-react-router";
 
 import configureStore from "../common/store/configure";
 
+import {hasKeyChainAct} from "../common/store/global";
 import {clientStoreTasks} from "../common/store/helper";
 
 import {history} from "../common/store";
@@ -30,6 +31,13 @@ hydrate(
 );
 
 clientStoreTasks(store);
+
+// Check & activate keychain support
+window.addEventListener("load", () => {
+    if (window["hive_keychain"]) {
+        store.dispatch(hasKeyChainAct());
+    }
+});
 
 if (module.hot) {
     module.hot.accept("../common/app", () => {

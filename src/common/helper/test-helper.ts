@@ -51,6 +51,7 @@ export const globalInstance: Global = {
     currencySymbol: "$",
     searchIndexCount: 10000000,
     canUseWebp: false,
+    hasKeyChain: false,
     isElectron: false,
     newVersion: null
 };
