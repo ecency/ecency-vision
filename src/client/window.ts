@@ -1,15 +1,10 @@
-// Global drag&drop
+interface KeyChain {
+    requestHandshake(callback: () => void): void;
 
-const handleDragOver = (e: DragEvent) => {
-    if (!(e.target && e.dataTransfer)) {
-        return;
-    }
-
-    e.preventDefault();
-    e.dataTransfer.effectAllowed = 'none';
-    e.dataTransfer.dropEffect = 'none';
+    requestSignBuffer(account: string, message: string, key: ["Posting", "Active", "Memo"], callback?: () => void, rpc?: string): void;
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    document.body.addEventListener('dragover', handleDragOver);
-});
+export interface AppWindow extends Window {
+    nws?: WebSocket;
+    hive_keychain?: KeyChain;
+}

@@ -12,12 +12,16 @@ import {history} from "../common/store";
 
 import App from "../common/app";
 
+import {AppWindow} from "./window";
+
 import "typeface-ibm-plex-sans";
 
 import "../style/theme-day.scss";
 import "../style/theme-night.scss";
 
-import './window';
+import './base-handlers';
+
+declare var window: AppWindow;
 
 const store = configureStore(window["__PRELOADED_STATE__"]);
 
@@ -34,8 +38,10 @@ clientStoreTasks(store);
 
 // Check & activate keychain support
 window.addEventListener("load", () => {
-    if (window["hive_keychain"]) {
-        store.dispatch(hasKeyChainAct());
+    if (window.hive_keychain) {
+        window.hive_keychain.requestHandshake(() => {
+            store.dispatch(hasKeyChainAct());
+        });
     }
 });
 
