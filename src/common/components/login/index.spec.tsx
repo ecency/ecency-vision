@@ -76,3 +76,13 @@ it("(3) With users and active user", () => {
     const component = renderer.create(<Login {...props} />);
     expect(component.toJSON()).toMatchSnapshot();
 });
+
+it("(4) Show keychain option", () => {
+    const props = {
+        ...defProps,
+        global: {...globalInstance, hasKeyChain: true}
+    };
+
+    const component = renderer.create(<Login {...props} />);
+    expect(component.toJSON()).toMatchSnapshot();
+});

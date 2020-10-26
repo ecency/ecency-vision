@@ -155,14 +155,20 @@
       }
     }
 
-    .hs-login {
+    .hs-login, .kc-login {
       margin: 0 auto 16px auto;
       display: flex;
       justify-content: center;
 
-      .hs-logo {
+      .hs-logo, .kc-logo {
         height: 14px;
         margin-right: 6px;
+      }
+    }
+
+    .kc-login {
+      .kc-logo {
+        height: 16px;
       }
     }
   }

@@ -35,6 +35,7 @@ import {deleteForeverSvg} from "../../img/svg";
 
 const logo = require('../../img/logo-circle.svg');
 const hsLogo = require("../../img/hive-signer.svg");
+const keyChainLogo = require("../../img/keychain.png");
 
 interface UserItemProps {
     global: Global;
@@ -308,7 +309,7 @@ export class Login extends Component<LoginProps, State> {
 
     render() {
         const {username, key, inProgress} = this.state;
-        const {users, activeUser} = this.props;
+        const {users, activeUser, global} = this.props;
         return (
             <>
                 {users.length === 0 && (
@@ -370,6 +371,13 @@ export class Login extends Component<LoginProps, State> {
                         <img src={hsLogo} className="hs-logo" alt="hivesigner"/> {_t("login.with-hive-signer")}
                     </a>
                 </div>
+                {global.hasKeyChain && (
+                    <div className="kc-login">
+                        <a className="btn btn-outline-primary" onClick={this.hsLogin}>
+                            <img src={keyChainLogo} className="kc-logo" alt="keychain"/> {_t("login.with-keychain")}
+                        </a>
+                    </div>
+                )}
                 {activeUser === null && (
                     <p>
                         {_t("login.sign-up-text-1")}
