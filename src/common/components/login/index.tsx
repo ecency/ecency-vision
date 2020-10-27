@@ -8,7 +8,10 @@ import {PrivateKey, PublicKey, cryptoUtils} from "@hiveio/dhive";
 
 import {History} from "history";
 
+import {AppWindow} from "../../../client/window";
+
 import {Global} from "../../store/global/types";
+import {UI} from "../../store/ui/types";
 import {User} from "../../store/users/types";
 import {Account} from "../../store/accounts/types";
 import {ActiveUser} from "../../store/active-user/types";
@@ -25,17 +28,134 @@ import {hsLogin} from "../../../desktop/app/helper/hive-signer";
 
 import {getAccount} from "../../api/hive";
 import {hsTokenRenew, usrActivity} from "../../api/private";
-import {grantPostingPermission} from "../../api/operations";
+import {grantPostingPermission, revokePostingPermission} from "../../api/operations";
 
 import {getRefreshToken} from "../../helper/user-token";
+
+import {addAccountAuthority, removeAccountAuthority, signBuffer} from "../../helper/keychain";
 
 import {_t} from "../../i18n";
 
 import {deleteForeverSvg} from "../../img/svg";
 
+declare var window: AppWindow;
+
 const logo = require('../../img/logo-circle.svg');
 const hsLogo = require("../../img/hive-signer.svg");
 const keyChainLogo = require("../../img/keychain.png");
+
+interface LoginKcProps {
+    toggleUIProp: (what: ToggleType) => void;
+}
+
+interface LoginKcState {
+    username: string;
+    inProgress: boolean;
+}
+
+export class LoginKc extends Component<LoginKcProps, LoginKcState> {
+    state: LoginKcState = {
+        username: "",
+        inProgress: false
+    }
+
+    _mounted: boolean = true;
+
+    componentWillUnmount() {
+        this._mounted = false;
+    }
+
+    stateSet = (state: {}, cb?: () => void) => {
+        if (this._mounted) {
+            this.setState(state, cb);
+        }
+    };
+
+    usernameChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+        const {value: username} = e.target;
+        this.stateSet({username: username.trim()});
+    }
+
+    inputKeyDown = (e: React.KeyboardEvent) => {
+        if (e.key === 'Enter') {
+            this.login().then();
+        }
+    }
+
+    login = async () => {
+        const {username} = this.state;
+        if (!username) {
+            return;
+        }
+
+        let account: Account;
+
+        this.stateSet({inProgress: true});
+
+        try {
+            account = await getAccount(username);
+        } catch (err) {
+            error(_t('login.error-user-fetch'));
+            return;
+        } finally {
+            this.stateSet({inProgress: false});
+        }
+
+        if (!(account && account.name === username)) {
+            error(_t('login.error-user-not-found'));
+            return;
+        }
+
+        const hasPostingPerm = account?.posting!.account_auths.filter(x => x[0] === "ecency.app").length > 0;
+
+        if (!hasPostingPerm) {
+            const weight = account.posting!.weight_threshold;
+
+            this.stateSet({inProgress: true});
+            try {
+                await addAccountAuthority(username, "ecency.app", "Posting", weight)
+            } catch (err) {
+                error(_t('login.error-permission'));
+                return;
+            } finally {
+                this.stateSet({inProgress: false});
+            }
+        }
+
+        const signer = (message: string): Promise<string> => signBuffer(username, message, "Active").then(r => r.result);
+
+        const code = await makeHsCode(username, signer);
+        hsTokenRenew(code).then(x => {
+            console.log(x);
+        });
+    }
+
+    back = () => {
+        const {toggleUIProp} = this.props;
+        toggleUIProp("loginKc");
+    }
+
+    render() {
+        const {username, inProgress} = this.state;
+        return <>
+            <div className="dialog-header">
+                <img src={keyChainLogo} alt="Logo"/>
+                <h2>{_t('login.with-keychain')}</h2>
+            </div>
+
+            <Form className="login-form" onSubmit={(e: React.FormEvent) => {
+                e.preventDefault();
+            }}>
+                <Form.Group>
+                    <Form.Control type="text" value={username} onChange={this.usernameChanged} placeholder={_t("login.username-placeholder")} autoFocus={true}
+                                  onKeyDown={this.inputKeyDown}/>
+                </Form.Group>
+                <Button disabled={inProgress} block={true} onClick={this.login}>{_t("g.login")}</Button>
+                <Button variant="outline-primary" disabled={inProgress} block={true} onClick={this.back}>{_t("g.back")}</Button>
+            </Form>
+        </>
+    }
+}
 
 interface UserItemProps {
     global: Global;
@@ -202,6 +322,11 @@ export class Login extends Component<LoginProps, State> {
         window.location.href = getAuthUrl();
     }
 
+    kcLogin = () => {
+        const {toggleUIProp} = this.props;
+        toggleUIProp("loginKc");
+    }
+
     login = async () => {
         const {username, key} = this.state;
 
@@ -272,7 +397,12 @@ export class Login extends Component<LoginProps, State> {
             }
         }
 
-        const code = makeHsCode(account.name, activePrivateKey);
+        const signer = (message: string): Promise<string> => {
+            const hash = cryptoUtils.sha256(message);
+            return new Promise<string>((resolve) => resolve(activePrivateKey.sign(hash).toString()));
+        }
+
+        const code = await makeHsCode(account.name, signer);
 
         this.stateSet({inProgress: true});
 
@@ -373,7 +503,7 @@ export class Login extends Component<LoginProps, State> {
                 </div>
                 {global.hasKeyChain && (
                     <div className="kc-login">
-                        <a className="btn btn-outline-primary" onClick={this.hsLogin}>
+                        <a className="btn btn-outline-primary" onClick={this.kcLogin}>
                             <img src={keyChainLogo} className="kc-logo" alt="keychain"/> {_t("login.with-keychain")}
                         </a>
                     </div>
@@ -400,6 +530,7 @@ export class Login extends Component<LoginProps, State> {
 interface Props {
     history: History;
     global: Global;
+    ui: UI;
     users: User[];
     activeUser: ActiveUser | null;
     addUser: (user: User) => void;
@@ -413,15 +544,25 @@ export default class LoginDialog extends Component<Props> {
 
     hide = () => {
         const {toggleUIProp} = this.props;
-        toggleUIProp('login');
+        toggleUIProp("login");
+    }
+
+    componentWillUnmount() {
+        const {toggleUIProp, ui} = this.props;
+        if (ui.loginKc) {
+            toggleUIProp("loginKc");
+        }
     }
 
     render() {
+        const {ui} = this.props;
+
         return (
             <Modal show={true} centered={true} onHide={this.hide} className="login-modal modal-thin-header" animation={false}>
                 <Modal.Header closeButton={true}/>
                 <Modal.Body>
-                    <Login {...this.props}/>
+                    {!ui.loginKc && <Login {...this.props}/>}
+                    {ui.loginKc && <LoginKc {...this.props}/>}
                 </Modal.Body>
             </Modal>
         );

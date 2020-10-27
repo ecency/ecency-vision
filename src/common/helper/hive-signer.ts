@@ -1,5 +1,3 @@
-import {cryptoUtils, PrivateKey} from "@hiveio/dhive";
-
 import {b64uEnc} from "../util/b64";
 
 export const getAuthUrl = (redir: string = `${window.location.origin}/auth`) => {
@@ -33,7 +31,7 @@ export const decodeToken = (code: string): {
     }
 }
 
-export const makeHsCode = (account: string, privateKey: PrivateKey): string => {
+export const makeHsCode = async (account: string, signer: (message: string) => Promise<string>): Promise<string> => {
     const timestamp = new Date().getTime() / 1000;
 
     const messageObj: {
@@ -46,8 +44,10 @@ export const makeHsCode = (account: string, privateKey: PrivateKey): string => {
         signatures?: string[];
     } = {signed_message: {type: 'code', app: "ecency.app"}, authors: [account], timestamp};
 
-    const hash = cryptoUtils.sha256(JSON.stringify(messageObj));
-    const signature = privateKey.sign(hash).toString();
+    const message = JSON.stringify(messageObj);
+
+    const signature = await signer(message);
+
     messageObj.signatures = [signature];
 
     return b64uEnc(JSON.stringify(messageObj));

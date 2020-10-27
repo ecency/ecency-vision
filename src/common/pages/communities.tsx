@@ -377,7 +377,11 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
         this.stateSet({inProgress: true, progress: _t('communities-create.progress-user')});
 
         // create hive signer code from active private key
-        const code = makeHsCode(username, keys.activeKey);
+        const signer = (message: string): Promise<string> => {
+            const hash = cryptoUtils.sha256(message);
+            return new Promise<string>((resolve) => resolve(keys.activeKey.sign(hash).toString()));
+        }
+        const code = await makeHsCode(username, signer);
 
         // get access token from code and create user object
         let user: User;
@@ -437,7 +441,11 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
         const operation = this.makeOperation(auths, keys.memoKey);
 
         // create hive signer code from active private key to use after redirection from hivesigner
-        const code = makeHsCode(username, keys.activeKey);
+        const signer = (message: string): Promise<string> => {
+            const hash = cryptoUtils.sha256(message);
+            return new Promise<string>((resolve) => resolve(keys.activeKey.sign(hash).toString()));
+        }
+        const code = makeHsCode(username, signer);
         const callback = `${window.location.origin}/communities/create-hs?code=${code}&title=${encodeURIComponent(title)}&about=${encodeURIComponent(about)}`;
 
         hs.sendOperation(operation, {callback}, () => {
