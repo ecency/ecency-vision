@@ -129,7 +129,7 @@
     "feed": "Feed",
     "tags": "Popular",
     "title": "{{f}} topics",
-    "description": "{{f}} topics",
+    "description": "{{f}} topics on a social network owned and operated by its users.",
     "description-tag": "{{f}} #{{t}} topics",
     "description-user-feed": "{{u}}'s feed"
   },
