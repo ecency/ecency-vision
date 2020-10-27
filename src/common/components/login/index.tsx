@@ -46,6 +46,7 @@ const keyChainLogo = require("../../img/keychain.png");
 
 interface LoginKcProps {
     toggleUIProp: (what: ToggleType) => void;
+    doLogin: (hsCode: string, account: Account) => Promise<void>;
 }
 
 interface LoginKcState {
@@ -80,6 +81,11 @@ export class LoginKc extends Component<LoginKcProps, LoginKcState> {
         if (e.key === 'Enter') {
             this.login().then();
         }
+    }
+
+    hide = () => {
+        const {toggleUIProp} = this.props;
+        toggleUIProp('login');
     }
 
     login = async () => {
@@ -122,12 +128,23 @@ export class LoginKc extends Component<LoginKcProps, LoginKcState> {
             }
         }
 
-        const signer = (message: string): Promise<string> => signBuffer(username, message, "Active").then(r => r.result);
+        this.stateSet({inProgress: true});
 
+        const signer = (message: string): Promise<string> => signBuffer(username, message, "Active").then(r => r.result);
         const code = await makeHsCode(username, signer);
-        hsTokenRenew(code).then(x => {
-            console.log(x);
-        });
+
+        const {doLogin} = this.props;
+
+        doLogin(code, account)
+            .then(() => {
+                this.hide();
+            })
+            .catch(() => {
+                error(_t('g.server-error'));
+            })
+            .finally(() => {
+                this.stateSet({inProgress: false});
+            });
     }
 
     back = () => {
@@ -208,11 +225,10 @@ interface LoginProps {
     global: Global;
     users: User[];
     activeUser: ActiveUser | null;
-    addUser: (user: User) => void;
     setActiveUser: (username: string | null) => void;
-    updateActiveUser: (data?: Account) => void;
     deleteUser: (username: string) => void;
     toggleUIProp: (what: ToggleType) => void;
+    doLogin: (hsCode: string, account: Account) => Promise<void>;
 }
 
 interface State {
@@ -252,33 +268,21 @@ export class Login extends Component<LoginProps, State> {
     }
 
     userSelect = (user: User) => {
-        const {setActiveUser, updateActiveUser, addUser} = this.props;
+        const {doLogin} = this.props;
 
-        // activate the user
-        setActiveUser(user.username);
-
-        // get access token from code
-        hsTokenRenew(getRefreshToken(user.username)).then(x => {
-            const user: User = {
-                username: x.username,
-                accessToken: x.access_token,
-                refreshToken: x.refresh_token,
-                expiresIn: x.expires_in,
-            };
-
-            // update the user with new token
-            addUser(user);
-
-            return getAccount(user.username);
-        }).then((r) => {
-            // update active user
-            updateActiveUser(r);
-
-            // login activity
-            return usrActivity(user.username, 20);
-        });
-
-        this.hide();
+        getAccount(user.username)
+            .then((account) => {
+                return doLogin(getRefreshToken(user.username), account);
+            })
+            .then(() => {
+                this.hide();
+            })
+            .catch(() => {
+                error(_t('g.server-error'));
+            })
+            .finally(() => {
+                this.stateSet({inProgress: false});
+            });
     }
 
     userDelete = (user: User) => {
@@ -397,44 +401,27 @@ export class Login extends Component<LoginProps, State> {
             }
         }
 
+        // Prepare hivesigner code
         const signer = (message: string): Promise<string> => {
             const hash = cryptoUtils.sha256(message);
             return new Promise<string>((resolve) => resolve(activePrivateKey.sign(hash).toString()));
         }
-
         const code = await makeHsCode(account.name, signer);
 
         this.stateSet({inProgress: true});
 
-        // get access token from code
-        hsTokenRenew(code).then(x => {
-            const {setActiveUser, updateActiveUser, addUser} = this.props;
-            const user: User = {
-                username: x.username,
-                accessToken: x.access_token,
-                refreshToken: x.refresh_token,
-                expiresIn: x.expires_in,
-            };
+        const {doLogin} = this.props;
 
-            // add / update user data
-            addUser(user);
-
-            // activate user
-            setActiveUser(user.username);
-
-            // add account data of the user to the reducer
-            updateActiveUser(account);
-
-            // login activity
-            usrActivity(user.username, 20);
-
-            // done
-            this.hide();
-        }).catch(() => {
-            error(_t('g.server-error'));
-        }).finally(() => {
-            this.stateSet({inProgress: false});
-        });
+        doLogin(code, account)
+            .then(() => {
+                this.hide();
+            })
+            .catch(() => {
+                error(_t('g.server-error'));
+            })
+            .finally(() => {
+                this.stateSet({inProgress: false});
+            });
     }
 
     render() {
@@ -554,6 +541,31 @@ export default class LoginDialog extends Component<Props> {
         }
     }
 
+    doLogin = async (hsCode: string, account: Account) => {
+        // get access token from code
+        return hsTokenRenew(hsCode).then(x => {
+            const {setActiveUser, updateActiveUser, addUser} = this.props;
+            const user: User = {
+                username: x.username,
+                accessToken: x.access_token,
+                refreshToken: x.refresh_token,
+                expiresIn: x.expires_in,
+            };
+
+            // add / update user data
+            addUser(user);
+
+            // activate user
+            setActiveUser(user.username);
+
+            // add account data of the user to the reducer
+            updateActiveUser(account);
+
+            // login activity
+            usrActivity(user.username, 20);
+        });
+    }
+
     render() {
         const {ui} = this.props;
 
@@ -561,8 +573,8 @@ export default class LoginDialog extends Component<Props> {
             <Modal show={true} centered={true} onHide={this.hide} className="login-modal modal-thin-header" animation={false}>
                 <Modal.Header closeButton={true}/>
                 <Modal.Body>
-                    {!ui.loginKc && <Login {...this.props}/>}
-                    {ui.loginKc && <LoginKc {...this.props}/>}
+                    {!ui.loginKc && <Login {...this.props} doLogin={this.doLogin}/>}
+                    {ui.loginKc && <LoginKc {...this.props} doLogin={this.doLogin}/>}
                 </Modal.Body>
             </Modal>
         );
