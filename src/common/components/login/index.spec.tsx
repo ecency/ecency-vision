@@ -16,14 +16,12 @@ const defProps = {
     activeUser: null,
     setActiveUser: () => {
     },
-    addUser: () => {
-    },
-    updateActiveUser: () => {
-    },
     deleteUser: () => {
     },
     toggleUIProp: () => {
     },
+    doLogin: async () => {
+    }
 };
 
 it("(1) Default render", () => {
