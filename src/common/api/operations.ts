@@ -507,6 +507,17 @@ export const boostHot = (user: string, author: string, permlink: string, amount:
     return win!.focus();
 }
 
+export const boostKc = (user: string, author: string, permlink: string, amount: string) => {
+    const json = JSON.stringify({
+        user,
+        author,
+        permlink,
+        amount
+    });
+
+    return keychain.customJson(user, "esteem_boost", "Active", json, "Boost");
+}
+
 export const updateProfile = (account: Account, newProfile: {
     name: string,
     about: string,
