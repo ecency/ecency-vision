@@ -15,6 +15,7 @@ import queryString from "query-string";
 import {PrivateKey, cryptoUtils, AccountCreateOperation, Authority} from "@hiveio/dhive";
 
 import {Community} from "../store/communities/types";
+
 import {User} from "../store/users/types";
 
 import Meta from "../components/meta";
@@ -38,6 +39,8 @@ import {formatError, updateCommunity, setUserRole} from "../api/operations";
 import {hsTokenRenew} from "../api/private";
 
 import {client} from "../api/hive";
+
+import * as keychain from "../helper/keychain";
 
 import {makeHsCode} from "../helper/hive-signer";
 import parseAsset from "../helper/parse-asset";
@@ -325,7 +328,6 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
     }
 
     makeAuthorities = (keys: { ownerKey: PrivateKey, activeKey: PrivateKey, postingKey: PrivateKey }) => {
-        const {activeUser} = this.props;
         const {ownerKey, activeKey, postingKey} = keys;
 
         return {
@@ -355,8 +357,8 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
     }
 
     submit = async () => {
-        const {activeUser, addUser} = this.props;
-        const {title, about, username, creatorKey} = this.state;
+        const {activeUser} = this.props;
+        const {username, creatorKey} = this.state;
         if (!activeUser || !creatorKey) return;
 
         this.stateSet({inProgress: true, progress: _t('communities-create.progress-account')});
@@ -383,10 +385,67 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
         }
         const code = await makeHsCode(username, signer);
 
+        return this.finalizeSubmit(code);
+    }
+
+    submitKc = async () => {
+        const {activeUser} = this.props;
+        const {username, fee} = this.state;
+        if (!activeUser) return;
+
+        this.stateSet({inProgress: true, progress: _t('communities-create.progress-account')});
+
+        // create community account
+        const keys = this.makePrivateKeys();
+        const operation = ["account_create", {
+            fee: fee,
+            creator: activeUser.username,
+            new_account_name: username,
+            owner: {weight_threshold: 1, account_auths: [], key_auths: [[keys.ownerKey.createPublic().toString(), 1]]},
+            active: {weight_threshold: 1, account_auths: [], key_auths: [[keys.activeKey.createPublic().toString(), 1]]},
+            posting: {weight_threshold: 1, account_auths: [['ecency.app', 1]], key_auths: [[keys.postingKey.createPublic().toString(), 1]]},
+            memo_key: keys.memoKey.createPublic().toString(),
+            json_metadata: ""
+        }];
+
+        try {
+            await keychain.broadcast(activeUser!.username, [operation], "Active");
+        } catch
+            (e) {
+            error(formatError(e));
+            this.stateSet({inProgress: false, progress: ''});
+            return;
+        }
+
+        // Add account to keychain
+        try {
+            await keychain.addAccount(username, {
+                active: keys.activeKey.toString(),
+                posting: keys.activeKey.toString(),
+                memo: keys.memoKey.toString()
+            });
+        } catch (e) {
+            error(formatError(e));
+            this.stateSet({inProgress: false, progress: ''});
+            return;
+        }
+
+        // create hive signer code from active private key
+        const signer = (message: string): Promise<string> => keychain.signBuffer(username, message, "Active").then(r => r.result);
+        const code = await makeHsCode(username, signer);
+
+        return this.finalizeSubmit(code);
+    }
+
+    finalizeSubmit = async (hsCode: string) => {
+        const {activeUser, addUser} = this.props;
+        const {title, about, username} = this.state;
+        if (!activeUser) return;
+
         // get access token from code and create user object
         let user: User;
         try {
-            user = await hsTokenRenew(code).then(x => ({
+            user = await hsTokenRenew(hsCode).then(x => ({
                 username: x.username,
                 accessToken: x.access_token,
                 refreshToken: x.refresh_token,
@@ -452,6 +511,7 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
         }, () => {
         });
     }
+
 
     render() {
         //  Meta config
@@ -609,6 +669,10 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
                                 onHot: () => {
                                     this.toggleKeyDialog();
                                     this.submitHot();
+                                },
+                                onKc: () => {
+                                    this.toggleKeyDialog();
+                                    this.submitKc().then();
                                 }
                             })}
                         </Modal.Body>
