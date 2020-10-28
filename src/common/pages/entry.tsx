@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 import {match} from "react-router";
 
 import moment from "moment";
+import mediumZoom from 'medium-zoom';
 
 import {Button} from "react-bootstrap";
 
@@ -99,9 +100,11 @@ class EntryPage extends Component<Props, State> {
     };
 
     _mounted: boolean = true;
+    zoom: any = null;
 
     componentDidMount() {
         this.ensureEntry();
+        this.zoom = mediumZoom('.entry-body :not(a) img');
     }
 
     componentDidUpdate(prevProps: Readonly<Props>): void {
@@ -113,6 +116,7 @@ class EntryPage extends Component<Props, State> {
 
     componentWillUnmount() {
         this._mounted = false;
+        this.zoom.detach();
     }
 
     stateSet = (obj: {}, cb = undefined) => {
