@@ -473,6 +473,17 @@ export const promoteHot = (user: string, author: string, permlink: string, durat
     return win!.focus();
 }
 
+export const promoteKc = (user: string, author: string, permlink: string, duration: number) => {
+    const json = JSON.stringify({
+        user,
+        author,
+        permlink,
+        duration
+    });
+
+    return keychain.customJson(user, "esteem_promote", "Active", json, "Promote");
+}
+
 export const boost = (key: PrivateKey, user: string, author: string, permlink: string, amount: string): Promise<TransactionConfirmation> => {
     const json = JSON.stringify({
         user,

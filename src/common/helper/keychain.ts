@@ -24,7 +24,7 @@ export const signBuffer = (account: string, message: string, key: KeyChainAuthor
     new Promise<KeyChainTxResponse>((resolve, reject) => {
         window.hive_keychain?.requestSignBuffer(account, message, "Active", (resp) => {
             if (!resp.success) {
-                reject();
+                reject({message: "Operation cancelled"});
             }
 
             resolve(resp);
@@ -36,7 +36,7 @@ export const addAccountAuthority = (account: string, authorizedUsername: string,
     new Promise<KeyChainTxResponse>((resolve, reject) => {
         window.hive_keychain?.requestAddAccountAuthority(account, authorizedUsername, "Posting", weight, (resp) => {
             if (!resp.success) {
-                reject();
+                reject({message: "Operation cancelled"});
             }
 
             resolve(resp);
@@ -48,7 +48,7 @@ export const removeAccountAuthority = (account: string, authorizedUsername: stri
     new Promise<KeyChainTxResponse>((resolve, reject) => {
         window.hive_keychain?.requestRemoveAccountAuthority(account, authorizedUsername, "Posting", (resp) => {
             if (!resp.success) {
-                reject();
+                reject({message: "Operation cancelled"});
             }
 
             resolve(resp);
@@ -60,7 +60,7 @@ export const transfer = (account: string, to: string, amount: string, memo: stri
     new Promise<KeyChainTxResponse>((resolve, reject) => {
         window.hive_keychain?.requestTransfer(account, to, amount, memo, currency, (resp) => {
             if (!resp.success) {
-                reject();
+                reject({message: "Operation cancelled"});
             }
 
             resolve(resp);
@@ -72,7 +72,7 @@ export const customJson = (account: string, id: string, key: KeyChainAuthorityTy
     new Promise<KeyChainTxResponse>((resolve, reject) => {
         window.hive_keychain?.requestCustomJson(account, id, key, json, display_msg, (resp) => {
             if (!resp.success) {
-                reject();
+                reject({message: "Operation cancelled"});
             }
 
             resolve(resp);
@@ -84,7 +84,7 @@ export const broadcast = (account: string, operations: any[], key: KeyChainAutho
     new Promise<KeyChainTxResponse>((resolve, reject) => {
         window.hive_keychain?.requestBroadcast(account, operations, key, (resp) => {
             if (!resp.success) {
-                reject();
+                reject({message: "Operation cancelled"});
             }
 
             resolve(resp);
