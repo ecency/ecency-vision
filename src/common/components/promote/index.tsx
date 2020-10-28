@@ -6,6 +6,7 @@ import {Form, FormControl, Modal, Button, Col, Row} from "react-bootstrap";
 
 import {PrivateKey} from "@hiveio/dhive";
 
+import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 import {ActiveUser} from "../../store/active-user/types";
 
@@ -25,6 +26,7 @@ import _c from "../../util/fix-class-names";
 import {checkAllSvg} from "../../img/svg";
 
 interface Props {
+    global: Global;
     activeUser: ActiveUser;
     signingKey: string;
     updateActiveUser: (data?: Account) => void;

@@ -6,6 +6,7 @@ import {Button, Col, Form, FormControl, Modal, Row} from "react-bootstrap";
 
 import {PrivateKey} from "@hiveio/dhive";
 
+import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
 import {ActiveUser} from "../../store/active-user/types";
@@ -28,6 +29,7 @@ import {checkAllSvg} from "../../img/svg";
 
 
 interface Props {
+    global: Global;
     dynamicProps: DynamicProps;
     activeUser: ActiveUser;
     signingKey: string;

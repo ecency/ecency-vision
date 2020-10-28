@@ -5,6 +5,7 @@ import {Button, Form, FormControl, InputGroup} from "react-bootstrap";
 import {cryptoUtils, PrivateKey} from "@hiveio/dhive";
 
 import {ActiveUser} from "../../store/active-user/types";
+import {Global} from "../../store/global/types";
 
 import OrDivider from "../or-divider";
 import {error} from "../feedback";
@@ -16,6 +17,7 @@ import {keySvg} from "../../img/svg";
 const hsLogo = require("../../img/hive-signer.svg");
 
 interface Props {
+    global: Global;
     activeUser: ActiveUser;
     signingKey: string;
     setSigningKey: (key: string) => void;
@@ -112,6 +114,7 @@ export class KeyOrHot extends Component<Props, State> {
 
 export default (p: Props) => {
     const props = {
+        global: p.global,
         activeUser: p.activeUser,
         signingKey: p.signingKey,
         setSigningKey: p.setSigningKey,
