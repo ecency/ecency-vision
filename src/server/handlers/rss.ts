@@ -11,7 +11,7 @@ import {
   postBodySummary,
   setProxyBase,
   // @ts-ignore
-} from "@esteemapp/esteem-render-helpers";
+} from "ecency-render-helper";
 setProxyBase(defaults.imageServer);
 
 import { getPostsRanked, getAccountPosts } from "../../common/api/bridge";

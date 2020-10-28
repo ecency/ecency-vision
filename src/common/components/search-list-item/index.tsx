@@ -21,7 +21,7 @@ import {
     postBodySummary,
     setProxyBase,
     // @ts-ignore
-} from "@esteemapp/esteem-render-helpers";
+} from "ecency-render-helper";
 
 setProxyBase(defaults.imageServer);
 
