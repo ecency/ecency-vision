@@ -10,6 +10,10 @@ import {usrActivity} from "./private";
 
 import {getAccessToken} from "../helper/user-token";
 
+import * as keychain from "../helper/keychain";
+
+import parseAsset from "../helper/parse-asset";
+
 export interface MetaData {
     links?: string[];
     image?: string[];
@@ -194,6 +198,11 @@ export const transferHot = (from: string, to: string, amount: string, memo: stri
     });
 }
 
+export const transferKc = (from: string, to: string, amount: string, memo: string) => {
+    const asset = parseAsset(amount);
+    return keychain.transfer(from, to, asset.amount.toString(), memo, asset.symbol, true);
+}
+
 export const transferPoint = (from: string, key: PrivateKey, to: string, amount: string, memo: string): Promise<TransactionConfirmation> => {
     const json = JSON.stringify({
         sender: from,
@@ -228,6 +237,17 @@ export const transferPointHot = (from: string, to: string, amount: string, memo:
     return win!.focus();
 }
 
+export const transferPointKc = (from: string, to: string, amount: string, memo: string) => {
+    const json = JSON.stringify({
+        sender: from,
+        receiver: to,
+        amount,
+        memo
+    });
+
+    return keychain.customJson(from, "esteem_point_transfer", "Active", json, "Point Transfer")
+}
+
 export const transferToSavings = (from: string, key: PrivateKey, to: string, amount: string, memo: string): Promise<TransactionConfirmation> => {
 
     const op: Operation = [
@@ -257,6 +277,20 @@ export const transferToSavingsHot = (from: string, to: string, amount: string, m
     });
 }
 
+export const transferToSavingsKc = (from: string, to: string, amount: string, memo: string) => {
+    const op: Operation = [
+        'transfer_to_savings',
+        {
+            from,
+            to,
+            amount,
+            memo
+        }
+    ]
+
+    return keychain.broadcast(from, [op], "Active");
+}
+
 export const convert = (owner: string, key: PrivateKey, amount: string): Promise<TransactionConfirmation> => {
     const op: Operation = [
         'convert',
@@ -281,6 +315,19 @@ export const convertHot = (owner: string, amount: string) => {
     return hs.sendOperation(op, {callback: `https://ecency.com/@${owner}/wallet`}, () => {
     }, () => {
     });
+}
+
+export const convertKc = (owner: string, amount: string) => {
+    const op: Operation = [
+        'convert',
+        {
+            owner,
+            amount,
+            requestid: new Date().getTime() >>> 0
+        }
+    ]
+
+    return keychain.broadcast(owner, [op], "Active");
 }
 
 export const transferFromSavings = (from: string, key: PrivateKey, to: string, amount: string, memo: string): Promise<TransactionConfirmation> => {
@@ -313,6 +360,21 @@ export const transferFromSavingsHot = (from: string, to: string, amount: string,
     });
 }
 
+export const transferFromSavingsKc = (from: string, to: string, amount: string, memo: string) => {
+    const op: Operation = [
+        'transfer_from_savings',
+        {
+            from,
+            to,
+            amount,
+            memo,
+            request_id: new Date().getTime() >>> 0
+        }
+    ]
+
+    return keychain.broadcast(from, [op], "Active");
+}
+
 export const transferToVesting = (from: string, key: PrivateKey, to: string, amount: string): Promise<TransactionConfirmation> => {
     const op: Operation = [
         'transfer_to_vesting',
@@ -337,6 +399,19 @@ export const transferToVestingHot = (from: string, to: string, amount: string) =
     return hs.sendOperation(op, {callback: `https://ecency.com/@${from}/wallet`}, () => {
     }, () => {
     });
+}
+
+export const transferToVestingKc = (from: string, to: string, amount: string) => {
+    const op: Operation = [
+        'transfer_to_vesting',
+        {
+            from,
+            to,
+            amount
+        }
+    ]
+
+    return keychain.broadcast(from, [op], "Active");
 }
 
 export const subscribe = (username: string, community: string): Promise<TransactionConfirmation> => {

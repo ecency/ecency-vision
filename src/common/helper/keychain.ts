@@ -7,6 +7,8 @@ export interface KeyChainTxResponse {
     result: string
 }
 
+import {Symbol} from "./parse-asset";
+
 export type KeyChainAuthorityTypes = "Posting" | "Active" | "Memo";
 
 
@@ -53,3 +55,38 @@ export const removeAccountAuthority = (account: string, authorizedUsername: stri
         }, rpc);
     })
 
+
+export const transfer = (account: string, to: string, amount: string, memo: string, currency: Symbol, enforce: boolean, rpc: string | null = null): Promise<KeyChainTxResponse> =>
+    new Promise<KeyChainTxResponse>((resolve, reject) => {
+        window.hive_keychain?.requestTransfer(account, to, amount, memo, currency, (resp) => {
+            if (!resp.success) {
+                reject();
+            }
+
+            resolve(resp);
+        }, enforce, rpc);
+    })
+
+
+export const customJson = (account: string, id: string, key: KeyChainAuthorityTypes, json: string, display_msg: string, rpc: string | null = null): Promise<KeyChainTxResponse> =>
+    new Promise<KeyChainTxResponse>((resolve, reject) => {
+        window.hive_keychain?.requestCustomJson(account, id, key, json, display_msg, (resp) => {
+            if (!resp.success) {
+                reject();
+            }
+
+            resolve(resp);
+        }, rpc);
+    })
+
+
+export const broadcast = (account: string, operations: any[], key: KeyChainAuthorityTypes, rpc: string | null = null): Promise<KeyChainTxResponse> =>
+    new Promise<KeyChainTxResponse>((resolve, reject) => {
+        window.hive_keychain?.requestBroadcast(account, operations, key, (resp) => {
+            if (!resp.success) {
+                reject();
+            }
+
+            resolve(resp);
+        }, rpc);
+    })

@@ -432,7 +432,8 @@
   "key-or-hot": {
     "sign": "Sign",
     "key-placeholder": "Enter active/owner/master key",
-    "with-hivesigner": "Sign with hivesigner"
+    "with-hivesigner": "Sign with hivesigner",
+    "with-keychain": "Sign with keychain"
   },
   "delegated-vesting": {
     "title": "Delegated Hive Power"
