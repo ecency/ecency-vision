@@ -27,16 +27,22 @@ import {getAccount, getAccountFull} from "../../api/hive";
 import {
     transfer,
     transferHot,
+    transferKc,
     transferPoint,
     transferPointHot,
+    transferPointKc,
     transferToSavings,
     transferToSavingsHot,
+    transferToSavingsKc,
     transferFromSavings,
     transferFromSavingsHot,
+    transferFromSavingsKc,
     transferToVesting,
     transferToVestingHot,
+    transferToVestingKc,
     convert,
     convertHot,
+    convertKc,
     formatError
 } from "../../api/operations";
 
@@ -45,7 +51,6 @@ import {_t} from "../../i18n";
 import badActors from '../../constants/bad-actors.json';
 
 import {arrowRightSvg} from "../../img/svg";
-import signingKey from "../../store/signing-key";
 
 export type TransferMode = 'transfer' | 'transfer-saving' | 'convert' | 'withdraw-saving' | 'power-up';
 export type TransferAsset = 'HIVE' | 'HBD' | 'POINT';
@@ -400,6 +405,53 @@ export class Transfer extends Component<Props, State> {
         onHide();
     }
 
+    signKs = () => {
+        const {activeUser, mode} = this.props;
+        const {to, amount, asset, memo} = this.state;
+        const fullAmount = `${amount} ${asset}`;
+        const username = activeUser?.username!
+
+        let prms: Promise<any>;
+        switch (mode) {
+            case 'transfer':
+                if (asset === "POINT") {
+                    prms = transferPointKc(username, to, fullAmount, memo);
+                } else {
+                    prms = transferKc(username, to, fullAmount, memo);
+                }
+                break;
+            case 'transfer-saving':
+                prms = transferToSavingsKc(username, to, fullAmount, memo);
+                break;
+            case 'convert':
+                prms = convertKc(username, fullAmount)
+                break;
+            case 'withdraw-saving':
+                prms = transferFromSavingsKc(username, to, fullAmount, memo);
+                break;
+            case 'power-up':
+                prms = transferToVestingKc(username, to, fullAmount);
+                break;
+            default:
+                return;
+        }
+
+        this.stateSet({inProgress: true});
+        prms.then(() => getAccountFull(activeUser.username))
+            .then((a) => {
+                const {addAccount, updateActiveUser} = this.props;
+                // refresh
+                addAccount(a);
+                // update active
+                updateActiveUser(a);
+                this.stateSet({step: 4, inProgress: false});
+            })
+            .catch(err => {
+                error(formatError(err));
+                this.stateSet({inProgress: false});
+            });
+    }
+
     finish = () => {
         const {onHide} = this.props;
         onHide();
@@ -633,7 +685,8 @@ export class Transfer extends Component<Props, State> {
                             ...this.props,
                             inProgress,
                             onKey: this.sign,
-                            onHot: this.signHs
+                            onHot: this.signHs,
+                            onKc: this.signKs
                         })}
                     </div>
                 </div>

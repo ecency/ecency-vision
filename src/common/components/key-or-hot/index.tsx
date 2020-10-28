@@ -5,6 +5,7 @@ import {Button, Form, FormControl, InputGroup} from "react-bootstrap";
 import {cryptoUtils, PrivateKey} from "@hiveio/dhive";
 
 import {ActiveUser} from "../../store/active-user/types";
+import {Global} from "../../store/global/types";
 
 import OrDivider from "../or-divider";
 import {error} from "../feedback";
@@ -14,14 +15,17 @@ import {_t} from "../../i18n";
 import {keySvg} from "../../img/svg";
 
 const hsLogo = require("../../img/hive-signer.svg");
+const keyChainLogo = require("../../img/keychain.png");
 
 interface Props {
+    global: Global;
     activeUser: ActiveUser;
     signingKey: string;
     setSigningKey: (key: string) => void;
     inProgress: boolean;
     onKey: (key: PrivateKey) => void;
     onHot?: () => void;
+    onKc?: () => void;
 }
 
 interface State {
@@ -71,8 +75,15 @@ export class KeyOrHot extends Component<Props, State> {
         }
     }
 
+    kcClicked = () => {
+        const {onKc} = this.props;
+        if (onKc) {
+            onKc();
+        }
+    }
+
     render() {
-        const {inProgress} = this.props;
+        const {inProgress, global} = this.props;
         const {key} = this.state;
 
         return (
@@ -103,6 +114,14 @@ export class KeyOrHot extends Component<Props, State> {
                             <img src={hsLogo} className="hs-logo" alt="hivesigner"/> {_t("key-or-hot.with-hivesigner")}
                         </Button>
                     </div>
+
+                    {global.hasKeyChain && (
+                        <div className="kc-sign">
+                            <Button variant="outline-primary" onClick={this.kcClicked}>
+                                <img src={keyChainLogo} className="kc-logo" alt="keychain"/> {_t("key-or-hot.with-keychain")}
+                            </Button>
+                        </div>
+                    )}
                 </div>
             </>
         );
@@ -112,12 +131,14 @@ export class KeyOrHot extends Component<Props, State> {
 
 export default (p: Props) => {
     const props = {
+        global: p.global,
         activeUser: p.activeUser,
         signingKey: p.signingKey,
         setSigningKey: p.setSigningKey,
         inProgress: p.inProgress,
         onKey: p.onKey,
-        onHot: p.onHot
+        onHot: p.onHot,
+        onKc: p.onKc
     }
 
     return <KeyOrHot {...props} />;

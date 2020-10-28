@@ -1,5 +1,7 @@
 import React, {Component} from "react";
 
+import {AppWindow} from "../../../client/window";
+
 import {ActiveUser} from "../../store/active-user/types";
 import {ToggleType, UI} from "../../store/ui/types";
 import {WsNotification} from "../../store/notifications/types";
@@ -12,11 +14,7 @@ const notificationSound = require("../../img/notification.mp3");
 
 const logo = require('../../img/logo-circle.svg');
 
-interface NwsWindow extends Window {
-    nws?: WebSocket | undefined;
-}
-
-declare var window: NwsWindow;
+declare var window: AppWindow;
 
 export const notificationBody = (data: WsNotification): string => {
     const {source} = data;

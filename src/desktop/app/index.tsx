@@ -32,7 +32,7 @@ import "typeface-ibm-plex-sans";
 import "../../style/theme-day.scss";
 import "../../style/theme-night.scss";
 
-import "../../client/window";
+import "../../client/base-handlers";
 
 import "./context-menu";
 
