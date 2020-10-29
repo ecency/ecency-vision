@@ -14,7 +14,7 @@ import App from "../common/app";
 
 import {AppWindow} from "./window";
 
-import "typeface-ibm-plex-sans";
+import "typeface-source-serif-pro";
 
 import "../style/theme-day.scss";
 import "../style/theme-night.scss";

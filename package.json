@@ -57,7 +57,7 @@
     "rss": "^1.2.2",
     "serialize-javascript": "^3.0.0",
     "speakingurl": "^14.0.1",
-    "typeface-ibm-plex-sans": "^0.0.75"
+    "typeface-source-serif-pro": "^1.1.13"
   },
   "devDependencies": {
     "@types/bytebuffer": "^5.0.41",
