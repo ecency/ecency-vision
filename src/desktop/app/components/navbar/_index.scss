@@ -239,3 +239,8 @@
   height: 64px;
 }
 
+body.medium-zoom--opened {
+  .nav-bar-electron {
+    display: none !important;
+  }
+}

@@ -408,3 +408,9 @@
     height: 64px;
   }
 }
+
+body.medium-zoom--opened {
+  .nav-bar {
+    display: none !important;
+  }
+}

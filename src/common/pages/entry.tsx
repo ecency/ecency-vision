@@ -51,6 +51,7 @@ import NavBar from "../components/navbar/index";
 import NavBarElectron from "../../desktop/app/components/navbar";
 import NotFound from "../components/404";
 import ScrollToTop from "../components/scroll-to-top";
+import EntryBodyZoom from "../components/entry-body-zoom";
 
 import * as hiveApi from "../api/hive";
 import * as bridgeApi from "../api/bridge";
@@ -577,6 +578,7 @@ class EntryPage extends Component<Props, State> {
                         </span>
                     </div>
                 </div>
+                <EntryBodyZoom/>
             </>
         );
     }
