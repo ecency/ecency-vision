@@ -16,7 +16,7 @@ import {
     catchPostImage,
     postBodySummary,
     // @ts-ignore
-} from "ecency-render-helper";
+} from "@ecency/render-helper";
 
 setProxyBase(defaults.imageServer);
 
@@ -371,7 +371,7 @@ class EntryPage extends Component<Props, State> {
                 <Feedback/>
                 <MdHandler history={this.props.history}/>
                 {navBar}
-                { hasTweet && <Twitter/> }
+                {hasTweet && <Twitter/>}
                 <div className="app-content entry-page">
                     <div className="the-entry">
                         <span itemScope={true} itemType="http://schema.org/Article">

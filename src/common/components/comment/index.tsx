@@ -16,7 +16,7 @@ import {
     renderPostBody,
     setProxyBase,
     // @ts-ignore
-} from "ecency-render-helper";
+} from "@ecency/render-helper";
 
 setProxyBase(defaults.imageServer);
 
