@@ -16,7 +16,7 @@ import {
     catchPostImage,
     postBodySummary,
     // @ts-ignore
-} from "@esteemapp/esteem-render-helpers";
+} from "@ecency/render-helper";
 
 setProxyBase(defaults.imageServer);
 
@@ -51,9 +51,8 @@ import NavBar from "../components/navbar/index";
 import NavBarElectron from "../../desktop/app/components/navbar";
 import NotFound from "../components/404";
 import ScrollToTop from "../components/scroll-to-top";
-import EntryBodyZoom from "../components/entry-body-zoom";
+import EntryBodyExtra from "../components/entry-body-extra";
 
-import * as hiveApi from "../api/hive";
 import * as bridgeApi from "../api/bridge";
 import {comment, formatError} from "../api/operations";
 
@@ -96,7 +95,7 @@ class EntryPage extends Component<Props, State> {
     state: State = {
         loading: false,
         replying: false,
-        showIfHidden: false
+        showIfHidden: false,
     };
 
     _mounted: boolean = true;
@@ -357,7 +356,6 @@ class EntryPage extends Component<Props, State> {
                 <Feedback/>
                 <MdHandler history={this.props.history}/>
                 {navBar}
-
                 <div className="app-content entry-page">
                     <div className="the-entry">
                         <span itemScope={true} itemType="http://schema.org/Article">
@@ -578,7 +576,7 @@ class EntryPage extends Component<Props, State> {
                         </span>
                     </div>
                 </div>
-                <EntryBodyZoom/>
+                <EntryBodyExtra entry={entry}/>
             </>
         );
     }

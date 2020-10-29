@@ -203,6 +203,11 @@
       @include clearfix();
       padding: 0 0 2em 0;
       font-size: 1.2rem;
+
+      .twitter-tweet {
+        margin-left: auto;
+        margin-right: auto;
+      }
     }
 
     .entry-footer {

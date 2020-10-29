@@ -969,10 +969,10 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
-"@esteemapp/esteem-render-helpers@^1.8.1":
-  version "1.8.1"
-  resolved "https://registry.yarnpkg.com/@esteemapp/esteem-render-helpers/-/esteem-render-helpers-1.8.1.tgz#64b61c6ea6677b60d858eff8c4ed8534569bf42b"
-  integrity sha512-v4rkUbdWXqhslNo3ZWgKBmxJU/01O8QP1HXqOO5njRud/NXWuL3+xlVWF4bFoCzZTxHUx6nK7waD96mnyK0LGQ==
+"@ecency/render-helper@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@ecency/render-helper/-/render-helper-2.0.1.tgz#1c081175e9b077469dd2bde5a6dbe38791f644e5"
+  integrity sha512-GmdeatV5H1+adHnJUR/RbS78sMHHiZhkMHyd2RS7lAQj0EDJXEdKN3EYmOSnNmqYOM/fMt/IpVz/ZAr4JR1aNg==
   dependencies:
     he "^1.2.0"
     lru-cache "^5.1.1"
@@ -11211,9 +11211,9 @@ value-equal@^1.0.1:
   integrity sha512-NOJ6JZCAWr0zlxZt+xqCHNTEKOsrks2HQd4MqhP1qy4z1SkbEP467eNx6TgDKXMvUOb+OENfJCZwM+16n7fRfw==
 
 varint@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/varint/-/varint-5.0.0.tgz#d826b89f7490732fabc0c0ed693ed475dcb29ebf"
-  integrity sha1-2Ca4n3SQcy+rwMDtaT7Uddyynr8=
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/varint/-/varint-5.0.2.tgz#5b47f8a947eb668b848e034dcfa87d0ff8a7f7a4"
+  integrity sha512-lKxKYG6H03yCZUpAGOPOsMcGxd1RHCu1iKvEHYDPmTyq2HueGhD73ssNBqqQWfvYs04G9iUFRvmAVLW20Jw6ow==
 
 vary@~1.1.2:
   version "1.1.2"
