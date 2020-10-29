@@ -12,7 +12,7 @@ import AuthContainer from "./pages/auth";
 import SubmitContainer from "./pages/submit";
 import NotFound from "./components/404";
 
-import Tracker from "./tracker";
+import InjectJS from "./inject-js";
 
 import {
     AboutPageContainer,
@@ -29,7 +29,7 @@ import routes from "./routes";
 const App = () => {
     return (
         <>
-            <Tracker/>
+            <InjectJS/>
             <Switch>
                 <Route exact={true} path={routes.HOME} component={EntryIndexContainer}/>
                 <Route exact={true} strict={true} path={routes.FILTER} component={EntryIndexContainer}/>

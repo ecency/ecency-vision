@@ -51,6 +51,7 @@ import NavBar from "../components/navbar/index";
 import NavBarElectron from "../../desktop/app/components/navbar";
 import NotFound from "../components/404";
 import ScrollToTop from "../components/scroll-to-top";
+import EntryBodyExtra from "../components/entry-body-extra";
 
 import * as hiveApi from "../api/hive";
 import * as bridgeApi from "../api/bridge";
@@ -74,7 +75,6 @@ import {_t} from "../i18n";
 import {version} from "../../../package.json";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
-import Twitter from '../twitter';
 
 interface MatchParams {
     category: string;
@@ -90,7 +90,6 @@ interface State {
     loading: boolean;
     replying: boolean;
     showIfHidden: boolean;
-    hasTweet: boolean;
 }
 
 class EntryPage extends Component<Props, State> {
@@ -98,21 +97,12 @@ class EntryPage extends Component<Props, State> {
         loading: false,
         replying: false,
         showIfHidden: false,
-        hasTweet: false
     };
 
     _mounted: boolean = true;
 
     componentDidMount() {
         this.ensureEntry();
-
-        const { hasTweet } = this.state;
-        if (hasTweet) {
-            const twttr = window['twttr'];
-            if (twttr && twttr.widgets) {
-                twttr.widgets.load();
-            }
-        }
     }
 
     componentDidUpdate(prevProps: Readonly<Props>): void {
@@ -155,10 +145,6 @@ class EntryPage extends Component<Props, State> {
                 // don't re-fetch recently updated post.
                 return;
             }
-        }
-        // check if entry has tweets in body
-        if (entry && entry?.body.indexOf('https://twitter.com/') > -1) {
-            this.setState({hasTweet: true});
         }
 
         bridgeApi.getPost(author, permlink)
@@ -303,7 +289,7 @@ class EntryPage extends Component<Props, State> {
     }
 
     render() {
-        const {loading, replying, showIfHidden, hasTweet} = this.state;
+        const {loading, replying, showIfHidden} = this.state;
         const {global} = this.props;
 
         const navBar = global.isElectron ? NavBarElectron({
@@ -371,7 +357,6 @@ class EntryPage extends Component<Props, State> {
                 <Feedback/>
                 <MdHandler history={this.props.history}/>
                 {navBar}
-                {hasTweet && <Twitter/>}
                 <div className="app-content entry-page">
                     <div className="the-entry">
                         <span itemScope={true} itemType="http://schema.org/Article">
@@ -592,6 +577,7 @@ class EntryPage extends Component<Props, State> {
                         </span>
                     </div>
                 </div>
+                <EntryBodyExtra entry={entry}/>
             </>
         );
     }
