@@ -22,7 +22,7 @@ import Tooltip from "../tooltip";
 import {
     postBodySummary,
     // @ts-ignore
-} from "ecency-render-helper";
+} from "@ecency/render-helper";
 
 import {_t} from "../../i18n";
 
