@@ -1,9 +1,9 @@
-enum Symbol {
+export enum Symbol {
     HIVE = 'HIVE',
     HBD = 'HBD',
 }
 
-interface Asset {
+export interface Asset {
     amount: number,
     symbol: Symbol
 }

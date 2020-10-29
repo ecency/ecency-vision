@@ -1,15 +1,6 @@
-// Global drag&drop
+import {KeyChainImpl} from "../common/helper/keychain";
 
-const handleDragOver = (e: DragEvent) => {
-    if (!(e.target && e.dataTransfer)) {
-        return;
-    }
-
-    e.preventDefault();
-    e.dataTransfer.effectAllowed = 'none';
-    e.dataTransfer.dropEffect = 'none';
+export interface AppWindow extends Window {
+    nws?: WebSocket;
+    hive_keychain?: KeyChainImpl;
 }
-
-document.addEventListener("DOMContentLoaded", function () {
-    document.body.addEventListener('dragover', handleDragOver);
-});

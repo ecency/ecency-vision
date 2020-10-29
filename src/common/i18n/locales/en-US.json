@@ -80,6 +80,7 @@
     "error-permission": "Couldn't get posting permission",
     "error-authenticate": "Wrong private key. Master or active private key required.",
     "with-hive-signer": "Login with hivesigner",
+    "with-keychain": "Login with keychain",
     "sign-up-text-1": "Don't have an account?",
     "sign-up-text-2": "Sign up now!"
   },
@@ -431,7 +432,8 @@
   "key-or-hot": {
     "sign": "Sign",
     "key-placeholder": "Enter active/owner/master key",
-    "with-hivesigner": "Sign with hivesigner"
+    "with-hivesigner": "Sign with hivesigner",
+    "with-keychain": "Sign with keychain"
   },
   "delegated-vesting": {
     "title": "Delegated Hive Power"

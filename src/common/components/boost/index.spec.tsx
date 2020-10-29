@@ -4,7 +4,7 @@ import {Boost} from "./index";
 
 import TestRenderer from "react-test-renderer";
 
-import {dynamicPropsIntance1} from "../../helper/test-helper";
+import {dynamicPropsIntance1, globalInstance} from "../../helper/test-helper";
 
 const allOver = () => new Promise((resolve) => setImmediate(resolve));
 
@@ -18,6 +18,7 @@ jest.mock("../../api/private", () => ({
 
 it("(1) Default render", async () => {
     const props = {
+        global: globalInstance,
         dynamicProps: dynamicPropsIntance1,
         activeUser: {
             username: 'foo',
@@ -49,6 +50,7 @@ it("(1) Default render", async () => {
 
 it("(2) Insufficient Funds", async () => {
     const props = {
+        global: globalInstance,
         dynamicProps: dynamicPropsIntance1,
         activeUser: {
             username: 'foo',

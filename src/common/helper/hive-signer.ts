@@ -1,5 +1,3 @@
-import {cryptoUtils, PrivateKey} from "@hiveio/dhive";
-
 import {b64uEnc} from "../util/b64";
 
 export const getAuthUrl = (redir: string = `${window.location.origin}/auth`) => {
@@ -15,15 +13,17 @@ export const getTokenUrl = (code: string, secret: string) => {
     return `https://hivesigner.com/api/oauth2/token?code=${code}&client_secret=${secret}`;
 };
 
-export const decodeToken = (code: string): {
+export interface HiveSignerMessage {
     signed_message: {
         type: string;
-        app: string
+        app: string;
     },
-    authors: string[],
-    timestamp: number,
-    signatures: string[];
-} | null => {
+    authors: string[];
+    timestamp: number;
+    signatures?: string[];
+}
+
+export const decodeToken = (code: string): HiveSignerMessage | null => {
     const buff = new Buffer(code, "base64");
     try {
         const s = buff.toString("ascii");
@@ -33,21 +33,15 @@ export const decodeToken = (code: string): {
     }
 }
 
-export const makeHsCode = (account: string, privateKey: PrivateKey): string => {
+export const makeHsCode = async (account: string, signer: (message: string) => Promise<string>): Promise<string> => {
     const timestamp = new Date().getTime() / 1000;
 
-    const messageObj: {
-        signed_message: {
-            type: string;
-            app: string;
-        },
-        authors: string[];
-        timestamp: number;
-        signatures?: string[];
-    } = {signed_message: {type: 'code', app: "ecency.app"}, authors: [account], timestamp};
+    const messageObj: HiveSignerMessage = {signed_message: {type: 'code', app: "ecency.app"}, authors: [account], timestamp};
 
-    const hash = cryptoUtils.sha256(JSON.stringify(messageObj));
-    const signature = privateKey.sign(hash).toString();
+    const message = JSON.stringify(messageObj);
+
+    const signature = await signer(message);
+
     messageObj.signatures = [signature];
 
     return b64uEnc(JSON.stringify(messageObj));
