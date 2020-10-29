@@ -5,7 +5,6 @@ import {Link} from "react-router-dom";
 import {match} from "react-router";
 
 import moment from "moment";
-import mediumZoom from 'medium-zoom';
 
 import {Button} from "react-bootstrap";
 
@@ -52,6 +51,7 @@ import NavBar from "../components/navbar/index";
 import NavBarElectron from "../../desktop/app/components/navbar";
 import NotFound from "../components/404";
 import ScrollToTop from "../components/scroll-to-top";
+import EntryBodyZoom from "../components/entry-body-zoom";
 
 import * as hiveApi from "../api/hive";
 import * as bridgeApi from "../api/bridge";
@@ -100,11 +100,9 @@ class EntryPage extends Component<Props, State> {
     };
 
     _mounted: boolean = true;
-    zoom: any = null;
 
     componentDidMount() {
         this.ensureEntry();
-        this.zoom = mediumZoom('.entry-body :not(a) img');
     }
 
     componentDidUpdate(prevProps: Readonly<Props>): void {
@@ -116,7 +114,6 @@ class EntryPage extends Component<Props, State> {
 
     componentWillUnmount() {
         this._mounted = false;
-        this.zoom.detach();
     }
 
     stateSet = (obj: {}, cb = undefined) => {
@@ -581,6 +578,7 @@ class EntryPage extends Component<Props, State> {
                         </span>
                     </div>
                 </div>
+                <EntryBodyZoom/>
             </>
         );
     }
