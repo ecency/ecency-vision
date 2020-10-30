@@ -4,9 +4,7 @@ import mediumZoom, {Zoom} from 'medium-zoom';
 
 import {Entry} from "../../store/entries/types";
 
-import {AppWindow} from "../../../client/window";
-
-declare var window: AppWindow;
+import {injectTwitter} from "../../util/twitter";
 
 interface Props {
     entry: Entry
@@ -20,7 +18,7 @@ class EntryBodyExtra extends Component<Props> {
 
         // Tweet renderer
         if (/(?:https?:\/\/(?:(?:twitter\.com\/(.*?)\/status\/(.*))))/gi.test(entry.body)) {
-            window.twttr?.widgets?.load();
+            injectTwitter();
         }
 
         // Medium style image zoom
@@ -38,7 +36,6 @@ class EntryBodyExtra extends Component<Props> {
     render() {
         return null;
     }
-
 }
 
 export default (p: Props) => {
