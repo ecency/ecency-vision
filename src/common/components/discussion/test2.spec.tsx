@@ -9,7 +9,7 @@ import renderer from "react-test-renderer";
 
 import {createBrowserHistory} from "history";
 
-import {globalInstance, discussionInstace1, dynamicPropsIntance1} from "../../helper/test-helper";
+import {globalInstance, discussionInstace1, dynamicPropsIntance1, activeUserMaker} from "../../helper/test-helper";
 
 const [parent] = discussionInstace1;
 
@@ -20,7 +20,7 @@ const discussion: DiscussionType = {
     order: SortOrder.trending
 }
 
-const props = {
+const defProps = {
     history: createBrowserHistory(),
     global: globalInstance,
     dynamicProps: dynamicPropsIntance1,
@@ -45,21 +45,27 @@ const props = {
     resetDiscussion: () => {
     },
     updateReply: () => {
-
     },
     addReply: () => {
-
     },
     deleteReply: () => {
-
     },
     toggleUIProp: () => {
-
     }
 };
 
-const component = renderer.create(<Discussion {...props} />);
 
-it("(1) Empty list", () => {
+it("(1) Empty list with no active user", () => {
+    const component = renderer.create(<Discussion {...defProps} />);
+    expect(component.toJSON()).toMatchSnapshot();
+});
+
+
+it("(2) Empty list with active user", () => {
+    const props = {
+        ...defProps,
+        activeUser: activeUserMaker("foo")
+    }
+    const component = renderer.create(<Discussion {...props} />);
     expect(component.toJSON()).toMatchSnapshot();
 });

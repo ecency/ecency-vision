@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`(1) Full render 1`] = `
+exports[`(1) Full render with active user 1`] = `
 <div
   className="discussion"
 >
@@ -10,6 +10,7 @@ exports[`(1) Full render 1`] = `
     <div
       className="count"
     >
+       
       <svg
         viewBox="0 0 24 24"
       >
@@ -19,8 +20,11 @@ exports[`(1) Full render 1`] = `
         />
       </svg>
        
-      Replies
+      8 Comments
     </div>
+    <span
+      className="flex-spacer"
+    />
     <div
       className="order"
     >
@@ -1031,7 +1035,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               onClick={[Function]}
             >
               <div
-                className="btn-vote btn-up-vote"
+                className="btn-vote btn-up-vote voted"
               >
                 <span
                   className="btn-inner"
@@ -1214,6 +1218,42 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
         </div>
       </div>
     </div>
+  </div>
+</div>
+`;
+
+exports[`(2) Full render with no active user 1`] = `
+<div
+  className="discussion"
+>
+  <div
+    className="discussion-card"
+  >
+    <div
+      className="icon"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M18,8H6V6H18V8M18,11H6V9H18V11M18,14H6V12H18V14M22,4A2,2 0 0,0 20,2H4A2,2 0 0,0 2,4V16A2,2 0 0,0 4,18H18L22,22V4Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+    <div
+      className="label"
+    >
+      8 Comments
+    </div>
+    <button
+      className="btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Show
+    </button>
   </div>
 </div>
 `;

@@ -25,12 +25,12 @@ const discussion: DiscussionType = {
     order: SortOrder.trending
 }
 
-const props = {
+const defProps = {
     history: createBrowserHistory(),
     global: globalInstance,
     dynamicProps: dynamicPropsIntance1,
     users: [],
-    activeUser: null,
+    activeUser: activeUserMaker("foo"),
     ui: UiInstance,
     parent,
     community: null,
@@ -59,12 +59,21 @@ const props = {
     }
 };
 
-it("(1) Full render", () => {
+it("(1) Full render with active user", () => {
+    const component = renderer.create(<Discussion {...defProps} />);
+    expect(component.toJSON()).toMatchSnapshot();
+});
+
+it("(2) Full render with no active user", () => {
+    const props = {
+        ...defProps,
+        activeUser: null
+    }
     const component = renderer.create(<Discussion {...props} />);
     expect(component.toJSON()).toMatchSnapshot();
 });
 
-it("(2) Show mute button, muted comment", () => {
+it("(3) Show mute button, muted comment", () => {
     let [reply] = replies;
     reply = {...reply, stats: {...reply.stats, gray: true}}
 
@@ -76,7 +85,7 @@ it("(2) Show mute button, muted comment", () => {
     }
 
     const nProps = {
-        ...props,
+        ...defProps,
         discussion,
         activeUser: activeUserMaker("hive-148441"),
         community: communityInstance1

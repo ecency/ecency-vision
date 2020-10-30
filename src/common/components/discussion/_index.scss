@@ -1,5 +1,5 @@
 .discussion {
-  margin-bottom: 30px;
+  margin: 10px 0 30px 0;
   position: relative;
 
   @include themify(day) {
@@ -8,6 +8,10 @@
 
   @include themify(night) {
     border-top: 1px solid $dark-two;
+  }
+
+  &.empty {
+    border: none !important;
   }
 
   &.loading {
@@ -19,6 +23,31 @@
     position: absolute;
     left: 0;
     top: 0;
+  }
+
+  .discussion-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+
+    .icon {
+      padding: 14px;
+      border-radius: 50%;
+      margin-bottom: 20px;
+      color: $dark-sky-blue;
+      border: 2px solid $dark-sky-blue;
+
+      svg {
+        height: 40px;
+        margin-bottom: -2px;
+      }
+    }
+
+    .label {
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+    }
   }
 
   .discussion-header {
