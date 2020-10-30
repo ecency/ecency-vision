@@ -4,6 +4,8 @@ import {Promote} from "./index";
 
 import TestRenderer from "react-test-renderer";
 
+import {globalInstance} from "../../helper/test-helper";
+
 const allOver = () => new Promise((resolve) => setImmediate(resolve));
 
 jest.mock("../../api/private", () => ({
@@ -24,6 +26,7 @@ jest.mock("../../api/private", () => ({
 
 it("(1) Default render", async () => {
     const props = {
+        global: globalInstance,
         activeUser: {
             username: 'foo',
             data: {
@@ -54,6 +57,7 @@ it("(1) Default render", async () => {
 
 it("(2) Insufficient Funds", async () => {
     const props = {
+        global: globalInstance,
         activeUser: {
             username: 'foo',
             data: {

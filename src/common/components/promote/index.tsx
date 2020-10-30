@@ -6,6 +6,7 @@ import {Form, FormControl, Modal, Button, Col, Row} from "react-bootstrap";
 
 import {PrivateKey} from "@hiveio/dhive";
 
+import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 import {ActiveUser} from "../../store/active-user/types";
 
@@ -16,7 +17,7 @@ import {error} from "../feedback";
 
 import {searchPath, getPromotePrice, PromotePrice, getPromotedPost} from "../../api/private";
 import {getPost} from "../../api/bridge";
-import {promote, promoteHot, formatError} from "../../api/operations";
+import {promote, promoteHot, promoteKc, formatError} from "../../api/operations";
 
 import {_t} from "../../i18n";
 
@@ -25,6 +26,7 @@ import _c from "../../util/fix-class-names";
 import {checkAllSvg} from "../../img/svg";
 
 interface Props {
+    global: Global;
     activeUser: ActiveUser;
     signingKey: string;
     updateActiveUser: (data?: Account) => void;
@@ -191,6 +193,21 @@ export class Promote extends Component<Props, State> {
         });
     }
 
+    signKc = () => {
+        const {activeUser} = this.props;
+        const {path, duration} = this.state;
+        const [author, permlink] = pathComponents(path);
+
+        this.setState({inProgress: true});
+        promoteKc(activeUser.username, author, permlink, duration).then(() => {
+            this.stateSet({step: 3});
+        }).catch(err => {
+            error(formatError(err));
+        }).finally(() => {
+            this.setState({inProgress: false});
+        });
+    }
+
     hotSign = () => {
         const {activeUser, onHide} = this.props;
         const {path, duration} = this.state;
@@ -280,7 +297,8 @@ export class Promote extends Component<Props, State> {
                             ...this.props,
                             inProgress,
                             onKey: this.sign,
-                            onHot: this.hotSign
+                            onHot: this.hotSign,
+                            onKc: this.signKc
                         })}
                     </div>
                 </div>

@@ -6,7 +6,19 @@ import defaults from "../../constants/defaults.json";
 
 import {AppState} from "../index";
 
-import {Actions, ActionTypes, AllFilter, Global, IntroHideAction, ListStyle, ListStyleChangeAction, NewVersionChangeAction, Theme, ThemeChangeAction} from "./types";
+import {
+    Actions,
+    ActionTypes,
+    AllFilter,
+    Global,
+    IntroHideAction,
+    ListStyle,
+    ListStyleChangeAction,
+    NewVersionChangeAction,
+    Theme,
+    ThemeChangeAction,
+    HasKeyChainAction
+} from "./types";
 
 import {CommonActionTypes} from "../common";
 
@@ -25,6 +37,7 @@ export const initialState: Global = {
     currencySymbol: defaults.currency.symbol,
     searchIndexCount: 0,
     canUseWebp: false,
+    hasKeyChain: false,
     isElectron: false,
     newVersion: null
 };
@@ -57,6 +70,9 @@ export default (state: Global = initialState, action: Actions): Global => {
         case ActionTypes.NEW_VERSION_CHANGE: {
             const {version} = action;
             return {...state, newVersion: version};
+        }
+        case ActionTypes.HAS_KEYCHAIN: {
+            return {...state, hasKeyChain: true};
         }
         default:
             return state;
@@ -125,5 +141,11 @@ export const newVersionChangeAct = (version: string | null): NewVersionChangeAct
     return {
         type: ActionTypes.NEW_VERSION_CHANGE,
         version,
+    };
+};
+
+export const hasKeyChainAct = (): HasKeyChainAction => {
+    return {
+        type: ActionTypes.HAS_KEYCHAIN
     };
 };

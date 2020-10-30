@@ -1,8 +1,12 @@
 import React, {Component} from "react";
 
 export default class Tracker extends Component {
+    shouldComponentUpdate(nextProps: Readonly<{}>, nextState: Readonly<{}>, nextContext: any): boolean {
+        return false;
+    }
+
     render() {
-        const code = `var _paq = window._paq = window._paq || [];
+        const tracker = `var _paq = window._paq = window._paq || [];
                   /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
                   _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
                   _paq.push(["setCookieDomain", "*.ecency.com"]);
@@ -18,7 +22,7 @@ export default class Tracker extends Component {
                 })();`;
 
         return <>
-            <script type="text/javascript" dangerouslySetInnerHTML={{__html: code}}/>
+            <script type="text/javascript" dangerouslySetInnerHTML={{__html: tracker}}/>
             <noscript>
                 <p><img src="//analytics.ecency.com/matomo.php?idsite=1&amp;rec=1" style={{border: "0"}} alt=""/></p>
             </noscript>

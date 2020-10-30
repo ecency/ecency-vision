@@ -9,7 +9,7 @@ import Tooltip from "../tooltip";
 import EmojiPicker from "../emoji-picker";
 import Gallery from "../gallery";
 
-import {uploadImage} from "../../api/ecency";
+import {uploadImage} from "../../api/misc";
 
 import {addImage} from "../../api/private";
 

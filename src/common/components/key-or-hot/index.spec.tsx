@@ -4,9 +4,10 @@ import renderer from "react-test-renderer";
 
 import {KeyOrHot} from "./index";
 
-import {activeUserMaker} from "../../helper/test-helper";
+import {activeUserMaker, globalInstance} from "../../helper/test-helper";
 
 const defProps = {
+    global: globalInstance,
     activeUser: activeUserMaker("foo"),
     signingKey: 'aprivatesigningkey',
     setSigningKey: () => {

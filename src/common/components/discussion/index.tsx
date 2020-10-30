@@ -12,7 +12,7 @@ import {
     renderPostBody,
     setProxyBase,
     // @ts-ignore
-} from "@esteemapp/esteem-render-helpers";
+} from "@ecency/render-helper";
 
 setProxyBase(defaults.imageServer);
 
@@ -36,6 +36,7 @@ import LinearProgress from "../linear-progress";
 import Comment from "../comment"
 import EntryDeleteBtn from "../entry-delete-btn";
 import MuteBtn from "../mute-btn";
+import LoginRequired from "../login-required";
 
 import parseDate from "../../helper/parse-date";
 
@@ -460,8 +461,15 @@ interface Props {
     toggleUIProp: (what: ToggleType) => void;
 }
 
+interface State {
+    visible: boolean
+}
 
-export class Discussion extends Component<Props> {
+export class Discussion extends Component<Props, State> {
+    state: State = {
+        visible: !!this.props.activeUser
+    }
+
     componentDidMount() {
         this.fetch();
     }
@@ -490,21 +498,55 @@ export class Discussion extends Component<Props> {
         sortDiscussion(SortOrder[order]);
     };
 
-    render() {
-        const {parent, discussion} = this.props;
-        const {loading, order} = discussion;
+    show = () => {
+        this.setState({visible: true});
+    }
 
-        if (parent.children === 0) {
-            return <div className="discussion"/>;
+    render() {
+        const {parent, discussion, activeUser} = this.props;
+        const {visible} = this.state;
+        const {loading, order, list} = discussion;
+        const count = list.length - 1; // post comes with discussion
+
+        if (loading) {
+            return <LinearProgress/>;
+        }
+
+        const join = <div className="discussion-card">
+            <div className="icon">{commentSvg}</div>
+            <div className="label">{_t("discussion.join")}</div>
+            {LoginRequired({
+                ...this.props,
+                children: <Button>{_t("discussion.btn-join")}</Button>
+            })}
+        </div>;
+
+        if (!activeUser && count < 1) {
+            return <div className="discussion">{join}</div>;
+        }
+
+        if (count < 1) {
+            return <div className="discussion empty"/>
+        }
+
+        const strCount = count > 1 ? _t("discussion.n-replies", {n: count}) : _t("discussion.replies");
+
+        if (!visible && count >= 1) {
+            return <div className="discussion">
+                <div className="discussion-card">
+                    <div className="icon">{commentSvg}</div>
+                    <div className="label">{strCount}</div>
+                    <Button onClick={this.show}>{_t("g.show")}</Button>
+                </div>
+            </div>
         }
 
         return (
-            <div className={_c(`discussion ${loading ? "loading" : ""} `)}>
-                {loading && <LinearProgress/>}
+            <div className="discussion">
+                {!activeUser && <>{join}</>}
                 <div className="discussion-header">
-                    <div className="count">
-                        {commentSvg} {_t("discussion.title")}
-                    </div>
+                    <div className="count"> {commentSvg} {strCount}</div>
+                    <span className="flex-spacer"/>
                     <div className="order">
                         <span className="order-label">{_t("discussion.order")}</span>
                         <Form.Control as="select" size="sm" value={order} onChange={this.orderChanged} disabled={loading}>

@@ -1,4 +1,4 @@
-import reducer, { initialState, themeChangeAct, hideIntroAct, listStyleChangeAct } from "./index";
+import reducer, { initialState, themeChangeAct, hideIntroAct, listStyleChangeAct, hasKeyChainAct } from "./index";
 
 import { Theme, ListStyle } from "./types";
 import { locationChangeAct } from "../common";
@@ -26,5 +26,10 @@ it("4- hide intro", () => {
 
 it("5- list style change", () => {
   state = reducer(state, listStyleChangeAct(ListStyle.grid));
+  expect(state).toMatchSnapshot();
+});
+
+it("6- Has keychain act", () => {
+  state = reducer(state, hasKeyChainAct());
   expect(state).toMatchSnapshot();
 });

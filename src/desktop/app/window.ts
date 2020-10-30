@@ -1,6 +1,8 @@
 import {IpcRenderer, Remote} from "electron";
 
-export interface DesktopWindow extends Window {
+import {AppWindow} from "../../client/window";
+
+export interface DesktopWindow extends AppWindow {
     ipcRenderer: IpcRenderer;
     remote: Remote
 }

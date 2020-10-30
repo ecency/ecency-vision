@@ -16,7 +16,7 @@ import {
     catchPostImage,
     postBodySummary,
     // @ts-ignore
-} from "@esteemapp/esteem-render-helpers";
+} from "@ecency/render-helper";
 
 setProxyBase(defaults.imageServer);
 
@@ -51,8 +51,8 @@ import NavBar from "../components/navbar/index";
 import NavBarElectron from "../../desktop/app/components/navbar";
 import NotFound from "../components/404";
 import ScrollToTop from "../components/scroll-to-top";
+import EntryBodyExtra from "../components/entry-body-extra";
 
-import * as hiveApi from "../api/hive";
 import * as bridgeApi from "../api/bridge";
 import {comment, formatError} from "../api/operations";
 
@@ -95,7 +95,7 @@ class EntryPage extends Component<Props, State> {
     state: State = {
         loading: false,
         replying: false,
-        showIfHidden: false
+        showIfHidden: false,
     };
 
     _mounted: boolean = true;
@@ -354,9 +354,8 @@ class EntryPage extends Component<Props, State> {
                 <ScrollToTop/>
                 <Theme global={this.props.global}/>
                 <Feedback/>
-                <MdHandler history={this.props.history}/>
+                <MdHandler global={this.props.global} history={this.props.history}/>
                 {navBar}
-
                 <div className="app-content entry-page">
                     <div className="the-entry">
                         <span itemScope={true} itemType="http://schema.org/Article">
@@ -555,7 +554,11 @@ class EntryPage extends Component<Props, State> {
                                             </div>
                                         </div>
                                     </div>
-                                    {Comment({
+                                    {SimilarEntries({
+                                        ...this.props,
+                                        entry
+                                    })}
+                                    {activeUser && Comment({
                                         ...this.props,
                                         defText: (ls.get(`reply_draft_${entry.author}_${entry.permlink}`) || ''),
                                         submitText: _t('g.reply'),
@@ -563,20 +566,18 @@ class EntryPage extends Component<Props, State> {
                                         onSubmit: this.replySubmitted,
                                         inProgress: replying
                                     })}
-                                    {SimilarEntries({
+                                    {Discussion({
                                         ...this.props,
-                                        entry
+                                        parent: entry,
+                                        community
                                     })}
+
                                 </>
                             })()}
-                            {Discussion({
-                                ...this.props,
-                                parent: entry,
-                                community
-                            })}
                         </span>
                     </div>
                 </div>
+                <EntryBodyExtra entry={entry}/>
             </>
         );
     }

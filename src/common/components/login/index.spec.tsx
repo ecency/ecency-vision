@@ -16,14 +16,12 @@ const defProps = {
     activeUser: null,
     setActiveUser: () => {
     },
-    addUser: () => {
-    },
-    updateActiveUser: () => {
-    },
     deleteUser: () => {
     },
     toggleUIProp: () => {
     },
+    doLogin: async () => {
+    }
 };
 
 it("(1) Default render", () => {
@@ -72,6 +70,16 @@ it("(3) With users and active user", () => {
     const activeUser = activeUserMaker("user2");
 
     const props = {...defProps, users, activeUser};
+
+    const component = renderer.create(<Login {...props} />);
+    expect(component.toJSON()).toMatchSnapshot();
+});
+
+it("(4) Show keychain option", () => {
+    const props = {
+        ...defProps,
+        global: {...globalInstance, hasKeyChain: true}
+    };
 
     const component = renderer.create(<Login {...props} />);
     expect(component.toJSON()).toMatchSnapshot();
