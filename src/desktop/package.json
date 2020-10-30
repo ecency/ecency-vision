@@ -17,7 +17,7 @@
     "start-renderer-dev": "cross-env NODE_ENV=development webpack-dev-server --config configs/webpack.config.renderer.dev.babel.js",
     "package": "yarn build && electron-builder build --publish never",
     "package-all": "yarn build && electron-builder build -wml",
-    "publish": "yarn build && electron-builder build -wml --publish always"
+    "publish-all": "yarn build && electron-builder build -wml --publish always"
   },
   "build": {
     "productName": "Ecency",

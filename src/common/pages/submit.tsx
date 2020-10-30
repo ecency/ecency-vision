@@ -366,9 +366,9 @@ class SubmitPage extends Component<Props, State> {
         try {
             c = await bridgeApi.getPost(author, permlink);
         } catch (e) {
-            error(_t("g.server-error"));
+            /*error(_t("g.server-error"));
             this.stateSet({posting: false});
-            return;
+            return;*/
         }
 
         if (c && c.author) {
