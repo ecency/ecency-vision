@@ -515,7 +515,7 @@ class SubmitPage extends Component<Props, State> {
                 <FullHeight/>
                 <Theme global={this.props.global}/>
                 <Feedback/>
-                {global.isElectron && <MdHandler history={this.props.history}/>}
+                {global.isElectron && <MdHandler global={this.props.global} history={this.props.history}/>}
                 {global.isElectron ?
                     NavBarElectron({
                         ...this.props,

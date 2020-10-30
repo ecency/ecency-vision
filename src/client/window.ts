@@ -5,7 +5,7 @@ export interface AppWindow extends Window {
     hive_keychain?: KeyChainImpl;
     twttr?: {
         widgets?: {
-            load: () => {}
+            load: () => void
         }
     }
 }
