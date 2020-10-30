@@ -1,24 +1,10 @@
-import axios from "axios";
-
 import {Entry} from "../store/entries/types";
 import {Community} from "../store/communities/types";
 import {Subscription} from "../store/subscriptions/types";
 
-import SERVERS from "../constants/servers.json";
+import {client as hiveClient} from "./hive";
 
-const pickAServer = (): string => SERVERS.sort(() => 0.5 - Math.random())[0];
-
-const bridgeApiCall = <T>(endpoint: string, params: {}): Promise<T> =>
-    axios
-        .post(pickAServer(), {
-            jsonrpc: "2.0",
-            method: endpoint,
-            params: params,
-            id: 1,
-        })
-        .then((resp) => {
-            return resp?.data?.result || null;
-        });
+const bridgeApiCall = <T>(endpoint: string, params: {}): Promise<T> => hiveClient.call("bridge", endpoint, params);
 
 export const getPostsRanked = (
     sort: string,
@@ -28,7 +14,7 @@ export const getPostsRanked = (
     tag: string = "",
     observer: string = ""
 ): Promise<Entry[] | null> =>
-    bridgeApiCall<Entry[] | null>("bridge.get_ranked_posts", {
+    bridgeApiCall<Entry[] | null>("get_ranked_posts", {
         sort,
         start_author,
         start_permlink,
@@ -45,7 +31,7 @@ export const getAccountPosts = (
     limit: number = 20,
     observer: string = ""
 ): Promise<Entry[] | null> =>
-    bridgeApiCall<Entry[] | null>("bridge.get_account_posts", {
+    bridgeApiCall<Entry[] | null>("get_account_posts", {
         sort,
         account,
         start_author,
@@ -73,25 +59,24 @@ export const getAccountNotifications = (account: string, lastId: number | null =
         params.last_id = lastId;
     }
 
-    return bridgeApiCall<AccountNotification[] | null>("bridge.account_notifications", params);
+    return bridgeApiCall<AccountNotification[] | null>("account_notifications", params);
 }
 
-
 export const getPost = (author: string = "", permlink: string = "", observer: string = ""): Promise<Entry | null> =>
-    bridgeApiCall<Entry | null>("bridge.get_post", {
+    bridgeApiCall<Entry | null>("get_post", {
         author,
         permlink,
         observer,
     });
 
 export const getDiscussion = (author: string, permlink: string): Promise<Record<string, Entry> | null> =>
-    bridgeApiCall<Record<string, Entry> | null>("bridge.get_discussion", {
+    bridgeApiCall<Record<string, Entry> | null>("get_discussion", {
         author,
         permlink,
     });
 
 export const getCommunity = (name: string, observer: string | undefined = ""): Promise<Community | null> =>
-    bridgeApiCall<Community | null>("bridge.get_community", {name, observer});
+    bridgeApiCall<Community | null>("get_community", {name, observer});
 
 export const getCommunities = (
     last: string = "",
@@ -100,7 +85,7 @@ export const getCommunities = (
     sort: string = "rank",
     observer: string = ""
 ): Promise<Community[] | null> =>
-    bridgeApiCall<Community[] | null>("bridge.list_communities", {
+    bridgeApiCall<Community[] | null>("list_communities", {
         last,
         limit,
         query,
@@ -109,14 +94,14 @@ export const getCommunities = (
     });
 
 export const normalizePost = (post: any): Promise<Entry | null> =>
-    bridgeApiCall<Entry | null>("bridge.normalize_post", {
+    bridgeApiCall<Entry | null>("normalize_post", {
         post,
     });
 
 export const getSubscriptions = (
     account: string
 ): Promise<Subscription[] | null> =>
-    bridgeApiCall<Subscription[] | null>("bridge.list_all_subscriptions", {
+    bridgeApiCall<Subscription[] | null>("list_all_subscriptions", {
         account
     });
 
@@ -124,6 +109,6 @@ export const getSubscriptions = (
 export const getSubscribers = (
     community: string
 ): Promise<Subscription[] | null> =>
-    bridgeApiCall<Subscription[] | null>("bridge.list_subscribers", {
+    bridgeApiCall<Subscription[] | null>("list_subscribers", {
         community
     });
