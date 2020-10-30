@@ -30,7 +30,7 @@ exports[`(1) Empty list with no active user 1`] = `
       onClick={[Function]}
       type="button"
     >
-      Login
+      Join
     </button>
   </div>
 </div>

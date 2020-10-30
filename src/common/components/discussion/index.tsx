@@ -517,7 +517,7 @@ export class Discussion extends Component<Props, State> {
             <div className="label">{_t("discussion.join")}</div>
             {LoginRequired({
                 ...this.props,
-                children: <Button>{_t("g.login")}</Button>
+                children: <Button>{_t("discussion.btn-join")}</Button>
             })}
         </div>;
 

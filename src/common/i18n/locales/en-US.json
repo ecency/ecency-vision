@@ -168,6 +168,7 @@
   },
   "discussion": {
     "join": "Join the conversion now",
+    "btn-join": "Join",
     "replies": "1 Comment",
     "n-replies": "{{n}} Comments",
     "order": "Sort Order",

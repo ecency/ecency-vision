@@ -554,6 +554,10 @@ class EntryPage extends Component<Props, State> {
                                             </div>
                                         </div>
                                     </div>
+                                    {SimilarEntries({
+                                        ...this.props,
+                                        entry
+                                    })}
                                     {activeUser && Comment({
                                         ...this.props,
                                         defText: (ls.get(`reply_draft_${entry.author}_${entry.permlink}`) || ''),
@@ -567,10 +571,7 @@ class EntryPage extends Component<Props, State> {
                                         parent: entry,
                                         community
                                     })}
-                                    {SimilarEntries({
-                                        ...this.props,
-                                        entry
-                                    })}
+
                                 </>
                             })()}
                         </span>
