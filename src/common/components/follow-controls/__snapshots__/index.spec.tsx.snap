@@ -78,32 +78,6 @@ Array [
 ]
 `;
 
-exports[`FollowControls (2) Following. 2`] = `
-Array [
-  <button
-    className="btn btn-primary"
-    disabled={false}
-    onClick={[Function]}
-    style={
-      Object {
-        "marginRight": "5px",
-      }
-    }
-    type="button"
-  >
-    Unfollow
-  </button>,
-  <button
-    className="btn btn-primary"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
-  >
-    Mute
-  </button>,
-]
-`;
-
 exports[`FollowControls (2) Muted. 1`] = `
 Array [
   <button
