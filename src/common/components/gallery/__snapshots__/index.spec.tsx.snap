@@ -150,3 +150,142 @@ exports[`(2) Test with data. 1`] = `
   </div>
 </div>
 `;
+
+exports[`(2) Test with data. 2`] = `
+<div
+  className="dialog-content"
+>
+  <div
+    className="gallery-list"
+  >
+    <div
+      className="gallery-list-body"
+    >
+      <div
+        className="gallery-list-item"
+        style={
+          Object {
+            "backgroundImage": "url('https://images.ecency.com/DQmce1GReq9pwLiEHLsf2hKhAmouZnNSgnH95udH4g2VzAH/test-8.jpg')",
+          }
+        }
+      >
+        <div
+          className="item-inner"
+          onClick={[Function]}
+        />
+        <div
+          className="item-controls"
+        >
+          <span
+            className="btn-delete"
+            onClick={[Function]}
+          >
+            <svg
+              title="Delete"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+      <div
+        className="gallery-list-item"
+        style={
+          Object {
+            "backgroundImage": "url('https://images.ecency.com/DQmRJdj2PZmKHz3zZ31CUC6fpHuQaxsQCvpEp15rX3RpTFG/test-9.jpg')",
+          }
+        }
+      >
+        <div
+          className="item-inner"
+          onClick={[Function]}
+        />
+        <div
+          className="item-controls"
+        >
+          <span
+            className="btn-delete"
+            onClick={[Function]}
+          >
+            <svg
+              title="Delete"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+      <div
+        className="gallery-list-item"
+        style={
+          Object {
+            "backgroundImage": "url('https://images.ecency.com/DQmYFWxjApdbdFVYdG6RMGh1vHQdAsAek38ePF3UsRbUYJv/test-10.jpg')",
+          }
+        }
+      >
+        <div
+          className="item-inner"
+          onClick={[Function]}
+        />
+        <div
+          className="item-controls"
+        >
+          <span
+            className="btn-delete"
+            onClick={[Function]}
+          >
+            <svg
+              title="Delete"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+      <div
+        className="gallery-list-item"
+        style={
+          Object {
+            "backgroundImage": "url('https://images.ecency.com/DQmSoXUteHvx1evzu27Xn5xbf6Mrn29L9Swn2yH2h4keuSQ/test-3.jpg')",
+          }
+        }
+      >
+        <div
+          className="item-inner"
+          onClick={[Function]}
+        />
+        <div
+          className="item-controls"
+        >
+          <span
+            className="btn-delete"
+            onClick={[Function]}
+          >
+            <svg
+              title="Delete"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

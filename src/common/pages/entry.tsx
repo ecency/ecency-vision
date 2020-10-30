@@ -554,7 +554,11 @@ class EntryPage extends Component<Props, State> {
                                             </div>
                                         </div>
                                     </div>
-                                    {Comment({
+                                    {SimilarEntries({
+                                        ...this.props,
+                                        entry
+                                    })}
+                                    {activeUser && Comment({
                                         ...this.props,
                                         defText: (ls.get(`reply_draft_${entry.author}_${entry.permlink}`) || ''),
                                         submitText: _t('g.reply'),
@@ -562,17 +566,14 @@ class EntryPage extends Component<Props, State> {
                                         onSubmit: this.replySubmitted,
                                         inProgress: replying
                                     })}
-                                    {SimilarEntries({
+                                    {Discussion({
                                         ...this.props,
-                                        entry
+                                        parent: entry,
+                                        community
                                     })}
+
                                 </>
                             })()}
-                            {Discussion({
-                                ...this.props,
-                                parent: entry,
-                                community
-                            })}
                         </span>
                     </div>
                 </div>
