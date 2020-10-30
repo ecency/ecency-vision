@@ -5,7 +5,7 @@ import {ActiveUser} from "../../store/active-user/types";
 
 import {error, success} from "../feedback";
 
-import {uploadImage} from "../../api/ecency";
+import {uploadImage} from "../../api/misc";
 import {getAccessToken} from "../../helper/user-token";
 
 import {_t} from "../../i18n";
