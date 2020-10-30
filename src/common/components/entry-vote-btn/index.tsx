@@ -160,7 +160,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                                 type="range"
                                 custom={true}
                                 step={0.1}
-                                min={0.1}
+                                min={0}
                                 max={100}
                                 value={upSliderVal}
                                 onChange={this.upSliderChanged}
