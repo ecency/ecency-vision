@@ -529,9 +529,9 @@ export class Discussion extends Component<Props, State> {
             return <div className="discussion empty"/>
         }
 
-        const strCount = count === 0 ? _t("discussion.replies") : _t("discussion.n-replies", {n: count})
+        const strCount = count > 1 ? _t("discussion.n-replies", {n: count}) : _t("discussion.replies");
 
-        if (!visible && count > 1) {
+        if (!visible && count >= 1) {
             return <div className="discussion">
                 <div className="discussion-card">
                     <div className="icon">{commentSvg}</div>
