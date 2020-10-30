@@ -354,7 +354,7 @@ class EntryPage extends Component<Props, State> {
                 <ScrollToTop/>
                 <Theme global={this.props.global}/>
                 <Feedback/>
-                <MdHandler history={this.props.history}/>
+                <MdHandler global={this.props.global} history={this.props.history}/>
                 {navBar}
                 <div className="app-content entry-page">
                     <div className="the-entry">
