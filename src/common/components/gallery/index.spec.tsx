@@ -46,6 +46,7 @@ jest.mock("../../api/private", () => ({
 
 it('(1) Default render.', async () => {
     const props = {
+        users: [],
         activeUser: {...activeUserInstance},
         onHide: () => {
         }
