@@ -54,7 +54,7 @@ jest.mock("moment", () => () => ({
 }));
 
 
-/*it('(1) Default render.', async () => {
+it('(1) Default render.', async () => {
     const props = {
         history: createBrowserHistory(),
         location: createLocation({}),
@@ -69,7 +69,7 @@ jest.mock("moment", () => () => ({
     expect(component.toJSON()).toMatchSnapshot();
 });
 
-it('(2) Test with data.', async () => {
+/*it('(2) Test with data.', async () => {
     TEST_MODE = 1;
 
     const props = {
