@@ -69,7 +69,7 @@ it('(1) Default render.', async () => {
     expect(component.toJSON()).toMatchSnapshot();
 });
 
-it('(2) Test with data.', async () => {
+/*it('(2) Test with data.', async () => {
     TEST_MODE = 1;
 
     const props = {
@@ -84,4 +84,4 @@ it('(2) Test with data.', async () => {
     const component = renderer.create(<Drafts {...props}/>);
     await allOver();
     expect(component.toJSON()).toMatchSnapshot();
-});
+});*/
