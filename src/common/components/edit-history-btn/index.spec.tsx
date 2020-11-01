@@ -1,5 +1,4 @@
-import React from "react";
-
+import * as React from 'react';
 import EntryHistoryBtn from "./index";
 
 import TestRenderer from "react-test-renderer";

@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, createElement} from "react";
 import {History} from "history";
 
 import isEqual from "react-fast-compare";
@@ -91,7 +91,7 @@ export class TagLink extends Component<Props> {
                 props.children = cache[tag];
             }
 
-            return React.createElement("a", props);
+            return createElement("a", props);
         } else if (type === "span") {
             const props = Object.assign({}, children.props);
 
@@ -99,7 +99,7 @@ export class TagLink extends Component<Props> {
                 props.children = cache[tag];
             }
 
-            return React.createElement("span", props);
+            return createElement("span", props);
         } else {
             return null;
         }
