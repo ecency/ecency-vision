@@ -37,6 +37,7 @@ export default class MdHandler extends Component<Props> {
         if (
             el.classList.contains("markdown-author-link") ||
             el.classList.contains("markdown-post-link") ||
+            el.classList.contains("markdown-community-link") ||
             el.classList.contains("markdown-tag-link")
         ) {
             e.preventDefault();
