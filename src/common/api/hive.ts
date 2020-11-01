@@ -9,7 +9,7 @@ import parseAsset from "../helper/parse-asset";
 import SERVERS from "../constants/servers.json";
 
 export const client = new Client(SERVERS, {
-    timeout: 3000,
+    timeout: 6000,
     failoverThreshold: 10,
     consoleOnFailover: true,
     rebrandedApi: true,
