@@ -15,9 +15,7 @@ Please check latest version on [Release page][ecency_release] or [Ecency link][e
 
 - Mac users: `Ecency-3.x.x.dmg`
 - Windows users: `Ecency.Setup.3.x.x.exe`
-- Ubuntu users: `ecency-surfer_3.x.x_amd_64.deb` or `Ecency-3.x.x.AppImage`
-- CentOS/RHEL & Fedora: `ecency-surfer-3.x.x.x86_64.rpm`
-- Other linux users: `ecency-surfer-3.x.x.tar.gz`
+- Linux users: `ecency-surfer_3.x.x_amd_64.deb`, `Ecency-3.x.x.AppImage`, `ecency-surfer-3.x.x.x86_64.rpm`, `ecency-surfer-3.x.x.tar.gz`
 
 ## Developers
 
