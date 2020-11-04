@@ -99,7 +99,7 @@
   },
   "entry-list-item": {
     "reblogged": "by {{n}}",
-    "promoted": "sponsored",
+    "promoted": "promoted",
     "pinned": "Pinned Post",
     "replies": "1 response. Click to respond.",
     "replies-n": "{{n}} responses. Click to respond.",

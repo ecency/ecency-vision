@@ -62,7 +62,7 @@ export default class MdHandler extends Component<Props> {
                 return;
             }
         }
-
+        // TODO: check if moving markdown-img-link from <a> into <img> didn't break this
         if (global.isElectron && el.classList.contains("markdown-img-link")) {
             e.preventDefault();
             const href = el.getAttribute("href");
