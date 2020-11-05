@@ -37,15 +37,6 @@ const pipe = (promise: Promise<AxiosResponse>, res: express.Response) => {
     });
 };
 
-export const createAccount = async (req: express.Request, res: express.Response) => {
-    const {username, email, referral} = req.body;
-
-    const headers = {'X-Real-IP-V': req.headers['x-forwarded-for'] || ''};
-    const payload = {username, email, referral};
-
-    pipe(apiRequest(`signup/account-create`, "POST", headers, payload), res);
-};
-
 export const receivedVesting = async (req: express.Request, res: express.Response) => {
     const {username} = req.params;
     pipe(apiRequest(`delegatee_vesting_shares/${username}`, "GET"), res);
@@ -105,6 +96,55 @@ export const popularUsers = async (req: express.Request, res: express.Response) 
     }
 
     return res.send(discovery);
+};
+
+export const promotedEntries = async (req: express.Request, res: express.Response) => {
+    const posts = await getPromotedEntries();
+    res.send(posts);
+}
+
+export const commentHistory = async (req: express.Request, res: express.Response) => {
+    const {author, permlink, onlyMeta} = req.body;
+
+    let u = `comment-history/${author}/${permlink}`;
+    if (onlyMeta === '1') {
+        u += '?only_meta=1';
+    }
+
+    pipe(apiRequest(u, "GET"), res);
+}
+
+export const search = async (req: express.Request, res: express.Response) => {
+    const {q, sort, scroll_id} = req.body;
+
+    const url = `${config.searchApiAddr}/search`;
+    const headers = {'Authorization': config.searchApiToken};
+
+    const payload: { q: string, sort: string, scroll_id?: string } = {q, sort};
+    if (scroll_id) {
+        payload.scroll_id = scroll_id
+    }
+
+    pipe(baseApiRequest(url, "POST", headers, payload), res);
+}
+
+export const points = async (req: express.Request, res: express.Response) => {
+    const {username} = req.body;
+    pipe(apiRequest(`users/${username}`, "GET"), res);
+}
+
+export const pointList = async (req: express.Request, res: express.Response) => {
+    const {username} = req.body;
+    pipe(apiRequest(`users/${username}/points?size=50`, "GET"), res);
+}
+
+export const createAccount = async (req: express.Request, res: express.Response) => {
+    const {username, email, referral} = req.body;
+
+    const headers = {'X-Real-IP-V': req.headers['x-forwarded-for'] || ''};
+    const payload = {username, email, referral};
+
+    pipe(apiRequest(`signup/account-create`, "POST", headers, payload), res);
 };
 
 /* Login required endpoints */
@@ -271,16 +311,6 @@ export const favoritesDelete = async (req: express.Request, res: express.Respons
     pipe(apiRequest(`favoriteUser/${username}/${account}`, "DELETE"), res);
 }
 
-export const points = async (req: express.Request, res: express.Response) => {
-    const {username} = req.body;
-    pipe(apiRequest(`users/${username}`, "GET"), res);
-}
-
-export const pointList = async (req: express.Request, res: express.Response) => {
-    const {username} = req.body;
-    pipe(apiRequest(`users/${username}/points?size=50`, "GET"), res);
-}
-
 export const pointsClaim = async (req: express.Request, res: express.Response) => {
     const username = await validateCode(req, res);
     if (!username) return;
@@ -331,34 +361,4 @@ export const boostedPost = async (req: express.Request, res: express.Response) =
     if (!username) return;
     const {author, permlink} = req.body;
     pipe(apiRequest(`boosted-posts/${author}/${permlink}`, "GET"), res);
-}
-
-export const commentHistory = async (req: express.Request, res: express.Response) => {
-    const {author, permlink, onlyMeta} = req.body;
-
-    let u = `comment-history/${author}/${permlink}`;
-    if (onlyMeta === '1') {
-        u += '?only_meta=1';
-    }
-
-    pipe(apiRequest(u, "GET"), res);
-}
-
-export const search = async (req: express.Request, res: express.Response) => {
-    const {q, sort, scroll_id} = req.body;
-
-    const url = `${config.searchApiAddr}/search`;
-    const headers = {'Authorization': config.searchApiToken};
-
-    const payload: { q: string, sort: string, scroll_id?: string } = {q, sort};
-    if (scroll_id) {
-        payload.scroll_id = scroll_id
-    }
-
-    pipe(baseApiRequest(url, "POST", headers, payload), res);
-}
-
-export const promotedEntries = async (req: express.Request, res: express.Response) => {
-    const posts = await getPromotedEntries();
-    res.send(posts);
 }
