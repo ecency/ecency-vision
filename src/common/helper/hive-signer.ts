@@ -23,16 +23,6 @@ export interface HiveSignerMessage {
     signatures?: string[];
 }
 
-export const decodeToken = (code: string): HiveSignerMessage | null => {
-    const buff = new Buffer(code, "base64");
-    try {
-        const s = buff.toString("ascii");
-        return JSON.parse(s);
-    } catch (e) {
-        return null;
-    }
-}
-
 export const makeHsCode = async (account: string, signer: (message: string) => Promise<string>): Promise<string> => {
     const timestamp = new Date().getTime() / 1000;
 
