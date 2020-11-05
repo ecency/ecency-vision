@@ -141,7 +141,7 @@ export class MuteBtn extends Component<Props, State> {
     render() {
         const {entry} = this.props;
         const {inProgress, dialog, dialogMode} = this.state;
-        const isMuted = entry.stats.gray;
+        const isMuted = !!entry?.stats?.gray;
 
         const cls = _c(`mute-btn ${inProgress ? "in-progress" : ""}`);
 
