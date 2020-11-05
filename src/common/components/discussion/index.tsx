@@ -271,7 +271,7 @@ export class Item extends Component<ItemProps, ItemState> {
                 [ROLES.OWNER.toString(), ROLES.ADMIN.toString(), ROLES.MOD.toString()].includes(m[1])
         }) : false;
 
-        const isHidden = !!entry?.stats?.gray && !showIfHidden;
+        const isHidden = !!entry.stats?.gray && !showIfHidden;
 
         return (
             <div className={_c(`discussion-item depth-${entry.depth} ${isHidden ? "hidden-item" : ""}`)}>
