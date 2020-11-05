@@ -1,5 +1,7 @@
 # [Ecency vision][ecency_vision] – Ecency Web/Desktop client
 
+![ecency](https://raw.githubusercontent.com/ecency/ecency-vision/development/public/github-cover.png?token=AAI7QTDQXRWRZFJ2W4QH6LC7VVA3I)
+
 Immutable, decentralized, uncensored, rewarding communities powered by Hive.
 
 Fast, simple and clean source code with Reactjs + Typescript.

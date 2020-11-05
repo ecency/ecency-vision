@@ -73,8 +73,8 @@ server
     .post("^/api/points$", pApi.points)
     .post("^/api/point-list$", pApi.pointList)
     .post("^/api/account-create$", pApi.createAccount)
-    /* Login required endpoints */
     .post("^/api/hs-token-refresh$", pApi.hsTokenRefresh)
+    /* Login required endpoints */
     .post("^/api/notifications$", pApi.notifications)
     .post("^/api/notifications/unread$", pApi.unreadNotifications)
     .post("^/api/notifications/mark$", pApi.markNotifications)

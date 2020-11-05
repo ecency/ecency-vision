@@ -8,7 +8,7 @@ import config from "../../config";
 
 import {cache} from "../cache";
 
-import {getTokenUrl} from "../../common/helper/hive-signer";
+import {getTokenUrl, decodeToken} from "../../common/helper/hive-signer";
 
 import {apiRequest, baseApiRequest, getPromotedEntries} from "../helper";
 
@@ -147,15 +147,14 @@ export const createAccount = async (req: express.Request, res: express.Response)
     pipe(apiRequest(`signup/account-create`, "POST", headers, payload), res);
 };
 
-/* Login required endpoints */
-
 export const hsTokenRefresh = async (req: express.Request, res: express.Response) => {
-    if (!await validateCode(req, res)) return;
-
     const {code} = req.body;
+    if (!decodeToken(code)) return;
 
     pipe(baseApiRequest(getTokenUrl(code, config.hsClientSecret), "GET"), res);
 };
+
+/* Login required endpoints */
 
 export const notifications = async (req: express.Request, res: express.Response) => {
     const username = await validateCode(req, res);
