@@ -107,7 +107,7 @@ exports[`(1) Full render with active user 1`] = `
               <span
                 className="author-reputation"
               >
-                64
+                25
               </span>
             </a>
             <span
@@ -234,7 +234,7 @@ exports[`(1) Full render with active user 1`] = `
               <span
                 className="author-reputation"
               >
-                71
+                25
               </span>
             </a>
             <span
@@ -363,7 +363,7 @@ exports[`(1) Full render with active user 1`] = `
                   <span
                     className="author-reputation"
                   >
-                    47
+                    25
                   </span>
                 </a>
                 <span
@@ -492,7 +492,7 @@ exports[`(1) Full render with active user 1`] = `
               <span
                 className="author-reputation"
               >
-                47
+                25
               </span>
             </a>
             <span
@@ -620,7 +620,7 @@ exports[`(1) Full render with active user 1`] = `
               <span
                 className="author-reputation"
               >
-                60
+                25
               </span>
             </a>
             <span
@@ -748,7 +748,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               <span
                 className="author-reputation"
               >
-                68
+                25
               </span>
             </a>
             <span
@@ -876,7 +876,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               <span
                 className="author-reputation"
               >
-                71
+                25
               </span>
             </a>
             <span
@@ -1004,7 +1004,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               <span
                 className="author-reputation"
               >
-                65
+                25
               </span>
             </a>
             <span
@@ -1132,7 +1132,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               <span
                 className="author-reputation"
               >
-                57
+                25
               </span>
             </a>
             <span

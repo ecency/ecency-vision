@@ -74,6 +74,7 @@ import {_t} from "../i18n";
 import {version} from "../../../package.json";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
+import accountReputation from '../helper/account-reputation';
 
 interface MatchParams {
     category: string;
@@ -309,7 +310,7 @@ class EntryPage extends Component<Props, State> {
 
         const community = this.getCommunity();
 
-        const reputation = Math.floor(entry.author_reputation);
+        const reputation = accountReputation(entry.author_reputation);
         const published = moment(parseDate(entry.created));
         const modified = moment(parseDate(entry.updated));
 

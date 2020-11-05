@@ -58,6 +58,7 @@ import _c from "../../util/fix-class-names"
 import {commentSvg, pencilOutlineSvg, deleteForeverSvg} from "../../img/svg";
 
 import {version} from "../../../../package.json";
+import accountReputation from '../../helper/account-reputation';
 
 
 interface ItemBodyProps {
@@ -260,7 +261,7 @@ export class Item extends Component<ItemProps, ItemState> {
         const {reply, edit, inProgress, showIfHidden} = this.state;
 
         const created = moment(parseDate(entry.created));
-        const reputation = Math.floor(entry.author_reputation);
+        const reputation = accountReputation(entry.author_reputation);
         const readMore = entry.children > 0 && entry.depth > 5;
         const showSubList = !readMore && entry.children > 0;
         const canEdit = activeUser && activeUser.username === entry.author;

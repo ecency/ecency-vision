@@ -44,6 +44,7 @@ import {_t} from "../../i18n";
 import _c from "../../util/fix-class-names";
 
 import {repeatSvg, pinSvg, commentSvg} from "../../img/svg";
+import accountReputation from '../../helper/account-reputation';
 
 const fallbackImage = require("../../img/fallback.png");
 const noImage = require("../../img/noimage.png");
@@ -107,7 +108,7 @@ export default class EntryListItem extends Component<Props> {
 
         const app = appName(entry?.json_metadata?.app);
 
-        const reputation = Math.floor(entry.author_reputation);
+        const reputation = accountReputation(entry.author_reputation);
         const date = moment(parseDate(entry.created));
         const dateRelative = date.fromNow(true);
         const dateFormatted = date.format("LLLL");
