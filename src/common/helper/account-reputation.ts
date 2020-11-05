@@ -4,6 +4,10 @@ export default (input: string | number): number => {
     input = Number(input);
   }
   
+  if (isFloat(input)) {
+    return Math.floor(input);
+  }
+  
   if (input === 0) {
     return 25;
   }
@@ -27,3 +31,7 @@ export default (input: string | number): number => {
 
   return Math.floor(reputationLevel);
 };
+
+function isFloat(n: string | number) {
+  return Number(n) === n && n % 1 !== 0;
+}
