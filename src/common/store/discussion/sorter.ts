@@ -40,8 +40,8 @@ export default (discussion: Entry[], order: SortOrder) => {
             return 0;
         },
         votes: (a: Entry, b: Entry) => {
-            const keyA = a.stats.total_votes;
-            const keyB = b.stats.total_votes;
+            const keyA = a.children;
+            const keyB = b.children;
 
             if (keyA > keyB) return -1;
             if (keyA < keyB) return 1;

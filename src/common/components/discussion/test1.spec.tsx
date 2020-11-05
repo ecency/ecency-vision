@@ -73,6 +73,7 @@ it("(2) Full render with no active user", () => {
     expect(component.toJSON()).toMatchSnapshot();
 });
 
+/*
 it("(3) Show mute button, muted comment", () => {
     let [reply] = replies;
     reply = {...reply, stats: {...reply.stats, gray: true}}
@@ -94,3 +95,4 @@ it("(3) Show mute button, muted comment", () => {
     //   const component = renderer.create(<Discussion {...nProps} />);
     //   expect(component.toJSON()).toMatchSnapshot();
 });
+*/

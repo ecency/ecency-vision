@@ -21,7 +21,7 @@ it("(1) Should show 'pin' label", () => {
 
 
 it("(2) Should show 'unpin' label", () => {
-    const stats = {...entryInstance1.stats, is_pinned: true};
+    const stats = {...entryInstance1.stats!, is_pinned: true};
     const entry = {...entryInstance1, stats};
 
     const props = {...defProps, entry: entry};
