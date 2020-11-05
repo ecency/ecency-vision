@@ -118,7 +118,7 @@ export default class EntryListItem extends Component<Props> {
         const title = entry.title;
 
         const isVisited = false;
-        const isPinned = community && entry.stats?.is_pinned;
+        const isPinned = community && !!entry.stats?.is_pinned;
 
         let reBlogged: string | undefined;
         if (asAuthor && asAuthor !== entry.author && !isChild) {

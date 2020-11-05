@@ -69,7 +69,7 @@ export class PinBtn extends Component<Props, State> {
     render() {
         const {entry} = this.props;
         const {inProgress} = this.state;
-        const isPinned = entry.stats.is_pinned;
+        const isPinned = !!entry.stats?.is_pinned;
 
         const cls = _c(`pin-btn ${inProgress ? "in-progress" : ""}`);
 

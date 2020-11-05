@@ -21,7 +21,7 @@ it("(1) Should show 'mute' label", () => {
 
 
 it("(2) Should show 'unmute' label", () => {
-    const stats = {...entryInstance1.stats, gray: true};
+    const stats = {...entryInstance1.stats!, gray: true};
     const entry = {...entryInstance1, stats};
 
     const props = {...defProps, entry: entry};

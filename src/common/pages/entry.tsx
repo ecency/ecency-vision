@@ -332,7 +332,7 @@ class EntryPage extends Component<Props, State> {
                 [ROLES.OWNER.toString(), ROLES.ADMIN.toString(), ROLES.MOD.toString()].includes(m[1])
         }) : false;
 
-        const isHidden = entry.stats.gray;
+        const isHidden = entry?.stats?.gray;
 
         //  Meta config
         const url = entryCanonical(entry) || "";
