@@ -36,8 +36,15 @@ export default async (req: express.Request, res: express.Response) => {
 
     let tags: string[] | undefined = cache.get("trending-tag");
     if (tags === undefined) {
-        tags = await hiveApi.getTrendingTags();
-        cache.set("trending-tag", tags, 7200);
+        try {
+            tags = await hiveApi.getTrendingTags();
+        } catch (e) {
+            tags = []
+        }
+
+        if (tags.length > 0) {
+            cache.set("trending-tag", tags, 7200);
+        }
     }
 
     const state = await makePreloadedState(req);
@@ -50,7 +57,7 @@ export default async (req: express.Request, res: express.Response) => {
         },
         trendingTags: {
             ...state.trendingTags,
-            list: tags
+            list: tags.sort(() => Math.random() - 0.5)
         },
         entries: {
             ...state.entries,
