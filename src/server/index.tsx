@@ -100,8 +100,8 @@ server
         ],
         entryHandler
     )
-    .use("^/api/received-vesting/:username$", receivedVesting) // TODO. make it GET
-    .post("^/api/leaderboard$", leaderboard) // TODO: public data. make it GET.
+    .get("^/api/received-vesting/:username$", receivedVesting)
+    .get("^/api/leaderboard/:duration(day|week|month)$", leaderboard)
     .get("^/api/popular-users$", popularUsers)
     .get("^/api/promoted-entries$", promotedEntries)
     .post("^/api/notifications$", notifications)
