@@ -10,43 +10,7 @@ import profileHandler from "./handlers/profile";
 import entryHandler from "./handlers/entry";
 import fallbackHandler from "./handlers/fallback";
 import {entryRssHandler, authorRssHandler} from "./handlers/rss";
-import {
-    receivedVesting,
-    leaderboard,
-    notifications,
-    markNotifications,
-    unreadNotifications,
-    hsTokenRefresh,
-    createAccount,
-    usrActivity,
-    popularUsers,
-    images,
-    imagesDelete,
-    imagesAdd,
-    drafts,
-    draftsAdd,
-    draftsUpdate,
-    draftsDelete,
-    bookmarks,
-    bookmarksAdd,
-    bookmarksDelete,
-    favorites,
-    favoritesCheck,
-    favoritesAdd,
-    favoritesDelete,
-    points,
-    pointList,
-    pointsClaim,
-    pointsCalc,
-    promotePrice,
-    promotedPost,
-    searchPath,
-    boostOptions,
-    boostedPost,
-    commentHistory,
-    search,
-    promotedEntries
-} from "./handlers/private-api";
+import * as pApi from "./handlers/private-api";
 
 const server = express();
 
@@ -58,26 +22,26 @@ server
     .use(express.static(process.env.RAZZLE_PUBLIC_DIR!))
     .use(express.json())
     .use(cookieParser())
-    .use(
+    .get(
         [
             `^/:filter(${entryFilters.join("|")})/:tag/rss.xml$`, // /trending/esteem/rss.xml
         ],
         entryRssHandler
     )
-    .use(
+    .get(
         [
             "^/@:author/:section(feed|blog|posts)/rss.xml$", // /posts/@esteemapp/rss.xml
             "^/@:author/rss.xml$", // @esteemapp/rss.xml
         ],
         authorRssHandler
     )
-    .use(
+    .get(
         [
             `^/:filter(${entryFilters.join("|")}|subscribers|activities|roles)/:name(hive-[\\d]+)$`, //  /hot/hive-231312
         ],
         communityHandler
     )
-    .use(
+    .get(
         [
             "^/$", // index
             `^/:filter(${entryFilters.join("|")})$`, // /trending
@@ -86,55 +50,56 @@ server
         ],
         entryIndexHandler
     )
-    .use(
+    .get(
         [
             "^/@:username$", // /@esteemapp
             `^/@:username/:section(${profileFilters.join("|")}|communities|wallet|points)$`, // /@esteemapp/comments
         ],
         profileHandler
     )
-    .use(
+    .get(
         [
             "^/:category/@:author/:permlink$", // /esteem/@esteemapp/rss-feeds-added-into-esteem-website
             "^/@:author/:permlink$", // /@esteemapp/rss-feeds-added-into-esteem-website
         ],
         entryHandler
     )
-    .use("^/api/received-vesting/:username$", receivedVesting) // TODO. make it GET
-    .post("^/api/leaderboard$", leaderboard) // TODO: public data. make it GET.
-    .get("^/api/popular-users$", popularUsers)
-    .get("^/api/promoted-entries$", promotedEntries)
-    .post("^/api/notifications$", notifications)
-    .post("^/api/notifications/mark$", markNotifications)
-    .post("^/api/notifications/unread$", unreadNotifications)
-    .post("^/api/hs-token-refresh$", hsTokenRefresh)
-    .post("^/api/usr-activity$", usrActivity)
-    .post("^/api/images$", images)
-    .post("^/api/images-delete$", imagesDelete)
-    .post("^/api/images-add$", imagesAdd)
-    .post("^/api/drafts$", drafts)
-    .post("^/api/drafts-add$", draftsAdd)
-    .post("^/api/drafts-update$", draftsUpdate)
-    .post("^/api/drafts-delete$", draftsDelete)
-    .post("^/api/bookmarks$", bookmarks)
-    .post("^/api/bookmarks-add$", bookmarksAdd)
-    .post("^/api/bookmarks-delete$", bookmarksDelete)
-    .post("^/api/account-create$", createAccount)
-    .post("^/api/favorites$", favorites)
-    .post("^/api/favorites-check$", favoritesCheck)
-    .post("^/api/favorites-add$", favoritesAdd)
-    .post("^/api/favorites-delete$", favoritesDelete)
-    .post("^/api/points$", points)
-    .post("^/api/point-list$", pointList)
-    .post("^/api/points-claim$", pointsClaim)
-    .post("^/api/points-calc$", pointsCalc)
-    .post("^/api/promote-price$", promotePrice)
-    .post("^/api/promoted-post$", promotedPost)
-    .post("^/api/search-path$", searchPath)
-    .post("^/api/boost-options$", boostOptions)
-    .post("^/api/boosted-post$", boostedPost)
-    .post("^/api/comment-history$", commentHistory)
-    .post("^/api/search$", search)
+    .get("^/api/received-vesting/:username$", pApi.receivedVesting)
+    .get("^/api/leaderboard/:duration(day|week|month)$", pApi.leaderboard)
+    .get("^/api/popular-users$", pApi.popularUsers)
+    .get("^/api/promoted-entries$", pApi.promotedEntries)
+    .post("^/api/comment-history$", pApi.commentHistory)
+    .post("^/api/search$", pApi.search)
+    .post("^/api/points$", pApi.points)
+    .post("^/api/point-list$", pApi.pointList)
+    .post("^/api/account-create$", pApi.createAccount)
+    .post("^/api/hs-token-refresh$", pApi.hsTokenRefresh)
+    /* Login required endpoints */
+    .post("^/api/notifications$", pApi.notifications)
+    .post("^/api/notifications/unread$", pApi.unreadNotifications)
+    .post("^/api/notifications/mark$", pApi.markNotifications)
+    .post("^/api/usr-activity$", pApi.usrActivity)
+    .post("^/api/images$", pApi.images)
+    .post("^/api/images-delete$", pApi.imagesDelete)
+    .post("^/api/images-add$", pApi.imagesAdd)
+    .post("^/api/drafts$", pApi.drafts)
+    .post("^/api/drafts-add$", pApi.draftsAdd)
+    .post("^/api/drafts-update$", pApi.draftsUpdate)
+    .post("^/api/drafts-delete$", pApi.draftsDelete)
+    .post("^/api/bookmarks$", pApi.bookmarks)
+    .post("^/api/bookmarks-add$", pApi.bookmarksAdd)
+    .post("^/api/bookmarks-delete$", pApi.bookmarksDelete)
+    .post("^/api/favorites$", pApi.favorites)
+    .post("^/api/favorites-check$", pApi.favoritesCheck)
+    .post("^/api/favorites-add$", pApi.favoritesAdd)
+    .post("^/api/favorites-delete$", pApi.favoritesDelete)
+    .post("^/api/points-claim$", pApi.pointsClaim)
+    .post("^/api/points-calc$", pApi.pointsCalc)
+    .post("^/api/promote-price$", pApi.promotePrice)
+    .post("^/api/promoted-post$", pApi.promotedPost)
+    .post("^/api/search-path$", pApi.searchPath)
+    .post("^/api/boost-options$", pApi.boostOptions)
+    .post("^/api/boosted-post$", pApi.boostedPost)
     .get("*", fallbackHandler);
 
 export default server;

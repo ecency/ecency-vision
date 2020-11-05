@@ -7,11 +7,11 @@ import moment from "moment";
 import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 
-
 import EntryLink from "../entry-link";
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 import Tag from "../tag";
+
 import FormattedCurrency from "../formatted-currency";
 
 import defaults from "../../constants/defaults.json";
@@ -24,6 +24,8 @@ import {
 } from "@ecency/render-helper";
 
 setProxyBase(defaults.imageServer);
+
+import accountReputation from "../../helper/account-reputation";
 
 import {SearchResult} from "../../api/private";
 
@@ -67,6 +69,7 @@ class SearchListItem extends Component<Props> {
         const date = moment(res.created_at);
         const dateRelative = date.fromNow(true);
         const dateFormatted = date.format("LLLL");
+        const reputation = accountReputation(res.author_rep);
 
         return <div className="search-list-item">
             <div className="item-header">
@@ -80,7 +83,7 @@ class SearchListItem extends Component<Props> {
                         ...this.props,
                         username: res.author,
                         children: <div className="author">{res.author}
-                            <span className="author-reputation">{res.author_rep.toFixed(0)}</span>
+                            <span className="author-reputation">{reputation}</span>
                         </div>
                     })}
                 </div>
