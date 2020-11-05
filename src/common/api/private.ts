@@ -54,7 +54,7 @@ export interface LeaderBoardItem {
 export type LeaderBoardDuration = "day" | "week" | "month";
 
 export const getLeaderboard = (duration: LeaderBoardDuration): Promise<LeaderBoardItem[]> => {
-    return axios.post(_u(`/api/leaderboard`), {duration}).then(resp => resp.data);
+    return axios.get(_u(`/api/leaderboard/${duration}`)).then(resp => resp.data);
 };
 
 export const hsTokenRenew = (code: string): Promise<{

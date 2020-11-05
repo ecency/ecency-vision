@@ -53,7 +53,7 @@ export const receivedVesting = async (req: express.Request, res: express.Respons
 };
 
 export const leaderboard = async (req: express.Request, res: express.Response) => {
-    const {duration} = req.body;
+    const {duration} = req.params;
     pipe(apiRequest(`leaderboard?duration=${duration}`, "GET"), res);
 };
 

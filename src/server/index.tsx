@@ -58,26 +58,26 @@ server
     .use(express.static(process.env.RAZZLE_PUBLIC_DIR!))
     .use(express.json())
     .use(cookieParser())
-    .use(
+    .get(
         [
             `^/:filter(${entryFilters.join("|")})/:tag/rss.xml$`, // /trending/esteem/rss.xml
         ],
         entryRssHandler
     )
-    .use(
+    .get(
         [
             "^/@:author/:section(feed|blog|posts)/rss.xml$", // /posts/@esteemapp/rss.xml
             "^/@:author/rss.xml$", // @esteemapp/rss.xml
         ],
         authorRssHandler
     )
-    .use(
+    .get(
         [
             `^/:filter(${entryFilters.join("|")}|subscribers|activities|roles)/:name(hive-[\\d]+)$`, //  /hot/hive-231312
         ],
         communityHandler
     )
-    .use(
+    .get(
         [
             "^/$", // index
             `^/:filter(${entryFilters.join("|")})$`, // /trending
@@ -86,22 +86,22 @@ server
         ],
         entryIndexHandler
     )
-    .use(
+    .get(
         [
             "^/@:username$", // /@esteemapp
             `^/@:username/:section(${profileFilters.join("|")}|communities|wallet|points)$`, // /@esteemapp/comments
         ],
         profileHandler
     )
-    .use(
+    .get(
         [
             "^/:category/@:author/:permlink$", // /esteem/@esteemapp/rss-feeds-added-into-esteem-website
             "^/@:author/:permlink$", // /@esteemapp/rss-feeds-added-into-esteem-website
         ],
         entryHandler
     )
-    .use("^/api/received-vesting/:username$", receivedVesting) // TODO. make it GET
-    .post("^/api/leaderboard$", leaderboard) // TODO: public data. make it GET.
+    .get("^/api/received-vesting/:username$", receivedVesting)
+    .get("^/api/leaderboard/:duration(day|week|month)$", leaderboard)
     .get("^/api/popular-users$", popularUsers)
     .get("^/api/promoted-entries$", promotedEntries)
     .post("^/api/notifications$", notifications)
