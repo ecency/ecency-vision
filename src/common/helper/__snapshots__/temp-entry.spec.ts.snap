@@ -5,7 +5,7 @@ Object {
   "active_votes": Array [],
   "author": "foo",
   "author_payout_value": "0.000 HBD",
-  "author_reputation": 32,
+  "author_reputation": 6550853848,
   "beneficiaries": Array [
     Object {
       "account": "ecency",
