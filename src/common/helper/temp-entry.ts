@@ -31,7 +31,7 @@ export default (p: TempEntryProps): Entry => {
         active_votes: [],
         author: p.author.name,
         author_payout_value: "0.000 HBD",
-        author_reputation: accountReputation(p.author.reputation!),
+        author_reputation: Number(p.author.reputation!),
         beneficiaries: [{"account": "ecency", "weight": 100}],
         blacklists: [],
         body: p.body,
