@@ -27,8 +27,6 @@ import routes from "../../common/routes";
 
 import {DesktopWindow} from "./window";
 
-import "typeface-source-serif-pro";
-
 import "../../style/theme-day.scss";
 import "../../style/theme-night.scss";
 

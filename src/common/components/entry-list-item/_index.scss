@@ -198,7 +198,8 @@
       }
 
       .item-title {
-        font-weight: 700;
+        font-weight: 600;
+        font-size: large;
         margin-bottom: 9px;
 
         @include themify(day) {
