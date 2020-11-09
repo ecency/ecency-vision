@@ -107,11 +107,11 @@
       }
 
       h1.entry-title {
-        font-size: 24px;
+        font-size: 30px;
         margin: 16px 0 22px 0;
 
         @media (min-width: $md-break) {
-          font-size: 32px;
+          font-size: 38px;
         }
 
         @include themify(day) {

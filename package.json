@@ -57,8 +57,7 @@
     "redux-thunk": "^2.3.0",
     "rss": "^1.2.2",
     "serialize-javascript": "^3.0.0",
-    "speakingurl": "^14.0.1",
-    "typeface-source-serif-pro": "^1.1.13"
+    "speakingurl": "^14.0.1"
   },
   "devDependencies": {
     "@types/bytebuffer": "^5.0.41",
