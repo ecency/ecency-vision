@@ -138,8 +138,8 @@
     "title": "Toggle list style"
   },
   "entry-votes": {
-    "title": "1 Vote",
-    "title-n": "{{n}} Votes",
+    "title": "1 Balsas",
+    "title-n": "{{n}} Balsai",
     "title-empty": "No Votes",
     "voter": "Voter",
     "percent": "Percent",
