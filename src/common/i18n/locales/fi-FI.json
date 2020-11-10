@@ -205,7 +205,7 @@
   "community-card": {
     "description": "Kuvaus",
     "rules": "Säännöt",
-    "team": "Johtajat",
+    "team": "Johto",
     "edit": "Muokkaa asetuksia",
     "edit-team": "Muokkaa rooleja",
     "profile-image": "Yhteisön profiilikuva",
@@ -643,15 +643,15 @@
       "when-claim-rewards-header": "Milloin voin lunastaa palkkioni?",
       "when-claim-rewards-body": "<p>Viestit ja kommentit pysyvät aktiivisina 7 päivää ja palkkiot vaihtelevat riippuen äänistä ja merkkien markkinahinnasta, tästä syystä palkkioita arvioidaan odottavina palkkioina. Kun aika on ohi, odottava palkkio muuttuu varsinaiseksi palkkioksi ja voit lunastaa ansaitut palkkiot. Klikkaa Walletissa Lunasta palkinnot-painiketta lisätäksesi merkkejä tilillesi.</p>",
       "what-are-rc-header": "Mitä Resurssipisteet ovat?",
-      "what-are-rc-body": "<p>Transacting on the Hive blockchain has zero fees, transaction rate-limiting is employed to safeguard the blockchain from spam attacks. Every action that you take on the blockchain will consume a small amount of Resource Credits. This includes posting, commenting, voting, transferring tokens, etc. Viewing content does not consume Resource Credits.</p><p>Every user has a limited amount of Resource Credits to use each week. The more transactions a user does, the less Resource Credits they will have left (until they recharge). Users with more HIVE POWER will have more Resource Credits.</p><p>If you run out of Resource Credits, you will be unable to transact with the blockchain until your Resource Credits recharge (happens automatically) or you acquire additional HIVE POWER to increase your Resource Credit balance or you can <a href=\"/faq#how-boost-account\">request Boosting account from Ecency</a> to receive temporary delegation.</p>",
-      "how-boost-account-header": "How to request account boosting?",
-      "how-boost-account-body": "<p>If your account is low on <a href=\"/faq#what-are-rc\">Resource Credits</a>, you can request account boosting from Ecency. You will receive temporary delegation which should boost your account to perform more activities on blockchain.</p>",
-      "what-spam-abuse-header": "What is considered spam or abuse?",
-      "what-spam-abuse-body": "<p><img src=\"https://images.ecency.com/p/3jpR3paJ37V8XPrHkfZdMt57jY6pRt6zEt5iRJV9pSw4Mez3Hut8U6RWvWLA7cFYEa1bxveXeasNfZApzrcLYLx8cz84kBEKak1KkewE2ZqE1QRRkF4eqRH3vWVqZB9WuNbzE?format=match&mode=fit\" loading=\"lazy\"/></p><p><ul><li>Plagiarized posts or copied content.</li><li>Leaving nearly identical or materially similar comments on multiple posts.</li><li>Using tags that are unrelated to the post.</li><li>Threatening users with any type of physical violence.</li><li>Not citing sources when using someone else’s material.</li><li>Posting ‘not safe for work’ content without using the “nsfw” tag.</li><li>Scams or Fraudulent offers.</li></ul></p>",
-      "can-link-post-header": "Can I request adding backlink to my website?",
-      "can-link-post-body": "<p>All the content on our site is created by users and we don't modify or able to add backlinks. You are free to contact author of the post or <a href=\"/?referral=ecency\">Signup</a> to open your own blog and community.</p>",
-      "can-guest-post-header": "Is it possible to guest post on your website?",
-      "can-guest-post-body": "<p>Posting on Ecency is simple and easy, <a href=\"/?referral=ecency\">Signup</a> to open your own blog and community, start posting your content.</p>"
+      "what-are-rc-body": "<p>Siirrot Hive-lohkoketjussa eivät ole maksullisia, tapahtumakoron rajoittamista käytetään suojaamaan lohkoketjua roskapostihyökkäyksiltä. Jokainesta toiminnostasi lohkoketju kuluttaa pienen määrän Resurssihyvityksiä. Tämä sisältää julkaisun, kommentoinnin, äänestämisen, merkkien siirot, jne. Sisällön katselu ei kuluta Resurssihyvitystä.</p><p>Jokaisella käyttäjällä on rajallinen määrä resurssihyvityksiä joka viikko. Mitä enemmän tapahtumia käyttäjä tekee, sitä vähemmän Resurssihyvityksiä jää jäljelle (kunnes he latautuvat). Käyttäjillä, joilla on enemmän HIVE POWERia, on enemmän resurssihyvitystä.</p><p>Jos resurssihyvitykset ovat loppuneet, et voi tehdä siirtoja lohkoketjussa, ennen kuin Resurssihyvitykset palautuvat (tapahtuu automaattisesti) tai saat lisää HIVE POWERia lisätäksesi Resurssihyvityssaldoasi tai voit <a href=\"/faq#how-boost-account\">pyytää Ecency</a> -tilin vahvistamista saadaksesi väliaikaisen valtuutuksen.</p>",
+      "how-boost-account-header": "Kuinka pyytää tilin tehostamista?",
+      "how-boost-account-body": "<p>Jos tillläsi on niukasti <a href=\"/faq#what-are-rc\">Resurssihyvityksiä</a>, voit pyytää tilin tehostamista Ecencyltä. Saat tilapäisen valtuutuksen, jonka pitäisi tehostaa tiliäsi suorittaaksesi enemmän toimintoja lohkoketjussa.</p>",
+      "what-spam-abuse-header": "Mitä lasketaan roskapostiksi tai väärinkäytöksi?",
+      "what-spam-abuse-body": "<p><img src=\"https://images.ecency.com/p/3jpR3paJ37V8XPrHkfZdMt57jY6pRt6zEt5iRJV9pSw4Mez3Hut8U6RWvWLA7cFYEa1bxveXeasNfZApzrcLYLx8cz84kBEKak1KkewE2ZqE1QRRkF4eqRH3vWVqZB9WuNbzE?format=match&mode=fit\" loading=\"lazy\"/></p><p><ul><li>Plagioidut viestit tai kopioitu sisältö.</li><li>Lähes identtisten tai olennaisesti samankaltaisten kommenttien jättäminen useisiin julkaisuihin.</li><li>Käyttämällä tunnisteita, jotka eivät liity viestiin.</li><li>Käyttäjien uhkaaminen millä tahansa fyysisellä väkivallalla.</li><li>Käyttäjiä ei siteeraa lähteitä käyttäessään jonkun toisen materiaalia.</li><li>Julkaiseminen ”ei ole turvallista työlle” ilman ”nsfw”-tunnusta.</li><li>Huijaukset tai petokselliset tarjoukset.</li></ul></p>",
+      "can-link-post-header": "Voinko pyytää käänteislinkin lisäämistä sivuilleni?",
+      "can-link-post-body": "<p>Kaikki sivustollamme oleva sisältö on käyttäjien luomaa, emmekä voi muokata tai lisätä käänteislinkkejä. Ota yhteyttä julkaisun tekijään tai <a href=\"/?referral=ecency\">Rekisteröidy</a> avataksesi oman blogisi ja yhteisösi.</p>",
+      "can-guest-post-header": "Onko vieralilijoiden mahdollista julkaista sivustolle?",
+      "can-guest-post-body": "<p>Ecencyssä julkaiseminen on yksinkertaista ja helppoa, <a href=\"/?referral=ecency\">Rekisteröidy</a> avataksesi oman blogin ja yhteisön, sekä aloittaaksesi sisällön julkaisemisen.</p>"
     }
   },
   "context-menu": {
