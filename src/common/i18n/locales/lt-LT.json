@@ -77,7 +77,7 @@
     "error-public-key": "Įvedėte public key. Reikia Slaptažodžio/WIF",
     "error-user-fetch": "Nepavyko pakrauti vartotojo duomenų",
     "error-user-not-found": "Vartotojas neegzistuoja",
-    "error-permission": "Couldn't get posting permission",
+    "error-permission": "Nepavyko gauti publikavimo leidimo",
     "error-authenticate": "Wrong private key. Master or active private key required.",
     "with-hive-signer": "Login with hivesigner",
     "with-keychain": "Login with keychain",
