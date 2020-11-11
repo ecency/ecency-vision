@@ -35,7 +35,7 @@
     "filter-promoted": "Paremti",
     "filter-payout": "Išmokos",
     "filter-muted": "Nutildyta",
-    "filter-feed": "Feed"
+    "filter-feed": "Pagrindinis"
   },
   "navbar": {
     "discover": "Atrasti",
@@ -68,15 +68,15 @@
   },
   "login": {
     "title": "Sveiki sugrįžę!",
-    "with-user-pass": "Login with your username and private key.",
+    "with-user-pass": "Prisijunkite naudodami vartotojo vardą ir privatų raktą.",
     "username-placeholder": "vartotojo vardas",
-    "key-placeholder": "master or active private key",
-    "login-info-1": "We don't store your private keys.",
-    "login-info-2": "More info",
-    "error-fields-required": "Please enter username and private key",
-    "error-public-key": "You entered a public key. Password/WIF required",
-    "error-user-fetch": "User data could not be fetched",
-    "error-user-not-found": "User does not exist",
+    "key-placeholder": "pagrindinis arba aktyvusis raktai",
+    "login-info-1": "Mes nelaikome jūsų privačių raktų.",
+    "login-info-2": "Daugiau Informacijos",
+    "error-fields-required": "Prašome įvesti vartotojo vardą ir privatųjį raktą",
+    "error-public-key": "Įvedėte public key. Reikia Slaptažodžio/WIF",
+    "error-user-fetch": "Nepavyko pakrauti vartotojo duomenų",
+    "error-user-not-found": "Vartotojas neegzistuoja",
     "error-permission": "Couldn't get posting permission",
     "error-authenticate": "Wrong private key. Master or active private key required.",
     "with-hive-signer": "Login with hivesigner",
