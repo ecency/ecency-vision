@@ -42,25 +42,25 @@
     "communities": "Komunitas",
     "about": "Tentang",
     "faq": "Tanya Jawab",
-    "post": "Create Post",
-    "day-theme": "Day Theme",
-    "night-theme": "Night Theme",
-    "address-placeholder": "enter url or search query"
+    "post": "Membuat Postingan",
+    "day-theme": "Tema Terang",
+    "night-theme": "Tema Gelap",
+    "address-placeholder": "masukkan permintaan pencarian"
   },
   "search": {
-    "placeholder": "Search",
-    "placeholder-count": "Search {{n}} posts",
-    "header-tag": "Tags",
-    "header-account": "Users",
-    "header-community": "Communities"
+    "placeholder": "Cari",
+    "placeholder-count": "Mencari {{n}} postingan",
+    "header-tag": "Label",
+    "header-account": "Pengguna",
+    "header-community": "Komunitas"
   },
   "user-nav": {
-    "wallet": "Wallet",
-    "unclaimed-reward-notice": "You have unclaimed rewards",
-    "points": "Points",
-    "unclaimed-points-notice": "You have unclaimed points",
-    "notifications": "Notifications",
-    "profile": "Profile",
+    "wallet": "Dompet",
+    "unclaimed-reward-notice": "Anda memiliki hadiah yang belum diambil",
+    "points": "Poin",
+    "unclaimed-points-notice": "Anda memiliki poin yang belum diambil",
+    "notifications": "Pemberitahuan",
+    "profile": "Profil",
     "gallery": "Gallery",
     "drafts": "Drafts",
     "bookmarks": "Bookmarks",
@@ -127,12 +127,12 @@
     "breakdown": "Breakdown"
   },
   "entry-index": {
-    "feed": "Feed",
-    "tags": "Popular",
-    "title": "{{f}} topics",
-    "description": "{{f}} topics on a social network owned and operated by its users.",
-    "description-tag": "{{f}} #{{t}} topics",
-    "description-user-feed": "{{u}}'s feed"
+    "feed": "Umpan",
+    "tags": "Populer",
+    "title": "{{f}} topik",
+    "description": "{{f}} topik di media sosial yang dimiliki dan digunakan oleh pengguna ini.",
+    "description-tag": "{{f}} #{{t}} topik",
+    "description-user-feed": "{{u}} pengumpan"
   },
   "list-style": {
     "title": "Toggle list style"
