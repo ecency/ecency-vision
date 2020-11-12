@@ -192,19 +192,19 @@
     "roles-account": "Conta",
     "roles-role": "Papel",
     "roles-account-title": "Título",
-    "roles-add": "Add User"
+    "roles-add": "Adicionar Usuário"
   },
   "community-cover": {
-    "rewards": "rewards",
-    "authors": "posters",
-    "lang": "language",
-    "cover-image": "Community cover image",
-    "cover-image-edit": "Edit cover image",
-    "cover-image-updated": "Cover image updated!"
+    "rewards": "recompensas",
+    "authors": "cartazes",
+    "lang": "idioma",
+    "cover-image": "Imagem de capa da Comunidade",
+    "cover-image-edit": "Editar imagem de capa",
+    "cover-image-updated": "Imagem de capa atualizada!"
   },
   "community-card": {
-    "description": "Description",
-    "rules": "Rules",
+    "description": "Descrição",
+    "rules": "Regras",
     "team": "Leadership",
     "edit": "Edit settings",
     "edit-team": "Edit roles",
