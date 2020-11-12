@@ -96,7 +96,7 @@ class AboutPage extends Component<PageProps> {
                             <a
                                 className="download-button btn-desktop"
                                 target="_blank"
-                                href="https://github.com/EsteemApp/esteem-surfer/releases"
+                                href="https://github.com/ecency/ecency-vision/releases"
                                 rel="noopener noreferrer"
                             >
                                 DESKTOP
@@ -104,7 +104,7 @@ class AboutPage extends Component<PageProps> {
                             <a
                                 className="download-button btn-ios"
                                 target="_blank"
-                                href="https://apps.apple.com/us/app/esteem-v2/id1451896376"
+                                href="https://ios.ecency.com"
                                 rel="noopener noreferrer"
                             >
                                 IOS
@@ -112,7 +112,7 @@ class AboutPage extends Component<PageProps> {
                             <a
                                 className="download-button btn-android"
                                 target="_blank"
-                                href="https://play.google.com/store/apps/details?id=app.esteem.mobile.android"
+                                href="https://android.ecency.com"
                                 rel="noopener noreferrer"
                             >
                                 ANDROID
@@ -177,13 +177,13 @@ class AboutPage extends Component<PageProps> {
                             >
                                 {githubSvg} Github
                             </a>
-                            <a className="contacts-link" target="_blank" href="https://t.me/esteemapp" rel="noopener noreferrer">
+                            <a className="contacts-link" target="_blank" href="https://t.me/ecency" rel="noopener noreferrer">
                                 {telegramSvg} Telegram
                             </a>
                             <a
                                 className="contacts-link"
                                 target="_blank"
-                                href="https://discordapp.com/invite/9cdhjc7"
+                                href="https://discord.me/ecency"
                                 rel="noopener noreferrer"
                             >
                                 {discordSvg} Discord

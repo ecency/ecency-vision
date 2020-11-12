@@ -52,6 +52,7 @@ Feel free to test it out and submit improvements and pull requests.
 ##### Pushing new code / Pull requests
 
 - Make sure to branch off your changes from `development` branch.
+- Make sure to run `yarn test` and add tests to your changes.
 - Code on!
 
 ## Issues
