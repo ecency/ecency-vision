@@ -1,0 +1,100 @@
+.witnesses-page {
+  flex-direction: column;
+
+  .page-header {
+    align-items: center;
+    display: flex;
+    height: 60px;
+    justify-content: space-between;
+
+    .main-title {
+      color: $dark-sky-blue;
+      font-size: 22px;
+      font-weight: 500;
+    }
+
+    .remaining {
+      @include themify(day) {
+        color: $steel-grey;
+      }
+
+      @include themify(night) {
+        color: $powder-blue;
+      }
+    }
+  }
+
+  .witnesses-table {
+    margin-bottom: 30px;
+
+    .witness-rank, .witness-card, .witness-miss, .witness-link, .witness-fee, .witness-feed, .witness-version {
+      height: 40px;
+      display: flex;
+      align-items: center;
+    }
+
+    .witness-rank {
+      @include themify(day) {
+        color: $warm-grey;
+      }
+    }
+
+    .witness-card {
+      .user-avatar {
+        margin-right: 10px;
+      }
+    }
+
+    .witness-link {
+      svg {
+        height: 16px;
+      }
+    }
+
+    .witness-feed,
+    .witness-version {
+      .inner {
+        border-radius: 25px;
+        color: $white;
+        font-weight: 500;
+        padding: 2px 10px;
+      }
+    }
+
+    .witness-feed {
+      .inner {
+        background: $green3;
+      }
+    }
+
+    .witness-version {
+      .inner {
+        background: $dark-sky-blue;
+      }
+    }
+
+    .col-rank {
+      width: 100px;
+    }
+
+    .col-miss {
+      width: 100px;
+    }
+
+    .col-url {
+      width: 100px;
+    }
+
+    .col-fee {
+      width: 180px;
+    }
+
+    .col-feed {
+      width: 180px;
+    }
+
+    .col-version {
+      width: 180px;
+    }
+  }
+}

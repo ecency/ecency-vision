@@ -581,6 +581,31 @@
     "sort-relevance": "Relevance",
     "sort-newest": "Date"
   },
+  "witnesses-page": {
+    "title": "Witnesses Voting",
+    "remaining": "{{n}} of {{max}} votes remaining",
+    "rank": "Rank",
+    "witness": "Witness",
+    "miss": "Miss",
+    "url": "URL",
+    "fee": "Fee",
+    "feed": "Feed",
+    "block-size": "Block size",
+    "ac-avail": "AC avail",
+    "ac-budget": "AC budget",
+    "version": "Version",
+    "voted": "@{n} voted",
+    "vote-removed": "vote removed for @{n}",
+    "username-placeholder": "username",
+    "extra-witnesses-exp": "Enter account name below to vote for a witness outside of <strong>Top 50</strong>",
+    "proxy-exp": "You can also choose a proxy that will vote for witnesses for you. This will reset your current witness selection.",
+    "set-proxy": "Set Proxy",
+    "proxy-active-exp": "You have set a voting proxy. If you would like to re-enable manual voting, please clear your proxy.",
+    "current-proxy": "Your current proxy is: <strong>{n}</strong>",
+    "remove-proxy": "Clear Proxy",
+    "proxy-removed": "Proxy is cleared",
+    "proxy-created": "@{n} has set as proxy"
+  },
   "gallery": {
     "title": "Gallery",
     "copied": "Copied to clipboard"
