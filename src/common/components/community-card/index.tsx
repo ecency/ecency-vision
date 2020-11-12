@@ -238,7 +238,7 @@ export class CommunityCard extends Component<Props, State> {
                     })}
                 </div>
                 <div className="community-info">
-                    <div className="title">{community.title}</div>
+                    <div className="title"><h1>{community.title}</h1></div>
                     <div className="about">{community.about}</div>
                     {community.is_nsfw && <span className="nsfw">nsfw</span>}
                 </div>

@@ -199,8 +199,9 @@ class CommunityPage extends Component<Props, State> {
         const url = `/${filter}/${community.name}`;
         const rss = `${defaults.base}/${filter}/${community.name}/rss.xml`;
         const image = `${defaults.imageServer}/u/${community.name}/avatar/medium`;
+        const canonical = `${defaults.base}/created/${community.name}`;
 
-        const metaProps = {title, description, url, rss, image};
+        const metaProps = {title, description, url, rss, image, canonical};
 
         const promoted = entries['__promoted__'].entries;
 
