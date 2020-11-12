@@ -555,7 +555,7 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
                         <h1 className="form-title">{_t("communities-create.page-title")}</h1>
                         {(() => {
                             if (done) {
-                                const url = `/trending/${username}`;
+                                const url = `/created/${username}`;
                                 return <div className="done">
                                     <p>{_t("communities-create.done")}</p>
                                     <p><strong><Link to={url}>{_t("communities-create.done-link-label")}</Link></strong></p>
@@ -784,7 +784,7 @@ class CommunityCreateHSPage extends Component<PageProps, CreateHsState> {
         this.stateSet({inProgress: false, done: true});
 
         // redirect to community page
-        history.push(`/trending/${user.username}`);
+        history.push(`/created/${user.username}`);
     }
 
     render() {
