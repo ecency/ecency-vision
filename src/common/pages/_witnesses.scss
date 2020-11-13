@@ -27,6 +27,10 @@
   .witnesses-table {
     margin-bottom: 30px;
 
+    table {
+      min-width: 840px;
+    }
+
     .witness-rank, .witness-card, .witness-miss, .witness-link, .witness-fee, .witness-feed, .witness-version {
       height: 40px;
       display: flex;
@@ -98,7 +102,7 @@
     }
 
     .col-feed {
-      width: 180px;
+      width: 180px !important;
     }
 
     .col-version {

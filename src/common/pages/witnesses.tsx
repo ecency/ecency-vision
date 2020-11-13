@@ -153,8 +153,8 @@ class WitnessesPage extends Component<PageProps, State> {
         };
 
         const {global, activeUser} = this.props;
-
         const {witnesses, loading, witnessVotes, proxy} = this.state;
+        const extraWitnesses = witnessVotes.filter(w => !witnesses.find(y => y.name === w));
 
         const table = <table className="table">
             <thead>
