@@ -1,0 +1,12 @@
+.witness-vote-btn {
+  .btn-witness-vote {
+    @include btn-vote;
+  }
+}
+
+
+.witness-vote-key-modal {
+  .modal-body {
+    padding-top: 30px;
+  }
+}

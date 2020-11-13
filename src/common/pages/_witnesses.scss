@@ -34,8 +34,16 @@
     }
 
     .witness-rank {
-      @include themify(day) {
-        color: $warm-grey;
+      display: flex;
+      align-items: center;
+
+      .rank-number {
+        margin-right: 20px;
+        width: 22px;
+
+        @include themify(day) {
+          color: $warm-grey;
+        }
       }
     }
 

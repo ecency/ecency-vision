@@ -104,6 +104,18 @@ export const addAccount = (username: string, keys: Keys): Promise<TxResponse> =>
     })
 
 
+export const witnessVote = (account: string, witness: string, vote: boolean, rpc: string | null = null): Promise<TxResponse> =>
+    new Promise<TxResponse>((resolve, reject) => {
+        window.hive_keychain?.requestWitnessVote(account, witness, vote, (resp) => {
+            if (!resp.success) {
+                reject({message: "Operation cancelled"});
+            }
+
+            resolve(resp);
+        }, rpc);
+    })
+
+
 export interface KeyChainImpl {
     requestHandshake(callback: () => void): void;
 
@@ -120,4 +132,6 @@ export interface KeyChainImpl {
     requestBroadcast(account: string, operations: any[], key: AuthorityTypes, callback: (r: TxResponse) => void, rpc: string | null): void;
 
     requestAddAccount(username: string, keys: Keys, callback: (r: TxResponse) => void): void;
+
+    requestWitnessVote(username: string, witness: string, vote: boolean, callback: (r: TxResponse) => void, rpc: string | null): void;
 }

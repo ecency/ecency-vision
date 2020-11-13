@@ -25,6 +25,7 @@ import paginationFactory from "react-bootstrap-table2-paginator";
 import ProfileLink from "../components/profile-link";
 import UserAvatar from "../components/user-avatar";
 import EntryLink, {PartialEntry} from "../components/entry-link";
+import WitnessVoteBtn from "../components/witness-vote-btn";
 
 import {linkSvg, openInNewSvg} from "../img/svg";
 
@@ -155,86 +156,92 @@ class WitnessesPage extends Component<PageProps, State> {
 
         const {witnesses, loading, witnessVotes, proxy} = this.state;
 
-        const tableProps = {
-            bordered: false,
-            keyField: "rank",
-            data: witnesses,
-            columns: [
-                {
-                    dataField: "rank",
-                    classes: "col-rank",
-                    text: _t("witnesses-page.rank"),
-                    formatter: (cell: any, row: WitnessTransformed) => {
-                        return <span className="witness-rank">{row.rank}</span>
-                    }
-                },
-                {
-                    dataField: "name",
-                    text: _t("witnesses-page.witness"),
-                    formatter: (cell: any, row: WitnessTransformed) => {
-                        return ProfileLink({
+        const table = <table className="table">
+            <thead>
+            <tr>
+                <th className="col-rank">
+                    {_t("witnesses-page.rank")}
+                </th>
+                <th>
+                    {_t("witnesses-page.witness")}
+                </th>
+                <th className="col-miss">
+                    {_t("witnesses-page.miss")}
+                </th>
+                <th className="col-url">
+                    {_t("witnesses-page.url")}
+                </th>
+                <th className="col-fee">
+                    {_t("witnesses-page.fee")}
+                </th>
+                <th className="col-feed">
+                    {_t("witnesses-page.feed")}
+                </th>
+                <th className="col-version">
+                    {_t("witnesses-page.version")}
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {witnesses.map((row, i) => {
+                return <tr key={row.rank}>
+                    <td>
+                        <div className="witness-rank">
+                            <span className="rank-number">{row.rank}</span>
+                            {WitnessVoteBtn({
+                                ...this.props,
+                                voted: witnessVotes.includes(row.name),
+                                witness: row.name,
+                                onSuccess: (approve) => {
+                                    const newVotes: string[] = approve ?
+                                        [...witnessVotes, row.name] :
+                                        witnessVotes.filter(x => x !== row.name);
+
+                                    this.stateSet({witnessVotes: newVotes});
+                                }
+                            })}
+                        </div>
+                    </td>
+                    <td>
+                        {ProfileLink({
                             ...this.props,
                             username: row.name,
-                            children: <span className="witness-card notranslate"> {UserAvatar({...this.props, username: row.name, size: "medium"})} {row.name}</span>
-                        })
-                    },
-                },
-                {
-                    dataField: "miss",
-                    classes: "col-miss",
-                    text: _t("witnesses-page.miss"),
-                    formatter: (cell: any, row: WitnessTransformed) => {
-                        return <span className="witness-miss">{row.miss}</span>
-                    }
-                },
-                {
-                    dataField: "url",
-                    classes: "col-url",
-                    text: _t("witnesses-page.url"),
-                    formatter: (cell: any, row: WitnessTransformed) => {
-                        const {parsedUrl} = row;
+                            children: <span className="witness-card notranslate"> {UserAvatar({
+                                ...this.props,
+                                username: row.name,
+                                size: "medium"
+                            })} {row.name}</span>
+                        })}
+                    </td>
+                    <td><span className="witness-miss">{row.miss}</span></td>
+                    <td>
+                        {(() => {
+                            const {parsedUrl} = row;
 
-                        if (parsedUrl) {
+                            if (parsedUrl) {
+                                return (
+                                    <EntryLink {...this.props} entry={parsedUrl}>
+                                        <span className="witness-link">{linkSvg}</span>
+                                    </EntryLink>
+                                );
+                            }
+
                             return (
-                                <EntryLink {...this.props} entry={parsedUrl}>
-                                    <span className="witness-link">{linkSvg}</span>
-                                </EntryLink>
+                                <a target="_external" href={row.url} className="witness-link">{openInNewSvg}</a>
                             );
-                        }
-
-                        return (
-                            <a target="_external" href={row.url} className="witness-link">{openInNewSvg}</a>
-                        );
-                    }
-                },
-                {
-                    dataField: "fee",
-                    classes: "col-fee",
-                    text: _t("witnesses-page.fee"),
-                    formatter: (cell: any, row: WitnessTransformed) => {
-                        return <span className="witness-fee">{row.fee}</span>
-                    }
-                },
-                {
-                    dataField: "feed",
-                    classes: "col-feed",
-                    text: _t("witnesses-page.feed"),
-                    formatter: (cell: any, row: WitnessTransformed) => {
-                        return <div className="witness-feed"><span className="inner">{row.feed}</span></div>
-                    }
-                },
-                {
-                    dataField: "version",
-                    classes: "col-version",
-                    text: _t("witnesses-page.version"),
-                    formatter: (cell: any, row: WitnessTransformed) => {
-                        return <div className="witness-version"><span className="inner">{row.version}</span></div>
-                    }
-                }
-            ]
-        };
-
-        const table = <BootstrapTable {...tableProps} />;
+                        })()}
+                    </td>
+                    <td><span className="witness-fee">{row.fee}</span></td>
+                    <td>
+                        <div className="witness-feed"><span className="inner">{row.feed}</span></div>
+                    </td>
+                    <td>
+                        <div className="witness-version"><span className="inner">{row.version}</span></div>
+                    </td>
+                </tr>
+            })}
+            </tbody>
+        </table>;
 
         return (
             <>
@@ -271,7 +278,9 @@ class WitnessesPage extends Component<PageProps, State> {
                                 )}
                             </div>
 
-                            {!proxy && (<div className="table-responsive witnesses-table">{table}</div>)}
+                            {!proxy && (
+                                <div className="table-responsive witnesses-table">{table}</div>
+                            )}
                         </>
                     })()}
                 </div>
@@ -279,5 +288,6 @@ class WitnessesPage extends Component<PageProps, State> {
         );
     }
 }
+
 
 export default connect(pageMapStateToProps, pageMapDispatchToProps)(WitnessesPage);
