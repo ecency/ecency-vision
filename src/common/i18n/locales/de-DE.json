@@ -45,7 +45,7 @@
     "post": "Beitrag erstellen",
     "day-theme": "Helles Theme",
     "night-theme": "Dunkles Theme",
-    "address-placeholder": "enter url or search query"
+    "address-placeholder": "URL oder Suchbegriff eingeben"
   },
   "search": {
     "placeholder": "Suchen",
@@ -82,54 +82,54 @@
     "with-hive-signer": "Login with hivesigner",
     "with-keychain": "Login with keychain",
     "sign-up-text-1": "Don't have an account?",
-    "sign-up-text-2": "Sign up now!"
+    "sign-up-text-2": "Jetzt registrieren!"
   },
   "sign-up": {
-    "header": "Sign Up",
-    "username": "Pick a username",
-    "email": "Enter your email address",
-    "ref": "Referred user (optional)",
-    "submit": "Continue",
-    "success": "We've sent an email to {{email}}.",
-    "success-2": "Follow instructions to complete signup process.",
-    "to-login": "Back to Login"
+    "header": "Registrieren",
+    "username": "Wähle einen Benutzernamen",
+    "email": "E-Mail Adresse eingeben",
+    "ref": "Referral Nutzer (optional)",
+    "submit": "Weiter",
+    "success": "Wir haben eine Bestätigungsmail an {{email}} gesendet.",
+    "success-2": "Folge den Anweisungen, um den Anmeldeprozess abzuschließen.",
+    "to-login": "Zurück zum Login"
   },
   "trending-tags": {
-    "title": "Popular"
+    "title": "Populär"
   },
   "entry-list-item": {
-    "reblogged": "by {{n}}",
-    "promoted": "promoted",
-    "pinned": "Pinned Post",
+    "reblogged": "von {{n}}",
+    "promoted": "beworben",
+    "pinned": "Angepinnter Beitrag",
     "replies": "1 response. Click to respond.",
     "replies-n": "{{n}} responses. Click to respond.",
-    "no-replies": "No responses yet. Click to respond."
+    "no-replies": "Noch keine Antworten. Klicken, um zu antworten."
   },
   "bookmark-btn": {
-    "add": "Add to bookmarks",
-    "added": "Added to bookmarks",
-    "delete": "Remove from bookmarks",
-    "deleted": "Removed from bookmarks"
+    "add": "Zu den Lesezeichen hinzufügen",
+    "added": "Zu den Lesezeichen hinzugefügt",
+    "delete": "Von den Lesezeichen entfernen",
+    "deleted": "Von den Lesezeichen entfernt"
   },
   "entry-reblog": {
     "reblog": "Reblog",
-    "confirm-title": "Reblog to @{{n}}'s blog?",
+    "confirm-title": "Teilen in @{{n}}'s blog?",
     "confirm-ok": "Reblog",
-    "success": "Reblogged!"
+    "success": "Geteilt!"
   },
   "entry-payout": {
-    "pending-payout": "Pending Payout",
-    "promoted": "Promoted",
-    "author-payout": "Author Payout",
-    "curators-payout": "Curators Payout",
-    "payout-date": "Payout",
-    "beneficiary": "Beneficiary",
+    "pending-payout": "Ausstehende Vergütung",
+    "promoted": "Beworben",
+    "author-payout": "Autoren Auszahlung",
+    "curators-payout": "Kuratoren Auszahlung",
+    "payout-date": "Auszahlung",
+    "beneficiary": "Begünstigter",
     "breakdown": "Breakdown"
   },
   "entry-index": {
     "feed": "Feed",
-    "tags": "Popular",
-    "title": "{{f}} topics",
+    "tags": "Populär",
+    "title": "{{f}} Themen",
     "description": "{{f}} topics on a social network owned and operated by its users.",
     "description-tag": "{{f}} #{{t}} topics",
     "description-user-feed": "{{u}}'s feed"
@@ -185,67 +185,67 @@
     "subscribed": "Joined",
     "unsubscribe": "Leave",
     "post": "New Post",
-    "posts": "Posts",
-    "subscribers": "Subscribers",
-    "activities": "Activities",
-    "roles-title": "User Roles",
-    "roles-account": "Account",
-    "roles-role": "Role",
-    "roles-account-title": "Title",
-    "roles-add": "Add User"
+    "posts": "Beiträge",
+    "subscribers": "Abonnenten",
+    "activities": "Aktivitäten",
+    "roles-title": "Benutzerrollen",
+    "roles-account": "Konto",
+    "roles-role": "Rolle",
+    "roles-account-title": "Titel",
+    "roles-add": "User hinzufügen"
   },
   "community-cover": {
-    "rewards": "rewards",
-    "authors": "posters",
-    "lang": "language",
-    "cover-image": "Community cover image",
-    "cover-image-edit": "Edit cover image",
-    "cover-image-updated": "Cover image updated!"
+    "rewards": "Belohnungen",
+    "authors": "Poster",
+    "lang": "Sprache",
+    "cover-image": "Community Cover Bild",
+    "cover-image-edit": "Cover Bild bearbeiten",
+    "cover-image-updated": "Cover Bild aktualisiert!"
   },
   "community-card": {
-    "description": "Description",
-    "rules": "Rules",
-    "team": "Leadership",
-    "edit": "Edit settings",
-    "edit-team": "Edit roles",
-    "profile-image": "Community profile image",
-    "profile-image-edit": "Edit profile image",
-    "profile-image-updated": "Profile image updated!"
+    "description": "Beschreibung",
+    "rules": "Regeln",
+    "team": "Führung",
+    "edit": "Einstellungen bearbeiten",
+    "edit-team": "Rollen bearbeiten",
+    "profile-image": "Community Profil Bild",
+    "profile-image-edit": "Profil Bild bearbeiten",
+    "profile-image-updated": "Profil Bild aktualisiert!"
   },
   "community-role-edit": {
-    "title": "Set user role",
-    "username": "Username",
-    "role": "Role",
-    "user-not-found": "The user does not exist!",
+    "title": "Benutzerrolle festlegen",
+    "username": "Benutzername",
+    "role": "Rolle",
+    "user-not-found": "Der Benutzer existiert nicht!",
     "explanations": "<h3>Role Permissions</h3><p><strong>Owner</strong> - assign admins</p><p><strong>Admin</strong> - edit settings, assign mods</p><p><strong>Moderator</strong> - mute, pin, set user titles</p><p><strong>Member</strong> - listed on leadership team</p><p><strong>Guest</strong> - default; can post and comment</p><p><strong>Muted</strong> - new posts automatically muted</p>"
   },
   "community-settings": {
-    "dialog-title": "Community Settings",
-    "title": "Title",
-    "about": "About",
-    "lang": "Language",
-    "description": "Description",
-    "rules": "Rules",
-    "rules-help": "One per line"
+    "dialog-title": "Community Einstellungen",
+    "title": "Titel",
+    "about": "Über",
+    "lang": "Sprache",
+    "description": "Beschreibung",
+    "rules": "Regeln",
+    "rules-help": "Eine pro Zeile"
   },
   "communities": {
     "title": "Communities",
     "description": "Best online, decentralized, immutable, rewarding communities",
-    "n-subscribers": "{{n}} subscribers",
-    "n-authors": "{{n}} posters",
-    "n-posts": "{{n}} posts",
-    "admins": "admins:",
-    "sort-hot": "Hot",
-    "sort-rank": "Rank",
-    "sort-subs": "Subscribers",
-    "sort-new": "New",
-    "no-results": "No results found",
-    "create": "Create community"
+    "n-subscribers": "{{n}} Abonnenten",
+    "n-authors": "{{n}} Poster",
+    "n-posts": "{{n}} Beiträge",
+    "admins": "Admins:",
+    "sort-hot": "Beliebt",
+    "sort-rank": "Rang",
+    "sort-subs": "Abonnenten",
+    "sort-new": "Neu",
+    "no-results": "Keine Ergebnisse gefunden",
+    "create": "Community erstellen"
   },
   "communities-create": {
-    "page-title": "Create a community",
-    "title": "Title",
-    "about": "About",
+    "page-title": "Community erstellen",
+    "title": "Titel",
+    "about": "Über",
     "description": "Create a best, decentralized, immutable, rewarding communities",
     "fee": "Operation fee",
     "creator": "Creator",
