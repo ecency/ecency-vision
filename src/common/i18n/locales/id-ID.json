@@ -90,41 +90,41 @@
     "email": "Masukkan alamat email Anda",
     "ref": "Pengguna rujukan (opsional)",
     "submit": "Lanjutkan",
-    "success": "We've sent an email to {{email}}.",
-    "success-2": "Follow instructions to complete signup process.",
-    "to-login": "Back to Login"
+    "success": "Kami sudah mengirimkan email ke {{email}}.",
+    "success-2": "Ikuti petunjuk melengkapi proses pendaftaran.",
+    "to-login": "Kembali untuk masuk"
   },
   "trending-tags": {
-    "title": "Popular"
+    "title": "Populer"
   },
   "entry-list-item": {
-    "reblogged": "by {{n}}",
-    "promoted": "promoted",
-    "pinned": "Pinned Post",
-    "replies": "1 response. Click to respond.",
-    "replies-n": "{{n}} responses. Click to respond.",
-    "no-replies": "No responses yet. Click to respond."
+    "reblogged": "oleh {{n}}",
+    "promoted": "dipromosikan",
+    "pinned": "Postingan Disematkan",
+    "replies": "1 respon, Klik untuk merespon.",
+    "replies-n": "{{n}} respon. Klik untuk merespon.",
+    "no-replies": "Belum ada respon. Klik untuk merespon."
   },
   "bookmark-btn": {
-    "add": "Add to bookmarks",
-    "added": "Added to bookmarks",
-    "delete": "Remove from bookmarks",
-    "deleted": "Removed from bookmarks"
+    "add": "Tambahkan ke penanda",
+    "added": "Ditambahkan ke penanda",
+    "delete": "Hapus dari penanda",
+    "deleted": "Dihapus dari penanda"
   },
   "entry-reblog": {
-    "reblog": "Reblog",
-    "confirm-title": "Reblog to @{{n}}'s blog?",
-    "confirm-ok": "Reblog",
-    "success": "Reblogged!"
+    "reblog": "Tampilkan kembali",
+    "confirm-title": "Tampilkan ke blog @{{n}}?",
+    "confirm-ok": "Tampilkan kembali",
+    "success": "Ditampilkan kembali!"
   },
   "entry-payout": {
-    "pending-payout": "Pending Payout",
-    "promoted": "Promoted",
-    "author-payout": "Author Payout",
-    "curators-payout": "Curators Payout",
-    "payout-date": "Payout",
-    "beneficiary": "Beneficiary",
-    "breakdown": "Breakdown"
+    "pending-payout": "Pembayaran yang Ditunda",
+    "promoted": "Dipromosikan",
+    "author-payout": "Pembayaran Penulis",
+    "curators-payout": "Pembayaran Kurator",
+    "payout-date": "Pembayaran",
+    "beneficiary": "Penerima",
+    "breakdown": "Kerusakan"
   },
   "entry-index": {
     "feed": "Umpan",
@@ -203,20 +203,20 @@
     "cover-image-updated": "Cover image updated!"
   },
   "community-card": {
-    "description": "Description",
-    "rules": "Rules",
-    "team": "Leadership",
-    "edit": "Edit settings",
-    "edit-team": "Edit roles",
-    "profile-image": "Community profile image",
-    "profile-image-edit": "Edit profile image",
-    "profile-image-updated": "Profile image updated!"
+    "description": "Deskripsi",
+    "rules": "Peraturan",
+    "team": "Kepemimpinan",
+    "edit": "Edit pengaturan",
+    "edit-team": "Sunting peran",
+    "profile-image": "Gambar profil komunitas",
+    "profile-image-edit": "Edit gambar profil",
+    "profile-image-updated": "Gambar profil diperbaharui!"
   },
   "community-role-edit": {
-    "title": "Set user role",
-    "username": "Username",
-    "role": "Role",
-    "user-not-found": "The user does not exist!",
+    "title": "Atur peran pengguna",
+    "username": "Nama Pengguna",
+    "role": "Peran",
+    "user-not-found": "Pengguna tidak ada!",
     "explanations": "<h3>Role Permissions</h3><p><strong>Owner</strong> - assign admins</p><p><strong>Admin</strong> - edit settings, assign mods</p><p><strong>Moderator</strong> - mute, pin, set user titles</p><p><strong>Member</strong> - listed on leadership team</p><p><strong>Guest</strong> - default; can post and comment</p><p><strong>Muted</strong> - new posts automatically muted</p>"
   },
   "community-settings": {
