@@ -72,6 +72,15 @@ class WitnessesPage extends Component<PageProps, State> {
         this._mounted = false;
     }
 
+    componentDidUpdate(prevProps: Readonly<PageProps>, prevState: Readonly<State>, snapshot?: any) {
+        // active user changed
+        if (this.props.activeUser?.username !== prevProps.activeUser?.username) {
+            this.stateSet({loading: true}, () => {
+                this.load();
+            })
+        }
+    }
+
     stateSet = (state: {}, cb?: () => void) => {
         if (this._mounted) {
             this.setState(state, cb);
