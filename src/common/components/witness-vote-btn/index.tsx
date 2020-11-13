@@ -24,13 +24,13 @@ interface Props {
     activeUser: ActiveUser | null;
     ui: UI;
     signingKey: string;
+    voted: boolean;
+    witness: string;
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data?: Account) => void;
     deleteUser: (username: string) => void;
     toggleUIProp: (what: ToggleType) => void;
     setSigningKey: (key: string) => void;
-    voted: boolean;
-    witness: string;
     onSuccess: (approve: boolean) => void;
 }
 
@@ -39,7 +39,7 @@ interface State {
     keyDialog: boolean;
 }
 
-class WitnessVoteBtn extends Component <Props, State> {
+export class WitnessVoteBtn extends Component <Props, State> {
     state: State = {
         inProgress: false,
         keyDialog: false,
