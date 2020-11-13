@@ -8,8 +8,6 @@ import {pathToRegexp} from "path-to-regexp";
 
 import routes from "../../common/routes";
 
-import BootstrapTable from "react-bootstrap-table-next";
-
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
 import Meta from "../components/meta";
@@ -18,20 +16,17 @@ import Theme from "../components/theme";
 import NavBarElectron from "../../desktop/app/components/navbar";
 import NavBar from "../components/navbar";
 import LinearProgress from "../components/linear-progress";
-import parseAsset, {Asset} from "../helper/parse-asset";
-
-import {getWitnessesByVote, Vote} from "../api/hive";
-import paginationFactory from "react-bootstrap-table2-paginator";
 import ProfileLink from "../components/profile-link";
 import UserAvatar from "../components/user-avatar";
 import EntryLink, {PartialEntry} from "../components/entry-link";
 import WitnessVoteBtn from "../components/witness-vote-btn";
 import WitnessesExtra from "../components/witnesses-extra"
+import Feedback from "../components/feedback";
 
-import {linkSvg, openInNewSvg} from "../img/svg";
-
+import {getWitnessesByVote} from "../api/hive";
 import {getAccount} from "../api/hive";
 
+import {linkSvg, openInNewSvg} from "../img/svg";
 
 interface WitnessTransformed {
     rank: number;
@@ -269,6 +264,7 @@ class WitnessesPage extends Component<PageProps, State> {
                 <Meta {...metaProps} />
                 <ScrollToTop/>
                 <Theme global={this.props.global}/>
+                <Feedback/>
                 {global.isElectron ?
                     NavBarElectron({
                         ...this.props,
@@ -292,7 +288,7 @@ class WitnessesPage extends Component<PageProps, State> {
                                 <div className="main-title">
                                     {_t('witnesses-page.title')}
                                 </div>
-                                {(activeUser && !proxy) && (
+                                {activeUser && (
                                     <div className="remaining">
                                         {_t('witnesses-page.remaining', {n: 30 - witnessVotes.length, max: 30})}
                                     </div>

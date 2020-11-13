@@ -224,7 +224,7 @@ interface Witness {
 
 export const getWitnessesByVote = (
     from: string = "",
-    limit: number = 10
+    limit: number = 50
 ): Promise<Witness[]> => client.call("condenser_api", "get_witnesses_by_vote", [from, limit]);
 
 export const vpMana = (account: Account): number => {
