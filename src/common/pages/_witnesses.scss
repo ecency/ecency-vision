@@ -2,18 +2,34 @@
   flex-direction: column;
 
   .page-header {
-    align-items: center;
     display: flex;
-    height: 60px;
-    justify-content: space-between;
+    flex-direction: column;
+
+    @media (min-width: $md-break) {
+      flex-direction: row;
+      align-items: center;
+      height: 60px;
+      justify-content: space-between;
+    }
 
     .main-title {
       color: $dark-sky-blue;
       font-size: 22px;
       font-weight: 500;
+      margin-bottom: 10px;
+
+      @media (min-width: $md-break) {
+        margin-bottom: 0;
+      }
     }
 
     .remaining {
+      margin-bottom: 20px;
+
+      @media (min-width: $md-break) {
+        margin-bottom: 0;
+      }
+
       @include themify(day) {
         color: $steel-grey;
       }
