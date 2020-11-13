@@ -26,6 +26,7 @@ import ProfileLink from "../components/profile-link";
 import UserAvatar from "../components/user-avatar";
 import EntryLink, {PartialEntry} from "../components/entry-link";
 import WitnessVoteBtn from "../components/witness-vote-btn";
+import WitnessesExtra from "../components/witnesses-extra"
 
 import {linkSvg, openInNewSvg} from "../img/svg";
 
@@ -107,7 +108,6 @@ class WitnessesPage extends Component<PageProps, State> {
                 const {account_subsidy_budget: acBudget} = props;
                 const {running_version: version} = x;
 
-
                 let parsedUrl;
                 const oUrl = new URL(url, 'https://ecency.com');
                 const ex = pathToRegexp(routes.ENTRY).exec(oUrl.pathname);
@@ -154,6 +154,18 @@ class WitnessesPage extends Component<PageProps, State> {
 
         this.setState({witnessVotes: [], proxy: null});
     };
+
+    addWitness = (name: string) => {
+        const {witnessVotes} = this.state;
+        const newVotes = [...witnessVotes, name]
+        this.stateSet({witnessVotes: newVotes});
+    }
+
+    deleteWitness = (name: string) => {
+        const {witnessVotes} = this.state;
+        const newVotes = witnessVotes.filter(x => x !== name)
+        this.stateSet({witnessVotes: newVotes});
+    }
 
     render() {
         //  Meta config
@@ -202,11 +214,11 @@ class WitnessesPage extends Component<PageProps, State> {
                                 voted: witnessVotes.includes(row.name),
                                 witness: row.name,
                                 onSuccess: (approve) => {
-                                    const newVotes: string[] = approve ?
-                                        [...witnessVotes, row.name] :
-                                        witnessVotes.filter(x => x !== row.name);
-
-                                    this.stateSet({witnessVotes: newVotes});
+                                    if (approve) {
+                                        this.addWitness(row.name);
+                                    } else {
+                                        this.deleteWitness(row.name);
+                                    }
                                 }
                             })}
                         </div>
@@ -286,10 +298,17 @@ class WitnessesPage extends Component<PageProps, State> {
                                     </div>
                                 )}
                             </div>
-
-                            {!proxy && (
-                                <div className="table-responsive witnesses-table">{table}</div>
-                            )}
+                            <div className="table-responsive witnesses-table">{table}</div>
+                            {WitnessesExtra({
+                                ...this.props,
+                                list: extraWitnesses,
+                                onAdd: (name) => {
+                                    this.addWitness(name);
+                                },
+                                onDelete: (name) => {
+                                    this.deleteWitness(name);
+                                }
+                            })}
                         </>
                     })()}
                 </div>

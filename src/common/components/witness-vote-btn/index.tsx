@@ -31,6 +31,8 @@ interface Props {
     deleteUser: (username: string) => void;
     toggleUIProp: (what: ToggleType) => void;
     setSigningKey: (key: string) => void;
+    onStart?: () => void;
+    onEnd?: () => void;
     onSuccess: (approve: boolean) => void;
 }
 
@@ -63,12 +65,14 @@ export class WitnessVoteBtn extends Component <Props, State> {
     }
 
     vote = (fn: any, args: any[]) => {
-        const {voted, onSuccess} = this.props;
+        const {voted, onStart, onEnd, onSuccess} = this.props;
         const approve = !voted;
         const fnArgs = [...args, approve]
         const call = fn(...fnArgs);
 
+
         if (typeof call?.then === 'function') {
+            if (onStart) onStart();
             this.stateSet({inProgress: true});
 
             call.then(() => {
@@ -77,6 +81,7 @@ export class WitnessVoteBtn extends Component <Props, State> {
                 error(formatError(e));
             }).finally(() => {
                 this.stateSet({inProgress: false});
+                if (onEnd) onEnd();
             });
         }
     }
@@ -139,7 +144,9 @@ export default (p: Props) => {
         setSigningKey: p.setSigningKey,
         voted: p.voted,
         witness: p.witness,
-        onSuccess: p.onSuccess
+        onStart: p.onStart,
+        onEnd: p.onEnd,
+        onSuccess: p.onSuccess,
     }
 
     return <WitnessVoteBtn {...props} />

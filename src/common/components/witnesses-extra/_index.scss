@@ -1,0 +1,60 @@
+.extra-witnesses {
+  margin: 30px 0 20px 0;
+
+  .description {
+    @include themify(day) {
+      color: $steel-grey;
+    }
+
+    @include themify(night) {
+      color: $powder-blue;
+    }
+  }
+
+  .vote-form {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+    padding: 10px 10px 10px 0;
+
+    .txt-username {
+      width: 220px;
+    }
+  }
+
+  .witnesses-list {
+    margin-top: 20px;
+    width: 300px;
+
+    .item {
+      display: flex;
+      justify-content: space-between;
+      margin: 12px 0;
+      padding: 10px;
+      border-radius: 8px;
+
+      @include themify(day) {
+        background: $white-three;
+      }
+
+      @include themify(night) {
+        background: $dark-two;
+      }
+
+      .username {
+        font-size: 16px;
+        font-weight: 500;
+        width: 220px;
+
+        @include themify(day) {
+          color: $charcoal-grey;
+        }
+
+        @include themify(night) {
+          color: $powder-blue;
+        }
+      }
+    }
+  }
+}
