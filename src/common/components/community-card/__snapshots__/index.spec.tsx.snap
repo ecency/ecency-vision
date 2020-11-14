@@ -19,11 +19,13 @@ exports[`(1) Default render 1`] = `
   <div
     className="community-info"
   >
-    <div
-      className="title"
-    >
-      GEMS
-    </div>
+    <h1>
+      <div
+        className="title"
+      >
+        GEMS
+      </div>
+    </h1>
     <div
       className="about"
     >
@@ -164,11 +166,13 @@ exports[`(2) Should show edit buttons with nsfw label 1`] = `
   <div
     className="community-info"
   >
-    <div
-      className="title"
-    >
-      GEMS
-    </div>
+    <h1>
+      <div
+        className="title"
+      >
+        GEMS
+      </div>
+    </h1>
     <div
       className="about"
     >

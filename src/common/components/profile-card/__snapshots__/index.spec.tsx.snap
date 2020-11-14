@@ -16,11 +16,13 @@ exports[`(1) Render with not loaded data 1`] = `
       }
     />
   </div>
-  <div
-    className="username"
-  >
-    user1
-  </div>
+  <h1>
+    <div
+      className="username"
+    >
+      user1
+    </div>
+  </h1>
   <div
     className="vpower-line"
   >
@@ -88,11 +90,13 @@ exports[`(2) Render with loaded data 1`] = `
       38
     </div>
   </div>
-  <div
-    className="username"
-  >
-    user1
-  </div>
+  <h1>
+    <div
+      className="username"
+    >
+      user1
+    </div>
+  </h1>
   <div
     className="vpower-line"
   >
@@ -281,11 +285,13 @@ exports[`(3) Should show profile edits 1`] = `
       38
     </div>
   </div>
-  <div
-    className="username"
-  >
-    user1
-  </div>
+  <h1>
+    <div
+      className="username"
+    >
+      user1
+    </div>
+  </h1>
   <div
     className="vpower-line"
   >

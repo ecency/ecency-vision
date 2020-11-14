@@ -66,7 +66,7 @@ export class CommunityMenu extends Component<Props> {
                             return <span className="community-menu-item selected-item"><DropDown {...menuConfig} float="left"/></span>;
                         }
 
-                        return <Link to={`/trending/${name}`} className="community-menu-item">{_t('community.posts')}</Link>;
+                        return <Link to={`/created/${name}`} className="community-menu-item">{_t('community.posts')}</Link>;
                     })()}
                     <Link to={`/subscribers/${name}`} className={_c(`community-menu-item ${filter === "subscribers" ? "selected-item" : ""}`)}>
                         {_t('community.subscribers')}

@@ -194,13 +194,14 @@ class CommunityPage extends Component<Props, State> {
 
         //  Meta config
         const fC = capitalize(filter);
-        const title = `${community.title.trim()}`;
+        const title = `${community.title.trim()} ${filter}`;
         const description = _t("community.page-description", {f: `${fC} ${community.title.trim()}`});
         const url = `/${filter}/${community.name}`;
         const rss = `${defaults.base}/${filter}/${community.name}/rss.xml`;
         const image = `${defaults.imageServer}/u/${community.name}/avatar/medium`;
+        const canonical = `${defaults.base}/created/${community.name}`;
 
-        const metaProps = {title, description, url, rss, image};
+        const metaProps = {title, description, url, rss, image, canonical};
 
         const promoted = entries['__promoted__'].entries;
 

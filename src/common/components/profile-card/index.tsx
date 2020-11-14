@@ -102,7 +102,7 @@ export class ProfileCard extends Component<Props, State> {
                     {account.__loaded && <div className="reputation">{accountReputation(account.reputation!)}</div>}
                 </div>
 
-                <div className="username">{account.name}</div>
+                <h1><div className="username">{account.name}</div></h1>
 
                 <div className="vpower-line">
                     <div className="vpower-line-inner" style={{width: `${vPower}%`}}/>

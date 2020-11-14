@@ -11,9 +11,9 @@ import {getCommunity} from "../../api/bridge";
 import defaults from "../../constants/defaults.json";
 
 export const makePath = (filter: string, tag: string): string => {
-    // trending is default filter for community pages
+    // created is default filter for community pages
     if (/^hive-\d+/.test(tag)) {
-        return `/${EntryFilter.trending}/${tag}`;
+        return `/${EntryFilter.created}/${tag}`;
     }
 
     if (EntryFilter[filter] === undefined) {
