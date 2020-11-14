@@ -19,7 +19,7 @@ exports[`(1) Default render 1`] = `
         }
       />
       <a
-        href="/trending/hive-148441"
+        href="/created/hive-148441"
         onClick={[Function]}
       >
         GEMS
