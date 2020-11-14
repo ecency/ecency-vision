@@ -207,7 +207,7 @@ class ProfilePage extends Component<Props, State> {
         const url = `${defaults.base}/@${username}${section ? `/${section}` : ""}`;
         const metaProps = {
             title: `${account.profile?.name || account.name} ${section ? `${section}` : ""}`,
-            description: account.profile?.about || `${(account.profile?.name || account.name)} ${section ? `${section}` : ""}` || "",
+            description: `${account.profile?.about ? `${account.profile?.about} ${section ? `${section}` : ""}` : `${(account.profile?.name || account.name)} ${section ? `${section}` : ""}` }` || "",
             url: `/@${username}${section ? `/${section}` : ""}`,
             canonical: url,
             image: `${defaults.imageServer}/u/${username}/avatar/medium`,

@@ -124,6 +124,7 @@ class SearchPage extends Component<PageProps, State> {
         //  Meta config
         const metaProps = {
             title: _t("search-page.title"),
+            description: _t("search-page.description"),
         };
 
         const {global} = this.props;
