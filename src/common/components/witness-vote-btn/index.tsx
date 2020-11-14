@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 
-import {Modal} from "react-bootstrap";
-
 import {ActiveUser} from "../../store/active-user/types";
 import {User} from "../../store/users/types";
 import {Global} from "../../store/global/types";
@@ -9,7 +7,7 @@ import {Account} from "../../store/accounts/types";
 import {ToggleType, UI} from "../../store/ui/types";
 
 import LoginRequired from "../login-required";
-import KeyOrHot from "../key-or-hot";
+import KeyOrHotDialog from "../key-or-hot-dialog";
 import {error} from "../feedback";
 
 import {witnessVote, witnessVoteHot, witnessVoteKc, formatError} from "../../api/operations";
@@ -38,13 +36,11 @@ interface Props {
 
 interface State {
     inProgress: boolean;
-    keyDialog: boolean;
 }
 
 export class WitnessVoteBtn extends Component <Props, State> {
     state: State = {
         inProgress: false,
-        keyDialog: false,
     };
 
     _mounted: boolean = true;
@@ -59,17 +55,11 @@ export class WitnessVoteBtn extends Component <Props, State> {
         }
     };
 
-    toggleKeyDialog = () => {
-        const {keyDialog} = this.state;
-        this.stateSet({keyDialog: !keyDialog});
-    }
-
     vote = (fn: any, args: any[]) => {
         const {voted, onStart, onEnd, onSuccess} = this.props;
         const approve = !voted;
         const fnArgs = [...args, approve]
         const call = fn(...fnArgs);
-
 
         if (typeof call?.then === 'function') {
             if (onStart) onStart();
@@ -88,45 +78,36 @@ export class WitnessVoteBtn extends Component <Props, State> {
 
     render() {
         const {activeUser, voted, witness} = this.props;
-        const {inProgress, keyDialog} = this.state;
+        const {inProgress} = this.state;
 
         const cls = _c(`btn-witness-vote btn-up-vote ${inProgress ? 'in-progress' : ''} ${voted ? 'voted' : ''} ${witness === '' ? 'disabled' : ''}`);
+        const btn = <div className="witness-vote-btn">
+            <div className={cls}>
+                <span className="btn-inner">{chevronUpSvg}</span>
+            </div>
+        </div>;
 
-        return <>
-            {LoginRequired({
+        if (!activeUser) {
+            return LoginRequired({
                 ...this.props,
-                children: <div className="witness-vote-btn" onClick={this.toggleKeyDialog}>
-                    <div className={cls}>
-                        <span className="btn-inner">{chevronUpSvg}</span>
-                    </div>
-                </div>
-            })}
+                children: btn
+            });
+        }
 
-            {keyDialog && (
-                <Modal animation={false} show={true} centered={true} onHide={this.toggleKeyDialog} keyboard={false} className="witness-vote-key-modal modal-thin-header">
-                    <Modal.Header closeButton={true}/>
-                    <Modal.Body>
-                        {KeyOrHot({
-                            ...this.props,
-                            activeUser: activeUser!,
-                            inProgress: false,
-                            onKey: (key) => {
-                                this.toggleKeyDialog();
-                                this.vote(witnessVote, [activeUser!.username, key, witness]);
-                            },
-                            onHot: () => {
-                                this.toggleKeyDialog();
-                                this.vote(witnessVoteHot, [activeUser!.username, witness]);
-                            },
-                            onKc: () => {
-                                this.toggleKeyDialog();
-                                this.vote(witnessVoteKc, [activeUser!.username, witness]);
-                            }
-                        })}
-                    </Modal.Body>
-                </Modal>
-            )}
-        </>;
+        return KeyOrHotDialog({
+            ...this.props,
+            activeUser: activeUser!,
+            children: btn,
+            onKey: (key) => {
+                this.vote(witnessVote, [activeUser!.username, key, witness]);
+            },
+            onHot: () => {
+                this.vote(witnessVoteHot, [activeUser!.username, witness]);
+            },
+            onKc: () => {
+                this.vote(witnessVoteKc, [activeUser!.username, witness]);
+            }
+        });
     }
 }
 

@@ -285,6 +285,7 @@ class WitnessesPage extends Component<PageProps, State> {
                             </>
                         }
 
+                        /*
                         if (proxy) {
                             return <>
                                 <div className={`page-header loading`}>
@@ -295,6 +296,8 @@ class WitnessesPage extends Component<PageProps, State> {
 
                             </>
                         }
+
+                         */
 
                         return <>
                             <div className="page-header">
