@@ -11,6 +11,7 @@ import routes from "../../common/routes";
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
 import Meta from "../components/meta";
+import Feedback from "../components/feedback";
 import ScrollToTop from "../components/scroll-to-top";
 import Theme from "../components/theme";
 import NavBarElectron from "../../desktop/app/components/navbar";
@@ -21,7 +22,8 @@ import UserAvatar from "../components/user-avatar";
 import EntryLink, {PartialEntry} from "../components/entry-link";
 import WitnessVoteBtn from "../components/witness-vote-btn";
 import WitnessesExtra from "../components/witnesses-extra"
-import Feedback from "../components/feedback";
+import WitnessesProxy from "../components/witnesses-proxy"
+
 
 import {getWitnessesByVote} from "../api/hive";
 import {getAccount} from "../api/hive";
@@ -283,6 +285,17 @@ class WitnessesPage extends Component<PageProps, State> {
                             </>
                         }
 
+                        if (proxy) {
+                            return <>
+                                <div className={`page-header loading`}>
+                                    <div className="main-title">
+                                        {_t('witnesses-page.title')}
+                                    </div>
+                                </div>
+
+                            </>
+                        }
+
                         return <>
                             <div className="page-header">
                                 <div className="main-title">
@@ -295,16 +308,25 @@ class WitnessesPage extends Component<PageProps, State> {
                                 )}
                             </div>
                             <div className="table-responsive witnesses-table">{table}</div>
-                            {WitnessesExtra({
-                                ...this.props,
-                                list: extraWitnesses,
-                                onAdd: (name) => {
-                                    this.addWitness(name);
-                                },
-                                onDelete: (name) => {
-                                    this.deleteWitness(name);
-                                }
-                            })}
+                            <div className="witnesses-controls">
+                                {WitnessesExtra({
+                                    ...this.props,
+                                    list: extraWitnesses,
+                                    onAdd: (name) => {
+                                        this.addWitness(name);
+                                    },
+                                    onDelete: (name) => {
+                                        this.deleteWitness(name);
+                                    }
+                                })}
+                                <div className="flex-spacer"/>
+                                {WitnessesProxy({
+                                    ...this.props,
+                                    onSuccess: () => {
+                                        console.log("done")
+                                    }
+                                })}
+                            </div>
                         </>
                     })()}
                 </div>

@@ -116,6 +116,18 @@ export const witnessVote = (account: string, witness: string, vote: boolean, rpc
     })
 
 
+export const witnessProxy = (account: string, proxy: string, rpc: string | null = null): Promise<TxResponse> =>
+    new Promise<TxResponse>((resolve, reject) => {
+        window.hive_keychain?.requestProxy(account, proxy, (resp) => {
+            if (!resp.success) {
+                reject({message: "Operation cancelled"});
+            }
+
+            resolve(resp);
+        }, rpc);
+    })
+
+
 export interface KeyChainImpl {
     requestHandshake(callback: () => void): void;
 
@@ -134,4 +146,6 @@ export interface KeyChainImpl {
     requestAddAccount(username: string, keys: Keys, callback: (r: TxResponse) => void): void;
 
     requestWitnessVote(username: string, witness: string, vote: boolean, callback: (r: TxResponse) => void, rpc: string | null): void;
+
+    requestProxy(username: string, proxy: string, callback: (r: TxResponse) => void, rpc: string | null): void;
 }

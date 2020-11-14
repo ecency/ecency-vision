@@ -1,0 +1,30 @@
+.witnesses-proxy {
+
+  @media (min-width: $lg-break) {
+    width: 600px;
+  }
+
+  .description {
+    margin-bottom: 6px;
+
+    @include themify(day) {
+      color: $steel-grey;
+    }
+
+    @include themify(night) {
+      color: $powder-blue;
+    }
+  }
+
+  .proxy-form {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    width: 340px;
+    padding: 10px 10px 10px 0;
+
+    .txt-username {
+      width: 220px;
+    }
+  }
+}

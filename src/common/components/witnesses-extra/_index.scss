@@ -1,7 +1,14 @@
 .extra-witnesses {
-  margin: 30px 0 20px 0;
+  margin-bottom: 30px;
+
+  @media (min-width: $lg-break) {
+    width: 400px;
+    margin-bottom: 0;
+  }
 
   .description {
+    margin-bottom: 6px;
+
     @include themify(day) {
       color: $steel-grey;
     }
