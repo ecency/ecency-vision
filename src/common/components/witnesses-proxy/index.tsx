@@ -1,18 +1,20 @@
 import React, {Component} from 'react';
 
-import {Button, FormControl, Modal} from "react-bootstrap";
-
-import {_t} from "../../i18n";
-import LoginRequired from "../login-required";
+import {Button, FormControl} from "react-bootstrap";
 
 import {Global} from "../../store/global/types";
 import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {ToggleType, UI} from "../../store/ui/types";
 import {Account} from "../../store/accounts/types";
-import KeyOrHot from "../key-or-hot";
-import {formatError, witnessProxy, witnessProxyHot, witnessProxyKc} from "../../api/operations";
+
+import LoginRequired from "../login-required";
+import KeyOrHotDialog from "../key-or-hot-dialog";
 import {error} from "../feedback";
+
+import {formatError, witnessProxy, witnessProxyHot, witnessProxyKc} from "../../api/operations";
+
+import {_t} from "../../i18n";
 
 interface Props {
     global: Global;
@@ -31,14 +33,12 @@ interface Props {
 interface State {
     username: string;
     inProgress: boolean;
-    keyDialog: boolean;
 }
 
 export class WitnessesProxy extends Component<Props, State> {
     state: State = {
         username: '',
-        inProgress: false,
-        keyDialog: false
+        inProgress: false
     }
 
     _mounted: boolean = true;
@@ -55,11 +55,6 @@ export class WitnessesProxy extends Component<Props, State> {
 
     usernameChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
         this.stateSet({username: e.target.value.trim()});
-    }
-
-    toggleKeyDialog = () => {
-        const {keyDialog} = this.state;
-        this.stateSet({keyDialog: !keyDialog});
     }
 
     proxy = (fn: any, args: any[]) => {
@@ -82,13 +77,34 @@ export class WitnessesProxy extends Component<Props, State> {
 
     render() {
         const {activeUser} = this.props;
-        const {username, inProgress, keyDialog} = this.state;
+        const {username, inProgress} = this.state;
+
+        const btn = <Button disabled={inProgress}>{_t("witnesses-page.set-proxy")}</Button>;
+
+        const theBtn = activeUser ?
+            KeyOrHotDialog({
+                ...this.props,
+                activeUser: activeUser!,
+                children: btn,
+                onKey: (key) => {
+                    this.proxy(witnessProxy, [activeUser!.username, key, username]);
+                },
+                onHot: () => {
+                    this.proxy(witnessProxyHot, [activeUser!.username, username]);
+                },
+                onKc: () => {
+                    this.proxy(witnessProxyKc, [activeUser!.username, username]);
+                }
+            }) :
+            LoginRequired({
+                ...this.props,
+                children: btn
+            })
 
         return <div className="witnesses-proxy">
             <p className="description">
                 {_t("witnesses-page.proxy-exp")}
             </p>
-
             <div className="proxy-form">
                 <div className="txt-username">
                     <FormControl
@@ -99,38 +115,8 @@ export class WitnessesProxy extends Component<Props, State> {
                         onChange={this.usernameChanged}
                         disabled={inProgress}/>
                 </div>
-                <div>
-                    {LoginRequired({
-                        ...this.props,
-                        children: <Button onClick={this.toggleKeyDialog}>{_t("witnesses-page.set-proxy")}</Button>
-                    })}
-                </div>
+                <div>{theBtn}</div>
             </div>
-
-            {keyDialog && (
-                <Modal animation={false} show={true} centered={true} onHide={this.toggleKeyDialog} keyboard={false} className="witness-proxy-modal modal-thin-header">
-                    <Modal.Header closeButton={true}/>
-                    <Modal.Body>
-                        {KeyOrHot({
-                            ...this.props,
-                            activeUser: activeUser!,
-                            inProgress: false,
-                            onKey: (key) => {
-                                this.toggleKeyDialog();
-                                this.proxy(witnessProxy, [activeUser!.username, key, username]);
-                            },
-                            onHot: () => {
-                                this.toggleKeyDialog();
-                                this.proxy(witnessProxyHot, [activeUser!.username, username]);
-                            },
-                            onKc: () => {
-                                this.toggleKeyDialog();
-                                this.proxy(witnessProxyKc, [activeUser!.username, username]);
-                            }
-                        })}
-                    </Modal.Body>
-                </Modal>
-            )}
         </div>
     }
 }
