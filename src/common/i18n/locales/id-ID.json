@@ -155,9 +155,9 @@
     "hidden-warning": "Posting ini tersembunyi dikarenakan peringkat rendah."
   },
   "edit-history": {
-    "title": "Edit History",
-    "show-diff": "Show Difference",
-    "version": "Version {{n}}"
+    "title": "Riwayat Penyuntingan",
+    "show-diff": "Tampilkan Perbedaan",
+    "version": "Versi {{n}}"
   },
   "similar-entries": {
     "title": "Recent posts by @{{n}}"
