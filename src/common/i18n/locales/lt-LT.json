@@ -78,78 +78,78 @@
     "error-user-fetch": "Nepavyko pakrauti vartotojo duomenų",
     "error-user-not-found": "Vartotojas neegzistuoja",
     "error-permission": "Nepavyko gauti publikavimo leidimo",
-    "error-authenticate": "Wrong private key. Master or active private key required.",
-    "with-hive-signer": "Login with hivesigner",
-    "with-keychain": "Login with keychain",
-    "sign-up-text-1": "Don't have an account?",
-    "sign-up-text-2": "Sign up now!"
+    "error-authenticate": "Neteisingas privatus raktas. Reikalingas pagrindinis arba akytvusis raktas.",
+    "with-hive-signer": "Prisijungti naudojant hivesigner",
+    "with-keychain": "Prisijungti naudojant keychain",
+    "sign-up-text-1": "Neturite paskyros?",
+    "sign-up-text-2": "Užsiregistruokite dabar!"
   },
   "sign-up": {
-    "header": "Sign Up",
-    "username": "Pick a username",
-    "email": "Enter your email address",
-    "ref": "Referred user (optional)",
-    "submit": "Continue",
-    "success": "We've sent an email to {{email}}.",
-    "success-2": "Follow instructions to complete signup process.",
-    "to-login": "Back to Login"
+    "header": "Registruotis",
+    "username": "Pasirinkite vartotojo vardą",
+    "email": "Įveskite savo el. pašto adresą",
+    "ref": "Rekomendavęs vartotojas (pasirinktinai)",
+    "submit": "Tęsti",
+    "success": "Išsiuntėme patvirtinimo laišką {{email}}.",
+    "success-2": "Sekite instrukcijas, kad sėkmingai prisiregistruotumėte.",
+    "to-login": "Atgal į Prisijungimo puslapį"
   },
   "trending-tags": {
-    "title": "Popular"
+    "title": "Populiarūs"
   },
   "entry-list-item": {
-    "reblogged": "by {{n}}",
-    "promoted": "promoted",
-    "pinned": "Pinned Post",
-    "replies": "1 response. Click to respond.",
-    "replies-n": "{{n}} responses. Click to respond.",
-    "no-replies": "No responses yet. Click to respond."
+    "reblogged": "{{n}}",
+    "promoted": "paremti",
+    "pinned": "Prisegtas Įrašas",
+    "replies": "1 atsakymas. Spauskite, jeigu norite atsakyti.",
+    "replies-n": "{{n}} atsakymų. Spauskite, jeigu norite atsakyti.",
+    "no-replies": "Jokių atsakymų kolkas. Spauskite, jeigu norite atsakyti."
   },
   "bookmark-btn": {
-    "add": "Add to bookmarks",
-    "added": "Added to bookmarks",
-    "delete": "Remove from bookmarks",
-    "deleted": "Removed from bookmarks"
+    "add": "Pridėti prie žymelių",
+    "added": "Pridėta į žymes",
+    "delete": "Pašalinti iš žymų",
+    "deleted": "Pašalinta iš žymų"
   },
   "entry-reblog": {
-    "reblog": "Reblog",
-    "confirm-title": "Reblog to @{{n}}'s blog?",
-    "confirm-ok": "Reblog",
-    "success": "Reblogged!"
+    "reblog": "Pasidalinti",
+    "confirm-title": "Pasidalinti @{{n}} įrašu?",
+    "confirm-ok": "Pasidalinti",
+    "success": "Pasidalinta!"
   },
   "entry-payout": {
-    "pending-payout": "Pending Payout",
-    "promoted": "Promoted",
-    "author-payout": "Author Payout",
-    "curators-payout": "Curators Payout",
-    "payout-date": "Payout",
-    "beneficiary": "Beneficiary",
+    "pending-payout": "Laukiamas Išmokėjimas",
+    "promoted": "Paremti",
+    "author-payout": "Autoriaus Užmokestis",
+    "curators-payout": "Kuracijos Užmokestis",
+    "payout-date": "Užmokestis",
+    "beneficiary": "Gavėjas",
     "breakdown": "Breakdown"
   },
   "entry-index": {
-    "feed": "Feed",
-    "tags": "Popular",
-    "title": "{{f}} topics",
+    "feed": "Pagrindinis",
+    "tags": "Populiarūs",
+    "title": "{{f}} temos",
     "description": "{{f}} topics on a social network owned and operated by its users.",
-    "description-tag": "{{f}} #{{t}} topics",
-    "description-user-feed": "{{u}}'s feed"
+    "description-tag": "{{f}} #{{t}} temos",
+    "description-user-feed": "{{u}} pagrindinis"
   },
   "list-style": {
-    "title": "Toggle list style"
+    "title": "Pasirinkti sąrašo stilių"
   },
   "entry-votes": {
     "title": "1 Balsas",
     "title-n": "{{n}} Balsai",
-    "title-empty": "No Votes",
-    "voter": "Voter",
-    "percent": "Percent",
-    "reward": "Reward",
-    "time": "Time"
+    "title-empty": "Nėra balsų",
+    "voter": "Balsuotojas",
+    "percent": "Procentai",
+    "reward": "Atlygis",
+    "time": "Laikas"
   },
   "entry": {
-    "via-app": "via <span class=\"app-name\">{{app}}</span>",
-    "comment-entry-title": "You are viewing a single comment's thread from: ",
-    "comment-entry-go-root": "View the full context",
+    "via-app": "per <span class=\"app-name\">{{app}}</span>",
+    "comment-entry-title": "Jūs skaitote komentarą iš: ",
+    "comment-entry-go-root": "Peržiūrėti visą kontekstą",
     "comment-entry-go-parent": "View the direct parent",
     "show-history": "Show edit history",
     "hidden-warning": "This post was hidden due to low ratings."
@@ -214,27 +214,27 @@
   },
   "community-role-edit": {
     "title": "Set user role",
-    "username": "Username",
-    "role": "Role",
-    "user-not-found": "The user does not exist!",
+    "username": "Vartotojo vardas",
+    "role": "Rolė",
+    "user-not-found": "Toks vartojas neegzistuoja!",
     "explanations": "<h3>Role Permissions</h3><p><strong>Owner</strong> - assign admins</p><p><strong>Admin</strong> - edit settings, assign mods</p><p><strong>Moderator</strong> - mute, pin, set user titles</p><p><strong>Member</strong> - listed on leadership team</p><p><strong>Guest</strong> - default; can post and comment</p><p><strong>Muted</strong> - new posts automatically muted</p>"
   },
   "community-settings": {
-    "dialog-title": "Community Settings",
-    "title": "Title",
-    "about": "About",
-    "lang": "Language",
-    "description": "Description",
-    "rules": "Rules",
+    "dialog-title": "Bendruomenės Nustatymai",
+    "title": "Pavadinimas",
+    "about": "Apie",
+    "lang": "Kalba",
+    "description": "Aprašmas",
+    "rules": "Taisyklės",
     "rules-help": "One per line"
   },
   "communities": {
-    "title": "Communities",
+    "title": "Bendruomenės",
     "description": "Best online, decentralized, immutable, rewarding communities",
     "n-subscribers": "{{n}} subscribers",
     "n-authors": "{{n}} posters",
     "n-posts": "{{n}} posts",
-    "admins": "admins:",
+    "admins": "administratoriai:",
     "sort-hot": "Hot",
     "sort-rank": "Rank",
     "sort-subs": "Subscribers",
