@@ -142,17 +142,17 @@
     "title-n": "{{n}} Votes",
     "title-empty": "No Votes",
     "voter": "Voter",
-    "percent": "Percent",
-    "reward": "Reward",
-    "time": "Time"
+    "percent": "Persen",
+    "reward": "Imbalan",
+    "time": "Waktu"
   },
   "entry": {
-    "via-app": "via <span class=\"app-name\">{{app}}</span>",
-    "comment-entry-title": "You are viewing a single comment's thread from: ",
+    "via-app": "melalui <span class=\"app-name\">{{app}}</span>",
+    "comment-entry-title": "Anda melihat sebuah komentar tunggal dari: ",
     "comment-entry-go-root": "View the full context",
     "comment-entry-go-parent": "View the direct parent",
-    "show-history": "Show edit history",
-    "hidden-warning": "This post was hidden due to low ratings."
+    "show-history": "Tampilkan riwayat edit",
+    "hidden-warning": "Posting ini tersembunyi dikarenakan peringkat rendah."
   },
   "edit-history": {
     "title": "Edit History",
