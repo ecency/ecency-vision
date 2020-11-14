@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React, {Component} from "react";
 
-import {Button, FormControl} from "react-bootstrap";
+import {Button} from "react-bootstrap";
 
 import {Global} from "../../store/global/types";
 import {User} from "../../store/users/types";
@@ -8,8 +8,8 @@ import {ActiveUser} from "../../store/active-user/types";
 import {ToggleType, UI} from "../../store/ui/types";
 import {Account} from "../../store/accounts/types";
 
-import LoginRequired from "../login-required";
 import KeyOrHotDialog from "../key-or-hot-dialog";
+import LoginRequired from "../login-required";
 import {error} from "../feedback";
 
 import {formatError, witnessProxy, witnessProxyHot, witnessProxyKc} from "../../api/operations";
@@ -27,17 +27,16 @@ interface Props {
     deleteUser: (username: string) => void;
     toggleUIProp: (what: ToggleType) => void;
     setSigningKey: (key: string) => void;
+    username: string;
     onSuccess: () => void;
 }
 
 interface State {
-    username: string;
     inProgress: boolean;
 }
 
-export class WitnessesProxy extends Component<Props, State> {
+export class WitnessesActiveProxy extends Component<Props, State> {
     state: State = {
-        username: '',
         inProgress: false
     }
 
@@ -52,10 +51,6 @@ export class WitnessesProxy extends Component<Props, State> {
             this.setState(state, cb);
         }
     };
-
-    usernameChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
-        this.stateSet({username: e.target.value.trim()});
-    }
 
     proxy = (fn: any, args: any[]) => {
         const {onSuccess} = this.props;
@@ -76,23 +71,23 @@ export class WitnessesProxy extends Component<Props, State> {
     }
 
     render() {
-        const {activeUser} = this.props;
-        const {username, inProgress} = this.state;
+        const {inProgress} = this.state;
+        const {activeUser, username} = this.props;
 
-        const btn = <Button disabled={inProgress}>{_t("witnesses-page.set-proxy")}</Button>;
+        const btn = <Button disabled={inProgress}>{_t("witnesses-page.remove-proxy")}</Button>;
         const theBtn = activeUser ?
             KeyOrHotDialog({
                 ...this.props,
                 activeUser: activeUser!,
                 children: btn,
                 onKey: (key) => {
-                    this.proxy(witnessProxy, [activeUser!.username, key, username]);
+                    this.proxy(witnessProxy, [activeUser!.username, key, '']);
                 },
                 onHot: () => {
-                    this.proxy(witnessProxyHot, [activeUser!.username, username]);
+                    this.proxy(witnessProxyHot, [activeUser!.username, '']);
                 },
                 onKc: () => {
-                    this.proxy(witnessProxyKc, [activeUser!.username, username]);
+                    this.proxy(witnessProxyKc, [activeUser!.username, '']);
                 }
             }) :
             LoginRequired({
@@ -100,21 +95,15 @@ export class WitnessesProxy extends Component<Props, State> {
                 children: btn
             });
 
-        return <div className="witnesses-proxy">
+        return <div className="witnesses-active-proxy">
             <p className="description">
-                {_t("witnesses-page.proxy-exp")}
+                {_t("witnesses-page.proxy-active-exp")}
             </p>
             <div className="proxy-form">
-                <div className="txt-username">
-                    <FormControl
-                        type="text"
-                        placeholder={_t("witnesses-page.username-placeholder")}
-                        value={username}
-                        maxLength={20}
-                        onChange={this.usernameChanged}
-                        disabled={inProgress}/>
+                <div className="current-proxy">
+                    {_t("witnesses-page.current-proxy", {n: username})}
                 </div>
-                <div>{theBtn}</div>
+                {theBtn}
             </div>
         </div>
     }
@@ -132,8 +121,9 @@ export default (p: Props) => {
         deleteUser: p.deleteUser,
         toggleUIProp: p.toggleUIProp,
         setSigningKey: p.setSigningKey,
+        username: p.username,
         onSuccess: p.onSuccess
     }
 
-    return <WitnessesProxy {...props} />
+    return <WitnessesActiveProxy {...props} />
 }

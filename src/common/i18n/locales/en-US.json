@@ -601,7 +601,7 @@
     "proxy-exp": "You can also choose a proxy that will vote for witnesses for you. This will reset your current witness selection.",
     "set-proxy": "Set Proxy",
     "proxy-active-exp": "You have set a voting proxy. If you would like to re-enable manual voting, please clear your proxy.",
-    "current-proxy": "Your current proxy is: <strong>{n}</strong>",
+    "current-proxy": "Your current proxy is: {{n}}",
     "remove-proxy": "Clear Proxy",
     "proxy-removed": "Proxy is cleared",
     "proxy-created": "@{n} has set as proxy"

@@ -23,7 +23,7 @@ import EntryLink, {PartialEntry} from "../components/entry-link";
 import WitnessVoteBtn from "../components/witness-vote-btn";
 import WitnessesExtra from "../components/witnesses-extra"
 import WitnessesProxy from "../components/witnesses-proxy"
-
+import WitnessesActiveProxy from "../components/witnesses-active-proxy";
 
 import {getWitnessesByVote} from "../api/hive";
 import {getAccount} from "../api/hive";
@@ -276,7 +276,7 @@ class WitnessesPage extends Component<PageProps, State> {
                     {(() => {
                         if (loading) {
                             return <>
-                                <div className={`page-header loading`}>
+                                <div className="page-header loading">
                                     <div className="main-title">
                                         {_t('witnesses-page.title')}
                                     </div>
@@ -285,19 +285,22 @@ class WitnessesPage extends Component<PageProps, State> {
                             </>
                         }
 
-                        /*
                         if (proxy) {
                             return <>
-                                <div className={`page-header loading`}>
+                                <div className="page-header">
                                     <div className="main-title">
                                         {_t('witnesses-page.title')}
                                     </div>
                                 </div>
+                                <WitnessesActiveProxy
+                                    {...this.props}
+                                    username={proxy}
+                                    onSuccess={() => {
 
+                                    }}
+                                />
                             </>
                         }
-
-                         */
 
                         return <>
                             <div className="page-header">
