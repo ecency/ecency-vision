@@ -168,6 +168,7 @@ class WitnessesPage extends Component<PageProps, State> {
         //  Meta config
         const metaProps = {
             title: _t("witnesses.page-title"),
+            description: _t("witnesses.page-description"),
         };
 
         const {global, activeUser} = this.props;
@@ -299,6 +300,9 @@ class WitnessesPage extends Component<PageProps, State> {
                                         this.stateSet({proxy: null});
                                     }}
                                 />
+                                <div className="page-footer">
+                                    {_t('witnesses.page-description')}
+                                </div>
                             </>
                         }
 
@@ -332,6 +336,9 @@ class WitnessesPage extends Component<PageProps, State> {
                                         this.stateSet({proxy: username, witnesses: []});
                                     }
                                 })}
+                            </div>
+                            <div className="page-footer">
+                                {_t('witnesses.page-description')}
                             </div>
                         </>
                     })()}

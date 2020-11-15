@@ -39,6 +39,15 @@
       }
     }
   }
+  .page-footer {
+    @include themify(day) {
+      color: $steel-grey;
+    }
+
+    @include themify(night) {
+      color: $powder-blue;
+    }
+  }
 
   .witnesses-table {
     margin-bottom: 30px;
