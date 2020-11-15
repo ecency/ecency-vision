@@ -329,7 +329,7 @@ class WitnessesPage extends Component<PageProps, State> {
                                 {WitnessesProxy({
                                     ...this.props,
                                     onDone: (username) => {
-                                        this.stateSet({proxy: username});
+                                        this.stateSet({proxy: username, witnesses: []});
                                     }
                                 })}
                             </div>
