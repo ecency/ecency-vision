@@ -666,8 +666,8 @@
     "new-version-available": "New version is available",
     "update": "Update",
     "dismiss": "Dismiss",
-    "downloading": "Downloading new version...",
-    "download-completed": "Download is completed",
-    "restart": "Restart"
+    "downloading": "Neue Version herunterladen...",
+    "download-completed": "Download ist abgeschlossen",
+    "restart": "Neustarten"
   }
 }
