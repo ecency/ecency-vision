@@ -130,11 +130,11 @@ class EntryIndexPage extends Component<PageProps> {
 
         if (tag) {
             if (tag.startsWith('@')) {
-                title = `${tag} / ${filter}`;
+                title = `${tag}'s ${filter} on decentralized web`;
                 description = _t("entry-index.description-user-feed", {u: tag});
                 canonical = `${defaults.base}/@${tag}/${filter}`;
             } else {
-                title = `#${tag} / ${filter}`;
+                title = `latest #${tag} ${filter} topics on internet`;
                 description = _t("entry-index.description-tag", {f: fC, t: tag});
 
                 url = `/${filter}/${tag}`;
