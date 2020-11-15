@@ -81,7 +81,6 @@ export class WitnessesActiveProxy extends Component<Props, State> {
         const {activeUser, username} = this.props;
 
         const spinner = <Spinner animation="grow" variant="light" size="sm" style={{marginRight: "6px"}}/>;
-
         const btn = <Button disabled={inProgress}>{inProgress && spinner}{_t("witnesses.proxy-active-btn-label")}</Button>;
         const theBtn = activeUser ?
             KeyOrHotDialog({

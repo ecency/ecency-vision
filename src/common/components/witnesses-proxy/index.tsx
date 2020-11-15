@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import {Button, FormControl} from "react-bootstrap";
+import {Button, FormControl, Spinner} from "react-bootstrap";
 
 import {Global} from "../../store/global/types";
 import {User} from "../../store/users/types";
@@ -80,7 +80,8 @@ export class WitnessesProxy extends Component<Props, State> {
         const {activeUser} = this.props;
         const {username, inProgress} = this.state;
 
-        const btn = <Button disabled={inProgress}>{_t("witnesses.proxy-btn-label")}</Button>;
+        const spinner = <Spinner animation="grow" variant="light" size="sm" style={{marginRight: "6px"}}/>;
+        const btn = <Button disabled={inProgress}>{inProgress && spinner}{_t("witnesses.proxy-btn-label")}</Button>;
         const theBtn = activeUser ?
             KeyOrHotDialog({
                 ...this.props,
