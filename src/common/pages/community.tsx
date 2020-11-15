@@ -194,7 +194,7 @@ class CommunityPage extends Component<Props, State> {
 
         //  Meta config
         const fC = capitalize(filter);
-        const title = `${community.title.trim()} community ${filter} topics`;
+        const title = `${community.title.trim()} community ${filter} list`;
         const description = _t("community.page-description", {f: `${fC} ${community.title.trim()}`});
         const url = `/${filter}/${community.name}`;
         const rss = `${defaults.base}/${filter}/${community.name}/rss.xml`;
