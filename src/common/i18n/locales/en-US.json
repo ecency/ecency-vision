@@ -582,7 +582,7 @@
     "sort-newest": "Date"
   },
   "witnesses": {
-    "page-title": "Witnesses Voting",
+    "page-title": "Witnesses | Consensus block producers selection",
     "remaining": "{{n}} of {{max}} votes remaining",
     "list-rank": "Rank",
     "list-witness": "Witness",
