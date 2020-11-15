@@ -135,13 +135,13 @@
     "description-user-feed": "{{u}} pengumpan"
   },
   "list-style": {
-    "title": "Toggle list style"
+    "title": "Gaya daftar kotak"
   },
   "entry-votes": {
     "title": "1 Vote",
-    "title-n": "{{n}} Votes",
-    "title-empty": "No Votes",
-    "voter": "Voter",
+    "title-n": "{{n}} Vote",
+    "title-empty": "Tidak ada Vote",
+    "voter": "Pemilih",
     "percent": "Persen",
     "reward": "Imbalan",
     "time": "Waktu"
@@ -149,8 +149,8 @@
   "entry": {
     "via-app": "melalui <span class=\"app-name\">{{app}}</span>",
     "comment-entry-title": "Anda melihat sebuah komentar tunggal dari: ",
-    "comment-entry-go-root": "View the full context",
-    "comment-entry-go-parent": "View the direct parent",
+    "comment-entry-go-root": "Lihat konteks lengkapnya",
+    "comment-entry-go-parent": "Lihat sumber utamanya",
     "show-history": "Tampilkan riwayat edit",
     "hidden-warning": "Posting ini tersembunyi dikarenakan peringkat rendah."
   },
@@ -160,15 +160,15 @@
     "version": "Versi {{n}}"
   },
   "similar-entries": {
-    "title": "Recent posts by @{{n}}"
+    "title": "Postingan terbaru dari @{{n}}"
   },
   "comment": {
-    "body-placeholder": "Write your reply here",
-    "preview": "Preview"
+    "body-placeholder": "Tulis balasan Anda disini",
+    "preview": "Tinjauan"
   },
   "discussion": {
-    "join": "Join the conversion now",
-    "btn-join": "Join",
+    "join": "Bergabunglah dengan obrolan sekarang",
+    "btn-join": "Bergabunglah",
     "replies": "1 Comment",
     "n-replies": "{{n}} Comments",
     "order": "Sort Order",
