@@ -2,20 +2,14 @@ import React, {Component} from "react";
 
 import {connect} from "react-redux";
 
-import {_t} from "../i18n";
-
 import {pathToRegexp} from "path-to-regexp";
-
-import routes from "../../common/routes";
-
-import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
 import Meta from "../components/meta";
 import Feedback from "../components/feedback";
 import ScrollToTop from "../components/scroll-to-top";
 import Theme from "../components/theme";
-import NavBarElectron from "../../desktop/app/components/navbar";
 import NavBar from "../components/navbar";
+import NavBarElectron from "../../desktop/app/components/navbar";
 import LinearProgress from "../components/linear-progress";
 import ProfileLink from "../components/profile-link";
 import UserAvatar from "../components/user-avatar";
@@ -25,10 +19,15 @@ import WitnessesExtra from "../components/witnesses-extra"
 import WitnessesProxy from "../components/witnesses-proxy"
 import WitnessesActiveProxy from "../components/witnesses-active-proxy";
 
-import {getWitnessesByVote} from "../api/hive";
-import {getAccount} from "../api/hive";
+import routes from "../../common/routes";
+
+import {getAccount, getWitnessesByVote, Witness} from "../api/hive";
+
+import {_t} from "../i18n";
 
 import {linkSvg, openInNewSvg} from "../img/svg";
+
+import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
 interface WitnessTransformed {
     rank: number;
@@ -42,6 +41,48 @@ interface WitnessTransformed {
     version: string;
     url: string;
     parsedUrl?: PartialEntry;
+}
+
+const transform = (list: Witness[]): WitnessTransformed[] => {
+    return list.map((x, i) => {
+        const rank = i + 1;
+
+        const {props} = x;
+
+        const {total_missed: miss, url} = x;
+        const fee = props.account_creation_fee;
+        const feed = x.hbd_exchange_rate.base;
+        const {maximum_block_size: blockSize} = props;
+        const {available_witness_account_subsidies: acAvail} = x;
+        const {account_subsidy_budget: acBudget} = props;
+        const {running_version: version} = x;
+
+        let parsedUrl;
+        const oUrl = new URL(url, 'https://ecency.com');
+        const ex = pathToRegexp(routes.ENTRY).exec(oUrl.pathname);
+
+        if (ex) {
+            parsedUrl = {
+                category: ex[1],
+                author: ex[2].replace("@", ""),
+                permlink: ex[3]
+            }
+        }
+
+        return {
+            rank,
+            name: x.owner,
+            miss,
+            fee,
+            feed,
+            blockSize,
+            acAvail: Math.round(acAvail / 10000),
+            acBudget,
+            version,
+            url,
+            parsedUrl
+        };
+    });
 }
 
 interface State {
@@ -62,7 +103,6 @@ class WitnessesPage extends Component<PageProps, State> {
     _mounted: boolean = true;
 
     componentDidMount() {
-
         this.load();
     }
 
@@ -92,49 +132,9 @@ class WitnessesPage extends Component<PageProps, State> {
 
     fetchWitnesses = () => {
         getWitnessesByVote().then(resp => {
-            const witnesses: WitnessTransformed[] = resp.map((x, i) => {
-                const rank = i + 1;
-
-                const {props} = x;
-
-                const {total_missed: miss, url} = x;
-                const fee = props.account_creation_fee;
-                const feed = x.hbd_exchange_rate.base;
-                const {maximum_block_size: blockSize} = props;
-                const {available_witness_account_subsidies: acAvail} = x;
-                const {account_subsidy_budget: acBudget} = props;
-                const {running_version: version} = x;
-
-                let parsedUrl;
-                const oUrl = new URL(url, 'https://ecency.com');
-                const ex = pathToRegexp(routes.ENTRY).exec(oUrl.pathname);
-
-                if (ex) {
-                    parsedUrl = {
-                        category: ex[1],
-                        author: ex[2].replace("@", ""),
-                        permlink: ex[3]
-                    }
-                }
-
-                return {
-                    rank,
-                    name: x.owner,
-                    miss,
-                    fee,
-                    feed,
-                    blockSize,
-                    acAvail: Math.round(acAvail / 10000),
-                    acBudget,
-                    version,
-                    url,
-                    parsedUrl
-                };
-            });
-
-            this.stateSet({witnesses});
+            this.stateSet({witnesses: transform(resp)});
         }).finally(() => {
-            this.setState({loading: false});
+            this.stateSet({loading: false});
         });
     }
 
@@ -143,13 +143,13 @@ class WitnessesPage extends Component<PageProps, State> {
         if (activeUser) {
             getAccount(activeUser.username).then(resp => {
                 const {witness_votes: witnessVotes, proxy} = resp;
-                this.setState({witnessVotes: witnessVotes || [], proxy: proxy || null});
+                this.stateSet({witnessVotes: witnessVotes || [], proxy: proxy || null});
             });
 
             return;
         }
 
-        this.setState({witnessVotes: [], proxy: null});
+        this.stateSet({witnessVotes: [], proxy: null});
     };
 
     addWitness = (name: string) => {
@@ -295,8 +295,8 @@ class WitnessesPage extends Component<PageProps, State> {
                                 <WitnessesActiveProxy
                                     {...this.props}
                                     username={proxy}
-                                    onSuccess={() => {
-
+                                    onDone={() => {
+                                        this.stateSet({proxy: null});
                                     }}
                                 />
                             </>
@@ -328,8 +328,8 @@ class WitnessesPage extends Component<PageProps, State> {
                                 <div className="flex-spacer"/>
                                 {WitnessesProxy({
                                     ...this.props,
-                                    onSuccess: () => {
-                                        console.log("done")
+                                    onDone: (username) => {
+                                        this.stateSet({proxy: username});
                                     }
                                 })}
                             </div>

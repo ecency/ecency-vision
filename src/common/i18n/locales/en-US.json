@@ -590,9 +590,6 @@
     "url": "URL",
     "fee": "Fee",
     "feed": "Feed",
-    "block-size": "Block size",
-    "ac-avail": "AC avail",
-    "ac-budget": "AC budget",
     "version": "Version",
     "voted": "@{n} voted",
     "vote-removed": "vote removed for @{n}",
@@ -605,6 +602,9 @@
     "remove-proxy": "Clear Proxy",
     "proxy-removed": "Proxy is cleared",
     "proxy-created": "@{n} has set as proxy"
+  },
+  "witnesses-list": {
+
   },
   "gallery": {
     "title": "Gallery",

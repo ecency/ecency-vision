@@ -206,7 +206,7 @@ export const getVestingDelegations = (
     limit: number = 50
 ): Promise<DelegatedVestingShare[]> => client.database.call("get_vesting_delegations", [username, from, limit]);
 
-interface Witness {
+export interface Witness {
     total_missed: number;
     url: string;
     props: {

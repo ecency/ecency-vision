@@ -27,7 +27,7 @@ interface Props {
     deleteUser: (username: string) => void;
     toggleUIProp: (what: ToggleType) => void;
     setSigningKey: (key: string) => void;
-    onSuccess: () => void;
+    onDone: (username: string) => void;
 }
 
 interface State {
@@ -58,7 +58,8 @@ export class WitnessesProxy extends Component<Props, State> {
     }
 
     proxy = (fn: any, args: any[]) => {
-        const {onSuccess} = this.props;
+        const {username} = this.state;
+        const {onDone} = this.props;
         const fnArgs = [...args]
         const call = fn(...fnArgs);
 
@@ -66,7 +67,7 @@ export class WitnessesProxy extends Component<Props, State> {
             this.stateSet({inProgress: true});
 
             call.then(() => {
-                onSuccess();
+                onDone(username);
             }).catch((e: any) => {
                 error(formatError(e));
             }).finally(() => {
@@ -132,7 +133,7 @@ export default (p: Props) => {
         deleteUser: p.deleteUser,
         toggleUIProp: p.toggleUIProp,
         setSigningKey: p.setSigningKey,
-        onSuccess: p.onSuccess
+        onDone: p.onDone
     }
 
     return <WitnessesProxy {...props} />
