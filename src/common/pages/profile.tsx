@@ -206,7 +206,7 @@ class ProfilePage extends Component<Props, State> {
         //  Meta config
         const url = `${defaults.base}/@${username}${section ? `/${section}` : ""}`;
         const metaProps = {
-            title: `${account.profile?.name || account.name} ${section ? `${section}` : ""}`,
+            title: `${account.profile?.name || account.name}'s ${section ? `${section}` : ""} on decentralized web`,
             description: `${account.profile?.about ? `${account.profile?.about} ${section ? `${section}` : ""}` : `${(account.profile?.name || account.name)} ${section ? `${section}` : ""}` }` || "",
             url: `/@${username}${section ? `/${section}` : ""}`,
             canonical: url,
