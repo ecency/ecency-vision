@@ -61,13 +61,13 @@ export class WitnessesExtra extends Component<Props, State> {
 
         return <div className="extra-witnesses">
             <p className="description">
-                {_t("witnesses-page.extra-witnesses-exp")}
+                {_t("witnesses.extra-description")}
             </p>
             <div className="vote-form">
                 <div className="txt-username">
                     <FormControl
                         type="text"
-                        placeholder={_t("witnesses-page.username-placeholder")}
+                        placeholder={_t("witnesses.username-placeholder")}
                         value={username}
                         maxLength={20}
                         onChange={this.usernameChanged}

@@ -167,7 +167,7 @@ class WitnessesPage extends Component<PageProps, State> {
     render() {
         //  Meta config
         const metaProps = {
-            title: _t("witnesses-page.title"),
+            title: _t("witnesses.page-title"),
         };
 
         const {global, activeUser} = this.props;
@@ -178,25 +178,25 @@ class WitnessesPage extends Component<PageProps, State> {
             <thead>
             <tr>
                 <th className="col-rank">
-                    {_t("witnesses-page.rank")}
+                    {_t("witnesses.list-rank")}
                 </th>
                 <th>
-                    {_t("witnesses-page.witness")}
+                    {_t("witnesses.list-witness")}
                 </th>
                 <th className="col-miss">
-                    {_t("witnesses-page.miss")}
+                    {_t("witnesses.list-miss")}
                 </th>
                 <th className="col-url">
-                    {_t("witnesses-page.url")}
+                    {_t("witnesses.list-url")}
                 </th>
                 <th className="col-fee">
-                    {_t("witnesses-page.fee")}
+                    {_t("witnesses.list-fee")}
                 </th>
                 <th className="col-feed">
-                    {_t("witnesses-page.feed")}
+                    {_t("witnesses.list-feed")}
                 </th>
                 <th className="col-version">
-                    {_t("witnesses-page.version")}
+                    {_t("witnesses.list-version")}
                 </th>
             </tr>
             </thead>
@@ -278,7 +278,7 @@ class WitnessesPage extends Component<PageProps, State> {
                             return <>
                                 <div className="page-header loading">
                                     <div className="main-title">
-                                        {_t('witnesses-page.title')}
+                                        {_t('witnesses.page-title')}
                                     </div>
                                 </div>
                                 <LinearProgress/>
@@ -289,7 +289,7 @@ class WitnessesPage extends Component<PageProps, State> {
                             return <>
                                 <div className="page-header">
                                     <div className="main-title">
-                                        {_t('witnesses-page.title')}
+                                        {_t('witnesses.page-title')}
                                     </div>
                                 </div>
                                 <WitnessesActiveProxy
@@ -305,11 +305,11 @@ class WitnessesPage extends Component<PageProps, State> {
                         return <>
                             <div className="page-header">
                                 <div className="main-title">
-                                    {_t('witnesses-page.title')}
+                                    {_t('witnesses.page-title')}
                                 </div>
                                 {activeUser && (
                                     <div className="remaining">
-                                        {_t('witnesses-page.remaining', {n: 30 - witnessVotes.length, max: 30})}
+                                        {_t('witnesses.remaining', {n: 30 - witnessVotes.length, max: 30})}
                                     </div>
                                 )}
                             </div>

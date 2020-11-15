@@ -581,30 +581,23 @@
     "sort-relevance": "Relevance",
     "sort-newest": "Date"
   },
-  "witnesses-page": {
-    "title": "Witnesses Voting",
+  "witnesses": {
+    "page-title": "Witnesses Voting",
     "remaining": "{{n}} of {{max}} votes remaining",
-    "rank": "Rank",
-    "witness": "Witness",
-    "miss": "Miss",
-    "url": "URL",
-    "fee": "Fee",
-    "feed": "Feed",
-    "version": "Version",
-    "voted": "@{n} voted",
-    "vote-removed": "vote removed for @{n}",
+    "list-rank": "Rank",
+    "list-witness": "Witness",
+    "list-miss": "Miss",
+    "list-url": "URL",
+    "list-fee": "Fee",
+    "list-feed": "Feed",
+    "list-version": "Version",
     "username-placeholder": "username",
-    "extra-witnesses-exp": "Enter account name below to vote for a witness outside of Top 50",
-    "proxy-exp": "You can also choose a proxy that will vote for witnesses for you. This will reset your current witness selection.",
-    "set-proxy": "Set Proxy",
-    "proxy-active-exp": "You have set a voting proxy. If you would like to re-enable manual voting, please clear your proxy.",
-    "current-proxy": "Your current proxy is: {{n}}",
-    "remove-proxy": "Clear Proxy",
-    "proxy-removed": "Proxy is cleared",
-    "proxy-created": "@{n} has set as proxy"
-  },
-  "witnesses-list": {
-
+    "extra-description": "Enter account name below to vote for a witness outside of Top 50",
+    "proxy-description": "You can also choose a proxy that will vote for witnesses for you. This will reset your current witness selection.",
+    "proxy-btn-label": "Set Proxy",
+    "proxy-active-description": "You have set a voting proxy. If you would like to re-enable manual voting, please clear your proxy.",
+    "proxy-active-current": "Your current proxy is",
+    "proxy-active-btn-label": "Clear Proxy"
   },
   "gallery": {
     "title": "Gallery",

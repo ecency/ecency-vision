@@ -80,7 +80,7 @@ export class WitnessesProxy extends Component<Props, State> {
         const {activeUser} = this.props;
         const {username, inProgress} = this.state;
 
-        const btn = <Button disabled={inProgress}>{_t("witnesses-page.set-proxy")}</Button>;
+        const btn = <Button disabled={inProgress}>{_t("witnesses.proxy-btn-label")}</Button>;
         const theBtn = activeUser ?
             KeyOrHotDialog({
                 ...this.props,
@@ -103,13 +103,13 @@ export class WitnessesProxy extends Component<Props, State> {
 
         return <div className="witnesses-proxy">
             <p className="description">
-                {_t("witnesses-page.proxy-exp")}
+                {_t("witnesses.proxy-description")}
             </p>
             <div className="proxy-form">
                 <div className="txt-username">
                     <FormControl
                         type="text"
-                        placeholder={_t("witnesses-page.username-placeholder")}
+                        placeholder={_t("witnesses.username-placeholder")}
                         value={username}
                         maxLength={20}
                         onChange={this.usernameChanged}

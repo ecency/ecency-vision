@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 
-import {Button} from "react-bootstrap";
+import {Button, Spinner} from "react-bootstrap";
+
+import {History} from "history";
 
 import {Global} from "../../store/global/types";
 import {User} from "../../store/users/types";
@@ -10,13 +12,16 @@ import {Account} from "../../store/accounts/types";
 
 import KeyOrHotDialog from "../key-or-hot-dialog";
 import LoginRequired from "../login-required";
+import ProfileLink from "../profile-link";
 import {error} from "../feedback";
 
 import {formatError, witnessProxy, witnessProxyHot, witnessProxyKc} from "../../api/operations";
 
 import {_t} from "../../i18n";
 
+
 interface Props {
+    history: History;
     global: Global;
     users: User[];
     activeUser: ActiveUser | null;
@@ -25,6 +30,7 @@ interface Props {
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data?: Account) => void;
     deleteUser: (username: string) => void;
+    addAccount: (data: Account) => void;
     toggleUIProp: (what: ToggleType) => void;
     setSigningKey: (key: string) => void;
     username: string;
@@ -74,7 +80,9 @@ export class WitnessesActiveProxy extends Component<Props, State> {
         const {inProgress} = this.state;
         const {activeUser, username} = this.props;
 
-        const btn = <Button disabled={inProgress}>{_t("witnesses-page.remove-proxy")}</Button>;
+        const spinner = <Spinner animation="grow" variant="light" size="sm" style={{marginRight: "6px"}}/>;
+
+        const btn = <Button disabled={inProgress}>{inProgress && spinner}{_t("witnesses.proxy-active-btn-label")}</Button>;
         const theBtn = activeUser ?
             KeyOrHotDialog({
                 ...this.props,
@@ -97,11 +105,16 @@ export class WitnessesActiveProxy extends Component<Props, State> {
 
         return <div className="witnesses-active-proxy">
             <p className="description">
-                {_t("witnesses-page.proxy-active-exp")}
+                {_t("witnesses.proxy-active-description")}
             </p>
             <div className="proxy-form">
                 <div className="current-proxy">
-                    {_t("witnesses-page.current-proxy", {n: username})}
+                    {_t("witnesses.proxy-active-current")}{" "}{
+                    ProfileLink({
+                        ...this.props, username,
+                        children: <span>@{username}</span>
+                    })
+                }
                 </div>
                 {theBtn}
             </div>
@@ -111,6 +124,7 @@ export class WitnessesActiveProxy extends Component<Props, State> {
 
 export default (p: Props) => {
     const props: Props = {
+        history: p.history,
         global: p.global,
         users: p.users,
         activeUser: p.activeUser,
@@ -119,6 +133,7 @@ export default (p: Props) => {
         setActiveUser: p.setActiveUser,
         updateActiveUser: p.updateActiveUser,
         deleteUser: p.deleteUser,
+        addAccount: p.addAccount,
         toggleUIProp: p.toggleUIProp,
         setSigningKey: p.setSigningKey,
         username: p.username,
