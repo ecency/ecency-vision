@@ -39,7 +39,10 @@
       }
     }
   }
+
   .page-footer {
+    margin: 40px 0;
+
     @include themify(day) {
       color: $steel-grey;
     }
