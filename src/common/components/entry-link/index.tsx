@@ -9,7 +9,7 @@ import {getPost} from "../../api/bridge";
 export const makePath = (category: string, author: string, permlink: string, toReplies: boolean = false) =>
     `/${category}/@${author}/${permlink}${toReplies ? "#replies" : ""}`;
 
-interface PartialEntry {
+export interface PartialEntry {
     category: string;
     author: string;
     permlink: string;

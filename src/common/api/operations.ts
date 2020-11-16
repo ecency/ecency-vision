@@ -414,6 +414,54 @@ export const transferToVestingKc = (from: string, to: string, amount: string) =>
     return keychain.broadcast(from, [op], "Active");
 }
 
+export const witnessVote = (account: string, key: PrivateKey, witness: string, approve: boolean): Promise<TransactionConfirmation> => {
+    const op: Operation = [
+        'account_witness_vote',
+        {
+            account,
+            witness,
+            approve
+        }
+    ]
+
+    return hiveClient.broadcast.sendOperations([op], key);
+}
+
+export const witnessVoteHot = (account: string, witness: string, approve: boolean) => {
+    const webUrl = `https://hivesigner.com/sign/account-witness-vote?account=${account}&witness=${witness}&approve=${approve}&redirect_uri=https://ecency.com/witnesses`
+
+    const win = window.open(webUrl, '_blank');
+    return win!.focus();
+}
+
+export const witnessVoteKc = (account: string, witness: string, approve: boolean) => {
+    return keychain.witnessVote(account, witness, approve);
+}
+
+export const witnessProxy = (account: string, key: PrivateKey, proxy: string): Promise<TransactionConfirmation> => {
+    const op: Operation = [
+        'account_witness_proxy',
+        {
+            account,
+            proxy
+        }
+    ]
+
+    return hiveClient.broadcast.sendOperations([op], key);
+}
+
+
+export const witnessProxyHot = (account: string, proxy: string) => {
+    const webUrl = `https://hivesigner.com/sign/account-witness-proxy?account=${account}&proxy=${proxy}`
+
+    const win = window.open(webUrl, '_blank');
+    return win!.focus();
+}
+
+export const witnessProxyKc = (account: string, witness: string) => {
+    return keychain.witnessProxy(account, witness);
+}
+
 export const subscribe = (username: string, community: string): Promise<TransactionConfirmation> => {
     const client = new hs.Client({
         accessToken: getAccessToken(username),

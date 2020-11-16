@@ -467,6 +467,13 @@ exports[`(3) Should show profile edits 1`] = `
     >
       Profile Edit
     </button>
+    <a
+      className="btn btn-sm btn-primary"
+      href="/witnesses"
+      onClick={[Function]}
+    >
+      Witnesses
+    </a>
   </div>
 </div>
 `;

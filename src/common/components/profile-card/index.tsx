@@ -2,6 +2,8 @@ import React, {Component} from "react";
 
 import {History} from "history";
 
+import {Link} from "react-router-dom";
+
 import isEqual from "react-fast-compare";
 
 import moment from "moment";
@@ -184,7 +186,10 @@ export class ProfileCard extends Component<Props, State> {
                 </div>
 
                 {isMyProfile && (
-                    <div className="btn-controls"><Button size="sm" onClick={this.toggleProfileEdit}>{_t("profile.edit")}</Button></div>
+                    <div className="btn-controls">
+                        <Button size="sm" onClick={this.toggleProfileEdit}>{_t("profile.edit")}</Button>
+                        <Link className="btn btn-sm btn-primary" to="/witnesses">Witnesses</Link>
+                    </div>
                 )}
 
                 {this.state.followersList && <Followers {...this.props} account={account} onHide={this.toggleFollowers}/>}

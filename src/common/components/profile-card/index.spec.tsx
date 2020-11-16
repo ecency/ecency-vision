@@ -2,6 +2,8 @@ import React from "react";
 
 import {createBrowserHistory} from "history";
 
+import {StaticRouter} from "react-router-dom";
+
 import {Account} from "../../store/accounts/types";
 
 import ProfileCard from "./index";
@@ -33,7 +35,9 @@ it("(1) Render with not loaded data", () => {
         }
     };
 
-    const component = renderer.create(<ProfileCard {...props} />);
+    const component = renderer.create(<StaticRouter location="/" context={{}}>
+        <ProfileCard {...props} />
+    </StaticRouter>);
     expect(component.toJSON()).toMatchSnapshot();
 });
 
@@ -71,7 +75,9 @@ it("(2) Render with loaded data", () => {
         }
     };
 
-    const component = renderer.create(<ProfileCard {...props} />);
+    const component = renderer.create(<StaticRouter location="/" context={{}}>
+        <ProfileCard {...props} />
+    </StaticRouter>);
     expect(component.toJSON()).toMatchSnapshot();
 });
 
@@ -124,6 +130,8 @@ it("(3) Should show profile edits", () => {
         }
     };
 
-    const component = renderer.create(<ProfileCard {...props} />);
+    const component = renderer.create(<StaticRouter location="/" context={{}}>
+        <ProfileCard {...props} />
+    </StaticRouter>);
     expect(component.toJSON()).toMatchSnapshot();
 });

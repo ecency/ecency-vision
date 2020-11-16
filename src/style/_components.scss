@@ -57,6 +57,7 @@
 @import '../common/components/promote';
 @import '../common/components/boost';
 @import '../common/components/key-or-hot';
+@import '../common/components/key-or-hot-dialog';
 @import '../common/components/community-card';
 @import '../common/components/community-menu';
 @import '../common/components/community-subscribers';
@@ -70,6 +71,10 @@
 @import '../common/components/pin-btn';
 @import '../common/components/mute-btn';
 @import '../common/components/search-list-item';
+@import '../common/components/witness-vote-btn';
+@import '../common/components/witnesses-extra';
+@import '../common/components/witnesses-proxy';
+@import '../common/components/witnesses-active-proxy';
 
 @import '../desktop/app/components/navbar';
 @import '../desktop/app/components/updater';
@@ -83,3 +88,4 @@
 @import '../common/pages/static';
 @import '../common/pages/discover';
 @import '../common/pages/search';
+@import '../common/pages/witnesses';
