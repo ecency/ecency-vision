@@ -582,6 +582,25 @@
     "sort-relevance": "Osuvuus",
     "sort-newest": "Päivämäärä"
   },
+  "witnesses": {
+    "page-title": "Witnesses | Consensus block producers selection",
+    "page-description": "Role of witnesses or block producers in Hive blockchain is to act as the network's governance body. Community elects them to represent their voice and each user can elect up to 30 witnesses. Top 20 witnesses are producing blocks every minute while rest remain as backup witness and gets randomized chance every minute. This role is integral part of consensus mechanism blockchain runs on and recommend user engagement to vote on trusted witnesses.",
+    "remaining": "{{n}} of {{max}} votes remaining",
+    "list-rank": "Rank",
+    "list-witness": "Witness",
+    "list-miss": "Miss",
+    "list-url": "URL",
+    "list-fee": "Fee",
+    "list-feed": "Feed",
+    "list-version": "Version",
+    "username-placeholder": "username",
+    "extra-description": "Enter account name below to vote for a witness outside of Top 50",
+    "proxy-description": "You can also choose a proxy that will vote for witnesses for you. This will reset your current witness selection.",
+    "proxy-btn-label": "Set Proxy",
+    "proxy-active-description": "You have set a voting proxy. If you would like to re-enable manual voting, please clear your proxy.",
+    "proxy-active-current": "Your current proxy is",
+    "proxy-active-btn-label": "Clear Proxy"
+  },
   "gallery": {
     "title": "Galleria",
     "copied": "Kopioitu leikepöydälle"
