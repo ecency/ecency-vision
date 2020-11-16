@@ -46,3 +46,23 @@ export const makeHsCode = async (account: string, signer: (message: string) => P
 
     return b64uEnc(JSON.stringify(messageObj));
 }
+
+export const buildHotSignUrl = (endpoint: string, params: {
+    [key: string]: string;
+}, redirect: string): any => {
+    const _params = {
+        ...params,
+        redirect_uri: `https://ecency.com/${redirect}`
+    }
+
+    const queryString = new URLSearchParams(_params).toString();
+    return `https://hivesigner.com/sign/${endpoint}?${queryString}`;
+}
+
+export const hotSign = (endpoint: string, params: {
+    [key: string]: any;
+}, redirect: string) => {
+    const webUrl = buildHotSignUrl(endpoint, params, redirect);
+    const win = window.open(webUrl, '_blank');
+    return win!.focus();
+}
