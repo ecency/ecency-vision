@@ -227,6 +227,28 @@ export const getWitnessesByVote = (
     limit: number = 50
 ): Promise<Witness[]> => client.call("condenser_api", "get_witnesses_by_vote", [from, limit]);
 
+
+export interface Proposal {
+    creator: string;
+    daily_pay: string;
+    end_date: string;
+    id: number;
+    permlink: string;
+    proposal_id: number;
+    receiver: string;
+    start_date: string;
+    subject: string;
+    total_votes: string;
+}
+
+export const getProposals = (): Promise<Proposal[]> => client.call("database_api", "list_proposals", {
+    start: [-1],
+    limit: 100,
+    order: 'by_total_votes',
+    order_direction: 'descending',
+    status: 'all'
+})
+
 export const vpMana = (account: Account): number => {
     // @ts-ignore "Account" is compatible with dhive's "ExtendedAccount"
     const calc = client.rc.calculateVPMana(account);

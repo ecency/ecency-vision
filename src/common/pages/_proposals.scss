@@ -1,0 +1,15 @@
+.proposals-page {
+  flex-direction: column;
+
+  .page-header {
+    display: flex;
+    height: 60px;
+    align-items: center;
+
+    .main-title {
+      color: $dark-sky-blue;
+      font-size: 22px;
+      font-weight: 500;
+    }
+  }
+}
