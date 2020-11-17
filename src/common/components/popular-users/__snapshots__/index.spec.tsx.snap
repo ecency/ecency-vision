@@ -7,11 +7,13 @@ exports[`(1) Render with data. 1`] = `
   <div
     className="list-header"
   >
-    <div
-      className="list-title"
-    >
-      Popular Users
-    </div>
+    <h1>
+      <div
+        className="list-title"
+      >
+        Popular Users
+      </div>
+    </h1>
     <div
       className="list-refresh"
       onClick={[Function]}

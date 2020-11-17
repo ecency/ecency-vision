@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+<div
+  className="witnesses-proxy"
+>
+  <p
+    className="description"
+  >
+    You can also choose a proxy that will vote for witnesses for you. This will reset your current witness selection.
+  </p>
+  <div
+    className="proxy-form"
+  >
+    <div
+      className="txt-username"
+    >
+      <input
+        className="form-control"
+        disabled={false}
+        maxLength={20}
+        onChange={[Function]}
+        placeholder="username"
+        type="text"
+        value=""
+      />
+    </div>
+    <div>
+      <button
+        className="btn btn-primary"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        Set Proxy
+      </button>
+    </div>
+  </div>
+</div>
+`;

@@ -104,6 +104,8 @@ export const getAccounts = (usernames: string[]): Promise<Account[]> => {
                 vesting_withdraw_rate: x.vesting_withdraw_rate,
                 to_withdraw: x.to_withdraw,
                 withdrawn: x.withdrawn,
+                witness_votes: x.witness_votes,
+                proxy: x.proxy,
                 voting_manabar: x.voting_manabar,
                 __loaded: true,
             };
@@ -203,6 +205,27 @@ export const getVestingDelegations = (
     from: string = "",
     limit: number = 50
 ): Promise<DelegatedVestingShare[]> => client.database.call("get_vesting_delegations", [username, from, limit]);
+
+export interface Witness {
+    total_missed: number;
+    url: string;
+    props: {
+        account_creation_fee: string;
+        account_subsidy_budget: number;
+        maximum_block_size: number;
+    },
+    hbd_exchange_rate: {
+        base: string;
+    },
+    available_witness_account_subsidies: number;
+    running_version: string;
+    owner: string;
+}
+
+export const getWitnessesByVote = (
+    from: string = "",
+    limit: number = 50
+): Promise<Witness[]> => client.call("condenser_api", "get_witnesses_by_vote", [from, limit]);
 
 export const vpMana = (account: Account): number => {
     // @ts-ignore "Account" is compatible with dhive's "ExtendedAccount"

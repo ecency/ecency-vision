@@ -1,0 +1,152 @@
+.witnesses-page {
+  flex-direction: column;
+  max-width: 1200px;
+  margin: auto;
+
+  .page-header {
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: $md-break) {
+      flex-direction: row;
+      align-items: center;
+      height: 60px;
+      justify-content: space-between;
+    }
+
+    .main-title {
+      color: $dark-sky-blue;
+      font-size: 22px;
+      font-weight: 500;
+      margin-bottom: 10px;
+
+      @media (min-width: $md-break) {
+        margin-bottom: 0;
+      }
+    }
+
+    .remaining {
+      margin-bottom: 20px;
+
+      @media (min-width: $md-break) {
+        margin-bottom: 0;
+      }
+
+      @include themify(day) {
+        color: $steel-grey;
+      }
+
+      @include themify(night) {
+        color: $powder-blue;
+      }
+    }
+  }
+
+  .page-footer {
+    margin: 20px 0 80px 0;
+
+    @include themify(day) {
+      color: $steel-grey;
+    }
+
+    @include themify(night) {
+      color: $powder-blue;
+    }
+  }
+
+  .witnesses-table {
+    margin-bottom: 30px;
+
+    table {
+      min-width: 840px;
+    }
+
+    .witness-rank, .witness-card, .witness-miss, .witness-link, .witness-fee, .witness-feed, .witness-version {
+      height: 40px;
+      display: flex;
+      align-items: center;
+    }
+
+    .witness-rank {
+      display: flex;
+      align-items: center;
+
+      .rank-number {
+        margin-right: 20px;
+        width: 22px;
+
+        @include themify(day) {
+          color: $warm-grey;
+        }
+      }
+    }
+
+    .witness-card {
+      .user-avatar {
+        margin-right: 10px;
+      }
+    }
+
+    .witness-link {
+      svg {
+        height: 16px;
+      }
+    }
+
+    .witness-feed,
+    .witness-version {
+      .inner {
+        border-radius: 25px;
+        color: $white;
+        font-weight: 500;
+        padding: 2px 10px;
+      }
+    }
+
+    .witness-feed {
+      .inner {
+        background: $green3;
+      }
+    }
+
+    .witness-version {
+      .inner {
+        background: $dark-sky-blue;
+      }
+    }
+
+    .col-rank {
+      width: 100px;
+    }
+
+    .col-miss {
+      width: 100px;
+    }
+
+    .col-url {
+      width: 100px;
+    }
+
+    .col-fee {
+      width: 180px;
+    }
+
+    .col-feed {
+      width: 180px !important;
+    }
+
+    .col-version {
+      width: 180px;
+    }
+  }
+
+  .witnesses-controls {
+    margin: 30px 0 20px 0;
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: $lg-break) {
+      flex-direction: row;
+    }
+  }
+}

@@ -1,0 +1,143 @@
+import React, {Component} from "react";
+
+import {Button, Spinner} from "react-bootstrap";
+
+import {History} from "history";
+
+import {Global} from "../../store/global/types";
+import {User} from "../../store/users/types";
+import {ActiveUser} from "../../store/active-user/types";
+import {ToggleType, UI} from "../../store/ui/types";
+import {Account} from "../../store/accounts/types";
+
+import KeyOrHotDialog from "../key-or-hot-dialog";
+import LoginRequired from "../login-required";
+import ProfileLink from "../profile-link";
+import {error} from "../feedback";
+
+import {formatError, witnessProxy, witnessProxyHot, witnessProxyKc} from "../../api/operations";
+
+import {_t} from "../../i18n";
+
+
+interface Props {
+    history: History;
+    global: Global;
+    users: User[];
+    activeUser: ActiveUser | null;
+    ui: UI;
+    signingKey: string;
+    setActiveUser: (username: string | null) => void;
+    updateActiveUser: (data?: Account) => void;
+    deleteUser: (username: string) => void;
+    addAccount: (data: Account) => void;
+    toggleUIProp: (what: ToggleType) => void;
+    setSigningKey: (key: string) => void;
+    username: string;
+    onDone: () => void;
+}
+
+interface State {
+    inProgress: boolean;
+}
+
+export class WitnessesActiveProxy extends Component<Props, State> {
+    state: State = {
+        inProgress: false
+    }
+
+    _mounted: boolean = true;
+
+    componentWillUnmount() {
+        this._mounted = false;
+    }
+
+    stateSet = (state: {}, cb?: () => void) => {
+        if (this._mounted) {
+            this.setState(state, cb);
+        }
+    };
+
+    proxy = (fn: any, args: any[]) => {
+        const {onDone} = this.props;
+        const fnArgs = [...args]
+        const call = fn(...fnArgs);
+
+        if (typeof call?.then === 'function') {
+            this.stateSet({inProgress: true});
+
+            call.then(() => {
+                onDone();
+            }).catch((e: any) => {
+                error(formatError(e));
+            }).finally(() => {
+                this.stateSet({inProgress: false});
+            });
+        }
+    }
+
+    render() {
+        const {inProgress} = this.state;
+        const {activeUser, username} = this.props;
+
+        const spinner = <Spinner animation="grow" variant="light" size="sm" style={{marginRight: "6px"}}/>;
+        const btn = <Button disabled={inProgress}>{inProgress && spinner}{_t("witnesses.proxy-active-btn-label")}</Button>;
+        const theBtn = activeUser ?
+            KeyOrHotDialog({
+                ...this.props,
+                activeUser: activeUser!,
+                children: btn,
+                onKey: (key) => {
+                    this.proxy(witnessProxy, [activeUser!.username, key, '']);
+                },
+                onHot: () => {
+                    this.proxy(witnessProxyHot, [activeUser!.username, '']);
+                },
+                onKc: () => {
+                    this.proxy(witnessProxyKc, [activeUser!.username, '']);
+                }
+            }) :
+            LoginRequired({
+                ...this.props,
+                children: btn
+            });
+
+        return <div className="witnesses-active-proxy">
+            <p className="description">
+                {_t("witnesses.proxy-active-description")}
+            </p>
+            <div className="proxy-form">
+                <div className="current-proxy">
+                    {_t("witnesses.proxy-active-current")}{" "}{
+                    ProfileLink({
+                        ...this.props, username,
+                        children: <span>@{username}</span>
+                    })
+                }
+                </div>
+                {theBtn}
+            </div>
+        </div>
+    }
+}
+
+export default (p: Props) => {
+    const props: Props = {
+        history: p.history,
+        global: p.global,
+        users: p.users,
+        activeUser: p.activeUser,
+        ui: p.ui,
+        signingKey: p.signingKey,
+        setActiveUser: p.setActiveUser,
+        updateActiveUser: p.updateActiveUser,
+        deleteUser: p.deleteUser,
+        addAccount: p.addAccount,
+        toggleUIProp: p.toggleUIProp,
+        setSigningKey: p.setSigningKey,
+        username: p.username,
+        onDone: p.onDone
+    }
+
+    return <WitnessesActiveProxy {...props} />
+}

@@ -14,6 +14,8 @@ import * as keychain from "../helper/keychain";
 
 import parseAsset from "../helper/parse-asset";
 
+import {hotSign} from "../helper/hive-signer";
+
 export interface MetaData {
     links?: string[];
     image?: string[];
@@ -123,7 +125,6 @@ export const deleteComment = (username: string, author: string, permlink: string
     return client.broadcast(opArray).then((r: any) => r.result)
 };
 
-
 export const vote = (username: string, author: string, permlink: string, weight: number): Promise<TransactionConfirmation> => {
     const client = new hs.Client({
         accessToken: getAccessToken(username),
@@ -222,19 +223,20 @@ export const transferPoint = (from: string, key: PrivateKey, to: string, amount:
 }
 
 export const transferPointHot = (from: string, to: string, amount: string, memo: string) => {
-    const json = JSON.stringify({
-        sender: from,
-        receiver: to,
-        amount,
-        memo
-    });
+    const params = {
+        authority: "active",
+        required_auths: `["${from}"]`,
+        required_posting_auths: "[]",
+        id: "esteem_point_transfer",
+        json: JSON.stringify({
+            sender: from,
+            receiver: to,
+            amount,
+            memo
+        }),
+    }
 
-    const webUrl = `https://hivesigner.com/sign/custom-json?authority=active&required_auths=%5B%22${from}%22%5D&required_posting_auths=%5B%5D&id=esteem_point_transfer&json=${encodeURIComponent(
-        json
-    )}&redirect_uri=https://ecency.com/@${from}/points`
-
-    const win = window.open(webUrl, '_blank');
-    return win!.focus();
+    hotSign("custom-json", params, `@${from}/points`);
 }
 
 export const transferPointKc = (from: string, to: string, amount: string, memo: string) => {
@@ -414,6 +416,58 @@ export const transferToVestingKc = (from: string, to: string, amount: string) =>
     return keychain.broadcast(from, [op], "Active");
 }
 
+export const witnessVote = (account: string, key: PrivateKey, witness: string, approve: boolean): Promise<TransactionConfirmation> => {
+    const op: Operation = [
+        'account_witness_vote',
+        {
+            account,
+            witness,
+            approve
+        }
+    ]
+
+    return hiveClient.broadcast.sendOperations([op], key);
+}
+
+export const witnessVoteHot = (account: string, witness: string, approve: boolean) => {
+    const params = {
+        account,
+        witness,
+        approve,
+    }
+
+    hotSign("account-witness-vote", params, "witnesses");
+}
+
+export const witnessVoteKc = (account: string, witness: string, approve: boolean) => {
+    return keychain.witnessVote(account, witness, approve);
+}
+
+export const witnessProxy = (account: string, key: PrivateKey, proxy: string): Promise<TransactionConfirmation> => {
+    const op: Operation = [
+        'account_witness_proxy',
+        {
+            account,
+            proxy
+        }
+    ]
+
+    return hiveClient.broadcast.sendOperations([op], key);
+}
+
+export const witnessProxyHot = (account: string, proxy: string) => {
+    const params = {
+        account,
+        proxy
+    }
+
+    hotSign("account-witness-proxy", params, "witnesses");
+}
+
+export const witnessProxyKc = (account: string, witness: string) => {
+    return keychain.witnessProxy(account, witness);
+}
+
 export const subscribe = (username: string, community: string): Promise<TransactionConfirmation> => {
     const client = new hs.Client({
         accessToken: getAccessToken(username),
@@ -458,19 +512,20 @@ export const promote = (key: PrivateKey, user: string, author: string, permlink:
 }
 
 export const promoteHot = (user: string, author: string, permlink: string, duration: number) => {
-    const json = JSON.stringify({
-        user,
-        author,
-        permlink,
-        duration
-    });
+    const params = {
+        authority: "active",
+        required_auths: `["${user}"]`,
+        required_posting_auths: "[]",
+        id: "esteem_promote",
+        json: JSON.stringify({
+            user,
+            author,
+            permlink,
+            duration
+        })
+    }
 
-    const webUrl = `https://hivesigner.com/sign/custom-json?authority=active&required_auths=%5B%22${user}%22%5D&required_posting_auths=%5B%5D&id=esteem_promote&json=${encodeURIComponent(
-        json
-    )}&redirect_uri=https://ecency.com/@${user}/points`
-
-    const win = window.open(webUrl, '_blank');
-    return win!.focus();
+    hotSign("custom-json", params, `@${user}/points`);
 }
 
 export const promoteKc = (user: string, author: string, permlink: string, duration: number) => {
@@ -503,19 +558,20 @@ export const boost = (key: PrivateKey, user: string, author: string, permlink: s
 }
 
 export const boostHot = (user: string, author: string, permlink: string, amount: string) => {
-    const json = JSON.stringify({
-        user,
-        author,
-        permlink,
-        amount
-    });
+    const params = {
+        authority: "active",
+        required_auths: `["${user}"]`,
+        required_posting_auths: "[]",
+        id: "esteem_boost",
+        json: JSON.stringify({
+            user,
+            author,
+            permlink,
+            amount
+        })
+    }
 
-    const webUrl = `https://hivesigner.com/sign/custom-json?authority=active&required_auths=%5B%22${user}%22%5D&required_posting_auths=%5B%5D&id=esteem_boost&json=${encodeURIComponent(
-        json
-    )}&redirect_uri=https://ecency.com/@${user}/points`
-
-    const win = window.open(webUrl, '_blank');
-    return win!.focus();
+    hotSign("custom-json", params, `@${user}/points`);
 }
 
 export const boostKc = (user: string, author: string, permlink: string, amount: string) => {

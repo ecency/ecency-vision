@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+<div
+  className="witness-vote-btn"
+  onClick={[Function]}
+>
+  <div
+    className="btn-witness-vote btn-up-vote"
+  >
+    <span
+      className="btn-inner"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`(2) Voted 1`] = `
+<div
+  className="witness-vote-btn"
+  onClick={[Function]}
+>
+  <div
+    className="btn-witness-vote btn-up-vote voted"
+  >
+    <span
+      className="btn-inner"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`(3) Voted and with empty witness 1`] = `
+<div
+  className="witness-vote-btn"
+  onClick={[Function]}
+>
+  <div
+    className="btn-witness-vote btn-up-vote voted disabled"
+  >
+    <span
+      className="btn-inner"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+  </div>
+</div>
+`;
