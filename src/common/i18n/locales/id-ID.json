@@ -416,74 +416,74 @@
   },
   "trx-common": {
     "insufficient-funds": "Dana tidak cukup",
-    "sign-title": "Sign transaction",
-    "sign-sub-title": "Sign your transaction",
-    "success-title": "Success",
-    "success-sub-title": "Transaction successful"
+    "sign-title": "Tandatangani transaksi",
+    "sign-sub-title": "Tandatangani transaksi Anda",
+    "success-title": "Sukses",
+    "success-sub-title": "Transaksinya berhasil"
   },
   "transactions": {
-    "title": "HISTORY",
-    "type-curation_reward": "Curation Reward",
-    "type-author_reward": "Author Reward",
-    "type-comment_benefactor_reward": "Comment Benefactor Reward",
-    "type-claim_reward_balance": "Claim rewards",
+    "title": "RIWAYAT",
+    "type-curation_reward": "Reward Kurasi",
+    "type-author_reward": "Reward Penulis",
+    "type-comment_benefactor_reward": "Reward Komentar Distributor",
+    "type-claim_reward_balance": "Klaim reward",
     "type-transfer": "Transfer",
-    "type-transfer_to_vesting": "Transfer to vesting",
-    "type-withdraw_vesting": "Withdraw vesting",
-    "type-fill_order": "Fill order"
+    "type-transfer_to_vesting": "Transfer ke vesting",
+    "type-withdraw_vesting": "Menarik vesting",
+    "type-fill_order": "Isi pesanan"
   },
   "key-or-hot": {
-    "sign": "Sign",
-    "key-placeholder": "Enter active/owner/master key",
-    "with-hivesigner": "Sign with hivesigner",
-    "with-keychain": "Sign with keychain"
+    "sign": "Masuk",
+    "key-placeholder": "Masukkan active/owner/master key",
+    "with-hivesigner": "Masuk dengan hivesigner",
+    "with-keychain": "Masuk dengan keychain"
   },
   "delegated-vesting": {
-    "title": "Delegated Hive Power"
+    "title": "Hive Power yang Didelegasikan"
   },
   "received-vesting": {
-    "title": "Received Hive Power"
+    "title": "Hive Power yang Diterima"
   },
   "friends": {
-    "followers": "Followers ({{n}})",
-    "following": "Following ({{n}})",
-    "search-placeholder": "Search users"
+    "followers": "Pengikut ({{n}})",
+    "following": "Mengikuti ({{n}})",
+    "search-placeholder": "Cari pengguna"
   },
   "follow-controls": {
-    "follow": "Follow",
-    "unFollow": "Unfollow",
-    "mute": "Mute",
-    "unMute": "Unmute"
+    "follow": "Ikuti",
+    "unFollow": "Berhenti mengikuti",
+    "mute": "Senyapkan",
+    "unMute": "Hidupkan"
   },
   "favorite-btn": {
-    "add": "Add to favorites",
-    "added": "Added to favorites",
-    "delete": "Remove from favorites",
-    "deleted": "Removed from favorites"
+    "add": "Tambahkan ke favorit",
+    "added": "Ditambahkan ke favorit",
+    "delete": "Hapus dari daftar favorit",
+    "deleted": "Dihapus dari favorit"
   },
   "editor-toolbar": {
-    "bold": "Bold",
-    "italic": "Italic",
-    "header": "Heading",
-    "code": "Code",
-    "quote": "Quote",
-    "ul": "Unordered List",
-    "ol": "Ordered List",
-    "link": "Link",
-    "image": "Image",
-    "table": "Table",
-    "table-3-col": "3 columns",
-    "table-2-col": "2 columns",
-    "table-1-col": "1 column",
-    "upload": "Upload",
-    "gallery": "Gallery",
+    "bold": "Tebal",
+    "italic": "Cetak miring",
+    "header": "Bagian Atas",
+    "code": "Kode",
+    "quote": "Kutipan",
+    "ul": "Daftar tidak berurutan",
+    "ol": "Daftar pesanan",
+    "link": "Tautan",
+    "image": "Gambar",
+    "table": "Tabel",
+    "table-3-col": "3 kolom",
+    "table-2-col": "2 kolom",
+    "table-1-col": "1 kolom",
+    "upload": "Unggah",
+    "gallery": "Galeri",
     "emoji": "Emoji",
-    "image-error": "Couldn't upload image.",
-    "image-error-size": "Image size is too large, try smaller size image again."
+    "image-error": "Tidak dapat mengunggah gambar.",
+    "image-error-size": "Ukuran gambar terlalu besar, coba masukkan ukuran gambar yang lebih kecil."
   },
   "emoji-picker": {
-    "filter-placeholder": "Filter",
-    "filter-no-match": "No match",
+    "filter-placeholder": "Penyaring",
+    "filter-no-match": "Tidak cocok",
     "recently-used": "Baru saja digunakan"
   },
   "submit": {
@@ -615,24 +615,24 @@
     "title": "Favorit"
   },
   "scroll-to-top": {
-    "title": "Scroll to Top"
+    "title": "Gulir ke Atas"
   },
   "static": {
     "about": {
-      "page-title": "About",
-      "intro-title": "What is <span>Ecency</span>",
-      "intro-content": "Ecency is beautiful and handy wrapper interface around the Hive blockchain network allowing you to create your own posts, surf your feeds, vote what you like, write comments, read replies, do all major Hive functions in your daily social surfing as well as wallet actions and other extras such as search, discover different tags etc.",
-      "faq-title": "FAQ",
-      "faqs": "All FAQs",
-      "contact-title": "Contacts",
-      "contact-blog": "Founder's blog",
-      "contact-news": "News on Hive",
-      "contact-email": "Email us"
+      "page-title": "Tentang",
+      "intro-title": "Apa itu <span>Ecency</span>",
+      "intro-content": "Ecency adalah Aplikasi antarmuka yang menarik dan praktis berjalan pada jaringan blockchain Hive yang memungkinkan Anda untuk membuat postingan Anda sendiri, menjelajahi umpan Anda, memilih apa yang Anda suka, menulis komentar, membaca balasan, melakukan semua fungsi utama Hive dalam interaksi sosial sehari-hari dan juga memiliki fungsi penyimpanan dana dan fungsi lainnya seperti pencarian, menemukan tagar berbeda, dll.",
+      "faq-title": "PERTANYAAN YANG SERING DITANYAKAN (FAQ)",
+      "faqs": "SEMUA FAQs",
+      "contact-title": "Kontak",
+      "contact-blog": "Pemilik blog",
+      "contact-news": "Berita tentang Hive",
+      "contact-email": "Kirimkan email kepada kami"
     },
     "faq": {
-      "page-title": "Ecency FAQ",
-      "page-sub-title": "Table of Contents",
-      "what-is-ecency-header": "What is Ecency?",
+      "page-title": "Pertanyaan tentang Ecency",
+      "page-sub-title": "Daftar Isi",
+      "what-is-ecency-header": "Apa itu Ecency?",
       "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based social network - powered by <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency offers uncensored, free, limitless, rewarding platform for content creators.</p><p>Project was initiated and founded by <a href=\"/@good-karma\">@good-karma</a> in August 2016 as an alternative social network. Since then project has grown to much larger group of contributors (translators, testers, developers, influencers, content creators and consumers) who helped to shape Ecency.</p><p>Ecency helps onboarding masses into Blockchain technology where users are getting paid for their time, resources and learn while enjoying social aspects of blockchain. Through ease of use, users not only learn but also become investors, innovators of the technology and community.</p>",
       "what-is-hive-header": "What is Hive?",
       "what-is-hive-body": "<p>Hive is a blockchain that was designed to be fast, feeless, decentralized, uncensored platform for Web3.0 applications, with built-in features where stake holders can earn rewards. Tokens on Hive blockchain called HIVE, HIVE DOLLARS, HIVE POWER.</p>",
