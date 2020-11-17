@@ -25,6 +25,7 @@
 
   .slider {
     flex-grow: 1;
+
     input[type="range"] {
       width: 100%;
     }
@@ -43,6 +44,11 @@
 
 .voting-controls-up,
 .voting-controls-down {
+
+  .btn-vote {
+    @include btn-vote;
+  }
+
   input[type="range"] {
     width: 100%;
     margin: 5.5px 0;
@@ -150,6 +156,7 @@
       background: $gunmetal;
     }
   }
+
   input[type="range"]::-ms-fill-upper {
     border: 0;
     border-radius: 40px;
