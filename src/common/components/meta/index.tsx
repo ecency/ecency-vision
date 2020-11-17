@@ -44,9 +44,9 @@ export default class Meta extends Component<Props> {
 
         {title && (
           <Helmet>
-            <title>{title_(title)}</title>
-            <meta property="og:title" content={title_(title)} />
-            <meta name="twitter:title" content={title_(title)} />
+            <title>{title}</title>
+            <meta property="og:title" content={title} />
+            <meta name="twitter:title" content={title} />
           </Helmet>
         )}
 

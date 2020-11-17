@@ -6,7 +6,7 @@ import defaults from "../../common/constants/defaults.json";
 
 export default (entry: Entry): string | null => {
     if (entry.json_metadata?.canonical_url) {
-        return entry.json_metadata?.canonical_url;
+        return entry.json_metadata?.canonical_url.replace("https://www.",'https://');
     }
 
     let scheme = `${defaults.base}/{category}/@{username}/{permlink}`;

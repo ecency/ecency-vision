@@ -77,9 +77,11 @@ export class PopularUsers extends Component<Props, State> {
         return (
             <div className={_c(`popular-users-list ${loading ? "loading" : ""}`)}>
                 <div className="list-header">
-                    <div className="list-title">
-                        {_t('popular-users.title')}
-                    </div>
+                    <h1>
+                        <div className="list-title">
+                            {_t('popular-users.title')}
+                        </div>
+                    </h1>
                     <div className={_c(`list-refresh ${loading ? "disabled" : ""}`)} onClick={this.shuffle}>
                         {syncSvg}
                     </div>
