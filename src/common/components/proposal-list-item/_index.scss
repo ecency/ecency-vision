@@ -1,7 +1,8 @@
 .proposal-list-item {
   padding: 16px;
   border-radius: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 16px;
+  box-shadow: $box-shadow-alt;
 
   @media (min-width: $md-break) {
     display: flex;
@@ -11,14 +12,12 @@
     color: $steel-grey;
   }
 
-  &:nth-child(odd) {
-    @include themify(day) {
-      background: $white-three;
-    }
+  @include themify(day) {
+    background: lighten($white-three, 2);
+  }
 
-    @include themify(night) {
-      background: lighten($dark-six, 4);
-    }
+  @include themify(night) {
+    background: lighten($dark-six, 4);
   }
 
   .left-side {
@@ -32,6 +31,7 @@
     .proposal-users-card {
       display: flex;
       align-items: center;
+      font-size: 90%;
 
       .users {
         margin-left: 10px;
@@ -133,100 +133,4 @@
       }
     }
   }
-
-
-  /*
-
-  &.highlighted {
-    border-top: 3px solid lighten($orange, 30);
-    border-bottom: 3px solid lighten($orange, 30);
-    border-radius: 0;
-  }
-
-  .voting,
-  .description,
-  .duration,
-  .requested,
-  .total-votes {
-    padding-right: 3px;
-  }
-
-  .voting {
-    display: flex;
-    justify-content: center;
-  }
-
-  .description {
-    .post-title {
-      font-weight: 500;
-      margin-bottom: 16px;
-      cursor: pointer;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-
-    .users {
-      font-size: 14px;
-      align-items: center;
-      display: flex;
-      margin-bottom: 16px;
-
-      .to {
-        margin-right: 10px;
-        font-weight: 300;
-      }
-
-      .user {
-        align-items: center;
-        cursor: pointer;
-        display: flex;
-        margin-right: 10px;
-
-        .user-avatar {
-          height: 24px !important;
-          margin-right: 6px;
-          width: 24px !important;
-        }
-
-        .username {
-          cursor: pointer;
-          font-weight: 400;
-        }
-      }
-    }
-
-    .status {
-      color: $white;
-      border-radius: 12px;
-      padding: 1px 4px;
-      font-size: 13px;
-      font-weight: 300;
-
-      &.active {
-        background-color: $green1;
-      }
-
-      &.expired {
-        background-color: lighten($red, 20);
-      }
-
-      &.inactive {
-        background-color: lighten($orange, 10);
-      }
-    }
-  }
-
-  .requested {
-    .daily {
-      margin-bottom: 6px;
-    }
-  }
-
-  .total-votes {
-    cursor: pointer;
-  }
-
- */
 }
