@@ -338,7 +338,7 @@ class EntryPage extends Component<Props, State> {
         const url = entryCanonical(entry) || "";
 
         const metaProps = {
-            title: `${truncate(entry.title, 60)}`,
+            title: `${truncate(entry.title, 67)}`,
             description: `${truncate(postBodySummary(entry.body, 210), 140)} by @${entry.author}`,
             url: entry.url,
             canonical: url,
