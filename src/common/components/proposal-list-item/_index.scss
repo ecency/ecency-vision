@@ -66,6 +66,7 @@
 
     .proposal-info {
       font-size: 90%;
+      margin-bottom: 16px;
 
       @media (min-width: $md-break) {
         display: flex;
@@ -108,10 +109,15 @@
         }
       }
     }
+
+    .proposal-votes {
+      .btn-votes {
+        font-weight: 500;
+      }
+    }
   }
 
   .right-side {
-
     @media (min-width: $md-break) {
       flex-shrink: 0;
       width: 140px;
@@ -122,20 +128,6 @@
 
     @media (min-width: $lg-break) {
       width: 200px;
-    }
-
-    .total-votes {
-      font-weight: 600;
-      font-size: 22px;
-
-
-      @include themify(day) {
-        color: $charcoal-grey;
-      }
-
-      @include themify(night) {
-        color: $silver;
-      }
     }
 
     .return-proposal {

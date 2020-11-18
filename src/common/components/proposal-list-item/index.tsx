@@ -20,6 +20,7 @@ import {DynamicProps} from "../../store/dynamic-props/types";
 
 import {_t} from "../../i18n";
 
+
 interface Props {
     history: History;
     global: Global;
@@ -42,8 +43,7 @@ export class ProposalListItem extends Component<Props> {
         const duration = endDate.diff(startDate, 'days');
 
         const votesHP = (Number(proposal.total_votes) / 1e12) * dynamicProps.hivePerMVests;
-        const strVotes = numeral(votesHP).format("0.0a");
-        const strVotesHPTitle = numeral(votesHP).format("0.00") + " HP";
+        const strVotes = numeral(votesHP).format("0.00,") + " HP";
 
         const dailyPayment = parseAsset(proposal.daily_pay).amount;
         const strDailyHdb = numeral(dailyPayment).format("0.0a");
@@ -104,13 +104,16 @@ export class ProposalListItem extends Component<Props> {
                             <span className="daily-pay">({_t("proposals.daily-pay", {n: strDailyHdb})}{" "}{"HBD"})</span>
                         </div>
                     </div>
+                    <div className="proposal-votes">
+                        <a href="#" className="btn-votes">{_t("proposals.votes", {n: strVotes})}</a>
+                    </div>
                 </div>
                 <div className="right-side">
                     {proposal.id === 0 && (
                         <span className="return-proposal">{_t("proposals.return-description")}</span>
                     )}
                     {proposal.id !== 0 && (
-                        <div className="total-votes" title={strVotesHPTitle}>{strVotes}</div>
+                        <div/>
                     )}
                 </div>
             </div>

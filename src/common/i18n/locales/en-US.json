@@ -607,6 +607,7 @@
     "for": "for",
     "duration-days": "{{n}} days",
     "daily-pay": "Daily {{n}}",
+    "votes": "Votes: {{n}}",
     "return-description": "This is the base return proposal. Every proposal with less votes will not receive funds."
   },
   "gallery": {
