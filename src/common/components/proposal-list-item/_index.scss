@@ -1,0 +1,232 @@
+.proposal-list-item {
+  padding: 16px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+
+  @media (min-width: $md-break) {
+    display: flex;
+  }
+
+  @include themify(day) {
+    color: $steel-grey;
+  }
+
+  &:nth-child(odd) {
+    @include themify(day) {
+      background: $white-three;
+    }
+
+    @include themify(night) {
+      background: lighten($dark-six, 4);
+    }
+  }
+
+  .left-side {
+    flex-grow: 1;
+    margin-bottom: 20px;
+
+    @media (min-width: $md-break) {
+      margin-bottom: 0;
+    }
+
+    .proposal-users-card {
+      display: flex;
+      align-items: center;
+
+      .users {
+        margin-left: 10px;
+      }
+    }
+
+    .proposal-title {
+      font-weight: 500;
+      font-size: 18px;
+      margin: 16px 0;
+
+      @media (min-width: $md-break) {
+        font-size: 22px;
+      }
+
+      a {
+        @include themify(day) {
+          color: $charcoal-grey;
+        }
+
+        @include themify(night) {
+          color: $silver;
+        }
+      }
+
+
+      .proposal-id {
+        margin-left: 6px;
+        opacity: 0.6;
+      }
+    }
+
+    .proposal-info {
+      font-size: 90%;
+
+      @media (min-width: $md-break) {
+        display: flex;
+        align-items: center;
+      }
+
+      .proposal-status {
+        color: $white;
+        border-radius: 12px;
+        padding: 2px 4px;
+        display: inline-flex;
+        font-weight: 300;
+
+        &.active {
+          background-color: $green1;
+        }
+
+        &.expired {
+          background-color: lighten($red, 20);
+        }
+
+        &.inactive {
+          background-color: lighten($orange, 10);
+        }
+      }
+
+      .proposal-date {
+        margin: 10px 0;
+
+        @media (min-width: $md-break) {
+          margin: 0 10px;
+        }
+      }
+
+      .requested-hbd {
+        .all-hbd {
+          color: $dark-sky-blue;
+          font-weight: 500;
+          margin-right: 4px;
+        }
+
+        .daily-hbd {
+
+        }
+      }
+    }
+  }
+
+  .right-side {
+    @media (min-width: $md-break) {
+      width: 120px;
+    }
+
+    .total-votes {
+      font-weight: 600;
+      font-size: 22px;
+      text-align: center;
+
+      @include themify(day) {
+        color: $charcoal-grey;
+      }
+
+      @include themify(night) {
+        color: $silver;
+      }
+    }
+  }
+
+
+  /*
+
+  &.highlighted {
+    border-top: 3px solid lighten($orange, 30);
+    border-bottom: 3px solid lighten($orange, 30);
+    border-radius: 0;
+  }
+
+  .voting,
+  .description,
+  .duration,
+  .requested,
+  .total-votes {
+    padding-right: 3px;
+  }
+
+  .voting {
+    display: flex;
+    justify-content: center;
+  }
+
+  .description {
+    .post-title {
+      font-weight: 500;
+      margin-bottom: 16px;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .users {
+      font-size: 14px;
+      align-items: center;
+      display: flex;
+      margin-bottom: 16px;
+
+      .to {
+        margin-right: 10px;
+        font-weight: 300;
+      }
+
+      .user {
+        align-items: center;
+        cursor: pointer;
+        display: flex;
+        margin-right: 10px;
+
+        .user-avatar {
+          height: 24px !important;
+          margin-right: 6px;
+          width: 24px !important;
+        }
+
+        .username {
+          cursor: pointer;
+          font-weight: 400;
+        }
+      }
+    }
+
+    .status {
+      color: $white;
+      border-radius: 12px;
+      padding: 1px 4px;
+      font-size: 13px;
+      font-weight: 300;
+
+      &.active {
+        background-color: $green1;
+      }
+
+      &.expired {
+        background-color: lighten($red, 20);
+      }
+
+      &.inactive {
+        background-color: lighten($orange, 10);
+      }
+    }
+  }
+
+  .requested {
+    .daily {
+      margin-bottom: 6px;
+    }
+  }
+
+  .total-votes {
+    cursor: pointer;
+  }
+
+ */
+}

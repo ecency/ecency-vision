@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, Fragment} from "react";
 
 import {connect} from "react-redux";
 
@@ -9,13 +9,13 @@ import Feedback from "../components/feedback";
 import NavBar from "../components/navbar";
 import NavBarElectron from "../../desktop/app/components/navbar";
 import LinearProgress from "../components/linear-progress";
+import ProposalListItem from "../components/proposal-list-item";
 
 import {_t} from "../i18n";
 
 import {getProposals, Proposal} from "../api/hive";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
-
 
 interface State {
     proposals: Proposal[],
@@ -62,9 +62,9 @@ class ProposalsPage extends Component<PageProps, State> {
             title: _t("proposals.page-title")
         };
 
-        const {global, activeUser} = this.props;
-
-        const {loading} = this.state;
+        const {global, activeUser, dynamicProps} = this.props;
+        const {hivePerMVests} = dynamicProps;
+        const {loading, proposals} = this.state;
 
         return (
             <>
@@ -90,7 +90,23 @@ class ProposalsPage extends Component<PageProps, State> {
                             </>
                         }
 
-                        return null;
+                        return <>
+                            <div className="page-header">
+                                <div className="main-title">
+                                    {_t('proposals.page-title')}
+                                </div>
+                            </div>
+                            <div className="proposal-list">
+                                {proposals.map((p, i) =>
+                                    <Fragment key={i}>
+                                        {ProposalListItem({
+                                            ...this.props,
+                                            proposal: p
+                                        })}
+                                    </Fragment>
+                                )}
+                            </div>
+                        </>
                     })()}
                 </div>
             </>
