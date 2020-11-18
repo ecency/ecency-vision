@@ -18,6 +18,8 @@ import parseAsset from "../../helper/parse-asset"
 
 import {DynamicProps} from "../../store/dynamic-props/types";
 
+import {_t} from "../../i18n";
+
 interface Props {
     history: History;
     global: Global;
@@ -40,13 +42,14 @@ export class ProposalListItem extends Component<Props> {
         const duration = endDate.diff(startDate, 'days');
 
         const votesHP = (Number(proposal.total_votes) / 1e12) * dynamicProps.hivePerMVests;
-        const votesHPFormatted = numeral(votesHP).format("0.00a");
-        const votesHPTitle = numeral(votesHP).format("0.00");
+        const strVotes = numeral(votesHP).format("0.0a");
+        const strVotesHPTitle = numeral(votesHP).format("0.00") + " HP";
 
-        const dailyHdb = parseAsset(proposal.daily_pay).amount;
-        const dailyHdbFormatted = numeral(dailyHdb).format("0.00a");
-        const allHbd = dailyHdb * duration;
-        const allHbdFormatted = numeral(allHbd).format("0.0a");
+        const dailyPayment = parseAsset(proposal.daily_pay).amount;
+        const strDailyHdb = numeral(dailyPayment).format("0.0a");
+
+        const allPayment = dailyPayment * duration;
+        const strAllPayment = numeral(allPayment).format("0.0a");
 
         return (
             <div className="proposal-list-item">
@@ -59,15 +62,15 @@ export class ProposalListItem extends Component<Props> {
                         })}
 
                         <span className="users">
-                                {"by"}{" "}
+                            {_t("proposals.by")}{" "}
                             {ProfileLink({
                                 ...this.props,
                                 username: proposal.creator,
                                 children: <span> {proposal.creator}</span>
                             })}
 
-                            {proposal.receiver && (
-                                <>{" "}{"for"}{" "}
+                            {(proposal.receiver && proposal.receiver !== proposal.creator) && (
+                                <>{" "}{_t("proposals.for")}{" "}
                                     {ProfileLink({
                                         ...this.props,
                                         username: proposal.receiver,
@@ -93,17 +96,22 @@ export class ProposalListItem extends Component<Props> {
                     </div>
                     <div className="proposal-info">
                         <div className="proposal-status active">active</div>
-                        <div className="proposal-date">
-                            {startDate.format('ll')} {"-"} {endDate.format("ll")} ({duration} {" days"})
+                        <div className="proposal-duration">
+                            {startDate.format('ll')} {"-"} {endDate.format("ll")} ({_t("proposals.duration-days", {n: duration})})
                         </div>
-                        <div className="requested-hbd">
-                            <span className="all-hbd">{`${allHbdFormatted} HBD`}</span>
-                            <span className="daily-hbd">(Daily {`${dailyHdbFormatted} HBD`})</span>
+                        <div className="proposal-payment">
+                            <span className="all-pay">{`${strAllPayment} HBD`}</span>
+                            <span className="daily-pay">({_t("proposals.daily-pay", {n: strDailyHdb})}{" "}{"HBD"})</span>
                         </div>
                     </div>
                 </div>
                 <div className="right-side">
-                    <div className="total-votes" title={votesHPTitle}>{votesHPFormatted}</div>
+                    {proposal.id === 0 && (
+                        <span className="return-proposal">{_t("proposals.return-description")}</span>
+                    )}
+                    {proposal.id !== 0 && (
+                        <div className="total-votes" title={strVotesHPTitle}>{strVotes}</div>
+                    )}
                 </div>
             </div>
         );

@@ -602,7 +602,12 @@
     "proxy-active-btn-label": "Clear Proxy"
   },
   "proposals": {
-    "page-title": "Proposals Voting"
+    "page-title": "Proposals Voting",
+    "by": "by",
+    "for": "for",
+    "duration-days": "{{n}} days",
+    "daily-pay": "Daily {{n}}",
+    "return-description": "This is the base return proposal. Every proposal with less votes will not receive funds."
   },
   "gallery": {
     "title": "Gallery",

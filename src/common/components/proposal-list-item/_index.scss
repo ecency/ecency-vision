@@ -92,7 +92,7 @@
         }
       }
 
-      .proposal-date {
+      .proposal-duration {
         margin: 10px 0;
 
         @media (min-width: $md-break) {
@@ -100,29 +100,34 @@
         }
       }
 
-      .requested-hbd {
-        .all-hbd {
+      .proposal-payment {
+        .all-pay {
           color: $dark-sky-blue;
           font-weight: 500;
           margin-right: 4px;
-        }
-
-        .daily-hbd {
-
         }
       }
     }
   }
 
   .right-side {
+
     @media (min-width: $md-break) {
-      width: 120px;
+      flex-shrink: 0;
+      width: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @media (min-width: $lg-break) {
+      width: 200px;
     }
 
     .total-votes {
       font-weight: 600;
       font-size: 22px;
-      text-align: center;
+
 
       @include themify(day) {
         color: $charcoal-grey;
@@ -131,6 +136,11 @@
       @include themify(night) {
         color: $silver;
       }
+    }
+
+    .return-proposal {
+      text-align: center;
+      color: $indigo;
     }
   }
 }
