@@ -277,8 +277,8 @@
     "note-placeholder-unmute": "Provide a note regarding your decision to unmute this content."
   },
   "profile": {
-    "voting-power": "Voting Power",
-    "post-count": "Post Count",
+    "voting-power": "Balsavimo Galia",
+    "post-count": "Įrašų Skaičius",
     "followers": "Sekėjai",
     "following": "Sekama",
     "section-blog": "Blog'as",
@@ -311,37 +311,37 @@
     "estimated": "Apskaičiuota Paskyros Vertė",
     "estimated-description": "Apskaičiuota vertė yra grįsta vidutine 7 dienų HIVE verte.",
     "hive": "HIVE",
-    "hive-description": "HIVE are tradeable tokens that may be transferred at anytime.HIVE can be converted to Hive Power in a process called powering up.",
+    "hive-description": "HIVE yra mainomi virtualūs žetonai, kurie gali būti pervesti bet kuriuo metu. HIVE gali būti pervestas į Hive Power, procesą vadinama jėgos kėlimu.",
     "hive-power": "HIVE POWER",
-    "hive-power-description": "Hive Power are influence tokens that earn more power for holding long term and voting on posts. The more Hive Power one holds, the more one can influence other’s rewards and earn rewards for accurate voting.",
-    "hive-power-delegated": "Delegated Hive Power",
-    "hive-power-received": "Received Hive Power",
-    "next-power-down-amount": "Next power down amount",
-    "hive-power-total": "Total Hive Power",
+    "hive-power-description": "Hive Power yra įtakingi virtualūs žetonai, kurie įgauna daugiau galios juos kaupiant ir balsuojant. Kuo daugiau Hive Power vartotojas turi, tuo daugiau įtakos jis turi kitų vartotojų atlygiui ir gali pats gauti atlygį už tikslų balsavimą.",
+    "hive-power-delegated": "Deleguota Hive Power",
+    "hive-power-received": "Gauta Hive Power",
+    "next-power-down-amount": "Kita galios mažinimo suma",
+    "hive-power-total": "Visa Hive Power",
     "hive-dollars": "HIVE DOLLARS",
-    "hive-dollars-description": "Tokens worth about $1.00 of HIVE.",
+    "hive-dollars-description": "Žetonai verti apie $1.00 HIVE.",
     "savings": "SANTAUPOS",
     "savings-description": "Balance subject to 3 day withdraw waiting period.",
-    "next-power-down": "The next power down is {{time}} {{amount}}",
+    "next-power-down": "Kitas jėgos mažinimas už {{time}} {{amount}}",
     "transfer": "Pervesti",
     "transfer-to-savings": "Pervesti į santaupas",
     "convert": "Konvertuoti",
-    "power-up": "Power up",
-    "withdraw-hive": "Withdraw Hive",
-    "withdraw-hbd": "Withdraw Hive Dollar"
+    "power-up": "Galios kėlimas",
+    "withdraw-hive": "Išsiimti Hive",
+    "withdraw-hbd": "Išsiimti Hive Dollar"
   },
   "points": {
     "get": "GAUTI TAŠKŲ",
-    "post-desc": "You can earn point by posting regularly. Posting gives you 15 points.",
-    "comment-desc": "Each comment you make helps you to grow your audience and make friendship but also earns you 5 points.",
-    "checkin-desc": "Checking in on Ecency gives you 0.25 points and helps you stay connected with your friends.",
-    "vote-desc": "By voting you give reward to other creators and show your appreciation but also earn 0.01 x vote weight points.",
-    "reblog-desc": "  Share what post you like with your friends and earn 1 points.",
-    "login-desc": "When you login into Ecency you are entitled to earn 100 points automatically.",
-    "checkin-extra-desc": "Consistent use of app gives you extra chances to earn more 10 points, be more active and earn more.",
-    "delegation-desc": "You can earn 1 point per day for each 100HP delegation.",
-    "history": "History",
-    "post-list-desc": "Points for post",
+    "post-desc": "Gali gauti taškų keldamas įrašus reguliariai. Įrašas yra vertas 15 taškų.",
+    "comment-desc": "Komentarai padeda tau augti, galbūt rasti bendraminčių ir apdovanoja 5 taškais už kiekvieną parašytą komentarą.",
+    "checkin-desc": "Reguliarus tikrinimas ir aktyvumo palaikymas tau duos 0.25 taško už kiekvieną prisijungimą.",
+    "vote-desc": "Balsuodamas tu įvertinti kitų kūrėjų darbą ir skiri jiem atlygį. Tu taipogi už tai gausi 0.01 x balso galios taškų.",
+    "reblog-desc": "  Pasidalink su draugais įrašais kurie tau patinka ir gauk 1 tašką.",
+    "login-desc": "Kai jūs pirma kartą prisijungiate prie eSteem, jūs automatiškai būsite apdovanotas 100 taškų.",
+    "checkin-extra-desc": "Reguliarus programos naudojimasis suteikia jums papildomą šansą gauti dar 10 taškų. Kuo aktyvesnis esi, tuo daugiau taškų surinksi.",
+    "delegation-desc": "Gali gauti po 1 tašką per dieną už kiekvieną 100HP delegaciją.",
+    "history": "Istorija",
+    "post-list-desc": "Taškai už įrašą",
     "comment-list-desc": "Points for comment",
     "vote-list-desc": "Points for vote",
     "reblog-list-desc": "Points for reblog",
@@ -371,14 +371,14 @@
     "title": "Boost",
     "sub-title": "Boost your post",
     "amount": "Amount",
-    "slider-hint": "Drag the slider to adjust the amount."
+    "slider-hint": "Vilkite slankiklį, kad sureguliuotumėte kiekį."
   },
   "redeem-common": {
-    "balance": "Balance",
-    "post": "Post",
+    "balance": "Likutis",
+    "post": "Įrašas",
     "post-hint": "Autocomplete input",
     "post-placeholder": "username/permlink",
-    "post-error": "Not a valid post address",
+    "post-error": "Neteisingas įrašo adresas",
     "post-error-exists": "The post is already promoted",
     "success-message": "Your request submitted. It will be activated in a couple minutes."
   },
@@ -602,8 +602,8 @@
     "proxy-active-btn-label": "Clear Proxy"
   },
   "gallery": {
-    "title": "Gallery",
-    "copied": "Copied to clipboard"
+    "title": "Galerija",
+    "copied": "Nukopijuota į iškarpinę"
   },
   "drafts": {
     "title": "Drafts"
@@ -622,9 +622,9 @@
       "page-title": "About",
       "intro-title": "What is <span>Ecency</span>",
       "intro-content": "Ecency is beautiful and handy wrapper interface around the Hive blockchain network allowing you to create your own posts, surf your feeds, vote what you like, write comments, read replies, do all major Hive functions in your daily social surfing as well as wallet actions and other extras such as search, discover different tags etc.",
-      "faq-title": "FAQ",
-      "faqs": "All FAQs",
-      "contact-title": "Contacts",
+      "faq-title": "DUK",
+      "faqs": "Visi DUK",
+      "contact-title": "Kontaktai",
       "contact-blog": "Founder's blog",
       "contact-news": "Hive Naujienos",
       "contact-email": "Parašykite mums"
@@ -675,18 +675,18 @@
     }
   },
   "context-menu": {
-    "cut": "Cut",
-    "copy": "Copy",
-    "paste": "Paste",
-    "open-image-browser": "Open image in browser",
-    "copy-image-url": "Copy image url"
+    "cut": "Iškirpti",
+    "copy": "Kopijuoti",
+    "paste": "Įklijuoti",
+    "open-image-browser": "Atidaryti naršyklėje",
+    "copy-image-url": "Kopijuoti paveikslėlio Url"
   },
   "updater": {
-    "new-version-available": "New version is available",
-    "update": "Update",
-    "dismiss": "Dismiss",
-    "downloading": "Downloading new version...",
-    "download-completed": "Download is completed",
-    "restart": "Restart"
+    "new-version-available": "Galima nauja versija",
+    "update": "Atnaujinimas",
+    "dismiss": "Atmesti",
+    "downloading": "Siunčiama nauja versija...",
+    "download-completed": "Atsisiuntimas baigtas",
+    "restart": "Paleisti iš naujo"
   }
 }
