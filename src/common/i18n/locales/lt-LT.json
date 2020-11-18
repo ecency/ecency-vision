@@ -124,13 +124,13 @@
     "curators-payout": "Kuracijos Užmokestis",
     "payout-date": "Užmokestis",
     "beneficiary": "Gavėjas",
-    "breakdown": "Breakdown"
+    "breakdown": "Išskaidyti"
   },
   "entry-index": {
     "feed": "Pagrindinis",
     "tags": "Populiarūs",
     "title": "{{f}} temos",
-    "description": "{{f}} topics on a social network owned and operated by its users.",
+    "description": "{{f}} socialaus tinklo temos valdomos pačių narių.",
     "description-tag": "{{f}} #{{t}} temos",
     "description-user-feed": "{{u}} pagrindinis"
   },
@@ -150,14 +150,14 @@
     "via-app": "per <span class=\"app-name\">{{app}}</span>",
     "comment-entry-title": "Jūs skaitote komentarą iš: ",
     "comment-entry-go-root": "Peržiūrėti visą kontekstą",
-    "comment-entry-go-parent": "View the direct parent",
-    "show-history": "Show edit history",
-    "hidden-warning": "This post was hidden due to low ratings."
+    "comment-entry-go-parent": "Peržiūrėti pirminį",
+    "show-history": "Rodyti redagavimo istoriją",
+    "hidden-warning": "Įrašas buvo paslėptas dėl per žemo reitingo."
   },
   "edit-history": {
-    "title": "Edit History",
+    "title": "Redagavimo Istorija",
     "show-diff": "Rodyti Skirtumą",
-    "version": "Version {{n}}"
+    "version": "Versija {{n}}"
   },
   "similar-entries": {
     "title": "Nauji @{{n}} įrašai"
@@ -217,7 +217,7 @@
     "username": "Vartotojo vardas",
     "role": "Rolė",
     "user-not-found": "Toks vartojas neegzistuoja!",
-    "explanations": "<h3>Role Permissions</h3><p><strong>Owner</strong> - assign admins</p><p><strong>Admin</strong> - edit settings, assign mods</p><p><strong>Moderator</strong> - mute, pin, set user titles</p><p><strong>Member</strong> - listed on leadership team</p><p><strong>Guest</strong> - default; can post and comment</p><p><strong>Muted</strong> - new posts automatically muted</p>"
+    "explanations": "<h3>Rolių Leidimai</h3><p><strong>Savininkas</strong> - paskirti administratorius</p><p><strong>Administratoriai</strong> - tvarkyti nustatymus, paskirti moderatorius</p><p><strong>Moderatorius</strong> - nutildyti, prisegti, nustatyti narių vardus</p><p><strong>Narys</strong> - Nurodytas bendruomenės komandoje</p><p><strong>Svečias</strong> - įprastas; gali komentuoti ir publikuoti</p><p><strong>Nutildytas</strong> - nauji įrašai automatiškai užtildomi</p>"
   },
   "community-settings": {
     "dialog-title": "Bendruomenės Nustatymai",
@@ -226,11 +226,11 @@
     "lang": "Kalba",
     "description": "Aprašmas",
     "rules": "Taisyklės",
-    "rules-help": "One per line"
+    "rules-help": "Vienas per eilę"
   },
   "communities": {
     "title": "Bendruomenės",
-    "description": "Best online, decentralized, immutable, rewarding communities",
+    "description": "Geriausios viešos, decentralizuotos, nepaliečiamos, atlyginamos bendruomenės",
     "n-subscribers": "{{n}} subscribers",
     "n-authors": "{{n}} posters",
     "n-posts": "{{n}} posts",
