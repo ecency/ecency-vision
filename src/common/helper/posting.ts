@@ -14,8 +14,8 @@ export const createPermlink = (title: string, random: boolean = false): string =
 
     // make shorter url if possible
     let shortp = perm.split('-');
-    if (shortp.length > 4) {
-        perm = shortp.slice(0, 4).join('-');
+    if (shortp.length > 5) {
+        perm = shortp.slice(0, 5).join('-');
     }
 
     if (random) {
