@@ -544,36 +544,36 @@
     "followed-str": "diikuti",
     "unfollowed-str": "berhenti diikuti",
     "ignored-str": "diabaikan",
-    "reblog-str": "reblogged your post:",
-    "transfer-str": "sent you",
-    "spin-str": "Time to earn more Points, Play Spin on Ecency Mobile app",
-    "inactive-str": "Be active! Write a post, continue earning",
-    "referral-str": "joined with your referral, welcome them",
-    "refresh": "Refresh",
-    "mark-all-read": "Mark All as Read",
-    "mark-read": "Mark as Read"
+    "reblog-str": "ditampilkan kembali post Anda:",
+    "transfer-str": "dikirimi Anda",
+    "spin-str": "Saatnya memperoleh lebih banyak Poin, Mainkan Putaran di Ecency Mobile",
+    "inactive-str": "Ayo aktif! Tulislah postingan, teruskan mengumpulkan pendapatan",
+    "referral-str": "bergabung dengan referral Anda, sambutlah mereka",
+    "refresh": "Segarkan",
+    "mark-all-read": "Tandai semua sebagai yang telah dibaca",
+    "mark-read": "Tandai sebagai telah dibaca"
   },
   "leaderboard": {
-    "title": "Leaderboard",
-    "title-day": "Daily top users",
-    "title-week": "Weekly top users",
-    "title-month": "Monthly top users",
-    "period-day": "Daily",
-    "period-week": "Weekly",
-    "period-month": "Monthly",
-    "header-score": "Activities",
-    "header-score-tip": "Post + comments made by a user for selected period",
-    "header-reward": "Reward"
+    "title": "Papan Peringkat",
+    "title-day": "Pengguna teratas harian",
+    "title-week": "Pengguna teratas mingguan",
+    "title-month": "Pengguna teratas bulanan",
+    "period-day": "Harian",
+    "period-week": "Mingguan",
+    "period-month": "Bulanan",
+    "header-score": "Aktifitas",
+    "header-score-tip": "Posting + komentar yang dibuat oleh pengguna untuk periode yang dipilih",
+    "header-reward": "Imbalan"
   },
   "popular-users": {
-    "title": "Popular Users"
+    "title": "Pengguna Populer"
   },
   "discover": {
-    "title": "Discover",
-    "description": "Discover top online users"
+    "title": "Jelajahi",
+    "description": "Jelajahi pengguna top yang online"
   },
   "search-page": {
-    "title": "Search",
+    "title": "Cari",
     "description": "Find uncensored content, communities and users",
     "n-results-for-q": "{{n}} results",
     "no-result": "No result",
