@@ -378,3 +378,89 @@
     }
   }
 }
+
+@mixin user-grid-list($xs-col:1, $sm-col:2, $lg-col:3) {
+  .list-body {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat($xs-col, 1fr);
+
+    @media (min-width: $sm-break) {
+      grid-template-columns: repeat($sm-col, 1fr);
+    }
+
+    @media (min-width: $lg-break) {
+      grid-template-columns: repeat($lg-col, 1fr);
+    }
+
+    .list-item {
+      border-radius: 8px;
+      padding: 8px;
+
+      @include themify(day) {
+        background: $white-six;
+      }
+
+      @include themify(night) {
+        background: lighten($dark-six, 1);
+      }
+
+      .item-main {
+        display: flex;
+        align-items: center;
+
+        .item-info {
+
+          .item-name {
+            font-weight: 500;
+            margin: 0 6px;
+
+            @include themify(day) {
+              color: $charcoal-grey;
+            }
+
+            @include themify(night) {
+              color: $pinkish-grey;
+            }
+          }
+
+          .item-reputation {
+            line-height: 100%;
+            font-size: 12px;
+            border-radius: 10px;
+            display: inline-flex;
+            padding: 2px 6px;
+            color: darken($silver, 4);
+
+            @include themify(day) {
+              background: $white;
+              box-shadow: 0 0 0 1px $silver inset;
+            }
+
+            @include themify(night) {
+              background: $dark-grey-blue;
+              box-shadow: 0 0 0 1px $dark-grey-blue inset;
+            }
+          }
+        }
+      }
+
+      .item-extra {
+        margin-top: 10px;
+        font-size: 13px;
+        padding-left: 30px;
+        opacity: 0.8;
+      }
+    }
+
+    .empty-list {
+      @include themify(day) {
+        color: $gunmetal;
+      }
+
+      @include themify(night) {
+        color: $silver;
+      }
+    }
+  }
+}

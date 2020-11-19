@@ -3,12 +3,13 @@ import React, {Component} from "react";
 import moment from "moment";
 
 import numeral from "numeral";
-
+import isEqual from "react-fast-compare";
 import {History} from "history";
 
 import EntryLink from "../entry-link";
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
+import ProposalVotes from "../proposal-votes";
 
 import {Proposal} from "../../api/hive";
 import {Global} from "../../store/global/types";
@@ -29,13 +30,28 @@ interface Props {
     proposal: Proposal;
 }
 
-export class ProposalListItem extends Component<Props> {
+interface State {
+    votes: boolean
+}
+
+export class ProposalListItem extends Component<Props, State> {
+    state: State = {
+        votes: false
+    }
 
     shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<{}>, nextContext: any): boolean {
-        return this.props.dynamicProps.hivePerMVests !== nextProps.dynamicProps.hivePerMVests;
+        return !isEqual(this.state, nextState) ||
+            this.props.dynamicProps.hivePerMVests !== nextProps.dynamicProps.hivePerMVests;
+    }
+
+    toggleVotes = () => {
+        const {votes} = this.state;
+        this.setState({votes: !votes});
     }
 
     render() {
+        const {votes} = this.state;
+
         const {dynamicProps, proposal} = this.props;
 
         const startDate = moment(new Date(proposal.start_date));
@@ -105,7 +121,10 @@ export class ProposalListItem extends Component<Props> {
                         </div>
                     </div>
                     <div className="proposal-votes">
-                        <a href="#" className="btn-votes">{_t("proposals.votes", {n: strVotes})}</a>
+                        <a href="#" className="btn-votes" onClick={(e) => {
+                            e.preventDefault();
+                            this.toggleVotes();
+                        }}>{_t("proposals.votes", {n: strVotes})}</a>
                     </div>
                 </div>
                 <div className="right-side">
@@ -116,6 +135,8 @@ export class ProposalListItem extends Component<Props> {
                         <div/>
                     )}
                 </div>
+
+                {votes && <ProposalVotes {...this.props} onHide={this.toggleVotes}/>}
             </div>
         );
     }
