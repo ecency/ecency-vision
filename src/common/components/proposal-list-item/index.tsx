@@ -10,6 +10,7 @@ import EntryLink from "../entry-link";
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 import ProposalVotes from "../proposal-votes";
+import ProposalVoteBtn from "../proposal-vote-btn"
 
 import {Proposal} from "../../api/hive";
 import {Global} from "../../store/global/types";
@@ -20,14 +21,26 @@ import parseAsset from "../../helper/parse-asset"
 import {DynamicProps} from "../../store/dynamic-props/types";
 
 import {_t} from "../../i18n";
+import {User} from "../../store/users/types";
+import {ActiveUser} from "../../store/active-user/types";
+import {ToggleType, UI} from "../../store/ui/types";
 
 
 interface Props {
     history: History;
     global: Global;
     dynamicProps: DynamicProps;
+    users: User[];
+    activeUser: ActiveUser | null;
+    ui: UI;
+    signingKey: string;
     addAccount: (data: Account) => void;
     proposal: Proposal;
+    setActiveUser: (username: string | null) => void;
+    updateActiveUser: (data?: Account) => void;
+    deleteUser: (username: string) => void;
+    toggleUIProp: (what: ToggleType) => void;
+    setSigningKey: (key: string) => void;
 }
 
 interface State {
@@ -132,7 +145,9 @@ export class ProposalListItem extends Component<Props, State> {
                         <span className="return-proposal">{_t("proposals.return-description")}</span>
                     )}
                     {proposal.id !== 0 && (
-                        <div/>
+                        <>
+                            <ProposalVoteBtn {...this.props} proposal={proposal.id}/>
+                        </>
                     )}
                 </div>
 
@@ -147,9 +162,19 @@ export default (p: Props) => {
         global: p.global,
         history: p.history,
         dynamicProps: p.dynamicProps,
+        users: p.users,
+        activeUser: p.activeUser,
+        ui: p.ui,
+        signingKey: p.signingKey,
         addAccount: p.addAccount,
+        setActiveUser: p.setActiveUser,
+        updateActiveUser: p.updateActiveUser,
+        deleteUser: p.deleteUser,
+        toggleUIProp: p.toggleUIProp,
+        setSigningKey: p.setSigningKey,
         proposal: p.proposal
     }
 
     return <ProposalListItem {...props} />;
 }
+

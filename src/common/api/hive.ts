@@ -255,10 +255,10 @@ export interface ProposalVote {
     voter: string;
 }
 
-export const getProposalVotes = (proposalId: number): Promise<ProposalVote[]> =>
+export const getProposalVotes = (proposalId: number, voter: string = "", limit:number=300): Promise<ProposalVote[]> =>
     client.call('condenser_api', 'list_proposal_votes', [
-        [proposalId, ''],
-        300,
+        [proposalId, voter],
+        limit,
         'by_proposal_voter'
     ]).then(r => r.map((x: ProposalVote) => ({id: x.id, voter: x.voter})))
 
