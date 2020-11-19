@@ -6,15 +6,15 @@ import numeral from "numeral";
 import isEqual from "react-fast-compare";
 import {History} from "history";
 
+import {Proposal} from "../../api/hive";
+import {Global} from "../../store/global/types";
+import {Account} from "../../store/accounts/types";
+
 import EntryLink from "../entry-link";
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 import ProposalVotes from "../proposal-votes";
 import ProposalVoteBtn from "../proposal-vote-btn"
-
-import {Proposal} from "../../api/hive";
-import {Global} from "../../store/global/types";
-import {Account} from "../../store/accounts/types";
 
 import parseAsset from "../../helper/parse-asset"
 
@@ -24,7 +24,6 @@ import {_t} from "../../i18n";
 import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {ToggleType, UI} from "../../store/ui/types";
-
 
 interface Props {
     history: History;
@@ -54,7 +53,8 @@ export class ProposalListItem extends Component<Props, State> {
 
     shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<{}>, nextContext: any): boolean {
         return !isEqual(this.state, nextState) ||
-            this.props.dynamicProps.hivePerMVests !== nextProps.dynamicProps.hivePerMVests;
+            !isEqual(this.props.activeUser?.username, nextProps.activeUser?.username) ||
+            !isEqual(this.props.dynamicProps.hivePerMVests, nextProps.dynamicProps.hivePerMVests);
     }
 
     toggleVotes = () => {
@@ -89,7 +89,6 @@ export class ProposalListItem extends Component<Props, State> {
                             username: proposal.creator,
                             size: "small"
                         })}
-
                         <span className="users">
                             {_t("proposals.by")}{" "}
                             {ProfileLink({
