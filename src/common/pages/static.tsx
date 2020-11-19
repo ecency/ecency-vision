@@ -830,7 +830,7 @@ class FaqPage extends Component<PageProps> {
                         <div className="faq-list">
                             {faqKeys.map(x => {
                                 return <div key={x} className="faq-item" itemScope={true} itemProp="mainEntity" itemType="https://schema.org/Question">
-                                    <span className="anchor" id={x}></span>
+                                    <span className="anchor" id={x}/>
                                     <h4 className="faq-item-header" itemProp="name">{_t(`static.faq.${x}-header`)}</h4>
                                     <div itemScope={true} itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
                                         <div className="faq-item-body" itemProp="text" dangerouslySetInnerHTML={{__html: _t(`static.faq.${x}-body`)}}/>
