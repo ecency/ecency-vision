@@ -55,6 +55,12 @@ export class ProposalVoteBtn extends Component <Props, State> {
         this._mounted = false;
     }
 
+    componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>, snapshot?: any) {
+        if (this.props.activeUser?.username !== prevProps.activeUser?.username) {
+            this.load();
+        }
+    }
+
     stateSet = (state: {}, cb?: () => void) => {
         if (this._mounted) {
             this.setState(state, cb);
@@ -65,6 +71,7 @@ export class ProposalVoteBtn extends Component <Props, State> {
     load = () => {
         const {proposal, activeUser} = this.props;
         if (!activeUser) {
+            this.stateSet({voted: false});
             return;
         }
 
