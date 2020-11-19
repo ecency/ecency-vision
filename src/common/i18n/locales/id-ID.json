@@ -574,42 +574,42 @@
   },
   "search-page": {
     "title": "Cari",
-    "description": "Find uncensored content, communities and users",
-    "n-results-for-q": "{{n}} results",
-    "no-result": "No result",
-    "sort-by": "sort by",
-    "sort-popularity": "Popularity",
-    "sort-relevance": "Relevance",
-    "sort-newest": "Date"
+    "description": "Temukan konten pengguna dan komunitas yang tidak bersensor",
+    "n-results-for-q": "{{n}} hasil",
+    "no-result": "Tidak ada hasil",
+    "sort-by": "urut berdasarkan",
+    "sort-popularity": "Popularitas",
+    "sort-relevance": "Relevan",
+    "sort-newest": "Tanggal"
   },
   "witnesses": {
-    "page-title": "Witnesses | Consensus block producers selection",
-    "page-description": "Role of witnesses or block producers in Hive blockchain is to act as the network's governance body. Community elects them to represent their voice and each user can elect up to 30 witnesses. Top 20 witnesses are producing blocks every minute while rest remain as backup witness and gets randomized chance every minute. This role is integral part of consensus mechanism blockchain runs on and recommend user engagement to vote on trusted witnesses.",
-    "remaining": "{{n}} of {{max}} votes remaining",
-    "list-rank": "Rank",
-    "list-witness": "Witness",
-    "list-miss": "Miss",
+    "page-title": "Para Saksi | Seleksi produser block konsensus",
+    "page-description": "Peran saksi atau produsen blok di Hive blockchain adalah bertindak sebagai badan tata kelola jaringan. Komunitas memilih mereka untuk mewakili suara mereka dan setiap pengguna dapat memilih hingga 30 saksi. 20 saksi teratas menghasilkan blok setiap menit sementara sisanya tetap sebagai saksi cadangan dan mendapat peluang acak setiap menit. Peran ini merupakan bagian integral dari mekanisme konsensus yang dijalankan blockchain dan merekomendasikan keterlibatan pengguna untuk memberikan suara pada saksi tepercaya.",
+    "remaining": "{{jumlah}} dari {{mak}} sisa suara",
+    "list-rank": "Ranking",
+    "list-witness": "Saksi",
+    "list-miss": "Hilang",
     "list-url": "URL",
-    "list-fee": "Fee",
-    "list-feed": "Feed",
-    "list-version": "Version",
-    "username-placeholder": "username",
-    "extra-description": "Enter account name below to vote for a witness outside of Top 50",
-    "proxy-description": "You can also choose a proxy that will vote for witnesses for you. This will reset your current witness selection.",
-    "proxy-btn-label": "Set Proxy",
-    "proxy-active-description": "You have set a voting proxy. If you would like to re-enable manual voting, please clear your proxy.",
-    "proxy-active-current": "Your current proxy is",
-    "proxy-active-btn-label": "Clear Proxy"
+    "list-fee": "Biaya",
+    "list-feed": "Umpan",
+    "list-version": "Versi",
+    "username-placeholder": "nama pengguna",
+    "extra-description": "Masukkan nama akun dibawah ini untuk memilih saksi diluar dari 50 teratas",
+    "proxy-description": "Anda juga dapat memilih proxy yang akan memilih saksi untuk Anda. Hal ini akan mengatur ulang pemilihan saksi Anda.",
+    "proxy-btn-label": "Atur Proxy",
+    "proxy-active-description": "Anda telah menetapkan pemungutan suara proxy. Jika Anda ingin mengaktifkan kembali pemungutan suara secara manual, harap hapus proxy Anda.",
+    "proxy-active-current": "Proxy anda sekarang",
+    "proxy-active-btn-label": "Hapus proxy"
   },
   "gallery": {
-    "title": "Gallery",
-    "copied": "Copied to clipboard"
+    "title": "Galeri",
+    "copied": "Disalin ke clipboard"
   },
   "drafts": {
-    "title": "Drafts"
+    "title": "Konsep"
   },
   "bookmarks": {
-    "title": "Bookmarks"
+    "title": "Bookmark"
   },
   "favorites": {
     "title": "Favorit"
@@ -633,16 +633,16 @@
       "page-title": "Pertanyaan tentang Ecency",
       "page-sub-title": "Daftar Isi",
       "what-is-ecency-header": "Apa itu Ecency?",
-      "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based social network - powered by <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency offers uncensored, free, limitless, rewarding platform for content creators.</p><p>Project was initiated and founded by <a href=\"/@good-karma\">@good-karma</a> in August 2016 as an alternative social network. Since then project has grown to much larger group of contributors (translators, testers, developers, influencers, content creators and consumers) who helped to shape Ecency.</p><p>Ecency helps onboarding masses into Blockchain technology where users are getting paid for their time, resources and learn while enjoying social aspects of blockchain. Through ease of use, users not only learn but also become investors, innovators of the technology and community.</p>",
-      "what-is-hive-header": "What is Hive?",
-      "what-is-hive-body": "<p>Hive is a blockchain that was designed to be fast, feeless, decentralized, uncensored platform for Web3.0 applications, with built-in features where stake holders can earn rewards. Tokens on Hive blockchain called HIVE, HIVE DOLLARS, HIVE POWER.</p>",
-      "what-is-difference-header": "What's the difference between Ecency and other Hive interfaces?",
-      "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\" loading=\"lazy\"/></p><p>The primary differences in all interfaces or applications are in their feature-set, use cases. Ecency offers website, mobile and desktop applications for ease of access and with best security in mind.</p>",
-      "why-choose-ecency-header": "Why would I choose Ecency?",
-      "why-choose-ecency-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjrzJAcJ4DvxvtqoPdzS9Aygf4MZ1PeE4goH6zWaeEFvafr9vGXWuou67Pbn44GweMyHV5DupM5q1cRvU85qdver?format=match&mode=fit\" loading=\"lazy\"/></p><p>You will always stay in touch with Ecency mobile application while not missing any notification and use on go. With desktop app, you are always sure to get uncensored content right from blockchain, while websites prone to follow laws and jurisdiction they reside to abide DMCA and other government laws, there is always chance some posts might not be accessible. State of art security measures so your keys will always stay encrypted and out of reach for ill-intentioned individuals. Fast and beautiful website, helps you to get discovered online and gain exposure for your content and gain loyal followers and readers. Build your community with Ecency today and take advantages of emerging blockchain technology and uncensored content!</p>",
-      "how-ecency-works-header": "How does Ecency work?",
-      "how-ecency-works-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjuZ3ksaZqEjfd9GadyKFE4bT7UP8qM1sF5W6U3cst4ekDsXfrQdcrjtdz6b5Ye2AfWNwGA5f8QqVXmed6NRfg1U?format=match&mode=fit\" loading=\"lazy\"/></p><p>Ecency stores and reads data from the blockchain, and thus data is accessible and uncensored. Ecency rewards content creators with built-in incentive mechanism of blockchain, with tokens (HIVE, HIVE DOLLARS, HIVE POWER) as well as Points. Tokens can be purchased and sold in major cryptocurrency exchanges (e.g. Binance, Bittrex).</p>",
-      "how-to-join-header": "How to join Ecency?",
+      "what-is-ecency-body": "<p> Ecency adalah jaringan sosial berbasis <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\"> blockchain </a> - diberdayakan oleh <a href = \"https://hive.io\" target = \"_ blank\" rel = \"noopener noreferrer\"> Hive </a>. </p> <p> Ecency menawarkan platform yang tidak disensor, gratis, tanpa batas, dan bermanfaat bagi pembuat konten. </p> <p> Proyek dimulai dan didirikan oleh <a href=\"/@good-karma\"> @ good-karma </a> pada Agustus 2016 sebagai jaringan sosial alternatif. Sejak saat itu, proyek telah berkembang menjadi kelompok kontributor yang jauh lebih besar (penerjemah, penguji, pengembang, pemberi pengaruh, pembuat konten, dan konsumen) yang membantu membentuk Ecency. </p> <p> Ecency membantu banyak orang memasukkan teknologi Blockchain di mana pengguna dibayar untuk waktu, sumber daya, dan belajar mereka sambil menikmati aspek sosial blockchain. Melalui kemudahan penggunaan, pengguna tidak hanya belajar tetapi juga menjadi investor, inovator teknologi, dan komunitas. </p>",
+      "what-is-hive-header": "Apa itu Hive?",
+      "what-is-hive-body": "<p> Hive adalah blockchain yang dirancang untuk menjadi platform yang cepat, nyaman, terdesentralisasi, tanpa sensor untuk aplikasi Web3.0, dengan fitur bawaan di mana para pemegang saham dapat memperoleh hadiah. Token di blockchain Hive yang disebut HIVE, HIVE DOLLARS, HIVE POWER. </p>",
+      "what-is-difference-header": "Apa perbedaan antara Ecency dan aplikasi Hive lainnya?",
+      "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\" loading=\"lazy\"/></p><p>Perbedaan utama pada semua aplikasi adalah tata letak fitur, masalah penggunaan. Ecency menawarkan aplikasi versi website, seluler, dan dekstop untuk memudahkan penggunaan dan disertai keamanan terbaik di dalamya..</p>",
+      "why-choose-ecency-header": "Mengapa saya memilih Ecency?",
+      "why-choose-ecency-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjrzJAcJ4DvxvtqoPdzS9Aygf4MZ1PeE4goH6zWaeEFvafr9vGXWuou67Pbn44GweMyHV5DupM5q1cRvU85qdver?format=match&mode=fit\" loading=\"lazy\"/></p><p>Anda akan selalu terhubung dengan aplikasi seluler Ecency tanpa melewatkan pemberitahuan dan penggunaan apa pun saat bepergian. Dengan aplikasi desktop, Anda selalu yakin mendapatkan konten tanpa sensor langsung dari blockchain, sementara situs web cenderung mengikuti hukum dan yurisdiksi tempat mereka berada untuk mematuhi DMCA dan undang-undang pemerintah lainnya, selalu ada kemungkinan beberapa postingan mungkin tidak dapat diakses. Langkah-langkah keamanan canggih sehingga password Anda akan selalu terenkripsi dan berada di luar jangkauan individu yang berniat jahat. Situs web yang cepat dan indah, membantu Anda ditemukan secara online dan mendapatkan eksposur untuk konten Anda serta mendapatkan pengikut dan pembaca setia. Bangunlah komunitas Anda dengan Ecency sekarang dan manfaatkan teknologi blockchain yang sedang berkembang dan konten tanpa sensor!</p>",
+      "how-ecency-works-header": "Bagaimana Ecency bekerja?",
+      "how-ecency-works-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjuZ3ksaZqEjfd9GadyKFE4bT7UP8qM1sF5W6U3cst4ekDsXfrQdcrjtdz6b5Ye2AfWNwGA5f8QqVXmed6NRfg1U?format=match&mode=fit\" loading=\"lazy\"/></p><p>Ecency menyimpan dan membaca data dari blockchain, dan dengan demikian data dapat diakses dan tidak disensor. Ecency memberi reward kepada pembuat konten dengan mekanisme insentif bawaan dari blockchain, dengan token (HIVE, HIVE DOLLAR, HIVE POWER) serta ada Poinnya juga. Token dapat dibeli dan dijual di bursa mata uang kripto besar (contohnya seperti Binance, Bittrex).</p>",
+      "how-to-join-header": "Bagaimana bergabung dengan Ecency?",
       "how-to-join-body": "<p>Go to <a href=\"/?referral=ecency\">https://ecency.com/?referral=ecency</a> to create an account. Your password is your master key to your account. Please store it safely, if you loose your password, you ultimately loose access to your account and your funds. Accounts can not be deactivated or deleted, account names can not be changed as well. The account along with all of its activity is permanently stored in the blockchain. Without password, accounts cannot be restored as well, store your keys safely.</p>",
       "how-to-signin-header": "How to sign in to Ecency?",
       "how-to-signin-body": "<p><img src=\"https://images.ecency.com/p/7258xSVeJbKmTr9Z4jhbPhjS9pMWA2mTwBMDbXqk9G9wdMw2bwR4hXqRQt9S7UBFrBAWCYWddjn3G34ETv5KWB5KGmuZ8ixBB9oKHTFvjjnTkRLp4ttrFQtpgtNnRUEA9NtmyFmgyuuK4?format=match&mode=fit\" loading=\"lazy\"/></p><p>You can sign-in to Ecency by using your Username and Master password or by using Active Private Keys. We take security very seriously, that's why we never store your private keys, on mobile app they are encrypted with extra PIN code of your choice, on website they are never stored. You can also use Hivesigner OAuth2 authentication service to easily login, manage and perform actions.</p>",
