@@ -817,7 +817,7 @@ class FaqPage extends Component<PageProps> {
                     }) :
                     NavBar({...this.props})}
 
-                <div className="app-content static-page faq-page">
+                <div className="app-content static-page faq-page" itemScope={true} itemType="https://schema.org/FAQPage">
                     <div className="static-content">
                         <h1 className="page-title">{_t('static.faq.page-title')}</h1>
                         <img src={this.props.global.canUseWebp ? faqWebp : faq}/>
@@ -829,9 +829,12 @@ class FaqPage extends Component<PageProps> {
                         </ul>
                         <div className="faq-list">
                             {faqKeys.map(x => {
-                                return <div key={x} className="faq-item" id={x}>
-                                    <h4 className="faq-item-header">{_t(`static.faq.${x}-header`)}</h4>
-                                    <div className="faq-item-body" dangerouslySetInnerHTML={{__html: _t(`static.faq.${x}-body`)}}/>
+                                return <div key={x} className="faq-item" itemScope={true} itemProp="mainEntity" itemType="https://schema.org/Question">
+                                    <span className="anchor" id={x}></span>
+                                    <h4 className="faq-item-header" itemProp="name">{_t(`static.faq.${x}-header`)}</h4>
+                                    <div itemScope={true} itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
+                                        <div className="faq-item-body" itemProp="text" dangerouslySetInnerHTML={{__html: _t(`static.faq.${x}-body`)}}/>
+                                    </div>
                                 </div>
                             })}
                         </div>
