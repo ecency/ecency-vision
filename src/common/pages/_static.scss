@@ -331,6 +331,13 @@
         line-height: 1.5;
         margin-bottom: 60px;
 
+        .anchor {
+          display: block;
+          height: 70px;
+          margin-top: -70px;
+          visibility: hidden;
+        }
+
         .faq-item-body {
           img {
             max-width: 100%;
