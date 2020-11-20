@@ -4,6 +4,8 @@ import {connect} from "react-redux";
 
 import {match} from "react-router";
 
+import numeral from "numeral";
+
 import defaults from "../constants/defaults.json";
 
 import {
@@ -35,19 +37,34 @@ import {getProposals, Proposal, getPost, getAccount} from "../api/hive";
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 import NotFound from "../components/404";
 
+enum Filter {
+    ALL = "all",
+    ACTIVE = "active",
+    INACTIVE = "inactive",
+    TEAM = "team"
+}
+
 interface State {
-    proposals: Proposal[],
-    dailyFunded: number,
-    totalBudget: number,
+    proposals_: Proposal[];
+    proposals: Proposal[];
+    totalBudget: number;
+    dailyBudget: number;
+    dailyFunded: number;
+    filter: Filter;
     loading: boolean;
+    inProgress: boolean;
 }
 
 class ProposalsPage extends Component<PageProps, State> {
     state: State = {
-        loading: true,
-        dailyFunded: 0,
+        proposals_: [],
+        proposals: [],
         totalBudget: 0,
-        proposals: []
+        dailyBudget: 0,
+        dailyFunded: 0,
+        filter: Filter.ALL,
+        loading: true,
+        inProgress: false,
     }
 
     _mounted: boolean = true;
@@ -75,18 +92,46 @@ class ProposalsPage extends Component<PageProps, State> {
                 // find eligible proposals and
                 const eligible = proposals.filter(x => x.id > 0 && Number(x.total_votes) >= minVotes);
                 //  add up total votes
-                const dailyFunded = eligible.reduce((a, b) => a + Number(b.daily_pay.amount), 0);
+                const dailyFunded = eligible.reduce((a, b) => a + Number(b.daily_pay.amount), 0) / 1000;
 
-                this.stateSet({proposals, dailyFunded});
+                this.stateSet({proposals, proposals_: proposals, dailyFunded});
 
                 return getAccount("hive.fund");
             })
             .then(fund => {
-                this.stateSet({totalBudget: parseAsset(fund.sbd_balance).amount})
+                const totalBudget = parseAsset(fund.sbd_balance).amount;
+                const dailyBudget = totalBudget / 100;
+                this.stateSet({totalBudget, dailyBudget})
             })
             .finally(() => {
                 this.stateSet({loading: false});
             });
+    }
+
+    applyFilter = (filter: Filter) => {
+        const {proposals_} = this.state;
+        let proposals: Proposal[] = [];
+
+        switch (filter) {
+            case Filter.ALL:
+                proposals = [...proposals_];
+                break;
+            case Filter.ACTIVE:
+                proposals = proposals_.filter(x => x.status == "active");
+                break;
+            case Filter.INACTIVE:
+                proposals = proposals_.filter(x => x.status == "inactive");
+                break;
+            case Filter.TEAM:
+                proposals = [...proposals_.filter(x => ["ecency", "good-karma"].includes(x.creator))];
+                break;
+        }
+
+        this.stateSet({proposals, filter, inProgress: true});
+
+        setTimeout(() => {
+            this.stateSet({inProgress: false});
+        }, 500);
     }
 
     render() {
@@ -95,8 +140,18 @@ class ProposalsPage extends Component<PageProps, State> {
             title: _t("proposals.page-title")
         };
 
-        const {global, dynamicProps} = this.props;
-        const {loading, proposals} = this.state;
+        const {global} = this.props;
+        const {loading, proposals, totalBudget, dailyBudget, dailyFunded, filter, inProgress} = this.state;
+
+        const navBar = global.isElectron ?
+            NavBarElectron({
+                ...this.props,
+            }) :
+            NavBar({...this.props});
+
+        if (loading) {
+            return <>{navBar}<LinearProgress/></>;
+        }
 
         return (
             <>
@@ -104,35 +159,56 @@ class ProposalsPage extends Component<PageProps, State> {
                 <ScrollToTop/>
                 <Theme global={this.props.global}/>
                 <Feedback/>
-                {global.isElectron ?
-                    NavBarElectron({
-                        ...this.props,
-                    }) :
-                    NavBar({...this.props})}
+                {navBar}
                 <div className="app-content proposals-page">
+                    <div className="page-header">
+                        <h1 className="header-title">
+                            {_t('proposals.page-title')}
+                        </h1>
+                        <div className="funding-numbers">
+                            <div className="funding-number">
+                                <div className="value">
+                                    {numeral(dailyFunded).format("0.00,")} {"HBD"}
+                                </div>
+                                <div className="label">daily funded</div>
+                            </div>
+                            <div className="funding-number">
+                                <div className="value">
+                                    {numeral(dailyBudget).format("0.00,")} {"HBD"}
+                                </div>
+                                <div className="label">daily budget</div>
+                            </div>
 
+                            <div className="funding-number">
+                                <div className="value">
+                                    {numeral(totalBudget).format("0.00,")} {"HBD"}
+                                </div>
+                                <div className="label">total budget</div>
+                            </div>
+                        </div>
+                        <div className="filter-menu">
+                            {Object.values(Filter).map(x => {
+                                const cls = `menu-item ${filter === x ? "active-item" : ""}`
+                                return <a key={x} href="#" className={cls} onClick={(e) => {
+                                    e.preventDefault();
+                                    this.applyFilter(x);
+                                }}>
+                                    {_t(`proposals.filter-${x}`)}
+                                </a>
+                            })}
+                        </div>
+                    </div>
 
                     {(() => {
-                        if (loading) {
-                            return <>
-                                <div className="page-header loading">
-                                    <div className="main-title">
-                                        {_t('proposals.page-title')}
-                                    </div>
-                                </div>
-                                <LinearProgress/>
-                            </>
+
+                        if (inProgress) {
+                            return <LinearProgress/>;
                         }
 
                         return <>
-                            <div className="page-header">
-                                <div className="main-title">
-                                    {_t('proposals.page-title')}
-                                </div>
-                            </div>
                             <div className="proposal-list">
-                                {proposals.map((p, i) =>
-                                    <Fragment key={i}>
+                                {proposals.map((p) =>
+                                    <Fragment key={p.id}>
                                         {ProposalListItem({
                                             ...this.props,
                                             proposal: p
@@ -227,7 +303,6 @@ class ProposalDetailPage extends Component<DetailProps, DetailState> {
                 ...this.props,
             }) :
             NavBar({...this.props});
-
 
         if (loading) {
             return <>{navBar}<LinearProgress/></>;

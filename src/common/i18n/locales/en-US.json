@@ -611,6 +611,10 @@
     "status-active": "active",
     "status-expired": "expired",
     "status-inactive": "upcoming",
+    "filter-all": "All",
+    "filter-active": "Active",
+    "filter-inactive": "Upcoming",
+    "filter-team": "Ecency Projects",
     "return-description": "This is the base return proposal. Every proposal with less votes will not receive funds.",
     "votes-dialog-title": "Votes on Proposal #{{n}}"
   },
