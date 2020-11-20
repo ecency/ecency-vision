@@ -662,31 +662,31 @@
       "how-see-rewards-body": "<p><img src=\"https://images.ecency.com/p/3W72119s5BjW4PvRk9nXBzqrPWMsMTjNrXDPFFf11iYhySeELMe77idrZHBPmyaqFX6CV72hBLB5qFhwVhGoAATydoFxAF7oCwBt1ztp6eS9r5us4pm7iN?format=match&mode=fit\" loading=\"lazy\"/></p><p>Di halaman Wallet di header atas di situs web dan aplikasi desktop, bilah navigasi bawah di aplikasi seluler, Anda dapat melihat reward Kurasi (reward yang diperoleh untuk meningkatkan postingan dan komentar) dan reward Penulis (reward yang diperoleh dari posting dan komentar Anda sendiri) </p> <p> Anda juga dapat melihat informasi yang sama untuk pengguna lain dengan mengunjungi profil dompet mereka.</p>",
       "when-claim-rewards-header": "Kapan saya dapat melakukan klaim postingan saya atau reward kurasi?",
       "when-claim-rewards-body": "<p>Postingan dan komentar tetap aktif selama 7 hari dan reward berfluktuasi tergantung pada vote dan harga pasar token, itulah sebabnya reward diperkirakan sebagai reward yang tertunda. Ketika periode berakhir, reward yang tertunda berubah menjadi reward sebenarnya dan Anda dapat mengklaim reward postingan dan kurasi yang diperoleh. Di Dompet Anda, klik tombol Klaim Reward untuk menambahkan token ke akun Anda.</p>",
-      "what-are-rc-header": "Apa itu Resource Credit?",
-      "what-are-rc-body": "<p>Transacting on the Hive blockchain has zero fees, transaction rate-limiting is employed to safeguard the blockchain from spam attacks. Every action that you take on the blockchain will consume a small amount of Resource Credits. This includes posting, commenting, voting, transferring tokens, etc. Viewing content does not consume Resource Credits.</p><p>Every user has a limited amount of Resource Credits to use each week. The more transactions a user does, the less Resource Credits they will have left (until they recharge). Users with more HIVE POWER will have more Resource Credits.</p><p>If you run out of Resource Credits, you will be unable to transact with the blockchain until your Resource Credits recharge (happens automatically) or you acquire additional HIVE POWER to increase your Resource Credit balance or you can <a href=\"/faq#how-boost-account\">request Boosting account from Ecency</a> to receive temporary delegation.</p>",
-      "how-boost-account-header": "How to request account boosting?",
-      "how-boost-account-body": "<p>If your account is low on <a href=\"/faq#what-are-rc\">Resource Credits</a>, you can request account boosting from Ecency. You will receive temporary delegation which should boost your account to perform more activities on blockchain. You can find account boosting feature in Points options.</p>",
-      "what-spam-abuse-header": "What is considered spam or abuse?",
-      "what-spam-abuse-body": "<p><img src=\"https://images.ecency.com/p/3jpR3paJ37V8XPrHkfZdMt57jY6pRt6zEt5iRJV9pSw4Mez3Hut8U6RWvWLA7cFYEa1bxveXeasNfZApzrcLYLx8cz84kBEKak1KkewE2ZqE1QRRkF4eqRH3vWVqZB9WuNbzE?format=match&mode=fit\" loading=\"lazy\"/></p><p><ul><li>Plagiarized posts or copied content.</li><li>Leaving nearly identical or materially similar comments on multiple posts.</li><li>Using tags that are unrelated to the post.</li><li>Threatening users with any type of physical violence.</li><li>Not citing sources when using someone else’s material.</li><li>Posting ‘not safe for work’ content without using the “nsfw” tag.</li><li>Scams or Fraudulent offers.</li></ul></p>",
-      "can-link-post-header": "Can I request adding backlink to my website from Ecency team?",
-      "can-link-post-body": "<p>All the content on our site is created by our users and we don't modify or able to add backlinks. You are free to contact author of the post or <a href=\"/?referral=ecency\">Signup</a> to open your own blog and community, publish articles to create backlinks for free.</p>",
-      "can-guest-post-header": "Is it possible to guest post on your website?",
-      "can-guest-post-body": "<p>Posting on Ecency is simple and easy, <a href=\"/?referral=ecency\">Signup</a> to open your own blog and community, start posting your content.</p>"
+      "what-are-rc-header": "Apa itu Resource Credit (Kredit Sumber Daya)?",
+      "what-are-rc-body": "<p><p> Bertransaksi di blockchain Hive tidak memiliki biaya, pembatasan nilai transaksi digunakan untuk melindungi blockchain dari serangan spam. Setiap tindakan yang Anda lakukan di blockchain akan menghabiskan sejumlah kecil Kredit Sumber Daya (Resource Credit). Ini termasuk memposting, berkomentar, memberi suara, mentransfer token, dll. Melihat konten tidak menghabiskan Kredit Sumber Daya. </p> <p> Setiap pengguna memiliki Kredit Sumber Daya dalam jumlah terbatas untuk digunakan setiap minggu. Semakin banyak transaksi yang dilakukan pengguna, semakin sedikit Kredit Sumber Daya yang tersisa (sampai ia mengisi ulang). Pengguna dengan lebih banyak HIVE POWER akan memiliki lebih banyak Kredit Sumber Daya. </p> <p> Jika Anda kehabisan Kredit Sumber Daya, Anda tidak akan dapat bertransaksi dengan blockchain sampai Kredit Sumber Daya Anda terisi ulang (terjadi secara otomatis) atau Anda memperoleh HIVE POWER tambahan untuk meningkatkan saldo Resource Credit Anda atau Anda dapat <a href=\"/faq#how-boost-account\"> meminta akun Boosting dari Ecency </a> untuk menerima delegasi sementara. </p></p>",
+      "how-boost-account-header": "Bagaimana meminta peningkatan akun?",
+      "how-boost-account-body": "<p>Jika akun Anda kekurangan <a href=\"/faq#what-are-rc\"> Kredit Sumber Daya </a>, Anda dapat meminta peningkatan akun dari Ecency. Anda akan menerima delegasi sementara yang akan meningkatkan akun Anda untuk melakukan lebih banyak aktivitas di blockchain. Anda dapat menemukan fitur peningkatan akun di opsi Poin.</p>",
+      "what-spam-abuse-header": "Apa yang dianggap spam atau penyalahgunaan?",
+      "what-spam-abuse-body": "<p><img src=\"https://images.ecency.com/p/3jpR3paJ37V8XPrHkfZdMt57jY6pRt6zEt5iRJV9pSw4Mez3Hut8U6RWvWLA7cFYEa1bxveXeasNfZApzrcLYLx8cz84kBEKak1KkewE2ZqE1QRRkF4eqRH3vWVqZB9WuNbzE?format=match&mode=fit\" loading=\"lazy\"/></p><p><ul><li>Postingan yang dijiplak atau konten yang disalin. </li> <li> Meninggalkan komentar yang hampir identik atau mirip secara material pada beberapa postingan. </li> <li> Menggunakan tag yang tidak terkait dengan postingan tersebut. </li> <li> Mengancam pengguna dengan segala jenis kekerasan fisik. </li> <li> Tidak mengutip sumber saat menggunakan materi orang lain. </li> <li> Memposting konten 'tidak aman untuk pekerjaan' tanpa menggunakan tag “nsfw”. </li> < li> Scam atau Penawaran curang. </li> </ul> </p>",
+      "can-link-post-header": "Dapatkah saya meminta penambahan tautan balik ke situs web saya dari tim Ecency?",
+      "can-link-post-body": "<p>Semua konten di situs kami dibuat oleh pengguna kami dan kami tidak mengubah atau menambahkan tautan balik. Anda bebas untuk menghubungi penulis posting atau <a href=\"/?referral=ecency\"> Daftar </a> untuk membuka blog dan komunitas Anda sendiri, menerbitkan artikel untuk membuat backlink secara gratis.</p>",
+      "can-guest-post-header": "Apakah mungkin untuk menerima postingan di situs web Anda?",
+      "can-guest-post-body": "<p>Memposting di Ecency itu sederhana dan mudah, <a href=\"/?referral=ecency\"> Daftarlah </a> untuk membuka blog dan komunitas Anda sendiri, mulailah memposting konten Anda.</p>"
     }
   },
   "context-menu": {
-    "cut": "Cut",
-    "copy": "Copy",
-    "paste": "Paste",
-    "open-image-browser": "Open image in browser",
-    "copy-image-url": "Copy image url"
+    "cut": "Potong",
+    "copy": "Salin",
+    "paste": "Tempel",
+    "open-image-browser": "Buka gambar di browser",
+    "copy-image-url": "Salin gambar url"
   },
   "updater": {
-    "new-version-available": "New version is available",
-    "update": "Update",
-    "dismiss": "Dismiss",
-    "downloading": "Downloading new version...",
-    "download-completed": "Download is completed",
+    "new-version-available": "Tersedia versi terbaru",
+    "update": "Pembaruan",
+    "dismiss": "Memberhentikan",
+    "downloading": "Sedang mengunduh versi terbaru...",
+    "download-completed": "Unduhan selesai",
     "restart": "Restart"
   }
 }
