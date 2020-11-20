@@ -2,7 +2,7 @@
   "g": {
     "edit": "Edit",
     "search": "Cari",
-    "downloads": "Unduhan",
+    "downloads": "Download",
     "login": "Masuk",
     "login-as": "Masuk sebagai",
     "signup": "Daftar",
@@ -42,7 +42,7 @@
     "communities": "Komunitas",
     "about": "Tentang",
     "faq": "Tanya Jawab",
-    "post": "Buatlah Postingan",
+    "post": "Buat Postingan",
     "day-theme": "Tema Terang",
     "night-theme": "Tema Gelap",
     "address-placeholder": "masukkan permintaan pencarian"
