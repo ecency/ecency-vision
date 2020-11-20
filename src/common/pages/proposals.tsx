@@ -26,23 +26,27 @@ import NavBar from "../components/navbar";
 import NavBarElectron from "../../desktop/app/components/navbar";
 import LinearProgress from "../components/linear-progress";
 import ProposalListItem from "../components/proposal-list-item";
-
+import parseAsset from "../helper/parse-asset"
 
 import {_t} from "../i18n";
 
-import {getProposals, Proposal, getPost} from "../api/hive";
+import {getProposals, Proposal, getPost, getAccount} from "../api/hive";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 import NotFound from "../components/404";
 
 interface State {
     proposals: Proposal[],
+    dailyFunded: number,
+    totalBudget: number,
     loading: boolean;
 }
 
 class ProposalsPage extends Component<PageProps, State> {
     state: State = {
         loading: true,
+        dailyFunded: 0,
+        totalBudget: 0,
         proposals: []
     }
 
@@ -63,15 +67,26 @@ class ProposalsPage extends Component<PageProps, State> {
     };
 
     load = () => {
-        this.fetchProposals();
-    };
+        this.stateSet({loading: true});
+        getProposals()
+            .then(proposals => {
+                // get return proposal's total votes
+                const minVotes = Number(proposals.find(x => x.id === 0)?.total_votes || 0);
+                // find eligible proposals and
+                const eligible = proposals.filter(x => x.id > 0 && Number(x.total_votes) >= minVotes);
+                //  add up total votes
+                const dailyFunded = eligible.reduce((a, b) => a + Number(b.daily_pay.amount), 0);
 
-    fetchProposals = () => {
-        getProposals().then(proposals => {
-            this.stateSet({proposals});
-        }).finally(() => {
-            this.stateSet({loading: false});
-        });
+                this.stateSet({proposals, dailyFunded});
+
+                return getAccount("hive.fund");
+            })
+            .then(fund => {
+                this.stateSet({totalBudget: parseAsset(fund.sbd_balance).amount})
+            })
+            .finally(() => {
+                this.stateSet({loading: false});
+            });
     }
 
     render() {
@@ -95,6 +110,8 @@ class ProposalsPage extends Component<PageProps, State> {
                     }) :
                     NavBar({...this.props})}
                 <div className="app-content proposals-page">
+
+
                     {(() => {
                         if (loading) {
                             return <>

@@ -76,7 +76,7 @@ export class ProposalListItem extends Component<Props, State> {
         const votesHP = (Number(proposal.total_votes) / 1e12) * dynamicProps.hivePerMVests;
         const strVotes = numeral(votesHP).format("0.00,") + " HP";
 
-        const dailyPayment = parseAsset(proposal.daily_pay).amount;
+        const dailyPayment = Number(proposal.daily_pay.amount);
         const strDailyHdb = numeral(dailyPayment).format("0.0a");
 
         const allPayment = dailyPayment * duration;
@@ -128,7 +128,7 @@ export class ProposalListItem extends Component<Props, State> {
                         })*/}
                     </div>
                     <div className="proposal-info">
-                        <div className="proposal-status active">active</div>
+                        <div className={`proposal-status ${proposal.status}`}>{_t(`proposals.status-${proposal.status}`)}</div>
                         <div className="proposal-duration">
                             {startDate.format('ll')} {"-"} {endDate.format("ll")} ({_t("proposals.duration-days", {n: duration})})
                         </div>

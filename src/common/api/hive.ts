@@ -1,3 +1,5 @@
+import axios from "axios";
+
 import {Client} from "@hiveio/dhive";
 
 import {TrendingTag} from "../store/trending-tags/types";
@@ -231,31 +233,47 @@ export const getWitnessesByVote = (
 
 export interface Proposal {
     creator: string;
-    daily_pay: string;
+    daily_pay: {
+        amount: string
+        nai: string
+        precision: number
+    };
     end_date: string;
     id: number;
     permlink: string;
     proposal_id: number;
     receiver: string;
     start_date: string;
+    status: string;
     subject: string;
     total_votes: string;
 }
 
+/*
 export const getProposals = (): Promise<Proposal[]> => client.call("database_api", "list_proposals", {
     start: [-1],
     limit: 100,
     order: 'by_total_votes',
     order_direction: 'descending',
     status: 'all'
-})
+}) */
+
+export const getProposals = (): Promise<Proposal[]> => {
+    const data = {
+        "id": 1,
+        "jsonrpc": "2.0",
+        "method": "database_api.list_proposals",
+        "params": {"start": [-1], "limit": 200, "order": "by_total_votes", "order_direction": "descending", "status": "votable"}
+    };
+    return axios.post("https://api.hive.blog/", data).then(r => r.data.result.proposals)
+}
 
 export interface ProposalVote {
     id: number;
     voter: string;
 }
 
-export const getProposalVotes = (proposalId: number, voter: string = "", limit:number=300): Promise<ProposalVote[]> =>
+export const getProposalVotes = (proposalId: number, voter: string = "", limit: number = 300): Promise<ProposalVote[]> =>
     client.call('condenser_api', 'list_proposal_votes', [
         [proposalId, voter],
         limit,
