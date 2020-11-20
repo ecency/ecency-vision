@@ -46,7 +46,7 @@ export interface Account {
     withdrawn?: number;
     witness_votes?: string[];
     proxy?: string;
-    proxied_vsf_votes: [string|number];
+    proxied_vsf_votes?: [string|number];
     voting_manabar?: {
         current_mana: string | number;
         last_update_time: number;
