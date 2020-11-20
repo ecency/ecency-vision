@@ -2,15 +2,21 @@ import React, {Component} from "react";
 
 import {Link} from "react-router-dom";
 
+import isEqual from "react-fast-compare";
+
+import {History} from "history";
+
 import moment from "moment";
 
 import numeral from "numeral";
-import isEqual from "react-fast-compare";
-import {History} from "history";
 
 import {Proposal} from "../../api/hive";
 import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
+import {DynamicProps} from "../../store/dynamic-props/types";
+import {User} from "../../store/users/types";
+import {ActiveUser} from "../../store/active-user/types";
+import {ToggleType, UI} from "../../store/ui/types";
 
 import EntryLink from "../entry-link";
 import ProfileLink from "../profile-link";
@@ -18,14 +24,9 @@ import UserAvatar from "../user-avatar";
 import ProposalVotes from "../proposal-votes";
 import ProposalVoteBtn from "../proposal-vote-btn"
 
-import parseAsset from "../../helper/parse-asset"
-
-import {DynamicProps} from "../../store/dynamic-props/types";
-
 import {_t} from "../../i18n";
-import {User} from "../../store/users/types";
-import {ActiveUser} from "../../store/active-user/types";
-import {ToggleType, UI} from "../../store/ui/types";
+
+import {linkSvg} from "../../img/svg";
 
 interface Props {
     history: History;
@@ -114,20 +115,8 @@ export class ProposalListItem extends Component<Props, State> {
                         <Link to={`/proposals/${proposal.id}`}>
                             {proposal.subject} <span className="proposal-id">#{proposal.id}</span>
                         </Link>
-                        {/*EntryLink({
-                            ...this.props,
-                            entry: {
-                                category: "proposal",
-                                author: proposal.creator,
-                                permlink: proposal.permlink
-                            },
-                            children: <a>
-                                {proposal.subject}
-                                <span className="proposal-id">#{proposal.id}</span>
-                            </a>
-                        })*/}
                     </div>
-                    <div className="proposal-info">
+                    <div className="status-duration-payment">
                         <div className={`proposal-status ${proposal.status}`}>{_t(`proposals.status-${proposal.status}`)}</div>
                         <div className="proposal-duration">
                             {startDate.format('ll')} {"-"} {endDate.format("ll")} ({_t("proposals.duration-days", {n: duration})})
@@ -137,7 +126,20 @@ export class ProposalListItem extends Component<Props, State> {
                             <span className="daily-pay">({_t("proposals.daily-pay", {n: strDailyHdb})}{" "}{"HBD"})</span>
                         </div>
                     </div>
-                    <div className="proposal-votes">
+                    <div className="permlink">
+                        {EntryLink({
+                            ...this.props,
+                            entry: {
+                                category: "proposal",
+                                author: proposal.creator,
+                                permlink: proposal.permlink
+                            },
+                            children: <a>
+                                {linkSvg} {"/"}{proposal.creator}{"/"}{proposal.permlink}
+                            </a>
+                        })}
+                    </div>
+                    <div className="votes">
                         <a href="#" className="btn-votes" onClick={(e) => {
                             e.preventDefault();
                             this.toggleVotes();
@@ -154,7 +156,6 @@ export class ProposalListItem extends Component<Props, State> {
                         </>
                     )}
                 </div>
-
                 {votes && <ProposalVotes {...this.props} onHide={this.toggleVotes}/>}
             </div>
         );

@@ -41,7 +41,7 @@
     .proposal-title {
       font-weight: 500;
       font-size: 18px;
-      margin: 16px 0;
+      margin: 14px 0;
 
       @media (min-width: $md-break) {
         font-size: 22px;
@@ -57,16 +57,15 @@
         }
       }
 
-
       .proposal-id {
         margin-left: 6px;
         opacity: 0.6;
       }
     }
 
-    .proposal-info {
+    .status-duration-payment {
       font-size: 90%;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
 
       @media (min-width: $md-break) {
         display: flex;
@@ -110,10 +109,17 @@
       }
     }
 
-    .proposal-votes {
-      .btn-votes {
-        font-weight: 500;
+    .permlink {
+      margin-bottom: 14px;
+      font-size: 13px;
+
+      svg {
+        height: 16px;
       }
+    }
+
+    .votes {
+      font-weight: 500;
     }
   }
 
