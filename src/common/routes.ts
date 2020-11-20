@@ -30,5 +30,6 @@ export default {
     DISCOVER: `/discover`,
     SEARCH: `/search/`,
     WITNESSES: `/witnesses`,
-    PROPOSALS: `/proposals`
+    PROPOSALS: `/proposals`,
+    PROPOSAL_DETAIL: `/proposals/:id(\\d+)`
 };

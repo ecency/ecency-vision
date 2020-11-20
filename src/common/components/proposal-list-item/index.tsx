@@ -1,5 +1,7 @@
 import React, {Component} from "react";
 
+import {Link} from "react-router-dom";
+
 import moment from "moment";
 
 import numeral from "numeral";
@@ -109,7 +111,10 @@ export class ProposalListItem extends Component<Props, State> {
                             </span>
                     </div>
                     <div className="proposal-title">
-                        {EntryLink({
+                        <Link to={`/proposals/${proposal.id}`}>
+                            {proposal.subject} <span className="proposal-id">#{proposal.id}</span>
+                        </Link>
+                        {/*EntryLink({
                             ...this.props,
                             entry: {
                                 category: "proposal",
@@ -120,7 +125,7 @@ export class ProposalListItem extends Component<Props, State> {
                                 {proposal.subject}
                                 <span className="proposal-id">#{proposal.id}</span>
                             </a>
-                        })}
+                        })*/}
                     </div>
                     <div className="proposal-info">
                         <div className="proposal-status active">active</div>
