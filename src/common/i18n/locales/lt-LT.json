@@ -353,52 +353,52 @@
     "delegation-list-desc": "Delegacijos atlygis",
     "referral-list-desc": "Rekomendacijos atlygis",
     "transfer": "Padovanoti kažkam",
-    "claim-ok": "Points claimed",
-    "promote": "Promote",
-    "boost": "Boost"
+    "claim-ok": "Taškai atsiimti",
+    "promote": "Reklamuoti",
+    "boost": "Paspartinti"
   },
   "purchase": {
-    "select-asset": "Select Asset",
-    "slider-hint": "Drag the slider to adjust the amount.",
-    "submit": "Purchase"
+    "select-asset": "Pasirinkite vertę",
+    "slider-hint": "Vilkite slankiklį, kad sureguliuotumėte kiekį.",
+    "submit": "Pirkti"
   },
   "promote": {
-    "title": "Promote",
-    "sub-title": "Promote your post",
-    "duration": "Duration"
+    "title": "Reklamuoti",
+    "sub-title": "Reklamuoti savo įrašą",
+    "duration": "Trukmė"
   },
   "boost": {
-    "title": "Boost",
-    "sub-title": "Boost your post",
-    "amount": "Amount",
+    "title": "Paspartinti",
+    "sub-title": "Paspartinti savo įrašą",
+    "amount": "Kiekis",
     "slider-hint": "Vilkite slankiklį, kad sureguliuotumėte kiekį."
   },
   "redeem-common": {
     "balance": "Likutis",
     "post": "Įrašas",
-    "post-hint": "Autocomplete input",
-    "post-placeholder": "username/permlink",
+    "post-hint": "Automatinė įvestis",
+    "post-placeholder": "vartotojovardas/permlink",
     "post-error": "Neteisingas įrašo adresas",
-    "post-error-exists": "The post is already promoted",
-    "success-message": "Your request submitted. It will be activated in a couple minutes."
+    "post-error-exists": "Šis įrašas jau paspartintas",
+    "success-message": "Jūsų prašymas priimtas. Aktyvuosis per kelias minutes."
   },
   "transfer": {
-    "transfer-title": "Transfer to Account",
-    "transfer-title-point": "Gift to Account",
-    "transfer-sub-title": "Move funds to another Hive account",
-    "transfer-saving-title": "Transfer to Savings",
-    "transfer-saving-sub-title": "Protect funds by requiring a 3 day withdraw waiting period",
-    "withdraw-saving-title": "Savings Withdraw",
-    "withdraw-saving-sub-title": "Withdraw funds after the required 3 day waiting period",
+    "transfer-title": "Pervesti į Paskyrą",
+    "transfer-title-point": "Dovanoti Paskyrai",
+    "transfer-sub-title": "Perkelti lėšas į kitą Hive paskyrą",
+    "transfer-saving-title": "Pervesti į Santaupas",
+    "transfer-saving-sub-title": "Apsaugok lėšas 3 dienų atsiėmimui",
+    "withdraw-saving-title": "Išsiimti Santaupas",
+    "withdraw-saving-sub-title": "Atsiimti lėšas po 3 dienų laukimo periodo",
     "power-up-title": "Stake Hive as Power",
-    "convert-title": "Convert",
-    "power-up-sub-title": "Influence tokens which give you more control over post payouts and allow you to earn on curation rewards.",
+    "convert-title": "Konvertuoti",
+    "power-up-sub-title": "Įtakingi žetonai kurie vartotojui duoda daugiau kontrolės įrašų išmokom ir leidžia jums gauti kuracijos atlygį.",
     "convert-sub-title": "Only recommended when HBD is below $1. You will get $1 of HIVE in 3.5 days.",
     "from": "Nuo",
-    "to": "To",
+    "to": "Į",
     "to-placeholder": "vartotojo vardas",
-    "to-not-found": "The user that you are trying to transfer funds to does not exist!",
-    "to-bad-actor": "Use caution sending to this account. Please double check your spelling for possible phishing.",
+    "to-not-found": "Vartotojas, kuriam norite pervesti lėšas, neegzistuoja!",
+    "to-bad-actor": "Būkite atsargūs siųsdami šiai paskyrai. Dėl galimo sukčiavimo įsitikinkite ar rašyba teisinga.",
     "amount": "Kiekis",
     "amount-placeholder": "kiekis",
     "wrong-amount": "Wrong amount value",
@@ -412,25 +412,25 @@
     "confirm": "Patvirtinti",
     "recent-transfers": "Recent transfers",
     "transfer-summary": "Transferred <span class=\"amount\">{{amount}}</span> From <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "reset": "Another transfer"
+    "reset": "Kitas pavedimas"
   },
   "trx-common": {
-    "insufficient-funds": "Insufficient funds",
-    "sign-title": "Sign transaction",
-    "sign-sub-title": "Sign your transaction",
-    "success-title": "Success",
-    "success-sub-title": "Transaction successful"
+    "insufficient-funds": "Nepakankamas likutis",
+    "sign-title": "Pasirašyti",
+    "sign-sub-title": "Patvirtinti persiuntimą",
+    "success-title": "Pavyko",
+    "success-sub-title": "Operacija sėkmingai atlikta"
   },
   "transactions": {
     "title": "ISTORIJA",
-    "type-curation_reward": "Curation Reward",
-    "type-author_reward": "Author Reward",
-    "type-comment_benefactor_reward": "Comment Benefactor Reward",
-    "type-claim_reward_balance": "Claim rewards",
-    "type-transfer": "Transfer",
-    "type-transfer_to_vesting": "Transfer to vesting",
-    "type-withdraw_vesting": "Withdraw vesting",
-    "type-fill_order": "Fill order"
+    "type-curation_reward": "Kuracijos Atlygis",
+    "type-author_reward": "Autorius Atlygis",
+    "type-comment_benefactor_reward": "Atlygis už gerą komentarą",
+    "type-claim_reward_balance": "Atsiimti atlygį",
+    "type-transfer": "Pervesti",
+    "type-transfer_to_vesting": "Pervesti į investicijas",
+    "type-withdraw_vesting": "Išsiimti investiciją",
+    "type-fill_order": "Užpildyti"
   },
   "key-or-hot": {
     "sign": "Pasirašyti",
@@ -445,67 +445,67 @@
     "title": "Received Hive Power"
   },
   "friends": {
-    "followers": "Followers ({{n}})",
-    "following": "Following ({{n}})",
-    "search-placeholder": "Search users"
+    "followers": "Sekėjai ({{n}})",
+    "following": "Sekami ({{n}})",
+    "search-placeholder": "Ieškoti narių"
   },
   "follow-controls": {
-    "follow": "Follow",
-    "unFollow": "Unfollow",
-    "mute": "Mute",
-    "unMute": "Unmute"
+    "follow": "Sekti",
+    "unFollow": "Nebesekti",
+    "mute": "Uztildyti",
+    "unMute": "Atitildyti"
   },
   "favorite-btn": {
-    "add": "Add to favorites",
-    "added": "Added to favorites",
-    "delete": "Remove from favorites",
-    "deleted": "Removed from favorites"
+    "add": "Pridėti prie mėgstamiausių",
+    "added": "Pridėta prie mėgstamiausių",
+    "delete": "Pašalinti iš mėgstamiausių",
+    "deleted": "Pašalinta iš mėgstamiausių"
   },
   "editor-toolbar": {
-    "bold": "Bold",
-    "italic": "Italic",
-    "header": "Heading",
-    "code": "Code",
-    "quote": "Quote",
-    "ul": "Unordered List",
-    "ol": "Ordered List",
-    "link": "Link",
-    "image": "Image",
-    "table": "Table",
-    "table-3-col": "3 columns",
-    "table-2-col": "2 columns",
-    "table-1-col": "1 column",
-    "upload": "Upload",
-    "gallery": "Gallery",
+    "bold": "Paryškintas",
+    "italic": "Pasviręs",
+    "header": "Antraštė",
+    "code": "Kodas",
+    "quote": "Citata",
+    "ul": "Nesurikiuotas Sąrašas",
+    "ol": "Surikiuotas Sąrašas",
+    "link": "Nuoroda",
+    "image": "Nuotrauka",
+    "table": "Lentelė",
+    "table-3-col": "3 stulpeliai",
+    "table-2-col": "2 stulpeliai",
+    "table-1-col": "1 stulpelis",
+    "upload": "Įkelti",
+    "gallery": "Galerija",
     "emoji": "Emoji",
-    "image-error": "Couldn't upload image.",
-    "image-error-size": "Image size is too large, try smaller size image again."
+    "image-error": "Nepavyko įkelti nuotraukos.",
+    "image-error-size": "Nuotraukos dydis per didelis, bandykite mažesnį nuotraukos dydį."
   },
   "emoji-picker": {
-    "filter-placeholder": "Filter",
-    "filter-no-match": "No match",
-    "recently-used": "Recently Used"
+    "filter-placeholder": "Filtruoti",
+    "filter-no-match": "Atitikmenų nėra",
+    "recently-used": "Neseniai Naudota"
   },
   "submit": {
-    "page-title": "Create a post",
+    "page-title": "Sukurti įrašą",
     "page-description": "Publish an article, earn reward, uncensored, immutable, decentralized content!",
-    "title-placeholder": "Title",
-    "body-placeholder": "Post Content",
-    "reward": "Reward",
-    "reward-default": "Default 50% / 50%",
-    "reward-sp": "Power Up 100%",
-    "reward-dp": "Decline Payout",
-    "preview": "Preview",
-    "publish": "Publish",
-    "update": "Update",
-    "save-draft": "Save Draft",
-    "draft-saved": "Draft saved",
-    "update-draft": "Update Draft",
-    "draft-updated": "Draft updated",
-    "cancel-update": "Cancel",
-    "clear": "Clear",
-    "published": "Post Published",
-    "updated": "Post Updated"
+    "title-placeholder": "Pavadinimas",
+    "body-placeholder": "Įrašo Turinys",
+    "reward": "Atlygis",
+    "reward-default": "Numatytasis 50% / 50%",
+    "reward-sp": "Galios Kėlimas 100%",
+    "reward-dp": "Atsisakyti Išmokėjimo",
+    "preview": "Peržiūra",
+    "publish": "Paskelbti",
+    "update": "Atnaujinti",
+    "save-draft": "Išsaugoti Juodraštį",
+    "draft-saved": "Juodraštis išsaugotas",
+    "update-draft": "Atnaujinti Juodraštį",
+    "draft-updated": "Juodraštis įkeltas",
+    "cancel-update": "Atšaukti",
+    "clear": "Išvalyti",
+    "published": "Įrašas Paskelbtas",
+    "updated": "Įrašas Atnaujintas"
   },
   "tag-selector": {
     "placeholder-empty": "Tags. First tag is main category. Sortable.",
@@ -550,30 +550,30 @@
     "inactive-str": "Be active! Write a post, continue earning",
     "referral-str": "joined with your referral, welcome them",
     "refresh": "Refresh",
-    "mark-all-read": "Mark All as Read",
-    "mark-read": "Mark as Read"
+    "mark-all-read": "Pažymėti visus kaip skaitytus",
+    "mark-read": "Pažymėti kaip skaitytą"
   },
   "leaderboard": {
-    "title": "Leaderboard",
-    "title-day": "Daily top users",
-    "title-week": "Weekly top users",
-    "title-month": "Monthly top users",
-    "period-day": "Daily",
-    "period-week": "Weekly",
-    "period-month": "Monthly",
-    "header-score": "Activities",
-    "header-score-tip": "Post + comments made by a user for selected period",
-    "header-reward": "Reward"
+    "title": "Lyderių lentelė",
+    "title-day": "Dienos Top vartotojai",
+    "title-week": "Savaitės Top vartotojai",
+    "title-month": "Mėnesio Top vartotojai",
+    "period-day": "Kas dieną",
+    "period-week": "Kas savaitę",
+    "period-month": "Kas mėnesį",
+    "header-score": "Veikla",
+    "header-score-tip": "Irašas + komentarai padaryti vartotojo per tam tikrą laikotarpį",
+    "header-reward": "Atlygis"
   },
   "popular-users": {
-    "title": "Popular Users"
+    "title": "Populiarūs Vartotojai"
   },
   "discover": {
-    "title": "Discover",
-    "description": "Discover top online users"
+    "title": "Atraskite",
+    "description": "Atraskite top aktyvius narius"
   },
   "search-page": {
-    "title": "Search",
+    "title": "Paieška",
     "description": "Find uncensored content, communities and users",
     "n-results-for-q": "{{n}} results",
     "no-result": "No result",
