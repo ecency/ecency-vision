@@ -574,58 +574,58 @@
   },
   "search-page": {
     "title": "Paieška",
-    "description": "Find uncensored content, communities and users",
-    "n-results-for-q": "{{n}} results",
-    "no-result": "No result",
-    "sort-by": "sort by",
-    "sort-popularity": "Popularity",
-    "sort-relevance": "Relevance",
-    "sort-newest": "Date"
+    "description": "Raskite necenzžruojama turinį, bendruomenes bei vartotojus",
+    "n-results-for-q": "{{n}} rezultatų",
+    "no-result": "Nėra rezultatų",
+    "sort-by": "rūšiuoti pagal",
+    "sort-popularity": "Populiarumą",
+    "sort-relevance": "Aktualumą",
+    "sort-newest": "Datą"
   },
   "witnesses": {
     "page-title": "Witnesses | Consensus block producers selection",
     "page-description": "Role of witnesses or block producers in Hive blockchain is to act as the network's governance body. Community elects them to represent their voice and each user can elect up to 30 witnesses. Top 20 witnesses are producing blocks every minute while rest remain as backup witness and gets randomized chance every minute. This role is integral part of consensus mechanism blockchain runs on and recommend user engagement to vote on trusted witnesses.",
     "remaining": "{{n}} of {{max}} votes remaining",
-    "list-rank": "Rank",
+    "list-rank": "Reitingas",
     "list-witness": "Witness",
     "list-miss": "Miss",
     "list-url": "URL",
-    "list-fee": "Fee",
-    "list-feed": "Feed",
-    "list-version": "Version",
-    "username-placeholder": "username",
+    "list-fee": "Mokestis",
+    "list-feed": "Pagrindinis",
+    "list-version": "Versija",
+    "username-placeholder": "vartotojo vardas",
     "extra-description": "Enter account name below to vote for a witness outside of Top 50",
     "proxy-description": "You can also choose a proxy that will vote for witnesses for you. This will reset your current witness selection.",
-    "proxy-btn-label": "Set Proxy",
+    "proxy-btn-label": "Nustatyti Proxy",
     "proxy-active-description": "You have set a voting proxy. If you would like to re-enable manual voting, please clear your proxy.",
-    "proxy-active-current": "Your current proxy is",
-    "proxy-active-btn-label": "Clear Proxy"
+    "proxy-active-current": "Jūsų dabartinė proxy yra",
+    "proxy-active-btn-label": "Panaikinti Proxy"
   },
   "gallery": {
     "title": "Galerija",
     "copied": "Nukopijuota į iškarpinę"
   },
   "drafts": {
-    "title": "Drafts"
+    "title": "Juodraščiai"
   },
   "bookmarks": {
-    "title": "Bookmarks"
+    "title": "Žymės"
   },
   "favorites": {
-    "title": "Favorites"
+    "title": "Mėgstamiausi"
   },
   "scroll-to-top": {
-    "title": "Scroll to Top"
+    "title": "Keliauti iki puslapio viršaus"
   },
   "static": {
     "about": {
-      "page-title": "About",
-      "intro-title": "What is <span>Ecency</span>",
+      "page-title": "Apie",
+      "intro-title": "Kas yra <span>Ecency</span>",
       "intro-content": "Ecency is beautiful and handy wrapper interface around the Hive blockchain network allowing you to create your own posts, surf your feeds, vote what you like, write comments, read replies, do all major Hive functions in your daily social surfing as well as wallet actions and other extras such as search, discover different tags etc.",
       "faq-title": "DUK",
       "faqs": "Visi DUK",
       "contact-title": "Kontaktai",
-      "contact-blog": "Founder's blog",
+      "contact-blog": "Kūrėjo blog'as",
       "contact-news": "Hive Naujienos",
       "contact-email": "Parašykite mums"
     },
@@ -640,11 +640,11 @@
       "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\" loading=\"lazy\"/></p><p>The primary differences in all interfaces or applications are in their feature-set, use cases. Ecency offers website, mobile and desktop applications for ease of access and with best security in mind. Accessible, opensource and innovative, built and owned by users. Aspire for greatness!</p>",
       "why-choose-ecency-header": "Why would I choose Ecency?",
       "why-choose-ecency-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjrzJAcJ4DvxvtqoPdzS9Aygf4MZ1PeE4goH6zWaeEFvafr9vGXWuou67Pbn44GweMyHV5DupM5q1cRvU85qdver?format=match&mode=fit\" loading=\"lazy\"/></p><p>Tailored feature set to empower you to create, inspire your audience and community. Ecency mobile application giving you on-go solution. With desktop app you are always sure to get uncensored content right from the blockchain, with website reach thousands of readers accross globe with best ranked content on search engines. State of art security measures so your keys will always stay encrypted and out of reach for ill-intentioned individuals. Fast and beautiful website, helps you to get discovered online and gain exposure for your content and gain loyal followers and readers. Build your community with Ecency today and take advantages of emerging blockchain technology and uncensored content, true free speech!</p>",
-      "how-ecency-works-header": "How does Ecency work?",
+      "how-ecency-works-header": "Kaip veikia Ecency?",
       "how-ecency-works-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjuZ3ksaZqEjfd9GadyKFE4bT7UP8qM1sF5W6U3cst4ekDsXfrQdcrjtdz6b5Ye2AfWNwGA5f8QqVXmed6NRfg1U?format=match&mode=fit\" loading=\"lazy\"/></p><p>Ecency stores and reads data from the blockchain, and thus data is accessible and uncensored. Ecency rewards content creators with built-in incentive mechanism of blockchain, with tokens (HIVE, HIVE DOLLARS, HIVE POWER) as well as Points. Tokens can be purchased and sold in major cryptocurrency exchanges (e.g. Binance, Bittrex). Points could be utilized within platform and traded for goods, services.</p>",
-      "how-to-join-header": "How to join Ecency?",
+      "how-to-join-header": "Kaip prisijungti pre Ecency?",
       "how-to-join-body": "<p>Go to <a href=\"/?referral=ecency\">https://ecency.com/?referral=ecency</a> and create an account. After signup you will receive email with further instructions. Your password is your master key to your account. Please store it safely, if you loose your password, you ultimately loose access to your account and your funds. Accounts cannot be deactivated or deleted, account names can not be changed as well. The account along with all of its activity is permanently stored in the blockchain. Without password, accounts cannot be restored, store your keys safely.</p>",
-      "how-to-signin-header": "How to sign in to Ecency?",
+      "how-to-signin-header": "Kaip prisijungti į Ecency?",
       "how-to-signin-body": "<p><img src=\"https://images.ecency.com/p/7258xSVeJbKmTr9Z4jhbPhjS9pMWA2mTwBMDbXqk9G9wdMw2bwR4hXqRQt9S7UBFrBAWCYWddjn3G34ETv5KWB5KGmuZ8ixBB9oKHTFvjjnTkRLp4ttrFQtpgtNnRUEA9NtmyFmgyuuK4?format=match&mode=fit\" loading=\"lazy\"/></p><p>You can sign-in to Ecency by using your Username and Master password or by using Active Private Keys. We take security very seriously, that's why we never store your private keys, on mobile app they are encrypted with extra PIN code of your choice, on website they are never stored. You can also use <a href=\"https://hivesigner.com\">Hivesigner OAuth2</a> authentication service to easily login, manage and perform actions.</p>",
       "how-referrals-work-header": "How referral system work on Ecency?",
       "how-referrals-work-body": "<p>Referral system is simple, you can invite your friends by adding your username in this link https://ecency.com/?referral=username and share it with your friends. Once your friends join Ecency and earn their first 250 Points, you will earn 100 Points. There is no limits on referrals and its reward.</p>",
