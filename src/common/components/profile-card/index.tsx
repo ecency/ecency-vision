@@ -188,7 +188,8 @@ export class ProfileCard extends Component<Props, State> {
                 {isMyProfile && (
                     <div className="btn-controls">
                         <Button size="sm" onClick={this.toggleProfileEdit}>{_t("profile.edit")}</Button>
-                        <Link className="btn btn-sm btn-primary" to="/witnesses">Witnesses</Link>
+                        <Link className="btn btn-sm btn-primary" to="/witnesses">{_t("profile.witnesses")}</Link>
+                        <Link className="btn btn-sm btn-primary" to="/proposals">{_t("profile.proposals")}</Link>
                     </div>
                 )}
 

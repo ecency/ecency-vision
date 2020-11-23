@@ -288,9 +288,11 @@
     "section-communities": "Communities",
     "section-points": "Points",
     "section-wallet": "Wallet",
-    "edit": "Profile Edit",
     "communities-title": "Subscriptions",
-    "create-community": "Create a community"
+    "create-community": "Create a community",
+    "edit": "Profile Edit",
+    "witnesses": "Witnesses",
+    "proposals": "Proposals"
   },
   "profile-edit": {
     "name": "Display Name",
