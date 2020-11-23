@@ -77,7 +77,7 @@ export class ProposalListItem extends Component<Props, State> {
         const votesHP = (Number(proposal.total_votes) / 1e12) * dynamicProps.hivePerMVests;
         const strVotes = numeral(votesHP).format("0.00,") + " HP";
 
-        const dailyPayment = Number(proposal.daily_pay.amount);
+        const dailyPayment = Number(proposal.daily_pay.amount) / 1e3;
         const strDailyHdb = numeral(dailyPayment).format("0.0a");
 
         const allPayment = dailyPayment * duration;
