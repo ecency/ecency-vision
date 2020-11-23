@@ -140,7 +140,8 @@ class ProposalsPage extends Component<PageProps, State> {
     render() {
         //  Meta config
         const metaProps = {
-            title: _t("proposals.page-title")
+            title: _t("proposals.page-title"),
+            description: _t("proposals.page-description")
         };
 
         const {global} = this.props;
@@ -166,8 +167,9 @@ class ProposalsPage extends Component<PageProps, State> {
                 <div className="app-content proposals-page">
                     <div className="page-header">
                         <h1 className="header-title">
-                            {_t('proposals.page-title')}
+                            {_t("proposals.page-title")}
                         </h1>
+                        <p className="header-description">{_t("proposals.page-description")}</p>
                         <div className="funding-numbers">
                             <div className="funding-number">
                                 <div className="value">

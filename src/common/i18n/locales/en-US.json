@@ -603,6 +603,7 @@
   },
   "proposals": {
     "page-title": "Proposals",
+    "page-description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit quam arcu, vitae fermentum massa vehicula at.",
     "by": "by",
     "for": "for",
     "duration-days": "{{n}} days",
