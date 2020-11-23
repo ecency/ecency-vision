@@ -5,7 +5,7 @@ import {Community} from "../store/communities/types";
 import {DynamicProps} from "../store/dynamic-props/types";
 import {UI} from "../store/ui/types";
 import {PointTransaction} from "../store/points/types";
-import {Vote, DelegatedVestingShare} from "../api/hive";
+import {Vote, DelegatedVestingShare, Proposal} from "../api/hive";
 import {ReceivedVestingShare} from "../api/private";
 import {
     ApiFollowNotification,
@@ -736,7 +736,6 @@ export const apiNotificationList2: ApiNotification[] = [
     apiTransferNotification
 ]
 
-
 export const pointTransactionsInstance: PointTransaction[] = [
     {
         amount: "0.250",
@@ -756,4 +755,18 @@ export const pointTransactionsInstance: PointTransaction[] = [
         sender: null,
         type: 120,
     }
-]
+];
+
+export const proposalInstance: Proposal = {
+    "id": 88,
+    "proposal_id": 88,
+    "creator": "good-karma",
+    "receiver": "ecency",
+    "start_date": "2020-04-15T00:00:00",
+    "end_date": "2022-04-15T00:00:00",
+    "daily_pay": {"amount": "70000", "precision": 3, "nai": "@@000000013"},
+    "subject": "Hivesigner - Ongoing development and improvement",
+    "permlink": "hivesigner-ongoing-development-and-improvement",
+    "total_votes": "59038534209195740",
+    "status": "active"
+}
