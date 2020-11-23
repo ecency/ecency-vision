@@ -1,10 +1,14 @@
 import React, {Component, Fragment} from "react";
 
+import {Link} from "react-router-dom";
+
 import {connect} from "react-redux";
 
 import {match} from "react-router";
 
 import numeral from "numeral";
+
+import moment from "moment";
 
 import defaults from "../constants/defaults.json";
 
@@ -12,7 +16,6 @@ import {
     renderPostBody,
     setProxyBase,
     catchPostImage,
-    postBodySummary,
     // @ts-ignore
 } from "@ecency/render-helper";
 
@@ -28,16 +31,15 @@ import NavBar from "../components/navbar";
 import NavBarElectron from "../../desktop/app/components/navbar";
 import LinearProgress from "../components/linear-progress";
 import ProposalListItem from "../components/proposal-list-item";
-import parseAsset from "../helper/parse-asset"
+import NotFound from "../components/404";
 
 import {_t} from "../i18n";
 
 import {getProposals, Proposal, getPost, getAccount} from "../api/hive";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
-import NotFound from "../components/404";
-import {Link} from "react-router-dom";
-import moment from "moment";
+
+import parseAsset from "../helper/parse-asset";
 import parseDate from "../helper/parse-date";
 
 enum Filter {
