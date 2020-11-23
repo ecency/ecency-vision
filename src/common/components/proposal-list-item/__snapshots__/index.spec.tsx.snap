@@ -136,25 +136,34 @@ exports[`(1) Default render. 1`] = `
     className="right-side"
   >
     <div
-      className="proposal-vote-btn"
-      onClick={[Function]}
+      className="voting"
     >
       <div
-        className="btn-proposal-vote btn-up-vote vote-btn-lg"
+        className="proposal-vote-btn"
+        onClick={[Function]}
       >
-        <span
-          className="btn-inner"
+        <div
+          className="btn-proposal-vote btn-up-vote vote-btn-lg"
         >
-          <svg
-            viewBox="0 0 24 24"
+          <span
+            className="btn-inner"
           >
-            <path
-              d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-              fill="currentColor"
-            />
-          </svg>
-        </span>
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </div>
       </div>
+    </div>
+    <div
+      className="remaining-days"
+    >
+      Remaining: 508 days
     </div>
   </div>
 </div>

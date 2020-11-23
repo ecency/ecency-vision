@@ -11,13 +11,14 @@ import {ProposalListItem} from './index';
 
 const allOver = () => new Promise((resolve) => setImmediate(resolve));
 
+jest.mock("../../util/now", () => () => new Date("November 22, 2020 03:24:00"));
+
 jest.mock("../../api/hive", () => ({
     getProposalVotes: (proposalId: number, voter: string = "", limit: number = 300) =>
         new Promise((resolve) => {
             resolve([]);
         }),
 }));
-
 
 const defProps = {
     history: createBrowserHistory(),

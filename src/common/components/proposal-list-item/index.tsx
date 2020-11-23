@@ -24,6 +24,8 @@ import UserAvatar from "../user-avatar";
 import ProposalVotes from "../proposal-votes";
 import ProposalVoteBtn from "../proposal-vote-btn"
 
+import now from "../../util/now";
+
 import {_t} from "../../i18n";
 
 import {linkSvg} from "../../img/svg";
@@ -83,7 +85,7 @@ export class ProposalListItem extends Component<Props, State> {
         const allPayment = dailyPayment * duration;
         const strAllPayment = numeral(allPayment).format("0.0a");
 
-        const remaining = endDate.diff(moment(), 'days');
+        const remaining = endDate.diff(moment(now()), 'days');
 
         return (
             <div className="proposal-list-item">
