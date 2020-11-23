@@ -257,6 +257,7 @@ export const getProposals = (): Promise<Proposal[]> => client.call("database_api
 
 export interface ProposalVote {
     id: number;
+    proposal: Proposal;
     voter: string;
 }
 
@@ -265,7 +266,9 @@ export const getProposalVotes = (proposalId: number, voter: string = "", limit: 
         [proposalId, voter],
         limit,
         'by_proposal_voter'
-    ]).then(r => r.map((x: ProposalVote) => ({id: x.id, voter: x.voter})))
+    ])
+        .then(r => r.filter((x: ProposalVote) => x.proposal.proposal_id === proposalId))
+        .then(r => r.map((x: ProposalVote) => ({id: x.id, voter: x.voter})))
 
 export const vpMana = (account: Account): number => {
     // @ts-ignore "Account" is compatible with dhive's "ExtendedAccount"
