@@ -616,7 +616,8 @@
     "filter-inactive": "Upcoming",
     "filter-team": "Ecency Projects",
     "return-description": "This is the base return proposal. Every proposal with less votes will not receive funds.",
-    "votes-dialog-title": "Votes on Proposal #{{n}}"
+    "votes-dialog-title": "Votes on Proposal #{{n}}",
+    "see-all": "see all proposals"
   },
   "gallery": {
     "title": "Gallery",

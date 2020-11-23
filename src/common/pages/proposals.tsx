@@ -36,6 +36,7 @@ import {getProposals, Proposal, getPost, getAccount} from "../api/hive";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 import NotFound from "../components/404";
+import {Link} from "react-router-dom";
 
 enum Filter {
     ALL = "all",
@@ -323,9 +324,12 @@ class ProposalDetailPage extends Component<DetailProps, DetailState> {
                 {navBar}
                 <div className="app-content proposals-page">
                     <div className="page-header">
-                        <div className="main-title">
+                        <h1 className="header-title">
                             {_t('proposals.page-title')}
-                        </div>
+                        </h1>
+                        <p className="see-all">
+                            <Link to="/proposals">{_t('proposals.see-all')}</Link>
+                        </p>
                     </div>
                     <div className="proposal-list">
                         {ProposalListItem({
