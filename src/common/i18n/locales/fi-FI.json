@@ -291,8 +291,8 @@
     "communities-title": "Tilaukset",
     "create-community": "Luo yhteisö",
     "edit": "Profiilin muokkaus",
-    "witnesses": "Witnesses",
-    "proposals": "Proposals"
+    "witnesses": "Todistajat",
+    "proposals": "Ehdotukset"
   },
   "profile-edit": {
     "name": "Näyttönimi",
@@ -604,14 +604,14 @@
     "proxy-active-btn-label": "Poista valtuutus"
   },
   "proposals": {
-    "page-title": "Proposals",
-    "page-description": "The Decentralized Hive Fund (DHF) is an on-chain funding mechanism that allows anyone to submit a proposal and get funding once community votes pass certain threshold. To learn more read our <a href=\"/faq#how-dhf-work\">FAQ</a>.",
-    "by": "by",
-    "for": "for",
-    "duration-days": "{{n}} days",
-    "daily-pay": "Daily {{n}}",
-    "votes": "Votes: {{n}}",
-    "status-active": "active",
+    "page-title": "Ehdotukset",
+    "page-description": "Hajautettu Hive-rahasto (DHF) on lohkoketjun rahoitusmekanismi, jonka avulla kuka tahansa voi tehdä ehdotuksen ja saada rahoitusta yhteisön äänten ylittäessä tietyn kynnysarvon. Lue lisää <a href=\"/faq#how-dhf-work\">FAQ</a>.",
+    "by": "tehnyt",
+    "for": "kohteelle",
+    "duration-days": "{{n}} päivää",
+    "daily-pay": "Päivittäin {{n}}",
+    "votes": "Äänet: {{n}}",
+    "status-active": "käynnissä",
     "status-expired": "expired",
     "status-inactive": "upcoming",
     "remaining-days": "Remaining: {{n}} days",
