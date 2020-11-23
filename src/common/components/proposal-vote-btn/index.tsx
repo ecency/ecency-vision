@@ -8,6 +8,7 @@ import {Account} from "../../store/accounts/types";
 
 import LoginRequired from "../login-required";
 import KeyOrHotDialog from "../key-or-hot-dialog";
+import {error} from "../feedback";
 
 import {getProposalVotes} from "../../api/hive";
 
@@ -16,7 +17,6 @@ import {proposalVote, proposalVoteHot, proposalVoteKc, formatError} from "../../
 import _c from "../../util/fix-class-names";
 
 import {chevronUpSvg} from "../../img/svg";
-import {error} from "../feedback";
 
 interface Props {
     global: Global;
@@ -67,7 +67,6 @@ export class ProposalVoteBtn extends Component <Props, State> {
         }
     };
 
-
     load = () => {
         const {proposal, activeUser} = this.props;
         if (!activeUser) {
@@ -105,8 +104,8 @@ export class ProposalVoteBtn extends Component <Props, State> {
         const {activeUser, proposal} = this.props;
         const {loading, inProgress, voted} = this.state;
 
-        const cls = _c(`btn-witness-vote btn-up-vote vote-btn-lg ${(inProgress || loading) ? 'in-progress' : ''} ${voted ? 'voted' : ''}`);
-        const btn = <div className="witness-vote-btn">
+        const cls = _c(`btn-proposal-vote btn-up-vote vote-btn-lg ${(inProgress || loading) ? 'in-progress' : ''} ${voted ? 'voted' : ''}`);
+        const btn = <div className="proposal-vote-btn">
             <div className={cls}>
                 <span className="btn-inner">{chevronUpSvg}</span>
             </div>
