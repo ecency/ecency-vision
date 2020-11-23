@@ -132,4 +132,29 @@
       font-size: 1.2rem;
     }
   }
+
+  &.proposals-detail-page {
+    .proposal-list {
+      position: relative;
+
+      .btn-dismiss {
+        position: absolute;
+        right: 0;
+        top: -13px;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        background: $metallic-blue;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: $box-shadow-alt;
+        color: $white;
+
+        svg {
+          height: 14px;
+        }
+      }
+    }
+  }
 }

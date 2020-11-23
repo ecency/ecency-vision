@@ -42,6 +42,8 @@ import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 import parseAsset from "../helper/parse-asset";
 import parseDate from "../helper/parse-date";
 
+import {closeSvg} from "../img/svg";
+
 enum Filter {
     ALL = "all",
     ACTIVE = "active",
@@ -296,9 +298,7 @@ class ProposalDetailPage extends Component<DetailProps, DetailState> {
     }
 
     render() {
-
-        const {global, activeUser, dynamicProps} = this.props;
-        const {hivePerMVests} = dynamicProps;
+        const {global} = this.props;
         const {loading, proposal, entry} = this.state;
 
         const navBar = global.isElectron ?
@@ -335,7 +335,7 @@ class ProposalDetailPage extends Component<DetailProps, DetailState> {
                 <Theme global={this.props.global}/>
                 <Feedback/>
                 {navBar}
-                <div className="app-content proposals-page">
+                <div className="app-content proposals-page proposals-detail-page">
                     <div className="page-header">
                         <h1 className="header-title">
                             {_t('proposals.page-title')}
@@ -345,6 +345,7 @@ class ProposalDetailPage extends Component<DetailProps, DetailState> {
                         </p>
                     </div>
                     <div className="proposal-list">
+                        <Link to="/proposals" className="btn-dismiss">{closeSvg}</Link>
                         {ProposalListItem({
                             ...this.props,
                             proposal
