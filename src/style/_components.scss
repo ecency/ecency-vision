@@ -75,6 +75,9 @@
 @import "../common/components/witnesses-extra";
 @import "../common/components/witnesses-proxy";
 @import "../common/components/witnesses-active-proxy";
+@import "../common/components/proposal-list-item";
+@import "../common/components/proposal-votes";
+@import "../common/components/proposal-vote-btn";
 
 @import "../desktop/app/components/navbar";
 @import "../desktop/app/components/updater";
@@ -89,3 +92,4 @@
 @import "../common/pages/discover";
 @import "../common/pages/search";
 @import "../common/pages/witnesses";
+@import "../common/pages/proposals";

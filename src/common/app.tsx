@@ -9,6 +9,7 @@ import CommunityContainer from "./pages/community";
 import DiscoverContainer from "./pages/discover";
 import SearchContainer from "./pages/search";
 import WitnessesContainer from "./pages/witnesses";
+import {ProposalsIndexContainer, ProposalDetailContainer} from "./pages/proposals";
 import AuthContainer from "./pages/auth";
 import SubmitContainer from "./pages/submit";
 import NotFound from "./components/404";
@@ -50,6 +51,8 @@ const App = () => {
                 <Route exact={true} strict={true} path={routes.EDIT} component={SubmitContainer}/>
                 <Route exact={true} strict={true} path={routes.EDIT_DRAFT} component={SubmitContainer}/>
                 <Route exact={true} strict={true} path={routes.WITNESSES} component={WitnessesContainer}/>
+                <Route exact={true} strict={true} path={routes.PROPOSALS} component={ProposalsIndexContainer}/>
+                <Route exact={true} strict={true} path={routes.PROPOSAL_DETAIL} component={ProposalDetailContainer}/>
                 <Route exact={true} strict={true} path={routes.ABOUT} component={AboutPageContainer}/>
                 <Route exact={true} strict={true} path={routes.GUESTS} component={GuestPostPageContainer}/>
                 <Route exact={true} strict={true} path={routes.CONTRIBUTE} component={ContributePageContainer}/>

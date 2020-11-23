@@ -468,6 +468,47 @@ export const witnessProxyKc = (account: string, witness: string) => {
     return keychain.witnessProxy(account, witness);
 }
 
+export const proposalVote = (account: string, key: PrivateKey, proposal: number, approve: boolean): Promise<TransactionConfirmation> => {
+    const op: Operation = [
+        'update_proposal_votes',
+        {
+            voter: account,
+            proposal_ids: [proposal],
+            approve,
+            extensions: []
+        }
+    ]
+
+    return hiveClient.broadcast.sendOperations([op], key);
+}
+
+export const proposalVoteHot = (account: string, proposal: number, approve: boolean) => {
+    const params = {
+        account,
+        proposal_ids: JSON.stringify(
+            [proposal]
+        ),
+        approve,
+    }
+
+    hotSign("update-proposal-votes", params, "proposals");
+}
+
+export const proposalVoteKc = (account: string, proposal: number, approve: boolean) => {
+    const op: Operation = [
+        'update_proposal_votes',
+        {
+            voter: account,
+            proposal_ids: [proposal],
+            approve,
+            extensions: []
+        }
+    ]
+
+    return keychain.broadcast(account, [op], "Active");
+
+}
+
 export const subscribe = (username: string, community: string): Promise<TransactionConfirmation> => {
     const client = new hs.Client({
         accessToken: getAccessToken(username),
