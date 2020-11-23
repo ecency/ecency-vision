@@ -154,6 +154,8 @@ class ProposalsPage extends Component<PageProps, State> {
         const navBar = global.isElectron ?
             NavBarElectron({
                 ...this.props,
+                reloadFn: this.load,
+                reloading: loading,
             }) :
             NavBar({...this.props});
 
@@ -304,6 +306,8 @@ class ProposalDetailPage extends Component<DetailProps, DetailState> {
         const navBar = global.isElectron ?
             NavBarElectron({
                 ...this.props,
+                reloadFn: this.load,
+                reloading: loading,
             }) :
             NavBar({...this.props});
 
