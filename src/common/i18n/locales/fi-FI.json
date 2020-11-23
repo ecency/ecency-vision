@@ -288,9 +288,11 @@
     "section-communities": "Yhteisöt",
     "section-points": "Pisteet",
     "section-wallet": "Lompakko",
-    "edit": "Profiilin muokkaus",
     "communities-title": "Tilaukset",
-    "create-community": "Luo yhteisö"
+    "create-community": "Luo yhteisö",
+    "edit": "Profiilin muokkaus",
+    "witnesses": "Witnesses",
+    "proposals": "Proposals"
   },
   "profile-edit": {
     "name": "Näyttönimi",
@@ -601,6 +603,26 @@
     "proxy-active-current": "Nykyinen valtuutettusi",
     "proxy-active-btn-label": "Poista valtuutus"
   },
+  "proposals": {
+    "page-title": "Proposals",
+    "page-description": "The Decentralized Hive Fund (DHF) is an on-chain funding mechanism that allows anyone to submit a proposal and get funding once community votes pass certain threshold. To learn more read our <a href=\"/faq#how-dhf-work\">FAQ</a>.",
+    "by": "by",
+    "for": "for",
+    "duration-days": "{{n}} days",
+    "daily-pay": "Daily {{n}}",
+    "votes": "Votes: {{n}}",
+    "status-active": "active",
+    "status-expired": "expired",
+    "status-inactive": "upcoming",
+    "remaining-days": "Remaining: {{n}} days",
+    "filter-all": "All",
+    "filter-active": "Active",
+    "filter-inactive": "Upcoming",
+    "filter-team": "Ecency Projects",
+    "return-description": "This is the base return proposal. Every proposal with less votes will not receive funds.",
+    "votes-dialog-title": "Votes on Proposal #{{n}}",
+    "see-all": "see all proposals"
+  },
   "gallery": {
     "title": "Galleria",
     "copied": "Kopioitu leikepöydälle"
@@ -659,9 +681,11 @@
       "how-to-transfer-header": "Kuinka siirrän lohkoketjun merkkejä?",
       "how-to-transfer-body": "<p>Kirjautumisen jälkeen löydät lompakkosivun yläotsikossa sivuilla ja työpöytäsovelluksessa ja profiilisivulla, alaosan navigointipalkissa mobiilisovelluksessa. Lompakkosivulla voit aloittaa minkä tahansa merkin siirron toiselle käyttäjälle tai vaihtaa tilejä, klikkaa saldon vieressä olevaa nuolta ja löydä siirtotapahtumat. Siirrot ovat peruuttamattomia, koska ne on rekisteröity lohkoketjuun, varmista oikea vastaanottaja.</p>",
       "how-see-rewards-header": "Miten voin nähdä julkaisupalkintoni?",
-      "how-see-rewards-body": "<p><img src=\"https://images.ecency.com/p/3W72119s5BjW4PvRk9nXBzqrPWMsMTjNrXDPFFf11iYhySeELMe77idrZHBPmyaqFX6CV72hBLB5qFhwVhGoAATydoFxAF7oCwBt1ztp6eS9r5us4pm7iN?format=match&mode=fit\" loading=\"lazy\"/></p><p>Lompakkosivulla yläotsikossa sivuilla ja työpöytäsovelluksessa, alareunan navigointipalkissa mobiilisovelluksessa, näet tarkastuspalkkiot (palkkiot jotka on ansaittu äänestämisistä ja kommenteista) ja julkaisupalkkiot (omien viestien ja kommenttien keräämät palkkiot)</p><p>Voit myös nähdä samat tiedot muille käyttäjille käymällä lompakkoprofiilissa.</p>",
-      "when-claim-rewards-header": "Milloin voin lunastaa julkaisu- ja tarkastuspalkkioni?",
-      "when-claim-rewards-body": "<p>Viestit ja kommentit pysyvät aktiivisina 7 päivää ja palkkiot vaihtelevat riippuen äänistä ja merkkien markkinahinnasta, tästä syystä palkkioita arvioidaan odottavina palkkioina. Kun aika on ohi, odottava palkkio muuttuu varsinaiseksi palkkioksi ja voit lunastaa ansaitut palkkiot julkaisuista ja tarkastuksista. Klikkaa Walletissa Lunasta palkinnot-painiketta lisätäksesi merkkejä tilillesi.</p>",
+      "how-see-rewards-body": "<p><img src=\"https://images.ecency.com/p/3W72119s5BjW4PvRk9nXBzqrPWMsMTjNrXDPFFf11iYhySeELMe77idrZHBPmyaqFX6CV72hBLB5qFhwVhGoAATydoFxAF7oCwBt1ztp6eS9r5us4pm7iN?format=match&mode=fit\" loading=\"lazy\"/></p><p>In Wallet page (in top header on website and desktop app, bottom navigation bar on mobile app), you can see Curation rewards (the rewards earned for upvoting posts and comments) and Author rewards (the rewards earned by your own posts and comments)</p><p>You can also view the same information for other users by visiting their wallet profile.</p>",
+      "how-dhf-work-header": "How DHF works?",
+      "how-dhf-work-body": "<p>Anyone can create a proposal and convince community to vote on their proposal to get funded. Before creating proposal, normal post should be published on blockchain and it is recommended to gather feedback before creating proposal. Proposal creation has fee of 10 HBD + 1 HBD for each day it lasts over 60 days.</p><p>Once proposal reaches certain threshold of tallied votes, it will start receiving funds each hour. If proposal falls below threshold, system will halt funding for that proposal. You can vote as many proposals as you want, there are no limits. Proposal cannot be edited, but can be deleted/withdrawn by creator.</p>",
+      "when-claim-rewards-header": "When can I claim my rewards?",
+      "when-claim-rewards-body": "<p>Posts and comments remain active for 7 days and rewards are fluctuates depending on votes and market price of token, that is why rewards are approximated as pending reward. When the period is over, pending reward changes to actual reward and you are able to claim earned rewards. In your Wallet, click the Claim Rewards button to add the tokens to your account.</p>",
       "what-are-rc-header": "Mitä Resurssipisteet ovat?",
       "what-are-rc-body": "<p>Siirrot Hive-lohkoketjussa eivät ole maksullisia, tapahtumakoron rajoittamista käytetään suojaamaan lohkoketjua roskapostihyökkäyksiltä. Jokainesta toiminnostasi lohkoketju kuluttaa pienen määrän Resurssihyvityksiä. Tämä sisältää julkaisun, kommentoinnin, äänestämisen, merkkien siirot, jne. Sisällön katselu ei kuluta Resurssihyvitystä.</p><p>Jokaisella käyttäjällä on rajallinen määrä resurssihyvityksiä joka viikko. Mitä enemmän tapahtumia käyttäjä tekee, sitä vähemmän Resurssihyvityksiä jää jäljelle (kunnes he latautuvat). Käyttäjillä, joilla on enemmän HIVE POWERia, on enemmän resurssihyvitystä.</p><p>Jos resurssihyvitykset ovat loppuneet, et voi tehdä siirtoja lohkoketjussa, ennen kuin Resurssihyvitykset palautuvat (tapahtuu automaattisesti) tai saat lisää HIVE POWERia lisätäksesi Resurssihyvityssaldoasi tai voit <a href=\"/faq#how-boost-account\">pyytää Ecency</a> -tilin vahvistamista saadaksesi väliaikaisen valtuutuksen.</p>",
       "how-boost-account-header": "Kuinka pyytää tilin tehostamista?",
