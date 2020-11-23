@@ -175,7 +175,7 @@ class ProposalsPage extends Component<PageProps, State> {
                         <h1 className="header-title">
                             {_t("proposals.page-title")}
                         </h1>
-                        <p className="header-description">{_t("proposals.page-description")}</p>
+                        <div className="header-description" dangerouslySetInnerHTML={{__html: _t(`proposals.page-description`)}}/>
                         <div className="funding-numbers">
                             <div className="funding-number">
                                 <div className="value">
