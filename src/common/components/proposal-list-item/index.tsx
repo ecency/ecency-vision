@@ -83,6 +83,8 @@ export class ProposalListItem extends Component<Props, State> {
         const allPayment = dailyPayment * duration;
         const strAllPayment = numeral(allPayment).format("0.0a");
 
+        const remaining = endDate.diff(moment(), 'days');
+
         return (
             <div className="proposal-list-item">
                 <div className="left-side">
@@ -152,7 +154,12 @@ export class ProposalListItem extends Component<Props, State> {
                     )}
                     {proposal.id !== 0 && (
                         <>
-                            <ProposalVoteBtn {...this.props} proposal={proposal.id}/>
+                            <div className="voting">
+                                <ProposalVoteBtn {...this.props} proposal={proposal.id}/>
+                            </div>
+                            <div className="remaining-days">
+                                {_t("proposals.remaining-days", {n: remaining})}
+                            </div>
                         </>
                     )}
                 </div>

@@ -130,10 +130,26 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-direction: column;
     }
 
     @media (min-width: $lg-break) {
       width: 200px;
+    }
+
+    .voting {
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+    }
+
+    .remaining-days {
+      margin-top: 20px;
+
+      @media (min-width: $md-break) {
+        margin-top: 0;
+        font-size: 90%;
+      }
     }
 
     .return-proposal {

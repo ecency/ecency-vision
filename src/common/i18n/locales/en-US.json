@@ -611,6 +611,7 @@
     "status-active": "active",
     "status-expired": "expired",
     "status-inactive": "upcoming",
+    "remaining-days": "Remaining: {{n}} days",
     "filter-all": "All",
     "filter-active": "Active",
     "filter-inactive": "Upcoming",
