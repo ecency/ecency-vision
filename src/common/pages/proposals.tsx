@@ -37,6 +37,8 @@ import {getProposals, Proposal, getPost, getAccount} from "../api/hive";
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 import NotFound from "../components/404";
 import {Link} from "react-router-dom";
+import moment from "moment";
+import parseDate from "../helper/parse-date";
 
 enum Filter {
     ALL = "all",
@@ -290,10 +292,6 @@ class ProposalDetailPage extends Component<DetailProps, DetailState> {
     }
 
     render() {
-        //  Meta config
-        const metaProps = {
-            title: _t("proposals.page-title")
-        };
 
         const {global, activeUser, dynamicProps} = this.props;
         const {hivePerMVests} = dynamicProps;
@@ -314,6 +312,17 @@ class ProposalDetailPage extends Component<DetailProps, DetailState> {
         }
 
         const renderedBody = {__html: renderPostBody(entry.body, false, global.canUseWebp)};
+
+        //  Meta config
+        const metaProps = {
+            title: `${_t("proposals.page-title")} | ${proposal.subject}`,
+            description: `${proposal.subject} by @${proposal.creator}`,
+            url: `/proposals/${proposal.id}`,
+            canonical: `/proposals/${proposal.id}`,
+            published: moment(parseDate(entry.created)).toISOString(),
+            modified: moment(parseDate(entry.updated)).toISOString(),
+            image: catchPostImage(entry.body, 600, 500, global.canUseWebp ? 'webp' : 'match'),
+        };
 
         return (
             <>

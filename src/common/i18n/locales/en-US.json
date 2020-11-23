@@ -602,7 +602,7 @@
     "proxy-active-btn-label": "Clear Proxy"
   },
   "proposals": {
-    "page-title": "Proposals Voting",
+    "page-title": "Proposals",
     "by": "by",
     "for": "for",
     "duration-days": "{{n}} days",
