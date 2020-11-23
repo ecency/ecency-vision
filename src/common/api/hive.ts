@@ -1,5 +1,3 @@
-import axios from "axios";
-
 import {Client} from "@hiveio/dhive";
 
 import {TrendingTag} from "../store/trending-tags/types";
@@ -249,24 +247,13 @@ export interface Proposal {
     total_votes: string;
 }
 
-/*
 export const getProposals = (): Promise<Proposal[]> => client.call("database_api", "list_proposals", {
     start: [-1],
     limit: 100,
     order: 'by_total_votes',
     order_direction: 'descending',
     status: 'all'
-}) */
-
-export const getProposals = (): Promise<Proposal[]> => {
-    const data = {
-        "id": 1,
-        "jsonrpc": "2.0",
-        "method": "database_api.list_proposals",
-        "params": {"start": [-1], "limit": 200, "order": "by_total_votes", "order_direction": "descending", "status": "votable"}
-    };
-    return axios.post("https://api.hive.blog/", data).then(r => r.data.result.proposals)
-}
+}).then(r => r.proposals);
 
 export interface ProposalVote {
     id: number;
