@@ -97,6 +97,9 @@
   "trending-tags": {
     "title": "Popular"
   },
+  "selected-tags": {
+    "title": "Hot Topics"
+  },
   "entry-list-item": {
     "reblogged": "by {{n}}",
     "promoted": "promoted",
