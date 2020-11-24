@@ -97,6 +97,9 @@
   "trending-tags": {
     "title": "Populer"
   },
+  "selected-tags": {
+    "title": "Topics"
+  },
   "entry-list-item": {
     "reblogged": "oleh {{n}}",
     "promoted": "dipromosikan",
