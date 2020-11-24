@@ -18,14 +18,6 @@
       @include themify(day) {
         color: darken($silver, 16);
       }
-
-      span {
-        svg {
-          @include themify(day) {
-            color: rebeccapurple;
-          }
-        }
-      }
     }
   }
 }

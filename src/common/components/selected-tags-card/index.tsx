@@ -16,6 +16,7 @@ import {
     paletteOutlineSvg,
     virusOutline,
     voteOutline,
+    gamepadSquareOutline,
     financeSvg,
     accountTieSvg,
     cameraSvg,
@@ -49,6 +50,11 @@ const tags = [
         label: "Election 2020",
         tag: "election",
         icon: voteOutline
+    },
+    {
+        label: "Gaming",
+        tag: "hive-140217",
+        icon: gamepadSquareOutline
     },
     {
         label: "Finance",
