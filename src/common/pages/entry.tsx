@@ -259,12 +259,14 @@ class EntryPage extends Component<Props, State> {
 
             if (entry.children === 0) {
                 // Activate discussion section with first comment.
-
                 const nEntry: Entry = {
                     ...entry,
                     children: 1
                 }
                 updateEntry(nEntry);
+
+                // First item of discussion should be the entry itself
+                addReply(nEntry);
             }
         }).catch((e) => {
             error(formatError(e));
