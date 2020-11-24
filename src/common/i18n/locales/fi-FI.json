@@ -97,6 +97,9 @@
   "trending-tags": {
     "title": "Suositut"
   },
+  "selected-tags": {
+    "title": "Topics"
+  },
   "entry-list-item": {
     "reblogged": "tekijä {{n}}",
     "promoted": "korostettu",
