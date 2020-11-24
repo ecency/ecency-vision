@@ -622,30 +622,30 @@
     "filter-active": "Active",
     "filter-inactive": "Upcoming",
     "filter-team": "Ecency Projects",
-    "return-description": "This is the base return proposal. Every proposal with less votes will not receive funds.",
-    "votes-dialog-title": "Votes on Proposal #{{n}}",
-    "see-all": "see all proposals"
+    "return-description": "Bu təməl geri təklifdir. Az səs alan hər bir təklif vəsait almayacaq.",
+    "votes-dialog-title": "#{{n}} təklifdəki səslər",
+    "see-all": "bütün təkliflərə bax"
   },
   "gallery": {
-    "title": "Gallery",
-    "copied": "Copied to clipboard"
+    "title": "Qalereya",
+    "copied": "Lövhəyə kopyalandı"
   },
   "drafts": {
-    "title": "Drafts"
+    "title": "Qaralamalar"
   },
   "bookmarks": {
-    "title": "Bookmarks"
+    "title": "Əlfəcinlər"
   },
   "favorites": {
-    "title": "Favorites"
+    "title": "Sevimlilər"
   },
   "scroll-to-top": {
-    "title": "Scroll to Top"
+    "title": "Yuxarı sürüşdür"
   },
   "static": {
     "about": {
       "page-title": "Haqqında",
-      "intro-title": "What is <span>Ecency</span>",
+      "intro-title": "<span>Ecency</span> nədir",
       "intro-content": "Ecency is beautiful and handy wrapper interface around the Hive blockchain network allowing you to create your own posts, surf your feeds, vote what you like, write comments, read replies, do all major Hive functions in your daily social surfing as well as wallet actions and other extras such as search, discover different tags etc.",
       "faq-title": "TSS",
       "faqs": "Bütün TSS-lar",
@@ -702,18 +702,18 @@
     }
   },
   "context-menu": {
-    "cut": "Cut",
-    "copy": "Copy",
-    "paste": "Paste",
-    "open-image-browser": "Open image in browser",
-    "copy-image-url": "Copy image url"
+    "cut": "Kəs",
+    "copy": "Kopyala",
+    "paste": "Yapışdır",
+    "open-image-browser": "Təsviri səyyahda aç",
+    "copy-image-url": "Təsvir bağlantısını kopyala"
   },
   "updater": {
-    "new-version-available": "New version is available",
-    "update": "Update",
-    "dismiss": "Dismiss",
-    "downloading": "Downloading new version...",
-    "download-completed": "Download is completed",
-    "restart": "Restart"
+    "new-version-available": "Yeni versiya əlçatandır",
+    "update": "Yenilə",
+    "dismiss": "Bağla",
+    "downloading": "Yeni versiya endirilir...",
+    "download-completed": "Endirmə tamamlandı",
+    "restart": "Yenidən başlat"
   }
 }
