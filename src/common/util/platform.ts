@@ -1,5 +1,5 @@
 function getOperatingSystem(window: { navigator: { appVersion: string | string[]; }; }) {
-    let operatingSystem = 'Not known';
+    let operatingSystem = 'WindowsOS';
 
     if (window.navigator.appVersion.indexOf('Win') !== -1) {
         operatingSystem = 'WindowsOS';

@@ -10,8 +10,7 @@ export class DialogContent extends Component {
 
         return <div className="download-dialog-content">
             <h2 className="downloads-title">Download</h2>
-            <div className="downloads-text">Enjoy Ecency for iPhone, iPad and Android, as well as Windows, Mac or Linux devices
-            </div>
+            <div className="downloads-text">Enjoy Ecency for iPhone, iPad and Android, as well as Windows, Mac or Linux devices</div>
             <div className="download-buttons">
                 {(os !== 'iOS' && os !== 'AndroidOS' && os === 'WindowsOS') &&
                 <a className="download-button btn-desktop" target="_blank"
