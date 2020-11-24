@@ -97,6 +97,9 @@
   "trending-tags": {
     "title": "Populiarūs"
   },
+  "selected-tags": {
+    "title": "Topics"
+  },
   "entry-list-item": {
     "reblogged": "{{n}}",
     "promoted": "paremti",
