@@ -7,7 +7,7 @@ exports[`(1) Default render 1`] = `
   <h2
     className="list-header"
   >
-    Popular
+    Topics
   </h2>
   <a
     className="tag-list-item"
@@ -40,7 +40,7 @@ exports[`(2) Selected tag 1`] = `
   <h2
     className="list-header"
   >
-    Popular
+    Topics
   </h2>
   <a
     className="tag-list-item"
