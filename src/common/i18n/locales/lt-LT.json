@@ -95,10 +95,10 @@
     "to-login": "Atgal į Prisijungimo puslapį"
   },
   "trending-tags": {
-    "title": "Populiarūs"
+    "title": "Topics"
   },
   "selected-tags": {
-    "title": "Topics"
+    "title": "Featured"
   },
   "entry-list-item": {
     "reblogged": "{{n}}",
