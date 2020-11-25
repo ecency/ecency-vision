@@ -126,32 +126,22 @@ class WitnessesPage extends Component<PageProps, State> {
         }
     };
 
-    load = () => {
-        this.fetchVotedWitnesses();
-        this.fetchWitnesses();
-    }
+    load = async () => {
+        this.stateSet({loading: true});
 
-    fetchWitnesses = () => {
-        getWitnessesByVote().then(resp => {
-            this.stateSet({witnesses: transform(resp)});
-        }).finally(() => {
-            this.stateSet({loading: false});
-        });
-    }
-
-    fetchVotedWitnesses = () => {
         const {activeUser} = this.props;
         if (activeUser) {
-            getAccount(activeUser.username).then(resp => {
-                const {witness_votes: witnessVotes, proxy} = resp;
-                this.stateSet({witnessVotes: witnessVotes || [], proxy: proxy || null});
-            });
-
-            return;
+            const resp = await getAccount(activeUser.username);
+            const {witness_votes: witnessVotes, proxy} = resp;
+            this.stateSet({witnessVotes: witnessVotes || [], proxy: proxy || null});
+        } else {
+            this.stateSet({witnessVotes: [], proxy: null});
         }
 
-        this.stateSet({witnessVotes: [], proxy: null});
-    };
+        const witnesses = await getWitnessesByVote();
+
+        this.stateSet({witnesses: transform(witnesses), loading: false});
+    }
 
     addWitness = (name: string) => {
         const {witnessVotes} = this.state;
@@ -284,6 +274,8 @@ class WitnessesPage extends Component<PageProps, State> {
                 {global.isElectron ?
                     NavBarElectron({
                         ...this.props,
+                        reloadFn: this.load,
+                        reloading: loading,
                     }) :
                     NavBar({...this.props})}
                 <div className="app-content witnesses-page">
