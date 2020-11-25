@@ -34,8 +34,6 @@ import capitalize from "../util/capitalize";
 
 import defaults from "../constants/defaults.json";
 
-import {fireSvg, trendingUpSvg, historySvg, formatListBulletedSvg} from "../img/svg";
-
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
 
@@ -177,10 +175,6 @@ class EntryIndexPage extends Component<PageProps> {
                                     {menuConfig.items.map((i, k) => {
                                         return <li key={k} className="nav-item">
                                             <Link to={i.href!} className={`nav-link link-${i.id} ${i.active ? "active" : ""}`}>
-                                                {i.id === "feed" && formatListBulletedSvg}
-                                                {i.id === "hot" && fireSvg}
-                                                {i.id === "trending" && trendingUpSvg}
-                                                {i.id === "created" && historySvg}
                                                 {i.label}</Link>
                                         </li>
                                     })}
