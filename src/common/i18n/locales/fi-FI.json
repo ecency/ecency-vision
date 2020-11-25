@@ -95,10 +95,10 @@
     "to-login": "Takaisin kirjautumiseen"
   },
   "trending-tags": {
-    "title": "Suositut"
+    "title": "Topics"
   },
   "selected-tags": {
-    "title": "Topics"
+    "title": "Featured"
   },
   "entry-list-item": {
     "reblogged": "tekijä {{n}}",
