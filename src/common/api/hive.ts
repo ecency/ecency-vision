@@ -12,7 +12,6 @@ export const client = new Client(SERVERS, {
     timeout: 4000,
     failoverThreshold: 10,
     consoleOnFailover: true,
-    rebrandedApi: true,
 });
 
 export interface Vote {
