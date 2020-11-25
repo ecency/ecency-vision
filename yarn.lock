@@ -969,10 +969,10 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
-"@ecency/render-helper@^2.0.7":
-  version "2.0.7"
-  resolved "https://registry.yarnpkg.com/@ecency/render-helper/-/render-helper-2.0.7.tgz#dac6d33ade3c36603ff62b1b874dc650b02952fa"
-  integrity sha512-MXv9iBdul4qzgVTSTFiMV990bnlCO//DkDiyQlwi3m+XYPj0yIADQnX7rtKw/FP/Yu6WZNSXlbMEiabBz3pkGQ==
+"@ecency/render-helper@^2.0.9":
+  version "2.0.9"
+  resolved "https://registry.yarnpkg.com/@ecency/render-helper/-/render-helper-2.0.9.tgz#a9467d44ad4b2bc2f606d5db480896374f1095ba"
+  integrity sha512-6aXGZqIXmnWwWsSTd9N2/U4F/Ny9SZAG5R6uvDKBxTUORzfvegraoynZ1k4dvh6KppvxNbkw7/faYuKSmURaMQ==
   dependencies:
     he "^1.2.0"
     lru-cache "^5.1.1"
