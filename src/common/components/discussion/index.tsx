@@ -194,12 +194,16 @@ export class Item extends Component<ItemProps, ItemState> {
                 tags: []
             });
 
-            addReply(nReply); // add new reply to store
-            ls.remove(`reply_draft_${entry.author}_${entry.permlink}`); // remove reply draft
-            this.toggleReply(); // close comment box
+            // add new reply to store
+            addReply(nReply);
+
+            // remove reply draft
+            ls.remove(`reply_draft_${entry.author}_${entry.permlink}`);
+
+            // close comment box
+            this.toggleReply();
 
             if (entry.children === 0) {
-                console.log("holaaa")
                 // Update parent comment.
                 const nParentReply: Entry = {
                     ...entry,
@@ -472,7 +476,10 @@ export class Discussion extends Component<Props, State> {
     }
 
     componentDidMount() {
-        this.fetch();
+        const {activeUser} = this.props;
+        if (activeUser) {
+            this.fetch();
+        }
     }
 
     componentDidUpdate(prevProps: Readonly<Props>): void {
@@ -501,16 +508,17 @@ export class Discussion extends Component<Props, State> {
 
     show = () => {
         this.setState({visible: true});
+        this.fetch();
     }
 
     render() {
         const {parent, discussion, activeUser} = this.props;
         const {visible} = this.state;
-        const {loading, order, list} = discussion;
-        const count = list.length - 1; // post comes with discussion
+        const {loading, order} = discussion;
+        const count = parent.children;
 
         if (loading) {
-            return <LinearProgress/>;
+            return <div className="discussion"><LinearProgress/></div>;
         }
 
         const join = <div className="discussion-card">

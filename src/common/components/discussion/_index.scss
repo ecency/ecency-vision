@@ -1,6 +1,7 @@
 .discussion {
   margin: 10px 0 30px 0;
   position: relative;
+  min-height: 200px;
 
   @include themify(day) {
     border-top: 1px solid $white-three;
