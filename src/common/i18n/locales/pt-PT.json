@@ -95,10 +95,10 @@
     "to-login": "Voltar à autenticação"
   },
   "trending-tags": {
-    "title": "Popular"
+    "title": "Topics"
   },
   "selected-tags": {
-    "title": "Topics"
+    "title": "Featured"
   },
   "entry-list-item": {
     "reblogged": "por {{n}}",
