@@ -95,10 +95,10 @@
     "to-login": "Kembali untuk masuk"
   },
   "trending-tags": {
-    "title": "Populer"
+    "title": "Topics"
   },
   "selected-tags": {
-    "title": "Topics"
+    "title": "Featured"
   },
   "entry-list-item": {
     "reblogged": "oleh {{n}}",
