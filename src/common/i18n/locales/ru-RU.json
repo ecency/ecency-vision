@@ -588,9 +588,10 @@
     "sort-newest": "Date"
   },
   "witnesses": {
-    "page-title": "Witnesses | Consensus block producers selection",
-    "page-description": "Role of witnesses or block producers in Hive blockchain is to act as the network's governance body. Community elects them to represent their voice and each user can elect up to 30 witnesses. Top 20 witnesses are producing blocks every minute while rest remain as backup witness and gets randomized chance every minute. This role is integral part of consensus mechanism blockchain runs on and recommend user engagement to vote on trusted witnesses.",
-    "remaining": "{{n}} of {{max}} votes remaining",
+    "page-title": "Witnesses",
+    "page-description": "Consensus block producers selection",
+    "page-description-long": "Role of witnesses or block producers in Hive blockchain is to act as the network's governance body. Community elects them to represent their voice and each user can elect up to 30 witnesses. Top 20 witnesses are producing blocks every minute while rest remain as backup witness and gets randomized chance every minute. This role is integral part of consensus mechanism blockchain runs on and recommend user engagement to vote on trusted witnesses.",
+    "remaining": "<span>{{n}}</span> of {{max}} votes remaining",
     "list-rank": "Rank",
     "list-witness": "Witness",
     "list-miss": "Miss",
