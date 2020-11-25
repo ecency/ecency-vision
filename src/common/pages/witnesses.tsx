@@ -24,6 +24,7 @@ import routes from "../../common/routes";
 import {getAccount, getWitnessesByVote, Witness} from "../api/hive";
 
 import {_t} from "../i18n";
+import {Tsx} from "../i18n/helper";
 
 import {linkSvg, openInNewSvg} from "../img/svg";
 
@@ -262,6 +263,18 @@ class WitnessesPage extends Component<PageProps, State> {
             </tbody>
         </table>;
 
+        const header = <div className="page-header">
+            <div className="header-title">
+                {_t('witnesses.page-title')}
+            </div>
+            <div className="header-description" dangerouslySetInnerHTML={{__html: _t(`witnesses.page-description-long`)}}/>
+            {activeUser && (
+                <Tsx k="witnesses.remaining" args={{n: 30 - witnessVotes.length, max: 30}}>
+                    <div className="remaining"/>
+                </Tsx>
+            )}
+        </div>;
+
         return (
             <>
                 <Meta {...metaProps} />
@@ -277,22 +290,14 @@ class WitnessesPage extends Component<PageProps, State> {
                     {(() => {
                         if (loading) {
                             return <>
-                                <div className="page-header loading">
-                                    <div className="main-title">
-                                        {_t('witnesses.page-title')}
-                                    </div>
-                                </div>
+                                {header}
                                 <LinearProgress/>
                             </>
                         }
 
                         if (proxy) {
                             return <>
-                                <div className="page-header">
-                                    <div className="main-title">
-                                        {_t('witnesses.page-title')}
-                                    </div>
-                                </div>
+                                {header}
                                 <WitnessesActiveProxy
                                     {...this.props}
                                     username={proxy}
@@ -300,23 +305,11 @@ class WitnessesPage extends Component<PageProps, State> {
                                         this.stateSet({proxy: null});
                                     }}
                                 />
-                                <div className="page-footer">
-                                    {_t('witnesses.page-description')}
-                                </div>
                             </>
                         }
 
                         return <>
-                            <div className="page-header">
-                                <div className="main-title">
-                                    {_t('witnesses.page-title')}
-                                </div>
-                                {activeUser && (
-                                    <div className="remaining">
-                                        {_t('witnesses.remaining', {n: 30 - witnessVotes.length, max: 30})}
-                                    </div>
-                                )}
-                            </div>
+                            {header}
                             <div className="table-responsive witnesses-table">{table}</div>
                             <div className="witnesses-controls">
                                 {WitnessesExtra({
@@ -336,9 +329,6 @@ class WitnessesPage extends Component<PageProps, State> {
                                         this.stateSet({proxy: username, witnesses: []});
                                     }
                                 })}
-                            </div>
-                            <div className="page-footer">
-                                {_t('witnesses.page-description')}
                             </div>
                         </>
                     })()}
