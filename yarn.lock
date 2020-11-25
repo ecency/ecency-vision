@@ -969,10 +969,10 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
-"@ecency/render-helper@^2.0.6":
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/@ecency/render-helper/-/render-helper-2.0.6.tgz#b980417a68b52b353c925531a2a7311adad9c817"
-  integrity sha512-hiV4YLsrTx0DrU+yq+ssKwU0y9DFTsjAKWiqy0WQztSofF2y1+bUM2hDUFXhA7U+iNlUTgSOwizRjdm66Fx8gA==
+"@ecency/render-helper@^2.0.9":
+  version "2.0.9"
+  resolved "https://registry.yarnpkg.com/@ecency/render-helper/-/render-helper-2.0.9.tgz#a9467d44ad4b2bc2f606d5db480896374f1095ba"
+  integrity sha512-6aXGZqIXmnWwWsSTd9N2/U4F/Ny9SZAG5R6uvDKBxTUORzfvegraoynZ1k4dvh6KppvxNbkw7/faYuKSmURaMQ==
   dependencies:
     he "^1.2.0"
     lru-cache "^5.1.1"
@@ -984,15 +984,16 @@
     xmldom "^0.1.27"
     xss "^1.0.8"
 
-"@hiveio/dhive@^0.14.8":
-  version "0.14.8"
-  resolved "https://registry.yarnpkg.com/@hiveio/dhive/-/dhive-0.14.8.tgz#7ff2e60c579559d136440e46bd58c55a09d854d9"
-  integrity sha512-TfnzrnVD6OKLYSb8quHeT8hUjPeR1etIGg6EXaH+lbzgNpmlVBwgmM+uDdGNPRifh4CT8sf+/6fsLvKF2ens/Q==
+"@hiveio/dhive@^0.14.12":
+  version "0.14.12"
+  resolved "https://registry.yarnpkg.com/@hiveio/dhive/-/dhive-0.14.12.tgz#1e0eddc7ad7c0e169fe8349fb302d108683cf251"
+  integrity sha512-jYbLrRX2Citax+IzVrM1f1RoyYEjwCnAPr9ZT+aMjrtYvYOjsxg46eGfO6m/tTB1PkhABRGyAbb1yBodNogjyw==
   dependencies:
     bs58 "^4.0.1"
     bytebuffer "^5.0.1"
     core-js "^3.6.4"
     cross-fetch "^3.0.4"
+    jsbi "^3.1.4"
     node-fetch "^2.6.0"
     secp256k1 "^3.8.0"
     verror "^1.10.0"
@@ -6310,6 +6311,11 @@ js-yaml@^3.13.1:
   dependencies:
     argparse "^1.0.7"
     esprima "^4.0.0"
+
+jsbi@^3.1.4:
+  version "3.1.4"
+  resolved "https://registry.yarnpkg.com/jsbi/-/jsbi-3.1.4.tgz#9654dd02207a66a4911b4e4bb74265bc2cbc9dd0"
+  integrity sha512-52QRRFSsi9impURE8ZUbzAMCLjPm4THO7H2fcuIvaaeFTbSysvkodbQQXIVsNgq/ypDbq6dJiuGKL0vZ/i9hUg==
 
 jsbn@~0.1.0:
   version "0.1.1"

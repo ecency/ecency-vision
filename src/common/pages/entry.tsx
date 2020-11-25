@@ -254,16 +254,19 @@ class EntryPage extends Component<Props, State> {
                 tags
             });
 
-            addReply(nReply); // add new reply to store
-            ls.remove(`reply_draft_${entry.author}_${entry.permlink}`); // remove reply draft
+            // add new reply to store
+            addReply(nReply);
+
+            // remove reply draft
+            ls.remove(`reply_draft_${entry.author}_${entry.permlink}`);
 
             if (entry.children === 0) {
                 // Activate discussion section with first comment.
-
                 const nEntry: Entry = {
                     ...entry,
                     children: 1
                 }
+
                 updateEntry(nEntry);
             }
         }).catch((e) => {

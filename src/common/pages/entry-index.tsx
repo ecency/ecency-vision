@@ -23,6 +23,7 @@ import EntryListLoadingItem from "../components/entry-list-loading-item";
 import DetectBottom from "../components/detect-bottom";
 import EntryListContent from "../components/entry-list";
 import TrendingTagsCard from "../components/trending-tags-card";
+import SelectedTagsCard from "../components/selected-tags-card";
 import ScrollToTop from "../components/scroll-to-top";
 
 import {_t} from "../i18n";
@@ -32,8 +33,6 @@ import _c from "../util/fix-class-names";
 import capitalize from "../util/capitalize";
 
 import defaults from "../constants/defaults.json";
-
-import {fireSvg, trendingUpSvg, historySvg, formatListBulletedSvg} from "../img/svg";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
@@ -163,6 +162,7 @@ class EntryIndexPage extends Component<PageProps> {
                 <Intro global={this.props.global} hideIntro={this.props.hideIntro}/>
                 <div className="app-content entry-index-page">
                     <div className="tags-side">
+                        {SelectedTagsCard({...this.props})}
                         {TrendingTagsCard({...this.props})}
                     </div>
                     <div className={_c(`entry-page-content ${loading ? "loading" : ""}`)}>
@@ -175,10 +175,6 @@ class EntryIndexPage extends Component<PageProps> {
                                     {menuConfig.items.map((i, k) => {
                                         return <li key={k} className="nav-item">
                                             <Link to={i.href!} className={`nav-link link-${i.id} ${i.active ? "active" : ""}`}>
-                                                {i.id === "feed" && formatListBulletedSvg}
-                                                {i.id === "hot" && fireSvg}
-                                                {i.id === "trending" && trendingUpSvg}
-                                                {i.id === "created" && historySvg}
                                                 {i.label}</Link>
                                         </li>
                                     })}

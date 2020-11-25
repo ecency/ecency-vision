@@ -12,7 +12,6 @@ export const client = new Client(SERVERS, {
     timeout: 4000,
     failoverThreshold: 10,
     consoleOnFailover: true,
-    rebrandedApi: true,
 });
 
 export interface Vote {
@@ -106,6 +105,7 @@ export const getAccounts = (usernames: string[]): Promise<Account[]> => {
                 withdrawn: x.withdrawn,
                 witness_votes: x.witness_votes,
                 proxy: x.proxy,
+                proxied_vsf_votes: x.proxied_vsf_votes,
                 voting_manabar: x.voting_manabar,
                 __loaded: true,
             };
@@ -226,6 +226,48 @@ export const getWitnessesByVote = (
     from: string = "",
     limit: number = 50
 ): Promise<Witness[]> => client.call("condenser_api", "get_witnesses_by_vote", [from, limit]);
+
+
+export interface Proposal {
+    creator: string;
+    daily_pay: {
+        amount: string
+        nai: string
+        precision: number
+    };
+    end_date: string;
+    id: number;
+    permlink: string;
+    proposal_id: number;
+    receiver: string;
+    start_date: string;
+    status: string;
+    subject: string;
+    total_votes: string;
+}
+
+export const getProposals = (): Promise<Proposal[]> => client.call("database_api", "list_proposals", {
+    start: [-1],
+    limit: 100,
+    order: 'by_total_votes',
+    order_direction: 'descending',
+    status: 'all'
+}).then(r => r.proposals);
+
+export interface ProposalVote {
+    id: number;
+    proposal: Proposal;
+    voter: string;
+}
+
+export const getProposalVotes = (proposalId: number, voter: string = "", limit: number = 300): Promise<ProposalVote[]> =>
+    client.call('condenser_api', 'list_proposal_votes', [
+        [proposalId, voter],
+        limit,
+        'by_proposal_voter'
+    ])
+        .then(r => r.filter((x: ProposalVote) => x.proposal.proposal_id === proposalId))
+        .then(r => r.map((x: ProposalVote) => ({id: x.id, voter: x.voter})))
 
 export const vpMana = (account: Account): number => {
     // @ts-ignore "Account" is compatible with dhive's "ExtendedAccount"

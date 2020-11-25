@@ -7,16 +7,15 @@
     color: $powder-blue;
   }
 
+  text-align: center;
+
   .description {
-    margin: 20px 0 40px 0;
+    margin: 20px 0;
   }
 
   .proxy-form {
-    align-items: center;
-    display: flex;
-
     .current-proxy {
-      margin-right: 20px;
+      margin-bottom: 20px;
     }
   }
 }

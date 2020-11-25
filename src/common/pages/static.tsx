@@ -40,6 +40,7 @@ const faqKeys = [
     'how-to-transfer',
     'how-see-rewards',
     'when-claim-rewards',
+    'how-dhf-work',
     'what-are-rc',
     'how-boost-account',
     'what-spam-abuse',

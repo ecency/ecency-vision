@@ -5,3 +5,5 @@ $lg-break: map-get($grid-breakpoints, "lg");
 $xl-break: map-get($grid-breakpoints, "xl");
 $xxl-break: "1440px";
 $xxxl-break: "1600px";
+
+$box-shadow-alt: 0 .1rem 1rem rgba($black, .10);

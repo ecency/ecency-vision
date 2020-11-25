@@ -1,0 +1,10 @@
+.proposal-votes-dialog {
+  .modal-body {
+    height: 500px;
+    overflow: auto;
+
+    .voters-list {
+      @include user-grid-list(1, 1, 2);
+    }
+  }
+}
