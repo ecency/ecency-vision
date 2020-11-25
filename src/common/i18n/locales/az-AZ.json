@@ -95,10 +95,10 @@
     "to-login": "Back to Login"
   },
   "trending-tags": {
-    "title": "Popular"
+    "title": "Topics"
   },
   "selected-tags": {
-    "title": "Topics"
+    "title": "Featured"
   },
   "entry-list-item": {
     "reblogged": "by {{n}}",
