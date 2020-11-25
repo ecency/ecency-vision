@@ -20,7 +20,7 @@ exports[`(1) Full render with active user 1`] = `
         />
       </svg>
        
-      8 Comments
+      9 Comments
     </div>
     <span
       className="flex-spacer"
@@ -1244,7 +1244,7 @@ exports[`(2) Full render with no active user 1`] = `
     <div
       className="label"
     >
-      8 Comments
+      9 Comments
     </div>
     <button
       className="btn btn-primary"

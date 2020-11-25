@@ -17,7 +17,7 @@ class EntryBodyExtra extends Component<Props> {
         const {entry} = this.props;
 
         // Tweet renderer
-        if (/(?:https?:\/\/(?:(?:twitter\.com\/(.*?)\/status\/(.*))))/gi.test(entry.body)) {
+        if (/(?:https?:\/\/(?:(?:twitter\.com\/(.*?)\/status\/(\d+)$)))/gim.test(entry.body)) {
             injectTwitter();
         }
 

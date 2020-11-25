@@ -254,8 +254,11 @@ class EntryPage extends Component<Props, State> {
                 tags
             });
 
-            addReply(nReply); // add new reply to store
-            ls.remove(`reply_draft_${entry.author}_${entry.permlink}`); // remove reply draft
+            // add new reply to store
+            addReply(nReply);
+
+            // remove reply draft
+            ls.remove(`reply_draft_${entry.author}_${entry.permlink}`);
 
             if (entry.children === 0) {
                 // Activate discussion section with first comment.
@@ -263,10 +266,8 @@ class EntryPage extends Component<Props, State> {
                     ...entry,
                     children: 1
                 }
-                updateEntry(nEntry);
 
-                // First item of discussion should be the entry itself
-                addReply(nEntry);
+                updateEntry(nEntry);
             }
         }).catch((e) => {
             error(formatError(e));
