@@ -434,8 +434,8 @@ export class List extends Component<ListProps> {
 
         return (
             <div className="discussion-list">
-                {filtered.map((d, k) => (
-                    <Item key={k} {...this.props} entry={d}/>
+                {filtered.map((d) => (
+                    <Item key={`${d.author}-${d.permlink}`} {...this.props} entry={d}/>
                 ))}
             </div>
         );
