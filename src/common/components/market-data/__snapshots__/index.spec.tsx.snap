@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+<div
+  className="market-data"
+>
+  <div
+    className="market-data-header"
+  >
+    Coin Marketplace
+  </div>
+  <div
+    className="market-graph"
+  >
+    <div
+      className="ct-chart "
+    />
+    <div
+      className="price"
+    >
+      <span
+        className="coin"
+      >
+        HIVE
+      </span>
+       
+      <span
+        className="value"
+      >
+        0.13$
+      </span>
+    </div>
+  </div>
+  <div
+    className="market-graph"
+  >
+    <div
+      className="ct-chart "
+    />
+    <div
+      className="price"
+    >
+      <span
+        className="coin"
+      >
+        HBD
+      </span>
+       
+      <span
+        className="value"
+      >
+        0.13$
+      </span>
+    </div>
+  </div>
+  <div
+    className="market-graph"
+  >
+    <div
+      className="ct-chart "
+    />
+    <div
+      className="price"
+    >
+      <span
+        className="coin"
+      >
+        BTC
+      </span>
+       
+      <span
+        className="value"
+      >
+        0$
+      </span>
+    </div>
+  </div>
+</div>
+`;

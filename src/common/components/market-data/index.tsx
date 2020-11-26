@@ -2,8 +2,6 @@ import React, {Component} from "react";
 
 import moment from "moment";
 
-import axios from "axios";
-
 import numeral from "numeral";
 
 import Graph from "react-chartist";
@@ -12,12 +10,9 @@ import {ILineChartOptions} from "chartist";
 
 import isEqual from "react-fast-compare";
 
-import {_t} from "../../i18n";
+import {getMarketData} from "../../api/misc";
 
-export const getMarketData = (coin: string, vsCurrency: string, fromTs: string, toTs: string) => {
-    const u = `https://api.coingecko.com/api/v3/coins/${coin}/market_chart/range?vs_currency=${vsCurrency}&from=${fromTs}&to=${toTs}`
-    return axios.get(u).then(r => r.data);
-}
+import {_t} from "../../i18n";
 
 interface Props {
     label: string;
@@ -40,7 +35,7 @@ export class Market extends Component<Props, State> {
         const {coin, vsCurrency, fromTs, toTs} = this.props;
 
         getMarketData(coin, vsCurrency, fromTs, toTs).then((r) => {
-            if (r.prices) {
+            if (r && r.prices) {
                 const series = r.prices.map((x: any) => x[1]);
                 this.setState({series});
             }
