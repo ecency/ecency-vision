@@ -40,13 +40,5 @@
         fill: lighten($dark-sky-blue, 20);
       }
     }
-
-    &:hover {
-      .ct-series-a {
-        .ct-line {
-          stroke: $dark-sky-blue;
-        }
-      }
-    }
   }
 }

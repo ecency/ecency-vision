@@ -87,7 +87,7 @@ export class Market extends Component<Props, State> {
         const {coin, label} = this.props;
         const price = series[series.length - 1];
 
-        const formatter = coin === "bitcoin" ? "," : "0.00";
+        const formatter = coin === "bitcoin" ? ",$" : "0.00$";
         const strPrice = numeral(price).format(formatter)
 
         return <div className="market-graph">
