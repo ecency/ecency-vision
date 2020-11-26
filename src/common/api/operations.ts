@@ -77,7 +77,8 @@ export const comment = (
     title: string,
     body: string,
     jsonMetadata: MetaData,
-    options: CommentOptions | null
+    options: CommentOptions | null,
+    point: boolean = false
 ): Promise<TransactionConfirmation> => {
 
     const client = new hs.Client({
@@ -104,8 +105,10 @@ export const comment = (
     return client.broadcast(opArray)
         .then((r: any) => r.result)
         .then((r: TransactionConfirmation) => {
-            const t = title ? 100 : 110;
-            usrActivity(username, t, r.block_num, r.id).then();
+            if (point) {
+                const t = title ? 100 : 110;
+                usrActivity(username, t, r.block_num, r.id).then();
+            }
             return r;
         })
 };

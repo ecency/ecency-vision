@@ -243,6 +243,7 @@ class EntryPage extends Component<Props, State> {
             text,
             jsonMeta,
             null,
+            true
         ).then(() => {
             const nReply = tempEntry({
                 author: activeUser?.data!,
