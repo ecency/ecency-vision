@@ -14,6 +14,8 @@ import {getMarketData} from "../../api/misc";
 
 import {_t} from "../../i18n";
 
+import {Tsx} from "../../i18n/helper";
+
 interface Props {
     label: string;
     coin: string;
@@ -105,6 +107,7 @@ export default class MarketData extends Component {
             <Market label="HIVE" coin="hive" vsCurrency="usd" fromTs={fromTs} toTs={toTs}/>
             <Market label="HBD" coin="hive_dollar" vsCurrency="usd" fromTs={fromTs} toTs={toTs}/>
             <Market label="BTC" coin="bitcoin" vsCurrency="usd" fromTs={fromTs} toTs={toTs}/>
+            <Tsx k="market-data.credits" args={{}}><div className="credits"/></Tsx>
         </div>
     }
 }

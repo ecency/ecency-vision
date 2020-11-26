@@ -138,7 +138,8 @@
     "description-user-feed": "{{u}}'s feed"
   },
   "market-data": {
-    "title": "Coin Marketplace"
+    "title": "Coin Marketplace",
+    "credits": "market data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">coingecko</a> api"
   },
   "list-style": {
     "title": "Toggle list style"
