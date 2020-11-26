@@ -58,15 +58,17 @@ export class Market extends Component<Props, State> {
             fullWidth: true,
             chartPadding: {
                 right: 0,
-                left: -40,
+                left: 0,
                 top: 0,
-                bottom: -40,
+                bottom: 0,
             },
             axisX: {
+                offset: 0,
                 showLabel: false,
                 showGrid: false
             },
             axisY: {
+                offset: 0,
                 showLabel: false,
                 showGrid: false
             }
