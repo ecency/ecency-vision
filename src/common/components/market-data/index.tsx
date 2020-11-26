@@ -48,9 +48,6 @@ export class Market extends Component<Props, State> {
 
     render() {
         const {series} = this.state;
-        if (series.length === 0) {
-            return null;
-        }
 
         const options: ILineChartOptions = {
             width: "100%",
@@ -80,13 +77,13 @@ export class Market extends Component<Props, State> {
         };
 
         const {coin, label} = this.props;
-        const price = series[series.length - 1];
+        const price = series.length > 0 ? series[series.length - 1] : "...";
 
         const formatter = coin === "bitcoin" ? ",$" : "0.00$";
         const strPrice = numeral(price).format(formatter)
 
         return <div className="market-graph">
-            <Graph data={data} options={options} type="Line"/>
+            <div className="graph"><Graph data={data} options={options} type="Line"/></div>
             <div className="price"><span className="coin">{label}</span>{" "}<span className="value">{strPrice}</span></div>
         </div>;
     }

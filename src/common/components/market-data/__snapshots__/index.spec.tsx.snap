@@ -13,8 +13,12 @@ exports[`(1) Default render 1`] = `
     className="market-graph"
   >
     <div
-      className="ct-chart "
-    />
+      className="graph"
+    >
+      <div
+        className="ct-chart "
+      />
+    </div>
     <div
       className="price"
     >
@@ -35,8 +39,12 @@ exports[`(1) Default render 1`] = `
     className="market-graph"
   >
     <div
-      className="ct-chart "
-    />
+      className="graph"
+    >
+      <div
+        className="ct-chart "
+      />
+    </div>
     <div
       className="price"
     >
@@ -57,8 +65,12 @@ exports[`(1) Default render 1`] = `
     className="market-graph"
   >
     <div
-      className="ct-chart "
-    />
+      className="graph"
+    >
+      <div
+        className="ct-chart "
+      />
+    </div>
     <div
       className="price"
     >
