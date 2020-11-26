@@ -381,7 +381,7 @@ class SubmitPage extends Component<Props, State> {
         const options = makeCommentOptions(author, permlink, reward);
 
         this.stateSet({posting: true});
-        comment(author, "", parentPermlink, permlink, title, body, jsonMeta, options)
+        comment(author, "", parentPermlink, permlink, title, body, jsonMeta, options, true)
             .then(() => {
 
                 // Create entry object in store
