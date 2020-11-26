@@ -165,7 +165,6 @@ export class Item extends Component<ItemProps, ItemState> {
         const {author: parentAuthor, permlink: parentPermlink} = entry;
         const author = activeUser?.username!;
         const permlink = createReplyPermlink(entry.author);
-        const options = null;
 
         const jsonMeta = makeJsonMetaDataReply(
             entry.json_metadata.tags || ['ecency'],
@@ -182,7 +181,8 @@ export class Item extends Component<ItemProps, ItemState> {
             '',
             text,
             jsonMeta,
-            options,
+            null,
+            true
         ).then(() => {
             const nReply = tempEntry({
                 author: activeUser?.data!,
