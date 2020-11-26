@@ -25,6 +25,7 @@ import EntryListContent from "../components/entry-list";
 import TrendingTagsCard from "../components/trending-tags-card";
 import SelectedTagsCard from "../components/selected-tags-card";
 import ScrollToTop from "../components/scroll-to-top";
+import MarketData from "../components/market-data";
 
 import {_t} from "../i18n";
 
@@ -190,6 +191,9 @@ class EntryIndexPage extends Component<PageProps> {
                             </div>
                         </div>
                         {loading && entryList.length > 0 ? <LinearProgress/> : ""}
+                    </div>
+                    <div className="market-side">
+                        <MarketData />
                     </div>
                 </div>
                 <DetectBottom onBottom={this.bottomReached}/>

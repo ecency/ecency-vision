@@ -137,6 +137,9 @@
     "description-tag": "{{f}} #{{t}} topics",
     "description-user-feed": "{{u}}'s feed"
   },
+  "market-data": {
+    "title": "Coin Marketplace"
+  },
   "list-style": {
     "title": "Toggle list style"
   },

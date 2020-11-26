@@ -1,0 +1,52 @@
+.market-data {
+  margin: 0 auto 0 10%;
+
+  .market-data-header {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    height: 50px;
+  }
+
+  .market-graph {
+    margin-bottom: 10px;
+    border-radius: 10px;
+    padding: 8px 6px;
+
+    @include themify(day) {
+      background: $white-two;
+    }
+
+    @include themify(night) {
+      background: $dark-two;
+    }
+
+    .price {
+      font-size: 13px;
+      margin-top: 4px;
+
+      .value {
+        color: lighten($dark-sky-blue, 10);
+      }
+    }
+
+    .ct-series-a {
+      .ct-line {
+        stroke: lighten($dark-sky-blue, 10);
+        stroke-width: 3px;
+      }
+
+      .ct-area {
+        fill: lighten($dark-sky-blue, 20);
+      }
+    }
+
+    &:hover {
+      .ct-series-a {
+        .ct-line {
+          stroke: $dark-sky-blue;
+        }
+      }
+    }
+  }
+}

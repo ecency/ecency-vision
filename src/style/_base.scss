@@ -60,18 +60,18 @@ select {
   flex-grow: 0;
 }
 
-.svg-icon{
+.svg-icon {
   margin-right: 4px;
 
-  svg{
+  svg {
     height: 16px;
   }
 }
 
-.svg-icon-sm{
+.svg-icon-sm {
   margin-right: 4px;
 
-  svg{
+  svg {
     height: 13px;
   }
 }
@@ -187,3 +187,9 @@ a[target="_blank"] {
     }
   }
 }
+
+
+// Additional libraries
+
+// Chart lib
+@import "~chartist/dist/scss/chartist";
