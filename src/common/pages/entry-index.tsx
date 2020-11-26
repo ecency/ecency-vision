@@ -6,7 +6,7 @@ import {History} from "history";
 
 import {Link} from "react-router-dom";
 
-import {EntryFilter, ListStyle} from "../store/global/types";
+import {AllFilter, EntryFilter, ListStyle} from "../store/global/types";
 
 import {makeGroupKey} from "../store/entries";
 
@@ -35,7 +35,7 @@ import capitalize from "../util/capitalize";
 
 import defaults from "../constants/defaults.json";
 
-import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
+import {pageMapDispatchToProps, pageMapStateToProps, PageProps} from "./common";
 
 
 class EntryIndexPage extends Component<PageProps> {
@@ -78,7 +78,7 @@ class EntryIndexPage extends Component<PageProps> {
     }
 
     render() {
-        const {global, entries, activeUser} = this.props;
+        const {global, entries, activeUser, location} = this.props;
         const {filter, tag} = global;
 
         const groupKey = makeGroupKey(filter, tag);
@@ -192,9 +192,11 @@ class EntryIndexPage extends Component<PageProps> {
                         </div>
                         {loading && entryList.length > 0 ? <LinearProgress/> : ""}
                     </div>
-                    <div className="market-side">
-                        <MarketData />
-                    </div>
+                    {(location.pathname === '/' || filter === AllFilter.feed) && (
+                        <div className="market-side">
+                            <MarketData/>
+                        </div>
+                    )}
                 </div>
                 <DetectBottom onBottom={this.bottomReached}/>
             </>
