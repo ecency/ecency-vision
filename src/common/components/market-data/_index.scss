@@ -15,6 +15,22 @@
 
     .graph {
       min-height: 90px;
+      position: relative;
+      opacity: 0.8;
+
+      .graph-bar {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 5px;
+        height: 100%;
+        background: red;
+        opacity: 0;
+      }
+
+      &:hover {
+        opacity: 1;
+      }
     }
 
     @include themify(day) {
@@ -25,12 +41,26 @@
       background: $dark-two;
     }
 
-    .price {
-      font-size: 13px;
+    .info {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
       margin-top: 4px;
 
-      .value {
-        color: lighten($dark-sky-blue, 10);
+      .price {
+        font-size: 13px;
+        flex-grow: 1;
+
+        .value {
+          color: lighten($dark-sky-blue, 10);
+        }
+      }
+
+      .tooltip {
+        color: $dark-sky-blue;
+        border-radius: 6px;
+        font-size: 11px;
+        visibility: hidden;
       }
     }
 
@@ -42,6 +72,12 @@
 
       .ct-area {
         fill: lighten($dark-sky-blue, 20);
+      }
+
+      .ct-point {
+        stroke: lighten($dark-sky-blue, 10);
+        stroke-width: 8px;
+        opacity: 0;
       }
     }
   }
