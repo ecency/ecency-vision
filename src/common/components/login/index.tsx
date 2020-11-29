@@ -503,8 +503,8 @@ export class Login extends Component<LoginProps, State> {
                             e.preventDefault();
                             this.hide();
 
-                            const {toggleUIProp} = this.props;
-                            toggleUIProp("signUp");
+                            const {history} = this.props;
+                            history.push("/signup");
 
                         }}>{_t("login.sign-up-text-2")}</a>
                     </p>

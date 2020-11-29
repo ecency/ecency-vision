@@ -1,4 +1,4 @@
-import reducer, {initialState, toggleLoginAct, toggleSignUpAct, toggleNotificationsAct} from "./index";
+import reducer, {initialState, toggleLoginAct, toggleNotificationsAct} from "./index";
 
 let state = initialState;
 
@@ -8,11 +8,6 @@ it("1- default state", () => {
 
 it("2- toggleLoginAct", () => {
     state = reducer(state, toggleLoginAct());
-    expect(state).toMatchSnapshot();
-});
-
-it("3- toggleSignUpAct", () => {
-    state = reducer(state, toggleSignUpAct());
     expect(state).toMatchSnapshot();
 });
 

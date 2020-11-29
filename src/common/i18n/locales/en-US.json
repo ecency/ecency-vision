@@ -86,13 +86,13 @@
   },
   "sign-up": {
     "header": "Sign Up",
+    "description": "Sign up page description lorem ipsum dolor sit amet",
     "username": "Pick a username",
     "email": "Enter your email address",
     "ref": "Referred user (optional)",
     "submit": "Continue",
     "success": "We've sent an email to {{email}}.",
-    "success-2": "Follow instructions to complete signup process.",
-    "to-login": "Back to Login"
+    "success-2": "Follow instructions to complete signup process."
   },
   "trending-tags": {
     "title": "Topics"

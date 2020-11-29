@@ -37,7 +37,6 @@ export const activeUserInstance: ActiveUser = activeUserMaker("foo");
 export const UiInstance: UI = {
     login: false,
     loginKc: false,
-    signUp: false,
     notifications: false
 }
 

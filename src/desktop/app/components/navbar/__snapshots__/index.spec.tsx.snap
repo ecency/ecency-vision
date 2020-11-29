@@ -166,14 +166,13 @@ exports[`(1) Default render 1`] = `
       >
         Login
       </button>
-      <button
+      <a
         className="btn btn-primary"
-        disabled={false}
+        href="/signup"
         onClick={[Function]}
-        type="button"
       >
         Signup
-      </button>
+      </a>
     </div>
     <div
       className="submit-post"
@@ -376,14 +375,13 @@ Array [
         >
           Login
         </button>
-        <button
+        <a
           className="btn btn-primary"
-          disabled={false}
+          href="/signup"
           onClick={[Function]}
-          type="button"
         >
           Signup
-        </button>
+        </a>
       </div>
       <div
         className="submit-post"
@@ -616,14 +614,13 @@ exports[`(3) Night Theme 1`] = `
       >
         Login
       </button>
-      <button
+      <a
         className="btn btn-primary"
-        disabled={false}
+        href="/signup"
         onClick={[Function]}
-        type="button"
       >
         Signup
-      </button>
+      </a>
     </div>
     <div
       className="submit-post"
