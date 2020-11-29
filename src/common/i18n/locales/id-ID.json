@@ -95,10 +95,10 @@
     "to-login": "Kembali untuk masuk"
   },
   "trending-tags": {
-    "title": "Topics"
+    "title": "Topik"
   },
   "selected-tags": {
-    "title": "Featured"
+    "title": "Sorotan"
   },
   "entry-list-item": {
     "reblogged": "oleh {{n}}",
@@ -588,10 +588,10 @@
     "sort-newest": "Tanggal"
   },
   "witnesses": {
-    "page-title": "Witnesses",
-    "page-description": "Consensus block producers selection",
-    "page-description-long": "Role of witnesses or block producers in Hive blockchain is to act as the network's governance body. Community elects them to represent their voice and each user can elect up to 30 witnesses. Top 20 witnesses are producing blocks every minute while rest remain as backup witness and gets randomized chance every minute. This role is integral part of consensus mechanism blockchain runs on and recommend user engagement to vote on trusted witnesses.",
-    "remaining": "<span>{{n}}</span> of {{max}} votes remaining",
+    "page-title": "Saksi-saksi",
+    "page-description": "Seleksi konsensus produser block",
+    "page-description-long": "Peran saksi atau produsen blok di Hive blockchain adalah bertindak sebagai badan tata kelola jaringan. Komunitas memilih mereka untuk mewakili suara mereka dan setiap pengguna dapat memilih hingga 30 saksi. 20 saksi teratas menghasilkan blok setiap menit sementara sisanya tetap sebagai saksi cadangan dan mendapat peluang acak setiap menit. Peran ini merupakan bagian integral dari mekanisme konsensus yang dijalankan blockchain dan merekomendasikan keterlibatan pengguna untuk memberikan suara pada saksi tepercaya.",
+    "remaining": "</span>{{n}}</span> dari {{maks}} sisa vote",
     "list-rank": "Ranking",
     "list-witness": "Saksi",
     "list-miss": "Hilang",
@@ -608,24 +608,24 @@
     "proxy-active-btn-label": "Hapus proxy"
   },
   "proposals": {
-    "page-title": "Proposals",
-    "page-description": "The Decentralized Hive Fund (DHF) is an on-chain funding mechanism that allows anyone to submit a proposal and get funding once community votes pass certain threshold. To learn more read our <a href=\"/faq#how-dhf-work\">FAQ</a>.",
-    "by": "by",
-    "for": "for",
-    "duration-days": "{{n}} days",
-    "daily-pay": "Daily {{n}}",
-    "votes": "Votes: {{n}}",
-    "status-active": "active",
-    "status-expired": "expired",
-    "status-inactive": "upcoming",
-    "remaining-days": "Remaining: {{n}} days",
-    "filter-all": "All",
-    "filter-active": "Active",
-    "filter-inactive": "Upcoming",
-    "filter-team": "Ecency Projects",
-    "return-description": "This is the base return proposal. Every proposal with less votes will not receive funds.",
-    "votes-dialog-title": "Votes on Proposal #{{n}}",
-    "see-all": "see all proposals"
+    "page-title": "Proposal",
+    "page-description": "The Decentralized Hive Fund (DHF) adalah mekanisme pendanaan on-chain yang memungkinkan siapa saja untuk mengajukan proposal dan mendapatkan pendanaan setelah suara masyarakat melewati ambang tertentu. Untuk mempelajari lebih lanjut, baca <a href=\"/faq#how-dhf-work\">FAQ</a> kami.",
+    "by": "oleh",
+    "for": "untuk",
+    "duration-days": "{{n}} hari",
+    "daily-pay": "Harian {{n}}",
+    "votes": "Vote {{n}}",
+    "status-active": "aktif",
+    "status-expired": "kadaluarsa",
+    "status-inactive": "mendatang",
+    "remaining-days": "Sisa: {{n}} hari",
+    "filter-all": "Semua",
+    "filter-active": "Aktif",
+    "filter-inactive": "Akan datang",
+    "filter-team": "Proyek Ecency",
+    "return-description": "Ini adalah proposal pengembalian dasar. Setiap proposal dengan suara lebih sedikit tidak akan menerima dana.",
+    "votes-dialog-title": "Vote pada Proposal #{{n}}",
+    "see-all": "lihat semua proposal"
   },
   "gallery": {
     "title": "Galeri",
@@ -686,10 +686,10 @@
       "how-to-transfer-body": "<p> Setelah masuk, Anda akan menemukan halaman Wallet di header atas pada situs web dan aplikasi desktop atau di halaman Profil, bilah navigasi bawah pada aplikasi seluler. Di halaman dompet, Anda dapat memulai transfer token apa pun yang Anda miliki ke pengguna lain atau akun exchange, klik panah di sebelah saldo Anda dan temukan operasi transfer. Transfer tidak dapat diubah karena terdaftar di blockchain, pastikan untuk mengirim ke penerima yang benar. </p>",
       "how-see-rewards-header": "Bagaimana saya melihat reward postingan saya?",
       "how-see-rewards-body": "<p><img src=\"https://images.ecency.com/p/3W72119s5BjW4PvRk9nXBzqrPWMsMTjNrXDPFFf11iYhySeELMe77idrZHBPmyaqFX6CV72hBLB5qFhwVhGoAATydoFxAF7oCwBt1ztp6eS9r5us4pm7iN?format=match&mode=fit\" loading=\"lazy\"/></p><p>In Wallet page (in top header on website and desktop app, bottom navigation bar on mobile app), you can see Curation rewards (the rewards earned for upvoting posts and comments) and Author rewards (the rewards earned by your own posts and comments)</p><p>You can also view the same information for other users by visiting their wallet profile.</p>",
-      "how-dhf-work-header": "How DHF works?",
-      "how-dhf-work-body": "<p>Anyone can create a proposal and convince community to vote on their proposal to get funded. Before creating proposal, normal post should be published on blockchain and it is recommended to gather feedback before creating proposal. Proposal creation has fee of 10 HBD + 1 HBD for each day it lasts over 60 days.</p><p>Once proposal reaches certain threshold of tallied votes, it will start receiving funds each hour. If proposal falls below threshold, system will halt funding for that proposal. You can vote as many proposals as you want, there are no limits. Proposal cannot be edited, but can be deleted/withdrawn by creator.</p>",
-      "when-claim-rewards-header": "When can I claim my rewards?",
-      "when-claim-rewards-body": "<p>Posts and comments remain active for 7 days and rewards are fluctuates depending on votes and market price of token, that is why rewards are approximated as pending reward. When the period is over, pending reward changes to actual reward and you are able to claim earned rewards. In your Wallet, click the Claim Rewards button to add the tokens to your account.</p>",
+      "how-dhf-work-header": "Bagaimana Cara kerja DHF?",
+      "how-dhf-work-body": "<p>Siapapun dapat membuat proposal dan meyakinkan komunitas untuk memberikan suara pada proposal mereka untuk mendapatkan dana. Sebelum membuat proposal, posting normal harus dipublikasikan di blockchain dan disarankan untuk mengumpulkan umpan balik sebelum membuat proposal. Pembuatan proposal dikenakan biaya 10 HBD + 1 HBD untuk setiap hari berlangsung selama 60 hari.</p><p>Setelah proposal mencapai ambang tertentu dari suara yang dihitung, itu akan mulai menerima dana setiap jam. Jika proposal berada di bawah ambang batas, sistem akan menghentikan pendanaan untuk proposal tersebut. Anda dapat memilih proposal sebanyak yang Anda inginkan, tidak ada batasan. Proposal tidak dapat diedit, tetapi dapat dihapus / ditarik oleh pembuatnya.</p>",
+      "when-claim-rewards-header": "Kapan saya bisa klaim rewards?",
+      "when-claim-rewards-body": "<p>Posting dan komentar tetap aktif selama 7 hari dan hadiah berfluktuasi tergantung pada suara dan harga pasar token, itulah sebabnya hadiah diperkirakan sebagai hadiah yang tertunda. Ketika periode berakhir, hadiah yang tertunda berubah menjadi hadiah sebenarnya dan Anda dapat mengklaim hadiah yang diperoleh. Di Wallet Anda, klik tombol Klaim Hadiah untuk menambahkan token ke akun Anda.</p>",
       "what-are-rc-header": "Apa itu Resource Credit (Kredit Sumber Daya)?",
       "what-are-rc-body": "<p><p> Bertransaksi di blockchain Hive tidak memiliki biaya, pembatasan nilai transaksi digunakan untuk melindungi blockchain dari serangan spam. Setiap tindakan yang Anda lakukan di blockchain akan menghabiskan sejumlah kecil Kredit Sumber Daya (Resource Credit). Ini termasuk memposting, berkomentar, memberi suara, mentransfer token, dll. Melihat konten tidak menghabiskan Kredit Sumber Daya. </p> <p> Setiap pengguna memiliki Kredit Sumber Daya dalam jumlah terbatas untuk digunakan setiap minggu. Semakin banyak transaksi yang dilakukan pengguna, semakin sedikit Kredit Sumber Daya yang tersisa (sampai ia mengisi ulang). Pengguna dengan lebih banyak HIVE POWER akan memiliki lebih banyak Kredit Sumber Daya. </p> <p> Jika Anda kehabisan Kredit Sumber Daya, Anda tidak akan dapat bertransaksi dengan blockchain sampai Kredit Sumber Daya Anda terisi ulang (terjadi secara otomatis) atau Anda memperoleh HIVE POWER tambahan untuk meningkatkan saldo Resource Credit Anda atau Anda dapat <a href=\"/faq#how-boost-account\"> meminta akun Boosting dari Ecency </a> untuk menerima delegasi sementara. </p></p>",
       "how-boost-account-header": "Bagaimana meminta peningkatan akun?",
