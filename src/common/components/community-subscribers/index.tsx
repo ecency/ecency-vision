@@ -12,6 +12,9 @@ import UserAvatar from "../user-avatar";
 import LinearProgress from "../linear-progress";
 import {error} from "../feedback";
 
+import accountReputation from "../../helper/account-reputation";
+
+import {getAccounts} from "../../api/hive";
 import {getSubscribers} from "../../api/bridge";
 
 import {_t} from "../../i18n";
@@ -25,13 +28,15 @@ interface Props {
 
 interface State {
     loading: boolean;
-    items: Subscription[];
+    subscribers: Subscription[];
+    accounts: Account[];
 }
 
 export class Subscribers extends Component<Props, State> {
     state: State = {
         loading: true,
-        items: []
+        subscribers: [],
+        accounts: []
     }
 
     _mounted: boolean = true;
@@ -52,42 +57,69 @@ export class Subscribers extends Component<Props, State> {
 
     fetch = () => {
         const {community} = this.props;
-        getSubscribers(community.name).then(r => {
-            this.stateSet({items: r, loading: false});
+        return getSubscribers(community.name).then(resp => {
+            if (resp) {
+                // merge subscribers & community team
+                const subscribers = [
+                    ...community.team.filter(x => !x[0].startsWith("hive-")),
+                    ...resp.filter(x => community.team.find(y => x[0] === y[0]) === undefined)
+                ];
+
+                const usernames = subscribers.map(x => x[0]);
+
+                return getAccounts(usernames).then(accounts => {
+                    const minifiedAccounts: Account[] = accounts.map(x => ({name: x.name, reputation: x.reputation}));
+                    this.stateSet({subscribers, accounts: minifiedAccounts});
+                });
+            }
+            return null;
         }).catch(() => {
-            this.stateSet({loading: false});
             error(_t('g.server-error'));
+        }).finally(() => {
+            this.stateSet({loading: false});
         })
     }
 
     render() {
-        const {items, loading} = this.state;
+        const {subscribers, accounts, loading} = this.state;
+
+        if (loading) {
+            return <div className="community-subscribers">
+                <LinearProgress/>
+            </div>
+        }
 
         return <div className="community-subscribers">
-            {loading && <LinearProgress/>}
-            <div className="user-list-body">
-                {items.length > 0 && (
-                    <div className="user-list">
-                        <div className="user-list-body">
-                            {items.map((item, i) => {
-                                const username = item[0];
-                                return <Fragment key={i}>
-                                    {
-                                        ProfileLink({
+            {subscribers.length > 0 && (
+                <div className="user-list">
+                    <div className="list-body">
+                        {subscribers.map((item, i) => {
+                            const username = item[0];
+                            const account = accounts.find(x => x.name === username);
+
+                            return <div className="list-item" key={username}>
+                                <div className="item-main">
+                                    {ProfileLink({
+                                        ...this.props,
+                                        username,
+                                        children: <>{UserAvatar({...this.props, username, size: "small"})}</>
+                                    })}
+                                    <div className="item-info">
+                                        {ProfileLink({
                                             ...this.props,
                                             username,
-                                            children: <div className="user-list-item">
-                                                {UserAvatar({...this.props, username, size: "medium"})}
-                                                <div className="user-name notransalte">{username}</div>
-                                            </div>
-                                        })
-                                    }
-                                </Fragment>
-                            })}
-                        </div>
+                                            children: <a className="item-name notransalte">{username}</a>
+                                        })}
+                                        {(account?.reputation !== undefined) && <span className="item-reputation">{accountReputation(account.reputation)}</span>}
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        })}
                     </div>
-                )}
-            </div>
+                </div>
+            )}
         </div>
     }
 }
