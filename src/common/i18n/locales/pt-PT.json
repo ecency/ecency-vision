@@ -86,13 +86,15 @@
   },
   "sign-up": {
     "header": "Registar-se",
+    "description": "One account to manage everything on blockchain and Ecency. Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
     "username": "Escolha um nome de usuário",
     "email": "Insira o seu email",
     "ref": "Usuário referenciado (opcional)",
     "submit": "Continuar",
     "success": "Enviamos um e-mail para {{email}}.",
     "success-2": "Siga as instruções para concluir o processo de inscrição.",
-    "to-login": "Voltar à autenticação"
+    "login-text-1": "Do you have an account?",
+    "login-text-2": "Login"
   },
   "trending-tags": {
     "title": "Tópicos"
