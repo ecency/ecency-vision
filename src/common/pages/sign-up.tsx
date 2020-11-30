@@ -128,7 +128,7 @@ class SignUpPage extends Component<PageProps, State> {
                                 <div className="header-title">
                                     {_t('sign-up.header')}
                                 </div>
-                                <div className="header-description"> {_t('sign-up.description')}</div>
+                                <div className="header-description" dangerouslySetInnerHTML={{__html: _t('sign-up.description')}} />
                             </div>
                             <div className="sign-up-form">
                                 <Form ref={this.form} onSubmit={(e: React.FormEvent) => {
