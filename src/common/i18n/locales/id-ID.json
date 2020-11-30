@@ -86,13 +86,15 @@
   },
   "sign-up": {
     "header": "Daftar",
+    "description": "One account to manage everything on blockchain and Ecency. Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
     "username": "Pilih nama pengguna",
     "email": "Masukkan alamat email Anda",
     "ref": "Pengguna rujukan (opsional)",
     "submit": "Lanjutkan",
     "success": "Kami sudah mengirimkan email ke {{email}}.",
     "success-2": "Ikuti petunjuk melengkapi proses pendaftaran.",
-    "to-login": "Kembali untuk masuk"
+    "login-text-1": "Do you have an account?",
+    "login-text-2": "Login"
   },
   "trending-tags": {
     "title": "Topik"
