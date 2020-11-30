@@ -4,7 +4,6 @@ import {
     UI, Actions,
     ToggleLoginAct,
     ToggleLoginKcAct,
-    ToggleSignUpAct,
     ToggleNotificationsAct,
     ActionTypes,
     ToggleType
@@ -13,7 +12,6 @@ import {
 export const initialState: UI = {
     login: false,
     loginKc: false,
-    signUp: false,
     notifications: false
 };
 
@@ -26,10 +24,6 @@ export default (state: UI = initialState, action: Actions): UI => {
         case ActionTypes.TOGGLE_LOGIN_KC: {
             const {loginKc} = state;
             return {...state, loginKc: !loginKc}
-        }
-        case ActionTypes.TOGGLE_SIGN_UP: {
-            const {signUp} = state;
-            return {...state, signUp: !signUp}
         }
         case ActionTypes.TOGGLE_NOTIFICATIONS: {
             const {notifications} = state;
@@ -50,9 +44,6 @@ export const toggleUIProp = (what: ToggleType) => (dispatch: Dispatch) => {
         case "loginKc":
             dispatch(toggleLoginKcAct());
             break;
-        case "signUp":
-            dispatch(toggleSignUpAct());
-            break;
         case "notifications":
             dispatch(toggleNotificationsAct());
             break;
@@ -71,12 +62,6 @@ export const toggleLoginAct = (): ToggleLoginAct => {
 export const toggleLoginKcAct = (): ToggleLoginKcAct => {
     return {
         type: ActionTypes.TOGGLE_LOGIN_KC,
-    };
-};
-
-export const toggleSignUpAct = (): ToggleSignUpAct => {
-    return {
-        type: ActionTypes.TOGGLE_SIGN_UP,
     };
 };
 

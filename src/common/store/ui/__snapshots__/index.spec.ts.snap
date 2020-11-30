@@ -5,7 +5,6 @@ Object {
   "login": false,
   "loginKc": false,
   "notifications": false,
-  "signUp": false,
 }
 `;
 
@@ -14,16 +13,6 @@ Object {
   "login": true,
   "loginKc": false,
   "notifications": false,
-  "signUp": false,
-}
-`;
-
-exports[`3- toggleSignUpAct 1`] = `
-Object {
-  "login": true,
-  "loginKc": false,
-  "notifications": false,
-  "signUp": true,
 }
 `;
 
@@ -32,7 +21,6 @@ Object {
   "login": false,
   "loginKc": false,
   "notifications": false,
-  "signUp": true,
 }
 `;
 
@@ -41,6 +29,5 @@ Object {
   "login": false,
   "loginKc": false,
   "notifications": true,
-  "signUp": true,
 }
 `;

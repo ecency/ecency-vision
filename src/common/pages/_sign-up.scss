@@ -1,0 +1,55 @@
+.sign-up-page {
+  display: block;
+
+  .page-header {
+    padding: 16px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+
+    .header-title {
+      color: $dark-sky-blue;
+      font-size: 26px;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    .header-description {
+      margin: 16px 0 0 0;
+      opacity: 0.7;
+      text-align: center;
+    }
+  }
+
+  .sign-up-form {
+    max-width: 500px;
+    box-shadow: $box-shadow-alt;
+    margin: auto;
+    border-radius: 6px;
+    padding: 16px;
+
+    @include themify(day) {
+      background: lighten($white-three, 2);
+    }
+
+    @include themify(night) {
+      background: lighten($dark-six, 4);
+    }
+  }
+
+  .do-login {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+    opacity: 0.8;
+  }
+
+  .done-form {
+    text-align: center;
+
+    svg {
+      color: $green;
+      height: 20px;
+      margin-right: 10px;
+    }
+  }
+}

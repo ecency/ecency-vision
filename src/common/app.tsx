@@ -12,6 +12,7 @@ import WitnessesContainer from "./pages/witnesses";
 import {ProposalsIndexContainer, ProposalDetailContainer} from "./pages/proposals";
 import AuthContainer from "./pages/auth";
 import SubmitContainer from "./pages/submit";
+import SignUpContainer from "./pages/sign-up";
 import NotFound from "./components/404";
 
 import Tracker from "./tracker";
@@ -49,6 +50,7 @@ const App = () => {
                 <Route exact={true} strict={true} path={routes.AUTH} component={AuthContainer}/>
                 <Route exact={true} strict={true} path={routes.SUBMIT} component={SubmitContainer}/>
                 <Route exact={true} strict={true} path={routes.EDIT} component={SubmitContainer}/>
+                <Route exact={true} strict={true} path={routes.SIGN_UP} component={SignUpContainer}/>
                 <Route exact={true} strict={true} path={routes.EDIT_DRAFT} component={SubmitContainer}/>
                 <Route exact={true} strict={true} path={routes.WITNESSES} component={WitnessesContainer}/>
                 <Route exact={true} strict={true} path={routes.PROPOSALS} component={ProposalsIndexContainer}/>

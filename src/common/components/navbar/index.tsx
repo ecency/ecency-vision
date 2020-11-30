@@ -23,7 +23,6 @@ import DownloadTrigger from "../download-trigger";
 import Search from "../search";
 import Login from "../login";
 import UserNav from "../user-nav";
-import SignUp from "../sign-up";
 
 import NotificationHandler from "../notification-handler"
 
@@ -73,12 +72,6 @@ export class NavBar extends Component<Props, State> {
     nav = React.createRef<HTMLDivElement>();
 
     componentDidMount() {
-        const {location, toggleUIProp} = this.props;
-        const qs = queryString.parse(location.search);
-        if (qs.referral) {
-            toggleUIProp('signUp');
-        }
-
         this.detect();
         window.addEventListener("scroll", this.scrollChanged);
         window.addEventListener("resize", this.scrollChanged);
@@ -206,10 +199,7 @@ export class NavBar extends Component<Props, State> {
                                     toggleUIProp('login');
                                 }}>{_t("g.login")}</Button>
 
-                                <Button variant="primary" onClick={() => {
-                                    const {toggleUIProp} = this.props;
-                                    toggleUIProp('signUp');
-                                }}>{_t("g.signup")}</Button>
+                                <Link className="btn btn-primary" to="/signup">{_t("g.signup")}</Link>
                             </div>
                         )}
 
@@ -224,7 +214,6 @@ export class NavBar extends Component<Props, State> {
                         {activeUser && <UserNav {...this.props} activeUser={activeUser}/>}
                     </div>
                     {ui.login && <Login {...this.props} />}
-                    {ui.signUp && <SignUp {...this.props} />}
                     <NotificationHandler {...this.props} />
                 </div>
             </>
