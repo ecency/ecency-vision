@@ -86,7 +86,7 @@
   },
   "sign-up": {
     "header": "Sign Up",
-    "description": "Sign up page description lorem ipsum dolor sit amet",
+    "description": "One account to manage everything on blockchain and Ecency. Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
     "username": "Pick a username",
     "email": "Enter your email address",
     "ref": "Referred user (optional)",
