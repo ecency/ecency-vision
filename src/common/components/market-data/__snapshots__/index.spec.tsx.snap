@@ -1,0 +1,153 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+<div
+  className="market-data"
+>
+  <div
+    className="market-data-header"
+  >
+    Market price
+  </div>
+  <div
+    className="market-graph"
+  >
+    <div
+      className="graph"
+    >
+      <div
+        className="ct-chart "
+      />
+    </div>
+    <div
+      className="info"
+    >
+      <div
+        className="price"
+      >
+        <span
+          className="coin"
+        >
+          HIVE
+        </span>
+         
+        <span
+          className="value"
+        >
+          0.133$
+        </span>
+      </div>
+      <div
+        className="tooltip"
+      />
+    </div>
+  </div>
+  <div
+    className="market-graph"
+  >
+    <div
+      className="graph"
+    >
+      <div
+        className="ct-chart "
+      />
+    </div>
+    <div
+      className="info"
+    >
+      <div
+        className="price"
+      >
+        <span
+          className="coin"
+        >
+          HBD
+        </span>
+         
+        <span
+          className="value"
+        >
+          0.133$
+        </span>
+      </div>
+      <div
+        className="tooltip"
+      />
+    </div>
+  </div>
+  <div
+    className="market-graph"
+  >
+    <div
+      className="graph"
+    >
+      <div
+        className="ct-chart "
+      />
+    </div>
+    <div
+      className="info"
+    >
+      <div
+        className="price"
+      >
+        <span
+          className="coin"
+        >
+          BTC
+        </span>
+         
+        <span
+          className="value"
+        >
+          0$
+        </span>
+      </div>
+      <div
+        className="tooltip"
+      />
+    </div>
+  </div>
+  <div
+    className="market-graph"
+  >
+    <div
+      className="graph"
+    >
+      <div
+        className="ct-chart "
+      />
+    </div>
+    <div
+      className="info"
+    >
+      <div
+        className="price"
+      >
+        <span
+          className="coin"
+        >
+          ETH
+        </span>
+         
+        <span
+          className="value"
+        >
+          0.13$
+        </span>
+      </div>
+      <div
+        className="tooltip"
+      />
+    </div>
+  </div>
+  <div
+    className="credits"
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "market data by <a href=\\"https://www.coingecko.com/api\\" target=\\"_blank\\" rel=\\"noopener noreferrer\\">coingecko</a> api",
+      }
+    }
+  />
+</div>
+`;
