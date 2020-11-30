@@ -86,13 +86,15 @@
   },
   "sign-up": {
     "header": "Registruotis",
+    "description": "One account to manage everything on blockchain and Ecency. Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
     "username": "Pasirinkite vartotojo vardą",
     "email": "Įveskite savo el. pašto adresą",
     "ref": "Rekomendavęs vartotojas (pasirinktinai)",
     "submit": "Tęsti",
     "success": "Išsiuntėme patvirtinimo laišką {{email}}.",
     "success-2": "Sekite instrukcijas, kad sėkmingai prisiregistruotumėte.",
-    "to-login": "Atgal į Prisijungimo puslapį"
+    "login-text-1": "Do you have an account?",
+    "login-text-2": "Login"
   },
   "trending-tags": {
     "title": "Topics"
