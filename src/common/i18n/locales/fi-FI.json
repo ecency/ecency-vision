@@ -140,8 +140,8 @@
     "description-user-feed": "{{u}} syöte"
   },
   "market-data": {
-    "title": "Market price",
-    "credits": "market data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">coingecko</a> api"
+    "title": "Markkinahinta",
+    "credits": "markkinatiedot <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">coingecko</a> apista"
   },
   "list-style": {
     "title": "Vaihda listaustyyliä"
