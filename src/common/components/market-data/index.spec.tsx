@@ -24,6 +24,20 @@ jest.mock("../../api/misc", () => ({
         }),
 }));
 
+// see https://stackoverflow.com/a/53449595/3720614
+Object.defineProperty(window, 'matchMedia', {
+    writable: true,
+    value: jest.fn().mockImplementation(query => ({
+        matches: false,
+        media: query,
+        onchange: null,
+        addListener: jest.fn(), // Deprecated
+        removeListener: jest.fn(), // Deprecated
+        addEventListener: jest.fn(),
+        removeEventListener: jest.fn(),
+        dispatchEvent: jest.fn(),
+    })),
+});
 
 it("(1) Default render", async () => {
     const renderer = TestRenderer.create(<MarketData/>);
