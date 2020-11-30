@@ -7,7 +7,7 @@ exports[`(1) Default render 1`] = `
   <div
     className="market-data-header"
   >
-    Coin Marketplace
+    Market price
   </div>
   <div
     className="market-graph"
@@ -101,6 +101,39 @@ exports[`(1) Default render 1`] = `
           className="value"
         >
           0$
+        </span>
+      </div>
+      <div
+        className="tooltip"
+      />
+    </div>
+  </div>
+  <div
+    className="market-graph"
+  >
+    <div
+      className="graph"
+    >
+      <div
+        className="ct-chart "
+      />
+    </div>
+    <div
+      className="info"
+    >
+      <div
+        className="price"
+      >
+        <span
+          className="coin"
+        >
+          ETH
+        </span>
+         
+        <span
+          className="value"
+        >
+          0.13$
         </span>
       </div>
       <div

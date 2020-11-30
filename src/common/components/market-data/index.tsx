@@ -27,6 +27,7 @@ interface Props {
     vsCurrency: string;
     fromTs: string;
     toTs: string;
+    formatter: string;
 }
 
 interface State {
@@ -95,12 +96,14 @@ export class Market extends Component<Props, State> {
         const node = this.node.current;
         if (!node) return;
 
+        const {formatter} = this.props;
+
         const circle = e.currentTarget;
         const circles = node.querySelectorAll('.graph-bar');
         const index = Array.prototype.indexOf.call(circles, circle);
         const item = this.state.prices[index];
 
-        const strPrice = numeral(item.price).format(this.priceFormatter());
+        const strPrice = numeral(item.price).format(formatter);
         const strDate = moment(item.time).format("YYYY-MM-DD HH:mm:ss");
         const html = `<strong>${strPrice}</strong> ${strDate}`;
 
@@ -118,13 +121,8 @@ export class Market extends Component<Props, State> {
         tooltip!.innerHTML = "";
     }
 
-    priceFormatter = () => {
-        const {coin,} = this.props;
-        return coin === "bitcoin" ? ",$" : "0.000$";
-    }
-
     render() {
-        const {label} = this.props;
+        const {label, formatter} = this.props;
         const {prices} = this.state;
 
         const options: ILineChartOptions = {
@@ -157,7 +155,7 @@ export class Market extends Component<Props, State> {
         let strPrice = "...";
         if (prices.length) {
             const price = prices[prices.length - 1].price;
-            strPrice = numeral(price).format(this.priceFormatter());
+            strPrice = numeral(price).format(formatter);
         }
 
         return <div className="market-graph" ref={this.node}>
@@ -181,9 +179,10 @@ export default class MarketData extends Component {
 
         return <div className="market-data">
             <div className="market-data-header">{_t("market-data.title")}</div>
-            <Market label="HIVE" coin="hive" vsCurrency="usd" fromTs={fromTs} toTs={toTs}/>
-            <Market label="HBD" coin="hive_dollar" vsCurrency="usd" fromTs={fromTs} toTs={toTs}/>
-            <Market label="BTC" coin="bitcoin" vsCurrency="usd" fromTs={fromTs} toTs={toTs}/>
+            <Market label="HIVE" coin="hive" vsCurrency="usd" fromTs={fromTs} toTs={toTs} formatter="0.000$"/>
+            <Market label="HBD" coin="hive_dollar" vsCurrency="usd" fromTs={fromTs} toTs={toTs} formatter="0.000$"/>
+            <Market label="BTC" coin="bitcoin" vsCurrency="usd" fromTs={fromTs} toTs={toTs} formatter=",$"/>
+            <Market label="ETH" coin="ethereum" vsCurrency="usd" fromTs={fromTs} toTs={toTs} formatter="0.00$"/>
             <Tsx k="market-data.credits" args={{}}>
                 <div className="credits"/>
             </Tsx>
