@@ -137,6 +137,10 @@
     "description-tag": "{{f}} #{{t}} tópicos",
     "description-user-feed": "{{u}}' notícias"
   },
+  "market-data": {
+    "title": "Market price",
+    "credits": "market data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">coingecko</a> api"
+  },
   "list-style": {
     "title": "Alternar estilo da lista"
   },
