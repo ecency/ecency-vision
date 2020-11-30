@@ -1,5 +1,20 @@
 .community-subscribers {
   .user-list {
     @include user-grid-list(1, 2, 4);
+
+    .list-body {
+      .list-item {
+        .item-extra {
+          .btn-edit-role {
+            margin-left: 4px;
+
+            svg {
+              margin-top: -2px;
+              height: 12px;
+            }
+          }
+        }
+      }
+    }
   }
 }

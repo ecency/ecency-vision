@@ -1,15 +1,19 @@
 import React, {Component, Fragment} from "react";
 
+import isEqual from "react-fast-compare";
+
 import {History} from "history";
 
 import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
-import {Community} from "../../store/communities/types";
+import {Community, roleMap} from "../../store/communities/types";
 import {Subscription} from "../../store/subscriptions/types";
+import {ActiveUser} from "../../store/active-user/types";
 
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 import LinearProgress from "../linear-progress";
+import CommunityRoleEditDialog from "../community-role-edit";
 import {error} from "../feedback";
 
 import accountReputation from "../../helper/account-reputation";
@@ -19,16 +23,21 @@ import {getSubscribers} from "../../api/bridge";
 
 import {_t} from "../../i18n";
 
+import {pencilOutlineSvg} from "../../img/svg";
+
 interface Props {
     history: History;
     global: Global;
     community: Community;
+    activeUser: ActiveUser | null;
     addAccount: (data: Account) => void;
+    addCommunity: (data: Community) => void;
 }
 
 interface State {
     loading: boolean;
     subscribers: Subscription[];
+    editingSubscriber: Subscription | null;
     accounts: Account[];
 }
 
@@ -36,13 +45,21 @@ export class Subscribers extends Component<Props, State> {
     state: State = {
         loading: true,
         subscribers: [],
+        editingSubscriber: null,
         accounts: []
     }
 
     _mounted: boolean = true;
 
     componentDidMount() {
-        this.fetch();
+        this.fetch().then();
+    }
+
+    componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>, snapshot?: any) {
+        // re-fetch once community updated. (on role update of a particular subscriber)
+        if (!isEqual(this.props.community, prevProps.community) && !this.state.loading) {
+            this.fetch().then();
+        }
     }
 
     componentWillUnmount() {
@@ -81,7 +98,7 @@ export class Subscribers extends Component<Props, State> {
     }
 
     render() {
-        const {subscribers, accounts, loading} = this.state;
+        const {subscribers, accounts, editingSubscriber, loading} = this.state;
 
         if (loading) {
             return <div className="community-subscribers">
@@ -89,13 +106,21 @@ export class Subscribers extends Component<Props, State> {
             </div>
         }
 
+        const {community, activeUser} = this.props;
+
+        const role = community.team.find(x => x[0] === activeUser?.username);
+        const roleInTeam = role ? role[1] : null;
+        const canEditTeam = !!(roleInTeam && roleMap[roleInTeam]);
+        const roles = roleInTeam ? roleMap[roleInTeam] : [];
+
         return <div className="community-subscribers">
             {subscribers.length > 0 && (
                 <div className="user-list">
                     <div className="list-body">
                         {subscribers.map((item, i) => {
-                            const username = item[0];
+                            const [username, role] = item;
                             const account = accounts.find(x => x.name === username);
+                            const canEditRole = roles && roles.includes(role);
 
                             return <div className="list-item" key={username}>
                                 <div className="item-main">
@@ -113,12 +138,33 @@ export class Subscribers extends Component<Props, State> {
                                         {(account?.reputation !== undefined) && <span className="item-reputation">{accountReputation(account.reputation)}</span>}
                                     </div>
                                 </div>
+                                {canEditTeam && (
+                                    <div className="item-extra">
+                                        {role}
+                                        {canEditRole && <a href="#" className="btn-edit-role" onClick={(e) => {
+                                            e.preventDefault();
 
+                                            this.stateSet({editingSubscriber: item})
+                                        }}>{pencilOutlineSvg}</a>}
+                                    </div>
+                                )}
                             </div>
-
                         })}
                     </div>
                 </div>
+            )}
+
+            {editingSubscriber && (
+                <CommunityRoleEditDialog
+                    {...this.props}
+                    activeUser={activeUser!}
+                    user={editingSubscriber[0]}
+                    role={editingSubscriber[1]}
+                    roles={roles}
+                    onHide={() => {
+                        this.stateSet({editingSubscriber: null})
+                    }}
+                />
             )}
         </div>
     }
@@ -130,7 +176,9 @@ export default (p: Props) => {
         history: p.history,
         global: p.global,
         community: p.community,
-        addAccount: p.addAccount
+        activeUser: p.activeUser,
+        addAccount: p.addAccount,
+        addCommunity: p.addCommunity
     }
 
     return <Subscribers {...props} />
