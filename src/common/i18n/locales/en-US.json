@@ -92,7 +92,9 @@
     "ref": "Referred user (optional)",
     "submit": "Continue",
     "success": "We've sent an email to {{email}}.",
-    "success-2": "Follow instructions to complete signup process."
+    "success-2": "Follow instructions to complete signup process.",
+    "login-text-1": "Do you have an account?",
+    "login-text-2": "Login"
   },
   "trending-tags": {
     "title": "Topics"

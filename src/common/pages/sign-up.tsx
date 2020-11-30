@@ -158,6 +158,14 @@ class SignUpPage extends Component<PageProps, State> {
                                     </div>
                                 </Form>
                             </div>
+                            <div className="do-login">
+                                {_t("sign-up.login-text-1")}
+                                <a href="#" onClick={(e) => {
+                                    e.preventDefault();
+                                    const {toggleUIProp} = this.props;
+                                    toggleUIProp("login");
+                                }}>{" "}{_t("sign-up.login-text-2")}</a>
+                            </div>
                         </>
                     })()}
                 </div>
