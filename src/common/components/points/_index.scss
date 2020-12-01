@@ -59,7 +59,7 @@
         }
 
         &.in-progress {
-          animation: claiming-color-change 5s infinite;
+          animation: anim-fadein-out 1s infinite;
           pointer-events: none;
         }
       }
