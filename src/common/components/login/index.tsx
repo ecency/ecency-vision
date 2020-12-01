@@ -6,7 +6,7 @@ import isEqual from "react-fast-compare";
 
 import {PrivateKey, PublicKey, cryptoUtils} from "@hiveio/dhive";
 
-import {History} from "history";
+import {History, Location} from "history";
 
 import {AppWindow} from "../../../client/window";
 
@@ -538,6 +538,7 @@ export class Login extends Component<LoginProps, State> {
 
 interface Props {
     history: History;
+    location: Location;
     global: Global;
     ui: UI;
     users: User[];
@@ -585,6 +586,13 @@ export default class LoginDialog extends Component<Props> {
 
             // login activity
             usrActivity(user.username, 20);
+
+            // redirection based on path name
+            const {location, history} = this.props;
+            if (location.pathname.startsWith("/signup")) {
+                const u = `/@${x.username}/feed`;
+                history.push(u);
+            }
         });
     }
 
