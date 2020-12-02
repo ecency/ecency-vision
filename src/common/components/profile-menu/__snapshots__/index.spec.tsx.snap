@@ -48,13 +48,6 @@ exports[`(1) Render 1`] = `
     </a>
     <a
       className="profile-menu-item"
-      href="/@username/points"
-      onClick={[Function]}
-    >
-      Points
-    </a>
-    <a
-      className="profile-menu-item"
       href="/@username/wallet"
       onClick={[Function]}
     >

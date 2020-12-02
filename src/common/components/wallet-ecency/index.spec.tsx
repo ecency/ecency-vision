@@ -1,10 +1,12 @@
 import React from "react";
 
-import {WalletEcency} from "./index";
-
 import TestRenderer from "react-test-renderer";
 
+import {StaticRouter} from "react-router-dom";
+
 import {createBrowserHistory} from "history";
+
+import {WalletEcency} from "./index";
 
 import {initialState as transactionsInitialState} from "../../store/transactions/index";
 
@@ -14,99 +16,74 @@ jest.mock("moment", () => () => ({
     fromNow: () => "5 days ago",
 }));
 
+const defProps = {
+    history: createBrowserHistory(),
+    global: globalInstance,
+    dynamicProps: dynamicPropsIntance1,
+    activeUser: null,
+    account: {
+        name: "user1",
+    },
+    points: {
+        points: "12.010",
+        uPoints: "0.000",
+        transactions: [...pointTransactionsInstance]
+    },
+    signingKey: '',
+    transactions: transactionsInitialState,
+    fetchPoints: () => {
+    },
+    addAccount: () => {
+    },
+    updateActiveUser: () => {
+
+    },
+    setSigningKey: () => {
+    }
+}
+
+
 it("(1) Default Render", () => {
     const props = {
-        history: createBrowserHistory(),
-        global: globalInstance,
-        dynamicProps: dynamicPropsIntance1,
-        activeUser: null,
-        account: {
-            name: "user1",
-        },
-        points: {
-            points: "12.010",
-            uPoints: "0.000",
-            transactions: [...pointTransactionsInstance]
-        },
-        signingKey: '',
-        transactions: transactionsInitialState,
-        fetchPoints: () => {
-        },
-        addAccount: () => {
-        },
-        updateActiveUser: () => {
-
-        },
-        setSigningKey: () => {
-
-        }
+        ...defProps
     };
 
-    const renderer = TestRenderer.create(<WalletEcency {...props} />);
+    const renderer = TestRenderer.create(
+        <StaticRouter location="/" context={{}}>
+            <WalletEcency {...props} />
+        </StaticRouter>);
     expect(renderer.toJSON()).toMatchSnapshot();
 });
 
 it("(2) With active user", () => {
     const props = {
-        history: createBrowserHistory(),
-        global: globalInstance,
-        dynamicProps: dynamicPropsIntance1,
+        ...defProps,
         activeUser: activeUserMaker("user1"),
-        account: {
-            name: "user1",
-        },
-        points: {
-            points: "12.010",
-            uPoints: "0.000",
-            transactions: [...pointTransactionsInstance]
-        },
-        signingKey: '',
-        transactions: transactionsInitialState,
-        fetchPoints: () => {
-        },
-        addAccount: () => {
-        },
-        updateActiveUser: () => {
-
-        },
-        setSigningKey: () => {
-
-        }
     };
 
-    const renderer = TestRenderer.create(<WalletEcency {...props} />);
+    const renderer = TestRenderer.create(
+        <StaticRouter location="/" context={{}}>
+            <WalletEcency {...props} />
+        </StaticRouter>
+    );
     expect(renderer.toJSON()).toMatchSnapshot();
 });
 
 
 it("(3) Active user with unclaimed points", () => {
     const props = {
-        history: createBrowserHistory(),
-        global: globalInstance,
-        dynamicProps: dynamicPropsIntance1,
+        ...defProps,
         activeUser: activeUserMaker("user1"),
-        account: {
-            name: "user1",
-        },
         points: {
             points: "12.010",
             uPoints: "6.200",
             transactions: [...pointTransactionsInstance]
         },
-        signingKey: '',
-        transactions: transactionsInitialState,
-        fetchPoints: () => {
-        },
-        addAccount: () => {
-        },
-        updateActiveUser: () => {
-
-        },
-        setSigningKey: () => {
-
-        }
     };
 
-    const renderer = TestRenderer.create(<WalletEcency {...props} />);
+    const renderer = TestRenderer.create(
+        <StaticRouter location="/" context={{}}>
+            <WalletEcency {...props} />
+        </StaticRouter>);
     expect(renderer.toJSON()).toMatchSnapshot();
 });

@@ -117,7 +117,7 @@ Array [
       className="user-list-body"
     >
       <div
-        className="user-list-item "
+        className="user-list-item"
         onClick={[Function]}
       >
         <span
@@ -156,7 +156,7 @@ Array [
         </div>
       </div>
       <div
-        className="user-list-item "
+        className="user-list-item"
         onClick={[Function]}
       >
         <span
@@ -305,7 +305,7 @@ Array [
       className="user-list-body"
     >
       <div
-        className="user-list-item "
+        className="user-list-item"
         onClick={[Function]}
       >
         <span
