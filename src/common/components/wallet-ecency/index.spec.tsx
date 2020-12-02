@@ -1,6 +1,6 @@
 import React from "react";
 
-import {UserPoints} from "./index";
+import {WalletEcency} from "./index";
 
 import TestRenderer from "react-test-renderer";
 
@@ -42,7 +42,7 @@ it("(1) Default Render", () => {
         }
     };
 
-    const renderer = TestRenderer.create(<UserPoints {...props} />);
+    const renderer = TestRenderer.create(<WalletEcency {...props} />);
     expect(renderer.toJSON()).toMatchSnapshot();
 });
 
@@ -74,7 +74,7 @@ it("(2) With active user", () => {
         }
     };
 
-    const renderer = TestRenderer.create(<UserPoints {...props} />);
+    const renderer = TestRenderer.create(<WalletEcency {...props} />);
     expect(renderer.toJSON()).toMatchSnapshot();
 });
 
@@ -107,6 +107,6 @@ it("(3) Active user with unclaimed points", () => {
         }
     };
 
-    const renderer = TestRenderer.create(<UserPoints {...props} />);
+    const renderer = TestRenderer.create(<WalletEcency {...props} />);
     expect(renderer.toJSON()).toMatchSnapshot();
 });

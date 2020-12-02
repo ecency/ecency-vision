@@ -1,0 +1,78 @@
+.wallet-menu {
+
+
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: row;
+  justify-content: space-between;
+
+  @media (min-width: $xl-break) {
+    padding: 0 10px;
+    flex-direction: column;
+    width: 200px;
+    justify-content: flex-start;
+  }
+
+  .menu-item {
+    height: 91px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    padding: 14px 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 48%;
+
+    @media (min-width: $xl-break) {
+      width: auto;
+    }
+
+    @include themify(day) {
+      background: darken($white-two, 1);
+      border: 2px solid $white-three;
+    }
+
+    @include themify(night) {
+      background: $dark-two;
+      border: 2px solid lighten($dark-six, 4);
+    }
+
+    .title {
+      font-size: 22px;
+      font-weight: 500;
+    }
+
+    .platform-logo {
+      position: absolute;
+      top: 0;
+      right: 10px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      opacity: 0.4;
+      color: $dark-sky-blue;
+
+      img, svg {
+        width: 32px;
+      }
+    }
+
+
+    &.hive {
+      color: $dark-sky-blue;
+    }
+
+    &.ecency {
+      color: $dark-sky-blue;
+    }
+
+    &.active, &:hover {
+      border-color: $dark-sky-blue;
+
+      .platform-logo {
+        opacity: 1;
+      }
+    }
+  }
+}
