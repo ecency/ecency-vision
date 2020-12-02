@@ -217,7 +217,7 @@ exports[`(1) Default Render 1`] = `
           className="transaction-list-header"
         >
           <h2>
-            HISTORY
+            History
              
           </h2>
         </div>
