@@ -295,7 +295,6 @@
     "section-comments": "Comments",
     "section-replies": "Replies",
     "section-communities": "Communities",
-    "section-points": "Points",
     "section-wallet": "Wallet",
     "communities-title": "Subscriptions",
     "create-community": "Create a community",
@@ -433,7 +432,7 @@
     "success-sub-title": "Transaction successful"
   },
   "transactions": {
-    "title": "HISTORY",
+    "title": "History",
     "type-curation_reward": "Curation Reward",
     "type-author_reward": "Author Reward",
     "type-comment_benefactor_reward": "Comment Benefactor Reward",
