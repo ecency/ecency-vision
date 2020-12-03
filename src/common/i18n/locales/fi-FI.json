@@ -432,7 +432,7 @@
     "success-sub-title": "Siirto onnistui"
   },
   "transactions": {
-    "title": "History",
+    "title": "Historia",
     "type-curation_reward": "Tarkastuspalkkio",
     "type-author_reward": "Julkaisupalkkio",
     "type-comment_benefactor_reward": "Kommentin hyötyjäpalkkio",
