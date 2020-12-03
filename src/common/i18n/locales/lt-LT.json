@@ -295,7 +295,6 @@
     "section-comments": "Komentarai",
     "section-replies": "Atsakymai",
     "section-communities": "Bendruomenės",
-    "section-points": "Taškai",
     "section-wallet": "Piniginė",
     "communities-title": "Prenumeratos",
     "create-community": "Sukurti bendruomenę",
@@ -433,7 +432,7 @@
     "success-sub-title": "Operacija sėkmingai atlikta"
   },
   "transactions": {
-    "title": "ISTORIJA",
+    "title": "History",
     "type-curation_reward": "Kuracijos Atlygis",
     "type-author_reward": "Autorius Atlygis",
     "type-comment_benefactor_reward": "Atlygis už gerą komentarą",
