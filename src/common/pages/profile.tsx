@@ -268,12 +268,10 @@ class ProfilePage extends Component<Props, State> {
                                 })
                             }
 
-                            const {activeUser} = this.props;
-
-                            if (section === "settings" && activeUser && activeUser.data?.profile) {
+                            if (section === "settings") {
                                 return ProfileSettings({
                                     ...this.props,
-                                    activeUser: activeUser!
+                                    account
                                 })
                             }
 
