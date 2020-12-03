@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-import {Form, FormControl, InputGroup, Modal, Button, Spinner} from "react-bootstrap";
+import {Form, FormControl, InputGroup, Button, Spinner, Col} from "react-bootstrap";
 
 import {ActiveUser} from "../../store/active-user/types";
 import {Account} from "../../store/accounts/types";
@@ -17,7 +17,6 @@ interface Props {
     activeUser: ActiveUser;
     addAccount: (data: Account) => void;
     updateActiveUser: (data?: Account) => void;
-    onHide: () => void;
 }
 
 interface State {
@@ -29,6 +28,7 @@ interface State {
     profileImage: string,
     inProgress: boolean,
     uploading: boolean,
+    changed: boolean
 }
 
 const pureState = (props: Props): State => {
@@ -37,6 +37,7 @@ const pureState = (props: Props): State => {
     return {
         uploading: false,
         inProgress: false,
+        changed: false,
         name: profile.name!,
         about: profile.about!,
         website: profile.website!,
@@ -46,7 +47,7 @@ const pureState = (props: Props): State => {
     }
 }
 
-export class ProfileEdit extends Component<Props, State> {
+export default class ProfileEdit extends Component<Props, State> {
     state: State = pureState(this.props);
 
     _mounted: boolean = true;
@@ -65,11 +66,11 @@ export class ProfileEdit extends Component<Props, State> {
         const id = e.target.getAttribute('data-var') as string;
         const {value} = e.target;
 
-        this.stateSet({[id]: value});
+        this.stateSet({[id]: value, changed: true});
     };
 
     update = () => {
-        const {activeUser, addAccount, updateActiveUser, onHide} = this.props;
+        const {activeUser, addAccount, updateActiveUser} = this.props;
 
         const {
             name,
@@ -97,9 +98,7 @@ export class ProfileEdit extends Component<Props, State> {
             // update reducers
             addAccount(account);
             updateActiveUser(account);
-
-            // hide dialog
-            onHide();
+            this.stateSet({changed: false});
         }).catch(() => {
             error(_t('g.server-error'));
         }).finally(() => {
@@ -116,74 +115,77 @@ export class ProfileEdit extends Component<Props, State> {
             coverImage,
             profileImage,
             inProgress,
-            uploading
+            uploading,
+            changed
         } = this.state;
 
         const spinner = <Spinner animation="grow" variant="light" size="sm" style={{marginRight: "6px"}}/>;
 
-        return <div className="profile-edit-dialog-content">
-            <Form.Group>
-                <Form.Label>{_t('profile-edit.name')}</Form.Label>
-                <Form.Control type="text" disabled={inProgress} value={name} maxLength={30} data-var="name" onChange={this.valueChanged}/>
-            </Form.Group>
-            <Form.Group>
-                <Form.Label>{_t('profile-edit.about')}</Form.Label>
-                <Form.Control type="text" disabled={inProgress} value={about} maxLength={160} data-var="about" onChange={this.valueChanged}/>
-            </Form.Group>
-            <Form.Group>
-                <Form.Label>{_t('profile-edit.profile-image')}</Form.Label>
-                <InputGroup className="mb-3">
-                    <Form.Control type="text" disabled={inProgress} placeholder="https://" value={profileImage} maxLength={500} data-var="profileImage"
-                                  onChange={this.valueChanged}/>
-                    <InputGroup.Append>
-                        <UploadButton {...this.props}
-                                      onBegin={() => {
-                                          this.stateSet({uploading: true});
-                                      }}
-                                      onEnd={(url) => {
-                                          this.stateSet({profileImage: url, uploading: false});
-                                      }}/>
-                    </InputGroup.Append>
-                </InputGroup>
-            </Form.Group>
-            <Form.Group>
-                <Form.Label>{_t('profile-edit.cover-image')}</Form.Label>
-                <InputGroup className="mb-3">
-                    <Form.Control type="text" disabled={inProgress} placeholder="https://" value={coverImage} maxLength={500} data-var="coverImage" onChange={this.valueChanged}/>
-                    <InputGroup.Append>
-                        <UploadButton {...this.props}
-                                      onBegin={() => {
-                                          this.stateSet({uploading: true});
-                                      }}
-                                      onEnd={(url) => {
-                                          this.stateSet({coverImage: url, uploading: false});
-                                      }}/>
-                    </InputGroup.Append>
-                </InputGroup>
-            </Form.Group>
-            <Form.Group>
-                <Form.Label>{_t('profile-edit.website')}</Form.Label>
-                <Form.Control type="text" disabled={inProgress} placeholder="https://" value={website} maxLength={100} data-var="website" onChange={this.valueChanged}/>
-            </Form.Group>
-            <Form.Group>
-                <Form.Label>{_t('profile-edit.location')}</Form.Label>
-                <Form.Control type="text" disabled={inProgress} value={location} maxLength={30} data-var="location" onChange={this.valueChanged}/>
-            </Form.Group>
-            <Button onClick={this.update} disabled={inProgress || uploading}>{inProgress && spinner} {_t('g.update')}</Button>
+        return <div className="profile-edit">
+            <div className="profile-edit-header">{_t('profile-edit.title')}</div>
+            <Form.Row>
+                <Col lg={6} xl={4}>
+                    <Form.Group>
+                        <Form.Label>{_t('profile-edit.name')}</Form.Label>
+                        <Form.Control type="text" disabled={inProgress} value={name} maxLength={30} data-var="name" onChange={this.valueChanged}/>
+                    </Form.Group>
+                </Col>
+                <Col lg={6} xl={4}>
+                    <Form.Group>
+                        <Form.Label>{_t('profile-edit.about')}</Form.Label>
+                        <Form.Control type="text" disabled={inProgress} value={about} maxLength={160} data-var="about" onChange={this.valueChanged}/>
+                    </Form.Group>
+                </Col>
+                <Col lg={6} xl={4}>
+                    <Form.Group>
+                        <Form.Label>{_t('profile-edit.profile-image')}</Form.Label>
+                        <InputGroup className="mb-3">
+                            <Form.Control type="text" disabled={inProgress} placeholder="https://" value={profileImage} maxLength={500} data-var="profileImage"
+                                          onChange={this.valueChanged}/>
+                            <InputGroup.Append>
+                                <UploadButton {...this.props}
+                                              onBegin={() => {
+                                                  this.stateSet({uploading: true});
+                                              }}
+                                              onEnd={(url) => {
+                                                  this.stateSet({profileImage: url, uploading: false});
+                                              }}/>
+                            </InputGroup.Append>
+                        </InputGroup>
+                    </Form.Group>
+                </Col>
+                <Col lg={6} xl={4}>
+                    <Form.Group>
+                        <Form.Label>{_t('profile-edit.cover-image')}</Form.Label>
+                        <InputGroup className="mb-3">
+                            <Form.Control type="text" disabled={inProgress} placeholder="https://" value={coverImage} maxLength={500} data-var="coverImage"
+                                          onChange={this.valueChanged}/>
+                            <InputGroup.Append>
+                                <UploadButton {...this.props}
+                                              onBegin={() => {
+                                                  this.stateSet({uploading: true});
+                                              }}
+                                              onEnd={(url) => {
+                                                  this.stateSet({coverImage: url, uploading: false});
+                                              }}/>
+                            </InputGroup.Append>
+                        </InputGroup>
+                    </Form.Group>
+                </Col>
+                <Col lg={6} xl={4}>
+                    <Form.Group>
+                        <Form.Label>{_t('profile-edit.website')}</Form.Label>
+                        <Form.Control type="text" disabled={inProgress} placeholder="https://" value={website} maxLength={100} data-var="website" onChange={this.valueChanged}/>
+                    </Form.Group>
+                </Col>
+                <Col lg={6} xl={4}>
+                    <Form.Group>
+                        <Form.Label>{_t('profile-edit.location')}</Form.Label>
+                        <Form.Control type="text" disabled={inProgress} value={location} maxLength={30} data-var="location" onChange={this.valueChanged}/>
+                    </Form.Group>
+                </Col>
+            </Form.Row>
+            {changed && <Button onClick={this.update} disabled={inProgress || uploading}>{inProgress && spinner} {_t('g.update')}</Button>}
         </div>
-    }
-}
-
-export default class ProfileEditDialog extends Component<Props> {
-    render() {
-        const {onHide} = this.props;
-        return (
-            <Modal animation={false} show={true} centered={true} onHide={onHide} keyboard={false} className="profile-edit-dialog modal-thin-header">
-                <Modal.Header closeButton={true}/>
-                <Modal.Body>
-                    <ProfileEdit {...this.props} />
-                </Modal.Body>
-            </Modal>
-        );
     }
 }

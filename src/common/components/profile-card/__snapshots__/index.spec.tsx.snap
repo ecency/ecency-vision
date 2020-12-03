@@ -459,14 +459,6 @@ exports[`(3) Should show profile edits 1`] = `
   <div
     className="btn-controls"
   >
-    <button
-      className="btn btn-primary btn-sm"
-      disabled={false}
-      onClick={[Function]}
-      type="button"
-    >
-      Profile Edit
-    </button>
     <a
       className="btn btn-sm btn-primary"
       href="/witnesses"

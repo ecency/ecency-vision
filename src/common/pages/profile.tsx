@@ -23,6 +23,7 @@ import ProfileCard from "../components/profile-card";
 import ProfileMenu from "../components/profile-menu";
 import ProfileCover from "../components/profile-cover";
 import ProfileCommunities from "../components/profile-communities";
+import ProfileSettings from "../components/profile-settings";
 import WalletHive from "../components/wallet-hive";
 import WalletEcency from "../components/wallet-ecency";
 import ScrollToTop from "../components/scroll-to-top";
@@ -264,6 +265,15 @@ class ProfilePage extends Component<Props, State> {
                                 return ProfileCommunities({
                                     ...this.props,
                                     account
+                                })
+                            }
+
+                            const {activeUser} = this.props;
+
+                            if (section === "settings" && activeUser && activeUser.data?.profile) {
+                                return ProfileSettings({
+                                    ...this.props,
+                                    activeUser: activeUser!
                                 })
                             }
 

@@ -296,13 +296,14 @@
     "section-replies": "Replies",
     "section-communities": "Communities",
     "section-wallet": "Wallet",
+    "section-settings": "Settings",
     "communities-title": "Subscriptions",
     "create-community": "Create a community",
-    "edit": "Profile Edit",
     "witnesses": "Witnesses",
     "proposals": "Proposals"
   },
   "profile-edit": {
+    "title": "Profile",
     "name": "Display Name",
     "about": "About",
     "cover-image": "Cover Image",
