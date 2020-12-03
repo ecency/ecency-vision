@@ -295,7 +295,6 @@
     "section-comments": "Kommentit",
     "section-replies": "Vastaukset",
     "section-communities": "Yhteisöt",
-    "section-points": "Pisteet",
     "section-wallet": "Lompakko",
     "communities-title": "Tilaukset",
     "create-community": "Luo yhteisö",
@@ -433,7 +432,7 @@
     "success-sub-title": "Siirto onnistui"
   },
   "transactions": {
-    "title": "Historia",
+    "title": "History",
     "type-curation_reward": "Tarkastuspalkkio",
     "type-author_reward": "Julkaisupalkkio",
     "type-comment_benefactor_reward": "Kommentin hyötyjäpalkkio",
