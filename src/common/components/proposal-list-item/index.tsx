@@ -89,82 +89,80 @@ export class ProposalListItem extends Component<Props, State> {
 
         return (
             <div className="proposal-list-item">
-                <div className="left-side">
-                    <div className="proposal-users-card">
-                        {UserAvatar({
-                            ...this.props,
-                            username: proposal.creator,
-                            size: "small"
-                        })}
-                        <span className="users">
-                            {_t("proposals.by")}{" "}
-                            {ProfileLink({
+                <div className="item-content">
+                    <div className="left-side">
+                        <div className="proposal-users-card">
+                            {UserAvatar({
                                 ...this.props,
                                 username: proposal.creator,
-                                children: <span> {proposal.creator}</span>
+                                size: "small"
                             })}
+                            <span className="users">
+                            {_t("proposals.by")}{" "}
+                                {ProfileLink({
+                                    ...this.props,
+                                    username: proposal.creator,
+                                    children: <span> {proposal.creator}</span>
+                                })}
 
-                            {(proposal.receiver && proposal.receiver !== proposal.creator) && (
-                                <>{" "}{_t("proposals.for")}{" "}
-                                    {ProfileLink({
-                                        ...this.props,
-                                        username: proposal.receiver,
-                                        children: <span> {proposal.receiver}</span>
-                                    })}
-                                </>
-                            )}
+                                {(proposal.receiver && proposal.receiver !== proposal.creator) && (
+                                    <>{" "}{_t("proposals.for")}{" "}
+                                        {ProfileLink({
+                                            ...this.props,
+                                            username: proposal.receiver,
+                                            children: <span> {proposal.receiver}</span>
+                                        })}
+                                    </>
+                                )}
                             </span>
-                    </div>
-                    <div className="proposal-title">
-                        <Link to={`/proposals/${proposal.id}`}>
-                            {proposal.subject} <span className="proposal-id">#{proposal.id}</span>
-                        </Link>
-                    </div>
-                    <div className="status-duration-payment">
-                        <div className={`proposal-status ${proposal.status}`}>{_t(`proposals.status-${proposal.status}`)}</div>
-                        <div className="proposal-duration">
-                            {startDate.format('ll')} {"-"} {endDate.format("ll")} ({_t("proposals.duration-days", {n: duration})})
                         </div>
-                        <div className="proposal-payment">
-                            <span className="all-pay">{`${strAllPayment} HBD`}</span>
-                            <span className="daily-pay">({_t("proposals.daily-pay", {n: strDailyHdb})}{" "}{"HBD"})</span>
+                        <div className="proposal-title">
+                            <Link to={`/proposals/${proposal.id}`}>
+                                {proposal.subject} <span className="proposal-id">#{proposal.id}</span>
+                            </Link>
+                        </div>
+                        <div className="status-duration-payment">
+                            <div className={`proposal-status ${proposal.status}`}>{_t(`proposals.status-${proposal.status}`)}</div>
+                            <div className="proposal-duration">
+                                {startDate.format('ll')} {"-"} {endDate.format("ll")} ({_t("proposals.duration-days", {n: duration})})
+                            </div>
+                            <div className="proposal-payment">
+                                <span className="all-pay">{`${strAllPayment} HBD`}</span>
+                                <span className="daily-pay">({_t("proposals.daily-pay", {n: strDailyHdb})}{" "}{"HBD"})</span>
+                            </div>
+                        </div>
+                        <div className="permlink">
+                            {EntryLink({
+                                ...this.props,
+                                entry: {
+                                    category: "proposal",
+                                    author: proposal.creator,
+                                    permlink: proposal.permlink
+                                },
+                                children: <a>
+                                    {linkSvg} {"/"}{proposal.creator}{"/"}{proposal.permlink}
+                                </a>
+                            })}
+                        </div>
+                        <div className="votes">
+                            <a href="#" className="btn-votes" onClick={(e) => {
+                                e.preventDefault();
+                                this.toggleVotes();
+                            }}>{_t("proposals.votes", {n: strVotes})}</a>
                         </div>
                     </div>
-                    <div className="permlink">
-                        {EntryLink({
-                            ...this.props,
-                            entry: {
-                                category: "proposal",
-                                author: proposal.creator,
-                                permlink: proposal.permlink
-                            },
-                            children: <a>
-                                {linkSvg} {"/"}{proposal.creator}{"/"}{proposal.permlink}
-                            </a>
-                        })}
-                    </div>
-                    <div className="votes">
-                        <a href="#" className="btn-votes" onClick={(e) => {
-                            e.preventDefault();
-                            this.toggleVotes();
-                        }}>{_t("proposals.votes", {n: strVotes})}</a>
+                    <div className="right-side">
+                        <div className="voting">
+                            <ProposalVoteBtn {...this.props} proposal={proposal.id}/>
+                        </div>
+                        <div className="remaining-days">
+                            {_t("proposals.remaining-days", {n: remaining})}
+                        </div>
                     </div>
                 </div>
-                <div className="right-side">
-                    {proposal.id === 0 && (
-                        <span className="return-proposal">{_t("proposals.return-description")}</span>
-                    )}
-                    {proposal.id !== 0 && (
-                        <>
-                            <div className="voting">
-                                <ProposalVoteBtn {...this.props} proposal={proposal.id}/>
-                            </div>
-                            <div className="remaining-days">
-                                {_t("proposals.remaining-days", {n: remaining})}
-                            </div>
-                        </>
-                    )}
-                </div>
+                {proposal.id === 0 && (
+                    <div className="return-proposal">{_t("proposals.return-description")}</div>
+                )}
                 {votes && <ProposalVotes {...this.props} onHide={this.toggleVotes}/>}
             </div>
         );
