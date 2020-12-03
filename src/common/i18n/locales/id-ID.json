@@ -295,7 +295,6 @@
     "section-comments": "Komentar",
     "section-replies": "Balasan",
     "section-communities": "Komunitas",
-    "section-points": "Poin",
     "section-wallet": "Dompet",
     "communities-title": "Berlangganan",
     "create-community": "Buatlah sebuah komunitas",
@@ -433,7 +432,7 @@
     "success-sub-title": "Transaksinya berhasil"
   },
   "transactions": {
-    "title": "RIWAYAT",
+    "title": "History",
     "type-curation_reward": "Reward Kurasi",
     "type-author_reward": "Reward Penulis",
     "type-comment_benefactor_reward": "Reward Komentar Distributor",
