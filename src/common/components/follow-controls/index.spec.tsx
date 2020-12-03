@@ -3,45 +3,41 @@ import renderer from "react-test-renderer";
 
 import {UiInstance, activeUserMaker} from "../../helper/test-helper";
 
-import {ActiveUser} from "../../store/active-user/types";
-
 import FollowControls from './index';
 
 const allOver = () => new Promise((resolve) => setImmediate(resolve));
 
 let MOCK_MODE: number = 0;
 
-jest.mock("../../api/hive", () => ({
-    getFollowing: (follower: string,
-                   startFollowing: string,
-                   followType: string,
-                   limit: number) =>
+jest.mock("../../api/bridge", () => ({
+    getRelationshipBetweenAccounts: () =>
         new Promise((resolve) => {
 
             if (MOCK_MODE === 1) {
-                resolve([]);
-                return;
+                resolve({
+                    follows: false,
+                    ignores: false,
+                    is_blacklisted: false,
+                    follows_blacklists: false
+                });
             }
 
             if (MOCK_MODE === 2) {
-                resolve([{
-                    follower: 'fooo1',
-                    following: 'bar'
-                }]);
-                return;
+                resolve({
+                    follows: true,
+                    ignores: false,
+                    is_blacklisted: false,
+                    follows_blacklists: false
+                });
             }
 
             if (MOCK_MODE === 3) {
-                if (followType === 'ignore') {
-                    resolve([{
-                        follower: 'fooo1',
-                        following: 'bar'
-                    }]);
-
-                } else {
-                    resolve([]);
-                }
-                return;
+                resolve({
+                    follows: false,
+                    ignores: true,
+                    is_blacklisted: false,
+                    follows_blacklists: false
+                });
             }
         }),
 }));
@@ -84,6 +80,7 @@ describe('FollowControls', () => {
         await allOver();
         expect(component.toJSON()).toMatchSnapshot();
     });
+
 
     it('(2) Following.', async () => {
         MOCK_MODE = 2;

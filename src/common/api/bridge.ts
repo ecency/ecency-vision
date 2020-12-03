@@ -112,3 +112,16 @@ export const getSubscribers = (
     bridgeApiCall<Subscription[] | null>("list_subscribers", {
         community
     });
+
+export interface AccountRelationship {
+    follows: boolean,
+    ignores: boolean,
+    is_blacklisted: boolean,
+    follows_blacklists: boolean
+}
+
+export const getRelationshipBetweenAccounts = (follower: string, following: string): Promise<AccountRelationship | null> =>
+    bridgeApiCall<AccountRelationship | null>("get_relationship_between_accounts", [follower, following]);
+
+
+

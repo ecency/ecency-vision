@@ -10,7 +10,7 @@ import {UI, ToggleType} from "../../store/ui/types";
 import LoginRequired from "../login-required";
 import {error} from "../feedback";
 
-import {getFollowing} from "../../api/hive";
+import {getRelationshipBetweenAccounts} from "../../api/bridge";
 import {follow, unFollow, ignore, formatError} from "../../api/operations";
 
 import {_t} from "../../i18n";
@@ -63,10 +63,9 @@ export default class FollowControls extends Component<Props, State> {
         }
     }
 
-    stateSet = (obj: {}, cb: () => void = () => {
-    }) => {
+    stateSet = (state: {}, cb?: () => void) => {
         if (this._mounted) {
-            this.setState(obj, cb);
+            this.setState(state, cb);
         }
     };
 
@@ -78,72 +77,21 @@ export default class FollowControls extends Component<Props, State> {
             muted: false
         })
 
-        const {activeUser} = this.props;
+        const {activeUser, targetUsername} = this.props;
 
         if (!activeUser) {
             this.stateSet({fetching: false});
             return;
         }
 
-        await this.fetchStatus();
-
-        this.stateSet({fetching: false});
+        getRelationshipBetweenAccounts(activeUser.username, targetUsername).then(r => {
+            if (r) {
+                this.stateSet({following: r.follows, muted: r.ignores});
+            }
+        }).finally(() => {
+            this.stateSet({fetching: false});
+        })
     }
-
-    fetchStatus = async () => {
-        const following = await this.isFollowing();
-
-        // No need to check if muted when already following
-        const muted = following ? false : await this.isMuted();
-
-        this.stateSet({following, muted});
-    };
-
-    isFollowing = async () => {
-        const {activeUser, targetUsername} = this.props;
-        const {username} = activeUser!;
-
-        let resp;
-        try {
-            resp = await getFollowing(username, targetUsername, 'blog', 1);
-        } catch (err) {
-            return false;
-        }
-
-        if (resp && resp.length > 0) {
-            if (
-                resp[0].follower === username &&
-                resp[0].following === targetUsername
-            ) {
-                return true;
-            }
-        }
-
-        return false;
-    };
-
-    isMuted = async () => {
-        const {activeUser, targetUsername} = this.props;
-        const {username} = activeUser!;
-
-        let resp;
-        try {
-            resp = await getFollowing(username, targetUsername, 'ignore', 1);
-        } catch (err) {
-            return false;
-        }
-
-        if (resp && resp.length > 0) {
-            if (
-                resp[0].follower === username &&
-                resp[0].following === targetUsername
-            ) {
-                return true;
-            }
-        }
-
-        return false;
-    };
 
     follow = async () => {
         const {activeUser, targetUsername} = this.props;
