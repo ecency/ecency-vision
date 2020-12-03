@@ -5,6 +5,7 @@
       font-weight: 500;
       margin: 30px 10px 16px;
       text-align: center;
+      text-transform: uppercase;
 
       @include themify(day) {
         color: $charcoal-grey;

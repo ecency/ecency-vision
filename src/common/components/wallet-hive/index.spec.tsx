@@ -9,6 +9,7 @@ import {createBrowserHistory} from "history";
 import {initialState as transactionsInitialState} from "../../store/transactions/index";
 
 import {globalInstance, dynamicPropsIntance1} from "../../helper/test-helper";
+import {StaticRouter} from "react-router-dom";
 
 jest.mock("moment", () => () => ({
     fromNow: () => "in 5 days",
@@ -51,6 +52,6 @@ it("(1) Default Render", () => {
         }
     };
 
-    const renderer = TestRenderer.create(<Wallet {...props} />);
+    const renderer = TestRenderer.create(<StaticRouter location="/" context={{}}><Wallet {...props} /></StaticRouter>);
     expect(renderer.toJSON()).toMatchSnapshot();
 });

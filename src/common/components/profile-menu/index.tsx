@@ -63,13 +63,12 @@ export class ProfileMenu extends Component<Props> {
                             {_t(`profile.section-blog`)}
                         </Link>;
                     })()}
-                    {["communities", "points", "wallet"].map((s, k) => {
-                        return (
-                            <Link key={k} className={_c(`profile-menu-item ${section === s ? "selected-item" : ""}`)} to={`/@${username}/${s}`}>
-                                {_t(`profile.section-${s}`)}
-                            </Link>
-                        );
-                    })}
+                    <Link className={_c(`profile-menu-item ${section === "communities" ? "selected-item" : ""}`)} to={`/@${username}/communities`}>
+                        {_t(`profile.section-communities`)}
+                    </Link>
+                    <Link className={_c(`profile-menu-item ${["wallet", "points"].includes(section) ? "selected-item" : ""}`)} to={`/@${username}/wallet`}>
+                        {_t(`profile.section-wallet`)}
+                    </Link>
                 </div>
 
                 <div className="page-tools">{ProfileFilter[section] && <ListStyleToggle global={this.props.global} toggleListStyle={this.props.toggleListStyle}/>}</div>

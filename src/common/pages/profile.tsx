@@ -23,8 +23,8 @@ import ProfileCard from "../components/profile-card";
 import ProfileMenu from "../components/profile-menu";
 import ProfileCover from "../components/profile-cover";
 import ProfileCommunities from "../components/profile-communities";
-import Wallet from "../components/wallet";
-import Points from "../components/points";
+import WalletHive from "../components/wallet-hive";
+import WalletEcency from "../components/wallet-ecency";
 import ScrollToTop from "../components/scroll-to-top";
 
 import {getAccountFull} from "../api/hive";
@@ -207,7 +207,7 @@ class ProfilePage extends Component<Props, State> {
         const url = `${defaults.base}/@${username}${section ? `/${section}` : ""}`;
         const metaProps = {
             title: `${account.profile?.name || account.name}'s ${section ? `${section}` : ""} on decentralized web`,
-            description: `${account.profile?.about ? `${account.profile?.about} ${section ? `${section}` : ""}` : `${(account.profile?.name || account.name)} ${section ? `${section}` : ""}` }` || "",
+            description: `${account.profile?.about ? `${account.profile?.about} ${section ? `${section}` : ""}` : `${(account.profile?.name || account.name)} ${section ? `${section}` : ""}`}` || "",
             url: `/@${username}${section ? `/${section}` : ""}`,
             canonical: url,
             image: `${defaults.imageServer}/u/${username}/avatar/medium`,
@@ -232,7 +232,7 @@ class ProfilePage extends Component<Props, State> {
                         })}
                     </div>
                     <span itemScope={true} itemType="http://schema.org/Person">
-                        <meta itemProp="name" content={account.profile?.name || account.name} />
+                        <meta itemProp="name" content={account.profile?.name || account.name}/>
                     </span>
                     <div className="content-side">
                         {ProfileMenu({
@@ -245,15 +245,16 @@ class ProfilePage extends Component<Props, State> {
                             account
                         })}
                         {(() => {
-                            if (section === "points") {
-                                return Points({
-                                    ...this.props,
-                                    account
-                                })
-                            }
 
                             if (section === "wallet") {
-                                return Wallet({
+                                return WalletHive({
+                                    ...this.props,
+                                    account
+                                });
+                            }
+
+                            if (section === "points") {
+                                return WalletEcency({
                                     ...this.props,
                                     account
                                 });

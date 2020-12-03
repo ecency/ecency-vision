@@ -1,0 +1,274 @@
+.wallet-ecency {
+  margin-top: 20px;
+
+  .wallet-main {
+    display: flex;
+    flex-direction: column-reverse;
+
+    @media (min-width: $xl-break) {
+      flex-direction: row;
+    }
+
+    .wallet-info {
+      flex-grow: 1;
+
+      .points {
+        margin-bottom: 30px;
+        text-align: center;
+
+        .points-val {
+          color: $dark-sky-blue;
+          display: inline-flex;
+          margin-bottom: 10px;
+          cursor: default;
+          position: relative;
+
+          .val {
+            font-size: 28px;
+            font-weight: 500;
+          }
+        }
+
+        .point-name {
+          font-weight: 700;
+          margin-bottom: 10px;
+
+          @include themify(day) {
+            color: darken($silver, 10);
+          }
+
+          @include themify(night) {
+            color: $metallic-blue;
+          }
+        }
+
+        .unclaimed {
+          align-items: center;
+          background-color: $dark-sky-blue;
+          border-radius: 25px;
+          color: $white;
+          display: inline-flex;
+          height: 51px;
+          margin-top: 10px;
+          padding: 0 24px;
+
+          .val {
+            font-size: 18px;
+            font-weight: 500;
+          }
+
+          .claim-btn {
+            color: $white;
+
+            svg {
+              height: 26px;
+            }
+
+            &:hover {
+              color: lighten($dark-sky-blue, 30);
+            }
+
+            &.in-progress {
+              animation: claiming-color-change 5s infinite;
+              pointer-events: none;
+            }
+          }
+
+
+          &.can-claim {
+            .val {
+              margin-right: 10px;
+            }
+          }
+        }
+
+        .get-estm {
+          margin: 10px 0;
+        }
+      }
+
+      .point-reward-types {
+        margin: 0 auto 50px auto;
+        cursor: default;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 10px;
+        max-width: 320px;
+
+        @media (min-width: $sm-break) {
+          grid-template-columns: repeat(8, 1fr);
+          max-width: 520px;
+        }
+
+        @media (min-width: $lg-break) {
+          width: 600px;
+          max-width: none;
+        }
+
+        .point-reward-type {
+          align-items: center;
+          border-radius: 50%;
+          display: inline-flex;
+          height: 40px;
+          justify-content: center;
+          width: 40px;
+          color: $warm-grey;
+          position: relative;
+          margin: auto;
+
+          svg {
+            height: 18px;
+          }
+
+          @include themify(day) {
+            background: $white-three;
+            color: $steel-grey;
+          }
+
+          @include themify(night) {
+            background: $metallic-blue;
+            color: lighten($metallic-blue, 40);
+          }
+
+          .reward-num {
+            background: $dark-sky-blue;
+            position: absolute;
+            right: -30%;
+            bottom: 0;
+            color: $white;
+            font-size: 10px;
+            border-radius: 24px;
+            width: 24px;
+            padding: 1px 0;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+
+  .p-transaction-list {
+    margin: 0 0 20px 0;
+
+    .transaction-list-header {
+      h2 {
+        font-size: 20px;
+        font-weight: 500;
+        margin: 30px 10px 16px;
+        text-align: center;
+        text-transform: uppercase;
+
+        @include themify(day) {
+          color: $charcoal-grey;
+        }
+
+        @include themify(night) {
+          color: $powder-blue;
+        }
+
+        @media (min-width: $lg-break) {
+          text-align: left;
+        }
+      }
+    }
+
+    .transaction-list-item {
+      border-radius: 8px;
+      box-sizing: content-box;
+      display: flex;
+      padding: 16px;
+
+      .transaction-icon {
+        align-items: center;
+        border-radius: 50%;
+        display: flex;
+        font-size: 16px;
+        height: 32px;
+        justify-content: center;
+        margin-right: 10px;
+        width: 32px;
+
+        svg {
+          width: 16px;
+          height: 16px;
+        }
+
+        @include themify(day) {
+          background: $white;
+          color: $steel-grey;
+        }
+
+        @include themify(night) {
+          background: $metallic-blue;
+          color: lighten($metallic-blue, 40);
+        }
+      }
+
+      .transaction-title {
+        display: flex;
+        flex-direction: column;
+        font-weight: 500;
+        width: 30%;
+
+        .transaction-name {
+          @include themify(day) {
+            color: $steel-grey;
+          }
+
+          @include themify(night) {
+            color: $metallic-blue;
+          }
+        }
+
+        .transaction-date {
+          font-size: 12px;
+
+          @include themify(day) {
+            color: $silver;
+          }
+
+          @include themify(night) {
+            color: $warm-grey;
+          }
+        }
+      }
+
+      .transaction-numbers {
+        color: $dark-sky-blue;
+        flex-grow: 1;
+
+        font-weight: 500;
+        margin-right: 30px;
+        text-align: right;
+
+        .number {
+          margin-right: 4px;
+        }
+      }
+
+      .transaction-details {
+        color: $steel-grey;
+        width: 30%;
+        word-break: break-all;
+      }
+
+      &:nth-child(odd) {
+        @include themify(day) {
+          background: $white-three;
+        }
+
+        @include themify(night) {
+          background: lighten($dark-six, 4);
+        }
+      }
+
+      @include themify(day) {
+        &:nth-child(even) {
+          .transaction-icon {
+            background-color: $white-three;
+          }
+        }
+      }
+    }
+  }
+}

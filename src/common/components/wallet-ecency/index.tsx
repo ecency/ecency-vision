@@ -37,6 +37,7 @@ import {
     compareHorizontalSvg,
     cashSvg
 } from "../../img/svg";
+import WalletMenu from "../wallet-menu";
 
 
 export class TransactionRow extends Component<{ tr: PointTransaction }> {
@@ -150,7 +151,7 @@ interface State {
     transfer: boolean;
 }
 
-export class UserPoints extends Component<Props, State> {
+export class WalletEcency extends Component<Props, State> {
     state: State = {
         claiming: false,
         purchase: false,
@@ -233,132 +234,138 @@ export class UserPoints extends Component<Props, State> {
         };
 
         return (
-            <div className="points-section">
-                <div className="points">
-                    <div className="point-name">Ecency Points</div>
-                    <div className="points-val">
-                        <div className="val">{points.points} POINTS</div>
-                        {isMyPage && (
-                            <DropDown {...dropDownConfig} float="right"/>
-                        )}
-                    </div>
-                    <div className="clearfix"/>
+            <div className="wallet-ecency">
+                <div className="wallet-main">
+                    <div className="wallet-info">
+                        <div className="points">
+                            <div className="point-name">Ecency Points</div>
+                            <div className="points-val">
+                                <div className="val">{points.points} POINTS</div>
+                                {isMyPage && (
+                                    <DropDown {...dropDownConfig} float="right"/>
+                                )}
+                            </div>
+                            <div className="clearfix"/>
 
-                    {(() => {
-                        if (isMyPage) {
-                            return (
-                                <>
-                                    <div className={`unclaimed ${isMyPage ? 'can-claim' : ''}`}>
-                                        <div className="val">
-                                            {points.uPoints !== '0.000' && (
-                                                <div className="val">{points.uPoints}</div>
-                                            )}
-                                            {points.uPoints === '0.000' && (
-                                                <div className="val">
-                                                    {_t('points.get')}
-                                                </div>
-                                            )}
-                                        </div>
-                                        <a href="#" className={`claim-btn ${claiming ? 'in-progress' : ''}`}
-                                           onClick={(e) => {
-                                               if (points.uPoints !== '0.000') {
-                                                   this.claim(e);
-                                                   return;
-                                               }
-                                               this.togglePurchase(e);
-                                           }}
-                                        >
-                                            {plusCircle}
-                                        </a>
-                                    </div>
-
-                                    {points.uPoints !== '0.000' && (
+                            {(() => {
+                                if (isMyPage) {
+                                    return (
                                         <>
-                                            <div className="clearfix"/>
-                                            <div className="get-estm">
-                                                <a href="#" onClick={this.togglePurchase}>
-                                                    {_t('points.get')}
+                                            <div className={`unclaimed ${isMyPage ? 'can-claim' : ''}`}>
+                                                <div className="val">
+                                                    {points.uPoints !== '0.000' && (
+                                                        <div className="val">{points.uPoints}</div>
+                                                    )}
+                                                    {points.uPoints === '0.000' && (
+                                                        <div className="val">
+                                                            {_t('points.get')}
+                                                        </div>
+                                                    )}
+                                                </div>
+                                                <a href="#" className={`claim-btn ${claiming ? 'in-progress' : ''}`}
+                                                   onClick={(e) => {
+                                                       if (points.uPoints !== '0.000') {
+                                                           this.claim(e);
+                                                           return;
+                                                       }
+                                                       this.togglePurchase(e);
+                                                   }}
+                                                >
+                                                    {plusCircle}
                                                 </a>
                                             </div>
+
+                                            {points.uPoints !== '0.000' && (
+                                                <>
+                                                    <div className="clearfix"/>
+                                                    <div className="get-estm">
+                                                        <a href="#" onClick={this.togglePurchase}>
+                                                            {_t('points.get')}
+                                                        </a>
+                                                    </div>
+                                                </>
+                                            )}
                                         </>
-                                    )}
-                                </>
-                            );
-                        }
+                                    );
+                                }
 
-                        if (points.uPoints !== '0.000') {
-                            return (
-                                <div className="unclaimed">
-                                    <div className="val">{points.uPoints}</div>
+                                if (points.uPoints !== '0.000') {
+                                    return (
+                                        <div className="unclaimed">
+                                            <div className="val">{points.uPoints}</div>
+                                        </div>
+                                    );
+                                }
+
+                                return null;
+                            })()}
+                        </div>
+                        <div className="point-reward-types">
+                            <Tooltip content={_t('points.post-desc')}>
+                                <div className="point-reward-type">
+                                    {pencilOutlineSvg}
+                                    <span className="reward-num">15</span>
                                 </div>
-                            );
-                        }
+                            </Tooltip>
+                            <Tooltip content={_t('points.comment-desc')}>
+                                <div className="point-reward-type">
+                                    {commentSvg}
+                                    <span className="reward-num">5</span>
+                                </div>
+                            </Tooltip>
+                            <Tooltip content={_t('points.vote-desc')}>
+                                <div className="point-reward-type">
+                                    {chevronUpSvg}
+                                    <span className="reward-num">0.3</span>
+                                </div>
+                            </Tooltip>
+                            <Tooltip content={_t('points.reblog-desc')}>
+                                <div className="point-reward-type">
+                                    {repeatSvg}
+                                    <span className="reward-num">1</span>
+                                </div>
+                            </Tooltip>
+                            <Tooltip content={_t('points.checkin-desc')}>
+                                <div className="point-reward-type">
+                                    {starOutlineSvg}
+                                    <span className="reward-num">0.25</span>
+                                </div>
+                            </Tooltip>
+                            <Tooltip content={_t('points.login-desc')}>
+                                <div className="point-reward-type">
+                                    {accountOutlineSvg}
+                                    <span className="reward-num">99+</span>
+                                </div>
+                            </Tooltip>
+                            <Tooltip content={_t('points.checkin-extra-desc')}>
+                                <div className="point-reward-type">
+                                    {checkAllSvg}
+                                    <span className="reward-num">10</span>
+                                </div>
+                            </Tooltip>
+                            <Tooltip content={_t('points.delegation-desc')}>
+                                <div className="point-reward-type">
+                                    {ticketSvg}
+                                    <span className="reward-num">1</span>
+                                </div>
+                            </Tooltip>
+                        </div>
 
-                        return null;
-                    })()}
-                </div>
-
-                <div className="point-reward-types">
-                    <Tooltip content={_t('points.post-desc')}>
-                        <div className="point-reward-type">
-                            {pencilOutlineSvg}
-                            <span className="reward-num">15</span>
-                        </div>
-                    </Tooltip>
-                    <Tooltip content={_t('points.comment-desc')}>
-                        <div className="point-reward-type">
-                            {commentSvg}
-                            <span className="reward-num">5</span>
-                        </div>
-                    </Tooltip>
-                    <Tooltip content={_t('points.vote-desc')}>
-                        <div className="point-reward-type">
-                            {chevronUpSvg}
-                            <span className="reward-num">0.3</span>
-                        </div>
-                    </Tooltip>
-                    <Tooltip content={_t('points.reblog-desc')}>
-                        <div className="point-reward-type">
-                            {repeatSvg}
-                            <span className="reward-num">1</span>
-                        </div>
-                    </Tooltip>
-                    <Tooltip content={_t('points.checkin-desc')}>
-                        <div className="point-reward-type">
-                            {starOutlineSvg}
-                            <span className="reward-num">0.25</span>
-                        </div>
-                    </Tooltip>
-                    <Tooltip content={_t('points.login-desc')}>
-                        <div className="point-reward-type">
-                            {accountOutlineSvg}
-                            <span className="reward-num">99+</span>
-                        </div>
-                    </Tooltip>
-                    <Tooltip content={_t('points.checkin-extra-desc')}>
-                        <div className="point-reward-type">
-                            {checkAllSvg}
-                            <span className="reward-num">10</span>
-                        </div>
-                    </Tooltip>
-                    <Tooltip content={_t('points.delegation-desc')}>
-                        <div className="point-reward-type">
-                            {ticketSvg}
-                            <span className="reward-num">1</span>
-                        </div>
-                    </Tooltip>
-                </div>
-
-                {points.transactions.length > 0 && (
-                    <div className="p-transaction-list">
-                        <div className="transaction-list-header">
-                            <h2>{_t('points.history')}</h2>
-                        </div>
-                        <div className="transaction-list-body">
-                            {points.transactions.map(tr => <TransactionRow tr={tr} key={tr.id}/>)}
-                        </div>
+                        {points.transactions.length > 0 && (
+                            <div className="p-transaction-list">
+                                <div className="transaction-list-header">
+                                    <h2>{_t('points.history')}</h2>
+                                </div>
+                                <div className="transaction-list-body">
+                                    {points.transactions.map(tr => <TransactionRow tr={tr} key={tr.id}/>)}
+                                </div>
+                            </div>
+                        )}
                     </div>
-                )}
+
+                    <WalletMenu username={account.name} active="ecency"/>
+                </div>
+
 
                 {transfer && (<Transfer
                     {...this.props}
@@ -392,6 +399,6 @@ export default (p: Props) => {
         setSigningKey: p.setSigningKey
     }
 
-    return <UserPoints {...props} />;
+    return <WalletEcency {...props} />;
 }
 
