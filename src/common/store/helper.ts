@@ -11,7 +11,7 @@ import {getPoints, usrActivity, getPromotedEntries} from "../api/private";
 import {reloadAct as reloadUsers} from "./users";
 import {reloadAct as reloadReblogs} from "./reblogs";
 import {fetchedAct as loadDynamicProps} from "./dynamic-props";
-import {fetchedAct as entriesFetchedAct} from "../../common/store/entries";
+import {fetchedAct as entriesFetchedAct} from "./entries";
 import {setCurrencyAct as setCurrency, muteNotificationsAct as muteNotifications} from "./global";
 
 import {getCurrencyRate} from "../api/misc";
