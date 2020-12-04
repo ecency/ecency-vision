@@ -19,6 +19,7 @@ export const makePreloadedState = async (req: express.Request): Promise<AppState
     const theme = _c("theme") && Object.values(Theme).includes(_c("theme")) ? _c("theme") : defaults.theme;
     const listStyle = _c("list-style") && Object.values(ListStyle).includes(_c("list-style")) ? _c("list-style") : defaults.listStyle;
     const intro = !_c("hide-intro");
+    const notifications = _c("notifications") !== "0";
 
     const globalState: Global = {
         ...initialState.global,
@@ -26,7 +27,8 @@ export const makePreloadedState = async (req: express.Request): Promise<AppState
         listStyle: ListStyle[listStyle],
         intro,
         searchIndexCount: await getSearchIndexCount(),
-        canUseWebp: req.headers.accept !== undefined && req.headers.accept.indexOf("image/webp") !== -1
+        canUseWebp: req.headers.accept !== undefined && req.headers.accept.indexOf("image/webp") !== -1,
+        notifications
     };
 
     return {

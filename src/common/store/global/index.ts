@@ -11,13 +11,15 @@ import {
     ActionTypes,
     AllFilter,
     Global,
+    HasKeyChainAction,
     IntroHideAction,
     ListStyle,
     ListStyleChangeAction,
     NewVersionChangeAction,
+    NotificationsMuteAction,
+    NotificationsUnMuteAction,
     Theme,
-    ThemeChangeAction,
-    HasKeyChainAction
+    ThemeChangeAction
 } from "./types";
 
 import {CommonActionTypes} from "../common";
@@ -39,7 +41,8 @@ export const initialState: Global = {
     canUseWebp: false,
     hasKeyChain: false,
     isElectron: false,
-    newVersion: null
+    newVersion: null,
+    notifications: true
 };
 
 export default (state: Global = initialState, action: Actions): Global => {
@@ -70,6 +73,12 @@ export default (state: Global = initialState, action: Actions): Global => {
         case ActionTypes.NEW_VERSION_CHANGE: {
             const {version} = action;
             return {...state, newVersion: version};
+        }
+        case ActionTypes.NOTIFICATIONS_MUTE: {
+            return {...state, notifications: false}
+        }
+        case ActionTypes.NOTIFICATIONS_UNMUTE: {
+            return {...state, notifications: true}
         }
         case ActionTypes.HAS_KEYCHAIN: {
             return {...state, hasKeyChain: true};
@@ -116,6 +125,20 @@ export const dismissNewVersion = () => (dispatch: Dispatch) => {
     dispatch(newVersionChangeAct(null));
 };
 
+export const muteNotifications = () => (dispatch: Dispatch) => {
+    ls.set("notifications", false);
+    Cookies.set("notifications", "0");
+
+    dispatch(muteNotificationsAct());
+};
+
+export const unMuteNotifications = () => (dispatch: Dispatch) => {
+    ls.set("notifications", true);
+    Cookies.set("notifications", "1");
+
+    dispatch(unMuteNotificationsAct());
+};
+
 /* Action Creators */
 export const themeChangeAct = (theme: Theme): ThemeChangeAction => {
     return {
@@ -141,6 +164,18 @@ export const newVersionChangeAct = (version: string | null): NewVersionChangeAct
     return {
         type: ActionTypes.NEW_VERSION_CHANGE,
         version,
+    };
+};
+
+export const muteNotificationsAct = (): NotificationsMuteAction => {
+    return {
+        type: ActionTypes.NOTIFICATIONS_MUTE
+    };
+};
+
+export const unMuteNotificationsAct = (): NotificationsUnMuteAction => {
+    return {
+        type: ActionTypes.NOTIFICATIONS_UNMUTE
     };
 };
 
