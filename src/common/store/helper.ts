@@ -12,7 +12,7 @@ import {reloadAct as reloadUsers} from "./users";
 import {reloadAct as reloadReblogs} from "./reblogs";
 import {fetchedAct as loadDynamicProps} from "./dynamic-props";
 import {fetchedAct as entriesFetchedAct} from "../../common/store/entries";
-import {setCurrencyAct as setCurrency} from "./global";
+import {setCurrencyAct as setCurrency, muteNotificationsAct as muteNotifications} from "./global";
 
 import {getCurrencyRate} from "../api/misc";
 
@@ -101,5 +101,10 @@ export const clientStoreTasks = (store: Store<AppState>) => {
         getCurrencyRate(currency).then(rate => {
             store.dispatch(setCurrency(currency, rate, symbol));
         });
+    }
+
+    // Notifications
+    if (ls.get("notifications") === false) {
+        store.dispatch(muteNotifications());
     }
 }

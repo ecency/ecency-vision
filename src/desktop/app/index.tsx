@@ -44,15 +44,13 @@ window.remote = require("electron").remote;
 const theme = ls.get("theme") || defaults.theme;
 const intro = !ls.get("hide-intro");
 const listStyle = ls.get("list-style") || defaults.listStyle;
-const notifications = ls.get("notifications") !== "0";
 
 const globalState: Global = {
     ...initialState.global,
     theme: Theme[theme],
     listStyle: ListStyle[listStyle],
     intro,
-    isElectron: true,
-    notifications
+    isElectron: true
 };
 
 const activeUser = ls.get("active_user");

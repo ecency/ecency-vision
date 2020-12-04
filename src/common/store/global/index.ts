@@ -135,18 +135,18 @@ export const muteNotifications = () => (dispatch: Dispatch) => {
     dispatch(muteNotificationsAct());
 };
 
+export const unMuteNotifications = () => (dispatch: Dispatch) => {
+    ls.set("notifications", true);
+
+    dispatch(unMuteNotificationsAct());
+};
+
 export const setCurrency = (currency: string, rate: number, symbol: string) => (dispatch: Dispatch) => {
     ls.set("currency", currency);
 
     dispatch(setCurrencyAct(currency, rate, symbol));
 };
 
-export const unMuteNotifications = () => (dispatch: Dispatch) => {
-    ls.set("notifications", true);
-    Cookies.set("notifications", "1");
-
-    dispatch(unMuteNotificationsAct());
-};
 
 /* Action Creators */
 export const themeChangeAct = (theme: Theme): ThemeChangeAction => {
