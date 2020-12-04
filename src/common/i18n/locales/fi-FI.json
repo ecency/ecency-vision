@@ -141,7 +141,7 @@
   },
   "market-data": {
     "title": "Markkinahinta",
-    "credits": "markkinatiedot <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">coingecko</a> apista"
+    "credits": "market data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "list-style": {
     "title": "Vaihda listaustyyliä"
