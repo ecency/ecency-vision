@@ -18,6 +18,7 @@ import {
     NewVersionChangeAction,
     NotificationsMuteAction,
     NotificationsUnMuteAction,
+    CurrencySetAction,
     Theme,
     ThemeChangeAction
 } from "./types";
@@ -80,6 +81,10 @@ export default (state: Global = initialState, action: Actions): Global => {
         case ActionTypes.NOTIFICATIONS_UNMUTE: {
             return {...state, notifications: true}
         }
+        case ActionTypes.CURRENCY_SET: {
+            const {currency, currencyRate, currencySymbol} = action
+            return {...state, currency, currencyRate, currencySymbol}
+        }
         case ActionTypes.HAS_KEYCHAIN: {
             return {...state, hasKeyChain: true};
         }
@@ -114,7 +119,6 @@ export const toggleListStyle = () => (dispatch: Dispatch, getState: () => AppSta
 };
 
 export const hideIntro = () => (dispatch: Dispatch) => {
-
     ls.set("hide-intro", "1");
     Cookies.set("hide-intro", "1");
 
@@ -127,9 +131,14 @@ export const dismissNewVersion = () => (dispatch: Dispatch) => {
 
 export const muteNotifications = () => (dispatch: Dispatch) => {
     ls.set("notifications", false);
-    Cookies.set("notifications", "0");
 
     dispatch(muteNotificationsAct());
+};
+
+export const setCurrency = (currency: string, rate: number, symbol: string) => (dispatch: Dispatch) => {
+    ls.set("currency", currency);
+
+    dispatch(setCurrencyAct(currency, rate, symbol));
 };
 
 export const unMuteNotifications = () => (dispatch: Dispatch) => {
@@ -178,6 +187,15 @@ export const unMuteNotificationsAct = (): NotificationsUnMuteAction => {
         type: ActionTypes.NOTIFICATIONS_UNMUTE
     };
 };
+
+export const setCurrencyAct = (currency: string, currencyRate: number, currencySymbol: string): CurrencySetAction => {
+    return {
+        type: ActionTypes.CURRENCY_SET,
+        currency,
+        currencyRate,
+        currencySymbol
+    };
+}
 
 export const hasKeyChainAct = (): HasKeyChainAction => {
     return {

@@ -63,6 +63,7 @@ export enum ActionTypes {
     HAS_KEYCHAIN = "@global/HAS_KEYCHAIN",
     NOTIFICATIONS_MUTE = "@global/NOTIFICATIONS_MUTE",
     NOTIFICATIONS_UNMUTE = "@global/NOTIFICATIONS_UNMUTE",
+    CURRENCY_SET = "@global/CURRENCY_SET",
     NEW_VERSION_CHANGE = "@global/NEW_VERSION_CHANGE",
 }
 
@@ -93,6 +94,13 @@ export interface NotificationsUnMuteAction {
     type: ActionTypes.NOTIFICATIONS_UNMUTE;
 }
 
+export interface CurrencySetAction {
+    type: ActionTypes.CURRENCY_SET;
+    currency: string;
+    currencyRate: number;
+    currencySymbol: string;
+}
+
 export interface HasKeyChainAction {
     type: ActionTypes.HAS_KEYCHAIN;
 }
@@ -105,4 +113,5 @@ export type Actions =
     | NewVersionChangeAction
     | NotificationsMuteAction
     | NotificationsUnMuteAction
-    | HasKeyChainAction ;
+    | CurrencySetAction
+    | HasKeyChainAction;

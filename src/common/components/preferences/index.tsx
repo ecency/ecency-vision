@@ -1,18 +1,46 @@
 import React, {Component} from "react";
 
+
 import {Global} from "../../store/global/types";
 
-import {_t} from "../../i18n";
 import {Col, Form, FormControl} from "react-bootstrap";
 
+import {getCurrencyRate} from "../../api/misc";
+
+import currencies from "../../constants/currencies.json";
+
+import {_t} from "../../i18n";
+
+const getSymbolFromCurrency = require("currency-symbol-map");
 
 interface Props {
     global: Global;
     muteNotifications: () => void;
     unMuteNotifications: () => void;
+    setCurrency: (currency: string, rate: number, symbol: string) => void;
 }
 
-export class Preferences extends Component<Props> {
+interface State {
+    inProgress: boolean
+}
+
+export class Preferences extends Component<Props, State> {
+    state: State = {
+        inProgress: false,
+    }
+
+    _mounted: boolean = true;
+
+    componentWillUnmount() {
+        this._mounted = false;
+    }
+
+    stateSet = (state: {}, cb?: () => void) => {
+        if (this._mounted) {
+            this.setState(state, cb);
+        }
+    };
+
     notificationsChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
         const {muteNotifications, unMuteNotifications} = this.props;
 
@@ -25,9 +53,23 @@ export class Preferences extends Component<Props> {
         }
     }
 
-    render() {
+    currencyChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+        const {value: currency} = e.target;
 
+        this.stateSet({inProgress: true});
+        getCurrencyRate(currency).then(rate => {
+            const symbol = getSymbolFromCurrency(currency);
+            const {setCurrency} = this.props;
+
+            setCurrency(currency, rate, symbol);
+        }).finally(() => {
+            this.stateSet({inProgress: false});
+        })
+    }
+
+    render() {
         const {global} = this.props;
+        const {inProgress} = this.state;
 
         return <>
             <div className="preferences">
@@ -43,6 +85,14 @@ export class Preferences extends Component<Props> {
                             </Form.Control>
                         </Form.Group>
                     </Col>
+                    <Col lg={6} xl={4}>
+                        <Form.Group>
+                            <Form.Label>{_t('preferences.currency')}</Form.Label>
+                            <Form.Control type="text" value={global.currency} as="select" onChange={this.currencyChanged} disabled={inProgress}>
+                                {currencies.map(x => <option key={x.id} value={x.id}>{x.name}</option>)}
+                            </Form.Control>
+                        </Form.Group>
+                    </Col>
                 </Form.Row>
             </div>
         </>
@@ -54,7 +104,8 @@ export default (p: Props) => {
     const props: Props = {
         global: p.global,
         muteNotifications: p.muteNotifications,
-        unMuteNotifications: p.unMuteNotifications
+        unMuteNotifications: p.unMuteNotifications,
+        setCurrency: p.setCurrency
     }
 
     return <Preferences {...props} />

@@ -53,6 +53,7 @@ export const globalInstance: Global = {
     canUseWebp: false,
     hasKeyChain: false,
     isElectron: false,
+    notifications: true,
     newVersion: null
 };
 

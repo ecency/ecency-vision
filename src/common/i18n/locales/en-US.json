@@ -319,7 +319,8 @@
   },
   "preferences": {
     "title": "Preferences",
-    "notifications": "Notifications alerts"
+    "notifications": "Notifications alerts",
+    "currency": "Currency"
   },
   "wallet": {
     "unclaimed-rewards": "Unclaimed rewards",

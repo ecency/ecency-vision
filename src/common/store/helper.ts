@@ -1,5 +1,7 @@
 import {Store} from "redux";
 
+const getSymbolFromCurrency = require("currency-symbol-map");
+
 import {AppState} from "./index";
 import {ActiveUser, UserPoints} from "./active-user/types";
 import {loginAct as loginActiveUser, updateAct as updateActiveUserAct} from "./active-user";
@@ -10,6 +12,13 @@ import {reloadAct as reloadUsers} from "./users";
 import {reloadAct as reloadReblogs} from "./reblogs";
 import {fetchedAct as loadDynamicProps} from "./dynamic-props";
 import {fetchedAct as entriesFetchedAct} from "../../common/store/entries";
+import {setCurrencyAct as setCurrency} from "./global";
+
+import {getCurrencyRate} from "../api/misc";
+
+import currencies from "../constants/currencies.json";
+
+import * as ls from "../../common/util/local-storage";
 
 export const activeUserMaker = (name: string, points: string = "0.000", uPoints: string = "0.000"): ActiveUser => {
     return {
@@ -84,4 +93,13 @@ export const clientStoreTasks = (store: Store<AppState>) => {
     }
     promotedEntries();
     setInterval(promotedEntries, 1000 * 60 * 5);
+
+    // Currency
+    const currency = ls.get("currency");
+    if (currency && currencies.find(x => x.id === currency)) {
+        const symbol = getSymbolFromCurrency(currency);
+        getCurrencyRate(currency).then(rate => {
+            store.dispatch(setCurrency(currency, rate, symbol));
+        });
+    }
 }
