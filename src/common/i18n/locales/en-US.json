@@ -23,7 +23,9 @@
     "try-again": "Try again",
     "show": "Show",
     "on": "On",
-    "off": "Off"
+    "off": "Off",
+    "day-theme": "Day Theme",
+    "night-theme": "Night Theme"
   },
   "confirm": {
     "title": "Are you sure?",
@@ -45,8 +47,6 @@
     "about": "About",
     "faq": "FAQ",
     "post": "Create Post",
-    "day-theme": "Day Theme",
-    "night-theme": "Night Theme",
     "address-placeholder": "enter url or search query"
   },
   "search": {

@@ -324,7 +324,7 @@ export class NavBar extends Component<Props, State> {
 
     render() {
         const {global, activeUser, history, location, ui} = this.props;
-        const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
+        const themeText = global.theme == Theme.day ? _t("g.night-theme") : _t("g.day-theme");
         const logoHref = activeUser ? `/@${activeUser.username}/feed` : '/';
 
         const {floating} = this.state;
