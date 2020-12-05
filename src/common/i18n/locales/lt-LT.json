@@ -21,7 +21,9 @@
     "empty-list": "Čia tuščia",
     "save": "Išsaugoti",
     "try-again": "Bandyti dar kartą",
-    "show": "Rodyti"
+    "show": "Rodyti",
+    "on": "On",
+    "off": "Off"
   },
   "confirm": {
     "title": "Ar esate įsitikinę?",
@@ -296,13 +298,14 @@
     "section-replies": "Atsakymai",
     "section-communities": "Bendruomenės",
     "section-wallet": "Piniginė",
+    "section-settings": "Settings",
     "communities-title": "Prenumeratos",
     "create-community": "Sukurti bendruomenę",
-    "edit": "Profilio Koregavimas",
     "witnesses": "Witnesses",
     "proposals": "Proposals"
   },
   "profile-edit": {
+    "title": "Profile",
     "name": "Rodomas Vardas",
     "about": "Apie",
     "cover-image": "Viršelio Nuotrauka",
@@ -313,6 +316,13 @@
   },
   "image-upload-button": {
     "uploaded": "Nuotrauka įkelta"
+  },
+  "preferences": {
+    "title": "Preferences",
+    "notifications": "Notification alerts",
+    "currency": "Currency",
+    "language": "Language",
+    "updated": "Preference updated!"
   },
   "wallet": {
     "unclaimed-rewards": "Neatsiimtas atlygis",
@@ -561,7 +571,9 @@
     "referral-str": "joined with your referral, welcome them",
     "refresh": "Refresh",
     "mark-all-read": "Pažymėti visus kaip skaitytus",
-    "mark-read": "Pažymėti kaip skaitytą"
+    "mark-read": "Pažymėti kaip skaitytą",
+    "mute": "Turn off notification alerts",
+    "unmute": "Turn on notification alerts"
   },
   "leaderboard": {
     "title": "Lyderių lentelė",
