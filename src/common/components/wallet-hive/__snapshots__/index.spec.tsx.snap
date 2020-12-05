@@ -5,29 +5,29 @@ exports[`(1) Default Render 1`] = `
   className="wallet-hive"
 >
   <div
-    className="unclaimed-rewards"
-  >
-    <div
-      className="title"
-    >
-      Unclaimed rewards
-    </div>
-    <div
-      className="rewards"
-    >
-      <span
-        className="reward-type"
-      >
-        10.207 HP
-      </span>
-    </div>
-  </div>
-  <div
     className="wallet-main"
   >
     <div
       className="wallet-info"
     >
+      <div
+        className="unclaimed-rewards"
+      >
+        <div
+          className="title"
+        >
+          Unclaimed rewards
+        </div>
+        <div
+          className="rewards"
+        >
+          <span
+            className="reward-type"
+          >
+            10.207 HP
+          </span>
+        </div>
+      </div>
       <div
         className="balance-row estimated alternative"
       >

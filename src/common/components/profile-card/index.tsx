@@ -8,8 +8,6 @@ import isEqual from "react-fast-compare";
 
 import moment from "moment";
 
-import {Button} from "react-bootstrap";
-
 import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 import {ActiveUser} from "../../store/active-user/types";
@@ -17,7 +15,6 @@ import {ActiveUser} from "../../store/active-user/types";
 import UserAvatar from "../user-avatar";
 import Tooltip from "../tooltip";
 import {Followers, Following} from "../friends";
-import ProfileEdit from "../profile-edit";
 
 import accountReputation from "../../helper/account-reputation";
 
@@ -51,14 +48,12 @@ interface Props {
 interface State {
     followersList: boolean;
     followingList: boolean;
-    profileEdit: boolean;
 }
 
 export class ProfileCard extends Component<Props, State> {
     state: State = {
         followersList: false,
         followingList: false,
-        profileEdit: false
     };
 
     componentDidUpdate(prevProps: Readonly<Props>): void {
@@ -85,11 +80,6 @@ export class ProfileCard extends Component<Props, State> {
         this.setState({followingList: !followingList});
     };
 
-    toggleProfileEdit = () => {
-        const {profileEdit} = this.state;
-        this.setState({profileEdit: !profileEdit});
-    }
-
     render() {
         const {account, activeUser} = this.props;
 
@@ -104,7 +94,9 @@ export class ProfileCard extends Component<Props, State> {
                     {account.__loaded && <div className="reputation">{accountReputation(account.reputation!)}</div>}
                 </div>
 
-                <h1><div className="username">{account.name}</div></h1>
+                <h1>
+                    <div className="username">{account.name}</div>
+                </h1>
 
                 <div className="vpower-line">
                     <div className="vpower-line-inner" style={{width: `${vPower}%`}}/>
@@ -187,7 +179,6 @@ export class ProfileCard extends Component<Props, State> {
 
                 {isMyProfile && (
                     <div className="btn-controls">
-                        <Button size="sm" onClick={this.toggleProfileEdit}>{_t("profile.edit")}</Button>
                         <Link className="btn btn-sm btn-primary" to="/witnesses">{_t("profile.witnesses")}</Link>
                         <Link className="btn btn-sm btn-primary" to="/proposals">{_t("profile.proposals")}</Link>
                     </div>
@@ -195,7 +186,6 @@ export class ProfileCard extends Component<Props, State> {
 
                 {this.state.followersList && <Followers {...this.props} account={account} onHide={this.toggleFollowers}/>}
                 {this.state.followingList && <Following {...this.props} account={account} onHide={this.toggleFollowing}/>}
-                {this.state.profileEdit && <ProfileEdit {...this.props} activeUser={activeUser!} onHide={this.toggleProfileEdit}/>}
             </div>
         );
     }

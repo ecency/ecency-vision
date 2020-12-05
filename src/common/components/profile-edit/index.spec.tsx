@@ -1,6 +1,7 @@
 import React from "react";
 
-import {ProfileEdit} from "./index";
+import ProfileEdit from "./index";
+
 import renderer from "react-test-renderer";
 
 import {activeUserMaker} from "../../helper/test-helper";

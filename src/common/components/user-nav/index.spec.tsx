@@ -32,23 +32,21 @@ const defProps = {
     deleteUser: () => {
     },
     addAccount: () => {
-
     },
     fetchNotifications: () => {
-
     },
     fetchUnreadNotificationCount: () => {
-
     },
     setNotificationsFilter: () => {
-
     },
     markNotifications: () => {
-
     },
     toggleUIProp: () => {
-
-    }
+    },
+    muteNotifications: () => {
+    },
+    unMuteNotifications: () => {
+    },
 };
 
 it("(1) Default render", () => {

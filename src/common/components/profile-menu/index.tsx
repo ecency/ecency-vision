@@ -7,6 +7,7 @@ import {History, Location} from "history";
 import isEqual from "react-fast-compare";
 
 import {ProfileFilter, Global} from "../../store/global/types";
+import {ActiveUser} from "../../store/active-user/types";
 
 import DropDown, {MenuItem} from "../dropdown";
 import ListStyleToggle from "../list-style-toggle/index";
@@ -21,17 +22,20 @@ interface Props {
     global: Global;
     username: string;
     section: string;
+    activeUser: ActiveUser | null;
     toggleListStyle: () => void;
 }
 
 export class ProfileMenu extends Component<Props> {
     shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
         return !isEqual(this.props.location, nextProps.location) ||
-            !isEqual(this.props.global, nextProps.global);
+            !isEqual(this.props.global, nextProps.global) ||
+            !isEqual(this.props.activeUser?.username, nextProps.activeUser?.username)
     }
 
     render() {
         const {username, section} = this.props;
+        const {activeUser} = this.props;
 
         const menuConfig: {
             history: History,
@@ -69,6 +73,11 @@ export class ProfileMenu extends Component<Props> {
                     <Link className={_c(`profile-menu-item ${["wallet", "points"].includes(section) ? "selected-item" : ""}`)} to={`/@${username}/wallet`}>
                         {_t(`profile.section-wallet`)}
                     </Link>
+                    {(activeUser && activeUser.username === username) && (
+                        <Link className={_c(`profile-menu-item ${section === "settings" ? "selected-item" : ""}`)} to={`/@${username}/settings`}>
+                            {_t(`profile.section-settings`)}
+                        </Link>
+                    )}
                 </div>
 
                 <div className="page-tools">{ProfileFilter[section] && <ListStyleToggle global={this.props.global} toggleListStyle={this.props.toggleListStyle}/>}</div>
@@ -84,6 +93,7 @@ export default (p: Props) => {
         global: p.global,
         username: p.username,
         section: p.section,
+        activeUser: p.activeUser,
         toggleListStyle: p.toggleListStyle,
     }
 

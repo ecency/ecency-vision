@@ -55,6 +55,8 @@ interface Props {
     setNotificationsFilter: (filter: NotificationFilter | null) => void;
     markNotifications: (id: string | null) => void;
     toggleUIProp: (what: ToggleType) => void;
+    muteNotifications: () => void;
+    unMuteNotifications: () => void;
 }
 
 interface State {
@@ -243,6 +245,8 @@ export default (p: Props) => {
         setNotificationsFilter: p.setNotificationsFilter,
         markNotifications: p.markNotifications,
         toggleUIProp: p.toggleUIProp,
+        muteNotifications: p.muteNotifications,
+        unMuteNotifications: p.unMuteNotifications
     }
 
     return <NavBar {...props} />;

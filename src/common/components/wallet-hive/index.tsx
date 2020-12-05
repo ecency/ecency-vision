@@ -175,37 +175,38 @@ export class WalletHive extends Component<Props, State> {
 
         return (
             <div className="wallet-hive">
-                {(hasUnclaimedRewards && !claimed) && (
-                    <div className="unclaimed-rewards">
-                        <div className="title">
-                            {_t('wallet.unclaimed-rewards')}
-                        </div>
-                        <div className="rewards">
-                            {rewardHiveBalance > 0 && (
-                                <span className="reward-type">{`${rewardHiveBalance} HIVE`}</span>
-                            )}
-                            {rewardHbdBalance > 0 && (
-                                <span className="reward-type">{`${rewardHbdBalance} HBD`}</span>
-                            )}
-                            {rewardVestingHive > 0 && (
-                                <span className="reward-type">{`${rewardVestingHive} HP`}</span>
-                            )}
-                            {isMyPage && (
-                                <Tooltip content={_t('wallet.claim-reward-balance')}>
-                                    <a
-                                        className={`claim-btn ${claiming ? 'in-progress' : ''}`}
-                                        onClick={this.claimRewardBalance}
-                                    >
-                                        {plusCircle}
-                                    </a>
-                                </Tooltip>
-                            )}
-                        </div>
-                    </div>
-                )}
 
                 <div className="wallet-main">
                     <div className="wallet-info">
+                        {(hasUnclaimedRewards && !claimed) && (
+                            <div className="unclaimed-rewards">
+                                <div className="title">
+                                    {_t('wallet.unclaimed-rewards')}
+                                </div>
+                                <div className="rewards">
+                                    {rewardHiveBalance > 0 && (
+                                        <span className="reward-type">{`${rewardHiveBalance} HIVE`}</span>
+                                    )}
+                                    {rewardHbdBalance > 0 && (
+                                        <span className="reward-type">{`${rewardHbdBalance} HBD`}</span>
+                                    )}
+                                    {rewardVestingHive > 0 && (
+                                        <span className="reward-type">{`${rewardVestingHive} HP`}</span>
+                                    )}
+                                    {isMyPage && (
+                                        <Tooltip content={_t('wallet.claim-reward-balance')}>
+                                            <a
+                                                className={`claim-btn ${claiming ? 'in-progress' : ''}`}
+                                                onClick={this.claimRewardBalance}
+                                            >
+                                                {plusCircle}
+                                            </a>
+                                        </Tooltip>
+                                    )}
+                                </div>
+                            </div>
+                        )}
+
                         <div className="balance-row estimated alternative">
                             <div className="balance-info">
                                 <div className="title">{_t("wallet.estimated")}</div>
