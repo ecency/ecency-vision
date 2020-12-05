@@ -319,7 +319,7 @@
   },
   "preferences": {
     "title": "Preferences",
-    "notifications": "Notifications alerts",
+    "notifications": "Notification alerts",
     "currency": "Currency",
     "language": "Language",
     "updated": "Preference updated!"
