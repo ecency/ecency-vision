@@ -10,6 +10,7 @@ import {getCurrencyRate} from "../../api/misc";
 import currencies from "../../constants/currencies.json";
 
 import {_t} from "../../i18n";
+import {success} from "../feedback";
 
 const getSymbolFromCurrency = require("currency-symbol-map");
 
@@ -51,6 +52,8 @@ export class Preferences extends Component<Props, State> {
         if (e.target.value === "0") {
             muteNotifications();
         }
+
+        success(_t('preferences.updated'));
     }
 
     currencyChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
@@ -62,6 +65,7 @@ export class Preferences extends Component<Props, State> {
             const {setCurrency} = this.props;
 
             setCurrency(currency, rate, symbol);
+            success(_t('preferences.updated'));
         }).finally(() => {
             this.stateSet({inProgress: false});
         })

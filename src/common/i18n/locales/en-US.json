@@ -320,7 +320,8 @@
   "preferences": {
     "title": "Preferences",
     "notifications": "Notifications alerts",
-    "currency": "Currency"
+    "currency": "Currency",
+    "updated": "Updated!"
   },
   "wallet": {
     "unclaimed-rewards": "Unclaimed rewards",
