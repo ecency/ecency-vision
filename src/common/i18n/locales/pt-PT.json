@@ -21,7 +21,9 @@
     "empty-list": "Nada aqui",
     "save": "Guardar",
     "try-again": "Tente novamente",
-    "show": "Mostrar"
+    "show": "Mostrar",
+    "on": "On",
+    "off": "Off"
   },
   "confirm": {
     "title": "Tem a certeza?",
@@ -296,13 +298,14 @@
     "section-replies": "Replies",
     "section-communities": "Communities",
     "section-wallet": "Wallet",
+    "section-settings": "Settings",
     "communities-title": "Subscriptions",
     "create-community": "Create a community",
-    "edit": "Profile Edit",
     "witnesses": "Witnesses",
     "proposals": "Proposals"
   },
   "profile-edit": {
+    "title": "Profile",
     "name": "Display Name",
     "about": "About",
     "cover-image": "Cover Image",
@@ -313,6 +316,13 @@
   },
   "image-upload-button": {
     "uploaded": "Image uploaded"
+  },
+  "preferences": {
+    "title": "Preferences",
+    "notifications": "Notification alerts",
+    "currency": "Currency",
+    "language": "Language",
+    "updated": "Preference updated!"
   },
   "wallet": {
     "unclaimed-rewards": "Unclaimed rewards",
@@ -561,7 +571,9 @@
     "referral-str": "joined with your referral, welcome them",
     "refresh": "Refresh",
     "mark-all-read": "Mark All as Read",
-    "mark-read": "Mark as Read"
+    "mark-read": "Mark as Read",
+    "mute": "Turn off notification alerts",
+    "unmute": "Turn on notification alerts"
   },
   "leaderboard": {
     "title": "Leaderboard",
