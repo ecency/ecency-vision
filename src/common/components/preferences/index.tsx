@@ -115,7 +115,7 @@ export class Preferences extends Component<Props, State> {
                     <Col lg={6} xl={4}>
                         <Form.Group>
                             <Form.Label>{_t('preferences.language')}</Form.Label>
-                            <Form.Control type="text" value={i18n.language} as="select" onChange={this.languageChanged} disabled={inProgress}>
+                            <Form.Control type="text" value={global.lang} as="select" onChange={this.languageChanged} disabled={inProgress}>
                                 {langOptions.map(x => <option key={x.code} value={x.code}>{x.name}</option>)}
                             </Form.Control>
                         </Form.Group>
