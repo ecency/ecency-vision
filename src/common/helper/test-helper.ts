@@ -49,6 +49,7 @@ export const globalInstance: Global = {
     currency: "usd",
     currencyRate: 1,
     currencySymbol: "$",
+    lang: "en-US",
     searchIndexCount: 10000000,
     canUseWebp: false,
     hasKeyChain: false,
