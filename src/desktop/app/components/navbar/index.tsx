@@ -253,6 +253,8 @@ interface Props {
     setNotificationsFilter: (filter: NotificationFilter | null) => void;
     markNotifications: (id: string | null) => void;
     toggleUIProp: (what: ToggleType) => void;
+    muteNotifications: () => void;
+    unMuteNotifications: () => void;
     dismissNewVersion: () => void;
     reloadFn?: () => any,
     reloading?: boolean,
@@ -443,6 +445,8 @@ export default (p: Props) => {
         setNotificationsFilter: p.setNotificationsFilter,
         markNotifications: p.markNotifications,
         toggleUIProp: p.toggleUIProp,
+        muteNotifications: p.muteNotifications,
+        unMuteNotifications: p.unMuteNotifications,
         dismissNewVersion: p.dismissNewVersion,
         reloadFn: p.reloadFn,
         reloading: p.reloading,
