@@ -1,16 +1,20 @@
 import React, {Component} from "react";
 
+import i18n from "i18next";
 
 import {Global} from "../../store/global/types";
 
 import {Col, Form, FormControl} from "react-bootstrap";
 
+import {success} from "../feedback";
+
+import {_t} from "../../i18n";
+
+import {langOptions} from "../../i18n";
+
 import {getCurrencyRate} from "../../api/misc";
 
 import currencies from "../../constants/currencies.json";
-
-import {_t} from "../../i18n";
-import {success} from "../feedback";
 
 const getSymbolFromCurrency = require("currency-symbol-map");
 
@@ -19,6 +23,7 @@ interface Props {
     muteNotifications: () => void;
     unMuteNotifications: () => void;
     setCurrency: (currency: string, rate: number, symbol: string) => void;
+    setLang: (lang: string) => void;
 }
 
 interface State {
@@ -71,6 +76,16 @@ export class Preferences extends Component<Props, State> {
         })
     }
 
+    languageChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+        const {setLang} = this.props;
+        const {value: code} = e.target;
+
+        i18n.changeLanguage(code).then(() => {
+            setLang(code);
+            success(_t('preferences.updated'));
+        });
+    }
+
     render() {
         const {global} = this.props;
         const {inProgress} = this.state;
@@ -97,6 +112,14 @@ export class Preferences extends Component<Props, State> {
                             </Form.Control>
                         </Form.Group>
                     </Col>
+                    <Col lg={6} xl={4}>
+                        <Form.Group>
+                            <Form.Label>{_t('preferences.language')}</Form.Label>
+                            <Form.Control type="text" value={i18n.language} as="select" onChange={this.languageChanged} disabled={inProgress}>
+                                {langOptions.map(x => <option key={x.code} value={x.code}>{x.name}</option>)}
+                            </Form.Control>
+                        </Form.Group>
+                    </Col>
                 </Form.Row>
             </div>
         </>
@@ -109,7 +132,8 @@ export default (p: Props) => {
         global: p.global,
         muteNotifications: p.muteNotifications,
         unMuteNotifications: p.unMuteNotifications,
-        setCurrency: p.setCurrency
+        setCurrency: p.setCurrency,
+        setLang: p.setLang
     }
 
     return <Preferences {...props} />

@@ -19,6 +19,7 @@ import {
     NotificationsMuteAction,
     NotificationsUnMuteAction,
     CurrencySetAction,
+    LangSetAction,
     Theme,
     ThemeChangeAction
 } from "./types";
@@ -38,6 +39,7 @@ export const initialState: Global = {
     currency: defaults.currency.currency,
     currencyRate: defaults.currency.rate,
     currencySymbol: defaults.currency.symbol,
+    lang: "en-US",
     searchIndexCount: 0,
     canUseWebp: false,
     hasKeyChain: false,
@@ -84,6 +86,10 @@ export default (state: Global = initialState, action: Actions): Global => {
         case ActionTypes.CURRENCY_SET: {
             const {currency, currencyRate, currencySymbol} = action
             return {...state, currency, currencyRate, currencySymbol}
+        }
+        case ActionTypes.LANG_SET: {
+            const {lang} = action
+            return {...state, lang}
         }
         case ActionTypes.HAS_KEYCHAIN: {
             return {...state, hasKeyChain: true};
@@ -147,6 +153,12 @@ export const setCurrency = (currency: string, rate: number, symbol: string) => (
     dispatch(setCurrencyAct(currency, rate, symbol));
 };
 
+export const setLang = (lang: string) => (dispatch: Dispatch) => {
+    ls.set("lang", lang);
+
+    dispatch(setLangAct(lang));
+};
+
 
 /* Action Creators */
 export const themeChangeAct = (theme: Theme): ThemeChangeAction => {
@@ -194,6 +206,13 @@ export const setCurrencyAct = (currency: string, currencyRate: number, currencyS
         currency,
         currencyRate,
         currencySymbol
+    };
+}
+
+export const setLangAct = (lang: string): LangSetAction => {
+    return {
+        type: ActionTypes.LANG_SET,
+        lang
     };
 }
 

@@ -48,6 +48,7 @@ export interface Global {
     currency: string;
     currencyRate: number;
     currencySymbol: string;
+    lang: string;
     searchIndexCount: number;
     canUseWebp: boolean;
     hasKeyChain: boolean;
@@ -64,6 +65,7 @@ export enum ActionTypes {
     NOTIFICATIONS_MUTE = "@global/NOTIFICATIONS_MUTE",
     NOTIFICATIONS_UNMUTE = "@global/NOTIFICATIONS_UNMUTE",
     CURRENCY_SET = "@global/CURRENCY_SET",
+    LANG_SET = "@global/LANG_SET",
     NEW_VERSION_CHANGE = "@global/NEW_VERSION_CHANGE",
 }
 
@@ -101,6 +103,11 @@ export interface CurrencySetAction {
     currencySymbol: string;
 }
 
+export interface LangSetAction {
+    type: ActionTypes.LANG_SET;
+    lang: string;
+}
+
 export interface HasKeyChainAction {
     type: ActionTypes.HAS_KEYCHAIN;
 }
@@ -114,4 +121,5 @@ export type Actions =
     | NotificationsMuteAction
     | NotificationsUnMuteAction
     | CurrencySetAction
+    | LangSetAction
     | HasKeyChainAction;

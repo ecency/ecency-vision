@@ -19,6 +19,7 @@ interface Props {
     muteNotifications: () => void;
     unMuteNotifications: () => void;
     setCurrency: (currency: string, rate: number, symbol: string) => void;
+    setLang: (lang:string) => void;
 }
 
 export class ProfileSettings extends Component<Props> {
@@ -55,7 +56,8 @@ export default (p: Props) => {
         updateActiveUser: p.updateActiveUser,
         muteNotifications: p.muteNotifications,
         unMuteNotifications: p.unMuteNotifications,
-        setCurrency: p.setCurrency
+        setCurrency: p.setCurrency,
+        setLang: p.setLang
     }
 
     return <ProfileSettings {...props} />

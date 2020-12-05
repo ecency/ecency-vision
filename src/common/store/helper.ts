@@ -1,5 +1,7 @@
 import {Store} from "redux";
 
+import i18n from 'i18next';
+
 const getSymbolFromCurrency = require("currency-symbol-map");
 
 import {AppState} from "./index";
@@ -12,7 +14,7 @@ import {reloadAct as reloadUsers} from "./users";
 import {reloadAct as reloadReblogs} from "./reblogs";
 import {fetchedAct as loadDynamicProps} from "./dynamic-props";
 import {fetchedAct as entriesFetchedAct} from "./entries";
-import {setCurrencyAct as setCurrency, muteNotificationsAct as muteNotifications} from "./global";
+import {setCurrencyAct as setCurrency, muteNotificationsAct as muteNotifications, setLangAct as setLang} from "./global";
 
 import {getCurrencyRate} from "../api/misc";
 
@@ -106,5 +108,15 @@ export const clientStoreTasks = (store: Store<AppState>) => {
     // Notifications
     if (ls.get("notifications") === false) {
         store.dispatch(muteNotifications());
+    }
+
+    // Language
+    const lang = ls.get("lang");
+    if (lang) {
+        if (store.getState().global.lang !== lang) {
+            i18n.changeLanguage(lang).then(() => {
+                store.dispatch(setLang(lang));
+            });
+        }
     }
 }

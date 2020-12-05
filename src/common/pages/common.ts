@@ -19,7 +19,7 @@ import {Transactions} from "../store/transactions/types";
 import {Points} from "../store/points/types";
 
 
-import {toggleTheme, hideIntro, toggleListStyle, dismissNewVersion, muteNotifications, unMuteNotifications, setCurrency} from "../store/global";
+import {toggleTheme, hideIntro, toggleListStyle, dismissNewVersion, muteNotifications, unMuteNotifications, setCurrency, setLang} from "../store/global";
 import {fetchTrendingTags} from "../store/trending-tags";
 import {updateSubscriptions} from "../store/subscriptions";
 import {fetchEntries, addEntry, updateEntry, invalidateEntries} from "../store/entries";
@@ -47,6 +47,7 @@ export interface PageProps {
     muteNotifications: () => void;
     unMuteNotifications: () => void;
     setCurrency: (currency: string, rate: number, symbol: string) => void;
+    setLang: (lang:string) => void;
 
     dynamicProps: DynamicProps;
 
@@ -121,6 +122,7 @@ export const pageMapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
             muteNotifications,
             unMuteNotifications,
             setCurrency,
+            setLang,
             dismissNewVersion,
             fetchTrendingTags,
             updateSubscriptions,
