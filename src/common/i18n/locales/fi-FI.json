@@ -22,8 +22,8 @@
     "save": "Tallenna",
     "try-again": "Yritä uudelleen",
     "show": "Näytä",
-    "on": "On",
-    "off": "Off"
+    "on": "Päällä",
+    "off": "Pois"
   },
   "confirm": {
     "title": "Oletko varma?",
@@ -298,14 +298,14 @@
     "section-replies": "Vastaukset",
     "section-communities": "Yhteisöt",
     "section-wallet": "Lompakko",
-    "section-settings": "Settings",
+    "section-settings": "Asetukset",
     "communities-title": "Tilaukset",
     "create-community": "Luo yhteisö",
     "witnesses": "Todistajat",
     "proposals": "Ehdotukset"
   },
   "profile-edit": {
-    "title": "Profile",
+    "title": "Profiili",
     "name": "Näyttönimi",
     "about": "Tietoja",
     "cover-image": "Kansikuva",
@@ -318,11 +318,11 @@
     "uploaded": "Kuva ladattu"
   },
   "preferences": {
-    "title": "Preferences",
-    "notifications": "Notification alerts",
-    "currency": "Currency",
-    "language": "Language",
-    "updated": "Preference updated!"
+    "title": "Asetukset",
+    "notifications": "Ilmoitukset",
+    "currency": "Valuutta",
+    "language": "Kieli",
+    "updated": "Asetukset päivitetty!"
   },
   "wallet": {
     "unclaimed-rewards": "Lunastamattomat palkkiot",
@@ -572,8 +572,8 @@
     "refresh": "Päivitä",
     "mark-all-read": "Merkitse kaikki luetuksi",
     "mark-read": "Merkitse luetuksi",
-    "mute": "Turn off notification alerts",
-    "unmute": "Turn on notification alerts"
+    "mute": "Poista ilmoitukset käytöstä",
+    "unmute": "Ota ilmoitukset käyttöön"
   },
   "leaderboard": {
     "title": "Tulostaulukko",
