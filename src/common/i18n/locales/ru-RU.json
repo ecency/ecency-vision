@@ -11,31 +11,31 @@
     "reply": "Ответить",
     "update": "Обновить",
     "or": "ИЛИ",
-    "server-error": "Process could not be completed due to server error",
+    "server-error": "Процесс не может быть завершен из-за ошибки сервера",
     "day": "д.",
     "days": "дн.",
-    "finish": "Finish",
+    "finish": "Завершить",
     "next": "Далее",
     "back": "Назад",
-    "load-more": "Load More",
-    "empty-list": "Nothing here",
-    "save": "Save",
-    "try-again": "Try again",
+    "load-more": "Загрузить больше",
+    "empty-list": "Здесь пусто",
+    "save": "Сохранить",
+    "try-again": "Попрoбуйте снова",
     "show": "Показать",
-    "on": "On",
-    "off": "Off"
+    "on": "Вкл",
+    "off": "Выкл"
   },
   "confirm": {
-    "title": "Are you sure?",
-    "ok": "Confirm",
-    "cancel": "Cancel"
+    "title": "Вы уверены?",
+    "ok": "Подтвердите",
+    "cancel": "Отменить"
   },
   "entry-filter": {
     "filter-trending": "Trending",
-    "filter-hot": "Hot",
-    "filter-created": "New",
-    "filter-promoted": "Promoted",
-    "filter-payout": "Payouts",
+    "filter-hot": "Популярное",
+    "filter-created": "Новое",
+    "filter-promoted": "Рекламируемый",
+    "filter-payout": "Выплаты",
     "filter-muted": "Muted",
     "filter-feed": "Feed"
   },
@@ -50,7 +50,7 @@
     "address-placeholder": "enter url or search query"
   },
   "search": {
-    "placeholder": "Search",
+    "placeholder": "Поиск",
     "placeholder-count": "Search {{n}} posts",
     "header-tag": "Tags",
     "header-account": "Users",
