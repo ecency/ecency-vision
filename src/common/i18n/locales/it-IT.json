@@ -120,12 +120,12 @@
   },
   "entry-reblog": {
     "reblog": "Reblogga",
-    "confirm-title": "Reblog to @{{n}}'s blog?",
-    "confirm-ok": "Reblog",
-    "success": "Reblogged!"
+    "confirm-title": "Vuoi rebloggare sul blog di @{{n}}?",
+    "confirm-ok": "Reblogga",
+    "success": "Rebloggato!"
   },
   "entry-payout": {
-    "pending-payout": "Pending Payout",
+    "pending-payout": "Pagamento in Attesa",
     "promoted": "Promoted",
     "author-payout": "Author Payout",
     "curators-payout": "Curators Payout",
