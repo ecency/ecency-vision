@@ -1,65 +1,65 @@
 {
   "g": {
-    "edit": "Edit",
-    "search": "Search",
+    "edit": "Редагувати",
+    "search": "Шукати",
     "downloads": "Downloads",
-    "login": "Login",
-    "login-as": "Login As",
+    "login": "Увійти",
+    "login-as": "Увійти як",
     "signup": "Signup",
-    "delete": "Delete",
+    "delete": "Видалити",
     "cancel": "Cancel",
     "reply": "Reply",
-    "update": "Update",
-    "or": "OR",
-    "server-error": "Process could not be completed due to server error",
-    "day": "day",
-    "days": "days",
+    "update": "Оновити",
+    "or": "АБО",
+    "server-error": "Не вдається завершити процес через помилку сервера",
+    "day": "день",
+    "days": "дні(ів)",
     "finish": "Finish",
-    "next": "Next",
-    "back": "Back",
+    "next": "Далі",
+    "back": "Назад",
     "load-more": "Load More",
     "empty-list": "Nothing here",
-    "save": "Save",
-    "try-again": "Try again",
+    "save": "Зберегти",
+    "try-again": "Спробувати знову",
     "show": "Show",
     "on": "On",
     "off": "Off"
   },
   "confirm": {
-    "title": "Are you sure?",
-    "ok": "Confirm",
+    "title": "Ви впевнені?",
+    "ok": "Підтвердити",
     "cancel": "Cancel"
   },
   "entry-filter": {
     "filter-trending": "Trending",
     "filter-hot": "Hot",
-    "filter-created": "New",
+    "filter-created": "Нове",
     "filter-promoted": "Promoted",
     "filter-payout": "Payouts",
     "filter-muted": "Muted",
-    "filter-feed": "Feed"
+    "filter-feed": "Стрічка"
   },
   "navbar": {
     "discover": "Discover",
-    "communities": "Communities",
-    "about": "About",
+    "communities": "Спільноти",
+    "about": "Про застосунок",
     "faq": "FAQ",
-    "post": "Create Post",
+    "post": "Створити допис",
     "day-theme": "Day Theme",
     "night-theme": "Night Theme",
     "address-placeholder": "enter url or search query"
   },
   "search": {
-    "placeholder": "Search",
+    "placeholder": "Пошук",
     "placeholder-count": "Search {{n}} posts",
-    "header-tag": "Tags",
-    "header-account": "Users",
-    "header-community": "Communities"
+    "header-tag": "Мітки",
+    "header-account": "Користувачі",
+    "header-community": "Спільноти"
   },
   "user-nav": {
-    "wallet": "Wallet",
-    "unclaimed-reward-notice": "You have unclaimed rewards",
-    "points": "Points",
+    "wallet": "Гаманець",
+    "unclaimed-reward-notice": "У вас є не зараховані винагороди",
+    "points": "Бали",
     "unclaimed-points-notice": "You have unclaimed points",
     "notifications": "Notifications",
     "profile": "Profile",
@@ -93,13 +93,13 @@
     "email": "Enter your email address",
     "ref": "Referred user (optional)",
     "submit": "Continue",
-    "success": "We've sent an email to {{email}}.",
+    "success": "Ми надіслали лист на {{email}}.",
     "success-2": "Follow instructions to complete signup process.",
     "login-text-1": "Do you have an account?",
     "login-text-2": "Login"
   },
   "trending-tags": {
-    "title": "Topics"
+    "title": "Теми"
   },
   "selected-tags": {
     "title": "Featured"
@@ -107,8 +107,8 @@
   "entry-list-item": {
     "reblogged": "by {{n}}",
     "promoted": "promoted",
-    "pinned": "Pinned Post",
-    "replies": "1 response. Click to respond.",
+    "pinned": "Закріплена публікація",
+    "replies": "1 відповідь. Натисніть, щоб відповісти.",
     "replies-n": "{{n}} responses. Click to respond.",
     "no-replies": "No responses yet. Click to respond."
   },
