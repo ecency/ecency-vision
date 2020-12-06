@@ -51,75 +51,75 @@
   },
   "search": {
     "placeholder": "Cerca",
-    "placeholder-count": "Search {{n}} posts",
-    "header-tag": "Tags",
-    "header-account": "Users",
+    "placeholder-count": "Cerca {{n}} post",
+    "header-tag": "Tag",
+    "header-account": "Utenti",
     "header-community": "Communities"
   },
   "user-nav": {
-    "wallet": "Wallet",
-    "unclaimed-reward-notice": "You have unclaimed rewards",
-    "points": "Points",
-    "unclaimed-points-notice": "You have unclaimed points",
-    "notifications": "Notifications",
-    "profile": "Profile",
-    "gallery": "Gallery",
-    "drafts": "Drafts",
-    "bookmarks": "Bookmarks",
-    "logout": "Logout"
+    "wallet": "Portafoglio",
+    "unclaimed-reward-notice": "Hai nuove ricompense",
+    "points": "Punti",
+    "unclaimed-points-notice": "Hai punti da riscuotere",
+    "notifications": "Notifiche",
+    "profile": "Profilo",
+    "gallery": "Galleria",
+    "drafts": "Bozze",
+    "bookmarks": "Segnalibri",
+    "logout": "Esci"
   },
   "login": {
-    "title": "Welcome back!",
-    "with-user-pass": "Login with your username and private key.",
-    "username-placeholder": "username",
-    "key-placeholder": "master or active private key",
-    "login-info-1": "We don't store your private keys.",
-    "login-info-2": "More info",
-    "error-fields-required": "Please enter username and private key",
-    "error-public-key": "You entered a public key. Password/WIF required",
-    "error-user-fetch": "User data could not be fetched",
-    "error-user-not-found": "User does not exist",
-    "error-permission": "Couldn't get posting permission",
-    "error-authenticate": "Wrong private key. Master or active private key required.",
-    "with-hive-signer": "Login with hivesigner",
-    "with-keychain": "Login with keychain",
-    "sign-up-text-1": "Don't have an account?",
-    "sign-up-text-2": "Sign up now!"
+    "title": "Bentornato!",
+    "with-user-pass": "Entra con il tuo nome utente e la tua chiave privata di pubblicazione.",
+    "username-placeholder": "nome utente",
+    "key-placeholder": "chiave privata di pubblicazione oppure master",
+    "login-info-1": "Noi non memorizziamo le tue chiavi private.",
+    "login-info-2": "Più informazioni",
+    "error-fields-required": "Inserisci nome utente e chiave privata di pubblicazione",
+    "error-public-key": "Hai inserito una chiave pubblica. Password o WIF richiesta",
+    "error-user-fetch": "I dati dell'utente non possono essere recuperati",
+    "error-user-not-found": "L'utente non esiste",
+    "error-permission": "Non hai l'autorizzazione per pubblicare",
+    "error-authenticate": "Chiave privata errata. Chiave privata maestra o attiva richiesta.",
+    "with-hive-signer": "Accedi tramite Hivesigner",
+    "with-keychain": "Accedi tramite Keychain",
+    "sign-up-text-1": "Non hai un account?",
+    "sign-up-text-2": "Registrati ora!"
   },
   "sign-up": {
-    "header": "Sign Up",
-    "description": "One account to manage everything on blockchain and Ecency. Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
-    "username": "Pick a username",
-    "email": "Enter your email address",
-    "ref": "Referred user (optional)",
-    "submit": "Continue",
-    "success": "We've sent an email to {{email}}.",
-    "success-2": "Follow instructions to complete signup process.",
-    "login-text-1": "Do you have an account?",
-    "login-text-2": "Login"
+    "header": "Registrati",
+    "description": "Un account per gestire ogni cosa sulla blockchain e su Ecency. Leggi di più sui vantaggi nelle nostre <a href=\"/faq#how-to-join\">FAQ</a>",
+    "username": "Scegli un nome utente",
+    "email": "Inserisci il tuo indirizzo email",
+    "ref": "Utente raccomandante (opzionale)",
+    "submit": "Continua",
+    "success": "Abbiamo inviato un'email a {{email}}.",
+    "success-2": "Segui le istruzioni per completare il processo di registrazione.",
+    "login-text-1": "Hai già un account?",
+    "login-text-2": "Accedi"
   },
   "trending-tags": {
-    "title": "Topics"
+    "title": "Argomenti"
   },
   "selected-tags": {
-    "title": "Featured"
+    "title": "In primo piano"
   },
   "entry-list-item": {
-    "reblogged": "by {{n}}",
-    "promoted": "promoted",
-    "pinned": "Pinned Post",
-    "replies": "1 response. Click to respond.",
-    "replies-n": "{{n}} responses. Click to respond.",
-    "no-replies": "No responses yet. Click to respond."
+    "reblogged": "da {{n}}",
+    "promoted": "promosso",
+    "pinned": "Post Fissato",
+    "replies": "1 risposta. Clicca per rispondere.",
+    "replies-n": "{{n}} risposte. Clicca per rispondere.",
+    "no-replies": "Ancora nessuna risposta. Clicca per rispondere."
   },
   "bookmark-btn": {
-    "add": "Add to bookmarks",
-    "added": "Added to bookmarks",
-    "delete": "Remove from bookmarks",
-    "deleted": "Removed from bookmarks"
+    "add": "Aggiungi ai segnalibri",
+    "added": "Aggiunto ai segnalibri",
+    "delete": "Rimuovi dai Segnalibri",
+    "deleted": "Rimosso dai segnalibri"
   },
   "entry-reblog": {
-    "reblog": "Reblog",
+    "reblog": "Reblogga",
     "confirm-title": "Reblog to @{{n}}'s blog?",
     "confirm-ok": "Reblog",
     "success": "Reblogged!"
