@@ -1,10 +1,10 @@
 {
   "g": {
-    "edit": "Edit",
-    "search": "Search",
-    "downloads": "Downloads",
-    "login": "Login",
-    "login-as": "Login As",
+    "edit": "Editar",
+    "search": "Buscar",
+    "downloads": "Descargas",
+    "login": "Iniciar Sesión",
+    "login-as": "Ingresar como",
     "signup": "Signup",
     "delete": "Delete",
     "cancel": "Cancel",
