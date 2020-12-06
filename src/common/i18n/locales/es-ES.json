@@ -443,73 +443,73 @@
   },
   "transactions": {
     "title": "Historial",
-    "type-curation_reward": "Curation Reward",
-    "type-author_reward": "Author Reward",
-    "type-comment_benefactor_reward": "Comment Benefactor Reward",
-    "type-claim_reward_balance": "Claim rewards",
-    "type-transfer": "Transfer",
-    "type-transfer_to_vesting": "Transfer to vesting",
-    "type-withdraw_vesting": "Withdraw vesting",
-    "type-fill_order": "Fill order"
+    "type-curation_reward": "Recompensa de curación",
+    "type-author_reward": "Recompensa de autor",
+    "type-comment_benefactor_reward": "Recompensas de benefactor del comentario",
+    "type-claim_reward_balance": "Reclamar recompensas",
+    "type-transfer": "Transferir",
+    "type-transfer_to_vesting": "Transferir a ahorros",
+    "type-withdraw_vesting": "Retirar ahorros",
+    "type-fill_order": "Completar orden"
   },
   "key-or-hot": {
-    "sign": "Sign",
-    "key-placeholder": "Enter active/owner/master key",
-    "with-hivesigner": "Sign with hivesigner",
-    "with-keychain": "Sign with keychain"
+    "sign": "Firmar",
+    "key-placeholder": "Introduzca la clave activa/propietaria/maestra",
+    "with-hivesigner": "Iniciar Sesión con hivesigner",
+    "with-keychain": "Iniciar sesión con KeyChain"
   },
   "delegated-vesting": {
-    "title": "Delegated Hive Power"
+    "title": "Hive Power delegado"
   },
   "received-vesting": {
-    "title": "Received Hive Power"
+    "title": "Hive power recibido"
   },
   "friends": {
-    "followers": "Followers ({{n}})",
-    "following": "Following ({{n}})",
-    "search-placeholder": "Search users"
+    "followers": "Seguidores ({{n}})",
+    "following": "Siguiendo ({{n}})",
+    "search-placeholder": "Buscar usuarios"
   },
   "follow-controls": {
-    "follow": "Follow",
-    "unFollow": "Unfollow",
-    "mute": "Mute",
-    "unMute": "Unmute"
+    "follow": "Seguir",
+    "unFollow": "Dejar de Seguir",
+    "mute": "Silenciar",
+    "unMute": "Quitar silencio"
   },
   "favorite-btn": {
-    "add": "Add to favorites",
-    "added": "Added to favorites",
-    "delete": "Remove from favorites",
-    "deleted": "Removed from favorites"
+    "add": "Añadir a Favoritos",
+    "added": "Añadido a favoritos",
+    "delete": "Borrar de favoritos",
+    "deleted": "Eliminado de favoritos"
   },
   "editor-toolbar": {
-    "bold": "Bold",
-    "italic": "Italic",
-    "header": "Heading",
-    "code": "Code",
-    "quote": "Quote",
-    "ul": "Unordered List",
-    "ol": "Ordered List",
-    "link": "Link",
-    "image": "Image",
-    "table": "Table",
-    "table-3-col": "3 columns",
-    "table-2-col": "2 columns",
-    "table-1-col": "1 column",
-    "upload": "Upload",
-    "gallery": "Gallery",
+    "bold": "Negrita",
+    "italic": "Itálica",
+    "header": "Encabezado",
+    "code": "Código",
+    "quote": "Cita",
+    "ul": "Lista desordenada",
+    "ol": "Lista ordenada",
+    "link": "Enlace",
+    "image": "Imágen",
+    "table": "Tabla",
+    "table-3-col": "3 columnas",
+    "table-2-col": "2 columnas",
+    "table-1-col": "1 columna",
+    "upload": "Subir",
+    "gallery": "Galería",
     "emoji": "Emoji",
-    "image-error": "Couldn't upload image.",
-    "image-error-size": "Image size is too large, try smaller size image again."
+    "image-error": "No se pudo cargar la imagen.",
+    "image-error-size": "El tamaño de la imagen es demasiado grande, intente una imagen de tamaño más pequeño."
   },
   "emoji-picker": {
-    "filter-placeholder": "Filter",
-    "filter-no-match": "No match",
-    "recently-used": "Recently Used"
+    "filter-placeholder": "Filtro",
+    "filter-no-match": "Sin coincidencia",
+    "recently-used": "Usada recientemente"
   },
   "submit": {
-    "page-title": "Create a post",
-    "page-description": "Publish an article, earn reward, uncensored, immutable, decentralized content!",
-    "title-placeholder": "Title",
+    "page-title": "Crear un post",
+    "page-description": "¡Publica un artículo, monetiza, sin censura, inmutable y descentralizado!",
+    "title-placeholder": "Título",
     "body-placeholder": "Post Content",
     "reward": "Reward",
     "reward-default": "Default 50% / 50%",
@@ -568,40 +568,40 @@
     "transfer-str": "sent you",
     "spin-str": "Time to earn more Points, Play Spin on Ecency Mobile app",
     "inactive-str": "Be active! Write a post, continue earning",
-    "referral-str": "joined with your referral, welcome them",
-    "refresh": "Refresh",
-    "mark-all-read": "Mark All as Read",
-    "mark-read": "Mark as Read",
-    "mute": "Turn off notification alerts",
-    "unmute": "Turn on notification alerts"
+    "referral-str": "se unieron con tu enlace de referido, dales la bienvenida!",
+    "refresh": "Refrescar",
+    "mark-all-read": "Marcar todo como leído",
+    "mark-read": "Marcar como leído",
+    "mute": "Desactivar notificaciones",
+    "unmute": "Activar notificaciones"
   },
   "leaderboard": {
-    "title": "Leaderboard",
-    "title-day": "Daily top users",
-    "title-week": "Weekly top users",
-    "title-month": "Monthly top users",
-    "period-day": "Daily",
-    "period-week": "Weekly",
-    "period-month": "Monthly",
-    "header-score": "Activities",
-    "header-score-tip": "Post + comments made by a user for selected period",
-    "header-reward": "Reward"
+    "title": "Clasificación",
+    "title-day": "Mejores usuarios del día",
+    "title-week": "Mejores usuarios de la semana",
+    "title-month": "Mejores usuarios del mes",
+    "period-day": "Diario",
+    "period-week": "Semanalmente",
+    "period-month": "Mensualmente",
+    "header-score": "Actividades",
+    "header-score-tip": "Publicaciones + comentarios realizados por un usuario en el período seleccionado",
+    "header-reward": "Recompensa"
   },
   "popular-users": {
-    "title": "Popular Users"
+    "title": "Usuarios populares"
   },
   "discover": {
-    "title": "Discover",
-    "description": "Discover top online users"
+    "title": "Descubrir",
+    "description": "Descubre mejores usuarios en línea"
   },
   "search-page": {
-    "title": "Search",
-    "description": "Find uncensored content, communities and users",
-    "n-results-for-q": "{{n}} results",
-    "no-result": "No result",
-    "sort-by": "sort by",
-    "sort-popularity": "Popularity",
-    "sort-relevance": "Relevance",
+    "title": "Buscar",
+    "description": "Encontrar contenidos, comunidades y usuarios, sin censura",
+    "n-results-for-q": "{{n}} resultados",
+    "no-result": "Ningún resultado",
+    "sort-by": "ordenar por",
+    "sort-popularity": "Popularidad",
+    "sort-relevance": "Relevancia",
     "sort-newest": "Date"
   },
   "witnesses": {
