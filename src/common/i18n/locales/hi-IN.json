@@ -1,6 +1,6 @@
 {
   "g": {
-    "edit": "सम्पादित करें",
+    "edit": "संपादित करें",
     "search": "खोजें",
     "downloads": "डाउनलोड",
     "login": "लॉग इन करें",
@@ -134,74 +134,74 @@
     "breakdown": "विश्लेषण"
   },
   "entry-index": {
-    "feed": "Feed",
-    "tags": "Popular",
-    "title": "{{f}} topics",
-    "description": "{{f}} topics on a social network owned and operated by its users.",
-    "description-tag": "{{f}} #{{t}} topics",
-    "description-user-feed": "{{u}}'s feed"
+    "feed": "फ़ीड",
+    "tags": "लोकप्रिय",
+    "title": "{{f}} विषय",
+    "description": "अपने उपयोगकर्ताओं द्वारा स्वामित्व और संचालित एक सामाजिक नेटवर्क पर {{f}} विषय।",
+    "description-tag": "{{f}} # {{t}} विषय",
+    "description-user-feed": "{{u}} फ़ीड है"
   },
   "market-data": {
-    "title": "Market price",
-    "credits": "market data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
+    "title": "बाजार मूल्य",
+    "credits": "<a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\"> कॉइनगएकगो</a>द्वारा बाजार का डेटा"
   },
   "list-style": {
-    "title": "Toggle list style"
+    "title": "टॉगल सूची शैली"
   },
   "entry-votes": {
-    "title": "1 Vote",
-    "title-n": "{{n}} Votes",
-    "title-empty": "No Votes",
-    "voter": "Voter",
-    "percent": "Percent",
-    "reward": "Reward",
-    "time": "Time"
+    "title": "1 वोट",
+    "title-n": "{{n}} पोस्टर",
+    "title-empty": "कोई वोट नहीं",
+    "voter": "मतदाता",
+    "percent": "प्रतिशत",
+    "reward": "इनाम",
+    "time": "समय"
   },
   "entry": {
-    "via-app": "via <span class=\"app-name\">{{app}}</span>",
-    "comment-entry-title": "You are viewing a single comment's thread from: ",
-    "comment-entry-go-root": "View the full context",
-    "comment-entry-go-parent": "View the direct parent",
-    "show-history": "Show edit history",
-    "hidden-warning": "This post was hidden due to low ratings."
+    "via-app": "<span class=\"app-name\"> {{app}} </span> के माध्यम से",
+    "comment-entry-title": "आप किसी एकल टिप्पणी के सूत्र को देख रहे हैं: ",
+    "comment-entry-go-root": "पूरा संदर्भ देखें",
+    "comment-entry-go-parent": "सीधा मूल जनक को देखें",
+    "show-history": "संपादित इतिहास दिखाएं",
+    "hidden-warning": "यह पोस्ट गुप्त था निम्न मूल्यांकन के कारण."
   },
   "edit-history": {
-    "title": "Edit History",
-    "show-diff": "Show Difference",
-    "version": "Version {{n}}"
+    "title": "इतिहास संपादित करें",
+    "show-diff": "अंतर दिखाओ",
+    "version": "संस्करण {{n}}"
   },
   "similar-entries": {
-    "title": "Recent posts by @{{n}}"
+    "title": "@{{n}} द्वारा हाल की पोस्ट"
   },
   "comment": {
-    "body-placeholder": "Write your reply here",
-    "preview": "Preview"
+    "body-placeholder": "अपना उत्तर यहाँ लिखें",
+    "preview": "पूर्वावलोकन"
   },
   "discussion": {
-    "join": "Join the conversion now",
-    "btn-join": "Join",
-    "replies": "1 Comment",
-    "n-replies": "{{n}} Comments",
-    "order": "Sort Order",
-    "order-trending": "Trending",
-    "order-reputation": "Reputation",
-    "order-votes": "Votes",
-    "order-created": "Age",
-    "read-more": "...read more replies...",
-    "reveal": "Reveal comment"
+    "join": "अब रूपांतरण में शामिल हों",
+    "btn-join": "शामिल हों",
+    "replies": "1 टिप्पणी",
+    "n-replies": "{{n}} टिप्पणियाँ",
+    "order": "क्रमबद्ध आदेश",
+    "order-trending": "चर्चित",
+    "order-reputation": "प्रतिष्ठा",
+    "order-votes": "मत",
+    "order-created": "उम्र",
+    "read-more": "...और पढ़ें जवाब...",
+    "reveal": "आलोचना प्रत्यक्ष करो"
   },
   "community": {
-    "page-description": "{{f}} topics",
-    "subscribe": "Subscribe",
-    "subscribed": "Joined",
-    "unsubscribe": "Leave",
-    "post": "New Post",
-    "posts": "Posts",
-    "subscribers": "Subscribers",
-    "activities": "Activities",
-    "roles-title": "User Roles",
-    "roles-account": "Account",
-    "roles-role": "Role",
+    "page-description": "{{f}} विषय",
+    "subscribe": "सदस्यता लें",
+    "subscribed": "शामिल हो गए हैं।",
+    "unsubscribe": "छोड़ें",
+    "post": "नया पोस्ट",
+    "posts": "पोस्ट",
+    "subscribers": "सदस्य",
+    "activities": "क्रियाएँ",
+    "roles-title": "उपयोगकर्ता भूमिका",
+    "roles-account": "खाता",
+    "roles-role": "भूमिका",
     "roles-account-title": "शीर्षक",
     "roles-add": "यूज़र जोड़ें"
   },
@@ -384,30 +384,30 @@
   },
   "promote": {
     "title": "बढ़ावा देना",
-    "sub-title": "Promote your post",
-    "duration": "Duration"
+    "sub-title": "अपनी पोस्ट का प्रचार करें",
+    "duration": "अवधि"
   },
   "boost": {
-    "title": "Boost",
-    "sub-title": "Boost your post",
-    "amount": "Amount",
-    "slider-hint": "Drag the slider to adjust the amount."
+    "title": "बूस्ट",
+    "sub-title": "अपनी पोस्ट का प्रचार करें",
+    "amount": "रकम",
+    "slider-hint": "राशि समायोजित करने के लिए स्लाइडर को खींचें।"
   },
   "redeem-common": {
-    "balance": "Balance",
-    "post": "Post",
-    "post-hint": "Autocomplete input",
-    "post-placeholder": "username/permlink",
-    "post-error": "Not a valid post address",
-    "post-error-exists": "The post is already promoted",
-    "success-message": "Your request submitted. It will be activated in a couple minutes."
+    "balance": "शेष रकम",
+    "post": "लेख",
+    "post-hint": "स्वतः पूर्ण इनपुट",
+    "post-placeholder": "उपयोगकर्ता नाम / स्थायी लिंक",
+    "post-error": "मान्य पोस्ट पता नहीं",
+    "post-error-exists": "पद पहले से पदोन्नत है",
+    "success-message": "आपका अनुरोध सबमिट कर दिया गया है यह एक दो मिनट में सक्रिय हो जाएगा।"
   },
   "transfer": {
-    "transfer-title": "Transfer to Account",
-    "transfer-title-point": "Gift to Account",
-    "transfer-sub-title": "Move funds to another Hive account",
-    "transfer-saving-title": "Transfer to Savings",
-    "transfer-saving-sub-title": "Protect funds by requiring a 3 day withdraw waiting period",
+    "transfer-title": "खाते में स्थानांतरण",
+    "transfer-title-point": "खाते को उपहार",
+    "transfer-sub-title": "फंड्स को दूसरे हाइव अकाउंट में ले जाएं",
+    "transfer-saving-title": "बचत में स्थानांतरण",
+    "transfer-saving-sub-title": "3 दिन की प्रतीक्षा अवधि को हटाकर धन की सुरक्षा करें",
     "withdraw-saving-title": "Savings Withdraw",
     "withdraw-saving-sub-title": "Withdraw funds after the required 3 day waiting period",
     "power-up-title": "Stake Hive as Power",
@@ -499,19 +499,19 @@
     "gallery": "चित्रशाला",
     "emoji": "इमोजी",
     "image-error": "चित्र अपलोड नहीं किया जा सका।",
-    "image-error-size": "Image size is too large, try smaller size image again."
+    "image-error-size": "छवि का आकार बहुत बड़ा है, फिर से छोटे आकार की छवि आज़माएं।"
   },
   "emoji-picker": {
-    "filter-placeholder": "Filter",
-    "filter-no-match": "No match",
-    "recently-used": "Recently Used"
+    "filter-placeholder": "फ़िल्टर",
+    "filter-no-match": "कोई मेल नहीं",
+    "recently-used": "अभी-अभी उपयोग हुवा"
   },
   "submit": {
-    "page-title": "Create a post",
-    "page-description": "Publish an article, earn reward, uncensored, immutable, decentralized content!",
-    "title-placeholder": "Title",
-    "body-placeholder": "Post Content",
-    "reward": "Reward",
+    "page-title": "पोस्ट तैयार करें",
+    "page-description": "एक लेख प्रकाशित करें, इनाम अर्जित करें, बिना सेंसर किए, अपरिवर्तनीय, विकेंद्रीकृत सामग्री!",
+    "title-placeholder": "शीर्षक",
+    "body-placeholder": "पोस्ट सामग्री",
+    "reward": "इनाम",
     "reward-default": "Default 50% / 50%",
     "reward-sp": "Power Up 100%",
     "reward-dp": "Decline Payout",
@@ -569,68 +569,68 @@
     "spin-str": "Time to earn more Points, Play Spin on Ecency Mobile app",
     "inactive-str": "Be active! Write a post, continue earning",
     "referral-str": "joined with your referral, welcome them",
-    "refresh": "Refresh",
-    "mark-all-read": "Mark All as Read",
-    "mark-read": "Mark as Read",
-    "mute": "Turn off notification alerts",
-    "unmute": "Turn on notification alerts"
+    "refresh": "रीफ्रेश करें",
+    "mark-all-read": "सभी को पढ़ा हुआ मार्क करें",
+    "mark-read": "पढ़ा हुआ मार्क करें",
+    "mute": "अधिसूचना अलर्ट बंद करें",
+    "unmute": "अधिसूचना अलर्ट चालू करें"
   },
   "leaderboard": {
-    "title": "Leaderboard",
-    "title-day": "Daily top users",
-    "title-week": "Weekly top users",
-    "title-month": "Monthly top users",
-    "period-day": "Daily",
-    "period-week": "Weekly",
-    "period-month": "Monthly",
-    "header-score": "Activities",
-    "header-score-tip": "Post + comments made by a user for selected period",
-    "header-reward": "Reward"
+    "title": "लीडरबोर्ड",
+    "title-day": "दैनिक शीर्ष उपयोगकर्ता",
+    "title-week": "साप्ताहिक शीर्ष उपयोगकर्ता",
+    "title-month": "मासिक शीर्ष उपयोगकर्ता",
+    "period-day": "रोजाना",
+    "period-week": "साप्ताहिक",
+    "period-month": "मासिक",
+    "header-score": "क्रियाएँ",
+    "header-score-tip": "उपयोगकर्ता द्वारा चयनित अवधि के लिए पोस्ट + टिप्पणियाँ",
+    "header-reward": "इनाम"
   },
   "popular-users": {
-    "title": "Popular Users"
+    "title": "लोकप्रिय उपयोगकर्ता"
   },
   "discover": {
-    "title": "Discover",
-    "description": "Discover top online users"
+    "title": "खोजिए",
+    "description": "शीर्ष ऑनलाइन उपयोगकर्ताओं की खोज करें"
   },
   "search-page": {
-    "title": "Search",
-    "description": "Find uncensored content, communities and users",
-    "n-results-for-q": "{{n}} results",
-    "no-result": "No result",
-    "sort-by": "sort by",
-    "sort-popularity": "Popularity",
-    "sort-relevance": "Relevance",
-    "sort-newest": "Date"
+    "title": "खोजें",
+    "description": "बिना सेंसर की गई सामग्री, समुदायों और उपयोगकर्ताओं का पता लगाएं",
+    "n-results-for-q": "{{n}} परिणाम",
+    "no-result": "कोई परिणाम नही",
+    "sort-by": "क्रमबद्ध करें",
+    "sort-popularity": "लोकप्रियता",
+    "sort-relevance": "प्रासंगिकता",
+    "sort-newest": "दिनांक"
   },
   "witnesses": {
-    "page-title": "Witnesses",
-    "page-description": "Consensus block producers selection",
-    "page-description-long": "Role of witnesses or block producers in Hive blockchain is to act as the network's governance body. Community elects them to represent their voice and each user can elect up to 30 witnesses. Top 20 witnesses are producing blocks every minute while rest remain as backup witness and gets randomized chance every minute. This role is integral part of consensus mechanism blockchain runs on and recommend user engagement to vote on trusted witnesses.",
-    "remaining": "<span>{{n}}</span> of {{max}} votes remaining",
-    "list-rank": "Rank",
-    "list-witness": "Witness",
-    "list-miss": "Miss",
-    "list-url": "URL",
-    "list-fee": "Fee",
-    "list-feed": "Feed",
-    "list-version": "Version",
-    "username-placeholder": "username",
-    "extra-description": "Enter account name below to vote for a witness outside of Top 50",
-    "proxy-description": "You can also choose a proxy that will vote for witnesses for you. This will reset your current witness selection.",
-    "proxy-btn-label": "Set Proxy",
-    "proxy-active-description": "You have set a voting proxy. If you would like to re-enable manual voting, please clear your proxy.",
-    "proxy-active-current": "Your current proxy is",
-    "proxy-active-btn-label": "Clear Proxy"
+    "page-title": "गवाह",
+    "page-description": "सर्वसम्मति ब्लॉक उत्पादकों का चयन",
+    "page-description-long": "हाइव ब्लॉकचैन में गवाहों या ब्लॉक उत्पादकों की भूमिका नेटवर्क के प्रशासन निकाय के रूप में कार्य करना है। समुदाय उन्हें अपनी आवाज़ का प्रतिनिधित्व करने के लिए चुनता है और प्रत्येक उपयोगकर्ता 30 गवाहों का चुनाव कर सकता है। शीर्ष 20 गवाह हर मिनट ब्लॉक का उत्पादन कर रहे हैं, जबकि बाकी बैकअप गवाह के रूप में बने हुए हैं और हर मिनट यादृच्छिक रूप से मौका मिलता है। यह भूमिका सर्वसम्मति तंत्र ब्लॉकचेन का अभिन्न अंग है और विश्वसनीय गवाहों को वोट करने के लिए उपयोगकर्ता की सगाई की सिफारिश करती है।",
+    "remaining": "<span> {{n}} </span> {{max}} वोट शेष हैं",
+    "list-rank": "स्थान",
+    "list-witness": "गवाह",
+    "list-miss": "मिस",
+    "list-url": "यूआरएल",
+    "list-fee": "शुल्क",
+    "list-feed": "फ़ीड",
+    "list-version": "संस्करण",
+    "username-placeholder": "प्रयोक्ता नाम",
+    "extra-description": "शीर्ष 50 के बाहर गवाह के लिए वोट करने के लिए नीचे खाता नाम दर्ज करें",
+    "proxy-description": "आप एक प्रॉक्सी भी चुन सकते हैं जो आपके लिए गवाहों को वोट देगी। यह आपके वर्तमान गवाह चयन को रीसेट कर देगा",
+    "proxy-btn-label": "प्रॉक्सी सेट करें",
+    "proxy-active-description": "आपने एक मतदान प्रॉक्सी निर्धारित की है। यदि आप मैन्युअल मतदान को फिर से सक्षम करना चाहते हैं, तो कृपया अपना प्रॉक्सी साफ़ करें।",
+    "proxy-active-current": "आपका वर्तमान प्रॉक्सी है",
+    "proxy-active-btn-label": "प्रॉक्सी हटाये"
   },
   "proposals": {
-    "page-title": "Proposals",
-    "page-description": "The Decentralized Hive Fund (DHF) is an on-chain funding mechanism that allows anyone to submit a proposal and get funding once community votes pass certain threshold. To learn more read our <a href=\"/faq#how-dhf-work\">FAQ</a>.",
-    "by": "by",
-    "for": "for",
-    "duration-days": "{{n}} days",
-    "daily-pay": "Daily {{n}}",
+    "page-title": "प्रस्ताव",
+    "page-description": "डिसेंट्रलाइज्ड हाइव फंड (डीएचएफ) एक ऑन-चेन फंडिंग मैकेनिज्म है जो समुदाय के वोटों को निश्चित सीमा से गुजरने के बाद किसी को भी प्रस्ताव प्रस्तुत करने और फंड प्राप्त करने की अनुमति देता है। और जानने के लिए हमारे <a href=\"/faq#how-dhf-work\"> FAQ </a> को पढ़ें।",
+    "by": "द्वारा",
+    "for": "के लिये",
+    "duration-days": "{{n}} दिन",
+    "daily-pay": "दैनिक {{n}}",
     "votes": "Votes: {{n}}",
     "status-active": "active",
     "status-expired": "expired",
@@ -696,42 +696,42 @@
       "where-tokens-come-header": "Where do the tokens come from?",
       "where-tokens-come-body": "<p><img src=\"https://images.ecency.com/p/7kq2TLHKEHhCCDwNZLfFLu7msWtbdFb7vZaJJ9Y13GAc18vfVNAj8ZctLWmsVfMCCFtwGdULbZKT89faeBymhPsySU5tp4RnvDsHz6ZBxXHWA4g34ck4LHnR2vGkqsHvjzhizhpV8K6JrQ4sy7cCgJQksUUYPKp4d9XbERHkjnZV3PTdhbiUZPYJ43RS8cQu2sEmUbAgqZExuYMGa46SDa4vCunH2w6oNpommW5L1CCdfwdgX5i9eCpcS5fHo4t8btjVE69edzrUN8anr6T3v8AFYHC?format=match&mode=fit\" loading=\"lazy\"/></p><p>The Hive network continually creates new digital tokens to reward content creators and curators. Some of the newly-created tokens are transferred to users who add value to platform by posting, commenting, and voting on other people's posts. The remainder is distributed to holders of HIVE POWER and the witnesses that secures the blockchain.</p>",
       "how-promotion-work-header": "How content promotion works?",
-      "how-promotion-work-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfoi6H93UHPFEEQutPvax8LP1XqGWMa9geug5SBEEhLUEHKVvSyBfzhrBm9J4uvmrn28AtPhmwcKx?format=match&mode=fit\" loading=\"lazy\"/></p><p>Promoting content with Points is easiest way to get more exposure. Promotions have certain time period and shuffled across the feeds. Any post, can be promoted to get more exposure and engagement.</p>",
-      "how-boosting-work-header": "How content boosting works?",
-      "how-boosting-work-body": "<p>Points can be used for boosting content (post and comments). Boosting requests are manually reviewed by our moderators and curators which might take upto 24 hours. <p>As part of the qualities check, we may consider: a) Content is original content, b) Not detected by cheetah, mackbot, hivewatchers, or any other blacklists etc. c) User is not in Ecency blacklist due to abusive behavior.</p>Boosting does not guarantee curation, if content is not curated within 24 hours Points will be refunded.</p>",
-      "how-to-transfer-header": "How to transfer blockchain tokens?",
-      "how-to-transfer-body": "<p>After login, you will find Wallet page in top header on website and desktop app or in Profile page, bottom navigation bar on mobile app. In wallet page you can initiate transfer of any token you hold to another user or exchange accounts, click on arrow next to your balance and find transfer operations. Transfers are irreversible because they are registered on blockchain, make sure to send correct recipient.</p>",
-      "how-see-rewards-header": "How do I see my post rewards?",
-      "how-see-rewards-body": "<p><img src=\"https://images.ecency.com/p/3W72119s5BjW4PvRk9nXBzqrPWMsMTjNrXDPFFf11iYhySeELMe77idrZHBPmyaqFX6CV72hBLB5qFhwVhGoAATydoFxAF7oCwBt1ztp6eS9r5us4pm7iN?format=match&mode=fit\" loading=\"lazy\"/></p><p>In Wallet page (in top header on website and desktop app, bottom navigation bar on mobile app), you can see Curation rewards (the rewards earned for upvoting posts and comments) and Author rewards (the rewards earned by your own posts and comments)</p><p>You can also view the same information for other users by visiting their wallet profile.</p>",
-      "how-dhf-work-header": "How DHF works?",
-      "how-dhf-work-body": "<p>Anyone can create a proposal and convince community to vote on their proposal to get funded. Before creating proposal, normal post should be published on blockchain and it is recommended to gather feedback before creating proposal. Proposal creation has fee of 10 HBD + 1 HBD for each day it lasts over 60 days.</p><p>Once proposal reaches certain threshold of tallied votes, it will start receiving funds each hour. If proposal falls below threshold, system will halt funding for that proposal. You can vote as many proposals as you want, there are no limits. Proposal cannot be edited, but can be deleted/withdrawn by creator.</p>",
-      "when-claim-rewards-header": "When can I claim my rewards?",
-      "when-claim-rewards-body": "<p>Posts and comments remain active for 7 days and rewards are fluctuates depending on votes and market price of token, that is why rewards are approximated as pending reward. When the period is over, pending reward changes to actual reward and you are able to claim earned rewards. In your Wallet, click the Claim Rewards button to add the tokens to your account.</p>",
-      "what-are-rc-header": "What are Resource Credits?",
-      "what-are-rc-body": "<p>Transacting on the Hive blockchain has zero fees, transaction rate-limiting is employed to safeguard the blockchain from spam attacks. Every action that you take on the blockchain will consume a small amount of Resource Credits. This includes posting, commenting, voting, transferring tokens, etc. Viewing content does not consume Resource Credits.</p><p>Every user has a limited amount of Resource Credits to use each week. The more transactions a user does, the less Resource Credits they will have left (until they recharge). Users with more HIVE POWER will have more Resource Credits.</p><p>If you run out of Resource Credits, you will be unable to transact with the blockchain until your Resource Credits recharge (happens automatically) or you acquire additional HIVE POWER to increase your Resource Credit balance or you can <a href=\"/faq#how-boost-account\">request Boosting account from Ecency</a> to receive temporary delegation.</p>",
-      "how-boost-account-header": "How to request account boosting?",
-      "how-boost-account-body": "<p>If your account is low on <a href=\"/faq#what-are-rc\">Resource Credits</a>, you can request account boosting from Ecency. You will receive temporary delegation which should boost your account to perform more activities on blockchain. You can find account boosting feature in Points options.</p>",
-      "what-spam-abuse-header": "What is considered spam or abuse?",
-      "what-spam-abuse-body": "<p><img src=\"https://images.ecency.com/p/3jpR3paJ37V8XPrHkfZdMt57jY6pRt6zEt5iRJV9pSw4Mez3Hut8U6RWvWLA7cFYEa1bxveXeasNfZApzrcLYLx8cz84kBEKak1KkewE2ZqE1QRRkF4eqRH3vWVqZB9WuNbzE?format=match&mode=fit\" loading=\"lazy\"/></p><p><ul><li>Plagiarized posts or copied content.</li><li>Leaving nearly identical or materially similar comments on multiple posts.</li><li>Using tags that are unrelated to the post.</li><li>Threatening users with any type of physical violence.</li><li>Not citing sources when using someone else’s material.</li><li>Posting ‘not safe for work’ content without using the “nsfw” tag.</li><li>Scams or Fraudulent offers.</li></ul></p>",
-      "can-link-post-header": "Can I request adding backlink to my website from Ecency team?",
-      "can-link-post-body": "<p>All the content on our site is created by our users and we don't modify or able to add backlinks. You are free to contact author of the post or <a href=\"/?referral=ecency\">Signup</a> to open your own blog and community, publish articles to create backlinks for free.</p>",
-      "can-guest-post-header": "Is it possible to guest post on your website?",
-      "can-guest-post-body": "<p>Posting on Ecency is simple and easy, <a href=\"/?referral=ecency\">Signup</a> to open your own blog and community, start posting your content.</p>"
+      "how-promotion-work-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfoi6H93UHPFEEQutPvax8LP1XqGWMa9geug5SBEEhLUEHKVvSyBfzhrBm9J4uvmrn28AtPhmwcKx?format=match&mode=fit\" loading=\"lazy\"/></p><p>पॉइंट्स के साथ कंटेंट को बढ़ावा देना अधिक एक्सपोज़र प्राप्त करने का सबसे आसान तरीका है। प्रचार की निश्चित समयावधि होती है और फ़ीड में फेरबदल किया जाता है। किसी भी पोस्ट, अधिक एक्सपोजर और जुड़ाव प्राप्त करने के लिए प्रचार किया जा सकता है।</p>",
+      "how-boosting-work-header": "कंटेंट बूस्टिंग कैसे काम करता है?",
+      "how-boosting-work-body": "<p> सामग्री (पोस्ट और टिप्पणियों) को बढ़ाने के लिए अंकों का उपयोग किया जा सकता है। बूस्टिंग अनुरोधों को हमारे मध्यस्थों और क्यूरेटरों द्वारा मैन्युअल रूप से समीक्षा की जाती है जो 24 घंटे तक ले सकते हैं। <p> गुणों की जाँच के भाग के रूप में, हम इस पर विचार कर सकते हैं: क) सामग्री मूल सामग्री है, बी) चीता, मैकबॉट, हाइववॉचर्स, या किसी अन्य ब्लैकलिस्ट इत्यादि द्वारा पता नहीं लगाया गया है ग) उपयोगकर्ता अपमानजनक व्यवहार के कारण ईकेंसी ब्लैकलिस्ट में नहीं है। </p> बूस्टिंग को क्यूरेशन की गारंटी नहीं दी जाती है, अगर सामग्री 24 घंटे के भीतर क्यूरेट नहीं की गई तो पॉइंट्स वापस कर दिए जाएंगे। </p>",
+      "how-to-transfer-header": "ब्लॉकचैन टोकन कैसे ट्रांसफर करें?",
+      "how-to-transfer-body": "<p> लॉगिन करने के बाद, आपको वेबसाइट और डेस्कटॉप ऐप पर टॉप हेडर में या मोबाइल ऐप पर प्रोफाइल पेज, नीचे नेविगेशन बार में वॉलेट पेज मिलेगा। वॉलेट पृष्ठ में आप किसी भी अन्य उपयोगकर्ता या एक्सचेंज खातों को होल्ड करने वाले किसी भी टोकन के हस्तांतरण को आरंभ कर सकते हैं, अपने बैलेंस के बगल में तीर पर क्लिक करें और ट्रांसफर ऑपरेशन खोजें। स्थानांतरण अपरिवर्तनीय हैं क्योंकि वे ब्लॉकचैन पर पंजीकृत हैं, सही प्राप्तकर्ता भेजना सुनिश्चित करें। </p>",
+      "how-see-rewards-header": "मैं अपने पोस्ट रिवार्ड्स कैसे देख सकता हूँ?",
+      "how-see-rewards-body": "<p><img src=\"https://images.ecency.com/p/3W72119s5BjW4PvRk9nXBzqrPWMsMTjNrXDPFFf11iYhySeELMe77idrZHBPmyaqFX6CV72hBLB5qFhwVhGoAATydoFxAF7oCwBt1ztp6eS9r5us4pm7iN?format=match&mode=fit\" loading=\"lazy\"/></p><p>वॉलेट पृष्ठ में (वेबसाइट और डेस्कटॉप ऐप पर शीर्ष हेडर में, मोबाइल ऐप पर नीचे नेविगेशन बार), आप अवधि पुरस्कार (पोस्ट और टिप्पणियों के लिए अर्जित पुरस्कार) और लेखक पुरस्कार (अपनी खुद की पोस्ट और टिप्पणियों द्वारा अर्जित पुरस्कार) देख सकते हैं </p> <p> आप अन्य उपयोगकर्ताओं के लिए उनकी वॉलेट प्रोफ़ाइल पर जाकर भी वही जानकारी देख सकते हैं। </p>",
+      "how-dhf-work-header": "डीएचएफ कैसे काम करता है?",
+      "how-dhf-work-body": "<p> कोई भी एक प्रस्ताव बना सकता है और समुदाय को धन प्राप्त करने के उनके प्रस्ताव पर मतदान करने के लिए मना सकता है। प्रस्ताव बनाने से पहले, ब्लॉकचैन पर सामान्य पोस्ट प्रकाशित की जानी चाहिए और प्रस्ताव बनाने से पहले प्रतिक्रिया इकट्ठा करने की सिफारिश की जाती है। प्रस्ताव निर्माण में प्रत्येक दिन के लिए 10 HBD + 1 HBD का शुल्क है जो 60 दिनों से अधिक समय तक रहता है। </p> <p> एक बार जब प्रस्ताव लम्बे मतों की निश्चित सीमा तक पहुँच जाता है, तो उसे प्रत्येक घंटे धन प्राप्त होने लगेगा। यदि प्रस्ताव सीमा से नीचे आता है, तो सिस्टम उस प्रस्ताव के लिए धन रोक देगा। आप जितने चाहें प्रस्ताव दे सकते हैं, कोई सीमा नहीं है। प्रस्ताव संपादित नहीं किया जा सकता है, लेकिन निर्माता द्वारा हटाया / वापस लिया जा सकता है। </p>",
+      "when-claim-rewards-header": "मैं अपने पुरस्कारों कोअर्जित कब कर सकता हूं?",
+      "when-claim-rewards-body": "<p> 7 दिनों के लिए पोस्ट और टिप्पणियां सक्रिय रहती हैं और वोटों और टोकन के बाजार मूल्य के आधार पर पुरस्कारों में उतार-चढ़ाव होता है, यही कारण है कि पुरस्कार लंबित इनाम के रूप में अनुमानित हैं। जब अवधि समाप्त हो जाती है, तो लंबित इनाम वास्तविक इनाम में बदल जाता है और आप अर्जित पुरस्कारों का दावा करने में सक्षम होते हैं। अपने वॉलेट में, अपने खाते में टोकन जोड़ने के लिए दावा पुरस्कार बटन पर क्लिक करें। </p>",
+      "what-are-rc-header": "संसाधन क्रेडिट क्या हैं?",
+      "what-are-rc-body": "<p>हाइव ब्लॉकचैन पर लेनदेन करने पर शून्य फीस लगती है, ब्लॉकचैन को स्पैम हमलों से बचाने के लिए लेनदेन की दर सीमित होती है। ब्लॉकचेन पर आपके द्वारा की जाने वाली प्रत्येक कार्रवाई में संसाधन क्रेडिट की थोड़ी मात्रा का उपभोग होगा। इसमें पोस्टिंग, कमेंटिंग, वोटिंग, टोकन ट्रांसफर करना आदि शामिल हैं, कंटेंट देखने से रिसोर्स क्रेडिट का उपभोग नहीं होता है। </p> <p> प्रत्येक उपयोगकर्ता के पास प्रत्येक सप्ताह उपयोग करने के लिए सीमित मात्रा में रिसोर्स क्रेडिट होते हैं। उपयोगकर्ता जितना अधिक लेन-देन करता है, उसके पास उतने कम रिसोर्स क्रेडिट होते हैं (जब तक वे रिचार्ज नहीं हो जाते)। अधिक HIVE POWER वाले उपयोगकर्ताओं के पास अधिक संसाधन क्रेडिट होंगे। </p> <p> यदि आप संसाधन क्रेडिट से बाहर निकलते हैं, तो आप ब्लॉकचैन के साथ तब तक लेन-देन नहीं कर पाएंगे, जब तक कि आपके संसाधन क्रेडिट रिचार्ज (स्वचालित रूप से नहीं हो जाते) या आप अतिरिक्त HIT POWER प्राप्त कर लेते हैं अपने संसाधन क्रेडिट संतुलन को बढ़ाने के लिए या आप अस्थायी प्रतिनिधिमंडल प्राप्त करने के लिए <a href=\"/faq#how-boost-account\"> Ecency से Boosting खाते का अनुरोध करें </a> कर सकते हैं।</p>",
+      "how-boost-account-header": "खाता बढ़ाने का अनुरोध कैसे करें?",
+      "how-boost-account-body": "<p> यदि आपका खाता <a href=\"/faq#what-are-rc\"> संसाधन क्रेडिट </a> पर कम है, तो आप ईक्विटी से खाता बढ़ाने का अनुरोध कर सकते हैं। आपको अस्थायी प्रतिनिधिमंडल प्राप्त होगा, जिसे ब्लॉकचेन पर अधिक गतिविधियाँ करने के लिए आपके खाते को बढ़ावा देना चाहिए। आप पॉइंट ऑप्शन में अकाउंट बूस्टिंग फीचर पा सकते हैं। </p>",
+      "what-spam-abuse-header": "स्पैम या दुरुपयोग क्या माना जाता है?",
+      "what-spam-abuse-body": "<p><img src=\"https://images.ecency.com/p/3jpR3paJ37V8XPrHkfZdMt57jY6pRt6zEt5iRJV9pSw4Mez3Hut8U6RWvWLA7cFYEa1bxveXeasNfZApzrcLYLx8cz84kBEKak1KkewE2ZqE1QRRkF4eqRH3vWVqZB9WuNbzE?format=match&mode=fit\" loading=\"lazy\"/></p><p><ul><li>साहित्यिक पोस्ट या कॉपी की गई सामग्री। </li> <li> कई पोस्टों पर लगभग समान या भौतिक रूप से समान टिप्पणियों को छोड़ना। </li> <li> पोस्ट से असंबंधित टैग का उपयोग करना। </li> <li> उपयोगकर्ताओं के साथ गलत व्यवहार करना। किसी भी प्रकार की शारीरिक हिंसा। </li> <li> किसी और की सामग्री का उपयोग करते समय स्रोतों का हवाला नहीं देना। </li> <li> \"nsfw\" टैग का उपयोग किए बिना 'काम के लिए सामग्री' सुरक्षित नहीं है।</li><li>घोटाले या धोखाधड़ी के प्रस्ताव। </li> </ul> </p>",
+      "can-link-post-header": "क्या मैं अपनी वेबसाइट पर इसेंसी टीम से बैकलिंक जोड़ने का अनुरोध कर सकता हूं?",
+      "can-link-post-body": "<p> हमारी साइट की सभी सामग्री हमारे उपयोगकर्ताओं द्वारा बनाई गई है और हम संशोधित या बैकलिंक जोड़ने में सक्षम नहीं हैं। आप अपने स्वयं के ब्लॉग और समुदाय को खोलने के लिए पोस्ट के लेखक या <a href=\"/?referral=ecency\"> साइनअप </a> से संपर्क करने के लिए स्वतंत्र हैं, मुफ्त में बैकलिंक्स बनाने के लिए लेख प्रकाशित करते हैं। </p>",
+      "can-guest-post-header": "क्या आपकी वेबसाइट पर पोस्ट करना संभव है?",
+      "can-guest-post-body": "अपने स्वयं के ब्लॉग और समुदाय को खोलने के लिए <p> इसेंसी पर पोस्टिंग सरल और आसान है, <a href=\"/?referral=ecency\"> Signup </a> पर अपनी सामग्री पोस्ट करना शुरू करें। </p>"
     }
   },
   "context-menu": {
-    "cut": "Cut",
-    "copy": "Copy",
-    "paste": "Paste",
-    "open-image-browser": "Open image in browser",
-    "copy-image-url": "Copy image url"
+    "cut": "काटें",
+    "copy": "प्रतिलिपि",
+    "paste": "चिपकाएँ",
+    "open-image-browser": "छवि ब्राउज़र में ओपन करे",
+    "copy-image-url": "छवि यूआरएल प्रतिलिपि करे"
   },
   "updater": {
-    "new-version-available": "New version is available",
-    "update": "Update",
-    "dismiss": "Dismiss",
-    "downloading": "Downloading new version...",
-    "download-completed": "Download is completed",
-    "restart": "Restart"
+    "new-version-available": "नयी संस्करण उपलब्ध है!",
+    "update": "नवनीकरण",
+    "dismiss": "ख़ारिज करें",
+    "downloading": "नया संस्करण डाउनलोड हो रहा है...",
+    "download-completed": "डाउनलोड पूरा हो गया है",
+    "restart": "पुन: शुरू करें"
   }
 }
