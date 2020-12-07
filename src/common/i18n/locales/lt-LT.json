@@ -351,7 +351,11 @@
     "withdraw-hbd": "Išsiimti Hive Dollar"
   },
   "points": {
-    "get": "GAUTI TAŠKŲ",
+    "get": "BUY POINTS",
+    "unclaimed-points": "Unclaimed points",
+    "claim-reward-points": "Claim reward points",
+    "main-description": "Points can be used for in-app services, like Promote, Boost, Gifting. Earn them just by using Ecency apps and improve your experience.",
+    "earn-points": "How to earn more Points",
     "post-desc": "Gali gauti taškų keldamas įrašus reguliariai. Įrašas yra vertas 15 taškų.",
     "comment-desc": "Komentarai padeda tau augti, galbūt rasti bendraminčių ir apdovanoja 5 taškais už kiekvieną parašytą komentarą.",
     "checkin-desc": "Reguliarus tikrinimas ir aktyvumo palaikymas tau duos 0.25 taško už kiekvieną prisijungimą.",
@@ -359,7 +363,7 @@
     "reblog-desc": "  Pasidalink su draugais įrašais kurie tau patinka ir gauk 1 tašką.",
     "login-desc": "Kai jūs pirma kartą prisijungiate prie eSteem, jūs automatiškai būsite apdovanotas 100 taškų.",
     "checkin-extra-desc": "Reguliarus programos naudojimasis suteikia jums papildomą šansą gauti dar 10 taškų. Kuo aktyvesnis esi, tuo daugiau taškų surinksi.",
-    "delegation-desc": "Gali gauti po 1 tašką per dieną už kiekvieną 100HP delegaciją.",
+    "delegation-desc": "You can earn ~50 points per day for each 1000HP delegation.",
     "history": "Istorija",
     "post-list-desc": "Taškai už įrašą",
     "comment-list-desc": "Taškai už komentarą",
