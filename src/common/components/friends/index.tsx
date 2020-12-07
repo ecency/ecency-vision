@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from "react";
+import React, {Component} from "react";
 
 import {History} from "history";
 
@@ -11,16 +11,15 @@ import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 import LinearProgress from "../linear-progress";
 
-import {getFollowing, getFollowers, getAccounts, getAccount} from "../../api/hive";
-import {getRelationshipBetweenAccounts} from "../../api/bridge";
+import {getFollowing, getFollowers, getAccounts} from "../../api/hive";
+import {searchFollowing, searchFollower, FriendSearchResult} from "../../api/private";
 
 import {_t} from "../../i18n";
+
 import accountReputation from "../../helper/account-reputation";
-import {pencilOutlineSvg} from "../../img/svg";
 
 interface Friend {
     name: string;
-    fullName?: string;
     reputation: string | number;
 }
 
@@ -84,7 +83,6 @@ export class List extends Component<ListProps, ListState> {
             .then((accounts) =>
                 accounts.map((a) => ({
                     name: a.name,
-                    fullName: a.profile?.name || "",
                     reputation: a.reputation!
                 }))
             );
@@ -142,29 +140,20 @@ export class List extends Component<ListProps, ListState> {
 
         const {account, mode} = this.props;
 
-        const follower = (mode === "following" ? account.name : search);
-        const following = (mode === "following" ? search : account.name);
+        let results: FriendSearchResult[];
 
-        let connection: boolean;
-        let ac: Account | null = null;
         try {
-            const resp = await getRelationshipBetweenAccounts(follower, following);
-            connection = !!(resp && resp.follows);
-            if (connection) {
-                ac = await getAccount(search);
+            if (mode === "following") {
+                results = await searchFollowing(account.name, search);
+            } else {
+                results = await searchFollower(account.name, search);
             }
         } catch (e) {
-            connection = false;
+            results = [];
         }
 
-        const data: Friend[] = (connection && ac) ? [{
-            name: ac.name,
-            fullName: ac.profile?.name || "",
-            reputation: ac.reputation!
-        }] : [];
-
         this.stateSet({
-            data,
+            data: results,
             hasMore: false,
             loading: false,
         });
