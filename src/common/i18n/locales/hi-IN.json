@@ -351,7 +351,11 @@
     "withdraw-hbd": "हाइव डॉलर निकालें"
   },
   "points": {
-    "get": "अंक प्राप्त करें",
+    "get": "BUY POINTS",
+    "unclaimed-points": "Unclaimed points",
+    "claim-reward-points": "Claim reward points",
+    "main-description": "Points can be used for in-app services, like Promote, Boost, Gifting. Earn them just by using Ecency apps and improve your experience.",
+    "earn-points": "How to earn more Points",
     "post-desc": "आप नियमित रूप से पोस्ट करके बिंदु अर्जित कर सकते हैं। पोस्टिंग आपको 15 अंक देती है।",
     "comment-desc": "आपके द्वारा की गई प्रत्येक टिप्पणी से आपको अपने दर्शकों को विकसित करने और दोस्ती करने में मदद मिलती है, लेकिन आपको 5 अंक भी मिलते हैं।",
     "checkin-desc": "इसेंसी पर जाँच करने से आपको 0.25 अंक मिलते हैं और आपको अपने दोस्तों के साथ जुड़े रहने में मदद मिलती है।",
@@ -359,7 +363,7 @@
     "reblog-desc": "  आप अपने दोस्तों के साथ जो पोस्ट पसंद करते हैं उसे साझा करें और 1 अंक अर्जित करें।",
     "login-desc": "जब आप इसेंसी में लॉगिन करते हैं तो आप 100 अंक अपने आप अर्जित करने के हकदार हैं।",
     "checkin-extra-desc": "ऐप के लगातार उपयोग से आपको अधिक 10 अंक अर्जित करने, अधिक सक्रिय होने और अधिक कमाई करने के अतिरिक्त अवसर मिलते हैं।",
-    "delegation-desc": "आप प्रत्येक 100HP प्रत्यायोजित के लिए प्रति दिन 1 अंक कमा सकते हैं।",
+    "delegation-desc": "You can earn ~50 points per day for each 1000HP delegation.",
     "history": "इतिहास",
     "post-list-desc": "पोस्ट के लिए अंक",
     "comment-list-desc": "टिप्पणी के लिए अंक",
