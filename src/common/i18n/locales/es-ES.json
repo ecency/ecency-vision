@@ -351,7 +351,11 @@
     "withdraw-hbd": "Retirar Hive Dollar (HBD)"
   },
   "points": {
-    "get": "OBTENER PUNTOS",
+    "get": "BUY POINTS",
+    "unclaimed-points": "Unclaimed points",
+    "claim-reward-points": "Claim reward points",
+    "main-description": "Points can be used for in-app services, like Promote, Boost, Gifting. Earn them just by using Ecency apps and improve your experience.",
+    "earn-points": "How to earn more Points",
     "post-desc": "Puedes ganar puntos publicando regularmente. Publicar te da 15 puntos.",
     "comment-desc": "Cada comentario que hagas ayuda a crecer tu audiencia y a hacer amistades, pero también te da 5 puntos.",
     "checkin-desc": "Cuando te registras en Ecency te da 0.25 puntos y te ayuda a estar conectado con tus amigos.",
@@ -359,7 +363,7 @@
     "reblog-desc": "  Comparte una publicación que te gusta con tus amigos y gana 1 punto.",
     "login-desc": "Cuando inicies sesión en Ecency tienes derecho a recibir 100 puntos automáticamente.",
     "checkin-extra-desc": "El uso consistente de la aplicación te otorga más posibilidades de generar más de 10 puntos, se más activo y gana más.",
-    "delegation-desc": "Puedes ganar 1 punto por día por cada delegación de 100HP.",
+    "delegation-desc": "You can earn ~50 points per day for each 1000HP delegation.",
     "history": "Historial",
     "post-list-desc": "Puntos por publicar",
     "comment-list-desc": "Puntos por comentar",
