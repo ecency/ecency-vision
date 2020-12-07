@@ -77,6 +77,13 @@ export class NavBar extends Component<Props, State> {
         this.detect();
         window.addEventListener("scroll", this.scrollChanged);
         window.addEventListener("resize", this.scrollChanged);
+
+        // referral check / redirect
+        const {location, history} = this.props;
+        const qs = queryString.parse(location.search);
+        if (!location.pathname.startsWith("/signup") && qs.referral) {
+            history.push(`/signup?referral=${qs.referral}`)
+        }
     }
 
     componentWillUnmount() {
