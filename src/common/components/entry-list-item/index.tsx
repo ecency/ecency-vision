@@ -37,7 +37,6 @@ import EntryVotes from "../entry-votes";
 import Tooltip from "../tooltip";
 
 import parseDate from "../../helper/parse-date";
-import appName from "../../helper/app-name";
 
 import {_t} from "../../i18n";
 
@@ -105,8 +104,6 @@ export default class EntryListItem extends Component<Props> {
         const imgRow: string = (global.canUseWebp ? catchPostImage(entry, 260, 200, 'webp') : catchPostImage(entry, 260, 200)) || noImage;
 
         const summary: string = postBodySummary(entry, 200);
-
-        const app = appName(entry?.json_metadata?.app);
 
         const reputation = accountReputation(entry.author_reputation);
         const date = moment(parseDate(entry.created));
@@ -246,7 +243,6 @@ export default class EntryListItem extends Component<Props> {
                             ...this.props,
                             text: false
                         })}
-                        <div className="app">{app}</div>
                     </div>
                 </div>
             </div>
