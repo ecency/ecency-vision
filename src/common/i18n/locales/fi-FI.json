@@ -351,7 +351,11 @@
     "withdraw-hbd": "Kotiuta Hive Dollar"
   },
   "points": {
-    "get": "Lunasta pisteet",
+    "get": "BUY POINTS",
+    "unclaimed-points": "Unclaimed points",
+    "claim-reward-points": "Claim reward points",
+    "main-description": "Points can be used for in-app services, like Promote, Boost, Gifting. Earn them just by using Ecency apps and improve your experience.",
+    "earn-points": "How to earn more Points",
     "post-desc": "Voit tienata pisteitä julkaisemalla säännöllisesti. Julkaisusta saa 15 pistettä.",
     "comment-desc": "Jokainen kommenttisi helpottaa kasvattamaan yleisöäsi ja lisää kontakteja, sekä saat 5 pistettä.",
     "checkin-desc": "Ecencyyn kirjautumisesta saa 0.25 pistettä ja auttaa pysymään yhteydessä ystäviisi.",
@@ -359,7 +363,7 @@
     "reblog-desc": "  Jaa haluamasi julkaisu ystävillesi ja saat 1 pisteen.",
     "login-desc": "Ensikirjauksella Ecencyyn saat automaattisesti 100 pistettä.",
     "checkin-extra-desc": "Toistuva dappin käyttö voi johtaa 10 lisäpisteeseen, ole aktiivinen ja saat enemmän.",
-    "delegation-desc": "Voit ansaita 1 pisteen päivässä jokaisesta 100HP valtuutuksesta.",
+    "delegation-desc": "You can earn ~50 points per day for each 1000HP delegation.",
     "history": "Historia",
     "post-list-desc": "Pisteitä julkaisuista",
     "comment-list-desc": "Pisteitä kommenteista",
