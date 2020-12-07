@@ -275,62 +275,68 @@ export class WalletEcency extends Component<Props, State> {
                                 </div>
                             </div>
 
-                            {isMyPage && (
-                                <div className="get-points">
-                                    <a href="#" onClick={this.togglePurchase}> {_t('points.get')}</a>
+                            <div className="earn-points">
+                                <div className="earn-points-title">
+                                    {_t("points.earn-points")}
                                 </div>
-                            )}
+                                <div className="earn-points-content">
+                                    <div className="point-reward-types">
+                                        <Tooltip content={_t('points.post-desc')}>
+                                            <div className="point-reward-type">
+                                                {pencilOutlineSvg}
+                                                <span className="reward-num">15</span>
+                                            </div>
+                                        </Tooltip>
+                                        <Tooltip content={_t('points.comment-desc')}>
+                                            <div className="point-reward-type">
+                                                {commentSvg}
+                                                <span className="reward-num">5</span>
+                                            </div>
+                                        </Tooltip>
+                                        <Tooltip content={_t('points.vote-desc')}>
+                                            <div className="point-reward-type">
+                                                {chevronUpSvg}
+                                                <span className="reward-num">0.3</span>
+                                            </div>
+                                        </Tooltip>
+                                        <Tooltip content={_t('points.reblog-desc')}>
+                                            <div className="point-reward-type">
+                                                {repeatSvg}
+                                                <span className="reward-num">1</span>
+                                            </div>
+                                        </Tooltip>
+                                        <Tooltip content={_t('points.checkin-desc')}>
+                                            <div className="point-reward-type">
+                                                {starOutlineSvg}
+                                                <span className="reward-num">0.25</span>
+                                            </div>
+                                        </Tooltip>
+                                        <Tooltip content={_t('points.login-desc')}>
+                                            <div className="point-reward-type">
+                                                {accountOutlineSvg}
+                                                <span className="reward-num">10</span>
+                                            </div>
+                                        </Tooltip>
+                                        <Tooltip content={_t('points.checkin-extra-desc')}>
+                                            <div className="point-reward-type">
+                                                {checkAllSvg}
+                                                <span className="reward-num">10</span>
+                                            </div>
+                                        </Tooltip>
+                                        <Tooltip content={_t('points.delegation-desc')}>
+                                            <div className="point-reward-type">
+                                                {ticketSvg}
+                                                <span className="reward-num">5</span>
+                                            </div>
+                                        </Tooltip>
+                                    </div>
 
-
-                            <div className="point-reward-types">
-                                <Tooltip content={_t('points.post-desc')}>
-                                    <div className="point-reward-type">
-                                        {pencilOutlineSvg}
-                                        <span className="reward-num">15</span>
-                                    </div>
-                                </Tooltip>
-                                <Tooltip content={_t('points.comment-desc')}>
-                                    <div className="point-reward-type">
-                                        {commentSvg}
-                                        <span className="reward-num">5</span>
-                                    </div>
-                                </Tooltip>
-                                <Tooltip content={_t('points.vote-desc')}>
-                                    <div className="point-reward-type">
-                                        {chevronUpSvg}
-                                        <span className="reward-num">0.3</span>
-                                    </div>
-                                </Tooltip>
-                                <Tooltip content={_t('points.reblog-desc')}>
-                                    <div className="point-reward-type">
-                                        {repeatSvg}
-                                        <span className="reward-num">1</span>
-                                    </div>
-                                </Tooltip>
-                                <Tooltip content={_t('points.checkin-desc')}>
-                                    <div className="point-reward-type">
-                                        {starOutlineSvg}
-                                        <span className="reward-num">0.25</span>
-                                    </div>
-                                </Tooltip>
-                                <Tooltip content={_t('points.login-desc')}>
-                                    <div className="point-reward-type">
-                                        {accountOutlineSvg}
-                                        <span className="reward-num">10</span>
-                                    </div>
-                                </Tooltip>
-                                <Tooltip content={_t('points.checkin-extra-desc')}>
-                                    <div className="point-reward-type">
-                                        {checkAllSvg}
-                                        <span className="reward-num">10</span>
-                                    </div>
-                                </Tooltip>
-                                <Tooltip content={_t('points.delegation-desc')}>
-                                    <div className="point-reward-type">
-                                        {ticketSvg}
-                                        <span className="reward-num">5</span>
-                                    </div>
-                                </Tooltip>
+                                    {isMyPage && (
+                                        <div className="get-points">
+                                            <a href="#" onClick={this.togglePurchase}> {_t('points.get')}</a>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
 
                             {points.transactions.length > 0 && (

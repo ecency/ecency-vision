@@ -1,77 +1,132 @@
 .wallet-ecency {
   @include wallet;
 
-  .get-points {
-    margin-top: 50px;
-    text-align: center;
-    font-size: 20px;
+  .earn-points {
+    border-radius: 12px;
+    margin-bottom: 20px;
+    padding: 20px 10px;
 
-    a {
+    @include themify(day) {
+      background: darken($white-two, 1);
+    }
+
+    @include themify(night) {
+      background: $dark-two;
+    }
+
+    .earn-points-title {
       font-weight: 500;
+      margin-bottom: 16px;
+      text-align: center;
 
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
-
-  .point-reward-types {
-    margin: 50px auto;
-    cursor: default;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 10px;
-    max-width: 320px;
-
-    @media (min-width: $sm-break) {
-      grid-template-columns: repeat(8, 1fr);
-      max-width: 520px;
-    }
-
-    @media (min-width: $lg-break) {
-      width: 600px;
-      max-width: none;
-    }
-
-    .point-reward-type {
-      align-items: center;
-      border-radius: 50%;
-      display: inline-flex;
-      height: 40px;
-      justify-content: center;
-      width: 40px;
-      color: $warm-grey;
-      position: relative;
-      margin: auto;
-
-      svg {
-        height: 18px;
+      @media (min-width: $lg-break) {
+        text-align: initial;
       }
 
       @include themify(day) {
-        background: $white-three;
-        color: $steel-grey;
+        color: $charcoal-grey;
       }
 
       @include themify(night) {
-        background: $metallic-blue;
-        color: lighten($metallic-blue, 40);
+        color: $powder-blue;
+      }
+    }
+
+    .earn-points-content {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      @media (min-width: $lg-break) {
+        flex-direction: row;
       }
 
-      .reward-num {
-        background: $dark-sky-blue;
-        position: absolute;
-        right: -30%;
-        bottom: 0;
-        color: $white;
-        font-size: 10px;
-        border-radius: 24px;
-        width: 24px;
-        padding: 1px 0;
-        text-align: center;
+      .point-reward-types {
+        flex-grow: 0;
+        flex-shrink: 0;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+
+        @media (min-width: $lg-break) {
+          justify-content: flex-start;
+          flex-grow: 1;
+          flex-shrink: 0;
+          margin-bottom: 0;
+        }
+
+        .point-reward-type {
+          align-items: center;
+          border-radius: 50%;
+          height: 40px;
+          justify-content: center;
+          width: 40px;
+          color: $warm-grey;
+          position: relative;
+          display: inline-flex;
+          margin-bottom: 20px;
+
+          &:not(:last-child) {
+            margin-right: 20px;
+          }
+
+          @media (min-width: $lg-break) {
+            margin-bottom: 0;
+
+            &:not(:last-child) {
+              margin-right: 30px;
+            }
+          }
+
+          svg {
+            height: 18px;
+          }
+
+          @include themify(day) {
+            background: $white;
+            color: $steel-grey;
+          }
+
+          @include themify(night) {
+            background: $metallic-blue;
+            color: lighten($metallic-blue, 40);
+          }
+
+          .reward-num {
+            background: $dark-sky-blue;
+            position: absolute;
+            right: -30%;
+            bottom: 0;
+            color: $white;
+            font-size: 10px;
+            border-radius: 24px;
+            width: 24px;
+            padding: 1px 0;
+            text-align: center;
+          }
+        }
+      }
+
+      .get-points {
+        flex-grow: 1;
+        flex-shrink: 0;
+
+        @media (min-width: $lg-break) {
+          text-align: right;
+        }
+
+        a {
+          font-weight: 500;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
       }
     }
   }
+
 
   .p-transaction-list {
     margin: 0 0 20px 0;
