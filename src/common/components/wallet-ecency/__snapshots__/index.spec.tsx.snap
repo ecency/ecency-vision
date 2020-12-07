@@ -40,18 +40,18 @@ exports[`(1) Default Render 1`] = `
         </div>
       </div>
       <div
-        className="earn-points"
+        className="get-points"
       >
         <div
-          className="earn-points-title"
-        >
-          How to earn more Points
-        </div>
-        <div
-          className="earn-points-content"
+          className="points-types"
         >
           <div
-            className="point-reward-types"
+            className="points-types-title"
+          >
+            How to earn more Points
+          </div>
+          <div
+            className="points-types-list"
           >
             <div
               className="point-reward-type"
@@ -418,18 +418,18 @@ exports[`(2) With active user 1`] = `
         </div>
       </div>
       <div
-        className="earn-points"
+        className="get-points"
       >
         <div
-          className="earn-points-title"
-        >
-          How to earn more Points
-        </div>
-        <div
-          className="earn-points-content"
+          className="points-types"
         >
           <div
-            className="point-reward-types"
+            className="points-types-title"
+          >
+            How to earn more Points
+          </div>
+          <div
+            className="points-types-list"
           >
             <div
               className="point-reward-type"
@@ -576,17 +576,17 @@ exports[`(2) With active user 1`] = `
               </span>
             </div>
           </div>
-          <div
-            className="get-points"
+        </div>
+        <div
+          className="buy-points"
+        >
+          <a
+            href="#"
+            onClick={[Function]}
           >
-            <a
-              href="#"
-              onClick={[Function]}
-            >
-               
-              BUY POINTS
-            </a>
-          </div>
+             
+            BUY POINTS
+          </a>
         </div>
       </div>
       <div
@@ -839,18 +839,18 @@ exports[`(3) Active user with unclaimed points 1`] = `
         </div>
       </div>
       <div
-        className="earn-points"
+        className="get-points"
       >
         <div
-          className="earn-points-title"
-        >
-          How to earn more Points
-        </div>
-        <div
-          className="earn-points-content"
+          className="points-types"
         >
           <div
-            className="point-reward-types"
+            className="points-types-title"
+          >
+            How to earn more Points
+          </div>
+          <div
+            className="points-types-list"
           >
             <div
               className="point-reward-type"
@@ -997,17 +997,17 @@ exports[`(3) Active user with unclaimed points 1`] = `
               </span>
             </div>
           </div>
-          <div
-            className="get-points"
+        </div>
+        <div
+          className="buy-points"
+        >
+          <a
+            href="#"
+            onClick={[Function]}
           >
-            <a
-              href="#"
-              onClick={[Function]}
-            >
-               
-              BUY POINTS
-            </a>
-          </div>
+             
+            BUY POINTS
+          </a>
         </div>
       </div>
       <div

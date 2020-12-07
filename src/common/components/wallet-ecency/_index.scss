@@ -1,10 +1,12 @@
 .wallet-ecency {
   @include wallet;
 
-  .earn-points {
+  .get-points {
     border-radius: 12px;
     margin-bottom: 20px;
     padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
 
     @include themify(day) {
       background: darken($white-two, 1);
@@ -14,38 +16,35 @@
       background: $dark-two;
     }
 
-    .earn-points-title {
-      font-weight: 500;
-      margin-bottom: 16px;
-      text-align: center;
-
-      @media (min-width: $lg-break) {
-        text-align: initial;
-      }
-
-      @include themify(day) {
-        color: $charcoal-grey;
-      }
-
-      @include themify(night) {
-        color: $powder-blue;
-      }
+    @media (min-width: $lg-break) {
+      flex-direction: row;
     }
 
-    .earn-points-content {
-      display: flex;
-      align-items: center;
-      flex-direction: column;
+    .points-types {
+      .points-types-title {
+        font-weight: 500;
+        margin-bottom: 16px;
+        text-align: center;
 
-      @media (min-width: $lg-break) {
-        flex-direction: row;
+        @media (min-width: $lg-break) {
+          text-align: initial;
+        }
+
+        @include themify(day) {
+          color: $charcoal-grey;
+        }
+
+        @include themify(night) {
+          color: $powder-blue;
+        }
       }
 
-      .point-reward-types {
+      .points-types-list {
         flex-grow: 0;
         flex-shrink: 0;
         display: flex;
         justify-content: center;
+        align-items: center;
         flex-wrap: wrap;
         margin-bottom: 20px;
 
@@ -107,26 +106,28 @@
           }
         }
       }
+    }
 
-      .get-points {
-        flex-grow: 1;
-        flex-shrink: 0;
+    .buy-points {
+      flex-grow: 1;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-        @media (min-width: $lg-break) {
-          text-align: right;
-        }
+      @media (min-width: $lg-break) {
+        justify-content: flex-end;
+      }
 
-        a {
-          font-weight: 500;
+      a {
+        font-weight: 500;
 
-          &:hover {
-            text-decoration: underline;
-          }
+        &:hover {
+          text-decoration: underline;
         }
       }
     }
   }
-
 
   .p-transaction-list {
     margin: 0 0 20px 0;

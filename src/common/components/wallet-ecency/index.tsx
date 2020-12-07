@@ -275,12 +275,10 @@ export class WalletEcency extends Component<Props, State> {
                                 </div>
                             </div>
 
-                            <div className="earn-points">
-                                <div className="earn-points-title">
-                                    {_t("points.earn-points")}
-                                </div>
-                                <div className="earn-points-content">
-                                    <div className="point-reward-types">
+                            <div className="get-points">
+                                <div className="points-types">
+                                    <div className="points-types-title">{_t("points.earn-points")}</div>
+                                    <div className="points-types-list">
                                         <Tooltip content={_t('points.post-desc')}>
                                             <div className="point-reward-type">
                                                 {pencilOutlineSvg}
@@ -330,13 +328,12 @@ export class WalletEcency extends Component<Props, State> {
                                             </div>
                                         </Tooltip>
                                     </div>
-
-                                    {isMyPage && (
-                                        <div className="get-points">
-                                            <a href="#" onClick={this.togglePurchase}> {_t('points.get')}</a>
-                                        </div>
-                                    )}
                                 </div>
+                                {isMyPage && (
+                                    <div className="buy-points">
+                                        <a href="#" onClick={this.togglePurchase}> {_t('points.get')}</a>
+                                    </div>
+                                )}
                             </div>
 
                             {points.transactions.length > 0 && (
