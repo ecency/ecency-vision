@@ -136,7 +136,6 @@ class SearchListItem extends Component<Props> {
                         entry,
                         children: <a className="result-replies">{commentSvg} {res.children}</a>
                     })}
-                    <div className="app">{res.app}</div>
                 </div>
             </div>
         </div>
