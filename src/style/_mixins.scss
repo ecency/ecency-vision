@@ -279,24 +279,6 @@
           }
         }
       }
-
-      .app {
-        display: none;
-        flex-grow: 1;
-        text-align: right;
-
-        @media (min-width: $sm-break) {
-          display: block;
-        }
-
-        @include themify(day) {
-          color: $silver;
-        }
-
-        @include themify(night) {
-          color: $gunmetal;
-        }
-      }
     }
   }
 }
