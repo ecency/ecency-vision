@@ -49,7 +49,7 @@ exports[`(1) Default Render 1`] = `
           className="balance-values"
         >
           <div
-            className="amount estimated-value"
+            className="amount amount-bold"
           >
             $ 11,264.462
           </div>
@@ -110,10 +110,10 @@ exports[`(1) Default Render 1`] = `
             42,924.395 HP
           </div>
           <div
-            className="amount received-shares"
+            className="amount amount-passive received-shares"
           >
             <span
-              className="btn-delegatee"
+              className="amount-btn"
               onClick={[Function]}
               title="Received Hive Power"
             >
@@ -121,7 +121,7 @@ exports[`(1) Default Render 1`] = `
             </span>
           </div>
           <div
-            className="amount next-power-down-amount"
+            className="amount amount-passive next-power-down-amount"
           >
             <span
               title="Next power down amount"
