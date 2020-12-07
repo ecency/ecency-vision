@@ -11,13 +11,15 @@ import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 import LinearProgress from "../linear-progress";
 
-import {getFollowing, getFollowers, getAccounts} from "../../api/hive";
+import {getFollowing, getFollowers, getAccounts, getAccount} from "../../api/hive";
+import {getRelationshipBetweenAccounts} from "../../api/bridge";
 
 import {_t} from "../../i18n";
 
 interface Friend {
     name: string;
     fullName?: string;
+    reputation: string | number;
 }
 
 interface ListProps {
@@ -55,17 +57,10 @@ export class List extends Component<ListProps, ListState> {
         this._mounted = false;
     }
 
-    stateSet = (obj: {}, cb: () => void = () => {
-    }) => {
+    stateSet = (state: {}, cb?: () => void) => {
         if (this._mounted) {
-            this.setState(obj, cb);
+            this.setState(state, cb);
         }
-    };
-
-    loadFn = () => {
-        const {mode} = this.props;
-
-        return mode === "following" ? getFollowing : getFollowers;
     };
 
     fKey = () => {
@@ -75,9 +70,11 @@ export class List extends Component<ListProps, ListState> {
     };
 
     fetch = async (start = "", limit = loadLimit): Promise<Friend[]> => {
-        const {account} = this.props;
+        const {account, mode} = this.props;
 
-        return this.loadFn()(account.name, start, "blog", limit)
+        const loadFn = (mode === "following" ? getFollowing : getFollowers);
+
+        return loadFn(account.name, start, "blog", limit)
             .then((resp) => {
                 const accountNames = resp.map((e) => e[this.fKey()]);
                 return getAccounts(accountNames).then((resp2) => resp2);
@@ -86,6 +83,7 @@ export class List extends Component<ListProps, ListState> {
                 accounts.map((a) => ({
                     name: a.name,
                     fullName: a.profile?.name || "",
+                    reputation: a.reputation!
                 }))
             );
     };
@@ -140,12 +138,28 @@ export class List extends Component<ListProps, ListState> {
 
         this.stateSet({loading: true});
 
-        let data: Friend[];
+        const {account, mode} = this.props;
+
+        const follower = (mode === "following" ? account.name : search);
+        const following = (mode === "following" ? search : account.name);
+
+        let connection: boolean;
+        let ac: Account | null = null;
         try {
-            data = await this.fetch(search.replace("@", ""), 1);
+            const resp = await getRelationshipBetweenAccounts(follower, following);
+            connection = !!(resp && resp.follows);
+            if (connection) {
+                ac = await getAccount(search);
+            }
         } catch (e) {
-            data = [];
+            connection = false;
         }
+
+        const data: Friend[] = (connection && ac) ? [{
+            name: ac.name,
+            fullName: ac.profile?.name || "",
+            reputation: ac.reputation!
+        }] : [];
 
         this.stateSet({
             data,
