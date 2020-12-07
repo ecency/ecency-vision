@@ -131,69 +131,69 @@
     "curators-payout": "Ricompensa dei Curatori",
     "payout-date": "Ricompensa",
     "beneficiary": "Beneficiari",
-    "breakdown": "Breakdown"
+    "breakdown": "Guadagni Ripartiti"
   },
   "entry-index": {
     "feed": "Feed",
-    "tags": "Popular",
-    "title": "{{f}} topics",
-    "description": "{{f}} topics on a social network owned and operated by its users.",
-    "description-tag": "{{f}} #{{t}} topics",
-    "description-user-feed": "{{u}}'s feed"
+    "tags": "Popolari",
+    "title": "Argomenti {{f}}",
+    "description": "Argomenti {{f}} su un social network di proprietà e gestito dai suoi utenti.",
+    "description-tag": "#{{t}} negli argomenti {{f}}",
+    "description-user-feed": "Feed di {{u}}"
   },
   "market-data": {
-    "title": "Market price",
-    "credits": "market data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
+    "title": "Prezzo di Mercato",
+    "credits": "dati ricavati da <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "list-style": {
-    "title": "Toggle list style"
+    "title": "Cambia tipo di elenco"
   },
   "entry-votes": {
-    "title": "1 Vote",
-    "title-n": "{{n}} Votes",
-    "title-empty": "No Votes",
-    "voter": "Voter",
-    "percent": "Percent",
-    "reward": "Reward",
-    "time": "Time"
+    "title": "1 Voto",
+    "title-n": "{{n}} Voti",
+    "title-empty": "Nessun Voto",
+    "voter": "Votanti",
+    "percent": "Percentuale",
+    "reward": "Ricompensa",
+    "time": "Ora"
   },
   "entry": {
-    "via-app": "via <span class=\"app-name\">{{app}}</span>",
-    "comment-entry-title": "You are viewing a single comment's thread from: ",
-    "comment-entry-go-root": "View the full context",
-    "comment-entry-go-parent": "View the direct parent",
-    "show-history": "Show edit history",
-    "hidden-warning": "This post was hidden due to low ratings."
+    "via-app": "attraverso <span class=\"app-name\">{{app}}</span>",
+    "comment-entry-title": "Stai guardando un singolo thread del commento da: ",
+    "comment-entry-go-root": "Vedi l'intero Post",
+    "comment-entry-go-parent": "Vedi commento genitore",
+    "show-history": "Mostra la cronologia delle modifiche",
+    "hidden-warning": "Questo post è stato nascosto a causa dello scarso punteggio qualità."
   },
   "edit-history": {
-    "title": "Edit History",
-    "show-diff": "Show Difference",
-    "version": "Version {{n}}"
+    "title": "Modifica cronologia",
+    "show-diff": "Mostra la differenza",
+    "version": "Versione {{n}}"
   },
   "similar-entries": {
-    "title": "Recent posts by @{{n}}"
+    "title": "Post recenti di @{{n}}"
   },
   "comment": {
-    "body-placeholder": "Write your reply here",
-    "preview": "Preview"
+    "body-placeholder": "Scrivi la tua risposta qui",
+    "preview": "Anteprima"
   },
   "discussion": {
-    "join": "Join the conversion now",
-    "btn-join": "Join",
-    "replies": "1 Comment",
-    "n-replies": "{{n}} Comments",
-    "order": "Sort Order",
-    "order-trending": "Trending",
-    "order-reputation": "Reputation",
-    "order-votes": "Votes",
-    "order-created": "Age",
-    "read-more": "...read more replies...",
-    "reveal": "Reveal comment"
+    "join": "Partecipa al Cambiamento Ora",
+    "btn-join": "Partecipa",
+    "replies": "1 Commento",
+    "n-replies": "{{n}} Commenti",
+    "order": "Ordinamento",
+    "order-trending": "Di Tendenza",
+    "order-reputation": "Reputazione",
+    "order-votes": "Voti",
+    "order-created": "Età",
+    "read-more": "...leggi più commenti...",
+    "reveal": "Mostra commento"
   },
   "community": {
-    "page-description": "{{f}} topics",
-    "subscribe": "Subscribe",
-    "subscribed": "Joined",
+    "page-description": "Argomenti {{f}}",
+    "subscribe": "Iscriviti",
+    "subscribed": "Iscritto",
     "unsubscribe": "Leave",
     "post": "New Post",
     "posts": "Posts",
