@@ -442,7 +442,7 @@
     "success-sub-title": "Transaction successful"
   },
   "transactions": {
-    "title": "History",
+    "title": "Histórico",
     "type-curation_reward": "Curation Reward",
     "type-author_reward": "Author Reward",
     "type-comment_benefactor_reward": "Comment Benefactor Reward",
