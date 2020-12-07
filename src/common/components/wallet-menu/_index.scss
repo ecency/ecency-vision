@@ -1,6 +1,4 @@
 .wallet-menu {
-
-
   display: flex;
   flex-shrink: 0;
   flex-direction: row;
@@ -9,7 +7,7 @@
   @media (min-width: $xl-break) {
     padding: 0 10px;
     flex-direction: column;
-    width: 200px;
+    width: 240px;
     justify-content: flex-start;
   }
 
@@ -26,6 +24,7 @@
 
     @media (min-width: $xl-break) {
       width: auto;
+      margin-left: 10px;
     }
 
     @include themify(day) {
