@@ -126,11 +126,11 @@
   },
   "entry-payout": {
     "pending-payout": "Pagamento in Attesa",
-    "promoted": "Promoted",
-    "author-payout": "Author Payout",
-    "curators-payout": "Curators Payout",
-    "payout-date": "Payout",
-    "beneficiary": "Beneficiary",
+    "promoted": "Promosso",
+    "author-payout": "Ricompensa dell'Autore",
+    "curators-payout": "Ricompensa dei Curatori",
+    "payout-date": "Ricompensa",
+    "beneficiary": "Beneficiari",
     "breakdown": "Breakdown"
   },
   "entry-index": {
