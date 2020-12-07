@@ -21,7 +21,7 @@ exports[`(1) Default render 1`] = `
         <label
           className="form-label"
         >
-          Notifications alerts
+          Notification alerts
         </label>
         <select
           className="form-control"
