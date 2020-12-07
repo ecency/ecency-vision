@@ -4,7 +4,6 @@
   }
 }
 
-
 @mixin entry-list-item {
   margin-top: 20px;
   padding: 0 6px 16px 6px;
@@ -301,7 +300,6 @@
   }
 }
 
-
 @mixin btn-vote {
   align-items: center;
   border-radius: 50%;
@@ -524,6 +522,187 @@
 
       @include themify(night) {
         background: darken($dark-grey-blue, 4);
+      }
+    }
+  }
+}
+
+@mixin wallet {
+  margin-top: 20px;
+
+  .wallet-main {
+    display: flex;
+    flex-direction: column-reverse;
+
+    @media (min-width: $xl-break) {
+      flex-direction: row;
+    }
+
+    .wallet-info {
+      flex-grow: 1;
+
+      .unclaimed-rewards {
+        align-items: center;
+        display: flex;
+        margin-bottom: 20px;
+
+        .title {
+          font-size: 18px;
+          font-weight: 700;
+          margin-right: 17px;
+
+          @include themify(day) {
+            color: $steel-grey;
+          }
+
+          @include themify(night) {
+            color: $metallic-blue;
+          }
+        }
+
+        .rewards {
+          align-items: center;
+          background-color: $dark-sky-blue;
+          border-radius: 25px;
+          color: $white;
+          display: flex;
+          font-weight: 700;
+          height: 51px;
+          padding: 0 12px 0 24px;
+
+          .reward-type {
+            margin-right: 5px;
+
+            &:last-of-type {
+              margin-right: 12px;
+            }
+          }
+
+          .claim-btn {
+            color: $white;
+            cursor: pointer;
+
+            svg {
+              height: 26px;
+            }
+
+            &:hover {
+              color: lighten($dark-sky-blue, 30);
+            }
+
+            &.in-progress {
+              animation: anim-fadein-out 2s infinite;
+              pointer-events: none;
+            }
+          }
+        }
+      }
+
+      .balance-row {
+        border-radius: 12px;
+        margin-bottom: 20px;
+        padding: 20px 10px;
+        display: flex;
+        justify-content: space-around;
+        cursor: default;
+        align-items: center;
+        flex-direction: column;
+
+        @media (min-width: $lg-break) {
+          flex-direction: row;
+        }
+
+        .balance-info {
+          flex-grow: 1;
+          margin-bottom: 20px;
+          text-align: center;
+
+          @media (min-width: $lg-break) {
+            margin-bottom: 0;
+            text-align: initial;
+          }
+
+          .title {
+            font-weight: 500;
+            margin-bottom: 10px;
+
+            @include themify(day) {
+              color: $charcoal-grey;
+            }
+
+            @include themify(night) {
+              color: $powder-blue;
+            }
+          }
+
+          .description {
+            font-size: 94%;
+            color: $steel-grey;
+            line-height: 1.5;
+            max-width: 500px;
+          }
+        }
+
+        .balance-values {
+          color: $dark-sky-blue;
+          font-weight: 500;
+          display: flex;
+          flex-direction: column;
+
+          .amount {
+            display: flex;
+            justify-content: center;
+            font-size: 18px;
+            align-items: center;
+            position: relative;
+
+            .amount-actions {
+              margin-right: 6px;
+
+              @media (max-width: $lg-break - 1px) {
+                position: absolute;
+                right: -80px;
+                top: -3px;
+              }
+            }
+
+            @media (min-width: $lg-break) {
+              justify-content: flex-end;
+              font-size: initial;
+            }
+
+            &:not(:last-child) {
+              margin-bottom: 12px;
+            }
+
+            &.amount-bold {
+              background-color: $dark-sky-blue;
+              color: $white;
+              padding: 2px 4px;
+              border-radius: 6px;
+              font-size: 20px;
+            }
+
+            &.amount-passive {
+              color: $steel-grey;
+            }
+
+            .amount-btn {
+              border-bottom: 1px dashed $steel-grey;
+              cursor: pointer;
+            }
+          }
+        }
+
+        &.alternative {
+          @include themify(day) {
+            background: darken($white-two, 1);
+          }
+
+          @include themify(night) {
+            background: $dark-two;
+          }
+        }
       }
     }
   }
