@@ -1,148 +1,74 @@
 .wallet-ecency {
-  margin-top: 20px;
+  @include wallet;
 
-  .wallet-main {
-    display: flex;
-    flex-direction: column-reverse;
+  .get-points {
+    margin-top: 50px;
+    text-align: center;
+    font-size: 20px;
 
-    @media (min-width: $xl-break) {
-      flex-direction: row;
+    a {
+      font-weight: 500;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .point-reward-types {
+    margin: 50px auto;
+    cursor: default;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    max-width: 320px;
+
+    @media (min-width: $sm-break) {
+      grid-template-columns: repeat(8, 1fr);
+      max-width: 520px;
     }
 
-    .wallet-info {
-      flex-grow: 1;
+    @media (min-width: $lg-break) {
+      width: 600px;
+      max-width: none;
+    }
 
-      .points {
-        margin-bottom: 30px;
-        text-align: center;
+    .point-reward-type {
+      align-items: center;
+      border-radius: 50%;
+      display: inline-flex;
+      height: 40px;
+      justify-content: center;
+      width: 40px;
+      color: $warm-grey;
+      position: relative;
+      margin: auto;
 
-        .points-val {
-          color: $dark-sky-blue;
-          display: inline-flex;
-          margin-bottom: 10px;
-          cursor: default;
-          position: relative;
-
-          .val {
-            font-size: 28px;
-            font-weight: 500;
-          }
-        }
-
-        .point-name {
-          font-weight: 700;
-          margin-bottom: 10px;
-
-          @include themify(day) {
-            color: darken($silver, 10);
-          }
-
-          @include themify(night) {
-            color: $metallic-blue;
-          }
-        }
-
-        .unclaimed {
-          align-items: center;
-          background-color: $dark-sky-blue;
-          border-radius: 25px;
-          color: $white;
-          display: inline-flex;
-          height: 51px;
-          margin-top: 10px;
-          padding: 0 24px;
-
-          .val {
-            font-size: 18px;
-            font-weight: 500;
-          }
-
-          .claim-btn {
-            color: $white;
-
-            svg {
-              height: 26px;
-            }
-
-            &:hover {
-              color: lighten($dark-sky-blue, 30);
-            }
-
-            &.in-progress {
-              animation: claiming-color-change 5s infinite;
-              pointer-events: none;
-            }
-          }
-
-
-          &.can-claim {
-            .val {
-              margin-right: 10px;
-            }
-          }
-        }
-
-        .get-estm {
-          margin: 10px 0;
-        }
+      svg {
+        height: 18px;
       }
 
-      .point-reward-types {
-        margin: 0 auto 50px auto;
-        cursor: default;
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        grid-gap: 10px;
-        max-width: 320px;
+      @include themify(day) {
+        background: $white-three;
+        color: $steel-grey;
+      }
 
-        @media (min-width: $sm-break) {
-          grid-template-columns: repeat(8, 1fr);
-          max-width: 520px;
-        }
+      @include themify(night) {
+        background: $metallic-blue;
+        color: lighten($metallic-blue, 40);
+      }
 
-        @media (min-width: $lg-break) {
-          width: 600px;
-          max-width: none;
-        }
-
-        .point-reward-type {
-          align-items: center;
-          border-radius: 50%;
-          display: inline-flex;
-          height: 40px;
-          justify-content: center;
-          width: 40px;
-          color: $warm-grey;
-          position: relative;
-          margin: auto;
-
-          svg {
-            height: 18px;
-          }
-
-          @include themify(day) {
-            background: $white-three;
-            color: $steel-grey;
-          }
-
-          @include themify(night) {
-            background: $metallic-blue;
-            color: lighten($metallic-blue, 40);
-          }
-
-          .reward-num {
-            background: $dark-sky-blue;
-            position: absolute;
-            right: -30%;
-            bottom: 0;
-            color: $white;
-            font-size: 10px;
-            border-radius: 24px;
-            width: 24px;
-            padding: 1px 0;
-            text-align: center;
-          }
-        }
+      .reward-num {
+        background: $dark-sky-blue;
+        position: absolute;
+        right: -30%;
+        bottom: 0;
+        color: $white;
+        font-size: 10px;
+        border-radius: 24px;
+        width: 24px;
+        padding: 1px 0;
+        text-align: center;
       }
     }
   }

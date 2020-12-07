@@ -547,9 +547,13 @@
         margin-bottom: 20px;
 
         .title {
-          font-size: 18px;
           font-weight: 700;
-          margin-right: 17px;
+          margin-right: 10px;
+
+          @media (min-width: $sm-break) {
+            font-size: 18px;
+            margin-right: 16px;
+          }
 
           @include themify(day) {
             color: $steel-grey;
@@ -568,7 +572,11 @@
           display: flex;
           font-weight: 700;
           height: 51px;
-          padding: 0 12px 0 24px;
+          padding: 0 6px 0 12px;
+
+          @media (min-width: $sm-break) {
+            padding: 0 12px 0 24px;
+          }
 
           .reward-type {
             margin-right: 5px;

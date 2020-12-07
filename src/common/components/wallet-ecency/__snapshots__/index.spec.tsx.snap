@@ -11,26 +11,33 @@ exports[`(1) Default Render 1`] = `
       className="wallet-info"
     >
       <div
-        className="points"
+        className="balance-row alternative"
       >
         <div
-          className="point-name"
-        >
-          Ecency Points
-        </div>
-        <div
-          className="points-val"
+          className="balance-info"
         >
           <div
-            className="val"
+            className="title"
           >
-            12.010
-             POINTS
+            Ecency Points
+          </div>
+          <div
+            className="description"
+          >
+            A description text here lorem ipsum dolor sit amet.
           </div>
         </div>
         <div
-          className="clearfix"
-        />
+          className="balance-values"
+        >
+          <div
+            className="amount"
+          >
+            12.010
+             
+            POINTS
+          </div>
+        </div>
       </div>
       <div
         className="point-reward-types"
@@ -337,81 +344,76 @@ exports[`(2) With active user 1`] = `
       className="wallet-info"
     >
       <div
-        className="points"
+        className="balance-row alternative"
       >
         <div
-          className="point-name"
-        >
-          Ecency Points
-        </div>
-        <div
-          className="points-val"
+          className="balance-info"
         >
           <div
-            className="val"
+            className="title"
           >
-            12.010
-             POINTS
+            Ecency Points
           </div>
           <div
-            className="custom-dropdown float-right"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
+            className="description"
+          >
+            A description text here lorem ipsum dolor sit amet.
+          </div>
+        </div>
+        <div
+          className="balance-values"
+        >
+          <div
+            className="amount"
           >
             <div
-              className="dropdown-btn "
+              className="amount-actions"
             >
               <div
-                className="label"
+                className="custom-dropdown float-right"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
               >
-                
-              </div>
-              <div
-                className="menu-down"
-              >
-                <svg
-                  viewBox="0 0 24 24"
+                <div
+                  className="dropdown-btn "
                 >
-                  <path
-                    d="M7,10L12,15L17,10H7Z"
-                    fill="currentColor"
-                  />
-                </svg>
+                  <div
+                    className="label"
+                  >
+                    
+                  </div>
+                  <div
+                    className="menu-down"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M7,10L12,15L17,10H7Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </div>
+                </div>
               </div>
             </div>
+            12.010
+             
+            POINTS
           </div>
         </div>
-        <div
-          className="clearfix"
-        />
-        <div
-          className="unclaimed can-claim"
+      </div>
+      <div
+        className="get-points"
+      >
+        <a
+          href="#"
+          onClick={[Function]}
         >
-          <div
-            className="val"
-          >
-            <div
-              className="val"
-            >
-              GET POINTS
-            </div>
-          </div>
-          <a
-            className="claim-btn "
-            href="#"
-            onClick={[Function]}
-          >
-            <svg
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M17,13H13V17H11V13H7V11H11V7H13V11H17M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
-                fill="currentColor"
-              />
-            </svg>
-          </a>
-        </div>
+           
+          GET POINTS +
+        </a>
       </div>
       <div
         className="point-reward-types"
@@ -718,70 +720,25 @@ exports[`(3) Active user with unclaimed points 1`] = `
       className="wallet-info"
     >
       <div
-        className="points"
+        className="unclaimed-rewards"
       >
         <div
-          className="point-name"
+          className="title"
         >
-          Ecency Points
+          Unclaimed points
         </div>
         <div
-          className="points-val"
+          className="rewards"
         >
-          <div
-            className="val"
+          <span
+            className="reward-type"
           >
-            12.010
-             POINTS
-          </div>
-          <div
-            className="custom-dropdown float-right"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-          >
-            <div
-              className="dropdown-btn "
-            >
-              <div
-                className="label"
-              >
-                
-              </div>
-              <div
-                className="menu-down"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M7,10L12,15L17,10H7Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          className="clearfix"
-        />
-        <div
-          className="unclaimed can-claim"
-        >
-          <div
-            className="val"
-          >
-            <div
-              className="val"
-            >
-              6.200
-            </div>
-          </div>
+            6.200
+          </span>
           <a
             className="claim-btn "
-            href="#"
             onClick={[Function]}
+            title="Claim reward points"
           >
             <svg
               viewBox="0 0 24 24"
@@ -793,19 +750,78 @@ exports[`(3) Active user with unclaimed points 1`] = `
             </svg>
           </a>
         </div>
+      </div>
+      <div
+        className="balance-row alternative"
+      >
         <div
-          className="clearfix"
-        />
-        <div
-          className="get-estm"
+          className="balance-info"
         >
-          <a
-            href="#"
-            onClick={[Function]}
+          <div
+            className="title"
           >
-            GET POINTS
-          </a>
+            Ecency Points
+          </div>
+          <div
+            className="description"
+          >
+            A description text here lorem ipsum dolor sit amet.
+          </div>
         </div>
+        <div
+          className="balance-values"
+        >
+          <div
+            className="amount"
+          >
+            <div
+              className="amount-actions"
+            >
+              <div
+                className="custom-dropdown float-right"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+              >
+                <div
+                  className="dropdown-btn "
+                >
+                  <div
+                    className="label"
+                  >
+                    
+                  </div>
+                  <div
+                    className="menu-down"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M7,10L12,15L17,10H7Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+            12.010
+             
+            POINTS
+          </div>
+        </div>
+      </div>
+      <div
+        className="get-points"
+      >
+        <a
+          href="#"
+          onClick={[Function]}
+        >
+           
+          GET POINTS +
+        </a>
       </div>
       <div
         className="point-reward-types"

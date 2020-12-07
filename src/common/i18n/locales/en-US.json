@@ -351,7 +351,10 @@
     "withdraw-hbd": "Withdraw Hive Dollar"
   },
   "points": {
-    "get": "GET POINTS",
+    "get": "GET POINTS +",
+    "unclaimed-points": "Unclaimed points",
+    "claim-reward-points": "Claim reward points",
+    "main-description": "A description text here lorem ipsum dolor sit amet.",
     "post-desc": "You can earn point by posting regularly. Posting gives you 15 points.",
     "comment-desc": "Each comment you make helps you to grow your audience and make friendship but also earns you 5 points.",
     "checkin-desc": "Checking in on Ecency gives you 0.25 points and helps you stay connected with your friends.",
