@@ -80,9 +80,9 @@
     "error-user-fetch": "I dati dell'utente non possono essere recuperati",
     "error-user-not-found": "L'utente non esiste",
     "error-permission": "Non hai l'autorizzazione per pubblicare",
-    "error-authenticate": "Chiave privata errata. Chiave privata maestra o attiva richiesta.",
-    "with-hive-signer": "Accedi tramite Hivesigner",
-    "with-keychain": "Accedi tramite Keychain",
+    "error-authenticate": "Chiave privata errata. Richiesta chiave privata maestra o attiva.",
+    "with-hive-signer": "Accedi tramite hivesigner",
+    "with-keychain": "Accedi tramite keychain",
     "sign-up-text-1": "Non hai un account?",
     "sign-up-text-2": "Registrati ora!"
   },
