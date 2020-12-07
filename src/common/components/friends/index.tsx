@@ -15,6 +15,8 @@ import {getFollowing, getFollowers, getAccounts, getAccount} from "../../api/hiv
 import {getRelationshipBetweenAccounts} from "../../api/bridge";
 
 import {_t} from "../../i18n";
+import accountReputation from "../../helper/account-reputation";
+import {pencilOutlineSvg} from "../../img/svg";
 
 interface Friend {
     name: string;
@@ -37,7 +39,7 @@ interface ListState {
     search: string;
 }
 
-const loadLimit = 80;
+const loadLimit = 60;
 
 export class List extends Component<ListProps, ListState> {
     state: ListState = {
@@ -200,23 +202,27 @@ export class List extends Component<ListProps, ListState> {
                             />
                         </div>
 
-                        <div className="friends-list-body">
+                        <div className="list-body">
                             {!loading && data.length === 0 && <div className="empty-list"> {_t("g.empty-list")}</div>}
 
                             {data.map((item) => (
-                                <Fragment key={item.name}>
-                                    {
-                                        ProfileLink({
+                                <div className="list-item" key={item.name}>
+                                    <div className="item-main">
+                                        {ProfileLink({
                                             ...this.props,
                                             username: item.name,
-                                            children: <div className="friends-list-item">
-                                                {UserAvatar({...this.props, username: item.name, size: "medium"})}
-                                                <div className="friend-name notransalte">{item.name}</div>
-                                                <div className="friend-full-name">{item.fullName}</div>
-                                            </div>
-                                        })
-                                    }
-                                </Fragment>
+                                            children: <>{UserAvatar({...this.props, username: item.name, size: "small"})}</>
+                                        })}
+                                        <div className="item-info">
+                                            {ProfileLink({
+                                                ...this.props,
+                                                username: item.name,
+                                                children: <a className="item-name notransalte">{item.name}</a>
+                                            })}
+                                            {(item?.reputation !== undefined) && <span className="item-reputation">{accountReputation(item.reputation)}</span>}
+                                        </div>
+                                    </div>
+                                </div>
                             ))}
                         </div>
                     </div>
