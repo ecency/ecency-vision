@@ -1,127 +1,89 @@
 .wallet-ecency {
-  margin-top: 20px;
+  @include wallet;
 
-  .wallet-main {
+  .get-points {
+    border-radius: 12px;
+    margin-bottom: 20px;
+    padding: 20px 10px;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
 
-    @media (min-width: $xl-break) {
+    @include themify(day) {
+      background: darken($white-two, 1);
+    }
+
+    @include themify(night) {
+      background: $dark-two;
+    }
+
+    @media (min-width: $lg-break) {
       flex-direction: row;
     }
 
-    .wallet-info {
-      flex-grow: 1;
-
-      .points {
-        margin-bottom: 30px;
+    .points-types {
+      .points-types-title {
+        font-weight: 500;
+        margin-bottom: 16px;
         text-align: center;
 
-        .points-val {
-          color: $dark-sky-blue;
-          display: inline-flex;
-          margin-bottom: 10px;
-          cursor: default;
-          position: relative;
-
-          .val {
-            font-size: 28px;
-            font-weight: 500;
-          }
+        @media (min-width: $lg-break) {
+          text-align: initial;
         }
 
-        .point-name {
-          font-weight: 700;
-          margin-bottom: 10px;
-
-          @include themify(day) {
-            color: darken($silver, 10);
-          }
-
-          @include themify(night) {
-            color: $metallic-blue;
-          }
+        @include themify(day) {
+          color: $charcoal-grey;
         }
 
-        .unclaimed {
-          align-items: center;
-          background-color: $dark-sky-blue;
-          border-radius: 25px;
-          color: $white;
-          display: inline-flex;
-          height: 51px;
-          margin-top: 10px;
-          padding: 0 24px;
-
-          .val {
-            font-size: 18px;
-            font-weight: 500;
-          }
-
-          .claim-btn {
-            color: $white;
-
-            svg {
-              height: 26px;
-            }
-
-            &:hover {
-              color: lighten($dark-sky-blue, 30);
-            }
-
-            &.in-progress {
-              animation: claiming-color-change 5s infinite;
-              pointer-events: none;
-            }
-          }
-
-
-          &.can-claim {
-            .val {
-              margin-right: 10px;
-            }
-          }
-        }
-
-        .get-estm {
-          margin: 10px 0;
+        @include themify(night) {
+          color: $powder-blue;
         }
       }
 
-      .point-reward-types {
-        margin: 0 auto 50px auto;
-        cursor: default;
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        grid-gap: 10px;
-        max-width: 320px;
-
-        @media (min-width: $sm-break) {
-          grid-template-columns: repeat(8, 1fr);
-          max-width: 520px;
-        }
+      .points-types-list {
+        flex-grow: 0;
+        flex-shrink: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
 
         @media (min-width: $lg-break) {
-          width: 600px;
-          max-width: none;
+          justify-content: flex-start;
+          flex-grow: 1;
+          flex-shrink: 0;
+          margin-bottom: 0;
         }
 
         .point-reward-type {
           align-items: center;
           border-radius: 50%;
-          display: inline-flex;
           height: 40px;
           justify-content: center;
           width: 40px;
           color: $warm-grey;
           position: relative;
-          margin: auto;
+          display: inline-flex;
+          margin-bottom: 20px;
+
+          &:not(:last-child) {
+            margin-right: 20px;
+          }
+
+          @media (min-width: $lg-break) {
+            margin-bottom: 0;
+
+            &:not(:last-child) {
+              margin-right: 30px;
+            }
+          }
 
           svg {
             height: 18px;
           }
 
           @include themify(day) {
-            background: $white-three;
+            background: $white;
             color: $steel-grey;
           }
 
@@ -142,6 +104,26 @@
             padding: 1px 0;
             text-align: center;
           }
+        }
+      }
+    }
+
+    .buy-points {
+      flex-grow: 1;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      @media (min-width: $lg-break) {
+        justify-content: flex-end;
+      }
+
+      a {
+        font-weight: 500;
+
+        &:hover {
+          text-decoration: underline;
         }
       }
     }

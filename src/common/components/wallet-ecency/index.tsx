@@ -234,151 +234,137 @@ export class WalletEcency extends Component<Props, State> {
         };
 
         return (
-            <div className="wallet-ecency">
-                <div className="wallet-main">
-                    <div className="wallet-info">
-                        <div className="points">
-                            <div className="point-name">Ecency Points</div>
-                            <div className="points-val">
-                                <div className="val">{points.points} POINTS</div>
-                                {isMyPage && (
-                                    <DropDown {...dropDownConfig} float="right"/>
-                                )}
-                            </div>
-                            <div className="clearfix"/>
-
-                            {(() => {
-                                if (isMyPage) {
-                                    return (
-                                        <>
-                                            <div className={`unclaimed ${isMyPage ? 'can-claim' : ''}`}>
-                                                <div className="val">
-                                                    {points.uPoints !== '0.000' && (
-                                                        <div className="val">{points.uPoints}</div>
-                                                    )}
-                                                    {points.uPoints === '0.000' && (
-                                                        <div className="val">
-                                                            {_t('points.get')}
-                                                        </div>
-                                                    )}
-                                                </div>
-                                                <a href="#" className={`claim-btn ${claiming ? 'in-progress' : ''}`}
-                                                   onClick={(e) => {
-                                                       if (points.uPoints !== '0.000') {
-                                                           this.claim(e);
-                                                           return;
-                                                       }
-                                                       this.togglePurchase(e);
-                                                   }}
-                                                >
+            <>
+                <div className="wallet-ecency">
+                    <div className="wallet-main">
+                        <div className="wallet-info">
+                            {points.uPoints !== '0.000' && (
+                                <div className="unclaimed-rewards">
+                                    <div className="title">
+                                        {_t('points.unclaimed-points')}
+                                    </div>
+                                    <div className="rewards">
+                                        <span className="reward-type">{`${points.uPoints}`}</span>
+                                        {isMyPage && (
+                                            <Tooltip content={_t('points.claim-reward-points')}>
+                                                <a
+                                                    className={`claim-btn ${claiming ? 'in-progress' : ''}`}
+                                                    onClick={this.claim}>
                                                     {plusCircle}
                                                 </a>
+                                            </Tooltip>
+                                        )}
+                                    </div>
+                                </div>
+                            )}
+                            <div className="balance-row alternative">
+                                <div className="balance-info">
+                                    <div className="title">{"Ecency Points"}</div>
+                                    <div className="description">{_t("points.main-description")}</div>
+                                </div>
+                                <div className="balance-values">
+                                    <div className="amount">
+                                        {isMyPage && (
+                                            <div className="amount-actions">
+                                                <DropDown {...dropDownConfig} float="right"/>
                                             </div>
+                                        )}
 
-                                            {points.uPoints !== '0.000' && (
-                                                <>
-                                                    <div className="clearfix"/>
-                                                    <div className="get-estm">
-                                                        <a href="#" onClick={this.togglePurchase}>
-                                                            {_t('points.get')}
-                                                        </a>
-                                                    </div>
-                                                </>
-                                            )}
-                                        </>
-                                    );
-                                }
-
-                                if (points.uPoints !== '0.000') {
-                                    return (
-                                        <div className="unclaimed">
-                                            <div className="val">{points.uPoints}</div>
-                                        </div>
-                                    );
-                                }
-
-                                return null;
-                            })()}
-                        </div>
-                        <div className="point-reward-types">
-                            <Tooltip content={_t('points.post-desc')}>
-                                <div className="point-reward-type">
-                                    {pencilOutlineSvg}
-                                    <span className="reward-num">15</span>
-                                </div>
-                            </Tooltip>
-                            <Tooltip content={_t('points.comment-desc')}>
-                                <div className="point-reward-type">
-                                    {commentSvg}
-                                    <span className="reward-num">5</span>
-                                </div>
-                            </Tooltip>
-                            <Tooltip content={_t('points.vote-desc')}>
-                                <div className="point-reward-type">
-                                    {chevronUpSvg}
-                                    <span className="reward-num">0.3</span>
-                                </div>
-                            </Tooltip>
-                            <Tooltip content={_t('points.reblog-desc')}>
-                                <div className="point-reward-type">
-                                    {repeatSvg}
-                                    <span className="reward-num">1</span>
-                                </div>
-                            </Tooltip>
-                            <Tooltip content={_t('points.checkin-desc')}>
-                                <div className="point-reward-type">
-                                    {starOutlineSvg}
-                                    <span className="reward-num">0.25</span>
-                                </div>
-                            </Tooltip>
-                            <Tooltip content={_t('points.login-desc')}>
-                                <div className="point-reward-type">
-                                    {accountOutlineSvg}
-                                    <span className="reward-num">99+</span>
-                                </div>
-                            </Tooltip>
-                            <Tooltip content={_t('points.checkin-extra-desc')}>
-                                <div className="point-reward-type">
-                                    {checkAllSvg}
-                                    <span className="reward-num">10</span>
-                                </div>
-                            </Tooltip>
-                            <Tooltip content={_t('points.delegation-desc')}>
-                                <div className="point-reward-type">
-                                    {ticketSvg}
-                                    <span className="reward-num">1</span>
-                                </div>
-                            </Tooltip>
-                        </div>
-
-                        {points.transactions.length > 0 && (
-                            <div className="p-transaction-list">
-                                <div className="transaction-list-header">
-                                    <h2>{_t('points.history')}</h2>
-                                </div>
-                                <div className="transaction-list-body">
-                                    {points.transactions.map(tr => <TransactionRow tr={tr} key={tr.id}/>)}
+                                        <>{points.points} {"POINTS"}</>
+                                    </div>
                                 </div>
                             </div>
-                        )}
+
+                            <div className="get-points">
+                                <div className="points-types">
+                                    <div className="points-types-title">{_t("points.earn-points")}</div>
+                                    <div className="points-types-list">
+                                        <Tooltip content={_t('points.post-desc')}>
+                                            <div className="point-reward-type">
+                                                {pencilOutlineSvg}
+                                                <span className="reward-num">15</span>
+                                            </div>
+                                        </Tooltip>
+                                        <Tooltip content={_t('points.comment-desc')}>
+                                            <div className="point-reward-type">
+                                                {commentSvg}
+                                                <span className="reward-num">5</span>
+                                            </div>
+                                        </Tooltip>
+                                        <Tooltip content={_t('points.vote-desc')}>
+                                            <div className="point-reward-type">
+                                                {chevronUpSvg}
+                                                <span className="reward-num">0.3</span>
+                                            </div>
+                                        </Tooltip>
+                                        <Tooltip content={_t('points.reblog-desc')}>
+                                            <div className="point-reward-type">
+                                                {repeatSvg}
+                                                <span className="reward-num">1</span>
+                                            </div>
+                                        </Tooltip>
+                                        <Tooltip content={_t('points.checkin-desc')}>
+                                            <div className="point-reward-type">
+                                                {starOutlineSvg}
+                                                <span className="reward-num">0.25</span>
+                                            </div>
+                                        </Tooltip>
+                                        <Tooltip content={_t('points.login-desc')}>
+                                            <div className="point-reward-type">
+                                                {accountOutlineSvg}
+                                                <span className="reward-num">10</span>
+                                            </div>
+                                        </Tooltip>
+                                        <Tooltip content={_t('points.checkin-extra-desc')}>
+                                            <div className="point-reward-type">
+                                                {checkAllSvg}
+                                                <span className="reward-num">10</span>
+                                            </div>
+                                        </Tooltip>
+                                        <Tooltip content={_t('points.delegation-desc')}>
+                                            <div className="point-reward-type">
+                                                {ticketSvg}
+                                                <span className="reward-num">5</span>
+                                            </div>
+                                        </Tooltip>
+                                    </div>
+                                </div>
+                                {isMyPage && (
+                                    <div className="buy-points">
+                                        <a href="#" onClick={this.togglePurchase}> {_t('points.get')}</a>
+                                    </div>
+                                )}
+                            </div>
+
+                            {points.transactions.length > 0 && (
+                                <div className="p-transaction-list">
+                                    <div className="transaction-list-header">
+                                        <h2>{_t('points.history')}</h2>
+                                    </div>
+                                    <div className="transaction-list-body">
+                                        {points.transactions.map(tr => <TransactionRow tr={tr} key={tr.id}/>)}
+                                    </div>
+                                </div>
+                            )}
+
+                        </div>
+
+                        <WalletMenu username={account.name} active="ecency"/>
                     </div>
 
-                    <WalletMenu username={account.name} active="ecency"/>
+                    {transfer && (<Transfer
+                        {...this.props}
+                        mode="transfer"
+                        asset="POINT"
+                        activeUser={this.props.activeUser!}
+                        onHide={this.toggleTransfer}/>)
+                    }
+
+                    {purchase && (<Purchase {...this.props} activeUser={this.props.activeUser!} onHide={this.togglePurchase}/>)}
+                    {promote && (<Promote {...this.props} activeUser={this.props.activeUser!} onHide={this.togglePromote}/>)}
+                    {boost && (<Boost {...this.props} activeUser={this.props.activeUser!} onHide={this.toggleBoost}/>)}
                 </div>
-
-
-                {transfer && (<Transfer
-                    {...this.props}
-                    mode="transfer"
-                    asset="POINT"
-                    activeUser={this.props.activeUser!}
-                    onHide={this.toggleTransfer}/>)
-                }
-
-                {purchase && (<Purchase {...this.props} activeUser={this.props.activeUser!} onHide={this.togglePurchase}/>)}
-                {promote && (<Promote {...this.props} activeUser={this.props.activeUser!} onHide={this.togglePromote}/>)}
-                {boost && (<Boost {...this.props} activeUser={this.props.activeUser!} onHide={this.toggleBoost}/>)}
-            </div>
+            </>
         );
     }
 }
