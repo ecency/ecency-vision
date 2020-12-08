@@ -17,6 +17,7 @@ import {searchFollowing, searchFollower, FriendSearchResult} from "../../api/pri
 import {_t} from "../../i18n";
 
 import accountReputation from "../../helper/account-reputation";
+import formattedNumber from "../../util/formatted-number";
 
 interface Friend {
     name: string;
@@ -261,7 +262,7 @@ interface Props {
 export class Followers extends Component<Props> {
     render() {
         const {account, onHide} = this.props;
-        const title = _t("friends.followers", {n: account.follow_stats?.follower_count!});
+        const title = _t("friends.followers", {n: formattedNumber(account.follow_stats?.follower_count!, {fractionDigits: 0})});
 
         return (
             <>
@@ -281,7 +282,7 @@ export class Followers extends Component<Props> {
 export class Following extends Component<Props> {
     render() {
         const {account, onHide} = this.props;
-        const title = _t("friends.following", {n: account.follow_stats?.following_count!});
+        const title = _t("friends.following", {n: formattedNumber(account.follow_stats?.following_count!, {fractionDigits: 0})});
 
         return (
             <>
