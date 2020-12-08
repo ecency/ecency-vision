@@ -130,7 +130,7 @@ class ProposalsPage extends Component<PageProps, State> {
                 proposals = proposals_.filter(x => x.status == "inactive");
                 break;
             case Filter.TEAM:
-                proposals = [...proposals_.filter(x => ["ecency", "good-karma"].includes(x.creator))];
+                proposals = [...proposals_.filter(x => ["ecency", "good-karma", "hivesearcher", "hivesigner"].includes(x.creator))];
                 break;
         }
 
