@@ -34,24 +34,27 @@ interface ListProps {
 interface ListState {
     loading: boolean;
     data: Friend[];
+    results: Friend[];
     hasMore: boolean;
     search: string;
 }
 
-const loadLimit = 60;
+const loadLimit = 30;
 
 export class List extends Component<ListProps, ListState> {
     state: ListState = {
         loading: false,
         data: [],
+        results: [],
         hasMore: false,
         search: "",
     };
 
+    _timer: any = null;
     _mounted: boolean = true;
 
     componentDidMount() {
-        this.fetchFirst();
+        this.fetchFirst().then();
     }
 
     componentWillUnmount() {
@@ -132,8 +135,12 @@ export class List extends Component<ListProps, ListState> {
     search = async () => {
         const {search} = this.state;
 
-        if (!search) {
-            return this.fetchFirst();
+        if (search.length < 3) {
+            this.stateSet({
+                results: [],
+                loading: false,
+            });
+            return;
         }
 
         this.stateSet({loading: true});
@@ -153,14 +160,19 @@ export class List extends Component<ListProps, ListState> {
         }
 
         this.stateSet({
-            data: results,
-            hasMore: false,
+            results: results,
             loading: false,
         });
     };
 
     searchChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
-        this.stateSet({search: e.target.value.trim()});
+        clearTimeout(this._timer);
+
+        this.stateSet({search: e.target.value.trim(), loading: true}, () => {
+            this._timer = setTimeout(() => {
+                this.search().then();
+            }, 500);
+        });
     };
 
     searchKeyDown = (e: React.KeyboardEvent) => {
@@ -169,8 +181,36 @@ export class List extends Component<ListProps, ListState> {
         }
     };
 
+    renderList = (loading: boolean, list: Friend[]) => {
+        return <>
+            {!loading && list.length === 0 && <div className="empty-list"> {_t("g.empty-list")}</div>}
+
+            {list.map((item) => (
+                <div className="list-item" key={item.name}>
+                    <div className="item-main">
+                        {ProfileLink({
+                            ...this.props,
+                            username: item.name,
+                            children: <>{UserAvatar({...this.props, username: item.name, size: "small"})}</>
+                        })}
+                        <div className="item-info">
+                            {ProfileLink({
+                                ...this.props,
+                                username: item.name,
+                                children: <a className="item-name notransalte">{item.name}</a>
+                            })}
+                            {(item?.reputation !== undefined) && <span className="item-reputation">{accountReputation(item.reputation)}</span>}
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </>
+    }
+
     render() {
-        const {loading, data, hasMore, search} = this.state;
+        const {loading, data, results, hasMore, search} = this.state;
+
+        const inSearch = search.length >= 3;
 
         return (
             <>
@@ -180,11 +220,11 @@ export class List extends Component<ListProps, ListState> {
                             <LinearProgress/>
                         </div>
                     )}
+
                     <div className="friends-list">
                         <div className="friend-search-box">
                             <FormControl
                                 value={search}
-                                disabled={loading}
                                 placeholder={_t("friends.search-placeholder")}
                                 onChange={this.searchChanged}
                                 onKeyDown={this.searchKeyDown}
@@ -192,31 +232,12 @@ export class List extends Component<ListProps, ListState> {
                         </div>
 
                         <div className="list-body">
-                            {!loading && data.length === 0 && <div className="empty-list"> {_t("g.empty-list")}</div>}
-
-                            {data.map((item) => (
-                                <div className="list-item" key={item.name}>
-                                    <div className="item-main">
-                                        {ProfileLink({
-                                            ...this.props,
-                                            username: item.name,
-                                            children: <>{UserAvatar({...this.props, username: item.name, size: "small"})}</>
-                                        })}
-                                        <div className="item-info">
-                                            {ProfileLink({
-                                                ...this.props,
-                                                username: item.name,
-                                                children: <a className="item-name notransalte">{item.name}</a>
-                                            })}
-                                            {(item?.reputation !== undefined) && <span className="item-reputation">{accountReputation(item.reputation)}</span>}
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
+                            {inSearch && this.renderList(loading, results)}
+                            {!inSearch && this.renderList(loading, data)}
                         </div>
                     </div>
 
-                    {data.length > 1 && !search && (
+                    {(!inSearch && data.length > 1) && (
                         <div className="load-more">
                             <Button disabled={loading || !hasMore} onClick={this.fetchMore}>
                                 {_t("g.load-more")}
