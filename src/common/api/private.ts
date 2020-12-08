@@ -335,3 +335,22 @@ export const search = (q: string, sort: string, scroll_id?: string): Promise<Sea
 
 export const getPromotedEntries = (): Promise<Entry[]> =>
     axios.get(_u(`/api/promoted-entries`)).then((resp) => resp.data);
+
+
+export interface FriendSearchResult {
+    name: string;
+    full_name: string;
+    reputation: number
+}
+
+export const searchFollower = (following: string, q: string): Promise<FriendSearchResult[]> => {
+    const data = {following, q};
+
+    return axios.post(_u(`/api/search-follower`), data).then(resp => resp.data);
+}
+
+export const searchFollowing = (follower: string, q: string): Promise<FriendSearchResult[]> => {
+    const data = {follower, q};
+
+    return axios.post(_u(`/api/search-following`), data).then(resp => resp.data);
+}

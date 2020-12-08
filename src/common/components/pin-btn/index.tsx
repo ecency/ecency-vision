@@ -2,10 +2,9 @@ import React, {Component} from "react";
 
 import isEqual from "react-fast-compare";
 
-import {Entry, EntryStat} from "../../store/entries/types";
+import {Entry} from "../../store/entries/types";
 import {Community} from "../../store/communities/types";
 import {ActiveUser} from "../../store/active-user/types";
-import {clone} from "../../store/util";
 
 import PopoverConfirm from "../popover-confirm";
 
@@ -16,6 +15,8 @@ import {_t} from "../../i18n";
 
 import _c from "../../util/fix-class-names";
 
+import {getPostsRanked} from "../../api/bridge";
+
 interface Props {
     entry: Entry;
     community: Community;
@@ -24,15 +25,34 @@ interface Props {
 }
 
 interface State {
-    inProgress: boolean
+    inProgress: boolean,
+    isPinned: boolean,
+    loading: boolean,
 }
 
 export class PinBtn extends Component<Props, State> {
     state: State = {
-        inProgress: false
+        inProgress: false,
+        isPinned: false,
+        loading: false
     }
 
     _mounted: boolean = true;
+
+    componentDidMount() {
+        const {community, entry} = this.props;
+
+        this.stateSet({loading: true});
+        getPostsRanked("created", "", "", 20, community.name).then(r => {
+            if (r) {
+                const isPinned = r.find(x => x.author === entry.author && x.permlink === entry.permlink && x.stats?.is_pinned === true) !== undefined;
+                this.stateSet({isPinned});
+            }
+
+        }).finally(() => {
+            this.stateSet({loading: false});
+        })
+    }
 
     shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
         return !isEqual(this.state, nextState) ||
@@ -55,23 +75,19 @@ export class PinBtn extends Component<Props, State> {
         const {entry, community, activeUser, onSuccess} = this.props;
 
         this.stateSet({inProgress: true});
-
         pinPost(activeUser.username, community.name, entry.author, entry.permlink, pin)
             .then(() => {
-                const nStats: EntryStat = {...clone(entry.stats), is_pinned: pin}
-                const nEntry: Entry = {...clone(entry), stats: nStats};
-                onSuccess(nEntry);
+                this.stateSet({isPinned: pin});
+                onSuccess(entry);
             })
             .catch(err => error(formatError(err)))
             .finally(() => this.stateSet({inProgress: false}));
     }
 
     render() {
-        const {entry} = this.props;
-        const {inProgress} = this.state;
-        const isPinned = !!entry.stats?.is_pinned;
+        const {inProgress, loading, isPinned} = this.state;
 
-        const cls = _c(`pin-btn ${inProgress ? "in-progress" : ""}`);
+        const cls = _c(`pin-btn ${(inProgress || loading) ? "in-progress" : ""}`);
 
         if (isPinned) {
             return <a href="#" className={cls} onClick={(e) => {

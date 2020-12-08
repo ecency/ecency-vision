@@ -41,13 +41,21 @@ export class Market extends Component<Props, State> {
 
     node = React.createRef<HTMLDivElement>();
 
+    _mounted: boolean = true;
+
+    stateSet = (state: {}, cb?: () => void) => {
+        if (this._mounted) {
+            this.setState(state, cb);
+        }
+    };
+
     componentDidMount() {
         const {coin, vsCurrency, fromTs, toTs} = this.props;
 
         getMarketData(coin, vsCurrency, fromTs, toTs).then((r) => {
             if (r && r.prices) {
                 const prices: Price[] = r.prices.map((x: any) => ({time: x[0], price: x[1]}));
-                this.setState({prices}, () => {
+                this.stateSet({prices}, () => {
                     this.attachEvents();
                 });
             }
@@ -56,6 +64,8 @@ export class Market extends Component<Props, State> {
 
     componentWillUnmount() {
         this.detachEvents();
+
+        this._mounted = false;
     }
 
     shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {

@@ -146,6 +146,24 @@ export const search = async (req: express.Request, res: express.Response) => {
     pipe(baseApiRequest(url, "POST", headers, payload), res);
 }
 
+export const searchFollower = async (req: express.Request, res: express.Response) => {
+    const {q, following} = req.body;
+
+    const url = `${config.searchApiAddr}/search-follower/${following}`;
+    const headers = {'Authorization': config.searchApiToken};
+
+    pipe(baseApiRequest(url, "POST", headers, {q: q}), res);
+}
+
+export const searchFollowing = async (req: express.Request, res: express.Response) => {
+    const {follower, q} = req.body;
+
+    const url = `${config.searchApiAddr}/search-following/${follower}`;
+    const headers = {'Authorization': config.searchApiToken};
+
+    pipe(baseApiRequest(url, "POST", headers, {q}), res);
+}
+
 export const points = async (req: express.Request, res: express.Response) => {
     const {username} = req.body;
     pipe(apiRequest(`users/${username}`, "GET"), res);
