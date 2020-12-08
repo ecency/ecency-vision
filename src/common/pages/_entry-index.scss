@@ -94,4 +94,15 @@
       }
     }
   }
+
+  .market-side {
+    flex-grow: 0;
+    flex-shrink: 0;
+    display: none;
+
+    @media (min-width: $xl-break) {
+      display: block;
+      width: 300px;
+    }
+  }
 }

@@ -1,14 +1,14 @@
 import React from 'react';
+
 import renderer from "react-test-renderer";
 
 import {createBrowserHistory} from "history";
 
 import {Subscribers} from './index';
 
-import {globalInstance, communityInstance1} from "../../helper/test-helper";
+import {globalInstance, communityInstance1, activeUserMaker} from "../../helper/test-helper";
 
 const allOver = () => new Promise((resolve) => setImmediate(resolve));
-
 
 jest.mock("../../api/bridge", () => ({
     getSubscribers: () =>
@@ -24,15 +24,43 @@ jest.mock("../../api/bridge", () => ({
         })
 }));
 
-it('(1) Default render - With data.', async () => {
-    const props = {
-        history: createBrowserHistory(),
-        global: globalInstance,
-        community: {...communityInstance1},
-        addAccount: () => {
-        }
-    };
+jest.mock("../../api/hive", () => ({
+    getAccounts: () =>
+        new Promise((resolve) => {
+            resolve([
+                {name: "bluemist", reputation: 74.1},
+                {name: "foo", reputation: 70.8},
+                {name: "bar", reputation: 65.2},
+                {name: "baz", reputation: 68.9},
+                {name: "lorem", reputation: 51.6},
+                {name: "ipsum", reputation: 75.5},
+                {name: "dolor", reputation: 42.4}
+            ]);
+        })
+}));
 
+const defProps = {
+    history: createBrowserHistory(),
+    global: globalInstance,
+    community: {...communityInstance1},
+    activeUser: null,
+    addAccount: () => {
+    },
+    addCommunity: () => {
+    }
+}
+
+it('(1) Default render.', async () => {
+    const component = renderer.create(<Subscribers {...defProps}/>);
+    await allOver();
+    expect(component.toJSON()).toMatchSnapshot();
+});
+
+it('(2) Active user.', async () => {
+    const props = {
+        ...defProps,
+        activeUser: activeUserMaker("bluemist")
+    }
     const component = renderer.create(<Subscribers {...props}/>);
     await allOver();
     expect(component.toJSON()).toMatchSnapshot();

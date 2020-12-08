@@ -1,12 +1,12 @@
 import React, {Component} from "react";
 
-import {Modal, Form, Button, FormControl} from "react-bootstrap";
+import {Modal, Form, Button, FormControl, Spinner} from "react-bootstrap";
 
 import isEqual from "react-fast-compare";
 
 import {PrivateKey, PublicKey, cryptoUtils} from "@hiveio/dhive";
 
-import {History} from "history";
+import {History, Location} from "history";
 
 import {AppWindow} from "../../../client/window";
 
@@ -28,13 +28,15 @@ import {hsLogin} from "../../../desktop/app/helper/hive-signer";
 
 import {getAccount} from "../../api/hive";
 import {hsTokenRenew, usrActivity} from "../../api/private";
-import {grantPostingPermission, revokePostingPermission} from "../../api/operations";
+import {formatError, grantPostingPermission, revokePostingPermission} from "../../api/operations";
 
 import {getRefreshToken} from "../../helper/user-token";
 
 import {addAccountAuthority, removeAccountAuthority, signBuffer} from "../../helper/keychain";
 
 import {_t} from "../../i18n";
+
+import _c from "../../util/fix-class-names";
 
 import {deleteForeverSvg} from "../../img/svg";
 
@@ -131,7 +133,15 @@ export class LoginKc extends Component<LoginKcProps, LoginKcState> {
         this.stateSet({inProgress: true});
 
         const signer = (message: string): Promise<string> => signBuffer(username, message, "Active").then(r => r.result);
-        const code = await makeHsCode(username, signer);
+
+        let code: string;
+        try {
+            code = await makeHsCode(username, signer);
+        } catch (err) {
+            error(formatError(err));
+            this.stateSet({inProgress: false});
+            return;
+        }
 
         const {doLogin} = this.props;
 
@@ -154,6 +164,9 @@ export class LoginKc extends Component<LoginKcProps, LoginKcState> {
 
     render() {
         const {username, inProgress} = this.state;
+
+        const spinner = <Spinner animation="grow" variant="light" size="sm" style={{marginRight: "6px"}}/>;
+
         return <>
             <div className="dialog-header">
                 <img src={keyChainLogo} alt="Logo"/>
@@ -167,7 +180,7 @@ export class LoginKc extends Component<LoginKcProps, LoginKcState> {
                     <Form.Control type="text" value={username} onChange={this.usernameChanged} placeholder={_t("login.username-placeholder")} autoFocus={true}
                                   onKeyDown={this.inputKeyDown}/>
                 </Form.Group>
-                <Button disabled={inProgress} block={true} onClick={this.login}>{_t("g.login")}</Button>
+                <Button disabled={inProgress} block={true} onClick={this.login}>{inProgress && spinner}{_t("g.login")}</Button>
                 <Button variant="outline-primary" disabled={inProgress} block={true} onClick={this.back}>{_t("g.back")}</Button>
             </Form>
         </>
@@ -178,17 +191,18 @@ interface UserItemProps {
     global: Global;
     user: User;
     activeUser: ActiveUser | null;
+    disabled: boolean;
     onSelect: (user: User) => void;
     onDelete: (user: User) => void;
 }
 
 export class UserItem extends Component<UserItemProps> {
     render() {
-        const {user, activeUser} = this.props;
+        const {user, activeUser, disabled} = this.props;
 
         return (
             <div
-                className={`user-list-item ${activeUser && activeUser.username === user.username ? "active" : ""}`}
+                className={_c(`user-list-item ${disabled ? "disabled" : ""} ${activeUser && activeUser.username === user.username ? "active" : ""}`)}
                 onClick={() => {
                     const {onSelect} = this.props;
                     onSelect(user);
@@ -269,6 +283,8 @@ export class Login extends Component<LoginProps, State> {
 
     userSelect = (user: User) => {
         const {doLogin} = this.props;
+
+        this.stateSet({inProgress: true});
 
         getAccount(user.username)
             .then((account) => {
@@ -427,6 +443,9 @@ export class Login extends Component<LoginProps, State> {
     render() {
         const {username, key, inProgress} = this.state;
         const {users, activeUser, global} = this.props;
+
+        const spinner = <Spinner animation="grow" variant="light" size="sm" style={{marginRight: "6px"}}/>;
+
         return (
             <>
                 {users.length === 0 && (
@@ -446,6 +465,7 @@ export class Login extends Component<LoginProps, State> {
                                         <UserItem
                                             key={u.username}
                                             {...this.props}
+                                            disabled={inProgress}
                                             user={u}
                                             onSelect={this.userSelect}
                                             onDelete={this.userDelete}
@@ -480,17 +500,19 @@ export class Login extends Component<LoginProps, State> {
                             if (el) el.scrollIntoView();
                         }, 300)
                     })} href="#">{_t('login.login-info-2')}</a></p>
-                    <Button disabled={inProgress} block={true} onClick={this.login}>{_t('g.login')}</Button>
+                    <Button disabled={inProgress} block={true} onClick={this.login}>
+                        {(inProgress && username && key) && spinner}{_t('g.login')}
+                    </Button>
                 </Form>
                 <OrDivider/>
                 <div className="hs-login">
-                    <a className="btn btn-outline-primary" onClick={this.hsLogin}>
+                    <a className={_c(`btn btn-outline-primary ${inProgress ? "disabled" : ""}`)} onClick={this.hsLogin}>
                         <img src={hsLogo} className="hs-logo" alt="hivesigner"/> {_t("login.with-hive-signer")}
                     </a>
                 </div>
                 {global.hasKeyChain && (
                     <div className="kc-login">
-                        <a className="btn btn-outline-primary" onClick={this.kcLogin}>
+                        <a className={_c(`btn btn-outline-primary ${inProgress ? "disabled" : ""}`)} onClick={this.kcLogin}>
                             <img src={keyChainLogo} className="kc-logo" alt="keychain"/> {_t("login.with-keychain")}
                         </a>
                     </div>
@@ -503,8 +525,8 @@ export class Login extends Component<LoginProps, State> {
                             e.preventDefault();
                             this.hide();
 
-                            const {toggleUIProp} = this.props;
-                            toggleUIProp("signUp");
+                            const {history} = this.props;
+                            history.push("/signup");
 
                         }}>{_t("login.sign-up-text-2")}</a>
                     </p>
@@ -516,6 +538,7 @@ export class Login extends Component<LoginProps, State> {
 
 interface Props {
     history: History;
+    location: Location;
     global: Global;
     ui: UI;
     users: User[];
@@ -563,6 +586,13 @@ export default class LoginDialog extends Component<Props> {
 
             // login activity
             usrActivity(user.username, 20);
+
+            // redirection based on path name
+            const {location, history} = this.props;
+            if (location.pathname.startsWith("/signup")) {
+                const u = `/@${x.username}/feed`;
+                history.push(u);
+            }
         });
     }
 

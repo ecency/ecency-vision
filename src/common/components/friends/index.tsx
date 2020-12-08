@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from "react";
+import React, {Component} from "react";
 
 import {History} from "history";
 
@@ -12,12 +12,16 @@ import UserAvatar from "../user-avatar";
 import LinearProgress from "../linear-progress";
 
 import {getFollowing, getFollowers, getAccounts} from "../../api/hive";
+import {searchFollowing, searchFollower, FriendSearchResult} from "../../api/private";
 
 import {_t} from "../../i18n";
 
+import accountReputation from "../../helper/account-reputation";
+import formattedNumber from "../../util/formatted-number";
+
 interface Friend {
     name: string;
-    fullName?: string;
+    reputation: string | number;
 }
 
 interface ListProps {
@@ -31,41 +35,37 @@ interface ListProps {
 interface ListState {
     loading: boolean;
     data: Friend[];
+    results: Friend[];
     hasMore: boolean;
     search: string;
 }
 
-const loadLimit = 80;
+const loadLimit = 30;
 
 export class List extends Component<ListProps, ListState> {
     state: ListState = {
         loading: false,
         data: [],
+        results: [],
         hasMore: false,
         search: "",
     };
 
+    _timer: any = null;
     _mounted: boolean = true;
 
     componentDidMount() {
-        this.fetchFirst();
+        this.fetchFirst().then();
     }
 
     componentWillUnmount() {
         this._mounted = false;
     }
 
-    stateSet = (obj: {}, cb: () => void = () => {
-    }) => {
+    stateSet = (state: {}, cb?: () => void) => {
         if (this._mounted) {
-            this.setState(obj, cb);
+            this.setState(state, cb);
         }
-    };
-
-    loadFn = () => {
-        const {mode} = this.props;
-
-        return mode === "following" ? getFollowing : getFollowers;
     };
 
     fKey = () => {
@@ -75,9 +75,11 @@ export class List extends Component<ListProps, ListState> {
     };
 
     fetch = async (start = "", limit = loadLimit): Promise<Friend[]> => {
-        const {account} = this.props;
+        const {account, mode} = this.props;
 
-        return this.loadFn()(account.name, start, "blog", limit)
+        const loadFn = (mode === "following" ? getFollowing : getFollowers);
+
+        return loadFn(account.name, start, "blog", limit)
             .then((resp) => {
                 const accountNames = resp.map((e) => e[this.fKey()]);
                 return getAccounts(accountNames).then((resp2) => resp2);
@@ -85,7 +87,7 @@ export class List extends Component<ListProps, ListState> {
             .then((accounts) =>
                 accounts.map((a) => ({
                     name: a.name,
-                    fullName: a.profile?.name || "",
+                    reputation: a.reputation!
                 }))
             );
     };
@@ -134,28 +136,44 @@ export class List extends Component<ListProps, ListState> {
     search = async () => {
         const {search} = this.state;
 
-        if (!search) {
-            return this.fetchFirst();
+        if (search.length < 3) {
+            this.stateSet({
+                results: [],
+                loading: false,
+            });
+            return;
         }
 
         this.stateSet({loading: true});
 
-        let data: Friend[];
+        const {account, mode} = this.props;
+
+        let results: FriendSearchResult[];
+
         try {
-            data = await this.fetch(search.replace("@", ""), 1);
+            if (mode === "following") {
+                results = await searchFollowing(account.name, search);
+            } else {
+                results = await searchFollower(account.name, search);
+            }
         } catch (e) {
-            data = [];
+            results = [];
         }
 
         this.stateSet({
-            data,
-            hasMore: false,
+            results: results,
             loading: false,
         });
     };
 
     searchChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
-        this.stateSet({search: e.target.value.trim()});
+        clearTimeout(this._timer);
+
+        this.stateSet({search: e.target.value.trim(), loading: true}, () => {
+            this._timer = setTimeout(() => {
+                this.search().then();
+            }, 500);
+        });
     };
 
     searchKeyDown = (e: React.KeyboardEvent) => {
@@ -164,8 +182,36 @@ export class List extends Component<ListProps, ListState> {
         }
     };
 
+    renderList = (loading: boolean, list: Friend[]) => {
+        return <>
+            {!loading && list.length === 0 && <div className="empty-list"> {_t("g.empty-list")}</div>}
+
+            {list.map((item) => (
+                <div className="list-item" key={item.name}>
+                    <div className="item-main">
+                        {ProfileLink({
+                            ...this.props,
+                            username: item.name,
+                            children: <>{UserAvatar({...this.props, username: item.name, size: "small"})}</>
+                        })}
+                        <div className="item-info">
+                            {ProfileLink({
+                                ...this.props,
+                                username: item.name,
+                                children: <a className="item-name notransalte">{item.name}</a>
+                            })}
+                            {(item?.reputation !== undefined) && <span className="item-reputation">{accountReputation(item.reputation)}</span>}
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </>
+    }
+
     render() {
-        const {loading, data, hasMore, search} = this.state;
+        const {loading, data, results, hasMore, search} = this.state;
+
+        const inSearch = search.length >= 3;
 
         return (
             <>
@@ -175,39 +221,24 @@ export class List extends Component<ListProps, ListState> {
                             <LinearProgress/>
                         </div>
                     )}
+
                     <div className="friends-list">
                         <div className="friend-search-box">
                             <FormControl
                                 value={search}
-                                disabled={loading}
                                 placeholder={_t("friends.search-placeholder")}
                                 onChange={this.searchChanged}
                                 onKeyDown={this.searchKeyDown}
                             />
                         </div>
 
-                        <div className="friends-list-body">
-                            {!loading && data.length === 0 && <div className="empty-list"> {_t("g.empty-list")}</div>}
-
-                            {data.map((item) => (
-                                <Fragment key={item.name}>
-                                    {
-                                        ProfileLink({
-                                            ...this.props,
-                                            username: item.name,
-                                            children: <div className="friends-list-item">
-                                                {UserAvatar({...this.props, username: item.name, size: "medium"})}
-                                                <div className="friend-name notransalte">{item.name}</div>
-                                                <div className="friend-full-name">{item.fullName}</div>
-                                            </div>
-                                        })
-                                    }
-                                </Fragment>
-                            ))}
+                        <div className="list-body">
+                            {inSearch && this.renderList(loading, results)}
+                            {!inSearch && this.renderList(loading, data)}
                         </div>
                     </div>
 
-                    {data.length > 1 && !search && (
+                    {(!inSearch && data.length > 1) && (
                         <div className="load-more">
                             <Button disabled={loading || !hasMore} onClick={this.fetchMore}>
                                 {_t("g.load-more")}
@@ -231,7 +262,7 @@ interface Props {
 export class Followers extends Component<Props> {
     render() {
         const {account, onHide} = this.props;
-        const title = _t("friends.followers", {n: account.follow_stats?.follower_count!});
+        const title = _t("friends.followers", {n: formattedNumber(account.follow_stats?.follower_count!, {fractionDigits: 0})});
 
         return (
             <>
@@ -251,7 +282,7 @@ export class Followers extends Component<Props> {
 export class Following extends Component<Props> {
     render() {
         const {account, onHide} = this.props;
-        const title = _t("friends.following", {n: account.follow_stats?.following_count!});
+        const title = _t("friends.following", {n: formattedNumber(account.follow_stats?.following_count!, {fractionDigits: 0})});
 
         return (
             <>

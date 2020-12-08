@@ -30,7 +30,8 @@
 @import "../common/components/friends";
 @import "../common/components/profile-menu";
 @import "../common/components/profile-cover";
-@import "../common/components/wallet";
+@import "../common/components/profile-edit";
+@import "../common/components/wallet-hive";
 @import "../common/components/delegated-vesting";
 @import "../common/components/received-vesting";
 @import "../common/components/transactions";
@@ -40,7 +41,6 @@
 @import "../common/components/tag-selector";
 @import "../common/components/feedback";
 @import "../common/components/login";
-@import "../common/components/sign-up";
 @import "../common/components/comment";
 @import "../common/components/transfer";
 @import "../common/components/or-divider";
@@ -53,7 +53,7 @@
 @import "../common/components/bookmarks";
 @import "../common/components/bookmark-btn";
 @import "../common/components/favorite-btn";
-@import "../common/components/points";
+@import "../common/components/wallet-ecency";
 @import "../common/components/purchase";
 @import "../common/components/promote";
 @import "../common/components/boost";
@@ -79,6 +79,9 @@
 @import "../common/components/proposal-list-item";
 @import "../common/components/proposal-votes";
 @import "../common/components/proposal-vote-btn";
+@import "../common/components/market-data";
+@import "../common/components/wallet-menu";
+@import "../common/components/preferences";
 
 @import "../desktop/app/components/navbar";
 @import "../desktop/app/components/updater";
@@ -94,3 +97,4 @@
 @import "../common/pages/search";
 @import "../common/pages/witnesses";
 @import "../common/pages/proposals";
+@import "../common/pages/sign-up";

@@ -21,7 +21,6 @@ import {NotificationFilter, Notifications} from "../../../../common/store/notifi
 import ToolTip from "../../../../common/components/tooltip";
 import Login from "../../../../common/components/login";
 import UserNav from "../../../../common/components/user-nav";
-import SignUp from "../../../../common/components/sign-up";
 import DropDown, {MenuItem} from "../../../../common/components/dropdown";
 import SearchSuggester from "../../../../common/components/search-suggester";
 import Updater from "../updater";
@@ -254,6 +253,8 @@ interface Props {
     setNotificationsFilter: (filter: NotificationFilter | null) => void;
     markNotifications: (id: string | null) => void;
     toggleUIProp: (what: ToggleType) => void;
+    muteNotifications: () => void;
+    unMuteNotifications: () => void;
     dismissNewVersion: () => void;
     reloadFn?: () => any,
     reloading?: boolean,
@@ -398,10 +399,7 @@ export class NavBar extends Component<Props, State> {
                                     toggleUIProp('login');
                                 }}>{_t("g.login")}</Button>
 
-                                <Button variant="primary" onClick={() => {
-                                    const {toggleUIProp} = this.props;
-                                    toggleUIProp('signUp');
-                                }}>{_t("g.signup")}</Button>
+                                <Link className="btn btn-primary" to="/signup">{_t("g.signup")}</Link>
                             </div>
                         )}
 
@@ -417,7 +415,6 @@ export class NavBar extends Component<Props, State> {
                     </div>
 
                     {ui.login && <Login {...this.props} />}
-                    {ui.signUp && <SignUp {...this.props} />}
                     <NotificationHandler {...this.props} />
                 </div>
                 {global.newVersion && <Updater global={global} dismissNewVersion={this.props.dismissNewVersion}/>}
@@ -448,6 +445,8 @@ export default (p: Props) => {
         setNotificationsFilter: p.setNotificationsFilter,
         markNotifications: p.markNotifications,
         toggleUIProp: p.toggleUIProp,
+        muteNotifications: p.muteNotifications,
+        unMuteNotifications: p.unMuteNotifications,
         dismissNewVersion: p.dismissNewVersion,
         reloadFn: p.reloadFn,
         reloading: p.reloading,

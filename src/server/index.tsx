@@ -53,7 +53,7 @@ server
     .get(
         [
             "^/@:username$", // /@esteemapp
-            `^/@:username/:section(${profileFilters.join("|")}|communities|wallet|points)$`, // /@esteemapp/comments
+            `^/@:username/:section(${profileFilters.join("|")}|communities|wallet|points|settings)$`, // /@esteemapp/comments
         ],
         profileHandler
     )
@@ -70,6 +70,8 @@ server
     .get("^/api/promoted-entries$", pApi.promotedEntries)
     .post("^/api/comment-history$", pApi.commentHistory)
     .post("^/api/search$", pApi.search)
+    .post("^/api/search-follower$", pApi.searchFollower)
+    .post("^/api/search-following$", pApi.searchFollowing)
     .post("^/api/points$", pApi.points)
     .post("^/api/point-list$", pApi.pointList)
     .post("^/api/account-create$", pApi.createAccount)

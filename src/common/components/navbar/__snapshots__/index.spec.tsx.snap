@@ -224,14 +224,13 @@ Array [
         >
           Login
         </button>
-        <button
+        <a
           className="btn btn-primary"
-          disabled={false}
+          href="/signup"
           onClick={[Function]}
-          type="button"
         >
           Signup
-        </button>
+        </a>
       </div>
       <div
         className="submit-post"
@@ -492,14 +491,13 @@ Array [
         >
           Login
         </button>
-        <button
+        <a
           className="btn btn-primary"
-          disabled={false}
+          href="/signup"
           onClick={[Function]}
-          type="button"
         >
           Signup
-        </button>
+        </a>
       </div>
       <div
         className="submit-post"

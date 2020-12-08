@@ -43,6 +43,10 @@ const defProps = {
     },
     toggleUIProp: () => {
     },
+    muteNotifications: () => {
+    },
+    unMuteNotifications: () => {
+    },
     dismissNewVersion: () => {
     },
     reloadFn: () => {

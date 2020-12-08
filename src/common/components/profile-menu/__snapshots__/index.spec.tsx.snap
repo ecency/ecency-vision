@@ -48,10 +48,78 @@ exports[`(1) Render 1`] = `
     </a>
     <a
       className="profile-menu-item"
-      href="/@username/points"
+      href="/@username/wallet"
       onClick={[Function]}
     >
-      Points
+      Wallet
+    </a>
+  </div>
+  <div
+    className="page-tools"
+  >
+    <span
+      className="list-style-toggle"
+      onClick={[Function]}
+      title="Toggle list style"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M16,5V11H21V5M10,11H15V5H10M16,18H21V12H16M10,18H15V12H10M4,18H9V12H4M4,11H9V5H4V11Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`(2) With active user 1`] = `
+<div
+  className="profile-menu"
+>
+  <div
+    className="profile-menu-items"
+  >
+    <span
+      className="profile-menu-item selected-item"
+    >
+      <div
+        className="custom-dropdown float-left"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        <div
+          className="dropdown-btn "
+        >
+          <div
+            className="label"
+          >
+            Posts
+          </div>
+          <div
+            className="menu-down"
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7,10L12,15L17,10H7Z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </span>
+    <a
+      className="profile-menu-item"
+      href="/@username/communities"
+      onClick={[Function]}
+    >
+      Communities
     </a>
     <a
       className="profile-menu-item"
@@ -59,6 +127,13 @@ exports[`(1) Render 1`] = `
       onClick={[Function]}
     >
       Wallet
+    </a>
+    <a
+      className="profile-menu-item"
+      href="/@username/settings"
+      onClick={[Function]}
+    >
+      Settings
     </a>
   </div>
   <div

@@ -1,0 +1,741 @@
+{
+  "g": {
+    "edit": "Edit",
+    "search": "Cari",
+    "downloads": "Download",
+    "login": "Masuk",
+    "login-as": "Masuk sebagai",
+    "signup": "Daftar",
+    "delete": "Hapus",
+    "cancel": "Batal",
+    "reply": "Balas",
+    "update": "Pembaruan",
+    "or": "ATAU",
+    "server-error": "Proses tidak dapat di selesaikan karena kesalahan server",
+    "day": "hari",
+    "days": "hari",
+    "finish": "Selesai",
+    "next": "Lanjut",
+    "back": "Kembali",
+    "load-more": "Muat Lebih Banyak",
+    "empty-list": "Tidak ada apa-apa di sini",
+    "save": "Simpan",
+    "try-again": "Coba lagi",
+    "show": "Tampilkan",
+    "on": "On",
+    "off": "Off"
+  },
+  "confirm": {
+    "title": "Apakah anda yakin?",
+    "ok": "Konfirmasi",
+    "cancel": "Batal"
+  },
+  "entry-filter": {
+    "filter-trending": "Trending",
+    "filter-hot": "Hebat",
+    "filter-created": "Baru",
+    "filter-promoted": "Dipromosikan",
+    "filter-payout": "Pembayaran",
+    "filter-muted": "Didiamkan",
+    "filter-feed": "Umpan"
+  },
+  "navbar": {
+    "discover": "Jelajahi",
+    "communities": "Komunitas",
+    "about": "Tentang",
+    "faq": "Tanya Jawab",
+    "post": "Buat Postingan",
+    "day-theme": "Tema Terang",
+    "night-theme": "Tema Gelap",
+    "address-placeholder": "masukkan permintaan pencarian"
+  },
+  "search": {
+    "placeholder": "Cari",
+    "placeholder-count": "Mencari {{n}} postingan",
+    "header-tag": "Label",
+    "header-account": "Pengguna",
+    "header-community": "Komunitas"
+  },
+  "user-nav": {
+    "wallet": "Dompet",
+    "unclaimed-reward-notice": "Anda memiliki hadiah yang belum diambil",
+    "points": "Poin",
+    "unclaimed-points-notice": "Anda memiliki poin yang belum diambil",
+    "notifications": "Notifikasi",
+    "profile": "Profil",
+    "gallery": "Galeri",
+    "drafts": "Konsep",
+    "bookmarks": "Tandai",
+    "logout": "Keluar"
+  },
+  "login": {
+    "title": "Selamat datang kembali!",
+    "with-user-pass": "Masuk dengan nama pengguna dan Private Key Anda.",
+    "username-placeholder": "nama pengguna",
+    "key-placeholder": "master atau active private key",
+    "login-info-1": "Kami tidak menyimpan private key Anda.",
+    "login-info-2": "Info lebih lanjut",
+    "error-fields-required": "Silahkan masukkan nama pengguna dan private key",
+    "error-public-key": "Anda memasukkan Public Key. Password/WIF yang diperlukan",
+    "error-user-fetch": "Data pengguna tidak dapat diambil",
+    "error-user-not-found": "Pengguna tidak ada",
+    "error-permission": "Tidak ditemukan ijin postingan",
+    "error-authenticate": "Private Key salah. Master atau Active Key yang diperlukan.",
+    "with-hive-signer": "Masuk dengan hivesigner",
+    "with-keychain": "Masuk dengan keychain",
+    "sign-up-text-1": "Tidak memiliki akun?",
+    "sign-up-text-2": "Daftar sekarang!"
+  },
+  "sign-up": {
+    "header": "Daftar",
+    "description": "One account to manage everything on blockchain and Ecency. Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
+    "username": "Pilih nama pengguna",
+    "email": "Masukkan alamat email Anda",
+    "ref": "Pengguna rujukan (opsional)",
+    "submit": "Lanjutkan",
+    "success": "Kami sudah mengirimkan email ke {{email}}.",
+    "success-2": "Ikuti petunjuk melengkapi proses pendaftaran.",
+    "login-text-1": "Do you have an account?",
+    "login-text-2": "Login"
+  },
+  "trending-tags": {
+    "title": "Topik"
+  },
+  "selected-tags": {
+    "title": "Sorotan"
+  },
+  "entry-list-item": {
+    "reblogged": "oleh {{n}}",
+    "promoted": "dipromosikan",
+    "pinned": "Postingan Disematkan",
+    "replies": "1 respon, Klik untuk merespon.",
+    "replies-n": "{{n}} respon. Klik untuk merespon.",
+    "no-replies": "Belum ada respon. Klik untuk merespon."
+  },
+  "bookmark-btn": {
+    "add": "Tambahkan ke penanda",
+    "added": "Ditambahkan ke penanda",
+    "delete": "Hapus dari penanda",
+    "deleted": "Dihapus dari penanda"
+  },
+  "entry-reblog": {
+    "reblog": "Tampilkan kembali",
+    "confirm-title": "Tampilkan ke blog @{{n}}?",
+    "confirm-ok": "Tampilkan kembali",
+    "success": "Ditampilkan kembali!"
+  },
+  "entry-payout": {
+    "pending-payout": "Pembayaran yang Ditunda",
+    "promoted": "Dipromosikan",
+    "author-payout": "Pembayaran Penulis",
+    "curators-payout": "Pembayaran Kurator",
+    "payout-date": "Pembayaran",
+    "beneficiary": "Penerima",
+    "breakdown": "Kerusakan"
+  },
+  "entry-index": {
+    "feed": "Umpan",
+    "tags": "Populer",
+    "title": "{{f}} topik",
+    "description": "{{f}} topik di media sosial yang dimiliki dan digunakan oleh pengguna ini.",
+    "description-tag": "{{f}} #{{t}} topik",
+    "description-user-feed": "{{u}} pengumpan"
+  },
+  "market-data": {
+    "title": "Market price",
+    "credits": "market data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
+  },
+  "list-style": {
+    "title": "Gaya daftar kotak"
+  },
+  "entry-votes": {
+    "title": "1 Vote",
+    "title-n": "{{n}} Vote",
+    "title-empty": "Tidak ada Vote",
+    "voter": "Pemilih",
+    "percent": "Persen",
+    "reward": "Imbalan",
+    "time": "Waktu"
+  },
+  "entry": {
+    "via-app": "melalui <span class=\"app-name\">{{app}}</span>",
+    "comment-entry-title": "Anda melihat sebuah komentar tunggal dari: ",
+    "comment-entry-go-root": "Lihat konteks lengkapnya",
+    "comment-entry-go-parent": "Lihat sumber utamanya",
+    "show-history": "Tampilkan riwayat edit",
+    "hidden-warning": "Posting ini tersembunyi dikarenakan peringkat rendah."
+  },
+  "edit-history": {
+    "title": "Riwayat Penyuntingan",
+    "show-diff": "Tampilkan Perbedaan",
+    "version": "Versi {{n}}"
+  },
+  "similar-entries": {
+    "title": "Postingan terbaru dari @{{n}}"
+  },
+  "comment": {
+    "body-placeholder": "Tulis balasan Anda disini",
+    "preview": "Tinjauan"
+  },
+  "discussion": {
+    "join": "Bergabunglah dengan obrolan sekarang",
+    "btn-join": "Bergabunglah",
+    "replies": "1 Komentar",
+    "n-replies": "{{n}} Komentar",
+    "order": "Tata urutan",
+    "order-trending": "Trending",
+    "order-reputation": "Reputasi",
+    "order-votes": "Vote",
+    "order-created": "Usia",
+    "read-more": "...baca balasan lainnya...",
+    "reveal": "Ungkapkan komentar"
+  },
+  "community": {
+    "page-description": "{{f}} topik",
+    "subscribe": "Subscribe",
+    "subscribed": "Terhubung",
+    "unsubscribe": "Keluar",
+    "post": "Postingan Baru",
+    "posts": "Postingan",
+    "subscribers": "Subscriber",
+    "activities": "Aktifitas",
+    "roles-title": "Peran Pengguna",
+    "roles-account": "Akun",
+    "roles-role": "Peran",
+    "roles-account-title": "Judul",
+    "roles-add": "Tambahkan Pengguna"
+  },
+  "community-cover": {
+    "rewards": "penghargaan",
+    "authors": "poster",
+    "lang": "bahasa",
+    "cover-image": "Gambar dinding komunitas",
+    "cover-image-edit": "Edit gambar dinding",
+    "cover-image-updated": "Gambar dinding diperbaharui!"
+  },
+  "community-card": {
+    "description": "Deskripsi",
+    "rules": "Peraturan",
+    "team": "Kepemimpinan",
+    "edit": "Edit pengaturan",
+    "edit-team": "Sunting peran",
+    "profile-image": "Gambar profil komunitas",
+    "profile-image-edit": "Edit gambar profil",
+    "profile-image-updated": "Gambar profil diperbaharui!"
+  },
+  "community-role-edit": {
+    "title": "Atur peran pengguna",
+    "username": "Nama Pengguna",
+    "role": "Peran",
+    "user-not-found": "Pengguna tidak ada!",
+    "explanations": "<h3>Ijin peran</h3><p><strong>Pemilik</strong> - tetapkan admin</p><p><strong>Admin</strong> - edit pengaturan, tetapkan moderator</p><p><strong>Moderator</strong> - bisukan, pin, atur gelar pengguna</p><p><strong>Member</strong> - terdaftar dalam tim leadership</p><p><strong>Tamu</strong> - default; dapat memposting dan berkomentar</p><p><strong>Dibisukan</strong> - postingan baru secara otomatis dibisukan</p>"
+  },
+  "community-settings": {
+    "dialog-title": "Pengaturan Komunitas",
+    "title": "Judul",
+    "about": "Tentang",
+    "lang": "Bahasa",
+    "description": "Deskripsi",
+    "rules": "Aturan",
+    "rules-help": "Satu per baris"
+  },
+  "communities": {
+    "title": "Komunitas",
+    "description": "Komunitas online terbaik yang dihargai, terdesentralisasi, tidak berubah, dan bermanfaat",
+    "n-subscribers": "{{n}} subscriber",
+    "n-authors": "{{n}} poster",
+    "n-posts": "{{n}} postingan",
+    "admins": "admin:",
+    "sort-hot": "Hebat",
+    "sort-rank": "Ranking",
+    "sort-subs": "Subscriber",
+    "sort-new": "Baru",
+    "no-results": "Tidak hasil ditemukan",
+    "create": "Buatlah komunitas"
+  },
+  "communities-create": {
+    "page-title": "Buatlah sebuah komunitas",
+    "title": "Judul",
+    "about": "Tentang",
+    "description": "Ciptakan sebuah komunitas terbaik yang dihargai, terdesentralisasi, tidak berubah, dan bermanfaat",
+    "fee": "Biaya operasional",
+    "creator": "Kreator",
+    "username": "Nama pengguna pemilik",
+    "username-available": "Tersedia.",
+    "username-not-available": "Tidak tersedia.",
+    "username-wrong-format": "Bukan format yang valid. format hive-1xxxxx yang diperlukan.",
+    "password": "Kata sandi pemilik",
+    "confirmation": "Saya telah menyimpan nama pengguna dan kata sandi saya dengan aman.",
+    "submit": "Buatlah komunitas",
+    "progress-account": "Sedang menciptakan akun...",
+    "progress-user": "Sedang mempersiapkan data pengguna...",
+    "progress-role": "Seting @{{u}} sebagai admin...",
+    "progress-props": "Sedang memperbaharui pengaturan komunitas...",
+    "done": "Komunitas Anda sudah dibuat 🎉",
+    "done-link-label": "Mulai."
+  },
+  "pin-btn": {
+    "pin": "Sematkan",
+    "unpin": "Lepaskan"
+  },
+  "mute-btn": {
+    "mute": "Bisukan",
+    "unmute": "Bisukan postingan/komentar",
+    "dialog-title-mute": "Bisukan postingan/komentar",
+    "dialog-title-unmute": "Suarakan postingan/komentar",
+    "notes": "Catatan",
+    "note-placeholder-mute": "Berikan catatan terkait keputusanmu membisukan konten ini.",
+    "note-placeholder-unmute": "Berikan catatan terkait keputusanmu untuk tidak membisukan lagi konten ini."
+  },
+  "profile": {
+    "voting-power": "Kekuatan Voting",
+    "post-count": "Hitungan Postingan",
+    "followers": "Pengikut",
+    "following": "Mengikuti",
+    "section-blog": "Blog",
+    "section-posts": "Postingan",
+    "section-comments": "Komentar",
+    "section-replies": "Balasan",
+    "section-communities": "Komunitas",
+    "section-wallet": "Dompet",
+    "section-settings": "Settings",
+    "communities-title": "Berlangganan",
+    "create-community": "Buatlah sebuah komunitas",
+    "witnesses": "Witnesses",
+    "proposals": "Proposals"
+  },
+  "profile-edit": {
+    "title": "Profile",
+    "name": "Tampilkan Nama",
+    "about": "Tentang",
+    "cover-image": "Gambar Sampul",
+    "profile-image": "Gambar Profil",
+    "website": "Website",
+    "location": "Lokasi",
+    "updated": "Profil diperbaharui dengan sukses!"
+  },
+  "image-upload-button": {
+    "uploaded": "Gambar Diunggah"
+  },
+  "preferences": {
+    "title": "Preferences",
+    "notifications": "Notification alerts",
+    "currency": "Currency",
+    "language": "Language",
+    "updated": "Preference updated!"
+  },
+  "wallet": {
+    "unclaimed-rewards": "Reward yang belum diklaim",
+    "claim-reward-balance": "Klaim Jumlah Reward",
+    "claim-reward-balance-ok": "Jumlah Reward Diklaim",
+    "estimated": "Estimasi Harga Akun",
+    "estimated-description": "Harga estimasi berdasarkan nilai rata-rata HIVE dalam 7 hari.",
+    "hive": "HIVE",
+    "hive-description": "HIVE adalah Token yang dapat diperdagangkan juga dapat dipindahkan kapan saja. HIVE dapat pula dikonversi menjadi Hive Power yang prosesnya dinamakan Powering Up.",
+    "hive-power": "KEKUATAN HIVE",
+    "hive-power-description": "Hive Power adalah Token berpengaruh yang menghasilkan lebih banyak Kekuatan untuk disimpan dalam waktu yang lama dan dapat dipakai untuk melakukan voting pada postingan-postingan. Semakin banyak jumlah Hive Power yang dimiliki, maka semakin besar seorang mempengaruhi Rewards lain dan memperoleh Rewards untuk voting yang akurat.",
+    "hive-power-delegated": "Hive Power yang Didelagasikan",
+    "hive-power-received": "Hive Power yang Diterima",
+    "next-power-down-amount": "Jumlah power down berikutnya",
+    "hive-power-total": "Jumlah Hive Power",
+    "hive-dollars": "HIVE DOLLAR",
+    "hive-dollars-description": "Token nilainya kira-kira 1 Dolar HIVE.",
+    "savings": "SIMPANAN",
+    "savings-description": "Jumlah Saldo masa tunggu pengambilan selama 3 hari.",
+    "next-power-down": "Power Down berikutnya adalah {{waktu}} {{jumlah}}",
+    "transfer": "Transfer",
+    "transfer-to-savings": "Transfer ke penyimpanan",
+    "convert": "Konversi",
+    "power-up": "Tingkatkan kekuatan",
+    "withdraw-hive": "Tarik Hive",
+    "withdraw-hbd": "Tarik Hive Dollar"
+  },
+  "points": {
+    "get": "BUY POINTS",
+    "unclaimed-points": "Unclaimed points",
+    "claim-reward-points": "Claim reward points",
+    "main-description": "Points can be used for in-app services, like Promote, Boost, Gifting. Earn them just by using Ecency apps and improve your experience.",
+    "earn-points": "How to earn more Points",
+    "post-desc": "Anda dapat memperoleh poin lewat postingan secara teratur. Sebuah postingan memberikan Anda 15 poin.",
+    "comment-desc": "Setiap komentar yang Anda buat membantu Anda mengembangkan audiens dan menjalin persahabatan, tetapi juga memberi Anda 5 poin.",
+    "checkin-desc": "Periksa di Ecency yang memberikan Anda 0.25 poin dan membantu Anda tetap terhubung dengan teman-teman Anda.",
+    "vote-desc": "Dengan melakukan voting, Anda memberikan hadiah kepada penulis lain dan menunjukkan penghargaan Anda, tetapi juga mendapatkan 0,01 poin.",
+    "reblog-desc": "  Bagikan postingan yang Anda sukai dengan teman dan dapatkan 1 poin.",
+    "login-desc": "Ketika Anda masuk ke aplikasi Ecency, Anda berhak mendapatkan 100 poin secara otomatis.",
+    "checkin-extra-desc": "Penggunaan aplikasi yang konsisten memberi Anda peluang ekstra untuk mendapatkan 10 poin tambahan, jadilah lebih aktif dan hasilkan lebih banyak poin.",
+    "delegation-desc": "You can earn ~50 points per day for each 1000HP delegation.",
+    "history": "Riwayat",
+    "post-list-desc": "Poin postingan",
+    "comment-list-desc": "Poin untuk komentar",
+    "vote-list-desc": "Poin untuk vote",
+    "reblog-list-desc": "Poin untuk reblog",
+    "login-list-desc": "Poin untuk login",
+    "checkin-list-desc": "Poin cuma-cuma",
+    "checkin-extra-list-desc": "Bonus pemakaian",
+    "transfer-sent-list-desc": "Tranfer kepada {{n}}",
+    "transfer-incoming-list-desc": "Transfer dari {{n}}",
+    "delegation-list-desc": "Reward delegasi",
+    "referral-list-desc": "Reward referral",
+    "transfer": "Hadiah untuk seseorang",
+    "claim-ok": "Poin yang diklaim",
+    "promote": "Promosikan",
+    "boost": "Tingkatkan"
+  },
+  "purchase": {
+    "select-asset": "Pilih Aset",
+    "slider-hint": "Seret penggeser tersebut untuk menyesuaikan jumlahnya.",
+    "submit": "Pembelian"
+  },
+  "promote": {
+    "title": "Promosikan",
+    "sub-title": "Promosikan postingan Anda",
+    "duration": "Durasi"
+  },
+  "boost": {
+    "title": "Naikkan",
+    "sub-title": "Naikkan postingan Anda",
+    "amount": "Jumlah",
+    "slider-hint": "Seret penggeser tersebut untuk menyesuaikan jumlahnya."
+  },
+  "redeem-common": {
+    "balance": "Saldo",
+    "post": "Postingan",
+    "post-hint": "Pengisian nama Otomatis",
+    "post-placeholder": "nama pengguna/tautan permanen",
+    "post-error": "Bukan alamat postingan yang valid",
+    "post-error-exists": "Postingan ini sudah dipromosikan",
+    "success-message": "Permintaan Anda terkirim. Ia akan diaktifkan dalam beberapa menit."
+  },
+  "transfer": {
+    "transfer-title": "Transfer ke Akun",
+    "transfer-title-point": "Hadiah ke Akun",
+    "transfer-sub-title": "Pindahkan dana ke akun Hive lainnya",
+    "transfer-saving-title": "Transfer ke Tabungan",
+    "transfer-saving-sub-title": "Lindungi dana dengan meminta masa tunggu penarikan selama 3 hari",
+    "withdraw-saving-title": "Penarikan Tabungan",
+    "withdraw-saving-sub-title": "Tarik dana setelah masa tunggu 3 hari",
+    "power-up-title": "Simpan Hive sebagai Power",
+    "convert-title": "Konversi",
+    "power-up-sub-title": "Token berpengaruh besar untuk memberi anda kontrol atas pembayaran postingan dan memungkinkan anda untuk mendapat imbalan kurasi.",
+    "convert-sub-title": "Lakukan ini bila HBD di bawah 1 Dolar. Anda akan menapatkan 1 Dolar HIVE dalam 3,5 Hari.",
+    "from": "Dari",
+    "to": "Kepada",
+    "to-placeholder": "nama pengguna",
+    "to-not-found": "Pengguna yang anda coba transfer dana tidak ditemukan!",
+    "to-bad-actor": "Berhati-hatilah mengirim ke akun ini. Periksa kembali ejaan Anda untuk kemungkinan phising.",
+    "amount": "Jumlah",
+    "amount-placeholder": "jumlah",
+    "wrong-amount": "Nilai jumlah dana yang salah",
+    "amount-precision-error": "Gunakan hanya 3 digit presisi",
+    "balance": "Saldo",
+    "memo": "Memo",
+    "memo-placeholder": "tuliskan catatan Anda disini",
+    "memo-help": "Memo ini adalah Publik",
+    "confirm-title": "Konfirmasi transaksi Anda",
+    "confirm-sub-title": "Silahkan periksa apakah semuanya benar",
+    "confirm": "Konfirmasi",
+    "recent-transfers": "Transfer terbaru",
+    "transfer-summary": "Ditransfer <span class=\"amount\">{{jumlah}}</span>Dari<span class=\"from-user\">{{Dari}}</span>ke<span class=\"to-user\">{{ke}}</span>",
+    "reset": "Transfer lainnya"
+  },
+  "trx-common": {
+    "insufficient-funds": "Dana tidak cukup",
+    "sign-title": "Tandatangani transaksi",
+    "sign-sub-title": "Tandatangani transaksi Anda",
+    "success-title": "Sukses",
+    "success-sub-title": "Transaksinya berhasil"
+  },
+  "transactions": {
+    "title": "History",
+    "type-curation_reward": "Reward Kurasi",
+    "type-author_reward": "Reward Penulis",
+    "type-comment_benefactor_reward": "Reward Komentar Distributor",
+    "type-claim_reward_balance": "Klaim reward",
+    "type-transfer": "Transfer",
+    "type-transfer_to_vesting": "Transfer ke vesting",
+    "type-withdraw_vesting": "Menarik vesting",
+    "type-fill_order": "Isi pesanan"
+  },
+  "key-or-hot": {
+    "sign": "Masuk",
+    "key-placeholder": "Masukkan active/owner/master key",
+    "with-hivesigner": "Masuk dengan hivesigner",
+    "with-keychain": "Masuk dengan keychain"
+  },
+  "delegated-vesting": {
+    "title": "Hive Power yang Didelegasikan"
+  },
+  "received-vesting": {
+    "title": "Hive Power yang Diterima"
+  },
+  "friends": {
+    "followers": "Pengikut ({{n}})",
+    "following": "Mengikuti ({{n}})",
+    "search-placeholder": "Cari pengguna"
+  },
+  "follow-controls": {
+    "follow": "Ikuti",
+    "unFollow": "Berhenti mengikuti",
+    "mute": "Senyapkan",
+    "unMute": "Hidupkan"
+  },
+  "favorite-btn": {
+    "add": "Tambahkan ke favorit",
+    "added": "Ditambahkan ke favorit",
+    "delete": "Hapus dari daftar favorit",
+    "deleted": "Dihapus dari favorit"
+  },
+  "editor-toolbar": {
+    "bold": "Tebal",
+    "italic": "Cetak miring",
+    "header": "Bagian Atas",
+    "code": "Kode",
+    "quote": "Kutipan",
+    "ul": "Daftar tidak berurutan",
+    "ol": "Daftar pesanan",
+    "link": "Tautan",
+    "image": "Gambar",
+    "table": "Tabel",
+    "table-3-col": "3 kolom",
+    "table-2-col": "2 kolom",
+    "table-1-col": "1 kolom",
+    "upload": "Unggah",
+    "gallery": "Galeri",
+    "emoji": "Emoji",
+    "image-error": "Tidak dapat mengunggah gambar.",
+    "image-error-size": "Ukuran gambar terlalu besar, coba masukkan ukuran gambar yang lebih kecil."
+  },
+  "emoji-picker": {
+    "filter-placeholder": "Penyaring",
+    "filter-no-match": "Tidak cocok",
+    "recently-used": "Baru saja digunakan"
+  },
+  "submit": {
+    "page-title": "Buat sebuah postingan",
+    "page-description": "Publikasikan sebuah artikel, dapatkan rewardnya, tidak disensor, tak dapat dihapus, kontennya terdesentralisasi!",
+    "title-placeholder": "Judul",
+    "body-placeholder": "Konten Postingan",
+    "reward": "Reward",
+    "reward-default": "Default 50% / 50%",
+    "reward-sp": "Power Up 100%",
+    "reward-dp": "Menolak pembayaran",
+    "preview": "Tinjauan",
+    "publish": "Terbitkan",
+    "update": "Perbaharui",
+    "save-draft": "Simpan Konsep",
+    "draft-saved": "Konsep disimpan",
+    "update-draft": "Perbaharui Konsep",
+    "draft-updated": "Konsep diperbarui",
+    "cancel-update": "Batalkan",
+    "clear": "Bersihkan",
+    "published": "Postingan telah diterbitkan",
+    "updated": "Postingan diperbarui"
+  },
+  "tag-selector": {
+    "placeholder-empty": "Tagar. Tagar pertama adalah kategori utama. Mudah disortir.",
+    "placeholder-focus": "Masukkan tagar",
+    "placeholder-has-tags": "Tambahkan lagi",
+    "suggestion-header": "Tagar/Komunitas",
+    "error-max": "Maksimum {{n}} tagar"
+  },
+  "word-count": {
+    "label": "{{n}} kata",
+    "read-time-less-1-min": "< 1 menit dibaca",
+    "read-time-n-min": "~ {{n}} menit dibaca"
+  },
+  "notification": {
+    "popup-title": "Anda memiliki pemberitahuan baru",
+    "voted": "{{source}} memberikan suara pada postingan Anda",
+    "mention-post": "{{source}} menyebut Anda dalam sebuah postingan",
+    "mention-comment": "{{source}} menyebut Anda dalam sebuah komentar",
+    "followed": "{{source}} mengikuti anda",
+    "replied": "{{source}} membalas anda",
+    "reblogged": "{{source}} menampilkan kembali postingan Anda",
+    "transfer": "{{source}} mengirimkan Anda {{amount}}"
+  },
+  "notifications": {
+    "type-all": "Semua Notifikasi",
+    "type-all-short": "Semua",
+    "type-rvotes": "Vote",
+    "type-replies": "Balas",
+    "type-mentions": "Sebutkan",
+    "type-follows": "Ikuti",
+    "type-reblogs": "Tampilkan kembali",
+    "type-transfers": "Transfer",
+    "vote-str": "{{p}}% menyukai postingan Anda:",
+    "reply-str": "membalas postingan Anda:",
+    "mention-str": "menyebut Anda dalam:",
+    "followed-str": "diikuti",
+    "unfollowed-str": "berhenti diikuti",
+    "ignored-str": "diabaikan",
+    "reblog-str": "ditampilkan kembali post Anda:",
+    "transfer-str": "dikirimi Anda",
+    "spin-str": "Saatnya memperoleh lebih banyak Poin, Mainkan Putaran di Ecency Mobile",
+    "inactive-str": "Ayo aktif! Tulislah postingan, teruskan mengumpulkan pendapatan",
+    "referral-str": "bergabung dengan referral Anda, sambutlah mereka",
+    "refresh": "Segarkan",
+    "mark-all-read": "Tandai semua sebagai yang telah dibaca",
+    "mark-read": "Tandai sebagai telah dibaca",
+    "mute": "Turn off notification alerts",
+    "unmute": "Turn on notification alerts"
+  },
+  "leaderboard": {
+    "title": "Papan Peringkat",
+    "title-day": "Pengguna teratas harian",
+    "title-week": "Pengguna teratas mingguan",
+    "title-month": "Pengguna teratas bulanan",
+    "period-day": "Harian",
+    "period-week": "Mingguan",
+    "period-month": "Bulanan",
+    "header-score": "Aktifitas",
+    "header-score-tip": "Posting + komentar yang dibuat oleh pengguna untuk periode yang dipilih",
+    "header-reward": "Imbalan"
+  },
+  "popular-users": {
+    "title": "Pengguna Populer"
+  },
+  "discover": {
+    "title": "Jelajahi",
+    "description": "Jelajahi pengguna top yang online"
+  },
+  "search-page": {
+    "title": "Cari",
+    "description": "Temukan konten pengguna dan komunitas yang tidak bersensor",
+    "n-results-for-q": "{{n}} hasil",
+    "no-result": "Tidak ada hasil",
+    "sort-by": "urut berdasarkan",
+    "sort-popularity": "Popularitas",
+    "sort-relevance": "Relevan",
+    "sort-newest": "Tanggal"
+  },
+  "witnesses": {
+    "page-title": "Saksi-saksi",
+    "page-description": "Seleksi konsensus produser block",
+    "page-description-long": "Peran saksi atau produsen blok di Hive blockchain adalah bertindak sebagai badan tata kelola jaringan. Komunitas memilih mereka untuk mewakili suara mereka dan setiap pengguna dapat memilih hingga 30 saksi. 20 saksi teratas menghasilkan blok setiap menit sementara sisanya tetap sebagai saksi cadangan dan mendapat peluang acak setiap menit. Peran ini merupakan bagian integral dari mekanisme konsensus yang dijalankan blockchain dan merekomendasikan keterlibatan pengguna untuk memberikan suara pada saksi tepercaya.",
+    "remaining": "</span>{{n}}</span> dari {{maks}} sisa vote",
+    "list-rank": "Ranking",
+    "list-witness": "Saksi",
+    "list-miss": "Hilang",
+    "list-url": "URL",
+    "list-fee": "Biaya",
+    "list-feed": "Umpan",
+    "list-version": "Versi",
+    "username-placeholder": "nama pengguna",
+    "extra-description": "Masukkan nama akun dibawah ini untuk memilih saksi diluar dari 50 teratas",
+    "proxy-description": "Anda juga dapat memilih proxy yang akan memilih saksi untuk Anda. Hal ini akan mengatur ulang pemilihan saksi Anda.",
+    "proxy-btn-label": "Atur Proxy",
+    "proxy-active-description": "Anda telah menetapkan pemungutan suara proxy. Jika Anda ingin mengaktifkan kembali pemungutan suara secara manual, harap hapus proxy Anda.",
+    "proxy-active-current": "Proxy anda sekarang",
+    "proxy-active-btn-label": "Hapus proxy"
+  },
+  "proposals": {
+    "page-title": "Proposal",
+    "page-description": "The Decentralized Hive Fund (DHF) adalah mekanisme pendanaan on-chain yang memungkinkan siapa saja untuk mengajukan proposal dan mendapatkan pendanaan setelah suara masyarakat melewati ambang tertentu. Untuk mempelajari lebih lanjut, baca <a href=\"/faq#how-dhf-work\">FAQ</a> kami.",
+    "by": "oleh",
+    "for": "untuk",
+    "duration-days": "{{n}} hari",
+    "daily-pay": "Harian {{n}}",
+    "votes": "Vote {{n}}",
+    "status-active": "aktif",
+    "status-expired": "kadaluarsa",
+    "status-inactive": "mendatang",
+    "remaining-days": "Sisa: {{n}} hari",
+    "filter-all": "Semua",
+    "filter-active": "Aktif",
+    "filter-inactive": "Akan datang",
+    "filter-team": "Proyek Ecency",
+    "return-description": "Ini adalah proposal pengembalian dasar. Setiap proposal dengan suara lebih sedikit tidak akan menerima dana.",
+    "votes-dialog-title": "Vote pada Proposal #{{n}}",
+    "see-all": "lihat semua proposal"
+  },
+  "gallery": {
+    "title": "Galeri",
+    "copied": "Disalin ke clipboard"
+  },
+  "drafts": {
+    "title": "Konsep"
+  },
+  "bookmarks": {
+    "title": "Bookmark"
+  },
+  "favorites": {
+    "title": "Favorit"
+  },
+  "scroll-to-top": {
+    "title": "Gulir ke Atas"
+  },
+  "static": {
+    "about": {
+      "page-title": "Tentang",
+      "intro-title": "Apa itu <span>Ecency</span>",
+      "intro-content": "Ecency adalah Aplikasi antarmuka yang menarik dan praktis berjalan pada jaringan blockchain Hive yang memungkinkan Anda untuk membuat postingan Anda sendiri, menjelajahi umpan Anda, memilih apa yang Anda suka, menulis komentar, membaca balasan, melakukan semua fungsi utama Hive dalam interaksi sosial sehari-hari dan juga memiliki fungsi penyimpanan dana dan fungsi lainnya seperti pencarian, menemukan tagar berbeda, dll.",
+      "faq-title": "PERTANYAAN YANG SERING DITANYAKAN (FAQ)",
+      "faqs": "SEMUA FAQs",
+      "contact-title": "Kontak",
+      "contact-blog": "Pemilik blog",
+      "contact-news": "Berita tentang Hive",
+      "contact-email": "Kirimkan email kepada kami"
+    },
+    "faq": {
+      "page-title": "Pertanyaan tentang Ecency",
+      "page-sub-title": "Daftar Isi",
+      "what-is-ecency-header": "Apa itu Ecency?",
+      "what-is-ecency-body": "<p> Ecency adalah jaringan sosial berbasis <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\"> blockchain </a> - diberdayakan oleh <a href = \"https://hive.io\" target = \"_ blank\" rel = \"noopener noreferrer\"> Hive </a>. </p> <p> Ecency menawarkan platform yang tidak disensor, gratis, tanpa batas, dan bermanfaat bagi pembuat konten. </p> <p> Proyek dimulai dan didirikan oleh <a href=\"/@good-karma\"> @ good-karma </a> pada Agustus 2016 sebagai jaringan sosial alternatif. Sejak saat itu, proyek telah berkembang menjadi kelompok kontributor yang jauh lebih besar (penerjemah, penguji, pengembang, pemberi pengaruh, pembuat konten, dan konsumen) yang membantu membentuk Ecency. </p> <p> Ecency membantu banyak orang memasukkan teknologi Blockchain di mana pengguna dibayar untuk waktu, sumber daya, dan belajar mereka sambil menikmati aspek sosial blockchain. Melalui kemudahan penggunaan, pengguna tidak hanya belajar tetapi juga menjadi investor, inovator teknologi, dan komunitas. </p>",
+      "what-is-hive-header": "Apa itu Hive Blockchain?",
+      "what-is-hive-body": "<p> Hive adalah blockchain yang dirancang untuk menjadi platform yang cepat, nyaman, terdesentralisasi, tanpa sensor untuk aplikasi Web3.0, dengan fitur bawaan di mana pemegang saham dapat memperoleh hadiah dengan mempertaruhkan, mengkurasi, membuat konten, bermain game, berdagang - semuanya tanpa perantara (desentralisasi). Token di blockchain Hive yang disebut HIVE, HIVE DOLLARS, HIVE POWER. </p>",
+      "what-is-difference-header": "Apa perbedaan antara Ecency dan aplikasi Hive lainnya?",
+      "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\" loading=\"lazy\"/></p><p>Perbedaan utama di semua antarmuka atau aplikasi terletak pada pengaturan fitur, pengalaman penggunaan. Ecency menawarkan aplikasi situs web, seluler dan desktop untuk kemudahan akses dan dengan mempertimbangkan keamanan terbaik. Dapat diakses, bersumber terbuka dan inovatif, dibangun dan dimiliki oleh pengguna sendiri. Bercita-citalah menjadi yang terbesar!</p>",
+      "why-choose-ecency-header": "Mengapa saya memilih Ecency?",
+      "why-choose-ecency-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjrzJAcJ4DvxvtqoPdzS9Aygf4MZ1PeE4goH6zWaeEFvafr9vGXWuou67Pbn44GweMyHV5DupM5q1cRvU85qdver?format=match&mode=fit\" loading=\"lazy\"/></p><p>Kumpulan fitur yang disesuaikan untuk memberdayakan Anda dalam membuat, menginspirasi audiens, dan komunitas Anda. Aplikasi seluler Ecency memberi Anda solusi saat bepergian. Dengan aplikasi desktop Anda selalu yakin mendapatkan konten tanpa sensor langsung dari blockchain, dengan situs web menjangkau ribuan pembaca di seluruh dunia dengan konten peringkat terbaik di mesin pencari. Langkah-langkah keamanan canggih sehingga password Anda akan selalu terenkripsi dan berada di luar jangkauan individu yang berniat jahat. Situs web yang cepat dan menarik, membantu Anda ditemukan secara online dan mendapatkan eksposur untuk konten Anda serta mendapatkan pengikut dan pembaca setia. Bangun komunitas Anda dengan Ecency hari ini dan manfaatkan teknologi blockchain yang muncul dan konten tanpa sensor, sungguh suatu kebebasan berbicara luar biasa</p>",
+      "how-ecency-works-header": "Bagaimana Ecency bekerja?",
+      "how-ecency-works-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjuZ3ksaZqEjfd9GadyKFE4bT7UP8qM1sF5W6U3cst4ekDsXfrQdcrjtdz6b5Ye2AfWNwGA5f8QqVXmed6NRfg1U?format=match&mode=fit\" loading=\"lazy\"/></p><p>Ecency menyimpan dan membaca data dari blockchain, dan dengan demikian data dapat diakses dan tidak disensor. Ecency memberi reward kepada pembuat konten dengan mekanisme insentif bawaan dari blockchain, dengan token (HIVE, HIVE DOLLAR, HIVE POWER) serta ada Poinnya juga. Token dapat dibeli dan dijual di bursa mata uang kripto besar (contohnya seperti Binance, Bittrex).</p>",
+      "how-to-join-header": "Bagaimana bergabung dengan Ecency?",
+      "how-to-join-body": "<p>Buka <a href=\"/?referral=ecency\"> https://ecency.com/?referral=ecency </a> dan buatlah akun. Setelah mendaftar, Anda akan menerima email dengan instruksi lebih lanjut. Kata sandi Anda adalah kunci utama akun Anda. Harap simpan dengan aman, jika Anda kehilangan kata sandi, Anda pada akhirnya kehilangan akses ke akun dan dana Anda. Akun tidak dapat dinonaktifkan atau dihapus, nama akun juga tidak dapat diubah. Akun beserta semua aktivitasnya disimpan secara permanen di blockchain. Tanpa kata sandi, akun tidak dapat dipulihkan, simpan kunci Anda dengan aman.</p>",
+      "how-to-signin-header": "Bagaimana masuk ke Ecency?",
+      "how-to-signin-body": "<p><img src=\"https://images.ecency.com/p/7258xSVeJbKmTr9Z4jhbPhjS9pMWA2mTwBMDbXqk9G9wdMw2bwR4hXqRQt9S7UBFrBAWCYWddjn3G34ETv5KWB5KGmuZ8ixBB9oKHTFvjjnTkRLp4ttrFQtpgtNnRUEA9NtmyFmgyuuK4?format=match&mode=fit\" loading=\"lazy\"/></p><p>Anda dapat masuk ke Ecency dengan menggunakan nama pengguna dan kata sandi utama Anda/master key atau dengan menggunakan kunci pribadi aktif/active private key. Kami menjaga keamanan dengan sangat serius, itulah mengapa kami tidak pernah menyimpan kunci pribadi Anda, di aplikasi seluler kunci tersebut dienkripsi dengan kode PIN tambahan pilihan Anda, di situs web kunci tersebut tidak pernah disimpan. Anda juga dapat menggunakan layanan otentikasi <a href=\"https://hivesigner.com\"> Hivesigner OAuth2 </a> untuk dengan mudah masuk, mengelola dan melakukan tindakan. </p></p>",
+      "how-referrals-work-header": "Bagaimana sistem referal bekerja pada Ecency?",
+      "how-referrals-work-body": "<p>Sistem referal itu sederhana, Anda dapat mengundang teman Anda dengan menambahkan nama pengguna Anda di tautan ini https://ecency.com/?referral=username dan membagikannya dengan teman Anda. Setelah teman Anda bergabung dengan Ecency dan mendapatkan 250 Poin pertama mereka, Anda akan mendapatkan 100 Poin. Tidak ada batasan untuk referensi dan imbalannya.</p>",
+      "what-is-points-header": "Apa itu Poin Ecency dan bagaimana menggunakannya?",
+      "what-is-points-body": "<p>Poin Ecency terus-menerus dicetak dan dihadiahkan untuk semua pengguna untuk berbagai aktivitas sosial yang mereka lakukan di situs web, aplikasi seluler atau desktop. Poin dapat digunakan untuk mempromosikan, meningkatkan konten Anda, bahkan dapat ditransfer atau dihadiahkan kepada pengguna lain. Anda juga dapat membeli Poin dengan aplikasi seluler kami.</p>",
+      "where-tokens-come-header": "Dari mana token berasal?",
+      "where-tokens-come-body": "<p><img src=\"https://images.ecency.com/p/7kq2TLHKEHhCCDwNZLfFLu7msWtbdFb7vZaJJ9Y13GAc18vfVNAj8ZctLWmsVfMCCFtwGdULbZKT89faeBymhPsySU5tp4RnvDsHz6ZBxXHWA4g34ck4LHnR2vGkqsHvjzhizhpV8K6JrQ4sy7cCgJQksUUYPKp4d9XbERHkjnZV3PTdhbiUZPYJ43RS8cQu2sEmUbAgqZExuYMGa46SDa4vCunH2w6oNpommW5L1CCdfwdgX5i9eCpcS5fHo4t8btjVE69edzrUN8anr6T3v8AFYHC?format=match&mode=fit\" loading=\"lazy\"/></p><p>Jaringan Hive terus membuat token digital baru untuk memberi penghargaan kepada pembuat konten dan kurator. Beberapa token yang baru dibuat ditransfer ke pengguna yang memberi nilai tambah pada platform dengan memposting, berkomentar, dan memberikan suara pada postingan orang lain. Sisanya didistribusikan kepada pemegang HIVE POWER dan saksi yang mengamankan blockchain.</p>",
+      "how-promotion-work-header": "Bagaimana promosi konten bekerja?",
+      "how-promotion-work-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfoi6H93UHPFEEQutPvax8LP1XqGWMa9geug5SBEEhLUEHKVvSyBfzhrBm9J4uvmrn28AtPhmwcKx?format=match&mode=fit\" loading=\"lazy\"/></p><p>Mempromosikan konten dengan Poin adalah cara termudah untuk mendapatkan lebih banyak pemirsa. Promosi memiliki jangka waktu tertentu dan diacak di seluruh feed. Postingan apa pun, dapat dipromosikan untuk mendapatkan lebih banyak pemirsa dan jaringan.</p>",
+      "how-boosting-work-header": "Bagaimana promosi konten bekerja?",
+      "how-boosting-work-body": "<p>Poin dapat digunakan untuk meningkatkan konten (postingan dan komentar). Permintaan peningkatan ditinjau secara manual oleh moderator dan kurator kami yang mungkin memerlukan waktu hingga 24 jam. <p> Sebagai bagian dari pemeriksaan kualitas, kami dapat mempertimbangkan: a) Konten adalah konten asli, b) Tidak terdeteksi oleh cheetah, mackbot, hivewatchers, atau daftar hitam lainnya, dll. c) Pengguna tidak ada dalam daftar hitam Ecency karena perilaku yang kasar. </p> Boosting tidak menjamin kurasi, jika konten tidak dikurasi dalam waktu 24 jam, Poin akan dikembalikan.</p>",
+      "how-to-transfer-header": "Bagaimana mentransfer token blockchain?",
+      "how-to-transfer-body": "<p> Setelah masuk, Anda akan menemukan halaman Wallet di header atas pada situs web dan aplikasi desktop atau di halaman Profil, bilah navigasi bawah pada aplikasi seluler. Di halaman dompet, Anda dapat memulai transfer token apa pun yang Anda miliki ke pengguna lain atau akun exchange, klik panah di sebelah saldo Anda dan temukan operasi transfer. Transfer tidak dapat diubah karena terdaftar di blockchain, pastikan untuk mengirim ke penerima yang benar. </p>",
+      "how-see-rewards-header": "Bagaimana saya melihat reward postingan saya?",
+      "how-see-rewards-body": "<p><img src=\"https://images.ecency.com/p/3W72119s5BjW4PvRk9nXBzqrPWMsMTjNrXDPFFf11iYhySeELMe77idrZHBPmyaqFX6CV72hBLB5qFhwVhGoAATydoFxAF7oCwBt1ztp6eS9r5us4pm7iN?format=match&mode=fit\" loading=\"lazy\"/></p><p>In Wallet page (in top header on website and desktop app, bottom navigation bar on mobile app), you can see Curation rewards (the rewards earned for upvoting posts and comments) and Author rewards (the rewards earned by your own posts and comments)</p><p>You can also view the same information for other users by visiting their wallet profile.</p>",
+      "how-dhf-work-header": "Bagaimana Cara kerja DHF?",
+      "how-dhf-work-body": "<p>Siapapun dapat membuat proposal dan meyakinkan komunitas untuk memberikan suara pada proposal mereka untuk mendapatkan dana. Sebelum membuat proposal, posting normal harus dipublikasikan di blockchain dan disarankan untuk mengumpulkan umpan balik sebelum membuat proposal. Pembuatan proposal dikenakan biaya 10 HBD + 1 HBD untuk setiap hari berlangsung selama 60 hari.</p><p>Setelah proposal mencapai ambang tertentu dari suara yang dihitung, itu akan mulai menerima dana setiap jam. Jika proposal berada di bawah ambang batas, sistem akan menghentikan pendanaan untuk proposal tersebut. Anda dapat memilih proposal sebanyak yang Anda inginkan, tidak ada batasan. Proposal tidak dapat diedit, tetapi dapat dihapus / ditarik oleh pembuatnya.</p>",
+      "when-claim-rewards-header": "Kapan saya bisa klaim rewards?",
+      "when-claim-rewards-body": "<p>Posting dan komentar tetap aktif selama 7 hari dan hadiah berfluktuasi tergantung pada suara dan harga pasar token, itulah sebabnya hadiah diperkirakan sebagai hadiah yang tertunda. Ketika periode berakhir, hadiah yang tertunda berubah menjadi hadiah sebenarnya dan Anda dapat mengklaim hadiah yang diperoleh. Di Wallet Anda, klik tombol Klaim Hadiah untuk menambahkan token ke akun Anda.</p>",
+      "what-are-rc-header": "Apa itu Resource Credit (Kredit Sumber Daya)?",
+      "what-are-rc-body": "<p><p> Bertransaksi di blockchain Hive tidak memiliki biaya, pembatasan nilai transaksi digunakan untuk melindungi blockchain dari serangan spam. Setiap tindakan yang Anda lakukan di blockchain akan menghabiskan sejumlah kecil Kredit Sumber Daya (Resource Credit). Ini termasuk memposting, berkomentar, memberi suara, mentransfer token, dll. Melihat konten tidak menghabiskan Kredit Sumber Daya. </p> <p> Setiap pengguna memiliki Kredit Sumber Daya dalam jumlah terbatas untuk digunakan setiap minggu. Semakin banyak transaksi yang dilakukan pengguna, semakin sedikit Kredit Sumber Daya yang tersisa (sampai ia mengisi ulang). Pengguna dengan lebih banyak HIVE POWER akan memiliki lebih banyak Kredit Sumber Daya. </p> <p> Jika Anda kehabisan Kredit Sumber Daya, Anda tidak akan dapat bertransaksi dengan blockchain sampai Kredit Sumber Daya Anda terisi ulang (terjadi secara otomatis) atau Anda memperoleh HIVE POWER tambahan untuk meningkatkan saldo Resource Credit Anda atau Anda dapat <a href=\"/faq#how-boost-account\"> meminta akun Boosting dari Ecency </a> untuk menerima delegasi sementara. </p></p>",
+      "how-boost-account-header": "Bagaimana meminta peningkatan akun?",
+      "how-boost-account-body": "<p>Jika akun Anda kekurangan <a href=\"/faq#what-are-rc\"> Kredit Sumber Daya </a>, Anda dapat meminta peningkatan akun dari Ecency. Anda akan menerima delegasi sementara yang akan meningkatkan akun Anda untuk melakukan lebih banyak aktivitas di blockchain. Anda dapat menemukan fitur peningkatan akun di opsi Poin.</p>",
+      "what-spam-abuse-header": "Apa yang dianggap spam atau penyalahgunaan?",
+      "what-spam-abuse-body": "<p><img src=\"https://images.ecency.com/p/3jpR3paJ37V8XPrHkfZdMt57jY6pRt6zEt5iRJV9pSw4Mez3Hut8U6RWvWLA7cFYEa1bxveXeasNfZApzrcLYLx8cz84kBEKak1KkewE2ZqE1QRRkF4eqRH3vWVqZB9WuNbzE?format=match&mode=fit\" loading=\"lazy\"/></p><p><ul><li>Postingan yang dijiplak atau konten yang disalin. </li> <li> Meninggalkan komentar yang hampir identik atau mirip secara material pada beberapa postingan. </li> <li> Menggunakan tag yang tidak terkait dengan postingan tersebut. </li> <li> Mengancam pengguna dengan segala jenis kekerasan fisik. </li> <li> Tidak mengutip sumber saat menggunakan materi orang lain. </li> <li> Memposting konten 'tidak aman untuk pekerjaan' tanpa menggunakan tag “nsfw”. </li> < li> Scam atau Penawaran curang. </li> </ul> </p>",
+      "can-link-post-header": "Dapatkah saya meminta penambahan tautan balik ke situs web saya dari tim Ecency?",
+      "can-link-post-body": "<p>Semua konten di situs kami dibuat oleh pengguna kami dan kami tidak mengubah atau menambahkan tautan balik. Anda bebas untuk menghubungi penulis posting atau <a href=\"/?referral=ecency\"> Daftar </a> untuk membuka blog dan komunitas Anda sendiri, menerbitkan artikel untuk membuat backlink secara gratis.</p>",
+      "can-guest-post-header": "Apakah mungkin untuk menerima postingan di situs web Anda?",
+      "can-guest-post-body": "<p>Memposting di Ecency itu sederhana dan mudah, <a href=\"/?referral=ecency\"> Daftarlah </a> untuk membuka blog dan komunitas Anda sendiri, mulailah memposting konten Anda.</p>"
+    }
+  },
+  "context-menu": {
+    "cut": "Potong",
+    "copy": "Salin",
+    "paste": "Tempel",
+    "open-image-browser": "Buka gambar di browser",
+    "copy-image-url": "Salin gambar url"
+  },
+  "updater": {
+    "new-version-available": "Tersedia versi terbaru",
+    "update": "Pembaruan",
+    "dismiss": "Memberhentikan",
+    "downloading": "Sedang mengunduh versi terbaru...",
+    "download-completed": "Unduhan selesai",
+    "restart": "Restart"
+  }
+}

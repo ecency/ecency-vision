@@ -1,5 +1,9 @@
 import {Store} from "redux";
 
+import i18n from 'i18next';
+
+const getSymbolFromCurrency = require("currency-symbol-map");
+
 import {AppState} from "./index";
 import {ActiveUser, UserPoints} from "./active-user/types";
 import {loginAct as loginActiveUser, updateAct as updateActiveUserAct} from "./active-user";
@@ -9,7 +13,14 @@ import {getPoints, usrActivity, getPromotedEntries} from "../api/private";
 import {reloadAct as reloadUsers} from "./users";
 import {reloadAct as reloadReblogs} from "./reblogs";
 import {fetchedAct as loadDynamicProps} from "./dynamic-props";
-import {fetchedAct as entriesFetchedAct} from "../../common/store/entries";
+import {fetchedAct as entriesFetchedAct} from "./entries";
+import {setCurrencyAct as setCurrency, muteNotificationsAct as muteNotifications, setLangAct as setLang} from "./global";
+
+import {getCurrencyRate} from "../api/misc";
+
+import currencies from "../constants/currencies.json";
+
+import * as ls from "../../common/util/local-storage";
 
 export const activeUserMaker = (name: string, points: string = "0.000", uPoints: string = "0.000"): ActiveUser => {
     return {
@@ -84,4 +95,28 @@ export const clientStoreTasks = (store: Store<AppState>) => {
     }
     promotedEntries();
     setInterval(promotedEntries, 1000 * 60 * 5);
+
+    // Currency
+    const currency = ls.get("currency");
+    if (currency && currencies.find(x => x.id === currency)) {
+        const symbol = getSymbolFromCurrency(currency);
+        getCurrencyRate(currency).then(rate => {
+            store.dispatch(setCurrency(currency, rate, symbol));
+        });
+    }
+
+    // Notifications
+    if (ls.get("notifications") === false) {
+        store.dispatch(muteNotifications());
+    }
+
+    // Language
+    const lang = ls.get("lang");
+    if (lang) {
+        if (store.getState().global.lang !== lang) {
+            i18n.changeLanguage(lang).then(() => {
+                store.dispatch(setLang(lang));
+            });
+        }
+    }
 }

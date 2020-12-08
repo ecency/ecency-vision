@@ -21,7 +21,7 @@ import {_t} from "../../i18n";
 
 import parseAsset from "../../helper/parse-asset";
 
-import {creditCardSvg, gifCardSvg, bellSvg} from "../../img/svg";
+import {creditCardSvg, gifCardSvg, bellSvg, bellOffSvg} from "../../img/svg";
 
 class WalletBadge extends Component<{
     activeUser: ActiveUser;
@@ -85,6 +85,8 @@ interface Props {
     setNotificationsFilter: (filter: NotificationFilter | null) => void;
     markNotifications: (id: string | null) => void;
     toggleUIProp: (what: ToggleType) => void;
+    muteNotifications: () => void;
+    unMuteNotifications: () => void;
 }
 
 interface State {
@@ -127,7 +129,7 @@ export default class UserNav extends Component<Props, State> {
 
     render() {
         const {gallery, drafts, bookmarks} = this.state;
-        const {activeUser, ui, notifications} = this.props;
+        const {activeUser, ui, notifications, global} = this.props;
         const {unread} = notifications;
 
         const dropDownConfig = {
@@ -176,7 +178,7 @@ export default class UserNav extends Component<Props, State> {
                                      {unread.toString().length < 3 ? unread : '...'}
                                  </span>
                              )}
-                            {bellSvg}
+                            {global.notifications ? bellSvg : bellOffSvg}
                         </span>
                     </ToolTip>
                     <DropDown {...dropDownConfig} float="right" header={`@${activeUser.username}`}/>

@@ -1,0 +1,741 @@
+{
+  "g": {
+    "edit": "Redaguoti",
+    "search": "Paieška",
+    "downloads": "Atsisiuntimai",
+    "login": "Prisijungti",
+    "login-as": "Prisijungti Kaip",
+    "signup": "Registruotis",
+    "delete": "Ištrinti",
+    "cancel": "Atšaukti",
+    "reply": "Atsakyti",
+    "update": "Atnaujinti",
+    "or": "ARBA",
+    "server-error": "Procesas negalėjo būti įvykdytas dėl serverio klaidos",
+    "day": "d.",
+    "days": "d.",
+    "finish": "Užbaigti",
+    "next": "Kitas",
+    "back": "Grįžti",
+    "load-more": "Įkelti Daugiau",
+    "empty-list": "Čia tuščia",
+    "save": "Išsaugoti",
+    "try-again": "Bandyti dar kartą",
+    "show": "Rodyti",
+    "on": "On",
+    "off": "Off"
+  },
+  "confirm": {
+    "title": "Ar esate įsitikinę?",
+    "ok": "Patvirtinti",
+    "cancel": "Atšaukti"
+  },
+  "entry-filter": {
+    "filter-trending": "Tendencijos",
+    "filter-hot": "Kylantys",
+    "filter-created": "Nauja",
+    "filter-promoted": "Paremti",
+    "filter-payout": "Išmokos",
+    "filter-muted": "Nutildyta",
+    "filter-feed": "Pagrindinis"
+  },
+  "navbar": {
+    "discover": "Atrasti",
+    "communities": "Bendruomenės",
+    "about": "Apie",
+    "faq": "D.U.K",
+    "post": "Sukurti Įrašą",
+    "day-theme": "Dienos Tema",
+    "night-theme": "Nakties Tema",
+    "address-placeholder": "įveskite paieškos užklausą"
+  },
+  "search": {
+    "placeholder": "Paieška",
+    "placeholder-count": "Ieškoti {{n}} pranešimų",
+    "header-tag": "Žymos",
+    "header-account": "Vartotojai",
+    "header-community": "Bendruomenės"
+  },
+  "user-nav": {
+    "wallet": "Piniginė",
+    "unclaimed-reward-notice": "Jūs turite neatsiimtą atlygį",
+    "points": "Taškai",
+    "unclaimed-points-notice": "Jūs turite neatsiimtų taškų",
+    "notifications": "Pranešimai",
+    "profile": "Profilis",
+    "gallery": "Galerija",
+    "drafts": "Juodraščiai",
+    "bookmarks": "Žymės",
+    "logout": "Atsijungti"
+  },
+  "login": {
+    "title": "Sveiki sugrįžę!",
+    "with-user-pass": "Prisijunkite naudodami vartotojo vardą ir privatų raktą.",
+    "username-placeholder": "vartotojo vardas",
+    "key-placeholder": "pagrindinis arba aktyvusis raktai",
+    "login-info-1": "Mes nelaikome jūsų privačių raktų.",
+    "login-info-2": "Daugiau Informacijos",
+    "error-fields-required": "Prašome įvesti vartotojo vardą ir privatųjį raktą",
+    "error-public-key": "Įvedėte public key. Reikia Slaptažodžio/WIF",
+    "error-user-fetch": "Nepavyko pakrauti vartotojo duomenų",
+    "error-user-not-found": "Vartotojas neegzistuoja",
+    "error-permission": "Nepavyko gauti publikavimo leidimo",
+    "error-authenticate": "Neteisingas privatus raktas. Reikalingas pagrindinis arba akytvusis raktas.",
+    "with-hive-signer": "Prisijungti naudojant hivesigner",
+    "with-keychain": "Prisijungti naudojant keychain",
+    "sign-up-text-1": "Neturite paskyros?",
+    "sign-up-text-2": "Užsiregistruokite dabar!"
+  },
+  "sign-up": {
+    "header": "Registruotis",
+    "description": "One account to manage everything on blockchain and Ecency. Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
+    "username": "Pasirinkite vartotojo vardą",
+    "email": "Įveskite savo el. pašto adresą",
+    "ref": "Rekomendavęs vartotojas (pasirinktinai)",
+    "submit": "Tęsti",
+    "success": "Išsiuntėme patvirtinimo laišką {{email}}.",
+    "success-2": "Sekite instrukcijas, kad sėkmingai prisiregistruotumėte.",
+    "login-text-1": "Do you have an account?",
+    "login-text-2": "Login"
+  },
+  "trending-tags": {
+    "title": "Topics"
+  },
+  "selected-tags": {
+    "title": "Featured"
+  },
+  "entry-list-item": {
+    "reblogged": "{{n}}",
+    "promoted": "paremti",
+    "pinned": "Prisegtas Įrašas",
+    "replies": "1 atsakymas. Spauskite, jeigu norite atsakyti.",
+    "replies-n": "{{n}} atsakymų. Spauskite, jeigu norite atsakyti.",
+    "no-replies": "Jokių atsakymų kolkas. Spauskite, jeigu norite atsakyti."
+  },
+  "bookmark-btn": {
+    "add": "Pridėti prie žymelių",
+    "added": "Pridėta į žymes",
+    "delete": "Pašalinti iš žymų",
+    "deleted": "Pašalinta iš žymų"
+  },
+  "entry-reblog": {
+    "reblog": "Pasidalinti",
+    "confirm-title": "Pasidalinti @{{n}} įrašu?",
+    "confirm-ok": "Pasidalinti",
+    "success": "Pasidalinta!"
+  },
+  "entry-payout": {
+    "pending-payout": "Laukiamas Išmokėjimas",
+    "promoted": "Paremti",
+    "author-payout": "Autoriaus Užmokestis",
+    "curators-payout": "Kuracijos Užmokestis",
+    "payout-date": "Užmokestis",
+    "beneficiary": "Gavėjas",
+    "breakdown": "Išskaidyti"
+  },
+  "entry-index": {
+    "feed": "Pagrindinis",
+    "tags": "Populiarūs",
+    "title": "{{f}} temos",
+    "description": "{{f}} socialaus tinklo temos valdomos pačių narių.",
+    "description-tag": "{{f}} #{{t}} temos",
+    "description-user-feed": "{{u}} pagrindinis"
+  },
+  "market-data": {
+    "title": "Market price",
+    "credits": "market data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
+  },
+  "list-style": {
+    "title": "Pasirinkti sąrašo stilių"
+  },
+  "entry-votes": {
+    "title": "1 Balsas",
+    "title-n": "{{n}} Balsai",
+    "title-empty": "Nėra balsų",
+    "voter": "Balsuotojas",
+    "percent": "Procentai",
+    "reward": "Atlygis",
+    "time": "Laikas"
+  },
+  "entry": {
+    "via-app": "per <span class=\"app-name\">{{app}}</span>",
+    "comment-entry-title": "Jūs skaitote komentarą iš: ",
+    "comment-entry-go-root": "Peržiūrėti visą kontekstą",
+    "comment-entry-go-parent": "Peržiūrėti pirminį",
+    "show-history": "Rodyti redagavimo istoriją",
+    "hidden-warning": "Įrašas buvo paslėptas dėl per žemo reitingo."
+  },
+  "edit-history": {
+    "title": "Redagavimo Istorija",
+    "show-diff": "Rodyti Skirtumą",
+    "version": "Versija {{n}}"
+  },
+  "similar-entries": {
+    "title": "Nauji @{{n}} įrašai"
+  },
+  "comment": {
+    "body-placeholder": "Rašykite savo atsakymą čia",
+    "preview": "Peržiūrėti"
+  },
+  "discussion": {
+    "join": "Junkis prie pokalbio",
+    "btn-join": "Jungtis",
+    "replies": "1 Komentaras",
+    "n-replies": "{{n}} Komentarų",
+    "order": "Rušiuoti Pagal",
+    "order-trending": "Tendencijos",
+    "order-reputation": "Reputacija",
+    "order-votes": "Balsai",
+    "order-created": "Laikas",
+    "read-more": "...skaityti daugiau atsakumų...",
+    "reveal": "Parodyti komentarą"
+  },
+  "community": {
+    "page-description": "{{f}} temos",
+    "subscribe": "Prenumeruoti",
+    "subscribed": "Prisijungta",
+    "unsubscribe": "Išeiti",
+    "post": "Naujas Įrašas",
+    "posts": "Įrašai",
+    "subscribers": "Prenumeratoriai",
+    "activities": "Veikla",
+    "roles-title": "Vartotojo Rolės",
+    "roles-account": "Paskyra",
+    "roles-role": "Rolė",
+    "roles-account-title": "Titulas",
+    "roles-add": "Pridėti Vartotoją"
+  },
+  "community-cover": {
+    "rewards": "atlygis",
+    "authors": "viršeliai",
+    "lang": "kalba",
+    "cover-image": "Bendruomenės viršelio nuotrauka",
+    "cover-image-edit": "Redaguoti viršelio nuotrauką",
+    "cover-image-updated": "Viršelio nuotrauka atnaujinta!"
+  },
+  "community-card": {
+    "description": "Aprašymas",
+    "rules": "Taisyklės",
+    "team": "Vadovavimas",
+    "edit": "Keisti nustatymus",
+    "edit-team": "Keisti roles",
+    "profile-image": "Bendruomenės proflio nuotrauka",
+    "profile-image-edit": "Redaguoti profilio nuotrauką",
+    "profile-image-updated": "Profilio nuotrauka atnaujinta!"
+  },
+  "community-role-edit": {
+    "title": "Priskirti vartotojo rolę",
+    "username": "Vartotojo vardas",
+    "role": "Rolė",
+    "user-not-found": "Toks vartojas neegzistuoja!",
+    "explanations": "<h3>Rolių Leidimai</h3><p><strong>Savininkas</strong> - paskirti administratorius</p><p><strong>Administratoriai</strong> - tvarkyti nustatymus, paskirti moderatorius</p><p><strong>Moderatorius</strong> - nutildyti, prisegti, nustatyti narių vardus</p><p><strong>Narys</strong> - Nurodytas bendruomenės komandoje</p><p><strong>Svečias</strong> - įprastas; gali komentuoti ir publikuoti</p><p><strong>Nutildytas</strong> - nauji įrašai automatiškai užtildomi</p>"
+  },
+  "community-settings": {
+    "dialog-title": "Bendruomenės Nustatymai",
+    "title": "Pavadinimas",
+    "about": "Apie",
+    "lang": "Kalba",
+    "description": "Aprašmas",
+    "rules": "Taisyklės",
+    "rules-help": "Vienas per eilę"
+  },
+  "communities": {
+    "title": "Bendruomenės",
+    "description": "Geriausios viešos, decentralizuotos, nepaliečiamos, atlyginamos bendruomenės",
+    "n-subscribers": "{{n}} prenumeratorių",
+    "n-authors": "{{n}} publikuotojų",
+    "n-posts": "{{n}} įrašų",
+    "admins": "administratoriai:",
+    "sort-hot": "Karšta",
+    "sort-rank": "Reitingas",
+    "sort-subs": "Prenumeratoriai",
+    "sort-new": "Nauja",
+    "no-results": "Rezultatų nerasta",
+    "create": "Sukurti bendruomenę"
+  },
+  "communities-create": {
+    "page-title": "Sukurti bendruomenę",
+    "title": "Pavadinimas",
+    "about": "Apie",
+    "description": "Sukurkite geriausią viešą, decentralizuotą, nepaliečiamą, atlyginamą bendruomenę",
+    "fee": "Kūrimo mokestis",
+    "creator": "Kūrėjas",
+    "username": "Savininko vartotojo vardas",
+    "username-available": "Galimas.",
+    "username-not-available": "Negalimas.",
+    "username-wrong-format": "Netinkamas formatas. reikalingas hive-1xxxxx formatas.",
+    "password": "Savininko slaptažodis",
+    "confirmation": "Aš saugiai išsisaugojau savo vartotojo vardą ir slaptažodį.",
+    "submit": "Sukurti Bendruomenę",
+    "progress-account": "Kuriama paskyra...",
+    "progress-user": "Ruošiama vartotojo informacija...",
+    "progress-role": "@{{u}} nustatomas kaip administratorius...",
+    "progress-props": "Atnaujinami bendruomenės nustatymai...",
+    "done": "Tavo bendruomenė sukurta 🎉",
+    "done-link-label": "Pradėkite."
+  },
+  "pin-btn": {
+    "pin": "Prisegti",
+    "unpin": "Atsegti"
+  },
+  "mute-btn": {
+    "mute": "Nutildyti",
+    "unmute": "Atitildyti",
+    "dialog-title-mute": "Nutildyti įrašą/komentarą",
+    "dialog-title-unmute": "Atitildyti įrašą/komentarą",
+    "notes": "Pastabos",
+    "note-placeholder-mute": "Nuorodykite priežastį savo sprendimo užtildyti šį turinį.",
+    "note-placeholder-unmute": "Nuorodykite priežastį savo sprendimo atitildyti šį turinį."
+  },
+  "profile": {
+    "voting-power": "Balsavimo Galia",
+    "post-count": "Įrašų Skaičius",
+    "followers": "Sekėjai",
+    "following": "Sekama",
+    "section-blog": "Blog'as",
+    "section-posts": "Įrašai",
+    "section-comments": "Komentarai",
+    "section-replies": "Atsakymai",
+    "section-communities": "Bendruomenės",
+    "section-wallet": "Piniginė",
+    "section-settings": "Settings",
+    "communities-title": "Prenumeratos",
+    "create-community": "Sukurti bendruomenę",
+    "witnesses": "Witnesses",
+    "proposals": "Proposals"
+  },
+  "profile-edit": {
+    "title": "Profile",
+    "name": "Rodomas Vardas",
+    "about": "Apie",
+    "cover-image": "Viršelio Nuotrauka",
+    "profile-image": "Profilio Nuotrauka",
+    "website": "Svetainė",
+    "location": "Vietovė",
+    "updated": "Profilis sėkmingai atnaujintas!"
+  },
+  "image-upload-button": {
+    "uploaded": "Nuotrauka įkelta"
+  },
+  "preferences": {
+    "title": "Preferences",
+    "notifications": "Notification alerts",
+    "currency": "Currency",
+    "language": "Language",
+    "updated": "Preference updated!"
+  },
+  "wallet": {
+    "unclaimed-rewards": "Neatsiimtas atlygis",
+    "claim-reward-balance": "Atsiimti atlygį",
+    "claim-reward-balance-ok": "Atlygis atsiimtas",
+    "estimated": "Apskaičiuota Paskyros Vertė",
+    "estimated-description": "Apskaičiuota vertė yra grįsta vidutine 7 dienų HIVE verte.",
+    "hive": "HIVE",
+    "hive-description": "HIVE yra mainomi virtualūs žetonai, kurie gali būti pervesti bet kuriuo metu. HIVE gali būti pervestas į Hive Power, procesą vadinama jėgos kėlimu.",
+    "hive-power": "HIVE POWER",
+    "hive-power-description": "Hive Power yra įtakingi virtualūs žetonai, kurie įgauna daugiau galios juos kaupiant ir balsuojant. Kuo daugiau Hive Power vartotojas turi, tuo daugiau įtakos jis turi kitų vartotojų atlygiui ir gali pats gauti atlygį už tikslų balsavimą.",
+    "hive-power-delegated": "Deleguota Hive Power",
+    "hive-power-received": "Gauta Hive Power",
+    "next-power-down-amount": "Kita galios mažinimo suma",
+    "hive-power-total": "Visa Hive Power",
+    "hive-dollars": "HIVE DOLLARS",
+    "hive-dollars-description": "Žetonai verti apie $1.00 HIVE.",
+    "savings": "SANTAUPOS",
+    "savings-description": "Balansas apsaugotas 3 dienų laikotarpiu išsiėmimui.",
+    "next-power-down": "Kitas jėgos mažinimas už {{time}} {{amount}}",
+    "transfer": "Pervesti",
+    "transfer-to-savings": "Pervesti į santaupas",
+    "convert": "Konvertuoti",
+    "power-up": "Galios kėlimas",
+    "withdraw-hive": "Išsiimti Hive",
+    "withdraw-hbd": "Išsiimti Hive Dollar"
+  },
+  "points": {
+    "get": "BUY POINTS",
+    "unclaimed-points": "Unclaimed points",
+    "claim-reward-points": "Claim reward points",
+    "main-description": "Points can be used for in-app services, like Promote, Boost, Gifting. Earn them just by using Ecency apps and improve your experience.",
+    "earn-points": "How to earn more Points",
+    "post-desc": "Gali gauti taškų keldamas įrašus reguliariai. Įrašas yra vertas 15 taškų.",
+    "comment-desc": "Komentarai padeda tau augti, galbūt rasti bendraminčių ir apdovanoja 5 taškais už kiekvieną parašytą komentarą.",
+    "checkin-desc": "Reguliarus tikrinimas ir aktyvumo palaikymas tau duos 0.25 taško už kiekvieną prisijungimą.",
+    "vote-desc": "Balsuodamas tu įvertinti kitų kūrėjų darbą ir skiri jiem atlygį. Tu taipogi už tai gausi 0.01 x balso galios taškų.",
+    "reblog-desc": "  Pasidalink su draugais įrašais kurie tau patinka ir gauk 1 tašką.",
+    "login-desc": "Kai jūs pirma kartą prisijungiate prie eSteem, jūs automatiškai būsite apdovanotas 100 taškų.",
+    "checkin-extra-desc": "Reguliarus programos naudojimasis suteikia jums papildomą šansą gauti dar 10 taškų. Kuo aktyvesnis esi, tuo daugiau taškų surinksi.",
+    "delegation-desc": "You can earn ~50 points per day for each 1000HP delegation.",
+    "history": "Istorija",
+    "post-list-desc": "Taškai už įrašą",
+    "comment-list-desc": "Taškai už komentarą",
+    "vote-list-desc": "Taškai už balsą",
+    "reblog-list-desc": "Taškai už pasidalinimą",
+    "login-list-desc": "Taškai už prisijungimą",
+    "checkin-list-desc": "Taškai už aktyvumą",
+    "checkin-extra-list-desc": "Naudojimosi bonusas",
+    "transfer-sent-list-desc": "Pervesti vartotojui {{n}}",
+    "transfer-incoming-list-desc": "Pervesti iš {{n}}",
+    "delegation-list-desc": "Delegacijos atlygis",
+    "referral-list-desc": "Rekomendacijos atlygis",
+    "transfer": "Padovanoti kažkam",
+    "claim-ok": "Taškai atsiimti",
+    "promote": "Reklamuoti",
+    "boost": "Paspartinti"
+  },
+  "purchase": {
+    "select-asset": "Pasirinkite vertę",
+    "slider-hint": "Vilkite slankiklį, kad sureguliuotumėte kiekį.",
+    "submit": "Pirkti"
+  },
+  "promote": {
+    "title": "Reklamuoti",
+    "sub-title": "Reklamuoti savo įrašą",
+    "duration": "Trukmė"
+  },
+  "boost": {
+    "title": "Paspartinti",
+    "sub-title": "Paspartinti savo įrašą",
+    "amount": "Kiekis",
+    "slider-hint": "Vilkite slankiklį, kad sureguliuotumėte kiekį."
+  },
+  "redeem-common": {
+    "balance": "Likutis",
+    "post": "Įrašas",
+    "post-hint": "Automatinė įvestis",
+    "post-placeholder": "vartotojovardas/permlink",
+    "post-error": "Neteisingas įrašo adresas",
+    "post-error-exists": "Šis įrašas jau paspartintas",
+    "success-message": "Jūsų prašymas priimtas. Aktyvuosis per kelias minutes."
+  },
+  "transfer": {
+    "transfer-title": "Pervesti į Paskyrą",
+    "transfer-title-point": "Dovanoti Paskyrai",
+    "transfer-sub-title": "Perkelti lėšas į kitą Hive paskyrą",
+    "transfer-saving-title": "Pervesti į Santaupas",
+    "transfer-saving-sub-title": "Apsaugok lėšas 3 dienų atsiėmimui",
+    "withdraw-saving-title": "Išsiimti Santaupas",
+    "withdraw-saving-sub-title": "Atsiimti lėšas po 3 dienų laukimo periodo",
+    "power-up-title": "Nustatyti Hive kaip Galią",
+    "convert-title": "Konvertuoti",
+    "power-up-sub-title": "Įtakingi žetonai kurie vartotojui duoda daugiau kontrolės įrašų išmokom ir leidžia jums gauti kuracijos atlygį.",
+    "convert-sub-title": "Only recommended when HBD is below $1. You will get $1 of HIVE in 3.5 days.",
+    "from": "Nuo",
+    "to": "Į",
+    "to-placeholder": "vartotojo vardas",
+    "to-not-found": "Vartotojas, kuriam norite pervesti lėšas, neegzistuoja!",
+    "to-bad-actor": "Būkite atsargūs siųsdami šiai paskyrai. Dėl galimo sukčiavimo įsitikinkite ar rašyba teisinga.",
+    "amount": "Kiekis",
+    "amount-placeholder": "kiekis",
+    "wrong-amount": "Wrong amount value",
+    "amount-precision-error": "Use only 3 digits of precision",
+    "balance": "Likutis",
+    "memo": "Atmintinė",
+    "memo-placeholder": "enter your notes here",
+    "memo-help": "This memo is public",
+    "confirm-title": "Patvirtinti persiuntimą",
+    "confirm-sub-title": "Prašome atidžiai patikrinti ar viskas teisinga",
+    "confirm": "Patvirtinti",
+    "recent-transfers": "Recent transfers",
+    "transfer-summary": "Transferred <span class=\"amount\">{{amount}}</span> From <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
+    "reset": "Kitas pavedimas"
+  },
+  "trx-common": {
+    "insufficient-funds": "Nepakankamas likutis",
+    "sign-title": "Pasirašyti",
+    "sign-sub-title": "Patvirtinti persiuntimą",
+    "success-title": "Pavyko",
+    "success-sub-title": "Operacija sėkmingai atlikta"
+  },
+  "transactions": {
+    "title": "History",
+    "type-curation_reward": "Kuracijos Atlygis",
+    "type-author_reward": "Autorius Atlygis",
+    "type-comment_benefactor_reward": "Atlygis už gerą komentarą",
+    "type-claim_reward_balance": "Atsiimti atlygį",
+    "type-transfer": "Pervesti",
+    "type-transfer_to_vesting": "Pervesti į investicijas",
+    "type-withdraw_vesting": "Išsiimti investiciją",
+    "type-fill_order": "Užpildyti"
+  },
+  "key-or-hot": {
+    "sign": "Pasirašyti",
+    "key-placeholder": "Enter active/owner/master key",
+    "with-hivesigner": "Sign with hivesigner",
+    "with-keychain": "Sign with keychain"
+  },
+  "delegated-vesting": {
+    "title": "Delegated Hive Power"
+  },
+  "received-vesting": {
+    "title": "Received Hive Power"
+  },
+  "friends": {
+    "followers": "Sekėjai ({{n}})",
+    "following": "Sekami ({{n}})",
+    "search-placeholder": "Ieškoti narių"
+  },
+  "follow-controls": {
+    "follow": "Sekti",
+    "unFollow": "Nebesekti",
+    "mute": "Uztildyti",
+    "unMute": "Atitildyti"
+  },
+  "favorite-btn": {
+    "add": "Pridėti prie mėgstamiausių",
+    "added": "Pridėta prie mėgstamiausių",
+    "delete": "Pašalinti iš mėgstamiausių",
+    "deleted": "Pašalinta iš mėgstamiausių"
+  },
+  "editor-toolbar": {
+    "bold": "Paryškintas",
+    "italic": "Pasviręs",
+    "header": "Antraštė",
+    "code": "Kodas",
+    "quote": "Citata",
+    "ul": "Nesurikiuotas Sąrašas",
+    "ol": "Surikiuotas Sąrašas",
+    "link": "Nuoroda",
+    "image": "Nuotrauka",
+    "table": "Lentelė",
+    "table-3-col": "3 stulpeliai",
+    "table-2-col": "2 stulpeliai",
+    "table-1-col": "1 stulpelis",
+    "upload": "Įkelti",
+    "gallery": "Galerija",
+    "emoji": "Emoji",
+    "image-error": "Nepavyko įkelti nuotraukos.",
+    "image-error-size": "Nuotraukos dydis per didelis, bandykite mažesnį nuotraukos dydį."
+  },
+  "emoji-picker": {
+    "filter-placeholder": "Filtruoti",
+    "filter-no-match": "Atitikmenų nėra",
+    "recently-used": "Neseniai Naudota"
+  },
+  "submit": {
+    "page-title": "Sukurti įrašą",
+    "page-description": "Publish an article, earn reward, uncensored, immutable, decentralized content!",
+    "title-placeholder": "Pavadinimas",
+    "body-placeholder": "Įrašo Turinys",
+    "reward": "Atlygis",
+    "reward-default": "Numatytasis 50% / 50%",
+    "reward-sp": "Galios Kėlimas 100%",
+    "reward-dp": "Atsisakyti Išmokėjimo",
+    "preview": "Peržiūra",
+    "publish": "Paskelbti",
+    "update": "Atnaujinti",
+    "save-draft": "Išsaugoti Juodraštį",
+    "draft-saved": "Juodraštis išsaugotas",
+    "update-draft": "Atnaujinti Juodraštį",
+    "draft-updated": "Juodraštis įkeltas",
+    "cancel-update": "Atšaukti",
+    "clear": "Išvalyti",
+    "published": "Įrašas Paskelbtas",
+    "updated": "Įrašas Atnaujintas"
+  },
+  "tag-selector": {
+    "placeholder-empty": "Tags. First tag is main category. Sortable.",
+    "placeholder-focus": "Enter tag",
+    "placeholder-has-tags": "Add More",
+    "suggestion-header": "Tags/Communities",
+    "error-max": "Max {{n}} tags"
+  },
+  "word-count": {
+    "label": "{{n}} words",
+    "read-time-less-1-min": "< 1 min read",
+    "read-time-n-min": "~ {{n}} min read"
+  },
+  "notification": {
+    "popup-title": "You have a new notification",
+    "voted": "{{source}} voted your post",
+    "mention-post": "{{source}} mentioned you in a post",
+    "mention-comment": "{{source}} mentioned you in a comment",
+    "followed": "{{source}} followed you",
+    "replied": "{{source}} replied you",
+    "reblogged": "{{source}} reblogged your post",
+    "transfer": "{{source}} sent you {{amount}}"
+  },
+  "notifications": {
+    "type-all": "All Notifications",
+    "type-all-short": "All",
+    "type-rvotes": "Votes",
+    "type-replies": "Replies",
+    "type-mentions": "Mentions",
+    "type-follows": "Follows",
+    "type-reblogs": "Reblogs",
+    "type-transfers": "Transfers",
+    "vote-str": "{{p}}% likes your post:",
+    "reply-str": "replied to your post:",
+    "mention-str": "mentioned you in:",
+    "followed-str": "followed",
+    "unfollowed-str": "unfollowed",
+    "ignored-str": "ignored",
+    "reblog-str": "reblogged your post:",
+    "transfer-str": "sent you",
+    "spin-str": "Time to earn more Points, Play Spin on Ecency Mobile app",
+    "inactive-str": "Be active! Write a post, continue earning",
+    "referral-str": "joined with your referral, welcome them",
+    "refresh": "Refresh",
+    "mark-all-read": "Pažymėti visus kaip skaitytus",
+    "mark-read": "Pažymėti kaip skaitytą",
+    "mute": "Turn off notification alerts",
+    "unmute": "Turn on notification alerts"
+  },
+  "leaderboard": {
+    "title": "Lyderių lentelė",
+    "title-day": "Dienos Top vartotojai",
+    "title-week": "Savaitės Top vartotojai",
+    "title-month": "Mėnesio Top vartotojai",
+    "period-day": "Kas dieną",
+    "period-week": "Kas savaitę",
+    "period-month": "Kas mėnesį",
+    "header-score": "Veikla",
+    "header-score-tip": "Irašas + komentarai padaryti vartotojo per tam tikrą laikotarpį",
+    "header-reward": "Atlygis"
+  },
+  "popular-users": {
+    "title": "Populiarūs Vartotojai"
+  },
+  "discover": {
+    "title": "Atraskite",
+    "description": "Atraskite top aktyvius narius"
+  },
+  "search-page": {
+    "title": "Paieška",
+    "description": "Raskite necenzžruojama turinį, bendruomenes bei vartotojus",
+    "n-results-for-q": "{{n}} rezultatų",
+    "no-result": "Nėra rezultatų",
+    "sort-by": "rūšiuoti pagal",
+    "sort-popularity": "Populiarumą",
+    "sort-relevance": "Aktualumą",
+    "sort-newest": "Datą"
+  },
+  "witnesses": {
+    "page-title": "Witnesses",
+    "page-description": "Consensus block producers selection",
+    "page-description-long": "Role of witnesses or block producers in Hive blockchain is to act as the network's governance body. Community elects them to represent their voice and each user can elect up to 30 witnesses. Top 20 witnesses are producing blocks every minute while rest remain as backup witness and gets randomized chance every minute. This role is integral part of consensus mechanism blockchain runs on and recommend user engagement to vote on trusted witnesses.",
+    "remaining": "<span>{{n}}</span> of {{max}} votes remaining",
+    "list-rank": "Reitingas",
+    "list-witness": "Witness",
+    "list-miss": "Praleista",
+    "list-url": "URL",
+    "list-fee": "Mokestis",
+    "list-feed": "Pagrindinis",
+    "list-version": "Versija",
+    "username-placeholder": "vartotojo vardas",
+    "extra-description": "Enter account name below to vote for a witness outside of Top 50",
+    "proxy-description": "You can also choose a proxy that will vote for witnesses for you. This will reset your current witness selection.",
+    "proxy-btn-label": "Nustatyti Proxy",
+    "proxy-active-description": "You have set a voting proxy. If you would like to re-enable manual voting, please clear your proxy.",
+    "proxy-active-current": "Jūsų dabartinė proxy yra",
+    "proxy-active-btn-label": "Panaikinti Proxy"
+  },
+  "proposals": {
+    "page-title": "Proposals",
+    "page-description": "The Decentralized Hive Fund (DHF) is an on-chain funding mechanism that allows anyone to submit a proposal and get funding once community votes pass certain threshold. To learn more read our <a href=\"/faq#how-dhf-work\">FAQ</a>.",
+    "by": "by",
+    "for": "for",
+    "duration-days": "{{n}} days",
+    "daily-pay": "Daily {{n}}",
+    "votes": "Votes: {{n}}",
+    "status-active": "active",
+    "status-expired": "expired",
+    "status-inactive": "upcoming",
+    "remaining-days": "Remaining: {{n}} days",
+    "filter-all": "All",
+    "filter-active": "Active",
+    "filter-inactive": "Upcoming",
+    "filter-team": "Ecency Projects",
+    "return-description": "This is the base return proposal. Every proposal with less votes will not receive funds.",
+    "votes-dialog-title": "Votes on Proposal #{{n}}",
+    "see-all": "see all proposals"
+  },
+  "gallery": {
+    "title": "Galerija",
+    "copied": "Nukopijuota į iškarpinę"
+  },
+  "drafts": {
+    "title": "Juodraščiai"
+  },
+  "bookmarks": {
+    "title": "Žymės"
+  },
+  "favorites": {
+    "title": "Mėgstamiausi"
+  },
+  "scroll-to-top": {
+    "title": "Keliauti iki puslapio viršaus"
+  },
+  "static": {
+    "about": {
+      "page-title": "Apie",
+      "intro-title": "Kas yra <span>Ecency</span>",
+      "intro-content": "Ecency, tai gražus ir patogus Hive blockchain atvaizdas, tinklas leidžiantis kurti įvariausia turinį, naršyti, balsuoti, skaityti bei socializuotis. Jūs taip pat gaunate savo piniginę, bei veiksmus susijusius su ja.",
+      "faq-title": "DUK",
+      "faqs": "Visi DUK",
+      "contact-title": "Kontaktai",
+      "contact-blog": "Kūrėjo blog'as",
+      "contact-news": "Hive Naujienos",
+      "contact-email": "Parašykite mums"
+    },
+    "faq": {
+      "page-title": "Ecency FAQ",
+      "page-sub-title": "Turinys",
+      "what-is-ecency-header": "Kas yra Ecency?",
+      "what-is-ecency-body": "<p>Ecency tai <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> grįstas socialus tinklas - maitinamas <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency siūlo necenzūruojama, nemokamą, nelimituotą, atlyginamąją platformą turinio kūrėjams.</p><p>Projektas iniciuotas ir sukurtas <a href=\"/@good-karma\">@good-karma</a> 2016 rugpjūtį, kaip alternatyvi sociali platforma. Nuo tada projektas išaugo į ženkliai didesnę grupę kūrėjų ir remėjų (vertėjai, testuotojai, programuotojai, influenceriai, turinio kūrėjai ir vartotojai), kurie padėjo suformuoti Ecency.</p><p>Ecency palengvina kelią į Blockchain technologiją kur vartotojai gauna atlygį už skirtą laiką, resursus, bei suteikia geras galimybes plėsti akiratį besimėgaujanti socialiais blockcgain aspektais. Dėl lengvo pateikimo, vartotojai išmoksta, bei gali tapti šios technologijos ir bendruomenės investuotojais, inovatoriais.</p>",
+      "what-is-hive-header": "Kas yra Hive blockchain?",
+      "what-is-hive-body": "<p>Hive is a blockchain that was designed to be fast, feeless, decentralized, uncensored platform for Web3.0 applications, with built-in features where stake holders can earn rewards by staking, curating, posting, playing games, trading - all without any middle man (decentralized). Tokens on Hive blockchain called HIVE, HIVE DOLLARS, HIVE POWER.</p>",
+      "what-is-difference-header": "What's the difference between Ecency and other Hive interfaces?",
+      "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\" loading=\"lazy\"/></p><p>The primary differences in all interfaces or applications are in their feature-set, use cases. Ecency offers website, mobile and desktop applications for ease of access and with best security in mind. Accessible, opensource and innovative, built and owned by users. Aspire for greatness!</p>",
+      "why-choose-ecency-header": "Kodėl turėčiau pasirinkti Ecency?",
+      "why-choose-ecency-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjrzJAcJ4DvxvtqoPdzS9Aygf4MZ1PeE4goH6zWaeEFvafr9vGXWuou67Pbn44GweMyHV5DupM5q1cRvU85qdver?format=match&mode=fit\" loading=\"lazy\"/></p><p>Tailored feature set to empower you to create, inspire your audience and community. Ecency mobile application giving you on-go solution. With desktop app you are always sure to get uncensored content right from the blockchain, with website reach thousands of readers accross globe with best ranked content on search engines. State of art security measures so your keys will always stay encrypted and out of reach for ill-intentioned individuals. Fast and beautiful website, helps you to get discovered online and gain exposure for your content and gain loyal followers and readers. Build your community with Ecency today and take advantages of emerging blockchain technology and uncensored content, true free speech!</p>",
+      "how-ecency-works-header": "Kaip veikia Ecency?",
+      "how-ecency-works-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjuZ3ksaZqEjfd9GadyKFE4bT7UP8qM1sF5W6U3cst4ekDsXfrQdcrjtdz6b5Ye2AfWNwGA5f8QqVXmed6NRfg1U?format=match&mode=fit\" loading=\"lazy\"/></p><p>Ecency stores and reads data from the blockchain, and thus data is accessible and uncensored. Ecency rewards content creators with built-in incentive mechanism of blockchain, with tokens (HIVE, HIVE DOLLARS, HIVE POWER) as well as Points. Tokens can be purchased and sold in major cryptocurrency exchanges (e.g. Binance, Bittrex). Points could be utilized within platform and traded for goods, services.</p>",
+      "how-to-join-header": "Kaip prisijungti pre Ecency?",
+      "how-to-join-body": "<p>Go to <a href=\"/?referral=ecency\">https://ecency.com/?referral=ecency</a> and create an account. After signup you will receive email with further instructions. Your password is your master key to your account. Please store it safely, if you loose your password, you ultimately loose access to your account and your funds. Accounts cannot be deactivated or deleted, account names can not be changed as well. The account along with all of its activity is permanently stored in the blockchain. Without password, accounts cannot be restored, store your keys safely.</p>",
+      "how-to-signin-header": "Kaip prisijungti į Ecency?",
+      "how-to-signin-body": "<p><img src=\"https://images.ecency.com/p/7258xSVeJbKmTr9Z4jhbPhjS9pMWA2mTwBMDbXqk9G9wdMw2bwR4hXqRQt9S7UBFrBAWCYWddjn3G34ETv5KWB5KGmuZ8ixBB9oKHTFvjjnTkRLp4ttrFQtpgtNnRUEA9NtmyFmgyuuK4?format=match&mode=fit\" loading=\"lazy\"/></p><p>You can sign-in to Ecency by using your Username and Master password or by using Active Private Keys. We take security very seriously, that's why we never store your private keys, on mobile app they are encrypted with extra PIN code of your choice, on website they are never stored. You can also use <a href=\"https://hivesigner.com\">Hivesigner OAuth2</a> authentication service to easily login, manage and perform actions.</p>",
+      "how-referrals-work-header": "How referral system work on Ecency?",
+      "how-referrals-work-body": "<p>Referral system is simple, you can invite your friends by adding your username in this link https://ecency.com/?referral=username and share it with your friends. Once your friends join Ecency and earn their first 250 Points, you will earn 100 Points. There is no limits on referrals and its reward.</p>",
+      "what-is-points-header": "What are Ecency Points and how to use them?",
+      "what-is-points-body": "<p>Ecency Points are continually minted and rewarded for all users for various social activities they perform on website, mobile or desktop app. Points can be used for promoting, boosting your content, can even be transferred or gifted to another user. You can also purchase Points with our mobile apps.</p>",
+      "where-tokens-come-header": "Where do the tokens come from?",
+      "where-tokens-come-body": "<p><img src=\"https://images.ecency.com/p/7kq2TLHKEHhCCDwNZLfFLu7msWtbdFb7vZaJJ9Y13GAc18vfVNAj8ZctLWmsVfMCCFtwGdULbZKT89faeBymhPsySU5tp4RnvDsHz6ZBxXHWA4g34ck4LHnR2vGkqsHvjzhizhpV8K6JrQ4sy7cCgJQksUUYPKp4d9XbERHkjnZV3PTdhbiUZPYJ43RS8cQu2sEmUbAgqZExuYMGa46SDa4vCunH2w6oNpommW5L1CCdfwdgX5i9eCpcS5fHo4t8btjVE69edzrUN8anr6T3v8AFYHC?format=match&mode=fit\" loading=\"lazy\"/></p><p>The Hive network continually creates new digital tokens to reward content creators and curators. Some of the newly-created tokens are transferred to users who add value to platform by posting, commenting, and voting on other people's posts. The remainder is distributed to holders of HIVE POWER and the witnesses that secures the blockchain.</p>",
+      "how-promotion-work-header": "How content promotion works?",
+      "how-promotion-work-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfoi6H93UHPFEEQutPvax8LP1XqGWMa9geug5SBEEhLUEHKVvSyBfzhrBm9J4uvmrn28AtPhmwcKx?format=match&mode=fit\" loading=\"lazy\"/></p><p>Promoting content with Points is easiest way to get more exposure. Promotions have certain time period and shuffled across the feeds. Any post, can be promoted to get more exposure and engagement.</p>",
+      "how-boosting-work-header": "How content boosting works?",
+      "how-boosting-work-body": "<p>Points can be used for boosting content (post and comments). Boosting requests are manually reviewed by our moderators and curators which might take upto 24 hours. <p>As part of the qualities check, we may consider: a) Content is original content, b) Not detected by cheetah, mackbot, hivewatchers, or any other blacklists etc. c) User is not in Ecency blacklist due to abusive behavior.</p>Boosting does not guarantee curation, if content is not curated within 24 hours Points will be refunded.</p>",
+      "how-to-transfer-header": "How to transfer blockchain tokens?",
+      "how-to-transfer-body": "<p>After login, you will find Wallet page in top header on website and desktop app or in Profile page, bottom navigation bar on mobile app. In wallet page you can initiate transfer of any token you hold to another user or exchange accounts, click on arrow next to your balance and find transfer operations. Transfers are irreversible because they are registered on blockchain, make sure to send correct recipient.</p>",
+      "how-see-rewards-header": "How do I see my post rewards?",
+      "how-see-rewards-body": "<p><img src=\"https://images.ecency.com/p/3W72119s5BjW4PvRk9nXBzqrPWMsMTjNrXDPFFf11iYhySeELMe77idrZHBPmyaqFX6CV72hBLB5qFhwVhGoAATydoFxAF7oCwBt1ztp6eS9r5us4pm7iN?format=match&mode=fit\" loading=\"lazy\"/></p><p>In Wallet page (in top header on website and desktop app, bottom navigation bar on mobile app), you can see Curation rewards (the rewards earned for upvoting posts and comments) and Author rewards (the rewards earned by your own posts and comments)</p><p>You can also view the same information for other users by visiting their wallet profile.</p>",
+      "how-dhf-work-header": "How DHF works?",
+      "how-dhf-work-body": "<p>Anyone can create a proposal and convince community to vote on their proposal to get funded. Before creating proposal, normal post should be published on blockchain and it is recommended to gather feedback before creating proposal. Proposal creation has fee of 10 HBD + 1 HBD for each day it lasts over 60 days.</p><p>Once proposal reaches certain threshold of tallied votes, it will start receiving funds each hour. If proposal falls below threshold, system will halt funding for that proposal. You can vote as many proposals as you want, there are no limits. Proposal cannot be edited, but can be deleted/withdrawn by creator.</p>",
+      "when-claim-rewards-header": "When can I claim my rewards?",
+      "when-claim-rewards-body": "<p>Posts and comments remain active for 7 days and rewards are fluctuates depending on votes and market price of token, that is why rewards are approximated as pending reward. When the period is over, pending reward changes to actual reward and you are able to claim earned rewards. In your Wallet, click the Claim Rewards button to add the tokens to your account.</p>",
+      "what-are-rc-header": "What are Resource Credits?",
+      "what-are-rc-body": "<p>Transacting on the Hive blockchain has zero fees, transaction rate-limiting is employed to safeguard the blockchain from spam attacks. Every action that you take on the blockchain will consume a small amount of Resource Credits. This includes posting, commenting, voting, transferring tokens, etc. Viewing content does not consume Resource Credits.</p><p>Every user has a limited amount of Resource Credits to use each week. The more transactions a user does, the less Resource Credits they will have left (until they recharge). Users with more HIVE POWER will have more Resource Credits.</p><p>If you run out of Resource Credits, you will be unable to transact with the blockchain until your Resource Credits recharge (happens automatically) or you acquire additional HIVE POWER to increase your Resource Credit balance or you can <a href=\"/faq#how-boost-account\">request Boosting account from Ecency</a> to receive temporary delegation.</p>",
+      "how-boost-account-header": "How to request account boosting?",
+      "how-boost-account-body": "<p>If your account is low on <a href=\"/faq#what-are-rc\">Resource Credits</a>, you can request account boosting from Ecency. You will receive temporary delegation which should boost your account to perform more activities on blockchain. You can find account boosting feature in Points options.</p>",
+      "what-spam-abuse-header": "What is considered spam or abuse?",
+      "what-spam-abuse-body": "<p><img src=\"https://images.ecency.com/p/3jpR3paJ37V8XPrHkfZdMt57jY6pRt6zEt5iRJV9pSw4Mez3Hut8U6RWvWLA7cFYEa1bxveXeasNfZApzrcLYLx8cz84kBEKak1KkewE2ZqE1QRRkF4eqRH3vWVqZB9WuNbzE?format=match&mode=fit\" loading=\"lazy\"/></p><p><ul><li>Plagiarized posts or copied content.</li><li>Leaving nearly identical or materially similar comments on multiple posts.</li><li>Using tags that are unrelated to the post.</li><li>Threatening users with any type of physical violence.</li><li>Not citing sources when using someone else’s material.</li><li>Posting ‘not safe for work’ content without using the “nsfw” tag.</li><li>Scams or Fraudulent offers.</li></ul></p>",
+      "can-link-post-header": "Can I request adding backlink to my website from Ecency team?",
+      "can-link-post-body": "<p>All the content on our site is created by our users and we don't modify or able to add backlinks. You are free to contact author of the post or <a href=\"/?referral=ecency\">Signup</a> to open your own blog and community, publish articles to create backlinks for free.</p>",
+      "can-guest-post-header": "Is it possible to guest post on your website?",
+      "can-guest-post-body": "<p>Posting on Ecency is simple and easy, <a href=\"/?referral=ecency\">Signup</a> to open your own blog and community, start posting your content.</p>"
+    }
+  },
+  "context-menu": {
+    "cut": "Iškirpti",
+    "copy": "Kopijuoti",
+    "paste": "Įklijuoti",
+    "open-image-browser": "Atidaryti naršyklėje",
+    "copy-image-url": "Kopijuoti paveikslėlio Url"
+  },
+  "updater": {
+    "new-version-available": "Galima nauja versija",
+    "update": "Atnaujinimas",
+    "dismiss": "Atmesti",
+    "downloading": "Siunčiama nauja versija...",
+    "download-completed": "Atsisiuntimas baigtas",
+    "restart": "Paleisti iš naujo"
+  }
+}

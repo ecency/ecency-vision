@@ -43,7 +43,10 @@ const defProps = {
     },
     toggleUIProp: () => {
     },
-
+    muteNotifications: () => {
+    },
+    unMuteNotifications: () => {
+    },
 };
 
 it("(1) Default render", () => {

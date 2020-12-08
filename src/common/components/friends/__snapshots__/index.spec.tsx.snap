@@ -12,7 +12,6 @@ exports[`(1) Render list 1`] = `
     >
       <input
         className="form-control"
-        disabled={false}
         onChange={[Function]}
         onKeyDown={[Function]}
         placeholder="Search users"
@@ -20,80 +19,104 @@ exports[`(1) Render list 1`] = `
       />
     </div>
     <div
-      className="friends-list-body"
+      className="list-body"
     >
-      <a
-        className="friends-list-item"
-        href="/@user1"
-        onClick={[Function]}
+      <div
+        className="list-item"
       >
-        <span
-          className="user-avatar medium"
-          style={
-            Object {
-              "backgroundImage": "url(https://images.ecency.com/u/user1/avatar/medium)",
-            }
-          }
-        />
         <div
-          className="friend-name notransalte"
+          className="item-main"
         >
-          user1
+          <a
+            href="/@user1"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user1/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="item-info"
+          >
+            <a
+              className="item-name notransalte"
+              href="/@user1"
+              onClick={[Function]}
+            >
+              user1
+            </a>
+          </div>
         </div>
-        <div
-          className="friend-full-name"
-        >
-          User One
-        </div>
-      </a>
-      <a
-        className="friends-list-item"
-        href="/@user2"
-        onClick={[Function]}
+      </div>
+      <div
+        className="list-item"
       >
-        <span
-          className="user-avatar medium"
-          style={
-            Object {
-              "backgroundImage": "url(https://images.ecency.com/u/user2/avatar/medium)",
-            }
-          }
-        />
         <div
-          className="friend-name notransalte"
+          className="item-main"
         >
-          user2
+          <a
+            href="/@user2"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user2/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="item-info"
+          >
+            <a
+              className="item-name notransalte"
+              href="/@user2"
+              onClick={[Function]}
+            >
+              user2
+            </a>
+          </div>
         </div>
-        <div
-          className="friend-full-name"
-        >
-          User Two
-        </div>
-      </a>
-      <a
-        className="friends-list-item"
-        href="/@user3"
-        onClick={[Function]}
+      </div>
+      <div
+        className="list-item"
       >
-        <span
-          className="user-avatar medium"
-          style={
-            Object {
-              "backgroundImage": "url(https://images.ecency.com/u/user3/avatar/medium)",
-            }
-          }
-        />
         <div
-          className="friend-name notransalte"
+          className="item-main"
         >
-          user3
+          <a
+            href="/@user3"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user3/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="item-info"
+          >
+            <a
+              className="item-name notransalte"
+              href="/@user3"
+              onClick={[Function]}
+            >
+              user3
+            </a>
+          </div>
         </div>
-        <div
-          className="friend-full-name"
-        >
-          User Three
-        </div>
-      </a>
+      </div>
     </div>
   </div>
   <div

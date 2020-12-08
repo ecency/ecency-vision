@@ -1,6 +1,6 @@
 {
   "name": "ecency-vision",
-  "version": "3.0.10",
+  "version": "3.0.11",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -10,10 +10,11 @@
     "start:prod": "NODE_ENV=production node build/server.js"
   },
   "dependencies": {
-    "@ecency/render-helper": "^2.0.9",
+    "@ecency/render-helper": "^2.0.12",
     "@hiveio/dhive": "^0.14.12",
     "@hiveio/hivescript": "^1.2.1",
     "@types/bs58": "^4.0.1",
+    "@types/chartist": "^0.11.0",
     "@types/diff-match-patch": "^1.0.32",
     "@types/numeral": "^0.0.28",
     "@types/pg": "^7.14.4",
@@ -24,8 +25,10 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
     "bs58": "^4.0.1",
+    "chartist": "^0.11.4",
     "connected-react-router": "^6.8.0",
     "cookie-parser": "^1.4.5",
+    "currency-symbol-map": "^4.0.4",
     "diff-match-patch": "^1.0.5",
     "express": "^4.17.1",
     "history": "^4.7.2",
@@ -47,6 +50,7 @@
     "react-bootstrap": "^1.0.1",
     "react-bootstrap-table-next": "^4.0.3",
     "react-bootstrap-table2-paginator": "^2.1.2",
+    "react-chartist": "^0.14.3",
     "react-dom": "^16.8.6",
     "react-fast-compare": "^3.2.0",
     "react-helmet": "^6.0.0",

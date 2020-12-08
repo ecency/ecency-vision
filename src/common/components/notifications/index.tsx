@@ -28,7 +28,7 @@ import {_t} from "../../i18n";
 
 import _c from '../../util/fix-class-names'
 
-import {syncSvg, checkSvg} from "../../img/svg";
+import {syncSvg, checkSvg, bellOffSvg, bellCheckSvg} from "../../img/svg";
 
 export const date2key = (s: string): string => {
     if (s === 'Yesterday') {
@@ -266,6 +266,8 @@ interface NotificationProps {
     markNotifications: (id: string | null) => void;
     toggleUIProp: (what: ToggleType) => void;
     addAccount: (data: Account) => void;
+    muteNotifications: () => void;
+    unMuteNotifications: () => void;
 }
 
 export class DialogContent extends Component<NotificationProps> {
@@ -309,6 +311,16 @@ export class DialogContent extends Component<NotificationProps> {
         toggleUIProp('login');
     }
 
+    mute = () => {
+        const {muteNotifications} = this.props;
+        muteNotifications();
+    }
+
+    unMute = () => {
+        const {unMuteNotifications} = this.props;
+        unMuteNotifications();
+    }
+
     render() {
         const filters = Object.values(NotificationFilter);
         const menuItems = [
@@ -338,7 +350,7 @@ export class DialogContent extends Component<NotificationProps> {
             items: menuItems
         };
 
-        const {notifications} = this.props;
+        const {notifications, global} = this.props;
         const {list, loading, filter, hasMore, unread} = notifications;
 
         return (
@@ -349,6 +361,16 @@ export class DialogContent extends Component<NotificationProps> {
                         <DropDown {...dropDownConfig} float="left"/>
                     </div>
                     <div className="list-actions">
+                        {global.notifications && (
+                            <Tooltip content={_t("notifications.mute")}>
+                                <span className={_c(`list-action ${loading ? 'disabled' : ''}`)} onClick={this.mute}>{bellOffSvg}</span>
+                            </Tooltip>
+                        )}
+                        {!global.notifications && (
+                            <Tooltip content={_t("notifications.unmute")}>
+                                <span className={_c(`list-action ${loading ? 'disabled' : ''}`)} onClick={this.unMute}>{bellCheckSvg}</span>
+                            </Tooltip>
+                        )}
                         <Tooltip content={_t("notifications.refresh")}>
                             <span className={_c(`list-action ${loading ? 'disabled' : ''}`)} onClick={this.refresh}>{syncSvg}</span>
                         </Tooltip>
@@ -400,6 +422,8 @@ interface Props {
     markNotifications: (id: string | null) => void;
     toggleUIProp: (what: ToggleType) => void;
     addAccount: (data: Account) => void;
+    muteNotifications: () => void;
+    unMuteNotifications: () => void;
 }
 
 export default class NotificationsDialog extends Component<Props> {

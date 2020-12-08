@@ -2,6 +2,7 @@ import React, {Component} from "react";
 
 import {AppWindow} from "../../../client/window";
 
+import {Global} from "../../store/global/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {ToggleType, UI} from "../../store/ui/types";
 import {WsNotification} from "../../store/notifications/types";
@@ -41,6 +42,7 @@ export const notificationBody = (data: WsNotification): string => {
 
 
 interface Props {
+    global: Global;
     activeUser: ActiveUser | null;
     ui: UI;
     fetchNotifications: (since: string | null) => void;
@@ -88,6 +90,8 @@ export default class NotificationHandler extends Component<Props> {
         }
 
         window.nws.onmessage = (evt: MessageEvent) => {
+            const {global} = this.props;
+
             const data = JSON.parse(evt.data);
             const msg = notificationBody(data);
 
@@ -96,6 +100,10 @@ export default class NotificationHandler extends Component<Props> {
 
                 fetchUnreadNotificationCount();
                 fetchNotifications(null);
+
+                if (!global.notifications) {
+                    return;
+                }
 
                 this.playSound();
 

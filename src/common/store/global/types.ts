@@ -48,11 +48,13 @@ export interface Global {
     currency: string;
     currencyRate: number;
     currencySymbol: string;
+    lang: string;
     searchIndexCount: number;
     canUseWebp: boolean;
     hasKeyChain: boolean;
     isElectron: boolean;
     newVersion: string | null;
+    notifications: boolean;
 }
 
 export enum ActionTypes {
@@ -60,6 +62,10 @@ export enum ActionTypes {
     INTRO_HIDE = "@global/INTRO_HIDE",
     LIST_STYLE_CHANGE = "@global/LIST_STYLE_CHANGE",
     HAS_KEYCHAIN = "@global/HAS_KEYCHAIN",
+    NOTIFICATIONS_MUTE = "@global/NOTIFICATIONS_MUTE",
+    NOTIFICATIONS_UNMUTE = "@global/NOTIFICATIONS_UNMUTE",
+    CURRENCY_SET = "@global/CURRENCY_SET",
+    LANG_SET = "@global/LANG_SET",
     NEW_VERSION_CHANGE = "@global/NEW_VERSION_CHANGE",
 }
 
@@ -82,8 +88,38 @@ export interface NewVersionChangeAction {
     version: string | null;
 }
 
+export interface NotificationsMuteAction {
+    type: ActionTypes.NOTIFICATIONS_MUTE;
+}
+
+export interface NotificationsUnMuteAction {
+    type: ActionTypes.NOTIFICATIONS_UNMUTE;
+}
+
+export interface CurrencySetAction {
+    type: ActionTypes.CURRENCY_SET;
+    currency: string;
+    currencyRate: number;
+    currencySymbol: string;
+}
+
+export interface LangSetAction {
+    type: ActionTypes.LANG_SET;
+    lang: string;
+}
+
 export interface HasKeyChainAction {
     type: ActionTypes.HAS_KEYCHAIN;
 }
 
-export type Actions = LocationChangeAction | ThemeChangeAction | IntroHideAction | ListStyleChangeAction | NewVersionChangeAction | HasKeyChainAction;
+export type Actions =
+    LocationChangeAction
+    | ThemeChangeAction
+    | IntroHideAction
+    | ListStyleChangeAction
+    | NewVersionChangeAction
+    | NotificationsMuteAction
+    | NotificationsUnMuteAction
+    | CurrencySetAction
+    | LangSetAction
+    | HasKeyChainAction;

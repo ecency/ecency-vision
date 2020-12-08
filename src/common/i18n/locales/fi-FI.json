@@ -1,0 +1,741 @@
+{
+  "g": {
+    "edit": "Muokkaa",
+    "search": "Haku",
+    "downloads": "Lataukset",
+    "login": "Kirjaudu sisään",
+    "login-as": "Kirjaudu käyttäjänimellä",
+    "signup": "Rekisteröidy",
+    "delete": "Poista",
+    "cancel": "Peruuta",
+    "reply": "Vastaa",
+    "update": "Päivitä",
+    "or": "Tai",
+    "server-error": "Tapahtuma epäonnistui palvelinvirheen vuoksi",
+    "day": "päivä",
+    "days": "päivää",
+    "finish": "Valmis",
+    "next": "Seuraava",
+    "back": "Takaisin",
+    "load-more": "Lataa lisää",
+    "empty-list": "Tyhjä",
+    "save": "Tallenna",
+    "try-again": "Yritä uudelleen",
+    "show": "Näytä",
+    "on": "Päällä",
+    "off": "Pois"
+  },
+  "confirm": {
+    "title": "Oletko varma?",
+    "ok": "Vahvista",
+    "cancel": "Peruuta"
+  },
+  "entry-filter": {
+    "filter-trending": "Nousussa",
+    "filter-hot": "Kuumat",
+    "filter-created": "Uusimmat",
+    "filter-promoted": "Korostettu",
+    "filter-payout": "Tilitykset",
+    "filter-muted": "Mykistetty",
+    "filter-feed": "Syöte"
+  },
+  "navbar": {
+    "discover": "Löydä uutta",
+    "communities": "Yhteisöt",
+    "about": "Tietoa",
+    "faq": "UKK",
+    "post": "Luo julkaisu",
+    "day-theme": "Päiväteema",
+    "night-theme": "Yöteema",
+    "address-placeholder": "syötä osoite tai hakusana"
+  },
+  "search": {
+    "placeholder": "Haku",
+    "placeholder-count": "Etsi {{n}} viestiä",
+    "header-tag": "Tunnisteet",
+    "header-account": "Käyttäjät",
+    "header-community": "Yhteisöt"
+  },
+  "user-nav": {
+    "wallet": "Lompakko",
+    "unclaimed-reward-notice": "Sinulla on lunastamattomia palkkioita",
+    "points": "Pisteet",
+    "unclaimed-points-notice": "Sinulla on lunastamattomia pisteitä",
+    "notifications": "Ilmoitukset",
+    "profile": "Profiili",
+    "gallery": "Galleria",
+    "drafts": "Luonnokset",
+    "bookmarks": "Kirjanmerkit",
+    "logout": "Kirjaudu ulos"
+  },
+  "login": {
+    "title": "Tervetuloa takaisin!",
+    "with-user-pass": "Kirjaudu käyttäjätunnuksellasi ja yksityisellä avaimellasi.",
+    "username-placeholder": "käyttäjänimi",
+    "key-placeholder": "master tai aktiivinen yksityinen avain",
+    "login-info-1": "Emme tallenna yksityisiä avaimiasi.",
+    "login-info-2": "Lisätietoja",
+    "error-fields-required": "Syötä käyttäjänimi ja yksityinen avain",
+    "error-public-key": "Lisäsit public keyn. Vaaditaan salasana/WIF",
+    "error-user-fetch": "Käyttäjätietoja ei voitu ladata",
+    "error-user-not-found": "Käyttäjää ei ole olemassa",
+    "error-permission": "Julkaisulupaa ei voitu hakea",
+    "error-authenticate": "Väärä yksityinen avain. Master tai aktiivinen yksityinen avain tarvitaan.",
+    "with-hive-signer": "Kirjaudu sisään hivesignerilla",
+    "with-keychain": "Kirjaudu keychainilla",
+    "sign-up-text-1": "Eikö sinulla ole tiliä?",
+    "sign-up-text-2": "Rekisteröidy nyt!"
+  },
+  "sign-up": {
+    "header": "Luo tili",
+    "description": "One account to manage everything on blockchain and Ecency. Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
+    "username": "Valitse käyttäjänimi",
+    "email": "Syötä sähköpostiosoitteesi",
+    "ref": "Suosittelija (valinnainen)",
+    "submit": "Jatka",
+    "success": "Olemme lähettäneet vahvistuksen sähköpostiin {{email}}.",
+    "success-2": "Seuraa ohjeita suorittaaksesi rekisteröinti.",
+    "login-text-1": "Do you have an account?",
+    "login-text-2": "Login"
+  },
+  "trending-tags": {
+    "title": "Aiheet"
+  },
+  "selected-tags": {
+    "title": "Suositellut"
+  },
+  "entry-list-item": {
+    "reblogged": "tekijä {{n}}",
+    "promoted": "korostettu",
+    "pinned": "Kiinnitetty julkaisu",
+    "replies": "1 vastaus. Klikkaa vastataksesi.",
+    "replies-n": "{{n}} vastausta. Klikkaa vastataksesi.",
+    "no-replies": "Ei vielä vastauksia. Klikkaa vastataksesi."
+  },
+  "bookmark-btn": {
+    "add": "Lisää kirjanmerkkeihin",
+    "added": "Lisätty kirjanmerkkeihin",
+    "delete": "Poista kirjanmerkeistä",
+    "deleted": "Poistettu kirjanmerkeistä"
+  },
+  "entry-reblog": {
+    "reblog": "Jaa",
+    "confirm-title": "Jaa @{{n}} blogiin?",
+    "confirm-ok": "Jaa",
+    "success": "Jaettu!"
+  },
+  "entry-payout": {
+    "pending-payout": "Odottava tulo",
+    "promoted": "Korostettu",
+    "author-payout": "Julkaisijan tulo",
+    "curators-payout": "Tarkastajan tulo",
+    "payout-date": "Tulot",
+    "beneficiary": "Hyötyjä",
+    "breakdown": "Erittely"
+  },
+  "entry-index": {
+    "feed": "Syöte",
+    "tags": "Suositut",
+    "title": "{{f}} aihetta",
+    "description": "{{f}} aihetta sosiaalisessa verkossa, jonka käyttäjät omistavat ja ylläpitävät.",
+    "description-tag": "{{f}} #{{t}} aihetta",
+    "description-user-feed": "{{u}} syöte"
+  },
+  "market-data": {
+    "title": "Markkinahinta",
+    "credits": "markkinatiedot <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingeckosta</a>"
+  },
+  "list-style": {
+    "title": "Vaihda listaustyyliä"
+  },
+  "entry-votes": {
+    "title": "1 Ääni",
+    "title-n": "{{n}} Ääntä",
+    "title-empty": "Ei ääniä",
+    "voter": "Äänestäjä",
+    "percent": "Prosentti",
+    "reward": "Palkkio",
+    "time": "Aika"
+  },
+  "entry": {
+    "via-app": "<span class=\"app-name\">{{app}}</span> kautta",
+    "comment-entry-title": "Katselet yhtä kommenttiketjua: ",
+    "comment-entry-go-root": "Katso kaikki",
+    "comment-entry-go-parent": "Näytä vanhempi",
+    "show-history": "Näytä muokkaushistoria",
+    "hidden-warning": "Tämä viesti oli piilotettu alhaisten arvostelujen vuoksi."
+  },
+  "edit-history": {
+    "title": "Muokkaushistoria",
+    "show-diff": "Näytä eroavaisuudet",
+    "version": "Versio {{n}}"
+  },
+  "similar-entries": {
+    "title": "Viimeisimmät viestit käyttäjältä @{{n}}"
+  },
+  "comment": {
+    "body-placeholder": "Kirjoita vastauksesi tähän",
+    "preview": "Esikatselu"
+  },
+  "discussion": {
+    "join": "Liity keskusteluun",
+    "btn-join": "Liity",
+    "replies": "1 Kommentti",
+    "n-replies": "{{n}} Kommenttia",
+    "order": "Järjestys",
+    "order-trending": "Nousussa",
+    "order-reputation": "Maine",
+    "order-votes": "Äänet",
+    "order-created": "Ikä",
+    "read-more": "...lue lisää vastauksia...",
+    "reveal": "Näytä kommentti"
+  },
+  "community": {
+    "page-description": "{{f}} aihetta",
+    "subscribe": "Tilaa",
+    "subscribed": "Liittyi",
+    "unsubscribe": "Poistu",
+    "post": "Uusi julkaisu",
+    "posts": "Julkaisut",
+    "subscribers": "Tilaajat",
+    "activities": "Toiminnat",
+    "roles-title": "Käyttäjäroolit",
+    "roles-account": "Tili",
+    "roles-role": "Rooli",
+    "roles-account-title": "Otsikko",
+    "roles-add": "Lisää käyttäjä"
+  },
+  "community-cover": {
+    "rewards": "palkkiot",
+    "authors": "tekijät",
+    "lang": "kieli",
+    "cover-image": "Yhteisön kansikuva",
+    "cover-image-edit": "Muokkaa kansikuvaa",
+    "cover-image-updated": "Kansikuva päivitetty!"
+  },
+  "community-card": {
+    "description": "Kuvaus",
+    "rules": "Säännöt",
+    "team": "Johtavat",
+    "edit": "Muokkaa asetuksia",
+    "edit-team": "Muokkaa rooleja",
+    "profile-image": "Yhteisön profiilikuva",
+    "profile-image-edit": "Muokkaa profiilikuvaa",
+    "profile-image-updated": "Profiilikuva päivitetty!"
+  },
+  "community-role-edit": {
+    "title": "Aseta käyttäjärooli",
+    "username": "Käyttäjänimi",
+    "role": "Rooli",
+    "user-not-found": "Käyttäjää ei ole olemassa!",
+    "explanations": "<h3>Roolin käyttöoikeudet</h3><p><strong>Omistaja</strong> - määritä ylläpitäjät</p><p><strong>Ylläpitäjä</strong> - muokkaa asetuksia, määritä modeja</p><p><strong>Moderaattori</strong> - mykistä, pin, aseta käyttäjänimet</p><p><strong>Jäsen</strong> - listattu johtoryhmän</p><p><strong>Vieras</strong> - oletus; voi julkaista ja kommentoida</p><p><strong>Mykistetty</strong> - uudet viestit mykistetään automaattisesti</p>"
+  },
+  "community-settings": {
+    "dialog-title": "Yhteisön asetukset",
+    "title": "Otsikko",
+    "about": "Tietoa",
+    "lang": "Kieli",
+    "description": "Kuvaus",
+    "rules": "Säännöt",
+    "rules-help": "Yksi per rivi"
+  },
+  "communities": {
+    "title": "Yhteisöt",
+    "description": "Netin parhaat hajautetut, sensuurivapaat ja palkitsevat yhteisöt",
+    "n-subscribers": "{{n}} tilaajaa",
+    "n-authors": "{{n}} julkaisijaa",
+    "n-posts": "{{n}} julkaisua",
+    "admins": "ylläpitäjät:",
+    "sort-hot": "Kuumat",
+    "sort-rank": "Sija",
+    "sort-subs": "Tilaajat",
+    "sort-new": "Uusimmat",
+    "no-results": "Tuloksia ei löytynyt",
+    "create": "Luo yhteisö"
+  },
+  "communities-create": {
+    "page-title": "Luo yhteisö",
+    "title": "Otsikko",
+    "about": "Tietoa",
+    "description": "Luo netin parhaat hajautetut, sensuurivapaat ja palkitsevat yhteisöt",
+    "fee": "Tapahtuman maksu",
+    "creator": "Tekijä",
+    "username": "Omistajan käyttäjätunnus",
+    "username-available": "Saatavilla.",
+    "username-not-available": "Ei saatavilla.",
+    "username-wrong-format": "Muoto ei kelpaa. hive-1xxxxx muoto vaaditaan.",
+    "password": "Omistajan salasana",
+    "confirmation": "Olen tallentanut turvallisesti omistajan käyttäjätunnuksen ja salasanan.",
+    "submit": "Luo yhteisö",
+    "progress-account": "Luodaan tiliä...",
+    "progress-user": "Valmistellaan käyttäjätietoja...",
+    "progress-role": "Asetetaan @{{u}} ylläpitäjäksi...",
+    "progress-props": "Päivitetään yhteisöasetuksia...",
+    "done": "Yhteisösi luotiin 🎉",
+    "done-link-label": "Aloitetaan."
+  },
+  "pin-btn": {
+    "pin": "Kiinnitä",
+    "unpin": "Irrota"
+  },
+  "mute-btn": {
+    "mute": "Mykistä",
+    "unmute": "Poista mykistys",
+    "dialog-title-mute": "Mykistä viesti/kommentti",
+    "dialog-title-unmute": "Poista mykistys jukaisulta/kommentista",
+    "notes": "Muistiinpanot",
+    "note-placeholder-mute": "Anna muistiinpano, joka koskee päätöstä mykistää tämä sisältö.",
+    "note-placeholder-unmute": "Anna muistio päätöksestäsi poistaa mykistys tästä sisällöstä."
+  },
+  "profile": {
+    "voting-power": "Äänivalta",
+    "post-count": "Julkaisujen määrä",
+    "followers": "Seuraajat",
+    "following": "Seuratut",
+    "section-blog": "Blogi",
+    "section-posts": "Julkaisut",
+    "section-comments": "Kommentit",
+    "section-replies": "Vastaukset",
+    "section-communities": "Yhteisöt",
+    "section-wallet": "Lompakko",
+    "section-settings": "Asetukset",
+    "communities-title": "Tilaukset",
+    "create-community": "Luo yhteisö",
+    "witnesses": "Todistajat",
+    "proposals": "Ehdotukset"
+  },
+  "profile-edit": {
+    "title": "Profiili",
+    "name": "Näyttönimi",
+    "about": "Tietoja",
+    "cover-image": "Kansikuva",
+    "profile-image": "Profiilikuva",
+    "website": "Sivusto",
+    "location": "Sijainti",
+    "updated": "Profiili on päivitetty onnistuneesti!"
+  },
+  "image-upload-button": {
+    "uploaded": "Kuva ladattu"
+  },
+  "preferences": {
+    "title": "Asetukset",
+    "notifications": "Ilmoitukset",
+    "currency": "Valuutta",
+    "language": "Kieli",
+    "updated": "Asetukset päivitetty!"
+  },
+  "wallet": {
+    "unclaimed-rewards": "Lunastamattomat palkkiot",
+    "claim-reward-balance": "Lunasta palkkiosaldo",
+    "claim-reward-balance-ok": "Palkkiosaldo lunastettu",
+    "estimated": "Arvioitu tilin arvo",
+    "estimated-description": "Arvioitu arvo perustuu 7 päivän HIVE keskiarvoon.",
+    "hive": "HIVE",
+    "hive-description": "HIVE on vaihdettavia, milloin tahansa siirrettäviä merkkejä. HIVEä voi vaihtaa Hive Poweriin prosessissa, jota kutsutaan Voimanlisäykseksi.",
+    "hive-power": "HIVE POWER",
+    "hive-power-description": "Hive Powerit ovat vaikutuskuponkeja, jotka auttavat tienaamaan ja antavat enemmän määräysvaltaa äänestyksissä. Mitä enemmän näitä omistaa, sitä enemmän on vaikutusvaltaa ja voit saada myös palkintoja.",
+    "hive-power-delegated": "Valtuutettu Hive Power",
+    "hive-power-received": "Vastaanotettu Hive Power",
+    "next-power-down-amount": "Seuraava power down määrä",
+    "hive-power-total": "Hive Power yhteensä",
+    "hive-dollars": "HIVE DOLLARIT",
+    "hive-dollars-description": "Tokenin arvo on noin $1.00 edestä HIVEä.",
+    "savings": "SÄÄSTÖT",
+    "savings-description": "Määrässä on 3 päivän kotiutusjakso.",
+    "next-power-down": "Seuraava power down on {{time}} {{amount}}",
+    "transfer": "Siirto",
+    "transfer-to-savings": "Siirrä säästöihin",
+    "convert": "Muunna",
+    "power-up": "Power up",
+    "withdraw-hive": "Kotiuta Hive",
+    "withdraw-hbd": "Kotiuta Hive Dollar"
+  },
+  "points": {
+    "get": "Osta Pisteitä",
+    "unclaimed-points": "Lunastamattomat pisteet",
+    "claim-reward-points": "Lunasta palkkiot",
+    "main-description": "Pisteitä voidaan käyttää sovelluksen sisäisiin palveluihin, kuten Korostamiseen, Korottamiseen ja Lahjoittamisen. Ansaitse niitä käyttämällä Ecency-sovellusta ja paranna kokemustasi.",
+    "earn-points": "Kuinka ansaita enemmän Pisteitä",
+    "post-desc": "Voit tienata pisteitä julkaisemalla säännöllisesti. Julkaisusta saa 15 pistettä.",
+    "comment-desc": "Jokainen kommenttisi helpottaa kasvattamaan yleisöäsi ja lisää kontakteja, sekä saat 5 pistettä.",
+    "checkin-desc": "Ecencyyn kirjautumisesta saa 0.25 pistettä ja auttaa pysymään yhteydessä ystäviisi.",
+    "vote-desc": "Äänestämällä palkitset muita luojia ja osoitat arvostusta, mutta saat myös 0.01 x äänipainopisteitä.",
+    "reblog-desc": "  Jaa haluamasi julkaisu ystävillesi ja saat 1 pisteen.",
+    "login-desc": "Ensikirjauksella Ecencyyn saat automaattisesti 100 pistettä.",
+    "checkin-extra-desc": "Toistuva dappin käyttö voi johtaa 10 lisäpisteeseen, ole aktiivinen ja saat enemmän.",
+    "delegation-desc": "Voit ansaita ~ 50 pistettä päivässä jokaisesta 1000HP valtuutuksesta.",
+    "history": "Historia",
+    "post-list-desc": "Pisteitä julkaisuista",
+    "comment-list-desc": "Pisteitä kommenteista",
+    "vote-list-desc": "Pisteitä äänistä",
+    "reblog-list-desc": "Pisteitä jaoista",
+    "login-list-desc": "Pisteitä sisäänkirjautumisesta",
+    "checkin-list-desc": "Pisteitä sydämestä",
+    "checkin-extra-list-desc": "Käyttöbonus",
+    "transfer-sent-list-desc": "Siirrä käyttäjälle {{n}}",
+    "transfer-incoming-list-desc": "Siirrä käyttäjältä {{n}}",
+    "delegation-list-desc": "Valtuutuspalkkiot",
+    "referral-list-desc": "Suosittelupalkkio",
+    "transfer": "Lahjoita",
+    "claim-ok": "Pisteitä lunastettu",
+    "promote": "Korosta",
+    "boost": "Tehosta"
+  },
+  "purchase": {
+    "select-asset": "Valitse etu",
+    "slider-hint": "Siirrä liukusäädintä muuttaaksesi määrää.",
+    "submit": "Osta"
+  },
+  "promote": {
+    "title": "Korosta",
+    "sub-title": "Korosta julkaisuasi",
+    "duration": "Kesto"
+  },
+  "boost": {
+    "title": "Tehosta",
+    "sub-title": "Tehosta julkaisuasi",
+    "amount": "Määrä",
+    "slider-hint": "Siirrä liukusäädintä muuttaaksesi määrää."
+  },
+  "redeem-common": {
+    "balance": "Saldo",
+    "post": "Julkaisu",
+    "post-hint": "Automaattitäydennys",
+    "post-placeholder": "käyttäjänimi/permlink",
+    "post-error": "Osoite ei kelpaa",
+    "post-error-exists": "Julkaisu on jo korostettu",
+    "success-message": "Pyyntösi lähetetty. Se aktivoituu muutaman minuutin kuluttua."
+  },
+  "transfer": {
+    "transfer-title": "Siirrä tilille",
+    "transfer-title-point": "Lahjoita tilille",
+    "transfer-sub-title": "Siirrä varoja toiselle Hivetilille",
+    "transfer-saving-title": "Siirrä säästöihin",
+    "transfer-saving-sub-title": "Suojaa varoja vaatimalla 3 päivän odotusaikaa",
+    "withdraw-saving-title": "Säästöjen kotiutus",
+    "withdraw-saving-sub-title": "Palauta varat vaaditun 3 päivän odotusajan jälkeen",
+    "power-up-title": "Panosta Hive Poweriksi",
+    "convert-title": "Muunna",
+    "power-up-sub-title": "Vaikutusmerkit antavat enemmän valtaa julkaisujen tuloihin ja saat lisää tarkastuspalkkioita.",
+    "convert-sub-title": "Suositeltu vain jos HBD on alle $1. Saat $1 edestä HIVEä 3.5 päivän kuluessa.",
+    "from": "Lähettäjä",
+    "to": "Saaja",
+    "to-placeholder": "käyttäjänimi",
+    "to-not-found": "Siirrolle ei löydy käyttäjää!",
+    "to-bad-actor": "Pidä huolta lähettäessäsi tälle tilille. Varmista kirjoitusasu mahdollisen vedätyksen vuoksi.",
+    "amount": "Määrä",
+    "amount-placeholder": "määrä",
+    "wrong-amount": "Väärä arvo",
+    "amount-precision-error": "Käytä vain 3 desimaalia",
+    "balance": "Saldo",
+    "memo": "Muistio",
+    "memo-placeholder": "kirjoita muistio tähän",
+    "memo-help": "Tämä muistio on julkinen",
+    "confirm-title": "Vahvista siirtotapahtuma",
+    "confirm-sub-title": "Varmista vielä kerran",
+    "confirm": "Vahvista",
+    "recent-transfers": "Viimeisimmät siirrot",
+    "transfer-summary": "Siirretty <span class=\"amount\">{{amount}}</span> käyttäjältä <span class=\"from-user\">{{from}}</span> kohteeseen <span class=\"to-user\">{{to}}</span>",
+    "reset": "Uusi siirto"
+  },
+  "trx-common": {
+    "insufficient-funds": "Riittämättömät varat",
+    "sign-title": "Allekirjoita tapahtuma",
+    "sign-sub-title": "Vahvista siirtotapahtuma",
+    "success-title": "Onnistui",
+    "success-sub-title": "Siirto onnistui"
+  },
+  "transactions": {
+    "title": "Historia",
+    "type-curation_reward": "Tarkastuspalkkio",
+    "type-author_reward": "Julkaisupalkkio",
+    "type-comment_benefactor_reward": "Kommentin hyötyjäpalkkio",
+    "type-claim_reward_balance": "Lunasta palkkiot",
+    "type-transfer": "Siirto",
+    "type-transfer_to_vesting": "Siirrä ansaintaan",
+    "type-withdraw_vesting": "Kotiuta ansainta",
+    "type-fill_order": "Täytä tilaus"
+  },
+  "key-or-hot": {
+    "sign": "Allekirjoita",
+    "key-placeholder": "Syötä aktiivinen/omistaja/master-avain",
+    "with-hivesigner": "Kirjaudu sisään hivesignerilla",
+    "with-keychain": "Kirjaudu keychainilla"
+  },
+  "delegated-vesting": {
+    "title": "Valtuutettu Hive Power"
+  },
+  "received-vesting": {
+    "title": "Vastaanotettu Hive Power"
+  },
+  "friends": {
+    "followers": "Seuraajat ({{n}})",
+    "following": "Seurataan ({{n}})",
+    "search-placeholder": "Hae käyttäjiä"
+  },
+  "follow-controls": {
+    "follow": "Seuraa",
+    "unFollow": "Älä Seuraa",
+    "mute": "Mykistä",
+    "unMute": "Poista mykistys"
+  },
+  "favorite-btn": {
+    "add": "Lisää suosikkeihin",
+    "added": "Lisätty suosikkeihin",
+    "delete": "Poista suosikeista",
+    "deleted": "Poistettu suosikeista"
+  },
+  "editor-toolbar": {
+    "bold": "Lihavoitu",
+    "italic": "Kursivoitu",
+    "header": "Otsikko",
+    "code": "Koodi",
+    "quote": "Lainaus",
+    "ul": "Järjestämätön lista",
+    "ol": "Järjestetty luettelo",
+    "link": "Linkki",
+    "image": "Kuva",
+    "table": "Taulukko",
+    "table-3-col": "3 saraketta",
+    "table-2-col": "2 saraketta",
+    "table-1-col": "1 sarake",
+    "upload": "Lähetä",
+    "gallery": "Galleria",
+    "emoji": "Emoji",
+    "image-error": "Kuvaa ei voitu ladata.",
+    "image-error-size": "Kuvan koko on liian suuri, kokeile pienempää kuvaa."
+  },
+  "emoji-picker": {
+    "filter-placeholder": "Suodata",
+    "filter-no-match": "Ei tuloksia",
+    "recently-used": "Äskettäin käytetyt"
+  },
+  "submit": {
+    "page-title": "Luo artikkeli",
+    "page-description": "Julkaise artikkeli, ansaitse palkintoja, sensuroimaton, muuttumaton ja hajautettu sisältö!",
+    "title-placeholder": "Otsikko",
+    "body-placeholder": "Julkaisun sisältö",
+    "reward": "Palkkio",
+    "reward-default": "Oletus 50 % / 50 %",
+    "reward-sp": "Power Up 100%",
+    "reward-dp": "Hylkää maksu",
+    "preview": "Esikatselu",
+    "publish": "Julkaise",
+    "update": "Päivitä",
+    "save-draft": "Tallenna luonnos",
+    "draft-saved": "Luonnos tallennettu",
+    "update-draft": "Päivitä luonnos",
+    "draft-updated": "Luonnos päivitetty",
+    "cancel-update": "Peruuta",
+    "clear": "Tyhjennä",
+    "published": "Julkaistu",
+    "updated": "Julkaisu päivitetty"
+  },
+  "tag-selector": {
+    "placeholder-empty": "Tunnisteet. Ensimmäisenä pääkategoria. Lajiteltava.",
+    "placeholder-focus": "Syötä tunniste",
+    "placeholder-has-tags": "Lisää enemmän",
+    "suggestion-header": "Tunnisteet/yhteisöt",
+    "error-max": "Enintään {{n}} tunnistetta"
+  },
+  "word-count": {
+    "label": "{{n}} sanaa",
+    "read-time-less-1-min": "< 1 min luku",
+    "read-time-n-min": "~ {{n}} min luettu"
+  },
+  "notification": {
+    "popup-title": "Sinulle on uusi ilmoitus",
+    "voted": "{{source}} äänesti julkaisuasi",
+    "mention-post": "{{source}} mainitsi sinut julkaisussa",
+    "mention-comment": "{{source}} mainitsi sinut kommentissa",
+    "followed": "{{source}} seurasi sinua",
+    "replied": "{{source}} vastasi",
+    "reblogged": "{{source}} jakoi julkaisusi",
+    "transfer": "{{source}} lähetti sinulle {{amount}}"
+  },
+  "notifications": {
+    "type-all": "Kaikki ilmoitukset",
+    "type-all-short": "Kaikki",
+    "type-rvotes": "Äänet",
+    "type-replies": "Vastaukset",
+    "type-mentions": "Maininnat",
+    "type-follows": "Seuratut",
+    "type-reblogs": "Jaot",
+    "type-transfers": "Siirrot",
+    "vote-str": "{{p}}% tykkää julkaisustasi:",
+    "reply-str": "vastasi julkaisuusi:",
+    "mention-str": "mainitsi sinut:",
+    "followed-str": "seurasi",
+    "unfollowed-str": "lopetti seuraamisen",
+    "ignored-str": "sivuutetut",
+    "reblog-str": "jakoi julkaisusi:",
+    "transfer-str": "lähetti sinulle",
+    "spin-str": "Aika ansaita lisää pisteitä, pyöritä rulettia Ecency Mobile -sovelluksessa",
+    "inactive-str": "Ole aktiivinen! Kirjoita ja jatka tienaamista",
+    "referral-str": "liittyi suosituksestasi, toivota heidät tervetulleeksi",
+    "refresh": "Päivitä",
+    "mark-all-read": "Merkitse kaikki luetuksi",
+    "mark-read": "Merkitse luetuksi",
+    "mute": "Poista ilmoitukset käytöstä",
+    "unmute": "Ota ilmoitukset käyttöön"
+  },
+  "leaderboard": {
+    "title": "Tulostaulukko",
+    "title-day": "Päivän kovimmat käyttäjät",
+    "title-week": "Viikon kovimmat käyttäjät",
+    "title-month": "Kuukauden kovimmat käyttäjät",
+    "period-day": "Päivittäin",
+    "period-week": "Viikottain",
+    "period-month": "Kuukausittain",
+    "header-score": "Toiminnat",
+    "header-score-tip": "Julkaisu + kommentit käyttäjältä valitulta ajalta",
+    "header-reward": "Palkkio"
+  },
+  "popular-users": {
+    "title": "Suositut käyttäjät"
+  },
+  "discover": {
+    "title": "Löydä",
+    "description": "Löydä kovimmat online-käyttäjät"
+  },
+  "search-page": {
+    "title": "Haku",
+    "description": "Löydä sensuroimatonta sisältöä, yhteisöjä ja käyttäjiä",
+    "n-results-for-q": "{{n}} tulosta",
+    "no-result": "Ei tuloksia",
+    "sort-by": "lajittelujärjestys",
+    "sort-popularity": "Suosio",
+    "sort-relevance": "Osuvuus",
+    "sort-newest": "Päivämäärä"
+  },
+  "witnesses": {
+    "page-title": "Todistajat",
+    "page-description": "Konsuspohjaisten lohkotuottajien valinta",
+    "page-description-long": "Hive-lohkoketjun todistajat toimivat verkoston hallintoelimenä. Yhteisö valitsee heidät edustamaan itseään ja jokainen käyttäjä voi valita jopa 30 todistajaa. Kovimmat 20 todistajaa tuottavat lohkoja minuutin välein, samalla kun muut toimivat varmuuskopioinnin todistajina saaden satunnaisen mahdollisuuden joka minuutti. Tämä rooli on erottamaton osa konsensusmekanismien lohkoketjua ja suosittelmme, että käyttäjät sitoutuvat äänestämään luotettavia todistajia.",
+    "remaining": "<span>{{n}}</span> {{max}} äänestä jäljellä",
+    "list-rank": "Sijoitus",
+    "list-witness": "Todistaja",
+    "list-miss": "Ohi",
+    "list-url": "URL",
+    "list-fee": "Maksu",
+    "list-feed": "Syöte",
+    "list-version": "Versio",
+    "username-placeholder": "käyttäjänimi",
+    "extra-description": "Lisää käyttäjätunnus äänestääksesi todistajia kovimman 50 ulkopuolelta",
+    "proxy-description": "Voit valtuttaa jonkun äänestämään todistajia puolestasi. Tämä nollaa nykyiset todistajasi.",
+    "proxy-btn-label": "Valitse valtuutettu",
+    "proxy-active-description": "Olet asettanut valtuutetun. Jos haluat äänestää itse, tyhjennä valtuutuksesi.",
+    "proxy-active-current": "Nykyinen valtuutettusi",
+    "proxy-active-btn-label": "Poista valtuutus"
+  },
+  "proposals": {
+    "page-title": "Ehdotukset",
+    "page-description": "Hajautettu Hive-rahasto (DHF) on lohkoketjun rahoitusmekanismi, jonka avulla kuka tahansa voi tehdä ehdotuksen ja saada rahoitusta yhteisön äänten ylittäessä tietyn kynnysarvon. Lue lisää <a href=\"/faq#how-dhf-work\">FAQ</a>.",
+    "by": "tehnyt",
+    "for": "kohteelle",
+    "duration-days": "{{n}} päivää",
+    "daily-pay": "Päivittäin {{n}}",
+    "votes": "Äänet: {{n}}",
+    "status-active": "käynnissä",
+    "status-expired": "vanhentunut",
+    "status-inactive": "tuleva",
+    "remaining-days": "Jäljellä: {{n}} päivää",
+    "filter-all": "Kaikki",
+    "filter-active": "Käynnissä",
+    "filter-inactive": "Tuleva",
+    "filter-team": "Ecency-projektit",
+    "return-description": "Tämä on yleinen palautusehdotus. Jokainen ehdotus, jossa on vähemmän ääniä, ei saa rahoitusta.",
+    "votes-dialog-title": "Äänet ehdotuksessa #{{n}}",
+    "see-all": "katso kaikki ehdotukset"
+  },
+  "gallery": {
+    "title": "Galleria",
+    "copied": "Kopioitu leikepöydälle"
+  },
+  "drafts": {
+    "title": "Luonnokset"
+  },
+  "bookmarks": {
+    "title": "Kirjanmerkit"
+  },
+  "favorites": {
+    "title": "Suosikit"
+  },
+  "scroll-to-top": {
+    "title": "Vieritä ylös"
+  },
+  "static": {
+    "about": {
+      "page-title": "Tietoa",
+      "intro-title": "Mikä on <span>Ecency</span>",
+      "intro-content": "Ecency on kaunis ja kätevä Hive-lohkoketjun käyttöliittymäkääre, jonka avulla voit luoda omia julkaisuja, seurata syöttettäsi, äänestää mitä haluat, kirjoittaa kommentteja, lukea vastauksia, tehdä kaikki tärkeimmät Hiven toiminnot päivittäisessä sosiaalisessa selaislussa, sisältäen lompakon toiminnot ja muita lisäosia, mukaanlukien haut, löytää erilaisia tunnisteita jne.",
+      "faq-title": "UKK",
+      "faqs": "Kaikki UKK: t",
+      "contact-title": "Yhteystiedot",
+      "contact-blog": "Perustajan blogi",
+      "contact-news": "Uutisia Hivessä",
+      "contact-email": "Lähetä meille sähköpostia"
+    },
+    "faq": {
+      "page-title": "Ecency UKK",
+      "page-sub-title": "Sisällysluettelo",
+      "what-is-ecency-header": "Mikä on Ecency?",
+      "what-is-ecency-body": "<p>Ecency on <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">lohkoketju</a> -pohjainen sosiaalinen verkosto, jonka on luonut <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency tarjoaa sensuroimattoman, vapaan, rajattoman ja palkitsevan alustan sisällön luojille.</p><p>Hankkeen käynnisti ja perusti Elokuussa 2016 <a href=\"/@good-karma\">@good-karma</a> vaihtoehtoiseksi sosiaaliseksi verkostoksi. Siitä lähtien hanke on kasvanut paljon suuremmaksi joukoksi osallistujia (kääntäjät, testaajat, kehittäjät, vaikuttajat, sisällöntuottajat ja kuluttajat), jotka mahdollistivat Ecencyn.</p><p>Ecency auttaa perehdyttämään ihmisiä lohkoketjuteknologiaan, jossa käyttäjille maksetaan ajasta sekä resursseista ja voimme oppia samalla nauttia lohkoketjun sosiaalisista näkökohdista. Helppokäyttöisyyden ansiosta käyttäjät oppivat ja myös siirtyvät sijoittajiksi, teknologian ja yhteisön uudistajiksi.</p>",
+      "what-is-hive-header": "Mikä on Hive-lohkoketju?",
+      "what-is-hive-body": "<p>Hive on lohkoketju, joka oli suunniteltu olemaan nopea, ilmainen, hajautettu sekä sensuroimaton alusta Web3- sovelluksineen, joissa on sisäänrakennettuja ominaisuuksia, joissa omistajat voivat ansaita palkintoja panostamalla, tarkastamalla, pelaamalla sekä vaihtamalla - ilman välikäsiä (hajautettu). Hive-lohkoketjun yleisimmät merkit ovat HIVE, HIVE DOLLARS, HIVE POWER.</p>",
+      "what-is-difference-header": "Mikä ero on Ecencyllä ja muilla Hive-käyttöliittymillä?",
+      "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\" loading=\"lazy\"/></p><p>Kaikkien liitäntöjen tai sovellusten ensisijaiset erot ovat ominaisuuksissa ja käyttötapauksissa. Ecency tarjoaa verkkosivun sekä mobiili- ja työpöytäsovelluksen helppokäyttöisyyden ja parhaan tietoturvan pohjalta. Helposti omaksuttava, avoimeen lähdekoodiin pohjautuva kekseliäs käyttäjien omistama alusta. Taivoittelemme suuria! </p>",
+      "why-choose-ecency-header": "Miksi valitsisin Ecencyn?",
+      "why-choose-ecency-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjrzJAcJ4DvxvtqoPdzS9Aygf4MZ1PeE4goH6zWaeEFvafr9vGXWuou67Pbn44GweMyHV5DupM5q1cRvU85qdver?format=match&mode=fit\" loading=\"lazy\"/></p><p>Räätälöityjen ominaisuuksien avulla voit luovasti inspiroida yleisöä ja yhteisöjä. Ecency-mobiilisovellusta voit käyttää missä vain. Työpöytäsovelluksella voit löytää varmasti sensuroimatonta sisältöä suoraan lohkoketjusta, sekä nettisivusto saavuttaa tuhansia lukijoita maailman ympäri parhaiten sijoitettujen hakukoneiden sisällöistä. Huipputason turvaominaisuuksien kautta avaimesi pysyvät aina salattuna ja epärehellisten ihmisten ulottumattomissa. Nopea ja kaunis sivusto auttaa löytämistäsi verkossa ja saat näkyvyyttä sisällöllesi, sekä uskollisia seuraajia ja lukijoita. Rakenna yhteisöäsi Ecencyn avulla ja hyödynnä uutta lohkoketjuteknologiaa, sekä sensuroimatonta sisältöä, todellista sananvapautta!</p>",
+      "how-ecency-works-header": "Kuinka Ecency toimii?",
+      "how-ecency-works-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjuZ3ksaZqEjfd9GadyKFE4bT7UP8qM1sF5W6U3cst4ekDsXfrQdcrjtdz6b5Ye2AfWNwGA5f8QqVXmed6NRfg1U?format=match&mode=fit\" loading=\"lazy\"/></p><p>Ecency tallentaa ja lukee tietoja lohkoketjussa, joten data on saatavilla sensuroimattomana. Ecency palkitsee sisällönluojat, joilla on sisäänrakennettu kannustinmekanismi lohkoketjussa, Merkintöineen (HIVE, HIVE DOLLARS, HIVE POWER) sekä pisteineen. Merkkejä voidaan ostaa ja myydä suurissa kryptovaluuttapörsseissä (esim. Binance, Bittrex). Pisteitä voi käyttää järjestelmässä, sekä palveluiden ja hyvikkeiden vaihdossa. </p>",
+      "how-to-join-header": "Miten liittyä Ecencyyn?",
+      "how-to-join-body": "<p>Siirry osoitteeseen <a href=\"/?referral=ecency\">https://ecency.com/?referral=ecency</a> luodaksesi tilin. Rekisteröitymisen jälkeen saat sähköpostilla lisäohjeita. Salasanasi on pmaster-avain tilillesi. Säilytä se turvallisesti ja jos olet hukannut salasanasi, olet lopullisesti menettänyt pääsyn tilillesi ja varoihisi. Tilejä ei voi poistaa käytöstä tai hävittää, tilin nimiä ei voi myöskään muuttaa. Tili ja kaikki sen toiminta on tallennettu pysyvästi lohkoketjuun. Ilman salasanaa tilejä ei voi myöskään palauttaa, joten tallenna avaimesi turvallisesti.</p>",
+      "how-to-signin-header": "Miten kirjautua sisään Ecencyyn?",
+      "how-to-signin-body": "<p><img src=\"https://images.ecency.com/p/7258xSVeJbKmTr9Z4jhbPhjS9pMWA2mTwBMDbXqk9G9wdMw2bwR4hXqRQt9S7UBFrBAWCYWddjn3G34ETv5KWB5KGmuZ8ixBB9oKHTFvjjnTkRLp4ttrFQtpgtNnRUEA9NtmyFmgyuuK4?format=match&mode=fit\" loading=\"lazy\"/></p><p>Voit kirjautua Ecencyyn käyttämällä käyttäjätunnusta ja master-salasanaa tai käyttämällä Aktiivisia Privaattiavaimia. Suhtaudumme turvallisuuteen hyvin vakavasti, siksi emme koskaan säilytä yksityisiä avaimiasi, mobiilisovelluksissa ne on salattu valitsemallasi ylimääräisellä PIN-koodilla, verkkosivustolla niitä ei koskaan ole tallenneta. Voit myös käyttää <a href=\"https://hivesigner.com\"></a>Hivesigner OAuth2</a> -todennuspalvelua kirjautumiseen, sekä hallinnoidaksesi ja suorittaaksesi toimintoja.</p>",
+      "how-referrals-work-header": "Kuinka suositusjärjestelmä toimii Ecencyssä?",
+      "how-referrals-work-body": "<p>Suositusjärjestelmä on yksinkertainen, voit kutsua ystäviäsi lisäämällä käyttäjätunnuksesi tähän linkkiin https://ecency. om/?referral=käyttäjänimi ja jaa se ystäviesi kanssa. Kun ystäväsi liittyvät Ecencyn jäseniksi ja ansaitsevat ensimmäiset 250 pistettä, ansaitset 100 pistettä. Suosituksissa ja niiden palkkioissa ei ole rajoituksia.</p>",
+      "what-is-points-header": "Mitä ovat Ecencypisteet ja miten niitä käytetään?",
+      "what-is-points-body": "<p>Ecency-pisteitä luodaan ja palkitaan jatkuvasti kaikille käyttäjille erilaisista sosiaalisista toiminnoista, joita he suorittavat verkkosivuilla, mobiili- tai työpöytäsovelluksessa. Pisteitä voidaan käyttää korostamiseen, tehostamiseen, sekä voidaan jopa siirtää tai lahjoittaa toiselle käyttäjälle. Voit myös ostaa pisteitä mobiilisovelluksellamme.</p>",
+      "where-tokens-come-header": "Mistä nämä merkit tulevat?",
+      "where-tokens-come-body": "<p><img src=\"https://images.ecency.com/p/7kq2TLHKEHhCCDwNZLfFLu7msWtbdFb7vZaJJ9Y13GAc18vfVNAj8ZctLWmsVfMCCFtwGdULbZKT89faeBymhPsySU5tp4RnvDsHz6ZBxXHWA4g34ck4LHnR2vGkqsHvjzhizhpV8K6JrQ4sy7cCgJQksUUYPKp4d9XbERHkjnZV3PTdhbiUZPYJ43RS8cQu2sEmUbAgqZExuYMGa46SDa4vCunH2w6oNpommW5L1CCdfwdgX5i9eCpcS5fHo4t8btjVE69edzrUN8anr6T3v8AFYHC?format=match&mode=fit\" loading=\"lazy\"/></p><p>Hive-verkko luo jatkuvasti uusia digitaalisia merkkejä palkitsemaan sisällönluojia ja tarkastajia. Osa vastikään luoduista merkeistä siirretään käyttäjille, jotka tuovat lisäarvoa alustalle lähettämällä, kommentoimalla ja äänestämällä muiden julkaisuja. Loput jaetaan HIVE POWERin haltijoille ja todistajille, jotka ylläpitävät lohkoketjua.</p>",
+      "how-promotion-work-header": "Kuinka korostaminen toimii?",
+      "how-promotion-work-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfoi6H93UHPFEEQutPvax8LP1XqGWMa9geug5SBEEhLUEHKVvSyBfzhrBm9J4uvmrn28AtPhmwcKx?format=match&mode=fit\" loading=\"lazy\"/></p><p>Sisällön korostaminen pisteillä on helpoin tapa saada enemmän näkyvyyttä. Korostukset ovat tietyn ajan ja sekoitetaan eri syötteisiin. Mikä tahansa julkaisua voi korostaa, saaden enemmän näkyvyyttä ja sitoutumista.</p>",
+      "how-boosting-work-header": "Kuinka tehostaminen toimii?",
+      "how-boosting-work-body": "<p>Pisteitä voidaan käyttää sisällön tehostamiseen (julkaisut ja kommentit). Moderaattorimme ja tarkastajamme tarkastavat pyyntöjen tehostamisen manuaalisesti, missä saattaa kestää jopa 24 tuntia. <p>Osana ominaisuuksien tarkistamista voimme harkita: a) Onko sisältö alkuperäistä, b) joita ei havaittu cheetalla, mackbot'lla, hivewatchereilla tai muilla mustalla listalla jne. c) käyttäjä ei ole Ecencyn mustalla listalla johtuen väärinkäytöksistä.</p>Tehostus ei takaa tarkastusta, jos sisältöä ei ole tarkastettu 24 tunnin kuluessa, pisteet palautetaan.</p>",
+      "how-to-transfer-header": "Kuinka siirrän lohkoketjun merkkejä?",
+      "how-to-transfer-body": "<p>Kirjautumisen jälkeen löydät lompakkosivun yläotsikossa sivuilla ja työpöytäsovelluksessa ja profiilisivulla, alaosan navigointipalkissa mobiilisovelluksessa. Lompakkosivulla voit aloittaa minkä tahansa merkin siirron toiselle käyttäjälle tai vaihtaa tilejä, klikkaa saldon vieressä olevaa nuolta ja löydä siirtotapahtumat. Siirrot ovat peruuttamattomia, koska ne on rekisteröity lohkoketjuun, varmista oikea vastaanottaja.</p>",
+      "how-see-rewards-header": "Miten voin nähdä julkaisupalkintoni?",
+      "how-see-rewards-body": "<p><img src=\"https://images.ecency.com/p/3W72119s5BjW4PvRk9nXBzqrPWMsMTjNrXDPFFf11iYhySeELMe77idrZHBPmyaqFX6CV72hBLB5qFhwVhGoAATydoFxAF7oCwBt1ztp6eS9r5us4pm7iN?format=match&mode=fit\" loading=\"lazy\"/></p><p>Lompakkosivulla (yläotsikossa sivuilla ja työpöytäsovelluksessa, alareunan navigointipalkissa mobiilisovelluksessa), näet tarkastuspalkkiot (palkkiot jotka on ansaittu äänistä ja kommenteista) sekä julkaisupalkkiot (omien viestien ja kommenttien keräämät palkkiot)</p><p>Voit myös nähdä samat tiedot muilta käyttäjiltä käymällä lompakkoprofiilissa.</p>",
+      "how-dhf-work-header": "Miten DHF toimii?",
+      "how-dhf-work-body": "<p>Kuka tahansa voi luoda ehdotuksen ja vakuuttaa yhteisön äänestämään ehdotuksestaan saadakseen rahoitusta. Ennen ehdotuksen laatimista normaali viesti on julkaistava lohkoketjussa, sekä on suositeltavaa kerätä palautteitaennen ehdotuksen laatimista. Ehdotuksen luomisen maksu on 10 HBD + 1 HBD mikäli ehdotus kestää yli 60 päivää.</p><p>Kun ehdotus saavuttaa tietyn äänirajan, se alkaa saamaan varoja joka tunti. Jos ehdotus jää kynnysarvon alapuolelle, järjestelmä pysäyttää kyseisen ehdotuksen rahoituksen. Voit äänestää niin monta ehdotusta kuin haluat ilman rajoja. Ehdotusta ei voi muokata, mutta luoja voi poistaa / peruuttaa sen.</p>",
+      "when-claim-rewards-header": "Milloin voin lunastaa palkkioni?",
+      "when-claim-rewards-body": "<p>Viestit ja kommentit pysyvät aktiivisina 7 päivää ja palkkiot vaihtelevat riippuen äänistä ja merkkien markkinahinnasta, tästä syystä palkkioita arvioidaan odottavina palkkioina. Kun aika on ohi, odottava palkkio muuttuu varsinaisiksi merkeiksi ja voit lunastaa ansaitut palkkiot. Klikkaa Walletissa Lunasta Palkkiot-painiketta lisätäksesi merkit tilillesi.</p>",
+      "what-are-rc-header": "Mitä Resurssipisteet ovat?",
+      "what-are-rc-body": "<p>Siirrot Hive-lohkoketjussa eivät ole maksullisia, tapahtumakoron rajoittamista käytetään suojaamaan lohkoketjua roskapostihyökkäyksiltä. Jokainesta toiminnostasi lohkoketju kuluttaa pienen määrän Resurssihyvityksiä. Tämä sisältää julkaisun, kommentoinnin, äänestämisen, merkkien siirot, jne. Sisällön katselu ei kuluta Resurssihyvitystä.</p><p>Jokaisella käyttäjällä on rajallinen määrä resurssihyvityksiä joka viikko. Mitä enemmän tapahtumia käyttäjä tekee, sitä vähemmän Resurssihyvityksiä jää jäljelle (kunnes he latautuvat). Käyttäjillä, joilla on enemmän HIVE POWERia, on enemmän resurssihyvitystä.</p><p>Jos resurssihyvitykset ovat loppuneet, et voi tehdä siirtoja lohkoketjussa, ennen kuin Resurssihyvitykset palautuvat (tapahtuu automaattisesti) tai saat lisää HIVE POWERia lisätäksesi Resurssihyvityssaldoasi tai voit <a href=\"/faq#how-boost-account\">pyytää Ecency</a> -tilin vahvistamista saadaksesi väliaikaisen valtuutuksen.</p>",
+      "how-boost-account-header": "Kuinka pyytää tilin tehostamista?",
+      "how-boost-account-body": "<p>Jos tillläsi on niukasti <a href=\"/faq#what-are-rc\">Resurssihyvityksiä</a>, voit pyytää tilin tehostamista Ecencyltä. Saat tilapäisen valtuutuksen, jonka pitäisi tehostaa tiliäsi suorittaaksesi enemmän toimintoja lohkoketjussa. Tilin tehostamis-ominaisuus löytyy Pisteet-asetuksista.</p>",
+      "what-spam-abuse-header": "Mitä lasketaan roskapostiksi tai väärinkäytöksi?",
+      "what-spam-abuse-body": "<p><img src=\"https://images.ecency.com/p/3jpR3paJ37V8XPrHkfZdMt57jY6pRt6zEt5iRJV9pSw4Mez3Hut8U6RWvWLA7cFYEa1bxveXeasNfZApzrcLYLx8cz84kBEKak1KkewE2ZqE1QRRkF4eqRH3vWVqZB9WuNbzE?format=match&mode=fit\" loading=\"lazy\"/></p><p><ul><li>Plagioidut viestit tai kopioitu sisältö.</li><li>Lähes identtisten tai olennaisesti samankaltaisten kommenttien jättäminen useisiin julkaisuihin.</li><li>Käyttämällä tunnisteita, jotka eivät liity viestiin.</li><li>Käyttäjien uhkaaminen millä tahansa fyysisellä väkivallalla.</li><li>Käyttäjiä ei siteeraa lähteitä käyttäessään jonkun toisen materiaalia.</li><li>Julkaiseminen ”ei ole turvallista työlle” ilman ”nsfw”-tunnusta.</li><li>Huijaukset tai petokselliset tarjoukset.</li></ul></p>",
+      "can-link-post-header": "Voinko pyytää käänteislinkin lisäämistä sivuilleni Ecencyltä?",
+      "can-link-post-body": "<p>Kaikki sivustollamme oleva sisältö on käyttäjien luomaa, emmekä voi muokata tai lisätä käänteislinkkejä. Ota yhteyttä julkaisun tekijään tai <a href=\"/?referral=ecency\">Rekisteröidy</a> avataksesi oman blogisi ja yhteisösi, sekä lisätäksesi julkaisuihin ilmaisia käänteislinkkejä.</p>",
+      "can-guest-post-header": "Onko vieralilijoiden mahdollista julkaista sivustolle?",
+      "can-guest-post-body": "<p>Ecencyssä julkaiseminen on yksinkertaista ja helppoa, <a href=\"/?referral=ecency\">Rekisteröidy</a> avataksesi oman blogin ja yhteisön, sekä aloittaaksesi sisällön julkaisemisen.</p>"
+    }
+  },
+  "context-menu": {
+    "cut": "Leikkaa",
+    "copy": "Kopioi",
+    "paste": "Liitä",
+    "open-image-browser": "Avaa kuva selaimessa",
+    "copy-image-url": "Kopioi kuvan url"
+  },
+  "updater": {
+    "new-version-available": "Uusi versio on saatavilla",
+    "update": "Päivitä",
+    "dismiss": "Hylkää",
+    "downloading": "Ladataan uutta versiota...",
+    "download-completed": "Lataus on valmis",
+    "restart": "Käynnistä uudelleen"
+  }
+}

@@ -1,0 +1,256 @@
+.wallet-ecency {
+  @include wallet;
+
+  .get-points {
+    border-radius: 12px;
+    margin-bottom: 20px;
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+
+    @include themify(day) {
+      background: darken($white-two, 1);
+    }
+
+    @include themify(night) {
+      background: $dark-two;
+    }
+
+    @media (min-width: $lg-break) {
+      flex-direction: row;
+    }
+
+    .points-types {
+      .points-types-title {
+        font-weight: 500;
+        margin-bottom: 16px;
+        text-align: center;
+
+        @media (min-width: $lg-break) {
+          text-align: initial;
+        }
+
+        @include themify(day) {
+          color: $charcoal-grey;
+        }
+
+        @include themify(night) {
+          color: $powder-blue;
+        }
+      }
+
+      .points-types-list {
+        flex-grow: 0;
+        flex-shrink: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+
+        @media (min-width: $lg-break) {
+          justify-content: flex-start;
+          flex-grow: 1;
+          flex-shrink: 0;
+          margin-bottom: 0;
+        }
+
+        .point-reward-type {
+          align-items: center;
+          border-radius: 50%;
+          height: 40px;
+          justify-content: center;
+          width: 40px;
+          color: $warm-grey;
+          position: relative;
+          display: inline-flex;
+          margin-bottom: 20px;
+
+          &:not(:last-child) {
+            margin-right: 20px;
+          }
+
+          @media (min-width: $lg-break) {
+            margin-bottom: 0;
+
+            &:not(:last-child) {
+              margin-right: 30px;
+            }
+          }
+
+          svg {
+            height: 18px;
+          }
+
+          @include themify(day) {
+            background: $white;
+            color: $steel-grey;
+          }
+
+          @include themify(night) {
+            background: $metallic-blue;
+            color: lighten($metallic-blue, 40);
+          }
+
+          .reward-num {
+            background: $dark-sky-blue;
+            position: absolute;
+            right: -30%;
+            bottom: 0;
+            color: $white;
+            font-size: 10px;
+            border-radius: 24px;
+            width: 24px;
+            padding: 1px 0;
+            text-align: center;
+          }
+        }
+      }
+    }
+
+    .buy-points {
+      flex-grow: 1;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      @media (min-width: $lg-break) {
+        justify-content: flex-end;
+      }
+
+      a {
+        font-weight: 500;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .p-transaction-list {
+    margin: 0 0 20px 0;
+
+    .transaction-list-header {
+      h2 {
+        font-size: 20px;
+        font-weight: 500;
+        margin: 30px 10px 16px;
+        text-align: center;
+        text-transform: uppercase;
+
+        @include themify(day) {
+          color: $charcoal-grey;
+        }
+
+        @include themify(night) {
+          color: $powder-blue;
+        }
+
+        @media (min-width: $lg-break) {
+          text-align: left;
+        }
+      }
+    }
+
+    .transaction-list-item {
+      border-radius: 8px;
+      box-sizing: content-box;
+      display: flex;
+      padding: 16px;
+
+      .transaction-icon {
+        align-items: center;
+        border-radius: 50%;
+        display: flex;
+        font-size: 16px;
+        height: 32px;
+        justify-content: center;
+        margin-right: 10px;
+        width: 32px;
+
+        svg {
+          width: 16px;
+          height: 16px;
+        }
+
+        @include themify(day) {
+          background: $white;
+          color: $steel-grey;
+        }
+
+        @include themify(night) {
+          background: $metallic-blue;
+          color: lighten($metallic-blue, 40);
+        }
+      }
+
+      .transaction-title {
+        display: flex;
+        flex-direction: column;
+        font-weight: 500;
+        width: 30%;
+
+        .transaction-name {
+          @include themify(day) {
+            color: $steel-grey;
+          }
+
+          @include themify(night) {
+            color: $metallic-blue;
+          }
+        }
+
+        .transaction-date {
+          font-size: 12px;
+
+          @include themify(day) {
+            color: $silver;
+          }
+
+          @include themify(night) {
+            color: $warm-grey;
+          }
+        }
+      }
+
+      .transaction-numbers {
+        color: $dark-sky-blue;
+        flex-grow: 1;
+
+        font-weight: 500;
+        margin-right: 30px;
+        text-align: right;
+
+        .number {
+          margin-right: 4px;
+        }
+      }
+
+      .transaction-details {
+        color: $steel-grey;
+        width: 30%;
+        word-break: break-all;
+      }
+
+      &:nth-child(odd) {
+        @include themify(day) {
+          background: $white-three;
+        }
+
+        @include themify(night) {
+          background: lighten($dark-six, 4);
+        }
+      }
+
+      @include themify(day) {
+        &:nth-child(even) {
+          .transaction-icon {
+            background-color: $white-three;
+          }
+        }
+      }
+    }
+  }
+}

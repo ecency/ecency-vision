@@ -1,20 +1,40 @@
-import i18n from 'i18next';
-import LanguageDetector from 'i18next-browser-languagedetector';
+import i18n from "i18next";
 
-const enUs = require('./locales/en-US.json')
+import moment from "moment";
+
+export const langOptions = [
+    {
+        code: "en-US",
+        name: "English"
+    },
+    {
+        code: "fi-FI",
+        name: "Finnish"
+    }
+];
+
+const enUs = require("./locales/en-US.json");
+const fiFI = require("./locales/fi-FI.json");
 
 const resources = {
-    ['en-US']: {
+    ["en-US"]: {
         translation: enUs
+    },
+    ["fi-FI"]: {
+        translation: fiFI
     }
 };
 
-i18n.use(LanguageDetector).init({
+i18n.init({
     resources,
-    fallbackLng: 'en-US',
+    fallbackLng: "en-US",
     interpolation: {
         escapeValue: false
     },
+})
+
+i18n.on("languageChanged", function (lang) {
+    moment.locale(lang);
 });
 
 export const _t = (k: string, args = {}) => {
