@@ -65,23 +65,23 @@
     "profile": "Profile",
     "gallery": "Gallery",
     "drafts": "Drafts",
-    "bookmarks": "Bookmarks",
-    "logout": "Logout"
+    "bookmarks": "Закладки",
+    "logout": "Вийти"
   },
   "login": {
-    "title": "Welcome back!",
+    "title": "З поверненням!",
     "with-user-pass": "Login with your username and private key.",
     "username-placeholder": "username",
     "key-placeholder": "master or active private key",
     "login-info-1": "We don't store your private keys.",
     "login-info-2": "Детальніше",
-    "error-fields-required": "Please enter username and private key",
+    "error-fields-required": "Будь ласка, введіть ім'я користувача та приватний ключ",
     "error-public-key": "You entered a public key. Password/WIF required",
     "error-user-fetch": "User data could not be fetched",
-    "error-user-not-found": "User does not exist",
+    "error-user-not-found": "Користувач не існує",
     "error-permission": "Couldn't get posting permission",
-    "error-authenticate": "Wrong private key. Master or active private key required.",
-    "with-hive-signer": "Login with hivesigner",
+    "error-authenticate": "Неправильний приватний ключ. Необхідно вказати головний або активний приватний ключ.",
+    "with-hive-signer": "Увійти за допомогою hivesigner",
     "with-keychain": "Увійти через KeyChain",
     "sign-up-text-1": "Ще не зареєстровані?",
     "sign-up-text-2": "Sign up now!"
@@ -202,19 +202,19 @@
     "roles-title": "User Roles",
     "roles-account": "Account",
     "roles-role": "Role",
-    "roles-account-title": "Title",
-    "roles-add": "Add User"
+    "roles-account-title": "Заголовок",
+    "roles-add": "Додати користувача"
   },
   "community-cover": {
-    "rewards": "rewards",
+    "rewards": "винагороди",
     "authors": "posters",
-    "lang": "language",
-    "cover-image": "Community cover image",
-    "cover-image-edit": "Edit cover image",
-    "cover-image-updated": "Cover image updated!"
+    "lang": "мова",
+    "cover-image": "Зображення обкладинки спільноти",
+    "cover-image-edit": "Редагувати зображення обкладинки",
+    "cover-image-updated": "Обкладинку оновлено!"
   },
   "community-card": {
-    "description": "Description",
+    "description": "Опис",
     "rules": "Rules",
     "team": "Leadership",
     "edit": "Edit settings",
@@ -351,7 +351,7 @@
     "withdraw-hbd": "Withdraw Hive Dollar"
   },
   "points": {
-    "get": "BUY POINTS",
+    "get": "Купити Бали",
     "unclaimed-points": "Unclaimed points",
     "claim-reward-points": "Claim reward points",
     "main-description": "Points can be used for in-app services, like Promote, Boost, Gifting. Earn them just by using Ecency apps and improve your experience.",
