@@ -62,47 +62,47 @@
     "points": "Poeni",
     "unclaimed-points-notice": "You have unclaimed points",
     "notifications": "Obaveštenja",
-    "profile": "Profile",
-    "gallery": "Gallery",
+    "profile": "Profil",
+    "gallery": "Galerija",
     "drafts": "Drafts",
-    "bookmarks": "Bookmarks",
-    "logout": "Logout"
+    "bookmarks": "Obeleživači",
+    "logout": "Odjavi se"
   },
   "login": {
-    "title": "Welcome back!",
+    "title": "Dobrodošli nazad!",
     "with-user-pass": "Login with your username and private key.",
-    "username-placeholder": "username",
+    "username-placeholder": "korisničko ime",
     "key-placeholder": "master or active private key",
     "login-info-1": "We don't store your private keys.",
-    "login-info-2": "More info",
+    "login-info-2": "Više informacija",
     "error-fields-required": "Please enter username and private key",
     "error-public-key": "You entered a public key. Password/WIF required",
-    "error-user-fetch": "User data could not be fetched",
-    "error-user-not-found": "User does not exist",
+    "error-user-fetch": "Nemoguće je dobiti korisničke podatke",
+    "error-user-not-found": "Korisnik ne postoji",
     "error-permission": "Couldn't get posting permission",
     "error-authenticate": "Wrong private key. Master or active private key required.",
     "with-hive-signer": "Login with hivesigner",
     "with-keychain": "Login with keychain",
-    "sign-up-text-1": "Don't have an account?",
-    "sign-up-text-2": "Sign up now!"
+    "sign-up-text-1": "Nemate nalog?",
+    "sign-up-text-2": "Registruj se sad!"
   },
   "sign-up": {
-    "header": "Sign Up",
+    "header": "Registrujte se",
     "description": "One account to manage everything on blockchain and Ecency. Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
     "username": "Pick a username",
-    "email": "Enter your email address",
+    "email": "Unesite svoju e-mail adresu",
     "ref": "Referred user (optional)",
     "submit": "Nastavi",
-    "success": "We've sent an email to {{email}}.",
+    "success": "Poslali smo email za potvrdu na {{email}}.",
     "success-2": "Sledite uputstva da biste dovršili postupak registracije.",
     "login-text-1": "Da li imate nalog?",
     "login-text-2": "Prijava"
   },
   "trending-tags": {
-    "title": "Topics"
+    "title": "Теме"
   },
   "selected-tags": {
-    "title": "Featured"
+    "title": "Izdvojeni"
   },
   "entry-list-item": {
     "reblogged": "by {{n}}",
