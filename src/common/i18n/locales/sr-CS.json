@@ -1,65 +1,67 @@
 {
   "g": {
-    "edit": "Edit",
-    "search": "Search",
-    "downloads": "Downloads",
-    "login": "Login",
-    "login-as": "Login As",
-    "signup": "Signup",
-    "delete": "Delete",
-    "cancel": "Cancel",
-    "reply": "Reply",
-    "update": "Update",
-    "or": "OR",
-    "server-error": "Process could not be completed due to server error",
-    "day": "day",
-    "days": "days",
-    "finish": "Finish",
-    "next": "Next",
-    "back": "Back",
-    "load-more": "Load More",
-    "empty-list": "Nothing here",
-    "save": "Save",
-    "try-again": "Try again",
-    "show": "Show"
+    "edit": "Uredi",
+    "search": "Pretraži",
+    "downloads": "Preuzimanja",
+    "login": "Prijava",
+    "login-as": "Prijavi se kao",
+    "signup": "Registruj se",
+    "delete": "Izbriši",
+    "cancel": "Otkaži",
+    "reply": "Odgovori",
+    "update": "Ažuriraj",
+    "or": "ILI",
+    "server-error": "Proces nije završen zbog greške na serveru",
+    "day": "dan",
+    "days": "dana/i",
+    "finish": "Završi",
+    "next": "Dalje",
+    "back": "Nazad",
+    "load-more": "Učitaj još",
+    "empty-list": "Ovde nema nista",
+    "save": "Sačuvaj",
+    "try-again": "Pokušaj ponovno",
+    "show": "Prikaži",
+    "on": "Uključeno",
+    "off": "Isključeno"
   },
   "confirm": {
-    "title": "Are you sure?",
-    "ok": "Confirm",
-    "cancel": "Cancel"
+    "title": "Da li ste sigurni?",
+    "ok": "Potvrdi",
+    "cancel": "Otkaži"
   },
   "entry-filter": {
-    "filter-trending": "Trending",
-    "filter-hot": "Hot",
-    "filter-created": "New",
-    "filter-promoted": "Promoted",
-    "filter-payout": "Payouts",
-    "filter-muted": "Muted",
-    "filter-feed": "Feed"
+    "filter-trending": "Aktuelno",
+    "filter-hot": "Aktuelno",
+    "filter-created": "Novo",
+    "filter-promoted": "Promovisano",
+    "filter-payout": "Isplate",
+    "filter-muted": "Iskljuci Notifikacije",
+    "filter-feed": "Novosti"
   },
   "navbar": {
-    "discover": "Discover",
-    "communities": "Communities",
-    "about": "About",
-    "faq": "FAQ",
-    "post": "Create Post",
-    "day-theme": "Day Theme",
-    "night-theme": "Night Theme",
+    "discover": "Otkrijte",
+    "communities": "Zajednice",
+    "about": "O nama",
+    "faq": "Čеsto postavljana pitanja",
+    "post": "Napiši objavu",
+    "day-theme": "Dnevna tema",
+    "night-theme": "Noćna tema",
     "address-placeholder": "enter url or search query"
   },
   "search": {
-    "placeholder": "Search",
+    "placeholder": "Pretraga",
     "placeholder-count": "Search {{n}} posts",
-    "header-tag": "Tags",
-    "header-account": "Users",
-    "header-community": "Communities"
+    "header-tag": "Oznake",
+    "header-account": "Korisnici",
+    "header-community": "Zajednice"
   },
   "user-nav": {
-    "wallet": "Wallet",
-    "unclaimed-reward-notice": "You have unclaimed rewards",
-    "points": "Points",
+    "wallet": "Novčanik",
+    "unclaimed-reward-notice": "Imate nepotvrđene nagrade",
+    "points": "Poeni",
     "unclaimed-points-notice": "You have unclaimed points",
-    "notifications": "Notifications",
+    "notifications": "Obaveštenja",
     "profile": "Profile",
     "gallery": "Gallery",
     "drafts": "Drafts",
@@ -90,11 +92,11 @@
     "username": "Pick a username",
     "email": "Enter your email address",
     "ref": "Referred user (optional)",
-    "submit": "Continue",
+    "submit": "Nastavi",
     "success": "We've sent an email to {{email}}.",
-    "success-2": "Follow instructions to complete signup process.",
-    "login-text-1": "Do you have an account?",
-    "login-text-2": "Login"
+    "success-2": "Sledite uputstva da biste dovršili postupak registracije.",
+    "login-text-1": "Da li imate nalog?",
+    "login-text-2": "Prijava"
   },
   "trending-tags": {
     "title": "Topics"
@@ -104,17 +106,17 @@
   },
   "entry-list-item": {
     "reblogged": "by {{n}}",
-    "promoted": "promoted",
+    "promoted": "promovisano",
     "pinned": "Pinned Post",
     "replies": "1 response. Click to respond.",
     "replies-n": "{{n}} responses. Click to respond.",
     "no-replies": "No responses yet. Click to respond."
   },
   "bookmark-btn": {
-    "add": "Add to bookmarks",
-    "added": "Added to bookmarks",
-    "delete": "Remove from bookmarks",
-    "deleted": "Removed from bookmarks"
+    "add": "Dodaj u obeleživače",
+    "added": "Dodaj u obeleživače",
+    "delete": "Uklonjeno iz obeleživača",
+    "deleted": "Uklonjeno iz obeleživača"
   },
   "entry-reblog": {
     "reblog": "Reblog",
@@ -123,17 +125,17 @@
     "success": "Reblogged!"
   },
   "entry-payout": {
-    "pending-payout": "Pending Payout",
-    "promoted": "Promoted",
-    "author-payout": "Author Payout",
-    "curators-payout": "Curators Payout",
-    "payout-date": "Payout",
+    "pending-payout": "Na čekanju za isplatu",
+    "promoted": "Promovisano",
+    "author-payout": "Isplata autoru",
+    "curators-payout": "Isplata glasačima",
+    "payout-date": "Isplata",
     "beneficiary": "Beneficiary",
-    "breakdown": "Breakdown"
+    "breakdown": "Presek"
   },
   "entry-index": {
-    "feed": "Feed",
-    "tags": "Popular",
+    "feed": "Novosti",
+    "tags": "Popularno",
     "title": "{{f}} topics",
     "description": "{{f}} topics on a social network owned and operated by its users.",
     "description-tag": "{{f}} #{{t}} topics",
@@ -141,97 +143,97 @@
   },
   "market-data": {
     "title": "Market price",
-    "credits": "market data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">coingecko</a> api"
+    "credits": "market data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "list-style": {
     "title": "Toggle list style"
   },
   "entry-votes": {
-    "title": "1 Vote",
+    "title": "1 glas",
     "title-n": "{{n}} Votes",
-    "title-empty": "No Votes",
-    "voter": "Voter",
-    "percent": "Percent",
-    "reward": "Reward",
-    "time": "Time"
+    "title-empty": "Nema glasova",
+    "voter": "Glasač",
+    "percent": "Procenat",
+    "reward": "Nagrada",
+    "time": "Vreme"
   },
   "entry": {
     "via-app": "via <span class=\"app-name\">{{app}}</span>",
     "comment-entry-title": "You are viewing a single comment's thread from: ",
-    "comment-entry-go-root": "View the full context",
+    "comment-entry-go-root": "Pogledaj ceo kontekst",
     "comment-entry-go-parent": "View the direct parent",
-    "show-history": "Show edit history",
-    "hidden-warning": "This post was hidden due to low ratings."
+    "show-history": "Prikaži istoriju uređivanja",
+    "hidden-warning": "Ova objava je sakrivena zbog niske ocene."
   },
   "edit-history": {
-    "title": "Edit History",
-    "show-diff": "Show Difference",
-    "version": "Version {{n}}"
+    "title": "Uredi istoriju",
+    "show-diff": "Prikaži razliku",
+    "version": "Verzija {{n}}"
   },
   "similar-entries": {
     "title": "Recent posts by @{{n}}"
   },
   "comment": {
-    "body-placeholder": "Write your reply here",
-    "preview": "Preview"
+    "body-placeholder": "Napišite svoj odgovor ovde",
+    "preview": "Pregled"
   },
   "discussion": {
     "join": "Join the conversion now",
-    "btn-join": "Join",
-    "replies": "1 Comment",
+    "btn-join": "Pridruži se",
+    "replies": "1 Komentar",
     "n-replies": "{{n}} Comments",
-    "order": "Sort Order",
-    "order-trending": "Trending",
-    "order-reputation": "Reputation",
-    "order-votes": "Votes",
-    "order-created": "Age",
-    "read-more": "...read more replies...",
-    "reveal": "Reveal comment"
+    "order": "Sortiraj po",
+    "order-trending": "Aktuelno",
+    "order-reputation": "Reputacija",
+    "order-votes": "Glasovi",
+    "order-created": "Starost",
+    "read-more": "...pročitajte još odgovora...",
+    "reveal": "Prikaži komentar"
   },
   "community": {
-    "page-description": "{{f}} topics",
-    "subscribe": "Subscribe",
+    "page-description": "{{f}} teme",
+    "subscribe": "Pretplatite se",
     "subscribed": "Joined",
-    "unsubscribe": "Leave",
-    "post": "New Post",
-    "posts": "Posts",
-    "subscribers": "Subscribers",
-    "activities": "Activities",
-    "roles-title": "User Roles",
-    "roles-account": "Account",
-    "roles-role": "Role",
-    "roles-account-title": "Title",
-    "roles-add": "Add User"
+    "unsubscribe": "Napusti",
+    "post": "Nova objava",
+    "posts": "Objave",
+    "subscribers": "Pretplatnici",
+    "activities": "Aktivnosti",
+    "roles-title": "Korisničke uloge",
+    "roles-account": "Nalog",
+    "roles-role": "Uloga",
+    "roles-account-title": "Naslov",
+    "roles-add": "Dodaj Korisnika"
   },
   "community-cover": {
-    "rewards": "rewards",
-    "authors": "posters",
-    "lang": "language",
-    "cover-image": "Community cover image",
-    "cover-image-edit": "Edit cover image",
-    "cover-image-updated": "Cover image updated!"
+    "rewards": "nagrade",
+    "authors": "objavljivači",
+    "lang": "jezik",
+    "cover-image": "Naslovna slika zajednice",
+    "cover-image-edit": "Uredite naslovnu sliku",
+    "cover-image-updated": "Naslovna slika ažurirana!"
   },
   "community-card": {
-    "description": "Description",
-    "rules": "Rules",
+    "description": "Opis",
+    "rules": "Pravila",
     "team": "Leadership",
-    "edit": "Edit settings",
-    "edit-team": "Edit roles",
-    "profile-image": "Community profile image",
-    "profile-image-edit": "Edit profile image",
-    "profile-image-updated": "Profile image updated!"
+    "edit": "Uredi podešavanja",
+    "edit-team": "Uredite uloge",
+    "profile-image": "Profilna slika zajednice",
+    "profile-image-edit": "Uredite profilnu sliku",
+    "profile-image-updated": "Profilna slika ažurirana!"
   },
   "community-role-edit": {
     "title": "Set user role",
-    "username": "Username",
-    "role": "Role",
-    "user-not-found": "The user does not exist!",
+    "username": "Korisničko ime",
+    "role": "Uloga",
+    "user-not-found": "Korisnik ne postoji!",
     "explanations": "<h3>Role Permissions</h3><p><strong>Owner</strong> - assign admins</p><p><strong>Admin</strong> - edit settings, assign mods</p><p><strong>Moderator</strong> - mute, pin, set user titles</p><p><strong>Member</strong> - listed on leadership team</p><p><strong>Guest</strong> - default; can post and comment</p><p><strong>Muted</strong> - new posts automatically muted</p>"
   },
   "community-settings": {
-    "dialog-title": "Community Settings",
-    "title": "Title",
-    "about": "About",
+    "dialog-title": "Podešavanja Zajednice",
+    "title": "Naslov",
+    "about": "O Nama",
     "lang": "Language",
     "description": "Description",
     "rules": "Rules",
@@ -281,44 +283,52 @@
     "unmute": "Unmute",
     "dialog-title-mute": "Mute post/comment",
     "dialog-title-unmute": "Unmute post/comment",
-    "notes": "Notes",
+    "notes": "Beleške",
     "note-placeholder-mute": "Provide a note regarding your decision to mute this content.",
     "note-placeholder-unmute": "Provide a note regarding your decision to unmute this content."
   },
   "profile": {
-    "voting-power": "Voting Power",
-    "post-count": "Post Count",
-    "followers": "Followers",
-    "following": "Following",
+    "voting-power": "Snaga glasa",
+    "post-count": "Broj objava",
+    "followers": "Pratioci",
+    "following": "Pratim",
     "section-blog": "Blog",
-    "section-posts": "Posts",
-    "section-comments": "Comments",
-    "section-replies": "Replies",
-    "section-communities": "Communities",
-    "section-wallet": "Wallet",
-    "communities-title": "Subscriptions",
-    "create-community": "Create a community",
-    "edit": "Profile Edit",
-    "witnesses": "Witnesses",
-    "proposals": "Proposals"
+    "section-posts": "Objave",
+    "section-comments": "Komentari",
+    "section-replies": "Odgovori",
+    "section-communities": "Zajednice",
+    "section-wallet": "Novčanik",
+    "section-settings": "Подешавања",
+    "communities-title": "Prеtplatе",
+    "create-community": "Napravite zajednicu",
+    "witnesses": "Svedoci (witnesses)",
+    "proposals": "Predlozi"
   },
   "profile-edit": {
+    "title": "Profil",
     "name": "Display Name",
-    "about": "About",
-    "cover-image": "Cover Image",
-    "profile-image": "Profile Image",
-    "website": "Website",
-    "location": "Location",
-    "updated": "Profile updated successfully!"
+    "about": "O Nama",
+    "cover-image": "Naslovna slika",
+    "profile-image": "Profilna slika",
+    "website": "Web stranica",
+    "location": "Lokacija",
+    "updated": "Profil je uspešno ažuriran!"
   },
   "image-upload-button": {
     "uploaded": "Image uploaded"
   },
+  "preferences": {
+    "title": "Preferences",
+    "notifications": "Notification alerts",
+    "currency": "Valuta",
+    "language": "Jezik",
+    "updated": "Preference updated!"
+  },
   "wallet": {
-    "unclaimed-rewards": "Unclaimed rewards",
+    "unclaimed-rewards": "Nepotvrđene nagrade",
     "claim-reward-balance": "Claim reward balance",
     "claim-reward-balance-ok": "Reward balance claimed",
-    "estimated": "Estimated Account Value",
+    "estimated": "Procenjena vrednost naloga",
     "estimated-description": "The estimated value is based on a 7 day average value of HIVE.",
     "hive": "HIVE",
     "hive-description": "HIVE are tradeable tokens that may be transferred at anytime.HIVE can be converted to Hive Power in a process called powering up.",
@@ -330,7 +340,7 @@
     "hive-power-total": "Total Hive Power",
     "hive-dollars": "HIVE DOLLARS",
     "hive-dollars-description": "Tokens worth about $1.00 of HIVE.",
-    "savings": "SAVINGS",
+    "savings": "Štednja",
     "savings-description": "Balance subject to 3 day withdraw waiting period.",
     "next-power-down": "The next power down is {{time}} {{amount}}",
     "transfer": "Transfer",
@@ -341,7 +351,11 @@
     "withdraw-hbd": "Withdraw Hive Dollar"
   },
   "points": {
-    "get": "GET POINTS",
+    "get": "KUPITE POENE",
+    "unclaimed-points": "Nezahtevani poeni",
+    "claim-reward-points": "Zatražite nagradne bodove",
+    "main-description": "Poeni se mogu koristiti za usluge u aplikaciji, kao što su promocija, jačanje, poklanjanje. Zaradite ih koristeći ecency aplikacije i poboljšajte svoje iskustvo.",
+    "earn-points": "Kako zaraditi više bodova",
     "post-desc": "You can earn point by posting regularly. Posting gives you 15 points.",
     "comment-desc": "Each comment you make helps you to grow your audience and make friendship but also earns you 5 points.",
     "checkin-desc": "Checking in on Ecency gives you 0.25 points and helps you stay connected with your friends.",
@@ -349,7 +363,7 @@
     "reblog-desc": "  Share what post you like with your friends and earn 1 points.",
     "login-desc": "When you login into Ecency you are entitled to earn 100 points automatically.",
     "checkin-extra-desc": "Consistent use of app gives you extra chances to earn more 10 points, be more active and earn more.",
-    "delegation-desc": "You can earn 1 point per day for each 100HP delegation.",
+    "delegation-desc": "Možete zaraditi ~50 poena dnevno za svaku delegaciju od 1000HP.",
     "history": "History",
     "post-list-desc": "Points for post",
     "comment-list-desc": "Points for comment",
@@ -364,16 +378,16 @@
     "referral-list-desc": "Referral reward",
     "transfer": "Gift to someone",
     "claim-ok": "Points claimed",
-    "promote": "Promote",
-    "boost": "Boost"
+    "promote": "Promoviši",
+    "boost": "Pojačaj"
   },
   "purchase": {
     "select-asset": "Select Asset",
     "slider-hint": "Drag the slider to adjust the amount.",
-    "submit": "Purchase"
+    "submit": "Kupovina"
   },
   "promote": {
-    "title": "Promote",
+    "title": "Promoviši",
     "sub-title": "Promote your post",
     "duration": "Duration"
   },
@@ -561,7 +575,9 @@
     "referral-str": "joined with your referral, welcome them",
     "refresh": "Refresh",
     "mark-all-read": "Mark All as Read",
-    "mark-read": "Mark as Read"
+    "mark-read": "Mark as Read",
+    "mute": "Turn off notification alerts",
+    "unmute": "Turn on notification alerts"
   },
   "leaderboard": {
     "title": "Leaderboard",

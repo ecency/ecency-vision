@@ -21,7 +21,9 @@
     "empty-list": "Tyhjä",
     "save": "Tallenna",
     "try-again": "Yritä uudelleen",
-    "show": "Näytä"
+    "show": "Näytä",
+    "on": "Päällä",
+    "off": "Pois"
   },
   "confirm": {
     "title": "Oletko varma?",
@@ -141,7 +143,7 @@
   },
   "market-data": {
     "title": "Markkinahinta",
-    "credits": "markkinatiedot <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">coingecko</a> apista"
+    "credits": "markkinatiedot <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingeckosta</a>"
   },
   "list-style": {
     "title": "Vaihda listaustyyliä"
@@ -296,13 +298,14 @@
     "section-replies": "Vastaukset",
     "section-communities": "Yhteisöt",
     "section-wallet": "Lompakko",
+    "section-settings": "Asetukset",
     "communities-title": "Tilaukset",
     "create-community": "Luo yhteisö",
-    "edit": "Profiilin muokkaus",
     "witnesses": "Todistajat",
     "proposals": "Ehdotukset"
   },
   "profile-edit": {
+    "title": "Profiili",
     "name": "Näyttönimi",
     "about": "Tietoja",
     "cover-image": "Kansikuva",
@@ -313,6 +316,13 @@
   },
   "image-upload-button": {
     "uploaded": "Kuva ladattu"
+  },
+  "preferences": {
+    "title": "Asetukset",
+    "notifications": "Ilmoitukset",
+    "currency": "Valuutta",
+    "language": "Kieli",
+    "updated": "Asetukset päivitetty!"
   },
   "wallet": {
     "unclaimed-rewards": "Lunastamattomat palkkiot",
@@ -341,7 +351,11 @@
     "withdraw-hbd": "Kotiuta Hive Dollar"
   },
   "points": {
-    "get": "Lunasta pisteet",
+    "get": "Osta Pisteitä",
+    "unclaimed-points": "Lunastamattomat pisteet",
+    "claim-reward-points": "Lunasta palkkiot",
+    "main-description": "Pisteitä voidaan käyttää sovelluksen sisäisiin palveluihin, kuten Korostamiseen, Korottamiseen ja Lahjoittamisen. Ansaitse niitä käyttämällä Ecency-sovellusta ja paranna kokemustasi.",
+    "earn-points": "Kuinka ansaita enemmän Pisteitä",
     "post-desc": "Voit tienata pisteitä julkaisemalla säännöllisesti. Julkaisusta saa 15 pistettä.",
     "comment-desc": "Jokainen kommenttisi helpottaa kasvattamaan yleisöäsi ja lisää kontakteja, sekä saat 5 pistettä.",
     "checkin-desc": "Ecencyyn kirjautumisesta saa 0.25 pistettä ja auttaa pysymään yhteydessä ystäviisi.",
@@ -349,7 +363,7 @@
     "reblog-desc": "  Jaa haluamasi julkaisu ystävillesi ja saat 1 pisteen.",
     "login-desc": "Ensikirjauksella Ecencyyn saat automaattisesti 100 pistettä.",
     "checkin-extra-desc": "Toistuva dappin käyttö voi johtaa 10 lisäpisteeseen, ole aktiivinen ja saat enemmän.",
-    "delegation-desc": "Voit ansaita 1 pisteen päivässä jokaisesta 100HP valtuutuksesta.",
+    "delegation-desc": "Voit ansaita ~ 50 pistettä päivässä jokaisesta 1000HP valtuutuksesta.",
     "history": "Historia",
     "post-list-desc": "Pisteitä julkaisuista",
     "comment-list-desc": "Pisteitä kommenteista",
@@ -561,7 +575,9 @@
     "referral-str": "liittyi suosituksestasi, toivota heidät tervetulleeksi",
     "refresh": "Päivitä",
     "mark-all-read": "Merkitse kaikki luetuksi",
-    "mark-read": "Merkitse luetuksi"
+    "mark-read": "Merkitse luetuksi",
+    "mute": "Poista ilmoitukset käytöstä",
+    "unmute": "Ota ilmoitukset käyttöön"
   },
   "leaderboard": {
     "title": "Tulostaulukko",

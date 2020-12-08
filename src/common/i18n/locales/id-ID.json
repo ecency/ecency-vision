@@ -21,7 +21,9 @@
     "empty-list": "Tidak ada apa-apa di sini",
     "save": "Simpan",
     "try-again": "Coba lagi",
-    "show": "Tampilkan"
+    "show": "Tampilkan",
+    "on": "On",
+    "off": "Off"
   },
   "confirm": {
     "title": "Apakah anda yakin?",
@@ -141,7 +143,7 @@
   },
   "market-data": {
     "title": "Market price",
-    "credits": "market data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">coingecko</a> api"
+    "credits": "market data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "list-style": {
     "title": "Gaya daftar kotak"
@@ -296,13 +298,14 @@
     "section-replies": "Balasan",
     "section-communities": "Komunitas",
     "section-wallet": "Dompet",
+    "section-settings": "Settings",
     "communities-title": "Berlangganan",
     "create-community": "Buatlah sebuah komunitas",
-    "edit": "Edit Profil",
     "witnesses": "Witnesses",
     "proposals": "Proposals"
   },
   "profile-edit": {
+    "title": "Profile",
     "name": "Tampilkan Nama",
     "about": "Tentang",
     "cover-image": "Gambar Sampul",
@@ -313,6 +316,13 @@
   },
   "image-upload-button": {
     "uploaded": "Gambar Diunggah"
+  },
+  "preferences": {
+    "title": "Preferences",
+    "notifications": "Notification alerts",
+    "currency": "Currency",
+    "language": "Language",
+    "updated": "Preference updated!"
   },
   "wallet": {
     "unclaimed-rewards": "Reward yang belum diklaim",
@@ -341,7 +351,11 @@
     "withdraw-hbd": "Tarik Hive Dollar"
   },
   "points": {
-    "get": "DAPATKAN POIN",
+    "get": "BUY POINTS",
+    "unclaimed-points": "Unclaimed points",
+    "claim-reward-points": "Claim reward points",
+    "main-description": "Points can be used for in-app services, like Promote, Boost, Gifting. Earn them just by using Ecency apps and improve your experience.",
+    "earn-points": "How to earn more Points",
     "post-desc": "Anda dapat memperoleh poin lewat postingan secara teratur. Sebuah postingan memberikan Anda 15 poin.",
     "comment-desc": "Setiap komentar yang Anda buat membantu Anda mengembangkan audiens dan menjalin persahabatan, tetapi juga memberi Anda 5 poin.",
     "checkin-desc": "Periksa di Ecency yang memberikan Anda 0.25 poin dan membantu Anda tetap terhubung dengan teman-teman Anda.",
@@ -349,7 +363,7 @@
     "reblog-desc": "  Bagikan postingan yang Anda sukai dengan teman dan dapatkan 1 poin.",
     "login-desc": "Ketika Anda masuk ke aplikasi Ecency, Anda berhak mendapatkan 100 poin secara otomatis.",
     "checkin-extra-desc": "Penggunaan aplikasi yang konsisten memberi Anda peluang ekstra untuk mendapatkan 10 poin tambahan, jadilah lebih aktif dan hasilkan lebih banyak poin.",
-    "delegation-desc": "Anda dapat memperoleh 1 poin per hari untuk setiap delegasi senilai 100HP.",
+    "delegation-desc": "You can earn ~50 points per day for each 1000HP delegation.",
     "history": "Riwayat",
     "post-list-desc": "Poin postingan",
     "comment-list-desc": "Poin untuk komentar",
@@ -561,7 +575,9 @@
     "referral-str": "bergabung dengan referral Anda, sambutlah mereka",
     "refresh": "Segarkan",
     "mark-all-read": "Tandai semua sebagai yang telah dibaca",
-    "mark-read": "Tandai sebagai telah dibaca"
+    "mark-read": "Tandai sebagai telah dibaca",
+    "mute": "Turn off notification alerts",
+    "unmute": "Turn on notification alerts"
   },
   "leaderboard": {
     "title": "Papan Peringkat",

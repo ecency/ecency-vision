@@ -21,7 +21,9 @@
     "empty-list": "Burada heç nə yoxdur",
     "save": "Saxla",
     "try-again": "Yenidən sına",
-    "show": "Göstər"
+    "show": "Göstər",
+    "on": "On",
+    "off": "Off"
   },
   "confirm": {
     "title": "Əminsiniz?",
@@ -141,7 +143,7 @@
   },
   "market-data": {
     "title": "Market price",
-    "credits": "market data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">coingecko</a> api"
+    "credits": "market data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "list-style": {
     "title": "Toggle list style"
@@ -296,13 +298,14 @@
     "section-replies": "Replies",
     "section-communities": "Communities",
     "section-wallet": "Wallet",
+    "section-settings": "Settings",
     "communities-title": "Subscriptions",
     "create-community": "Create a community",
-    "edit": "Profile Edit",
     "witnesses": "Witnesses",
     "proposals": "Proposals"
   },
   "profile-edit": {
+    "title": "Profile",
     "name": "Display Name",
     "about": "Haqqında",
     "cover-image": "Cover Image",
@@ -313,6 +316,13 @@
   },
   "image-upload-button": {
     "uploaded": "Image uploaded"
+  },
+  "preferences": {
+    "title": "Preferences",
+    "notifications": "Notification alerts",
+    "currency": "Currency",
+    "language": "Language",
+    "updated": "Preference updated!"
   },
   "wallet": {
     "unclaimed-rewards": "Unclaimed rewards",
@@ -341,7 +351,11 @@
     "withdraw-hbd": "Withdraw Hive Dollar"
   },
   "points": {
-    "get": "GET POINTS",
+    "get": "BUY POINTS",
+    "unclaimed-points": "Unclaimed points",
+    "claim-reward-points": "Claim reward points",
+    "main-description": "Points can be used for in-app services, like Promote, Boost, Gifting. Earn them just by using Ecency apps and improve your experience.",
+    "earn-points": "How to earn more Points",
     "post-desc": "You can earn point by posting regularly. Posting gives you 15 points.",
     "comment-desc": "Each comment you make helps you to grow your audience and make friendship but also earns you 5 points.",
     "checkin-desc": "Checking in on Ecency gives you 0.25 points and helps you stay connected with your friends.",
@@ -349,7 +363,7 @@
     "reblog-desc": "  Share what post you like with your friends and earn 1 points.",
     "login-desc": "When you login into Ecency you are entitled to earn 100 points automatically.",
     "checkin-extra-desc": "Consistent use of app gives you extra chances to earn more 10 points, be more active and earn more.",
-    "delegation-desc": "You can earn 1 point per day for each 100HP delegation.",
+    "delegation-desc": "You can earn ~50 points per day for each 1000HP delegation.",
     "history": "History",
     "post-list-desc": "Points for post",
     "comment-list-desc": "Points for comment",
@@ -561,7 +575,9 @@
     "referral-str": "joined with your referral, welcome them",
     "refresh": "Refresh",
     "mark-all-read": "Mark All as Read",
-    "mark-read": "Mark as Read"
+    "mark-read": "Mark as Read",
+    "mute": "Turn off notification alerts",
+    "unmute": "Turn on notification alerts"
   },
   "leaderboard": {
     "title": "Leaderboard",

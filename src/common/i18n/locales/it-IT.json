@@ -1,261 +1,263 @@
 {
   "g": {
-    "edit": "Edit",
-    "search": "Search",
-    "downloads": "Downloads",
-    "login": "Login",
-    "login-as": "Login As",
-    "signup": "Signup",
-    "delete": "Delete",
-    "cancel": "Cancel",
-    "reply": "Reply",
-    "update": "Update",
-    "or": "OR",
-    "server-error": "Process could not be completed due to server error",
-    "day": "day",
-    "days": "days",
-    "finish": "Finish",
-    "next": "Next",
-    "back": "Back",
-    "load-more": "Load More",
-    "empty-list": "Nothing here",
-    "save": "Save",
-    "try-again": "Try again",
-    "show": "Show"
+    "edit": "Modifica",
+    "search": "Cerca",
+    "downloads": "Scarica",
+    "login": "Accedi",
+    "login-as": "Accedi come",
+    "signup": "Registrati",
+    "delete": "Elimina",
+    "cancel": "Cancella",
+    "reply": "Rispondi",
+    "update": "Aggiorna",
+    "or": "Oppure",
+    "server-error": "Il processo non può essere completato a causa di un errore del server",
+    "day": "giorno",
+    "days": "giorni",
+    "finish": "Termina",
+    "next": "Avanti",
+    "back": "Indietro",
+    "load-more": "Carica Altro",
+    "empty-list": "Pagina vuota",
+    "save": "Salva",
+    "try-again": "Prova di nuovo",
+    "show": "Mostra",
+    "on": "Aziona",
+    "off": "Spegni"
   },
   "confirm": {
-    "title": "Are you sure?",
-    "ok": "Confirm",
-    "cancel": "Cancel"
+    "title": "Sei sicuro?",
+    "ok": "Conferma",
+    "cancel": "Cancella"
   },
   "entry-filter": {
-    "filter-trending": "Trending",
-    "filter-hot": "Hot",
-    "filter-created": "New",
-    "filter-promoted": "Promoted",
-    "filter-payout": "Payouts",
-    "filter-muted": "Muted",
+    "filter-trending": "Di Tendenza",
+    "filter-hot": "Temi Caldi",
+    "filter-created": "Recenti",
+    "filter-promoted": "Promossi",
+    "filter-payout": "Pagamenti",
+    "filter-muted": "Silenziati",
     "filter-feed": "Feed"
   },
   "navbar": {
-    "discover": "Discover",
+    "discover": "Scopri",
     "communities": "Communities",
-    "about": "About",
+    "about": "Su di noi",
     "faq": "FAQ",
-    "post": "Create Post",
-    "day-theme": "Day Theme",
-    "night-theme": "Night Theme",
-    "address-placeholder": "enter url or search query"
+    "post": "Crea Nuovo Post",
+    "day-theme": "Giorno",
+    "night-theme": "Notte",
+    "address-placeholder": "digita l'Url o Cerca altro"
   },
   "search": {
-    "placeholder": "Search",
-    "placeholder-count": "Search {{n}} posts",
-    "header-tag": "Tags",
-    "header-account": "Users",
+    "placeholder": "Cerca",
+    "placeholder-count": "Cerca {{n}} post",
+    "header-tag": "Tag",
+    "header-account": "Utenti",
     "header-community": "Communities"
   },
   "user-nav": {
-    "wallet": "Wallet",
-    "unclaimed-reward-notice": "You have unclaimed rewards",
-    "points": "Points",
-    "unclaimed-points-notice": "You have unclaimed points",
-    "notifications": "Notifications",
-    "profile": "Profile",
-    "gallery": "Gallery",
-    "drafts": "Drafts",
-    "bookmarks": "Bookmarks",
-    "logout": "Logout"
+    "wallet": "Portafoglio",
+    "unclaimed-reward-notice": "Hai nuove ricompense",
+    "points": "Punti",
+    "unclaimed-points-notice": "Hai punti da riscuotere",
+    "notifications": "Notifiche",
+    "profile": "Profilo",
+    "gallery": "Galleria",
+    "drafts": "Bozze",
+    "bookmarks": "Segnalibri",
+    "logout": "Esci"
   },
   "login": {
-    "title": "Welcome back!",
-    "with-user-pass": "Login with your username and private key.",
-    "username-placeholder": "username",
-    "key-placeholder": "master or active private key",
-    "login-info-1": "We don't store your private keys.",
-    "login-info-2": "More info",
-    "error-fields-required": "Please enter username and private key",
-    "error-public-key": "You entered a public key. Password/WIF required",
-    "error-user-fetch": "User data could not be fetched",
-    "error-user-not-found": "User does not exist",
-    "error-permission": "Couldn't get posting permission",
-    "error-authenticate": "Wrong private key. Master or active private key required.",
-    "with-hive-signer": "Login with hivesigner",
-    "with-keychain": "Login with keychain",
-    "sign-up-text-1": "Don't have an account?",
-    "sign-up-text-2": "Sign up now!"
+    "title": "Bentornato!",
+    "with-user-pass": "Entra con il tuo nome utente e la tua chiave privata.",
+    "username-placeholder": "nome utente",
+    "key-placeholder": "chiave privata attiva oppure maestra",
+    "login-info-1": "Noi non memorizziamo le tue chiavi private.",
+    "login-info-2": "Più informazioni",
+    "error-fields-required": "Inserisci nome utente e chiave privata",
+    "error-public-key": "Hai inserito una chiave pubblica. Password o WIF richiesta",
+    "error-user-fetch": "I dati dell'utente non possono essere recuperati",
+    "error-user-not-found": "L'utente non esiste",
+    "error-permission": "Non hai l'autorizzazione per pubblicare",
+    "error-authenticate": "Chiave privata errata. Richiesta chiave privata maestra o attiva.",
+    "with-hive-signer": "Accedi tramite hivesigner",
+    "with-keychain": "Accedi tramite keychain",
+    "sign-up-text-1": "Non hai un account?",
+    "sign-up-text-2": "Registrati ora!"
   },
   "sign-up": {
-    "header": "Sign Up",
-    "description": "One account to manage everything on blockchain and Ecency. Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
-    "username": "Pick a username",
-    "email": "Enter your email address",
-    "ref": "Referred user (optional)",
-    "submit": "Continue",
-    "success": "We've sent an email to {{email}}.",
-    "success-2": "Follow instructions to complete signup process.",
-    "login-text-1": "Do you have an account?",
-    "login-text-2": "Login"
+    "header": "Registrati",
+    "description": "Un account per gestire ogni cosa sulla blockchain e su Ecency. Leggi di più sui vantaggi nelle nostre <a href=\"/faq#how-to-join\">FAQ</a>",
+    "username": "Scegli un nome utente",
+    "email": "Inserisci il tuo indirizzo email",
+    "ref": "Utente raccomandante (opzionale)",
+    "submit": "Continua",
+    "success": "Abbiamo inviato un'email a {{email}}.",
+    "success-2": "Segui le istruzioni per completare il processo di registrazione.",
+    "login-text-1": "Hai già un account?",
+    "login-text-2": "Accedi"
   },
   "trending-tags": {
-    "title": "Topics"
+    "title": "Argomenti"
   },
   "selected-tags": {
-    "title": "Featured"
+    "title": "In primo piano"
   },
   "entry-list-item": {
-    "reblogged": "by {{n}}",
-    "promoted": "promoted",
-    "pinned": "Pinned Post",
-    "replies": "1 response. Click to respond.",
-    "replies-n": "{{n}} responses. Click to respond.",
-    "no-replies": "No responses yet. Click to respond."
+    "reblogged": "da {{n}}",
+    "promoted": "promosso",
+    "pinned": "Post Fissato",
+    "replies": "1 risposta. Clicca per rispondere.",
+    "replies-n": "{{n}} risposte. Clicca per rispondere.",
+    "no-replies": "Ancora nessuna risposta. Clicca per rispondere."
   },
   "bookmark-btn": {
-    "add": "Add to bookmarks",
-    "added": "Added to bookmarks",
-    "delete": "Remove from bookmarks",
-    "deleted": "Removed from bookmarks"
+    "add": "Aggiungi ai segnalibri",
+    "added": "Aggiunto ai segnalibri",
+    "delete": "Rimuovi dai Segnalibri",
+    "deleted": "Rimosso dai segnalibri"
   },
   "entry-reblog": {
-    "reblog": "Reblog",
-    "confirm-title": "Reblog to @{{n}}'s blog?",
-    "confirm-ok": "Reblog",
-    "success": "Reblogged!"
+    "reblog": "Reblogga",
+    "confirm-title": "Vuoi rebloggare sul blog di @{{n}}?",
+    "confirm-ok": "Reblogga",
+    "success": "Rebloggato!"
   },
   "entry-payout": {
-    "pending-payout": "Pending Payout",
-    "promoted": "Promoted",
-    "author-payout": "Author Payout",
-    "curators-payout": "Curators Payout",
-    "payout-date": "Payout",
-    "beneficiary": "Beneficiary",
-    "breakdown": "Breakdown"
+    "pending-payout": "Pagamento in Attesa",
+    "promoted": "Promosso",
+    "author-payout": "Ricompensa dell'Autore",
+    "curators-payout": "Ricompensa dei Curatori",
+    "payout-date": "Ricompensa",
+    "beneficiary": "Beneficiari",
+    "breakdown": "Guadagni Ripartiti"
   },
   "entry-index": {
     "feed": "Feed",
-    "tags": "Popular",
-    "title": "{{f}} topics",
-    "description": "{{f}} topics on a social network owned and operated by its users.",
-    "description-tag": "{{f}} #{{t}} topics",
-    "description-user-feed": "{{u}}'s feed"
+    "tags": "Popolari",
+    "title": "Argomenti {{f}}",
+    "description": "Argomenti {{f}} su un social network di proprietà e gestito dai suoi utenti.",
+    "description-tag": "#{{t}} negli argomenti {{f}}",
+    "description-user-feed": "Feed di {{u}}"
   },
   "market-data": {
-    "title": "Market price",
-    "credits": "market data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">coingecko</a> api"
+    "title": "Prezzo di Mercato",
+    "credits": "dati ricavati da <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "list-style": {
-    "title": "Toggle list style"
+    "title": "Cambia tipo di elenco"
   },
   "entry-votes": {
-    "title": "1 Vote",
-    "title-n": "{{n}} Votes",
-    "title-empty": "No Votes",
-    "voter": "Voter",
-    "percent": "Percent",
-    "reward": "Reward",
-    "time": "Time"
+    "title": "1 Voto",
+    "title-n": "{{n}} Voti",
+    "title-empty": "Nessun Voto",
+    "voter": "Votanti",
+    "percent": "Percentuale",
+    "reward": "Ricompensa",
+    "time": "Ora"
   },
   "entry": {
-    "via-app": "via <span class=\"app-name\">{{app}}</span>",
-    "comment-entry-title": "You are viewing a single comment's thread from: ",
-    "comment-entry-go-root": "View the full context",
-    "comment-entry-go-parent": "View the direct parent",
-    "show-history": "Show edit history",
-    "hidden-warning": "This post was hidden due to low ratings."
+    "via-app": "attraverso <span class=\"app-name\">{{app}}</span>",
+    "comment-entry-title": "Stai guardando un singolo thread del commento da: ",
+    "comment-entry-go-root": "Vedi l'intero Post",
+    "comment-entry-go-parent": "Vedi commento genitore",
+    "show-history": "Mostra la cronologia delle modifiche",
+    "hidden-warning": "Questo post è stato nascosto a causa dello scarso punteggio qualità."
   },
   "edit-history": {
-    "title": "Edit History",
-    "show-diff": "Show Difference",
-    "version": "Version {{n}}"
+    "title": "Modifica cronologia",
+    "show-diff": "Mostra la differenza",
+    "version": "Versione {{n}}"
   },
   "similar-entries": {
-    "title": "Recent posts by @{{n}}"
+    "title": "Post recenti di @{{n}}"
   },
   "comment": {
-    "body-placeholder": "Write your reply here",
-    "preview": "Preview"
+    "body-placeholder": "Scrivi la tua risposta qui",
+    "preview": "Anteprima"
   },
   "discussion": {
-    "join": "Join the conversion now",
-    "btn-join": "Join",
-    "replies": "1 Comment",
-    "n-replies": "{{n}} Comments",
-    "order": "Sort Order",
-    "order-trending": "Trending",
-    "order-reputation": "Reputation",
-    "order-votes": "Votes",
-    "order-created": "Age",
-    "read-more": "...read more replies...",
-    "reveal": "Reveal comment"
+    "join": "Partecipa al Cambiamento Ora",
+    "btn-join": "Partecipa",
+    "replies": "1 Commento",
+    "n-replies": "{{n}} Commenti",
+    "order": "Ordinamento",
+    "order-trending": "Di Tendenza",
+    "order-reputation": "Reputazione",
+    "order-votes": "Voti",
+    "order-created": "Età",
+    "read-more": "...leggi più commenti...",
+    "reveal": "Mostra commento"
   },
   "community": {
-    "page-description": "{{f}} topics",
-    "subscribe": "Subscribe",
-    "subscribed": "Joined",
-    "unsubscribe": "Leave",
-    "post": "New Post",
-    "posts": "Posts",
-    "subscribers": "Subscribers",
-    "activities": "Activities",
-    "roles-title": "User Roles",
+    "page-description": "Argomenti {{f}}",
+    "subscribe": "Iscriviti",
+    "subscribed": "Iscritto",
+    "unsubscribe": "Disiscriviti",
+    "post": "Nuovo Post",
+    "posts": "Post",
+    "subscribers": "Iscritti",
+    "activities": "Attività",
+    "roles-title": "Ruoli Utente",
     "roles-account": "Account",
-    "roles-role": "Role",
-    "roles-account-title": "Title",
-    "roles-add": "Add User"
+    "roles-role": "Ruolo",
+    "roles-account-title": "Titolo",
+    "roles-add": "Aggiungi utente"
   },
   "community-cover": {
-    "rewards": "rewards",
-    "authors": "posters",
-    "lang": "language",
-    "cover-image": "Community cover image",
-    "cover-image-edit": "Edit cover image",
-    "cover-image-updated": "Cover image updated!"
+    "rewards": "ricompense",
+    "authors": "locandina",
+    "lang": "lingua",
+    "cover-image": "Immagine di copertina della community",
+    "cover-image-edit": "Modifica Immagine di Copertina",
+    "cover-image-updated": "Immagine di Copertina Aggiornata!"
   },
   "community-card": {
-    "description": "Description",
-    "rules": "Rules",
-    "team": "Leadership",
-    "edit": "Edit settings",
-    "edit-team": "Edit roles",
-    "profile-image": "Community profile image",
-    "profile-image-edit": "Edit profile image",
-    "profile-image-updated": "Profile image updated!"
+    "description": "Descrizione",
+    "rules": "Regole",
+    "team": "Dirigenza",
+    "edit": "Modifica impostazioni",
+    "edit-team": "Modifica Ruoli",
+    "profile-image": "Immagine del profilo della community",
+    "profile-image-edit": "Modifica immagine del profilo",
+    "profile-image-updated": "Immagine del Profilo aggiornata!"
   },
   "community-role-edit": {
-    "title": "Set user role",
-    "username": "Username",
-    "role": "Role",
-    "user-not-found": "The user does not exist!",
-    "explanations": "<h3>Role Permissions</h3><p><strong>Owner</strong> - assign admins</p><p><strong>Admin</strong> - edit settings, assign mods</p><p><strong>Moderator</strong> - mute, pin, set user titles</p><p><strong>Member</strong> - listed on leadership team</p><p><strong>Guest</strong> - default; can post and comment</p><p><strong>Muted</strong> - new posts automatically muted</p>"
+    "title": "Imposta ruolo dell'utente",
+    "username": "Nome utente",
+    "role": "Ruolo",
+    "user-not-found": "L'utente non esiste!",
+    "explanations": "<h3>Permessi assegnati al ruolo</h3><p><strong>Proprietario</strong> - assegna amministratori</p><p><strong>Amministratore</strong> - modifica impostazioni, assegna moderazione</p><p><strong>Moderator</strong> - silenzia, fissa, imposta qualifica dell'utente</p><p><strong>Membro</strong> - inserito nella squadra dirigente</p><p><strong>Ospite</strong> - default; può postare e commentare</p><p><strong>Silenziato</strong> - nuovi post automaticamente silenziati</p>"
   },
   "community-settings": {
-    "dialog-title": "Community Settings",
-    "title": "Title",
-    "about": "About",
-    "lang": "Language",
-    "description": "Description",
-    "rules": "Rules",
-    "rules-help": "One per line"
+    "dialog-title": "Impostazioni della Community",
+    "title": "Titolo",
+    "about": "A riguardo",
+    "lang": "Lingua",
+    "description": "Descrizione",
+    "rules": "Regole",
+    "rules-help": "Uno per fila"
   },
   "communities": {
-    "title": "Communities",
-    "description": "Best online, decentralized, immutable, rewarding communities",
-    "n-subscribers": "{{n}} subscribers",
-    "n-authors": "{{n}} posters",
-    "n-posts": "{{n}} posts",
-    "admins": "admins:",
-    "sort-hot": "Hot",
-    "sort-rank": "Rank",
-    "sort-subs": "Subscribers",
-    "sort-new": "New",
-    "no-results": "No results found",
-    "create": "Create community"
+    "title": "Community",
+    "description": "Le migliori community decentralizzate online, immutabili e ricompensate",
+    "n-subscribers": "{{n}} iscritti",
+    "n-authors": "{{n}} Poster",
+    "n-posts": "{{n}} post",
+    "admins": "amministratori:",
+    "sort-hot": "Caldi",
+    "sort-rank": "Classifica",
+    "sort-subs": "Iscritti",
+    "sort-new": "Nuovi",
+    "no-results": "Nessun risultato trovato",
+    "create": "Crea community"
   },
   "communities-create": {
-    "page-title": "Create a community",
-    "title": "Title",
-    "about": "About",
-    "description": "Create a best, decentralized, immutable, rewarding communities",
+    "page-title": "Crea una Community",
+    "title": "Qualifica",
+    "about": "A riguardo",
+    "description": "Crea le migliori community ricompensate, immutabili e decentralizzate",
     "fee": "Operation fee",
     "creator": "Creator",
     "username": "Owner username",
@@ -296,13 +298,14 @@
     "section-replies": "Replies",
     "section-communities": "Communities",
     "section-wallet": "Wallet",
+    "section-settings": "Settings",
     "communities-title": "Subscriptions",
     "create-community": "Create a community",
-    "edit": "Profile Edit",
     "witnesses": "Witnesses",
     "proposals": "Proposals"
   },
   "profile-edit": {
+    "title": "Profile",
     "name": "Display Name",
     "about": "About",
     "cover-image": "Cover Image",
@@ -313,6 +316,13 @@
   },
   "image-upload-button": {
     "uploaded": "Image uploaded"
+  },
+  "preferences": {
+    "title": "Preferences",
+    "notifications": "Notification alerts",
+    "currency": "Currency",
+    "language": "Language",
+    "updated": "Preference updated!"
   },
   "wallet": {
     "unclaimed-rewards": "Unclaimed rewards",
@@ -341,7 +351,11 @@
     "withdraw-hbd": "Withdraw Hive Dollar"
   },
   "points": {
-    "get": "GET POINTS",
+    "get": "BUY POINTS",
+    "unclaimed-points": "Unclaimed points",
+    "claim-reward-points": "Claim reward points",
+    "main-description": "Points can be used for in-app services, like Promote, Boost, Gifting. Earn them just by using Ecency apps and improve your experience.",
+    "earn-points": "How to earn more Points",
     "post-desc": "You can earn point by posting regularly. Posting gives you 15 points.",
     "comment-desc": "Each comment you make helps you to grow your audience and make friendship but also earns you 5 points.",
     "checkin-desc": "Checking in on Ecency gives you 0.25 points and helps you stay connected with your friends.",
@@ -349,7 +363,7 @@
     "reblog-desc": "  Share what post you like with your friends and earn 1 points.",
     "login-desc": "When you login into Ecency you are entitled to earn 100 points automatically.",
     "checkin-extra-desc": "Consistent use of app gives you extra chances to earn more 10 points, be more active and earn more.",
-    "delegation-desc": "You can earn 1 point per day for each 100HP delegation.",
+    "delegation-desc": "You can earn ~50 points per day for each 1000HP delegation.",
     "history": "History",
     "post-list-desc": "Points for post",
     "comment-list-desc": "Points for comment",
@@ -561,7 +575,9 @@
     "referral-str": "joined with your referral, welcome them",
     "refresh": "Refresh",
     "mark-all-read": "Mark All as Read",
-    "mark-read": "Mark as Read"
+    "mark-read": "Mark as Read",
+    "mute": "Turn off notification alerts",
+    "unmute": "Turn on notification alerts"
   },
   "leaderboard": {
     "title": "Leaderboard",
