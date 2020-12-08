@@ -181,7 +181,7 @@ exports[`(1) Default Render 1`] = `
             </div>
             <div
               className="point-reward-type"
-              title="You can earn 1 point per day for each 100HP delegation."
+              title="You can earn ~50 points per day for each 1000HP delegation."
             >
               <svg
                 viewBox="0 0 24 24"
@@ -559,7 +559,7 @@ exports[`(2) With active user 1`] = `
             </div>
             <div
               className="point-reward-type"
-              title="You can earn 1 point per day for each 100HP delegation."
+              title="You can earn ~50 points per day for each 1000HP delegation."
             >
               <svg
                 viewBox="0 0 24 24"
@@ -980,7 +980,7 @@ exports[`(3) Active user with unclaimed points 1`] = `
             </div>
             <div
               className="point-reward-type"
-              title="You can earn 1 point per day for each 100HP delegation."
+              title="You can earn ~50 points per day for each 1000HP delegation."
             >
               <svg
                 viewBox="0 0 24 24"

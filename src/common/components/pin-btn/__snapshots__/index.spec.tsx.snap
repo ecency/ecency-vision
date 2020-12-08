@@ -2,7 +2,7 @@
 
 exports[`(1) Should show 'pin' label 1`] = `
 <a
-  className="pin-btn"
+  className="pin-btn in-progress"
   href="#"
   onClick={[Function]}
 >
@@ -16,14 +16,14 @@ exports[`(1) Should show 'pin' label 1`] = `
 
 exports[`(2) Should show 'unpin' label 1`] = `
 <a
-  className="pin-btn"
+  className="pin-btn in-progress"
   href="#"
   onClick={[Function]}
 >
   <span
     onClick={[Function]}
   >
-    Unpin
+    Pin
   </span>
 </a>
 `;
