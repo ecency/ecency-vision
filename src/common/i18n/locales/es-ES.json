@@ -89,118 +89,118 @@
   "sign-up": {
     "header": "Registrarse",
     "description": "Una cuenta para administrar todo en blockchain y Ecency. Más información sobre beneficios en nuestras <a href=\"/faq#how-to-join\">Preguntas frecuentes</a>",
-    "username": "Pick a username",
-    "email": "Enter your email address",
-    "ref": "Referred user (optional)",
-    "submit": "Continue",
-    "success": "We've sent an email to {{email}}.",
-    "success-2": "Follow instructions to complete signup process.",
-    "login-text-1": "Do you have an account?",
-    "login-text-2": "Login"
+    "username": "Elige un nombre de usuario",
+    "email": "Ingresa tu dirección de email",
+    "ref": "Usuario Referido (Opcional)",
+    "submit": "Siguiente",
+    "success": "Hemos enviado un correo electrónico a {{email}}.",
+    "success-2": "Siga las instrucciones para completar el proceso de registro.",
+    "login-text-1": "¿Tienes una cuenta?",
+    "login-text-2": "Iniciar Sesión"
   },
   "trending-tags": {
-    "title": "Topics"
+    "title": "Etiquetas"
   },
   "selected-tags": {
-    "title": "Featured"
+    "title": "Destacado"
   },
   "entry-list-item": {
-    "reblogged": "by {{n}}",
-    "promoted": "promoted",
-    "pinned": "Pinned Post",
-    "replies": "1 response. Click to respond.",
-    "replies-n": "{{n}} responses. Click to respond.",
-    "no-replies": "No responses yet. Click to respond."
+    "reblogged": "por {{n}}",
+    "promoted": "promocionado",
+    "pinned": "Publicación fijada",
+    "replies": "1 respuesta. Haga clic para responder.",
+    "replies-n": "{{n}} respuestas. Haga clic para responder.",
+    "no-replies": "Aún no hay respuestas. Haga clic para responder."
   },
   "bookmark-btn": {
-    "add": "Add to bookmarks",
-    "added": "Added to bookmarks",
-    "delete": "Remove from bookmarks",
-    "deleted": "Removed from bookmarks"
+    "add": "Añadir a favoritos",
+    "added": "Agregado a favoritos",
+    "delete": "Eliminar de favoritos",
+    "deleted": "Publicación eliminada de favoritos"
   },
   "entry-reblog": {
-    "reblog": "Reblog",
-    "confirm-title": "Reblog to @{{n}}'s blog?",
-    "confirm-ok": "Reblog",
-    "success": "Reblogged!"
+    "reblog": "Rebloguear",
+    "confirm-title": "¿Rebloguear al blog de @{{n}}?",
+    "confirm-ok": "Rebloguear",
+    "success": "¡Reblogueado!"
   },
   "entry-payout": {
-    "pending-payout": "Pending Payout",
-    "promoted": "Promoted",
-    "author-payout": "Author Payout",
-    "curators-payout": "Curators Payout",
-    "payout-date": "Payout",
-    "beneficiary": "Beneficiary",
-    "breakdown": "Breakdown"
+    "pending-payout": "Pago Pendiente",
+    "promoted": "Promocionado",
+    "author-payout": "Pagos de Autor",
+    "curators-payout": "Pagos de Curación",
+    "payout-date": "Pago",
+    "beneficiary": "Beneficiario",
+    "breakdown": "Intermedio"
   },
   "entry-index": {
-    "feed": "Feed",
+    "feed": "Inicio",
     "tags": "Popular",
-    "title": "{{f}} topics",
-    "description": "{{f}} topics on a social network owned and operated by its users.",
-    "description-tag": "{{f}} #{{t}} topics",
-    "description-user-feed": "{{u}}'s feed"
+    "title": "{{f}} temas",
+    "description": "{{f}} temas en una red social propiedad y operada por sus usuarios.",
+    "description-tag": "{{f}} #{{t}} etiquetas",
+    "description-user-feed": "Inicio de {{u}}"
   },
   "market-data": {
-    "title": "Market price",
-    "credits": "market data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
+    "title": "Precio de mercado",
+    "credits": "datos de mercado de <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "list-style": {
-    "title": "Toggle list style"
+    "title": "Alternar estilo de líneas"
   },
   "entry-votes": {
-    "title": "1 Vote",
-    "title-n": "{{n}} Votes",
-    "title-empty": "No Votes",
-    "voter": "Voter",
-    "percent": "Percent",
-    "reward": "Reward",
-    "time": "Time"
+    "title": "1 voto",
+    "title-n": "{{n}} Votos",
+    "title-empty": "No hay votos",
+    "voter": "Votante",
+    "percent": "Porcentaje",
+    "reward": "Recompensa",
+    "time": "Hora"
   },
   "entry": {
-    "via-app": "via <span class=\"app-name\">{{app}}</span>",
-    "comment-entry-title": "You are viewing a single comment's thread from: ",
-    "comment-entry-go-root": "View the full context",
-    "comment-entry-go-parent": "View the direct parent",
-    "show-history": "Show edit history",
-    "hidden-warning": "This post was hidden due to low ratings."
+    "via-app": "a través de <span class=\"app-name\">{{app}}</span>",
+    "comment-entry-title": "Estás viendo los comentarios relacionados de: ",
+    "comment-entry-go-root": "Ver los demas comentarios",
+    "comment-entry-go-parent": "Ver el comentario relacionado",
+    "show-history": "Mostrar historial de ediciones",
+    "hidden-warning": "El post ha sido ocultado por bajas calificaciones."
   },
   "edit-history": {
-    "title": "Edit History",
-    "show-diff": "Show Difference",
-    "version": "Version {{n}}"
+    "title": "Editar historial",
+    "show-diff": "Mostrar diferencias",
+    "version": "Versión {{n}}"
   },
   "similar-entries": {
-    "title": "Recent posts by @{{n}}"
+    "title": "Post recientes de @{{n}}"
   },
   "comment": {
-    "body-placeholder": "Write your reply here",
-    "preview": "Preview"
+    "body-placeholder": "Escribir tu comentario aquí...",
+    "preview": "Previsualización"
   },
   "discussion": {
-    "join": "Join the conversion now",
-    "btn-join": "Join",
-    "replies": "1 Comment",
-    "n-replies": "{{n}} Comments",
-    "order": "Sort Order",
-    "order-trending": "Trending",
-    "order-reputation": "Reputation",
-    "order-votes": "Votes",
-    "order-created": "Age",
-    "read-more": "...read more replies...",
-    "reveal": "Reveal comment"
+    "join": "Únete a la conversación",
+    "btn-join": "Unirse",
+    "replies": "1 Comentario",
+    "n-replies": "{{n}} Comentarios",
+    "order": "Orden de aparición",
+    "order-trending": "Tendencias",
+    "order-reputation": "Reputación",
+    "order-votes": "Votos",
+    "order-created": "Edad",
+    "read-more": "Ver más respuestas...",
+    "reveal": "Revelar comentario"
   },
   "community": {
-    "page-description": "{{f}} topics",
-    "subscribe": "Subscribe",
-    "subscribed": "Joined",
-    "unsubscribe": "Leave",
-    "post": "New Post",
-    "posts": "Posts",
-    "subscribers": "Subscribers",
-    "activities": "Activities",
-    "roles-title": "User Roles",
-    "roles-account": "Account",
+    "page-description": "{{f}} temas",
+    "subscribe": "Suscribirse",
+    "subscribed": "Se unió",
+    "unsubscribe": "Salir",
+    "post": "Escribir un post",
+    "posts": "Publicaciones",
+    "subscribers": "Suscriptores",
+    "activities": "Actividades",
+    "roles-title": "Rol del usuario",
+    "roles-account": "Cuenta",
     "roles-role": "Rol",
     "roles-account-title": "Título",
     "roles-add": "Añadir usuario"
@@ -228,7 +228,7 @@
     "username": "Nombre de Usuario",
     "role": "Rol",
     "user-not-found": "Ese usuario no existe!",
-    "explanations": "<h3>Role Permissions</h3><p><strong>Owner</strong> - assign admins</p><p><strong>Admin</strong> - edit settings, assign mods</p><p><strong>Moderator</strong> - mute, pin, set user titles</p><p><strong>Member</strong> - listed on leadership team</p><p><strong>Guest</strong> - default; can post and comment</p><p><strong>Muted</strong> - new posts automatically muted</p>"
+    "explanations": "<h3>Permisos de rol</h3><p><strong>Propietario</strong> - asignar administradores</p><p><strong>Administrador</strong> - editar configuración, asignar mods</p><p><strong>Moderador</strong> - silenciar, pin, establezca títulos de usuario</p><p><strong>Miembro</strong> - listado en el equipo de liderazgo</p><p><strong>Invitados</strong> - por defecto; puede publicar y comentar</p><p><strong>Silenciados</strong> - nuevos posts silenciados automáticamente</p>"
   },
   "community-settings": {
     "dialog-title": "Configuraciones de la Comunidad",
@@ -263,69 +263,69 @@
     "username": "Nombre de usuario propietario",
     "username-available": "Disponible.",
     "username-not-available": "No disponible.",
-    "username-wrong-format": "Not a valid format. hive-1xxxxx format required.",
-    "password": "Owner password",
-    "confirmation": "I have securely saved my owner username and password.",
-    "submit": "Create Community",
-    "progress-account": "Creating account...",
-    "progress-user": "Preparing user data...",
-    "progress-role": "Setting @{{u}} as admin...",
-    "progress-props": "Updating community settings...",
-    "done": "Your community was created 🎉",
-    "done-link-label": "Get started."
+    "username-wrong-format": "Formato no válido. Formato hive-1xxxxx necesario.",
+    "password": "Contraseña del propietario",
+    "confirmation": "He guardado con seguridad mi contraseña generada.",
+    "submit": "Crear comunidad",
+    "progress-account": "Creando cuenta...",
+    "progress-user": "Preparando datos...",
+    "progress-role": "Configurando @{{u}} como administrador...",
+    "progress-props": "Actualizando ajustes de la comunidad...",
+    "done": "Tu comunidad fue creada 🎉",
+    "done-link-label": "Empieza ya."
   },
   "pin-btn": {
-    "pin": "Pin",
-    "unpin": "Unpin"
+    "pin": "Anclar arriba",
+    "unpin": "Desanclar"
   },
   "mute-btn": {
-    "mute": "Mute",
-    "unmute": "Unmute",
-    "dialog-title-mute": "Mute post/comment",
-    "dialog-title-unmute": "Unmute post/comment",
-    "notes": "Notes",
-    "note-placeholder-mute": "Provide a note regarding your decision to mute this content.",
-    "note-placeholder-unmute": "Provide a note regarding your decision to unmute this content."
+    "mute": "Silenciar",
+    "unmute": "Quitar silencio",
+    "dialog-title-mute": "Silenciar post/comentario",
+    "dialog-title-unmute": "Habilitar post/comentarios",
+    "notes": "Notas",
+    "note-placeholder-mute": "Proporcione una nota con respecto a su decisión de silenciar este contenido.",
+    "note-placeholder-unmute": "Proporcione una nota con respecto a su decisión de quitar el silencio de este contenido."
   },
   "profile": {
-    "voting-power": "Voting Power",
-    "post-count": "Post Count",
-    "followers": "Followers",
-    "following": "Following",
-    "section-blog": "Blog",
-    "section-posts": "Posts",
-    "section-comments": "Comments",
-    "section-replies": "Replies",
-    "section-communities": "Communities",
-    "section-wallet": "Wallet",
-    "section-settings": "Settings",
-    "communities-title": "Subscriptions",
-    "create-community": "Create a community",
-    "witnesses": "Witnesses",
-    "proposals": "Proposals"
+    "voting-power": "Poder de voto",
+    "post-count": "Número de publicaciones",
+    "followers": "Seguidores",
+    "following": "Siguiendo",
+    "section-blog": "Escribe",
+    "section-posts": "Publicaciones",
+    "section-comments": "Comentarios",
+    "section-replies": "Respuestas",
+    "section-communities": "Comunidades",
+    "section-wallet": "Monedero",
+    "section-settings": "Ajustes",
+    "communities-title": "Suscripciones",
+    "create-community": "Crear una Comunidad",
+    "witnesses": "Testigos",
+    "proposals": "Propuestas"
   },
   "profile-edit": {
-    "title": "Profile",
-    "name": "Display Name",
-    "about": "About",
-    "cover-image": "Cover Image",
-    "profile-image": "Profile Image",
-    "website": "Website",
-    "location": "Location",
-    "updated": "Profile updated successfully!"
+    "title": "Perfil",
+    "name": "Nombre para mostrar",
+    "about": "Acerca de",
+    "cover-image": "Imagen de portada",
+    "profile-image": "Imagen de perfil",
+    "website": "Página Web",
+    "location": "Localización",
+    "updated": "¡Perfil actualizado exitosamente!"
   },
   "image-upload-button": {
-    "uploaded": "Image uploaded"
+    "uploaded": "Imagen cargada"
   },
   "preferences": {
-    "title": "Preferences",
-    "notifications": "Notification alerts",
-    "currency": "Currency",
-    "language": "Language",
-    "updated": "Preference updated!"
+    "title": "Preferencias",
+    "notifications": "Notificaciones y alertas",
+    "currency": "Divisa",
+    "language": "Idioma",
+    "updated": "Preferencias actualizadas!"
   },
   "wallet": {
-    "unclaimed-rewards": "Unclaimed rewards",
+    "unclaimed-rewards": "Recompensas no reclamadas",
     "claim-reward-balance": "Reclamar recompensa",
     "claim-reward-balance-ok": "Recompensa reclamada",
     "estimated": "Valor de cuenta aproximado",
@@ -351,11 +351,11 @@
     "withdraw-hbd": "Retirar Hive Dollar (HBD)"
   },
   "points": {
-    "get": "BUY POINTS",
-    "unclaimed-points": "Unclaimed points",
-    "claim-reward-points": "Claim reward points",
-    "main-description": "Points can be used for in-app services, like Promote, Boost, Gifting. Earn them just by using Ecency apps and improve your experience.",
-    "earn-points": "How to earn more Points",
+    "get": "COMPRAR PUNTOS",
+    "unclaimed-points": "Puntos no reclamados",
+    "claim-reward-points": "Reclamar recompensa",
+    "main-description": "Los puntos se pueden utilizar para servicios dentro de la aplicación, como Promover, Optimizar, Regalar. Gánalos sólo usando aplicaciones de Ecency y mejorar tu experiencia.",
+    "earn-points": "Cómo ganar más puntos",
     "post-desc": "Puedes ganar puntos publicando regularmente. Publicar te da 15 puntos.",
     "comment-desc": "Cada comentario que hagas ayuda a crecer tu audiencia y a hacer amistades, pero también te da 5 puntos.",
     "checkin-desc": "Cuando te registras en Ecency te da 0.25 puntos y te ayuda a estar conectado con tus amigos.",
@@ -363,7 +363,7 @@
     "reblog-desc": "  Comparte una publicación que te gusta con tus amigos y gana 1 punto.",
     "login-desc": "Cuando inicies sesión en Ecency tienes derecho a recibir 100 puntos automáticamente.",
     "checkin-extra-desc": "El uso consistente de la aplicación te otorga más posibilidades de generar más de 10 puntos, se más activo y gana más.",
-    "delegation-desc": "You can earn ~50 points per day for each 1000HP delegation.",
+    "delegation-desc": "Puedes ganar 50 puntos por día por cada delegación de 100HP.",
     "history": "Historial",
     "post-list-desc": "Puntos por publicar",
     "comment-list-desc": "Puntos por comentar",
@@ -384,24 +384,24 @@
   "purchase": {
     "select-asset": "Seleccionar activos",
     "slider-hint": "Arrastra el deslizador para ajustar la cantidad.",
-    "submit": "Purchase"
+    "submit": "Comprar"
   },
   "promote": {
-    "title": "Promote",
-    "sub-title": "Promote your post",
-    "duration": "Duration"
+    "title": "Promocionar",
+    "sub-title": "Promociona tu post",
+    "duration": "Duración"
   },
   "boost": {
-    "title": "Boost",
-    "sub-title": "Boost your post",
-    "amount": "Amount",
-    "slider-hint": "Drag the slider to adjust the amount."
+    "title": "Promocionar",
+    "sub-title": "Promociona tu publicación",
+    "amount": "Cantidad",
+    "slider-hint": "Arrastra el deslizador para ajustar la cantidad."
   },
   "redeem-common": {
     "balance": "Balance",
-    "post": "Post",
-    "post-hint": "Autocomplete input",
-    "post-placeholder": "username/permlink",
+    "post": "Publicar",
+    "post-hint": "Sugerencia de autocompletado",
+    "post-placeholder": "usuario/permlink",
     "post-error": "Not a valid post address",
     "post-error-exists": "The post is already promoted",
     "success-message": "Your request submitted. It will be activated in a couple minutes."
