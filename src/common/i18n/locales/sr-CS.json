@@ -82,16 +82,16 @@
     "error-permission": "Couldn't get posting permission",
     "error-authenticate": "Wrong private key. Master or active private key required.",
     "with-hive-signer": "Prijavi se sa hivesigner",
-    "with-keychain": "Login with keychain",
+    "with-keychain": "Prijavi se sa keychain",
     "sign-up-text-1": "Nemate nalog?",
     "sign-up-text-2": "Registruj se sad!"
   },
   "sign-up": {
     "header": "Registrujte se",
-    "description": "One account to manage everything on blockchain and Ecency. Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
+    "description": "Jedan nalog za upravljanje svim na blockcain i Ecencz. Saznajte više o prednostima u našoj <a href=\"/faq#how-to-join\">Česta pitanja</a>",
     "username": "Izaberite korisničko ime",
     "email": "Unesite svoju e-mail adresu",
-    "ref": "Referred user (optional)",
+    "ref": "Preporučeni korisnik (opcionalno)",
     "submit": "Nastavi",
     "success": "Poslali smo email za potvrdu na {{email}}.",
     "success-2": "Sledite uputstva da biste dovršili postupak registracije.",
@@ -105,12 +105,12 @@
     "title": "Izdvojeni"
   },
   "entry-list-item": {
-    "reblogged": "by {{n}}",
+    "reblogged": "od {{n}}",
     "promoted": "promovisano",
-    "pinned": "Pinned Post",
-    "replies": "1 response. Click to respond.",
-    "replies-n": "{{n}} responses. Click to respond.",
-    "no-replies": "No responses yet. Click to respond."
+    "pinned": "Zakačena objava",
+    "replies": "1 odgovor. Kliknite da odgovorite.",
+    "replies-n": "{{n}} odgovora. Kliknite da odgovorite.",
+    "no-replies": "Još nema odgovora. Kliknite da odgovorite."
   },
   "bookmark-btn": {
     "add": "Dodaj u obeleživače",
@@ -130,15 +130,15 @@
     "author-payout": "Isplata autoru",
     "curators-payout": "Isplata glasačima",
     "payout-date": "Isplata",
-    "beneficiary": "Beneficiary",
+    "beneficiary": "Primalac (Beneficiary)",
     "breakdown": "Presek"
   },
   "entry-index": {
     "feed": "Novosti",
     "tags": "Popularno",
     "title": "{{f}} teme",
-    "description": "{{f}} topics on a social network owned and operated by its users.",
-    "description-tag": "{{f}} #{{t}} topics",
+    "description": "{{f}} teme na društvenoj mreži u vlasništvu i kojom upravljaju njeni korisnici.",
+    "description-tag": "{{f}} #{{t}} teme",
     "description-user-feed": "{{u}}'s feed"
   },
   "market-data": {
@@ -161,7 +161,7 @@
     "via-app": "via <span class=\"app-name\">{{app}}</span>",
     "comment-entry-title": "You are viewing a single comment's thread from: ",
     "comment-entry-go-root": "Pogledaj ceo kontekst",
-    "comment-entry-go-parent": "View the direct parent",
+    "comment-entry-go-parent": "Pogledaj nadređeni komentar",
     "show-history": "Prikaži istoriju uređivanja",
     "hidden-warning": "Ova objava je sakrivena zbog niske ocene."
   },
@@ -193,7 +193,7 @@
   "community": {
     "page-description": "{{f}} teme",
     "subscribe": "Pretplatite se",
-    "subscribed": "Joined",
+    "subscribed": "Pridružio/la se",
     "unsubscribe": "Napusti",
     "post": "Nova objava",
     "posts": "Objave",
@@ -216,7 +216,7 @@
   "community-card": {
     "description": "Opis",
     "rules": "Pravila",
-    "team": "Leadership",
+    "team": "Vođstvo",
     "edit": "Uredi podešavanja",
     "edit-team": "Uredite uloge",
     "profile-image": "Profilna slika zajednice",
@@ -224,7 +224,7 @@
     "profile-image-updated": "Profilna slika ažurirana!"
   },
   "community-role-edit": {
-    "title": "Set user role",
+    "title": "Podesite korisničku ulogu",
     "username": "Korisničko ime",
     "role": "Uloga",
     "user-not-found": "Korisnik ne postoji!",
@@ -275,17 +275,17 @@
     "done-link-label": "Počni."
   },
   "pin-btn": {
-    "pin": "Pin",
-    "unpin": "Unpin"
+    "pin": "Zakačiti",
+    "unpin": "Otkačiti"
   },
   "mute-btn": {
     "mute": "Iskljuci Notifikacije",
     "unmute": "Ukljuci Notifikacije",
-    "dialog-title-mute": "Mute post/comment",
-    "dialog-title-unmute": "Unmute post/comment",
+    "dialog-title-mute": "Utišaj objavu/komentar",
+    "dialog-title-unmute": "Uključi objavu/komentar",
     "notes": "Beleške",
-    "note-placeholder-mute": "Provide a note regarding your decision to mute this content.",
-    "note-placeholder-unmute": "Provide a note regarding your decision to unmute this content."
+    "note-placeholder-mute": "Navedite napomenu sa vašom odlukom da isključite ovaj sadržaj.",
+    "note-placeholder-unmute": "Navedite napomenu sa vašom odlukom da uključite ovaj sadržaj."
   },
   "profile": {
     "voting-power": "Snaga glasa",
@@ -315,11 +315,11 @@
     "updated": "Profil je uspešno ažuriran!"
   },
   "image-upload-button": {
-    "uploaded": "Image uploaded"
+    "uploaded": "Slika je postavljena"
   },
   "preferences": {
-    "title": "Preferences",
-    "notifications": "Notification alerts",
+    "title": "Podešavanja",
+    "notifications": "Upozorenja obaveštenja",
     "currency": "Valuta",
     "language": "Jezik",
     "updated": "Preference updated!"
@@ -329,17 +329,17 @@
     "claim-reward-balance": "Claim reward balance",
     "claim-reward-balance-ok": "Reward balance claimed",
     "estimated": "Procenjena vrednost naloga",
-    "estimated-description": "The estimated value is based on a 7 day average value of HIVE.",
+    "estimated-description": "Procenjena vrednost se zasniva na sedmodnevnoj prosečnoj vredosti HIVE.",
     "hive": "HIVE",
     "hive-description": "HIVE are tradeable tokens that may be transferred at anytime.HIVE can be converted to Hive Power in a process called powering up.",
     "hive-power": "HIVE SNAGA",
     "hive-power-description": "Hive Power are influence tokens that earn more power for holding long term and voting on posts. The more Hive Power one holds, the more one can influence other’s rewards and earn rewards for accurate voting.",
     "hive-power-delegated": "Delegirana Hive Snaga",
-    "hive-power-received": "Received Hive Power",
-    "next-power-down-amount": "Next power down amount",
+    "hive-power-received": "Primljena Hive snaga",
+    "next-power-down-amount": "Iznos sledećeg smanjenja snage",
     "hive-power-total": "Ukupna Hive Snaga",
     "hive-dollars": "HIVE DOLARI",
-    "hive-dollars-description": "Tokens worth about $1.00 of HIVE.",
+    "hive-dollars-description": "Tokeni vredni oko $1.00 u HIVE-u.",
     "savings": "Štednja",
     "savings-description": "Saldo je podložan trodnevnom periodu čekanja za povlačenje sredstava.",
     "next-power-down": "Sledeće smanjenje snage je {{time}} {{amount}}",
@@ -446,38 +446,38 @@
     "success-sub-title": "Transaction successful"
   },
   "transactions": {
-    "title": "History",
-    "type-curation_reward": "Curation Reward",
-    "type-author_reward": "Author Reward",
-    "type-comment_benefactor_reward": "Comment Benefactor Reward",
-    "type-claim_reward_balance": "Claim rewards",
-    "type-transfer": "Transfer",
-    "type-transfer_to_vesting": "Transfer to vesting",
-    "type-withdraw_vesting": "Withdraw vesting",
-    "type-fill_order": "Fill order"
+    "title": "Istorija",
+    "type-curation_reward": "Nagrade za glasanje",
+    "type-author_reward": "Nagrada za autora",
+    "type-comment_benefactor_reward": "Komentar o dobijenom procentu od nagrade",
+    "type-claim_reward_balance": "Preuzmi nagrade",
+    "type-transfer": "Prenos",
+    "type-transfer_to_vesting": "Premestite u vesting",
+    "type-withdraw_vesting": "Povucite vesting",
+    "type-fill_order": "Popunite nalog"
   },
   "key-or-hot": {
-    "sign": "Sign",
-    "key-placeholder": "Enter active/owner/master key",
-    "with-hivesigner": "Sign with hivesigner",
-    "with-keychain": "Sign with keychain"
+    "sign": "Potpis",
+    "key-placeholder": "Unesite aktivni/vlasnički/glavni ključ",
+    "with-hivesigner": "Prijavi se sa hivesigner",
+    "with-keychain": "Prijavi se sa keychain"
   },
   "delegated-vesting": {
-    "title": "Delegated Hive Power"
+    "title": "Delegirana Hive Snaga"
   },
   "received-vesting": {
-    "title": "Received Hive Power"
+    "title": "Primljena Hive snaga"
   },
   "friends": {
-    "followers": "Followers ({{n}})",
-    "following": "Following ({{n}})",
-    "search-placeholder": "Search users"
+    "followers": "Pratioci ({{n}})",
+    "following": "Praćenja ({{n}})",
+    "search-placeholder": "Pretraži korisnike"
   },
   "follow-controls": {
-    "follow": "Follow",
-    "unFollow": "Unfollow",
-    "mute": "Mute",
-    "unMute": "Unmute"
+    "follow": "Zaprati",
+    "unFollow": "Prestani da pratiš",
+    "mute": "Isključi",
+    "unMute": "Uključi"
   },
   "favorite-btn": {
     "add": "Dodaj u omiljeno",
@@ -503,71 +503,71 @@
     "gallery": "Galerija",
     "emoji": "Emotikoni",
     "image-error": "Nije moguće dodati fotografiju.",
-    "image-error-size": "Image size is too large, try smaller size image again."
+    "image-error-size": "Veličina slike je prevelika, pokušajte ponovo sa slikom manje veličine."
   },
   "emoji-picker": {
     "filter-placeholder": "Filter",
-    "filter-no-match": "No match",
-    "recently-used": "Recently Used"
+    "filter-no-match": "Nema podudaranja",
+    "recently-used": "Nеdavno korišćеno"
   },
   "submit": {
-    "page-title": "Create a post",
-    "page-description": "Publish an article, earn reward, uncensored, immutable, decentralized content!",
-    "title-placeholder": "Title",
-    "body-placeholder": "Post Content",
-    "reward": "Reward",
-    "reward-default": "Default 50% / 50%",
-    "reward-sp": "Power Up 100%",
-    "reward-dp": "Decline Payout",
-    "preview": "Preview",
-    "publish": "Publish",
-    "update": "Update",
-    "save-draft": "Save Draft",
-    "draft-saved": "Draft saved",
-    "update-draft": "Update Draft",
-    "draft-updated": "Draft updated",
-    "cancel-update": "Cancel",
-    "clear": "Clear",
-    "published": "Post Published",
-    "updated": "Post Updated"
+    "page-title": "Napiši objavu",
+    "page-description": "Objavite članak, zaradite nagradu, necenzurisani, nepromenljivi, decentralizovani sadržaj!",
+    "title-placeholder": "Naslov",
+    "body-placeholder": "Objavi sadržaj",
+    "reward": "Nagrada",
+    "reward-default": "Standardno 50% / 50%",
+    "reward-sp": "Pojačaj 100%",
+    "reward-dp": "Odbij isplatu",
+    "preview": "Pregled",
+    "publish": "Objavi",
+    "update": "Ažuriraj",
+    "save-draft": "Sačuvaj Nacrt",
+    "draft-saved": "Nacrt sačuvan",
+    "update-draft": "Ažuriraj nacrt",
+    "draft-updated": "Nacrt ažuriran",
+    "cancel-update": "Otkaži",
+    "clear": "Obriši",
+    "published": "Post je objavljen",
+    "updated": "Post je ažuriran"
   },
   "tag-selector": {
-    "placeholder-empty": "Tags. First tag is main category. Sortable.",
-    "placeholder-focus": "Enter tag",
-    "placeholder-has-tags": "Add More",
-    "suggestion-header": "Tags/Communities",
-    "error-max": "Max {{n}} tags"
+    "placeholder-empty": "Oznake. Prva oznaka je glavna kategorija. Podložno razvrstavanju.",
+    "placeholder-focus": "Unesite oznaku",
+    "placeholder-has-tags": "Dodaj još",
+    "suggestion-header": "Oznake/Zajednice",
+    "error-max": "Najviše {{n}} oznaka"
   },
   "word-count": {
-    "label": "{{n}} words",
-    "read-time-less-1-min": "< 1 min read",
-    "read-time-n-min": "~ {{n}} min read"
+    "label": "{{n}} reči",
+    "read-time-less-1-min": "< 1 minute čitanja",
+    "read-time-n-min": "~ {{n}} minuta čitanja"
   },
   "notification": {
-    "popup-title": "You have a new notification",
-    "voted": "{{source}} voted your post",
-    "mention-post": "{{source}} mentioned you in a post",
-    "mention-comment": "{{source}} mentioned you in a comment",
-    "followed": "{{source}} followed you",
-    "replied": "{{source}} replied you",
+    "popup-title": "Imate novo obaveštenje",
+    "voted": "{{source}} je glasao tvoju objavu",
+    "mention-post": "{{source}} vas je spomenuo u objavi",
+    "mention-comment": "{{source}} vas je spomenuo u komentaru",
+    "followed": "{{source}} vas je zapratio",
+    "replied": "{{source}} vam je odgovorio",
     "reblogged": "{{source}} reblogged your post",
-    "transfer": "{{source}} sent you {{amount}}"
+    "transfer": "{{source}} vam je poslao {{amount}}"
   },
   "notifications": {
-    "type-all": "All Notifications",
-    "type-all-short": "All",
-    "type-rvotes": "Votes",
-    "type-replies": "Replies",
-    "type-mentions": "Mentions",
-    "type-follows": "Follows",
+    "type-all": "Sva obaveštenja",
+    "type-all-short": "Sve",
+    "type-rvotes": "Glasovi",
+    "type-replies": "Odgovori",
+    "type-mentions": "Pominjanja",
+    "type-follows": "Pratioci",
     "type-reblogs": "Reblogs",
-    "type-transfers": "Transfers",
-    "vote-str": "{{p}}% likes your post:",
-    "reply-str": "replied to your post:",
-    "mention-str": "mentioned you in:",
-    "followed-str": "followed",
-    "unfollowed-str": "unfollowed",
-    "ignored-str": "ignored",
+    "type-transfers": "Prenosi",
+    "vote-str": "{{p}}% se sviđa vaša objava:",
+    "reply-str": "je odgovorio na vaš post:",
+    "mention-str": "spomenuo vas je u:",
+    "followed-str": "zapraćen",
+    "unfollowed-str": "otpraćen",
+    "ignored-str": "ignorisan",
     "reblog-str": "reblogged your post:",
     "transfer-str": "sent you",
     "spin-str": "Time to earn more Points, Play Spin on Ecency Mobile app",
@@ -599,28 +599,28 @@
     "description": "Discover top online users"
   },
   "search-page": {
-    "title": "Search",
-    "description": "Find uncensored content, communities and users",
+    "title": "Pretraga",
+    "description": "Pronađi necenzurisan sadržaj, zajednice i korisnike",
     "n-results-for-q": "{{n}} results",
-    "no-result": "No result",
+    "no-result": "Nema rezultata",
     "sort-by": "sort by",
-    "sort-popularity": "Popularity",
-    "sort-relevance": "Relevance",
-    "sort-newest": "Date"
+    "sort-popularity": "Popularnost",
+    "sort-relevance": "Relevantnost",
+    "sort-newest": "Datum"
   },
   "witnesses": {
-    "page-title": "Witnesses",
+    "page-title": "Svedoci (witnesses)",
     "page-description": "Consensus block producers selection",
     "page-description-long": "Role of witnesses or block producers in Hive blockchain is to act as the network's governance body. Community elects them to represent their voice and each user can elect up to 30 witnesses. Top 20 witnesses are producing blocks every minute while rest remain as backup witness and gets randomized chance every minute. This role is integral part of consensus mechanism blockchain runs on and recommend user engagement to vote on trusted witnesses.",
     "remaining": "<span>{{n}}</span> of {{max}} votes remaining",
-    "list-rank": "Rank",
-    "list-witness": "Witness",
-    "list-miss": "Miss",
-    "list-url": "URL",
-    "list-fee": "Fee",
-    "list-feed": "Feed",
-    "list-version": "Version",
-    "username-placeholder": "username",
+    "list-rank": "Rang",
+    "list-witness": "Svedok (witness)",
+    "list-miss": "Propušteno",
+    "list-url": "URL adresa",
+    "list-fee": "Naknada",
+    "list-feed": "Novosti",
+    "list-version": "Verzija",
+    "username-placeholder": "korisničko ime",
     "extra-description": "Enter account name below to vote for a witness outside of Top 50",
     "proxy-description": "You can also choose a proxy that will vote for witnesses for you. This will reset your current witness selection.",
     "proxy-btn-label": "Set Proxy",
@@ -629,7 +629,7 @@
     "proxy-active-btn-label": "Clear Proxy"
   },
   "proposals": {
-    "page-title": "Proposals",
+    "page-title": "Predlozi",
     "page-description": "The Decentralized Hive Fund (DHF) is an on-chain funding mechanism that allows anyone to submit a proposal and get funding once community votes pass certain threshold. To learn more read our <a href=\"/faq#how-dhf-work\">FAQ</a>.",
     "by": "by",
     "for": "for",
@@ -646,50 +646,50 @@
     "filter-team": "Ecency Projects",
     "return-description": "This is the base return proposal. Every proposal with less votes will not receive funds.",
     "votes-dialog-title": "Votes on Proposal #{{n}}",
-    "see-all": "see all proposals"
+    "see-all": "pogledajte sve predloge"
   },
   "gallery": {
-    "title": "Gallery",
-    "copied": "Copied to clipboard"
+    "title": "Galerija",
+    "copied": "Kopirano u međuspremnik"
   },
   "drafts": {
-    "title": "Drafts"
+    "title": "Skice"
   },
   "bookmarks": {
-    "title": "Bookmarks"
+    "title": "Obeleživači"
   },
   "favorites": {
-    "title": "Favorites"
+    "title": "Omiljeno"
   },
   "scroll-to-top": {
     "title": "Scroll to Top"
   },
   "static": {
     "about": {
-      "page-title": "About",
-      "intro-title": "What is <span>Ecency</span>",
+      "page-title": "O Nama",
+      "intro-title": "Šta je <span>Ecency</span>",
       "intro-content": "Ecency is beautiful and handy wrapper interface around the Hive blockchain network allowing you to create your own posts, surf your feeds, vote what you like, write comments, read replies, do all major Hive functions in your daily social surfing as well as wallet actions and other extras such as search, discover different tags etc.",
-      "faq-title": "FAQ",
-      "faqs": "All FAQs",
-      "contact-title": "Contacts",
-      "contact-blog": "Founder's blog",
-      "contact-news": "News on Hive",
-      "contact-email": "Email us"
+      "faq-title": "Čеsto postavljana pitanja",
+      "faqs": "Sva često postavljana pitanja",
+      "contact-title": "Kontakti",
+      "contact-blog": "Blog osnivača",
+      "contact-news": "Novosti na Hive",
+      "contact-email": "Pošaljite nam e-mail"
     },
     "faq": {
-      "page-title": "Ecency FAQ",
-      "page-sub-title": "Table of Contents",
-      "what-is-ecency-header": "What is Ecency?",
+      "page-title": "Ecency često postavljana pitanja",
+      "page-sub-title": "Sadržaj",
+      "what-is-ecency-header": "Šta je Ecency?",
       "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based social network - powered by <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency offers uncensored, free, limitless, rewarding platform for content creators.</p><p>Project was initiated and founded by <a href=\"/@good-karma\">@good-karma</a> in August 2016 as an alternative social network. Since then project has grown to much larger group of contributors (translators, testers, developers, influencers, content creators and consumers) who helped to shape Ecency.</p><p>Ecency helps onboarding masses into Blockchain technology where users are getting paid for their time, resources and learn while enjoying social aspects of blockchain. Through ease of use, users not only learn but also become investors, innovators of the technology and community.</p>",
-      "what-is-hive-header": "What is Hive blockchain?",
+      "what-is-hive-header": "Šta je Hive blockchain?",
       "what-is-hive-body": "<p>Hive is a blockchain that was designed to be fast, feeless, decentralized, uncensored platform for Web3.0 applications, with built-in features where stake holders can earn rewards by staking, curating, posting, playing games, trading - all without any middle man (decentralized). Tokens on Hive blockchain called HIVE, HIVE DOLLARS, HIVE POWER.</p>",
       "what-is-difference-header": "What's the difference between Ecency and other Hive interfaces?",
       "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\" loading=\"lazy\"/></p><p>The primary differences in all interfaces or applications are in their feature-set, use cases. Ecency offers website, mobile and desktop applications for ease of access and with best security in mind. Accessible, opensource and innovative, built and owned by users. Aspire for greatness!</p>",
-      "why-choose-ecency-header": "Why would I choose Ecency?",
+      "why-choose-ecency-header": "Zašto bih ja izabrao Ecency?",
       "why-choose-ecency-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjrzJAcJ4DvxvtqoPdzS9Aygf4MZ1PeE4goH6zWaeEFvafr9vGXWuou67Pbn44GweMyHV5DupM5q1cRvU85qdver?format=match&mode=fit\" loading=\"lazy\"/></p><p>Tailored feature set to empower you to create, inspire your audience and community. Ecency mobile application giving you on-go solution. With desktop app you are always sure to get uncensored content right from the blockchain, with website reach thousands of readers accross globe with best ranked content on search engines. State of art security measures so your keys will always stay encrypted and out of reach for ill-intentioned individuals. Fast and beautiful website, helps you to get discovered online and gain exposure for your content and gain loyal followers and readers. Build your community with Ecency today and take advantages of emerging blockchain technology and uncensored content, true free speech!</p>",
-      "how-ecency-works-header": "How does Ecency work?",
+      "how-ecency-works-header": "Kako Ecency radi?",
       "how-ecency-works-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjuZ3ksaZqEjfd9GadyKFE4bT7UP8qM1sF5W6U3cst4ekDsXfrQdcrjtdz6b5Ye2AfWNwGA5f8QqVXmed6NRfg1U?format=match&mode=fit\" loading=\"lazy\"/></p><p>Ecency stores and reads data from the blockchain, and thus data is accessible and uncensored. Ecency rewards content creators with built-in incentive mechanism of blockchain, with tokens (HIVE, HIVE DOLLARS, HIVE POWER) as well as Points. Tokens can be purchased and sold in major cryptocurrency exchanges (e.g. Binance, Bittrex). Points could be utilized within platform and traded for goods, services.</p>",
-      "how-to-join-header": "How to join Ecency?",
+      "how-to-join-header": "Kako se pridružiti Ecency?",
       "how-to-join-body": "<p>Go to <a href=\"/?referral=ecency\">https://ecency.com/?referral=ecency</a> and create an account. After signup you will receive email with further instructions. Your password is your master key to your account. Please store it safely, if you loose your password, you ultimately loose access to your account and your funds. Accounts cannot be deactivated or deleted, account names can not be changed as well. The account along with all of its activity is permanently stored in the blockchain. Without password, accounts cannot be restored, store your keys safely.</p>",
       "how-to-signin-header": "How to sign in to Ecency?",
       "how-to-signin-body": "<p><img src=\"https://images.ecency.com/p/7258xSVeJbKmTr9Z4jhbPhjS9pMWA2mTwBMDbXqk9G9wdMw2bwR4hXqRQt9S7UBFrBAWCYWddjn3G34ETv5KWB5KGmuZ8ixBB9oKHTFvjjnTkRLp4ttrFQtpgtNnRUEA9NtmyFmgyuuK4?format=match&mode=fit\" loading=\"lazy\"/></p><p>You can sign-in to Ecency by using your Username and Master password or by using Active Private Keys. We take security very seriously, that's why we never store your private keys, on mobile app they are encrypted with extra PIN code of your choice, on website they are never stored. You can also use <a href=\"https://hivesigner.com\">Hivesigner OAuth2</a> authentication service to easily login, manage and perform actions.</p>",
@@ -701,17 +701,17 @@
       "where-tokens-come-body": "<p><img src=\"https://images.ecency.com/p/7kq2TLHKEHhCCDwNZLfFLu7msWtbdFb7vZaJJ9Y13GAc18vfVNAj8ZctLWmsVfMCCFtwGdULbZKT89faeBymhPsySU5tp4RnvDsHz6ZBxXHWA4g34ck4LHnR2vGkqsHvjzhizhpV8K6JrQ4sy7cCgJQksUUYPKp4d9XbERHkjnZV3PTdhbiUZPYJ43RS8cQu2sEmUbAgqZExuYMGa46SDa4vCunH2w6oNpommW5L1CCdfwdgX5i9eCpcS5fHo4t8btjVE69edzrUN8anr6T3v8AFYHC?format=match&mode=fit\" loading=\"lazy\"/></p><p>The Hive network continually creates new digital tokens to reward content creators and curators. Some of the newly-created tokens are transferred to users who add value to platform by posting, commenting, and voting on other people's posts. The remainder is distributed to holders of HIVE POWER and the witnesses that secures the blockchain.</p>",
       "how-promotion-work-header": "How content promotion works?",
       "how-promotion-work-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfoi6H93UHPFEEQutPvax8LP1XqGWMa9geug5SBEEhLUEHKVvSyBfzhrBm9J4uvmrn28AtPhmwcKx?format=match&mode=fit\" loading=\"lazy\"/></p><p>Promoting content with Points is easiest way to get more exposure. Promotions have certain time period and shuffled across the feeds. Any post, can be promoted to get more exposure and engagement.</p>",
-      "how-boosting-work-header": "How content boosting works?",
+      "how-boosting-work-header": "Kako funkcioniše pojačavanje sadržaja?",
       "how-boosting-work-body": "<p>Points can be used for boosting content (post and comments). Boosting requests are manually reviewed by our moderators and curators which might take upto 24 hours. <p>As part of the qualities check, we may consider: a) Content is original content, b) Not detected by cheetah, mackbot, hivewatchers, or any other blacklists etc. c) User is not in Ecency blacklist due to abusive behavior.</p>Boosting does not guarantee curation, if content is not curated within 24 hours Points will be refunded.</p>",
       "how-to-transfer-header": "How to transfer blockchain tokens?",
       "how-to-transfer-body": "<p>After login, you will find Wallet page in top header on website and desktop app or in Profile page, bottom navigation bar on mobile app. In wallet page you can initiate transfer of any token you hold to another user or exchange accounts, click on arrow next to your balance and find transfer operations. Transfers are irreversible because they are registered on blockchain, make sure to send correct recipient.</p>",
-      "how-see-rewards-header": "How do I see my post rewards?",
+      "how-see-rewards-header": "Kako da vidim nagrade za moju objavu?",
       "how-see-rewards-body": "<p><img src=\"https://images.ecency.com/p/3W72119s5BjW4PvRk9nXBzqrPWMsMTjNrXDPFFf11iYhySeELMe77idrZHBPmyaqFX6CV72hBLB5qFhwVhGoAATydoFxAF7oCwBt1ztp6eS9r5us4pm7iN?format=match&mode=fit\" loading=\"lazy\"/></p><p>In Wallet page (in top header on website and desktop app, bottom navigation bar on mobile app), you can see Curation rewards (the rewards earned for upvoting posts and comments) and Author rewards (the rewards earned by your own posts and comments)</p><p>You can also view the same information for other users by visiting their wallet profile.</p>",
-      "how-dhf-work-header": "How DHF works?",
+      "how-dhf-work-header": "Kako DHF radi?",
       "how-dhf-work-body": "<p>Anyone can create a proposal and convince community to vote on their proposal to get funded. Before creating proposal, normal post should be published on blockchain and it is recommended to gather feedback before creating proposal. Proposal creation has fee of 10 HBD + 1 HBD for each day it lasts over 60 days.</p><p>Once proposal reaches certain threshold of tallied votes, it will start receiving funds each hour. If proposal falls below threshold, system will halt funding for that proposal. You can vote as many proposals as you want, there are no limits. Proposal cannot be edited, but can be deleted/withdrawn by creator.</p>",
-      "when-claim-rewards-header": "When can I claim my rewards?",
+      "when-claim-rewards-header": "Kada mogu zahtevati svoje nagrade?",
       "when-claim-rewards-body": "<p>Posts and comments remain active for 7 days and rewards are fluctuates depending on votes and market price of token, that is why rewards are approximated as pending reward. When the period is over, pending reward changes to actual reward and you are able to claim earned rewards. In your Wallet, click the Claim Rewards button to add the tokens to your account.</p>",
-      "what-are-rc-header": "What are Resource Credits?",
+      "what-are-rc-header": "Šta su resurs krediti?",
       "what-are-rc-body": "<p>Transacting on the Hive blockchain has zero fees, transaction rate-limiting is employed to safeguard the blockchain from spam attacks. Every action that you take on the blockchain will consume a small amount of Resource Credits. This includes posting, commenting, voting, transferring tokens, etc. Viewing content does not consume Resource Credits.</p><p>Every user has a limited amount of Resource Credits to use each week. The more transactions a user does, the less Resource Credits they will have left (until they recharge). Users with more HIVE POWER will have more Resource Credits.</p><p>If you run out of Resource Credits, you will be unable to transact with the blockchain until your Resource Credits recharge (happens automatically) or you acquire additional HIVE POWER to increase your Resource Credit balance or you can <a href=\"/faq#how-boost-account\">request Boosting account from Ecency</a> to receive temporary delegation.</p>",
       "how-boost-account-header": "How to request account boosting?",
       "how-boost-account-body": "<p>If your account is low on <a href=\"/faq#what-are-rc\">Resource Credits</a>, you can request account boosting from Ecency. You will receive temporary delegation which should boost your account to perform more activities on blockchain. You can find account boosting feature in Points options.</p>",
