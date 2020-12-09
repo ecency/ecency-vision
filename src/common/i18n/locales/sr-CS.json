@@ -322,7 +322,7 @@
     "notifications": "Upozorenja obaveštenja",
     "currency": "Valuta",
     "language": "Jezik",
-    "updated": "Preference updated!"
+    "updated": "Podešavanja su ažurirana!"
   },
   "wallet": {
     "unclaimed-rewards": "Nepotvrđene nagrade",
@@ -331,9 +331,9 @@
     "estimated": "Procenjena vrednost naloga",
     "estimated-description": "Procenjena vrednost se zasniva na sedmodnevnoj prosečnoj vredosti HIVE.",
     "hive": "HIVE",
-    "hive-description": "HIVE are tradeable tokens that may be transferred at anytime.HIVE can be converted to Hive Power in a process called powering up.",
+    "hive-description": "HIVE su tokeni koje možete razmenjivati u svakom trenutku. HIVE se može pretvoriti u Hive snagu u procesu zvanom pojačavanje snage.",
     "hive-power": "HIVE SNAGA",
-    "hive-power-description": "Hive Power are influence tokens that earn more power for holding long term and voting on posts. The more Hive Power one holds, the more one can influence other’s rewards and earn rewards for accurate voting.",
+    "hive-power-description": "Hive snaga su tokeni uticaja koji zarađuju više snage kod dugoročnog zadržavanja i glasanja na objavama. Što više Hive snage imate, više možete uticati na nagrade drugih i više ćete zaraditi na vašim glasovima.",
     "hive-power-delegated": "Delegirana Hive Snaga",
     "hive-power-received": "Primljena Hive snaga",
     "next-power-down-amount": "Iznos sledećeg smanjenja snage",
@@ -358,10 +358,10 @@
     "earn-points": "Kako zaraditi više bodova",
     "post-desc": "Možete zaraditi poene redovnim objavljivanjem. Objavljivanje vam daje 15 poena.",
     "comment-desc": "Svaki vaš komentar pomaže da povećate svoju publiku i steknete prijateljstvo, ali takođe vam donosi i 5 poena.",
-    "checkin-desc": "Checking in on Ecency gives you 0.25 points and helps you stay connected with your friends.",
+    "checkin-desc": "Prijavljivanje na Ecency vam daje 0.25 poena i pomaže vam da ostanete povezani sa prijateljima.",
     "vote-desc": "Glasanjem dajete nagradu drugim autorima i pokazujete svoju zahvalnost, ali i takođe zarađujete 0.01 x težina glasa poena.",
     "reblog-desc": "  Podelite objavu koju volite sa prijateljima i zaradite 1 poen.",
-    "login-desc": "When you login into Ecency you are entitled to earn 100 points automatically.",
+    "login-desc": "Kada se prijavite u Ecency imate pravo da automatski zaradite 100 poena.",
     "checkin-extra-desc": "Consistent use of app gives you extra chances to earn more 10 points, be more active and earn more.",
     "delegation-desc": "Možete zaraditi ~50 poena dnevno za svaku delegaciju od 1000HP.",
     "history": "Istorija",
