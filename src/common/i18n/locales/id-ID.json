@@ -95,8 +95,8 @@
     "submit": "Lanjutkan",
     "success": "Kami sudah mengirimkan email ke {{email}}.",
     "success-2": "Ikuti petunjuk melengkapi proses pendaftaran.",
-    "login-text-1": "Do you have an account?",
-    "login-text-2": "Login"
+    "login-text-1": "Apakah anda memiliki akun?",
+    "login-text-2": "Masuk"
   },
   "trending-tags": {
     "title": "Topik"
@@ -142,8 +142,8 @@
     "description-user-feed": "{{u}} pengumpan"
   },
   "market-data": {
-    "title": "Market price",
-    "credits": "market data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
+    "title": "Harga pasar",
+    "credits": "data pasar diambil dari <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "list-style": {
     "title": "Gaya daftar kotak"
@@ -192,12 +192,12 @@
   },
   "community": {
     "page-description": "{{f}} topik",
-    "subscribe": "Join",
+    "subscribe": "Gabung",
     "subscribed": "Terhubung",
     "unsubscribe": "Keluar",
     "post": "Postingan Baru",
     "posts": "Postingan",
-    "subscribers": "Members",
+    "subscribers": "Anggota",
     "activities": "Aktifitas",
     "roles-title": "Peran Pengguna",
     "roles-account": "Akun",
@@ -242,13 +242,13 @@
   "communities": {
     "title": "Komunitas",
     "description": "Komunitas online terbaik yang dihargai, terdesentralisasi, tidak berubah, dan bermanfaat",
-    "n-subscribers": "{{n}} members",
+    "n-subscribers": "{{n}} anggota",
     "n-authors": "{{n}} poster",
     "n-posts": "{{n}} postingan",
     "admins": "admin:",
     "sort-hot": "Hebat",
     "sort-rank": "Ranking",
-    "sort-subs": "Members",
+    "sort-subs": "Anggota",
     "sort-new": "Baru",
     "no-results": "Tidak hasil ditemukan",
     "create": "Buatlah komunitas"
@@ -298,14 +298,14 @@
     "section-replies": "Balasan",
     "section-communities": "Komunitas",
     "section-wallet": "Dompet",
-    "section-settings": "Settings",
-    "communities-title": "Membership",
+    "section-settings": "Pengaturan",
+    "communities-title": "Keanggotaan",
     "create-community": "Buatlah sebuah komunitas",
-    "witnesses": "Witnesses",
-    "proposals": "Proposals"
+    "witnesses": "Saksi",
+    "proposals": "Proposal"
   },
   "profile-edit": {
-    "title": "Profile",
+    "title": "Profil",
     "name": "Tampilkan Nama",
     "about": "Tentang",
     "cover-image": "Gambar Sampul",
@@ -318,7 +318,7 @@
     "uploaded": "Gambar Diunggah"
   },
   "preferences": {
-    "title": "Preferences",
+    "title": "Pengaturan",
     "notifications": "Notification alerts",
     "currency": "Currency",
     "language": "Language",
