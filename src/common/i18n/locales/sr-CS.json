@@ -228,7 +228,7 @@
     "username": "Korisničko ime",
     "role": "Uloga",
     "user-not-found": "Korisnik ne postoji!",
-    "explanations": "<h3>Role Permissions</h3><p><strong>Owner</strong> - assign admins</p><p><strong>Admin</strong> - edit settings, assign mods</p><p><strong>Moderator</strong> - mute, pin, set user titles</p><p><strong>Member</strong> - listed on leadership team</p><p><strong>Guest</strong> - default; can post and comment</p><p><strong>Muted</strong> - new posts automatically muted</p>"
+    "explanations": "<h3>Dozvole za uloge</h3><p><strong>Vlasnik</strong> - dodeliti administratore</p><p><strong>Administrator</strong> - uredi podešavanja, dodeli modove</p><p><strong>Moderator</strong> - utišaj, zakači, podesi korisničke naslove</p><p><strong>Član</strong> - navedeni u liderskom timu</p><p><strong>Gost</strong> - uobičajeno; može da objavljuje i komentariše</p><p><strong>Utišani</strong> - nova objava automatski utišana</p>"
   },
   "community-settings": {
     "dialog-title": "Podešavanja Zajednice",
@@ -242,13 +242,13 @@
   "communities": {
     "title": "Zajednice",
     "description": "Najbolje mrežne, decentralizovane, nepromenljive zajednice koje nagrađuju",
-    "n-subscribers": "{{n}} members",
+    "n-subscribers": "{{n}} članovi",
     "n-authors": "{{n}} objavljivača",
     "n-posts": "{{n}} objava",
     "admins": "administratori:",
     "sort-hot": "Aktuelno",
     "sort-rank": "Rang",
-    "sort-subs": "Members",
+    "sort-subs": "Članovi",
     "sort-new": "Novo",
     "no-results": "Nema rezultata",
     "create": "Napravi zajednicu"
@@ -299,7 +299,7 @@
     "section-communities": "Zajednice",
     "section-wallet": "Novčanik",
     "section-settings": "Подешавања",
-    "communities-title": "Membership",
+    "communities-title": "Članstvo",
     "create-community": "Napravite zajednicu",
     "witnesses": "Svedoci (witnesses)",
     "proposals": "Predlozi"
@@ -326,7 +326,7 @@
   },
   "wallet": {
     "unclaimed-rewards": "Nepotvrđene nagrade",
-    "claim-reward-balance": "Claim reward balance",
+    "claim-reward-balance": "Zatraži bilans nagrada",
     "claim-reward-balance-ok": "Zahtevani saldo nagrada",
     "estimated": "Procenjena vrednost naloga",
     "estimated-description": "Procenjena vrednost se zasniva na sedmodnevnoj prosečnoj vredosti HIVE.",
@@ -400,11 +400,11 @@
   "redeem-common": {
     "balance": "Stanje",
     "post": "Objava",
-    "post-hint": "Autocomplete input",
-    "post-placeholder": "username/permlink",
+    "post-hint": "Autokompletirani ulaz",
+    "post-placeholder": "korisničko ime/permanentna veza",
     "post-error": "Nevažeća adresa objave",
     "post-error-exists": "Objava je već promovisana",
-    "success-message": "Your request submitted. It will be activated in a couple minutes."
+    "success-message": "Vaš zahtev je podnet. Biće aktivirano za nekoliko minuta."
   },
   "transfer": {
     "transfer-title": "Prenesi u korisnički nalog",
@@ -421,8 +421,8 @@
     "from": "Od",
     "to": "Za",
     "to-placeholder": "korisničko ime",
-    "to-not-found": "The user that you are trying to transfer funds to does not exist!",
-    "to-bad-actor": "Use caution sending to this account. Please double check your spelling for possible phishing.",
+    "to-not-found": "Korisnik kome želite poslati sredstva ne postoji!",
+    "to-bad-actor": "Budite oprezni pri slanju na ovaj račun. Molim, dodatno proverite slova zbog moguće prevare.",
     "amount": "Iznos",
     "amount-placeholder": "iznos",
     "wrong-amount": "Pogrešna vrednost iznosa",
@@ -435,7 +435,7 @@
     "confirm-sub-title": "Molimo, proverite da li je sve ispravno",
     "confirm": "Potvrdi",
     "recent-transfers": "Nedavni prenosi",
-    "transfer-summary": "Transferred <span class=\"amount\">{{amount}}</span> From <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
+    "transfer-summary": "Prebačeno <span class=\"amount\">{amount}</span> od <span class=\"from-user\">{from}</span> za <span class=\"to-user\">{to}</span>",
     "reset": "Još jedan prenos"
   },
   "trx-common": {
@@ -596,21 +596,21 @@
   },
   "discover": {
     "title": "Otkrijte",
-    "description": "Discover top online users"
+    "description": "Otkrijte vrhunske korisnike na mreži"
   },
   "search-page": {
     "title": "Pretraga",
     "description": "Pronađi necenzurisan sadržaj, zajednice i korisnike",
-    "n-results-for-q": "{{n}} results",
+    "n-results-for-q": "{{n}} rezultati",
     "no-result": "Nema rezultata",
-    "sort-by": "sort by",
+    "sort-by": "sortiraj po",
     "sort-popularity": "Popularnost",
     "sort-relevance": "Relevantnost",
     "sort-newest": "Datum"
   },
   "witnesses": {
     "page-title": "Svedoci (witnesses)",
-    "page-description": "Consensus block producers selection",
+    "page-description": "Izbor proizvođača koncenzus bloka",
     "page-description-long": "Role of witnesses or block producers in Hive blockchain is to act as the network's governance body. Community elects them to represent their voice and each user can elect up to 30 witnesses. Top 20 witnesses are producing blocks every minute while rest remain as backup witness and gets randomized chance every minute. This role is integral part of consensus mechanism blockchain runs on and recommend user engagement to vote on trusted witnesses.",
     "remaining": "<span>{{n}}</span> of {{max}} votes remaining",
     "list-rank": "Rang",
@@ -631,19 +631,19 @@
   "proposals": {
     "page-title": "Predlozi",
     "page-description": "The Decentralized Hive Fund (DHF) is an on-chain funding mechanism that allows anyone to submit a proposal and get funding once community votes pass certain threshold. To learn more read our <a href=\"/faq#how-dhf-work\">FAQ</a>.",
-    "by": "by",
-    "for": "for",
-    "duration-days": "{{n}} days",
-    "daily-pay": "Daily {{n}}",
-    "votes": "Votes: {{n}}",
-    "status-active": "active",
-    "status-expired": "expired",
-    "status-inactive": "upcoming",
-    "remaining-days": "Remaining: {{n}} days",
-    "filter-all": "All",
-    "filter-active": "Active",
-    "filter-inactive": "Upcoming",
-    "filter-team": "Ecency Projects",
+    "by": "od",
+    "for": "za",
+    "duration-days": "{{n}} dana",
+    "daily-pay": "Dnevno {{n}}",
+    "votes": "Glasovi: {{n}}",
+    "status-active": "aktivno",
+    "status-expired": "isteklo",
+    "status-inactive": "predstojeće",
+    "remaining-days": "Preostalo: {{n}} dana",
+    "filter-all": "Sve",
+    "filter-active": "Aktivan",
+    "filter-inactive": "Predstojeće",
+    "filter-team": "Ecency Projekti",
     "return-description": "This is the base return proposal. Every proposal with less votes will not receive funds.",
     "votes-dialog-title": "Glasovi za predloge #{{n}}",
     "see-all": "pogledajte sve predloge"
@@ -713,7 +713,7 @@
       "when-claim-rewards-body": "<p>Posts and comments remain active for 7 days and rewards are fluctuates depending on votes and market price of token, that is why rewards are approximated as pending reward. When the period is over, pending reward changes to actual reward and you are able to claim earned rewards. In your Wallet, click the Claim Rewards button to add the tokens to your account.</p>",
       "what-are-rc-header": "Šta su resurs krediti?",
       "what-are-rc-body": "<p>Transacting on the Hive blockchain has zero fees, transaction rate-limiting is employed to safeguard the blockchain from spam attacks. Every action that you take on the blockchain will consume a small amount of Resource Credits. This includes posting, commenting, voting, transferring tokens, etc. Viewing content does not consume Resource Credits.</p><p>Every user has a limited amount of Resource Credits to use each week. The more transactions a user does, the less Resource Credits they will have left (until they recharge). Users with more HIVE POWER will have more Resource Credits.</p><p>If you run out of Resource Credits, you will be unable to transact with the blockchain until your Resource Credits recharge (happens automatically) or you acquire additional HIVE POWER to increase your Resource Credit balance or you can <a href=\"/faq#how-boost-account\">request Boosting account from Ecency</a> to receive temporary delegation.</p>",
-      "how-boost-account-header": "How to request account boosting?",
+      "how-boost-account-header": "Kako da zatražite pojačanje?",
       "how-boost-account-body": "<p>If your account is low on <a href=\"/faq#what-are-rc\">Resource Credits</a>, you can request account boosting from Ecency. You will receive temporary delegation which should boost your account to perform more activities on blockchain. You can find account boosting feature in Points options.</p>",
       "what-spam-abuse-header": "What is considered spam or abuse?",
       "what-spam-abuse-body": "<p><img src=\"https://images.ecency.com/p/3jpR3paJ37V8XPrHkfZdMt57jY6pRt6zEt5iRJV9pSw4Mez3Hut8U6RWvWLA7cFYEa1bxveXeasNfZApzrcLYLx8cz84kBEKak1KkewE2ZqE1QRRkF4eqRH3vWVqZB9WuNbzE?format=match&mode=fit\" loading=\"lazy\"/></p><p><ul><li>Plagiarized posts or copied content.</li><li>Leaving nearly identical or materially similar comments on multiple posts.</li><li>Using tags that are unrelated to the post.</li><li>Threatening users with any type of physical violence.</li><li>Not citing sources when using someone else’s material.</li><li>Posting ‘not safe for work’ content without using the “nsfw” tag.</li><li>Scams or Fraudulent offers.</li></ul></p>",
