@@ -714,28 +714,28 @@
       "what-are-rc-header": "O que são Créditos de Recurso?",
       "what-are-rc-body": "<p>Transcações na blockchain do Hive tem taxas zero, a taxa de transação é usada para proteger a blockchain contra ataques de spam. Cada ação que você tomar na blockchain consumirá uma pequena quantidade de Créditos de Recurso. Isso inclui postagens, comentários, votos, transferência de tokens, etc. Conteúdo visualizado não consome créditos de recursos.</p><p>Todo o utilizador tem uma quantidade limitada de Créditos de Recurso para usar cada semana. Quanto mais transações um utilizador fizer, menos Créditos de Recurso eles terão deixado (até que eles recarregem). Usuários com mais HIVE POWER terão mais Créditos de Recurso.</p><p>Se você ficar sem Créditos de Recurso, você não será capaz de transacionar com a blockchain até a recarga de seus Créditos de Recursos (acontece automaticamente) ou adquira mais fundos para o VIHE POWER para aumentar o seu saldo de Crédito de Recurso ou você pode <a href=\"/faq#how-boost-account\">solicitar uma conta de Otimização de Ecency</a> para receber delegação temporária.</p>",
       "how-boost-account-header": "Como solicitar o aumento de conta?",
-      "how-boost-account-body": "<p>If your account is low on <a href=\"/faq#what-are-rc\">Resource Credits</a>, you can request account boosting from Ecency. You will receive temporary delegation which should boost your account to perform more activities on blockchain. You can find account boosting feature in Points options.</p>",
-      "what-spam-abuse-header": "What is considered spam or abuse?",
-      "what-spam-abuse-body": "<p><img src=\"https://images.ecency.com/p/3jpR3paJ37V8XPrHkfZdMt57jY6pRt6zEt5iRJV9pSw4Mez3Hut8U6RWvWLA7cFYEa1bxveXeasNfZApzrcLYLx8cz84kBEKak1KkewE2ZqE1QRRkF4eqRH3vWVqZB9WuNbzE?format=match&mode=fit\" loading=\"lazy\"/></p><p><ul><li>Plagiarized posts or copied content.</li><li>Leaving nearly identical or materially similar comments on multiple posts.</li><li>Using tags that are unrelated to the post.</li><li>Threatening users with any type of physical violence.</li><li>Not citing sources when using someone else’s material.</li><li>Posting ‘not safe for work’ content without using the “nsfw” tag.</li><li>Scams or Fraudulent offers.</li></ul></p>",
-      "can-link-post-header": "Can I request adding backlink to my website from Ecency team?",
-      "can-link-post-body": "<p>All the content on our site is created by our users and we don't modify or able to add backlinks. You are free to contact author of the post or <a href=\"/?referral=ecency\">Signup</a> to open your own blog and community, publish articles to create backlinks for free.</p>",
-      "can-guest-post-header": "Is it possible to guest post on your website?",
-      "can-guest-post-body": "<p>Posting on Ecency is simple and easy, <a href=\"/?referral=ecency\">Signup</a> to open your own blog and community, start posting your content.</p>"
+      "how-boost-account-body": "<p>Se sua conta está com pouco valor de <a href=\"/faq#what-are-rc\">Créditos de Recursos</a>, você pode solicitar o aumento de conta de Ecency. Você receberá delegação temporária que deve impulsionar sua conta para executar mais atividades na blockchain. Você pode encontrar conta com otimização de recursos nas opções de Pontos</p>",
+      "what-spam-abuse-header": "O que é considerado spam ou abuso?",
+      "what-spam-abuse-body": "<p><img src=\"https://images.ecency.com/p/3jpR3paJ37V8XPrHkfZdMt57jY6pRt6zEt5iRJV9pSw4Mez3Hut8U6RWvWLA7cFYEa1bxveXeasNfZApzrcLYLx8cz84kBEKak1KkewE2ZqE1QRRkF4eqRH3vWVqZB9WuNbzE?format=match&mode=fit\" loading=\"lazy\"/></p><p><ul><li>Postagens plantadas ou o conteúdo copiado.</li><li>Deixando comentários quase idênticos ou materialmente semelhantes em várias publicações.</li><li>Usando tags que não estão relacionadas com o post.</li><li>Ameaçar os utilizadores com qualquer tipo de violência física.</li><li>Não citando fontes quando estiver usando o material de outra pessoa.</li><li>Postagens de conteúdo 'não são seguras para trabalho' sem usar a tag \"nsfw\".</li><li>Scams ou Ofertas Fraudulentas.</li></ul></p>",
+      "can-link-post-header": "Posso solicitar a adição de backlink para o meu site a partir da equipe da Ecency?",
+      "can-link-post-body": "<p>Todo o conteúdo em nosso site é criado por nossos utilizadores e não modificamos ou podemos adicionar backlinks. Você é livre para contatar o autor do post ou <a href=\"/?referral=ecency\">Cadastre-se</a> para abrir seu próprio blog e comunidade, publicar artigos para criar backlinks gratuitamente.</p>",
+      "can-guest-post-header": "É possível visitar a postagem em seu site?",
+      "can-guest-post-body": "<p>Postar na Ecency é simples e fácil, <a href=\"/?referral=ecency\">Cadastre-se</a> para abrir seu próprio blog e comunidade, começar a postar seu conteúdo.</p>"
     }
   },
   "context-menu": {
-    "cut": "Cut",
-    "copy": "Copy",
-    "paste": "Paste",
-    "open-image-browser": "Open image in browser",
-    "copy-image-url": "Copy image url"
+    "cut": "Cortar",
+    "copy": "Copiar",
+    "paste": "Colar",
+    "open-image-browser": "Abrir imagem no navegador",
+    "copy-image-url": "Copiar url da Imagem"
   },
   "updater": {
-    "new-version-available": "New version is available",
-    "update": "Update",
-    "dismiss": "Dismiss",
-    "downloading": "Downloading new version...",
-    "download-completed": "Download is completed",
-    "restart": "Restart"
+    "new-version-available": "Nova versão disponível",
+    "update": "Atualizar",
+    "dismiss": "Descartar",
+    "downloading": "Transferindo nova versão...",
+    "download-completed": "Transferência terminada",
+    "restart": "Reiniciar"
   }
 }
