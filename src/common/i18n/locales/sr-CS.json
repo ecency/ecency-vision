@@ -159,7 +159,7 @@
   },
   "entry": {
     "via-app": "putem <span class=\"app-name\">{{app}}</span>",
-    "comment-entry-title": "You are viewing a single comment's thread from: ",
+    "comment-entry-title": "Gledate nit jednog komentara sa: ",
     "comment-entry-go-root": "Pogledaj ceo kontekst",
     "comment-entry-go-parent": "Pogledaj nadređeni komentar",
     "show-history": "Prikaži istoriju uređivanja",
@@ -192,12 +192,12 @@
   },
   "community": {
     "page-description": "{{f}} teme",
-    "subscribe": "Join",
+    "subscribe": "Pridruži se",
     "subscribed": "Pridružio/la se",
     "unsubscribe": "Napusti",
     "post": "Nova objava",
     "posts": "Objave",
-    "subscribers": "Members",
+    "subscribers": "Članovi",
     "activities": "Aktivnosti",
     "roles-title": "Korisničke uloge",
     "roles-account": "Nalog",
