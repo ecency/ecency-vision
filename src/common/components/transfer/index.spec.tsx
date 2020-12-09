@@ -2,12 +2,13 @@ import React from "react";
 
 import {Transfer, TransferAsset, TransferMode} from "./index";
 
-import {globalInstance} from "../../helper/test-helper";
+import {globalInstance, dynamicPropsIntance1} from "../../helper/test-helper";
 
 import TestRenderer from "react-test-renderer";
 
 const defProps = {
     global: globalInstance,
+    dynamicProps: dynamicPropsIntance1,
     users: [],
     activeUser: {
         username: 'foo',
@@ -93,7 +94,7 @@ describe('(2) Transfer to savings', () => {
 
 describe('(3) Convert', () => {
     const mode: TransferMode = 'convert';
-    const asset: TransferAsset = 'HIVE';
+    const asset: TransferAsset = 'HBD';
 
     const props = {
         mode,

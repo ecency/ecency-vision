@@ -680,12 +680,6 @@ exports[`(2) Transfer to savings (1) Step 1 1`] = `
             >
               HBD
             </a>
-            <a
-              className="asset "
-              onClick={[Function]}
-            >
-              POINT
-            </a>
           </div>
         </div>
       </div>
@@ -860,28 +854,6 @@ exports[`(3) Convert (1) Step 1 1`] = `
               type="text"
               value="0.001"
             />
-          </div>
-          <div
-            className="asset-switch"
-          >
-            <a
-              className="asset "
-              onClick={[Function]}
-            >
-              HIVE
-            </a>
-            <a
-              className="asset selected"
-              onClick={[Function]}
-            >
-              HBD
-            </a>
-            <a
-              className="asset "
-              onClick={[Function]}
-            >
-              POINT
-            </a>
           </div>
         </div>
       </div>
@@ -1079,12 +1051,6 @@ exports[`(4) Withdraw saving (1) Step 1 1`] = `
               onClick={[Function]}
             >
               HBD
-            </a>
-            <a
-              className="asset "
-              onClick={[Function]}
-            >
-              POINT
             </a>
           </div>
         </div>

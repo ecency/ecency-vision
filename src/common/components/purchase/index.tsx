@@ -3,6 +3,7 @@ import React, {Component} from "react";
 import {Form, FormControl, Modal, Button} from "react-bootstrap";
 
 import {Global} from "../../store/global/types";
+import {DynamicProps} from "../../store/dynamic-props/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {Transactions} from "../../store/transactions/types";
 import {Account} from "../../store/accounts/types";
@@ -18,6 +19,7 @@ import formattedNumber from "../../util/formatted-number";
 
 interface Props {
     global: Global;
+    dynamicProps: DynamicProps;
     activeUser: ActiveUser;
     transactions: Transactions;
     signingKey: string;

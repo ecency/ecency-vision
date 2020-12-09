@@ -348,7 +348,8 @@
     "convert": "Convert",
     "power-up": "Power up",
     "withdraw-hive": "Withdraw Hive",
-    "withdraw-hbd": "Withdraw Hive Dollar"
+    "withdraw-hbd": "Withdraw Hive Dollar",
+    "delegate": "Delegate"
   },
   "points": {
     "get": "BUY POINTS",
@@ -418,6 +419,8 @@
     "convert-title": "Convert",
     "power-up-sub-title": "Influence tokens which give you more control over post payouts and allow you to earn on curation rewards.",
     "convert-sub-title": "Only recommended when HBD is below $1. You will get $1 of HIVE in 3.5 days.",
+    "delegate-title": "Delegate",
+    "delegate-sub-title": "Delegate Hive Power",
     "from": "From",
     "to": "To",
     "to-placeholder": "username",

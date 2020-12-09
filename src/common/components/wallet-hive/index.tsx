@@ -271,7 +271,29 @@ export class WalletHive extends Component<Props, State> {
                             </div>
 
                             <div className="balance-values">
-                                <div className="amount">{formattedNumber(vestsToSp(vestingShares, hivePerMVests), {suffix: "HP"})}</div>
+                                <div className="amount">
+                                    {(() => {
+                                        if (isMyPage) {
+                                            const dropDownConfig = {
+                                                history: this.props.history,
+                                                label: '',
+                                                items: [
+                                                    {
+                                                        label: _t('wallet.delegate'),
+                                                        onClick: () => {
+                                                            this.openTransferDialog('delegate', 'HP');
+                                                        }
+                                                    },
+                                                ],
+                                            };
+                                            return <div className="amount-actions">
+                                                <DropDown {...dropDownConfig} float="right"/>
+                                            </div>;
+                                        }
+                                        return null;
+                                    })()}
+                                    {formattedNumber(vestsToSp(vestingShares, hivePerMVests), {suffix: "HP"})}
+                                </div>
 
                                 {vestingSharesDelegated > 0 && (
                                     <div className="amount amount-passive delegated-shares">
