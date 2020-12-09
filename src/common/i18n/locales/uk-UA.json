@@ -114,14 +114,14 @@
   },
   "bookmark-btn": {
     "add": "Add to bookmarks",
-    "added": "Added to bookmarks",
-    "delete": "Remove from bookmarks",
-    "deleted": "Removed from bookmarks"
+    "added": "Додано до закладок",
+    "delete": "Видалити з закладок",
+    "deleted": "Видалено із закладок"
   },
   "entry-reblog": {
-    "reblog": "Reblog",
-    "confirm-title": "Reblog to @{{n}}'s blog?",
-    "confirm-ok": "Reblog",
+    "reblog": "Репост",
+    "confirm-title": "Репост до блогу @{{n}}?",
+    "confirm-ok": "Репост",
     "success": "Reblogged!"
   },
   "entry-payout": {
