@@ -1,6 +1,6 @@
 {
   "g": {
-    "edit": "Uredi",
+    "edit": "Uredite",
     "search": "Pretraži",
     "downloads": "Preuzimanja",
     "login": "Prijava",
@@ -680,7 +680,7 @@
       "page-title": "Ecency često postavljana pitanja",
       "page-sub-title": "Sadržaj",
       "what-is-ecency-header": "Šta je Ecency?",
-      "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based social network - powered by <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency offers uncensored, free, limitless, rewarding platform for content creators.</p><p>Project was initiated and founded by <a href=\"/@good-karma\">@good-karma</a> in August 2016 as an alternative social network. Since then project has grown to much larger group of contributors (translators, testers, developers, influencers, content creators and consumers) who helped to shape Ecency.</p><p>Ecency helps onboarding masses into Blockchain technology where users are getting paid for their time, resources and learn while enjoying social aspects of blockchain. Through ease of use, users not only learn but also become investors, innovators of the technology and community.</p>",
+      "what-is-ecency-body": "<p>Ecency je <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> bazirana socijalna mreža - koju pokreće <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency nudi necenzurisanu, besplatnu, neograničenu platformu koja nagrađuje kreatore sadržaja.</p><p>Projekat je pokrenut i osnovan od strane <a href=\"/@good-karma\">@good-karma</a> u Avgustu 2016 kao alternativvna socijalna mreža. Od tada projekat je narastao do mnogo veće grupe saradnika (prevodioca, testera, programera, influensera, kreatora sadržaja i korisnika) koji su pomogli da se oblikuje Ecency.</p><p>Ecency pomaže uključivanje masa u blockchain tehnologiju, gde su korisnici plaćeni za svoje vreme, resurse i učenje dok uživaju u društvenim aspektima blockchain-a. Zahvaljujući jednostavnosti upotrebe, korisnici ne samo da uče, već postaju i investitori, inovatori tehnologije i zajednice.</p>",
       "what-is-hive-header": "Šta je Hive blockchain?",
       "what-is-hive-body": "<p>Hive is a blockchain that was designed to be fast, feeless, decentralized, uncensored platform for Web3.0 applications, with built-in features where stake holders can earn rewards by staking, curating, posting, playing games, trading - all without any middle man (decentralized). Tokens on Hive blockchain called HIVE, HIVE DOLLARS, HIVE POWER.</p>",
       "what-is-difference-header": "Koja je razlika između Ecency i ostalih Hive pristupa?",
@@ -693,8 +693,8 @@
       "how-to-join-body": "<p>Go to <a href=\"/?referral=ecency\">https://ecency.com/?referral=ecency</a> and create an account. After signup you will receive email with further instructions. Your password is your master key to your account. Please store it safely, if you loose your password, you ultimately loose access to your account and your funds. Accounts cannot be deactivated or deleted, account names can not be changed as well. The account along with all of its activity is permanently stored in the blockchain. Without password, accounts cannot be restored, store your keys safely.</p>",
       "how-to-signin-header": "Kako se prijaviti u Ecency?",
       "how-to-signin-body": "<p><img src=\"https://images.ecency.com/p/7258xSVeJbKmTr9Z4jhbPhjS9pMWA2mTwBMDbXqk9G9wdMw2bwR4hXqRQt9S7UBFrBAWCYWddjn3G34ETv5KWB5KGmuZ8ixBB9oKHTFvjjnTkRLp4ttrFQtpgtNnRUEA9NtmyFmgyuuK4?format=match&mode=fit\" loading=\"lazy\"/></p><p>You can sign-in to Ecency by using your Username and Master password or by using Active Private Keys. We take security very seriously, that's why we never store your private keys, on mobile app they are encrypted with extra PIN code of your choice, on website they are never stored. You can also use <a href=\"https://hivesigner.com\">Hivesigner OAuth2</a> authentication service to easily login, manage and perform actions.</p>",
-      "how-referrals-work-header": "How referral system work on Ecency?",
-      "how-referrals-work-body": "<p>Referral system is simple, you can invite your friends by adding your username in this link https://ecency.com/?referral=username and share it with your friends. Once your friends join Ecency and earn their first 250 Points, you will earn 100 Points. There is no limits on referrals and its reward.</p>",
+      "how-referrals-work-header": "Kako funkcioniše sistem preporuke na Ecency?",
+      "how-referrals-work-body": "<p>Sistem preporuka je jednostavan, možete pozvati svoje prijatelje dodavanjem svog korisničkog imena na ovaj link https://ecency.com/?referral=username i podeliti ga sa svojim prijateljima. Jednom kada se vaši prijatelji pridruže Ecency i steknu prvih 250 poena, vi ćete zaraditi 100 poena. Nema ograničenja za preporuke i njihove nagrade</p>",
       "what-is-points-header": "Šta su Ecency poeni i kako ih koristiti?",
       "what-is-points-body": "<p>Ecency Points are continually minted and rewarded for all users for various social activities they perform on website, mobile or desktop app. Points can be used for promoting, boosting your content, can even be transferred or gifted to another user. You can also purchase Points with our mobile apps.</p>",
       "where-tokens-come-header": "Odakle dolaze tokeni?",
@@ -715,12 +715,12 @@
       "what-are-rc-body": "<p>Transacting on the Hive blockchain has zero fees, transaction rate-limiting is employed to safeguard the blockchain from spam attacks. Every action that you take on the blockchain will consume a small amount of Resource Credits. This includes posting, commenting, voting, transferring tokens, etc. Viewing content does not consume Resource Credits.</p><p>Every user has a limited amount of Resource Credits to use each week. The more transactions a user does, the less Resource Credits they will have left (until they recharge). Users with more HIVE POWER will have more Resource Credits.</p><p>If you run out of Resource Credits, you will be unable to transact with the blockchain until your Resource Credits recharge (happens automatically) or you acquire additional HIVE POWER to increase your Resource Credit balance or you can <a href=\"/faq#how-boost-account\">request Boosting account from Ecency</a> to receive temporary delegation.</p>",
       "how-boost-account-header": "Kako da zatražite pojačanje?",
       "how-boost-account-body": "<p>If your account is low on <a href=\"/faq#what-are-rc\">Resource Credits</a>, you can request account boosting from Ecency. You will receive temporary delegation which should boost your account to perform more activities on blockchain. You can find account boosting feature in Points options.</p>",
-      "what-spam-abuse-header": "What is considered spam or abuse?",
+      "what-spam-abuse-header": "Šta se smatra neželjenom poštom ili zloupotrebom?",
       "what-spam-abuse-body": "<p><img src=\"https://images.ecency.com/p/3jpR3paJ37V8XPrHkfZdMt57jY6pRt6zEt5iRJV9pSw4Mez3Hut8U6RWvWLA7cFYEa1bxveXeasNfZApzrcLYLx8cz84kBEKak1KkewE2ZqE1QRRkF4eqRH3vWVqZB9WuNbzE?format=match&mode=fit\" loading=\"lazy\"/></p><p><ul><li>Plagiarized posts or copied content.</li><li>Leaving nearly identical or materially similar comments on multiple posts.</li><li>Using tags that are unrelated to the post.</li><li>Threatening users with any type of physical violence.</li><li>Not citing sources when using someone else’s material.</li><li>Posting ‘not safe for work’ content without using the “nsfw” tag.</li><li>Scams or Fraudulent offers.</li></ul></p>",
-      "can-link-post-header": "Can I request adding backlink to my website from Ecency team?",
+      "can-link-post-header": "Mogu li zatražiti dodavanje povratne veze na svoju veb stranicu od Ecency tima?",
       "can-link-post-body": "<p>All the content on our site is created by our users and we don't modify or able to add backlinks. You are free to contact author of the post or <a href=\"/?referral=ecency\">Signup</a> to open your own blog and community, publish articles to create backlinks for free.</p>",
-      "can-guest-post-header": "Is it possible to guest post on your website?",
-      "can-guest-post-body": "<p>Posting on Ecency is simple and easy, <a href=\"/?referral=ecency\">Signup</a> to open your own blog and community, start posting your content.</p>"
+      "can-guest-post-header": "Da li je moguće objavljivati kao gost na vašoj veb stranici?",
+      "can-guest-post-body": "<p>Objavljivanje na Ecency is jednostavno i lako, <a href=\"/?referral=ecency\">Prijavi se</a> da bi otvorili svoj blog i zajednicu, i započeli da objavljujete svoj sadržaj</p>"
     }
   },
   "context-menu": {
