@@ -611,8 +611,8 @@
   "witnesses": {
     "page-title": "Svedoci (witnesses)",
     "page-description": "Izbor proizvođača koncenzus bloka",
-    "page-description-long": "Role of witnesses or block producers in Hive blockchain is to act as the network's governance body. Community elects them to represent their voice and each user can elect up to 30 witnesses. Top 20 witnesses are producing blocks every minute while rest remain as backup witness and gets randomized chance every minute. This role is integral part of consensus mechanism blockchain runs on and recommend user engagement to vote on trusted witnesses.",
-    "remaining": "<span>{{n}}</span> of {{max}} votes remaining",
+    "page-description-long": "Uloga svedoka ili proizvođača blokova u Hive blockchain-u je da deluju kao upravljačko mrežno telo. Zajednica ih bira da predstavljaju njihov glas i svaki korisnik može odabrati do 30 svedoka. Top 20 svedoka proizvodi blokove svakog minuta, dok ostatak ostaju rezervni svedoci koji dobijaju slučajnu šansu svakog minuta. Ova uloga je sastavni deo mehanizma concenzusa na kome se korisni blockchain i preporučuje angažovanje korisnika da glasaju za pouzdane svedoke.",
+    "remaining": "<strong>{n}</strong> od {max} glasova je preostalo",
     "list-rank": "Rang",
     "list-witness": "Svedok (witness)",
     "list-miss": "Propušteno",
@@ -621,12 +621,12 @@
     "list-feed": "Novosti",
     "list-version": "Verzija",
     "username-placeholder": "korisničko ime",
-    "extra-description": "Enter account name below to vote for a witness outside of Top 50",
-    "proxy-description": "You can also choose a proxy that will vote for witnesses for you. This will reset your current witness selection.",
-    "proxy-btn-label": "Set Proxy",
-    "proxy-active-description": "You have set a voting proxy. If you would like to re-enable manual voting, please clear your proxy.",
-    "proxy-active-current": "Your current proxy is",
-    "proxy-active-btn-label": "Clear Proxy"
+    "extra-description": "Ispod unesite ime naloga kako biste glasali za svedoka izvan 50 najboljih",
+    "proxy-description": "Možete podesiti proxy nalog koji će glasati za svedoke umesto Vas. Ovo će poništiti Vaš trenutni izbor.",
+    "proxy-btn-label": "Podesite proxy",
+    "proxy-active-description": "Podesili ste glasački proxy. Ukoliko želite da ponovo omogućite ručno glasanje, molimo uklonite proxy.",
+    "proxy-active-current": "Vaš trenutni proxy je",
+    "proxy-active-btn-label": "Uklonite proxy"
   },
   "proposals": {
     "page-title": "Predlozi",
@@ -644,7 +644,7 @@
     "filter-active": "Aktivan",
     "filter-inactive": "Predstojeće",
     "filter-team": "Ecency Projekti",
-    "return-description": "This is the base return proposal. Every proposal with less votes will not receive funds.",
+    "return-description": "Ovo je osnovna zarada predloga. Svaki predlog sa manje glasova neće dobiti sredstva.",
     "votes-dialog-title": "Glasovi za predloge #{{n}}",
     "see-all": "pogledajte sve predloge"
   },
