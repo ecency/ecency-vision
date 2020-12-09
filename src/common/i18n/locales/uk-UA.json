@@ -2,13 +2,13 @@
   "g": {
     "edit": "Редагувати",
     "search": "Шукати",
-    "downloads": "Downloads",
+    "downloads": "Завантажень",
     "login": "Увійти",
     "login-as": "Увійти як",
     "signup": "Signup",
     "delete": "Видалити",
-    "cancel": "Cancel",
-    "reply": "Reply",
+    "cancel": "Скасувати",
+    "reply": "Відповісти",
     "update": "Оновити",
     "or": "АБО",
     "server-error": "Не вдається завершити процес через помилку сервера",
@@ -17,22 +17,22 @@
     "finish": "Finish",
     "next": "Далі",
     "back": "Назад",
-    "load-more": "Load More",
-    "empty-list": "Nothing here",
+    "load-more": "Завантажити ще",
+    "empty-list": "Тут порожньо",
     "save": "Зберегти",
     "try-again": "Спробувати знову",
-    "show": "Show",
-    "on": "On",
-    "off": "Off"
+    "show": "Показати",
+    "on": "Увімкнути",
+    "off": "Вимкнути"
   },
   "confirm": {
     "title": "Ви впевнені?",
     "ok": "Підтвердити",
-    "cancel": "Cancel"
+    "cancel": "Скасувати"
   },
   "entry-filter": {
-    "filter-trending": "Trending",
-    "filter-hot": "Hot",
+    "filter-trending": "Популярне",
+    "filter-hot": "Актуальне",
     "filter-created": "Нове",
     "filter-promoted": "Promoted",
     "filter-payout": "Payouts",
@@ -61,16 +61,16 @@
     "unclaimed-reward-notice": "У вас є не зараховані винагороди",
     "points": "Бали",
     "unclaimed-points-notice": "You have unclaimed points",
-    "notifications": "Notifications",
-    "profile": "Profile",
-    "gallery": "Gallery",
-    "drafts": "Drafts",
+    "notifications": "Сповіщення",
+    "profile": "Профіль",
+    "gallery": "Галерея",
+    "drafts": "Чернетки",
     "bookmarks": "Закладки",
     "logout": "Вийти"
   },
   "login": {
     "title": "З поверненням!",
-    "with-user-pass": "Login with your username and private key.",
+    "with-user-pass": "Увійдіть за допомогою вашого логіну та приватного ключа.",
     "username-placeholder": "username",
     "key-placeholder": "master or active private key",
     "login-info-1": "We don't store your private keys.",
@@ -192,12 +192,12 @@
   },
   "community": {
     "page-description": "{{f}} topics",
-    "subscribe": "Join",
+    "subscribe": "Приєднатися",
     "subscribed": "Joined",
     "unsubscribe": "Leave",
     "post": "New Post",
     "posts": "Posts",
-    "subscribers": "Members",
+    "subscribers": "Учасники",
     "activities": "Activities",
     "roles-title": "User Roles",
     "roles-account": "Account",
@@ -242,13 +242,13 @@
   "communities": {
     "title": "Communities",
     "description": "Best online, decentralized, immutable, rewarding communities",
-    "n-subscribers": "{{n}} members",
+    "n-subscribers": "{{n}} учасників",
     "n-authors": "{{n}} posters",
     "n-posts": "{{n}} posts",
     "admins": "admins:",
     "sort-hot": "Hot",
     "sort-rank": "Rank",
-    "sort-subs": "Members",
+    "sort-subs": "Учасники",
     "sort-new": "New",
     "no-results": "No results found",
     "create": "Create community"
@@ -299,7 +299,7 @@
     "section-communities": "Communities",
     "section-wallet": "Wallet",
     "section-settings": "Settings",
-    "communities-title": "Membership",
+    "communities-title": "Участь",
     "create-community": "Create a community",
     "witnesses": "Witnesses",
     "proposals": "Proposals"
@@ -450,8 +450,8 @@
     "type-curation_reward": "Curation Reward",
     "type-author_reward": "Author Reward",
     "type-comment_benefactor_reward": "Comment Benefactor Reward",
-    "type-claim_reward_balance": "Claim rewards",
-    "type-transfer": "Transfer",
+    "type-claim_reward_balance": "Отримати винагороди",
+    "type-transfer": "Переказ",
     "type-transfer_to_vesting": "Transfer to vesting",
     "type-withdraw_vesting": "Withdraw vesting",
     "type-fill_order": "Fill order"
@@ -463,13 +463,13 @@
     "with-keychain": "Sign with keychain"
   },
   "delegated-vesting": {
-    "title": "Delegated Hive Power"
+    "title": "Делегована Hive Power"
   },
   "received-vesting": {
-    "title": "Received Hive Power"
+    "title": "Отримана Hive Power"
   },
   "friends": {
-    "followers": "Followers ({{n}})",
+    "followers": "Читачів ({{n}})",
     "following": "Following ({{n}})",
     "search-placeholder": "Search users"
   },
@@ -482,41 +482,41 @@
   "favorite-btn": {
     "add": "Add to favorites",
     "added": "Added to favorites",
-    "delete": "Remove from favorites",
-    "deleted": "Removed from favorites"
+    "delete": "Видалити з обраного",
+    "deleted": "Видалено з обраного"
   },
   "editor-toolbar": {
-    "bold": "Bold",
-    "italic": "Italic",
-    "header": "Heading",
-    "code": "Code",
-    "quote": "Quote",
-    "ul": "Unordered List",
-    "ol": "Ordered List",
-    "link": "Link",
-    "image": "Image",
-    "table": "Table",
-    "table-3-col": "3 columns",
-    "table-2-col": "2 columns",
-    "table-1-col": "1 column",
-    "upload": "Upload",
-    "gallery": "Gallery",
-    "emoji": "Emoji",
-    "image-error": "Couldn't upload image.",
-    "image-error-size": "Image size is too large, try smaller size image again."
+    "bold": "Напівжирний",
+    "italic": "Курсив",
+    "header": "Заголовок",
+    "code": "Код",
+    "quote": "Цитата",
+    "ul": "Маркований список",
+    "ol": "Нумерований список",
+    "link": "Посилання",
+    "image": "Зображення",
+    "table": "Таблиця",
+    "table-3-col": "3 стовпчики",
+    "table-2-col": "2 стовпчики",
+    "table-1-col": "1 стовпчик",
+    "upload": "Відвантажити",
+    "gallery": "Галерея",
+    "emoji": "Емоджі",
+    "image-error": "Не вдалося додати зображення.",
+    "image-error-size": "Зображення завелике. Спробуйте зменшити його розмір."
   },
   "emoji-picker": {
-    "filter-placeholder": "Filter",
+    "filter-placeholder": "Фільтр",
     "filter-no-match": "No match",
-    "recently-used": "Recently Used"
+    "recently-used": "Нещодавно використані"
   },
   "submit": {
-    "page-title": "Create a post",
+    "page-title": "Створити допис",
     "page-description": "Publish an article, earn reward, uncensored, immutable, decentralized content!",
-    "title-placeholder": "Title",
-    "body-placeholder": "Post Content",
-    "reward": "Reward",
-    "reward-default": "Default 50% / 50%",
+    "title-placeholder": "Заголовок",
+    "body-placeholder": "Вміст допису",
+    "reward": "Винагорода",
+    "reward-default": "Стандарт 50% / 50%",
     "reward-sp": "Power Up 100%",
     "reward-dp": "Decline Payout",
     "preview": "Preview",
@@ -576,8 +576,8 @@
     "refresh": "Refresh",
     "mark-all-read": "Mark All as Read",
     "mark-read": "Mark as Read",
-    "mute": "Turn off notification alerts",
-    "unmute": "Turn on notification alerts"
+    "mute": "Вимкнути сповіщення",
+    "unmute": "Увімкнути сповіщення"
   },
   "leaderboard": {
     "title": "Leaderboard",
