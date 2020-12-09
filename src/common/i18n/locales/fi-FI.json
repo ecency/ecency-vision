@@ -88,15 +88,15 @@
   },
   "sign-up": {
     "header": "Luo tili",
-    "description": "One account to manage everything on blockchain and Ecency. Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
+    "description": "Hallitse kaikkea lohkoketjussa Ecency-sovelluksessa. Lisätietoja hyödyistä löydät <a href=\"/faq#how-to-join\">UKK</a>",
     "username": "Valitse käyttäjänimi",
     "email": "Syötä sähköpostiosoitteesi",
     "ref": "Suosittelija (valinnainen)",
     "submit": "Jatka",
     "success": "Olemme lähettäneet vahvistuksen sähköpostiin {{email}}.",
     "success-2": "Seuraa ohjeita suorittaaksesi rekisteröinti.",
-    "login-text-1": "Do you have an account?",
-    "login-text-2": "Login"
+    "login-text-1": "Onko sinulla jo käyttäjätili?",
+    "login-text-2": "Kirjaudu sisään"
   },
   "trending-tags": {
     "title": "Aiheet"
@@ -192,12 +192,12 @@
   },
   "community": {
     "page-description": "{{f}} aihetta",
-    "subscribe": "Tilaa",
+    "subscribe": "Liity",
     "subscribed": "Liittyi",
     "unsubscribe": "Poistu",
     "post": "Uusi julkaisu",
     "posts": "Julkaisut",
-    "subscribers": "Tilaajat",
+    "subscribers": "Jäsenet",
     "activities": "Toiminnat",
     "roles-title": "Käyttäjäroolit",
     "roles-account": "Tili",
@@ -242,13 +242,13 @@
   "communities": {
     "title": "Yhteisöt",
     "description": "Netin parhaat hajautetut, sensuurivapaat ja palkitsevat yhteisöt",
-    "n-subscribers": "{{n}} tilaajaa",
+    "n-subscribers": "{{n}} jäsentä",
     "n-authors": "{{n}} julkaisijaa",
     "n-posts": "{{n}} julkaisua",
     "admins": "ylläpitäjät:",
     "sort-hot": "Kuumat",
     "sort-rank": "Sija",
-    "sort-subs": "Tilaajat",
+    "sort-subs": "Jäsenet",
     "sort-new": "Uusimmat",
     "no-results": "Tuloksia ei löytynyt",
     "create": "Luo yhteisö"
@@ -299,7 +299,7 @@
     "section-communities": "Yhteisöt",
     "section-wallet": "Lompakko",
     "section-settings": "Asetukset",
-    "communities-title": "Tilaukset",
+    "communities-title": "Jäsenyys",
     "create-community": "Luo yhteisö",
     "witnesses": "Todistajat",
     "proposals": "Ehdotukset"
