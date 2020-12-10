@@ -34,7 +34,7 @@
     "filter-trending": "Популярное",
     "filter-hot": "Популярное",
     "filter-created": "Новое",
-    "filter-promoted": "Рекламируемый",
+    "filter-promoted": "Продвигаемое",
     "filter-payout": "Выплаты",
     "filter-muted": "Игнорируется",
     "filter-feed": "Лента"
@@ -81,53 +81,53 @@
     "error-user-not-found": "Такого пользователя не существует",
     "error-permission": "Не удалось получить разрешение на запись",
     "error-authenticate": "Неправильный приватный ключ. Требуется мастер- или активный закрытый ключ.",
-    "with-hive-signer": "Login with hivesigner",
-    "with-keychain": "Login with keychain",
-    "sign-up-text-1": "Don't have an account?",
-    "sign-up-text-2": "Sign up now!"
+    "with-hive-signer": "Войти с помощью hivesigner",
+    "with-keychain": "Войти с помощью keychain",
+    "sign-up-text-1": "У вас нет учетной записи?",
+    "sign-up-text-2": "Зарегистрируйтесь сейчас!"
   },
   "sign-up": {
-    "header": "Sign Up",
-    "description": "One account to manage everything on blockchain and Ecency. Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
-    "username": "Pick a username",
-    "email": "Enter your email address",
-    "ref": "Referred user (optional)",
-    "submit": "Continue",
-    "success": "We've sent an email to {{email}}.",
-    "success-2": "Follow instructions to complete signup process.",
-    "login-text-1": "Do you have an account?",
-    "login-text-2": "Login"
+    "header": "Регистрация",
+    "description": "Одна учетная запись для управления всем блокчейном и Ecency. Узнайте больше о преимуществах в <a href=\"/faq#how-to-join\">FAQ</a>",
+    "username": "Выберите имя пользователя",
+    "email": "Введите свой email адрес",
+    "ref": "Реферал (необязательно)",
+    "submit": "Далее",
+    "success": "Мы отправили письмо на адрес {{email}}.",
+    "success-2": "Следуйте инструкциям для завершения процесса регистрации.",
+    "login-text-1": "Есть ли у вас учетная запись?",
+    "login-text-2": "Войти"
   },
   "trending-tags": {
-    "title": "Topics"
+    "title": "Темы"
   },
   "selected-tags": {
-    "title": "Featured"
+    "title": "Рекомендуем"
   },
   "entry-list-item": {
-    "reblogged": "by {{n}}",
-    "promoted": "promoted",
-    "pinned": "Pinned Post",
-    "replies": "1 response. Click to respond.",
-    "replies-n": "{{n}} responses. Click to respond.",
-    "no-replies": "No responses yet. Click to respond."
+    "reblogged": "от {{n}}",
+    "promoted": "продвигаемое",
+    "pinned": "Прикреплено",
+    "replies": "1 ответ. Нажмите чтобы ответить.",
+    "replies-n": "{{n}} ответов. Нажмите для ответа.",
+    "no-replies": "Ответов пока нет. Нажмите чтобы ответить."
   },
   "bookmark-btn": {
-    "add": "Add to bookmarks",
-    "added": "Added to bookmarks",
-    "delete": "Remove from bookmarks",
-    "deleted": "Removed from bookmarks"
+    "add": "Добавить в закладки",
+    "added": "Добавлено в закладки",
+    "delete": "Убрать из закладок",
+    "deleted": "Удалено из закладок"
   },
   "entry-reblog": {
-    "reblog": "Reblog",
-    "confirm-title": "Reblog to @{{n}}'s blog?",
-    "confirm-ok": "Reblog",
-    "success": "Reblogged!"
+    "reblog": "Репост",
+    "confirm-title": "Поделиться этим постом?",
+    "confirm-ok": "Зарепостить",
+    "success": "Репостнуто!"
   },
   "entry-payout": {
-    "pending-payout": "Pending Payout",
-    "promoted": "Promoted",
-    "author-payout": "Author Payout",
+    "pending-payout": "Ожидаемая выплата",
+    "promoted": "Продвигаемое",
+    "author-payout": "Автору",
     "curators-payout": "Curators Payout",
     "payout-date": "Payout",
     "beneficiary": "Beneficiary",
