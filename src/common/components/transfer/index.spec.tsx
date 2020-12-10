@@ -19,7 +19,7 @@ const defProps = {
             savings_balance: '2123.000 HIVE'
         },
         points: {
-            points: "0.000",
+            points: "10.000",
             uPoints: "0.000"
         }
     },
@@ -40,7 +40,7 @@ const defProps = {
     }
 };
 
-describe('(1) Transfer', () => {
+describe('(1) Transfer HIVE', () => {
     const mode: TransferMode = 'transfer';
     const asset: TransferAsset = 'HIVE';
 
@@ -71,7 +71,68 @@ describe('(1) Transfer', () => {
         instance.setState({step: 4});
         expect(component.toJSON()).toMatchSnapshot();
     });
-})
+});
+
+describe('(2) Transfer HBD', () => {
+    const mode: TransferMode = 'transfer';
+    const asset: TransferAsset = 'HBD';
+
+    const props = {
+        mode,
+        asset,
+        ...defProps
+    };
+
+    const component = TestRenderer.create(<Transfer {...props} />);
+    const instance: any = component.getInstance();
+
+    it("(1) Step 1", () => {
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+
+    it("(2) Step 2", () => {
+        instance.setState({step: 2, to: 'bar', memo: 'hdb transfer'});
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+
+    // No need to test step3 anymore
+
+    it("(4) Step 4", () => {
+        instance.setState({step: 4});
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+});
+
+describe('(3) Transfer POINT', () => {
+    const mode: TransferMode = 'transfer';
+    const asset: TransferAsset = 'POINT';
+
+    const props = {
+        mode,
+        asset,
+        ...defProps
+    };
+
+    const component = TestRenderer.create(<Transfer {...props} />);
+    const instance: any = component.getInstance();
+
+    it("(1) Step 1", () => {
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+
+    it("(2) Step 2", () => {
+        instance.setState({step: 2, to: 'bar'});
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+
+    it("(4) Step 4", () => {
+        instance.setState({step: 4});
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+});
+
+/*
+
 
 describe('(2) Transfer to savings', () => {
     const mode: TransferMode = 'transfer-saving';
@@ -147,3 +208,4 @@ describe('(5) Power up', () => {
         expect(component.toJSON()).toMatchSnapshot();
     });
 })
+*/
