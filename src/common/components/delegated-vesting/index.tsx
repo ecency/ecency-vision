@@ -117,7 +117,7 @@ export class List extends Component<Props, State> {
                             const deleteBtn = (activeUser && activeUser.username === account.name) ? KeyOrHotDialog({
                                 ...this.props,
                                 activeUser: activeUser,
-                                children: <a href="#" className="undelegate">undelegate</a>,
+                                children: <a href="#" className="undelegate">{_t("delegated-vesting.undelegate")}</a>,
                                 onToggle: () => {
                                     const {hideList} = this.state;
                                     this.stateSet({hideList: !hideList});

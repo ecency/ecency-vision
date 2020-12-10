@@ -471,7 +471,8 @@
     "with-keychain": "Sign with keychain"
   },
   "delegated-vesting": {
-    "title": "Delegated Hive Power"
+    "title": "Delegated Hive Power",
+    "undelegate": "undelegate"
   },
   "received-vesting": {
     "title": "Received Hive Power"
