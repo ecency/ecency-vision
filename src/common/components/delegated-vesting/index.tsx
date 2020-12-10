@@ -16,7 +16,6 @@ import Tooltip from "../tooltip";
 import KeyOrHotDialog from "../key-or-hot-dialog";
 import {error} from "../feedback";
 
-
 import {DelegatedVestingShare, getVestingDelegations} from "../../api/hive";
 
 import {
@@ -85,11 +84,11 @@ export class List extends Component<Props, State> {
 
         return getVestingDelegations(account.name, "", 250)
             .then((r) => {
-                const data = r.sort((a, b) => {
+                const sorted = r.sort((a, b) => {
                     return parseAsset(b.vesting_shares).amount - parseAsset(a.vesting_shares).amount;
                 });
 
-                this.stateSet({data});
+                this.stateSet({data: sorted});
             })
             .finally(() => this.stateSet({loading: false}));
     }
@@ -160,7 +159,6 @@ export class List extends Component<Props, State> {
                                     <Tooltip content={x.vesting_shares}>
                                         <span>{formattedNumber(vestsToSp(vestingShares, hivePerMVests), {suffix: "HP"})}</span>
                                     </Tooltip>
-
                                     {deleteBtn}
                                 </div>
                             </div>;

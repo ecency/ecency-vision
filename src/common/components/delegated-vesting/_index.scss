@@ -1,7 +1,6 @@
 .delegated-vesting-content {
   height: 370px;
   overflow: auto;
-  padding-top: 1px;
 
   &.hidden {
     display: none;
@@ -9,8 +8,7 @@
 
   &.in-progress {
     pointer-events: none;
-    opacity: 0.7;
-    padding-top: 0;
+    animation: anim-fadein-out 2s infinite;
   }
 
   .user-list {
