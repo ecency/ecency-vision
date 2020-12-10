@@ -436,10 +436,10 @@
     "confirm": "Conferma",
     "recent-transfers": "Trasferimenti recenti",
     "transfer-summary": "Trasferito <span class=\"amount\">{{amount}}</span> Da <span class=\"from-user\">{{from}}</span> A <span class=\"to-user\">{{to}}</span>",
-    "reset": "Another transfer"
+    "reset": "Altro trasferimento"
   },
   "trx-common": {
-    "insufficient-funds": "Insufficient funds",
+    "insufficient-funds": "Fondi insufficienti",
     "sign-title": "Sign transaction",
     "sign-sub-title": "Sign your transaction",
     "success-title": "Success",
