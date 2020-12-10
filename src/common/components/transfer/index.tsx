@@ -57,7 +57,7 @@ import badActors from '../../constants/bad-actors.json';
 
 import {arrowRightSvg} from "../../img/svg";
 
-export type TransferMode = "transfer" | "transfer-saving" | "convert" | "withdraw-saving" | "power-up" | "power-down" | "delegate";
+export type TransferMode = "transfer" | "transfer-saving" | "withdraw-saving" | "convert" | "power-up" | "power-down" | "delegate";
 export type TransferAsset = "HIVE" | "HBD" | "HP" | "POINT" ;
 
 interface AssetSwitchProps {
@@ -567,6 +567,7 @@ export class Transfer extends Component<Props, State> {
 
         const titleLngKey = (mode === "transfer" && asset === "POINT") ? _t("transfer-title-point") : `${mode}-title`;
         const subTitleLngKey = `${mode}-sub-title`;
+        const summaryLngKey = `${mode}-summary`;
 
         return <div className="transfer-dialog-content">
             {step === 1 && (
@@ -778,7 +779,7 @@ export class Transfer extends Component<Props, State> {
                     </div>
                     <div className="transaction-form-body">
                         <div className="success"
-                             dangerouslySetInnerHTML={{__html: _t("transfer.transfer-summary", {amount: `${amount} ${asset}`, from: activeUser.username, to})}}/>
+                             dangerouslySetInnerHTML={{__html: _t(`transfer.${summaryLngKey}`, {amount: `${amount} ${asset}`, from: activeUser.username, to})}}/>
                         <div className="d-flex justify-content-center">
                             <Button variant="outline-secondary" onClick={this.reset}>
                                 {_t("transfer.reset")}

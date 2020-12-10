@@ -131,10 +131,7 @@ describe('(3) Transfer POINT', () => {
     });
 });
 
-/*
-
-
-describe('(2) Transfer to savings', () => {
+describe('(4) Transfer to Savings - HBD', () => {
     const mode: TransferMode = 'transfer-saving';
     const asset: TransferAsset = 'HBD';
 
@@ -150,62 +147,14 @@ describe('(2) Transfer to savings', () => {
     it("(1) Step 1", () => {
         expect(component.toJSON()).toMatchSnapshot();
     });
-})
 
-
-describe('(3) Convert', () => {
-    const mode: TransferMode = 'convert';
-    const asset: TransferAsset = 'HBD';
-
-    const props = {
-        mode,
-        asset,
-        ...defProps
-    };
-
-    const component = TestRenderer.create(<Transfer {...props} />);
-    const instance: any = component.getInstance();
-
-    it("(1) Step 1", () => {
+    it("(2) Step 2", () => {
+        instance.setState({step: 2, to: 'bar'});
         expect(component.toJSON()).toMatchSnapshot();
     });
-})
 
-
-describe('(4) Withdraw saving', () => {
-    const mode: TransferMode = 'withdraw-saving';
-    const asset: TransferAsset = 'HIVE';
-
-    const props = {
-        mode,
-        asset,
-        ...defProps
-    };
-
-    const component = TestRenderer.create(<Transfer {...props} />);
-    const instance: any = component.getInstance();
-
-    it("(1) Step 1", () => {
+    it("(4) Step 4", () => {
+        instance.setState({step: 4});
         expect(component.toJSON()).toMatchSnapshot();
     });
-})
-
-
-describe('(5) Power up', () => {
-    const mode: TransferMode = 'power-up';
-    const asset: TransferAsset = 'HIVE';
-
-    const props = {
-        mode,
-        asset,
-        ...defProps
-    };
-
-    const component = TestRenderer.create(<Transfer {...props} />);
-    const instance: any = component.getInstance();
-
-    it("(1) Step 1", () => {
-        expect(component.toJSON()).toMatchSnapshot();
-    });
-})
-*/
+});

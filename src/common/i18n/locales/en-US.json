@@ -438,7 +438,12 @@
     "confirm-sub-title": "Please, check if everything is correct",
     "confirm": "Confirm",
     "recent-transfers": "Recent transfers",
-    "transfer-summary": "Transferred <span class=\"amount\">{{amount}}</span> From <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
+    "transfer-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
+    "transfer-saving-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
+    "withdraw-saving-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
+    "convert-summary": "<span class=\"amount\">{{amount}}</span> converted",
+    "power-up-summary": "<span class=\"amount\">{{amount}}</span> converted to HP from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
+    "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "reset": "Another transfer"
   },
   "trx-common": {
