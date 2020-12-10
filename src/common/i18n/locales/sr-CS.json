@@ -139,7 +139,7 @@
     "title": "{{f}} teme",
     "description": "{{f}} teme na društvenoj mreži u vlasništvu i kojom upravljaju njeni korisnici.",
     "description-tag": "{{f}} #{{t}} teme",
-    "description-user-feed": "{{u}}'s feed"
+    "description-user-feed": "{{u}} najvažnije vesti"
   },
   "market-data": {
     "title": "Tržišna cena",
@@ -630,7 +630,7 @@
   },
   "proposals": {
     "page-title": "Predlozi",
-    "page-description": "The Decentralized Hive Fund (DHF) is an on-chain funding mechanism that allows anyone to submit a proposal and get funding once community votes pass certain threshold. To learn more read our <a href=\"/faq#how-dhf-work\">FAQ</a>.",
+    "page-description": "Decentralizovani Hive fond (DHF) je lančani mehanizam finansiranja koji omogućava bilo kome da podnese predlog i dobije sredstva kada glasovi pređu određeni prag. Da biste saznali više, pročitajte <a href=\"/faq#how-dhf-work\">Najčešća pitanja</a>.",
     "by": "od",
     "for": "za",
     "duration-days": "{{n}} dana",
