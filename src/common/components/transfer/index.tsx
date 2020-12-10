@@ -22,7 +22,7 @@ import {error} from "../feedback";
 
 import amountFormatCheck from '../../helper/amount-format-check';
 import parseAsset from "../../helper/parse-asset";
-import {vestsToSp} from "../../helper/vesting";
+import {vestsToSp, spToVests} from "../../helper/vesting";
 
 import {getAccount, getAccountFull} from "../../api/hive";
 
@@ -45,6 +45,9 @@ import {
     convert,
     convertHot,
     convertKc,
+    delegateVestingShares,
+    delegateVestingSharesHot,
+    delegateVestingSharesKc,
     formatError
 } from "../../api/operations";
 
@@ -177,6 +180,12 @@ export class Transfer extends Component<Props, State> {
             this.setState(state, cb);
         }
     };
+
+    formatNumber = (num: number | string, precision: number) => {
+        const format = `0.${"0".repeat(precision)}`;
+
+        return numeral(num).format(format, Math.floor) // round to floor
+    }
 
     assetChanged = (asset: TransferAsset) => {
         this.stateSet({asset}, () => {
@@ -317,7 +326,19 @@ export class Transfer extends Component<Props, State> {
     };
 
     formatBalance = (balance: number): string => {
-        return numeral(balance).format("0.000", Math.floor) // round to floor
+        return this.formatNumber(balance, 3);
+    };
+
+    hpToVests = (hp: number, withSymbol: boolean = true): string => {
+        const {dynamicProps} = this.props;
+        const {hivePerMVests} = dynamicProps;
+        const vests = spToVests(hp, hivePerMVests);
+
+        if (withSymbol) {
+            return `${this.formatNumber(vests, 6)} VESTS`;
+        }
+
+        return this.formatNumber(vests, 6);
     }
 
     canSubmit = () => {
@@ -328,7 +349,7 @@ export class Transfer extends Component<Props, State> {
     next = () => {
         // make sure 3 decimals in amount
         const {amount} = this.state;
-        const fixedAmount = numeral(amount).format("0.000");
+        const fixedAmount = this.formatNumber(amount, 3);
 
         this.setState({step: 2, amount: fixedAmount});
     };
@@ -347,33 +368,38 @@ export class Transfer extends Component<Props, State> {
         const fullAmount = `${amount} ${asset}`;
         const username = activeUser?.username!
 
-        let prms: Promise<any>;
+        let promise: Promise<any>;
         switch (mode) {
-            case 'transfer':
+            case "transfer":
                 if (asset === "POINT") {
-                    prms = transferPoint(username, key, to, fullAmount, memo);
+                    promise = transferPoint(username, key, to, fullAmount, memo);
                 } else {
-                    prms = transfer(username, key, to, fullAmount, memo);
+                    promise = transfer(username, key, to, fullAmount, memo);
                 }
                 break;
-            case 'transfer-saving':
-                prms = transferToSavings(username, key, to, fullAmount, memo);
+            case "transfer-saving":
+                promise = transferToSavings(username, key, to, fullAmount, memo);
                 break;
-            case 'convert':
-                prms = convert(username, key, fullAmount)
+            case "convert":
+                promise = convert(username, key, fullAmount)
                 break;
-            case 'withdraw-saving':
-                prms = transferFromSavings(username, key, to, fullAmount, memo);
+            case "withdraw-saving":
+                promise = transferFromSavings(username, key, to, fullAmount, memo);
                 break;
-            case 'power-up':
-                prms = transferToVesting(username, key, to, fullAmount);
+            case "power-up":
+                promise = transferToVesting(username, key, to, fullAmount);
+                break;
+            case "delegate":
+                const vests = this.hpToVests(Number(amount));
+                promise = delegateVestingShares(username, key, to, vests);
                 break;
             default:
                 return;
         }
 
         this.stateSet({inProgress: true});
-        prms.then(() => getAccountFull(activeUser.username))
+
+        promise.then(() => getAccountFull(activeUser.username))
             .then((a) => {
                 const {addAccount, updateActiveUser} = this.props;
                 // refresh
@@ -394,26 +420,29 @@ export class Transfer extends Component<Props, State> {
         const fullAmount = `${amount} ${asset}`;
         const username = activeUser?.username!
 
-        let prms: Promise<any>;
         switch (mode) {
-            case 'transfer':
+            case "transfer":
                 if (asset === "POINT") {
                     transferPointHot(username, to, fullAmount, memo);
                 } else {
-                    prms = transferHot(username, to, fullAmount, memo);
+                    transferHot(username, to, fullAmount, memo);
                 }
                 break;
-            case 'transfer-saving':
-                prms = transferToSavingsHot(username, to, fullAmount, memo);
+            case "transfer-saving":
+                transferToSavingsHot(username, to, fullAmount, memo);
                 break;
-            case 'convert':
-                prms = convertHot(username, fullAmount)
+            case "convert":
+                convertHot(username, fullAmount)
                 break;
-            case 'withdraw-saving':
-                prms = transferFromSavingsHot(username, to, fullAmount, memo);
+            case "withdraw-saving":
+                transferFromSavingsHot(username, to, fullAmount, memo);
                 break;
-            case 'power-up':
-                prms = transferToVestingHot(username, to, fullAmount);
+            case "power-up":
+                transferToVestingHot(username, to, fullAmount);
+                break;
+            case "delegate":
+                const vests = this.hpToVests(Number(amount), false);
+                delegateVestingSharesHot(username, to, vests);
                 break;
             default:
                 return;
@@ -428,33 +457,37 @@ export class Transfer extends Component<Props, State> {
         const fullAmount = `${amount} ${asset}`;
         const username = activeUser?.username!
 
-        let prms: Promise<any>;
+        let promise: Promise<any>;
         switch (mode) {
-            case 'transfer':
+            case "transfer":
                 if (asset === "POINT") {
-                    prms = transferPointKc(username, to, fullAmount, memo);
+                    promise = transferPointKc(username, to, fullAmount, memo);
                 } else {
-                    prms = transferKc(username, to, fullAmount, memo);
+                    promise = transferKc(username, to, fullAmount, memo);
                 }
                 break;
-            case 'transfer-saving':
-                prms = transferToSavingsKc(username, to, fullAmount, memo);
+            case "transfer-saving":
+                promise = transferToSavingsKc(username, to, fullAmount, memo);
                 break;
-            case 'convert':
-                prms = convertKc(username, fullAmount)
+            case "convert":
+                promise = convertKc(username, fullAmount)
                 break;
-            case 'withdraw-saving':
-                prms = transferFromSavingsKc(username, to, fullAmount, memo);
+            case "withdraw-saving":
+                promise = transferFromSavingsKc(username, to, fullAmount, memo);
                 break;
-            case 'power-up':
-                prms = transferToVestingKc(username, to, fullAmount);
+            case "power-up":
+                promise = transferToVestingKc(username, to, fullAmount);
+                break;
+            case "delegate":
+                const vests = this.hpToVests(Number(amount));
+                promise = delegateVestingSharesKc(username, to, vests);
                 break;
             default:
                 return;
         }
 
         this.stateSet({inProgress: true});
-        prms.then(() => getAccountFull(activeUser.username))
+        promise.then(() => getAccountFull(activeUser.username))
             .then((a) => {
                 const {addAccount, updateActiveUser} = this.props;
                 // refresh
@@ -685,7 +718,9 @@ export class Transfer extends Component<Props, State> {
                             <div className="amount">
                                 {amount} {asset}
                             </div>
+                            {asset === "HP" && <div className="amount-vests">{this.hpToVests(Number(amount))}</div>}
                             {memo && <div className="memo">{memo}</div>}
+
                         </div>
                         <div className="d-flex justify-content-center">
                             <Button variant="outline-secondary" disabled={inProgress} onClick={this.back}>
