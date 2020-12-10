@@ -16,7 +16,8 @@ const defProps = {
             name: 'foo',
             balance: '12.234 HIVE',
             sbd_balance: '4321.212',
-            savings_balance: '2123.000 HIVE'
+            savings_balance: '2123.000 HIVE',
+            vesting_shares: '142022.369711 VESTS'
         },
         points: {
             points: "10.000",
@@ -218,6 +219,34 @@ describe('(6) Convert', () => {
 describe('(7) Power up', () => {
     const mode: TransferMode = 'power-up';
     const asset: TransferAsset = 'HIVE';
+
+    const props = {
+        mode,
+        asset,
+        ...defProps
+    };
+
+    const component = TestRenderer.create(<Transfer {...props} />);
+    const instance: any = component.getInstance();
+
+    it("(1) Step 1", () => {
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+
+    it("(2) Step 2", () => {
+        instance.setState({step: 2, to: 'bar'});
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+
+    it("(4) Step 4", () => {
+        instance.setState({step: 4});
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+});
+
+describe('(8) Delegate', () => {
+    const mode: TransferMode = 'delegate';
+    const asset: TransferAsset = 'HP';
 
     const props = {
         mode,
