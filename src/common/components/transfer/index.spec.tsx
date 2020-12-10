@@ -159,7 +159,7 @@ describe('(4) Transfer to Savings - HBD', () => {
     });
 });
 
-describe('(4) Withdraw Savings - HIVE', () => {
+describe('(5) Withdraw Savings - HIVE', () => {
     const mode: TransferMode = 'withdraw-saving';
     const asset: TransferAsset = 'HIVE';
 

@@ -1781,7 +1781,7 @@ exports[`(4) Transfer to Savings - HBD (4) Step 4 1`] = `
 </div>
 `;
 
-exports[`(4) Withdraw Savings - HIVE (1) Step 1 1`] = `
+exports[`(5) Withdraw Savings - HIVE (1) Step 1 1`] = `
 <div
   className="transfer-dialog-content"
 >
@@ -2011,7 +2011,7 @@ exports[`(4) Withdraw Savings - HIVE (1) Step 1 1`] = `
 </div>
 `;
 
-exports[`(4) Withdraw Savings - HIVE (2) Step 2 1`] = `
+exports[`(5) Withdraw Savings - HIVE (2) Step 2 1`] = `
 <div
   className="transfer-dialog-content"
 >
@@ -2124,7 +2124,7 @@ exports[`(4) Withdraw Savings - HIVE (2) Step 2 1`] = `
 </div>
 `;
 
-exports[`(4) Withdraw Savings - HIVE (4) Step 4 1`] = `
+exports[`(5) Withdraw Savings - HIVE (4) Step 4 1`] = `
 <div
   className="transfer-dialog-content"
 >
