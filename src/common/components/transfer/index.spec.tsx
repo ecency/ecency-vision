@@ -158,3 +158,31 @@ describe('(4) Transfer to Savings - HBD', () => {
         expect(component.toJSON()).toMatchSnapshot();
     });
 });
+
+describe('(4) Withdraw Savings - HIVE', () => {
+    const mode: TransferMode = 'withdraw-saving';
+    const asset: TransferAsset = 'HIVE';
+
+    const props = {
+        mode,
+        asset,
+        ...defProps
+    };
+
+    const component = TestRenderer.create(<Transfer {...props} />);
+    const instance: any = component.getInstance();
+
+    it("(1) Step 1", () => {
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+
+    it("(2) Step 2", () => {
+        instance.setState({step: 2, to: 'bar'});
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+
+    it("(4) Step 4", () => {
+        instance.setState({step: 4});
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+});
