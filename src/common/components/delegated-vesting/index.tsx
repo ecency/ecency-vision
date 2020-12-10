@@ -34,6 +34,7 @@ import parseAsset from "../../helper/parse-asset";
 
 import formattedNumber from "../../util/formatted-number";
 
+import _c from "../../util/fix-class-names";
 
 interface Props {
     history: History;
@@ -49,6 +50,7 @@ interface Props {
 
 interface State {
     loading: boolean;
+    inProgress: boolean;
     data: DelegatedVestingShare[];
     hideList: boolean;
 }
@@ -56,6 +58,7 @@ interface State {
 export class List extends Component<Props, State> {
     state: State = {
         loading: false,
+        inProgress: false,
         data: [],
         hideList: false
     };
@@ -92,24 +95,21 @@ export class List extends Component<Props, State> {
     }
 
     render() {
-        const {loading, data, hideList} = this.state;
+        const {loading, data, hideList, inProgress} = this.state;
         const {dynamicProps, activeUser, account} = this.props;
         const {hivePerMVests} = dynamicProps;
 
         if (loading) {
-            return (
-                <div className="delegated-vesting-content">
-                    <LinearProgress/>
-                </div>
-            );
+            return (<div className="delegated-vesting-content">
+                <LinearProgress/>
+            </div>);
         }
 
         return (
-            <div className={`delegated-vesting-content ${hideList ? "hidden" : ""}`}>
+            <div className={_c(`delegated-vesting-content ${inProgress ? "in-progress" : ""} ${hideList ? "hidden" : ""}`)}>
                 <div className="user-list">
                     <div className="list-body">
                         {data.length === 0 && <div className="empty-list">{_t("g.empty-list")}</div>}
-
                         {data.map(x => {
                             const vestingShares = parseAsset(x.vesting_shares).amount;
                             const {delegatee: username} = x;
@@ -123,17 +123,21 @@ export class List extends Component<Props, State> {
                                     this.stateSet({hideList: !hideList});
                                 },
                                 onKey: (key) => {
+                                    this.stateSet({inProgress: true});
                                     delegateVestingShares(activeUser.username, key, username, "0.000000 VESTS")
                                         .then(() => this.fetch())
-                                        .catch(err => error(formatError(err)));
+                                        .catch(err => error(formatError(err)))
+                                        .finally(() => this.stateSet({inProgress: false}))
                                 },
                                 onHot: () => {
                                     delegateVestingSharesHot(activeUser.username, username, "0.000000");
                                 },
                                 onKc: () => {
+                                    this.stateSet({inProgress: true});
                                     delegateVestingSharesKc(activeUser.username, username, "0.000000 VESTS")
                                         .then(() => this.fetch())
-                                        .catch(err => error(formatError(err)));
+                                        .catch(err => error(formatError(err)))
+                                        .finally(() => this.stateSet({inProgress: false}))
                                 }
                             }) : null;
 
