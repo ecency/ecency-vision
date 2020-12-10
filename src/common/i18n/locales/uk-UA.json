@@ -90,13 +90,13 @@
     "header": "Sign Up",
     "description": "One account to manage everything on blockchain and Ecency. Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
     "username": "Pick a username",
-    "email": "Enter your email address",
+    "email": "Введіть свою електронну пошту",
     "ref": "Referred user (optional)",
     "submit": "Continue",
     "success": "Ми надіслали лист на {{email}}.",
     "success-2": "Follow instructions to complete signup process.",
-    "login-text-1": "Do you have an account?",
-    "login-text-2": "Login"
+    "login-text-1": "Вже маєте обліковку?",
+    "login-text-2": "Увійти"
   },
   "trending-tags": {
     "title": "Теми"
@@ -113,7 +113,7 @@
     "no-replies": "No responses yet. Click to respond."
   },
   "bookmark-btn": {
-    "add": "Add to bookmarks",
+    "add": "Додати до закладок",
     "added": "Додано до закладок",
     "delete": "Видалити з закладок",
     "deleted": "Видалено із закладок"
@@ -122,19 +122,19 @@
     "reblog": "Репост",
     "confirm-title": "Репост до блогу @{{n}}?",
     "confirm-ok": "Репост",
-    "success": "Reblogged!"
+    "success": "Репостнуто!"
   },
   "entry-payout": {
-    "pending-payout": "Pending Payout",
+    "pending-payout": "Відмовитися від виплати",
     "promoted": "Promoted",
-    "author-payout": "Author Payout",
-    "curators-payout": "Curators Payout",
-    "payout-date": "Payout",
-    "beneficiary": "Beneficiary",
+    "author-payout": "Авторська винагорода",
+    "curators-payout": "Кураторська винагорода",
+    "payout-date": "Виплата",
+    "beneficiary": "Бенефіціар (отримувач)",
     "breakdown": "Breakdown"
   },
   "entry-index": {
-    "feed": "Feed",
+    "feed": "Стрічка",
     "tags": "Popular",
     "title": "{{f}} topics",
     "description": "{{f}} topics on a social network owned and operated by its users.",
@@ -142,7 +142,7 @@
     "description-user-feed": "{{u}}'s feed"
   },
   "market-data": {
-    "title": "Market price",
+    "title": "Ринкова ціна",
     "credits": "market data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "list-style": {
@@ -171,21 +171,21 @@
     "version": "Version {{n}}"
   },
   "similar-entries": {
-    "title": "Recent posts by @{{n}}"
+    "title": "Останні публікації від @{{n}}"
   },
   "comment": {
-    "body-placeholder": "Write your reply here",
-    "preview": "Preview"
+    "body-placeholder": "Напишіть свою відповідь тут",
+    "preview": "Попередній перегляд"
   },
   "discussion": {
-    "join": "Join the conversion now",
-    "btn-join": "Join",
-    "replies": "1 Comment",
-    "n-replies": "{{n}} Comments",
-    "order": "Sort Order",
-    "order-trending": "Trending",
-    "order-reputation": "Reputation",
-    "order-votes": "Votes",
+    "join": "Долучитися до розмови",
+    "btn-join": "Приєднатися",
+    "replies": "1 коментар",
+    "n-replies": "{{n}} коментарів",
+    "order": "Порядок сортування",
+    "order-trending": "Популярне",
+    "order-reputation": "Репутація",
+    "order-votes": "Голоси",
     "order-created": "Age",
     "read-more": "...read more replies...",
     "reveal": "Reveal comment"
@@ -195,10 +195,10 @@
     "subscribe": "Приєднатися",
     "subscribed": "Joined",
     "unsubscribe": "Leave",
-    "post": "New Post",
-    "posts": "Posts",
+    "post": "Новий допис",
+    "posts": "Дописи",
     "subscribers": "Учасники",
-    "activities": "Activities",
+    "activities": "Події",
     "roles-title": "User Roles",
     "roles-account": "Account",
     "roles-role": "Role",
@@ -234,20 +234,20 @@
     "dialog-title": "Community Settings",
     "title": "Title",
     "about": "About",
-    "lang": "Language",
-    "description": "Description",
-    "rules": "Rules",
-    "rules-help": "One per line"
+    "lang": "Мова",
+    "description": "Опис",
+    "rules": "Правила",
+    "rules-help": "Один на рядок"
   },
   "communities": {
-    "title": "Communities",
+    "title": "Спільноти",
     "description": "Best online, decentralized, immutable, rewarding communities",
     "n-subscribers": "{{n}} учасників",
     "n-authors": "{{n}} posters",
     "n-posts": "{{n}} posts",
     "admins": "admins:",
-    "sort-hot": "Hot",
-    "sort-rank": "Rank",
+    "sort-hot": "Актуальне",
+    "sort-rank": "Рейтинг",
     "sort-subs": "Учасники",
     "sort-new": "New",
     "no-results": "No results found",
@@ -272,14 +272,14 @@
     "progress-role": "Setting @{{u}} as admin...",
     "progress-props": "Updating community settings...",
     "done": "Your community was created 🎉",
-    "done-link-label": "Get started."
+    "done-link-label": "Почати."
   },
   "pin-btn": {
-    "pin": "Pin",
-    "unpin": "Unpin"
+    "pin": "Закріпити",
+    "unpin": "Відкріпити"
   },
   "mute-btn": {
-    "mute": "Mute",
+    "mute": "Ігнорувати",
     "unmute": "Unmute",
     "dialog-title-mute": "Mute post/comment",
     "dialog-title-unmute": "Unmute post/comment",
@@ -292,36 +292,36 @@
     "post-count": "Post Count",
     "followers": "Followers",
     "following": "Following",
-    "section-blog": "Blog",
-    "section-posts": "Posts",
-    "section-comments": "Comments",
-    "section-replies": "Replies",
-    "section-communities": "Communities",
-    "section-wallet": "Wallet",
-    "section-settings": "Settings",
+    "section-blog": "Блог",
+    "section-posts": "Дописи",
+    "section-comments": "Коментарі",
+    "section-replies": "Відповіді",
+    "section-communities": "Спільноти",
+    "section-wallet": "Гаманець",
+    "section-settings": "Налаштування",
     "communities-title": "Участь",
-    "create-community": "Create a community",
-    "witnesses": "Witnesses",
-    "proposals": "Proposals"
+    "create-community": "Створити спільноту",
+    "witnesses": "Делегати",
+    "proposals": "Пропозиції"
   },
   "profile-edit": {
-    "title": "Profile",
-    "name": "Display Name",
+    "title": "Профіль",
+    "name": "Відображуване ім'я",
     "about": "About",
-    "cover-image": "Cover Image",
-    "profile-image": "Profile Image",
-    "website": "Website",
-    "location": "Location",
-    "updated": "Profile updated successfully!"
+    "cover-image": "Обкладинка",
+    "profile-image": "Зображення профілю",
+    "website": "Веб-сторінка",
+    "location": "Місцеперебування",
+    "updated": "Профіль успішно оновлено!"
   },
   "image-upload-button": {
-    "uploaded": "Image uploaded"
+    "uploaded": "Зображення завантажено"
   },
   "preferences": {
-    "title": "Preferences",
+    "title": "Налаштування",
     "notifications": "Notification alerts",
-    "currency": "Currency",
-    "language": "Language",
+    "currency": "Валюта",
+    "language": "Мова",
     "updated": "Preference updated!"
   },
   "wallet": {
