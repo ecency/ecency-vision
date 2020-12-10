@@ -186,3 +186,31 @@ describe('(5) Withdraw Savings - HIVE', () => {
         expect(component.toJSON()).toMatchSnapshot();
     });
 });
+
+describe('(6) Convert', () => {
+    const mode: TransferMode = 'convert';
+    const asset: TransferAsset = 'HBD';
+
+    const props = {
+        mode,
+        asset,
+        ...defProps
+    };
+
+    const component = TestRenderer.create(<Transfer {...props} />);
+    const instance: any = component.getInstance();
+
+    it("(1) Step 1", () => {
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+
+    it("(2) Step 2", () => {
+        instance.setState({step: 2, to: 'bar'});
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+
+    it("(4) Step 4", () => {
+        instance.setState({step: 4});
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+});

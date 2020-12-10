@@ -711,10 +711,14 @@ export class Transfer extends Component<Props, State> {
                                 <div className="from-user">
                                     {UserAvatar({...this.props, username: activeUser.username, size: "medium"})}
                                 </div>
-                                <div className="arrow">{arrowRightSvg}</div>
-                                <div className="to-user">
-                                    {UserAvatar({...this.props, username: to, size: "medium"})}
-                                </div>
+                                {showTo && (
+                                    <>
+                                        <div className="arrow">{arrowRightSvg}</div>
+                                        <div className="to-user">
+                                            {UserAvatar({...this.props, username: to, size: "medium"})}
+                                        </div>
+                                    </>
+                                )}
                             </div>
                             <div className="amount">
                                 {amount} {asset}
