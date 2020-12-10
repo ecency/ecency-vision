@@ -46,7 +46,7 @@
     "faq": "FAQ",
     "post": "Створити допис",
     "day-theme": "Day Theme",
-    "night-theme": "Night Theme",
+    "night-theme": "Темна тема",
     "address-placeholder": "enter url or search query"
   },
   "search": {
@@ -71,12 +71,12 @@
   "login": {
     "title": "З поверненням!",
     "with-user-pass": "Увійдіть за допомогою вашого логіну та приватного ключа.",
-    "username-placeholder": "username",
-    "key-placeholder": "master or active private key",
-    "login-info-1": "We don't store your private keys.",
+    "username-placeholder": "ім'я користувача",
+    "key-placeholder": "головний або активний приватний ключ",
+    "login-info-1": "Ми не зберігаємо ваші приватні ключі.",
     "login-info-2": "Детальніше",
     "error-fields-required": "Будь ласка, введіть ім'я користувача та приватний ключ",
-    "error-public-key": "You entered a public key. Password/WIF required",
+    "error-public-key": "Ви ввели публічний ключ. Потрібен пароль/WIF",
     "error-user-fetch": "User data could not be fetched",
     "error-user-not-found": "Користувач не існує",
     "error-permission": "Couldn't get posting permission",
