@@ -1,27 +1,9 @@
 .delegated-vesting-content {
-  font-size: 96%;
+  min-height: 140px;
+  max-height: 370px;
+  overflow: auto;
 
-  // hide table header
-  .table {
-    thead {
-      display: none;
-    }
-  }
-
-  .delegatee-cell {
-    font-weight: 500;
-
-    .account {
-      display: flex;
-      align-items: center;
-
-      .user-avatar {
-        margin-right: 6px;
-      }
-    }
-  }
-
-  .vesting-shares-cell {
-    width: 200px;
+  .user-list {
+    @include user-grid-list(1, 2, 2);
   }
 }

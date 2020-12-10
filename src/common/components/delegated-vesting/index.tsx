@@ -2,10 +2,7 @@ import React, {Component} from "react";
 
 import {History} from "history";
 
-import BootstrapTable from "react-bootstrap-table-next";
-import paginationFactory from "react-bootstrap-table2-paginator";
-
-import {Modal, Spinner} from "react-bootstrap";
+import {Modal} from "react-bootstrap";
 
 import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
@@ -13,6 +10,8 @@ import {DynamicProps} from "../../store/dynamic-props/types";
 
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
+import LinearProgress from "../linear-progress";
+import Tooltip from "../tooltip";
 
 import {DelegatedVestingShare, getVestingDelegations} from "../../api/hive";
 
@@ -62,10 +61,9 @@ export class List extends Component<ListProps, ListState> {
         this._mounted = false;
     }
 
-    stateSet = (obj: {}, cb: () => void = () => {
-    }) => {
+    stateSet = (state: {}, cb?: () => void) => {
         if (this._mounted) {
-            this.setState(obj, cb);
+            this.setState(state, cb);
         }
     };
 
@@ -80,76 +78,48 @@ export class List extends Component<ListProps, ListState> {
     render() {
         const {loading, data} = this.state;
         const {dynamicProps} = this.props;
+        const {hivePerMVests} = dynamicProps;
 
         if (loading) {
             return (
-                <div className="dialog-loading">
-                    <Spinner animation="grow" variant="primary"/>
+                <div className="delegated-vesting-content">
+                    <LinearProgress/>
                 </div>
             );
         }
 
-        const {hivePerMVests} = dynamicProps;
-
-        const columns = [
-            {
-                dataField: "delegatee",
-                text: "",
-                classes: "delegatee-cell",
-                formatter: (cell: any, row: DelegatedVestingShare) => {
-                    return ProfileLink({
-                        ...this.props,
-                        username: row.delegatee,
-                        children: <span className="account">
-                            {UserAvatar({...this.props, username: row.delegatee, size: "medium"})}
-                            {row.delegatee}
-                        </span>
-                    })
-                },
-            },
-            {
-                dataField: "vesting_shares",
-                text: "",
-                classes: "vesting-shares-cell",
-                sortFunc: (a: string, b: string, order: string) => {
-                    if (order === "asc") {
-                        return parseAsset(a).amount - parseAsset(b).amount;
-                    }
-
-                    return parseAsset(b).amount - parseAsset(a).amount;
-                },
-                formatter: (cell: any, row: DelegatedVestingShare) => {
-                    const vestingShares = parseAsset(row.vesting_shares).amount;
-
-                    return (
-                        <>
-                            {formattedNumber(vestsToSp(vestingShares, hivePerMVests), {suffix: "HP"})} <br/>
-                            <small>{row.vesting_shares}</small>
-                        </>
-                    );
-                },
-            },
-        ];
-
-        const pagination = {
-            sizePerPage: 8,
-            hideSizePerPage: true,
-        };
-
-        const tableProps = {
-            bordered: false,
-            keyField: "delegatee",
-            data,
-            columns,
-            pagination: data.length > pagination.sizePerPage ? paginationFactory(pagination) : undefined,
-        };
-
-        // @ts-ignore this is about the library's defaultSorted typing issue
-        const table = <BootstrapTable {...tableProps} />;
-
         return (
             <div className="delegated-vesting-content">
-                <div className="table-responsive">{table}</div>
+                <div className="user-list">
+                    <div className="list-body">
+                        {data.map(x => {
+                            const vestingShares = parseAsset(x.vesting_shares).amount;
+                            const {delegatee: username} = x;
+
+                            return <div className="list-item" key={username}>
+                                <div className="item-main">
+                                    {ProfileLink({
+                                        ...this.props,
+                                        username,
+                                        children: <>{UserAvatar({...this.props, username: x.delegatee, size: "small"})}</>
+                                    })}
+                                    <div className="item-info">
+                                        {ProfileLink({
+                                            ...this.props,
+                                            username,
+                                            children: <a className="item-name notransalte">{username}</a>
+                                        })}
+                                    </div>
+                                </div>
+                                <div className="item-extra">
+                                    <Tooltip content={x.vesting_shares}>
+                                        <span>{formattedNumber(vestsToSp(vestingShares, hivePerMVests), {suffix: "HP"})}</span>
+                                    </Tooltip>
+                                </div>
+                            </div>;
+                        })}
+                    </div>
+                </div>
             </div>
         );
     }
@@ -166,7 +136,7 @@ interface Props {
 
 export default class DelegatedVesting extends Component<Props> {
     render() {
-        const {account, onHide} = this.props;
+        const {onHide} = this.props;
 
         return (
             <>
