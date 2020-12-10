@@ -1,9 +1,17 @@
 .delegated-vesting-content {
-  min-height: 140px;
-  max-height: 370px;
+  height: 370px;
   overflow: auto;
+
+  &.hidden {
+    display: none;
+  }
 
   .user-list {
     @include user-grid-list(1, 2, 2);
+
+    .item-extra{
+      display: flex;
+      justify-content: space-between;
+    }
   }
 }

@@ -7,13 +7,24 @@ import {Modal} from "react-bootstrap";
 import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
+import {ActiveUser} from "../../store/active-user/types";
 
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 import LinearProgress from "../linear-progress";
 import Tooltip from "../tooltip";
+import KeyOrHotDialog from "../key-or-hot-dialog";
+import {error} from "../feedback";
+
 
 import {DelegatedVestingShare, getVestingDelegations} from "../../api/hive";
+
+import {
+    delegateVestingShares,
+    delegateVestingSharesHot,
+    delegateVestingSharesKc,
+    formatError
+} from "../../api/operations";
 
 import {_t} from "../../i18n";
 
@@ -23,38 +34,36 @@ import parseAsset from "../../helper/parse-asset";
 
 import formattedNumber from "../../util/formatted-number";
 
-interface ListProps {
+
+interface Props {
     history: History;
     global: Global;
+    activeUser: ActiveUser | null;
     account: Account;
     dynamicProps: DynamicProps;
+    signingKey: string;
     addAccount: (data: Account) => void;
+    setSigningKey: (key: string) => void;
+    onHide: () => void;
 }
 
-interface ListState {
+interface State {
     loading: boolean;
     data: DelegatedVestingShare[];
+    hideList: boolean;
 }
 
-export class List extends Component<ListProps, ListState> {
-    state: ListState = {
+export class List extends Component<Props, State> {
+    state: State = {
         loading: false,
         data: [],
+        hideList: false
     };
 
     _mounted: boolean = true;
 
     componentDidMount() {
-        const {account} = this.props;
-
-        this.stateSet({loading: true});
-        getVestingDelegations(account.name, "", 250)
-            .then((data) => {
-                this.setData(data);
-            })
-            .finally(() => {
-                this.stateSet({loading: false});
-            });
+        this.fetch().then();
     }
 
     componentWillUnmount() {
@@ -67,17 +76,24 @@ export class List extends Component<ListProps, ListState> {
         }
     };
 
-    setData = (data: DelegatedVestingShare[]) => {
-        data.sort((a, b) => {
-            return parseAsset(b.vesting_shares).amount - parseAsset(a.vesting_shares).amount;
-        });
+    fetch = () => {
+        const {account} = this.props;
+        this.stateSet({loading: true});
 
-        this.stateSet({data});
-    };
+        return getVestingDelegations(account.name, "", 250)
+            .then((r) => {
+                const data = r.sort((a, b) => {
+                    return parseAsset(b.vesting_shares).amount - parseAsset(a.vesting_shares).amount;
+                });
+
+                this.stateSet({data});
+            })
+            .finally(() => this.stateSet({loading: false}));
+    }
 
     render() {
-        const {loading, data} = this.state;
-        const {dynamicProps} = this.props;
+        const {loading, data, hideList} = this.state;
+        const {dynamicProps, activeUser, account} = this.props;
         const {hivePerMVests} = dynamicProps;
 
         if (loading) {
@@ -89,12 +105,37 @@ export class List extends Component<ListProps, ListState> {
         }
 
         return (
-            <div className="delegated-vesting-content">
+            <div className={`delegated-vesting-content ${hideList ? "hidden" : ""}`}>
                 <div className="user-list">
                     <div className="list-body">
+                        {data.length === 0 && <div className="empty-list">{_t("g.empty-list")}</div>}
+
                         {data.map(x => {
                             const vestingShares = parseAsset(x.vesting_shares).amount;
                             const {delegatee: username} = x;
+
+                            const deleteBtn = (activeUser && activeUser.username === account.name) ? KeyOrHotDialog({
+                                ...this.props,
+                                activeUser: activeUser,
+                                children: <a href="#" className="undelegate">undelegate</a>,
+                                onToggle: () => {
+                                    const {hideList} = this.state;
+                                    this.stateSet({hideList: !hideList});
+                                },
+                                onKey: (key) => {
+                                    delegateVestingShares(activeUser.username, key, username, "0.000000 VESTS")
+                                        .then(() => this.fetch())
+                                        .catch(err => error(formatError(err)));
+                                },
+                                onHot: () => {
+                                    delegateVestingSharesHot(activeUser.username, username, "0.000000");
+                                },
+                                onKc: () => {
+                                    delegateVestingSharesKc(activeUser.username, username, "0.000000 VESTS")
+                                        .then(() => this.fetch())
+                                        .catch(err => error(formatError(err)));
+                                }
+                            }) : null;
 
                             return <div className="list-item" key={username}>
                                 <div className="item-main">
@@ -115,6 +156,8 @@ export class List extends Component<ListProps, ListState> {
                                     <Tooltip content={x.vesting_shares}>
                                         <span>{formattedNumber(vestsToSp(vestingShares, hivePerMVests), {suffix: "HP"})}</span>
                                     </Tooltip>
+
+                                    {deleteBtn}
                                 </div>
                             </div>;
                         })}
@@ -125,14 +168,6 @@ export class List extends Component<ListProps, ListState> {
     }
 }
 
-interface Props {
-    history: History;
-    global: Global;
-    dynamicProps: DynamicProps;
-    account: Account;
-    addAccount: (data: Account) => void;
-    onHide: () => void;
-}
 
 export default class DelegatedVesting extends Component<Props> {
     render() {

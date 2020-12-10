@@ -17,6 +17,7 @@ interface Props {
     onKey: (key: PrivateKey) => void;
     onHot?: () => void;
     onKc?: () => void;
+    onToggle?: () => void;
 }
 
 interface State {
@@ -28,9 +29,14 @@ export class KeyOrHotDialog extends Component<Props, State> {
         keyDialog: false
     }
 
-    toggleKeyDialog = () => {
+    toggleKeyDialog = (e?: React.MouseEvent) => {
+        if (e) e.preventDefault();
+
         const {keyDialog} = this.state;
         this.setState({keyDialog: !keyDialog});
+
+        const {onToggle} = this.props;
+        if (onToggle) onToggle();
     }
 
     render() {
@@ -84,7 +90,8 @@ export default (p: Props) => {
         children: p.children,
         onKey: p.onKey,
         onHot: p.onHot,
-        onKc: p.onKc
+        onKc: p.onKc,
+        onToggle: p.onToggle
     }
 
     return <KeyOrHotDialog {...props} />
