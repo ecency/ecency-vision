@@ -1,65 +1,65 @@
 {
   "g": {
-    "edit": "Edit",
-    "search": "Search",
-    "downloads": "Downloads",
-    "login": "Login",
-    "login-as": "Login As",
-    "signup": "Signup",
-    "delete": "Delete",
-    "cancel": "Cancel",
-    "reply": "Reply",
-    "update": "Update",
-    "or": "OR",
-    "server-error": "Process could not be completed due to server error",
-    "day": "day",
-    "days": "days",
-    "finish": "Finish",
-    "next": "Next",
-    "back": "Back",
-    "load-more": "Load More",
-    "empty-list": "Nothing here",
-    "save": "Save",
-    "try-again": "Try again",
-    "show": "Show",
-    "on": "On",
-    "off": "Off"
+    "edit": "Modifică",
+    "search": "Caută",
+    "downloads": "Descărcări",
+    "login": "Logare",
+    "login-as": "Autentificare ca",
+    "signup": "Înregistrare",
+    "delete": "Șterge",
+    "cancel": "Anulează",
+    "reply": "Răspunde",
+    "update": "Actualizare",
+    "or": "SAU",
+    "server-error": "Acțiunea nu a putut fi completată datorită unei erori de server",
+    "day": "zi",
+    "days": "zile",
+    "finish": "Finalizare",
+    "next": "Următorul",
+    "back": "Înapoi",
+    "load-more": "Încarcă mai multe",
+    "empty-list": "Nici un rezultat",
+    "save": "Salvează",
+    "try-again": "Încearcă din nou",
+    "show": "Arată",
+    "on": "Activează",
+    "off": "Dezactivează"
   },
   "confirm": {
-    "title": "Are you sure?",
-    "ok": "Confirm",
-    "cancel": "Cancel"
+    "title": "Ești sigur?",
+    "ok": "Confirmă",
+    "cancel": "Anulează"
   },
   "entry-filter": {
-    "filter-trending": "Trending",
-    "filter-hot": "Hot",
-    "filter-created": "New",
-    "filter-promoted": "Promoted",
-    "filter-payout": "Payouts",
-    "filter-muted": "Muted",
-    "filter-feed": "Feed"
+    "filter-trending": "Popular",
+    "filter-hot": "Fierbinte",
+    "filter-created": "Nou",
+    "filter-promoted": "Promovat",
+    "filter-payout": "Plăți",
+    "filter-muted": "Dezactivat",
+    "filter-feed": "Noutăți"
   },
   "navbar": {
-    "discover": "Discover",
-    "communities": "Communities",
-    "about": "About",
-    "faq": "FAQ",
-    "post": "Create Post",
+    "discover": "Descoperă",
+    "communities": "Comunități",
+    "about": "Despre",
+    "faq": "Întrebări frecvente",
+    "post": "Creează o postare",
     "day-theme": "Day Theme",
     "night-theme": "Night Theme",
-    "address-placeholder": "enter url or search query"
+    "address-placeholder": "introdu Url sau obiectul căutării"
   },
   "search": {
-    "placeholder": "Search",
-    "placeholder-count": "Search {{n}} posts",
-    "header-tag": "Tags",
-    "header-account": "Users",
-    "header-community": "Communities"
+    "placeholder": "Caută",
+    "placeholder-count": "Caută {{n}} postări",
+    "header-tag": "Taguri",
+    "header-account": "Utilizator",
+    "header-community": "Comunități"
   },
   "user-nav": {
-    "wallet": "Wallet",
-    "unclaimed-reward-notice": "You have unclaimed rewards",
-    "points": "Points",
+    "wallet": "Portofel",
+    "unclaimed-reward-notice": "Ai recompense necolectate",
+    "points": "Puncte",
     "unclaimed-points-notice": "You have unclaimed points",
     "notifications": "Notifications",
     "profile": "Profile",
@@ -122,78 +122,78 @@
     "reblog": "Reblog",
     "confirm-title": "Reblog to @{{n}}'s blog?",
     "confirm-ok": "Reblog",
-    "success": "Reblogged!"
+    "success": "Redistribuit!"
   },
   "entry-payout": {
-    "pending-payout": "Pending Payout",
-    "promoted": "Promoted",
-    "author-payout": "Author Payout",
-    "curators-payout": "Curators Payout",
-    "payout-date": "Payout",
-    "beneficiary": "Beneficiary",
-    "breakdown": "Breakdown"
+    "pending-payout": "Plată în așteptare",
+    "promoted": "Promovat",
+    "author-payout": "Plata Autorului",
+    "curators-payout": "Plată de curare",
+    "payout-date": "Plată",
+    "beneficiary": "Beneficiar",
+    "breakdown": "Defalcare"
   },
   "entry-index": {
-    "feed": "Feed",
+    "feed": "Flux",
     "tags": "Popular",
-    "title": "{{f}} topics",
-    "description": "{{f}} topics on a social network owned and operated by its users.",
-    "description-tag": "{{f}} #{{t}} topics",
-    "description-user-feed": "{{u}}'s feed"
+    "title": "{{f}} subiecte",
+    "description": "{{f}} subiecte pe o rețea de socializare deținute și operate de utilizatorii săi.",
+    "description-tag": "{{f}} #{{t}} subiecte",
+    "description-user-feed": "Fluxul lui {{u}}"
   },
   "market-data": {
-    "title": "Market price",
+    "title": "Preț piață",
     "credits": "market data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "list-style": {
     "title": "Toggle list style"
   },
   "entry-votes": {
-    "title": "1 Vote",
+    "title": "1 Vot",
     "title-n": "{{n}} Votes",
-    "title-empty": "No Votes",
-    "voter": "Voter",
-    "percent": "Percent",
-    "reward": "Reward",
-    "time": "Time"
+    "title-empty": "Nu există voturi",
+    "voter": "Votant",
+    "percent": "Procent",
+    "reward": "Recompensă",
+    "time": "Timp"
   },
   "entry": {
     "via-app": "via <span class=\"app-name\">{{app}}</span>",
-    "comment-entry-title": "You are viewing a single comment's thread from: ",
-    "comment-entry-go-root": "View the full context",
-    "comment-entry-go-parent": "View the direct parent",
+    "comment-entry-title": "Vizualizezi șirul unui singur comentariu de la: ",
+    "comment-entry-go-root": "Vezi contextul complet",
+    "comment-entry-go-parent": "Vizualizează postarea principală",
     "show-history": "Show edit history",
-    "hidden-warning": "This post was hidden due to low ratings."
+    "hidden-warning": "Această postare a fost ascunsă din cauza ratingului scăzut."
   },
   "edit-history": {
-    "title": "Edit History",
-    "show-diff": "Show Difference",
-    "version": "Version {{n}}"
+    "title": "Istoric modificări",
+    "show-diff": "Arată diferența",
+    "version": "Versiunea {{n}}"
   },
   "similar-entries": {
     "title": "Recent posts by @{{n}}"
   },
   "comment": {
-    "body-placeholder": "Write your reply here",
-    "preview": "Preview"
+    "body-placeholder": "Scrie răspunsul tău aici",
+    "preview": "Previzualizare"
   },
   "discussion": {
-    "join": "Join the conversion now",
-    "btn-join": "Join",
-    "replies": "1 Comment",
-    "n-replies": "{{n}} Comments",
-    "order": "Sort Order",
-    "order-trending": "Trending",
-    "order-reputation": "Reputation",
-    "order-votes": "Votes",
-    "order-created": "Age",
-    "read-more": "...read more replies...",
-    "reveal": "Reveal comment"
+    "join": "Alătură-te conversației acum",
+    "btn-join": "Alătură-te",
+    "replies": "1 Comentariu",
+    "n-replies": "{{n}} Comentarii",
+    "order": "Ordinea de sortare",
+    "order-trending": "Popular",
+    "order-reputation": "Reputație",
+    "order-votes": "Voturi",
+    "order-created": "Vechime",
+    "read-more": "...citește mai multe răspunsuri...",
+    "reveal": "Arată comentariul"
   },
   "community": {
-    "page-description": "{{f}} topics",
-    "subscribe": "Join",
-    "subscribed": "Joined",
+    "page-description": "{{f}} subiecte",
+    "subscribe": "Înscrie-te",
+    "subscribed": "Alăturat",
     "unsubscribe": "Leave",
     "post": "New Post",
     "posts": "Posts",
@@ -248,14 +248,14 @@
     "admins": "admins:",
     "sort-hot": "Hot",
     "sort-rank": "Rank",
-    "sort-subs": "Members",
-    "sort-new": "New",
-    "no-results": "No results found",
-    "create": "Create community"
+    "sort-subs": "Membri",
+    "sort-new": "Nou",
+    "no-results": "Niciun rezultat găsit",
+    "create": "Creeare comunitate"
   },
   "communities-create": {
-    "page-title": "Create a community",
-    "title": "Title",
+    "page-title": "Creează o comunitate",
+    "title": "Titlu",
     "about": "About",
     "description": "Create a best, decentralized, immutable, rewarding communities",
     "fee": "Operation fee",
