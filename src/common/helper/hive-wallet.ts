@@ -1,5 +1,6 @@
 import {Account} from "../store/accounts/types";
 import {DynamicProps} from "../store/dynamic-props/types";
+
 import parseAsset from "./parse-asset";
 import {vestsToHp} from "./vesting";
 import isEmptyDate from "./is-empty-date";
@@ -17,20 +18,21 @@ export default class HiveWallet {
     public rewardVestingHive: number;
     public hasUnclaimedRewards: boolean;
 
+    public isPoweringDown: boolean;
+    public nextVestingWithdrawalDate: Date;
+    public nextVestingSharesWithdrawal: number;
+
     public vestingShares: number;
     public vestingSharesDelegated: number;
     public vestingSharesReceived: number;
     public vestingSharesTotal: number;
+    public vestingSharesForDelegation: number;
 
     public totalHive: number;
     public totalHbd: number;
 
     public estimatedValue: number;
 
-    public isPoweringDown: boolean;
-
-    public nextVestingWithdrawalDate: Date;
-    public nextVestingSharesWithdrawal: number;
 
     constructor(account: Account, dynamicProps: DynamicProps) {
         const {hivePerMVests, base, quote} = dynamicProps;
@@ -47,15 +49,6 @@ export default class HiveWallet {
         this.rewardVestingHive = parseAsset(account.reward_vesting_steem || account.reward_vesting_hive).amount;
         this.hasUnclaimedRewards = this.rewardHiveBalance > 0 || this.rewardHbdBalance > 0 || this.rewardVestingHive > 0;
 
-        this.vestingShares = parseAsset(account.vesting_shares).amount;
-        this.vestingSharesDelegated = parseAsset(account.delegated_vesting_shares).amount;
-        this.vestingSharesReceived = parseAsset(account.received_vesting_shares).amount;
-
-        this.totalHive = vestsToHp(this.vestingShares, hivePerMVests) + this.balance + this.savingBalance;
-        this.totalHbd = this.hbdBalance + this.savingBalanceHbd;
-
-        this.estimatedValue = this.totalHive * pricePerHive + this.totalHbd;
-
         this.isPoweringDown = !isEmptyDate(account.next_vesting_withdrawal);
 
         this.nextVestingWithdrawalDate = parseDate(account.next_vesting_withdrawal!);
@@ -63,9 +56,20 @@ export default class HiveWallet {
         this.nextVestingSharesWithdrawal = this.isPoweringDown
             ? Math.min(
                 parseAsset(account.vesting_withdraw_rate).amount,
-                (account.to_withdraw! - account.withdrawn!) / 1e5
+                (account.to_withdraw! - account.withdrawn!) / 1e6
             ) : 0;
 
+        this.vestingShares = parseAsset(account.vesting_shares).amount;
+        this.vestingSharesDelegated = parseAsset(account.delegated_vesting_shares).amount;
+        this.vestingSharesReceived = parseAsset(account.received_vesting_shares).amount;
         this.vestingSharesTotal = this.vestingShares - this.vestingSharesDelegated + this.vestingSharesReceived - this.nextVestingSharesWithdrawal;
+        this.vestingSharesForDelegation = this.isPoweringDown ?
+            this.vestingShares - (account.to_withdraw! - account.withdrawn!) / 1e6 - this.vestingSharesDelegated :
+            this.vestingShares - this.vestingSharesDelegated;
+
+        this.totalHive = vestsToHp(this.vestingShares, hivePerMVests) + this.balance + this.savingBalance;
+        this.totalHbd = this.hbdBalance + this.savingBalanceHbd;
+
+        this.estimatedValue = this.totalHive * pricePerHive + this.totalHbd;
     }
 }
