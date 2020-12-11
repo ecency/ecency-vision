@@ -2,7 +2,7 @@
 
 exports[`(1) Default render 1`] = `
 <div
-  className="delegated-vesting-content "
+  className="delegated-vesting-content"
 >
   <div
     className="user-list"
@@ -222,7 +222,7 @@ exports[`(1) Default render 1`] = `
 
 exports[`(2) With active user 1`] = `
 <div
-  className="delegated-vesting-content "
+  className="delegated-vesting-content"
 >
   <div
     className="user-list"
@@ -442,7 +442,7 @@ exports[`(2) With active user 1`] = `
 
 exports[`(3) With delegator active user 1`] = `
 <div
-  className="delegated-vesting-content "
+  className="delegated-vesting-content"
 >
   <div
     className="user-list"
@@ -697,7 +697,7 @@ exports[`(3) With delegator active user 1`] = `
 
 exports[`(4) Empty List 1`] = `
 <div
-  className="delegated-vesting-content "
+  className="delegated-vesting-content"
 >
   <div
     className="user-list"
