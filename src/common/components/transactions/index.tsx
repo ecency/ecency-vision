@@ -9,7 +9,7 @@ import LinearProgress from "../linear-progress";
 
 import parseAsset from "../../helper/parse-asset";
 import parseDate from "../../helper/parse-date";
-import {vestsToSp} from "../../helper/vesting";
+import {vestsToHp} from "../../helper/vesting";
 
 import formattedNumber from "../../util/formatted-number";
 
@@ -35,7 +35,7 @@ export class TransactionRow extends Component<RowProps> {
         if (tr.type === "curation_reward") {
             flag = true;
 
-            numbers = <>{formattedNumber(vestsToSp(parseAsset(tr.reward).amount, hivePerMVests), {suffix: "HP"})}</>;
+            numbers = <>{formattedNumber(vestsToHp(parseAsset(tr.reward).amount, hivePerMVests), {suffix: "HP"})}</>;
             details = (
                 <span>
           <a href={`/curation/@${tr.comment_author}/${tr.comment_permlink}`}>@{tr.comment_author}/{tr.comment_permlink}</a>
@@ -59,7 +59,7 @@ export class TransactionRow extends Component<RowProps> {
                     )}
                     {vesting_payout.amount > 0 && (
                         <span className="number">
-              {formattedNumber(vestsToSp(vesting_payout.amount, hivePerMVests), {suffix: "HP"})}{" "}
+              {formattedNumber(vestsToHp(vesting_payout.amount, hivePerMVests), {suffix: "HP"})}{" "}
             </span>
                     )}
                 </>
@@ -93,7 +93,7 @@ export class TransactionRow extends Component<RowProps> {
                     )}
                     {reward_vests.amount > 0 && (
                         <span className="number">
-              {formattedNumber(vestsToSp(reward_vests.amount, hivePerMVests), {suffix: "HP"})}
+              {formattedNumber(vestsToHp(reward_vests.amount, hivePerMVests), {suffix: "HP"})}
             </span>
                     )}
                 </>
@@ -125,7 +125,7 @@ export class TransactionRow extends Component<RowProps> {
             const vesting_shares = parseAsset(tr.vesting_shares);
             numbers = (
                 <span className="number">
-          {formattedNumber(vestsToSp(vesting_shares.amount, hivePerMVests), {suffix: "HP"})}
+          {formattedNumber(vestsToHp(vesting_shares.amount, hivePerMVests), {suffix: "HP"})}
         </span>
             );
 

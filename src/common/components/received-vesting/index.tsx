@@ -17,7 +17,7 @@ import {ReceivedVestingShare, getReceivedVestingShares} from "../../api/private"
 
 import {_t} from "../../i18n";
 
-import {vestsToSp} from "../../helper/vesting";
+import {vestsToHp} from "../../helper/vesting";
 
 import parseAsset from "../../helper/parse-asset";
 
@@ -113,7 +113,7 @@ export class List extends Component<Props, State> {
                                 </div>
                                 <div className="item-extra">
                                     <Tooltip content={x.vesting_shares}>
-                                        <span>{formattedNumber(vestsToSp(vestingShares, hivePerMVests), {suffix: "HP"})}</span>
+                                        <span>{formattedNumber(vestsToHp(vestingShares, hivePerMVests), {suffix: "HP"})}</span>
                                     </Tooltip>
                                 </div>
                             </div>;

@@ -21,7 +21,7 @@ import {error, success} from "../feedback";
 import WalletMenu from "../wallet-menu";
 
 import parseAsset from "../../helper/parse-asset";
-import {vestsToSp} from "../../helper/vesting";
+import {vestsToHp} from "../../helper/vesting";
 import parseDate from "../../helper/parse-date";
 import isEmptyDate from "../../helper/is-empty-date";
 
@@ -157,7 +157,7 @@ export class WalletHive extends Component<Props, State> {
 
         const pricePerHive = base / quote;
 
-        const totalHive = vestsToSp(vestingShares, hivePerMVests) + balance + savingBalance;
+        const totalHive = vestsToHp(vestingShares, hivePerMVests) + balance + savingBalance;
 
         const totalHbd = hbdBalance + savingBalanceHbd;
 
@@ -292,14 +292,14 @@ export class WalletHive extends Component<Props, State> {
                                         }
                                         return null;
                                     })()}
-                                    {formattedNumber(vestsToSp(vestingShares, hivePerMVests), {suffix: "HP"})}
+                                    {formattedNumber(vestsToHp(vestingShares, hivePerMVests), {suffix: "HP"})}
                                 </div>
 
                                 {vestingSharesDelegated > 0 && (
                                     <div className="amount amount-passive delegated-shares">
                                         <Tooltip content={_t("wallet.hive-power-delegated")}>
                                       <span className="amount-btn" onClick={this.toggleDelegatedList}>
-                                        {formattedNumber(vestsToSp(vestingSharesDelegated, hivePerMVests), {prefix: "-", suffix: "HP"})}
+                                        {formattedNumber(vestsToHp(vestingSharesDelegated, hivePerMVests), {prefix: "-", suffix: "HP"})}
                                       </span>
                                         </Tooltip>
                                     </div>
@@ -309,7 +309,7 @@ export class WalletHive extends Component<Props, State> {
                                     <div className="amount amount-passive received-shares">
                                         <Tooltip content={_t("wallet.hive-power-received")}>
                                   <span className="amount-btn" onClick={this.toggleReceivedList}>
-                                    {formattedNumber(vestsToSp(vestingSharesReceived, hivePerMVests), {prefix: "+", suffix: "HP"})}
+                                    {formattedNumber(vestsToHp(vestingSharesReceived, hivePerMVests), {prefix: "+", suffix: "HP"})}
                                   </span>
                                         </Tooltip>
                                     </div>
@@ -319,7 +319,7 @@ export class WalletHive extends Component<Props, State> {
                                     <div className="amount amount-passive next-power-down-amount">
                                         <Tooltip content={_t("wallet.next-power-down-amount")}>
                                   <span>
-                                    {formattedNumber(vestsToSp(vestingSharesWithdrawal, hivePerMVests), {prefix: "-", suffix: "HP"})}
+                                    {formattedNumber(vestsToHp(vestingSharesWithdrawal, hivePerMVests), {prefix: "-", suffix: "HP"})}
                                   </span>
                                         </Tooltip>
                                     </div>
@@ -329,7 +329,7 @@ export class WalletHive extends Component<Props, State> {
                                     <div className="amount total-hive-power">
                                         <Tooltip content={_t("wallet.hive-power-total")}>
                                   <span>
-                                    {formattedNumber(vestsToSp(vestingSharesTotal, hivePerMVests), {prefix: "=", suffix: "HP"})}
+                                    {formattedNumber(vestsToHp(vestingSharesTotal, hivePerMVests), {prefix: "=", suffix: "HP"})}
                                   </span>
                                         </Tooltip>
                                     </div>
@@ -444,7 +444,7 @@ export class WalletHive extends Component<Props, State> {
                             <div className="next-power-down">
                                 {_t("wallet.next-power-down", {
                                     time: moment(nextVestingWithdrawal).fromNow(),
-                                    amount: formattedNumber(vestsToSp(vestingSharesWithdrawal, hivePerMVests), {prefix: "HIVE"}),
+                                    amount: formattedNumber(vestsToHp(vestingSharesWithdrawal, hivePerMVests), {prefix: "HIVE"}),
                                 })}
                             </div>
                         )}

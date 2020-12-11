@@ -22,7 +22,7 @@ import {error} from "../feedback";
 
 import amountFormatCheck from '../../helper/amount-format-check';
 import parseAsset from "../../helper/parse-asset";
-import {vestsToSp, spToVests} from "../../helper/vesting";
+import {vestsToHp, spToVests} from "../../helper/vesting";
 
 import {getAccount, getAccountFull} from "../../api/hive";
 
@@ -319,7 +319,7 @@ export class Transfer extends Component<Props, State> {
         if (asset === "HP") {
             const {hivePerMVests} = dynamicProps;
             const vestingShares = parseAsset(account.vesting_shares).amount;
-            return vestsToSp(vestingShares, hivePerMVests);
+            return vestsToHp(vestingShares, hivePerMVests);
         }
 
         return 0;

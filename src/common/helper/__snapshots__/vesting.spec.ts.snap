@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Vesting (1) vestsToSp 1`] = `0.17326914375512842`;
+exports[`Vesting (1) vestsToHp 1`] = `0.17326914375512842`;
 
 exports[`Vesting (2) spToVests 1`] = `350.00000000000006`;
 
