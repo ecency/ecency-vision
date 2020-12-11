@@ -1,65 +1,65 @@
 {
   "g": {
-    "edit": "Edit",
-    "search": "Search",
-    "downloads": "Downloads",
-    "login": "Login",
-    "login-as": "Login As",
-    "signup": "Signup",
-    "delete": "Delete",
-    "cancel": "Cancel",
-    "reply": "Reply",
-    "update": "Update",
-    "or": "OR",
-    "server-error": "Process could not be completed due to server error",
-    "day": "day",
-    "days": "days",
-    "finish": "Finish",
-    "next": "Next",
-    "back": "Back",
-    "load-more": "Load More",
-    "empty-list": "Nothing here",
-    "save": "Save",
-    "try-again": "Try again",
-    "show": "Show",
-    "on": "On",
-    "off": "Off"
+    "edit": "Edytuj",
+    "search": "Szukaj",
+    "downloads": "Pobrane",
+    "login": "Zaloguj",
+    "login-as": "Zaloguj jako",
+    "signup": "Zarejestruj",
+    "delete": "Usuń",
+    "cancel": "Anuluj",
+    "reply": "Odpowiedz",
+    "update": "Aktualizuj",
+    "or": "LUB",
+    "server-error": "Nie można ukończyć procesu z powodu błędu serwera",
+    "day": "dzień",
+    "days": "dni",
+    "finish": "Zakończ",
+    "next": "Dalej",
+    "back": "Wstecz",
+    "load-more": "Załaduj więcej",
+    "empty-list": "Nic tu nie ma",
+    "save": "Zapisz",
+    "try-again": "Spróbuj ponownie",
+    "show": "Pokaż",
+    "on": "Wł",
+    "off": "Wył"
   },
   "confirm": {
-    "title": "Are you sure?",
-    "ok": "Confirm",
-    "cancel": "Cancel"
+    "title": "Jesteś pewien?",
+    "ok": "Zatwierdź",
+    "cancel": "Anuluj"
   },
   "entry-filter": {
-    "filter-trending": "Trending",
-    "filter-hot": "Hot",
-    "filter-created": "New",
-    "filter-promoted": "Promoted",
-    "filter-payout": "Payouts",
-    "filter-muted": "Muted",
-    "filter-feed": "Feed"
+    "filter-trending": "Popularne",
+    "filter-hot": "Gorące",
+    "filter-created": "Nowe",
+    "filter-promoted": "Promowane",
+    "filter-payout": "Wypłaty",
+    "filter-muted": "Wyciszone",
+    "filter-feed": "Aktualności"
   },
   "navbar": {
-    "discover": "Discover",
-    "communities": "Communities",
-    "about": "About",
-    "faq": "FAQ",
-    "post": "Create Post",
-    "day-theme": "Day Theme",
-    "night-theme": "Night Theme",
-    "address-placeholder": "enter url or search query"
+    "discover": "Odkrywaj",
+    "communities": "Społeczności",
+    "about": "O Aplikacji",
+    "faq": "Najczęściej zadawane pytania - FAQ",
+    "post": "Utwórz Post",
+    "day-theme": "Tryb dzienny",
+    "night-theme": "Tryb nocny",
+    "address-placeholder": "wprowadź szukaną frazę"
   },
   "search": {
-    "placeholder": "Search",
-    "placeholder-count": "Search {{n}} posts",
-    "header-tag": "Tags",
-    "header-account": "Users",
-    "header-community": "Communities"
+    "placeholder": "Szukaj",
+    "placeholder-count": "Szukaj {{n}} postów",
+    "header-tag": "Tagi",
+    "header-account": "Użytkownicy",
+    "header-community": "Społeczności"
   },
   "user-nav": {
-    "wallet": "Wallet",
-    "unclaimed-reward-notice": "You have unclaimed rewards",
-    "points": "Points",
+    "wallet": "Portfel",
+    "unclaimed-reward-notice": "Masz nieodebrane wynagrodzenie",
+    "points": "Punkty",
     "unclaimed-points-notice": "You have unclaimed points",
     "notifications": "Notifications",
     "profile": "Profile",
@@ -126,39 +126,39 @@
   },
   "entry-payout": {
     "pending-payout": "Pending Payout",
-    "promoted": "Promoted",
-    "author-payout": "Author Payout",
-    "curators-payout": "Curators Payout",
-    "payout-date": "Payout",
-    "beneficiary": "Beneficiary",
-    "breakdown": "Breakdown"
+    "promoted": "Promowane",
+    "author-payout": "Wypłata Autorska",
+    "curators-payout": "Wypłata Kuratorska",
+    "payout-date": "Wypłata",
+    "beneficiary": "Beneficjant",
+    "breakdown": "Podział"
   },
   "entry-index": {
-    "feed": "Feed",
-    "tags": "Popular",
-    "title": "{{f}} topics",
-    "description": "{{f}} topics on a social network owned and operated by its users.",
-    "description-tag": "{{f}} #{{t}} topics",
-    "description-user-feed": "{{u}}'s feed"
+    "feed": "Aktualności",
+    "tags": "Popularne",
+    "title": "{{f}} tematy",
+    "description": "{{f}} tematy na sieci społecznościowej będącej własnością i obsługiwanej przez jej użytkowników.",
+    "description-tag": "{{f}} #{{t}} tematy",
+    "description-user-feed": "aktualności {{u}}"
   },
   "market-data": {
-    "title": "Market price",
-    "credits": "market data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
+    "title": "Cena Rynkowa",
+    "credits": "dane rynkowe <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "list-style": {
-    "title": "Toggle list style"
+    "title": "Przełącz styl listy"
   },
   "entry-votes": {
-    "title": "1 Vote",
-    "title-n": "{{n}} Votes",
-    "title-empty": "No Votes",
-    "voter": "Voter",
-    "percent": "Percent",
-    "reward": "Reward",
-    "time": "Time"
+    "title": "1 głos",
+    "title-n": "{{n}} Głosów",
+    "title-empty": "Brak głosów",
+    "voter": "Głosujący",
+    "percent": "Procent",
+    "reward": "Nagroda",
+    "time": "Czas"
   },
   "entry": {
-    "via-app": "via <span class=\"app-name\">{{app}}</span>",
+    "via-app": "przez <span class=\"app-name\">{{app}}</span>",
     "comment-entry-title": "You are viewing a single comment's thread from: ",
     "comment-entry-go-root": "View the full context",
     "comment-entry-go-parent": "View the direct parent",
