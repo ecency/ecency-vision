@@ -20,9 +20,11 @@ import SuggestionList from "../suggestion-list";
 import KeyOrHot from "../key-or-hot";
 import {error} from "../feedback";
 
+import HiveWallet from "../../helper/hive-wallet";
 import amountFormatCheck from '../../helper/amount-format-check';
 import parseAsset from "../../helper/parse-asset";
 import {vestsToHp, hpToVests} from "../../helper/vesting";
+
 
 import {getAccount, getAccountFull} from "../../api/hive";
 
@@ -303,22 +305,23 @@ export class Transfer extends Component<Props, State> {
 
         const {data: account} = activeUser;
 
+        const w = new HiveWallet(account, dynamicProps);
+
         if (mode === "withdraw-saving") {
-            const k = asset === "HIVE" ? "savings_balance" : "savings_sbd_balance";
-            return parseAsset(account[k]).amount;
+            return asset === "HIVE" ? w.savingBalance : w.savingBalanceHbd;
         }
 
         if (asset === "HIVE") {
-            return parseAsset(account.balance).amount;
+            return w.balance;
         }
 
         if (asset === "HBD") {
-            return parseAsset(account.sbd_balance).amount;
+            return w.hbdBalance;
         }
 
-        if (asset === "HP") {
+        if (asset === "HP" && mode === "delegate") {
             const {hivePerMVests} = dynamicProps;
-            const vestingShares = parseAsset(account.vesting_shares).amount;
+            const vestingShares = w.vestingSharesForDelegation;
             return vestsToHp(vestingShares, hivePerMVests);
         }
 
