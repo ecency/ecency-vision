@@ -22,7 +22,7 @@ import {error} from "../feedback";
 
 import amountFormatCheck from '../../helper/amount-format-check';
 import parseAsset from "../../helper/parse-asset";
-import {vestsToHp, spToVests} from "../../helper/vesting";
+import {vestsToHp, hpToVests} from "../../helper/vesting";
 
 import {getAccount, getAccountFull} from "../../api/hive";
 
@@ -332,7 +332,7 @@ export class Transfer extends Component<Props, State> {
     hpToVests = (hp: number, withSymbol: boolean = true): string => {
         const {dynamicProps} = this.props;
         const {hivePerMVests} = dynamicProps;
-        const vests = spToVests(hp, hivePerMVests);
+        const vests = hpToVests(hp, hivePerMVests);
 
         if (withSymbol) {
             return `${this.formatNumber(vests, 6)} VESTS`;
