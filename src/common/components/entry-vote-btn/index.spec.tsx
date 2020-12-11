@@ -21,7 +21,11 @@ jest.mock("../../api/hive", () => ({
 describe('(1) Dialog', () => {
 
     const data: Account = {
+        ...fullAccountInstance,
         name: "user1",
+        vesting_shares: "0.000000 VESTS",
+        delegated_vesting_shares: "0.000000 VESTS",
+        received_vesting_shares: "77883823.534631 VESTS",
     };
 
     const props = {
