@@ -46,8 +46,8 @@ export class TransactionRow extends Component<RowProps> {
         if (tr.type === "author_reward" || tr.type === "comment_benefactor_reward") {
             flag = true;
 
-            const hbd_payout = parseAsset(tr.sbd_payout);
-            const hive_payout = parseAsset(tr.steem_payout);
+            const hbd_payout = parseAsset(tr.hbd_payout);
+            const hive_payout = parseAsset(tr.hive_payout);
             const vesting_payout = parseAsset(tr.vesting_payout);
             numbers = (
                 <>
@@ -79,8 +79,8 @@ export class TransactionRow extends Component<RowProps> {
         if (tr.type === "claim_reward_balance") {
             flag = true;
 
-            const reward_hbd = parseAsset(tr.reward_sbd || tr.reward_hbd);
-            const reward_hive = parseAsset(tr.reward_steem || tr.reward_hive);
+            const reward_hbd = parseAsset(tr.reward_hbd);
+            const reward_hive = parseAsset(tr.reward_hive);
             const reward_vests = parseAsset(tr.reward_vests);
 
             numbers = (
