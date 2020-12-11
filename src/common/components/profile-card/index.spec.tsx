@@ -19,43 +19,50 @@ jest.mock("../../constants/defaults.json", () => ({
 // Mock for manabar calculation
 Date.now = jest.fn(() => 1591276905521);
 
+const account: Account = {
+    name: "user1",
+};
+
+const accountFull: Account = {
+    ...fullAccountInstance,
+    name: "user1",
+    reputation: "33082349040",
+    created: "2016-07-07T08:15:00",
+    vesting_shares: "0.000000 VESTS",
+    delegated_vesting_shares: "0.000000 VESTS",
+    received_vesting_shares: "77883823.534631 VESTS",
+    vesting_withdraw_rate: "0.000000 VESTS",
+    voting_manabar: {current_mana: "73562964033158", last_update_time: 1591275594},
+    profile: {
+        name: "Foo Bar",
+        about: "Lorem ipsum dolor sit amet",
+        website: "https://esteem.app",
+        location: "Hive",
+    },
+};
+
+const defProps = {
+    global: globalInstance,
+    history: createBrowserHistory(),
+    activeUser: null,
+    account,
+    addAccount: () => {
+    },
+    updateActiveUser: () => {
+    }
+}
+
 it("(1) Render with not loaded data", () => {
-    const account: Account = {
-        name: "user1",
-    };
-
-    const props = {
-        global: globalInstance,
-        history: createBrowserHistory(),
-        activeUser: null,
-        account,
-        addAccount: () => {
-        },
-        updateActiveUser: () => {
-        }
-    };
-
     const component = renderer.create(<StaticRouter location="/" context={{}}>
-        <ProfileCard {...props} />
+        <ProfileCard {...defProps} />
     </StaticRouter>);
     expect(component.toJSON()).toMatchSnapshot();
 });
 
 it("(2) Render with loaded data", () => {
-    const account: Account = {
-        ...fullAccountInstance,
-        name: "user1",
-    };
-
     const props = {
-        global: globalInstance,
-        history: createBrowserHistory(),
-        account,
-        activeUser: null,
-        addAccount: () => {
-        },
-        updateActiveUser: () => {
-        }
+        ...defProps,
+        account: accountFull
     };
 
     const component = renderer.create(<StaticRouter location="/" context={{}}>
@@ -65,35 +72,17 @@ it("(2) Render with loaded data", () => {
 });
 
 it("(3) Should show profile edits", () => {
-    const account: Account = {
-        ...fullAccountInstance,
-        name: "user1",
-    };
-
     const props = {
-        global: globalInstance,
-        history: createBrowserHistory(),
-        account,
+        ...defProps,
+        account: accountFull,
         activeUser: {
             ...activeUserMaker("user1"),
             ...{
                 data: {
-                    name: "foo",
-                    profile: {
-                        name: 'Foo B.',
-                        about: 'Lorem ipsum dolor sit amet',
-                        website: 'https://lipsum.com',
-                        location: 'New York',
-                        cover_image: 'https://www.imgur.com/cover-image.jpg',
-                        profile_image: 'https://www.imgur.com/profile-image.jpg',
-                    }
+                    ...accountFull
                 }
             }
         },
-        addAccount: () => {
-        },
-        updateActiveUser: () => {
-        }
     };
 
     const component = renderer.create(<StaticRouter location="/" context={{}}>
