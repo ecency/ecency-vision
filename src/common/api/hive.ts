@@ -2,7 +2,7 @@ import {Client} from "@hiveio/dhive";
 
 import {TrendingTag} from "../store/trending-tags/types";
 import {DynamicProps} from "../store/dynamic-props/types";
-import {Account, AccountProfile, AccountFollowStats} from "../store/accounts/types";
+import {FullAccount, AccountProfile, AccountFollowStats} from "../store/accounts/types";
 
 import parseAsset from "../helper/parse-asset";
 
@@ -75,10 +75,10 @@ export const getTrendingTags = (afterTag: string = "", limit: number = 250): Pro
 export const lookupAccounts = (q: string, limit = 50): Promise<string[]> =>
     client.database.call("lookup_accounts", [q, limit]);
 
-export const getAccounts = (usernames: string[]): Promise<Account[]> => {
-    return client.database.getAccounts(usernames).then((resp: any[]): Account[] =>
+export const getAccounts = (usernames: string[]): Promise<FullAccount[]> => {
+    return client.database.getAccounts(usernames).then((resp: any[]): FullAccount[] =>
         resp.map((x) => {
-            const account: Account = {
+            const account: FullAccount = {
                 name: x.name,
                 active: x.active,
                 posting: x.posting,
@@ -88,14 +88,19 @@ export const getAccounts = (usernames: string[]): Promise<Account[]> => {
                 reputation: x.reputation,
                 posting_json_metadata: x.posting_json_metadata,
                 json_metadata: x.json_metadata,
-                reward_steem_balance: x.reward_steem_balance || x.reward_hive_balance,
-                reward_sbd_balance: x.reward_sbd_balance || x.reward_hbd_balance,
-                reward_vesting_steem: x.reward_vesting_steem || x.reward_vesting_hive,
+                reward_steem_balance: x.reward_steem_balance || x.reward_hive_balance, // will be deleted
+                reward_hive_balance: x.reward_hive_balance,
+                reward_sbd_balance: x.reward_sbd_balance || x.reward_hbd_balance, // will be deleted
+                reward_hbd_balance: x.reward_hbd_balance,
+                reward_vesting_steem: x.reward_vesting_steem || x.reward_vesting_hive, // will be deleted
+                reward_vesting_hive: x.reward_vesting_hive,
                 reward_vesting_balance: x.reward_vesting_balance,
                 balance: x.balance,
-                sbd_balance: x.sbd_balance || x.hbd_balance,
+                sbd_balance: x.sbd_balance || x.hbd_balance, // will be deleted
+                hbd_balance: x.hbd_balance,
                 savings_balance: x.savings_balance,
-                savings_sbd_balance: x.savings_sbd_balance || x.savings_hbd_balance,
+                savings_sbd_balance: x.savings_sbd_balance || x.savings_hbd_balance, // will be deleted
+                savings_hbd_balance: x.savings_hbd_balance,
                 next_vesting_withdrawal: x.next_vesting_withdrawal,
                 vesting_shares: x.vesting_shares,
                 delegated_vesting_shares: x.delegated_vesting_shares,
@@ -140,9 +145,9 @@ export const getAccounts = (usernames: string[]): Promise<Account[]> => {
     );
 };
 
-export const getAccount = (username: string): Promise<Account> => getAccounts([username]).then((resp) => resp[0]);
+export const getAccount = (username: string): Promise<FullAccount> => getAccounts([username]).then((resp) => resp[0]);
 
-export const getAccountFull = (username: string): Promise<Account> =>
+export const getAccountFull = (username: string): Promise<FullAccount> =>
     getAccount(username).then(async (account) => {
         let follow_stats: AccountFollowStats | undefined;
         try {
@@ -269,7 +274,7 @@ export const getProposalVotes = (proposalId: number, voter: string = "", limit: 
         .then(r => r.filter((x: ProposalVote) => x.proposal.proposal_id === proposalId))
         .then(r => r.map((x: ProposalVote) => ({id: x.id, voter: x.voter})))
 
-export const vpMana = (account: Account): number => {
+export const vpMana = (account: FullAccount): number => {
     // @ts-ignore "Account" is compatible with dhive's "ExtendedAccount"
     const calc = client.rc.calculateVPMana(account);
     const {percentage} = calc;

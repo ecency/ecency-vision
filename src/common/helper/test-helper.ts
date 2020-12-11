@@ -17,6 +17,7 @@ import {
     Notifications
 } from "../store/notifications/types";
 import {ActiveUser} from "../store/active-user/types";
+import {FullAccount} from "../store/accounts/types";
 
 
 export const activeUserMaker = (name: string): ActiveUser => {
@@ -30,6 +31,56 @@ export const activeUserMaker = (name: string): ActiveUser => {
             uPoints: "0.500"
         }
     }
+}
+
+export const fullAccountInstance: FullAccount = {
+    "name": "talhasch",
+    "active": {"weight_threshold": 1, "account_auths": [], "key_auths": [["STM71z4rmzGHdp7pmePZyS1G2GrbuBqg9PPHRgiK6uYqjzUTRNCRR", 1]]},
+    "posting": {
+        "weight_threshold": 1,
+        "account_auths": [["ecency.app", 1], ["esteem-app", 1], ["esteem.app", 1], ["esteemapp", 1], ["peakd.app", 1]],
+        "key_auths": [["STM6uvU7j624wCZNa2pcXvkqmbnNC1cgraDrVG3pFRhXvj9LYS7Xp", 1]]
+    },
+    "memo_key": "STM7rioGL7NopT2Zo446hnzAiHLp5sJ1gS55xu3NikmxfQnEznsue",
+    "post_count": 261,
+    "created": "2018-01-29T20:10:06",
+    "reputation": "1021265023022",
+    "posting_json_metadata": "{\"profile\":{\"name\":\"Talha B.\",\"about\":\"Founder @runkod, Software Developer @ecency, Lifelong Learner\",\"cover_image\":\"https://images.ecency.com/DQmTsFJJV7gXpsHNatEWz1vgzykaM4WByxAgLMzWshmXNrj/cover.jpg\",\"profile_image\":\"https://images.ecency.com/DQmV2J1oAUoKxjyJQTu3TcZfGxDr5fzajMGhHEd1e1GALca/ben.jpg\",\"website\":\"https://github.com/talhasch\",\"location\":\"Istanbul\",\"version\":2}}",
+    "json_metadata": "{\"profile\":{\"name\":\"Talha B.\",\"about\":\"Founder @runkod, Software Developer @esteemapp, Lifelong Learner\",\"cover_image\":\"https://img.esteem.app/rwd380.jpg\",\"profile_image\":\"https://img.esteem.app/821e0q.jpg\",\"website\":\"https://github.com/talhasch\",\"location\":\"Istanbul\"},\"escrow\":{\"fees\":{\"STEEM\":\"1.000\",\"SBD\":\"3.000\"},\"terms\":\"lorem ipsum dolor sit amet\"}}",
+    "reward_steem_balance": "0.000 HIVE",
+    "reward_hive_balance": "0.000 HIVE",
+    "reward_sbd_balance": "0.000 HBD",
+    "reward_hbd_balance": "0.000 HBD",
+    "reward_vesting_steem": "0.000 HIVE",
+    "reward_vesting_hive": "0.000 HIVE",
+    "reward_vesting_balance": "0.000000 VESTS",
+    "balance": "1.751 HIVE",
+    "sbd_balance": "0.311 HBD",
+    "hbd_balance": "0.311 HBD",
+    "savings_balance": "1.000 HIVE",
+    "savings_sbd_balance": "0.002 HBD",
+    "savings_hbd_balance": "0.002 HBD",
+    "next_vesting_withdrawal": "1969-12-31T23:59:59",
+    "vesting_shares": "151590.952150 VESTS",
+    "delegated_vesting_shares": "145395.758709 VESTS",
+    "received_vesting_shares": "0.000000 VESTS",
+    "vesting_withdraw_rate": "0.000000 VESTS",
+    "to_withdraw": "87017000000",
+    "withdrawn": "87017000000",
+    "witness_votes": ["blocktrades", "good-karma", "gtg"],
+    "proxy": "",
+    "proxied_vsf_votes": [0, 0, 0, 0],
+    "voting_manabar": {"current_mana": "6195193441", "last_update_time": 1607690265},
+    "__loaded": true,
+    "profile": {
+        "name": "Talha B.",
+        "about": "Founder @runkod, Software Developer @ecency, Lifelong Learner",
+        "cover_image": "https://images.ecency.com/DQmTsFJJV7gXpsHNatEWz1vgzykaM4WByxAgLMzWshmXNrj/cover.jpg",
+        "profile_image": "https://images.ecency.com/DQmV2J1oAUoKxjyJQTu3TcZfGxDr5fzajMGhHEd1e1GALca/ben.jpg",
+        "website": "https://github.com/talhasch",
+        "location": "Istanbul"
+    },
+    "follow_stats": {"account": "talhasch", "following_count": 27, "follower_count": 232}
 }
 
 export const activeUserInstance: ActiveUser = activeUserMaker("foo");

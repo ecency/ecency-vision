@@ -8,7 +8,7 @@ import {createBrowserHistory} from "history";
 
 import {initialState as transactionsInitialState} from "../../store/transactions/index";
 
-import {globalInstance, dynamicPropsIntance1} from "../../helper/test-helper";
+import {globalInstance, dynamicPropsIntance1, fullAccountInstance} from "../../helper/test-helper";
 import {StaticRouter} from "react-router-dom";
 
 jest.mock("moment", () => () => ({
@@ -17,6 +17,7 @@ jest.mock("moment", () => () => ({
 
 it("(1) Default Render", () => {
     const account = {
+        ...fullAccountInstance,
         name: "user1",
         balance: "0.000 HIVE",
         delegated_vesting_shares: "0.000000 VESTS",
@@ -28,11 +29,10 @@ it("(1) Default Render", () => {
         savings_balance: "0.001 HIVE",
         savings_sbd_balance: "0.000 HBD",
         sbd_balance: "447.514 HBD",
-        to_withdraw: 91765607000000,
+        to_withdraw: "91765607000000",
         vesting_shares: "83549915.208336 VESTS",
         vesting_withdraw_rate: "7058892.846154 VESTS",
-        withdrawn: 56471142769232,
-        __loaded: true,
+        withdrawn: "56471142769232",
     };
 
     const props = {

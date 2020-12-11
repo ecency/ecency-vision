@@ -2,7 +2,7 @@ import React from "react";
 
 import {Purchase} from "./index";
 
-import {globalInstance, dynamicPropsIntance1} from "../../helper/test-helper";
+import {globalInstance, dynamicPropsIntance1, fullAccountInstance} from "../../helper/test-helper";
 
 import TestRenderer from "react-test-renderer";
 
@@ -22,6 +22,7 @@ const defProps = {
     activeUser: {
         username: 'foo',
         data: {
+            ...fullAccountInstance,
             name: 'foo',
             balance: '12.234 HIVE',
             sbd_balance: '4321.212',

@@ -83,9 +83,21 @@ export class ProfileCard extends Component<Props, State> {
     render() {
         const {account, activeUser} = this.props;
 
-        const vPower = account.__loaded ? vpMana(account) : 100;
+        if (!account.__loaded) {
+            return <div className="profile-card">
+                <div className="profile-avatar">
+                    {UserAvatar({...this.props, username: account.name, size: "xLarge"})}
+                </div>
 
-        const isMyProfile = activeUser && activeUser.username === account.name && activeUser.data.profile;
+                <h1>
+                    <div className="username">{account.name}</div>
+                </h1>
+            </div>
+        }
+
+        const vPower = vpMana(account);
+
+        const isMyProfile = activeUser && activeUser.username === account.name && activeUser.data.__loaded && activeUser.data.profile;
 
         return (
             <div className="profile-card">

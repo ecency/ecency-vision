@@ -35,6 +35,7 @@ import defaults from "../constants/defaults.json";
 import _c from "../util/fix-class-names";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
+import profile from "../../server/handlers/profile";
 
 interface MatchParams {
     username: string;
@@ -206,7 +207,7 @@ class ProfilePage extends Component<Props, State> {
 
         //  Meta config
         const url = `${defaults.base}/@${username}${section ? `/${section}` : ""}`;
-        const metaProps = {
+        const metaProps = account.__loaded ? {
             title: `${account.profile?.name || account.name}'s ${section ? `${section}` : ""} on decentralized web`,
             description: `${account.profile?.about ? `${account.profile?.about} ${section ? `${section}` : ""}` : `${(account.profile?.name || account.name)} ${section ? `${section}` : ""}`}` || "",
             url: `/@${username}${section ? `/${section}` : ""}`,
@@ -214,7 +215,7 @@ class ProfilePage extends Component<Props, State> {
             image: `${defaults.imageServer}/u/${username}/avatar/medium`,
             rss: `${defaults.base}/@${username}/rss`,
             keywords: `${username}, ${username}'s blog`,
-        };
+        } : {};
 
         const promoted = entries['__promoted__'].entries;
         return (
@@ -233,7 +234,7 @@ class ProfilePage extends Component<Props, State> {
                         })}
                     </div>
                     <span itemScope={true} itemType="http://schema.org/Person">
-                        <meta itemProp="name" content={account.profile?.name || account.name}/>
+                        {account.__loaded && <meta itemProp="name" content={account.profile?.name || account.name}/>}
                     </span>
                     <div className="content-side">
                         {ProfileMenu({

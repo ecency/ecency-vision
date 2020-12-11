@@ -2,7 +2,7 @@ import React from "react";
 
 import {Transfer, TransferAsset, TransferMode} from "./index";
 
-import {globalInstance, dynamicPropsIntance1} from "../../helper/test-helper";
+import {globalInstance, dynamicPropsIntance1, fullAccountInstance} from "../../helper/test-helper";
 
 import TestRenderer from "react-test-renderer";
 
@@ -13,11 +13,8 @@ const defProps = {
     activeUser: {
         username: 'foo',
         data: {
-            name: 'foo',
-            balance: '12.234 HIVE',
-            sbd_balance: '4321.212',
-            savings_balance: '2123.000 HIVE',
-            vesting_shares: '142022.369711 VESTS'
+            ...fullAccountInstance,
+            name: 'foo'
         },
         points: {
             points: "10.000",

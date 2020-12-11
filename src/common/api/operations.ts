@@ -692,7 +692,7 @@ export const updateProfile = (account: Account, newProfile: {
 }
 
 export const grantPostingPermission = (key: PrivateKey, account: Account, pAccount: string) => {
-    if (account.posting === undefined || account.memo_key === undefined || account.json_metadata === undefined) {
+    if (!account.__loaded) {
         throw "posting|memo_key|json_metadata required with account instance";
     }
 
@@ -720,7 +720,7 @@ export const grantPostingPermission = (key: PrivateKey, account: Account, pAccou
 };
 
 export const revokePostingPermission = (key: PrivateKey, account: Account, pAccount: string) => {
-    if (account.posting === undefined || account.memo_key === undefined || account.json_metadata === undefined) {
+    if (!account.__loaded) {
         throw "posting|memo_key|json_metadata required with account instance";
     }
 

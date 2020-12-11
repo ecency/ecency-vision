@@ -8,6 +8,7 @@ import {Modal} from "react-bootstrap";
 
 import {Global} from "../../store/global/types";
 import {ActiveUser} from "../../store/active-user/types";
+import {FullAccount} from "../../store/accounts/types";
 
 import UserAvatar from "../user-avatar";
 import LinearProgress from "../linear-progress";
@@ -42,7 +43,7 @@ interface ItemProps {
     history: History;
     global: Global;
     draft: Draft;
-    activeUser: ActiveUser | null;
+    activeUser: ActiveUser;
     editFn: (item: Draft) => void;
     deleteFn: (item: Draft) => void;
 }
@@ -50,7 +51,11 @@ interface ItemProps {
 export class ListItem extends Component<ItemProps> {
     render() {
         const {activeUser, draft, editFn, deleteFn, global} = this.props;
-        const account = activeUser?.data!
+        if(!activeUser.data.__loaded){
+            return null;
+        }
+
+        const account = activeUser.data as FullAccount;
 
         const author = account.name
         const reputation = account.reputation;
@@ -68,7 +73,7 @@ export class ListItem extends Component<ItemProps> {
             <div className="item-header">
                 <div className="author-part">
                     <a className="author-avatar">{UserAvatar({...this.props, username: author, size: "medium"})}</a>
-                    <a className="author">{author}<span className="author-reputation">{accountReputation(reputation!)}</span></a>
+                    <a className="author">{author}<span className="author-reputation">{accountReputation(reputation)}</span></a>
                 </div>
                 {Tag({
                     ...this.props,
@@ -118,7 +123,7 @@ interface Props {
     global: Global;
     history: History;
     location: Location;
-    activeUser: ActiveUser | null;
+    activeUser: ActiveUser;
     onHide: () => void;
     onPick?: (url: string) => void;
 }

@@ -32,18 +32,18 @@ interface State {
 }
 
 const pureState = (props: Props): State => {
-    const profile = props.activeUser?.data?.profile!;
+    const profile = (props.activeUser.data.__loaded && props.activeUser.data.profile) ? props.activeUser.data.profile : {};
 
     return {
         uploading: false,
         inProgress: false,
         changed: false,
-        name: profile.name!,
-        about: profile.about!,
-        website: profile.website!,
-        location: profile.location!,
-        coverImage: profile.cover_image!,
-        profileImage: profile.profile_image!,
+        name: profile.name || "",
+        about: profile.about || "",
+        website: profile.website || "",
+        location: profile.location || "",
+        coverImage: profile.cover_image || "",
+        profileImage: profile.profile_image || "",
     }
 }
 
