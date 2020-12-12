@@ -52,7 +52,7 @@ export interface FullAccount {
     withdrawn: string;
     witness_votes: string[];
     proxy: string;
-    proxied_vsf_votes: number[];
+    proxied_vsf_votes: number[] | string[];
     voting_manabar: {
         current_mana: string | number;
         last_update_time: number;
