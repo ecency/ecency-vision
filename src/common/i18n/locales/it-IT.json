@@ -559,7 +559,7 @@
     "type-rvotes": "Voti",
     "type-replies": "Risposte",
     "type-mentions": "Menzioni",
-    "type-follows": "Follows",
+    "type-follows": "Sui seguaci",
     "type-reblogs": "Reblogga",
     "type-transfers": "Trasferimenti",
     "vote-str": "{{p}}% di gradimento del tuo post:",
