@@ -67,7 +67,7 @@ it("(2) Has rewards ", () => {
                 data: {
                     ...fullAccountInstance,
                     name: "foo",
-                    reward_sbd_balance: "0.000 HBD",
+                    reward_hbd_balance: "0.000 HBD",
                     reward_steem_balance: "0.000 HIVE",
                     reward_vesting_hive: "10.207 HIVE"
                 },

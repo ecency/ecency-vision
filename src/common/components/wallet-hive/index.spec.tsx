@@ -10,21 +10,21 @@ import {initialState as transactionsInitialState} from "../../store/transactions
 
 import {globalInstance, dynamicPropsIntance1, fullAccountInstance} from "../../helper/test-helper";
 import {StaticRouter} from "react-router-dom";
+import {FullAccount} from "../../store/accounts/types";
 
 jest.mock("moment", () => () => ({
     fromNow: () => "in 5 days",
 }));
 
 it("(1) Default Render", () => {
-    const account = {
+    const account: FullAccount = {
         ...fullAccountInstance,
         name: "user1",
         balance: "0.000 HIVE",
         delegated_vesting_shares: "0.000000 VESTS",
         next_vesting_withdrawal: "2020-06-10T18:39:30",
         received_vesting_shares: "9916.938399 VESTS",
-        reward_sbd_balance: "0.000 HBD",
-        reward_steem_balance: "0.000 HIVE",
+        reward_hbd_balance: "0.000 HBD",
         reward_vesting_hive: "10.207 HIVE",
         savings_balance: "0.001 HIVE",
         savings_sbd_balance: "0.000 HBD",
