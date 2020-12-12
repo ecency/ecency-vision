@@ -104,7 +104,7 @@ export class WalletHive extends Component<Props, State> {
         return getAccount(activeUser?.username!)
             .then(account => {
                 const {
-                    reward_steem_balance: hiveBalance = account.reward_hive_balance,
+                    reward_hive_balance: hiveBalance = account.reward_hive_balance,
                     reward_sbd_balance: hbdBalance = account.reward_hbd_balance,
                     reward_vesting_balance: vestingBalance
                 } = account;
