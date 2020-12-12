@@ -8,7 +8,7 @@ export interface Asset {
     symbol: Symbol
 }
 
-export default (strVal: any): Asset => {
+export default (strVal: string): Asset => {
 
     const sp = strVal.split(' ');
     return {
