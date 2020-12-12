@@ -106,7 +106,7 @@ class ProposalsPage extends Component<PageProps, State> {
                 return getAccount("hive.fund");
             })
             .then(fund => {
-                const totalBudget = parseAsset(fund.sbd_balance).amount;
+                const totalBudget = parseAsset(fund.hbd_balance).amount;
                 const dailyBudget = totalBudget / 100;
                 this.stateSet({totalBudget, dailyBudget})
             })

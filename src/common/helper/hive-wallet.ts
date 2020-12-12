@@ -45,7 +45,7 @@ export default class HiveWallet {
         this.balance = parseAsset(account.balance).amount;
         this.savingBalance = parseAsset(account.savings_balance).amount;
 
-        this.hbdBalance = parseAsset(account.sbd_balance || account.hbd_balance).amount;
+        this.hbdBalance = parseAsset(account.hbd_balance).amount;
         this.savingBalanceHbd = parseAsset(account.savings_sbd_balance || account.savings_hbd_balance).amount;
 
         this.rewardHiveBalance = parseAsset(account.reward_hive_balance).amount;

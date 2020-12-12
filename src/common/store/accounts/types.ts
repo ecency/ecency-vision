@@ -37,7 +37,6 @@ export interface FullAccount {
     reward_vesting_balance: string;
     balance: string;
     vesting_shares: string;
-    sbd_balance: string;
     hbd_balance: string;
     savings_balance: string;
     savings_sbd_balance: string;

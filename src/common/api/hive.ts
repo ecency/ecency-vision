@@ -94,7 +94,6 @@ export const getAccounts = (usernames: string[]): Promise<FullAccount[]> => {
                 reward_vesting_hive: x.reward_vesting_hive,
                 reward_vesting_balance: x.reward_vesting_balance,
                 balance: x.balance,
-                sbd_balance: x.sbd_balance || x.hbd_balance, // will be deleted
                 hbd_balance: x.hbd_balance,
                 savings_balance: x.savings_balance,
                 savings_sbd_balance: x.savings_sbd_balance || x.savings_hbd_balance, // will be deleted
