@@ -7,13 +7,14 @@ import NavBar from "./index";
 
 import {Theme} from "../../store/global/types";
 
-import {globalInstance, TrendingTagsInstance, UiInstance, notificationsInstance1, activeUserInstance} from "../../helper/test-helper";
+import {globalInstance, TrendingTagsInstance, UiInstance, notificationsInstance1, activeUserInstance, dynamicPropsIntance1} from "../../helper/test-helper";
 
 
 const defProps = {
     history: createBrowserHistory(),
     location: createLocation({}),
     global: globalInstance,
+    dynamicProps: dynamicPropsIntance1,
     trendingTags: TrendingTagsInstance,
     users: [],
     activeUser: null,

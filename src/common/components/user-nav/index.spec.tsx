@@ -6,10 +6,11 @@ import {createBrowserHistory, createLocation} from "history";
 import UserNav from "./index";
 import renderer from "react-test-renderer";
 
-import {notificationsInstance1, UiInstance, globalInstance, fullAccountInstance} from "../../helper/test-helper";
+import {notificationsInstance1, UiInstance, globalInstance, fullAccountInstance, dynamicPropsIntance1} from "../../helper/test-helper";
 
 const defProps = {
     global: globalInstance,
+    dynamicProps: dynamicPropsIntance1,
     history: createBrowserHistory(),
     location: createLocation({}),
     users: [],
