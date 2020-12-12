@@ -27,7 +27,7 @@ it("(1) Default Render", () => {
         reward_hbd_balance: "0.000 HBD",
         reward_vesting_hive: "10.207 HIVE",
         savings_balance: "0.001 HIVE",
-        savings_sbd_balance: "0.000 HBD",
+        savings_hbd_balance: "0.000 HBD",
         hbd_balance: "447.514 HBD",
         to_withdraw: "91765607000000",
         vesting_shares: "83549915.208336 VESTS",

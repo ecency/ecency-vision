@@ -54,7 +54,6 @@ export const fullAccountInstance: FullAccount = {
     "balance": "1.751 HIVE",
     "hbd_balance": "0.311 HBD",
     "savings_balance": "1.000 HIVE",
-    "savings_sbd_balance": "0.002 HBD",
     "savings_hbd_balance": "0.002 HBD",
     "next_vesting_withdrawal": "1969-12-31T23:59:59",
     "vesting_shares": "151590.952150 VESTS",
