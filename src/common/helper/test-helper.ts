@@ -50,7 +50,6 @@ export const fullAccountInstance: FullAccount = {
     "reward_hive_balance": "0.000 HIVE",
     "reward_sbd_balance": "0.000 HBD",
     "reward_hbd_balance": "0.000 HBD",
-    "reward_vesting_steem": "0.000 HIVE",
     "reward_vesting_hive": "0.000 HIVE",
     "reward_vesting_balance": "0.000000 VESTS",
     "balance": "1.751 HIVE",

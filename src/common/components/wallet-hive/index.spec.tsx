@@ -25,7 +25,7 @@ it("(1) Default Render", () => {
         received_vesting_shares: "9916.938399 VESTS",
         reward_sbd_balance: "0.000 HBD",
         reward_steem_balance: "0.000 HIVE",
-        reward_vesting_steem: "10.207 HIVE",
+        reward_vesting_hive: "10.207 HIVE",
         savings_balance: "0.001 HIVE",
         savings_sbd_balance: "0.000 HBD",
         sbd_balance: "447.514 HBD",
