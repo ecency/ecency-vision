@@ -661,6 +661,7 @@ export class Transfer extends Component<Props, State> {
                                     {_t("transfer.balance")}{": "}
                                     <span onClick={this.copyBalance} className="balance-num">{balance}{" "}{asset}</span>
                                 </div>
+                                {mode === "delegate" && (<div className="balance-note">{_t("transfer.delegation-note")}</div>)}
                             </Col>
                         </Row>
 

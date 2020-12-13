@@ -1,11 +1,15 @@
 // do not wrap this. transfer also works in other dialogs.
 
 .transfer-dialog-content {
-  .balance {
+
+  .balance, .balance-note {
     font-weight: 300;
-    margin: 16px 0 0 0;
     padding-left: 20px;
+  }
+
+  .balance {
     display: table;
+    margin-top: 16px;
 
     @include themify(day) {
       color: $charcoal-grey;
@@ -19,6 +23,12 @@
       color: $dark-sky-blue;
       cursor: pointer;
     }
+  }
+
+  .balance-note {
+    font-size: 90%;
+    margin-top: 6px;
+    opacity: 0.8;
   }
 
   .confirmation {
