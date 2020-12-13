@@ -332,16 +332,12 @@ export class Transfer extends Component<Props, State> {
         return this.formatNumber(balance, 3);
     };
 
-    hpToVests = (hp: number, withSymbol: boolean = true): string => {
+    hpToVests = (hp: number): string => {
         const {dynamicProps} = this.props;
         const {hivePerMVests} = dynamicProps;
         const vests = hpToVests(hp, hivePerMVests);
 
-        if (withSymbol) {
-            return `${this.formatNumber(vests, 6)} VESTS`;
-        }
-
-        return this.formatNumber(vests, 6);
+        return `${this.formatNumber(vests, 6)} VESTS`;
     }
 
     canSubmit = () => {
@@ -444,7 +440,7 @@ export class Transfer extends Component<Props, State> {
                 transferToVestingHot(username, to, fullAmount);
                 break;
             case "delegate":
-                const vests = this.hpToVests(Number(amount), false);
+                const vests = this.hpToVests(Number(amount));
                 delegateVestingSharesHot(username, to, vests);
                 break;
             default:
