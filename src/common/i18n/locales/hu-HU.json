@@ -378,7 +378,7 @@
     "referral-list-desc": "Ajánlói jutalom",
     "transfer": "Ajándékozz meg valakit",
     "claim-ok": "Pontok átvéve",
-    "promote": "Támogat",
+    "promote": "Támogatás",
     "boost": "Felpörgetés"
   },
   "purchase": {
@@ -518,9 +518,9 @@
     "reward": "Jutalom",
     "reward-default": "Alapértelmezett 50% / 50%",
     "reward-sp": "Power Up 100%",
-    "reward-dp": "Kifizetés elutasítása",
+    "reward-dp": "Jutalom elutasítása",
     "preview": "Előnézet",
-    "publish": "Közzétesz",
+    "publish": "Közzététel",
     "update": "Frissítés",
     "save-draft": "Piszkozat mentése",
     "draft-saved": "Piszkozat mentve",
@@ -603,7 +603,7 @@
     "description": "Find uncensored content, communities and users",
     "n-results-for-q": "{{n}} találat",
     "no-result": "Nincs találat",
-    "sort-by": "rendezés eszerint",
+    "sort-by": "rendezés alapja",
     "sort-popularity": "Népszerűség",
     "sort-relevance": "Fontosság",
     "sort-newest": "Dátum"
