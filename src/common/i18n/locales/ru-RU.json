@@ -51,7 +51,7 @@
   },
   "search": {
     "placeholder": "Поиск",
-    "placeholder-count": "Search {{n}} posts",
+    "placeholder-count": "Поиск {{n}} сообщений",
     "header-tag": "Теги",
     "header-account": "Пользователи",
     "header-community": "Сообщества"
@@ -128,77 +128,77 @@
     "pending-payout": "Ожидаемая выплата",
     "promoted": "Продвигаемое",
     "author-payout": "Автору",
-    "curators-payout": "Curators Payout",
-    "payout-date": "Payout",
-    "beneficiary": "Beneficiary",
-    "breakdown": "Breakdown"
+    "curators-payout": "Выплата Кураторам: {amount}",
+    "payout-date": "Выплата",
+    "beneficiary": "Бенефициар",
+    "breakdown": "Разбивка"
   },
   "entry-index": {
-    "feed": "Feed",
-    "tags": "Popular",
-    "title": "{{f}} topics",
-    "description": "{{f}} topics on a social network owned and operated by its users.",
-    "description-tag": "{{f}} #{{t}} topics",
-    "description-user-feed": "{{u}}'s feed"
+    "feed": "Лента",
+    "tags": "Популярное",
+    "title": "{{f}} тем",
+    "description": "{{f}} тем в социальной сети, принадлежащей и управляемой её пользователями.",
+    "description-tag": "{{f}} #{{t}} тем",
+    "description-user-feed": "Лента {{u}}"
   },
   "market-data": {
-    "title": "Market price",
-    "credits": "market data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
+    "title": "Рыночная цена",
+    "credits": "данные рынка <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "list-style": {
-    "title": "Toggle list style"
+    "title": "Переключить стиль списка"
   },
   "entry-votes": {
-    "title": "1 Vote",
-    "title-n": "{{n}} Votes",
-    "title-empty": "No Votes",
-    "voter": "Voter",
-    "percent": "Percent",
-    "reward": "Reward",
-    "time": "Time"
+    "title": "1 Голос",
+    "title-n": "{{n}} Голосов",
+    "title-empty": "Нет Голосов",
+    "voter": "Голосовавшие",
+    "percent": "Сила",
+    "reward": "Награда",
+    "time": "Время"
   },
   "entry": {
-    "via-app": "via <span class=\"app-name\">{{app}}</span>",
-    "comment-entry-title": "You are viewing a single comment's thread from: ",
-    "comment-entry-go-root": "View the full context",
-    "comment-entry-go-parent": "View the direct parent",
-    "show-history": "Show edit history",
-    "hidden-warning": "This post was hidden due to low ratings."
+    "via-app": "через <span class=\"app-name\">{{app}}</span>",
+    "comment-entry-title": "Вы просматриваете один комментарий ветки: ",
+    "comment-entry-go-root": "Полный контекст",
+    "comment-entry-go-parent": "Просмотр прямого родителя",
+    "show-history": "История",
+    "hidden-warning": "Скрыто из-за низкого рейтинга."
   },
   "edit-history": {
-    "title": "Edit History",
-    "show-diff": "Show Difference",
-    "version": "Version {{n}}"
+    "title": "Править Историю",
+    "show-diff": "Различия",
+    "version": "Версия {{n}}"
   },
   "similar-entries": {
-    "title": "Recent posts by @{{n}}"
+    "title": "Последние сообщения @{{n}}"
   },
   "comment": {
-    "body-placeholder": "Write your reply here",
-    "preview": "Preview"
+    "body-placeholder": "Впишите свой ответ",
+    "preview": "Превью"
   },
   "discussion": {
-    "join": "Join the conversion now",
-    "btn-join": "Join",
-    "replies": "1 Comment",
-    "n-replies": "{{n}} Comments",
-    "order": "Sort Order",
-    "order-trending": "Trending",
-    "order-reputation": "Reputation",
-    "order-votes": "Votes",
-    "order-created": "Age",
-    "read-more": "...read more replies...",
-    "reveal": "Reveal comment"
+    "join": "Присоединиться",
+    "btn-join": "Присоединиться",
+    "replies": "1 коммент",
+    "n-replies": "{{n}} Комментов",
+    "order": "Упорядочить",
+    "order-trending": "В тренде",
+    "order-reputation": "Репутация",
+    "order-votes": "Голоса",
+    "order-created": "Возраст",
+    "read-more": "...больше ответов...",
+    "reveal": "Показать комментарий"
   },
   "community": {
-    "page-description": "{{f}} topics",
+    "page-description": "{{f}} тем",
     "subscribe": "Присоединиться",
-    "subscribed": "Joined",
-    "unsubscribe": "Leave",
-    "post": "New Post",
-    "posts": "Posts",
+    "subscribed": "Присоединился",
+    "unsubscribe": "Покинуть",
+    "post": "Новая запись",
+    "posts": "Записи",
     "subscribers": "Члены",
-    "activities": "Activities",
+    "activities": "Действия",
     "roles-title": "User Roles",
     "roles-account": "Account",
     "roles-role": "Role",
@@ -263,12 +263,12 @@
     "username": "Owner username",
     "username-available": "Available.",
     "username-not-available": "Not available.",
-    "username-wrong-format": "Not a valid format. hive-1xxxxx format required.",
-    "password": "Owner password",
-    "confirmation": "I have securely saved my owner username and password.",
-    "submit": "Create Community",
-    "progress-account": "Creating account...",
-    "progress-user": "Preparing user data...",
+    "username-wrong-format": "Неверный формат. Требуется формат hive-1xxxxx.",
+    "password": "Пароль владельца",
+    "confirmation": "Я надёжно сохранил имя владельца и пароль.",
+    "submit": "Создать сообщество",
+    "progress-account": "Создание учетной записи...",
+    "progress-user": "Подготовка данных...",
     "progress-role": "Setting @{{u}} as admin...",
     "progress-props": "Updating community settings...",
     "done": "Your community was created 🎉",
