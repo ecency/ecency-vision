@@ -95,7 +95,7 @@
     "submit": "Tovább",
     "success": "Küldtünk egy e-mailt ide {{email}}.",
     "success-2": "A sikeres regisztrációhoz kövesd az utasításokat.",
-    "login-text-1": "Nincs még fiókod?",
+    "login-text-1": "Regisztráltál már?",
     "login-text-2": "Bejelentkezés"
   },
   "trending-tags": {
@@ -570,7 +570,7 @@
     "ignored-str": "ignored",
     "reblog-str": "megosztotta a bejegyzésed:",
     "transfer-str": "küldött neked",
-    "spin-str": "Ideje még több Estm-et szerezni, játssz Play Spin-t az Ecency Mobile-on",
+    "spin-str": "Ideje még több pontot szerezni, pörgess az Ecency Mobile-on",
     "inactive-str": "Légy aktív! Írj egy bejegyzést és keress még többet",
     "referral-str": "regisztrált az ajánlásoddal, üdvözöld őt",
     "refresh": "Frissítés",
