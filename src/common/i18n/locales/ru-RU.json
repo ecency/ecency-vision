@@ -269,65 +269,65 @@
     "submit": "Создать сообщество",
     "progress-account": "Создание учетной записи...",
     "progress-user": "Подготовка данных...",
-    "progress-role": "Setting @{{u}} as admin...",
-    "progress-props": "Updating community settings...",
-    "done": "Your community was created 🎉",
-    "done-link-label": "Get started."
+    "progress-role": "Установка @{{u}} как админа...",
+    "progress-props": "Обновление настроек сообщества...",
+    "done": "Ваше сообщество создано 🎉",
+    "done-link-label": "Начните работу."
   },
   "pin-btn": {
-    "pin": "Pin",
-    "unpin": "Unpin"
+    "pin": "Закрепить",
+    "unpin": "Открепить"
   },
   "mute-btn": {
-    "mute": "Mute",
-    "unmute": "Unmute",
-    "dialog-title-mute": "Mute post/comment",
-    "dialog-title-unmute": "Unmute post/comment",
-    "notes": "Notes",
-    "note-placeholder-mute": "Provide a note regarding your decision to mute this content.",
-    "note-placeholder-unmute": "Provide a note regarding your decision to unmute this content."
+    "mute": "Заглушить",
+    "unmute": "Включить",
+    "dialog-title-mute": "Отключить сообщение/коммент",
+    "dialog-title-unmute": "Включить запись/коммент",
+    "notes": "Примечания",
+    "note-placeholder-mute": "Предоставьте заметку о вашем решении заглушить этот контент.",
+    "note-placeholder-unmute": "Предоставьте заметку о вашем решении размутить этот контент."
   },
   "profile": {
-    "voting-power": "Voting Power",
-    "post-count": "Post Count",
-    "followers": "Followers",
-    "following": "Following",
-    "section-blog": "Blog",
-    "section-posts": "Posts",
-    "section-comments": "Comments",
-    "section-replies": "Replies",
-    "section-communities": "Communities",
-    "section-wallet": "Wallet",
-    "section-settings": "Settings",
+    "voting-power": "Сила голоса",
+    "post-count": "Количество Записей",
+    "followers": "Подписчики",
+    "following": "Подписки",
+    "section-blog": "Блог",
+    "section-posts": "Записи",
+    "section-comments": "Комментарии",
+    "section-replies": "Ответы",
+    "section-communities": "Сообщества",
+    "section-wallet": "Кошелек",
+    "section-settings": "Настройки",
     "communities-title": "Участники",
-    "create-community": "Create a community",
-    "witnesses": "Witnesses",
-    "proposals": "Proposals"
+    "create-community": "Создать сообщество",
+    "witnesses": "Заверители",
+    "proposals": "Предложения"
   },
   "profile-edit": {
-    "title": "Profile",
-    "name": "Display Name",
-    "about": "About",
-    "cover-image": "Cover Image",
-    "profile-image": "Profile Image",
-    "website": "Website",
-    "location": "Location",
-    "updated": "Profile updated successfully!"
+    "title": "Профиль",
+    "name": "Показать имя",
+    "about": "О себе",
+    "cover-image": "Обложка",
+    "profile-image": "Фото профиля",
+    "website": "Вебсайт",
+    "location": "Локация",
+    "updated": "Профиль обновлен!"
   },
   "image-upload-button": {
-    "uploaded": "Image uploaded"
+    "uploaded": "Изображение загружено"
   },
   "preferences": {
-    "title": "Preferences",
-    "notifications": "Notification alerts",
-    "currency": "Currency",
-    "language": "Language",
-    "updated": "Preference updated!"
+    "title": "Настройки",
+    "notifications": "Уведомления",
+    "currency": "Валюта",
+    "language": "Язык",
+    "updated": "Настройки обновлены!"
   },
   "wallet": {
-    "unclaimed-rewards": "Unclaimed rewards",
-    "claim-reward-balance": "Claim reward balance",
-    "claim-reward-balance-ok": "Reward balance claimed",
+    "unclaimed-rewards": "Невостребованные награды",
+    "claim-reward-balance": "Запросить бонусный баланс",
+    "claim-reward-balance-ok": "Награда получена",
     "estimated": "Estimated Account Value",
     "estimated-description": "The estimated value is based on a 7 day average value of HIVE.",
     "hive": "HIVE",
