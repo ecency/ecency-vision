@@ -3016,6 +3016,11 @@ exports[`(8) Delegate (1) Step 1 1`] = `
               HP
             </span>
           </div>
+          <div
+            className="balance-note"
+          >
+            * available hive power to delegate
+          </div>
         </div>
       </div>
       <div
