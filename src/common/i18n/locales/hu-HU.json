@@ -40,7 +40,7 @@
     "filter-feed": "Hírfolyam"
   },
   "navbar": {
-    "discover": "Discover",
+    "discover": "Felfedezés",
     "communities": "Közösségek",
     "about": "Rólunk",
     "faq": "GYÍK",
@@ -81,9 +81,9 @@
     "error-user-not-found": "A felhasználó nem létezik",
     "error-permission": "Couldn't get posting permission",
     "error-authenticate": "Wrong private key. Master or active private key required.",
-    "with-hive-signer": "Login with hivesigner",
-    "with-keychain": "Login with keychain",
-    "sign-up-text-1": "Don't have an account?",
+    "with-hive-signer": "Hivesigner bejelentkezés",
+    "with-keychain": "Keychain bejelentkezés",
+    "sign-up-text-1": "Nincs még fiókod?",
     "sign-up-text-2": "Regisztrálj most!"
   },
   "sign-up": {
@@ -99,7 +99,7 @@
     "login-text-2": "Bejelentkezés"
   },
   "trending-tags": {
-    "title": "Topics"
+    "title": "Témák"
   },
   "selected-tags": {
     "title": "Kiemelt"
@@ -107,7 +107,7 @@
   "entry-list-item": {
     "reblogged": "by {{n}}",
     "promoted": "támogatott",
-    "pinned": "Pinned Post",
+    "pinned": "Kitűzött Poszt",
     "replies": "1 response. Click to respond.",
     "replies-n": "{{n}} responses. Click to respond.",
     "no-replies": "No responses yet. Click to respond."
@@ -151,17 +151,17 @@
   "entry-votes": {
     "title": "1 Vote",
     "title-n": "{{n}} Szavazat",
-    "title-empty": "No Votes",
+    "title-empty": "Nincs szavazat",
     "voter": "Szavazó",
     "percent": "Százalék",
     "reward": "Jutalom",
     "time": "Idő"
   },
   "entry": {
-    "via-app": "via <span class=\"app-name\">{{app}}</span>",
-    "comment-entry-title": "You are viewing a single comment's thread from: ",
+    "via-app": "<span class=\"app-name\">{{app}}</span>-n keresztül",
+    "comment-entry-title": "Egy hozzászólásos vonal innen: ",
     "comment-entry-go-root": "Teljes kontextus megtekintése",
-    "comment-entry-go-parent": "View the direct parent",
+    "comment-entry-go-parent": "Direkt felmenő megtekintése",
     "show-history": "Szerkesztési előzmények megjelenítése",
     "hidden-warning": "This post was hidden due to low ratings."
   },
@@ -174,8 +174,8 @@
     "title": "Recent posts by @{{n}}"
   },
   "comment": {
-    "body-placeholder": "Write your reply here",
-    "preview": "Preview"
+    "body-placeholder": "Ide írd a választ",
+    "preview": "Előnézet"
   },
   "discussion": {
     "join": "Join the conversion now",
@@ -188,27 +188,27 @@
     "order-votes": "Szavazatok",
     "order-created": "Régiség",
     "read-more": "...read more replies...",
-    "reveal": "Reveal comment"
+    "reveal": "Hozzászólás megjelenítése"
   },
   "community": {
     "page-description": "{{f}} témák",
     "subscribe": "Csatlakozz",
-    "subscribed": "Joined",
-    "unsubscribe": "Leave",
-    "post": "New Post",
-    "posts": "Posts",
-    "subscribers": "Members",
-    "activities": "Activities",
-    "roles-title": "User Roles",
-    "roles-account": "Account",
-    "roles-role": "Role",
-    "roles-account-title": "Title",
-    "roles-add": "Add User"
+    "subscribed": "Csatlakozott",
+    "unsubscribe": "Kilépés",
+    "post": "Új bejegyzés",
+    "posts": "Bejegyzések",
+    "subscribers": "Tagok",
+    "activities": "Tevékenységek",
+    "roles-title": "Felhasználó szerepkörök",
+    "roles-account": "Fiók",
+    "roles-role": "Szerep",
+    "roles-account-title": "Cím",
+    "roles-add": "Új felhasználó"
   },
   "community-cover": {
-    "rewards": "rewards",
+    "rewards": "jutalom",
     "authors": "posters",
-    "lang": "language",
+    "lang": "nyelv",
     "cover-image": "Community cover image",
     "cover-image-edit": "Edit cover image",
     "cover-image-updated": "Cover image updated!"
@@ -305,28 +305,28 @@
     "proposals": "Proposals"
   },
   "profile-edit": {
-    "title": "Profile",
-    "name": "Display Name",
-    "about": "About",
-    "cover-image": "Cover Image",
-    "profile-image": "Profile Image",
-    "website": "Website",
-    "location": "Location",
-    "updated": "Profile updated successfully!"
+    "title": "Profil",
+    "name": "Megjelenítendő név",
+    "about": "Rólunk",
+    "cover-image": "Borítókép",
+    "profile-image": "Profil kép",
+    "website": "Weboldal",
+    "location": "Tartózkodási hely",
+    "updated": "Profil frissítése sikeresen megtörtént!"
   },
   "image-upload-button": {
-    "uploaded": "Image uploaded"
+    "uploaded": "Képfeltöltés"
   },
   "preferences": {
-    "title": "Preferences",
-    "notifications": "Notification alerts",
-    "currency": "Currency",
-    "language": "Language",
+    "title": "Tulajdonságok",
+    "notifications": "Értesítések & Riasztások",
+    "currency": "Pénznem",
+    "language": "Nyelv",
     "updated": "Preference updated!"
   },
   "wallet": {
-    "unclaimed-rewards": "Unclaimed rewards",
-    "claim-reward-balance": "Claim reward balance",
+    "unclaimed-rewards": "Átvételre váró jutalmak",
+    "claim-reward-balance": "Jutalom egyenleg átvétele",
     "claim-reward-balance-ok": "Reward balance claimed",
     "estimated": "Estimated Account Value",
     "estimated-description": "The estimated value is based on a 7 day average value of HIVE.",
