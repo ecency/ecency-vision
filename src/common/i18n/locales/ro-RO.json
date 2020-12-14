@@ -45,8 +45,8 @@
     "about": "Despre",
     "faq": "Întrebări frecvente",
     "post": "Creează o postare",
-    "day-theme": "Day Theme",
-    "night-theme": "Night Theme",
+    "day-theme": "Temă zi",
+    "night-theme": "Temă noapte",
     "address-placeholder": "introdu Url sau obiectul căutării"
   },
   "search": {
@@ -60,66 +60,66 @@
     "wallet": "Portofel",
     "unclaimed-reward-notice": "Ai recompense necolectate",
     "points": "Puncte",
-    "unclaimed-points-notice": "You have unclaimed points",
-    "notifications": "Notifications",
-    "profile": "Profile",
-    "gallery": "Gallery",
-    "drafts": "Drafts",
+    "unclaimed-points-notice": "Ai recompense necolectate",
+    "notifications": "Notificări",
+    "profile": "Profil",
+    "gallery": "Galerie",
+    "drafts": "Schițe",
     "bookmarks": "Bookmarks",
-    "logout": "Logout"
+    "logout": "Deconectare"
   },
   "login": {
-    "title": "Welcome back!",
+    "title": "Bine ai revenit!",
     "with-user-pass": "Login with your username and private key.",
-    "username-placeholder": "username",
+    "username-placeholder": "nume utilizator",
     "key-placeholder": "master or active private key",
     "login-info-1": "We don't store your private keys.",
-    "login-info-2": "More info",
-    "error-fields-required": "Please enter username and private key",
-    "error-public-key": "You entered a public key. Password/WIF required",
-    "error-user-fetch": "User data could not be fetched",
-    "error-user-not-found": "User does not exist",
+    "login-info-2": "Mai mult",
+    "error-fields-required": "Introdu numele de utilizator și parola",
+    "error-public-key": "Ai introdus o cheie publică. Este necesară parola/WIF",
+    "error-user-fetch": "Date utilizator nu au putut fi încărcate",
+    "error-user-not-found": "Utilizatorul nu există",
     "error-permission": "Couldn't get posting permission",
     "error-authenticate": "Wrong private key. Master or active private key required.",
-    "with-hive-signer": "Login with hivesigner",
-    "with-keychain": "Login with keychain",
-    "sign-up-text-1": "Don't have an account?",
-    "sign-up-text-2": "Sign up now!"
+    "with-hive-signer": "Autentificare cu hivesigner",
+    "with-keychain": "Autentificare cu keychain",
+    "sign-up-text-1": "Nu ai un cont incă?",
+    "sign-up-text-2": "Inregistrează-te acum!"
   },
   "sign-up": {
-    "header": "Sign Up",
+    "header": "Înregistrează-te",
     "description": "One account to manage everything on blockchain and Ecency. Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
-    "username": "Pick a username",
-    "email": "Enter your email address",
-    "ref": "Referred user (optional)",
-    "submit": "Continue",
-    "success": "We've sent an email to {{email}}.",
-    "success-2": "Follow instructions to complete signup process.",
-    "login-text-1": "Do you have an account?",
-    "login-text-2": "Login"
+    "username": "Alege username",
+    "email": "Introdu adresa de e-mail",
+    "ref": "Utilizator recomandat (opţional)",
+    "submit": "Continuare",
+    "success": "Ți-am trimis un e-mail la {{email}}.",
+    "success-2": "Urmează instrucțiunile pentru a finaliza procesul de înscriere.",
+    "login-text-1": "Am deja un cont?",
+    "login-text-2": "Autentificare"
   },
   "trending-tags": {
-    "title": "Topics"
+    "title": "Subiecte"
   },
   "selected-tags": {
-    "title": "Featured"
+    "title": "Recomandate"
   },
   "entry-list-item": {
     "reblogged": "by {{n}}",
-    "promoted": "promoted",
-    "pinned": "Pinned Post",
-    "replies": "1 response. Click to respond.",
-    "replies-n": "{{n}} responses. Click to respond.",
-    "no-replies": "No responses yet. Click to respond."
+    "promoted": "promovat",
+    "pinned": "Postare Fixată",
+    "replies": "1 răspuns. Apasă pentru a răspunde.",
+    "replies-n": "{{n}} răspunsuri. Apasă pentru a răspunde.",
+    "no-replies": "Nici un răspuns încă. Apasă pentru a răspunde."
   },
   "bookmark-btn": {
-    "add": "Add to bookmarks",
-    "added": "Added to bookmarks",
-    "delete": "Remove from bookmarks",
-    "deleted": "Removed from bookmarks"
+    "add": "Adaugă la bookmarks",
+    "added": "Adaugat la bookmarks",
+    "delete": "Mută de la bookmarks",
+    "deleted": "Mutat de la bookmarks"
   },
   "entry-reblog": {
-    "reblog": "Reblog",
+    "reblog": "Redistribuire",
     "confirm-title": "Reblog to @{{n}}'s blog?",
     "confirm-ok": "Reblog",
     "success": "Redistribuit!"
@@ -162,7 +162,7 @@
     "comment-entry-title": "Vizualizezi șirul unui singur comentariu de la: ",
     "comment-entry-go-root": "Vezi contextul complet",
     "comment-entry-go-parent": "Vizualizează postarea principală",
-    "show-history": "Show edit history",
+    "show-history": "Arată istoria modificărilor",
     "hidden-warning": "Această postare a fost ascunsă din cauza ratingului scăzut."
   },
   "edit-history": {
@@ -171,7 +171,7 @@
     "version": "Versiunea {{n}}"
   },
   "similar-entries": {
-    "title": "Recent posts by @{{n}}"
+    "title": "Postări recente de @{{n}}"
   },
   "comment": {
     "body-placeholder": "Scrie răspunsul tău aici",
@@ -194,60 +194,60 @@
     "page-description": "{{f}} subiecte",
     "subscribe": "Înscrie-te",
     "subscribed": "Alăturat",
-    "unsubscribe": "Leave",
-    "post": "New Post",
+    "unsubscribe": "Ieși",
+    "post": "Postare nouă",
     "posts": "Postări",
     "subscribers": "Membri",
     "activities": "Activități",
-    "roles-title": "User Roles",
-    "roles-account": "Account",
-    "roles-role": "Role",
-    "roles-account-title": "Title",
-    "roles-add": "Add User"
+    "roles-title": "Rolul de utilizator",
+    "roles-account": "Cont",
+    "roles-role": "Rol",
+    "roles-account-title": "Titlu",
+    "roles-add": "Adăugă utilizator"
   },
   "community-cover": {
-    "rewards": "rewards",
-    "authors": "posters",
-    "lang": "language",
+    "rewards": "recompense",
+    "authors": "postere",
+    "lang": "limbă",
     "cover-image": "Community cover image",
-    "cover-image-edit": "Edit cover image",
+    "cover-image-edit": "Setează imaginea de copertă",
     "cover-image-updated": "Cover image updated!"
   },
   "community-card": {
-    "description": "Description",
-    "rules": "Rules",
-    "team": "Leadership",
-    "edit": "Edit settings",
-    "edit-team": "Edit roles",
+    "description": "Descriere",
+    "rules": "Reguli",
+    "team": "Lider",
+    "edit": "Editează setările",
+    "edit-team": "Editează rolurile",
     "profile-image": "Community profile image",
-    "profile-image-edit": "Edit profile image",
-    "profile-image-updated": "Profile image updated!"
+    "profile-image-edit": "Editați imaginea de profil",
+    "profile-image-updated": "Profil actualizat!"
   },
   "community-role-edit": {
     "title": "Set user role",
-    "username": "Username",
-    "role": "Role",
-    "user-not-found": "The user does not exist!",
+    "username": "Nume utilizator",
+    "role": "Rol",
+    "user-not-found": "Acest utilizator nu exista!",
     "explanations": "<h3>Role Permissions</h3><p><strong>Owner</strong> - assign admins</p><p><strong>Admin</strong> - edit settings, assign mods</p><p><strong>Moderator</strong> - mute, pin, set user titles</p><p><strong>Member</strong> - listed on leadership team</p><p><strong>Guest</strong> - default; can post and comment</p><p><strong>Muted</strong> - new posts automatically muted</p>"
   },
   "community-settings": {
-    "dialog-title": "Community Settings",
-    "title": "Title",
-    "about": "About",
-    "lang": "Language",
-    "description": "Description",
-    "rules": "Rules",
-    "rules-help": "One per line"
+    "dialog-title": "Setările comunității",
+    "title": "Titlu",
+    "about": "Despre",
+    "lang": "Limbă",
+    "description": "Descriere",
+    "rules": "Reguli",
+    "rules-help": "Câte unul pe rând"
   },
   "communities": {
-    "title": "Communities",
+    "title": "Comunități",
     "description": "Best online, decentralized, immutable, rewarding communities",
-    "n-subscribers": "{{n}} members",
-    "n-authors": "{{n}} posters",
+    "n-subscribers": "{{n}} membri",
+    "n-authors": "{{n}} postere",
     "n-posts": "{{n}} posts",
-    "admins": "admins:",
-    "sort-hot": "Hot",
-    "sort-rank": "Rank",
+    "admins": "admin:",
+    "sort-hot": "Fierbinte",
+    "sort-rank": "Rang",
     "sort-subs": "Membri",
     "sort-new": "Nou",
     "no-results": "Niciun rezultat găsit",
@@ -272,18 +272,18 @@
     "progress-role": "Setare @{{u}} ca administrator...",
     "progress-props": "Actualizarea setărilor comunității...",
     "done": "Comunitatea ta a fost creată 🎉",
-    "done-link-label": "Get started."
+    "done-link-label": "Începe."
   },
   "pin-btn": {
     "pin": "Pin",
     "unpin": "Unpin"
   },
   "mute-btn": {
-    "mute": "Mute",
-    "unmute": "Unmute",
+    "mute": "Dezactivează",
+    "unmute": "Activează",
     "dialog-title-mute": "Mute post/comment",
     "dialog-title-unmute": "Unmute post/comment",
-    "notes": "Notes",
+    "notes": "Mențiuni",
     "note-placeholder-mute": "Provide a note regarding your decision to mute this content.",
     "note-placeholder-unmute": "Provide a note regarding your decision to unmute this content."
   },
@@ -308,8 +308,8 @@
     "title": "Profil",
     "name": "Nume afișat",
     "about": "Despre",
-    "cover-image": "Cover Image",
-    "profile-image": "Profile Image",
+    "cover-image": "Imagine copertă",
+    "profile-image": "Imaginea de profil",
     "website": "Website",
     "location": "Location",
     "updated": "Profile updated successfully!"
@@ -341,65 +341,65 @@
     "hive-dollars": "HIVE DOLLARS",
     "hive-dollars-description": "Tokens worth about $1.00 of HIVE.",
     "savings": "SAVINGS",
-    "savings-description": "Balance subject to 3 day withdraw waiting period.",
-    "next-power-down": "The next power down is {{time}} {{amount}}",
+    "savings-description": "Soldul este supus unei perioade de așteptare de 3 zile în caz de retragere.",
+    "next-power-down": "Următoarea power down este {{time}} {{amount}}",
     "transfer": "Transfer",
-    "transfer-to-savings": "Transfer to savings",
-    "convert": "Convert",
-    "power-up": "Power up",
-    "withdraw-hive": "Withdraw Hive",
-    "withdraw-hbd": "Withdraw Hive Dollar"
+    "transfer-to-savings": "Transfer la economii",
+    "convert": "Converteşte",
+    "power-up": "Creştere Putere de vot",
+    "withdraw-hive": "Retrage Hive",
+    "withdraw-hbd": "Retrage Hive Dolar"
   },
   "points": {
     "get": "BUY POINTS",
     "unclaimed-points": "Unclaimed points",
-    "claim-reward-points": "Claim reward points",
+    "claim-reward-points": "Colectează soldul de recompensă",
     "main-description": "Points can be used for in-app services, like Promote, Boost, Gifting. Earn them just by using Ecency apps and improve your experience.",
-    "earn-points": "How to earn more Points",
-    "post-desc": "You can earn point by posting regularly. Posting gives you 15 points.",
-    "comment-desc": "Each comment you make helps you to grow your audience and make friendship but also earns you 5 points.",
-    "checkin-desc": "Checking in on Ecency gives you 0.25 points and helps you stay connected with your friends.",
-    "vote-desc": "By voting you give reward to other creators and show your appreciation but also earn 0.01 x vote weight points.",
-    "reblog-desc": "  Share what post you like with your friends and earn 1 points.",
-    "login-desc": "When you login into Ecency you are entitled to earn 100 points automatically.",
-    "checkin-extra-desc": "Consistent use of app gives you extra chances to earn more 10 points, be more active and earn more.",
-    "delegation-desc": "You can earn ~50 points per day for each 1000HP delegation.",
-    "history": "History",
-    "post-list-desc": "Points for post",
-    "comment-list-desc": "Points for comment",
-    "vote-list-desc": "Points for vote",
-    "reblog-list-desc": "Points for reblog",
-    "login-list-desc": "Points for login",
-    "checkin-list-desc": "Points for heartbeat",
-    "checkin-extra-list-desc": "Usage bonus",
-    "transfer-sent-list-desc": "Transfer to {{n}}",
-    "transfer-incoming-list-desc": "Transfer from {{n}}",
-    "delegation-list-desc": "Delegation reward",
-    "referral-list-desc": "Referral reward",
-    "transfer": "Gift to someone",
-    "claim-ok": "Points claimed",
-    "promote": "Promote",
+    "earn-points": "Cum să câștigi puncte",
+    "post-desc": "Poți câștiga puncte postând regulat. Fiecare postare își aduce 15 puncte.",
+    "comment-desc": "Fiecare comentariu te ajută să îți crești audiența și să iti faci prieteni. De asemenea, câștigi 5 puncte.",
+    "checkin-desc": "Autentificarea prin aplicația Ecency îți aduce 0.25 puncte și te ajută să rămâi conectat cu prietenii tăi și comunitatea.",
+    "vote-desc": "Votând oferi recompense altor creatori de conținut și le arăți aprecierea ta. De asemenea, câștigi 0.01 din valoarea votului în puncte.",
+    "reblog-desc": "  Distribuie postările care îți plac pentru prietenii tăi și câștigă 1 punct.",
+    "login-desc": "Când te autentifici în aplicația Ecency câștigi 100 de puncte automat.",
+    "checkin-extra-desc": "Utilizarea constantă a aplicației îți oferă șanse în plus pentru câștigarea a 10 puncte. Fii cât mai activ și câștigă mai mult.",
+    "delegation-desc": "Poți câștiga 50 punct zilnic pentru fiecare 1000HP delegat.",
+    "history": "Istoric",
+    "post-list-desc": "Puncte pentru postare",
+    "comment-list-desc": "Puncte pentru comentariu",
+    "vote-list-desc": "Puncte pentru vot",
+    "reblog-list-desc": "Puncte pentru redistribuire",
+    "login-list-desc": "Puncte pentru autentificare",
+    "checkin-list-desc": "Puncte pentru prezență",
+    "checkin-extra-list-desc": "Bonus de utilizare",
+    "transfer-sent-list-desc": "Transfer către {{n}}",
+    "transfer-incoming-list-desc": "Transfer de la {{n}}",
+    "delegation-list-desc": "Recompensă delegare",
+    "referral-list-desc": "Premiu pentru referenți",
+    "transfer": "Dăruiește cuiva",
+    "claim-ok": "Puncte colectate",
+    "promote": "Promovează",
     "boost": "Boost"
   },
   "purchase": {
-    "select-asset": "Select Asset",
-    "slider-hint": "Drag the slider to adjust the amount.",
-    "submit": "Purchase"
+    "select-asset": "Selectați Activ",
+    "slider-hint": "Trage glisorul pentru a ajusta cantitatea.",
+    "submit": "Cumpărare"
   },
   "promote": {
-    "title": "Promote",
+    "title": "Promovează",
     "sub-title": "Promote your post",
-    "duration": "Duration"
+    "duration": "Durată"
   },
   "boost": {
     "title": "Boost",
-    "sub-title": "Boost your post",
-    "amount": "Amount",
-    "slider-hint": "Drag the slider to adjust the amount."
+    "sub-title": "La mesajul dvs",
+    "amount": "Sumă",
+    "slider-hint": "Trage glisorul pentru a ajusta cantitatea."
   },
   "redeem-common": {
-    "balance": "Balance",
-    "post": "Post",
+    "balance": "Sold",
+    "post": "Postare",
     "post-hint": "Autocomplete input",
     "post-placeholder": "username/permlink",
     "post-error": "Not a valid post address",
@@ -451,55 +451,55 @@
     "type-author_reward": "Author Reward",
     "type-comment_benefactor_reward": "Comment Benefactor Reward",
     "type-claim_reward_balance": "Claim rewards",
-    "type-transfer": "Transfer",
-    "type-transfer_to_vesting": "Transfer to vesting",
-    "type-withdraw_vesting": "Withdraw vesting",
-    "type-fill_order": "Fill order"
+    "type-transfer": "Transferul",
+    "type-transfer_to_vesting": "Transfer la vesting",
+    "type-withdraw_vesting": "Retragere vesting",
+    "type-fill_order": "Completează ordinul"
   },
   "key-or-hot": {
-    "sign": "Sign",
+    "sign": "Semnare",
     "key-placeholder": "Enter active/owner/master key",
-    "with-hivesigner": "Sign with hivesigner",
-    "with-keychain": "Sign with keychain"
+    "with-hivesigner": "Autentificare cu hivesigner",
+    "with-keychain": "Autentificare cu keychain"
   },
   "delegated-vesting": {
-    "title": "Delegated Hive Power"
+    "title": "Hive Power Delegat"
   },
   "received-vesting": {
-    "title": "Received Hive Power"
+    "title": "Hive Power Primit"
   },
   "friends": {
-    "followers": "Followers ({{n}})",
-    "following": "Following ({{n}})",
-    "search-placeholder": "Search users"
+    "followers": "Urmăritori ({{n}})",
+    "following": "Urmăriți ({{n}})",
+    "search-placeholder": "Caută utilizatori"
   },
   "follow-controls": {
-    "follow": "Follow",
-    "unFollow": "Unfollow",
-    "mute": "Mute",
-    "unMute": "Unmute"
+    "follow": "Urmărește",
+    "unFollow": "Anulează urmărirea",
+    "mute": "Dezactivează",
+    "unMute": "Activează"
   },
   "favorite-btn": {
-    "add": "Add to favorites",
-    "added": "Added to favorites",
-    "delete": "Remove from favorites",
-    "deleted": "Removed from favorites"
+    "add": "Adaugă la favorite",
+    "added": "Adăugat la favorite",
+    "delete": "Eliminaţi din Favorite",
+    "deleted": "Eliminat din favorite"
   },
   "editor-toolbar": {
-    "bold": "Bold",
+    "bold": "Îngroșat",
     "italic": "Italic",
-    "header": "Heading",
-    "code": "Code",
-    "quote": "Quote",
-    "ul": "Unordered List",
-    "ol": "Ordered List",
+    "header": "Titlu",
+    "code": "Cod",
+    "quote": "Citează",
+    "ul": "Listă Neordonată",
+    "ol": "Listă Ordonată",
     "link": "Link",
-    "image": "Image",
-    "table": "Table",
-    "table-3-col": "3 columns",
-    "table-2-col": "2 columns",
-    "table-1-col": "1 column",
-    "upload": "Upload",
+    "image": "Imagine",
+    "table": "Tabel",
+    "table-3-col": "3 coloane",
+    "table-2-col": "2 coloane",
+    "table-1-col": "1 coloană",
+    "upload": "Încarcă",
     "gallery": "Gallery",
     "emoji": "Emoji",
     "image-error": "Couldn't upload image.",
