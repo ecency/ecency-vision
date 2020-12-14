@@ -26,7 +26,7 @@ export default class HiveWallet {
     public vestingSharesDelegated: number = 0;
     public vestingSharesReceived: number = 0;
     public vestingSharesTotal: number = 0;
-    public vestingSharesForDelegation: number = 0;
+    public vestingSharesAvailable: number = 0;
 
     public totalHive: number = 0;
     public totalHbd: number = 0;
@@ -67,7 +67,7 @@ export default class HiveWallet {
         this.vestingSharesDelegated = parseAsset(account.delegated_vesting_shares).amount;
         this.vestingSharesReceived = parseAsset(account.received_vesting_shares).amount;
         this.vestingSharesTotal = this.vestingShares - this.vestingSharesDelegated + this.vestingSharesReceived - this.nextVestingSharesWithdrawal;
-        this.vestingSharesForDelegation = this.isPoweringDown ?
+        this.vestingSharesAvailable = this.isPoweringDown ?
             this.vestingShares - (Number(account.to_withdraw) - Number(account.withdrawn)) / 1e6 - this.vestingSharesDelegated :
             this.vestingShares - this.vestingSharesDelegated;
 

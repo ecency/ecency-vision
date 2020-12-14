@@ -250,8 +250,14 @@ export class WalletHive extends Component<Props, State> {
                                                         label: _t('wallet.delegate'),
                                                         onClick: () => {
                                                             this.openTransferDialog('delegate', 'HP');
-                                                        }
+                                                        },
                                                     },
+                                                    {
+                                                        label: _t('wallet.power-down'),
+                                                        onClick: () => {
+                                                            this.openTransferDialog('power-down', 'HP');
+                                                        },
+                                                    }
                                                 ],
                                             };
                                             return <div className="amount-actions">

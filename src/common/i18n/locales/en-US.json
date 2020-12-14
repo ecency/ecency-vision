@@ -349,7 +349,8 @@
     "power-up": "Power up",
     "withdraw-hive": "Withdraw Hive",
     "withdraw-hbd": "Withdraw Hive Dollar",
-    "delegate": "Delegate"
+    "delegate": "Delegate",
+    "power-down": "Power down"
   },
   "points": {
     "get": "BUY POINTS",
@@ -421,6 +422,8 @@
     "convert-sub-title": "Only recommended when HBD is below $1. You will get $1 of HIVE in 3.5 days.",
     "delegate-title": "Delegate",
     "delegate-sub-title": "Delegate Hive Power",
+    "power-down-title": "Power Down",
+    "power-down-sub-title": "Power Down Hive Power",
     "from": "From",
     "to": "To",
     "to-placeholder": "username",
@@ -434,7 +437,7 @@
     "memo": "Memo",
     "memo-placeholder": "enter your notes here",
     "memo-help": "This memo is public",
-    "delegation-note": "* available hive power to delegate",
+    "available-hp-hint": "* available hive power",
     "confirm-title": "Confirm your transaction",
     "confirm-sub-title": "Please, check if everything is correct",
     "confirm": "Confirm",

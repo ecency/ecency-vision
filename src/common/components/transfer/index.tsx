@@ -319,9 +319,9 @@ export class Transfer extends Component<Props, State> {
             return w.hbdBalance;
         }
 
-        if (asset === "HP" && mode === "delegate") {
+        if (asset === "HP") {
             const {hivePerMVests} = dynamicProps;
-            const vestingShares = w.vestingSharesForDelegation;
+            const vestingShares = w.vestingSharesAvailable;
             return vestsToHp(vestingShares, hivePerMVests);
         }
 
@@ -656,12 +656,12 @@ export class Transfer extends Component<Props, State> {
                         </Form.Group>
                         {amountError && (<FormText msg={amountError} type="danger"/>)}
                         <Row>
-                            <Col md={{span: 10, offset: 2}}>
+                            <Col lg={{span: 10, offset: 2}}>
                                 <div className="balance">
-                                    {_t("transfer.balance")}{": "}
-                                    <span onClick={this.copyBalance} className="balance-num">{balance}{" "}{asset}</span>
+                                    <span className="balance-label"> {_t("transfer.balance")}{": "}</span>
+                                    <span className="balance-num" onClick={this.copyBalance}>{balance}{" "}{asset}</span>
+                                    {asset === "HP" && (<div className="balance-hp-hint">{_t("transfer.available-hp-hint")}</div>)}
                                 </div>
-                                {mode === "delegate" && (<div className="balance-note">{_t("transfer.delegation-note")}</div>)}
                             </Col>
                         </Row>
 
