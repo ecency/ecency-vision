@@ -291,18 +291,18 @@
     "voting-power": "Szavazóerő",
     "post-count": "Bejegyzések száma",
     "followers": "Követők",
-    "following": "Following",
+    "following": "Követés",
     "section-blog": "Blog",
     "section-posts": "Bejegyzések",
     "section-comments": "Hozzászólások",
     "section-replies": "Válaszok",
     "section-communities": "Közösségek",
     "section-wallet": "Tárca",
-    "section-settings": "Settings",
+    "section-settings": "Beállítások",
     "communities-title": "Membership",
-    "create-community": "Create a community",
-    "witnesses": "Witnesses",
-    "proposals": "Proposals"
+    "create-community": "Hozz létre egy közösséget",
+    "witnesses": "Tanúk",
+    "proposals": "Javaslatok"
   },
   "profile-edit": {
     "title": "Profil",
@@ -434,30 +434,30 @@
     "confirm-title": "Confirm your transaction",
     "confirm-sub-title": "Please, check if everything is correct",
     "confirm": "Confirm",
-    "recent-transfers": "Recent transfers",
-    "transfer-summary": "Transferred <span class=\"amount\">{{amount}}</span> From <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "reset": "Another transfer"
+    "recent-transfers": "Legújabb átutalások",
+    "transfer-summary": "Átutalva <span class=\"amount\">{{amount}}</span> <span class=\"from-user\">{{from}}</span> -tól <span class=\"to-user\">{{to}}</span>-nak",
+    "reset": "Újabb átutalás"
   },
   "trx-common": {
-    "insufficient-funds": "Insufficient funds",
-    "sign-title": "Sign transaction",
-    "sign-sub-title": "Sign your transaction",
-    "success-title": "Success",
-    "success-sub-title": "Transaction successful"
+    "insufficient-funds": "Nincs elegendő fedezet",
+    "sign-title": "Tranzakció aláírása folyamatban",
+    "sign-sub-title": "Tranzakció aláírása folyamatban",
+    "success-title": "Siker",
+    "success-sub-title": "Sikeres tranzakció"
   },
   "transactions": {
-    "title": "History",
-    "type-curation_reward": "Curation Reward",
-    "type-author_reward": "Author Reward",
-    "type-comment_benefactor_reward": "Comment Benefactor Reward",
-    "type-claim_reward_balance": "Claim rewards",
-    "type-transfer": "Transfer",
-    "type-transfer_to_vesting": "Transfer to vesting",
-    "type-withdraw_vesting": "Withdraw vesting",
-    "type-fill_order": "Fill order"
+    "title": "Előzmény",
+    "type-curation_reward": "Kurációs Jutalom",
+    "type-author_reward": "Szerzői Jutalom",
+    "type-comment_benefactor_reward": "Hozzászólás Támogatási Jutalom",
+    "type-claim_reward_balance": "Jutalmak átvétele",
+    "type-transfer": "Átutalás",
+    "type-transfer_to_vesting": "Átutalás a veting-be",
+    "type-withdraw_vesting": "Vesting visszavonás",
+    "type-fill_order": "Megrendelés kitöltése"
   },
   "key-or-hot": {
-    "sign": "Sign",
+    "sign": "Jel",
     "key-placeholder": "Enter active/owner/master key",
     "with-hivesigner": "Sign with hivesigner",
     "with-keychain": "Sign with keychain"
