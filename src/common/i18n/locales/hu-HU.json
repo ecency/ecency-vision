@@ -51,7 +51,7 @@
   },
   "search": {
     "placeholder": "Keresés",
-    "placeholder-count": "Search {{n}} posts",
+    "placeholder-count": "Hozzászólások {{n}} keresése",
     "header-tag": "Címkék",
     "header-account": "Felhasználók",
     "header-community": "Közösségek"
@@ -75,7 +75,7 @@
     "key-placeholder": "master or active private key",
     "login-info-1": "We don't store your private keys.",
     "login-info-2": "Több infó",
-    "error-fields-required": "Please enter username and private key",
+    "error-fields-required": "Kérjük add meg felhasználóneved és jelszavad/wif-ed",
     "error-public-key": "A nyilvános kulcsot adtad meg. Jelszó/WIF szükséges",
     "error-user-fetch": "A felhasználó adatait nem sikerült betölteni",
     "error-user-not-found": "A felhasználó nem létezik",
@@ -149,7 +149,7 @@
     "title": "Toggle list style"
   },
   "entry-votes": {
-    "title": "1 Vote",
+    "title": "1 Szavazat",
     "title-n": "{{n}} Szavazat",
     "title-empty": "Nincs szavazat",
     "voter": "Szavazó",
@@ -210,23 +210,23 @@
     "authors": "poszterek",
     "lang": "nyelv",
     "cover-image": "Community cover image",
-    "cover-image-edit": "Edit cover image",
+    "cover-image-edit": "Borítókép megadása",
     "cover-image-updated": "Cover image updated!"
   },
   "community-card": {
     "description": "Leírás",
     "rules": "Szabályok",
-    "team": "Leadership",
+    "team": "Vezetőség",
     "edit": "Beállítások szerkesztése",
     "edit-team": "Szerepkör szerkesztése",
     "profile-image": "Community profile image",
-    "profile-image-edit": "Edit profile image",
-    "profile-image-updated": "Profile image updated!"
+    "profile-image-edit": "Profilkép szerkesztése",
+    "profile-image-updated": "Profil frissítve!"
   },
   "community-role-edit": {
     "title": "Set user role",
     "username": "Felhasználónév",
-    "role": "Role",
+    "role": "Szerepkör",
     "user-not-found": "A felhasználó nem létezik!",
     "explanations": "<h3>Role Permissions</h3><p><strong>Owner</strong> - assign admins</p><p><strong>Admin</strong> - edit settings, assign mods</p><p><strong>Moderator</strong> - mute, pin, set user titles</p><p><strong>Member</strong> - listed on leadership team</p><p><strong>Guest</strong> - default; can post and comment</p><p><strong>Muted</strong> - new posts automatically muted</p>"
   },
@@ -283,7 +283,7 @@
     "unmute": "Némítás feloldása",
     "dialog-title-mute": "Mute post/comment",
     "dialog-title-unmute": "Unmute post/comment",
-    "notes": "Notes",
+    "notes": "Jegyzetek",
     "note-placeholder-mute": "Provide a note regarding your decision to mute this content.",
     "note-placeholder-unmute": "Provide a note regarding your decision to unmute this content."
   },
@@ -426,14 +426,14 @@
     "amount": "Összeg",
     "amount-placeholder": "összeg",
     "wrong-amount": "Nem megfelelő összeg",
-    "amount-precision-error": "Use only 3 digits of precision",
+    "amount-precision-error": "Csak 3 tizedes pontosságot használj",
     "balance": "Egyenleg",
     "memo": "Üzenet",
     "memo-placeholder": "megjegyzés ide",
     "memo-help": "Ez az üzenet nyilvános",
-    "confirm-title": "Confirm your transaction",
-    "confirm-sub-title": "Please, check if everything is correct",
-    "confirm": "Confirm",
+    "confirm-title": "Tranzakció engedélyezése ",
+    "confirm-sub-title": "Kérjük ellenőrizd, hogy minden rendben",
+    "confirm": "Megerősítés",
     "recent-transfers": "Legújabb átutalások",
     "transfer-summary": "Átutalva <span class=\"amount\">{{amount}}</span> <span class=\"from-user\">{{from}}</span> -tól <span class=\"to-user\">{{to}}</span>-nak",
     "reset": "Újabb átutalás"
@@ -459,8 +459,8 @@
   "key-or-hot": {
     "sign": "Jel",
     "key-placeholder": "Enter active/owner/master key",
-    "with-hivesigner": "Sign with hivesigner",
-    "with-keychain": "Sign with keychain"
+    "with-hivesigner": "Hivesigner bejelentkezés",
+    "with-keychain": "Keychain bejelentkezés"
   },
   "delegated-vesting": {
     "title": "Delegált Hive Power"
@@ -625,56 +625,56 @@
     "proxy-description": "Választhatsz egy proxy-t is, aki tanúkat fog szavazni helyetted. Ez a művelet felülírja a jelenlegi tanú listádat.",
     "proxy-btn-label": "Proxy beállítása",
     "proxy-active-description": "Proxy szavazás beállítva. Ha újra kézi szavazást szeretnél, kérjük töröld a proxy-t.",
-    "proxy-active-current": "Your current proxy is",
-    "proxy-active-btn-label": "Clear Proxy"
+    "proxy-active-current": "A jelenlegi proxid",
+    "proxy-active-btn-label": "Proxy törlése"
   },
   "proposals": {
-    "page-title": "Proposals",
+    "page-title": "Javaslatok",
     "page-description": "The Decentralized Hive Fund (DHF) is an on-chain funding mechanism that allows anyone to submit a proposal and get funding once community votes pass certain threshold. To learn more read our <a href=\"/faq#how-dhf-work\">FAQ</a>.",
-    "by": "by",
+    "by": "által",
     "for": "for",
-    "duration-days": "{{n}} days",
-    "daily-pay": "Daily {{n}}",
-    "votes": "Votes: {{n}}",
-    "status-active": "active",
-    "status-expired": "expired",
-    "status-inactive": "upcoming",
-    "remaining-days": "Remaining: {{n}} days",
-    "filter-all": "All",
-    "filter-active": "Active",
-    "filter-inactive": "Upcoming",
+    "duration-days": "{{n}} nap",
+    "daily-pay": "Napi {{n}}",
+    "votes": "{{n}} Szavazat",
+    "status-active": "aktív",
+    "status-expired": "lejárt",
+    "status-inactive": "közelgő",
+    "remaining-days": "Hátralévő napok: {{n}}",
+    "filter-all": "Összes",
+    "filter-active": "Aktív",
+    "filter-inactive": "Közelgő",
     "filter-team": "Ecency Projects",
     "return-description": "This is the base return proposal. Every proposal with less votes will not receive funds.",
     "votes-dialog-title": "Votes on Proposal #{{n}}",
     "see-all": "see all proposals"
   },
   "gallery": {
-    "title": "Gallery",
-    "copied": "Copied to clipboard"
+    "title": "Galéria",
+    "copied": "Vágólapra másolva"
   },
   "drafts": {
-    "title": "Drafts"
+    "title": "Piszkozatok"
   },
   "bookmarks": {
-    "title": "Bookmarks"
+    "title": "Könyvjelzők"
   },
   "favorites": {
-    "title": "Favorites"
+    "title": "Kedvencek"
   },
   "scroll-to-top": {
-    "title": "Scroll to Top"
+    "title": "Görgetés az oldal tetejére"
   },
   "static": {
     "about": {
-      "page-title": "About",
+      "page-title": "Rólunk",
       "intro-title": "What is <span>Ecency</span>",
       "intro-content": "Ecency is beautiful and handy wrapper interface around the Hive blockchain network allowing you to create your own posts, surf your feeds, vote what you like, write comments, read replies, do all major Hive functions in your daily social surfing as well as wallet actions and other extras such as search, discover different tags etc.",
-      "faq-title": "FAQ",
+      "faq-title": "GYÍK",
       "faqs": "All FAQs",
-      "contact-title": "Contacts",
+      "contact-title": "Névjegyek",
       "contact-blog": "Founder's blog",
       "contact-news": "News on Hive",
-      "contact-email": "Email us"
+      "contact-email": "Írj nekünk e-mailt"
     },
     "faq": {
       "page-title": "Ecency FAQ",
