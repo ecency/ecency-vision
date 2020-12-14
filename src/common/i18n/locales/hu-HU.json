@@ -463,33 +463,33 @@
     "with-keychain": "Sign with keychain"
   },
   "delegated-vesting": {
-    "title": "Delegated Hive Power"
+    "title": "Delegált Hive Power"
   },
   "received-vesting": {
-    "title": "Received Hive Power"
+    "title": "Kapott Hive Power"
   },
   "friends": {
-    "followers": "Followers ({{n}})",
-    "following": "Following ({{n}})",
-    "search-placeholder": "Search users"
+    "followers": "Követők ({{n}})",
+    "following": "Követés ({{n}})",
+    "search-placeholder": "Tagok keresése"
   },
   "follow-controls": {
-    "follow": "Follow",
-    "unFollow": "Unfollow",
-    "mute": "Mute",
-    "unMute": "Unmute"
+    "follow": "Követés",
+    "unFollow": "Követés megszüntetése",
+    "mute": "Némítás",
+    "unMute": "Némítás feloldása"
   },
   "favorite-btn": {
-    "add": "Add to favorites",
-    "added": "Added to favorites",
-    "delete": "Remove from favorites",
-    "deleted": "Removed from favorites"
+    "add": "Hozzáadás a kedvencekhez",
+    "added": "Hozzáadva a kedvencekhez",
+    "delete": "Eltávolítás a kedvencek közül",
+    "deleted": "Eltávolítva a kedvencek közül"
   },
   "editor-toolbar": {
-    "bold": "Bold",
-    "italic": "Italic",
-    "header": "Heading",
-    "code": "Code",
+    "bold": "Félkövér",
+    "italic": "Dőlt",
+    "header": "Címsor",
+    "code": "Kód",
     "quote": "Idézés",
     "ul": "Rendezetlen lista",
     "ol": "Rendezett lista",
