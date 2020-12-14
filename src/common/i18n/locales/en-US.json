@@ -342,7 +342,7 @@
     "hive-dollars-description": "Tokens worth about $1.00 of HIVE.",
     "savings": "SAVINGS",
     "savings-description": "Balance subject to 3 day withdraw waiting period.",
-    "next-power-down": "The next power down is {{time}} {{amount}}",
+    "next-power-down": "The next power down is {{time}}, {{amount}}",
     "transfer": "Transfer",
     "transfer-to-savings": "Transfer to savings",
     "convert": "Convert",
@@ -434,6 +434,7 @@
     "wrong-amount": "Wrong amount value",
     "amount-precision-error": "Use only 3 digits of precision",
     "balance": "Balance",
+    "power-down-estimated": "+ {{n}} Estimated Weekly",
     "memo": "Memo",
     "memo-placeholder": "enter your notes here",
     "memo-help": "This memo is public",
@@ -448,7 +449,10 @@
     "convert-summary": "<span class=\"amount\">{{amount}}</span> converted",
     "power-up-summary": "<span class=\"amount\">{{amount}}</span> staked from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "reset": "Another transfer"
+    "power-down-summary": "Power down completed as <span class=\"amount\">{{amount}}</span>",
+    "reset": "Another transfer",
+    "powering-down": "You are currently powering down.",
+    "stop-power-down": "Stop"
   },
   "trx-common": {
     "insufficient-funds": "Insufficient funds",

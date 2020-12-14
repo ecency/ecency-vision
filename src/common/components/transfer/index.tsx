@@ -50,6 +50,9 @@ import {
     delegateVestingShares,
     delegateVestingSharesHot,
     delegateVestingSharesKc,
+    withdrawVesting,
+    withdrawVestingHot,
+    withdrawVestingKc,
     formatError
 } from "../../api/operations";
 
@@ -58,6 +61,8 @@ import {_t} from "../../i18n";
 import badActors from '../../constants/bad-actors.json';
 
 import {arrowRightSvg} from "../../img/svg";
+import moment from "moment";
+import formattedNumber from "../../util/formatted-number";
 
 export type TransferMode = "transfer" | "transfer-saving" | "withdraw-saving" | "convert" | "power-up" | "power-down" | "delegate";
 export type TransferAsset = "HIVE" | "HBD" | "HP" | "POINT" ;
@@ -353,6 +358,10 @@ export class Transfer extends Component<Props, State> {
         this.setState({step: 2, amount: fixedAmount});
     };
 
+    nextPowerDown = () => {
+        this.setState({step: 2, amount: "0.000"});
+    }
+
     back = () => {
         this.setState({step: 1});
     };
@@ -369,29 +378,40 @@ export class Transfer extends Component<Props, State> {
 
         let promise: Promise<any>;
         switch (mode) {
-            case "transfer":
+            case "transfer": {
                 if (asset === "POINT") {
                     promise = transferPoint(username, key, to, fullAmount, memo);
                 } else {
                     promise = transfer(username, key, to, fullAmount, memo);
                 }
                 break;
-            case "transfer-saving":
+            }
+            case "transfer-saving": {
                 promise = transferToSavings(username, key, to, fullAmount, memo);
                 break;
-            case "convert":
+            }
+            case "convert": {
                 promise = convert(username, key, fullAmount)
                 break;
-            case "withdraw-saving":
+            }
+            case "withdraw-saving": {
                 promise = transferFromSavings(username, key, to, fullAmount, memo);
                 break;
-            case "power-up":
+            }
+            case "power-up": {
                 promise = transferToVesting(username, key, to, fullAmount);
                 break;
-            case "delegate":
+            }
+            case "power-down": {
+                const vests = this.hpToVests(Number(amount));
+                promise = withdrawVesting(username, key, vests);
+                break;
+            }
+            case "delegate": {
                 const vests = this.hpToVests(Number(amount));
                 promise = delegateVestingShares(username, key, to, vests);
                 break;
+            }
             default:
                 return;
         }
@@ -420,29 +440,40 @@ export class Transfer extends Component<Props, State> {
         const username = activeUser?.username!
 
         switch (mode) {
-            case "transfer":
+            case "transfer": {
                 if (asset === "POINT") {
                     transferPointHot(username, to, fullAmount, memo);
                 } else {
                     transferHot(username, to, fullAmount, memo);
                 }
                 break;
-            case "transfer-saving":
+            }
+            case "transfer-saving": {
                 transferToSavingsHot(username, to, fullAmount, memo);
                 break;
-            case "convert":
+            }
+            case "convert": {
                 convertHot(username, fullAmount)
                 break;
-            case "withdraw-saving":
+            }
+            case "withdraw-saving": {
                 transferFromSavingsHot(username, to, fullAmount, memo);
                 break;
-            case "power-up":
+            }
+            case "power-up": {
                 transferToVestingHot(username, to, fullAmount);
                 break;
-            case "delegate":
+            }
+            case "power-down": {
+                const vests = this.hpToVests(Number(amount));
+                withdrawVestingHot(username, vests);
+                break;
+            }
+            case "delegate": {
                 const vests = this.hpToVests(Number(amount));
                 delegateVestingSharesHot(username, to, vests);
                 break;
+            }
             default:
                 return;
         }
@@ -458,29 +489,40 @@ export class Transfer extends Component<Props, State> {
 
         let promise: Promise<any>;
         switch (mode) {
-            case "transfer":
+            case "transfer": {
                 if (asset === "POINT") {
                     promise = transferPointKc(username, to, fullAmount, memo);
                 } else {
                     promise = transferKc(username, to, fullAmount, memo);
                 }
                 break;
-            case "transfer-saving":
+            }
+            case "transfer-saving": {
                 promise = transferToSavingsKc(username, to, fullAmount, memo);
                 break;
-            case "convert":
+            }
+            case "convert": {
                 promise = convertKc(username, fullAmount)
                 break;
-            case "withdraw-saving":
+            }
+            case "withdraw-saving": {
                 promise = transferFromSavingsKc(username, to, fullAmount, memo);
                 break;
-            case "power-up":
+            }
+            case "power-up": {
                 promise = transferToVestingKc(username, to, fullAmount);
                 break;
-            case "delegate":
+            }
+            case "power-down": {
+                const vests = this.hpToVests(Number(amount));
+                promise = withdrawVestingKc(username, vests);
+                break;
+            }
+            case "delegate": {
                 const vests = this.hpToVests(Number(amount));
                 promise = delegateVestingSharesKc(username, to, vests);
                 break;
+            }
             default:
                 return;
         }
@@ -511,7 +553,7 @@ export class Transfer extends Component<Props, State> {
     }
 
     render() {
-        const {mode, activeUser, transactions} = this.props;
+        const {mode, activeUser, transactions, dynamicProps} = this.props;
         const {step, asset, to, toError, toWarning, amount, amountError, memo, inProgress} = this.state;
 
         const recent = [...new Set(
@@ -568,16 +610,76 @@ export class Transfer extends Component<Props, State> {
         const subTitleLngKey = `${mode}-sub-title`;
         const summaryLngKey = `${mode}-summary`;
 
+        const formHeader1 = <div className="transaction-form-header">
+            <div className="step-no">1</div>
+            <div className="box-titles">
+                <div className="main-title">{_t(`transfer.${titleLngKey}`)}</div>
+                <div className="sub-title">{_t(`transfer.${subTitleLngKey}`)}</div>
+            </div>
+        </div>;
+
+        const formHeader2 = <div className="transaction-form-header">
+            <div className="step-no">2</div>
+            <div className="box-titles">
+                <div className="main-title">
+                    {_t('transfer.confirm-title')}
+                </div>
+                <div className="sub-title">
+                    {_t('transfer.confirm-sub-title')}
+                </div>
+            </div>
+        </div>;
+
+        const formHeader3 = <div className="transaction-form-header">
+            <div className="step-no">3</div>
+            <div className="box-titles">
+                <div className="main-title">
+                    {_t('trx-common.sign-title')}
+                </div>
+                <div className="sub-title">
+                    {_t('trx-common.sign-sub-title')}
+                </div>
+            </div>
+        </div>;
+
+        const formHeader4 = <div className="transaction-form-header">
+            <div className="step-no">4</div>
+            <div className="box-titles">
+                <div className="main-title">
+                    {_t('trx-common.success-title')}
+                </div>
+                <div className="sub-title">
+                    {_t('trx-common.success-sub-title')}
+                </div>
+            </div>
+        </div>;
+
+        // Powering down
+        if (step === 1 && mode === "power-down") {
+            const w = new HiveWallet(activeUser.data, dynamicProps);
+            if (w.isPoweringDown) {
+                return <div className="transfer-dialog-content">
+                    <div className="transaction-form">
+                        {formHeader1}
+                        <div className="transaction-form-body powering-down">
+                            <p>{_t("transfer.powering-down")}</p>
+                            <p> {_t("wallet.next-power-down", {
+                                time: moment(w.nextVestingWithdrawalDate).fromNow(),
+                                amount: `${this.formatNumber(w.nextVestingSharesWithdrawalHive, 3)} HIVE`,
+                            })}</p>
+                            <p>
+                                <Button onClick={this.nextPowerDown} variant="danger">{_t("transfer.stop-power-down")}</Button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+
         return <div className="transfer-dialog-content">
             {step === 1 && (
                 <div className={`transaction-form ${inProgress ? 'in-progress' : ''}`}>
-                    <div className="transaction-form-header">
-                        <div className="step-no">1</div>
-                        <div className="box-titles">
-                            <div className="main-title">{_t(`transfer.${titleLngKey}`)}</div>
-                            <div className="sub-title">{_t(`transfer.${subTitleLngKey}`)}</div>
-                        </div>
-                    </div>
+                    {formHeader1}
                     {inProgress && <LinearProgress/>}
                     <Form className="transaction-form-body">
                         <Form.Group as={Row}>
@@ -654,14 +756,27 @@ export class Transfer extends Component<Props, State> {
                                 )}
                             </Col>
                         </Form.Group>
+
                         {amountError && (<FormText msg={amountError} type="danger"/>)}
+
                         <Row>
                             <Col lg={{span: 10, offset: 2}}>
                                 <div className="balance">
-                                    <span className="balance-label"> {_t("transfer.balance")}{": "}</span>
+                                    <span className="balance-label">{_t("transfer.balance")}{": "}</span>
                                     <span className="balance-num" onClick={this.copyBalance}>{balance}{" "}{asset}</span>
                                     {asset === "HP" && (<div className="balance-hp-hint">{_t("transfer.available-hp-hint")}</div>)}
                                 </div>
+                                {(() => {
+                                    if (mode === "power-down") {
+                                        const hive = Math.round((Number(amount) / 13) * 1000) / 1000;
+                                        if (!isNaN(hive) && hive > 0) {
+                                            return <div className="power-down-estimation">
+                                                {_t("transfer.power-down-estimated", {n: `${this.formatNumber(hive, 3)} HIVE`})}
+                                            </div>;
+                                        }
+                                    }
+                                    return null;
+                                })()}
                             </Col>
                         </Row>
 
@@ -694,17 +809,7 @@ export class Transfer extends Component<Props, State> {
 
             {step === 2 && (
                 <div className="transaction-form">
-                    <div className="transaction-form-header">
-                        <div className="step-no">2</div>
-                        <div className="box-titles">
-                            <div className="main-title">
-                                {_t('transfer.confirm-title')}
-                            </div>
-                            <div className="sub-title">
-                                {_t('transfer.confirm-sub-title')}
-                            </div>
-                        </div>
-                    </div>
+                    {formHeader2}
                     <div className="transaction-form-body">
                         <div className="confirmation">
                             <div className="users">
@@ -745,17 +850,7 @@ export class Transfer extends Component<Props, State> {
 
             {step === 3 && (
                 <div className="transaction-form">
-                    <div className="transaction-form-header">
-                        <div className="step-no">3</div>
-                        <div className="box-titles">
-                            <div className="main-title">
-                                {_t('trx-common.sign-title')}
-                            </div>
-                            <div className="sub-title">
-                                {_t('trx-common.sign-sub-title')}
-                            </div>
-                        </div>
-                    </div>
+                    {formHeader3}
                     <div className="transaction-form">
                         {KeyOrHot({
                             ...this.props,
@@ -770,17 +865,7 @@ export class Transfer extends Component<Props, State> {
 
             {step === 4 && (
                 <div className="transaction-form">
-                    <div className="transaction-form-header">
-                        <div className="step-no">4</div>
-                        <div className="box-titles">
-                            <div className="main-title">
-                                {_t('trx-common.success-title')}
-                            </div>
-                            <div className="sub-title">
-                                {_t('trx-common.success-sub-title')}
-                            </div>
-                        </div>
-                    </div>
+                    {formHeader4}
                     <div className="transaction-form-body">
                         <div className="success"
                              dangerouslySetInnerHTML={{__html: _t(`transfer.${summaryLngKey}`, {amount: `${amount} ${asset}`, from: activeUser.username, to})}}/>

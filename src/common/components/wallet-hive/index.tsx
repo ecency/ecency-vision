@@ -418,7 +418,7 @@ export class WalletHive extends Component<Props, State> {
                             <div className="next-power-down">
                                 {_t("wallet.next-power-down", {
                                     time: moment(w.nextVestingWithdrawalDate).fromNow(),
-                                    amount: formattedNumber(vestsToHp(w.nextVestingSharesWithdrawal, hivePerMVests), {prefix: "HIVE"}),
+                                    amount: formattedNumber(w.nextVestingSharesWithdrawalHive, {prefix: "HIVE"}),
                                 })}
                             </div>
                         )}

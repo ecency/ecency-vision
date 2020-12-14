@@ -456,6 +456,42 @@ export const delegateVestingSharesKc = (delegator: string, delegatee: string, ve
     return keychain.broadcast(delegator, [op], "Active");
 }
 
+export const withdrawVesting = (account: string, key: PrivateKey, vestingShares: string): Promise<TransactionConfirmation> => {
+    const op: Operation = [
+        'withdraw_vesting',
+        {
+            account,
+            vesting_shares: vestingShares
+        }
+    ]
+
+    return hiveClient.broadcast.sendOperations([op], key);
+}
+
+export const withdrawVestingHot = (account: string, vestingShares: string) => {
+    const op: Operation = ['withdraw_vesting', {
+        account,
+        vesting_shares: vestingShares
+    }];
+
+    return hs.sendOperation(op, {callback: `https://ecency.com/@${account}/wallet`}, () => {
+    }, () => {
+    });
+}
+
+export const withdrawVestingKc = (account: string, vestingShares: string) => {
+    const op: Operation = [
+        'withdraw_vesting',
+        {
+            account,
+            vesting_shares: vestingShares
+        }
+    ]
+
+    return keychain.broadcast(account, [op], "Active");
+}
+
+
 export const witnessVote = (account: string, key: PrivateKey, witness: string, approve: boolean): Promise<TransactionConfirmation> => {
     const op: Operation = [
         'account_witness_vote',

@@ -21,6 +21,7 @@ export default class HiveWallet {
     public isPoweringDown: boolean = false;
     public nextVestingWithdrawalDate: Date = new Date();
     public nextVestingSharesWithdrawal: number = 0;
+    public nextVestingSharesWithdrawalHive: number = 0;
 
     public vestingShares: number = 0;
     public vestingSharesDelegated: number = 0;
@@ -62,6 +63,7 @@ export default class HiveWallet {
                 parseAsset(account.vesting_withdraw_rate).amount,
                 (Number(account.to_withdraw) - Number(account.withdrawn)) / 1e6
             ) : 0;
+        this.nextVestingSharesWithdrawalHive = this.isPoweringDown ? vestsToHp(this.nextVestingSharesWithdrawal, hivePerMVests) : 0;
 
         this.vestingShares = parseAsset(account.vesting_shares).amount;
         this.vestingSharesDelegated = parseAsset(account.delegated_vesting_shares).amount;

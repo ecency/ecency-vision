@@ -1,6 +1,24 @@
 // do not wrap this. transfer also works in other dialogs.
 
 .transfer-dialog-content {
+
+  .transaction-form-body.powering-down {
+    text-align: center;
+    @include themify(day) {
+      color: $steel-grey;
+    }
+
+    @include themify(night) {
+      color: $metallic-blue;
+    }
+  }
+
+  .power-down-estimation, .balance {
+    margin-top: 16px;
+    font-weight: 300;
+    padding-left: 20px;
+  }
+
   .balance {
     margin-top: 16px;
     font-weight: 300;
@@ -37,6 +55,9 @@
     }
   }
 
+  .power-down-estimation {
+    color: $green1;
+  }
 
   .confirmation {
     margin-bottom: 30px;
