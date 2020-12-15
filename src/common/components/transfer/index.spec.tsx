@@ -6,6 +6,11 @@ import {globalInstance, dynamicPropsIntance1, fullAccountInstance} from "../../h
 
 import TestRenderer from "react-test-renderer";
 
+jest.mock("moment", () => () => ({
+    fromNow: () => "in 5 days",
+}));
+
+
 const defProps = {
     global: globalInstance,
     dynamicProps: dynamicPropsIntance1,
@@ -43,9 +48,9 @@ describe('(1) Transfer HIVE', () => {
     const asset: TransferAsset = 'HIVE';
 
     const props = {
+        ...defProps,
         mode,
         asset,
-        ...defProps
     };
 
     const component = TestRenderer.create(<Transfer {...props} />);
@@ -76,9 +81,9 @@ describe('(2) Transfer HBD', () => {
     const asset: TransferAsset = 'HBD';
 
     const props = {
+        ...defProps,
         mode,
-        asset,
-        ...defProps
+        asset
     };
 
     const component = TestRenderer.create(<Transfer {...props} />);
@@ -106,9 +111,9 @@ describe('(3) Transfer POINT', () => {
     const asset: TransferAsset = 'POINT';
 
     const props = {
+        ...defProps,
         mode,
-        asset,
-        ...defProps
+        asset
     };
 
     const component = TestRenderer.create(<Transfer {...props} />);
@@ -134,9 +139,9 @@ describe('(4) Transfer to Savings - HBD', () => {
     const asset: TransferAsset = 'HBD';
 
     const props = {
+        ...defProps,
         mode,
-        asset,
-        ...defProps
+        asset
     };
 
     const component = TestRenderer.create(<Transfer {...props} />);
@@ -162,9 +167,9 @@ describe('(5) Withdraw Savings - HIVE', () => {
     const asset: TransferAsset = 'HIVE';
 
     const props = {
+        ...defProps,
         mode,
-        asset,
-        ...defProps
+        asset
     };
 
     const component = TestRenderer.create(<Transfer {...props} />);
@@ -190,9 +195,9 @@ describe('(6) Convert', () => {
     const asset: TransferAsset = 'HBD';
 
     const props = {
+        ...defProps,
         mode,
-        asset,
-        ...defProps
+        asset
     };
 
     const component = TestRenderer.create(<Transfer {...props} />);
@@ -218,9 +223,9 @@ describe('(7) Power up', () => {
     const asset: TransferAsset = 'HIVE';
 
     const props = {
+        ...defProps,
         mode,
-        asset,
-        ...defProps
+        asset
     };
 
     const component = TestRenderer.create(<Transfer {...props} />);
@@ -246,9 +251,9 @@ describe('(8) Delegate', () => {
     const asset: TransferAsset = 'HP';
 
     const props = {
+        ...defProps,
         mode,
-        asset,
-        ...defProps
+        asset
     };
 
     const component = TestRenderer.create(<Transfer {...props} />);
@@ -265,6 +270,68 @@ describe('(8) Delegate', () => {
 
     it("(4) Step 4", () => {
         instance.setState({step: 4});
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+});
+
+
+describe('(9) Power down', () => {
+    const mode: TransferMode = 'power-down';
+    const asset: TransferAsset = 'HP';
+
+    const props = {
+        ...defProps,
+        mode,
+        asset
+    };
+
+    const component = TestRenderer.create(<Transfer {...props} />);
+    const instance: any = component.getInstance();
+    instance.setState({amount: "2.000"});
+
+    it("(1) Step 1", () => {
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+
+    it("(2) Step 2", () => {
+        instance.setState({step: 2, to: 'bar'});
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+
+    it("(4) Step 4", () => {
+        instance.setState({step: 4});
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+});
+
+describe('(10) Powering down', () => {
+    const mode: TransferMode = 'power-down';
+    const asset: TransferAsset = 'HP';
+
+    const props = {
+        ...defProps,
+        mode,
+        asset,
+        activeUser: {
+            username: 'foo',
+            data: {
+                ...fullAccountInstance,
+                next_vesting_withdrawal: "2020-12-21T09:34:54",
+                vesting_withdraw_rate: "525426.335537 VESTS",
+                to_withdraw: "6830542361972",
+                withdrawn: "6305116026444",
+                name: 'foo'
+            },
+            points: {
+                points: "10.000",
+                uPoints: "0.000"
+            }
+        },
+    };
+
+    const component = TestRenderer.create(<Transfer {...props} />);
+
+    it("(1) Step 1", () => {
         expect(component.toJSON()).toMatchSnapshot();
     });
 });

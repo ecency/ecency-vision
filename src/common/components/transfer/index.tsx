@@ -4,6 +4,8 @@ import {PrivateKey} from "@hiveio/dhive";
 
 import numeral from "numeral";
 
+import moment from "moment";
+
 import isEqual from "react-fast-compare";
 
 import {Modal, Form, Row, Col, InputGroup, FormControl, Button} from "react-bootstrap";
@@ -61,8 +63,6 @@ import {_t} from "../../i18n";
 import badActors from '../../constants/bad-actors.json';
 
 import {arrowRightSvg} from "../../img/svg";
-import moment from "moment";
-import formattedNumber from "../../util/formatted-number";
 
 export type TransferMode = "transfer" | "transfer-saving" | "withdraw-saving" | "convert" | "power-up" | "power-down" | "delegate";
 export type TransferAsset = "HIVE" | "HBD" | "HP" | "POINT" ;
