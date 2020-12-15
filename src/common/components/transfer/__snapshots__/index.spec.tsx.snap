@@ -277,6 +277,11 @@ exports[`(1) Transfer HIVE (2) Step 2 1`] = `
         className="confirmation"
       >
         <div
+          className="confirm-title"
+        >
+          Transfer to Account
+        </div>
+        <div
           className="users"
         >
           <div
@@ -820,6 +825,11 @@ exports[`(2) Transfer HBD (2) Step 2 1`] = `
         className="confirmation"
       >
         <div
+          className="confirm-title"
+        >
+          Transfer to Account
+        </div>
+        <div
           className="users"
         >
           <div
@@ -1246,6 +1256,11 @@ exports[`(3) Transfer POINT (2) Step 2 1`] = `
         className="confirmation"
       >
         <div
+          className="confirm-title"
+        >
+          Gift to Account
+        </div>
+        <div
           className="users"
         >
           <div
@@ -1661,6 +1676,11 @@ exports[`(4) Transfer to Savings - HBD (2) Step 2 1`] = `
       <div
         className="confirmation"
       >
+        <div
+          className="confirm-title"
+        >
+          Transfer to Savings
+        </div>
         <div
           className="users"
         >
@@ -2078,6 +2098,11 @@ exports[`(5) Withdraw Savings - HIVE (2) Step 2 1`] = `
         className="confirmation"
       >
         <div
+          className="confirm-title"
+        >
+          Savings Withdraw
+        </div>
+        <div
           className="users"
         >
           <div
@@ -2405,6 +2430,11 @@ exports[`(6) Convert (2) Step 2 1`] = `
       <div
         className="confirmation"
       >
+        <div
+          className="confirm-title"
+        >
+          Convert
+        </div>
         <div
           className="users"
         >
@@ -2749,6 +2779,11 @@ exports[`(7) Power up (2) Step 2 1`] = `
       <div
         className="confirmation"
       >
+        <div
+          className="confirm-title"
+        >
+          Stake Hive as Power
+        </div>
         <div
           className="users"
         >
@@ -3123,6 +3158,11 @@ exports[`(8) Delegate (2) Step 2 1`] = `
         className="confirmation"
       >
         <div
+          className="confirm-title"
+        >
+          Delegate
+        </div>
+        <div
           className="users"
         >
           <div
@@ -3465,6 +3505,11 @@ exports[`(9) Power down (2) Step 2 1`] = `
       <div
         className="confirmation"
       >
+        <div
+          className="confirm-title"
+        >
+          Power Down
+        </div>
         <div
           className="users"
         >

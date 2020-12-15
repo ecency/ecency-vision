@@ -62,6 +62,14 @@
   .confirmation {
     margin-bottom: 30px;
 
+    .confirm-title {
+      color: $dark-sky-blue;
+      font-size: 20px;
+      font-weight: 500;
+      margin: 10px 0;
+      text-align: center;
+    }
+
     .users {
       display: flex;
       justify-content: space-around;

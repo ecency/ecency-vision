@@ -812,6 +812,7 @@ export class Transfer extends Component<Props, State> {
                     {formHeader2}
                     <div className="transaction-form-body">
                         <div className="confirmation">
+                            <div className="confirm-title">{_t(`transfer.${titleLngKey}`)}</div>
                             <div className="users">
                                 <div className="from-user">
                                     {UserAvatar({...this.props, username: activeUser.username, size: "medium"})}
