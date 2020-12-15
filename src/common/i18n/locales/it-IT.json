@@ -1,5 +1,6 @@
 {
   "g": {
+    "add": "Add",
     "edit": "Modifica",
     "search": "Cerca",
     "downloads": "Scarica",
@@ -23,7 +24,9 @@
     "try-again": "Prova di nuovo",
     "show": "Mostra",
     "on": "Aziona",
-    "off": "Spegni"
+    "off": "Spegni",
+    "yes": "Yes",
+    "no": "No"
   },
   "confirm": {
     "title": "Sei sicuro?",
@@ -342,13 +345,22 @@
     "hive-dollars-description": "Token dal valore di circa $1.00 in HIVE.",
     "savings": "RISPARMI",
     "savings-description": "Bilancio soggetto a tempo di attesa prima del pagamento di 3 giorni.",
-    "next-power-down": "Il prossimo depotenziamento è {{time}} {{amount}}",
+    "next-power-down": "The next power down is {{time}}, {{amount}}",
     "transfer": "Trasferisci",
     "transfer-to-savings": "Trasferisci nei risparmi",
     "convert": "Converti",
     "power-up": "Potenzia",
     "withdraw-hive": "Trasferisci Hive",
-    "withdraw-hbd": "Trasferisci Hive Dollars"
+    "withdraw-hbd": "Trasferisci Hive Dollars",
+    "delegate": "Delegate",
+    "power-down": "Power down",
+    "withdraw-routes": "Withdraw Routes"
+  },
+  "withdraw-routes": {
+    "title": "Withdraw accounts",
+    "account": "Account",
+    "percent": "Percent",
+    "auto-power-up": "Automatically power up"
   },
   "points": {
     "get": "Acquista Punti",
@@ -418,6 +430,10 @@
     "convert-title": "Converti",
     "power-up-sub-title": "Token indici di influenza che ti danno più controllo sul pagamento dei post e ti consentono di guadagnare sulle ricompense delle curation.",
     "convert-sub-title": "Raccomandato unicamente quando HBD si trova sotto il valore di $1. Riceverai $1 in HIVE in 3.5 giorni.",
+    "delegate-title": "Delegate",
+    "delegate-sub-title": "Delegate Hive Power",
+    "power-down-title": "Power Down",
+    "power-down-sub-title": "Power Down Hive Power",
     "from": "Da",
     "to": "A",
     "to-placeholder": "nome Utente",
@@ -428,15 +444,25 @@
     "wrong-amount": "Valore dell'importo errato",
     "amount-precision-error": "Usa solo 3 numeri decimali",
     "balance": "Saldo",
+    "power-down-estimated": "+ {{n}} Estimated Weekly",
     "memo": "Promemoria",
     "memo-placeholder": "immetti qui la tua annotazione",
     "memo-help": "Questo promemoria è pubblico",
+    "available-hp-hint": "* available hive power",
     "confirm-title": "Conferma la tua transazione",
     "confirm-sub-title": "Prego, controlla se è tutto corretto",
     "confirm": "Conferma",
     "recent-transfers": "Trasferimenti recenti",
-    "transfer-summary": "Trasferito <span class=\"amount\">{{amount}}</span> Da <span class=\"from-user\">{{from}}</span> A <span class=\"to-user\">{{to}}</span>",
-    "reset": "Altro trasferimento"
+    "transfer-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
+    "transfer-saving-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
+    "withdraw-saving-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
+    "convert-summary": "<span class=\"amount\">{{amount}}</span> converted",
+    "power-up-summary": "<span class=\"amount\">{{amount}}</span> staked from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
+    "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
+    "power-down-summary": "Power down completed as <span class=\"amount\">{{amount}}</span>",
+    "reset": "Reset",
+    "powering-down": "You are currently powering down.",
+    "stop-power-down": "Stop"
   },
   "trx-common": {
     "insufficient-funds": "Fondi insufficienti",
@@ -463,7 +489,8 @@
     "with-keychain": "Accedi con keychain"
   },
   "delegated-vesting": {
-    "title": "Delega Hive Power"
+    "title": "Delega Hive Power",
+    "undelegate": "undelegate"
   },
   "received-vesting": {
     "title": "Ricevi Hive Power"
