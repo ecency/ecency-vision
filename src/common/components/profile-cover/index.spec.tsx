@@ -6,7 +6,7 @@ import renderer from "react-test-renderer";
 import {Theme} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 
-import {globalInstance, UiInstance} from "../../helper/test-helper";
+import {globalInstance, UiInstance, fullAccountInstance} from "../../helper/test-helper";
 
 jest.mock("../../constants/defaults.json", () => ({
     imageServer: "https://images.ecency.com",
@@ -38,11 +38,11 @@ const defProps = {
 
 it("(1) Render with loaded account object", () => {
     const account: Account = {
+        ...fullAccountInstance,
         name: "user1",
         profile: {
             cover_image: "https://img.esteem.app/rwd380.jpg",
-        },
-        __loaded: true,
+        }
     };
 
     const props = {
@@ -72,9 +72,9 @@ it("(2) Render with mot loaded account object", () => {
 
 it("(3) No bg image - Day theme", () => {
     const account: Account = {
+        ...fullAccountInstance,
         name: "user1",
-        profile: {},
-        __loaded: true,
+        profile: {}
     };
 
     const props = {
@@ -88,9 +88,9 @@ it("(3) No bg image - Day theme", () => {
 
 it("(4) No bg image - Night theme", () => {
     const account: Account = {
+        ...fullAccountInstance,
         name: "user1",
-        profile: {},
-        __loaded: true,
+        profile: {}
     };
 
     const props = {

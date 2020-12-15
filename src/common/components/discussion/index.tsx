@@ -17,7 +17,7 @@ import {
 setProxyBase(defaults.imageServer);
 
 import {Entry, EntryVote} from "../../store/entries/types";
-import {Account} from "../../store/accounts/types";
+import {Account, FullAccount} from "../../store/accounts/types";
 import {Community, ROLES} from "../../store/communities/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
 import {Global} from "../../store/global/types";
@@ -162,8 +162,12 @@ export class Item extends Component<ItemProps, ItemState> {
         const {entry} = this.props;
         const {activeUser, addReply, updateReply} = this.props;
 
+        if (!activeUser || !activeUser.data.__loaded) {
+            return;
+        }
+
         const {author: parentAuthor, permlink: parentPermlink} = entry;
-        const author = activeUser?.username!;
+        const author = activeUser.username;
         const permlink = createReplyPermlink(entry.author);
 
         const jsonMeta = makeJsonMetaDataReply(
@@ -185,7 +189,7 @@ export class Item extends Component<ItemProps, ItemState> {
             true
         ).then(() => {
             const nReply = tempEntry({
-                author: activeUser?.data!,
+                author: activeUser.data as FullAccount,
                 permlink,
                 parentAuthor,
                 parentPermlink,

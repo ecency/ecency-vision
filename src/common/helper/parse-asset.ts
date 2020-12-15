@@ -8,14 +8,8 @@ export interface Asset {
     symbol: Symbol
 }
 
-export default (strVal: any): Asset => {
-    if (typeof strVal !== 'string') {
-        // this is temporary during HF24 transition
-        return {
-            amount: 0,
-            symbol: Symbol.HIVE
-        }
-    }
+export default (strVal: string): Asset => {
+
     const sp = strVal.split(' ');
     return {
         amount: parseFloat(sp[0]),

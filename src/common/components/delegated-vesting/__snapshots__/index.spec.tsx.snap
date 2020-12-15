@@ -1,205 +1,715 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`(1) Full render 1`] = `
+exports[`(1) Default render 1`] = `
 <div
   className="delegated-vesting-content"
 >
   <div
-    className="table-responsive"
+    className="user-list"
   >
     <div
-      className="react-bootstrap-table"
+      className="list-body"
     >
-      <table
-        className="table"
+      <div
+        className="list-item"
       >
-        <thead>
-          <tr>
-            <th
-              tabIndex={0}
-            >
-              
-            </th>
-            <th
-              tabIndex={0}
-            >
-              
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            className={null}
-            style={Object {}}
+        <div
+          className="item-main"
+        >
+          <a
+            href="/@user2"
+            onClick={[Function]}
           >
-            <td
-              className="delegatee-cell"
-            >
-              <a
-                className="account"
-                href="/@user2"
-                onClick={[Function]}
-              >
-                <span
-                  className="user-avatar medium"
-                  style={
-                    Object {
-                      "backgroundImage": "url(https://images.ecency.com/u/user2/avatar/medium)",
-                    }
-                  }
-                />
-                user2
-              </a>
-            </td>
-            <td
-              className="vesting-shares-cell"
-            >
-              98.527 HP
-               
-              <br />
-              <small>
-                191778.000000 VESTS
-              </small>
-            </td>
-          </tr>
-          <tr
-            className={null}
-            style={Object {}}
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user2/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="item-info"
           >
-            <td
-              className="delegatee-cell"
+            <a
+              className="item-name notransalte"
+              href="/@user2"
+              onClick={[Function]}
             >
-              <a
-                className="account"
-                href="/@user3"
-                onClick={[Function]}
-              >
-                <span
-                  className="user-avatar medium"
-                  style={
-                    Object {
-                      "backgroundImage": "url(https://images.ecency.com/u/user3/avatar/medium)",
-                    }
-                  }
-                />
-                user3
-              </a>
-            </td>
-            <td
-              className="vesting-shares-cell"
-            >
-              15.066 HP
-               
-              <br />
-              <small>
-                29326.000000 VESTS
-              </small>
-            </td>
-          </tr>
-          <tr
-            className={null}
-            style={Object {}}
+              user2
+            </a>
+          </div>
+        </div>
+        <div
+          className="item-extra"
+        >
+          <span
+            title="191778.000000 VESTS"
           >
-            <td
-              className="delegatee-cell"
-            >
-              <a
-                className="account"
-                href="/@user4"
-                onClick={[Function]}
-              >
-                <span
-                  className="user-avatar medium"
-                  style={
-                    Object {
-                      "backgroundImage": "url(https://images.ecency.com/u/user4/avatar/medium)",
-                    }
-                  }
-                />
-                user4
-              </a>
-            </td>
-            <td
-              className="vesting-shares-cell"
-            >
-              14.257 HP
-               
-              <br />
-              <small>
-                27751.000000 VESTS
-              </small>
-            </td>
-          </tr>
-          <tr
-            className={null}
-            style={Object {}}
+            98.527 HP
+          </span>
+        </div>
+      </div>
+      <div
+        className="list-item"
+      >
+        <div
+          className="item-main"
+        >
+          <a
+            href="/@user3"
+            onClick={[Function]}
           >
-            <td
-              className="delegatee-cell"
-            >
-              <a
-                className="account"
-                href="/@user1"
-                onClick={[Function]}
-              >
-                <span
-                  className="user-avatar medium"
-                  style={
-                    Object {
-                      "backgroundImage": "url(https://images.ecency.com/u/user1/avatar/medium)",
-                    }
-                  }
-                />
-                user1
-              </a>
-            </td>
-            <td
-              className="vesting-shares-cell"
-            >
-              7.628 HP
-               
-              <br />
-              <small>
-                14848.000000 VESTS
-              </small>
-            </td>
-          </tr>
-          <tr
-            className={null}
-            style={Object {}}
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user3/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="item-info"
           >
-            <td
-              className="delegatee-cell"
+            <a
+              className="item-name notransalte"
+              href="/@user3"
+              onClick={[Function]}
             >
-              <a
-                className="account"
-                href="/@user5"
-                onClick={[Function]}
-              >
-                <span
-                  className="user-avatar medium"
-                  style={
-                    Object {
-                      "backgroundImage": "url(https://images.ecency.com/u/user5/avatar/medium)",
-                    }
-                  }
-                />
-                user5
-              </a>
-            </td>
-            <td
-              className="vesting-shares-cell"
+              user3
+            </a>
+          </div>
+        </div>
+        <div
+          className="item-extra"
+        >
+          <span
+            title="29326.000000 VESTS"
+          >
+            15.066 HP
+          </span>
+        </div>
+      </div>
+      <div
+        className="list-item"
+      >
+        <div
+          className="item-main"
+        >
+          <a
+            href="/@user4"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user4/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="item-info"
+          >
+            <a
+              className="item-name notransalte"
+              href="/@user4"
+              onClick={[Function]}
             >
-              1.006 HP
-               
-              <br />
-              <small>
-                1957.888055 VESTS
-              </small>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+              user4
+            </a>
+          </div>
+        </div>
+        <div
+          className="item-extra"
+        >
+          <span
+            title="27751.000000 VESTS"
+          >
+            14.257 HP
+          </span>
+        </div>
+      </div>
+      <div
+        className="list-item"
+      >
+        <div
+          className="item-main"
+        >
+          <a
+            href="/@user1"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user1/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="item-info"
+          >
+            <a
+              className="item-name notransalte"
+              href="/@user1"
+              onClick={[Function]}
+            >
+              user1
+            </a>
+          </div>
+        </div>
+        <div
+          className="item-extra"
+        >
+          <span
+            title="14848.000000 VESTS"
+          >
+            7.628 HP
+          </span>
+        </div>
+      </div>
+      <div
+        className="list-item"
+      >
+        <div
+          className="item-main"
+        >
+          <a
+            href="/@user5"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user5/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="item-info"
+          >
+            <a
+              className="item-name notransalte"
+              href="/@user5"
+              onClick={[Function]}
+            >
+              user5
+            </a>
+          </div>
+        </div>
+        <div
+          className="item-extra"
+        >
+          <span
+            title="1957.888055 VESTS"
+          >
+            1.006 HP
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(2) With active user 1`] = `
+<div
+  className="delegated-vesting-content"
+>
+  <div
+    className="user-list"
+  >
+    <div
+      className="list-body"
+    >
+      <div
+        className="list-item"
+      >
+        <div
+          className="item-main"
+        >
+          <a
+            href="/@user2"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user2/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="item-info"
+          >
+            <a
+              className="item-name notransalte"
+              href="/@user2"
+              onClick={[Function]}
+            >
+              user2
+            </a>
+          </div>
+        </div>
+        <div
+          className="item-extra"
+        >
+          <span
+            title="191778.000000 VESTS"
+          >
+            98.527 HP
+          </span>
+        </div>
+      </div>
+      <div
+        className="list-item"
+      >
+        <div
+          className="item-main"
+        >
+          <a
+            href="/@user3"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user3/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="item-info"
+          >
+            <a
+              className="item-name notransalte"
+              href="/@user3"
+              onClick={[Function]}
+            >
+              user3
+            </a>
+          </div>
+        </div>
+        <div
+          className="item-extra"
+        >
+          <span
+            title="29326.000000 VESTS"
+          >
+            15.066 HP
+          </span>
+        </div>
+      </div>
+      <div
+        className="list-item"
+      >
+        <div
+          className="item-main"
+        >
+          <a
+            href="/@user4"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user4/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="item-info"
+          >
+            <a
+              className="item-name notransalte"
+              href="/@user4"
+              onClick={[Function]}
+            >
+              user4
+            </a>
+          </div>
+        </div>
+        <div
+          className="item-extra"
+        >
+          <span
+            title="27751.000000 VESTS"
+          >
+            14.257 HP
+          </span>
+        </div>
+      </div>
+      <div
+        className="list-item"
+      >
+        <div
+          className="item-main"
+        >
+          <a
+            href="/@user1"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user1/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="item-info"
+          >
+            <a
+              className="item-name notransalte"
+              href="/@user1"
+              onClick={[Function]}
+            >
+              user1
+            </a>
+          </div>
+        </div>
+        <div
+          className="item-extra"
+        >
+          <span
+            title="14848.000000 VESTS"
+          >
+            7.628 HP
+          </span>
+        </div>
+      </div>
+      <div
+        className="list-item"
+      >
+        <div
+          className="item-main"
+        >
+          <a
+            href="/@user5"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user5/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="item-info"
+          >
+            <a
+              className="item-name notransalte"
+              href="/@user5"
+              onClick={[Function]}
+            >
+              user5
+            </a>
+          </div>
+        </div>
+        <div
+          className="item-extra"
+        >
+          <span
+            title="1957.888055 VESTS"
+          >
+            1.006 HP
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(3) With delegator active user 1`] = `
+<div
+  className="delegated-vesting-content"
+>
+  <div
+    className="user-list"
+  >
+    <div
+      className="list-body"
+    >
+      <div
+        className="list-item"
+      >
+        <div
+          className="item-main"
+        >
+          <a
+            href="/@user2"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user2/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="item-info"
+          >
+            <a
+              className="item-name notransalte"
+              href="/@user2"
+              onClick={[Function]}
+            >
+              user2
+            </a>
+          </div>
+        </div>
+        <div
+          className="item-extra"
+        >
+          <span
+            title="191778.000000 VESTS"
+          >
+            98.527 HP
+          </span>
+          <a
+            className="undelegate"
+            href="#"
+            onClick={[Function]}
+          >
+            undelegate
+          </a>
+        </div>
+      </div>
+      <div
+        className="list-item"
+      >
+        <div
+          className="item-main"
+        >
+          <a
+            href="/@user3"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user3/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="item-info"
+          >
+            <a
+              className="item-name notransalte"
+              href="/@user3"
+              onClick={[Function]}
+            >
+              user3
+            </a>
+          </div>
+        </div>
+        <div
+          className="item-extra"
+        >
+          <span
+            title="29326.000000 VESTS"
+          >
+            15.066 HP
+          </span>
+          <a
+            className="undelegate"
+            href="#"
+            onClick={[Function]}
+          >
+            undelegate
+          </a>
+        </div>
+      </div>
+      <div
+        className="list-item"
+      >
+        <div
+          className="item-main"
+        >
+          <a
+            href="/@user4"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user4/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="item-info"
+          >
+            <a
+              className="item-name notransalte"
+              href="/@user4"
+              onClick={[Function]}
+            >
+              user4
+            </a>
+          </div>
+        </div>
+        <div
+          className="item-extra"
+        >
+          <span
+            title="27751.000000 VESTS"
+          >
+            14.257 HP
+          </span>
+          <a
+            className="undelegate"
+            href="#"
+            onClick={[Function]}
+          >
+            undelegate
+          </a>
+        </div>
+      </div>
+      <div
+        className="list-item"
+      >
+        <div
+          className="item-main"
+        >
+          <a
+            href="/@user1"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user1/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="item-info"
+          >
+            <a
+              className="item-name notransalte"
+              href="/@user1"
+              onClick={[Function]}
+            >
+              user1
+            </a>
+          </div>
+        </div>
+        <div
+          className="item-extra"
+        >
+          <span
+            title="14848.000000 VESTS"
+          >
+            7.628 HP
+          </span>
+          <a
+            className="undelegate"
+            href="#"
+            onClick={[Function]}
+          >
+            undelegate
+          </a>
+        </div>
+      </div>
+      <div
+        className="list-item"
+      >
+        <div
+          className="item-main"
+        >
+          <a
+            href="/@user5"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user5/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="item-info"
+          >
+            <a
+              className="item-name notransalte"
+              href="/@user5"
+              onClick={[Function]}
+            >
+              user5
+            </a>
+          </div>
+        </div>
+        <div
+          className="item-extra"
+        >
+          <span
+            title="1957.888055 VESTS"
+          >
+            1.006 HP
+          </span>
+          <a
+            className="undelegate"
+            href="#"
+            onClick={[Function]}
+          >
+            undelegate
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(4) Empty List 1`] = `
+<div
+  className="delegated-vesting-content"
+>
+  <div
+    className="user-list"
+  >
+    <div
+      className="list-body"
+    >
+      <div
+        className="empty-list"
+      >
+        Nothing here
+      </div>
     </div>
   </div>
 </div>

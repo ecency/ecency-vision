@@ -28,8 +28,98 @@ Array [
   },
   Object {
     "__loaded": true,
+    "active": Object {
+      "account_auths": Array [],
+      "key_auths": Array [
+        Array [
+          "STM71z4rmzGHdp7pmePZyS1G2GrbuBqg9PPHRgiK6uYqjzUTRNCRR",
+          1,
+        ],
+      ],
+      "weight_threshold": 1,
+    },
+    "balance": "1.751 HIVE",
+    "created": "2018-01-29T20:10:06",
+    "delegated_vesting_shares": "145395.758709 VESTS",
+    "follow_stats": Object {
+      "account": "talhasch",
+      "follower_count": 232,
+      "following_count": 27,
+    },
+    "hbd_balance": "0.311 HBD",
+    "json_metadata": "{\\"profile\\":{\\"name\\":\\"Talha B.\\",\\"about\\":\\"Founder @runkod, Software Developer @esteemapp, Lifelong Learner\\",\\"cover_image\\":\\"https://img.esteem.app/rwd380.jpg\\",\\"profile_image\\":\\"https://img.esteem.app/821e0q.jpg\\",\\"website\\":\\"https://github.com/talhasch\\",\\"location\\":\\"Istanbul\\"},\\"escrow\\":{\\"fees\\":{\\"STEEM\\":\\"1.000\\",\\"SBD\\":\\"3.000\\"},\\"terms\\":\\"lorem ipsum dolor sit amet\\"}}",
+    "memo_key": "STM7rioGL7NopT2Zo446hnzAiHLp5sJ1gS55xu3NikmxfQnEznsue",
     "name": "user1",
-    "post_count": 10,
+    "next_vesting_withdrawal": "1969-12-31T23:59:59",
+    "post_count": 261,
+    "posting": Object {
+      "account_auths": Array [
+        Array [
+          "ecency.app",
+          1,
+        ],
+        Array [
+          "esteem-app",
+          1,
+        ],
+        Array [
+          "esteem.app",
+          1,
+        ],
+        Array [
+          "esteemapp",
+          1,
+        ],
+        Array [
+          "peakd.app",
+          1,
+        ],
+      ],
+      "key_auths": Array [
+        Array [
+          "STM6uvU7j624wCZNa2pcXvkqmbnNC1cgraDrVG3pFRhXvj9LYS7Xp",
+          1,
+        ],
+      ],
+      "weight_threshold": 1,
+    },
+    "posting_json_metadata": "{\\"profile\\":{\\"name\\":\\"Talha B.\\",\\"about\\":\\"Founder @runkod, Software Developer @ecency, Lifelong Learner\\",\\"cover_image\\":\\"https://images.ecency.com/DQmTsFJJV7gXpsHNatEWz1vgzykaM4WByxAgLMzWshmXNrj/cover.jpg\\",\\"profile_image\\":\\"https://images.ecency.com/DQmV2J1oAUoKxjyJQTu3TcZfGxDr5fzajMGhHEd1e1GALca/ben.jpg\\",\\"website\\":\\"https://github.com/talhasch\\",\\"location\\":\\"Istanbul\\",\\"version\\":2}}",
+    "profile": Object {
+      "about": "Founder @runkod, Software Developer @ecency, Lifelong Learner",
+      "cover_image": "https://images.ecency.com/DQmTsFJJV7gXpsHNatEWz1vgzykaM4WByxAgLMzWshmXNrj/cover.jpg",
+      "location": "Istanbul",
+      "name": "Talha B.",
+      "profile_image": "https://images.ecency.com/DQmV2J1oAUoKxjyJQTu3TcZfGxDr5fzajMGhHEd1e1GALca/ben.jpg",
+      "website": "https://github.com/talhasch",
+    },
+    "proxied_vsf_votes": Array [
+      0,
+      0,
+      0,
+      0,
+    ],
+    "proxy": "",
+    "received_vesting_shares": "0.000000 VESTS",
+    "reputation": "1021265023022",
+    "reward_hbd_balance": "0.000 HBD",
+    "reward_hive_balance": "0.000 HIVE",
+    "reward_vesting_balance": "0.000000 VESTS",
+    "reward_vesting_hive": "0.000 HIVE",
+    "savings_balance": "1.000 HIVE",
+    "savings_hbd_balance": "0.002 HBD",
+    "to_withdraw": "87017000000",
+    "vesting_shares": "151590.952150 VESTS",
+    "vesting_withdraw_rate": "0.000000 VESTS",
+    "voting_manabar": Object {
+      "current_mana": "6195193441",
+      "last_update_time": 1607690265,
+    },
+    "withdrawn": "87017000000",
+    "witness_votes": Array [
+      "blocktrades",
+      "good-karma",
+      "gtg",
+    ],
   },
 ]
 `;

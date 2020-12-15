@@ -9,7 +9,7 @@ import LinearProgress from "../linear-progress";
 
 import parseAsset from "../../helper/parse-asset";
 import parseDate from "../../helper/parse-date";
-import {vestsToSp} from "../../helper/vesting";
+import {vestsToHp} from "../../helper/vesting";
 
 import formattedNumber from "../../util/formatted-number";
 
@@ -35,7 +35,7 @@ export class TransactionRow extends Component<RowProps> {
         if (tr.type === "curation_reward") {
             flag = true;
 
-            numbers = <>{formattedNumber(vestsToSp(parseAsset(tr.reward).amount, hivePerMVests), {suffix: "HP"})}</>;
+            numbers = <>{formattedNumber(vestsToHp(parseAsset(tr.reward).amount, hivePerMVests), {suffix: "HP"})}</>;
             details = (
                 <span>
           <a href={`/curation/@${tr.comment_author}/${tr.comment_permlink}`}>@{tr.comment_author}/{tr.comment_permlink}</a>
@@ -46,8 +46,8 @@ export class TransactionRow extends Component<RowProps> {
         if (tr.type === "author_reward" || tr.type === "comment_benefactor_reward") {
             flag = true;
 
-            const hbd_payout = parseAsset(tr.sbd_payout);
-            const hive_payout = parseAsset(tr.steem_payout);
+            const hbd_payout = parseAsset(tr.hbd_payout);
+            const hive_payout = parseAsset(tr.hive_payout);
             const vesting_payout = parseAsset(tr.vesting_payout);
             numbers = (
                 <>
@@ -58,9 +58,7 @@ export class TransactionRow extends Component<RowProps> {
                         <span className="number">{formattedNumber(hive_payout.amount, {suffix: "HIVE"})}</span>
                     )}
                     {vesting_payout.amount > 0 && (
-                        <span className="number">
-              {formattedNumber(vestsToSp(vesting_payout.amount, hivePerMVests), {suffix: "HP"})}{" "}
-            </span>
+                        <span className="number">{formattedNumber(vestsToHp(vesting_payout.amount, hivePerMVests), {suffix: "HP"})}{" "}</span>
                     )}
                 </>
             );
@@ -79,8 +77,8 @@ export class TransactionRow extends Component<RowProps> {
         if (tr.type === "claim_reward_balance") {
             flag = true;
 
-            const reward_hbd = parseAsset(tr.reward_sbd || tr.reward_hbd);
-            const reward_hive = parseAsset(tr.reward_steem || tr.reward_hive);
+            const reward_hbd = parseAsset(tr.reward_hbd);
+            const reward_hive = parseAsset(tr.reward_hive);
             const reward_vests = parseAsset(tr.reward_vests);
 
             numbers = (
@@ -92,9 +90,7 @@ export class TransactionRow extends Component<RowProps> {
                         <span className="number">{formattedNumber(reward_hive.amount, {suffix: "HIVE"})}</span>
                     )}
                     {reward_vests.amount > 0 && (
-                        <span className="number">
-              {formattedNumber(vestsToSp(reward_vests.amount, hivePerMVests), {suffix: "HP"})}
-            </span>
+                        <span className="number">{formattedNumber(vestsToHp(reward_vests.amount, hivePerMVests), {suffix: "HP"})}</span>
                     )}
                 </>
             );
@@ -106,13 +102,13 @@ export class TransactionRow extends Component<RowProps> {
 
             details = (
                 <span>
-          {tr.memo ? (
-              <>
-                  {tr.memo} <br/> <br/>
-              </>
-          ) : null}
+                    {tr.memo ? (
+                        <>
+                            {tr.memo} <br/> <br/>
+                        </>
+                    ) : null}
                     <strong>@{tr.from}</strong> -&gt; <strong>@{tr.to}</strong>
-        </span>
+                </span>
             );
 
             numbers = <span className="number">{tr.amount}</span>;
@@ -125,14 +121,14 @@ export class TransactionRow extends Component<RowProps> {
             const vesting_shares = parseAsset(tr.vesting_shares);
             numbers = (
                 <span className="number">
-          {formattedNumber(vestsToSp(vesting_shares.amount, hivePerMVests), {suffix: "HP"})}
-        </span>
+                    {formattedNumber(vestsToHp(vesting_shares.amount, hivePerMVests), {suffix: "HP"})}
+                </span>
             );
 
             details = tr.acc ? (
                 <span>
-          <strong>@{tr.acc}</strong>
-        </span>
+                    <strong>@{tr.acc}</strong>
+                </span>
             ) : null;
         }
 
@@ -141,9 +137,7 @@ export class TransactionRow extends Component<RowProps> {
             icon = reOrderHorizontalSvg;
 
             numbers = (
-                <span className="number">
-          {tr.current_pays} = {tr.open_pays}
-        </span>
+                <span className="number">{tr.current_pays} = {tr.open_pays}</span>
             );
         }
 

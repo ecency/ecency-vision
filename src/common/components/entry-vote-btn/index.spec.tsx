@@ -4,7 +4,7 @@ import EntryVoteBtn, {VoteDialog} from "./index";
 
 import renderer from "react-test-renderer";
 
-import {globalInstance, dynamicPropsIntance1, entryInstance1, UiInstance, activeUserMaker} from "../../helper/test-helper";
+import {globalInstance, dynamicPropsIntance1, entryInstance1, UiInstance, activeUserMaker, fullAccountInstance} from "../../helper/test-helper";
 
 import {Account} from "../../store/accounts/types";
 
@@ -21,25 +21,11 @@ jest.mock("../../api/hive", () => ({
 describe('(1) Dialog', () => {
 
     const data: Account = {
+        ...fullAccountInstance,
         name: "user1",
-        reputation: "33082349040",
-        post_count: 4353,
-        created: "2016-07-07T08:15:00",
         vesting_shares: "0.000000 VESTS",
         delegated_vesting_shares: "0.000000 VESTS",
         received_vesting_shares: "77883823.534631 VESTS",
-        vesting_withdraw_rate: "0.000000 VESTS",
-        to_withdraw: 0,
-        withdrawn: 0,
-        voting_manabar: {current_mana: "73562964033158", last_update_time: 1591275594},
-        profile: {
-            name: "Foo Bar",
-            about: "Lorem ipsum dolor sit amet",
-            website: "https://esteem.app",
-            location: "Hive",
-        },
-        follow_stats: {follower_count: 33497, following_count: 165},
-        __loaded: true,
     };
 
     const props = {

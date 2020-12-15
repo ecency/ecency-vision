@@ -17,6 +17,7 @@ import {User} from "../../../../common/store/users/types";
 import {ActiveUser} from "../../../../common/store/active-user/types";
 import {UI, ToggleType} from "../../../../common/store/ui/types";
 import {NotificationFilter, Notifications} from "../../../../common/store/notifications/types";
+import {DynamicProps} from "../../../../common/store/dynamic-props/types";
 
 import ToolTip from "../../../../common/components/tooltip";
 import Login from "../../../../common/components/login";
@@ -236,6 +237,7 @@ interface Props {
     history: History;
     location: Location;
     global: Global;
+    dynamicProps: DynamicProps;
     users: User[];
     activeUser: ActiveUser | null;
     ui: UI;
@@ -428,6 +430,7 @@ export default (p: Props) => {
         history: p.history,
         location: p.location,
         global: p.global,
+        dynamicProps: p.dynamicProps,
         users: p.users,
         activeUser: p.activeUser,
         ui: p.ui,

@@ -208,7 +208,7 @@ exports[`(1) Default Render 1`] = `
       <div
         className="next-power-down"
       >
-        The next power down is in 5 days HIVE 3,626.559
+        The next power down is in 5 days, 3,626.559 HIVE
       </div>
       <div
         className="transaction-list"

@@ -22,6 +22,7 @@ setProxyBase(defaults.imageServer);
 
 import {Entry, EntryVote} from "../store/entries/types";
 import {Community, ROLES} from "../store/communities/types";
+import {FullAccount} from "../store/accounts/types";
 
 import {makePath as makeEntryPath} from "../components/entry-link";
 
@@ -222,8 +223,12 @@ class EntryPage extends Component<Props, State> {
         const entry = this.getEntry()!;
         const {activeUser, addReply, updateEntry} = this.props;
 
+        if (!activeUser || !activeUser.data.__loaded) {
+            return;
+        }
+
         const {author: parentAuthor, permlink: parentPermlink} = entry;
-        const author = activeUser?.username!;
+        const author = activeUser.username;
         const permlink = createReplyPermlink(entry.author);
         const tags = entry.json_metadata.tags || ['ecency'];
 
@@ -246,7 +251,7 @@ class EntryPage extends Component<Props, State> {
             true
         ).then(() => {
             const nReply = tempEntry({
-                author: activeUser?.data!,
+                author: activeUser.data as FullAccount,
                 permlink,
                 parentAuthor,
                 parentPermlink,

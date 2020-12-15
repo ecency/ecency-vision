@@ -1,28 +1,13 @@
 .received-vesting-content {
-    font-size: 96%;
-  
-    // hide table header
-    .table {
-      thead {
-        display: none;
-      }
-    }
-  
-    .delegator-cell {
-      font-weight: 500;
-  
-      .account {
-        display: flex;
-        align-items: center;
-  
-        .user-avatar {
-          margin-right: 6px;
-        }
-      }
-    }
-  
-    .vesting-shares-cell {
-      width: 200px;
+  height: 370px;
+  overflow: auto;
+
+  .user-list {
+    @include user-grid-list(1, 2, 2);
+
+    .item-extra {
+      display: flex;
+      justify-content: space-between;
     }
   }
-  
+}

@@ -37,8 +37,7 @@ export interface CommentOptions {
     author: string;
     permlink: string;
     max_accepted_payout: string;
-    percent_steem_dollars?: number;
-    percent_hbd?: number;
+    percent_hbd: number;
     extensions: Array<[0, { beneficiaries: BeneficiaryRoute[] }]>;
 }
 
@@ -419,6 +418,120 @@ export const transferToVestingKc = (from: string, to: string, amount: string) =>
     return keychain.broadcast(from, [op], "Active");
 }
 
+export const delegateVestingShares = (delegator: string, key: PrivateKey, delegatee: string, vestingShares: string): Promise<TransactionConfirmation> => {
+    const op: Operation = [
+        'delegate_vesting_shares',
+        {
+            delegator,
+            delegatee,
+            vesting_shares: vestingShares
+        }
+    ]
+
+    return hiveClient.broadcast.sendOperations([op], key);
+}
+
+export const delegateVestingSharesHot = (delegator: string, delegatee: string, vestingShares: string) => {
+    const op: Operation = ['delegate_vesting_shares', {
+        delegator,
+        delegatee,
+        vesting_shares: vestingShares
+    }];
+
+    return hs.sendOperation(op, {callback: `https://ecency.com/@${delegator}/wallet`}, () => {
+    }, () => {
+    });
+}
+
+export const delegateVestingSharesKc = (delegator: string, delegatee: string, vestingShares: string) => {
+    const op: Operation = [
+        'delegate_vesting_shares',
+        {
+            delegator,
+            delegatee,
+            vesting_shares: vestingShares
+        }
+    ]
+
+    return keychain.broadcast(delegator, [op], "Active");
+}
+
+export const withdrawVesting = (account: string, key: PrivateKey, vestingShares: string): Promise<TransactionConfirmation> => {
+    const op: Operation = [
+        'withdraw_vesting',
+        {
+            account,
+            vesting_shares: vestingShares
+        }
+    ]
+
+    return hiveClient.broadcast.sendOperations([op], key);
+}
+
+export const withdrawVestingHot = (account: string, vestingShares: string) => {
+    const op: Operation = ['withdraw_vesting', {
+        account,
+        vesting_shares: vestingShares
+    }];
+
+    return hs.sendOperation(op, {callback: `https://ecency.com/@${account}/wallet`}, () => {
+    }, () => {
+    });
+}
+
+export const withdrawVestingKc = (account: string, vestingShares: string) => {
+    const op: Operation = [
+        'withdraw_vesting',
+        {
+            account,
+            vesting_shares: vestingShares
+        }
+    ]
+
+    return keychain.broadcast(account, [op], "Active");
+}
+
+export const setWithdrawVestingRoute = (from: string, key: PrivateKey, to: string, percent: number, autoVest: boolean): Promise<TransactionConfirmation> => {
+    const op: Operation = [
+        'set_withdraw_vesting_route',
+        {
+            from_account: from,
+            to_account: to,
+            percent,
+            auto_vest: autoVest
+        }
+    ]
+
+    return hiveClient.broadcast.sendOperations([op], key);
+}
+
+export const setWithdrawVestingRouteHot = (from: string, to: string, percent: number, autoVest: boolean) => {
+    const op: Operation = ['set_withdraw_vesting_route', {
+        from_account: from,
+        to_account: to,
+        percent,
+        auto_vest: autoVest
+    }];
+
+    return hs.sendOperation(op, {callback: `https://ecency.com/@${from}/wallet`}, () => {
+    }, () => {
+    });
+}
+
+export const setWithdrawVestingRouteKc = (from: string, to: string, percent: number, autoVest: boolean) => {
+    const op: Operation = [
+        'set_withdraw_vesting_route',
+        {
+            from_account: from,
+            to_account: to,
+            percent,
+            auto_vest: autoVest
+        }
+    ]
+
+    return keychain.broadcast(from, [op], "Active");
+}
+
 export const witnessVote = (account: string, key: PrivateKey, witness: string, approve: boolean): Promise<TransactionConfirmation> => {
     const op: Operation = [
         'account_witness_vote',
@@ -654,7 +767,7 @@ export const updateProfile = (account: Account, newProfile: {
 }
 
 export const grantPostingPermission = (key: PrivateKey, account: Account, pAccount: string) => {
-    if (account.posting === undefined || account.memo_key === undefined || account.json_metadata === undefined) {
+    if (!account.__loaded) {
         throw "posting|memo_key|json_metadata required with account instance";
     }
 
@@ -682,7 +795,7 @@ export const grantPostingPermission = (key: PrivateKey, account: Account, pAccou
 };
 
 export const revokePostingPermission = (key: PrivateKey, account: Account, pAccount: string) => {
-    if (account.posting === undefined || account.memo_key === undefined || account.json_metadata === undefined) {
+    if (!account.__loaded) {
         throw "posting|memo_key|json_metadata required with account instance";
     }
 

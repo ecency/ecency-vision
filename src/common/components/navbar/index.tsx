@@ -17,6 +17,7 @@ import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {UI, ToggleType} from "../../store/ui/types";
 import {NotificationFilter, Notifications} from "../../store/notifications/types";
+import {DynamicProps} from "../../store/dynamic-props/types";
 
 import ToolTip from "../tooltip";
 import DownloadTrigger from "../download-trigger";
@@ -38,6 +39,7 @@ interface Props {
     history: History;
     location: Location;
     global: Global;
+    dynamicProps: DynamicProps;
     trendingTags: TrendingTags;
     users: User[];
     activeUser: ActiveUser | null;
@@ -235,6 +237,7 @@ export default (p: Props) => {
         history: p.history,
         location: p.location,
         global: p.global,
+        dynamicProps: p.dynamicProps,
         trendingTags: p.trendingTags,
         users: p.users,
         activeUser: p.activeUser,

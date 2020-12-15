@@ -262,7 +262,7 @@ interface Props {
 export class Followers extends Component<Props> {
     render() {
         const {account, onHide} = this.props;
-        const title = _t("friends.followers", {n: formattedNumber(account.follow_stats?.follower_count!, {fractionDigits: 0})});
+        const title = (account.__loaded && account.follow_stats) ? _t("friends.followers", {n: formattedNumber(account.follow_stats.follower_count, {fractionDigits: 0})}) : "";
 
         return (
             <>
@@ -282,7 +282,7 @@ export class Followers extends Component<Props> {
 export class Following extends Component<Props> {
     render() {
         const {account, onHide} = this.props;
-        const title = _t("friends.following", {n: formattedNumber(account.follow_stats?.following_count!, {fractionDigits: 0})});
+        const title = (account.__loaded && account.follow_stats) ? _t("friends.following", {n: formattedNumber(account.follow_stats.following_count, {fractionDigits: 0})}) : "";
 
         return (
             <>
