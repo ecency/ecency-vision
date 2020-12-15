@@ -1,6 +1,6 @@
 {
   "g": {
-    "add": "Add",
+    "add": "Hozzáad",
     "edit": "Szerkesztés",
     "search": "Keresés",
     "downloads": "Letöltések",
@@ -25,8 +25,8 @@
     "show": "Megjelenítés",
     "on": "Be",
     "off": "Ki",
-    "yes": "Yes",
-    "no": "No"
+    "yes": "Igen",
+    "no": "Nem"
   },
   "confirm": {
     "title": "Biztos vagy benne?",
@@ -75,7 +75,7 @@
     "title": "Üdv újra!",
     "with-user-pass": "Login with your username and private key.",
     "username-placeholder": "felhasználónév",
-    "key-placeholder": "master or active private key",
+    "key-placeholder": "master vagy aktív kulcs",
     "login-info-1": "We don't store your private keys.",
     "login-info-2": "Több infó",
     "error-fields-required": "Kérjük add meg felhasználóneved és jelszavad/wif-ed",
@@ -358,8 +358,8 @@
   },
   "withdraw-routes": {
     "title": "Withdraw accounts",
-    "account": "Account",
-    "percent": "Percent",
+    "account": "Fiók",
+    "percent": "Százalék",
     "auto-power-up": "Automatically power up"
   },
   "points": {
@@ -413,7 +413,7 @@
     "balance": "Egyenleg",
     "post": "Bejegyzések",
     "post-hint": "Autocomplete input",
-    "post-placeholder": "username/permlink",
+    "post-placeholder": "felhasználónév/permlink",
     "post-error": "Nem érvényes bejegyzés cím",
     "post-error-exists": "A bejegyzés már hirdetett",
     "success-message": "Kérésed rögzítve. Néhány perc múlva aktiválódik."
@@ -430,8 +430,8 @@
     "convert-title": "Konvertálás",
     "power-up-sub-title": "Befolyásoló tokenek, melyek több hatalmat biztosítanak a bejegyzések kifizetése felett, és lehetővé teszik, hogy kurátori jutalomhoz juss.",
     "convert-sub-title": "Only recommended when HBD is below $1. You will get $1 of HIVE in 3.5 days.",
-    "delegate-title": "Delegate",
-    "delegate-sub-title": "Delegate Hive Power",
+    "delegate-title": "Delegálás",
+    "delegate-sub-title": "Delegálj Hive Power-t",
     "power-down-title": "Power Down",
     "power-down-sub-title": "Power Down Hive Power",
     "from": "Feladó",
@@ -460,7 +460,7 @@
     "power-up-summary": "<span class=\"amount\">{{amount}}</span> staked from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Power down completed as <span class=\"amount\">{{amount}}</span>",
-    "reset": "Reset",
+    "reset": "Visszaállítás",
     "powering-down": "You are currently powering down.",
     "stop-power-down": "Stop"
   },
@@ -704,7 +704,7 @@
       "contact-email": "Írj nekünk e-mailt"
     },
     "faq": {
-      "page-title": "Ecency FAQ",
+      "page-title": "Ecency GYIK",
       "page-sub-title": "Tartalomjegyzék",
       "what-is-ecency-header": "What is Ecency?",
       "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based social network - powered by <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency offers uncensored, free, limitless, rewarding platform for content creators.</p><p>Project was initiated and founded by <a href=\"/@good-karma\">@good-karma</a> in August 2016 as an alternative social network. Since then project has grown to much larger group of contributors (translators, testers, developers, influencers, content creators and consumers) who helped to shape Ecency.</p><p>Ecency helps onboarding masses into Blockchain technology where users are getting paid for their time, resources and learn while enjoying social aspects of blockchain. Through ease of use, users not only learn but also become investors, innovators of the technology and community.</p>",
@@ -714,7 +714,7 @@
       "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\" loading=\"lazy\"/></p><p>The primary differences in all interfaces or applications are in their feature-set, use cases. Ecency offers website, mobile and desktop applications for ease of access and with best security in mind. Accessible, opensource and innovative, built and owned by users. Aspire for greatness!</p>",
       "why-choose-ecency-header": "Why would I choose Ecency?",
       "why-choose-ecency-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjrzJAcJ4DvxvtqoPdzS9Aygf4MZ1PeE4goH6zWaeEFvafr9vGXWuou67Pbn44GweMyHV5DupM5q1cRvU85qdver?format=match&mode=fit\" loading=\"lazy\"/></p><p>Tailored feature set to empower you to create, inspire your audience and community. Ecency mobile application giving you on-go solution. With desktop app you are always sure to get uncensored content right from the blockchain, with website reach thousands of readers accross globe with best ranked content on search engines. State of art security measures so your keys will always stay encrypted and out of reach for ill-intentioned individuals. Fast and beautiful website, helps you to get discovered online and gain exposure for your content and gain loyal followers and readers. Build your community with Ecency today and take advantages of emerging blockchain technology and uncensored content, true free speech!</p>",
-      "how-ecency-works-header": "How does Ecency work?",
+      "how-ecency-works-header": "Hogyan működik az Ecency?",
       "how-ecency-works-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjuZ3ksaZqEjfd9GadyKFE4bT7UP8qM1sF5W6U3cst4ekDsXfrQdcrjtdz6b5Ye2AfWNwGA5f8QqVXmed6NRfg1U?format=match&mode=fit\" loading=\"lazy\"/></p><p>Ecency stores and reads data from the blockchain, and thus data is accessible and uncensored. Ecency rewards content creators with built-in incentive mechanism of blockchain, with tokens (HIVE, HIVE DOLLARS, HIVE POWER) as well as Points. Tokens can be purchased and sold in major cryptocurrency exchanges (e.g. Binance, Bittrex). Points could be utilized within platform and traded for goods, services.</p>",
       "how-to-join-header": "How to join Ecency?",
       "how-to-join-body": "<p>Go to <a href=\"/?referral=ecency\">https://ecency.com/?referral=ecency</a> and create an account. After signup you will receive email with further instructions. Your password is your master key to your account. Please store it safely, if you loose your password, you ultimately loose access to your account and your funds. Accounts cannot be deactivated or deleted, account names can not be changed as well. The account along with all of its activity is permanently stored in the blockchain. Without password, accounts cannot be restored, store your keys safely.</p>",
