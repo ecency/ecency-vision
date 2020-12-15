@@ -250,37 +250,30 @@ export class WalletHive extends Component<Props, State> {
                                 <div className="amount">
                                     {(() => {
                                         if (isMyPage) {
-                                            let menuItems = [
-                                                {
-                                                    label: _t('wallet.delegate'),
-                                                    onClick: () => {
-                                                        this.openTransferDialog('delegate', 'HP');
-                                                    },
-                                                },
-                                                {
-                                                    label: _t('wallet.power-down'),
-                                                    onClick: () => {
-                                                        this.openTransferDialog('power-down', 'HP');
-                                                    },
-                                                },
-                                            ];
 
-                                            if (w.isPoweringDown) {
-                                                menuItems = [
-                                                    ...menuItems,
+                                            const dropDownConfig = {
+                                                history: this.props.history,
+                                                label: '',
+                                                items: [
+                                                    {
+                                                        label: _t('wallet.delegate'),
+                                                        onClick: () => {
+                                                            this.openTransferDialog('delegate', 'HP');
+                                                        },
+                                                    },
+                                                    {
+                                                        label: _t('wallet.power-down'),
+                                                        onClick: () => {
+                                                            this.openTransferDialog('power-down', 'HP');
+                                                        },
+                                                    },
                                                     {
                                                         label: _t('wallet.withdraw-routes'),
                                                         onClick: () => {
                                                             this.toggleWithdrawRoutes();
                                                         },
                                                     },
-                                                ]
-                                            }
-
-                                            const dropDownConfig = {
-                                                history: this.props.history,
-                                                label: '',
-                                                items: menuItems,
+                                                ],
                                             };
                                             return <div className="amount-actions">
                                                 <DropDown {...dropDownConfig} float="right"/>
