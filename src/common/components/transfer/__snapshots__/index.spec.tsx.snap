@@ -165,13 +165,17 @@ exports[`(1) Transfer HIVE (1) Step 1 1`] = `
         className="row"
       >
         <div
-          className="col-md-10 offset-md-2"
+          className="col-lg-10 offset-lg-2"
         >
           <div
             className="balance"
           >
-            Balance
-            : 
+            <span
+              className="balance-label"
+            >
+              Balance
+              : 
+            </span>
             <span
               className="balance-num"
               onClick={[Function]}
@@ -694,13 +698,17 @@ exports[`(2) Transfer HBD (1) Step 1 1`] = `
         className="row"
       >
         <div
-          className="col-md-10 offset-md-2"
+          className="col-lg-10 offset-lg-2"
         >
           <div
             className="balance"
           >
-            Balance
-            : 
+            <span
+              className="balance-label"
+            >
+              Balance
+              : 
+            </span>
             <span
               className="balance-num"
               onClick={[Function]}
@@ -1116,13 +1124,17 @@ exports[`(3) Transfer POINT (1) Step 1 1`] = `
         className="row"
       >
         <div
-          className="col-md-10 offset-md-2"
+          className="col-lg-10 offset-lg-2"
         >
           <div
             className="balance"
           >
-            Balance
-            : 
+            <span
+              className="balance-label"
+            >
+              Balance
+              : 
+            </span>
             <span
               className="balance-num"
               onClick={[Function]}
@@ -1528,13 +1540,17 @@ exports[`(4) Transfer to Savings - HBD (1) Step 1 1`] = `
         className="row"
       >
         <div
-          className="col-md-10 offset-md-2"
+          className="col-lg-10 offset-lg-2"
         >
           <div
             className="balance"
           >
-            Balance
-            : 
+            <span
+              className="balance-label"
+            >
+              Balance
+              : 
+            </span>
             <span
               className="balance-num"
               onClick={[Function]}
@@ -1940,13 +1956,17 @@ exports[`(5) Withdraw Savings - HIVE (1) Step 1 1`] = `
         className="row"
       >
         <div
-          className="col-md-10 offset-md-2"
+          className="col-lg-10 offset-lg-2"
         >
           <div
             className="balance"
           >
-            Balance
-            : 
+            <span
+              className="balance-label"
+            >
+              Balance
+              : 
+            </span>
             <span
               className="balance-num"
               onClick={[Function]}
@@ -2296,13 +2316,17 @@ exports[`(6) Convert (1) Step 1 1`] = `
         className="row"
       >
         <div
-          className="col-md-10 offset-md-2"
+          className="col-lg-10 offset-lg-2"
         >
           <div
             className="balance"
           >
-            Balance
-            : 
+            <span
+              className="balance-label"
+            >
+              Balance
+              : 
+            </span>
             <span
               className="balance-num"
               onClick={[Function]}
@@ -2636,13 +2660,17 @@ exports[`(7) Power up (1) Step 1 1`] = `
         className="row"
       >
         <div
-          className="col-md-10 offset-md-2"
+          className="col-lg-10 offset-lg-2"
         >
           <div
             className="balance"
           >
-            Balance
-            : 
+            <span
+              className="balance-label"
+            >
+              Balance
+              : 
+            </span>
             <span
               className="balance-num"
               onClick={[Function]}
@@ -3000,13 +3028,17 @@ exports[`(8) Delegate (1) Step 1 1`] = `
         className="row"
       >
         <div
-          className="col-md-10 offset-md-2"
+          className="col-lg-10 offset-lg-2"
         >
           <div
             className="balance"
           >
-            Balance
-            : 
+            <span
+              className="balance-label"
+            >
+              Balance
+              : 
+            </span>
             <span
               className="balance-num"
               onClick={[Function]}
@@ -3015,11 +3047,11 @@ exports[`(8) Delegate (1) Step 1 1`] = `
                
               HP
             </span>
-          </div>
-          <div
-            className="balance-note"
-          >
-            * available hive power to delegate
+            <div
+              className="balance-hp-hint"
+            >
+              * available hive power
+            </div>
           </div>
         </div>
       </div>
