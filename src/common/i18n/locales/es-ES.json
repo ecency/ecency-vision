@@ -25,7 +25,7 @@
     "show": "Mostrar",
     "on": "Activado",
     "off": "Desactivado",
-    "yes": "Yes",
+    "yes": "Si",
     "no": "No"
   },
   "confirm": {
@@ -353,14 +353,14 @@
     "withdraw-hive": "Retirar Hive",
     "withdraw-hbd": "Retirar Hive Dollar (HBD)",
     "delegate": "Delegate",
-    "power-down": "Power down",
+    "power-down": "Apagar",
     "withdraw-routes": "Withdraw Routes"
   },
   "withdraw-routes": {
-    "title": "Withdraw accounts",
-    "account": "Account",
-    "percent": "Percent",
-    "auto-power-up": "Automatically power up"
+    "title": "Cuentas de retirada",
+    "account": "Cuenta",
+    "percent": "Porcentaje",
+    "auto-power-up": "Encender automáticamente"
   },
   "points": {
     "get": "COMPRAR PUNTOS",
@@ -430,9 +430,9 @@
     "convert-title": "Convertir",
     "power-up-sub-title": "Monedas con influencia que te dan más control sobre los pagos de los posts y te permiten ganar recompensas de curación.",
     "convert-sub-title": "Sólo se recomienda cuando el HBD esté por debajo de $1. Recibiras 1$ en HIVE en 3.5 dias",
-    "delegate-title": "Delegate",
-    "delegate-sub-title": "Delegate Hive Power",
-    "power-down-title": "Power Down",
+    "delegate-title": "Delegar",
+    "delegate-sub-title": "Poder de Hive Delegado",
+    "power-down-title": "Apagado de poder",
     "power-down-sub-title": "Power Down Hive Power",
     "from": "Desde",
     "to": "Para",
