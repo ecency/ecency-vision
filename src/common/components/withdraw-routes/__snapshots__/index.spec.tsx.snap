@@ -1,0 +1,265 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+<form
+  className=""
+  onSubmit={[Function]}
+>
+  <div
+    className="form-row"
+  >
+    <div
+      className="form-group col"
+    >
+      <label
+        className="form-label"
+      >
+        Account
+      </label>
+      <input
+        autoCapitalize="off"
+        autoComplete="off"
+        autoCorrect="off"
+        className="form-control"
+        maxLength={20}
+        minLength={3}
+        name="account"
+        onChange={[Function]}
+        required={true}
+        spellCheck="false"
+        value=""
+      />
+    </div>
+  </div>
+  <div
+    className="form-row"
+  >
+    <div
+      className="form-group col-md-3"
+    >
+      <label
+        className="form-label"
+      >
+        Percent
+      </label>
+      <input
+        className="form-control"
+        max={100}
+        min={0}
+        name="percent"
+        onChange={[Function]}
+        required={true}
+        type="number"
+        value="10"
+      />
+    </div>
+    <div
+      className="form-group col-md-7"
+    >
+      <label
+        className="form-label"
+      >
+        Automatically power up
+      </label>
+      <select
+        className="form-control"
+        name="auto"
+        onChange={[Function]}
+        value="yes"
+      >
+        <option
+          value="yes"
+        >
+          Yes
+        </option>
+        <option
+          value="no"
+        >
+          No
+        </option>
+      </select>
+    </div>
+    <div
+      className="d-md-flex align-items-end justify-content-center form-group col-md-2"
+    >
+      <button
+        className="btn btn-primary btn-sm"
+        disabled={false}
+        type="submit"
+      >
+        Add
+      </button>
+    </div>
+  </div>
+</form>
+`;
+
+exports[`(2) With table 1`] = `
+Array [
+  <form
+    className=""
+    onSubmit={[Function]}
+  >
+    <div
+      className="form-row"
+    >
+      <div
+        className="form-group col"
+      >
+        <label
+          className="form-label"
+        >
+          Account
+        </label>
+        <input
+          autoCapitalize="off"
+          autoComplete="off"
+          autoCorrect="off"
+          className="form-control"
+          maxLength={20}
+          minLength={3}
+          name="account"
+          onChange={[Function]}
+          required={true}
+          spellCheck="false"
+          value=""
+        />
+      </div>
+    </div>
+    <div
+      className="form-row"
+    >
+      <div
+        className="form-group col-md-3"
+      >
+        <label
+          className="form-label"
+        >
+          Percent
+        </label>
+        <input
+          className="form-control"
+          max={100}
+          min={0}
+          name="percent"
+          onChange={[Function]}
+          required={true}
+          type="number"
+          value="10"
+        />
+      </div>
+      <div
+        className="form-group col-md-7"
+      >
+        <label
+          className="form-label"
+        >
+          Automatically power up
+        </label>
+        <select
+          className="form-control"
+          name="auto"
+          onChange={[Function]}
+          value="yes"
+        >
+          <option
+            value="yes"
+          >
+            Yes
+          </option>
+          <option
+            value="no"
+          >
+            No
+          </option>
+        </select>
+      </div>
+      <div
+        className="d-md-flex align-items-end justify-content-center form-group col-md-2"
+      >
+        <button
+          className="btn btn-primary btn-sm"
+          disabled={false}
+          type="submit"
+        >
+          Add
+        </button>
+      </div>
+    </div>
+  </form>,
+  <table
+    className="table route-table"
+  >
+    <thead>
+      <tr>
+        <th>
+          Account
+        </th>
+        <th>
+          Percent
+        </th>
+        <th>
+          Automatically power up
+        </th>
+        <th />
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          bar
+        </td>
+        <td>
+          24%
+        </td>
+        <td>
+          Yes
+        </td>
+        <td>
+          <a
+            href="#"
+            onClick={[Function]}
+            title="Delete"
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z"
+                fill="currentColor"
+              />
+            </svg>
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          baz
+        </td>
+        <td>
+          38%
+        </td>
+        <td>
+          No
+        </td>
+        <td>
+          <a
+            href="#"
+            onClick={[Function]}
+            title="Delete"
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z"
+                fill="currentColor"
+              />
+            </svg>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>,
+]
+`;

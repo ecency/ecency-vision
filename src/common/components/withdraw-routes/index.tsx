@@ -5,9 +5,7 @@ import {Col, Form, Modal, Button, FormControl} from "react-bootstrap";
 import {PrivateKey} from "@hiveio/dhive";
 
 import {Global} from "../../store/global/types";
-import {DynamicProps} from "../../store/dynamic-props/types";
 import {ActiveUser} from "../../store/active-user/types";
-import {Transactions} from "../../store/transactions/types";
 
 import KeyOrHot from "../key-or-hot";
 import Tooltip from "../tooltip";
@@ -24,9 +22,7 @@ import {deleteForeverSvg} from "../../img/svg";
 
 interface Props {
     global: Global;
-    dynamicProps: DynamicProps;
     activeUser: ActiveUser;
-    transactions: Transactions;
     signingKey: string;
     setSigningKey: (key: string) => void;
     onHide: () => void;
