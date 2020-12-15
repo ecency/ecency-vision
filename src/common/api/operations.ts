@@ -491,6 +491,46 @@ export const withdrawVestingKc = (account: string, vestingShares: string) => {
     return keychain.broadcast(account, [op], "Active");
 }
 
+export const setWithdrawVestingRoute = (from: string, key: PrivateKey, to: string, percent: number, autoVest: boolean): Promise<TransactionConfirmation> => {
+    const op: Operation = [
+        'set_withdraw_vesting_route',
+        {
+            from_account: from,
+            to_account: to,
+            percent,
+            auto_vest: autoVest
+        }
+    ]
+
+    return hiveClient.broadcast.sendOperations([op], key);
+}
+
+export const setWithdrawVestingRouteHot = (from: string, to: string, percent: number, autoVest: boolean) => {
+    const op: Operation = ['set_withdraw_vesting_route', {
+        from_account: from,
+        to_account: to,
+        percent,
+        auto_vest: autoVest
+    }];
+
+    return hs.sendOperation(op, {callback: `https://ecency.com/@${from}/wallet`}, () => {
+    }, () => {
+    });
+}
+
+export const setWithdrawVestingRouteKc = (from: string, to: string, percent: number, autoVest: boolean) => {
+    const op: Operation = [
+        'set_withdraw_vesting_route',
+        {
+            from_account: from,
+            to_account: to,
+            percent,
+            auto_vest: autoVest
+        }
+    ]
+
+    return keychain.broadcast(from, [op], "Active");
+}
 
 export const witnessVote = (account: string, key: PrivateKey, witness: string, approve: boolean): Promise<TransactionConfirmation> => {
     const op: Operation = [

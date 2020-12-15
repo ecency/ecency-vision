@@ -1,5 +1,6 @@
 {
   "g": {
+    "add": "Add",
     "edit": "Edit",
     "search": "Search",
     "downloads": "Downloads",
@@ -23,7 +24,9 @@
     "try-again": "Try again",
     "show": "Show",
     "on": "On",
-    "off": "Off"
+    "off": "Off",
+    "yes": "Yes",
+    "no": "No"
   },
   "confirm": {
     "title": "Are you sure?",
@@ -350,7 +353,14 @@
     "withdraw-hive": "Withdraw Hive",
     "withdraw-hbd": "Withdraw Hive Dollar",
     "delegate": "Delegate",
-    "power-down": "Power down"
+    "power-down": "Power down",
+    "withdraw-routes": "Withdraw Routes"
+  },
+  "withdraw-routes": {
+    "title": "Withdraw accounts",
+    "account": "Account",
+    "percent": "Percent",
+    "auto-power-up": "Automatically power up"
   },
   "points": {
     "get": "BUY POINTS",

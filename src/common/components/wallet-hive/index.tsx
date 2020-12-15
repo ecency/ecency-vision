@@ -19,6 +19,7 @@ import DropDown from "../dropdown";
 import Transfer, {TransferMode, TransferAsset} from "../transfer";
 import {error, success} from "../feedback";
 import WalletMenu from "../wallet-menu";
+import WithdrawRoutes from "../withdraw-routes";
 
 import HiveWallet from "../../helper/hive-wallet";
 
@@ -53,6 +54,7 @@ interface State {
     claiming: boolean;
     claimed: boolean;
     transfer: boolean;
+    withdrawRoutes: boolean;
     transferMode: null | TransferMode;
     transferAsset: null | TransferAsset;
 }
@@ -64,6 +66,7 @@ export class WalletHive extends Component<Props, State> {
         claiming: false,
         claimed: false,
         transfer: false,
+        withdrawRoutes: false,
         transferMode: null,
         transferAsset: null
     };
@@ -90,6 +93,11 @@ export class WalletHive extends Component<Props, State> {
         const {receivedList} = this.state;
         this.stateSet({receivedList: !receivedList});
     };
+
+    toggleWithdrawRoutes = () => {
+        const {withdrawRoutes} = this.state;
+        this.stateSet({withdrawRoutes: !withdrawRoutes});
+    }
 
     claimRewardBalance = () => {
         const {activeUser, updateActiveUser} = this.props;
@@ -242,23 +250,37 @@ export class WalletHive extends Component<Props, State> {
                                 <div className="amount">
                                     {(() => {
                                         if (isMyPage) {
+                                            let menuItems = [
+                                                {
+                                                    label: _t('wallet.delegate'),
+                                                    onClick: () => {
+                                                        this.openTransferDialog('delegate', 'HP');
+                                                    },
+                                                },
+                                                {
+                                                    label: _t('wallet.power-down'),
+                                                    onClick: () => {
+                                                        this.openTransferDialog('power-down', 'HP');
+                                                    },
+                                                },
+                                            ];
+
+                                            if (w.isPoweringDown) {
+                                                menuItems = [
+                                                    ...menuItems,
+                                                    {
+                                                        label: _t('wallet.withdraw-routes'),
+                                                        onClick: () => {
+                                                            this.toggleWithdrawRoutes();
+                                                        },
+                                                    },
+                                                ]
+                                            }
+
                                             const dropDownConfig = {
                                                 history: this.props.history,
                                                 label: '',
-                                                items: [
-                                                    {
-                                                        label: _t('wallet.delegate'),
-                                                        onClick: () => {
-                                                            this.openTransferDialog('delegate', 'HP');
-                                                        },
-                                                    },
-                                                    {
-                                                        label: _t('wallet.power-down'),
-                                                        onClick: () => {
-                                                            this.openTransferDialog('power-down', 'HP');
-                                                        },
-                                                    }
-                                                ],
+                                                items: menuItems,
                                             };
                                             return <div className="amount-actions">
                                                 <DropDown {...dropDownConfig} float="right"/>
@@ -436,6 +458,10 @@ export class WalletHive extends Component<Props, State> {
 
                 {this.state.receivedList && (
                     <ReceivedVesting {...this.props} account={account} onHide={this.toggleReceivedList}/>
+                )}
+
+                {this.state.withdrawRoutes && (
+                    <WithdrawRoutes {...this.props} activeUser={activeUser!} onHide={this.toggleWithdrawRoutes}/>
                 )}
             </div>
         );

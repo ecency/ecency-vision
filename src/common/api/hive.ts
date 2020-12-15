@@ -269,6 +269,18 @@ export const getProposalVotes = (proposalId: number, voter: string = "", limit: 
         .then(r => r.filter((x: ProposalVote) => x.proposal.proposal_id === proposalId))
         .then(r => r.map((x: ProposalVote) => ({id: x.id, voter: x.voter})))
 
+
+export interface WithdrawRoute {
+    auto_vest: boolean;
+    from_account: string;
+    id: number;
+    percent: number;
+    to_account: string;
+}
+
+export const getWithdrawRoutes = (account: string): Promise<WithdrawRoute[]> =>
+    client.database.call("get_withdraw_routes", [account, "outgoing"]);
+
 export const vpMana = (account: FullAccount): number => {
     // @ts-ignore "Account" is compatible with dhive's "ExtendedAccount"
     const calc = client.rc.calculateVPMana(account);
