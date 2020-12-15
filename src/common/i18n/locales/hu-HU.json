@@ -535,7 +535,7 @@
     "placeholder-empty": "Tags. First tag is main category. Sortable.",
     "placeholder-focus": "Címke felvétele",
     "placeholder-has-tags": "További hozzáadása",
-    "suggestion-header": "Tags/Communities",
+    "suggestion-header": "Címkék/Közösségek",
     "error-max": "Maximum {{n}} címke"
   },
   "word-count": {
@@ -632,7 +632,7 @@
     "page-title": "Javaslatok",
     "page-description": "The Decentralized Hive Fund (DHF) is an on-chain funding mechanism that allows anyone to submit a proposal and get funding once community votes pass certain threshold. To learn more read our <a href=\"/faq#how-dhf-work\">FAQ</a>.",
     "by": "által",
-    "for": "for",
+    "for": "ehhez",
     "duration-days": "{{n}} nap",
     "daily-pay": "Napi {{n}}",
     "votes": "{{n}} Szavazat",
