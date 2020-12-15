@@ -1,6 +1,6 @@
 {
   "g": {
-    "add": "Add",
+    "add": "Lisää",
     "edit": "Muokkaa",
     "search": "Haku",
     "downloads": "Lataukset",
@@ -25,8 +25,8 @@
     "show": "Näytä",
     "on": "Päällä",
     "off": "Pois",
-    "yes": "Yes",
-    "no": "No"
+    "yes": "Kyllä",
+    "no": "Ei"
   },
   "confirm": {
     "title": "Oletko varma?",
@@ -345,22 +345,22 @@
     "hive-dollars-description": "Tokenin arvo on noin $1.00 edestä HIVEä.",
     "savings": "SÄÄSTÖT",
     "savings-description": "Määrässä on 3 päivän kotiutusjakso.",
-    "next-power-down": "The next power down is {{time}}, {{amount}}",
+    "next-power-down": "Seuraava power down on {{time}}, {{amount}}",
     "transfer": "Siirto",
     "transfer-to-savings": "Siirrä säästöihin",
     "convert": "Muunna",
     "power-up": "Power up",
     "withdraw-hive": "Kotiuta Hive",
     "withdraw-hbd": "Kotiuta Hive Dollar",
-    "delegate": "Delegate",
+    "delegate": "Valtuuta",
     "power-down": "Power down",
-    "withdraw-routes": "Withdraw Routes"
+    "withdraw-routes": "Palauta Reitit"
   },
   "withdraw-routes": {
-    "title": "Withdraw accounts",
-    "account": "Account",
-    "percent": "Percent",
-    "auto-power-up": "Automatically power up"
+    "title": "Palauta tilit",
+    "account": "Tili",
+    "percent": "Prosentti",
+    "auto-power-up": "Automaattinen power up"
   },
   "points": {
     "get": "Osta Pisteitä",
@@ -430,8 +430,8 @@
     "convert-title": "Muunna",
     "power-up-sub-title": "Vaikutusmerkit antavat enemmän valtaa julkaisujen tuloihin ja saat lisää tarkastuspalkkioita.",
     "convert-sub-title": "Suositeltu vain jos HBD on alle $1. Saat $1 edestä HIVEä 3.5 päivän kuluessa.",
-    "delegate-title": "Delegate",
-    "delegate-sub-title": "Delegate Hive Power",
+    "delegate-title": "Valtuuta",
+    "delegate-sub-title": "Valtuuta Hive Power",
     "power-down-title": "Power Down",
     "power-down-sub-title": "Power Down Hive Power",
     "from": "Lähettäjä",
@@ -444,25 +444,25 @@
     "wrong-amount": "Väärä arvo",
     "amount-precision-error": "Käytä vain 3 desimaalia",
     "balance": "Saldo",
-    "power-down-estimated": "+ {{n}} Estimated Weekly",
+    "power-down-estimated": "+ {{n}} Arvioitu viikoittain",
     "memo": "Muistio",
     "memo-placeholder": "kirjoita muistio tähän",
     "memo-help": "Tämä muistio on julkinen",
-    "available-hp-hint": "* available hive power",
+    "available-hp-hint": "* hive power saatavilla",
     "confirm-title": "Vahvista siirtotapahtuma",
     "confirm-sub-title": "Varmista vielä kerran",
     "confirm": "Vahvista",
     "recent-transfers": "Viimeisimmät siirrot",
-    "transfer-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "transfer-saving-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "withdraw-saving-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "convert-summary": "<span class=\"amount\">{{amount}}</span> converted",
-    "power-up-summary": "<span class=\"amount\">{{amount}}</span> staked from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "power-down-summary": "Power down completed as <span class=\"amount\">{{amount}}</span>",
-    "reset": "Reset",
-    "powering-down": "You are currently powering down.",
-    "stop-power-down": "Stop"
+    "transfer-summary": "<span class=\"amount\">{{amount}}</span> siirtänyt <span class=\"from-user\">{{from}}</span> kohteeseen <span class=\"to-user\">{{to}}</span>",
+    "transfer-saving-summary": "<span class=\"amount\">{{amount}}</span> siirretty <span class=\"from-user\">{{from}}</span> kohteeseen <span class=\"to-user\">{{to}}</span>",
+    "withdraw-saving-summary": "<span class=\"amount\">{{amount}}</span> siirretty <span class=\"from-user\">{{from}}</span> kohteeseen <span class=\"to-user\">{{to}}</span>",
+    "convert-summary": "<span class=\"amount\">{{amount}}</span> muunnettu",
+    "power-up-summary": "<span class=\"amount\">{{amount}}</span> panoksena <span class=\"from-user\">{{from}}</span> kohteeseen <span class=\"to-user\">{{to}}</span>",
+    "delegate-summary": "<span class=\"amount\">{{amount}}</span> valtuutettu <span class=\"from-user\">{{from}}</span> kohteeseen <span class=\"to-user\">{{to}}</span>",
+    "power-down-summary": "Power down valmis <span class=\"amount\">{{amount}}</span>",
+    "reset": "Nollaa",
+    "powering-down": "Olet power downaamassa.",
+    "stop-power-down": "Lopeta"
   },
   "trx-common": {
     "insufficient-funds": "Riittämättömät varat",
@@ -490,7 +490,7 @@
   },
   "delegated-vesting": {
     "title": "Valtuutettu Hive Power",
-    "undelegate": "undelegate"
+    "undelegate": "poista valtuutus"
   },
   "received-vesting": {
     "title": "Vastaanotettu Hive Power"
