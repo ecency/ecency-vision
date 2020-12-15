@@ -1,5 +1,6 @@
 {
   "g": {
+    "add": "Add",
     "edit": "Modifică",
     "search": "Caută",
     "downloads": "Descărcări",
@@ -23,7 +24,9 @@
     "try-again": "Încearcă din nou",
     "show": "Arată",
     "on": "Activează",
-    "off": "Dezactivează"
+    "off": "Dezactivează",
+    "yes": "Yes",
+    "no": "No"
   },
   "confirm": {
     "title": "Ești sigur?",
@@ -342,13 +345,22 @@
     "hive-dollars-description": "Token-uri în valoare de $1,00 HIVE.",
     "savings": "SAVINGS",
     "savings-description": "Soldul este supus unei perioade de așteptare de 3 zile în caz de retragere.",
-    "next-power-down": "Următoarea power down este {{time}} {{amount}}",
+    "next-power-down": "The next power down is {{time}}, {{amount}}",
     "transfer": "Transfer",
     "transfer-to-savings": "Transfer la economii",
     "convert": "Converteşte",
     "power-up": "Creştere Putere de vot",
     "withdraw-hive": "Retrage Hive",
-    "withdraw-hbd": "Retrage Hive Dolar"
+    "withdraw-hbd": "Retrage Hive Dolar",
+    "delegate": "Delegate",
+    "power-down": "Power down",
+    "withdraw-routes": "Withdraw Routes"
+  },
+  "withdraw-routes": {
+    "title": "Withdraw accounts",
+    "account": "Account",
+    "percent": "Percent",
+    "auto-power-up": "Automatically power up"
   },
   "points": {
     "get": "BUY POINTS",
@@ -418,6 +430,10 @@
     "convert-title": "Converteşte",
     "power-up-sub-title": "Token-uri de influență care îți oferă mai mult control asupra plății postărilor și îți permit să câștigi recompense de curare.",
     "convert-sub-title": "Only recommended when HBD is below $1. You will get $1 of HIVE in 3.5 days.",
+    "delegate-title": "Delegate",
+    "delegate-sub-title": "Delegate Hive Power",
+    "power-down-title": "Power Down",
+    "power-down-sub-title": "Power Down Hive Power",
     "from": "De la",
     "to": "Pentru",
     "to-placeholder": "nume utilizator",
@@ -428,15 +444,25 @@
     "wrong-amount": "Valoare incorectă introdusă",
     "amount-precision-error": "Folosește doar 3 cifre de precizie",
     "balance": "Sold",
+    "power-down-estimated": "+ {{n}} Estimated Weekly",
     "memo": "Notă",
     "memo-placeholder": "introdu comentariul tău aici",
     "memo-help": "Această notă este publică",
+    "available-hp-hint": "* available hive power",
     "confirm-title": "Confirmați tranzacția",
     "confirm-sub-title": "Te rugăm să verifici dacă totul este corect",
     "confirm": "Confirmă",
     "recent-transfers": "Transferuri recente",
-    "transfer-summary": "Transferat <span class=\"amount\">{{amount}}</span> De la <span class=\"from-user\">{{from}}</span> către <span class=\"to-user\">{{to}}</span>",
-    "reset": "Un alt transfer"
+    "transfer-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
+    "transfer-saving-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
+    "withdraw-saving-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
+    "convert-summary": "<span class=\"amount\">{{amount}}</span> converted",
+    "power-up-summary": "<span class=\"amount\">{{amount}}</span> staked from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
+    "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
+    "power-down-summary": "Power down completed as <span class=\"amount\">{{amount}}</span>",
+    "reset": "Reset",
+    "powering-down": "You are currently powering down.",
+    "stop-power-down": "Stop"
   },
   "trx-common": {
     "insufficient-funds": "Fonduri insuficiente",
@@ -463,7 +489,8 @@
     "with-keychain": "Autentificare cu keychain"
   },
   "delegated-vesting": {
-    "title": "Hive Power Delegat"
+    "title": "Hive Power Delegat",
+    "undelegate": "undelegate"
   },
   "received-vesting": {
     "title": "Hive Power Primit"
