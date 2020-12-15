@@ -460,7 +460,7 @@
     "power-up-summary": "<span class=\"amount\">{{amount}}</span> staked from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Power down completed as <span class=\"amount\">{{amount}}</span>",
-    "reset": "Another transfer",
+    "reset": "Reset",
     "powering-down": "You are currently powering down.",
     "stop-power-down": "Stop"
   },
