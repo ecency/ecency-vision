@@ -1,6 +1,6 @@
 {
   "g": {
-    "add": "Add",
+    "add": "Agregar",
     "edit": "Editar",
     "search": "Buscar",
     "downloads": "Descargas",
@@ -345,16 +345,16 @@
     "hive-dollars-description": "Fichas por valor de alrededor de $ 1.00 de HIVE.",
     "savings": "AHORROS",
     "savings-description": "El balance está sujeto a 3 días de espera para la retirada.",
-    "next-power-down": "The next power down is {{time}}, {{amount}}",
+    "next-power-down": "El siguiente apagado será en {{time}}, {{amount}}",
     "transfer": "Transferir",
     "transfer-to-savings": "Transferir a ahorros",
     "convert": "Convertir",
     "power-up": "Power up",
     "withdraw-hive": "Retirar Hive",
     "withdraw-hbd": "Retirar Hive Dollar (HBD)",
-    "delegate": "Delegate",
+    "delegate": "Delegar",
     "power-down": "Apagar",
-    "withdraw-routes": "Withdraw Routes"
+    "withdraw-routes": "Rutas de Retiro"
   },
   "withdraw-routes": {
     "title": "Cuentas de retirada",
@@ -433,7 +433,7 @@
     "delegate-title": "Delegar",
     "delegate-sub-title": "Poder de Hive Delegado",
     "power-down-title": "Apagado de poder",
-    "power-down-sub-title": "Power Down Hive Power",
+    "power-down-sub-title": "Apagar poder de Hive",
     "from": "Desde",
     "to": "Para",
     "to-placeholder": "nombre de Usuario",
@@ -444,25 +444,25 @@
     "wrong-amount": "Cantidad incorrecta",
     "amount-precision-error": "Usa solo 3 dígitos",
     "balance": "Balance",
-    "power-down-estimated": "+ {{n}} Estimated Weekly",
+    "power-down-estimated": "+ {{n}} Estimado semanal",
     "memo": "Memo",
     "memo-placeholder": "escribe tus notas aquí",
     "memo-help": "Este memo es público",
-    "available-hp-hint": "* available hive power",
+    "available-hp-hint": "* potencia de Hive disponible",
     "confirm-title": "Confirme su transacción",
     "confirm-sub-title": "Por favor, revise si todo es correcto",
     "confirm": "Confirmar",
     "recent-transfers": "Transferencias recientes",
-    "transfer-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "transfer-saving-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "withdraw-saving-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "convert-summary": "<span class=\"amount\">{{amount}}</span> converted",
-    "power-up-summary": "<span class=\"amount\">{{amount}}</span> staked from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "power-down-summary": "Power down completed as <span class=\"amount\">{{amount}}</span>",
-    "reset": "Reset",
-    "powering-down": "You are currently powering down.",
-    "stop-power-down": "Stop"
+    "transfer-summary": "<span class=\"amount\">{{amount}}</span> transferido desde <span class=\"from-user\">{{from}}</span> hacia <span class=\"to-user\">{{to}}</span>",
+    "transfer-saving-summary": "<span class=\"amount\">{{amount}}</span> transferido de <span class=\"from-user\">{{from}}</span> a <span class=\"to-user\">{{to}}</span>",
+    "withdraw-saving-summary": "<span class=\"amount\">{{amount}}</span> transferido de <span class=\"from-user\">{{from}}</span> a <span class=\"to-user\">{{to}}</span>",
+    "convert-summary": "<span class=\"amount\">{{amount}}</span> convertido",
+    "power-up-summary": "<span class=\"amount\">{{amount}}</span> estacar de <span class=\"from-user\">{{from}}</span> a <span class=\"to-user\">{{to}}</span>",
+    "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegado de <span class=\"from-user\">{{from}}</span> a <span class=\"to-user\">{{to}}</span>",
+    "power-down-summary": "Apagado completado como <span class=\"amount\">{{amount}}</span>",
+    "reset": "Reestablecer",
+    "powering-down": "Actualmente estas apagando.",
+    "stop-power-down": "Detener"
   },
   "trx-common": {
     "insufficient-funds": "Fondos insuficientes",
@@ -490,7 +490,7 @@
   },
   "delegated-vesting": {
     "title": "Hive Power delegado",
-    "undelegate": "undelegate"
+    "undelegate": "retirar delegación"
   },
   "received-vesting": {
     "title": "Hive power recibido"
