@@ -218,7 +218,7 @@ export class Transfer extends Component<Props, State> {
 
     memoChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
         const {value: memo} = e.target;
-        this.setState({memo});
+        this.stateSet({memo});
     };
 
     handleTo = () => {
@@ -355,19 +355,19 @@ export class Transfer extends Component<Props, State> {
         const {amount} = this.state;
         const fixedAmount = this.formatNumber(amount, 3);
 
-        this.setState({step: 2, amount: fixedAmount});
+        this.stateSet({step: 2, amount: fixedAmount});
     };
 
     nextPowerDown = () => {
-        this.setState({step: 2, amount: "0.000"});
+        this.stateSet({step: 2, amount: "0.000"});
     }
 
     back = () => {
-        this.setState({step: 1});
+        this.stateSet({step: 1});
     };
 
     confirm = () => {
-        this.setState({step: 3});
+        this.stateSet({step: 3});
     }
 
     sign = (key: PrivateKey) => {
@@ -859,6 +859,13 @@ export class Transfer extends Component<Props, State> {
                             onHot: this.signHs,
                             onKc: this.signKs
                         })}
+                        <p className="text-center">
+                            <a href="#" onClick={(e) => {
+                                e.preventDefault();
+
+                                this.stateSet({step: 2});
+                            }}>{_t("g.back")}</a>
+                        </p>
                     </div>
                 </div>
             )}
