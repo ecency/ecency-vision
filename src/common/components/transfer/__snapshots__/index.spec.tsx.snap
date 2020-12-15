@@ -459,6 +459,16 @@ exports[`(1) Transfer HIVE (3) Step 3 1`] = `
           </button>
         </div>
       </div>
+      <p
+        className="text-center"
+      >
+        <a
+          href="#"
+          onClick={[Function]}
+        >
+          Back
+        </a>
+      </p>
     </div>
   </div>
 </div>
