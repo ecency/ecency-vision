@@ -1,6 +1,6 @@
 {
   "g": {
-    "add": "Add",
+    "add": "Dodaj",
     "edit": "Uredite",
     "search": "Pretraži",
     "downloads": "Preuzimanja",
@@ -25,8 +25,8 @@
     "show": "Prikaži",
     "on": "Uključeno",
     "off": "Isključeno",
-    "yes": "Yes",
-    "no": "No"
+    "yes": "Da",
+    "no": "Ne"
   },
   "confirm": {
     "title": "Da li ste sigurni?",
@@ -345,22 +345,22 @@
     "hive-dollars-description": "Tokeni vredni oko $1.00 u HIVE-u.",
     "savings": "Štednja",
     "savings-description": "Saldo je podložan trodnevnom periodu čekanja za povlačenje sredstava.",
-    "next-power-down": "The next power down is {{time}}, {{amount}}",
+    "next-power-down": "Sledeće smanjenje snage je {{time}} {{amount}}",
     "transfer": "Prenos",
     "transfer-to-savings": "Premestite u ušteđevinu",
     "convert": "Pretvori",
     "power-up": "Uložite u Hive Snagu",
     "withdraw-hive": "Povucite Hive",
     "withdraw-hbd": "Povucite Hive dolar",
-    "delegate": "Delegate",
-    "power-down": "Power down",
-    "withdraw-routes": "Withdraw Routes"
+    "delegate": "Delegiraj",
+    "power-down": "Smanji snagu",
+    "withdraw-routes": "Povucite rute"
   },
   "withdraw-routes": {
-    "title": "Withdraw accounts",
-    "account": "Account",
-    "percent": "Percent",
-    "auto-power-up": "Automatically power up"
+    "title": "Povucite račune",
+    "account": "Račun",
+    "percent": "Procenat",
+    "auto-power-up": "Automatsko povećanje snage"
   },
   "points": {
     "get": "KUPITE POENE",
@@ -430,10 +430,10 @@
     "convert-title": "Pretvori",
     "power-up-sub-title": "Uticajni tokeni koji vam daju veću kontrolu nad isplatama i omogućavaju vam zaradu na nagradama za kuraciju.",
     "convert-sub-title": "Preporučuje se samo kada je HBD ispod $1. Dobićete $1 HIVE-a za 3.5 dana.",
-    "delegate-title": "Delegate",
-    "delegate-sub-title": "Delegate Hive Power",
-    "power-down-title": "Power Down",
-    "power-down-sub-title": "Power Down Hive Power",
+    "delegate-title": "Delegiraj",
+    "delegate-sub-title": "Delegirajte Hive snagu",
+    "power-down-title": "Smanji snagu",
+    "power-down-sub-title": "Smanjenje Hive snage",
     "from": "Od",
     "to": "Za",
     "to-placeholder": "korisničko ime",
@@ -444,25 +444,25 @@
     "wrong-amount": "Pogrešna vrednost iznosa",
     "amount-precision-error": "Koristite samo 3 cifre preciznosti",
     "balance": "Stanje",
-    "power-down-estimated": "+ {{n}} Estimated Weekly",
+    "power-down-estimated": "+ {{n}} Procenjeno nedeljno",
     "memo": "Beleška",
     "memo-placeholder": "ovde unesite svoje beleške",
     "memo-help": "Ovaj dopis je javan",
-    "available-hp-hint": "* available hive power",
+    "available-hp-hint": "* dostupna hive snaga",
     "confirm-title": "Potvrdite vašu transakciju",
     "confirm-sub-title": "Molimo, proverite da li je sve ispravno",
     "confirm": "Potvrdi",
     "recent-transfers": "Nedavni prenosi",
-    "transfer-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "transfer-saving-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "withdraw-saving-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "convert-summary": "<span class=\"amount\">{{amount}}</span> converted",
-    "power-up-summary": "<span class=\"amount\">{{amount}}</span> staked from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "power-down-summary": "Power down completed as <span class=\"amount\">{{amount}}</span>",
-    "reset": "Reset",
-    "powering-down": "You are currently powering down.",
-    "stop-power-down": "Stop"
+    "transfer-summary": "<span class=\"amount\">{{amount}}</span> prebačeno od <span class=\"from-user\">{{from}}</span> za <span class=\"to-user\">{{to}}</span>",
+    "transfer-saving-summary": "<span class=\"amount\">{{amount}}</span> prebačenp od <span class=\"from-user\">{{from}}</span> za <span class=\"to-user\">{{to}}</span>",
+    "withdraw-saving-summary": "<span class=\"amount\">{{amount}}</span> prebačeno od <span class=\"from-user\">{{from}}</span> za <span class=\"to-user\">{{to}}</span>",
+    "convert-summary": "<span class=\"amount\">{{amount}}</span> pretvoreno",
+    "power-up-summary": "<span class=\"amount\">{{amount}}</span> uloženo od <span class=\"from-user\">{{from}}</span> za <span class=\"to-user\">{{to}}</span>",
+    "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegirano od <span class=\"from-user\">{{from}}</span> za <span class=\"to-user\">{{to}}</span>",
+    "power-down-summary": "Smanjenje snage izvršeno kao <span class=\"amount\">{{amount}}</span>",
+    "reset": "Resetuj",
+    "powering-down": "Trenutno smanjujete snagu.",
+    "stop-power-down": "Zaustavi"
   },
   "trx-common": {
     "insufficient-funds": "Nedovoljno sredstava",
@@ -490,7 +490,7 @@
   },
   "delegated-vesting": {
     "title": "Delegirana Hive Snaga",
-    "undelegate": "undelegate"
+    "undelegate": "ne delegirajte"
   },
   "received-vesting": {
     "title": "Primljena Hive snaga"
