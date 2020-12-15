@@ -1,5 +1,6 @@
 {
   "g": {
+    "add": "Add",
     "edit": "Szerkesztés",
     "search": "Keresés",
     "downloads": "Letöltések",
@@ -23,7 +24,9 @@
     "try-again": "Próbáld újra",
     "show": "Megjelenítés",
     "on": "Be",
-    "off": "Ki"
+    "off": "Ki",
+    "yes": "Yes",
+    "no": "No"
   },
   "confirm": {
     "title": "Biztos vagy benne?",
@@ -342,13 +345,22 @@
     "hive-dollars-description": "Tokenek, melyek körülbelül $1.00-nyi HIVE-t érnek.",
     "savings": "MEGTAKARÍTÁSOK",
     "savings-description": "Egyenleg visszavonás esetén 3 nap a várakozási idő.",
-    "next-power-down": "A következő power down {{time}} múlva {{amount}}",
+    "next-power-down": "The next power down is {{time}}, {{amount}}",
     "transfer": "Átutalás",
     "transfer-to-savings": "Átutalás a megtakarításokhoz",
     "convert": "Konvertálás",
     "power-up": "Power up",
     "withdraw-hive": "Hive Visszavonás",
-    "withdraw-hbd": "Hive Dollár Visszavonás"
+    "withdraw-hbd": "Hive Dollár Visszavonás",
+    "delegate": "Delegate",
+    "power-down": "Power down",
+    "withdraw-routes": "Withdraw Routes"
+  },
+  "withdraw-routes": {
+    "title": "Withdraw accounts",
+    "account": "Account",
+    "percent": "Percent",
+    "auto-power-up": "Automatically power up"
   },
   "points": {
     "get": "VÁSÁROLJ PONTOKAT",
@@ -418,6 +430,10 @@
     "convert-title": "Konvertálás",
     "power-up-sub-title": "Befolyásoló tokenek, melyek több hatalmat biztosítanak a bejegyzések kifizetése felett, és lehetővé teszik, hogy kurátori jutalomhoz juss.",
     "convert-sub-title": "Only recommended when HBD is below $1. You will get $1 of HIVE in 3.5 days.",
+    "delegate-title": "Delegate",
+    "delegate-sub-title": "Delegate Hive Power",
+    "power-down-title": "Power Down",
+    "power-down-sub-title": "Power Down Hive Power",
     "from": "Feladó",
     "to": "Címzett",
     "to-placeholder": "felhasználónév",
@@ -428,15 +444,25 @@
     "wrong-amount": "Nem megfelelő összeg",
     "amount-precision-error": "Csak 3 tizedes pontosságot használj",
     "balance": "Egyenleg",
+    "power-down-estimated": "+ {{n}} Estimated Weekly",
     "memo": "Üzenet",
     "memo-placeholder": "megjegyzés ide",
     "memo-help": "Ez az üzenet nyilvános",
+    "available-hp-hint": "* available hive power",
     "confirm-title": "Tranzakció engedélyezése ",
     "confirm-sub-title": "Kérjük ellenőrizd, hogy minden rendben",
     "confirm": "Megerősítés",
     "recent-transfers": "Legújabb átutalások",
-    "transfer-summary": "Átutalva <span class=\"amount\">{{amount}}</span> <span class=\"from-user\">{{from}}</span> -tól <span class=\"to-user\">{{to}}</span>-nak",
-    "reset": "Újabb átutalás"
+    "transfer-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
+    "transfer-saving-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
+    "withdraw-saving-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
+    "convert-summary": "<span class=\"amount\">{{amount}}</span> converted",
+    "power-up-summary": "<span class=\"amount\">{{amount}}</span> staked from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
+    "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
+    "power-down-summary": "Power down completed as <span class=\"amount\">{{amount}}</span>",
+    "reset": "Reset",
+    "powering-down": "You are currently powering down.",
+    "stop-power-down": "Stop"
   },
   "trx-common": {
     "insufficient-funds": "Nincs elegendő fedezet",
@@ -463,7 +489,8 @@
     "with-keychain": "Keychain bejelentkezés"
   },
   "delegated-vesting": {
-    "title": "Delegált Hive Power"
+    "title": "Delegált Hive Power",
+    "undelegate": "undelegate"
   },
   "received-vesting": {
     "title": "Kapott Hive Power"
