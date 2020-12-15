@@ -140,7 +140,7 @@ const pureState = (props: Props): State => {
     let _to: string = "";
     let _toData: Account | null = null;
 
-    if (props.mode !== "transfer") {
+    if (["transfer-saving", "withdraw-saving", "convert", "power-up", "power-down"].includes(props.mode)) {
         _to = props.activeUser.username;
         _toData = props.activeUser.data
     }

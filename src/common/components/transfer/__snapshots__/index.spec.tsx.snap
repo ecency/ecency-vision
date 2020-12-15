@@ -2976,12 +2976,12 @@ exports[`(8) Delegate (1) Step 1 1`] = `
                 </span>
               </div>
               <input
-                autoFocus={false}
+                autoFocus={true}
                 className="form-control"
                 onChange={[Function]}
                 placeholder="username"
                 type="text"
-                value="foo"
+                value=""
               />
             </div>
           </div>
@@ -3063,7 +3063,7 @@ exports[`(8) Delegate (1) Step 1 1`] = `
         >
           <button
             className="btn btn-primary"
-            disabled={false}
+            disabled={true}
             onClick={[Function]}
             type="button"
           >
