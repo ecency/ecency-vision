@@ -157,10 +157,11 @@
     "title": "1 Голос",
     "title-n": "{{n}} Голосов",
     "title-empty": "Нет Голосов",
-    "voter": "Голосовавшие",
-    "percent": "Сила",
-    "reward": "Награда",
-    "time": "Время"
+    "sort": "Sort",
+    "sort-reward": "Reward",
+    "sort-timestamp": "Time",
+    "sort-reputation": "Reputation",
+    "sort-percent": "Percentage"
   },
   "entry": {
     "via-app": "через <span class=\"app-name\">{{app}}</span>",
