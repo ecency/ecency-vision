@@ -157,10 +157,11 @@
     "title": "1 Səs",
     "title-n": "{{n}} Səs",
     "title-empty": "Səs yoxdur",
-    "voter": "Seçici",
-    "percent": "Faiz",
-    "reward": "Mükafat",
-    "time": "Vaxt"
+    "sort": "Sort",
+    "sort-reward": "Reward",
+    "sort-timestamp": "Time",
+    "sort-reputation": "Reputation",
+    "sort-percent": "Percentage"
   },
   "entry": {
     "via-app": "<span class=\"app-name\">{{app}}</span> ilə",
