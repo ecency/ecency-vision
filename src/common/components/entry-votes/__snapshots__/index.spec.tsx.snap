@@ -168,9 +168,7 @@ Array [
   >
     <div
       className="pages"
-    >
-      <span />
-    </div>
+    />
     <div
       className="sorter"
     >
