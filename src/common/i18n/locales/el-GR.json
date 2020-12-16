@@ -416,7 +416,7 @@
     "post": "Post",
     "post-hint": "Autocomplete input",
     "post-placeholder": "username/permlink",
-    "post-error": "Not a valid post address",
+    "post-error": "Μη έγκυρη διεύθυνση",
     "post-error-exists": "The post is already promoted",
     "success-message": "Your request submitted. It will be activated in a couple minutes."
   },
@@ -509,8 +509,8 @@
     "unMute": "Unmute"
   },
   "favorite-btn": {
-    "add": "Add to favorites",
-    "added": "Added to favorites",
+    "add": "Προσθήκη στα αγαπημένα",
+    "added": "Προστέθηκε στα αγαπημένα",
     "delete": "Remove from favorites",
     "deleted": "Removed from favorites"
   },
@@ -563,7 +563,7 @@
   "tag-selector": {
     "placeholder-empty": "Tags. First tag is main category. Sortable.",
     "placeholder-focus": "Enter tag",
-    "placeholder-has-tags": "Add More",
+    "placeholder-has-tags": "Προσθέστε περισσότερα",
     "suggestion-header": "Tags/Communities",
     "error-max": "Max {{n}} tags"
   },
@@ -733,7 +733,7 @@
       "how-boosting-work-header": "How content boosting works?",
       "how-boosting-work-body": "<p>Points can be used for boosting content (post and comments). Boosting requests are manually reviewed by our moderators and curators which might take upto 24 hours. <p>As part of the qualities check, we may consider: a) Content is original content, b) Not detected by cheetah, mackbot, hivewatchers, or any other blacklists etc. c) User is not in Ecency blacklist due to abusive behavior.</p>Boosting does not guarantee curation, if content is not curated within 24 hours Points will be refunded.</p>",
       "how-to-transfer-header": "How to transfer blockchain tokens?",
-      "how-to-transfer-body": "<p>After login, you will find Wallet page in top header on website and desktop app or in Profile page, bottom navigation bar on mobile app. In wallet page you can initiate transfer of any token you hold to another user or exchange accounts, click on arrow next to your balance and find transfer operations. Transfers are irreversible because they are registered on blockchain, make sure to send correct recipient.</p>",
+      "how-to-transfer-body": "<p>Μετά την σύνδεση θα βρεις της σελίδα του πορτοφολιού στην κορυφή στην ιστοσελίδα και στην εφαρμογή που είναι στην επιφάνεια εργασίας ή στην σελίδα του προφίλ, κάτω στην μπάρα πλοήγησης στην εφαρμογή του κινητού. Στην σελίδα του πορτοφολιού μπορείτε να ξεκινήσετε την μεταφορά οποιοδήποτε token έχετε στην κατοχή σας σε άλλο χρήστη ή λογαριασμούς ανταλλακτηρίων, πατήστε στο βέλος δίπλα στο υπόλοιπο σας και βρείτε τις λειτουργίες μεταφοράς. Οι μεταφορές είναι μη αναστρέψιμες επειδή είναι εγγεγραμμένες στο blockchain, βεβαιωθείτε ότι έχετε στείλει τον σωστό παραλήπτη.</p>",
       "how-see-rewards-header": "How do I see my post rewards?",
       "how-see-rewards-body": "<p><img src=\"https://images.ecency.com/p/3W72119s5BjW4PvRk9nXBzqrPWMsMTjNrXDPFFf11iYhySeELMe77idrZHBPmyaqFX6CV72hBLB5qFhwVhGoAATydoFxAF7oCwBt1ztp6eS9r5us4pm7iN?format=match&mode=fit\" loading=\"lazy\"/></p><p>In Wallet page (in top header on website and desktop app, bottom navigation bar on mobile app), you can see Curation rewards (the rewards earned for upvoting posts and comments) and Author rewards (the rewards earned by your own posts and comments)</p><p>You can also view the same information for other users by visiting their wallet profile.</p>",
       "how-dhf-work-header": "How DHF works?",
