@@ -40,7 +40,9 @@
     "filter-promoted": "Dipromosikan",
     "filter-payout": "Pembayaran",
     "filter-muted": "Didiamkan",
-    "filter-feed": "Umpan"
+    "filter-feed": "Umpan",
+    "filter-feed-friends": "Friends",
+    "filter-feed-subscriptions": "Communities"
   },
   "navbar": {
     "discover": "Jelajahi",
