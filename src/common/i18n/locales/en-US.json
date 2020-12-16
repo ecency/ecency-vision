@@ -160,7 +160,8 @@
     "sort": "Sort",
     "sort-reward": "Reward",
     "sort-timestamp": "Time",
-    "sort-reputation": "Reputation"
+    "sort-reputation": "Reputation",
+    "sort-percent": "Percentage"
   },
   "entry": {
     "via-app": "via <span class=\"app-name\">{{app}}</span>",

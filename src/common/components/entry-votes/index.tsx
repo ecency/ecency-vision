@@ -61,7 +61,7 @@ interface DetailState {
     loading: boolean;
     votes: Vote[];
     page: number;
-    sort: "reward" | "timestamp" | "voter"
+    sort: "reward" | "timestamp" | "voter" | "percent"
 }
 
 export class EntryVotesDetail extends Component<DetailProps, DetailState> {
@@ -181,6 +181,7 @@ export class EntryVotesDetail extends Component<DetailProps, DetailState> {
                             <option value="reward">{_t("entry-votes.sort-reward")}</option>
                             <option value="timestamp">{_t("entry-votes.sort-timestamp")}</option>
                             <option value="reputation">{_t("entry-votes.sort-reputation")}</option>
+                            <option value="percent">{_t("entry-votes.sort-percent")}</option>
                         </Form.Control>
                     </div>
                 </div>
