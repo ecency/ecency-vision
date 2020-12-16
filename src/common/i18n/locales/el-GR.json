@@ -41,8 +41,8 @@
     "filter-payout": "Πληρωμές",
     "filter-muted": "Σε σίγαση",
     "filter-feed": "Ροή",
-    "filter-feed-friends": "Friends",
-    "filter-feed-subscriptions": "Communities"
+    "filter-feed-friends": "Φίλοι",
+    "filter-feed-subscriptions": "Κοινότητες"
   },
   "navbar": {
     "discover": "Ανακαλύψτε",
@@ -356,10 +356,10 @@
     "withdraw-hbd": "Ανάληψη Hive Dollar",
     "delegate": "Εξουσιoδοτήστε",
     "power-down": "Power Down",
-    "withdraw-routes": "Withdraw Routes"
+    "withdraw-routes": "Οδοί Ανάληψης"
   },
   "withdraw-routes": {
-    "title": "Withdraw accounts",
+    "title": "Λογαριασμοί Ανάληψης",
     "account": "Λογαριασμός",
     "percent": "Ποσοστό",
     "auto-power-up": "Αυτομάτως κάνε power up"
@@ -382,13 +382,13 @@
     "post-list-desc": "Πόντοι για δημοσίευση",
     "comment-list-desc": "Πόντοι για σχόλιο",
     "vote-list-desc": "Πόντοι για ψήφο",
-    "reblog-list-desc": "Points for reblog",
-    "login-list-desc": "Points for login",
+    "reblog-list-desc": "Πόντοι για αναδημοσίευση",
+    "login-list-desc": "Πόντοι για σύνδεση",
     "checkin-list-desc": "Points for heartbeat",
     "checkin-extra-list-desc": "Usage bonus",
-    "transfer-sent-list-desc": "Transfer to {{n}}",
-    "transfer-incoming-list-desc": "Transfer from {{n}}",
-    "delegation-list-desc": "Delegation reward",
+    "transfer-sent-list-desc": "Μεταφορά προς {{n}}",
+    "transfer-incoming-list-desc": "Μεταφορά από {{n}}",
+    "delegation-list-desc": "Αμοιβή εξουσιοδότησης",
     "referral-list-desc": "Referral reward",
     "transfer": "Gift to someone",
     "claim-ok": "Points claimed",
@@ -432,8 +432,8 @@
     "convert-title": "Convert",
     "power-up-sub-title": "Influence tokens which give you more control over post payouts and allow you to earn on curation rewards.",
     "convert-sub-title": "Only recommended when HBD is below $1. You will get $1 of HIVE in 3.5 days.",
-    "delegate-title": "Delegate",
-    "delegate-sub-title": "Delegate Hive Power",
+    "delegate-title": "Εξουσιoδοτήστε",
+    "delegate-sub-title": "Εξουσιοδοτήστε Hive Power",
     "power-down-title": "Power Down",
     "power-down-sub-title": "Power Down Hive Power",
     "from": "From",
@@ -460,7 +460,7 @@
     "withdraw-saving-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "convert-summary": "<span class=\"amount\">{{amount}}</span> converted",
     "power-up-summary": "<span class=\"amount\">{{amount}}</span> staked from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
+    "delegate-summary": "<span class=\"amount\">{{amount}}</span> εξουσιοδότηση από<span class=\"from-user\">{{from}}</span>to<span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Power down completed as <span class=\"amount\">{{amount}}</span>",
     "reset": "Reset",
     "powering-down": "You are currently powering down.",
@@ -491,8 +491,8 @@
     "with-keychain": "Sign with keychain"
   },
   "delegated-vesting": {
-    "title": "Delegated Hive Power",
-    "undelegate": "undelegate"
+    "title": "Κατ 'εξουσιοδότηση Hive Power",
+    "undelegate": "πάρε πίσω την εξουσιοδότηση"
   },
   "received-vesting": {
     "title": "Received Hive Power"
