@@ -157,10 +157,11 @@
     "title": "1 ψήφος",
     "title-n": "{{n}} Ψήφοι",
     "title-empty": "Καμία Ψήφος",
-    "voter": "Ψηφοφόρος",
-    "percent": "Ποσοστό",
-    "reward": "Ανταμοιβή",
-    "time": "Ώρα"
+    "sort": "Sort",
+    "sort-reward": "Reward",
+    "sort-timestamp": "Time",
+    "sort-reputation": "Reputation",
+    "sort-percent": "Percentage"
   },
   "entry": {
     "via-app": "μέσω<span class=\"app-name\">{{app}}</span>",
