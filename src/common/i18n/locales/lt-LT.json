@@ -157,10 +157,11 @@
     "title": "1 Balsas",
     "title-n": "{{n}} Balsai",
     "title-empty": "Nėra balsų",
-    "voter": "Balsuotojas",
-    "percent": "Procentai",
-    "reward": "Atlygis",
-    "time": "Laikas"
+    "sort": "Sort",
+    "sort-reward": "Reward",
+    "sort-timestamp": "Time",
+    "sort-reputation": "Reputation",
+    "sort-percent": "Percentage"
   },
   "entry": {
     "via-app": "per <span class=\"app-name\">{{app}}</span>",
