@@ -157,10 +157,11 @@
     "title": "1 Vote",
     "title-n": "{{n}} Vote",
     "title-empty": "Tidak ada Vote",
-    "voter": "Pemilih",
-    "percent": "Persen",
-    "reward": "Imbalan",
-    "time": "Waktu"
+    "sort": "Sort",
+    "sort-reward": "Reward",
+    "sort-timestamp": "Time",
+    "sort-reputation": "Reputation",
+    "sort-percent": "Percentage"
   },
   "entry": {
     "via-app": "melalui <span class=\"app-name\">{{app}}</span>",
