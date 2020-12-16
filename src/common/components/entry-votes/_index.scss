@@ -6,7 +6,7 @@
     .voters-list {
       @include user-grid-list(1, 1, 2);
       margin-bottom: 20px;
-      height: 400px;
+      height: 440px;
       overflow: auto;
 
       .list-body {
