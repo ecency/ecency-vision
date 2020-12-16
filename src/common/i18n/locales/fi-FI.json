@@ -41,8 +41,8 @@
     "filter-payout": "Tilitykset",
     "filter-muted": "Mykistetty",
     "filter-feed": "Syöte",
-    "filter-feed-friends": "Friends",
-    "filter-feed-subscriptions": "Communities"
+    "filter-feed-friends": "Kaverit",
+    "filter-feed-subscriptions": "Yhteisöt"
   },
   "navbar": {
     "discover": "Löydä uutta",
