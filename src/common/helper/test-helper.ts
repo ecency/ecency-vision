@@ -199,6 +199,7 @@ export const entryInstance1: Entry = {
 export const votesInstance1: Vote[] = [
     {
         voter: "user1",
+        reputation: 566619025187407,
         weight: 40289,
         rshares: "84880616925",
         percent: 40,
@@ -206,6 +207,7 @@ export const votesInstance1: Vote[] = [
     },
     {
         voter: "user2",
+        reputation: 606077040417259,
         weight: 0,
         rshares: "39117096",
         percent: 10000,

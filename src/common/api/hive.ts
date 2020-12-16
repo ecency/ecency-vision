@@ -16,6 +16,7 @@ export const client = new Client(SERVERS, {
 
 export interface Vote {
     percent: number;
+    reputation: number;
     rshares: string;
     time: string;
     timestamp?: number;
