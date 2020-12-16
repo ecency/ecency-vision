@@ -41,8 +41,8 @@
     "filter-payout": "Isplate",
     "filter-muted": "Iskljuci Notifikacije",
     "filter-feed": "Novosti",
-    "filter-feed-friends": "Friends",
-    "filter-feed-subscriptions": "Communities"
+    "filter-feed-friends": "Prijatelji",
+    "filter-feed-subscriptions": "Zajednice"
   },
   "navbar": {
     "discover": "Otkrijte",
