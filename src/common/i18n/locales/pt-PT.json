@@ -157,10 +157,11 @@
     "title": "1 Voto",
     "title-n": "{{n}} Votos",
     "title-empty": "Sem Votos",
-    "voter": "Votante",
-    "percent": "Percentagem",
-    "reward": "Recompensa",
-    "time": "Tempo"
+    "sort": "Sort",
+    "sort-reward": "Reward",
+    "sort-timestamp": "Time",
+    "sort-reputation": "Reputation",
+    "sort-percent": "Percentage"
   },
   "entry": {
     "via-app": "via <span class=\"app-name\">{{app}}</span>",
