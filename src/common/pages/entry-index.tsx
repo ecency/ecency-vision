@@ -95,7 +95,11 @@ class EntryIndexPage extends Component<PageProps> {
         let rss = "";
 
         if (tag) {
-            if (tag.startsWith('@')) {
+            if (activeUser && tag === "my") {
+                title = `@${activeUser.username}'s community feed on decentralized web`;
+                description = _t("entry-index.description-user-feed", {u: tag});
+                canonical = `${defaults.base}/@${tag}/${filter}`;
+            } else if (tag.startsWith('@')) {
                 title = `${tag}'s ${filter} on decentralized web`;
                 description = _t("entry-index.description-user-feed", {u: tag});
                 canonical = `${defaults.base}/@${tag}/${filter}`;
