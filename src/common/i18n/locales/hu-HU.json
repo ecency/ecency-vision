@@ -248,7 +248,7 @@
     "title": "Közösségek",
     "description": "Best online, decentralized, immutable, rewarding communities",
     "n-subscribers": "{{n}} tag",
-    "n-authors": "{{n}} posters",
+    "n-authors": "{{n}} bejegyzés író",
     "n-posts": "{{n}} bejegyzés",
     "admins": "adminok:",
     "sort-hot": "Forró",
@@ -304,7 +304,7 @@
     "section-communities": "Közösségek",
     "section-wallet": "Tárca",
     "section-settings": "Beállítások",
-    "communities-title": "Membership",
+    "communities-title": "Tagság",
     "create-community": "Hozz létre egy közösséget",
     "witnesses": "Tanúk",
     "proposals": "Javaslatok"
@@ -354,8 +354,8 @@
     "power-up": "Power up",
     "withdraw-hive": "Hive Visszavonás",
     "withdraw-hbd": "Hive Dollár Visszavonás",
-    "delegate": "Delegate",
-    "power-down": "Power down",
+    "delegate": "Delegálás",
+    "power-down": "Power Down",
     "withdraw-routes": "Withdraw Routes"
   },
   "withdraw-routes": {
@@ -402,7 +402,7 @@
   },
   "promote": {
     "title": "Hirdetés",
-    "sub-title": "Promote your post",
+    "sub-title": "Promováld a bejegyzésed",
     "duration": "Időtartam"
   },
   "boost": {
