@@ -40,7 +40,9 @@
     "filter-promoted": "Promowane",
     "filter-payout": "Wypłaty",
     "filter-muted": "Wyciszone",
-    "filter-feed": "Aktualności"
+    "filter-feed": "Aktualności",
+    "filter-feed-friends": "Friends",
+    "filter-feed-subscriptions": "Communities"
   },
   "navbar": {
     "discover": "Odkrywaj",
