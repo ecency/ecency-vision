@@ -54,76 +54,76 @@
   },
   "search": {
     "placeholder": "Αναζήτηση",
-    "placeholder-count": "Αναζήτηση δημοσιεύσεων",
+    "placeholder-count": "Αναζήτηση {{n}} δημοσιεύσεων",
     "header-tag": "Ετικέτες",
     "header-account": "Χρήστες",
     "header-community": "Κοινότητες"
   },
   "user-nav": {
     "wallet": "Πορτοφόλι",
-    "unclaimed-reward-notice": "You have unclaimed rewards",
-    "points": "Points",
-    "unclaimed-points-notice": "You have unclaimed points",
-    "notifications": "Notifications",
-    "profile": "Profile",
-    "gallery": "Gallery",
-    "drafts": "Drafts",
-    "bookmarks": "Bookmarks",
-    "logout": "Logout"
+    "unclaimed-reward-notice": "Έχετε αζήτητες αμοιβές",
+    "points": "Πόντοι",
+    "unclaimed-points-notice": "Έχετε αζήτητους πόντους",
+    "notifications": "Ειδοποιήσεις",
+    "profile": "Προφίλ",
+    "gallery": "Γκαλερί",
+    "drafts": "Πρόχειρα",
+    "bookmarks": "Σελιδοδείκτες",
+    "logout": "Αποσύνδεση"
   },
   "login": {
-    "title": "Welcome back!",
-    "with-user-pass": "Login with your username and private key.",
-    "username-placeholder": "username",
+    "title": "Καλώς ήρθατε και πάλι!",
+    "with-user-pass": "Συνδεθείτε με το όνομα χρήστη και το private κλειδί.",
+    "username-placeholder": "όνομα χρήστη",
     "key-placeholder": "master or active private key",
     "login-info-1": "We don't store your private keys.",
-    "login-info-2": "More info",
+    "login-info-2": "Περισσότερες πληροφορίες",
     "error-fields-required": "Please enter username and private key",
     "error-public-key": "You entered a public key. Password/WIF required",
-    "error-user-fetch": "User data could not be fetched",
-    "error-user-not-found": "User does not exist",
-    "error-permission": "Couldn't get posting permission",
+    "error-user-fetch": "Δεν είναι δυνατή η ανάκτηση δεδομένων χρήστη",
+    "error-user-not-found": "Ο Χρήστης δεν υπάρχει",
+    "error-permission": "Δεν ήταν δυνατή η λήψη άδειας δημοσίευσης",
     "error-authenticate": "Wrong private key. Master or active private key required.",
-    "with-hive-signer": "Login with hivesigner",
-    "with-keychain": "Login with keychain",
-    "sign-up-text-1": "Don't have an account?",
-    "sign-up-text-2": "Sign up now!"
+    "with-hive-signer": "Συνδεθείτε μέσω του hivesigner",
+    "with-keychain": "Σύνδεση με KeyChain",
+    "sign-up-text-1": "Δεν έχετε λογαριασμό;",
+    "sign-up-text-2": "Εγγραφείτε τώρα!"
   },
   "sign-up": {
-    "header": "Sign Up",
-    "description": "One account to manage everything on blockchain and Ecency. Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
-    "username": "Pick a username",
-    "email": "Enter your email address",
-    "ref": "Referred user (optional)",
-    "submit": "Continue",
-    "success": "We've sent an email to {{email}}.",
-    "success-2": "Follow instructions to complete signup process.",
-    "login-text-1": "Do you have an account?",
-    "login-text-2": "Login"
+    "header": "Εγγραφή",
+    "description": "Ένας λογαριασμός για να διαχειριστείτε τα πάντα στο blockchain και στο Ecency. Μάθετε περισσότερα σχετικά με τα οφέλη στις<a href=\"/faq#how-to-join\">συνήθεις ερωτήσεις(FAQ)</a>",
+    "username": "Διαλέξτε όνομα χρήστη",
+    "email": "Εισάγετε την ηλεκτρονική σας διεύθυνση",
+    "ref": "Συστημένος χρήστης (προαιρετικό)",
+    "submit": "Συνέχεια",
+    "success": "Έχουμε στείλει ένα email στο {{email}}.",
+    "success-2": "Ακολουθήστε τις οδηγίες για να ολοκληρώσετε τη διαδικασία εγγραφής.",
+    "login-text-1": "Έχετε λογαριασμό;",
+    "login-text-2": "Σύνδεση"
   },
   "trending-tags": {
-    "title": "Topics"
+    "title": "Θέματα"
   },
   "selected-tags": {
-    "title": "Featured"
+    "title": "Προτεινόμενα"
   },
   "entry-list-item": {
-    "reblogged": "by {{n}}",
-    "promoted": "promoted",
-    "pinned": "Pinned Post",
-    "replies": "1 response. Click to respond.",
-    "replies-n": "{{n}} responses. Click to respond.",
-    "no-replies": "No responses yet. Click to respond."
+    "reblogged": "από {{n}}",
+    "promoted": "προωθούμενα",
+    "pinned": "Καρφιτσωμένη Δημοσίευση",
+    "replies": "1 απάντηση. Κάντε κλικ για να απαντήσετε.",
+    "replies-n": "{{n}} απαντήσεις. Κάντε κλικ για να απαντήσετε.",
+    "no-replies": "Καμία απάντηση ακόμα. Κάντε κλικ για να απαντήσετε."
   },
   "bookmark-btn": {
-    "add": "Add to bookmarks",
-    "added": "Added to bookmarks",
-    "delete": "Remove from bookmarks",
-    "deleted": "Removed from bookmarks"
+    "add": "Προσθήκη στους σελιδοδείκτες",
+    "added": "Έγινε προσθήκη στους σελιδοδείκτες",
+    "delete": "Κατάργηση από τους σελιδοδείκτες",
+    "deleted": "Κατάργηση από τους σελιδοδείκτες"
   },
   "entry-reblog": {
-    "reblog": "Reblog",
-    "confirm-title": "Reblog to @{{n}}'s blog?",
+    "reblog": "Αναδημοσίευση",
+    "confirm-title": "Αναδημοσίευση στο @{{n}}'s ιστολόγιο;",
     "confirm-ok": "Αναδημοσίευση",
     "success": "Αναδημοσιεύτηκε!"
   },
@@ -139,21 +139,21 @@
   "entry-index": {
     "feed": "Ροή",
     "tags": "Δημοφιλή",
-    "title": "θέματα",
-    "description": "θέματα σε ένα κοινωνικό δίκτυο που ανήκουν και χειρίζονται από τους χρήστες του.",
-    "description-tag": "θέματα",
-    "description-user-feed": "ροή"
+    "title": "{{f}} θέματα",
+    "description": "{{f}} θέματα σε ένα κοινωνικό δίκτυο που ανήκουν και χειρίζονται από τους χρήστες του.",
+    "description-tag": "{{f}} #{{t}} θέματα",
+    "description-user-feed": "{{u}}'s ροή"
   },
   "market-data": {
     "title": "Τιμή αγοράς",
-    "credits": "δεδομένα αγοράς από Coingecko"
+    "credits": "δεδομένα αγοράς από <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "list-style": {
     "title": "Αλλαγή στιλ λίστας"
   },
   "entry-votes": {
     "title": "1 ψήφος",
-    "title-n": "Ψήφοι",
+    "title-n": "{{n}} Ψήφοι",
     "title-empty": "Καμία Ψήφος",
     "voter": "Ψηφοφόρος",
     "percent": "Ποσοστό",
@@ -161,7 +161,7 @@
     "time": "Ώρα"
   },
   "entry": {
-    "via-app": "μέσω",
+    "via-app": "μέσω<span class=\"app-name\">{{app}}</span>",
     "comment-entry-title": "Βλέπετε ένα μοναδικό νήμα απο: ",
     "comment-entry-go-root": "Δείτε το πλήρες κείμενο",
     "comment-entry-go-parent": "Δείτε το άμεσο σχόλιο",
@@ -171,20 +171,20 @@
   "edit-history": {
     "title": "Ιστορικό Επεξεργασίας",
     "show-diff": "Δείξε Διαφορά",
-    "version": "Εκδοχή"
+    "version": "Εκδοχή {{n}}"
   },
   "similar-entries": {
-    "title": "Πρόσφατες δημοσιεύσεις από @"
+    "title": "Πρόσφατες δημοσιεύσεις από @{{n}}"
   },
   "comment": {
     "body-placeholder": "Γράψτε την απάντηση σας εδώ",
     "preview": "Προεπισκόπηση"
   },
   "discussion": {
-    "join": "Join the conversion now",
+    "join": "Συμμετέχετε στην συζήτηση τώρα",
     "btn-join": "Συμμετοχή",
     "replies": "1 Σχόλιο",
-    "n-replies": "Σχόλια",
+    "n-replies": "{{n}} Σχόλια",
     "order": "Σειρά Εμφάνισης",
     "order-trending": "Δημοφιλή",
     "order-reputation": "Φήμη",
@@ -194,7 +194,7 @@
     "reveal": "Εμφάνιση σχολίου"
   },
   "community": {
-    "page-description": "θέματα",
+    "page-description": "{{f}} θέματα",
     "subscribe": "Συμμετοχή",
     "subscribed": "Συμμετέχετε",
     "unsubscribe": "Φύγετε",
@@ -240,21 +240,21 @@
     "lang": "Γλώσσα",
     "description": "Περιγραφή",
     "rules": "Κανόνες",
-    "rules-help": "One per line"
+    "rules-help": "(Ένα ανά γραμμή)"
   },
   "communities": {
-    "title": "Communities",
-    "description": "Best online, decentralized, immutable, rewarding communities",
-    "n-subscribers": "{{n}} members",
-    "n-authors": "{{n}} posters",
-    "n-posts": "{{n}} posts",
-    "admins": "admins:",
-    "sort-hot": "Hot",
-    "sort-rank": "Rank",
-    "sort-subs": "Members",
-    "sort-new": "New",
-    "no-results": "No results found",
-    "create": "Create community"
+    "title": "Κοινότητες",
+    "description": "Καλύτερες διαδίκτυακές, αποκεντρωμένες, αμετάβλητες που επιβραβεύουν κοινότητες",
+    "n-subscribers": "{{n}} μέλη",
+    "n-authors": "{{n}} χρήστες",
+    "n-posts": "{{n}} δημοσιεύσεις",
+    "admins": "διαχειριστές:",
+    "sort-hot": "Καυτά",
+    "sort-rank": "Ιεράρχηση",
+    "sort-subs": "Μέλη",
+    "sort-new": "Νέα",
+    "no-results": "Δε βρέθηκαν αποτελέσματα",
+    "create": "Δημιουργήστε κοινότητα"
   },
   "communities-create": {
     "page-title": "Δημιουργήστε μια κοινότητα",
@@ -272,7 +272,7 @@
     "submit": "Δημιουργήστε κοινότητα",
     "progress-account": "Δημιουργία λογαριασμού...",
     "progress-user": "Προετοιμασία δεδομένων χρήστη...",
-    "progress-role": "Ορίστε τον @ ως διαχειριστή...",
+    "progress-role": "Ορίστε τον @{{u}} ως διαχειριστή...",
     "progress-props": "Ενημέρωση ρυθμίσεων κοινότητας...",
     "done": "Η κοινότητα σας δημιουργήθηκε 🎉",
     "done-link-label": "Ξεκινήστε."
@@ -315,57 +315,57 @@
     "profile-image": "Εικόνα Προφίλ",
     "website": "Ιστοσελίδα",
     "location": "Τοποθεσία",
-    "updated": "Profile updated successfully!"
+    "updated": "Ενημέρωση προφίλ με επιτυχία!"
   },
   "image-upload-button": {
-    "uploaded": "Image uploaded"
+    "uploaded": "H εικόνα ανέβηκε"
   },
   "preferences": {
-    "title": "Preferences",
-    "notifications": "Notification alerts",
-    "currency": "Currency",
-    "language": "Language",
-    "updated": "Preference updated!"
+    "title": "Προτιμήσεις",
+    "notifications": "Γνωστοποιήσεις & ειδοποιήσεις",
+    "currency": "Νόμισμα",
+    "language": "Γλώσσα",
+    "updated": "Οι προτιμήσεις ενημερώθηκαν!"
   },
   "wallet": {
-    "unclaimed-rewards": "Unclaimed rewards",
-    "claim-reward-balance": "Claim reward balance",
-    "claim-reward-balance-ok": "Reward balance claimed",
-    "estimated": "Estimated Account Value",
-    "estimated-description": "The estimated value is based on a 7 day average value of HIVE.",
+    "unclaimed-rewards": "Αζήτητες Ανταμοιβές",
+    "claim-reward-balance": "Ζητήστε υπόλοιπο ανταμοιβής",
+    "claim-reward-balance-ok": "Yπόλοιπο ανταμοιβής ζητήθηκε",
+    "estimated": "Εκτιμώμενη Αξία Λογαριασμού",
+    "estimated-description": "Η εκτιμώμενη αξία βασίζεται σε έναν μέσο όρο 7 ημερών της αξίας του HIVE.",
     "hive": "HIVE",
-    "hive-description": "HIVE are tradeable tokens that may be transferred at anytime.HIVE can be converted to Hive Power in a process called powering up.",
+    "hive-description": "HIVE είναι διαπραγματεύσιμες μάρκες, που μπορούν να μεταφερθούν οποιαδήποτε στιγμή. τα HIVE μπορούν να μετατραπούν σε Hive Power μέσω μίας διαδικασίας που ονομάζεται powering up.",
     "hive-power": "HIVE POWER",
-    "hive-power-description": "Hive Power are influence tokens that earn more power for holding long term and voting on posts. The more Hive Power one holds, the more one can influence other’s rewards and earn rewards for accurate voting.",
-    "hive-power-delegated": "Delegated Hive Power",
-    "hive-power-received": "Received Hive Power",
-    "next-power-down-amount": "Next power down amount",
-    "hive-power-total": "Total Hive Power",
-    "hive-dollars": "HIVE DOLLARS",
-    "hive-dollars-description": "Tokens worth about $1.00 of HIVE.",
-    "savings": "SAVINGS",
-    "savings-description": "Balance subject to 3 day withdraw waiting period.",
-    "next-power-down": "The next power down is {{time}}, {{amount}}",
-    "transfer": "Transfer",
-    "transfer-to-savings": "Transfer to savings",
-    "convert": "Convert",
-    "power-up": "Power up",
-    "withdraw-hive": "Withdraw Hive",
-    "withdraw-hbd": "Withdraw Hive Dollar",
-    "delegate": "Delegate",
-    "power-down": "Power down",
+    "hive-power-description": "Τα Hive Power είναι μάρκες επιρροής που μπορούν να αποκτήσουν περισσότερη δύναμη, κρατώντας τις μακροπρόθεσμα και ψηφίζοντας αναρτήσεις. Όσες περισσότερες έχει στην κατοχή του κάποιος, τόσο περισσότερο μπορεί να επηρεάσει τις αμοιβές άλλων άλλα και τις δικές του.",
+    "hive-power-delegated": "Κατ 'εξουσιοδότηση Hive Power",
+    "hive-power-received": "Hive Power που έχει ληφθεί",
+    "next-power-down-amount": "Το επόμενο ποσό από το power down",
+    "hive-power-total": "Συνολικό Hive Power",
+    "hive-dollars": "Ηive Δολλάρια",
+    "hive-dollars-description": "Μάρκες αξίας περίπου $1.00 του HIVE.",
+    "savings": "ΑΠΟΤΑΜΙΕΎΣΕΙΣ",
+    "savings-description": "Διαθέσιμο υπόλοιπο που υπόκειται σε χρόνο αναμονής ανάληψης 3 ημερών.",
+    "next-power-down": "Το επόμενο power down είναι σε {{time}}, {{amount}}",
+    "transfer": "Μεταφορά",
+    "transfer-to-savings": "Μεταφορά στην αποταμίευση",
+    "convert": "Μετατροπή",
+    "power-up": "Power Up",
+    "withdraw-hive": "Ανάληψη Hive",
+    "withdraw-hbd": "Ανάληψη Hive Dollar",
+    "delegate": "Εξουσιoδοτήστε",
+    "power-down": "Power Down",
     "withdraw-routes": "Withdraw Routes"
   },
   "withdraw-routes": {
     "title": "Withdraw accounts",
-    "account": "Account",
-    "percent": "Percent",
-    "auto-power-up": "Automatically power up"
+    "account": "Λογαριασμός",
+    "percent": "Ποσοστό",
+    "auto-power-up": "Αυτομάτως κάνε power up"
   },
   "points": {
-    "get": "BUY POINTS",
-    "unclaimed-points": "Unclaimed points",
-    "claim-reward-points": "Claim reward points",
+    "get": "ΑΓΟΡΑΣΕ ΠΟΝΤΟΥΣ",
+    "unclaimed-points": "Αζήτητοι πόντοι",
+    "claim-reward-points": "Ζήτησε πόντους αμοιβής",
     "main-description": "Points can be used for in-app services, like Promote, Boost, Gifting. Earn them just by using Ecency apps and improve your experience.",
     "earn-points": "How to earn more Points",
     "post-desc": "You can earn point by posting regularly. Posting gives you 15 points.",
