@@ -157,10 +157,11 @@
     "title": "1 glas",
     "title-n": "{{n}} Glasova",
     "title-empty": "Nema glasova",
-    "voter": "Glasač",
-    "percent": "Procenat",
-    "reward": "Nagrada",
-    "time": "Vreme"
+    "sort": "Sort",
+    "sort-reward": "Reward",
+    "sort-timestamp": "Time",
+    "sort-reputation": "Reputation",
+    "sort-percent": "Percentage"
   },
   "entry": {
     "via-app": "putem <span class=\"app-name\">{{app}}</span>",
