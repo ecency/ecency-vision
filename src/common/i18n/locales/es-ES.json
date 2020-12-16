@@ -40,7 +40,9 @@
     "filter-promoted": "Promocionado",
     "filter-payout": "Pagos",
     "filter-muted": "Silenciado",
-    "filter-feed": "Inicio"
+    "filter-feed": "Inicio",
+    "filter-feed-friends": "Friends",
+    "filter-feed-subscriptions": "Communities"
   },
   "navbar": {
     "discover": "Descubrir",
