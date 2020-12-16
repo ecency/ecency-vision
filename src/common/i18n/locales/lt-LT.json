@@ -40,7 +40,9 @@
     "filter-promoted": "Paremti",
     "filter-payout": "Išmokos",
     "filter-muted": "Nutildyta",
-    "filter-feed": "Pagrindinis"
+    "filter-feed": "Pagrindinis",
+    "filter-feed-friends": "Friends",
+    "filter-feed-subscriptions": "Communities"
   },
   "navbar": {
     "discover": "Atrasti",
