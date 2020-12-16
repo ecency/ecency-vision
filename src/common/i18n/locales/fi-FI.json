@@ -40,7 +40,9 @@
     "filter-promoted": "Korostettu",
     "filter-payout": "Tilitykset",
     "filter-muted": "Mykistetty",
-    "filter-feed": "Syöte"
+    "filter-feed": "Syöte",
+    "filter-feed-friends": "Friends",
+    "filter-feed-subscriptions": "Communities"
   },
   "navbar": {
     "discover": "Löydä uutta",
