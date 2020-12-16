@@ -2,11 +2,7 @@ import React, {Component} from "react";
 
 import {connect} from "react-redux";
 
-import {History} from "history";
-
-import {Link} from "react-router-dom";
-
-import {AllFilter, EntryFilter, ListStyle} from "../store/global/types";
+import {ListStyle} from "../store/global/types";
 
 import {makeGroupKey} from "../store/entries";
 
@@ -16,8 +12,7 @@ import Feedback from "../components/feedback";
 import NavBar from "../components/navbar";
 import NavBarElectron from "../../desktop/app/components/navbar";
 import Intro from "../components/intro";
-import DropDown, {MenuItem} from "../components/dropdown";
-import ListStyleToggle from "../components/list-style-toggle";
+import EntryIndexMenu, {isMyPage} from "../components/entry-index-menu";
 import LinearProgress from "../components/linear-progress";
 import EntryListLoadingItem from "../components/entry-list-loading-item";
 import DetectBottom from "../components/detect-bottom";
@@ -78,7 +73,7 @@ class EntryIndexPage extends Component<PageProps> {
     }
 
     render() {
-        const {global, entries, activeUser, location} = this.props;
+        const {global, activeUser, entries, location} = this.props;
         const {filter, tag} = global;
 
         const groupKey = makeGroupKey(filter, tag);
@@ -90,35 +85,6 @@ class EntryIndexPage extends Component<PageProps> {
 
         const entryList = data.entries;
         const loading = data.loading;
-
-        const menuConfig: {
-            history: History,
-            label: string,
-            items: MenuItem[]
-        } = {
-            history: this.props.history,
-            label: _t(`entry-filter.filter-${filter}`),
-            items: [
-                ...(activeUser
-                    ? [
-                        {
-                            label: _t("entry-filter.filter-feed"),
-                            href: `/@${activeUser.username}/feed`,
-                            active: filter === "feed" && activeUser.username === tag.replace("@", ""),
-                            id: "feed"
-                        },
-                    ]
-                    : []),
-                ...[EntryFilter.trending, EntryFilter.hot, EntryFilter.created].map((x) => {
-                    return {
-                        label: _t(`entry-filter.filter-${x}`),
-                        href: tag && filter !== "feed" ? `/${x}/${tag}` : `/${x}`,
-                        active: filter === x,
-                        id: x
-                    };
-                }),
-            ],
-        };
 
         //  Meta config
         const fC = capitalize(filter);
@@ -168,20 +134,7 @@ class EntryIndexPage extends Component<PageProps> {
                     </div>
                     <div className={_c(`entry-page-content ${loading ? "loading" : ""}`)}>
                         <div className="page-tools">
-                            <div className="sm-menu">
-                                <DropDown {...menuConfig} float="left"/>
-                            </div>
-                            <div className="lg-menu">
-                                <ul className="nav nav-pills nav-fill">
-                                    {menuConfig.items.map((i, k) => {
-                                        return <li key={k} className="nav-item">
-                                            <Link to={i.href!} className={`nav-link link-${i.id} ${i.active ? "active" : ""}`}>
-                                                {i.label}</Link>
-                                        </li>
-                                    })}
-                                </ul>
-                            </div>
-                            <ListStyleToggle global={this.props.global} toggleListStyle={this.props.toggleListStyle}/>
+                            {EntryIndexMenu({...this.props})}
                         </div>
                         {loading && entryList.length === 0 ? <LinearProgress/> : ""}
                         <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>
@@ -192,7 +145,7 @@ class EntryIndexPage extends Component<PageProps> {
                         </div>
                         {loading && entryList.length > 0 ? <LinearProgress/> : ""}
                     </div>
-                    {(location.pathname === '/' || filter === AllFilter.feed) && (
+                    {(location.pathname === '/' || isMyPage(global, activeUser)) && (
                         <div className="market-side">
                             <MarketData/>
                         </div>
