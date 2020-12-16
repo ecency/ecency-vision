@@ -129,7 +129,11 @@ export class EntryVotesDetail extends Component<DetailProps, DetailState> {
             if (keyA > keyB) return -1;
             if (keyA < keyB) return 1;
             return 0;
-        }).slice(start, end)
+        }).slice(start, end);
+
+        const pagination = votes.length > pageSize ? <Pagination dataLength={votes.length} pageSize={pageSize} maxItems={4} onPageChange={(page) => {
+            this.stateSet({page});
+        }}/> : <span/>;
 
         return (
             <>
@@ -169,9 +173,7 @@ export class EntryVotesDetail extends Component<DetailProps, DetailState> {
 
                 <div className="list-tools">
                     <div className="pages">
-                        <Pagination dataLength={votes.length} pageSize={pageSize} maxItems={4} onPageChange={(page) => {
-                            this.stateSet({page});
-                        }}/>
+                        {pagination}
                     </div>
                     <div className="sorter">
                         <span className="label">{_t("entry-votes.sort")}</span>
