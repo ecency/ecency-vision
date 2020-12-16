@@ -1,6 +1,6 @@
 {
   "g": {
-    "add": "Add",
+    "add": "जोड़ें",
     "edit": "संपादित करें",
     "search": "खोजें",
     "downloads": "डाउनलोड",
@@ -25,8 +25,8 @@
     "show": "दिखाएँ",
     "on": "चालू",
     "off": "बंद",
-    "yes": "Yes",
-    "no": "No"
+    "yes": "हाँ",
+    "no": "नहीं"
   },
   "confirm": {
     "title": "क्या आपको यकीन है?",
@@ -345,22 +345,22 @@
     "hive-dollars-description": "हाइव के $ 1.00 के टोकन।",
     "savings": "बचत",
     "savings-description": "शेष 3 दिन की प्रतीक्षा अवधि के अधीन।",
-    "next-power-down": "The next power down is {{time}}, {{amount}}",
+    "next-power-down": "अगली शक्ति नीचे {{time}},{{amount}} है",
     "transfer": "स्थानांतरण",
     "transfer-to-savings": "बचत खाते में स्थांतरण करें",
     "convert": "बदलें",
     "power-up": "शक्ति प्रापक",
     "withdraw-hive": "हाइव निकालें",
     "withdraw-hbd": "हाइव डॉलर निकालें",
-    "delegate": "Delegate",
-    "power-down": "Power down",
-    "withdraw-routes": "Withdraw Routes"
+    "delegate": "प्रतिनिधि",
+    "power-down": "पावर नीचे करे",
+    "withdraw-routes": "निकाशी मार्ग"
   },
   "withdraw-routes": {
-    "title": "Withdraw accounts",
-    "account": "Account",
-    "percent": "Percent",
-    "auto-power-up": "Automatically power up"
+    "title": "निकाशी खाता",
+    "account": "खाता",
+    "percent": "प्रतिशत",
+    "auto-power-up": "स्वचालित रूप पावर उप"
   },
   "points": {
     "get": "अंक खरीदें",
@@ -430,10 +430,10 @@
     "convert-title": "बदलें",
     "power-up-sub-title": "प्रभाव टोकन जो आपको पोस्ट पेआउट पर अधिक नियंत्रण देते हैं और आपको क्यूरेशन रिवार्ड्स पर अर्जित करने की अनुमति देते हैं।",
     "convert-sub-title": "केवल तभी अनुशंसित किया जाता है जब एचबीडी $1 से कम हो। आपको 3.5 दिनों में $1 का हाइव मिलेगा।",
-    "delegate-title": "Delegate",
-    "delegate-sub-title": "Delegate Hive Power",
-    "power-down-title": "Power Down",
-    "power-down-sub-title": "Power Down Hive Power",
+    "delegate-title": "प्रतिनिधि",
+    "delegate-sub-title": "प्रतिनिधि हाइव पावर",
+    "power-down-title": "शक्तिक्षय करें",
+    "power-down-sub-title": "पावर डाउन हाइव पावर",
     "from": "से",
     "to": "को",
     "to-placeholder": "प्रयोक्ता नाम",
@@ -444,25 +444,25 @@
     "wrong-amount": "गलत राशि मान",
     "amount-precision-error": "परिशुद्धता के केवल 3 अंकों का उपयोग करें",
     "balance": "शेष रकम",
-    "power-down-estimated": "+ {{n}} Estimated Weekly",
+    "power-down-estimated": "+ {{n}} अनुमानित साप्ताहिक",
     "memo": "ज्ञापन",
     "memo-placeholder": "यहां अपने नोट्स दर्ज करें",
     "memo-help": "यह ज्ञापन सार्वजनिक है",
-    "available-hp-hint": "* available hive power",
+    "available-hp-hint": "* उपलब्ध हाइव शक्ति",
     "confirm-title": "अपने लेन-देन की पुष्टि करें",
     "confirm-sub-title": "कृपया, जांचें कि सब कुछ सही है",
     "confirm": "पुष्टी करें",
     "recent-transfers": "हाल ही में स्थानान्तरण",
-    "transfer-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "transfer-saving-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "withdraw-saving-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "convert-summary": "<span class=\"amount\">{{amount}}</span> converted",
-    "power-up-summary": "<span class=\"amount\">{{amount}}</span> staked from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "power-down-summary": "Power down completed as <span class=\"amount\">{{amount}}</span>",
-    "reset": "Reset",
-    "powering-down": "You are currently powering down.",
-    "stop-power-down": "Stop"
+    "transfer-summary": "<span class=\"amount\">{{amount}}</span> से स्थानांतरित किया गया <span class=\"from-user\">{{from}}</span> के लिये <span class=\"to-user\">{{to}}</span>",
+    "transfer-saving-summary": "<span class=\"amount\">{{amount}}</span> से स्थानांतरित किया गया <span class=\"from-user\">{{from}}</span> के लिये <span class=\"to-user\">{{to}}</span>",
+    "withdraw-saving-summary": "<span class=\"amount\">{{amount}}</span> से स्थानांतरित किया गया <span class=\"from-user\">{{from}}</span> के लिये <span class=\"to-user\">{{to}}</span>",
+    "convert-summary": "<span class=\"amount\">{{amount}}</span> रूपान्तरित",
+    "power-up-summary": "<span class=\"amount\">{{amount}}</span> से चुराया हुआ<span class=\"from-user\">{{from}}</span>के लिये <span class=\"to-user\">{{to}}</span>",
+    "delegate-summary": "<span class=\"amount\">{{amount}}</span> से प्रत्यायोजित किया गया <span class=\"from-user\">{{from}}</span> के लिये <span class=\"to-user\">{{to}}</span>",
+    "power-down-summary": "पावर डाउन के रूप में पूरा किया <span class=\"amount\">{{amount}}</span>",
+    "reset": "रीसेट करें",
+    "powering-down": "आप वर्तमान में शक्ति प्राप्त कर रहे हैं।",
+    "stop-power-down": "रुको"
   },
   "trx-common": {
     "insufficient-funds": "अपर्याप्त कोष",
@@ -490,7 +490,7 @@
   },
   "delegated-vesting": {
     "title": "प्रत्यायोजित हाइव पावर",
-    "undelegate": "undelegate"
+    "undelegate": "अप्रत्यायोजित"
   },
   "received-vesting": {
     "title": "हाइव पावर प्राप्त किया"
