@@ -58,7 +58,7 @@ export class EntryIndexMenu extends Component<Props> {
                 ...[EntryFilter.trending, EntryFilter.hot, EntryFilter.created].map((x) => {
                     return {
                         label: _t(`entry-filter.filter-${x}`),
-                        href: tag && !isMy ? `/${x}/${tag}` : `/${x}`,
+                        href: (tag && tag !== "my" && filter !== "feed") ? `/${x}/${tag}` : `/${x}`,
                         active: !isMy && filter === x,
                         id: x
                     };

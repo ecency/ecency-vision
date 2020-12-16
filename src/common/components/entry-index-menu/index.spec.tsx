@@ -99,3 +99,22 @@ it("(5) Active user. Communities", () => {
 });
 
 
+it("(6) No active user. Communities", () => {
+    const props = {
+        ...defaultProps,
+        global: {
+            ...globalInstance,
+            filter: AllFilter.trending,
+            tag: "my"
+        },
+        activeUser: null
+    };
+
+    const renderer = TestRenderer.create(
+        <StaticRouter location="/" context={{}}>
+            <EntryIndexMenu {...props} />
+        </StaticRouter>);
+    expect(renderer.toJSON()).toMatchSnapshot();
+});
+
+

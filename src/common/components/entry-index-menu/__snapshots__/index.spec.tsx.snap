@@ -602,3 +602,105 @@ exports[`(5) Active user. Communities 1`] = `
   </span>
 </div>
 `;
+
+exports[`(6) No active user. Communities 1`] = `
+<div
+  className="entry-index-menu"
+>
+  <div
+    className="the-menu"
+  >
+    <div
+      className="main-menu"
+    >
+      <div
+        className="sm-menu"
+      >
+        <div
+          className="custom-dropdown float-left"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <div
+            className="dropdown-btn "
+          >
+            <div
+              className="label"
+            >
+              Trending
+            </div>
+            <div
+              className="menu-down"
+            >
+              <svg
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M7,10L12,15L17,10H7Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="lg-menu"
+      >
+        <ul
+          className="nav nav-pills nav-fill"
+        >
+          <li
+            className="nav-item"
+          >
+            <a
+              className="nav-link link-trending active"
+              href="/trending"
+              onClick={[Function]}
+            >
+              Trending
+            </a>
+          </li>
+          <li
+            className="nav-item"
+          >
+            <a
+              className="nav-link link-hot"
+              href="/hot"
+              onClick={[Function]}
+            >
+              Hot
+            </a>
+          </li>
+          <li
+            className="nav-item"
+          >
+            <a
+              className="nav-link link-created"
+              href="/created"
+              onClick={[Function]}
+            >
+              New
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <span
+    className="list-style-toggle"
+    onClick={[Function]}
+    title="Toggle list style"
+  >
+    <svg
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M16,5V11H21V5M10,11H15V5H10M16,18H21V12H16M10,18H15V12H10M4,18H9V12H4M4,11H9V5H4V11Z"
+        fill="currentColor"
+      />
+    </svg>
+  </span>
+</div>
+`;
