@@ -157,10 +157,11 @@
     "title": "1 głos",
     "title-n": "{{n}} Głosów",
     "title-empty": "Brak głosów",
-    "voter": "Głosujący",
-    "percent": "Procent",
-    "reward": "Nagroda",
-    "time": "Czas"
+    "sort": "Sort",
+    "sort-reward": "Reward",
+    "sort-timestamp": "Time",
+    "sort-reputation": "Reputation",
+    "sort-percent": "Percentage"
   },
   "entry": {
     "via-app": "przez <span class=\"app-name\">{{app}}</span>",
