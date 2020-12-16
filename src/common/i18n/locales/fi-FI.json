@@ -157,10 +157,11 @@
     "title": "1 Ääni",
     "title-n": "{{n}} Ääntä",
     "title-empty": "Ei ääniä",
-    "voter": "Äänestäjä",
-    "percent": "Prosentti",
-    "reward": "Palkkio",
-    "time": "Aika"
+    "sort": "Järjestä",
+    "sort-reward": "Palkkio",
+    "sort-timestamp": "Aika",
+    "sort-reputation": "Maine",
+    "sort-percent": "Prosenttiosuus"
   },
   "entry": {
     "via-app": "<span class=\"app-name\">{{app}}</span> kautta",
