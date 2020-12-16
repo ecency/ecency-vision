@@ -139,7 +139,7 @@ export const fetchEntries = (what: string = "", tag: string = "", more: boolean 
     dispatch: Dispatch,
     getState: () => AppState
 ) => {
-    const {entries} = getState();
+    const {entries, activeUser} = getState();
     const pageSize = 20;
 
     const groupKey = makeGroupKey(what, tag);
@@ -162,18 +162,20 @@ export const fetchEntries = (what: string = "", tag: string = "", more: boolean 
 
     dispatch(fetchAct(groupKey));
 
-    let prms: Promise<Entry[] | null>;
+    const observer = activeUser?.username || "";
+
+    let promise: Promise<Entry[] | null>;
     if (tag.startsWith("@")) {
         // @username/posts|replies|comments|feed
         const username = tag.replace("@", "");
 
-        prms = getAccountPosts(what, username, start_author, start_permlink);
+        promise = getAccountPosts(what, username, start_author, start_permlink, 20, observer);
     } else {
         // trending/tag
-        prms = getPostsRanked(what, start_author, start_permlink, pageSize, tag);
+        promise = getPostsRanked(what, start_author, start_permlink, pageSize, tag, observer);
     }
 
-    prms
+    promise
         .then((resp) => {
             if (resp) {
                 dispatch(fetchedAct(groupKey, resp, resp.length >= pageSize));
