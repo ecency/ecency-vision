@@ -1,6 +1,6 @@
 {
   "g": {
-    "add": "Add",
+    "add": "Dodaj",
     "edit": "Edytuj",
     "search": "Szukaj",
     "downloads": "Pobrane",
@@ -25,8 +25,8 @@
     "show": "Pokaż",
     "on": "Wł",
     "off": "Wył",
-    "yes": "Yes",
-    "no": "No"
+    "yes": "Tak",
+    "no": "Nie"
   },
   "confirm": {
     "title": "Jesteś pewien?",
@@ -274,70 +274,70 @@
     "progress-user": "Przygotowywanie danych użytkownika...",
     "progress-role": "Ustawianie @{{u}} jako admin...",
     "progress-props": "Aktualizowanie ustawień społeczności...",
-    "done": "Your community was created 🎉",
-    "done-link-label": "Get started."
+    "done": "Twoja społeczność została utworzona 🎉",
+    "done-link-label": "Rozpocznij."
   },
   "pin-btn": {
-    "pin": "Pin",
-    "unpin": "Unpin"
+    "pin": "Przypnij",
+    "unpin": "Odepnij"
   },
   "mute-btn": {
-    "mute": "Mute",
-    "unmute": "Unmute",
-    "dialog-title-mute": "Mute post/comment",
-    "dialog-title-unmute": "Unmute post/comment",
-    "notes": "Notes",
-    "note-placeholder-mute": "Provide a note regarding your decision to mute this content.",
-    "note-placeholder-unmute": "Provide a note regarding your decision to unmute this content."
+    "mute": "Wycisz",
+    "unmute": "Wyłącz wyciszenie",
+    "dialog-title-mute": "Wycisz post/komentarz",
+    "dialog-title-unmute": "Wyłącz wyciszenie wpisu/komentarza",
+    "notes": "Notatki",
+    "note-placeholder-mute": "Dodaj notatkę dotyczącą decyzji o wyciszeniu tej zawartości.",
+    "note-placeholder-unmute": "Dodaj notatkę dotyczącą decyzji o wyciszeniu tej zawartości."
   },
   "profile": {
-    "voting-power": "Voting Power",
-    "post-count": "Post Count",
-    "followers": "Followers",
-    "following": "Following",
+    "voting-power": "Siła głosu",
+    "post-count": "Liczba Postów",
+    "followers": "Obserwujący",
+    "following": "Obserwowani",
     "section-blog": "Blog",
-    "section-posts": "Posts",
-    "section-comments": "Comments",
-    "section-replies": "Replies",
-    "section-communities": "Communities",
-    "section-wallet": "Wallet",
-    "section-settings": "Settings",
-    "communities-title": "Membership",
-    "create-community": "Create a community",
-    "witnesses": "Witnesses",
-    "proposals": "Proposals"
+    "section-posts": "Wpisy",
+    "section-comments": "Komentarze",
+    "section-replies": "Odpowiedzi",
+    "section-communities": "Społeczności",
+    "section-wallet": "Portfel",
+    "section-settings": "Ustawienia",
+    "communities-title": "Członkostwo",
+    "create-community": "Stwórz społeczność",
+    "witnesses": "Delegaci",
+    "proposals": "Propozycje"
   },
   "profile-edit": {
-    "title": "Profile",
-    "name": "Display Name",
-    "about": "About",
-    "cover-image": "Cover Image",
-    "profile-image": "Profile Image",
-    "website": "Website",
-    "location": "Location",
-    "updated": "Profile updated successfully!"
+    "title": "Profil",
+    "name": "Wyświetl Nazwę",
+    "about": "O Nas",
+    "cover-image": "Zdjęcie w tle",
+    "profile-image": "Zdjęcie profilowe",
+    "website": "Strona internetowa",
+    "location": "Lokalizacja",
+    "updated": "Pomyślnie zaktualizowano profil!"
   },
   "image-upload-button": {
-    "uploaded": "Image uploaded"
+    "uploaded": "Obraz przesłany"
   },
   "preferences": {
-    "title": "Preferences",
-    "notifications": "Notification alerts",
-    "currency": "Currency",
-    "language": "Language",
-    "updated": "Preference updated!"
+    "title": "Preferencje",
+    "notifications": "Powiadomienia",
+    "currency": "Waluta",
+    "language": "Język",
+    "updated": "Ustawienia zostały zaktualizowane!"
   },
   "wallet": {
-    "unclaimed-rewards": "Unclaimed rewards",
-    "claim-reward-balance": "Claim reward balance",
-    "claim-reward-balance-ok": "Reward balance claimed",
-    "estimated": "Estimated Account Value",
-    "estimated-description": "The estimated value is based on a 7 day average value of HIVE.",
+    "unclaimed-rewards": "Nieodebrane wynagrodzenie",
+    "claim-reward-balance": "Odbierz wynagrodzenie",
+    "claim-reward-balance-ok": "Wynagrodzenie odebrane",
+    "estimated": "Szacowana wartość konta",
+    "estimated-description": "Wartość jest szacowana na podstawie średniej wartości HIVE z 7 dni.",
     "hive": "HIVE",
-    "hive-description": "HIVE are tradeable tokens that may be transferred at anytime.HIVE can be converted to Hive Power in a process called powering up.",
+    "hive-description": "HIVE to zbywalne żetony, które mogą być przetransferowane w dowolnym momencie. HIVE można przekonwertować na Hive Power w procesie zwanym zasilaniem.",
     "hive-power": "HIVE POWER",
-    "hive-power-description": "Hive Power are influence tokens that earn more power for holding long term and voting on posts. The more Hive Power one holds, the more one can influence other’s rewards and earn rewards for accurate voting.",
-    "hive-power-delegated": "Delegated Hive Power",
+    "hive-power-description": "Hive Power to tokeny wpływu, które generują więcej mocy za długotrwałe ich posiadanie i głosowanie na posty. Im więcej posiada się Hive Power, tym bardziej można wpływać na inne nagrody i zdobywać nagrody za trafne głosowanie.",
+    "hive-power-delegated": "Deleguj Hive Power",
     "hive-power-received": "Otrzymana Moc Hive",
     "next-power-down-amount": "Następny spadek mocy jest za",
     "hive-power-total": "Całkowita Moc Hive",
@@ -345,22 +345,22 @@
     "hive-dollars-description": "Tokeny warte około 1,00 USD z HIVE.",
     "savings": "OSZCZĘDNOŚCI",
     "savings-description": "Saldo z 3-dniowym okresem oczekiwania na wypłatę.",
-    "next-power-down": "The next power down is {{time}}, {{amount}}",
+    "next-power-down": "Następne zmniejszenie mocy nastąpi {{time}} {{amount}}",
     "transfer": "Przelew",
     "transfer-to-savings": "Transfer do oszczędności",
     "convert": "Konwertuj",
     "power-up": "Zwiększ moc",
     "withdraw-hive": "Wypłata Hive",
     "withdraw-hbd": "Wypłać dolar Hive",
-    "delegate": "Delegate",
-    "power-down": "Power down",
+    "delegate": "Deleguj",
+    "power-down": "Zmniejsz moc",
     "withdraw-routes": "Withdraw Routes"
   },
   "withdraw-routes": {
     "title": "Withdraw accounts",
-    "account": "Account",
-    "percent": "Percent",
-    "auto-power-up": "Automatically power up"
+    "account": "Konto",
+    "percent": "Procent",
+    "auto-power-up": "Automatycznie zwiększ moc"
   },
   "points": {
     "get": "KUP PUNKTY",
@@ -430,10 +430,10 @@
     "convert-title": "Convert",
     "power-up-sub-title": "Influence tokens which give you more control over post payouts and allow you to earn on curation rewards.",
     "convert-sub-title": "Only recommended when HBD is below $1. You will get $1 of HIVE in 3.5 days.",
-    "delegate-title": "Delegate",
-    "delegate-sub-title": "Delegate Hive Power",
-    "power-down-title": "Power Down",
-    "power-down-sub-title": "Power Down Hive Power",
+    "delegate-title": "Deleguj",
+    "delegate-sub-title": "Deleguj Hive Power",
+    "power-down-title": "Zmniejsz moc",
+    "power-down-sub-title": "Zmniejsz moc 'Hive Power'",
     "from": "From",
     "to": "To",
     "to-placeholder": "username",
@@ -444,11 +444,11 @@
     "wrong-amount": "Wrong amount value",
     "amount-precision-error": "Use only 3 digits of precision",
     "balance": "Balance",
-    "power-down-estimated": "+ {{n}} Estimated Weekly",
+    "power-down-estimated": "+{{n}} Szacowany tygodniowo",
     "memo": "Memo",
     "memo-placeholder": "enter your notes here",
     "memo-help": "This memo is public",
-    "available-hp-hint": "* available hive power",
+    "available-hp-hint": "Dostępny 'Hive Power'",
     "confirm-title": "Confirm your transaction",
     "confirm-sub-title": "Please, check if everything is correct",
     "confirm": "Confirm",
@@ -460,9 +460,9 @@
     "power-up-summary": "<span class=\"amount\">{{amount}}</span> staked from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Power down completed as <span class=\"amount\">{{amount}}</span>",
-    "reset": "Reset",
-    "powering-down": "You are currently powering down.",
-    "stop-power-down": "Stop"
+    "reset": "Zresetuj",
+    "powering-down": "Aktualnie zmniejszasz moc.",
+    "stop-power-down": "Zatrzymaj"
   },
   "trx-common": {
     "insufficient-funds": "Insufficient funds",
@@ -490,7 +490,7 @@
   },
   "delegated-vesting": {
     "title": "Deleguj Hive Power",
-    "undelegate": "undelegate"
+    "undelegate": "cofnij delegację"
   },
   "received-vesting": {
     "title": "Otrzymana Moc Hive"
