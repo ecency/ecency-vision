@@ -157,10 +157,11 @@
     "title": "1 Голос",
     "title-n": "{{n}} Голосів",
     "title-empty": "Немає голосів",
-    "voter": "Проголосували",
-    "percent": "Відсоток",
-    "reward": "Винагорода",
-    "time": "Час"
+    "sort": "Sort",
+    "sort-reward": "Reward",
+    "sort-timestamp": "Time",
+    "sort-reputation": "Reputation",
+    "sort-percent": "Percentage"
   },
   "entry": {
     "via-app": "через <span class=\"app-name\">{{app}}</span>",
