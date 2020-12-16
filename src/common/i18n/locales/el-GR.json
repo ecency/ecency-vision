@@ -54,13 +54,13 @@
   },
   "search": {
     "placeholder": "Αναζήτηση",
-    "placeholder-count": "Search {{n}} posts",
-    "header-tag": "Tags",
-    "header-account": "Users",
-    "header-community": "Communities"
+    "placeholder-count": "Αναζήτηση δημοσιεύσεων",
+    "header-tag": "Ετικέτες",
+    "header-account": "Χρήστες",
+    "header-community": "Κοινότητες"
   },
   "user-nav": {
-    "wallet": "Wallet",
+    "wallet": "Πορτοφόλι",
     "unclaimed-reward-notice": "You have unclaimed rewards",
     "points": "Points",
     "unclaimed-points-notice": "You have unclaimed points",
@@ -124,122 +124,122 @@
   "entry-reblog": {
     "reblog": "Reblog",
     "confirm-title": "Reblog to @{{n}}'s blog?",
-    "confirm-ok": "Reblog",
-    "success": "Reblogged!"
+    "confirm-ok": "Αναδημοσίευση",
+    "success": "Αναδημοσιεύτηκε!"
   },
   "entry-payout": {
-    "pending-payout": "Pending Payout",
-    "promoted": "Promoted",
-    "author-payout": "Author Payout",
-    "curators-payout": "Curators Payout",
-    "payout-date": "Payout",
-    "beneficiary": "Beneficiary",
-    "breakdown": "Breakdown"
+    "pending-payout": "Εκκρεμής Πληρωμή",
+    "promoted": "Προωθούμενα",
+    "author-payout": "Πληρωμή Δημιουργού",
+    "curators-payout": "Πληρωμή Επιμελητή",
+    "payout-date": "Πληρωμή",
+    "beneficiary": "Δικαιούχος",
+    "breakdown": "Ανάλυση"
   },
   "entry-index": {
-    "feed": "Feed",
-    "tags": "Popular",
-    "title": "{{f}} topics",
-    "description": "{{f}} topics on a social network owned and operated by its users.",
-    "description-tag": "{{f}} #{{t}} topics",
-    "description-user-feed": "{{u}}'s feed"
+    "feed": "Ροή",
+    "tags": "Δημοφιλή",
+    "title": "θέματα",
+    "description": "θέματα σε ένα κοινωνικό δίκτυο που ανήκουν και χειρίζονται από τους χρήστες του.",
+    "description-tag": "θέματα",
+    "description-user-feed": "ροή"
   },
   "market-data": {
-    "title": "Market price",
-    "credits": "market data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
+    "title": "Τιμή αγοράς",
+    "credits": "δεδομένα αγοράς από Coingecko"
   },
   "list-style": {
-    "title": "Toggle list style"
+    "title": "Αλλαγή στιλ λίστας"
   },
   "entry-votes": {
-    "title": "1 Vote",
-    "title-n": "{{n}} Votes",
-    "title-empty": "No Votes",
-    "voter": "Voter",
-    "percent": "Percent",
-    "reward": "Reward",
-    "time": "Time"
+    "title": "1 ψήφος",
+    "title-n": "Ψήφοι",
+    "title-empty": "Καμία Ψήφος",
+    "voter": "Ψηφοφόρος",
+    "percent": "Ποσοστό",
+    "reward": "Ανταμοιβή",
+    "time": "Ώρα"
   },
   "entry": {
-    "via-app": "via <span class=\"app-name\">{{app}}</span>",
-    "comment-entry-title": "You are viewing a single comment's thread from: ",
-    "comment-entry-go-root": "View the full context",
-    "comment-entry-go-parent": "View the direct parent",
-    "show-history": "Show edit history",
-    "hidden-warning": "This post was hidden due to low ratings."
+    "via-app": "μέσω",
+    "comment-entry-title": "Βλέπετε ένα μοναδικό νήμα απο: ",
+    "comment-entry-go-root": "Δείτε το πλήρες κείμενο",
+    "comment-entry-go-parent": "Δείτε το άμεσο σχόλιο",
+    "show-history": "Προβολή ιστορικού επεξεργασίας",
+    "hidden-warning": "Η δημοσίευση έχει αποκρυφτεί λόγω χαμηλής βαθμολογίας."
   },
   "edit-history": {
-    "title": "Edit History",
-    "show-diff": "Show Difference",
-    "version": "Version {{n}}"
+    "title": "Ιστορικό Επεξεργασίας",
+    "show-diff": "Δείξε Διαφορά",
+    "version": "Εκδοχή"
   },
   "similar-entries": {
-    "title": "Recent posts by @{{n}}"
+    "title": "Πρόσφατες δημοσιεύσεις από @"
   },
   "comment": {
-    "body-placeholder": "Write your reply here",
-    "preview": "Preview"
+    "body-placeholder": "Γράψτε την απάντηση σας εδώ",
+    "preview": "Προεπισκόπηση"
   },
   "discussion": {
     "join": "Join the conversion now",
-    "btn-join": "Join",
-    "replies": "1 Comment",
-    "n-replies": "{{n}} Comments",
-    "order": "Sort Order",
-    "order-trending": "Trending",
-    "order-reputation": "Reputation",
-    "order-votes": "Votes",
-    "order-created": "Age",
-    "read-more": "...read more replies...",
-    "reveal": "Reveal comment"
+    "btn-join": "Συμμετοχή",
+    "replies": "1 Σχόλιο",
+    "n-replies": "Σχόλια",
+    "order": "Σειρά Εμφάνισης",
+    "order-trending": "Δημοφιλή",
+    "order-reputation": "Φήμη",
+    "order-votes": "Ψήφοι",
+    "order-created": "Ηλικία",
+    "read-more": "...διαβάστε περισσότερες απαντήσεις...",
+    "reveal": "Εμφάνιση σχολίου"
   },
   "community": {
-    "page-description": "{{f}} topics",
-    "subscribe": "Join",
-    "subscribed": "Joined",
-    "unsubscribe": "Leave",
-    "post": "New Post",
-    "posts": "Posts",
-    "subscribers": "Members",
-    "activities": "Activities",
-    "roles-title": "User Roles",
-    "roles-account": "Account",
-    "roles-role": "Role",
-    "roles-account-title": "Title",
-    "roles-add": "Add User"
+    "page-description": "θέματα",
+    "subscribe": "Συμμετοχή",
+    "subscribed": "Συμμετέχετε",
+    "unsubscribe": "Φύγετε",
+    "post": "Νέα δημοσίευση",
+    "posts": "Αναρτήσεις",
+    "subscribers": "Μέλη",
+    "activities": "Δραστηριότητες",
+    "roles-title": "Ρόλοι Χρήστη",
+    "roles-account": "Λογαριασμός",
+    "roles-role": "Ρόλος",
+    "roles-account-title": "Τίτλος",
+    "roles-add": "Προσθήκη νέου χρήστη"
   },
   "community-cover": {
-    "rewards": "rewards",
-    "authors": "posters",
-    "lang": "language",
-    "cover-image": "Community cover image",
-    "cover-image-edit": "Edit cover image",
-    "cover-image-updated": "Cover image updated!"
+    "rewards": "ανταμοιβές",
+    "authors": "αφίσες",
+    "lang": "γλώσσα",
+    "cover-image": "Φωτογραφία εξωφύλλου κοινότητας",
+    "cover-image-edit": "Επεξεργαστείτε την φωτογραφία εξωφύλλου",
+    "cover-image-updated": "Η φωτογραφία εξωφύλλου ενημερώθηκε!"
   },
   "community-card": {
-    "description": "Description",
-    "rules": "Rules",
-    "team": "Leadership",
-    "edit": "Edit settings",
-    "edit-team": "Edit roles",
-    "profile-image": "Community profile image",
-    "profile-image-edit": "Edit profile image",
-    "profile-image-updated": "Profile image updated!"
+    "description": "Περιγραφή",
+    "rules": "Κανόνες",
+    "team": "Ηγεσία",
+    "edit": "Επεξεργασία Ιδιοτήτων",
+    "edit-team": "Επεξεργασία ρόλών",
+    "profile-image": "Φωτογραφία προφίλ κοινότητας",
+    "profile-image-edit": "Επεξεργαστείτε την φωτογραφία προφίλ",
+    "profile-image-updated": "Η φωτογραφία προφίλ ενημερώθηκε!"
   },
   "community-role-edit": {
-    "title": "Set user role",
-    "username": "Username",
-    "role": "Role",
-    "user-not-found": "The user does not exist!",
-    "explanations": "<h3>Role Permissions</h3><p><strong>Owner</strong> - assign admins</p><p><strong>Admin</strong> - edit settings, assign mods</p><p><strong>Moderator</strong> - mute, pin, set user titles</p><p><strong>Member</strong> - listed on leadership team</p><p><strong>Guest</strong> - default; can post and comment</p><p><strong>Muted</strong> - new posts automatically muted</p>"
+    "title": "Ορίστε ρόλο χρήστη",
+    "username": "Όνομα Χρήστη",
+    "role": "Ρόλος",
+    "user-not-found": "Ο χρήστης αυτός δεν υπάρχει!",
+    "explanations": "<h3>Εξουσιοδοτήσεις</h3><p><strong>Ρόλων Ιδιοκτήτης</strong> - αναθέστε διαχειριστές</p><p><strong>Διαχειριστής</strong> - επεξεργαστέιτε τις ρυθμίσεις, αναθέστε επόπτες</p><p><strong>Επόπτης</strong> - σίγαση, καρφίτσωμα, ορίστε τίτλους χρηστών</p><p><strong>Μέλη</strong> - έχουν προστεθέι στην ομάδα ηγεσίας</p><p><strong>Επισκέπτης</strong> - προεπιλογή; μπορεί να δημοσιεύσει και να σχολιάσει</p><p><strong>έχει υποστεί σίγαση</strong> - οι νέες δημοσιεύσεις αυτομάτως υποβάλονται σε σίγαση</p>"
   },
   "community-settings": {
-    "dialog-title": "Community Settings",
-    "title": "Title",
-    "about": "About",
-    "lang": "Language",
-    "description": "Description",
-    "rules": "Rules",
+    "dialog-title": "Ρυθμίσεις Κοινότητας",
+    "title": "Τίτλος",
+    "about": "Σχετικά",
+    "lang": "Γλώσσα",
+    "description": "Περιγραφή",
+    "rules": "Κανόνες",
     "rules-help": "One per line"
   },
   "communities": {
@@ -257,64 +257,64 @@
     "create": "Create community"
   },
   "communities-create": {
-    "page-title": "Create a community",
-    "title": "Title",
-    "about": "About",
-    "description": "Create a best, decentralized, immutable, rewarding communities",
-    "fee": "Operation fee",
-    "creator": "Creator",
-    "username": "Owner username",
-    "username-available": "Available.",
-    "username-not-available": "Not available.",
-    "username-wrong-format": "Not a valid format. hive-1xxxxx format required.",
-    "password": "Owner password",
-    "confirmation": "I have securely saved my owner username and password.",
-    "submit": "Create Community",
-    "progress-account": "Creating account...",
-    "progress-user": "Preparing user data...",
-    "progress-role": "Setting @{{u}} as admin...",
-    "progress-props": "Updating community settings...",
-    "done": "Your community was created 🎉",
-    "done-link-label": "Get started."
+    "page-title": "Δημιουργήστε μια κοινότητα",
+    "title": "Τίτλος",
+    "about": "Σχετικά",
+    "description": "Δημιουργήστε μια καλύτερη, αποκεντρωμένη, αμετάβλητη που επιβραβεύει κοινότητα",
+    "fee": "Χρέωση λειτουργίας",
+    "creator": "Δημιουργός",
+    "username": "Όνομα ιδιοκτήτη",
+    "username-available": "Διαθέσιμο.",
+    "username-not-available": "Μη διαθέσιμο.",
+    "username-wrong-format": "Μή έγκυρη μορφή. hive-1xxxxx μορφή απαιτείται.",
+    "password": "Κωδικός ιδιοκτήτη",
+    "confirmation": "Έχω αποθηκεύσει το όνομα ιδιοκτήτη και τον κωδικό μου σε ασφαλές μέρος.",
+    "submit": "Δημιουργήστε κοινότητα",
+    "progress-account": "Δημιουργία λογαριασμού...",
+    "progress-user": "Προετοιμασία δεδομένων χρήστη...",
+    "progress-role": "Ορίστε τον @ ως διαχειριστή...",
+    "progress-props": "Ενημέρωση ρυθμίσεων κοινότητας...",
+    "done": "Η κοινότητα σας δημιουργήθηκε 🎉",
+    "done-link-label": "Ξεκινήστε."
   },
   "pin-btn": {
-    "pin": "Pin",
-    "unpin": "Unpin"
+    "pin": "Καρφιτσώστε",
+    "unpin": "Ξεκαρφιτσώστε"
   },
   "mute-btn": {
-    "mute": "Mute",
-    "unmute": "Unmute",
-    "dialog-title-mute": "Mute post/comment",
-    "dialog-title-unmute": "Unmute post/comment",
-    "notes": "Notes",
-    "note-placeholder-mute": "Provide a note regarding your decision to mute this content.",
-    "note-placeholder-unmute": "Provide a note regarding your decision to unmute this content."
+    "mute": "Σίγαση",
+    "unmute": "Ακύρωση Σίγασης",
+    "dialog-title-mute": "Σίγαση δημοσίευσης/σχολίου",
+    "dialog-title-unmute": "Ακύρωση σίγασης δημοσίευσης/σχολίου",
+    "notes": "Σημειώσεις",
+    "note-placeholder-mute": "Παρέχετε μια σημείωση σχετικά με την απόφαση σας να κάνετε σίγαση σε αυτό το περιεχόμενο.",
+    "note-placeholder-unmute": "Παρέχετε μια σημείωση σχετικά με την απόφαση σας να κάνετε ακύρωση σίγασης σε αυτό το περιεχόμενο."
   },
   "profile": {
-    "voting-power": "Voting Power",
-    "post-count": "Post Count",
-    "followers": "Followers",
-    "following": "Following",
-    "section-blog": "Blog",
-    "section-posts": "Posts",
-    "section-comments": "Comments",
-    "section-replies": "Replies",
-    "section-communities": "Communities",
-    "section-wallet": "Wallet",
-    "section-settings": "Settings",
-    "communities-title": "Membership",
-    "create-community": "Create a community",
-    "witnesses": "Witnesses",
-    "proposals": "Proposals"
+    "voting-power": "Δύναμη ψήφου",
+    "post-count": "Πλήθος αναρτήσεων",
+    "followers": "Ακόλουθοι",
+    "following": "Ακολουθείτε",
+    "section-blog": "Ιστολόγιο",
+    "section-posts": "Δημοσιεύσεις",
+    "section-comments": "Σχόλια",
+    "section-replies": "Απαντήσεις",
+    "section-communities": "Κοινότητες",
+    "section-wallet": "Πορτοφόλι",
+    "section-settings": "Ρυθμίσεις",
+    "communities-title": "Συμμετοχή",
+    "create-community": "Δημιουργήστε μια κοινότητα",
+    "witnesses": "Μάρτυρες",
+    "proposals": "Προτάσεις"
   },
   "profile-edit": {
-    "title": "Profile",
-    "name": "Display Name",
-    "about": "About",
-    "cover-image": "Cover Image",
-    "profile-image": "Profile Image",
-    "website": "Website",
-    "location": "Location",
+    "title": "Προφίλ",
+    "name": "Εμφανιζόμενο όνομα",
+    "about": "Σχετικά",
+    "cover-image": "Εικόνα Εξώφυλλου",
+    "profile-image": "Εικόνα Προφίλ",
+    "website": "Ιστοσελίδα",
+    "location": "Τοποθεσία",
     "updated": "Profile updated successfully!"
   },
   "image-upload-button": {
@@ -375,8 +375,8 @@
     "reblog-desc": "  Share what post you like with your friends and earn 1 points.",
     "login-desc": "When you login into Ecency you are entitled to earn 100 points automatically.",
     "checkin-extra-desc": "Consistent use of app gives you extra chances to earn more 10 points, be more active and earn more.",
-    "delegation-desc": "You can earn ~50 points per day for each 1000HP delegation.",
-    "history": "History",
+    "delegation-desc": "Μπορείς να κερδίσεις ~50 πόντους κάθε μέρα για κάθε 1000HP που εξουσιοδοτείς.",
+    "history": "Ιστορικό",
     "post-list-desc": "Points for post",
     "comment-list-desc": "Points for comment",
     "vote-list-desc": "Points for vote",
