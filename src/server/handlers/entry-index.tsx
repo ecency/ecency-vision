@@ -22,13 +22,16 @@ export default async (req: express.Request, res: express.Response) => {
     const params = filterTagExtract(req.originalUrl.split("?")[0])!;
     const {filter, tag} = params;
 
+    const state = await makePreloadedState(req);
+    const observer = state.activeUser?.username || "";
+
     let entries: Entry[];
 
     try {
         if (filter === "feed") {
-            entries = (await bridgeApi.getAccountPosts(filter, tag.replace("@", ""), "", "", 8)) || [];
+            entries = (await bridgeApi.getAccountPosts(filter, tag.replace("@", ""), "", "", 8, observer)) || [];
         } else {
-            entries = (await bridgeApi.getPostsRanked(filter, "", "", 8, tag)) || [];
+            entries = (await bridgeApi.getPostsRanked(filter, "", "", 8, tag, observer)) || [];
         }
     } catch (e) {
         entries = [];
@@ -47,7 +50,6 @@ export default async (req: express.Request, res: express.Response) => {
         }
     }
 
-    const state = await makePreloadedState(req);
 
     const preLoadedState: AppState = {
         ...state,
@@ -68,6 +70,12 @@ export default async (req: express.Request, res: express.Response) => {
                 hasMore: true,
             }
         }
+    }
+
+    // No active user but requesting special "my" filter
+    if (preLoadedState.activeUser === null && preLoadedState.global.tag === "my") {
+        res.redirect(`/`);
+        return;
     }
 
     res.send(render(req, preLoadedState));

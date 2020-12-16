@@ -21,7 +21,7 @@ exports[`(1) Render with loaded account object 1`] = `
       onClick={[Function]}
       type="button"
     >
-      Subscribe
+      Join
     </button>
     <button
       className="btn btn-primary"
@@ -46,7 +46,7 @@ exports[`(1) Render with loaded account object 1`] = `
       <div
         className="stat-label"
       >
-        Subscribers
+        Members
       </div>
     </div>
     <div
@@ -114,7 +114,7 @@ exports[`(2) Render with not loaded account object 1`] = `
       onClick={[Function]}
       type="button"
     >
-      Subscribe
+      Join
     </button>
     <button
       className="btn btn-primary"
@@ -139,7 +139,7 @@ exports[`(2) Render with not loaded account object 1`] = `
       <div
         className="stat-label"
       >
-        Subscribers
+        Members
       </div>
     </div>
     <div
@@ -211,7 +211,7 @@ exports[`(3) No bg image - Day theme 1`] = `
       onClick={[Function]}
       type="button"
     >
-      Subscribe
+      Join
     </button>
     <button
       className="btn btn-primary"
@@ -236,7 +236,7 @@ exports[`(3) No bg image - Day theme 1`] = `
       <div
         className="stat-label"
       >
-        Subscribers
+        Members
       </div>
     </div>
     <div
@@ -308,7 +308,7 @@ exports[`(4) No bg image - Night theme 1`] = `
       onClick={[Function]}
       type="button"
     >
-      Subscribe
+      Join
     </button>
     <button
       className="btn btn-primary"
@@ -333,7 +333,7 @@ exports[`(4) No bg image - Night theme 1`] = `
       <div
         className="stat-label"
       >
-        Subscribers
+        Members
       </div>
     </div>
     <div
