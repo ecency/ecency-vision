@@ -1,6 +1,6 @@
 {
   "g": {
-    "add": "Add",
+    "add": "Додати",
     "edit": "Редагувати",
     "search": "Шукати",
     "downloads": "Завантажень",
@@ -56,7 +56,7 @@
   },
   "search": {
     "placeholder": "Пошук",
-    "placeholder-count": "Search {{n}} posts",
+    "placeholder-count": "Пошук {{n}} дописів",
     "header-tag": "Мітки",
     "header-account": "Користувачі",
     "header-community": "Спільноти"
@@ -65,7 +65,7 @@
     "wallet": "Гаманець",
     "unclaimed-reward-notice": "У вас є не зараховані винагороди",
     "points": "Бали",
-    "unclaimed-points-notice": "You have unclaimed points",
+    "unclaimed-points-notice": "У вас є не зараховані подарункові бали",
     "notifications": "Сповіщення",
     "profile": "Профіль",
     "gallery": "Галерея",
@@ -89,7 +89,7 @@
     "with-hive-signer": "Увійти за допомогою hivesigner",
     "with-keychain": "Увійти через KeyChain",
     "sign-up-text-1": "Ще не зареєстровані?",
-    "sign-up-text-2": "Sign up now!"
+    "sign-up-text-2": "Зареєструйтеся зараз!"
   },
   "sign-up": {
     "header": "Sign Up",
