@@ -91,7 +91,7 @@ export class Subscribers extends Component<Props, State> {
 
                 return getAccounts(usernames).then(accounts => {
                     const minifiedAccounts: MinifiedAccount[] = accounts.map(x => ({name: x.name, reputation: x.reputation}));
-                    this.stateSet({subscribers, accounts: accounts});
+                    this.stateSet({subscribers, accounts: minifiedAccounts});
                 });
             }
             return null;

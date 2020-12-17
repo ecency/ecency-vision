@@ -1,37 +1,28 @@
 export default (input: string | number): number => {
+    if (typeof input === 'number' && (input > 0 && input <= 100)) {
+        return Math.floor(input);
+    }
 
-  if(typeof input === 'string'){
-    input = Number(input);
-  }
-  
-  if (isFloat(input)) {
-    return Math.floor(input);
-  }
-  
-  if (input === 0) {
-    return 25;
-  }
+    if (typeof input === 'string') {
+        input = Number(input);
+    }
 
-  if (!input) {
-    return input;
-  }
+    if (input === 0) {
+        return 25;
+    }
 
-  let neg = false;
+    let neg = false;
 
-  if (input < 0) neg = true;
+    if (input < 0) neg = true;
 
-  let reputationLevel = Math.log10(Math.abs(input));
-  reputationLevel = Math.max(reputationLevel - 9, 0);
+    let reputationLevel = Math.log10(Math.abs(input));
+    reputationLevel = Math.max(reputationLevel - 9, 0);
 
-  if (reputationLevel < 0) reputationLevel = 0;
+    if (reputationLevel < 0) reputationLevel = 0;
 
-  if (neg) reputationLevel *= -1;
+    if (neg) reputationLevel *= -1;
 
-  reputationLevel = reputationLevel * 9 + 25;
+    reputationLevel = reputationLevel * 9 + 25;
 
-  return Math.floor(reputationLevel);
+    return Math.floor(reputationLevel);
 };
-
-function isFloat(n: string | number) {
-  return Number(n) === n && n % 1 !== 0;
-}
