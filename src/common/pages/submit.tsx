@@ -542,8 +542,15 @@ class SubmitPage extends Component<Props, State> {
                                 ...this.props,
                                 activeUser,
                                 tags,
-                                onSelect: (name) => {
-                                    console.log(name);
+                                onSelect: (prev, next) => {
+                                    const {tags} = this.state;
+
+                                    const newTags = [
+                                        ...[next ? next : ""],
+                                        ...tags.filter(x => x !== prev)
+                                    ].filter(x => x);
+
+                                    this.tagsChanged(newTags);
                                 }
                             })}
                         </div>}

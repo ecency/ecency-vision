@@ -171,7 +171,7 @@ interface Props {
     global: Global;
     activeUser: ActiveUser;
     tags: string[],
-    onSelect: (name: string | null) => void
+    onSelect: (prev: string | null, next: string | null) => void;
 }
 
 interface State {
@@ -207,7 +207,7 @@ export class CommunitySelector extends Component<Props, State> {
         }
     };
 
-    communityFromTags = async (): Promise<Community | null> => {
+    extractCommunityName = (): string | null => {
         const {tags} = this.props;
         const [tag,] = tags;
 
@@ -219,19 +219,25 @@ export class CommunitySelector extends Component<Props, State> {
             return null;
         }
 
+        return tag;
+    }
+
+    detectCommunity = async () => {
+        const name = this.extractCommunityName();
+
+        if (!name) {
+            this.stateSet({community: null});
+            return
+        }
+
         let community: Community | null;
 
         try {
-            community = await getCommunity(tag);
+            community = await getCommunity(name);
         } catch (e) {
             community = null;
         }
 
-        return community;
-    }
-
-    detectCommunity = async () => {
-        const community = await this.communityFromTags();
         this.stateSet({community});
     }
 
@@ -241,7 +247,7 @@ export class CommunitySelector extends Component<Props, State> {
     }
 
     render() {
-        const {activeUser} = this.props;
+        const {activeUser, onSelect} = this.props;
         const {community, visible} = this.state;
 
         let content;
@@ -266,7 +272,10 @@ export class CommunitySelector extends Component<Props, State> {
             {visible && (
                 <Modal onHide={this.toggle} show={true} centered={true} animation={false} className="community-selector-modal">
                     <Modal.Body>
-                        <Browser {...this.props} onHide={this.toggle}/>
+                        <Browser {...this.props} onHide={this.toggle} onSelect={(name: string | null) => {
+                            const prev = this.extractCommunityName();
+                            onSelect(prev, name);
+                        }}/>
                     </Modal.Body>
                 </Modal>
             )}
