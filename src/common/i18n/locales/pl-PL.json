@@ -88,7 +88,7 @@
     "error-authenticate": "Nieprawidłowy klucz prywatny. Wymagany jest główny lub aktywny klucz prywatny.",
     "with-hive-signer": "Zaloguj się przez hivesigner",
     "with-keychain": "Zaloguj z KeyChain",
-    "sign-up-text-1": "Nie masz jeszcze konta?",
+    "sign-up-text-1": "Nie masz konta?",
     "sign-up-text-2": "Zarejestruj się teraz!"
   },
   "sign-up": {
@@ -177,7 +177,7 @@
     "version": "Wersja {{n}}"
   },
   "similar-entries": {
-    "title": "Ostatnie posty od @{{n}}"
+    "title": "Ostatnie posty użytkownika @{{n}}"
   },
   "comment": {
     "body-placeholder": "Napisz swoją odpowiedź tutaj",
@@ -632,14 +632,14 @@
     "title": "Search",
     "description": "Znajdź niecenzurowane treści, społeczności i użytkowników",
     "n-results-for-q": "{{n}} results",
-    "no-result": "No result",
-    "sort-by": "sort by",
-    "sort-popularity": "Popularity",
-    "sort-relevance": "Relevance",
+    "no-result": "Brak wyników",
+    "sort-by": "sortuj według",
+    "sort-popularity": "Popularność",
+    "sort-relevance": "Trafność",
     "sort-newest": "Date"
   },
   "witnesses": {
-    "page-title": "Witnesses",
+    "page-title": "Delegaci",
     "page-description": "Consensus block producers selection",
     "page-description-long": "Role of witnesses or block producers in Hive blockchain is to act as the network's governance body. Community elects them to represent their voice and each user can elect up to 30 witnesses. Top 20 witnesses are producing blocks every minute while rest remain as backup witness and gets randomized chance every minute. This role is integral part of consensus mechanism blockchain runs on and recommend user engagement to vote on trusted witnesses.",
     "remaining": "<span>{{n}}</span> of {{max}} votes remaining",
@@ -686,13 +686,13 @@
     "title": "Drafts"
   },
   "bookmarks": {
-    "title": "Bookmarks"
+    "title": "Zakładki"
   },
   "favorites": {
-    "title": "Favorites"
+    "title": "Ulubione"
   },
   "scroll-to-top": {
-    "title": "Scroll to Top"
+    "title": "Powrót do góry"
   },
   "static": {
     "about": {
@@ -708,7 +708,7 @@
     },
     "faq": {
       "page-title": "Ecency FAQ",
-      "page-sub-title": "Table of Contents",
+      "page-sub-title": "Spis treści",
       "what-is-ecency-header": "What is Ecency?",
       "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based social network - powered by <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency offers uncensored, free, limitless, rewarding platform for content creators.</p><p>Project was initiated and founded by <a href=\"/@good-karma\">@good-karma</a> in August 2016 as an alternative social network. Since then project has grown to much larger group of contributors (translators, testers, developers, influencers, content creators and consumers) who helped to shape Ecency.</p><p>Ecency helps onboarding masses into Blockchain technology where users are getting paid for their time, resources and learn while enjoying social aspects of blockchain. Through ease of use, users not only learn but also become investors, innovators of the technology and community.</p>",
       "what-is-hive-header": "What is Hive blockchain?",
