@@ -41,14 +41,14 @@
     "filter-payout": "Payouts",
     "filter-muted": "Muted",
     "filter-feed": "Стрічка",
-    "filter-feed-friends": "Friends",
+    "filter-feed-friends": "Друзі",
     "filter-feed-subscriptions": "Communities"
   },
   "navbar": {
     "discover": "Discover",
     "communities": "Спільноти",
     "about": "Про застосунок",
-    "faq": "FAQ",
+    "faq": "ЧаПи",
     "post": "Створити допис",
     "day-theme": "Day Theme",
     "night-theme": "Темна тема",
@@ -158,7 +158,7 @@
     "title-n": "{{n}} Голосів",
     "title-empty": "Немає голосів",
     "sort": "Sort",
-    "sort-reward": "Reward",
+    "sort-reward": "Винагорода",
     "sort-timestamp": "Час",
     "sort-reputation": "Репутація",
     "sort-percent": "Percentage"
@@ -192,9 +192,9 @@
     "order-trending": "Популярне",
     "order-reputation": "Репутація",
     "order-votes": "Голоси",
-    "order-created": "Age",
-    "read-more": "...read more replies...",
-    "reveal": "Reveal comment"
+    "order-created": "Вік",
+    "read-more": "...читайте більше відповідей...",
+    "reveal": "Показати коментар"
   },
   "community": {
     "page-description": "{{f}} topics",
@@ -221,10 +221,10 @@
   },
   "community-card": {
     "description": "Опис",
-    "rules": "Rules",
+    "rules": "Правила",
     "team": "Лідерство",
-    "edit": "Edit settings",
-    "edit-team": "Edit roles",
+    "edit": "Редагувати налаштування",
+    "edit-team": "Змінити ролі",
     "profile-image": "Community profile image",
     "profile-image-edit": "Edit profile image",
     "profile-image-updated": "Profile image updated!"
@@ -251,7 +251,7 @@
     "n-subscribers": "{{n}} учасників",
     "n-authors": "{{n}} posters",
     "n-posts": "{{n}} posts",
-    "admins": "admins:",
+    "admins": "адміни:",
     "sort-hot": "Актуальне",
     "sort-rank": "Рейтинг",
     "sort-subs": "Учасники",
@@ -345,7 +345,7 @@
     "next-power-down-amount": "Next power down amount",
     "hive-power-total": "Total Hive Power",
     "hive-dollars": "HIVE DOLLARS",
-    "hive-dollars-description": "Tokens worth about $1.00 of HIVE.",
+    "hive-dollars-description": "Токени вартістю близько $1.00 у HIVE.",
     "savings": "SAVINGS",
     "savings-description": "Баланс для якого діє 3-денний період очікування при знятті коштів.",
     "next-power-down": "Наступний час зменшення сили {{time}}, {{amount}}",
@@ -379,7 +379,7 @@
     "login-desc": "When you login into Ecency you are entitled to earn 100 points automatically.",
     "checkin-extra-desc": "Consistent use of app gives you extra chances to earn more 10 points, be more active and earn more.",
     "delegation-desc": "You can earn ~50 points per day for each 1000HP delegation.",
-    "history": "History",
+    "history": "Історія",
     "post-list-desc": "Points for post",
     "comment-list-desc": "Points for comment",
     "vote-list-desc": "Points for vote",
@@ -393,8 +393,8 @@
     "referral-list-desc": "Referral reward",
     "transfer": "Gift to someone",
     "claim-ok": "Points claimed",
-    "promote": "Promote",
-    "boost": "Boost"
+    "promote": "Просувати",
+    "boost": "Підсилити"
   },
   "purchase": {
     "select-asset": "Select Asset",
@@ -402,9 +402,9 @@
     "submit": "Purchase"
   },
   "promote": {
-    "title": "Promote",
-    "sub-title": "Promote your post",
-    "duration": "Duration"
+    "title": "Просувати",
+    "sub-title": "Просувати ваш допис",
+    "duration": "Тривалість"
   },
   "boost": {
     "title": "Boost",
@@ -413,8 +413,8 @@
     "slider-hint": "Drag the slider to adjust the amount."
   },
   "redeem-common": {
-    "balance": "Balance",
-    "post": "Post",
+    "balance": "Баланс",
+    "post": "Допис",
     "post-hint": "Autocomplete input",
     "post-placeholder": "username/permlink",
     "post-error": "Not a valid post address",
