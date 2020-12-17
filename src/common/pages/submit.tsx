@@ -310,6 +310,13 @@ class SubmitPage extends Component<Props, State> {
     };
 
     tagsChanged = (tags: string[]): void => {
+        if (isEqual(this.state.tags, tags)) {
+            // tag selector calls onchange event 2 times on each change.
+            // one for add event one for sort event.
+            // important to check if tags really changed.
+            return;
+        }
+
         this.stateSet({tags}, () => {
             this.updatePreview();
         });
