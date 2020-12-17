@@ -1,6 +1,6 @@
 {
   "g": {
-    "add": "Add",
+    "add": "Добавить",
     "edit": "Изменить",
     "search": "Поиск",
     "downloads": "Загрузки",
@@ -25,8 +25,8 @@
     "show": "Показать",
     "on": "Вкл",
     "off": "Выкл",
-    "yes": "Yes",
-    "no": "No"
+    "yes": "Да",
+    "no": "Нет"
   },
   "confirm": {
     "title": "Вы уверены?",
@@ -41,8 +41,8 @@
     "filter-payout": "Выплаты",
     "filter-muted": "Игнорируется",
     "filter-feed": "Лента",
-    "filter-feed-friends": "Friends",
-    "filter-feed-subscriptions": "Communities"
+    "filter-feed-friends": "Друзья",
+    "filter-feed-subscriptions": "Сообщества"
   },
   "navbar": {
     "discover": "Подборка",
@@ -157,8 +157,8 @@
     "title": "1 Голос",
     "title-n": "{{n}} Голосов",
     "title-empty": "Нет Голосов",
-    "sort": "Sort",
-    "sort-reward": "Reward",
+    "sort": "Сортировать",
+    "sort-reward": "Награда",
     "sort-timestamp": "Time",
     "sort-reputation": "Reputation",
     "sort-percent": "Percentage"
