@@ -36,6 +36,7 @@ import NavBarElectron from "../../desktop/app/components/navbar";
 import FullHeight from "../components/full-height";
 import EditorToolbar from "../components/editor-toolbar";
 import TagSelector from "../components/tag-selector";
+import CommunitySelector from "../components/community-selector";
 import Tag from "../components/tag";
 import LoginRequired from "../components/login-required";
 import WordCount from "../components/word-counter";
@@ -516,7 +517,7 @@ class SubmitPage extends Component<Props, State> {
             description: _t("submit.page-description"),
         };
 
-        const {global} = this.props;
+        const {global, activeUser} = this.props;
 
         const canPublish = title.trim() !== "" && tags.length > 0 && tags.length <= 10 && body.trim() !== "";
         const spinner = <Spinner animation="grow" variant="light" size="sm" style={{marginRight: "6px"}}/>;
@@ -536,6 +537,16 @@ class SubmitPage extends Component<Props, State> {
 
                 <div className="app-content submit-page">
                     <div className="editor-side">
+                        {activeUser && <div className="community-input">
+                            {CommunitySelector({
+                                ...this.props,
+                                activeUser,
+                                tags,
+                                onSelect: (name) => {
+                                    console.log(name);
+                                }
+                            })}
+                        </div>}
                         {EditorToolbar({...this.props})}
                         <div className="title-input">
                             <Form.Control

@@ -17,6 +17,7 @@
     overflow: hidden;
     height: 400px;
     margin-bottom: 20px;
+    position: relative;
 
     @media (min-width: $lg-break) {
       height: 100%;
@@ -42,6 +43,13 @@
   }
 
   .editor-side {
+    .community-input {
+      height: 44px;
+      padding-left: 10px;
+      display: flex;
+      align-items: center;
+    }
+
     .title-input,
     .body-input,
     .tag-input {
@@ -57,6 +65,7 @@
         }
       }
     }
+
 
     .title-input {
       .form-control {

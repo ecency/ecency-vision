@@ -568,6 +568,10 @@
     "suggestion-header": "Tags",
     "error-max": "Max {{n}} tags"
   },
+  "community-selector": {
+    "my-blog": "My Blog",
+    "search-placeholder": "Search Communities"
+  },
   "word-count": {
     "label": "{{n}} words",
     "read-time-less-1-min": "< 1 min read",
