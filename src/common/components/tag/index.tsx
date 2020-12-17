@@ -47,7 +47,7 @@ export class TagLink extends Component<Props> {
     componentDidMount(): void {
         const {tag} = this.props;
 
-        if (tag.startsWith("hive-")) {
+        if (tag.match(/^hive-\d+/)) {
             if (cache[tag] === undefined) {
                 getCommunity(tag).then((c) => {
                     if (c) {
