@@ -418,7 +418,7 @@
     "post-hint": "Autocomplete input",
     "post-placeholder": "username/permlink",
     "post-error": "Not a valid post address",
-    "post-error-exists": "The post is already promoted",
+    "post-error-exists": "Допис вже просувають",
     "success-message": "Your request submitted. It will be activated in a couple minutes."
   },
   "transfer": {
@@ -441,7 +441,7 @@
     "to": "Кому",
     "to-placeholder": "ім'я користувача",
     "to-not-found": "Користувача, якому ви намагаєтеся переказати кошти, не існує!",
-    "to-bad-actor": "Use caution sending to this account. Please double check your spelling for possible phishing.",
+    "to-bad-actor": "Будьте обережні, відправляючи на цей рахунок. Будь ласка, перевірте правильність написання, щоб уникнути можливого фішингу.",
     "amount": "Amount",
     "amount-placeholder": "amount",
     "wrong-amount": "Wrong amount value",
@@ -449,8 +449,8 @@
     "balance": "Баланс",
     "power-down-estimated": "+ {{n}} Estimated Weekly",
     "memo": "Memo",
-    "memo-placeholder": "enter your notes here",
-    "memo-help": "This memo is public",
+    "memo-placeholder": "введіть сюди свої примітки",
+    "memo-help": "Ця примітка є публічною",
     "available-hp-hint": "* available hive power",
     "confirm-title": "Підтвердіть ваш переказ",
     "confirm-sub-title": "Please, check if everything is correct",
@@ -462,7 +462,7 @@
     "convert-summary": "<span class=\"amount\">{{amount}}</span> конвертовано",
     "power-up-summary": "<span class=\"amount\">{{amount}}</span> staked from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "delegate-summary": "Делеговано <span class=\"amount\">{{amount}}</span> від <span class=\"from-user\">{{from}}</span> до <span class=\"to-user\">{{to}}</span>",
-    "power-down-summary": "Power down completed as <span class=\"amount\">{{amount}}</span>",
+    "power-down-summary": "Зменшення сили було завершено як <span class=\"amount\">{{amount}}</span>",
     "reset": "Скинути",
     "powering-down": "Ви зараз зменшує вашу силу голосу.",
     "stop-power-down": "Зупинити"
@@ -501,17 +501,17 @@
   "friends": {
     "followers": "Читачів ({{n}})",
     "following": "Following ({{n}})",
-    "search-placeholder": "Search users"
+    "search-placeholder": "Пошук користувачів"
   },
   "follow-controls": {
-    "follow": "Follow",
-    "unFollow": "Unfollow",
-    "mute": "Mute",
-    "unMute": "Unmute"
+    "follow": "Слідкувати",
+    "unFollow": "Припинити слідкувати",
+    "mute": "Ігнорувати",
+    "unMute": "Не ігнорувати"
   },
   "favorite-btn": {
-    "add": "Add to favorites",
-    "added": "Added to favorites",
+    "add": "Додати до обраного",
+    "added": "Додано до обраного",
     "delete": "Видалити з обраного",
     "deleted": "Видалено з обраного"
   },
@@ -537,40 +537,40 @@
   },
   "emoji-picker": {
     "filter-placeholder": "Фільтр",
-    "filter-no-match": "No match",
+    "filter-no-match": "Жодного збігу",
     "recently-used": "Нещодавно використані"
   },
   "submit": {
     "page-title": "Створити допис",
-    "page-description": "Publish an article, earn reward, uncensored, immutable, decentralized content!",
+    "page-description": "Опублікуйте статтю, заробіть винагороду, без цензури, незмінний, децентралізований вміст!",
     "title-placeholder": "Заголовок",
     "body-placeholder": "Вміст допису",
     "reward": "Винагорода",
     "reward-default": "Стандарт 50% / 50%",
     "reward-sp": "Power Up 100%",
     "reward-dp": "Decline Payout",
-    "preview": "Preview",
-    "publish": "Publish",
-    "update": "Update",
-    "save-draft": "Save Draft",
-    "draft-saved": "Draft saved",
-    "update-draft": "Update Draft",
-    "draft-updated": "Draft updated",
+    "preview": "Попередній перегляд",
+    "publish": "Опублікувати",
+    "update": "Оновити",
+    "save-draft": "Зберегти чернетку",
+    "draft-saved": "Чернетку збережено",
+    "update-draft": "Оновлення чернетки",
+    "draft-updated": "Чернетку оновлено",
     "cancel-update": "Скасувати",
     "clear": "Очистити",
     "published": "Допис опубліковано",
     "updated": "Допис оновлено"
   },
   "tag-selector": {
-    "placeholder-empty": "Tags. First tag is main category. Sortable.",
+    "placeholder-empty": "Теги. Першим тегом є основна категорія, а наступні є для сортування.",
     "placeholder-focus": "Enter tag",
-    "placeholder-has-tags": "Add More",
-    "suggestion-header": "Tags/Communities",
-    "error-max": "Max {{n}} tags"
+    "placeholder-has-tags": "Додати більше",
+    "suggestion-header": "Теги/Спільноти",
+    "error-max": "Максимум {{n}} тегів"
   },
   "word-count": {
-    "label": "{{n}} words",
-    "read-time-less-1-min": "< 1 min read",
+    "label": "{{n}} слів",
+    "read-time-less-1-min": "< 1 хв. приблизно читати",
     "read-time-n-min": "~ {{n}} min read"
   },
   "notification": {
@@ -585,11 +585,11 @@
   },
   "notifications": {
     "type-all": "All Notifications",
-    "type-all-short": "All",
-    "type-rvotes": "Votes",
-    "type-replies": "Replies",
-    "type-mentions": "Mentions",
-    "type-follows": "Follows",
+    "type-all-short": "Усi",
+    "type-rvotes": "Голоси",
+    "type-replies": "Відповіді",
+    "type-mentions": "Згадування",
+    "type-follows": "Слідкують",
     "type-reblogs": "Reblogs",
     "type-transfers": "Transfers",
     "vote-str": "{{p}}% likes your post:",
@@ -599,47 +599,47 @@
     "unfollowed-str": "unfollowed",
     "ignored-str": "ignored",
     "reblog-str": "reblogged your post:",
-    "transfer-str": "sent you",
+    "transfer-str": "відправив вам",
     "spin-str": "Time to earn more Points, Play Spin on Ecency Mobile app",
     "inactive-str": "Be active! Write a post, continue earning",
     "referral-str": "joined with your referral, welcome them",
-    "refresh": "Refresh",
-    "mark-all-read": "Mark All as Read",
-    "mark-read": "Mark as Read",
+    "refresh": "Оновити",
+    "mark-all-read": "Позначити все як прочитане",
+    "mark-read": "Позначити як прочитане",
     "mute": "Вимкнути сповіщення",
     "unmute": "Увімкнути сповіщення"
   },
   "leaderboard": {
-    "title": "Leaderboard",
-    "title-day": "Daily top users",
-    "title-week": "Weekly top users",
-    "title-month": "Monthly top users",
+    "title": "Дошка лідерів",
+    "title-day": "Щоденний топ користувачів",
+    "title-week": "Щотижневий топ користувачів",
+    "title-month": "Щомісячний топ користувачів",
     "period-day": "Щодня",
     "period-week": "Щотижня",
     "period-month": "Щомісяця",
     "header-score": "Події",
     "header-score-tip": "Post + comments made by a user for selected period",
-    "header-reward": "Reward"
+    "header-reward": "Винагорода"
   },
   "popular-users": {
-    "title": "Popular Users"
+    "title": "Популярні користувачі"
   },
   "discover": {
     "title": "Discover",
-    "description": "Discover top online users"
+    "description": "Відкрийте для себе найкращих користувачів онлайн"
   },
   "search-page": {
-    "title": "Search",
+    "title": "Пошук",
     "description": "Find uncensored content, communities and users",
     "n-results-for-q": "{{n}} results",
     "no-result": "Без результату",
     "sort-by": "сортувати за",
-    "sort-popularity": "Popularity",
-    "sort-relevance": "Relevance",
+    "sort-popularity": "Популярність",
+    "sort-relevance": "Актуальні",
     "sort-newest": "Дата"
   },
   "witnesses": {
-    "page-title": "Witnesses",
+    "page-title": "Свідки",
     "page-description": "Consensus block producers selection",
     "page-description-long": "Role of witnesses or block producers in Hive blockchain is to act as the network's governance body. Community elects them to represent their voice and each user can elect up to 30 witnesses. Top 20 witnesses are producing blocks every minute while rest remain as backup witness and gets randomized chance every minute. This role is integral part of consensus mechanism blockchain runs on and recommend user engagement to vote on trusted witnesses.",
     "remaining": "<span>{{n}}</span> of {{max}} votes remaining",
@@ -663,33 +663,33 @@
     "page-description": "The Decentralized Hive Fund (DHF) is an on-chain funding mechanism that allows anyone to submit a proposal and get funding once community votes pass certain threshold. To learn more read our <a href=\"/faq#how-dhf-work\">FAQ</a>.",
     "by": "by",
     "for": "for",
-    "duration-days": "{{n}} days",
-    "daily-pay": "Daily {{n}}",
-    "votes": "Votes: {{n}}",
-    "status-active": "active",
+    "duration-days": "{{n}} днів",
+    "daily-pay": "Щоденний {{n}}",
+    "votes": "Голоси: {{n}}",
+    "status-active": "активний",
     "status-expired": "expired",
     "status-inactive": "upcoming",
     "remaining-days": "Remaining: {{n}} days",
-    "filter-all": "All",
+    "filter-all": "Усi",
     "filter-active": "Active",
     "filter-inactive": "Upcoming",
     "filter-team": "Ecency Projects",
     "return-description": "This is the base return proposal. Every proposal with less votes will not receive funds.",
     "votes-dialog-title": "Votes on Proposal #{{n}}",
-    "see-all": "see all proposals"
+    "see-all": "переглянути усі пропозиції"
   },
   "gallery": {
-    "title": "Gallery",
+    "title": "Галерея",
     "copied": "Copied to clipboard"
   },
   "drafts": {
-    "title": "Drafts"
+    "title": "Чернетки"
   },
   "bookmarks": {
-    "title": "Bookmarks"
+    "title": "Закладки"
   },
   "favorites": {
-    "title": "Favorites"
+    "title": "Обрані"
   },
   "scroll-to-top": {
     "title": "Scroll to Top"
@@ -704,14 +704,14 @@
       "contact-title": "Contacts",
       "contact-blog": "Founder's blog",
       "contact-news": "News on Hive",
-      "contact-email": "Email us"
+      "contact-email": "Напишіть нам"
     },
     "faq": {
-      "page-title": "Ecency FAQ",
+      "page-title": "Ecency ЧаПи",
       "page-sub-title": "Table of Contents",
-      "what-is-ecency-header": "What is Ecency?",
+      "what-is-ecency-header": "Що таке Ecency?",
       "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based social network - powered by <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency offers uncensored, free, limitless, rewarding platform for content creators.</p><p>Project was initiated and founded by <a href=\"/@good-karma\">@good-karma</a> in August 2016 as an alternative social network. Since then project has grown to much larger group of contributors (translators, testers, developers, influencers, content creators and consumers) who helped to shape Ecency.</p><p>Ecency helps onboarding masses into Blockchain technology where users are getting paid for their time, resources and learn while enjoying social aspects of blockchain. Through ease of use, users not only learn but also become investors, innovators of the technology and community.</p>",
-      "what-is-hive-header": "What is Hive blockchain?",
+      "what-is-hive-header": "Що таке Hive блокчейн?",
       "what-is-hive-body": "<p>Hive is a blockchain that was designed to be fast, feeless, decentralized, uncensored platform for Web3.0 applications, with built-in features where stake holders can earn rewards by staking, curating, posting, playing games, trading - all without any middle man (decentralized). Tokens on Hive blockchain called HIVE, HIVE DOLLARS, HIVE POWER.</p>",
       "what-is-difference-header": "What's the difference between Ecency and other Hive interfaces?",
       "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\" loading=\"lazy\"/></p><p>The primary differences in all interfaces or applications are in their feature-set, use cases. Ecency offers website, mobile and desktop applications for ease of access and with best security in mind. Accessible, opensource and innovative, built and owned by users. Aspire for greatness!</p>",
@@ -719,21 +719,21 @@
       "why-choose-ecency-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjrzJAcJ4DvxvtqoPdzS9Aygf4MZ1PeE4goH6zWaeEFvafr9vGXWuou67Pbn44GweMyHV5DupM5q1cRvU85qdver?format=match&mode=fit\" loading=\"lazy\"/></p><p>Tailored feature set to empower you to create, inspire your audience and community. Ecency mobile application giving you on-go solution. With desktop app you are always sure to get uncensored content right from the blockchain, with website reach thousands of readers accross globe with best ranked content on search engines. State of art security measures so your keys will always stay encrypted and out of reach for ill-intentioned individuals. Fast and beautiful website, helps you to get discovered online and gain exposure for your content and gain loyal followers and readers. Build your community with Ecency today and take advantages of emerging blockchain technology and uncensored content, true free speech!</p>",
       "how-ecency-works-header": "How does Ecency work?",
       "how-ecency-works-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjuZ3ksaZqEjfd9GadyKFE4bT7UP8qM1sF5W6U3cst4ekDsXfrQdcrjtdz6b5Ye2AfWNwGA5f8QqVXmed6NRfg1U?format=match&mode=fit\" loading=\"lazy\"/></p><p>Ecency stores and reads data from the blockchain, and thus data is accessible and uncensored. Ecency rewards content creators with built-in incentive mechanism of blockchain, with tokens (HIVE, HIVE DOLLARS, HIVE POWER) as well as Points. Tokens can be purchased and sold in major cryptocurrency exchanges (e.g. Binance, Bittrex). Points could be utilized within platform and traded for goods, services.</p>",
-      "how-to-join-header": "How to join Ecency?",
-      "how-to-join-body": "<p>Go to <a href=\"/?referral=ecency\">https://ecency.com/?referral=ecency</a> and create an account. After signup you will receive email with further instructions. Your password is your master key to your account. Please store it safely, if you loose your password, you ultimately loose access to your account and your funds. Accounts cannot be deactivated or deleted, account names can not be changed as well. The account along with all of its activity is permanently stored in the blockchain. Without password, accounts cannot be restored, store your keys safely.</p>",
-      "how-to-signin-header": "How to sign in to Ecency?",
+      "how-to-join-header": "Як приєднатися до Ecency?",
+      "how-to-join-body": "<p>Перейдіть до <a href=\"/?referral=ecency\">https://ecency.com/?referral=ecency</a> і створіть обліковий запис. Після реєстрації ви отримаєте лист з подальшими інструкціями. Ваш головний ключ \"master key\" — це ваш головний ключ до вашого облікового запису. Будь ласка, збережіть його у безпечному місці, якщо ви втратите пароль, ви зрештою втратите доступ до своєї обліковки та коштів. Облікові записи не можуть бути деактивовані або видалені, імена облікових записів також не можуть бути змінені. Обліковий запис разом з усією його активністю назавжди зберігається в блокчейні. Без пароля облікові записи не можуть бути відновлені, зберігайте ключі безпечно.</p>",
+      "how-to-signin-header": "Як увійти в Ecency?",
       "how-to-signin-body": "<p><img src=\"https://images.ecency.com/p/7258xSVeJbKmTr9Z4jhbPhjS9pMWA2mTwBMDbXqk9G9wdMw2bwR4hXqRQt9S7UBFrBAWCYWddjn3G34ETv5KWB5KGmuZ8ixBB9oKHTFvjjnTkRLp4ttrFQtpgtNnRUEA9NtmyFmgyuuK4?format=match&mode=fit\" loading=\"lazy\"/></p><p>You can sign-in to Ecency by using your Username and Master password or by using Active Private Keys. We take security very seriously, that's why we never store your private keys, on mobile app they are encrypted with extra PIN code of your choice, on website they are never stored. You can also use <a href=\"https://hivesigner.com\">Hivesigner OAuth2</a> authentication service to easily login, manage and perform actions.</p>",
-      "how-referrals-work-header": "How referral system work on Ecency?",
+      "how-referrals-work-header": "Як працює реферальна система на Ecency?",
       "how-referrals-work-body": "<p>Referral system is simple, you can invite your friends by adding your username in this link https://ecency.com/?referral=username and share it with your friends. Once your friends join Ecency and earn their first 250 Points, you will earn 100 Points. There is no limits on referrals and its reward.</p>",
       "what-is-points-header": "What are Ecency Points and how to use them?",
       "what-is-points-body": "<p>Ecency Points are continually minted and rewarded for all users for various social activities they perform on website, mobile or desktop app. Points can be used for promoting, boosting your content, can even be transferred or gifted to another user. You can also purchase Points with our mobile apps.</p>",
       "where-tokens-come-header": "Where do the tokens come from?",
       "where-tokens-come-body": "<p><img src=\"https://images.ecency.com/p/7kq2TLHKEHhCCDwNZLfFLu7msWtbdFb7vZaJJ9Y13GAc18vfVNAj8ZctLWmsVfMCCFtwGdULbZKT89faeBymhPsySU5tp4RnvDsHz6ZBxXHWA4g34ck4LHnR2vGkqsHvjzhizhpV8K6JrQ4sy7cCgJQksUUYPKp4d9XbERHkjnZV3PTdhbiUZPYJ43RS8cQu2sEmUbAgqZExuYMGa46SDa4vCunH2w6oNpommW5L1CCdfwdgX5i9eCpcS5fHo4t8btjVE69edzrUN8anr6T3v8AFYHC?format=match&mode=fit\" loading=\"lazy\"/></p><p>The Hive network continually creates new digital tokens to reward content creators and curators. Some of the newly-created tokens are transferred to users who add value to platform by posting, commenting, and voting on other people's posts. The remainder is distributed to holders of HIVE POWER and the witnesses that secures the blockchain.</p>",
-      "how-promotion-work-header": "How content promotion works?",
+      "how-promotion-work-header": "Яким чином працює просування дописів?",
       "how-promotion-work-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfoi6H93UHPFEEQutPvax8LP1XqGWMa9geug5SBEEhLUEHKVvSyBfzhrBm9J4uvmrn28AtPhmwcKx?format=match&mode=fit\" loading=\"lazy\"/></p><p>Promoting content with Points is easiest way to get more exposure. Promotions have certain time period and shuffled across the feeds. Any post, can be promoted to get more exposure and engagement.</p>",
       "how-boosting-work-header": "How content boosting works?",
       "how-boosting-work-body": "<p>Points can be used for boosting content (post and comments). Boosting requests are manually reviewed by our moderators and curators which might take upto 24 hours. <p>As part of the qualities check, we may consider: a) Content is original content, b) Not detected by cheetah, mackbot, hivewatchers, or any other blacklists etc. c) User is not in Ecency blacklist due to abusive behavior.</p>Boosting does not guarantee curation, if content is not curated within 24 hours Points will be refunded.</p>",
-      "how-to-transfer-header": "How to transfer blockchain tokens?",
+      "how-to-transfer-header": "Як переказувати токени блокчейну?",
       "how-to-transfer-body": "<p>After login, you will find Wallet page in top header on website and desktop app or in Profile page, bottom navigation bar on mobile app. In wallet page you can initiate transfer of any token you hold to another user or exchange accounts, click on arrow next to your balance and find transfer operations. Transfers are irreversible because they are registered on blockchain, make sure to send correct recipient.</p>",
       "how-see-rewards-header": "How do I see my post rewards?",
       "how-see-rewards-body": "<p><img src=\"https://images.ecency.com/p/3W72119s5BjW4PvRk9nXBzqrPWMsMTjNrXDPFFf11iYhySeELMe77idrZHBPmyaqFX6CV72hBLB5qFhwVhGoAATydoFxAF7oCwBt1ztp6eS9r5us4pm7iN?format=match&mode=fit\" loading=\"lazy\"/></p><p>In Wallet page (in top header on website and desktop app, bottom navigation bar on mobile app), you can see Curation rewards (the rewards earned for upvoting posts and comments) and Author rewards (the rewards earned by your own posts and comments)</p><p>You can also view the same information for other users by visiting their wallet profile.</p>",
@@ -755,17 +755,17 @@
   },
   "context-menu": {
     "cut": "Cut",
-    "copy": "Copy",
-    "paste": "Paste",
-    "open-image-browser": "Open image in browser",
-    "copy-image-url": "Copy image url"
+    "copy": "Копіювати",
+    "paste": "Вставити",
+    "open-image-browser": "Відкрити світлину у браузері",
+    "copy-image-url": "Скопіювати url світлини"
   },
   "updater": {
-    "new-version-available": "New version is available",
-    "update": "Update",
-    "dismiss": "Dismiss",
-    "downloading": "Downloading new version...",
-    "download-completed": "Download is completed",
-    "restart": "Restart"
+    "new-version-available": "Доступна нова версія",
+    "update": "Оновити",
+    "dismiss": "Відхилити",
+    "downloading": "Завантаження нової версії...",
+    "download-completed": "Завантаження завершено",
+    "restart": "Перезавантажити"
   }
 }
