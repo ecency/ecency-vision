@@ -94,8 +94,11 @@ class ProposalsPage extends Component<PageProps, State> {
         this.stateSet({loading: true});
         getProposals()
             .then(proposals => {
-                // hide expires proposals
-                return proposals.filter(x => x.status !== "expired");
+                // put expired proposals in the end of the list
+                const expired = proposals.filter(x => x.status === "expired");
+                const others = proposals.filter(x => x.status !== "expired");
+
+                return [...others, ...expired];
             })
             .then(proposals => {
                 // get return proposal's total votes
@@ -134,7 +137,7 @@ class ProposalsPage extends Component<PageProps, State> {
                 proposals = proposals_.filter(x => x.status == "inactive");
                 break;
             case Filter.TEAM:
-                proposals = [...proposals_.filter(x => ["ecency", "good-karma", "hivesearcher", "hivesigner"].includes(x.creator))];
+                proposals = [...proposals_.filter(x => ["ecency", "good-karma", "hivesearcher", "hivesigner"].includes(x.creator) && x.status === "active")];
                 break;
         }
 
