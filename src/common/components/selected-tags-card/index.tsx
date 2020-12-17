@@ -77,7 +77,7 @@ const tags = [
         icon: codeTags
     },
     {
-        label: "TV",
+        label: "Movies & TV",
         tag: "hive-166847",
         icon: televisionSvg
     },

@@ -69,6 +69,7 @@ export const getTrendingTags = (afterTag: string = "", limit: number = 250): Pro
         .then((tags: TrendingTag[]) => {
                 return tags
                     .filter((x) => x.name !== "")
+                    .filter((x) => !(x.name.match(/^hive-\d+/)))
                     .map((x) => x.name)
             }
         );
