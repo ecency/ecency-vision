@@ -157,11 +157,11 @@
     "title": "1 वोट",
     "title-n": "{{n}} पोस्टर",
     "title-empty": "कोई वोट नहीं",
-    "sort": "Sort",
-    "sort-reward": "Reward",
-    "sort-timestamp": "Time",
-    "sort-reputation": "Reputation",
-    "sort-percent": "Percentage"
+    "sort": "क्रम",
+    "sort-reward": "इनाम",
+    "sort-timestamp": "समय",
+    "sort-reputation": "प्रतिष्ठा",
+    "sort-percent": "प्रतिशत"
   },
   "entry": {
     "via-app": "<span class=\"app-name\"> {{app}} </span> के माध्यम से",
