@@ -269,7 +269,7 @@
     "username": "Ім'я користувача власника",
     "username-available": "Available.",
     "username-not-available": "Not available.",
-    "username-wrong-format": "Not a valid format. hive-1xxxxx format required.",
+    "username-wrong-format": "Не припустимий формат. Потрібен формат hive-1xxxx.",
     "password": "Пароль власника",
     "confirmation": "Я безпечно зберіг(-ла) ім'я користувача і пароль власника.",
     "submit": "Створити спільноту",
@@ -286,7 +286,7 @@
   },
   "mute-btn": {
     "mute": "Ігнорувати",
-    "unmute": "Unmute",
+    "unmute": "Скасувати \"ігнор\"",
     "dialog-title-mute": "Ігнорувати допис/коментар",
     "dialog-title-unmute": "Unmute post/comment",
     "notes": "Замітки",
@@ -407,8 +407,8 @@
     "duration": "Тривалість"
   },
   "boost": {
-    "title": "Boost",
-    "sub-title": "Boost your post",
+    "title": "Підсилити",
+    "sub-title": "Підсилити ваш допис",
     "amount": "Amount",
     "slider-hint": "Drag the slider to adjust the amount."
   },
@@ -423,8 +423,8 @@
   },
   "transfer": {
     "transfer-title": "Переказати на рахунок",
-    "transfer-title-point": "Gift to Account",
-    "transfer-sub-title": "Move funds to another Hive account",
+    "transfer-title-point": "Подарувати комусь бали",
+    "transfer-sub-title": "Перевести кошти на іншу Hive обліковку",
     "transfer-saving-title": "Перевести до Заощаджень",
     "transfer-saving-sub-title": "Protect funds by requiring a 3 day withdraw waiting period",
     "withdraw-saving-title": "Savings Withdraw",
