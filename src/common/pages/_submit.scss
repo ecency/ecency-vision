@@ -115,6 +115,10 @@
       padding: 0 8px;
       flex-shrink: 0;
 
+      @media (min-width: $lg-break) {
+        margin-bottom: 36px;
+      }
+
       .preview-header-title {
         color: $dark-sky-blue;
         font-size: 18px;
