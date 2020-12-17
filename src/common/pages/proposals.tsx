@@ -94,6 +94,10 @@ class ProposalsPage extends Component<PageProps, State> {
         this.stateSet({loading: true});
         getProposals()
             .then(proposals => {
+                // hide expires proposals
+                return proposals.filter(x => x.status !== "expired");
+            })
+            .then(proposals => {
                 // get return proposal's total votes
                 const minVotes = Number(proposals.find(x => x.id === 0)?.total_votes || 0);
                 // find eligible proposals and
