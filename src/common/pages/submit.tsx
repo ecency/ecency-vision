@@ -57,6 +57,8 @@ import * as hiveApi from "../api/hive";
 
 import {_t} from "../i18n";
 
+import _c from "../util/fix-class-names"
+
 import * as ls from "../util/local-storage";
 
 import {version} from "../../../package.json";
@@ -535,9 +537,9 @@ class SubmitPage extends Component<Props, State> {
                     }) :
                     NavBar({...this.props})}
 
-                <div className="app-content submit-page">
+                <div className={_c(`app-content submit-page ${editingEntry !== null ? "editing" : ""}`)}>
                     <div className="editor-side">
-                        {activeUser && <div className="community-input">
+                        {(editingEntry === null && activeUser) && <div className="community-input">
                             {CommunitySelector({
                                 ...this.props,
                                 activeUser,
