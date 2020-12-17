@@ -15,6 +15,8 @@ import UserAvatar from "../user-avatar/index";
 
 import {_t} from "../../i18n";
 
+import isCommunity from "../../helper/is-community";
+
 import {getCommunities, getCommunity, getSubscriptions} from "../../api/bridge";
 
 import {menuDownSvg} from "../../img/svg";
@@ -213,7 +215,7 @@ export class CommunitySelector extends Component<Props, State> {
             return null;
         }
 
-        if (!tag.match(/^hive-\d+/)) {
+        if (!isCommunity(tag)) {
             return null;
         }
 
