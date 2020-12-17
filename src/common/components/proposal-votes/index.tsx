@@ -76,7 +76,11 @@ export class ProposalVotesDetail extends Component<Props, State> {
             const voters: Voter[] = resp
                 .map(account => {
                     const hp = (parseAsset(account.vesting_shares).amount * hivePerMVests) / 1e6;
-                    const proxyHp = (parseAsset(account.proxied_vsf_votes![0]).amount * hivePerMVests) / 1e12;
+
+                    let vsfVotes = 0;
+                    account.proxied_vsf_votes.forEach((x: string | number) => vsfVotes += Number(x));
+
+                    const proxyHp = (vsfVotes * hivePerMVests) / 1e12;
                     const totalHp = hp + proxyHp;
 
                     return {

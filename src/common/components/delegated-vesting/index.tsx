@@ -2,171 +2,178 @@ import React, {Component} from "react";
 
 import {History} from "history";
 
-import BootstrapTable from "react-bootstrap-table-next";
-import paginationFactory from "react-bootstrap-table2-paginator";
-
-import {Modal, Spinner} from "react-bootstrap";
+import {Modal} from "react-bootstrap";
 
 import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
+import {ActiveUser} from "../../store/active-user/types";
 
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
+import LinearProgress from "../linear-progress";
+import Tooltip from "../tooltip";
+import KeyOrHotDialog from "../key-or-hot-dialog";
+import {error} from "../feedback";
 
 import {DelegatedVestingShare, getVestingDelegations} from "../../api/hive";
 
+import {
+    delegateVestingShares,
+    delegateVestingSharesHot,
+    delegateVestingSharesKc,
+    formatError
+} from "../../api/operations";
+
 import {_t} from "../../i18n";
 
-import {vestsToSp} from "../../helper/vesting";
+import {vestsToHp} from "../../helper/vesting";
 
 import parseAsset from "../../helper/parse-asset";
 
 import formattedNumber from "../../util/formatted-number";
 
-interface ListProps {
+import _c from "../../util/fix-class-names";
+
+interface Props {
     history: History;
     global: Global;
+    activeUser: ActiveUser | null;
     account: Account;
     dynamicProps: DynamicProps;
+    signingKey: string;
     addAccount: (data: Account) => void;
+    setSigningKey: (key: string) => void;
+    onHide: () => void;
 }
 
-interface ListState {
+interface State {
     loading: boolean;
+    inProgress: boolean;
     data: DelegatedVestingShare[];
+    hideList: boolean;
 }
 
-export class List extends Component<ListProps, ListState> {
-    state: ListState = {
+export class List extends Component<Props, State> {
+    state: State = {
         loading: false,
+        inProgress: false,
         data: [],
+        hideList: false
     };
 
     _mounted: boolean = true;
 
     componentDidMount() {
-        const {account} = this.props;
-
-        this.stateSet({loading: true});
-        getVestingDelegations(account.name, "", 250)
-            .then((data) => {
-                this.setData(data);
-            })
-            .finally(() => {
-                this.stateSet({loading: false});
-            });
+        this.fetch().then();
     }
 
     componentWillUnmount() {
         this._mounted = false;
     }
 
-    stateSet = (obj: {}, cb: () => void = () => {
-    }) => {
+    stateSet = (state: {}, cb?: () => void) => {
         if (this._mounted) {
-            this.setState(obj, cb);
+            this.setState(state, cb);
         }
     };
 
-    setData = (data: DelegatedVestingShare[]) => {
-        data.sort((a, b) => {
-            return parseAsset(b.vesting_shares).amount - parseAsset(a.vesting_shares).amount;
-        });
+    fetch = () => {
+        const {account} = this.props;
+        this.stateSet({loading: true});
 
-        this.stateSet({data});
-    };
+        return getVestingDelegations(account.name, "", 250)
+            .then((r) => {
+                const sorted = r.sort((a, b) => {
+                    return parseAsset(b.vesting_shares).amount - parseAsset(a.vesting_shares).amount;
+                });
+
+                this.stateSet({data: sorted});
+            })
+            .finally(() => this.stateSet({loading: false}));
+    }
 
     render() {
-        const {loading, data} = this.state;
-        const {dynamicProps} = this.props;
-
-        if (loading) {
-            return (
-                <div className="dialog-loading">
-                    <Spinner animation="grow" variant="primary"/>
-                </div>
-            );
-        }
-
+        const {loading, data, hideList, inProgress} = this.state;
+        const {dynamicProps, activeUser, account} = this.props;
         const {hivePerMVests} = dynamicProps;
 
-        const columns = [
-            {
-                dataField: "delegatee",
-                text: "",
-                classes: "delegatee-cell",
-                formatter: (cell: any, row: DelegatedVestingShare) => {
-                    return ProfileLink({
-                        ...this.props,
-                        username: row.delegatee,
-                        children: <span className="account">
-                            {UserAvatar({...this.props, username: row.delegatee, size: "medium"})}
-                            {row.delegatee}
-                        </span>
-                    })
-                },
-            },
-            {
-                dataField: "vesting_shares",
-                text: "",
-                classes: "vesting-shares-cell",
-                sortFunc: (a: string, b: string, order: string) => {
-                    if (order === "asc") {
-                        return parseAsset(a).amount - parseAsset(b).amount;
-                    }
-
-                    return parseAsset(b).amount - parseAsset(a).amount;
-                },
-                formatter: (cell: any, row: DelegatedVestingShare) => {
-                    const vestingShares = parseAsset(row.vesting_shares).amount;
-
-                    return (
-                        <>
-                            {formattedNumber(vestsToSp(vestingShares, hivePerMVests), {suffix: "HP"})} <br/>
-                            <small>{row.vesting_shares}</small>
-                        </>
-                    );
-                },
-            },
-        ];
-
-        const pagination = {
-            sizePerPage: 8,
-            hideSizePerPage: true,
-        };
-
-        const tableProps = {
-            bordered: false,
-            keyField: "delegatee",
-            data,
-            columns,
-            pagination: data.length > pagination.sizePerPage ? paginationFactory(pagination) : undefined,
-        };
-
-        // @ts-ignore this is about the library's defaultSorted typing issue
-        const table = <BootstrapTable {...tableProps} />;
+        if (loading) {
+            return (<div className="delegated-vesting-content">
+                <LinearProgress/>
+            </div>);
+        }
 
         return (
-            <div className="delegated-vesting-content">
-                <div className="table-responsive">{table}</div>
+            <div className={_c(`delegated-vesting-content ${inProgress ? "in-progress" : ""} ${hideList ? "hidden" : ""}`)}>
+                <div className="user-list">
+                    <div className="list-body">
+                        {data.length === 0 && <div className="empty-list">{_t("g.empty-list")}</div>}
+                        {data.map(x => {
+                            const vestingShares = parseAsset(x.vesting_shares).amount;
+                            const {delegatee: username} = x;
+
+                            const deleteBtn = (activeUser && activeUser.username === account.name) ? KeyOrHotDialog({
+                                ...this.props,
+                                activeUser: activeUser,
+                                children: <a href="#" className="undelegate">{_t("delegated-vesting.undelegate")}</a>,
+                                onToggle: () => {
+                                    const {hideList} = this.state;
+                                    this.stateSet({hideList: !hideList});
+                                },
+                                onKey: (key) => {
+                                    this.stateSet({inProgress: true});
+                                    delegateVestingShares(activeUser.username, key, username, "0.000000 VESTS")
+                                        .then(() => this.fetch())
+                                        .catch(err => error(formatError(err)))
+                                        .finally(() => this.stateSet({inProgress: false}))
+                                },
+                                onHot: () => {
+                                    delegateVestingSharesHot(activeUser.username, username, "0.000000");
+                                },
+                                onKc: () => {
+                                    this.stateSet({inProgress: true});
+                                    delegateVestingSharesKc(activeUser.username, username, "0.000000 VESTS")
+                                        .then(() => this.fetch())
+                                        .catch(err => error(formatError(err)))
+                                        .finally(() => this.stateSet({inProgress: false}))
+                                }
+                            }) : null;
+
+                            return <div className="list-item" key={username}>
+                                <div className="item-main">
+                                    {ProfileLink({
+                                        ...this.props,
+                                        username,
+                                        children: <>{UserAvatar({...this.props, username: x.delegatee, size: "small"})}</>
+                                    })}
+                                    <div className="item-info">
+                                        {ProfileLink({
+                                            ...this.props,
+                                            username,
+                                            children: <a className="item-name notransalte">{username}</a>
+                                        })}
+                                    </div>
+                                </div>
+                                <div className="item-extra">
+                                    <Tooltip content={x.vesting_shares}>
+                                        <span>{formattedNumber(vestsToHp(vestingShares, hivePerMVests), {suffix: "HP"})}</span>
+                                    </Tooltip>
+                                    {deleteBtn}
+                                </div>
+                            </div>;
+                        })}
+                    </div>
+                </div>
             </div>
         );
     }
 }
 
-interface Props {
-    history: History;
-    global: Global;
-    dynamicProps: DynamicProps;
-    account: Account;
-    addAccount: (data: Account) => void;
-    onHide: () => void;
-}
 
 export default class DelegatedVesting extends Component<Props> {
     render() {
-        const {account, onHide} = this.props;
+        const {onHide} = this.props;
 
         return (
             <>

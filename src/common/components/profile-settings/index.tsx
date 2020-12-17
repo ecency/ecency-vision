@@ -19,7 +19,7 @@ interface Props {
     muteNotifications: () => void;
     unMuteNotifications: () => void;
     setCurrency: (currency: string, rate: number, symbol: string) => void;
-    setLang: (lang:string) => void;
+    setLang: (lang: string) => void;
 }
 
 export class ProfileSettings extends Component<Props> {
@@ -30,13 +30,12 @@ export class ProfileSettings extends Component<Props> {
         }
     }
 
-
     render() {
         const {activeUser} = this.props;
 
         if (activeUser) {
             return <>
-                {activeUser.data?.profile && <ProfileEdit {...this.props} activeUser={activeUser}/>}
+                {activeUser.data.__loaded && <ProfileEdit {...this.props} activeUser={activeUser}/>}
                 <Preferences {...this.props}  />
             </>
         }

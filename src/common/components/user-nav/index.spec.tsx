@@ -6,10 +6,11 @@ import {createBrowserHistory, createLocation} from "history";
 import UserNav from "./index";
 import renderer from "react-test-renderer";
 
-import {notificationsInstance1, UiInstance, globalInstance, activeUserInstance} from "../../helper/test-helper";
+import {notificationsInstance1, UiInstance, globalInstance, fullAccountInstance, dynamicPropsIntance1} from "../../helper/test-helper";
 
 const defProps = {
     global: globalInstance,
+    dynamicProps: dynamicPropsIntance1,
     history: createBrowserHistory(),
     location: createLocation({}),
     users: [],
@@ -64,11 +65,11 @@ it("(2) Has rewards ", () => {
             activeUser: {
                 username: "foo",
                 data: {
+                    ...fullAccountInstance,
                     name: "foo",
-                    reward_sbd_balance: "0.000 HBD",
+                    reward_hbd_balance: "0.000 HBD",
                     reward_steem_balance: "0.000 HIVE",
-                    reward_vesting_steem: "10.207 HIVE",
-                    __loaded: true,
+                    reward_vesting_hive: "10.207 HIVE"
                 },
                 points: {
                     points: "0.000",

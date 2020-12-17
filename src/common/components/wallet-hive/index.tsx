@@ -19,13 +19,14 @@ import DropDown from "../dropdown";
 import Transfer, {TransferMode, TransferAsset} from "../transfer";
 import {error, success} from "../feedback";
 import WalletMenu from "../wallet-menu";
+import WithdrawRoutes from "../withdraw-routes";
 
-import parseAsset from "../../helper/parse-asset";
-import {vestsToSp} from "../../helper/vesting";
-import parseDate from "../../helper/parse-date";
-import isEmptyDate from "../../helper/is-empty-date";
+import HiveWallet from "../../helper/hive-wallet";
+
+import {vestsToHp} from "../../helper/vesting";
 
 import {getAccount} from "../../api/hive";
+
 import {claimRewardBalance, formatError} from "../../api/operations";
 
 import formattedNumber from "../../util/formatted-number";
@@ -53,6 +54,7 @@ interface State {
     claiming: boolean;
     claimed: boolean;
     transfer: boolean;
+    withdrawRoutes: boolean;
     transferMode: null | TransferMode;
     transferAsset: null | TransferAsset;
 }
@@ -64,6 +66,7 @@ export class WalletHive extends Component<Props, State> {
         claiming: false,
         claimed: false,
         transfer: false,
+        withdrawRoutes: false,
         transferMode: null,
         transferAsset: null
     };
@@ -74,10 +77,9 @@ export class WalletHive extends Component<Props, State> {
         this._mounted = false;
     }
 
-    stateSet = (obj: {}, cb: () => void = () => {
-    }) => {
+    stateSet = (state: {}, cb?: () => void) => {
         if (this._mounted) {
-            this.setState(obj, cb);
+            this.setState(state, cb);
         }
     };
 
@@ -90,6 +92,11 @@ export class WalletHive extends Component<Props, State> {
         const {receivedList} = this.state;
         this.stateSet({receivedList: !receivedList});
     };
+
+    toggleWithdrawRoutes = () => {
+        const {withdrawRoutes} = this.state;
+        this.stateSet({withdrawRoutes: !withdrawRoutes});
+    }
 
     claimRewardBalance = () => {
         const {activeUser, updateActiveUser} = this.props;
@@ -104,8 +111,8 @@ export class WalletHive extends Component<Props, State> {
         return getAccount(activeUser?.username!)
             .then(account => {
                 const {
-                    reward_steem_balance: hiveBalance = account.reward_hive_balance,
-                    reward_sbd_balance: hbdBalance = account.reward_hbd_balance,
+                    reward_hive_balance: hiveBalance = account.reward_hive_balance,
+                    reward_hbd_balance: hbdBalance = account.reward_hbd_balance,
                     reward_vesting_balance: vestingBalance
                 } = account;
 
@@ -137,61 +144,29 @@ export class WalletHive extends Component<Props, State> {
             return null;
         }
 
-        const {hivePerMVests, base, quote} = dynamicProps;
+        const {hivePerMVests} = dynamicProps;
         const isMyPage = activeUser && activeUser.username === account.name;
-
-        const rewardHiveBalance = parseAsset(account.reward_steem_balance || account.reward_hive_balance).amount;
-        const rewardHbdBalance = parseAsset(account.reward_sbd_balance || account.reward_hbd_balance).amount;
-        const rewardVestingHive = parseAsset(account.reward_vesting_steem || account.reward_vesting_hive).amount;
-        const hasUnclaimedRewards = rewardHiveBalance > 0 || rewardHbdBalance > 0 || rewardVestingHive > 0;
-
-        const balance = parseAsset(account.balance).amount;
-
-        const vestingShares = parseAsset(account.vesting_shares).amount;
-        const vestingSharesDelegated = parseAsset(account.delegated_vesting_shares).amount;
-        const vestingSharesReceived = parseAsset(account.received_vesting_shares).amount;
-
-        const hbdBalance = parseAsset(account.sbd_balance || account.hbd_balance).amount;
-        const savingBalance = parseAsset(account.savings_balance).amount;
-        const savingBalanceHbd = parseAsset(account.savings_sbd_balance || account.savings_hbd_balance).amount;
-
-        const pricePerHive = base / quote;
-
-        const totalHive = vestsToSp(vestingShares, hivePerMVests) + balance + savingBalance;
-
-        const totalHbd = hbdBalance + savingBalanceHbd;
-
-        const estimatedValue = totalHive * pricePerHive + totalHbd;
-        const showPowerDown = !isEmptyDate(account.next_vesting_withdrawal);
-        const nextVestingWithdrawal = parseDate(account.next_vesting_withdrawal!);
-
-        // Math.min: 14th week powerdown: https://github.com/steemit/steem/issues/3237
-        // "?:": to_withdraw & withdrawn is integer 0 not string with no powerdown
-        const vestingSharesWithdrawal = showPowerDown
-            ? Math.min(parseAsset(account.vesting_withdraw_rate).amount, (account.to_withdraw! - account.withdrawn!) / 100000)
-            : 0;
-
-        const vestingSharesTotal = vestingShares - vestingSharesDelegated + vestingSharesReceived - vestingSharesWithdrawal;
+        const w = new HiveWallet(account, dynamicProps);
 
         return (
             <div className="wallet-hive">
 
                 <div className="wallet-main">
                     <div className="wallet-info">
-                        {(hasUnclaimedRewards && !claimed) && (
+                        {(w.hasUnclaimedRewards && !claimed) && (
                             <div className="unclaimed-rewards">
                                 <div className="title">
                                     {_t('wallet.unclaimed-rewards')}
                                 </div>
                                 <div className="rewards">
-                                    {rewardHiveBalance > 0 && (
-                                        <span className="reward-type">{`${rewardHiveBalance} HIVE`}</span>
+                                    {w.rewardHiveBalance > 0 && (
+                                        <span className="reward-type">{`${w.rewardHiveBalance} HIVE`}</span>
                                     )}
-                                    {rewardHbdBalance > 0 && (
-                                        <span className="reward-type">{`${rewardHbdBalance} HBD`}</span>
+                                    {w.rewardHbdBalance > 0 && (
+                                        <span className="reward-type">{`${w.rewardHbdBalance} HBD`}</span>
                                     )}
-                                    {rewardVestingHive > 0 && (
-                                        <span className="reward-type">{`${rewardVestingHive} HP`}</span>
+                                    {w.rewardVestingHive > 0 && (
+                                        <span className="reward-type">{`${w.rewardVestingHive} HP`}</span>
                                     )}
                                     {isMyPage && (
                                         <Tooltip content={_t('wallet.claim-reward-balance')}>
@@ -214,7 +189,7 @@ export class WalletHive extends Component<Props, State> {
                             </div>
                             <div className="balance-values">
                                 <div className="amount amount-bold">
-                                    <FormattedCurrency {...this.props} value={estimatedValue} fixAt={3}/>
+                                    <FormattedCurrency {...this.props} value={w.estimatedValue} fixAt={3}/>
                                 </div>
                             </div>
                         </div>
@@ -259,7 +234,7 @@ export class WalletHive extends Component<Props, State> {
                                         return null;
                                     })()}
 
-                                    <span>{formattedNumber(balance, {suffix: "HIVE"})}</span>
+                                    <span>{formattedNumber(w.balance, {suffix: "HIVE"})}</span>
                                 </div>
                             </div>
                         </div>
@@ -271,43 +246,78 @@ export class WalletHive extends Component<Props, State> {
                             </div>
 
                             <div className="balance-values">
-                                <div className="amount">{formattedNumber(vestsToSp(vestingShares, hivePerMVests), {suffix: "HP"})}</div>
+                                <div className="amount">
+                                    {(() => {
+                                        if (isMyPage) {
 
-                                {vestingSharesDelegated > 0 && (
+                                            const dropDownConfig = {
+                                                history: this.props.history,
+                                                label: '',
+                                                items: [
+                                                    {
+                                                        label: _t('wallet.delegate'),
+                                                        onClick: () => {
+                                                            this.openTransferDialog('delegate', 'HP');
+                                                        },
+                                                    },
+                                                    {
+                                                        label: _t('wallet.power-down'),
+                                                        onClick: () => {
+                                                            this.openTransferDialog('power-down', 'HP');
+                                                        },
+                                                    },
+                                                    {
+                                                        label: _t('wallet.withdraw-routes'),
+                                                        onClick: () => {
+                                                            this.toggleWithdrawRoutes();
+                                                        },
+                                                    },
+                                                ],
+                                            };
+                                            return <div className="amount-actions">
+                                                <DropDown {...dropDownConfig} float="right"/>
+                                            </div>;
+                                        }
+                                        return null;
+                                    })()}
+                                    {formattedNumber(vestsToHp(w.vestingShares, hivePerMVests), {suffix: "HP"})}
+                                </div>
+
+                                {w.vestingSharesDelegated > 0 && (
                                     <div className="amount amount-passive delegated-shares">
                                         <Tooltip content={_t("wallet.hive-power-delegated")}>
                                       <span className="amount-btn" onClick={this.toggleDelegatedList}>
-                                        {formattedNumber(vestsToSp(vestingSharesDelegated, hivePerMVests), {prefix: "-", suffix: "HP"})}
+                                        {formattedNumber(vestsToHp(w.vestingSharesDelegated, hivePerMVests), {prefix: "-", suffix: "HP"})}
                                       </span>
                                         </Tooltip>
                                     </div>
                                 )}
 
-                                {vestingSharesReceived > 0 && (
+                                {w.vestingSharesReceived > 0 && (
                                     <div className="amount amount-passive received-shares">
                                         <Tooltip content={_t("wallet.hive-power-received")}>
                                   <span className="amount-btn" onClick={this.toggleReceivedList}>
-                                    {formattedNumber(vestsToSp(vestingSharesReceived, hivePerMVests), {prefix: "+", suffix: "HP"})}
+                                    {formattedNumber(vestsToHp(w.vestingSharesReceived, hivePerMVests), {prefix: "+", suffix: "HP"})}
                                   </span>
                                         </Tooltip>
                                     </div>
                                 )}
 
-                                {vestingSharesWithdrawal > 0 && (
+                                {w.nextVestingSharesWithdrawal > 0 && (
                                     <div className="amount amount-passive next-power-down-amount">
                                         <Tooltip content={_t("wallet.next-power-down-amount")}>
                                   <span>
-                                    {formattedNumber(vestsToSp(vestingSharesWithdrawal, hivePerMVests), {prefix: "-", suffix: "HP"})}
+                                    {formattedNumber(vestsToHp(w.nextVestingSharesWithdrawal, hivePerMVests), {prefix: "-", suffix: "HP"})}
                                   </span>
                                         </Tooltip>
                                     </div>
                                 )}
 
-                                {(vestingSharesDelegated > 0 || vestingSharesReceived > 0 || vestingSharesWithdrawal > 0) && (
+                                {(w.vestingSharesDelegated > 0 || w.vestingSharesReceived > 0 || w.nextVestingSharesWithdrawal > 0) && (
                                     <div className="amount total-hive-power">
                                         <Tooltip content={_t("wallet.hive-power-total")}>
                                   <span>
-                                    {formattedNumber(vestsToSp(vestingSharesTotal, hivePerMVests), {prefix: "=", suffix: "HP"})}
+                                    {formattedNumber(vestsToHp(w.vestingSharesTotal, hivePerMVests), {prefix: "=", suffix: "HP"})}
                                   </span>
                                         </Tooltip>
                                     </div>
@@ -355,7 +365,7 @@ export class WalletHive extends Component<Props, State> {
                                         }
                                         return null;
                                     })()}
-                                    <span>{formattedNumber(hbdBalance, {prefix: "$"})}</span>
+                                    <span>{formattedNumber(w.hbdBalance, {prefix: "$"})}</span>
                                 </div>
                             </div>
                         </div>
@@ -388,7 +398,7 @@ export class WalletHive extends Component<Props, State> {
                                         }
                                         return null;
                                     })()}
-                                    <span>{formattedNumber(savingBalance, {suffix: "HIVE"})}</span>
+                                    <span>{formattedNumber(w.savingBalance, {suffix: "HIVE"})}</span>
                                 </div>
                                 <div className="amount">
                                     {(() => {
@@ -413,16 +423,16 @@ export class WalletHive extends Component<Props, State> {
                                         return null;
                                     })()}
 
-                                    <span>{formattedNumber(savingBalanceHbd, {suffix: "$"})}</span>
+                                    <span>{formattedNumber(w.savingBalanceHbd, {suffix: "$"})}</span>
                                 </div>
                             </div>
                         </div>
 
-                        {showPowerDown && (
+                        {w.isPoweringDown && (
                             <div className="next-power-down">
                                 {_t("wallet.next-power-down", {
-                                    time: moment(nextVestingWithdrawal).fromNow(),
-                                    amount: formattedNumber(vestsToSp(vestingSharesWithdrawal, hivePerMVests), {prefix: "HIVE"}),
+                                    time: moment(w.nextVestingWithdrawalDate).fromNow(),
+                                    amount: formattedNumber(w.nextVestingSharesWithdrawalHive, {suffix: "HIVE"}),
                                 })}
                             </div>
                         )}
@@ -440,6 +450,10 @@ export class WalletHive extends Component<Props, State> {
 
                 {this.state.receivedList && (
                     <ReceivedVesting {...this.props} account={account} onHide={this.toggleReceivedList}/>
+                )}
+
+                {this.state.withdrawRoutes && (
+                    <WithdrawRoutes {...this.props} activeUser={activeUser!} onHide={this.toggleWithdrawRoutes}/>
                 )}
             </div>
         );

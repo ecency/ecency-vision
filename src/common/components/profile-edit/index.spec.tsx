@@ -4,7 +4,7 @@ import ProfileEdit from "./index";
 
 import renderer from "react-test-renderer";
 
-import {activeUserMaker} from "../../helper/test-helper";
+import {activeUserMaker, fullAccountInstance} from "../../helper/test-helper";
 
 it("(1) Default render", () => {
     const props = {
@@ -12,6 +12,7 @@ it("(1) Default render", () => {
             ...activeUserMaker("foo"),
             ...{
                 data: {
+                    ...fullAccountInstance,
                     name: "foo",
                     profile: {
                         name: 'Foo B.',
@@ -20,7 +21,8 @@ it("(1) Default render", () => {
                         location: 'New York',
                         cover_image: 'https://www.imgur.com/cover-image.jpg',
                         profile_image: 'https://www.imgur.com/profile-image.jpg',
-                    }
+                    },
+                    __loaded: true
                 }
             }
         },

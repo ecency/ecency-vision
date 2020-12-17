@@ -4,31 +4,77 @@ import {List} from "./index";
 import renderer from "react-test-renderer";
 import {createBrowserHistory} from "history";
 
-import {entryInstance1, dynamicPropsIntance1, delegatedVestingInstance, globalInstance} from "../../helper/test-helper";
+import {entryInstance1, dynamicPropsIntance1, delegatedVestingInstance, globalInstance, activeUserMaker} from "../../helper/test-helper";
 
 jest.mock("../../constants/defaults.json", () => ({
     imageServer: "https://images.ecency.com",
 }));
 
+const allOver = () => new Promise((resolve) => setImmediate(resolve));
+
+let MOCK_MODE = 1;
+
 jest.mock("../../api/hive", () => ({
     getVestingDelegations: () =>
         new Promise((resolve) => {
-            resolve(delegatedVestingInstance);
+            if (MOCK_MODE === 1) {
+                resolve(delegatedVestingInstance);
+            }
+
+            if (MOCK_MODE === 2) {
+                resolve([]);
+            }
         }),
 }));
 
-const detailProps = {
+const defaultProps = {
     global: globalInstance,
     history: createBrowserHistory(),
+    activeUser: null,
     account: {name: "foo"},
     dynamicProps: dynamicPropsIntance1,
+    signingKey: '',
     entry: {...entryInstance1},
     addAccount: () => {
     },
+    setSigningKey: () => {
+    },
+    onHide: () => {
+    }
 };
 
-const component = renderer.create(<List {...detailProps} />);
 
-it("(1) Full render", () => {
+it("(1) Default render", async () => {
+    const component = renderer.create(<List {...defaultProps} />);
+    await allOver();
+    expect(component.toJSON()).toMatchSnapshot();
+});
+
+it("(2) With active user", async () => {
+    const props = {
+        ...defaultProps,
+        activeUser: activeUserMaker("bar")
+    }
+    const component = renderer.create(<List {...props} />);
+    await allOver();
+    expect(component.toJSON()).toMatchSnapshot();
+});
+
+
+it("(3) With delegator active user", async () => {
+    const props = {
+        ...defaultProps,
+        activeUser: activeUserMaker("foo")
+    }
+    const component = renderer.create(<List {...props} />);
+    await allOver();
+    expect(component.toJSON()).toMatchSnapshot();
+});
+
+
+it("(4) Empty List", async () => {
+    MOCK_MODE = 2;
+    const component = renderer.create(<List {...defaultProps} />);
+    await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });

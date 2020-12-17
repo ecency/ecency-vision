@@ -2,9 +2,10 @@ import React, {Component} from "react";
 
 import {Modal} from "react-bootstrap";
 
+import {PrivateKey} from "@hiveio/dhive";
+
 import {Global} from "../../store/global/types";
 import {ActiveUser} from "../../store/active-user/types";
-import {PrivateKey} from "@hiveio/dhive";
 
 import KeyOrHot from "../key-or-hot";
 
@@ -17,6 +18,7 @@ interface Props {
     onKey: (key: PrivateKey) => void;
     onHot?: () => void;
     onKc?: () => void;
+    onToggle?: () => void;
 }
 
 interface State {
@@ -31,6 +33,9 @@ export class KeyOrHotDialog extends Component<Props, State> {
     toggleKeyDialog = () => {
         const {keyDialog} = this.state;
         this.setState({keyDialog: !keyDialog});
+
+        const {onToggle} = this.props;
+        if (onToggle) onToggle();
     }
 
     render() {
@@ -38,7 +43,10 @@ export class KeyOrHotDialog extends Component<Props, State> {
         const {keyDialog} = this.state;
 
         const newChildren = React.cloneElement(children, {
-            onClick: this.toggleKeyDialog,
+            onClick: (e: React.MouseEvent) => {
+                e.preventDefault();
+                this.toggleKeyDialog();
+            },
         });
 
         return <>
@@ -84,7 +92,8 @@ export default (p: Props) => {
         children: p.children,
         onKey: p.onKey,
         onHot: p.onHot,
-        onKc: p.onKc
+        onKc: p.onKc,
+        onToggle: p.onToggle
     }
 
     return <KeyOrHotDialog {...props} />

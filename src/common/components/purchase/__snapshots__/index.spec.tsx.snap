@@ -273,13 +273,17 @@ exports[`(2) Should switch to transfer 1`] = `
         className="row"
       >
         <div
-          className="col-md-10 offset-md-2"
+          className="col-lg-10 offset-lg-2"
         >
           <div
             className="balance"
           >
-            Balance
-            : 
+            <span
+              className="balance-label"
+            >
+              Balance
+              : 
+            </span>
             <span
               className="balance-num"
               onClick={[Function]}

@@ -46,202 +46,164 @@ exports[`(2) No votes 1`] = `
 `;
 
 exports[`(3) Render of detail with votes 1`] = `
-<div
-  className="votes-dialog-content"
->
+Array [
   <div
-    className="table-responsive"
+    className="voters-list"
   >
     <div
-      className="react-bootstrap-table"
+      className="list-body"
     >
-      <table
-        className="table"
+      <div
+        className="list-item"
       >
-        <thead>
-          <tr>
-            <th
-              tabIndex={0}
-            >
-              Voter
-            </th>
-            <th
-              aria-label="Reward sort desc"
-              className="sortable"
-              onClick={[Function]}
-              onKeyUp={[Function]}
-              tabIndex={0}
-            >
-              Reward
-              <span
-                className="table-sort-caret active"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </span>
-            </th>
-            <th
-              aria-label="Percent sortable"
-              className="sortable"
-              onClick={[Function]}
-              onKeyUp={[Function]}
-              tabIndex={0}
-            >
-              Percent
-              <span
-                className="table-sort-caret"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
-                    fill="currentColor"
-                  />
-                </svg>
-                 
-                <svg
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </span>
-            </th>
-            <th
-              aria-label="Time sortable"
-              className="sortable"
-              onClick={[Function]}
-              onKeyUp={[Function]}
-              tabIndex={0}
-            >
-              Time
-              <span
-                className="table-sort-caret"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
-                    fill="currentColor"
-                  />
-                </svg>
-                 
-                <svg
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </span>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            className={null}
-            style={Object {}}
+        <div
+          className="item-main"
+        >
+          <a
+            href="/@user1"
+            onClick={[Function]}
           >
-            <td
-              className="voter-cell"
-            >
-              <a
-                className="account notranslate"
-                href="/@user1"
-                onClick={[Function]}
-              >
-                 
-                <span
-                  className="user-avatar medium"
-                  style={
-                    Object {
-                      "backgroundImage": "url(https://images.ecency.com/u/user1/avatar/medium)",
-                    }
-                  }
-                />
-                 
-                user1
-              </a>
-            </td>
-            <td
-              className="reward-cell"
-            >
-              $ 125.037
-            </td>
-            <td
-              className="percent-cell"
-            >
-              0.4 %
-            </td>
-            <td
-              className="time-cell"
-            >
-              <span
-                title="2020-01-01 23:12:00"
-              >
-                3 days ago
-              </span>
-            </td>
-          </tr>
-          <tr
-            className={null}
-            style={Object {}}
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user1/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="item-info"
           >
-            <td
-              className="voter-cell"
+            <a
+              className="item-name notransalte"
+              href="/@user1"
+              onClick={[Function]}
             >
-              <a
-                className="account notranslate"
-                href="/@user2"
-                onClick={[Function]}
-              >
-                 
-                <span
-                  className="user-avatar medium"
-                  style={
-                    Object {
-                      "backgroundImage": "url(https://images.ecency.com/u/user2/avatar/medium)",
-                    }
-                  }
-                />
-                 
-                user2
-              </a>
-            </td>
-            <td
-              className="reward-cell"
+              user1
+            </a>
+            <span
+              className="item-reputation"
             >
-              $ 0.058
-            </td>
-            <td
-              className="percent-cell"
+              76
+            </span>
+          </div>
+        </div>
+        <div
+          className="item-extra"
+        >
+          $ 125.037
+          <span
+            className="separator"
+          />
+          0.4 %
+          <span
+            className="separator"
+          />
+          <span
+            title="2020-01-01 23:12:00"
+          >
+            3 days ago
+          </span>
+        </div>
+      </div>
+      <div
+        className="list-item"
+      >
+        <div
+          className="item-main"
+        >
+          <a
+            href="/@user2"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user2/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="item-info"
+          >
+            <a
+              className="item-name notransalte"
+              href="/@user2"
+              onClick={[Function]}
             >
-              100.0 %
-            </td>
-            <td
-              className="time-cell"
+              user2
+            </a>
+            <span
+              className="item-reputation"
             >
-              <span
-                title="2020-01-01 23:12:00"
-              >
-                3 days ago
-              </span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+              77
+            </span>
+          </div>
+        </div>
+        <div
+          className="item-extra"
+        >
+          $ 0.058
+          <span
+            className="separator"
+          />
+          100.0 %
+          <span
+            className="separator"
+          />
+          <span
+            title="2020-01-01 23:12:00"
+          >
+            3 days ago
+          </span>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
+  </div>,
+  <div
+    className="list-tools"
+  >
+    <div
+      className="pages"
+    />
+    <div
+      className="sorter"
+    >
+      <span
+        className="label"
+      >
+        Sort
+      </span>
+      <select
+        className="form-control"
+        onChange={[Function]}
+        value="reward"
+      >
+        <option
+          value="reward"
+        >
+          Reward
+        </option>
+        <option
+          value="timestamp"
+        >
+          Time
+        </option>
+        <option
+          value="reputation"
+        >
+          Reputation
+        </option>
+        <option
+          value="percent"
+        >
+          Percentage
+        </option>
+      </select>
+    </div>
+  </div>,
+]
 `;

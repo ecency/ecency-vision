@@ -1,6 +1,6 @@
 import moment from "moment";
 
-import {Account} from "../store/accounts/types";
+import {FullAccount} from "../store/accounts/types";
 import {Entry} from "../store/entries/types";
 
 import accountReputation from "./account-reputation";
@@ -10,7 +10,7 @@ import isElectron from "../util/is-electron";
 import {version} from "../../../package.json";
 
 export interface TempEntryProps {
-    author: Account,
+    author: FullAccount,
     permlink: string,
     parentAuthor: string,
     parentPermlink: string,
@@ -47,7 +47,7 @@ export default (p: TempEntryProps): Entry => {
         payout: 0,
         payout_at: correctIsoDate(payout.toISOString()),
         pending_payout_value: "0.000 HBD",
-        percent_steem_dollars: 10000,
+        percent_hbd: 10000,
         permlink: p.permlink,
         post_id: 1,
         promoted: "0.000 HBD",

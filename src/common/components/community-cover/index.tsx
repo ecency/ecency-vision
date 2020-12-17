@@ -7,7 +7,7 @@ import isEqual from "react-fast-compare";
 import {Global} from "../../store/global/types";
 import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
-import {Account} from "../../store/accounts/types";
+import {Account, FullAccount} from "../../store/accounts/types";
 import {UI, ToggleType} from "../../store/ui/types";
 import {Community} from "../../store/communities/types";
 import {Subscription} from "../../store/subscriptions/types";
@@ -43,19 +43,17 @@ const coverFallbackNight = require("../../img/cover-fallback-night.png");
 interface EditCoverImageProps {
     activeUser: ActiveUser;
     community: Community;
-    account: Account;
+    account: FullAccount;
     addAccount: (data: Account) => void;
 }
 
 interface EditCoverImageState {
-    account: Account | null;
     dialog: boolean;
     inProgress: boolean;
 }
 
 class EditCoverImage extends React.Component<EditCoverImageProps, EditCoverImageState> {
     state: EditCoverImageState = {
-        account: null,
         dialog: false,
         inProgress: false
     }
@@ -168,6 +166,7 @@ export class CommunityCover extends Component<Props> {
 
     render() {
         const {global, account, community, activeUser, users} = this.props;
+
         let bgImage = "";
 
         if (account.__loaded) {
@@ -220,7 +219,7 @@ export class CommunityCover extends Component<Props> {
                     )}
                 </div>
 
-                {canUpdateCoverImage && (<EditCoverImage {...this.props} activeUser={activeUser!}/>)}
+                {canUpdateCoverImage && (<EditCoverImage {...this.props} account={account as FullAccount} activeUser={activeUser!}/>)}
             </div>
         );
     }

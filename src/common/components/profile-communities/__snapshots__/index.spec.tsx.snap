@@ -5,7 +5,7 @@ exports[`(1) Default render - With data. 1`] = `
   className="profile-communities"
 >
   <h2>
-    Subscriptions
+    Membership
   </h2>
   <ul
     className="community-list"
@@ -61,7 +61,7 @@ exports[`(2) Should show create community link 1`] = `
   className="profile-communities"
 >
   <h2>
-    Subscriptions
+    Membership
   </h2>
   <ul
     className="community-list"

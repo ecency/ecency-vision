@@ -2,7 +2,7 @@ import React from "react";
 
 import {Purchase} from "./index";
 
-import {globalInstance} from "../../helper/test-helper";
+import {globalInstance, dynamicPropsIntance1, fullAccountInstance} from "../../helper/test-helper";
 
 import TestRenderer from "react-test-renderer";
 
@@ -17,13 +17,15 @@ jest.mock("../../api/private", () => ({
 
 const defProps = {
     global: globalInstance,
+    dynamicProps: dynamicPropsIntance1,
     users: [],
     activeUser: {
         username: 'foo',
         data: {
+            ...fullAccountInstance,
             name: 'foo',
             balance: '12.234 HIVE',
-            sbd_balance: '4321.212',
+            hbd_balance: '4321.212',
             savings_balance: '2123.000 HIVE'
         },
         points: {

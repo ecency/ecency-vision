@@ -36,7 +36,7 @@ exports[`(1) Default render 1`] = `
       <div
         className="stat"
       >
-        4,086 subscribers
+        4,086 members
       </div>
       <div
         className="stat"
@@ -59,7 +59,7 @@ exports[`(1) Default render 1`] = `
       onClick={[Function]}
       type="button"
     >
-      Subscribe
+      Join
     </button>
   </div>
 </div>

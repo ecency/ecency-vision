@@ -159,7 +159,7 @@ exports[`(1) Default render 1`] = `
           fill="currentColor"
         />
       </svg>
-      TV
+      Movies & TV
     </span>
   </a>
   <a
@@ -409,7 +409,7 @@ exports[`(2) Selected tag 1`] = `
           fill="currentColor"
         />
       </svg>
-      TV
+      Movies & TV
     </span>
   </a>
   <a

@@ -2,23 +2,27 @@ import React from "react";
 
 import {Transfer, TransferAsset, TransferMode} from "./index";
 
-import {globalInstance} from "../../helper/test-helper";
+import {globalInstance, dynamicPropsIntance1, fullAccountInstance} from "../../helper/test-helper";
 
 import TestRenderer from "react-test-renderer";
 
+jest.mock("moment", () => () => ({
+    fromNow: () => "in 5 days",
+}));
+
+
 const defProps = {
     global: globalInstance,
+    dynamicProps: dynamicPropsIntance1,
     users: [],
     activeUser: {
         username: 'foo',
         data: {
-            name: 'foo',
-            balance: '12.234 HIVE',
-            sbd_balance: '4321.212',
-            savings_balance: '2123.000 HIVE'
+            ...fullAccountInstance,
+            name: 'foo'
         },
         points: {
-            points: "0.000",
+            points: "10.000",
             uPoints: "0.000"
         }
     },
@@ -39,14 +43,14 @@ const defProps = {
     }
 };
 
-describe('(1) Transfer', () => {
+describe('(1) Transfer HIVE', () => {
     const mode: TransferMode = 'transfer';
     const asset: TransferAsset = 'HIVE';
 
     const props = {
+        ...defProps,
         mode,
         asset,
-        ...defProps
     };
 
     const component = TestRenderer.create(<Transfer {...props} />);
@@ -70,16 +74,74 @@ describe('(1) Transfer', () => {
         instance.setState({step: 4});
         expect(component.toJSON()).toMatchSnapshot();
     });
-})
+});
 
-describe('(2) Transfer to savings', () => {
+describe('(2) Transfer HBD', () => {
+    const mode: TransferMode = 'transfer';
+    const asset: TransferAsset = 'HBD';
+
+    const props = {
+        ...defProps,
+        mode,
+        asset
+    };
+
+    const component = TestRenderer.create(<Transfer {...props} />);
+    const instance: any = component.getInstance();
+
+    it("(1) Step 1", () => {
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+
+    it("(2) Step 2", () => {
+        instance.setState({step: 2, to: 'bar', memo: 'hdb transfer'});
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+
+    // No need to test step3 anymore
+
+    it("(4) Step 4", () => {
+        instance.setState({step: 4});
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+});
+
+describe('(3) Transfer POINT', () => {
+    const mode: TransferMode = 'transfer';
+    const asset: TransferAsset = 'POINT';
+
+    const props = {
+        ...defProps,
+        mode,
+        asset
+    };
+
+    const component = TestRenderer.create(<Transfer {...props} />);
+    const instance: any = component.getInstance();
+
+    it("(1) Step 1", () => {
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+
+    it("(2) Step 2", () => {
+        instance.setState({step: 2, to: 'bar'});
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+
+    it("(4) Step 4", () => {
+        instance.setState({step: 4});
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+});
+
+describe('(4) Transfer to Savings - HBD', () => {
     const mode: TransferMode = 'transfer-saving';
     const asset: TransferAsset = 'HBD';
 
     const props = {
+        ...defProps,
         mode,
-        asset,
-        ...defProps
+        asset
     };
 
     const component = TestRenderer.create(<Transfer {...props} />);
@@ -88,36 +150,26 @@ describe('(2) Transfer to savings', () => {
     it("(1) Step 1", () => {
         expect(component.toJSON()).toMatchSnapshot();
     });
-})
 
-
-describe('(3) Convert', () => {
-    const mode: TransferMode = 'convert';
-    const asset: TransferAsset = 'HIVE';
-
-    const props = {
-        mode,
-        asset,
-        ...defProps
-    };
-
-    const component = TestRenderer.create(<Transfer {...props} />);
-    const instance: any = component.getInstance();
-
-    it("(1) Step 1", () => {
+    it("(2) Step 2", () => {
+        instance.setState({step: 2, to: 'bar'});
         expect(component.toJSON()).toMatchSnapshot();
     });
-})
 
+    it("(4) Step 4", () => {
+        instance.setState({step: 4});
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+});
 
-describe('(4) Withdraw saving', () => {
+describe('(5) Withdraw Savings - HIVE', () => {
     const mode: TransferMode = 'withdraw-saving';
     const asset: TransferAsset = 'HIVE';
 
     const props = {
+        ...defProps,
         mode,
-        asset,
-        ...defProps
+        asset
     };
 
     const component = TestRenderer.create(<Transfer {...props} />);
@@ -126,17 +178,54 @@ describe('(4) Withdraw saving', () => {
     it("(1) Step 1", () => {
         expect(component.toJSON()).toMatchSnapshot();
     });
-})
 
+    it("(2) Step 2", () => {
+        instance.setState({step: 2, to: 'bar'});
+        expect(component.toJSON()).toMatchSnapshot();
+    });
 
-describe('(5) Power up', () => {
+    it("(4) Step 4", () => {
+        instance.setState({step: 4});
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+});
+
+describe('(6) Convert', () => {
+    const mode: TransferMode = 'convert';
+    const asset: TransferAsset = 'HBD';
+
+    const props = {
+        ...defProps,
+        mode,
+        asset
+    };
+
+    const component = TestRenderer.create(<Transfer {...props} />);
+    const instance: any = component.getInstance();
+
+    it("(1) Step 1", () => {
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+
+    it("(2) Step 2", () => {
+        instance.setState({step: 2, to: 'bar'});
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+
+    it("(4) Step 4", () => {
+        instance.setState({step: 4});
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+});
+
+describe('(7) Power up', () => {
     const mode: TransferMode = 'power-up';
     const asset: TransferAsset = 'HIVE';
 
     const props = {
+        ...defProps,
         mode,
-        asset,
-        ...defProps
+        asset
     };
 
     const component = TestRenderer.create(<Transfer {...props} />);
@@ -145,4 +234,104 @@ describe('(5) Power up', () => {
     it("(1) Step 1", () => {
         expect(component.toJSON()).toMatchSnapshot();
     });
-})
+
+    it("(2) Step 2", () => {
+        instance.setState({step: 2, to: 'bar'});
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+
+    it("(4) Step 4", () => {
+        instance.setState({step: 4});
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+});
+
+describe('(8) Delegate', () => {
+    const mode: TransferMode = 'delegate';
+    const asset: TransferAsset = 'HP';
+
+    const props = {
+        ...defProps,
+        mode,
+        asset
+    };
+
+    const component = TestRenderer.create(<Transfer {...props} />);
+    const instance: any = component.getInstance();
+
+    it("(1) Step 1", () => {
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+
+    it("(2) Step 2", () => {
+        instance.setState({step: 2, to: 'bar'});
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+
+    it("(4) Step 4", () => {
+        instance.setState({step: 4});
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+});
+
+
+describe('(9) Power down', () => {
+    const mode: TransferMode = 'power-down';
+    const asset: TransferAsset = 'HP';
+
+    const props = {
+        ...defProps,
+        mode,
+        asset
+    };
+
+    const component = TestRenderer.create(<Transfer {...props} />);
+    const instance: any = component.getInstance();
+    instance.setState({amount: "2.000"});
+
+    it("(1) Step 1", () => {
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+
+    it("(2) Step 2", () => {
+        instance.setState({step: 2, to: 'bar'});
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+
+    it("(4) Step 4", () => {
+        instance.setState({step: 4});
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+});
+
+describe('(10) Powering down', () => {
+    const mode: TransferMode = 'power-down';
+    const asset: TransferAsset = 'HP';
+
+    const props = {
+        ...defProps,
+        mode,
+        asset,
+        activeUser: {
+            username: 'foo',
+            data: {
+                ...fullAccountInstance,
+                next_vesting_withdrawal: "2020-12-21T09:34:54",
+                vesting_withdraw_rate: "525426.335537 VESTS",
+                to_withdraw: "6830542361972",
+                withdrawn: "6305116026444",
+                name: 'foo'
+            },
+            points: {
+                points: "10.000",
+                uPoints: "0.000"
+            }
+        },
+    };
+
+    const component = TestRenderer.create(<Transfer {...props} />);
+
+    it("(1) Step 1", () => {
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+});

@@ -9,7 +9,7 @@ import {Link} from "react-router-dom";
 import isEqual from "react-fast-compare";
 
 import {Global} from "../../store/global/types";
-import {Account} from "../../store/accounts/types";
+import {Account, FullAccount} from "../../store/accounts/types";
 import {Community, roleMap, ROLES} from "../../store/communities/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {User} from "../../store/users/types";
@@ -34,7 +34,7 @@ import {accountGroupSvg, informationOutlineSvg, scriptTextOutlineSvg, pencilOutl
 interface EditPicProps {
     activeUser: ActiveUser;
     community: Community;
-    account: Account;
+    account: FullAccount;
     addAccount: (data: Account) => void;
     onUpdate: () => void
 }
@@ -227,18 +227,20 @@ export class CommunityCard extends Component<Props, State> {
         return (
             <div className="community-card">
                 <div className="community-avatar">
-                    {canUpdatePic && (<EditPic {...this.props} activeUser={activeUser!} onUpdate={() => {
+                    {canUpdatePic && (<EditPic {...this.props} account={account as FullAccount} activeUser={activeUser!} onUpdate={() => {
                         this.stateSet({useNewImage: true});
                     }}/>)}
                     {UserAvatar({
                         ...this.props,
                         username: community.name,
                         size: "xLarge",
-                        src: useNewImage ? account.profile?.profile_image : undefined
+                        src: account.__loaded && useNewImage ? account.profile?.profile_image : undefined
                     })}
                 </div>
                 <div className="community-info">
-                    <h1><div className="title">{community.title}</div></h1>
+                    <h1>
+                        <div className="title">{community.title}</div>
+                    </h1>
                     <div className="about">{community.about}</div>
                     {community.is_nsfw && <span className="nsfw">nsfw</span>}
                 </div>

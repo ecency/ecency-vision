@@ -1,32 +1,53 @@
 import React from "react";
 
-import { List } from "./index";
+import {List} from "./index";
 import renderer from "react-test-renderer";
-import { createBrowserHistory } from "history";
+import {createBrowserHistory} from "history";
 
-import { dynamicPropsIntance1, receivedVestingInstance, globalInstance } from "../../helper/test-helper";
+import {dynamicPropsIntance1, receivedVestingInstance, globalInstance} from "../../helper/test-helper";
+
+const allOver = () => new Promise((resolve) => setImmediate(resolve));
 
 jest.mock("../../constants/defaults.json", () => ({
-  imageServer: "https://images.ecency.com",
+    imageServer: "https://images.ecency.com",
 }));
+
+let MOCK_MODE = 1;
 
 jest.mock("../../api/private", () => ({
-  getReceivedVestingShares: () =>
-    new Promise((resolve) => {
-      resolve(receivedVestingInstance);
-    }),
+    getReceivedVestingShares: () =>
+        new Promise((resolve) => {
+            if (MOCK_MODE === 1) {
+                resolve(receivedVestingInstance);
+            }
+
+            if (MOCK_MODE === 2) {
+                resolve([])
+            }
+        }),
 }));
 
-const detailProps = {
-  global: globalInstance,
-  history: createBrowserHistory(),
-  account: { name: "foo" },
-  dynamicProps: dynamicPropsIntance1,
-  addAccount: () => {},
+const defaultProps = {
+    global: globalInstance,
+    history: createBrowserHistory(),
+    account: {name: "foo"},
+    dynamicProps: dynamicPropsIntance1,
+    addAccount: () => {
+    },
+    onHide: () => {
+    }
 };
 
-const component = renderer.create(<List {...detailProps} />);
 
-it("(1) Full render", () => {
-  expect(component.toJSON()).toMatchSnapshot();
+it("(1) Default render", async () => {
+    const component = renderer.create(<List {...defaultProps} />);
+    await allOver();
+    expect(component.toJSON()).toMatchSnapshot();
+});
+
+it("(2) Empty list", async () => {
+    MOCK_MODE = 2;
+    const component = renderer.create(<List {...defaultProps} />);
+    await allOver();
+    expect(component.toJSON()).toMatchSnapshot();
 });

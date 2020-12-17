@@ -25,6 +25,11 @@ import {_t} from "../../i18n";
 
 import {pencilOutlineSvg} from "../../img/svg";
 
+interface MinifiedAccount {
+    name: string,
+    reputation: string | number;
+}
+
 interface Props {
     history: History;
     global: Global;
@@ -38,7 +43,7 @@ interface State {
     loading: boolean;
     subscribers: Subscription[];
     editingSubscriber: Subscription | null;
-    accounts: Account[];
+    accounts: MinifiedAccount[];
 }
 
 export class Subscribers extends Component<Props, State> {
@@ -85,8 +90,8 @@ export class Subscribers extends Component<Props, State> {
                 const usernames = subscribers.map(x => x[0]);
 
                 return getAccounts(usernames).then(accounts => {
-                    const minifiedAccounts: Account[] = accounts.map(x => ({name: x.name, reputation: x.reputation}));
-                    this.stateSet({subscribers, accounts: minifiedAccounts});
+                    const minifiedAccounts: MinifiedAccount[] = accounts.map(x => ({name: x.name, reputation: x.reputation}));
+                    this.stateSet({subscribers, accounts: accounts});
                 });
             }
             return null;

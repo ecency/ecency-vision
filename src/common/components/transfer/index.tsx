@@ -4,11 +4,14 @@ import {PrivateKey} from "@hiveio/dhive";
 
 import numeral from "numeral";
 
+import moment from "moment";
+
 import isEqual from "react-fast-compare";
 
 import {Modal, Form, Row, Col, InputGroup, FormControl, Button} from "react-bootstrap";
 
 import {Global} from "../../store/global/types";
+import {DynamicProps} from "../../store/dynamic-props/types";
 import {Account} from '../../store/accounts/types'
 import {ActiveUser} from "../../store/active-user/types";
 import {Transactions} from "../../store/transactions/types";
@@ -19,8 +22,11 @@ import SuggestionList from "../suggestion-list";
 import KeyOrHot from "../key-or-hot";
 import {error} from "../feedback";
 
+import HiveWallet from "../../helper/hive-wallet";
 import amountFormatCheck from '../../helper/amount-format-check';
 import parseAsset from "../../helper/parse-asset";
+import {vestsToHp, hpToVests} from "../../helper/vesting";
+
 
 import {getAccount, getAccountFull} from "../../api/hive";
 
@@ -43,6 +49,12 @@ import {
     convert,
     convertHot,
     convertKc,
+    delegateVestingShares,
+    delegateVestingSharesHot,
+    delegateVestingSharesKc,
+    withdrawVesting,
+    withdrawVestingHot,
+    withdrawVestingKc,
     formatError
 } from "../../api/operations";
 
@@ -52,13 +64,16 @@ import badActors from '../../constants/bad-actors.json';
 
 import {arrowRightSvg} from "../../img/svg";
 
-export type TransferMode = 'transfer' | 'transfer-saving' | 'convert' | 'withdraw-saving' | 'power-up';
-export type TransferAsset = 'HIVE' | 'HBD' | 'POINT';
+export type TransferMode = "transfer" | "transfer-saving" | "withdraw-saving" | "convert" | "power-up" | "power-down" | "delegate";
+export type TransferAsset = "HIVE" | "HBD" | "HP" | "POINT" ;
 
-class AssetSwitch extends Component<{
+interface AssetSwitchProps {
+    options: TransferAsset[];
     selected: TransferAsset;
     onChange: (i: TransferAsset) => void
-}> {
+}
+
+class AssetSwitch extends Component<AssetSwitchProps> {
     clicked = (i: TransferAsset) => {
         this.setState({selected: i});
         const {onChange} = this.props;
@@ -66,19 +81,13 @@ class AssetSwitch extends Component<{
     };
 
     render() {
-        const {selected} = this.props;
+        const {options, selected} = this.props;
 
         return (
             <div className="asset-switch">
-                <a onClick={() => this.clicked('HIVE')}
-                   className={`asset ${selected === 'HIVE' ? 'selected' : ''}`}
-                >HIVE</a>
-                <a onClick={() => this.clicked('HBD')}
-                   className={`asset ${selected === 'HBD' ? 'selected' : ''}`}
-                >HBD</a>
-                <a onClick={() => this.clicked('POINT')}
-                   className={`asset ${selected === 'POINT' ? 'selected' : ''}`}
-                >POINT</a>
+                {options.map(opt =>
+                    <a key={opt} onClick={() => this.clicked(opt)} className={`asset ${selected === opt ? 'selected' : ''}`}>{opt}</a>
+                )}
             </div>
         );
     }
@@ -99,6 +108,7 @@ class FormText extends Component<{
 
 interface Props {
     global: Global;
+    dynamicProps: DynamicProps;
     mode: TransferMode;
     asset: TransferAsset;
     to?: string;
@@ -127,24 +137,24 @@ interface State {
 }
 
 const pureState = (props: Props): State => {
-    let _to: string = '';
+    let _to: string = "";
     let _toData: Account | null = null;
 
-    if (props.mode !== 'transfer') {
+    if (["transfer-saving", "withdraw-saving", "convert", "power-up", "power-down"].includes(props.mode)) {
         _to = props.activeUser.username;
         _toData = props.activeUser.data
     }
 
     return {
         step: 1,
-        asset: props.mode === 'convert' ? 'HBD' : props.asset,
+        asset: props.asset,
         to: props.to || _to,
         toData: props.to ? {name: props.to} : _toData,
-        toError: '',
-        toWarning: '',
-        amount: props.amount || '0.001',
-        amountError: '',
-        memo: props.memo || '',
+        toError: "",
+        toWarning: "",
+        amount: props.amount || "0.001",
+        amountError: "",
+        memo: props.memo || "",
         inProgress: false
     }
 }
@@ -178,6 +188,12 @@ export class Transfer extends Component<Props, State> {
         }
     };
 
+    formatNumber = (num: number | string, precision: number) => {
+        const format = `0.${"0".repeat(precision)}`;
+
+        return numeral(num).format(format, Math.floor) // round to floor
+    }
+
     assetChanged = (asset: TransferAsset) => {
         this.stateSet({asset}, () => {
             this.checkAmount();
@@ -202,7 +218,7 @@ export class Transfer extends Component<Props, State> {
 
     memoChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
         const {value: memo} = e.target;
-        this.setState({memo});
+        this.stateSet({memo});
     };
 
     handleTo = () => {
@@ -278,14 +294,14 @@ export class Transfer extends Component<Props, State> {
     };
 
     copyBalance = () => {
-        const balance = this.getBalance();
-        this.stateSet({amount: numeral(balance).format('0.000')}, () => {
+        const amount = this.formatBalance(this.getBalance());
+        this.stateSet({amount}, () => {
             this.checkAmount();
         });
     };
 
     getBalance = (): number => {
-        const {mode, activeUser} = this.props;
+        const {mode, activeUser, dynamicProps} = this.props;
         const {asset} = this.state;
 
         if (asset === 'POINT') {
@@ -294,14 +310,40 @@ export class Transfer extends Component<Props, State> {
 
         const {data: account} = activeUser;
 
-        if (mode === 'withdraw-saving') {
-            const k = asset === 'HIVE' ? 'savings_balance' : 'savings_sbd_balance';
-            return parseAsset(account[k]).amount;
+        const w = new HiveWallet(account, dynamicProps);
+
+        if (mode === "withdraw-saving") {
+            return asset === "HIVE" ? w.savingBalance : w.savingBalanceHbd;
         }
 
-        const k = asset === 'HIVE' ? 'balance' : 'sbd_balance';
-        return parseAsset(account[k]).amount;
+        if (asset === "HIVE") {
+            return w.balance;
+        }
+
+        if (asset === "HBD") {
+            return w.hbdBalance;
+        }
+
+        if (asset === "HP") {
+            const {hivePerMVests} = dynamicProps;
+            const vestingShares = w.vestingSharesAvailable;
+            return vestsToHp(vestingShares, hivePerMVests);
+        }
+
+        return 0;
     };
+
+    formatBalance = (balance: number): string => {
+        return this.formatNumber(balance, 3);
+    };
+
+    hpToVests = (hp: number): string => {
+        const {dynamicProps} = this.props;
+        const {hivePerMVests} = dynamicProps;
+        const vests = hpToVests(hp, hivePerMVests);
+
+        return `${this.formatNumber(vests, 6)} VESTS`;
+    }
 
     canSubmit = () => {
         const {toData, toError, amountError, inProgress, amount} = this.state;
@@ -311,17 +353,21 @@ export class Transfer extends Component<Props, State> {
     next = () => {
         // make sure 3 decimals in amount
         const {amount} = this.state;
-        const fixedAmount = numeral(amount).format("0.000");
+        const fixedAmount = this.formatNumber(amount, 3);
 
-        this.setState({step: 2, amount: fixedAmount});
+        this.stateSet({step: 2, amount: fixedAmount});
     };
 
+    nextPowerDown = () => {
+        this.stateSet({step: 2, amount: "0.000"});
+    }
+
     back = () => {
-        this.setState({step: 1});
+        this.stateSet({step: 1});
     };
 
     confirm = () => {
-        this.setState({step: 3});
+        this.stateSet({step: 3});
     }
 
     sign = (key: PrivateKey) => {
@@ -330,33 +376,49 @@ export class Transfer extends Component<Props, State> {
         const fullAmount = `${amount} ${asset}`;
         const username = activeUser?.username!
 
-        let prms: Promise<any>;
+        let promise: Promise<any>;
         switch (mode) {
-            case 'transfer':
+            case "transfer": {
                 if (asset === "POINT") {
-                    prms = transferPoint(username, key, to, fullAmount, memo);
+                    promise = transferPoint(username, key, to, fullAmount, memo);
                 } else {
-                    prms = transfer(username, key, to, fullAmount, memo);
+                    promise = transfer(username, key, to, fullAmount, memo);
                 }
                 break;
-            case 'transfer-saving':
-                prms = transferToSavings(username, key, to, fullAmount, memo);
+            }
+            case "transfer-saving": {
+                promise = transferToSavings(username, key, to, fullAmount, memo);
                 break;
-            case 'convert':
-                prms = convert(username, key, fullAmount)
+            }
+            case "convert": {
+                promise = convert(username, key, fullAmount)
                 break;
-            case 'withdraw-saving':
-                prms = transferFromSavings(username, key, to, fullAmount, memo);
+            }
+            case "withdraw-saving": {
+                promise = transferFromSavings(username, key, to, fullAmount, memo);
                 break;
-            case 'power-up':
-                prms = transferToVesting(username, key, to, fullAmount);
+            }
+            case "power-up": {
+                promise = transferToVesting(username, key, to, fullAmount);
                 break;
+            }
+            case "power-down": {
+                const vests = this.hpToVests(Number(amount));
+                promise = withdrawVesting(username, key, vests);
+                break;
+            }
+            case "delegate": {
+                const vests = this.hpToVests(Number(amount));
+                promise = delegateVestingShares(username, key, to, vests);
+                break;
+            }
             default:
                 return;
         }
 
         this.stateSet({inProgress: true});
-        prms.then(() => getAccountFull(activeUser.username))
+
+        promise.then(() => getAccountFull(activeUser.username))
             .then((a) => {
                 const {addAccount, updateActiveUser} = this.props;
                 // refresh
@@ -377,27 +439,41 @@ export class Transfer extends Component<Props, State> {
         const fullAmount = `${amount} ${asset}`;
         const username = activeUser?.username!
 
-        let prms: Promise<any>;
         switch (mode) {
-            case 'transfer':
+            case "transfer": {
                 if (asset === "POINT") {
                     transferPointHot(username, to, fullAmount, memo);
                 } else {
-                    prms = transferHot(username, to, fullAmount, memo);
+                    transferHot(username, to, fullAmount, memo);
                 }
                 break;
-            case 'transfer-saving':
-                prms = transferToSavingsHot(username, to, fullAmount, memo);
+            }
+            case "transfer-saving": {
+                transferToSavingsHot(username, to, fullAmount, memo);
                 break;
-            case 'convert':
-                prms = convertHot(username, fullAmount)
+            }
+            case "convert": {
+                convertHot(username, fullAmount)
                 break;
-            case 'withdraw-saving':
-                prms = transferFromSavingsHot(username, to, fullAmount, memo);
+            }
+            case "withdraw-saving": {
+                transferFromSavingsHot(username, to, fullAmount, memo);
                 break;
-            case 'power-up':
-                prms = transferToVestingHot(username, to, fullAmount);
+            }
+            case "power-up": {
+                transferToVestingHot(username, to, fullAmount);
                 break;
+            }
+            case "power-down": {
+                const vests = this.hpToVests(Number(amount));
+                withdrawVestingHot(username, vests);
+                break;
+            }
+            case "delegate": {
+                const vests = this.hpToVests(Number(amount));
+                delegateVestingSharesHot(username, to, vests);
+                break;
+            }
             default:
                 return;
         }
@@ -411,33 +487,48 @@ export class Transfer extends Component<Props, State> {
         const fullAmount = `${amount} ${asset}`;
         const username = activeUser?.username!
 
-        let prms: Promise<any>;
+        let promise: Promise<any>;
         switch (mode) {
-            case 'transfer':
+            case "transfer": {
                 if (asset === "POINT") {
-                    prms = transferPointKc(username, to, fullAmount, memo);
+                    promise = transferPointKc(username, to, fullAmount, memo);
                 } else {
-                    prms = transferKc(username, to, fullAmount, memo);
+                    promise = transferKc(username, to, fullAmount, memo);
                 }
                 break;
-            case 'transfer-saving':
-                prms = transferToSavingsKc(username, to, fullAmount, memo);
+            }
+            case "transfer-saving": {
+                promise = transferToSavingsKc(username, to, fullAmount, memo);
                 break;
-            case 'convert':
-                prms = convertKc(username, fullAmount)
+            }
+            case "convert": {
+                promise = convertKc(username, fullAmount)
                 break;
-            case 'withdraw-saving':
-                prms = transferFromSavingsKc(username, to, fullAmount, memo);
+            }
+            case "withdraw-saving": {
+                promise = transferFromSavingsKc(username, to, fullAmount, memo);
                 break;
-            case 'power-up':
-                prms = transferToVestingKc(username, to, fullAmount);
+            }
+            case "power-up": {
+                promise = transferToVestingKc(username, to, fullAmount);
                 break;
+            }
+            case "power-down": {
+                const vests = this.hpToVests(Number(amount));
+                promise = withdrawVestingKc(username, vests);
+                break;
+            }
+            case "delegate": {
+                const vests = this.hpToVests(Number(amount));
+                promise = delegateVestingSharesKc(username, to, vests);
+                break;
+            }
             default:
                 return;
         }
 
         this.stateSet({inProgress: true});
-        prms.then(() => getAccountFull(activeUser.username))
+        promise.then(() => getAccountFull(activeUser.username))
             .then((a) => {
                 const {addAccount, updateActiveUser} = this.props;
                 // refresh
@@ -462,7 +553,7 @@ export class Transfer extends Component<Props, State> {
     }
 
     render() {
-        const {mode, activeUser, transactions} = this.props;
+        const {mode, activeUser, transactions, dynamicProps} = this.props;
         const {step, asset, to, toError, toWarning, amount, amountError, memo, inProgress} = this.state;
 
         const recent = [...new Set(
@@ -488,28 +579,107 @@ export class Transfer extends Component<Props, State> {
             onSelect: this.toSelected,
         };
 
+        let assets: TransferAsset[] = [];
+        switch (mode) {
+            case "transfer":
+                assets = ["HIVE", "HBD", "POINT"];
+                break;
+            case "transfer-saving":
+            case "withdraw-saving":
+                assets = ["HIVE", "HBD"];
+                break;
+            case "convert":
+                assets = ["HBD"];
+                break;
+            case "power-up":
+                assets = ["HIVE"];
+                break;
+            case "power-down":
+            case "delegate":
+                assets = ["HP"];
+                break;
+
+        }
+
+        const showTo = ["transfer", "transfer-saving", "withdraw-saving", "power-up", "delegate"].includes(mode);
+        const showMemo = ["transfer", "transfer-saving", "withdraw-saving"].includes(mode);
+
+        const balance = this.formatBalance(this.getBalance());
+
+        const titleLngKey = (mode === "transfer" && asset === "POINT") ? _t("transfer-title-point") : `${mode}-title`;
+        const subTitleLngKey = `${mode}-sub-title`;
+        const summaryLngKey = `${mode}-summary`;
+
+        const formHeader1 = <div className="transaction-form-header">
+            <div className="step-no">1</div>
+            <div className="box-titles">
+                <div className="main-title">{_t(`transfer.${titleLngKey}`)}</div>
+                <div className="sub-title">{_t(`transfer.${subTitleLngKey}`)}</div>
+            </div>
+        </div>;
+
+        const formHeader2 = <div className="transaction-form-header">
+            <div className="step-no">2</div>
+            <div className="box-titles">
+                <div className="main-title">
+                    {_t('transfer.confirm-title')}
+                </div>
+                <div className="sub-title">
+                    {_t('transfer.confirm-sub-title')}
+                </div>
+            </div>
+        </div>;
+
+        const formHeader3 = <div className="transaction-form-header">
+            <div className="step-no">3</div>
+            <div className="box-titles">
+                <div className="main-title">
+                    {_t('trx-common.sign-title')}
+                </div>
+                <div className="sub-title">
+                    {_t('trx-common.sign-sub-title')}
+                </div>
+            </div>
+        </div>;
+
+        const formHeader4 = <div className="transaction-form-header">
+            <div className="step-no">4</div>
+            <div className="box-titles">
+                <div className="main-title">
+                    {_t('trx-common.success-title')}
+                </div>
+                <div className="sub-title">
+                    {_t('trx-common.success-sub-title')}
+                </div>
+            </div>
+        </div>;
+
+        // Powering down
+        if (step === 1 && mode === "power-down") {
+            const w = new HiveWallet(activeUser.data, dynamicProps);
+            if (w.isPoweringDown) {
+                return <div className="transfer-dialog-content">
+                    <div className="transaction-form">
+                        {formHeader1}
+                        <div className="transaction-form-body powering-down">
+                            <p>{_t("transfer.powering-down")}</p>
+                            <p> {_t("wallet.next-power-down", {
+                                time: moment(w.nextVestingWithdrawalDate).fromNow(),
+                                amount: `${this.formatNumber(w.nextVestingSharesWithdrawalHive, 3)} HIVE`,
+                            })}</p>
+                            <p>
+                                <Button onClick={this.nextPowerDown} variant="danger">{_t("transfer.stop-power-down")}</Button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+
         return <div className="transfer-dialog-content">
             {step === 1 && (
                 <div className={`transaction-form ${inProgress ? 'in-progress' : ''}`}>
-                    <div className="transaction-form-header">
-                        <div className="step-no">1</div>
-                        <div className="box-titles">
-                            <div className="main-title">
-                                {mode === 'transfer' && (asset === "POINT" ? _t('transfer.transfer-title-point') : _t('transfer.transfer-title'))}
-                                {mode === 'transfer-saving' && _t('transfer.transfer-saving-title')}
-                                {mode === 'withdraw-saving' && _t('transfer.withdraw-saving-title')}
-                                {mode === 'power-up' && _t('transfer.power-up-title')}
-                                {mode === 'convert' && _t('transfer.convert-title')}
-                            </div>
-                            <div className="sub-title">
-                                {mode === 'transfer' && _t('transfer.transfer-sub-title')}
-                                {mode === 'transfer-saving' && _t('transfer.transfer-saving-sub-title')}
-                                {mode === 'withdraw-saving' && _t('transfer.withdraw-saving-sub-title')}
-                                {mode === 'power-up' && _t('transfer.power-up-sub-title')}
-                                {mode === 'convert' && _t('transfer.convert-sub-title')}
-                            </div>
-                        </div>
-                    </div>
+                    {formHeader1}
                     {inProgress && <LinearProgress/>}
                     <Form className="transaction-form-body">
                         <Form.Group as={Row}>
@@ -526,7 +696,7 @@ export class Transfer extends Component<Props, State> {
                             </Col>
                         </Form.Group>
 
-                        {['transfer', 'transfer-saving', 'withdraw-saving', 'power-up'].includes(mode) && (
+                        {showTo && (
                             <>
                                 <Form.Group as={Row}>
                                     <Form.Label column={true} sm="2">
@@ -577,25 +747,40 @@ export class Transfer extends Component<Props, State> {
                                         autoFocus={(mode !== 'transfer')}
                                     />
                                 </InputGroup>
-                                {mode !== 'power-up' && (
+                                {assets.length > 1 && (
                                     <AssetSwitch
+                                        options={assets}
                                         selected={asset}
                                         onChange={this.assetChanged}
                                     />
                                 )}
                             </Col>
                         </Form.Group>
+
                         {amountError && (<FormText msg={amountError} type="danger"/>)}
+
                         <Row>
-                            <Col md={{span: 10, offset: 2}}>
+                            <Col lg={{span: 10, offset: 2}}>
                                 <div className="balance">
-                                    {_t("transfer.balance")}{": "}
-                                    <span onClick={this.copyBalance} className="balance-num">{numeral(this.getBalance()).format("0.000")} {asset}</span>
+                                    <span className="balance-label">{_t("transfer.balance")}{": "}</span>
+                                    <span className="balance-num" onClick={this.copyBalance}>{balance}{" "}{asset}</span>
+                                    {asset === "HP" && (<div className="balance-hp-hint">{_t("transfer.available-hp-hint")}</div>)}
                                 </div>
+                                {(() => {
+                                    if (mode === "power-down") {
+                                        const hive = Math.round((Number(amount) / 13) * 1000) / 1000;
+                                        if (!isNaN(hive) && hive > 0) {
+                                            return <div className="power-down-estimation">
+                                                {_t("transfer.power-down-estimated", {n: `${this.formatNumber(hive, 3)} HIVE`})}
+                                            </div>;
+                                        }
+                                    }
+                                    return null;
+                                })()}
                             </Col>
                         </Row>
 
-                        {['transfer', 'transfer-saving', 'withdraw-saving'].includes(mode) && (
+                        {showMemo && (
                             <>
                                 <Form.Group as={Row}>
                                     <Form.Label column={true} sm="2">
@@ -624,32 +809,29 @@ export class Transfer extends Component<Props, State> {
 
             {step === 2 && (
                 <div className="transaction-form">
-                    <div className="transaction-form-header">
-                        <div className="step-no">2</div>
-                        <div className="box-titles">
-                            <div className="main-title">
-                                {_t('transfer.confirm-title')}
-                            </div>
-                            <div className="sub-title">
-                                {_t('transfer.confirm-sub-title')}
-                            </div>
-                        </div>
-                    </div>
+                    {formHeader2}
                     <div className="transaction-form-body">
                         <div className="confirmation">
+                            <div className="confirm-title">{_t(`transfer.${titleLngKey}`)}</div>
                             <div className="users">
                                 <div className="from-user">
                                     {UserAvatar({...this.props, username: activeUser.username, size: "medium"})}
                                 </div>
-                                <div className="arrow">{arrowRightSvg}</div>
-                                <div className="to-user">
-                                    {UserAvatar({...this.props, username: to, size: "medium"})}
-                                </div>
+                                {showTo && (
+                                    <>
+                                        <div className="arrow">{arrowRightSvg}</div>
+                                        <div className="to-user">
+                                            {UserAvatar({...this.props, username: to, size: "medium"})}
+                                        </div>
+                                    </>
+                                )}
                             </div>
                             <div className="amount">
                                 {amount} {asset}
                             </div>
+                            {asset === "HP" && <div className="amount-vests">{this.hpToVests(Number(amount))}</div>}
                             {memo && <div className="memo">{memo}</div>}
+
                         </div>
                         <div className="d-flex justify-content-center">
                             <Button variant="outline-secondary" disabled={inProgress} onClick={this.back}>
@@ -669,17 +851,7 @@ export class Transfer extends Component<Props, State> {
 
             {step === 3 && (
                 <div className="transaction-form">
-                    <div className="transaction-form-header">
-                        <div className="step-no">3</div>
-                        <div className="box-titles">
-                            <div className="main-title">
-                                {_t('trx-common.sign-title')}
-                            </div>
-                            <div className="sub-title">
-                                {_t('trx-common.sign-sub-title')}
-                            </div>
-                        </div>
-                    </div>
+                    {formHeader3}
                     <div className="transaction-form">
                         {KeyOrHot({
                             ...this.props,
@@ -688,26 +860,23 @@ export class Transfer extends Component<Props, State> {
                             onHot: this.signHs,
                             onKc: this.signKs
                         })}
+                        <p className="text-center">
+                            <a href="#" onClick={(e) => {
+                                e.preventDefault();
+
+                                this.stateSet({step: 2});
+                            }}>{_t("g.back")}</a>
+                        </p>
                     </div>
                 </div>
             )}
 
             {step === 4 && (
                 <div className="transaction-form">
-                    <div className="transaction-form-header">
-                        <div className="step-no">4</div>
-                        <div className="box-titles">
-                            <div className="main-title">
-                                {_t('trx-common.success-title')}
-                            </div>
-                            <div className="sub-title">
-                                {_t('trx-common.success-sub-title')}
-                            </div>
-                        </div>
-                    </div>
+                    {formHeader4}
                     <div className="transaction-form-body">
                         <div className="success"
-                             dangerouslySetInnerHTML={{__html: _t("transfer.transfer-summary", {amount: `${amount} ${asset}`, from: activeUser.username, to})}}/>
+                             dangerouslySetInnerHTML={{__html: _t(`transfer.${summaryLngKey}`, {amount: `${amount} ${asset}`, from: activeUser.username, to})}}/>
                         <div className="d-flex justify-content-center">
                             <Button variant="outline-secondary" onClick={this.reset}>
                                 {_t("transfer.reset")}

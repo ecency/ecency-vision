@@ -44,7 +44,7 @@ exports[`(1) Default render 1`] = `
       href="/subscribers/hive-125125"
       onClick={[Function]}
     >
-      Subscribers
+      Members
     </a>
     <a
       className="community-menu-item"
@@ -119,7 +119,7 @@ exports[`(2) Hot filter 1`] = `
       href="/subscribers/hive-125125"
       onClick={[Function]}
     >
-      Subscribers
+      Members
     </a>
     <a
       className="community-menu-item"
@@ -194,7 +194,7 @@ exports[`(3) In section 1`] = `
       href="/subscribers/hive-125125"
       onClick={[Function]}
     >
-      Subscribers
+      Members
     </a>
     <a
       className="community-menu-item"

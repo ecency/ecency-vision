@@ -1,26 +1,65 @@
-.votes-dialog-content {
-  font-size: 96%;
+.entry-votes-modal {
+  .modal-body {
+    padding-top: 0;
+    padding-bottom: 10px;
 
-  .voter-cell {
-    width: 200px;
-    font-weight: 500;
+    .voters-list {
+      @include user-grid-list(1, 1, 2);
+      margin-bottom: 20px;
+      height: 440px;
+      overflow: auto;
 
-    .account {
-      display: flex;
-      align-items: center;
+      .list-body {
 
-      .user-avatar {
-        margin-right: 6px;
+        .list-item {
+          .item-extra {
+            display: flex;
+            align-items: center;
+
+            .separator {
+              margin: 0 6px;
+              width: 4px;
+              height: 4px;
+              border-radius: 4px;
+              display: inline-flex;
+              font-size: 14px;
+
+              @include themify(day) {
+                background: $silver;
+              }
+
+              @include themify(night) {
+                background: $metallic-blue;
+              }
+            }
+          }
+        }
       }
     }
-  }
 
-  .reward-cell {
-    width: 180px;
-  }
+    .list-tools {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: column-reverse;
 
-  .percent-cell {
-    width: 180px;
+      @media (min-width: $lg-break) {
+        flex-direction: row;
+      }
+
+      .sorter {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        @media (min-width: $lg-break) {
+          margin-bottom: 0;
+        }
+
+        .label {
+          margin-right: 4px;
+        }
+      }
+    }
   }
 }
 

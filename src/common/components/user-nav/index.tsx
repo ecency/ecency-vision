@@ -8,6 +8,7 @@ import {Account} from "../../store/accounts/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {ToggleType, UI} from "../../store/ui/types";
 import {NotificationFilter, Notifications} from "../../store/notifications/types";
+import {DynamicProps} from "../../store/dynamic-props/types";
 
 import ToolTip from "../tooltip";
 import UserAvatar from "../user-avatar";
@@ -15,28 +16,26 @@ import DropDown from "../dropdown";
 import UserNotifications from "../notifications";
 import Gallery from "../gallery";
 import Drafts from "../drafts";
-import Bookmarks from "../bookmarks"
+import Bookmarks from "../bookmarks";
 
 import {_t} from "../../i18n";
 
-import parseAsset from "../../helper/parse-asset";
+import HiveWallet from "../../helper/hive-wallet";
 
 import {creditCardSvg, gifCardSvg, bellSvg, bellOffSvg} from "../../img/svg";
 
 class WalletBadge extends Component<{
     activeUser: ActiveUser;
+    dynamicProps: DynamicProps;
 }> {
     render() {
-        const {activeUser} = this.props;
+        const {activeUser, dynamicProps} = this.props;
 
         let hasUnclaimedRewards = false;
         const {data: account} = activeUser;
 
         if (account.__loaded) {
-            const rewardHiveBalance = parseAsset(account.reward_steem_balance || account.reward_hive_balance).amount;
-            const rewardHbdBalance = parseAsset(account.reward_sbd_balance || account.reward_hbd_balance).amount;
-            const rewardVestingHive = parseAsset(account.reward_vesting_steem || account.reward_vesting_hive).amount;
-            hasUnclaimedRewards = rewardHiveBalance > 0 || rewardHbdBalance > 0 || rewardVestingHive > 0;
+            hasUnclaimedRewards = new HiveWallet(account, dynamicProps).hasUnclaimedRewards;
         }
 
         return <>
@@ -70,6 +69,7 @@ class PointsBadge extends Component<{ activeUser: ActiveUser }> {
 
 interface Props {
     global: Global;
+    dynamicProps: DynamicProps;
     history: History;
     location: Location;
     users: User[];
@@ -129,7 +129,7 @@ export default class UserNav extends Component<Props, State> {
 
     render() {
         const {gallery, drafts, bookmarks} = this.state;
-        const {activeUser, ui, notifications, global} = this.props;
+        const {activeUser, ui, notifications, global, dynamicProps} = this.props;
         const {unread} = notifications;
 
         const dropDownConfig = {
@@ -170,7 +170,7 @@ export default class UserNav extends Component<Props, State> {
             <>
                 <div className="user-nav">
                     <PointsBadge activeUser={activeUser}/>
-                    <WalletBadge activeUser={activeUser}/>
+                    <WalletBadge activeUser={activeUser} dynamicProps={dynamicProps}/>
                     <ToolTip content={_t("user-nav.notifications")}>
                         <span className="notifications" onClick={this.toggleNotifications}>
                              {unread > 0 && (

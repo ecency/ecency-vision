@@ -26,6 +26,7 @@ setProxyBase(defaults.imageServer);
 
 import {Entry} from "../store/entries/types";
 import {Global} from "../store/global/types";
+import {FullAccount} from "../store/accounts/types";
 
 import Meta from "../components/meta";
 import Theme from "../components/theme";
@@ -356,9 +357,13 @@ class SubmitPage extends Component<Props, State> {
         const {activeUser, history, addEntry} = this.props;
         const {title, tags, body, reward} = this.state;
 
+        if (!activeUser || !activeUser.data.__loaded) {
+            return;
+        }
+
         this.stateSet({posting: true});
 
-        const author = activeUser?.username!;
+        const author = activeUser.username;
         let permlink = createPermlink(title);
 
         // If permlink has already used, create it again with random suffix
@@ -387,7 +392,7 @@ class SubmitPage extends Component<Props, State> {
                 // Create entry object in store
                 const entry = {
                     ...tempEntry({
-                        author: activeUser?.data!,
+                        author: activeUser.data as FullAccount,
                         permlink,
                         parentAuthor: "",
                         parentPermlink,
