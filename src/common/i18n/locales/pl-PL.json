@@ -565,8 +565,12 @@
     "placeholder-empty": "Tagi. Pierwszy tag jest kategorią główną. Tagi można sortować.",
     "placeholder-focus": "Wprowadź tag",
     "placeholder-has-tags": "Dodaj więcej",
-    "suggestion-header": "Tagi/społeczności",
+    "suggestion-header": "Tags",
     "error-max": "Max {{n}} tags"
+  },
+  "community-selector": {
+    "my-blog": "My Blog",
+    "search-placeholder": "Search Communities"
   },
   "word-count": {
     "label": "{{n}} words",
