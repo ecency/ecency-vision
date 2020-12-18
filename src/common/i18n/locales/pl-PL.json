@@ -596,7 +596,7 @@
     "type-follows": "Follows",
     "type-reblogs": "Reblogs",
     "type-transfers": "Transfers",
-    "vote-str": "{{p}}% likes your post:",
+    "vote-str": "{{p}}% lubi Twój wpis:",
     "reply-str": "replied to your post:",
     "mention-str": "mentioned you in:",
     "followed-str": "followed",
