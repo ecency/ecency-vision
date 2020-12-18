@@ -162,6 +162,8 @@ class EntryIndexPage extends Component<PageProps> {
                         <div className="side-menu">
                             {!global.isMobile && (
                                 <>
+                                    <MarketData/>
+
                                     <div className="menu-nav">
                                         <DownloadTrigger>
                                             <div className="downloads">
@@ -174,7 +176,6 @@ class EntryIndexPage extends Component<PageProps> {
                                             </div>
                                         </DownloadTrigger>
                                     </div>
-                                    <MarketData/>
                                 </>
                             )}
                         </div>
