@@ -6,6 +6,8 @@ import {FullAccount, AccountProfile, AccountFollowStats} from "../store/accounts
 
 import parseAsset from "../helper/parse-asset";
 
+import isCommunity from "../helper/is-community";
+
 import SERVERS from "../constants/servers.json";
 
 export const client = new Client(SERVERS, {
@@ -69,7 +71,7 @@ export const getTrendingTags = (afterTag: string = "", limit: number = 250): Pro
         .then((tags: TrendingTag[]) => {
                 return tags
                     .filter((x) => x.name !== "")
-                    .filter((x) => !(x.name.match(/^hive-\d+/)))
+                    .filter((x) => !isCommunity(x.name))
                     .map((x) => x.name)
             }
         );

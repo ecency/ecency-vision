@@ -1,0 +1,290 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Empty tags. 1`] = `
+<a
+  className="community-selector"
+  href="#"
+  onClick={[Function]}
+>
+  <span
+    className="user-avatar small"
+    style={
+      Object {
+        "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/small)",
+      }
+    }
+  />
+  <span
+    className="label"
+  >
+    My Blog
+  </span>
+   
+  <svg
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M7,10L12,15L17,10H7Z"
+      fill="currentColor"
+    />
+  </svg>
+</a>
+`;
+
+exports[`(2) Tags with no community 1`] = `
+<a
+  className="community-selector"
+  href="#"
+  onClick={[Function]}
+>
+  <span
+    className="user-avatar small"
+    style={
+      Object {
+        "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/small)",
+      }
+    }
+  />
+  <span
+    className="label"
+  >
+    My Blog
+  </span>
+   
+  <svg
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M7,10L12,15L17,10H7Z"
+      fill="currentColor"
+    />
+  </svg>
+</a>
+`;
+
+exports[`(3) Tags with community. but in the end 1`] = `
+<a
+  className="community-selector"
+  href="#"
+  onClick={[Function]}
+>
+  <span
+    className="user-avatar small"
+    style={
+      Object {
+        "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/small)",
+      }
+    }
+  />
+  <span
+    className="label"
+  >
+    My Blog
+  </span>
+   
+  <svg
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M7,10L12,15L17,10H7Z"
+      fill="currentColor"
+    />
+  </svg>
+</a>
+`;
+
+exports[`(4) Tags with community. 1`] = `
+<a
+  className="community-selector"
+  href="#"
+  onClick={[Function]}
+>
+  <span
+    className="user-avatar small"
+    style={
+      Object {
+        "backgroundImage": "url(https://images.ecency.com/u/hive-125125/avatar/small)",
+      }
+    }
+  />
+  <span
+    className="label"
+  >
+    Ecency
+  </span>
+   
+  <svg
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M7,10L12,15L17,10H7Z"
+      fill="currentColor"
+    />
+  </svg>
+</a>
+`;
+
+exports[`(5) Tags with community. But not valid 1`] = `
+<a
+  className="community-selector"
+  href="#"
+  onClick={[Function]}
+>
+  <span
+    className="user-avatar small"
+    style={
+      Object {
+        "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/small)",
+      }
+    }
+  />
+  <span
+    className="label"
+  >
+    My Blog
+  </span>
+   
+  <svg
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M7,10L12,15L17,10H7Z"
+      fill="currentColor"
+    />
+  </svg>
+</a>
+`;
+
+exports[`(6) Browser 1`] = `
+<div
+  className="browser"
+>
+  <div
+    className="search"
+  >
+    <input
+      className="form-control form-control-sm"
+      onChange={[Function]}
+      placeholder="Search Communities"
+      type="text"
+      value=""
+    />
+  </div>
+  <div
+    className="browser-list"
+  >
+    <div
+      className="list-body"
+    >
+      <a
+        className="list-item"
+        href="#"
+        onClick={[Function]}
+      >
+        <div
+          className="item-main"
+        >
+          <span
+            className="user-avatar small"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/small)",
+              }
+            }
+          />
+          <div
+            className="item-info"
+          >
+            <span
+              className="item-name notransalte"
+            >
+              My Blog
+            </span>
+          </div>
+        </div>
+      </a>
+      <a
+        className="list-item"
+        href="#"
+        onClick={[Function]}
+      >
+        <div
+          className="item-main"
+        >
+          <span
+            className="user-avatar small"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/hive-125125/avatar/small)",
+              }
+            }
+          />
+          <div
+            className="item-info"
+          >
+            <span
+              className="item-name notransalte"
+            >
+              Ecency
+            </span>
+          </div>
+        </div>
+      </a>
+      <a
+        className="list-item"
+        href="#"
+        onClick={[Function]}
+      >
+        <div
+          className="item-main"
+        >
+          <span
+            className="user-avatar small"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/hive-131131/avatar/small)",
+              }
+            }
+          />
+          <div
+            className="item-info"
+          >
+            <span
+              className="item-name notransalte"
+            >
+              Foo
+            </span>
+          </div>
+        </div>
+      </a>
+      <a
+        className="list-item"
+        href="#"
+        onClick={[Function]}
+      >
+        <div
+          className="item-main"
+        >
+          <span
+            className="user-avatar small"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/hive-145145/avatar/small)",
+              }
+            }
+          />
+          <div
+            className="item-info"
+          >
+            <span
+              className="item-name notransalte"
+            >
+              Bar
+            </span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+`;
