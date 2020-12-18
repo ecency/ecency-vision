@@ -1,0 +1,44 @@
+.community-selector {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+
+  .user-avatar {
+    margin-right: 6px;
+  }
+
+  .label {
+    margin-right: 2px;
+  }
+
+  svg {
+    height: 22px;
+    color: $silver;
+  }
+
+  &:hover {
+    svg {
+      color: $warm-grey;
+    }
+  }
+}
+
+.community-selector-modal {
+  .modal-body {
+    .browser {
+      .search {
+        margin-bottom: 10px;
+      }
+
+      .browser-list {
+        height: 340px;
+        overflow: auto;
+        @include user-grid-list(1, 1, 2);
+
+        .list-body .list-item:hover .item-main .item-info .item-name {
+          color: $dark-sky-blue !important;
+        }
+      }
+    }
+  }
+}

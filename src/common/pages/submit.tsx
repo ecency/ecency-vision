@@ -36,6 +36,7 @@ import NavBarElectron from "../../desktop/app/components/navbar";
 import FullHeight from "../components/full-height";
 import EditorToolbar from "../components/editor-toolbar";
 import TagSelector from "../components/tag-selector";
+import CommunitySelector from "../components/community-selector";
 import Tag from "../components/tag";
 import LoginRequired from "../components/login-required";
 import WordCount from "../components/word-counter";
@@ -48,13 +49,16 @@ import {getDrafts, addDraft, updateDraft, Draft} from "../api/private";
 import {createPermlink, extractMetaData, makeJsonMetaData, makeCommentOptions, createPatch} from "../helper/posting";
 
 import tempEntry, {correctIsoDate} from "../helper/temp-entry";
+import isCommunity from "../helper/is-community" ;
 
-import {RewardType, comment, formatError} from "../api/operations";
+import {RewardType, comment, reblog, formatError} from "../api/operations";
 
 import * as bridgeApi from "../api/bridge";
 import * as hiveApi from "../api/hive";
 
 import {_t} from "../i18n";
+
+import _c from "../util/fix-class-names"
 
 import * as ls from "../util/local-storage";
 
@@ -310,6 +314,13 @@ class SubmitPage extends Component<Props, State> {
     };
 
     tagsChanged = (tags: string[]): void => {
+        if (isEqual(this.state.tags, tags)) {
+            // tag selector calls onchange event 2 times on each change.
+            // one for add event one for sort event.
+            // important to check if tags really changed.
+            return;
+        }
+
         this.stateSet({tags}, () => {
             this.updatePreview();
         });
@@ -408,6 +419,11 @@ class SubmitPage extends Component<Props, State> {
                 success(_t("submit.published"));
                 const newLoc = makePathEntry(parentPermlink, author, permlink);
                 history.push(newLoc);
+            })
+            .then(() => {
+                if (isCommunity(tags[0])) {
+                    reblog(author, author, permlink);
+                }
             })
             .catch((e) => {
                 error(formatError(e));
@@ -509,7 +525,7 @@ class SubmitPage extends Component<Props, State> {
             description: _t("submit.page-description"),
         };
 
-        const {global} = this.props;
+        const {global, activeUser} = this.props;
 
         const canPublish = title.trim() !== "" && tags.length > 0 && tags.length <= 10 && body.trim() !== "";
         const spinner = <Spinner animation="grow" variant="light" size="sm" style={{marginRight: "6px"}}/>;
@@ -527,8 +543,25 @@ class SubmitPage extends Component<Props, State> {
                     }) :
                     NavBar({...this.props})}
 
-                <div className="app-content submit-page">
+                <div className={_c(`app-content submit-page ${editingEntry !== null ? "editing" : ""}`)}>
                     <div className="editor-side">
+                        {(editingEntry === null && activeUser) && <div className="community-input">
+                            {CommunitySelector({
+                                ...this.props,
+                                activeUser,
+                                tags,
+                                onSelect: (prev, next) => {
+                                    const {tags} = this.state;
+
+                                    const newTags = [
+                                        ...[next ? next : ""],
+                                        ...tags.filter(x => x !== prev)
+                                    ].filter(x => x);
+
+                                    this.tagsChanged(newTags);
+                                }
+                            })}
+                        </div>}
                         {EditorToolbar({...this.props})}
                         <div className="title-input">
                             <Form.Control

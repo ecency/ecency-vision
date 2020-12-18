@@ -65,6 +65,8 @@ import {makeJsonMetaDataReply, createReplyPermlink} from "../helper/posting";
 
 import {makeShareUrlReddit, makeShareUrlTwitter, makeShareUrlFacebook} from "../helper/url-share";
 
+import isCommunity from "../helper/is-community";
+
 import truncate from "../util/truncate";
 import * as ls from "../util/local-storage";
 
@@ -154,7 +156,7 @@ class EntryPage extends Component<Props, State> {
                     reducerFn(entry);
                 }
 
-                if (/^hive-\d+/.test(category)) {
+                if (isCommunity(category)) {
                     return bridgeApi.getCommunity(category, activeUser?.username);
                 }
 

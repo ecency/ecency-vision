@@ -10,9 +10,11 @@ import {getCommunity} from "../../api/bridge";
 
 import defaults from "../../constants/defaults.json";
 
+import isCommunity from "../../helper/is-community";
+
 export const makePath = (filter: string, tag: string): string => {
     // created is default filter for community pages
-    if (/^hive-\d+/.test(tag)) {
+    if (isCommunity(tag)) {
         return `/${EntryFilter.created}/${tag}`;
     }
 
@@ -47,7 +49,7 @@ export class TagLink extends Component<Props> {
     componentDidMount(): void {
         const {tag} = this.props;
 
-        if (tag.match(/^hive-\d+/)) {
+        if (isCommunity(tag)) {
             if (cache[tag] === undefined) {
                 getCommunity(tag).then((c) => {
                     if (c) {

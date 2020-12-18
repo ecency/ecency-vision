@@ -11,7 +11,6 @@ import {ReactSortable, ItemInterface} from "react-sortablejs";
 import {Global} from "../../store/global/types";
 import {TrendingTags} from "../../store/trending-tags/types";
 
-import Tag from "../tag";
 import SuggestionList from "../suggestion-list";
 import {error} from "../feedback";
 
@@ -19,7 +18,7 @@ import {_t} from "../../i18n";
 
 import _c from "../../util/fix-class-names";
 
-import {closeSvg, accountGroupSvg, poundSvg} from "../../img/svg";
+import {closeSvg, poundSvg} from "../../img/svg";
 
 interface Props {
     global: Global;
@@ -129,21 +128,6 @@ export class TagSelector extends Component<Props, State> {
                 <div className={_c(`tag-selector ${tags.length > 0 ? "has-tags" : ""}`)}>
                     <SuggestionList
                         renderer={(x: string) => {
-                            if (x.startsWith("hive-")) {
-                                return (
-                                    <>
-                                        {accountGroupSvg}
-                                        {Tag({
-                                            ...this.props,
-                                            tag: x,
-                                            type: "span",
-                                            children: <span>{x}</span>
-                                        })}
-                                        <span className="flex-spacer"/>
-                                        <small>{x}</small>
-                                    </>
-                                );
-                            }
                             return (
                                 <>
                                     {poundSvg} {x}
@@ -188,12 +172,7 @@ export class TagSelector extends Component<Props, State> {
                                 return (
                                     <div key={x} className="tag-item">
                                         <div className="item-inner">
-                                            {Tag({
-                                                ...this.props,
-                                                tag: x,
-                                                type: "span",
-                                                children: <span>{x}</span>
-                                            })}
+                                            <span>{x}</span>
                                         </div>
                                         <span
                                             className="item-delete"
