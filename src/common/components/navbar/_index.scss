@@ -232,7 +232,8 @@
       }
     }
 
-    .switch-theme {
+
+    .switch-theme, .switch-language {
       cursor: pointer;
       position: absolute;
       left: 20px;
@@ -265,6 +266,18 @@
       @include themify(night) {
         color: $duck-egg-blue;
         opacity: 0.8;
+      }
+    }
+
+    .switch-language {
+      left: 60px;
+
+      @media (min-width: $md-break) {
+        left: auto;
+      }
+
+      @include themify(night) {
+        opacity: 1;
       }
     }
 
