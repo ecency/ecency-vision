@@ -38,11 +38,11 @@
     "filter-hot": "Актуальне",
     "filter-created": "Нове",
     "filter-promoted": "Promoted",
-    "filter-payout": "Payouts",
+    "filter-payout": "Виплати",
     "filter-muted": "Muted",
     "filter-feed": "Стрічка",
     "filter-feed-friends": "Друзі",
-    "filter-feed-subscriptions": "Communities"
+    "filter-feed-subscriptions": "Спільноти"
   },
   "navbar": {
     "discover": "Discover",
@@ -372,12 +372,12 @@
     "main-description": "Бали можуть використовуватися для вбудованих сервісів, таких як Просування чи Підсилення допису, або їх можна подарувати друзям. Заробити бали можна тільки за допомогою наших додатків Ecency та нашої браузерної версії.",
     "earn-points": "Як отримати більше балів",
     "post-desc": "Ви можете заробити бали, регулярно публікуючи повідомлення. Повідомлення дає 15 балів.",
-    "comment-desc": "Each comment you make helps you to grow your audience and make friendship but also earns you 5 points.",
-    "checkin-desc": "Checking in on Ecency gives you 0.25 points and helps you stay connected with your friends.",
+    "comment-desc": "Кожен коментар допомагає вам нарощувати аудиторію, зав'язує дружбу та приносить тобі 5 балів.",
+    "checkin-desc": "Періодичний вхід на Ecency дає вам 0,25 балів та допомагає залишатися на зв'язку з друзями.",
     "vote-desc": "By voting you give reward to other creators and show your appreciation but also earn 0.01 x vote weight points.",
-    "reblog-desc": "  Share what post you like with your friends and earn 1 points.",
+    "reblog-desc": "  Діліться з друзями постами, що вам подобаються, та отримуйте 1 бал.",
     "login-desc": "При першій авторизації в додатку Ecency вам автоматично нараховується 100 балів.",
-    "checkin-extra-desc": "Consistent use of app gives you extra chances to earn more 10 points, be more active and earn more.",
+    "checkin-extra-desc": "Регулярне використання додатку дає вам шанс отримати ще 10 бонусних балів, будьте активнішим та отримуй більше.",
     "delegation-desc": "You can earn ~50 points per day for each 1000HP delegation.",
     "history": "Історія",
     "post-list-desc": "Бали за допис",
@@ -488,12 +488,12 @@
   "key-or-hot": {
     "sign": "Sign",
     "key-placeholder": "Enter active/owner/master key",
-    "with-hivesigner": "Sign with hivesigner",
-    "with-keychain": "Sign with keychain"
+    "with-hivesigner": "Увійти за допомогою hivesigner",
+    "with-keychain": "Увійти за допомогою Keychain"
   },
   "delegated-vesting": {
     "title": "Делегована Hive Power",
-    "undelegate": "undelegate"
+    "undelegate": "припинити делегування"
   },
   "received-vesting": {
     "title": "Отримана Hive Power"
@@ -716,8 +716,8 @@
       "what-is-ecency-header": "Що таке Ecency?",
       "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based social network - powered by <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency offers uncensored, free, limitless, rewarding platform for content creators.</p><p>Project was initiated and founded by <a href=\"/@good-karma\">@good-karma</a> in August 2016 as an alternative social network. Since then project has grown to much larger group of contributors (translators, testers, developers, influencers, content creators and consumers) who helped to shape Ecency.</p><p>Ecency helps onboarding masses into Blockchain technology where users are getting paid for their time, resources and learn while enjoying social aspects of blockchain. Through ease of use, users not only learn but also become investors, innovators of the technology and community.</p>",
       "what-is-hive-header": "Що таке Hive блокчейн?",
-      "what-is-hive-body": "<p>Hive is a blockchain that was designed to be fast, feeless, decentralized, uncensored platform for Web3.0 applications, with built-in features where stake holders can earn rewards by staking, curating, posting, playing games, trading - all without any middle man (decentralized). Tokens on Hive blockchain called HIVE, HIVE DOLLARS, HIVE POWER.</p>",
-      "what-is-difference-header": "What's the difference between Ecency and other Hive interfaces?",
+      "what-is-hive-body": "<p>Hive - це блокчейн, розроблений як швидка, безоплатна, децентралізована, нецензурована платформа для додатків Web 3.0 із вбудованими функціями, де зацікавлені сторони можуть заробляти винагороду та стекаючи їх, інвестуючи, публікуючи, граючи в ігри, торгуючи - все без будь-якої середньої людини (децентралізована). Токени на блокчейні Hive під назвою HIVE, HIVE DOLLARS, HIVE POWER(сила).</p>",
+      "what-is-difference-header": "У чому різниця між Ecency та іншими Hive інтерфейсами?",
       "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\" loading=\"lazy\"/></p><p>The primary differences in all interfaces or applications are in their feature-set, use cases. Ecency offers website, mobile and desktop applications for ease of access and with best security in mind. Accessible, opensource and innovative, built and owned by users. Aspire for greatness!</p>",
       "why-choose-ecency-header": "Why would I choose Ecency?",
       "why-choose-ecency-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjrzJAcJ4DvxvtqoPdzS9Aygf4MZ1PeE4goH6zWaeEFvafr9vGXWuou67Pbn44GweMyHV5DupM5q1cRvU85qdver?format=match&mode=fit\" loading=\"lazy\"/></p><p>Tailored feature set to empower you to create, inspire your audience and community. Ecency mobile application giving you on-go solution. With desktop app you are always sure to get uncensored content right from the blockchain, with website reach thousands of readers accross globe with best ranked content on search engines. State of art security measures so your keys will always stay encrypted and out of reach for ill-intentioned individuals. Fast and beautiful website, helps you to get discovered online and gain exposure for your content and gain loyal followers and readers. Build your community with Ecency today and take advantages of emerging blockchain technology and uncensored content, true free speech!</p>",
@@ -744,7 +744,7 @@
       "how-dhf-work-header": "How DHF works?",
       "how-dhf-work-body": "<p>Anyone can create a proposal and convince community to vote on their proposal to get funded. Before creating proposal, normal post should be published on blockchain and it is recommended to gather feedback before creating proposal. Proposal creation has fee of 10 HBD + 1 HBD for each day it lasts over 60 days.</p><p>Once proposal reaches certain threshold of tallied votes, it will start receiving funds each hour. If proposal falls below threshold, system will halt funding for that proposal. You can vote as many proposals as you want, there are no limits. Proposal cannot be edited, but can be deleted/withdrawn by creator.</p>",
       "when-claim-rewards-header": "When can I claim my rewards?",
-      "when-claim-rewards-body": "<p>Posts and comments remain active for 7 days and rewards are fluctuates depending on votes and market price of token, that is why rewards are approximated as pending reward. When the period is over, pending reward changes to actual reward and you are able to claim earned rewards. In your Wallet, click the Claim Rewards button to add the tokens to your account.</p>",
+      "when-claim-rewards-body": "<p>Дописи та коментарі залишаються активними протягом 7 днів, а винагорода коливається залежно від голосів та ціни токену на ринку, тому винагороди приблизні, як очікувані винагороди. Коли період закінчиться, очікувані винагороди зміняться до фактичної винагороди, і ви можете претендувати на зароблені нагороди. У вашому гаманці натисніть кнопку \"Отримати винагороду\", щоб зарахувати токени до вашого рахунку.</p>",
       "what-are-rc-header": "What are Resource Credits?",
       "what-are-rc-body": "<p>Передача на блокчейні Hive має нульові збори, обмеження ставок на транзакції використовуються для захисту блокчейну від спам-атак. Кожна дія, яку ви вживаєте у блокчейн буде споживати невелику кількість ресурсних кредитів. Це включає публікацію, коментарі, голосування, переказ токенів тощо, перегляд вмісту не споживає кредитних ресурсів.</p><p>Кожен користувач має обмежену кількість кредитних ресурсів, які використовуються щотижня. Чим більше транзакцій користувач здійснює, тим менше ресурсів вони будуть мати у залишку (до поки вони не будуть відновлені). Користувачі, які мають більше Hive cили, мають більше запас кредитних ресурсів.</p><p>Якщо у вас закінчилися кредитні ресурси, ви не зможете здійснювати транзакцію з блокчейном, доки ваші ресурсні кредити не відновляться (це відбувається автоматично, впродовж доби) або ви можете отримати додаткову Hive силу для збільшення кредитих ресурсів, або ви можете <a href=\"/faq#how-boost-account\">попросити про підсилення вашої обліковки у Ecency</a> для отримання тимчасової делегації.</p>",
       "how-boost-account-header": "How to request account boosting?",
@@ -754,11 +754,11 @@
       "can-link-post-header": "Can I request adding backlink to my website from Ecency team?",
       "can-link-post-body": "<p>All the content on our site is created by our users and we don't modify or able to add backlinks. You are free to contact author of the post or <a href=\"/?referral=ecency\">Signup</a> to open your own blog and community, publish articles to create backlinks for free.</p>",
       "can-guest-post-header": "Is it possible to guest post on your website?",
-      "can-guest-post-body": "<p>Posting on Ecency is simple and easy, <a href=\"/?referral=ecency\">Signup</a> to open your own blog and community, start posting your content.</p>"
+      "can-guest-post-body": "<p>Писати дописи на Ecency легко та просто, треба тільки <a href=\"/?referral=ecency\">Зареєструватися</a>, щоб відкрити власний блог або створити спільноту, після чого зможете почати публікувати ваш вміст.</p>"
     }
   },
   "context-menu": {
-    "cut": "Cut",
+    "cut": "Вирізати",
     "copy": "Копіювати",
     "paste": "Вставити",
     "open-image-browser": "Відкрити світлину у браузері",
