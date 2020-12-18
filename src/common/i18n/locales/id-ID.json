@@ -565,8 +565,12 @@
     "placeholder-empty": "Tagar. Tagar pertama adalah kategori utama. Mudah disortir.",
     "placeholder-focus": "Masukkan tagar",
     "placeholder-has-tags": "Tambahkan lagi",
-    "suggestion-header": "Tagar/Komunitas",
+    "suggestion-header": "Tags",
     "error-max": "Maksimum {{n}} tagar"
+  },
+  "community-selector": {
+    "my-blog": "My Blog",
+    "search-placeholder": "Search Communities"
   },
   "word-count": {
     "label": "{{n}} kata",
