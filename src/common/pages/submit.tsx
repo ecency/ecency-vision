@@ -49,8 +49,9 @@ import {getDrafts, addDraft, updateDraft, Draft} from "../api/private";
 import {createPermlink, extractMetaData, makeJsonMetaData, makeCommentOptions, createPatch} from "../helper/posting";
 
 import tempEntry, {correctIsoDate} from "../helper/temp-entry";
+import isCommunity from "../helper/is-community" ;
 
-import {RewardType, comment, formatError} from "../api/operations";
+import {RewardType, comment, reblog, formatError} from "../api/operations";
 
 import * as bridgeApi from "../api/bridge";
 import * as hiveApi from "../api/hive";
@@ -418,6 +419,11 @@ class SubmitPage extends Component<Props, State> {
                 success(_t("submit.published"));
                 const newLoc = makePathEntry(parentPermlink, author, permlink);
                 history.push(newLoc);
+            })
+            .then(() => {
+                if (isCommunity(tags[0])) {
+                    reblog(author, author, permlink);
+                }
             })
             .catch((e) => {
                 error(formatError(e));
