@@ -26,10 +26,8 @@ import Login from "../login";
 import UserNav from "../user-nav";
 import DropDown from "../dropdown";
 
-import {langOptions} from "../../i18n";
+import {_t, langOptions} from "../../i18n";
 import i18n from "i18next";
-
-import {_t} from "../../i18n";
 
 import _c from "../../util/fix-class-names";
 
@@ -157,8 +155,7 @@ export class NavBar extends Component<Props, State> {
                         });
                     }
                 }
-            })),
-            active: false
+            }))
         };
 
         return (

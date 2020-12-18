@@ -22,13 +22,14 @@ import {DynamicProps} from "../../../../common/store/dynamic-props/types";
 import ToolTip from "../../../../common/components/tooltip";
 import Login from "../../../../common/components/login";
 import UserNav from "../../../../common/components/user-nav";
-import DropDown, {MenuItem} from "../../../../common/components/dropdown";
+import DropDown from "../../../../common/components/dropdown";
 import SearchSuggester from "../../../../common/components/search-suggester";
 import Updater from "../updater";
 
 import NotificationHandler from "../../../../common/components/notification-handler";
 
-import {_t} from "../../../../common/i18n";
+import {_t, langOptions} from "../../../../common/i18n";
+import i18n from "i18next";
 
 import _c from "../../../../common/util/fix-class-names";
 
@@ -36,7 +37,7 @@ import defaults from "../../../../common/constants/defaults.json";
 
 import routes from "../../../../common/routes";
 
-import {brightnessSvg, pencilOutlineSvg, arrowLeftSvg, arrowRightSvg, refreshSvg, magnifySvg, dotsHorizontal} from "../../../../common/img/svg";
+import {brightnessSvg, pencilOutlineSvg, arrowLeftSvg, arrowRightSvg, refreshSvg, magnifySvg, dotsHorizontal, translateSvg} from "../../../../common/img/svg";
 
 // why "require" instead "import" ? see: https://github.com/ReactTraining/react-router/issues/6203
 const pathToRegexp = require("path-to-regexp");
@@ -257,6 +258,7 @@ interface Props {
     toggleUIProp: (what: ToggleType) => void;
     muteNotifications: () => void;
     unMuteNotifications: () => void;
+    setLang: (lang: string) => void;
     dismissNewVersion: () => void;
     reloadFn?: () => any,
     reloading?: boolean,
@@ -327,18 +329,13 @@ export class NavBar extends Component<Props, State> {
     };
 
     render() {
-        const {global, activeUser, history, location, ui} = this.props;
+        const {global, activeUser, history, location, ui, setLang} = this.props;
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
         const logoHref = activeUser ? `/@${activeUser.username}/feed` : '/';
 
         const {floating} = this.state;
 
-        const menuConfig: {
-            history: History,
-            label: string,
-            icon: JSX.Element,
-            items: MenuItem[]
-        } = {
+        const textMenuConfig = {
             history: this.props.history,
             label: '',
             icon: dotsHorizontal,
@@ -359,6 +356,23 @@ export class NavBar extends Component<Props, State> {
                     active: location.pathname === '/faq'
                 }
             ],
+        };
+
+        const langMenuConfig = {
+            history: this.props.history,
+            label: '',
+            icon: translateSvg,
+            items: langOptions.map((f => {
+                return {
+                    label: f.name,
+                    active: global.lang === f.code,
+                    onClick: () => {
+                        i18n.changeLanguage(f.code).then(() => {
+                            setLang(f.code);
+                        });
+                    }
+                }
+            }))
         };
 
         return (
@@ -385,7 +399,11 @@ export class NavBar extends Component<Props, State> {
                         </div>
 
                         <div className="text-menu">
-                            <DropDown {...menuConfig} float="right"/>
+                            <DropDown {...textMenuConfig} float="right"/>
+                        </div>
+
+                        <div className="switch-language">
+                            <DropDown {...langMenuConfig} float="left"/>
                         </div>
 
                         <ToolTip content={themeText}>
@@ -450,6 +468,7 @@ export default (p: Props) => {
         toggleUIProp: p.toggleUIProp,
         muteNotifications: p.muteNotifications,
         unMuteNotifications: p.unMuteNotifications,
+        setLang: p.setLang,
         dismissNewVersion: p.dismissNewVersion,
         reloadFn: p.reloadFn,
         reloading: p.reloading,
