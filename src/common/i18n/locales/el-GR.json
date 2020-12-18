@@ -480,10 +480,10 @@
     "type-author_reward": "Ανταμοιβή συγγραφέα",
     "type-comment_benefactor_reward": "Comment Benefactor Reward",
     "type-claim_reward_balance": "Διεκδικήστε ανταμοιβές",
-    "type-transfer": "Transfer",
+    "type-transfer": "Μεταφορά",
     "type-transfer_to_vesting": "Transfer to vesting",
     "type-withdraw_vesting": "Withdraw vesting",
-    "type-fill_order": "Fill order"
+    "type-fill_order": "Συμπλήρωση παραγγελίας"
   },
   "key-or-hot": {
     "sign": "Sign",
