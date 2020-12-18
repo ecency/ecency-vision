@@ -157,11 +157,11 @@
     "title": "1 glas",
     "title-n": "{{n}} Glasova",
     "title-empty": "Nema glasova",
-    "sort": "Sort",
-    "sort-reward": "Reward",
-    "sort-timestamp": "Time",
-    "sort-reputation": "Reputation",
-    "sort-percent": "Percentage"
+    "sort": "Sortiraj",
+    "sort-reward": "Nagrada",
+    "sort-timestamp": "Vreme",
+    "sort-reputation": "Reputacija",
+    "sort-percent": "Procenat"
   },
   "entry": {
     "via-app": "putem <span class=\"app-name\">{{app}}</span>",
@@ -565,12 +565,12 @@
     "placeholder-empty": "Oznake. Prva oznaka je glavna kategorija. Podložno razvrstavanju.",
     "placeholder-focus": "Unesite oznaku",
     "placeholder-has-tags": "Dodaj još",
-    "suggestion-header": "Tags",
+    "suggestion-header": "Oznake",
     "error-max": "Najviše {{n}} oznaka"
   },
   "community-selector": {
-    "my-blog": "My Blog",
-    "search-placeholder": "Search Communities"
+    "my-blog": "Moj Blog",
+    "search-placeholder": "Pretraži Zajednice"
   },
   "word-count": {
     "label": "{{n}} reči",
