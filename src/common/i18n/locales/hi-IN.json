@@ -565,8 +565,12 @@
     "placeholder-empty": "टैग। पहला टैग मुख्य श्रेणी है। क्रमित करने योग्य।",
     "placeholder-focus": "टैग डालें",
     "placeholder-has-tags": "अधिक जोड़ें",
-    "suggestion-header": "टैग / समुदाय",
+    "suggestion-header": "Tags",
     "error-max": "अधिकतम {{n}} टैग"
+  },
+  "community-selector": {
+    "my-blog": "My Blog",
+    "search-placeholder": "Search Communities"
   },
   "word-count": {
     "label": "{{n}} शब्द",
