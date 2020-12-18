@@ -349,11 +349,6 @@ export class NavBar extends Component<Props, State> {
                     label: _t("navbar.communities"),
                     href: `/communities`,
                     active: location.pathname === '/communities'
-                },
-                {
-                    label: _t("navbar.faq"),
-                    href: `/faq`,
-                    active: location.pathname === '/faq'
                 }
             ],
         };

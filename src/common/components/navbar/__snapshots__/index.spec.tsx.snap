@@ -49,13 +49,6 @@ Array [
       >
         Communities
       </a>
-      <a
-        className="menu-item"
-        href="/faq"
-        onClick={[Function]}
-      >
-        FAQ
-      </a>
     </div>
   </div>,
   <div
@@ -94,13 +87,6 @@ Array [
           onClick={[Function]}
         >
           Communities
-        </a>
-        <a
-          className="menu-item"
-          href="/faq"
-          onClick={[Function]}
-        >
-          FAQ
         </a>
       </div>
       <div
@@ -288,13 +274,6 @@ Array [
       >
         Communities
       </a>
-      <a
-        className="menu-item"
-        href="/faq"
-        onClick={[Function]}
-      >
-        FAQ
-      </a>
     </div>
   </div>,
   <div
@@ -333,13 +312,6 @@ Array [
           onClick={[Function]}
         >
           Communities
-        </a>
-        <a
-          className="menu-item"
-          href="/faq"
-          onClick={[Function]}
-        >
-          FAQ
         </a>
       </div>
       <div
@@ -527,13 +499,6 @@ Array [
       >
         Communities
       </a>
-      <a
-        className="menu-item"
-        href="/faq"
-        onClick={[Function]}
-      >
-        FAQ
-      </a>
     </div>
   </div>,
   <div
@@ -572,13 +537,6 @@ Array [
           onClick={[Function]}
         >
           Communities
-        </a>
-        <a
-          className="menu-item"
-          href="/faq"
-          onClick={[Function]}
-        >
-          FAQ
         </a>
       </div>
       <div

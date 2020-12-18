@@ -222,12 +222,13 @@
       }
 
       @media (min-width: $xl-break) {
+        width: 380px;
         margin-right: 18px;
         flex-grow: 0;
       }
 
       @media (min-width: $xxl-break) {
-        width: 400px;
+        width: 500px;
         margin-right: 40px;
       }
     }

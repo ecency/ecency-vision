@@ -2,6 +2,8 @@ import React, {Component} from "react";
 
 import {connect} from "react-redux";
 
+import {Link} from "react-router-dom";
+
 import {ListStyle} from "../store/global/types";
 
 import {makeGroupKey} from "../store/entries";
@@ -21,6 +23,7 @@ import TrendingTagsCard from "../components/trending-tags-card";
 import SelectedTagsCard from "../components/selected-tags-card";
 import ScrollToTop from "../components/scroll-to-top";
 import MarketData from "../components/market-data";
+import DownloadTrigger from "../components/download-trigger";
 
 import {_t} from "../i18n";
 
@@ -30,10 +33,9 @@ import capitalize from "../util/capitalize";
 
 import defaults from "../constants/defaults.json";
 
-import {pageMapDispatchToProps, pageMapStateToProps, PageProps} from "./common";
 import {appleSvg, desktopSvg, googleSvg} from "../img/svg";
-import DownloadTrigger from "../components/download-trigger";
-import {Link} from "react-router-dom";
+
+import {pageMapDispatchToProps, pageMapStateToProps, PageProps} from "./common";
 
 
 class EntryIndexPage extends Component<PageProps> {
@@ -175,6 +177,18 @@ class EntryIndexPage extends Component<PageProps> {
                                                 </span>
                                             </div>
                                         </DownloadTrigger>
+
+                                        <div className="text-menu">
+                                            <Link className="menu-item" to="/faq">
+                                                {_t("entry-index.faq")}
+                                            </Link>
+                                            <Link className="menu-item" to="/terms-of-service">
+                                                {_t("entry-index.tos")}
+                                            </Link>
+                                            <Link className="menu-item" to="/privacy-policy">
+                                                {_t("entry-index.pp")}
+                                            </Link>
+                                        </div>
                                     </div>
                                 </>
                             )}

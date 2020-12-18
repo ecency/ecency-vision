@@ -177,9 +177,6 @@ export class NavBar extends Component<Props, State> {
                             <Link className="menu-item" to="/communities">
                                 {_t("navbar.communities")}
                             </Link>
-                            <Link className="menu-item" to="/faq">
-                                {_t("navbar.faq")}
-                            </Link>
                         </div>
                     </div>
                 )}
@@ -196,9 +193,6 @@ export class NavBar extends Component<Props, State> {
                             </Link>
                             <Link className="menu-item" to="/communities">
                                 {_t("navbar.communities")}
-                            </Link>
-                            <Link className="menu-item" to="/faq">
-                                {_t("navbar.faq")}
                             </Link>
                         </div>
                         <div className="flex-spacer"/>

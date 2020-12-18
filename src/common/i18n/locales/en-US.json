@@ -48,7 +48,6 @@
     "discover": "Discover",
     "communities": "Communities",
     "about": "About",
-    "faq": "FAQ",
     "post": "Create Post",
     "day-theme": "Day Theme",
     "night-theme": "Night Theme",
@@ -144,7 +143,10 @@
     "title": "{{f}} topics",
     "description": "{{f}} topics on a social network owned and operated by its users.",
     "description-tag": "{{f}} #{{t}} topics",
-    "description-user-feed": "{{u}}'s feed"
+    "description-user-feed": "{{u}}'s feed",
+    "faq": "FAQ",
+    "tos": "Terms of service",
+    "pp": "Privacy Policy"
   },
   "market-data": {
     "title": "Market price",
