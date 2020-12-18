@@ -565,8 +565,12 @@
     "placeholder-empty": "Tags. First tag is main category. Sortable.",
     "placeholder-focus": "Introdu eticheta",
     "placeholder-has-tags": "Adauga",
-    "suggestion-header": "Tags/Communities",
+    "suggestion-header": "Tags",
     "error-max": "Maximum {{n}} tag-uri"
+  },
+  "community-selector": {
+    "my-blog": "My Blog",
+    "search-placeholder": "Search Communities"
   },
   "word-count": {
     "label": "{{n}} cuvinte",
