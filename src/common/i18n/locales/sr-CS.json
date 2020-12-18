@@ -565,8 +565,12 @@
     "placeholder-empty": "Oznake. Prva oznaka je glavna kategorija. Podložno razvrstavanju.",
     "placeholder-focus": "Unesite oznaku",
     "placeholder-has-tags": "Dodaj još",
-    "suggestion-header": "Oznake/Zajednice",
+    "suggestion-header": "Tags",
     "error-max": "Najviše {{n}} oznaka"
+  },
+  "community-selector": {
+    "my-blog": "My Blog",
+    "search-placeholder": "Search Communities"
   },
   "word-count": {
     "label": "{{n}} reči",
