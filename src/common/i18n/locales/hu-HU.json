@@ -565,8 +565,12 @@
     "placeholder-empty": "Tags. First tag is main category. Sortable.",
     "placeholder-focus": "Címke felvétele",
     "placeholder-has-tags": "További hozzáadása",
-    "suggestion-header": "Címkék/Közösségek",
+    "suggestion-header": "Tags",
     "error-max": "Maximum {{n}} címke"
+  },
+  "community-selector": {
+    "my-blog": "My Blog",
+    "search-placeholder": "Search Communities"
   },
   "word-count": {
     "label": "{{n}} szó",
