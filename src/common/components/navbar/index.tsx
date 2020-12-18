@@ -141,7 +141,7 @@ export class NavBar extends Component<Props, State> {
 
         const {smVisible, floating} = this.state;
 
-        const dropDownConfig = {
+        const langMenuConfig = {
             history: this.props.history,
             label: '',
             icon: translateSvg,
@@ -206,7 +206,7 @@ export class NavBar extends Component<Props, State> {
                             {Search({...this.props})}
                         </div>
                         <div className="switch-language">
-                            <DropDown {...dropDownConfig} float="left"/>
+                            <DropDown {...langMenuConfig} float="left"/>
                         </div>
                         <ToolTip content={themeText}>
                             <div className="switch-theme" onClick={this.changeTheme}>
