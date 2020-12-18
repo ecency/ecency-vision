@@ -565,8 +565,12 @@
     "placeholder-empty": "Ετικέτες. Η πρώτη ετικέτα είναι η κύρια κατηγορία. Tαξινομήσιμο.",
     "placeholder-focus": "Εισαγωγή ετικέτας",
     "placeholder-has-tags": "Προσθέστε περισσότερα",
-    "suggestion-header": "Ετικέτες/Κοινότητες",
+    "suggestion-header": "Tags",
     "error-max": "Μέγιστες {{n}} ετικέτες"
+  },
+  "community-selector": {
+    "my-blog": "My Blog",
+    "search-placeholder": "Search Communities"
   },
   "word-count": {
     "label": "{{n}} λέξεις",
