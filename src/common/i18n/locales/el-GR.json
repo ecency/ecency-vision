@@ -569,8 +569,8 @@
     "error-max": "Μέγιστες {{n}} ετικέτες"
   },
   "community-selector": {
-    "my-blog": "My Blog",
-    "search-placeholder": "Search Communities"
+    "my-blog": "Το Blog μου",
+    "search-placeholder": "Αναζήτησε Κοινότητες"
   },
   "word-count": {
     "label": "{{n}} λέξεις",
@@ -610,30 +610,30 @@
     "refresh": "Ανανέωση",
     "mark-all-read": "Σήμανση όλων ως αναγνωσμένων",
     "mark-read": "Σήμανση ως αναγνωσμένο",
-    "mute": "Turn off notification alerts",
-    "unmute": "Turn on notification alerts"
+    "mute": "Απενεργοποίηση ειδοποιήσεων",
+    "unmute": "Ενεργοποίηση ειδοποιήσεων"
   },
   "leaderboard": {
-    "title": "Leaderboard",
-    "title-day": "Daily top users",
-    "title-week": "Weekly top users",
-    "title-month": "Monthly top users",
-    "period-day": "Daily",
-    "period-week": "Weekly",
-    "period-month": "Monthly",
-    "header-score": "Activities",
-    "header-score-tip": "Post + comments made by a user for selected period",
-    "header-reward": "Reward"
+    "title": "Πίνακας Κατάταξης",
+    "title-day": "Καθημερινοί κορυφαίοι χρήστες",
+    "title-week": "Εβδομαδιαίοι κορυφαίοι χρήστες",
+    "title-month": "Μηνιαίοι κορυφαίοι χρήστες",
+    "period-day": "Ημερησίως",
+    "period-week": "Εβδομαδιαίως",
+    "period-month": "Μηνιαίως",
+    "header-score": "Δραστηριότητες",
+    "header-score-tip": "Δημοσιεύσεις + σχόλια που δημιοργήθηκαν από έναν χρήστη για συγκεκριμένη περίοδο",
+    "header-reward": "Ανταμοιβή"
   },
   "popular-users": {
-    "title": "Popular Users"
+    "title": "Δημοφιλείς Χρήστες"
   },
   "discover": {
-    "title": "Discover",
-    "description": "Discover top online users"
+    "title": "Ανακαλύψτε",
+    "description": "Ανακαλύψτε κορυφαίους ενεργούς χρήστες"
   },
   "search-page": {
-    "title": "Search",
+    "title": "Αναζήτηση",
     "description": "Find uncensored content, communities and users",
     "n-results-for-q": "{{n}} results",
     "no-result": "No result",
