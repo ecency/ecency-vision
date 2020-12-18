@@ -147,7 +147,7 @@ export default class EntryListItem extends Component<Props> {
                 </picture>
             );
         }
-        const cls = `entry-list-item ${promoted ? "promoted-item" : ""} ${community ? "with-community" : ""}`;
+        const cls = `entry-list-item ${promoted ? "promoted-item" : ""}`;
         return (
             <div className={_c(cls)}>
                 <div className="item-header">

@@ -3,33 +3,8 @@
 }
 
 .grid-view {
-  @media (min-width: $sm-break) {
-    .entry-list-item {
-      @media (min-width: $xl-break) {
-        margin-right: 2%;
-        padding-right: 0;
-        width: 49%;
-
-        &:nth-child(2n) {
-          margin-right: 0;
-        }
-      }
-
-      &:not(.with-community) {
-        @media (min-width: $xxxl-break) {
-          margin-right: 1%;
-          width: 32.6%;
-
-          &:nth-child(2n) {
-            margin-right: 1%;
-          }
-
-          &:nth-child(3n) {
-            margin-right: 0;
-          }
-        }
-      }
-
+  .entry-list-item {
+    @media (min-width: $sm-break) {
       .item-body {
         .item-image {
           float: none;
@@ -50,6 +25,48 @@
         .item-controls {
           float: none;
           width: 100%;
+        }
+      }
+    }
+  }
+
+
+  &:not(.limited-area) {
+    .entry-list-item {
+      @media (min-width: $xl-break) {
+        margin-right: 2%;
+        padding-right: 0;
+        width: 49%;
+
+        &:nth-child(2n) {
+          margin-right: 0;
+        }
+      }
+
+      @media (min-width: $xxxl-break) {
+        margin-right: 1%;
+        width: 32.6%;
+
+        &:nth-child(2n) {
+          margin-right: 1%;
+        }
+
+        &:nth-child(3n) {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
+  &.limited-area {
+    .entry-list-item {
+      @media (min-width: $xxl-break) {
+        margin-right: 2%;
+        padding-right: 0;
+        width: 49%;
+
+        &:nth-child(2n) {
+          margin-right: 0;
         }
       }
     }

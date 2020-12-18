@@ -117,6 +117,8 @@ class EntryIndexPage extends Component<PageProps> {
 
         const promoted = entries['__promoted__'].entries;
 
+        const isMy = isMyPage(global, activeUser);
+
         return (
             <>
                 <Meta {...metaProps} />
@@ -146,14 +148,14 @@ class EntryIndexPage extends Component<PageProps> {
                         </div>
                         {loading && entryList.length === 0 ? <LinearProgress/> : ""}
                         <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>
-                            <div className={_c(`entry-list-body ${global.listStyle === ListStyle.grid ? "grid-view" : ""}`)}>
+                            <div className={_c(`entry-list-body ${isMy ? "limited-area" : ""} ${global.listStyle === ListStyle.grid ? "grid-view" : ""}`)}>
                                 {loading && entryList.length === 0 && <EntryListLoadingItem/>}
                                 {EntryListContent({...this.props, entries: entryList, promotedEntries: promoted})}
                             </div>
                         </div>
                         {loading && entryList.length > 0 ? <LinearProgress/> : ""}
                     </div>
-                    {(location.pathname === '/' || isMyPage(global, activeUser)) && (
+                    {(location.pathname === '/' || isMy) && (
                         <div className="market-side">
                             {!global.isMobile && (
                                 <MarketData/>
