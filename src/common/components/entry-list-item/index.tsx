@@ -151,40 +151,44 @@ export default class EntryListItem extends Component<Props> {
         return (
             <div className={_c(cls)}>
                 <div className="item-header">
-                    <div className="author-part">
-                        {ProfileLink({
+                    <div className="item-header-main">
+                        <div className="author-part">
+                            {ProfileLink({
+                                ...this.props,
+                                username: entry.author,
+                                children: <a className="author-avatar">{UserAvatar({...this.props, username: entry.author, size: "small"})}</a>
+                            })}
+                            {ProfileLink({
+                                ...this.props,
+                                username: entry.author,
+                                children: <div className="author notranslate">{entry.author}<span className="author-reputation">{reputation}</span></div>
+                            })}
+                        </div>
+                        {Tag({
                             ...this.props,
-                            username: entry.author,
-                            children: <a className="author-avatar">{UserAvatar({...this.props, username: entry.author, size: "small"})}</a>
+                            tag: entry.category,
+                            type: "link",
+                            children: <a className="category">{entry.community_title || entry.category}</a>
                         })}
-                        {ProfileLink({
-                            ...this.props,
-                            username: entry.author,
-                            children: <div className="author notranslate">{entry.author}<span className="author-reputation">{reputation}</span></div>
-                        })}
+                        {!isVisited && <span className="read-mark"/>}
+                        <span className="date" title={dateFormatted}>{dateRelative}</span>
                     </div>
-                    {Tag({
-                        ...this.props,
-                        tag: entry.category,
-                        type: "link",
-                        children: <a className="category">{entry.community_title || entry.category}</a>
-                    })}
-                    {!isVisited && <span className="read-mark"/>}
-                    <span className="date" title={dateFormatted}>{dateRelative}</span>
-                    {isPinned && (
-                        <Tooltip content={_t("entry-list-item.pinned")}>
-                            <span className="pinned">{pinSvg}</span>
-                        </Tooltip>
-                    )}
-                    {reBlogged && (
-                        <span className="reblogged">{repeatSvg} {_t("entry-list-item.reblogged", {n: reBlogged})}</span>
-                    )}
-                    {promoted && (
-                        <>
-                            <span className="space"/>
-                            <div className="promoted">{_t("entry-list-item.promoted")}</div>
-                        </>
-                    )}
+                    <div className="item-header-features">
+                        {isPinned && (
+                            <Tooltip content={_t("entry-list-item.pinned")}>
+                                <span className="pinned">{pinSvg}</span>
+                            </Tooltip>
+                        )}
+                        {reBlogged && (
+                            <span className="reblogged">{repeatSvg} {_t("entry-list-item.reblogged", {n: reBlogged})}</span>
+                        )}
+                        {promoted && (
+                            <>
+                                <span className="flex-spacer"/>
+                                <div className="promoted">{_t("entry-list-item.promoted")}</div>
+                            </>
+                        )}
+                    </div>
                 </div>
                 <div className="item-body">
                     <div className="item-image">
