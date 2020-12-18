@@ -565,8 +565,12 @@
     "placeholder-empty": "Etiquetas. Primera etiqueta es la categoría principal. Seleccionable.",
     "placeholder-focus": "Escribir una etiqueta",
     "placeholder-has-tags": "Agregar más",
-    "suggestion-header": "Etiquetas/Comunidades",
+    "suggestion-header": "Tags",
     "error-max": "Máximo {{n}} etiquetas"
+  },
+  "community-selector": {
+    "my-blog": "My Blog",
+    "search-placeholder": "Search Communities"
   },
   "word-count": {
     "label": "{{n}} palabras",
