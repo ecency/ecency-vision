@@ -1,9 +1,6 @@
 export function getOperatingSystem(agent: string) {
     let operatingSystem = 'WindowsOS';
 
-    console.log(agent)
-
-
     if (agent.indexOf('Win') !== -1) {
         operatingSystem = 'WindowsOS';
     }

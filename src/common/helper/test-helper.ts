@@ -100,8 +100,9 @@ export const globalInstance: Global = {
     canUseWebp: false,
     hasKeyChain: false,
     isElectron: false,
+    isMobile: false,
     notifications: true,
-    newVersion: null
+    newVersion: null,
 };
 
 export const TrendingTagsInstance: TrendingTags = {

@@ -133,8 +133,12 @@ class EntryIndexPage extends Component<PageProps> {
                 <Intro global={this.props.global} hideIntro={this.props.hideIntro}/>
                 <div className="app-content entry-index-page">
                     <div className="tags-side">
-                        {SelectedTagsCard({...this.props})}
-                        {TrendingTagsCard({...this.props})}
+                        {!global.isMobile && (
+                            <>
+                                {SelectedTagsCard({...this.props})}
+                                {TrendingTagsCard({...this.props})}
+                            </>
+                        )}
                     </div>
                     <div className={_c(`entry-page-content ${loading ? "loading" : ""}`)}>
                         <div className="page-tools">
@@ -151,7 +155,9 @@ class EntryIndexPage extends Component<PageProps> {
                     </div>
                     {(location.pathname === '/' || isMyPage(global, activeUser)) && (
                         <div className="market-side">
-                            <MarketData/>
+                            {!global.isMobile && (
+                                <MarketData/>
+                            )}
                         </div>
                     )}
                 </div>
