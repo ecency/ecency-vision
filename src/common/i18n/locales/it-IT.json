@@ -565,8 +565,12 @@
     "placeholder-empty": "Etichette. La prima etichetta è la categoria principale che classificherà il post.",
     "placeholder-focus": "Inserisci etichetta",
     "placeholder-has-tags": "Aggiungi di più",
-    "suggestion-header": "Etichette/Community",
+    "suggestion-header": "Tags",
     "error-max": "Al massimo {{n}} etichette"
+  },
+  "community-selector": {
+    "my-blog": "My Blog",
+    "search-placeholder": "Search Communities"
   },
   "word-count": {
     "label": "{{n}} parole",
