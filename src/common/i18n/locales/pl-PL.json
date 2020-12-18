@@ -3,7 +3,7 @@
     "add": "Dodaj",
     "edit": "Edytuj",
     "search": "Szukaj",
-    "downloads": "Pobrane",
+    "downloads": "Pobierz",
     "login": "Zaloguj się",
     "login-as": "Zaloguj się jako",
     "signup": "Zarejestruj się",
@@ -56,7 +56,7 @@
   },
   "search": {
     "placeholder": "Szukaj",
-    "placeholder-count": "Szukaj {{n}} postów",
+    "placeholder-count": "Szukaj wśród {{n}} wpisów",
     "header-tag": "Tagi",
     "header-account": "Użytkownicy",
     "header-community": "Społeczności"
