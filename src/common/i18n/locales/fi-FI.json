@@ -565,12 +565,12 @@
     "placeholder-empty": "Tunnisteet. Ensimmäisenä pääkategoria. Lajiteltava.",
     "placeholder-focus": "Syötä tunniste",
     "placeholder-has-tags": "Lisää enemmän",
-    "suggestion-header": "Tags",
+    "suggestion-header": "Tunnisteet",
     "error-max": "Enintään {{n}} tunnistetta"
   },
   "community-selector": {
-    "my-blog": "My Blog",
-    "search-placeholder": "Search Communities"
+    "my-blog": "Oma Blogi",
+    "search-placeholder": "Etsi Yhteisöjä"
   },
   "word-count": {
     "label": "{{n}} sanaa",
