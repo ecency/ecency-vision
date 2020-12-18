@@ -6,7 +6,7 @@
     "downloads": "Pobierz",
     "login": "Logowanie",
     "login-as": "Zaloguj się jako",
-    "signup": "Zarejestruj się",
+    "signup": "Rejestracja",
     "delete": "Usuń",
     "cancel": "Anuluj",
     "reply": "Odpowiedz",
@@ -92,16 +92,16 @@
     "sign-up-text-2": "Zarejestruj się teraz!"
   },
   "sign-up": {
-    "header": "Zapisz się",
-    "description": "Jedno konto do zarządzania wszystkiego w blockchain i Ecency. Dowiedz się więcej o korzyściach w naszym <a href=\"/faq#how-to-join\">FAQ</a>",
+    "header": "Zarejestruj się",
+    "description": "Jedno konto do zarządzania wszystkim w blockchainie i Ecency. Więcej informacji o korzyściach znajdziesz w sekcji <a href=\"/faq#how-to-join\">FAQ</a>.",
     "username": "Wybierz nazwę użytkownika",
     "email": "Podaj swój e-mail",
     "ref": "Użytkownik rekomendowany (opcjonalnie)",
     "submit": "Kontynuuj",
     "success": "Wysłaliśmy e-mail weryfikacyjny na adres {{email}}.",
     "success-2": "Postępuj zgodnie z instrukcjami, aby zakończyć proces rejestracji.",
-    "login-text-1": "Czy posiadasz konto?",
-    "login-text-2": "Login"
+    "login-text-1": "Masz już konto?",
+    "login-text-2": "Zaloguj się"
   },
   "trending-tags": {
     "title": "Tematy"
