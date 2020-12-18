@@ -565,8 +565,12 @@
     "placeholder-empty": "Теги. Першим тегом є основна категорія, а наступні є для сортування.",
     "placeholder-focus": "Enter tag",
     "placeholder-has-tags": "Додати більше",
-    "suggestion-header": "Теги/Спільноти",
+    "suggestion-header": "Tags",
     "error-max": "Максимум {{n}} тегів"
+  },
+  "community-selector": {
+    "my-blog": "My Blog",
+    "search-placeholder": "Search Communities"
   },
   "word-count": {
     "label": "{{n}} слів",
