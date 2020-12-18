@@ -257,18 +257,18 @@
     "sort-subs": "Члены",
     "sort-new": "Новое",
     "no-results": "Не найдено",
-    "create": "Create community"
+    "create": "Создать сообщество"
   },
   "communities-create": {
-    "page-title": "Create a community",
-    "title": "Title",
-    "about": "About",
-    "description": "Create a best, decentralized, immutable, rewarding communities",
+    "page-title": "Создать сообщество",
+    "title": "Название",
+    "about": "О сообществе",
+    "description": "Создать лучшие, децентрализованные, неизменяемые, вознаграждающие сообщества",
     "fee": "Operation fee",
-    "creator": "Creator",
-    "username": "Owner username",
-    "username-available": "Available.",
-    "username-not-available": "Not available.",
+    "creator": "Создатель",
+    "username": "Имя владельца",
+    "username-available": "Доступно.",
+    "username-not-available": "Недоступно.",
     "username-wrong-format": "Неверный формат. Требуется формат hive-1xxxxx.",
     "password": "Пароль владельца",
     "confirmation": "Я надёжно сохранил имя владельца и пароль.",
@@ -475,7 +475,7 @@
     "success-sub-title": "Transaction successful"
   },
   "transactions": {
-    "title": "History",
+    "title": "История",
     "type-curation_reward": "Curation Reward",
     "type-author_reward": "Author Reward",
     "type-comment_benefactor_reward": "Comment Benefactor Reward",
