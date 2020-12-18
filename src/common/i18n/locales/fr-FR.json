@@ -565,8 +565,12 @@
     "placeholder-empty": "Mots-clés. Le premier mot-clé est la catégorie principale. Triable.",
     "placeholder-focus": "Saisir un mot-clé",
     "placeholder-has-tags": "En ajouter plus",
-    "suggestion-header": "Tags / Communautés",
+    "suggestion-header": "Tags",
     "error-max": "Max {{n}} mots-clés"
+  },
+  "community-selector": {
+    "my-blog": "My Blog",
+    "search-placeholder": "Search Communities"
   },
   "word-count": {
     "label": "{{n}} mots",
