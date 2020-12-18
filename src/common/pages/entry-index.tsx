@@ -31,6 +31,9 @@ import capitalize from "../util/capitalize";
 import defaults from "../constants/defaults.json";
 
 import {pageMapDispatchToProps, pageMapStateToProps, PageProps} from "./common";
+import {appleSvg, desktopSvg, googleSvg} from "../img/svg";
+import DownloadTrigger from "../components/download-trigger";
+import {Link} from "react-router-dom";
 
 
 class EntryIndexPage extends Component<PageProps> {
@@ -156,9 +159,23 @@ class EntryIndexPage extends Component<PageProps> {
                         {loading && entryList.length > 0 ? <LinearProgress/> : ""}
                     </div>
                     {(location.pathname === '/' || isMy) && (
-                        <div className="market-side">
+                        <div className="side-menu">
                             {!global.isMobile && (
-                                <MarketData/>
+                                <>
+                                    <div className="menu-nav">
+                                        <DownloadTrigger>
+                                            <div className="downloads">
+                                                <span className="label">{_t("g.downloads")}</span>
+                                                <span className="icons">
+                                                    <span className="img-apple">{appleSvg}</span>
+                                                    <span className="img-google">{googleSvg}</span>
+                                                    <span className="img-desktop">{desktopSvg}</span>
+                                                </span>
+                                            </div>
+                                        </DownloadTrigger>
+                                    </div>
+                                    <MarketData/>
+                                </>
                             )}
                         </div>
                     )}

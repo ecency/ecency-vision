@@ -47,10 +47,68 @@
     }
   }
 
-  .market-side {
+  .side-menu {
     flex-grow: 0;
     flex-shrink: 0;
     display: none;
+    padding-left: 20px;
+
+    .menu-nav {
+      height: 50px;
+      display: flex;
+      align-items: center;
+
+      .downloads {
+        background: linear-gradient(270deg, #2d5aa0 4.68%, #357ce6 98.13%);
+        border-radius: 25px;
+        padding: 8px 16px;
+        color: $white;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        margin-right: 10px;
+        flex-grow: 1;
+        justify-content: center;
+
+        &:hover {
+          background: linear-gradient(120deg, #2d5aa0 4.68%, #357ce6 98.13%);
+          color: $white;
+        }
+
+        .label {
+          margin-right: 6px;
+        }
+
+        .icons {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+
+          .img-apple {
+            margin-right: 11px;
+
+            svg {
+              height: 14px;
+              margin-top: -2px;
+            }
+          }
+
+          .img-google {
+            margin-right: 7px;
+
+            svg {
+              height: 12px;
+            }
+          }
+
+          .img-desktop {
+            svg {
+              height: 12px;
+            }
+          }
+        }
+      }
+    }
 
     @media (min-width: $xl-break) {
       display: block;

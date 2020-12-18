@@ -222,13 +222,12 @@
       }
 
       @media (min-width: $xl-break) {
-        width: 240px;
         margin-right: 18px;
         flex-grow: 0;
       }
 
       @media (min-width: $xxl-break) {
-        width: 300px;
+        width: 400px;
         margin-right: 40px;
       }
     }
@@ -266,88 +265,6 @@
       @include themify(night) {
         color: $duck-egg-blue;
         opacity: 0.8;
-      }
-    }
-
-    .downloads {
-      background: linear-gradient(270deg, #2d5aa0 4.68%, #357ce6 98.13%);
-      border-radius: 25px;
-      padding: 8px 12px;
-      color: $white;
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      width: 200px;
-      margin-bottom: 20px;
-
-      @media (min-width: $md-break) {
-        width: auto;
-        margin-bottom: 0;
-        margin-right: 14px;
-        display: block;
-        padding: 2px 12px;
-      }
-
-      @media (min-width: $xl-break) {
-        margin-right: 18px;
-        padding: 8px 16px;
-        display: flex;
-      }
-
-      &:hover {
-        background: linear-gradient(120deg, #2d5aa0 4.68%, #357ce6 98.13%);
-        color: $white;
-      }
-
-      .label {
-        margin-right: 10px;
-
-        @media (min-width: $md-break) {
-          margin-right: 0;
-          text-align: center;
-          font-size: 14px;
-        }
-
-        @media (min-width: $xl-break) {
-          margin-right: 6px;
-          font-size: 16px;
-        }
-      }
-
-      .icons {
-        display: flex;
-        align-items: center;
-
-        @media (min-width: $md-break) {
-          justify-content: center;
-        }
-
-        @media (min-width: $xl-break) {
-          justify-content: flex-start;
-        }
-
-        .img-apple {
-          margin-right: 11px;
-
-          svg {
-            height: 14px;
-            margin-top: -2px;
-          }
-        }
-
-        .img-google {
-          margin-right: 7px;
-
-          svg {
-            height: 12px;
-          }
-        }
-
-        .img-desktop {
-          svg {
-            height: 12px;
-          }
-        }
       }
     }
 

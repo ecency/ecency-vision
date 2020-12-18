@@ -192,17 +192,6 @@ export class NavBar extends Component<Props, State> {
                                 {brightnessSvg}
                             </div>
                         </ToolTip>
-                        <DownloadTrigger>
-                            <div className="downloads">
-                                <span className="label">{_t("g.downloads")}</span>
-                                <span className="icons">
-                            <span className="img-apple">{appleSvg}</span>
-                            <span className="img-google">{googleSvg}</span>
-                            <span className="img-desktop">{desktopSvg}</span>
-                          </span>
-                            </div>
-                        </DownloadTrigger>
-
                         {!activeUser && (
                             <div className="login-required">
                                 <Button variant="outline-primary" onClick={() => {
