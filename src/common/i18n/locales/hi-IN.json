@@ -48,7 +48,6 @@
     "discover": "खोजिए",
     "communities": "समुदाय",
     "about": "के बारे में",
-    "faq": "अकसर किये गए सवाल",
     "post": "पोस्ट बनाएँ",
     "day-theme": "दिवस थीम",
     "night-theme": "रात विषय",
@@ -110,7 +109,7 @@
     "title": "विशेष रुप से प्रदर्शित"
   },
   "entry-list-item": {
-    "reblogged": "{{n}} द्वारा",
+    "reblogged": "{{n}} रीब्लॉगड",
     "promoted": "पदोन्नत",
     "pinned": "पिन की गई पोस्ट",
     "replies": "१ प्रतिक्रिया| क्लिक करें जबाब के लिए|",
@@ -144,7 +143,10 @@
     "title": "{{f}} विषय",
     "description": "अपने उपयोगकर्ताओं द्वारा स्वामित्व और संचालित एक सामाजिक नेटवर्क पर {{f}} विषय।",
     "description-tag": "{{f}} # {{t}} विषय",
-    "description-user-feed": "{{u}} फ़ीड है"
+    "description-user-feed": "{{u}} फ़ीड है",
+    "faq": "अकसर किये गए सवाल",
+    "tos": "Terms of service",
+    "pp": "गोपनीयता नीति"
   },
   "market-data": {
     "title": "बाजार मूल्य",
