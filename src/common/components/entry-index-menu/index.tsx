@@ -92,7 +92,7 @@ export class EntryIndexMenu extends Component<Props> {
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link to={`/${EntryFilter.trending}/my`} className={_c(`nav-link ${tag === "my" ? "active" : ""}`)}>
+                                <Link to={`/${EntryFilter.created}/my`} className={_c(`nav-link ${tag === "my" ? "active" : ""}`)}>
                                     {_t("entry-filter.filter-feed-subscriptions")}
                                 </Link>
                             </li>

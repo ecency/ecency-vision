@@ -135,6 +135,7 @@ interface State extends PostBase {
     editingEntry: Entry | null;
     saving: boolean;
     editingDraft: Draft | null;
+    reblogSwitch: boolean;
 }
 
 class SubmitPage extends Component<Props, State> {
@@ -147,6 +148,7 @@ class SubmitPage extends Component<Props, State> {
         editingEntry: null,
         saving: false,
         editingDraft: null,
+        reblogSwitch: false,
         preview: {
             title: "",
             tags: [],
@@ -366,7 +368,7 @@ class SubmitPage extends Component<Props, State> {
 
     publish = async (): Promise<void> => {
         const {activeUser, history, addEntry} = this.props;
-        const {title, tags, body, reward} = this.state;
+        const {title, tags, body, reward, reblogSwitch} = this.state;
 
         if (!activeUser || !activeUser.data.__loaded) {
             return;
@@ -421,7 +423,7 @@ class SubmitPage extends Component<Props, State> {
                 history.push(newLoc);
             })
             .then(() => {
-                if (isCommunity(tags[0])) {
+                if (isCommunity(tags[0]) && reblogSwitch) {
                     reblog(author, author, permlink);
                 }
             })

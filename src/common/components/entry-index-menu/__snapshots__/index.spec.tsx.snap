@@ -434,7 +434,7 @@ exports[`(4) Active user. Friends 1`] = `
         >
           <a
             className="nav-link"
-            href="/trending/my"
+            href="/created/my"
             onClick={[Function]}
           >
             Communities
@@ -577,7 +577,7 @@ exports[`(5) Active user. Communities 1`] = `
         >
           <a
             className="nav-link active"
-            href="/trending/my"
+            href="/created/my"
             onClick={[Function]}
           >
             Communities
