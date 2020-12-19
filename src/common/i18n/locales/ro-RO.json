@@ -48,7 +48,6 @@
     "discover": "Descoperă",
     "communities": "Comunități",
     "about": "Despre",
-    "faq": "Întrebări frecvente",
     "post": "Creează o postare",
     "day-theme": "Temă zi",
     "night-theme": "Temă noapte",
@@ -110,7 +109,7 @@
     "title": "Recomandate"
   },
   "entry-list-item": {
-    "reblogged": "by {{n}}",
+    "reblogged": "{{n}} reblogged",
     "promoted": "promovat",
     "pinned": "Postare Fixată",
     "replies": "1 răspuns. Apasă pentru a răspunde.",
@@ -144,11 +143,14 @@
     "title": "{{f}} subiecte",
     "description": "{{f}} subiecte pe o rețea de socializare deținute și operate de utilizatorii săi.",
     "description-tag": "{{f}} #{{t}} subiecte",
-    "description-user-feed": "Fluxul lui {{u}}"
+    "description-user-feed": "Fluxul lui {{u}}",
+    "faq": "FAQ",
+    "tos": "Terms of service",
+    "pp": "Privacy Policy"
   },
   "market-data": {
     "title": "Preț piață",
-    "credits": "market data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
+    "credits": "data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "list-style": {
     "title": "Toggle list style"
