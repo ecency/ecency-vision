@@ -109,7 +109,7 @@
     "title": "Suositellut"
   },
   "entry-list-item": {
-    "reblogged": "{{n}} reblogged",
+    "reblogged": "{{n}} uudelleenjaettu",
     "promoted": "korostettu",
     "pinned": "Kiinnitetty julkaisu",
     "replies": "1 vastaus. Klikkaa vastataksesi.",
@@ -144,13 +144,13 @@
     "description": "{{f}} aihetta sosiaalisessa verkossa, jonka käyttäjät omistavat ja ylläpitävät.",
     "description-tag": "{{f}} #{{t}} aihetta",
     "description-user-feed": "{{u}} syöte",
-    "faq": "FAQ",
-    "tos": "Terms of service",
-    "pp": "Privacy Policy"
+    "faq": "UKK",
+    "tos": "Käyttöehdot",
+    "pp": "Tietosuojakäytäntö"
   },
   "market-data": {
     "title": "Markkinahinta",
-    "credits": "data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
+    "credits": "tiedot <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingeckosta</a>"
   },
   "list-style": {
     "title": "Vaihda listaustyyliä"
