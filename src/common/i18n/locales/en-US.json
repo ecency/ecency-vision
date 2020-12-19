@@ -109,7 +109,7 @@
     "title": "Featured"
   },
   "entry-list-item": {
-    "reblogged": "by {{n}}",
+    "reblogged": "{{n}} reblogged",
     "promoted": "promoted",
     "pinned": "Pinned Post",
     "replies": "1 response. Click to respond.",
