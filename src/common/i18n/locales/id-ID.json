@@ -493,7 +493,7 @@
   },
   "delegated-vesting": {
     "title": "Hive Power yang Didelegasikan",
-    "undelegate": "undelegate"
+    "undelegate": "hentikan delegasi"
   },
   "received-vesting": {
     "title": "Hive Power yang Diterima"
@@ -565,12 +565,12 @@
     "placeholder-empty": "Tagar. Tagar pertama adalah kategori utama. Mudah disortir.",
     "placeholder-focus": "Masukkan tagar",
     "placeholder-has-tags": "Tambahkan lagi",
-    "suggestion-header": "Tags",
+    "suggestion-header": "Tagar",
     "error-max": "Maksimum {{n}} tagar"
   },
   "community-selector": {
-    "my-blog": "My Blog",
-    "search-placeholder": "Search Communities"
+    "my-blog": "Blog saya",
+    "search-placeholder": "Cari Komunitas"
   },
   "word-count": {
     "label": "{{n}} kata",
@@ -610,8 +610,8 @@
     "refresh": "Segarkan",
     "mark-all-read": "Tandai semua sebagai yang telah dibaca",
     "mark-read": "Tandai sebagai telah dibaca",
-    "mute": "Turn off notification alerts",
-    "unmute": "Turn on notification alerts"
+    "mute": "Matikan pemberitahun notifikasi",
+    "unmute": "Hidupkan pemberitahuan notifikasi"
   },
   "leaderboard": {
     "title": "Papan Peringkat",
@@ -740,7 +740,7 @@
       "how-to-transfer-header": "Bagaimana mentransfer token blockchain?",
       "how-to-transfer-body": "<p> Setelah masuk, Anda akan menemukan halaman Wallet di header atas pada situs web dan aplikasi desktop atau di halaman Profil, bilah navigasi bawah pada aplikasi seluler. Di halaman dompet, Anda dapat memulai transfer token apa pun yang Anda miliki ke pengguna lain atau akun exchange, klik panah di sebelah saldo Anda dan temukan operasi transfer. Transfer tidak dapat diubah karena terdaftar di blockchain, pastikan untuk mengirim ke penerima yang benar. </p>",
       "how-see-rewards-header": "Bagaimana saya melihat reward postingan saya?",
-      "how-see-rewards-body": "<p><img src=\"https://images.ecency.com/p/3W72119s5BjW4PvRk9nXBzqrPWMsMTjNrXDPFFf11iYhySeELMe77idrZHBPmyaqFX6CV72hBLB5qFhwVhGoAATydoFxAF7oCwBt1ztp6eS9r5us4pm7iN?format=match&mode=fit\" loading=\"lazy\"/></p><p>In Wallet page (in top header on website and desktop app, bottom navigation bar on mobile app), you can see Curation rewards (the rewards earned for upvoting posts and comments) and Author rewards (the rewards earned by your own posts and comments)</p><p>You can also view the same information for other users by visiting their wallet profile.</p>",
+      "how-see-rewards-body": "<img src=\"https://images.ecency.com/p/3W72119s5BjW4PvRk9nXBzqrPWMsMTjNrXDPFFf11iYhySeELMe77idrZHBPmyaqFX6CV72hBLB5qFhwVhGoAATydoFxAF7oCwBt1ztp6eS9r5us4pm7iN?format=match&mode=fit\" loading=\"lazy\"/>Di halaman Wallet (di header atas di situs web dan aplikasi desktop, bilah navigasi bawah di aplikasi seluler), Anda dapat melihat hadiah Kurasi (hadiah yang diperoleh untuk posting dan komentar yang disukai) dan hadiah Penulis (hadiah yang diperoleh dari posting dan komentar Anda sendiri)</p><p>Anda juga dapat melihat informasi yang sama untuk pengguna lain dengan mengunjungi profil dompet mereka.</p>",
       "how-dhf-work-header": "Bagaimana Cara kerja DHF?",
       "how-dhf-work-body": "<p>Siapapun dapat membuat proposal dan meyakinkan komunitas untuk memberikan suara pada proposal mereka untuk mendapatkan dana. Sebelum membuat proposal, posting normal harus dipublikasikan di blockchain dan disarankan untuk mengumpulkan umpan balik sebelum membuat proposal. Pembuatan proposal dikenakan biaya 10 HBD + 1 HBD untuk setiap hari berlangsung selama 60 hari.</p><p>Setelah proposal mencapai ambang tertentu dari suara yang dihitung, itu akan mulai menerima dana setiap jam. Jika proposal berada di bawah ambang batas, sistem akan menghentikan pendanaan untuk proposal tersebut. Anda dapat memilih proposal sebanyak yang Anda inginkan, tidak ada batasan. Proposal tidak dapat diedit, tetapi dapat dihapus / ditarik oleh pembuatnya.</p>",
       "when-claim-rewards-header": "Kapan saya bisa klaim rewards?",
