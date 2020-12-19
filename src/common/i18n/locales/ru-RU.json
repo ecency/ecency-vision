@@ -48,7 +48,6 @@
     "discover": "Подборка",
     "communities": "Сообщества",
     "about": "О программе",
-    "faq": "Вопрос / Ответ",
     "post": "Создать пост",
     "day-theme": "Дневная тема",
     "night-theme": "Ночная тема",
@@ -110,7 +109,7 @@
     "title": "Рекомендуем"
   },
   "entry-list-item": {
-    "reblogged": "от {{n}}",
+    "reblogged": "{{n}} reblogged",
     "promoted": "продвигаемое",
     "pinned": "Прикреплено",
     "replies": "1 ответ. Нажмите чтобы ответить.",
@@ -144,11 +143,14 @@
     "title": "{{f}} тем",
     "description": "{{f}} тем в социальной сети, принадлежащей и управляемой её пользователями.",
     "description-tag": "{{f}} #{{t}} тем",
-    "description-user-feed": "Лента {{u}}"
+    "description-user-feed": "Лента {{u}}",
+    "faq": "FAQ",
+    "tos": "Terms of service",
+    "pp": "Privacy Policy"
   },
   "market-data": {
     "title": "Рыночная цена",
-    "credits": "данные рынка <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
+    "credits": "data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "list-style": {
     "title": "Переключить стиль списка"
