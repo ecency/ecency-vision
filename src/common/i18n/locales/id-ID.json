@@ -48,7 +48,6 @@
     "discover": "Jelajahi",
     "communities": "Komunitas",
     "about": "Tentang",
-    "faq": "Tanya Jawab",
     "post": "Buat Postingan",
     "day-theme": "Tema Terang",
     "night-theme": "Tema Gelap",
@@ -110,7 +109,7 @@
     "title": "Sorotan"
   },
   "entry-list-item": {
-    "reblogged": "oleh {{n}}",
+    "reblogged": "{{n}} reblogged",
     "promoted": "dipromosikan",
     "pinned": "Postingan Disematkan",
     "replies": "1 respon, Klik untuk merespon.",
@@ -144,11 +143,14 @@
     "title": "{{f}} topik",
     "description": "{{f}} topik di media sosial yang dimiliki dan digunakan oleh pengguna ini.",
     "description-tag": "{{f}} #{{t}} topik",
-    "description-user-feed": "{{u}} pengumpan"
+    "description-user-feed": "{{u}} pengumpan",
+    "faq": "FAQ",
+    "tos": "Terms of service",
+    "pp": "Privacy Policy"
   },
   "market-data": {
     "title": "Harga pasar",
-    "credits": "data pasar diambil dari <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
+    "credits": "data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "list-style": {
     "title": "Gaya daftar kotak"
