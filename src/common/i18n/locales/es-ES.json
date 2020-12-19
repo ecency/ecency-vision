@@ -109,7 +109,7 @@
     "title": "Destacado"
   },
   "entry-list-item": {
-    "reblogged": "{{n}} reblogged",
+    "reblogged": "{{n}} reblogueado",
     "promoted": "promocionado",
     "pinned": "Publicación fijada",
     "replies": "1 respuesta. Haga clic para responder.",
@@ -144,13 +144,13 @@
     "description": "{{f}} temas en una red social propiedad y operada por sus usuarios.",
     "description-tag": "{{f}} #{{t}} temas",
     "description-user-feed": "Canal de Noticias de {{u}}",
-    "faq": "FAQ",
-    "tos": "Terms of service",
-    "pp": "Privacy Policy"
+    "faq": "Preguntas Frecuentes (FAQ)",
+    "tos": "Términos de servicio",
+    "pp": "Política de privacidad"
   },
   "market-data": {
     "title": "Precio de mercado",
-    "credits": "data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
+    "credits": "datos de mercado de <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "list-style": {
     "title": "Alternar estilo de líneas"
