@@ -565,11 +565,11 @@
     "placeholder-empty": "Tags. First tag is main category. Sortable.",
     "placeholder-focus": "Címke felvétele",
     "placeholder-has-tags": "További hozzáadása",
-    "suggestion-header": "Tags",
+    "suggestion-header": "Címkék",
     "error-max": "Maximum {{n}} címke"
   },
   "community-selector": {
-    "my-blog": "My Blog",
+    "my-blog": "Saját blog",
     "search-placeholder": "Search Communities"
   },
   "word-count": {
@@ -677,10 +677,10 @@
     "filter-all": "Összes",
     "filter-active": "Aktív",
     "filter-inactive": "Közelgő",
-    "filter-team": "Ecency Projects",
+    "filter-team": "Ecency projektek",
     "return-description": "This is the base return proposal. Every proposal with less votes will not receive funds.",
-    "votes-dialog-title": "Votes on Proposal #{{n}}",
-    "see-all": "see all proposals"
+    "votes-dialog-title": "#{{n}} javaslat szavazatai",
+    "see-all": "összes javaslat megtekintése"
   },
   "gallery": {
     "title": "Galéria",
@@ -704,7 +704,7 @@
       "intro-title": "What is <span>Ecency</span>",
       "intro-content": "Ecency is beautiful and handy wrapper interface around the Hive blockchain network allowing you to create your own posts, surf your feeds, vote what you like, write comments, read replies, do all major Hive functions in your daily social surfing as well as wallet actions and other extras such as search, discover different tags etc.",
       "faq-title": "GYÍK",
-      "faqs": "All FAQs",
+      "faqs": "Összes GYIK",
       "contact-title": "Névjegyek",
       "contact-blog": "Founder's blog",
       "contact-news": "News on Hive",
