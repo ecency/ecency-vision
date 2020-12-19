@@ -48,7 +48,6 @@
     "discover": "Scopri",
     "communities": "Communities",
     "about": "Su di noi",
-    "faq": "FAQ",
     "post": "Crea Nuovo Post",
     "day-theme": "Giorno",
     "night-theme": "Notte",
@@ -110,7 +109,7 @@
     "title": "In primo piano"
   },
   "entry-list-item": {
-    "reblogged": "da {{n}}",
+    "reblogged": "{{n}} reblogged",
     "promoted": "promosso",
     "pinned": "Post Fissato",
     "replies": "1 risposta. Clicca per rispondere.",
@@ -144,11 +143,14 @@
     "title": "Argomenti {{f}}",
     "description": "Argomenti {{f}} su un social network di proprietà e gestito dai suoi utenti.",
     "description-tag": "#{{t}} negli argomenti {{f}}",
-    "description-user-feed": "Feed di {{u}}"
+    "description-user-feed": "Feed di {{u}}",
+    "faq": "FAQ",
+    "tos": "Terms of service",
+    "pp": "Privacy Policy"
   },
   "market-data": {
     "title": "Prezzo di Mercato",
-    "credits": "dati ricavati da <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
+    "credits": "data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "list-style": {
     "title": "Cambia tipo di elenco"
