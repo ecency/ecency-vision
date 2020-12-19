@@ -48,7 +48,6 @@
     "discover": "Otkrijte",
     "communities": "Zajednice",
     "about": "O nama",
-    "faq": "Čеsto postavljana pitanja",
     "post": "Napiši objavu",
     "day-theme": "Dnevna tema",
     "night-theme": "Noćna tema",
@@ -110,7 +109,7 @@
     "title": "Izdvojeni"
   },
   "entry-list-item": {
-    "reblogged": "od {{n}}",
+    "reblogged": "{{n}} reblogged",
     "promoted": "promovisano",
     "pinned": "Zakačena objava",
     "replies": "1 odgovor. Kliknite da odgovorite.",
@@ -144,11 +143,14 @@
     "title": "{{f}} teme",
     "description": "{{f}} teme na društvenoj mreži u vlasništvu i kojom upravljaju njeni korisnici.",
     "description-tag": "{{f}} #{{t}} teme",
-    "description-user-feed": "{{u}} najvažnije vesti"
+    "description-user-feed": "{{u}} najvažnije vesti",
+    "faq": "FAQ",
+    "tos": "Terms of service",
+    "pp": "Privacy Policy"
   },
   "market-data": {
     "title": "Tržišna cena",
-    "credits": "tržišni podaci sa <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
+    "credits": "data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "list-style": {
     "title": "Prebacivanje liste stila"
