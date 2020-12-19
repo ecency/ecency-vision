@@ -48,7 +48,6 @@
     "discover": "Felfedezés",
     "communities": "Közösségek",
     "about": "Rólunk",
-    "faq": "GYÍK",
     "post": "Bejegyzés létrehozása",
     "day-theme": "Nappali téma",
     "night-theme": "Éjszakai téma",
@@ -110,7 +109,7 @@
     "title": "Kiemelt"
   },
   "entry-list-item": {
-    "reblogged": "{{n}} által",
+    "reblogged": "{{n}} reblogged",
     "promoted": "támogatott",
     "pinned": "Kitűzött Poszt",
     "replies": "1 válasz. Kattints ide és válaszolj.",
@@ -144,11 +143,14 @@
     "title": "{{f}} témák",
     "description": "{{f}} topics on a social network owned and operated by its users.",
     "description-tag": "{{f}} #{{t}} témák",
-    "description-user-feed": "{{u}} hírcsatornája"
+    "description-user-feed": "{{u}} hírcsatornája",
+    "faq": "FAQ",
+    "tos": "Terms of service",
+    "pp": "Privacy Policy"
   },
   "market-data": {
     "title": "Piaci ár",
-    "credits": "market data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
+    "credits": "data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "list-style": {
     "title": "Toggle list style"
