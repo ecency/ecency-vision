@@ -115,7 +115,7 @@
     "pinned": "Закріплена публікація",
     "replies": "1 відповідь. Натисніть, щоб відповісти.",
     "replies-n": "{{n}} responses. Click to respond.",
-    "no-replies": "No responses yet. Click to respond."
+    "no-replies": "Ще немає відповідей. Натисніть, щоб відповісти."
   },
   "bookmark-btn": {
     "add": "Додати до закладок",
@@ -428,7 +428,7 @@
     "transfer-saving-title": "Перевести до Заощаджень",
     "transfer-saving-sub-title": "Захищає кошти від зняття 3-денним періодом очікування",
     "withdraw-saving-title": "Зняття заощаджень",
-    "withdraw-saving-sub-title": "Withdraw funds after the required 3 day waiting period",
+    "withdraw-saving-sub-title": "Зняти кошти після обов'язкового 3-денного періоду очікування",
     "power-up-title": "Stake Hive as Power",
     "convert-title": "Конвертувати",
     "power-up-sub-title": "Вплив токенів дає вам можливість впливати на винагороду за публікації та дозволяє заробляти на кураторстві.",
@@ -487,7 +487,7 @@
   },
   "key-or-hot": {
     "sign": "Sign",
-    "key-placeholder": "Enter active/owner/master key",
+    "key-placeholder": "Введіть ключ активний/власника/головний",
     "with-hivesigner": "Увійти за допомогою hivesigner",
     "with-keychain": "Увійти за допомогою Keychain"
   },
@@ -578,8 +578,8 @@
     "read-time-n-min": "~ {{n}} min read"
   },
   "notification": {
-    "popup-title": "You have a new notification",
-    "voted": "{{source}} voted your post",
+    "popup-title": "У вас є нове сповіщення",
+    "voted": "{{source}} проголосував за ваш допис",
     "mention-post": "{{source}} mentioned you in a post",
     "mention-comment": "{{source}} згадав(-ла) вас у коментарі",
     "followed": "{{source}} followed you",
@@ -588,7 +588,7 @@
     "transfer": "{{source}} sent you {{amount}}"
   },
   "notifications": {
-    "type-all": "All Notifications",
+    "type-all": "Усі сповіщення",
     "type-all-short": "Усi",
     "type-rvotes": "Голоси",
     "type-replies": "Відповіді",
@@ -598,7 +598,7 @@
     "type-transfers": "Перекази",
     "vote-str": "{{p}}% подобається ваш допис:",
     "reply-str": "replied to your post:",
-    "mention-str": "mentioned you in:",
+    "mention-str": "згадав(-ла) вас у:",
     "followed-str": "followed",
     "unfollowed-str": "unfollowed",
     "ignored-str": "ignored",
@@ -730,7 +730,7 @@
       "how-referrals-work-header": "Як працює реферальна система на Ecency?",
       "how-referrals-work-body": "<p>Реферальна система проста, ви можете запросити своїх друзів, додавши своє ім'я користувача в це джерело https://ecency.com/?referral=username та поділіться ним з друзями. Як тільки ваші друзі приєднаються до Ecency та отримують їхні перші 250 балів, ви отримаєте 100 балів. Немає обмежень щодо рефералів та їх нагород.</p>",
       "what-is-points-header": "Що таке Ecency бали і як їх використовувати?",
-      "what-is-points-body": "<p>Ecency Points are continually minted and rewarded for all users for various social activities they perform on website, mobile or desktop app. Points can be used for promoting, boosting your content, can even be transferred or gifted to another user. You can also purchase Points with our mobile apps.</p>",
+      "what-is-points-body": "<p>Ecency Бали постійно видобувається та винагороджується усіх користувачів за різні соціальні види діяльності, які вони виконують на веб-сайті, мобільному або комп'ютерному додатку. Бали можна використовувати для підсилення вмісту, або можна навіть передати чи подарувати іншому користувачеві. Ви також можете придбати бали за допомогою наших мобільних додатків.</p>",
       "where-tokens-come-header": "Where do the tokens come from?",
       "where-tokens-come-body": "<p><img src=\"https://images.ecency.com/p/7kq2TLHKEHhCCDwNZLfFLu7msWtbdFb7vZaJJ9Y13GAc18vfVNAj8ZctLWmsVfMCCFtwGdULbZKT89faeBymhPsySU5tp4RnvDsHz6ZBxXHWA4g34ck4LHnR2vGkqsHvjzhizhpV8K6JrQ4sy7cCgJQksUUYPKp4d9XbERHkjnZV3PTdhbiUZPYJ43RS8cQu2sEmUbAgqZExuYMGa46SDa4vCunH2w6oNpommW5L1CCdfwdgX5i9eCpcS5fHo4t8btjVE69edzrUN8anr6T3v8AFYHC?format=match&mode=fit\" loading=\"lazy\"/></p><p>Мережа Hive постійно створює нові цифрові токени, щоб нагородити творців та кураторів вмісту. Деякі з новостворених токенів передаються користувачам, які додають цінності платформі, розміщуючи, коментуючи та голосуючи за дописи інших людей. Залишок розподіляється власникам HIVE СИЛИ та свідкам, які захищають блокчейн.</p>",
       "how-promotion-work-header": "Яким чином працює просування дописів?",
