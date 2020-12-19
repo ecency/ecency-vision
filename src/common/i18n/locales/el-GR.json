@@ -48,7 +48,6 @@
     "discover": "Ανακαλύψτε",
     "communities": "Κοινότητες",
     "about": "Σχετικά με",
-    "faq": "Συχνές ερωτήσεις",
     "post": "Δημιουργία δημοσίευσης",
     "day-theme": "Θέμα ημέρας",
     "night-theme": "Θέμα νύχτας",
@@ -110,7 +109,7 @@
     "title": "Προτεινόμενα"
   },
   "entry-list-item": {
-    "reblogged": "από {{n}}",
+    "reblogged": "{{n}} reblogged",
     "promoted": "προωθούμενα",
     "pinned": "Καρφιτσωμένη Δημοσίευση",
     "replies": "1 απάντηση. Κάντε κλικ για να απαντήσετε.",
@@ -144,11 +143,14 @@
     "title": "{{f}} θέματα",
     "description": "{{f}} θέματα σε ένα κοινωνικό δίκτυο που ανήκουν και χειρίζονται από τους χρήστες του.",
     "description-tag": "{{f}} #{{t}} θέματα",
-    "description-user-feed": "{{u}}'s ροή"
+    "description-user-feed": "{{u}}'s ροή",
+    "faq": "FAQ",
+    "tos": "Terms of service",
+    "pp": "Privacy Policy"
   },
   "market-data": {
     "title": "Τιμή αγοράς",
-    "credits": "δεδομένα αγοράς από <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
+    "credits": "data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "list-style": {
     "title": "Αλλαγή στιλ λίστας"
