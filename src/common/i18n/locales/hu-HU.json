@@ -41,7 +41,7 @@
     "filter-payout": "Kifizetések",
     "filter-muted": "Némítva",
     "filter-feed": "Hírfolyam",
-    "filter-feed-friends": "Friends",
+    "filter-feed-friends": "Barátok",
     "filter-feed-subscriptions": "Közösségek"
   },
   "navbar": {
@@ -109,7 +109,7 @@
     "title": "Kiemelt"
   },
   "entry-list-item": {
-    "reblogged": "{{n}} reblogged",
+    "reblogged": "{{n}} megosztva",
     "promoted": "támogatott",
     "pinned": "Kitűzött Poszt",
     "replies": "1 válasz. Kattints ide és válaszolj.",
