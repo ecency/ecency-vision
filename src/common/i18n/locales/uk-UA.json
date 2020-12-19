@@ -48,7 +48,6 @@
     "discover": "Discover",
     "communities": "Спільноти",
     "about": "Про застосунок",
-    "faq": "ЧаПи",
     "post": "Створити допис",
     "day-theme": "Світла тема",
     "night-theme": "Темна тема",
@@ -110,7 +109,7 @@
     "title": "Featured"
   },
   "entry-list-item": {
-    "reblogged": "by {{n}}",
+    "reblogged": "{{n}} reblogged",
     "promoted": "promoted",
     "pinned": "Закріплена публікація",
     "replies": "1 відповідь. Натисніть, щоб відповісти.",
@@ -144,11 +143,14 @@
     "title": "{{f}} topics",
     "description": "{{f}} topics on a social network owned and operated by its users.",
     "description-tag": "{{f}} #{{t}} topics",
-    "description-user-feed": "{{u}}'s feed"
+    "description-user-feed": "{{u}}'s feed",
+    "faq": "FAQ",
+    "tos": "Terms of service",
+    "pp": "Privacy Policy"
   },
   "market-data": {
     "title": "Ринкова ціна",
-    "credits": "market data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
+    "credits": "data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "list-style": {
     "title": "Toggle list style"
@@ -659,8 +661,8 @@
     "proxy-description": "Ви також можете обрати проксі-сервер, який буде голосувати за делегатів замість вас. Це скине ваш нинішній вибір делегатів.",
     "proxy-btn-label": "Встановити проксі-сервер",
     "proxy-active-description": "Ви встановили proxy. Якщо ви бажаєте знов увімкнути голосування вручну, будь ласка, зніміть proxy.",
-    "proxy-active-current": "Your current proxy is",
-    "proxy-active-btn-label": "Clear Proxy"
+    "proxy-active-current": "Ваш поточний проксі є",
+    "proxy-active-btn-label": "Зняти проксі"
   },
   "proposals": {
     "page-title": "Пропозиції",
