@@ -48,7 +48,6 @@
     "discover": "Kəşf et",
     "communities": "Cəmiyyətlər",
     "about": "Haqqında",
-    "faq": "TSS",
     "post": "Göndəriş Yarat",
     "day-theme": "Gündüz Teması",
     "night-theme": "Gecə Teması",
@@ -110,7 +109,7 @@
     "title": "Təklif Edilən"
   },
   "entry-list-item": {
-    "reblogged": "{{n}} tərəfindən",
+    "reblogged": "{{n}} reblogged",
     "promoted": "tanıdılan",
     "pinned": "Sancaqlanmış Göndəriş",
     "replies": "1 cavab. Cavablamaq üçün klikləyin.",
@@ -144,11 +143,14 @@
     "title": "{{f}} mövzu",
     "description": "{{f}} topics on a social network owned and operated by its users.",
     "description-tag": "{{f}} #{{t}} mövzu",
-    "description-user-feed": "{{u}} - axınlar"
+    "description-user-feed": "{{u}} - axınlar",
+    "faq": "FAQ",
+    "tos": "Terms of service",
+    "pp": "Privacy Policy"
   },
   "market-data": {
     "title": "Market price",
-    "credits": "market data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
+    "credits": "data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "list-style": {
     "title": "Toggle list style"
