@@ -48,7 +48,6 @@
     "discover": "Löydä uutta",
     "communities": "Yhteisöt",
     "about": "Tietoa",
-    "faq": "UKK",
     "post": "Luo julkaisu",
     "day-theme": "Päiväteema",
     "night-theme": "Yöteema",
@@ -110,7 +109,7 @@
     "title": "Suositellut"
   },
   "entry-list-item": {
-    "reblogged": "tekijä {{n}}",
+    "reblogged": "{{n}} reblogged",
     "promoted": "korostettu",
     "pinned": "Kiinnitetty julkaisu",
     "replies": "1 vastaus. Klikkaa vastataksesi.",
@@ -144,11 +143,14 @@
     "title": "{{f}} aihetta",
     "description": "{{f}} aihetta sosiaalisessa verkossa, jonka käyttäjät omistavat ja ylläpitävät.",
     "description-tag": "{{f}} #{{t}} aihetta",
-    "description-user-feed": "{{u}} syöte"
+    "description-user-feed": "{{u}} syöte",
+    "faq": "FAQ",
+    "tos": "Terms of service",
+    "pp": "Privacy Policy"
   },
   "market-data": {
     "title": "Markkinahinta",
-    "credits": "markkinatiedot <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingeckosta</a>"
+    "credits": "data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "list-style": {
     "title": "Vaihda listaustyyliä"
