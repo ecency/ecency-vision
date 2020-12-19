@@ -25,8 +25,8 @@
     "show": "Tampilkan",
     "on": "On",
     "off": "Off",
-    "yes": "Yes",
-    "no": "No"
+    "yes": "Ya",
+    "no": "Tidak"
   },
   "confirm": {
     "title": "Apakah anda yakin?",
@@ -41,8 +41,8 @@
     "filter-payout": "Pembayaran",
     "filter-muted": "Didiamkan",
     "filter-feed": "Umpan",
-    "filter-feed-friends": "Friends",
-    "filter-feed-subscriptions": "Communities"
+    "filter-feed-friends": "Teman",
+    "filter-feed-subscriptions": "Komunitas"
   },
   "navbar": {
     "discover": "Jelajahi",
@@ -109,7 +109,7 @@
     "title": "Sorotan"
   },
   "entry-list-item": {
-    "reblogged": "{{n}} reblogged",
+    "reblogged": "{{n}} Dibagikan",
     "promoted": "dipromosikan",
     "pinned": "Postingan Disematkan",
     "replies": "1 respon, Klik untuk merespon.",
@@ -144,13 +144,13 @@
     "description": "{{f}} topik di media sosial yang dimiliki dan digunakan oleh pengguna ini.",
     "description-tag": "{{f}} #{{t}} topik",
     "description-user-feed": "{{u}} pengumpan",
-    "faq": "FAQ",
-    "tos": "Terms of service",
-    "pp": "Privacy Policy"
+    "faq": "PERTANYAAN YANG SERING DITANYAKAN (FAQ)",
+    "tos": "Ketentuan layanan",
+    "pp": "Kebijakan Privasi"
   },
   "market-data": {
     "title": "Harga pasar",
-    "credits": "data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
+    "credits": "data dari <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "list-style": {
     "title": "Gaya daftar kotak"
