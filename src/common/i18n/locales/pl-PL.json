@@ -48,7 +48,6 @@
     "discover": "Odkrywaj",
     "communities": "Społeczności",
     "about": "O Aplikacji",
-    "faq": "FAQ",
     "post": "Utwórz wpis",
     "day-theme": "Motyw jasny",
     "night-theme": "Motyw ciemny",
@@ -110,7 +109,7 @@
     "title": "Polecane"
   },
   "entry-list-item": {
-    "reblogged": "przez {{n}}",
+    "reblogged": "{{n}} reblogged",
     "promoted": "promowane",
     "pinned": "Przypięty post",
     "replies": "1 odpowiedź. Kliknij aby odpowiedzieć.",
@@ -144,11 +143,14 @@
     "title": "{{f}} tematy",
     "description": "{{f}} tematy na sieci społecznościowej będącej własnością i obsługiwanej przez jej użytkowników.",
     "description-tag": "{{f}} #{{t}} tematy",
-    "description-user-feed": "aktualności {{u}}"
+    "description-user-feed": "aktualności {{u}}",
+    "faq": "FAQ",
+    "tos": "Terms of service",
+    "pp": "Polityka prywatności"
   },
   "market-data": {
     "title": "Cena Rynkowa",
-    "credits": "dane rynkowe <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
+    "credits": "data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "list-style": {
     "title": "Przełącz styl listy"
