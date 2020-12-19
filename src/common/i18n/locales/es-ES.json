@@ -41,8 +41,8 @@
     "filter-payout": "Pagos",
     "filter-muted": "Silenciado",
     "filter-feed": "Inicio",
-    "filter-feed-friends": "Friends",
-    "filter-feed-subscriptions": "Communities"
+    "filter-feed-friends": "Amigos",
+    "filter-feed-subscriptions": "Comunidades"
   },
   "navbar": {
     "discover": "Descubrir",
@@ -157,11 +157,11 @@
     "title": "1 voto",
     "title-n": "{{n}} Votos",
     "title-empty": "No hay votos",
-    "sort": "Sort",
-    "sort-reward": "Reward",
-    "sort-timestamp": "Time",
-    "sort-reputation": "Reputation",
-    "sort-percent": "Percentage"
+    "sort": "Ordenar por",
+    "sort-reward": "Recompensa",
+    "sort-timestamp": "Hora",
+    "sort-reputation": "Reputación",
+    "sort-percent": "Porcentaje"
   },
   "entry": {
     "via-app": "a través de <span class=\"app-name\">{{app}}</span>",
@@ -565,12 +565,12 @@
     "placeholder-empty": "Etiquetas. Primera etiqueta es la categoría principal. Seleccionable.",
     "placeholder-focus": "Escribir una etiqueta",
     "placeholder-has-tags": "Agregar más",
-    "suggestion-header": "Tags",
+    "suggestion-header": "Etiquetas",
     "error-max": "Máximo {{n}} etiquetas"
   },
   "community-selector": {
-    "my-blog": "My Blog",
-    "search-placeholder": "Search Communities"
+    "my-blog": "Mi blog",
+    "search-placeholder": "Buscar comunidades"
   },
   "word-count": {
     "label": "{{n}} palabras",
