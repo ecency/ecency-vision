@@ -48,7 +48,6 @@
     "discover": "Atrasti",
     "communities": "Bendruomenės",
     "about": "Apie",
-    "faq": "D.U.K",
     "post": "Sukurti Įrašą",
     "day-theme": "Dienos Tema",
     "night-theme": "Nakties Tema",
@@ -110,7 +109,7 @@
     "title": "Featured"
   },
   "entry-list-item": {
-    "reblogged": "{{n}}",
+    "reblogged": "{{n}} reblogged",
     "promoted": "paremti",
     "pinned": "Prisegtas Įrašas",
     "replies": "1 atsakymas. Spauskite, jeigu norite atsakyti.",
@@ -144,11 +143,14 @@
     "title": "{{f}} temos",
     "description": "{{f}} socialaus tinklo temos valdomos pačių narių.",
     "description-tag": "{{f}} #{{t}} temos",
-    "description-user-feed": "{{u}} pagrindinis"
+    "description-user-feed": "{{u}} pagrindinis",
+    "faq": "FAQ",
+    "tos": "Terms of service",
+    "pp": "Privacy Policy"
   },
   "market-data": {
     "title": "Market price",
-    "credits": "market data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
+    "credits": "data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "list-style": {
     "title": "Pasirinkti sąrašo stilių"
