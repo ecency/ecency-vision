@@ -1,11 +1,21 @@
 .market-data {
-  margin: 0 auto 0 10%;
+  margin: 0 auto 0 10px;
 
   .market-data-header {
     display: flex;
     align-items: center;
-    font-weight: 500;
+    justify-content: space-between;
     height: 50px;
+
+    .title {
+      font-weight: 500;
+    }
+
+    .credits {
+      font-size: 12px;
+      text-align: right;
+      opacity: 0.8;
+    }
   }
 
   .market-graph {
@@ -80,11 +90,5 @@
         opacity: 0;
       }
     }
-  }
-
-  .credits {
-    font-size: 12px;
-    text-align: right;
-    opacity: 0.8;
   }
 }

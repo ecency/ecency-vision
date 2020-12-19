@@ -11,6 +11,8 @@ import defaults from "../common/constants/defaults.json";
 
 import {getSearchIndexCount} from "./helper";
 
+import {getOperatingSystem} from "../common/util/platform";
+
 export const makePreloadedState = async (req: express.Request): Promise<AppState> => {
     const _c = (k: string): any => req.cookies[k];
 
@@ -26,7 +28,8 @@ export const makePreloadedState = async (req: express.Request): Promise<AppState
         listStyle: ListStyle[listStyle],
         intro,
         searchIndexCount: await getSearchIndexCount(),
-        canUseWebp: req.headers.accept !== undefined && req.headers.accept.indexOf("image/webp") !== -1
+        canUseWebp: req.headers.accept !== undefined && req.headers.accept.indexOf("image/webp") !== -1,
+        isMobile: !!(req.headers["user-agent"] && ["iOS", "AndroidOS"].includes(getOperatingSystem(req.headers["user-agent"])))
     };
 
     return {

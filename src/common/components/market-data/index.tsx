@@ -188,14 +188,17 @@ export default class MarketData extends Component {
         const toTs = moment().format("X");
 
         return <div className="market-data">
-            <div className="market-data-header">{_t("market-data.title")}</div>
+            <div className="market-data-header">
+                <span className="title">{_t("market-data.title")}</span>
+                <Tsx k="market-data.credits" args={{}}>
+                    <div className="credits"/>
+                </Tsx>
+            </div>
             <Market label="HIVE" coin="hive" vsCurrency="usd" fromTs={fromTs} toTs={toTs} formatter="0.000$"/>
             <Market label="HBD" coin="hive_dollar" vsCurrency="usd" fromTs={fromTs} toTs={toTs} formatter="0.000$"/>
             <Market label="BTC" coin="bitcoin" vsCurrency="usd" fromTs={fromTs} toTs={toTs} formatter=",$"/>
             <Market label="ETH" coin="ethereum" vsCurrency="usd" fromTs={fromTs} toTs={toTs} formatter="0.000$"/>
-            <Tsx k="market-data.credits" args={{}}>
-                <div className="credits"/>
-            </Tsx>
+
         </div>
     }
 }

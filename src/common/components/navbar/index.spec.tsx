@@ -48,6 +48,8 @@ const defProps = {
     },
     unMuteNotifications: () => {
     },
+    setLang: () => {
+    }
 };
 
 it("(1) Default render", () => {

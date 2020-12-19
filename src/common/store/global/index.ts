@@ -45,7 +45,8 @@ export const initialState: Global = {
     hasKeyChain: false,
     isElectron: false,
     newVersion: null,
-    notifications: true
+    notifications: true,
+    isMobile: false
 };
 
 export default (state: Global = initialState, action: Actions): Global => {

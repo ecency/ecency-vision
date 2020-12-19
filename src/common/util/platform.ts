@@ -1,35 +1,35 @@
-function getOperatingSystem(window: { navigator: { appVersion: string | string[]; }; }) {
+export function getOperatingSystem(agent: string) {
     let operatingSystem = 'WindowsOS';
 
-    if (window.navigator.appVersion.indexOf('Win') !== -1) {
+    if (agent.indexOf('Win') !== -1) {
         operatingSystem = 'WindowsOS';
     }
 
-    if (window.navigator.appVersion.indexOf('Mac') !== -1) {
+    if (agent.indexOf('Mac') !== -1) {
         operatingSystem = 'MacOS';
     }
 
-    if (window.navigator.appVersion.indexOf('X11') !== -1) {
+    if (agent.indexOf('X11') !== -1) {
         operatingSystem = 'UnixOS';
     }
 
-    if (window.navigator.appVersion.indexOf('Linux') !== -1) {
+    if (agent.indexOf('Linux') !== -1) {
         operatingSystem = 'LinuxOS';
     }
 
-    if (window.navigator.appVersion.indexOf('Android') !== -1) {
+    if (agent.indexOf('Android') !== -1) {
         operatingSystem = 'AndroidOS';
     }
 
-    if (window.navigator.appVersion.indexOf('iPhone') !== -1) {
+    if (agent.indexOf('iPhone') !== -1) {
         operatingSystem = 'iOS';
     }
 
-    if (window.navigator.appVersion.indexOf('iPad') !== -1) {
+    if (agent.indexOf('iPad') !== -1) {
         operatingSystem = 'iOS';
     }
 
     return operatingSystem;
 }
 
-export default (window: any): string => getOperatingSystem(window);
+export default (window: any): string => getOperatingSystem(window.navigator.appVersion);

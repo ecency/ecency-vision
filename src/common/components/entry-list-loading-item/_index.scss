@@ -105,27 +105,6 @@
 
 .grid-view {
   .entry-list-loading-item {
-    margin-right: 2%;
-    padding-right: 0;
-    width: 49%;
-
-    &:nth-child(2n) {
-      margin-right: 0;
-    }
-
-    @media (min-width: 1600px) {
-      margin-right: 1%;
-      width: 32.6%;
-
-      &:nth-child(2n) {
-        margin-right: 1%;
-      }
-
-      &:nth-child(3n) {
-        margin-right: 0;
-      }
-    }
-
     .item-body {
       .item-image {
         float: none;
@@ -149,6 +128,51 @@
         .comments,
         .app {
           width: 60px;
+        }
+      }
+    }
+  }
+
+  &:not(.limited-area) {
+    .entry-list-loading-item {
+      width: 100%;
+
+      @media (min-width: $xl-break) {
+        margin-right: 2%;
+        padding-right: 0;
+        width: 49%;
+
+        &:nth-child(2n) {
+          margin-right: 0;
+        }
+      }
+
+      @media (min-width: $xxxl-break) {
+        margin-right: 1%;
+        width: 32.6%;
+
+        &:nth-child(2n) {
+          margin-right: 1%;
+        }
+
+        &:nth-child(3n) {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
+  &.limited-area {
+    .entry-list-loading-item {
+      width: 100%;
+
+      @media (min-width: $xxl-break) {
+        margin-right: 2%;
+        padding-right: 0;
+        width: 49%;
+
+        &:nth-child(2n) {
+          margin-right: 0;
         }
       }
     }

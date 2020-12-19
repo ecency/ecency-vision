@@ -9,6 +9,19 @@
 .voting-controls {
   display: flex;
 
+  .estimated,
+  .percentage {
+    white-space: nowrap;
+
+    @media (max-width: $sm-break - 1px) {
+      font-size: 13px;
+    }
+  }
+
+  .btn-vote {
+    flex-shrink: 0;
+  }
+
   .btn-up-vote,
   .estimated,
   .slider,

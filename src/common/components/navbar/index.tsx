@@ -18,20 +18,20 @@ import {ActiveUser} from "../../store/active-user/types";
 import {UI, ToggleType} from "../../store/ui/types";
 import {NotificationFilter, Notifications} from "../../store/notifications/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
+import NotificationHandler from "../notification-handler";
 
 import ToolTip from "../tooltip";
-import DownloadTrigger from "../download-trigger";
 import Search from "../search";
 import Login from "../login";
 import UserNav from "../user-nav";
+import DropDown from "../dropdown";
 
-import NotificationHandler from "../notification-handler"
-
-import {_t} from "../../i18n";
+import {_t, langOptions} from "../../i18n";
+import i18n from "i18next";
 
 import _c from "../../util/fix-class-names";
 
-import {brightnessSvg, appleSvg, googleSvg, desktopSvg, pencilOutlineSvg, menuSvg, closeSvg} from "../../img/svg";
+import {brightnessSvg, translateSvg, pencilOutlineSvg, menuSvg, closeSvg} from "../../img/svg";
 
 const logo = require('../../img/logo-circle.svg');
 
@@ -59,6 +59,7 @@ interface Props {
     toggleUIProp: (what: ToggleType) => void;
     muteNotifications: () => void;
     unMuteNotifications: () => void;
+    setLang: (lang: string) => void;
 }
 
 interface State {
@@ -134,11 +135,28 @@ export class NavBar extends Component<Props, State> {
     }
 
     render() {
-        const {global, activeUser, ui} = this.props;
+        const {global, activeUser, ui, setLang} = this.props;
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
         const logoHref = activeUser ? `/@${activeUser.username}/feed` : '/';
 
         const {smVisible, floating} = this.state;
+
+        const langMenuConfig = {
+            history: this.props.history,
+            label: '',
+            icon: translateSvg,
+            items: langOptions.map((f => {
+                return {
+                    label: f.name,
+                    active: global.lang === f.code,
+                    onClick: () => {
+                        i18n.changeLanguage(f.code).then(() => {
+                            setLang(f.code);
+                        });
+                    }
+                }
+            }))
+        };
 
         return (
             <>
@@ -159,9 +177,6 @@ export class NavBar extends Component<Props, State> {
                             <Link className="menu-item" to="/communities">
                                 {_t("navbar.communities")}
                             </Link>
-                            <Link className="menu-item" to="/faq">
-                                {_t("navbar.faq")}
-                            </Link>
                         </div>
                     </div>
                 )}
@@ -179,30 +194,19 @@ export class NavBar extends Component<Props, State> {
                             <Link className="menu-item" to="/communities">
                                 {_t("navbar.communities")}
                             </Link>
-                            <Link className="menu-item" to="/faq">
-                                {_t("navbar.faq")}
-                            </Link>
                         </div>
                         <div className="flex-spacer"/>
                         <div className="search-bar">
                             {Search({...this.props})}
+                        </div>
+                        <div className="switch-language">
+                            <DropDown {...langMenuConfig} float="left"/>
                         </div>
                         <ToolTip content={themeText}>
                             <div className="switch-theme" onClick={this.changeTheme}>
                                 {brightnessSvg}
                             </div>
                         </ToolTip>
-                        <DownloadTrigger>
-                            <div className="downloads">
-                                <span className="label">{_t("g.downloads")}</span>
-                                <span className="icons">
-                            <span className="img-apple">{appleSvg}</span>
-                            <span className="img-google">{googleSvg}</span>
-                            <span className="img-desktop">{desktopSvg}</span>
-                          </span>
-                            </div>
-                        </DownloadTrigger>
-
                         {!activeUser && (
                             <div className="login-required">
                                 <Button variant="outline-primary" onClick={() => {
@@ -213,7 +217,6 @@ export class NavBar extends Component<Props, State> {
                                 <Link className="btn btn-primary" to="/signup">{_t("g.signup")}</Link>
                             </div>
                         )}
-
                         <div className="submit-post">
                             <ToolTip content={_t("navbar.post")}>
                                 <Link className="btn btn-outline-primary" to="/submit">
@@ -221,7 +224,6 @@ export class NavBar extends Component<Props, State> {
                                 </Link>
                             </ToolTip>
                         </div>
-
                         {activeUser && <UserNav {...this.props} activeUser={activeUser}/>}
                     </div>
                     {ui.login && <Login {...this.props} />}
@@ -256,7 +258,8 @@ export default (p: Props) => {
         markNotifications: p.markNotifications,
         toggleUIProp: p.toggleUIProp,
         muteNotifications: p.muteNotifications,
-        unMuteNotifications: p.unMuteNotifications
+        unMuteNotifications: p.unMuteNotifications,
+        setLang: p.setLang
     }
 
     return <NavBar {...props} />;

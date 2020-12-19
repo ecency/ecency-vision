@@ -2,6 +2,8 @@ import React, {Component} from "react";
 
 import {connect} from "react-redux";
 
+import {Link} from "react-router-dom";
+
 import {ListStyle} from "../store/global/types";
 
 import {makeGroupKey} from "../store/entries";
@@ -21,6 +23,7 @@ import TrendingTagsCard from "../components/trending-tags-card";
 import SelectedTagsCard from "../components/selected-tags-card";
 import ScrollToTop from "../components/scroll-to-top";
 import MarketData from "../components/market-data";
+import DownloadTrigger from "../components/download-trigger";
 
 import {_t} from "../i18n";
 
@@ -29,6 +32,8 @@ import _c from "../util/fix-class-names";
 import capitalize from "../util/capitalize";
 
 import defaults from "../constants/defaults.json";
+
+import {appleSvg, desktopSvg, googleSvg} from "../img/svg";
 
 import {pageMapDispatchToProps, pageMapStateToProps, PageProps} from "./common";
 
@@ -117,6 +122,8 @@ class EntryIndexPage extends Component<PageProps> {
 
         const promoted = entries['__promoted__'].entries;
 
+        const isMy = isMyPage(global, activeUser);
+
         return (
             <>
                 <Meta {...metaProps} />
@@ -133,8 +140,12 @@ class EntryIndexPage extends Component<PageProps> {
                 <Intro global={this.props.global} hideIntro={this.props.hideIntro}/>
                 <div className="app-content entry-index-page">
                     <div className="tags-side">
-                        {SelectedTagsCard({...this.props})}
-                        {TrendingTagsCard({...this.props})}
+                        {!global.isMobile && (
+                            <>
+                                {SelectedTagsCard({...this.props})}
+                                {TrendingTagsCard({...this.props})}
+                            </>
+                        )}
                     </div>
                     <div className={_c(`entry-page-content ${loading ? "loading" : ""}`)}>
                         <div className="page-tools">
@@ -142,16 +153,45 @@ class EntryIndexPage extends Component<PageProps> {
                         </div>
                         {loading && entryList.length === 0 ? <LinearProgress/> : ""}
                         <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>
-                            <div className={_c(`entry-list-body ${global.listStyle === ListStyle.grid ? "grid-view" : ""}`)}>
+                            <div className={_c(`entry-list-body ${isMy ? "limited-area" : ""} ${global.listStyle === ListStyle.grid ? "grid-view" : ""}`)}>
                                 {loading && entryList.length === 0 && <EntryListLoadingItem/>}
                                 {EntryListContent({...this.props, entries: entryList, promotedEntries: promoted})}
                             </div>
                         </div>
                         {loading && entryList.length > 0 ? <LinearProgress/> : ""}
                     </div>
-                    {(location.pathname === '/' || isMyPage(global, activeUser)) && (
-                        <div className="market-side">
-                            <MarketData/>
+                    {(location.pathname === '/' || isMy) && (
+                        <div className="side-menu">
+                            {!global.isMobile && (
+                                <>
+                                    <MarketData/>
+
+                                    <div className="menu-nav">
+                                        <DownloadTrigger>
+                                            <div className="downloads">
+                                                <span className="label">{_t("g.downloads")}</span>
+                                                <span className="icons">
+                                                    <span className="img-apple">{appleSvg}</span>
+                                                    <span className="img-google">{googleSvg}</span>
+                                                    <span className="img-desktop">{desktopSvg}</span>
+                                                </span>
+                                            </div>
+                                        </DownloadTrigger>
+
+                                        <div className="text-menu">
+                                            <Link className="menu-item" to="/faq">
+                                                {_t("entry-index.faq")}
+                                            </Link>
+                                            <Link className="menu-item" to="/terms-of-service">
+                                                {_t("entry-index.tos")}
+                                            </Link>
+                                            <Link className="menu-item" to="/privacy-policy">
+                                                {_t("entry-index.pp")}
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </>
+                            )}
                         </div>
                     )}
                 </div>
