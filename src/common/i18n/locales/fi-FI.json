@@ -577,7 +577,7 @@
   "word-count": {
     "label": "{{n}} sanaa",
     "read-time-less-1-min": "< 1 min luku",
-    "read-time-n-min": "~ {{n}} min luettu"
+    "read-time-n-min": "~ {{n}} min lukuaika"
   },
   "notification": {
     "popup-title": "Sinulle on uusi ilmoitus",
