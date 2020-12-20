@@ -483,8 +483,8 @@
     "type-comment_benefactor_reward": "Comment Benefactor Reward",
     "type-claim_reward_balance": "Διεκδικήστε ανταμοιβές",
     "type-transfer": "Μεταφορά",
-    "type-transfer_to_vesting": "Transfer to vesting",
-    "type-withdraw_vesting": "Withdraw vesting",
+    "type-transfer_to_vesting": "Μεταφορά σε κατοχυρωμένα",
+    "type-withdraw_vesting": "Ανάληψη κατοχυρωμένων",
     "type-fill_order": "Συμπλήρωση παραγγελίας"
   },
   "key-or-hot": {
