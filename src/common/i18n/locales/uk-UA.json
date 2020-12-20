@@ -232,7 +232,7 @@
     "profile-image-updated": "Світлину профілю оновлено!"
   },
   "community-role-edit": {
-    "title": "Set user role",
+    "title": "Встановити роль користувача",
     "username": "Ім'я користувача",
     "role": "Роль",
     "user-not-found": "Користувача не існує!",
@@ -419,7 +419,7 @@
     "post": "Допис",
     "post-hint": "Autocomplete input",
     "post-placeholder": "username/permlink",
-    "post-error": "Not a valid post address",
+    "post-error": "Недійсна поштова адреса",
     "post-error-exists": "Допис вже просувають",
     "success-message": "Ваш запит надіслано. Він активується через декілька хвилин."
   },
@@ -650,7 +650,7 @@
     "page-description-long": "Role of witnesses or block producers in Hive blockchain is to act as the network's governance body. Community elects them to represent their voice and each user can elect up to 30 witnesses. Top 20 witnesses are producing blocks every minute while rest remain as backup witness and gets randomized chance every minute. This role is integral part of consensus mechanism blockchain runs on and recommend user engagement to vote on trusted witnesses.",
     "remaining": "<span>{{n}}</span> of {{max}} votes remaining",
     "list-rank": "Рейтинг",
-    "list-witness": "Witness",
+    "list-witness": "Свідок",
     "list-miss": "Miss",
     "list-url": "URL",
     "list-fee": "Комісія",
@@ -681,7 +681,7 @@
     "filter-inactive": "Upcoming",
     "filter-team": "Проєкти Ecency",
     "return-description": "This is the base return proposal. Every proposal with less votes will not receive funds.",
-    "votes-dialog-title": "Votes on Proposal #{{n}}",
+    "votes-dialog-title": "Голосів за пропозицію #{{n}}",
     "see-all": "переглянути усі пропозиції"
   },
   "gallery": {
@@ -723,7 +723,7 @@
       "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\" loading=\"lazy\"/></p><p>Основні відмінності у всіх інтерфейсах або додатках полягають у їх наборі функцій та можливостях використання. Ecency пропонує такі версії: веб-сайт, мобільні додатки для Adroind та iOS, комп'ютерну версію для MacOS та Windows, і все це для зручності доступу та найкращого рівня безпеки. Доступний, у відкритому джерелі та інноваційний, створений і належить користувачам. Прагніть величі!</p>",
       "why-choose-ecency-header": "Чому б я обрав Ecency?",
       "why-choose-ecency-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjrzJAcJ4DvxvtqoPdzS9Aygf4MZ1PeE4goH6zWaeEFvafr9vGXWuou67Pbn44GweMyHV5DupM5q1cRvU85qdver?format=match&mode=fit\" loading=\"lazy\"/></p><p>Tailored feature set to empower you to create, inspire your audience and community. Ecency mobile application giving you on-go solution. With desktop app you are always sure to get uncensored content right from the blockchain, with website reach thousands of readers accross globe with best ranked content on search engines. State of art security measures so your keys will always stay encrypted and out of reach for ill-intentioned individuals. Fast and beautiful website, helps you to get discovered online and gain exposure for your content and gain loyal followers and readers. Build your community with Ecency today and take advantages of emerging blockchain technology and uncensored content, true free speech!</p>",
-      "how-ecency-works-header": "How does Ecency work?",
+      "how-ecency-works-header": "Як працює Ecency?",
       "how-ecency-works-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjuZ3ksaZqEjfd9GadyKFE4bT7UP8qM1sF5W6U3cst4ekDsXfrQdcrjtdz6b5Ye2AfWNwGA5f8QqVXmed6NRfg1U?format=match&mode=fit\" loading=\"lazy\"/></p><p>Ecency зберігає та зчитує дані з блокчейну, а отже, дані є доступними та без цензури. Ecency винагороджує творців вмісту вбудованим механізмом стимулювання блокчейну, жетонами (HIVE, HIVE ДОЛАР, HIVE СИЛА), а також балами. Токени можна купувати та продавати на основних біржах криптовалют (наприклад, Binance, Bittrex). Бали можна використовувати на платформі та торгувати за товари, послуги.</p>",
       "how-to-join-header": "Як приєднатися до Ecency?",
       "how-to-join-body": "<p>Перейдіть до <a href=\"/?referral=ecency\">https://ecency.com/?referral=ecency</a> і створіть обліковий запис. Після реєстрації ви отримаєте лист з подальшими інструкціями. Ваш головний ключ \"master key\" — це ваш головний ключ до вашого облікового запису. Будь ласка, збережіть його у безпечному місці, якщо ви втратите пароль, ви зрештою втратите доступ до своєї обліковки та коштів. Облікові записи не можуть бути деактивовані або видалені, імена облікових записів також не можуть бути змінені. Обліковий запис разом з усією його активністю назавжди зберігається в блокчейні. Без пароля облікові записи не можуть бути відновлені, зберігайте ключі безпечно.</p>",
