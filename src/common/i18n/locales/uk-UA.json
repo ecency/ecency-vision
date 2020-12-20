@@ -146,7 +146,7 @@
     "description-user-feed": "{{u}}'s feed",
     "faq": "FAQ",
     "tos": "Terms of service",
-    "pp": "Privacy Policy"
+    "pp": "Політика безпеки"
   },
   "market-data": {
     "title": "Ринкова ціна",
@@ -201,7 +201,7 @@
   "community": {
     "page-description": "{{f}} topics",
     "subscribe": "Приєднатися",
-    "subscribed": "Joined",
+    "subscribed": "Приєднався(-лась)",
     "unsubscribe": "Залишити",
     "post": "Новий допис",
     "posts": "Дописи",
@@ -228,7 +228,7 @@
     "edit": "Редагувати налаштування",
     "edit-team": "Змінити ролі",
     "profile-image": "Світлина профілю спільноти",
-    "profile-image-edit": "Edit profile image",
+    "profile-image-edit": "Редагувати світлину профілю",
     "profile-image-updated": "Світлину профілю оновлено!"
   },
   "community-role-edit": {
@@ -370,7 +370,7 @@
   "points": {
     "get": "Купити Бали",
     "unclaimed-points": "Unclaimed points",
-    "claim-reward-points": "Claim reward points",
+    "claim-reward-points": "Зарахувати винагороду на баланс",
     "main-description": "Бали можуть використовуватися для вбудованих сервісів, таких як Просування чи Підсилення допису, або їх можна подарувати друзям. Заробити бали можна тільки за допомогою наших додатків Ecency та нашої браузерної версії.",
     "earn-points": "Як отримати більше балів",
     "post-desc": "Ви можете заробити бали, регулярно публікуючи повідомлення. Повідомлення дає 15 балів.",
@@ -394,12 +394,12 @@
     "delegation-list-desc": "Винагорода за делегування",
     "referral-list-desc": "Реферальна винагорода",
     "transfer": "Подарувати комусь",
-    "claim-ok": "Points claimed",
+    "claim-ok": "Бали зараховані",
     "promote": "Просувати",
     "boost": "Підсилити"
   },
   "purchase": {
-    "select-asset": "Select Asset",
+    "select-asset": "Оберіть актив",
     "slider-hint": "Перетягніть повзунок, щоб налаштувати суму.",
     "submit": "Purchase"
   },
@@ -412,13 +412,13 @@
     "title": "Підсилити",
     "sub-title": "Підсилити ваш допис",
     "amount": "Amount",
-    "slider-hint": "Drag the slider to adjust the amount."
+    "slider-hint": "Перетягніть повзунок, щоб відрегулювати суму."
   },
   "redeem-common": {
     "balance": "Баланс",
     "post": "Допис",
     "post-hint": "Autocomplete input",
-    "post-placeholder": "username/permlink",
+    "post-placeholder": "ім'я користувача/постійне джерело",
     "post-error": "Недійсна поштова адреса",
     "post-error-exists": "Допис вже просувають",
     "success-message": "Ваш запит надіслано. Він активується через декілька хвилин."
@@ -471,10 +471,10 @@
   },
   "trx-common": {
     "insufficient-funds": "Недостатньо коштів",
-    "sign-title": "Sign transaction",
-    "sign-sub-title": "Sign your transaction",
+    "sign-title": "Підписати транзакцію",
+    "sign-sub-title": "Підпишіть вашу транзакцію",
     "success-title": "Успіх",
-    "success-sub-title": "Transaction successful"
+    "success-sub-title": "Операція успішна"
   },
   "transactions": {
     "title": "History",
@@ -565,7 +565,7 @@
   },
   "tag-selector": {
     "placeholder-empty": "Теги. Першим тегом є основна категорія, а наступні є для сортування.",
-    "placeholder-focus": "Enter tag",
+    "placeholder-focus": "Введіть тег",
     "placeholder-has-tags": "Додати більше",
     "suggestion-header": "Теги",
     "error-max": "Максимум {{n}} тегів"
@@ -582,12 +582,12 @@
   "notification": {
     "popup-title": "У вас є нове сповіщення",
     "voted": "{{source}} проголосував за ваш допис",
-    "mention-post": "{{source}} mentioned you in a post",
+    "mention-post": "{{source}} згадав(-ла) вас у дописі",
     "mention-comment": "{{source}} згадав(-ла) вас у коментарі",
     "followed": "{{source}} followed you",
-    "replied": "{{source}} replied you",
+    "replied": "{{source}} відповів(-ла) вам",
     "reblogged": "{{source}} reblogged your post",
-    "transfer": "{{source}} sent you {{amount}}"
+    "transfer": "{{source}} надіслав(-ла) вам {{amount}}"
   },
   "notifications": {
     "type-all": "Усі сповіщення",
@@ -599,7 +599,7 @@
     "type-reblogs": "Розповсюдження",
     "type-transfers": "Перекази",
     "vote-str": "{{p}}% подобається ваш допис:",
-    "reply-str": "replied to your post:",
+    "reply-str": "відповів(-ла) на ваш допис:",
     "mention-str": "згадав(-ла) вас у:",
     "followed-str": "followed",
     "unfollowed-str": "unfollowed",
@@ -608,7 +608,7 @@
     "transfer-str": "відправив вам",
     "spin-str": "Час заробити більше балів, грайте на Ecency Mobile",
     "inactive-str": "Будьте активними! Напишіть допис, продовжуйте заробляти",
-    "referral-str": "joined with your referral, welcome them",
+    "referral-str": "приєднався за вашим запрошенням, привітайте його",
     "refresh": "Оновити",
     "mark-all-read": "Позначити все як прочитане",
     "mark-read": "Позначити як прочитане",
@@ -637,7 +637,7 @@
   "search-page": {
     "title": "Пошук",
     "description": "Find uncensored content, communities and users",
-    "n-results-for-q": "{{n}} results",
+    "n-results-for-q": "{{n}} результат(-ів)",
     "no-result": "Без результату",
     "sort-by": "сортувати за",
     "sort-popularity": "Популярність",
@@ -648,10 +648,10 @@
     "page-title": "Свідки",
     "page-description": "Consensus block producers selection",
     "page-description-long": "Role of witnesses or block producers in Hive blockchain is to act as the network's governance body. Community elects them to represent their voice and each user can elect up to 30 witnesses. Top 20 witnesses are producing blocks every minute while rest remain as backup witness and gets randomized chance every minute. This role is integral part of consensus mechanism blockchain runs on and recommend user engagement to vote on trusted witnesses.",
-    "remaining": "<span>{{n}}</span> of {{max}} votes remaining",
+    "remaining": "Залишилось <strong>{{n}}</strong> із {{max}} голосів",
     "list-rank": "Рейтинг",
     "list-witness": "Свідок",
-    "list-miss": "Miss",
+    "list-miss": "Пропущено блоків",
     "list-url": "URL",
     "list-fee": "Комісія",
     "list-feed": "Feed",
@@ -673,7 +673,7 @@
     "daily-pay": "Щоденний {{n}}",
     "votes": "Голоси: {{n}}",
     "status-active": "активний",
-    "status-expired": "expired",
+    "status-expired": "термін сплинув",
     "status-inactive": "upcoming",
     "remaining-days": "Залишилося: {{n}} днів",
     "filter-all": "Усi",
@@ -686,7 +686,7 @@
   },
   "gallery": {
     "title": "Галерея",
-    "copied": "Copied to clipboard"
+    "copied": "Скопійовано до буферу обміну"
   },
   "drafts": {
     "title": "Чернетки"
