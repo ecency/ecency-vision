@@ -140,7 +140,7 @@
   "entry-index": {
     "feed": "Стрічка",
     "tags": "Популярне",
-    "title": "{{f}} topics",
+    "title": "{{f}} тем(-а)",
     "description": "{{f}} topics on a social network owned and operated by its users.",
     "description-tag": "{{f}} #{{t}} topics",
     "description-user-feed": "{{u}}'s feed",
