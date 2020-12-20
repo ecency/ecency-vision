@@ -666,7 +666,7 @@
   },
   "proposals": {
     "page-title": "Προτάσεις",
-    "page-description": "The Decentralized Hive Fund (DHF) is an on-chain funding mechanism that allows anyone to submit a proposal and get funding once community votes pass certain threshold. To learn more read our <a href=\"/faq#how-dhf-work\">FAQ</a>.",
+    "page-description": "Το Αποκεντρωμένο Ταμείο Hive (DHF) είναι ένας μηχανισμός χρηματοδότησης μέσω της αλυσίδας που επιτρέπει σε οποιονδήποτε να υποβάλει πρόταση και να λάβει χρηματοδότηση μόλις οι κοινοτικές ψήφοι περάσουν κάποιο όριο. Για να μάθετε περισσότερα διαβάστε το <a href=\"/faq#how-dhf-work\">FAQ</a>.",
     "by": "από",
     "for": "για",
     "duration-days": "{{n}} ημέρες",
