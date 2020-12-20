@@ -113,7 +113,7 @@
     "promoted": "promoted",
     "pinned": "Закріплена публікація",
     "replies": "1 відповідь. Натисніть, щоб відповісти.",
-    "replies-n": "{{n}} responses. Click to respond.",
+    "replies-n": "{{n}} відповідей. Натисніть, щоб відповісти.",
     "no-replies": "Ще немає відповідей. Натисніть, щоб відповісти."
   },
   "bookmark-btn": {
@@ -227,9 +227,9 @@
     "team": "Лідерство",
     "edit": "Редагувати налаштування",
     "edit-team": "Змінити ролі",
-    "profile-image": "Community profile image",
+    "profile-image": "Світлина профілю спільноти",
     "profile-image-edit": "Edit profile image",
-    "profile-image-updated": "Profile image updated!"
+    "profile-image-updated": "Світлину профілю оновлено!"
   },
   "community-role-edit": {
     "title": "Set user role",
