@@ -72,6 +72,11 @@
     "bookmarks": "Tandai",
     "logout": "Keluar"
   },
+  "intro": {
+    "title": "Aspire to greatness",
+    "sub-title": "rewarding communities",
+    "c2a": "Get Started"
+  },
   "login": {
     "title": "Selamat datang kembali!",
     "with-user-pass": "Masuk dengan nama pengguna dan Private Key Anda.",

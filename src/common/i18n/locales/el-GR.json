@@ -72,6 +72,11 @@
     "bookmarks": "Σελιδοδείκτες",
     "logout": "Αποσύνδεση"
   },
+  "intro": {
+    "title": "Φιλοδοξία στο μεγαλείο",
+    "sub-title": "ανταμείβοντας κοινότητες",
+    "c2a": "Ξεκινήστε"
+  },
   "login": {
     "title": "Καλώς ήρθατε και πάλι!",
     "with-user-pass": "Συνδεθείτε με το όνομα χρήστη και το ιδιωτικό κλειδί.",
@@ -86,7 +91,7 @@
     "error-permission": "Δεν ήταν δυνατή η λήψη άδειας δημοσίευσης",
     "error-authenticate": "Λάθος ιδιωτικό κλειδί. Χρειάζεται το αντικλείδι ή το ενεργό ιδιωτικό κλειδί.",
     "with-hive-signer": "Συνδεθείτε μέσω του hivesigner",
-    "with-keychain": "Σύνδεση με KeyChain",
+    "with-keychain": "Σύνδεση με keychain",
     "sign-up-text-1": "Δεν έχετε λογαριασμό;",
     "sign-up-text-2": "Εγγραφείτε τώρα!"
   },
@@ -245,7 +250,7 @@
     "lang": "Γλώσσα",
     "description": "Περιγραφή",
     "rules": "Κανόνες",
-    "rules-help": "(Ένα ανά γραμμή)"
+    "rules-help": "Ένα ανά γραμμή"
   },
   "communities": {
     "title": "Κοινότητες",
@@ -491,7 +496,7 @@
     "sign": "Υπογραφή",
     "key-placeholder": "Βάλτε το ενεργό/κυρίαρχο/αντικλείδι κλειδί",
     "with-hivesigner": "Συνδεθείτε μέσω του hivesigner",
-    "with-keychain": "Σύνδεση με KeyChain"
+    "with-keychain": "Σύνδεση με keychain"
   },
   "delegated-vesting": {
     "title": "Κατ 'εξουσιοδότηση Hive Power",
@@ -501,8 +506,8 @@
     "title": "Hive Power που έχει ληφθεί"
   },
   "friends": {
-    "followers": "Ακόλουθοι {{n}}",
-    "following": "Ακολουθείτε {{n}}",
+    "followers": "Ακόλουθοι ({{n}})",
+    "following": "Ακολουθείτε ({{n}})",
     "search-placeholder": "Αναζήτηση χρηστών"
   },
   "follow-controls": {
@@ -704,11 +709,11 @@
     "about": {
       "page-title": "Σχετικά",
       "intro-title": "Τι είναι <span>η πλατφόρμα Ecency</span>",
-      "intro-content": "Ecency is beautiful and handy wrapper interface around the Hive blockchain network allowing you to create your own posts, surf your feeds, vote what you like, write comments, read replies, do all major Hive functions in your daily social surfing as well as wallet actions and other extras such as search, discover different tags etc.",
+      "intro-content": "Το Ecency είναι μια όμορφη και εύχρηστη διεπαφή περιτυλίγματος γύρω από το δίκτυο blockchain της Hive που σας επιτρέπει να δημιουργείτε τις δικές σας αναρτήσεις, να σερφάρετε στις ροές σας, να ψηφίζετε ό, τι σας αρέσει, να γράφετε σχόλια, να διαβάζετε απαντήσεις, να κάνετε όλες τις σημαντικές λειτουργίες της Hive στην καθημερινή σας κοινωνική περιήγηση, καθώς και σε ενέργειες πορτοφολιού και άλλα πρόσθετα, όπως αναζήτηση, ανακάλυψη διαφορετικών ετικετών κ. λπ.",
       "faq-title": "Συχνές ερωτήσεις",
       "faqs": "Όλες οι συχνές ερωτήσεις",
       "contact-title": "Επαφές",
-      "contact-blog": "Founder's blog",
+      "contact-blog": "To ιστολόγιο του Ιδρυτή",
       "contact-news": "News on Hive",
       "contact-email": "Στείλτε μας email"
     },
@@ -718,7 +723,7 @@
       "what-is-ecency-header": "Τι είναι η πλατφόρμα Ecency;",
       "what-is-ecency-body": "<p>Η πλατφόρμα Ecency είναι ένα <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> βασισμένο κοινωνικό δίκτυο - τροφοδοτείται από <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\"> Hive</a></p><p> Το Ecency προσφέρει επιβραβευτική πλατφόρμα χωρίς λογοκρισία, δωρεάν, απεριόριστη,για δημιουργούς περιεχομένου.</p><p> Το έργο ξεκίνησε και ιδρύθηκε από <a href=\"/@good-karma\">@good-karma</a> τον Αύγουστο του 2016 ως εναλλακτικό κοινωνικό δίκτυο. Έκτοτε, το έργο έχει εξελιχθεί σε μια πολύ μεγαλύτερη ομάδα συντελεστών (μεταφραστές, testers, προγραμματιστές, influencers, δημιουργούς περιεχομένου και καταναλωτές) που βοήθησαν στη διαμόρφωση του Ecency.</p><p>Το Ecency βοηθά την ενσωμάτωση των μαζών στην τεχνολογία Blockchain όπου οι χρήστες πληρώνονται για τον χρόνο, τους πόρους τους και μαθαίνουν απολαμβάνοντας κοινωνικές πτυχές του blockchain. Μέσω της ευκολίας στη χρήση οι χρήστες όχι μόνο μαθαίνουν αλλά γίνονται και επενδυτές, καινοτόμοι της τεχνολογίας και της κοινότητας.</p>",
       "what-is-hive-header": "Τι είναι το Hive blockchain;",
-      "what-is-hive-body": "<p>Hive is a blockchain that was designed to be fast, feeless, decentralized, uncensored platform for Web3.0 applications, with built-in features where stake holders can earn rewards by staking, curating, posting, playing games, trading - all without any middle man (decentralized). Tokens on Hive blockchain called HIVE, HIVE DOLLARS, HIVE POWER.</p>",
+      "what-is-hive-body": "<p>Η Hive είναι μια blockchain πλατφόρμα που σχεδιάστηκε να είναι γρήγορη, χωρίς φόρους, αποκεντρωμένη, χωρίς λογοκρισία πλατφόρμα για εφαρμογές Web3.0, με ενσωματωμένες λειτουργίες όπου οι κάτοχοι μεριδίων μπορούν να κερδίσουν ανταμοιβές με staking, επιμέλεια, ανάρτηση, παίζοντας παιχνίδια, κάνοντας αγοραπωλησίες- όλα χωρίς κανένα μεσάζονται (αποκεντρωμένα). Τα Tokens στην Hive blockchain ονομάζονται HIVE, HIVE DOLLARS, HIVE POWER.</p>",
       "what-is-difference-header": "Ποια είναι η διαφορά μεταξύ της επιφάνειας της Ecency και των άλλων Hive επιφανειών;",
       "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\" loading=\"lazy\"/></p><p>The primary differences in all interfaces or applications are in their feature-set, use cases. Ecency offers website, mobile and desktop applications for ease of access and with best security in mind. Accessible, opensource and innovative, built and owned by users. Aspire for greatness!</p>",
       "why-choose-ecency-header": "Γιατί να διαλέξω την πλατφόρμα Ecency;",
@@ -751,7 +756,7 @@
       "what-are-rc-body": "<p>Transacting on the Hive blockchain has zero fees, transaction rate-limiting is employed to safeguard the blockchain from spam attacks. Every action that you take on the blockchain will consume a small amount of Resource Credits. This includes posting, commenting, voting, transferring tokens, etc. Viewing content does not consume Resource Credits.</p><p>Every user has a limited amount of Resource Credits to use each week. The more transactions a user does, the less Resource Credits they will have left (until they recharge). Users with more HIVE POWER will have more Resource Credits.</p><p>If you run out of Resource Credits, you will be unable to transact with the blockchain until your Resource Credits recharge (happens automatically) or you acquire additional HIVE POWER to increase your Resource Credit balance or you can <a href=\"/faq#how-boost-account\">request Boosting account from Ecency</a> to receive temporary delegation.</p>",
       "how-boost-account-header": "How to request account boosting?",
       "how-boost-account-body": "<p>If your account is low on <a href=\"/faq#what-are-rc\">Resource Credits</a>, you can request account boosting from Ecency. You will receive temporary delegation which should boost your account to perform more activities on blockchain. You can find account boosting feature in Points options.</p>",
-      "what-spam-abuse-header": "What is considered spam or abuse?",
+      "what-spam-abuse-header": "Τι θεωρείται spam, ανεπιθύμητο ή κατάχρηση;",
       "what-spam-abuse-body": "<p><img src=\"https://images.ecency.com/p/3jpR3paJ37V8XPrHkfZdMt57jY6pRt6zEt5iRJV9pSw4Mez3Hut8U6RWvWLA7cFYEa1bxveXeasNfZApzrcLYLx8cz84kBEKak1KkewE2ZqE1QRRkF4eqRH3vWVqZB9WuNbzE?format=match&mode=fit\" loading=\"lazy\"/></p><p><ul><li>Plagiarized posts or copied content.</li><li>Leaving nearly identical or materially similar comments on multiple posts.</li><li>Using tags that are unrelated to the post.</li><li>Threatening users with any type of physical violence.</li><li>Not citing sources when using someone else’s material.</li><li>Posting ‘not safe for work’ content without using the “nsfw” tag.</li><li>Scams or Fraudulent offers.</li></ul></p>",
       "can-link-post-header": "Μπορώ να ζητήσω την προσθήκη backlink στην ιστοσελίδα μου από την ομάδα Ecency;",
       "can-link-post-body": "<p>όλο το περιεχόμενο στον ιστότοπό μας δημιουργείται από τους χρήστες μας και δεν τροποποιούμε ούτε μπορούμε να προσθέτουμε backlinks. Είστε ελεύθεροι να επικοινωνήσετε με τον δημιουργό της δημοσίευσης ή<a href=\"/?referral=ecency\">Εγγραφή</a> για να δημιουργήσετε το δικό σας blog και κοινότητα, να δημοσιεύσετε άρθρα και να δημιουργήσετε backlinks δωρεάν.</p>",

@@ -72,6 +72,11 @@
     "bookmarks": "Zakładki",
     "logout": "Wyloguj"
   },
+  "intro": {
+    "title": "Aspire to greatness",
+    "sub-title": "rewarding communities",
+    "c2a": "Get Started"
+  },
   "login": {
     "title": "Witaj ponownie!",
     "with-user-pass": "Zaloguj się za pomocą nazwy użytkownika i klucza prywatnego.",
@@ -86,7 +91,7 @@
     "error-permission": "Nie można uzyskać pozwolenia na publikację",
     "error-authenticate": "Nieprawidłowy klucz prywatny. Wymagany jest główny lub aktywny klucz prywatny.",
     "with-hive-signer": "Zaloguj się przez hivesigner",
-    "with-keychain": "Zaloguj z KeyChain",
+    "with-keychain": "Zaloguj z keychain",
     "sign-up-text-1": "Nie masz konta?",
     "sign-up-text-2": "Zarejestruj się teraz!"
   },

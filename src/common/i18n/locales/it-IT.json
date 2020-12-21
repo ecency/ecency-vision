@@ -1,6 +1,6 @@
 {
   "g": {
-    "add": "Add",
+    "add": "Aggiungi",
     "edit": "Modifica",
     "search": "Cerca",
     "downloads": "Scarica",
@@ -25,7 +25,7 @@
     "show": "Mostra",
     "on": "Aziona",
     "off": "Spegni",
-    "yes": "Yes",
+    "yes": "Si",
     "no": "No"
   },
   "confirm": {
@@ -41,8 +41,8 @@
     "filter-payout": "Pagamenti",
     "filter-muted": "Silenziati",
     "filter-feed": "Feed",
-    "filter-feed-friends": "Friends",
-    "filter-feed-subscriptions": "Communities"
+    "filter-feed-friends": "Amici",
+    "filter-feed-subscriptions": "Community"
   },
   "navbar": {
     "discover": "Scopri",
@@ -71,6 +71,11 @@
     "drafts": "Bozze",
     "bookmarks": "Segnalibri",
     "logout": "Esci"
+  },
+  "intro": {
+    "title": "Aspira alla grandezza",
+    "sub-title": "community ricompensate",
+    "c2a": "Inizia"
   },
   "login": {
     "title": "Bentornato!",
@@ -109,7 +114,7 @@
     "title": "In primo piano"
   },
   "entry-list-item": {
-    "reblogged": "{{n}} reblogged",
+    "reblogged": "{{n}} rebloggati",
     "promoted": "promosso",
     "pinned": "Post Fissato",
     "replies": "1 risposta. Clicca per rispondere.",
@@ -144,13 +149,13 @@
     "description": "Argomenti {{f}} su un social network di proprietà e gestito dai suoi utenti.",
     "description-tag": "#{{t}} negli argomenti {{f}}",
     "description-user-feed": "Feed di {{u}}",
-    "faq": "FAQ",
-    "tos": "Terms of service",
-    "pp": "Privacy Policy"
+    "faq": "Domande frequenti",
+    "tos": "Termini di servizio",
+    "pp": "Politica sulla riservatezza"
   },
   "market-data": {
     "title": "Prezzo di Mercato",
-    "credits": "data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
+    "credits": "dati ottenuti da <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "list-style": {
     "title": "Cambia tipo di elenco"
@@ -159,11 +164,11 @@
     "title": "1 Voto",
     "title-n": "{{n}} Voti",
     "title-empty": "Nessun Voto",
-    "sort": "Sort",
-    "sort-reward": "Reward",
-    "sort-timestamp": "Time",
-    "sort-reputation": "Reputation",
-    "sort-percent": "Percentage"
+    "sort": "Classifica",
+    "sort-reward": "Ricompensa",
+    "sort-timestamp": "Data e ora",
+    "sort-reputation": "Reputazione",
+    "sort-percent": "Percentuale"
   },
   "entry": {
     "via-app": "attraverso <span class=\"app-name\">{{app}}</span>",
@@ -350,22 +355,22 @@
     "hive-dollars-description": "Token dal valore di circa $1.00 in HIVE.",
     "savings": "RISPARMI",
     "savings-description": "Bilancio soggetto a tempo di attesa prima del pagamento di 3 giorni.",
-    "next-power-down": "The next power down is {{time}}, {{amount}}",
+    "next-power-down": "Il prossimo depotenziamento è previsto per {{time}}, {{amount}}",
     "transfer": "Trasferisci",
     "transfer-to-savings": "Trasferisci nei risparmi",
     "convert": "Converti",
     "power-up": "Potenzia",
     "withdraw-hive": "Trasferisci Hive",
     "withdraw-hbd": "Trasferisci Hive Dollars",
-    "delegate": "Delegate",
-    "power-down": "Power down",
-    "withdraw-routes": "Withdraw Routes"
+    "delegate": "Delega",
+    "power-down": "Depotenziamento",
+    "withdraw-routes": "Ricompense assegnate"
   },
   "withdraw-routes": {
-    "title": "Withdraw accounts",
+    "title": "Account beneficianti delle ricompense assegnate",
     "account": "Account",
-    "percent": "Percent",
-    "auto-power-up": "Automatically power up"
+    "percent": "Percentuale",
+    "auto-power-up": "Potenzia automaticamente"
   },
   "points": {
     "get": "Acquista Punti",
@@ -435,10 +440,10 @@
     "convert-title": "Converti",
     "power-up-sub-title": "Token indici di influenza che ti danno più controllo sul pagamento dei post e ti consentono di guadagnare sulle ricompense delle curation.",
     "convert-sub-title": "Raccomandato unicamente quando HBD si trova sotto il valore di $1. Riceverai $1 in HIVE in 3.5 giorni.",
-    "delegate-title": "Delegate",
-    "delegate-sub-title": "Delegate Hive Power",
-    "power-down-title": "Power Down",
-    "power-down-sub-title": "Power Down Hive Power",
+    "delegate-title": "Delega",
+    "delegate-sub-title": "Delega Hive Power",
+    "power-down-title": "Depotenzia",
+    "power-down-sub-title": "Depotenzia Hive Power",
     "from": "Da",
     "to": "A",
     "to-placeholder": "nome Utente",
@@ -449,11 +454,11 @@
     "wrong-amount": "Valore dell'importo errato",
     "amount-precision-error": "Usa solo 3 numeri decimali",
     "balance": "Saldo",
-    "power-down-estimated": "+ {{n}} Estimated Weekly",
+    "power-down-estimated": "+ {{n}} stimati ogni settimana",
     "memo": "Promemoria",
     "memo-placeholder": "immetti qui la tua annotazione",
     "memo-help": "Questo promemoria è pubblico",
-    "available-hp-hint": "* available hive power",
+    "available-hp-hint": "* hive power disponibile",
     "confirm-title": "Conferma la tua transazione",
     "confirm-sub-title": "Prego, controlla se è tutto corretto",
     "confirm": "Conferma",
@@ -465,9 +470,9 @@
     "power-up-summary": "<span class=\"amount\">{{amount}}</span> staked from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Power down completed as <span class=\"amount\">{{amount}}</span>",
-    "reset": "Reset",
-    "powering-down": "You are currently powering down.",
-    "stop-power-down": "Stop"
+    "reset": "Ripristina",
+    "powering-down": "Depotenziamento attualmente in atto.",
+    "stop-power-down": "Interrompi"
   },
   "trx-common": {
     "insufficient-funds": "Fondi insufficienti",

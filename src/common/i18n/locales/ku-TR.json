@@ -72,6 +72,11 @@
     "bookmarks": "Bookmarks",
     "logout": "Logout"
   },
+  "intro": {
+    "title": "Aspire to greatness",
+    "sub-title": "rewarding communities",
+    "c2a": "Get Started"
+  },
   "login": {
     "title": "Welcome back!",
     "with-user-pass": "Login with your username and private key.",

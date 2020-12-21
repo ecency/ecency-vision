@@ -72,6 +72,11 @@
     "bookmarks": "Kirjanmerkit",
     "logout": "Kirjaudu ulos"
   },
+  "intro": {
+    "title": "Ajattele isosti",
+    "sub-title": "palkitsevia yhteisöjä",
+    "c2a": "Aloita"
+  },
   "login": {
     "title": "Tervetuloa takaisin!",
     "with-user-pass": "Kirjaudu käyttäjätunnuksellasi ja yksityisellä avaimellasi.",
