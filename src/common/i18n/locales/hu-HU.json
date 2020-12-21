@@ -72,6 +72,11 @@
     "bookmarks": "Könyvjelzők",
     "logout": "Kijelentkezés"
   },
+  "intro": {
+    "title": "Aspire to greatness",
+    "sub-title": "rewarding communities",
+    "c2a": "Get Started"
+  },
   "login": {
     "title": "Üdv újra!",
     "with-user-pass": "Jelentkezz be felhasználónévvel és private kulccsal.",
