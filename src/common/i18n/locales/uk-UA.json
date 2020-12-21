@@ -39,7 +39,7 @@
     "filter-created": "Нове",
     "filter-promoted": "Просувається",
     "filter-payout": "Виплати",
-    "filter-muted": "Muted",
+    "filter-muted": "Ігнорується",
     "filter-feed": "Стрічка",
     "filter-feed-friends": "Друзі",
     "filter-feed-subscriptions": "Спільноти"
@@ -74,7 +74,7 @@
   },
   "intro": {
     "title": "Прагніть до величі",
-    "sub-title": "rewarding communities",
+    "sub-title": "винагороджуються спільноти",
     "c2a": "Розпочати"
   },
   "login": {
@@ -86,7 +86,7 @@
     "login-info-2": "Детальніше",
     "error-fields-required": "Будь ласка, введіть ім'я користувача та приватний ключ",
     "error-public-key": "Ви ввели публічний ключ. Потрібен пароль/WIF",
-    "error-user-fetch": "User data could not be fetched",
+    "error-user-fetch": "Не вдалося отримати дані користувача",
     "error-user-not-found": "Користувач не існує",
     "error-permission": "Не вдалося отримати дозвіл на публікацію",
     "error-authenticate": "Неправильний приватний ключ. Необхідно вказати головний або активний приватний ключ.",
@@ -111,10 +111,10 @@
     "title": "Теми"
   },
   "selected-tags": {
-    "title": "Featured"
+    "title": "Рекомендоване"
   },
   "entry-list-item": {
-    "reblogged": "{{n}} reblogged",
+    "reblogged": "{{n}} поширив(-ла)",
     "promoted": "просувається",
     "pinned": "Закріплена публікація",
     "replies": "1 відповідь. Натисніть, щоб відповісти.",
@@ -135,7 +135,7 @@
   },
   "entry-payout": {
     "pending-payout": "Відмовитися від виплати",
-    "promoted": "Promoted",
+    "promoted": "Просувається",
     "author-payout": "Авторська винагорода",
     "curators-payout": "Кураторська винагорода",
     "payout-date": "Виплата",
@@ -164,7 +164,7 @@
     "title": "1 Голос",
     "title-n": "{{n}} Голосів",
     "title-empty": "Немає голосів",
-    "sort": "Sort",
+    "sort": "Упорядкувати",
     "sort-reward": "Винагорода",
     "sort-timestamp": "Час",
     "sort-reputation": "Репутація",
@@ -436,7 +436,7 @@
     "transfer-saving-sub-title": "Захищає кошти від зняття 3-денним періодом очікування",
     "withdraw-saving-title": "Зняття заощаджень",
     "withdraw-saving-sub-title": "Зняти кошти після обов'язкового 3-денного періоду очікування",
-    "power-up-title": "Stake Hive as Power",
+    "power-up-title": "Токен Hive може стати Hive силою",
     "convert-title": "Конвертувати",
     "power-up-sub-title": "Вплив токенів дає вам можливість впливати на винагороду за публікації та дозволяє заробляти на кураторстві.",
     "convert-sub-title": "Рекомендовано конвертувати HBD коли ціна нижче $1. У такому випадку ви отримаєте $1 у токенах HIVE за 3.5 дні.",
@@ -485,7 +485,7 @@
     "title": "History",
     "type-curation_reward": "Кураторська Винагорода",
     "type-author_reward": "Авторська Винагорода",
-    "type-comment_benefactor_reward": "Comment Benefactor Reward",
+    "type-comment_benefactor_reward": "Винагорода бенефіціару за коментар",
     "type-claim_reward_balance": "Отримати винагороди",
     "type-transfer": "Переказ",
     "type-transfer_to_vesting": "Transfer to vesting",
@@ -749,7 +749,7 @@
       "how-see-rewards-header": "Як можна поглянути на винагороди за допис?",
       "how-see-rewards-body": "<p><img src=\"https://images.ecency.com/p/3W72119s5BjW4PvRk9nXBzqrPWMsMTjNrXDPFFf11iYhySeELMe77idrZHBPmyaqFX6CV72hBLB5qFhwVhGoAATydoFxAF7oCwBt1ztp6eS9r5us4pm7iN?format=match&mode=fit\" loading=\"lazy\"/></p><p>На сторінці Гаманця (у верхньому куті праворуч на веб-сайті чи додатку для комп'ютера або в нижній панелі навігації у мобільному додатку) ви можете побачити винагороди за курацію (винагороди, отримані за голосування дописів та коментарів) та винагороди автора (винагороди, отримані за ваші власні публікації дописів та коментарів)</p><p>Ви також можете переглянути ту саму інформацію для інших користувачів, відвідавши їхній профіль гаманця.</p>",
       "how-dhf-work-header": "Як працює ДВФ (DHF)?",
-      "how-dhf-work-body": "<p>Anyone can create a proposal and convince community to vote on their proposal to get funded. Before creating proposal, normal post should be published on blockchain and it is recommended to gather feedback before creating proposal. Proposal creation has fee of 10 HBD + 1 HBD for each day it lasts over 60 days.</p><p>Once proposal reaches certain threshold of tallied votes, it will start receiving funds each hour. If proposal falls below threshold, system will halt funding for that proposal. You can vote as many proposals as you want, there are no limits. Proposal cannot be edited, but can be deleted/withdrawn by creator.</p>",
+      "how-dhf-work-body": "<p>Будь-хто може створити пропозицію і переконати спільноту проголосувати за неї, аби отримати фінансування. Перед створенням пропозиції, треба мати нормальний допис, він повинен бути опублікований у блокчейн і рекомендується зібрати відгуки перед створенням пропозиції. Створення пропозиції має більшу комісію за 10 HBD + 1 HBD за кожен день, це триває протягом 60 днів.</p><p>Коли пропозиція досягне певного порогу підрахованих голосів, вона почне отримувати кошти щогодини. Якщо пропозиція опускається нижче порогового значення, система зупинить фінансування цієї пропозиції. Ви можете голосувати за стільки пропозицій, за скільки забажаєте, і немає меж. Пропозицію не можна редагувати, але можна видалити/зняти, автором.</p>",
       "when-claim-rewards-header": "Коли я можу отримати винагороду?",
       "when-claim-rewards-body": "<p>Дописи та коментарі залишаються активними протягом 7 днів, а винагорода коливається залежно від голосів та ціни токену на ринку, тому винагороди приблизні, як очікувані винагороди. Коли період закінчиться, очікувані винагороди зміняться до фактичної винагороди, і ви можете претендувати на зароблені нагороди. У вашому гаманці натисніть кнопку \"Отримати винагороду\", щоб зарахувати токени до вашого рахунку.</p>",
       "what-are-rc-header": "Що таке кредитні ресурси?",
