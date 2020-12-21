@@ -1,5 +1,6 @@
 {
   "g": {
+    "add": "जोड़ें",
     "edit": "संपादित करें",
     "search": "खोजें",
     "downloads": "डाउनलोड",
@@ -23,7 +24,9 @@
     "try-again": "पुनः प्रयास करें",
     "show": "दिखाएँ",
     "on": "चालू",
-    "off": "बंद"
+    "off": "बंद",
+    "yes": "हाँ",
+    "no": "नहीं"
   },
   "confirm": {
     "title": "क्या आपको यकीन है?",
@@ -37,13 +40,14 @@
     "filter-promoted": "पदोन्नत",
     "filter-payout": "भुगतान",
     "filter-muted": "म्यूट है",
-    "filter-feed": "संभरण"
+    "filter-feed": "संभरण",
+    "filter-feed-friends": "दोस्त",
+    "filter-feed-subscriptions": "समुदाय"
   },
   "navbar": {
     "discover": "खोजिए",
     "communities": "समुदाय",
     "about": "के बारे में",
-    "faq": "अकसर किये गए सवाल",
     "post": "पोस्ट बनाएँ",
     "day-theme": "दिवस थीम",
     "night-theme": "रात विषय",
@@ -105,7 +109,7 @@
     "title": "विशेष रुप से प्रदर्शित"
   },
   "entry-list-item": {
-    "reblogged": "{{n}} द्वारा",
+    "reblogged": "{{n}} रीब्लॉगड",
     "promoted": "पदोन्नत",
     "pinned": "पिन की गई पोस्ट",
     "replies": "१ प्रतिक्रिया| क्लिक करें जबाब के लिए|",
@@ -139,7 +143,10 @@
     "title": "{{f}} विषय",
     "description": "अपने उपयोगकर्ताओं द्वारा स्वामित्व और संचालित एक सामाजिक नेटवर्क पर {{f}} विषय।",
     "description-tag": "{{f}} # {{t}} विषय",
-    "description-user-feed": "{{u}} फ़ीड है"
+    "description-user-feed": "{{u}} फ़ीड है",
+    "faq": "अकसर किये गए सवाल",
+    "tos": "Terms of service",
+    "pp": "गोपनीयता नीति"
   },
   "market-data": {
     "title": "बाजार मूल्य",
@@ -152,10 +159,11 @@
     "title": "1 वोट",
     "title-n": "{{n}} पोस्टर",
     "title-empty": "कोई वोट नहीं",
-    "voter": "मतदाता",
-    "percent": "प्रतिशत",
-    "reward": "इनाम",
-    "time": "समय"
+    "sort": "क्रम",
+    "sort-reward": "इनाम",
+    "sort-timestamp": "समय",
+    "sort-reputation": "प्रतिष्ठा",
+    "sort-percent": "प्रतिशत"
   },
   "entry": {
     "via-app": "<span class=\"app-name\"> {{app}} </span> के माध्यम से",
@@ -192,7 +200,7 @@
   },
   "community": {
     "page-description": "{{f}} विषय",
-    "subscribe": "सदस्यता लें",
+    "subscribe": "शामिल हों",
     "subscribed": "शामिल हो गए हैं।",
     "unsubscribe": "छोड़ें",
     "post": "नया पोस्ट",
@@ -242,13 +250,13 @@
   "communities": {
     "title": "समुदाय",
     "description": "सर्वश्रेष्ठ ऑनलाइन, विकेंद्रीकृत, अपरिवर्तनीय, पुरस्कृत समुदाय",
-    "n-subscribers": "{{n}} ग्राहक",
+    "n-subscribers": "{{n}} सदस्य",
     "n-authors": "{{n}} पोस्टर",
     "n-posts": "{{n}} पोस्ट",
     "admins": "व्यवस्थापक:",
     "sort-hot": "लोकप्रिय",
     "sort-rank": "स्थान",
-    "sort-subs": "ग्राहक",
+    "sort-subs": "सदस्य",
     "sort-new": "नया",
     "no-results": "कोई परिणाम नहीं मिला",
     "create": "समुदाय बनाएँ"
@@ -342,13 +350,22 @@
     "hive-dollars-description": "हाइव के $ 1.00 के टोकन।",
     "savings": "बचत",
     "savings-description": "शेष 3 दिन की प्रतीक्षा अवधि के अधीन।",
-    "next-power-down": "अगली शक्ति नीचे {{time}} {{amount}} है",
+    "next-power-down": "अगली शक्ति नीचे {{time}},{{amount}} है",
     "transfer": "स्थानांतरण",
     "transfer-to-savings": "बचत खाते में स्थांतरण करें",
     "convert": "बदलें",
     "power-up": "शक्ति प्रापक",
     "withdraw-hive": "हाइव निकालें",
-    "withdraw-hbd": "हाइव डॉलर निकालें"
+    "withdraw-hbd": "हाइव डॉलर निकालें",
+    "delegate": "प्रतिनिधि",
+    "power-down": "पावर नीचे करे",
+    "withdraw-routes": "निकाशी मार्ग"
+  },
+  "withdraw-routes": {
+    "title": "निकाशी खाता",
+    "account": "खाता",
+    "percent": "प्रतिशत",
+    "auto-power-up": "स्वचालित रूप पावर उप"
   },
   "points": {
     "get": "अंक खरीदें",
@@ -418,6 +435,10 @@
     "convert-title": "बदलें",
     "power-up-sub-title": "प्रभाव टोकन जो आपको पोस्ट पेआउट पर अधिक नियंत्रण देते हैं और आपको क्यूरेशन रिवार्ड्स पर अर्जित करने की अनुमति देते हैं।",
     "convert-sub-title": "केवल तभी अनुशंसित किया जाता है जब एचबीडी $1 से कम हो। आपको 3.5 दिनों में $1 का हाइव मिलेगा।",
+    "delegate-title": "प्रतिनिधि",
+    "delegate-sub-title": "प्रतिनिधि हाइव पावर",
+    "power-down-title": "शक्तिक्षय करें",
+    "power-down-sub-title": "पावर डाउन हाइव पावर",
     "from": "से",
     "to": "को",
     "to-placeholder": "प्रयोक्ता नाम",
@@ -428,15 +449,25 @@
     "wrong-amount": "गलत राशि मान",
     "amount-precision-error": "परिशुद्धता के केवल 3 अंकों का उपयोग करें",
     "balance": "शेष रकम",
+    "power-down-estimated": "+ {{n}} अनुमानित साप्ताहिक",
     "memo": "ज्ञापन",
     "memo-placeholder": "यहां अपने नोट्स दर्ज करें",
     "memo-help": "यह ज्ञापन सार्वजनिक है",
+    "available-hp-hint": "* उपलब्ध हाइव शक्ति",
     "confirm-title": "अपने लेन-देन की पुष्टि करें",
     "confirm-sub-title": "कृपया, जांचें कि सब कुछ सही है",
     "confirm": "पुष्टी करें",
     "recent-transfers": "हाल ही में स्थानान्तरण",
-    "transfer-summary": "स्थानांतरित <span class=\"amount\">{{amount}}</span>से<span class=\"from-user\">{{from}}</span>को<span class=\"to-user\">{{to}}</span>",
-    "reset": "एक और स्थानांतरण"
+    "transfer-summary": "<span class=\"amount\">{{amount}}</span> से स्थानांतरित किया गया <span class=\"from-user\">{{from}}</span> के लिये <span class=\"to-user\">{{to}}</span>",
+    "transfer-saving-summary": "<span class=\"amount\">{{amount}}</span> से स्थानांतरित किया गया <span class=\"from-user\">{{from}}</span> के लिये <span class=\"to-user\">{{to}}</span>",
+    "withdraw-saving-summary": "<span class=\"amount\">{{amount}}</span> से स्थानांतरित किया गया <span class=\"from-user\">{{from}}</span> के लिये <span class=\"to-user\">{{to}}</span>",
+    "convert-summary": "<span class=\"amount\">{{amount}}</span> रूपान्तरित",
+    "power-up-summary": "<span class=\"amount\">{{amount}}</span> से चुराया हुआ<span class=\"from-user\">{{from}}</span>के लिये <span class=\"to-user\">{{to}}</span>",
+    "delegate-summary": "<span class=\"amount\">{{amount}}</span> से प्रत्यायोजित किया गया <span class=\"from-user\">{{from}}</span> के लिये <span class=\"to-user\">{{to}}</span>",
+    "power-down-summary": "पावर डाउन के रूप में पूरा किया <span class=\"amount\">{{amount}}</span>",
+    "reset": "रीसेट करें",
+    "powering-down": "आप वर्तमान में शक्ति प्राप्त कर रहे हैं।",
+    "stop-power-down": "रुको"
   },
   "trx-common": {
     "insufficient-funds": "अपर्याप्त कोष",
@@ -463,7 +494,8 @@
     "with-keychain": "कीचैन के साथ लॉगिन करें"
   },
   "delegated-vesting": {
-    "title": "प्रत्यायोजित हाइव पावर"
+    "title": "प्रत्यायोजित हाइव पावर",
+    "undelegate": "अप्रत्यायोजित"
   },
   "received-vesting": {
     "title": "हाइव पावर प्राप्त किया"
@@ -535,8 +567,12 @@
     "placeholder-empty": "टैग। पहला टैग मुख्य श्रेणी है। क्रमित करने योग्य।",
     "placeholder-focus": "टैग डालें",
     "placeholder-has-tags": "अधिक जोड़ें",
-    "suggestion-header": "टैग / समुदाय",
+    "suggestion-header": "टैग",
     "error-max": "अधिकतम {{n}} टैग"
+  },
+  "community-selector": {
+    "my-blog": "मेरा ब्लॉग",
+    "search-placeholder": "समुदाय खोजें"
   },
   "word-count": {
     "label": "{{n}} शब्द",

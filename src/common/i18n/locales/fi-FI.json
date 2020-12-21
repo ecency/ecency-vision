@@ -1,5 +1,6 @@
 {
   "g": {
+    "add": "Lisää",
     "edit": "Muokkaa",
     "search": "Haku",
     "downloads": "Lataukset",
@@ -23,7 +24,9 @@
     "try-again": "Yritä uudelleen",
     "show": "Näytä",
     "on": "Päällä",
-    "off": "Pois"
+    "off": "Pois",
+    "yes": "Kyllä",
+    "no": "Ei"
   },
   "confirm": {
     "title": "Oletko varma?",
@@ -37,13 +40,14 @@
     "filter-promoted": "Korostettu",
     "filter-payout": "Tilitykset",
     "filter-muted": "Mykistetty",
-    "filter-feed": "Syöte"
+    "filter-feed": "Syöte",
+    "filter-feed-friends": "Kaverit",
+    "filter-feed-subscriptions": "Yhteisöt"
   },
   "navbar": {
     "discover": "Löydä uutta",
     "communities": "Yhteisöt",
     "about": "Tietoa",
-    "faq": "UKK",
     "post": "Luo julkaisu",
     "day-theme": "Päiväteema",
     "night-theme": "Yöteema",
@@ -88,15 +92,15 @@
   },
   "sign-up": {
     "header": "Luo tili",
-    "description": "One account to manage everything on blockchain and Ecency. Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
+    "description": "Hallitse kaikkea lohkoketjussa Ecency-sovelluksessa. Lisätietoja hyödyistä löydät <a href=\"/faq#how-to-join\">UKK</a>",
     "username": "Valitse käyttäjänimi",
     "email": "Syötä sähköpostiosoitteesi",
     "ref": "Suosittelija (valinnainen)",
     "submit": "Jatka",
     "success": "Olemme lähettäneet vahvistuksen sähköpostiin {{email}}.",
     "success-2": "Seuraa ohjeita suorittaaksesi rekisteröinti.",
-    "login-text-1": "Do you have an account?",
-    "login-text-2": "Login"
+    "login-text-1": "Onko sinulla jo käyttäjätili?",
+    "login-text-2": "Kirjaudu sisään"
   },
   "trending-tags": {
     "title": "Aiheet"
@@ -105,7 +109,7 @@
     "title": "Suositellut"
   },
   "entry-list-item": {
-    "reblogged": "tekijä {{n}}",
+    "reblogged": "{{n}} uudelleenjaettu",
     "promoted": "korostettu",
     "pinned": "Kiinnitetty julkaisu",
     "replies": "1 vastaus. Klikkaa vastataksesi.",
@@ -139,11 +143,14 @@
     "title": "{{f}} aihetta",
     "description": "{{f}} aihetta sosiaalisessa verkossa, jonka käyttäjät omistavat ja ylläpitävät.",
     "description-tag": "{{f}} #{{t}} aihetta",
-    "description-user-feed": "{{u}} syöte"
+    "description-user-feed": "{{u}} syöte",
+    "faq": "UKK",
+    "tos": "Käyttöehdot",
+    "pp": "Tietosuojakäytäntö"
   },
   "market-data": {
     "title": "Markkinahinta",
-    "credits": "markkinatiedot <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingeckosta</a>"
+    "credits": "tiedot <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingeckosta</a>"
   },
   "list-style": {
     "title": "Vaihda listaustyyliä"
@@ -152,10 +159,11 @@
     "title": "1 Ääni",
     "title-n": "{{n}} Ääntä",
     "title-empty": "Ei ääniä",
-    "voter": "Äänestäjä",
-    "percent": "Prosentti",
-    "reward": "Palkkio",
-    "time": "Aika"
+    "sort": "Järjestä",
+    "sort-reward": "Palkkio",
+    "sort-timestamp": "Aika",
+    "sort-reputation": "Maine",
+    "sort-percent": "Prosenttiosuus"
   },
   "entry": {
     "via-app": "<span class=\"app-name\">{{app}}</span> kautta",
@@ -192,12 +200,12 @@
   },
   "community": {
     "page-description": "{{f}} aihetta",
-    "subscribe": "Tilaa",
+    "subscribe": "Liity",
     "subscribed": "Liittyi",
     "unsubscribe": "Poistu",
     "post": "Uusi julkaisu",
     "posts": "Julkaisut",
-    "subscribers": "Tilaajat",
+    "subscribers": "Jäsenet",
     "activities": "Toiminnat",
     "roles-title": "Käyttäjäroolit",
     "roles-account": "Tili",
@@ -242,13 +250,13 @@
   "communities": {
     "title": "Yhteisöt",
     "description": "Netin parhaat hajautetut, sensuurivapaat ja palkitsevat yhteisöt",
-    "n-subscribers": "{{n}} tilaajaa",
+    "n-subscribers": "{{n}} jäsentä",
     "n-authors": "{{n}} julkaisijaa",
     "n-posts": "{{n}} julkaisua",
     "admins": "ylläpitäjät:",
     "sort-hot": "Kuumat",
     "sort-rank": "Sija",
-    "sort-subs": "Tilaajat",
+    "sort-subs": "Jäsenet",
     "sort-new": "Uusimmat",
     "no-results": "Tuloksia ei löytynyt",
     "create": "Luo yhteisö"
@@ -299,7 +307,7 @@
     "section-communities": "Yhteisöt",
     "section-wallet": "Lompakko",
     "section-settings": "Asetukset",
-    "communities-title": "Tilaukset",
+    "communities-title": "Jäsenyys",
     "create-community": "Luo yhteisö",
     "witnesses": "Todistajat",
     "proposals": "Ehdotukset"
@@ -342,13 +350,22 @@
     "hive-dollars-description": "Tokenin arvo on noin $1.00 edestä HIVEä.",
     "savings": "SÄÄSTÖT",
     "savings-description": "Määrässä on 3 päivän kotiutusjakso.",
-    "next-power-down": "Seuraava power down on {{time}} {{amount}}",
+    "next-power-down": "Seuraava power down on {{time}}, {{amount}}",
     "transfer": "Siirto",
     "transfer-to-savings": "Siirrä säästöihin",
     "convert": "Muunna",
     "power-up": "Power up",
     "withdraw-hive": "Kotiuta Hive",
-    "withdraw-hbd": "Kotiuta Hive Dollar"
+    "withdraw-hbd": "Kotiuta Hive Dollar",
+    "delegate": "Valtuuta",
+    "power-down": "Power down",
+    "withdraw-routes": "Palauta Reitit"
+  },
+  "withdraw-routes": {
+    "title": "Palauta tilit",
+    "account": "Tili",
+    "percent": "Prosentti",
+    "auto-power-up": "Automaattinen power up"
   },
   "points": {
     "get": "Osta Pisteitä",
@@ -418,6 +435,10 @@
     "convert-title": "Muunna",
     "power-up-sub-title": "Vaikutusmerkit antavat enemmän valtaa julkaisujen tuloihin ja saat lisää tarkastuspalkkioita.",
     "convert-sub-title": "Suositeltu vain jos HBD on alle $1. Saat $1 edestä HIVEä 3.5 päivän kuluessa.",
+    "delegate-title": "Valtuuta",
+    "delegate-sub-title": "Valtuuta Hive Power",
+    "power-down-title": "Power Down",
+    "power-down-sub-title": "Power Down Hive Power",
     "from": "Lähettäjä",
     "to": "Saaja",
     "to-placeholder": "käyttäjänimi",
@@ -428,15 +449,25 @@
     "wrong-amount": "Väärä arvo",
     "amount-precision-error": "Käytä vain 3 desimaalia",
     "balance": "Saldo",
+    "power-down-estimated": "+ {{n}} Arvioitu viikoittain",
     "memo": "Muistio",
     "memo-placeholder": "kirjoita muistio tähän",
     "memo-help": "Tämä muistio on julkinen",
+    "available-hp-hint": "* hive power saatavilla",
     "confirm-title": "Vahvista siirtotapahtuma",
     "confirm-sub-title": "Varmista vielä kerran",
     "confirm": "Vahvista",
     "recent-transfers": "Viimeisimmät siirrot",
-    "transfer-summary": "Siirretty <span class=\"amount\">{{amount}}</span> käyttäjältä <span class=\"from-user\">{{from}}</span> kohteeseen <span class=\"to-user\">{{to}}</span>",
-    "reset": "Uusi siirto"
+    "transfer-summary": "<span class=\"amount\">{{amount}}</span> siirtänyt <span class=\"from-user\">{{from}}</span> kohteeseen <span class=\"to-user\">{{to}}</span>",
+    "transfer-saving-summary": "<span class=\"amount\">{{amount}}</span> siirretty <span class=\"from-user\">{{from}}</span> kohteeseen <span class=\"to-user\">{{to}}</span>",
+    "withdraw-saving-summary": "<span class=\"amount\">{{amount}}</span> siirretty <span class=\"from-user\">{{from}}</span> kohteeseen <span class=\"to-user\">{{to}}</span>",
+    "convert-summary": "<span class=\"amount\">{{amount}}</span> muunnettu",
+    "power-up-summary": "<span class=\"amount\">{{amount}}</span> panoksena <span class=\"from-user\">{{from}}</span> kohteeseen <span class=\"to-user\">{{to}}</span>",
+    "delegate-summary": "<span class=\"amount\">{{amount}}</span> valtuutettu <span class=\"from-user\">{{from}}</span> kohteeseen <span class=\"to-user\">{{to}}</span>",
+    "power-down-summary": "Power down valmis <span class=\"amount\">{{amount}}</span>",
+    "reset": "Nollaa",
+    "powering-down": "Olet power downaamassa.",
+    "stop-power-down": "Lopeta"
   },
   "trx-common": {
     "insufficient-funds": "Riittämättömät varat",
@@ -463,7 +494,8 @@
     "with-keychain": "Kirjaudu keychainilla"
   },
   "delegated-vesting": {
-    "title": "Valtuutettu Hive Power"
+    "title": "Valtuutettu Hive Power",
+    "undelegate": "poista valtuutus"
   },
   "received-vesting": {
     "title": "Vastaanotettu Hive Power"
@@ -535,13 +567,17 @@
     "placeholder-empty": "Tunnisteet. Ensimmäisenä pääkategoria. Lajiteltava.",
     "placeholder-focus": "Syötä tunniste",
     "placeholder-has-tags": "Lisää enemmän",
-    "suggestion-header": "Tunnisteet/yhteisöt",
+    "suggestion-header": "Tunnisteet",
     "error-max": "Enintään {{n}} tunnistetta"
+  },
+  "community-selector": {
+    "my-blog": "Oma Blogi",
+    "search-placeholder": "Etsi Yhteisöjä"
   },
   "word-count": {
     "label": "{{n}} sanaa",
     "read-time-less-1-min": "< 1 min luku",
-    "read-time-n-min": "~ {{n}} min luettu"
+    "read-time-n-min": "~ {{n}} min lukuaika"
   },
   "notification": {
     "popup-title": "Sinulle on uusi ilmoitus",
