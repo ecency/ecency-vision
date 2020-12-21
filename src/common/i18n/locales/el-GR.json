@@ -1,0 +1,777 @@
+{
+  "g": {
+    "add": "Προσθήκη",
+    "edit": "Επεξεργασία",
+    "search": "Αναζήτηση",
+    "downloads": "Λήψεις",
+    "login": "Σύνδεση",
+    "login-as": "Είσοδος ως",
+    "signup": "Εγγραφή",
+    "delete": "Διαγραφή",
+    "cancel": "Ακύρωση",
+    "reply": "Απάντηση",
+    "update": "Ενημέρωση",
+    "or": "Ή",
+    "server-error": "Η διαδικασία δεν μπόρεσε να ολοκληρωθεί λόγω προβλήματος του σέρβερ",
+    "day": "ημέρα",
+    "days": "ημέρες",
+    "finish": "Ολοκλήρωση",
+    "next": "Επόμενο",
+    "back": "Πίσω",
+    "load-more": "Φόρτωσε περισσότερα",
+    "empty-list": "Δεν υπάρχει τίποτα εδώ",
+    "save": "Αποθήκευση",
+    "try-again": "Προσπαθήστε ξανά",
+    "show": "Προβολή",
+    "on": "Ενεργό",
+    "off": "Ανενεργό",
+    "yes": "Ναι",
+    "no": "Όχι"
+  },
+  "confirm": {
+    "title": "Είστε σίγουρος;",
+    "ok": "Επιβεβαίωση",
+    "cancel": "Ακύρωση"
+  },
+  "entry-filter": {
+    "filter-trending": "Δημοφιλή",
+    "filter-hot": "Καυτά",
+    "filter-created": "Νέα",
+    "filter-promoted": "Προωθούμενα",
+    "filter-payout": "Πληρωμές",
+    "filter-muted": "Σε σίγαση",
+    "filter-feed": "Ροή",
+    "filter-feed-friends": "Φίλοι",
+    "filter-feed-subscriptions": "Κοινότητες"
+  },
+  "navbar": {
+    "discover": "Ανακαλύψτε",
+    "communities": "Κοινότητες",
+    "about": "Σχετικά με",
+    "post": "Δημιουργία δημοσίευσης",
+    "day-theme": "Θέμα ημέρας",
+    "night-theme": "Θέμα νύχτας",
+    "address-placeholder": "εισήγαγε σύνδεσμο ή ερώτημα αναζήτησής σου"
+  },
+  "search": {
+    "placeholder": "Αναζήτηση",
+    "placeholder-count": "Αναζήτηση {{n}} δημοσιεύσεων",
+    "header-tag": "Ετικέτες",
+    "header-account": "Χρήστες",
+    "header-community": "Κοινότητες"
+  },
+  "user-nav": {
+    "wallet": "Πορτοφόλι",
+    "unclaimed-reward-notice": "Έχετε αζήτητες αμοιβές",
+    "points": "Πόντοι",
+    "unclaimed-points-notice": "Έχετε αζήτητους πόντους",
+    "notifications": "Ειδοποιήσεις",
+    "profile": "Προφίλ",
+    "gallery": "Γκαλερί",
+    "drafts": "Πρόχειρα",
+    "bookmarks": "Σελιδοδείκτες",
+    "logout": "Αποσύνδεση"
+  },
+  "login": {
+    "title": "Καλώς ήρθατε και πάλι!",
+    "with-user-pass": "Συνδεθείτε με το όνομα χρήστη και το ιδιωτικό κλειδί.",
+    "username-placeholder": "όνομα χρήστη",
+    "key-placeholder": "αντικλείδι ή ενεργό ιδιωτικό κλειδί",
+    "login-info-1": "Δεν αποθηκεύουμε τα ιδιωτικά κλειδιά σας.",
+    "login-info-2": "Περισσότερες πληροφορίες",
+    "error-fields-required": "Παρακαλώ γράψτε όνομα χρήστη και ιδιωτικό κλειδί",
+    "error-public-key": "Εισαγάγατε ένα δημόσιο κλειδί. Απαιτείται κωδικός πρόσβασης / WIF",
+    "error-user-fetch": "Δεν είναι δυνατή η ανάκτηση δεδομένων χρήστη",
+    "error-user-not-found": "Ο Χρήστης δεν υπάρχει",
+    "error-permission": "Δεν ήταν δυνατή η λήψη άδειας δημοσίευσης",
+    "error-authenticate": "Λάθος ιδιωτικό κλειδί. Χρειάζεται το αντικλείδι ή το ενεργό ιδιωτικό κλειδί.",
+    "with-hive-signer": "Συνδεθείτε μέσω του hivesigner",
+    "with-keychain": "Σύνδεση με KeyChain",
+    "sign-up-text-1": "Δεν έχετε λογαριασμό;",
+    "sign-up-text-2": "Εγγραφείτε τώρα!"
+  },
+  "sign-up": {
+    "header": "Εγγραφή",
+    "description": "Ένας λογαριασμός για να διαχειριστείτε τα πάντα στο blockchain και στο Ecency. Μάθετε περισσότερα σχετικά με τα οφέλη στις<a href=\"/faq#how-to-join\">συνήθεις ερωτήσεις(FAQ)</a>",
+    "username": "Διαλέξτε όνομα χρήστη",
+    "email": "Εισάγετε την ηλεκτρονική σας διεύθυνση",
+    "ref": "Συστημένος χρήστης (προαιρετικό)",
+    "submit": "Συνέχεια",
+    "success": "Έχουμε στείλει ένα email στο {{email}}.",
+    "success-2": "Ακολουθήστε τις οδηγίες για να ολοκληρώσετε τη διαδικασία εγγραφής.",
+    "login-text-1": "Έχετε λογαριασμό;",
+    "login-text-2": "Σύνδεση"
+  },
+  "trending-tags": {
+    "title": "Θέματα"
+  },
+  "selected-tags": {
+    "title": "Προτεινόμενα"
+  },
+  "entry-list-item": {
+    "reblogged": "{{n}} reblogged",
+    "promoted": "προωθούμενα",
+    "pinned": "Καρφιτσωμένη Δημοσίευση",
+    "replies": "1 απάντηση. Κάντε κλικ για να απαντήσετε.",
+    "replies-n": "{{n}} απαντήσεις. Κάντε κλικ για να απαντήσετε.",
+    "no-replies": "Καμία απάντηση ακόμα. Κάντε κλικ για να απαντήσετε."
+  },
+  "bookmark-btn": {
+    "add": "Προσθήκη στους σελιδοδείκτες",
+    "added": "Έγινε προσθήκη στους σελιδοδείκτες",
+    "delete": "Κατάργηση από τους σελιδοδείκτες",
+    "deleted": "Κατάργηση από τους σελιδοδείκτες"
+  },
+  "entry-reblog": {
+    "reblog": "Αναδημοσίευση",
+    "confirm-title": "Αναδημοσίευση στο @{{n}}'s ιστολόγιο;",
+    "confirm-ok": "Αναδημοσίευση",
+    "success": "Αναδημοσιεύτηκε!"
+  },
+  "entry-payout": {
+    "pending-payout": "Εκκρεμής Πληρωμή",
+    "promoted": "Προωθούμενα",
+    "author-payout": "Πληρωμή Δημιουργού",
+    "curators-payout": "Πληρωμή Επιμελητή",
+    "payout-date": "Πληρωμή",
+    "beneficiary": "Δικαιούχος",
+    "breakdown": "Ανάλυση"
+  },
+  "entry-index": {
+    "feed": "Ροή",
+    "tags": "Δημοφιλή",
+    "title": "{{f}} θέματα",
+    "description": "{{f}} θέματα σε ένα κοινωνικό δίκτυο που ανήκουν και χειρίζονται από τους χρήστες του.",
+    "description-tag": "{{f}} #{{t}} θέματα",
+    "description-user-feed": "{{u}}'s ροή",
+    "faq": "Συχνές ερωτήσεις",
+    "tos": "Όροι παροχής υπηρεσιών",
+    "pp": "Πολιτική Απορρήτου"
+  },
+  "market-data": {
+    "title": "Τιμή αγοράς",
+    "credits": "δεδομένα από <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
+  },
+  "list-style": {
+    "title": "Αλλαγή στιλ λίστας"
+  },
+  "entry-votes": {
+    "title": "1 ψήφος",
+    "title-n": "{{n}} Ψήφοι",
+    "title-empty": "Καμία Ψήφος",
+    "sort": "Ταξινόμηση",
+    "sort-reward": "Ανταμοιβή",
+    "sort-timestamp": "Ώρα",
+    "sort-reputation": "Φήμη",
+    "sort-percent": "Ποσοστό"
+  },
+  "entry": {
+    "via-app": "μέσω<span class=\"app-name\">{{app}}</span>",
+    "comment-entry-title": "Βλέπετε ένα μοναδικό νήμα απο: ",
+    "comment-entry-go-root": "Δείτε το πλήρες κείμενο",
+    "comment-entry-go-parent": "Δείτε το άμεσο σχόλιο",
+    "show-history": "Προβολή ιστορικού επεξεργασίας",
+    "hidden-warning": "Η δημοσίευση έχει αποκρυφτεί λόγω χαμηλής βαθμολογίας."
+  },
+  "edit-history": {
+    "title": "Ιστορικό Επεξεργασίας",
+    "show-diff": "Δείξε Διαφορά",
+    "version": "Εκδοχή {{n}}"
+  },
+  "similar-entries": {
+    "title": "Πρόσφατες δημοσιεύσεις από @{{n}}"
+  },
+  "comment": {
+    "body-placeholder": "Γράψτε την απάντηση σας εδώ",
+    "preview": "Προεπισκόπηση"
+  },
+  "discussion": {
+    "join": "Συμμετέχετε στην συζήτηση τώρα",
+    "btn-join": "Συμμετοχή",
+    "replies": "1 Σχόλιο",
+    "n-replies": "{{n}} Σχόλια",
+    "order": "Σειρά Εμφάνισης",
+    "order-trending": "Δημοφιλή",
+    "order-reputation": "Φήμη",
+    "order-votes": "Ψήφοι",
+    "order-created": "Ηλικία",
+    "read-more": "...διαβάστε περισσότερες απαντήσεις...",
+    "reveal": "Εμφάνιση σχολίου"
+  },
+  "community": {
+    "page-description": "{{f}} θέματα",
+    "subscribe": "Συμμετοχή",
+    "subscribed": "Συμμετέχετε",
+    "unsubscribe": "Φύγετε",
+    "post": "Νέα δημοσίευση",
+    "posts": "Αναρτήσεις",
+    "subscribers": "Μέλη",
+    "activities": "Δραστηριότητες",
+    "roles-title": "Ρόλοι Χρήστη",
+    "roles-account": "Λογαριασμός",
+    "roles-role": "Ρόλος",
+    "roles-account-title": "Τίτλος",
+    "roles-add": "Προσθήκη νέου χρήστη"
+  },
+  "community-cover": {
+    "rewards": "ανταμοιβές",
+    "authors": "αφίσες",
+    "lang": "γλώσσα",
+    "cover-image": "Φωτογραφία εξωφύλλου κοινότητας",
+    "cover-image-edit": "Επεξεργαστείτε την φωτογραφία εξωφύλλου",
+    "cover-image-updated": "Η φωτογραφία εξωφύλλου ενημερώθηκε!"
+  },
+  "community-card": {
+    "description": "Περιγραφή",
+    "rules": "Κανόνες",
+    "team": "Ηγεσία",
+    "edit": "Επεξεργασία Ιδιοτήτων",
+    "edit-team": "Επεξεργασία ρόλών",
+    "profile-image": "Φωτογραφία προφίλ κοινότητας",
+    "profile-image-edit": "Επεξεργαστείτε την φωτογραφία προφίλ",
+    "profile-image-updated": "Η φωτογραφία προφίλ ενημερώθηκε!"
+  },
+  "community-role-edit": {
+    "title": "Ορίστε ρόλο χρήστη",
+    "username": "Όνομα Χρήστη",
+    "role": "Ρόλος",
+    "user-not-found": "Ο χρήστης αυτός δεν υπάρχει!",
+    "explanations": "<h3>Εξουσιοδοτήσεις</h3><p><strong>Ρόλων Ιδιοκτήτης</strong> - αναθέστε διαχειριστές</p><p><strong>Διαχειριστής</strong> - επεξεργαστέιτε τις ρυθμίσεις, αναθέστε επόπτες</p><p><strong>Επόπτης</strong> - σίγαση, καρφίτσωμα, ορίστε τίτλους χρηστών</p><p><strong>Μέλη</strong> - έχουν προστεθέι στην ομάδα ηγεσίας</p><p><strong>Επισκέπτης</strong> - προεπιλογή; μπορεί να δημοσιεύσει και να σχολιάσει</p><p><strong>έχει υποστεί σίγαση</strong> - οι νέες δημοσιεύσεις αυτομάτως υποβάλονται σε σίγαση</p>"
+  },
+  "community-settings": {
+    "dialog-title": "Ρυθμίσεις Κοινότητας",
+    "title": "Τίτλος",
+    "about": "Σχετικά",
+    "lang": "Γλώσσα",
+    "description": "Περιγραφή",
+    "rules": "Κανόνες",
+    "rules-help": "(Ένα ανά γραμμή)"
+  },
+  "communities": {
+    "title": "Κοινότητες",
+    "description": "Καλύτερες διαδίκτυακές, αποκεντρωμένες, αμετάβλητες που επιβραβεύουν κοινότητες",
+    "n-subscribers": "{{n}} μέλη",
+    "n-authors": "{{n}} χρήστες",
+    "n-posts": "{{n}} δημοσιεύσεις",
+    "admins": "διαχειριστές:",
+    "sort-hot": "Καυτά",
+    "sort-rank": "Ιεράρχηση",
+    "sort-subs": "Μέλη",
+    "sort-new": "Νέα",
+    "no-results": "Δε βρέθηκαν αποτελέσματα",
+    "create": "Δημιουργήστε κοινότητα"
+  },
+  "communities-create": {
+    "page-title": "Δημιουργήστε μια κοινότητα",
+    "title": "Τίτλος",
+    "about": "Σχετικά",
+    "description": "Δημιουργήστε μια καλύτερη, αποκεντρωμένη, αμετάβλητη που επιβραβεύει κοινότητα",
+    "fee": "Χρέωση λειτουργίας",
+    "creator": "Δημιουργός",
+    "username": "Όνομα ιδιοκτήτη",
+    "username-available": "Διαθέσιμο.",
+    "username-not-available": "Μη διαθέσιμο.",
+    "username-wrong-format": "Μή έγκυρη μορφή. hive-1xxxxx μορφή απαιτείται.",
+    "password": "Κωδικός ιδιοκτήτη",
+    "confirmation": "Έχω αποθηκεύσει το όνομα ιδιοκτήτη και τον κωδικό μου σε ασφαλές μέρος.",
+    "submit": "Δημιουργήστε κοινότητα",
+    "progress-account": "Δημιουργία λογαριασμού...",
+    "progress-user": "Προετοιμασία δεδομένων χρήστη...",
+    "progress-role": "Ορίστε τον @{{u}} ως διαχειριστή...",
+    "progress-props": "Ενημέρωση ρυθμίσεων κοινότητας...",
+    "done": "Η κοινότητα σας δημιουργήθηκε 🎉",
+    "done-link-label": "Ξεκινήστε."
+  },
+  "pin-btn": {
+    "pin": "Καρφιτσώστε",
+    "unpin": "Ξεκαρφιτσώστε"
+  },
+  "mute-btn": {
+    "mute": "Σίγαση",
+    "unmute": "Ακύρωση Σίγασης",
+    "dialog-title-mute": "Σίγαση δημοσίευσης/σχολίου",
+    "dialog-title-unmute": "Ακύρωση σίγασης δημοσίευσης/σχολίου",
+    "notes": "Σημειώσεις",
+    "note-placeholder-mute": "Παρέχετε μια σημείωση σχετικά με την απόφαση σας να κάνετε σίγαση σε αυτό το περιεχόμενο.",
+    "note-placeholder-unmute": "Παρέχετε μια σημείωση σχετικά με την απόφαση σας να κάνετε ακύρωση σίγασης σε αυτό το περιεχόμενο."
+  },
+  "profile": {
+    "voting-power": "Δύναμη ψήφου",
+    "post-count": "Πλήθος αναρτήσεων",
+    "followers": "Ακόλουθοι",
+    "following": "Ακολουθείτε",
+    "section-blog": "Ιστολόγιο",
+    "section-posts": "Δημοσιεύσεις",
+    "section-comments": "Σχόλια",
+    "section-replies": "Απαντήσεις",
+    "section-communities": "Κοινότητες",
+    "section-wallet": "Πορτοφόλι",
+    "section-settings": "Ρυθμίσεις",
+    "communities-title": "Συμμετοχή",
+    "create-community": "Δημιουργήστε μια κοινότητα",
+    "witnesses": "Μάρτυρες",
+    "proposals": "Προτάσεις"
+  },
+  "profile-edit": {
+    "title": "Προφίλ",
+    "name": "Εμφανιζόμενο όνομα",
+    "about": "Σχετικά",
+    "cover-image": "Εικόνα Εξώφυλλου",
+    "profile-image": "Εικόνα Προφίλ",
+    "website": "Ιστοσελίδα",
+    "location": "Τοποθεσία",
+    "updated": "Ενημέρωση προφίλ με επιτυχία!"
+  },
+  "image-upload-button": {
+    "uploaded": "H εικόνα ανέβηκε"
+  },
+  "preferences": {
+    "title": "Προτιμήσεις",
+    "notifications": "Γνωστοποιήσεις & ειδοποιήσεις",
+    "currency": "Νόμισμα",
+    "language": "Γλώσσα",
+    "updated": "Οι προτιμήσεις ενημερώθηκαν!"
+  },
+  "wallet": {
+    "unclaimed-rewards": "Αζήτητες Ανταμοιβές",
+    "claim-reward-balance": "Ζητήστε υπόλοιπο ανταμοιβής",
+    "claim-reward-balance-ok": "Yπόλοιπο ανταμοιβής ζητήθηκε",
+    "estimated": "Εκτιμώμενη Αξία Λογαριασμού",
+    "estimated-description": "Η εκτιμώμενη αξία βασίζεται σε έναν μέσο όρο 7 ημερών της αξίας του HIVE.",
+    "hive": "HIVE",
+    "hive-description": "HIVE είναι διαπραγματεύσιμες μάρκες, που μπορούν να μεταφερθούν οποιαδήποτε στιγμή. τα HIVE μπορούν να μετατραπούν σε Hive Power μέσω μίας διαδικασίας που ονομάζεται powering up.",
+    "hive-power": "HIVE POWER",
+    "hive-power-description": "Τα Hive Power είναι μάρκες επιρροής που μπορούν να αποκτήσουν περισσότερη δύναμη, κρατώντας τις μακροπρόθεσμα και ψηφίζοντας αναρτήσεις. Όσες περισσότερες έχει στην κατοχή του κάποιος, τόσο περισσότερο μπορεί να επηρεάσει τις αμοιβές άλλων άλλα και τις δικές του.",
+    "hive-power-delegated": "Κατ 'εξουσιοδότηση Hive Power",
+    "hive-power-received": "Hive Power που έχει ληφθεί",
+    "next-power-down-amount": "Το επόμενο ποσό από το power down",
+    "hive-power-total": "Συνολικό Hive Power",
+    "hive-dollars": "Ηive Δολλάρια",
+    "hive-dollars-description": "Μάρκες αξίας περίπου $1.00 του HIVE.",
+    "savings": "ΑΠΟΤΑΜΙΕΎΣΕΙΣ",
+    "savings-description": "Διαθέσιμο υπόλοιπο που υπόκειται σε χρόνο αναμονής ανάληψης 3 ημερών.",
+    "next-power-down": "Το επόμενο power down είναι σε {{time}}, {{amount}}",
+    "transfer": "Μεταφορά",
+    "transfer-to-savings": "Μεταφορά στην αποταμίευση",
+    "convert": "Μετατροπή",
+    "power-up": "Power Up",
+    "withdraw-hive": "Ανάληψη Hive",
+    "withdraw-hbd": "Ανάληψη Hive Dollar",
+    "delegate": "Εξουσιoδοτήστε",
+    "power-down": "Power Down",
+    "withdraw-routes": "Οδοί Ανάληψης"
+  },
+  "withdraw-routes": {
+    "title": "Λογαριασμοί Ανάληψης",
+    "account": "Λογαριασμός",
+    "percent": "Ποσοστό",
+    "auto-power-up": "Αυτομάτως κάνε power up"
+  },
+  "points": {
+    "get": "ΑΓΟΡΑΣΕ ΠΟΝΤΟΥΣ",
+    "unclaimed-points": "Αζήτητοι πόντοι",
+    "claim-reward-points": "Διεκδικήστε πόντους αμοιβής",
+    "main-description": "Οι πόντοι μπορούν να χρησιμοποιηθούν για υπηρεσίες εντός της εφαρμοφής, όπως Προώθηση, Ώθηση δημοσίευσης, Δώρο. Κερδίστε τους χρησιμοποιώντας τις εφαρμογές Ecency και βελτιώστε την εμπειρία σας.",
+    "earn-points": "Πως να κερδίσετε περισσότερους Πόντους",
+    "post-desc": "Μπορείτε να κερδίσετε πόντους δημοσιεύοντας συχνά. Η κάθε δημοσίευση σας δίνει 15 πόντους.",
+    "comment-desc": "Κάθε σχόλιο που κάνετε σας βοηθάει να μεγαλώσετε το ακροατήριο σας και να κάνετε φιλίες αλλά σας δίνει και 5 πόντους.",
+    "checkin-desc": "Μπαίνωντας στο Ecency σας δίνονται 0.25 πόντοι και σας βοηθάει να μείνετε συνδεδεμένοι με τους φίλους σας.",
+    "vote-desc": "Με το να ψηφίζετε δίνετε ανταμοιβή σε άλλους δημιουργούς και δείχνετε την εκτίμησή σας, αλλά κερδίζετε επίσης 0,01 x επί την βαρύτητα ψήφου πόντους.",
+    "reblog-desc": "  Μοιραστείτε την ανάρτηση που σας αρέσει με τους φίλους σας και κερδίστε 1 πόντο.",
+    "login-desc": "Όταν συνδέεστε στο Ecency έχετε το δικαίωμα να κερδίσετε 100 πόντους αυτόματα.",
+    "checkin-extra-desc": "Η συνεπής χρήση της εφαρμογής σας δίνει επιπλέον πιθανότητες να κερδίσετε περισσότερους από 10 πόντους, να είστε πιο δραστήριοι και να κερδίσετε περισσότερα.",
+    "delegation-desc": "Μπορείς να κερδίσεις ~50 πόντους κάθε μέρα για κάθε 1000HP που εξουσιοδοτείς.",
+    "history": "Ιστορικό",
+    "post-list-desc": "Πόντοι για δημοσίευση",
+    "comment-list-desc": "Πόντοι για σχόλιο",
+    "vote-list-desc": "Πόντοι για ψήφο",
+    "reblog-list-desc": "Πόντοι για αναδημοσίευση",
+    "login-list-desc": "Πόντοι για σύνδεση",
+    "checkin-list-desc": "Πόντοι για heartbeat",
+    "checkin-extra-list-desc": "Μπόνους χρήσης",
+    "transfer-sent-list-desc": "Μεταφορά προς {{n}}",
+    "transfer-incoming-list-desc": "Μεταφορά από {{n}}",
+    "delegation-list-desc": "Αμοιβή εξουσιοδότησης",
+    "referral-list-desc": "Αμοιβή προτεινόμενων",
+    "transfer": "Δώρο σε κάποιον",
+    "claim-ok": "Πόντοι διεκδικήθηκαν",
+    "promote": "Προώθηση",
+    "boost": "Ενίσχυση"
+  },
+  "purchase": {
+    "select-asset": "Επιλογή αντικειμένου",
+    "slider-hint": "Σύρετε τον ολισθητή για να ρυθμίσετε το ποσό.",
+    "submit": "Αγορά"
+  },
+  "promote": {
+    "title": "Προώθηση",
+    "sub-title": "Προώθησε την δημοσίευση σου",
+    "duration": "Διάρκεια"
+  },
+  "boost": {
+    "title": "Ενίσχυση",
+    "sub-title": "Ενίσχυσε την δημοσίευση",
+    "amount": "Ποσό",
+    "slider-hint": "Σύρετε τον ολισθητή για να ρυθμίσετε το ποσό."
+  },
+  "redeem-common": {
+    "balance": "Υπόλοιπο",
+    "post": "Δημοσίευση",
+    "post-hint": "Αυτόματη συμπλήρωση εισαγωγής",
+    "post-placeholder": "όνομα χρήστη/μόνιμος σύνδεσμος",
+    "post-error": "Μη έγκυρη διεύθυνση",
+    "post-error-exists": "Αυτή η δημοσίευση έχει ήδη προωθηθεί",
+    "success-message": "Το αίτημα σας καταχωρήθηκε. Θα ενεργοποιηθεί σε μερικά λεπτά."
+  },
+  "transfer": {
+    "transfer-title": "Μεταφορά σε λογαριασμό",
+    "transfer-title-point": "Δώρο σε λογαριασμό",
+    "transfer-sub-title": "Μετακίνηση χρημάτων σε άλλο Hive λογαριασμό",
+    "transfer-saving-title": "Μεταφορά στην αποταμίευση",
+    "transfer-saving-sub-title": "Προστατέψτε το κεφάλαιό σας με χρόνο αναμονής ανάληψης 3 ημερών",
+    "withdraw-saving-title": "Ανάληψη Αποταμιεύσεων",
+    "withdraw-saving-sub-title": "Ανάληψη χρημάτων μετά την απαιτούμενη περίοδο αναμονής 3 ημερών",
+    "power-up-title": "Stake Hive ως Δύναμη",
+    "convert-title": "Μετατροπή",
+    "power-up-sub-title": "Tokens επιρροής που σας δίνει μεγαλύτερο έλεγχο πάνω στις αμοιβές μιας ανάρτησης αλλά και σας επιτρέπει να κερδίσετε περισσότερες ανταμοιβές επιμελητή.",
+    "convert-sub-title": "Συνιστάται μόνο όταν το HBD είναι κάτω από 1 $. Θα λάβετε $ 1 του HIVE σε 3,5 ημέρες.",
+    "delegate-title": "Εξουσιoδοτήστε",
+    "delegate-sub-title": "Εξουσιοδοτήστε Hive Power",
+    "power-down-title": "Power Down",
+    "power-down-sub-title": "Power Down Hive Power",
+    "from": "Από",
+    "to": "Σε",
+    "to-placeholder": "όνομα χρήστη",
+    "to-not-found": "Ο χρήστης στον οποίο προσπαθείτε να μεταφέρετε κεφάλαια δεν υπάρχει!",
+    "to-bad-actor": "Δώστε προσοχή σε αυτόν τον λογαριασμό. Ελέγξτε ξανά την ορθογραφία για πιθανή ηλεκτρονική απάτη.",
+    "amount": "Ποσό",
+    "amount-placeholder": "ποσό",
+    "wrong-amount": "Λανθασμένη τιμή εγκυρότητας",
+    "amount-precision-error": "Χρησιμοποιήστε μόνο 3 ψηφία ακριβείας",
+    "balance": "Υπόλοιπο",
+    "power-down-estimated": "+{{n}} Υπολογίζεται εβδομαδιαίως",
+    "memo": "Σημείωμα",
+    "memo-placeholder": "εισάγετε εδώ τις σημειώσεις σας",
+    "memo-help": "Το σημείωμα είναι δημόσιο",
+    "available-hp-hint": "* διαθέσιμο hive power",
+    "confirm-title": "Επιβεβαίωση της συναλλαγής σας",
+    "confirm-sub-title": "Παρακαλώ ελέγξτε αν όλα είναι σωστά",
+    "confirm": "Επιβεβαίωση",
+    "recent-transfers": "Πρόσφατες μεταφορές",
+    "transfer-summary": "<span class=\"amount\">{{amount}}</span>μεταφέρθηκε από <span class=\"from-user\">{{from}}</span>σε<span class=\"to-user\">{{to}}</span>",
+    "transfer-saving-summary": "<span class=\"amount\">{{amount}}</span>μεταφέρθηκε από<span class=\"from-user\">{{from}}</span>σε<span class=\"to-user\">{{to}}</span>",
+    "withdraw-saving-summary": "<span class=\"amount\">{{amount}}</span>μεταφέρθηκε από <span class=\"from-user\">{{from}}</span>σε<span class=\"to-user\">{{to}}</span>",
+    "convert-summary": "<span class=\"amount\">{{amount}}</span>μετατράπηκε",
+    "power-up-summary": "<span class=\"amount\">{{amount}}</span>staked από<span class=\"from-user\">{{from}}</span>σε<span class=\"to-user\">{{to}}</span>",
+    "delegate-summary": "<span class=\"amount\">{{amount}}</span> εξουσιοδότηση από<span class=\"from-user\">{{from}}</span>to<span class=\"to-user\">{{to}}</span>",
+    "power-down-summary": "Το Powerd down έχει ολοκληρωθεί<span class=\"amount\">{{amount}}</span>",
+    "reset": "Επαναφορά αρχικών ρυθμίσεων",
+    "powering-down": "Αυτήν τη στιγμή είστε σε κατάσταση power down.",
+    "stop-power-down": "Διακοπή"
+  },
+  "trx-common": {
+    "insufficient-funds": "Ανεπαρκές χρηματικό υπόλοιπο",
+    "sign-title": "Υπογραφή συναλλαγής",
+    "sign-sub-title": "Υπογραφή συναλλαγής",
+    "success-title": "Επιτυχία",
+    "success-sub-title": "Επιτυχής συναλλαγή"
+  },
+  "transactions": {
+    "title": "Ιστορικό",
+    "type-curation_reward": "Ανταμοιβή επμέλειας",
+    "type-author_reward": "Ανταμοιβή συγγραφέα",
+    "type-comment_benefactor_reward": "Comment Benefactor Reward",
+    "type-claim_reward_balance": "Διεκδικήστε ανταμοιβές",
+    "type-transfer": "Μεταφορά",
+    "type-transfer_to_vesting": "Μεταφορά σε κατοχυρωμένα",
+    "type-withdraw_vesting": "Ανάληψη κατοχυρωμένων",
+    "type-fill_order": "Συμπλήρωση παραγγελίας"
+  },
+  "key-or-hot": {
+    "sign": "Υπογραφή",
+    "key-placeholder": "Βάλτε το ενεργό/κυρίαρχο/αντικλείδι κλειδί",
+    "with-hivesigner": "Συνδεθείτε μέσω του hivesigner",
+    "with-keychain": "Σύνδεση με KeyChain"
+  },
+  "delegated-vesting": {
+    "title": "Κατ 'εξουσιοδότηση Hive Power",
+    "undelegate": "πάρε πίσω την εξουσιοδότηση"
+  },
+  "received-vesting": {
+    "title": "Hive Power που έχει ληφθεί"
+  },
+  "friends": {
+    "followers": "Ακόλουθοι {{n}}",
+    "following": "Ακολουθείτε {{n}}",
+    "search-placeholder": "Αναζήτηση χρηστών"
+  },
+  "follow-controls": {
+    "follow": "Ακολούθησε",
+    "unFollow": "Να μην ακολουθώ",
+    "mute": "Σίγαση",
+    "unMute": "Ακύρωση Σίγασης"
+  },
+  "favorite-btn": {
+    "add": "Προσθήκη στα αγαπημένα",
+    "added": "Προστέθηκε στα αγαπημένα",
+    "delete": "Αφαίρεση από τα αγαπημένα",
+    "deleted": "Αφαίρεση από τα αγαπημένα"
+  },
+  "editor-toolbar": {
+    "bold": "Έντονοι Χαρακτήρες",
+    "italic": "Πλάγια γραφή",
+    "header": "Κεφαλίδα",
+    "code": "Κώδικας",
+    "quote": "Παράθεση",
+    "ul": "Μη ταξινομημένη λίστα",
+    "ol": "Ταξινομημένη λίστα",
+    "link": "Σύνδεσμος",
+    "image": "Εικόνα",
+    "table": "Πίνακας",
+    "table-3-col": "3 στήλες",
+    "table-2-col": "2 στήλες",
+    "table-1-col": "1 στήλη",
+    "upload": "Ανέβασμα",
+    "gallery": "Έκθεση",
+    "emoji": "Εικονίδιο Emoji",
+    "image-error": "Δεν ήταν δυνατό το ανέβασμα της εικόνας.",
+    "image-error-size": "Το μέγεθος της εικόνας είναι πολύ μεγάλο, δοκιμάστε ξανα μικρότερο μέγεθος εικόνας."
+  },
+  "emoji-picker": {
+    "filter-placeholder": "Φίλτρο",
+    "filter-no-match": "Καμία αντιστοιχία",
+    "recently-used": "Πρόσφατα χρησιμοποιημένο"
+  },
+  "submit": {
+    "page-title": "Δημιουργία ανάρτησης",
+    "page-description": "Δημοσιεύστε ένα άρθρο, κερδίστε ανταμοιβές, χωρίς λογοκρισία, αμετάβλητο, αποκεντρωμένο περιεχόμενο!",
+    "title-placeholder": "Τίτλος",
+    "body-placeholder": "Ανάρτηση περιεχομένου",
+    "reward": "Ανταμοιβή",
+    "reward-default": "Προεπιλογή 50% / 50%",
+    "reward-sp": "Power Up 100%",
+    "reward-dp": "Απόρριψη Πληρωμής",
+    "preview": "Προεπισκόπηση",
+    "publish": "Δημοσίευση",
+    "update": "Ενημέρωση",
+    "save-draft": "Αποθήκευση πρόχειρου σχεδίου",
+    "draft-saved": "Προσχέδιο αποθηκεύτηκε",
+    "update-draft": "Ανανέωση Προχείρου",
+    "draft-updated": "Πρόχειρο ανανεώθηκε",
+    "cancel-update": "Ακύρωση",
+    "clear": "Εκκαθάριση",
+    "published": "Η ανάρτηση δημοσιεύθηκε",
+    "updated": "Η δημοσίευση ενημερώθηκε"
+  },
+  "tag-selector": {
+    "placeholder-empty": "Ετικέτες. Η πρώτη ετικέτα είναι η κύρια κατηγορία. Tαξινομήσιμο.",
+    "placeholder-focus": "Εισαγωγή ετικέτας",
+    "placeholder-has-tags": "Προσθέστε περισσότερα",
+    "suggestion-header": "Ετικέτες",
+    "error-max": "Μέγιστες {{n}} ετικέτες"
+  },
+  "community-selector": {
+    "my-blog": "Το Blog μου",
+    "search-placeholder": "Αναζήτησε Κοινότητες"
+  },
+  "word-count": {
+    "label": "{{n}} λέξεις",
+    "read-time-less-1-min": "< 1 λεπτού διαβάσματος",
+    "read-time-n-min": "~{{n}} λεπτών διαβάσματος"
+  },
+  "notification": {
+    "popup-title": "Έχετε μία νέα ειδοποίηση",
+    "voted": "{{source}} ψήφισε την δημοσίευση σας",
+    "mention-post": "{{source}} σας ανέφερε σε μια δημοσίευση",
+    "mention-comment": "{{source}} σας ανέφερε σε ένα σχόλιο",
+    "followed": "{{source}} σας ακολούθησε",
+    "replied": "{{source}} σας απάντησε",
+    "reblogged": "{{source}} πρόβαλλε την δημοσίευση σας",
+    "transfer": "{{source}} σας έστειλε {{amount}}"
+  },
+  "notifications": {
+    "type-all": "Όλες οι ειδοποιήσεις",
+    "type-all-short": "Όλα",
+    "type-rvotes": "Ψήφοι",
+    "type-replies": "Απαντήσεις",
+    "type-mentions": "Αναφορές",
+    "type-follows": "Follows",
+    "type-reblogs": "Αναδημοσιεύσεις",
+    "type-transfers": "Μεταφορές",
+    "vote-str": "{{p}}% του αρέσει η δημοσίευση σας:",
+    "reply-str": "απάντησε στην δημοσίευση σας:",
+    "mention-str": "σε ανέφερε σε:",
+    "followed-str": "ακολούθησε",
+    "unfollowed-str": "σταμάτησε να ακολουθεί",
+    "ignored-str": "αγνόηση",
+    "reblog-str": "αναδημοσίευσε την ανάρτηση σας:",
+    "transfer-str": "σας έστειλε",
+    "spin-str": "Ώρα να κερδίσεις περισσότερους πόντους, Παίξτε Spin στην Ecency εφαρμογή για κινητά",
+    "inactive-str": "Μείνε ενεργός! Δημοσίευσε κάτι, συνέχισε να κερδίζεις",
+    "referral-str": "joined with your referral, welcome them",
+    "refresh": "Ανανέωση",
+    "mark-all-read": "Σήμανση όλων ως αναγνωσμένων",
+    "mark-read": "Σήμανση ως αναγνωσμένο",
+    "mute": "Απενεργοποίηση ειδοποιήσεων",
+    "unmute": "Ενεργοποίηση ειδοποιήσεων"
+  },
+  "leaderboard": {
+    "title": "Πίνακας Κατάταξης",
+    "title-day": "Καθημερινοί κορυφαίοι χρήστες",
+    "title-week": "Εβδομαδιαίοι κορυφαίοι χρήστες",
+    "title-month": "Μηνιαίοι κορυφαίοι χρήστες",
+    "period-day": "Ημερησίως",
+    "period-week": "Εβδομαδιαίως",
+    "period-month": "Μηνιαίως",
+    "header-score": "Δραστηριότητες",
+    "header-score-tip": "Δημοσιεύσεις + σχόλια που δημιοργήθηκαν από έναν χρήστη για συγκεκριμένη περίοδο",
+    "header-reward": "Ανταμοιβή"
+  },
+  "popular-users": {
+    "title": "Δημοφιλείς Χρήστες"
+  },
+  "discover": {
+    "title": "Ανακαλύψτε",
+    "description": "Ανακαλύψτε κορυφαίους ενεργούς χρήστες"
+  },
+  "search-page": {
+    "title": "Αναζήτηση",
+    "description": "Βρείτε περιεχόμενο, κοινότητες και χρήστες χωρίς λογοκρισία",
+    "n-results-for-q": "{{n}} αποτελέσματα",
+    "no-result": "Κανένα αποτέλεσμα",
+    "sort-by": "ταξινόμηση κατά",
+    "sort-popularity": "Δημοτικότητα",
+    "sort-relevance": "Συνάφεια",
+    "sort-newest": "Ημερομηνία"
+  },
+  "witnesses": {
+    "page-title": "Μάρτυρες",
+    "page-description": "Consensus block producers selection",
+    "page-description-long": "Ο ρόλος των μαρτύρων ή των παραγωγών block στην Hive blockchain είναι να ενεργούν ως φορέας διακυβέρνησης του δικτύου. Η κοινότητα τους εκλέγει για να αντιπροσωπεύουν την φωνή τους και ο κάθε χρήστης μπορεί να ψηφίσει μέχρι και 30 μάρτυρες. Οι κορυφαίοι 20 παράγουν blocks κάθε λεπτό ενώ οι άλλοι παραμένουν ως εναλλακτικοί μάρτυρες και παίρνουν τυχαίες ευκαιρίες κάθε λεπτό. Αυτός ο ρόλος αποτελεί αναπόσπαστο μέρος του μηχανισμού συναίνεσης που λειτουργεί το blockchain και προτείνει τη δέσμευση των χρηστών να ψηφίσουν σε αξιόπιστους μάρτυρες.",
+    "remaining": "<span>{{n}}</span>από{{max}} ψήφους που απομένουν",
+    "list-rank": "Ιεράρχηση",
+    "list-witness": "Μάρτυρας",
+    "list-miss": "Αριθμός χαμένων μπλοκ λόγω του διακομιστή / κόμβου του συγκεκριμένου μάρτυρα",
+    "list-url": "Διεύθυνση URL",
+    "list-fee": "Προμήθεια",
+    "list-feed": "Ροή",
+    "list-version": "Εκδοχή",
+    "username-placeholder": "όνομα χρήστη",
+    "extra-description": "Εισάγετε το όνομα λογαριασμού κάτω για να ψηφίσετε για μάρτυρα εκτός των κορυφαίων 50",
+    "proxy-description": "Μπορείτε επίσης να επιλέξετε έναν μεσολαβητή για τις ψήφους σας. Αν το κάνετε, θα επαναφέρει τις τρέχουσες σας επιλογές witness.",
+    "proxy-btn-label": "Ορισμός μεσολαβητή",
+    "proxy-active-description": "Έχετε ορίσει μεσολαβητή. Αν θέλετε να ψηφίζετε μόνοι σας για witness, παρακαλούμε αφαιρέστε τον μεσολαβητή σας.",
+    "proxy-active-current": "Ο τρέχων μεσολαβητής σας είναι ο",
+    "proxy-active-btn-label": "Αφαίρεση μεσολαβητή"
+  },
+  "proposals": {
+    "page-title": "Προτάσεις",
+    "page-description": "Το Αποκεντρωμένο Ταμείο Hive (DHF) είναι ένας μηχανισμός χρηματοδότησης μέσω της αλυσίδας που επιτρέπει σε οποιονδήποτε να υποβάλει πρόταση και να λάβει χρηματοδότηση μόλις οι κοινοτικές ψήφοι περάσουν κάποιο όριο. Για να μάθετε περισσότερα διαβάστε το <a href=\"/faq#how-dhf-work\">FAQ</a>.",
+    "by": "από",
+    "for": "για",
+    "duration-days": "{{n}} ημέρες",
+    "daily-pay": "Καθημερινά {{n}}",
+    "votes": "Ψήφοι: {{n}}",
+    "status-active": "ενεργό",
+    "status-expired": "έληξε",
+    "status-inactive": "επερχόμενα",
+    "remaining-days": "Εναπομείναντες {{n}} ημέρες",
+    "filter-all": "Όλα",
+    "filter-active": "Ενεργό",
+    "filter-inactive": "Επερχόμενα",
+    "filter-team": "Ecency Projects",
+    "return-description": "Αυτή είναι η βασική πρόταση επιστροφής. Κάθε πρόταση με λιγότερες ψήφους δεν θα λάβει χρήματα.",
+    "votes-dialog-title": "Ψήφοι στις Προτάσεις #{{n}}",
+    "see-all": "δείτε όλες τις προτάσεις"
+  },
+  "gallery": {
+    "title": "Έκθεση",
+    "copied": "Η επιλογή αντιγράφτηκε στο πρόχειρο"
+  },
+  "drafts": {
+    "title": "Πρόχειρα"
+  },
+  "bookmarks": {
+    "title": "Σελιδοδείκτες"
+  },
+  "favorites": {
+    "title": "Αγαπημένα"
+  },
+  "scroll-to-top": {
+    "title": "Κύλιση στην αρχή"
+  },
+  "static": {
+    "about": {
+      "page-title": "Σχετικά",
+      "intro-title": "Τι είναι <span>η πλατφόρμα Ecency</span>",
+      "intro-content": "Ecency is beautiful and handy wrapper interface around the Hive blockchain network allowing you to create your own posts, surf your feeds, vote what you like, write comments, read replies, do all major Hive functions in your daily social surfing as well as wallet actions and other extras such as search, discover different tags etc.",
+      "faq-title": "Συχνές ερωτήσεις",
+      "faqs": "Όλες οι συχνές ερωτήσεις",
+      "contact-title": "Επαφές",
+      "contact-blog": "Founder's blog",
+      "contact-news": "News on Hive",
+      "contact-email": "Στείλτε μας email"
+    },
+    "faq": {
+      "page-title": "Συχνές ερωτήσεις για την πλατφόρμα Ecency",
+      "page-sub-title": "Πίνακας Περιεχομένων",
+      "what-is-ecency-header": "Τι είναι η πλατφόρμα Ecency;",
+      "what-is-ecency-body": "<p>Η πλατφόρμα Ecency είναι ένα <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> βασισμένο κοινωνικό δίκτυο - τροφοδοτείται από <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\"> Hive</a></p><p> Το Ecency προσφέρει επιβραβευτική πλατφόρμα χωρίς λογοκρισία, δωρεάν, απεριόριστη,για δημιουργούς περιεχομένου.</p><p> Το έργο ξεκίνησε και ιδρύθηκε από <a href=\"/@good-karma\">@good-karma</a> τον Αύγουστο του 2016 ως εναλλακτικό κοινωνικό δίκτυο. Έκτοτε, το έργο έχει εξελιχθεί σε μια πολύ μεγαλύτερη ομάδα συντελεστών (μεταφραστές, testers, προγραμματιστές, influencers, δημιουργούς περιεχομένου και καταναλωτές) που βοήθησαν στη διαμόρφωση του Ecency.</p><p>Το Ecency βοηθά την ενσωμάτωση των μαζών στην τεχνολογία Blockchain όπου οι χρήστες πληρώνονται για τον χρόνο, τους πόρους τους και μαθαίνουν απολαμβάνοντας κοινωνικές πτυχές του blockchain. Μέσω της ευκολίας στη χρήση οι χρήστες όχι μόνο μαθαίνουν αλλά γίνονται και επενδυτές, καινοτόμοι της τεχνολογίας και της κοινότητας.</p>",
+      "what-is-hive-header": "Τι είναι το Hive blockchain;",
+      "what-is-hive-body": "<p>Hive is a blockchain that was designed to be fast, feeless, decentralized, uncensored platform for Web3.0 applications, with built-in features where stake holders can earn rewards by staking, curating, posting, playing games, trading - all without any middle man (decentralized). Tokens on Hive blockchain called HIVE, HIVE DOLLARS, HIVE POWER.</p>",
+      "what-is-difference-header": "Ποια είναι η διαφορά μεταξύ της επιφάνειας της Ecency και των άλλων Hive επιφανειών;",
+      "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\" loading=\"lazy\"/></p><p>The primary differences in all interfaces or applications are in their feature-set, use cases. Ecency offers website, mobile and desktop applications for ease of access and with best security in mind. Accessible, opensource and innovative, built and owned by users. Aspire for greatness!</p>",
+      "why-choose-ecency-header": "Γιατί να διαλέξω την πλατφόρμα Ecency;",
+      "why-choose-ecency-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjrzJAcJ4DvxvtqoPdzS9Aygf4MZ1PeE4goH6zWaeEFvafr9vGXWuou67Pbn44GweMyHV5DupM5q1cRvU85qdver?format=match&mode=fit\" loading=\"lazy\"/></p><p>Tailored feature set to empower you to create, inspire your audience and community. Ecency mobile application giving you on-go solution. With desktop app you are always sure to get uncensored content right from the blockchain, with website reach thousands of readers accross globe with best ranked content on search engines. State of art security measures so your keys will always stay encrypted and out of reach for ill-intentioned individuals. Fast and beautiful website, helps you to get discovered online and gain exposure for your content and gain loyal followers and readers. Build your community with Ecency today and take advantages of emerging blockchain technology and uncensored content, true free speech!</p>",
+      "how-ecency-works-header": "Πως λειτουργεί η πλατφόρμα Ecency;",
+      "how-ecency-works-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjuZ3ksaZqEjfd9GadyKFE4bT7UP8qM1sF5W6U3cst4ekDsXfrQdcrjtdz6b5Ye2AfWNwGA5f8QqVXmed6NRfg1U?format=match&mode=fit\" loading=\"lazy\"/></p><p>Ecency stores and reads data from the blockchain, and thus data is accessible and uncensored. Ecency rewards content creators with built-in incentive mechanism of blockchain, with tokens (HIVE, HIVE DOLLARS, HIVE POWER) as well as Points. Tokens can be purchased and sold in major cryptocurrency exchanges (e.g. Binance, Bittrex). Points could be utilized within platform and traded for goods, services.</p>",
+      "how-to-join-header": "Πως να μπω στην πλατφόρμα Ecency;",
+      "how-to-join-body": "<p>Go to <a href=\"/?referral=ecency\">https://ecency.com/?referral=ecency</a> and create an account. After signup you will receive email with further instructions. Your password is your master key to your account. Please store it safely, if you loose your password, you ultimately loose access to your account and your funds. Accounts cannot be deactivated or deleted, account names can not be changed as well. The account along with all of its activity is permanently stored in the blockchain. Without password, accounts cannot be restored, store your keys safely.</p>",
+      "how-to-signin-header": "Πως να συνδεθώ στην πλατφόρμα Ecency;",
+      "how-to-signin-body": "<p><img src=\"https://images.ecency.com/p/7258xSVeJbKmTr9Z4jhbPhjS9pMWA2mTwBMDbXqk9G9wdMw2bwR4hXqRQt9S7UBFrBAWCYWddjn3G34ETv5KWB5KGmuZ8ixBB9oKHTFvjjnTkRLp4ttrFQtpgtNnRUEA9NtmyFmgyuuK4?format=match&mode=fit\" loading=\"lazy\"/></p><p> Μπορείτε να συνδεθείτε στην πλατφόρμα Ecency χρησιμοποιώντας το Όνομα Χρήστη και το αντικλείδι ή χρησιμοποιώντας ενεργά ιδιωτικά κλειδιά. Παίρνουμε την ασφάλεια πολύ στα σοβαρά, για αυτό δεν αποθηκεύουμε τα ιδιωτικά κλειδιά σας, στο κινητό είναι κρυπτογραφημένα με επιπλέον PIN κωδικό της επιλογής σας, στην ιστοσελίδα δεν αποθηκεύονται ποτε. Μπορείτε επίσης να χρησιμοποιήσετε <a href=\"https://hivesigner.com\">Hivesigner OAuth2</a>υπηρεσία ελέγχου ταυτότητας για συνδεθείτε εύκολα, να διαχειρίστείτε και να εκτελέσετε ενέργειες.</p>",
+      "how-referrals-work-header": "How referral system work on Ecency?",
+      "how-referrals-work-body": "<p>Το σύστημα συστημένων ατόμων είναι απλό, μπορείς να προσκαλέσεις τους φίλους σου προσθέτοντας το όνομα χρήστη σε αυτό το σύνδεσμο https://ecency.com/?referral=username και μοιραστείτε το με τους φίλους σας. Αφού οι φίλοι σας μπουν στην πλατφόρμα Ecency και κερδίσουν τους πρώτους 250 πόντους, θα κερδίσεις 100 πόντους. Δεν υπάρχει όριο στα συστημένα άτομα και στις ανταμοιβές τους.</p>",
+      "what-is-points-header": "Τι είναι οι Ecency πόντοι και πως να τους χρησιμοποιήσω;",
+      "what-is-points-body": "<p>Ecency Points are continually minted and rewarded for all users for various social activities they perform on website, mobile or desktop app. Points can be used for promoting, boosting your content, can even be transferred or gifted to another user. You can also purchase Points with our mobile apps.</p>",
+      "where-tokens-come-header": "Από που προέρχονται τα tokens;",
+      "where-tokens-come-body": "<p><img src=\"https://images.ecency.com/p/7kq2TLHKEHhCCDwNZLfFLu7msWtbdFb7vZaJJ9Y13GAc18vfVNAj8ZctLWmsVfMCCFtwGdULbZKT89faeBymhPsySU5tp4RnvDsHz6ZBxXHWA4g34ck4LHnR2vGkqsHvjzhizhpV8K6JrQ4sy7cCgJQksUUYPKp4d9XbERHkjnZV3PTdhbiUZPYJ43RS8cQu2sEmUbAgqZExuYMGa46SDa4vCunH2w6oNpommW5L1CCdfwdgX5i9eCpcS5fHo4t8btjVE69edzrUN8anr6T3v8AFYHC?format=match&mode=fit\" loading=\"lazy\"/></p><p>Το δίκτυο Hive συνεχώς δημιουργεί νέα ψηφιακά tokens για να ανταμείψει τους δημιουργούς περιεχομένου και τους επιμελητές. Μερικά από τα πρόσφατα δημιουργημένα tokens μεταφέρονται σε χρήστες που προσδίδουν αξία στην πλατφόρμα με το να δημοσιεύουν, να σχολιάζουν, και να ψηφίζουν τις δημοσιεύσεις άλλων χρηστών. Το υπόλοιπο διανέμεται στους κατόχους του HIVE POWER και στους μάρτυρες που ασφαλίζουν το blockchain</p>",
+      "how-promotion-work-header": "How content promotion works?",
+      "how-promotion-work-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfoi6H93UHPFEEQutPvax8LP1XqGWMa9geug5SBEEhLUEHKVvSyBfzhrBm9J4uvmrn28AtPhmwcKx?format=match&mode=fit\" loading=\"lazy\"/></p><p>Promoting content with Points is easiest way to get more exposure. Promotions have certain time period and shuffled across the feeds. Any post, can be promoted to get more exposure and engagement.</p>",
+      "how-boosting-work-header": "How content boosting works?",
+      "how-boosting-work-body": "<p>Points can be used for boosting content (post and comments). Boosting requests are manually reviewed by our moderators and curators which might take upto 24 hours. <p>As part of the qualities check, we may consider: a) Content is original content, b) Not detected by cheetah, mackbot, hivewatchers, or any other blacklists etc. c) User is not in Ecency blacklist due to abusive behavior.</p>Boosting does not guarantee curation, if content is not curated within 24 hours Points will be refunded.</p>",
+      "how-to-transfer-header": "How to transfer blockchain tokens?",
+      "how-to-transfer-body": "<p>Μετά την σύνδεση θα βρεις της σελίδα του πορτοφολιού στην κορυφή στην ιστοσελίδα και στην εφαρμογή που είναι στην επιφάνεια εργασίας ή στην σελίδα του προφίλ, κάτω στην μπάρα πλοήγησης στην εφαρμογή του κινητού. Στην σελίδα του πορτοφολιού μπορείτε να ξεκινήσετε την μεταφορά οποιοδήποτε token έχετε στην κατοχή σας σε άλλο χρήστη ή λογαριασμούς ανταλλακτηρίων, πατήστε στο βέλος δίπλα στο υπόλοιπο σας και βρείτε τις λειτουργίες μεταφοράς. Οι μεταφορές είναι μη αναστρέψιμες επειδή είναι εγγεγραμμένες στο blockchain, βεβαιωθείτε ότι έχετε στείλει τον σωστό παραλήπτη.</p>",
+      "how-see-rewards-header": "Πως βλέπω τις ανταμοιβές των δημοσιεύσεων μου;",
+      "how-see-rewards-body": "<p><img src=\"https://images.ecency.com/p/3W72119s5BjW4PvRk9nXBzqrPWMsMTjNrXDPFFf11iYhySeELMe77idrZHBPmyaqFX6CV72hBLB5qFhwVhGoAATydoFxAF7oCwBt1ztp6eS9r5us4pm7iN?format=match&mode=fit\" loading=\"lazy\"/></p><p>In Wallet page (in top header on website and desktop app, bottom navigation bar on mobile app), you can see Curation rewards (the rewards earned for upvoting posts and comments) and Author rewards (the rewards earned by your own posts and comments)</p><p>You can also view the same information for other users by visiting their wallet profile.</p>",
+      "how-dhf-work-header": "How DHF works?",
+      "how-dhf-work-body": "<p>Anyone can create a proposal and convince community to vote on their proposal to get funded. Before creating proposal, normal post should be published on blockchain and it is recommended to gather feedback before creating proposal. Proposal creation has fee of 10 HBD + 1 HBD for each day it lasts over 60 days.</p><p>Once proposal reaches certain threshold of tallied votes, it will start receiving funds each hour. If proposal falls below threshold, system will halt funding for that proposal. You can vote as many proposals as you want, there are no limits. Proposal cannot be edited, but can be deleted/withdrawn by creator.</p>",
+      "when-claim-rewards-header": "Πότε μπορώ να διεκδικήσω τις ανταμοιβές μου;",
+      "when-claim-rewards-body": "<p>Οι δημοσιεύσεις και τα σχόλια παραμένουν ενεργά για 7 ημέρες και οι ανταμοιβές κυμαίνονται ανάλογα με τις ψήφους και την τιμή αγοράς του token, αυτός είναι και ο λόγος που οι ανταμοιβές προσεγγίζονται ως εκκρεμείς ανταμοιβές. Οταν αυτή η περίοδος τελειώσει, οι εκκρεμείς ανταμοιβές μετατρέπονται σε πραγματικές ανταμοιβές και μπορείτε να παραλάβετε τις ανταμοιβές σας. Στο πορτοφόλι σας, πατήστε το κουμπί που λέει Διεκδικήστε Ανταμοιβές για να προσθέσετε τα tokens στον λογαριασμό σας.</p>",
+      "what-are-rc-header": "What are Resource Credits?",
+      "what-are-rc-body": "<p>Transacting on the Hive blockchain has zero fees, transaction rate-limiting is employed to safeguard the blockchain from spam attacks. Every action that you take on the blockchain will consume a small amount of Resource Credits. This includes posting, commenting, voting, transferring tokens, etc. Viewing content does not consume Resource Credits.</p><p>Every user has a limited amount of Resource Credits to use each week. The more transactions a user does, the less Resource Credits they will have left (until they recharge). Users with more HIVE POWER will have more Resource Credits.</p><p>If you run out of Resource Credits, you will be unable to transact with the blockchain until your Resource Credits recharge (happens automatically) or you acquire additional HIVE POWER to increase your Resource Credit balance or you can <a href=\"/faq#how-boost-account\">request Boosting account from Ecency</a> to receive temporary delegation.</p>",
+      "how-boost-account-header": "How to request account boosting?",
+      "how-boost-account-body": "<p>If your account is low on <a href=\"/faq#what-are-rc\">Resource Credits</a>, you can request account boosting from Ecency. You will receive temporary delegation which should boost your account to perform more activities on blockchain. You can find account boosting feature in Points options.</p>",
+      "what-spam-abuse-header": "What is considered spam or abuse?",
+      "what-spam-abuse-body": "<p><img src=\"https://images.ecency.com/p/3jpR3paJ37V8XPrHkfZdMt57jY6pRt6zEt5iRJV9pSw4Mez3Hut8U6RWvWLA7cFYEa1bxveXeasNfZApzrcLYLx8cz84kBEKak1KkewE2ZqE1QRRkF4eqRH3vWVqZB9WuNbzE?format=match&mode=fit\" loading=\"lazy\"/></p><p><ul><li>Plagiarized posts or copied content.</li><li>Leaving nearly identical or materially similar comments on multiple posts.</li><li>Using tags that are unrelated to the post.</li><li>Threatening users with any type of physical violence.</li><li>Not citing sources when using someone else’s material.</li><li>Posting ‘not safe for work’ content without using the “nsfw” tag.</li><li>Scams or Fraudulent offers.</li></ul></p>",
+      "can-link-post-header": "Μπορώ να ζητήσω την προσθήκη backlink στην ιστοσελίδα μου από την ομάδα Ecency;",
+      "can-link-post-body": "<p>όλο το περιεχόμενο στον ιστότοπό μας δημιουργείται από τους χρήστες μας και δεν τροποποιούμε ούτε μπορούμε να προσθέτουμε backlinks. Είστε ελεύθεροι να επικοινωνήσετε με τον δημιουργό της δημοσίευσης ή<a href=\"/?referral=ecency\">Εγγραφή</a> για να δημιουργήσετε το δικό σας blog και κοινότητα, να δημοσιεύσετε άρθρα και να δημιουργήσετε backlinks δωρεάν.</p>",
+      "can-guest-post-header": "Is it possible to guest post on your website?",
+      "can-guest-post-body": "<p>Posting on Ecency is simple and easy, <a href=\"/?referral=ecency\">Signup</a> to open your own blog and community, start posting your content.</p>"
+    }
+  },
+  "context-menu": {
+    "cut": "Αποκοπή",
+    "copy": "Αντιγραφή",
+    "paste": "Επικόλληση",
+    "open-image-browser": "Ανοίξτε το βίντεο σε browser",
+    "copy-image-url": "Αντιγραφή Url εικόνας"
+  },
+  "updater": {
+    "new-version-available": "Νέα έκδοση διαθέσιμη",
+    "update": "Ενημέρωση",
+    "dismiss": "Παράβλεψη",
+    "downloading": "Λήψη νέας έκδοσης...",
+    "download-completed": "Η λήψη ολοκληρώθηκε",
+    "restart": "Επανεκκίνηση"
+  }
+}

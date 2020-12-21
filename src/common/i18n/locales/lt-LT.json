@@ -1,5 +1,6 @@
 {
   "g": {
+    "add": "Add",
     "edit": "Redaguoti",
     "search": "Paieška",
     "downloads": "Atsisiuntimai",
@@ -23,7 +24,9 @@
     "try-again": "Bandyti dar kartą",
     "show": "Rodyti",
     "on": "On",
-    "off": "Off"
+    "off": "Off",
+    "yes": "Yes",
+    "no": "No"
   },
   "confirm": {
     "title": "Ar esate įsitikinę?",
@@ -37,13 +40,14 @@
     "filter-promoted": "Paremti",
     "filter-payout": "Išmokos",
     "filter-muted": "Nutildyta",
-    "filter-feed": "Pagrindinis"
+    "filter-feed": "Pagrindinis",
+    "filter-feed-friends": "Friends",
+    "filter-feed-subscriptions": "Communities"
   },
   "navbar": {
     "discover": "Atrasti",
     "communities": "Bendruomenės",
     "about": "Apie",
-    "faq": "D.U.K",
     "post": "Sukurti Įrašą",
     "day-theme": "Dienos Tema",
     "night-theme": "Nakties Tema",
@@ -105,7 +109,7 @@
     "title": "Featured"
   },
   "entry-list-item": {
-    "reblogged": "{{n}}",
+    "reblogged": "{{n}} reblogged",
     "promoted": "paremti",
     "pinned": "Prisegtas Įrašas",
     "replies": "1 atsakymas. Spauskite, jeigu norite atsakyti.",
@@ -139,11 +143,14 @@
     "title": "{{f}} temos",
     "description": "{{f}} socialaus tinklo temos valdomos pačių narių.",
     "description-tag": "{{f}} #{{t}} temos",
-    "description-user-feed": "{{u}} pagrindinis"
+    "description-user-feed": "{{u}} pagrindinis",
+    "faq": "FAQ",
+    "tos": "Terms of service",
+    "pp": "Privacy Policy"
   },
   "market-data": {
     "title": "Market price",
-    "credits": "market data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
+    "credits": "data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "list-style": {
     "title": "Pasirinkti sąrašo stilių"
@@ -152,10 +159,11 @@
     "title": "1 Balsas",
     "title-n": "{{n}} Balsai",
     "title-empty": "Nėra balsų",
-    "voter": "Balsuotojas",
-    "percent": "Procentai",
-    "reward": "Atlygis",
-    "time": "Laikas"
+    "sort": "Sort",
+    "sort-reward": "Reward",
+    "sort-timestamp": "Time",
+    "sort-reputation": "Reputation",
+    "sort-percent": "Percentage"
   },
   "entry": {
     "via-app": "per <span class=\"app-name\">{{app}}</span>",
@@ -192,12 +200,12 @@
   },
   "community": {
     "page-description": "{{f}} temos",
-    "subscribe": "Prenumeruoti",
+    "subscribe": "Join",
     "subscribed": "Prisijungta",
     "unsubscribe": "Išeiti",
     "post": "Naujas Įrašas",
     "posts": "Įrašai",
-    "subscribers": "Prenumeratoriai",
+    "subscribers": "Members",
     "activities": "Veikla",
     "roles-title": "Vartotojo Rolės",
     "roles-account": "Paskyra",
@@ -242,13 +250,13 @@
   "communities": {
     "title": "Bendruomenės",
     "description": "Geriausios viešos, decentralizuotos, nepaliečiamos, atlyginamos bendruomenės",
-    "n-subscribers": "{{n}} prenumeratorių",
+    "n-subscribers": "{{n}} members",
     "n-authors": "{{n}} publikuotojų",
     "n-posts": "{{n}} įrašų",
     "admins": "administratoriai:",
     "sort-hot": "Karšta",
     "sort-rank": "Reitingas",
-    "sort-subs": "Prenumeratoriai",
+    "sort-subs": "Members",
     "sort-new": "Nauja",
     "no-results": "Rezultatų nerasta",
     "create": "Sukurti bendruomenę"
@@ -299,7 +307,7 @@
     "section-communities": "Bendruomenės",
     "section-wallet": "Piniginė",
     "section-settings": "Settings",
-    "communities-title": "Prenumeratos",
+    "communities-title": "Membership",
     "create-community": "Sukurti bendruomenę",
     "witnesses": "Witnesses",
     "proposals": "Proposals"
@@ -342,13 +350,22 @@
     "hive-dollars-description": "Žetonai verti apie $1.00 HIVE.",
     "savings": "SANTAUPOS",
     "savings-description": "Balansas apsaugotas 3 dienų laikotarpiu išsiėmimui.",
-    "next-power-down": "Kitas jėgos mažinimas už {{time}} {{amount}}",
+    "next-power-down": "The next power down is {{time}}, {{amount}}",
     "transfer": "Pervesti",
     "transfer-to-savings": "Pervesti į santaupas",
     "convert": "Konvertuoti",
     "power-up": "Galios kėlimas",
     "withdraw-hive": "Išsiimti Hive",
-    "withdraw-hbd": "Išsiimti Hive Dollar"
+    "withdraw-hbd": "Išsiimti Hive Dollar",
+    "delegate": "Delegate",
+    "power-down": "Power down",
+    "withdraw-routes": "Withdraw Routes"
+  },
+  "withdraw-routes": {
+    "title": "Withdraw accounts",
+    "account": "Account",
+    "percent": "Percent",
+    "auto-power-up": "Automatically power up"
   },
   "points": {
     "get": "BUY POINTS",
@@ -418,6 +435,10 @@
     "convert-title": "Konvertuoti",
     "power-up-sub-title": "Įtakingi žetonai kurie vartotojui duoda daugiau kontrolės įrašų išmokom ir leidžia jums gauti kuracijos atlygį.",
     "convert-sub-title": "Only recommended when HBD is below $1. You will get $1 of HIVE in 3.5 days.",
+    "delegate-title": "Delegate",
+    "delegate-sub-title": "Delegate Hive Power",
+    "power-down-title": "Power Down",
+    "power-down-sub-title": "Power Down Hive Power",
     "from": "Nuo",
     "to": "Į",
     "to-placeholder": "vartotojo vardas",
@@ -428,15 +449,25 @@
     "wrong-amount": "Wrong amount value",
     "amount-precision-error": "Use only 3 digits of precision",
     "balance": "Likutis",
+    "power-down-estimated": "+ {{n}} Estimated Weekly",
     "memo": "Atmintinė",
     "memo-placeholder": "enter your notes here",
     "memo-help": "This memo is public",
+    "available-hp-hint": "* available hive power",
     "confirm-title": "Patvirtinti persiuntimą",
     "confirm-sub-title": "Prašome atidžiai patikrinti ar viskas teisinga",
     "confirm": "Patvirtinti",
     "recent-transfers": "Recent transfers",
-    "transfer-summary": "Transferred <span class=\"amount\">{{amount}}</span> From <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "reset": "Kitas pavedimas"
+    "transfer-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
+    "transfer-saving-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
+    "withdraw-saving-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
+    "convert-summary": "<span class=\"amount\">{{amount}}</span> converted",
+    "power-up-summary": "<span class=\"amount\">{{amount}}</span> staked from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
+    "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
+    "power-down-summary": "Power down completed as <span class=\"amount\">{{amount}}</span>",
+    "reset": "Reset",
+    "powering-down": "You are currently powering down.",
+    "stop-power-down": "Stop"
   },
   "trx-common": {
     "insufficient-funds": "Nepakankamas likutis",
@@ -463,7 +494,8 @@
     "with-keychain": "Sign with keychain"
   },
   "delegated-vesting": {
-    "title": "Delegated Hive Power"
+    "title": "Delegated Hive Power",
+    "undelegate": "undelegate"
   },
   "received-vesting": {
     "title": "Received Hive Power"
@@ -535,8 +567,12 @@
     "placeholder-empty": "Tags. First tag is main category. Sortable.",
     "placeholder-focus": "Enter tag",
     "placeholder-has-tags": "Add More",
-    "suggestion-header": "Tags/Communities",
+    "suggestion-header": "Tags",
     "error-max": "Max {{n}} tags"
+  },
+  "community-selector": {
+    "my-blog": "My Blog",
+    "search-placeholder": "Search Communities"
   },
   "word-count": {
     "label": "{{n}} words",
