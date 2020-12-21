@@ -148,7 +148,7 @@
     "title": "{{f}} тем(-а)",
     "description": "{{f}} тем у соціальній мережі які належать та керуються її користувачами.",
     "description-tag": "{{f}} #{{t}} тем(-а)",
-    "description-user-feed": "{{u}}'s feed",
+    "description-user-feed": "{{u}} стрічка",
     "faq": "ЧаПи",
     "tos": "Умови використання",
     "pp": "Політика безпеки"
@@ -180,7 +180,7 @@
   },
   "edit-history": {
     "title": "Редагувати історію",
-    "show-diff": "Show Difference",
+    "show-diff": "Показати різницю",
     "version": "Версія {{n}}"
   },
   "similar-entries": {
@@ -454,7 +454,7 @@
     "wrong-amount": "Невірне значення суми",
     "amount-precision-error": "Використовуйте лише 3 знаки після коми",
     "balance": "Баланс",
-    "power-down-estimated": "+ {{n}} Estimated Weekly",
+    "power-down-estimated": "+ {{n}} Приблизно щотижня",
     "memo": "Примітка",
     "memo-placeholder": "введіть сюди свої примітки",
     "memo-help": "Ця примітка є публічною",
@@ -467,7 +467,7 @@
     "transfer-saving-summary": "Переказ <span class=\"amount\">{{amount}}</span> від <span class=\"from-user\">{{from}}</span> до <span class=\"to-user\">{{to}}</span>",
     "withdraw-saving-summary": "Переказ <span class=\"amount\">{{amount}}</span> від <span class=\"from-user\">{{from}}</span> до <span class=\"to-user\">{{to}}</span>",
     "convert-summary": "<span class=\"amount\">{{amount}}</span> конвертовано",
-    "power-up-summary": "<span class=\"amount\">{{amount}}</span> staked from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
+    "power-up-summary": "<span class=\"amount\">{{amount}}</span> зробив ставку від <span class=\"from-user\">{{from}}</span> до <span class=\"to-user\">{{to}}</span>",
     "delegate-summary": "Делеговано <span class=\"amount\">{{amount}}</span> від <span class=\"from-user\">{{from}}</span> до <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Зменшення сили було завершено як <span class=\"amount\">{{amount}}</span>",
     "reset": "Скинути",
@@ -482,14 +482,14 @@
     "success-sub-title": "Операція успішна"
   },
   "transactions": {
-    "title": "History",
+    "title": "Історія",
     "type-curation_reward": "Кураторська Винагорода",
     "type-author_reward": "Авторська Винагорода",
     "type-comment_benefactor_reward": "Винагорода бенефіціару за коментар",
     "type-claim_reward_balance": "Отримати винагороди",
     "type-transfer": "Переказ",
-    "type-transfer_to_vesting": "Transfer to vesting",
-    "type-withdraw_vesting": "Withdraw vesting",
+    "type-transfer_to_vesting": "Підвищення сили",
+    "type-withdraw_vesting": "Зменшення сили",
     "type-fill_order": "Заповніть замовлення"
   },
   "key-or-hot": {
@@ -636,7 +636,7 @@
     "title": "Популярні користувачі"
   },
   "discover": {
-    "title": "Discover",
+    "title": "Огляд",
     "description": "Відкрийте для себе найкращих користувачів онлайн"
   },
   "search-page": {
