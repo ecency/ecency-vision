@@ -95,7 +95,7 @@
   user-select: none;
   margin-bottom: 20px;
   position: relative;
-  padding: 16px 0;
+  padding: 10px 0;
 
   &:not(.visible-sm) {
     display: none;
@@ -137,14 +137,17 @@
 
     .brand {
       height: 44px;
-      width: 44px;
+      width: calc(100% - 10px);
       text-decoration: none;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       flex-shrink: 0;
+      margin-left: 10px;
 
       @media (min-width: $md-break) {
         margin-bottom: 0;
+        margin-left: 0;
         margin-right: 14px;
+        width: 44px;
       }
 
       @media (min-width: $lg-break) {
@@ -205,13 +208,14 @@
 
     .search-bar {
       margin-bottom: 20px;
-      width: 250px;
+      width: calc(100% - 30px);
 
       @media (min-width: $sm-break) {
         width: 320px;
       }
 
       @media (min-width: $md-break) {
+        width: 210px;
         margin-right: 14px;
         margin-bottom: 0;
         flex-grow: 1;
@@ -229,78 +233,70 @@
 
       @media (min-width: $xxl-break) {
         width: 500px;
-        margin-right: 40px;
       }
     }
 
-
-    .switch-theme, .switch-language {
-      cursor: pointer;
+    .switch-menu {
+      display: flex;
       position: absolute;
-      left: 20px;
-      top: 24px;
+      right: 50px;
+      top: 18px;
+      align-items: center;
 
       @media (min-width: $md-break) {
         position: relative;
         top: auto;
-        left: auto;
+        right: auto;
+      }
+
+      @media (min-width: $lg-break) {
+
+      }
+
+      .switch-theme, .switch-language {
+        cursor: pointer;
         margin-right: 14px;
-      }
 
-      @media (min-width: $xl-break) {
-        margin-right: 18px;
-      }
+        @media (min-width: $xl-break) {
 
-      @media (min-width: $xxl-break) {
-        margin-right: 40px;
-      }
+        }
 
-      svg {
-        width: 18px;
-        height: 18px;
-      }
+        @media (min-width: $xxl-break) {
 
-      @include themify(day) {
-        color: $silver;
-      }
+        }
 
-      @include themify(night) {
-        color: $duck-egg-blue;
-        opacity: 0.8;
-      }
-    }
+        svg {
+          width: 18px;
+          height: 18px;
+        }
 
-    .switch-language {
-      left: 60px;
+        @include themify(day) {
+          color: $silver;
+        }
 
-      @media (min-width: $md-break) {
-        left: auto;
-      }
-
-      @include themify(night) {
-        opacity: 1;
-      }
-    }
-
-    .login-required {
-      margin-bottom: 10px;
-      display: flex;
-
-      .btn {
-        &:not(:last-child) {
-          margin-right: 4px;
+        @include themify(night) {
+          color: $duck-egg-blue;
+          opacity: 0.8;
         }
       }
 
-      @media (min-width: $md-break) {
-        margin-right: 14px;
-        margin-bottom: 0;
+      .switch-language {
+        @include themify(night) {
+          opacity: 1;
+        }
       }
+    }
 
-      @media (min-width: $xl-break) {
-        margin-right: 18px;
+    .btn-menu {
+      display: flex;
+
+      .login-required {
         .btn {
-          &:not(:last-child) {
+          margin-right: 4px;
+        }
+
+        @media (min-width: $xl-break) {
+          .btn {
             margin-right: 6px;
           }
         }
