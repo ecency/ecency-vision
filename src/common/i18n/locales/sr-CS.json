@@ -72,6 +72,11 @@
     "bookmarks": "Obeleživači",
     "logout": "Odjavi se"
   },
+  "intro": {
+    "title": "Aspire to greatness",
+    "sub-title": "rewarding communities",
+    "c2a": "Get Started"
+  },
   "login": {
     "title": "Dobrodošli nazad!",
     "with-user-pass": "Prijavi se sa korisničkim imenom i privatnim ključem.",
