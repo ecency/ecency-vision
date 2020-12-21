@@ -72,6 +72,11 @@
     "bookmarks": "Закладки",
     "logout": "Вийти"
   },
+  "intro": {
+    "title": "Aspire to greatness",
+    "sub-title": "rewarding communities",
+    "c2a": "Get Started"
+  },
   "login": {
     "title": "З поверненням!",
     "with-user-pass": "Увійдіть за допомогою вашого логіну та приватного ключа.",
@@ -380,7 +385,7 @@
     "reblog-desc": "  Діліться з друзями постами, що вам подобаються, та отримуйте 1 бал.",
     "login-desc": "При першій авторизації в додатку Ecency вам автоматично нараховується 100 балів.",
     "checkin-extra-desc": "Регулярне використання додатку дає вам шанс отримати ще 10 бонусних балів, будьте активнішим та отримуй більше.",
-    "delegation-desc": "You can earn ~50 points per day for each 1000HP delegation.",
+    "delegation-desc": "Ви можете заробити ~50 балів на день за кожну делегацію 1000HP.",
     "history": "Історія",
     "post-list-desc": "Бали за допис",
     "comment-list-desc": "Бали за коментар",
@@ -411,7 +416,7 @@
   "boost": {
     "title": "Підсилити",
     "sub-title": "Підсилити ваш допис",
-    "amount": "Amount",
+    "amount": "Сума",
     "slider-hint": "Перетягніть повзунок, щоб відрегулювати суму."
   },
   "redeem-common": {
@@ -434,7 +439,7 @@
     "power-up-title": "Stake Hive as Power",
     "convert-title": "Конвертувати",
     "power-up-sub-title": "Вплив токенів дає вам можливість впливати на винагороду за публікації та дозволяє заробляти на кураторстві.",
-    "convert-sub-title": "Only recommended when HBD is below $1. You will get $1 of HIVE in 3.5 days.",
+    "convert-sub-title": "Рекомендовано конвертувати HBD коли ціна нижче $1. У такому випадку ви отримаєте $1 у токенах HIVE за 3.5 дні.",
     "delegate-title": "Делегувати",
     "delegate-sub-title": "Делегувати Hive силу",
     "power-down-title": "Зменшити сили голосу",
@@ -602,7 +607,7 @@
     "reply-str": "відповів(-ла) на ваш допис:",
     "mention-str": "згадав(-ла) вас у:",
     "followed-str": "followed",
-    "unfollowed-str": "unfollowed",
+    "unfollowed-str": "відписався(-лась)",
     "ignored-str": "ignored",
     "reblog-str": "reblogged your post:",
     "transfer-str": "відправив вам",
