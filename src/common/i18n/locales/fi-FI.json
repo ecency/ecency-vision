@@ -72,6 +72,11 @@
     "bookmarks": "Kirjanmerkit",
     "logout": "Kirjaudu ulos"
   },
+  "intro": {
+    "title": "Aspire to greatness",
+    "sub-title": "rewarding communities",
+    "c2a": "Get Started"
+  },
   "login": {
     "title": "Tervetuloa takaisin!",
     "with-user-pass": "Kirjaudu käyttäjätunnuksellasi ja yksityisellä avaimellasi.",
