@@ -80,7 +80,7 @@
   "login": {
     "title": "Willkommen zurück!",
     "with-user-pass": "Login with your username and private key.",
-    "username-placeholder": "Benutzername",
+    "username-placeholder": "benutzername",
     "key-placeholder": "master or active private key",
     "login-info-1": "We don't store your private keys.",
     "login-info-2": "Mehr Infos",
@@ -219,9 +219,9 @@
     "roles-add": "User hinzufügen"
   },
   "community-cover": {
-    "rewards": "Belohnungen",
-    "authors": "Poster",
-    "lang": "Sprache",
+    "rewards": "belohnungen",
+    "authors": "poster",
+    "lang": "sprache",
     "cover-image": "Community Cover Bild",
     "cover-image-edit": "Cover Bild bearbeiten",
     "cover-image-updated": "Cover Bild aktualisiert!"
@@ -258,7 +258,7 @@
     "n-subscribers": "{{n}} members",
     "n-authors": "{{n}} Poster",
     "n-posts": "{{n}} Beiträge",
-    "admins": "Admins:",
+    "admins": "admins:",
     "sort-hot": "Beliebt",
     "sort-rank": "Rang",
     "sort-subs": "Members",
