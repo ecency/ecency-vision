@@ -270,12 +270,12 @@
     "page-title": "Створити спільноту",
     "title": "Заголовок",
     "about": "About",
-    "description": "Create a best, decentralized, immutable, rewarding communities",
+    "description": "Створіть найкращу, децентралізовану, незмінну, винагороду громад",
     "fee": "Operation fee",
     "creator": "Засновник",
     "username": "Ім'я користувача власника",
-    "username-available": "Available.",
-    "username-not-available": "Not available.",
+    "username-available": "Доступний.",
+    "username-not-available": "Не доступний.",
     "username-wrong-format": "Не припустимий формат. Потрібен формат hive-1xxxx.",
     "password": "Пароль власника",
     "confirmation": "Я безпечно зберіг(-ла) ім'я користувача і пароль власника.",
@@ -493,7 +493,7 @@
     "type-fill_order": "Заповніть замовлення"
   },
   "key-or-hot": {
-    "sign": "Sign",
+    "sign": "Підписати",
     "key-placeholder": "Введіть ключ активний/власника/головний",
     "with-hivesigner": "Увійти за допомогою hivesigner",
     "with-keychain": "Увійти за допомогою Keychain"
@@ -507,7 +507,7 @@
   },
   "friends": {
     "followers": "Читачів ({{n}})",
-    "following": "Following ({{n}})",
+    "following": "Cлідкують ({{n}})",
     "search-placeholder": "Пошук користувачів"
   },
   "follow-controls": {
@@ -555,7 +555,7 @@
     "reward": "Винагорода",
     "reward-default": "Стандарт 50% / 50%",
     "reward-sp": "Power Up 100%",
-    "reward-dp": "Decline Payout",
+    "reward-dp": "Відмовитися від виплати",
     "preview": "Попередній перегляд",
     "publish": "Опублікувати",
     "update": "Оновити",
@@ -582,16 +582,16 @@
   "word-count": {
     "label": "{{n}} слів",
     "read-time-less-1-min": "< 1 хв. приблизно читати",
-    "read-time-n-min": "~ {{n}} min read"
+    "read-time-n-min": "~ {{n}} хв. читати"
   },
   "notification": {
     "popup-title": "У вас є нове сповіщення",
     "voted": "{{source}} проголосував за ваш допис",
     "mention-post": "{{source}} згадав(-ла) вас у дописі",
     "mention-comment": "{{source}} згадав(-ла) вас у коментарі",
-    "followed": "{{source}} followed you",
+    "followed": "{{source}} слідкують за вами",
     "replied": "{{source}} відповів(-ла) вам",
-    "reblogged": "{{source}} reblogged your post",
+    "reblogged": "{{source}} поширив(-ла) ваш допис",
     "transfer": "{{source}} надіслав(-ла) вам {{amount}}"
   },
   "notifications": {
@@ -606,10 +606,10 @@
     "vote-str": "{{p}}% подобається ваш допис:",
     "reply-str": "відповів(-ла) на ваш допис:",
     "mention-str": "згадав(-ла) вас у:",
-    "followed-str": "followed",
+    "followed-str": "слідкує",
     "unfollowed-str": "відписався(-лась)",
-    "ignored-str": "ignored",
-    "reblog-str": "reblogged your post:",
+    "ignored-str": "ігнорується",
+    "reblog-str": "поширив(-ла) ваш допис:",
     "transfer-str": "відправив вам",
     "spin-str": "Час заробити більше балів, грайте на Ecency Mobile",
     "inactive-str": "Будьте активними! Напишіть допис, продовжуйте заробляти",
@@ -641,7 +641,7 @@
   },
   "search-page": {
     "title": "Пошук",
-    "description": "Find uncensored content, communities and users",
+    "description": "Знайти без цензури вміст, спільноту та користувачів",
     "n-results-for-q": "{{n}} результат(-ів)",
     "no-result": "Без результату",
     "sort-by": "сортувати за",
@@ -651,7 +651,7 @@
   },
   "witnesses": {
     "page-title": "Свідки",
-    "page-description": "Consensus block producers selection",
+    "page-description": "Вибір виробників блоків на основі консенсусу",
     "page-description-long": "Роль свідків або виробників блоків у блокчейні Hive полягає в тому, щоб виступати в ролі органу управління мережею. Спільнота обирає їх для представлення їхнього голосу, і кожен користувач може обрати до 30 свідків. Топ-20 свідків виробляють блоки щохвилини, поки залишається свідок в якості резерву, також він щохвилини може випадково отримати шанс. Ця роль є невід'ємною частиною механізму консенсусу, на якому працює блокчейн, і рекомендує залучення користувачів до голосування за довірених свідків.",
     "remaining": "Залишилось <strong>{{n}}</strong> із {{max}} голосів",
     "list-rank": "Рейтинг",
@@ -672,20 +672,20 @@
   "proposals": {
     "page-title": "Пропозиції",
     "page-description": "Децентралізований фонд Hive (DHF) є механізмом фінансування у ланцюжку, який дозволяє будь-кому подати пропозицію та отримати фінансування, як тільки голоси громади пройдуть певний поріг. Щоб дізнатися більше про наші <a href=\"/faq#how-dhf-work\">ЧаПи</a>.",
-    "by": "by",
+    "by": "від",
     "for": "for",
     "duration-days": "{{n}} днів",
     "daily-pay": "Щоденний {{n}}",
     "votes": "Голоси: {{n}}",
     "status-active": "активний",
     "status-expired": "термін сплинув",
-    "status-inactive": "upcoming",
+    "status-inactive": "незабаром",
     "remaining-days": "Залишилося: {{n}} днів",
     "filter-all": "Усi",
     "filter-active": "Активний",
-    "filter-inactive": "Upcoming",
+    "filter-inactive": "Незабаром",
     "filter-team": "Проєкти Ecency",
-    "return-description": "This is the base return proposal. Every proposal with less votes will not receive funds.",
+    "return-description": "Основне що пропозиції повертається. Кожна пропозиція з недостатньою кількістю голосів не отримує коштів.",
     "votes-dialog-title": "Голосів за пропозицію #{{n}}",
     "see-all": "переглянути усі пропозиції"
   },
@@ -760,7 +760,7 @@
       "what-spam-abuse-body": "<p><img src=\"https://images.ecency.com/p/3jpR3paJ37V8XPrHkfZdMt57jY6pRt6zEt5iRJV9pSw4Mez3Hut8U6RWvWLA7cFYEa1bxveXeasNfZApzrcLYLx8cz84kBEKak1KkewE2ZqE1QRRkF4eqRH3vWVqZB9WuNbzE?format=match&mode=fit\" loading=\"lazy\"/></p><p><ul><li>Плагіат публікацій або скопійований вміст.</li><li> Залишення майже однакових або суттєво подібних коментарів до кількох публікацій. </li><li>Використання тегів, не пов’язаних із публікацією.</li><li>Загрожуючи користувачам будь-яким типом фізичного насильства. </li><li>Не цитування джерел при використанні чужого матеріалу. </li><li>Розміщення вмісту \"не безпечно для роботи\" без використання тегу \"nsfw\".</li><li>Шахрайство чи шахрайські пропозиції.</li></ul></p>",
       "can-link-post-header": "Чи можу я попросити додавання зворотного посилання на мій сайт від команди Ecency?",
       "can-link-post-body": "<p>Весь контент на нашому сайті створюється нашими користувачами, і ми не змінюємо або не можемо додавати зворотні посилання. Ви можете зв'язатися з автором допису або <a href=\"/?referral=ecency\">зареєструйтеся</a>, щоб відкрити власний блог, спільноту аби публікувати статті, які створюватимуть посилання безкоштовно.</p>",
-      "can-guest-post-header": "Is it possible to guest post on your website?",
+      "can-guest-post-header": "Чи може гість писати дописи на сайті?",
       "can-guest-post-body": "<p>Писати дописи на Ecency легко та просто, треба тільки <a href=\"/?referral=ecency\">Зареєструватися</a>, щоб відкрити власний блог або створити спільноту, після чого зможете почати публікувати ваш вміст.</p>"
     }
   },
