@@ -30,6 +30,10 @@ export const langOptions = [
     {
         code: "fi-FI",
         name: "Suomi"
+    },
+    {
+        code: "uk-UA",
+        name: "Українська"
     }
 ];
 
@@ -40,6 +44,7 @@ const hiIN = require("./locales/hi-IN.json");
 const idID = require("./locales/id-ID.json");
 const ptPT = require("./locales/pt-PT.json");
 const srCS = require("./locales/sr-CS.json");
+const ukUA = require("./locales/uk-UA.json");
 
 const resources = {
     ["en-US"]: {
@@ -62,6 +67,9 @@ const resources = {
     },
     ["sr-CS"]: {
         translation: srCS
+    },
+    ["uk-UA"]: {
+        translation: ukUA
     }
 };
 
