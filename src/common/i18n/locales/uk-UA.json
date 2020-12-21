@@ -115,7 +115,7 @@
   },
   "entry-list-item": {
     "reblogged": "{{n}} reblogged",
-    "promoted": "promoted",
+    "promoted": "просувається",
     "pinned": "Закріплена публікація",
     "replies": "1 відповідь. Натисніть, щоб відповісти.",
     "replies-n": "{{n}} відповідей. Натисніть, щоб відповісти.",
@@ -146,19 +146,19 @@
     "feed": "Стрічка",
     "tags": "Популярне",
     "title": "{{f}} тем(-а)",
-    "description": "{{f}} topics on a social network owned and operated by its users.",
-    "description-tag": "{{f}} #{{t}} topics",
+    "description": "{{f}} тем у соціальній мережі які належать та керуються її користувачами.",
+    "description-tag": "{{f}} #{{t}} тем(-а)",
     "description-user-feed": "{{u}}'s feed",
-    "faq": "FAQ",
-    "tos": "Terms of service",
+    "faq": "ЧаПи",
+    "tos": "Умови використання",
     "pp": "Політика безпеки"
   },
   "market-data": {
     "title": "Ринкова ціна",
-    "credits": "data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
+    "credits": "дані від <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "list-style": {
-    "title": "Toggle list style"
+    "title": "Перемкнути стиль списку"
   },
   "entry-votes": {
     "title": "1 Голос",
@@ -168,15 +168,15 @@
     "sort-reward": "Винагорода",
     "sort-timestamp": "Час",
     "sort-reputation": "Репутація",
-    "sort-percent": "Percentage"
+    "sort-percent": "Відсоток"
   },
   "entry": {
     "via-app": "через <span class=\"app-name\">{{app}}</span>",
     "comment-entry-title": "Ви переглядаєте гілку одного коментаря з: ",
     "comment-entry-go-root": "Переглянути повний контекст",
-    "comment-entry-go-parent": "View the direct parent",
+    "comment-entry-go-parent": "Дивитись батьківський коментар",
     "show-history": "Показати історію редагування",
-    "hidden-warning": "This post was hidden due to low ratings."
+    "hidden-warning": "Цей допис було приховано через низький рейтинг."
   },
   "edit-history": {
     "title": "Редагувати історію",
@@ -204,7 +204,7 @@
     "reveal": "Показати коментар"
   },
   "community": {
-    "page-description": "{{f}} topics",
+    "page-description": "{{f}} тем(-а)",
     "subscribe": "Приєднатися",
     "subscribed": "Приєднався(-лась)",
     "unsubscribe": "Залишити",
@@ -213,14 +213,14 @@
     "subscribers": "Учасники",
     "activities": "Події",
     "roles-title": "Ролі користувача",
-    "roles-account": "Account",
+    "roles-account": "Обліковка",
     "roles-role": "Роль",
     "roles-account-title": "Заголовок",
     "roles-add": "Додати користувача"
   },
   "community-cover": {
     "rewards": "винагороди",
-    "authors": "posters",
+    "authors": "банери",
     "lang": "мова",
     "cover-image": "Зображення обкладинки спільноти",
     "cover-image-edit": "Редагувати зображення обкладинки",
@@ -347,10 +347,10 @@
     "hive-description": "HIVE - токени вільно торгуються та можуть бути передані будь-коли. HIVE можна конвертувати в Hive Силу за допомогою дії, що зветься \"збільшення сили\" чи анг. (Power Up).",
     "hive-power": "HIVE POWER",
     "hive-power-description": "Hive Power - це токени які мають вплив та надають більше сили при їх довгостроковому збереженні, та голосуванні за дописи. Чим більше у вас Hive сили, тим більший ваш вплив на винагороду за пост, і більша ваша винагорода за влучне голосування.",
-    "hive-power-delegated": "Delegated Hive Power",
+    "hive-power-delegated": "Делегована Hive сила",
     "hive-power-received": "Received Hive Power",
-    "next-power-down-amount": "Next power down amount",
-    "hive-power-total": "Total Hive Power",
+    "next-power-down-amount": "Сума наступного зменшення сили",
+    "hive-power-total": "Всього Hive сили",
     "hive-dollars": "HIVE ДОЛАРИ",
     "hive-dollars-description": "Токени вартістю близько $1.00 у HIVE.",
     "savings": "SAVINGS",
@@ -374,7 +374,7 @@
   },
   "points": {
     "get": "Купити Бали",
-    "unclaimed-points": "Unclaimed points",
+    "unclaimed-points": "Неотриманні бали",
     "claim-reward-points": "Зарахувати винагороду на баланс",
     "main-description": "Бали можуть використовуватися для вбудованих сервісів, таких як Просування чи Підсилення допису, або їх можна подарувати друзям. Заробити бали можна тільки за допомогою наших додатків Ecency та нашої браузерної версії.",
     "earn-points": "Як отримати більше балів",
@@ -406,7 +406,7 @@
   "purchase": {
     "select-asset": "Оберіть актив",
     "slider-hint": "Перетягніть повзунок, щоб налаштувати суму.",
-    "submit": "Purchase"
+    "submit": "Придбати"
   },
   "promote": {
     "title": "Просувати",
@@ -451,7 +451,7 @@
     "to-bad-actor": "Будьте обережні, відправляючи на цей рахунок. Будь ласка, перевірте правильність написання, щоб уникнути можливого фішингу.",
     "amount": "Сума",
     "amount-placeholder": "сума",
-    "wrong-amount": "Wrong amount value",
+    "wrong-amount": "Невірне значення суми",
     "amount-precision-error": "Використовуйте лише 3 знаки після коми",
     "balance": "Баланс",
     "power-down-estimated": "+ {{n}} Estimated Weekly",
