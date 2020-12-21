@@ -72,6 +72,11 @@
     "bookmarks": "Segnalibri",
     "logout": "Esci"
   },
+  "intro": {
+    "title": "Aspire to greatness",
+    "sub-title": "rewarding communities",
+    "c2a": "Get Started"
+  },
   "login": {
     "title": "Bentornato!",
     "with-user-pass": "Entra con il tuo nome utente e la tua chiave privata.",
