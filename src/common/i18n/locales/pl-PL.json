@@ -72,6 +72,11 @@
     "bookmarks": "Zakładki",
     "logout": "Wyloguj"
   },
+  "intro": {
+    "title": "Aspire to greatness",
+    "sub-title": "rewarding communities",
+    "c2a": "Get Started"
+  },
   "login": {
     "title": "Witaj ponownie!",
     "with-user-pass": "Zaloguj się za pomocą nazwy użytkownika i klucza prywatnego.",
