@@ -13,7 +13,7 @@ export const langOptions = [
     },
     {
         code: "hi-IN",
-        name: "Hindī"
+        name: "हिन्दी"
     },
     {
         code: "id-ID",

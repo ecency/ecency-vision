@@ -1,12 +1,15 @@
 import React from 'react';
 
+import {Link} from "react-router-dom";
+
 import {Global} from '../../store/global/types';
 
-const friends = require('../../img/welcome_community.png');
-const friendsWebp = require('../../img/welcome_community.webp');
+import {_t} from "../../i18n";
 
 import {closeSvg} from '../../img/svg';
 
+const friends = require('../../img/welcome_community.png');
+const friendsWebp = require('../../img/welcome_community.webp');
 
 interface Props {
     global: Global
@@ -22,12 +25,16 @@ export default (props: Props) => {
 
     return <div className="intro">
         <div className="hide-intro" onClick={hideIntro}>{closeSvg}</div>
-        <h1 className="intro-header">Aspire to greatness</h1>
-        <h1 className="intro-sub-header">rewarding communities</h1>
+        <div className="text-content">
+            <h1 className="intro-header">{_t("intro.title")}</h1>
+            <h1 className="intro-sub-header">
+                <div className="title">{_t("intro.sub-title")}</div>
+                <div className="get-started"><Link to="/signup" className="btn btn-primary">{_t("intro.c2a")}</Link></div>
+            </h1>
+        </div>
         <div className="cloud-1"/>
         <div className="cloud-2"/>
         <div className="cloud-3"/>
-
-        <img alt="Friends" className="friends" src={props.global.canUseWebp?friendsWebp:friends}/>
+        <img alt="Friends" className="friends" src={props.global.canUseWebp ? friendsWebp : friends}/>
     </div>;
 };
