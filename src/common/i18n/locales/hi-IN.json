@@ -72,6 +72,11 @@
     "bookmarks": "पृष्टस्मृतियाँ",
     "logout": "लॉग आउट"
   },
+  "intro": {
+    "title": "Aspire to greatness",
+    "sub-title": "rewarding communities",
+    "c2a": "Get Started"
+  },
   "login": {
     "title": "आपका पुनः स्वागत है!",
     "with-user-pass": "अपने उपयोगकर्ता नाम और निजी कुंजी के साथ लॉगिन करें।",
