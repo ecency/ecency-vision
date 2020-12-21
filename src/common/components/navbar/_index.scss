@@ -233,7 +233,6 @@
 
       @media (min-width: $xxl-break) {
         width: 500px;
-        margin-right: 40px;
       }
     }
 
@@ -250,16 +249,20 @@
         right: auto;
       }
 
+      @media (min-width: $lg-break) {
+
+      }
+
       .switch-theme, .switch-language {
         cursor: pointer;
         margin-right: 14px;
 
         @media (min-width: $xl-break) {
-          margin-right: 18px;
+
         }
 
         @media (min-width: $xxl-break) {
-          margin-right: 40px;
+
         }
 
         svg {
