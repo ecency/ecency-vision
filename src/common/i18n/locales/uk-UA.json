@@ -246,7 +246,7 @@
   "community-settings": {
     "dialog-title": "Налаштування спільноти",
     "title": "Заголовок",
-    "about": "About",
+    "about": "Про себе",
     "lang": "Мова",
     "description": "Опис",
     "rules": "Правила",
@@ -254,7 +254,7 @@
   },
   "communities": {
     "title": "Спільноти",
-    "description": "Best online, decentralized, immutable, rewarding communities",
+    "description": "Найкраща онлайн, децентралізована, незмінна, громада винагороджується",
     "n-subscribers": "{{n}} учасників",
     "n-authors": "{{n}} банерів",
     "n-posts": "{{n}} дописів",
@@ -332,7 +332,7 @@
   },
   "preferences": {
     "title": "Налаштування",
-    "notifications": "Notification alerts",
+    "notifications": "Сповіщення",
     "currency": "Валюта",
     "language": "Мова",
     "updated": "Налаштування оновлено!"
@@ -341,19 +341,19 @@
     "unclaimed-rewards": "Не отримана винагорода",
     "claim-reward-balance": "Зарахувати винагороду на баланс",
     "claim-reward-balance-ok": "Винагорода зарахована на баланс",
-    "estimated": "Estimated Account Value",
+    "estimated": "Приблизна вартість обліковки",
     "estimated-description": "Орієнтовна вартість базується на 7-денній середній вартості HIVE.",
     "hive": "HIVE",
     "hive-description": "HIVE - токени вільно торгуються та можуть бути передані будь-коли. HIVE можна конвертувати в Hive Силу за допомогою дії, що зветься \"збільшення сили\" чи анг. (Power Up).",
     "hive-power": "HIVE POWER",
     "hive-power-description": "Hive Power - це токени які мають вплив та надають більше сили при їх довгостроковому збереженні, та голосуванні за дописи. Чим більше у вас Hive сили, тим більший ваш вплив на винагороду за пост, і більша ваша винагорода за влучне голосування.",
     "hive-power-delegated": "Делегована Hive сила",
-    "hive-power-received": "Received Hive Power",
+    "hive-power-received": "Отримана Hive сила",
     "next-power-down-amount": "Сума наступного зменшення сили",
     "hive-power-total": "Всього Hive сили",
     "hive-dollars": "HIVE ДОЛАРИ",
     "hive-dollars-description": "Токени вартістю близько $1.00 у HIVE.",
-    "savings": "SAVINGS",
+    "savings": "СКАРБНИЧКА",
     "savings-description": "Баланс для якого діє 3-денний період очікування при знятті коштів.",
     "next-power-down": "Наступний час зменшення сили {{time}}, {{amount}}",
     "transfer": "Переказ",
@@ -367,8 +367,8 @@
     "withdraw-routes": "Маршрути виведення"
   },
   "withdraw-routes": {
-    "title": "Withdraw accounts",
-    "account": "Account",
+    "title": "Рахунки виведення",
+    "account": "Рахунок",
     "percent": "Відсоток",
     "auto-power-up": "Автоматичне збільшення сили"
   },
@@ -422,7 +422,7 @@
   "redeem-common": {
     "balance": "Баланс",
     "post": "Допис",
-    "post-hint": "Autocomplete input",
+    "post-hint": "Автозаповнення",
     "post-placeholder": "ім'я користувача/постійне джерело",
     "post-error": "Недійсна поштова адреса",
     "post-error-exists": "Допис вже просувають",
@@ -707,7 +707,7 @@
   },
   "static": {
     "about": {
-      "page-title": "About",
+      "page-title": "Про себе",
       "intro-title": "Що таке <span>Ecency</span>",
       "intro-content": "Ecency - гарний і зручний інтерфейс, як шпалери навколо blockchain мережі Hive, що дозволяє створювати власні дописи, переглядати стрічку новин, голосувати за що бажаєте, писати коментарі, читати відповіді, робити всі основні Hive функції в щоденному соціальному обслуговуванні, а також ви маєте гаманець та інші додатки, такі як пошук і т. д.",
       "faq-title": "ЧаПи",
@@ -719,7 +719,7 @@
     },
     "faq": {
       "page-title": "Ecency ЧаПи",
-      "page-sub-title": "Table of Contents",
+      "page-sub-title": "Зміст",
       "what-is-ecency-header": "Що таке Ecency?",
       "what-is-ecency-body": "<p>Ecency - це соціальна мережа, заснована на <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">блокчейні</a>, що працює від <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency пропонує соціальну мережу без цензури, безкоштовну, безмежну, корисну платформу для творців вмісту.</p><p>Проєкт ініціював та заснував <a href=\"/@good-karma\">@good-karma</a> у серпні 2016 року, як альтернативну соціальну мережу. З того часу проєкт виріс до значно більшої групи учасників (перекладачі, тестувальники, розробники, впливові особистості, творці вмісту та споживачі) які допомогли сформувати Ecency.</p><p>Ecency допомагає інтегрувати маси людей у технологію Blockchain, де користувачі отримують гроші за свій час, ресурси та навчання, насолоджуючись соціальними аспектами блокчейну. Завдяки простоті використання користувачі не тільки навчаються, але й стають інвесторами, новаторами технологій та громад.</p>",
       "what-is-hive-header": "Що таке Hive блокчейн?",
