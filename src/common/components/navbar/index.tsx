@@ -199,30 +199,34 @@ export class NavBar extends Component<Props, State> {
                         <div className="search-bar">
                             {Search({...this.props})}
                         </div>
-                        <div className="switch-language">
-                            <DropDown {...langMenuConfig} float="left"/>
-                        </div>
-                        <ToolTip content={themeText}>
-                            <div className="switch-theme" onClick={this.changeTheme}>
-                                {brightnessSvg}
-                            </div>
-                        </ToolTip>
-                        {!activeUser && (
-                            <div className="login-required">
-                                <Button variant="outline-primary" onClick={() => {
-                                    const {toggleUIProp} = this.props;
-                                    toggleUIProp('login');
-                                }}>{_t("g.login")}</Button>
-
-                                <Link className="btn btn-primary" to="/signup">{_t("g.signup")}</Link>
-                            </div>
-                        )}
-                        <div className="submit-post">
-                            <ToolTip content={_t("navbar.post")}>
-                                <Link className="btn btn-outline-primary" to="/submit">
-                                    {pencilOutlineSvg}
-                                </Link>
+                        <div className="switch-menu">
+                            <ToolTip content={themeText}>
+                                <div className="switch-theme" onClick={this.changeTheme}>
+                                    {brightnessSvg}
+                                </div>
                             </ToolTip>
+                            <div className="switch-language">
+                                <DropDown {...langMenuConfig} float="right"/>
+                            </div>
+                        </div>
+                        <div className="btn-menu">
+                            {!activeUser && (
+                                <div className="login-required">
+                                    <Button variant="outline-primary" onClick={() => {
+                                        const {toggleUIProp} = this.props;
+                                        toggleUIProp('login');
+                                    }}>{_t("g.login")}</Button>
+
+                                    <Link className="btn btn-primary" to="/signup">{_t("g.signup")}</Link>
+                                </div>
+                            )}
+                            <div className="submit-post">
+                                <ToolTip content={_t("navbar.post")}>
+                                    <Link className="btn btn-outline-primary" to="/submit">
+                                        {pencilOutlineSvg}
+                                    </Link>
+                                </ToolTip>
+                            </div>
                         </div>
                         {activeUser && <UserNav {...this.props} activeUser={activeUser}/>}
                     </div>
