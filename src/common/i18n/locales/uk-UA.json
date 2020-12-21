@@ -37,7 +37,7 @@
     "filter-trending": "Популярне",
     "filter-hot": "Актуальне",
     "filter-created": "Нове",
-    "filter-promoted": "Promoted",
+    "filter-promoted": "Просувається",
     "filter-payout": "Виплати",
     "filter-muted": "Muted",
     "filter-feed": "Стрічка",
@@ -45,13 +45,13 @@
     "filter-feed-subscriptions": "Спільноти"
   },
   "navbar": {
-    "discover": "Discover",
+    "discover": "Відкрийте для себе",
     "communities": "Спільноти",
     "about": "Про застосунок",
     "post": "Створити допис",
     "day-theme": "Світла тема",
     "night-theme": "Темна тема",
-    "address-placeholder": "enter url or search query"
+    "address-placeholder": "введіть URL-адресу або пошуковий запит"
   },
   "search": {
     "placeholder": "Пошук",
@@ -73,9 +73,9 @@
     "logout": "Вийти"
   },
   "intro": {
-    "title": "Aspire to greatness",
+    "title": "Прагніть до величі",
     "sub-title": "rewarding communities",
-    "c2a": "Get Started"
+    "c2a": "Розпочати"
   },
   "login": {
     "title": "З поверненням!",
@@ -88,7 +88,7 @@
     "error-public-key": "Ви ввели публічний ключ. Потрібен пароль/WIF",
     "error-user-fetch": "User data could not be fetched",
     "error-user-not-found": "Користувач не існує",
-    "error-permission": "Couldn't get posting permission",
+    "error-permission": "Не вдалося отримати дозвіл на публікацію",
     "error-authenticate": "Неправильний приватний ключ. Необхідно вказати головний або активний приватний ключ.",
     "with-hive-signer": "Увійти за допомогою hivesigner",
     "with-keychain": "Увійти через KeyChain",
@@ -241,7 +241,7 @@
     "username": "Ім'я користувача",
     "role": "Роль",
     "user-not-found": "Користувача не існує!",
-    "explanations": "<h3>Role Permissions</h3><p><strong>Owner</strong> - assign admins</p><p><strong>Admin</strong> - edit settings, assign mods</p><p><strong>Moderator</strong> - mute, pin, set user titles</p><p><strong>Member</strong> - listed on leadership team</p><p><strong>Guest</strong> - default; can post and comment</p><p><strong>Muted</strong> - new posts automatically muted</p>"
+    "explanations": "<h3>Дозволи для ролей</h3><p><strong>Власник</strong> - призначення адміністраторів</p><p><strong>Адмін</strong> - редагувати налаштування, призначати модераторів</p><p><strong>Модератор</strong> - забирати дозвіл на публікацію дописів, закріплювати допис, встановлення додаткового опису</p><p><strong>Учасник</strong> - входить до списку керівних команд</p><p><strong>Гість</strong> - за замовчуванням; може писати дописи та коментувати</p><p><strong>Заборона писати</strong> - немає можливості писати нові дописи.</p>"
   },
   "community-settings": {
     "dialog-title": "Налаштування спільноти",
@@ -721,13 +721,13 @@
       "page-title": "Ecency ЧаПи",
       "page-sub-title": "Table of Contents",
       "what-is-ecency-header": "Що таке Ecency?",
-      "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based social network - powered by <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency offers uncensored, free, limitless, rewarding platform for content creators.</p><p>Project was initiated and founded by <a href=\"/@good-karma\">@good-karma</a> in August 2016 as an alternative social network. Since then project has grown to much larger group of contributors (translators, testers, developers, influencers, content creators and consumers) who helped to shape Ecency.</p><p>Ecency helps onboarding masses into Blockchain technology where users are getting paid for their time, resources and learn while enjoying social aspects of blockchain. Through ease of use, users not only learn but also become investors, innovators of the technology and community.</p>",
+      "what-is-ecency-body": "<p>Ecency - це соціальна мережа, заснована на <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">блокчейні</a>, що працює від <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency пропонує соціальну мережу без цензури, безкоштовну, безмежну, корисну платформу для творців вмісту.</p><p>Проєкт ініціював та заснував <a href=\"/@good-karma\">@good-karma</a> у серпні 2016 року, як альтернативну соціальну мережу. З того часу проєкт виріс до значно більшої групи учасників (перекладачі, тестувальники, розробники, впливові особистості, творці вмісту та споживачі) які допомогли сформувати Ecency.</p><p>Ecency допомагає інтегрувати маси людей у технологію Blockchain, де користувачі отримують гроші за свій час, ресурси та навчання, насолоджуючись соціальними аспектами блокчейну. Завдяки простоті використання користувачі не тільки навчаються, але й стають інвесторами, новаторами технологій та громад.</p>",
       "what-is-hive-header": "Що таке Hive блокчейн?",
       "what-is-hive-body": "<p>Hive - це блокчейн, розроблений як швидка, безоплатна, децентралізована, нецензурована платформа для додатків Web 3.0 із вбудованими функціями, де зацікавлені сторони можуть заробляти винагороду та стекаючи їх, інвестуючи, публікуючи, граючи в ігри, торгуючи - все без будь-якої середньої людини (децентралізована). Токени на блокчейні Hive під назвою HIVE, HIVE DOLLARS, HIVE POWER(сила).</p>",
       "what-is-difference-header": "У чому різниця між Ecency та іншими Hive інтерфейсами?",
       "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\" loading=\"lazy\"/></p><p>Основні відмінності у всіх інтерфейсах або додатках полягають у їх наборі функцій та можливостях використання. Ecency пропонує такі версії: веб-сайт, мобільні додатки для Adroind та iOS, комп'ютерну версію для MacOS та Windows, і все це для зручності доступу та найкращого рівня безпеки. Доступний, у відкритому джерелі та інноваційний, створений і належить користувачам. Прагніть величі!</p>",
       "why-choose-ecency-header": "Чому б я обрав Ecency?",
-      "why-choose-ecency-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjrzJAcJ4DvxvtqoPdzS9Aygf4MZ1PeE4goH6zWaeEFvafr9vGXWuou67Pbn44GweMyHV5DupM5q1cRvU85qdver?format=match&mode=fit\" loading=\"lazy\"/></p><p>Tailored feature set to empower you to create, inspire your audience and community. Ecency mobile application giving you on-go solution. With desktop app you are always sure to get uncensored content right from the blockchain, with website reach thousands of readers accross globe with best ranked content on search engines. State of art security measures so your keys will always stay encrypted and out of reach for ill-intentioned individuals. Fast and beautiful website, helps you to get discovered online and gain exposure for your content and gain loyal followers and readers. Build your community with Ecency today and take advantages of emerging blockchain technology and uncensored content, true free speech!</p>",
+      "why-choose-ecency-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjrzJAcJ4DvxvtqoPdzS9Aygf4MZ1PeE4goH6zWaeEFvafr9vGXWuou67Pbn44GweMyHV5DupM5q1cRvU85qdver?format=match&mode=fit\" loading=\"lazy\"/></p><p>Спеціальний набір функцій, який дає вам можливість створювати, надихати свою аудиторію та спільноту. Мобільний додаток Ecency, дає вам змогу бути завжди у мережі. Застосовуючи комп'ютерний додаток, ви завжди будете отримувати вміст без цензури прямо з блокчейну, а веб-сайт охоплює тисячі читачів по всьому світу з найкращим рейтингом вмісту в пошукових системах. Сучасні заходи безпеки, завдяки яким ваші ключі завжди залишатимуться зашифрованими та недоступними для недоброзичливих людей. Швидкий та гарний веб-сайт, допомагає вам бути відкритим в Інтернеті та отримати доступ до вашого вмісту, отримати вірних послідовників та читачів. Створіть свою спільноту сьогодні разом з Ecency та скористайтеся перевагами технологій блокчейну, що розвиваються без цензурованого вмісту зі справжньою свободою слова!</p>",
       "how-ecency-works-header": "Як працює Ecency?",
       "how-ecency-works-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjuZ3ksaZqEjfd9GadyKFE4bT7UP8qM1sF5W6U3cst4ekDsXfrQdcrjtdz6b5Ye2AfWNwGA5f8QqVXmed6NRfg1U?format=match&mode=fit\" loading=\"lazy\"/></p><p>Ecency зберігає та зчитує дані з блокчейну, а отже, дані є доступними та без цензури. Ecency винагороджує творців вмісту вбудованим механізмом стимулювання блокчейну, жетонами (HIVE, HIVE ДОЛАР, HIVE СИЛА), а також балами. Токени можна купувати та продавати на основних біржах криптовалют (наприклад, Binance, Bittrex). Бали можна використовувати на платформі та торгувати за товари, послуги.</p>",
       "how-to-join-header": "Як приєднатися до Ecency?",
@@ -750,7 +750,7 @@
       "how-see-rewards-body": "<p><img src=\"https://images.ecency.com/p/3W72119s5BjW4PvRk9nXBzqrPWMsMTjNrXDPFFf11iYhySeELMe77idrZHBPmyaqFX6CV72hBLB5qFhwVhGoAATydoFxAF7oCwBt1ztp6eS9r5us4pm7iN?format=match&mode=fit\" loading=\"lazy\"/></p><p>На сторінці Гаманця (у верхньому куті праворуч на веб-сайті чи додатку для комп'ютера або в нижній панелі навігації у мобільному додатку) ви можете побачити винагороди за курацію (винагороди, отримані за голосування дописів та коментарів) та винагороди автора (винагороди, отримані за ваші власні публікації дописів та коментарів)</p><p>Ви також можете переглянути ту саму інформацію для інших користувачів, відвідавши їхній профіль гаманця.</p>",
       "how-dhf-work-header": "Як працює ДВФ (DHF)?",
       "how-dhf-work-body": "<p>Anyone can create a proposal and convince community to vote on their proposal to get funded. Before creating proposal, normal post should be published on blockchain and it is recommended to gather feedback before creating proposal. Proposal creation has fee of 10 HBD + 1 HBD for each day it lasts over 60 days.</p><p>Once proposal reaches certain threshold of tallied votes, it will start receiving funds each hour. If proposal falls below threshold, system will halt funding for that proposal. You can vote as many proposals as you want, there are no limits. Proposal cannot be edited, but can be deleted/withdrawn by creator.</p>",
-      "when-claim-rewards-header": "When can I claim my rewards?",
+      "when-claim-rewards-header": "Коли я можу отримати винагороду?",
       "when-claim-rewards-body": "<p>Дописи та коментарі залишаються активними протягом 7 днів, а винагорода коливається залежно від голосів та ціни токену на ринку, тому винагороди приблизні, як очікувані винагороди. Коли період закінчиться, очікувані винагороди зміняться до фактичної винагороди, і ви можете претендувати на зароблені нагороди. У вашому гаманці натисніть кнопку \"Отримати винагороду\", щоб зарахувати токени до вашого рахунку.</p>",
       "what-are-rc-header": "Що таке кредитні ресурси?",
       "what-are-rc-body": "<p>Передача на блокчейні Hive має нульові збори, обмеження ставок на транзакції використовуються для захисту блокчейну від спам-атак. Кожна дія, яку ви вживаєте у блокчейн буде споживати невелику кількість ресурсних кредитів. Це включає публікацію, коментарі, голосування, переказ токенів тощо, перегляд вмісту не споживає кредитних ресурсів.</p><p>Кожен користувач має обмежену кількість кредитних ресурсів, які використовуються щотижня. Чим більше транзакцій користувач здійснює, тим менше ресурсів вони будуть мати у залишку (до поки вони не будуть відновлені). Користувачі, які мають більше Hive cили, мають більше запас кредитних ресурсів.</p><p>Якщо у вас закінчилися кредитні ресурси, ви не зможете здійснювати транзакцію з блокчейном, доки ваші ресурсні кредити не відновляться (це відбувається автоматично, впродовж доби) або ви можете отримати додаткову Hive силу для збільшення кредитих ресурсів, або ви можете <a href=\"/faq#how-boost-account\">попросити про підсилення вашої обліковки у Ecency</a> для отримання тимчасової делегації.</p>",
