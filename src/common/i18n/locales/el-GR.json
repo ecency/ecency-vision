@@ -72,6 +72,11 @@
     "bookmarks": "Σελιδοδείκτες",
     "logout": "Αποσύνδεση"
   },
+  "intro": {
+    "title": "Aspire to greatness",
+    "sub-title": "rewarding communities",
+    "c2a": "Get Started"
+  },
   "login": {
     "title": "Καλώς ήρθατε και πάλι!",
     "with-user-pass": "Συνδεθείτε με το όνομα χρήστη και το ιδιωτικό κλειδί.",
