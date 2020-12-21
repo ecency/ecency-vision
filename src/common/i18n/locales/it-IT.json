@@ -463,13 +463,13 @@
     "confirm-sub-title": "Prego, controlla se è tutto corretto",
     "confirm": "Conferma",
     "recent-transfers": "Trasferimenti recenti",
-    "transfer-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "transfer-saving-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "withdraw-saving-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "convert-summary": "<span class=\"amount\">{{amount}}</span> converted",
-    "power-up-summary": "<span class=\"amount\">{{amount}}</span> staked from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "power-down-summary": "Power down completed as <span class=\"amount\">{{amount}}</span>",
+    "transfer-summary": "<span class=\"amount\">{{amount}}</span> trasferiti da <span class=\"from-user\">{{from}}</span> a <span class=\"to-user\">{{to}}</span>",
+    "transfer-saving-summary": "<span class=\"amount\">{{amount}}</span> trasferiti da <span class=\"from-user\">{{from}}</span> a <span class=\"to-user\">{{to}}</span>",
+    "withdraw-saving-summary": "<span class=\"amount\">{{amount}}</span> trasferiti da <span class=\"from-user\">{{from}}</span> a <span class=\"to-user\">{{to}}</span>",
+    "convert-summary": "<span class=\"amount\">{{amount}}</span> convertiti",
+    "power-up-summary": "<span class=\"amount\">{{amount}}</span> investiti da <span class=\"from-user\">{{from}}</span> a <span class=\"to-user\">{{to}}</span>",
+    "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegati da <span class=\"from-user\">{{from}}</span> in favore di <span class=\"to-user\">{{to}}</span>",
+    "power-down-summary": "Depotenziamento completato in <span class=\"amount\">{{amount}}</span>",
     "reset": "Ripristina",
     "powering-down": "Depotenziamento attualmente in atto.",
     "stop-power-down": "Interrompi"
@@ -500,7 +500,7 @@
   },
   "delegated-vesting": {
     "title": "Delega Hive Power",
-    "undelegate": "undelegate"
+    "undelegate": "ritira ammontare delegato"
   },
   "received-vesting": {
     "title": "Ricevi Hive Power"
@@ -572,12 +572,12 @@
     "placeholder-empty": "Etichette. La prima etichetta è la categoria principale che classificherà il post.",
     "placeholder-focus": "Inserisci etichetta",
     "placeholder-has-tags": "Aggiungi di più",
-    "suggestion-header": "Tags",
+    "suggestion-header": "Tag",
     "error-max": "Al massimo {{n}} etichette"
   },
   "community-selector": {
-    "my-blog": "My Blog",
-    "search-placeholder": "Search Communities"
+    "my-blog": "Il mio blog",
+    "search-placeholder": "Cerca Community"
   },
   "word-count": {
     "label": "{{n}} parole",
@@ -751,17 +751,17 @@
       "how-dhf-work-header": "Come funziona il DHF (Decentralized Hive Fund)?",
       "how-dhf-work-body": "<p>Anyone can create a proposal and convince community to vote on their proposal to get funded. Before creating proposal, normal post should be published on blockchain and it is recommended to gather feedback before creating proposal. Proposal creation has fee of 10 HBD + 1 HBD for each day it lasts over 60 days.</p><p>Once proposal reaches certain threshold of tallied votes, it will start receiving funds each hour. If proposal falls below threshold, system will halt funding for that proposal. You can vote as many proposals as you want, there are no limits. Proposal cannot be edited, but can be deleted/withdrawn by creator.</p>",
       "when-claim-rewards-header": "Quando posso richiedere le mie ricompense?",
-      "when-claim-rewards-body": "<p>Posts and comments remain active for 7 days and rewards are fluctuates depending on votes and market price of token, that is why rewards are approximated as pending reward. When the period is over, pending reward changes to actual reward and you are able to claim earned rewards. In your Wallet, click the Claim Rewards button to add the tokens to your account.</p>",
+      "when-claim-rewards-body": "<p>Post e commenti rimangono aperti per 7 giorni e le ricompense fluttuano in dipendenza dei voti e del prezzo di mercato del token: questo è il motivo per cui le ricompense vengono indicate soltanto approssimativamente nel pagamento in attesa. Quando termina il periodo, la ricompensa in attesa matura in valore attuale e tu potrai riscuotere l'intero ammontare guadagnato. Una volta raggiunto il tuo portafoglio, clicca il pulsante Riscuoti Ricompense per aggiungere i token al tuo conto.</p>",
       "what-are-rc-header": "Che cosa sono i crediti di risorsa?",
       "what-are-rc-body": "<p>Transacting on the Hive blockchain has zero fees, transaction rate-limiting is employed to safeguard the blockchain from spam attacks. Every action that you take on the blockchain will consume a small amount of Resource Credits. This includes posting, commenting, voting, transferring tokens, etc. Viewing content does not consume Resource Credits.</p><p>Every user has a limited amount of Resource Credits to use each week. The more transactions a user does, the less Resource Credits they will have left (until they recharge). Users with more HIVE POWER will have more Resource Credits.</p><p>If you run out of Resource Credits, you will be unable to transact with the blockchain until your Resource Credits recharge (happens automatically) or you acquire additional HIVE POWER to increase your Resource Credit balance or you can <a href=\"/faq#how-boost-account\">request Boosting account from Ecency</a> to receive temporary delegation.</p>",
       "how-boost-account-header": "Come richiedere il boost dell'account?",
-      "how-boost-account-body": "<p>If your account is low on <a href=\"/faq#what-are-rc\">Resource Credits</a>, you can request account boosting from Ecency. You will receive temporary delegation which should boost your account to perform more activities on blockchain. You can find account boosting feature in Points options.</p>",
+      "how-boost-account-body": "<p>Se il tuo account scarseggia di <a href=\"/faq#what-are-rc\">crediti di risorse</a>, puoi richiedere un boost dell'account ad Ecency. Riceverai una delega temporanea che ti permetterà di portare a termine più attività sulla blockchain. Puoi trovare le funzioni di boost dell'account nella sezione Punti.</p>",
       "what-spam-abuse-header": "Che cosa è considerato spam o uso illecito?",
       "what-spam-abuse-body": "<p><img src=\"https://images.ecency.com/p/3jpR3paJ37V8XPrHkfZdMt57jY6pRt6zEt5iRJV9pSw4Mez3Hut8U6RWvWLA7cFYEa1bxveXeasNfZApzrcLYLx8cz84kBEKak1KkewE2ZqE1QRRkF4eqRH3vWVqZB9WuNbzE?format=match&mode=fit\" loading=\"lazy\"/></p><p><ul><li>Plagiarized posts or copied content.</li><li>Leaving nearly identical or materially similar comments on multiple posts.</li><li>Using tags that are unrelated to the post.</li><li>Threatening users with any type of physical violence.</li><li>Not citing sources when using someone else’s material.</li><li>Posting ‘not safe for work’ content without using the “nsfw” tag.</li><li>Scams or Fraudulent offers.</li></ul></p>",
       "can-link-post-header": "Posso richiedere di aggiungere un backlink al mio sito web al team Ecency?",
-      "can-link-post-body": "<p>All the content on our site is created by our users and we don't modify or able to add backlinks. You are free to contact author of the post or <a href=\"/?referral=ecency\">Signup</a> to open your own blog and community, publish articles to create backlinks for free.</p>",
+      "can-link-post-body": "<p>Tutto ciò che il nostro sito contiene è stato creato dai nostri utenti e non siamo in grado di modificare o aggiungere collegamenti. Sei libero di contattare l'autore del post oppure <a href=\"/?referral=ecency\">Registrarti</a> per aprire il tuo blog e avviare la tua community, pubblicando articoli e generando backlink (link di ritorno) gratuitamente.</p>",
       "can-guest-post-header": "È possibile ospitare post sul tuo sito web?",
-      "can-guest-post-body": "<p>Posting on Ecency is simple and easy, <a href=\"/?referral=ecency\">Signup</a> to open your own blog and community, start posting your content.</p>"
+      "can-guest-post-body": "<p>Postare su Ecency è super semplice, <a href=\"/?referral=ecency\">Registrati</a> per aprire il tuo blog e la tua community, iniziando a postare ciò che vuoi.</p>"
     }
   },
   "context-menu": {
