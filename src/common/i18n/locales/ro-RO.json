@@ -72,6 +72,11 @@
     "bookmarks": "Bookmarks",
     "logout": "Deconectare"
   },
+  "intro": {
+    "title": "Aspire to greatness",
+    "sub-title": "rewarding communities",
+    "c2a": "Get Started"
+  },
   "login": {
     "title": "Bine ai revenit!",
     "with-user-pass": "Login with your username and private key.",
