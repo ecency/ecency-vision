@@ -72,6 +72,11 @@
     "bookmarks": "Žymės",
     "logout": "Atsijungti"
   },
+  "intro": {
+    "title": "Aspire to greatness",
+    "sub-title": "rewarding communities",
+    "c2a": "Get Started"
+  },
   "login": {
     "title": "Sveiki sugrįžę!",
     "with-user-pass": "Prisijunkite naudodami vartotojo vardą ir privatų raktą.",
