@@ -214,7 +214,7 @@ exports[`(1) Default render 1`] = `
           <option
             value="hi-IN"
           >
-            Hindī
+            हिन्दी
           </option>
           <option
             value="id-ID"
@@ -235,6 +235,11 @@ exports[`(1) Default render 1`] = `
             value="fi-FI"
           >
             Suomi
+          </option>
+          <option
+            value="uk-UA"
+          >
+            Українська
           </option>
         </select>
       </div>

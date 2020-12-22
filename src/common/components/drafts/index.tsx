@@ -97,8 +97,16 @@ export class ListItem extends Component<ItemProps> {
                     </div>
                 </div>
                 <div className="item-summary">
-                    <div className="item-title">{draft.title}</div>
-                    <div className="item-body">{summary}</div>
+                    <div className="item-title">
+                        <a onClick={() => { editFn(draft) }}>
+                            {draft.title}
+                        </a>
+                    </div>
+                    <div className="item-body">
+                        <a onClick={() => { editFn(draft) }}>
+                            {summary}
+                        </a>
+                    </div>
                 </div>
                 <div className="item-controls">
                     <PopoverConfirm onConfirm={() => {
