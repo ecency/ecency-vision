@@ -553,6 +553,7 @@
     "title-placeholder": "Title",
     "body-placeholder": "Post Content",
     "reward": "Reward",
+    "reward-hint": "Reward lorem ipsum dolor sit amet, consectetur adipiscing elit",
     "reward-default": "Default 50% / 50%",
     "reward-sp": "Power Up 100%",
     "reward-dp": "Decline Payout",
@@ -566,7 +567,11 @@
     "cancel-update": "Cancel",
     "clear": "Clear",
     "published": "Post Published",
-    "updated": "Post Updated"
+    "updated": "Post Updated",
+    "advanced": "Advanced",
+    "author": "Author",
+    "author-hint": "Author lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "author-error": "Not a valid user: {{n}}"
   },
   "tag-selector": {
     "placeholder-empty": "Tags. First tag is main category. Sortable.",

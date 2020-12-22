@@ -10,7 +10,7 @@ import isEqual from "react-fast-compare";
 
 import {History} from "history";
 
-import {Form, FormControl, Button, Spinner} from "react-bootstrap";
+import {Form, FormControl, Button, Spinner, Col, Row} from "react-bootstrap";
 
 import moment from "moment";
 
@@ -135,6 +135,8 @@ interface State extends PostBase {
     editingEntry: Entry | null;
     saving: boolean;
     editingDraft: Draft | null;
+    advanced: boolean;
+    customAuthor: string;
     reblogSwitch: boolean;
 }
 
@@ -148,6 +150,8 @@ class SubmitPage extends Component<Props, State> {
         editingEntry: null,
         saving: false,
         editingDraft: null,
+        advanced: false,
+        customAuthor: "",
         reblogSwitch: false,
         preview: {
             title: "",
@@ -340,6 +344,11 @@ class SubmitPage extends Component<Props, State> {
         this.stateSet({reward});
     };
 
+    customAuthorChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+        const customAuthor = e.target.value.trim();
+        this.stateSet({customAuthor});
+    };
+
     clear = (): void => {
         this.stateSet({title: "", tags: [], body: ""});
         this.updatePreview();
@@ -350,6 +359,11 @@ class SubmitPage extends Component<Props, State> {
             history.push('/submit');
         }
     };
+
+    toggleAdvanced = (): void => {
+        const {advanced} = this.state;
+        this.stateSet({advanced: !advanced})
+    }
 
     updatePreview = (): void => {
         if (this._updateTimer) {
@@ -368,18 +382,37 @@ class SubmitPage extends Component<Props, State> {
 
     publish = async (): Promise<void> => {
         const {activeUser, history, addEntry} = this.props;
-        const {title, tags, body, reward, reblogSwitch} = this.state;
+        const {title, tags, body, reward, customAuthor, reblogSwitch} = this.state;
 
+        // make sure active user fully loaded
         if (!activeUser || !activeUser.data.__loaded) {
             return;
         }
 
         this.stateSet({posting: true});
 
-        const author = activeUser.username;
+        let author: string;
+        let authorData: FullAccount | undefined = undefined;
+
+        if (customAuthor) {
+            author = customAuthor;
+            try {
+                authorData = await hiveApi.getAccount(customAuthor);
+            } catch (e) {
+            }
+        } else {
+            author = activeUser.username;
+            authorData = activeUser.data as FullAccount;
+        }
+
+        if (!authorData) {
+            error(_t("submit.author-error", {n: customAuthor}));
+            return;
+        }
+
         let permlink = createPermlink(title);
 
-        // If permlink has already used, create it again with random suffix
+        // permlink duplication check
         let c;
         try {
             c = await bridgeApi.getPost(author, permlink);
@@ -390,6 +423,7 @@ class SubmitPage extends Component<Props, State> {
         }
 
         if (c && c.author) {
+            // create permlink with random suffix
             permlink = createPermlink(title, true);
         }
 
@@ -405,7 +439,7 @@ class SubmitPage extends Component<Props, State> {
                 // Create entry object in store
                 const entry = {
                     ...tempEntry({
-                        author: activeUser.data as FullAccount,
+                        author: authorData!,
                         permlink,
                         parentAuthor: "",
                         parentPermlink,
@@ -519,7 +553,7 @@ class SubmitPage extends Component<Props, State> {
     }
 
     render() {
-        const {title, tags, body, reward, preview, posting, editingEntry, saving, editingDraft} = this.state;
+        const {title, tags, body, reward, preview, posting, editingEntry, saving, editingDraft, advanced, customAuthor} = this.state;
 
         //  Meta config
         const metaProps = {
@@ -546,7 +580,7 @@ class SubmitPage extends Component<Props, State> {
                     NavBar({...this.props})}
 
                 <div className={_c(`app-content submit-page ${editingEntry !== null ? "editing" : ""}`)}>
-                    <div className="editor-side">
+                    <div className="editor-panel">
                         {(editingEntry === null && activeUser) && <div className="community-input">
                             {CommunitySelector({
                                 ...this.props,
@@ -594,29 +628,18 @@ class SubmitPage extends Component<Props, State> {
                         </div>
                         {editingEntry === null && (
                             <div className="bottom-toolbar">
-                                <div className="reward">
-                                    <span>{_t("submit.reward")}</span>
-                                    <Form.Control as="select" value={reward} onChange={this.rewardChanged}>
-                                        <option value="default">{_t("submit.reward-default")}</option>
-                                        <option value="sp">{_t("submit.reward-sp")}</option>
-                                        <option value="dp">{_t("submit.reward-dp")}</option>
-                                    </Form.Control>
-                                </div>
-                                <Button variant="light" onClick={this.clear}>
+                                <Button variant="outline-info" onClick={this.clear}>
                                     {_t("submit.clear")}
+                                </Button>
+                                <Button variant="outline-primary" onClick={this.toggleAdvanced}>
+                                    {advanced ? _t("submit.preview") : _t("submit.advanced")}
                                 </Button>
                             </div>
                         )}
                     </div>
                     <div className="flex-spacer"/>
-                    <div className="preview-side">
-                        <div className="preview-header">
-                            <h2 className="preview-header-title">{_t("submit.preview")}</h2>
-
-                            <WordCount selector=".preview-body" watch={true}/>
-                        </div>
-                        <PreviewContent history={this.props.history} global={this.props.global} {...preview} />
-                        <div className="bottom-toolbar">
+                    {(() => {
+                        const toolBar = <div className="bottom-toolbar">
                             {editingEntry === null && (
                                 <>
                                     <span/>
@@ -657,8 +680,52 @@ class SubmitPage extends Component<Props, State> {
                                     })}
                                 </>
                             )}
-                        </div>
-                    </div>
+                        </div>;
+
+                        if (advanced) {
+                            return <div className="advanced-panel">
+                                <div className="panel-header">
+                                    <h2 className="panel-header-title">{_t("submit.advanced")}</h2>
+                                </div>
+                                <div className="panel-body">
+                                    <div className="container">
+                                        <Form.Group as={Row}>
+                                            <Form.Label column={true} sm="2">
+                                                {_t("submit.reward")}
+                                            </Form.Label>
+                                            <Col sm="10">
+                                                <Form.Control as="select" value={reward} onChange={this.rewardChanged}>
+                                                    <option value="default">{_t("submit.reward-default")}</option>
+                                                    <option value="sp">{_t("submit.reward-sp")}</option>
+                                                    <option value="dp">{_t("submit.reward-dp")}</option>
+                                                </Form.Control>
+                                                <Form.Text muted={true}>{_t("submit.reward-hint")}</Form.Text>
+                                            </Col>
+                                        </Form.Group>
+                                        <Form.Group as={Row}>
+                                            <Form.Label column={true} sm="2">
+                                                {_t("submit.author")}
+                                            </Form.Label>
+                                            <Col sm="10">
+                                                <Form.Control maxLength={20} value={customAuthor} onChange={this.customAuthorChanged}/>
+                                                <Form.Text muted={true}>{_t("submit.author-hint")}</Form.Text>
+                                            </Col>
+                                        </Form.Group>
+                                    </div>
+                                </div>
+                                {toolBar}
+                            </div>
+                        }
+
+                        return <div className="preview-panel">
+                            <div className="panel-header">
+                                <h2 className="panel-header-title">{_t("submit.preview")}</h2>
+                                <WordCount selector=".preview-body" watch={true}/>
+                            </div>
+                            <PreviewContent history={this.props.history} global={this.props.global} {...preview} />
+                            {toolBar}
+                        </div>;
+                    })()}
                 </div>
             </>
         );
