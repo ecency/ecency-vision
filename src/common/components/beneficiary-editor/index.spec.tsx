@@ -6,8 +6,8 @@ import TestRenderer from "react-test-renderer";
 
 const defProps = {
     list: [{
-        username: "foo",
-        percentage: 10
+        account: "foo",
+        weight: 1000
     }],
     onAdd: () => {
     },

@@ -4,21 +4,18 @@ import {Button, Modal, Form, InputGroup, FormControl} from "react-bootstrap";
 
 import {error} from "../feedback";
 
+import {BeneficiaryRoute} from "../../api/operations";
+
 import {getAccount} from "../../api/hive";
 
 import {_t} from "../../i18n";
 
 import {plusSvg, deleteForeverSvg} from "../../img/svg";
 
-export interface Beneficiary {
-    username: string;
-    percentage: number;
-}
-
 interface Props {
     author?: string;
-    list: Beneficiary[];
-    onAdd: (item: Beneficiary) => void;
+    list: BeneficiaryRoute[];
+    onAdd: (item: BeneficiaryRoute) => void;
     onDelete: (username: string) => void;
 }
 
@@ -61,7 +58,7 @@ export class DialogBody extends Component<Props, DialogBodyState> {
         const {list, author} = this.props;
         const {username, percentage, inProgress} = this.state;
 
-        const used = list.reduce((a, b) => a + b.percentage, 0);
+        const used = list.reduce((a, b) => a + b.weight / 100, 0);
         const available = 100 - used;
 
         return <Form ref={this.form} onSubmit={(e: React.FormEvent) => {
@@ -75,7 +72,7 @@ export class DialogBody extends Component<Props, DialogBodyState> {
             const {onAdd, list} = this.props;
             const {username, percentage} = this.state;
 
-            if (list.find(x => x.username === username) !== undefined) {
+            if (list.find(x => x.account === username) !== undefined) {
                 error(_t("beneficiary-editor.user-exists-error", {n: username}));
                 return;
             }
@@ -88,8 +85,8 @@ export class DialogBody extends Component<Props, DialogBodyState> {
                 }
 
                 onAdd({
-                    username,
-                    percentage: Number(percentage)
+                    account: username,
+                    weight: Number(percentage) * 100
                 });
 
                 this.stateSet({username: "", percentage: ""});
@@ -134,12 +131,12 @@ export class DialogBody extends Component<Props, DialogBodyState> {
                         <td><Button disabled={inProgress || available < 1} size="sm" type="submit">{plusSvg}</Button></td>
                     </tr>
                     {list.map(x => {
-                        return <tr key={x.username}>
-                            <td>{`@${x.username}`}</td>
-                            <td>{`${x.percentage}%`}</td>
+                        return <tr key={x.account}>
+                            <td>{`@${x.account}`}</td>
+                            <td>{`${x.weight / 100}%`}</td>
                             <td><Button onClick={() => {
                                 const {onDelete} = this.props;
-                                onDelete(x.username);
+                                onDelete(x.account);
                             }} variant="danger" size="sm">{deleteForeverSvg}</Button></td>
                         </tr>
                     })}

@@ -67,6 +67,14 @@ describe("makeCommentOptions", () => {
     it("(3) Decline Payout", () => {
         expect(makeCommentOptions("talhasch", "lorem-ipsum-1", "dp")).toMatchSnapshot();
     });
+
+    it("(4) Empty beneficiary list", () => {
+        expect(makeCommentOptions("talhasch", "lorem-ipsum-1", "default", [])).toMatchSnapshot();
+    });
+
+    it("(5) With beneficiary list", () => {
+        expect(makeCommentOptions("talhasch", "lorem-ipsum-1", "default", [{account: "foo", weight: 300}, {account: "bar", weight: 200}])).toMatchSnapshot();
+    });
 });
 
 describe('makeJsonMetadataReply', () => {

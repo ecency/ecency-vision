@@ -43,7 +43,7 @@ import WordCount from "../components/word-counter";
 import {makePath as makePathEntry} from "../components/entry-link";
 import {error, success} from "../components/feedback";
 import MdHandler from "../components/md-handler";
-import BeneficiaryEditor, {Beneficiary} from "../components/beneficiary-editor";
+import BeneficiaryEditor from "../components/beneficiary-editor";
 
 import {getDrafts, addDraft, updateDraft, Draft} from "../api/private";
 
@@ -52,7 +52,7 @@ import {createPermlink, extractMetaData, makeJsonMetaData, makeCommentOptions, c
 import tempEntry, {correctIsoDate} from "../helper/temp-entry";
 import isCommunity from "../helper/is-community" ;
 
-import {RewardType, comment, reblog, formatError} from "../api/operations";
+import {RewardType, comment, reblog, formatError, BeneficiaryRoute} from "../api/operations";
 
 import * as bridgeApi from "../api/bridge";
 import * as hiveApi from "../api/hive";
@@ -138,7 +138,7 @@ interface State extends PostBase {
     editingDraft: Draft | null;
     advanced: boolean;
     customAuthor: string;
-    beneficiaries: Beneficiary[];
+    beneficiaries: BeneficiaryRoute[];
     reblogSwitch: boolean;
 }
 
@@ -723,7 +723,7 @@ class SubmitPage extends Component<Props, State> {
                                                     const b = [...beneficiaries, item];
                                                     this.stateSet({beneficiaries: b});
                                                 }} onDelete={(username) => {
-                                                    const b = [...beneficiaries.filter(x => x.username !== username)];
+                                                    const b = [...beneficiaries.filter(x => x.account !== username)];
                                                     this.stateSet({beneficiaries: b});
                                                 }}/>
                                                 <Form.Text muted={true}>{_t("submit.beneficiaries-hint")}</Form.Text>
