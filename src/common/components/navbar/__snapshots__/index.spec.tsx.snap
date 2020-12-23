@@ -126,88 +126,96 @@ Array [
         </div>
       </div>
       <div
-        className="switch-language"
+        className="switch-menu"
       >
         <div
-          className="custom-dropdown float-left"
+          className="switch-theme"
           onClick={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div
-            className="dropdown-btn "
-          >
-            <div
-              className="label"
-            >
-              
-            </div>
-            <div
-              className="menu-down"
-            >
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M12.87,15.07L10.33,12.56L10.36,12.53C12.1,10.59 13.34,8.36 14.07,6H17V4H10V2H8V4H1V6H12.17C11.5,7.92 10.44,9.75 9,11.35C8.07,10.32 7.3,9.19 6.69,8H4.69C5.42,9.63 6.42,11.17 7.67,12.56L2.58,17.58L4,19L9,14L12.11,17.11L12.87,15.07M18.5,10H16.5L12,22H14L15.12,19H19.87L21,22H23L18.5,10M15.88,17L17.5,12.67L19.12,17H15.88Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        className="switch-theme"
-        onClick={[Function]}
-        title="Night Theme"
-      >
-        <svg
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z"
-            fill="currentColor"
-          />
-        </svg>
-      </div>
-      <div
-        className="login-required"
-      >
-        <button
-          className="btn btn-outline-primary"
-          disabled={false}
-          onClick={[Function]}
-          type="button"
-        >
-          Login
-        </button>
-        <a
-          className="btn btn-primary"
-          href="/signup"
-          onClick={[Function]}
-        >
-          Signup
-        </a>
-      </div>
-      <div
-        className="submit-post"
-      >
-        <a
-          className="btn btn-outline-primary"
-          href="/submit"
-          onClick={[Function]}
-          title="Create Post"
+          title="Night Theme"
         >
           <svg
             viewBox="0 0 24 24"
           >
             <path
-              d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"
+              d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z"
               fill="currentColor"
             />
           </svg>
-        </a>
+        </div>
+        <div
+          className="switch-language"
+        >
+          <div
+            className="custom-dropdown float-right"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            <div
+              className="dropdown-btn "
+            >
+              <div
+                className="label"
+              >
+                
+              </div>
+              <div
+                className="menu-down"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12.87,15.07L10.33,12.56L10.36,12.53C12.1,10.59 13.34,8.36 14.07,6H17V4H10V2H8V4H1V6H12.17C11.5,7.92 10.44,9.75 9,11.35C8.07,10.32 7.3,9.19 6.69,8H4.69C5.42,9.63 6.42,11.17 7.67,12.56L2.58,17.58L4,19L9,14L12.11,17.11L12.87,15.07M18.5,10H16.5L12,22H14L15.12,19H19.87L21,22H23L18.5,10M15.88,17L17.5,12.67L19.12,17H15.88Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="btn-menu"
+      >
+        <div
+          className="login-required"
+        >
+          <button
+            className="btn btn-outline-primary"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            Login
+          </button>
+          <a
+            className="btn btn-primary"
+            href="/signup"
+            onClick={[Function]}
+          >
+            Signup
+          </a>
+        </div>
+        <div
+          className="submit-post"
+        >
+          <a
+            className="btn btn-outline-primary"
+            href="/submit"
+            onClick={[Function]}
+            title="Create Post"
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"
+                fill="currentColor"
+              />
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
     <audio
@@ -351,88 +359,96 @@ Array [
         </div>
       </div>
       <div
-        className="switch-language"
+        className="switch-menu"
       >
         <div
-          className="custom-dropdown float-left"
+          className="switch-theme"
           onClick={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div
-            className="dropdown-btn "
-          >
-            <div
-              className="label"
-            >
-              
-            </div>
-            <div
-              className="menu-down"
-            >
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M12.87,15.07L10.33,12.56L10.36,12.53C12.1,10.59 13.34,8.36 14.07,6H17V4H10V2H8V4H1V6H12.17C11.5,7.92 10.44,9.75 9,11.35C8.07,10.32 7.3,9.19 6.69,8H4.69C5.42,9.63 6.42,11.17 7.67,12.56L2.58,17.58L4,19L9,14L12.11,17.11L12.87,15.07M18.5,10H16.5L12,22H14L15.12,19H19.87L21,22H23L18.5,10M15.88,17L17.5,12.67L19.12,17H15.88Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        className="switch-theme"
-        onClick={[Function]}
-        title="Day Theme"
-      >
-        <svg
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z"
-            fill="currentColor"
-          />
-        </svg>
-      </div>
-      <div
-        className="login-required"
-      >
-        <button
-          className="btn btn-outline-primary"
-          disabled={false}
-          onClick={[Function]}
-          type="button"
-        >
-          Login
-        </button>
-        <a
-          className="btn btn-primary"
-          href="/signup"
-          onClick={[Function]}
-        >
-          Signup
-        </a>
-      </div>
-      <div
-        className="submit-post"
-      >
-        <a
-          className="btn btn-outline-primary"
-          href="/submit"
-          onClick={[Function]}
-          title="Create Post"
+          title="Day Theme"
         >
           <svg
             viewBox="0 0 24 24"
           >
             <path
-              d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"
+              d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z"
               fill="currentColor"
             />
           </svg>
-        </a>
+        </div>
+        <div
+          className="switch-language"
+        >
+          <div
+            className="custom-dropdown float-right"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            <div
+              className="dropdown-btn "
+            >
+              <div
+                className="label"
+              >
+                
+              </div>
+              <div
+                className="menu-down"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12.87,15.07L10.33,12.56L10.36,12.53C12.1,10.59 13.34,8.36 14.07,6H17V4H10V2H8V4H1V6H12.17C11.5,7.92 10.44,9.75 9,11.35C8.07,10.32 7.3,9.19 6.69,8H4.69C5.42,9.63 6.42,11.17 7.67,12.56L2.58,17.58L4,19L9,14L12.11,17.11L12.87,15.07M18.5,10H16.5L12,22H14L15.12,19H19.87L21,22H23L18.5,10M15.88,17L17.5,12.67L19.12,17H15.88Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="btn-menu"
+      >
+        <div
+          className="login-required"
+        >
+          <button
+            className="btn btn-outline-primary"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            Login
+          </button>
+          <a
+            className="btn btn-primary"
+            href="/signup"
+            onClick={[Function]}
+          >
+            Signup
+          </a>
+        </div>
+        <div
+          className="submit-post"
+        >
+          <a
+            className="btn btn-outline-primary"
+            href="/submit"
+            onClick={[Function]}
+            title="Create Post"
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"
+                fill="currentColor"
+              />
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
     <audio
@@ -576,69 +592,77 @@ Array [
         </div>
       </div>
       <div
-        className="switch-language"
+        className="switch-menu"
       >
         <div
-          className="custom-dropdown float-left"
+          className="switch-theme"
           onClick={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div
-            className="dropdown-btn "
-          >
-            <div
-              className="label"
-            >
-              
-            </div>
-            <div
-              className="menu-down"
-            >
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M12.87,15.07L10.33,12.56L10.36,12.53C12.1,10.59 13.34,8.36 14.07,6H17V4H10V2H8V4H1V6H12.17C11.5,7.92 10.44,9.75 9,11.35C8.07,10.32 7.3,9.19 6.69,8H4.69C5.42,9.63 6.42,11.17 7.67,12.56L2.58,17.58L4,19L9,14L12.11,17.11L12.87,15.07M18.5,10H16.5L12,22H14L15.12,19H19.87L21,22H23L18.5,10M15.88,17L17.5,12.67L19.12,17H15.88Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        className="switch-theme"
-        onClick={[Function]}
-        title="Night Theme"
-      >
-        <svg
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z"
-            fill="currentColor"
-          />
-        </svg>
-      </div>
-      <div
-        className="submit-post"
-      >
-        <a
-          className="btn btn-outline-primary"
-          href="/submit"
-          onClick={[Function]}
-          title="Create Post"
+          title="Night Theme"
         >
           <svg
             viewBox="0 0 24 24"
           >
             <path
-              d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"
+              d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z"
               fill="currentColor"
             />
           </svg>
-        </a>
+        </div>
+        <div
+          className="switch-language"
+        >
+          <div
+            className="custom-dropdown float-right"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            <div
+              className="dropdown-btn "
+            >
+              <div
+                className="label"
+              >
+                
+              </div>
+              <div
+                className="menu-down"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12.87,15.07L10.33,12.56L10.36,12.53C12.1,10.59 13.34,8.36 14.07,6H17V4H10V2H8V4H1V6H12.17C11.5,7.92 10.44,9.75 9,11.35C8.07,10.32 7.3,9.19 6.69,8H4.69C5.42,9.63 6.42,11.17 7.67,12.56L2.58,17.58L4,19L9,14L12.11,17.11L12.87,15.07M18.5,10H16.5L12,22H14L15.12,19H19.87L21,22H23L18.5,10M15.88,17L17.5,12.67L19.12,17H15.88Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="btn-menu"
+      >
+        <div
+          className="submit-post"
+        >
+          <a
+            className="btn btn-outline-primary"
+            href="/submit"
+            onClick={[Function]}
+            title="Create Post"
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"
+                fill="currentColor"
+              />
+            </svg>
+          </a>
+        </div>
       </div>
       <div
         className="user-nav"
