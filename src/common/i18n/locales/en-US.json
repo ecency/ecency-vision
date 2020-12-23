@@ -26,7 +26,8 @@
     "on": "On",
     "off": "Off",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "done": "Done"
   },
   "confirm": {
     "title": "Are you sure?",

@@ -178,6 +178,9 @@ export default class BeneficiaryEditorDialog extends Component<Props, State> {
                     <Modal.Body>
                         <DialogBody {...this.props} />
                     </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="primary" onClick={this.toggle}>{_t("g.done")}</Button>
+                    </Modal.Footer>
                 </Modal>
             )}
         </>;

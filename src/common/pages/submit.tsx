@@ -385,7 +385,7 @@ class SubmitPage extends Component<Props, State> {
 
     publish = async (): Promise<void> => {
         const {activeUser, history, addEntry} = this.props;
-        const {title, tags, body, reward, customAuthor, reblogSwitch} = this.state;
+        const {title, tags, body, reward, customAuthor, reblogSwitch, beneficiaries} = this.state;
 
         // make sure active user fully loaded
         if (!activeUser || !activeUser.data.__loaded) {
@@ -433,7 +433,7 @@ class SubmitPage extends Component<Props, State> {
         const [parentPermlink] = tags;
         const meta = extractMetaData(body);
         const jsonMeta = makeJsonMetaData(meta, tags, version);
-        const options = makeCommentOptions(author, permlink, reward);
+        const options = makeCommentOptions(author, permlink, reward, beneficiaries);
 
         this.stateSet({posting: true});
         comment(author, "", parentPermlink, permlink, title, body, jsonMeta, options, true)
@@ -720,7 +720,7 @@ class SubmitPage extends Component<Props, State> {
                                             </Form.Label>
                                             <Col sm="9">
                                                 <BeneficiaryEditor author={customAuthor || activeUser?.username} list={beneficiaries} onAdd={(item) => {
-                                                    const b = [...beneficiaries, item];
+                                                    const b = [...beneficiaries, item].sort((a, b) => a.account < b.account ? -1 : 1);
                                                     this.stateSet({beneficiaries: b});
                                                 }} onDelete={(username) => {
                                                     const b = [...beneficiaries.filter(x => x.account !== username)];
