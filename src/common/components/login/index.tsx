@@ -76,7 +76,7 @@ export class LoginKc extends Component<LoginKcProps, LoginKcState> {
 
     usernameChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
         const {value: username} = e.target;
-        this.stateSet({username: username.trim()});
+        this.stateSet({username: username.trim().toLowerCase()});
     }
 
     inputKeyDown = (e: React.KeyboardEvent) => {
@@ -313,7 +313,7 @@ export class Login extends Component<LoginProps, State> {
 
     usernameChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
         const {value: username} = e.target;
-        this.stateSet({username: username.trim()});
+        this.stateSet({username: username.trim().toLowerCase()});
     }
 
     keyChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
