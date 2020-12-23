@@ -352,7 +352,7 @@ class SubmitPage extends Component<Props, State> {
     };
 
     clear = (): void => {
-        this.stateSet({title: "", tags: [], body: ""});
+        this.stateSet({title: "", tags: [], body: "", reward: "default", beneficiaries: []});
         this.updatePreview();
 
         const {editingDraft} = this.state;
