@@ -189,10 +189,16 @@ class SubmitPage extends Component<Props, State> {
     componentDidUpdate(prevProps: Readonly<Props>) {
         const {activeUser, location} = this.props;
 
-        // after first initial
+        // active user changed
         if (activeUser?.username !== prevProps.activeUser?.username) {
-            this.detectEntry().then();
-            this.detectDraft().then();
+            // delete active user from beneficiaries list
+            if (activeUser) {
+                const {beneficiaries} = this.state;
+                if (beneficiaries.find(x => x.account === activeUser.username)) {
+                    const b = [...beneficiaries.filter(x => x.account !== activeUser.username)];
+                    this.stateSet({beneficiaries: b});
+                }
+            }
         }
 
         // location change. only occurs once a draft picked on drafts dialog
