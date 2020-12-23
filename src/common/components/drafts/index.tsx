@@ -86,7 +86,9 @@ export class ListItem extends Component<ItemProps> {
                 </div>
             </div>
             <div className="item-body">
-                <div className="item-image">
+                <div className="item-image" onClick={() => {
+                    editFn(draft)
+                }}>
                     <div>
                         <img
                             alt={draft.title}
