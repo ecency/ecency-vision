@@ -73,28 +73,30 @@ class SearchListItem extends Component<Props> {
 
         return <div className="search-list-item">
             <div className="item-header">
-                <div className="author-part">
-                    {ProfileLink({
+                <div className="item-header-main">
+                    <div className="author-part">
+                        {ProfileLink({
+                            ...this.props,
+                            username: res.author,
+                            children: <a className="author-avatar">{UserAvatar({...this.props, username: res.author, size: "small"})}</a>
+                        })}
+                        {ProfileLink({
+                            ...this.props,
+                            username: res.author,
+                            children: <div className="author">{res.author}
+                                <span className="author-reputation">{reputation}</span>
+                            </div>
+                        })}
+                    </div>
+                    {Tag({
                         ...this.props,
-                        username: res.author,
-                        children: <a className="author-avatar">{UserAvatar({...this.props, username: res.author, size: "small"})}</a>
+                        tag: res.category,
+                        type: "link",
+                        children: <a className="category">{res.category}</a>
                     })}
-                    {ProfileLink({
-                        ...this.props,
-                        username: res.author,
-                        children: <div className="author">{res.author}
-                            <span className="author-reputation">{reputation}</span>
-                        </div>
-                    })}
-                </div>
-                {Tag({
-                    ...this.props,
-                    tag: res.category,
-                    type: "link",
-                    children: <a className="category">{res.category}</a>
-                })}
 
-                <span className="date" title={dateFormatted}>{dateRelative}</span>
+                    <span className="date" title={dateFormatted}>{dateRelative}</span>
+                </div>
             </div>
             <div className="item-body">
                 <div className="item-image">
