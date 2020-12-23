@@ -570,9 +570,6 @@
     "published": "Post Published",
     "updated": "Post Updated",
     "advanced": "Advanced",
-    "author": "Author",
-    "author-hint": "Author lorem ipsum dolor sit amet, consectetur adipiscing elit",
-    "author-error": "Not a valid user: {{n}}",
     "beneficiaries": "Beneficiaries",
     "beneficiaries-hint": "Beneficiaries ipsum dolor sit amet, consectetur adipiscing elit"
   },

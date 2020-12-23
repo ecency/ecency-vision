@@ -137,7 +137,6 @@ interface State extends PostBase {
     saving: boolean;
     editingDraft: Draft | null;
     advanced: boolean;
-    customAuthor: string;
     beneficiaries: BeneficiaryRoute[];
     reblogSwitch: boolean;
 }
@@ -153,7 +152,6 @@ class SubmitPage extends Component<Props, State> {
         saving: false,
         editingDraft: null,
         advanced: false,
-        customAuthor: "",
         beneficiaries: [],
         reblogSwitch: false,
         preview: {
@@ -353,11 +351,6 @@ class SubmitPage extends Component<Props, State> {
         this.stateSet({reward});
     };
 
-    customAuthorChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
-        const customAuthor = e.target.value.trim();
-        this.stateSet({customAuthor});
-    };
-
     clear = (): void => {
         this.stateSet({title: "", tags: [], body: ""});
         this.updatePreview();
@@ -391,7 +384,7 @@ class SubmitPage extends Component<Props, State> {
 
     publish = async (): Promise<void> => {
         const {activeUser, history, addEntry} = this.props;
-        const {title, tags, body, reward, customAuthor, reblogSwitch, beneficiaries} = this.state;
+        const {title, tags, body, reward, reblogSwitch, beneficiaries} = this.state;
 
         // make sure active user fully loaded
         if (!activeUser || !activeUser.data.__loaded) {
@@ -400,24 +393,8 @@ class SubmitPage extends Component<Props, State> {
 
         this.stateSet({posting: true});
 
-        let author: string;
-        let authorData: FullAccount | undefined = undefined;
-
-        if (customAuthor) {
-            author = customAuthor;
-            try {
-                authorData = await hiveApi.getAccount(customAuthor);
-            } catch (e) {
-            }
-        } else {
-            author = activeUser.username;
-            authorData = activeUser.data as FullAccount;
-        }
-
-        if (!authorData) {
-            error(_t("submit.author-error", {n: customAuthor}));
-            return;
-        }
+        let author = activeUser.username;
+        let authorData = activeUser.data as FullAccount;
 
         let permlink = createPermlink(title);
 
@@ -562,7 +539,7 @@ class SubmitPage extends Component<Props, State> {
     }
 
     render() {
-        const {title, tags, body, reward, preview, posting, editingEntry, saving, editingDraft, advanced, customAuthor, beneficiaries} = this.state;
+        const {title, tags, body, reward, preview, posting, editingEntry, saving, editingDraft, advanced, beneficiaries} = this.state;
 
         //  Meta config
         const metaProps = {
@@ -713,19 +690,10 @@ class SubmitPage extends Component<Props, State> {
                                         </Form.Group>
                                         <Form.Group as={Row}>
                                             <Form.Label column={true} sm="3">
-                                                {_t("submit.author")}
-                                            </Form.Label>
-                                            <Col sm="9">
-                                                <Form.Control maxLength={20} value={customAuthor} onChange={this.customAuthorChanged}/>
-                                                <Form.Text muted={true}>{_t("submit.author-hint")}</Form.Text>
-                                            </Col>
-                                        </Form.Group>
-                                        <Form.Group as={Row}>
-                                            <Form.Label column={true} sm="3">
                                                 {_t("submit.beneficiaries")}
                                             </Form.Label>
                                             <Col sm="9">
-                                                <BeneficiaryEditor author={customAuthor || activeUser?.username} list={beneficiaries} onAdd={(item) => {
+                                                <BeneficiaryEditor author={activeUser?.username} list={beneficiaries} onAdd={(item) => {
                                                     const b = [...beneficiaries, item].sort((a, b) => a.account < b.account ? -1 : 1);
                                                     this.stateSet({beneficiaries: b});
                                                 }} onDelete={(username) => {
