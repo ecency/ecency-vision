@@ -14,7 +14,7 @@ import Feedback from "../components/feedback";
 import NavBar from "../components/navbar";
 import NavBarElectron from "../../desktop/app/components/navbar";
 import Intro from "../components/intro";
-import EntryIndexMenu, {isMyPage} from "../components/entry-index-menu";
+import EntryIndexMenu from "../components/entry-index-menu";
 import LinearProgress from "../components/linear-progress";
 import EntryListLoadingItem from "../components/entry-list-loading-item";
 import DetectBottom from "../components/detect-bottom";
@@ -122,8 +122,6 @@ class EntryIndexPage extends Component<PageProps> {
 
         const promoted = entries['__promoted__'].entries;
 
-        const isMy = isMyPage(global, activeUser);
-
         return (
             <>
                 <Meta {...metaProps} />
@@ -153,47 +151,45 @@ class EntryIndexPage extends Component<PageProps> {
                         </div>
                         {loading && entryList.length === 0 ? <LinearProgress/> : ""}
                         <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>
-                            <div className={_c(`entry-list-body ${isMy ? "limited-area" : ""} ${global.listStyle === ListStyle.grid ? "grid-view" : ""}`)}>
+                            <div className={_c(`entry-list-body limited-area ${global.listStyle === ListStyle.grid ? "grid-view" : ""}`)}>
                                 {loading && entryList.length === 0 && <EntryListLoadingItem/>}
                                 {EntryListContent({...this.props, entries: entryList, promotedEntries: promoted})}
                             </div>
                         </div>
                         {loading && entryList.length > 0 ? <LinearProgress/> : ""}
                     </div>
-                    {(location.pathname === '/' || isMy) && (
-                        <div className="side-menu">
-                            {!global.isMobile && (
-                                <>
-                                    <MarketData/>
+                    <div className="side-menu">
+                        {!global.isMobile && (
+                            <>
+                                <MarketData/>
 
-                                    <div className="menu-nav">
-                                        <DownloadTrigger>
-                                            <div className="downloads">
-                                                <span className="label">{_t("g.downloads")}</span>
-                                                <span className="icons">
-                                                    <span className="img-apple">{appleSvg}</span>
-                                                    <span className="img-google">{googleSvg}</span>
-                                                    <span className="img-desktop">{desktopSvg}</span>
-                                                </span>
-                                            </div>
-                                        </DownloadTrigger>
-
-                                        <div className="text-menu">
-                                            <Link className="menu-item" to="/faq">
-                                                {_t("entry-index.faq")}
-                                            </Link>
-                                            <Link className="menu-item" to="/terms-of-service">
-                                                {_t("entry-index.tos")}
-                                            </Link>
-                                            <Link className="menu-item" to="/privacy-policy">
-                                                {_t("entry-index.pp")}
-                                            </Link>
+                                <div className="menu-nav">
+                                    <DownloadTrigger>
+                                        <div className="downloads">
+                                            <span className="label">{_t("g.downloads")}</span>
+                                            <span className="icons">
+                                                <span className="img-apple">{appleSvg}</span>
+                                                <span className="img-google">{googleSvg}</span>
+                                                <span className="img-desktop">{desktopSvg}</span>
+                                            </span>
                                         </div>
+                                    </DownloadTrigger>
+
+                                    <div className="text-menu">
+                                        <Link className="menu-item" to="/faq">
+                                            {_t("entry-index.faq")}
+                                        </Link>
+                                        <Link className="menu-item" to="/terms-of-service">
+                                            {_t("entry-index.tos")}
+                                        </Link>
+                                        <Link className="menu-item" to="/privacy-policy">
+                                            {_t("entry-index.pp")}
+                                        </Link>
                                     </div>
-                                </>
-                            )}
-                        </div>
-                    )}
+                                </div>
+                            </>
+                        )}
+                    </div>
                 </div>
                 <DetectBottom onBottom={this.bottomReached}/>
             </>
