@@ -591,6 +591,15 @@
     "read-time-less-1-min": "< 1 min read",
     "read-time-n-min": "~ {{n}} min read"
   },
+  "beneficiary-editor": {
+    "title": "Beneficiaries",
+    "btn-label": "Set Beneficiaries",
+    "btn-label-n": "Set Beneficiaries ({{n}})",
+    "username": "Username",
+    "reward": "Reward",
+    "user-error": "{{n}} is not a valid user.",
+    "user-exists-error": "{{n}} is already in the list"
+  },
   "notification": {
     "popup-title": "You have a new notification",
     "voted": "{{source}} voted your post",

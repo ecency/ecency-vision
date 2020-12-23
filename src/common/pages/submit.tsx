@@ -720,7 +720,11 @@ class SubmitPage extends Component<Props, State> {
                                             </Form.Label>
                                             <Col sm="9">
                                                 <BeneficiaryEditor list={beneficiaries} onAdd={(item) => {
-                                                    console.log(item);
+                                                    const b = [...beneficiaries, item];
+                                                    this.stateSet({beneficiaries: b});
+                                                }} onDelete={(username) => {
+                                                    const b = [...beneficiaries.filter(x => x.username !== username)];
+                                                    this.stateSet({beneficiaries: b});
                                                 }}/>
                                                 <Form.Text muted={true}>{_t("submit.beneficiaries-hint")}</Form.Text>
                                             </Col>
