@@ -104,7 +104,7 @@ class ProposalsPage extends Component<PageProps, State> {
                 // get return proposal's total votes
                 const minVotes = Number(proposals.find(x => x.id === 0)?.total_votes || 0);
                 // find eligible proposals and
-                const eligible = proposals.filter(x => x.id > 0 && Number(x.total_votes) >= minVotes);
+                const eligible = proposals.filter(x => x.id > 0 && Number(x.total_votes) >= minVotes && x.status !== 'expired');
                 //  add up total votes
                 const dailyFunded = eligible.reduce((a, b) => a + Number(b.daily_pay.amount), 0) / 1000;
 
