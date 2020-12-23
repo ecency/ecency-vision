@@ -16,6 +16,7 @@ export interface Beneficiary {
 }
 
 interface Props {
+    author?: string;
     list: Beneficiary[];
     onAdd: (item: Beneficiary) => void;
     onDelete: (username: string) => void;
@@ -57,90 +58,95 @@ export class DialogBody extends Component<Props, DialogBodyState> {
     }
 
     render() {
-        const {list} = this.props;
+        const {list, author} = this.props;
         const {username, percentage, inProgress} = this.state;
 
         const used = list.reduce((a, b) => a + b.percentage, 0);
         const available = 100 - used;
 
-        return <div>
-            <Form ref={this.form} onSubmit={(e: React.FormEvent) => {
-                e.preventDefault();
-                e.stopPropagation();
+        return <Form ref={this.form} onSubmit={(e: React.FormEvent) => {
+            e.preventDefault();
+            e.stopPropagation();
 
-                if (!this.form.current?.checkValidity()) {
+            if (!this.form.current?.checkValidity()) {
+                return;
+            }
+
+            const {onAdd, list} = this.props;
+            const {username, percentage} = this.state;
+
+            if (list.find(x => x.username === username) !== undefined) {
+                error(_t("beneficiary-editor.user-exists-error", {n: username}));
+                return;
+            }
+
+            this.stateSet({inProgress: true});
+            getAccount(username).then((r) => {
+                if (!r) {
+                    error(_t("beneficiary-editor.user-error", {n: username}));
                     return;
                 }
 
-                const {onAdd, list} = this.props;
-                const {username, percentage} = this.state;
+                onAdd({
+                    username,
+                    percentage: Number(percentage)
+                });
 
-                if (list.find(x => x.username === username) !== undefined) {
-                    error(_t("beneficiary-editor.user-exists-error", {n: username}));
-                    return;
-                }
-
-                this.stateSet({inProgress: true});
-                getAccount(username).then((r) => {
-                    if (!r) {
-                        error(_t("beneficiary-editor.user-error", {n: username}));
-                        return;
-                    }
-
-                    onAdd({
-                        username,
-                        percentage: Number(percentage)
-                    });
-
-                    this.stateSet({username: "", percentage: ""});
-                }).finally(() => this.stateSet({inProgress: false}));
-            }}>
-                <div className="beneficiary-list">
-                    <table className="table table-bordered">
-                        <thead>
+                this.stateSet({username: "", percentage: ""});
+            }).finally(() => this.stateSet({inProgress: false}));
+        }}>
+            <div className="beneficiary-list">
+                <table className="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>{_t("beneficiary-editor.username")}</th>
+                        <th>{_t("beneficiary-editor.reward")}</th>
+                        <th/>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {(author && available > 0) && (
                         <tr>
-                            <th>{_t("beneficiary-editor.username")}</th>
-                            <th>{_t("beneficiary-editor.reward")}</th>
-                            <th/>
+                            <td>{`@${author}`}</td>
+                            <td>{`${available}%`}</td>
+                            <td/>
                         </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>
-                                <InputGroup size="sm">
-                                    <InputGroup.Prepend>
-                                        <InputGroup.Text>@</InputGroup.Text>
-                                    </InputGroup.Prepend>
-                                    <Form.Control disabled={inProgress} autoFocus={true} required={true} minLength={3} maxLength={20} value={username}
-                                                  onChange={this.usernameChanged}/>
-                                </InputGroup>
-                            </td>
-                            <td>
-                                <InputGroup size="sm">
-                                    <Form.Control disabled={inProgress} required={true} type="number" size="sm" min={1} max={available} step={1} value={percentage}
-                                                  onChange={this.percentageChanged}/>
-                                    <InputGroup.Append>
-                                        <InputGroup.Text>%</InputGroup.Text>
-                                    </InputGroup.Append>
-                                </InputGroup>
-                            </td>
-                            <td><Button disabled={inProgress || available < 1} size="sm" type="submit">{plusSvg}</Button></td>
+                    )}
+                    <tr>
+                        <td>
+                            <InputGroup size="sm">
+                                <InputGroup.Prepend>
+                                    <InputGroup.Text>@</InputGroup.Text>
+                                </InputGroup.Prepend>
+                                <Form.Control disabled={inProgress} autoFocus={true} required={true} minLength={3} maxLength={20} value={username}
+                                              onChange={this.usernameChanged}/>
+                            </InputGroup>
+                        </td>
+                        <td>
+                            <InputGroup size="sm">
+                                <Form.Control disabled={inProgress} required={true} type="number" size="sm" min={1} max={available} step={1}
+                                              value={percentage} onChange={this.percentageChanged}/>
+                                <InputGroup.Append>
+                                    <InputGroup.Text>%</InputGroup.Text>
+                                </InputGroup.Append>
+                            </InputGroup>
+                        </td>
+                        <td><Button disabled={inProgress || available < 1} size="sm" type="submit">{plusSvg}</Button></td>
+                    </tr>
+                    {list.map(x => {
+                        return <tr key={x.username}>
+                            <td>{`@${x.username}`}</td>
+                            <td>{`${x.percentage}%`}</td>
+                            <td><Button onClick={() => {
+                                const {onDelete} = this.props;
+                                onDelete(x.username);
+                            }} variant="danger" size="sm">{deleteForeverSvg}</Button></td>
                         </tr>
-                        {list.map(x => {
-                            return <tr key={x.username}>
-                                <td>{`@${x.username}`}</td>
-                                <td>{`${x.percentage}%`}</td>
-                                <td><Button onClick={() => {
-                                    const {onDelete} = this.props;
-                                    onDelete(x.username);
-                                }} variant="danger" size="sm">{deleteForeverSvg}</Button></td>
-                            </tr>
-                        })}
-                        </tbody>
-                    </table>
-                </div>
-            </Form>
-        </div>;
+                    })}
+                    </tbody>
+                </table>
+            </div>
+        </Form>;
     }
 }
 

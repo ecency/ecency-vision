@@ -719,7 +719,7 @@ class SubmitPage extends Component<Props, State> {
                                                 {_t("submit.beneficiaries")}
                                             </Form.Label>
                                             <Col sm="9">
-                                                <BeneficiaryEditor list={beneficiaries} onAdd={(item) => {
+                                                <BeneficiaryEditor author={customAuthor || activeUser?.username} list={beneficiaries} onAdd={(item) => {
                                                     const b = [...beneficiaries, item];
                                                     this.stateSet({beneficiaries: b});
                                                 }} onDelete={(username) => {
