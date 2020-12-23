@@ -43,6 +43,7 @@ import WordCount from "../components/word-counter";
 import {makePath as makePathEntry} from "../components/entry-link";
 import {error, success} from "../components/feedback";
 import MdHandler from "../components/md-handler";
+import BeneficiaryEditor, {Beneficiary} from "../components/beneficiary-editor";
 
 import {getDrafts, addDraft, updateDraft, Draft} from "../api/private";
 
@@ -137,6 +138,7 @@ interface State extends PostBase {
     editingDraft: Draft | null;
     advanced: boolean;
     customAuthor: string;
+    beneficiaries: Beneficiary[];
     reblogSwitch: boolean;
 }
 
@@ -152,6 +154,7 @@ class SubmitPage extends Component<Props, State> {
         editingDraft: null,
         advanced: false,
         customAuthor: "",
+        beneficiaries: [],
         reblogSwitch: false,
         preview: {
             title: "",
@@ -553,7 +556,7 @@ class SubmitPage extends Component<Props, State> {
     }
 
     render() {
-        const {title, tags, body, reward, preview, posting, editingEntry, saving, editingDraft, advanced, customAuthor} = this.state;
+        const {title, tags, body, reward, preview, posting, editingEntry, saving, editingDraft, advanced, customAuthor, beneficiaries} = this.state;
 
         //  Meta config
         const metaProps = {
@@ -690,10 +693,10 @@ class SubmitPage extends Component<Props, State> {
                                 <div className="panel-body">
                                     <div className="container">
                                         <Form.Group as={Row}>
-                                            <Form.Label column={true} sm="2">
+                                            <Form.Label column={true} sm="3">
                                                 {_t("submit.reward")}
                                             </Form.Label>
-                                            <Col sm="10">
+                                            <Col sm="9">
                                                 <Form.Control as="select" value={reward} onChange={this.rewardChanged}>
                                                     <option value="default">{_t("submit.reward-default")}</option>
                                                     <option value="sp">{_t("submit.reward-sp")}</option>
@@ -703,12 +706,23 @@ class SubmitPage extends Component<Props, State> {
                                             </Col>
                                         </Form.Group>
                                         <Form.Group as={Row}>
-                                            <Form.Label column={true} sm="2">
+                                            <Form.Label column={true} sm="3">
                                                 {_t("submit.author")}
                                             </Form.Label>
-                                            <Col sm="10">
+                                            <Col sm="9">
                                                 <Form.Control maxLength={20} value={customAuthor} onChange={this.customAuthorChanged}/>
                                                 <Form.Text muted={true}>{_t("submit.author-hint")}</Form.Text>
+                                            </Col>
+                                        </Form.Group>
+                                        <Form.Group as={Row}>
+                                            <Form.Label column={true} sm="3">
+                                                {_t("submit.beneficiaries")}
+                                            </Form.Label>
+                                            <Col sm="9">
+                                                <BeneficiaryEditor list={beneficiaries} onAdd={(item) => {
+                                                    console.log(item);
+                                                }}/>
+                                                <Form.Text muted={true}>{_t("submit.beneficiaries-hint")}</Form.Text>
                                             </Col>
                                         </Form.Group>
                                     </div>
