@@ -51,7 +51,7 @@ interface ItemProps {
 export class ListItem extends Component<ItemProps> {
     render() {
         const {activeUser, draft, editFn, deleteFn, global} = this.props;
-        if(!activeUser.data.__loaded){
+        if (!activeUser.data.__loaded) {
             return null;
         }
 
@@ -71,17 +71,19 @@ export class ListItem extends Component<ItemProps> {
 
         return <div className="drafts-list-item">
             <div className="item-header">
-                <div className="author-part">
-                    <a className="author-avatar">{UserAvatar({...this.props, username: author, size: "medium"})}</a>
-                    <a className="author">{author}<span className="author-reputation">{accountReputation(reputation)}</span></a>
+                <div className="item-header-main">
+                    <div className="author-part">
+                        <a className="author-avatar">{UserAvatar({...this.props, username: author, size: "medium"})}</a>
+                        <a className="author">{author}<span className="author-reputation">{accountReputation(reputation)}</span></a>
+                    </div>
+                    {Tag({
+                        ...this.props,
+                        tag,
+                        type: "span",
+                        children: <a className="category">{tag}</a>
+                    })}
+                    <span className="date" title={dateFormatted}>{dateRelative}</span>
                 </div>
-                {Tag({
-                    ...this.props,
-                    tag,
-                    type: "span",
-                    children: <a className="category">{tag}</a>
-                })}
-                <span className="date" title={dateFormatted}>{dateRelative}</span>
             </div>
             <div className="item-body">
                 <div className="item-image">
@@ -98,12 +100,16 @@ export class ListItem extends Component<ItemProps> {
                 </div>
                 <div className="item-summary">
                     <div className="item-title">
-                        <a onClick={() => { editFn(draft) }}>
+                        <a onClick={() => {
+                            editFn(draft)
+                        }}>
                             {draft.title}
                         </a>
                     </div>
                     <div className="item-body">
-                        <a onClick={() => { editFn(draft) }}>
+                        <a onClick={() => {
+                            editFn(draft)
+                        }}>
                             {summary}
                         </a>
                     </div>
