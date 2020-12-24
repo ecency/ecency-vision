@@ -2,7 +2,7 @@ import React from "react";
 
 import moment from "moment";
 
-import PostSchedulerDialog, {DialogBody} from "./index";
+import PostSchedulerDialog from "./index";
 
 import TestRenderer from "react-test-renderer";
 
@@ -28,9 +28,3 @@ it("(2) Render with date", () => {
     const renderer = TestRenderer.create(<PostSchedulerDialog {...props} />);
     expect(renderer.toJSON()).toMatchSnapshot();
 });
-
-it("(3) Render dialog body", () => {
-    const renderer = TestRenderer.create(<DialogBody {...defProps} />);
-    expect(renderer.toJSON()).toMatchSnapshot();
-});
-
