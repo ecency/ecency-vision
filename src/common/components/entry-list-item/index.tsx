@@ -185,7 +185,7 @@ export default class EntryListItem extends Component<Props> {
                         {promoted && (
                             <>
                                 <span className="flex-spacer"/>
-                                <div className="promoted">{_t("entry-list-item.promoted")}</div>
+                                <div className="promoted"><a href="/faq#how-promotion-work">{_t("entry-list-item.promoted")}</a></div>
                             </>
                         )}
                     </div>
