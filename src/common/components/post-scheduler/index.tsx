@@ -23,6 +23,8 @@ interface DialogBodyState {
     date: Moment,
 }
 
+export const getTodayTs = () => moment().hour(0).minute(0).second(0).milliseconds(0).format("x");
+
 export class DialogBody extends Component<DialogBodyProps, DialogBodyState> {
     state: DialogBodyState = {
         date: this.props.date || moment().add(2, "hour")
@@ -42,7 +44,7 @@ export class DialogBody extends Component<DialogBodyProps, DialogBodyState> {
 
     render() {
         const {date} = this.state;
-        const todayTs = moment().hour(0).minute(0).second(0).milliseconds(0).format("x");
+        const todayTs = getTodayTs();
 
         return <>
             <div className="picker">
