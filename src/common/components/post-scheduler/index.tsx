@@ -8,7 +8,7 @@ import {Button, Modal} from "react-bootstrap";
 
 import {_t} from "../../i18n";
 
-import {closeSvg} from "../../img/svg";
+import {closeSvg, timeSvg} from "../../img/svg";
 
 interface Props {
     date: Moment | null,
@@ -112,7 +112,9 @@ export class PostSchedulerDialog extends Component<Props, State> {
         }
 
         return <>
-            <Button size="sm" onClick={this.toggle}>{_t("post-scheduler.btn-label")}</Button>
+            <Button className="d-inline-flex align-items-center" size="sm" onClick={this.toggle}>
+                {_t("post-scheduler.btn-label")}<span style={{marginLeft: "6px"}}>{timeSvg}</span>
+            </Button>
             {dialog}
         </>;
     }

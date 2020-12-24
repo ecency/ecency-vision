@@ -10,7 +10,7 @@ import {getAccount} from "../../api/hive";
 
 import {_t} from "../../i18n";
 
-import {plusSvg, deleteForeverSvg} from "../../img/svg";
+import {plusSvg, deleteForeverSvg, accountMultipleSvg} from "../../img/svg";
 
 interface Props {
     author?: string;
@@ -168,7 +168,7 @@ export default class BeneficiaryEditorDialog extends Component<Props, State> {
         const btnLabel = list.length > 0 ? _t("beneficiary-editor.btn-label-n", {n: list.length}) : _t("beneficiary-editor.btn-label");
 
         return <>
-            <Button size="sm" onClick={this.toggle}>{btnLabel}</Button>
+            <Button size="sm" onClick={this.toggle}>{btnLabel}<span style={{marginLeft: "6px"}}>{accountMultipleSvg}</span></Button>
 
             {visible && (
                 <Modal onHide={this.toggle} show={true} centered={true} animation={false} className="beneficiary-editor-dialog">
