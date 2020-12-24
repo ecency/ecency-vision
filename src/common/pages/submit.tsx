@@ -12,7 +12,7 @@ import {History} from "history";
 
 import {Form, FormControl, Button, Spinner, Col, Row} from "react-bootstrap";
 
-import moment from "moment";
+import moment, {Moment} from "moment";
 
 import defaults from "../constants/defaults.json";
 
@@ -44,6 +44,7 @@ import {makePath as makePathEntry} from "../components/entry-link";
 import {error, success} from "../components/feedback";
 import MdHandler from "../components/md-handler";
 import BeneficiaryEditor from "../components/beneficiary-editor";
+import PostScheduler from "../components/post-scheduler";
 
 import {getDrafts, addDraft, updateDraft, Draft} from "../api/private";
 
@@ -138,6 +139,7 @@ interface State extends PostBase {
     editingDraft: Draft | null;
     advanced: boolean;
     beneficiaries: BeneficiaryRoute[];
+    schedule: Moment | null,
     reblogSwitch: boolean;
 }
 
@@ -153,6 +155,7 @@ class SubmitPage extends Component<Props, State> {
         editingDraft: null,
         advanced: false,
         beneficiaries: [],
+        schedule: null,
         reblogSwitch: false,
         preview: {
             title: "",
@@ -543,7 +546,7 @@ class SubmitPage extends Component<Props, State> {
     }
 
     render() {
-        const {title, tags, body, reward, preview, posting, editingEntry, saving, editingDraft, advanced, beneficiaries, reblogSwitch} = this.state;
+        const {title, tags, body, reward, preview, posting, editingEntry, saving, editingDraft, advanced, beneficiaries, schedule, reblogSwitch} = this.state;
 
         //  Meta config
         const metaProps = {
@@ -629,48 +632,63 @@ class SubmitPage extends Component<Props, State> {
                     </div>
                     <div className="flex-spacer"/>
                     {(() => {
-                        const toolBar = <div className="bottom-toolbar">
-                            {editingEntry === null && (
-                                <>
-                                    <span/>
-                                    <div>
-                                        <Button variant="outline-primary" style={{marginRight: "6px"}} onClick={this.saveDraft} disabled={!canPublish || saving || posting}>
-                                            {contentSaveSvg} {editingDraft === null ? _t("submit.save-draft") : _t("submit.update-draft")}
+                        const toolBar = schedule ?
+                            <div className="bottom-toolbar">
+                                <span/>
+                                {LoginRequired({
+                                    ...this.props,
+                                    children: <Button
+                                        className="d-inline-flex align-items-center"
+                                        onClick={this.publish}
+                                        disabled={!canPublish || posting || saving}
+                                    >
+                                        {posting && spinner}
+                                        {_t("submit.schedule")}
+                                    </Button>
+                                })}
+                            </div> :
+                            <div className="bottom-toolbar">
+                                {editingEntry === null && (
+                                    <>
+                                        <span/>
+                                        <div>
+                                            <Button variant="outline-primary" style={{marginRight: "6px"}} onClick={this.saveDraft} disabled={!canPublish || saving || posting}>
+                                                {contentSaveSvg} {editingDraft === null ? _t("submit.save-draft") : _t("submit.update-draft")}
+                                            </Button>
+                                            {LoginRequired({
+                                                ...this.props,
+                                                children: <Button
+                                                    className="d-inline-flex align-items-center"
+                                                    onClick={this.publish}
+                                                    disabled={!canPublish || posting || saving}
+                                                >
+                                                    {posting && spinner}
+                                                    {_t("submit.publish")}
+                                                </Button>
+                                            })}
+                                        </div>
+                                    </>
+                                )}
+
+                                {editingEntry !== null && (
+                                    <>
+                                        <Button variant="outline-secondary" onClick={this.cancelUpdate}>
+                                            {_t("submit.cancel-update")}
                                         </Button>
                                         {LoginRequired({
                                             ...this.props,
                                             children: <Button
                                                 className="d-inline-flex align-items-center"
-                                                onClick={this.publish}
-                                                disabled={!canPublish || posting || saving}
+                                                onClick={this.update}
+                                                disabled={!canPublish || posting}
                                             >
                                                 {posting && spinner}
-                                                {_t("submit.publish")}
+                                                {_t("submit.update")}
                                             </Button>
                                         })}
-                                    </div>
-                                </>
-                            )}
-
-                            {editingEntry !== null && (
-                                <>
-                                    <Button variant="outline-secondary" onClick={this.cancelUpdate}>
-                                        {_t("submit.cancel-update")}
-                                    </Button>
-                                    {LoginRequired({
-                                        ...this.props,
-                                        children: <Button
-                                            className="d-inline-flex align-items-center"
-                                            onClick={this.update}
-                                            disabled={!canPublish || posting}
-                                        >
-                                            {posting && spinner}
-                                            {_t("submit.update")}
-                                        </Button>
-                                    })}
-                                </>
-                            )}
-                        </div>;
+                                    </>
+                                )}
+                            </div>;
 
                         if (advanced) {
                             return <div className="advanced-panel">
@@ -705,6 +723,17 @@ class SubmitPage extends Component<Props, State> {
                                                     this.stateSet({beneficiaries: b});
                                                 }}/>
                                                 <Form.Text muted={true}>{_t("submit.beneficiaries-hint")}</Form.Text>
+                                            </Col>
+                                        </Form.Group>
+                                        <Form.Group as={Row}>
+                                            <Form.Label column={true} sm="3">
+                                                {_t("submit.schedule")}
+                                            </Form.Label>
+                                            <Col sm="9">
+                                                <PostScheduler date={schedule} onChange={(d) => {
+                                                    this.stateSet({schedule: d})
+                                                }}/>
+                                                <Form.Text muted={true}>{_t("submit.schedule-hint")}</Form.Text>
                                             </Col>
                                         </Form.Group>
                                         {tags.length > 0 && isCommunity(tags[0]) && (

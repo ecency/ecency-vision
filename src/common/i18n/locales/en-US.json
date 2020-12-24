@@ -573,7 +573,9 @@
     "beneficiaries": "Beneficiaries",
     "beneficiaries-hint": "Set beneficiaries to share author reward with other accounts",
     "reblog": "Reblog",
-    "reblog-hint": "Reblog lorem ipsum dolor sit amet"
+    "reblog-hint": "Reblog lorem ipsum dolor sit amet",
+    "schedule": "Schedule",
+    "schedule-hint": "Schedule lorem ipsum dolor sit amet"
   },
   "tag-selector": {
     "placeholder-empty": "Tags. First tag is main category. Sortable.",
@@ -599,6 +601,10 @@
     "reward": "Reward",
     "user-error": "{{n}} is not a valid user.",
     "user-exists-error": "{{n}} is already in the list"
+  },
+  "post-scheduler": {
+    "title": "Schedule",
+    "btn-label": "Schedule"
   },
   "notification": {
     "popup-title": "You have a new notification",
