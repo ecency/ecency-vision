@@ -351,6 +351,10 @@ class SubmitPage extends Component<Props, State> {
         this.stateSet({reward});
     };
 
+    reblogSwitchChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+        this.stateSet({reblogSwitch: e.target.checked});
+    }
+
     clear = (): void => {
         this.stateSet({title: "", tags: [], body: "", reward: "default", beneficiaries: []});
         this.updatePreview();
@@ -539,7 +543,7 @@ class SubmitPage extends Component<Props, State> {
     }
 
     render() {
-        const {title, tags, body, reward, preview, posting, editingEntry, saving, editingDraft, advanced, beneficiaries} = this.state;
+        const {title, tags, body, reward, preview, posting, editingEntry, saving, editingDraft, advanced, beneficiaries, reblogSwitch} = this.state;
 
         //  Meta config
         const metaProps = {
@@ -703,6 +707,21 @@ class SubmitPage extends Component<Props, State> {
                                                 <Form.Text muted={true}>{_t("submit.beneficiaries-hint")}</Form.Text>
                                             </Col>
                                         </Form.Group>
+                                        {tags.length > 0 && isCommunity(tags[0]) && (
+                                            <Form.Group as={Row}>
+                                                <Col sm="3"/>
+                                                <Col sm="9">
+                                                    <Form.Check
+                                                        type="switch"
+                                                        id="reblog-switch"
+                                                        label={_t("submit.reblog")}
+                                                        checked={reblogSwitch}
+                                                        onChange={this.reblogSwitchChanged}
+                                                    />
+                                                    <Form.Text muted={true}>{_t("submit.reblog-hint")}</Form.Text>
+                                                </Col>
+                                            </Form.Group>
+                                        )}
                                     </div>
                                 </div>
                                 {toolBar}

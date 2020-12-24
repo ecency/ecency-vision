@@ -571,7 +571,9 @@
     "updated": "Post Updated",
     "advanced": "Advanced",
     "beneficiaries": "Beneficiaries",
-    "beneficiaries-hint": "Set beneficiaries to share author reward with other accounts"
+    "beneficiaries-hint": "Set beneficiaries to share author reward with other accounts",
+    "reblog": "Reblog",
+    "reblog-hint": "Reblog lorem ipsum dolor sit amet"
   },
   "tag-selector": {
     "placeholder-empty": "Tags. First tag is main category. Sortable.",
