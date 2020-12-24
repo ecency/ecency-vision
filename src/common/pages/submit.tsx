@@ -545,6 +545,10 @@ class SubmitPage extends Component<Props, State> {
         promise.catch(() => error(_t('g.server-error'))).finally(() => this.stateSet({saving: false}))
     }
 
+    schedule = () => {
+        console.log("schedule");
+    }
+
     render() {
         const {title, tags, body, reward, preview, posting, editingEntry, saving, editingDraft, advanced, beneficiaries, schedule, reblogSwitch} = this.state;
 
@@ -639,10 +643,10 @@ class SubmitPage extends Component<Props, State> {
                                     ...this.props,
                                     children: <Button
                                         className="d-inline-flex align-items-center"
-                                        onClick={this.publish}
-                                        disabled={!canPublish || posting || saving}
+                                        onClick={this.schedule}
+                                        disabled={!canPublish || saving}
                                     >
-                                        {posting && spinner}
+                                        {saving && spinner}
                                         {_t("submit.schedule")}
                                     </Button>
                                 })}
