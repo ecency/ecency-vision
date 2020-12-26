@@ -73,9 +73,9 @@
     "logout": "Выйти"
   },
   "intro": {
-    "title": "Aspire to greatness",
+    "title": "Стремитесь к величию",
     "sub-title": "rewarding communities",
-    "c2a": "Get Started"
+    "c2a": "Начните"
   },
   "login": {
     "title": "С возвращением!",
@@ -422,11 +422,11 @@
   "redeem-common": {
     "balance": "Баланс",
     "post": "Пост",
-    "post-hint": "Autocomplete input",
-    "post-placeholder": "username/permlink",
-    "post-error": "Not a valid post address",
-    "post-error-exists": "The post is already promoted",
-    "success-message": "Your request submitted. It will be activated in a couple minutes."
+    "post-hint": "Автозаполнение ввода",
+    "post-placeholder": "имя/ссылка",
+    "post-error": "Недействительный адрес",
+    "post-error-exists": "Этот пост уже рекламировался",
+    "success-message": "Ваш запрос отправлен. Он будет выполнен через пару минут."
   },
   "transfer": {
     "transfer-title": "Transfer to Account",
@@ -444,13 +444,13 @@
     "delegate-sub-title": "Delegate Hive Power",
     "power-down-title": "Power Down",
     "power-down-sub-title": "Power Down Hive Power",
-    "from": "From",
-    "to": "To",
+    "from": "От",
+    "to": "Кому",
     "to-placeholder": "username",
     "to-not-found": "The user that you are trying to transfer funds to does not exist!",
     "to-bad-actor": "Use caution sending to this account. Please double check your spelling for possible phishing.",
-    "amount": "Amount",
-    "amount-placeholder": "amount",
+    "amount": "Сумма",
+    "amount-placeholder": "сумма",
     "wrong-amount": "Wrong amount value",
     "amount-precision-error": "Use only 3 digits of precision",
     "balance": "Balance",
