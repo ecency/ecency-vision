@@ -23,8 +23,8 @@
     "save": "I-save",
     "try-again": "Subukan muli",
     "show": "Ipakita",
-    "on": "On",
-    "off": "Off",
+    "on": "Piliin",
+    "off": "Huwag piliin",
     "yes": "Oo",
     "no": "Hindi"
   },
@@ -119,69 +119,69 @@
     "pinned": "Naka-pin na post",
     "replies": "1 kasagutan. Pindutin para sumagot.",
     "replies-n": "{{n}} mga kasagutan. Pindutin para sumagot.",
-    "no-replies": "No responses yet. Click to respond."
+    "no-replies": "Walang pang mga kasagutan. Pindutin para sumagot."
   },
   "bookmark-btn": {
-    "add": "Add to bookmarks",
-    "added": "Added to bookmarks",
-    "delete": "Remove from bookmarks",
-    "deleted": "Removed from bookmarks"
+    "add": "Idagdag sa bookmarks",
+    "added": "Naidagdag sa bookmarks",
+    "delete": "Natanggal sa bookmarks",
+    "deleted": "Natanggal sa bookmarks"
   },
   "entry-reblog": {
-    "reblog": "Reblog",
+    "reblog": "Mga kondisyon ng serbisyo",
     "confirm-title": "Reblog to @{{n}}'s blog?",
     "confirm-ok": "Reblog",
     "success": "Reblogged!"
   },
   "entry-payout": {
     "pending-payout": "Pending Payout",
-    "promoted": "Promoted",
-    "author-payout": "Author Payout",
-    "curators-payout": "Curators Payout",
-    "payout-date": "Payout",
+    "promoted": "Naisulong",
+    "author-payout": "Kabayaran ng May-akda",
+    "curators-payout": "Kabayaran ng tagasinop",
+    "payout-date": "Kabayaran",
     "beneficiary": "Beneficiary",
     "breakdown": "Breakdown"
   },
   "entry-index": {
     "feed": "Feed",
-    "tags": "Popular",
+    "tags": "Tanyag",
     "title": "{{f}} topics",
     "description": "{{f}} topics on a social network owned and operated by its users.",
     "description-tag": "{{f}} #{{t}} topics",
     "description-user-feed": "{{u}}'s feed",
     "faq": "FAQ",
-    "tos": "Terms of service",
-    "pp": "Privacy Policy"
+    "tos": "Mga tuntunin ng serbisyo",
+    "pp": "Patakaran para sa Pagkapribado"
   },
   "market-data": {
-    "title": "Market price",
+    "title": "Presyo sa pamilihan",
     "credits": "data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "list-style": {
     "title": "Toggle list style"
   },
   "entry-votes": {
-    "title": "1 Vote",
-    "title-n": "{{n}} Votes",
-    "title-empty": "No Votes",
-    "sort": "Sort",
-    "sort-reward": "Reward",
-    "sort-timestamp": "Time",
-    "sort-reputation": "Reputation",
-    "sort-percent": "Percentage"
+    "title": "1 Boto",
+    "title-n": "{{n}} Mga boto",
+    "title-empty": "Walang mga boto",
+    "sort": "Ayusin",
+    "sort-reward": "Gantimpala",
+    "sort-timestamp": "Oras",
+    "sort-reputation": "Reputasyon",
+    "sort-percent": "Porsyento"
   },
   "entry": {
     "via-app": "via <span class=\"app-name\">{{app}}</span>",
-    "comment-entry-title": "You are viewing a single comment's thread from: ",
-    "comment-entry-go-root": "View the full context",
-    "comment-entry-go-parent": "View the direct parent",
-    "show-history": "Show edit history",
-    "hidden-warning": "This post was hidden due to low ratings."
+    "comment-entry-title": "Tinitingnan mo ngayon ang nag-iisang komento sa thread na galing kay: ",
+    "comment-entry-go-root": "Tingnan ang buong konteksto",
+    "comment-entry-go-parent": "Tingnan ang direktang puno",
+    "show-history": "Ipakita ang kasaysayan ng mga binago",
+    "hidden-warning": "Ang post na ito na nakatago dahil sa mababang antas ng katayuan."
   },
   "edit-history": {
-    "title": "Edit History",
+    "title": "Baguhin ang Kasaysayan",
     "show-diff": "Ipakita ang pagkakaiba",
-    "version": "Version {{n}}"
+    "version": "Bersyon {{n}}"
   },
   "similar-entries": {
     "title": "Recent posts by @{{n}}"
@@ -211,26 +211,26 @@
     "post": "New Post",
     "posts": "Posts",
     "subscribers": "Members",
-    "activities": "Activities",
+    "activities": "Mga aktibidad",
     "roles-title": "User Roles",
     "roles-account": "Account",
     "roles-role": "Role",
-    "roles-account-title": "Title",
-    "roles-add": "Add User"
+    "roles-account-title": "Titulo",
+    "roles-add": "Magdagdag ng gumagamit"
   },
   "community-cover": {
-    "rewards": "rewards",
+    "rewards": "gantimpala",
     "authors": "posters",
-    "lang": "language",
+    "lang": "linguwahe",
     "cover-image": "Community cover image",
     "cover-image-edit": "Edit cover image",
     "cover-image-updated": "Cover image updated!"
   },
   "community-card": {
     "description": "Description",
-    "rules": "Rules",
-    "team": "Leadership",
-    "edit": "Edit settings",
+    "rules": "Patakaran",
+    "team": "Pamunuan",
+    "edit": "Baguhin ang mga settings",
     "edit-team": "Edit roles",
     "profile-image": "Community profile image",
     "profile-image-edit": "Edit profile image",
@@ -244,96 +244,96 @@
     "explanations": "<h3>Role Permissions</h3><p><strong>Owner</strong> - assign admins</p><p><strong>Admin</strong> - edit settings, assign mods</p><p><strong>Moderator</strong> - mute, pin, set user titles</p><p><strong>Member</strong> - listed on leadership team</p><p><strong>Guest</strong> - default; can post and comment</p><p><strong>Muted</strong> - new posts automatically muted</p>"
   },
   "community-settings": {
-    "dialog-title": "Community Settings",
-    "title": "Title",
-    "about": "About",
-    "lang": "Language",
-    "description": "Description",
-    "rules": "Rules",
-    "rules-help": "One per line"
+    "dialog-title": "Mga settings ng pamayanan",
+    "title": "Tanggalin sa pagkatahimik",
+    "about": "Tungkol",
+    "lang": "Linguwahe",
+    "description": "Paglalarawan",
+    "rules": "Patakaran",
+    "rules-help": "Isa bawat linya"
   },
   "communities": {
-    "title": "Communities",
+    "title": "Pamayanan",
     "description": "Best online, decentralized, immutable, rewarding communities",
-    "n-subscribers": "{{n}} members",
+    "n-subscribers": "{{n}} mga miyembro",
     "n-authors": "{{n}} posters",
     "n-posts": "{{n}} posts",
     "admins": "admins:",
-    "sort-hot": "Hot",
-    "sort-rank": "Rank",
-    "sort-subs": "Members",
-    "sort-new": "New",
-    "no-results": "No results found",
-    "create": "Create community"
+    "sort-hot": "Mainit",
+    "sort-rank": "Katayuan",
+    "sort-subs": "Miyembro",
+    "sort-new": "Bago",
+    "no-results": "Walang mahanapan na resulta",
+    "create": "Gumawa ng pamayanan"
   },
   "communities-create": {
-    "page-title": "Create a community",
-    "title": "Title",
-    "about": "About",
+    "page-title": "Gumawa ng isang pamayanan",
+    "title": "Pamagat",
+    "about": "Tungkol",
     "description": "Create a best, decentralized, immutable, rewarding communities",
-    "fee": "Operation fee",
-    "creator": "Creator",
+    "fee": "Bayad ng operasyon",
+    "creator": "May likha",
     "username": "Owner username",
     "username-available": "Available.",
-    "username-not-available": "Not available.",
+    "username-not-available": "Hindi available.",
     "username-wrong-format": "Not a valid format. hive-1xxxxx format required.",
     "password": "Owner password",
     "confirmation": "I have securely saved my owner username and password.",
-    "submit": "Create Community",
-    "progress-account": "Creating account...",
-    "progress-user": "Preparing user data...",
+    "submit": "Gumawa ng pamayanan",
+    "progress-account": "Gumagawa ng account...",
+    "progress-user": "Inihahanda ang datos ng gumagamit...",
     "progress-role": "Setting @{{u}} as admin...",
     "progress-props": "Updating community settings...",
-    "done": "Your community was created 🎉",
-    "done-link-label": "Get started."
+    "done": "Ang pamayanan mo ay nagawa na",
+    "done-link-label": "Magsimula."
   },
   "pin-btn": {
     "pin": "Pin",
     "unpin": "Unpin"
   },
   "mute-btn": {
-    "mute": "Mute",
+    "mute": "Patahimikin",
     "unmute": "Unmute",
     "dialog-title-mute": "Mute post/comment",
     "dialog-title-unmute": "Unmute post/comment",
-    "notes": "Notes",
+    "notes": "Mga kuwaderno",
     "note-placeholder-mute": "Provide a note regarding your decision to mute this content.",
     "note-placeholder-unmute": "Provide a note regarding your decision to unmute this content."
   },
   "profile": {
-    "voting-power": "Voting Power",
+    "voting-power": "Lakas ng boto",
     "post-count": "Post Count",
-    "followers": "Followers",
-    "following": "Following",
+    "followers": "Mga tagasunod",
+    "following": "Sinusundan",
     "section-blog": "Blog",
     "section-posts": "Posts",
-    "section-comments": "Comments",
+    "section-comments": "Mga komento",
     "section-replies": "Replies",
     "section-communities": "Communities",
     "section-wallet": "Wallet",
     "section-settings": "Settings",
-    "communities-title": "Membership",
+    "communities-title": "Pagkamiyembro",
     "create-community": "Create a community",
-    "witnesses": "Witnesses",
+    "witnesses": "Mga testigo",
     "proposals": "Proposals"
   },
   "profile-edit": {
     "title": "Profile",
     "name": "Display Name",
-    "about": "About",
-    "cover-image": "Cover Image",
-    "profile-image": "Profile Image",
+    "about": "Tungkol",
+    "cover-image": "Pabalat na imahe",
+    "profile-image": "Imahe ng pagkakakilanlan",
     "website": "Website",
-    "location": "Location",
-    "updated": "Profile updated successfully!"
+    "location": "Lokasyon",
+    "updated": "Matagumpay na nabago ang pagkakakilanlan!"
   },
   "image-upload-button": {
-    "uploaded": "Image uploaded"
+    "uploaded": "Matagumpay na nai-upload ang image"
   },
   "preferences": {
-    "title": "Preferences",
+    "title": "Mga kagustuhan",
     "notifications": "Notification alerts",
-    "currency": "Currency",
+    "currency": "Salapi",
     "language": "Language",
     "updated": "Preference updated!"
   },
