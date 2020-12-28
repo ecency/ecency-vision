@@ -155,7 +155,7 @@
   },
   "market-data": {
     "title": "Presyo sa pamilihan",
-    "credits": "data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
+    "credits": "datos mula sa <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "list-style": {
     "title": "Toggle list style"
@@ -200,8 +200,8 @@
     "order-reputation": "Reputation",
     "order-votes": "Votes",
     "order-created": "Age",
-    "read-more": "...read more replies...",
-    "reveal": "Reveal comment"
+    "read-more": "... basahin pa ang ibang sagot...",
+    "reveal": "Ipakita ang komento"
   },
   "community": {
     "page-description": "{{f}} topics",
