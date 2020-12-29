@@ -3,9 +3,9 @@ import renderer from "react-test-renderer";
 
 import {createBrowserHistory, createLocation} from "history";
 
-import {Schedules, ListItem} from './index';
+import {Schedules} from './index';
 
-import {globalInstance, activeUserInstance, fullAccountInstance} from "../../helper/test-helper";
+import {globalInstance, activeUserInstance, fullAccountInstance, communityInstance1} from "../../helper/test-helper";
 
 const allOver = () => new Promise((resolve) => setImmediate(resolve));
 
@@ -69,6 +69,13 @@ jest.mock("../../api/private", () => ({
                     "message": "missing required posting authority"
                 }])
             }
+        }),
+}));
+
+jest.mock("../../api/bridge", () => ({
+    getCommunity: () =>
+        new Promise((resolve) => {
+            resolve(communityInstance1);
         }),
 }));
 

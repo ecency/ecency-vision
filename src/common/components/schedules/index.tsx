@@ -68,7 +68,7 @@ export class ListItem extends Component<ItemProps> {
         const date = moment(post.schedule);
         const dateRelative = date.fromNow();
         const dateRelativeShort = date.fromNow(true);
-        const dateFormatted = date.format("YYYY-MM-DD HH:mm:ss");
+        const dateFormatted = date.format("YYYY-MM-DD HH:mm");
 
         return <div className="schedules-list-item">
             <div className="item-header">
