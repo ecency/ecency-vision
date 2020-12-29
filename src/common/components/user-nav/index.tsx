@@ -17,6 +17,7 @@ import UserNotifications from "../notifications";
 import Gallery from "../gallery";
 import Drafts from "../drafts";
 import Bookmarks from "../bookmarks";
+import Schedules from "../schedules";
 
 import {_t} from "../../i18n";
 
@@ -92,14 +93,16 @@ interface Props {
 interface State {
     gallery: boolean,
     drafts: boolean,
-    bookmarks: boolean
+    bookmarks: boolean,
+    schedules: boolean,
 }
 
 export default class UserNav extends Component<Props, State> {
     state: State = {
         gallery: false,
         drafts: false,
-        bookmarks: false
+        bookmarks: false,
+        schedules: false
     }
 
     toggleLogin = () => {
@@ -122,13 +125,18 @@ export default class UserNav extends Component<Props, State> {
         this.setState({bookmarks: !bookmarks});
     }
 
+    toggleSchedules = () => {
+        const {schedules} = this.state;
+        this.setState({schedules: !schedules});
+    }
+
     toggleNotifications = () => {
         const {toggleUIProp} = this.props;
         toggleUIProp('notifications');
     }
 
     render() {
-        const {gallery, drafts, bookmarks} = this.state;
+        const {gallery, drafts, bookmarks, schedules} = this.state;
         const {activeUser, ui, notifications, global, dynamicProps} = this.props;
         const {unread} = notifications;
 
@@ -151,6 +159,10 @@ export default class UserNav extends Component<Props, State> {
                 {
                     label: _t('user-nav.bookmarks'),
                     onClick: this.toggleBookmarks,
+                },
+                {
+                    label: _t('user-nav.schedules'),
+                    onClick: this.toggleSchedules,
                 },
                 {
                     label: _t('g.login-as'),
@@ -187,6 +199,7 @@ export default class UserNav extends Component<Props, State> {
                 {gallery && <Gallery {...this.props} onHide={this.toggleGallery}/>}
                 {drafts && <Drafts {...this.props} onHide={this.toggleDrafts}/>}
                 {bookmarks && <Bookmarks {...this.props} onHide={this.toggleBookmarks}/>}
+                {schedules && <Schedules {...this.props} onHide={this.toggleSchedules}/>}
             </>
         );
     }

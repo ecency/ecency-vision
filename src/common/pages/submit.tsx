@@ -46,7 +46,7 @@ import MdHandler from "../components/md-handler";
 import BeneficiaryEditor from "../components/beneficiary-editor";
 import PostScheduler from "../components/post-scheduler";
 
-import {getDrafts, addDraft, updateDraft, Draft} from "../api/private";
+import {getDrafts, addDraft, updateDraft, addSchedule, Draft} from "../api/private";
 
 import {createPermlink, extractMetaData, makeJsonMetaData, makeCommentOptions, createPatch} from "../helper/posting";
 
@@ -359,7 +359,7 @@ class SubmitPage extends Component<Props, State> {
     }
 
     clear = (): void => {
-        this.stateSet({title: "", tags: [], body: "", reward: "default", beneficiaries: []});
+        this.stateSet({title: "", tags: [], body: "", reward: "default", advanced: false, beneficiaries: [], schedule: null, reblogSwitch: false});
         this.updatePreview();
 
         const {editingDraft} = this.state;
@@ -545,8 +545,51 @@ class SubmitPage extends Component<Props, State> {
         promise.catch(() => error(_t('g.server-error'))).finally(() => this.stateSet({saving: false}))
     }
 
-    schedule = () => {
-        console.log("schedule");
+    schedule = async () => {
+        const {activeUser} = this.props;
+        const {title, tags, body, reward, reblogSwitch, beneficiaries, schedule} = this.state;
+
+        // make sure active user and schedule date has set
+        if (!activeUser || !schedule) {
+            return;
+        }
+
+        this.stateSet({posting: true});
+
+        let author = activeUser.username;
+
+        let permlink = createPermlink(title);
+
+        // permlink duplication check
+        let c;
+        try {
+            c = await bridgeApi.getPost(author, permlink);
+        } catch (e) {
+        }
+
+        if (c && c.author) {
+            // create permlink with random suffix
+            permlink = createPermlink(title, true);
+        }
+
+        const meta = extractMetaData(body);
+        const jsonMeta = makeJsonMetaData(meta, tags, version);
+        const options = makeCommentOptions(author, permlink, reward, beneficiaries);
+
+        const date = schedule.toISOString(true);
+        const reblog = isCommunity(tags[0]) && reblogSwitch;
+
+        this.stateSet({posting: true});
+        addSchedule(author, permlink, title, body, jsonMeta, options, date, reblog).then(resp => {
+            success(_t('submit.scheduled'));
+            this.clear();
+        }).catch((e) => {
+            if (e.response?.data?.message) {
+                error(e.response?.data?.message);
+            } else {
+                error(_t('g.server-error'))
+            }
+        }).finally(() => this.stateSet({posting: false}))
     }
 
     render() {
@@ -644,9 +687,9 @@ class SubmitPage extends Component<Props, State> {
                                     children: <Button
                                         className="d-inline-flex align-items-center"
                                         onClick={this.schedule}
-                                        disabled={!canPublish || saving}
+                                        disabled={!canPublish || posting}
                                     >
-                                        {saving && spinner}
+                                        {posting && spinner}
                                         {_t("submit.schedule")}
                                     </Button>
                                 })}

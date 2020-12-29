@@ -71,6 +71,7 @@
     "gallery": "Gallery",
     "drafts": "Drafts",
     "bookmarks": "Bookmarks",
+    "schedules": "Schedules",
     "logout": "Logout"
   },
   "intro": {
@@ -574,7 +575,8 @@
     "beneficiaries-hint": "Set beneficiaries to share author reward with other accounts",
     "reblog": "Reblog",
     "schedule": "Schedule",
-    "schedule-hint": "Schedule lorem ipsum dolor sit amet"
+    "schedule-hint": "Schedule lorem ipsum dolor sit amet",
+    "scheduled": "Post scheduled"
   },
   "tag-selector": {
     "placeholder-empty": "Tags. First tag is main category. Sortable.",
@@ -716,6 +718,9 @@
   },
   "drafts": {
     "title": "Drafts"
+  },
+  "schedules": {
+    "title": "Scheduled Posts"
   },
   "bookmarks": {
     "title": "Bookmarks"
