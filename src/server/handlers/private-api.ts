@@ -330,7 +330,7 @@ export const schedulesAdd = async (req: express.Request, res: express.Response) 
 
     const {permlink, title, body, meta, options, schedule, reblog} = req.body;
 
-    const data = {account: username, permlink, title, body, meta, options, schedule, reblog: reblog ? 1 : 0};
+    const data = {username, permlink, title, body, meta, options, schedule, reblog: reblog ? 1 : 0};
     pipe(apiRequest(`schedules`, "POST", {}, data), res);
 }
 

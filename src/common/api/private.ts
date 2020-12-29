@@ -184,7 +184,7 @@ export const deleteDraft = (username: string, draftId: string): Promise<any> => 
 
 export interface Schedule {
     id: string;
-    account: string;
+    username: string;
     permlink: string;
     title: string;
     body: string;

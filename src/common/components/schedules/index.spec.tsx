@@ -21,7 +21,7 @@ jest.mock("../../api/private", () => ({
             if (TEST_MODE === 1) {
                 resolve([{
                     "id": "0f4cdce5-7fbe-467d-bdb4-0e600b108774",
-                    "account": "foo",
+                    "username": "foo",
                     "permlink": "eget-suscipit-quam-suspendisse",
                     "title": "Eget suscipit quam suspendisse",
                     "body": "Aliquam erat volutpat. Phasellus eget suscipit quam. Suspendisse et sapien ac tellus rhoncus pulvinar vitae id leo.",
@@ -33,7 +33,7 @@ jest.mock("../../api/private", () => ({
                     "message": null
                 }, {
                     "id": "0f4cdce5-7fbe-467d-bdb4-0e600b108775",
-                    "account": "foo",
+                    "username": "foo",
                     "permlink": "eget-suscipit-quam-suspendisse",
                     "title": "Eget suscipit quam suspendisse",
                     "body": "Aliquam erat volutpat. Phasellus eget suscipit quam. Suspendisse et sapien ac tellus rhoncus pulvinar vitae id leo.",
@@ -45,7 +45,7 @@ jest.mock("../../api/private", () => ({
                     "message": "tx0000000"
                 }, {
                     "id": "0f4cdce5-7fbe-467d-bdb4-0e600b108776",
-                    "account": "foo",
+                    "username": "foo",
                     "permlink": "eget-suscipit-quam-suspendisse",
                     "title": "Eget suscipit quam suspendisse",
                     "body": "Aliquam erat volutpat. Phasellus eget suscipit quam. Suspendisse et sapien ac tellus rhoncus pulvinar vitae id leo.",
@@ -57,7 +57,7 @@ jest.mock("../../api/private", () => ({
                     "message": "Rescheduled (Not enough RC)"
                 }, {
                     "id": "0f4cdce5-7fbe-467d-bdb4-0e600b108777",
-                    "account": "foo",
+                    "username": "foo",
                     "permlink": "eget-suscipit-quam-suspendisse",
                     "title": "Eget suscipit quam suspendisse",
                     "body": "Aliquam erat volutpat. Phasellus eget suscipit quam. Suspendisse et sapien ac tellus rhoncus pulvinar vitae id leo.",
