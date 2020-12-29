@@ -238,7 +238,7 @@
   },
   "community-role-edit": {
     "title": "Set user role",
-    "username": "Username",
+    "username": "Bansag",
     "role": "Role",
     "user-not-found": "The user does not exist!",
     "explanations": "<h3>Role Permissions</h3><p><strong>Owner</strong> - assign admins</p><p><strong>Admin</strong> - edit settings, assign mods</p><p><strong>Moderator</strong> - mute, pin, set user titles</p><p><strong>Member</strong> - listed on leadership team</p><p><strong>Guest</strong> - default; can post and comment</p><p><strong>Muted</strong> - new posts automatically muted</p>"
@@ -273,7 +273,7 @@
     "description": "Create a best, decentralized, immutable, rewarding communities",
     "fee": "Bayad ng operasyon",
     "creator": "May likha",
-    "username": "Owner username",
+    "username": "Bansag ng may-ari",
     "username-available": "Available.",
     "username-not-available": "Hindi available.",
     "username-wrong-format": "Not a valid format. hive-1xxxxx format required.",
@@ -661,7 +661,7 @@
     "list-fee": "Fee",
     "list-feed": "Feed",
     "list-version": "Version",
-    "username-placeholder": "username",
+    "username-placeholder": "bansag",
     "extra-description": "Enter account name below to vote for a witness outside of Top 50",
     "proxy-description": "You can also choose a proxy that will vote for witnesses for you. This will reset your current witness selection.",
     "proxy-btn-label": "Set Proxy",
