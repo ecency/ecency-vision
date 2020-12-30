@@ -26,7 +26,8 @@
     "on": "Be",
     "off": "Ki",
     "yes": "Igen",
-    "no": "Nem"
+    "no": "Nem",
+    "done": "Done"
   },
   "confirm": {
     "title": "Biztos vagy benne?",
@@ -70,6 +71,7 @@
     "gallery": "Galéria",
     "drafts": "Piszkozatok",
     "bookmarks": "Könyvjelzők",
+    "schedules": "Schedules",
     "logout": "Kijelentkezés"
   },
   "intro": {
@@ -553,6 +555,7 @@
     "title-placeholder": "Cím",
     "body-placeholder": "Bejegyzés tartalma",
     "reward": "Jutalom",
+    "reward-hint": "Set author reward ratio for liquid and staked tokens",
     "reward-default": "Alapértelmezett 50% / 50%",
     "reward-sp": "Feltöltés 100%",
     "reward-dp": "Jutalom elutasítása",
@@ -566,7 +569,15 @@
     "cancel-update": "Mégse",
     "clear": "Törlés",
     "published": "Bejegyzés közzétéve",
-    "updated": "Bejegyzés Frissítve"
+    "updated": "Bejegyzés Frissítve",
+    "advanced": "Advanced",
+    "beneficiaries": "Beneficiaries",
+    "beneficiaries-hint": "Set beneficiaries to share author reward with other accounts",
+    "reblog": "Reblog",
+    "reblog-hint": "Auto share content to your blog",
+    "schedule": "Schedule",
+    "schedule-hint": "Auto publish content on specific time",
+    "scheduled": "Post scheduled"
   },
   "tag-selector": {
     "placeholder-empty": "Tags. First tag is main category. Sortable.",
@@ -583,6 +594,19 @@
     "label": "{{n}} szó",
     "read-time-less-1-min": "< 1 perc olvasás",
     "read-time-n-min": "~ {{n}} perc olvasás"
+  },
+  "beneficiary-editor": {
+    "title": "Beneficiaries",
+    "btn-label": "Set Beneficiaries",
+    "btn-label-n": "Set Beneficiaries ({{n}})",
+    "username": "Username",
+    "reward": "Reward",
+    "user-error": "{{n}} is not a valid user.",
+    "user-exists-error": "{{n}} is already in the list"
+  },
+  "post-scheduler": {
+    "title": "Schedule",
+    "btn-label": "Schedule"
   },
   "notification": {
     "popup-title": "Van egy új értesítésed",
@@ -695,6 +719,9 @@
   },
   "drafts": {
     "title": "Piszkozatok"
+  },
+  "schedules": {
+    "title": "Scheduled Posts"
   },
   "bookmarks": {
     "title": "Könyvjelzők"
