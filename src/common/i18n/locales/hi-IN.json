@@ -26,7 +26,8 @@
     "on": "चालू",
     "off": "बंद",
     "yes": "हाँ",
-    "no": "नहीं"
+    "no": "नहीं",
+    "done": "Done"
   },
   "confirm": {
     "title": "क्या आपको यकीन है?",
@@ -70,6 +71,7 @@
     "gallery": "चित्रशाला",
     "drafts": "प्रारूप",
     "bookmarks": "पृष्टस्मृतियाँ",
+    "schedules": "Schedules",
     "logout": "लॉग आउट"
   },
   "intro": {
@@ -553,6 +555,7 @@
     "title-placeholder": "शीर्षक",
     "body-placeholder": "पोस्ट सामग्री",
     "reward": "इनाम",
+    "reward-hint": "Set author reward ratio for liquid and staked tokens",
     "reward-default": "वितथ रूप से ५०%/५०%",
     "reward-sp": "१००% शक्तिप्रापक करें",
     "reward-dp": "भुगतान अस्वीकार करें",
@@ -566,7 +569,15 @@
     "cancel-update": "रद्द करना",
     "clear": "मिटायें",
     "published": "पोस्ट सार्वजनिक हुवा",
-    "updated": "पोस्ट अपडेट किया गया"
+    "updated": "पोस्ट अपडेट किया गया",
+    "advanced": "Advanced",
+    "beneficiaries": "Beneficiaries",
+    "beneficiaries-hint": "Set beneficiaries to share author reward with other accounts",
+    "reblog": "Reblog",
+    "reblog-hint": "Auto share content to your blog",
+    "schedule": "Schedule",
+    "schedule-hint": "Auto publish content on specific time",
+    "scheduled": "Post scheduled"
   },
   "tag-selector": {
     "placeholder-empty": "टैग। पहला टैग मुख्य श्रेणी है। क्रमित करने योग्य।",
@@ -583,6 +594,19 @@
     "label": "{{n}} शब्द",
     "read-time-less-1-min": "<1 मिनट पढ़ें",
     "read-time-n-min": "~ {{n}} मिनट पढ़ें"
+  },
+  "beneficiary-editor": {
+    "title": "Beneficiaries",
+    "btn-label": "Set Beneficiaries",
+    "btn-label-n": "Set Beneficiaries ({{n}})",
+    "username": "Username",
+    "reward": "Reward",
+    "user-error": "{{n}} is not a valid user.",
+    "user-exists-error": "{{n}} is already in the list"
+  },
+  "post-scheduler": {
+    "title": "Schedule",
+    "btn-label": "Schedule"
   },
   "notification": {
     "popup-title": "आपके पास एक नई सूचना है",
@@ -695,6 +719,9 @@
   },
   "drafts": {
     "title": "प्रारूप"
+  },
+  "schedules": {
+    "title": "Scheduled Posts"
   },
   "bookmarks": {
     "title": "पृष्टस्मृतियाँ"
