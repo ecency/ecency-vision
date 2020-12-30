@@ -26,7 +26,8 @@
     "on": "Activado",
     "off": "Desactivado",
     "yes": "Si",
-    "no": "No"
+    "no": "No",
+    "done": "Done"
   },
   "confirm": {
     "title": "¿Estás seguro?",
@@ -70,6 +71,7 @@
     "gallery": "Galería",
     "drafts": "Borradores",
     "bookmarks": "Marcadores",
+    "schedules": "Schedules",
     "logout": "Cerrar sesión"
   },
   "intro": {
@@ -553,6 +555,7 @@
     "title-placeholder": "Título",
     "body-placeholder": "Publicar Contenido",
     "reward": "Recompensa",
+    "reward-hint": "Set author reward ratio for liquid and staked tokens",
     "reward-default": "Por defecto 50% / 50%",
     "reward-sp": "Power Up 100%",
     "reward-dp": "Rechazar Pago",
@@ -566,7 +569,15 @@
     "cancel-update": "Cancelar",
     "clear": "Limpiar",
     "published": "La publicación fue enviada",
-    "updated": "Publicación actualizada"
+    "updated": "Publicación actualizada",
+    "advanced": "Advanced",
+    "beneficiaries": "Beneficiaries",
+    "beneficiaries-hint": "Set beneficiaries to share author reward with other accounts",
+    "reblog": "Reblog",
+    "reblog-hint": "Auto share content to your blog",
+    "schedule": "Schedule",
+    "schedule-hint": "Auto publish content on specific time",
+    "scheduled": "Post scheduled"
   },
   "tag-selector": {
     "placeholder-empty": "Etiquetas. Primera etiqueta es la categoría principal. Seleccionable.",
@@ -583,6 +594,19 @@
     "label": "{{n}} palabras",
     "read-time-less-1-min": "< 1 min de lectura",
     "read-time-n-min": "~ {{n}} lectura mínima"
+  },
+  "beneficiary-editor": {
+    "title": "Beneficiaries",
+    "btn-label": "Set Beneficiaries",
+    "btn-label-n": "Set Beneficiaries ({{n}})",
+    "username": "Username",
+    "reward": "Reward",
+    "user-error": "{{n}} is not a valid user.",
+    "user-exists-error": "{{n}} is already in the list"
+  },
+  "post-scheduler": {
+    "title": "Schedule",
+    "btn-label": "Schedule"
   },
   "notification": {
     "popup-title": "Tienes una nueva notificación",
@@ -695,6 +719,9 @@
   },
   "drafts": {
     "title": "Borradores"
+  },
+  "schedules": {
+    "title": "Scheduled Posts"
   },
   "bookmarks": {
     "title": "Marcadores"
