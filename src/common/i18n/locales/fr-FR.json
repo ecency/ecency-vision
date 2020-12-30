@@ -26,7 +26,8 @@
     "on": "On",
     "off": "Off",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "done": "Done"
   },
   "confirm": {
     "title": "Êtes-vous sûr ?",
@@ -70,6 +71,7 @@
     "gallery": "Gallery",
     "drafts": "Drafts",
     "bookmarks": "Bookmarks",
+    "schedules": "Schedules",
     "logout": "Logout"
   },
   "intro": {
@@ -553,6 +555,7 @@
     "title-placeholder": "Titre",
     "body-placeholder": "Contenu du post",
     "reward": "Récompense",
+    "reward-hint": "Set author reward ratio for liquid and staked tokens",
     "reward-default": "Par défaut 50% / 50%",
     "reward-sp": "Power Up 100%",
     "reward-dp": "Décliner les gains",
@@ -566,7 +569,15 @@
     "cancel-update": "Annuler",
     "clear": "Effacer",
     "published": "Post publié",
-    "updated": "Post modifié"
+    "updated": "Post modifié",
+    "advanced": "Advanced",
+    "beneficiaries": "Beneficiaries",
+    "beneficiaries-hint": "Set beneficiaries to share author reward with other accounts",
+    "reblog": "Reblog",
+    "reblog-hint": "Auto share content to your blog",
+    "schedule": "Schedule",
+    "schedule-hint": "Auto publish content on specific time",
+    "scheduled": "Post scheduled"
   },
   "tag-selector": {
     "placeholder-empty": "Mots-clés. Le premier mot-clé est la catégorie principale. Triable.",
@@ -583,6 +594,19 @@
     "label": "{{n}} mots",
     "read-time-less-1-min": "< 1 min de lecture",
     "read-time-n-min": "~ {{n}} min de lecture"
+  },
+  "beneficiary-editor": {
+    "title": "Beneficiaries",
+    "btn-label": "Set Beneficiaries",
+    "btn-label-n": "Set Beneficiaries ({{n}})",
+    "username": "Username",
+    "reward": "Reward",
+    "user-error": "{{n}} is not a valid user.",
+    "user-exists-error": "{{n}} is already in the list"
+  },
+  "post-scheduler": {
+    "title": "Schedule",
+    "btn-label": "Schedule"
   },
   "notification": {
     "popup-title": "Vous avez une nouvelle notification",
@@ -695,6 +719,9 @@
   },
   "drafts": {
     "title": "Brouillons"
+  },
+  "schedules": {
+    "title": "Scheduled Posts"
   },
   "bookmarks": {
     "title": "Signets"
