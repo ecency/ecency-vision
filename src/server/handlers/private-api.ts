@@ -318,6 +318,29 @@ export const bookmarksDelete = async (req: express.Request, res: express.Respons
     pipe(apiRequest(`bookmarks/${username}/${id}`, "DELETE"), res);
 }
 
+export const schedules = async (req: express.Request, res: express.Response) => {
+    const username = await validateCode(req, res);
+    if (!username) return;
+    pipe(apiRequest(`schedules/${username}`, "GET"), res);
+}
+
+export const schedulesAdd = async (req: express.Request, res: express.Response) => {
+    const username = await validateCode(req, res);
+    if (!username) return;
+
+    const {permlink, title, body, meta, options, schedule, reblog} = req.body;
+
+    const data = {username, permlink, title, body, meta, options, schedule, reblog: reblog ? 1 : 0};
+    pipe(apiRequest(`schedules`, "POST", {}, data), res);
+}
+
+export const schedulesDelete = async (req: express.Request, res: express.Response) => {
+    const username = await validateCode(req, res);
+    if (!username) return;
+    const {id} = req.body;
+    pipe(apiRequest(`schedules/${username}/${id}`, "DELETE"), res);
+}
+
 export const favorites = async (req: express.Request, res: express.Response) => {
     const username = await validateCode(req, res);
     if (!username) return;

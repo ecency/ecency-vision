@@ -182,6 +182,35 @@ export const deleteDraft = (username: string, draftId: string): Promise<any> => 
     return axios.post(_u(`/api/drafts-delete`), data).then(resp => resp.data);
 }
 
+export interface Schedule {
+    id: string;
+    username: string;
+    permlink: string;
+    title: string;
+    body: string;
+    tags: string[];
+    schedule: string;
+    original_schedule: string;
+    reblog: boolean;
+    status: 1 | 2 | 3 | 4;
+    message: string | null
+}
+
+export const getSchedules = (username: string): Promise<Schedule[]> => {
+    const data = {code: getAccessToken(username)};
+    return axios.post(_u(`/api/schedules`), data).then(resp => resp.data);
+}
+
+export const addSchedule = (username: string, permlink: string, title: string, body: string, meta: {}, options: {}, schedule: string, reblog: boolean): Promise<any> => {
+    const data = {code: getAccessToken(username), permlink, title, body, meta, options, schedule, reblog}
+    return axios.post(_u(`/api/schedules-add`), data).then(resp => resp.data);
+}
+
+export const deleteSchedule = (username: string, id: string): Promise<any> => {
+    const data = {code: getAccessToken(username), id};
+    return axios.post(_u(`/api/schedules-delete`), data).then(resp => resp.data);
+}
+
 export interface Bookmark {
     _id: string,
     author: string,

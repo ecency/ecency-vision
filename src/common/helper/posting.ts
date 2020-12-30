@@ -6,6 +6,8 @@ import {MetaData, CommentOptions, RewardType} from "../api/operations";
 
 import isElectron from "../util/is-electron";
 
+import {BeneficiaryRoute} from "../api/operations";
+
 const permlinkRnd = () => (Math.random() + 1).toString(16).substring(2);
 
 export const createPermlink = (title: string, random: boolean = false): string => {
@@ -96,7 +98,7 @@ export const makeJsonMetaDataReply = (tags: string[], appVer: string) => ({
     format: 'markdown+html',
 });
 
-export const makeCommentOptions = (author: string, permlink: string, rewardType?: RewardType): CommentOptions => {
+export const makeCommentOptions = (author: string, permlink: string, rewardType: RewardType, beneficiaries?: BeneficiaryRoute[]): CommentOptions => {
     const opt: CommentOptions = {
         allow_curation_rewards: true,
         allow_votes: true,
@@ -104,7 +106,9 @@ export const makeCommentOptions = (author: string, permlink: string, rewardType?
         permlink,
         max_accepted_payout: "1000000.000 HBD",
         percent_hbd: 10000,
-        extensions: [],
+        extensions: (beneficiaries && beneficiaries.length > 0) ? [
+            [0, {beneficiaries: beneficiaries}]
+        ] : [],
     };
 
     switch (rewardType) {
@@ -114,7 +118,7 @@ export const makeCommentOptions = (author: string, permlink: string, rewardType?
             break;
         case "dp":
             opt.max_accepted_payout = "0.000 HBD";
-            opt.percent_hbd= 10000;
+            opt.percent_hbd = 10000;
             break;
         case "default":
             opt.max_accepted_payout = "1000000.000 HBD";

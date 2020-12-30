@@ -1,10 +1,18 @@
+const isHumanReadable = (input: number): boolean => {
+    return input > 0 && input <= 100;
+}
+
 export default (input: string | number): number => {
-    if (typeof input === 'number' && (input > 0 && input <= 100)) {
+    if (typeof input === 'number' && isHumanReadable(input)) {
         return Math.floor(input);
     }
 
     if (typeof input === 'string') {
         input = Number(input);
+
+        if (isHumanReadable(input)) {
+            return Math.floor(input);
+        }
     }
 
     if (input === 0) {

@@ -80,6 +80,46 @@ Object {
 }
 `;
 
+exports[`makeCommentOptions (4) Empty beneficiary list 1`] = `
+Object {
+  "allow_curation_rewards": true,
+  "allow_votes": true,
+  "author": "talhasch",
+  "extensions": Array [],
+  "max_accepted_payout": "1000000.000 HBD",
+  "percent_hbd": 10000,
+  "permlink": "lorem-ipsum-1",
+}
+`;
+
+exports[`makeCommentOptions (5) With beneficiary list 1`] = `
+Object {
+  "allow_curation_rewards": true,
+  "allow_votes": true,
+  "author": "talhasch",
+  "extensions": Array [
+    Array [
+      0,
+      Object {
+        "beneficiaries": Array [
+          Object {
+            "account": "foo",
+            "weight": 300,
+          },
+          Object {
+            "account": "bar",
+            "weight": 200,
+          },
+        ],
+      },
+    ],
+  ],
+  "max_accepted_payout": "1000000.000 HBD",
+  "percent_hbd": 10000,
+  "permlink": "lorem-ipsum-1",
+}
+`;
+
 exports[`makeJsonMetaData (1)  1`] = `
 Object {
   "app": "ecency/2.0.0-vision",
