@@ -26,7 +26,8 @@
     "on": "Ligar",
     "off": "Desligar",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "done": "Done"
   },
   "confirm": {
     "title": "Tem a certeza?",
@@ -70,6 +71,7 @@
     "gallery": "Galeria",
     "drafts": "Rascunhos",
     "bookmarks": "Favoritos",
+    "schedules": "Schedules",
     "logout": "Sair"
   },
   "intro": {
@@ -553,6 +555,7 @@
     "title-placeholder": "Título",
     "body-placeholder": "Conteúdo da Publicação",
     "reward": "Recompensa",
+    "reward-hint": "Set author reward ratio for liquid and staked tokens",
     "reward-default": "Padrão 50% / 50%",
     "reward-sp": "Força Total 100%",
     "reward-dp": "Recusar Pagamento",
@@ -566,7 +569,15 @@
     "cancel-update": "Cancelar",
     "clear": "Limpar",
     "published": "Publicação publicada",
-    "updated": "Publicação atualizada"
+    "updated": "Publicação atualizada",
+    "advanced": "Advanced",
+    "beneficiaries": "Beneficiaries",
+    "beneficiaries-hint": "Set beneficiaries to share author reward with other accounts",
+    "reblog": "Reblog",
+    "reblog-hint": "Auto share content to your blog",
+    "schedule": "Schedule",
+    "schedule-hint": "Auto publish content on specific time",
+    "scheduled": "Post scheduled"
   },
   "tag-selector": {
     "placeholder-empty": "Etiquetas. A primeira etiqueta é a categoria principal. Ordenável.",
@@ -583,6 +594,19 @@
     "label": "{{n}} palavras",
     "read-time-less-1-min": "< 1 min leitura",
     "read-time-n-min": "~ {{n}} min de leitura"
+  },
+  "beneficiary-editor": {
+    "title": "Beneficiaries",
+    "btn-label": "Set Beneficiaries",
+    "btn-label-n": "Set Beneficiaries ({{n}})",
+    "username": "Username",
+    "reward": "Reward",
+    "user-error": "{{n}} is not a valid user.",
+    "user-exists-error": "{{n}} is already in the list"
+  },
+  "post-scheduler": {
+    "title": "Schedule",
+    "btn-label": "Schedule"
   },
   "notification": {
     "popup-title": "Você tem uma nova notificação",
@@ -695,6 +719,9 @@
   },
   "drafts": {
     "title": "Rascunhos"
+  },
+  "schedules": {
+    "title": "Scheduled Posts"
   },
   "bookmarks": {
     "title": "Marcadores"
