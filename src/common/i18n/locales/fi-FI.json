@@ -26,7 +26,8 @@
     "on": "Päällä",
     "off": "Pois",
     "yes": "Kyllä",
-    "no": "Ei"
+    "no": "Ei",
+    "done": "Done"
   },
   "confirm": {
     "title": "Oletko varma?",
@@ -70,6 +71,7 @@
     "gallery": "Galleria",
     "drafts": "Luonnokset",
     "bookmarks": "Kirjanmerkit",
+    "schedules": "Schedules",
     "logout": "Kirjaudu ulos"
   },
   "intro": {
@@ -553,6 +555,7 @@
     "title-placeholder": "Otsikko",
     "body-placeholder": "Julkaisun sisältö",
     "reward": "Palkkio",
+    "reward-hint": "Set author reward ratio for liquid and staked tokens",
     "reward-default": "Oletus 50 % / 50 %",
     "reward-sp": "Power Up 100%",
     "reward-dp": "Hylkää maksu",
@@ -566,7 +569,15 @@
     "cancel-update": "Peruuta",
     "clear": "Tyhjennä",
     "published": "Julkaistu",
-    "updated": "Julkaisu päivitetty"
+    "updated": "Julkaisu päivitetty",
+    "advanced": "Advanced",
+    "beneficiaries": "Beneficiaries",
+    "beneficiaries-hint": "Set beneficiaries to share author reward with other accounts",
+    "reblog": "Reblog",
+    "reblog-hint": "Auto share content to your blog",
+    "schedule": "Schedule",
+    "schedule-hint": "Auto publish content on specific time",
+    "scheduled": "Post scheduled"
   },
   "tag-selector": {
     "placeholder-empty": "Tunnisteet. Ensimmäisenä pääkategoria. Lajiteltava.",
@@ -583,6 +594,19 @@
     "label": "{{n}} sanaa",
     "read-time-less-1-min": "< 1 min luku",
     "read-time-n-min": "~ {{n}} min lukuaika"
+  },
+  "beneficiary-editor": {
+    "title": "Beneficiaries",
+    "btn-label": "Set Beneficiaries",
+    "btn-label-n": "Set Beneficiaries ({{n}})",
+    "username": "Username",
+    "reward": "Reward",
+    "user-error": "{{n}} is not a valid user.",
+    "user-exists-error": "{{n}} is already in the list"
+  },
+  "post-scheduler": {
+    "title": "Schedule",
+    "btn-label": "Schedule"
   },
   "notification": {
     "popup-title": "Sinulle on uusi ilmoitus",
@@ -695,6 +719,9 @@
   },
   "drafts": {
     "title": "Luonnokset"
+  },
+  "schedules": {
+    "title": "Scheduled Posts"
   },
   "bookmarks": {
     "title": "Kirjanmerkit"
