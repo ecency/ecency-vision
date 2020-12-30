@@ -26,7 +26,8 @@
     "on": "Uključeno",
     "off": "Isključeno",
     "yes": "Da",
-    "no": "Ne"
+    "no": "Ne",
+    "done": "Done"
   },
   "confirm": {
     "title": "Da li ste sigurni?",
@@ -70,6 +71,7 @@
     "gallery": "Galerija",
     "drafts": "Skice",
     "bookmarks": "Obeleživači",
+    "schedules": "Schedules",
     "logout": "Odjavi se"
   },
   "intro": {
@@ -553,6 +555,7 @@
     "title-placeholder": "Naslov",
     "body-placeholder": "Objavi sadržaj",
     "reward": "Nagrada",
+    "reward-hint": "Set author reward ratio for liquid and staked tokens",
     "reward-default": "Standardno 50% / 50%",
     "reward-sp": "Pojačaj 100%",
     "reward-dp": "Odbij isplatu",
@@ -566,7 +569,15 @@
     "cancel-update": "Otkaži",
     "clear": "Obriši",
     "published": "Post je objavljen",
-    "updated": "Post je ažuriran"
+    "updated": "Post je ažuriran",
+    "advanced": "Advanced",
+    "beneficiaries": "Beneficiaries",
+    "beneficiaries-hint": "Set beneficiaries to share author reward with other accounts",
+    "reblog": "Reblog",
+    "reblog-hint": "Auto share content to your blog",
+    "schedule": "Schedule",
+    "schedule-hint": "Auto publish content on specific time",
+    "scheduled": "Post scheduled"
   },
   "tag-selector": {
     "placeholder-empty": "Oznake. Prva oznaka je glavna kategorija. Podložno razvrstavanju.",
@@ -583,6 +594,19 @@
     "label": "{{n}} reči",
     "read-time-less-1-min": "< 1 minute čitanja",
     "read-time-n-min": "~ {{n}} minuta čitanja"
+  },
+  "beneficiary-editor": {
+    "title": "Beneficiaries",
+    "btn-label": "Set Beneficiaries",
+    "btn-label-n": "Set Beneficiaries ({{n}})",
+    "username": "Username",
+    "reward": "Reward",
+    "user-error": "{{n}} is not a valid user.",
+    "user-exists-error": "{{n}} is already in the list"
+  },
+  "post-scheduler": {
+    "title": "Schedule",
+    "btn-label": "Schedule"
   },
   "notification": {
     "popup-title": "Imate novo obaveštenje",
@@ -695,6 +719,9 @@
   },
   "drafts": {
     "title": "Skice"
+  },
+  "schedules": {
+    "title": "Scheduled Posts"
   },
   "bookmarks": {
     "title": "Obeleživači"
