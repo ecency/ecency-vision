@@ -26,7 +26,8 @@
     "on": "On",
     "off": "Off",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "done": "Done"
   },
   "confirm": {
     "title": "Bist du sicher?",
@@ -70,6 +71,7 @@
     "gallery": "Galerie",
     "drafts": "Entwürfe",
     "bookmarks": "Lesezeichen",
+    "schedules": "Schedules",
     "logout": "Abmelden"
   },
   "intro": {
@@ -553,6 +555,7 @@
     "title-placeholder": "Title",
     "body-placeholder": "Post Content",
     "reward": "Reward",
+    "reward-hint": "Set author reward ratio for liquid and staked tokens",
     "reward-default": "Default 50% / 50%",
     "reward-sp": "Power Up 100%",
     "reward-dp": "Decline Payout",
@@ -566,7 +569,15 @@
     "cancel-update": "Cancel",
     "clear": "Clear",
     "published": "Post Published",
-    "updated": "Post Updated"
+    "updated": "Post Updated",
+    "advanced": "Advanced",
+    "beneficiaries": "Beneficiaries",
+    "beneficiaries-hint": "Set beneficiaries to share author reward with other accounts",
+    "reblog": "Reblog",
+    "reblog-hint": "Auto share content to your blog",
+    "schedule": "Schedule",
+    "schedule-hint": "Auto publish content on specific time",
+    "scheduled": "Post scheduled"
   },
   "tag-selector": {
     "placeholder-empty": "Tags. First tag is main category. Sortable.",
@@ -583,6 +594,19 @@
     "label": "{{n}} words",
     "read-time-less-1-min": "< 1 min read",
     "read-time-n-min": "~ {{n}} min read"
+  },
+  "beneficiary-editor": {
+    "title": "Beneficiaries",
+    "btn-label": "Set Beneficiaries",
+    "btn-label-n": "Set Beneficiaries ({{n}})",
+    "username": "Username",
+    "reward": "Reward",
+    "user-error": "{{n}} is not a valid user.",
+    "user-exists-error": "{{n}} is already in the list"
+  },
+  "post-scheduler": {
+    "title": "Schedule",
+    "btn-label": "Schedule"
   },
   "notification": {
     "popup-title": "You have a new notification",
@@ -695,6 +719,9 @@
   },
   "drafts": {
     "title": "Drafts"
+  },
+  "schedules": {
+    "title": "Scheduled Posts"
   },
   "bookmarks": {
     "title": "Bookmarks"
