@@ -26,7 +26,8 @@
     "on": "Wł",
     "off": "Wył",
     "yes": "Tak",
-    "no": "Nie"
+    "no": "Nie",
+    "done": "Done"
   },
   "confirm": {
     "title": "Jesteś pewien?",
@@ -70,6 +71,7 @@
     "gallery": "Galeria",
     "drafts": "Szkice",
     "bookmarks": "Zakładki",
+    "schedules": "Schedules",
     "logout": "Wyloguj"
   },
   "intro": {
@@ -553,6 +555,7 @@
     "title-placeholder": "Tytuł",
     "body-placeholder": "Treść wpisu",
     "reward": "Nagroda",
+    "reward-hint": "Set author reward ratio for liquid and staked tokens",
     "reward-default": "Domyślnie 50% / 50%",
     "reward-sp": "Zwiększ moc 100%",
     "reward-dp": "Odmów wynagrodzenia",
@@ -566,7 +569,15 @@
     "cancel-update": "Anuluj",
     "clear": "Wyczyść",
     "published": "Wpis został opublikowany",
-    "updated": "Wpis został zaktualizowany"
+    "updated": "Wpis został zaktualizowany",
+    "advanced": "Advanced",
+    "beneficiaries": "Beneficiaries",
+    "beneficiaries-hint": "Set beneficiaries to share author reward with other accounts",
+    "reblog": "Reblog",
+    "reblog-hint": "Auto share content to your blog",
+    "schedule": "Schedule",
+    "schedule-hint": "Auto publish content on specific time",
+    "scheduled": "Post scheduled"
   },
   "tag-selector": {
     "placeholder-empty": "Tagi. Pierwszy tag jest kategorią główną. Tagi można sortować.",
@@ -583,6 +594,19 @@
     "label": "{{n}} słów",
     "read-time-less-1-min": "< 1 min czytania",
     "read-time-n-min": "~ {{n}} min czytania"
+  },
+  "beneficiary-editor": {
+    "title": "Beneficiaries",
+    "btn-label": "Set Beneficiaries",
+    "btn-label-n": "Set Beneficiaries ({{n}})",
+    "username": "Username",
+    "reward": "Reward",
+    "user-error": "{{n}} is not a valid user.",
+    "user-exists-error": "{{n}} is already in the list"
+  },
+  "post-scheduler": {
+    "title": "Schedule",
+    "btn-label": "Schedule"
   },
   "notification": {
     "popup-title": "Masz nowe powiadomienie",
@@ -695,6 +719,9 @@
   },
   "drafts": {
     "title": "Drafts"
+  },
+  "schedules": {
+    "title": "Scheduled Posts"
   },
   "bookmarks": {
     "title": "Zakładki"
