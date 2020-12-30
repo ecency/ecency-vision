@@ -26,7 +26,8 @@
     "on": "Увімкнути",
     "off": "Вимкнути",
     "yes": "Так",
-    "no": "Ні"
+    "no": "Ні",
+    "done": "Done"
   },
   "confirm": {
     "title": "Ви впевнені?",
@@ -70,6 +71,7 @@
     "gallery": "Галерея",
     "drafts": "Чернетки",
     "bookmarks": "Закладки",
+    "schedules": "Schedules",
     "logout": "Вийти"
   },
   "intro": {
@@ -553,6 +555,7 @@
     "title-placeholder": "Заголовок",
     "body-placeholder": "Вміст допису",
     "reward": "Винагорода",
+    "reward-hint": "Set author reward ratio for liquid and staked tokens",
     "reward-default": "Стандарт 50% / 50%",
     "reward-sp": "Power Up 100%",
     "reward-dp": "Відмовитися від виплати",
@@ -566,7 +569,15 @@
     "cancel-update": "Скасувати",
     "clear": "Очистити",
     "published": "Допис опубліковано",
-    "updated": "Допис оновлено"
+    "updated": "Допис оновлено",
+    "advanced": "Advanced",
+    "beneficiaries": "Beneficiaries",
+    "beneficiaries-hint": "Set beneficiaries to share author reward with other accounts",
+    "reblog": "Reblog",
+    "reblog-hint": "Auto share content to your blog",
+    "schedule": "Schedule",
+    "schedule-hint": "Auto publish content on specific time",
+    "scheduled": "Post scheduled"
   },
   "tag-selector": {
     "placeholder-empty": "Теги. Першим тегом є основна категорія, а наступні є для сортування.",
@@ -583,6 +594,19 @@
     "label": "{{n}} слів",
     "read-time-less-1-min": "< 1 хв. приблизно читати",
     "read-time-n-min": "~ {{n}} хв. читати"
+  },
+  "beneficiary-editor": {
+    "title": "Beneficiaries",
+    "btn-label": "Set Beneficiaries",
+    "btn-label-n": "Set Beneficiaries ({{n}})",
+    "username": "Username",
+    "reward": "Reward",
+    "user-error": "{{n}} is not a valid user.",
+    "user-exists-error": "{{n}} is already in the list"
+  },
+  "post-scheduler": {
+    "title": "Schedule",
+    "btn-label": "Schedule"
   },
   "notification": {
     "popup-title": "У вас є нове сповіщення",
@@ -695,6 +719,9 @@
   },
   "drafts": {
     "title": "Чернетки"
+  },
+  "schedules": {
+    "title": "Scheduled Posts"
   },
   "bookmarks": {
     "title": "Закладки"
