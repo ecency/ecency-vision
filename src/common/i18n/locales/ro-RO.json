@@ -26,7 +26,8 @@
     "on": "Activează",
     "off": "Dezactivează",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "done": "Done"
   },
   "confirm": {
     "title": "Ești sigur?",
@@ -70,6 +71,7 @@
     "gallery": "Galerie",
     "drafts": "Schițe",
     "bookmarks": "Bookmarks",
+    "schedules": "Schedules",
     "logout": "Deconectare"
   },
   "intro": {
@@ -553,6 +555,7 @@
     "title-placeholder": "Titlu",
     "body-placeholder": "Conținut Post",
     "reward": "Recompensă",
+    "reward-hint": "Set author reward ratio for liquid and staked tokens",
     "reward-default": "Implicit 50% / 50%",
     "reward-sp": "Putere 100%",
     "reward-dp": "Refuză plata",
@@ -566,7 +569,15 @@
     "cancel-update": "Anulează",
     "clear": "Șterge",
     "published": "Post publicat",
-    "updated": "Post actualizat"
+    "updated": "Post actualizat",
+    "advanced": "Advanced",
+    "beneficiaries": "Beneficiaries",
+    "beneficiaries-hint": "Set beneficiaries to share author reward with other accounts",
+    "reblog": "Reblog",
+    "reblog-hint": "Auto share content to your blog",
+    "schedule": "Schedule",
+    "schedule-hint": "Auto publish content on specific time",
+    "scheduled": "Post scheduled"
   },
   "tag-selector": {
     "placeholder-empty": "Tags. First tag is main category. Sortable.",
@@ -583,6 +594,19 @@
     "label": "{{n}} cuvinte",
     "read-time-less-1-min": "timp de citire < 1",
     "read-time-n-min": "timp de citire ~ {{n}}"
+  },
+  "beneficiary-editor": {
+    "title": "Beneficiaries",
+    "btn-label": "Set Beneficiaries",
+    "btn-label-n": "Set Beneficiaries ({{n}})",
+    "username": "Username",
+    "reward": "Reward",
+    "user-error": "{{n}} is not a valid user.",
+    "user-exists-error": "{{n}} is already in the list"
+  },
+  "post-scheduler": {
+    "title": "Schedule",
+    "btn-label": "Schedule"
   },
   "notification": {
     "popup-title": "Ai o nouă notificare",
@@ -695,6 +719,9 @@
   },
   "drafts": {
     "title": "Schițe"
+  },
+  "schedules": {
+    "title": "Scheduled Posts"
   },
   "bookmarks": {
     "title": "Bookmarks"
