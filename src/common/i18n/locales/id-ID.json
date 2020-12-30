@@ -26,7 +26,8 @@
     "on": "On",
     "off": "Off",
     "yes": "Ya",
-    "no": "Tidak"
+    "no": "Tidak",
+    "done": "Done"
   },
   "confirm": {
     "title": "Apakah anda yakin?",
@@ -70,6 +71,7 @@
     "gallery": "Galeri",
     "drafts": "Konsep",
     "bookmarks": "Tandai",
+    "schedules": "Schedules",
     "logout": "Keluar"
   },
   "intro": {
@@ -553,6 +555,7 @@
     "title-placeholder": "Judul",
     "body-placeholder": "Konten Postingan",
     "reward": "Reward",
+    "reward-hint": "Set author reward ratio for liquid and staked tokens",
     "reward-default": "Default 50% / 50%",
     "reward-sp": "Power Up 100%",
     "reward-dp": "Menolak pembayaran",
@@ -566,7 +569,15 @@
     "cancel-update": "Batalkan",
     "clear": "Bersihkan",
     "published": "Postingan telah diterbitkan",
-    "updated": "Postingan diperbarui"
+    "updated": "Postingan diperbarui",
+    "advanced": "Advanced",
+    "beneficiaries": "Beneficiaries",
+    "beneficiaries-hint": "Set beneficiaries to share author reward with other accounts",
+    "reblog": "Reblog",
+    "reblog-hint": "Auto share content to your blog",
+    "schedule": "Schedule",
+    "schedule-hint": "Auto publish content on specific time",
+    "scheduled": "Post scheduled"
   },
   "tag-selector": {
     "placeholder-empty": "Tagar. Tagar pertama adalah kategori utama. Mudah disortir.",
@@ -583,6 +594,19 @@
     "label": "{{n}} kata",
     "read-time-less-1-min": "< 1 menit dibaca",
     "read-time-n-min": "~ {{n}} menit dibaca"
+  },
+  "beneficiary-editor": {
+    "title": "Beneficiaries",
+    "btn-label": "Set Beneficiaries",
+    "btn-label-n": "Set Beneficiaries ({{n}})",
+    "username": "Username",
+    "reward": "Reward",
+    "user-error": "{{n}} is not a valid user.",
+    "user-exists-error": "{{n}} is already in the list"
+  },
+  "post-scheduler": {
+    "title": "Schedule",
+    "btn-label": "Schedule"
   },
   "notification": {
     "popup-title": "Anda memiliki pemberitahuan baru",
@@ -695,6 +719,9 @@
   },
   "drafts": {
     "title": "Konsep"
+  },
+  "schedules": {
+    "title": "Scheduled Posts"
   },
   "bookmarks": {
     "title": "Bookmark"
