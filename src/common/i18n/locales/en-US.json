@@ -574,8 +574,9 @@
     "beneficiaries": "Beneficiaries",
     "beneficiaries-hint": "Set beneficiaries to share author reward with other accounts",
     "reblog": "Reblog",
+    "reblog-hint": "Auto share content to your blog",
     "schedule": "Schedule",
-    "schedule-hint": "Schedule lorem ipsum dolor sit amet",
+    "schedule-hint": "Auto publish content on specific time",
     "scheduled": "Post scheduled"
   },
   "tag-selector": {
