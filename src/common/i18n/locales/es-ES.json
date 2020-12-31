@@ -27,7 +27,7 @@
     "off": "Desactivado",
     "yes": "Si",
     "no": "No",
-    "done": "Done"
+    "done": "Completado"
   },
   "confirm": {
     "title": "¿Estás seguro?",
@@ -71,7 +71,7 @@
     "gallery": "Galería",
     "drafts": "Borradores",
     "bookmarks": "Marcadores",
-    "schedules": "Schedules",
+    "schedules": "Programados",
     "logout": "Cerrar sesión"
   },
   "intro": {
@@ -555,7 +555,7 @@
     "title-placeholder": "Título",
     "body-placeholder": "Publicar Contenido",
     "reward": "Recompensa",
-    "reward-hint": "Set author reward ratio for liquid and staked tokens",
+    "reward-hint": "Establecer la relación de recompensa del autor para los tokens líquidos y en estaca",
     "reward-default": "Por defecto 50% / 50%",
     "reward-sp": "Power Up 100%",
     "reward-dp": "Rechazar Pago",
@@ -570,14 +570,14 @@
     "clear": "Limpiar",
     "published": "La publicación fue enviada",
     "updated": "Publicación actualizada",
-    "advanced": "Advanced",
-    "beneficiaries": "Beneficiaries",
-    "beneficiaries-hint": "Set beneficiaries to share author reward with other accounts",
-    "reblog": "Reblog",
-    "reblog-hint": "Auto share content to your blog",
-    "schedule": "Schedule",
-    "schedule-hint": "Auto publish content on specific time",
-    "scheduled": "Post scheduled"
+    "advanced": "Avanzado",
+    "beneficiaries": "Beneficiarios",
+    "beneficiaries-hint": "Establecer beneficiarios para compartir la recompensa del autor con otras cuentas",
+    "reblog": "Rebloguear",
+    "reblog-hint": "Auto compartir contenido en tu blog",
+    "schedule": "Programar",
+    "schedule-hint": "Auto publicar contenido en tiempo específico",
+    "scheduled": "Publicación Programada"
   },
   "tag-selector": {
     "placeholder-empty": "Etiquetas. Primera etiqueta es la categoría principal. Seleccionable.",
@@ -596,17 +596,17 @@
     "read-time-n-min": "~ {{n}} lectura mínima"
   },
   "beneficiary-editor": {
-    "title": "Beneficiaries",
-    "btn-label": "Set Beneficiaries",
-    "btn-label-n": "Set Beneficiaries ({{n}})",
-    "username": "Username",
-    "reward": "Reward",
-    "user-error": "{{n}} is not a valid user.",
-    "user-exists-error": "{{n}} is already in the list"
+    "title": "Beneficiarios",
+    "btn-label": "Establecer beneficiarios",
+    "btn-label-n": "Establecer beneficiarios ({{n}})",
+    "username": "Nombre de Usuario",
+    "reward": "Recompensa",
+    "user-error": "{{n}} no es un usuario válido.",
+    "user-exists-error": "{{n}} ya está en la lista"
   },
   "post-scheduler": {
-    "title": "Schedule",
-    "btn-label": "Schedule"
+    "title": "Programar",
+    "btn-label": "Programar"
   },
   "notification": {
     "popup-title": "Tienes una nueva notificación",
@@ -721,7 +721,7 @@
     "title": "Borradores"
   },
   "schedules": {
-    "title": "Scheduled Posts"
+    "title": "Publicaciones programadas"
   },
   "bookmarks": {
     "title": "Marcadores"
@@ -784,7 +784,7 @@
       "how-boost-account-header": "¿Cómo solicitar la optimización de la cuenta?",
       "how-boost-account-body": "<p>Si tu cuenta tiene un bajo monto de <a href=\"/faq#what-are-rc\">Créditos de Recursos</a>, puedes solicitar que la cuenta reciba impulso desde Ecency. Recibirás una delegación temporal que debería impulsar tu cuenta para realizar más actividades en la blockchain. Puedes encontrar la función de potenciar la cuenta en las opciones de puntos.</p>",
       "what-spam-abuse-header": "¿Qué se considera spam o abuso?",
-      "what-spam-abuse-body": "<p><img src=\"https://images.ecency.com/p/3jpR3paJ37V8XPrHkfZdMt57jY6pRt6zEt5iRJV9pSw4Mez3Hut8U6RWvWLA7cFYEa1bxveXeasNfZApzrcLYLx8cz84kBEKak1KkewE2ZqE1QRRkF4eqRH3vWVqZB9WuNbzE?format=match&mode=fit\"/></p><p><ul><li>Plagiarized posts or copied content.</li><li>Leaving nearly identical or materially similar comments on multiple posts.</li><li>Using tags that are unrelated to the post.</li><li>Threatening users with any type of physical violence.</li><li>Not citing sources when using someone else’s material.</li><li>Posting ‘not safe for work’ content without using the “nsfw” tag.</li><li>Scams or Fraudulent offers.</li></ul></p>",
+      "what-spam-abuse-body": "<p><img src=\"https://images.ecency.com/p/3jpR3paJ37V8XPrHkfZdMt57jY6pRt6zEt5iRJV9pSw4Mez3Hut8U6RWvWLA7cFYEa1bxveXeasNfZApzrcLYLx8cz84kBEKak1KkewE2ZqE1QRRkF4eqRH3vWVqZB9WuNbzE?format=match&mode=fit\"/></p><p><ul><li>Publicaciones plagiadas o contenido copiado.</li><li>Dejar comentarios casi idénticos o materialmente similares en varias publicaciones.</li><li>Usar etiquetas que no están relacionadas con la publicación.</li><li>Amenazar a los usuarios con cualquier tipo de violencia física.</li><li>No citar fuentes al usar material de otra persona.</li><li>Publicar contenido \"no seguro para el trabajo\" sin usar la etiqueta \"nsfw\".</li><li>Estafas u ofertas fraudulentas.</li></ul></p>",
       "can-link-post-header": "¿Puedo solicitar al equipo de Ecency agregar un vínculo de retroceso a mi sitio web?",
       "can-link-post-body": "<p>Todo el contenido de nuestro sitio es creado por nuestros usuarios y no modificamos ni podemos añadir vínculos de retroceso. Usted es libre de contactar con el autor de la publicación o <a href=\"/?referral=ecency\">Registrarse</a> para abrir su propio blog y comunidad, publicar artículos para crear vínculos de retroceso de forma gratuita.</p>",
       "can-guest-post-header": "¿Es posible publicar en su sitio web?",
