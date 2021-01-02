@@ -241,7 +241,7 @@
         }
 
         .btn-login {
-          border: none;
+          border: none !important;
         }
 
         @media (min-width: $xl-break) {
