@@ -252,7 +252,7 @@ export interface Proposal {
 
 export const getProposals = (): Promise<Proposal[]> => client.call("database_api", "list_proposals", {
     start: [-1],
-    limit: 100,
+    limit: 200,
     order: 'by_total_votes',
     order_direction: 'descending',
     status: 'all'
