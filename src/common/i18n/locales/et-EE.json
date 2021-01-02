@@ -6,86 +6,86 @@
     "downloads": "Allalaadimised",
     "login": "Logi sisse",
     "login-as": "Login As",
-    "signup": "Signup",
-    "delete": "Delete",
-    "cancel": "Cancel",
-    "reply": "Reply",
-    "update": "Update",
-    "or": "OR",
+    "signup": "Registreeru",
+    "delete": "Kustuta",
+    "cancel": "Tühista",
+    "reply": "Vasta",
+    "update": "Uuenda",
+    "or": "VÕI",
     "server-error": "Process could not be completed due to server error",
-    "day": "day",
-    "days": "days",
-    "finish": "Finish",
-    "next": "Next",
-    "back": "Back",
+    "day": "päev",
+    "days": "päeva",
+    "finish": "Lõpeta",
+    "next": "Edasi",
+    "back": "Tagasi",
     "load-more": "Load More",
     "empty-list": "Nothing here",
-    "save": "Save",
-    "try-again": "Try again",
-    "show": "Show",
-    "on": "On",
-    "off": "Off",
-    "yes": "Yes",
-    "no": "No",
-    "done": "Done"
+    "save": "Salvesta",
+    "try-again": "Proovige uuesti",
+    "show": "Näita",
+    "on": "Sees",
+    "off": "Väljas",
+    "yes": "Jah",
+    "no": "Ei",
+    "done": "Valmis"
   },
   "confirm": {
-    "title": "Are you sure?",
-    "ok": "Confirm",
-    "cancel": "Cancel"
+    "title": "Olete kindel?",
+    "ok": "Kinnita",
+    "cancel": "Tühista"
   },
   "entry-filter": {
-    "filter-trending": "Trending",
-    "filter-hot": "Hot",
-    "filter-created": "New",
-    "filter-promoted": "Promoted",
-    "filter-payout": "Payouts",
-    "filter-muted": "Muted",
-    "filter-feed": "Feed",
-    "filter-feed-friends": "Friends",
-    "filter-feed-subscriptions": "Communities"
+    "filter-trending": "Populaarne",
+    "filter-hot": "Kuum",
+    "filter-created": "Värske",
+    "filter-promoted": "Sponsitud",
+    "filter-payout": "Väljamaksed",
+    "filter-muted": "Vaigistatud",
+    "filter-feed": "Voog",
+    "filter-feed-friends": "Sõbrad",
+    "filter-feed-subscriptions": "Kogukonnad"
   },
   "navbar": {
-    "discover": "Discover",
-    "communities": "Communities",
-    "about": "About",
-    "post": "Create Post",
-    "day-theme": "Day Theme",
-    "night-theme": "Night Theme",
-    "address-placeholder": "enter url or search query"
+    "discover": "Avasta",
+    "communities": "Kogukonnad",
+    "about": "Teave",
+    "post": "Loo postitus",
+    "day-theme": "Hele teema",
+    "night-theme": "Tume teema",
+    "address-placeholder": "sisesta aadress või otsingu sõna"
   },
   "search": {
-    "placeholder": "Search",
-    "placeholder-count": "Search {{n}} posts",
-    "header-tag": "Tags",
-    "header-account": "Users",
-    "header-community": "Communities"
+    "placeholder": "Otsi",
+    "placeholder-count": "Otsi {{n}} postitust",
+    "header-tag": "Sildid",
+    "header-account": "Kasutajad",
+    "header-community": "Kogukonnad"
   },
   "user-nav": {
-    "wallet": "Wallet",
-    "unclaimed-reward-notice": "You have unclaimed rewards",
-    "points": "Points",
-    "unclaimed-points-notice": "You have unclaimed points",
-    "notifications": "Notifications",
-    "profile": "Profile",
-    "gallery": "Gallery",
-    "drafts": "Drafts",
-    "bookmarks": "Bookmarks",
-    "schedules": "Schedules",
-    "logout": "Logout"
+    "wallet": "Rahakott",
+    "unclaimed-reward-notice": "Sul on tulud lunastamata",
+    "points": "Punktid",
+    "unclaimed-points-notice": "Sul on punktid lunastamata",
+    "notifications": "Teavitused",
+    "profile": "Profiil",
+    "gallery": "Galerii",
+    "drafts": "Mustandid",
+    "bookmarks": "Järjehoidjad",
+    "schedules": "Ajakavad",
+    "logout": "Välju"
   },
   "intro": {
     "title": "Aspire to greatness",
     "sub-title": "rewarding communities",
-    "c2a": "Get Started"
+    "c2a": "Alusta"
   },
   "login": {
-    "title": "Welcome back!",
-    "with-user-pass": "Login with your username and private key.",
-    "username-placeholder": "username",
+    "title": "Tere tulemast tagasi!",
+    "with-user-pass": "Logi sisse kasutajanime ja privaatse võtmega.",
+    "username-placeholder": "kasutajanimi",
     "key-placeholder": "master or active private key",
-    "login-info-1": "We don't store your private keys.",
-    "login-info-2": "More info",
+    "login-info-1": "Me ei hoiusta sinu privaatseid võtmeid.",
+    "login-info-2": "Lisateave",
     "error-fields-required": "Please enter username and private key",
     "error-public-key": "You entered a public key. Password/WIF required",
     "error-user-fetch": "User data could not be fetched",
@@ -119,15 +119,15 @@
     "reblogged": "{{n}} reblogged",
     "promoted": "promoted",
     "pinned": "Pinned Post",
-    "replies": "1 response. Click to respond.",
-    "replies-n": "{{n}} responses. Click to respond.",
-    "no-replies": "No responses yet. Click to respond."
+    "replies": "1 vastus. Vajuta, et vastata.",
+    "replies-n": "{{n}} vastust. Vajuta, et vastata.",
+    "no-replies": "Vastused puuduvad. Vajuta, et vastata."
   },
   "bookmark-btn": {
-    "add": "Add to bookmarks",
-    "added": "Added to bookmarks",
-    "delete": "Remove from bookmarks",
-    "deleted": "Removed from bookmarks"
+    "add": "Lisa järjehoidjatesse",
+    "added": "Lisatud järjehoidjatesse",
+    "delete": "Eemalda järjehoidjatest",
+    "deleted": "Eemaldatud järjehoidjatest"
   },
   "entry-reblog": {
     "reblog": "Reblog",
@@ -137,60 +137,60 @@
   },
   "entry-payout": {
     "pending-payout": "Pending Payout",
-    "promoted": "Promoted",
-    "author-payout": "Author Payout",
-    "curators-payout": "Curators Payout",
-    "payout-date": "Payout",
-    "beneficiary": "Beneficiary",
-    "breakdown": "Breakdown"
+    "promoted": "Sponsitud",
+    "author-payout": "Autori tasu",
+    "curators-payout": "Hääletajate tasu",
+    "payout-date": "Väljamakse",
+    "beneficiary": "Kasusaaja",
+    "breakdown": "Analüüs"
   },
   "entry-index": {
-    "feed": "Feed",
-    "tags": "Popular",
-    "title": "{{f}} topics",
-    "description": "{{f}} topics on a social network owned and operated by its users.",
-    "description-tag": "{{f}} #{{t}} topics",
-    "description-user-feed": "{{u}}'s feed",
-    "faq": "FAQ",
-    "tos": "Terms of service",
-    "pp": "Privacy Policy"
+    "feed": "Voog",
+    "tags": "Populaarne",
+    "title": "{{f}} teemat",
+    "description": "{{f}} teemat sotsiaalvõrgustikus, mida omavad ja hoiavad töös selle kasutajad.",
+    "description-tag": "{{f}} #{{t}} teemat",
+    "description-user-feed": "{{u}} voog",
+    "faq": "KKK",
+    "tos": "Kasutustingimused",
+    "pp": "Privaatsuspoliitika"
   },
   "market-data": {
-    "title": "Market price",
-    "credits": "data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
+    "title": "Turuhind",
+    "credits": "andmed<a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingeckost</a>"
   },
   "list-style": {
-    "title": "Toggle list style"
+    "title": "Vaheta loendi stiili"
   },
   "entry-votes": {
-    "title": "1 Vote",
-    "title-n": "{{n}} Votes",
-    "title-empty": "No Votes",
-    "sort": "Sort",
-    "sort-reward": "Reward",
-    "sort-timestamp": "Time",
-    "sort-reputation": "Reputation",
-    "sort-percent": "Percentage"
+    "title": "1 Hääl",
+    "title-n": "{{n}} Häält",
+    "title-empty": "Hääled puuduvad",
+    "sort": "Sorteeri",
+    "sort-reward": "Tasu",
+    "sort-timestamp": "Kellaaeg",
+    "sort-reputation": "Maine",
+    "sort-percent": "Protsendid"
   },
   "entry": {
-    "via-app": "via <span class=\"app-name\">{{app}}</span>",
-    "comment-entry-title": "You are viewing a single comment's thread from: ",
-    "comment-entry-go-root": "View the full context",
-    "comment-entry-go-parent": "View the direct parent",
-    "show-history": "Show edit history",
-    "hidden-warning": "This post was hidden due to low ratings."
+    "via-app": "<span class=\"app-name\">{{app}}</span> kaudu",
+    "comment-entry-title": "Vaatad ühte kommentaarilõimu: ",
+    "comment-entry-go-root": "Vaata kogu konteksti",
+    "comment-entry-go-parent": "Vaata eelmist kommentaari",
+    "show-history": "Näita muutmise ajalugu",
+    "hidden-warning": "See postitus on madala hinnangu tõttu peidetud."
   },
   "edit-history": {
-    "title": "Edit History",
-    "show-diff": "Show Difference",
-    "version": "Version {{n}}"
+    "title": "Muudatuste ajalugu",
+    "show-diff": "Näita erinevusi",
+    "version": "Variant {{n}}"
   },
   "similar-entries": {
-    "title": "Recent posts by @{{n}}"
+    "title": "Hiljutised postitused kasutajalt @{{n}}"
   },
   "comment": {
-    "body-placeholder": "Write your reply here",
-    "preview": "Preview"
+    "body-placeholder": "Kirjuta oma vastus siia",
+    "preview": "Eelvaade"
   },
   "discussion": {
     "join": "Join the conversion now",
