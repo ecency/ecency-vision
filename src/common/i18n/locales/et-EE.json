@@ -90,30 +90,30 @@
     "error-public-key": "You entered a public key. Password/WIF required",
     "error-user-fetch": "User data could not be fetched",
     "error-user-not-found": "Kasutajat ei eksisteeri",
-    "error-permission": "Couldn't get posting permission",
+    "error-permission": "Ei saanud postitamiseks luba",
     "error-authenticate": "Wrong private key. Master or active private key required.",
     "with-hive-signer": "Login with hivesigner",
     "with-keychain": "Login with keychain",
     "sign-up-text-1": "Don't have an account?",
-    "sign-up-text-2": "Sign up now!"
+    "sign-up-text-2": "Loo konto kohe!"
   },
   "sign-up": {
-    "header": "Sign Up",
+    "header": "Loo konto",
     "description": "One account to manage everything on blockchain and Ecency. Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
-    "username": "Pick a username",
-    "email": "Enter your email address",
-    "ref": "Referred user (optional)",
-    "submit": "Continue",
-    "success": "We've sent an email to {{email}}.",
-    "success-2": "Follow instructions to complete signup process.",
-    "login-text-1": "Do you have an account?",
-    "login-text-2": "Login"
+    "username": "Vali kasutajanimi",
+    "email": "Kirjuta oma e-posti aadress",
+    "ref": "Kutsutud kasutaja (vabatahtlik)",
+    "submit": "Jätka",
+    "success": "Saatsime kirja e-postile {{email}}.",
+    "success-2": "Järgi juhendeid, et lõpetada registreerumine.",
+    "login-text-1": "Kas sul on kasutaja?",
+    "login-text-2": "Logi sisse"
   },
   "trending-tags": {
-    "title": "Topics"
+    "title": "Teemad"
   },
   "selected-tags": {
-    "title": "Featured"
+    "title": "Esiletõstetud"
   },
   "entry-list-item": {
     "reblogged": "{{n}} reblogged",
