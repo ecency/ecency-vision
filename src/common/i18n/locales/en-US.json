@@ -48,6 +48,8 @@
   "navbar": {
     "discover": "Discover",
     "communities": "Communities",
+    "witnesses": "Witnesses",
+    "proposals": "Proposals",
     "about": "About",
     "post": "Create Post",
     "day-theme": "Day Theme",
