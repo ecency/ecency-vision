@@ -155,6 +155,11 @@ export class NavBar extends Component<Props, State> {
                     label: _t("navbar.proposals"),
                     href: `/proposals`,
                     active: location.pathname === '/proposals'
+                },
+                {
+                    label: _t("navbar.faq"),
+                    href: `/faq`,
+                    active: location.pathname === '/faq'
                 }
             ],
         };
