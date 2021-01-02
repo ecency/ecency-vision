@@ -341,6 +341,13 @@ export const schedulesDelete = async (req: express.Request, res: express.Respons
     pipe(apiRequest(`schedules/${username}/${id}`, "DELETE"), res);
 }
 
+export const schedulesMove = async (req: express.Request, res: express.Response) => {
+    const username = await validateCode(req, res);
+    if (!username) return;
+    const {id} = req.body;
+    pipe(apiRequest(`schedules/${username}/${id}`, "PUT"), res);
+}
+
 export const favorites = async (req: express.Request, res: express.Response) => {
     const username = await validateCode(req, res);
     if (!username) return;

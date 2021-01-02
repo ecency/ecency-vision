@@ -19,13 +19,13 @@ import {error} from "../feedback";
 
 import {_t} from "../../i18n";
 
-import {getSchedules, Schedule, deleteSchedule} from "../../api/private";
+import {getSchedules, Schedule, deleteSchedule, moveSchedule} from "../../api/private";
 
 import accountReputation from "../../helper/account-reputation";
 
 import defaults from "../../constants/defaults.json";
 
-import {deleteForeverSvg, timeSvg, checkAllSvg, alertCircleSvg} from "../../img/svg";
+import {deleteForeverSvg, timeSvg, checkAllSvg, alertCircleSvg, pencilOutlineSvg} from "../../img/svg";
 
 import {
     catchPostImage,
@@ -46,11 +46,12 @@ interface ItemProps {
     post: Schedule;
     activeUser: ActiveUser;
     deleteFn: (item: Schedule) => void;
+    moveFn: (item: Schedule) => void;
 }
 
 export class ListItem extends Component<ItemProps> {
     render() {
-        const {activeUser, post, deleteFn, global} = this.props;
+        const {activeUser, post, deleteFn, moveFn, global} = this.props;
         if (!activeUser.data.__loaded) {
             return null;
         }
@@ -60,7 +61,7 @@ export class ListItem extends Component<ItemProps> {
         const author = account.name
         const reputation = account.reputation;
 
-        const tag = post.tags[0]
+        const tag = post.tags_arr[0]
 
         const img = catchPostImage(post.body, 600, 500, global.canUseWebp ? 'webp' : 'match') || noImage;
         const summary = postBodySummary(post.body, 200);
@@ -104,7 +105,6 @@ export class ListItem extends Component<ItemProps> {
                     <div className="item-body">{summary}</div>
                 </div>
                 <div className="item-controls">
-
                     {(() => {
                         if (post.status === 1) {
                             return <Tooltip content={dateRelative}>
@@ -129,13 +129,23 @@ export class ListItem extends Component<ItemProps> {
                         return <span/>
                     })()}
 
-                    <PopoverConfirm onConfirm={() => {
-                        deleteFn(post);
-                    }}>
-                        <a className="btn-delete">
-                            <Tooltip content={_t("g.delete")}><span>{deleteForeverSvg}</span></Tooltip>
-                        </a>
-                    </PopoverConfirm>
+                    <div className="btn-controls">
+                        <PopoverConfirm titleText={`${_t("schedules.move")}?`} onConfirm={() => {
+                            moveFn(post);
+                        }}>
+                            <a className="btn-move">
+                                <Tooltip content={_t("schedules.move")}><span>{pencilOutlineSvg}</span></Tooltip>
+                            </a>
+                        </PopoverConfirm>
+
+                        <PopoverConfirm onConfirm={() => {
+                            deleteFn(post);
+                        }}>
+                            <a className="btn-delete">
+                                <Tooltip content={_t("g.delete")}><span>{deleteForeverSvg}</span></Tooltip>
+                            </a>
+                        </PopoverConfirm>
+                    </div>
                 </div>
             </div>
 
@@ -197,10 +207,18 @@ export class Schedules extends Component<Props, State> {
     delete = (item: Schedule) => {
         const {activeUser} = this.props;
 
-        deleteSchedule(activeUser.username, item.id).then(() => {
-            const {items} = this.state;
-            const nItems = [...items].filter(x => x.id !== item.id);
-            this.setState({items: nItems});
+        deleteSchedule(activeUser.username, item._id).then((resp) => {
+            this.setState({items: resp});
+        }).catch(() => {
+            error(_t('g.server-error'));
+        })
+    }
+
+    move = (item: Schedule) => {
+        const {activeUser} = this.props;
+
+        moveSchedule(activeUser.username, item._id).then((resp) => {
+            this.setState({items: resp});
         }).catch(() => {
             error(_t('g.server-error'));
         })
@@ -210,14 +228,17 @@ export class Schedules extends Component<Props, State> {
         const {items, loading} = this.state;
 
 
-
         return <div className="dialog-content">
             {loading && <LinearProgress/>}
             {items.length > 0 && (
                 <div className="schedules-list">
                     <div className="schedules-list-body">
                         {items.map(item => (
-                            <ListItem key={item.id} {...this.props} post={item} deleteFn={this.delete}/>
+                            <ListItem key={item._id}
+                                      {...this.props}
+                                      post={item}
+                                      moveFn={this.move}
+                                      deleteFn={this.delete}/>
                         ))}
                     </div>
                 </div>
