@@ -388,14 +388,14 @@
     "login-desc": "Kapag ikaw ay pumasok sa Ecency ikaw ay awtomatikong magkakaroon ng 100 na puntos.",
     "checkin-extra-desc": "Consistent use of app gives you extra chances to earn more 10 points, be more active and earn more.",
     "delegation-desc": "You can earn ~50 points per day for each 1000HP delegation.",
-    "history": "History",
-    "post-list-desc": "Points for post",
-    "comment-list-desc": "Points for comment",
-    "vote-list-desc": "Points for vote",
+    "history": "Kasaysayan",
+    "post-list-desc": "Puntos para sa post",
+    "comment-list-desc": "Puntos para sa komento",
+    "vote-list-desc": "Puntos para sa boto",
     "reblog-list-desc": "Puntos sa muling pag-blog",
     "login-list-desc": "Puntos pag pumasok",
-    "checkin-list-desc": "Points for heartbeat",
-    "checkin-extra-list-desc": "Usage bonus",
+    "checkin-list-desc": "Puntos para sa pintig ng puso",
+    "checkin-extra-list-desc": "Gamit na ganti",
     "transfer-sent-list-desc": "Transfer to {{n}}",
     "transfer-incoming-list-desc": "Transfer from {{n}}",
     "delegation-list-desc": "Delegation reward",
@@ -403,31 +403,31 @@
     "transfer": "Gift to someone",
     "claim-ok": "Points claimed",
     "promote": "Promote",
-    "boost": "Boost"
+    "boost": "Palakasin"
   },
   "purchase": {
-    "select-asset": "Select Asset",
-    "slider-hint": "Drag the slider to adjust the amount.",
-    "submit": "Purchase"
+    "select-asset": "Piliin ang ari-arian",
+    "slider-hint": "Igalaw pakaliwa o pakanan ang slider para baguhin ang halaga.",
+    "submit": "Bumili"
   },
   "promote": {
-    "title": "Promote",
-    "sub-title": "Promote your post",
-    "duration": "Duration"
+    "title": "Isulong",
+    "sub-title": "Isulong ang iyong post",
+    "duration": "Tagal ng pagsulong"
   },
   "boost": {
-    "title": "Boost",
-    "sub-title": "Boost your post",
-    "amount": "Amount",
-    "slider-hint": "Drag the slider to adjust the amount."
+    "title": "Palakasin",
+    "sub-title": "Palakasin ang iyong post",
+    "amount": "Halaga",
+    "slider-hint": "Igalaw pakaliwa o pakanan ang slider para baguhin ang halaga."
   },
   "redeem-common": {
-    "balance": "Balance",
+    "balance": "Balanse",
     "post": "Post",
-    "post-hint": "Autocomplete input",
+    "post-hint": "Awtomatikong paglagay",
     "post-placeholder": "bansag/permanenteng ugnayan",
-    "post-error": "Not a valid post address",
-    "post-error-exists": "The post is already promoted",
+    "post-error": "Hindi isang balidong address",
+    "post-error-exists": "Ang post ay tapos nang naisulong",
     "success-message": "Your request submitted. It will be activated in a couple minutes."
   },
   "transfer": {
