@@ -27,7 +27,7 @@
     "off": "Huwag piliin",
     "yes": "Oo",
     "no": "Hindi",
-    "done": "Done"
+    "done": "Tapos"
   },
   "confirm": {
     "title": "Sigurado ka ba?",
@@ -71,7 +71,7 @@
     "gallery": "Galeriya",
     "drafts": "Mga banghay",
     "bookmarks": "Mga talaan",
-    "schedules": "Schedules",
+    "schedules": "Mga Palatuntunan",
     "logout": "Umalis"
   },
   "intro": {
@@ -132,11 +132,11 @@
   "entry-reblog": {
     "reblog": "Mga kondisyon ng serbisyo",
     "confirm-title": "Reblog to @{{n}}'s blog?",
-    "confirm-ok": "Reblog",
-    "success": "Reblogged!"
+    "confirm-ok": "I-blog muli",
+    "success": "Muling nai-blog!"
   },
   "entry-payout": {
-    "pending-payout": "Pending Payout",
+    "pending-payout": "Nakabinbin na Gantimpala",
     "promoted": "Naisulong",
     "author-payout": "Kabayaran ng May-akda",
     "curators-payout": "Kabayaran ng tagasinop",
