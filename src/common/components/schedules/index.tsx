@@ -188,18 +188,31 @@ export class Schedules extends Component<Props, State> {
         items: []
     }
 
+    _mounted: boolean = true;
+
     componentDidMount() {
         this.fetch();
     }
 
+
+    componentWillUnmount() {
+        this._mounted = false;
+    }
+
+    stateSet = (state: {}, cb?: () => void) => {
+        if (this._mounted) {
+            this.setState(state, cb);
+        }
+    };
+
     fetch = () => {
         const {activeUser} = this.props;
 
-        this.setState({loading: true});
+        this.stateSet({loading: true});
         getSchedules(activeUser.username).then(items => {
-            this.setState({items, loading: false});
+            this.stateSet({items, loading: false});
         }).catch(() => {
-            this.setState({loading: false});
+            this.stateSet({loading: false});
             error(_t('g.server-error'));
         })
     }
@@ -208,7 +221,7 @@ export class Schedules extends Component<Props, State> {
         const {activeUser} = this.props;
 
         deleteSchedule(activeUser.username, item._id).then((resp) => {
-            this.setState({items: resp});
+            this.stateSet({items: resp});
         }).catch(() => {
             error(_t('g.server-error'));
         })
@@ -218,7 +231,7 @@ export class Schedules extends Component<Props, State> {
         const {activeUser} = this.props;
 
         moveSchedule(activeUser.username, item._id).then((resp) => {
-            this.setState({items: resp});
+            this.stateSet({items: resp});
         }).catch(() => {
             error(_t('g.server-error'));
         })
@@ -226,7 +239,6 @@ export class Schedules extends Component<Props, State> {
 
     render() {
         const {items, loading} = this.state;
-
 
         return <div className="dialog-content">
             {loading && <LinearProgress/>}
