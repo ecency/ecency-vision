@@ -720,7 +720,8 @@
     "title": "Bozze"
   },
   "schedules": {
-    "title": "Scheduled Posts"
+    "title": "Scheduled Posts",
+    "move": "Move to drafts"
   },
   "bookmarks": {
     "title": "Segnalibri"
