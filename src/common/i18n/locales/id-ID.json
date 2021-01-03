@@ -690,7 +690,8 @@
     "proxy-btn-label": "Atur Proxy",
     "proxy-active-description": "Anda telah menetapkan pemungutan suara proxy. Jika Anda ingin mengaktifkan kembali pemungutan suara secara manual, harap hapus proxy Anda.",
     "proxy-active-current": "Proxy anda sekarang",
-    "proxy-active-btn-label": "Hapus proxy"
+    "proxy-active-btn-label": "Hapus proxy",
+    "proxy-votes-for": "@{{username}} votes for"
   },
   "proposals": {
     "page-title": "Proposal",
