@@ -25,7 +25,7 @@ import accountReputation from "../../helper/account-reputation";
 
 import defaults from "../../constants/defaults.json";
 
-import {deleteForeverSvg, timeSvg, checkAllSvg, alertCircleSvg, pencilOutlineSvg} from "../../img/svg";
+import {deleteForeverSvg, timeSvg, checkAllSvg, alertCircleSvg, textBoxOutline} from "../../img/svg";
 
 import {
     catchPostImage,
@@ -134,7 +134,7 @@ export class ListItem extends Component<ItemProps> {
                             moveFn(post);
                         }}>
                             <a className="btn-move">
-                                <Tooltip content={_t("schedules.move")}><span>{pencilOutlineSvg}</span></Tooltip>
+                                <Tooltip content={_t("schedules.move")}><span>{textBoxOutline}</span></Tooltip>
                             </a>
                         </PopoverConfirm>
 
