@@ -216,7 +216,7 @@
         }
 
         @include themify(day) {
-          color: $silver;
+          color: $warm-grey;
         }
 
         @include themify(night) {
@@ -280,7 +280,7 @@
   .custom-dropdown{
     .dropdown-btn{
       @include themify(day) {
-        color: $silver;
+        color: $warm-grey;
       }
 
       @include themify(night) {
