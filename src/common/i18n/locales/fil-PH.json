@@ -141,8 +141,8 @@
     "author-payout": "Kabayaran ng May-akda",
     "curators-payout": "Kabayaran ng tagasinop",
     "payout-date": "Kabayaran",
-    "beneficiary": "Beneficiary",
-    "breakdown": "Breakdown"
+    "beneficiary": "Benepisyaryo",
+    "breakdown": "Pagkakapangkat-pangkat"
   },
   "entry-index": {
     "feed": "Feed",
@@ -151,7 +151,7 @@
     "description": "{{f}} topics on a social network owned and operated by its users.",
     "description-tag": "{{f}} #{{t}} topics",
     "description-user-feed": "{{u}}'s feed",
-    "faq": "FAQ",
+    "faq": "Mga Madalas na Katanungan",
     "tos": "Mga tuntunin ng serbisyo",
     "pp": "Patakaran para sa Pagkapribado"
   },
@@ -189,7 +189,7 @@
     "title": "Recent posts by @{{n}}"
   },
   "comment": {
-    "body-placeholder": "Write your reply here",
+    "body-placeholder": "Isulat ang iyong tugon o tugon dito",
     "preview": "Preview"
   },
   "discussion": {
@@ -199,50 +199,50 @@
     "n-replies": "{{n}} Mga komento",
     "order": "Sort Order",
     "order-trending": "Trending",
-    "order-reputation": "Reputation",
-    "order-votes": "Votes",
-    "order-created": "Age",
+    "order-reputation": "Reputasyon",
+    "order-votes": "Mga boto",
+    "order-created": "Edad",
     "read-more": "... basahin pa ang ibang sagot...",
     "reveal": "Ipakita ang komento"
   },
   "community": {
-    "page-description": "{{f}} topics",
-    "subscribe": "Join",
-    "subscribed": "Joined",
-    "unsubscribe": "Leave",
-    "post": "New Post",
-    "posts": "Posts",
-    "subscribers": "Members",
+    "page-description": "{{f}} mga paksa",
+    "subscribe": "Sumali",
+    "subscribed": "Ikaw ay Nakasali",
+    "unsubscribe": "Umalis",
+    "post": "Gumawa ng bagong Post",
+    "posts": "Mga Posts",
+    "subscribers": "Mga Miyembro",
     "activities": "Mga aktibidad",
-    "roles-title": "User Roles",
+    "roles-title": "Mga Katungkulan ng Gumagamit",
     "roles-account": "Account",
-    "roles-role": "Role",
+    "roles-role": "Katungkulan",
     "roles-account-title": "Titulo",
     "roles-add": "Magdagdag ng gumagamit"
   },
   "community-cover": {
     "rewards": "gantimpala",
-    "authors": "posters",
+    "authors": "mga nag-post",
     "lang": "linguwahe",
-    "cover-image": "Community cover image",
-    "cover-image-edit": "Edit cover image",
-    "cover-image-updated": "Cover image updated!"
+    "cover-image": "Pang-ibabaw na Image ng Pamayanan",
+    "cover-image-edit": "Baguhin ang pang-ibabaw na imahe",
+    "cover-image-updated": "Matagumpay na nabago ang pang-ibabaw na imahe!"
   },
   "community-card": {
-    "description": "Description",
+    "description": "Paglalarawan",
     "rules": "Patakaran",
     "team": "Pamunuan",
     "edit": "Baguhin ang mga settings",
-    "edit-team": "Edit roles",
-    "profile-image": "Community profile image",
-    "profile-image-edit": "Edit profile image",
-    "profile-image-updated": "Profile image updated!"
+    "edit-team": "Baguhin ang mga katungkulan",
+    "profile-image": "Imaheng Pagkakakilanlan ng Pamayanan",
+    "profile-image-edit": "Baguhin ang Imaheng Pagkakakilanlan",
+    "profile-image-updated": "Matagumpay na nai-upload ang imahe ng pagkakakilanlan!"
   },
   "community-role-edit": {
-    "title": "Set user role",
+    "title": "Italaga ang katungkulan ng gumagamit",
     "username": "Bansag",
-    "role": "Role",
-    "user-not-found": "The user does not exist!",
+    "role": "Katungkulan",
+    "user-not-found": "Ang gumagamit ay hindi umiiral!",
     "explanations": "<h3>Role Permissions</h3><p><strong>Owner</strong> - assign admins</p><p><strong>Admin</strong> - edit settings, assign mods</p><p><strong>Moderator</strong> - mute, pin, set user titles</p><p><strong>Member</strong> - listed on leadership team</p><p><strong>Guest</strong> - default; can post and comment</p><p><strong>Muted</strong> - new posts automatically muted</p>"
   },
   "community-settings": {
@@ -258,9 +258,9 @@
     "title": "Pamayanan",
     "description": "Best online, decentralized, immutable, rewarding communities",
     "n-subscribers": "{{n}} mga miyembro",
-    "n-authors": "{{n}} posters",
-    "n-posts": "{{n}} posts",
-    "admins": "admins:",
+    "n-authors": "{{n}} mga posters",
+    "n-posts": "{{n}} mga posts",
+    "admins": "mga tagapangasiwa:",
     "sort-hot": "Mainit",
     "sort-rank": "Katayuan",
     "sort-subs": "Miyembro",
@@ -272,56 +272,56 @@
     "page-title": "Gumawa ng isang pamayanan",
     "title": "Pamagat",
     "about": "Tungkol",
-    "description": "Create a best, decentralized, immutable, rewarding communities",
+    "description": "Gumawa ng pinakamahusay, sentralisado, hindi nababago, magantimpalang pamayanan",
     "fee": "Bayad ng operasyon",
     "creator": "May likha",
     "username": "Bansag ng may-ari",
     "username-available": "Umiiral.",
     "username-not-available": "Hindi available.",
     "username-wrong-format": "Hindi wastong balangkas. hive-1xxxxx na balangkas ang kailangan.",
-    "password": "Owner password",
+    "password": "Password na nagmamay-ari",
     "confirmation": "Maingat at ligtas kong naiimbak ang aking bansag ng may-ari.",
     "submit": "Gumawa ng pamayanan",
     "progress-account": "Gumagawa ng account...",
     "progress-user": "Inihahanda ang datos ng gumagamit...",
     "progress-role": "Setting @{{u}} as admin...",
-    "progress-props": "Updating community settings...",
+    "progress-props": "Binabago ang settings ng komunidad...",
     "done": "Ang pamayanan mo ay nagawa na",
     "done-link-label": "Magsimula."
   },
   "pin-btn": {
-    "pin": "Pin",
-    "unpin": "Unpin"
+    "pin": "I-aspile",
+    "unpin": "Tanggalin sa pagka-aspile"
   },
   "mute-btn": {
     "mute": "Patahimikin",
-    "unmute": "Unmute",
-    "dialog-title-mute": "Mute post/comment",
-    "dialog-title-unmute": "Unmute post/comment",
+    "unmute": "Tanggalin sa pagkatahimik",
+    "dialog-title-mute": "Patahimikn ang post/komento",
+    "dialog-title-unmute": "Tanggalin sa pagkatahimik ang post/komento",
     "notes": "Mga kuwaderno",
-    "note-placeholder-mute": "Provide a note regarding your decision to mute this content.",
-    "note-placeholder-unmute": "Provide a note regarding your decision to unmute this content."
+    "note-placeholder-mute": "Mabigay ng tala tungkol sa iyong desisyon na patahimikin ang nilalaman na ito.",
+    "note-placeholder-unmute": "Mabigay ng tala tungkol sa iyong desisyon na tanggalin sa pagkakatahimik ang nilalaman na ito."
   },
   "profile": {
     "voting-power": "Lakas ng boto",
-    "post-count": "Post Count",
+    "post-count": "Bilang ng Post",
     "followers": "Mga tagasunod",
     "following": "Sinusundan",
     "section-blog": "Blog",
-    "section-posts": "Posts",
+    "section-posts": "Mga Post",
     "section-comments": "Mga komento",
-    "section-replies": "Replies",
-    "section-communities": "Communities",
-    "section-wallet": "Wallet",
+    "section-replies": "Mga Tugon",
+    "section-communities": "Mga Pamayanan",
+    "section-wallet": "Pitaka",
     "section-settings": "Settings",
     "communities-title": "Pagkamiyembro",
-    "create-community": "Create a community",
+    "create-community": "Gumawa ng pamayanan",
     "witnesses": "Mga testigo",
-    "proposals": "Proposals"
+    "proposals": "Mga Panukala"
   },
   "profile-edit": {
-    "title": "Profile",
-    "name": "Display Name",
+    "title": "Pagkakakilanlan",
+    "name": "Pangalang Pangtanghal",
     "about": "Tungkol",
     "cover-image": "Pabalat na imahe",
     "profile-image": "Imahe ng pagkakakilanlan",
@@ -336,7 +336,7 @@
     "title": "Mga kagustuhan",
     "notifications": "Notification alerts",
     "currency": "Salapi",
-    "language": "Language",
+    "language": "Lingguwahe",
     "updated": "Preference updated!"
   },
   "wallet": {
@@ -533,7 +533,7 @@
     "ul": "Unordered List",
     "ol": "Ordered List",
     "link": "Link",
-    "image": "Image",
+    "image": "Imahe",
     "table": "Table",
     "table-3-col": "3 columns",
     "table-2-col": "2 columns",
@@ -541,7 +541,7 @@
     "upload": "Upload",
     "gallery": "Gallery",
     "emoji": "Emoji",
-    "image-error": "Couldn't upload image.",
+    "image-error": "Hindi mai-upload ang imahe.",
     "image-error-size": "Image size is too large, try smaller size image again."
   },
   "emoji-picker": {
@@ -562,10 +562,10 @@
     "preview": "Preview",
     "publish": "Publish",
     "update": "Update",
-    "save-draft": "Save Draft",
-    "draft-saved": "Draft saved",
-    "update-draft": "Update Draft",
-    "draft-updated": "Draft updated",
+    "save-draft": "I-imbak ang banghay",
+    "draft-saved": "Matagumpay na nai-imbak ang banghay",
+    "update-draft": "Baguhin ang Banghay",
+    "draft-updated": "Ang banghay ay matagumpay na nabago",
     "cancel-update": "Cancel",
     "clear": "Clear",
     "published": "Post Published",
@@ -628,7 +628,7 @@
     "type-reblogs": "Reblogs",
     "type-transfers": "Transfers",
     "vote-str": "{{p}}% likes your post:",
-    "reply-str": "replied to your post:",
+    "reply-str": "tugon o sagot sa iyong post:",
     "mention-str": "mentioned you in:",
     "followed-str": "followed",
     "unfollowed-str": "unfollowed",
@@ -718,7 +718,7 @@
     "copied": "Copied to clipboard"
   },
   "drafts": {
-    "title": "Drafts"
+    "title": "Mga banghay"
   },
   "schedules": {
     "title": "Scheduled Posts"
@@ -793,10 +793,10 @@
   },
   "context-menu": {
     "cut": "Cut",
-    "copy": "Copy",
+    "copy": "Kopyahin",
     "paste": "Paste",
     "open-image-browser": "Open image in browser",
-    "copy-image-url": "Copy image url"
+    "copy-image-url": "Kopyahin ang url ng image"
   },
   "updater": {
     "new-version-available": "New version is available",
