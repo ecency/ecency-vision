@@ -690,7 +690,8 @@
     "proxy-btn-label": "Seleziona delegato",
     "proxy-active-description": "Hai impostato un votante delegato. Se volessi riattivare il voto manuale, ti preghiamo di rimuovere il tuo delegato.",
     "proxy-active-current": "Attualmente, il tuo delegato è",
-    "proxy-active-btn-label": "Rimuovi Delegato"
+    "proxy-active-btn-label": "Rimuovi Delegato",
+    "proxy-votes-for": "@{{username}} votes for"
   },
   "proposals": {
     "page-title": "Propositi",
