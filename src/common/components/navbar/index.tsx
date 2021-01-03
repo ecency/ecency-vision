@@ -141,29 +141,6 @@ export class NavBar extends Component<Props, State> {
 
         const {smVisible, floating} = this.state;
 
-        const textMenuConfig = {
-            history: this.props.history,
-            label: '',
-            icon: dotsHorizontal,
-            items: [
-                {
-                    label: _t("navbar.witnesses"),
-                    href: `/witnesses`,
-                    active: location.pathname === '/witnesses'
-                },
-                {
-                    label: _t("navbar.proposals"),
-                    href: `/proposals`,
-                    active: location.pathname === '/proposals'
-                },
-                {
-                    label: _t("navbar.faq"),
-                    href: `/faq`,
-                    active: location.pathname === '/faq'
-                }
-            ],
-        };
-
         const langMenuConfig = {
             history: this.props.history,
             label: '',
@@ -188,14 +165,6 @@ export class NavBar extends Component<Props, State> {
             <Link className="menu-item" to="/communities">
                 {_t("navbar.communities")}
             </Link>
-            <Link className="menu-item" to="/witnesses">
-                {_t("navbar.witnesses")}
-            </Link>
-            <Link className="menu-item" to="/proposals">
-                {_t("navbar.proposals")}
-            </Link>
-
-            <span className="drop-down-text-menu"><DropDown {...textMenuConfig} float="right"/></span>
         </div>
 
         return (
