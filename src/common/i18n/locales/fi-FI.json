@@ -690,7 +690,8 @@
     "proxy-btn-label": "Valitse valtuutettu",
     "proxy-active-description": "Olet asettanut valtuutetun. Jos haluat äänestää itse, tyhjennä valtuutuksesi.",
     "proxy-active-current": "Nykyinen valtuutettusi",
-    "proxy-active-btn-label": "Poista valtuutus"
+    "proxy-active-btn-label": "Poista valtuutus",
+    "proxy-votes-for": "@{{username}} votes for"
   },
   "proposals": {
     "page-title": "Ehdotukset",
