@@ -690,7 +690,8 @@
     "proxy-btn-label": "Ορισμός μεσολαβητή",
     "proxy-active-description": "Έχετε ορίσει μεσολαβητή. Αν θέλετε να ψηφίζετε μόνοι σας για witness, παρακαλούμε αφαιρέστε τον μεσολαβητή σας.",
     "proxy-active-current": "Ο τρέχων μεσολαβητής σας είναι ο",
-    "proxy-active-btn-label": "Αφαίρεση μεσολαβητή"
+    "proxy-active-btn-label": "Αφαίρεση μεσολαβητή",
+    "proxy-votes-for": "@{{username}} votes for"
   },
   "proposals": {
     "page-title": "Προτάσεις",
