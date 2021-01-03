@@ -690,7 +690,8 @@
     "proxy-btn-label": "Встановити проксі-сервер",
     "proxy-active-description": "Ви встановили proxy. Якщо ви бажаєте знов увімкнути голосування вручну, будь ласка, зніміть proxy.",
     "proxy-active-current": "Ваш поточний проксі є",
-    "proxy-active-btn-label": "Зняти проксі"
+    "proxy-active-btn-label": "Зняти проксі",
+    "proxy-votes-for": "@{{username}} votes for"
   },
   "proposals": {
     "page-title": "Пропозиції",
