@@ -690,7 +690,8 @@
     "proxy-btn-label": "प्रॉक्सी सेट करें",
     "proxy-active-description": "आपने एक मतदान प्रॉक्सी निर्धारित की है। यदि आप मैन्युअल मतदान को फिर से सक्षम करना चाहते हैं, तो कृपया अपना प्रॉक्सी साफ़ करें।",
     "proxy-active-current": "आपका वर्तमान प्रॉक्सी है",
-    "proxy-active-btn-label": "प्रॉक्सी हटाये"
+    "proxy-active-btn-label": "प्रॉक्सी हटाये",
+    "proxy-votes-for": "@{{username}} votes for"
   },
   "proposals": {
     "page-title": "प्रस्ताव",
@@ -721,7 +722,7 @@
   },
   "schedules": {
     "title": "अनुसूचित पद",
-    "move": "Move to drafts"
+    "move": "प्रलेख में भेजें"
   },
   "bookmarks": {
     "title": "पृष्टस्मृतियाँ"
