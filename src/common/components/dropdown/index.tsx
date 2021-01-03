@@ -15,6 +15,7 @@ interface Props {
     history: History;
     float: "left" | "right";
     header?: string;
+    extraElem?: JSX.Element;
     icon?: JSX.Element;
     label: string | JSX.Element;
     items: MenuItem[];
@@ -82,7 +83,7 @@ export default class MyDropDown extends Component<Props> {
     };
 
     render() {
-        const {label, icon, float, header, items} = this.props;
+        const {label, icon, float, header, extraElem, items} = this.props;
         const {menu} = this.state;
 
         const child =
@@ -108,6 +109,7 @@ export default class MyDropDown extends Component<Props> {
                     <div className="the-menu">
                         <div className="menu-inner">
                             {header && <div className="menu-header">{header}</div>}
+                            {extraElem && <>{extraElem}</>}
                             <div className="menu-list">
                                 {items.map((i, k) => {
                                     return (
