@@ -183,12 +183,13 @@ export const deleteDraft = (username: string, draftId: string): Promise<any> => 
 }
 
 export interface Schedule {
-    id: string;
+    _id: string;
     username: string;
     permlink: string;
     title: string;
     body: string;
     tags: string[];
+    tags_arr: string;
     schedule: string;
     original_schedule: string;
     reblog: boolean;
@@ -209,6 +210,11 @@ export const addSchedule = (username: string, permlink: string, title: string, b
 export const deleteSchedule = (username: string, id: string): Promise<any> => {
     const data = {code: getAccessToken(username), id};
     return axios.post(_u(`/api/schedules-delete`), data).then(resp => resp.data);
+}
+
+export const moveSchedule = (username: string, id: string): Promise<any> => {
+    const data = {code: getAccessToken(username), id};
+    return axios.post(_u(`/api/schedules-move`), data).then(resp => resp.data);
 }
 
 export interface Bookmark {

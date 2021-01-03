@@ -28,24 +28,29 @@
               justify-content: space-between;
               align-items: center;
 
-              .btn-delete {
-                cursor: pointer;
-                margin-right: 12px;
-
-                svg {
-                  height: 18px !important;
+              .btn-controls {
+                .btn-move {
+                  margin-right: 20px;
                 }
 
-                @include themify(day) {
-                  color: $silver;
-                }
+                .btn-move, .btn-delete {
+                  cursor: pointer;
 
-                @include themify(night) {
-                  color: $gunmetal;
-                }
+                  svg {
+                    height: 18px !important;
+                  }
 
-                &:hover {
-                  opacity: 0.7;
+                  @include themify(day) {
+                    color: $silver;
+                  }
+
+                  @include themify(night) {
+                    color: $gunmetal;
+                  }
+
+                  &:hover {
+                    opacity: 0.7;
+                  }
                 }
               }
 

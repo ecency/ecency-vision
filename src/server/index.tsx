@@ -94,6 +94,7 @@ server
     .post("^/api/schedules$", pApi.schedules)
     .post("^/api/schedules-add$", pApi.schedulesAdd)
     .post("^/api/schedules-delete$", pApi.schedulesDelete)
+    .post("^/api/schedules-move$", pApi.schedulesMove)
     .post("^/api/favorites$", pApi.favorites)
     .post("^/api/favorites-check$", pApi.favoritesCheck)
     .post("^/api/favorites-add$", pApi.favoritesAdd)
