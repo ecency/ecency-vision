@@ -720,7 +720,8 @@
     "title": "Luonnokset"
   },
   "schedules": {
-    "title": "Scheduled Posts"
+    "title": "Scheduled Posts",
+    "move": "Move to drafts"
   },
   "bookmarks": {
     "title": "Kirjanmerkit"
