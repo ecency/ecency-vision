@@ -690,7 +690,8 @@
     "proxy-btn-label": "Proxy beállítása",
     "proxy-active-description": "Proxy szavazás beállítva. Ha újra kézi szavazást szeretnél, kérjük töröld a proxy-t.",
     "proxy-active-current": "A jelenlegi proxid",
-    "proxy-active-btn-label": "Proxy törlése"
+    "proxy-active-btn-label": "Proxy törlése",
+    "proxy-votes-for": "@{{username}} votes for"
   },
   "proposals": {
     "page-title": "Javaslatok",
