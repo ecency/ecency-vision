@@ -21,8 +21,7 @@ exports[`(1) Default render 1`] = `
         href="/@foo"
         onClick={[Function]}
       >
-        @
-        foo
+        @foo
       </a>
     </div>
     <button
@@ -33,6 +32,45 @@ exports[`(1) Default render 1`] = `
     >
       Clear Proxy
     </button>
+    <div
+      className="proxy-votes"
+    >
+      <div
+        className="proxy-votes-title"
+      >
+        @foo votes for
+      </div>
+      <div
+        className="proxy-votes-item"
+      >
+        <a
+          href="/@foo"
+          onClick={[Function]}
+        >
+          @blocktrades
+        </a>
+      </div>
+      <div
+        className="proxy-votes-item"
+      >
+        <a
+          href="/@foo"
+          onClick={[Function]}
+        >
+          @good-karma
+        </a>
+      </div>
+      <div
+        className="proxy-votes-item"
+      >
+        <a
+          href="/@foo"
+          onClick={[Function]}
+        >
+          @gtg
+        </a>
+      </div>
+    </div>
   </div>
 </div>
 `;

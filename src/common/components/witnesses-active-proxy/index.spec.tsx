@@ -6,7 +6,16 @@ import {WitnessesActiveProxy} from "./index";
 
 import renderer from "react-test-renderer";
 
-import {globalInstance, UiInstance} from "../../helper/test-helper";
+import {globalInstance, UiInstance, fullAccountInstance} from "../../helper/test-helper";
+
+const allOver = () => new Promise((resolve) => setImmediate(resolve));
+
+jest.mock("../../api/hive", () => ({
+    getAccount: () =>
+        new Promise((resolve) => {
+            resolve(fullAccountInstance);
+        }),
+}));
 
 const defProps = {
     history: createBrowserHistory(),
@@ -32,7 +41,8 @@ const defProps = {
     }
 }
 
-it("(1) Default render", () => {
+it("(1) Default render", async () => {
     const component = renderer.create(<WitnessesActiveProxy {...defProps} />);
+    await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });
