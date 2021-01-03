@@ -720,7 +720,8 @@
     "title": "प्रारूप"
   },
   "schedules": {
-    "title": "अनुसूचित पद"
+    "title": "अनुसूचित पद",
+    "move": "Move to drafts"
   },
   "bookmarks": {
     "title": "पृष्टस्मृतियाँ"
