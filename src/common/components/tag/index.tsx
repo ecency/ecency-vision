@@ -5,6 +5,7 @@ import isEqual from "react-fast-compare";
 
 import {Global} from "../../store/global/types";
 import {EntryFilter} from "../../store/global/types";
+import {Community, Communities} from "../../store/communities/types";
 
 import {getCommunity} from "../../api/bridge";
 
@@ -28,11 +29,16 @@ export const makePath = (filter: string, tag: string): string => {
 interface Props {
     global: Global;
     history: History;
+    communities?: Communities;
     tag: string;
     children: JSX.Element;
     type?: "link" | "span";
 }
 
+// some tags are special community tags.
+// we keep community titles for that tags inside this variable
+// the reason we keep that data inside a variable is to
+// avoid re-render all application with a reducer.
 const cache = {};
 
 export class TagLink extends Component<Props> {
@@ -46,26 +52,39 @@ export class TagLink extends Component<Props> {
         return !isEqual(this.props.children, nextProps.children);
     }
 
-    componentDidMount(): void {
-        const {tag} = this.props;
-
-        if (isCommunity(tag)) {
-            if (cache[tag] === undefined) {
-                getCommunity(tag).then((c) => {
-                    if (c) {
-                        cache[tag] = c.title;
-
-                        if (this._mounted) {
-                            this.forceUpdate(); // trigger render
-                        }
-                    }
-                });
-            }
-        }
+    componentDidMount() {
+        this.detectCommunity().then();
     }
 
     componentWillUnmount() {
         this._mounted = false;
+    }
+
+    detectCommunity = async () => {
+        const {tag} = this.props;
+
+        // tag is not community tag or already added to cache
+        if (!isCommunity(tag) || cache[tag] !== undefined) {
+            return;
+        }
+
+        const {communities} = this.props;
+
+        // find community from reducer
+        let community: Community | null = (communities && communities.find(x => x.name === tag)) || null;
+
+        // or fetch it from api
+        if (!community) {
+            community = await getCommunity(tag)
+        }
+
+        if (community) {
+            cache[tag] = community.title;
+
+            if (this._mounted) {
+                this.forceUpdate(); // trigger render
+            }
+        }
     }
 
     clicked = (e: React.MouseEvent<HTMLElement>) => {
@@ -113,6 +132,7 @@ export default (p: Props) => {
     const props: Props = {
         global: p.global,
         history: p.history,
+        communities: p.communities,
         tag: p.tag,
         children: p.children,
         type: p.type

@@ -5,7 +5,7 @@ import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
 import {Entry} from "../../store/entries/types";
-import {Community} from "../../store/communities/types";
+import {Community, Communities} from "../../store/communities/types";
 import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {Reblog} from "../../store/reblogs/types";
@@ -20,6 +20,7 @@ interface Props {
     dynamicProps: DynamicProps;
     entries: Entry[];
     promotedEntries: Entry[];
+    communities: Communities;
     community?: Community | null;
     users: User[];
     activeUser: ActiveUser | null;
@@ -77,6 +78,7 @@ export default (p: Props) => {
         dynamicProps: p.dynamicProps,
         entries: p.entries,
         promotedEntries: p.promotedEntries,
+        communities: p.communities,
         community: p.community,
         users: p.users,
         activeUser: p.activeUser,
