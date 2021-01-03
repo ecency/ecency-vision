@@ -720,7 +720,8 @@
     "title": "Borradores"
   },
   "schedules": {
-    "title": "Publicaciones programadas"
+    "title": "Publicaciones programadas",
+    "move": "Move to drafts"
   },
   "bookmarks": {
     "title": "Marcadores"
