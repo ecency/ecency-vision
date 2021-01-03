@@ -483,17 +483,16 @@
     line-height: 100%;
 
     @include themify(day) {
-      color: $steel-grey;
+      color: darken($silver, 35)
     }
 
     @include themify(night) {
-      color: $metallic-blue;
+      color: darken($silver, 10)
     }
   }
 
   .tag-list-item {
     border-radius: 25px;
-    color: $silver;
     cursor: pointer;
     display: table;
     margin-bottom: 8px;
@@ -509,11 +508,13 @@
 
     @include themify(day) {
       background: $white;
+      color: darken($silver, 35);
       border: solid 1px $white-four;
     }
 
     @include themify(night) {
       background: $dark-grey-blue;
+      color: darken($silver, 10);
       border: solid 1px $dark-two;
     }
 
@@ -723,3 +724,32 @@
     }
   }
 }
+
+@mixin nav-text-menu {
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+  display: flex;
+
+  > .menu-item {
+    @include themify(day) {
+      color: $gunmetal;
+
+      &:hover {
+        color: $warm-grey;
+      }
+    }
+
+    @include themify(night) {
+      color: $duck-egg-blue;
+    }
+
+    &:not(:first-child):before {
+      content: "/"; // "•";
+      padding-left: 8px;
+      margin-right: 8px;
+      opacity: 0.4;
+    }
+  }
+}
+

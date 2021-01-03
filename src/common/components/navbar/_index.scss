@@ -46,8 +46,8 @@
   }
 
   .brand {
-    height: 44px;
-    width: 44px;
+    height: 40px;
+    width: 40px;
     text-decoration: none;
     flex-shrink: 0;
     position: absolute;
@@ -56,37 +56,17 @@
     z-index: 1;
 
     .logo {
-      width: 44px;
-      height: 44px;
+      width: 40px;
+      height: 40px;
     }
   }
 
   .text-menu {
-    justify-content: center;
-    height: 100%;
-    align-items: center;
-    display: flex;
+    @include nav-text-menu;
+    margin-left: 10px;
 
-    .menu-item {
-      @include themify(day) {
-        color: $gunmetal;
-
-        &:hover {
-          color: $warm-grey;
-        }
-      }
-
-      @include themify(night) {
-        color: $duck-egg-blue;
-      }
-
-      &:not(:last-child) {
-        margin-right: 8px;
-
-        @media (min-width: $sm-break) {
-          margin-right: 20px;
-        }
-      }
+    @media (min-width: $sm-break) {
+      margin-left: 0;
     }
   }
 }
@@ -152,7 +132,7 @@
 
       @media (min-width: $lg-break) {
         margin-right: 0;
-        width: 230px;
+        width: 190px;
       }
 
       .logo {
@@ -162,47 +142,12 @@
     }
 
     .text-menu {
-      justify-content: center;
-      height: 100%;
-      align-items: center;
-      display: flex;
+      @include nav-text-menu;
       margin-bottom: 20px;
 
       @media (min-width: $md-break) {
-        display: flex;
         margin-bottom: 0;
-        margin-right: 14px;
-      }
-
-      .menu-item {
-
-        @include themify(day) {
-          color: $gunmetal;
-
-          &:hover {
-            color: $warm-grey;
-          }
-        }
-
-        @include themify(night) {
-          color: $duck-egg-blue;
-
-          &:hover {
-            color: $silver;
-          }
-        }
-
-        &:not(:last-child) {
-          margin-right: 8px;
-
-          @media (min-width: $lg-break) {
-            margin-right: 14px;
-          }
-
-          @media (min-width: $xl-break) {
-            margin-right: 18px;
-          }
-        }
+        margin-right: 6px;
       }
     }
 
@@ -215,24 +160,24 @@
       }
 
       @media (min-width: $md-break) {
-        width: 210px;
+        width: 168px;
         margin-right: 14px;
         margin-bottom: 0;
         flex-grow: 1;
       }
 
       @media (min-width: $lg-break) {
-
+        width: 220px;
       }
 
       @media (min-width: $xl-break) {
-        width: 380px;
-        margin-right: 18px;
+        width: 240px;
+        margin-right: 44px;
         flex-grow: 0;
       }
 
       @media (min-width: $xxl-break) {
-        width: 500px;
+        width: 400px;
       }
     }
 
@@ -295,6 +240,10 @@
           margin-right: 4px;
         }
 
+        .btn-login {
+          border: none !important;
+        }
+
         @media (min-width: $xl-break) {
           .btn {
             margin-right: 6px;
@@ -321,6 +270,22 @@
 
       @include themify(night) {
         background: $dark-two;
+      }
+    }
+  }
+}
+
+// Custom dropdown colors
+.nav-bar, .nav-bar-sm {
+  .custom-dropdown{
+    .dropdown-btn{
+      @include themify(day) {
+        color: $silver;
+      }
+
+      @include themify(night) {
+        color: $duck-egg-blue;
+        opacity: 0.8;
       }
     }
   }

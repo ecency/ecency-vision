@@ -121,11 +121,7 @@ exports[`(1) Default render 1`] = `
         <div
           className="dropdown-btn "
         >
-          <div
-            className="label"
-          >
-            
-          </div>
+          
           <div
             className="menu-down"
           >
@@ -153,11 +149,7 @@ exports[`(1) Default render 1`] = `
         <div
           className="dropdown-btn "
         >
-          <div
-            className="label"
-          >
-            
-          </div>
+          
           <div
             className="menu-down"
           >
@@ -362,11 +354,7 @@ Array [
           <div
             className="dropdown-btn "
           >
-            <div
-              className="label"
-            >
-              
-            </div>
+            
             <div
               className="menu-down"
             >
@@ -394,11 +382,7 @@ Array [
           <div
             className="dropdown-btn "
           >
-            <div
-              className="label"
-            >
-              
-            </div>
+            
             <div
               className="menu-down"
             >
@@ -633,11 +617,7 @@ exports[`(3) Night Theme 1`] = `
         <div
           className="dropdown-btn "
         >
-          <div
-            className="label"
-          >
-            
-          </div>
+          
           <div
             className="menu-down"
           >
@@ -665,11 +645,7 @@ exports[`(3) Night Theme 1`] = `
         <div
           className="dropdown-btn "
         >
-          <div
-            className="label"
-          >
-            
-          </div>
+          
           <div
             className="menu-down"
           >
@@ -873,11 +849,7 @@ exports[`(4) With active user 1`] = `
         <div
           className="dropdown-btn "
         >
-          <div
-            className="label"
-          >
-            
-          </div>
+          
           <div
             className="menu-down"
           >
@@ -905,11 +877,7 @@ exports[`(4) With active user 1`] = `
         <div
           className="dropdown-btn "
         >
-          <div
-            className="label"
-          >
-            
-          </div>
+          
           <div
             className="menu-down"
           >

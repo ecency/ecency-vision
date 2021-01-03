@@ -129,20 +129,6 @@ Array [
         className="switch-menu"
       >
         <div
-          className="switch-theme"
-          onClick={[Function]}
-          title="Night Theme"
-        >
-          <svg
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z"
-              fill="currentColor"
-            />
-          </svg>
-        </div>
-        <div
           className="switch-language"
         >
           <div
@@ -154,11 +140,7 @@ Array [
             <div
               className="dropdown-btn "
             >
-              <div
-                className="label"
-              >
-                
-              </div>
+              
               <div
                 className="menu-down"
               >
@@ -174,6 +156,20 @@ Array [
             </div>
           </div>
         </div>
+        <div
+          className="switch-theme"
+          onClick={[Function]}
+          title="Night Theme"
+        >
+          <svg
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
       </div>
       <div
         className="btn-menu"
@@ -182,7 +178,7 @@ Array [
           className="login-required"
         >
           <button
-            className="btn btn-outline-primary"
+            className="btn-login btn btn-outline-primary"
             disabled={false}
             onClick={[Function]}
             type="button"
@@ -362,20 +358,6 @@ Array [
         className="switch-menu"
       >
         <div
-          className="switch-theme"
-          onClick={[Function]}
-          title="Day Theme"
-        >
-          <svg
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z"
-              fill="currentColor"
-            />
-          </svg>
-        </div>
-        <div
           className="switch-language"
         >
           <div
@@ -387,11 +369,7 @@ Array [
             <div
               className="dropdown-btn "
             >
-              <div
-                className="label"
-              >
-                
-              </div>
+              
               <div
                 className="menu-down"
               >
@@ -407,6 +385,20 @@ Array [
             </div>
           </div>
         </div>
+        <div
+          className="switch-theme"
+          onClick={[Function]}
+          title="Day Theme"
+        >
+          <svg
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
       </div>
       <div
         className="btn-menu"
@@ -415,7 +407,7 @@ Array [
           className="login-required"
         >
           <button
-            className="btn btn-outline-primary"
+            className="btn-login btn btn-outline-primary"
             disabled={false}
             onClick={[Function]}
             type="button"
@@ -595,20 +587,6 @@ Array [
         className="switch-menu"
       >
         <div
-          className="switch-theme"
-          onClick={[Function]}
-          title="Night Theme"
-        >
-          <svg
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z"
-              fill="currentColor"
-            />
-          </svg>
-        </div>
-        <div
           className="switch-language"
         >
           <div
@@ -620,11 +598,7 @@ Array [
             <div
               className="dropdown-btn "
             >
-              <div
-                className="label"
-              >
-                
-              </div>
+              
               <div
                 className="menu-down"
               >
@@ -639,6 +613,20 @@ Array [
               </div>
             </div>
           </div>
+        </div>
+        <div
+          className="switch-theme"
+          onClick={[Function]}
+          title="Night Theme"
+        >
+          <svg
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z"
+              fill="currentColor"
+            />
+          </svg>
         </div>
       </div>
       <div

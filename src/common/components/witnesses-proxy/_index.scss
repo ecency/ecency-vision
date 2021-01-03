@@ -20,11 +20,15 @@
     align-items: center;
     display: flex;
     justify-content: space-between;
-    width: 340px;
+    max-width: 320px;
     padding: 10px 10px 10px 0;
 
     .txt-username {
-      width: 200px;
+      width: 160px;
+
+      @media (min-width: $sm-break) {
+        width: 200px;
+      }
     }
   }
 }

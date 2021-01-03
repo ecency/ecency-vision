@@ -31,7 +31,7 @@ import i18n from "i18next";
 
 import _c from "../../util/fix-class-names";
 
-import {brightnessSvg, translateSvg, pencilOutlineSvg, menuSvg, closeSvg} from "../../img/svg";
+import {brightnessSvg, translateSvg, pencilOutlineSvg, menuSvg, closeSvg, dotsHorizontal} from "../../img/svg";
 
 const logo = require('../../img/logo-circle.svg');
 
@@ -135,7 +135,7 @@ export class NavBar extends Component<Props, State> {
     }
 
     render() {
-        const {global, activeUser, ui, setLang} = this.props;
+        const {global, activeUser, ui, setLang, location} = this.props;
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
         const logoHref = activeUser ? `/@${activeUser.username}/feed` : '/';
 
@@ -158,6 +158,15 @@ export class NavBar extends Component<Props, State> {
             }))
         };
 
+        const textMenu = <div className="text-menu">
+            <Link className="menu-item" to="/discover">
+                {_t("navbar.discover")}
+            </Link>
+            <Link className="menu-item" to="/communities">
+                {_t("navbar.communities")}
+            </Link>
+        </div>
+
         return (
             <>
                 {floating && (<div className="nav-bar-rep"/>)}
@@ -170,14 +179,7 @@ export class NavBar extends Component<Props, State> {
                             </Link>
                         </div>
 
-                        <div className="text-menu">
-                            <Link className="menu-item" to="/discover">
-                                {_t("navbar.discover")}
-                            </Link>
-                            <Link className="menu-item" to="/communities">
-                                {_t("navbar.communities")}
-                            </Link>
-                        </div>
+                        {textMenu}
                     </div>
                 )}
                 <div ref={this.nav} className={_c(`nav-bar ${smVisible ? "visible-sm" : ""}`)}>
@@ -187,32 +189,25 @@ export class NavBar extends Component<Props, State> {
                                 <img src={logo} className="logo" alt="Logo"/>
                             </Link>
                         </div>
-                        <div className="text-menu">
-                            <Link className="menu-item" to="/discover">
-                                {_t("navbar.discover")}
-                            </Link>
-                            <Link className="menu-item" to="/communities">
-                                {_t("navbar.communities")}
-                            </Link>
-                        </div>
+                        {textMenu}
                         <div className="flex-spacer"/>
                         <div className="search-bar">
                             {Search({...this.props})}
                         </div>
                         <div className="switch-menu">
+                            <div className="switch-language">
+                                <DropDown {...langMenuConfig} float="right"/>
+                            </div>
                             <ToolTip content={themeText}>
                                 <div className="switch-theme" onClick={this.changeTheme}>
                                     {brightnessSvg}
                                 </div>
                             </ToolTip>
-                            <div className="switch-language">
-                                <DropDown {...langMenuConfig} float="right"/>
-                            </div>
                         </div>
                         <div className="btn-menu">
                             {!activeUser && (
                                 <div className="login-required">
-                                    <Button variant="outline-primary" onClick={() => {
+                                    <Button className="btn-login" variant="outline-primary" onClick={() => {
                                         const {toggleUIProp} = this.props;
                                         toggleUIProp('login');
                                     }}>{_t("g.login")}</Button>
