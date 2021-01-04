@@ -72,7 +72,7 @@
     "bookmarks": "Marcadores",
     "schedules": "Programados",
     "logout": "Cerrar sesión",
-    "vote-power": "Vote Power:"
+    "vote-power": "Poder de voto:"
   },
   "intro": {
     "title": "Aspira a la grandeza",
@@ -692,7 +692,7 @@
     "proxy-active-description": "Has seleccionado un proxy de votación. Si quieres volver a habilitar el voto manual, por favor borra el proxy.",
     "proxy-active-current": "Tu proxy actual es",
     "proxy-active-btn-label": "Borrar proxy",
-    "proxy-votes-for": "@{{username}} votes for"
+    "proxy-votes-for": "@{{username}} votos para"
   },
   "proposals": {
     "page-title": "Propuestas",
@@ -723,7 +723,7 @@
   },
   "schedules": {
     "title": "Publicaciones programadas",
-    "move": "Move to drafts"
+    "move": "Mover a borradores"
   },
   "bookmarks": {
     "title": "Marcadores"
