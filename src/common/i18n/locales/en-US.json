@@ -797,7 +797,8 @@
     }
   },
   "contributors": {
-    "title": "Contributors"
+    "title": "Contributors",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sit amet nibh mattis, faucibus lacus eget, placerat turpis. Praesent commodo nulla eget elit sollicitudin, ac dictum lacus rutrum."
   },
   "context-menu": {
     "cut": "Cut",

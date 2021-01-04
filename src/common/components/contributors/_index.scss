@@ -1,12 +1,10 @@
 .contributors {
+  padding: 0 10px;
+
   .contributors-list {
     @include user-grid-list(1, 2, 3);
 
     .list-header {
-      height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
       margin-bottom: 20px;
 
       @include themify(day) {
@@ -23,6 +21,12 @@
         font-size: 18px;
         display: flex;
         align-items: center;
+        margin-bottom: 10px;
+      }
+
+      .list-description {
+        opacity: 0.7;
+        margin-bottom: 10px;
       }
     }
   }
