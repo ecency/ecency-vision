@@ -61,7 +61,7 @@
     "header-community": "Спільноти"
   },
   "switch-lang": {
-    "contributors": "Contributors"
+    "contributors": "Учасники перекладу"
   },
   "user-nav": {
     "wallet": "Гаманець",
@@ -73,9 +73,9 @@
     "gallery": "Галерея",
     "drafts": "Чернетки",
     "bookmarks": "Закладки",
-    "schedules": "Schedules",
+    "schedules": "За розкладом",
     "logout": "Вийти",
-    "vote-power": "Vote Power:"
+    "vote-power": "Сила голосу:"
   },
   "intro": {
     "title": "Прагніть до величі",
@@ -573,14 +573,14 @@
     "clear": "Очистити",
     "published": "Допис опубліковано",
     "updated": "Допис оновлено",
-    "advanced": "Advanced",
-    "beneficiaries": "Beneficiaries",
-    "beneficiaries-hint": "Set beneficiaries to share author reward with other accounts",
+    "advanced": "Розширений",
+    "beneficiaries": "Бенефіціари (отримувачі)",
+    "beneficiaries-hint": "Налаштуйте бенефіціарів (отримувачів) аби ділитися винагородою з авторами інших обліковок. Наприклад: співавторський допис, ви можете чесно розділити винагороду з іншим автором",
     "reblog": "Reblog",
-    "reblog-hint": "Auto share content to your blog",
-    "schedule": "Schedule",
-    "schedule-hint": "Auto publish content on specific time",
-    "scheduled": "Post scheduled"
+    "reblog-hint": "Автоматично публікувати вміст для вашого блогу",
+    "schedule": "Запланувати",
+    "schedule-hint": "Автоматично публікувати вміст в певний час",
+    "scheduled": "Допис заплановано"
   },
   "tag-selector": {
     "placeholder-empty": "Теги. Першим тегом є основна категорія, а наступні є для сортування.",
@@ -599,13 +599,13 @@
     "read-time-n-min": "~ {{n}} хв. читати"
   },
   "beneficiary-editor": {
-    "title": "Beneficiaries",
-    "btn-label": "Set Beneficiaries",
-    "btn-label-n": "Set Beneficiaries ({{n}})",
-    "username": "Username",
-    "reward": "Reward",
-    "user-error": "{{n}} is not a valid user.",
-    "user-exists-error": "{{n}} is already in the list"
+    "title": "Бенефіціари (отримувачі)",
+    "btn-label": "Встановити бенефіціарів (отримувачів)",
+    "btn-label-n": "Встановити бенефіціарів (отримувачів) ({{n}})",
+    "username": "Ім'я користувача",
+    "reward": "Винагорода",
+    "user-error": "{{n}} не є дійсним користувачем.",
+    "user-exists-error": "{{n}} вже в списку"
   },
   "post-scheduler": {
     "title": "Schedule",
@@ -695,7 +695,7 @@
     "proxy-active-description": "Ви встановили proxy. Якщо ви бажаєте знов увімкнути голосування вручну, будь ласка, зніміть proxy.",
     "proxy-active-current": "Ваш поточний проксі є",
     "proxy-active-btn-label": "Зняти проксі",
-    "proxy-votes-for": "@{{username}} votes for"
+    "proxy-votes-for": "@{{username}} голосів за"
   },
   "proposals": {
     "page-title": "Пропозиції",
@@ -725,8 +725,8 @@
     "title": "Чернетки"
   },
   "schedules": {
-    "title": "Scheduled Posts",
-    "move": "Move to drafts"
+    "title": "Заплановані дописи",
+    "move": "Перемістити до чернеток"
   },
   "bookmarks": {
     "title": "Закладки"
@@ -799,7 +799,7 @@
     }
   },
   "contributors": {
-    "title": "Contributors",
+    "title": "Учасники перекладу",
     "description": "These great people contributed in one way or another to Ecency, we would like to thank them all. If you want to join our team by contributing with Translation, Ideas, Development, Designing, Social awareness, feel free to join. To learn more read our <a href=\"/faq#how-to-contribute\">FAQ</a>."
   },
   "context-menu": {
