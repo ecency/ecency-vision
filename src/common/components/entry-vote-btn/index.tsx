@@ -251,7 +251,7 @@ export class EntryVoteBtn extends Component<Props, State> {
     vote = (percent: number) => {
         this.toggleDialog();
 
-        const {entry, activeUser, afterVote} = this.props;
+        const {entry, activeUser, afterVote, updateActiveUser} = this.props;
         const weight = Math.ceil(percent * 100);
 
         this.stateSet({inProgress: true});
@@ -265,6 +265,7 @@ export class EntryVoteBtn extends Component<Props, State> {
                 ];
 
                 afterVote(votes);
+                updateActiveUser(); // refresh voting power
             })
             .catch((e) => {
                 error(formatError(e));
