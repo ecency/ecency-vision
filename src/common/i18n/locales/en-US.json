@@ -60,6 +60,9 @@
     "header-account": "Users",
     "header-community": "Communities"
   },
+  "switch-lang": {
+    "contributors": "Contributors"
+  },
   "user-nav": {
     "wallet": "Wallet",
     "unclaimed-reward-notice": "You have unclaimed rewards",
