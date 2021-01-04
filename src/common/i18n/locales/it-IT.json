@@ -27,7 +27,7 @@
     "off": "Spegni",
     "yes": "Si",
     "no": "No",
-    "done": "Done"
+    "done": "Fatto"
   },
   "confirm": {
     "title": "Sei sicuro?",
@@ -61,7 +61,7 @@
     "header-community": "Communities"
   },
   "switch-lang": {
-    "contributors": "Contributors"
+    "contributors": "Hanno contribuito"
   },
   "user-nav": {
     "wallet": "Portafoglio",
@@ -73,9 +73,9 @@
     "gallery": "Galleria",
     "drafts": "Bozze",
     "bookmarks": "Segnalibri",
-    "schedules": "Schedules",
+    "schedules": "Programmi",
     "logout": "Esci",
-    "vote-power": "Vote Power:"
+    "vote-power": "Potere di Voto:"
   },
   "intro": {
     "title": "Aspira alla grandezza",
@@ -558,7 +558,7 @@
     "title-placeholder": "Titolo",
     "body-placeholder": "Contenuto del post",
     "reward": "Ricompensa",
-    "reward-hint": "Set author reward ratio for liquid and staked tokens",
+    "reward-hint": "Imposta la percentuale di ricompensa per token liquidi e in staking",
     "reward-default": "Predefinito 50% / 50%",
     "reward-sp": "Potenziamento 100%",
     "reward-dp": "Rifiuta pagamento",
@@ -573,14 +573,14 @@
     "clear": "Pulisci",
     "published": "Post pubblicato",
     "updated": "Post aggiornato",
-    "advanced": "Advanced",
-    "beneficiaries": "Beneficiaries",
-    "beneficiaries-hint": "Set beneficiaries to share author reward with other accounts",
-    "reblog": "Reblog",
-    "reblog-hint": "Auto share content to your blog",
-    "schedule": "Schedule",
-    "schedule-hint": "Auto publish content on specific time",
-    "scheduled": "Post scheduled"
+    "advanced": "Avanzate",
+    "beneficiaries": "Beneficiari",
+    "beneficiaries-hint": "Imposta i beneficiari per condividere le ricompense d'autore con altri account",
+    "reblog": "Reblogga",
+    "reblog-hint": "Condividi automaticamente il contenuto sul tuo blog",
+    "schedule": "Pianifica",
+    "schedule-hint": "Pubblica automaticamente il contenuto in un giorno e un'ora prefissati",
+    "scheduled": "Post programmato"
   },
   "tag-selector": {
     "placeholder-empty": "Etichette. La prima etichetta è la categoria principale che classificherà il post.",
@@ -599,16 +599,16 @@
     "read-time-n-min": "~ {{n}} minuti di lettura"
   },
   "beneficiary-editor": {
-    "title": "Beneficiaries",
-    "btn-label": "Set Beneficiaries",
-    "btn-label-n": "Set Beneficiaries ({{n}})",
-    "username": "Username",
-    "reward": "Reward",
-    "user-error": "{{n}} is not a valid user.",
-    "user-exists-error": "{{n}} is already in the list"
+    "title": "Beneficiari",
+    "btn-label": "Imposta Beneficiari",
+    "btn-label-n": "Imposta Beneficiari ({{n}})",
+    "username": "Nome utente",
+    "reward": "Ricompensa",
+    "user-error": "{{n}} non è un utente valido.",
+    "user-exists-error": "{{n}} è già nella lista"
   },
   "post-scheduler": {
-    "title": "Schedule",
+    "title": "Pianifica",
     "btn-label": "Schedule"
   },
   "notification": {
