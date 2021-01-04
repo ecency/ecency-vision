@@ -32,6 +32,10 @@ Object {
     "balance": "1.751 HIVE",
     "created": "2018-01-29T20:10:06",
     "delegated_vesting_shares": "145395.758709 VESTS",
+    "downvote_manabar": Object {
+      "current_mana": "36303329010",
+      "last_update_time": 1609750587,
+    },
     "follow_stats": Object {
       "account": "talhasch",
       "follower_count": 232,
@@ -105,6 +109,7 @@ Object {
       "current_mana": "6195193441",
       "last_update_time": 1607690265,
     },
+    "voting_power": 9476,
     "withdrawn": "87017000000",
     "witness_votes": Array [
       "blocktrades",

@@ -66,6 +66,8 @@ export const fullAccountInstance: FullAccount = {
     "proxy": "",
     "proxied_vsf_votes": [0, 0, 0, 0],
     "voting_manabar": {"current_mana": "6195193441", "last_update_time": 1607690265},
+    "downvote_manabar": {current_mana: "36303329010", last_update_time: 1609750587},
+    "voting_power": 9476,
     "__loaded": true,
     "profile": {
         "name": "Talha B.",

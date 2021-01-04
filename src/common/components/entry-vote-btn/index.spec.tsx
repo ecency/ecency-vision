@@ -10,7 +10,7 @@ import {Account} from "../../store/accounts/types";
 
 
 jest.mock("../../api/hive", () => ({
-    vpMana: () => 5,
+    votingPower: () => 5,
     getActiveVotes: () =>
         new Promise((resolve) => {
             resolve([{voter: "user1", percent: 10}]);

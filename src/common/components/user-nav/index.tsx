@@ -24,7 +24,8 @@ import {_t} from "../../i18n";
 import HiveWallet from "../../helper/hive-wallet";
 
 import {creditCardSvg, gifCardSvg, bellSvg, bellOffSvg, chevronUpSvg} from "../../img/svg";
-import {vpMana} from "../../api/hive";
+
+import {votingPower, downVotingPower} from "../../api/hive";
 
 class WalletBadge extends Component<{
     activeUser: ActiveUser;
@@ -141,7 +142,13 @@ export default class UserNav extends Component<Props, State> {
         const {activeUser, ui, notifications, global, dynamicProps} = this.props;
         const {unread} = notifications;
 
-        const vPower = activeUser.data.__loaded ? vpMana(activeUser.data) : null;
+        const preDropDownElem = activeUser.data.__loaded ? <div className="drop-down-menu-power">
+            <div className="label">{_t("user-nav.vote-power")}</div>
+            <div className="power">
+                <div className="voting">{chevronUpSvg}{votingPower(activeUser.data).toFixed(0)}{"%"}</div>
+                <div className="downVoting">{chevronUpSvg}{downVotingPower(activeUser.data).toFixed(0)}{"%"}</div>
+            </div>
+        </div> : undefined;
 
         const dropDownConfig = {
             history: this.props.history,
@@ -179,6 +186,7 @@ export default class UserNav extends Component<Props, State> {
                     },
                 },
             ],
+            preElem: preDropDownElem,
         };
 
         return (
@@ -200,9 +208,6 @@ export default class UserNav extends Component<Props, State> {
                         {...dropDownConfig}
                         float="right"
                         header={`@${activeUser.username}`}
-                        extraElem={vPower ? <div className="drop-down-menu-vp">
-                            {chevronUpSvg} {_t("user-nav.vote-power", {n: vPower.toFixed(2)})}
-                        </div> : undefined}
                     />
                 </div>
                 {ui.notifications && <UserNotifications {...this.props} />}

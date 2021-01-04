@@ -89,12 +89,13 @@
     }
   }
 
-  .drop-down-menu-vp {
+  .drop-down-menu-power {
+    font-size: 13px;
+    padding: 8px 8px 8px 20px;
     display: flex;
     align-items: center;
-    color: $dark-sky-blue;
-    font-size: 13px;
-    padding: 10px 0 10px 22px;
+    justify-content: space-between;
+    font-weight: 300;
 
     @include themify(day) {
       background: $white-three;
@@ -104,16 +105,59 @@
       background: $dark-two;
     }
 
-    svg {
-      height: 16px;
-      margin-right: 2px;
+    .label {
+
+    }
+
+    .power {
+      display: flex;
+
+      svg {
+        height: 14px;
+        margin-right: 2px;
+      }
+
+      .voting, .downVoting {
+        display: flex;
+        align-items: center;
+
+      }
+
+      .voting {
+        margin-right: 6px;
+        color: $dark-sky-blue;
+      }
+
+      .downVoting {
+        color: $red2;
+
+        svg {
+          transform: rotate(180deg);
+        }
+      }
     }
   }
 
   // custom dropdown override
   .custom-dropdown {
+
+    .menu-inner {
+      width: 220px;
+
+      .menu-header {
+        padding-left: 20px;
+      }
+    }
+
     .menu-list {
       padding-top: 6px;
+
+      .menu-item {
+        .item-inner {
+          margin-left: 20px;
+          padding-left: 0;
+        }
+      }
     }
   }
 }

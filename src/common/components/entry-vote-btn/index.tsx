@@ -14,7 +14,7 @@ import FormattedCurrency from "../formatted-currency";
 import LoginRequired from "../login-required";
 import {error} from "../feedback";
 
-import {vpMana} from "../../api/hive";
+import {votingPower} from "../../api/hive";
 import {vote, formatError} from "../../api/operations";
 
 import parseAsset from "../../helper/parse-asset";
@@ -81,7 +81,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
 
         const userVestingShares = totalVests * 1e6;
 
-        const userVotingPower = vpMana(account) * Math.abs(percent);
+        const userVotingPower = votingPower(account) * Math.abs(percent);
         const voteEffectiveShares = userVestingShares * (userVotingPower / 10000) * 0.02;
 
         // reward curve algorithm (no idea whats going on here)
