@@ -27,7 +27,7 @@
     "off": "Pois",
     "yes": "Kyllä",
     "no": "Ei",
-    "done": "Done"
+    "done": "Valmis"
   },
   "confirm": {
     "title": "Oletko varma?",
@@ -70,7 +70,7 @@
     "gallery": "Galleria",
     "drafts": "Luonnokset",
     "bookmarks": "Kirjanmerkit",
-    "schedules": "Schedules",
+    "schedules": "Ajastetut",
     "logout": "Kirjaudu ulos"
   },
   "intro": {
@@ -554,7 +554,7 @@
     "title-placeholder": "Otsikko",
     "body-placeholder": "Julkaisun sisältö",
     "reward": "Palkkio",
-    "reward-hint": "Set author reward ratio for liquid and staked tokens",
+    "reward-hint": "Aseta kelluvien ja panostettujen merkkien tekijän palkintosuhde",
     "reward-default": "Oletus 50 % / 50 %",
     "reward-sp": "Power Up 100%",
     "reward-dp": "Hylkää maksu",
@@ -569,14 +569,14 @@
     "clear": "Tyhjennä",
     "published": "Julkaistu",
     "updated": "Julkaisu päivitetty",
-    "advanced": "Advanced",
-    "beneficiaries": "Beneficiaries",
-    "beneficiaries-hint": "Set beneficiaries to share author reward with other accounts",
-    "reblog": "Reblog",
-    "reblog-hint": "Auto share content to your blog",
-    "schedule": "Schedule",
-    "schedule-hint": "Auto publish content on specific time",
-    "scheduled": "Post scheduled"
+    "advanced": "Lisäasetukset",
+    "beneficiaries": "Hyötyjät",
+    "beneficiaries-hint": "Aseta hyötyjät jakamaan tekijäpalkinto muille tileille",
+    "reblog": "Jaa",
+    "reblog-hint": "Jaa sisältö automaattisesti blogiisi",
+    "schedule": "Ajasta",
+    "schedule-hint": "Julkaise sisältö automaattisesti tiettyyn aikaan",
+    "scheduled": "Julkaisu ajastettu"
   },
   "tag-selector": {
     "placeholder-empty": "Tunnisteet. Ensimmäisenä pääkategoria. Lajiteltava.",
@@ -595,17 +595,17 @@
     "read-time-n-min": "~ {{n}} min lukuaika"
   },
   "beneficiary-editor": {
-    "title": "Beneficiaries",
-    "btn-label": "Set Beneficiaries",
-    "btn-label-n": "Set Beneficiaries ({{n}})",
-    "username": "Username",
-    "reward": "Reward",
-    "user-error": "{{n}} is not a valid user.",
-    "user-exists-error": "{{n}} is already in the list"
+    "title": "Hyötyjät",
+    "btn-label": "Määritä Hyötyjät",
+    "btn-label-n": "Määritä Hyötyjät ({{n}})",
+    "username": "Käyttäjänimi",
+    "reward": "Palkkio",
+    "user-error": "{{n}} ei ole kelvollinen käyttäjä.",
+    "user-exists-error": "{{n}} on jo luettelossa"
   },
   "post-scheduler": {
-    "title": "Schedule",
-    "btn-label": "Schedule"
+    "title": "Ajasta",
+    "btn-label": "Ajasta"
   },
   "notification": {
     "popup-title": "Sinulle on uusi ilmoitus",
@@ -691,7 +691,7 @@
     "proxy-active-description": "Olet asettanut valtuutetun. Jos haluat äänestää itse, tyhjennä valtuutuksesi.",
     "proxy-active-current": "Nykyinen valtuutettusi",
     "proxy-active-btn-label": "Poista valtuutus",
-    "proxy-votes-for": "@{{username}} votes for"
+    "proxy-votes-for": "@{{username}} ääntä"
   },
   "proposals": {
     "page-title": "Ehdotukset",
@@ -721,8 +721,8 @@
     "title": "Luonnokset"
   },
   "schedules": {
-    "title": "Scheduled Posts",
-    "move": "Move to drafts"
+    "title": "Ajastetut julkaisut",
+    "move": "Siirrä luonnoksiin"
   },
   "bookmarks": {
     "title": "Kirjanmerkit"
