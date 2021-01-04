@@ -60,6 +60,9 @@
     "header-account": "Пользователи",
     "header-community": "Сообщества"
   },
+  "switch-lang": {
+    "contributors": "Contributors"
+  },
   "user-nav": {
     "wallet": "Кошелек",
     "unclaimed-reward-notice": "У вас есть невостребованные награды",
@@ -760,11 +763,11 @@
       "how-ecency-works-header": "How does Ecency work?",
       "how-ecency-works-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjuZ3ksaZqEjfd9GadyKFE4bT7UP8qM1sF5W6U3cst4ekDsXfrQdcrjtdz6b5Ye2AfWNwGA5f8QqVXmed6NRfg1U?format=match&mode=fit\"/></p><p>Ecency stores and reads data from the blockchain, and thus data is accessible and uncensored. Ecency rewards content creators with built-in incentive mechanism of blockchain, with tokens (HIVE, HIVE DOLLARS, HIVE POWER) as well as Points. Tokens can be purchased and sold in major cryptocurrency exchanges (e.g. Binance, Bittrex). Points could be utilized within platform and traded for goods, services.</p>",
       "how-to-join-header": "How to join Ecency?",
-      "how-to-join-body": "<p>Go to <a href=\"/?referral=ecency\">https://ecency.com/?referral=ecency</a> and create an account. After signup you will receive email with further instructions. Your password is your master key to your account. Please store it safely, if you loose your password, you ultimately loose access to your account and your funds. Accounts cannot be deactivated or deleted, account names can not be changed as well. The account along with all of its activity is permanently stored in the blockchain. Without password, accounts cannot be restored, store your keys safely.</p>",
+      "how-to-join-body": "<p>Go to <a href=\"/signup?referral=ecency\">https://ecency.com/signup?referral=ecency</a> and create an account. After signup you will receive email with further instructions. Your password is your master key to your account. Please store it safely, if you loose your password, you ultimately loose access to your account and your funds. Accounts cannot be deactivated or deleted, account names can not be changed as well. The account along with all of its activity is permanently stored in the blockchain. Without password, accounts cannot be restored, store your keys safely.</p>",
       "how-to-signin-header": "How to sign in to Ecency?",
       "how-to-signin-body": "<p><img src=\"https://images.ecency.com/p/7258xSVeJbKmTr9Z4jhbPhjS9pMWA2mTwBMDbXqk9G9wdMw2bwR4hXqRQt9S7UBFrBAWCYWddjn3G34ETv5KWB5KGmuZ8ixBB9oKHTFvjjnTkRLp4ttrFQtpgtNnRUEA9NtmyFmgyuuK4?format=match&mode=fit\"/></p><p>You can sign-in to Ecency by using your Username and Master password or by using Active Private Keys. We take security very seriously, that's why we never store your private keys, on mobile app they are encrypted with extra PIN code of your choice, on website they are never stored. You can also use <a href=\"https://hivesigner.com\">Hivesigner OAuth2</a> authentication service to easily login, manage and perform actions.</p>",
       "how-referrals-work-header": "How referral system work on Ecency?",
-      "how-referrals-work-body": "<p>Referral system is simple, you can invite your friends by adding your username in this link https://ecency.com/?referral=username and share it with your friends. Once your friends join Ecency and earn their first 250 Points, you will earn 100 Points. There is no limits on referrals and its reward.</p>",
+      "how-referrals-work-body": "<p>Referral system is simple, you can invite your friends by adding your username in this link https://ecency.com/signup?referral=username and share it with your friends. Once your friends join Ecency and earn their first 250 Points, you will earn 100 Points. There is no limits on referrals and its reward.</p>",
       "what-is-points-header": "What are Ecency Points and how to use them?",
       "what-is-points-body": "<p>Ecency Points are continually minted and rewarded for all users for various social activities they perform on website, mobile or desktop app. Points can be used for promoting, boosting your content, can even be transferred or gifted to another user. You can also purchase Points with our mobile apps.</p>",
       "where-tokens-come-header": "Where do the tokens come from?",
@@ -788,10 +791,16 @@
       "what-spam-abuse-header": "What is considered spam or abuse?",
       "what-spam-abuse-body": "<p><img src=\"https://images.ecency.com/p/3jpR3paJ37V8XPrHkfZdMt57jY6pRt6zEt5iRJV9pSw4Mez3Hut8U6RWvWLA7cFYEa1bxveXeasNfZApzrcLYLx8cz84kBEKak1KkewE2ZqE1QRRkF4eqRH3vWVqZB9WuNbzE?format=match&mode=fit\"/></p><p><ul><li>Plagiarized posts or copied content.</li><li>Leaving nearly identical or materially similar comments on multiple posts.</li><li>Using tags that are unrelated to the post.</li><li>Threatening users with any type of physical violence.</li><li>Not citing sources when using someone else’s material.</li><li>Posting ‘not safe for work’ content without using the “nsfw” tag.</li><li>Scams or Fraudulent offers.</li></ul></p>",
       "can-link-post-header": "Can I request adding backlink to my website from Ecency team?",
-      "can-link-post-body": "<p>All the content on our site is created by our users and we don't modify or able to add backlinks. You are free to contact author of the post or <a href=\"/?referral=ecency\">Signup</a> to open your own blog and community, publish articles to create backlinks for free.</p>",
+      "can-link-post-body": "<p>All the content on our site is created by our users and we don't modify or able to add backlinks. You are free to contact author of the post or <a href=\"/signup?referral=ecency\">Signup</a> to open your own blog and community, publish articles to create backlinks for free.</p>",
       "can-guest-post-header": "Is it possible to guest post on your website?",
-      "can-guest-post-body": "<p>Posting on Ecency is simple and easy, <a href=\"/?referral=ecency\">Signup</a> to open your own blog and community, start posting your content.</p>"
+      "can-guest-post-body": "<p>Posting on Ecency is simple and easy, <a href=\"/signup?referral=ecency\">Signup</a> to open your own blog and community, start posting your content.</p>",
+      "how-to-contribute-header": "How to contribute to the Ecency?",
+      "how-to-contribute-body": "<p>Our <a href=\"/contributors\">awesome contributors</a> helping us to shape Ecency. You can be part of this great movement, by joining our Translation team: <a href=\"https://translate-desktop.ecency.com\">Website</a>, <a href=\"https://translate-mobile.ecency.com\">Mobile</a> or by contributing with Ideas, Developing, Designing, Social media outreach skills. We try our best to support our contributors!</p>"
     }
+  },
+  "contributors": {
+    "title": "Contributors",
+    "description": "These great people contributed in one way or another to Ecency, we would like to thank them all. If you want to join our team by contributing with Translation, Ideas, Development, Designing, Social awareness, feel free to join. To learn more read our <a href=\"/faq#how-to-contribute\">FAQ</a>."
   },
   "context-menu": {
     "cut": "Cut",
