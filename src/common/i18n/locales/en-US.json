@@ -796,6 +796,9 @@
       "can-guest-post-body": "<p>Posting on Ecency is simple and easy, <a href=\"/?referral=ecency\">Signup</a> to open your own blog and community, start posting your content.</p>"
     }
   },
+  "contributors": {
+    "title": "Contributors"
+  },
   "context-menu": {
     "cut": "Cut",
     "copy": "Copy",

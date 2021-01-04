@@ -357,10 +357,12 @@
     .page-title {
       color: $dark-sky-blue !important;
     }
+
     img {
       max-width: 100%;
       border-radius: 4px;
     }
+
     h1 {
       font-size: 32px;
     }
@@ -372,6 +374,18 @@
     h3 {
       font-size: 24px;
       font-weight: 400;
+    }
+  }
+
+  &.contributors-page {
+    @media (min-width: $lg-break) {
+      flex-direction: row;
+      height: calc(100% - 104px) !important;
+    }
+
+    .contributors {
+      flex-grow: 1;
+      margin-bottom: 40px;
     }
   }
 }
