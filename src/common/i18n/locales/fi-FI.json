@@ -71,7 +71,8 @@
     "drafts": "Luonnokset",
     "bookmarks": "Kirjanmerkit",
     "schedules": "Ajastetut",
-    "logout": "Kirjaudu ulos"
+    "logout": "Kirjaudu ulos",
+    "vote-power": "Vote Power:"
   },
   "intro": {
     "title": "Ajattele isosti",
