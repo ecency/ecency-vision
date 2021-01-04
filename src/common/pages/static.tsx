@@ -32,6 +32,7 @@ const faqKeys = [
     'how-ecency-works',
     'how-to-join',
     'how-to-signin',
+    'how-to-contribute',
     'how-referrals-work',
     'what-is-points',
     'where-tokens-come',

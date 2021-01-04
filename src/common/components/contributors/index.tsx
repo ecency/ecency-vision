@@ -26,7 +26,7 @@ export class Contributors extends Component<Props> {
                         <div className="list-title">
                             {_t('contributors.title')}
                         </div>
-                        <div className="list-description">{_t('contributors.description')}</div>
+                        <div className="list-description" dangerouslySetInnerHTML={{__html: _t('contributors.description')}} />
                     </div>
                     <div className="list-body">
                         {contributors.map(c => {
