@@ -71,7 +71,8 @@
     "drafts": "Borradores",
     "bookmarks": "Marcadores",
     "schedules": "Programados",
-    "logout": "Cerrar sesión"
+    "logout": "Cerrar sesión",
+    "vote-power": "Vote Power:"
   },
   "intro": {
     "title": "Aspira a la grandeza",
