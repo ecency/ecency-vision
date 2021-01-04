@@ -27,7 +27,7 @@
     "off": "Вимкнути",
     "yes": "Так",
     "no": "Ні",
-    "done": "Done"
+    "done": "Виконано"
   },
   "confirm": {
     "title": "Ви впевнені?",
@@ -225,7 +225,7 @@
   },
   "community-cover": {
     "rewards": "винагороди",
-    "authors": "банери",
+    "authors": "дописувач(-ів)",
     "lang": "мова",
     "cover-image": "Зображення обкладинки спільноти",
     "cover-image-edit": "Редагувати зображення обкладинки",
@@ -261,7 +261,7 @@
     "title": "Спільноти",
     "description": "Найкраща онлайн, децентралізована, незмінна, громада винагороджується",
     "n-subscribers": "{{n}} учасників",
-    "n-authors": "{{n}} банерів",
+    "n-authors": "{{n}} дописувач(-ів)",
     "n-posts": "{{n}} дописів",
     "admins": "адміни:",
     "sort-hot": "Актуальне",
@@ -387,7 +387,7 @@
     "comment-desc": "Кожен коментар допомагає вам нарощувати аудиторію, зав'язує дружбу та приносить тобі 5 балів.",
     "checkin-desc": "Періодичний вхід на Ecency дає вам 0,25 балів та допомагає залишатися на зв'язку з друзями.",
     "vote-desc": "Голосуючи, ви винагороджуєте інших авторів і показуєте свою вдячність, а також отримуєте бали у кількості 0,01 x вагу голосу.",
-    "reblog-desc": "  Діліться з друзями постами, що вам подобаються, та отримуйте 1 бал.",
+    "reblog-desc": "  Діліться з друзями дописами, ті що вам подобаються, та отримуйте 1 бал.",
     "login-desc": "При першій авторизації в додатку Ecency вам автоматично нараховується 100 балів.",
     "checkin-extra-desc": "Регулярне використання додатку дає вам шанс отримати ще 10 бонусних балів, будьте активнішим та отримуй більше.",
     "delegation-desc": "Ви можете заробити ~50 балів на день за кожну делегацію 1000HP.",
@@ -558,7 +558,7 @@
     "title-placeholder": "Заголовок",
     "body-placeholder": "Вміст допису",
     "reward": "Винагорода",
-    "reward-hint": "Set author reward ratio for liquid and staked tokens",
+    "reward-hint": "Встановіть коефіцієнт винагороди автора за ліквідністю та закладених токенах",
     "reward-default": "Стандарт 50% / 50%",
     "reward-sp": "Power Up 100%",
     "reward-dp": "Відмовитися від виплати",
@@ -576,7 +576,7 @@
     "advanced": "Розширений",
     "beneficiaries": "Бенефіціари (отримувачі)",
     "beneficiaries-hint": "Налаштуйте бенефіціарів (отримувачів) аби ділитися винагородою з авторами інших обліковок. Наприклад: співавторський допис, ви можете чесно розділити винагороду з іншим автором",
-    "reblog": "Reblog",
+    "reblog": "Редопис",
     "reblog-hint": "Автоматично публікувати вміст для вашого блогу",
     "schedule": "Запланувати",
     "schedule-hint": "Автоматично публікувати вміст в певний час",
@@ -608,8 +608,8 @@
     "user-exists-error": "{{n}} вже в списку"
   },
   "post-scheduler": {
-    "title": "Schedule",
-    "btn-label": "Schedule"
+    "title": "Розклад",
+    "btn-label": "Розклад"
   },
   "notification": {
     "popup-title": "У вас є нове сповіщення",
@@ -757,7 +757,7 @@
       "what-is-hive-header": "Що таке Hive блокчейн?",
       "what-is-hive-body": "<p>Hive - це блокчейн, розроблений як швидка, безоплатна, децентралізована, нецензурована платформа для додатків Web 3.0 із вбудованими функціями, де зацікавлені сторони можуть заробляти винагороду та стекаючи їх, інвестуючи, публікуючи, граючи в ігри, торгуючи - все без будь-якої середньої людини (децентралізована). Токени на блокчейні Hive під назвою HIVE, HIVE DOLLARS, HIVE POWER(сила).</p>",
       "what-is-difference-header": "У чому різниця між Ecency та іншими Hive інтерфейсами?",
-      "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\"/></p><p>The primary differences in all interfaces or applications are in their feature-set, use cases. Ecency offers website, mobile and desktop applications for ease of access and with best security in mind. Accessible, opensource and innovative, built and owned by users. Aspire for greatness!</p>",
+      "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\"/></p><p>Основні відмінності у всіх інтерфейсах або додатках полягають у їх наборі функцій та варіантах використання. Ecency пропонує веб-сайт, мобільні та комп'ютерні додатки для зручності доступу, та найкращого рівня безпеки. Доступний у відкритому джерелі, інноваційний, створений і належить користувачам. Прагніть величі!</p>",
       "why-choose-ecency-header": "Чому б я обрав Ecency?",
       "why-choose-ecency-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjrzJAcJ4DvxvtqoPdzS9Aygf4MZ1PeE4goH6zWaeEFvafr9vGXWuou67Pbn44GweMyHV5DupM5q1cRvU85qdver?format=match&mode=fit\"/></p><p>Tailored feature set to empower you to create, inspire your audience and community. Ecency mobile application giving you on-go solution. With desktop app you are always sure to get uncensored content right from the blockchain, with website reach thousands of readers accross globe with best ranked content on search engines. State of art security measures so your keys will always stay encrypted and out of reach for ill-intentioned individuals. Fast and beautiful website, helps you to get discovered online and gain exposure for your content and gain loyal followers and readers. Build your community with Ecency today and take advantages of emerging blockchain technology and uncensored content, true free speech!</p>",
       "how-ecency-works-header": "Як працює Ecency?",
@@ -794,13 +794,13 @@
       "can-link-post-body": "<p>All the content on our site is created by our users and we don't modify or able to add backlinks. You are free to contact author of the post or <a href=\"/signup?referral=ecency\">Signup</a> to open your own blog and community, publish articles to create backlinks for free.</p>",
       "can-guest-post-header": "Чи може гість писати дописи на сайті?",
       "can-guest-post-body": "<p>Posting on Ecency is simple and easy, <a href=\"/signup?referral=ecency\">Signup</a> to open your own blog and community, start posting your content.</p>",
-      "how-to-contribute-header": "How to contribute to the Ecency?",
+      "how-to-contribute-header": "Як зробити свій внесок в Ecency?",
       "how-to-contribute-body": "<p>Our <a href=\"/contributors\">awesome contributors</a> helping us to shape Ecency. You can be part of this great movement, by joining our Translation team: <a href=\"https://translate-desktop.ecency.com\">Website</a>, <a href=\"https://translate-mobile.ecency.com\">Mobile</a> or by contributing with Ideas, Developing, Designing, Social media outreach skills. We try our best to support our contributors!</p>"
     }
   },
   "contributors": {
     "title": "Учасники перекладу",
-    "description": "These great people contributed in one way or another to Ecency, we would like to thank them all. If you want to join our team by contributing with Translation, Ideas, Development, Designing, Social awareness, feel free to join. To learn more read our <a href=\"/faq#how-to-contribute\">FAQ</a>."
+    "description": "Ці великі люди так чи інакше сприяли Ecency, ми хотіли б подякувати їм усім. Якщо ви хочете приєднатися до нашої команди, зробивши свій внесок у Переклад чи можливо маєте ідеї для розвитку, приклад Дизайн чи Соціальна обізнаність, сміливо приєднуйтесь. Щоб дізнатись більше, читайте наші <a href=\"/faq#how-to-contribute\">ЧаПи</a>."
   },
   "context-menu": {
     "cut": "Вирізати",
