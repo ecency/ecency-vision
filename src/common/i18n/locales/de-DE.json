@@ -1,6 +1,6 @@
 {
   "g": {
-    "add": "Add",
+    "add": "Hinzufügen",
     "edit": "Bearbeiten",
     "search": "Suchen",
     "downloads": "Downloads",
@@ -23,11 +23,11 @@
     "save": "Speichern",
     "try-again": "Nochmal versuchen",
     "show": "Anzeigen",
-    "on": "On",
-    "off": "Off",
-    "yes": "Yes",
-    "no": "No",
-    "done": "Done"
+    "on": "An",
+    "off": "Aus",
+    "yes": "Ja",
+    "no": "Nein",
+    "done": "Fertig"
   },
   "confirm": {
     "title": "Bist du sicher?",
@@ -38,11 +38,11 @@
     "filter-trending": "im Trend",
     "filter-hot": "Beliebt",
     "filter-created": "Neu",
-    "filter-promoted": "Beworben",
+    "filter-promoted": "Promotet",
     "filter-payout": "Auszahlung",
     "filter-muted": "Stummgeschaltet",
     "filter-feed": "Feed",
-    "filter-feed-friends": "Friends",
+    "filter-feed-friends": "Freunde",
     "filter-feed-subscriptions": "Communities"
   },
   "navbar": {
@@ -55,7 +55,7 @@
   },
   "search": {
     "placeholder": "Suchen",
-    "placeholder-count": "Search {{n}} posts",
+    "placeholder-count": "Suche {{n}} Beiträge",
     "header-tag": "Tags",
     "header-account": "Benutzer",
     "header-community": "Communities"
@@ -70,31 +70,31 @@
     "gallery": "Galerie",
     "drafts": "Entwürfe",
     "bookmarks": "Lesezeichen",
-    "schedules": "Schedules",
+    "schedules": "Zeitpläne",
     "logout": "Abmelden",
-    "vote-power": "Vote Power:"
+    "vote-power": "Voting Power:"
   },
   "intro": {
-    "title": "Aspire to greatness",
-    "sub-title": "rewarding communities",
-    "c2a": "Get Started"
+    "title": "Zur Größe erheben",
+    "sub-title": "belohnende Gemeinschaften",
+    "c2a": "Los geht's"
   },
   "login": {
     "title": "Willkommen zurück!",
-    "with-user-pass": "Login with your username and private key.",
+    "with-user-pass": "Melde dich mit deinen Zugangsdaten an.",
     "username-placeholder": "benutzername",
-    "key-placeholder": "master or active private key",
-    "login-info-1": "We don't store your private keys.",
+    "key-placeholder": "Master oder Active Private Key",
+    "login-info-1": "Wir speichern keine Private Keys.",
     "login-info-2": "Mehr Infos",
-    "error-fields-required": "Please enter username and private key",
-    "error-public-key": "You entered a public key. Password/WIF required",
-    "error-user-fetch": "User data could not be fetched",
-    "error-user-not-found": "User does not exist",
-    "error-permission": "Couldn't get posting permission",
-    "error-authenticate": "Wrong private key. Master or active private key required.",
-    "with-hive-signer": "Login with hivesigner",
-    "with-keychain": "Login with keychain",
-    "sign-up-text-1": "Don't have an account?",
+    "error-fields-required": "Bitte Benutzername und Private Key eingeben",
+    "error-public-key": "Du hast einen öffentlichen Schlüssel verwendet. Passwort/WIF erforderlich",
+    "error-user-fetch": "Benutzerdaten konnten nicht abgerufen werden",
+    "error-user-not-found": "Benutzer existiert nicht",
+    "error-permission": "Konnte keine Beitragsberechtigung erhalten",
+    "error-authenticate": "Falscher privater Schlüssel. Master oder Active Private Key erforderlich.",
+    "with-hive-signer": "Mit Hivesigner anmelden",
+    "with-keychain": "Anmelden mit KeyChain",
+    "sign-up-text-1": "Noch keinen Account?",
     "sign-up-text-2": "Jetzt registrieren!"
   },
   "sign-up": {
@@ -106,11 +106,11 @@
     "submit": "Weiter",
     "success": "Wir haben eine Bestätigungsmail an {{email}} gesendet.",
     "success-2": "Folge den Anweisungen, um den Anmeldeprozess abzuschließen.",
-    "login-text-1": "Do you have an account?",
-    "login-text-2": "Login"
+    "login-text-1": "Hast Du ein Konto?",
+    "login-text-2": "Einloggen"
   },
   "trending-tags": {
-    "title": "Topics"
+    "title": "Themen"
   },
   "selected-tags": {
     "title": "Featured"
@@ -119,8 +119,8 @@
     "reblogged": "{{n}} reblogged",
     "promoted": "beworben",
     "pinned": "Angepinnter Beitrag",
-    "replies": "1 response. Click to respond.",
-    "replies-n": "{{n}} responses. Click to respond.",
+    "replies": "1 Antwort. Klicken Sie, um zu antworten.",
+    "replies-n": "{{n}} Antworten. Klicken Sie, um zu antworten.",
     "no-replies": "Noch keine Antworten. Klicken, um zu antworten."
   },
   "bookmark-btn": {
@@ -148,36 +148,36 @@
     "feed": "Feed",
     "tags": "Populär",
     "title": "{{f}} Themen",
-    "description": "{{f}} topics on a social network owned and operated by its users.",
-    "description-tag": "{{f}} #{{t}} topics",
-    "description-user-feed": "{{u}}'s feed",
+    "description": "{{f}} Themen in einem sozialen Netzwerk, das seinen Nutzern gehört und von ihnen betrieben wird.",
+    "description-tag": "{{f}} #{{t}} Themen",
+    "description-user-feed": "Feed von {{u}}",
     "faq": "FAQ",
-    "tos": "Terms of service",
-    "pp": "Privacy Policy"
+    "tos": "Allgemeine Geschäftsbedingungen",
+    "pp": "Datenschutzrichtlinien"
   },
   "market-data": {
-    "title": "Market price",
+    "title": "Marktpreis",
     "credits": "data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "list-style": {
-    "title": "Toggle list style"
+    "title": "Listenstil umschalten"
   },
   "entry-votes": {
-    "title": "1 Vote",
-    "title-n": "{{n}} Votes",
-    "title-empty": "No Votes",
-    "sort": "Sort",
-    "sort-reward": "Reward",
-    "sort-timestamp": "Time",
+    "title": "1 Bewertung",
+    "title-n": "{{n}} Bewertungen",
+    "title-empty": "Keine Bewertungen",
+    "sort": "Sortieren",
+    "sort-reward": "Belohnung",
+    "sort-timestamp": "Zeit",
     "sort-reputation": "Reputation",
-    "sort-percent": "Percentage"
+    "sort-percent": "Prozent"
   },
   "entry": {
     "via-app": "über <span class=\"app-name\">{{app}}</span>",
     "comment-entry-title": "You are viewing a single comment's thread from: ",
-    "comment-entry-go-root": "View the full context",
-    "comment-entry-go-parent": "View the direct parent",
-    "show-history": "Show edit history",
+    "comment-entry-go-root": "kompletten Inhalt anzeigen",
+    "comment-entry-go-parent": "Übergeordneten Beitrag ansehen",
+    "show-history": "Bearbeitungsverlauf ansehen",
     "hidden-warning": "This post was hidden due to low ratings."
   },
   "edit-history": {
@@ -190,29 +190,29 @@
   },
   "comment": {
     "body-placeholder": "Write your reply here",
-    "preview": "Preview"
+    "preview": "Vorschau"
   },
   "discussion": {
-    "join": "Join the conversion now",
-    "btn-join": "Join",
-    "replies": "1 Comment",
-    "n-replies": "{{n}} Comments",
-    "order": "Sort Order",
+    "join": "Beteilige dich an der Unterhaltung",
+    "btn-join": "Beitreten",
+    "replies": "1 Kommentar",
+    "n-replies": "{{n}} Kommentare",
+    "order": "Sortierung",
     "order-trending": "Trending",
     "order-reputation": "Reputation",
     "order-votes": "Votes",
-    "order-created": "Age",
-    "read-more": "...read more replies...",
-    "reveal": "Reveal comment"
+    "order-created": "Alter",
+    "read-more": "...weitere Antworten lesen...",
+    "reveal": "Kommentar anzeigen"
   },
   "community": {
-    "page-description": "{{f}} topics",
-    "subscribe": "Join",
-    "subscribed": "Joined",
-    "unsubscribe": "Leave",
-    "post": "New Post",
+    "page-description": "{{f}} Themen",
+    "subscribe": "Beitreten",
+    "subscribed": "Beigetreten",
+    "unsubscribe": "Austreten",
+    "post": "Neuer Beitrag",
     "posts": "Beiträge",
-    "subscribers": "Members",
+    "subscribers": "Mitglieder",
     "activities": "Aktivitäten",
     "roles-title": "Benutzerrollen",
     "roles-account": "Konto",
@@ -257,13 +257,13 @@
   "communities": {
     "title": "Communities",
     "description": "Best online, decentralized, immutable, rewarding communities",
-    "n-subscribers": "{{n}} members",
+    "n-subscribers": "{{n}} Mitglieder",
     "n-authors": "{{n}} Poster",
     "n-posts": "{{n}} Beiträge",
     "admins": "admins:",
     "sort-hot": "Beliebt",
     "sort-rank": "Rang",
-    "sort-subs": "Members",
+    "sort-subs": "Mitglieder",
     "sort-new": "Neu",
     "no-results": "Keine Ergebnisse gefunden",
     "create": "Community erstellen"
@@ -273,71 +273,71 @@
     "title": "Titel",
     "about": "Über",
     "description": "Create a best, decentralized, immutable, rewarding communities",
-    "fee": "Operation fee",
-    "creator": "Creator",
-    "username": "Owner username",
-    "username-available": "Available.",
-    "username-not-available": "Not available.",
-    "username-wrong-format": "Not a valid format. hive-1xxxxx format required.",
-    "password": "Owner password",
-    "confirmation": "I have securely saved my owner username and password.",
-    "submit": "Create Community",
-    "progress-account": "Creating account...",
-    "progress-user": "Preparing user data...",
-    "progress-role": "Setting @{{u}} as admin...",
-    "progress-props": "Updating community settings...",
-    "done": "Your community was created 🎉",
-    "done-link-label": "Get started."
+    "fee": "Durchführungsgebühr",
+    "creator": "Ersteller",
+    "username": "Benutzername des Eigentümers",
+    "username-available": "Verfügbar.",
+    "username-not-available": "Nicht verfügbar.",
+    "username-wrong-format": "Kein gültiges Format. Hive-1xxxxx Format erforderlich.",
+    "password": "Besitzer-Passwort",
+    "confirmation": "Ich habe meinen Benutzernamen und Passwort sicher gespeichert.",
+    "submit": "Community erstellen",
+    "progress-account": "Konto wird erstellt ...",
+    "progress-user": "Benutzerdaten werden vorbereitet...",
+    "progress-role": "Setze @{{u}} als Admin ein...",
+    "progress-props": "Community-Einstellungen werden aktualisiert...",
+    "done": "Deine Community wurde erstellt 🎉",
+    "done-link-label": "Los geht's."
   },
   "pin-btn": {
     "pin": "Pin",
-    "unpin": "Unpin"
+    "unpin": "Lospinnen"
   },
   "mute-btn": {
-    "mute": "Mute",
+    "mute": "Ton aus",
     "unmute": "Unmute",
-    "dialog-title-mute": "Mute post/comment",
-    "dialog-title-unmute": "Unmute post/comment",
-    "notes": "Notes",
+    "dialog-title-mute": "Beitrag/Kommentar stummschalten",
+    "dialog-title-unmute": "Beitrag/Kommentar einschalten",
+    "notes": "Notizen",
     "note-placeholder-mute": "Provide a note regarding your decision to mute this content.",
     "note-placeholder-unmute": "Provide a note regarding your decision to unmute this content."
   },
   "profile": {
     "voting-power": "Voting Power",
-    "post-count": "Post Count",
-    "followers": "Followers",
-    "following": "Following",
+    "post-count": "Beitragsanzahl",
+    "followers": "Follower",
+    "following": "Folgend",
     "section-blog": "Blog",
-    "section-posts": "Posts",
-    "section-comments": "Comments",
-    "section-replies": "Replies",
+    "section-posts": "Beiträge",
+    "section-comments": "Kommentare",
+    "section-replies": "Antworten",
     "section-communities": "Communities",
     "section-wallet": "Wallet",
-    "section-settings": "Settings",
-    "communities-title": "Membership",
-    "create-community": "Create a community",
+    "section-settings": "Einstellungen",
+    "communities-title": "Mitgliedschaft",
+    "create-community": "Community erstellen",
     "witnesses": "Witnesses",
-    "proposals": "Proposals"
+    "proposals": "Anträge"
   },
   "profile-edit": {
-    "title": "Profile",
-    "name": "Display Name",
-    "about": "About",
-    "cover-image": "Cover Image",
-    "profile-image": "Profile Image",
-    "website": "Website",
-    "location": "Location",
-    "updated": "Profile updated successfully!"
+    "title": "Profil",
+    "name": "Anzeigename",
+    "about": "Über",
+    "cover-image": "Titelbild",
+    "profile-image": "Profilbild",
+    "website": "Webseite",
+    "location": "Standort",
+    "updated": "Profil wurde erfolgreich aktualisiert!"
   },
   "image-upload-button": {
-    "uploaded": "Image uploaded"
+    "uploaded": "Bild hochgeladen"
   },
   "preferences": {
-    "title": "Preferences",
-    "notifications": "Notification alerts",
-    "currency": "Currency",
-    "language": "Language",
-    "updated": "Preference updated!"
+    "title": "Einstellungen",
+    "notifications": "Benachrichtigungsmeldungen",
+    "currency": "Währung",
+    "language": "Sprache",
+    "updated": "Einstellungen aktualisiert!"
   },
   "wallet": {
     "unclaimed-rewards": "Unclaimed rewards",
@@ -349,12 +349,12 @@
     "hive-description": "HIVE are tradeable tokens that may be transferred at anytime.HIVE can be converted to Hive Power in a process called powering up.",
     "hive-power": "HIVE POWER",
     "hive-power-description": "Hive Power are influence tokens that earn more power for holding long term and voting on posts. The more Hive Power one holds, the more one can influence other’s rewards and earn rewards for accurate voting.",
-    "hive-power-delegated": "Delegated Hive Power",
-    "hive-power-received": "Received Hive Power",
-    "next-power-down-amount": "Next power down amount",
-    "hive-power-total": "Total Hive Power",
-    "hive-dollars": "HIVE DOLLARS",
-    "hive-dollars-description": "Tokens worth about $1.00 of HIVE.",
+    "hive-power-delegated": "Delegierte Hive-Power",
+    "hive-power-received": "Erhaltene Hive-Power",
+    "next-power-down-amount": "Nächster Power-Down Betrag",
+    "hive-power-total": "Gesamte HIVE Power",
+    "hive-dollars": "HIVE Dollars",
+    "hive-dollars-description": "Tokens mit einem Wert von $1.00 HIVE.",
     "savings": "SAVINGS",
     "savings-description": "Balance subject to 3 day withdraw waiting period.",
     "next-power-down": "The next power down is {{time}}, {{amount}}",
@@ -388,83 +388,83 @@
     "login-desc": "When you login into Ecency you are entitled to earn 100 points automatically.",
     "checkin-extra-desc": "Consistent use of app gives you extra chances to earn more 10 points, be more active and earn more.",
     "delegation-desc": "You can earn ~50 points per day for each 1000HP delegation.",
-    "history": "History",
-    "post-list-desc": "Points for post",
-    "comment-list-desc": "Points for comment",
-    "vote-list-desc": "Points for vote",
-    "reblog-list-desc": "Points for reblog",
-    "login-list-desc": "Points for login",
-    "checkin-list-desc": "Points for heartbeat",
-    "checkin-extra-list-desc": "Usage bonus",
-    "transfer-sent-list-desc": "Transfer to {{n}}",
-    "transfer-incoming-list-desc": "Transfer from {{n}}",
-    "delegation-list-desc": "Delegation reward",
-    "referral-list-desc": "Referral reward",
-    "transfer": "Gift to someone",
-    "claim-ok": "Points claimed",
-    "promote": "Promote",
+    "history": "Historie",
+    "post-list-desc": "Punkte für einen Beitrag",
+    "comment-list-desc": "Punkte für einen Kommentar",
+    "vote-list-desc": "Punkte für einen Vote",
+    "reblog-list-desc": "Punkte für einen ReBlog",
+    "login-list-desc": "Punkte für den Login",
+    "checkin-list-desc": "Punkte für den Herzschlag",
+    "checkin-extra-list-desc": "Nutzungs-Bonus",
+    "transfer-sent-list-desc": "Transfer zu {{n}}",
+    "transfer-incoming-list-desc": "Transfer von {{n}}",
+    "delegation-list-desc": "Delegationsbelohnung",
+    "referral-list-desc": "Empfehlungsprämie",
+    "transfer": "Geschenk an jemanden",
+    "claim-ok": "Punkte abgeholt",
+    "promote": "Promoten",
     "boost": "Boost"
   },
   "purchase": {
-    "select-asset": "Select Asset",
-    "slider-hint": "Drag the slider to adjust the amount.",
-    "submit": "Purchase"
+    "select-asset": "Asset auswählen",
+    "slider-hint": "Ziehe den Slider, um den Wert anzupassen.",
+    "submit": "Kaufen"
   },
   "promote": {
-    "title": "Promote",
-    "sub-title": "Promote your post",
-    "duration": "Duration"
+    "title": "Promoten",
+    "sub-title": "Promote Deinen Beitrag",
+    "duration": "Dauer"
   },
   "boost": {
     "title": "Boost",
-    "sub-title": "Boost your post",
-    "amount": "Amount",
-    "slider-hint": "Drag the slider to adjust the amount."
+    "sub-title": "Booste Deinen Beitrag",
+    "amount": "Menge",
+    "slider-hint": "Ziehe den Slider, um den Wert anzupassen."
   },
   "redeem-common": {
-    "balance": "Balance",
-    "post": "Post",
+    "balance": "Kontostand",
+    "post": "Beitrag",
     "post-hint": "Autocomplete input",
-    "post-placeholder": "username/permlink",
-    "post-error": "Not a valid post address",
-    "post-error-exists": "The post is already promoted",
+    "post-placeholder": "benutzername/permlink",
+    "post-error": "Keine gültige Post Adresse",
+    "post-error-exists": "Dieser Beitrag wurde bereits promotet",
     "success-message": "Your request submitted. It will be activated in a couple minutes."
   },
   "transfer": {
-    "transfer-title": "Transfer to Account",
-    "transfer-title-point": "Gift to Account",
-    "transfer-sub-title": "Move funds to another Hive account",
-    "transfer-saving-title": "Transfer to Savings",
-    "transfer-saving-sub-title": "Protect funds by requiring a 3 day withdraw waiting period",
-    "withdraw-saving-title": "Savings Withdraw",
-    "withdraw-saving-sub-title": "Withdraw funds after the required 3 day waiting period",
-    "power-up-title": "Stake Hive as Power",
-    "convert-title": "Convert",
+    "transfer-title": "Konto-Überweisung",
+    "transfer-title-point": "Geschenk an Konto",
+    "transfer-sub-title": "Guthaben auf ein anderes Hive-Konto verschieben",
+    "transfer-saving-title": "Zu den Ersparnissen überweisen",
+    "transfer-saving-sub-title": "Guthaben wird durch eine 3-tägige Wartezeit geschützt",
+    "withdraw-saving-title": "Ersparnisse auszahlen",
+    "withdraw-saving-sub-title": "Auszahlungen werden durch eine 3-tägige Wartezeit geschützt",
+    "power-up-title": "zu Hive Power umwandeln",
+    "convert-title": "Umwandeln",
     "power-up-sub-title": "Influence tokens which give you more control over post payouts and allow you to earn on curation rewards.",
     "convert-sub-title": "Only recommended when HBD is below $1. You will get $1 of HIVE in 3.5 days.",
-    "delegate-title": "Delegate",
-    "delegate-sub-title": "Delegate Hive Power",
-    "power-down-title": "Power Down",
+    "delegate-title": "Delegieren",
+    "delegate-sub-title": "Hive Power delegieren",
+    "power-down-title": "Power-Down",
     "power-down-sub-title": "Power Down Hive Power",
-    "from": "From",
-    "to": "To",
-    "to-placeholder": "username",
-    "to-not-found": "The user that you are trying to transfer funds to does not exist!",
+    "from": "Von",
+    "to": "Empfänger",
+    "to-placeholder": "Benutzername",
+    "to-not-found": "Der Benutzer dem Du die Mittel überweisen möchtest, existiert nicht!",
     "to-bad-actor": "Use caution sending to this account. Please double check your spelling for possible phishing.",
-    "amount": "Amount",
-    "amount-placeholder": "amount",
-    "wrong-amount": "Wrong amount value",
-    "amount-precision-error": "Use only 3 digits of precision",
-    "balance": "Balance",
-    "power-down-estimated": "+ {{n}} Estimated Weekly",
+    "amount": "Menge",
+    "amount-placeholder": "Menge",
+    "wrong-amount": "Falsche Menge",
+    "amount-precision-error": "Verwende nur 3 Zahlen nach dem Komma",
+    "balance": "Kontostand",
+    "power-down-estimated": "+ {{n}} geschätzt wöchentlich",
     "memo": "Memo",
-    "memo-placeholder": "enter your notes here",
-    "memo-help": "This memo is public",
-    "available-hp-hint": "* available hive power",
-    "confirm-title": "Confirm your transaction",
-    "confirm-sub-title": "Please, check if everything is correct",
-    "confirm": "Confirm",
-    "recent-transfers": "Recent transfers",
+    "memo-placeholder": "Hier dein Memo eingeben",
+    "memo-help": "Diese Memo ist öffentlich",
+    "available-hp-hint": "* verfügbare Hive Power",
+    "confirm-title": "Bestätige Deine Transaktion",
+    "confirm-sub-title": "Bitte überprüfe ob alles korrekt ist",
+    "confirm": "Bestätigen",
+    "recent-transfers": "Letzte Überweisungen",
     "transfer-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "transfer-saving-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "withdraw-saving-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
@@ -472,13 +472,13 @@
     "power-up-summary": "<span class=\"amount\">{{amount}}</span> staked from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Power down completed as <span class=\"amount\">{{amount}}</span>",
-    "reset": "Reset",
-    "powering-down": "You are currently powering down.",
+    "reset": "Zurücksetzen",
+    "powering-down": "Du hast ein Power Down laufen.",
     "stop-power-down": "Stop"
   },
   "trx-common": {
-    "insufficient-funds": "Insufficient funds",
-    "sign-title": "Sign transaction",
+    "insufficient-funds": "Nicht ausreichendes Guthaben",
+    "sign-title": "Signiere Transaktion",
     "sign-sub-title": "Sign your transaction",
     "success-title": "Success",
     "success-sub-title": "Transaction successful"
@@ -515,52 +515,52 @@
   "follow-controls": {
     "follow": "Follow",
     "unFollow": "Unfollow",
-    "mute": "Mute",
-    "unMute": "Unmute"
+    "mute": "Ton aus",
+    "unMute": "Ton an"
   },
   "favorite-btn": {
-    "add": "Add to favorites",
-    "added": "Added to favorites",
-    "delete": "Remove from favorites",
-    "deleted": "Removed from favorites"
+    "add": "Zu den Favoriten hinzufügen",
+    "added": "Zu den Favoriten hinzugefügt",
+    "delete": "Aus den Favoriten entfernen",
+    "deleted": "Aus Favoriten entfernt"
   },
   "editor-toolbar": {
-    "bold": "Bold",
-    "italic": "Italic",
-    "header": "Heading",
+    "bold": "Fett",
+    "italic": "Kursiv",
+    "header": "Überschrift",
     "code": "Code",
-    "quote": "Quote",
-    "ul": "Unordered List",
-    "ol": "Ordered List",
+    "quote": "Zitat",
+    "ul": "ungeordnete Liste",
+    "ol": "geordnete Liste",
     "link": "Link",
-    "image": "Image",
-    "table": "Table",
-    "table-3-col": "3 columns",
-    "table-2-col": "2 columns",
-    "table-1-col": "1 column",
-    "upload": "Upload",
-    "gallery": "Gallery",
+    "image": "Bild",
+    "table": "Tabelle",
+    "table-3-col": "3 Spalten",
+    "table-2-col": "2 Spalten",
+    "table-1-col": "1 Spalte",
+    "upload": "Bild hochladen",
+    "gallery": "Galerie",
     "emoji": "Emoji",
-    "image-error": "Couldn't upload image.",
-    "image-error-size": "Image size is too large, try smaller size image again."
+    "image-error": "Das Bild konnte nicht hochgeladen werden.",
+    "image-error-size": "Dateigröße überschritten, bitte kleineres Bild hochladen."
   },
   "emoji-picker": {
     "filter-placeholder": "Filter",
-    "filter-no-match": "No match",
-    "recently-used": "Recently Used"
+    "filter-no-match": "Keine Treffer",
+    "recently-used": "Zuletzt verwendet"
   },
   "submit": {
-    "page-title": "Create a post",
+    "page-title": "Beitrag erstellen",
     "page-description": "Publish an article, earn reward, uncensored, immutable, decentralized content!",
     "title-placeholder": "Title",
     "body-placeholder": "Post Content",
     "reward": "Reward",
     "reward-hint": "Set author reward ratio for liquid and staked tokens",
     "reward-default": "Default 50% / 50%",
-    "reward-sp": "Power Up 100%",
-    "reward-dp": "Decline Payout",
-    "preview": "Preview",
-    "publish": "Publish",
+    "reward-sp": "100% Power-Up",
+    "reward-dp": "Auf die Auszahlung verzichten",
+    "preview": "Vorschau",
+    "publish": "Veröffentlichen",
     "update": "Update",
     "save-draft": "Save Draft",
     "draft-saved": "Draft saved",
@@ -569,126 +569,126 @@
     "cancel-update": "Cancel",
     "clear": "Clear",
     "published": "Post Published",
-    "updated": "Post Updated",
-    "advanced": "Advanced",
-    "beneficiaries": "Beneficiaries",
+    "updated": "Beitrag aktualisiert",
+    "advanced": "Erweitert",
+    "beneficiaries": "Begünstigte",
     "beneficiaries-hint": "Set beneficiaries to share author reward with other accounts",
     "reblog": "Reblog",
-    "reblog-hint": "Auto share content to your blog",
-    "schedule": "Schedule",
-    "schedule-hint": "Auto publish content on specific time",
-    "scheduled": "Post scheduled"
+    "reblog-hint": "Inhalt automatisch mit Ihrem Blog teilen",
+    "schedule": "Zeitplan",
+    "schedule-hint": "Inhalt automatisch zu einer bestimmten Zeit veröffentlichen",
+    "scheduled": "Beitrag erfolgreich geplant"
   },
   "tag-selector": {
-    "placeholder-empty": "Tags. First tag is main category. Sortable.",
-    "placeholder-focus": "Enter tag",
-    "placeholder-has-tags": "Add More",
+    "placeholder-empty": "Tags. Erster Tag ist die Hauptkategorie. Sortierbar.",
+    "placeholder-focus": "Tags eingeben",
+    "placeholder-has-tags": "Mehr hinzufügen",
     "suggestion-header": "Tags",
-    "error-max": "Max {{n}} tags"
+    "error-max": "Max. {{n}} Tags"
   },
   "community-selector": {
-    "my-blog": "My Blog",
-    "search-placeholder": "Search Communities"
+    "my-blog": "Mein Blog",
+    "search-placeholder": "Communities suchen"
   },
   "word-count": {
-    "label": "{{n}} words",
-    "read-time-less-1-min": "< 1 min read",
-    "read-time-n-min": "~ {{n}} min read"
+    "label": "{{n}} Wörter",
+    "read-time-less-1-min": "< 1 min. Lesezeit",
+    "read-time-n-min": "~ {{n}}  min. Lesezeit"
   },
   "beneficiary-editor": {
-    "title": "Beneficiaries",
-    "btn-label": "Set Beneficiaries",
-    "btn-label-n": "Set Beneficiaries ({{n}})",
-    "username": "Username",
-    "reward": "Reward",
-    "user-error": "{{n}} is not a valid user.",
-    "user-exists-error": "{{n}} is already in the list"
+    "title": "Begünstigte",
+    "btn-label": "Begünstigte setzen",
+    "btn-label-n": "Begünstigte setzen ({{n}})",
+    "username": "Benutzername",
+    "reward": "Belohnung",
+    "user-error": "{{n}} ist kein gültiger Benutzer.",
+    "user-exists-error": "{{n}} befindet sich schon in der Liste"
   },
   "post-scheduler": {
-    "title": "Schedule",
-    "btn-label": "Schedule"
+    "title": "Zeitplan",
+    "btn-label": "Zeitplan"
   },
   "notification": {
-    "popup-title": "You have a new notification",
-    "voted": "{{source}} voted your post",
-    "mention-post": "{{source}} mentioned you in a post",
-    "mention-comment": "{{source}} mentioned you in a comment",
-    "followed": "{{source}} followed you",
-    "replied": "{{source}} replied you",
-    "reblogged": "{{source}} reblogged your post",
-    "transfer": "{{source}} sent you {{amount}}"
+    "popup-title": "Du hast eine neue Benachrichtigung",
+    "voted": "{{source}} hat deinen Beitrag gevotet",
+    "mention-post": "{{source}} hat dich in einem Beitrag erwähnt",
+    "mention-comment": "{{source}} hat dich in einem Kommentar erwähnt",
+    "followed": "{{source}} folgt dir jetzt",
+    "replied": "{{source}} hat dir geantwortet",
+    "reblogged": "{{source}} hat deinen Beitrag geteilt",
+    "transfer": "{{source}} hat dir {{amount}} gesendet"
   },
   "notifications": {
-    "type-all": "All Notifications",
-    "type-all-short": "All",
+    "type-all": "Alle Benachrichtigungen",
+    "type-all-short": "Alle",
     "type-rvotes": "Votes",
-    "type-replies": "Replies",
-    "type-mentions": "Mentions",
-    "type-follows": "Follows",
+    "type-replies": "Antworten",
+    "type-mentions": "Erwähnungen",
+    "type-follows": "Folgt",
     "type-reblogs": "Reblogs",
     "type-transfers": "Transfers",
-    "vote-str": "{{p}}% likes your post:",
-    "reply-str": "replied to your post:",
-    "mention-str": "mentioned you in:",
-    "followed-str": "followed",
-    "unfollowed-str": "unfollowed",
-    "ignored-str": "ignored",
-    "reblog-str": "reblogged your post:",
-    "transfer-str": "sent you",
+    "vote-str": "{{p}} hat deinen Beitrag gevotet:",
+    "reply-str": "antwortete auf deinen Beitrag:",
+    "mention-str": "erwähnte dich in:",
+    "followed-str": "gefolgt",
+    "unfollowed-str": "entfolgt",
+    "ignored-str": "ignoriert",
+    "reblog-str": "teilte deinen Beitrag:",
+    "transfer-str": "sendete dir",
     "spin-str": "Time to earn more Points, Play Spin on Ecency Mobile app",
     "inactive-str": "Be active! Write a post, continue earning",
     "referral-str": "joined with your referral, welcome them",
-    "refresh": "Refresh",
-    "mark-all-read": "Mark All as Read",
-    "mark-read": "Mark as Read",
-    "mute": "Turn off notification alerts",
-    "unmute": "Turn on notification alerts"
+    "refresh": "Aktualisieren",
+    "mark-all-read": "Alle als gelesen markieren",
+    "mark-read": "Als gelesen markieren",
+    "mute": "Benachrichtigungen ausschalten",
+    "unmute": "Benachrichtigungen aktivieren"
   },
   "leaderboard": {
-    "title": "Leaderboard",
-    "title-day": "Daily top users",
-    "title-week": "Weekly top users",
-    "title-month": "Monthly top users",
-    "period-day": "Daily",
-    "period-week": "Weekly",
-    "period-month": "Monthly",
-    "header-score": "Activities",
-    "header-score-tip": "Post + comments made by a user for selected period",
-    "header-reward": "Reward"
+    "title": "Rangliste",
+    "title-day": "Tägliche Top-User",
+    "title-week": "Wöchentliche Top-Benutzer",
+    "title-month": "Monatliche Top-Benutzer",
+    "period-day": "Täglich",
+    "period-week": "Wöchentlich",
+    "period-month": "Monatlich",
+    "header-score": "Aktivitäten",
+    "header-score-tip": "Beiträge + Kommentare eines Benutzers für den gewählten Zeitraum",
+    "header-reward": "Belohnung"
   },
   "popular-users": {
-    "title": "Popular Users"
+    "title": "Beliebte Benutzer"
   },
   "discover": {
-    "title": "Discover",
-    "description": "Discover top online users"
+    "title": "Entdecken",
+    "description": "Entdecke Top-Online-Benutzer"
   },
   "search-page": {
-    "title": "Search",
+    "title": "Suchen",
     "description": "Find uncensored content, communities and users",
     "n-results-for-q": "{{n}} results",
-    "no-result": "No result",
-    "sort-by": "sort by",
-    "sort-popularity": "Popularity",
-    "sort-relevance": "Relevance",
-    "sort-newest": "Date"
+    "no-result": "Keine Ergebnisse",
+    "sort-by": "sortieren nach",
+    "sort-popularity": "Beliebtheit",
+    "sort-relevance": "Relevanz",
+    "sort-newest": "Datum"
   },
   "witnesses": {
     "page-title": "Witnesses",
     "page-description": "Consensus block producers selection",
     "page-description-long": "Role of witnesses or block producers in Hive blockchain is to act as the network's governance body. Community elects them to represent their voice and each user can elect up to 30 witnesses. Top 20 witnesses are producing blocks every minute while rest remain as backup witness and gets randomized chance every minute. This role is integral part of consensus mechanism blockchain runs on and recommend user engagement to vote on trusted witnesses.",
     "remaining": "<span>{{n}}</span> of {{max}} votes remaining",
-    "list-rank": "Rank",
+    "list-rank": "Rang",
     "list-witness": "Witness",
-    "list-miss": "Miss",
+    "list-miss": "ausgelassene Blocks",
     "list-url": "URL",
-    "list-fee": "Fee",
+    "list-fee": "Gebühr",
     "list-feed": "Feed",
     "list-version": "Version",
-    "username-placeholder": "username",
+    "username-placeholder": "Benutzername",
     "extra-description": "Enter account name below to vote for a witness outside of Top 50",
     "proxy-description": "You can also choose a proxy that will vote for witnesses for you. This will reset your current witness selection.",
-    "proxy-btn-label": "Set Proxy",
+    "proxy-btn-label": "Proxy setzen",
     "proxy-active-description": "You have set a voting proxy. If you would like to re-enable manual voting, please clear your proxy.",
     "proxy-active-current": "Your current proxy is",
     "proxy-active-btn-label": "Clear Proxy",
@@ -719,37 +719,37 @@
     "copied": "Copied to clipboard"
   },
   "drafts": {
-    "title": "Drafts"
+    "title": "Entwürfe"
   },
   "schedules": {
-    "title": "Scheduled Posts",
-    "move": "Move to drafts"
+    "title": "Geplante Beiträge",
+    "move": "In Entwürfe verschieben"
   },
   "bookmarks": {
-    "title": "Bookmarks"
+    "title": "Lesezeichen"
   },
   "favorites": {
-    "title": "Favorites"
+    "title": "Favoriten"
   },
   "scroll-to-top": {
-    "title": "Scroll to Top"
+    "title": "Scrolle zum Anfang"
   },
   "static": {
     "about": {
-      "page-title": "About",
-      "intro-title": "What is <span>Ecency</span>",
+      "page-title": "Über",
+      "intro-title": "Was ist <span>Ecency</span>",
       "intro-content": "Ecency is beautiful and handy wrapper interface around the Hive blockchain network allowing you to create your own posts, surf your feeds, vote what you like, write comments, read replies, do all major Hive functions in your daily social surfing as well as wallet actions and other extras such as search, discover different tags etc.",
       "faq-title": "FAQ",
-      "faqs": "All FAQs",
-      "contact-title": "Contacts",
-      "contact-blog": "Founder's blog",
-      "contact-news": "News on Hive",
-      "contact-email": "Email us"
+      "faqs": "Alle FAQs",
+      "contact-title": "Kontakte",
+      "contact-blog": "Gründer-Blog",
+      "contact-news": "News über Hive",
+      "contact-email": "Email"
     },
     "faq": {
       "page-title": "Ecency FAQ",
-      "page-sub-title": "Table of Contents",
-      "what-is-ecency-header": "What is Ecency?",
+      "page-sub-title": "Inhaltsverzeichnis",
+      "what-is-ecency-header": "Was ist Ecency?",
       "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based social network - powered by <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency offers uncensored, free, limitless, rewarding platform for content creators.</p><p>Project was initiated and founded by <a href=\"/@good-karma\">@good-karma</a> in August 2016 as an alternative social network. Since then project has grown to much larger group of contributors (translators, testers, developers, influencers, content creators and consumers) who helped to shape Ecency.</p><p>Ecency helps onboarding masses into Blockchain technology where users are getting paid for their time, resources and learn while enjoying social aspects of blockchain. Through ease of use, users not only learn but also become investors, innovators of the technology and community.</p>",
       "what-is-hive-header": "What is Hive blockchain?",
       "what-is-hive-body": "<p>Hive is a blockchain that was designed to be fast, feeless, decentralized, uncensored platform for Web3.0 applications, with built-in features where stake holders can earn rewards by staking, curating, posting, playing games, trading - all without any middle man (decentralized). Tokens on Hive blockchain called HIVE, HIVE DOLLARS, HIVE POWER.</p>",
@@ -794,16 +794,16 @@
     }
   },
   "context-menu": {
-    "cut": "Cut",
-    "copy": "Copy",
-    "paste": "Paste",
-    "open-image-browser": "Open image in browser",
-    "copy-image-url": "Copy image url"
+    "cut": "Ausschneiden",
+    "copy": "Kopieren",
+    "paste": "Einfügen",
+    "open-image-browser": "Bild im Browser öffnen",
+    "copy-image-url": "Bild-URL kopieren"
   },
   "updater": {
-    "new-version-available": "New version is available",
-    "update": "Update",
-    "dismiss": "Dismiss",
+    "new-version-available": "Neue Version verfügbar",
+    "update": "Aktualisieren",
+    "dismiss": "Verwerfen",
     "downloading": "Neue Version herunterladen...",
     "download-completed": "Download ist abgeschlossen",
     "restart": "Neustarten"
