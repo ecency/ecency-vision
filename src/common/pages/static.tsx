@@ -9,12 +9,14 @@ import Theme from "../components/theme/index";
 import NavBar from "../components/navbar/index";
 import NavBarElectron from "../../desktop/app/components/navbar";
 import ScrollToTop from "../components/scroll-to-top";
+import Contributors from "../components/contributors";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
 import {_t} from "../i18n";
 
 import {blogSvg, newsSvg, mailSvg, twitterSvg, githubSvg, telegramSvg, discordSvg} from "../img/svg";
+import FullHeight from "../components/full-height";
 
 const surferSs = require("../img/surfer-ss.jpg");
 const mobileSs = require("../img/mobile-ss.jpg");
@@ -30,6 +32,7 @@ const faqKeys = [
     'how-ecency-works',
     'how-to-join',
     'how-to-signin',
+    'how-to-contribute',
     'how-referrals-work',
     'what-is-points',
     'where-tokens-come',
@@ -846,6 +849,34 @@ class FaqPage extends Component<PageProps> {
     }
 }
 
+class ContributorsPage extends Component<PageProps> {
+    render() {
+        //  Meta config
+        const metaProps = {
+            title: _t("contributors.title")
+        };
+
+        const {global} = this.props;
+
+        return (
+            <>
+                <Meta {...metaProps} />
+                <ScrollToTop/>
+                <Theme global={this.props.global}/>
+                {global.isElectron ?
+                    NavBarElectron({
+                        ...this.props,
+                    }) :
+                    NavBar({...this.props})}
+
+                <div className="app-content static-page contributors-page">
+                    {Contributors({...this.props})}
+                </div>
+            </>
+        );
+    }
+}
+
 
 const AboutPageContainer = connect(pageMapStateToProps, pageMapDispatchToProps)(AboutPage);
 export {AboutPageContainer};
@@ -867,3 +898,6 @@ export {TosPageContainer};
 
 const FaqPageContainer = connect(pageMapStateToProps, pageMapDispatchToProps)(FaqPage);
 export {FaqPageContainer};
+
+const ContributorsPageContainer = connect(pageMapStateToProps, pageMapDispatchToProps)(ContributorsPage);
+export {ContributorsPageContainer};

@@ -19,19 +19,18 @@ import {UI, ToggleType} from "../../store/ui/types";
 import {NotificationFilter, Notifications} from "../../store/notifications/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
 import NotificationHandler from "../notification-handler";
+import SwitchLang from "../switch-lang";
 
 import ToolTip from "../tooltip";
 import Search from "../search";
 import Login from "../login";
 import UserNav from "../user-nav";
-import DropDown from "../dropdown";
 
-import {_t, langOptions} from "../../i18n";
-import i18n from "i18next";
+import {_t} from "../../i18n";
 
 import _c from "../../util/fix-class-names";
 
-import {brightnessSvg, translateSvg, pencilOutlineSvg, menuSvg, closeSvg, dotsHorizontal} from "../../img/svg";
+import {brightnessSvg, pencilOutlineSvg, menuSvg, closeSvg} from "../../img/svg";
 
 const logo = require('../../img/logo-circle.svg');
 
@@ -135,28 +134,11 @@ export class NavBar extends Component<Props, State> {
     }
 
     render() {
-        const {global, activeUser, ui, setLang, location} = this.props;
+        const {global, activeUser, ui} = this.props;
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
         const logoHref = activeUser ? `/@${activeUser.username}/feed` : '/';
 
         const {smVisible, floating} = this.state;
-
-        const langMenuConfig = {
-            history: this.props.history,
-            label: '',
-            icon: translateSvg,
-            items: langOptions.map((f => {
-                return {
-                    label: f.name,
-                    active: global.lang === f.code,
-                    onClick: () => {
-                        i18n.changeLanguage(f.code).then(() => {
-                            setLang(f.code);
-                        });
-                    }
-                }
-            }))
-        };
 
         const textMenu = <div className="text-menu">
             <Link className="menu-item" to="/discover">
@@ -195,9 +177,7 @@ export class NavBar extends Component<Props, State> {
                             {Search({...this.props})}
                         </div>
                         <div className="switch-menu">
-                            <div className="switch-language">
-                                <DropDown {...langMenuConfig} float="right"/>
-                            </div>
+                            {SwitchLang({...this.props})}
                             <ToolTip content={themeText}>
                                 <div className="switch-theme" onClick={this.changeTheme}>
                                     {brightnessSvg}

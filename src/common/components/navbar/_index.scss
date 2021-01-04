@@ -171,8 +171,8 @@
       }
 
       @media (min-width: $xl-break) {
-        width: 240px;
-        margin-right: 44px;
+        width: 320px;
+        margin-right: 33px;
         flex-grow: 0;
       }
 
@@ -194,41 +194,26 @@
         right: auto;
       }
 
-      @media (min-width: $lg-break) {
-
-      }
-
-      .switch-theme, .switch-language {
+      .switch-theme {
         cursor: pointer;
-        margin-right: 14px;
+        margin: 0 14px;
 
-        @media (min-width: $xl-break) {
-
-        }
-
-        @media (min-width: $xxl-break) {
-
-        }
-
-        svg {
-          width: 18px;
-          height: 18px;
-        }
-
-        @include themify(day) {
-          color: $warm-grey;
-        }
-
-        @include themify(night) {
-          color: $duck-egg-blue;
-          opacity: 0.8;
+        @media (min-width: $lg-break) {
+          margin: 0 20px;
         }
       }
 
-      .switch-language {
-        @include themify(night) {
-          opacity: 1;
-        }
+      svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      @include themify(day) {
+        color: $warm-grey;
+      }
+
+      @include themify(night) {
+        color: $duck-egg-blue;
       }
     }
 
@@ -277,8 +262,8 @@
 
 // Custom dropdown colors
 .nav-bar, .nav-bar-sm {
-  .custom-dropdown{
-    .dropdown-btn{
+  .custom-dropdown {
+    .dropdown-btn {
       @include themify(day) {
         color: $warm-grey;
       }
