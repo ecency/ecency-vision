@@ -55,6 +55,7 @@ export interface Global {
     isElectron: boolean;
     newVersion: string | null;
     notifications: boolean;
+    isMobile: boolean;
 }
 
 export enum ActionTypes {

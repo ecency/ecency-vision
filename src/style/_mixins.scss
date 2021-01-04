@@ -25,142 +25,168 @@
   }
 
   .item-header {
-    align-items: center;
     display: flex;
-    flex-direction: row;
+    flex-direction: column-reverse;
     font-size: 90%;
     margin-bottom: 14px;
     overflow: hidden;
 
-    .author-part {
-      align-items: center;
+    @media (min-width: $sm-break) {
+      flex-direction: row;
+    }
+
+    .item-header-main {
       display: flex;
-      flex-shrink: 0;
-
-      .author-avatar {
-        margin-right: 8px;
-      }
-
-      .author {
-        font-weight: 700;
-        word-break: keep-all;
-
-        @include themify(day) {
-          color: $charcoal-grey;
-        }
-
-        @include themify(night) {
-          color: $pinkish-grey;
-        }
-
-        .author-reputation {
-          color: $steel-grey;
-          font-weight: 500;
-          margin-left: 4px;
-
-          &::before {
-            content: "(";
-          }
-
-          &::after {
-            content: ")";
-          }
-        }
-      }
-    }
-
-    .category {
-      border-radius: 25px;
-      display: none;
-      flex-shrink: 0;
-      padding: 2px 8px;
-      transition: 0.5s;
-
-      @media (min-width: $sm-break) {
-        display: block;
-      }
-
-      @include themify(day) {
-        background-color: $silver;
-        color: $white;
-      }
-
-      @include themify(night) {
-        background-color: $dark-grey-blue;
-        color: $silver;
-      }
-
-      &:hover {
-        @include themify(day) {
-          background-color: darken($silver, 10);
-        }
-
-        @include themify(night) {
-          background-color: lighten($dark-grey-blue, 10);
-        }
-      }
-    }
-
-    .space {
-      flex-grow: 1;
-    }
-
-    .read-mark {
-      background-color: $dark-sky-blue;
-      border-radius: 50%;
-      flex-shrink: 0;
-      height: 4px;
-      width: 4px;
-    }
-
-    .date {
-      color: $steel-grey;
-      flex-shrink: 0;
-      cursor: default;
-    }
-
-    .pinned {
-      color: $red4;
-      transform: rotate(45deg);
-
-      svg {
-        height: 16px;
-      }
-    }
-
-    .reblogged {
       align-items: center;
-      color: $steel-grey;
-      display: inline-flex;
       flex-shrink: 0;
-      opacity: 0.7;
 
-      svg {
-        height: 16px;
-        margin-right: 4px;
-        margin-top: 2px;
+      .author-part {
+        align-items: center;
+        display: flex;
+        flex-shrink: 0;
+
+        .author-avatar {
+          margin-right: 8px;
+        }
+
+        .author {
+          font-weight: 700;
+          word-break: keep-all;
+
+          @include themify(day) {
+            color: $charcoal-grey;
+          }
+
+          @include themify(night) {
+            color: $pinkish-grey;
+          }
+
+          .author-reputation {
+            color: $steel-grey;
+            font-weight: 500;
+            margin-left: 4px;
+
+            &::before {
+              content: "(";
+            }
+
+            &::after {
+              content: ")";
+            }
+          }
+        }
+      }
+
+      .category {
+        border-radius: 25px;
+        display: none;
+        flex-shrink: 0;
+        padding: 2px 8px;
+        transition: 0.5s;
+
+        @media (min-width: $sm-break) {
+          display: block;
+        }
+
+        @include themify(day) {
+          background-color: $silver;
+          color: $white;
+        }
+
+        @include themify(night) {
+          background-color: $dark-grey-blue;
+          color: $silver;
+        }
+
+        &:hover {
+          @include themify(day) {
+            background-color: darken($silver, 10);
+          }
+
+          @include themify(night) {
+            background-color: lighten($dark-grey-blue, 10);
+          }
+        }
+      }
+
+      .space {
+        flex-grow: 1;
+      }
+
+      .read-mark {
+        background-color: $dark-sky-blue;
+        border-radius: 50%;
+        flex-shrink: 0;
+        height: 4px;
+        width: 4px;
+      }
+
+      .date {
+        color: $steel-grey;
+        flex-shrink: 0;
+        cursor: default;
+      }
+
+      .author-part,
+      .category,
+      .read-mark,
+      .date {
+        margin-right: 8px;
+
+        @media (min-width: $sm-break) {
+          margin-right: 12px;
+        }
       }
     }
 
-    .author-part,
-    .category,
-    .read-mark,
-    .date,
-    .pinned,
-    .reblogged {
-      margin-right: 8px;
+    .item-header-features {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+
+      .flex-spacer {
+        display: none;
+      }
 
       @media (min-width: $sm-break) {
-        margin-right: 12px;
-      }
-    }
+        margin-bottom: 0;
+        flex-grow: 1;
 
-    .promoted {
-      font-size: 90%;
-      background: $dark-sky-blue;
-      color: $white;
-      padding: 2px 6px;
-      border-radius: 12px;
+        .flex-spacer {
+          display: block;
+        }
+      }
+
+      .pinned {
+        color: $red4;
+        transform: rotate(45deg);
+
+        svg {
+          height: 16px;
+        }
+      }
+
+      .reblogged {
+        align-items: center;
+        color: $steel-grey;
+        display: inline-flex;
+        flex-shrink: 0;
+        opacity: 0.7;
+
+        svg {
+          height: 16px;
+          margin-right: 4px;
+          margin-top: 2px;
+        }
+      }
+
+      .promoted a {
+        font-size: 90%;
+        background: $dark-sky-blue;
+        color: $white;
+        padding: 2px 6px;
+        border-radius: 12px;
+      }
     }
   }
 
@@ -457,17 +483,16 @@
     line-height: 100%;
 
     @include themify(day) {
-      color: $steel-grey;
+      color: darken($silver, 35)
     }
 
     @include themify(night) {
-      color: $metallic-blue;
+      color: darken($silver, 10)
     }
   }
 
   .tag-list-item {
     border-radius: 25px;
-    color: $silver;
     cursor: pointer;
     display: table;
     margin-bottom: 8px;
@@ -483,11 +508,13 @@
 
     @include themify(day) {
       background: $white;
+      color: darken($silver, 35);
       border: solid 1px $white-four;
     }
 
     @include themify(night) {
       background: $dark-grey-blue;
+      color: darken($silver, 10);
       border: solid 1px $dark-two;
     }
 
@@ -697,3 +724,32 @@
     }
   }
 }
+
+@mixin nav-text-menu {
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+  display: flex;
+
+  > .menu-item {
+    @include themify(day) {
+      color: $gunmetal;
+
+      &:hover {
+        color: $warm-grey;
+      }
+    }
+
+    @include themify(night) {
+      color: $duck-egg-blue;
+    }
+
+    &:not(:first-child):before {
+      content: "/"; // "•";
+      padding-left: 8px;
+      margin-right: 8px;
+      opacity: 0.4;
+    }
+  }
+}
+

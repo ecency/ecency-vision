@@ -48,6 +48,8 @@ const defProps = {
     },
     unMuteNotifications: () => {
     },
+    setLang: () => {
+    },
     dismissNewVersion: () => {
     },
     reloadFn: () => {

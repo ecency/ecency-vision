@@ -46,8 +46,8 @@
   }
 
   .brand {
-    height: 44px;
-    width: 44px;
+    height: 40px;
+    width: 40px;
     text-decoration: none;
     flex-shrink: 0;
     position: absolute;
@@ -56,37 +56,17 @@
     z-index: 1;
 
     .logo {
-      width: 44px;
-      height: 44px;
+      width: 40px;
+      height: 40px;
     }
   }
 
   .text-menu {
-    justify-content: center;
-    height: 100%;
-    align-items: center;
-    display: flex;
+    @include nav-text-menu;
+    margin-left: 10px;
 
-    .menu-item {
-      @include themify(day) {
-        color: $gunmetal;
-
-        &:hover {
-          color: $warm-grey;
-        }
-      }
-
-      @include themify(night) {
-        color: $duck-egg-blue;
-      }
-
-      &:not(:last-child) {
-        margin-right: 8px;
-
-        @media (min-width: $sm-break) {
-          margin-right: 20px;
-        }
-      }
+    @media (min-width: $sm-break) {
+      margin-left: 0;
     }
   }
 }
@@ -95,7 +75,7 @@
   user-select: none;
   margin-bottom: 20px;
   position: relative;
-  padding: 16px 0;
+  padding: 10px 0;
 
   &:not(.visible-sm) {
     display: none;
@@ -137,19 +117,22 @@
 
     .brand {
       height: 44px;
-      width: 44px;
+      width: calc(100% - 10px);
       text-decoration: none;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       flex-shrink: 0;
+      margin-left: 10px;
 
       @media (min-width: $md-break) {
         margin-bottom: 0;
+        margin-left: 0;
         margin-right: 14px;
+        width: 44px;
       }
 
       @media (min-width: $lg-break) {
         margin-right: 0;
-        width: 230px;
+        width: 190px;
       }
 
       .logo {
@@ -159,99 +142,65 @@
     }
 
     .text-menu {
-      justify-content: center;
-      height: 100%;
-      align-items: center;
-      display: flex;
+      @include nav-text-menu;
       margin-bottom: 20px;
 
       @media (min-width: $md-break) {
-        display: flex;
         margin-bottom: 0;
-        margin-right: 14px;
-      }
-
-      .menu-item {
-
-        @include themify(day) {
-          color: $gunmetal;
-
-          &:hover {
-            color: $warm-grey;
-          }
-        }
-
-        @include themify(night) {
-          color: $duck-egg-blue;
-
-          &:hover {
-            color: $silver;
-          }
-        }
-
-        &:not(:last-child) {
-          margin-right: 8px;
-
-          @media (min-width: $lg-break) {
-            margin-right: 14px;
-          }
-
-          @media (min-width: $xl-break) {
-            margin-right: 18px;
-          }
-        }
+        margin-right: 6px;
       }
     }
 
     .search-bar {
       margin-bottom: 20px;
-      width: 250px;
+      width: calc(100% - 30px);
 
       @media (min-width: $sm-break) {
         width: 320px;
       }
 
       @media (min-width: $md-break) {
+        width: 168px;
         margin-right: 14px;
         margin-bottom: 0;
         flex-grow: 1;
       }
 
       @media (min-width: $lg-break) {
-
+        width: 220px;
       }
 
       @media (min-width: $xl-break) {
-        width: 240px;
-        margin-right: 18px;
+        width: 320px;
+        margin-right: 33px;
         flex-grow: 0;
       }
 
       @media (min-width: $xxl-break) {
-        width: 300px;
-        margin-right: 40px;
+        width: 400px;
       }
     }
 
-    .switch-theme {
-      cursor: pointer;
+    .switch-menu {
+      display: flex;
       position: absolute;
-      left: 20px;
-      top: 24px;
+      right: 50px;
+      top: 18px;
+      align-items: center;
 
       @media (min-width: $md-break) {
         position: relative;
         top: auto;
-        left: auto;
-        margin-right: 14px;
+        right: auto;
       }
 
-      @media (min-width: $xl-break) {
-        margin-right: 18px;
-      }
+      .switch-theme {
+        cursor: pointer;
+        margin: 0 14px;
 
-      @media (min-width: $xxl-break) {
-        margin-right: 40px;
+        @media (min-width: $lg-break) {
+          margin: 0 20px;
+        }
       }
 
       svg {
@@ -260,116 +209,28 @@
       }
 
       @include themify(day) {
-        color: $silver;
+        color: $warm-grey;
       }
 
       @include themify(night) {
         color: $duck-egg-blue;
-        opacity: 0.8;
       }
     }
 
-    .downloads {
-      background: linear-gradient(270deg, #2d5aa0 4.68%, #357ce6 98.13%);
-      border-radius: 25px;
-      padding: 8px 12px;
-      color: $white;
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      width: 200px;
-      margin-bottom: 20px;
-
-      @media (min-width: $md-break) {
-        width: auto;
-        margin-bottom: 0;
-        margin-right: 14px;
-        display: block;
-        padding: 2px 12px;
-      }
-
-      @media (min-width: $xl-break) {
-        margin-right: 18px;
-        padding: 8px 16px;
-        display: flex;
-      }
-
-      &:hover {
-        background: linear-gradient(120deg, #2d5aa0 4.68%, #357ce6 98.13%);
-        color: $white;
-      }
-
-      .label {
-        margin-right: 10px;
-
-        @media (min-width: $md-break) {
-          margin-right: 0;
-          text-align: center;
-          font-size: 14px;
-        }
-
-        @media (min-width: $xl-break) {
-          margin-right: 6px;
-          font-size: 16px;
-        }
-      }
-
-      .icons {
-        display: flex;
-        align-items: center;
-
-        @media (min-width: $md-break) {
-          justify-content: center;
-        }
-
-        @media (min-width: $xl-break) {
-          justify-content: flex-start;
-        }
-
-        .img-apple {
-          margin-right: 11px;
-
-          svg {
-            height: 14px;
-            margin-top: -2px;
-          }
-        }
-
-        .img-google {
-          margin-right: 7px;
-
-          svg {
-            height: 12px;
-          }
-        }
-
-        .img-desktop {
-          svg {
-            height: 12px;
-          }
-        }
-      }
-    }
-
-    .login-required {
-      margin-bottom: 10px;
+    .btn-menu {
       display: flex;
 
-      .btn {
-        &:not(:last-child) {
+      .login-required {
+        .btn {
           margin-right: 4px;
         }
-      }
 
-      @media (min-width: $md-break) {
-        margin-right: 14px;
-        margin-bottom: 0;
-      }
+        .btn-login {
+          border: none !important;
+        }
 
-      @media (min-width: $xl-break) {
-        margin-right: 18px;
-        .btn {
-          &:not(:last-child) {
+        @media (min-width: $xl-break) {
+          .btn {
             margin-right: 6px;
           }
         }
@@ -394,6 +255,22 @@
 
       @include themify(night) {
         background: $dark-two;
+      }
+    }
+  }
+}
+
+// Custom dropdown colors
+.nav-bar, .nav-bar-sm {
+  .custom-dropdown {
+    .dropdown-btn {
+      @include themify(day) {
+        color: $warm-grey;
+      }
+
+      @include themify(night) {
+        color: $duck-egg-blue;
+        opacity: 0.8;
       }
     }
   }

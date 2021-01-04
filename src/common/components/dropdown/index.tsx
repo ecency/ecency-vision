@@ -15,6 +15,8 @@ interface Props {
     history: History;
     float: "left" | "right";
     header?: string;
+    preElem?: JSX.Element;
+    postElem?: JSX.Element;
     icon?: JSX.Element;
     label: string | JSX.Element;
     items: MenuItem[];
@@ -82,13 +84,13 @@ export default class MyDropDown extends Component<Props> {
     };
 
     render() {
-        const {label, icon, float, header, items} = this.props;
+        const {label, icon, float, header, preElem, postElem, items} = this.props;
         const {menu} = this.state;
 
         const child =
             typeof label === "string" ? (
                 <div className={`dropdown-btn ${menu ? "hover" : ""}`}>
-                    <div className="label">{label}</div>
+                    {label && <div className="label">{label}</div>}
                     <div className="menu-down">{icon || menuDownSvg}</div>
                 </div>
             ) : (
@@ -108,6 +110,7 @@ export default class MyDropDown extends Component<Props> {
                     <div className="the-menu">
                         <div className="menu-inner">
                             {header && <div className="menu-header">{header}</div>}
+                            {preElem && <div className="pre-elem">{preElem}</div>}
                             <div className="menu-list">
                                 {items.map((i, k) => {
                                     return (
@@ -123,6 +126,7 @@ export default class MyDropDown extends Component<Props> {
                                     );
                                 })}
                             </div>
+                            {postElem && <div className="pre-elem">{postElem}</div>}
                         </div>
                     </div>
                 )}

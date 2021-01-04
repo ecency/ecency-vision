@@ -193,3 +193,69 @@ a[target="_blank"] {
 
 // Chart lib
 @import "~chartist/dist/scss/chartist";
+
+// Date picker
+@import "~react-datetime/css/react-datetime.css";
+// dark theme
+.theme-night {
+  .rdtPicker {
+    background: $metallic-blue;
+    border: 1px solid $dark;
+  }
+
+  .rdtPicker td.rdtDay:hover,
+  .rdtPicker td.rdtHour:hover,
+  .rdtPicker td.rdtMinute:hover,
+  .rdtPicker td.rdtSecond:hover,
+  .rdtPicker .rdtTimeToggle:hover {
+    background: $dusky-blue;
+  }
+
+  .rdtPicker td.rdtOld,
+  .rdtPicker td.rdtNew {
+    color: $silver;
+  }
+
+  .rdtPicker td.rdtToday:before {
+    border-bottom: 7px solid #428bca;
+  }
+
+  .rdtPicker td.rdtActive,
+  .rdtPicker td.rdtActive:hover {
+    color: $metallic-blue;
+  }
+
+  .rdtPicker td.rdtActive.rdtToday:before {
+    border-bottom-color: $metallic-blue;
+  }
+
+  .rdtPicker td.rdtDisabled,
+  .rdtPicker td.rdtDisabled:hover {
+    color: $steel-grey;
+  }
+
+  .rdtPicker th {
+    border-bottom: 1px solid $dark;
+  }
+
+  .rdtPicker thead tr:first-of-type th:hover {
+    background: $dusky-blue;
+  }
+
+  .rdtPicker tfoot {
+    border-top: 1px solid $dark;
+  }
+
+  .rdtPicker button:hover {
+    background-color: $dusky-blue;
+  }
+
+  td.rdtMonth:hover,
+  td.rdtYear:hover {
+    background: $dusky-blue;
+  }
+
+  .rdtCounter .rdtBtn:hover {
+    background: $dusky-blue;
+  }
+}

@@ -111,6 +111,8 @@ export const getAccounts = (usernames: string[]): Promise<FullAccount[]> => {
                 proxy: x.proxy,
                 proxied_vsf_votes: x.proxied_vsf_votes,
                 voting_manabar: x.voting_manabar,
+                voting_power: x.voting_power,
+                downvote_manabar: x.downvote_manabar,
                 __loaded: true,
             };
 
@@ -285,9 +287,20 @@ export interface WithdrawRoute {
 export const getWithdrawRoutes = (account: string): Promise<WithdrawRoute[]> =>
     client.database.call("get_withdraw_routes", [account, "outgoing"]);
 
-export const vpMana = (account: FullAccount): number => {
-    // @ts-ignore "Account" is compatible with dhive's "ExtendedAccount"
-    const calc = client.rc.calculateVPMana(account);
-    const {percentage} = calc;
-    return percentage / 100;
+export const votingPower = (account: FullAccount): number => {
+    return account.voting_power / 100;
+};
+
+export const downVotingPower = (account: FullAccount): number => {
+    const curMana = Number(account.voting_manabar.current_mana);
+    const curDownMana = Number(account.downvote_manabar.current_mana);
+    const downManaLastUpdate = account.downvote_manabar.last_update_time;
+
+    const downVotePerc = curDownMana / (curMana / (account.voting_power / 100) / 4);
+
+    const secondsDiff = (Date.now() - (downManaLastUpdate * 1000)) / 1000;
+
+    const pow = downVotePerc * 100 + (10000 * secondsDiff / 432000);
+
+    return Math.min(pow / 100, 100);
 };

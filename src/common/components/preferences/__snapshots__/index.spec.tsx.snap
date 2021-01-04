@@ -207,9 +207,39 @@ exports[`(1) Default render 1`] = `
             English
           </option>
           <option
+            value="es-ES"
+          >
+            Español
+          </option>
+          <option
+            value="hi-IN"
+          >
+            हिन्दी
+          </option>
+          <option
+            value="id-ID"
+          >
+            Bahasa Indonesia
+          </option>
+          <option
+            value="pt-PT"
+          >
+            Português
+          </option>
+          <option
+            value="sr-CS"
+          >
+            Srpski
+          </option>
+          <option
             value="fi-FI"
           >
-            Finnish
+            Suomi
+          </option>
+          <option
+            value="uk-UA"
+          >
+            Українська
           </option>
         </select>
       </div>

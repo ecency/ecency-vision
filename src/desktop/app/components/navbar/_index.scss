@@ -178,7 +178,7 @@
       flex-grow: 0;
     }
 
-    .switch-theme {
+    .switch-theme, .switch-language {
       cursor: pointer;
       position: relative;
       margin-right: 18px;
@@ -196,6 +196,12 @@
       @include themify(night) {
         color: $duck-egg-blue;
         opacity: 0.8;
+      }
+    }
+
+    .switch-language {
+      @include themify(night) {
+        opacity: 1;
       }
     }
 

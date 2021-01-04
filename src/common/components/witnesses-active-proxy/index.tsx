@@ -8,12 +8,14 @@ import {Global} from "../../store/global/types";
 import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {ToggleType, UI} from "../../store/ui/types";
-import {Account} from "../../store/accounts/types";
+import {Account, FullAccount} from "../../store/accounts/types";
 
 import KeyOrHotDialog from "../key-or-hot-dialog";
 import LoginRequired from "../login-required";
 import ProfileLink from "../profile-link";
 import {error} from "../feedback";
+
+import {getAccount} from "../../api/hive";
 
 import {formatError, witnessProxy, witnessProxyHot, witnessProxyKc} from "../../api/operations";
 
@@ -38,15 +40,24 @@ interface Props {
 }
 
 interface State {
+    account: FullAccount | null;
     inProgress: boolean;
 }
 
 export class WitnessesActiveProxy extends Component<Props, State> {
     state: State = {
+        account: null,
         inProgress: false
     }
 
     _mounted: boolean = true;
+
+    componentDidMount() {
+        const {username} = this.props;
+        getAccount(username).then(account => {
+            this.stateSet({account})
+        })
+    }
 
     componentWillUnmount() {
         this._mounted = false;
@@ -77,7 +88,7 @@ export class WitnessesActiveProxy extends Component<Props, State> {
     }
 
     render() {
-        const {inProgress} = this.state;
+        const {inProgress, account} = this.state;
         const {activeUser, username} = this.props;
 
         const spinner = <Spinner animation="grow" variant="light" size="sm" style={{marginRight: "6px"}}/>;
@@ -111,11 +122,28 @@ export class WitnessesActiveProxy extends Component<Props, State> {
                     {_t("witnesses.proxy-active-current")}{" "}{
                     ProfileLink({
                         ...this.props, username,
-                        children: <span>@{username}</span>
+                        children: <span>{`@${username}`}</span>
                     })
                 }
                 </div>
+
                 {theBtn}
+
+                {(account && account.witness_votes && account.witness_votes.length > 0) && (
+                    <div className="proxy-votes">
+                        <div className="proxy-votes-title">
+                            {_t("witnesses.proxy-votes-for", {username})}
+                        </div>
+                        {account.witness_votes.map(x => {
+                            return <div className="proxy-votes-item" key={x}>
+                                {ProfileLink({
+                                    ...this.props, username,
+                                    children: <span>{`@${x}`}</span>
+                                })}
+                            </div>
+                        })}
+                    </div>
+                )}
             </div>
         </div>
     }

@@ -1,0 +1,35 @@
+.post-scheduler-scheduled {
+  display: flex;
+  align-items: center;
+
+  .date, .reset-date {
+    color: $dark-sky-blue;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  .date {
+    font-size: 90%;
+    margin-right: 20px;
+  }
+
+  .reset-date {
+    display: inline-flex;
+    svg {
+      height: 16px;
+    }
+  }
+}
+
+.post-scheduler-dialog {
+  .modal-body {
+    padding-top: 10px;
+
+    .picker {
+      margin-bottom: 20px;
+    }
+  }
+}

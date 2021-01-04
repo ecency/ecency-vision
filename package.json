@@ -1,6 +1,6 @@
 {
   "name": "ecency-vision",
-  "version": "3.0.11",
+  "version": "3.0.12",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -10,7 +10,7 @@
     "start:prod": "NODE_ENV=production node build/server.js"
   },
   "dependencies": {
-    "@ecency/render-helper": "^2.0.12",
+    "@ecency/render-helper": "^2.0.13",
     "@hiveio/dhive": "^0.14.12",
     "@hiveio/hivescript": "^1.2.1",
     "@types/bs58": "^4.0.1",
@@ -47,6 +47,7 @@
     "react": "^16.8.6",
     "react-bootstrap": "^1.0.1",
     "react-chartist": "^0.14.3",
+    "react-datetime": "^3.0.4",
     "react-dom": "^16.8.6",
     "react-fast-compare": "^3.2.0",
     "react-helmet": "^6.0.0",

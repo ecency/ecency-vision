@@ -1,0 +1,33 @@
+.contributors {
+  padding: 0 10px;
+
+  .contributors-list {
+    @include user-grid-list(1, 2, 3);
+
+    .list-header {
+      margin-bottom: 20px;
+
+      @include themify(day) {
+        border-bottom: 1px solid lighten($dark-sky-blue, 28);
+      }
+
+      @include themify(night) {
+        border-bottom: 1px solid lighten($dark, 10);
+      }
+
+      .list-title {
+        color: $dark-sky-blue;
+        font-weight: 500;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+
+      .list-description {
+        opacity: 0.7;
+        margin-bottom: 10px;
+      }
+    }
+  }
+}

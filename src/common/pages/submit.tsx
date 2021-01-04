@@ -10,9 +10,9 @@ import isEqual from "react-fast-compare";
 
 import {History} from "history";
 
-import {Form, FormControl, Button, Spinner} from "react-bootstrap";
+import {Form, FormControl, Button, Spinner, Col, Row} from "react-bootstrap";
 
-import moment from "moment";
+import moment, {Moment} from "moment";
 
 import defaults from "../constants/defaults.json";
 
@@ -43,15 +43,17 @@ import WordCount from "../components/word-counter";
 import {makePath as makePathEntry} from "../components/entry-link";
 import {error, success} from "../components/feedback";
 import MdHandler from "../components/md-handler";
+import BeneficiaryEditor from "../components/beneficiary-editor";
+import PostScheduler from "../components/post-scheduler";
 
-import {getDrafts, addDraft, updateDraft, Draft} from "../api/private";
+import {getDrafts, addDraft, updateDraft, addSchedule, Draft} from "../api/private";
 
 import {createPermlink, extractMetaData, makeJsonMetaData, makeCommentOptions, createPatch} from "../helper/posting";
 
 import tempEntry, {correctIsoDate} from "../helper/temp-entry";
 import isCommunity from "../helper/is-community" ;
 
-import {RewardType, comment, reblog, formatError} from "../api/operations";
+import {RewardType, comment, reblog, formatError, BeneficiaryRoute} from "../api/operations";
 
 import * as bridgeApi from "../api/bridge";
 import * as hiveApi from "../api/hive";
@@ -135,6 +137,9 @@ interface State extends PostBase {
     editingEntry: Entry | null;
     saving: boolean;
     editingDraft: Draft | null;
+    advanced: boolean;
+    beneficiaries: BeneficiaryRoute[];
+    schedule: Moment | null,
     reblogSwitch: boolean;
 }
 
@@ -148,6 +153,9 @@ class SubmitPage extends Component<Props, State> {
         editingEntry: null,
         saving: false,
         editingDraft: null,
+        advanced: false,
+        beneficiaries: [],
+        schedule: null,
         reblogSwitch: false,
         preview: {
             title: "",
@@ -182,10 +190,16 @@ class SubmitPage extends Component<Props, State> {
     componentDidUpdate(prevProps: Readonly<Props>) {
         const {activeUser, location} = this.props;
 
-        // after first initial
+        // active user changed
         if (activeUser?.username !== prevProps.activeUser?.username) {
-            this.detectEntry().then();
-            this.detectDraft().then();
+            // delete active user from beneficiaries list
+            if (activeUser) {
+                const {beneficiaries} = this.state;
+                if (beneficiaries.find(x => x.account === activeUser.username)) {
+                    const b = [...beneficiaries.filter(x => x.account !== activeUser.username)];
+                    this.stateSet({beneficiaries: b});
+                }
+            }
         }
 
         // location change. only occurs once a draft picked on drafts dialog
@@ -340,8 +354,12 @@ class SubmitPage extends Component<Props, State> {
         this.stateSet({reward});
     };
 
+    reblogSwitchChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+        this.stateSet({reblogSwitch: e.target.checked});
+    }
+
     clear = (): void => {
-        this.stateSet({title: "", tags: [], body: ""});
+        this.stateSet({title: "", tags: [], body: "", reward: "default", advanced: false, beneficiaries: [], schedule: null, reblogSwitch: false});
         this.updatePreview();
 
         const {editingDraft} = this.state;
@@ -350,6 +368,11 @@ class SubmitPage extends Component<Props, State> {
             history.push('/submit');
         }
     };
+
+    toggleAdvanced = (): void => {
+        const {advanced} = this.state;
+        this.stateSet({advanced: !advanced})
+    }
 
     updatePreview = (): void => {
         if (this._updateTimer) {
@@ -368,18 +391,21 @@ class SubmitPage extends Component<Props, State> {
 
     publish = async (): Promise<void> => {
         const {activeUser, history, addEntry} = this.props;
-        const {title, tags, body, reward, reblogSwitch} = this.state;
+        const {title, tags, body, reward, reblogSwitch, beneficiaries} = this.state;
 
+        // make sure active user fully loaded
         if (!activeUser || !activeUser.data.__loaded) {
             return;
         }
 
         this.stateSet({posting: true});
 
-        const author = activeUser.username;
+        let author = activeUser.username;
+        let authorData = activeUser.data as FullAccount;
+
         let permlink = createPermlink(title);
 
-        // If permlink has already used, create it again with random suffix
+        // permlink duplication check
         let c;
         try {
             c = await bridgeApi.getPost(author, permlink);
@@ -390,13 +416,14 @@ class SubmitPage extends Component<Props, State> {
         }
 
         if (c && c.author) {
+            // create permlink with random suffix
             permlink = createPermlink(title, true);
         }
 
         const [parentPermlink] = tags;
         const meta = extractMetaData(body);
         const jsonMeta = makeJsonMetaData(meta, tags, version);
-        const options = makeCommentOptions(author, permlink, reward);
+        const options = makeCommentOptions(author, permlink, reward, beneficiaries);
 
         this.stateSet({posting: true});
         comment(author, "", parentPermlink, permlink, title, body, jsonMeta, options, true)
@@ -405,7 +432,7 @@ class SubmitPage extends Component<Props, State> {
                 // Create entry object in store
                 const entry = {
                     ...tempEntry({
-                        author: activeUser.data as FullAccount,
+                        author: authorData!,
                         permlink,
                         parentAuthor: "",
                         parentPermlink,
@@ -518,8 +545,55 @@ class SubmitPage extends Component<Props, State> {
         promise.catch(() => error(_t('g.server-error'))).finally(() => this.stateSet({saving: false}))
     }
 
+    schedule = async () => {
+        const {activeUser} = this.props;
+        const {title, tags, body, reward, reblogSwitch, beneficiaries, schedule} = this.state;
+
+        // make sure active user and schedule date has set
+        if (!activeUser || !schedule) {
+            return;
+        }
+
+        this.stateSet({posting: true});
+
+        let author = activeUser.username;
+
+        let permlink = createPermlink(title);
+
+        // permlink duplication check
+        let c;
+        try {
+            c = await bridgeApi.getPost(author, permlink);
+        } catch (e) {
+        }
+
+        if (c && c.author) {
+            // create permlink with random suffix
+            permlink = createPermlink(title, true);
+        }
+
+        const meta = extractMetaData(body);
+        const jsonMeta = makeJsonMetaData(meta, tags, version);
+        const options = makeCommentOptions(author, permlink, reward, beneficiaries);
+
+        const date = schedule.toISOString(true);
+        const reblog = isCommunity(tags[0]) && reblogSwitch;
+
+        this.stateSet({posting: true});
+        addSchedule(author, permlink, title, body, jsonMeta, options, date, reblog).then(resp => {
+            success(_t('submit.scheduled'));
+            this.clear();
+        }).catch((e) => {
+            if (e.response?.data?.message) {
+                error(e.response?.data?.message);
+            } else {
+                error(_t('g.server-error'))
+            }
+        }).finally(() => this.stateSet({posting: false}))
+    }
+
     render() {
-        const {title, tags, body, reward, preview, posting, editingEntry, saving, editingDraft} = this.state;
+        const {title, tags, body, reward, preview, posting, editingEntry, saving, editingDraft, advanced, beneficiaries, schedule, reblogSwitch} = this.state;
 
         //  Meta config
         const metaProps = {
@@ -546,7 +620,7 @@ class SubmitPage extends Component<Props, State> {
                     NavBar({...this.props})}
 
                 <div className={_c(`app-content submit-page ${editingEntry !== null ? "editing" : ""}`)}>
-                    <div className="editor-side">
+                    <div className="editor-panel">
                         {(editingEntry === null && activeUser) && <div className="community-input">
                             {CommunitySelector({
                                 ...this.props,
@@ -594,71 +668,151 @@ class SubmitPage extends Component<Props, State> {
                         </div>
                         {editingEntry === null && (
                             <div className="bottom-toolbar">
-                                <div className="reward">
-                                    <span>{_t("submit.reward")}</span>
-                                    <Form.Control as="select" value={reward} onChange={this.rewardChanged}>
-                                        <option value="default">{_t("submit.reward-default")}</option>
-                                        <option value="sp">{_t("submit.reward-sp")}</option>
-                                        <option value="dp">{_t("submit.reward-dp")}</option>
-                                    </Form.Control>
-                                </div>
-                                <Button variant="light" onClick={this.clear}>
+                                <Button variant="outline-info" onClick={this.clear}>
                                     {_t("submit.clear")}
+                                </Button>
+                                <Button variant="outline-primary" onClick={this.toggleAdvanced}>
+                                    {advanced ? _t("submit.preview") : _t("submit.advanced")}
                                 </Button>
                             </div>
                         )}
                     </div>
                     <div className="flex-spacer"/>
-                    <div className="preview-side">
-                        <div className="preview-header">
-                            <h2 className="preview-header-title">{_t("submit.preview")}</h2>
+                    {(() => {
+                        const toolBar = schedule ?
+                            <div className="bottom-toolbar">
+                                <span/>
+                                {LoginRequired({
+                                    ...this.props,
+                                    children: <Button
+                                        className="d-inline-flex align-items-center"
+                                        onClick={this.schedule}
+                                        disabled={!canPublish || posting}
+                                    >
+                                        {posting && spinner}
+                                        {_t("submit.schedule")}
+                                    </Button>
+                                })}
+                            </div> :
+                            <div className="bottom-toolbar">
+                                {editingEntry === null && (
+                                    <>
+                                        <span/>
+                                        <div>
+                                            <Button variant="outline-primary" style={{marginRight: "6px"}} onClick={this.saveDraft} disabled={!canPublish || saving || posting}>
+                                                {contentSaveSvg} {editingDraft === null ? _t("submit.save-draft") : _t("submit.update-draft")}
+                                            </Button>
+                                            {LoginRequired({
+                                                ...this.props,
+                                                children: <Button
+                                                    className="d-inline-flex align-items-center"
+                                                    onClick={this.publish}
+                                                    disabled={!canPublish || posting || saving}
+                                                >
+                                                    {posting && spinner}
+                                                    {_t("submit.publish")}
+                                                </Button>
+                                            })}
+                                        </div>
+                                    </>
+                                )}
 
-                            <WordCount selector=".preview-body" watch={true}/>
-                        </div>
-                        <PreviewContent history={this.props.history} global={this.props.global} {...preview} />
-                        <div className="bottom-toolbar">
-                            {editingEntry === null && (
-                                <>
-                                    <span/>
-                                    <div>
-                                        <Button variant="outline-primary" style={{marginRight: "6px"}} onClick={this.saveDraft} disabled={!canPublish || saving || posting}>
-                                            {contentSaveSvg} {editingDraft === null ? _t("submit.save-draft") : _t("submit.update-draft")}
+                                {editingEntry !== null && (
+                                    <>
+                                        <Button variant="outline-secondary" onClick={this.cancelUpdate}>
+                                            {_t("submit.cancel-update")}
                                         </Button>
                                         {LoginRequired({
                                             ...this.props,
                                             children: <Button
                                                 className="d-inline-flex align-items-center"
-                                                onClick={this.publish}
-                                                disabled={!canPublish || posting || saving}
+                                                onClick={this.update}
+                                                disabled={!canPublish || posting}
                                             >
                                                 {posting && spinner}
-                                                {_t("submit.publish")}
+                                                {_t("submit.update")}
                                             </Button>
                                         })}
-                                    </div>
-                                </>
-                            )}
+                                    </>
+                                )}
+                            </div>;
 
-                            {editingEntry !== null && (
-                                <>
-                                    <Button variant="outline-secondary" onClick={this.cancelUpdate}>
-                                        {_t("submit.cancel-update")}
-                                    </Button>
-                                    {LoginRequired({
-                                        ...this.props,
-                                        children: <Button
-                                            className="d-inline-flex align-items-center"
-                                            onClick={this.update}
-                                            disabled={!canPublish || posting}
-                                        >
-                                            {posting && spinner}
-                                            {_t("submit.update")}
-                                        </Button>
-                                    })}
-                                </>
-                            )}
-                        </div>
-                    </div>
+                        if (advanced) {
+                            return <div className="advanced-panel">
+                                <div className="panel-header">
+                                    <h2 className="panel-header-title">{_t("submit.advanced")}</h2>
+                                </div>
+                                <div className="panel-body">
+                                    <div className="container">
+                                        <Form.Group as={Row}>
+                                            <Form.Label column={true} sm="3">
+                                                {_t("submit.reward")}
+                                            </Form.Label>
+                                            <Col sm="9">
+                                                <Form.Control as="select" value={reward} onChange={this.rewardChanged}>
+                                                    <option value="default">{_t("submit.reward-default")}</option>
+                                                    <option value="sp">{_t("submit.reward-sp")}</option>
+                                                    <option value="dp">{_t("submit.reward-dp")}</option>
+                                                </Form.Control>
+                                                <Form.Text muted={true}>{_t("submit.reward-hint")}</Form.Text>
+                                            </Col>
+                                        </Form.Group>
+                                        <Form.Group as={Row}>
+                                            <Form.Label column={true} sm="3">
+                                                {_t("submit.beneficiaries")}
+                                            </Form.Label>
+                                            <Col sm="9">
+                                                <BeneficiaryEditor author={activeUser?.username} list={beneficiaries} onAdd={(item) => {
+                                                    const b = [...beneficiaries, item].sort((a, b) => a.account < b.account ? -1 : 1);
+                                                    this.stateSet({beneficiaries: b});
+                                                }} onDelete={(username) => {
+                                                    const b = [...beneficiaries.filter(x => x.account !== username)];
+                                                    this.stateSet({beneficiaries: b});
+                                                }}/>
+                                                <Form.Text muted={true}>{_t("submit.beneficiaries-hint")}</Form.Text>
+                                            </Col>
+                                        </Form.Group>
+                                        <Form.Group as={Row}>
+                                            <Form.Label column={true} sm="3">
+                                                {_t("submit.schedule")}
+                                            </Form.Label>
+                                            <Col sm="9">
+                                                <PostScheduler date={schedule} onChange={(d) => {
+                                                    this.stateSet({schedule: d})
+                                                }}/>
+                                                <Form.Text muted={true}>{_t("submit.schedule-hint")}</Form.Text>
+                                            </Col>
+                                        </Form.Group>
+                                        {tags.length > 0 && isCommunity(tags[0]) && (
+                                            <Form.Group as={Row}>
+                                                <Col sm="3"/>
+                                                <Col sm="9">
+                                                    <Form.Check
+                                                        type="switch"
+                                                        id="reblog-switch"
+                                                        label={_t("submit.reblog")}
+                                                        checked={reblogSwitch}
+                                                        onChange={this.reblogSwitchChanged}
+                                                    />
+                                                    <Form.Text muted={true}>{_t("submit.reblog-hint")}</Form.Text>
+                                                </Col>
+                                            </Form.Group>
+                                        )}
+                                    </div>
+                                </div>
+                                {toolBar}
+                            </div>
+                        }
+
+                        return <div className="preview-panel">
+                            <div className="panel-header">
+                                <h2 className="panel-header-title">{_t("submit.preview")}</h2>
+                                <WordCount selector=".preview-body" watch={true}/>
+                            </div>
+                            <PreviewContent history={this.props.history} global={this.props.global} {...preview} />
+                            {toolBar}
+                        </div>;
+                    })()}
                 </div>
             </>
         );

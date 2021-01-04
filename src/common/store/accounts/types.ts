@@ -52,6 +52,11 @@ export interface FullAccount {
         current_mana: string | number;
         last_update_time: number;
     };
+    voting_power: number;
+    downvote_manabar: {
+        current_mana: string | number;
+        last_update_time: number;
+    };
     profile?: AccountProfile;
     follow_stats?: AccountFollowStats;
     __loaded?: true;

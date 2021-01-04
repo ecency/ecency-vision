@@ -53,6 +53,7 @@
 @import "../common/components/gallery";
 @import "../common/components/drafts";
 @import "../common/components/bookmarks";
+@import "../common/components/schedules";
 @import "../common/components/bookmark-btn";
 @import "../common/components/favorite-btn";
 @import "../common/components/wallet-ecency";
@@ -85,6 +86,10 @@
 @import "../common/components/wallet-menu";
 @import "../common/components/preferences";
 @import "../common/components/withdraw-routes";
+@import "../common/components/beneficiary-editor";
+@import "../common/components/post-scheduler";
+@import "../common/components/switch-lang";
+@import "../common/components/contributors";
 
 @import "../desktop/app/components/navbar";
 @import "../desktop/app/components/updater";

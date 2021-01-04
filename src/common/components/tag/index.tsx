@@ -3,8 +3,11 @@ import {History} from "history";
 
 import isEqual from "react-fast-compare";
 
+import {AppWindow} from "../../../client/window";
+
 import {Global} from "../../store/global/types";
 import {EntryFilter} from "../../store/global/types";
+import {Community, Communities} from "../../store/communities/types";
 
 import {getCommunity} from "../../api/bridge";
 
@@ -28,12 +31,35 @@ export const makePath = (filter: string, tag: string): string => {
 interface Props {
     global: Global;
     history: History;
+    communities?: Communities;
     tag: string;
     children: JSX.Element;
     type?: "link" | "span";
 }
 
-const cache = {};
+declare var window: AppWindow;
+
+// some tags are special community tags.
+// we keep community titles for that tags inside this variable
+// the reason we keep that data inside a variable is to
+// avoid re-render all application with a reducer.
+if (typeof window !== "undefined") {
+    window.comTag = {};
+}
+
+const comTagGet = (k: string) => {
+    if (typeof window !== "undefined" && window.comTag) {
+        return window.comTag[k]
+    }
+
+    return undefined
+}
+
+const comTagSet = (k: string, v: string) => {
+    if (typeof window !== "undefined" && window.comTag) {
+        window.comTag[k] = v;
+    }
+}
 
 export class TagLink extends Component<Props> {
     public static defaultProps: Partial<Props> = {
@@ -46,26 +72,45 @@ export class TagLink extends Component<Props> {
         return !isEqual(this.props.children, nextProps.children);
     }
 
-    componentDidMount(): void {
-        const {tag} = this.props;
-
-        if (isCommunity(tag)) {
-            if (cache[tag] === undefined) {
-                getCommunity(tag).then((c) => {
-                    if (c) {
-                        cache[tag] = c.title;
-
-                        if (this._mounted) {
-                            this.forceUpdate(); // trigger render
-                        }
-                    }
-                });
-            }
-        }
+    componentDidMount() {
+        this.detectCommunity().then();
     }
 
     componentWillUnmount() {
         this._mounted = false;
+    }
+
+    detectCommunity = async () => {
+        const {tag} = this.props;
+
+        // tag is not community tag or already added to cache
+        if (!isCommunity(tag) || comTagGet(tag) !== undefined) {
+            return;
+        }
+
+        // temporarily assign a value to avoid multiple requests
+        // skip this testing environment
+        if (typeof jest === "undefined") {
+            comTagSet(tag, tag);
+        }
+
+        const {communities} = this.props;
+
+        // find community from reducer
+        let community: Community | null = (communities && communities.find(x => x.name === tag)) || null;
+
+        // or fetch it from api
+        if (!community) {
+            community = await getCommunity(tag)
+        }
+
+        if (community) {
+            comTagSet(tag, community.title);
+
+            if (this._mounted) {
+                this.forceUpdate(); // trigger render
+            }
+        }
     }
 
     clicked = (e: React.MouseEvent<HTMLElement>) => {
@@ -89,16 +134,16 @@ export class TagLink extends Component<Props> {
         if (type === "link") {
             const props = Object.assign({}, children.props, {href, onClick: this.clicked});
 
-            if (cache[tag]) {
-                props.children = cache[tag];
+            if (comTagGet(tag)) {
+                props.children = comTagGet(tag);
             }
 
             return createElement("a", props);
         } else if (type === "span") {
             const props = Object.assign({}, children.props);
 
-            if (cache[tag]) {
-                props.children = cache[tag];
+            if (comTagGet(tag)) {
+                props.children = comTagGet(tag);
             }
 
             return createElement("span", props);
@@ -113,6 +158,7 @@ export default (p: Props) => {
     const props: Props = {
         global: p.global,
         history: p.history,
+        communities: p.communities,
         tag: p.tag,
         children: p.children,
         type: p.type
