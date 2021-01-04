@@ -26,7 +26,8 @@
     "on": "Ενεργό",
     "off": "Ανενεργό",
     "yes": "Ναι",
-    "no": "Όχι"
+    "no": "Όχι",
+    "done": "Done"
   },
   "confirm": {
     "title": "Είστε σίγουρος;",
@@ -47,7 +48,6 @@
   "navbar": {
     "discover": "Ανακαλύψτε",
     "communities": "Κοινότητες",
-    "about": "Σχετικά με",
     "post": "Δημιουργία δημοσίευσης",
     "day-theme": "Θέμα ημέρας",
     "night-theme": "Θέμα νύχτας",
@@ -60,6 +60,9 @@
     "header-account": "Χρήστες",
     "header-community": "Κοινότητες"
   },
+  "switch-lang": {
+    "contributors": "Contributors"
+  },
   "user-nav": {
     "wallet": "Πορτοφόλι",
     "unclaimed-reward-notice": "Έχετε αζήτητες αμοιβές",
@@ -70,7 +73,9 @@
     "gallery": "Γκαλερί",
     "drafts": "Πρόχειρα",
     "bookmarks": "Σελιδοδείκτες",
-    "logout": "Αποσύνδεση"
+    "schedules": "Schedules",
+    "logout": "Αποσύνδεση",
+    "vote-power": "Vote Power:"
   },
   "intro": {
     "title": "Φιλοδοξία στο μεγαλείο",
@@ -553,6 +558,7 @@
     "title-placeholder": "Τίτλος",
     "body-placeholder": "Ανάρτηση περιεχομένου",
     "reward": "Ανταμοιβή",
+    "reward-hint": "Set author reward ratio for liquid and staked tokens",
     "reward-default": "Προεπιλογή 50% / 50%",
     "reward-sp": "Power Up 100%",
     "reward-dp": "Απόρριψη Πληρωμής",
@@ -566,7 +572,15 @@
     "cancel-update": "Ακύρωση",
     "clear": "Εκκαθάριση",
     "published": "Η ανάρτηση δημοσιεύθηκε",
-    "updated": "Η δημοσίευση ενημερώθηκε"
+    "updated": "Η δημοσίευση ενημερώθηκε",
+    "advanced": "Advanced",
+    "beneficiaries": "Beneficiaries",
+    "beneficiaries-hint": "Set beneficiaries to share author reward with other accounts",
+    "reblog": "Reblog",
+    "reblog-hint": "Auto share content to your blog",
+    "schedule": "Schedule",
+    "schedule-hint": "Auto publish content on specific time",
+    "scheduled": "Post scheduled"
   },
   "tag-selector": {
     "placeholder-empty": "Ετικέτες. Η πρώτη ετικέτα είναι η κύρια κατηγορία. Tαξινομήσιμο.",
@@ -583,6 +597,19 @@
     "label": "{{n}} λέξεις",
     "read-time-less-1-min": "< 1 λεπτού διαβάσματος",
     "read-time-n-min": "~{{n}} λεπτών διαβάσματος"
+  },
+  "beneficiary-editor": {
+    "title": "Beneficiaries",
+    "btn-label": "Set Beneficiaries",
+    "btn-label-n": "Set Beneficiaries ({{n}})",
+    "username": "Username",
+    "reward": "Reward",
+    "user-error": "{{n}} is not a valid user.",
+    "user-exists-error": "{{n}} is already in the list"
+  },
+  "post-scheduler": {
+    "title": "Schedule",
+    "btn-label": "Schedule"
   },
   "notification": {
     "popup-title": "Έχετε μία νέα ειδοποίηση",
@@ -667,7 +694,8 @@
     "proxy-btn-label": "Ορισμός μεσολαβητή",
     "proxy-active-description": "Έχετε ορίσει μεσολαβητή. Αν θέλετε να ψηφίζετε μόνοι σας για witness, παρακαλούμε αφαιρέστε τον μεσολαβητή σας.",
     "proxy-active-current": "Ο τρέχων μεσολαβητής σας είναι ο",
-    "proxy-active-btn-label": "Αφαίρεση μεσολαβητή"
+    "proxy-active-btn-label": "Αφαίρεση μεσολαβητή",
+    "proxy-votes-for": "@{{username}} votes for"
   },
   "proposals": {
     "page-title": "Προτάσεις",
@@ -695,6 +723,10 @@
   },
   "drafts": {
     "title": "Πρόχειρα"
+  },
+  "schedules": {
+    "title": "Scheduled Posts",
+    "move": "Move to drafts"
   },
   "bookmarks": {
     "title": "Σελιδοδείκτες"
@@ -725,29 +757,29 @@
       "what-is-hive-header": "Τι είναι το Hive blockchain;",
       "what-is-hive-body": "<p>Η Hive είναι μια blockchain πλατφόρμα που σχεδιάστηκε να είναι γρήγορη, χωρίς φόρους, αποκεντρωμένη, χωρίς λογοκρισία πλατφόρμα για εφαρμογές Web3.0, με ενσωματωμένες λειτουργίες όπου οι κάτοχοι μεριδίων μπορούν να κερδίσουν ανταμοιβές με staking, επιμέλεια, ανάρτηση, παίζοντας παιχνίδια, κάνοντας αγοραπωλησίες- όλα χωρίς κανένα μεσάζονται (αποκεντρωμένα). Τα Tokens στην Hive blockchain ονομάζονται HIVE, HIVE DOLLARS, HIVE POWER.</p>",
       "what-is-difference-header": "Ποια είναι η διαφορά μεταξύ της επιφάνειας της Ecency και των άλλων Hive επιφανειών;",
-      "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\" loading=\"lazy\"/></p><p>The primary differences in all interfaces or applications are in their feature-set, use cases. Ecency offers website, mobile and desktop applications for ease of access and with best security in mind. Accessible, opensource and innovative, built and owned by users. Aspire for greatness!</p>",
+      "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\"/></p><p>The primary differences in all interfaces or applications are in their feature-set, use cases. Ecency offers website, mobile and desktop applications for ease of access and with best security in mind. Accessible, opensource and innovative, built and owned by users. Aspire for greatness!</p>",
       "why-choose-ecency-header": "Γιατί να διαλέξω την πλατφόρμα Ecency;",
-      "why-choose-ecency-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjrzJAcJ4DvxvtqoPdzS9Aygf4MZ1PeE4goH6zWaeEFvafr9vGXWuou67Pbn44GweMyHV5DupM5q1cRvU85qdver?format=match&mode=fit\" loading=\"lazy\"/></p><p>Tailored feature set to empower you to create, inspire your audience and community. Ecency mobile application giving you on-go solution. With desktop app you are always sure to get uncensored content right from the blockchain, with website reach thousands of readers accross globe with best ranked content on search engines. State of art security measures so your keys will always stay encrypted and out of reach for ill-intentioned individuals. Fast and beautiful website, helps you to get discovered online and gain exposure for your content and gain loyal followers and readers. Build your community with Ecency today and take advantages of emerging blockchain technology and uncensored content, true free speech!</p>",
+      "why-choose-ecency-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjrzJAcJ4DvxvtqoPdzS9Aygf4MZ1PeE4goH6zWaeEFvafr9vGXWuou67Pbn44GweMyHV5DupM5q1cRvU85qdver?format=match&mode=fit\"/></p><p>Tailored feature set to empower you to create, inspire your audience and community. Ecency mobile application giving you on-go solution. With desktop app you are always sure to get uncensored content right from the blockchain, with website reach thousands of readers accross globe with best ranked content on search engines. State of art security measures so your keys will always stay encrypted and out of reach for ill-intentioned individuals. Fast and beautiful website, helps you to get discovered online and gain exposure for your content and gain loyal followers and readers. Build your community with Ecency today and take advantages of emerging blockchain technology and uncensored content, true free speech!</p>",
       "how-ecency-works-header": "Πως λειτουργεί η πλατφόρμα Ecency;",
-      "how-ecency-works-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjuZ3ksaZqEjfd9GadyKFE4bT7UP8qM1sF5W6U3cst4ekDsXfrQdcrjtdz6b5Ye2AfWNwGA5f8QqVXmed6NRfg1U?format=match&mode=fit\" loading=\"lazy\"/></p><p>Ecency stores and reads data from the blockchain, and thus data is accessible and uncensored. Ecency rewards content creators with built-in incentive mechanism of blockchain, with tokens (HIVE, HIVE DOLLARS, HIVE POWER) as well as Points. Tokens can be purchased and sold in major cryptocurrency exchanges (e.g. Binance, Bittrex). Points could be utilized within platform and traded for goods, services.</p>",
+      "how-ecency-works-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjuZ3ksaZqEjfd9GadyKFE4bT7UP8qM1sF5W6U3cst4ekDsXfrQdcrjtdz6b5Ye2AfWNwGA5f8QqVXmed6NRfg1U?format=match&mode=fit\"/></p><p>Ecency stores and reads data from the blockchain, and thus data is accessible and uncensored. Ecency rewards content creators with built-in incentive mechanism of blockchain, with tokens (HIVE, HIVE DOLLARS, HIVE POWER) as well as Points. Tokens can be purchased and sold in major cryptocurrency exchanges (e.g. Binance, Bittrex). Points could be utilized within platform and traded for goods, services.</p>",
       "how-to-join-header": "Πως να μπω στην πλατφόρμα Ecency;",
-      "how-to-join-body": "<p>Go to <a href=\"/?referral=ecency\">https://ecency.com/?referral=ecency</a> and create an account. After signup you will receive email with further instructions. Your password is your master key to your account. Please store it safely, if you loose your password, you ultimately loose access to your account and your funds. Accounts cannot be deactivated or deleted, account names can not be changed as well. The account along with all of its activity is permanently stored in the blockchain. Without password, accounts cannot be restored, store your keys safely.</p>",
+      "how-to-join-body": "<p>Go to <a href=\"/signup?referral=ecency\">https://ecency.com/signup?referral=ecency</a> and create an account. After signup you will receive email with further instructions. Your password is your master key to your account. Please store it safely, if you loose your password, you ultimately loose access to your account and your funds. Accounts cannot be deactivated or deleted, account names can not be changed as well. The account along with all of its activity is permanently stored in the blockchain. Without password, accounts cannot be restored, store your keys safely.</p>",
       "how-to-signin-header": "Πως να συνδεθώ στην πλατφόρμα Ecency;",
-      "how-to-signin-body": "<p><img src=\"https://images.ecency.com/p/7258xSVeJbKmTr9Z4jhbPhjS9pMWA2mTwBMDbXqk9G9wdMw2bwR4hXqRQt9S7UBFrBAWCYWddjn3G34ETv5KWB5KGmuZ8ixBB9oKHTFvjjnTkRLp4ttrFQtpgtNnRUEA9NtmyFmgyuuK4?format=match&mode=fit\" loading=\"lazy\"/></p><p> Μπορείτε να συνδεθείτε στην πλατφόρμα Ecency χρησιμοποιώντας το Όνομα Χρήστη και το αντικλείδι ή χρησιμοποιώντας ενεργά ιδιωτικά κλειδιά. Παίρνουμε την ασφάλεια πολύ στα σοβαρά, για αυτό δεν αποθηκεύουμε τα ιδιωτικά κλειδιά σας, στο κινητό είναι κρυπτογραφημένα με επιπλέον PIN κωδικό της επιλογής σας, στην ιστοσελίδα δεν αποθηκεύονται ποτε. Μπορείτε επίσης να χρησιμοποιήσετε <a href=\"https://hivesigner.com\">Hivesigner OAuth2</a>υπηρεσία ελέγχου ταυτότητας για συνδεθείτε εύκολα, να διαχειρίστείτε και να εκτελέσετε ενέργειες.</p>",
+      "how-to-signin-body": "<p><img src=\"https://images.ecency.com/p/7258xSVeJbKmTr9Z4jhbPhjS9pMWA2mTwBMDbXqk9G9wdMw2bwR4hXqRQt9S7UBFrBAWCYWddjn3G34ETv5KWB5KGmuZ8ixBB9oKHTFvjjnTkRLp4ttrFQtpgtNnRUEA9NtmyFmgyuuK4?format=match&mode=fit\"/></p><p>You can sign-in to Ecency by using your Username and Master password or by using Active Private Keys. We take security very seriously, that's why we never store your private keys, on mobile app they are encrypted with extra PIN code of your choice, on website they are never stored. You can also use <a href=\"https://hivesigner.com\">Hivesigner OAuth2</a> authentication service to easily login, manage and perform actions.</p>",
       "how-referrals-work-header": "How referral system work on Ecency?",
-      "how-referrals-work-body": "<p>Το σύστημα συστημένων ατόμων είναι απλό, μπορείς να προσκαλέσεις τους φίλους σου προσθέτοντας το όνομα χρήστη σε αυτό το σύνδεσμο https://ecency.com/?referral=username και μοιραστείτε το με τους φίλους σας. Αφού οι φίλοι σας μπουν στην πλατφόρμα Ecency και κερδίσουν τους πρώτους 250 πόντους, θα κερδίσεις 100 πόντους. Δεν υπάρχει όριο στα συστημένα άτομα και στις ανταμοιβές τους.</p>",
+      "how-referrals-work-body": "<p>Referral system is simple, you can invite your friends by adding your username in this link https://ecency.com/signup?referral=username and share it with your friends. Once your friends join Ecency and earn their first 250 Points, you will earn 100 Points. There is no limits on referrals and its reward.</p>",
       "what-is-points-header": "Τι είναι οι Ecency πόντοι και πως να τους χρησιμοποιήσω;",
       "what-is-points-body": "<p>Ecency Points are continually minted and rewarded for all users for various social activities they perform on website, mobile or desktop app. Points can be used for promoting, boosting your content, can even be transferred or gifted to another user. You can also purchase Points with our mobile apps.</p>",
       "where-tokens-come-header": "Από που προέρχονται τα tokens;",
-      "where-tokens-come-body": "<p><img src=\"https://images.ecency.com/p/7kq2TLHKEHhCCDwNZLfFLu7msWtbdFb7vZaJJ9Y13GAc18vfVNAj8ZctLWmsVfMCCFtwGdULbZKT89faeBymhPsySU5tp4RnvDsHz6ZBxXHWA4g34ck4LHnR2vGkqsHvjzhizhpV8K6JrQ4sy7cCgJQksUUYPKp4d9XbERHkjnZV3PTdhbiUZPYJ43RS8cQu2sEmUbAgqZExuYMGa46SDa4vCunH2w6oNpommW5L1CCdfwdgX5i9eCpcS5fHo4t8btjVE69edzrUN8anr6T3v8AFYHC?format=match&mode=fit\" loading=\"lazy\"/></p><p>Το δίκτυο Hive συνεχώς δημιουργεί νέα ψηφιακά tokens για να ανταμείψει τους δημιουργούς περιεχομένου και τους επιμελητές. Μερικά από τα πρόσφατα δημιουργημένα tokens μεταφέρονται σε χρήστες που προσδίδουν αξία στην πλατφόρμα με το να δημοσιεύουν, να σχολιάζουν, και να ψηφίζουν τις δημοσιεύσεις άλλων χρηστών. Το υπόλοιπο διανέμεται στους κατόχους του HIVE POWER και στους μάρτυρες που ασφαλίζουν το blockchain</p>",
+      "where-tokens-come-body": "<p><img src=\"https://images.ecency.com/p/7kq2TLHKEHhCCDwNZLfFLu7msWtbdFb7vZaJJ9Y13GAc18vfVNAj8ZctLWmsVfMCCFtwGdULbZKT89faeBymhPsySU5tp4RnvDsHz6ZBxXHWA4g34ck4LHnR2vGkqsHvjzhizhpV8K6JrQ4sy7cCgJQksUUYPKp4d9XbERHkjnZV3PTdhbiUZPYJ43RS8cQu2sEmUbAgqZExuYMGa46SDa4vCunH2w6oNpommW5L1CCdfwdgX5i9eCpcS5fHo4t8btjVE69edzrUN8anr6T3v8AFYHC?format=match&mode=fit\"/></p><p>The Hive network continually creates new digital tokens to reward content creators and curators. Some of the newly-created tokens are transferred to users who add value to platform by posting, commenting, and voting on other people's posts. The remainder is distributed to holders of HIVE POWER and the witnesses that secures the blockchain.</p>",
       "how-promotion-work-header": "How content promotion works?",
-      "how-promotion-work-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfoi6H93UHPFEEQutPvax8LP1XqGWMa9geug5SBEEhLUEHKVvSyBfzhrBm9J4uvmrn28AtPhmwcKx?format=match&mode=fit\" loading=\"lazy\"/></p><p>Promoting content with Points is easiest way to get more exposure. Promotions have certain time period and shuffled across the feeds. Any post, can be promoted to get more exposure and engagement.</p>",
+      "how-promotion-work-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfoi6H93UHPFEEQutPvax8LP1XqGWMa9geug5SBEEhLUEHKVvSyBfzhrBm9J4uvmrn28AtPhmwcKx?format=match&mode=fit\"/></p><p>Promoting content on Ecency is very simple and easy. Ecency Points are used to promote content for 1, 2, 3, 7 or 14 days to get more exposure. Promoted posts are shuffled across the feeds to all users in mobile app, desktop app and website. There is no limit or restrictions, any post can be promoted to get more exposure and engagement. We hold right to remove posts from promotion list if it violates certain internet etiquette.</p>",
       "how-boosting-work-header": "How content boosting works?",
       "how-boosting-work-body": "<p>Points can be used for boosting content (post and comments). Boosting requests are manually reviewed by our moderators and curators which might take upto 24 hours. <p>As part of the qualities check, we may consider: a) Content is original content, b) Not detected by cheetah, mackbot, hivewatchers, or any other blacklists etc. c) User is not in Ecency blacklist due to abusive behavior.</p>Boosting does not guarantee curation, if content is not curated within 24 hours Points will be refunded.</p>",
       "how-to-transfer-header": "How to transfer blockchain tokens?",
       "how-to-transfer-body": "<p>Μετά την σύνδεση θα βρεις της σελίδα του πορτοφολιού στην κορυφή στην ιστοσελίδα και στην εφαρμογή που είναι στην επιφάνεια εργασίας ή στην σελίδα του προφίλ, κάτω στην μπάρα πλοήγησης στην εφαρμογή του κινητού. Στην σελίδα του πορτοφολιού μπορείτε να ξεκινήσετε την μεταφορά οποιοδήποτε token έχετε στην κατοχή σας σε άλλο χρήστη ή λογαριασμούς ανταλλακτηρίων, πατήστε στο βέλος δίπλα στο υπόλοιπο σας και βρείτε τις λειτουργίες μεταφοράς. Οι μεταφορές είναι μη αναστρέψιμες επειδή είναι εγγεγραμμένες στο blockchain, βεβαιωθείτε ότι έχετε στείλει τον σωστό παραλήπτη.</p>",
       "how-see-rewards-header": "Πως βλέπω τις ανταμοιβές των δημοσιεύσεων μου;",
-      "how-see-rewards-body": "<p><img src=\"https://images.ecency.com/p/3W72119s5BjW4PvRk9nXBzqrPWMsMTjNrXDPFFf11iYhySeELMe77idrZHBPmyaqFX6CV72hBLB5qFhwVhGoAATydoFxAF7oCwBt1ztp6eS9r5us4pm7iN?format=match&mode=fit\" loading=\"lazy\"/></p><p>In Wallet page (in top header on website and desktop app, bottom navigation bar on mobile app), you can see Curation rewards (the rewards earned for upvoting posts and comments) and Author rewards (the rewards earned by your own posts and comments)</p><p>You can also view the same information for other users by visiting their wallet profile.</p>",
+      "how-see-rewards-body": "<p><img src=\"https://images.ecency.com/p/3W72119s5BjW4PvRk9nXBzqrPWMsMTjNrXDPFFf11iYhySeELMe77idrZHBPmyaqFX6CV72hBLB5qFhwVhGoAATydoFxAF7oCwBt1ztp6eS9r5us4pm7iN?format=match&mode=fit\"/></p><p>In Wallet page (in top header on website and desktop app, bottom navigation bar on mobile app), you can see Curation rewards (the rewards earned for upvoting posts and comments) and Author rewards (the rewards earned by your own posts and comments)</p><p>You can also view the same information for other users by visiting their wallet profile.</p>",
       "how-dhf-work-header": "How DHF works?",
       "how-dhf-work-body": "<p>Anyone can create a proposal and convince community to vote on their proposal to get funded. Before creating proposal, normal post should be published on blockchain and it is recommended to gather feedback before creating proposal. Proposal creation has fee of 10 HBD + 1 HBD for each day it lasts over 60 days.</p><p>Once proposal reaches certain threshold of tallied votes, it will start receiving funds each hour. If proposal falls below threshold, system will halt funding for that proposal. You can vote as many proposals as you want, there are no limits. Proposal cannot be edited, but can be deleted/withdrawn by creator.</p>",
       "when-claim-rewards-header": "Πότε μπορώ να διεκδικήσω τις ανταμοιβές μου;",
@@ -757,12 +789,18 @@
       "how-boost-account-header": "How to request account boosting?",
       "how-boost-account-body": "<p>If your account is low on <a href=\"/faq#what-are-rc\">Resource Credits</a>, you can request account boosting from Ecency. You will receive temporary delegation which should boost your account to perform more activities on blockchain. You can find account boosting feature in Points options.</p>",
       "what-spam-abuse-header": "Τι θεωρείται spam, ανεπιθύμητο ή κατάχρηση;",
-      "what-spam-abuse-body": "<p><img src=\"https://images.ecency.com/p/3jpR3paJ37V8XPrHkfZdMt57jY6pRt6zEt5iRJV9pSw4Mez3Hut8U6RWvWLA7cFYEa1bxveXeasNfZApzrcLYLx8cz84kBEKak1KkewE2ZqE1QRRkF4eqRH3vWVqZB9WuNbzE?format=match&mode=fit\" loading=\"lazy\"/></p><p><ul><li>Plagiarized posts or copied content.</li><li>Leaving nearly identical or materially similar comments on multiple posts.</li><li>Using tags that are unrelated to the post.</li><li>Threatening users with any type of physical violence.</li><li>Not citing sources when using someone else’s material.</li><li>Posting ‘not safe for work’ content without using the “nsfw” tag.</li><li>Scams or Fraudulent offers.</li></ul></p>",
+      "what-spam-abuse-body": "<p><img src=\"https://images.ecency.com/p/3jpR3paJ37V8XPrHkfZdMt57jY6pRt6zEt5iRJV9pSw4Mez3Hut8U6RWvWLA7cFYEa1bxveXeasNfZApzrcLYLx8cz84kBEKak1KkewE2ZqE1QRRkF4eqRH3vWVqZB9WuNbzE?format=match&mode=fit\"/></p><p><ul><li>Plagiarized posts or copied content.</li><li>Leaving nearly identical or materially similar comments on multiple posts.</li><li>Using tags that are unrelated to the post.</li><li>Threatening users with any type of physical violence.</li><li>Not citing sources when using someone else’s material.</li><li>Posting ‘not safe for work’ content without using the “nsfw” tag.</li><li>Scams or Fraudulent offers.</li></ul></p>",
       "can-link-post-header": "Μπορώ να ζητήσω την προσθήκη backlink στην ιστοσελίδα μου από την ομάδα Ecency;",
-      "can-link-post-body": "<p>όλο το περιεχόμενο στον ιστότοπό μας δημιουργείται από τους χρήστες μας και δεν τροποποιούμε ούτε μπορούμε να προσθέτουμε backlinks. Είστε ελεύθεροι να επικοινωνήσετε με τον δημιουργό της δημοσίευσης ή<a href=\"/?referral=ecency\">Εγγραφή</a> για να δημιουργήσετε το δικό σας blog και κοινότητα, να δημοσιεύσετε άρθρα και να δημιουργήσετε backlinks δωρεάν.</p>",
+      "can-link-post-body": "<p>All the content on our site is created by our users and we don't modify or able to add backlinks. You are free to contact author of the post or <a href=\"/signup?referral=ecency\">Signup</a> to open your own blog and community, publish articles to create backlinks for free.</p>",
       "can-guest-post-header": "Is it possible to guest post on your website?",
-      "can-guest-post-body": "<p>Posting on Ecency is simple and easy, <a href=\"/?referral=ecency\">Signup</a> to open your own blog and community, start posting your content.</p>"
+      "can-guest-post-body": "<p>Posting on Ecency is simple and easy, <a href=\"/signup?referral=ecency\">Signup</a> to open your own blog and community, start posting your content.</p>",
+      "how-to-contribute-header": "How to contribute to the Ecency?",
+      "how-to-contribute-body": "<p>Our <a href=\"/contributors\">awesome contributors</a> helping us to shape Ecency. You can be part of this great movement, by joining our Translation team: <a href=\"https://translate-desktop.ecency.com\">Website</a>, <a href=\"https://translate-mobile.ecency.com\">Mobile</a> or by contributing with Ideas, Developing, Designing, Social media outreach skills. We try our best to support our contributors!</p>"
     }
+  },
+  "contributors": {
+    "title": "Contributors",
+    "description": "These great people contributed in one way or another to Ecency, we would like to thank them all. If you want to join our team by contributing with Translation, Ideas, Development, Designing, Social awareness, feel free to join. To learn more read our <a href=\"/faq#how-to-contribute\">FAQ</a>."
   },
   "context-menu": {
     "cut": "Αποκοπή",

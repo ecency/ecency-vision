@@ -26,7 +26,8 @@
     "on": "Aziona",
     "off": "Spegni",
     "yes": "Si",
-    "no": "No"
+    "no": "No",
+    "done": "Done"
   },
   "confirm": {
     "title": "Sei sicuro?",
@@ -47,7 +48,6 @@
   "navbar": {
     "discover": "Scopri",
     "communities": "Communities",
-    "about": "Su di noi",
     "post": "Crea Nuovo Post",
     "day-theme": "Giorno",
     "night-theme": "Notte",
@@ -60,6 +60,9 @@
     "header-account": "Utenti",
     "header-community": "Communities"
   },
+  "switch-lang": {
+    "contributors": "Contributors"
+  },
   "user-nav": {
     "wallet": "Portafoglio",
     "unclaimed-reward-notice": "Hai nuove ricompense",
@@ -70,7 +73,9 @@
     "gallery": "Galleria",
     "drafts": "Bozze",
     "bookmarks": "Segnalibri",
-    "logout": "Esci"
+    "schedules": "Schedules",
+    "logout": "Esci",
+    "vote-power": "Vote Power:"
   },
   "intro": {
     "title": "Aspira alla grandezza",
@@ -463,13 +468,13 @@
     "confirm-sub-title": "Prego, controlla se è tutto corretto",
     "confirm": "Conferma",
     "recent-transfers": "Trasferimenti recenti",
-    "transfer-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "transfer-saving-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "withdraw-saving-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "convert-summary": "<span class=\"amount\">{{amount}}</span> converted",
-    "power-up-summary": "<span class=\"amount\">{{amount}}</span> staked from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "power-down-summary": "Power down completed as <span class=\"amount\">{{amount}}</span>",
+    "transfer-summary": "<span class=\"amount\">{{amount}}</span> trasferiti da <span class=\"from-user\">{{from}}</span> a <span class=\"to-user\">{{to}}</span>",
+    "transfer-saving-summary": "<span class=\"amount\">{{amount}}</span> trasferiti da <span class=\"from-user\">{{from}}</span> a <span class=\"to-user\">{{to}}</span>",
+    "withdraw-saving-summary": "<span class=\"amount\">{{amount}}</span> trasferiti da <span class=\"from-user\">{{from}}</span> a <span class=\"to-user\">{{to}}</span>",
+    "convert-summary": "<span class=\"amount\">{{amount}}</span> convertiti",
+    "power-up-summary": "<span class=\"amount\">{{amount}}</span> investiti da <span class=\"from-user\">{{from}}</span> a <span class=\"to-user\">{{to}}</span>",
+    "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegati da <span class=\"from-user\">{{from}}</span> in favore di <span class=\"to-user\">{{to}}</span>",
+    "power-down-summary": "Depotenziamento completato in <span class=\"amount\">{{amount}}</span>",
     "reset": "Ripristina",
     "powering-down": "Depotenziamento attualmente in atto.",
     "stop-power-down": "Interrompi"
@@ -500,7 +505,7 @@
   },
   "delegated-vesting": {
     "title": "Delega Hive Power",
-    "undelegate": "undelegate"
+    "undelegate": "ritira ammontare delegato"
   },
   "received-vesting": {
     "title": "Ricevi Hive Power"
@@ -553,6 +558,7 @@
     "title-placeholder": "Titolo",
     "body-placeholder": "Contenuto del post",
     "reward": "Ricompensa",
+    "reward-hint": "Set author reward ratio for liquid and staked tokens",
     "reward-default": "Predefinito 50% / 50%",
     "reward-sp": "Potenziamento 100%",
     "reward-dp": "Rifiuta pagamento",
@@ -566,23 +572,44 @@
     "cancel-update": "Cancella",
     "clear": "Pulisci",
     "published": "Post pubblicato",
-    "updated": "Post aggiornato"
+    "updated": "Post aggiornato",
+    "advanced": "Advanced",
+    "beneficiaries": "Beneficiaries",
+    "beneficiaries-hint": "Set beneficiaries to share author reward with other accounts",
+    "reblog": "Reblog",
+    "reblog-hint": "Auto share content to your blog",
+    "schedule": "Schedule",
+    "schedule-hint": "Auto publish content on specific time",
+    "scheduled": "Post scheduled"
   },
   "tag-selector": {
     "placeholder-empty": "Etichette. La prima etichetta è la categoria principale che classificherà il post.",
     "placeholder-focus": "Inserisci etichetta",
     "placeholder-has-tags": "Aggiungi di più",
-    "suggestion-header": "Tags",
+    "suggestion-header": "Tag",
     "error-max": "Al massimo {{n}} etichette"
   },
   "community-selector": {
-    "my-blog": "My Blog",
-    "search-placeholder": "Search Communities"
+    "my-blog": "Il mio blog",
+    "search-placeholder": "Cerca Community"
   },
   "word-count": {
     "label": "{{n}} parole",
     "read-time-less-1-min": "< 1 minuto di lettura",
     "read-time-n-min": "~ {{n}} minuti di lettura"
+  },
+  "beneficiary-editor": {
+    "title": "Beneficiaries",
+    "btn-label": "Set Beneficiaries",
+    "btn-label-n": "Set Beneficiaries ({{n}})",
+    "username": "Username",
+    "reward": "Reward",
+    "user-error": "{{n}} is not a valid user.",
+    "user-exists-error": "{{n}} is already in the list"
+  },
+  "post-scheduler": {
+    "title": "Schedule",
+    "btn-label": "Schedule"
   },
   "notification": {
     "popup-title": "Hai una nuova notifica",
@@ -667,7 +694,8 @@
     "proxy-btn-label": "Seleziona delegato",
     "proxy-active-description": "Hai impostato un votante delegato. Se volessi riattivare il voto manuale, ti preghiamo di rimuovere il tuo delegato.",
     "proxy-active-current": "Attualmente, il tuo delegato è",
-    "proxy-active-btn-label": "Rimuovi Delegato"
+    "proxy-active-btn-label": "Rimuovi Delegato",
+    "proxy-votes-for": "@{{username}} votes for"
   },
   "proposals": {
     "page-title": "Propositi",
@@ -695,6 +723,10 @@
   },
   "drafts": {
     "title": "Bozze"
+  },
+  "schedules": {
+    "title": "Scheduled Posts",
+    "move": "Move to drafts"
   },
   "bookmarks": {
     "title": "Segnalibri"
@@ -725,44 +757,50 @@
       "what-is-hive-header": "Che cos'è la blockchain Hive?",
       "what-is-hive-body": "<p>Hive è una blockchain disegnata per essere una piattaforma veloce, economica, non censurabile e decentralizzata adatta alle applicazioni per il Web3.0, dotata di strumenti nativi dove i titolari dell'investimento possono guadagnare bloccando in stake, curando contenuti, postando, giocando, scambiando asset - il tutto senza alcun intermediario (concetto di decentralizzazione). I token della blockchain Hive si chiamano HIVE, HIVE DOLLARS, e HIVE POWER.</p>",
       "what-is-difference-header": "Qual'è la differenza tra Ecency e le altre interfacce basate su Hive?",
-      "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\" loading=\"lazy\"/></p><p>Le differenze primarie in tutte le interfacce o le applicazioni stanno nel set di strumenti disponibili e nel loro utilizzo pratico. Ecency offre un sito web, un'app mobile e un'app desktop per garantire un accesso semplice tenendo in massima considerazione l'aspetto della sicurezza. Accessibile, open-source e innovativa, costruita e detenuta dai suoi utenti. Punta al massimo!</p>",
+      "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\"/></p><p>The primary differences in all interfaces or applications are in their feature-set, use cases. Ecency offers website, mobile and desktop applications for ease of access and with best security in mind. Accessible, opensource and innovative, built and owned by users. Aspire for greatness!</p>",
       "why-choose-ecency-header": "Perché dovrei scegliere Ecency?",
-      "why-choose-ecency-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjrzJAcJ4DvxvtqoPdzS9Aygf4MZ1PeE4goH6zWaeEFvafr9vGXWuou67Pbn44GweMyHV5DupM5q1cRvU85qdver?format=match&mode=fit\" loading=\"lazy\"/></p><p>Un set di strumenti su misura che ti consenta di creare e ispirare la tua audience e la tua community. L'applicazione mobile di Ecency ti fornisce una soluzione adatta al movimento della vita quotidiana. Con l'applicazione desktop puoi essere costantemente sicuro di ricevere contenuti incensurati passati dalla blockchain, mentre con il sito web raggiungi migliaia di lettori sparsi per il globo e, per i migliori classificati, l'indicizzazione sui motori di ricerca. Misure di sicurezza all'avanguardia in modo che le tue chiavi rimangano sempre criptate e fuori dalla portata di eventuali malintenzionati. Sito web bello e veloce, ti aiuta a farti conoscere online e a ottenere visibilità per i tuoi contenuti, oltre a farti ottenere seguaci e lettori fedeli. Costruisci la tua comunità con Ecency oggi stesso, approfittando dell'emergente tecnologia blockchain e dei contenuti non censurati - la vera libertà di parola!</p>",
+      "why-choose-ecency-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjrzJAcJ4DvxvtqoPdzS9Aygf4MZ1PeE4goH6zWaeEFvafr9vGXWuou67Pbn44GweMyHV5DupM5q1cRvU85qdver?format=match&mode=fit\"/></p><p>Tailored feature set to empower you to create, inspire your audience and community. Ecency mobile application giving you on-go solution. With desktop app you are always sure to get uncensored content right from the blockchain, with website reach thousands of readers accross globe with best ranked content on search engines. State of art security measures so your keys will always stay encrypted and out of reach for ill-intentioned individuals. Fast and beautiful website, helps you to get discovered online and gain exposure for your content and gain loyal followers and readers. Build your community with Ecency today and take advantages of emerging blockchain technology and uncensored content, true free speech!</p>",
       "how-ecency-works-header": "Come funziona Ecency?",
-      "how-ecency-works-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjuZ3ksaZqEjfd9GadyKFE4bT7UP8qM1sF5W6U3cst4ekDsXfrQdcrjtdz6b5Ye2AfWNwGA5f8QqVXmed6NRfg1U?format=match&mode=fit\" loading=\"lazy\"/></p><p>Ecency raccoglie e legge i dati dalla blockchain, tutti accessibili e non censurati. Ecency ricompensa i creatori di contenuti per mezzo del meccanismo d'incentivo integrato nella blockchain, attraverso i token (HIVE, HIVE DOLLARS, HIVE POWER) come anche attraverso i propri punti. I token possono essere acquistati e rivenduti nei maggiori exchange di criptovaluta (e.g. Binance, Bittrex). I punti possono essere utilizzati assieme alla piattaforma e scambiati per oggetti e servizi.</p>",
+      "how-ecency-works-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjuZ3ksaZqEjfd9GadyKFE4bT7UP8qM1sF5W6U3cst4ekDsXfrQdcrjtdz6b5Ye2AfWNwGA5f8QqVXmed6NRfg1U?format=match&mode=fit\"/></p><p>Ecency stores and reads data from the blockchain, and thus data is accessible and uncensored. Ecency rewards content creators with built-in incentive mechanism of blockchain, with tokens (HIVE, HIVE DOLLARS, HIVE POWER) as well as Points. Tokens can be purchased and sold in major cryptocurrency exchanges (e.g. Binance, Bittrex). Points could be utilized within platform and traded for goods, services.</p>",
       "how-to-join-header": "Come unirsi a Ecency?",
-      "how-to-join-body": "<p>Raggiungi <a href=\"/?referral=ecency\">https://ecency.com/?referral=ecency</a> e crea un account. Dopo la registrazione, riceverai una email con ulteriori istruzioni. La tua password è la chiave maestra del tuo account. Ti preghiamo di custodirla in maniera sicura, se perdessi la tua password, perderesti in maniera IRREVERSIBILE l'accesso al tuo account e ai tuoi fondi. Gli account non possono essere disattivati o cancellati, i nomi degli account non saranno né rimossi né modificati. L'account con tutte le proprie attività rimarrà in modo permanente all'interno della blockchain. Senza password, gli account non potranno essere ripristinati: conserva con cura le tue chiavi di accesso.</p>",
+      "how-to-join-body": "<p>Go to <a href=\"/signup?referral=ecency\">https://ecency.com/signup?referral=ecency</a> and create an account. After signup you will receive email with further instructions. Your password is your master key to your account. Please store it safely, if you loose your password, you ultimately loose access to your account and your funds. Accounts cannot be deactivated or deleted, account names can not be changed as well. The account along with all of its activity is permanently stored in the blockchain. Without password, accounts cannot be restored, store your keys safely.</p>",
       "how-to-signin-header": "Come accedere a Ecency?",
-      "how-to-signin-body": "<p><img src=\"https://images.ecency.com/p/7258xSVeJbKmTr9Z4jhbPhjS9pMWA2mTwBMDbXqk9G9wdMw2bwR4hXqRQt9S7UBFrBAWCYWddjn3G34ETv5KWB5KGmuZ8ixBB9oKHTFvjjnTkRLp4ttrFQtpgtNnRUEA9NtmyFmgyuuK4?format=match&mode=fit\" loading=\"lazy\"/></p><p>You can sign-in to Ecency by using your Username and Master password or by using Active Private Keys. We take security very seriously, that's why we never store your private keys, on mobile app they are encrypted with extra PIN code of your choice, on website they are never stored. You can also use <a href=\"https://hivesigner.com\">Hivesigner OAuth2</a> authentication service to easily login, manage and perform actions.</p>",
+      "how-to-signin-body": "<p><img src=\"https://images.ecency.com/p/7258xSVeJbKmTr9Z4jhbPhjS9pMWA2mTwBMDbXqk9G9wdMw2bwR4hXqRQt9S7UBFrBAWCYWddjn3G34ETv5KWB5KGmuZ8ixBB9oKHTFvjjnTkRLp4ttrFQtpgtNnRUEA9NtmyFmgyuuK4?format=match&mode=fit\"/></p><p>You can sign-in to Ecency by using your Username and Master password or by using Active Private Keys. We take security very seriously, that's why we never store your private keys, on mobile app they are encrypted with extra PIN code of your choice, on website they are never stored. You can also use <a href=\"https://hivesigner.com\">Hivesigner OAuth2</a> authentication service to easily login, manage and perform actions.</p>",
       "how-referrals-work-header": "Come funziona il sistema di raccomandazione su Ecency?",
-      "how-referrals-work-body": "<p>Referral system is simple, you can invite your friends by adding your username in this link https://ecency.com/?referral=username and share it with your friends. Once your friends join Ecency and earn their first 250 Points, you will earn 100 Points. There is no limits on referrals and its reward.</p>",
+      "how-referrals-work-body": "<p>Referral system is simple, you can invite your friends by adding your username in this link https://ecency.com/signup?referral=username and share it with your friends. Once your friends join Ecency and earn their first 250 Points, you will earn 100 Points. There is no limits on referrals and its reward.</p>",
       "what-is-points-header": "Che cosa sono i punti Ecency e come usarli?",
       "what-is-points-body": "<p>Ecency Points are continually minted and rewarded for all users for various social activities they perform on website, mobile or desktop app. Points can be used for promoting, boosting your content, can even be transferred or gifted to another user. You can also purchase Points with our mobile apps.</p>",
       "where-tokens-come-header": "Da dove arrivano i Token?",
-      "where-tokens-come-body": "<p><img src=\"https://images.ecency.com/p/7kq2TLHKEHhCCDwNZLfFLu7msWtbdFb7vZaJJ9Y13GAc18vfVNAj8ZctLWmsVfMCCFtwGdULbZKT89faeBymhPsySU5tp4RnvDsHz6ZBxXHWA4g34ck4LHnR2vGkqsHvjzhizhpV8K6JrQ4sy7cCgJQksUUYPKp4d9XbERHkjnZV3PTdhbiUZPYJ43RS8cQu2sEmUbAgqZExuYMGa46SDa4vCunH2w6oNpommW5L1CCdfwdgX5i9eCpcS5fHo4t8btjVE69edzrUN8anr6T3v8AFYHC?format=match&mode=fit\" loading=\"lazy\"/></p><p>The Hive network continually creates new digital tokens to reward content creators and curators. Some of the newly-created tokens are transferred to users who add value to platform by posting, commenting, and voting on other people's posts. The remainder is distributed to holders of HIVE POWER and the witnesses that secures the blockchain.</p>",
+      "where-tokens-come-body": "<p><img src=\"https://images.ecency.com/p/7kq2TLHKEHhCCDwNZLfFLu7msWtbdFb7vZaJJ9Y13GAc18vfVNAj8ZctLWmsVfMCCFtwGdULbZKT89faeBymhPsySU5tp4RnvDsHz6ZBxXHWA4g34ck4LHnR2vGkqsHvjzhizhpV8K6JrQ4sy7cCgJQksUUYPKp4d9XbERHkjnZV3PTdhbiUZPYJ43RS8cQu2sEmUbAgqZExuYMGa46SDa4vCunH2w6oNpommW5L1CCdfwdgX5i9eCpcS5fHo4t8btjVE69edzrUN8anr6T3v8AFYHC?format=match&mode=fit\"/></p><p>The Hive network continually creates new digital tokens to reward content creators and curators. Some of the newly-created tokens are transferred to users who add value to platform by posting, commenting, and voting on other people's posts. The remainder is distributed to holders of HIVE POWER and the witnesses that secures the blockchain.</p>",
       "how-promotion-work-header": "Come funziona la promozione dei contenuti?",
-      "how-promotion-work-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfoi6H93UHPFEEQutPvax8LP1XqGWMa9geug5SBEEhLUEHKVvSyBfzhrBm9J4uvmrn28AtPhmwcKx?format=match&mode=fit\" loading=\"lazy\"/></p><p>Promoting content with Points is easiest way to get more exposure. Promotions have certain time period and shuffled across the feeds. Any post, can be promoted to get more exposure and engagement.</p>",
+      "how-promotion-work-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfoi6H93UHPFEEQutPvax8LP1XqGWMa9geug5SBEEhLUEHKVvSyBfzhrBm9J4uvmrn28AtPhmwcKx?format=match&mode=fit\"/></p><p>Promoting content on Ecency is very simple and easy. Ecency Points are used to promote content for 1, 2, 3, 7 or 14 days to get more exposure. Promoted posts are shuffled across the feeds to all users in mobile app, desktop app and website. There is no limit or restrictions, any post can be promoted to get more exposure and engagement. We hold right to remove posts from promotion list if it violates certain internet etiquette.</p>",
       "how-boosting-work-header": "Come funziona il boost dei contenuti?",
       "how-boosting-work-body": "<p>Points can be used for boosting content (post and comments). Boosting requests are manually reviewed by our moderators and curators which might take upto 24 hours. <p>As part of the qualities check, we may consider: a) Content is original content, b) Not detected by cheetah, mackbot, hivewatchers, or any other blacklists etc. c) User is not in Ecency blacklist due to abusive behavior.</p>Boosting does not guarantee curation, if content is not curated within 24 hours Points will be refunded.</p>",
       "how-to-transfer-header": "Come trasferire i token della blockchain?",
       "how-to-transfer-body": "<p>After login, you will find Wallet page in top header on website and desktop app or in Profile page, bottom navigation bar on mobile app. In wallet page you can initiate transfer of any token you hold to another user or exchange accounts, click on arrow next to your balance and find transfer operations. Transfers are irreversible because they are registered on blockchain, make sure to send correct recipient.</p>",
       "how-see-rewards-header": "Come vedo le ricompense del mio post?",
-      "how-see-rewards-body": "<p><img src=\"https://images.ecency.com/p/3W72119s5BjW4PvRk9nXBzqrPWMsMTjNrXDPFFf11iYhySeELMe77idrZHBPmyaqFX6CV72hBLB5qFhwVhGoAATydoFxAF7oCwBt1ztp6eS9r5us4pm7iN?format=match&mode=fit\" loading=\"lazy\"/></p><p>In Wallet page (in top header on website and desktop app, bottom navigation bar on mobile app), you can see Curation rewards (the rewards earned for upvoting posts and comments) and Author rewards (the rewards earned by your own posts and comments)</p><p>You can also view the same information for other users by visiting their wallet profile.</p>",
+      "how-see-rewards-body": "<p><img src=\"https://images.ecency.com/p/3W72119s5BjW4PvRk9nXBzqrPWMsMTjNrXDPFFf11iYhySeELMe77idrZHBPmyaqFX6CV72hBLB5qFhwVhGoAATydoFxAF7oCwBt1ztp6eS9r5us4pm7iN?format=match&mode=fit\"/></p><p>In Wallet page (in top header on website and desktop app, bottom navigation bar on mobile app), you can see Curation rewards (the rewards earned for upvoting posts and comments) and Author rewards (the rewards earned by your own posts and comments)</p><p>You can also view the same information for other users by visiting their wallet profile.</p>",
       "how-dhf-work-header": "Come funziona il DHF (Decentralized Hive Fund)?",
-      "how-dhf-work-body": "<p>Anyone can create a proposal and convince community to vote on their proposal to get funded. Before creating proposal, normal post should be published on blockchain and it is recommended to gather feedback before creating proposal. Proposal creation has fee of 10 HBD + 1 HBD for each day it lasts over 60 days.</p><p>Once proposal reaches certain threshold of tallied votes, it will start receiving funds each hour. If proposal falls below threshold, system will halt funding for that proposal. You can vote as many proposals as you want, there are no limits. Proposal cannot be edited, but can be deleted/withdrawn by creator.</p>",
+      "how-dhf-work-body": "<p>Ognuno può creare una Proposta e convincere la community a votare per essa così da ricevere dei fondi. Prima di creare Proposte, dovrebbe essere pubblicato un post sulla blockchain ed è raccomandato raccogliere consensi. La creazione della Proposta obbliga al pagamento di una commissione di 10 HBD + 1 HBD giornaliero per durate oltre i 60 giorni.</p><p>Una volta che la proposta raggiunge una certa soglia di voto regolarmente conteggiato, inizia a ricevere fondi ogni ora. Se la proposta scende al di sotto di una certa soglia, il sistema blocca il trasferimento di fondi verso quella proposta. Tu puoi votare quante proposte vuoi, non ci sono limiti. Le proposte non possono essere modificate, ma possono essere eliminate/ritirate dai suoi creatori.</p>",
       "when-claim-rewards-header": "Quando posso richiedere le mie ricompense?",
-      "when-claim-rewards-body": "<p>Posts and comments remain active for 7 days and rewards are fluctuates depending on votes and market price of token, that is why rewards are approximated as pending reward. When the period is over, pending reward changes to actual reward and you are able to claim earned rewards. In your Wallet, click the Claim Rewards button to add the tokens to your account.</p>",
+      "when-claim-rewards-body": "<p>Post e commenti rimangono aperti per 7 giorni e le ricompense fluttuano in dipendenza dei voti e del prezzo di mercato del token: questo è il motivo per cui le ricompense vengono indicate soltanto approssimativamente nel pagamento in attesa. Quando termina il periodo, la ricompensa in attesa matura in valore attuale e tu potrai riscuotere l'intero ammontare guadagnato. Una volta raggiunto il tuo portafoglio, clicca il pulsante Riscuoti Ricompense per aggiungere i token al tuo conto.</p>",
       "what-are-rc-header": "Che cosa sono i crediti di risorsa?",
-      "what-are-rc-body": "<p>Transacting on the Hive blockchain has zero fees, transaction rate-limiting is employed to safeguard the blockchain from spam attacks. Every action that you take on the blockchain will consume a small amount of Resource Credits. This includes posting, commenting, voting, transferring tokens, etc. Viewing content does not consume Resource Credits.</p><p>Every user has a limited amount of Resource Credits to use each week. The more transactions a user does, the less Resource Credits they will have left (until they recharge). Users with more HIVE POWER will have more Resource Credits.</p><p>If you run out of Resource Credits, you will be unable to transact with the blockchain until your Resource Credits recharge (happens automatically) or you acquire additional HIVE POWER to increase your Resource Credit balance or you can <a href=\"/faq#how-boost-account\">request Boosting account from Ecency</a> to receive temporary delegation.</p>",
+      "what-are-rc-body": "<p>Creare transazioni sulla blockchain Hive non prevede commissioni, ma viene attuata una limitazione del tasso di transazioni per proteggere la blockchain da attacchi spam. Ogni azione che operi sulla blockchain consumerà una piccola quantità di crediti di risorse. Questo include il postare, commentare, votare, trasferire token, eccetera. Visionare contenuti non consuma risorse.</p><p>Ogni utente ha un quantitativo limitato di crediti di risorsa da utilizzare ogni settimana. Più transazioni un utente effettua, meno crediti gli rimarranno (fino a che non si saranno ricaricati). Utenti con più HIVE POWER avranno più crediti di risorsa.</p><p>Se termini i tuoi crediti, non sarai in grado di effettuare transazioni sulla blockchain fino a che i crediti non si saranno ricaricati (il che avviene automaticamente con il trascorrere del tempo) o che avrai acquistato più HIVE POWER per aumentare i tuoi crediti, o che <a href=\"/faq#how-boost-account\">avrai richiesto un Boost dell'account da parte di Ecency</a> per ricevere una delega temporanea.</p>",
       "how-boost-account-header": "Come richiedere il boost dell'account?",
-      "how-boost-account-body": "<p>If your account is low on <a href=\"/faq#what-are-rc\">Resource Credits</a>, you can request account boosting from Ecency. You will receive temporary delegation which should boost your account to perform more activities on blockchain. You can find account boosting feature in Points options.</p>",
+      "how-boost-account-body": "<p>Se il tuo account scarseggia di <a href=\"/faq#what-are-rc\">crediti di risorse</a>, puoi richiedere un boost dell'account ad Ecency. Riceverai una delega temporanea che ti permetterà di portare a termine più attività sulla blockchain. Puoi trovare le funzioni di boost dell'account nella sezione Punti.</p>",
       "what-spam-abuse-header": "Che cosa è considerato spam o uso illecito?",
-      "what-spam-abuse-body": "<p><img src=\"https://images.ecency.com/p/3jpR3paJ37V8XPrHkfZdMt57jY6pRt6zEt5iRJV9pSw4Mez3Hut8U6RWvWLA7cFYEa1bxveXeasNfZApzrcLYLx8cz84kBEKak1KkewE2ZqE1QRRkF4eqRH3vWVqZB9WuNbzE?format=match&mode=fit\" loading=\"lazy\"/></p><p><ul><li>Plagiarized posts or copied content.</li><li>Leaving nearly identical or materially similar comments on multiple posts.</li><li>Using tags that are unrelated to the post.</li><li>Threatening users with any type of physical violence.</li><li>Not citing sources when using someone else’s material.</li><li>Posting ‘not safe for work’ content without using the “nsfw” tag.</li><li>Scams or Fraudulent offers.</li></ul></p>",
+      "what-spam-abuse-body": "<p><img src=\"https://images.ecency.com/p/3jpR3paJ37V8XPrHkfZdMt57jY6pRt6zEt5iRJV9pSw4Mez3Hut8U6RWvWLA7cFYEa1bxveXeasNfZApzrcLYLx8cz84kBEKak1KkewE2ZqE1QRRkF4eqRH3vWVqZB9WuNbzE?format=match&mode=fit\"/></p><p><ul><li>Plagiarized posts or copied content.</li><li>Leaving nearly identical or materially similar comments on multiple posts.</li><li>Using tags that are unrelated to the post.</li><li>Threatening users with any type of physical violence.</li><li>Not citing sources when using someone else’s material.</li><li>Posting ‘not safe for work’ content without using the “nsfw” tag.</li><li>Scams or Fraudulent offers.</li></ul></p>",
       "can-link-post-header": "Posso richiedere di aggiungere un backlink al mio sito web al team Ecency?",
-      "can-link-post-body": "<p>All the content on our site is created by our users and we don't modify or able to add backlinks. You are free to contact author of the post or <a href=\"/?referral=ecency\">Signup</a> to open your own blog and community, publish articles to create backlinks for free.</p>",
+      "can-link-post-body": "<p>All the content on our site is created by our users and we don't modify or able to add backlinks. You are free to contact author of the post or <a href=\"/signup?referral=ecency\">Signup</a> to open your own blog and community, publish articles to create backlinks for free.</p>",
       "can-guest-post-header": "È possibile ospitare post sul tuo sito web?",
-      "can-guest-post-body": "<p>Posting on Ecency is simple and easy, <a href=\"/?referral=ecency\">Signup</a> to open your own blog and community, start posting your content.</p>"
+      "can-guest-post-body": "<p>Posting on Ecency is simple and easy, <a href=\"/signup?referral=ecency\">Signup</a> to open your own blog and community, start posting your content.</p>",
+      "how-to-contribute-header": "How to contribute to the Ecency?",
+      "how-to-contribute-body": "<p>Our <a href=\"/contributors\">awesome contributors</a> helping us to shape Ecency. You can be part of this great movement, by joining our Translation team: <a href=\"https://translate-desktop.ecency.com\">Website</a>, <a href=\"https://translate-mobile.ecency.com\">Mobile</a> or by contributing with Ideas, Developing, Designing, Social media outreach skills. We try our best to support our contributors!</p>"
     }
+  },
+  "contributors": {
+    "title": "Contributors",
+    "description": "These great people contributed in one way or another to Ecency, we would like to thank them all. If you want to join our team by contributing with Translation, Ideas, Development, Designing, Social awareness, feel free to join. To learn more read our <a href=\"/faq#how-to-contribute\">FAQ</a>."
   },
   "context-menu": {
     "cut": "Taglia",
