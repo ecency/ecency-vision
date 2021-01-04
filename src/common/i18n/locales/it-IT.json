@@ -609,7 +609,7 @@
   },
   "post-scheduler": {
     "title": "Pianifica",
-    "btn-label": "Schedule"
+    "btn-label": "Pianifica"
   },
   "notification": {
     "popup-title": "Hai una nuova notifica",
@@ -695,7 +695,7 @@
     "proxy-active-description": "Hai impostato un votante delegato. Se volessi riattivare il voto manuale, ti preghiamo di rimuovere il tuo delegato.",
     "proxy-active-current": "Attualmente, il tuo delegato è",
     "proxy-active-btn-label": "Rimuovi Delegato",
-    "proxy-votes-for": "@{{username}} votes for"
+    "proxy-votes-for": "@{{username}} vota per"
   },
   "proposals": {
     "page-title": "Propositi",
@@ -725,8 +725,8 @@
     "title": "Bozze"
   },
   "schedules": {
-    "title": "Scheduled Posts",
-    "move": "Move to drafts"
+    "title": "Post Programmati",
+    "move": "Sposta nelle bozze"
   },
   "bookmarks": {
     "title": "Segnalibri"
@@ -757,11 +757,11 @@
       "what-is-hive-header": "Che cos'è la blockchain Hive?",
       "what-is-hive-body": "<p>Hive è una blockchain disegnata per essere una piattaforma veloce, economica, non censurabile e decentralizzata adatta alle applicazioni per il Web3.0, dotata di strumenti nativi dove i titolari dell'investimento possono guadagnare bloccando in stake, curando contenuti, postando, giocando, scambiando asset - il tutto senza alcun intermediario (concetto di decentralizzazione). I token della blockchain Hive si chiamano HIVE, HIVE DOLLARS, e HIVE POWER.</p>",
       "what-is-difference-header": "Qual'è la differenza tra Ecency e le altre interfacce basate su Hive?",
-      "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\"/></p><p>The primary differences in all interfaces or applications are in their feature-set, use cases. Ecency offers website, mobile and desktop applications for ease of access and with best security in mind. Accessible, opensource and innovative, built and owned by users. Aspire for greatness!</p>",
+      "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\"/></p><p>Nelle interfacce e nelle applicazioni, le principali differenze sono rappresentate dagli insiemi d'impostazioni e da come vengono utilizzate nella pratica. Ecency offre un sito web, applicazioni desktop e mobili per fornire un semplice metodo di accesso tenendo sempre a mente la sicurezza. Accessibile, open source a innovativo, costruito e detenuto dagli utenti. Punta in alto!</p>",
       "why-choose-ecency-header": "Perché dovrei scegliere Ecency?",
-      "why-choose-ecency-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjrzJAcJ4DvxvtqoPdzS9Aygf4MZ1PeE4goH6zWaeEFvafr9vGXWuou67Pbn44GweMyHV5DupM5q1cRvU85qdver?format=match&mode=fit\"/></p><p>Tailored feature set to empower you to create, inspire your audience and community. Ecency mobile application giving you on-go solution. With desktop app you are always sure to get uncensored content right from the blockchain, with website reach thousands of readers accross globe with best ranked content on search engines. State of art security measures so your keys will always stay encrypted and out of reach for ill-intentioned individuals. Fast and beautiful website, helps you to get discovered online and gain exposure for your content and gain loyal followers and readers. Build your community with Ecency today and take advantages of emerging blockchain technology and uncensored content, true free speech!</p>",
+      "why-choose-ecency-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjrzJAcJ4DvxvtqoPdzS9Aygf4MZ1PeE4goH6zWaeEFvafr9vGXWuou67Pbn44GweMyHV5DupM5q1cRvU85qdver?format=match&mode=fit\"/></p><p>Impostazioni su misura per agevolarti nella creazione, ispirando i tuoi ascoltatori e la tua community. L'app mobile Ecency ti fornisce una soluzione dinamica. Con l'app desktop sei sempre sicuro di avere i giusti contenuti non censurati dalla blockchain. Con il sito web raggiungi migliaia di lettori sparsi per il globo, con i migliori post addirittura indicizzati sui motori di ricerca. Misure di sicurezza all'avanguardia così che le tue chiavi rimangano sempre criptate e non raggiungibili da utenti malintenzionati. Un gradevole e veloce sito web ti aiuta a essere trovato online e a ottenere visibilità, guadagnando lettori e seguaci fedeli. Costruisci la tua community con Ecency oggi e ottieni i vantaggi dall'emergente tecnologia blockchain e dai contenuti incensurati, vero esempio di libertà di espressione!</p>",
       "how-ecency-works-header": "Come funziona Ecency?",
-      "how-ecency-works-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjuZ3ksaZqEjfd9GadyKFE4bT7UP8qM1sF5W6U3cst4ekDsXfrQdcrjtdz6b5Ye2AfWNwGA5f8QqVXmed6NRfg1U?format=match&mode=fit\"/></p><p>Ecency stores and reads data from the blockchain, and thus data is accessible and uncensored. Ecency rewards content creators with built-in incentive mechanism of blockchain, with tokens (HIVE, HIVE DOLLARS, HIVE POWER) as well as Points. Tokens can be purchased and sold in major cryptocurrency exchanges (e.g. Binance, Bittrex). Points could be utilized within platform and traded for goods, services.</p>",
+      "how-ecency-works-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjuZ3ksaZqEjfd9GadyKFE4bT7UP8qM1sF5W6U3cst4ekDsXfrQdcrjtdz6b5Ye2AfWNwGA5f8QqVXmed6NRfg1U?format=match&mode=fit\"/></p><p>Ecency custodisce e legge i dati che arrivano dalla blockchain, e ognuno di questi dati è accessibile e incensurato. Ecency ricompensa i creatori di contenuti con un meccanismo di incentivo integrato nella blockchain, attraverso i token (HIVE, HIVE DOLLARS, HIVE POWER) come anche attraverso i propri Punti. I token possono essere acquistati e venduti su alcuni dei maggiori exchange di criptovaluta (ad esempio Binance e Bittrex). I punti possono essere utilizzati all'interno della piattaforma e scambiati per prodotti o servizi.</p>",
       "how-to-join-header": "Come unirsi a Ecency?",
       "how-to-join-body": "<p>Go to <a href=\"/signup?referral=ecency\">https://ecency.com/signup?referral=ecency</a> and create an account. After signup you will receive email with further instructions. Your password is your master key to your account. Please store it safely, if you loose your password, you ultimately loose access to your account and your funds. Accounts cannot be deactivated or deleted, account names can not be changed as well. The account along with all of its activity is permanently stored in the blockchain. Without password, accounts cannot be restored, store your keys safely.</p>",
       "how-to-signin-header": "Come accedere a Ecency?",
