@@ -22,7 +22,7 @@ import formattedNumber from "../../util/formatted-number";
 
 import defaults from "../../constants/defaults.json";
 
-import {vpMana} from "../../api/hive";
+import {votingPower} from "../../api/hive";
 
 import {_t} from "../../i18n";
 
@@ -95,7 +95,7 @@ export class ProfileCard extends Component<Props, State> {
             </div>
         }
 
-        const vPower = vpMana(account);
+        const vPower = votingPower(account);
 
         const isMyProfile = activeUser && activeUser.username === account.name && activeUser.data.__loaded && activeUser.data.profile;
 

@@ -23,7 +23,9 @@ import {_t} from "../../i18n";
 
 import HiveWallet from "../../helper/hive-wallet";
 
-import {creditCardSvg, gifCardSvg, bellSvg, bellOffSvg} from "../../img/svg";
+import {creditCardSvg, gifCardSvg, bellSvg, bellOffSvg, chevronUpSvg} from "../../img/svg";
+
+import {votingPower, downVotingPower} from "../../api/hive";
 
 class WalletBadge extends Component<{
     activeUser: ActiveUser;
@@ -140,6 +142,14 @@ export default class UserNav extends Component<Props, State> {
         const {activeUser, ui, notifications, global, dynamicProps} = this.props;
         const {unread} = notifications;
 
+        const preDropDownElem = activeUser.data.__loaded ? <div className="drop-down-menu-power">
+            <div className="label">{_t("user-nav.vote-power")}</div>
+            <div className="power">
+                <div className="voting">{chevronUpSvg}{votingPower(activeUser.data).toFixed(0)}{"%"}</div>
+                <div className="downVoting">{chevronUpSvg}{downVotingPower(activeUser.data).toFixed(0)}{"%"}</div>
+            </div>
+        </div> : undefined;
+
         const dropDownConfig = {
             history: this.props.history,
             label: UserAvatar({...this.props, username: activeUser.username, size: "medium"}),
@@ -176,6 +186,7 @@ export default class UserNav extends Component<Props, State> {
                     },
                 },
             ],
+            preElem: preDropDownElem,
         };
 
         return (
@@ -193,7 +204,11 @@ export default class UserNav extends Component<Props, State> {
                             {global.notifications ? bellSvg : bellOffSvg}
                         </span>
                     </ToolTip>
-                    <DropDown {...dropDownConfig} float="right" header={`@${activeUser.username}`}/>
+                    <DropDown
+                        {...dropDownConfig}
+                        float="right"
+                        header={`@${activeUser.username}`}
+                    />
                 </div>
                 {ui.notifications && <UserNotifications {...this.props} />}
                 {gallery && <Gallery {...this.props} onHide={this.toggleGallery}/>}
