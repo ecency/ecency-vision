@@ -71,7 +71,8 @@
     "drafts": "Rascunhos",
     "bookmarks": "Favoritos",
     "schedules": "Schedules",
-    "logout": "Sair"
+    "logout": "Sair",
+    "vote-power": "Vote Power:"
   },
   "intro": {
     "title": "Aspire to greatness",
