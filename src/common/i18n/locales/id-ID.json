@@ -27,7 +27,7 @@
     "off": "Off",
     "yes": "Ya",
     "no": "Tidak",
-    "done": "Done"
+    "done": "Selesai"
   },
   "confirm": {
     "title": "Apakah anda yakin?",
@@ -61,7 +61,7 @@
     "header-community": "Komunitas"
   },
   "switch-lang": {
-    "contributors": "Contributors"
+    "contributors": "Kontributor"
   },
   "user-nav": {
     "wallet": "Dompet",
@@ -73,14 +73,14 @@
     "gallery": "Galeri",
     "drafts": "Konsep",
     "bookmarks": "Tandai",
-    "schedules": "Schedules",
+    "schedules": "Jadwal",
     "logout": "Keluar",
-    "vote-power": "Vote Power:"
+    "vote-power": "Kekuatan Vote:"
   },
   "intro": {
-    "title": "Aspire to greatness",
-    "sub-title": "rewarding communities",
-    "c2a": "Get Started"
+    "title": "Bangun impian menjadi besar",
+    "sub-title": "memberikan rewards kepada komunitas",
+    "c2a": "Mulai"
   },
   "login": {
     "title": "Selamat datang kembali!",
@@ -558,7 +558,7 @@
     "title-placeholder": "Judul",
     "body-placeholder": "Konten Postingan",
     "reward": "Reward",
-    "reward-hint": "Set author reward ratio for liquid and staked tokens",
+    "reward-hint": "Tetapkan rasio imbalan penulis untuk token cair dan yang dipertaruhkan",
     "reward-default": "Default 50% / 50%",
     "reward-sp": "Power Up 100%",
     "reward-dp": "Menolak pembayaran",
@@ -573,7 +573,7 @@
     "clear": "Bersihkan",
     "published": "Postingan telah diterbitkan",
     "updated": "Postingan diperbarui",
-    "advanced": "Advanced",
+    "advanced": "Lanjutan",
     "beneficiaries": "Beneficiaries",
     "beneficiaries-hint": "Set beneficiaries to share author reward with other accounts",
     "reblog": "Reblog",
