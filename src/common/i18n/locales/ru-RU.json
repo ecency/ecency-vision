@@ -71,7 +71,8 @@
     "drafts": "Черновики",
     "bookmarks": "Закладки",
     "schedules": "Schedules",
-    "logout": "Выйти"
+    "logout": "Выйти",
+    "vote-power": "Vote Power:"
   },
   "intro": {
     "title": "Стремитесь к величию",
