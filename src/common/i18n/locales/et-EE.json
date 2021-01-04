@@ -71,7 +71,8 @@
     "drafts": "Mustandid",
     "bookmarks": "Järjehoidjad",
     "schedules": "Ajakavad",
-    "logout": "Välju"
+    "logout": "Välju",
+    "vote-power": "Vote Power:"
   },
   "intro": {
     "title": "Aspire to greatness",
