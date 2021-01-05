@@ -795,12 +795,12 @@
       "can-guest-post-header": "क्या आपकी वेबसाइट पर पोस्ट करना संभव है?",
       "can-guest-post-body": "<p>Ecency पर पोस्टिंग सरल और आसान है, <a href=\"/signup?referral=ecency\">साइन अप करें</a>अपना ब्लॉग और समुदाय खोलने के लिए, अपनी सामग्री पोस्ट करना शुरू करें।</p>",
       "how-to-contribute-header": "इसेंसी में योगदान कैसे करें?",
-      "how-to-contribute-body": "<p>Our <a href=\"/contributors\">awesome contributors</a> helping us to shape Ecency. You can be part of this great movement, by joining our Translation team: <a href=\"https://translate-desktop.ecency.com\">Website</a>, <a href=\"https://translate-mobile.ecency.com\">Mobile</a> or by contributing with Ideas, Developing, Designing, Social media outreach skills. We try our best to support our contributors!</p>"
+      "how-to-contribute-body": "<p>हमारे <a href=\"/contributors\">बहुत बढ़िया योगदानकर्ता</a>इसेंसी को आकार देने में हमारी मदद करना। हमारी अनुवाद टीम में शामिल होकर आप इस महान आंदोलन का हिससा बन सकते हैं: <a href=\"https://translate-desktop.ecency.com\"> वेबसाइट</a>, <a href=\"https://translate-mobile.ecency.com\">मोबाइल</a> या विचारों, विकास, डिजाइन, सामाजिक मीडिया आउटरीच कौशल के साथ योगदान करके। हम अपने योगदानकर्ताओं का समर्थन करने की पूरी कोशिश करते हैं!</p>"
     }
   },
   "contributors": {
-    "title": "Contributors",
-    "description": "These great people contributed in one way or another to Ecency, we would like to thank them all. If you want to join our team by contributing with Translation, Ideas, Development, Designing, Social awareness, feel free to join. To learn more read our <a href=\"/faq#how-to-contribute\">FAQ</a>."
+    "title": "योगदानकर्ता",
+    "description": "इन महान लोगों ने एक या दूसरे तरीके से इक्विटी में योगदान दिया, हम उन सभी को धन्यवाद देना चाहते हैं। यदि आप अनुवाद, विचार, विकास, डिजाइनिंग, सामाजिक जागरूकता के साथ योगदान देकर हमारी टीम में शामिल होना चाहते हैं, तो बेझिझक शामिल हो सकते हैं। अधिक जानने के लिए हमारे पढ़ें<a href=\"/faq#how-to-contribute\">फएक्यू </a>."
   },
   "context-menu": {
     "cut": "काटें",
