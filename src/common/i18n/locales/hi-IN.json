@@ -61,7 +61,7 @@
     "header-community": "समुदाय"
   },
   "switch-lang": {
-    "contributors": "Contributors"
+    "contributors": "योगदानकर्ता"
   },
   "user-nav": {
     "wallet": "वटुवा",
@@ -763,11 +763,11 @@
       "how-ecency-works-header": "इसेंसी काम कैसे करता है?",
       "how-ecency-works-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjuZ3ksaZqEjfd9GadyKFE4bT7UP8qM1sF5W6U3cst4ekDsXfrQdcrjtdz6b5Ye2AfWNwGA5f8QqVXmed6NRfg1U?format=match&mode=fit\"/></p><p>इक्वेंसी स्टोर और ब्लॉकचेन से डेटा पढ़ती है, और इस तरह डेटा सुलभ और बिना सेंसर किया जाता है। इक्वेंसी, ब्लॉकचेन के अंतर्निर्मित प्रोत्साहन तंत्र, टोकन (HIVE, HOL DOLLARS, HIVE POWER) के साथ-साथ पॉइंट्स के साथ सामग्री रचनाकारों को पुरस्कृत करती है। टोकन प्रमुख क्रिप्टोक्यूरेंसी एक्सचेंजों में खरीदे और बेचे जा सकते हैं (जैसे बिनेंस, बिट्रेक्स)। अंक प्लेटफॉर्म के भीतर उपयोग किए जा सकते हैं और माल, सेवाओं के लिए कारोबार किए जाते हैं।</p>",
       "how-to-join-header": "इसेंसी में कैसे शामिल हों?",
-      "how-to-join-body": "<p>Go to <a href=\"/signup?referral=ecency\">https://ecency.com/signup?referral=ecency</a> and create an account. After signup you will receive email with further instructions. Your password is your master key to your account. Please store it safely, if you loose your password, you ultimately loose access to your account and your funds. Accounts cannot be deactivated or deleted, account names can not be changed as well. The account along with all of its activity is permanently stored in the blockchain. Without password, accounts cannot be restored, store your keys safely.</p>",
+      "how-to-join-body": "<p>के लिए जाओ <a href=\"/signup?referral=ecency\">https://ecency.com/signup?referral=ecency</a> और एक खाता बनाएँ। साइनअप के बाद आपको आगे के निर्देशों के साथ ईमेल प्राप्त होगा। आपका पासवर्ड आपके खाते की मास्टर कुंजी है। कृपया इसे सुरक्षित रूप से संग्रहीत करें, यदि आप अपना पासवर्ड ढीला करते हैं, तो आप अंततः अपने खाते और अपने फंड तक पहुंच ढीली कर सकते हैं। खातों को निष्क्रिय या हटाया नहीं जा सकता है, खाता नाम भी नहीं बदले जा सकते हैं। इसकी सभी गतिविधि के साथ खाता स्थायी रूप से ब्लॉकचेन में संग्रहीत किया जाता है। पासवर्ड के बिना, खातों को पुनर्स्थापित नहीं किया जा सकता है, अपनी कुंजियों को सुरक्षित रूप से संग्रहीत करें।</p>",
       "how-to-signin-header": "इसेंसी साइन इन कैसे करें?",
       "how-to-signin-body": "<p><img src=\"https://images.ecency.com/p/7258xSVeJbKmTr9Z4jhbPhjS9pMWA2mTwBMDbXqk9G9wdMw2bwR4hXqRQt9S7UBFrBAWCYWddjn3G34ETv5KWB5KGmuZ8ixBB9oKHTFvjjnTkRLp4ttrFQtpgtNnRUEA9NtmyFmgyuuK4?format=match&mode=fit\"/></p><p>आप अपने उपयोगकर्ता नाम और मास्टर पासवर्ड का उपयोग करके या सक्रिय निजी कुंजी का उपयोग करके एकांत में साइन-इन कर सकते हैं। हम सुरक्षा को बहुत गंभीरता से लेते हैं, इसीलिए हम आपकी निजी कुंजी को कभी संग्रहीत नहीं करते हैं, मोबाइल ऐप पर उन्हें आपकी पसंद के अतिरिक्त पिन कोड के साथ एन्क्रिप्ट किया जाता है, वेबसाइट पर वे कभी संग्रहीत नहीं होते हैं। आप भी उपयोग कर सकते हैं<a href=\"https://hivesigner.com\">Hivesigner OAuth2</a> प्रमाणीकरण सेवा आसानी से लॉगिन करने, प्रबंधित करने और कार्य करने के लिए।</p>",
       "how-referrals-work-header": "रेफरल सिस्टम इसेंसी मै कैसे काम करता हैं?",
-      "how-referrals-work-body": "<p>Referral system is simple, you can invite your friends by adding your username in this link https://ecency.com/signup?referral=username and share it with your friends. Once your friends join Ecency and earn their first 250 Points, you will earn 100 Points. There is no limits on referrals and its reward.</p>",
+      "how-referrals-work-body": "<p>रेफरल प्रणाली सरल है, आप इस लिंक https://ecency.com/signup?referral=username में अपने उपयोगकर्ता नाम जोड़कर अपने दोस्तों को आमंत्रित कर सकते हैं और इसे अपने दोस्तों के साथ साझा कर सकते हैं। एक बार जब आपके दोस्त Ecency में शामिल हो जाते हैं और अपने पहले 250 अंक अर्जित करते हैं, तो आप 100 अंक अर्जित करेंगे। रेफरल और उसके इनाम पर कोई सीमा नहीं है।</p>",
       "what-is-points-header": "इसेंसी पॉइंट्स क्या हैं और कैसे इनका इस्तेमाल करें?",
       "what-is-points-body": "<p> इसेंसी पॉइंट्स लगातार उन सभी उपयोगकर्ताओं के लिए पोषित और पुरस्कृत किए जाते हैं जो विभिन्न सामाजिक गतिविधियों के लिए वेबसाइट, मोबाइल या डेस्कटॉप ऐप पर काम करते हैं। अंकों का उपयोग आपकी सामग्री को बढ़ावा देने, बढ़ावा देने के लिए किया जा सकता है, यहां तक ​​कि किसी अन्य उपयोगकर्ता को स्थानांतरित या उपहार में भी दिया जा सकता है। आप हमारे मोबाइल ऐप्स के साथ पॉइंट्स भी खरीद सकते हैं। </p>",
       "where-tokens-come-header": "टोकन कहाँ से आते हैं?",
@@ -791,10 +791,10 @@
       "what-spam-abuse-header": "स्पैम या दुरुपयोग क्या माना जाता है?",
       "what-spam-abuse-body": "<p><img src=\"https://images.ecency.com/p/3jpR3paJ37V8XPrHkfZdMt57jY6pRt6zEt5iRJV9pSw4Mez3Hut8U6RWvWLA7cFYEa1bxveXeasNfZApzrcLYLx8cz84kBEKak1KkewE2ZqE1QRRkF4eqRH3vWVqZB9WuNbzE?format=match&mode=fit\"/></p><p><ul><li>साहित्यिक पोस्ट या कॉपी की गई सामग्री।</li><li>कई पदों पर लगभग समान या भौतिक रूप से समान टिप्पणियों को छोड़कर।</li><li>उन टैग का उपयोग करना जो पोस्ट से असंबंधित हैं।</li><li>किसी भी प्रकार की शारीरिक हिंसा के साथ उपयोगकर्ताओं को धमकी देना।</li><li>किसी और की सामग्री का उपयोग करते समय स्रोतों का हवाला नहीं देते।</li><li>\"Nsfw\" टैग का उपयोग किए बिना काम की सामग्री के लिए सुरक्षित नहीं है।</li><li>घोटाले या धोखाधड़ी के प्रस्ताव।</li></ul></p>",
       "can-link-post-header": "क्या मैं अपनी वेबसाइट पर इसेंसी टीम से बैकलिंक जोड़ने का अनुरोध कर सकता हूं?",
-      "can-link-post-body": "<p>All the content on our site is created by our users and we don't modify or able to add backlinks. You are free to contact author of the post or <a href=\"/signup?referral=ecency\">Signup</a> to open your own blog and community, publish articles to create backlinks for free.</p>",
+      "can-link-post-body": "<p>हमारी साइट की सभी सामग्री हमारे उपयोगकर्ताओं द्वारा बनाई गई है और हम संशोधित या बैकलिंक जोड़ने में सक्षम नहीं हैं। आप पोस्ट के लेखक से संपर्क करने के लिए स्वतंत्र हैं या <a href=\"/signup?referral=ecency\">साइन अप करें</a> अपने ब्लॉग और समुदाय को खोलने के लिए, मुफ्त में बैकलिंक्स बनाने के लिए लेख प्रकाशित करें।</p>",
       "can-guest-post-header": "क्या आपकी वेबसाइट पर पोस्ट करना संभव है?",
-      "can-guest-post-body": "<p>Posting on Ecency is simple and easy, <a href=\"/signup?referral=ecency\">Signup</a> to open your own blog and community, start posting your content.</p>",
-      "how-to-contribute-header": "How to contribute to the Ecency?",
+      "can-guest-post-body": "<p>Ecency पर पोस्टिंग सरल और आसान है, <a href=\"/signup?referral=ecency\">साइन अप करें</a>अपना ब्लॉग और समुदाय खोलने के लिए, अपनी सामग्री पोस्ट करना शुरू करें।</p>",
+      "how-to-contribute-header": "इसेंसी में योगदान कैसे करें?",
       "how-to-contribute-body": "<p>Our <a href=\"/contributors\">awesome contributors</a> helping us to shape Ecency. You can be part of this great movement, by joining our Translation team: <a href=\"https://translate-desktop.ecency.com\">Website</a>, <a href=\"https://translate-mobile.ecency.com\">Mobile</a> or by contributing with Ideas, Developing, Designing, Social media outreach skills. We try our best to support our contributors!</p>"
     }
   },
