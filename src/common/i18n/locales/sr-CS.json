@@ -27,7 +27,7 @@
     "off": "Isključeno",
     "yes": "Da",
     "no": "Ne",
-    "done": "Done"
+    "done": "Gotovo"
   },
   "confirm": {
     "title": "Da li ste sigurni?",
@@ -73,9 +73,9 @@
     "gallery": "Galerija",
     "drafts": "Skice",
     "bookmarks": "Obeleživači",
-    "schedules": "Schedules",
+    "schedules": "Rasporedi",
     "logout": "Odjavi se",
-    "vote-power": "Vote Power:"
+    "vote-power": "Snaga glasa:"
   },
   "intro": {
     "title": "Težite najboljem",
@@ -573,12 +573,12 @@
     "clear": "Obriši",
     "published": "Post je objavljen",
     "updated": "Post je ažuriran",
-    "advanced": "Advanced",
-    "beneficiaries": "Beneficiaries",
+    "advanced": "Napredno",
+    "beneficiaries": "Primaoci",
     "beneficiaries-hint": "Set beneficiaries to share author reward with other accounts",
-    "reblog": "Reblog",
+    "reblog": "Podeli",
     "reblog-hint": "Auto share content to your blog",
-    "schedule": "Schedule",
+    "schedule": "Raspored",
     "schedule-hint": "Auto publish content on specific time",
     "scheduled": "Post scheduled"
   },
@@ -599,11 +599,11 @@
     "read-time-n-min": "~ {{n}} minuta čitanja"
   },
   "beneficiary-editor": {
-    "title": "Beneficiaries",
+    "title": "Primaoci",
     "btn-label": "Set Beneficiaries",
     "btn-label-n": "Set Beneficiaries ({{n}})",
-    "username": "Username",
-    "reward": "Reward",
+    "username": "Korisničko ime",
+    "reward": "Nagrada",
     "user-error": "{{n}} is not a valid user.",
     "user-exists-error": "{{n}} is already in the list"
   },
@@ -725,8 +725,8 @@
     "title": "Skice"
   },
   "schedules": {
-    "title": "Scheduled Posts",
-    "move": "Move to drafts"
+    "title": "Planirani postovi",
+    "move": "Premesti u radne verzije"
   },
   "bookmarks": {
     "title": "Obeleživači"
