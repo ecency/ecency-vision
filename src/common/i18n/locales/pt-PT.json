@@ -27,7 +27,7 @@
     "off": "Desligar",
     "yes": "Yes",
     "no": "No",
-    "done": "Done"
+    "done": "Feito"
   },
   "confirm": {
     "title": "Tem a certeza?",
@@ -73,7 +73,7 @@
     "gallery": "Galeria",
     "drafts": "Rascunhos",
     "bookmarks": "Favoritos",
-    "schedules": "Schedules",
+    "schedules": "Agendamentos",
     "logout": "Sair",
     "vote-power": "Vote Power:"
   },
@@ -558,7 +558,7 @@
     "title-placeholder": "Título",
     "body-placeholder": "Conteúdo da Publicação",
     "reward": "Recompensa",
-    "reward-hint": "Set author reward ratio for liquid and staked tokens",
+    "reward-hint": "Configura a taxa de recompensa do autor para tokens líquidos e ilíqüidos.",
     "reward-default": "Padrão 50% / 50%",
     "reward-sp": "Força Total 100%",
     "reward-dp": "Recusar Pagamento",
@@ -573,8 +573,8 @@
     "clear": "Limpar",
     "published": "Publicação publicada",
     "updated": "Publicação atualizada",
-    "advanced": "Advanced",
-    "beneficiaries": "Beneficiaries",
+    "advanced": "Avançado",
+    "beneficiaries": "Beneficiários",
     "beneficiaries-hint": "Set beneficiaries to share author reward with other accounts",
     "reblog": "Reblog",
     "reblog-hint": "Auto share content to your blog",
