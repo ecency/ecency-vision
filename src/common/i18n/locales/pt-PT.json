@@ -575,12 +575,12 @@
     "updated": "Publicação atualizada",
     "advanced": "Avançado",
     "beneficiaries": "Beneficiários",
-    "beneficiaries-hint": "Set beneficiaries to share author reward with other accounts",
-    "reblog": "Reblog",
-    "reblog-hint": "Auto share content to your blog",
-    "schedule": "Schedule",
-    "schedule-hint": "Auto publish content on specific time",
-    "scheduled": "Post scheduled"
+    "beneficiaries-hint": "Configura beneficiários para dividir a recompensa do autor com outras contas",
+    "reblog": "Repostar",
+    "reblog-hint": "Compartilhar conteúdo automaticamente no seu blog",
+    "schedule": "Agendar",
+    "schedule-hint": "Publicação automática de conteúdo em um horário específico",
+    "scheduled": "Post agendado"
   },
   "tag-selector": {
     "placeholder-empty": "Etiquetas. A primeira etiqueta é a categoria principal. Ordenável.",
@@ -599,17 +599,17 @@
     "read-time-n-min": "~ {{n}} min de leitura"
   },
   "beneficiary-editor": {
-    "title": "Beneficiaries",
-    "btn-label": "Set Beneficiaries",
-    "btn-label-n": "Set Beneficiaries ({{n}})",
-    "username": "Username",
-    "reward": "Reward",
-    "user-error": "{{n}} is not a valid user.",
-    "user-exists-error": "{{n}} is already in the list"
+    "title": "Beneficiários",
+    "btn-label": "Definir Beneficiários",
+    "btn-label-n": "Definir beneficiários ({{n}})",
+    "username": "Usuário",
+    "reward": "Recompensa",
+    "user-error": "{{n}} não é um usuário válido.",
+    "user-exists-error": "{{n}} já está na lista"
   },
   "post-scheduler": {
-    "title": "Schedule",
-    "btn-label": "Schedule"
+    "title": "Agendar",
+    "btn-label": "Agendar"
   },
   "notification": {
     "popup-title": "Você tem uma nova notificação",
@@ -725,7 +725,7 @@
     "title": "Rascunhos"
   },
   "schedules": {
-    "title": "Scheduled Posts",
+    "title": "Posts agendados",
     "move": "Move to drafts"
   },
   "bookmarks": {
