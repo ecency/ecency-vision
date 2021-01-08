@@ -173,6 +173,20 @@
     .text-menu {
       margin-right: 18px;
       flex-grow: 0;
+
+      .drop-down-menu-version {
+        padding: 10px 0;
+        text-align: center;
+        font-size: 90%;
+
+        @include themify(day) {
+          background: $white-three;
+        }
+
+        @include themify(night) {
+          background: $dark-two;
+        }
+      }
     }
 
     .switch-theme,

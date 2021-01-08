@@ -37,6 +37,8 @@ import defaults from "../../../../common/constants/defaults.json";
 
 import routes from "../../../../common/routes";
 
+import {version} from "../../../package.json";
+
 import {brightnessSvg, pencilOutlineSvg, arrowLeftSvg, arrowRightSvg, refreshSvg, magnifySvg, dotsHorizontal, translateSvg} from "../../../../common/img/svg";
 
 // why "require" instead "import" ? see: https://github.com/ReactTraining/react-router/issues/6203
@@ -351,6 +353,7 @@ export class NavBar extends Component<Props, State> {
                     active: location.pathname === '/communities'
                 }
             ],
+            postElem: <div className="drop-down-menu-version">Ecency Surfer {version}</div>
         };
 
         return (
