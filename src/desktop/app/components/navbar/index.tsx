@@ -213,7 +213,7 @@ export class NavControls extends Component<NavControlsProps> {
     render() {
         const {history, reloadFn, reloading} = this.props;
 
-        // @ts-ignore this is for making ide happy. code compiles without error.
+        // @ts-ignore make ide happy. code compiles without error.
         const entries = history.entries || {}
         // @ts-ignore
         const index = history.index || 0;

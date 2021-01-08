@@ -316,7 +316,7 @@ class EntryPage extends Component<Props, State> {
         const entry = this.getEntry();
 
         if (!entry) {
-            return <NotFound/>;
+            return NotFound({...this.props});
         }
 
         const community = this.getCommunity();
