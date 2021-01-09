@@ -6,6 +6,8 @@ import {Global} from "../../../../common/store/global/types";
 
 import {_t} from "../../../../common/i18n";
 
+const osPlatform = require("os").platform();
+
 interface Props {
     global: Global;
     dismissNewVersion: () => void;
@@ -85,9 +87,27 @@ export default class Updater extends Component<Props, State> {
             return null;
         }
 
+        // Manual download with Windows
+        if (osPlatform === "win32") {
+            const downloadUrl = `https://github.com/ecency/ecency-vision/releases/download/${global.newVersion}/Ecency-Setup-${global.newVersion}.exe`;
+
+            return <div className="updater">
+                <p className="info-text">
+                    {_t("updater.new-version-available")}
+                    <span className="release-name">{global.newVersion}</span>
+                </p>
+                <a className="btn btn-primary btn-update" href={downloadUrl}>
+                    {_t("updater.download")}
+                </a>
+                <Button className="btn-dismiss" onClick={this.dismiss}>
+                    {_t("updater.dismiss")}
+                </Button>
+            </div>
+        }
+
+
         const {downloading, completed, progress} = this.state;
         const percent = Math.ceil(progress);
-
 
         return <div className="updater">
             {(!downloading && !completed) && (
