@@ -207,7 +207,7 @@ autoUpdater.on('update-downloaded', () => {
     mainWindow!.webContents.send('update-downloaded');
 });
 
-ipcMain.on('download-update', (version: any) => {
+ipcMain.on('download-update', (event: any, version: any) => {
 
     // Windows
     if (osPlatform === "win32") {
