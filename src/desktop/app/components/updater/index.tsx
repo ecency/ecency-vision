@@ -6,7 +6,7 @@ import {Global} from "../../../../common/store/global/types";
 
 import {_t} from "../../../../common/i18n";
 
-const osPlatform = require("os").platform();
+import {getOperatingSystem} from "../../../../common/util/platform";
 
 interface Props {
     global: Global;
@@ -63,7 +63,8 @@ export default class Updater extends Component<Props, State> {
     };
 
     begin = () => {
-        window["ipcRenderer"]?.send('download-update');
+        const {global} = this.props;
+        window["ipcRenderer"]?.send('download-update', {version: global.newVersion});
     };
 
     dismiss = () => {
@@ -87,18 +88,17 @@ export default class Updater extends Component<Props, State> {
             return null;
         }
 
-        // Manual download with Windows
-        if (osPlatform === "win32") {
-            const downloadUrl = `https://github.com/ecency/ecency-vision/releases/download/${global.newVersion}/Ecency-Setup-${global.newVersion}.exe`;
-
+        // Windows
+        if (getOperatingSystem(window.navigator.userAgent) === "WindowsOS") {
             return <div className="updater">
                 <p className="info-text">
-                    {_t("updater.new-version-available")}
+                    {_t("updater.new-version-available")}{" "}
                     <span className="release-name">{global.newVersion}</span>
                 </p>
-                <a className="btn btn-primary btn-update" href={downloadUrl}>
+                <Button className="btn-update" onClick={this.begin}>
                     {_t("updater.download")}
-                </a>
+                </Button>
+
                 <Button className="btn-dismiss" onClick={this.dismiss}>
                     {_t("updater.dismiss")}
                 </Button>
@@ -113,7 +113,7 @@ export default class Updater extends Component<Props, State> {
             {(!downloading && !completed) && (
                 <>
                     <p className="info-text">
-                        {_t("updater.new-version-available")}
+                        {_t("updater.new-version-available")}{" "}
                         <span className="release-name">{global.newVersion}</span>
                     </p>
                     <Button className="btn-update" onClick={this.begin}>
