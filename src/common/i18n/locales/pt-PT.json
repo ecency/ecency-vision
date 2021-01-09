@@ -468,15 +468,15 @@
     "confirm-sub-title": "Por favor, verfique se está tudo correto",
     "confirm": "Confirmar",
     "recent-transfers": "Transferências recentes",
-    "transfer-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "transfer-saving-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "withdraw-saving-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "convert-summary": "<span class=\"amount\">{{amount}}</span> converted",
-    "power-up-summary": "<span class=\"amount\">{{amount}}</span> staked from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "power-down-summary": "Power down completed as <span class=\"amount\">{{amount}}</span>",
-    "reset": "Reset",
-    "powering-down": "You are currently powering down.",
+    "transfer-summary": "<span class=\"amount\">{{amount}}</span> transferida de <span class=\"from-user\">{{from}}</span> para <span class=\"to-user\">{{to}}</span>",
+    "transfer-saving-summary": "<span class=\"amount\">{{amount}}</span> transferida de <span class=\"from-user\">{{from}}</span> para <span class=\"to-user\">{{to}}</span>",
+    "withdraw-saving-summary": "<span class=\"amount\">{{amount}}</span> transferida de <span class=\"from-user\">{{from}}</span> para <span class=\"to-user\">{{to}}</span>",
+    "convert-summary": "<span class=\"amount\">{{amount}}</span> convertido",
+    "power-up-summary": "<span class=\"amount\">{{amount}}</span> delegado de <span class=\"from-user\">{{from}}</span> para <span class=\"to-user\">{{to}}</span>",
+    "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegado de <span class=\"from-user\">{{from}}</span> para <span class=\"to-user\">{{to}}</span>",
+    "power-down-summary": "Diminuição de poder hive concluído como <span class=\"amount\">{{amount}}</span>",
+    "reset": "Reiniciar",
+    "powering-down": "Você está atualmente fazendo power down.",
     "stop-power-down": "Parar"
   },
   "trx-common": {
@@ -695,7 +695,7 @@
     "proxy-active-description": "Você definiu um proxy de votação. Se você deseja reativar as votações manuais, por favor, limpe seu proxy.",
     "proxy-active-current": "O teu proxy atual é",
     "proxy-active-btn-label": "Limpar o Proxy",
-    "proxy-votes-for": "@{{username}} votes for"
+    "proxy-votes-for": "@{{username}} votos para"
   },
   "proposals": {
     "page-title": "Propostas",
@@ -793,9 +793,9 @@
       "can-link-post-header": "Posso solicitar a adição de backlink para o meu site a partir da equipe da Ecency?",
       "can-link-post-body": "<p>Todo o conteúdo em nosso site é criado por nossos utilizadores. Não modificamos ou adicionamos nada. Você é livre para contatar o autor do post ou <a href=\"/signup?referral=ecency\">Cadastre-se</a> para abrir seu próprio blog e comunidade, publicar artigos para criar backlinks gratuitamente.</p>",
       "can-guest-post-header": "É possível visitar a postagem em seu site?",
-      "can-guest-post-body": "<p>Posting on Ecency is simple and easy, <a href=\"/signup?referral=ecency\">Signup</a> to open your own blog and community, start posting your content.</p>",
+      "can-guest-post-body": "<p>Postar na Ecency é simples e fácil, <a href=\"/signup?referral=ecency\">Cadastre-se</a> para abrir seu próprio blog e comunidade, começando a postar seu conteúdo.</p>",
       "how-to-contribute-header": "Como contribuir para a Ecency?",
-      "how-to-contribute-body": "<p>Our <a href=\"/contributors\">awesome contributors</a> helping us to shape Ecency. You can be part of this great movement, by joining our Translation team: <a href=\"https://translate-desktop.ecency.com\">Website</a>, <a href=\"https://translate-mobile.ecency.com\">Mobile</a> or by contributing with Ideas, Developing, Designing, Social media outreach skills. We try our best to support our contributors!</p>"
+      "how-to-contribute-body": "<p>Nossos <a href=\"/contributors\">incríveis colaboradores</a> nos ajudam a moldar a Ecency. Você pode fazer parte deste grande movimento, juntando-se à nossa equipe de tradução: <a href=\"https://translate-desktop.ecency.com\">Website</a>, <a href=\"https://translate-mobile.ecency.com\">Móvel</a> ou contribuindo com ideias de desenvolvimento, designing, habilidades de divulgação de mídia social. Nós tentamos o nosso melhor para apoiar os nossos colaboradores!</p>"
     }
   },
   "contributors": {
