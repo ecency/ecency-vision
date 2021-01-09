@@ -64,7 +64,7 @@ export default class Updater extends Component<Props, State> {
 
     begin = () => {
         const {global} = this.props;
-        window["ipcRenderer"]?.send('download-update', {version: global.newVersion});
+        window["ipcRenderer"]?.send('download-update', global.newVersion);
     };
 
     dismiss = () => {

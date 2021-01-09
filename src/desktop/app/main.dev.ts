@@ -207,11 +207,11 @@ autoUpdater.on('update-downloaded', () => {
     mainWindow!.webContents.send('update-downloaded');
 });
 
-ipcMain.on('download-update', (data: any) => {
+ipcMain.on('download-update', (version: any) => {
 
     // Windows
     if (osPlatform === "win32") {
-        const u = `https://github.com/ecency/ecency-vision/releases/download/${data.version}/Ecency-Setup-${data.version}.exe`;
+        const u = `https://github.com/ecency/ecency-vision/releases/download/${version}/Ecency-Setup-${version}.exe`;
         shell.openExternal(u);
         return;
     }
