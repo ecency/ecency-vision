@@ -61,7 +61,7 @@
     "header-community": "Mga pamayanan"
   },
   "switch-lang": {
-    "contributors": "Contributors"
+    "contributors": "Mg may ambag"
   },
   "user-nav": {
     "wallet": "Pitaka",
@@ -75,7 +75,7 @@
     "bookmarks": "Mga talaan",
     "schedules": "Mga Palatuntunan",
     "logout": "Umalis",
-    "vote-power": "Vote Power:"
+    "vote-power": "Puwersa ng Boto"
   },
   "intro": {
     "title": "Hangarin ang kadakilaan",
@@ -134,7 +134,7 @@
   },
   "entry-reblog": {
     "reblog": "Mga kondisyon ng serbisyo",
-    "confirm-title": "Reblog to @{{n}}'s blog?",
+    "confirm-title": "I-reblog kay @{{n}}'s blog?",
     "confirm-ok": "I-blog muli",
     "success": "Muling nai-blog!"
   },
@@ -163,7 +163,7 @@
     "credits": "datos mula sa <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "list-style": {
-    "title": "Toggle list style"
+    "title": "Iayos ang istilo ng listahan"
   },
   "entry-votes": {
     "title": "1 Boto",
@@ -201,7 +201,7 @@
     "replies": "1 Komento",
     "n-replies": "{{n}} Mga komento",
     "order": "Baguhin ang pagkakasunod-sunod",
-    "order-trending": "Trending",
+    "order-trending": "Uso",
     "order-reputation": "Reputasyon",
     "order-votes": "Mga boto",
     "order-created": "Edad",
@@ -364,18 +364,18 @@
     "transfer": "Ilipat",
     "transfer-to-savings": "Ilipat sa impukan",
     "convert": "Convert",
-    "power-up": "Power up",
+    "power-up": "Magpalakas",
     "withdraw-hive": "Maglabas ng Hive",
     "withdraw-hbd": "Withdraw Hive Dollar",
     "delegate": "Magpahiram",
-    "power-down": "Power down",
+    "power-down": "Magpahina",
     "withdraw-routes": "Withdraw Routes"
   },
   "withdraw-routes": {
     "title": "Alisin ang mga account",
     "account": "Account",
     "percent": "Percent",
-    "auto-power-up": "Automatically power up"
+    "auto-power-up": "Awtomatikong magpalakas"
   },
   "points": {
     "get": "BUY POINTS",
@@ -447,8 +447,8 @@
     "convert-sub-title": "Only recommended when HBD is below $1. You will get $1 of HIVE in 3.5 days.",
     "delegate-title": "Magpahiram",
     "delegate-sub-title": "Magpahiram ng Hive Power",
-    "power-down-title": "Power Down",
-    "power-down-sub-title": "Power Down Hive Power",
+    "power-down-title": "Magpahina",
+    "power-down-sub-title": "Pahinain ang Hive Power",
     "from": "From",
     "to": "To",
     "to-placeholder": "bansag",
