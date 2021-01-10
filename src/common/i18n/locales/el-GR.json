@@ -27,7 +27,7 @@
     "off": "Ανενεργό",
     "yes": "Ναι",
     "no": "Όχι",
-    "done": "Done"
+    "done": "Έτοιμο"
   },
   "confirm": {
     "title": "Είστε σίγουρος;",
@@ -61,7 +61,7 @@
     "header-community": "Κοινότητες"
   },
   "switch-lang": {
-    "contributors": "Contributors"
+    "contributors": "Συνεισφέροντες"
   },
   "user-nav": {
     "wallet": "Πορτοφόλι",
@@ -73,9 +73,9 @@
     "gallery": "Γκαλερί",
     "drafts": "Πρόχειρα",
     "bookmarks": "Σελιδοδείκτες",
-    "schedules": "Schedules",
+    "schedules": "Χρονοδιαγράμματα",
     "logout": "Αποσύνδεση",
-    "vote-power": "Vote Power:"
+    "vote-power": "Δύναμη ψήφου:"
   },
   "intro": {
     "title": "Φιλοδοξία στο μεγαλείο",
@@ -119,7 +119,7 @@
     "title": "Προτεινόμενα"
   },
   "entry-list-item": {
-    "reblogged": "{{n}} reblogged",
+    "reblogged": "{{n}} αναδημοσιεύτηκε",
     "promoted": "προωθούμενα",
     "pinned": "Καρφιτσωμένη Δημοσίευση",
     "replies": "1 απάντηση. Κάντε κλικ για να απαντήσετε.",
@@ -490,7 +490,7 @@
     "title": "Ιστορικό",
     "type-curation_reward": "Ανταμοιβή επμέλειας",
     "type-author_reward": "Ανταμοιβή συγγραφέα",
-    "type-comment_benefactor_reward": "Comment Benefactor Reward",
+    "type-comment_benefactor_reward": "Σχόλιο Ανταμοιβής Benefactor",
     "type-claim_reward_balance": "Διεκδικήστε ανταμοιβές",
     "type-transfer": "Μεταφορά",
     "type-transfer_to_vesting": "Μεταφορά σε κατοχυρωμένα",
