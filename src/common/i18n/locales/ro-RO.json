@@ -811,6 +811,7 @@
   },
   "updater": {
     "new-version-available": "O nouă versiune este disponibilă",
+    "download": "Download",
     "update": "Actualizare",
     "dismiss": "Renunță",
     "downloading": "Descă noua versiune...",
