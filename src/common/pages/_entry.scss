@@ -21,7 +21,10 @@
   .the-entry {
     margin: 0 auto 90px auto;
     width: 100%;
-    padding: 0 10px;
+
+    @media (min-width: $sm-break) {
+      padding: 0 10px;
+    }
 
     @media (min-width: $md-break) {
       padding: 0;
@@ -154,8 +157,13 @@
             margin-right: 6px;
 
             .user-avatar {
-              width: 40px;
-              height: 40px;
+              width: 24px;
+              height: 24px;
+
+              @media (min-width: $sm-break) {
+                width: 40px;
+                height: 40px;
+              }
             }
           }
 
