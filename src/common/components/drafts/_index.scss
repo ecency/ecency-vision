@@ -1,42 +1,60 @@
 .drafts-modal {
+  .modal-body {
+    .dialog-content {
+      height: 500px;
+      overflow: auto;
 
-  .dialog-content {
-    height: 500px;
-    overflow: auto;
+      .drafts-list {
+        .drafts-list-body {
+          .drafts-list-item {
+            @include entry-list-item;
 
-    .drafts-list {
-      .drafts-list-body {
-        .drafts-list-item {
-          @include entry-list-item;
+            margin: 0 0 20px 0;
 
-          margin: 0 0 20px 0;
-
-          .item-body {
-            .item-summary {
-              .item-title, .item-body {
-                cursor: pointer;
+            .item-body {
+              .item-summary {
+                .item-title, .item-body {
+                  cursor: pointer;
+                }
               }
             }
-          }
 
-          .item-controls {
-            display: block;
+            .item-controls {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
 
-            .btn-delete,
-            .btn-edit {
-              cursor: pointer;
-              margin-right: 12px;
+              .btn-controls {
+                .btn-edit {
+                  margin-right: 20px;
+                }
 
-              svg {
-                height: 18px !important;
-              }
+                .btn-delete {
+                  margin-right: 10px;
+                }
 
-              @include themify(day) {
-                color: $silver;
-              }
+                .btn-delete,
+                .btn-edit {
+                  cursor: pointer;
 
-              @include themify(night) {
-                color: $gunmetal;
+                  svg {
+                    height: 18px !important;
+                  }
+
+                  @include themify(day) {
+                    color: $silver;
+                  }
+
+                  @include themify(night) {
+                    color: $gunmetal;
+                  }
+
+                  &:hover {
+                    opacity: 0.7;
+                  }
+                }
+
+
               }
             }
           }

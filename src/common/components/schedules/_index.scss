@@ -1,7 +1,5 @@
 .schedules-modal {
   .modal-body {
-
-
     .dialog-content {
       height: 500px;
       overflow: auto;
@@ -10,6 +8,8 @@
         .schedules-list-body {
           .schedules-list-item {
             @include entry-list-item;
+
+            margin: 0 0 20px 0;
 
             .item-body {
               .item-image {
@@ -31,6 +31,10 @@
               .btn-controls {
                 .btn-move {
                   margin-right: 20px;
+                }
+
+                .btn-delete {
+                  margin-right: 10px;
                 }
 
                 .btn-move, .btn-delete {
