@@ -811,6 +811,7 @@
   },
   "updater": {
     "new-version-available": "Új verzió elérhető",
+    "download": "Download",
     "update": "Frissítés",
     "dismiss": "Elvetés",
     "downloading": "Új verzió letöltése...",
