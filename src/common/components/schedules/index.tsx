@@ -210,18 +210,23 @@ export class Schedules extends Component<Props, State> {
 
         this.stateSet({loading: true});
         getSchedules(activeUser.username).then(items => {
-            this.stateSet({items, loading: false});
+            this.stateSet({items: this.sort(items), loading: false});
         }).catch(() => {
             this.stateSet({loading: false});
             error(_t('g.server-error'));
         })
     }
 
+    sort = (items: Schedule[]) =>
+        items.sort((a, b) => {
+            return new Date(b.schedule).getTime() > new Date(a.schedule).getTime() ? 1 : -1;
+        });
+
     delete = (item: Schedule) => {
         const {activeUser} = this.props;
 
         deleteSchedule(activeUser.username, item._id).then((resp) => {
-            this.stateSet({items: resp});
+            this.stateSet({items: this.sort(resp)});
         }).catch(() => {
             error(_t('g.server-error'));
         })
