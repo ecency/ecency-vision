@@ -5,11 +5,17 @@ import {createBrowserHistory, createLocation} from "history";
 
 import {Drafts} from './index';
 
-import {globalInstance, activeUserInstance} from "../../helper/test-helper";
+import {globalInstance, activeUserInstance, fullAccountInstance, communityInstance1} from "../../helper/test-helper";
 
 const allOver = () => new Promise((resolve) => setImmediate(resolve));
 
 let TEST_MODE = 0
+
+jest.mock("../../api/bridge", () => ({
+    getCommunity: () => new Promise((resolve) => {
+        resolve(communityInstance1);
+    })
+}));
 
 jest.mock("../../api/private", () => ({
     getDrafts: () =>
@@ -53,13 +59,15 @@ jest.mock("moment", () => () => ({
     format: (f: string, s: string) => "2020-01-01 23:12:00",
 }));
 
+const activeUser = {...activeUserInstance, data: fullAccountInstance};
+
 
 it('(1) Default render.', async () => {
     const props = {
         history: createBrowserHistory(),
         location: createLocation({}),
         global: globalInstance,
-        activeUser: {...activeUserInstance},
+        activeUser: {...activeUser},
         onHide: () => {
         }
     };
@@ -69,14 +77,14 @@ it('(1) Default render.', async () => {
     expect(component.toJSON()).toMatchSnapshot();
 });
 
-/*it('(2) Test with data.', async () => {
+it('(2) Test with data.', async () => {
     TEST_MODE = 1;
 
     const props = {
         history: createBrowserHistory(),
         location: createLocation({}),
         global: globalInstance,
-        activeUser: {...activeUserInstance},
+        activeUser: {...activeUser},
         onHide: () => {
         }
     };
@@ -84,4 +92,4 @@ it('(1) Default render.', async () => {
     const component = renderer.create(<Drafts {...props}/>);
     await allOver();
     expect(component.toJSON()).toMatchSnapshot();
-});*/
+});
