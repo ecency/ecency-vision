@@ -811,6 +811,7 @@
   },
   "updater": {
     "new-version-available": "Tersedia versi terbaru",
+    "download": "Download",
     "update": "Pembaruan",
     "dismiss": "Memberhentikan",
     "downloading": "Sedang mengunduh versi terbaru...",
