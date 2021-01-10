@@ -323,7 +323,7 @@ class ProposalDetailPage extends Component<DetailProps, DetailState> {
         }
 
         if (!proposal || !entry) {
-            return <NotFound/>;
+            return NotFound({...this.props});
         }
 
         const renderedBody = {__html: renderPostBody(entry.body, false, global.canUseWebp)};

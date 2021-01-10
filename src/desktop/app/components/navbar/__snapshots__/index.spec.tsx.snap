@@ -141,7 +141,7 @@ exports[`(1) Default render 1`] = `
       className="switch-language"
     >
       <div
-        className="custom-dropdown float-left"
+        className="custom-dropdown float-right"
         onClick={[Function]}
         onMouseEnter={[Function]}
         onMouseLeave={[Function]}
@@ -374,7 +374,7 @@ Array [
         className="switch-language"
       >
         <div
-          className="custom-dropdown float-left"
+          className="custom-dropdown float-right"
           onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
@@ -637,7 +637,7 @@ exports[`(3) Night Theme 1`] = `
       className="switch-language"
     >
       <div
-        className="custom-dropdown float-left"
+        className="custom-dropdown float-right"
         onClick={[Function]}
         onMouseEnter={[Function]}
         onMouseLeave={[Function]}
@@ -869,7 +869,7 @@ exports[`(4) With active user 1`] = `
       className="switch-language"
     >
       <div
-        className="custom-dropdown float-left"
+        className="custom-dropdown float-right"
         onClick={[Function]}
         onMouseEnter={[Function]}
         onMouseLeave={[Function]}

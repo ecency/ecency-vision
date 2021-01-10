@@ -6,6 +6,8 @@ import {Global} from "../../../../common/store/global/types";
 
 import {_t} from "../../../../common/i18n";
 
+import {getOperatingSystem} from "../../../../common/util/platform";
+
 interface Props {
     global: Global;
     dismissNewVersion: () => void;
@@ -61,7 +63,8 @@ export default class Updater extends Component<Props, State> {
     };
 
     begin = () => {
-        window["ipcRenderer"]?.send('download-update');
+        const {global} = this.props;
+        window["ipcRenderer"]?.send('download-update', global.newVersion);
     };
 
     dismiss = () => {
@@ -85,15 +88,32 @@ export default class Updater extends Component<Props, State> {
             return null;
         }
 
+        // Windows
+        if (getOperatingSystem(window.navigator.userAgent) === "WindowsOS") {
+            return <div className="updater">
+                <p className="info-text">
+                    {_t("updater.new-version-available")}{" "}
+                    <span className="release-name">{global.newVersion}</span>
+                </p>
+                <Button className="btn-update" onClick={this.begin}>
+                    {_t("updater.download")}
+                </Button>
+
+                <Button className="btn-dismiss" onClick={this.dismiss}>
+                    {_t("updater.dismiss")}
+                </Button>
+            </div>
+        }
+
+
         const {downloading, completed, progress} = this.state;
         const percent = Math.ceil(progress);
-
 
         return <div className="updater">
             {(!downloading && !completed) && (
                 <>
                     <p className="info-text">
-                        {_t("updater.new-version-available")}
+                        {_t("updater.new-version-available")}{" "}
                         <span className="release-name">{global.newVersion}</span>
                     </p>
                     <Button className="btn-update" onClick={this.begin}>

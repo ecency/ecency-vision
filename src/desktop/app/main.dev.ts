@@ -15,6 +15,7 @@ import {app, BrowserWindow, ipcMain, shell} from 'electron';
 import {autoUpdater} from 'electron-updater';
 import MenuBuilder from './menu';
 
+const osPlatform = require("os").platform();
 
 let mainWindow: BrowserWindow | null = null;
 
@@ -206,7 +207,15 @@ autoUpdater.on('update-downloaded', () => {
     mainWindow!.webContents.send('update-downloaded');
 });
 
-ipcMain.on('download-update', () => {
+ipcMain.on('download-update', (event: any, version: any) => {
+
+    // Windows
+    if (osPlatform === "win32") {
+        const u = `https://github.com/ecency/ecency-vision/releases/download/${version}/Ecency-Setup-${version}.exe`;
+        shell.openExternal(u);
+        return;
+    }
+
     autoUpdater.downloadUpdate();
     mainWindow!.webContents.send('download-started');
 });

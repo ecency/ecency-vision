@@ -189,7 +189,7 @@ class CommunityPage extends Component<Props, State> {
         const account = accounts.find((x) => x.name === name);
 
         if (!community || !account) {
-            return <NotFound/>;
+            return NotFound({...this.props});
         }
 
         //  Meta config
@@ -222,11 +222,11 @@ class CommunityPage extends Component<Props, State> {
                         })}
                     </div>
                     <span itemScope={true} itemType="http://schema.org/Organization">
-                        <meta itemProp="name" content={community.title.trim() || community.name} />
+                        <meta itemProp="name" content={community.title.trim() || community.name}/>
                         <span itemProp="logo" itemScope={true} itemType="http://schema.org/ImageObject">
                             <meta itemProp="url" content={image}/>
                         </span>
-                        <meta itemProp="url" content={`${defaults.base}${url}`} />
+                        <meta itemProp="url" content={`${defaults.base}${url}`}/>
                     </span>
                     <div className="content-side">
                         {CommunityMenu({
