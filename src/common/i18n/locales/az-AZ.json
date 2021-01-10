@@ -811,6 +811,7 @@
   },
   "updater": {
     "new-version-available": "Yeni versiya əlçatandır",
+    "download": "Download",
     "update": "Yenilə",
     "dismiss": "Bağla",
     "downloading": "Yeni versiya endirilir...",
