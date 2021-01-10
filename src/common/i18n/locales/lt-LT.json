@@ -811,6 +811,7 @@
   },
   "updater": {
     "new-version-available": "Galima nauja versija",
+    "download": "Download",
     "update": "Atnaujinimas",
     "dismiss": "Atmesti",
     "downloading": "Siunčiama nauja versija...",
