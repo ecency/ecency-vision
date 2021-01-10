@@ -811,6 +811,7 @@
   },
   "updater": {
     "new-version-available": "Νέα έκδοση διαθέσιμη",
+    "download": "Download",
     "update": "Ενημέρωση",
     "dismiss": "Παράβλεψη",
     "downloading": "Λήψη νέας έκδοσης...",
