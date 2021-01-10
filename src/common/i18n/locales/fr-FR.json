@@ -811,6 +811,7 @@
   },
   "updater": {
     "new-version-available": "Une nouvelle version est disponible",
+    "download": "Download",
     "update": "Mettre à jour",
     "dismiss": "Ignorer",
     "downloading": "Téléchargement de la nouvelle version...",
