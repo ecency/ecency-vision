@@ -811,6 +811,7 @@
   },
   "updater": {
     "new-version-available": "Nova verzija je dostupna",
+    "download": "Download",
     "update": "Ažuriraj",
     "dismiss": "Odbaci",
     "downloading": "Preuzimanje nove verzije...",
