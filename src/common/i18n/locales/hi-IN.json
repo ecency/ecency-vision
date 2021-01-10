@@ -811,6 +811,7 @@
   },
   "updater": {
     "new-version-available": "नयी संस्करण उपलब्ध है!",
+    "download": "Download",
     "update": "नवनीकरण",
     "dismiss": "ख़ारिज करें",
     "downloading": "नया संस्करण डाउनलोड हो रहा है...",
