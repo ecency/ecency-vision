@@ -53,6 +53,11 @@ interface Props {
 export default class NotificationHandler extends Component<Props> {
     componentDidMount() {
         this.nwsConnect();
+
+        const {activeUser, fetchUnreadNotificationCount} = this.props;
+        if (activeUser) {
+            fetchUnreadNotificationCount();
+        }
     }
 
     componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<{}>, snapshot?: any) {

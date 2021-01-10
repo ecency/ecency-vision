@@ -117,18 +117,21 @@ export class ListItem extends Component<ItemProps> {
                     </div>
                 </div>
                 <div className="item-controls">
-                    <PopoverConfirm onConfirm={() => {
-                        deleteFn(draft);
-                    }}>
-                        <a className="btn-delete">
-                            <Tooltip content={_t("g.delete")}><span>{deleteForeverSvg}</span></Tooltip>
+                    <span/>
+                    <div className="btn-controls">
+                        <a className="btn-edit" onClick={() => {
+                            editFn(draft);
+                        }}>
+                            <Tooltip content={_t("g.edit")}><span>{pencilOutlineSvg}</span></Tooltip>
                         </a>
-                    </PopoverConfirm>
-                    <a className="btn-edit" onClick={() => {
-                        editFn(draft);
-                    }}>
-                        <Tooltip content={_t("g.edit")}><span>{pencilOutlineSvg}</span></Tooltip>
-                    </a>
+                        <PopoverConfirm onConfirm={() => {
+                            deleteFn(draft);
+                        }}>
+                            <a className="btn-delete">
+                                <Tooltip content={_t("g.delete")}><span>{deleteForeverSvg}</span></Tooltip>
+                            </a>
+                        </PopoverConfirm>
+                    </div>
                 </div>
             </div>
         </div>
