@@ -181,7 +181,9 @@
     "comment-entry-go-root": "Vaata kogu konteksti",
     "comment-entry-go-parent": "Vaata eelmist kommentaari",
     "show-history": "Näita muutmise ajalugu",
-    "hidden-warning": "See postitus on madala hinnangu tõttu peidetud."
+    "hidden-warning": "See postitus on madala hinnangu tõttu peidetud.",
+    "address-copy": "Copy post address",
+    "address-copied": "Post address copied to clipboard."
   },
   "edit-history": {
     "title": "Muudatuste ajalugu",
