@@ -181,7 +181,9 @@
     "comment-entry-go-root": "Teljes kontextus megtekintése",
     "comment-entry-go-parent": "Direkt felmenő megtekintése",
     "show-history": "Szerkesztési előzmények megjelenítése",
-    "hidden-warning": "Ez a bejegyzés alacsony reputáció miatt rejtett."
+    "hidden-warning": "Ez a bejegyzés alacsony reputáció miatt rejtett.",
+    "address-copy": "Copy post address",
+    "address-copied": "Post address copied to clipboard."
   },
   "edit-history": {
     "title": "Szerkesztési előzmények",
