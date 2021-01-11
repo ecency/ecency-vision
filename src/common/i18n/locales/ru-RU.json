@@ -181,7 +181,9 @@
     "comment-entry-go-root": "Полный контекст",
     "comment-entry-go-parent": "Просмотр прямого родителя",
     "show-history": "История",
-    "hidden-warning": "Скрыто из-за низкого рейтинга."
+    "hidden-warning": "Скрыто из-за низкого рейтинга.",
+    "address-copy": "Copy post address",
+    "address-copied": "Post address copied to clipboard."
   },
   "edit-history": {
     "title": "Править Историю",
