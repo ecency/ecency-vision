@@ -811,7 +811,7 @@
   },
   "updater": {
     "new-version-available": "Доступна нова версія",
-    "download": "Download",
+    "download": "Завантажити",
     "update": "Оновити",
     "dismiss": "Відхилити",
     "downloading": "Завантаження нової версії...",
