@@ -182,8 +182,8 @@
     "comment-entry-go-parent": "Lihat sumber utamanya",
     "show-history": "Tampilkan riwayat edit",
     "hidden-warning": "Posting ini tersembunyi dikarenakan peringkat rendah.",
-    "address-copy": "Copy post address",
-    "address-copied": "Post address copied to clipboard."
+    "address-copy": "Salin alamat postingan",
+    "address-copied": "Tempel alamat yang disalin ke papan klip."
   },
   "edit-history": {
     "title": "Riwayat Penyuntingan",
@@ -560,7 +560,7 @@
     "title-placeholder": "Judul",
     "body-placeholder": "Konten Postingan",
     "reward": "Reward",
-    "reward-hint": "Tetapkan rasio imbalan penulis untuk token cair dan yang dipertaruhkan",
+    "reward-hint": "Tetapkan rasio imbalan penulis untuk token cair dan yang disimpan",
     "reward-default": "Default 50% / 50%",
     "reward-sp": "Power Up 100%",
     "reward-dp": "Menolak pembayaran",
@@ -813,7 +813,7 @@
   },
   "updater": {
     "new-version-available": "Tersedia versi terbaru",
-    "download": "Download",
+    "download": "Unduh",
     "update": "Pembaruan",
     "dismiss": "Memberhentikan",
     "downloading": "Sedang mengunduh versi terbaru...",
