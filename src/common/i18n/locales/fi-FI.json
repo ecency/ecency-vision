@@ -182,8 +182,8 @@
     "comment-entry-go-parent": "Näytä vanhempi",
     "show-history": "Näytä muokkaushistoria",
     "hidden-warning": "Tämä viesti oli piilotettu alhaisten arvostelujen vuoksi.",
-    "address-copy": "Copy post address",
-    "address-copied": "Post address copied to clipboard."
+    "address-copy": "Kopioi osoite",
+    "address-copied": "Osoite kopioitu leikepöydälle."
   },
   "edit-history": {
     "title": "Muokkaushistoria",
