@@ -171,7 +171,7 @@ class SearchPage extends Component<PageProps, State> {
 
                     {results.length > 0 && (
                         <div className="search-list">
-                            {results.map(res => <Fragment key={res.permlink}>
+                            {results.map(res => <Fragment key={`${res.author}-${res.permlink}`}>
                                 {SearchListItem({...this.props, res: res})}
                             </Fragment>)}
                         </div>
