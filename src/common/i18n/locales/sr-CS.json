@@ -181,7 +181,9 @@
     "comment-entry-go-root": "Pogledaj ceo kontekst",
     "comment-entry-go-parent": "Pogledaj nadređeni komentar",
     "show-history": "Prikaži istoriju uređivanja",
-    "hidden-warning": "Ova objava je sakrivena zbog niske ocene."
+    "hidden-warning": "Ova objava je sakrivena zbog niske ocene.",
+    "address-copy": "Copy post address",
+    "address-copied": "Post address copied to clipboard."
   },
   "edit-history": {
     "title": "Uredi istoriju",
