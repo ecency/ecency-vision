@@ -181,7 +181,9 @@
     "comment-entry-go-root": "Lihat konteks lengkapnya",
     "comment-entry-go-parent": "Lihat sumber utamanya",
     "show-history": "Tampilkan riwayat edit",
-    "hidden-warning": "Posting ini tersembunyi dikarenakan peringkat rendah."
+    "hidden-warning": "Posting ini tersembunyi dikarenakan peringkat rendah.",
+    "address-copy": "Copy post address",
+    "address-copied": "Post address copied to clipboard."
   },
   "edit-history": {
     "title": "Riwayat Penyuntingan",
