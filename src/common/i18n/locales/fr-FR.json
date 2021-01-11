@@ -181,7 +181,9 @@
     "comment-entry-go-root": "Voir le contexte entier",
     "comment-entry-go-parent": "Voir le message parent",
     "show-history": "Voir l'historique de modifications",
-    "hidden-warning": "Ce message a été masqué en raison de notes faibles."
+    "hidden-warning": "Ce message a été masqué en raison de notes faibles.",
+    "address-copy": "Copy post address",
+    "address-copied": "Post address copied to clipboard."
   },
   "edit-history": {
     "title": "Modifier l'historique",
