@@ -181,7 +181,9 @@
     "comment-entry-go-root": "Vezi contextul complet",
     "comment-entry-go-parent": "Vizualizează postarea principală",
     "show-history": "Arată istoria modificărilor",
-    "hidden-warning": "Această postare a fost ascunsă din cauza ratingului scăzut."
+    "hidden-warning": "Această postare a fost ascunsă din cauza ratingului scăzut.",
+    "address-copy": "Copy post address",
+    "address-copied": "Post address copied to clipboard."
   },
   "edit-history": {
     "title": "Istoric modificări",
