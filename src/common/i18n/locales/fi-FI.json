@@ -811,7 +811,7 @@
   },
   "updater": {
     "new-version-available": "Uusi versio on saatavilla",
-    "download": "Download",
+    "download": "Lataa",
     "update": "Päivitä",
     "dismiss": "Hylkää",
     "downloading": "Ladataan uutta versiota...",
