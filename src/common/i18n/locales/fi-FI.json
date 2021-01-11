@@ -181,7 +181,9 @@
     "comment-entry-go-root": "Katso kaikki",
     "comment-entry-go-parent": "Näytä vanhempi",
     "show-history": "Näytä muokkaushistoria",
-    "hidden-warning": "Tämä viesti oli piilotettu alhaisten arvostelujen vuoksi."
+    "hidden-warning": "Tämä viesti oli piilotettu alhaisten arvostelujen vuoksi.",
+    "address-copy": "Copy post address",
+    "address-copied": "Post address copied to clipboard."
   },
   "edit-history": {
     "title": "Muokkaushistoria",
