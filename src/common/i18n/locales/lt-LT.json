@@ -181,7 +181,9 @@
     "comment-entry-go-root": "Peržiūrėti visą kontekstą",
     "comment-entry-go-parent": "Peržiūrėti pirminį",
     "show-history": "Rodyti redagavimo istoriją",
-    "hidden-warning": "Įrašas buvo paslėptas dėl per žemo reitingo."
+    "hidden-warning": "Įrašas buvo paslėptas dėl per žemo reitingo.",
+    "address-copy": "Copy post address",
+    "address-copied": "Post address copied to clipboard."
   },
   "edit-history": {
     "title": "Redagavimo Istorija",
