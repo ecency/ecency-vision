@@ -181,7 +181,9 @@
     "comment-entry-go-root": "Ver o contexto completo",
     "comment-entry-go-parent": "Ver o comentário relacionado",
     "show-history": "Mostrar histórico de edição",
-    "hidden-warning": "Esta publicação foi ocultada devido a baixas classificações."
+    "hidden-warning": "Esta publicação foi ocultada devido a baixas classificações.",
+    "address-copy": "Copiar endereço do post",
+    "address-copied": "Endereço do post copiado."
   },
   "edit-history": {
     "title": "Editar Histórico",
