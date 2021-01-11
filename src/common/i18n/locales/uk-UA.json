@@ -181,7 +181,9 @@
     "comment-entry-go-root": "Переглянути повний контекст",
     "comment-entry-go-parent": "Дивитись батьківський коментар",
     "show-history": "Показати історію редагування",
-    "hidden-warning": "Цей допис було приховано через низький рейтинг."
+    "hidden-warning": "Цей допис було приховано через низький рейтинг.",
+    "address-copy": "Copy post address",
+    "address-copied": "Post address copied to clipboard."
   },
   "edit-history": {
     "title": "Редагувати історію",
