@@ -181,7 +181,9 @@
     "comment-entry-go-root": "Tingnan ang buong konteksto",
     "comment-entry-go-parent": "Tingnan ang direktang puno",
     "show-history": "Ipakita ang kasaysayan ng mga binago",
-    "hidden-warning": "Ang post na ito na nakatago dahil sa mababang antas ng katayuan."
+    "hidden-warning": "Ang post na ito na nakatago dahil sa mababang antas ng katayuan.",
+    "address-copy": "Copy post address",
+    "address-copied": "Post address copied to clipboard."
   },
   "edit-history": {
     "title": "Baguhin ang Kasaysayan",
