@@ -28,14 +28,14 @@ const handleClick = (e: Event) => {
 
             // make sure route in app routes
             if (Object.values(routes).filter(x => x === route)) {
-                history!.push(route);
+                history!.push(href);
 
                 // scroll to anchor element
                 const el = document.getElementById(anchor);
                 if (el) {
                     setTimeout(() => {
                         el.scrollIntoView();
-                    }, 300);
+                    }, 400);
                 }
             }
         }
