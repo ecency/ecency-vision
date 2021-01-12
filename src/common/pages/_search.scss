@@ -1,6 +1,54 @@
 .search-page {
   display: block;
 
+  @media (min-width: $md-break) {
+    display: flex;
+    margin-bottom: 0;
+    flex-direction: row;
+    height: calc(100% - 104px) !important;
+
+    .row {
+      flex-grow: 1;
+
+      .col-section-holder {
+        display: flex;
+        height: 100%;
+
+        .row-side {
+          height: 100%;
+          flex-direction: row;
+          display: flex;
+          justify-content: space-between;
+
+          .col-section {
+            display: flex;
+            height: 32%;
+
+            &:not(:last-child) {
+              margin-bottom: 3.5%;
+            }
+          }
+        }
+      }
+    }
+
+    .col-section-holder, .col-section {
+      .card {
+        flex-grow: 1;
+        display: flex;
+
+        .card-body {
+          overflow: auto;
+        }
+      }
+    }
+  }
+}
+
+/*
+.search-page {
+  display: block;
+
   .search-info {
     text-align: center;
     padding-bottom: 6px;
@@ -27,3 +75,4 @@
 
   }
 }
+*/

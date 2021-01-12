@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 
 import queryString from "query-string";
 
-import {Form, FormControl} from "react-bootstrap";
+import {Form, FormControl, Row, Col} from "react-bootstrap";
 
 import numeral from "numeral";
 
@@ -16,12 +16,14 @@ import LinearProgress from "../components/linear-progress";
 import ScrollToTop from "../components/scroll-to-top";
 import DetectBottom from "../components/detect-bottom";
 import SearchListItem from "../components/search-list-item";
+import SearchComment from "../components/search-comment";
 
 import {search, SearchResult} from "../api/private";
 
 import {_t} from "../i18n";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
+import FullHeight from "../components/full-height";
 
 interface State {
     q: string;
@@ -133,7 +135,7 @@ class SearchPage extends Component<PageProps, State> {
         return (
             <>
                 <Meta {...metaProps} />
-                <ScrollToTop/>
+                <FullHeight/>
                 <Theme global={this.props.global}/>
                 {global.isElectron ?
                     NavBarElectron({
@@ -141,44 +143,46 @@ class SearchPage extends Component<PageProps, State> {
                     }) :
                     NavBar({...this.props})}
                 <div className="app-content search-page">
-                    {(() => {
-                        if (hits === -1) {
-                            return null;
-                        }
 
-                        if (hits === 0) {
-                            return <div className="search-info">
-                                <div className="result-count">
-                                    {_t("search-page.no-result")}
-                                </div>
-                            </div>
-                        }
+                    <Row>
+                        <Col md="8" className="col-section-holder">
+                            <SearchComment {...this.props} />
+                        </Col>
+                        <Col md="4" className="col-section-holder">
+                            <Row className="row-side">
+                                <Col xs="12" className="col-section">
+                                    <div className="card">
+                                        <div className="card-header">
+                                            People
+                                        </div>
+                                        <div className="card-body">
 
-                        return <div className="search-info">
-                            <div className="result-count">
-                                {_t("search-page.n-results-for-q", {n: numeral(hits).format('0,0')})}
-                            </div>
-                            <div className="sort-by">
-                                <div className="label">{_t("search-page.sort-by")}</div>
-                                <Form.Control as="select" value={sort} onChange={this.sortChanged}>
-                                    {["popularity", "relevance", "newest"].map(s => {
-                                        return <option value={s} key={s}> {_t(`search-page.sort-${s}`)}</option>
-                                    })}
-                                </Form.Control>
-                            </div>
-                        </div>
-                    })()}
+                                        </div>
+                                    </div>
+                                </Col>
+                                <Col xs="12" className="col-section">
+                                    <div className="card">
+                                        <div className="card-header">
+                                            Communities
+                                        </div>
+                                        <div className="card-body">
 
-                    {results.length > 0 && (
-                        <div className="search-list">
-                            {results.map(res => <Fragment key={`${res.author}-${res.permlink}`}>
-                                {SearchListItem({...this.props, res: res})}
-                            </Fragment>)}
-                        </div>
-                    )}
+                                        </div>
+                                    </div>
+                                </Col>
+                                <Col xs="12" className="col-section">
+                                    <div className="card">
+                                        <div className="card-header">
+                                            Topics
+                                        </div>
+                                        <div className="card-body">
 
-                    {inProgress && <LinearProgress/>}
-                    <DetectBottom onBottom={this.bottomReached}/>
+                                        </div>
+                                    </div>
+                                </Col>
+                            </Row>
+                        </Col>
+                    </Row>
                 </div>
             </>
         );
