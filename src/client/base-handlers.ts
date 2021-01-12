@@ -4,6 +4,8 @@ import {history} from "../common/store";
 
 import routes from "../common/routes";
 
+import {pathToRegexp} from "path-to-regexp";
+
 // Global drag&drop
 const handleDragOver = (e: DragEvent) => {
     if (!(e.target && e.dataTransfer)) {
@@ -23,19 +25,41 @@ const handleClick = (e: Event) => {
     if (el.tagName === "A") {
         const href = el.getAttribute("href");
         if (href && href.startsWith("/") && href.indexOf("#") !== -1) {
-            e.preventDefault();
             const [route, anchor] = href.split("#");
 
-            // make sure route in app routes
-            if (Object.values(routes).filter(x => x === route)) {
-                history!.push(href);
+            // make sure link matches with one of app routes
+            if (Object.values(routes).find(p => pathToRegexp(p).test(route))) {
+                e.preventDefault();
+
+                let delay = 100;
+
+                if (history!.location.pathname !== route) {
+                    history!.push(href);
+                    delay = 400;
+                }
 
                 // scroll to anchor element
                 const el = document.getElementById(anchor);
                 if (el) {
                     setTimeout(() => {
                         el.scrollIntoView();
-                    }, 400);
+                    }, delay);
+                }
+            }
+        }
+    }
+
+    // Handle links in static pages. (faq etc...)
+    if (el.tagName === "A") {
+        if (el.classList.contains("push-link")) {
+            e.preventDefault();
+            const href = el.getAttribute("href");
+            if (href && href.startsWith("/")) {
+
+                // make sure link matches with one of app routes
+                if (Object.values(routes).find(p => pathToRegexp(p).test(href))) {
+                    e.preventDefault();
+                    history!.push(href);
                 }
             }
         }
