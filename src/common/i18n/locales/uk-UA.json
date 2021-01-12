@@ -27,7 +27,7 @@
     "off": "Вимкнути",
     "yes": "Так",
     "no": "Ні",
-    "done": "Done"
+    "done": "Виконано"
   },
   "confirm": {
     "title": "Ви впевнені?",
@@ -61,7 +61,7 @@
     "header-community": "Спільноти"
   },
   "switch-lang": {
-    "contributors": "Contributors"
+    "contributors": "Учасники перекладу"
   },
   "user-nav": {
     "wallet": "Гаманець",
@@ -73,13 +73,13 @@
     "gallery": "Галерея",
     "drafts": "Чернетки",
     "bookmarks": "Закладки",
-    "schedules": "Schedules",
+    "schedules": "За розкладом",
     "logout": "Вийти",
-    "vote-power": "Vote Power:"
+    "vote-power": "Сила голосу:"
   },
   "intro": {
     "title": "Прагніть до величі",
-    "sub-title": "винагороджуються спільноти",
+    "sub-title": "спільноти отримують винагороди",
     "c2a": "Розпочати"
   },
   "login": {
@@ -181,7 +181,9 @@
     "comment-entry-go-root": "Переглянути повний контекст",
     "comment-entry-go-parent": "Дивитись батьківський коментар",
     "show-history": "Показати історію редагування",
-    "hidden-warning": "Цей допис було приховано через низький рейтинг."
+    "hidden-warning": "Цей допис було приховано через низький рейтинг.",
+    "address-copy": "Скопіювати адресу",
+    "address-copied": "Адреса скопійована в буфер обміну."
   },
   "edit-history": {
     "title": "Редагувати історію",
@@ -225,7 +227,7 @@
   },
   "community-cover": {
     "rewards": "винагороди",
-    "authors": "банери",
+    "authors": "дописувач(-ів)",
     "lang": "мова",
     "cover-image": "Зображення обкладинки спільноти",
     "cover-image-edit": "Редагувати зображення обкладинки",
@@ -261,7 +263,7 @@
     "title": "Спільноти",
     "description": "Найкраща онлайн, децентралізована, незмінна, громада винагороджується",
     "n-subscribers": "{{n}} учасників",
-    "n-authors": "{{n}} банерів",
+    "n-authors": "{{n}} дописувач(-ів)",
     "n-posts": "{{n}} дописів",
     "admins": "адміни:",
     "sort-hot": "Актуальне",
@@ -387,7 +389,7 @@
     "comment-desc": "Кожен коментар допомагає вам нарощувати аудиторію, зав'язує дружбу та приносить тобі 5 балів.",
     "checkin-desc": "Періодичний вхід на Ecency дає вам 0,25 балів та допомагає залишатися на зв'язку з друзями.",
     "vote-desc": "Голосуючи, ви винагороджуєте інших авторів і показуєте свою вдячність, а також отримуєте бали у кількості 0,01 x вагу голосу.",
-    "reblog-desc": "  Діліться з друзями постами, що вам подобаються, та отримуйте 1 бал.",
+    "reblog-desc": "  Діліться з друзями дописами, ті що вам подобаються, та отримуйте 1 бал.",
     "login-desc": "При першій авторизації в додатку Ecency вам автоматично нараховується 100 балів.",
     "checkin-extra-desc": "Регулярне використання додатку дає вам шанс отримати ще 10 бонусних балів, будьте активнішим та отримуй більше.",
     "delegation-desc": "Ви можете заробити ~50 балів на день за кожну делегацію 1000HP.",
@@ -558,7 +560,7 @@
     "title-placeholder": "Заголовок",
     "body-placeholder": "Вміст допису",
     "reward": "Винагорода",
-    "reward-hint": "Set author reward ratio for liquid and staked tokens",
+    "reward-hint": "Встановіть коефіцієнт винагороди автора за ліквідністю та закладених токенах",
     "reward-default": "Стандарт 50% / 50%",
     "reward-sp": "Power Up 100%",
     "reward-dp": "Відмовитися від виплати",
@@ -573,14 +575,14 @@
     "clear": "Очистити",
     "published": "Допис опубліковано",
     "updated": "Допис оновлено",
-    "advanced": "Advanced",
-    "beneficiaries": "Beneficiaries",
-    "beneficiaries-hint": "Set beneficiaries to share author reward with other accounts",
-    "reblog": "Reblog",
-    "reblog-hint": "Auto share content to your blog",
-    "schedule": "Schedule",
-    "schedule-hint": "Auto publish content on specific time",
-    "scheduled": "Post scheduled"
+    "advanced": "Розширений",
+    "beneficiaries": "Бенефіціари (отримувачі)",
+    "beneficiaries-hint": "Налаштуйте бенефіціарів (отримувачів) аби ділитися винагородою з авторами інших обліковок. Наприклад: співавторський допис, ви можете чесно розділити винагороду з іншим автором",
+    "reblog": "Редопис",
+    "reblog-hint": "Автоматично публікувати вміст для вашого блогу",
+    "schedule": "Запланувати",
+    "schedule-hint": "Автоматично публікувати вміст в певний час",
+    "scheduled": "Допис заплановано"
   },
   "tag-selector": {
     "placeholder-empty": "Теги. Першим тегом є основна категорія, а наступні є для сортування.",
@@ -599,17 +601,17 @@
     "read-time-n-min": "~ {{n}} хв. читати"
   },
   "beneficiary-editor": {
-    "title": "Beneficiaries",
-    "btn-label": "Set Beneficiaries",
-    "btn-label-n": "Set Beneficiaries ({{n}})",
-    "username": "Username",
-    "reward": "Reward",
-    "user-error": "{{n}} is not a valid user.",
-    "user-exists-error": "{{n}} is already in the list"
+    "title": "Бенефіціари (отримувачі)",
+    "btn-label": "Встановити бенефіціарів (отримувачів)",
+    "btn-label-n": "Встановити бенефіціарів (отримувачів) ({{n}})",
+    "username": "Ім'я користувача",
+    "reward": "Винагорода",
+    "user-error": "{{n}} не є дійсним користувачем.",
+    "user-exists-error": "{{n}} вже в списку"
   },
   "post-scheduler": {
-    "title": "Schedule",
-    "btn-label": "Schedule"
+    "title": "Розклад",
+    "btn-label": "Розклад"
   },
   "notification": {
     "popup-title": "У вас є нове сповіщення",
@@ -695,7 +697,7 @@
     "proxy-active-description": "Ви встановили proxy. Якщо ви бажаєте знов увімкнути голосування вручну, будь ласка, зніміть proxy.",
     "proxy-active-current": "Ваш поточний проксі є",
     "proxy-active-btn-label": "Зняти проксі",
-    "proxy-votes-for": "@{{username}} votes for"
+    "proxy-votes-for": "@{{username}} голосів за"
   },
   "proposals": {
     "page-title": "Пропозиції",
@@ -725,8 +727,8 @@
     "title": "Чернетки"
   },
   "schedules": {
-    "title": "Scheduled Posts",
-    "move": "Move to drafts"
+    "title": "Заплановані дописи",
+    "move": "Перемістити до чернеток"
   },
   "bookmarks": {
     "title": "Закладки"
@@ -757,29 +759,29 @@
       "what-is-hive-header": "Що таке Hive блокчейн?",
       "what-is-hive-body": "<p>Hive - це блокчейн, розроблений як швидка, безоплатна, децентралізована, нецензурована платформа для додатків Web 3.0 із вбудованими функціями, де зацікавлені сторони можуть заробляти винагороду та стекаючи їх, інвестуючи, публікуючи, граючи в ігри, торгуючи - все без будь-якої середньої людини (децентралізована). Токени на блокчейні Hive під назвою HIVE, HIVE DOLLARS, HIVE POWER(сила).</p>",
       "what-is-difference-header": "У чому різниця між Ecency та іншими Hive інтерфейсами?",
-      "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\"/></p><p>The primary differences in all interfaces or applications are in their feature-set, use cases. Ecency offers website, mobile and desktop applications for ease of access and with best security in mind. Accessible, opensource and innovative, built and owned by users. Aspire for greatness!</p>",
+      "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\"/></p><p>Основні відмінності у всіх інтерфейсах або додатках полягають у їх наборі функцій та варіантах використання. Ecency пропонує веб-сайт, мобільні та комп'ютерні додатки для зручності доступу, та найкращого рівня безпеки. Доступний у відкритому джерелі, інноваційний, створений і належить користувачам. Прагніть величі!</p>",
       "why-choose-ecency-header": "Чому б я обрав Ecency?",
-      "why-choose-ecency-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjrzJAcJ4DvxvtqoPdzS9Aygf4MZ1PeE4goH6zWaeEFvafr9vGXWuou67Pbn44GweMyHV5DupM5q1cRvU85qdver?format=match&mode=fit\"/></p><p>Tailored feature set to empower you to create, inspire your audience and community. Ecency mobile application giving you on-go solution. With desktop app you are always sure to get uncensored content right from the blockchain, with website reach thousands of readers accross globe with best ranked content on search engines. State of art security measures so your keys will always stay encrypted and out of reach for ill-intentioned individuals. Fast and beautiful website, helps you to get discovered online and gain exposure for your content and gain loyal followers and readers. Build your community with Ecency today and take advantages of emerging blockchain technology and uncensored content, true free speech!</p>",
+      "why-choose-ecency-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjrzJAcJ4DvxvtqoPdzS9Aygf4MZ1PeE4goH6zWaeEFvafr9vGXWuou67Pbn44GweMyHV5DupM5q1cRvU85qdver?format=match&mode=fit\"/></p><p>Спеціальний набір функцій, який дає вам можливість створювати, надихати свою аудиторію та спільноту. Мобільний додаток Ecency, дає вам змогу бути завжди у мережі. Застосовуючи комп'ютерний додаток, ви завжди будете отримувати вміст без цензури прямо з блокчейну, а веб-сайт охоплює тисячі читачів по всьому світу з найкращим рейтингом вмісту в пошукових системах. Сучасні заходи безпеки, завдяки яким ваші ключі завжди залишатимуться зашифрованими та недоступними для недоброзичливих людей. Швидкий та гарний веб-сайт, допомагає вам бути відкритим в Інтернеті та отримати доступ до вашого вмісту, отримати вірних послідовників та читачів. Створіть свою спільноту сьогодні разом з Ecency та скористайтеся перевагами технологій блокчейну, що розвиваються без цензурованого вмісту зі справжньою свободою слова!</p>",
       "how-ecency-works-header": "Як працює Ecency?",
-      "how-ecency-works-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjuZ3ksaZqEjfd9GadyKFE4bT7UP8qM1sF5W6U3cst4ekDsXfrQdcrjtdz6b5Ye2AfWNwGA5f8QqVXmed6NRfg1U?format=match&mode=fit\"/></p><p>Ecency stores and reads data from the blockchain, and thus data is accessible and uncensored. Ecency rewards content creators with built-in incentive mechanism of blockchain, with tokens (HIVE, HIVE DOLLARS, HIVE POWER) as well as Points. Tokens can be purchased and sold in major cryptocurrency exchanges (e.g. Binance, Bittrex). Points could be utilized within platform and traded for goods, services.</p>",
+      "how-ecency-works-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjuZ3ksaZqEjfd9GadyKFE4bT7UP8qM1sF5W6U3cst4ekDsXfrQdcrjtdz6b5Ye2AfWNwGA5f8QqVXmed6NRfg1U?format=match&mode=fit\"/></p><p>Ecency зберігає та зчитує дані з блокчейну, а отже, дані є доступними та без цензури. Ecency винагороджує творців вмісту вбудованим механізмом стимулювання блокчейну, жетонами (HIVE, HIVE ДОЛАР, HIVE СИЛА), а також балами. Токени можна купувати та продавати на основних біржах криптовалют (наприклад, Binance, Bittrex). Бали можна використовувати на платформі та торгувати за товари, послуги.</p>",
       "how-to-join-header": "Як приєднатися до Ecency?",
-      "how-to-join-body": "<p>Go to <a href=\"/signup?referral=ecency\">https://ecency.com/signup?referral=ecency</a> and create an account. After signup you will receive email with further instructions. Your password is your master key to your account. Please store it safely, if you loose your password, you ultimately loose access to your account and your funds. Accounts cannot be deactivated or deleted, account names can not be changed as well. The account along with all of its activity is permanently stored in the blockchain. Without password, accounts cannot be restored, store your keys safely.</p>",
+      "how-to-join-body": "<p>Перейдіть до <a href=\"/signup?referral=ecency\">https://ecency.com/?referral=ecency</a> і створіть обліковий запис. Після реєстрації ви отримаєте лист з подальшими інструкціями. Ваш головний ключ \"master key\" — це ваш головний ключ до вашого облікового запису. Будь ласка, збережіть його у безпечному місці, якщо ви втратите пароль, ви зрештою втратите доступ до своєї обліковки та коштів. Облікові записи не можуть бути деактивовані або видалені, імена облікових записів також не можуть бути змінені. Обліковий запис разом з усією його активністю назавжди зберігається в блокчейні. Без пароля облікові записи не можуть бути відновлені, зберігайте ключі безпечно.</p>",
       "how-to-signin-header": "Як увійти в Ecency?",
-      "how-to-signin-body": "<p><img src=\"https://images.ecency.com/p/7258xSVeJbKmTr9Z4jhbPhjS9pMWA2mTwBMDbXqk9G9wdMw2bwR4hXqRQt9S7UBFrBAWCYWddjn3G34ETv5KWB5KGmuZ8ixBB9oKHTFvjjnTkRLp4ttrFQtpgtNnRUEA9NtmyFmgyuuK4?format=match&mode=fit\"/></p><p>You can sign-in to Ecency by using your Username and Master password or by using Active Private Keys. We take security very seriously, that's why we never store your private keys, on mobile app they are encrypted with extra PIN code of your choice, on website they are never stored. You can also use <a href=\"https://hivesigner.com\">Hivesigner OAuth2</a> authentication service to easily login, manage and perform actions.</p>",
+      "how-to-signin-body": "<p><img src=\"https://images.ecency.com/p/7258xSVeJbKmTr9Z4jhbPhjS9pMWA2mTwBMDbXqk9G9wdMw2bwR4hXqRQt9S7UBFrBAWCYWddjn3G34ETv5KWB5KGmuZ8ixBB9oKHTFvjjnTkRLp4ttrFQtpgtNnRUEA9NtmyFmgyuuK4?format=match&mode=fit\"/></p><p>Ви можете увійти в Ecency, використовуючи своє ім’я користувача та головний пароль або за допомогою активних приватних ключів. Ми дуже серйозно ставимося до безпеки, тому ми ніколи не зберігаємо ваші приватні ключі у мобільному додатку, вони зашифровані додатковим PIN-кодом на ваш вибір, а на веб-сайті вони ніколи не зберігаються. Ви також можете використовувати <a href=\"https://hivesigner.com\">Hivesigner OAuth2</a> служба автентифікації для полегшеного входу з можливістю керувати та виконувати дії.</p>",
       "how-referrals-work-header": "Як працює реферальна система на Ecency?",
-      "how-referrals-work-body": "<p>Referral system is simple, you can invite your friends by adding your username in this link https://ecency.com/signup?referral=username and share it with your friends. Once your friends join Ecency and earn their first 250 Points, you will earn 100 Points. There is no limits on referrals and its reward.</p>",
+      "how-referrals-work-body": "<p>Реферальна система проста, ви можете запросити своїх друзів, додавши своє ім'я користувача в це джерело https://ecency.com/signup?referral=username та поділіться ним з друзями. Як тільки ваші друзі приєднаються до Ecency та отримують їхні перші 250 балів, то ви отримаєте 100 балів. Немає обмежень щодо рефералів та їх нагород.</p>",
       "what-is-points-header": "Що таке Ecency бали і як їх використовувати?",
       "what-is-points-body": "<p>Ecency Бали постійно видобувається та винагороджується усіх користувачів за різні соціальні види діяльності, які вони виконують на веб-сайті, мобільному або комп'ютерному додатку. Бали можна використовувати для підсилення вмісту, або можна навіть передати чи подарувати іншому користувачеві. Ви також можете придбати бали за допомогою наших мобільних додатків.</p>",
       "where-tokens-come-header": "Звідки беруться ці токени?",
-      "where-tokens-come-body": "<p><img src=\"https://images.ecency.com/p/7kq2TLHKEHhCCDwNZLfFLu7msWtbdFb7vZaJJ9Y13GAc18vfVNAj8ZctLWmsVfMCCFtwGdULbZKT89faeBymhPsySU5tp4RnvDsHz6ZBxXHWA4g34ck4LHnR2vGkqsHvjzhizhpV8K6JrQ4sy7cCgJQksUUYPKp4d9XbERHkjnZV3PTdhbiUZPYJ43RS8cQu2sEmUbAgqZExuYMGa46SDa4vCunH2w6oNpommW5L1CCdfwdgX5i9eCpcS5fHo4t8btjVE69edzrUN8anr6T3v8AFYHC?format=match&mode=fit\"/></p><p>The Hive network continually creates new digital tokens to reward content creators and curators. Some of the newly-created tokens are transferred to users who add value to platform by posting, commenting, and voting on other people's posts. The remainder is distributed to holders of HIVE POWER and the witnesses that secures the blockchain.</p>",
+      "where-tokens-come-body": "<p><img src=\"https://images.ecency.com/p/7kq2TLHKEHhCCDwNZLfFLu7msWtbdFb7vZaJJ9Y13GAc18vfVNAj8ZctLWmsVfMCCFtwGdULbZKT89faeBymhPsySU5tp4RnvDsHz6ZBxXHWA4g34ck4LHnR2vGkqsHvjzhizhpV8K6JrQ4sy7cCgJQksUUYPKp4d9XbERHkjnZV3PTdhbiUZPYJ43RS8cQu2sEmUbAgqZExuYMGa46SDa4vCunH2w6oNpommW5L1CCdfwdgX5i9eCpcS5fHo4t8btjVE69edzrUN8anr6T3v8AFYHC?format=match&mode=fit\"/></p><p>Мережа Hive постійно створює нові цифрові токени, щоб нагородити творців та кураторів вмісту. Деякі з новостворених токенів передаються користувачам, які додають цінності платформі, розміщуючи, коментуючи та голосуючи за дописи інших людей. Залишок розподіляється власникам HIVE СИЛИ та свідкам, які захищають блокчейн.</p>",
       "how-promotion-work-header": "Яким чином працює просування дописів?",
-      "how-promotion-work-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfoi6H93UHPFEEQutPvax8LP1XqGWMa9geug5SBEEhLUEHKVvSyBfzhrBm9J4uvmrn28AtPhmwcKx?format=match&mode=fit\"/></p><p>Promoting content on Ecency is very simple and easy. Ecency Points are used to promote content for 1, 2, 3, 7 or 14 days to get more exposure. Promoted posts are shuffled across the feeds to all users in mobile app, desktop app and website. There is no limit or restrictions, any post can be promoted to get more exposure and engagement. We hold right to remove posts from promotion list if it violates certain internet etiquette.</p>",
+      "how-promotion-work-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfoi6H93UHPFEEQutPvax8LP1XqGWMa9geug5SBEEhLUEHKVvSyBfzhrBm9J4uvmrn28AtPhmwcKx?format=match&mode=fit\"/></p><p>Сприяння вмісту на Ecency є найпростішим. Ecency бали використовуються для просування вмісту за 1, 2, 3, 7 чи 14 днів, щоб отримати більше впливу. Створені дописи перемішуються у стрічці, всім користувачам мобільного додатку, на Пк та на веб-сайті. Немає жодних обмежень, будь-який допис можна просувати для отримання більшої уваги аудиторії та їх залучення. Ми маємо право на видалення дописів зі списку просувань, якщо це порушує певний етикет Інтернету.</p>",
       "how-boosting-work-header": "Яким чином працює підсилення дописів?",
       "how-boosting-work-body": "<p>Бали можна використовувати для підсилення вмісту (дописів та коментарів). Запити на підсилення переглядаються вручну нашими модераторами та кураторами, що може зайняти до 24 годин. <p>В рамках перевірки якості, ми можемо розглянути: а) Вміст - оригінальний вміст, б) Не виявлено шахрайства, макботами, спостерігачами вуликів (hivewatchers) чи будь-якими іншими чорними списками тощо. в) Користувач не входить до чорного списку Ecency через жорстоку поведінку.</p>Підсилення не гарантує курації, якщо вміст не буде курований протягом 24 годин. Бали повертаються.</p>",
       "how-to-transfer-header": "Як переказувати токени блокчейну?",
       "how-to-transfer-body": "<p>Після входу, ви знайдете сторінку Гаманець в заголовку веб-сайту, в додатку для комп'ютера чи на сторінці профілю, нижня панель навігації в мобільному додатку. На сторінці гаманця ви можете розпочати передачу будь-якого токена, який ви утримуєте для іншого користувача або обмінні рахунки, клацніть на стрілці поруч з вашим балансом і знайдіть операції переказу. Переказ є незворотній, тому що вони зареєстровані на блокчейні, обов'язково впевніться у правильності імені отримувача (повернення коштів є технічно неможливим).</p>",
       "how-see-rewards-header": "Як можна поглянути на винагороди за допис?",
-      "how-see-rewards-body": "<p><img src=\"https://images.ecency.com/p/3W72119s5BjW4PvRk9nXBzqrPWMsMTjNrXDPFFf11iYhySeELMe77idrZHBPmyaqFX6CV72hBLB5qFhwVhGoAATydoFxAF7oCwBt1ztp6eS9r5us4pm7iN?format=match&mode=fit\"/></p><p>In Wallet page (in top header on website and desktop app, bottom navigation bar on mobile app), you can see Curation rewards (the rewards earned for upvoting posts and comments) and Author rewards (the rewards earned by your own posts and comments)</p><p>You can also view the same information for other users by visiting their wallet profile.</p>",
+      "how-see-rewards-body": "<p><img src=\"https://images.ecency.com/p/3W72119s5BjW4PvRk9nXBzqrPWMsMTjNrXDPFFf11iYhySeELMe77idrZHBPmyaqFX6CV72hBLB5qFhwVhGoAATydoFxAF7oCwBt1ztp6eS9r5us4pm7iN?format=match&mode=fit\"/></p><p>У розділі Гаманець (у верхньому куті праворуч на веб-сайті чи додатку для комп'ютера або в нижній панелі навігації у мобільному додатку) ви можете побачити винагороди за курацію (винагороди, отримані за голосування дописів, коментарів) та винагороди автора (винагороди, отримані за ваші власні публікації дописів та коментарів)</p><p>Ви також можете переглянути ту саму інформацію для інших користувачів, відвідавши їхній профіль гаманця.</p>",
       "how-dhf-work-header": "Як працює ДВФ (DHF)?",
       "how-dhf-work-body": "<p>Будь-хто може створити пропозицію і переконати спільноту проголосувати за неї, аби отримати фінансування. Перед створенням пропозиції, треба мати нормальний допис, він повинен бути опублікований у блокчейн і рекомендується зібрати відгуки перед створенням пропозиції. Створення пропозиції має більшу комісію за 10 HBD + 1 HBD за кожен день, це триває протягом 60 днів.</p><p>Коли пропозиція досягне певного порогу підрахованих голосів, вона почне отримувати кошти щогодини. Якщо пропозиція опускається нижче порогового значення, система зупинить фінансування цієї пропозиції. Ви можете голосувати за стільки пропозицій, за скільки забажаєте, і немає меж. Пропозицію не можна редагувати, але можна видалити/зняти, автором.</p>",
       "when-claim-rewards-header": "Коли я можу отримати винагороду?",
@@ -789,18 +791,18 @@
       "how-boost-account-header": "Як подати запит на підсилення обліковки?",
       "how-boost-account-body": "<p>Якщо ваша обліковка має мало (<a href=\"/faq#what-are-rc\">ресурсних кредитів</a>), ви можете запросити підсилення обліковки від Ecency. Ви отримаєте тимчасове делегування, яке повинно активізувати ваш обліковий запис, щоб ви могли виконувати більше дій в блокчейні. Ви можете знайти підсилення обліковки в опціях Балів.</p>",
       "what-spam-abuse-header": "Що вважається спамом чи зловживанням?",
-      "what-spam-abuse-body": "<p><img src=\"https://images.ecency.com/p/3jpR3paJ37V8XPrHkfZdMt57jY6pRt6zEt5iRJV9pSw4Mez3Hut8U6RWvWLA7cFYEa1bxveXeasNfZApzrcLYLx8cz84kBEKak1KkewE2ZqE1QRRkF4eqRH3vWVqZB9WuNbzE?format=match&mode=fit\"/></p><p><ul><li>Plagiarized posts or copied content.</li><li>Leaving nearly identical or materially similar comments on multiple posts.</li><li>Using tags that are unrelated to the post.</li><li>Threatening users with any type of physical violence.</li><li>Not citing sources when using someone else’s material.</li><li>Posting ‘not safe for work’ content without using the “nsfw” tag.</li><li>Scams or Fraudulent offers.</li></ul></p>",
+      "what-spam-abuse-body": "<p><img src=\"https://images.ecency.com/p/3jpR3paJ37V8XPrHkfZdMt57jY6pRt6zEt5iRJV9pSw4Mez3Hut8U6RWvWLA7cFYEa1bxveXeasNfZApzrcLYLx8cz84kBEKak1KkewE2ZqE1QRRkF4eqRH3vWVqZB9WuNbzE?format=match&mode=fit\"/></p><p><ul><li>Плагіат публікацій або скопійований вміст.</li><li> Залишення майже однакових або суттєво подібних коментарів до кількох публікацій. </li><li>Використання тегів, не пов’язаних із публікацією.</li><li>Загрожуючи користувачам будь-яким типом фізичного насильства. </li><li>Не цитування джерел при використанні чужого матеріалу. </li><li>Розміщення вмісту \"не безпечно для роботи\" без використання тегу \"nsfw\".</li><li>Шахрайство чи шахрайські пропозиції.</li></ul></p>",
       "can-link-post-header": "Чи можу я попросити додавання зворотного посилання на мій сайт від команди Ecency?",
-      "can-link-post-body": "<p>All the content on our site is created by our users and we don't modify or able to add backlinks. You are free to contact author of the post or <a href=\"/signup?referral=ecency\">Signup</a> to open your own blog and community, publish articles to create backlinks for free.</p>",
+      "can-link-post-body": "<p>Увесь вміст на нашому сайті створюється нашими користувачами, ми не змінюємо або ж не додаємо зворотні посилання. Ви можете зв'язатися з автором допису або ж <a href=\"/signup?referral=ecency\">зареєструйтеся</a>, щоб відкрити власний блог, спільноту аби публікувати статті, які створюватимуть посилання безкоштовно.</p>",
       "can-guest-post-header": "Чи може гість писати дописи на сайті?",
-      "can-guest-post-body": "<p>Posting on Ecency is simple and easy, <a href=\"/signup?referral=ecency\">Signup</a> to open your own blog and community, start posting your content.</p>",
-      "how-to-contribute-header": "How to contribute to the Ecency?",
-      "how-to-contribute-body": "<p>Our <a href=\"/contributors\">awesome contributors</a> helping us to shape Ecency. You can be part of this great movement, by joining our Translation team: <a href=\"https://translate-desktop.ecency.com\">Website</a>, <a href=\"https://translate-mobile.ecency.com\">Mobile</a> or by contributing with Ideas, Developing, Designing, Social media outreach skills. We try our best to support our contributors!</p>"
+      "can-guest-post-body": "<p>Писати дописи на Ecency легко та просто, треба тільки <a href=\"/signup?referral=ecency\">Зареєструватися</a>, щоб відкрити власний блог або створити спільноту, після чого зможете почати публікувати ваш вміст.</p>",
+      "how-to-contribute-header": "Як зробити свій внесок в Ecency?",
+      "how-to-contribute-body": "<p>Наші <a href=\"/contributors\">чудові ентузіасти</a>, які допомагають нам формувати Ecency. Ви можете стати частиною цього великого руху, приєднавшись до нашої команди перекладачів: <a href=\"https://translate-desktop.ecency.com\">Веб-сайт</a>, <a href=\"https://translate-mobile.ecency.com\">Мобільний додаток</a> або сприяти розвитку вашими ідеями, розробками, дизайном чи навичками соціальних медіа. Ми намагаємося зробити все, що в наших силах, щоб підтримати наших ентузіастів!</p>"
     }
   },
   "contributors": {
-    "title": "Contributors",
-    "description": "These great people contributed in one way or another to Ecency, we would like to thank them all. If you want to join our team by contributing with Translation, Ideas, Development, Designing, Social awareness, feel free to join. To learn more read our <a href=\"/faq#how-to-contribute\">FAQ</a>."
+    "title": "Учасники перекладу",
+    "description": "Ці великі люди так чи інакше сприяли Ecency, ми хотіли б подякувати їм усім. Якщо ви хочете приєднатися до нашої команди, зробивши свій внесок у Переклад чи можливо маєте ідеї для розвитку, приклад Дизайн чи Соціальна обізнаність, сміливо приєднуйтесь. Щоб дізнатись більше, читайте наші <a href=\"/faq#how-to-contribute\">ЧаПи</a>."
   },
   "context-menu": {
     "cut": "Вирізати",
@@ -811,6 +813,7 @@
   },
   "updater": {
     "new-version-available": "Доступна нова версія",
+    "download": "Завантажити",
     "update": "Оновити",
     "dismiss": "Відхилити",
     "downloading": "Завантаження нової версії...",

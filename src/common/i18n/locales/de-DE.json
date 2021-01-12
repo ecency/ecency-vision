@@ -181,7 +181,9 @@
     "comment-entry-go-root": "kompletten Inhalt anzeigen",
     "comment-entry-go-parent": "Übergeordneten Beitrag ansehen",
     "show-history": "Bearbeitungsverlauf ansehen",
-    "hidden-warning": "This post was hidden due to low ratings."
+    "hidden-warning": "This post was hidden due to low ratings.",
+    "address-copy": "Copy post address",
+    "address-copied": "Post address copied to clipboard."
   },
   "edit-history": {
     "title": "Verlauf bearbeiten",
@@ -811,6 +813,7 @@
   },
   "updater": {
     "new-version-available": "Neue Version verfügbar",
+    "download": "Download",
     "update": "Aktualisieren",
     "dismiss": "Verwerfen",
     "downloading": "Neue Version herunterladen...",

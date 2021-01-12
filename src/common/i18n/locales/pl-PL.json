@@ -181,7 +181,9 @@
     "comment-entry-go-root": "Zobacz pełny kontekst",
     "comment-entry-go-parent": "Zobacz bezpośredni nadrzędny",
     "show-history": "Pokaż Historię",
-    "hidden-warning": "Ten post został ukryty ze względu na niskie oceny."
+    "hidden-warning": "Ten post został ukryty ze względu na niskie oceny.",
+    "address-copy": "Copy post address",
+    "address-copied": "Post address copied to clipboard."
   },
   "edit-history": {
     "title": "Edytuj historię",
@@ -811,6 +813,7 @@
   },
   "updater": {
     "new-version-available": "Dostępna jest nowa wersja",
+    "download": "Download",
     "update": "Aktualizuj",
     "dismiss": "Dismiss",
     "downloading": "Pobieranie nowej wersji...",

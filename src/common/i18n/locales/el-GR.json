@@ -27,7 +27,7 @@
     "off": "Ανενεργό",
     "yes": "Ναι",
     "no": "Όχι",
-    "done": "Done"
+    "done": "Έτοιμο"
   },
   "confirm": {
     "title": "Είστε σίγουρος;",
@@ -61,7 +61,7 @@
     "header-community": "Κοινότητες"
   },
   "switch-lang": {
-    "contributors": "Contributors"
+    "contributors": "Συνεισφέροντες"
   },
   "user-nav": {
     "wallet": "Πορτοφόλι",
@@ -73,9 +73,9 @@
     "gallery": "Γκαλερί",
     "drafts": "Πρόχειρα",
     "bookmarks": "Σελιδοδείκτες",
-    "schedules": "Schedules",
+    "schedules": "Χρονοδιαγράμματα",
     "logout": "Αποσύνδεση",
-    "vote-power": "Vote Power:"
+    "vote-power": "Δύναμη ψήφου:"
   },
   "intro": {
     "title": "Φιλοδοξία στο μεγαλείο",
@@ -119,7 +119,7 @@
     "title": "Προτεινόμενα"
   },
   "entry-list-item": {
-    "reblogged": "{{n}} reblogged",
+    "reblogged": "{{n}} αναδημοσιεύτηκε",
     "promoted": "προωθούμενα",
     "pinned": "Καρφιτσωμένη Δημοσίευση",
     "replies": "1 απάντηση. Κάντε κλικ για να απαντήσετε.",
@@ -181,7 +181,9 @@
     "comment-entry-go-root": "Δείτε το πλήρες κείμενο",
     "comment-entry-go-parent": "Δείτε το άμεσο σχόλιο",
     "show-history": "Προβολή ιστορικού επεξεργασίας",
-    "hidden-warning": "Η δημοσίευση έχει αποκρυφτεί λόγω χαμηλής βαθμολογίας."
+    "hidden-warning": "Η δημοσίευση έχει αποκρυφτεί λόγω χαμηλής βαθμολογίας.",
+    "address-copy": "Copy post address",
+    "address-copied": "Post address copied to clipboard."
   },
   "edit-history": {
     "title": "Ιστορικό Επεξεργασίας",
@@ -490,7 +492,7 @@
     "title": "Ιστορικό",
     "type-curation_reward": "Ανταμοιβή επμέλειας",
     "type-author_reward": "Ανταμοιβή συγγραφέα",
-    "type-comment_benefactor_reward": "Comment Benefactor Reward",
+    "type-comment_benefactor_reward": "Σχόλιο Ανταμοιβής Benefactor",
     "type-claim_reward_balance": "Διεκδικήστε ανταμοιβές",
     "type-transfer": "Μεταφορά",
     "type-transfer_to_vesting": "Μεταφορά σε κατοχυρωμένα",
@@ -574,13 +576,13 @@
     "published": "Η ανάρτηση δημοσιεύθηκε",
     "updated": "Η δημοσίευση ενημερώθηκε",
     "advanced": "Advanced",
-    "beneficiaries": "Beneficiaries",
-    "beneficiaries-hint": "Set beneficiaries to share author reward with other accounts",
-    "reblog": "Reblog",
-    "reblog-hint": "Auto share content to your blog",
-    "schedule": "Schedule",
-    "schedule-hint": "Auto publish content on specific time",
-    "scheduled": "Post scheduled"
+    "beneficiaries": "Δικαιούχοι",
+    "beneficiaries-hint": "Ορίστε δικαιούχους για να μοιραστείτε την ανταμοιβή συγγραφέα με άλλους λογαριασμούς",
+    "reblog": "Αναδημοσιεύστε",
+    "reblog-hint": "Αυτόματη κοινοποίηση περιεχομένου στο ιστολόγιό σας",
+    "schedule": "Χρονοδιάγραμμα",
+    "schedule-hint": "Αυτόματη δημοσίευση περιεχομένου σε συγκεκριμένη ώρα",
+    "scheduled": "Προγραμματισμένη δημοσίευση"
   },
   "tag-selector": {
     "placeholder-empty": "Ετικέτες. Η πρώτη ετικέτα είναι η κύρια κατηγορία. Tαξινομήσιμο.",
@@ -599,17 +601,17 @@
     "read-time-n-min": "~{{n}} λεπτών διαβάσματος"
   },
   "beneficiary-editor": {
-    "title": "Beneficiaries",
-    "btn-label": "Set Beneficiaries",
-    "btn-label-n": "Set Beneficiaries ({{n}})",
-    "username": "Username",
-    "reward": "Reward",
-    "user-error": "{{n}} is not a valid user.",
-    "user-exists-error": "{{n}} is already in the list"
+    "title": "Δικαιούχοι",
+    "btn-label": "Ορισμός Δικαιούχων",
+    "btn-label-n": "Ορισμός Δικαιούχων ({{n}})",
+    "username": "Όνομα Χρήστη",
+    "reward": "Ανταμοιβή",
+    "user-error": "{{n}} δεν είναι έγκυρος χρήστη.",
+    "user-exists-error": "{{n}} Το αρχείο υπάρχει ήδη στη λίστα"
   },
   "post-scheduler": {
-    "title": "Schedule",
-    "btn-label": "Schedule"
+    "title": "Χρονοδιάγραμμα",
+    "btn-label": "Χρονοδιάγραμμα"
   },
   "notification": {
     "popup-title": "Έχετε μία νέα ειδοποίηση",
@@ -627,7 +629,7 @@
     "type-rvotes": "Ψήφοι",
     "type-replies": "Απαντήσεις",
     "type-mentions": "Αναφορές",
-    "type-follows": "Follows",
+    "type-follows": "Ακολουθεί",
     "type-reblogs": "Αναδημοσιεύσεις",
     "type-transfers": "Μεταφορές",
     "vote-str": "{{p}}% του αρέσει η δημοσίευση σας:",
@@ -695,7 +697,7 @@
     "proxy-active-description": "Έχετε ορίσει μεσολαβητή. Αν θέλετε να ψηφίζετε μόνοι σας για witness, παρακαλούμε αφαιρέστε τον μεσολαβητή σας.",
     "proxy-active-current": "Ο τρέχων μεσολαβητής σας είναι ο",
     "proxy-active-btn-label": "Αφαίρεση μεσολαβητή",
-    "proxy-votes-for": "@{{username}} votes for"
+    "proxy-votes-for": "@{{username}} ψηφίζει για"
   },
   "proposals": {
     "page-title": "Προτάσεις",
@@ -725,8 +727,8 @@
     "title": "Πρόχειρα"
   },
   "schedules": {
-    "title": "Scheduled Posts",
-    "move": "Move to drafts"
+    "title": "Προγραμματισμένες Δημοσιεύσεις",
+    "move": "Μεταφορά στο πρόχειρο"
   },
   "bookmarks": {
     "title": "Σελιδοδείκτες"
@@ -746,7 +748,7 @@
       "faqs": "Όλες οι συχνές ερωτήσεις",
       "contact-title": "Επαφές",
       "contact-blog": "To ιστολόγιο του Ιδρυτή",
-      "contact-news": "News on Hive",
+      "contact-news": "Νέα στο Hive",
       "contact-email": "Στείλτε μας email"
     },
     "faq": {
@@ -757,19 +759,19 @@
       "what-is-hive-header": "Τι είναι το Hive blockchain;",
       "what-is-hive-body": "<p>Η Hive είναι μια blockchain πλατφόρμα που σχεδιάστηκε να είναι γρήγορη, χωρίς φόρους, αποκεντρωμένη, χωρίς λογοκρισία πλατφόρμα για εφαρμογές Web3.0, με ενσωματωμένες λειτουργίες όπου οι κάτοχοι μεριδίων μπορούν να κερδίσουν ανταμοιβές με staking, επιμέλεια, ανάρτηση, παίζοντας παιχνίδια, κάνοντας αγοραπωλησίες- όλα χωρίς κανένα μεσάζονται (αποκεντρωμένα). Τα Tokens στην Hive blockchain ονομάζονται HIVE, HIVE DOLLARS, HIVE POWER.</p>",
       "what-is-difference-header": "Ποια είναι η διαφορά μεταξύ της επιφάνειας της Ecency και των άλλων Hive επιφανειών;",
-      "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\"/></p><p>The primary differences in all interfaces or applications are in their feature-set, use cases. Ecency offers website, mobile and desktop applications for ease of access and with best security in mind. Accessible, opensource and innovative, built and owned by users. Aspire for greatness!</p>",
+      "what-is-difference-body": "<img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\"/> Οι πρωταρχικές διαφορές σε όλες τις διεπαφές ή εφαρμογές είναι στο σύνολο λειτουργιών τους, σε περιπτώσεις χρήσης. Το Ecency προσφέρει εφαρμογές ιστότοπου, κινητών και επιτραπέζιων υπολογιστών για ευκολία πρόσβασης και έχοντας κατά νου την καλύτερη ασφάλεια. Προσβάσιμο, ανοιχτό και καινοτόμο, χτισμένο και ανήκει σε χρήστες. Φιλοδοξία για μεγαλείο!</p>",
       "why-choose-ecency-header": "Γιατί να διαλέξω την πλατφόρμα Ecency;",
-      "why-choose-ecency-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjrzJAcJ4DvxvtqoPdzS9Aygf4MZ1PeE4goH6zWaeEFvafr9vGXWuou67Pbn44GweMyHV5DupM5q1cRvU85qdver?format=match&mode=fit\"/></p><p>Tailored feature set to empower you to create, inspire your audience and community. Ecency mobile application giving you on-go solution. With desktop app you are always sure to get uncensored content right from the blockchain, with website reach thousands of readers accross globe with best ranked content on search engines. State of art security measures so your keys will always stay encrypted and out of reach for ill-intentioned individuals. Fast and beautiful website, helps you to get discovered online and gain exposure for your content and gain loyal followers and readers. Build your community with Ecency today and take advantages of emerging blockchain technology and uncensored content, true free speech!</p>",
+      "why-choose-ecency-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjrzJAcJ4DvxvtqoPdzS9Aygf4MZ1PeE4goH6zWaeEFvafr9vGXWuou67Pbn44GweMyHV5DupM5q1cRvU85qdver?format=match&mode=fit\"/></p><p>Προσαρμοσμένο σύνολο λειτουργιών που σας δίνει τη δυνατότητα να δημιουργείτε, να εμπνέετε το κοινό και την κοινότητά σας. H Εφαρμογή Ecency για κινητές συσκευές που σας προσφέρει εν κινήσει λύση. Με την εφαρμογή για επιτραπέζιους υπολογιστές είστε πάντα βέβαιοι ότι θα λαμβάνετε περιεχόμενο χωρίς λογοκρισία απευθείας από το blockchain, με τον ιστότοπο να προσεγγίζει χιλιάδες αναγνώστες σε όλο τον κόσμο με το καλύτερο περιεχόμενο στις μηχανές αναζήτησης. Μέτρα ασφαλείας τελευταίας τεχνολογίας, ώστε τα κλειδιά σας να παραμένουν πάντα κρυπτογραφημένα και μακριά από άτομα με κακή πρόθεση. Γρήγορος και όμορφος ιστότοπος, σας βοηθά να έχετε διαδικτυακή παρουσία και να αποκτήσετε έκθεση για το περιεχόμενό σας και να αποκτήσετε πιστούς οπαδούς και αναγνώστες. Δημιουργήστε την κοινότητά σας με το Ecency σήμερα και επωφεληθείτε από την αναδυόμενη τεχνολογία blockchain και το περιεχόμενο χωρίς λογοκρισία, την πραγματική ελεύθερη ομιλία</p>",
       "how-ecency-works-header": "Πως λειτουργεί η πλατφόρμα Ecency;",
-      "how-ecency-works-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjuZ3ksaZqEjfd9GadyKFE4bT7UP8qM1sF5W6U3cst4ekDsXfrQdcrjtdz6b5Ye2AfWNwGA5f8QqVXmed6NRfg1U?format=match&mode=fit\"/></p><p>Ecency stores and reads data from the blockchain, and thus data is accessible and uncensored. Ecency rewards content creators with built-in incentive mechanism of blockchain, with tokens (HIVE, HIVE DOLLARS, HIVE POWER) as well as Points. Tokens can be purchased and sold in major cryptocurrency exchanges (e.g. Binance, Bittrex). Points could be utilized within platform and traded for goods, services.</p>",
+      "how-ecency-works-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjuZ3ksaZqEjfd9GadyKFE4bT7UP8qM1sF5W6U3cst4ekDsXfrQdcrjtdz6b5Ye2AfWNwGA5f8QqVXmed6NRfg1U?format=match&mode=fit\"/></p><p>\nΤο Ecency αποθηκεύει και διαβάζει δεδομένα από το blockchain και έτσι τα δεδομένα είναι προσβάσιμα και χωρίς λογοκρισία. Το Ecency επιβραβεύει τους δημιουργούς περιεχομένου με τον ενσωματωμένο μηχανισμό κινήτρων του blockchain, με tokens (HIVE, HIVE DOLLARS, HIVE POWER) καθώς και Πόντους. Τα tokens μπορούν να αγοραστούν και να πωληθούν σε μεγάλα χρηματιστήρια κρυπτονομισμάτων (π.χ. Binance, Bittrex). Οι Πόντοι μπορούν να χρησιμοποιηθούν μέσα στην πλατφόρμα και να ανταλλάσσονται για αγαθά, υπηρεσίες.</p>",
       "how-to-join-header": "Πως να μπω στην πλατφόρμα Ecency;",
-      "how-to-join-body": "<p>Go to <a href=\"/signup?referral=ecency\">https://ecency.com/signup?referral=ecency</a> and create an account. After signup you will receive email with further instructions. Your password is your master key to your account. Please store it safely, if you loose your password, you ultimately loose access to your account and your funds. Accounts cannot be deactivated or deleted, account names can not be changed as well. The account along with all of its activity is permanently stored in the blockchain. Without password, accounts cannot be restored, store your keys safely.</p>",
+      "how-to-join-body": "<p>Πηγαίντε στο <a href=\"/signup?referral=ecency\">https://ecency.com/signup?referral=ecency</a> και δημιουργήστε λογαριασμό. Μετά την εγγραφή θα λάβετε email με περαιτέρω οδηγίες. Ο κωδικός πρόσβασής σας είναι το κύριο κλειδί (master key) του λογαριασμού σας. Αποθηκεύστε τον με ασφάλεια, εάν χάσετε τον κωδικό πρόσβασής σας, τελικά χάνετε την πρόσβαση στον λογαριασμό σας και στα χρήματά σας. Οι λογαριασμοί δεν μπορούν να απενεργοποιηθούν ή να διαγραφούν, τα ονόματα λογαριασμών δεν μπορούν επίσης να αλλάξουν. Ο λογαριασμός μαζί με όλη τη δραστηριότητά του αποθηκεύεται μόνιμα στο blockchain. Χωρίς κωδικό πρόσβασης, δεν είναι δυνατή η επαναφορά λογαριασμών, αποθηκεύστε τα κλειδιά σας με ασφάλεια.</p>",
       "how-to-signin-header": "Πως να συνδεθώ στην πλατφόρμα Ecency;",
-      "how-to-signin-body": "<p><img src=\"https://images.ecency.com/p/7258xSVeJbKmTr9Z4jhbPhjS9pMWA2mTwBMDbXqk9G9wdMw2bwR4hXqRQt9S7UBFrBAWCYWddjn3G34ETv5KWB5KGmuZ8ixBB9oKHTFvjjnTkRLp4ttrFQtpgtNnRUEA9NtmyFmgyuuK4?format=match&mode=fit\"/></p><p>You can sign-in to Ecency by using your Username and Master password or by using Active Private Keys. We take security very seriously, that's why we never store your private keys, on mobile app they are encrypted with extra PIN code of your choice, on website they are never stored. You can also use <a href=\"https://hivesigner.com\">Hivesigner OAuth2</a> authentication service to easily login, manage and perform actions.</p>",
+      "how-to-signin-body": "<p><img src=\"https://images.ecency.com/p/7258xSVeJbKmTr9Z4jhbPhjS9pMWA2mTwBMDbXqk9G9wdMw2bwR4hXqRQt9S7UBFrBAWCYWddjn3G34ETv5KWB5KGmuZ8ixBB9oKHTFvjjnTkRLp4ttrFQtpgtNnRUEA9NtmyFmgyuuK4?format=match&mode=fit\"/></p><p> Μπορείτε να συνδεθείτε στο Ecency χρησιμοποιώντας το όνομα χρήστη και τον κύριο κωδικό πρόσβασής(master password) σας ή χρησιμοποιώντας τα ενεργά ιδιωτικά κλειδιά (active private keys). Λαμβάνουμε την ασφάλεια πολύ σοβαρά, γι 'αυτό δεν αποθηκεύουμε ποτέ τα προσωπικά σας κλειδιά, σε εφαρμογή για κινητά κρυπτογραφούνται με επιπλέον κωδικό PIN της επιλογής σας, σε ιστότοπο που δεν αποθηκεύονται ποτέ. Μπορείτε επίσης να χρησιμοποιήσετε <a href=\"https://hivesigner.com\">Hivesigner OAuth2</a> υπηρεσία ελέγχου ταυτότητας για εύκολη σύνδεση, διαχείριση και εκτέλεση ενεργειών.</p>",
       "how-referrals-work-header": "How referral system work on Ecency?",
-      "how-referrals-work-body": "<p>Referral system is simple, you can invite your friends by adding your username in this link https://ecency.com/signup?referral=username and share it with your friends. Once your friends join Ecency and earn their first 250 Points, you will earn 100 Points. There is no limits on referrals and its reward.</p>",
+      "how-referrals-work-body": "<p>Το σύστημα παραπομπής είναι απλό, μπορείτε να προσκαλέσετε τους φίλους σας προσθέτοντας το όνομα χρήστη σας σε αυτόν τον σύνδεσμο https://ecency.com/signup?referral=username και μοιραστείτε το με τους φίλους σας. Μόλις οι φίλοι σας γίνουν μέλη του Ecency και κερδίσουν τους πρώτους 250 πόντους τους, θα κερδίσετε 100 πόντους. Δεν υπάρχουν όρια στις παραπομπές και την ανταμοιβή του από αυτές</p>",
       "what-is-points-header": "Τι είναι οι Ecency πόντοι και πως να τους χρησιμοποιήσω;",
-      "what-is-points-body": "<p>Ecency Points are continually minted and rewarded for all users for various social activities they perform on website, mobile or desktop app. Points can be used for promoting, boosting your content, can even be transferred or gifted to another user. You can also purchase Points with our mobile apps.</p>",
+      "what-is-points-body": "<p>Τα Ecency Points συνεχώς κόβονται και ανταμείβονται για όλους τους χρήστες για διάφορες κοινωνικές δραστηριότητες που εκτελούν στον ιστότοπο, στην εφαρμογή για κινητά ή σε επιτραπέζιους υπολογιστές. Οι πόντοι μπορούν να χρησιμοποιηθούν για την προώθηση, την ενίσχυση του περιεχομένου σας, μπορούν ακόμη και να μεταφερθούν ή να προωθηθούν σε άλλον χρήστη. Μπορείτε επίσης να αγοράσετε πόντους με τις εφαρμογές μας για κινητά.</p>",
       "where-tokens-come-header": "Από που προέρχονται τα tokens;",
       "where-tokens-come-body": "<p><img src=\"https://images.ecency.com/p/7kq2TLHKEHhCCDwNZLfFLu7msWtbdFb7vZaJJ9Y13GAc18vfVNAj8ZctLWmsVfMCCFtwGdULbZKT89faeBymhPsySU5tp4RnvDsHz6ZBxXHWA4g34ck4LHnR2vGkqsHvjzhizhpV8K6JrQ4sy7cCgJQksUUYPKp4d9XbERHkjnZV3PTdhbiUZPYJ43RS8cQu2sEmUbAgqZExuYMGa46SDa4vCunH2w6oNpommW5L1CCdfwdgX5i9eCpcS5fHo4t8btjVE69edzrUN8anr6T3v8AFYHC?format=match&mode=fit\"/></p><p>The Hive network continually creates new digital tokens to reward content creators and curators. Some of the newly-created tokens are transferred to users who add value to platform by posting, commenting, and voting on other people's posts. The remainder is distributed to holders of HIVE POWER and the witnesses that secures the blockchain.</p>",
       "how-promotion-work-header": "How content promotion works?",
@@ -794,13 +796,13 @@
       "can-link-post-body": "<p>All the content on our site is created by our users and we don't modify or able to add backlinks. You are free to contact author of the post or <a href=\"/signup?referral=ecency\">Signup</a> to open your own blog and community, publish articles to create backlinks for free.</p>",
       "can-guest-post-header": "Is it possible to guest post on your website?",
       "can-guest-post-body": "<p>Posting on Ecency is simple and easy, <a href=\"/signup?referral=ecency\">Signup</a> to open your own blog and community, start posting your content.</p>",
-      "how-to-contribute-header": "How to contribute to the Ecency?",
+      "how-to-contribute-header": "Πώς να συμβάλετε στην Ecency;",
       "how-to-contribute-body": "<p>Our <a href=\"/contributors\">awesome contributors</a> helping us to shape Ecency. You can be part of this great movement, by joining our Translation team: <a href=\"https://translate-desktop.ecency.com\">Website</a>, <a href=\"https://translate-mobile.ecency.com\">Mobile</a> or by contributing with Ideas, Developing, Designing, Social media outreach skills. We try our best to support our contributors!</p>"
     }
   },
   "contributors": {
-    "title": "Contributors",
-    "description": "These great people contributed in one way or another to Ecency, we would like to thank them all. If you want to join our team by contributing with Translation, Ideas, Development, Designing, Social awareness, feel free to join. To learn more read our <a href=\"/faq#how-to-contribute\">FAQ</a>."
+    "title": "Συνεισφέροντες",
+    "description": "Αυτοί οι σπουδαίοι άνθρωποι συνέβαλα με τον ένα ή αλλο τρόπο στην Ecency, θέλουμε να τους ευχαριστήσουμε όλους. Αμα θέλετε να μπείτε στην ομάδα συμβάλλοντας στη Μετάφραση, με Ιδέες, με την Ανάπτυξη, τον Σχεδιασμός, την Κοινωνική ευαισθητοποίηση, μπορείτε να συμμετάσχετε. Για να μάθετε περισσότερα διαβάστε το <a href=\"/faq#how-to-contribute\"> FAQ</a>."
   },
   "context-menu": {
     "cut": "Αποκοπή",
@@ -811,6 +813,7 @@
   },
   "updater": {
     "new-version-available": "Νέα έκδοση διαθέσιμη",
+    "download": "Λήψη",
     "update": "Ενημέρωση",
     "dismiss": "Παράβλεψη",
     "downloading": "Λήψη νέας έκδοσης...",

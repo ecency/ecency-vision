@@ -61,7 +61,7 @@
     "header-community": "Comunidades"
   },
   "switch-lang": {
-    "contributors": "Contributors"
+    "contributors": "Colaboradores"
   },
   "user-nav": {
     "wallet": "Cartera",
@@ -181,7 +181,9 @@
     "comment-entry-go-root": "Ver los demas comentarios",
     "comment-entry-go-parent": "Ver el comentario relacionado",
     "show-history": "Mostrar historial de ediciones",
-    "hidden-warning": "El post ha sido ocultado por bajas calificaciones."
+    "hidden-warning": "El post ha sido ocultado por bajas calificaciones.",
+    "address-copy": "Copy post address",
+    "address-copied": "Post address copied to clipboard."
   },
   "edit-history": {
     "title": "Editar historial",
@@ -763,11 +765,11 @@
       "how-ecency-works-header": "¿Cómo funciona Ecency?",
       "how-ecency-works-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjuZ3ksaZqEjfd9GadyKFE4bT7UP8qM1sF5W6U3cst4ekDsXfrQdcrjtdz6b5Ye2AfWNwGA5f8QqVXmed6NRfg1U?format=match&mode=fit\"/></p><p>Ecency almacena y lee datos de la cadena de bloques, por lo que los datos son accesibles y no se censuran. Ecency premia a los creadores de contenido con un mecanismo de incentivo incorporado en la blockchain, con tokens (HIVE, HIVE DOLLARS, HIVE POWER) así como puntos. Los tokens se pueden comprar y vender en los principales mercados de criptomonedas (por ejemplo, Binance, Bittrex). Los puntos pueden ser utilizados dentro de la plataforma y comercializados por bienes, servicios.</p>",
       "how-to-join-header": "¿Cómo unirse a Ecency?",
-      "how-to-join-body": "<p>Go to <a href=\"/signup?referral=ecency\">https://ecency.com/signup?referral=ecency</a> and create an account. After signup you will receive email with further instructions. Your password is your master key to your account. Please store it safely, if you loose your password, you ultimately loose access to your account and your funds. Accounts cannot be deactivated or deleted, account names can not be changed as well. The account along with all of its activity is permanently stored in the blockchain. Without password, accounts cannot be restored, store your keys safely.</p>",
+      "how-to-join-body": "<p>Ve a <a href=\"/signup?referral=ecency\">https://ecency.com/signup?referral=ecency</a> y crea una cuenta. Después de registrarte recibirás un correo electrónico con más instrucciones. Tu contraseña es tu clave maestra de tu cuenta. Por favor, guárdelo de forma segura, si pierde su contraseña, en última instancia pierde el acceso a su cuenta y sus fondos. Las cuentas no pueden ser desactivadas o eliminadas, los nombres de los clientes tampoco pueden ser cambiados. La cuenta junto con toda su actividad se almacena permanentemente en la cadena de bloques. Sin contraseña, las cuentas no pueden ser restauradas, almacenan sus claves de forma segura.</p>",
       "how-to-signin-header": "¿Cómo registrarse en Ecency?",
       "how-to-signin-body": "<p><img src=\"https://images.ecency.com/p/7258xSVeJbKmTr9Z4jhbPhjS9pMWA2mTwBMDbXqk9G9wdMw2bwR4hXqRQt9S7UBFrBAWCYWddjn3G34ETv5KWB5KGmuZ8ixBB9oKHTFvjjnTkRLp4ttrFQtpgtNnRUEA9NtmyFmgyuuK4?format=match&mode=fit\"/></p><p>Puede iniciar sesión en Ecency utilizando su nombre de usuario y contraseña maestra o utilizando claves privadas activas. Nos tomamos la seguridad muy en serio, por eso nunca almacenamos sus claves privadas, en la aplicación móvil están encriptadas con un código PIN adicional de su elección, en el sitio web nunca se almacenan. También puedes usar el servicio de autentificación <a href=\"https://hivesigner.com\">Hivesigner OAuth2</a> para fácilmente iniciar sesión, administrar y realizar otras acciones.</p>",
       "how-referrals-work-header": "¿Cómo funciona el sistema de referencia en Ecency?",
-      "how-referrals-work-body": "<p>Referral system is simple, you can invite your friends by adding your username in this link https://ecency.com/signup?referral=username and share it with your friends. Once your friends join Ecency and earn their first 250 Points, you will earn 100 Points. There is no limits on referrals and its reward.</p>",
+      "how-referrals-work-body": "<p>El sistema de referidos es simple, puedes invitar a tus amigos agregando tu nombre de usuario en este enlace https://ecency.com/signup?referral=username y compartirlo con tus amigos. Una vez que sus amigos se unan a Ecency y ganen sus primeros 250 puntos, usted ganará 100 puntos. No hay límites en las referencias y su recompensa.</p>",
       "what-is-points-header": "¿Qué son los Puntos de Ecency y cómo utilizarlos?",
       "what-is-points-body": "<p>Los puntos de Ecency se acuñan y recompensan continuamente para todos los usuarios por las diversas actividades sociales que realizan en el sitio web, la aplicación móvil o de escritorio. Los puntos se pueden usar para promocionar, mejorar su contenido, incluso se pueden transferir o regalar a otro usuario. También puede comprar puntos con nuestras aplicaciones móviles.</p>",
       "where-tokens-come-header": "¿De dónde vienen las fichas?",
@@ -791,16 +793,16 @@
       "what-spam-abuse-header": "¿Qué se considera spam o abuso?",
       "what-spam-abuse-body": "<p><img src=\"https://images.ecency.com/p/3jpR3paJ37V8XPrHkfZdMt57jY6pRt6zEt5iRJV9pSw4Mez3Hut8U6RWvWLA7cFYEa1bxveXeasNfZApzrcLYLx8cz84kBEKak1KkewE2ZqE1QRRkF4eqRH3vWVqZB9WuNbzE?format=match&mode=fit\"/></p><p><ul><li>Publicaciones plagiadas o contenido copiado.</li><li>Dejar comentarios casi idénticos o materialmente similares en varias publicaciones.</li><li>Usar etiquetas que no están relacionadas con la publicación.</li><li>Amenazar a los usuarios con cualquier tipo de violencia física.</li><li>No citar fuentes al usar material de otra persona.</li><li>Publicar contenido \"no seguro para el trabajo\" sin usar la etiqueta \"nsfw\".</li><li>Estafas u ofertas fraudulentas.</li></ul></p>",
       "can-link-post-header": "¿Puedo solicitar al equipo de Ecency agregar un vínculo de retroceso a mi sitio web?",
-      "can-link-post-body": "<p>All the content on our site is created by our users and we don't modify or able to add backlinks. You are free to contact author of the post or <a href=\"/signup?referral=ecency\">Signup</a> to open your own blog and community, publish articles to create backlinks for free.</p>",
+      "can-link-post-body": "<p>Todo el contenido de nuestro sitio es creado por nuestros usuarios y no modificamos ni podemos añadir backlinks. Usted es libre de contactar con el autor de la publicación o <a href=\"/signup?referral=ecency\">Registrarse</a> para abrir su propio blog y comunidad, publicar artículos para crear backlinks de forma gratuita.</p>",
       "can-guest-post-header": "¿Es posible publicar en su sitio web?",
-      "can-guest-post-body": "<p>Posting on Ecency is simple and easy, <a href=\"/signup?referral=ecency\">Signup</a> to open your own blog and community, start posting your content.</p>",
-      "how-to-contribute-header": "How to contribute to the Ecency?",
-      "how-to-contribute-body": "<p>Our <a href=\"/contributors\">awesome contributors</a> helping us to shape Ecency. You can be part of this great movement, by joining our Translation team: <a href=\"https://translate-desktop.ecency.com\">Website</a>, <a href=\"https://translate-mobile.ecency.com\">Mobile</a> or by contributing with Ideas, Developing, Designing, Social media outreach skills. We try our best to support our contributors!</p>"
+      "can-guest-post-body": "<p>Publicar en Ecencia es simple y fácil, <a href=\"/signup?referral=ecency\">Regístrate</a> para abrir tu propio blog y comunidad, empieza a publicar tu contenido.</p>",
+      "how-to-contribute-header": "¿Cómo contribuir con Ecency?",
+      "how-to-contribute-body": "<p>Nuestros <a href=\"/contributors\">colaboradores impresionantes</a> nos ayudan a dar forma a Ecency. Puedes formar parte de este gran movimiento uniéndote a nuestro equipo de traducción: <a href=\"https://translate-desktop.ecency.com\">Sitio Web</a>, <a href=\"https://translate-mobile.ecency.com\">Móvil</a> o contribuyendo con Ideas, Desarrollo, Diseño y habilidades de divulgación de las redes sociales. ¡Hacemos todo lo posible para apoyar a nuestros colaboradores!</p>"
     }
   },
   "contributors": {
-    "title": "Contributors",
-    "description": "These great people contributed in one way or another to Ecency, we would like to thank them all. If you want to join our team by contributing with Translation, Ideas, Development, Designing, Social awareness, feel free to join. To learn more read our <a href=\"/faq#how-to-contribute\">FAQ</a>."
+    "title": "Colaboradores",
+    "description": "Estas grandes personas contribuyeron de una manera u otra con Ecency, nos gustaría darles las gracias a todos. Si quieres unirte a nuestro equipo contribuyendo con la traducción, Ideas, Desarrollo, Diseño, Conciencia Social, siéntete libre de unirte. Para obtener más información, lee nuestras Preguntas Frecuentes <a href=\"/faq#how-to-contribute\"></a>."
   },
   "context-menu": {
     "cut": "Cortar",
@@ -811,6 +813,7 @@
   },
   "updater": {
     "new-version-available": "La nueva versión está disponible",
+    "download": "Download",
     "update": "Actualización",
     "dismiss": "Descartar",
     "downloading": "Descargando nueva versión...",

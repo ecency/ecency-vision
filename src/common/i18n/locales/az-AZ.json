@@ -181,7 +181,9 @@
     "comment-entry-go-root": "Tam məzmuna bax",
     "comment-entry-go-parent": "View the direct parent",
     "show-history": "Show edit history",
-    "hidden-warning": "This post was hidden due to low ratings."
+    "hidden-warning": "This post was hidden due to low ratings.",
+    "address-copy": "Copy post address",
+    "address-copied": "Post address copied to clipboard."
   },
   "edit-history": {
     "title": "Tarixçəyə düzəliş et",
@@ -811,6 +813,7 @@
   },
   "updater": {
     "new-version-available": "Yeni versiya əlçatandır",
+    "download": "Download",
     "update": "Yenilə",
     "dismiss": "Bağla",
     "downloading": "Yeni versiya endirilir...",

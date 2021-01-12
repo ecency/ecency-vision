@@ -61,7 +61,7 @@
     "header-community": "Mga pamayanan"
   },
   "switch-lang": {
-    "contributors": "Contributors"
+    "contributors": "Mg may ambag"
   },
   "user-nav": {
     "wallet": "Pitaka",
@@ -75,7 +75,7 @@
     "bookmarks": "Mga talaan",
     "schedules": "Mga Palatuntunan",
     "logout": "Umalis",
-    "vote-power": "Vote Power:"
+    "vote-power": "Puwersa ng Boto"
   },
   "intro": {
     "title": "Hangarin ang kadakilaan",
@@ -134,7 +134,7 @@
   },
   "entry-reblog": {
     "reblog": "Mga kondisyon ng serbisyo",
-    "confirm-title": "Reblog to @{{n}}'s blog?",
+    "confirm-title": "I-reblog kay @{{n}}'s blog?",
     "confirm-ok": "I-blog muli",
     "success": "Muling nai-blog!"
   },
@@ -163,7 +163,7 @@
     "credits": "datos mula sa <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "list-style": {
-    "title": "Toggle list style"
+    "title": "Iayos ang istilo ng listahan"
   },
   "entry-votes": {
     "title": "1 Boto",
@@ -181,7 +181,9 @@
     "comment-entry-go-root": "Tingnan ang buong konteksto",
     "comment-entry-go-parent": "Tingnan ang direktang puno",
     "show-history": "Ipakita ang kasaysayan ng mga binago",
-    "hidden-warning": "Ang post na ito na nakatago dahil sa mababang antas ng katayuan."
+    "hidden-warning": "Ang post na ito na nakatago dahil sa mababang antas ng katayuan.",
+    "address-copy": "Copy post address",
+    "address-copied": "Post address copied to clipboard."
   },
   "edit-history": {
     "title": "Baguhin ang Kasaysayan",
@@ -201,7 +203,7 @@
     "replies": "1 Komento",
     "n-replies": "{{n}} Mga komento",
     "order": "Baguhin ang pagkakasunod-sunod",
-    "order-trending": "Trending",
+    "order-trending": "Uso",
     "order-reputation": "Reputasyon",
     "order-votes": "Mga boto",
     "order-created": "Edad",
@@ -364,33 +366,33 @@
     "transfer": "Ilipat",
     "transfer-to-savings": "Ilipat sa impukan",
     "convert": "Convert",
-    "power-up": "Power up",
+    "power-up": "Magpalakas",
     "withdraw-hive": "Maglabas ng Hive",
-    "withdraw-hbd": "Withdraw Hive Dollar",
+    "withdraw-hbd": "Ilabas ang Hive Dollar",
     "delegate": "Magpahiram",
-    "power-down": "Power down",
+    "power-down": "Magpahina",
     "withdraw-routes": "Withdraw Routes"
   },
   "withdraw-routes": {
     "title": "Alisin ang mga account",
     "account": "Account",
-    "percent": "Percent",
-    "auto-power-up": "Automatically power up"
+    "percent": "Porsyento",
+    "auto-power-up": "Awtomatikong magpalakas"
   },
   "points": {
-    "get": "BUY POINTS",
-    "unclaimed-points": "Unclaimed points",
-    "claim-reward-points": "Claim reward points",
-    "main-description": "Points can be used for in-app services, like Promote, Boost, Gifting. Earn them just by using Ecency apps and improve your experience.",
-    "earn-points": "How to earn more Points",
-    "post-desc": "You can earn point by posting regularly. Posting gives you 15 points.",
-    "comment-desc": "Each comment you make helps you to grow your audience and make friendship but also earns you 5 points.",
-    "checkin-desc": "Checking in on Ecency gives you 0.25 points and helps you stay connected with your friends.",
-    "vote-desc": "By voting you give reward to other creators and show your appreciation but also earn 0.01 x vote weight points.",
-    "reblog-desc": "  Share what post you like with your friends and earn 1 points.",
+    "get": "BUMILI NG MGA PUNTOS",
+    "unclaimed-points": "Mga puntos na hindi pa nakukuha",
+    "claim-reward-points": "Kunin ang mga gantimpalang puntos",
+    "main-description": "Ang mga puntos ay puwedeng gamitin para sa mga in-app na serbisyo, gaya ng pagsulong, pagpapalakas, panregalo. Kumita ng puntos sa pamamagitan lamang ng paggamit sa Ecency apps and magkakaron ng mga kaalaman.",
+    "earn-points": "Paano kumita ng maraming Puntos",
+    "post-desc": "Puwede kang regular na kumita ng puntos. Sa pagpost magkakaroon ka ng 15 puntos.",
+    "comment-desc": "Ang mga mga komentong iyong gagawin ay nakakatulong para lumago ang iyong tagasunod at magkaroon ng mga kaibigan at kikita ka din g 5 puntos.",
+    "checkin-desc": "Bawat pasok mo sa Ecency ay magkakaron ka ng 0.25 na puntos na makakatulong sayo para ay manatiling konektado sa iyong mga kaibigan.",
+    "vote-desc": "Sa pamamagitan ng pagboto nagbibigay ka ng gantimpala sa ibang mga taga-likha na nagpapakita ng iyong pagpapahala at kikita ka din ng 0.01 x boto timbang ng boto.",
+    "reblog-desc": "  Ibahagi ang mga post na gusto mo sa iyong mga kaibigan at kumita ng 1 puntos.",
     "login-desc": "Kapag ikaw ay pumasok sa Ecency ikaw ay awtomatikong magkakaroon ng 100 na puntos.",
-    "checkin-extra-desc": "Consistent use of app gives you extra chances to earn more 10 points, be more active and earn more.",
-    "delegation-desc": "You can earn ~50 points per day for each 1000HP delegation.",
+    "checkin-extra-desc": "Ang palagiang paggamit ng app ay magbibigay sayo ng karagdagang tsansa na kumita ng dagdag na 10 puntos, maging aktibo at kumita pa ng mas marami.",
+    "delegation-desc": "Puwede kang kumita ~50 puntos bawat araw sa bawat 1000HP na delegsayon.",
     "history": "Kasaysayan",
     "post-list-desc": "Puntos para sa post",
     "comment-list-desc": "Puntos para sa komento",
@@ -401,11 +403,11 @@
     "checkin-extra-list-desc": "Gamit na ganti",
     "transfer-sent-list-desc": "Ilipat kay {{n}}",
     "transfer-incoming-list-desc": "Inilipat galing kay {{n}}",
-    "delegation-list-desc": "Delegation reward",
-    "referral-list-desc": "Referral reward",
+    "delegation-list-desc": "Delegasyon na gantimpala",
+    "referral-list-desc": "Gantimpala sa mga Referral",
     "transfer": "I-regalo sa iba",
-    "claim-ok": "Points claimed",
-    "promote": "Promote",
+    "claim-ok": "Mga puntos na naangkin",
+    "promote": "Isulong",
     "boost": "Palakasin"
   },
   "purchase": {
@@ -431,7 +433,7 @@
     "post-placeholder": "bansag/permanenteng ugnayan",
     "post-error": "Hindi isang balidong address",
     "post-error-exists": "Ang post ay tapos nang naisulong",
-    "success-message": "Your request submitted. It will be activated in a couple minutes."
+    "success-message": "Naisumite na ang iyong hiling. Magiging aktibo ito sa ilang sandali."
   },
   "transfer": {
     "transfer-title": "Ilipat sa Account",
@@ -443,25 +445,25 @@
     "withdraw-saving-sub-title": "Ilabas ang mga pondo kapag natapos na kinakailangang 3 araw na paghihintay",
     "power-up-title": "Ilagay ang Hive bilang Power",
     "convert-title": "Baguhin",
-    "power-up-sub-title": "Influence tokens which give you more control over post payouts and allow you to earn on curation rewards.",
-    "convert-sub-title": "Only recommended when HBD is below $1. You will get $1 of HIVE in 3.5 days.",
+    "power-up-sub-title": "Mga impluwensyang token na magbibigay sayo ng higit na kontrol sa mga kabayaran ng mga post at magbibigay sayo ng pagkakataon na magkaroon ng mga gantimpala sa iyong pangangasiwa.",
+    "convert-sub-title": "Rekomendado lamang kung ang HBD ay mas mababa sa $1. Ikaw ay magkakaroon ng $1 na HIVE sa loob ng 3.5 na araw.",
     "delegate-title": "Magpahiram",
     "delegate-sub-title": "Magpahiram ng Hive Power",
-    "power-down-title": "Power Down",
-    "power-down-sub-title": "Power Down Hive Power",
-    "from": "From",
-    "to": "To",
+    "power-down-title": "Magpahina",
+    "power-down-sub-title": "Pahinain ang Hive Power",
+    "from": "Mula sa",
+    "to": "Para kay",
     "to-placeholder": "bansag",
     "to-not-found": "Ang gumagamit na nais mong paglipatan ng mga pondo ay hindi umiiral!",
     "to-bad-actor": "Maging maingat sa pagpapadala sa account na ito. Mangyaring suriin ng dalawang ulit kung tama ang iyong pagbabaybay para sa posibleng phishing.",
-    "amount": "Amount",
-    "amount-placeholder": "amount",
-    "wrong-amount": "Wrong amount value",
-    "amount-precision-error": "Use only 3 digits of precision",
-    "balance": "Balance",
+    "amount": "Halaga",
+    "amount-placeholder": "halaga",
+    "wrong-amount": "Maling halaga ng kabuluhan",
+    "amount-precision-error": "Gamitin lang ang 3 numero ng kawastuhan",
+    "balance": "Balanse",
     "power-down-estimated": "+ {{n}} Lingguhang Tinataya",
-    "memo": "Memo",
-    "memo-placeholder": "enter your notes here",
+    "memo": "Paunawa",
+    "memo-placeholder": "ilagay ang iyong paalala dito",
     "memo-help": "This memo is public",
     "available-hp-hint": "* available hive power",
     "confirm-title": "Confirm your transaction",
@@ -811,6 +813,7 @@
   },
   "updater": {
     "new-version-available": "New version is available",
+    "download": "Download",
     "update": "Update",
     "dismiss": "Dismiss",
     "downloading": "Downloading new version...",
