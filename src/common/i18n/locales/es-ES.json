@@ -182,8 +182,8 @@
     "comment-entry-go-parent": "Ver el comentario relacionado",
     "show-history": "Mostrar historial de ediciones",
     "hidden-warning": "El post ha sido ocultado por bajas calificaciones.",
-    "address-copy": "Copy post address",
-    "address-copied": "Post address copied to clipboard."
+    "address-copy": "Copiar la dirección de la Publicación",
+    "address-copied": "Dirección de publicación copiada al portapapeles."
   },
   "edit-history": {
     "title": "Editar historial",
@@ -813,7 +813,7 @@
   },
   "updater": {
     "new-version-available": "La nueva versión está disponible",
-    "download": "Download",
+    "download": "Descargar",
     "update": "Actualización",
     "dismiss": "Descartar",
     "downloading": "Descargando nueva versión...",
