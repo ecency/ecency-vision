@@ -64,7 +64,7 @@ const App = () => {
                 <Route exact={true} strict={true} path={routes.TOS} component={TosPageContainer}/>
                 <Route exact={true} strict={true} path={routes.FAQ} component={FaqPageContainer}/>
                 <Route exact={true} strict={true} path={routes.CONTRIBUTORS} component={ContributorsPageContainer}/>
-                <Route component={() => <NotFound/>}/>
+                <Route component={NotFound}/>
             </Switch>
         </>
     );

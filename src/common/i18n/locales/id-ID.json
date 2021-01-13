@@ -27,7 +27,7 @@
     "off": "Off",
     "yes": "Ya",
     "no": "Tidak",
-    "done": "Done"
+    "done": "Selesai"
   },
   "confirm": {
     "title": "Apakah anda yakin?",
@@ -61,7 +61,7 @@
     "header-community": "Komunitas"
   },
   "switch-lang": {
-    "contributors": "Contributors"
+    "contributors": "Kontributor"
   },
   "user-nav": {
     "wallet": "Dompet",
@@ -73,14 +73,14 @@
     "gallery": "Galeri",
     "drafts": "Konsep",
     "bookmarks": "Tandai",
-    "schedules": "Schedules",
+    "schedules": "Jadwal",
     "logout": "Keluar",
-    "vote-power": "Vote Power:"
+    "vote-power": "Kekuatan Vote:"
   },
   "intro": {
-    "title": "Aspire to greatness",
-    "sub-title": "rewarding communities",
-    "c2a": "Get Started"
+    "title": "Bangun impian menjadi besar",
+    "sub-title": "memberikan rewards kepada komunitas",
+    "c2a": "Mulai"
   },
   "login": {
     "title": "Selamat datang kembali!",
@@ -181,7 +181,9 @@
     "comment-entry-go-root": "Lihat konteks lengkapnya",
     "comment-entry-go-parent": "Lihat sumber utamanya",
     "show-history": "Tampilkan riwayat edit",
-    "hidden-warning": "Posting ini tersembunyi dikarenakan peringkat rendah."
+    "hidden-warning": "Posting ini tersembunyi dikarenakan peringkat rendah.",
+    "address-copy": "Salin alamat postingan",
+    "address-copied": "Tempel alamat yang disalin ke papan klip."
   },
   "edit-history": {
     "title": "Riwayat Penyuntingan",
@@ -558,7 +560,7 @@
     "title-placeholder": "Judul",
     "body-placeholder": "Konten Postingan",
     "reward": "Reward",
-    "reward-hint": "Set author reward ratio for liquid and staked tokens",
+    "reward-hint": "Tetapkan rasio imbalan penulis untuk token cair dan yang disimpan",
     "reward-default": "Default 50% / 50%",
     "reward-sp": "Power Up 100%",
     "reward-dp": "Menolak pembayaran",
@@ -573,14 +575,14 @@
     "clear": "Bersihkan",
     "published": "Postingan telah diterbitkan",
     "updated": "Postingan diperbarui",
-    "advanced": "Advanced",
-    "beneficiaries": "Beneficiaries",
-    "beneficiaries-hint": "Set beneficiaries to share author reward with other accounts",
-    "reblog": "Reblog",
-    "reblog-hint": "Auto share content to your blog",
-    "schedule": "Schedule",
-    "schedule-hint": "Auto publish content on specific time",
-    "scheduled": "Post scheduled"
+    "advanced": "Lanjutan",
+    "beneficiaries": "Penerima manfaat",
+    "beneficiaries-hint": "Atur penerima manfaat untuk berbagi rewards penulis dengan akun lainnya",
+    "reblog": "Bagikan",
+    "reblog-hint": "Bagi otomatis konten ke blog Anda",
+    "schedule": "Jadwal",
+    "schedule-hint": "Terbitkan konten otomatis pada waktu tertentu",
+    "scheduled": "Postingan yang dijadwalkan"
   },
   "tag-selector": {
     "placeholder-empty": "Tagar. Tagar pertama adalah kategori utama. Mudah disortir.",
@@ -599,17 +601,17 @@
     "read-time-n-min": "~ {{n}} menit dibaca"
   },
   "beneficiary-editor": {
-    "title": "Beneficiaries",
-    "btn-label": "Set Beneficiaries",
-    "btn-label-n": "Set Beneficiaries ({{n}})",
-    "username": "Username",
-    "reward": "Reward",
-    "user-error": "{{n}} is not a valid user.",
-    "user-exists-error": "{{n}} is already in the list"
+    "title": "Penerima manfaat",
+    "btn-label": "Atur Penerima Manfaat",
+    "btn-label-n": "Atur Penerima Manfaat ({{n}})",
+    "username": "Nama Pengguna",
+    "reward": "Imbalan",
+    "user-error": "{{n}} bukan pengguna sah.",
+    "user-exists-error": "{{n}} sudah ada dalam daftar"
   },
   "post-scheduler": {
-    "title": "Schedule",
-    "btn-label": "Schedule"
+    "title": "Jadwal",
+    "btn-label": "Jadwal"
   },
   "notification": {
     "popup-title": "Anda memiliki pemberitahuan baru",
@@ -695,7 +697,7 @@
     "proxy-active-description": "Anda telah menetapkan pemungutan suara proxy. Jika Anda ingin mengaktifkan kembali pemungutan suara secara manual, harap hapus proxy Anda.",
     "proxy-active-current": "Proxy anda sekarang",
     "proxy-active-btn-label": "Hapus proxy",
-    "proxy-votes-for": "@{{username}} votes for"
+    "proxy-votes-for": "@{{username}} vote untuk"
   },
   "proposals": {
     "page-title": "Proposal",
@@ -725,8 +727,8 @@
     "title": "Konsep"
   },
   "schedules": {
-    "title": "Scheduled Posts",
-    "move": "Move to drafts"
+    "title": "Postingan terjadwal",
+    "move": "Pindahkan ke konsep"
   },
   "bookmarks": {
     "title": "Bookmark"
@@ -753,33 +755,33 @@
       "page-title": "Pertanyaan tentang Ecency",
       "page-sub-title": "Daftar Isi",
       "what-is-ecency-header": "Apa itu Ecency?",
-      "what-is-ecency-body": "<p> Ecency adalah jaringan sosial berbasis <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\"> blockchain </a> - diberdayakan oleh <a href = \"https://hive.io\" target = \"_ blank\" rel = \"noopener noreferrer\"> Hive </a>. </p> <p> Ecency menawarkan platform yang tidak disensor, gratis, tanpa batas, dan bermanfaat bagi pembuat konten. </p> <p> Proyek dimulai dan didirikan oleh <a href=\"/@good-karma\"> @ good-karma </a> pada Agustus 2016 sebagai jaringan sosial alternatif. Sejak saat itu, proyek telah berkembang menjadi kelompok kontributor yang jauh lebih besar (penerjemah, penguji, pengembang, pemberi pengaruh, pembuat konten, dan konsumen) yang membantu membentuk Ecency. </p> <p> Ecency membantu banyak orang memasukkan teknologi Blockchain di mana pengguna dibayar untuk waktu, sumber daya, dan belajar mereka sambil menikmati aspek sosial blockchain. Melalui kemudahan penggunaan, pengguna tidak hanya belajar tetapi juga menjadi investor, inovator teknologi, dan komunitas. </p>",
+      "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based social network - powered by <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency offers uncensored, free, limitless, rewarding platform for content creators.</p><p>Project was initiated and founded by <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> in August 2016 as an alternative social network. Since then project has grown to much larger group of contributors (translators, testers, developers, influencers, content creators and consumers) who helped to shape Ecency.</p><p>Ecency helps onboarding masses into Blockchain technology where users are getting paid for their time, resources and learn while enjoying social aspects of blockchain. Through ease of use, users not only learn but also become investors, innovators of the technology and community.</p>",
       "what-is-hive-header": "Apa itu Hive Blockchain?",
       "what-is-hive-body": "<p> Hive adalah blockchain yang dirancang untuk menjadi platform yang cepat, nyaman, terdesentralisasi, tanpa sensor untuk aplikasi Web3.0, dengan fitur bawaan di mana pemegang saham dapat memperoleh hadiah dengan mempertaruhkan, mengkurasi, membuat konten, bermain game, berdagang - semuanya tanpa perantara (desentralisasi). Token di blockchain Hive yang disebut HIVE, HIVE DOLLARS, HIVE POWER. </p>",
       "what-is-difference-header": "Apa perbedaan antara Ecency dan aplikasi Hive lainnya?",
-      "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\"/></p><p>The primary differences in all interfaces or applications are in their feature-set, use cases. Ecency offers website, mobile and desktop applications for ease of access and with best security in mind. Accessible, opensource and innovative, built and owned by users. Aspire for greatness!</p>",
+      "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\"/></p><p>Perbedaan utama di semua antarmuka atau aplikasi terletak pada pengaturan fiturnya, kasus penggunaannya. Ecency menawarkan aplikasi dalam bentu situs web, seluler dan desktop untuk kemudahan akses dan dengan mempertimbangkan keamanan terbaik. Ecency dapat diakses dengan mudah, bersumber terbuka dan inovatif, dibangun dan dimiliki oleh pengguna sendiri. Bangun impian terbesar bersama Ecency!</p>",
       "why-choose-ecency-header": "Mengapa saya memilih Ecency?",
-      "why-choose-ecency-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjrzJAcJ4DvxvtqoPdzS9Aygf4MZ1PeE4goH6zWaeEFvafr9vGXWuou67Pbn44GweMyHV5DupM5q1cRvU85qdver?format=match&mode=fit\"/></p><p>Tailored feature set to empower you to create, inspire your audience and community. Ecency mobile application giving you on-go solution. With desktop app you are always sure to get uncensored content right from the blockchain, with website reach thousands of readers accross globe with best ranked content on search engines. State of art security measures so your keys will always stay encrypted and out of reach for ill-intentioned individuals. Fast and beautiful website, helps you to get discovered online and gain exposure for your content and gain loyal followers and readers. Build your community with Ecency today and take advantages of emerging blockchain technology and uncensored content, true free speech!</p>",
+      "why-choose-ecency-body": "<img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjrzJAcJ4DvxvtqoPdzS9Aygf4MZ1PeE4goH6zWaeEFvafr9vGXWuou67Pbn44GweMyHV5DupM5q1cRvU85qdver?format=match&mode=fit\"/>Kumpulan fitur yang disesuaikan untuk memberdayakan Anda dalam membuat, menginspirasi audiens, dan komunitas Anda. Aplikasi seluler Ecency memberi Anda solusi saat bepergian. Dengan aplikasi desktop Anda selalu yakin mendapatkan konten tanpa sensor langsung dari blockchain, dengan situs web menjangkau ribuan pembaca di seluruh dunia dengan konten peringkat terbaik di mesin pencari. Langkah-langkah keamanan canggih sehingga kunci Anda akan selalu terenkripsi dan berada di luar jangkauan individu yang berniat jahat. Situs web yang cepat dan indah, membantu Anda ditemukan secara online dan mendapatkan eksposur untuk konten Anda serta mendapatkan pengikut dan pembaca setia. Bangun komunitas Anda dengan Ecency hari ini dan manfaatkan teknologi blockchain yang sedang berkembang dan konten tanpa sensor, kebebasan berbicara yang sesungguhnya!</p>",
       "how-ecency-works-header": "Bagaimana Ecency bekerja?",
-      "how-ecency-works-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjuZ3ksaZqEjfd9GadyKFE4bT7UP8qM1sF5W6U3cst4ekDsXfrQdcrjtdz6b5Ye2AfWNwGA5f8QqVXmed6NRfg1U?format=match&mode=fit\"/></p><p>Ecency stores and reads data from the blockchain, and thus data is accessible and uncensored. Ecency rewards content creators with built-in incentive mechanism of blockchain, with tokens (HIVE, HIVE DOLLARS, HIVE POWER) as well as Points. Tokens can be purchased and sold in major cryptocurrency exchanges (e.g. Binance, Bittrex). Points could be utilized within platform and traded for goods, services.</p>",
+      "how-ecency-works-body": "<img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjuZ3ksaZqEjfd9GadyKFE4bT7UP8qM1sF5W6U3cst4ekDsXfrQdcrjtdz6b5Ye2AfWNwGA5f8QqVXmed6NRfg1U?format=match&mode=fit\"/></p><p>Ecency menyimpan dan membaca data dari blockchain, dan dengan demikian data dapat diakses dan tidak disensor. Ecency memberikan reward kepada pembuat konten dengan mekanisme insentif bawaan dari blockchain, dengan token (HIVE, HIVE DOLLAR, HIVE POWER) serta ada Poinnya juga. Token dapat dibeli dan dijual di bursa mata uang kripto besar (contohnya seperti Binance, Bittrex).Poin dapat digunakan dalam platform dan diperdagangkan untuk barang, jasa.</p>",
       "how-to-join-header": "Bagaimana bergabung dengan Ecency?",
-      "how-to-join-body": "<p>Go to <a href=\"/signup?referral=ecency\">https://ecency.com/signup?referral=ecency</a> and create an account. After signup you will receive email with further instructions. Your password is your master key to your account. Please store it safely, if you loose your password, you ultimately loose access to your account and your funds. Accounts cannot be deactivated or deleted, account names can not be changed as well. The account along with all of its activity is permanently stored in the blockchain. Without password, accounts cannot be restored, store your keys safely.</p>",
+      "how-to-join-body": "<p>Go to <a class=\"push-link\" href=\"/signup?referral=ecency\">https://ecency.com/signup?referral=ecency</a> and create an account. After signup you will receive email with further instructions. Your password is your master key to your account. Please store it safely, if you loose your password, you ultimately loose access to your account and your funds. Accounts cannot be deactivated or deleted, account names can not be changed as well. The account along with all of its activity is permanently stored in the blockchain. Without password, accounts cannot be restored, store your keys safely.</p>",
       "how-to-signin-header": "Bagaimana masuk ke Ecency?",
-      "how-to-signin-body": "<p><img src=\"https://images.ecency.com/p/7258xSVeJbKmTr9Z4jhbPhjS9pMWA2mTwBMDbXqk9G9wdMw2bwR4hXqRQt9S7UBFrBAWCYWddjn3G34ETv5KWB5KGmuZ8ixBB9oKHTFvjjnTkRLp4ttrFQtpgtNnRUEA9NtmyFmgyuuK4?format=match&mode=fit\"/></p><p>You can sign-in to Ecency by using your Username and Master password or by using Active Private Keys. We take security very seriously, that's why we never store your private keys, on mobile app they are encrypted with extra PIN code of your choice, on website they are never stored. You can also use <a href=\"https://hivesigner.com\">Hivesigner OAuth2</a> authentication service to easily login, manage and perform actions.</p>",
+      "how-to-signin-body": "<p><img src=\"https://images.ecency.com/p/7258xSVeJbKmTr9Z4jhbPhjS9pMWA2mTwBMDbXqk9G9wdMw2bwR4hXqRQt9S7UBFrBAWCYWddjn3G34ETv5KWB5KGmuZ8ixBB9oKHTFvjjnTkRLp4ttrFQtpgtNnRUEA9NtmyFmgyuuK4?format=match&mode=fit\"/></p><p>You can sign-in to Ecency by using your Username and Master password or by using Active Private Keys. We take security very seriously, that's why we never store your private keys, on mobile app they are encrypted with extra PIN code of your choice, on website they are never stored. You can also use <a href=\"https://hivesigner.com\" target=\"_blank\" rel=\"noopener noreferrer\">Hivesigner OAuth2</a> authentication service to easily login, manage and perform actions.</p>",
       "how-referrals-work-header": "Bagaimana sistem referal bekerja pada Ecency?",
-      "how-referrals-work-body": "<p>Referral system is simple, you can invite your friends by adding your username in this link https://ecency.com/signup?referral=username and share it with your friends. Once your friends join Ecency and earn their first 250 Points, you will earn 100 Points. There is no limits on referrals and its reward.</p>",
+      "how-referrals-work-body": "<p>Sistem referral itu sederhana, Anda dapat mengundang teman-teman Anda dengan menambahkan nama pengguna Anda di tautan ini https://ecency.com/signup?referral=username dan membagikannya dengan teman-teman Anda. Setelah teman Anda bergabung dengan Ecency dan mendapatkan 250 Poin pertama mereka, Anda akan mendapatkan 100 Poin. Tidak ada batasan untuk referensi dan imbalannya.</p>",
       "what-is-points-header": "Apa itu Poin Ecency dan bagaimana menggunakannya?",
       "what-is-points-body": "<p>Poin Ecency terus-menerus dicetak dan dihadiahkan untuk semua pengguna untuk berbagai aktivitas sosial yang mereka lakukan di situs web, aplikasi seluler atau desktop. Poin dapat digunakan untuk mempromosikan, meningkatkan konten Anda, bahkan dapat ditransfer atau dihadiahkan kepada pengguna lain. Anda juga dapat membeli Poin dengan aplikasi seluler kami.</p>",
       "where-tokens-come-header": "Dari mana token berasal?",
-      "where-tokens-come-body": "<p><img src=\"https://images.ecency.com/p/7kq2TLHKEHhCCDwNZLfFLu7msWtbdFb7vZaJJ9Y13GAc18vfVNAj8ZctLWmsVfMCCFtwGdULbZKT89faeBymhPsySU5tp4RnvDsHz6ZBxXHWA4g34ck4LHnR2vGkqsHvjzhizhpV8K6JrQ4sy7cCgJQksUUYPKp4d9XbERHkjnZV3PTdhbiUZPYJ43RS8cQu2sEmUbAgqZExuYMGa46SDa4vCunH2w6oNpommW5L1CCdfwdgX5i9eCpcS5fHo4t8btjVE69edzrUN8anr6T3v8AFYHC?format=match&mode=fit\"/></p><p>The Hive network continually creates new digital tokens to reward content creators and curators. Some of the newly-created tokens are transferred to users who add value to platform by posting, commenting, and voting on other people's posts. The remainder is distributed to holders of HIVE POWER and the witnesses that secures the blockchain.</p>",
+      "where-tokens-come-body": "<p><img src=\"https://images.ecency.com/p/7kq2TLHKEHhCCDwNZLfFLu7msWtbdFb7vZaJJ9Y13GAc18vfVNAj8ZctLWmsVfMCCFtwGdULbZKT89faeBymhPsySU5tp4RnvDsHz6ZBxXHWA4g34ck4LHnR2vGkqsHvjzhizhpV8K6JrQ4sy7cCgJQksUUYPKp4d9XbERHkjnZV3PTdhbiUZPYJ43RS8cQu2sEmUbAgqZExuYMGa46SDa4vCunH2w6oNpommW5L1CCdfwdgX5i9eCpcS5fHo4t8btjVE69edzrUN8anr6T3v8AFYHC?format=match&mode=fit\"/></p><p>Jaringan Hive tetap membuat token digital baru untuk memberikan rewards kepada pembuat konten dan kurator. Beberapa token yang baru dibuat untuk ditransfer ke pengguna yang memberi nilai tambah pada platform dengan membuat postingan, berkomentar, dan memberikan suara pada postingan orang lain. Sisanya didistribusikan kepada pemegang HIVE POWER dan saksi yang mengamankan blockchain.</p>",
       "how-promotion-work-header": "Bagaimana promosi konten bekerja?",
-      "how-promotion-work-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfoi6H93UHPFEEQutPvax8LP1XqGWMa9geug5SBEEhLUEHKVvSyBfzhrBm9J4uvmrn28AtPhmwcKx?format=match&mode=fit\"/></p><p>Promoting content on Ecency is very simple and easy. Ecency Points are used to promote content for 1, 2, 3, 7 or 14 days to get more exposure. Promoted posts are shuffled across the feeds to all users in mobile app, desktop app and website. There is no limit or restrictions, any post can be promoted to get more exposure and engagement. We hold right to remove posts from promotion list if it violates certain internet etiquette.</p>",
+      "how-promotion-work-body": "<img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfoi6H93UHPFEEQutPvax8LP1XqGWMa9geug5SBEEhLUEHKVvSyBfzhrBm9J4uvmrn28AtPhmwcKx?format=match&mode=fit\"/></p><p>Mempromosikan konten di Ecency sangat sederhana dan mudah. Ecency Points digunakan untuk mempromosikan konten selama 1, 2, 3, 7 atau 14 hari untuk mendapatkan lebih banyak eksposur. Postingan yang dipromosikan diacak di seluruh feed ke semua pengguna di aplikasi seluler, aplikasi desktop, dan situs web. Tidak ada batasan atau batasan, posting apa pun dapat dipromosikan untuk mendapatkan lebih banyak eksposur dan keterlibatan. Kami memiliki hak untuk menghapus postingan dari daftar promosi jika melanggar etiket internet tertentu.</p>",
       "how-boosting-work-header": "Bagaimana promosi konten bekerja?",
       "how-boosting-work-body": "<p>Poin dapat digunakan untuk meningkatkan konten (postingan dan komentar). Permintaan peningkatan ditinjau secara manual oleh moderator dan kurator kami yang mungkin memerlukan waktu hingga 24 jam. <p> Sebagai bagian dari pemeriksaan kualitas, kami dapat mempertimbangkan: a) Konten adalah konten asli, b) Tidak terdeteksi oleh cheetah, mackbot, hivewatchers, atau daftar hitam lainnya, dll. c) Pengguna tidak ada dalam daftar hitam Ecency karena perilaku yang kasar. </p> Boosting tidak menjamin kurasi, jika konten tidak dikurasi dalam waktu 24 jam, Poin akan dikembalikan.</p>",
       "how-to-transfer-header": "Bagaimana mentransfer token blockchain?",
       "how-to-transfer-body": "<p> Setelah masuk, Anda akan menemukan halaman Wallet di header atas pada situs web dan aplikasi desktop atau di halaman Profil, bilah navigasi bawah pada aplikasi seluler. Di halaman dompet, Anda dapat memulai transfer token apa pun yang Anda miliki ke pengguna lain atau akun exchange, klik panah di sebelah saldo Anda dan temukan operasi transfer. Transfer tidak dapat diubah karena terdaftar di blockchain, pastikan untuk mengirim ke penerima yang benar. </p>",
       "how-see-rewards-header": "Bagaimana saya melihat reward postingan saya?",
-      "how-see-rewards-body": "<p><img src=\"https://images.ecency.com/p/3W72119s5BjW4PvRk9nXBzqrPWMsMTjNrXDPFFf11iYhySeELMe77idrZHBPmyaqFX6CV72hBLB5qFhwVhGoAATydoFxAF7oCwBt1ztp6eS9r5us4pm7iN?format=match&mode=fit\"/></p><p>In Wallet page (in top header on website and desktop app, bottom navigation bar on mobile app), you can see Curation rewards (the rewards earned for upvoting posts and comments) and Author rewards (the rewards earned by your own posts and comments)</p><p>You can also view the same information for other users by visiting their wallet profile.</p>",
+      "how-see-rewards-body": "<img src=\"https://images.ecency.com/p/3W72119s5BjW4PvRk9nXBzqrPWMsMTjNrXDPFFf11iYhySeELMe77idrZHBPmyaqFX6CV72hBLB5qFhwVhGoAATydoFxAF7oCwBt1ztp6eS9r5us4pm7iN?format=match&mode=fit\"/></p><p>Di halaman Wallet (di header atas di situs web dan aplikasi desktop, bilah navigasi bawah di aplikasi seluler), Anda dapat melihat rewards Kurasi (rewards yang diperoleh untuk postingan dan komentar yang disukai) dan rewards Penulis (rewards yang diperoleh dari posting dan komentar Anda sendiri)</p> <p>Anda juga dapat melihat informasi yang sama untuk pengguna lain dengan mengunjungi profil dompet mereka.</p>",
       "how-dhf-work-header": "Bagaimana Cara kerja DHF?",
       "how-dhf-work-body": "<p>Siapapun dapat membuat proposal dan meyakinkan komunitas untuk memberikan suara pada proposal mereka untuk mendapatkan dana. Sebelum membuat proposal, posting normal harus dipublikasikan di blockchain dan disarankan untuk mengumpulkan umpan balik sebelum membuat proposal. Pembuatan proposal dikenakan biaya 10 HBD + 1 HBD untuk setiap hari berlangsung selama 60 hari.</p><p>Setelah proposal mencapai ambang tertentu dari suara yang dihitung, itu akan mulai menerima dana setiap jam. Jika proposal berada di bawah ambang batas, sistem akan menghentikan pendanaan untuk proposal tersebut. Anda dapat memilih proposal sebanyak yang Anda inginkan, tidak ada batasan. Proposal tidak dapat diedit, tetapi dapat dihapus / ditarik oleh pembuatnya.</p>",
       "when-claim-rewards-header": "Kapan saya bisa klaim rewards?",
@@ -789,18 +791,18 @@
       "how-boost-account-header": "Bagaimana meminta peningkatan akun?",
       "how-boost-account-body": "<p>Jika akun Anda kekurangan <a href=\"/faq#what-are-rc\"> Kredit Sumber Daya </a>, Anda dapat meminta peningkatan akun dari Ecency. Anda akan menerima delegasi sementara yang akan meningkatkan akun Anda untuk melakukan lebih banyak aktivitas di blockchain. Anda dapat menemukan fitur peningkatan akun di opsi Poin.</p>",
       "what-spam-abuse-header": "Apa yang dianggap spam atau penyalahgunaan?",
-      "what-spam-abuse-body": "<p><img src=\"https://images.ecency.com/p/3jpR3paJ37V8XPrHkfZdMt57jY6pRt6zEt5iRJV9pSw4Mez3Hut8U6RWvWLA7cFYEa1bxveXeasNfZApzrcLYLx8cz84kBEKak1KkewE2ZqE1QRRkF4eqRH3vWVqZB9WuNbzE?format=match&mode=fit\"/></p><p><ul><li>Plagiarized posts or copied content.</li><li>Leaving nearly identical or materially similar comments on multiple posts.</li><li>Using tags that are unrelated to the post.</li><li>Threatening users with any type of physical violence.</li><li>Not citing sources when using someone else’s material.</li><li>Posting ‘not safe for work’ content without using the “nsfw” tag.</li><li>Scams or Fraudulent offers.</li></ul></p>",
+      "what-spam-abuse-body": "<img src=\"https://images.ecency.com/p/3jpR3paJ37V8XPrHkfZdMt57jY6pRt6zEt5iRJV9pSw4Mez3Hut8U6RWvWLA7cFYEa1bxveXeasNfZApzrcLYLx8cz84kBEKak1KkewE2ZqE1QRRkF4eqRH3vWVqZB9WuNbzE?format=match&mode=fit\"/></p><p><ul><li>Postingan yang dijiplak atau konten yang disalin.</li><li>Meninggalkan komentar yang hampir identik atau mirip secara material pada banyak postingan.</li><li>Menggunakan tag yang tidak terkait dengan postingan.</li><li>Mengancam pengguna dengan segala jenis kekerasan fisik.</li><li>Tidak mengutip sumber saat menggunakan materi orang lain.</li><li>Memposting konten 'not safe for work'/'tidak aman untuk kerja' tanpa menggunakan tag “nsfw”.</li><li>Menyebarkan Penipuan atau Melakukan Kecurangan.</li></ul></p>",
       "can-link-post-header": "Dapatkah saya meminta penambahan tautan balik ke situs web saya dari tim Ecency?",
-      "can-link-post-body": "<p>All the content on our site is created by our users and we don't modify or able to add backlinks. You are free to contact author of the post or <a href=\"/signup?referral=ecency\">Signup</a> to open your own blog and community, publish articles to create backlinks for free.</p>",
+      "can-link-post-body": "<p>All the content on our site is created by our users and we don't modify or able to add backlinks. You are free to contact author of the post or <a href=\"/signup?referral=ecency\" class=\"push-link\">Signup</a> to open your own blog and community, publish articles to create backlinks for free.</p>",
       "can-guest-post-header": "Apakah mungkin untuk menerima postingan di situs web Anda?",
-      "can-guest-post-body": "<p>Posting on Ecency is simple and easy, <a href=\"/signup?referral=ecency\">Signup</a> to open your own blog and community, start posting your content.</p>",
-      "how-to-contribute-header": "How to contribute to the Ecency?",
-      "how-to-contribute-body": "<p>Our <a href=\"/contributors\">awesome contributors</a> helping us to shape Ecency. You can be part of this great movement, by joining our Translation team: <a href=\"https://translate-desktop.ecency.com\">Website</a>, <a href=\"https://translate-mobile.ecency.com\">Mobile</a> or by contributing with Ideas, Developing, Designing, Social media outreach skills. We try our best to support our contributors!</p>"
+      "can-guest-post-body": "<p>Posting on Ecency is simple and easy, <a href=\"/signup?referral=ecency\" class=\"push-link\">Signup</a> to open your own blog and community, start posting your content.</p>",
+      "how-to-contribute-header": "Bagaimana berkontribusi di Ecency?",
+      "how-to-contribute-body": "<p>Our <a href=\"/contributors\" class=\"push-link\">awesome contributors</a> helping us to shape Ecency. You can be part of this great movement, by joining our Translation team: <a href=\"https://translate-desktop.ecency.com\" target=\"_blank\" rel=\"noopener noreferrer\">Website</a>, <a href=\"https://translate-mobile.ecency.com\" target=\"_blank\" rel=\"noopener noreferrer\">Mobile</a> or by contributing with Ideas, Developing, Designing, Social media outreach skills. We try our best to support our contributors!</p>"
     }
   },
   "contributors": {
-    "title": "Contributors",
-    "description": "These great people contributed in one way or another to Ecency, we would like to thank them all. If you want to join our team by contributing with Translation, Ideas, Development, Designing, Social awareness, feel free to join. To learn more read our <a href=\"/faq#how-to-contribute\">FAQ</a>."
+    "title": "Kontributor",
+    "description": "Orang-orang hebat ini berkontribusi dalam satu atau lain cara untuk Ecency, kami ingin berterima kasih kepada mereka semua. Jika Anda ingin bergabung dengan tim kami dengan berkontribusi dalam Penerjemahan, Ide, Pengembangan, Desain, Kesadaran sosial, silakan bergabung. Untuk mempelajari lebih lanjut, baca<a href=\"/faq#how-to-contribute\">FAQ kami</a>."
   },
   "context-menu": {
     "cut": "Potong",
@@ -811,6 +813,7 @@
   },
   "updater": {
     "new-version-available": "Tersedia versi terbaru",
+    "download": "Unduh",
     "update": "Pembaruan",
     "dismiss": "Memberhentikan",
     "downloading": "Sedang mengunduh versi terbaru...",

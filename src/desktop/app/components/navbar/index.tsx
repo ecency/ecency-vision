@@ -25,17 +25,19 @@ import UserNav from "../../../../common/components/user-nav";
 import DropDown from "../../../../common/components/dropdown";
 import SearchSuggester from "../../../../common/components/search-suggester";
 import Updater from "../updater";
+import SwitchLang from "../../../../common/components/switch-lang";
 
 import NotificationHandler from "../../../../common/components/notification-handler";
 
-import {_t, langOptions} from "../../../../common/i18n";
-import i18n from "i18next";
+import {_t} from "../../../../common/i18n";
 
 import _c from "../../../../common/util/fix-class-names";
 
 import defaults from "../../../../common/constants/defaults.json";
 
 import routes from "../../../../common/routes";
+
+import {version} from "../../../package.json";
 
 import {brightnessSvg, pencilOutlineSvg, arrowLeftSvg, arrowRightSvg, refreshSvg, magnifySvg, dotsHorizontal, translateSvg} from "../../../../common/img/svg";
 
@@ -213,7 +215,7 @@ export class NavControls extends Component<NavControlsProps> {
     render() {
         const {history, reloadFn, reloading} = this.props;
 
-        // @ts-ignore this is for making ide happy. code compiles without error.
+        // @ts-ignore make ide happy. code compiles without error.
         const entries = history.entries || {}
         // @ts-ignore
         const index = history.index || 0;
@@ -329,7 +331,7 @@ export class NavBar extends Component<Props, State> {
     };
 
     render() {
-        const {global, activeUser, history, location, ui, setLang} = this.props;
+        const {global, activeUser, history, location, ui} = this.props;
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
         const logoHref = activeUser ? `/@${activeUser.username}/feed` : '/';
 
@@ -351,23 +353,7 @@ export class NavBar extends Component<Props, State> {
                     active: location.pathname === '/communities'
                 }
             ],
-        };
-
-        const langMenuConfig = {
-            history: this.props.history,
-            label: '',
-            icon: translateSvg,
-            items: langOptions.map((f => {
-                return {
-                    label: f.name,
-                    active: global.lang === f.code,
-                    onClick: () => {
-                        i18n.changeLanguage(f.code).then(() => {
-                            setLang(f.code);
-                        });
-                    }
-                }
-            }))
+            postElem: <div className="drop-down-menu-version">Ecency Surfer {version}</div>
         };
 
         return (
@@ -397,9 +383,7 @@ export class NavBar extends Component<Props, State> {
                             <DropDown {...textMenuConfig} float="right"/>
                         </div>
 
-                        <div className="switch-language">
-                            <DropDown {...langMenuConfig} float="left"/>
-                        </div>
+                        {SwitchLang({...this.props})}
 
                         <ToolTip content={themeText}>
                             <div className="switch-theme" onClick={this.changeTheme}>

@@ -202,7 +202,7 @@ class ProfilePage extends Component<Props, State> {
         const account = accounts.find((x) => x.name === username);
 
         if (!account) {
-            return <NotFound/>;
+            return NotFound({...this.props});
         }
 
         //  Meta config

@@ -44,7 +44,7 @@ import BookmarkBtn from "../components/bookmark-btn";
 import EditHistoryBtn from "../components/edit-history-btn";
 import PinBtn from "../components/pin-btn";
 import MuteBtn from "../components/mute-btn";
-import {error} from "../components/feedback";
+import {error, success} from "../components/feedback";
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
 import Feedback from "../components/feedback";
@@ -53,6 +53,7 @@ import NavBarElectron from "../../desktop/app/components/navbar";
 import NotFound from "../components/404";
 import ScrollToTop from "../components/scroll-to-top";
 import EntryBodyExtra from "../components/entry-body-extra";
+import Tooltip from "../components/tooltip";
 
 import * as bridgeApi from "../api/bridge";
 import {comment, formatError} from "../api/operations";
@@ -66,18 +67,19 @@ import {makeJsonMetaDataReply, createReplyPermlink} from "../helper/posting";
 import {makeShareUrlReddit, makeShareUrlTwitter, makeShareUrlFacebook} from "../helper/url-share";
 
 import isCommunity from "../helper/is-community";
+import accountReputation from '../helper/account-reputation';
 
 import truncate from "../util/truncate";
 import * as ls from "../util/local-storage";
+import clipboard from "../util/clipboard";
 
-import {timeSvg, redditSvg, facebookSvg, twitterSvg, deleteForeverSvg} from "../img/svg";
+import {timeSvg, redditSvg, facebookSvg, twitterSvg, deleteForeverSvg, linkSvg} from "../img/svg";
 
 import {_t} from "../i18n";
 
 import {version} from "../../../package.json";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
-import accountReputation from '../helper/account-reputation';
 
 interface MatchParams {
     category: string;
@@ -195,6 +197,12 @@ class EntryPage extends Component<Props, State> {
         const {category} = match.params;
         return communities.find((x) => x.name === category) || null;
     }
+
+    copyAddress = (entry: Entry) => {
+        const u = `https://ecency.com/${entry.category}/@${entry.author}/${entry.permlink}`
+        clipboard(u);
+        success(_t("entry.address-copied"));
+    };
 
     shareReddit = (entry: Entry) => {
         const u = makeShareUrlReddit(entry.category, entry.author, entry.permlink, entry.title);
@@ -316,7 +324,7 @@ class EntryPage extends Component<Props, State> {
         const entry = this.getEntry();
 
         if (!entry) {
-            return <NotFound/>;
+            return NotFound({...this.props});
         }
 
         const community = this.getCommunity();
@@ -545,6 +553,16 @@ class EntryPage extends Component<Props, State> {
                                                 entry
                                             })}
                                             <div className="sub-menu">
+                                                {global.isElectron && (
+                                                    <Tooltip content={_t("entry.address-copy")}>
+                                                        <a className="sub-menu-item"
+                                                           onClick={() => {
+                                                               this.copyAddress(entry!);
+                                                           }}>
+                                                            {linkSvg}
+                                                        </a>
+                                                    </Tooltip>
+                                                )}
                                                 <a className="sub-menu-item"
                                                    onClick={() => {
                                                        this.shareReddit(entry!);

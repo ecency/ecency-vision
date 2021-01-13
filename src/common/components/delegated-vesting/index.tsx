@@ -129,7 +129,7 @@ export class List extends Component<Props, State> {
                                         .finally(() => this.stateSet({inProgress: false}))
                                 },
                                 onHot: () => {
-                                    delegateVestingSharesHot(activeUser.username, username, "0.000000");
+                                    delegateVestingSharesHot(activeUser.username, username, "0.000000 VESTS");
                                 },
                                 onKc: () => {
                                     this.stateSet({inProgress: true});
