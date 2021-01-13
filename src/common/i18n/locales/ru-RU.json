@@ -182,8 +182,8 @@
     "comment-entry-go-parent": "Просмотр прямого родителя",
     "show-history": "История",
     "hidden-warning": "Скрыто из-за низкого рейтинга.",
-    "address-copy": "Copy post address",
-    "address-copied": "Post address copied to clipboard."
+    "address-copy": "Скопировать адрес поста",
+    "address-copied": "Адрес поста скопирован в буфер обмена."
   },
   "edit-history": {
     "title": "Править Историю",
@@ -449,7 +449,7 @@
     "convert-sub-title": "Рекомендуется только при цене HBD ниже $1. Вы получите $1 в токенах HIVE через 3,5 дня.",
     "delegate-title": "Делегировать",
     "delegate-sub-title": "Делегировать Hive Силу",
-    "power-down-title": "Power Down",
+    "power-down-title": "Понижение Силы",
     "power-down-sub-title": "Power Down Hive Power",
     "from": "От",
     "to": "Кому",
