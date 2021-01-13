@@ -318,7 +318,7 @@
     "section-replies": "Mga Tugon",
     "section-communities": "Mga Pamayanan",
     "section-wallet": "Pitaka",
-    "section-settings": "Settings",
+    "section-settings": "Mga Setting",
     "communities-title": "Pagkamiyembro",
     "create-community": "Gumawa ng pamayanan",
     "witnesses": "Mga testigo",
@@ -365,7 +365,7 @@
     "next-power-down": "Ang susunod na pagpapahina ay {{time}}, {{amount}}",
     "transfer": "Ilipat",
     "transfer-to-savings": "Ilipat sa impukan",
-    "convert": "Convert",
+    "convert": "Isalin",
     "power-up": "Magpalakas",
     "withdraw-hive": "Maglabas ng Hive",
     "withdraw-hbd": "Ilabas ang Hive Dollar",
@@ -464,11 +464,11 @@
     "power-down-estimated": "+ {{n}} Lingguhang Tinataya",
     "memo": "Paunawa",
     "memo-placeholder": "ilagay ang iyong paalala dito",
-    "memo-help": "This memo is public",
+    "memo-help": "Ang memo na ito ay isasapubliko",
     "available-hp-hint": "* available hive power",
-    "confirm-title": "Confirm your transaction",
-    "confirm-sub-title": "Please, check if everything is correct",
-    "confirm": "Confirm",
+    "confirm-title": "Kumpirmahin ang iyong transaksyon",
+    "confirm-sub-title": "Kung maaari, tignan kung tama lahat",
+    "confirm": "Kumpirmahin",
     "recent-transfers": "Kamakailan lamang na paglilipat",
     "transfer-summary": "<span class=\"amount\">{{amount}}</span> inilipat galing sa <span class=\"from-user\">{{from}}</span> kay <span class=\"to-user\">{{to}}</span>",
     "transfer-saving-summary": "<span class=\"amount\">{{amount}}</span> inilipat galing sa <span class=\"from-user\">{{from}}</span> kay <span class=\"to-user\">{{to}}</span>",
@@ -477,30 +477,30 @@
     "power-up-summary": "<span class=\"amount\">{{amount}}</span> staked from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "delegate-summary": "<span class=\"amount\">{{amount}}</span> nagpahiram <span class=\"from-user\">{{from}}</span> kay <span class=\"to-user\">{{to}}</span>",
     "power-down-summary": "Power down completed as <span class=\"amount\">{{amount}}</span>",
-    "reset": "Reset",
+    "reset": "I-reset",
     "powering-down": "You are currently powering down.",
-    "stop-power-down": "Stop"
+    "stop-power-down": "Ihinto"
   },
   "trx-common": {
-    "insufficient-funds": "Insufficient funds",
-    "sign-title": "Sign transaction",
-    "sign-sub-title": "Sign your transaction",
-    "success-title": "Success",
-    "success-sub-title": "Transaction successful"
+    "insufficient-funds": "Hindi sapat ang pondo",
+    "sign-title": "Pirmahan ang transaksyon",
+    "sign-sub-title": "Pirmahan ang iyong transaksyon",
+    "success-title": "Tagumpay",
+    "success-sub-title": "Tagumpay ang transaksyon"
   },
   "transactions": {
     "title": "History",
     "type-curation_reward": "Curation Reward",
-    "type-author_reward": "Author Reward",
+    "type-author_reward": "Gantimpala ng may-akda",
     "type-comment_benefactor_reward": "Comment Benefactor Reward",
-    "type-claim_reward_balance": "Claim rewards",
+    "type-claim_reward_balance": "Kunin ang gantimpala",
     "type-transfer": "Ilipat",
     "type-transfer_to_vesting": "Ilipat sa vesting",
     "type-withdraw_vesting": "Withdraw vesting",
     "type-fill_order": "Fill order"
   },
   "key-or-hot": {
-    "sign": "Sign",
+    "sign": "Pirma",
     "key-placeholder": "Enter active/owner/master key",
     "with-hivesigner": "Pumasok gamit ang hivesigner",
     "with-keychain": "Sign with keychain"
@@ -728,7 +728,7 @@
   },
   "schedules": {
     "title": "Scheduled Posts",
-    "move": "Move to drafts"
+    "move": "Ilipat sa mga draft"
   },
   "bookmarks": {
     "title": "Bookmarks"
