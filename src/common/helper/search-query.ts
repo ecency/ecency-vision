@@ -3,11 +3,13 @@ const type_re = /type:([^\s]+)/g;
 const category_re = /category:([^\s]+)/g;
 const tag_re = /tag:([^\s]+)/g;
 
+export type SearchType = "" | "post" | "comment";
+
 export default class SearchQuery {
     public query: string = "";
     public queryStripped: string = "";
     public author: string = "";
-    public type: string = "";
+    public type: SearchType = "";
     public category: string = "";
     public tags: string[] = [];
 
@@ -36,7 +38,10 @@ export default class SearchQuery {
     }
 
     private grab_type = () => {
-        this.type = this.grab(type_re);
+        const type = this.grab(type_re);
+        if (["", "post", "comment"].includes(type)) {
+            this.type = type as SearchType;
+        }
     }
 
     private grab_category = () => {

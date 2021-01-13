@@ -74,6 +74,8 @@ class SearchPage extends Component<PageProps, State> {
     }
 
     doSearch = () => {
+        return;
+        /*
         const {q, sort, results, scroll_id, inProgress} = this.state;
 
         if (inProgress) {
@@ -92,7 +94,7 @@ class SearchPage extends Component<PageProps, State> {
             this.stateSet({
                 inProgress: false,
             })
-        })
+        })*/
     }
 
     sortChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
@@ -146,7 +148,7 @@ class SearchPage extends Component<PageProps, State> {
 
                     <Row>
                         <Col md="8" className="col-section-holder">
-                            <SearchComment {...this.props} />
+                            <SearchComment {...this.props} search={q} />
                         </Col>
                         <Col md="4" className="col-section-holder">
                             <Row className="row-side">
