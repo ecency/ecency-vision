@@ -22,10 +22,10 @@
 
           .col-section {
             display: flex;
-            height: 32%;
+            height: 33.3%;
 
-            &:not(:last-child) {
-              margin-bottom: 3.5%;
+            &:not(:first-child) {
+              padding-top: 20px;
             }
           }
         }
