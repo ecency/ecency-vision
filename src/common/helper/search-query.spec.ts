@@ -56,7 +56,7 @@ describe('tags', () => {
 describe('stripped query', () => {
     it('1', () => {
         const q = new SearchQuery("foo bar  author:baz  type:post category:hive-125125  tag:tag1,tag2  zoo");
-        expect(q.queryStripped).toBe("foo bar zoo");
+        expect(q.baseQuery).toBe("foo bar zoo");
     });
 });
 

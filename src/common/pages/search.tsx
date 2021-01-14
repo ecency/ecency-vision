@@ -148,7 +148,7 @@ class SearchPage extends Component<PageProps, State> {
 
                     <Row>
                         <Col md="8" className="col-section-holder">
-                            <SearchComment {...this.props} search={q} />
+                            <SearchComment {...this.props}/>
                         </Col>
                         <Col md="4" className="col-section-holder">
                             <Row className="row-side">

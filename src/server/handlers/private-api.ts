@@ -133,12 +133,12 @@ export const commentHistory = async (req: express.Request, res: express.Response
 }
 
 export const search = async (req: express.Request, res: express.Response) => {
-    const {q, sort, scroll_id} = req.body;
+    const {q, sort, hide_low, scroll_id} = req.body;
 
     const url = `${config.searchApiAddr}/search`;
     const headers = {'Authorization': config.searchApiToken};
 
-    const payload: { q: string, sort: string, scroll_id?: string } = {q, sort};
+    const payload: { q: string, sort: string, hide_low: string, scroll_id?: string } = {q, sort, hide_low};
     if (scroll_id) {
         payload.scroll_id = scroll_id
     }

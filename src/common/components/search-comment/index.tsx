@@ -1,16 +1,24 @@
-import React, {Component, Fragment} from "react";
-
-import queryString from "query-string";
+import React from "react";
 
 import {Button, Form, Col, Row, FormControl} from "react-bootstrap";
 
+import {History, Location} from "history";
+
+import queryString from "query-string";
+
+import BaseComponent from "../base";
+
 import SearchQuery, {SearchType} from "../../helper/search-query";
+
+import {search, SearchResult} from "../../api/private";
+
+import {_t} from "../../i18n";
 
 type SearchSort = "popularity" | "newest" | "relevance";
 
 interface Props {
-
-    search: string;
+    history: History;
+    location: Location;
 }
 
 interface State {
@@ -21,86 +29,157 @@ interface State {
     sort: SearchSort;
     hideLow: boolean;
     advanced: boolean;
+    inProgress: boolean;
+    hits: number;
+    results: SearchResult[];
+    scrollId: string;
 }
 
 const pureState = (props: Props): State => {
-    const q = new SearchQuery(props.search);
+    const {location} = props;
+    const qs = queryString.parse(location.search);
+
+    const q = qs.q as string;
+    const sort = (qs.sort as SearchSort) || "newest";
+    const hideLow = !!(qs.hd && qs.hd === "1");
+
+    const sq = new SearchQuery(q);
 
     return {
-        author: q.author,
-        type: q.type || "post",
-        category: q.category,
-        tags: q.tags.join(","),
-        sort: "newest",
-        hideLow: true,
-        advanced: false
+        author: sq.author,
+        type: sq.type || "",
+        category: sq.category,
+        tags: sq.tags.join(","),
+        sort,
+        hideLow,
+        advanced: false,
+        inProgress: false,
+        hits: 0,
+        results: [],
+        scrollId: ""
     }
 }
 
-
-class SearchComment extends Component<Props, State> {
+class SearchComment extends BaseComponent<Props, State> {
     state = pureState(this.props);
 
     componentDidMount() {
-        console.log(this.state);
+        this.doSearch();
+    }
+
+    componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>) {
+        if (this.props.location !== prevProps.location) {
+            this.setState(pureState(this.props), this.doSearch);
+        }
     }
 
     toggleAdvanced = () => {
         const {advanced} = this.state;
-        this.setState({advanced: !advanced});
+        this.stateSet({advanced: !advanced});
     }
 
     authorChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
-        this.setState({author: e.target.value.trim()});
+        this.stateSet({author: e.target.value.trim()});
     }
 
     typeChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
-        this.setState({type: e.target.value as SearchType});
+        this.stateSet({type: e.target.value as SearchType});
     }
 
     categoryChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
-        this.setState({category: e.target.value.trim()});
+        this.stateSet({category: e.target.value.trim()});
     }
 
     tagsChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
-        this.setState({tags: e.target.value.trim()});
+        this.stateSet({tags: e.target.value.trim()});
     }
 
     sortChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
-        this.setState({sort: e.target.value as SearchSort});
+        this.stateSet({sort: e.target.value as SearchSort});
     }
 
     hideLowChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
-        this.setState({hideLow: e.target.checked});
+        this.stateSet({hideLow: e.target.checked});
+    }
+
+    buildQuery = () => {
+        const {location} = this.props;
+        const qs = queryString.parse(location.search);
+        const q = qs.q as string;
+
+        const {author, type, category, tags} = this.state;
+        const tagsArr = tags.split(",").map(x => x.trim()).filter(x => x.length > 0);
+
+        const sq = new SearchQuery(q);
+
+        sq.author = author;
+        sq.type = type;
+        sq.category = category;
+        sq.tags = tagsArr;
+
+        return sq.rebuild();
+    }
+
+    apply = () => {
+        const {history} = this.props;
+        const {sort, hideLow} = this.state;
+
+        const q = this.buildQuery();
+
+        const uq = queryString.stringify({q, sort, hd: hideLow ? "1" : "0"});
+
+        history.push(`/search/?${uq}`);
+    }
+
+    doSearch = () => {
+        const {sort, hideLow, results, scrollId} = this.state;
+        const q = this.buildQuery();
+
+        const hideLow_ = (hideLow ? "1" : "0");
+        const scrollId_ = (results.length > 0 && scrollId ? scrollId : undefined);
+
+        this.stateSet({inProgress: true});
+        search(q, sort, hideLow_, scrollId_).then(r => {
+            const newResults = [...results, ...r.results]
+            this.stateSet({
+                hits: r.hits,
+                results: newResults,
+                scrollId: r.scroll_id || ""
+            });
+        }).finally(() => {
+            this.stateSet({
+                inProgress: false,
+            })
+        });
     }
 
     render() {
-        const {author, type, category, tags, sort, hideLow, advanced} = this.state;
+        const {author, type, category, tags, sort, hideLow, advanced, hits, results} = this.state;
 
         const advancedForm = advanced ?
             <>
                 <Row>
                     <Form.Group as={Col} sm="5" controlId="form-author">
-                        <Form.Label>Author</Form.Label>
+                        <Form.Label>{_t("search-comment.author")}</Form.Label>
                         <Form.Control
                             type="text"
-                            placeholder="username"
+                            placeholder={_t("search-comment.author-placeholder")}
                             value={author}
                             onChange={this.authorChanged}/>
                     </Form.Group>
                     <Form.Group as={Col} sm="3" controlId="form-type">
-                        <Form.Label>Type</Form.Label>
+                        <Form.Label>{_t("search-comment.type")}</Form.Label>
                         <Form.Control as="select" value={type} onChange={this.typeChanged}>
-                            <option value="post">Post</option>
-                            <option value="comment">Comment</option>
-                            <option value="">All</option>
+                            <option value="post">{_t("search-comment.type-post")}</option>
+                            <option value="comment">{_t("search-comment.type-comment")}</option>
+                            <option value="">{_t("search-comment.type-all")}</option>
                         </Form.Control>
                     </Form.Group>
                     <Form.Group as={Col} sm="4" controlId="form-category">
-                        <Form.Label>Category</Form.Label>
+                        <Form.Label>{_t("search-comment.category")}</Form.Label>
                         <Form.Control
                             type="text"
-                            placeholder="category tag"
+                            placeholder={_t("search-comment.category-placeholder")}
                             value={category}
                             onChange={this.categoryChanged}
                         />
@@ -108,16 +187,16 @@ class SearchComment extends Component<Props, State> {
                 </Row>
                 <Row>
                     <Form.Group as={Col} sm="8" controlId="form-tag">
-                        <Form.Label>Tags</Form.Label>
+                        <Form.Label>{_t("search-comment.tags")}</Form.Label>
                         <Form.Control
                             type="text"
-                            placeholder="comma separated tags"
+                            placeholder={_t("search-comment.tags-placeholder")}
                             value={tags}
                             onChange={this.tagsChanged}
                         />
                     </Form.Group>
                     <Form.Group as={Col} sm="4" controlId="form-type">
-                        <Form.Label>Sort</Form.Label>
+                        <Form.Label>{_t("search-comment.sort")}</Form.Label>
                         <Form.Control as="select" value={sort} onChange={this.sortChanged}>
                             {["popularity", "newest", "relevance"].map(x => <option key={x}>{x}</option>)}
                         </Form.Control>
@@ -126,18 +205,17 @@ class SearchComment extends Component<Props, State> {
                 <div className="d-flex justify-content-between align-items-center">
                     <Form.Check id="hide-low"
                                 type="checkbox"
-                                label="Hide low quality content"
+                                label={_t("search-comment.hide-low")}
                                 checked={hideLow}
                                 onChange={this.hideLowChanged}/>
-                    <Button type="button">Apply</Button>
+                    <Button type="button" onClick={this.apply}>{_t("g.apply")}</Button>
                 </div>
             </> : null;
-
 
         return <div className="card">
             <div className="card-header d-flex justify-content-between align-items-center">
                 <strong>Results</strong>
-                <Button size="sm" onClick={this.toggleAdvanced}>Advanced</Button>
+                <Button size="sm" onClick={this.toggleAdvanced}>{_t("search-comment.advanced")}</Button>
             </div>
             <div className="card-body">
                 {advancedForm}
@@ -148,8 +226,8 @@ class SearchComment extends Component<Props, State> {
 
 export default (p: Props) => {
     const props = {
-
-        search: p.search
+        history: p.history,
+        location: p.location
     }
 
     return <SearchComment {...props} />

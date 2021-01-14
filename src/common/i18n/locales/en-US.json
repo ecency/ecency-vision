@@ -27,7 +27,8 @@
     "off": "Off",
     "yes": "Yes",
     "no": "No",
-    "done": "Done"
+    "done": "Done",
+    "apply": "Apply"
   },
   "confirm": {
     "title": "Are you sure?",
@@ -672,11 +673,27 @@
     "title": "Search",
     "description": "Find uncensored content, communities and users",
     "n-results-for-q": "{{n}} results",
-    "no-result": "No result",
-    "sort-by": "sort by",
+    "no-result": "No result"
+
+  },
+  "search-comment": {
+    "title": "Results",
+    "advanced": "Advanced",
+    "author": "Author",
+    "author-placeholder": "username",
+    "type": "Type",
+    "type-post": "Post",
+    "type-comment": "Comment",
+    "type-all": "All",
+    "category": "Category",
+    "category-placeholder": "category tag",
+    "tags": "Tags",
+    "tags-placeholder": "comma separated tags",
+    "sort": "Sort",
     "sort-popularity": "Popularity",
     "sort-relevance": "Relevance",
-    "sort-newest": "Date"
+    "sort-newest": "Date",
+    "hide-low": "Hide low quality content"
   },
   "witnesses": {
     "page-title": "Witnesses",

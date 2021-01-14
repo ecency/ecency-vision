@@ -7,7 +7,7 @@ export type SearchType = "" | "post" | "comment";
 
 export default class SearchQuery {
     public query: string = "";
-    public queryStripped: string = "";
+    public baseQuery: string = "";
     public author: string = "";
     public type: SearchType = "";
     public category: string = "";
@@ -15,13 +15,13 @@ export default class SearchQuery {
 
     constructor(_query: string) {
         this.query = _query;
-        this.queryStripped = _query;
+        this.baseQuery = _query;
 
-        this.grab_author();
-        this.grab_type();
-        this.grab_category();
-        this.grab_tags();
-        this.stripQuery();
+        this.grabAuthor();
+        this.grabType();
+        this.grabCategory();
+        this.grabTags();
+        this.grabBaseQuery();
     }
 
     private grab = (re: RegExp): string => {
@@ -33,42 +33,42 @@ export default class SearchQuery {
         return "";
     }
 
-    private grab_author = () => {
+    private grabAuthor = () => {
         this.author = this.grab(author_re);
     }
 
-    private grab_type = () => {
+    private grabType = () => {
         const type = this.grab(type_re);
         if (["", "post", "comment"].includes(type)) {
             this.type = type as SearchType;
         }
     }
 
-    private grab_category = () => {
+    private grabCategory = () => {
         this.category = this.grab(category_re);
     }
 
-    private grab_tags = () => {
+    private grabTags = () => {
         const tags = this.grab(tag_re);
         if (tags !== "") {
             this.tags = tags.split(",").map(x => x.trim());
         }
     }
 
-    private stripQuery = () => {
+    private grabBaseQuery = () => {
         [author_re, type_re, category_re, tag_re].forEach(r => {
-            this.queryStripped = this.queryStripped.replace(r, () => "");
+            this.baseQuery = this.baseQuery.replace(r, () => "");
         })
 
-        while (this.queryStripped.indexOf("  ") !== -1) {
-            this.queryStripped = this.queryStripped.replace("  ", " ");
+        while (this.baseQuery.indexOf("  ") !== -1) {
+            this.baseQuery = this.baseQuery.replace("  ", " ");
         }
 
-        this.queryStripped = this.queryStripped.trim();
+        this.baseQuery = this.baseQuery.trim();
     }
 
     public rebuild = () => {
-        let q = this.queryStripped;
+        let q = this.baseQuery;
 
         if (this.author) {
             q += ` author:${this.author}`;
