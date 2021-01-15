@@ -360,11 +360,12 @@ export interface SearchResponse {
     took: number;
 }
 
-export const search = (q: string, sort: string, hideLow: string, scroll_id?: string): Promise<SearchResponse> => {
-    const data: { q: string, sort: string, hide_low: string, scroll_id?: string } = {q, sort, hide_low: hideLow};
-    if (scroll_id) {
-        data.scroll_id = scroll_id
-    }
+export const search = (q: string, sort: string, hideLow: string, since?: string, scroll_id?: string): Promise<SearchResponse> => {
+    const data: { q: string, sort: string, hide_low: string, since?: string, scroll_id?: string } = {q, sort, hide_low: hideLow};
+
+    if (since) data.since = since;
+    if (scroll_id) data.scroll_id = scroll_id;
+
     return axios.post(_u(`/api/search`), data).then(resp => resp.data);
 }
 

@@ -6,6 +6,8 @@ import {History, Location} from "history";
 
 import numeral from "numeral";
 
+import moment, {Moment} from "moment";
+
 import queryString from "query-string";
 
 import {Global} from "../../store/global/types";
@@ -28,6 +30,13 @@ enum SearchSort {
     RELEVANCE = "relevance"
 }
 
+enum DateOpt {
+    W = "week",
+    M = "month",
+    Y = "year",
+    A = "all"
+}
+
 interface Props {
     history: History;
     location: Location;
@@ -42,6 +51,7 @@ interface State {
     type: SearchType;
     category: string;
     tags: string;
+    date: DateOpt;
     sort: SearchSort;
     hideLow: boolean;
     advanced: boolean;
@@ -56,7 +66,8 @@ const pureState = (props: Props): State => {
     const qs = queryString.parse(location.search);
 
     const q = qs.q as string;
-    const sort = (qs.sort as SearchSort) || SearchSort.NEWEST;
+    const sort = (qs.sort as SearchSort) || SearchSort.POPULARITY;
+    const date = (qs.date as DateOpt) || DateOpt.M;
     const hideLow = !(qs.hd && qs.hd === "0");
     const advanced = !!(qs.adv && qs.adv === "1");
     const sq = new SearchQuery(q);
@@ -67,6 +78,7 @@ const pureState = (props: Props): State => {
         type: sq.type || SearchType.ALL,
         category: sq.category,
         tags: sq.tags.join(","),
+        date,
         sort,
         hideLow,
         advanced,
@@ -115,6 +127,10 @@ class SearchComment extends BaseComponent<Props, State> {
         this.stateSet({tags: e.target.value.trim()});
     }
 
+    dateChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+        this.stateSet({date: e.target.value as DateOpt});
+    }
+
     sortChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
         this.stateSet({sort: e.target.value as SearchSort});
     }
@@ -155,11 +171,11 @@ class SearchComment extends BaseComponent<Props, State> {
 
     apply = () => {
         const {history} = this.props;
-        const {sort, hideLow} = this.state;
+        const {date, sort, hideLow} = this.state;
 
         const q = this.buildQuery();
 
-        const uqObj: { q: string, sort: string, adv: string, hd?: string, } = {q, sort, adv: "1"}
+        const uqObj: { q: string, date: string, sort: string, adv: string, hd?: string, } = {q, date, sort, adv: "1"}
 
         if (!hideLow) uqObj.hd = "0";
 
@@ -170,14 +186,33 @@ class SearchComment extends BaseComponent<Props, State> {
 
     doSearch = () => {
         const {limit} = this.props;
-        const {sort, hideLow, results, scrollId} = this.state;
+        const {date, sort, hideLow, results, scrollId} = this.state;
+
+        let sinceDate: undefined | Moment;
+
+        switch (date) {
+            case DateOpt.W:
+                sinceDate = moment().subtract("1", "week")
+                break;
+            case DateOpt.M:
+                sinceDate = moment().subtract("1", "month")
+                break;
+            case DateOpt.Y:
+                sinceDate = moment().subtract("1", "year")
+                break;
+            default:
+                sinceDate = undefined;
+        }
+
+        const since = sinceDate ? sinceDate.format("YYYY-MM-DDTHH:mm:ss") : undefined;
+
         const q = this.buildQuery();
 
         const hideLow_ = (hideLow ? "1" : "0");
         const scrollId_ = (results.length > 0 && scrollId ? scrollId : undefined);
 
         this.stateSet({inProgress: true});
-        search(q, sort, hideLow_, scrollId_).then(r => {
+        search(q, sort, hideLow_, since, scrollId_).then(r => {
             let newResults: SearchResult[];
 
             if (limit) {
@@ -200,7 +235,7 @@ class SearchComment extends BaseComponent<Props, State> {
 
     render() {
         const {limit} = this.props;
-        const {search, author, type, category, tags, sort, hideLow, advanced, inProgress, hits, results} = this.state;
+        const {search, author, type, category, tags, date, sort, hideLow, advanced, inProgress, hits, results} = this.state;
         const showMore = !!(limit && hits > limit);
 
         const advancedForm = advanced ?
@@ -253,7 +288,13 @@ class SearchComment extends BaseComponent<Props, State> {
                             onKeyDown={this.textInputDown}
                         />
                     </Form.Group>
-                    <Form.Group as={Col} sm="4" controlId="form-type">
+                    <Form.Group as={Col} sm="2" controlId="form-date">
+                        <Form.Label>{_t("search-comment.date")}</Form.Label>
+                        <Form.Control as="select" value={date} onChange={this.dateChanged}>
+                            {Object.values(DateOpt).map(x => <option value={x} key={x}>{_t(`search-comment.date-${x}`)}</option>)}
+                        </Form.Control>
+                    </Form.Group>
+                    <Form.Group as={Col} sm="2" controlId="form-sort">
                         <Form.Label>{_t("search-comment.sort")}</Form.Label>
                         <Form.Control as="select" value={sort} onChange={this.sortChanged}>
                             {Object.values(SearchSort).map(x => <option value={x} key={x}>{_t(`search-comment.sort-${x}`)}</option>)}
