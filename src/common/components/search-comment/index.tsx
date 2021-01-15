@@ -14,7 +14,11 @@ import {search, SearchResult} from "../../api/private";
 
 import {_t} from "../../i18n";
 
-type SearchSort = "popularity" | "newest" | "relevance";
+enum SearchSort {
+    POPULARITY = "popularity",
+    NEWEST = "newest",
+    RELEVANCE = "relevance"
+}
 
 interface Props {
     history: History;
@@ -40,8 +44,8 @@ const pureState = (props: Props): State => {
     const qs = queryString.parse(location.search);
 
     const q = qs.q as string;
-    const sort = (qs.sort as SearchSort) || "newest";
-    const hideLow = !!(qs.hd && qs.hd === "1");
+    const sort = (qs.sort as SearchSort) || SearchSort.NEWEST;
+    const hideLow = !(qs.hd && qs.hd === "0");
 
     const sq = new SearchQuery(q);
 
@@ -198,7 +202,7 @@ class SearchComment extends BaseComponent<Props, State> {
                     <Form.Group as={Col} sm="4" controlId="form-type">
                         <Form.Label>{_t("search-comment.sort")}</Form.Label>
                         <Form.Control as="select" value={sort} onChange={this.sortChanged}>
-                            {["popularity", "newest", "relevance"].map(x => <option key={x}>{x}</option>)}
+                            {Object.values(SearchSort).map(x => <option value={x} key={x}>{_t(`search-comment.sort-${x}`)}</option>)}
                         </Form.Control>
                     </Form.Group>
                 </Row>
@@ -214,7 +218,7 @@ class SearchComment extends BaseComponent<Props, State> {
 
         return <div className="card">
             <div className="card-header d-flex justify-content-between align-items-center">
-                <strong>Results</strong>
+                <strong>{_t("search-comment.title")}</strong>
                 <Button size="sm" onClick={this.toggleAdvanced}>{_t("search-comment.advanced")}</Button>
             </div>
             <div className="card-body">
