@@ -672,9 +672,7 @@
   "search-page": {
     "title": "Search",
     "description": "Find uncensored content, communities and users",
-    "n-results-for-q": "{{n}} results",
-    "no-result": "No result"
-
+    "no-matches": "No matches"
   },
   "search-comment": {
     "title": "Results",
