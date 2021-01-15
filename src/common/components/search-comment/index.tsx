@@ -288,9 +288,9 @@ class SearchComment extends BaseComponent<Props, State> {
                                 {SearchListItem({...this.props, res: res})}
                             </Fragment>)}
 
-                            <div className="show-more">
+                            {showMore && (<div className="show-more">
                                 <a href="#">{_t("search-comment.show-more")}</a>
-                            </div>
+                            </div>)}
                         </div>
                     }
 
