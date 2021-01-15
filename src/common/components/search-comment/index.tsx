@@ -20,6 +20,7 @@ import SearchQuery, {SearchType} from "../../helper/search-query";
 import {search, SearchResult} from "../../api/private";
 
 import {_t} from "../../i18n";
+import SearchBox from "../search-box";
 
 
 enum SearchSort {
@@ -116,6 +117,12 @@ class SearchComment extends BaseComponent<Props, State> {
         this.stateSet({hideLow: e.target.checked});
     }
 
+    textInputDown = (e: React.KeyboardEvent) => {
+        if (e.keyCode === 13) {
+            this.apply();
+        }
+    };
+
     buildQuery = () => {
         const {location} = this.props;
         const qs = queryString.parse(location.search);
@@ -183,7 +190,8 @@ class SearchComment extends BaseComponent<Props, State> {
                             type="text"
                             placeholder={_t("search-comment.author-placeholder")}
                             value={author}
-                            onChange={this.authorChanged}/>
+                            onChange={this.authorChanged}
+                            onKeyDown={this.textInputDown}/>
                     </Form.Group>
                     <Form.Group as={Col} sm="3" controlId="form-type">
                         <Form.Label>{_t("search-comment.type")}</Form.Label>
@@ -198,6 +206,7 @@ class SearchComment extends BaseComponent<Props, State> {
                             placeholder={_t("search-comment.category-placeholder")}
                             value={category}
                             onChange={this.categoryChanged}
+                            onKeyDown={this.textInputDown}
                         />
                     </Form.Group>
                 </Row>
@@ -209,6 +218,7 @@ class SearchComment extends BaseComponent<Props, State> {
                             placeholder={_t("search-comment.tags-placeholder")}
                             value={tags}
                             onChange={this.tagsChanged}
+                            onKeyDown={this.textInputDown}
                         />
                     </Form.Group>
                     <Form.Group as={Col} sm="4" controlId="form-type">
