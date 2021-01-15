@@ -133,7 +133,7 @@ class SearchComment extends BaseComponent<Props, State> {
 
     apply = () => {
         const {history} = this.props;
-        const {sort, hideLow, advanced} = this.state;
+        const {sort, hideLow} = this.state;
 
         const q = this.buildQuery();
 
