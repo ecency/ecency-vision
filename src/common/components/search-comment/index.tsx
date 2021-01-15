@@ -248,10 +248,10 @@ class SearchComment extends BaseComponent<Props, State> {
                         return null;
                     })()}
                 </div>
-
-                <Button size="sm" onClick={this.toggleAdvanced}>
-                    {_t("search-comment.advanced")}
-                </Button>
+                <a href="#" onClick={(e) => {
+                    e.preventDefault();
+                    this.toggleAdvanced();
+                }}>{_t("search-comment.advanced")}</a>
             </div>
             <div className="card-body">
                 {advancedForm}
