@@ -60,14 +60,3 @@ describe('stripped query', () => {
     });
 });
 
-describe('rebuild query', () => {
-    it('1', () => {
-        const q = new SearchQuery("foo bar  author:baz  type:post category:hive-125125 tag:tag1");
-        q.author = "bazz"
-        q.type = SearchType.COMMENT
-        q.category = "photography"
-        q.tags = ["tag3", "tag4", "tag5"];
-
-        expect(q.rebuild()).toBe("foo bar author:bazz type:comment category:photography tag:tag3,tag4,tag5");
-    });
-});

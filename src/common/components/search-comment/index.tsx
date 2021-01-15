@@ -37,6 +37,7 @@ interface Props {
 }
 
 interface State {
+    search: string;
     author: string;
     type: SearchType;
     category: string;
@@ -61,6 +62,7 @@ const pureState = (props: Props): State => {
     const sq = new SearchQuery(q);
 
     return {
+        search: sq.baseQuery,
         author: sq.author,
         type: sq.type || SearchType.ALL,
         category: sq.category,
@@ -91,6 +93,10 @@ class SearchComment extends BaseComponent<Props, State> {
     toggleAdvanced = () => {
         const {advanced} = this.state;
         this.stateSet({advanced: !advanced});
+    }
+
+    searchChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+        this.stateSet({search: e.target.value});
     }
 
     authorChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
@@ -124,21 +130,27 @@ class SearchComment extends BaseComponent<Props, State> {
     };
 
     buildQuery = () => {
-        const {location} = this.props;
-        const qs = queryString.parse(location.search);
-        const q = qs.q as string;
+        const {search, author, type, category, tags} = this.state;
 
-        const {author, type, category, tags} = this.state;
-        const tagsArr = tags.split(",").map(x => x.trim()).filter(x => x.length > 0);
+        let q = search;
 
-        const sq = new SearchQuery(q);
+        if (author) {
+            q += ` author:${author}`;
+        }
 
-        sq.author = author;
-        sq.type = type;
-        sq.category = category;
-        sq.tags = tagsArr;
+        if (type) {
+            q += ` type:${type}`;
+        }
 
-        return sq.rebuild();
+        if (category) {
+            q += ` category:${category}`;
+        }
+
+        if (tags) {
+            q += ` tag:${tags}`;
+        }
+
+        return q;
     }
 
     apply = () => {
@@ -188,13 +200,23 @@ class SearchComment extends BaseComponent<Props, State> {
 
     render() {
         const {limit} = this.props;
-        const {author, type, category, tags, sort, hideLow, advanced, inProgress, hits, results} = this.state;
+        const {search, author, type, category, tags, sort, hideLow, advanced, inProgress, hits, results} = this.state;
         const showMore = !!(limit && hits > limit);
 
         const advancedForm = advanced ?
             <div className="advanced-section">
                 <Row>
-                    <Form.Group as={Col} sm="5" controlId="form-author">
+
+                    <Form.Group as={Col} sm="4" controlId="form-search">
+                        <Form.Label>{_t("search-comment.search")}</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder={_t("search-comment.search-placeholder")}
+                            value={search}
+                            onChange={this.searchChanged}
+                            onKeyDown={this.textInputDown}/>
+                    </Form.Group>
+                    <Form.Group as={Col} sm="4" controlId="form-author">
                         <Form.Label>{_t("search-comment.author")}</Form.Label>
                         <Form.Control
                             type="text"
@@ -203,13 +225,13 @@ class SearchComment extends BaseComponent<Props, State> {
                             onChange={this.authorChanged}
                             onKeyDown={this.textInputDown}/>
                     </Form.Group>
-                    <Form.Group as={Col} sm="3" controlId="form-type">
+                    <Form.Group as={Col} sm="2" controlId="form-type">
                         <Form.Label>{_t("search-comment.type")}</Form.Label>
                         <Form.Control as="select" value={type} onChange={this.typeChanged}>
                             {Object.values(SearchType).map(x => <option value={x} key={x}>{_t(`search-comment.type-${x}`)}</option>)}
                         </Form.Control>
                     </Form.Group>
-                    <Form.Group as={Col} sm="4" controlId="form-category">
+                    <Form.Group as={Col} sm="2" controlId="form-category">
                         <Form.Label>{_t("search-comment.category")}</Form.Label>
                         <Form.Control
                             type="text"

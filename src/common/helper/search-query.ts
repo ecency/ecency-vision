@@ -70,26 +70,4 @@ export default class SearchQuery {
 
         this.baseQuery = this.baseQuery.trim();
     }
-
-    public rebuild = () => {
-        let q = this.baseQuery;
-
-        if (this.author) {
-            q += ` author:${this.author}`;
-        }
-
-        if (this.type) {
-            q += ` type:${this.type}`;
-        }
-
-        if (this.category) {
-            q += ` category:${this.category}`;
-        }
-
-        if (this.tags.length > 0) {
-            q += ` tag:${this.tags.join(",")}`;
-        }
-
-        return q;
-    }
 }
