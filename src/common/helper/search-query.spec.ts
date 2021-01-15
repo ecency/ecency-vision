@@ -1,4 +1,4 @@
-import SearchQuery from "./search-query";
+import SearchQuery, {SearchType} from "./search-query";
 
 describe('author', () => {
     it('1', () => {
@@ -64,7 +64,7 @@ describe('rebuild query', () => {
     it('1', () => {
         const q = new SearchQuery("foo bar  author:baz  type:post category:hive-125125 tag:tag1");
         q.author = "bazz"
-        q.type = "comment"
+        q.type = SearchType.COMMENT
         q.category = "photography"
         q.tags = ["tag3", "tag4", "tag5"];
 

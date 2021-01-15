@@ -1,6 +1,6 @@
 import React from "react";
 
-import {Button, Form, Col, Row, FormControl} from "react-bootstrap";
+import {Button, Col, Form, FormControl, Row} from "react-bootstrap";
 
 import {History, Location} from "history";
 
@@ -51,7 +51,7 @@ const pureState = (props: Props): State => {
 
     return {
         author: sq.author,
-        type: sq.type || "",
+        type: sq.type || SearchType.ALL,
         category: sq.category,
         tags: sq.tags.join(","),
         sort,
@@ -174,9 +174,7 @@ class SearchComment extends BaseComponent<Props, State> {
                     <Form.Group as={Col} sm="3" controlId="form-type">
                         <Form.Label>{_t("search-comment.type")}</Form.Label>
                         <Form.Control as="select" value={type} onChange={this.typeChanged}>
-                            <option value="post">{_t("search-comment.type-post")}</option>
-                            <option value="comment">{_t("search-comment.type-comment")}</option>
-                            <option value="">{_t("search-comment.type-all")}</option>
+                            {Object.values(SearchType).map(x => <option value={x} key={x}>{_t(`search-comment.type-${x}`)}</option>)}
                         </Form.Control>
                     </Form.Group>
                     <Form.Group as={Col} sm="4" controlId="form-category">

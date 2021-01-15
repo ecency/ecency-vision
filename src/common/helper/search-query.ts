@@ -3,13 +3,17 @@ const type_re = /type:([^\s]+)/g;
 const category_re = /category:([^\s]+)/g;
 const tag_re = /tag:([^\s]+)/g;
 
-export type SearchType = "" | "post" | "comment";
+export enum SearchType {
+    ALL = "",
+    POST = "post",
+    COMMENT = "comment"
+}
 
 export default class SearchQuery {
     public query: string = "";
     public baseQuery: string = "";
     public author: string = "";
-    public type: SearchType = "";
+    public type: SearchType = SearchType.ALL;
     public category: string = "";
     public tags: string[] = [];
 
@@ -38,8 +42,8 @@ export default class SearchQuery {
     }
 
     private grabType = () => {
-        const type = this.grab(type_re);
-        if (["", "post", "comment"].includes(type)) {
+        const type = this.grab(type_re) as SearchType;
+        if (Object.values(SearchType).includes(type)) {
             this.type = type as SearchType;
         }
     }
