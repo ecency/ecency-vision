@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 
 import {History, Location} from "history";
 
@@ -9,6 +9,7 @@ import numeral from "numeral";
 import {Global} from "../../store/global/types";
 import {TrendingTags} from "../../store/trending-tags/types";
 
+import BaseComponent from "../base";
 import SearchBox from "../search-box";
 
 import SearchSuggester from "../search-suggester";
@@ -29,43 +30,44 @@ interface State {
     query: string;
 }
 
-export class Search extends Component<Props, State> {
+export class Search extends BaseComponent<Props, State> {
     state: State = {
         query: "",
     };
-
-    _mounted: boolean = true;
 
     componentDidMount() {
         const {fetchTrendingTags} = this.props;
         fetchTrendingTags();
 
+        this.grabSearchQuery();
+    }
+
+    componentDidUpdate(prevProps: Readonly<Props>): void {
         const {location} = this.props;
 
-        if (location.pathname.startsWith('/search')) {
+        if (location.pathname !== prevProps.location.pathname) {
+            this.stateSet({
+                query: "",
+            });
+            return;
+        }
+
+        if (this.isSearchPage() && (location.search !== prevProps.location.search)) {
+            this.grabSearchQuery();
+        }
+    }
+
+    grabSearchQuery = () => {
+        const {location} = this.props;
+
+        if (this.isSearchPage()) {
             const qs = queryString.parse(location.search);
             const query = (qs.q as string) || '';
             this.stateSet({query});
         }
     }
 
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    componentDidUpdate(prevProps: Readonly<Props>): void {
-        if (this.props.location.pathname !== prevProps.location.pathname) {
-            this.stateSet({
-                query: "",
-            });
-        }
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
+    isSearchPage = () => this.props.location.pathname.startsWith('/search');
 
     queryChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
         const query = e.target.value;

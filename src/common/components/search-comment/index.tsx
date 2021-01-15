@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 
 import {Button, Col, Form, FormControl, Row} from "react-bootstrap";
 
@@ -6,13 +6,18 @@ import {History, Location} from "history";
 
 import queryString from "query-string";
 
+import {Global} from "../../store/global/types";
+import {Account} from "../../store/accounts/types";
+
 import BaseComponent from "../base";
+import SearchListItem from "../search-list-item";
 
 import SearchQuery, {SearchType} from "../../helper/search-query";
 
 import {search, SearchResult} from "../../api/private";
 
 import {_t} from "../../i18n";
+
 
 enum SearchSort {
     POPULARITY = "popularity",
@@ -23,6 +28,8 @@ enum SearchSort {
 interface Props {
     history: History;
     location: Location;
+    global: Global;
+    addAccount: (data: Account) => void;
 }
 
 interface State {
@@ -217,10 +224,20 @@ class SearchComment extends BaseComponent<Props, State> {
         return <div className="card">
             <div className="card-header d-flex justify-content-between align-items-center">
                 <strong>{_t("search-comment.title")}</strong>
-                <Button size="sm" onClick={this.toggleAdvanced}>{_t("search-comment.advanced")}</Button>
+                <Button size="sm" onClick={this.toggleAdvanced} className="">
+                    {_t("search-comment.advanced")}
+                </Button>
             </div>
             <div className="card-body">
                 {advancedForm}
+
+                {results.length > 0 && (
+                    <div className="search-list">
+                        {results.map(res => <Fragment key={`${res.author}-${res.permlink}`}>
+                            {SearchListItem({...this.props, res: res})}
+                        </Fragment>)}
+                    </div>
+                )}
             </div>
         </div>
     }
@@ -229,7 +246,9 @@ class SearchComment extends BaseComponent<Props, State> {
 export default (p: Props) => {
     const props = {
         history: p.history,
-        location: p.location
+        location: p.location,
+        global: p.global,
+        addAccount: p.addAccount
     }
 
     return <SearchComment {...props} />

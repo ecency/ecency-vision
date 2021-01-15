@@ -100,6 +100,7 @@ export class NavBar extends Component<Props, State> {
             || !isEqual(this.props.activeUser, nextProps.activeUser)
             || !isEqual(this.props.ui, nextProps.ui)
             || !isEqual(this.props.notifications, nextProps.notifications)
+            || !isEqual(this.props.location, nextProps.location)
             || !isEqual(this.state, nextState)
     }
 
