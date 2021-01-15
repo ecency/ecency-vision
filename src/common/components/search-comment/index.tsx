@@ -53,7 +53,7 @@ const pureState = (props: Props): State => {
     const q = qs.q as string;
     const sort = (qs.sort as SearchSort) || SearchSort.NEWEST;
     const hideLow = !(qs.hd && qs.hd === "0");
-
+    const advanced = !!(qs.adv && qs.adv === "1");
     const sq = new SearchQuery(q);
 
     return {
@@ -63,7 +63,7 @@ const pureState = (props: Props): State => {
         tags: sq.tags.join(","),
         sort,
         hideLow,
-        advanced: false,
+        advanced,
         inProgress: false,
         hits: 0,
         results: [],
@@ -133,11 +133,15 @@ class SearchComment extends BaseComponent<Props, State> {
 
     apply = () => {
         const {history} = this.props;
-        const {sort, hideLow} = this.state;
+        const {sort, hideLow, advanced} = this.state;
 
         const q = this.buildQuery();
 
-        const uq = queryString.stringify({q, sort, hd: hideLow ? "1" : "0"});
+        const uqObj: { q: string, sort: string, adv: string, hd?: string, } = {q, sort, adv: "1"}
+
+        if (!hideLow) uqObj.hd = "0";
+
+        const uq = queryString.stringify(uqObj);
 
         history.push(`/search/?${uq}`);
     }
@@ -224,7 +228,7 @@ class SearchComment extends BaseComponent<Props, State> {
         return <div className="card">
             <div className="card-header d-flex justify-content-between align-items-center">
                 <strong>{_t("search-comment.title")}</strong>
-                <Button size="sm" onClick={this.toggleAdvanced} className="">
+                <Button size="sm" onClick={this.toggleAdvanced} variant={advanced ? "outline-primary" : "primary"}>
                     {_t("search-comment.advanced")}
                 </Button>
             </div>
