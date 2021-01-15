@@ -694,7 +694,8 @@
     "sort-popularity": "Popularity",
     "sort-relevance": "Relevance",
     "sort-newest": "Date",
-    "hide-low": "Hide low quality content"
+    "hide-low": "Hide low quality content",
+    "show-more": "show more"
   },
   "witnesses": {
     "page-title": "Witnesses",

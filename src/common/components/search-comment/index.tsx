@@ -20,7 +20,6 @@ import SearchQuery, {SearchType} from "../../helper/search-query";
 import {search, SearchResult} from "../../api/private";
 
 import {_t} from "../../i18n";
-import SearchBox from "../search-box";
 
 
 enum SearchSort {
@@ -34,6 +33,7 @@ interface Props {
     location: Location;
     global: Global;
     addAccount: (data: Account) => void;
+    limit?: number
 }
 
 interface State {
@@ -157,6 +157,7 @@ class SearchComment extends BaseComponent<Props, State> {
     }
 
     doSearch = () => {
+        const {limit} = this.props;
         const {sort, hideLow, results, scrollId} = this.state;
         const q = this.buildQuery();
 
@@ -165,7 +166,14 @@ class SearchComment extends BaseComponent<Props, State> {
 
         this.stateSet({inProgress: true});
         search(q, sort, hideLow_, scrollId_).then(r => {
-            const newResults = [...results, ...r.results]
+            let newResults: SearchResult[];
+
+            if (limit) {
+                newResults = r.results.slice(0, limit);
+            } else {
+                newResults = [...results, ...r.results];
+            }
+
             this.stateSet({
                 hits: r.hits,
                 results: newResults,
@@ -179,7 +187,9 @@ class SearchComment extends BaseComponent<Props, State> {
     }
 
     render() {
+        const {limit} = this.props;
         const {author, type, category, tags, sort, hideLow, advanced, inProgress, hits, results} = this.state;
+        const showMore = !!(limit && hits > limit);
 
         const advancedForm = advanced ?
             <div className="advanced-section">
@@ -241,6 +251,7 @@ class SearchComment extends BaseComponent<Props, State> {
                 </div>
             </div> : null;
 
+
         return <div className="card search-comment">
             <div className="card-header d-flex justify-content-between align-items-center">
                 <div>
@@ -276,6 +287,10 @@ class SearchComment extends BaseComponent<Props, State> {
                             {results.map(res => <Fragment key={`${res.author}-${res.permlink}`}>
                                 {SearchListItem({...this.props, res: res})}
                             </Fragment>)}
+
+                            <div className="show-more">
+                                <a href="#">{_t("search-comment.show-more")}</a>
+                            </div>
                         </div>
                     }
 
@@ -291,7 +306,8 @@ export default (p: Props) => {
         history: p.history,
         location: p.location,
         global: p.global,
-        addAccount: p.addAccount
+        addAccount: p.addAccount,
+        limit: p.limit
     }
 
     return <SearchComment {...props} />

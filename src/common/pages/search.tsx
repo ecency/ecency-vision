@@ -50,7 +50,7 @@ class SearchPage extends Component<PageProps> {
                 <div className="app-content search-page">
                     <Row>
                         <Col md="8" className="col-section-holder">
-                            <SearchComment {...this.props}/>
+                            <SearchComment {...this.props} limit={8}/>
                         </Col>
                         <Col md="4" className="col-section-holder">
                             <Row className="row-side">
