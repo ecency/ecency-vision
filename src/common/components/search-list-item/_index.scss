@@ -1,5 +1,7 @@
 .search-list-item {
   @include entry-list-item;
+  margin-top: 0;
+  margin-bottom: 20px;
 
   .item-controls {
     svg {

@@ -4,6 +4,8 @@ import {Button, Col, Form, FormControl, Row} from "react-bootstrap";
 
 import {History, Location} from "history";
 
+import numeral from "numeral";
+
 import queryString from "query-string";
 
 import {Global} from "../../store/global/types";
@@ -11,6 +13,7 @@ import {Account} from "../../store/accounts/types";
 
 import BaseComponent from "../base";
 import SearchListItem from "../search-list-item";
+import LinearProgress from "../linear-progress";
 
 import SearchQuery, {SearchType} from "../../helper/search-query";
 
@@ -169,10 +172,10 @@ class SearchComment extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {author, type, category, tags, sort, hideLow, advanced, hits, results} = this.state;
+        const {author, type, category, tags, sort, hideLow, advanced, inProgress, hits, results} = this.state;
 
         const advancedForm = advanced ?
-            <>
+            <div className="advanced-section">
                 <Row>
                     <Form.Group as={Col} sm="5" controlId="form-author">
                         <Form.Label>{_t("search-comment.author")}</Form.Label>
@@ -221,27 +224,53 @@ class SearchComment extends BaseComponent<Props, State> {
                                 label={_t("search-comment.hide-low")}
                                 checked={hideLow}
                                 onChange={this.hideLowChanged}/>
-                    <Button type="button" onClick={this.apply}>{_t("g.apply")}</Button>
+                    <div>
+                        <Button type="button" onClick={this.apply}>{_t("g.apply")}</Button>
+                        <Button variant="link" type="button" onClick={this.toggleAdvanced} style={{marginLeft: "10px"}}>{_t("g.close")}</Button>
+                    </div>
                 </div>
-            </> : null;
+            </div> : null;
 
-        return <div className="card">
+        return <div className="card search-comment">
             <div className="card-header d-flex justify-content-between align-items-center">
-                <strong>{_t("search-comment.title")}</strong>
-                <Button size="sm" onClick={this.toggleAdvanced} variant={advanced ? "outline-primary" : "primary"}>
+                <div>
+                    <span className="title">{_t("search-comment.title")}</span>
+                    {(() => {
+                        if (hits === 1) {
+                            return <span className="matches">{_t("search-comment.matches-singular")}</span>
+                        }
+
+                        if (hits > 1) {
+                            const strHits = numeral(hits).format("0,0");
+                            return <span className="matches">{_t("search-comment.matches", {n: strHits})}</span>
+                        }
+
+                        return null;
+                    })()}
+                </div>
+
+                <Button size="sm" onClick={this.toggleAdvanced}>
                     {_t("search-comment.advanced")}
                 </Button>
             </div>
             <div className="card-body">
                 {advancedForm}
 
-                {results.length > 0 && (
-                    <div className="search-list">
-                        {results.map(res => <Fragment key={`${res.author}-${res.permlink}`}>
-                            {SearchListItem({...this.props, res: res})}
-                        </Fragment>)}
-                    </div>
-                )}
+                {(() => {
+                    if (inProgress) {
+                        return <LinearProgress/>;
+                    }
+
+                    if (results.length > 0) {
+                        return <div className="search-list">
+                            {results.map(res => <Fragment key={`${res.author}-${res.permlink}`}>
+                                {SearchListItem({...this.props, res: res})}
+                            </Fragment>)}
+                        </div>
+                    }
+
+                    return <span>{_t("g.no-matches")}</span>;
+                })()}
             </div>
         </div>
     }

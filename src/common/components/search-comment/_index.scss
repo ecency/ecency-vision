@@ -1,0 +1,22 @@
+.search-comment {
+  .advanced-section {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+
+    @include themify(day) {
+      border-bottom: 1px solid $white-three;
+    }
+  }
+
+  .card-header {
+    .title {
+      font-weight: 500;
+      margin-right: 10px;
+    }
+
+    .matches {
+      font-weight: 300;
+      font-size: 90%
+    }
+  }
+}

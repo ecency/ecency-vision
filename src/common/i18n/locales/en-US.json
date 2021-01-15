@@ -20,6 +20,7 @@
     "back": "Back",
     "load-more": "Load More",
     "empty-list": "Nothing here",
+    "no-matches": "No matches",
     "save": "Save",
     "try-again": "Try again",
     "show": "Show",
@@ -28,7 +29,8 @@
     "yes": "Yes",
     "no": "No",
     "done": "Done",
-    "apply": "Apply"
+    "apply": "Apply",
+    "close": "Close"
   },
   "confirm": {
     "title": "Are you sure?",
@@ -671,11 +673,12 @@
   },
   "search-page": {
     "title": "Search",
-    "description": "Find uncensored content, communities and users",
-    "no-matches": "No matches"
+    "description": "Find uncensored content, communities and users"
   },
   "search-comment": {
     "title": "Results",
+    "matches": "{{n}} matches",
+    "matches-singular": "1 match",
     "advanced": "Advanced",
     "author": "Author",
     "author-placeholder": "username",
