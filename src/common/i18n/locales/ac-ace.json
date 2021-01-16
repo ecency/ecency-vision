@@ -107,30 +107,30 @@
     "email": "Peutamong alamat email droeneuh",
     "ref": "Rujukan nyang pakek (jeut hana pasoe)",
     "submit": "Lanjot",
-    "success": "We've sent an email to {{email}}.",
-    "success-2": "Follow instructions to complete signup process.",
-    "login-text-1": "Do you have an account?",
-    "login-text-2": "Login"
+    "success": "Kamoe ka meu kireem email ke {{email}}.",
+    "success-2": "Ikot lagee nyang di yue untok peselesoe proses daftar.",
+    "login-text-1": "Droneuh kana akun?",
+    "login-text-2": "Tamong"
   },
   "trending-tags": {
-    "title": "Topics"
+    "title": "Topik"
   },
   "selected-tags": {
-    "title": "Featured"
+    "title": "Unggulan"
   },
   "entry-list-item": {
     "reblogged": "{{n}} reblogged",
-    "promoted": "promoted",
-    "pinned": "Pinned Post",
-    "replies": "1 response. Click to respond.",
-    "replies-n": "{{n}} responses. Click to respond.",
-    "no-replies": "No responses yet. Click to respond."
+    "promoted": "nyang di peumaju",
+    "pinned": "Posting nyang diboh tanda",
+    "replies": "1 tanggapan. klik untuk respon.",
+    "replies-n": "{{n}} tanggapan. Klik untuk merespon.",
+    "no-replies": "Goh lom na tanggapan. Klik untuk respon."
   },
   "bookmark-btn": {
-    "add": "Add to bookmarks",
-    "added": "Added to bookmarks",
-    "delete": "Remove from bookmarks",
-    "deleted": "Removed from bookmarks"
+    "add": "Tamah u bookmarks",
+    "added": "Di tamah u bookmarks",
+    "delete": "Pinah dari bookmarks",
+    "deleted": "Dipinah dari bookmarks"
   },
   "entry-reblog": {
     "reblog": "Reblog",
@@ -204,50 +204,50 @@
     "n-replies": "{{n}} Comments",
     "order": "Sort Order",
     "order-trending": "Trending",
-    "order-reputation": "Reputation",
-    "order-votes": "Votes",
-    "order-created": "Age",
-    "read-more": "...read more replies...",
-    "reveal": "Reveal comment"
+    "order-reputation": "Reputasi",
+    "order-votes": "Jok su",
+    "order-created": "Umu",
+    "read-more": "Baca leubeeh lee balasan...",
+    "reveal": "Peuleumah komen"
   },
   "community": {
-    "page-description": "{{f}} topics",
-    "subscribe": "Join",
-    "subscribed": "Joined",
-    "unsubscribe": "Leave",
-    "post": "New Post",
-    "posts": "Posts",
-    "subscribers": "Members",
-    "activities": "Activities",
-    "roles-title": "User Roles",
-    "roles-account": "Account",
-    "roles-role": "Role",
-    "roles-account-title": "Title",
-    "roles-add": "Add User"
+    "page-description": "{{f}} topik",
+    "subscribe": "Ikot",
+    "subscribed": "Ka ikot",
+    "unsubscribe": "Peu tinggai",
+    "post": "Post baro",
+    "posts": "Posting",
+    "subscribers": "Anggota",
+    "activities": "Peukateun",
+    "roles-title": "Tugaih nyang pakek",
+    "roles-account": "Akun",
+    "roles-role": "Tugaih",
+    "roles-account-title": "Judul",
+    "roles-add": "Tamah nyang pakek"
   },
   "community-cover": {
-    "rewards": "rewards",
-    "authors": "posters",
-    "lang": "language",
-    "cover-image": "Community cover image",
-    "cover-image-edit": "Edit cover image",
-    "cover-image-updated": "Cover image updated!"
+    "rewards": "peunayah",
+    "authors": "poster",
+    "lang": "bahsa",
+    "cover-image": "Gamba sampul komunitaih",
+    "cover-image-edit": "Edit gamba sampul",
+    "cover-image-updated": "Gamba sampul ka di peubaro!"
   },
   "community-card": {
-    "description": "Description",
-    "rules": "Rules",
-    "team": "Leadership",
-    "edit": "Edit settings",
-    "edit-team": "Edit roles",
-    "profile-image": "Community profile image",
-    "profile-image-edit": "Edit profile image",
-    "profile-image-updated": "Profile image updated!"
+    "description": "Deskripsi",
+    "rules": "Aturan",
+    "team": "Pang ulee",
+    "edit": "Ato Edit",
+    "edit-team": "Edit aturan",
+    "profile-image": "Gamba profil komunitaih",
+    "profile-image-edit": "Edit gamba profil",
+    "profile-image-updated": "Gamba profil di peubaro!"
   },
   "community-role-edit": {
-    "title": "Set user role",
-    "username": "Username",
-    "role": "Role",
-    "user-not-found": "The user does not exist!",
+    "title": "Ato peran nyang pakek",
+    "username": "Nan nyang pakek",
+    "role": "Tugaih",
+    "user-not-found": "Nyang pakek hana!",
     "explanations": "<h3>Role Permissions</h3><p><strong>Owner</strong> - assign admins</p><p><strong>Admin</strong> - edit settings, assign mods</p><p><strong>Moderator</strong> - mute, pin, set user titles</p><p><strong>Member</strong> - listed on leadership team</p><p><strong>Guest</strong> - default; can post and comment</p><p><strong>Muted</strong> - new posts automatically muted</p>"
   },
   "community-settings": {
