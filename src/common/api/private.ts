@@ -341,12 +341,14 @@ export const commentHistory = (author: string, permlink: string, onlyMeta: boole
 
 export interface SearchResult {
     title: string;
+    title_marked: string;
     category: string;
     author: string;
     permlink: string;
     author_rep: number;
     children: number;
     body: string;
+    body_marked: string;
     created_at: string;
     payout: number;
     total_votes: number;
