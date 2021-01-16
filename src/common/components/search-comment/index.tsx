@@ -67,13 +67,13 @@ const pureState = (props: Props): State => {
 
     const q = qs.q as string;
     const sort = (qs.sort as SearchSort) || SearchSort.POPULARITY;
-    const date = (qs.date as DateOpt) || DateOpt.M;
+    const date = (qs.date as DateOpt) || DateOpt.Y;
     const hideLow = !(qs.hd && qs.hd === "0");
     const advanced = !!(qs.adv && qs.adv === "1");
     const sq = new SearchQuery(q);
 
     return {
-        search: sq.baseQuery,
+        search: sq.search,
         author: sq.author,
         type: sq.type || SearchType.ALL,
         category: sq.category,

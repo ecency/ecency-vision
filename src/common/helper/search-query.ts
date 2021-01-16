@@ -11,7 +11,7 @@ export enum SearchType {
 
 export default class SearchQuery {
     public query: string = "";
-    public baseQuery: string = "";
+    public search: string = "";
     public author: string = "";
     public type: SearchType = SearchType.ALL;
     public category: string = "";
@@ -19,13 +19,13 @@ export default class SearchQuery {
 
     constructor(_query: string) {
         this.query = _query;
-        this.baseQuery = _query;
+        this.search = _query;
 
         this.grabAuthor();
         this.grabType();
         this.grabCategory();
         this.grabTags();
-        this.grabBaseQuery();
+        this.grabSearch();
     }
 
     private grab = (re: RegExp): string => {
@@ -59,15 +59,15 @@ export default class SearchQuery {
         }
     }
 
-    private grabBaseQuery = () => {
+    private grabSearch = () => {
         [author_re, type_re, category_re, tag_re].forEach(r => {
-            this.baseQuery = this.baseQuery.replace(r, () => "");
+            this.search = this.search.replace(r, () => "");
         })
 
-        while (this.baseQuery.indexOf("  ") !== -1) {
-            this.baseQuery = this.baseQuery.replace("  ", " ");
+        while (this.search.indexOf("  ") !== -1) {
+            this.search = this.search.replace("  ", " ");
         }
 
-        this.baseQuery = this.baseQuery.trim();
+        this.search = this.search.trim();
     }
 }
