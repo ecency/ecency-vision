@@ -90,7 +90,7 @@ const pureState = (props: Props): State => {
     }
 }
 
-class SearchComment extends BaseComponent<Props, State> {
+export class SearchComment extends BaseComponent<Props, State> {
     state = pureState(this.props);
 
     componentDidMount() {
