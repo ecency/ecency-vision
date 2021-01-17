@@ -182,8 +182,8 @@
     "comment-entry-go-parent": "Vedi commento genitore",
     "show-history": "Mostra la cronologia delle modifiche",
     "hidden-warning": "Questo post è stato nascosto a causa dello scarso punteggio qualità.",
-    "address-copy": "Copy post address",
-    "address-copied": "Post address copied to clipboard."
+    "address-copy": "Copia l'indirizzo del Post",
+    "address-copied": "Indirizzo del post copiato negli appunti."
   },
   "edit-history": {
     "title": "Modifica cronologia",
