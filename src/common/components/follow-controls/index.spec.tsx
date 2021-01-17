@@ -1,11 +1,9 @@
 import React from 'react';
 import renderer from "react-test-renderer";
 
-import {UiInstance, activeUserMaker} from "../../helper/test-helper";
+import {UiInstance, activeUserMaker, allOver} from "../../helper/test-helper";
 
 import FollowControls from './index';
-
-const allOver = () => new Promise((resolve) => setImmediate(resolve));
 
 let MOCK_MODE: number = 0;
 

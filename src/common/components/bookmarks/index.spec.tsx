@@ -5,9 +5,7 @@ import {createBrowserHistory} from "history";
 
 import {Bookmarks, Favorites} from './index';
 
-import {globalInstance, activeUserInstance} from "../../helper/test-helper";
-
-const allOver = () => new Promise((resolve) => setImmediate(resolve));
+import {globalInstance, activeUserInstance, allOver} from "../../helper/test-helper";
 
 let TEST_MODE = 0
 

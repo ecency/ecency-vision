@@ -2,11 +2,9 @@ import React from "react";
 
 import {Purchase} from "./index";
 
-import {globalInstance, dynamicPropsIntance1, fullAccountInstance} from "../../helper/test-helper";
+import {globalInstance, dynamicPropsIntance1, fullAccountInstance, allOver} from "../../helper/test-helper";
 
 import TestRenderer from "react-test-renderer";
-
-const allOver = () => new Promise((resolve) => setImmediate(resolve));
 
 jest.mock("../../api/private", () => ({
     calcPoints: () =>

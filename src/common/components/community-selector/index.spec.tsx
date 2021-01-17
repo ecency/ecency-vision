@@ -3,9 +3,7 @@ import renderer from "react-test-renderer";
 
 import {CommunitySelector, Browser} from "./index"
 
-import {globalInstance, activeUserMaker} from "../../helper/test-helper";
-
-const allOver = () => new Promise((resolve) => setImmediate(resolve));
+import {globalInstance, activeUserMaker, allOver} from "../../helper/test-helper";
 
 let MOCK_MODE_1 = 1;
 

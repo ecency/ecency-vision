@@ -4,9 +4,7 @@ import {EditHistory} from "./index";
 
 import TestRenderer from "react-test-renderer";
 
-import {entryInstance1} from "../../helper/test-helper";
-
-const allOver = () => new Promise((resolve) => setImmediate(resolve));
+import {entryInstance1, allOver} from "../../helper/test-helper";
 
 jest.mock("../../api/private", () => ({
     commentHistory: () =>

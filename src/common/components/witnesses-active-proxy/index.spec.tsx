@@ -6,9 +6,7 @@ import {WitnessesActiveProxy} from "./index";
 
 import renderer from "react-test-renderer";
 
-import {globalInstance, UiInstance, fullAccountInstance} from "../../helper/test-helper";
-
-const allOver = () => new Promise((resolve) => setImmediate(resolve));
+import {globalInstance, UiInstance, fullAccountInstance, allOver} from "../../helper/test-helper";
 
 jest.mock("../../api/hive", () => ({
     getAccount: () =>

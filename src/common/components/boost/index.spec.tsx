@@ -4,9 +4,7 @@ import {Boost} from "./index";
 
 import TestRenderer from "react-test-renderer";
 
-import {dynamicPropsIntance1, globalInstance} from "../../helper/test-helper";
-
-const allOver = () => new Promise((resolve) => setImmediate(resolve));
+import {dynamicPropsIntance1, globalInstance, allOver} from "../../helper/test-helper";
 
 jest.mock("../../api/private", () => ({
     getBoostOptions: () =>

@@ -4,9 +4,7 @@ import {createBrowserHistory} from "history";
 
 import {PopularUsers} from './index';
 
-import {globalInstance} from "../../helper/test-helper";
-
-const allOver = () => new Promise((resolve) => setImmediate(resolve));
+import {globalInstance, allOver} from "../../helper/test-helper";
 
 jest.mock("../../api/private", () => ({
     getPopularUsers: (duration: string) =>

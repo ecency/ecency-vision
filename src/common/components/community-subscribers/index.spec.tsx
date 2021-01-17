@@ -6,9 +6,7 @@ import {createBrowserHistory} from "history";
 
 import {Subscribers} from './index';
 
-import {globalInstance, communityInstance1, activeUserMaker} from "../../helper/test-helper";
-
-const allOver = () => new Promise((resolve) => setImmediate(resolve));
+import {globalInstance, communityInstance1, activeUserMaker, allOver} from "../../helper/test-helper";
 
 jest.mock("../../api/bridge", () => ({
     getSubscribers: () =>

@@ -3,7 +3,7 @@ import React from "react";
 import {PinBtn} from "./index";
 import TestRenderer from "react-test-renderer";
 
-import {entryInstance1, communityInstance1, activeUserMaker} from "../../helper/test-helper";
+import {entryInstance1, communityInstance1, activeUserMaker, allOver} from "../../helper/test-helper";
 
 let TEST_MODE = 0;
 
@@ -23,8 +23,6 @@ jest.mock("../../api/bridge", () => ({
             }
         }),
 }));
-
-const allOver = () => new Promise((resolve) => setImmediate(resolve));
 
 const defProps = {
     entry: {...entryInstance1},
