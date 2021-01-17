@@ -79,7 +79,7 @@ export class Search extends BaseComponent<Props, State> {
             const {history} = this.props;
             const {query} = this.state;
 
-            history.push(`/search/?q=${encodeURIComponent(query)}`);
+            history.push(`/search-main/?q=${encodeURIComponent(query)}`);
         }
     };
 

@@ -16,7 +16,7 @@ import {_t} from "../i18n";
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
 
-class SearchPage extends Component<PageProps> {
+class MainSearchPage extends Component<PageProps> {
     /*
     bottomReached = () => {
         const {inProgress, scroll_id} = this.state;
@@ -47,7 +47,7 @@ class SearchPage extends Component<PageProps> {
                         ...this.props,
                     }) :
                     NavBar({...this.props})}
-                <div className="app-content search-page">
+                <div className="app-content main-search-page">
                     <Row>
                         <Col md="8" className="col-section-holder">
                             <SearchComment {...this.props} limit={8}/>
@@ -87,4 +87,36 @@ class SearchPage extends Component<PageProps> {
     }
 }
 
-export default connect(pageMapStateToProps, pageMapDispatchToProps)(SearchPage);
+const MainSearchPageContainer = connect(pageMapStateToProps, pageMapDispatchToProps)(MainSearchPage);
+export {MainSearchPageContainer};
+
+class SearchPage extends Component<PageProps> {
+    render() {
+        //  Meta config
+        const metaProps = {
+            title: _t("search-page.title"),
+            description: _t("search-page.description"),
+        };
+
+        const {global} = this.props;
+
+        return (
+            <>
+                <Meta {...metaProps} />
+                <FullHeight/>
+                <Theme global={this.props.global}/>
+                {global.isElectron ?
+                    NavBarElectron({
+                        ...this.props,
+                    }) :
+                    NavBar({...this.props})}
+                <div className="app-content search-page">
+                    <SearchComment {...this.props}/>
+                </div>
+            </>
+        );
+    }
+}
+
+const SearchPageContainer = connect(pageMapStateToProps, pageMapDispatchToProps)(SearchPage);
+export {SearchPageContainer};

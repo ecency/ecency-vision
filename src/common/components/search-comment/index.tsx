@@ -181,7 +181,7 @@ class SearchComment extends BaseComponent<Props, State> {
 
         const uq = queryString.stringify(uqObj);
 
-        history.push(`/search/?${uq}`);
+        history.push(`?${uq}`);
     }
 
     doSearch = () => {
@@ -231,6 +231,13 @@ class SearchComment extends BaseComponent<Props, State> {
                 inProgress: false,
             })
         });
+    }
+
+    showMore = () => {
+        const {location, history} = this.props;
+        const {search} = location;
+
+        history.push(`/search/?${search}`);
     }
 
     render() {
@@ -352,7 +359,10 @@ class SearchComment extends BaseComponent<Props, State> {
                             </Fragment>)}
 
                             {showMore && (<div className="show-more">
-                                <a href="#">{_t("search-comment.show-more")}</a>
+                                <a href="#" onClick={(e) => {
+                                    e.preventDefault();
+                                    this.showMore();
+                                }}>{_t("search-comment.show-more")}</a>
                             </div>)}
                         </div>
                     }

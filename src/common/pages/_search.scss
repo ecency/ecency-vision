@@ -1,4 +1,4 @@
-.search-page {
+.main-search-page {
   display: block;
 
   @media (min-width: $md-break) {
@@ -45,3 +45,6 @@
   }
 }
 
+.search-page {
+  display: block;
+}
