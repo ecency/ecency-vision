@@ -76,10 +76,14 @@ export class Search extends BaseComponent<Props, State> {
 
     onKeyDown = (e: React.KeyboardEvent) => {
         if (e.keyCode === 13) {
-            const {history} = this.props;
+            const {history, location} = this.props;
             const {query} = this.state;
 
-            history.push(`/search-main/?q=${encodeURIComponent(query)}`);
+            if (["/search", "/search/"].includes(location.pathname)) {
+                history.push(`/search/?q=${encodeURIComponent(query)}`);
+            } else {
+                history.push(`/search-main/?q=${encodeURIComponent(query)}`);
+            }
         }
     };
 
