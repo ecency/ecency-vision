@@ -7,7 +7,7 @@ import {createBrowserHistory, createLocation} from "history";
 import {StaticRouter} from "react-router-dom";
 import {SearchComment} from "./index"
 
-let TEST_MODE = 0
+let TEST_MODE = 0;
 
 jest.mock("../../api/private", () => ({
     search: () =>
@@ -27,7 +27,8 @@ jest.mock("../../api/private", () => ({
 
                 resolve({
                     ...searchResponseInstance,
-                    hits: 0
+                    hits: 0,
+                    results: []
                 });
             }
         }),

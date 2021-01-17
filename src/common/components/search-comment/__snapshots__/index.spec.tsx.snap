@@ -73,10 +73,10 @@ exports[`(1) Default render 1`] = `
             </div>
             <a
               className="category"
-              href="/created/hive-139531"
+              href="/hot/ecency"
               onClick={[Function]}
             >
-              hive-139531
+              ecency
             </a>
             <span
               className="date"
@@ -93,7 +93,7 @@ exports[`(1) Default render 1`] = `
             className="item-image"
           >
             <a
-              href="/hive-139531/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
+              href="/ecency/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
               onClick={[Function]}
             >
               <img
@@ -108,14 +108,14 @@ exports[`(1) Default render 1`] = `
           >
             <a
               className="item-title"
-              href="/hive-139531/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
+              href="/ecency/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
               onClick={[Function]}
             >
               Imagehoster + Hivesigner and Condenser bounty
             </a>
             <a
               className="item-body"
-              href="/hive-139531/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
+              href="/ecency/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
               onClick={[Function]}
             >
               Bounty prize: 1000 HBD
@@ -133,14 +133,14 @@ Integration examples to get started: Esteem/
           >
             <a
               className="result-payout"
-              href="/hive-139531/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
+              href="/ecency/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
               onClick={[Function]}
             >
               $ 156.26
             </a>
             <a
               className="result-votes"
-              href="/hive-139531/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
+              href="/ecency/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
               onClick={[Function]}
             >
                
@@ -157,7 +157,7 @@ Integration examples to get started: Esteem/
             </a>
             <a
               className="result-replies"
-              href="/hive-139531/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
+              href="/ecency/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
               onClick={[Function]}
             >
               <svg
@@ -364,10 +364,10 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
             </div>
             <a
               className="category"
-              href="/created/hive-139531"
+              href="/hot/ecency"
               onClick={[Function]}
             >
-              hive-139531
+              ecency
             </a>
             <span
               className="date"
@@ -384,7 +384,7 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
             className="item-image"
           >
             <a
-              href="/hive-139531/@good-karma/from-esteem-search-to-hivesearcher"
+              href="/ecency/@good-karma/from-esteem-search-to-hivesearcher"
               onClick={[Function]}
             >
               <img
@@ -399,14 +399,14 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
           >
             <a
               className="item-title"
-              href="/hive-139531/@good-karma/from-esteem-search-to-hivesearcher"
+              href="/ecency/@good-karma/from-esteem-search-to-hivesearcher"
               onClick={[Function]}
             >
               From Esteem Search to Hivesearcher
             </a>
             <a
               className="item-body"
-              href="/hive-139531/@good-karma/from-esteem-search-to-hivesearcher"
+              href="/ecency/@good-karma/from-esteem-search-to-hivesearcher"
               onClick={[Function]}
             >
               Since Esteem is rebranding to 
@@ -421,14 +421,14 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
           >
             <a
               className="result-payout"
-              href="/hive-139531/@good-karma/from-esteem-search-to-hivesearcher"
+              href="/ecency/@good-karma/from-esteem-search-to-hivesearcher"
               onClick={[Function]}
             >
               $ 150.91
             </a>
             <a
               className="result-votes"
-              href="/hive-139531/@good-karma/from-esteem-search-to-hivesearcher"
+              href="/ecency/@good-karma/from-esteem-search-to-hivesearcher"
               onClick={[Function]}
             >
                
@@ -445,7 +445,7 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
             </a>
             <a
               className="result-replies"
-              href="/hive-139531/@good-karma/from-esteem-search-to-hivesearcher"
+              href="/ecency/@good-karma/from-esteem-search-to-hivesearcher"
               onClick={[Function]}
             >
               <svg
@@ -1263,10 +1263,10 @@ exports[`(2) With limit 1`] = `
             </div>
             <a
               className="category"
-              href="/created/hive-139531"
+              href="/hot/ecency"
               onClick={[Function]}
             >
-              hive-139531
+              ecency
             </a>
             <span
               className="date"
@@ -1283,7 +1283,7 @@ exports[`(2) With limit 1`] = `
             className="item-image"
           >
             <a
-              href="/hive-139531/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
+              href="/ecency/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
               onClick={[Function]}
             >
               <img
@@ -1298,14 +1298,14 @@ exports[`(2) With limit 1`] = `
           >
             <a
               className="item-title"
-              href="/hive-139531/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
+              href="/ecency/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
               onClick={[Function]}
             >
               Imagehoster + Hivesigner and Condenser bounty
             </a>
             <a
               className="item-body"
-              href="/hive-139531/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
+              href="/ecency/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
               onClick={[Function]}
             >
               Bounty prize: 1000 HBD
@@ -1323,14 +1323,14 @@ Integration examples to get started: Esteem/
           >
             <a
               className="result-payout"
-              href="/hive-139531/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
+              href="/ecency/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
               onClick={[Function]}
             >
               $ 156.26
             </a>
             <a
               className="result-votes"
-              href="/hive-139531/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
+              href="/ecency/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
               onClick={[Function]}
             >
                
@@ -1347,7 +1347,7 @@ Integration examples to get started: Esteem/
             </a>
             <a
               className="result-replies"
-              href="/hive-139531/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
+              href="/ecency/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
               onClick={[Function]}
             >
               <svg
@@ -1554,10 +1554,10 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
             </div>
             <a
               className="category"
-              href="/created/hive-139531"
+              href="/hot/ecency"
               onClick={[Function]}
             >
-              hive-139531
+              ecency
             </a>
             <span
               className="date"
@@ -1574,7 +1574,7 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
             className="item-image"
           >
             <a
-              href="/hive-139531/@good-karma/from-esteem-search-to-hivesearcher"
+              href="/ecency/@good-karma/from-esteem-search-to-hivesearcher"
               onClick={[Function]}
             >
               <img
@@ -1589,14 +1589,14 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
           >
             <a
               className="item-title"
-              href="/hive-139531/@good-karma/from-esteem-search-to-hivesearcher"
+              href="/ecency/@good-karma/from-esteem-search-to-hivesearcher"
               onClick={[Function]}
             >
               From Esteem Search to Hivesearcher
             </a>
             <a
               className="item-body"
-              href="/hive-139531/@good-karma/from-esteem-search-to-hivesearcher"
+              href="/ecency/@good-karma/from-esteem-search-to-hivesearcher"
               onClick={[Function]}
             >
               Since Esteem is rebranding to 
@@ -1611,14 +1611,14 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
           >
             <a
               className="result-payout"
-              href="/hive-139531/@good-karma/from-esteem-search-to-hivesearcher"
+              href="/ecency/@good-karma/from-esteem-search-to-hivesearcher"
               onClick={[Function]}
             >
               $ 150.91
             </a>
             <a
               className="result-votes"
-              href="/hive-139531/@good-karma/from-esteem-search-to-hivesearcher"
+              href="/ecency/@good-karma/from-esteem-search-to-hivesearcher"
               onClick={[Function]}
             >
                
@@ -1635,7 +1635,7 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
             </a>
             <a
               className="result-replies"
-              href="/hive-139531/@good-karma/from-esteem-search-to-hivesearcher"
+              href="/ecency/@good-karma/from-esteem-search-to-hivesearcher"
               onClick={[Function]}
             >
               <svg
@@ -2463,10 +2463,10 @@ exports[`(3) Hide show more button 1`] = `
             </div>
             <a
               className="category"
-              href="/created/hive-139531"
+              href="/hot/ecency"
               onClick={[Function]}
             >
-              hive-139531
+              ecency
             </a>
             <span
               className="date"
@@ -2483,7 +2483,7 @@ exports[`(3) Hide show more button 1`] = `
             className="item-image"
           >
             <a
-              href="/hive-139531/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
+              href="/ecency/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
               onClick={[Function]}
             >
               <img
@@ -2498,14 +2498,14 @@ exports[`(3) Hide show more button 1`] = `
           >
             <a
               className="item-title"
-              href="/hive-139531/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
+              href="/ecency/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
               onClick={[Function]}
             >
               Imagehoster + Hivesigner and Condenser bounty
             </a>
             <a
               className="item-body"
-              href="/hive-139531/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
+              href="/ecency/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
               onClick={[Function]}
             >
               Bounty prize: 1000 HBD
@@ -2523,14 +2523,14 @@ Integration examples to get started: Esteem/
           >
             <a
               className="result-payout"
-              href="/hive-139531/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
+              href="/ecency/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
               onClick={[Function]}
             >
               $ 156.26
             </a>
             <a
               className="result-votes"
-              href="/hive-139531/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
+              href="/ecency/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
               onClick={[Function]}
             >
                
@@ -2547,7 +2547,7 @@ Integration examples to get started: Esteem/
             </a>
             <a
               className="result-replies"
-              href="/hive-139531/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
+              href="/ecency/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
               onClick={[Function]}
             >
               <svg
@@ -2754,10 +2754,10 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
             </div>
             <a
               className="category"
-              href="/created/hive-139531"
+              href="/hot/ecency"
               onClick={[Function]}
             >
-              hive-139531
+              ecency
             </a>
             <span
               className="date"
@@ -2774,7 +2774,7 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
             className="item-image"
           >
             <a
-              href="/hive-139531/@good-karma/from-esteem-search-to-hivesearcher"
+              href="/ecency/@good-karma/from-esteem-search-to-hivesearcher"
               onClick={[Function]}
             >
               <img
@@ -2789,14 +2789,14 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
           >
             <a
               className="item-title"
-              href="/hive-139531/@good-karma/from-esteem-search-to-hivesearcher"
+              href="/ecency/@good-karma/from-esteem-search-to-hivesearcher"
               onClick={[Function]}
             >
               From Esteem Search to Hivesearcher
             </a>
             <a
               className="item-body"
-              href="/hive-139531/@good-karma/from-esteem-search-to-hivesearcher"
+              href="/ecency/@good-karma/from-esteem-search-to-hivesearcher"
               onClick={[Function]}
             >
               Since Esteem is rebranding to 
@@ -2811,14 +2811,14 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
           >
             <a
               className="result-payout"
-              href="/hive-139531/@good-karma/from-esteem-search-to-hivesearcher"
+              href="/ecency/@good-karma/from-esteem-search-to-hivesearcher"
               onClick={[Function]}
             >
               $ 150.91
             </a>
             <a
               className="result-votes"
-              href="/hive-139531/@good-karma/from-esteem-search-to-hivesearcher"
+              href="/ecency/@good-karma/from-esteem-search-to-hivesearcher"
               onClick={[Function]}
             >
                
@@ -2835,7 +2835,7 @@ No beneficiaries, that's right, we are removing 1% beneficiary reward.
             </a>
             <a
               className="result-replies"
-              href="/hive-139531/@good-karma/from-esteem-search-to-hivesearcher"
+              href="/ecency/@good-karma/from-esteem-search-to-hivesearcher"
               onClick={[Function]}
             >
               <svg
@@ -3604,1163 +3604,9 @@ exports[`(3) No matches 1`] = `
   <div
     className="card-body"
   >
-    <div
-      className="search-list"
-    >
-      <div
-        className="search-list-item"
-      >
-        <div
-          className="item-header"
-        >
-          <div
-            className="item-header-main"
-          >
-            <div
-              className="author-part"
-            >
-              <a
-                className="author-avatar"
-                href="/@good-karma"
-                onClick={[Function]}
-              >
-                <span
-                  className="user-avatar small"
-                  style={
-                    Object {
-                      "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
-                    }
-                  }
-                />
-              </a>
-              <a
-                className="author"
-                href="/@good-karma"
-                onClick={[Function]}
-              >
-                good-karma
-                <span
-                  className="author-reputation"
-                >
-                  77
-                </span>
-              </a>
-            </div>
-            <a
-              className="category"
-              href="/created/hive-139531"
-              onClick={[Function]}
-            >
-              hive-139531
-            </a>
-            <span
-              className="date"
-              title="Tuesday, July 7, 2020 7:03 PM"
-            >
-              6 months
-            </span>
-          </div>
-        </div>
-        <div
-          className="item-body"
-        >
-          <div
-            className="item-image"
-          >
-            <a
-              href="/hive-139531/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
-              onClick={[Function]}
-            >
-              <img
-                alt="Imagehoster + Hivesigner and Condenser bounty"
-                onError={[Function]}
-                src="https://images.ecency.com/p/Y2iXpRRkNSnseh3NuL6KUBitJTXrc5K2vbTzBseGEENcE?format=match&mode=fit&width=600&height=500"
-              />
-            </a>
-          </div>
-          <div
-            className="item-summary"
-          >
-            <a
-              className="item-title"
-              href="/hive-139531/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
-              onClick={[Function]}
-            >
-              Imagehoster + Hivesigner and Condenser bounty
-            </a>
-            <a
-              className="item-body"
-              href="/hive-139531/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
-              onClick={[Function]}
-            >
-              Bounty prize: 1000 HBD
-Related issue: https://gitlab.syncad.com/hive/condenser/-/issues/43
-
-Integration examples to get started: Esteem/
-              <mark>
-                Ecency
-              </mark>
-               desktop and mobile apps, as well as https://demo.hivesigner.com
-            </a>
-          </div>
-          <div
-            className="item-controls"
-          >
-            <a
-              className="result-payout"
-              href="/hive-139531/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
-              onClick={[Function]}
-            >
-              $ 156.26
-            </a>
-            <a
-              className="result-votes"
-              href="/hive-139531/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
-              onClick={[Function]}
-            >
-               
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M16 17V19H2V17S2 13 9 13 16 17 16 17M12.5 7.5A3.5 3.5 0 1 0 9 11A3.5 3.5 0 0 0 12.5 7.5M15.94 13A5.32 5.32 0 0 1 18 17V19H22V17S22 13.37 15.94 13M15 4A3.39 3.39 0 0 0 13.07 4.59A5 5 0 0 1 13.07 10.41A3.39 3.39 0 0 0 15 11A3.5 3.5 0 0 0 15 4Z"
-                  fill="currentColor"
-                />
-              </svg>
-               
-              742
-            </a>
-            <a
-              className="result-replies"
-              href="/hive-139531/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
-              onClick={[Function]}
-            >
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M18,8H6V6H18V8M18,11H6V9H18V11M18,14H6V12H18V14M22,4A2,2 0 0,0 20,2H4A2,2 0 0,0 2,4V16A2,2 0 0,0 4,18H18L22,22V4Z"
-                  fill="currentColor"
-                />
-              </svg>
-               
-              33
-            </a>
-          </div>
-        </div>
-      </div>
-      <div
-        className="search-list-item"
-      >
-        <div
-          className="item-header"
-        >
-          <div
-            className="item-header-main"
-          >
-            <div
-              className="author-part"
-            >
-              <a
-                className="author-avatar"
-                href="/@ecency"
-                onClick={[Function]}
-              >
-                <span
-                  className="user-avatar small"
-                  style={
-                    Object {
-                      "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
-                    }
-                  }
-                />
-              </a>
-              <a
-                className="author"
-                href="/@ecency"
-                onClick={[Function]}
-              >
-                ecency
-                <span
-                  className="author-reputation"
-                >
-                  70
-                </span>
-              </a>
-            </div>
-            <a
-              className="category"
-              href="/hot/ecency"
-              onClick={[Function]}
-            >
-              ecency
-            </a>
-            <span
-              className="date"
-              title="Friday, August 14, 2020 7:57 PM"
-            >
-              5 months
-            </span>
-          </div>
-        </div>
-        <div
-          className="item-body"
-        >
-          <div
-            className="item-image"
-          >
-            <a
-              href="/ecency/@ecency/ecency-vision-no-beneficiaries-drafts-gallery-bookmarks"
-              onClick={[Function]}
-            >
-              <img
-                alt="Ecency Vision - No beneficiaries, Drafts, Gallery, Bookmarks"
-                onError={[Function]}
-                src="https://images.ecency.com/p/qjrE4yyfw5pJD9LKQ1BG3BAmr5TYaANmrJEBZ9YMFm1JzaDyFrs2gybkt9EkQpcw34nTWFHD2XRVqvYde75Xjcbva4CmKgJf229A1udyqYXoE3PChHh5GC6a?format=match&mode=fit&width=600&height=500"
-              />
-            </a>
-          </div>
-          <div
-            className="item-summary"
-          >
-            <a
-              className="item-title"
-              href="/ecency/@ecency/ecency-vision-no-beneficiaries-drafts-gallery-bookmarks"
-              onClick={[Function]}
-            >
-              <mark>
-                Ecency
-              </mark>
-               Vision - No beneficiaries, Drafts, Gallery, Bookmarks
-            </a>
-            <a
-              className="item-body"
-              href="/ecency/@ecency/ecency-vision-no-beneficiaries-drafts-gallery-bookmarks"
-              onClick={[Function]}
-            >
-              Excited to share, new major updates into 
-              <mark>
-                Ecency
-              </mark>
-               website. Read on to learn more and try it out.
-
-
-
-What's new
-
-
-No beneficiaries, that's right, we are removing 1% beneficiary reward.
-            </a>
-          </div>
-          <div
-            className="item-controls"
-          >
-            <a
-              className="result-payout"
-              href="/ecency/@ecency/ecency-vision-no-beneficiaries-drafts-gallery-bookmarks"
-              onClick={[Function]}
-            >
-              $ 154.40
-            </a>
-            <a
-              className="result-votes"
-              href="/ecency/@ecency/ecency-vision-no-beneficiaries-drafts-gallery-bookmarks"
-              onClick={[Function]}
-            >
-               
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M16 17V19H2V17S2 13 9 13 16 17 16 17M12.5 7.5A3.5 3.5 0 1 0 9 11A3.5 3.5 0 0 0 12.5 7.5M15.94 13A5.32 5.32 0 0 1 18 17V19H22V17S22 13.37 15.94 13M15 4A3.39 3.39 0 0 0 13.07 4.59A5 5 0 0 1 13.07 10.41A3.39 3.39 0 0 0 15 11A3.5 3.5 0 0 0 15 4Z"
-                  fill="currentColor"
-                />
-              </svg>
-               
-              368
-            </a>
-            <a
-              className="result-replies"
-              href="/ecency/@ecency/ecency-vision-no-beneficiaries-drafts-gallery-bookmarks"
-              onClick={[Function]}
-            >
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M18,8H6V6H18V8M18,11H6V9H18V11M18,14H6V12H18V14M22,4A2,2 0 0,0 20,2H4A2,2 0 0,0 2,4V16A2,2 0 0,0 4,18H18L22,22V4Z"
-                  fill="currentColor"
-                />
-              </svg>
-               
-              32
-            </a>
-          </div>
-        </div>
-      </div>
-      <div
-        className="search-list-item"
-      >
-        <div
-          className="item-header"
-        >
-          <div
-            className="item-header-main"
-          >
-            <div
-              className="author-part"
-            >
-              <a
-                className="author-avatar"
-                href="/@good-karma"
-                onClick={[Function]}
-              >
-                <span
-                  className="user-avatar small"
-                  style={
-                    Object {
-                      "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
-                    }
-                  }
-                />
-              </a>
-              <a
-                className="author"
-                href="/@good-karma"
-                onClick={[Function]}
-              >
-                good-karma
-                <span
-                  className="author-reputation"
-                >
-                  77
-                </span>
-              </a>
-            </div>
-            <a
-              className="category"
-              href="/created/hive-139531"
-              onClick={[Function]}
-            >
-              hive-139531
-            </a>
-            <span
-              className="date"
-              title="Wednesday, June 17, 2020 1:44 PM"
-            >
-              7 months
-            </span>
-          </div>
-        </div>
-        <div
-          className="item-body"
-        >
-          <div
-            className="item-image"
-          >
-            <a
-              href="/hive-139531/@good-karma/from-esteem-search-to-hivesearcher"
-              onClick={[Function]}
-            >
-              <img
-                alt="From Esteem Search to Hivesearcher"
-                onError={[Function]}
-                src="https://images.ecency.com/p/C3TZR1g81UNbFzApDTmvFYMje8p1iesaAcNjSh7JWYRiPQRX52L6rNRZipeiaBkx9daTxCyJyVvcKo3QMC9tjfRvNzgHxYuYyj6AFmCrd98w27oav6Nh8m4?format=match&mode=fit&width=600&height=500"
-              />
-            </a>
-          </div>
-          <div
-            className="item-summary"
-          >
-            <a
-              className="item-title"
-              href="/hive-139531/@good-karma/from-esteem-search-to-hivesearcher"
-              onClick={[Function]}
-            >
-              From Esteem Search to Hivesearcher
-            </a>
-            <a
-              className="item-body"
-              href="/hive-139531/@good-karma/from-esteem-search-to-hivesearcher"
-              onClick={[Function]}
-            >
-              Since Esteem is rebranding to 
-              <mark>
-                Ecency
-              </mark>
-              , it is perfect time to do just that.
-            </a>
-          </div>
-          <div
-            className="item-controls"
-          >
-            <a
-              className="result-payout"
-              href="/hive-139531/@good-karma/from-esteem-search-to-hivesearcher"
-              onClick={[Function]}
-            >
-              $ 150.91
-            </a>
-            <a
-              className="result-votes"
-              href="/hive-139531/@good-karma/from-esteem-search-to-hivesearcher"
-              onClick={[Function]}
-            >
-               
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M16 17V19H2V17S2 13 9 13 16 17 16 17M12.5 7.5A3.5 3.5 0 1 0 9 11A3.5 3.5 0 0 0 12.5 7.5M15.94 13A5.32 5.32 0 0 1 18 17V19H22V17S22 13.37 15.94 13M15 4A3.39 3.39 0 0 0 13.07 4.59A5 5 0 0 1 13.07 10.41A3.39 3.39 0 0 0 15 11A3.5 3.5 0 0 0 15 4Z"
-                  fill="currentColor"
-                />
-              </svg>
-               
-              609
-            </a>
-            <a
-              className="result-replies"
-              href="/hive-139531/@good-karma/from-esteem-search-to-hivesearcher"
-              onClick={[Function]}
-            >
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M18,8H6V6H18V8M18,11H6V9H18V11M18,14H6V12H18V14M22,4A2,2 0 0,0 20,2H4A2,2 0 0,0 2,4V16A2,2 0 0,0 4,18H18L22,22V4Z"
-                  fill="currentColor"
-                />
-              </svg>
-               
-              26
-            </a>
-          </div>
-        </div>
-      </div>
-      <div
-        className="search-list-item"
-      >
-        <div
-          className="item-header"
-        >
-          <div
-            className="item-header-main"
-          >
-            <div
-              className="author-part"
-            >
-              <a
-                className="author-avatar"
-                href="/@ecency"
-                onClick={[Function]}
-              >
-                <span
-                  className="user-avatar small"
-                  style={
-                    Object {
-                      "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
-                    }
-                  }
-                />
-              </a>
-              <a
-                className="author"
-                href="/@ecency"
-                onClick={[Function]}
-              >
-                ecency
-                <span
-                  className="author-reputation"
-                >
-                  70
-                </span>
-              </a>
-            </div>
-            <a
-              className="category"
-              href="/hot/ecency"
-              onClick={[Function]}
-            >
-              ecency
-            </a>
-            <span
-              className="date"
-              title="Friday, July 17, 2020 2:35 PM"
-            >
-              6 months
-            </span>
-          </div>
-        </div>
-        <div
-          className="item-body"
-        >
-          <div
-            className="item-image"
-          >
-            <a
-              href="/ecency/@ecency/ecency-development-update-17-07-2020"
-              onClick={[Function]}
-            >
-              <img
-                alt="Ecency development update 17/07/2020"
-                onError={[Function]}
-                src="https://images.ecency.com/p/3jpR3paJ37V8XPrHkfZdMt57jY6pRt6zEt5iRJV9rQnKaQoHUMnKUdGQ9Fq2FrAUEA8hzoBW1zBu3tFQLeuANV9LKg7Dxks9YHZfGSBaYBPs8fdV3Z8y1U2warWG6FSAmBdcz?format=match&mode=fit&width=600&height=500"
-              />
-            </a>
-          </div>
-          <div
-            className="item-summary"
-          >
-            <a
-              className="item-title"
-              href="/ecency/@ecency/ecency-development-update-17-07-2020"
-              onClick={[Function]}
-            >
-              <mark>
-                Ecency
-              </mark>
-               development update 17/07/2020
-            </a>
-            <a
-              className="item-body"
-              href="/ecency/@ecency/ecency-development-update-17-07-2020"
-              onClick={[Function]}
-            >
-              Hello everyone,
-
-We are 5 days away from official release of 
-              <mark>
-                Ecency
-              </mark>
-               (22/7/2020).
-            </a>
-          </div>
-          <div
-            className="item-controls"
-          >
-            <a
-              className="result-payout"
-              href="/ecency/@ecency/ecency-development-update-17-07-2020"
-              onClick={[Function]}
-            >
-              $ 141.37
-            </a>
-            <a
-              className="result-votes"
-              href="/ecency/@ecency/ecency-development-update-17-07-2020"
-              onClick={[Function]}
-            >
-               
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M16 17V19H2V17S2 13 9 13 16 17 16 17M12.5 7.5A3.5 3.5 0 1 0 9 11A3.5 3.5 0 0 0 12.5 7.5M15.94 13A5.32 5.32 0 0 1 18 17V19H22V17S22 13.37 15.94 13M15 4A3.39 3.39 0 0 0 13.07 4.59A5 5 0 0 1 13.07 10.41A3.39 3.39 0 0 0 15 11A3.5 3.5 0 0 0 15 4Z"
-                  fill="currentColor"
-                />
-              </svg>
-               
-              275
-            </a>
-            <a
-              className="result-replies"
-              href="/ecency/@ecency/ecency-development-update-17-07-2020"
-              onClick={[Function]}
-            >
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M18,8H6V6H18V8M18,11H6V9H18V11M18,14H6V12H18V14M22,4A2,2 0 0,0 20,2H4A2,2 0 0,0 2,4V16A2,2 0 0,0 4,18H18L22,22V4Z"
-                  fill="currentColor"
-                />
-              </svg>
-               
-              27
-            </a>
-          </div>
-        </div>
-      </div>
-      <div
-        className="search-list-item"
-      >
-        <div
-          className="item-header"
-        >
-          <div
-            className="item-header-main"
-          >
-            <div
-              className="author-part"
-            >
-              <a
-                className="author-avatar"
-                href="/@good-karma"
-                onClick={[Function]}
-              >
-                <span
-                  className="user-avatar small"
-                  style={
-                    Object {
-                      "backgroundImage": "url(https://images.ecency.com/u/good-karma/avatar/small)",
-                    }
-                  }
-                />
-              </a>
-              <a
-                className="author"
-                href="/@good-karma"
-                onClick={[Function]}
-              >
-                good-karma
-                <span
-                  className="author-reputation"
-                >
-                  77
-                </span>
-              </a>
-            </div>
-            <a
-              className="category"
-              href="/hot/hive"
-              onClick={[Function]}
-            >
-              hive
-            </a>
-            <span
-              className="date"
-              title="Thursday, May 21, 2020 12:50 PM"
-            >
-              8 months
-            </span>
-          </div>
-        </div>
-        <div
-          className="item-body"
-        >
-          <div
-            className="item-image"
-          >
-            <a
-              href="/hive/@good-karma/open-search-engine-development-and-maintenance"
-              onClick={[Function]}
-            >
-              <img
-                alt="Open Search Engine development and maintenance "
-                onError={[Function]}
-                src="https://images.ecency.com/p/C3TZR1g81UNbFzApDTmvFYJczLb7FJz3TaMfBugjBSKbWRti4bCnoGvAYac1x1gNxNHvLdVpQxWxM4jTvWaSxAv72gbW4XfJW9HDmK1b4HFsUK6WddX4BH8?format=match&mode=fit&width=600&height=500"
-              />
-            </a>
-          </div>
-          <div
-            className="item-summary"
-          >
-            <a
-              className="item-title"
-              href="/hive/@good-karma/open-search-engine-development-and-maintenance"
-              onClick={[Function]}
-            >
-              Open Search Engine development and maintenance 
-            </a>
-            <a
-              className="item-body"
-              href="/hive/@good-karma/open-search-engine-development-and-maintenance"
-              onClick={[Function]}
-            >
-              Home: https://hivesearcher.com
-Github: https://github.com/
-              <mark>
-                ecency
-              </mark>
-              /hive2elastic
-
-Benefits
-
-Right now, Search engine is used by all major frontends, Hive.blog, Peakd.com and Ecency.com and to cover part of
-            </a>
-          </div>
-          <div
-            className="item-controls"
-          >
-            <a
-              className="result-payout"
-              href="/hive/@good-karma/open-search-engine-development-and-maintenance"
-              onClick={[Function]}
-            >
-              $ 141.30
-            </a>
-            <a
-              className="result-votes"
-              href="/hive/@good-karma/open-search-engine-development-and-maintenance"
-              onClick={[Function]}
-            >
-               
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M16 17V19H2V17S2 13 9 13 16 17 16 17M12.5 7.5A3.5 3.5 0 1 0 9 11A3.5 3.5 0 0 0 12.5 7.5M15.94 13A5.32 5.32 0 0 1 18 17V19H22V17S22 13.37 15.94 13M15 4A3.39 3.39 0 0 0 13.07 4.59A5 5 0 0 1 13.07 10.41A3.39 3.39 0 0 0 15 11A3.5 3.5 0 0 0 15 4Z"
-                  fill="currentColor"
-                />
-              </svg>
-               
-              542
-            </a>
-            <a
-              className="result-replies"
-              href="/hive/@good-karma/open-search-engine-development-and-maintenance"
-              onClick={[Function]}
-            >
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M18,8H6V6H18V8M18,11H6V9H18V11M18,14H6V12H18V14M22,4A2,2 0 0,0 20,2H4A2,2 0 0,0 2,4V16A2,2 0 0,0 4,18H18L22,22V4Z"
-                  fill="currentColor"
-                />
-              </svg>
-               
-              34
-            </a>
-          </div>
-        </div>
-      </div>
-      <div
-        className="search-list-item"
-      >
-        <div
-          className="item-header"
-        >
-          <div
-            className="item-header-main"
-          >
-            <div
-              className="author-part"
-            >
-              <a
-                className="author-avatar"
-                href="/@ecency"
-                onClick={[Function]}
-              >
-                <span
-                  className="user-avatar small"
-                  style={
-                    Object {
-                      "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
-                    }
-                  }
-                />
-              </a>
-              <a
-                className="author"
-                href="/@ecency"
-                onClick={[Function]}
-              >
-                ecency
-                <span
-                  className="author-reputation"
-                >
-                  70
-                </span>
-              </a>
-            </div>
-            <a
-              className="category"
-              href="/hot/ecency"
-              onClick={[Function]}
-            >
-              ecency
-            </a>
-            <span
-              className="date"
-              title="Friday, July 10, 2020 7:31 AM"
-            >
-              6 months
-            </span>
-          </div>
-        </div>
-        <div
-          className="item-body"
-        >
-          <div
-            className="item-image"
-          >
-            <a
-              href="/ecency/@ecency/ecency-development-update-09-07-2020"
-              onClick={[Function]}
-            >
-              <img
-                alt="Ecency development update 10/07/2020"
-                onError={[Function]}
-                src="https://images.ecency.com/p/3jpR3paJ37V8XPrHkfZdMt57jY6pRt6zEt5iRJV9rQnKaQoHUMnKUdGQ9Fq2FrAUEA8hzoBW1zBu3tFQLeuANV9LKg7Dxks9YHZfGSBaYBPs8fdV3Z8y1U2warWG6FSAmBdcz?format=match&mode=fit&width=600&height=500"
-              />
-            </a>
-          </div>
-          <div
-            className="item-summary"
-          >
-            <a
-              className="item-title"
-              href="/ecency/@ecency/ecency-development-update-09-07-2020"
-              onClick={[Function]}
-            >
-              <mark>
-                Ecency
-              </mark>
-               development update 10/07/2020
-            </a>
-            <a
-              className="item-body"
-              href="/ecency/@ecency/ecency-development-update-09-07-2020"
-              onClick={[Function]}
-            >
-              Esteem points (ESTM), will also be migrated into 
-              <mark>
-                Ecency
-              </mark>
-               with just placeholder name Points.
-            </a>
-          </div>
-          <div
-            className="item-controls"
-          >
-            <a
-              className="result-payout"
-              href="/ecency/@ecency/ecency-development-update-09-07-2020"
-              onClick={[Function]}
-            >
-              $ 140.63
-            </a>
-            <a
-              className="result-votes"
-              href="/ecency/@ecency/ecency-development-update-09-07-2020"
-              onClick={[Function]}
-            >
-               
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M16 17V19H2V17S2 13 9 13 16 17 16 17M12.5 7.5A3.5 3.5 0 1 0 9 11A3.5 3.5 0 0 0 12.5 7.5M15.94 13A5.32 5.32 0 0 1 18 17V19H22V17S22 13.37 15.94 13M15 4A3.39 3.39 0 0 0 13.07 4.59A5 5 0 0 1 13.07 10.41A3.39 3.39 0 0 0 15 11A3.5 3.5 0 0 0 15 4Z"
-                  fill="currentColor"
-                />
-              </svg>
-               
-              348
-            </a>
-            <a
-              className="result-replies"
-              href="/ecency/@ecency/ecency-development-update-09-07-2020"
-              onClick={[Function]}
-            >
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M18,8H6V6H18V8M18,11H6V9H18V11M18,14H6V12H18V14M22,4A2,2 0 0,0 20,2H4A2,2 0 0,0 2,4V16A2,2 0 0,0 4,18H18L22,22V4Z"
-                  fill="currentColor"
-                />
-              </svg>
-               
-              44
-            </a>
-          </div>
-        </div>
-      </div>
-      <div
-        className="search-list-item"
-      >
-        <div
-          className="item-header"
-        >
-          <div
-            className="item-header-main"
-          >
-            <div
-              className="author-part"
-            >
-              <a
-                className="author-avatar"
-                href="/@ecency"
-                onClick={[Function]}
-              >
-                <span
-                  className="user-avatar small"
-                  style={
-                    Object {
-                      "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
-                    }
-                  }
-                />
-              </a>
-              <a
-                className="author"
-                href="/@ecency"
-                onClick={[Function]}
-              >
-                ecency
-                <span
-                  className="author-reputation"
-                >
-                  70
-                </span>
-              </a>
-            </div>
-            <a
-              className="category"
-              href="/hot/ecency"
-              onClick={[Function]}
-            >
-              ecency
-            </a>
-            <span
-              className="date"
-              title="Wednesday, July 22, 2020 6:31 PM"
-            >
-              6 months
-            </span>
-          </div>
-        </div>
-        <div
-          className="item-body"
-        >
-          <div
-            className="item-image"
-          >
-            <a
-              href="/ecency/@ecency/announcing-ecency-vision"
-              onClick={[Function]}
-            >
-              <img
-                alt="Announcing Ecency Vision"
-                onError={[Function]}
-                src="https://images.ecency.com/p/3jpR3paJ37V8XPrHkfZdMt57jY6pRt6zEt5iRJV9r9PyK8zZ9LzVRP2RRWMATFpxzUx4nUPZTfVova11WNC7MYAvZhQNuyFuPPUGABSi8bq7Qvx9optt1BgEsSMu995sZLSMc?format=match&mode=fit&width=600&height=500"
-              />
-            </a>
-          </div>
-          <div
-            className="item-summary"
-          >
-            <a
-              className="item-title"
-              href="/ecency/@ecency/announcing-ecency-vision"
-              onClick={[Function]}
-            >
-              Announcing 
-              <mark>
-                Ecency
-              </mark>
-               Vision
-            </a>
-            <a
-              className="item-body"
-              href="/ecency/@ecency/announcing-ecency-vision"
-              onClick={[Function]}
-            >
-              We just released 
-              <mark>
-                Ecency
-              </mark>
-               Vision, our new website with new name and new look. Vision is codename for our website application, we couldn't be more happier to share it with you.
-            </a>
-          </div>
-          <div
-            className="item-controls"
-          >
-            <a
-              className="result-payout"
-              href="/ecency/@ecency/announcing-ecency-vision"
-              onClick={[Function]}
-            >
-              $ 117.54
-            </a>
-            <a
-              className="result-votes"
-              href="/ecency/@ecency/announcing-ecency-vision"
-              onClick={[Function]}
-            >
-               
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M16 17V19H2V17S2 13 9 13 16 17 16 17M12.5 7.5A3.5 3.5 0 1 0 9 11A3.5 3.5 0 0 0 12.5 7.5M15.94 13A5.32 5.32 0 0 1 18 17V19H22V17S22 13.37 15.94 13M15 4A3.39 3.39 0 0 0 13.07 4.59A5 5 0 0 1 13.07 10.41A3.39 3.39 0 0 0 15 11A3.5 3.5 0 0 0 15 4Z"
-                  fill="currentColor"
-                />
-              </svg>
-               
-              336
-            </a>
-            <a
-              className="result-replies"
-              href="/ecency/@ecency/announcing-ecency-vision"
-              onClick={[Function]}
-            >
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M18,8H6V6H18V8M18,11H6V9H18V11M18,14H6V12H18V14M22,4A2,2 0 0,0 20,2H4A2,2 0 0,0 2,4V16A2,2 0 0,0 4,18H18L22,22V4Z"
-                  fill="currentColor"
-                />
-              </svg>
-               
-              80
-            </a>
-          </div>
-        </div>
-      </div>
-      <div
-        className="search-list-item"
-      >
-        <div
-          className="item-header"
-        >
-          <div
-            className="item-header-main"
-          >
-            <div
-              className="author-part"
-            >
-              <a
-                className="author-avatar"
-                href="/@ecency"
-                onClick={[Function]}
-              >
-                <span
-                  className="user-avatar small"
-                  style={
-                    Object {
-                      "backgroundImage": "url(https://images.ecency.com/u/ecency/avatar/small)",
-                    }
-                  }
-                />
-              </a>
-              <a
-                className="author"
-                href="/@ecency"
-                onClick={[Function]}
-              >
-                ecency
-                <span
-                  className="author-reputation"
-                >
-                  70
-                </span>
-              </a>
-            </div>
-            <a
-              className="category"
-              href="/hot/ecency"
-              onClick={[Function]}
-            >
-              ecency
-            </a>
-            <span
-              className="date"
-              title="Saturday, August 1, 2020 5:23 PM"
-            >
-              6 months
-            </span>
-          </div>
-        </div>
-        <div
-          className="item-body"
-        >
-          <div
-            className="item-image"
-          >
-            <a
-              href="/ecency/@ecency/ecency-mobile-rebrand-better-onboarding-communities-and-more"
-              onClick={[Function]}
-            >
-              <img
-                alt="Ecency Mobile - Rebrand, better onboarding, communities and more"
-                onError={[Function]}
-                src="https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjsWXdke4oKq6Z917WSxGYCCstHswFgkrJaybaif2asDJQk1RNunLFyHnEwWUsWvZPBgFwexY9iSs6XrH1RgMgZU?format=match&mode=fit&width=600&height=500"
-              />
-            </a>
-          </div>
-          <div
-            className="item-summary"
-          >
-            <a
-              className="item-title"
-              href="/ecency/@ecency/ecency-mobile-rebrand-better-onboarding-communities-and-more"
-              onClick={[Function]}
-            >
-              <mark>
-                Ecency
-              </mark>
-               Mobile - Rebrand, better onboarding, communities and more
-            </a>
-            <a
-              className="item-body"
-              href="/ecency/@ecency/ecency-mobile-rebrand-better-onboarding-communities-and-more"
-              onClick={[Function]}
-            >
-              What's new in v3.0.0
-
-
-Rebranding changes to 
-              <mark>
-                Ecency
-              </mark>
-              
-Better onboarding, delegation request for new accounts, new accounts who run out of RC after signup with 
-              <mark>
-                Ecency
-              </mark>
-              , can easily request for delegation for
-            </a>
-          </div>
-          <div
-            className="item-controls"
-          >
-            <a
-              className="result-payout"
-              href="/ecency/@ecency/ecency-mobile-rebrand-better-onboarding-communities-and-more"
-              onClick={[Function]}
-            >
-              $ 116.31
-            </a>
-            <a
-              className="result-votes"
-              href="/ecency/@ecency/ecency-mobile-rebrand-better-onboarding-communities-and-more"
-              onClick={[Function]}
-            >
-               
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M16 17V19H2V17S2 13 9 13 16 17 16 17M12.5 7.5A3.5 3.5 0 1 0 9 11A3.5 3.5 0 0 0 12.5 7.5M15.94 13A5.32 5.32 0 0 1 18 17V19H22V17S22 13.37 15.94 13M15 4A3.39 3.39 0 0 0 13.07 4.59A5 5 0 0 1 13.07 10.41A3.39 3.39 0 0 0 15 11A3.5 3.5 0 0 0 15 4Z"
-                  fill="currentColor"
-                />
-              </svg>
-               
-              470
-            </a>
-            <a
-              className="result-replies"
-              href="/ecency/@ecency/ecency-mobile-rebrand-better-onboarding-communities-and-more"
-              onClick={[Function]}
-            >
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M18,8H6V6H18V8M18,11H6V9H18V11M18,14H6V12H18V14M22,4A2,2 0 0,0 20,2H4A2,2 0 0,0 2,4V16A2,2 0 0,0 4,18H18L22,22V4Z"
-                  fill="currentColor"
-                />
-              </svg>
-               
-              132
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
+    <span>
+      No matches
+    </span>
   </div>
 </div>
 `;
