@@ -16,6 +16,7 @@ import {Account} from "../../store/accounts/types";
 import BaseComponent from "../base";
 import SearchListItem from "../search-list-item";
 import LinearProgress from "../linear-progress";
+import DetectBottom from "../detect-bottom";
 
 import SearchQuery, {SearchType} from "../../helper/search-query";
 
@@ -237,7 +238,16 @@ class SearchComment extends BaseComponent<Props, State> {
         const {location, history} = this.props;
         const {search} = location;
 
-        history.push(`/search/?${search}`);
+        history.push(`/search/${search}`);
+    }
+
+    bottomReached = () => {
+        const {inProgress, scrollId} = this.state;
+        if (inProgress || !scrollId) {
+            return;
+        }
+
+        this.doSearch();
     }
 
     render() {
@@ -346,12 +356,7 @@ class SearchComment extends BaseComponent<Props, State> {
             </div>
             <div className="card-body">
                 {advancedForm}
-
                 {(() => {
-                    if (inProgress) {
-                        return <LinearProgress/>;
-                    }
-
                     if (results.length > 0) {
                         return <div className="search-list">
                             {results.map(res => <Fragment key={`${res.author}-${res.permlink}`}>
@@ -367,9 +372,16 @@ class SearchComment extends BaseComponent<Props, State> {
                         </div>
                     }
 
-                    return <span>{_t("g.no-matches")}</span>;
+                    if (!inProgress) {
+                        return <span>{_t("g.no-matches")}</span>;
+                    }
+
+                    return null;
                 })()}
+
+                {inProgress && <LinearProgress/>}
             </div>
+            {!limit && <DetectBottom onBottom={this.bottomReached}/>}
         </div>
     }
 }

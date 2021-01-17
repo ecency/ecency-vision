@@ -17,17 +17,6 @@ import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
 
 class MainSearchPage extends Component<PageProps> {
-    /*
-    bottomReached = () => {
-        const {inProgress, scroll_id} = this.state;
-        if (inProgress || !scroll_id) {
-            return;
-        }
-
-        this.doSearch();
-    }
-    */
-
     render() {
         //  Meta config
         const metaProps = {
@@ -103,7 +92,6 @@ class SearchPage extends Component<PageProps> {
         return (
             <>
                 <Meta {...metaProps} />
-                <FullHeight/>
                 <Theme global={this.props.global}/>
                 {global.isElectron ?
                     NavBarElectron({
