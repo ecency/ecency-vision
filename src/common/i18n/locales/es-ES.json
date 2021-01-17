@@ -795,9 +795,9 @@
       "can-link-post-header": "¿Puedo solicitar al equipo de Ecency agregar un vínculo de retroceso a mi sitio web?",
       "can-link-post-body": "<p>Todo el contenido de nuestro sitio es creado por nuestros usuarios y no modificamos ni podemos añadir backlinks. Usted es libre de contactar con el autor de la publicación o <a href=\"/signup?referral=ecency\" class=\"push-link\">Registrarse</a> para abrir su propio blog y comunidad, publicar artículos para crear backlinks de forma gratuita.</p>",
       "can-guest-post-header": "¿Es posible publicar en su sitio web?",
-      "can-guest-post-body": "<p>Posting on Ecency is simple and easy, <a href=\"/signup?referral=ecency\" class=\"push-link\">Signup</a> to open your own blog and community, start posting your content.</p>",
+      "can-guest-post-body": "<p>Publicar en Ecency es simple y fácil, <a href=\"/signup?referral=ecency\" class=\"push-link\">Regístrate</a> para abrir tu propio blog y comunidad, empieza a publicar tu contenido.</p>",
       "how-to-contribute-header": "¿Cómo contribuir con Ecency?",
-      "how-to-contribute-body": "<p>Our <a href=\"/contributors\" class=\"push-link\">awesome contributors</a> helping us to shape Ecency. You can be part of this great movement, by joining our Translation team: <a href=\"https://translate-desktop.ecency.com\" target=\"_blank\" rel=\"noopener noreferrer\">Website</a>, <a href=\"https://translate-mobile.ecency.com\" target=\"_blank\" rel=\"noopener noreferrer\">Mobile</a> or by contributing with Ideas, Developing, Designing, Social media outreach skills. We try our best to support our contributors!</p>"
+      "how-to-contribute-body": "<p>Nuestros <a href=\"/contributors\" class=\"push-link\">colaboradores impresionantes</a> nos ayudan a dar forma a Ecency. Puedes formar parte de este gran movimiento uniéndote a nuestro equipo de traducción: <a href=\"https://translate-desktop.ecency.com\" target=\"_blank\" rel=\"noopener noreferrer\">Sitio Web</a>, <a href=\"https://translate-mobile.ecency.com\" target=\"_blank\" rel=\"noopener noreferrer\">Móvil</a> o contribuyendo con Ideas, Desarrollo, Diseño y habilidades de divulgación de las redes sociales. ¡Hacemos todo lo posible para apoyar a nuestros colaboradores!</p>"
     }
   },
   "contributors": {
