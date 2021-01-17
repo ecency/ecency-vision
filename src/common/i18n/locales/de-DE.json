@@ -248,7 +248,7 @@
     "username": "Benutzername",
     "role": "Rolle",
     "user-not-found": "Der Benutzer existiert nicht!",
-    "explanations": "<h3>Role Permissions</h3><p><strong>Owner</strong> - assign admins</p><p><strong>Admin</strong> - edit settings, assign mods</p><p><strong>Moderator</strong> - mute, pin, set user titles</p><p><strong>Member</strong> - listed on leadership team</p><p><strong>Guest</strong> - default; can post and comment</p><p><strong>Muted</strong> - new posts automatically muted</p>"
+    "explanations": "<h3>Rollenberechtigungen</h3><p><strong>Besitzer</strong> - Admins zuweisen</p><p><strong>Admin</strong> - Einstellungen bearbeiten, Mods zuweisen</p><p><strong>Moderator</strong> - Beiträge Muten und anpinnen, Benutzertitel anpassen</p><p><strong>Mitglied</strong> - Wird in Mitgliederübersicht dargestellt</p><p><strong>Gast</strong> - Standard; Kann posten und kommentieren</p><p><strong>Muted</strong> - Neue Beiträge sind automatisch ausgeblendet.</p>"
   },
   "community-settings": {
     "dialog-title": "Community Einstellungen",
@@ -363,7 +363,7 @@
     "savings": "SAVINGS",
     "savings-description": "Balance subject to 3 day withdraw waiting period.",
     "next-power-down": "The next power down is {{time}}, {{amount}}",
-    "transfer": "Transfer",
+    "transfer": "Überweisen",
     "transfer-to-savings": "Zu den Ersparnissen transferieren",
     "convert": "Umwandeln",
     "power-up": "Power Up",
