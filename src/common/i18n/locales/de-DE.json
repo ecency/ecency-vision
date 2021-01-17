@@ -36,7 +36,7 @@
   },
   "entry-filter": {
     "filter-trending": "im Trend",
-    "filter-hot": "Beliebt",
+    "filter-hot": "Hot",
     "filter-created": "Neu",
     "filter-promoted": "Promotet",
     "filter-payout": "Auszahlung",
@@ -682,7 +682,7 @@
     "page-title": "Witnesses",
     "page-description": "Consensus block producers selection",
     "page-description-long": "Role of witnesses or block producers in Hive blockchain is to act as the network's governance body. Community elects them to represent their voice and each user can elect up to 30 witnesses. Top 20 witnesses are producing blocks every minute while rest remain as backup witness and gets randomized chance every minute. This role is integral part of consensus mechanism blockchain runs on and recommend user engagement to vote on trusted witnesses.",
-    "remaining": "<span>{{n}}</span> of {{max}} votes remaining",
+    "remaining": "<span>{{n}}</span> von {{max}} Votes verbleibend",
     "list-rank": "Rang",
     "list-witness": "Witness",
     "list-miss": "ausgelassene Blocks",
