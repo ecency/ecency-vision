@@ -470,6 +470,7 @@ Array [
       className="info-text"
     >
       New version is available
+       
       <span
         className="release-name"
       >
@@ -482,7 +483,7 @@ Array [
       onClick={[Function]}
       type="button"
     >
-      Update
+      Download
     </button>
     <button
       className="btn-dismiss btn btn-primary"
