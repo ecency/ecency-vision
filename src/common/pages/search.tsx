@@ -11,6 +11,7 @@ import NavBarElectron from "../../desktop/app/components/navbar";
 import SearchComment from "../components/search-comment";
 import SearchPeople from "../components/search-people";
 import SearchTopics from "../components/search-topics";
+import SearchCommunities from "../components/search-communities";
 import FullHeight from "../components/full-height";
 
 import {_t} from "../i18n";
@@ -49,12 +50,7 @@ class MainSearchPage extends Component<PageProps> {
                                     <SearchPeople {...this.props} />
                                 </Col>
                                 <Col xs="12" className="col-section">
-                                    <div className="card">
-                                        <div className="card-header">
-                                            Communities
-                                        </div>
-                                        <div className="card-body"/>
-                                    </div>
+                                    <SearchCommunities {...this.props} />
                                 </Col>
                                 <Col xs="12" className="col-section">
                                     <SearchTopics {...this.props} />
