@@ -707,6 +707,9 @@
   "search-people": {
     "title": "People"
   },
+  "search-topics": {
+    "title": "Topics"
+  },
   "witnesses": {
     "page-title": "Witnesses",
     "page-description": "Consensus block producers selection",
