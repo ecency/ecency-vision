@@ -704,6 +704,9 @@
     "hide-low": "Hide low quality content",
     "show-more": "show more"
   },
+  "search-people": {
+    "title": "People"
+  },
   "witnesses": {
     "page-title": "Witnesses",
     "page-description": "Consensus block producers selection",

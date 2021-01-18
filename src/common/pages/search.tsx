@@ -9,6 +9,7 @@ import Theme from "../components/theme/index";
 import NavBar from "../components/navbar/index";
 import NavBarElectron from "../../desktop/app/components/navbar";
 import SearchComment from "../components/search-comment";
+import SearchPeople from "../components/search-people";
 import FullHeight from "../components/full-height";
 
 import {_t} from "../i18n";
@@ -44,12 +45,7 @@ class MainSearchPage extends Component<PageProps> {
                         <Col md="4" className="col-section-holder">
                             <Row className="row-side">
                                 <Col xs="12" className="col-section">
-                                    <div className="card">
-                                        <div className="card-header">
-                                            People
-                                        </div>
-                                        <div className="card-body"/>
-                                    </div>
+                                    <SearchPeople {...this.props} />
                                 </Col>
                                 <Col xs="12" className="col-section">
                                     <div className="card">

@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+<div
+  className="card search-people"
+>
+  <div
+    className="card-header"
+  >
+    People
+  </div>
+  <div
+    className="card-body"
+  >
+    <div
+      className="people-list"
+    >
+      <div
+        className="list-body"
+      >
+        <div
+          className="list-item"
+        >
+          <div
+            className="item-main"
+          >
+            <a
+              href="/@foo"
+              onClick={[Function]}
+            >
+              <span
+                className="user-avatar small"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/small)",
+                  }
+                }
+              />
+            </a>
+            <div
+              className="item-info"
+            >
+              <a
+                className="item-name notransalte"
+                href="/@foo"
+                onClick={[Function]}
+              >
+                foo
+              </a>
+            </div>
+          </div>
+        </div>
+        <div
+          className="list-item"
+        >
+          <div
+            className="item-main"
+          >
+            <a
+              href="/@bar"
+              onClick={[Function]}
+            >
+              <span
+                className="user-avatar small"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/small)",
+                  }
+                }
+              />
+            </a>
+            <div
+              className="item-info"
+            >
+              <a
+                className="item-name notransalte"
+                href="/@bar"
+                onClick={[Function]}
+              >
+                bar
+              </a>
+            </div>
+          </div>
+        </div>
+        <div
+          className="list-item"
+        >
+          <div
+            className="item-main"
+          >
+            <a
+              href="/@baz"
+              onClick={[Function]}
+            >
+              <span
+                className="user-avatar small"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/baz/avatar/small)",
+                  }
+                }
+              />
+            </a>
+            <div
+              className="item-info"
+            >
+              <a
+                className="item-name notransalte"
+                href="/@baz"
+                onClick={[Function]}
+              >
+                baz
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

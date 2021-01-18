@@ -1,0 +1,10 @@
+.search-people {
+
+  .card-body {
+    padding: 10px;
+  }
+
+  .people-list {
+    @include user-grid-list(1, 1, 2);
+  }
+}
