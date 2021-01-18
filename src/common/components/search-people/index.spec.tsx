@@ -16,6 +16,10 @@ jest.mock("../../api/hive", () => ({
                 resolve(["foo", "bar", "baz"]);
             }
 
+            if (TEST_MODE === 1) {
+                resolve([]);
+            }
+
         }),
 }));
 
@@ -28,6 +32,18 @@ const defProps = {
 }
 
 it("(1) Default render", async () => {
+    const props = {...defProps};
+
+    const renderer = TestRenderer.create(
+        <StaticRouter location="/" context={{}}>
+            <SearchPeople {...props}/>
+        </StaticRouter>);
+    await allOver();
+    expect(renderer.toJSON()).toMatchSnapshot();
+});
+
+it("(1) No matches", async () => {
+    TEST_MODE = 1;
     const props = {...defProps};
 
     const renderer = TestRenderer.create(

@@ -119,3 +119,20 @@ exports[`(1) Default render 1`] = `
   </div>
 </div>
 `;
+
+exports[`(1) No matches 1`] = `
+<div
+  className="card search-people"
+>
+  <div
+    className="card-header"
+  >
+    People
+  </div>
+  <div
+    className="card-body"
+  >
+    No matches
+  </div>
+</div>
+`;
