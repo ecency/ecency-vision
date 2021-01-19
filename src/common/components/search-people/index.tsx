@@ -40,7 +40,7 @@ const grabSearch = (location: Location) => {
 }
 
 export class SearchPeople extends BaseComponent<Props, State> {
-    state = {
+    state: State = {
         search: grabSearch(this.props.location),
         results: [],
         loading: false,

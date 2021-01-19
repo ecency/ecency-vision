@@ -37,15 +37,11 @@ const grabSearch = (location: Location) => {
 }
 
 export class SearchTopics extends BaseComponent<Props, State> {
-    state = {
+    state: State = {
         search: grabSearch(this.props.location),
         results: [],
         loading: false,
     };
-
-    componentDidMount() {
-        // this.fetch();
-    }
 
     componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>, snapshot?: any) {
         const search = grabSearch(this.props.location);
