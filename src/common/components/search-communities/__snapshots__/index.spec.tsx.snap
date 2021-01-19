@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+<div
+  className="card search-communities"
+>
+  <div
+    className="card-header"
+  >
+    Communities
+  </div>
+  <div
+    className="card-body"
+  >
+    <div
+      className="community-list"
+    >
+      <div
+        className="list-item"
+      >
+        <h3
+          className="item-title"
+        >
+          <span
+            className="user-avatar small"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/hive-148441/avatar/small)",
+              }
+            }
+          />
+          <a
+            href="/created/hive-148441"
+            onClick={[Function]}
+          >
+            GEMS
+          </a>
+        </h3>
+        <div
+          className="item-about"
+        >
+          To highlight true Gems of Hive community with User Retention as primary objective.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(2) No matches 1`] = `
+<div
+  className="card search-communities"
+>
+  <div
+    className="card-header"
+  >
+    Communities
+  </div>
+  <div
+    className="card-body"
+  >
+    No matches
+  </div>
+</div>
+`;

@@ -28,7 +28,6 @@ interface Props {
     history: History;
     location: Location;
     global: Global;
-    addAccount: (data: Account) => void;
 }
 
 interface State {
@@ -113,7 +112,6 @@ export default (p: Props) => {
         history: p.history,
         location: p.location,
         global: p.global,
-        addAccount: p.addAccount
     }
 
     return <SearchCommunities {...props} />;
