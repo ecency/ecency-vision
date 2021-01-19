@@ -120,7 +120,7 @@ exports[`(1) Default render 1`] = `
 </div>
 `;
 
-exports[`(1) No matches 1`] = `
+exports[`(2) No matches 1`] = `
 <div
   className="card search-people"
 >

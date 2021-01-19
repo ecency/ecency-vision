@@ -85,7 +85,7 @@ it("(3) Hide show more button", async () => {
 });
 
 
-it("(3) No matches", async () => {
+it("(4) No matches", async () => {
 
     TEST_MODE = 2;
 

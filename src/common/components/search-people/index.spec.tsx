@@ -42,7 +42,7 @@ it("(1) Default render", async () => {
     expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it("(1) No matches", async () => {
+it("(2) No matches", async () => {
     TEST_MODE = 1;
     const props = {...defProps};
 
