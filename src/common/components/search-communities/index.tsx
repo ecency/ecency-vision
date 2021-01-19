@@ -6,7 +6,6 @@ import queryString from "query-string";
 
 import {Link} from "react-router-dom";
 
-import {Account} from "../../store/accounts/types";
 import {Global} from "../../store/global/types";
 import {Community} from "../../store/communities/types";
 
