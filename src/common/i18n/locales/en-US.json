@@ -710,6 +710,9 @@
   "search-topics": {
     "title": "Topics"
   },
+  "search-communities": {
+    "title": "Communities"
+  },
   "witnesses": {
     "page-title": "Witnesses",
     "page-description": "Consensus block producers selection",

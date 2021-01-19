@@ -1,3 +1,34 @@
-.search-communities{
+.search-communities {
 
+  .card-body {
+    padding: 10px;
+  }
+
+  .community-list {
+    .list-item {
+      word-break: break-word;
+
+      &:not(:last-child) {
+        margin-bottom: 22px;
+      }
+
+      .item-title {
+        color: $dark-sky-blue;
+        font-size: 16px;
+        font-weight: 500;
+        margin-bottom: 6px;
+        display: flex;
+        align-items: center;
+
+        .user-avatar {
+          margin-right: 6px;
+        }
+      }
+
+      .item-about {
+        font-size: 90%;
+        opacity: 0.8;
+      }
+    }
+  }
 }

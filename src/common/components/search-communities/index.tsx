@@ -4,21 +4,24 @@ import {History, Location} from "history";
 
 import queryString from "query-string";
 
+import {Link} from "react-router-dom";
+
 import {Account} from "../../store/accounts/types";
 import {Global} from "../../store/global/types";
+import {Community} from "../../store/communities/types";
 
 import BaseComponent from "../base";
 import LinearProgress from "../linear-progress";
+import UserAvatar from "../user-avatar";
+import {makePath} from "../tag";
 
 import SearchQuery from "../../helper/search-query";
-import ProfileLink from "../profile-link";
-import UserAvatar from "../user-avatar";
-
-import {lookupAccounts} from "../../api/hive";
 
 import {getCommunities} from "../../api/bridge";
 
 import {_t} from "../../i18n";
+
+import defaults from "../../constants/defaults.json";
 
 
 interface Props {
@@ -30,7 +33,7 @@ interface Props {
 
 interface State {
     search: string;
-    results: string[],
+    results: Community[],
     loading: boolean
 }
 
@@ -42,7 +45,7 @@ const grabSearch = (location: Location) => {
 }
 
 export class SearchCommunities extends BaseComponent<Props, State> {
-    state = {
+    state: State = {
         search: grabSearch(this.props.location),
         results: [],
         loading: false,
@@ -62,17 +65,14 @@ export class SearchCommunities extends BaseComponent<Props, State> {
     fetch = () => {
         const {search} = this.state;
 
-
-        getCommunities("", 20, search, "rank").then(r => {
-            console.log(r);
-        })
-        /*
         this.stateSet({results: [], loading: true});
-        lookupAccounts(search, 20).then(results => {
-            this.stateSet({results});
+        getCommunities("", 6, search, "rank").then(results => {
+            if (results) {
+                this.stateSet({results: results});
+            }
         }).finally(() => {
             this.stateSet({loading: false});
-        });*/
+        });
     }
 
     render() {
@@ -93,7 +93,13 @@ export class SearchCommunities extends BaseComponent<Props, State> {
                     }
 
                     return <div className="community-list">
-
+                        {results.map(community => <div key={community.name} className="list-item">
+                            <h3 className="item-title">
+                                {UserAvatar({...this.props, username: community.name, size: "small"})}
+                                <Link to={makePath(defaults.filter, community.name)}>{community.title}</Link>
+                            </h3>
+                            <div className="item-about">{community.about}</div>
+                        </div>)}
                     </div>
                 })()}
             </div>
