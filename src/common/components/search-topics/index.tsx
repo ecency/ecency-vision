@@ -6,9 +6,8 @@ import {Link} from "react-router-dom";
 
 import queryString from "query-string";
 
-import {Global} from "../../store/global/types";
-
 import BaseComponent from "../base";
+import LinearProgress from "../linear-progress";
 import {makePath} from "../tag";
 
 import SearchQuery from "../../helper/search-query";
@@ -18,12 +17,10 @@ import {searchTag, TagSearchResult} from "../../api/private";
 import {_t} from "../../i18n";
 
 import defaults from "../../constants/defaults.json";
-import LinearProgress from "../linear-progress";
 
 interface Props {
     history: History;
     location: Location;
-    global: Global;
 }
 
 interface State {
@@ -101,8 +98,7 @@ export class SearchTopics extends BaseComponent<Props, State> {
 export default (p: Props) => {
     const props = {
         history: p.history,
-        location: p.location,
-        global: p.global
+        location: p.location
     }
 
     return <SearchTopics {...props} />;
