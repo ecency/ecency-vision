@@ -92,12 +92,12 @@ export const searchFollowing = async (req: express.Request, res: express.Respons
 }
 
 export const searchAccount = async (req: express.Request, res: express.Response) => {
-    const {q} = req.body;
+    const {q, limit} = req.body;
 
     const url = `${config.searchApiAddr}/search-account`;
     const headers = {'Authorization': config.searchApiToken};
 
-    pipe(baseApiRequest(url, "POST", headers, {q}), res);
+    pipe(baseApiRequest(url, "POST", headers, {q, limit}), res);
 }
 
 export const points = async (req: express.Request, res: express.Response) => {

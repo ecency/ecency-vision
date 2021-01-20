@@ -60,7 +60,7 @@ export class SearchPeople extends BaseComponent<Props, State> {
     fetch = () => {
         const {search} = this.state;
         this.stateSet({results: [], loading: true});
-        searchAccount(search).then(results => {
+        searchAccount(search, 5).then(results => {
             this.stateSet({results});
         }).finally(() => {
             this.stateSet({loading: false});

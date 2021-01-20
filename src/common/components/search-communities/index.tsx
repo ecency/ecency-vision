@@ -64,7 +64,7 @@ export class SearchCommunities extends BaseComponent<Props, State> {
         const {search} = this.state;
 
         this.stateSet({results: [], loading: true});
-        getCommunities("", 6, search, "rank").then(results => {
+        getCommunities("", 5, search, "rank").then(results => {
             if (results) {
                 this.stateSet({results: results});
             }

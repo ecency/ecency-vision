@@ -395,8 +395,8 @@ export interface AccountSearchResult {
     reputation: number
 }
 
-export const searchAccount = (q: string = ""): Promise<AccountSearchResult[]> => {
-    const data = {q};
+export const searchAccount = (q: string = "", limit: number = 20): Promise<AccountSearchResult[]> => {
+    const data = {q, limit};
 
     return axios.post(_u(`/api/search-account`), data).then(resp => resp.data);
 }
