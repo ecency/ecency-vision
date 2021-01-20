@@ -83,7 +83,7 @@ export class SearchPeople extends BaseComponent<Props, State> {
                     }
 
                     if (results.length === 0) {
-                        return _t("g.no-matches");
+                        return <span className="text-muted">{_t("g.no-matches")}</span>
                     }
 
                     return <div className="people-list">

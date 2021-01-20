@@ -18,6 +18,7 @@ import {searchTag, TagSearchResult} from "../../api/private";
 import {_t} from "../../i18n";
 
 import defaults from "../../constants/defaults.json";
+import LinearProgress from "../linear-progress";
 
 interface Props {
     history: History;
@@ -27,7 +28,8 @@ interface Props {
 
 interface State {
     search: string;
-    results: TagSearchResult[]
+    results: TagSearchResult[],
+    loading: boolean
 }
 
 const grabSearch = (location: Location) => {
@@ -41,6 +43,7 @@ export class SearchTopics extends BaseComponent<Props, State> {
     state: State = {
         search: grabSearch(this.props.location),
         results: [],
+        loading: false,
     };
 
     componentDidMount() {
@@ -57,18 +60,17 @@ export class SearchTopics extends BaseComponent<Props, State> {
 
     fetch = () => {
         const {search} = this.state;
-        this.stateSet({results: []});
+        this.stateSet({results: [], loading: true});
+
         searchTag(search, 10).then(results => {
             this.stateSet({results});
-        })
+        }).finally(() => {
+            this.stateSet({loading: false});
+        });
     }
 
     render() {
-        const {results} = this.state;
-
-        if (results.length === 0) {
-            return null;
-        }
+        const {results, loading} = this.state;
 
         return <div className="card search-topics">
             <div className="card-header">
@@ -76,6 +78,14 @@ export class SearchTopics extends BaseComponent<Props, State> {
             </div>
             <div className="card-body">
                 {(() => {
+                    if (loading) {
+                        return <LinearProgress/>;
+                    }
+
+                    if (results.length === 0) {
+                        return <span className="text-muted">{_t("g.no-matches")}</span>
+                    }
+
                     return <div className="topic-list">
                         {results.map(x => {
                             return <Link to={makePath(defaults.filter, x.tag)} className="list-item" key={x.tag}>{x.tag}</Link>
