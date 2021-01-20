@@ -397,3 +397,16 @@ export const searchFollowing = (follower: string, q: string): Promise<FriendSear
 
     return axios.post(_u(`/api/search-following`), data).then(resp => resp.data);
 }
+
+export interface AccountSearchResult {
+    name: string;
+    full_name: string;
+    about: string;
+    reputation: number
+}
+
+export const searchAccount = (q: string): Promise<AccountSearchResult[]> => {
+    const data = {q};
+
+    return axios.post(_u(`/api/search-account`), data).then(resp => resp.data);
+}

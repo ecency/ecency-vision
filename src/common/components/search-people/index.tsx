@@ -14,7 +14,7 @@ import SearchQuery from "../../helper/search-query";
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 
-import {lookupAccounts} from "../../api/hive";
+import {searchAccount, AccountSearchResult} from "../../api/private";
 
 import {_t} from "../../i18n";
 
@@ -28,7 +28,7 @@ interface Props {
 
 interface State {
     search: string;
-    results: string[],
+    results: AccountSearchResult[],
     loading: boolean
 }
 
@@ -60,7 +60,7 @@ export class SearchPeople extends BaseComponent<Props, State> {
     fetch = () => {
         const {search} = this.state;
         this.stateSet({results: [], loading: true});
-        lookupAccounts(search, 20).then(results => {
+        searchAccount(search).then(results => {
             this.stateSet({results});
         }).finally(() => {
             this.stateSet({loading: false});
@@ -86,7 +86,8 @@ export class SearchPeople extends BaseComponent<Props, State> {
 
                     return <div className="people-list">
                         <div className="list-body">
-                            {results.map(username => {
+                            {results.map(i => {
+                                const username = i.name;
                                 return <div className="list-item" key={username}>
                                     <div className="item-main">
                                         {ProfileLink({

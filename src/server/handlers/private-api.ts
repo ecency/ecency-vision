@@ -164,6 +164,15 @@ export const searchFollowing = async (req: express.Request, res: express.Respons
     pipe(baseApiRequest(url, "POST", headers, {q}), res);
 }
 
+export const searchAccount = async (req: express.Request, res: express.Response) => {
+    const {q} = req.body;
+
+    const url = `${config.searchApiAddr}/search-account`;
+    const headers = {'Authorization': config.searchApiToken};
+
+    pipe(baseApiRequest(url, "POST", headers, {q}), res);
+}
+
 export const points = async (req: express.Request, res: express.Response) => {
     const {username} = req.body;
     pipe(apiRequest(`users/${username}`, "GET"), res);
