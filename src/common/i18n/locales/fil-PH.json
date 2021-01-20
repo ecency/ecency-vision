@@ -153,7 +153,7 @@
     "title": "{{f}} mga paksa",
     "description": "{{f}} mga paksa sa social network na pagmamay-ari at pinangangasiwaan mismo ng mga gumagamit.",
     "description-tag": "{{f}} #{{t}} mga paksa",
-    "description-user-feed": "{{u}}'s feed",
+    "description-user-feed": "{{u}}'s Feed",
     "faq": "Mga Madalas na Katanungan",
     "tos": "Mga tuntunin ng serbisyo",
     "pp": "Patakaran para sa Pagkapribado"
@@ -182,8 +182,8 @@
     "comment-entry-go-parent": "Tingnan ang direktang puno",
     "show-history": "Ipakita ang kasaysayan ng mga binago",
     "hidden-warning": "Ang post na ito na nakatago dahil sa mababang antas ng katayuan.",
-    "address-copy": "Copy post address",
-    "address-copied": "Post address copied to clipboard."
+    "address-copy": "Kopyahin ang post address",
+    "address-copied": "Ang post address ay nakopya na sa clipboard."
   },
   "edit-history": {
     "title": "Baguhin ang Kasaysayan",
