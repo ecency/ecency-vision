@@ -101,8 +101,8 @@
     "sign-up-text-2": "Registe-se agora!"
   },
   "sign-up": {
-    "header": "Registar-se",
-    "description": "Uma conta para gerenciar tudo na blockchain e Ecency. Saiba mais sobre os benefícios na nossa <a href=\"/faq#how-to-join\">FAQ</a>",
+    "header": "Join",
+    "description": "<h3>Home of Free speech and Rewarding communities!</h3><br>One account to manage everything on <b>Blockchain</b> and <b>Ecency</b>.<br><br>Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
     "username": "Escolha um nome de usuário",
     "email": "Insira o seu email",
     "ref": "Usuário referenciado (opcional)",
@@ -755,7 +755,7 @@
       "page-title": "Ecency FAQ",
       "page-sub-title": "Tabela de conteúdos",
       "what-is-ecency-header": "O que é Ecency?",
-      "what-is-ecency-body": "<p>Ecency é uma <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">rede social</a> em blockchain - baseada na <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>A Ecency oferece uma plataforma incensurável, livre e sem limites, que recompensa criadores de conteúdo.</p><p>O projeto foi iniciado e fundado por <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> em agosto de 2016 como uma rede social alternativa. Desde então o projeto cresceu para um grupo muito maior de contribuintes (tradutores, testadores, desenvolvedores, influenciadores, criadores de conteúdo e consumidores) que ajudaram a criar a Ecency.</p><p>A Ecency ajuda na integração das pessoas à tecnologia blockchain, onde usuários estão sendo pagos pelo seu tempo, recursos e aprendendo enquanto aproveitam os aspectos sociais da blockchain. Através da facilidade na utilização, os usuários não apenas aprendem, mas também se tornam investidores, inovadores da tecnologia e também parte da comunidade.</p>",
+      "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based social network - powered by <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency is home of free speech and rewarding communities for content creators.</p><p>Project is founded by <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> in August 2016 as an alternative social network that's uncensored, user controled, immutable and opensource. Currently there are <a class=\"push-link\" href=\"/contributors\">many independent and voluntary contributors</a> wanting to keep vision and spirit of free speech.</p><p>Ecency helps onboarding masses into Blockchain technology where users are getting paid for their time, resources and learn while enjoying social aspects of blockchain. Through ease of use, users not only learn but also become investors, innovators of the new internet.</p>",
       "what-is-hive-header": "O que é a Hive blockchain?",
       "what-is-hive-body": "<p>Hive é uma blockchain projetada para ser rápida, tranquila, descentralizada e não censurada para a Web3.0 aplicações, com recursos internos onde pessoas interessdas podem ganhar recompensas participando, curando, jogando, negociando - tudo sem qualquer intermediário (descentralizado). Tokens na blockchain da Hive chamado HIVE, HIVE DOLARS, HIVE POWER.</p>",
       "what-is-difference-header": "Qual é a diferença entre a Ecency e outras interfaces da Hive?",
