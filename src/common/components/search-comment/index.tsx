@@ -258,7 +258,6 @@ export class SearchComment extends BaseComponent<Props, State> {
         const advancedForm = advanced ?
             <div className="advanced-section">
                 <Row>
-
                     <Form.Group as={Col} sm="4" controlId="form-search">
                         <Form.Label>{_t("search-comment.search")}</Form.Label>
                         <Form.Control
@@ -335,7 +334,7 @@ export class SearchComment extends BaseComponent<Props, State> {
         return <div className="card search-comment">
             <div className="card-header d-flex justify-content-between align-items-center">
                 <div>
-                    <span className="title">{_t("search-comment.title")}</span>
+                    <strong>{_t("search-comment.title")}</strong>
                     {(() => {
                         if (hits === 1) {
                             return <span className="matches">{_t("search-comment.matches-singular")}</span>

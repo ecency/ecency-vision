@@ -74,7 +74,7 @@ export class SearchPeople extends BaseComponent<Props, State> {
 
         return <div className="card search-people">
             <div className="card-header">
-                {_t("search-people.title")}
+                <strong>{_t("search-people.title")}</strong>
             </div>
             <div className="card-body">
                 {(() => {

@@ -60,7 +60,7 @@ export class SearchTopics extends BaseComponent<Props, State> {
 
         return <div className="card search-topics">
             <div className="card-header">
-                {_t("search-topics.title")}
+                <strong>{_t("search-topics.title")}</strong>
             </div>
             <div className="card-body">
                 {(() => {

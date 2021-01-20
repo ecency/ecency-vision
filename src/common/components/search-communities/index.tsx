@@ -80,7 +80,7 @@ export class SearchCommunities extends BaseComponent<Props, State> {
 
         return <div className="card search-communities">
             <div className="card-header">
-                {_t("search-communities.title")}
+                <strong>{_t("search-communities.title")}</strong>
             </div>
             <div className="card-body">
                 {(() => {
