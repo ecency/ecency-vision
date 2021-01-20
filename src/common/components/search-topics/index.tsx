@@ -2,17 +2,22 @@ import React from "react";
 
 import {History, Location} from "history";
 
+import {Link} from "react-router-dom";
+
 import queryString from "query-string";
 
 import {Global} from "../../store/global/types";
 
 import BaseComponent from "../base";
+import {makePath} from "../tag";
 
 import SearchQuery from "../../helper/search-query";
 
 import {searchTag, TagSearchResult} from "../../api/private";
 
 import {_t} from "../../i18n";
+
+import defaults from "../../constants/defaults.json";
 
 interface Props {
     history: History;
@@ -73,7 +78,7 @@ export class SearchTopics extends BaseComponent<Props, State> {
                 {(() => {
                     return <div className="topic-list">
                         {results.map(x => {
-                            return <a className="list-item" key={x.tag}>{x.tag}</a>
+                            return <Link to={makePath(defaults.filter, x.tag)} className="list-item" key={x.tag}>{x.tag}</Link>
                         })}
                     </div>
                 })()}
