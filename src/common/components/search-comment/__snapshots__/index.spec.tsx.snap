@@ -8,11 +8,9 @@ exports[`(1) Default render 1`] = `
     className="card-header d-flex justify-content-between align-items-center"
   >
     <div>
-      <span
-        className="title"
-      >
+      <strong>
         Results
-      </span>
+      </strong>
       <span
         className="matches"
       >
@@ -1198,11 +1196,9 @@ exports[`(2) With limit 1`] = `
     className="card-header d-flex justify-content-between align-items-center"
   >
     <div>
-      <span
-        className="title"
-      >
+      <strong>
         Results
-      </span>
+      </strong>
       <span
         className="matches"
       >
@@ -2398,11 +2394,9 @@ exports[`(3) Hide show more button 1`] = `
     className="card-header d-flex justify-content-between align-items-center"
   >
     <div>
-      <span
-        className="title"
-      >
+      <strong>
         Results
-      </span>
+      </strong>
       <span
         className="matches"
       >
@@ -3588,11 +3582,9 @@ exports[`(4) No matches 1`] = `
     className="card-header d-flex justify-content-between align-items-center"
   >
     <div>
-      <span
-        className="title"
-      >
+      <strong>
         Results
-      </span>
+      </strong>
     </div>
     <a
       href="#"
