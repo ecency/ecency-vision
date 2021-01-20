@@ -761,7 +761,7 @@
       margin-bottom: 22px;
     }
 
-    .item-title {
+    .item-header {
       font-size: 16px;
       font-weight: 500;
       margin-bottom: 10px;
@@ -772,13 +772,14 @@
         margin-right: 10px;
       }
 
-      .item-names {
+      .item-title {
         display: flex;
         flex-direction: column;
 
-        .username {
+        .item-sub-title {
           font-size: 90%;
           opacity: 0.8;
+          font-weight: 300;
         }
       }
     }

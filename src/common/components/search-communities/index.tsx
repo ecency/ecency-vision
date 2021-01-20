@@ -21,6 +21,7 @@ import {getCommunities} from "../../api/bridge";
 import {_t} from "../../i18n";
 
 import truncate from "../../util/truncate";
+import formattedNumber from "../../util/formatted-number";
 
 import defaults from "../../constants/defaults.json";
 
@@ -96,15 +97,22 @@ export class SearchCommunities extends BaseComponent<Props, State> {
                         {results.map(community => {
                             const link = makePath(defaults.filter, community.name);
 
+                            const nOpts = {fractionDigits: 0};
+                            const subscribers = formattedNumber(community.subscribers, nOpts);
+
                             return <div key={community.name} className="list-item">
-                                <h3 className="item-title">
+                                <div className="item-header">
                                     <Link to={link}>
                                         {UserAvatar({...this.props, username: community.name, size: "medium"})}
                                     </Link>
-                                    <div className="item-names">
+                                    <div className="item-title">
                                         <Link to={link}>{community.title}</Link>
+
+                                        <div className="item-sub-title">
+                                            {_t("communities.n-subscribers", {n: subscribers})}
+                                        </div>
                                     </div>
-                                </h3>
+                                </div>
                                 <div className="item-about">{truncate(community.about, 120)}</div>
                             </div>
                         })}
