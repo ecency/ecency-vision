@@ -182,7 +182,10 @@
 
           .item-body {
             margin: 10px 0 14px 0;
-            color: $font-reading;
+
+            @include themify(day) {
+              color: $tundora;
+            }
           }
 
           .item-controls {
