@@ -91,13 +91,21 @@ export class SearchCommunities extends BaseComponent<Props, State> {
                     }
 
                     return <div className="community-list">
-                        {results.map(community => <div key={community.name} className="list-item">
-                            <h3 className="item-title">
-                                {UserAvatar({...this.props, username: community.name, size: "small"})}
-                                <Link to={makePath(defaults.filter, community.name)}>{community.title}</Link>
-                            </h3>
-                            <div className="item-about">{community.about}</div>
-                        </div>)}
+                        {results.map(community => {
+                            const link = makePath(defaults.filter, community.name);
+
+                            return <div key={community.name} className="list-item">
+                                <h3 className="item-title">
+                                    <Link to={link}>
+                                        {UserAvatar({...this.props, username: community.name, size: "medium"})}
+                                    </Link>
+                                    <div className="item-names">
+                                        <Link to={link}>{community.title}</Link>
+                                    </div>
+                                </h3>
+                                <div className="item-about">{community.about}</div>
+                            </div>
+                        })}
                     </div>
                 })()}
             </div>

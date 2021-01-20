@@ -89,21 +89,22 @@ export class SearchPeople extends BaseComponent<Props, State> {
                             {results.map(i => {
                                 const username = i.name;
                                 return <div className="list-item" key={username}>
-                                    <div className="item-main">
+                                    <h3 className="item-title">
                                         {ProfileLink({
                                             ...this.props,
                                             username,
-                                            children: <>{UserAvatar({...this.props, username, size: "small"})}</>
+                                            children: <>{UserAvatar({...this.props, username, size: "medium"})}</>
                                         })}
-
-                                        <div className="item-info">
+                                        <div className="item-names">
                                             {ProfileLink({
                                                 ...this.props,
                                                 username,
-                                                children: <a className="item-name notransalte">{username}</a>
+                                                children: <a className="item-name notransalte">{i.full_name}</a>
                                             })}
+                                            <span className="username">{"@"}{i.name}</span>
                                         </div>
-                                    </div>
+                                    </h3>
+                                    <div className="item-about">{i.about}</div>
                                 </div>
                             })}
                         </div>
