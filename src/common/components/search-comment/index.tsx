@@ -323,10 +323,8 @@ export class SearchComment extends BaseComponent<Props, State> {
                                 label={_t("search-comment.hide-low")}
                                 checked={hideLow}
                                 onChange={this.hideLowChanged}/>
-                    <div>
-                        <Button type="button" onClick={this.apply}>{_t("g.apply")}</Button>
-                        <Button variant="link" type="button" onClick={this.toggleAdvanced} style={{marginLeft: "10px"}}>{_t("g.close")}</Button>
-                    </div>
+
+                    <Button type="button" onClick={this.apply}>{_t("g.apply")}</Button>
                 </div>
             </div> : null;
 
@@ -351,7 +349,7 @@ export class SearchComment extends BaseComponent<Props, State> {
                 <a href="#" onClick={(e) => {
                     e.preventDefault();
                     this.toggleAdvanced();
-                }}>{_t("search-comment.advanced")}</a>
+                }}>{advanced ? _t("g.close") : _t("search-comment.advanced")}</a>
             </div>
             <div className="card-body">
                 {advancedForm}
