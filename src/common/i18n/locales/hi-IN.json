@@ -101,8 +101,8 @@
     "sign-up-text-2": "अभी साइनअप करें!"
   },
   "sign-up": {
-    "header": "साइन अप करें",
-    "description": "ब्लॉकचेन और इसेनसी पर सब कुछ प्रबंधित करने के लिए एक खाता। हमारे <a href=\"/faq#how-to-join\"> FAQ </a> में लाभ के बारे में और जानें",
+    "header": "Join",
+    "description": "<h3>Home of Free speech and Rewarding communities!</h3><br>One account to manage everything on <b>Blockchain</b> and <b>Ecency</b>.<br><br>Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
     "username": "एक उपयोगकर्ता नाम चुनें",
     "email": "अपना ईमेल पता दर्ज करें",
     "ref": "संदर्भित उपयोगकर्ता (वैकल्पिक)",
@@ -755,7 +755,7 @@
       "page-title": "इसेंसी केअक्सर पूछे जाने वाले प्रश्न",
       "page-sub-title": "विषय - सूची",
       "what-is-ecency-header": "इसेंसी क्या है?",
-      "what-is-ecency-body": "<p>इसेंसी एक <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">ब्लॉकचेन है </a> आधारित सामाजिक नेटवर्क - द्वारा संचालित<a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">हाइव</a>.</p><p>इसेंसी सामग्री निर्माताओं के लिए बिना सेंसर, मुफ्त, असीम, पुरस्कृत मंच प्रदान करता है.</p><p>द्वारा शुरू और स्थापित किया गया था <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> अगस्त 2016 में एक वैकल्पिक सामाजिक नेटवर्क के रूप में। तब से परियोजना योगदानकर्ताओं (अनुवादकों, परीक्षकों, डेवलपर्स, प्रभावितों, सामग्री रचनाकारों और उपभोक्ताओं) के बहुत बड़े समूह में बढ़ी है, जिन्होंने इसेंसी को आकार देने में मदद की।</p><p>इसेंसी, ब्लॉकचेन तकनीक में उन लोगों की मदद करने में मदद करती है, जहां उपयोगकर्ता अपने समय, संसाधनों के लिए भुगतान कर रहे हैं और ब्लॉकचेन के सामाजिक पहलुओं का आनंद लेते हुए सीखते हैं। उपयोग में आसानी के माध्यम से, उपयोगकर्ता न केवल सीखते हैं, बल्कि प्रौद्योगिकी और समुदाय के निवेशक, नवाचारकर्ता भी बन जाते हैं।</p>",
+      "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based social network - powered by <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency is home of free speech and rewarding communities for content creators.</p><p>Project is founded by <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> in August 2016 as an alternative social network that's uncensored, user controled, immutable and opensource. Currently there are <a class=\"push-link\" href=\"/contributors\">many independent and voluntary contributors</a> wanting to keep vision and spirit of free speech.</p><p>Ecency helps onboarding masses into Blockchain technology where users are getting paid for their time, resources and learn while enjoying social aspects of blockchain. Through ease of use, users not only learn but also become investors, innovators of the new internet.</p>",
       "what-is-hive-header": "हाइव ब्लॉकचेन क्या है?",
       "what-is-hive-body": "<p>हाइव एक ब्लॉकचेन है जिसे Web3.0 अनुप्रयोगों के लिए तेज, महसूस, विकेन्द्रीकृत, बिना सेंसर वाले प्लेटफॉर्म के साथ बनाया गया था, जिसमें बिल्ट-इन फीचर्स हैं जहां स्टेक होल्डर स्टेकिंग, क्यूरेटिंग, पोस्टिंग, गेम खेल, ट्रेडिंग - सभी के द्वारा पुरस्कार अर्जित कर सकते हैं बिना किसी मध्य पुरुष (विकेंद्रीकृत) के। हाइव ब्लॉकचैन पर टोकन को हाइव, हाइव डॉलर, हाइव पावर कहा जाता है|</p>",
       "what-is-difference-header": "इसेंसी और अन्य हाइव इंटरफेस के बीच अंतर क्या है?",
