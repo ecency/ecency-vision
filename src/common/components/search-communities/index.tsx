@@ -20,6 +20,8 @@ import {getCommunities} from "../../api/bridge";
 
 import {_t} from "../../i18n";
 
+import truncate from "../../util/truncate";
+
 import defaults from "../../constants/defaults.json";
 
 
@@ -64,7 +66,7 @@ export class SearchCommunities extends BaseComponent<Props, State> {
         const {search} = this.state;
 
         this.stateSet({results: [], loading: true});
-        getCommunities("", 5, search, "rank").then(results => {
+        getCommunities("", 4, search, "rank").then(results => {
             if (results) {
                 this.stateSet({results: results});
             }
@@ -103,7 +105,7 @@ export class SearchCommunities extends BaseComponent<Props, State> {
                                         <Link to={link}>{community.title}</Link>
                                     </div>
                                 </h3>
-                                <div className="item-about">{community.about}</div>
+                                <div className="item-about">{truncate(community.about, 120)}</div>
                             </div>
                         })}
                     </div>

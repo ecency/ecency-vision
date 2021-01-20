@@ -1,45 +1,21 @@
 .main-search-page {
   display: block;
 
-  @media (min-width: $md-break) {
+  @media (min-width: $lg-break) {
     display: flex;
-    margin-bottom: 0;
-    flex-direction: row;
-    height: calc(100% - 104px) !important;
 
-    .row {
+    .search-main {
       flex-grow: 1;
-
-      .col-section-holder {
-        display: flex;
-        height: 100%;
-
-        .row-side {
-          height: 100%;
-          flex-direction: row;
-          display: flex;
-          justify-content: space-between;
-
-          .col-section {
-            display: flex;
-            height: 33.3%;
-
-            &:not(:first-child) {
-              padding-top: 20px;
-            }
-          }
-        }
-      }
     }
 
-    .col-section-holder, .col-section {
-      .card {
-        flex-grow: 1;
-        display: flex;
+    .search-side {
+      width: 300px;
+      margin-left: 20px;
+      flex-grow: 0;
+      flex-shrink: 0;
 
-        .card-body {
-          overflow: auto;
-        }
+      @media (min-width: $xl-break) {
+        width: 380px;
       }
     }
   }

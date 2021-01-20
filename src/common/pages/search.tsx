@@ -2,8 +2,6 @@ import React, {Component} from "react";
 
 import {connect} from "react-redux";
 
-import {Row, Col} from "react-bootstrap";
-
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
 import NavBar from "../components/navbar/index";
@@ -12,7 +10,6 @@ import SearchComment from "../components/search-comment";
 import SearchPeople from "../components/search-people";
 import SearchTopics from "../components/search-topics";
 import SearchCommunities from "../components/search-communities";
-import FullHeight from "../components/full-height";
 
 import {_t} from "../i18n";
 
@@ -32,7 +29,6 @@ class MainSearchPage extends Component<PageProps> {
         return (
             <>
                 <Meta {...metaProps} />
-                <FullHeight/>
                 <Theme global={this.props.global}/>
                 {global.isElectron ?
                     NavBarElectron({
@@ -40,24 +36,14 @@ class MainSearchPage extends Component<PageProps> {
                     }) :
                     NavBar({...this.props})}
                 <div className="app-content main-search-page">
-                    <Row>
-                        <Col md="8" className="col-section-holder">
-                            <SearchComment {...this.props} limit={8}/>
-                        </Col>
-                        <Col md="4" className="col-section-holder">
-                            <Row className="row-side">
-                                <Col xs="12" className="col-section">
-                                    <SearchPeople {...this.props} />
-                                </Col>
-                                <Col xs="12" className="col-section">
-                                    <SearchCommunities {...this.props} />
-                                </Col>
-                                <Col xs="12" className="col-section">
-                                    <SearchTopics {...this.props} />
-                                </Col>
-                            </Row>
-                        </Col>
-                    </Row>
+                    <div className="search-main">
+                        <SearchComment {...this.props} limit={8}/>
+                    </div>
+                    <div className="search-side">
+                        <SearchPeople {...this.props} />
+                        <SearchCommunities {...this.props} />
+                        <SearchTopics {...this.props} />
+                    </div>
                 </div>
             </>
         );

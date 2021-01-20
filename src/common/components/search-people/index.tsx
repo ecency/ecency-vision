@@ -18,6 +18,8 @@ import {searchAccount, AccountSearchResult} from "../../api/private";
 
 import {_t} from "../../i18n";
 
+import truncate from "../../util/truncate";
+
 
 interface Props {
     history: History;
@@ -60,8 +62,8 @@ export class SearchPeople extends BaseComponent<Props, State> {
     fetch = () => {
         const {search} = this.state;
         this.stateSet({results: [], loading: true});
-        searchAccount(search, 5).then(results => {
-            this.stateSet({results});
+        searchAccount(search, 5).then(resp => {
+            this.stateSet({results: resp.slice(0, 4)});
         }).finally(() => {
             this.stateSet({loading: false});
         });
@@ -104,7 +106,7 @@ export class SearchPeople extends BaseComponent<Props, State> {
                                             <span className="username">{"@"}{i.name}</span>
                                         </div>
                                     </h3>
-                                    <div className="item-about">{i.about}</div>
+                                    <div className="item-about">{truncate(i.about, 120)}</div>
                                 </div>
                             })}
                         </div>
