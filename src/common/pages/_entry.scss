@@ -212,6 +212,10 @@
       padding: 0 0 2em 0;
       font-size: 1.2rem;
 
+      @include themify(day) {
+        color: $tundora;
+      }
+
       .twitter-tweet {
         margin-left: auto;
         margin-right: auto;
