@@ -101,8 +101,8 @@
     "sign-up-text-2": "Rekisteröidy nyt!"
   },
   "sign-up": {
-    "header": "Join",
-    "description": "<h3>Home of Free speech and Rewarding communities!</h3><br>One account to manage everything on <b>Blockchain</b> and <b>Ecency</b>.<br><br>Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
+    "header": "Liity",
+    "description": "<h3>Sananvapauden koti ja palkitsevat yhteisöt!</h3><br>Yhdellä tilillä hallitset kaikkea <b>Lohkoketjussa</b> ja <b>Ecencyssä</b>.<br><br>Lisätietoja hyödyistä luettavissa <a href=\"/faq#how-to-join\">UKK</a>",
     "username": "Valitse käyttäjänimi",
     "email": "Syötä sähköpostiosoitteesi",
     "ref": "Suosittelija (valinnainen)",
@@ -755,7 +755,7 @@
       "page-title": "Ecency UKK",
       "page-sub-title": "Sisällysluettelo",
       "what-is-ecency-header": "Mikä on Ecency?",
-      "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based social network - powered by <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency is home of free speech and rewarding communities for content creators.</p><p>Project is founded by <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> in August 2016 as an alternative social network that's uncensored, user controled, immutable and opensource. Currently there are <a class=\"push-link\" href=\"/contributors\">many independent and voluntary contributors</a> wanting to keep vision and spirit of free speech.</p><p>Ecency helps onboarding masses into Blockchain technology where users are getting paid for their time, resources and learn while enjoying social aspects of blockchain. Through ease of use, users not only learn but also become investors, innovators of the new internet.</p>",
+      "what-is-ecency-body": "<p>Ecency on <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">lohkoketju</a> -pohjainen sosiaalinen verkosto, jonka on mahdollistaa <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency tarjoaa sensuroimattoman, vapaan, rajattoman ja palkitsevan alustan sisällön luojille.</p><p>Hankkeen käynnisti ja perusti Elokuussa 2016 <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> vaihtoehtoiseksi sensuurivapaaksi, käyttäjän hallittavaksi avoimen lähdekoodin sosiaaliseksi verkostoksi. On <a class=\"push-link\" href=\"/contributors\"> monia itsenäisiä vapaaehtoisia osallistujia </a> jotka haluavat pitää sananvapauden vision ja hengen yllä. </p><p>Ecency auttaa ihmisiä opettelemaan Lohkoketjuteknologian käyttöä, jossa käyttäjiä palkitaan ajastaan sekä resursseista oppien lohkoketjun sosiaalisia ominaisuuksia. Käytön helppouden ansiosta käyttäjät oppivat ja tulevat samalla uuden internetin sijoittajiksi ja kehittäjiksi.</p>",
       "what-is-hive-header": "Mikä on Hive-lohkoketju?",
       "what-is-hive-body": "<p>Hive on lohkoketju, joka oli suunniteltu olemaan nopea, ilmainen, hajautettu sekä sensuroimaton alusta Web3- sovelluksineen, joissa on sisäänrakennettuja ominaisuuksia, joissa omistajat voivat ansaita palkintoja panostamalla, tarkastamalla, pelaamalla sekä vaihtamalla - ilman välikäsiä (hajautettu). Hive-lohkoketjun yleisimmät merkit ovat HIVE, HIVE DOLLARS, HIVE POWER.</p>",
       "what-is-difference-header": "Mikä ero on Ecencyllä ja muilla Hive-käyttöliittymillä?",
