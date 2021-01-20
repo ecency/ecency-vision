@@ -395,8 +395,21 @@ export interface AccountSearchResult {
     reputation: number
 }
 
-export const searchAccount = (q: string = "", limit: number = 20): Promise<AccountSearchResult[]> => {
-    const data = {q, limit};
+export const searchAccount = (q: string = "", limit: number = 20, random: number = 1): Promise<AccountSearchResult[]> => {
+    const data = {q, limit, random};
 
     return axios.post(_u(`/api/search-account`), data).then(resp => resp.data);
 }
+
+export interface TagSearchResult {
+    tag: string;
+    repeat: number;
+}
+
+export const searchTag = (q: string = "", limit: number = 20, random: number = 0): Promise<TagSearchResult[]> => {
+    const data = {q, limit, random};
+
+    return axios.post(_u(`/api/search-tag`), data).then(resp => resp.data);
+}
+
+
