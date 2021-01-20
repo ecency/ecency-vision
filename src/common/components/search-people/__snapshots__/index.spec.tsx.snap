@@ -7,7 +7,9 @@ exports[`(1) Default render 1`] = `
   <div
     className="card-header"
   >
-    People
+    <strong>
+      People
+    </strong>
   </div>
   <div
     className="card-body"
@@ -22,96 +24,129 @@ exports[`(1) Default render 1`] = `
           className="list-item"
         >
           <div
-            className="item-main"
+            className="item-header"
           >
             <a
               href="/@foo"
               onClick={[Function]}
             >
               <span
-                className="user-avatar small"
+                className="user-avatar medium"
                 style={
                   Object {
-                    "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/small)",
+                    "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
                   }
                 }
               />
             </a>
             <div
-              className="item-info"
+              className="item-title"
             >
               <a
                 className="item-name notransalte"
                 href="/@foo"
                 onClick={[Function]}
               >
-                foo
+                Foo
               </a>
+              <span
+                className="item-sub-title"
+              >
+                @
+                foo
+              </span>
             </div>
+          </div>
+          <div
+            className="item-about"
+          >
+            Lorem ipsum dolor sit amet
           </div>
         </div>
         <div
           className="list-item"
         >
           <div
-            className="item-main"
+            className="item-header"
           >
             <a
               href="/@bar"
               onClick={[Function]}
             >
               <span
-                className="user-avatar small"
+                className="user-avatar medium"
                 style={
                   Object {
-                    "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/small)",
+                    "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
                   }
                 }
               />
             </a>
             <div
-              className="item-info"
+              className="item-title"
             >
               <a
                 className="item-name notransalte"
                 href="/@bar"
                 onClick={[Function]}
               >
-                bar
+                Bar
               </a>
+              <span
+                className="item-sub-title"
+              >
+                @
+                bar
+              </span>
             </div>
+          </div>
+          <div
+            className="item-about"
+          >
+            Lorem ipsum dolor sit amet
           </div>
         </div>
         <div
           className="list-item"
         >
           <div
-            className="item-main"
+            className="item-header"
           >
             <a
               href="/@baz"
               onClick={[Function]}
             >
               <span
-                className="user-avatar small"
+                className="user-avatar medium"
                 style={
                   Object {
-                    "backgroundImage": "url(https://images.ecency.com/u/baz/avatar/small)",
+                    "backgroundImage": "url(https://images.ecency.com/u/baz/avatar/medium)",
                   }
                 }
               />
             </a>
             <div
-              className="item-info"
+              className="item-title"
             >
               <a
                 className="item-name notransalte"
                 href="/@baz"
                 onClick={[Function]}
               >
-                baz
+                Baz
               </a>
+              <span
+                className="item-sub-title"
+              >
+                @
+                baz
+              </span>
             </div>
+          </div>
+          <div
+            className="item-about"
+          >
+            Lorem ipsum dolor sit amet
           </div>
         </div>
       </div>
@@ -127,12 +162,18 @@ exports[`(2) No matches 1`] = `
   <div
     className="card-header"
   >
-    People
+    <strong>
+      People
+    </strong>
   </div>
   <div
     className="card-body"
   >
-    No matches
+    <span
+      className="text-muted"
+    >
+      No matches
+    </span>
   </div>
 </div>
 `;
