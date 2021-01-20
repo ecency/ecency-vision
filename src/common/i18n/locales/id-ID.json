@@ -101,8 +101,8 @@
     "sign-up-text-2": "Daftar sekarang!"
   },
   "sign-up": {
-    "header": "Daftar",
-    "description": "Satu akun untuk mengatur semuanya di blockchain dan Ecency. Pelajari lebih lebih banyak lagi tentang keuntungannya di <a href=\"/faq#how-to-join\">FAQ</a> kami",
+    "header": "Join",
+    "description": "<h3>Home of Free speech and Rewarding communities!</h3><br>One account to manage everything on <b>Blockchain</b> and <b>Ecency</b>.<br><br>Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
     "username": "Pilih nama pengguna",
     "email": "Masukkan alamat email Anda",
     "ref": "Pengguna rujukan (opsional)",
@@ -755,7 +755,7 @@
       "page-title": "Pertanyaan tentang Ecency",
       "page-sub-title": "Daftar Isi",
       "what-is-ecency-header": "Apa itu Ecency?",
-      "what-is-ecency-body": "<p>Ecency adalah jaringan sosial berbasis<a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> - didukung oleh<a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>. </p> <p> Ecency menawarkan platform yang tidak disensor, gratis, tanpa batas, dan bermanfaat bagi Kreatort Konten. </p> <p> Proyek dimulai dan didirikan oleh<a class=\"push-link\" href=\"/@good-karma\">@good-karma </a> pada bulan Agustus 2016 sebagai jaringan sosial alternatif. Sejak saat itu, proyek telah berkembang menjadi kelompok kontributor yang jauh lebih besar (penerjemah, penguji, pengembang, pemberi pengaruh, pembuat konten, dan konsumen) yang membantu membentuk Ecency.</p> <p>Ecency membantu banyak orang memasukkan teknologi Blockchain di mana pengguna dibayar untuk waktu, sumber daya, dan belajar mereka sambil menikmati aspek sosial blockchain. Melalui kemudahan penggunaan, pengguna tidak hanya belajar tetapi juga menjadi investor, inovator teknologi, dan komunitas.</p>",
+      "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based social network - powered by <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency is home of free speech and rewarding communities for content creators.</p><p>Project is founded by <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> in August 2016 as an alternative social network that's uncensored, user controled, immutable and opensource. Currently there are <a class=\"push-link\" href=\"/contributors\">many independent and voluntary contributors</a> wanting to keep vision and spirit of free speech.</p><p>Ecency helps onboarding masses into Blockchain technology where users are getting paid for their time, resources and learn while enjoying social aspects of blockchain. Through ease of use, users not only learn but also become investors, innovators of the new internet.</p>",
       "what-is-hive-header": "Apa itu Hive Blockchain?",
       "what-is-hive-body": "<p> Hive adalah blockchain yang dirancang untuk menjadi platform yang cepat, nyaman, terdesentralisasi, tanpa sensor untuk aplikasi Web3.0, dengan fitur bawaan di mana pemegang saham dapat memperoleh hadiah dengan mempertaruhkan, mengkurasi, membuat konten, bermain game, berdagang - semuanya tanpa perantara (desentralisasi). Token di blockchain Hive yang disebut HIVE, HIVE DOLLARS, HIVE POWER. </p>",
       "what-is-difference-header": "Apa perbedaan antara Ecency dan aplikasi Hive lainnya?",
