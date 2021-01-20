@@ -66,7 +66,6 @@ server
     )
     .get("^/api/received-vesting/:username$", pApi.receivedVesting)
     .get("^/api/leaderboard/:duration(day|week|month)$", pApi.leaderboard)
-    .get("^/api/popular-users$", pApi.popularUsers)
     .get("^/api/promoted-entries$", pApi.promotedEntries)
     .post("^/api/comment-history$", pApi.commentHistory)
     .post("^/api/search$", pApi.search)

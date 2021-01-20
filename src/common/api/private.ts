@@ -35,16 +35,6 @@ export const getReceivedVestingShares = (username: string): Promise<ReceivedVest
     axios.get(_u(`/api/received-vesting/${username}`)).then((resp) => resp.data.list);
 
 
-export interface PopularUser {
-    name: string,
-    display_name: string,
-    about: string,
-    reputation: number
-}
-
-export const getPopularUsers = (): Promise<PopularUser[]> =>
-    axios.get(_u(`/api/popular-users`)).then((resp) => resp.data);
-
 export interface LeaderBoardItem {
     _id: string;
     count: number;
@@ -405,7 +395,7 @@ export interface AccountSearchResult {
     reputation: number
 }
 
-export const searchAccount = (q: string): Promise<AccountSearchResult[]> => {
+export const searchAccount = (q: string = ""): Promise<AccountSearchResult[]> => {
     const data = {q};
 
     return axios.post(_u(`/api/search-account`), data).then(resp => resp.data);
