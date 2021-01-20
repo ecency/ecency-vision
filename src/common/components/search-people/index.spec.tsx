@@ -2,18 +2,18 @@ import React from "react";
 
 import TestRenderer from "react-test-renderer";
 
-import {globalInstance, allOver} from "../../helper/test-helper";
+import {globalInstance, allOver, accountSearchResultInstance} from "../../helper/test-helper";
 import {createBrowserHistory, createLocation} from "history";
 import {StaticRouter} from "react-router-dom";
 import {SearchPeople} from "./index"
 
 let TEST_MODE = 0;
 
-jest.mock("../../api/hive", () => ({
-    lookupAccounts: () =>
+jest.mock("../../api/private", () => ({
+    searchAccount: () =>
         new Promise((resolve) => {
             if (TEST_MODE === 0) {
-                resolve(["foo", "bar", "baz"]);
+                resolve(accountSearchResultInstance);
             }
 
             if (TEST_MODE === 1) {

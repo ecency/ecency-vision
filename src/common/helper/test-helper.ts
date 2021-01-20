@@ -6,7 +6,7 @@ import {DynamicProps} from "../store/dynamic-props/types";
 import {UI} from "../store/ui/types";
 import {PointTransaction} from "../store/points/types";
 import {Vote, DelegatedVestingShare, Proposal} from "../api/hive";
-import {ReceivedVestingShare} from "../api/private";
+import {AccountSearchResult, ReceivedVestingShare} from "../api/private";
 import {
     ApiFollowNotification,
     ApiMentionNotification,
@@ -982,3 +982,10 @@ export const searchResponseInstance: SearchResponse = {
         "depth": 0
     }]
 }
+
+
+export const accountSearchResultInstance: AccountSearchResult[] = [
+    {"name": "foo", "full_name": "Foo", "about": "Lorem ipsum dolor sit amet", "reputation": 70.44},
+    {"name": "bar", "full_name": "Bar", "about": "Lorem ipsum dolor sit amet", "reputation": 72.44},
+    {"name": "baz", "full_name": "Baz", "about": "Lorem ipsum dolor sit amet", "reputation": 74.44},
+]

@@ -4,16 +4,12 @@ import {createBrowserHistory} from "history";
 
 import {PopularUsers} from './index';
 
-import {globalInstance, allOver} from "../../helper/test-helper";
+import {globalInstance, allOver, accountSearchResultInstance} from "../../helper/test-helper";
 
 jest.mock("../../api/private", () => ({
-    getPopularUsers: (duration: string) =>
+    searchAccount: (duration: string) =>
         new Promise((resolve) => {
-            resolve([
-                {"name": "foo", "full_name": "Foo", "about": "Lorem ipsum dolor sit amet", "reputation": 70.44},
-                {"name": "bar", "full_name": "Bar", "about": "Lorem ipsum dolor sit amet", "reputation": 72.44},
-                {"name": "baz", "full_name": "Baz", "about": "Lorem ipsum dolor sit amet", "reputation": 74.44},
-            ]);
+            resolve(accountSearchResultInstance);
         }),
 }));
 
