@@ -20,6 +20,7 @@
     "back": "Πίσω",
     "load-more": "Φόρτωσε περισσότερα",
     "empty-list": "Δεν υπάρχει τίποτα εδώ",
+    "no-matches": "No matches",
     "save": "Αποθήκευση",
     "try-again": "Προσπαθήστε ξανά",
     "show": "Προβολή",
@@ -27,7 +28,9 @@
     "off": "Ανενεργό",
     "yes": "Ναι",
     "no": "Όχι",
-    "done": "Έτοιμο"
+    "done": "Έτοιμο",
+    "apply": "Apply",
+    "close": "Close"
   },
   "confirm": {
     "title": "Είστε σίγουρος;",
@@ -670,13 +673,45 @@
   },
   "search-page": {
     "title": "Αναζήτηση",
-    "description": "Βρείτε περιεχόμενο, κοινότητες και χρήστες χωρίς λογοκρισία",
-    "n-results-for-q": "{{n}} αποτελέσματα",
-    "no-result": "Κανένα αποτέλεσμα",
-    "sort-by": "ταξινόμηση κατά",
-    "sort-popularity": "Δημοτικότητα",
-    "sort-relevance": "Συνάφεια",
-    "sort-newest": "Ημερομηνία"
+    "description": "Βρείτε περιεχόμενο, κοινότητες και χρήστες χωρίς λογοκρισία"
+  },
+  "search-comment": {
+    "title": "Results",
+    "matches": "{{n}} matches",
+    "matches-singular": "1 match",
+    "advanced": "Advanced",
+    "search": "Search",
+    "search-placeholder": "search phrase",
+    "author": "Author",
+    "author-placeholder": "username",
+    "type": "Type",
+    "type-": "All",
+    "type-post": "Post",
+    "type-comment": "Comment",
+    "category": "Category",
+    "category-placeholder": "category",
+    "tags": "Tags",
+    "tags-placeholder": "comma separated tags",
+    "date": "Date",
+    "date-week": "Week",
+    "date-month": "Month",
+    "date-year": "Year",
+    "date-all": "All",
+    "sort": "Sort",
+    "sort-popularity": "Popularity",
+    "sort-relevance": "Relevance",
+    "sort-newest": "Recent",
+    "hide-low": "Hide low payout content",
+    "show-more": "show more"
+  },
+  "search-people": {
+    "title": "People"
+  },
+  "search-topics": {
+    "title": "Topics"
+  },
+  "search-communities": {
+    "title": "Communities"
   },
   "witnesses": {
     "page-title": "Μάρτυρες",
