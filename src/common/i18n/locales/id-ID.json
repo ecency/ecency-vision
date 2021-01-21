@@ -20,6 +20,7 @@
     "back": "Kembali",
     "load-more": "Muat Lebih Banyak",
     "empty-list": "Tidak ada apa-apa di sini",
+    "no-matches": "No matches",
     "save": "Simpan",
     "try-again": "Coba lagi",
     "show": "Tampilkan",
@@ -27,7 +28,9 @@
     "off": "Off",
     "yes": "Ya",
     "no": "Tidak",
-    "done": "Selesai"
+    "done": "Selesai",
+    "apply": "Apply",
+    "close": "Close"
   },
   "confirm": {
     "title": "Apakah anda yakin?",
@@ -670,13 +673,45 @@
   },
   "search-page": {
     "title": "Cari",
-    "description": "Temukan konten pengguna dan komunitas yang tidak bersensor",
-    "n-results-for-q": "{{n}} hasil",
-    "no-result": "Tidak ada hasil",
-    "sort-by": "urut berdasarkan",
-    "sort-popularity": "Popularitas",
-    "sort-relevance": "Relevan",
-    "sort-newest": "Tanggal"
+    "description": "Temukan konten pengguna dan komunitas yang tidak bersensor"
+  },
+  "search-comment": {
+    "title": "Results",
+    "matches": "{{n}} matches",
+    "matches-singular": "1 match",
+    "advanced": "Advanced",
+    "search": "Search",
+    "search-placeholder": "search phrase",
+    "author": "Author",
+    "author-placeholder": "username",
+    "type": "Type",
+    "type-": "All",
+    "type-post": "Post",
+    "type-comment": "Comment",
+    "category": "Category",
+    "category-placeholder": "category",
+    "tags": "Tags",
+    "tags-placeholder": "comma separated tags",
+    "date": "Date",
+    "date-week": "Week",
+    "date-month": "Month",
+    "date-year": "Year",
+    "date-all": "All",
+    "sort": "Sort",
+    "sort-popularity": "Popularity",
+    "sort-relevance": "Relevance",
+    "sort-newest": "Recent",
+    "hide-low": "Hide low payout content",
+    "show-more": "show more"
+  },
+  "search-people": {
+    "title": "People"
+  },
+  "search-topics": {
+    "title": "Topics"
+  },
+  "search-communities": {
+    "title": "Communities"
   },
   "witnesses": {
     "page-title": "Saksi-saksi",
