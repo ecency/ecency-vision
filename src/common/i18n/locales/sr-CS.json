@@ -20,6 +20,7 @@
     "back": "Nazad",
     "load-more": "Učitaj još",
     "empty-list": "Ovde nema nista",
+    "no-matches": "No matches",
     "save": "Sačuvaj",
     "try-again": "Pokušaj ponovno",
     "show": "Prikaži",
@@ -27,7 +28,9 @@
     "off": "Isključeno",
     "yes": "Da",
     "no": "Ne",
-    "done": "Gotovo"
+    "done": "Gotovo",
+    "apply": "Apply",
+    "close": "Close"
   },
   "confirm": {
     "title": "Da li ste sigurni?",
@@ -670,13 +673,45 @@
   },
   "search-page": {
     "title": "Pretraga",
-    "description": "Pronađi necenzurisan sadržaj, zajednice i korisnike",
-    "n-results-for-q": "{{n}} rezultati",
-    "no-result": "Nema rezultata",
-    "sort-by": "sortiraj po",
-    "sort-popularity": "Popularnost",
-    "sort-relevance": "Relevantnost",
-    "sort-newest": "Datum"
+    "description": "Pronađi necenzurisan sadržaj, zajednice i korisnike"
+  },
+  "search-comment": {
+    "title": "Results",
+    "matches": "{{n}} matches",
+    "matches-singular": "1 match",
+    "advanced": "Advanced",
+    "search": "Search",
+    "search-placeholder": "search phrase",
+    "author": "Author",
+    "author-placeholder": "username",
+    "type": "Type",
+    "type-": "All",
+    "type-post": "Post",
+    "type-comment": "Comment",
+    "category": "Category",
+    "category-placeholder": "category",
+    "tags": "Tags",
+    "tags-placeholder": "comma separated tags",
+    "date": "Date",
+    "date-week": "Week",
+    "date-month": "Month",
+    "date-year": "Year",
+    "date-all": "All",
+    "sort": "Sort",
+    "sort-popularity": "Popularity",
+    "sort-relevance": "Relevance",
+    "sort-newest": "Recent",
+    "hide-low": "Hide low payout content",
+    "show-more": "show more"
+  },
+  "search-people": {
+    "title": "People"
+  },
+  "search-topics": {
+    "title": "Topics"
+  },
+  "search-communities": {
+    "title": "Communities"
   },
   "witnesses": {
     "page-title": "Svedoci (witnesses)",
