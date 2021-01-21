@@ -20,6 +20,7 @@
     "back": "Vissza",
     "load-more": "További betöltés",
     "empty-list": "Itt nincs semmi",
+    "no-matches": "No matches",
     "save": "Mentés",
     "try-again": "Próbáld újra",
     "show": "Megjelenítés",
@@ -27,7 +28,9 @@
     "off": "Ki",
     "yes": "Igen",
     "no": "Nem",
-    "done": "Done"
+    "done": "Done",
+    "apply": "Apply",
+    "close": "Close"
   },
   "confirm": {
     "title": "Biztos vagy benne?",
@@ -670,13 +673,45 @@
   },
   "search-page": {
     "title": "Keresés",
-    "description": "Find uncensored content, communities and users",
-    "n-results-for-q": "{{n}} találat",
-    "no-result": "Nincs találat",
-    "sort-by": "rendezés alapja",
-    "sort-popularity": "Népszerűség",
-    "sort-relevance": "Fontosság",
-    "sort-newest": "Dátum"
+    "description": "Find uncensored content, communities and users"
+  },
+  "search-comment": {
+    "title": "Results",
+    "matches": "{{n}} matches",
+    "matches-singular": "1 match",
+    "advanced": "Advanced",
+    "search": "Search",
+    "search-placeholder": "search phrase",
+    "author": "Author",
+    "author-placeholder": "username",
+    "type": "Type",
+    "type-": "All",
+    "type-post": "Post",
+    "type-comment": "Comment",
+    "category": "Category",
+    "category-placeholder": "category",
+    "tags": "Tags",
+    "tags-placeholder": "comma separated tags",
+    "date": "Date",
+    "date-week": "Week",
+    "date-month": "Month",
+    "date-year": "Year",
+    "date-all": "All",
+    "sort": "Sort",
+    "sort-popularity": "Popularity",
+    "sort-relevance": "Relevance",
+    "sort-newest": "Recent",
+    "hide-low": "Hide low payout content",
+    "show-more": "show more"
+  },
+  "search-people": {
+    "title": "People"
+  },
+  "search-topics": {
+    "title": "Topics"
+  },
+  "search-communities": {
+    "title": "Communities"
   },
   "witnesses": {
     "page-title": "Tanúk",
