@@ -20,7 +20,7 @@
     "back": "Kembali",
     "load-more": "Muat Lebih Banyak",
     "empty-list": "Tidak ada apa-apa di sini",
-    "no-matches": "No matches",
+    "no-matches": "Tidak cocok",
     "save": "Simpan",
     "try-again": "Coba lagi",
     "show": "Tampilkan",
@@ -29,8 +29,8 @@
     "yes": "Ya",
     "no": "Tidak",
     "done": "Selesai",
-    "apply": "Apply",
-    "close": "Close"
+    "apply": "Terapkan",
+    "close": "Tutup"
   },
   "confirm": {
     "title": "Apakah anda yakin?",
@@ -104,8 +104,8 @@
     "sign-up-text-2": "Daftar sekarang!"
   },
   "sign-up": {
-    "header": "Join",
-    "description": "<h3>Home of Free speech and Rewarding communities!</h3><br>One account to manage everything on <b>Blockchain</b> and <b>Ecency</b>.<br><br>Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
+    "header": "Bergabunglah",
+    "description": "<h3>Rumah Bebas bicara dan memberikan imbalan kepada komunitas!</h3><br>Satu akun untuk mengatur semuanya di<b>Blockchain</b>dan<b>Ecency</b>.<br><br>Pelajari lebih banyak tentang keuntungannya di FAQ<a href=\"/faq#how-to-join\">kami</a>",
     "username": "Pilih nama pengguna",
     "email": "Masukkan alamat email Anda",
     "ref": "Pengguna rujukan (opsional)",
@@ -676,42 +676,42 @@
     "description": "Temukan konten pengguna dan komunitas yang tidak bersensor"
   },
   "search-comment": {
-    "title": "Results",
-    "matches": "{{n}} matches",
-    "matches-singular": "1 match",
-    "advanced": "Advanced",
-    "search": "Search",
-    "search-placeholder": "search phrase",
-    "author": "Author",
-    "author-placeholder": "username",
-    "type": "Type",
-    "type-": "All",
-    "type-post": "Post",
-    "type-comment": "Comment",
-    "category": "Category",
-    "category-placeholder": "category",
-    "tags": "Tags",
-    "tags-placeholder": "comma separated tags",
-    "date": "Date",
-    "date-week": "Week",
-    "date-month": "Month",
-    "date-year": "Year",
-    "date-all": "All",
-    "sort": "Sort",
-    "sort-popularity": "Popularity",
-    "sort-relevance": "Relevance",
-    "sort-newest": "Recent",
-    "hide-low": "Hide low payout content",
-    "show-more": "show more"
+    "title": "Hasil",
+    "matches": "{{n}} cocok",
+    "matches-singular": "1 yang cocok",
+    "advanced": "Lanjutan",
+    "search": "Cari",
+    "search-placeholder": "cari frasa",
+    "author": "Penulis",
+    "author-placeholder": "nama pengguna",
+    "type": "Tipe",
+    "type-": "Semua",
+    "type-post": "Postingan",
+    "type-comment": "Komentar",
+    "category": "Kategori",
+    "category-placeholder": "kategori",
+    "tags": "Tagar",
+    "tags-placeholder": "koma memisahkan tagar",
+    "date": "Tanggal",
+    "date-week": "Minggu",
+    "date-month": "Bulan",
+    "date-year": "Tahun",
+    "date-all": "Semua",
+    "sort": "Urutkan",
+    "sort-popularity": "Popularitas",
+    "sort-relevance": "Relevan",
+    "sort-newest": "Terkini",
+    "hide-low": "Sembunyikan konten yang pembayarannya rendah",
+    "show-more": "tampilkan lebih banyak"
   },
   "search-people": {
-    "title": "People"
+    "title": "Koneksi"
   },
   "search-topics": {
-    "title": "Topics"
+    "title": "Topik"
   },
   "search-communities": {
-    "title": "Communities"
+    "title": "Komunitas"
   },
   "witnesses": {
     "page-title": "Saksi-saksi",
