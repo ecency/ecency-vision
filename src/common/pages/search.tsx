@@ -2,6 +2,8 @@ import React, {Component} from "react";
 
 import {connect} from "react-redux";
 
+import queryString from "query-string";
+
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
 import NavBar from "../components/navbar/index";
@@ -15,8 +17,35 @@ import {_t} from "../i18n";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
-class SearchPage extends Component<PageProps> {
+interface State {
+    q: string
+}
+
+export default class SearchBase extends Component<PageProps, State> {
+    state: State = {
+        q: ""
+    }
+
+    componentDidMount() {
+        const {location, history} = this.props;
+        const qs = queryString.parse(location.search);
+
+        if (!qs.q) {
+            history.push("/");
+            return;
+        }
+
+        this.setState({q: qs.q as string});
+    }
+}
+
+class SearchPage extends SearchBase {
     render() {
+        const {q} = this.state;
+        if (!q) {
+            return null;
+        }
+
         //  Meta config
         const metaProps = {
             title: _t("search-page.title"),
@@ -52,8 +81,13 @@ class SearchPage extends Component<PageProps> {
 const SearchPageContainer = connect(pageMapStateToProps, pageMapDispatchToProps)(SearchPage);
 export {SearchPageContainer};
 
-class SearchMorePage extends Component<PageProps> {
+class SearchMorePage extends SearchBase {
     render() {
+        const {q} = this.state;
+        if (!q) {
+            return null;
+        }
+
         //  Meta config
         const metaProps = {
             title: _t("search-page.title"),
