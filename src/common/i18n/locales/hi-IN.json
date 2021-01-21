@@ -20,6 +20,7 @@
     "back": "वापस जाएँ।",
     "load-more": "अधिक लोड करे",
     "empty-list": "कुछ नहीं है",
+    "no-matches": "No matches",
     "save": "रक्षित करें",
     "try-again": "पुनः प्रयास करें",
     "show": "दिखाएँ",
@@ -27,7 +28,9 @@
     "off": "बंद",
     "yes": "हाँ",
     "no": "नहीं",
-    "done": "पूर्ण हुवा"
+    "done": "पूर्ण हुवा",
+    "apply": "Apply",
+    "close": "Close"
   },
   "confirm": {
     "title": "क्या आपको यकीन है?",
@@ -670,13 +673,45 @@
   },
   "search-page": {
     "title": "खोजें",
-    "description": "बिना सेंसर की गई सामग्री, समुदायों और उपयोगकर्ताओं का पता लगाएं",
-    "n-results-for-q": "{{n}} परिणाम",
-    "no-result": "कोई परिणाम नही",
-    "sort-by": "क्रमबद्ध करें",
-    "sort-popularity": "लोकप्रियता",
-    "sort-relevance": "प्रासंगिकता",
-    "sort-newest": "दिनांक"
+    "description": "बिना सेंसर की गई सामग्री, समुदायों और उपयोगकर्ताओं का पता लगाएं"
+  },
+  "search-comment": {
+    "title": "Results",
+    "matches": "{{n}} matches",
+    "matches-singular": "1 match",
+    "advanced": "Advanced",
+    "search": "Search",
+    "search-placeholder": "search phrase",
+    "author": "Author",
+    "author-placeholder": "username",
+    "type": "Type",
+    "type-": "All",
+    "type-post": "Post",
+    "type-comment": "Comment",
+    "category": "Category",
+    "category-placeholder": "category",
+    "tags": "Tags",
+    "tags-placeholder": "comma separated tags",
+    "date": "Date",
+    "date-week": "Week",
+    "date-month": "Month",
+    "date-year": "Year",
+    "date-all": "All",
+    "sort": "Sort",
+    "sort-popularity": "Popularity",
+    "sort-relevance": "Relevance",
+    "sort-newest": "Recent",
+    "hide-low": "Hide low payout content",
+    "show-more": "show more"
+  },
+  "search-people": {
+    "title": "People"
+  },
+  "search-topics": {
+    "title": "Topics"
+  },
+  "search-communities": {
+    "title": "Communities"
   },
   "witnesses": {
     "page-title": "गवाह",
