@@ -700,8 +700,8 @@
     "sort": "Sort",
     "sort-popularity": "Popularity",
     "sort-relevance": "Relevance",
-    "sort-newest": "Date",
-    "hide-low": "Hide low quality content",
+    "sort-newest": "Recent",
+    "hide-low": "Hide low payout content",
     "show-more": "show more"
   },
   "search-people": {
