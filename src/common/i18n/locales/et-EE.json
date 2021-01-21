@@ -20,6 +20,7 @@
     "back": "Tagasi",
     "load-more": "Laadi veel",
     "empty-list": "Siin pole midagi",
+    "no-matches": "No matches",
     "save": "Salvesta",
     "try-again": "Proovige uuesti",
     "show": "Näita",
@@ -27,7 +28,9 @@
     "off": "Väljas",
     "yes": "Jah",
     "no": "Ei",
-    "done": "Valmis"
+    "done": "Valmis",
+    "apply": "Apply",
+    "close": "Close"
   },
   "confirm": {
     "title": "Olete kindel?",
@@ -670,13 +673,45 @@
   },
   "search-page": {
     "title": "Search",
-    "description": "Find uncensored content, communities and users",
-    "n-results-for-q": "{{n}} results",
-    "no-result": "No result",
-    "sort-by": "sort by",
+    "description": "Find uncensored content, communities and users"
+  },
+  "search-comment": {
+    "title": "Results",
+    "matches": "{{n}} matches",
+    "matches-singular": "1 match",
+    "advanced": "Advanced",
+    "search": "Search",
+    "search-placeholder": "search phrase",
+    "author": "Author",
+    "author-placeholder": "username",
+    "type": "Type",
+    "type-": "All",
+    "type-post": "Post",
+    "type-comment": "Comment",
+    "category": "Category",
+    "category-placeholder": "category",
+    "tags": "Tags",
+    "tags-placeholder": "comma separated tags",
+    "date": "Date",
+    "date-week": "Week",
+    "date-month": "Month",
+    "date-year": "Year",
+    "date-all": "All",
+    "sort": "Sort",
     "sort-popularity": "Popularity",
     "sort-relevance": "Relevance",
-    "sort-newest": "Date"
+    "sort-newest": "Recent",
+    "hide-low": "Hide low payout content",
+    "show-more": "show more"
+  },
+  "search-people": {
+    "title": "People"
+  },
+  "search-topics": {
+    "title": "Topics"
+  },
+  "search-communities": {
+    "title": "Communities"
   },
   "witnesses": {
     "page-title": "Witnesses",
