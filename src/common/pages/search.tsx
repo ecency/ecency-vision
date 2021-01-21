@@ -15,44 +15,6 @@ import {_t} from "../i18n";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
-
-class MainSearchPage extends Component<PageProps> {
-    render() {
-        //  Meta config
-        const metaProps = {
-            title: _t("search-page.title"),
-            description: _t("search-page.description"),
-        };
-
-        const {global} = this.props;
-
-        return (
-            <>
-                <Meta {...metaProps} />
-                <Theme global={this.props.global}/>
-                {global.isElectron ?
-                    NavBarElectron({
-                        ...this.props,
-                    }) :
-                    NavBar({...this.props})}
-                <div className="app-content main-search-page">
-                    <div className="search-main">
-                        <SearchComment {...this.props} limit={8}/>
-                    </div>
-                    <div className="search-side">
-                        <SearchPeople {...this.props} />
-                        <SearchCommunities {...this.props} />
-                        <SearchTopics {...this.props} />
-                    </div>
-                </div>
-            </>
-        );
-    }
-}
-
-const MainSearchPageContainer = connect(pageMapStateToProps, pageMapDispatchToProps)(MainSearchPage);
-export {MainSearchPageContainer};
-
 class SearchPage extends Component<PageProps> {
     render() {
         //  Meta config
@@ -73,7 +35,14 @@ class SearchPage extends Component<PageProps> {
                     }) :
                     NavBar({...this.props})}
                 <div className="app-content search-page">
-                    <SearchComment {...this.props}/>
+                    <div className="search-main">
+                        <SearchComment {...this.props} limit={8}/>
+                    </div>
+                    <div className="search-side">
+                        <SearchPeople {...this.props} />
+                        <SearchCommunities {...this.props} />
+                        <SearchTopics {...this.props} />
+                    </div>
                 </div>
             </>
         );
@@ -82,3 +51,33 @@ class SearchPage extends Component<PageProps> {
 
 const SearchPageContainer = connect(pageMapStateToProps, pageMapDispatchToProps)(SearchPage);
 export {SearchPageContainer};
+
+class SearchMorePage extends Component<PageProps> {
+    render() {
+        //  Meta config
+        const metaProps = {
+            title: _t("search-page.title"),
+            description: _t("search-page.description"),
+        };
+
+        const {global} = this.props;
+
+        return (
+            <>
+                <Meta {...metaProps} />
+                <Theme global={this.props.global}/>
+                {global.isElectron ?
+                    NavBarElectron({
+                        ...this.props,
+                    }) :
+                    NavBar({...this.props})}
+                <div className="app-content search-more-page">
+                    <SearchComment {...this.props}/>
+                </div>
+            </>
+        );
+    }
+}
+
+const SearchMorePageContainer = connect(pageMapStateToProps, pageMapDispatchToProps)(SearchMorePage);
+export {SearchMorePageContainer};

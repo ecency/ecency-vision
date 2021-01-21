@@ -238,7 +238,7 @@ export class SearchComment extends BaseComponent<Props, State> {
         const {location, history} = this.props;
         const {search} = location;
 
-        history.push(`/search/${search}`);
+        history.push(`/search-more/${search}`);
     }
 
     bottomReached = () => {

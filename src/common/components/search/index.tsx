@@ -79,10 +79,10 @@ export class Search extends BaseComponent<Props, State> {
             const {history, location} = this.props;
             const {query} = this.state;
 
-            if (["/search", "/search/"].includes(location.pathname)) {
-                history.push(`/search/?q=${encodeURIComponent(query)}`);
+            if (["/search-more", "/search-more/"].includes(location.pathname)) {
+                history.push(`/search-more/?q=${encodeURIComponent(query)}`);
             } else {
-                history.push(`/search-main/?q=${encodeURIComponent(query)}`);
+                history.push(`/search/?q=${encodeURIComponent(query)}`);
             }
         }
     };

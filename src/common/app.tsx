@@ -7,7 +7,7 @@ import EntryContainer from "./pages/entry";
 import CommunitiesContainer, {CommunityCreateContainer, CommunityCreateHSContainer} from "./pages/communities";
 import CommunityContainer from "./pages/community";
 import DiscoverContainer from "./pages/discover";
-import {MainSearchPageContainer, SearchPageContainer} from "./pages/search";
+import {SearchPageContainer, SearchMorePageContainer} from "./pages/search";
 import WitnessesContainer from "./pages/witnesses";
 import {ProposalsIndexContainer, ProposalDetailContainer} from "./pages/proposals";
 import AuthContainer from "./pages/auth";
@@ -47,8 +47,8 @@ const App = () => {
                 <Route exact={true} strict={true} path={routes.COMMUNITY} component={CommunityContainer}/>
                 <Route exact={true} strict={true} path={routes.FILTER_TAG} component={EntryIndexContainer}/>
                 <Route exact={true} strict={true} path={routes.DISCOVER} component={DiscoverContainer}/>
-                <Route exact={true} path={routes.SEARCH_MAIN} component={MainSearchPageContainer}/>
                 <Route exact={true} path={routes.SEARCH} component={SearchPageContainer}/>
+                <Route exact={true} path={routes.SEARCH_MORE} component={SearchMorePageContainer}/>
                 <Route exact={true} strict={true} path={routes.AUTH} component={AuthContainer}/>
                 <Route exact={true} strict={true} path={routes.SUBMIT} component={SubmitContainer}/>
                 <Route exact={true} strict={true} path={routes.EDIT} component={SubmitContainer}/>
