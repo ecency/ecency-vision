@@ -20,6 +20,7 @@
     "back": "Takaisin",
     "load-more": "Lataa lisää",
     "empty-list": "Tyhjä",
+    "no-matches": "No matches",
     "save": "Tallenna",
     "try-again": "Yritä uudelleen",
     "show": "Näytä",
@@ -27,7 +28,9 @@
     "off": "Pois",
     "yes": "Kyllä",
     "no": "Ei",
-    "done": "Valmis"
+    "done": "Valmis",
+    "apply": "Apply",
+    "close": "Close"
   },
   "confirm": {
     "title": "Oletko varma?",
@@ -670,13 +673,45 @@
   },
   "search-page": {
     "title": "Haku",
-    "description": "Löydä sensuroimatonta sisältöä, yhteisöjä ja käyttäjiä",
-    "n-results-for-q": "{{n}} tulosta",
-    "no-result": "Ei tuloksia",
-    "sort-by": "lajittelujärjestys",
-    "sort-popularity": "Suosio",
-    "sort-relevance": "Osuvuus",
-    "sort-newest": "Päivämäärä"
+    "description": "Löydä sensuroimatonta sisältöä, yhteisöjä ja käyttäjiä"
+  },
+  "search-comment": {
+    "title": "Results",
+    "matches": "{{n}} matches",
+    "matches-singular": "1 match",
+    "advanced": "Advanced",
+    "search": "Search",
+    "search-placeholder": "search phrase",
+    "author": "Author",
+    "author-placeholder": "username",
+    "type": "Type",
+    "type-": "All",
+    "type-post": "Post",
+    "type-comment": "Comment",
+    "category": "Category",
+    "category-placeholder": "category",
+    "tags": "Tags",
+    "tags-placeholder": "comma separated tags",
+    "date": "Date",
+    "date-week": "Week",
+    "date-month": "Month",
+    "date-year": "Year",
+    "date-all": "All",
+    "sort": "Sort",
+    "sort-popularity": "Popularity",
+    "sort-relevance": "Relevance",
+    "sort-newest": "Recent",
+    "hide-low": "Hide low payout content",
+    "show-more": "show more"
+  },
+  "search-people": {
+    "title": "People"
+  },
+  "search-topics": {
+    "title": "Topics"
+  },
+  "search-communities": {
+    "title": "Communities"
   },
   "witnesses": {
     "page-title": "Todistajat",
