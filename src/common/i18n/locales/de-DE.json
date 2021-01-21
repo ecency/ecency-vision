@@ -20,6 +20,7 @@
     "back": "Zurück",
     "load-more": "Mehr laden",
     "empty-list": "Keine Einträge vorhanden",
+    "no-matches": "No matches",
     "save": "Speichern",
     "try-again": "Nochmal versuchen",
     "show": "Anzeigen",
@@ -27,7 +28,9 @@
     "off": "Aus",
     "yes": "Ja",
     "no": "Nein",
-    "done": "Fertig"
+    "done": "Fertig",
+    "apply": "Apply",
+    "close": "Close"
   },
   "confirm": {
     "title": "Bist du sicher?",
@@ -670,13 +673,45 @@
   },
   "search-page": {
     "title": "Suchen",
-    "description": "Find uncensored content, communities and users",
-    "n-results-for-q": "{{n}} Ergebnisse",
-    "no-result": "Keine Ergebnisse",
-    "sort-by": "sortieren nach",
-    "sort-popularity": "Beliebtheit",
-    "sort-relevance": "Relevanz",
-    "sort-newest": "Datum"
+    "description": "Find uncensored content, communities and users"
+  },
+  "search-comment": {
+    "title": "Results",
+    "matches": "{{n}} matches",
+    "matches-singular": "1 match",
+    "advanced": "Advanced",
+    "search": "Search",
+    "search-placeholder": "search phrase",
+    "author": "Author",
+    "author-placeholder": "username",
+    "type": "Type",
+    "type-": "All",
+    "type-post": "Post",
+    "type-comment": "Comment",
+    "category": "Category",
+    "category-placeholder": "category",
+    "tags": "Tags",
+    "tags-placeholder": "comma separated tags",
+    "date": "Date",
+    "date-week": "Week",
+    "date-month": "Month",
+    "date-year": "Year",
+    "date-all": "All",
+    "sort": "Sort",
+    "sort-popularity": "Popularity",
+    "sort-relevance": "Relevance",
+    "sort-newest": "Recent",
+    "hide-low": "Hide low payout content",
+    "show-more": "show more"
+  },
+  "search-people": {
+    "title": "People"
+  },
+  "search-topics": {
+    "title": "Topics"
+  },
+  "search-communities": {
+    "title": "Communities"
   },
   "witnesses": {
     "page-title": "Witnesses",
