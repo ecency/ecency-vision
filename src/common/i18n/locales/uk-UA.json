@@ -20,6 +20,7 @@
     "back": "Назад",
     "load-more": "Завантажити ще",
     "empty-list": "Тут порожньо",
+    "no-matches": "No matches",
     "save": "Зберегти",
     "try-again": "Спробувати знову",
     "show": "Показати",
@@ -27,7 +28,9 @@
     "off": "Вимкнути",
     "yes": "Так",
     "no": "Ні",
-    "done": "Виконано"
+    "done": "Виконано",
+    "apply": "Apply",
+    "close": "Close"
   },
   "confirm": {
     "title": "Ви впевнені?",
@@ -670,13 +673,45 @@
   },
   "search-page": {
     "title": "Пошук",
-    "description": "Знайти без цензури вміст, спільноту та користувачів",
-    "n-results-for-q": "{{n}} результат(-ів)",
-    "no-result": "Без результату",
-    "sort-by": "сортувати за",
-    "sort-popularity": "Популярність",
-    "sort-relevance": "Актуальні",
-    "sort-newest": "Дата"
+    "description": "Знайти без цензури вміст, спільноту та користувачів"
+  },
+  "search-comment": {
+    "title": "Results",
+    "matches": "{{n}} matches",
+    "matches-singular": "1 match",
+    "advanced": "Advanced",
+    "search": "Search",
+    "search-placeholder": "search phrase",
+    "author": "Author",
+    "author-placeholder": "username",
+    "type": "Type",
+    "type-": "All",
+    "type-post": "Post",
+    "type-comment": "Comment",
+    "category": "Category",
+    "category-placeholder": "category",
+    "tags": "Tags",
+    "tags-placeholder": "comma separated tags",
+    "date": "Date",
+    "date-week": "Week",
+    "date-month": "Month",
+    "date-year": "Year",
+    "date-all": "All",
+    "sort": "Sort",
+    "sort-popularity": "Popularity",
+    "sort-relevance": "Relevance",
+    "sort-newest": "Recent",
+    "hide-low": "Hide low payout content",
+    "show-more": "show more"
+  },
+  "search-people": {
+    "title": "People"
+  },
+  "search-topics": {
+    "title": "Topics"
+  },
+  "search-communities": {
+    "title": "Communities"
   },
   "witnesses": {
     "page-title": "Свідки",
