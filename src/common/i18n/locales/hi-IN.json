@@ -20,7 +20,7 @@
     "back": "वापस जाएँ।",
     "load-more": "अधिक लोड करे",
     "empty-list": "कुछ नहीं है",
-    "no-matches": "No matches",
+    "no-matches": "कोई मेल नही",
     "save": "रक्षित करें",
     "try-again": "पुनः प्रयास करें",
     "show": "दिखाएँ",
@@ -29,8 +29,8 @@
     "yes": "हाँ",
     "no": "नहीं",
     "done": "पूर्ण हुवा",
-    "apply": "Apply",
-    "close": "Close"
+    "apply": "लागू करें",
+    "close": "बंद करें"
   },
   "confirm": {
     "title": "क्या आपको यकीन है?",
@@ -676,42 +676,42 @@
     "description": "बिना सेंसर की गई सामग्री, समुदायों और उपयोगकर्ताओं का पता लगाएं"
   },
   "search-comment": {
-    "title": "Results",
-    "matches": "{{n}} matches",
-    "matches-singular": "1 match",
-    "advanced": "Advanced",
-    "search": "Search",
-    "search-placeholder": "search phrase",
-    "author": "Author",
-    "author-placeholder": "username",
-    "type": "Type",
-    "type-": "All",
-    "type-post": "Post",
-    "type-comment": "Comment",
-    "category": "Category",
-    "category-placeholder": "category",
-    "tags": "Tags",
-    "tags-placeholder": "comma separated tags",
-    "date": "Date",
-    "date-week": "Week",
-    "date-month": "Month",
-    "date-year": "Year",
-    "date-all": "All",
-    "sort": "Sort",
-    "sort-popularity": "Popularity",
-    "sort-relevance": "Relevance",
-    "sort-newest": "Recent",
-    "hide-low": "Hide low payout content",
-    "show-more": "show more"
+    "title": "परिणाम",
+    "matches": "{{n}} मेल खाता है",
+    "matches-singular": "1 मैच",
+    "advanced": "एडवांस्ड",
+    "search": "खोजें",
+    "search-placeholder": "खोज वाक्यांश",
+    "author": "लेखक",
+    "author-placeholder": "प्रयोक्ता नाम",
+    "type": "प्रकार",
+    "type-": "सभी",
+    "type-post": "लेख",
+    "type-comment": "टिप्पणी",
+    "category": "कैटेगरी",
+    "category-placeholder": "कैटेगरी",
+    "tags": "टैग्स",
+    "tags-placeholder": "अल्पविराम अलग टैग",
+    "date": "दिनांक",
+    "date-week": "सप्ताह",
+    "date-month": "महीना",
+    "date-year": "वर्ष",
+    "date-all": "सभी",
+    "sort": "क्रम",
+    "sort-popularity": "लोकप्रियता",
+    "sort-relevance": "प्रासंगिकता",
+    "sort-newest": "हाल ही में",
+    "hide-low": "कम भुगतान सामग्री छिपाएँ",
+    "show-more": "अधिक दिखाएँ"
   },
   "search-people": {
-    "title": "People"
+    "title": "लोग"
   },
   "search-topics": {
-    "title": "Topics"
+    "title": "विषयों"
   },
   "search-communities": {
-    "title": "Communities"
+    "title": "समुदाय"
   },
   "witnesses": {
     "page-title": "गवाह",
