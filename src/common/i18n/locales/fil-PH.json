@@ -20,6 +20,7 @@
     "back": "Bumalik",
     "load-more": "Ipakita pa ang iba",
     "empty-list": "Walang makita dito",
+    "no-matches": "No matches",
     "save": "I-save",
     "try-again": "Subukan muli",
     "show": "Ipakita",
@@ -27,7 +28,9 @@
     "off": "Huwag piliin",
     "yes": "Oo",
     "no": "Hindi",
-    "done": "Tapos"
+    "done": "Tapos",
+    "apply": "Apply",
+    "close": "Close"
   },
   "confirm": {
     "title": "Sigurado ka ba?",
@@ -670,13 +673,45 @@
   },
   "search-page": {
     "title": "Maghanap",
-    "description": "Maghanap ng mga uncensored na nilalaman, pamayanan at mga gumagamit",
-    "n-results-for-q": "{{n}} mga resulta",
-    "no-result": "Walang resulta",
-    "sort-by": "uriin sa",
-    "sort-popularity": "Papolaridad",
-    "sort-relevance": "Kaugnayan",
-    "sort-newest": "Petsa"
+    "description": "Maghanap ng mga uncensored na nilalaman, pamayanan at mga gumagamit"
+  },
+  "search-comment": {
+    "title": "Results",
+    "matches": "{{n}} matches",
+    "matches-singular": "1 match",
+    "advanced": "Advanced",
+    "search": "Search",
+    "search-placeholder": "search phrase",
+    "author": "Author",
+    "author-placeholder": "username",
+    "type": "Type",
+    "type-": "All",
+    "type-post": "Post",
+    "type-comment": "Comment",
+    "category": "Category",
+    "category-placeholder": "category",
+    "tags": "Tags",
+    "tags-placeholder": "comma separated tags",
+    "date": "Date",
+    "date-week": "Week",
+    "date-month": "Month",
+    "date-year": "Year",
+    "date-all": "All",
+    "sort": "Sort",
+    "sort-popularity": "Popularity",
+    "sort-relevance": "Relevance",
+    "sort-newest": "Recent",
+    "hide-low": "Hide low payout content",
+    "show-more": "show more"
+  },
+  "search-people": {
+    "title": "People"
+  },
+  "search-topics": {
+    "title": "Topics"
+  },
+  "search-communities": {
+    "title": "Communities"
   },
   "witnesses": {
     "page-title": "Mga saksi",
