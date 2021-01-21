@@ -124,7 +124,7 @@
   "entry-list-item": {
     "reblogged": "{{n}} сподели",
     "promoted": "promoted",
-    "pinned": "Pinned Post",
+    "pinned": "Закачен пост",
     "replies": "1 отговор. Натисни да отговориш.",
     "replies-n": "{{n}} отговори. Натисни за да отговориш.",
     "no-replies": "Няма отговори все още. Натисни за да отговориш."
@@ -148,7 +148,7 @@
     "curators-payout": "Възнаграждение на гласувалите",
     "payout-date": "Изплащане",
     "beneficiary": "Бенефициент",
-    "breakdown": "Breakdown"
+    "breakdown": "Разбивка"
   },
   "entry-index": {
     "feed": "Моят поток",
@@ -172,61 +172,61 @@
     "title": "1 Глас",
     "title-n": "{{n}} Гласове",
     "title-empty": "Няма гласове",
-    "sort": "Sort",
+    "sort": "Сортиране",
     "sort-reward": "Награда",
-    "sort-timestamp": "Time",
+    "sort-timestamp": "Време",
     "sort-reputation": "Репутация",
-    "sort-percent": "Percentage"
+    "sort-percent": "Процент"
   },
   "entry": {
     "via-app": "чрез <span class=\"app-name\">{{app}}</span>",
     "comment-entry-title": "Разглеждате само този коментар от поста на: ",
     "comment-entry-go-root": "View the full context",
     "comment-entry-go-parent": "View the direct parent",
-    "show-history": "Show edit history",
-    "hidden-warning": "This post was hidden due to low ratings.",
-    "address-copy": "Copy post address",
-    "address-copied": "Post address copied to clipboard."
+    "show-history": "Покажи историята на редактиране",
+    "hidden-warning": "Този пост е скрит поради ниски рейтинги.",
+    "address-copy": "Копирай адреса",
+    "address-copied": "Адресът е копиран в клипборда."
   },
   "edit-history": {
     "title": "Edit History",
-    "show-diff": "Show Difference",
-    "version": "Version {{n}}"
+    "show-diff": "Покажи разликата",
+    "version": "Версия {{n}}"
   },
   "similar-entries": {
-    "title": "Recent posts by @{{n}}"
+    "title": "Скорошни постове от @{{n}}"
   },
   "comment": {
-    "body-placeholder": "Write your reply here",
-    "preview": "Preview"
+    "body-placeholder": "Напишете вашият отговор тук",
+    "preview": "Преглед"
   },
   "discussion": {
-    "join": "Join the conversion now",
-    "btn-join": "Join",
-    "replies": "1 Comment",
-    "n-replies": "{{n}} Comments",
-    "order": "Sort Order",
-    "order-trending": "Trending",
-    "order-reputation": "Reputation",
-    "order-votes": "Votes",
-    "order-created": "Age",
-    "read-more": "...read more replies...",
-    "reveal": "Reveal comment"
+    "join": "Включи се в разговора сега",
+    "btn-join": "Присъединете се",
+    "replies": "1 Коментар",
+    "n-replies": "{{n}} Коментара",
+    "order": "Ред на подреждане",
+    "order-trending": "Популярни",
+    "order-reputation": "Репутация",
+    "order-votes": "Гласове",
+    "order-created": "Възраст",
+    "read-more": "...прочети още отговори...",
+    "reveal": "Покажи коментара"
   },
   "community": {
-    "page-description": "{{f}} topics",
-    "subscribe": "Join",
-    "subscribed": "Joined",
-    "unsubscribe": "Leave",
-    "post": "New Post",
-    "posts": "Posts",
-    "subscribers": "Members",
-    "activities": "Activities",
-    "roles-title": "User Roles",
-    "roles-account": "Account",
-    "roles-role": "Role",
-    "roles-account-title": "Title",
-    "roles-add": "Add User"
+    "page-description": "{{f}} теми",
+    "subscribe": "Присъедини се",
+    "subscribed": "Присъединен",
+    "unsubscribe": "Напусни",
+    "post": "Нова публикация",
+    "posts": "Публикации",
+    "subscribers": "Членове",
+    "activities": "Дейности",
+    "roles-title": "Потребителски роли",
+    "roles-account": "Акаунт",
+    "roles-role": "Роля",
+    "roles-account-title": "Заглавие",
+    "roles-add": "Добави потребител"
   },
   "community-cover": {
     "rewards": "rewards",
