@@ -43,7 +43,7 @@
     "filter-created": "Нови",
     "filter-promoted": "Промотирани",
     "filter-payout": "Изплащания",
-    "filter-muted": "Muted",
+    "filter-muted": "Заглушени",
     "filter-feed": "Моят поток",
     "filter-feed-friends": "Приятели",
     "filter-feed-subscriptions": "Общности"
@@ -54,72 +54,72 @@
     "post": "Създай публикация",
     "day-theme": "Дневна тема",
     "night-theme": "Нощна тема",
-    "address-placeholder": "enter url or search query"
+    "address-placeholder": "въведете url или търсете"
   },
   "search": {
-    "placeholder": "Search",
-    "placeholder-count": "Search {{n}} posts",
-    "header-tag": "Tags",
-    "header-account": "Users",
-    "header-community": "Communities"
+    "placeholder": "Търси",
+    "placeholder-count": "Търси {{n}} постове",
+    "header-tag": "Тагове",
+    "header-account": "Потребители",
+    "header-community": "Общности"
   },
   "switch-lang": {
-    "contributors": "Contributors"
+    "contributors": "Сътрудници"
   },
   "user-nav": {
-    "wallet": "Wallet",
-    "unclaimed-reward-notice": "You have unclaimed rewards",
-    "points": "Points",
-    "unclaimed-points-notice": "You have unclaimed points",
-    "notifications": "Notifications",
-    "profile": "Profile",
-    "gallery": "Gallery",
-    "drafts": "Drafts",
-    "bookmarks": "Bookmarks",
-    "schedules": "Schedules",
-    "logout": "Logout",
-    "vote-power": "Vote Power:"
+    "wallet": "Портфейл",
+    "unclaimed-reward-notice": "Имате награди за взимане",
+    "points": "Точки",
+    "unclaimed-points-notice": "Имате точки за взимане",
+    "notifications": "Известия",
+    "profile": "Профил",
+    "gallery": "Галерия",
+    "drafts": "Чернови",
+    "bookmarks": "Отметки",
+    "schedules": "Графици",
+    "logout": "Изход",
+    "vote-power": "Сила на гласа:"
   },
   "intro": {
-    "title": "Aspire to greatness",
-    "sub-title": "rewarding communities",
-    "c2a": "Get Started"
+    "title": "Стреми се към величие",
+    "sub-title": "награждаващи общности",
+    "c2a": "Започнете"
   },
   "login": {
-    "title": "Welcome back!",
-    "with-user-pass": "Login with your username and private key.",
-    "username-placeholder": "username",
-    "key-placeholder": "master or active private key",
-    "login-info-1": "We don't store your private keys.",
-    "login-info-2": "More info",
-    "error-fields-required": "Please enter username and private key",
-    "error-public-key": "You entered a public key. Password/WIF required",
-    "error-user-fetch": "User data could not be fetched",
-    "error-user-not-found": "User does not exist",
+    "title": "Добре дошли отново!",
+    "with-user-pass": "Влезте с потребителското си име и личния си ключ.",
+    "username-placeholder": "потребителско име",
+    "key-placeholder": "главен или активен личен ключ",
+    "login-info-1": "Ние не съхраняваме личните ви ключове.",
+    "login-info-2": "Повече информация",
+    "error-fields-required": "Моля въведете потребителското си име и личния си ключ",
+    "error-public-key": "Вие въведохте публичен ключ. Нужна е парола/WIF",
+    "error-user-fetch": "Данните за потребителят немогат да бъдат заредени",
+    "error-user-not-found": "Потребителят не съществува",
     "error-permission": "Couldn't get posting permission",
-    "error-authenticate": "Wrong private key. Master or active private key required.",
-    "with-hive-signer": "Login with hivesigner",
-    "with-keychain": "Login with keychain",
-    "sign-up-text-1": "Don't have an account?",
-    "sign-up-text-2": "Sign up now!"
+    "error-authenticate": "Грешен личен ключ. Нужен е главен или активен личен ключ.",
+    "with-hive-signer": "Влез чрез hivesigner",
+    "with-keychain": "Влез с KeyChain",
+    "sign-up-text-1": "Нямате акаунт?",
+    "sign-up-text-2": "Регистрирай се сега!"
   },
   "sign-up": {
-    "header": "Join",
-    "description": "<h3>Home of Free speech and Rewarding communities!</h3><br>One account to manage everything on <b>Blockchain</b> and <b>Ecency</b>.<br><br>Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
-    "username": "Pick a username",
-    "email": "Enter your email address",
-    "ref": "Referred user (optional)",
-    "submit": "Continue",
-    "success": "We've sent an email to {{email}}.",
-    "success-2": "Follow instructions to complete signup process.",
-    "login-text-1": "Do you have an account?",
-    "login-text-2": "Login"
+    "header": "Присъединете се",
+    "description": "<h3>Домът на Свободната реч и Награждаващите общности!</h3><br>Един акаунт за да управлявате всичко в<b>Blockchain</b> и <b>Ecency</b>.<br><br>Научи повече за всички плюсове на <a href=\"/faq#how-to-join\">FAQ</a>",
+    "username": "Изберете потребителско име",
+    "email": "Въведете вашия имейл адрес",
+    "ref": "Кой ви покани в платформата(Опция)",
+    "submit": "Продължи",
+    "success": "Изпратихме имейл на {{email}}.",
+    "success-2": "Следвайте инструкциите за да завършите регистрирането.",
+    "login-text-1": "Имате ли акаунт?",
+    "login-text-2": "Вход"
   },
   "trending-tags": {
-    "title": "Topics"
+    "title": "Tеми"
   },
   "selected-tags": {
-    "title": "Featured"
+    "title": "Избрани"
   },
   "entry-list-item": {
     "reblogged": "{{n}} reblogged",
