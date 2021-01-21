@@ -20,6 +20,7 @@
     "back": "Înapoi",
     "load-more": "Încarcă mai multe",
     "empty-list": "Nici un rezultat",
+    "no-matches": "No matches",
     "save": "Salvează",
     "try-again": "Încearcă din nou",
     "show": "Arată",
@@ -27,7 +28,9 @@
     "off": "Dezactivează",
     "yes": "Yes",
     "no": "No",
-    "done": "Done"
+    "done": "Done",
+    "apply": "Apply",
+    "close": "Close"
   },
   "confirm": {
     "title": "Ești sigur?",
@@ -670,13 +673,45 @@
   },
   "search-page": {
     "title": "Caută",
-    "description": "Find uncensored content, communities and users",
-    "n-results-for-q": "{{n}} results",
-    "no-result": "Niciun rezultat",
-    "sort-by": "sortează după",
-    "sort-popularity": "Popularitate",
-    "sort-relevance": "Relevanță",
-    "sort-newest": "Data"
+    "description": "Find uncensored content, communities and users"
+  },
+  "search-comment": {
+    "title": "Results",
+    "matches": "{{n}} matches",
+    "matches-singular": "1 match",
+    "advanced": "Advanced",
+    "search": "Search",
+    "search-placeholder": "search phrase",
+    "author": "Author",
+    "author-placeholder": "username",
+    "type": "Type",
+    "type-": "All",
+    "type-post": "Post",
+    "type-comment": "Comment",
+    "category": "Category",
+    "category-placeholder": "category",
+    "tags": "Tags",
+    "tags-placeholder": "comma separated tags",
+    "date": "Date",
+    "date-week": "Week",
+    "date-month": "Month",
+    "date-year": "Year",
+    "date-all": "All",
+    "sort": "Sort",
+    "sort-popularity": "Popularity",
+    "sort-relevance": "Relevance",
+    "sort-newest": "Recent",
+    "hide-low": "Hide low payout content",
+    "show-more": "show more"
+  },
+  "search-people": {
+    "title": "People"
+  },
+  "search-topics": {
+    "title": "Topics"
+  },
+  "search-communities": {
+    "title": "Communities"
   },
   "witnesses": {
     "page-title": "Martori",
