@@ -6,7 +6,7 @@ const getSymbolFromCurrency = require("currency-symbol-map");
 
 import {AppState} from "./index";
 import {ActiveUser, UserPoints} from "./active-user/types";
-import {loginAct as loginActiveUser, updateAct as updateActiveUserAct} from "./active-user";
+import {loginAct as loginActiveUser, logoutAct as logoutActiveUser, updateAct as updateActiveUserAct} from "./active-user";
 
 import {getAccount, getDynamicProps} from "../api/hive";
 import {getPoints, usrActivity, getPromotedEntries} from "../api/private";
@@ -60,6 +60,32 @@ export const activeUserUpdater = async (store: Store<AppState>) => {
     }
 };
 
+export const syncActiveUser = (store: Store<AppState>) => {
+    const state = store.getState();
+
+    const activeUser = ls.get("active_user");
+
+    // logout
+    if (!activeUser && state.activeUser) {
+        store.dispatch(logoutActiveUser());
+        return;
+    }
+
+    // login
+    if (activeUser && !state.activeUser) {
+        store.dispatch(loginActiveUser());
+        activeUserUpdater(store).then();
+        return;
+    }
+
+    // switch
+    if (activeUser && state.activeUser && activeUser !== state.activeUser.username) {
+        store.dispatch(loginActiveUser());
+        activeUserUpdater(store).then();
+        return;
+    }
+}
+
 export const clientStoreTasks = (store: Store<AppState>) => {
     // Initial state from browser's local storage
     store.dispatch(reloadUsers());
@@ -77,6 +103,11 @@ export const clientStoreTasks = (store: Store<AppState>) => {
         activeUserUpdater(store).then();
     }, 60 * 1000);
 
+    // Active user sync between tabs / windows
+    setInterval(() => {
+        syncActiveUser(store);
+    }, 2000);
+
     // Do check-in in interval
     const checkIn = () => {
         const state = store.getState();
@@ -84,7 +115,11 @@ export const clientStoreTasks = (store: Store<AppState>) => {
             usrActivity(state.activeUser?.username!, 10).then();
         }
     }
-    checkIn();
+
+    // wait for initial user sync
+    setTimeout(() => {
+        checkIn();
+    }, 5000);
     setInterval(checkIn, 1000 * 60 * 15 + 8);
 
     // Inject / update promoted entries to store
