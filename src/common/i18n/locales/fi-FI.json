@@ -20,7 +20,7 @@
     "back": "Takaisin",
     "load-more": "Lataa lisää",
     "empty-list": "Tyhjä",
-    "no-matches": "No matches",
+    "no-matches": "Ei tuloksia",
     "save": "Tallenna",
     "try-again": "Yritä uudelleen",
     "show": "Näytä",
@@ -29,8 +29,8 @@
     "yes": "Kyllä",
     "no": "Ei",
     "done": "Valmis",
-    "apply": "Apply",
-    "close": "Close"
+    "apply": "Käytä",
+    "close": "Sulje"
   },
   "confirm": {
     "title": "Oletko varma?",
@@ -676,42 +676,42 @@
     "description": "Löydä sensuroimatonta sisältöä, yhteisöjä ja käyttäjiä"
   },
   "search-comment": {
-    "title": "Results",
-    "matches": "{{n}} matches",
-    "matches-singular": "1 match",
-    "advanced": "Advanced",
-    "search": "Search",
-    "search-placeholder": "search phrase",
-    "author": "Author",
-    "author-placeholder": "username",
-    "type": "Type",
-    "type-": "All",
-    "type-post": "Post",
-    "type-comment": "Comment",
-    "category": "Category",
-    "category-placeholder": "category",
-    "tags": "Tags",
-    "tags-placeholder": "comma separated tags",
-    "date": "Date",
-    "date-week": "Week",
-    "date-month": "Month",
-    "date-year": "Year",
-    "date-all": "All",
-    "sort": "Sort",
-    "sort-popularity": "Popularity",
-    "sort-relevance": "Relevance",
-    "sort-newest": "Recent",
-    "hide-low": "Hide low payout content",
-    "show-more": "show more"
+    "title": "Tulokset",
+    "matches": "{{n}} tulosta",
+    "matches-singular": "1 tulos",
+    "advanced": "Lisäasetukset",
+    "search": "Haku",
+    "search-placeholder": "hakusana",
+    "author": "Tekijä",
+    "author-placeholder": "käyttäjänimi",
+    "type": "Tyyppi",
+    "type-": "Kaikki",
+    "type-post": "Julkaisut",
+    "type-comment": "Kommentit",
+    "category": "Kategoriat",
+    "category-placeholder": "kategoria",
+    "tags": "Tunnisteet",
+    "tags-placeholder": "pilkulla erotetut tunnisteet",
+    "date": "Päivämäärä",
+    "date-week": "Viikko",
+    "date-month": "Kuukausi",
+    "date-year": "Vuosi",
+    "date-all": "Kaikki",
+    "sort": "Lajittele",
+    "sort-popularity": "Suosio",
+    "sort-relevance": "Osuvuus",
+    "sort-newest": "Viimeisimmät",
+    "hide-low": "Piilota alhaisen palkkion sisältö",
+    "show-more": "näytä lisää"
   },
   "search-people": {
-    "title": "People"
+    "title": "Ihmiset"
   },
   "search-topics": {
-    "title": "Topics"
+    "title": "Aiheet"
   },
   "search-communities": {
-    "title": "Communities"
+    "title": "Yhteisöt"
   },
   "witnesses": {
     "page-title": "Todistajat",
