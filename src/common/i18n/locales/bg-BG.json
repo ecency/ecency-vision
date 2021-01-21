@@ -96,7 +96,7 @@
     "error-public-key": "Вие въведохте публичен ключ. Нужна е парола/WIF",
     "error-user-fetch": "Данните за потребителят немогат да бъдат заредени",
     "error-user-not-found": "Потребителят не съществува",
-    "error-permission": "Couldn't get posting permission",
+    "error-permission": "Неможахме да получим право да публикуваме",
     "error-authenticate": "Грешен личен ключ. Нужен е главен или активен личен ключ.",
     "with-hive-signer": "Влез чрез hivesigner",
     "with-keychain": "Влез с KeyChain",
@@ -122,65 +122,65 @@
     "title": "Избрани"
   },
   "entry-list-item": {
-    "reblogged": "{{n}} reblogged",
+    "reblogged": "{{n}} сподели",
     "promoted": "promoted",
     "pinned": "Pinned Post",
-    "replies": "1 response. Click to respond.",
-    "replies-n": "{{n}} responses. Click to respond.",
-    "no-replies": "No responses yet. Click to respond."
+    "replies": "1 отговор. Натисни да отговориш.",
+    "replies-n": "{{n}} отговори. Натисни за да отговориш.",
+    "no-replies": "Няма отговори все още. Натисни за да отговориш."
   },
   "bookmark-btn": {
-    "add": "Add to bookmarks",
-    "added": "Added to bookmarks",
-    "delete": "Remove from bookmarks",
-    "deleted": "Removed from bookmarks"
+    "add": "Добави в отметки",
+    "added": "Добавено в отметки",
+    "delete": "Премахни от маркираните",
+    "deleted": "Премахнато от отметки"
   },
   "entry-reblog": {
-    "reblog": "Reblog",
-    "confirm-title": "Reblog to @{{n}}'s blog?",
-    "confirm-ok": "Reblog",
-    "success": "Reblogged!"
+    "reblog": "Сподели",
+    "confirm-title": "Сподели в блога на @{{n}}?",
+    "confirm-ok": "Сподели",
+    "success": "Споделено!"
   },
   "entry-payout": {
-    "pending-payout": "Pending Payout",
-    "promoted": "Promoted",
-    "author-payout": "Author Payout",
-    "curators-payout": "Curators Payout",
-    "payout-date": "Payout",
-    "beneficiary": "Beneficiary",
+    "pending-payout": "Чакащо плащане",
+    "promoted": "Промотирано",
+    "author-payout": "Възнаграждение на автора",
+    "curators-payout": "Възнаграждение на гласувалите",
+    "payout-date": "Изплащане",
+    "beneficiary": "Бенефициент",
     "breakdown": "Breakdown"
   },
   "entry-index": {
-    "feed": "Feed",
-    "tags": "Popular",
-    "title": "{{f}} topics",
-    "description": "{{f}} topics on a social network owned and operated by its users.",
-    "description-tag": "{{f}} #{{t}} topics",
-    "description-user-feed": "{{u}}'s feed",
+    "feed": "Моят поток",
+    "tags": "Популярни",
+    "title": "{{f}} теми",
+    "description": "{{f}} теми в социална мрежа притежавана и управлявана от свойте потребители.",
+    "description-tag": "{{f}} #{{t}} теми",
+    "description-user-feed": "Потокa на {{u}}",
     "faq": "FAQ",
-    "tos": "Terms of service",
-    "pp": "Privacy Policy"
+    "tos": "Общи условия",
+    "pp": "Политика за Поверителност"
   },
   "market-data": {
-    "title": "Market price",
-    "credits": "data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
+    "title": "Пазарна цена",
+    "credits": "данни от <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "list-style": {
     "title": "Toggle list style"
   },
   "entry-votes": {
-    "title": "1 Vote",
-    "title-n": "{{n}} Votes",
-    "title-empty": "No Votes",
+    "title": "1 Глас",
+    "title-n": "{{n}} Гласове",
+    "title-empty": "Няма гласове",
     "sort": "Sort",
-    "sort-reward": "Reward",
+    "sort-reward": "Награда",
     "sort-timestamp": "Time",
-    "sort-reputation": "Reputation",
+    "sort-reputation": "Репутация",
     "sort-percent": "Percentage"
   },
   "entry": {
-    "via-app": "via <span class=\"app-name\">{{app}}</span>",
-    "comment-entry-title": "You are viewing a single comment's thread from: ",
+    "via-app": "чрез <span class=\"app-name\">{{app}}</span>",
+    "comment-entry-title": "Разглеждате само този коментар от поста на: ",
     "comment-entry-go-root": "View the full context",
     "comment-entry-go-parent": "View the direct parent",
     "show-history": "Show edit history",
