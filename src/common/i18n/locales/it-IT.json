@@ -20,6 +20,7 @@
     "back": "Indietro",
     "load-more": "Carica Altro",
     "empty-list": "Pagina vuota",
+    "no-matches": "No matches",
     "save": "Salva",
     "try-again": "Prova di nuovo",
     "show": "Mostra",
@@ -27,7 +28,9 @@
     "off": "Spegni",
     "yes": "Si",
     "no": "No",
-    "done": "Fatto"
+    "done": "Fatto",
+    "apply": "Apply",
+    "close": "Close"
   },
   "confirm": {
     "title": "Sei sicuro?",
@@ -670,13 +673,45 @@
   },
   "search-page": {
     "title": "Cerca",
-    "description": "Trova contenuti incensurati, community e utenti",
-    "n-results-for-q": "{{n}} risultati",
-    "no-result": "Nessun risultato",
-    "sort-by": "ordina per",
-    "sort-popularity": "Popolarità",
-    "sort-relevance": "Rilevanza",
-    "sort-newest": "Data di pubblicazione"
+    "description": "Trova contenuti incensurati, community e utenti"
+  },
+  "search-comment": {
+    "title": "Results",
+    "matches": "{{n}} matches",
+    "matches-singular": "1 match",
+    "advanced": "Advanced",
+    "search": "Search",
+    "search-placeholder": "search phrase",
+    "author": "Author",
+    "author-placeholder": "username",
+    "type": "Type",
+    "type-": "All",
+    "type-post": "Post",
+    "type-comment": "Comment",
+    "category": "Category",
+    "category-placeholder": "category",
+    "tags": "Tags",
+    "tags-placeholder": "comma separated tags",
+    "date": "Date",
+    "date-week": "Week",
+    "date-month": "Month",
+    "date-year": "Year",
+    "date-all": "All",
+    "sort": "Sort",
+    "sort-popularity": "Popularity",
+    "sort-relevance": "Relevance",
+    "sort-newest": "Recent",
+    "hide-low": "Hide low payout content",
+    "show-more": "show more"
+  },
+  "search-people": {
+    "title": "People"
+  },
+  "search-topics": {
+    "title": "Topics"
+  },
+  "search-communities": {
+    "title": "Communities"
   },
   "witnesses": {
     "page-title": "Convalidatori",
