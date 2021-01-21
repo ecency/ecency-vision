@@ -1,0 +1,7 @@
+.search-people {
+  margin-bottom: 20px;
+
+  .people-list {
+    @include search-side-list;
+  }
+}

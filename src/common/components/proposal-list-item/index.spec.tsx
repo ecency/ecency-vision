@@ -5,11 +5,9 @@ import renderer from "react-test-renderer";
 import {createBrowserHistory} from "history";
 import {StaticRouter} from "react-router-dom";
 
-import {globalInstance, UiInstance, proposalInstance, dynamicPropsIntance1, activeUserMaker} from "../../helper/test-helper";
+import {globalInstance, UiInstance, proposalInstance, dynamicPropsIntance1, activeUserMaker, allOver} from "../../helper/test-helper";
 
 import {ProposalListItem} from './index';
-
-const allOver = () => new Promise((resolve) => setImmediate(resolve));
 
 jest.mock("../../util/now", () => () => new Date("November 22, 2020 03:24:00"));
 

@@ -753,3 +753,40 @@
   }
 }
 
+@mixin search-side-list {
+  .list-item {
+    word-break: break-word;
+
+    &:not(:last-child) {
+      margin-bottom: 22px;
+    }
+
+    .item-header {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+
+      .user-avatar {
+        margin-right: 10px;
+      }
+
+      .item-title {
+        display: flex;
+        flex-direction: column;
+
+        .item-sub-title {
+          font-size: 90%;
+          opacity: 0.8;
+          font-weight: 300;
+        }
+      }
+    }
+
+    .item-about {
+      font-size: 90%;
+      opacity: 0.8;
+    }
+  }
+}

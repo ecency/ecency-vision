@@ -4,6 +4,9 @@ import {History} from "history";
 
 import moment from "moment";
 
+import htmlParse from 'html-react-parser';
+import {Element} from "domhandler";
+
 import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 
@@ -42,6 +45,19 @@ interface Props {
     res: SearchResult;
 }
 
+const transformMarkedContent = (content: string) => {
+    return htmlParse(content, {
+        replace: (domNode => {
+            // Only text and <mark> elements
+            if (domNode.type === "text" || (domNode instanceof Element && domNode.name === "mark")) {
+                return domNode;
+            }
+
+            return <></>;
+        })
+    })
+}
+
 class SearchListItem extends Component<Props> {
     shouldComponentUpdate(): boolean {
         return false;
@@ -56,7 +72,8 @@ class SearchListItem extends Component<Props> {
             permlink: res.permlink
         }
 
-        const summary: string = postBodySummary(res.body, 200);
+        const title = res.title_marked ? transformMarkedContent(res.title_marked) : res.title;
+        const summary = res.body_marked ? transformMarkedContent(res.body_marked) : postBodySummary(res.body, 200);
         const img: string = (global.canUseWebp ? catchPostImage(res.body, 600, 500, 'webp') : catchPostImage(res.body, 600, 500)) || noImage;
 
         let thumb = (
@@ -112,7 +129,7 @@ class SearchListItem extends Component<Props> {
                     {EntryLink({
                         ...this.props,
                         entry,
-                        children: <div className="item-title">{res.title}</div>
+                        children: <div className="item-title">{title}</div>
                     })}
                     {EntryLink({
                         ...this.props,

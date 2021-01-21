@@ -5,9 +5,7 @@ import {createBrowserHistory, createLocation} from "history";
 
 import {Schedules} from './index';
 
-import {globalInstance, activeUserInstance, fullAccountInstance, communityInstance1} from "../../helper/test-helper";
-
-const allOver = () => new Promise((resolve) => setImmediate(resolve));
+import {globalInstance, activeUserInstance, fullAccountInstance, communityInstance1, allOver} from "../../helper/test-helper";
 
 let TEST_MODE = 0
 

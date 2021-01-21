@@ -7,9 +7,7 @@ import {StaticRouter} from "react-router-dom";
 
 import {ProfileCommunities} from './index';
 
-import {globalInstance, activeUserMaker} from "../../helper/test-helper";
-
-const allOver = () => new Promise((resolve) => setImmediate(resolve));
+import {globalInstance, activeUserMaker, allOver} from "../../helper/test-helper";
 
 jest.mock("../../api/bridge", () => ({
     getSubscriptions: () =>

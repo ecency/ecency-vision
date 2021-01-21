@@ -5,10 +5,9 @@ import {createBrowserHistory, createLocation} from "history";
 
 import {SimilarEntries} from './index';
 
-import {globalInstance, entryInstance1} from "../../helper/test-helper";
-import {Entry} from "../../store/entries/types";
+import {globalInstance, entryInstance1, allOver} from "../../helper/test-helper";
 
-const allOver = () => new Promise((resolve) => setImmediate(resolve));
+import {Entry} from "../../store/entries/types";
 
 let TEST_MODE = 0
 

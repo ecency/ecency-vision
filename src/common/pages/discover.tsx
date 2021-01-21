@@ -12,8 +12,6 @@ import PopularUsers from "../components/popular-users";
 import FullHeight from "../components/full-height";
 import ScrollToTop from "../components/scroll-to-top";
 
-import {getPopularUsers, getLeaderboard} from "../api/private";
-
 import {_t} from "../i18n";
 
 
@@ -21,33 +19,6 @@ import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
 
 class DiscoverPage extends Component<PageProps> {
-
-    _mounted: boolean = true;
-
-    componentDidMount() {
-        // this.fetch();
-    }
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
-
-    fetch = () => {
-        getPopularUsers().then(popular => {
-            this.stateSet({popular});
-            return getLeaderboard("day")
-        }).then(leaderboard => {
-            this.stateSet({leaderboard});
-        });
-    }
-
-
     render() {
         //  Meta config
         const metaProps = {

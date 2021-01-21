@@ -2,11 +2,7 @@ import express from "express";
 
 import {AxiosResponse} from "axios";
 
-import {Client, QueryResult} from "pg";
-
 import config from "../../config";
-
-import {cache} from "../cache";
 
 import {getTokenUrl, decodeToken} from "../../common/helper/hive-signer";
 
@@ -47,75 +43,6 @@ export const leaderboard = async (req: express.Request, res: express.Response) =
     pipe(apiRequest(`leaderboard?duration=${duration}`, "GET"), res);
 };
 
-export const popularUsers = async (req: express.Request, res: express.Response) => {
-
-    let discovery = cache.get("discovery");
-
-    if (discovery === undefined) {
-        const client = new Client({
-            connectionString: config.hiveUri,
-        });
-
-        await client.connect();
-
-        const minReputation = "112985730131325"; // something around 70
-        const sql = `SELECT drv3.author AS name, ac.posting_json_metadata AS json_metadata
-            FROM (
-                   SELECT DISTINCT author
-                   FROM (
-                          SELECT *
-                          FROM (
-                                 SELECT
-                                   ha_pp.name AS author,  ha_pp.reputation AS author_rep
-                                 FROM hive_posts hp
-                                   JOIN hive_accounts ha_pp ON ha_pp.id = hp.author_id
-                                 WHERE hp.depth = 0
-                                 ORDER BY hp.id DESC
-                                 LIMIT 10000
-                               ) AS drv1
-                          WHERE author_rep >= ${minReputation} 
-                          ORDER BY author_rep DESC)
-                     AS drv2) AS drv3
-            LEFT JOIN hive_accounts AS ac ON ac.name = drv3.author
-            WHERE ac.posting_json_metadata != '' AND ac.posting_json_metadata != '{}'
-            ORDER BY random() LIMIT 260;`
-
-        let r: QueryResult;
-
-        try {
-            r = await client.query(sql);
-        } catch (e) {
-            return res.status(500).send("Server Error");
-        } finally {
-            await client.end();
-        }
-
-        discovery = r.rows.map(x => {
-            let json;
-
-            try {
-                json = JSON.parse(x.json_metadata);
-            } catch (e) {
-                return null;
-            }
-
-            if (json.profile?.name && json.profile?.about) {
-                return {
-                    name: x.name,
-                    display_name: json.profile.name,
-                    about: json.profile.about
-                }
-            }
-
-            return null;
-        }).filter(x => x !== null);
-
-        cache.set("discovery", discovery, 86400);
-    }
-
-    return res.send(discovery);
-};
-
 export const promotedEntries = async (req: express.Request, res: express.Response) => {
     const posts = await getPromotedEntries();
     res.send(posts);
@@ -133,15 +60,15 @@ export const commentHistory = async (req: express.Request, res: express.Response
 }
 
 export const search = async (req: express.Request, res: express.Response) => {
-    const {q, sort, scroll_id} = req.body;
+    const {q, sort, hide_low, since, scroll_id} = req.body;
 
     const url = `${config.searchApiAddr}/search`;
     const headers = {'Authorization': config.searchApiToken};
 
-    const payload: { q: string, sort: string, scroll_id?: string } = {q, sort};
-    if (scroll_id) {
-        payload.scroll_id = scroll_id
-    }
+    const payload: { q: string, sort: string, hide_low: string, since?: string, scroll_id?: string } = {q, sort, hide_low};
+
+    if (since) payload.since = since;
+    if (scroll_id) payload.scroll_id = scroll_id;
 
     pipe(baseApiRequest(url, "POST", headers, payload), res);
 }
@@ -162,6 +89,24 @@ export const searchFollowing = async (req: express.Request, res: express.Respons
     const headers = {'Authorization': config.searchApiToken};
 
     pipe(baseApiRequest(url, "POST", headers, {q}), res);
+}
+
+export const searchAccount = async (req: express.Request, res: express.Response) => {
+    const {q, limit, random} = req.body;
+
+    const url = `${config.searchApiAddr}/search-account`;
+    const headers = {'Authorization': config.searchApiToken};
+
+    pipe(baseApiRequest(url, "POST", headers, {q, limit, random}), res);
+}
+
+export const searchTag = async (req: express.Request, res: express.Response) => {
+    const {q, limit, random} = req.body;
+
+    const url = `${config.searchApiAddr}/search-tag`;
+    const headers = {'Authorization': config.searchApiToken};
+
+    pipe(baseApiRequest(url, "POST", headers, {q, limit, random}), res);
 }
 
 export const points = async (req: express.Request, res: express.Response) => {

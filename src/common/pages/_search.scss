@@ -1,29 +1,26 @@
 .search-page {
   display: block;
 
-  .search-info {
-    text-align: center;
-    padding-bottom: 6px;
-    margin-bottom: 6px;
+  @media (min-width: $lg-break) {
+    display: flex;
 
-    .result-count {
-      font-size: 18px;
-      font-weight: 500;
-      margin-bottom: 16px;
+    .search-main {
+      flex-grow: 1;
     }
 
-    .sort-by {
-      width: 160px;
-      margin: auto;
+    .search-side {
+      width: 300px;
+      margin-left: 20px;
+      flex-grow: 0;
+      flex-shrink: 0;
 
-      .label {
-        margin-bottom: 4px;
-        font-size: 90%;
+      @media (min-width: $xl-break) {
+        width: 380px;
       }
     }
   }
+}
 
-  .search-list {
-
-  }
+.search-more-page {
+  display: block;
 }

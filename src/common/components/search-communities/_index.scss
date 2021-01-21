@@ -1,0 +1,7 @@
+.search-communities {
+  margin-bottom: 20px;
+
+  .community-list {
+    @include search-side-list;
+  }
+}

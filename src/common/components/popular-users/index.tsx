@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 
 import {History} from "history";
 
@@ -8,15 +8,15 @@ import {Account} from "../../store/accounts/types";
 import LinearProgress from "../linear-progress";
 import UserAvatar from "../user-avatar";
 import ProfileLink from "../profile-link";
+import BaseComponent from "../base";
 
-import {getPopularUsers, PopularUser} from "../../api/private";
+import {searchAccount, AccountSearchResult} from "../../api/private";
 
 import _c from "../../util/fix-class-names";
 
 import {_t} from "../../i18n";
 
 import {syncSvg} from "../../img/svg";
-
 
 interface Props {
     global: Global;
@@ -25,50 +25,28 @@ interface Props {
 }
 
 interface State {
-    data: PopularUser[],
-    list: PopularUser[],
+    list: AccountSearchResult[],
     loading: boolean
 }
 
-export class PopularUsers extends Component<Props, State> {
+export class PopularUsers extends BaseComponent<Props, State> {
     state: State = {
-        data: [],
         list: [],
         loading: true
     }
-
-    _mounted: boolean = true;
 
     componentDidMount() {
         this.fetch();
     }
 
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
-
     fetch = () => {
-        this.stateSet({loading: true, data: []});
+        this.stateSet({loading: true, list: []});
 
-        getPopularUsers().then(data => {
-            this.stateSet({
-                data,
-                list: [...data.slice(0, 20)],
-                loading: false
-            });
-        });
-    }
-
-    shuffle = () => {
-        const {data} = this.state;
-        const list = [...data].sort(() => Math.random() - 0.5).slice(0, 20);
-        this.stateSet({list});
+        searchAccount().then(resp => {
+            this.stateSet({list: resp});
+        }).finally(() => {
+            this.stateSet({loading: false});
+        })
     }
 
     render() {
@@ -82,7 +60,7 @@ export class PopularUsers extends Component<Props, State> {
                             {_t('popular-users.title')}
                         </div>
                     </h1>
-                    <div className={_c(`list-refresh ${loading ? "disabled" : ""}`)} onClick={this.shuffle}>
+                    <div className={_c(`list-refresh ${loading ? "disabled" : ""}`)} onClick={this.fetch}>
                         {syncSvg}
                     </div>
                 </div>
@@ -101,7 +79,7 @@ export class PopularUsers extends Component<Props, State> {
                                     {ProfileLink({
                                         ...this.props,
                                         username: r.name,
-                                        children: <a className="display-name">{r.display_name}</a>
+                                        children: <a className="display-name">{r.full_name}</a>
                                     })}
                                     {ProfileLink({
                                         ...this.props,

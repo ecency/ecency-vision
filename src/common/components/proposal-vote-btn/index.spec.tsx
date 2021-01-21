@@ -2,11 +2,9 @@ import React from 'react';
 
 import renderer from "react-test-renderer";
 
-import {globalInstance, UiInstance, activeUserMaker} from "../../helper/test-helper";
+import {globalInstance, UiInstance, activeUserMaker, allOver} from "../../helper/test-helper";
 
 import {ProposalVoteBtn} from './index';
-
-const allOver = () => new Promise((resolve) => setImmediate(resolve));
 
 let MOCK_MODE: number = 1;
 

@@ -4,9 +4,7 @@ import {FavoriteBtn} from "./index";
 
 import TestRenderer from "react-test-renderer";
 
-import {UiInstance, activeUserInstance} from "../../helper/test-helper";
-
-const allOver = () => new Promise((resolve) => setImmediate(resolve));
+import {UiInstance, activeUserInstance, allOver} from "../../helper/test-helper";
 
 let TEST_MODE = 0
 

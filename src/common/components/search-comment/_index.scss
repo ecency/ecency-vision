@@ -1,0 +1,27 @@
+.search-comment {
+  margin-bottom: 20px;
+
+  .advanced-section {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+
+    @include themify(day) {
+      border-bottom: 1px solid $white-three;
+    }
+  }
+
+  .card-header {
+    .matches {
+      font-weight: 300;
+      font-size: 90%;
+      margin-left: 10px;
+    }
+  }
+
+  .search-list {
+    .show-more {
+      padding: 6px;
+      text-align: center;
+    }
+  }
+}
