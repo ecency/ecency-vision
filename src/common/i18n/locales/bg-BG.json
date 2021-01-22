@@ -231,36 +231,36 @@
   "community-cover": {
     "rewards": "rewards",
     "authors": "posters",
-    "lang": "language",
+    "lang": "език",
     "cover-image": "Community cover image",
-    "cover-image-edit": "Edit cover image",
-    "cover-image-updated": "Cover image updated!"
+    "cover-image-edit": "Редактирай снимката на корицата",
+    "cover-image-updated": "Снимката на корицата беше обновена!"
   },
   "community-card": {
-    "description": "Description",
-    "rules": "Rules",
-    "team": "Leadership",
-    "edit": "Edit settings",
+    "description": "Описание",
+    "rules": "Правила",
+    "team": "Лидерство",
+    "edit": "Редактирай настройките",
     "edit-team": "Edit roles",
     "profile-image": "Community profile image",
-    "profile-image-edit": "Edit profile image",
-    "profile-image-updated": "Profile image updated!"
+    "profile-image-edit": "Редактирай профилната снимка ",
+    "profile-image-updated": "Профилната снимка е обновена!"
   },
   "community-role-edit": {
     "title": "Set user role",
-    "username": "Username",
-    "role": "Role",
-    "user-not-found": "The user does not exist!",
+    "username": "Потребителско име ",
+    "role": "Роля",
+    "user-not-found": "Потребителя не съществува!",
     "explanations": "<h3>Role Permissions</h3><p><strong>Owner</strong> - assign admins</p><p><strong>Admin</strong> - edit settings, assign mods</p><p><strong>Moderator</strong> - mute, pin, set user titles</p><p><strong>Member</strong> - listed on leadership team</p><p><strong>Guest</strong> - default; can post and comment</p><p><strong>Muted</strong> - new posts automatically muted</p>"
   },
   "community-settings": {
     "dialog-title": "Community Settings",
-    "title": "Title",
-    "about": "About",
-    "lang": "Language",
-    "description": "Description",
-    "rules": "Rules",
-    "rules-help": "One per line"
+    "title": "Заглавие",
+    "about": "Относно",
+    "lang": "Език",
+    "description": "Описание",
+    "rules": "Правила",
+    "rules-help": "По едно на ред"
   },
   "communities": {
     "title": "Communities",
@@ -268,7 +268,7 @@
     "n-subscribers": "{{n}} members",
     "n-authors": "{{n}} posters",
     "n-posts": "{{n}} posts",
-    "admins": "admins:",
+    "admins": "Админи;",
     "sort-hot": "Hot",
     "sort-rank": "Rank",
     "sort-subs": "Members",
