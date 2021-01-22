@@ -2,7 +2,7 @@ import React from "react";
 
 import {Button, Form, FormControl, Modal, Spinner} from "react-bootstrap";
 
-import {PrivateKey, KeyRole} from "@hiveio/dhive";
+import {PrivateKey, KeyRole, cryptoUtils} from "@hiveio/dhive";
 
 import {ActiveUser} from "../../store/active-user/types";
 
@@ -11,11 +11,12 @@ import {error, success} from "../feedback";
 
 import {updatePassword, formatError} from "../../api/operations";
 
-import randomPass from "../../util/random-pass";
+import random from "../../util/rnd";
 
 import {_t} from "../../i18n";
 
 import {keySvg} from "../../img/svg";
+import base58 from "bs58";
 
 interface DialogProps {
     activeUser: ActiveUser;
@@ -39,8 +40,8 @@ export class PasswordUpdate extends BaseComponent<DialogProps, DialogState> {
 
     form = React.createRef<HTMLFormElement>();
 
-    genPass = () => {
-        const newPass = "P5" + randomPass(50);
+    genWif = () => {
+        const newPass = 'P' + base58.encode(cryptoUtils.sha256(random()));
         this.stateSet({newPass});
     }
 
@@ -135,7 +136,7 @@ export class PasswordUpdate extends BaseComponent<DialogProps, DialogState> {
                 <Form.Group controlId="new-pass">
                     <Form.Label>{_t("password-update.new-pass")}</Form.Label>
                     <div>
-                        {!newPass && (<Button variant="outline-primary" onClick={this.genPass}>{_t("password-update.pass-gen")}</Button>)}
+                        {!newPass && (<Button variant="outline-primary" onClick={this.genWif}>{_t("password-update.pass-gen")}</Button>)}
                         {newPass && <code className="pass-generated">{newPass}</code>}
                     </div>
                 </Form.Group>
