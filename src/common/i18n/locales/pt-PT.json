@@ -20,7 +20,7 @@
     "back": "Anterior",
     "load-more": "Carregar mais",
     "empty-list": "Nada aqui",
-    "no-matches": "No matches",
+    "no-matches": "Sem correspondências",
     "save": "Guardar",
     "try-again": "Tente novamente",
     "show": "Mostrar",
@@ -29,8 +29,8 @@
     "yes": "Sim",
     "no": "Não",
     "done": "Feito",
-    "apply": "Apply",
-    "close": "Close"
+    "apply": "Aplicar",
+    "close": "Fechar"
   },
   "confirm": {
     "title": "Tem a certeza?",
@@ -104,8 +104,8 @@
     "sign-up-text-2": "Registe-se agora!"
   },
   "sign-up": {
-    "header": "Join",
-    "description": "<h3>Home of Free speech and Rewarding communities!</h3><br>One account to manage everything on <b>Blockchain</b> and <b>Ecency</b>.<br><br>Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
+    "header": "Juntar-se",
+    "description": "<h3>Casa das gratificantes comunidades com liberdade de expressão!</h3><br>Uma conta para gerenciar tudo na <b>Blockchain</b> e <b>na Ecency</b>.<br><br>Saiba mais sobre benefícios acessando a seção <a href=\"/faq#how-to-join\">Perguntas Frequentes</a>",
     "username": "Escolha um nome de usuário",
     "email": "Insira o seu email",
     "ref": "Usuário referenciado (opcional)",
@@ -676,39 +676,39 @@
     "description": "Encontrar conteúdo não censurado, comunidades e utilizadores"
   },
   "search-comment": {
-    "title": "Results",
-    "matches": "{{n}} matches",
-    "matches-singular": "1 match",
-    "advanced": "Advanced",
-    "search": "Search",
-    "search-placeholder": "search phrase",
-    "author": "Author",
-    "author-placeholder": "username",
-    "type": "Type",
-    "type-": "All",
-    "type-post": "Post",
-    "type-comment": "Comment",
-    "category": "Category",
-    "category-placeholder": "category",
-    "tags": "Tags",
-    "tags-placeholder": "comma separated tags",
-    "date": "Date",
-    "date-week": "Week",
-    "date-month": "Month",
-    "date-year": "Year",
-    "date-all": "All",
-    "sort": "Sort",
-    "sort-popularity": "Popularity",
-    "sort-relevance": "Relevance",
-    "sort-newest": "Recent",
-    "hide-low": "Hide low payout content",
-    "show-more": "show more"
+    "title": "Resultados",
+    "matches": "{{n}} correspondências",
+    "matches-singular": "1 correspondência",
+    "advanced": "Avançado",
+    "search": "Procurar",
+    "search-placeholder": "pesquisar frase",
+    "author": "Autor",
+    "author-placeholder": "usuário",
+    "type": "Tipo",
+    "type-": "Todos",
+    "type-post": "Publicação",
+    "type-comment": "Comentário",
+    "category": "Categoria",
+    "category-placeholder": "categoria",
+    "tags": "Etiquetas",
+    "tags-placeholder": "etiquetas separadas por vírgulas",
+    "date": "Data",
+    "date-week": "Semana",
+    "date-month": "Mês",
+    "date-year": "Ano",
+    "date-all": "Todos",
+    "sort": "Ordenar",
+    "sort-popularity": "Popularidade",
+    "sort-relevance": "Relevância",
+    "sort-newest": "Recente",
+    "hide-low": "Ocultar conteúdo com pouco pagamento",
+    "show-more": "mostrar mais"
   },
   "search-people": {
-    "title": "People"
+    "title": "Pessoas"
   },
   "search-topics": {
-    "title": "Topics"
+    "title": "Tópicos"
   },
   "search-communities": {
     "title": "Communities"
@@ -790,7 +790,7 @@
       "page-title": "Ecency FAQ",
       "page-sub-title": "Tabela de conteúdos",
       "what-is-ecency-header": "O que é Ecency?",
-      "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based social network - powered by <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency is home of free speech and rewarding communities for content creators.</p><p>Project is founded by <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> in August 2016 as an alternative social network that's uncensored, user controled, immutable and opensource. Currently there are <a class=\"push-link\" href=\"/contributors\">many independent and voluntary contributors</a> wanting to keep vision and spirit of free speech.</p><p>Ecency helps onboarding masses into Blockchain technology where users are getting paid for their time, resources and learn while enjoying social aspects of blockchain. Through ease of use, users not only learn but also become investors, innovators of the new internet.</p>",
+      "what-is-ecency-body": "<p>A Ecency é uma <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">rede social</a> baseada em blockchain - alimentada pela rede da <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>A Ecency é a casa de recompensastes comunidades com liberdade de expressão, onde criadores de conteúdo são recompensados pelo seu trabalho.</p><p>O projeto foi fundado por <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> em agosto de 2016, como uma rede social alternativa e incensurável, controlada pelos usuários, imutável e de código aberto. Atualmente há <a class=\"push-link\" href=\"/contributors\">muitos colaboradores voluntários e independentes</a> desejando fortalecer nossa visão e contribuir para o crescimento do espírito da liberdade de expressão.</p><p>A Ecency contribui para a integração em massa da tecnologia Blockchain, para que usuários sejam pagos por seu tempo, recursos e aprendam enquanto desfrutam dos aspectos sociais derivados da blockchain. Através do uso fácil e simples, os usuários não apenas aprendem, mas também se tornam inovadores e investidores da nova internet.</p>",
       "what-is-hive-header": "O que é a Hive blockchain?",
       "what-is-hive-body": "<p>Hive é uma blockchain projetada para ser rápida, tranquila, descentralizada e não censurada para a Web3.0 aplicações, com recursos internos onde pessoas interessdas podem ganhar recompensas participando, curando, jogando, negociando - tudo sem qualquer intermediário (descentralizado). Tokens na blockchain da Hive chamado HIVE, HIVE DOLARS, HIVE POWER.</p>",
       "what-is-difference-header": "Qual é a diferença entre a Ecency e outras interfaces da Hive?",
