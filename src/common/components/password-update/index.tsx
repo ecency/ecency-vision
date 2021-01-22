@@ -1,0 +1,197 @@
+import React from "react";
+
+import {Button, Form, FormControl, Modal, Spinner} from "react-bootstrap";
+
+import {PrivateKey, KeyRole} from "@hiveio/dhive";
+
+import {ActiveUser} from "../../store/active-user/types";
+
+import BaseComponent from "../base";
+import {error, success} from "../feedback";
+
+import {updatePassword, formatError} from "../../api/operations";
+
+import randomPass from "../../util/random-pass";
+
+import {_t} from "../../i18n";
+
+import {keySvg} from "../../img/svg";
+
+interface DialogProps {
+    activeUser: ActiveUser;
+    onUpdate: () => void;
+}
+
+interface DialogState {
+    curPass: string,
+    newPass: string,
+    newPass2: string,
+    inProgress: boolean,
+}
+
+export class PasswordUpdate extends BaseComponent<DialogProps, DialogState> {
+    state: DialogState = {
+        curPass: "",
+        newPass: "",
+        newPass2: "",
+        inProgress: false
+    };
+
+    form = React.createRef<HTMLFormElement>();
+
+    genPass = () => {
+        const newPass = "P5" + randomPass(50);
+        this.stateSet({newPass});
+    }
+
+    curPassChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+        this.stateSet({curPass: e.target.value});
+    }
+
+    newPass2Changed = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+        this.stateSet({newPass2: e.target.value});
+    }
+
+    update = () => {
+        const {activeUser, onUpdate} = this.props;
+        const {curPass, newPass} = this.state;
+
+        if (!activeUser.data.__loaded) {
+            return;
+        }
+
+        this.stateSet({inProgress: true});
+
+        const newPrivateKeys = {active: "", memo: "", owner: "", posting: ""};
+        const newPublicKeys = {active: "", memo: "", owner: "", posting: ""};
+
+        ['owner', 'active', 'posting', 'memo'].forEach(r => {
+            const k = PrivateKey.fromLogin(activeUser.username, newPass, r as KeyRole);
+            newPrivateKeys[r] = k.toString();
+
+            newPublicKeys[r] = k.createPublic().toString();
+        });
+
+        const ownerKey = PrivateKey.fromLogin(activeUser.username, curPass, "owner");
+
+        const {data: accountData} = activeUser;
+
+        const update = {
+            account: activeUser.username,
+            json_metadata: accountData.json_metadata,
+            owner: Object.assign({}, accountData.owner, {
+                key_auths: [[newPublicKeys.owner, 1]]
+            }),
+            active: Object.assign({}, accountData.active, {
+                key_auths: [[newPublicKeys.active, 1]]
+            }),
+            posting: Object.assign({}, accountData.posting, {
+                key_auths: [[newPublicKeys.posting, 1]]
+            }),
+            memo_key: newPublicKeys.memo
+        };
+
+        updatePassword(update, ownerKey)
+            .then(() => {
+                success(_t("password-update.updated"));
+                onUpdate();
+            })
+            .catch((e) => {
+                error(formatError(e));
+            })
+            .finally(() => {
+                this.stateSet({inProgress: false});
+            });
+    }
+
+    render() {
+        const {activeUser} = this.props;
+        const {curPass, newPass, newPass2, inProgress} = this.state;
+
+        return <div className="dialog-content">
+            <Form ref={this.form} onSubmit={(e: React.FormEvent) => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                if (!this.form.current?.checkValidity()) {
+                    return;
+                }
+
+                if (newPass !== newPass2) {
+                    error(_t("password-update.error-new2"));
+                    return;
+                }
+
+                this.update();
+            }}>
+                <Form.Group controlId="account-name">
+                    <Form.Label>{_t("password-update.account")}</Form.Label>
+                    <Form.Control type="text" readOnly={true} value={activeUser.username}/>
+                </Form.Group>
+                <Form.Group controlId="cur-pass">
+                    <Form.Label>{_t("password-update.cur-pass")}</Form.Label>
+                    <Form.Control value={curPass} onChange={this.curPassChanged} required={true} type="password" autoFocus={true} autoComplete="off"/>
+                </Form.Group>
+                <Form.Group controlId="new-pass">
+                    <Form.Label>{_t("password-update.new-pass")}</Form.Label>
+                    <div>
+                        {!newPass && (<Button variant="outline-primary" onClick={this.genPass}>{_t("password-update.pass-gen")}</Button>)}
+                        {newPass && <code className="pass-generated">{newPass}</code>}
+                    </div>
+                </Form.Group>
+                <Form.Group controlId="re-new-pass">
+                    <Form.Label>{_t("password-update.new-pass2")}</Form.Label>
+                    <Form.Control value={newPass2} onChange={this.newPass2Changed} required={true} type="password" autoComplete="off"/>
+                </Form.Group>
+                <Form.Group controlId="accept">
+                    <Form.Check required={true} type="checkbox" label={_t("password-update.label-check")}/>
+                </Form.Group>
+                <Button variant="primary" type="submit" disabled={inProgress}>
+                    {inProgress && (<Spinner animation="grow" variant="light" size="sm" style={{marginRight: "6px"}}/>)}
+                    {_t("g.update")}
+                </Button>
+            </Form>
+        </div>
+    }
+}
+
+interface Props {
+    activeUser: ActiveUser;
+}
+
+
+interface State {
+    dialog: boolean
+}
+
+
+export default class PasswordUpdateDialog extends BaseComponent<Props, State> {
+    state: State = {
+        dialog: false
+    }
+
+    toggleDialog = () => {
+        const {dialog} = this.state;
+        this.stateSet({dialog: !dialog});
+    }
+
+    render() {
+        const {dialog} = this.state;
+
+        return <>
+            <Button onClick={this.toggleDialog} size="sm">{keySvg} {_t('password-update.title')}</Button>
+
+            {dialog && (
+                <Modal show={true} centered={true} onHide={this.toggleDialog} animation={false} backdrop="static" keyboard={false} className="password-update-modal">
+                    <Modal.Header closeButton={true}>
+                        <Modal.Title>{_t('password-update.title')}</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <PasswordUpdate {...this.props} onUpdate={this.toggleDialog}/>
+                    </Modal.Body>
+                </Modal>
+            )}
+        </>
+    }
+}
+
