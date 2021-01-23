@@ -759,7 +759,8 @@
     "copied": "Disalin ke clipboard"
   },
   "drafts": {
-    "title": "Konsep"
+    "title": "Konsep",
+    "filter": "Search by title"
   },
   "schedules": {
     "title": "Postingan terjadwal",
