@@ -759,7 +759,8 @@
     "copied": "Copiado al portapapeles"
   },
   "drafts": {
-    "title": "Borradores"
+    "title": "Borradores",
+    "filter": "Search by title"
   },
   "schedules": {
     "title": "Publicaciones programadas",
