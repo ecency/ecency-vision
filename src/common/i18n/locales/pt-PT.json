@@ -759,7 +759,8 @@
     "copied": "Copiado para a área de transferência"
   },
   "drafts": {
-    "title": "Rascunhos"
+    "title": "Rascunhos",
+    "filter": "Search by title"
   },
   "schedules": {
     "title": "Posts agendados",
