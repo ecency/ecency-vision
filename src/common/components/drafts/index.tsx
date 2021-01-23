@@ -4,7 +4,7 @@ import {History, Location} from "history";
 
 import moment from "moment";
 
-import {Modal} from "react-bootstrap";
+import {Form, FormControl, Modal} from "react-bootstrap";
 
 import {Global} from "../../store/global/types";
 import {ActiveUser} from "../../store/active-user/types";
@@ -149,14 +149,17 @@ interface Props {
 
 interface State {
     loading: boolean,
-    items: Draft[]
+    data: Draft[],
+    list: Draft[],
+    filter: string
 }
-
 
 export class Drafts extends Component<Props, State> {
     state: State = {
         loading: true,
-        items: []
+        data: [],
+        list: [],
+        filter: ""
     }
 
     componentDidMount() {
@@ -168,7 +171,7 @@ export class Drafts extends Component<Props, State> {
 
         this.setState({loading: true});
         getDrafts(activeUser?.username!).then(items => {
-            this.setState({items: this.sort(items), loading: false});
+            this.setState({data: items, list: this.sort(items), loading: false});
         }).catch(() => {
             this.setState({loading: false});
             error(_t('g.server-error'));
@@ -184,9 +187,10 @@ export class Drafts extends Component<Props, State> {
         const {activeUser, location, history} = this.props;
 
         deleteDraft(activeUser?.username!, item._id).then(() => {
-            const {items} = this.state;
-            const nItems = [...items].filter(x => x._id !== item._id);
-            this.setState({items: this.sort(nItems)});
+            const {data} = this.state;
+            const nData = [...data].filter(x => x._id !== item._id);
+
+            this.setState({data: nData, list: this.sort(nData)});
 
             // if user editing the draft, redirect to submit page
             if (location.pathname === `/draft/${item._id}`) {
@@ -204,31 +208,54 @@ export class Drafts extends Component<Props, State> {
         onHide();
     }
 
+    filterChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+        const {value} = e.target;
+        this.setState({filter: value});
+    }
+
     render() {
-        const {items, loading} = this.state;
+        const {data, list, filter, loading} = this.state;
 
         return <div className="dialog-content">
-            {loading && <LinearProgress/>}
-            {items.length > 0 && (
-                <div className="drafts-list">
-                    <div className="drafts-list-body">
-                        {items.map(item => (
-                            <ListItem key={item._id} {...this.props} draft={item} editFn={this.edit} deleteFn={this.delete}/>
-                        ))}
+
+            {(() => {
+                if (loading) {
+                    return <LinearProgress/>
+                }
+
+                if (data.length === 0) {
+                    return <div className="drafts-list">
+                        {_t('g.empty-list')}
                     </div>
-                </div>
-            )}
-            {(!loading && items.length === 0) && (
-                <div className="drafts-list">
-                    {_t('g.empty-list')}
-                </div>
-            )}
+                }
+
+                const items = list.filter(x => x.title.toLowerCase().indexOf(filter.toLowerCase()) !== -1);
+
+                return <>
+                    <div className="dialog-filter">
+                        <Form.Control type="text" placeholder={_t("drafts.filter")} value={filter} onChange={this.filterChanged}/>
+                    </div>
+
+                    {items.length === 0 && <span className="text-muted">{_t("g.no-matches")}</span>}
+
+                    {items.length > 0 && (
+                        <div className="drafts-list">
+                            <div className="drafts-list-body">
+                                {items.map(item => (
+                                    <ListItem key={item._id} {...this.props} draft={item} editFn={this.edit} deleteFn={this.delete}/>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                </>;
+            })()}
         </div>
     }
 }
 
 
-export default class DraftsDialog extends Component<Props> {
+export default class DraftsDialog
+    extends Component<Props> {
     hide = () => {
         const {onHide} = this.props;
         onHide();
