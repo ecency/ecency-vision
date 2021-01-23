@@ -759,7 +759,8 @@
     "copied": "Copied to clipboard"
   },
   "drafts": {
-    "title": "Entwürfe"
+    "title": "Entwürfe",
+    "filter": "Search by title"
   },
   "schedules": {
     "title": "Geplante Beiträge",
