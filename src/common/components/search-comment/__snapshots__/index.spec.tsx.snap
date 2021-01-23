@@ -80,7 +80,7 @@ exports[`(1) Default render 1`] = `
               className="date"
               title="Tuesday, July 7, 2020 7:03 PM"
             >
-              6 months
+              7 months
             </span>
           </div>
         </div>
@@ -1268,7 +1268,7 @@ exports[`(2) With limit 1`] = `
               className="date"
               title="Tuesday, July 7, 2020 7:03 PM"
             >
-              6 months
+              7 months
             </span>
           </div>
         </div>
@@ -2466,7 +2466,7 @@ exports[`(3) Hide show more button 1`] = `
               className="date"
               title="Tuesday, July 7, 2020 7:03 PM"
             >
-              6 months
+              7 months
             </span>
           </div>
         </div>
