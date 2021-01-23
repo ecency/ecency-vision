@@ -150,7 +150,6 @@ interface Props {
 
 interface State {
     loading: boolean,
-    data: Draft[],
     list: Draft[],
     filter: string
 }
@@ -158,7 +157,6 @@ interface State {
 export class Drafts extends BaseComponent<Props, State> {
     state: State = {
         loading: true,
-        data: [],
         list: [],
         filter: ""
     }
@@ -172,11 +170,12 @@ export class Drafts extends BaseComponent<Props, State> {
 
         this.stateSet({loading: true});
         getDrafts(activeUser?.username!).then(items => {
-            this.stateSet({data: items, list: this.sort(items), loading: false});
+            this.stateSet({list: this.sort(items)});
         }).catch(() => {
-            this.stateSet({loading: false});
             error(_t('g.server-error'));
-        })
+        }).finally(() => {
+            this.stateSet({loading: false});
+        });
     }
 
     sort = (items: Draft[]) =>
@@ -188,10 +187,10 @@ export class Drafts extends BaseComponent<Props, State> {
         const {activeUser, location, history} = this.props;
 
         deleteDraft(activeUser?.username!, item._id).then(() => {
-            const {data} = this.state;
-            const nData = [...data].filter(x => x._id !== item._id);
+            const {list} = this.state;
+            const nList = [...list].filter(x => x._id !== item._id);
 
-            this.stateSet({data: nData, list: this.sort(nData)});
+            this.stateSet({list: this.sort(nList)});
 
             // if user editing the draft, redirect to submit page
             if (location.pathname === `/draft/${item._id}`) {
@@ -215,7 +214,7 @@ export class Drafts extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {data, list, filter, loading} = this.state;
+        const {list, filter, loading} = this.state;
 
         return <div className="dialog-content">
 
@@ -224,7 +223,7 @@ export class Drafts extends BaseComponent<Props, State> {
                     return <LinearProgress/>
                 }
 
-                if (data.length === 0) {
+                if (list.length === 0) {
                     return <div className="drafts-list">
                         {_t('g.empty-list')}
                     </div>
