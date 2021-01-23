@@ -20,7 +20,7 @@
     "back": "Regresar",
     "load-more": "Cargar más",
     "empty-list": "Nada por aquí",
-    "no-matches": "No matches",
+    "no-matches": "No hay coincidencias",
     "save": "Guardar",
     "try-again": "Reintentar",
     "show": "Mostrar",
@@ -29,8 +29,8 @@
     "yes": "Si",
     "no": "No",
     "done": "Completado",
-    "apply": "Apply",
-    "close": "Close"
+    "apply": "Aplicar",
+    "close": "Cerrar"
   },
   "confirm": {
     "title": "¿Estás seguro?",
@@ -676,42 +676,42 @@
     "description": "Encontrar contenidos, comunidades y usuarios, sin censura"
   },
   "search-comment": {
-    "title": "Results",
-    "matches": "{{n}} matches",
-    "matches-singular": "1 match",
-    "advanced": "Advanced",
-    "search": "Search",
-    "search-placeholder": "search phrase",
-    "author": "Author",
-    "author-placeholder": "username",
-    "type": "Type",
-    "type-": "All",
-    "type-post": "Post",
-    "type-comment": "Comment",
-    "category": "Category",
-    "category-placeholder": "category",
-    "tags": "Tags",
-    "tags-placeholder": "comma separated tags",
-    "date": "Date",
-    "date-week": "Week",
-    "date-month": "Month",
-    "date-year": "Year",
-    "date-all": "All",
-    "sort": "Sort",
-    "sort-popularity": "Popularity",
-    "sort-relevance": "Relevance",
-    "sort-newest": "Recent",
-    "hide-low": "Hide low payout content",
-    "show-more": "show more"
+    "title": "Resultados",
+    "matches": "{{n}} coincidencias",
+    "matches-singular": "1 coincidencia",
+    "advanced": "Avanzado",
+    "search": "Buscar",
+    "search-placeholder": "buscar frase",
+    "author": "Autor",
+    "author-placeholder": "nombre de usuario",
+    "type": "Tipo",
+    "type-": "Todo",
+    "type-post": "Publicar",
+    "type-comment": "Comentar",
+    "category": "Categoría",
+    "category-placeholder": "categoría",
+    "tags": "Etiquetas",
+    "tags-placeholder": "etiquetas separadas por comas",
+    "date": "Fecha",
+    "date-week": "Semana",
+    "date-month": "Mes",
+    "date-year": "Año",
+    "date-all": "Todo",
+    "sort": "Ordenar por",
+    "sort-popularity": "Popularidad",
+    "sort-relevance": "Relevancia",
+    "sort-newest": "Reciente",
+    "hide-low": "Ocultar contenido de pago bajo",
+    "show-more": "mostrar más"
   },
   "search-people": {
-    "title": "People"
+    "title": "Personas"
   },
   "search-topics": {
-    "title": "Topics"
+    "title": "Temas"
   },
   "search-communities": {
-    "title": "Communities"
+    "title": "Comunidades"
   },
   "witnesses": {
     "page-title": "Testigos",
