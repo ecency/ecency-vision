@@ -759,7 +759,8 @@
     "copied": "Скопійовано до буферу обміну"
   },
   "drafts": {
-    "title": "Чернетки"
+    "title": "Чернетки",
+    "filter": "Search by title"
   },
   "schedules": {
     "title": "Заплановані дописи",
