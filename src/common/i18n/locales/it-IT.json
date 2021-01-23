@@ -759,7 +759,8 @@
     "copied": "Copiato negli appunti"
   },
   "drafts": {
-    "title": "Bozze"
+    "title": "Bozze",
+    "filter": "Search by title"
   },
   "schedules": {
     "title": "Post Programmati",
