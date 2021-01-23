@@ -241,13 +241,13 @@
     "rules": "Правила",
     "team": "Лидерство",
     "edit": "Редактирай настройките",
-    "edit-team": "Edit roles",
-    "profile-image": "Community profile image",
+    "edit-team": "Редактиране на роли",
+    "profile-image": "Обществена профилна снимка",
     "profile-image-edit": "Редактирай профилната снимка ",
     "profile-image-updated": "Профилната снимка е обновена!"
   },
   "community-role-edit": {
-    "title": "Set user role",
+    "title": "Назначи потребителска роля",
     "username": "Потребителско име ",
     "role": "Роля",
     "user-not-found": "Потребителя не съществува!",
