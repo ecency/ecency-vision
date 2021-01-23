@@ -759,7 +759,8 @@
     "copied": "Vágólapra másolva"
   },
   "drafts": {
-    "title": "Piszkozatok"
+    "title": "Piszkozatok",
+    "filter": "Search by title"
   },
   "schedules": {
     "title": "Scheduled Posts",
