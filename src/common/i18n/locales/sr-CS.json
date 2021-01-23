@@ -759,7 +759,8 @@
     "copied": "Kopirano u međuspremnik"
   },
   "drafts": {
-    "title": "Skice"
+    "title": "Skice",
+    "filter": "Search by title"
   },
   "schedules": {
     "title": "Planirani postovi",
