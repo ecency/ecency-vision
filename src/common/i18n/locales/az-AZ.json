@@ -759,7 +759,8 @@
     "copied": "Lövhəyə kopyalandı"
   },
   "drafts": {
-    "title": "Qaralamalar"
+    "title": "Qaralamalar",
+    "filter": "Search by title"
   },
   "schedules": {
     "title": "Scheduled Posts",
