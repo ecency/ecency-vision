@@ -759,7 +759,8 @@
     "copied": "क्लिपबोर्ड में रक्षित हुवा"
   },
   "drafts": {
-    "title": "प्रारूप"
+    "title": "प्रारूप",
+    "filter": "Search by title"
   },
   "schedules": {
     "title": "अनुसूचित पद",
