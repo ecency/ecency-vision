@@ -759,7 +759,8 @@
     "copied": "Copiat în clipboard"
   },
   "drafts": {
-    "title": "Schițe"
+    "title": "Schițe",
+    "filter": "Search by title"
   },
   "schedules": {
     "title": "Scheduled Posts",
