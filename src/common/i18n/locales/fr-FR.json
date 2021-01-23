@@ -759,7 +759,8 @@
     "copied": "Copié dans le presse-papiers"
   },
   "drafts": {
-    "title": "Brouillons"
+    "title": "Brouillons",
+    "filter": "Search by title"
   },
   "schedules": {
     "title": "Scheduled Posts",
