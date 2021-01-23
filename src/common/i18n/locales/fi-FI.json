@@ -759,7 +759,8 @@
     "copied": "Kopioitu leikepöydälle"
   },
   "drafts": {
-    "title": "Luonnokset"
+    "title": "Luonnokset",
+    "filter": "Search by title"
   },
   "schedules": {
     "title": "Ajastetut julkaisut",
