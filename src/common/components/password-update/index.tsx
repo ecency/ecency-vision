@@ -4,6 +4,8 @@ import {Button, Form, FormControl, Modal, Spinner} from "react-bootstrap";
 
 import {PrivateKey, KeyRole, cryptoUtils} from "@hiveio/dhive";
 
+import base58 from "bs58";
+
 import {ActiveUser} from "../../store/active-user/types";
 
 import BaseComponent from "../base";
@@ -16,22 +18,21 @@ import random from "../../util/rnd";
 import {_t} from "../../i18n";
 
 import {keySvg} from "../../img/svg";
-import base58 from "bs58";
 
-interface DialogProps {
+interface Props {
     activeUser: ActiveUser;
     onUpdate: () => void;
 }
 
-interface DialogState {
+interface State {
     curPass: string,
     newPass: string,
     newPass2: string,
     inProgress: boolean,
 }
 
-export class PasswordUpdate extends BaseComponent<DialogProps, DialogState> {
-    state: DialogState = {
+export class PasswordUpdate extends BaseComponent<Props, State> {
+    state: State = {
         curPass: "",
         newPass: "",
         newPass2: "",
@@ -156,18 +157,18 @@ export class PasswordUpdate extends BaseComponent<DialogProps, DialogState> {
     }
 }
 
-interface Props {
+interface DialogProps {
     activeUser: ActiveUser;
 }
 
 
-interface State {
+interface DialogState {
     dialog: boolean
 }
 
 
-export default class PasswordUpdateDialog extends BaseComponent<Props, State> {
-    state: State = {
+export default class PasswordUpdateDialog extends BaseComponent<DialogProps, DialogState> {
+    state: DialogState = {
         dialog: false
     }
 
