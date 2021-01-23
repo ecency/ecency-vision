@@ -759,7 +759,8 @@
     "copied": "Nukopijuota į iškarpinę"
   },
   "drafts": {
-    "title": "Juodraščiai"
+    "title": "Juodraščiai",
+    "filter": "Search by title"
   },
   "schedules": {
     "title": "Scheduled Posts",
