@@ -17,6 +17,17 @@ exports[`(2) Test with data. 1`] = `
   className="dialog-content"
 >
   <div
+    className="dialog-filter"
+  >
+    <input
+      className="form-control"
+      onChange={[Function]}
+      placeholder="Filter by title"
+      type="text"
+      value=""
+    />
+  </div>
+  <div
     className="drafts-list"
   >
     <div
