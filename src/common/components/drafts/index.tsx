@@ -10,6 +10,7 @@ import {Global} from "../../store/global/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {FullAccount} from "../../store/accounts/types";
 
+import BaseComponent from "../base";
 import UserAvatar from "../user-avatar";
 import LinearProgress from "../linear-progress";
 import PopoverConfirm from "../popover-confirm";
@@ -154,7 +155,7 @@ interface State {
     filter: string
 }
 
-export class Drafts extends Component<Props, State> {
+export class Drafts extends BaseComponent<Props, State> {
     state: State = {
         loading: true,
         data: [],
@@ -169,11 +170,11 @@ export class Drafts extends Component<Props, State> {
     fetch = () => {
         const {activeUser} = this.props;
 
-        this.setState({loading: true});
+        this.stateSet({loading: true});
         getDrafts(activeUser?.username!).then(items => {
-            this.setState({data: items, list: this.sort(items), loading: false});
+            this.stateSet({data: items, list: this.sort(items), loading: false});
         }).catch(() => {
-            this.setState({loading: false});
+            this.stateSet({loading: false});
             error(_t('g.server-error'));
         })
     }
@@ -190,7 +191,7 @@ export class Drafts extends Component<Props, State> {
             const {data} = this.state;
             const nData = [...data].filter(x => x._id !== item._id);
 
-            this.setState({data: nData, list: this.sort(nData)});
+            this.stateSet({data: nData, list: this.sort(nData)});
 
             // if user editing the draft, redirect to submit page
             if (location.pathname === `/draft/${item._id}`) {
@@ -210,7 +211,7 @@ export class Drafts extends Component<Props, State> {
 
     filterChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
         const {value} = e.target;
-        this.setState({filter: value});
+        this.stateSet({filter: value});
     }
 
     render() {
