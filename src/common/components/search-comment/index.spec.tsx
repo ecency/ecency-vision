@@ -2,10 +2,15 @@ import React from "react";
 
 import TestRenderer from "react-test-renderer";
 
-import {globalInstance, allOver, searchResponseInstance} from "../../helper/test-helper";
+import mockDate from "mockdate";
 import {createBrowserHistory, createLocation} from "history";
 import {StaticRouter} from "react-router-dom";
-import {SearchComment} from "./index"
+
+import {globalInstance, allOver, searchResponseInstance} from "../../helper/test-helper";
+
+import {SearchComment} from "./index";
+
+mockDate.set(1591398131174);
 
 let TEST_MODE = 0;
 

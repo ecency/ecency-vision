@@ -84,6 +84,7 @@ export const getAccounts = (usernames: string[]): Promise<FullAccount[]> => {
         resp.map((x) => {
             const account: FullAccount = {
                 name: x.name,
+                owner: x.owner,
                 active: x.active,
                 posting: x.posting,
                 memo_key: x.memo_key,

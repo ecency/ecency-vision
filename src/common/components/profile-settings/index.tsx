@@ -8,6 +8,7 @@ import {Global} from "../../store/global/types";
 
 import ProfileEdit from "../profile-edit";
 import Preferences from "../preferences";
+import PasswordUpdate from "../password-update";
 
 interface Props {
     history: History;
@@ -37,6 +38,7 @@ export class ProfileSettings extends Component<Props> {
             return <>
                 {activeUser.data.__loaded && <ProfileEdit {...this.props} activeUser={activeUser}/>}
                 <Preferences {...this.props}  />
+                <PasswordUpdate activeUser={activeUser}/>
             </>
         }
 

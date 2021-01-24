@@ -37,6 +37,7 @@ export const activeUserMaker = (name: string): ActiveUser => {
 
 export const fullAccountInstance: FullAccount = {
     "name": "talhasch",
+    "owner": {"weight_threshold": 1, "account_auths": [], "key_auths": [["STM7F7zfd6ieangxz6uxQkYifUS5H841x5E41SYZaVc9F9cGPJ9jN", 1]]},
     "active": {"weight_threshold": 1, "account_auths": [], "key_auths": [["STM71z4rmzGHdp7pmePZyS1G2GrbuBqg9PPHRgiK6uYqjzUTRNCRR", 1]]},
     "posting": {
         "weight_threshold": 1,
