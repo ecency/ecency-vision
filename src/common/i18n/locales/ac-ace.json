@@ -252,15 +252,15 @@
     "username": "Nan nyang pakek",
     "role": "Tugaih",
     "user-not-found": "Nyang pakek hana!",
-    "explanations": "<h3>Role Permissions</h3><p><strong>Owner</strong> - assign admins</p><p><strong>Admin</strong> - edit settings, assign mods</p><p><strong>Moderator</strong> - mute, pin, set user titles</p><p><strong>Member</strong> - listed on leadership team</p><p><strong>Guest</strong> - default; can post and comment</p><p><strong>Muted</strong> - new posts automatically muted</p>"
+    "explanations": "<h3>Izin peran</h3><p><strong>Nyang poe</strong> - peutetap admin</p><p><strong>Admin</strong> - edit pengatoran, peutetap mods</p><p><strong>Moderator</strong> - peuseungap, pin, ato judul pengguna</p><p><strong>Anggota</strong> - terdaftar lam list tim pemimpin</p><p><strong>Jamee</strong> - default; jeut post ngon komen</p><p><strong>Peusengap</strong> - posting baro otomatis di peuseungap</p>"
   },
   "community-settings": {
-    "dialog-title": "Community Settings",
-    "title": "Title",
-    "about": "About",
-    "lang": "Language",
-    "description": "Description",
-    "rules": "Rules",
+    "dialog-title": "Pengaturan komunitah",
+    "title": "Judul",
+    "about": "Tentang",
+    "lang": "Bahasa",
+    "description": "Deskripsi",
+    "rules": "Atoran-atoran",
     "rules-help": "One per line"
   },
   "communities": {
