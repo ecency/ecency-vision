@@ -315,6 +315,12 @@ export class Fragments extends BaseComponent<Props, State> {
                                 const summary = postBodySummary(item.body, 200);
 
                                 return <div className="fragment-list-item" key={item.id} onClick={() => {
+                                    const {onPick} = this.props;
+                                    if (onPick) {
+                                        onPick(item.body);
+                                        return;
+                                    }
+
                                     this.setState({editingItem: item, mode: "edit"});
                                 }}>
                                     <div className="item-title">{item.title}</div>

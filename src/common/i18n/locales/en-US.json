@@ -551,7 +551,8 @@
     "gallery": "Gallery",
     "emoji": "Emoji",
     "image-error": "Couldn't upload image.",
-    "image-error-size": "Image size is too large, try smaller size image again."
+    "image-error-size": "Image size is too large, try smaller size image again.",
+    "fragments": "Fragments"
   },
   "emoji-picker": {
     "filter-placeholder": "Filter",
