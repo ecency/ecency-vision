@@ -20,7 +20,7 @@
     "back": "Balek",
     "load-more": "Tamah lom",
     "empty-list": "Hana sapue di sinoe",
-    "no-matches": "No matches",
+    "no-matches": "Hana cocok",
     "save": "Keubah",
     "try-again": "Cuba lom",
     "show": "Peuleumah",
@@ -29,8 +29,8 @@
     "yes": "Nyoe",
     "no": "Koen",
     "done": "Seuleuso",
-    "apply": "Apply",
-    "close": "Close"
+    "apply": "Meupakek",
+    "close": "Teubiet"
   },
   "confirm": {
     "title": "Yakin neuh?",
@@ -77,7 +77,7 @@
     "drafts": "Konsep",
     "bookmarks": "Peutanda",
     "schedules": "Jadwal",
-    "settings": "Settings",
+    "settings": "Atoe",
     "logout": "Teubiet",
     "vote-power": "Teunaga untuk pileeh:"
   },
@@ -105,8 +105,8 @@
     "sign-up-text-2": "Peugot jinoe!"
   },
   "sign-up": {
-    "header": "Join",
-    "description": "<h3>Home of Free speech and Rewarding communities!</h3><br>One account to manage everything on <b>Blockchain</b> and <b>Ecency</b>.<br><br>Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
+    "header": "Gabong",
+    "description": "<h3>Rumoh teumpat bebah puegah haba ngon komunitah nyang na peunayah</h3><br>Saboh akun untuk menej bandum nyang na di <b>Blockchain</b> ngon <b>Ecency</b>.<br><br>meurnoe leubeeh lee hai laba bak kamo<a href=\"/faq#how-to-join\">Pertanyaan nyang Sereng di Tanyong (PST) </a>",
     "username": "Pileeh nan nyang neu pakek",
     "email": "Peutamong alamat email droeneuh",
     "ref": "Rujukan nyang pakek (jeut hana pasoe)",
@@ -138,75 +138,75 @@
   },
   "entry-reblog": {
     "reblog": "Reblog",
-    "confirm-title": "Reblog to @{{n}}'s blog?",
+    "confirm-title": "Reblog u @{{n}}'s blog?",
     "confirm-ok": "Reblog",
     "success": "Reblogged!"
   },
   "entry-payout": {
-    "pending-payout": "Pending Payout",
-    "promoted": "Promoted",
-    "author-payout": "Author Payout",
-    "curators-payout": "Curators Payout",
-    "payout-date": "Payout",
-    "beneficiary": "Beneficiary",
-    "breakdown": "Breakdown"
+    "pending-payout": "Puenayah nyang gohlom di jok",
+    "promoted": "Nyang di promosi",
+    "author-payout": "Peunayah nyang tuleeh",
+    "curators-payout": "Peunayah nyang kurasi",
+    "payout-date": "Di bayeu",
+    "beneficiary": "Nyang terimong",
+    "breakdown": "Rincian"
   },
   "entry-index": {
-    "feed": "Feed",
-    "tags": "Popular",
-    "title": "{{f}} topics",
-    "description": "{{f}} topics on a social network owned and operated by its users.",
-    "description-tag": "{{f}} #{{t}} topics",
-    "description-user-feed": "{{u}}'s feed",
-    "faq": "FAQ",
-    "tos": "Terms of service",
-    "pp": "Privacy Policy"
+    "feed": "Eumpeun",
+    "tags": "Meusyuhu",
+    "title": "{{f}} topik",
+    "description": "{{f}} topik di jaringan sosial nyang na dan di operasikan lee pengguna.",
+    "description-tag": "{{f}} #{{t}} topik",
+    "description-user-feed": "{{u}}'s eumpeun",
+    "faq": "PSdT",
+    "tos": "Syarat layanan",
+    "pp": "Kebijakan pribadi"
   },
   "market-data": {
-    "title": "Market price",
-    "credits": "data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
+    "title": "Yum di pasai",
+    "credits": "data dari <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "list-style": {
-    "title": "Toggle list style"
+    "title": "Pengaleeh gaya daftar"
   },
   "entry-votes": {
-    "title": "1 Vote",
-    "title-n": "{{n}} Votes",
-    "title-empty": "No Votes",
-    "sort": "Sort",
-    "sort-reward": "Reward",
-    "sort-timestamp": "Time",
-    "sort-reputation": "Reputation",
-    "sort-percent": "Percentage"
+    "title": "1 su",
+    "title-n": "{{n}} Jok su",
+    "title-empty": "Hana di jok su",
+    "sort": "Meu pileeh",
+    "sort-reward": "Peunayah",
+    "sort-timestamp": "Watee",
+    "sort-reputation": "Reputasi",
+    "sort-percent": "Persentase"
   },
   "entry": {
-    "via-app": "via <span class=\"app-name\">{{app}}</span>",
-    "comment-entry-title": "You are viewing a single comment's thread from: ",
-    "comment-entry-go-root": "View the full context",
-    "comment-entry-go-parent": "View the direct parent",
-    "show-history": "Show edit history",
-    "hidden-warning": "This post was hidden due to low ratings.",
-    "address-copy": "Copy post address",
-    "address-copied": "Post address copied to clipboard."
+    "via-app": "root <span class=\"app-name\">{{app}}</span>",
+    "comment-entry-title": "Teungoh neu kalon komen saboh utas dari: ",
+    "comment-entry-go-root": "Kalon konteks punoh",
+    "comment-entry-go-parent": "Kalon ureung chik langsong",
+    "show-history": "Peulumah riwayat edit",
+    "hidden-warning": "Post nyoe ka di peusom sabab rating nyang rendah.",
+    "address-copy": "Salen alamat posting",
+    "address-copied": "Alamat post di salen u clipboard."
   },
   "edit-history": {
-    "title": "Edit History",
-    "show-diff": "Show Difference",
-    "version": "Version {{n}}"
+    "title": "Riwayat edit",
+    "show-diff": "Peulumah pat beda",
+    "version": "Versi {{n}}"
   },
   "similar-entries": {
-    "title": "Recent posts by @{{n}}"
+    "title": "Posting paleeng baro dari @{{n}}"
   },
   "comment": {
-    "body-placeholder": "Write your reply here",
-    "preview": "Preview"
+    "body-placeholder": "Tuleeh balasan di sinoe",
+    "preview": "Pratinjau"
   },
   "discussion": {
-    "join": "Join the conversion now",
-    "btn-join": "Join",
-    "replies": "1 Comment",
-    "n-replies": "{{n}} Comments",
-    "order": "Sort Order",
+    "join": "Ikot gabong ngon konverai jinoe",
+    "btn-join": "Gabong",
+    "replies": "1 komen",
+    "n-replies": "{{n}} komentar",
+    "order": "Urotan sortir",
     "order-trending": "Trending",
     "order-reputation": "Reputasi",
     "order-votes": "Jok su",
