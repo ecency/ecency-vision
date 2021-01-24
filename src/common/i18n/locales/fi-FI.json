@@ -77,7 +77,7 @@
     "drafts": "Luonnokset",
     "bookmarks": "Kirjanmerkit",
     "schedules": "Ajastetut",
-    "settings": "Settings",
+    "settings": "Asetukset",
     "logout": "Kirjaudu ulos",
     "vote-power": "Äänivalta:"
   },
@@ -774,15 +774,15 @@
     "title": "Suosikit"
   },
   "password-update": {
-    "title": "Change Password",
-    "account": "Account",
-    "cur-pass": "Current password",
-    "new-pass": "New password",
-    "new-pass2": "Confirm new password",
-    "error-new2": "Passwords must be same",
-    "pass-gen": "Click to generate password",
-    "label-check": "I have securely saved my generated password",
-    "updated": "Password updated successfully!"
+    "title": "Vaihda Salasana",
+    "account": "Tili",
+    "cur-pass": "Nykyinen salasana",
+    "new-pass": "Uusi salasana",
+    "new-pass2": "Vahvista uusi salasana",
+    "error-new2": "Salasanojen on oltava samat",
+    "pass-gen": "Klikkaa luodaksesi salasanan",
+    "label-check": "Olen tallentanut turvallisesti salasanani",
+    "updated": "Salasana on tallennettu onnistuneesti!"
   },
   "scroll-to-top": {
     "title": "Vieritä ylös"
