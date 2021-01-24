@@ -77,7 +77,7 @@
     "drafts": "Чернови",
     "bookmarks": "Отметки",
     "schedules": "Графици",
-    "settings": "Settings",
+    "settings": "Настройки",
     "logout": "Изход",
     "vote-power": "Сила на гласа:"
   },
@@ -182,8 +182,8 @@
   "entry": {
     "via-app": "чрез <span class=\"app-name\">{{app}}</span>",
     "comment-entry-title": "Разглеждате само този коментар от поста на: ",
-    "comment-entry-go-root": "View the full context",
-    "comment-entry-go-parent": "View the direct parent",
+    "comment-entry-go-root": "Покажи целия контекст",
+    "comment-entry-go-parent": "Покажи коментара",
     "show-history": "Покажи историята на редактиране",
     "hidden-warning": "Този пост е скрит поради ниски рейтинги.",
     "address-copy": "Копирай адреса",
@@ -230,10 +230,10 @@
     "roles-add": "Добави потребител"
   },
   "community-cover": {
-    "rewards": "rewards",
-    "authors": "posters",
+    "rewards": "награди",
+    "authors": "публикуващи",
     "lang": "език",
-    "cover-image": "Community cover image",
+    "cover-image": "Обществена снимка на корицата",
     "cover-image-edit": "Редактирай снимката на корицата",
     "cover-image-updated": "Снимката на корицата беше обновена!"
   },
@@ -267,7 +267,7 @@
     "title": "Общности",
     "description": "Най-добрите онлайн, децентрализирани, не-заглушаващи, награждаващи общности",
     "n-subscribers": "{{n}} членове",
-    "n-authors": "{{n}} posters",
+    "n-authors": "{{n}} публикуващи",
     "n-posts": "{{n}} постове",
     "admins": "Админи;",
     "sort-hot": "Горещи",
