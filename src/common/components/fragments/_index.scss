@@ -1,0 +1,72 @@
+.fragments-modal {
+  .modal-body {
+    .dialog-content {
+      min-height: 590px;
+
+
+
+      .dialog-controls {
+        height: 70px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .fragments-list {
+        height: 520px;
+        overflow: auto;
+
+        .fragment-list-item {
+          cursor: pointer;
+
+          &:not(:last-child) {
+            @include themify(day) {
+              border-bottom: 1px solid $white-three;
+            }
+
+            @include themify(night) {
+              border-bottom: solid 1px $dark-two;
+            }
+
+            padding-bottom: 16px;
+            margin-bottom: 16px;
+          }
+
+          .item-title {
+            font-weight: 600;
+            margin-bottom: 12px;
+
+            @include themify(day) {
+              color: $charcoal-grey;
+            }
+
+            @include themify(night) {
+              color: $silver;
+            }
+          }
+
+          .item-summary {
+            @include themify(day) {
+              color: $steel-grey;
+            }
+
+            @include themify(night) {
+              color: $silver;
+            }
+          }
+
+          .item-title,
+          .item-summary {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+
+          &:hover {
+            opacity: 0.8;
+          }
+        }
+      }
+    }
+  }
+}
+

@@ -77,6 +77,7 @@
     "drafts": "Drafts",
     "bookmarks": "Bookmarks",
     "schedules": "Schedules",
+    "fragments": "Fragments",
     "logout": "Logout",
     "vote-power": "Vote Power:"
   },
@@ -771,6 +772,12 @@
   },
   "favorites": {
     "title": "Favorites"
+  },
+  "fragments": {
+    "title": "Fragments",
+    "filter": "Search by title",
+    "form-title": "Title",
+    "form-body": "Body"
   },
   "scroll-to-top": {
     "title": "Scroll to Top"

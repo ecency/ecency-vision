@@ -256,6 +256,34 @@ export const deleteFavorite = (username: string, account: string): Promise<any> 
     return axios.post(_u(`/api/favorites-delete`), data).then(resp => resp.data);
 }
 
+export interface Fragment {
+    id: string;
+    title: string;
+    body: string;
+    created: string;
+    modified: string;
+}
+
+export const getFragments = (username: string): Promise<Fragment[]> => {
+    const data = {code: getAccessToken(username)};
+    return axios.post(_u(`/api/fragments`), data).then(resp => resp.data);
+}
+
+export const addFragment = (username: string, title: string, body: string): Promise<{ fragments: Fragment[] }> => {
+    const data = {code: getAccessToken(username), title, body};
+    return axios.post(_u(`/api/fragments-add`), data).then(resp => resp.data);
+}
+
+export const updateFragment = (username: string, fragmentId: string, title: string, body: string): Promise<any> => {
+    const data = {code: getAccessToken(username), id: fragmentId, title, body};
+    return axios.post(_u(`/api/fragments-update`), data).then(resp => resp.data);
+}
+
+export const deleteFragment = (username: string, fragmentId: string): Promise<any> => {
+    const data = {code: getAccessToken(username), id: fragmentId};
+    return axios.post(_u(`/api/fragments-delete`), data).then(resp => resp.data);
+}
+
 export const getPoints = (username: string): Promise<{
     points: string;
     unclaimed_points: string;
