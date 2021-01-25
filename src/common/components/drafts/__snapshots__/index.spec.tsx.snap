@@ -22,7 +22,7 @@ exports[`(2) Test with data. 1`] = `
     <input
       className="form-control"
       onChange={[Function]}
-      placeholder="Filter by title"
+      placeholder="Search by title"
       type="text"
       value=""
     />
