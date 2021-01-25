@@ -77,6 +77,7 @@
     "drafts": "Πρόχειρα",
     "bookmarks": "Σελιδοδείκτες",
     "schedules": "Χρονοδιαγράμματα",
+    "fragments": "Snippets",
     "settings": "Settings",
     "logout": "Αποσύνδεση",
     "vote-power": "Δύναμη ψήφου:"
@@ -551,7 +552,8 @@
     "gallery": "Έκθεση",
     "emoji": "Εικονίδιο Emoji",
     "image-error": "Δεν ήταν δυνατό το ανέβασμα της εικόνας.",
-    "image-error-size": "Το μέγεθος της εικόνας είναι πολύ μεγάλο, δοκιμάστε ξανα μικρότερο μέγεθος εικόνας."
+    "image-error-size": "Το μέγεθος της εικόνας είναι πολύ μεγάλο, δοκιμάστε ξανα μικρότερο μέγεθος εικόνας.",
+    "fragments": "Snippets"
   },
   "emoji-picker": {
     "filter-placeholder": "Φίλτρο",
@@ -772,6 +774,13 @@
   },
   "favorites": {
     "title": "Αγαπημένα"
+  },
+  "fragments": {
+    "title": "Snippets",
+    "create-first": "Create your first snippet",
+    "filter": "Search by title",
+    "form-title": "Title",
+    "form-body": "Body"
   },
   "password-update": {
     "title": "Change Password",
