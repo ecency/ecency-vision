@@ -321,6 +321,35 @@ export const favoritesDelete = async (req: express.Request, res: express.Respons
     pipe(apiRequest(`favoriteUser/${username}/${account}`, "DELETE"), res);
 }
 
+export const fragments = async (req: express.Request, res: express.Response) => {
+    const username = await validateCode(req, res);
+    if (!username) return;
+    pipe(apiRequest(`fragments/${username}`, "GET"), res);
+}
+
+export const fragmentsAdd = async (req: express.Request, res: express.Response) => {
+    const username = await validateCode(req, res);
+    if (!username) return;
+    const {title, body} = req.body;
+    const data = {username, title, body};
+    pipe(apiRequest(`fragment`, "POST", {}, data), res);
+}
+
+export const fragmentsUpdate = async (req: express.Request, res: express.Response) => {
+    const username = await validateCode(req, res);
+    if (!username) return;
+    const {id, title, body} = req.body;
+    const data = {title, body};
+    pipe(apiRequest(`fragments/${username}/${id}`, "PUT", {}, data), res);
+}
+
+export const fragmentsDelete = async (req: express.Request, res: express.Response) => {
+    const username = await validateCode(req, res);
+    if (!username) return;
+    const {id} = req.body;
+    pipe(apiRequest(`fragments/${username}/${id}`, "DELETE"), res);
+}
+
 export const pointsClaim = async (req: express.Request, res: express.Response) => {
     const username = await validateCode(req, res);
     if (!username) return;
