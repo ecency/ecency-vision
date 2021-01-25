@@ -77,6 +77,7 @@
     "drafts": "Qaralamalar",
     "bookmarks": "Əlfəcinlər",
     "schedules": "Schedules",
+    "fragments": "Snippets",
     "settings": "Settings",
     "logout": "Çıxış",
     "vote-power": "Vote Power:"
@@ -551,7 +552,8 @@
     "gallery": "Gallery",
     "emoji": "Emoji",
     "image-error": "Couldn't upload image.",
-    "image-error-size": "Image size is too large, try smaller size image again."
+    "image-error-size": "Image size is too large, try smaller size image again.",
+    "fragments": "Snippets"
   },
   "emoji-picker": {
     "filter-placeholder": "Filter",
@@ -772,6 +774,13 @@
   },
   "favorites": {
     "title": "Sevimlilər"
+  },
+  "fragments": {
+    "title": "Snippets",
+    "create-first": "Create your first snippet",
+    "filter": "Search by title",
+    "form-title": "Title",
+    "form-body": "Body"
   },
   "password-update": {
     "title": "Change Password",
