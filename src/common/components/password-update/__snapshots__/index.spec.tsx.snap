@@ -1,0 +1,139 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+<button
+  className="btn btn-primary btn-sm"
+  disabled={false}
+  onClick={[Function]}
+  type="button"
+>
+  <svg
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M7,14A2,2 0 0,1 5,12A2,2 0 0,1 7,10A2,2 0 0,1 9,12A2,2 0 0,1 7,14M12.65,10C11.83,7.67 9.61,6 7,6A6,6 0 0,0 1,12A6,6 0 0,0 7,18C9.61,18 11.83,16.33 12.65,14H17V18H21V14H23V10H12.65Z"
+      fill="currentColor"
+    />
+  </svg>
+   
+  Change Password
+</button>
+`;
+
+exports[`(2) Dialog content 1`] = `
+<div
+  className="dialog-content"
+>
+  <form
+    className=""
+    onSubmit={[Function]}
+  >
+    <div
+      className="form-group"
+    >
+      <label
+        className="form-label"
+        htmlFor="account-name"
+      >
+        Account
+      </label>
+      <input
+        className="form-control"
+        id="account-name"
+        readOnly={true}
+        type="text"
+        value="foo"
+      />
+    </div>
+    <div
+      className="form-group"
+    >
+      <label
+        className="form-label"
+        htmlFor="cur-pass"
+      >
+        Current password
+      </label>
+      <input
+        autoComplete="off"
+        autoFocus={true}
+        className="form-control"
+        id="cur-pass"
+        onChange={[Function]}
+        required={true}
+        type="password"
+        value=""
+      />
+    </div>
+    <div
+      className="form-group"
+    >
+      <label
+        className="form-label"
+        htmlFor="new-pass"
+      >
+        New password
+      </label>
+      <div>
+        <button
+          className="btn btn-outline-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Click to generate password
+        </button>
+        
+      </div>
+    </div>
+    <div
+      className="form-group"
+    >
+      <label
+        className="form-label"
+        htmlFor="re-new-pass"
+      >
+        Confirm new password
+      </label>
+      <input
+        autoComplete="off"
+        className="form-control"
+        id="re-new-pass"
+        onChange={[Function]}
+        required={true}
+        type="password"
+        value=""
+      />
+    </div>
+    <div
+      className="form-group"
+    >
+      <div
+        className="form-check"
+      >
+        <input
+          className="form-check-input"
+          disabled={false}
+          id="accept"
+          required={true}
+          type="checkbox"
+        />
+        <label
+          className="form-check-label"
+          htmlFor="accept"
+          title=""
+        >
+          I have securely saved my generated password
+        </label>
+      </div>
+    </div>
+    <button
+      className="btn btn-primary"
+      disabled={false}
+      type="submit"
+    >
+      Update
+    </button>
+  </form>
+</div>
+`;

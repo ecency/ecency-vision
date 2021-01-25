@@ -78,6 +78,7 @@
     "bookmarks": "Bookmarks",
     "schedules": "Schedules",
     "fragments": "Snippets",
+    "settings": "Settings",
     "logout": "Logout",
     "vote-power": "Vote Power:"
   },
@@ -780,6 +781,17 @@
     "filter": "Search by title",
     "form-title": "Title",
     "form-body": "Body"
+  },
+  "password-update": {
+    "title": "Change Password",
+    "account": "Account",
+    "cur-pass": "Current password",
+    "new-pass": "New password",
+    "new-pass2": "Confirm new password",
+    "error-new2": "Passwords must be same",
+    "pass-gen": "Click to generate password",
+    "label-check": "I have securely saved my generated password",
+    "updated": "Password updated successfully!"
   },
   "scroll-to-top": {
     "title": "Scroll to Top"

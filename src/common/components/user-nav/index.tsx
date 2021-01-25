@@ -146,6 +146,11 @@ export default class UserNav extends Component<Props, State> {
         toggleUIProp('notifications');
     }
 
+    goToSettings = () => {
+        const {activeUser, history} = this.props;
+        history.push(`/@${activeUser.username}/settings`);
+    }
+
     render() {
         const {gallery, drafts, bookmarks, schedules, fragments} = this.state;
         const {activeUser, ui, notifications, global, dynamicProps} = this.props;
@@ -186,6 +191,10 @@ export default class UserNav extends Component<Props, State> {
                 {
                     label: _t('user-nav.fragments'),
                     onClick: this.toggleFragments,
+                },
+                {
+                    label: _t('user-nav.settings'),
+                    onClick: this.goToSettings,
                 },
                 {
                     label: _t('g.login-as'),

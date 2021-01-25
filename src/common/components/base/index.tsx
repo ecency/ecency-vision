@@ -1,6 +1,6 @@
 import {Component} from "react";
 
-export default class BaseComponent<P, S> extends Component<P, S> {
+export default class BaseComponent<P = {}, S = {}> extends Component<P, S> {
     _mounted: boolean = true;
 
     componentWillUnmount() {

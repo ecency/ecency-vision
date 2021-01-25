@@ -55,6 +55,16 @@ Array [
     "memo_key": "STM7rioGL7NopT2Zo446hnzAiHLp5sJ1gS55xu3NikmxfQnEznsue",
     "name": "user1",
     "next_vesting_withdrawal": "1969-12-31T23:59:59",
+    "owner": Object {
+      "account_auths": Array [],
+      "key_auths": Array [
+        Array [
+          "STM7F7zfd6ieangxz6uxQkYifUS5H841x5E41SYZaVc9F9cGPJ9jN",
+          1,
+        ],
+      ],
+      "weight_threshold": 1,
+    },
     "post_count": 261,
     "posting": Object {
       "account_auths": Array [

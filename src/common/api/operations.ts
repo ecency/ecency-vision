@@ -1,6 +1,6 @@
 const hs = require("hivesigner");
 
-import {PrivateKey, Operation, TransactionConfirmation} from '@hiveio/dhive';
+import {PrivateKey, Operation, TransactionConfirmation, AccountUpdateOperation} from '@hiveio/dhive';
 
 import {client as hiveClient} from "./hive";
 
@@ -865,3 +865,5 @@ export const mutePost = (username: string, community: string, account: string, p
 
     return client.customJson([], [username], 'community', json);
 }
+
+export const updatePassword = (update: AccountUpdateOperation[1], ownerKey: PrivateKey): Promise<TransactionConfirmation> => hiveClient.broadcast.updateAccount(update, ownerKey)
