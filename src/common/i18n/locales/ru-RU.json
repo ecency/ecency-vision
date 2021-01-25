@@ -77,6 +77,7 @@
     "drafts": "Черновики",
     "bookmarks": "Закладки",
     "schedules": "Отложенные",
+    "fragments": "Snippets",
     "settings": "Settings",
     "logout": "Выйти",
     "vote-power": "Сила голоса:"
@@ -551,7 +552,8 @@
     "gallery": "Галерея",
     "emoji": "Эмодзи",
     "image-error": "Не удалось загрузить изображение.",
-    "image-error-size": "Слишком большой размер изображения. Попробуйте уменьшить его."
+    "image-error-size": "Слишком большой размер изображения. Попробуйте уменьшить его.",
+    "fragments": "Snippets"
   },
   "emoji-picker": {
     "filter-placeholder": "Фильтр",
@@ -772,6 +774,13 @@
   },
   "favorites": {
     "title": "Favorites"
+  },
+  "fragments": {
+    "title": "Snippets",
+    "create-first": "Create your first snippet",
+    "filter": "Search by title",
+    "form-title": "Title",
+    "form-body": "Body"
   },
   "password-update": {
     "title": "Change Password",
