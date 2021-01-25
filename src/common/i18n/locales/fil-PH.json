@@ -77,6 +77,7 @@
     "drafts": "Mga banghay",
     "bookmarks": "Mga talaan",
     "schedules": "Mga Palatuntunan",
+    "fragments": "Snippets",
     "settings": "Settings",
     "logout": "Umalis",
     "vote-power": "Puwersa ng Boto"
@@ -551,7 +552,8 @@
     "gallery": "Galeriya",
     "emoji": "Emoji",
     "image-error": "Hindi mai-upload ang imahe.",
-    "image-error-size": "Ang imahe ay lubhang malaki, maglagay ng mas maliit na imahe at subukan muli."
+    "image-error-size": "Ang imahe ay lubhang malaki, maglagay ng mas maliit na imahe at subukan muli.",
+    "fragments": "Snippets"
   },
   "emoji-picker": {
     "filter-placeholder": "Salaan",
@@ -772,6 +774,13 @@
   },
   "favorites": {
     "title": "Favorites"
+  },
+  "fragments": {
+    "title": "Snippets",
+    "create-first": "Create your first snippet",
+    "filter": "Search by title",
+    "form-title": "Title",
+    "form-body": "Body"
   },
   "password-update": {
     "title": "Change Password",
