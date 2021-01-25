@@ -148,7 +148,7 @@ export default class ProfileEdit extends Component<Props, State> {
                                                   this.stateSet({uploading: true});
                                               }}
                                               onEnd={(url) => {
-                                                  this.stateSet({profileImage: url, uploading: false});
+                                                  this.stateSet({profileImage: url, uploading: false, changed: true});
                                               }}/>
                             </InputGroup.Append>
                         </InputGroup>
@@ -166,7 +166,7 @@ export default class ProfileEdit extends Component<Props, State> {
                                                   this.stateSet({uploading: true});
                                               }}
                                               onEnd={(url) => {
-                                                  this.stateSet({coverImage: url, uploading: false});
+                                                  this.stateSet({coverImage: url, uploading: false, changed: true});
                                               }}/>
                             </InputGroup.Append>
                         </InputGroup>
