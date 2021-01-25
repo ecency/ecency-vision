@@ -77,8 +77,8 @@
     "drafts": "प्रारूप",
     "bookmarks": "पृष्टस्मृतियाँ",
     "schedules": "निर्धारित",
-    "fragments": "Snippets",
-    "settings": "Settings",
+    "fragments": "स्निपेट्स",
+    "settings": "सेटिंग्स",
     "logout": "लॉग आउट",
     "vote-power": "वोट पावर:"
   },
@@ -553,7 +553,7 @@
     "emoji": "इमोजी",
     "image-error": "चित्र अपलोड नहीं किया जा सका।",
     "image-error-size": "छवि का आकार बहुत बड़ा है, फिर से छोटे आकार की छवि आज़माएं।",
-    "fragments": "Snippets"
+    "fragments": "स्निपेट्स"
   },
   "emoji-picker": {
     "filter-placeholder": "फ़िल्टर",
@@ -763,7 +763,7 @@
   },
   "drafts": {
     "title": "प्रारूप",
-    "filter": "Search by title"
+    "filter": "शीर्षक से खोजें"
   },
   "schedules": {
     "title": "अनुसूचित पद",
@@ -776,22 +776,22 @@
     "title": "पसंदीदा"
   },
   "fragments": {
-    "title": "Snippets",
-    "create-first": "Create your first snippet",
-    "filter": "Search by title",
-    "form-title": "Title",
-    "form-body": "Body"
+    "title": "स्निपेट्स",
+    "create-first": "अपना पहला स्निपेट बनाएं",
+    "filter": "शीर्षक से खोजें",
+    "form-title": "शीर्षक",
+    "form-body": "बॉडी"
   },
   "password-update": {
-    "title": "Change Password",
-    "account": "Account",
-    "cur-pass": "Current password",
-    "new-pass": "New password",
-    "new-pass2": "Confirm new password",
-    "error-new2": "Passwords must be same",
-    "pass-gen": "Click to generate password",
-    "label-check": "I have securely saved my generated password",
-    "updated": "Password updated successfully!"
+    "title": "पासवर्ड बदलिए",
+    "account": "खाता",
+    "cur-pass": "वर्तमान पासवर्ड",
+    "new-pass": "नया पासवर्ड",
+    "new-pass2": "नए पासवर्ड की पुष्टि करें",
+    "error-new2": "पासवर्ड समान होना चाहिए",
+    "pass-gen": "पासवर्ड तैयार करने के लिए यहां क्लिक करें",
+    "label-check": "मैंने अपने जनरेट किए गए पासवर्ड को सुरक्षित रूप से सहेजा है",
+    "updated": "पासवर्ड सफलतापूर्वक अपडेट किया गया!"
   },
   "scroll-to-top": {
     "title": "शीर्ष तक स्क्रॉल करें"
