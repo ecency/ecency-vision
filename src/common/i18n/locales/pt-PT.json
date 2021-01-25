@@ -78,7 +78,7 @@
     "bookmarks": "Favoritos",
     "schedules": "Agendamentos",
     "fragments": "Trechos",
-    "settings": "Settings",
+    "settings": "Configurações",
     "logout": "Sair",
     "vote-power": "Força do Voto:"
   },
@@ -777,21 +777,21 @@
   },
   "fragments": {
     "title": "Trechos",
-    "create-first": "Create your first snippet",
-    "filter": "Search by title",
-    "form-title": "Title",
-    "form-body": "Body"
+    "create-first": "Crie seu primeiro fragmento de informação",
+    "filter": "Pesquisar por título",
+    "form-title": "Título",
+    "form-body": "Conteúdo"
   },
   "password-update": {
-    "title": "Change Password",
-    "account": "Account",
-    "cur-pass": "Current password",
-    "new-pass": "New password",
-    "new-pass2": "Confirm new password",
-    "error-new2": "Passwords must be same",
-    "pass-gen": "Click to generate password",
-    "label-check": "I have securely saved my generated password",
-    "updated": "Password updated successfully!"
+    "title": "Mudar a Senha",
+    "account": "Conta",
+    "cur-pass": "Senha atual",
+    "new-pass": "Nova senha",
+    "new-pass2": "Confirmar nova senha",
+    "error-new2": "As senhas devem ser iguais",
+    "pass-gen": "Clique para gerar a senha",
+    "label-check": "Eu guardei com segurança minha nova senha gerada",
+    "updated": "Senha atualizada com sucesso!"
   },
   "scroll-to-top": {
     "title": "Ir para o topo"
