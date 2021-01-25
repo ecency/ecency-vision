@@ -77,6 +77,7 @@
     "drafts": "Konsep",
     "bookmarks": "Tandai",
     "schedules": "Jadwal",
+    "fragments": "Snippets",
     "settings": "Settings",
     "logout": "Keluar",
     "vote-power": "Kekuatan Vote:"
@@ -551,7 +552,8 @@
     "gallery": "Galeri",
     "emoji": "Emoji",
     "image-error": "Tidak dapat mengunggah gambar.",
-    "image-error-size": "Ukuran gambar terlalu besar, coba masukkan ukuran gambar yang lebih kecil."
+    "image-error-size": "Ukuran gambar terlalu besar, coba masukkan ukuran gambar yang lebih kecil.",
+    "fragments": "Snippets"
   },
   "emoji-picker": {
     "filter-placeholder": "Penyaring",
@@ -772,6 +774,13 @@
   },
   "favorites": {
     "title": "Favorit"
+  },
+  "fragments": {
+    "title": "Snippets",
+    "create-first": "Create your first snippet",
+    "filter": "Search by title",
+    "form-title": "Title",
+    "form-body": "Body"
   },
   "password-update": {
     "title": "Change Password",
