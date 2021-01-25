@@ -77,7 +77,7 @@
     "drafts": "Rascunhos",
     "bookmarks": "Favoritos",
     "schedules": "Agendamentos",
-    "fragments": "Snippets",
+    "fragments": "Trechos",
     "settings": "Settings",
     "logout": "Sair",
     "vote-power": "Força do Voto:"
@@ -553,7 +553,7 @@
     "emoji": "Emoji",
     "image-error": "Não foi possível carregar imagem.",
     "image-error-size": "O tamanho da imagem é muito grande, tente novamente com uma imagem mais pequena.",
-    "fragments": "Snippets"
+    "fragments": "Trechos"
   },
   "emoji-picker": {
     "filter-placeholder": "Filtro",
@@ -776,7 +776,7 @@
     "title": "Favoritos"
   },
   "fragments": {
-    "title": "Snippets",
+    "title": "Trechos",
     "create-first": "Create your first snippet",
     "filter": "Search by title",
     "form-title": "Title",
