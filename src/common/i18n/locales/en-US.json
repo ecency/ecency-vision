@@ -77,7 +77,7 @@
     "drafts": "Drafts",
     "bookmarks": "Bookmarks",
     "schedules": "Schedules",
-    "fragments": "Fragments",
+    "fragments": "Snippets",
     "logout": "Logout",
     "vote-power": "Vote Power:"
   },
@@ -552,7 +552,7 @@
     "emoji": "Emoji",
     "image-error": "Couldn't upload image.",
     "image-error-size": "Image size is too large, try smaller size image again.",
-    "fragments": "Fragments"
+    "fragments": "Snippets"
   },
   "emoji-picker": {
     "filter-placeholder": "Filter",
@@ -775,8 +775,8 @@
     "title": "Favorites"
   },
   "fragments": {
-    "title": "Fragments",
-    "create-first": "Create your first fragment",
+    "title": "Snippets",
+    "create-first": "Create your first snippet",
     "filter": "Search by title",
     "form-title": "Title",
     "form-body": "Body"
