@@ -77,6 +77,7 @@
     "drafts": "प्रारूप",
     "bookmarks": "पृष्टस्मृतियाँ",
     "schedules": "निर्धारित",
+    "fragments": "Snippets",
     "settings": "Settings",
     "logout": "लॉग आउट",
     "vote-power": "वोट पावर:"
@@ -551,7 +552,8 @@
     "gallery": "चित्रशाला",
     "emoji": "इमोजी",
     "image-error": "चित्र अपलोड नहीं किया जा सका।",
-    "image-error-size": "छवि का आकार बहुत बड़ा है, फिर से छोटे आकार की छवि आज़माएं।"
+    "image-error-size": "छवि का आकार बहुत बड़ा है, फिर से छोटे आकार की छवि आज़माएं।",
+    "fragments": "Snippets"
   },
   "emoji-picker": {
     "filter-placeholder": "फ़िल्टर",
@@ -772,6 +774,13 @@
   },
   "favorites": {
     "title": "पसंदीदा"
+  },
+  "fragments": {
+    "title": "Snippets",
+    "create-first": "Create your first snippet",
+    "filter": "Search by title",
+    "form-title": "Title",
+    "form-body": "Body"
   },
   "password-update": {
     "title": "Change Password",
