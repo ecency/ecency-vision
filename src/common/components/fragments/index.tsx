@@ -289,11 +289,11 @@ export class Fragments extends BaseComponent<Props, State> {
 
                 if (list.length === 0) {
                     return <div className="fragments-list">
-                        {_t('g.empty-list')}{". "}
-                        <a href="#" onClick={(e) => {
+                        <p>{_t('g.empty-list')}</p>
+                        <p><a href="#" onClick={(e) => {
                             e.preventDefault();
                             this.stateSet({mode: "add"});
-                        }}>{_t("g.add")}</a>
+                        }}>{_t("fragments.create-first")}</a></p>
                     </div>
                 }
 

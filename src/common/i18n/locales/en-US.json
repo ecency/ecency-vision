@@ -776,6 +776,7 @@
   },
   "fragments": {
     "title": "Fragments",
+    "create-first": "Create your first fragment",
     "filter": "Search by title",
     "form-title": "Title",
     "form-body": "Body"
