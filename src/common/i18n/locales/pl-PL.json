@@ -77,6 +77,7 @@
     "drafts": "Szkice",
     "bookmarks": "Zakładki",
     "schedules": "Schedules",
+    "fragments": "Snippets",
     "settings": "Settings",
     "logout": "Wyloguj",
     "vote-power": "Vote Power:"
@@ -551,7 +552,8 @@
     "gallery": "Galeria",
     "emoji": "Emotikony",
     "image-error": "Nie udało się przesłać obrazu",
-    "image-error-size": "Rozmiar obrazu jest zbyt duży, spróbuj ponownie mniejszych rozmiarów."
+    "image-error-size": "Rozmiar obrazu jest zbyt duży, spróbuj ponownie mniejszych rozmiarów.",
+    "fragments": "Snippets"
   },
   "emoji-picker": {
     "filter-placeholder": "Filtruj",
@@ -772,6 +774,13 @@
   },
   "favorites": {
     "title": "Ulubione"
+  },
+  "fragments": {
+    "title": "Snippets",
+    "create-first": "Create your first snippet",
+    "filter": "Search by title",
+    "form-title": "Title",
+    "form-body": "Body"
   },
   "password-update": {
     "title": "Change Password",
