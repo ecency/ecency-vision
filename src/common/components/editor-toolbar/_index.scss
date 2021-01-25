@@ -22,8 +22,12 @@
     height: 36px;
     justify-content: center;
     position: relative;
-    width: 38px;
+    width: 34px;
     flex-shrink: 0;
+
+    @media (min-width: $xl-break) {
+      width: 38px;
+    }
 
     @include themify(day) {
       color: $steel-grey;
