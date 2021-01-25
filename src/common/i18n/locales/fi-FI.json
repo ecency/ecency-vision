@@ -77,7 +77,7 @@
     "drafts": "Luonnokset",
     "bookmarks": "Kirjanmerkit",
     "schedules": "Ajastetut",
-    "fragments": "Snippets",
+    "fragments": "Katkelmat",
     "settings": "Asetukset",
     "logout": "Kirjaudu ulos",
     "vote-power": "Äänivalta:"
@@ -553,7 +553,7 @@
     "emoji": "Emoji",
     "image-error": "Kuvaa ei voitu ladata.",
     "image-error-size": "Kuvan koko on liian suuri, kokeile pienempää kuvaa.",
-    "fragments": "Snippets"
+    "fragments": "Katkelmat"
   },
   "emoji-picker": {
     "filter-placeholder": "Suodata",
@@ -776,11 +776,11 @@
     "title": "Suosikit"
   },
   "fragments": {
-    "title": "Snippets",
-    "create-first": "Create your first snippet",
-    "filter": "Search by title",
-    "form-title": "Title",
-    "form-body": "Body"
+    "title": "Katkelmat",
+    "create-first": "Luo ensimmäinen katkelmasi",
+    "filter": "Etsi otsikon mukaan",
+    "form-title": "Otsikko",
+    "form-body": "Sisältö"
   },
   "password-update": {
     "title": "Vaihda Salasana",
