@@ -1,0 +1,264 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render. 1`] = `
+<div
+  className="dialog-content"
+>
+  <div
+    className="fragments-list"
+  >
+    <p>
+      Nothing here
+    </p>
+    <p>
+      <a
+        href="#"
+        onClick={[Function]}
+      >
+        Create your first fragment
+      </a>
+    </p>
+  </div>
+</div>
+`;
+
+exports[`(2) With data. 1`] = `
+<div
+  className="dialog-content"
+>
+  <div
+    className="dialog-controls"
+  >
+    <input
+      className="form-control"
+      onChange={[Function]}
+      placeholder="Search by title"
+      style={
+        Object {
+          "marginRight": "6px",
+        }
+      }
+      type="text"
+      value=""
+    />
+    <div>
+      <button
+        className="btn btn-primary"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        Add
+      </button>
+    </div>
+  </div>
+  <div
+    className="fragments-list"
+  >
+    <div
+      className="fragment-list-item"
+      onClick={[Function]}
+    >
+      <div
+        className="item-title"
+      >
+        baz
+      </div>
+      <div
+        className="item-summary"
+      >
+        lorem ipsum dolor sit amet
+      </div>
+    </div>
+    <div
+      className="fragment-list-item"
+      onClick={[Function]}
+    >
+      <div
+        className="item-title"
+      >
+        bar
+      </div>
+      <div
+        className="item-summary"
+      >
+        lorem ipsum dolor sit amet
+      </div>
+    </div>
+    <div
+      className="fragment-list-item"
+      onClick={[Function]}
+    >
+      <div
+        className="item-title"
+      >
+        foo
+      </div>
+      <div
+        className="item-summary"
+      >
+        lorem ipsum dolor sit amet
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(3) Add 1`] = `
+<div
+  className=""
+>
+  <form
+    className=""
+    onSubmit={[Function]}
+  >
+    <div
+      className="form-group"
+    >
+      <label
+        className="form-label"
+        htmlFor="title"
+      >
+        Title
+      </label>
+      <input
+        className="form-control"
+        id="title"
+        maxLength={255}
+        onChange={[Function]}
+        required={true}
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="form-group"
+    >
+      <label
+        className="form-label"
+        htmlFor="body"
+      >
+        Body
+      </label>
+      <textarea
+        className="form-control"
+        id="body"
+        maxLength={5000}
+        onChange={[Function]}
+        required={true}
+        style={
+          Object {
+            "height": "300px",
+          }
+        }
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="d-flex justify-content-between"
+    >
+      <button
+        className="btn btn-outline-primary"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        Back
+      </button>
+      <button
+        className="btn btn-primary"
+        disabled={false}
+        type="submit"
+      >
+        Add
+      </button>
+    </div>
+  </form>
+</div>
+`;
+
+exports[`(4) Edit 1`] = `
+<form
+  className=""
+  onSubmit={[Function]}
+>
+  <div
+    className="form-group"
+  >
+    <label
+      className="form-label"
+      htmlFor="title"
+    >
+      Title
+    </label>
+    <input
+      className="form-control"
+      id="title"
+      maxLength={255}
+      onChange={[Function]}
+      required={true}
+      type="text"
+      value="baz"
+    />
+  </div>
+  <div
+    className="form-group"
+  >
+    <label
+      className="form-label"
+      htmlFor="body"
+    >
+      Body
+    </label>
+    <textarea
+      className="form-control"
+      id="body"
+      maxLength={5000}
+      onChange={[Function]}
+      required={true}
+      style={
+        Object {
+          "height": "300px",
+        }
+      }
+      type="text"
+      value="lorem ipsum dolor sit amet"
+    />
+  </div>
+  <div
+    className="d-flex justify-content-between"
+  >
+    <div>
+      <button
+        className="btn btn-outline-danger"
+        disabled={false}
+        onClick={[Function]}
+        style={
+          Object {
+            "marginRight": "6px",
+          }
+        }
+        type="button"
+      >
+        Delete
+      </button>
+      <button
+        className="btn btn-outline-primary"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        Back
+      </button>
+    </div>
+    <button
+      className="btn btn-primary"
+      disabled={false}
+      type="submit"
+    >
+      Update
+    </button>
+  </div>
+</form>
+`;
