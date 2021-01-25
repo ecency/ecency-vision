@@ -77,7 +77,7 @@
     "drafts": "Borradores",
     "bookmarks": "Marcadores",
     "schedules": "Programados",
-    "settings": "Settings",
+    "settings": "Configuración",
     "logout": "Cerrar sesión",
     "vote-power": "Poder de voto:"
   },
@@ -774,15 +774,15 @@
     "title": "Favoritos"
   },
   "password-update": {
-    "title": "Change Password",
-    "account": "Account",
-    "cur-pass": "Current password",
-    "new-pass": "New password",
-    "new-pass2": "Confirm new password",
-    "error-new2": "Passwords must be same",
-    "pass-gen": "Click to generate password",
-    "label-check": "I have securely saved my generated password",
-    "updated": "Password updated successfully!"
+    "title": "Cambiar la contraseña",
+    "account": "Cuenta",
+    "cur-pass": "Contraseña actual",
+    "new-pass": "Nueva contraseña",
+    "new-pass2": "Confirmar la nueva contraseña",
+    "error-new2": "Las contraseñas deben ser iguales",
+    "pass-gen": "Haga clic para generar la contraseña",
+    "label-check": "He guardado con seguridad mi contraseña generada",
+    "updated": "¡Contraseña actualizada correctamente!"
   },
   "scroll-to-top": {
     "title": "Ir arriba"
