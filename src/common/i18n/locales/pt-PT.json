@@ -377,7 +377,7 @@
     "delegate": "Delegar",
     "power-down": "Baixar poder",
     "withdraw-routes": "Rotas de Saque",
-    "converting-hbd-amount": "Converting to HIVE"
+    "converting-hbd-amount": "Convertendo em HIVE"
   },
   "withdraw-routes": {
     "title": "Contas de saque",

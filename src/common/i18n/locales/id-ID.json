@@ -77,8 +77,8 @@
     "drafts": "Konsep",
     "bookmarks": "Tandai",
     "schedules": "Jadwal",
-    "fragments": "Snippets",
-    "settings": "Settings",
+    "fragments": "Cuplikan",
+    "settings": "Pengaturan",
     "logout": "Keluar",
     "vote-power": "Kekuatan Vote:"
   },
@@ -554,7 +554,7 @@
     "emoji": "Emoji",
     "image-error": "Tidak dapat mengunggah gambar.",
     "image-error-size": "Ukuran gambar terlalu besar, coba masukkan ukuran gambar yang lebih kecil.",
-    "fragments": "Snippets"
+    "fragments": "Cuplikan"
   },
   "emoji-picker": {
     "filter-placeholder": "Penyaring",
@@ -764,7 +764,7 @@
   },
   "drafts": {
     "title": "Konsep",
-    "filter": "Search by title"
+    "filter": "Cari berdasarkan judul"
   },
   "schedules": {
     "title": "Postingan terjadwal",
@@ -777,22 +777,22 @@
     "title": "Favorit"
   },
   "fragments": {
-    "title": "Snippets",
-    "create-first": "Create your first snippet",
-    "filter": "Search by title",
-    "form-title": "Title",
-    "form-body": "Body"
+    "title": "Cuplikan",
+    "create-first": "Buat catatan pertama Anda",
+    "filter": "Cari berdasarkan judul",
+    "form-title": "Judul",
+    "form-body": "Isi"
   },
   "password-update": {
-    "title": "Change Password",
-    "account": "Account",
-    "cur-pass": "Current password",
-    "new-pass": "New password",
-    "new-pass2": "Confirm new password",
-    "error-new2": "Passwords must be same",
-    "pass-gen": "Click to generate password",
-    "label-check": "I have securely saved my generated password",
-    "updated": "Password updated successfully!"
+    "title": "Ganti Kata Sandi",
+    "account": "Akun",
+    "cur-pass": "Kata sandi saat ini",
+    "new-pass": "Kata sandi baru",
+    "new-pass2": "Konfirmasi kata sandi baru",
+    "error-new2": "Kata sandi harus sama",
+    "pass-gen": "Klik untuk membuat kata sandi baru",
+    "label-check": "Saya telah menyimpan kata sandi saya dengan aman",
+    "updated": "Kata Sandi berhasil diperbaharui!"
   },
   "scroll-to-top": {
     "title": "Gulir ke Atas"

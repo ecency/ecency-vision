@@ -377,7 +377,7 @@
     "delegate": "Valtuuta",
     "power-down": "Power down",
     "withdraw-routes": "Palauta Reitit",
-    "converting-hbd-amount": "Converting to HIVE"
+    "converting-hbd-amount": "Muunnos HIVE:ksi"
   },
   "withdraw-routes": {
     "title": "Palauta tilit",
