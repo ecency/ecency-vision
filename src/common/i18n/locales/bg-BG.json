@@ -376,7 +376,8 @@
     "withdraw-hbd": "Изтегли Hive Долари",
     "delegate": "Делегирай",
     "power-down": "Намаляне на силата",
-    "withdraw-routes": "Пътища за теглене"
+    "withdraw-routes": "Пътища за теглене",
+    "converting-hbd-amount": "Converting to HIVE"
   },
   "withdraw-routes": {
     "title": "Акаунти за теглене",
