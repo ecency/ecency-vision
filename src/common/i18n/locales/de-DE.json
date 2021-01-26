@@ -376,7 +376,8 @@
     "withdraw-hbd": "HIVE Dollar auszahlen",
     "delegate": "Delegieren",
     "power-down": "Power-Down",
-    "withdraw-routes": "Auszahlungen"
+    "withdraw-routes": "Auszahlungen",
+    "converting-hbd-amount": "Converting to HIVE"
   },
   "withdraw-routes": {
     "title": "Konten einlösen",
