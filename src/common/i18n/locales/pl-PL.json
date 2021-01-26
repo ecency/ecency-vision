@@ -376,7 +376,8 @@
     "withdraw-hbd": "Wypłać dolar Hive",
     "delegate": "Deleguj",
     "power-down": "Zmniejsz moc",
-    "withdraw-routes": "Planowanie wypłaty na różne konta"
+    "withdraw-routes": "Planowanie wypłaty na różne konta",
+    "converting-hbd-amount": "Converting to HIVE"
   },
   "withdraw-routes": {
     "title": "Konta do wypłaty",
