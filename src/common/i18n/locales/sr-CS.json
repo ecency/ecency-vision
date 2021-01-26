@@ -376,7 +376,8 @@
     "withdraw-hbd": "Povucite Hive dolar",
     "delegate": "Delegiraj",
     "power-down": "Smanji snagu",
-    "withdraw-routes": "Povucite rute"
+    "withdraw-routes": "Povucite rute",
+    "converting-hbd-amount": "Converting to HIVE"
   },
   "withdraw-routes": {
     "title": "Povucite račune",
