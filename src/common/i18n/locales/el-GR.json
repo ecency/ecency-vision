@@ -376,7 +376,8 @@
     "withdraw-hbd": "Ανάληψη Hive Dollar",
     "delegate": "Εξουσιoδοτήστε",
     "power-down": "Power Down",
-    "withdraw-routes": "Οδοί Ανάληψης"
+    "withdraw-routes": "Οδοί Ανάληψης",
+    "converting-hbd-amount": "Converting to HIVE"
   },
   "withdraw-routes": {
     "title": "Λογαριασμοί Ανάληψης",
