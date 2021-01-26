@@ -20,6 +20,7 @@
     "back": "Takaisin",
     "load-more": "Lataa lisää",
     "empty-list": "Tyhjä",
+    "no-matches": "Ei tuloksia",
     "save": "Tallenna",
     "try-again": "Yritä uudelleen",
     "show": "Näytä",
@@ -27,7 +28,9 @@
     "off": "Pois",
     "yes": "Kyllä",
     "no": "Ei",
-    "done": "Valmis"
+    "done": "Valmis",
+    "apply": "Käytä",
+    "close": "Sulje"
   },
   "confirm": {
     "title": "Oletko varma?",
@@ -74,6 +77,8 @@
     "drafts": "Luonnokset",
     "bookmarks": "Kirjanmerkit",
     "schedules": "Ajastetut",
+    "fragments": "Katkelmat",
+    "settings": "Asetukset",
     "logout": "Kirjaudu ulos",
     "vote-power": "Äänivalta:"
   },
@@ -101,8 +106,8 @@
     "sign-up-text-2": "Rekisteröidy nyt!"
   },
   "sign-up": {
-    "header": "Luo tili",
-    "description": "Hallitse kaikkea lohkoketjussa Ecency-sovelluksessa. Lisätietoja hyödyistä löydät <a href=\"/faq#how-to-join\">UKK</a>",
+    "header": "Liity",
+    "description": "<h3>Sananvapauden koti ja palkitsevat yhteisöt!</h3><br>Yhdellä tilillä hallitset kaikkea <b>Lohkoketjussa</b> ja <b>Ecencyssä</b>.<br><br>Lisätietoja hyödyistä luettavissa <a href=\"/faq#how-to-join\">UKK</a>",
     "username": "Valitse käyttäjänimi",
     "email": "Syötä sähköpostiosoitteesi",
     "ref": "Suosittelija (valinnainen)",
@@ -213,7 +218,7 @@
   "community": {
     "page-description": "{{f}} aiheet",
     "subscribe": "Liity",
-    "subscribed": "Liittyi",
+    "subscribed": "Liittynyt",
     "unsubscribe": "Poistu",
     "post": "Uusi julkaisu",
     "posts": "Julkaisut",
@@ -236,7 +241,7 @@
   "community-card": {
     "description": "Kuvaus",
     "rules": "Säännöt",
-    "team": "Johtavat",
+    "team": "Vetäjät",
     "edit": "Muokkaa asetuksia",
     "edit-team": "Muokkaa rooleja",
     "profile-image": "Yhteisön profiilikuva",
@@ -371,7 +376,8 @@
     "withdraw-hbd": "Kotiuta Hive Dollar",
     "delegate": "Valtuuta",
     "power-down": "Power down",
-    "withdraw-routes": "Palauta Reitit"
+    "withdraw-routes": "Palauta Reitit",
+    "converting-hbd-amount": "Muunnos HIVE:ksi"
   },
   "withdraw-routes": {
     "title": "Palauta tilit",
@@ -382,7 +388,7 @@
   "points": {
     "get": "Osta Pisteitä",
     "unclaimed-points": "Lunastamattomat pisteet",
-    "claim-reward-points": "Lunasta palkkiot",
+    "claim-reward-points": "Lunasta Pisteet",
     "main-description": "Pisteitä voidaan käyttää sovelluksen sisäisiin palveluihin, kuten Korostamiseen, Korottamiseen ja Lahjoittamisen. Ansaitse niitä käyttämällä Ecency-sovellusta ja paranna kokemustasi.",
     "earn-points": "Kuinka ansaita enemmän Pisteitä",
     "post-desc": "Voit tienata pisteitä julkaisemalla säännöllisesti. Julkaisusta saa 15 pistettä.",
@@ -399,7 +405,7 @@
     "vote-list-desc": "Pisteitä äänistä",
     "reblog-list-desc": "Pisteitä jaoista",
     "login-list-desc": "Pisteitä sisäänkirjautumisesta",
-    "checkin-list-desc": "Pisteitä sydämestä",
+    "checkin-list-desc": "Pisteitä käytöstä",
     "checkin-extra-list-desc": "Käyttöbonus",
     "transfer-sent-list-desc": "Siirrä käyttäjälle {{n}}",
     "transfer-incoming-list-desc": "Siirrä käyttäjältä {{n}}",
@@ -547,7 +553,8 @@
     "gallery": "Galleria",
     "emoji": "Emoji",
     "image-error": "Kuvaa ei voitu ladata.",
-    "image-error-size": "Kuvan koko on liian suuri, kokeile pienempää kuvaa."
+    "image-error-size": "Kuvan koko on liian suuri, kokeile pienempää kuvaa.",
+    "fragments": "Katkelmat"
   },
   "emoji-picker": {
     "filter-placeholder": "Suodata",
@@ -640,9 +647,9 @@
     "ignored-str": "sivuutetut",
     "reblog-str": "jakoi julkaisusi:",
     "transfer-str": "lähetti sinulle",
-    "spin-str": "Aika ansaita lisää pisteitä, pyöritä rulettia Ecency Mobile -sovelluksessa",
+    "spin-str": "Aika ansaita lisää Pisteitä, pyöritä rulettia Ecency Mobile -sovelluksessa",
     "inactive-str": "Ole aktiivinen! Kirjoita ja jatka tienaamista",
-    "referral-str": "liittyi suosituksestasi, toivota heidät tervetulleeksi",
+    "referral-str": "liittyi suosituksestasi, toivota hänet tervetulleeksi",
     "refresh": "Päivitä",
     "mark-all-read": "Merkitse kaikki luetuksi",
     "mark-read": "Merkitse luetuksi",
@@ -670,13 +677,45 @@
   },
   "search-page": {
     "title": "Haku",
-    "description": "Löydä sensuroimatonta sisältöä, yhteisöjä ja käyttäjiä",
-    "n-results-for-q": "{{n}} tulosta",
-    "no-result": "Ei tuloksia",
-    "sort-by": "lajittelujärjestys",
+    "description": "Löydä sensuroimatonta sisältöä, yhteisöjä ja käyttäjiä"
+  },
+  "search-comment": {
+    "title": "Tulokset",
+    "matches": "{{n}} tulosta",
+    "matches-singular": "1 tulos",
+    "advanced": "Lisäasetukset",
+    "search": "Haku",
+    "search-placeholder": "hakusana",
+    "author": "Tekijä",
+    "author-placeholder": "käyttäjänimi",
+    "type": "Tyyppi",
+    "type-": "Kaikki",
+    "type-post": "Julkaisut",
+    "type-comment": "Kommentit",
+    "category": "Kategoriat",
+    "category-placeholder": "kategoria",
+    "tags": "Tunnisteet",
+    "tags-placeholder": "pilkulla erotetut tunnisteet",
+    "date": "Päivämäärä",
+    "date-week": "Viikko",
+    "date-month": "Kuukausi",
+    "date-year": "Vuosi",
+    "date-all": "Kaikki",
+    "sort": "Lajittele",
     "sort-popularity": "Suosio",
     "sort-relevance": "Osuvuus",
-    "sort-newest": "Päivämäärä"
+    "sort-newest": "Viimeisimmät",
+    "hide-low": "Piilota alhaisen palkkion sisältö",
+    "show-more": "näytä lisää"
+  },
+  "search-people": {
+    "title": "Ihmiset"
+  },
+  "search-topics": {
+    "title": "Aiheet"
+  },
+  "search-communities": {
+    "title": "Yhteisöt"
   },
   "witnesses": {
     "page-title": "Todistajat",
@@ -724,7 +763,8 @@
     "copied": "Kopioitu leikepöydälle"
   },
   "drafts": {
-    "title": "Luonnokset"
+    "title": "Luonnokset",
+    "filter": "Etsi otsikon mukaan"
   },
   "schedules": {
     "title": "Ajastetut julkaisut",
@@ -735,6 +775,24 @@
   },
   "favorites": {
     "title": "Suosikit"
+  },
+  "fragments": {
+    "title": "Katkelmat",
+    "create-first": "Luo ensimmäinen katkelmasi",
+    "filter": "Etsi otsikon mukaan",
+    "form-title": "Otsikko",
+    "form-body": "Sisältö"
+  },
+  "password-update": {
+    "title": "Vaihda Salasana",
+    "account": "Tili",
+    "cur-pass": "Nykyinen salasana",
+    "new-pass": "Uusi salasana",
+    "new-pass2": "Vahvista uusi salasana",
+    "error-new2": "Salasanojen on oltava samat",
+    "pass-gen": "Klikkaa luodaksesi salasanan",
+    "label-check": "Olen tallentanut turvallisesti salasanani",
+    "updated": "Salasana on tallennettu onnistuneesti!"
   },
   "scroll-to-top": {
     "title": "Vieritä ylös"
@@ -755,7 +813,7 @@
       "page-title": "Ecency UKK",
       "page-sub-title": "Sisällysluettelo",
       "what-is-ecency-header": "Mikä on Ecency?",
-      "what-is-ecency-body": "<p>Ecency on <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">lohkoketju</a> -pohjainen sosiaalinen verkosto, jonka on mahdollistaa <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency tarjoaa sensuroimattoman, vapaan, rajattoman ja palkitsevan alustan sisällön luojille.</p><p>Hankkeen käynnisti ja perusti Elokuussa 2016 <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> vaihtoehtoiseksi sosiaaliseksi verkostoksi. Siitä lähtien hanke on kasvanut paljon suuremmaksi joukoksi osallistujia (kääntäjät, testaajat, kehittäjät, vaikuttajat, sisällöntuottajat ja käyttäjät), jotka mahdollistivat Ecencyn.</p><p>Ecency auttaa perehdyttämään ihmisiä lohkoketjuteknologiaan, jossa käyttäjille maksetaan ajasta sekä resursseista ja voimme oppia samalla nauttia lohkoketjun sosiaalisista näkökohdista. Helppokäyttöisyyden ansiosta käyttäjät oppivat ja myös siirtyvät sijoittajiksi, teknologian ja yhteisön uudistajiksi.</p>",
+      "what-is-ecency-body": "<p>Ecency on <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">lohkoketju</a> -pohjainen sosiaalinen verkosto, jonka on mahdollistaa <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency tarjoaa sensuroimattoman, vapaan, rajattoman ja palkitsevan alustan sisällön luojille.</p><p>Hankkeen käynnisti ja perusti Elokuussa 2016 <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> vaihtoehtoiseksi sensuurivapaaksi, käyttäjän hallittavaksi avoimen lähdekoodin sosiaaliseksi verkostoksi. On <a class=\"push-link\" href=\"/contributors\"> monia itsenäisiä vapaaehtoisia osallistujia </a> jotka haluavat pitää sananvapauden vision ja hengen yllä. </p><p>Ecency auttaa ihmisiä opettelemaan Lohkoketjuteknologian käyttöä, jossa käyttäjiä palkitaan ajastaan sekä resursseista oppien lohkoketjun sosiaalisia ominaisuuksia. Käytön helppouden ansiosta käyttäjät oppivat ja tulevat samalla uuden internetin sijoittajiksi ja kehittäjiksi.</p>",
       "what-is-hive-header": "Mikä on Hive-lohkoketju?",
       "what-is-hive-body": "<p>Hive on lohkoketju, joka oli suunniteltu olemaan nopea, ilmainen, hajautettu sekä sensuroimaton alusta Web3- sovelluksineen, joissa on sisäänrakennettuja ominaisuuksia, joissa omistajat voivat ansaita palkintoja panostamalla, tarkastamalla, pelaamalla sekä vaihtamalla - ilman välikäsiä (hajautettu). Hive-lohkoketjun yleisimmät merkit ovat HIVE, HIVE DOLLARS, HIVE POWER.</p>",
       "what-is-difference-header": "Mikä ero on Ecencyllä ja muilla Hive-käyttöliittymillä?",
@@ -770,12 +828,12 @@
       "how-to-signin-body": "<p><img src=\"https://images.ecency.com/p/7258xSVeJbKmTr9Z4jhbPhjS9pMWA2mTwBMDbXqk9G9wdMw2bwR4hXqRQt9S7UBFrBAWCYWddjn3G34ETv5KWB5KGmuZ8ixBB9oKHTFvjjnTkRLp4ttrFQtpgtNnRUEA9NtmyFmgyuuK4?format=match&mode=fit\"/></p><p>Voit kirjautua Ecencyyn käyttämällä käyttäjätunnusta ja master-salasanaa tai käyttämällä Aktiivisia Privaattiavaimia. Suhtaudumme turvallisuuteen hyvin vakavasti, siksi emme koskaan säilytä yksityisiä avaimiasi, mobiilisovelluksissa ne on salattu valitsemallasi ylimääräisellä PIN-koodilla, verkkosivustolla niitä ei koskaan ole tallenneta. Voit myös käyttää <a href=\"https://hivesigner.com\" target=\"_blank\" rel=\"noopener noreferrer\">Hivesigner OAuth2</a> -todennuspalvelua kirjautumiseen, sekä hallinnoidaksesi ja suorittaaksesi toimintoja.</p>",
       "how-referrals-work-header": "Kuinka suositusjärjestelmä toimii Ecencyssä?",
       "how-referrals-work-body": "<p>Suositusjärjestelmä on yksinkertainen, voit kutsua ystäviäsi lisäämällä käyttäjätunnuksesi tähän linkkiin https://ecency. om/signup?referral=käyttäjänimi ja jaa se ystäviesi kanssa. Kun ystäväsi liittyvät Ecencyn jäseniksi ja ansaitsevat ensimmäiset 250 pistettä, ansaitset 100 pistettä. Suosituksissa ja niiden palkkioissa ei ole rajoituksia.</p>",
-      "what-is-points-header": "Mitä ovat Ecencyn pisteet ja miten niitä käytetään?",
-      "what-is-points-body": "<p>Ecency-pisteitä luodaan ja palkitaan jatkuvasti kaikille käyttäjille erilaisista sosiaalisista toiminnoista, joita he suorittavat verkkosivuilla, mobiili- tai työpöytäsovelluksessa. Pisteitä voidaan käyttää korostamiseen, tehostamiseen, sekä voidaan jopa siirtää tai lahjoittaa toiselle käyttäjälle. Voit myös ostaa pisteitä mobiilisovelluksellamme.</p>",
+      "what-is-points-header": "Mitä ovat Ecencyn Pisteet ja miten niitä käytetään?",
+      "what-is-points-body": "<p>Ecency Pisteitä luodaan ja palkitaan jatkuvasti kaikille käyttäjille erilaisista sosiaalisista toiminnoista, joita he suorittavat verkkosivuilla, mobiili- tai työpöytäsovelluksessa. Pisteitä voidaan käyttää korostamiseen, tehostamiseen, sekä voidaan jopa siirtää tai lahjoittaa toiselle käyttäjälle. Voit myös ostaa pisteitä mobiilisovelluksellamme.</p>",
       "where-tokens-come-header": "Mistä nämä merkit tulevat?",
       "where-tokens-come-body": "<p><img src=\"https://images.ecency.com/p/7kq2TLHKEHhCCDwNZLfFLu7msWtbdFb7vZaJJ9Y13GAc18vfVNAj8ZctLWmsVfMCCFtwGdULbZKT89faeBymhPsySU5tp4RnvDsHz6ZBxXHWA4g34ck4LHnR2vGkqsHvjzhizhpV8K6JrQ4sy7cCgJQksUUYPKp4d9XbERHkjnZV3PTdhbiUZPYJ43RS8cQu2sEmUbAgqZExuYMGa46SDa4vCunH2w6oNpommW5L1CCdfwdgX5i9eCpcS5fHo4t8btjVE69edzrUN8anr6T3v8AFYHC?format=match&mode=fit\"/></p><p>Hive-verkko luo jatkuvasti uusia digitaalisia merkkejä palkitsemaan sisällönluojia ja tarkastajia. Osa vastikään luoduista merkeistä siirretään käyttäjille, jotka tuovat lisäarvoa alustalle lähettämällä, kommentoimalla ja äänestämällä muiden julkaisuja. Loput jaetaan HIVE POWERin haltijoille ja todistajille, jotka ylläpitävät lohkoketjua.</p>",
       "how-promotion-work-header": "Kuinka korostaminen toimii?",
-      "how-promotion-work-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfoi6H93UHPFEEQutPvax8LP1XqGWMa9geug5SBEEhLUEHKVvSyBfzhrBm9J4uvmrn28AtPhmwcKx?format=match&mode=fit\"/></p><p>Sisällön korostaminen Ecencyssä on hyvin yksinkertaista ja helppoa. Ecency-pisteitä käytetään korostamaan sisältöä 1, 2, 3, 7 tai 14 päiväksi saamaan enemmän näkyvyyttä. Mainostetut viestit sekoitetaan eri syötteisiin kaikille käyttäjille mobiilisovelluksessa, työpöytäsovelluksessa ja verkkosivuilla. Rajoituksia ei ole, minkä tahansa viran kautta voidaan edistää näkyvyyden ja sitoutumisen lisäämistä. Meillä on oikeus poistaa viestejä myynninedistämislistalta, jos se rikkoo tiettyjä internet-etikettejä.</p>",
+      "how-promotion-work-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfoi6H93UHPFEEQutPvax8LP1XqGWMa9geug5SBEEhLUEHKVvSyBfzhrBm9J4uvmrn28AtPhmwcKx?format=match&mode=fit\"/></p><p>Sisällön korostaminen Ecencyssä on hyvin yksinkertaista ja helppoa. Ecency Pisteitä käytetään korostamaan sisältöä 1, 2, 3, 7 tai 14 päiväksi saamaan enemmän näkyvyyttä. Mainostetut viestit sekoitetaan eri syötteisiin kaikille käyttäjille mobiilisovelluksessa, työpöytäsovelluksessa ja verkkosivuilla. Rajoituksia ei ole, minkä tahansa viran kautta voidaan edistää näkyvyyden ja sitoutumisen lisäämistä. Meillä on oikeus poistaa viestejä myynninedistämislistalta, jos se rikkoo tiettyjä internet-etikettejä.</p>",
       "how-boosting-work-header": "Kuinka tehostaminen toimii?",
       "how-boosting-work-body": "<p>Pisteitä voidaan käyttää sisällön tehostamiseen (julkaisut ja kommentit). Moderaattorimme ja tarkastajamme tarkastavat pyyntöjen tehostamisen manuaalisesti, missä saattaa kestää jopa 24 tuntia. <p>Osana ominaisuuksien tarkistamista voimme harkita: a) Onko sisältö alkuperäistä, b) joita ei havaittu cheetalla, mackbot'lla, hivewatchereilla tai muilla mustalla listalla jne. c) käyttäjä ei ole Ecencyn mustalla listalla johtuen väärinkäytöksistä.</p>Tehostus ei takaa tarkastusta, jos sisältöä ei ole tarkastettu 24 tunnin kuluessa, pisteet palautetaan.</p>",
       "how-to-transfer-header": "Kuinka siirrän lohkoketjun merkkejä?",

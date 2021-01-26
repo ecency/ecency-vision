@@ -20,6 +20,7 @@
     "back": "Zurück",
     "load-more": "Mehr laden",
     "empty-list": "Keine Einträge vorhanden",
+    "no-matches": "No matches",
     "save": "Speichern",
     "try-again": "Nochmal versuchen",
     "show": "Anzeigen",
@@ -27,7 +28,9 @@
     "off": "Aus",
     "yes": "Ja",
     "no": "Nein",
-    "done": "Fertig"
+    "done": "Fertig",
+    "apply": "Apply",
+    "close": "Close"
   },
   "confirm": {
     "title": "Bist du sicher?",
@@ -36,7 +39,7 @@
   },
   "entry-filter": {
     "filter-trending": "im Trend",
-    "filter-hot": "Beliebt",
+    "filter-hot": "Hot",
     "filter-created": "Neu",
     "filter-promoted": "Promotet",
     "filter-payout": "Auszahlung",
@@ -61,7 +64,7 @@
     "header-community": "Communities"
   },
   "switch-lang": {
-    "contributors": "Contributors"
+    "contributors": "Mitwirkende"
   },
   "user-nav": {
     "wallet": "Wallet",
@@ -74,6 +77,8 @@
     "drafts": "Entwürfe",
     "bookmarks": "Lesezeichen",
     "schedules": "Zeitpläne",
+    "fragments": "Snippets",
+    "settings": "Settings",
     "logout": "Abmelden",
     "vote-power": "Voting Power:"
   },
@@ -101,8 +106,8 @@
     "sign-up-text-2": "Jetzt registrieren!"
   },
   "sign-up": {
-    "header": "Registrieren",
-    "description": "One account to manage everything on blockchain and Ecency. Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
+    "header": "Join",
+    "description": "<h3>Home of Free speech and Rewarding communities!</h3><br>One account to manage everything on <b>Blockchain</b> and <b>Ecency</b>.<br><br>Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
     "username": "Wähle einen Benutzernamen",
     "email": "E-Mail Adresse eingeben",
     "ref": "Referral Nutzer (optional)",
@@ -177,13 +182,13 @@
   },
   "entry": {
     "via-app": "über <span class=\"app-name\">{{app}}</span>",
-    "comment-entry-title": "You are viewing a single comment's thread from: ",
+    "comment-entry-title": "Du siehst das Thema eines einzelnen Kommentars von: ",
     "comment-entry-go-root": "kompletten Inhalt anzeigen",
     "comment-entry-go-parent": "Übergeordneten Beitrag ansehen",
     "show-history": "Bearbeitungsverlauf ansehen",
-    "hidden-warning": "This post was hidden due to low ratings.",
-    "address-copy": "Copy post address",
-    "address-copied": "Post address copied to clipboard."
+    "hidden-warning": "Dieser Beitrag wurde aufgrund niedriger Bewertungen ausgeblendet.",
+    "address-copy": "Adresse des Post kopieren",
+    "address-copied": "Post Adresse in die Zwischenablage kopiert."
   },
   "edit-history": {
     "title": "Verlauf bearbeiten",
@@ -248,7 +253,7 @@
     "username": "Benutzername",
     "role": "Rolle",
     "user-not-found": "Der Benutzer existiert nicht!",
-    "explanations": "<h3>Role Permissions</h3><p><strong>Owner</strong> - assign admins</p><p><strong>Admin</strong> - edit settings, assign mods</p><p><strong>Moderator</strong> - mute, pin, set user titles</p><p><strong>Member</strong> - listed on leadership team</p><p><strong>Guest</strong> - default; can post and comment</p><p><strong>Muted</strong> - new posts automatically muted</p>"
+    "explanations": "<h3>Rollenberechtigungen</h3><p><strong>Besitzer</strong> - Admins zuweisen</p><p><strong>Admin</strong> - Einstellungen bearbeiten, Mods zuweisen</p><p><strong>Moderator</strong> - Beiträge Muten und anpinnen, Benutzertitel anpassen</p><p><strong>Mitglied</strong> - Wird in Mitgliederübersicht dargestellt</p><p><strong>Gast</strong> - Standard; Kann posten und kommentieren</p><p><strong>Muted</strong> - Neue Beiträge sind automatisch ausgeblendet.</p>"
   },
   "community-settings": {
     "dialog-title": "Community Einstellungen",
@@ -363,7 +368,7 @@
     "savings": "SAVINGS",
     "savings-description": "Balance subject to 3 day withdraw waiting period.",
     "next-power-down": "The next power down is {{time}}, {{amount}}",
-    "transfer": "Transfer",
+    "transfer": "Überweisen",
     "transfer-to-savings": "Zu den Ersparnissen transferieren",
     "convert": "Umwandeln",
     "power-up": "Power Up",
@@ -371,7 +376,8 @@
     "withdraw-hbd": "HIVE Dollar auszahlen",
     "delegate": "Delegieren",
     "power-down": "Power-Down",
-    "withdraw-routes": "Auszahlungen"
+    "withdraw-routes": "Auszahlungen",
+    "converting-hbd-amount": "Converting to HIVE"
   },
   "withdraw-routes": {
     "title": "Konten einlösen",
@@ -484,17 +490,17 @@
   "trx-common": {
     "insufficient-funds": "Nicht ausreichendes Guthaben",
     "sign-title": "Signiere Transaktion",
-    "sign-sub-title": "Sign your transaction",
-    "success-title": "Success",
-    "success-sub-title": "Transaction successful"
+    "sign-sub-title": "Signiere deine Transaktion",
+    "success-title": "Erfolgreich",
+    "success-sub-title": "Transaktion erfolgreich"
   },
   "transactions": {
-    "title": "History",
-    "type-curation_reward": "Curation Reward",
-    "type-author_reward": "Author Reward",
+    "title": "Historie",
+    "type-curation_reward": "Kurator-Belohnung",
+    "type-author_reward": "Autor-Belohnung",
     "type-comment_benefactor_reward": "Comment Benefactor Reward",
-    "type-claim_reward_balance": "Claim rewards",
-    "type-transfer": "Transfer",
+    "type-claim_reward_balance": "Belohnungen abholen",
+    "type-transfer": "Überweisen",
     "type-transfer_to_vesting": "Transfer to vesting",
     "type-withdraw_vesting": "Withdraw vesting",
     "type-fill_order": "Fill order"
@@ -547,7 +553,8 @@
     "gallery": "Galerie",
     "emoji": "Emoji",
     "image-error": "Das Bild konnte nicht hochgeladen werden.",
-    "image-error-size": "Dateigröße überschritten, bitte kleineres Bild hochladen."
+    "image-error-size": "Dateigröße überschritten, bitte kleineres Bild hochladen.",
+    "fragments": "Snippets"
   },
   "emoji-picker": {
     "filter-placeholder": "Filter",
@@ -670,19 +677,51 @@
   },
   "search-page": {
     "title": "Suchen",
-    "description": "Find uncensored content, communities and users",
-    "n-results-for-q": "{{n}} Ergebnisse",
-    "no-result": "Keine Ergebnisse",
-    "sort-by": "sortieren nach",
-    "sort-popularity": "Beliebtheit",
-    "sort-relevance": "Relevanz",
-    "sort-newest": "Datum"
+    "description": "Find uncensored content, communities and users"
+  },
+  "search-comment": {
+    "title": "Results",
+    "matches": "{{n}} matches",
+    "matches-singular": "1 match",
+    "advanced": "Advanced",
+    "search": "Search",
+    "search-placeholder": "search phrase",
+    "author": "Author",
+    "author-placeholder": "username",
+    "type": "Type",
+    "type-": "All",
+    "type-post": "Post",
+    "type-comment": "Comment",
+    "category": "Category",
+    "category-placeholder": "category",
+    "tags": "Tags",
+    "tags-placeholder": "comma separated tags",
+    "date": "Date",
+    "date-week": "Week",
+    "date-month": "Month",
+    "date-year": "Year",
+    "date-all": "All",
+    "sort": "Sort",
+    "sort-popularity": "Popularity",
+    "sort-relevance": "Relevance",
+    "sort-newest": "Recent",
+    "hide-low": "Hide low payout content",
+    "show-more": "show more"
+  },
+  "search-people": {
+    "title": "People"
+  },
+  "search-topics": {
+    "title": "Topics"
+  },
+  "search-communities": {
+    "title": "Communities"
   },
   "witnesses": {
     "page-title": "Witnesses",
     "page-description": "Consensus block producers selection",
     "page-description-long": "Role of witnesses or block producers in Hive blockchain is to act as the network's governance body. Community elects them to represent their voice and each user can elect up to 30 witnesses. Top 20 witnesses are producing blocks every minute while rest remain as backup witness and gets randomized chance every minute. This role is integral part of consensus mechanism blockchain runs on and recommend user engagement to vote on trusted witnesses.",
-    "remaining": "<span>{{n}}</span> of {{max}} votes remaining",
+    "remaining": "<span>{{n}}</span> von {{max}} Votes verbleibend",
     "list-rank": "Rang",
     "list-witness": "Witness",
     "list-miss": "ausgelassene Blocks",
@@ -724,7 +763,8 @@
     "copied": "Copied to clipboard"
   },
   "drafts": {
-    "title": "Entwürfe"
+    "title": "Entwürfe",
+    "filter": "Search by title"
   },
   "schedules": {
     "title": "Geplante Beiträge",
@@ -735,6 +775,24 @@
   },
   "favorites": {
     "title": "Favoriten"
+  },
+  "fragments": {
+    "title": "Snippets",
+    "create-first": "Create your first snippet",
+    "filter": "Search by title",
+    "form-title": "Title",
+    "form-body": "Body"
+  },
+  "password-update": {
+    "title": "Change Password",
+    "account": "Account",
+    "cur-pass": "Current password",
+    "new-pass": "New password",
+    "new-pass2": "Confirm new password",
+    "error-new2": "Passwords must be same",
+    "pass-gen": "Click to generate password",
+    "label-check": "I have securely saved my generated password",
+    "updated": "Password updated successfully!"
   },
   "scroll-to-top": {
     "title": "Scrolle zum Anfang"
@@ -755,7 +813,7 @@
       "page-title": "Ecency FAQ",
       "page-sub-title": "Inhaltsverzeichnis",
       "what-is-ecency-header": "Was ist Ecency?",
-      "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based social network - powered by <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency offers uncensored, free, limitless, rewarding platform for content creators.</p><p>Project was initiated and founded by <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> in August 2016 as an alternative social network. Since then project has grown to much larger group of contributors (translators, testers, developers, influencers, content creators and consumers) who helped to shape Ecency.</p><p>Ecency helps onboarding masses into Blockchain technology where users are getting paid for their time, resources and learn while enjoying social aspects of blockchain. Through ease of use, users not only learn but also become investors, innovators of the technology and community.</p>",
+      "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based social network - powered by <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency is home of free speech and rewarding communities for content creators.</p><p>Project is founded by <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> in August 2016 as an alternative social network that's uncensored, user controled, immutable and opensource. Currently there are <a class=\"push-link\" href=\"/contributors\">many independent and voluntary contributors</a> wanting to keep vision and spirit of free speech.</p><p>Ecency helps onboarding masses into Blockchain technology where users are getting paid for their time, resources and learn while enjoying social aspects of blockchain. Through ease of use, users not only learn but also become investors, innovators of the new internet.</p>",
       "what-is-hive-header": "What is Hive blockchain?",
       "what-is-hive-body": "<p>Hive is a blockchain that was designed to be fast, feeless, decentralized, uncensored platform for Web3.0 applications, with built-in features where stake holders can earn rewards by staking, curating, posting, playing games, trading - all without any middle man (decentralized). Tokens on Hive blockchain called HIVE, HIVE DOLLARS, HIVE POWER.</p>",
       "what-is-difference-header": "What's the difference between Ecency and other Hive interfaces?",

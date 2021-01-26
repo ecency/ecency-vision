@@ -20,6 +20,7 @@
     "back": "Geri",
     "load-more": "Daha çox yüklə",
     "empty-list": "Burada heç nə yoxdur",
+    "no-matches": "No matches",
     "save": "Saxla",
     "try-again": "Yenidən sına",
     "show": "Göstər",
@@ -27,7 +28,9 @@
     "off": "Off",
     "yes": "Yes",
     "no": "No",
-    "done": "Done"
+    "done": "Done",
+    "apply": "Apply",
+    "close": "Close"
   },
   "confirm": {
     "title": "Əminsiniz?",
@@ -74,6 +77,8 @@
     "drafts": "Qaralamalar",
     "bookmarks": "Əlfəcinlər",
     "schedules": "Schedules",
+    "fragments": "Snippets",
+    "settings": "Settings",
     "logout": "Çıxış",
     "vote-power": "Vote Power:"
   },
@@ -101,8 +106,8 @@
     "sign-up-text-2": "İndi qeydiyyatdan keç!"
   },
   "sign-up": {
-    "header": "Qeydiyyatdan keç",
-    "description": "One account to manage everything on blockchain and Ecency. Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
+    "header": "Join",
+    "description": "<h3>Home of Free speech and Rewarding communities!</h3><br>One account to manage everything on <b>Blockchain</b> and <b>Ecency</b>.<br><br>Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
     "username": "Bir istifadəçi adı götür",
     "email": "E-poçt ünvanını daxil et",
     "ref": "Referred user (optional)",
@@ -371,7 +376,8 @@
     "withdraw-hbd": "Hive Dollarını çək",
     "delegate": "Delegate",
     "power-down": "Gücü azalt",
-    "withdraw-routes": "Withdraw Routes"
+    "withdraw-routes": "Withdraw Routes",
+    "converting-hbd-amount": "Converting to HIVE"
   },
   "withdraw-routes": {
     "title": "Withdraw accounts",
@@ -547,7 +553,8 @@
     "gallery": "Gallery",
     "emoji": "Emoji",
     "image-error": "Couldn't upload image.",
-    "image-error-size": "Image size is too large, try smaller size image again."
+    "image-error-size": "Image size is too large, try smaller size image again.",
+    "fragments": "Snippets"
   },
   "emoji-picker": {
     "filter-placeholder": "Filter",
@@ -670,13 +677,45 @@
   },
   "search-page": {
     "title": "Axtar",
-    "description": "Senzurasız məzmunu, cəmiyyətləri və istifadəçiləri tapın",
-    "n-results-for-q": "{{n}} nəticə",
-    "no-result": "Nəticə yoxdur",
-    "sort-by": "sırala",
-    "sort-popularity": "Məşhurluq",
-    "sort-relevance": "Uyğunluq",
-    "sort-newest": "Tarix"
+    "description": "Senzurasız məzmunu, cəmiyyətləri və istifadəçiləri tapın"
+  },
+  "search-comment": {
+    "title": "Results",
+    "matches": "{{n}} matches",
+    "matches-singular": "1 match",
+    "advanced": "Advanced",
+    "search": "Search",
+    "search-placeholder": "search phrase",
+    "author": "Author",
+    "author-placeholder": "username",
+    "type": "Type",
+    "type-": "All",
+    "type-post": "Post",
+    "type-comment": "Comment",
+    "category": "Category",
+    "category-placeholder": "category",
+    "tags": "Tags",
+    "tags-placeholder": "comma separated tags",
+    "date": "Date",
+    "date-week": "Week",
+    "date-month": "Month",
+    "date-year": "Year",
+    "date-all": "All",
+    "sort": "Sort",
+    "sort-popularity": "Popularity",
+    "sort-relevance": "Relevance",
+    "sort-newest": "Recent",
+    "hide-low": "Hide low payout content",
+    "show-more": "show more"
+  },
+  "search-people": {
+    "title": "People"
+  },
+  "search-topics": {
+    "title": "Topics"
+  },
+  "search-communities": {
+    "title": "Communities"
   },
   "witnesses": {
     "page-title": "Witnesses",
@@ -724,7 +763,8 @@
     "copied": "Lövhəyə kopyalandı"
   },
   "drafts": {
-    "title": "Qaralamalar"
+    "title": "Qaralamalar",
+    "filter": "Search by title"
   },
   "schedules": {
     "title": "Scheduled Posts",
@@ -735,6 +775,24 @@
   },
   "favorites": {
     "title": "Sevimlilər"
+  },
+  "fragments": {
+    "title": "Snippets",
+    "create-first": "Create your first snippet",
+    "filter": "Search by title",
+    "form-title": "Title",
+    "form-body": "Body"
+  },
+  "password-update": {
+    "title": "Change Password",
+    "account": "Account",
+    "cur-pass": "Current password",
+    "new-pass": "New password",
+    "new-pass2": "Confirm new password",
+    "error-new2": "Passwords must be same",
+    "pass-gen": "Click to generate password",
+    "label-check": "I have securely saved my generated password",
+    "updated": "Password updated successfully!"
   },
   "scroll-to-top": {
     "title": "Yuxarı sürüşdür"
@@ -755,7 +813,7 @@
       "page-title": "Ecency TSS",
       "page-sub-title": "Mündəricat",
       "what-is-ecency-header": "Ecency nədir?",
-      "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based social network - powered by <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency offers uncensored, free, limitless, rewarding platform for content creators.</p><p>Project was initiated and founded by <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> in August 2016 as an alternative social network. Since then project has grown to much larger group of contributors (translators, testers, developers, influencers, content creators and consumers) who helped to shape Ecency.</p><p>Ecency helps onboarding masses into Blockchain technology where users are getting paid for their time, resources and learn while enjoying social aspects of blockchain. Through ease of use, users not only learn but also become investors, innovators of the technology and community.</p>",
+      "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based social network - powered by <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency is home of free speech and rewarding communities for content creators.</p><p>Project is founded by <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> in August 2016 as an alternative social network that's uncensored, user controled, immutable and opensource. Currently there are <a class=\"push-link\" href=\"/contributors\">many independent and voluntary contributors</a> wanting to keep vision and spirit of free speech.</p><p>Ecency helps onboarding masses into Blockchain technology where users are getting paid for their time, resources and learn while enjoying social aspects of blockchain. Through ease of use, users not only learn but also become investors, innovators of the new internet.</p>",
       "what-is-hive-header": "Hive blok zənciri nədir?",
       "what-is-hive-body": "<p>Hive is a blockchain that was designed to be fast, feeless, decentralized, uncensored platform for Web3.0 applications, with built-in features where stake holders can earn rewards by staking, curating, posting, playing games, trading - all without any middle man (decentralized). Tokens on Hive blockchain called HIVE, HIVE DOLLARS, HIVE POWER.</p>",
       "what-is-difference-header": "What's the difference between Ecency and other Hive interfaces?",
