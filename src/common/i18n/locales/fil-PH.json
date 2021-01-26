@@ -376,7 +376,8 @@
     "withdraw-hbd": "Ilabas ang Hive Dollar",
     "delegate": "Magpahiram",
     "power-down": "Magpahina",
-    "withdraw-routes": "Ilabas ang mga ruta"
+    "withdraw-routes": "Ilabas ang mga ruta",
+    "converting-hbd-amount": "Converting to HIVE"
   },
   "withdraw-routes": {
     "title": "Alisin ang mga account",
