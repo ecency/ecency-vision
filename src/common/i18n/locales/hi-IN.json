@@ -376,7 +376,8 @@
     "withdraw-hbd": "हाइव डॉलर निकालें",
     "delegate": "प्रतिनिधि",
     "power-down": "पावर नीचे करे",
-    "withdraw-routes": "निकाशी मार्ग"
+    "withdraw-routes": "निकाशी मार्ग",
+    "converting-hbd-amount": "Converting to HIVE"
   },
   "withdraw-routes": {
     "title": "निकाशी खाता",
