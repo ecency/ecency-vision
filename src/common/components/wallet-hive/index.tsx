@@ -397,7 +397,7 @@ export class WalletHive extends Component<Props, State> {
                                     <div className="amount amount-passive converting-hbd">
                                         <Tooltip content={_t("wallet.converting-hbd-amount")}>
                                       <span>
-                                        {formattedNumber(converting, {suffix: "HBD"})}
+                                          {"+"} {formattedNumber(converting, {prefix: "$"})}
                                       </span>
                                         </Tooltip>
                                     </div>

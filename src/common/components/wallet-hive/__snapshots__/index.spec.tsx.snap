@@ -456,7 +456,9 @@ exports[`(2) Render with converting HBD 1`] = `
             <span
               title="Converting to HIVE"
             >
-              1,200.000 HBD
+              +
+               
+              $ 1,200.000
             </span>
           </div>
         </div>
