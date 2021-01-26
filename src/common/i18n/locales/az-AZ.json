@@ -376,7 +376,8 @@
     "withdraw-hbd": "Hive Dollarını çək",
     "delegate": "Delegate",
     "power-down": "Gücü azalt",
-    "withdraw-routes": "Withdraw Routes"
+    "withdraw-routes": "Withdraw Routes",
+    "converting-hbd-amount": "Converting to HIVE"
   },
   "withdraw-routes": {
     "title": "Withdraw accounts",
