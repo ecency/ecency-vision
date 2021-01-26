@@ -28,11 +28,16 @@ export const makePath = (filter: string, tag: string): string => {
     return `/${filter}/${tag}`;
 };
 
+interface CommunityTag {
+    name: string;
+    title: string;
+}
+
 interface Props {
     global: Global;
     history: History;
     communities?: Communities;
-    tag: string;
+    tag: string | CommunityTag;
     children: JSX.Element;
     type?: "link" | "span";
 }
@@ -83,6 +88,10 @@ export class TagLink extends Component<Props> {
     detectCommunity = async () => {
         const {tag} = this.props;
 
+        if (typeof tag !== "string") {
+            return
+        }
+
         // tag is not community tag or already added to cache
         if (!isCommunity(tag) || comTagGet(tag) !== undefined) {
             return;
@@ -119,7 +128,7 @@ export class TagLink extends Component<Props> {
         const {tag, global, history} = this.props;
         const {filter} = global;
 
-        const newLoc = makePath(filter, tag);
+        const newLoc = typeof tag === "string" ? makePath(filter, tag) : makePath(filter, tag.name);
 
         history.push(newLoc);
     };
@@ -129,21 +138,30 @@ export class TagLink extends Component<Props> {
 
         const {filter} = global;
 
-        const href = makePath(filter, tag);
+        const href = typeof tag === "string" ? makePath(filter, tag) : makePath(filter, tag.name);
 
         if (type === "link") {
             const props = Object.assign({}, children.props, {href, onClick: this.clicked});
 
-            if (comTagGet(tag)) {
-                props.children = comTagGet(tag);
+            if (typeof tag === "string") {
+                if (comTagGet(tag)) {
+                    props.children = comTagGet(tag);
+                }
+            } else {
+                props.children = tag.title;
             }
+
 
             return createElement("a", props);
         } else if (type === "span") {
             const props = Object.assign({}, children.props);
 
-            if (comTagGet(tag)) {
-                props.children = comTagGet(tag);
+            if (typeof tag === "string") {
+                if (comTagGet(tag)) {
+                    props.children = comTagGet(tag);
+                }
+            } else {
+                props.children = tag.title;
             }
 
             return createElement("span", props);
