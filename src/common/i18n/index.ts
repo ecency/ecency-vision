@@ -16,6 +16,10 @@ export const langOptions = [
         name: "हिन्दी"
     },
     {
+        code: "it-IT",
+        name: "Italiano"
+    },
+    {
         code: "id-ID",
         name: "Bahasa Indonesia"
     },
@@ -41,6 +45,7 @@ const enUs = require("./locales/en-US.json");
 const fiFI = require("./locales/fi-FI.json");
 const esES = require("./locales/es-ES.json");
 const hiIN = require("./locales/hi-IN.json");
+const itIT = require("./locales/it-IT.json");
 const idID = require("./locales/id-ID.json");
 const ptPT = require("./locales/pt-PT.json");
 const srCS = require("./locales/sr-CS.json");
@@ -58,6 +63,9 @@ const resources = {
     },
     ["hi-IN"]: {
         translation: hiIN
+    },
+    ["it-IT"]: {
+        translation: itIT
     },
     ["id-ID"]: {
         translation: idID
