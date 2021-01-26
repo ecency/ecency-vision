@@ -376,7 +376,8 @@
     "withdraw-hbd": "Išsiimti Hive Dollar",
     "delegate": "Delegate",
     "power-down": "Power down",
-    "withdraw-routes": "Withdraw Routes"
+    "withdraw-routes": "Withdraw Routes",
+    "converting-hbd-amount": "Converting to HIVE"
   },
   "withdraw-routes": {
     "title": "Withdraw accounts",
