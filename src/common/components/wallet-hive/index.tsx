@@ -25,11 +25,13 @@ import HiveWallet from "../../helper/hive-wallet";
 
 import {vestsToHp} from "../../helper/vesting";
 
-import {getAccount} from "../../api/hive";
+import {getAccount, getConversionRequests} from "../../api/hive";
 
 import {claimRewardBalance, formatError} from "../../api/operations";
 
 import formattedNumber from "../../util/formatted-number";
+
+import parseAsset from "../../helper/parse-asset";
 
 import {_t} from "../../i18n";
 
@@ -57,6 +59,7 @@ interface State {
     withdrawRoutes: boolean;
     transferMode: null | TransferMode;
     transferAsset: null | TransferAsset;
+    converting: number
 }
 
 export class WalletHive extends Component<Props, State> {
@@ -68,10 +71,15 @@ export class WalletHive extends Component<Props, State> {
         transfer: false,
         withdrawRoutes: false,
         transferMode: null,
-        transferAsset: null
+        transferAsset: null,
+        converting: 0
     };
 
     _mounted: boolean = true;
+
+    componentDidMount() {
+        this.fetchConvertingAmount();
+    }
 
     componentWillUnmount() {
         this._mounted = false;
@@ -82,6 +90,23 @@ export class WalletHive extends Component<Props, State> {
             this.setState(state, cb);
         }
     };
+
+    fetchConvertingAmount = () => {
+        const {account} = this.props;
+
+        getConversionRequests(account.name).then(r => {
+            if (r.length === 0) {
+                return;
+            }
+
+            let converting = 0;
+            r.forEach(x => {
+                converting += parseAsset(x.amount).amount;
+            });
+
+            this.stateSet({converting});
+        });
+    }
 
     toggleDelegatedList = () => {
         const {delegatedList} = this.state;
@@ -138,7 +163,7 @@ export class WalletHive extends Component<Props, State> {
 
     render() {
         const {dynamicProps, account, activeUser} = this.props;
-        const {claiming, claimed, transfer, transferAsset, transferMode} = this.state;
+        const {claiming, claimed, transfer, transferAsset, transferMode, converting} = this.state;
 
         if (!account.__loaded) {
             return null;
@@ -146,7 +171,7 @@ export class WalletHive extends Component<Props, State> {
 
         const {hivePerMVests} = dynamicProps;
         const isMyPage = activeUser && activeUser.username === account.name;
-        const w = new HiveWallet(account, dynamicProps);
+        const w = new HiveWallet(account, dynamicProps, converting);
 
         return (
             <div className="wallet-hive">
@@ -367,6 +392,16 @@ export class WalletHive extends Component<Props, State> {
                                     })()}
                                     <span>{formattedNumber(w.hbdBalance, {prefix: "$"})}</span>
                                 </div>
+
+                                {converting > 0 && (
+                                    <div className="amount amount-passive converting-hbd">
+                                        <Tooltip content={_t("wallet.converting-hbd-amount")}>
+                                      <span>
+                                        {formattedNumber(converting, {suffix: "HBD"})}
+                                      </span>
+                                        </Tooltip>
+                                    </div>
+                                )}
                             </div>
                         </div>
 

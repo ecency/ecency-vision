@@ -311,3 +311,15 @@ export const downVotingPower = (account: FullAccount): number => {
 
     return rv;
 };
+
+
+export interface ConversionRequest {
+    amount: string;
+    conversion_date: string;
+    id: number;
+    owner: string;
+    requestid: number;
+}
+
+export const getConversionRequests = (account: string): Promise<ConversionRequest[]> =>
+    client.database.call("get_conversion_requests", [account]);

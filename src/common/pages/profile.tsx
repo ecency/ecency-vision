@@ -35,7 +35,6 @@ import defaults from "../constants/defaults.json";
 import _c from "../util/fix-class-names";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
-import profile from "../../server/handlers/profile";
 
 interface MatchParams {
     username: string;
