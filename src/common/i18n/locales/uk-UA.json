@@ -376,7 +376,8 @@
     "withdraw-hbd": "Вивести Hive долар",
     "delegate": "Делегувати",
     "power-down": "Зменшення сили голосу",
-    "withdraw-routes": "Маршрути виведення"
+    "withdraw-routes": "Маршрути виведення",
+    "converting-hbd-amount": "Converting to HIVE"
   },
   "withdraw-routes": {
     "title": "Рахунки виведення",
