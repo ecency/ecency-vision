@@ -15,7 +15,7 @@ exports[`(1) Default render. 1`] = `
         href="#"
         onClick={[Function]}
       >
-        Create your first fragment
+        Create your first snippet
       </a>
     </p>
   </div>
@@ -122,6 +122,7 @@ exports[`(3) Add 1`] = `
         Title
       </label>
       <input
+        autoFocus={true}
         className="form-control"
         id="title"
         maxLength={255}
@@ -193,6 +194,7 @@ exports[`(4) Edit 1`] = `
       Title
     </label>
     <input
+      autoFocus={true}
       className="form-control"
       id="title"
       maxLength={255}
