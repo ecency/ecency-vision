@@ -5,14 +5,14 @@
     "search": "Otsi",
     "downloads": "Allalaadimised",
     "login": "Logi sisse",
-    "login-as": "Login As",
+    "login-as": "Logi sisse teise kasutajaga",
     "signup": "Registreeru",
     "delete": "Kustuta",
     "cancel": "Tühista",
     "reply": "Vasta",
     "update": "Uuenda",
     "or": "VÕI",
-    "server-error": "Process could not be completed due to server error",
+    "server-error": "Protsess katkes serveri probleemide tõttu",
     "day": "päev",
     "days": "päeva",
     "finish": "Lõpeta",
@@ -20,7 +20,7 @@
     "back": "Tagasi",
     "load-more": "Laadi veel",
     "empty-list": "Siin pole midagi",
-    "no-matches": "No matches",
+    "no-matches": "Vasted puuduvad",
     "save": "Salvesta",
     "try-again": "Proovige uuesti",
     "show": "Näita",
@@ -29,8 +29,8 @@
     "yes": "Jah",
     "no": "Ei",
     "done": "Valmis",
-    "apply": "Apply",
-    "close": "Close"
+    "apply": "Kinnita",
+    "close": "Sulge"
   },
   "confirm": {
     "title": "Olete kindel?",
@@ -64,7 +64,7 @@
     "header-community": "Kogukonnad"
   },
   "switch-lang": {
-    "contributors": "Contributors"
+    "contributors": "Panustajad"
   },
   "user-nav": {
     "wallet": "Rahakott",
@@ -77,24 +77,24 @@
     "drafts": "Mustandid",
     "bookmarks": "Järjehoidjad",
     "schedules": "Ajakavad",
-    "fragments": "Snippets",
-    "settings": "Settings",
+    "fragments": "Lõiked",
+    "settings": "Seaded",
     "logout": "Välju",
-    "vote-power": "Vote Power:"
+    "vote-power": "Hääletamise jõud:"
   },
   "intro": {
-    "title": "Aspire to greatness",
-    "sub-title": "rewarding communities",
+    "title": "Pürgige suurepärasuse poole",
+    "sub-title": "tasuvad kogukonnad",
     "c2a": "Alusta"
   },
   "login": {
     "title": "Tere tulemast tagasi!",
     "with-user-pass": "Logi sisse kasutajanime ja privaatse võtmega.",
     "username-placeholder": "kasutajanimi",
-    "key-placeholder": "master or active private key",
+    "key-placeholder": "master või aktiivne privaatnevõti",
     "login-info-1": "Me ei hoiusta sinu privaatseid võtmeid.",
     "login-info-2": "Lisateave",
-    "error-fields-required": "Please enter username and private key",
+    "error-fields-required": "Palun sisesta kasutajanimi ja privaatvõti",
     "error-public-key": "You entered a public key. Password/WIF required",
     "error-user-fetch": "User data could not be fetched",
     "error-user-not-found": "Kasutajat ei eksisteeri",
