@@ -376,7 +376,8 @@
     "withdraw-hbd": "Kotiuta Hive Dollar",
     "delegate": "Valtuuta",
     "power-down": "Power down",
-    "withdraw-routes": "Palauta Reitit"
+    "withdraw-routes": "Palauta Reitit",
+    "converting-hbd-amount": "Converting to HIVE"
   },
   "withdraw-routes": {
     "title": "Palauta tilit",
