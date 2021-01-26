@@ -376,7 +376,8 @@
     "withdraw-hbd": "Tarik Hive Dollar",
     "delegate": "Delegasikan",
     "power-down": "Power Down",
-    "withdraw-routes": "Rute Penarikan"
+    "withdraw-routes": "Rute Penarikan",
+    "converting-hbd-amount": "Converting to HIVE"
   },
   "withdraw-routes": {
     "title": "Akun penarikan",
