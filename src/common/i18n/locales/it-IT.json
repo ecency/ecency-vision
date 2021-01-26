@@ -376,7 +376,8 @@
     "withdraw-hbd": "Trasferisci Hive Dollars",
     "delegate": "Delega",
     "power-down": "Depotenziamento",
-    "withdraw-routes": "Ricompense assegnate"
+    "withdraw-routes": "Ricompense assegnate",
+    "converting-hbd-amount": "Converting to HIVE"
   },
   "withdraw-routes": {
     "title": "Account beneficianti delle ricompense assegnate",
