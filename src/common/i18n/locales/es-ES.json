@@ -77,7 +77,7 @@
     "drafts": "Borradores",
     "bookmarks": "Marcadores",
     "schedules": "Programados",
-    "fragments": "Snippets",
+    "fragments": "Fragmentos de código",
     "settings": "Configuración",
     "logout": "Cerrar sesión",
     "vote-power": "Poder de voto:"
@@ -553,7 +553,7 @@
     "emoji": "Emoji",
     "image-error": "No se pudo cargar la imagen.",
     "image-error-size": "El tamaño de la imagen es demasiado grande, intente una imagen de tamaño más pequeño.",
-    "fragments": "Snippets"
+    "fragments": "Fragmentos de código"
   },
   "emoji-picker": {
     "filter-placeholder": "Filtro",
@@ -776,11 +776,11 @@
     "title": "Favoritos"
   },
   "fragments": {
-    "title": "Snippets",
-    "create-first": "Create your first snippet",
-    "filter": "Search by title",
-    "form-title": "Title",
-    "form-body": "Body"
+    "title": "Fragmentos de código",
+    "create-first": "Crea tu primer fragmento de código",
+    "filter": "Buscar por título",
+    "form-title": "Título",
+    "form-body": "Cuerpo"
   },
   "password-update": {
     "title": "Cambiar la contraseña",
