@@ -376,7 +376,8 @@
     "withdraw-hbd": "Hive Dollár Visszavonás",
     "delegate": "Delegálás",
     "power-down": "Power Down",
-    "withdraw-routes": "Withdraw Routes"
+    "withdraw-routes": "Withdraw Routes",
+    "converting-hbd-amount": "Converting to HIVE"
   },
   "withdraw-routes": {
     "title": "Withdraw accounts",
