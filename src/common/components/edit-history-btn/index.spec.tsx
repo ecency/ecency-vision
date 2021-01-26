@@ -3,9 +3,7 @@ import EntryHistoryBtn from "./index";
 
 import TestRenderer from "react-test-renderer";
 
-import {entryInstance1} from "../../helper/test-helper";
-
-const allOver = () => new Promise((resolve) => setImmediate(resolve));
+import {entryInstance1, allOver} from "../../helper/test-helper";
 
 let TEST_MODE = 0
 

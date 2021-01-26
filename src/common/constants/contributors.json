@@ -42,6 +42,12 @@
     ]
   },
   {
+    "name": "trumpikas",
+    "contributes": [
+      "Translation (Estonian)"
+    ]
+  },
+  {
     "name": "c21c",
     "contributes": [
       "Translation (Ukrainian)"
@@ -182,7 +188,13 @@
   {
     "name": "gtg",
     "contributes": [
-      "Translation (Polish)"
+      "Proofread (Polish)"
+    ]
+  },
+  {
+    "name": "davidesimoncini",
+    "contributes":[
+      "Translation (Italian)"
     ]
   }
 ]

@@ -30,6 +30,7 @@ export default {
     EDIT_DRAFT: `/draft/:draftId`,
     DISCOVER: `/discover`,
     SEARCH: `/search/`,
+    SEARCH_MORE: `/search-more/`,
     WITNESSES: `/witnesses`,
     PROPOSALS: `/proposals`,
     PROPOSAL_DETAIL: `/proposals/:id(\\d+)`

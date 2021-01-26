@@ -1,0 +1,881 @@
+{
+  "g": {
+    "add": "Добави",
+    "edit": "Редактиране",
+    "search": "Търси",
+    "downloads": "Изтегли",
+    "login": "Вход",
+    "login-as": "Влизане чрез",
+    "signup": "Регистриране",
+    "delete": "Изтрий",
+    "cancel": "Отказ",
+    "reply": "Reply",
+    "update": "Обновяване",
+    "or": "ИЛИ",
+    "server-error": "Заявката неможе да бъде завършена поради грешка в сървъра",
+    "day": "ден",
+    "days": "дни",
+    "finish": "Приключи",
+    "next": "Напред",
+    "back": "Назад",
+    "load-more": "Зареди още",
+    "empty-list": "Няма нищо тук",
+    "no-matches": "Няма съвпадения",
+    "save": "Запази",
+    "try-again": "Опитай пак",
+    "show": "Покажи",
+    "on": "Вкл.",
+    "off": "Изкл.",
+    "yes": "Да",
+    "no": "Не",
+    "done": "Готово",
+    "apply": "Потвърди",
+    "close": "Затвори"
+  },
+  "confirm": {
+    "title": "Сигурни ли сте?",
+    "ok": "Потвърди",
+    "cancel": "Отказ"
+  },
+  "entry-filter": {
+    "filter-trending": "Популярни",
+    "filter-hot": "Актуални",
+    "filter-created": "Нови",
+    "filter-promoted": "Промотирани",
+    "filter-payout": "Изплащания",
+    "filter-muted": "Заглушени",
+    "filter-feed": "Моят поток",
+    "filter-feed-friends": "Приятели",
+    "filter-feed-subscriptions": "Общности"
+  },
+  "navbar": {
+    "discover": "Открийте",
+    "communities": "Общности",
+    "post": "Създай публикация",
+    "day-theme": "Дневна тема",
+    "night-theme": "Нощна тема",
+    "address-placeholder": "въведете url или търсете"
+  },
+  "search": {
+    "placeholder": "Търси",
+    "placeholder-count": "Търси {{n}} постове",
+    "header-tag": "Тагове",
+    "header-account": "Потребители",
+    "header-community": "Общности"
+  },
+  "switch-lang": {
+    "contributors": "Сътрудници"
+  },
+  "user-nav": {
+    "wallet": "Портфейл",
+    "unclaimed-reward-notice": "Имате награди за взимане",
+    "points": "Точки",
+    "unclaimed-points-notice": "Имате точки за взимане",
+    "notifications": "Известия",
+    "profile": "Профил",
+    "gallery": "Галерия",
+    "drafts": "Чернови",
+    "bookmarks": "Отметки",
+    "schedules": "Графици",
+    "fragments": "Snippets",
+    "settings": "Настройки",
+    "logout": "Изход",
+    "vote-power": "Сила на гласа:"
+  },
+  "intro": {
+    "title": "Стреми се към величие",
+    "sub-title": "награждаващи общности",
+    "c2a": "Започнете"
+  },
+  "login": {
+    "title": "Добре дошли отново!",
+    "with-user-pass": "Влезте с потребителското си име и личния си ключ.",
+    "username-placeholder": "потребителско име",
+    "key-placeholder": "главен или активен личен ключ",
+    "login-info-1": "Ние не съхраняваме личните ви ключове.",
+    "login-info-2": "Повече информация",
+    "error-fields-required": "Моля въведете потребителското си име и личния си ключ",
+    "error-public-key": "Вие въведохте публичен ключ. Нужна е парола/WIF",
+    "error-user-fetch": "Данните за потребителят немогат да бъдат заредени",
+    "error-user-not-found": "Потребителят не съществува",
+    "error-permission": "Неможахме да получим право да публикуваме",
+    "error-authenticate": "Грешен личен ключ. Нужен е главен или активен личен ключ.",
+    "with-hive-signer": "Влез чрез hivesigner",
+    "with-keychain": "Влез с KeyChain",
+    "sign-up-text-1": "Нямате акаунт?",
+    "sign-up-text-2": "Регистрирай се сега!"
+  },
+  "sign-up": {
+    "header": "Присъединете се",
+    "description": "<h3>Домът на Свободната реч и Награждаващите общности!</h3><br>Един акаунт за да управлявате всичко в<b>Blockchain</b> и <b>Ecency</b>.<br><br>Научи повече за всички плюсове на <a href=\"/faq#how-to-join\">FAQ</a>",
+    "username": "Изберете потребителско име",
+    "email": "Въведете вашия имейл адрес",
+    "ref": "Кой ви покани в платформата(Опция)",
+    "submit": "Продължи",
+    "success": "Изпратихме имейл на {{email}}.",
+    "success-2": "Следвайте инструкциите за да завършите регистрирането.",
+    "login-text-1": "Имате ли акаунт?",
+    "login-text-2": "Вход"
+  },
+  "trending-tags": {
+    "title": "Tеми"
+  },
+  "selected-tags": {
+    "title": "Избрани"
+  },
+  "entry-list-item": {
+    "reblogged": "{{n}} сподели",
+    "promoted": "promoted",
+    "pinned": "Закачен пост",
+    "replies": "1 отговор. Натисни да отговориш.",
+    "replies-n": "{{n}} отговори. Натисни за да отговориш.",
+    "no-replies": "Няма отговори все още. Натисни за да отговориш."
+  },
+  "bookmark-btn": {
+    "add": "Добави в отметки",
+    "added": "Добавено в отметки",
+    "delete": "Премахни от маркираните",
+    "deleted": "Премахнато от отметки"
+  },
+  "entry-reblog": {
+    "reblog": "Сподели",
+    "confirm-title": "Сподели в блога на @{{n}}?",
+    "confirm-ok": "Сподели",
+    "success": "Споделено!"
+  },
+  "entry-payout": {
+    "pending-payout": "Чакащо плащане",
+    "promoted": "Промотирано",
+    "author-payout": "Възнаграждение на автора",
+    "curators-payout": "Възнаграждение на гласувалите",
+    "payout-date": "Изплащане",
+    "beneficiary": "Бенефициент",
+    "breakdown": "Разбивка"
+  },
+  "entry-index": {
+    "feed": "Моят поток",
+    "tags": "Популярни",
+    "title": "{{f}} теми",
+    "description": "{{f}} теми в социална мрежа притежавана и управлявана от свойте потребители.",
+    "description-tag": "{{f}} #{{t}} теми",
+    "description-user-feed": "Потокa на {{u}}",
+    "faq": "FAQ",
+    "tos": "Общи условия",
+    "pp": "Политика за Поверителност"
+  },
+  "market-data": {
+    "title": "Пазарна цена",
+    "credits": "данни от <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
+  },
+  "list-style": {
+    "title": "Toggle list style"
+  },
+  "entry-votes": {
+    "title": "1 Глас",
+    "title-n": "{{n}} Гласове",
+    "title-empty": "Няма гласове",
+    "sort": "Сортиране",
+    "sort-reward": "Награда",
+    "sort-timestamp": "Време",
+    "sort-reputation": "Репутация",
+    "sort-percent": "Процент"
+  },
+  "entry": {
+    "via-app": "чрез <span class=\"app-name\">{{app}}</span>",
+    "comment-entry-title": "Разглеждате само този коментар от поста на: ",
+    "comment-entry-go-root": "Покажи целия контекст",
+    "comment-entry-go-parent": "Покажи коментара",
+    "show-history": "Покажи историята на редактиране",
+    "hidden-warning": "Този пост е скрит поради ниски рейтинги.",
+    "address-copy": "Копирай адреса",
+    "address-copied": "Адресът е копиран в клипборда."
+  },
+  "edit-history": {
+    "title": "История на промените",
+    "show-diff": "Покажи разликата",
+    "version": "Версия {{n}}"
+  },
+  "similar-entries": {
+    "title": "Скорошни постове от @{{n}}"
+  },
+  "comment": {
+    "body-placeholder": "Напишете вашият отговор тук",
+    "preview": "Преглед"
+  },
+  "discussion": {
+    "join": "Включи се в разговора сега",
+    "btn-join": "Присъединете се",
+    "replies": "1 Коментар",
+    "n-replies": "{{n}} Коментара",
+    "order": "Ред на подреждане",
+    "order-trending": "Популярни",
+    "order-reputation": "Репутация",
+    "order-votes": "Гласове",
+    "order-created": "Възраст",
+    "read-more": "...прочети още отговори...",
+    "reveal": "Покажи коментара"
+  },
+  "community": {
+    "page-description": "{{f}} теми",
+    "subscribe": "Присъедини се",
+    "subscribed": "Присъединен",
+    "unsubscribe": "Напусни",
+    "post": "Нова публикация",
+    "posts": "Публикации",
+    "subscribers": "Членове",
+    "activities": "Дейности",
+    "roles-title": "Потребителски роли",
+    "roles-account": "Акаунт",
+    "roles-role": "Роля",
+    "roles-account-title": "Заглавие",
+    "roles-add": "Добави потребител"
+  },
+  "community-cover": {
+    "rewards": "награди",
+    "authors": "публикуващи",
+    "lang": "език",
+    "cover-image": "Обществена снимка на корицата",
+    "cover-image-edit": "Редактирай снимката на корицата",
+    "cover-image-updated": "Снимката на корицата беше обновена!"
+  },
+  "community-card": {
+    "description": "Описание",
+    "rules": "Правила",
+    "team": "Лидерство",
+    "edit": "Редактирай настройките",
+    "edit-team": "Редактиране на роли",
+    "profile-image": "Обществена профилна снимка",
+    "profile-image-edit": "Редактирай профилната снимка ",
+    "profile-image-updated": "Профилната снимка е обновена!"
+  },
+  "community-role-edit": {
+    "title": "Назначи потребителска роля",
+    "username": "Потребителско име ",
+    "role": "Роля",
+    "user-not-found": "Потребителя не съществува!",
+    "explanations": "<h3>Правомощия на ролите</h3><p><strong>Собственик</strong> - назначава админи</p><p><strong>Админ</strong> - редактира настойки, назначава модератори</p><p><strong>Модератор</strong> - заглушава, закача, назначава потребителски титли</p><p><strong>Член</strong> - изброен в лидеркия отбор</p><p><strong>Гост</strong> - по подразбиране; може да поства и да коментира</p><p><strong>Заглушен</strong> - новите постове автоматично се заглушават</p>"
+  },
+  "community-settings": {
+    "dialog-title": "Настройки на Общността",
+    "title": "Заглавие",
+    "about": "Относно",
+    "lang": "Език",
+    "description": "Описание",
+    "rules": "Правила",
+    "rules-help": "По едно на ред"
+  },
+  "communities": {
+    "title": "Общности",
+    "description": "Най-добрите онлайн, децентрализирани, не-заглушаващи, награждаващи общности",
+    "n-subscribers": "{{n}} членове",
+    "n-authors": "{{n}} публикуващи",
+    "n-posts": "{{n}} постове",
+    "admins": "Админи;",
+    "sort-hot": "Горещи",
+    "sort-rank": "Ранг",
+    "sort-subs": "Членове",
+    "sort-new": "Нови",
+    "no-results": "Не са намерени разултати",
+    "create": "Създаване на общност"
+  },
+  "communities-create": {
+    "page-title": "Създай общност",
+    "title": "Заглавие",
+    "about": "Относно",
+    "description": "Създай най-добрите, децентрализирани, не-заглушаващи, награждаващи общности",
+    "fee": "Такса за действието",
+    "creator": "Създател",
+    "username": "Потребителско име на собственика",
+    "username-available": "Достъпно.",
+    "username-not-available": "Не е достъпно.",
+    "username-wrong-format": "Не е валиден формат. hive-1xxxxx формат е задължителен.",
+    "password": "Парола на собственика",
+    "confirmation": "Безопасно си запазих потребителското име на собственика и паролата.",
+    "submit": "Създаване на общност",
+    "progress-account": "Създаване на акаунт...",
+    "progress-user": "Подготовяне на потребителски данни...",
+    "progress-role": "Назначаване на @{{u}} като администратор...",
+    "progress-props": "Обновяване на настройките на общността...",
+    "done": "Коментарът ви беше създаден 🎉",
+    "done-link-label": "Започнете."
+  },
+  "pin-btn": {
+    "pin": "Закачи",
+    "unpin": "Откачи"
+  },
+  "mute-btn": {
+    "mute": "Заглуши",
+    "unmute": "Отглуши",
+    "dialog-title-mute": "Заглуши пост/коментар",
+    "dialog-title-unmute": "Отглуши пост/коментар",
+    "notes": "Бележки",
+    "note-placeholder-mute": "Представете бележка относно решението ви да заглушите това съдържание.",
+    "note-placeholder-unmute": "Представете бележка относно решението ви да отглушите това съдържание."
+  },
+  "profile": {
+    "voting-power": "Сила на глас",
+    "post-count": "Брой публикации",
+    "followers": "Последователи",
+    "following": "Следва",
+    "section-blog": "Блог",
+    "section-posts": "Публикации",
+    "section-comments": "Коментари",
+    "section-replies": "Отговори",
+    "section-communities": "Общности",
+    "section-wallet": "Портфейл",
+    "section-settings": "Настройки",
+    "communities-title": "Членство",
+    "create-community": "Създай общност",
+    "witnesses": "Свидетели",
+    "proposals": "Предложения"
+  },
+  "profile-edit": {
+    "title": "Профил",
+    "name": "Показвано име",
+    "about": "Относно",
+    "cover-image": "Снимка на корицата",
+    "profile-image": "Профилна снимка",
+    "website": "Уебсайт",
+    "location": "Местоположение",
+    "updated": "Профила е актуализиран успешно!"
+  },
+  "image-upload-button": {
+    "uploaded": "Снимката е качена"
+  },
+  "preferences": {
+    "title": "Предпочитания",
+    "notifications": "Предупреждения за известия",
+    "currency": "Валутa",
+    "language": "Език",
+    "updated": "Предпочитанията са обновени!"
+  },
+  "wallet": {
+    "unclaimed-rewards": "Неизчистени награди",
+    "claim-reward-balance": "Claim reward balance",
+    "claim-reward-balance-ok": "Наградите са изчистени",
+    "estimated": "Предполагаема стойност на акаунта",
+    "estimated-description": "Приблизителната стойност се определя от 7 дневна, средна цена на HIVE.",
+    "hive": "HIVE",
+    "hive-description": "HIVE са търгуеми жетони който могат да бъдат прехвърлени по всяко време.HIVE може да се преобразува в Hive стойност на гласа чрез процес наречен увеличаване на силата.",
+    "hive-power": "HIVE POWER",
+    "hive-power-description": "Hive Power са жетони които събират повече сила като ги притежавате дългосрочно и гласувате на постове. Колкото повече Hive Power имате, толкова повече влияние имате върху наградите на останалите и печелите награди за правилно гласуване.",
+    "hive-power-delegated": "Делегиран Hive Power",
+    "hive-power-received": "Получен Hive Power",
+    "next-power-down-amount": "Следващо количество на намалената сила",
+    "hive-power-total": "Общо количество Hive Power",
+    "hive-dollars": "HIVE ДОЛАРИ",
+    "hive-dollars-description": "Жетони на стойност около $1.00 HIVE.",
+    "savings": "СПЕСТЯВАНИЯ",
+    "savings-description": "Сметката е обект на 3 дневнен период на чакане преди теглене.",
+    "next-power-down": "Следващото намаляне на силата е {{time}}, {{amount}}",
+    "transfer": "Трансфер",
+    "transfer-to-savings": "Трансфер към спестяванията",
+    "convert": "Преобразуване",
+    "power-up": "Увеличаване на силата",
+    "withdraw-hive": "Изтегли Hive",
+    "withdraw-hbd": "Изтегли Hive Долари",
+    "delegate": "Делегирай",
+    "power-down": "Намаляне на силата",
+    "withdraw-routes": "Пътища за теглене",
+    "converting-hbd-amount": "Converting to HIVE"
+  },
+  "withdraw-routes": {
+    "title": "Акаунти за теглене",
+    "account": "Акаунт",
+    "percent": "Процент",
+    "auto-power-up": "Автоматично увеличаване на силата"
+  },
+  "points": {
+    "get": "КУПИ ТОЧКИ",
+    "unclaimed-points": "Чакащи точки",
+    "claim-reward-points": "Вземи точките от награди",
+    "main-description": "Точките могат да се използват за услуги в приложението като, Промотиране, Буустване, Подаряване. Спечелете ги просто като използвате Ecency и подобрете преживяването си.",
+    "earn-points": "Как да изкарам още Точки",
+    "post-desc": "Можете да спечелите точки като поствате редовно. Постването ви дава 15 точки.",
+    "comment-desc": "Всеки коментар които правите ви помага да развиете аудиторията си и да създадавате приятелства, но и също така печелите 5 точки.",
+    "checkin-desc": "Проверката в приложението на Ecency ви вада 0.25 точки и ви помага да останете свързан с приятелите си.",
+    "vote-desc": "Като гласувате давате награди на други създатели и покачвате своята признателност, но и печелите 0.01 x силата на точките за гласуване.",
+    "reblog-desc": "  Споделете каква публикация харесвате с приятелите си и спечелете 1 точка.",
+    "login-desc": "Когат влезете в Ecency, имате правото да вземете 100 точки автоматично.",
+    "checkin-extra-desc": "Честата употреба на приложението ви дава допълнителни шансове да спечелите още 10 точки, бъдете по-активни и да печелете повече.",
+    "delegation-desc": "Можете да спечелите ~50 точки на ден за всека 1000HP Делегирация.",
+    "history": "История",
+    "post-list-desc": "Точки за пост",
+    "comment-list-desc": "Точки за коментар",
+    "vote-list-desc": "Точки за глас",
+    "reblog-list-desc": "Точки за споделяне",
+    "login-list-desc": "Точки за влизане",
+    "checkin-list-desc": "Точки за сърце",
+    "checkin-extra-list-desc": "Бонус за употреба",
+    "transfer-sent-list-desc": "Прехвърлянe на {{n}}",
+    "transfer-incoming-list-desc": "Прехвърлянe от {{n}}",
+    "delegation-list-desc": "Награда за Делегиран Hive",
+    "referral-list-desc": "Награда на реферала",
+    "transfer": "Подари на някого",
+    "claim-ok": "Взети точки",
+    "promote": "Promote",
+    "boost": "Boost"
+  },
+  "purchase": {
+    "select-asset": "Select Asset",
+    "slider-hint": "Drag the slider to adjust the amount.",
+    "submit": "Purchase"
+  },
+  "promote": {
+    "title": "Promote",
+    "sub-title": "Promote your post",
+    "duration": "Duration"
+  },
+  "boost": {
+    "title": "Boost",
+    "sub-title": "Boost your post",
+    "amount": "Amount",
+    "slider-hint": "Drag the slider to adjust the amount."
+  },
+  "redeem-common": {
+    "balance": "Balance",
+    "post": "Post",
+    "post-hint": "Autocomplete input",
+    "post-placeholder": "username/permlink",
+    "post-error": "Not a valid post address",
+    "post-error-exists": "The post is already promoted",
+    "success-message": "Your request submitted. It will be activated in a couple minutes."
+  },
+  "transfer": {
+    "transfer-title": "Transfer to Account",
+    "transfer-title-point": "Gift to Account",
+    "transfer-sub-title": "Move funds to another Hive account",
+    "transfer-saving-title": "Transfer to Savings",
+    "transfer-saving-sub-title": "Protect funds by requiring a 3 day withdraw waiting period",
+    "withdraw-saving-title": "Savings Withdraw",
+    "withdraw-saving-sub-title": "Withdraw funds after the required 3 day waiting period",
+    "power-up-title": "Stake Hive as Power",
+    "convert-title": "Convert",
+    "power-up-sub-title": "Influence tokens which give you more control over post payouts and allow you to earn on curation rewards.",
+    "convert-sub-title": "Only recommended when HBD is below $1. You will get $1 of HIVE in 3.5 days.",
+    "delegate-title": "Delegate",
+    "delegate-sub-title": "Delegate Hive Power",
+    "power-down-title": "Power Down",
+    "power-down-sub-title": "Power Down Hive Power",
+    "from": "From",
+    "to": "To",
+    "to-placeholder": "username",
+    "to-not-found": "The user that you are trying to transfer funds to does not exist!",
+    "to-bad-actor": "Use caution sending to this account. Please double check your spelling for possible phishing.",
+    "amount": "Amount",
+    "amount-placeholder": "amount",
+    "wrong-amount": "Wrong amount value",
+    "amount-precision-error": "Use only 3 digits of precision",
+    "balance": "Balance",
+    "power-down-estimated": "+ {{n}} Estimated Weekly",
+    "memo": "Бележка",
+    "memo-placeholder": "добави своите бележки тук",
+    "memo-help": "Тази бележка е публична",
+    "available-hp-hint": "* налична hive стойност на гласа",
+    "confirm-title": "Потвърдете транзакцията",
+    "confirm-sub-title": "Моля проверете дали всичко е точно",
+    "confirm": "Потвърди",
+    "recent-transfers": "Скорошни трансфери",
+    "transfer-summary": "<span class=\"amount\">{{amount}}</span> изпратени от <span class=\"from-user\">{{from}}</span> на <span class=\"to-user\">{{to}}</span>",
+    "transfer-saving-summary": "<span class=\"amount\">{{amount}}</span> изпратени от <span class=\"from-user\">{{from}}</span> на <span class=\"to-user\">{{to}}</span>",
+    "withdraw-saving-summary": "<span class=\"amount\">{{amount}}</span> изпратени от <span class=\"from-user\">{{from}}</span> на <span class=\"to-user\">{{to}}</span>",
+    "convert-summary": "<span class=\"amount\">{{amount}}</span> преобразувани",
+    "power-up-summary": "<span class=\"amount\">{{amount}}</span> заложени от <span class=\"from-user\">{{from}}</span>на <span class=\"to-user\">{{to}}</span>",
+    "delegate-summary": "<span class=\"amount\">{{amount}}</span> делегирани от <span class=\"from-user\">{{from}}</span> на <span class=\"to-user\">{{to}}</span>",
+    "power-down-summary": "Намалянето на силата завърши като <span class=\"amount\">{{amount}}</span>",
+    "reset": "Изчистване",
+    "powering-down": "В момента намаляте силата на гласа.",
+    "stop-power-down": "Спиране"
+  },
+  "trx-common": {
+    "insufficient-funds": "Недостатъчно средства",
+    "sign-title": "Подпиши транзакцията",
+    "sign-sub-title": "Подпиши транзакцията",
+    "success-title": "Успешно",
+    "success-sub-title": "Транзакцията е успешна"
+  },
+  "transactions": {
+    "title": "История",
+    "type-curation_reward": "Награда за участие",
+    "type-author_reward": "Авторска награда",
+    "type-comment_benefactor_reward": "Comment Benefactor Reward",
+    "type-claim_reward_balance": "Събиране на награди",
+    "type-transfer": "Transfer",
+    "type-transfer_to_vesting": "Transfer to vesting",
+    "type-withdraw_vesting": "Withdraw vesting",
+    "type-fill_order": "Fill order"
+  },
+  "key-or-hot": {
+    "sign": "Sign",
+    "key-placeholder": "Enter active/owner/master key",
+    "with-hivesigner": "Sign with hivesigner",
+    "with-keychain": "Sign with keychain"
+  },
+  "delegated-vesting": {
+    "title": "Delegated Hive Power",
+    "undelegate": "undelegate"
+  },
+  "received-vesting": {
+    "title": "Received Hive Power"
+  },
+  "friends": {
+    "followers": "Followers ({{n}})",
+    "following": "Following ({{n}})",
+    "search-placeholder": "Search users"
+  },
+  "follow-controls": {
+    "follow": "Follow",
+    "unFollow": "Unfollow",
+    "mute": "Mute",
+    "unMute": "Unmute"
+  },
+  "favorite-btn": {
+    "add": "Add to favorites",
+    "added": "Added to favorites",
+    "delete": "Remove from favorites",
+    "deleted": "Removed from favorites"
+  },
+  "editor-toolbar": {
+    "bold": "Bold",
+    "italic": "Italic",
+    "header": "Heading",
+    "code": "Code",
+    "quote": "Quote",
+    "ul": "Unordered List",
+    "ol": "Ordered List",
+    "link": "Link",
+    "image": "Image",
+    "table": "Table",
+    "table-3-col": "3 columns",
+    "table-2-col": "2 columns",
+    "table-1-col": "1 column",
+    "upload": "Upload",
+    "gallery": "Gallery",
+    "emoji": "Emoji",
+    "image-error": "Couldn't upload image.",
+    "image-error-size": "Image size is too large, try smaller size image again.",
+    "fragments": "Snippets"
+  },
+  "emoji-picker": {
+    "filter-placeholder": "Filter",
+    "filter-no-match": "No match",
+    "recently-used": "Recently Used"
+  },
+  "submit": {
+    "page-title": "Create a post",
+    "page-description": "Publish an article, earn reward, uncensored, immutable, decentralized content!",
+    "title-placeholder": "Title",
+    "body-placeholder": "Post Content",
+    "reward": "Reward",
+    "reward-hint": "Set author reward ratio for liquid and staked tokens",
+    "reward-default": "Default 50% / 50%",
+    "reward-sp": "Power Up 100%",
+    "reward-dp": "Decline Payout",
+    "preview": "Preview",
+    "publish": "Publish",
+    "update": "Update",
+    "save-draft": "Save Draft",
+    "draft-saved": "Draft saved",
+    "update-draft": "Update Draft",
+    "draft-updated": "Draft updated",
+    "cancel-update": "Cancel",
+    "clear": "Clear",
+    "published": "Post Published",
+    "updated": "Post Updated",
+    "advanced": "Advanced",
+    "beneficiaries": "Beneficiaries",
+    "beneficiaries-hint": "Set beneficiaries to share author reward with other accounts",
+    "reblog": "Reblog",
+    "reblog-hint": "Auto share content to your blog",
+    "schedule": "Schedule",
+    "schedule-hint": "Auto publish content on specific time",
+    "scheduled": "Post scheduled"
+  },
+  "tag-selector": {
+    "placeholder-empty": "Tags. First tag is main category. Sortable.",
+    "placeholder-focus": "Enter tag",
+    "placeholder-has-tags": "Add More",
+    "suggestion-header": "Tags",
+    "error-max": "Max {{n}} tags"
+  },
+  "community-selector": {
+    "my-blog": "My Blog",
+    "search-placeholder": "Search Communities"
+  },
+  "word-count": {
+    "label": "{{n}} words",
+    "read-time-less-1-min": "< 1 min read",
+    "read-time-n-min": "~ {{n}} min read"
+  },
+  "beneficiary-editor": {
+    "title": "Beneficiaries",
+    "btn-label": "Set Beneficiaries",
+    "btn-label-n": "Set Beneficiaries ({{n}})",
+    "username": "Username",
+    "reward": "Reward",
+    "user-error": "{{n}} is not a valid user.",
+    "user-exists-error": "{{n}} is already in the list"
+  },
+  "post-scheduler": {
+    "title": "Schedule",
+    "btn-label": "Schedule"
+  },
+  "notification": {
+    "popup-title": "You have a new notification",
+    "voted": "{{source}} voted your post",
+    "mention-post": "{{source}} mentioned you in a post",
+    "mention-comment": "{{source}} mentioned you in a comment",
+    "followed": "{{source}} followed you",
+    "replied": "{{source}} replied you",
+    "reblogged": "{{source}} reblogged your post",
+    "transfer": "{{source}} sent you {{amount}}"
+  },
+  "notifications": {
+    "type-all": "All Notifications",
+    "type-all-short": "All",
+    "type-rvotes": "Votes",
+    "type-replies": "Replies",
+    "type-mentions": "Mentions",
+    "type-follows": "Follows",
+    "type-reblogs": "Reblogs",
+    "type-transfers": "Transfers",
+    "vote-str": "{{p}}% likes your post:",
+    "reply-str": "replied to your post:",
+    "mention-str": "mentioned you in:",
+    "followed-str": "followed",
+    "unfollowed-str": "unfollowed",
+    "ignored-str": "ignored",
+    "reblog-str": "reblogged your post:",
+    "transfer-str": "sent you",
+    "spin-str": "Time to earn more Points, Play Spin on Ecency Mobile app",
+    "inactive-str": "Be active! Write a post, continue earning",
+    "referral-str": "joined with your referral, welcome them",
+    "refresh": "Refresh",
+    "mark-all-read": "Mark All as Read",
+    "mark-read": "Mark as Read",
+    "mute": "Turn off notification alerts",
+    "unmute": "Turn on notification alerts"
+  },
+  "leaderboard": {
+    "title": "Leaderboard",
+    "title-day": "Daily top users",
+    "title-week": "Weekly top users",
+    "title-month": "Monthly top users",
+    "period-day": "Daily",
+    "period-week": "Weekly",
+    "period-month": "Monthly",
+    "header-score": "Activities",
+    "header-score-tip": "Post + comments made by a user for selected period",
+    "header-reward": "Reward"
+  },
+  "popular-users": {
+    "title": "Popular Users"
+  },
+  "discover": {
+    "title": "Discover",
+    "description": "Discover top online users"
+  },
+  "search-page": {
+    "title": "Search",
+    "description": "Find uncensored content, communities and users"
+  },
+  "search-comment": {
+    "title": "Results",
+    "matches": "{{n}} matches",
+    "matches-singular": "1 match",
+    "advanced": "Advanced",
+    "search": "Search",
+    "search-placeholder": "search phrase",
+    "author": "Author",
+    "author-placeholder": "username",
+    "type": "Type",
+    "type-": "All",
+    "type-post": "Post",
+    "type-comment": "Comment",
+    "category": "Category",
+    "category-placeholder": "category",
+    "tags": "Tags",
+    "tags-placeholder": "comma separated tags",
+    "date": "Date",
+    "date-week": "Week",
+    "date-month": "Month",
+    "date-year": "Year",
+    "date-all": "All",
+    "sort": "Sort",
+    "sort-popularity": "Popularity",
+    "sort-relevance": "Relevance",
+    "sort-newest": "Recent",
+    "hide-low": "Hide low payout content",
+    "show-more": "show more"
+  },
+  "search-people": {
+    "title": "People"
+  },
+  "search-topics": {
+    "title": "Topics"
+  },
+  "search-communities": {
+    "title": "Communities"
+  },
+  "witnesses": {
+    "page-title": "Witnesses",
+    "page-description": "Consensus block producers selection",
+    "page-description-long": "Role of witnesses or block producers in Hive blockchain is to act as the network's governance body. Community elects them to represent their voice and each user can elect up to 30 witnesses. Top 20 witnesses are producing blocks every minute while rest remain as backup witness and gets randomized chance every minute. This role is integral part of consensus mechanism blockchain runs on and recommend user engagement to vote on trusted witnesses.",
+    "remaining": "<span>{{n}}</span> of {{max}} votes remaining",
+    "list-rank": "Rank",
+    "list-witness": "Witness",
+    "list-miss": "Miss",
+    "list-url": "URL",
+    "list-fee": "Fee",
+    "list-feed": "Feed",
+    "list-version": "Version",
+    "username-placeholder": "username",
+    "extra-description": "Enter account name below to vote for a witness outside of Top 50",
+    "proxy-description": "You can also choose a proxy that will vote for witnesses for you. This will reset your current witness selection.",
+    "proxy-btn-label": "Set Proxy",
+    "proxy-active-description": "You have set a voting proxy. If you would like to re-enable manual voting, please clear your proxy.",
+    "proxy-active-current": "Your current proxy is",
+    "proxy-active-btn-label": "Clear Proxy",
+    "proxy-votes-for": "@{{username}} votes for"
+  },
+  "proposals": {
+    "page-title": "Proposals",
+    "page-description": "The Decentralized Hive Fund (DHF) is an on-chain funding mechanism that allows anyone to submit a proposal and get funding once community votes pass certain threshold. To learn more read our <a href=\"/faq#how-dhf-work\">FAQ</a>.",
+    "by": "by",
+    "for": "for",
+    "duration-days": "{{n}} days",
+    "daily-pay": "Daily {{n}}",
+    "votes": "Votes: {{n}}",
+    "status-active": "active",
+    "status-expired": "expired",
+    "status-inactive": "upcoming",
+    "remaining-days": "Remaining: {{n}} days",
+    "filter-all": "All",
+    "filter-active": "Active",
+    "filter-inactive": "Upcoming",
+    "filter-team": "Ecency Projects",
+    "return-description": "This is the base return proposal. Every proposal with less votes will not receive funds.",
+    "votes-dialog-title": "Votes on Proposal #{{n}}",
+    "see-all": "see all proposals"
+  },
+  "gallery": {
+    "title": "Gallery",
+    "copied": "Copied to clipboard"
+  },
+  "drafts": {
+    "title": "Drafts",
+    "filter": "Search by title"
+  },
+  "schedules": {
+    "title": "Scheduled Posts",
+    "move": "Move to drafts"
+  },
+  "bookmarks": {
+    "title": "Bookmarks"
+  },
+  "favorites": {
+    "title": "Favorites"
+  },
+  "fragments": {
+    "title": "Snippets",
+    "create-first": "Create your first snippet",
+    "filter": "Search by title",
+    "form-title": "Title",
+    "form-body": "Body"
+  },
+  "password-update": {
+    "title": "Change Password",
+    "account": "Account",
+    "cur-pass": "Current password",
+    "new-pass": "New password",
+    "new-pass2": "Confirm new password",
+    "error-new2": "Passwords must be same",
+    "pass-gen": "Click to generate password",
+    "label-check": "I have securely saved my generated password",
+    "updated": "Password updated successfully!"
+  },
+  "scroll-to-top": {
+    "title": "Scroll to Top"
+  },
+  "static": {
+    "about": {
+      "page-title": "About",
+      "intro-title": "What is <span>Ecency</span>",
+      "intro-content": "Ecency is beautiful and handy wrapper interface around the Hive blockchain network allowing you to create your own posts, surf your feeds, vote what you like, write comments, read replies, do all major Hive functions in your daily social surfing as well as wallet actions and other extras such as search, discover different tags etc.",
+      "faq-title": "FAQ",
+      "faqs": "All FAQs",
+      "contact-title": "Contacts",
+      "contact-blog": "Founder's blog",
+      "contact-news": "News on Hive",
+      "contact-email": "Email us"
+    },
+    "faq": {
+      "page-title": "Ecency FAQ",
+      "page-sub-title": "Table of Contents",
+      "what-is-ecency-header": "What is Ecency?",
+      "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based social network - powered by <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency is home of free speech and rewarding communities for content creators.</p><p>Project is founded by <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> in August 2016 as an alternative social network that's uncensored, user controled, immutable and opensource. Currently there are <a class=\"push-link\" href=\"/contributors\">many independent and voluntary contributors</a> wanting to keep vision and spirit of free speech.</p><p>Ecency helps onboarding masses into Blockchain technology where users are getting paid for their time, resources and learn while enjoying social aspects of blockchain. Through ease of use, users not only learn but also become investors, innovators of the new internet.</p>",
+      "what-is-hive-header": "What is Hive blockchain?",
+      "what-is-hive-body": "<p>Hive is a blockchain that was designed to be fast, feeless, decentralized, uncensored platform for Web3.0 applications, with built-in features where stake holders can earn rewards by staking, curating, posting, playing games, trading - all without any middle man (decentralized). Tokens on Hive blockchain called HIVE, HIVE DOLLARS, HIVE POWER.</p>",
+      "what-is-difference-header": "What's the difference between Ecency and other Hive interfaces?",
+      "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\"/></p><p>The primary differences in all interfaces or applications are in their feature-set, use cases. Ecency offers website, mobile and desktop applications for ease of access and with best security in mind. Accessible, opensource and innovative, built and owned by users. Aspire for greatness!</p>",
+      "why-choose-ecency-header": "Защо бих избрал Ecency?",
+      "why-choose-ecency-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjrzJAcJ4DvxvtqoPdzS9Aygf4MZ1PeE4goH6zWaeEFvafr9vGXWuou67Pbn44GweMyHV5DupM5q1cRvU85qdver?format=match&mode=fit\"/></p><p>Tailored feature set to empower you to create, inspire your audience and community. Ecency mobile application giving you on-go solution. With desktop app you are always sure to get uncensored content right from the blockchain, with website reach thousands of readers accross globe with best ranked content on search engines. State of art security measures so your keys will always stay encrypted and out of reach for ill-intentioned individuals. Fast and beautiful website, helps you to get discovered online and gain exposure for your content and gain loyal followers and readers. Build your community with Ecency today and take advantages of emerging blockchain technology and uncensored content, true free speech!</p>",
+      "how-ecency-works-header": "Как работи Ecency?",
+      "how-ecency-works-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjuZ3ksaZqEjfd9GadyKFE4bT7UP8qM1sF5W6U3cst4ekDsXfrQdcrjtdz6b5Ye2AfWNwGA5f8QqVXmed6NRfg1U?format=match&mode=fit\"/></p><p>Ecency stores and reads data from the blockchain, and thus data is accessible and uncensored. Ecency rewards content creators with built-in incentive mechanism of blockchain, with tokens (HIVE, HIVE DOLLARS, HIVE POWER) as well as Points. Tokens can be purchased and sold in major cryptocurrency exchanges (e.g. Binance, Bittrex). Points could be utilized within platform and traded for goods, services.</p>",
+      "how-to-join-header": "Как да се присъединя към Ecency?",
+      "how-to-join-body": "<p>Go to <a class=\"push-link\" href=\"/signup?referral=ecency\">https://ecency.com/signup?referral=ecency</a> and create an account. After signup you will receive email with further instructions. Your password is your master key to your account. Please store it safely, if you loose your password, you ultimately loose access to your account and your funds. Accounts cannot be deactivated or deleted, account names can not be changed as well. The account along with all of its activity is permanently stored in the blockchain. Without password, accounts cannot be restored, store your keys safely.</p>",
+      "how-to-signin-header": "Как да се регистрирам в Ecency?",
+      "how-to-signin-body": "<p><img src=\"https://images.ecency.com/p/7258xSVeJbKmTr9Z4jhbPhjS9pMWA2mTwBMDbXqk9G9wdMw2bwR4hXqRQt9S7UBFrBAWCYWddjn3G34ETv5KWB5KGmuZ8ixBB9oKHTFvjjnTkRLp4ttrFQtpgtNnRUEA9NtmyFmgyuuK4?format=match&mode=fit\"/></p><p>You can sign-in to Ecency by using your Username and Master password or by using Active Private Keys. We take security very seriously, that's why we never store your private keys, on mobile app they are encrypted with extra PIN code of your choice, on website they are never stored. You can also use <a href=\"https://hivesigner.com\" target=\"_blank\" rel=\"noopener noreferrer\">Hivesigner OAuth2</a> authentication service to easily login, manage and perform actions.</p>",
+      "how-referrals-work-header": "Как работи системата за реферали в Ecency?",
+      "how-referrals-work-body": "<p>Referral system is simple, you can invite your friends by adding your username in this link https://ecency.com/signup?referral=username and share it with your friends. Once your friends join Ecency and earn their first 250 Points, you will earn 100 Points. There is no limits on referrals and its reward.</p>",
+      "what-is-points-header": "What are Ecency Points and how to use them?",
+      "what-is-points-body": "<p>Ecency Points are continually minted and rewarded for all users for various social activities they perform on website, mobile or desktop app. Points can be used for promoting, boosting your content, can even be transferred or gifted to another user. You can also purchase Points with our mobile apps.</p>",
+      "where-tokens-come-header": "Откъде идват жетоните?",
+      "where-tokens-come-body": "<p><img src=\"https://images.ecency.com/p/7kq2TLHKEHhCCDwNZLfFLu7msWtbdFb7vZaJJ9Y13GAc18vfVNAj8ZctLWmsVfMCCFtwGdULbZKT89faeBymhPsySU5tp4RnvDsHz6ZBxXHWA4g34ck4LHnR2vGkqsHvjzhizhpV8K6JrQ4sy7cCgJQksUUYPKp4d9XbERHkjnZV3PTdhbiUZPYJ43RS8cQu2sEmUbAgqZExuYMGa46SDa4vCunH2w6oNpommW5L1CCdfwdgX5i9eCpcS5fHo4t8btjVE69edzrUN8anr6T3v8AFYHC?format=match&mode=fit\"/></p><p>The Hive network continually creates new digital tokens to reward content creators and curators. Some of the newly-created tokens are transferred to users who add value to platform by posting, commenting, and voting on other people's posts. The remainder is distributed to holders of HIVE POWER and the witnesses that secures the blockchain.</p>",
+      "how-promotion-work-header": "Как работи промотирането на съдържание?",
+      "how-promotion-work-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfoi6H93UHPFEEQutPvax8LP1XqGWMa9geug5SBEEhLUEHKVvSyBfzhrBm9J4uvmrn28AtPhmwcKx?format=match&mode=fit\"/></p><p>Promoting content on Ecency is very simple and easy. Ecency Points are used to promote content for 1, 2, 3, 7 or 14 days to get more exposure. Promoted posts are shuffled across the feeds to all users in mobile app, desktop app and website. There is no limit or restrictions, any post can be promoted to get more exposure and engagement. We hold right to remove posts from promotion list if it violates certain internet etiquette.</p>",
+      "how-boosting-work-header": "Как работи буyстването на съдържание?",
+      "how-boosting-work-body": "<p>Points can be used for boosting content (post and comments). Boosting requests are manually reviewed by our moderators and curators which might take upto 24 hours. <p>As part of the qualities check, we may consider: a) Content is original content, b) Not detected by cheetah, mackbot, hivewatchers, or any other blacklists etc. c) User is not in Ecency blacklist due to abusive behavior.</p>Boosting does not guarantee curation, if content is not curated within 24 hours Points will be refunded.</p>",
+      "how-to-transfer-header": "Как да прехвърля blockchain жетони?",
+      "how-to-transfer-body": "<p>After login, you will find Wallet page in top header on website and desktop app or in Profile page, bottom navigation bar on mobile app. In wallet page you can initiate transfer of any token you hold to another user or exchange accounts, click on arrow next to your balance and find transfer operations. Transfers are irreversible because they are registered on blockchain, make sure to send correct recipient.</p>",
+      "how-see-rewards-header": "Как да видя наградите на поста ми?",
+      "how-see-rewards-body": "<p><img src=\"https://images.ecency.com/p/3W72119s5BjW4PvRk9nXBzqrPWMsMTjNrXDPFFf11iYhySeELMe77idrZHBPmyaqFX6CV72hBLB5qFhwVhGoAATydoFxAF7oCwBt1ztp6eS9r5us4pm7iN?format=match&mode=fit\"/></p><p>In Wallet page (in top header on website and desktop app, bottom navigation bar on mobile app), you can see Curation rewards (the rewards earned for upvoting posts and comments) and Author rewards (the rewards earned by your own posts and comments)</p><p>You can also view the same information for other users by visiting their wallet profile.</p>",
+      "how-dhf-work-header": "Как работи DHF?",
+      "how-dhf-work-body": "<p>Anyone can create a proposal and convince community to vote on their proposal to get funded. Before creating proposal, normal post should be published on blockchain and it is recommended to gather feedback before creating proposal. Proposal creation has fee of 10 HBD + 1 HBD for each day it lasts over 60 days.</p><p>Once proposal reaches certain threshold of tallied votes, it will start receiving funds each hour. If proposal falls below threshold, system will halt funding for that proposal. You can vote as many proposals as you want, there are no limits. Proposal cannot be edited, but can be deleted/withdrawn by creator.</p>",
+      "when-claim-rewards-header": "Кога мога да си взема наградите?",
+      "when-claim-rewards-body": "<p>Posts and comments remain active for 7 days and rewards are fluctuates depending on votes and market price of token, that is why rewards are approximated as pending reward. When the period is over, pending reward changes to actual reward and you are able to claim earned rewards. In your Wallet, click the Claim Rewards button to add the tokens to your account.</p>",
+      "what-are-rc-header": "Какво е Кредитния Ресурс?",
+      "what-are-rc-body": "<p>Transacting on the Hive blockchain has zero fees, transaction rate-limiting is employed to safeguard the blockchain from spam attacks. Every action that you take on the blockchain will consume a small amount of Resource Credits. This includes posting, commenting, voting, transferring tokens, etc. Viewing content does not consume Resource Credits.</p><p>Every user has a limited amount of Resource Credits to use each week. The more transactions a user does, the less Resource Credits they will have left (until they recharge). Users with more HIVE POWER will have more Resource Credits.</p><p>If you run out of Resource Credits, you will be unable to transact with the blockchain until your Resource Credits recharge (happens automatically) or you acquire additional HIVE POWER to increase your Resource Credit balance or you can <a href=\"/faq#how-boost-account\">request Boosting account from Ecency</a> to receive temporary delegation.</p>",
+      "how-boost-account-header": "Как да поискам буустване на акаунта?",
+      "how-boost-account-body": "<p>If your account is low on <a href=\"/faq#what-are-rc\">Resource Credits</a>, you can request account boosting from Ecency. You will receive temporary delegation which should boost your account to perform more activities on blockchain. You can find account boosting feature in Points options.</p>",
+      "what-spam-abuse-header": "Какво се счита за спам или злоупотреба?",
+      "what-spam-abuse-body": "<p><img src=\"https://images.ecency.com/p/3jpR3paJ37V8XPrHkfZdMt57jY6pRt6zEt5iRJV9pSw4Mez3Hut8U6RWvWLA7cFYEa1bxveXeasNfZApzrcLYLx8cz84kBEKak1KkewE2ZqE1QRRkF4eqRH3vWVqZB9WuNbzE?format=match&mode=fit\"/></p><p><ul><li>Plagiarized posts or copied content.</li><li>Leaving nearly identical or materially similar comments on multiple posts.</li><li>Using tags that are unrelated to the post.</li><li>Threatening users with any type of physical violence.</li><li>Not citing sources when using someone else’s material.</li><li>Posting ‘not safe for work’ content without using the “nsfw” tag.</li><li>Scams or Fraudulent offers.</li></ul></p>",
+      "can-link-post-header": "Can I request adding backlink to my website from Ecency team?",
+      "can-link-post-body": "<p>All the content on our site is created by our users and we don't modify or able to add backlinks. You are free to contact author of the post or <a href=\"/signup?referral=ecency\" class=\"push-link\">Signup</a> to open your own blog and community, publish articles to create backlinks for free.</p>",
+      "can-guest-post-header": "Възможно ли е да направя пост от гост акаунт на уебсайта ви?",
+      "can-guest-post-body": "<p>Posting on Ecency is simple and easy, <a href=\"/signup?referral=ecency\" class=\"push-link\">Signup</a> to open your own blog and community, start posting your content.</p>",
+      "how-to-contribute-header": "Как да допринеса към Ecency?",
+      "how-to-contribute-body": "<p>Our <a href=\"/contributors\" class=\"push-link\">awesome contributors</a> helping us to shape Ecency. You can be part of this great movement, by joining our Translation team: <a href=\"https://translate-desktop.ecency.com\" target=\"_blank\" rel=\"noopener noreferrer\">Website</a>, <a href=\"https://translate-mobile.ecency.com\" target=\"_blank\" rel=\"noopener noreferrer\">Mobile</a> or by contributing with Ideas, Developing, Designing, Social media outreach skills. We try our best to support our contributors!</p>"
+    }
+  },
+  "contributors": {
+    "title": "Сътрудници",
+    "description": "These great people contributed in one way or another to Ecency, we would like to thank them all. If you want to join our team by contributing with Translation, Ideas, Development, Designing, Social awareness, feel free to join. To learn more read our <a href=\"/faq#how-to-contribute\">FAQ</a>."
+  },
+  "context-menu": {
+    "cut": "Изрежи",
+    "copy": "Копиране",
+    "paste": "Поставяне",
+    "open-image-browser": "Отвори снимката в браузър",
+    "copy-image-url": "Копиране на адреса на изображението"
+  },
+  "updater": {
+    "new-version-available": "Има налична нова версия",
+    "download": "Изтегли",
+    "update": "Обновяване",
+    "dismiss": "Отхвърли",
+    "downloading": "Изтегляне на нова версия...",
+    "download-completed": "Изтеглянето приключи",
+    "restart": "Рестартирай"
+  }
+}

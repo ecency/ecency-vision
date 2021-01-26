@@ -3,9 +3,7 @@ import renderer from "react-test-renderer";
 
 import {Gallery} from './index';
 
-import {activeUserInstance} from "../../helper/test-helper";
-
-const allOver = () => new Promise((resolve) => setImmediate(resolve));
+import {activeUserInstance, allOver} from "../../helper/test-helper";
 
 
 let TEST_MODE = 0

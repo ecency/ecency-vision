@@ -5,9 +5,7 @@ import {createBrowserHistory} from "history";
 
 import {Activities} from './index';
 
-import {globalInstance, communityInstance1} from "../../helper/test-helper";
-
-const allOver = () => new Promise((resolve) => setImmediate(resolve));
+import {globalInstance, communityInstance1, allOver} from "../../helper/test-helper";
 
 jest.mock("moment", () => () => ({
     fromNow: () => "3 days ago",

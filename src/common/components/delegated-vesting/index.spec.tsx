@@ -4,13 +4,11 @@ import {List} from "./index";
 import renderer from "react-test-renderer";
 import {createBrowserHistory} from "history";
 
-import {entryInstance1, dynamicPropsIntance1, delegatedVestingInstance, globalInstance, activeUserMaker} from "../../helper/test-helper";
+import {entryInstance1, dynamicPropsIntance1, delegatedVestingInstance, globalInstance, activeUserMaker, allOver} from "../../helper/test-helper";
 
 jest.mock("../../constants/defaults.json", () => ({
     imageServer: "https://images.ecency.com",
 }));
-
-const allOver = () => new Promise((resolve) => setImmediate(resolve));
 
 let MOCK_MODE = 1;
 

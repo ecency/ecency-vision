@@ -35,7 +35,7 @@ export default class HiveWallet {
     public estimatedValue: number = 0;
 
 
-    constructor(account: Account, dynamicProps: DynamicProps) {
+    constructor(account: Account, dynamicProps: DynamicProps, convertingHBD: number = 0) {
         const {hivePerMVests, base, quote} = dynamicProps;
         const pricePerHive = base / quote;
 
@@ -74,7 +74,7 @@ export default class HiveWallet {
             this.vestingShares - this.vestingSharesDelegated;
 
         this.totalHive = vestsToHp(this.vestingShares, hivePerMVests) + this.balance + this.savingBalance;
-        this.totalHbd = this.hbdBalance + this.savingBalanceHbd;
+        this.totalHbd = this.hbdBalance + this.savingBalanceHbd + convertingHBD;
 
         this.estimatedValue = this.totalHive * pricePerHive + this.totalHbd;
     }

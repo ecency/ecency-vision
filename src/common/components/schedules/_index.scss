@@ -1,15 +1,25 @@
 .schedules-modal {
   .modal-body {
     .dialog-content {
-      height: 500px;
-      overflow: auto;
+      min-height: 590px;
+
+      .dialog-filter {
+        height: 70px;
+      }
 
       .schedules-list {
+        height: 520px;
+        overflow: auto;
+
         .schedules-list-body {
           .schedules-list-item {
             @include entry-list-item;
+            margin: 0;
+            padding: 0 0 16px 0 !important;
 
-            margin: 0 0 20px 0;
+            &:not(:last-child) {
+              margin: 0 0 20px 0;
+            }
 
             .item-body {
               .item-image {

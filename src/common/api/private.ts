@@ -35,16 +35,6 @@ export const getReceivedVestingShares = (username: string): Promise<ReceivedVest
     axios.get(_u(`/api/received-vesting/${username}`)).then((resp) => resp.data.list);
 
 
-export interface PopularUser {
-    name: string,
-    display_name: string,
-    about: string,
-    reputation: number
-}
-
-export const getPopularUsers = (): Promise<PopularUser[]> =>
-    axios.get(_u(`/api/popular-users`)).then((resp) => resp.data);
-
 export interface LeaderBoardItem {
     _id: string;
     count: number;
@@ -266,6 +256,34 @@ export const deleteFavorite = (username: string, account: string): Promise<any> 
     return axios.post(_u(`/api/favorites-delete`), data).then(resp => resp.data);
 }
 
+export interface Fragment {
+    id: string;
+    title: string;
+    body: string;
+    created: string;
+    modified: string;
+}
+
+export const getFragments = (username: string): Promise<Fragment[]> => {
+    const data = {code: getAccessToken(username)};
+    return axios.post(_u(`/api/fragments`), data).then(resp => resp.data);
+}
+
+export const addFragment = (username: string, title: string, body: string): Promise<{ fragments: Fragment[] }> => {
+    const data = {code: getAccessToken(username), title, body};
+    return axios.post(_u(`/api/fragments-add`), data).then(resp => resp.data);
+}
+
+export const updateFragment = (username: string, fragmentId: string, title: string, body: string): Promise<any> => {
+    const data = {code: getAccessToken(username), id: fragmentId, title, body};
+    return axios.post(_u(`/api/fragments-update`), data).then(resp => resp.data);
+}
+
+export const deleteFragment = (username: string, fragmentId: string): Promise<any> => {
+    const data = {code: getAccessToken(username), id: fragmentId};
+    return axios.post(_u(`/api/fragments-delete`), data).then(resp => resp.data);
+}
+
 export const getPoints = (username: string): Promise<{
     points: string;
     unclaimed_points: string;
@@ -340,16 +358,23 @@ export const commentHistory = (author: string, permlink: string, onlyMeta: boole
 }
 
 export interface SearchResult {
+    id: number;
     title: string;
+    title_marked: string | null;
     category: string;
     author: string;
     permlink: string;
-    author_rep: number;
+    author_rep: number | string;
     children: number;
     body: string;
+    body_marked: string | null;
+    img_url: string;
     created_at: string;
     payout: number;
     total_votes: number;
+    up_votes: number;
+    tags: string[];
+    depth: number;
     app: string;
 }
 
@@ -360,11 +385,12 @@ export interface SearchResponse {
     took: number;
 }
 
-export const search = (q: string, sort: string, scroll_id?: string): Promise<SearchResponse> => {
-    const data: { q: string, sort: string, scroll_id?: string } = {q, sort};
-    if (scroll_id) {
-        data.scroll_id = scroll_id
-    }
+export const search = (q: string, sort: string, hideLow: string, since?: string, scroll_id?: string): Promise<SearchResponse> => {
+    const data: { q: string, sort: string, hide_low: string, since?: string, scroll_id?: string } = {q, sort, hide_low: hideLow};
+
+    if (since) data.since = since;
+    if (scroll_id) data.scroll_id = scroll_id;
+
     return axios.post(_u(`/api/search`), data).then(resp => resp.data);
 }
 
@@ -389,3 +415,29 @@ export const searchFollowing = (follower: string, q: string): Promise<FriendSear
 
     return axios.post(_u(`/api/search-following`), data).then(resp => resp.data);
 }
+
+export interface AccountSearchResult {
+    name: string;
+    full_name: string;
+    about: string;
+    reputation: number
+}
+
+export const searchAccount = (q: string = "", limit: number = 20, random: number = 1): Promise<AccountSearchResult[]> => {
+    const data = {q, limit, random};
+
+    return axios.post(_u(`/api/search-account`), data).then(resp => resp.data);
+}
+
+export interface TagSearchResult {
+    tag: string;
+    repeat: number;
+}
+
+export const searchTag = (q: string = "", limit: number = 20, random: number = 0): Promise<TagSearchResult[]> => {
+    const data = {q, limit, random};
+
+    return axios.post(_u(`/api/search-tag`), data).then(resp => resp.data);
+}
+
+

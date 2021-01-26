@@ -4,12 +4,13 @@ import {History, Location} from "history";
 
 import moment from "moment";
 
-import {Modal} from "react-bootstrap";
+import {Form, FormControl, Modal} from "react-bootstrap";
 
 import {Global} from "../../store/global/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {FullAccount} from "../../store/accounts/types";
 
+import BaseComponent from "../base";
 import UserAvatar from "../user-avatar";
 import LinearProgress from "../linear-progress";
 import PopoverConfirm from "../popover-confirm";
@@ -149,14 +150,15 @@ interface Props {
 
 interface State {
     loading: boolean,
-    items: Draft[]
+    list: Draft[],
+    filter: string
 }
 
-
-export class Drafts extends Component<Props, State> {
+export class Drafts extends BaseComponent<Props, State> {
     state: State = {
         loading: true,
-        items: []
+        list: [],
+        filter: ""
     }
 
     componentDidMount() {
@@ -166,13 +168,14 @@ export class Drafts extends Component<Props, State> {
     fetch = () => {
         const {activeUser} = this.props;
 
-        this.setState({loading: true});
+        this.stateSet({loading: true});
         getDrafts(activeUser?.username!).then(items => {
-            this.setState({items: this.sort(items), loading: false});
+            this.stateSet({list: this.sort(items)});
         }).catch(() => {
-            this.setState({loading: false});
             error(_t('g.server-error'));
-        })
+        }).finally(() => {
+            this.stateSet({loading: false});
+        });
     }
 
     sort = (items: Draft[]) =>
@@ -184,9 +187,10 @@ export class Drafts extends Component<Props, State> {
         const {activeUser, location, history} = this.props;
 
         deleteDraft(activeUser?.username!, item._id).then(() => {
-            const {items} = this.state;
-            const nItems = [...items].filter(x => x._id !== item._id);
-            this.setState({items: this.sort(nItems)});
+            const {list} = this.state;
+            const nList = [...list].filter(x => x._id !== item._id);
+
+            this.stateSet({list: this.sort(nList)});
 
             // if user editing the draft, redirect to submit page
             if (location.pathname === `/draft/${item._id}`) {
@@ -204,31 +208,54 @@ export class Drafts extends Component<Props, State> {
         onHide();
     }
 
+    filterChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+        const {value} = e.target;
+        this.stateSet({filter: value});
+    }
+
     render() {
-        const {items, loading} = this.state;
+        const {list, filter, loading} = this.state;
 
         return <div className="dialog-content">
-            {loading && <LinearProgress/>}
-            {items.length > 0 && (
-                <div className="drafts-list">
-                    <div className="drafts-list-body">
-                        {items.map(item => (
-                            <ListItem key={item._id} {...this.props} draft={item} editFn={this.edit} deleteFn={this.delete}/>
-                        ))}
+
+            {(() => {
+                if (loading) {
+                    return <LinearProgress/>
+                }
+
+                if (list.length === 0) {
+                    return <div className="drafts-list">
+                        {_t('g.empty-list')}
                     </div>
-                </div>
-            )}
-            {(!loading && items.length === 0) && (
-                <div className="drafts-list">
-                    {_t('g.empty-list')}
-                </div>
-            )}
+                }
+
+                const items = list.filter(x => x.title.toLowerCase().indexOf(filter.toLowerCase()) !== -1);
+
+                return <>
+                    <div className="dialog-filter">
+                        <Form.Control type="text" placeholder={_t("drafts.filter")} value={filter} onChange={this.filterChanged}/>
+                    </div>
+
+                    {items.length === 0 && <span className="text-muted">{_t("g.no-matches")}</span>}
+
+                    {items.length > 0 && (
+                        <div className="drafts-list">
+                            <div className="drafts-list-body">
+                                {items.map(item => (
+                                    <ListItem key={item._id} {...this.props} draft={item} editFn={this.edit} deleteFn={this.delete}/>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                </>;
+            })()}
         </div>
     }
 }
 
 
-export default class DraftsDialog extends Component<Props> {
+export default class DraftsDialog
+    extends Component<Props> {
     hide = () => {
         const {onHide} = this.props;
         onHide();

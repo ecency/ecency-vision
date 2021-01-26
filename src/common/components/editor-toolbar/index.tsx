@@ -8,6 +8,7 @@ import {User} from "../../store/users/types";
 import Tooltip from "../tooltip";
 import EmojiPicker from "../emoji-picker";
 import Gallery from "../gallery";
+import Fragments from "../fragments";
 
 import {uploadImage} from "../../api/misc";
 
@@ -35,6 +36,7 @@ import {
     imageSvg,
     gridSvg,
     emoticonHappyOutlineSvg,
+    textShortSvg
 } from "../../img/svg";
 
 
@@ -46,11 +48,13 @@ interface Props {
 
 interface State {
     gallery: boolean
+    fragments: boolean
 }
 
 export class EditorToolbar extends Component<Props> {
     state: State = {
         gallery: false,
+        fragments: false,
     }
 
     holder = React.createRef<HTMLDivElement>();
@@ -65,6 +69,11 @@ export class EditorToolbar extends Component<Props> {
     toggleGallery = () => {
         const {gallery} = this.state;
         this.setState({gallery: !gallery});
+    }
+
+    toggleFragments = () => {
+        const {fragments} = this.state;
+        this.setState({fragments: !fragments});
     }
 
     componentDidMount() {
@@ -289,7 +298,7 @@ export class EditorToolbar extends Component<Props> {
     };
 
     render() {
-        const {gallery} = this.state;
+        const {gallery, fragments} = this.state;
         const {sm, activeUser} = this.props;
 
         return (
@@ -413,6 +422,11 @@ export class EditorToolbar extends Component<Props> {
                             }}/>
                         </div>
                     </Tooltip>
+                    <Tooltip content={_t("editor-toolbar.fragments")}>
+                        <div className="editor-tool" onClick={this.toggleFragments}>
+                            {textShortSvg}
+                        </div>
+                    </Tooltip>
                 </div>
                 <input
                     onChange={this.fileInputChanged}
@@ -423,10 +437,14 @@ export class EditorToolbar extends Component<Props> {
                     multiple={true}
                     style={{display: 'none'}}
                 />
-                {(gallery && activeUser) && <Gallery {...this.props} onHide={this.toggleGallery} onPick={(url: string) => {
+                {(gallery && activeUser) && <Gallery activeUser={activeUser} onHide={this.toggleGallery} onPick={(url: string) => {
                     const fileName = url.split("/").pop() || "";
                     this.image(fileName, url);
                     this.toggleGallery();
+                }}/>}
+                {(fragments && activeUser) && <Fragments activeUser={activeUser} onHide={this.toggleFragments} onPick={(body: string) => {
+                    this.insertText(body);
+                    this.toggleFragments();
                 }}/>}
             </>
         );

@@ -2,13 +2,11 @@ import React from 'react';
 
 import renderer from "react-test-renderer";
 
-import {globalInstance, dynamicPropsIntance1, proposalInstance} from "../../helper/test-helper";
+import {globalInstance, dynamicPropsIntance1, proposalInstance, allOver} from "../../helper/test-helper";
 
 import {createBrowserHistory} from "history";
 
 import {ProposalVotesDetail} from './index';
-
-const allOver = () => new Promise((resolve) => setImmediate(resolve));
 
 jest.mock("../../api/hive", () => ({
     getProposalVotes: (proposalId: number, voter: string = "", limit: number = 300) =>

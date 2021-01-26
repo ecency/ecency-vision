@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+<div
+  className="card search-topics"
+>
+  <div
+    className="card-header"
+  >
+    <strong>
+      Topics
+    </strong>
+  </div>
+  <div
+    className="card-body"
+  >
+    <div
+      className="topic-list"
+    >
+      <a
+        className="list-item"
+        href="/hot/foo"
+        onClick={[Function]}
+      >
+        foo
+      </a>
+      <a
+        className="list-item"
+        href="/hot/bar"
+        onClick={[Function]}
+      >
+        bar
+      </a>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(2) No matches 1`] = `
+<div
+  className="card search-topics"
+>
+  <div
+    className="card-header"
+  >
+    <strong>
+      Topics
+    </strong>
+  </div>
+  <div
+    className="card-body"
+  >
+    <span
+      className="text-muted"
+    >
+      No matches
+    </span>
+  </div>
+</div>
+`;

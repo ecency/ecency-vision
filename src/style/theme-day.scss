@@ -47,6 +47,12 @@ $pagination-hover-border-color: $white-four;
 $alert-padding-y: 0.6rem;
 $alert-padding-x: 0.6rem;
 
+$card-border-color: $white-three;
+$card-cap-bg: $white-two;
+$card-bg: transparent;
+
+$form-check-input-margin-y: 0.15rem;
+
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";
@@ -70,6 +76,7 @@ $alert-padding-x: 0.6rem;
   @import "~bootstrap/scss/grid";
   @import "~bootstrap/scss/nav";
   @import "~bootstrap/scss/progress";
+  @import "~bootstrap/scss/card";
 
   background: $white;
   color: lighten($charcoal-grey, 10);

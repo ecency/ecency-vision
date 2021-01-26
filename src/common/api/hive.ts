@@ -84,6 +84,7 @@ export const getAccounts = (usernames: string[]): Promise<FullAccount[]> => {
         resp.map((x) => {
             const account: FullAccount = {
                 name: x.name,
+                owner: x.owner,
                 active: x.active,
                 posting: x.posting,
                 memo_key: x.memo_key,
@@ -310,3 +311,15 @@ export const downVotingPower = (account: FullAccount): number => {
 
     return rv;
 };
+
+
+export interface ConversionRequest {
+    amount: string;
+    conversion_date: string;
+    id: number;
+    owner: string;
+    requestid: number;
+}
+
+export const getConversionRequests = (account: string): Promise<ConversionRequest[]> =>
+    client.database.call("get_conversion_requests", [account]);

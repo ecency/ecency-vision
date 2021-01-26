@@ -1,0 +1,41 @@
+.search-topics {
+  .topic-list {
+    .list-item {
+      border-radius: 25px;
+      cursor: pointer;
+      display: inline-block;
+      margin:  0 8px 8px 0;
+      padding: 4px 8px;
+      text-decoration: none;
+      transition: 0.5s;
+      font-size: 90%;
+
+      @media (min-width: $lg-break) {
+        font-size: $font-size-base;
+        padding: 4px 12px;
+      }
+
+      @include themify(day) {
+        background: $white;
+        color: darken($silver, 35);
+        border: solid 1px $white-four;
+      }
+
+      @include themify(night) {
+        background: $dark-grey-blue;
+        color: darken($silver, 10);
+        border: solid 1px $dark-two;
+      }
+
+      &:hover {
+        @include themify(day) {
+          background: darken($white, 4);
+        }
+
+        @include themify(night) {
+          background: darken($dark-grey-blue, 4);
+        }
+      }
+    }
+  }
+}

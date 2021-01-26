@@ -22,6 +22,7 @@ export interface BaseAccount {
 
 export interface FullAccount {
     name: string;
+    owner: Authority;
     active: Authority;
     posting: Authority;
     memo_key: string;

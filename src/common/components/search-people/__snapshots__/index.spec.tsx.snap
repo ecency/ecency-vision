@@ -1,0 +1,179 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+<div
+  className="card search-people"
+>
+  <div
+    className="card-header"
+  >
+    <strong>
+      People
+    </strong>
+  </div>
+  <div
+    className="card-body"
+  >
+    <div
+      className="people-list"
+    >
+      <div
+        className="list-body"
+      >
+        <div
+          className="list-item"
+        >
+          <div
+            className="item-header"
+          >
+            <a
+              href="/@foo"
+              onClick={[Function]}
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+                  }
+                }
+              />
+            </a>
+            <div
+              className="item-title"
+            >
+              <a
+                className="item-name notransalte"
+                href="/@foo"
+                onClick={[Function]}
+              >
+                Foo
+              </a>
+              <span
+                className="item-sub-title"
+              >
+                @
+                foo
+              </span>
+            </div>
+          </div>
+          <div
+            className="item-about"
+          >
+            Lorem ipsum dolor sit amet
+          </div>
+        </div>
+        <div
+          className="list-item"
+        >
+          <div
+            className="item-header"
+          >
+            <a
+              href="/@bar"
+              onClick={[Function]}
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
+                  }
+                }
+              />
+            </a>
+            <div
+              className="item-title"
+            >
+              <a
+                className="item-name notransalte"
+                href="/@bar"
+                onClick={[Function]}
+              >
+                Bar
+              </a>
+              <span
+                className="item-sub-title"
+              >
+                @
+                bar
+              </span>
+            </div>
+          </div>
+          <div
+            className="item-about"
+          >
+            Lorem ipsum dolor sit amet
+          </div>
+        </div>
+        <div
+          className="list-item"
+        >
+          <div
+            className="item-header"
+          >
+            <a
+              href="/@baz"
+              onClick={[Function]}
+            >
+              <span
+                className="user-avatar medium"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://images.ecency.com/u/baz/avatar/medium)",
+                  }
+                }
+              />
+            </a>
+            <div
+              className="item-title"
+            >
+              <a
+                className="item-name notransalte"
+                href="/@baz"
+                onClick={[Function]}
+              >
+                Baz
+              </a>
+              <span
+                className="item-sub-title"
+              >
+                @
+                baz
+              </span>
+            </div>
+          </div>
+          <div
+            className="item-about"
+          >
+            Lorem ipsum dolor sit amet
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(2) No matches 1`] = `
+<div
+  className="card search-people"
+>
+  <div
+    className="card-header"
+  >
+    <strong>
+      People
+    </strong>
+  </div>
+  <div
+    className="card-body"
+  >
+    <span
+      className="text-muted"
+    >
+      No matches
+    </span>
+  </div>
+</div>
+`;

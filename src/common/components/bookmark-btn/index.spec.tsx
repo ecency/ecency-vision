@@ -4,9 +4,7 @@ import {BookmarkBtn} from "./index";
 
 import TestRenderer from "react-test-renderer";
 
-import {entryInstance1, UiInstance, activeUserInstance} from "../../helper/test-helper";
-
-const allOver = () => new Promise((resolve) => setImmediate(resolve));
+import {entryInstance1, UiInstance, activeUserInstance, allOver} from "../../helper/test-helper";
 
 let TEST_MODE = 0
 

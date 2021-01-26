@@ -2,11 +2,9 @@ import React from "react";
 
 import {WithdrawRoutes} from "./index";
 
-import {globalInstance, fullAccountInstance} from "../../helper/test-helper";
+import {globalInstance, fullAccountInstance, allOver} from "../../helper/test-helper";
 
 import TestRenderer from "react-test-renderer";
-
-const allOver = () => new Promise((resolve) => setImmediate(resolve));
 
 let MOCK_MODE = 1;
 
