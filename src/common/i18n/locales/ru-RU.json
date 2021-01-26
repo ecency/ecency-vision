@@ -20,6 +20,7 @@
     "back": "Назад",
     "load-more": "Загрузить больше",
     "empty-list": "Здесь пусто",
+    "no-matches": "No matches",
     "save": "Сохранить",
     "try-again": "Попрoбуйте снова",
     "show": "Показать",
@@ -27,7 +28,9 @@
     "off": "Выкл",
     "yes": "Да",
     "no": "Нет",
-    "done": "Готово"
+    "done": "Готово",
+    "apply": "Apply",
+    "close": "Close"
   },
   "confirm": {
     "title": "Вы уверены?",
@@ -74,6 +77,8 @@
     "drafts": "Черновики",
     "bookmarks": "Закладки",
     "schedules": "Отложенные",
+    "fragments": "Snippets",
+    "settings": "Settings",
     "logout": "Выйти",
     "vote-power": "Сила голоса:"
   },
@@ -101,8 +106,8 @@
     "sign-up-text-2": "Зарегистрируйтесь сейчас!"
   },
   "sign-up": {
-    "header": "Регистрация",
-    "description": "Одна учетная запись для управления всем блокчейном и Ecency. Узнайте больше о преимуществах в <a href=\"/faq#how-to-join\">FAQ</a>",
+    "header": "Join",
+    "description": "<h3>Home of Free speech and Rewarding communities!</h3><br>One account to manage everything on <b>Blockchain</b> and <b>Ecency</b>.<br><br>Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
     "username": "Выберите имя пользователя",
     "email": "Введите свой email адрес",
     "ref": "Реферал (необязательно)",
@@ -182,8 +187,8 @@
     "comment-entry-go-parent": "Просмотр прямого родителя",
     "show-history": "История",
     "hidden-warning": "Скрыто из-за низкого рейтинга.",
-    "address-copy": "Copy post address",
-    "address-copied": "Post address copied to clipboard."
+    "address-copy": "Скопировать адрес поста",
+    "address-copied": "Адрес поста скопирован в буфер обмена."
   },
   "edit-history": {
     "title": "Править Историю",
@@ -371,7 +376,8 @@
     "withdraw-hbd": "Вывести Hive Доллар",
     "delegate": "Делегировать",
     "power-down": "Понижение Силы",
-    "withdraw-routes": "Пути вывода"
+    "withdraw-routes": "Пути вывода",
+    "converting-hbd-amount": "Converting to HIVE"
   },
   "withdraw-routes": {
     "title": "Аккаунты для вывода",
@@ -449,7 +455,7 @@
     "convert-sub-title": "Рекомендуется только при цене HBD ниже $1. Вы получите $1 в токенах HIVE через 3,5 дня.",
     "delegate-title": "Делегировать",
     "delegate-sub-title": "Делегировать Hive Силу",
-    "power-down-title": "Power Down",
+    "power-down-title": "Понижение Силы",
     "power-down-sub-title": "Power Down Hive Power",
     "from": "От",
     "to": "Кому",
@@ -547,7 +553,8 @@
     "gallery": "Галерея",
     "emoji": "Эмодзи",
     "image-error": "Не удалось загрузить изображение.",
-    "image-error-size": "Слишком большой размер изображения. Попробуйте уменьшить его."
+    "image-error-size": "Слишком большой размер изображения. Попробуйте уменьшить его.",
+    "fragments": "Snippets"
   },
   "emoji-picker": {
     "filter-placeholder": "Фильтр",
@@ -670,13 +677,45 @@
   },
   "search-page": {
     "title": "Search",
-    "description": "Find uncensored content, communities and users",
-    "n-results-for-q": "{{n}} results",
-    "no-result": "No result",
-    "sort-by": "sort by",
+    "description": "Find uncensored content, communities and users"
+  },
+  "search-comment": {
+    "title": "Results",
+    "matches": "{{n}} matches",
+    "matches-singular": "1 match",
+    "advanced": "Advanced",
+    "search": "Search",
+    "search-placeholder": "search phrase",
+    "author": "Author",
+    "author-placeholder": "username",
+    "type": "Type",
+    "type-": "All",
+    "type-post": "Post",
+    "type-comment": "Comment",
+    "category": "Category",
+    "category-placeholder": "category",
+    "tags": "Tags",
+    "tags-placeholder": "comma separated tags",
+    "date": "Date",
+    "date-week": "Week",
+    "date-month": "Month",
+    "date-year": "Year",
+    "date-all": "All",
+    "sort": "Sort",
     "sort-popularity": "Popularity",
     "sort-relevance": "Relevance",
-    "sort-newest": "Date"
+    "sort-newest": "Recent",
+    "hide-low": "Hide low payout content",
+    "show-more": "show more"
+  },
+  "search-people": {
+    "title": "People"
+  },
+  "search-topics": {
+    "title": "Topics"
+  },
+  "search-communities": {
+    "title": "Communities"
   },
   "witnesses": {
     "page-title": "Witnesses",
@@ -724,7 +763,8 @@
     "copied": "Copied to clipboard"
   },
   "drafts": {
-    "title": "Drafts"
+    "title": "Drafts",
+    "filter": "Search by title"
   },
   "schedules": {
     "title": "Scheduled Posts",
@@ -735,6 +775,24 @@
   },
   "favorites": {
     "title": "Favorites"
+  },
+  "fragments": {
+    "title": "Snippets",
+    "create-first": "Create your first snippet",
+    "filter": "Search by title",
+    "form-title": "Title",
+    "form-body": "Body"
+  },
+  "password-update": {
+    "title": "Change Password",
+    "account": "Account",
+    "cur-pass": "Current password",
+    "new-pass": "New password",
+    "new-pass2": "Confirm new password",
+    "error-new2": "Passwords must be same",
+    "pass-gen": "Click to generate password",
+    "label-check": "I have securely saved my generated password",
+    "updated": "Password updated successfully!"
   },
   "scroll-to-top": {
     "title": "Scroll to Top"
@@ -755,7 +813,7 @@
       "page-title": "Ecency FAQ",
       "page-sub-title": "Table of Contents",
       "what-is-ecency-header": "What is Ecency?",
-      "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based social network - powered by <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency offers uncensored, free, limitless, rewarding platform for content creators.</p><p>Project was initiated and founded by <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> in August 2016 as an alternative social network. Since then project has grown to much larger group of contributors (translators, testers, developers, influencers, content creators and consumers) who helped to shape Ecency.</p><p>Ecency helps onboarding masses into Blockchain technology where users are getting paid for their time, resources and learn while enjoying social aspects of blockchain. Through ease of use, users not only learn but also become investors, innovators of the technology and community.</p>",
+      "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based social network - powered by <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency is home of free speech and rewarding communities for content creators.</p><p>Project is founded by <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> in August 2016 as an alternative social network that's uncensored, user controled, immutable and opensource. Currently there are <a class=\"push-link\" href=\"/contributors\">many independent and voluntary contributors</a> wanting to keep vision and spirit of free speech.</p><p>Ecency helps onboarding masses into Blockchain technology where users are getting paid for their time, resources and learn while enjoying social aspects of blockchain. Through ease of use, users not only learn but also become investors, innovators of the new internet.</p>",
       "what-is-hive-header": "What is Hive blockchain?",
       "what-is-hive-body": "<p>Hive is a blockchain that was designed to be fast, feeless, decentralized, uncensored platform for Web3.0 applications, with built-in features where stake holders can earn rewards by staking, curating, posting, playing games, trading - all without any middle man (decentralized). Tokens on Hive blockchain called HIVE, HIVE DOLLARS, HIVE POWER.</p>",
       "what-is-difference-header": "What's the difference between Ecency and other Hive interfaces?",
