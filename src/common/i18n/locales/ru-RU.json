@@ -376,7 +376,8 @@
     "withdraw-hbd": "Вывести Hive Доллар",
     "delegate": "Делегировать",
     "power-down": "Понижение Силы",
-    "withdraw-routes": "Пути вывода"
+    "withdraw-routes": "Пути вывода",
+    "converting-hbd-amount": "Converting to HIVE"
   },
   "withdraw-routes": {
     "title": "Аккаунты для вывода",
