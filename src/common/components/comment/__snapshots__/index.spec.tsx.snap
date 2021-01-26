@@ -217,7 +217,7 @@ exports[`(1) Default render 1`] = `
     <div
       className="editor-tool"
       onClick={[Function]}
-      title="Fragments"
+      title="Snippets"
     >
       <svg
         viewBox="0 0 24 24"
@@ -484,7 +484,7 @@ exports[`(2) Cancellable, in progress 1`] = `
     <div
       className="editor-tool"
       onClick={[Function]}
-      title="Fragments"
+      title="Snippets"
     >
       <svg
         viewBox="0 0 24 24"

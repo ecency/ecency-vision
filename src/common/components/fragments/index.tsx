@@ -78,7 +78,7 @@ export class AddFragment extends BaseComponent<AddProps, AddState> {
             }}>
                 <Form.Group controlId="title">
                     <Form.Label>{_t("fragments.form-title")}</Form.Label>
-                    <Form.Control value={title} onChange={this.titleChanged} required={true} type="text" maxLength={255}/>
+                    <Form.Control value={title} onChange={this.titleChanged} required={true} type="text" maxLength={255} autoFocus={true}/>
                 </Form.Group>
                 <Form.Group controlId="body">
                     <Form.Label>{_t("fragments.form-body")}</Form.Label>
@@ -170,7 +170,7 @@ export class EditFragment extends BaseComponent<EditProps, EditState> {
             }}>
                 <Form.Group controlId="title">
                     <Form.Label>{_t("fragments.form-title")}</Form.Label>
-                    <Form.Control value={title} onChange={this.titleChanged} required={true} type="text" maxLength={255}/>
+                    <Form.Control value={title} onChange={this.titleChanged} required={true} type="text" maxLength={255} autoFocus={true}/>
                 </Form.Group>
                 <Form.Group controlId="body">
                     <Form.Label>{_t("fragments.form-body")}</Form.Label>

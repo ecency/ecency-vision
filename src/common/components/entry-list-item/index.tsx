@@ -167,7 +167,7 @@ export default class EntryListItem extends Component<Props> {
                         </div>
                         {Tag({
                             ...this.props,
-                            tag: entry.category,
+                            tag: entry.community && entry.community_title ? {name: entry.community, title: entry.community_title} : entry.category,
                             type: "link",
                             children: <a className="category">{entry.community_title || entry.category}</a>
                         })}

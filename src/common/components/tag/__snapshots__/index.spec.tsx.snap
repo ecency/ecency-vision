@@ -29,3 +29,12 @@ exports[`(4) Should use default filter if the globl filter is 'feed' 1`] = `
   bitcoin
 </a>
 `;
+
+exports[`(5) Link with community tag 1`] = `
+<a
+  href="/created/hive-125125"
+  onClick={[Function]}
+>
+  Ecency
+</a>
+`;
