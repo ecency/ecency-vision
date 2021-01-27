@@ -466,8 +466,8 @@
     "amount-placeholder": "сума",
     "wrong-amount": "Грешно количество сума",
     "amount-precision-error": "Използвай само до 3 цифри точност",
-    "balance": "Balance",
-    "power-down-estimated": "+ {{n}} Estimated Weekly",
+    "balance": "Баланс",
+    "power-down-estimated": "+ {{n}} Приблизително Седмично",
     "memo": "Бележка",
     "memo-placeholder": "добави своите бележки тук",
     "memo-help": "Тази бележка е публична",
@@ -498,7 +498,7 @@
     "title": "История",
     "type-curation_reward": "Награда за участие",
     "type-author_reward": "Авторска награда",
-    "type-comment_benefactor_reward": "Comment Benefactor Reward",
+    "type-comment_benefactor_reward": "Награда от Благодетел за коментар",
     "type-claim_reward_balance": "Събиране на награди",
     "type-transfer": "Прехвърляне",
     "type-transfer_to_vesting": "Прехвърляне към придобивка",
@@ -508,51 +508,51 @@
   "key-or-hot": {
     "sign": "Sign",
     "key-placeholder": "Enter active/owner/master key",
-    "with-hivesigner": "Sign with hivesigner",
-    "with-keychain": "Sign with keychain"
+    "with-hivesigner": "Влез чрез hivesigner",
+    "with-keychain": "Влез чрез KeyChain"
   },
   "delegated-vesting": {
-    "title": "Delegated Hive Power",
-    "undelegate": "undelegate"
+    "title": "Делегиран Hive сила/стойност",
+    "undelegate": "премахване на делегацията"
   },
   "received-vesting": {
-    "title": "Received Hive Power"
+    "title": "Получен Hive сила/стойност"
   },
   "friends": {
-    "followers": "Followers ({{n}})",
-    "following": "Following ({{n}})",
-    "search-placeholder": "Search users"
+    "followers": "Последователи ({{n}})",
+    "following": "Следва ({{n}})",
+    "search-placeholder": "Търсене на потребители"
   },
   "follow-controls": {
-    "follow": "Follow",
-    "unFollow": "Unfollow",
-    "mute": "Mute",
-    "unMute": "Unmute"
+    "follow": "Последвай",
+    "unFollow": "Отследване",
+    "mute": "Заглуши",
+    "unMute": "Отглуши"
   },
   "favorite-btn": {
-    "add": "Add to favorites",
-    "added": "Added to favorites",
-    "delete": "Remove from favorites",
-    "deleted": "Removed from favorites"
+    "add": "Добави към любимите",
+    "added": "Добавено в Любими",
+    "delete": "Премахване от любими",
+    "deleted": "Премахнато от любими"
   },
   "editor-toolbar": {
-    "bold": "Bold",
-    "italic": "Italic",
-    "header": "Heading",
-    "code": "Code",
-    "quote": "Quote",
-    "ul": "Unordered List",
-    "ol": "Ordered List",
-    "link": "Link",
-    "image": "Image",
-    "table": "Table",
-    "table-3-col": "3 columns",
-    "table-2-col": "2 columns",
-    "table-1-col": "1 column",
-    "upload": "Upload",
-    "gallery": "Gallery",
-    "emoji": "Emoji",
-    "image-error": "Couldn't upload image.",
+    "bold": "Получер",
+    "italic": "Курсив",
+    "header": "Заглавна част",
+    "code": "Код",
+    "quote": "Цитиране",
+    "ul": "Неподреден списък",
+    "ol": "Подреден списък",
+    "link": "Линк/връзка",
+    "image": "Изображение",
+    "table": "Таблица",
+    "table-3-col": "3 Колони",
+    "table-2-col": "2 Колони",
+    "table-1-col": "1 колона",
+    "upload": "Качи",
+    "gallery": "Галерия",
+    "emoji": "Емоджи",
+    "image-error": "Изображението не можа да бъде качено.",
     "image-error-size": "Image size is too large, try smaller size image again.",
     "fragments": "Snippets"
   },
