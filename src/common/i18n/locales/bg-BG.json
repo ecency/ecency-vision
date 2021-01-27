@@ -553,13 +553,13 @@
     "gallery": "Галерия",
     "emoji": "Емоджи",
     "image-error": "Изображението не можа да бъде качено.",
-    "image-error-size": "Image size is too large, try smaller size image again.",
-    "fragments": "Snippets"
+    "image-error-size": "Размера на снимката е прекалено голям, опитай отново с по-малка.",
+    "fragments": "Откъси"
   },
   "emoji-picker": {
-    "filter-placeholder": "Filter",
-    "filter-no-match": "No match",
-    "recently-used": "Recently Used"
+    "filter-placeholder": "Филтрирай",
+    "filter-no-match": "Няма съвпадение",
+    "recently-used": "Наскоро използвани"
   },
   "submit": {
     "page-title": "Създай публикация",
@@ -618,15 +618,15 @@
   },
   "post-scheduler": {
     "title": "График",
-    "btn-label": "Schedule"
+    "btn-label": "График"
   },
   "notification": {
     "popup-title": "Имаш ново известие",
     "voted": "{{source}} гласува на вашия пост",
     "mention-post": "{{source}} ви спомена в пост",
-    "mention-comment": "{{source}} mentioned you in a comment",
-    "followed": "{{source}} followed you",
-    "replied": "{{source}} replied you",
+    "mention-comment": "{{source}} ви спомена в коментар",
+    "followed": "{{source}} ви последва",
+    "replied": "{{source}} ви отговори",
     "reblogged": "{{source}} reblogged your post",
     "transfer": "{{source}} sent you {{amount}}"
   },
@@ -684,7 +684,7 @@
     "matches": "{{n}} matches",
     "matches-singular": "1 match",
     "advanced": "Advanced",
-    "search": "Search",
+    "search": "Търси",
     "search-placeholder": "search phrase",
     "author": "Автор",
     "author-placeholder": "потребителско име",
@@ -745,15 +745,15 @@
     "for": "за",
     "duration-days": "{{n}} дни",
     "daily-pay": "Дневно {{n}}",
-    "votes": "Votes: {{n}}",
-    "status-active": "active",
-    "status-expired": "expired",
-    "status-inactive": "upcoming",
-    "remaining-days": "Remaining: {{n}} days",
-    "filter-all": "All",
-    "filter-active": "Active",
-    "filter-inactive": "Upcoming",
-    "filter-team": "Ecency Projects",
+    "votes": "Гласувания: {{n}}",
+    "status-active": "активни",
+    "status-expired": "изтекли",
+    "status-inactive": "предстоящи",
+    "remaining-days": "Остават: {{n}} дни",
+    "filter-all": "Всички",
+    "filter-active": "Активни",
+    "filter-inactive": "Предстоящи",
+    "filter-team": "Ecency Проекти",
     "return-description": "This is the base return proposal. Every proposal with less votes will not receive funds.",
     "votes-dialog-title": "Votes on Proposal #{{n}}",
     "see-all": "see all proposals"
