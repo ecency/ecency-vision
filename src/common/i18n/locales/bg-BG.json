@@ -125,7 +125,7 @@
   },
   "entry-list-item": {
     "reblogged": "{{n}} сподели",
-    "promoted": "promoted",
+    "promoted": "промотирани",
     "pinned": "Закачен пост",
     "replies": "1 отговор. Натисни да отговориш.",
     "replies-n": "{{n}} отговори. Натисни за да отговориш.",
@@ -168,7 +168,7 @@
     "credits": "данни от <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "list-style": {
-    "title": "Toggle list style"
+    "title": "Избери стила на репликите"
   },
   "entry-votes": {
     "title": "1 Глас",
@@ -351,13 +351,13 @@
   },
   "wallet": {
     "unclaimed-rewards": "Неизчистени награди",
-    "claim-reward-balance": "Claim reward balance",
+    "claim-reward-balance": "Вземи точките от награди",
     "claim-reward-balance-ok": "Наградите са изчистени",
     "estimated": "Предполагаема стойност на акаунта",
     "estimated-description": "Приблизителната стойност се определя от 7 дневна, средна цена на HIVE.",
     "hive": "HIVE",
     "hive-description": "HIVE са търгуеми жетони който могат да бъдат прехвърлени по всяко време.HIVE може да се преобразува в Hive стойност на гласа чрез процес наречен увеличаване на силата.",
-    "hive-power": "HIVE POWER",
+    "hive-power": "HIVE сила/стойност",
     "hive-power-description": "Hive Power са жетони които събират повече сила като ги притежавате дългосрочно и гласувате на постове. Колкото повече Hive Power имате, толкова повече влияние имате върху наградите на останалите и печелите награди за правилно гласуване.",
     "hive-power-delegated": "Делегиран Hive Power",
     "hive-power-received": "Получен Hive Power",
@@ -377,7 +377,7 @@
     "delegate": "Делегирай",
     "power-down": "Намаляне на силата",
     "withdraw-routes": "Пътища за теглене",
-    "converting-hbd-amount": "Converting to HIVE"
+    "converting-hbd-amount": "Преобразувай HBD към HIVE"
   },
   "withdraw-routes": {
     "title": "Акаунти за теглене",
@@ -413,44 +413,44 @@
     "referral-list-desc": "Награда на реферала",
     "transfer": "Подари на някого",
     "claim-ok": "Взети точки",
-    "promote": "Promote",
-    "boost": "Boost"
+    "promote": "Промотиране",
+    "boost": "Подсилване"
   },
   "purchase": {
-    "select-asset": "Select Asset",
-    "slider-hint": "Drag the slider to adjust the amount.",
-    "submit": "Purchase"
+    "select-asset": "Изберете актив",
+    "slider-hint": "Плъзнете слайдъра за да регулирате стойноста.",
+    "submit": "Купи"
   },
   "promote": {
-    "title": "Promote",
-    "sub-title": "Promote your post",
-    "duration": "Duration"
+    "title": "Промотирай",
+    "sub-title": "Промотирай поста си",
+    "duration": "Продължителност"
   },
   "boost": {
-    "title": "Boost",
-    "sub-title": "Boost your post",
-    "amount": "Amount",
-    "slider-hint": "Drag the slider to adjust the amount."
+    "title": "Подсилване",
+    "sub-title": "Подсили поста си",
+    "amount": "Сума",
+    "slider-hint": "Плъзнете слайдъра за да регулирате стойноста."
   },
   "redeem-common": {
-    "balance": "Balance",
+    "balance": "Баланс",
     "post": "Post",
-    "post-hint": "Autocomplete input",
-    "post-placeholder": "username/permlink",
-    "post-error": "Not a valid post address",
-    "post-error-exists": "The post is already promoted",
-    "success-message": "Your request submitted. It will be activated in a couple minutes."
+    "post-hint": "Автоматично дописване",
+    "post-placeholder": "потребителско име/permlink",
+    "post-error": "Няма такъв адрес на публикация",
+    "post-error-exists": "Поста вече е промотиран",
+    "success-message": "Вашата заявка беше изпратена. Ще бъде активирана след няколко минути."
   },
   "transfer": {
-    "transfer-title": "Transfer to Account",
-    "transfer-title-point": "Gift to Account",
-    "transfer-sub-title": "Move funds to another Hive account",
-    "transfer-saving-title": "Transfer to Savings",
-    "transfer-saving-sub-title": "Protect funds by requiring a 3 day withdraw waiting period",
-    "withdraw-saving-title": "Savings Withdraw",
-    "withdraw-saving-sub-title": "Withdraw funds after the required 3 day waiting period",
-    "power-up-title": "Stake Hive as Power",
-    "convert-title": "Convert",
+    "transfer-title": "Прехвърли към Акаунт",
+    "transfer-title-point": "Подари на Акаунт",
+    "transfer-sub-title": "Прехвърли средства към друг Hive акаунт",
+    "transfer-saving-title": "Прехвърли към Спестявания",
+    "transfer-saving-sub-title": "Защити средствата като изискваш 3-дневен период на изчакване за изтеглянето",
+    "withdraw-saving-title": "Изтегляне на Спестявания",
+    "withdraw-saving-sub-title": "Изтегли средства след задължителния 3-дневен период на изчакване",
+    "power-up-title": "Заложи Hive като сила/стойност",
+    "convert-title": "Конвертиране",
     "power-up-sub-title": "Influence tokens which give you more control over post payouts and allow you to earn on curation rewards.",
     "convert-sub-title": "Only recommended when HBD is below $1. You will get $1 of HIVE in 3.5 days.",
     "delegate-title": "Delegate",
