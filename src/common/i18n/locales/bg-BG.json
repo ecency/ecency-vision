@@ -759,62 +759,62 @@
     "see-all": "see all proposals"
   },
   "gallery": {
-    "title": "Gallery",
-    "copied": "Copied to clipboard"
+    "title": "Галерия",
+    "copied": "Копирано в клипборда"
   },
   "drafts": {
-    "title": "Drafts",
-    "filter": "Search by title"
+    "title": "Чернови",
+    "filter": "Търси по заглавие"
   },
   "schedules": {
-    "title": "Scheduled Posts",
-    "move": "Move to drafts"
+    "title": "Насрочени Постове",
+    "move": "Премести в чернови"
   },
   "bookmarks": {
-    "title": "Bookmarks"
+    "title": "Отметки"
   },
   "favorites": {
-    "title": "Favorites"
+    "title": "Любими"
   },
   "fragments": {
-    "title": "Snippets",
-    "create-first": "Create your first snippet",
-    "filter": "Search by title",
-    "form-title": "Title",
-    "form-body": "Body"
+    "title": "Откъси",
+    "create-first": "Създайте своя първи откъс",
+    "filter": "Търси по заглавие",
+    "form-title": "Заглавие",
+    "form-body": "Основа"
   },
   "password-update": {
-    "title": "Change Password",
-    "account": "Account",
-    "cur-pass": "Current password",
-    "new-pass": "New password",
-    "new-pass2": "Confirm new password",
-    "error-new2": "Passwords must be same",
-    "pass-gen": "Click to generate password",
-    "label-check": "I have securely saved my generated password",
-    "updated": "Password updated successfully!"
+    "title": "Промени парола",
+    "account": "Акаунт",
+    "cur-pass": "Текуща парола",
+    "new-pass": "Нова парола",
+    "new-pass2": "Потвърди новата парола",
+    "error-new2": "Паролите трябва да са същите",
+    "pass-gen": "Натисни за да създадеш парола",
+    "label-check": "Безопасно си запазих създадената паролата",
+    "updated": "Паролата беше успешно променена!"
   },
   "scroll-to-top": {
-    "title": "Scroll to Top"
+    "title": "Прелистване до горе"
   },
   "static": {
     "about": {
-      "page-title": "About",
-      "intro-title": "What is <span>Ecency</span>",
-      "intro-content": "Ecency is beautiful and handy wrapper interface around the Hive blockchain network allowing you to create your own posts, surf your feeds, vote what you like, write comments, read replies, do all major Hive functions in your daily social surfing as well as wallet actions and other extras such as search, discover different tags etc.",
+      "page-title": "Относно",
+      "intro-title": "Какво е <span>Ecency</span>",
+      "intro-content": "Ecency е красиво и удобно направен интерфейс в Hive блокчейн мрежата който ви позволява да създавате собствени постове, да разглеждате потоците си, да гласувате за каквото ви харесва, да пишете коментари, да четете отговори, и да правите всички главни Hive функции във всекидневното си социално сърфиране и също така да ползвате портфейла си и други екстри като търсене, откриване на различни такове и т. н.",
       "faq-title": "FAQ",
-      "faqs": "All FAQs",
-      "contact-title": "Contacts",
-      "contact-blog": "Founder's blog",
-      "contact-news": "News on Hive",
-      "contact-email": "Email us"
+      "faqs": "Всички FAQ's",
+      "contact-title": "Контакти",
+      "contact-blog": "Блог на Създателя",
+      "contact-news": "Новини в Hive",
+      "contact-email": "Изпратете ни имейл"
     },
     "faq": {
       "page-title": "Ecency FAQ",
-      "page-sub-title": "Table of Contents",
-      "what-is-ecency-header": "What is Ecency?",
-      "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based social network - powered by <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency is home of free speech and rewarding communities for content creators.</p><p>Project is founded by <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> in August 2016 as an alternative social network that's uncensored, user controled, immutable and opensource. Currently there are <a class=\"push-link\" href=\"/contributors\">many independent and voluntary contributors</a> wanting to keep vision and spirit of free speech.</p><p>Ecency helps onboarding masses into Blockchain technology where users are getting paid for their time, resources and learn while enjoying social aspects of blockchain. Through ease of use, users not only learn but also become investors, innovators of the new internet.</p>",
-      "what-is-hive-header": "What is Hive blockchain?",
+      "page-sub-title": "Таблица на съдържанието",
+      "what-is-ecency-header": "Какво е Ecency?",
+      "what-is-ecency-body": "<p>Ecency е <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">блокчейн</a> социална мрежа управлявана от <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency e домът на свободата на словото и награждаващите общности за създателите на съдържание.</p><p>Проектът е създаден от <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> през Август 2016 като алтернативна социална мрежа, която е нецензурирана, контролирана от потребителите, незаглушаваща и с отворен код. В момента има много <a class=\"push-link\" href=\"/contributors\">много независими и доброволни сътрудници</a> които искат да поддържата визията и духа на свободното слово.</p><p>Ecency помага да се вкарат маси от хора в Блокчейн технологиите, където на потребителите им се заплаща за времето, ресурсите, и да се учат докато се наслаждават на социалните аспекти на блокчейн. Чрез улесненото използване, потребителите не само се учат, но и също така стават инвеститори, иноватори на новият интернет.</p>",
+      "what-is-hive-header": "Какво е Hive блокчейн?",
       "what-is-hive-body": "<p>Hive is a blockchain that was designed to be fast, feeless, decentralized, uncensored platform for Web3.0 applications, with built-in features where stake holders can earn rewards by staking, curating, posting, playing games, trading - all without any middle man (decentralized). Tokens on Hive blockchain called HIVE, HIVE DOLLARS, HIVE POWER.</p>",
       "what-is-difference-header": "What's the difference between Ecency and other Hive interfaces?",
       "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\"/></p><p>The primary differences in all interfaces or applications are in their feature-set, use cases. Ecency offers website, mobile and desktop applications for ease of access and with best security in mind. Accessible, opensource and innovative, built and owned by users. Aspire for greatness!</p>",
