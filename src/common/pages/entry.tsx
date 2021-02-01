@@ -61,6 +61,7 @@ import {comment, formatError} from "../api/operations";
 import parseDate from "../helper/parse-date";
 import entryCanonical from "../helper/entry-canonical";
 import tempEntry from "../helper/temp-entry"
+import appName from "../helper/app-name";
 
 import {makeJsonMetaDataReply, createReplyPermlink} from "../helper/posting";
 
@@ -337,7 +338,7 @@ class EntryPage extends Component<Props, State> {
 
         // Sometimes tag list comes with duplicate items
         const tags = [...new Set(entry.json_metadata.tags)];
-        const app = entry.json_metadata?.app;
+        const app = appName(entry.json_metadata.app);
 
         const isComment = !!entry.parent_author;
 
