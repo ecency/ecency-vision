@@ -192,8 +192,8 @@
   },
   "edit-history": {
     "title": "Edit History",
-    "show-diff": "Show Difference",
-    "version": "Version {{n}}"
+    "show-diff": "Toon Verschil",
+    "version": "Versie {{n}}"
   },
   "similar-entries": {
     "title": "Recent posts by @{{n}}"
