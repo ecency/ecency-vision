@@ -217,6 +217,11 @@ exports[`(1) Default render 1`] = `
             हिन्दी
           </option>
           <option
+            value="it-IT"
+          >
+            Italiano
+          </option>
+          <option
             value="id-ID"
           >
             Bahasa Indonesia
