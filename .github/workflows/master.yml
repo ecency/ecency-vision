@@ -48,6 +48,5 @@ jobs:
           yarn
           cd ../../
           yarn build
-          cp -r build/* dist/
           export PORT=$STAGING_PORT
           NODE_ENV=production pm2 reload master --update-env
