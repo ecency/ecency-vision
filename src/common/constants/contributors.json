@@ -196,5 +196,11 @@
     "contributes":[
       "Translation (Italian)"
     ]
+  },
+  {
+    "name": "iliyan90",
+    "contributes":[
+      "Translation (Bulgarian)"
+    ]
   }
 ]
