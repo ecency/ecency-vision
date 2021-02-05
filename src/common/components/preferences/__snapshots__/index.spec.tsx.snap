@@ -246,6 +246,11 @@ exports[`(1) Default render 1`] = `
           >
             Українська
           </option>
+          <option
+            value="bg-BG"
+          >
+            Български
+          </option>
         </select>
       </div>
     </div>
