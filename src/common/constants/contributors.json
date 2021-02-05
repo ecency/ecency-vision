@@ -202,5 +202,17 @@
     "contributes":[
       "Translation (Bulgarian)"
     ]
+  },
+  {
+    "name": "ivangeevo",
+    "contributes":[
+      "Translation (Bulgarian)"
+    ]
+  },
+  {
+    "name": "venan",
+    "contributes":[
+      "Translation (Bulgarian)"
+    ]
   }
 ]
