@@ -38,6 +38,10 @@ export const langOptions = [
     {
         code: "uk-UA",
         name: "Українська"
+    },
+    {
+        code: "bg-BG",
+        name: "Български"
     }
 ];
 
@@ -50,6 +54,7 @@ const idID = require("./locales/id-ID.json");
 const ptPT = require("./locales/pt-PT.json");
 const srCS = require("./locales/sr-CS.json");
 const ukUA = require("./locales/uk-UA.json");
+const bgBG = require("./locales/bg-BG.json");
 
 const resources = {
     ["en-US"]: {
@@ -78,6 +83,9 @@ const resources = {
     },
     ["uk-UA"]: {
         translation: ukUA
+    },
+    ["bg-BG"]: {
+        translation: bgBG
     }
 };
 

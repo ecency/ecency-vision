@@ -93,6 +93,11 @@ if (typeof window !== "undefined") {
     // scroll to top on every push action
     history.listen((location, action) => {
         if (action === "PUSH") {
+            // Don't scroll to top with anchor links
+            if (history!.location.hash !== "") {
+                return;
+            }
+
             setTimeout(() => {
                 window.scrollTo({
                     top: 0,
