@@ -26,9 +26,9 @@ const faqWebp = require("../img/FAQ4-webp.webp");
 
 const faqKeys = [
     'what-is-ecency',
-    'what-is-hive',
     'what-is-difference',
     'why-choose-ecency',
+    'what-is-hive',
     'how-ecency-works',
     'how-to-join',
     'how-to-signin',
@@ -40,6 +40,7 @@ const faqKeys = [
     'how-boosting-work',
     'can-guest-post',
     'can-link-post',
+    'source-label',
     'how-to-transfer',
     'how-see-rewards',
     'when-claim-rewards',

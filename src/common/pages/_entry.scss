@@ -355,6 +355,10 @@
 
           .app {
             font-weight: 700;
+            a {
+              text-decoration: none;
+              color: $steel-grey;
+            }
 
             .app-name {
               font-weight: 400;
