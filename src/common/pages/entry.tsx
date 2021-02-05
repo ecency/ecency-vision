@@ -486,7 +486,9 @@ class EntryPage extends Component<Props, State> {
                                                         <span itemProp="publisher" itemScope={true} itemType="http://schema.org/Person">
                                                             <meta itemProp="name" content={entry.author}/>
                                                         </span>
-                                                        <div className="app" dangerouslySetInnerHTML={{__html: _t("entry.via-app", {app})}}/>
+                                                        <div className="app">
+                                                            <a href="/faq#source-label" dangerouslySetInnerHTML={{__html: _t("entry.via-app", {app})}}/>
+                                                        </div>
                                                     </>
                                                 )}
                                             </div>

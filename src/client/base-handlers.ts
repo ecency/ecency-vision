@@ -22,8 +22,10 @@ const handleClick = (e: Event) => {
     const el = e.target as HTMLElement;
 
     // Anchor link handler
-    if (el.tagName === "A") {
-        const href = el.getAttribute("href");
+    if (el.tagName === "A" || (el.parentElement && el.parentElement.tagName === "A")) {
+
+        const href = el.getAttribute("href") || (el.parentElement ? el.parentElement.getAttribute("href") : null);
+
         if (href && href.startsWith("/") && href.indexOf("#") !== -1) {
             const [route, anchor] = href.split("#");
 
