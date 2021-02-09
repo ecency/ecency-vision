@@ -9,6 +9,7 @@ import {Account} from "../../store/accounts/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
 import {ActiveUser} from "../../store/active-user/types";
 
+import BaseComponent from "../base";
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 import LinearProgress from "../linear-progress";
@@ -54,7 +55,7 @@ interface State {
     hideList: boolean;
 }
 
-export class List extends Component<Props, State> {
+export class List extends BaseComponent<Props, State> {
     state: State = {
         loading: false,
         inProgress: false,
@@ -62,21 +63,9 @@ export class List extends Component<Props, State> {
         hideList: false
     };
 
-    _mounted: boolean = true;
-
     componentDidMount() {
         this.fetch().then();
     }
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     fetch = () => {
         const {account} = this.props;

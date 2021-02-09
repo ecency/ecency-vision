@@ -2,6 +2,7 @@ import React, {Component} from "react";
 
 import {Button, Modal, Form, InputGroup, FormControl} from "react-bootstrap";
 
+import BaseComponent from "../base";
 import {error} from "../feedback";
 
 import {BeneficiaryRoute} from "../../api/operations";
@@ -25,7 +26,7 @@ interface DialogBodyState {
     inProgress: boolean
 }
 
-export class DialogBody extends Component<Props, DialogBodyState> {
+export class DialogBody extends BaseComponent<Props, DialogBodyState> {
     state: DialogBodyState = {
         username: "",
         percentage: "",
@@ -33,17 +34,6 @@ export class DialogBody extends Component<Props, DialogBodyState> {
     }
 
     form = React.createRef<HTMLFormElement>();
-    _mounted: boolean = true;
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     usernameChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
         const username = e.target.value.trim().toLowerCase();

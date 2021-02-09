@@ -1,7 +1,8 @@
-import React, {Component} from "react";
+import React from "react";
 
 import {FormControl} from "react-bootstrap";
 
+import BaseComponent from "../base";
 import SearchBox from "../search-box";
 
 import {_t} from "../../i18n";
@@ -45,14 +46,13 @@ interface State {
     filter: string;
 }
 
-export default class EmojiPicker extends Component<Props> {
+export default class EmojiPicker extends BaseComponent<Props> {
     state: State = {
         data: null,
         cache: null,
         filter: "",
     };
 
-    _mounted: boolean = true;
     _target: HTMLInputElement | null = null;
 
     componentDidMount() {
@@ -65,7 +65,7 @@ export default class EmojiPicker extends Component<Props> {
     }
 
     componentWillUnmount() {
-        this._mounted = false;
+        super.componentWillUnmount();
 
         document.querySelectorAll(".accepts-emoji").forEach((i) => {
             i.removeEventListener("focus", this.watchTarget);
@@ -75,13 +75,6 @@ export default class EmojiPicker extends Component<Props> {
     watchTarget = () => {
         if (document.activeElement && document.activeElement.classList.contains("accepts-emoji")) {
             this._target = document.activeElement as HTMLInputElement;
-        }
-    };
-
-    stateSet = (obj: {}, cb: () => void = () => {
-    }) => {
-        if (this._mounted) {
-            this.setState(obj, cb);
         }
     };
 

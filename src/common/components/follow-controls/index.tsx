@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 
 import {Button} from "react-bootstrap";
 
@@ -7,6 +7,7 @@ import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {UI, ToggleType} from "../../store/ui/types";
 
+import BaseComponent from "../base";
 import LoginRequired from "../login-required";
 import {error} from "../feedback";
 
@@ -34,7 +35,7 @@ interface State {
     muted: boolean
 }
 
-export default class FollowControls extends Component<Props, State> {
+export default class FollowControls extends BaseComponent<Props, State> {
     state: State = {
         fetching: false,
         inProgress: false,
@@ -42,14 +43,8 @@ export default class FollowControls extends Component<Props, State> {
         muted: false
     }
 
-    _mounted: boolean = true;
-
     componentDidMount() {
         this.fetch().then();
-    }
-
-    componentWillUnmount() {
-        this._mounted = false;
     }
 
     componentDidUpdate(prevProps: Readonly<Props>) {
@@ -62,12 +57,6 @@ export default class FollowControls extends Component<Props, State> {
             this.fetch().then()
         }
     }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     fetch = async () => {
         this.stateSet({

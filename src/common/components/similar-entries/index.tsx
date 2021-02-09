@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 
 import {History, Location} from "history";
 
@@ -19,6 +19,7 @@ setProxyBase(defaults.imageServer);
 import {Global} from "../../store/global/types";
 import {Entry} from "../../store/entries/types";
 
+import BaseComponent from "../base";
 import EntryLink from "../entry-link";
 
 import *  as bridgeApi from "../../api/bridge";
@@ -44,13 +45,11 @@ interface State {
     entries: Entry[]
 }
 
-export class SimilarEntries extends Component<Props, State> {
+export class SimilarEntries extends BaseComponent<Props, State> {
     state: State = {
         loading: false,
         entries: []
     }
-
-    _mounted: boolean = true;
 
     componentDidMount() {
         this.fetch();
@@ -61,16 +60,6 @@ export class SimilarEntries extends Component<Props, State> {
             this.fetch();
         }
     }
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     fetch = () => {
         const {entry} = this.props;

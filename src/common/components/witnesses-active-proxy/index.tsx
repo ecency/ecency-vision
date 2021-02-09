@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 
 import {Button, Spinner} from "react-bootstrap";
 
@@ -10,6 +10,7 @@ import {ActiveUser} from "../../store/active-user/types";
 import {ToggleType, UI} from "../../store/ui/types";
 import {Account, FullAccount} from "../../store/accounts/types";
 
+import BaseComponent from "../base";
 import KeyOrHotDialog from "../key-or-hot-dialog";
 import LoginRequired from "../login-required";
 import ProfileLink from "../profile-link";
@@ -44,13 +45,11 @@ interface State {
     inProgress: boolean;
 }
 
-export class WitnessesActiveProxy extends Component<Props, State> {
+export class WitnessesActiveProxy extends BaseComponent<Props, State> {
     state: State = {
         account: null,
         inProgress: false
     }
-
-    _mounted: boolean = true;
 
     componentDidMount() {
         const {username} = this.props;
@@ -58,16 +57,6 @@ export class WitnessesActiveProxy extends Component<Props, State> {
             this.stateSet({account})
         })
     }
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     proxy = (fn: any, args: any[]) => {
         const {onDone} = this.props;

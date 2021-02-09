@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 
 import {Global} from "../../store/global/types";
 import {User} from "../../store/users/types";
@@ -6,6 +6,7 @@ import {ActiveUser} from "../../store/active-user/types";
 import {ToggleType, UI} from "../../store/ui/types";
 import {Account} from "../../store/accounts/types";
 
+import BaseComponent from "../base";
 import LoginRequired from "../login-required";
 import KeyOrHotDialog from "../key-or-hot-dialog";
 import {error} from "../feedback";
@@ -33,26 +34,20 @@ interface Props {
 }
 
 interface State {
-    loading: false;
+    loading: boolean;
     inProgress: boolean;
     voted: boolean;
 }
 
-export class ProposalVoteBtn extends Component <Props, State> {
+export class ProposalVoteBtn extends BaseComponent<Props, State> {
     state: State = {
         loading: false,
         inProgress: false,
         voted: false
     };
 
-    _mounted: boolean = true;
-
     componentDidMount() {
         this.load();
-    }
-
-    componentWillUnmount() {
-        this._mounted = false;
     }
 
     componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>, snapshot?: any) {
@@ -60,12 +55,6 @@ export class ProposalVoteBtn extends Component <Props, State> {
             this.load();
         }
     }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     load = () => {
         const {proposal, activeUser} = this.props;

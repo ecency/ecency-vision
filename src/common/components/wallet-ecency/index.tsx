@@ -11,6 +11,7 @@ import {DynamicProps} from "../../store/dynamic-props/types";
 import {Transactions} from "../../store/transactions/types";
 import {Points, PointTransaction, TransactionType} from "../../store/points/types"
 
+import BaseComponent from "../base";
 import DropDown from "../dropdown";
 import Transfer from "../transfer";
 import Tooltip from "../tooltip";
@@ -151,7 +152,7 @@ interface State {
     transfer: boolean;
 }
 
-export class WalletEcency extends Component<Props, State> {
+export class WalletEcency extends BaseComponent<Props, State> {
     state: State = {
         claiming: false,
         purchase: false,
@@ -159,18 +160,6 @@ export class WalletEcency extends Component<Props, State> {
         boost: false,
         transfer: false
     }
-
-    _mounted: boolean = true;
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     claim = (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();

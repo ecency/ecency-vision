@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 
 import {History} from "history";
 
@@ -10,6 +10,7 @@ import {DynamicProps} from "../../store/dynamic-props/types";
 import {Transactions} from "../../store/transactions/types";
 import {ActiveUser} from "../../store/active-user/types";
 
+import BaseComponent from "../base";
 import Tooltip from "../tooltip";
 import FormattedCurrency from "../formatted-currency";
 import TransactionList from "../transactions";
@@ -62,7 +63,7 @@ interface State {
     converting: number
 }
 
-export class WalletHive extends Component<Props, State> {
+export class WalletHive extends BaseComponent<Props, State> {
     state: State = {
         delegatedList: false,
         receivedList: false,
@@ -75,21 +76,9 @@ export class WalletHive extends Component<Props, State> {
         converting: 0
     };
 
-    _mounted: boolean = true;
-
     componentDidMount() {
         this.fetchConvertingAmount();
     }
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     fetchConvertingAmount = () => {
         const {account} = this.props;

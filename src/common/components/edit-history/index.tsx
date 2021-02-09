@@ -18,6 +18,7 @@ setProxyBase(defaults.imageServer);
 
 import {Entry} from "../../store/entries/types";
 
+import BaseComponent from "../base";
 import LinearProgress from "../linear-progress";
 
 import {error} from "../feedback";
@@ -61,7 +62,7 @@ interface State {
     loading: boolean
 }
 
-export class EditHistory extends Component<Props, State> {
+export class EditHistory extends BaseComponent<Props, State> {
     state: State = {
         history: [],
         selected: 1,
@@ -69,21 +70,9 @@ export class EditHistory extends Component<Props, State> {
         loading: true
     }
 
-    _mounted: boolean = true;
-
     componentDidMount() {
         this.loadData();
     }
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     buildList = (raw: CommentHistoryListItem[]): CommentHistoryListItemDiff[] => {
         const t: CommentHistoryListItemDiff[] = [];

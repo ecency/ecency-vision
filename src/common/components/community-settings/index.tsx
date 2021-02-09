@@ -8,6 +8,7 @@ import {ActiveUser} from "../../store/active-user/types";
 
 import {clone} from "../../store/util";
 
+import BaseComponent from "../base";
 import LinearProgress from "../linear-progress";
 import {error} from "../feedback";
 
@@ -152,28 +153,17 @@ const pureState = (props: Props): State => {
     }
 }
 
-export class CommunitySettings extends Component<Props, State> {
+export class CommunitySettings extends BaseComponent<Props, State> {
     state: State = pureState(this.props);
 
     form = React.createRef<HTMLFormElement>();
-
-    _mounted: boolean = true;
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     onChange = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
         const {target: el} = e;
         const key = el.name;
         const val = el.hasOwnProperty("checked") ? el.checked : el.value;
 
+        // @ts-ignore
         this.stateSet({[key]: val});
     }
 

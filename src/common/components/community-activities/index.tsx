@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from "react";
-import {Button, Modal} from "react-bootstrap";
+
+import {Button} from "react-bootstrap";
 
 import {History} from "history";
 
@@ -9,6 +10,7 @@ import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 import {Community} from "../../store/communities/types";
 
+import BaseComponent from "../base";
 import ProfileLink from "../profile-link";
 import EntryLink from "../entry-link";
 import UserAvatar from "../user-avatar";
@@ -123,28 +125,16 @@ interface State {
     hasMore: boolean
 }
 
-export class Activities extends Component<Props, State> {
+export class Activities extends BaseComponent<Props, State> {
     state: State = {
         loading: true,
         items: [],
         hasMore: false
     }
 
-    _mounted: boolean = true;
-
     componentDidMount() {
         this.fetch();
     }
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     fetch = () => {
         const limit = 50;

@@ -7,6 +7,7 @@ import {PrivateKey} from "@hiveio/dhive";
 import {Global} from "../../store/global/types";
 import {ActiveUser} from "../../store/active-user/types";
 
+import BaseComponent from "../base";
 import KeyOrHot from "../key-or-hot";
 import Tooltip from "../tooltip";
 import {error} from "../feedback";
@@ -48,7 +49,7 @@ const pureState = (): State => {
     }
 }
 
-export class WithdrawRoutes extends Component<Props, State> {
+export class WithdrawRoutes extends BaseComponent<Props, State> {
     state: State = {
         ...pureState(),
         routes: []
@@ -56,21 +57,9 @@ export class WithdrawRoutes extends Component<Props, State> {
 
     form = React.createRef<HTMLFormElement>();
 
-    _mounted: boolean = true;
-
     componentDidMount() {
         this.fetchRoutes().then();
     }
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     fetchRoutes = () => {
         const {activeUser} = this.props;
@@ -84,6 +73,7 @@ export class WithdrawRoutes extends Component<Props, State> {
         const {target: el} = e;
         const {name: key, value} = el;
 
+        // @ts-ignore
         this.stateSet({[key]: value});
     }
 

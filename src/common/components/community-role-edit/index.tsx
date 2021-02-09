@@ -7,6 +7,7 @@ import {Community, CommunityTeam} from "../../store/communities/types";
 import {Account} from '../../store/accounts/types'
 import {ActiveUser} from "../../store/active-user/types";
 
+import BaseComponent from "../base";
 import LinearProgress from "../linear-progress";
 import {error} from "../feedback";
 
@@ -39,7 +40,7 @@ interface State {
     inProgress: boolean;
 }
 
-export class CommunityRoleEdit extends Component<Props, State> {
+export class CommunityRoleEdit extends BaseComponent<Props, State> {
     state: State = {
         user: this.props.user,
         role: this.props.role || this.props.roles[0],
@@ -47,18 +48,7 @@ export class CommunityRoleEdit extends Component<Props, State> {
         inProgress: false
     }
 
-    _mounted: boolean = true;
     _input = React.createRef<HTMLInputElement>();
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     userChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
         const {value: user} = e.target;

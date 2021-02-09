@@ -4,6 +4,7 @@ import {Form, FormControl, InputGroup, Modal, Button, Spinner} from "react-boots
 
 import {ActiveUser} from "../../store/active-user/types";
 
+import BaseComponent from "../base";
 import UploadButton from "../image-upload-button";
 
 import {_t} from "../../i18n";
@@ -22,23 +23,11 @@ interface State {
     uploading: boolean,
 }
 
-export class ImageUpload extends Component<Props, State> {
+export class ImageUpload extends BaseComponent<Props, State> {
     state: State = {
         image: this.props.defImage,
         uploading: false,
     }
-
-    _mounted: boolean = true;
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     imageChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
         const {value: image} = e.target;

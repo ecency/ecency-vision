@@ -12,6 +12,7 @@ import {Global} from "../../store/global/types";
 import {Entry} from "../../store/entries/types";
 import {Account} from "../../store/accounts/types";
 
+import BaseComponent from "../base";
 import UserAvatar from "../user-avatar/index";
 import FormattedCurrency from "../formatted-currency";
 import ProfileLink from "../profile-link/index";
@@ -50,6 +51,8 @@ export const prepareVotes = (entry: Entry, votes: Vote[]): Vote[] => {
     })
 };
 
+type SortOption = "reward" | "timestamp" | "voter" | "percent";
+
 interface DetailProps {
     history: History;
     global: Global;
@@ -61,18 +64,16 @@ interface DetailState {
     loading: boolean;
     votes: Vote[];
     page: number;
-    sort: "reward" | "timestamp" | "voter" | "percent"
+    sort: SortOption
 }
 
-export class EntryVotesDetail extends Component<DetailProps, DetailState> {
+export class EntryVotesDetail extends BaseComponent<DetailProps, DetailState> {
     state: DetailState = {
         loading: false,
         votes: [],
         page: 1,
         sort: "reward"
     };
-
-    _mounted: boolean = true;
 
     componentDidMount() {
         const {entry} = this.props;
@@ -87,16 +88,6 @@ export class EntryVotesDetail extends Component<DetailProps, DetailState> {
             });
     }
 
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
-
     setVotes = (data: Vote[]) => {
         const {entry} = this.props;
 
@@ -104,7 +95,7 @@ export class EntryVotesDetail extends Component<DetailProps, DetailState> {
     };
 
     sortChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
-        this.stateSet({sort: e.target.value});
+        this.stateSet({sort: e.target.value as SortOption});
     };
 
     render() {

@@ -26,6 +26,7 @@ import {ActiveUser} from "../../store/active-user/types";
 import {Discussion as DiscussionType, SortOrder} from "../../store/discussion/types";
 import {UI, ToggleType} from "../../store/ui/types";
 
+import BaseComponent from "../base";
 import ProfileLink from "../profile-link";
 import EntryLink from "../entry-link";
 import UserAvatar from "../user-avatar";
@@ -42,8 +43,6 @@ import parseDate from "../../helper/parse-date";
 
 import {_t} from "../../i18n";
 
-import * as hiveApi from "../../api/hive";
-import * as bridgeApi from "../../api/bridge";
 import {comment, formatError} from "../../api/operations";
 
 import * as ls from "../../util/local-storage";
@@ -108,25 +107,13 @@ interface ItemState {
     showIfHidden: boolean;
 }
 
-export class Item extends Component<ItemProps, ItemState> {
+export class Item extends BaseComponent<ItemProps, ItemState> {
     state: ItemState = {
         reply: false,
         edit: false,
         inProgress: false,
         showIfHidden: false
     }
-
-    _mounted: boolean = true;
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     afterVote = (votes: EntryVote[]) => {
         const {entry, updateReply} = this.props;

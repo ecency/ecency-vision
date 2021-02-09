@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 
 import {Button, Spinner, ButtonProps} from "react-bootstrap";
 
@@ -9,6 +9,7 @@ import {ActiveUser} from "../../store/active-user/types";
 import {ToggleType, UI} from "../../store/ui/types";
 import {Account} from "../../store/accounts/types";
 
+import BaseComponent from "../base";
 import LoginRequired from "../login-required";
 import {error} from "../feedback";
 
@@ -35,23 +36,11 @@ interface State {
     inProgress: boolean
 }
 
-export default class SubscriptionBtn extends Component<Props, State> {
+export default class SubscriptionBtn extends BaseComponent<Props, State> {
     state: State = {
         hover: false,
         inProgress: false,
     }
-
-    _mounted: boolean = true;
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     subscribe = () => {
         const {community, activeUser, subscriptions, updateSubscriptions} = this.props;

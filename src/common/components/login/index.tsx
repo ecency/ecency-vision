@@ -17,6 +17,7 @@ import {Account} from "../../store/accounts/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {ToggleType} from "../../store/ui/types";
 
+import BaseComponent from "../base";
 import UserAvatar from "../user-avatar";
 import Tooltip from "../tooltip";
 import PopoverConfirm from "../popover-confirm";
@@ -56,23 +57,11 @@ interface LoginKcState {
     inProgress: boolean;
 }
 
-export class LoginKc extends Component<LoginKcProps, LoginKcState> {
+export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
     state: LoginKcState = {
         username: "",
         inProgress: false
     }
-
-    _mounted: boolean = true;
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     usernameChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
         const {value: username} = e.target;
@@ -251,30 +240,18 @@ interface State {
     inProgress: boolean;
 }
 
-export class Login extends Component<LoginProps, State> {
+export class Login extends BaseComponent<LoginProps, State> {
     state: State = {
         username: '',
         key: '',
         inProgress: false
     }
 
-    _mounted: boolean = true;
-
     shouldComponentUpdate(nextProps: Readonly<LoginProps>, nextState: Readonly<State>): boolean {
         return !isEqual(this.props.users, nextProps.users)
             || !isEqual(this.props.activeUser, nextProps.activeUser)
             || !isEqual(this.state, nextState);
     }
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     hide = () => {
         const {toggleUIProp} = this.props;
