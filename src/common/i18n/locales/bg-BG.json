@@ -794,6 +794,11 @@
     "label-check": "Безопасно си запазих създадената паролата",
     "updated": "Паролата беше успешно променена!"
   },
+  "add-image": {
+    "title": "Add Image",
+    "text-label": "Image Text",
+    "link-label": "Image Link"
+  },
   "scroll-to-top": {
     "title": "Прелистване до горе"
   },
