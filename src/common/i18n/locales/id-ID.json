@@ -794,6 +794,11 @@
     "label-check": "Saya telah menyimpan kata sandi saya dengan aman",
     "updated": "Kata Sandi berhasil diperbaharui!"
   },
+  "add-image": {
+    "title": "Add Image",
+    "text-label": "Image Text",
+    "link-label": "Image Link"
+  },
   "scroll-to-top": {
     "title": "Gulir ke Atas"
   },
