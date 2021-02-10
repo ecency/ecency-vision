@@ -11,6 +11,7 @@ import {Account} from "../../store/accounts/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
 import {ActiveUser} from "../../store/active-user/types";
 
+import BaseComponent from "../base";
 import LinearProgress from "../linear-progress";
 import SuggestionList from "../suggestion-list";
 import KeyOrHot from "../key-or-hot";
@@ -52,7 +53,7 @@ interface State {
 
 const pathComponents = (p: string): string[] => p.replace("@", "").split("/");
 
-export class Boost extends Component<Props, State> {
+export class Boost extends BaseComponent<Props, State> {
     state: State = {
         balanceError: "",
         path: "",
@@ -65,17 +66,6 @@ export class Boost extends Component<Props, State> {
     }
 
     _timer: any = null;
-    _mounted: boolean = true;
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     componentDidMount() {
         this.init().then(() => {

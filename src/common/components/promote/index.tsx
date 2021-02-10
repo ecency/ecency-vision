@@ -10,6 +10,7 @@ import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 import {ActiveUser} from "../../store/active-user/types";
 
+import BaseComponent from "../base";
 import LinearProgress from "../linear-progress";
 import SuggestionList from "../suggestion-list";
 import KeyOrHot from "../key-or-hot";
@@ -48,7 +49,7 @@ interface State {
 
 const pathComponents = (p: string): string[] => p.replace("@", "").split("/");
 
-export class Promote extends Component<Props, State> {
+export class Promote extends BaseComponent<Props, State> {
     state: State = {
         balanceError: "",
         path: "",
@@ -61,17 +62,6 @@ export class Promote extends Component<Props, State> {
     }
 
     _timer: any = null;
-    _mounted: boolean = true;
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     componentDidMount() {
         this.init().then(() => {

@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from "react";
+import React, {Fragment} from "react";
 
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
@@ -26,6 +26,7 @@ import {FullAccount} from "../store/accounts/types";
 
 import {makePath as makeEntryPath} from "../components/entry-link";
 
+import BaseComponent from "../components/base";
 import ProfileLink from "../components/profile-link";
 import UserAvatar from "../components/user-avatar";
 import Tag from "../components/tag";
@@ -98,14 +99,12 @@ interface State {
     showIfHidden: boolean;
 }
 
-class EntryPage extends Component<Props, State> {
+class EntryPage extends BaseComponent<Props, State> {
     state: State = {
         loading: false,
         replying: false,
         showIfHidden: false,
     };
-
-    _mounted: boolean = true;
 
     componentDidMount() {
         this.ensureEntry();
@@ -117,16 +116,6 @@ class EntryPage extends Component<Props, State> {
             this.ensureEntry();
         }
     }
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (obj: {}, cb = undefined) => {
-        if (this._mounted) {
-            this.setState(obj, cb);
-        }
-    };
 
     ensureEntry = () => {
         const {match, addEntry, updateEntry, addCommunity, activeUser} = this.props;

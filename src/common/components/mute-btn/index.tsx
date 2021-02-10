@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 
 import {Button, Form, FormControl, InputGroup, Modal} from "react-bootstrap";
 
@@ -8,6 +8,8 @@ import {Entry, EntryStat} from "../../store/entries/types";
 import {Community} from "../../store/communities/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {clone} from "../../store/util";
+
+import BaseComponent from "../base";
 
 import {formatError, mutePost} from "../../api/operations";
 import {error} from "../feedback";
@@ -88,14 +90,12 @@ interface State {
     inProgress: boolean;
 }
 
-export class MuteBtn extends Component<Props, State> {
+export class MuteBtn extends BaseComponent<Props, State> {
     state: State = {
         dialog: false,
         dialogMode: null,
         inProgress: false
     }
-
-    _mounted: boolean = true;
 
     shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
         return !isEqual(this.state, nextState) ||
@@ -104,23 +104,13 @@ export class MuteBtn extends Component<Props, State> {
             !isEqual(this.props.activeUser?.username, nextProps.activeUser?.username)
     }
 
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
-
     toggleDialog = (mode?: DialogMode) => {
         const {dialog} = this.state;
 
         if (dialog) {
             this.stateSet({dialog: false, dialogMode: null});
         } else {
-            this.stateSet({dialog: true, dialogMode: mode});
+            this.stateSet({dialog: true, dialogMode: mode as DialogMode});
         }
     }
 

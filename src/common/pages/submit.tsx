@@ -28,6 +28,7 @@ import {Entry} from "../store/entries/types";
 import {Global} from "../store/global/types";
 import {FullAccount} from "../store/accounts/types";
 
+import BaseComponent from "../components/base";
 import Meta from "../components/meta";
 import Theme from "../components/theme";
 import Feedback from "../components/feedback";
@@ -143,7 +144,7 @@ interface State extends PostBase {
     reblogSwitch: boolean;
 }
 
-class SubmitPage extends Component<Props, State> {
+class SubmitPage extends BaseComponent<Props, State> {
     state: State = {
         title: "",
         tags: [],
@@ -165,17 +166,6 @@ class SubmitPage extends Component<Props, State> {
     };
 
     _updateTimer: any = null;
-    _mounted: boolean = true;
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     componentDidMount = (): void => {
         this.loadLocalDraft();

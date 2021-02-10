@@ -10,6 +10,8 @@ import {ILineChartOptions} from "chartist";
 
 import isEqual from "react-fast-compare";
 
+import BaseComponent from "../base";
+
 import {getMarketData} from "../../api/misc";
 
 import {_t} from "../../i18n";
@@ -34,20 +36,12 @@ interface State {
     prices: Price[]
 }
 
-export class Market extends Component<Props, State> {
+export class Market extends BaseComponent<Props, State> {
     state: State = {
         prices: []
     }
 
     node = React.createRef<HTMLDivElement>();
-
-    _mounted: boolean = true;
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     componentDidMount() {
         const {coin, vsCurrency, fromTs, toTs} = this.props;
@@ -63,9 +57,9 @@ export class Market extends Component<Props, State> {
     }
 
     componentWillUnmount() {
-        this.detachEvents();
+        super.componentWillUnmount();
 
-        this._mounted = false;
+        this.detachEvents();
     }
 
     shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
@@ -93,6 +87,7 @@ export class Market extends Component<Props, State> {
     }
 
     detachEvents = () => {
+
         const node = this.node.current;
         if (!node) return;
 

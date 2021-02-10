@@ -7,6 +7,7 @@ import {Global} from "../../store/global/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {Account} from "../../store/accounts/types";
 
+import BaseComponent from "../base";
 import EntryLink from "../entry-link";
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
@@ -30,27 +31,15 @@ interface BookmarksState {
     items: Bookmark[]
 }
 
-export class Bookmarks extends Component<BookmarksProps, BookmarksState> {
+export class Bookmarks extends BaseComponent<BookmarksProps, BookmarksState> {
     state: BookmarksState = {
         loading: true,
         items: []
     }
 
-    _mounted: boolean = true;
-
     componentDidMount() {
         this.fetch();
     }
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     fetch = () => {
         const {activeUser} = this.props;
@@ -127,27 +116,15 @@ interface FavoritesState {
     items: Favorite[]
 }
 
-export class Favorites extends Component<FavoritesProps, FavoritesState> {
+export class Favorites extends BaseComponent<FavoritesProps, FavoritesState> {
     state: FavoritesState = {
         loading: true,
         items: []
     }
 
-    _mounted: boolean = true;
-
     componentDidMount() {
         this.fetch();
     }
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     fetch = () => {
         const {activeUser} = this.props;

@@ -8,6 +8,7 @@ import {ActiveUser} from "../../store/active-user/types";
 import {Transactions} from "../../store/transactions/types";
 import {Account} from "../../store/accounts/types";
 
+import BaseComponent from "../base";
 import {Transfer, TransferAsset} from "../transfer";
 
 import {calcPoints} from "../../api/private";
@@ -38,7 +39,7 @@ interface State {
 }
 
 
-export class Purchase extends Component<Props, State> {
+export class Purchase extends BaseComponent<Props, State> {
     state: State = {
         submitted: false,
         asset: 'HIVE',
@@ -48,17 +49,6 @@ export class Purchase extends Component<Props, State> {
     }
 
     _timer: any = null;
-    _mounted: boolean = true;
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     componentDidMount() {
         this.calc();

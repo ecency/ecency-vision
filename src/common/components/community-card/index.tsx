@@ -14,6 +14,7 @@ import {Community, roleMap, ROLES} from "../../store/communities/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {User} from "../../store/users/types";
 
+import BaseComponent from "../base";
 import UserAvatar from "../user-avatar";
 import ProfileLink from "../profile-link";
 import CommunitySettings from "../community-settings";
@@ -45,24 +46,12 @@ interface EditPicState {
     inProgress: boolean;
 }
 
-class EditPic extends React.Component<EditPicProps, EditPicState> {
+class EditPic extends BaseComponent<EditPicProps, EditPicState> {
     state: EditPicState = {
         account: null,
         dialog: false,
         inProgress: false
     }
-
-    _mounted: boolean = true;
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     toggleDialog = () => {
         const {dialog} = this.state;
@@ -159,18 +148,6 @@ export class CommunityCard extends Component<Props, State> {
         useNewImage: false
     }
 
-    _mounted: boolean = true;
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
-
     shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
         return !isEqual(this.props.community, nextProps.community)
             || !isEqual(this.props.users, nextProps.users)
@@ -228,7 +205,7 @@ export class CommunityCard extends Component<Props, State> {
             <div className="community-card">
                 <div className="community-avatar">
                     {canUpdatePic && (<EditPic {...this.props} account={account as FullAccount} activeUser={activeUser!} onUpdate={() => {
-                        this.stateSet({useNewImage: true});
+                        this.setState({useNewImage: true});
                     }}/>)}
                     {UserAvatar({
                         ...this.props,

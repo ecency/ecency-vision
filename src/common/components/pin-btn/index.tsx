@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 
 import isEqual from "react-fast-compare";
 
@@ -6,6 +6,7 @@ import {Entry} from "../../store/entries/types";
 import {Community} from "../../store/communities/types";
 import {ActiveUser} from "../../store/active-user/types";
 
+import BaseComponent from "../base";
 import PopoverConfirm from "../popover-confirm";
 
 import {formatError, pinPost} from "../../api/operations";
@@ -30,14 +31,12 @@ interface State {
     loading: boolean,
 }
 
-export class PinBtn extends Component<Props, State> {
+export class PinBtn extends BaseComponent<Props, State> {
     state: State = {
         inProgress: false,
         isPinned: false,
         loading: false
     }
-
-    _mounted: boolean = true;
 
     componentDidMount() {
         const {community, entry} = this.props;
@@ -60,16 +59,6 @@ export class PinBtn extends Component<Props, State> {
             !isEqual(this.props.community, nextProps.community) ||
             !isEqual(this.props.activeUser?.username, nextProps.activeUser?.username)
     }
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     pin = (pin: boolean) => {
         const {entry, community, activeUser, onSuccess} = this.props;

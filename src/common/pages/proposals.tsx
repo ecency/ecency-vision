@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from "react";
+import React, {Fragment} from "react";
 
 import {Link} from "react-router-dom";
 
@@ -23,6 +23,7 @@ setProxyBase(defaults.imageServer);
 
 import {Entry} from "../store/entries/types";
 
+import BaseComponent from "../components/base";
 import Meta from "../components/meta";
 import ScrollToTop from "../components/scroll-to-top";
 import Theme from "../components/theme";
@@ -62,7 +63,7 @@ interface State {
     inProgress: boolean;
 }
 
-class ProposalsPage extends Component<PageProps, State> {
+class ProposalsPage extends BaseComponent<PageProps, State> {
     state: State = {
         proposals_: [],
         proposals: [],
@@ -74,21 +75,9 @@ class ProposalsPage extends Component<PageProps, State> {
         inProgress: false,
     }
 
-    _mounted: boolean = true;
-
     componentDidMount() {
         this.load();
     }
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     load = () => {
         this.stateSet({loading: true});
@@ -258,28 +247,16 @@ interface DetailState {
     entry: Entry | null;
 }
 
-class ProposalDetailPage extends Component<DetailProps, DetailState> {
+class ProposalDetailPage extends BaseComponent<DetailProps, DetailState> {
     state: DetailState = {
         loading: true,
         proposal: null,
         entry: null
     }
 
-    _mounted: boolean = true;
-
     componentDidMount() {
         this.load();
     }
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     load = () => {
         const {match} = this.props;

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 
 import {Button, FormControl, Spinner} from "react-bootstrap";
 
@@ -8,6 +8,7 @@ import {ActiveUser} from "../../store/active-user/types";
 import {ToggleType, UI} from "../../store/ui/types";
 import {Account} from "../../store/accounts/types";
 
+import BaseComponent from "../base";
 import LoginRequired from "../login-required";
 import KeyOrHotDialog from "../key-or-hot-dialog";
 import {error} from "../feedback";
@@ -35,23 +36,11 @@ interface State {
     inProgress: boolean;
 }
 
-export class WitnessesProxy extends Component<Props, State> {
+export class WitnessesProxy extends BaseComponent<Props, State> {
     state: State = {
         username: '',
         inProgress: false
     }
-
-    _mounted: boolean = true;
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     usernameChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
         this.stateSet({username: e.target.value.trim()});

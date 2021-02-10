@@ -10,6 +10,7 @@ import {ActiveUser} from "../../store/active-user/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
 import {UI, ToggleType} from "../../store/ui/types";
 
+import BaseComponent from "../base";
 import FormattedCurrency from "../formatted-currency";
 import LoginRequired from "../login-required";
 import {error} from "../feedback";
@@ -230,22 +231,10 @@ interface State {
     inProgress: boolean;
 }
 
-export class EntryVoteBtn extends Component<Props, State> {
+export class EntryVoteBtn extends BaseComponent<Props, State> {
     state: State = {
         dialog: false,
         inProgress: false,
-    };
-
-    _mounted: boolean = true;
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
     };
 
     vote = (percent: number) => {

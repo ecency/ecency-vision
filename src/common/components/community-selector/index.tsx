@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 
 import {Modal} from "react-bootstrap";
 
@@ -11,6 +11,7 @@ import {Community} from "../../store/communities/types";
 import {Global} from "../../store/global/types";
 import {Subscription} from "../../store/subscriptions/types";
 
+import BaseComponent from "../base";
 import UserAvatar from "../user-avatar/index";
 
 import {_t} from "../../i18n";
@@ -34,29 +35,18 @@ interface BrowserState {
     results: Community[]
 }
 
-export class Browser extends Component<BrowserProps, BrowserState> {
+export class Browser extends BaseComponent<BrowserProps, BrowserState> {
     state: BrowserState = {
         subscriptions: [],
         query: "",
         results: [],
     }
 
-    _mounted: boolean = true;
     _timer: any = null;
 
     componentDidMount() {
         this.fetchSubscriptions().then();
     }
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     fetchSubscriptions = () => {
         const {activeUser} = this.props;
@@ -179,13 +169,11 @@ interface State {
     visible: boolean;
 }
 
-export class CommunitySelector extends Component<Props, State> {
+export class CommunitySelector extends BaseComponent<Props, State> {
     state: State = {
         community: null,
         visible: false
     }
-
-    _mounted: boolean = true;
 
     componentDidMount() {
         this.detectCommunity().then();
@@ -196,16 +184,6 @@ export class CommunitySelector extends Component<Props, State> {
             this.detectCommunity().then();
         }
     }
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     extractCommunityName = (): string | null => {
         const {tags} = this.props;

@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 
 import {connect} from "react-redux";
 
@@ -9,6 +9,7 @@ import {ListStyle} from "../store/global/types";
 import {makeGroupKey} from "../store/entries";
 import {ProfileFilter} from "../store/global/types";
 
+import BaseComponent from "../components/base";
 import Meta from "../components/meta";
 import Theme from "../components/theme";
 import Feedback from "../components/feedback";
@@ -49,12 +50,10 @@ interface State {
     loading: boolean;
 }
 
-class ProfilePage extends Component<Props, State> {
+class ProfilePage extends BaseComponent<Props, State> {
     state: State = {
         loading: false
     };
-
-    _mounted: boolean = true;
 
     async componentDidMount() {
         await this.ensureAccount();
@@ -103,20 +102,14 @@ class ProfilePage extends Component<Props, State> {
     }
 
     componentWillUnmount() {
+        super.componentWillUnmount();
+
         const {resetTransactions, resetPoints} = this.props;
 
         // reset transactions and points on unload
         resetTransactions();
         resetPoints();
-
-        this._mounted = false;
     }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     ensureAccount = () => {
         const {match, accounts, addAccount} = this.props;

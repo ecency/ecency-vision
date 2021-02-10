@@ -1,8 +1,9 @@
-import React, {Component} from "react";
+import React from "react";
 import {Button, Spinner} from "react-bootstrap";
 
 import {ActiveUser} from "../../store/active-user/types";
 
+import BaseComponent from "../base";
 import {error, success} from "../feedback";
 
 import {uploadImage} from "../../api/misc";
@@ -22,24 +23,12 @@ interface UploadButtonState {
     inProgress: boolean;
 }
 
-export default class UploadButton extends Component<UploadButtonProps, UploadButtonState> {
-
-    _mounted: boolean = true;
+export default class UploadButton extends BaseComponent<UploadButtonProps, UploadButtonState> {
     input = React.createRef<HTMLInputElement>();
 
     state: UploadButtonState = {
         inProgress: false
     }
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     upload = () => {
         if (this.input.current) this.input.current.click();

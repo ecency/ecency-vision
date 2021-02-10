@@ -1,8 +1,9 @@
-import React, {Component} from "react";
+import React from "react";
 
 import {Entry} from "../../store/entries/types";
 import {ActiveUser} from "../../store/active-user/types";
 
+import BaseComponent from "../base";
 import PopoverConfirm from "../popover-confirm";
 
 import {error} from "../feedback";
@@ -22,22 +23,9 @@ interface State {
     inProgress: boolean;
 }
 
-export class EntryDeleteBtn extends Component<Props> {
+export class EntryDeleteBtn extends BaseComponent<Props> {
     state: State = {
         inProgress: false,
-    };
-
-    _mounted: boolean = true;
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (obj: {}, cb: () => void = () => {
-    }) => {
-        if (this._mounted) {
-            this.setState(obj, cb);
-        }
     };
 
     delete = () => {
