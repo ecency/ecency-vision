@@ -1,0 +1,20 @@
+.entry-tip-btn {
+  margin-top: -1px;
+
+  .inner-btn {
+    cursor: pointer;
+    align-items: center;
+    color: $steel-grey;
+    display: flex;
+
+    &:hover {
+      color: $dark-sky-blue;
+      opacity: 1;
+    }
+
+    svg {
+      height: 16px;
+      opacity: 0.7;
+    }
+  }
+}

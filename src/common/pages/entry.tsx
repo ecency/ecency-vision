@@ -55,6 +55,7 @@ import NotFound from "../components/404";
 import ScrollToTop from "../components/scroll-to-top";
 import EntryBodyExtra from "../components/entry-body-extra";
 import Tooltip from "../components/tooltip";
+import EntryTipBtn from "../components/entry-tip-btn";
 
 import * as bridgeApi from "../api/bridge";
 import {comment, formatError} from "../api/operations";
@@ -544,6 +545,11 @@ class EntryPage extends BaseComponent<Props, State> {
                                                 ...this.props,
                                                 entry
                                             })}
+                                            {EntryTipBtn({
+                                                ...this.props,
+                                                entry
+                                            })}
+
                                             <div className="sub-menu">
                                                 {global.isElectron && (
                                                     <Tooltip content={_t("entry.address-copy")}>
