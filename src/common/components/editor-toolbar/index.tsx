@@ -9,6 +9,7 @@ import Tooltip from "../tooltip";
 import EmojiPicker from "../emoji-picker";
 import Gallery from "../gallery";
 import Fragments from "../fragments";
+import AddImage from "../add-image";
 
 import {uploadImage} from "../../api/misc";
 
@@ -49,12 +50,14 @@ interface Props {
 interface State {
     gallery: boolean
     fragments: boolean
+    image: boolean
 }
 
 export class EditorToolbar extends Component<Props> {
     state: State = {
         gallery: false,
         fragments: false,
+        image: false,
     }
 
     holder = React.createRef<HTMLDivElement>();
@@ -74,6 +77,11 @@ export class EditorToolbar extends Component<Props> {
     toggleFragments = () => {
         const {fragments} = this.state;
         this.setState({fragments: !fragments});
+    }
+
+    toggleImage = () => {
+        const {image} = this.state;
+        this.setState({image: !image});
     }
 
     componentDidMount() {
@@ -298,7 +306,7 @@ export class EditorToolbar extends Component<Props> {
     };
 
     render() {
-        const {gallery, fragments} = this.state;
+        const {gallery, fragments, image} = this.state;
         const {sm, activeUser} = this.props;
 
         return (
@@ -370,7 +378,7 @@ export class EditorToolbar extends Component<Props> {
                         <div
                             className="editor-tool"
                             onClick={() => {
-                                this.image();
+                                this.toggleImage();
                             }}>
                             {imageSvg}
 
@@ -445,6 +453,10 @@ export class EditorToolbar extends Component<Props> {
                 {(fragments && activeUser) && <Fragments activeUser={activeUser} onHide={this.toggleFragments} onPick={(body: string) => {
                     this.insertText(body);
                     this.toggleFragments();
+                }}/>}
+                {image && <AddImage onHide={this.toggleImage} onSubmit={(text: string, link: string) => {
+                    this.image(text, link);
+                    this.toggleImage();
                 }}/>}
             </>
         );
