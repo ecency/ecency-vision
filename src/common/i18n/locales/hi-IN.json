@@ -794,6 +794,11 @@
     "label-check": "मैंने अपने जनरेट किए गए पासवर्ड को सुरक्षित रूप से सहेजा है",
     "updated": "पासवर्ड सफलतापूर्वक अपडेट किया गया!"
   },
+  "add-image": {
+    "title": "Add Image",
+    "text-label": "Image Text",
+    "link-label": "Image Link"
+  },
   "scroll-to-top": {
     "title": "शीर्ष तक स्क्रॉल करें"
   },
