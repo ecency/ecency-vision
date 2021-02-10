@@ -794,6 +794,11 @@
     "label-check": "Olen tallentanut turvallisesti salasanani",
     "updated": "Salasana on tallennettu onnistuneesti!"
   },
+  "add-image": {
+    "title": "Add Image",
+    "text-label": "Image Text",
+    "link-label": "Image Link"
+  },
   "scroll-to-top": {
     "title": "Vieritä ylös"
   },
