@@ -795,9 +795,9 @@
     "updated": "Salasana on tallennettu onnistuneesti!"
   },
   "add-image": {
-    "title": "Add Image",
-    "text-label": "Image Text",
-    "link-label": "Image Link"
+    "title": "Lisää kuva",
+    "text-label": "Kuvateksti",
+    "link-label": "Kuvan linkki"
   },
   "scroll-to-top": {
     "title": "Vieritä ylös"
