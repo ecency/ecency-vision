@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from "react";
+import React, {Fragment} from "react";
 
 import {connect} from "react-redux";
 
@@ -18,6 +18,7 @@ import {Community} from "../store/communities/types";
 
 import {User} from "../store/users/types";
 
+import BaseComponent from "../components/base";
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
 import NavBar from "../components/navbar/index";
@@ -61,7 +62,7 @@ interface State {
     sort: string;
 }
 
-class CommunitiesPage extends Component<PageProps, State> {
+class CommunitiesPage extends BaseComponent<PageProps, State> {
     state: State = {
         list: [],
         loading: true,
@@ -70,7 +71,6 @@ class CommunitiesPage extends Component<PageProps, State> {
     };
 
     _timer: any = null;
-    _mounted: boolean = true;
 
     componentDidMount() {
         this.fetch();
@@ -93,16 +93,6 @@ class CommunitiesPage extends Component<PageProps, State> {
             }
         }
     }
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     fetch = () => {
         const {query, sort} = this.state;
@@ -221,7 +211,7 @@ interface CreateState {
     progress: string;
 }
 
-class CommunityCreatePage extends Component<PageProps, CreateState> {
+class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
     state: CreateState = {
         fee: "",
         title: "",
@@ -239,7 +229,6 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
     form = React.createRef<HTMLFormElement>();
 
     _timer: any = null;
-    _mounted: boolean = true;
 
     componentDidMount() {
         client.database.getChainProperties().then(r => {
@@ -248,16 +237,6 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
             this.stateSet({fee});
         });
     }
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     genUsername = (): string => {
         return `hive-${Math.floor(Math.random() * 100000) + 100000}`;
@@ -271,6 +250,7 @@ class CommunityCreatePage extends Component<PageProps, CreateState> {
         const {target: el} = e;
         const {name: key, value} = el;
 
+        // @ts-ignore
         this.stateSet({[key]: value});
     }
 
@@ -692,7 +672,7 @@ interface CreateHsState {
     progress: string;
 }
 
-class CommunityCreateHSPage extends Component<PageProps, CreateHsState> {
+class CommunityCreateHSPage extends BaseComponent<PageProps, CreateHsState> {
     state: CreateHsState = {
         username: '',
         done: false,
@@ -700,21 +680,9 @@ class CommunityCreateHSPage extends Component<PageProps, CreateHsState> {
         progress: ''
     }
 
-    _mounted: boolean = true;
-
     componentDidMount() {
         this.handle().then();
     }
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     handle = async () => {
         const {location, history, addUser, activeUser} = this.props;

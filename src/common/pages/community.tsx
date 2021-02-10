@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 import {connect} from "react-redux";
 import {match} from "react-router";
 
@@ -10,6 +10,7 @@ import {makeGroupKey} from "../store/entries";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
+import BaseComponent from "../components/base";
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
 import NavBar from "../components/navbar/index";
@@ -51,12 +52,10 @@ interface State {
     loading: boolean;
 }
 
-class CommunityPage extends Component<Props, State> {
+class CommunityPage extends BaseComponent<Props, State> {
     state: State = {
         loading: false
     };
-
-    _mounted: boolean = true;
 
     async componentDidMount() {
         await this.ensureData();
@@ -104,16 +103,6 @@ class CommunityPage extends Component<Props, State> {
             }
         }
     }
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     ensureData = (): Promise<void> => {
         const {match, communities, addCommunity, accounts, addAccount, activeUser} = this.props;
