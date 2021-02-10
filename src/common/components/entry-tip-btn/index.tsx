@@ -34,8 +34,12 @@ interface Props {
     setSigningKey: (key: string) => void;
 }
 
+interface DialogProps extends Props {
+    onHide: () => void;
+}
 
-export class TippingDialog extends Component<Props> {
+
+export class TippingDialog extends Component<DialogProps> {
     render() {
         const {entry, activeUser} = this.props;
 
@@ -60,8 +64,6 @@ export class TippingDialog extends Component<Props> {
             amount={`100.000`}
             to={to}
             memo={memo}
-            onHide={() => {
-            }}
         />
     }
 }
@@ -99,7 +101,7 @@ export class EntryTipBtn extends Component<Props, State> {
                     <Modal animation={false} show={true} centered={true} onHide={this.toggleDialog} keyboard={false} className="tipping-dialog modal-thin-header" size="lg">
                         <Modal.Header closeButton={true}/>
                         <Modal.Body>
-                            <TippingDialog {...this.props} />
+                            <TippingDialog {...this.props} onHide={this.toggleDialog}/>
                         </Modal.Body>
                     </Modal>
                 )}

@@ -4,17 +4,16 @@
   .inner-btn {
     cursor: pointer;
     align-items: center;
-    color: $steel-grey;
+    color: $dark-sky-blue;
     display: flex;
-
-    &:hover {
-      color: $dark-sky-blue;
-      opacity: 1;
-    }
 
     svg {
       height: 16px;
       opacity: 0.7;
+
+      &:hover {
+        opacity: 1;
+      }
     }
   }
 }
