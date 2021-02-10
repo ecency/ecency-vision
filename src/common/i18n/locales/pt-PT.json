@@ -794,6 +794,11 @@
     "label-check": "Eu guardei com segurança minha nova senha gerada",
     "updated": "Senha atualizada com sucesso!"
   },
+  "add-image": {
+    "title": "Add Image",
+    "text-label": "Image Text",
+    "link-label": "Image Link"
+  },
   "scroll-to-top": {
     "title": "Ir para o topo"
   },
