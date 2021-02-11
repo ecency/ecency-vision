@@ -143,6 +143,9 @@
     "confirm-ok": "Сподели",
     "success": "Споделено!"
   },
+  "entry-tip": {
+    "title": "Tip"
+  },
   "entry-payout": {
     "pending-payout": "Чакащо плащане",
     "promoted": "Промотирано",
