@@ -143,6 +143,9 @@
     "confirm-ok": "Jaga",
     "success": "Jagatud!"
   },
+  "entry-tip": {
+    "title": "Tip"
+  },
   "entry-payout": {
     "pending-payout": "Ootel väljamakse",
     "promoted": "Sponsitud",
