@@ -143,6 +143,9 @@
     "confirm-ok": "Jaa",
     "success": "Jaettu!"
   },
+  "entry-tip": {
+    "title": "Tip"
+  },
   "entry-payout": {
     "pending-payout": "Odottava tulo",
     "promoted": "Korostettu",
