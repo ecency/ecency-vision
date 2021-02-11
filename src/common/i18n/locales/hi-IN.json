@@ -143,6 +143,9 @@
     "confirm-ok": "रीब्लॉग",
     "success": "रीब्लॉग हो गया"
   },
+  "entry-tip": {
+    "title": "Tip"
+  },
   "entry-payout": {
     "pending-payout": "अनिर्णीत भुगतान",
     "promoted": "पदोन्नत",
