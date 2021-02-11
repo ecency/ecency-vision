@@ -143,6 +143,9 @@
     "confirm-ok": "Herblog",
     "success": "Herblogged!"
   },
+  "entry-tip": {
+    "title": "Tip"
+  },
   "entry-payout": {
     "pending-payout": "Uitbetaling In Behandeling",
     "promoted": "Gesponsord",
