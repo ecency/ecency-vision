@@ -143,6 +143,9 @@
     "confirm-ok": "Αναδημοσίευση",
     "success": "Αναδημοσιεύτηκε!"
   },
+  "entry-tip": {
+    "title": "Tip"
+  },
   "entry-payout": {
     "pending-payout": "Εκκρεμής Πληρωμή",
     "promoted": "Προωθούμενα",
