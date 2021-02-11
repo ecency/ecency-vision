@@ -47,3 +47,4 @@ jobs:
           docker image tag vision localhost:5000/vision:latest
           docker push localhost:5000/vision:latest
           docker stack deploy -c docker-compose.yml vision
+          docker system prune -f
