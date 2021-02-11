@@ -8,7 +8,7 @@ import entryIndexHandler from "./handlers/entry-index";
 import communityHandler from "./handlers/community";
 import profileHandler from "./handlers/profile";
 import entryHandler from "./handlers/entry";
-import fallbackHandler from "./handlers/fallback";
+import fallbackHandler, { healthCheck } from "./handlers/fallback";
 import {entryRssHandler, authorRssHandler} from "./handlers/rss";
 import * as pApi from "./handlers/private-api";
 
@@ -111,6 +111,7 @@ server
     .post("^/api/search-path$", pApi.searchPath)
     .post("^/api/boost-options$", pApi.boostOptions)
     .post("^/api/boosted-post$", pApi.boostedPost)
+    .get("^/healthcheck.json$", healthCheck)
     .get("*", fallbackHandler);
 
 export default server;

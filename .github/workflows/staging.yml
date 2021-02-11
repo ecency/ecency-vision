@@ -43,10 +43,7 @@ jobs:
         script: |
           cd ~/vision-staging
           git pull origin development
-          yarn
-          cd src/desktop
-          yarn
-          cd ../../
-          yarn build
-          export PORT=$STAGING_PORT
-          NODE_ENV=production pm2 reload staging --update-env
+          docker build . -t vision -f Dockerfile --no-cache
+          docker image tag vision localhost:5000/vision:latest
+          docker push localhost:5000/vision:latest
+          docker stack deploy -c docker-compose.yml vision
