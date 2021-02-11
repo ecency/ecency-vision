@@ -8,6 +8,10 @@ services:
     command: node build/server.js
     deploy:
       replicas: 4
+      resources:
+        limits:
+          cpus: "0.9"
+          memory: 2048M
       update_config:
         parallelism: 2
         order: start-first
