@@ -143,6 +143,9 @@
     "confirm-ok": "Tampilkan kembali",
     "success": "Ditampilkan kembali!"
   },
+  "entry-tip": {
+    "title": "Tip"
+  },
   "entry-payout": {
     "pending-payout": "Pembayaran yang Ditunda",
     "promoted": "Dipromosikan",
