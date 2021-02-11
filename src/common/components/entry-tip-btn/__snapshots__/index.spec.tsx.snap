@@ -145,7 +145,7 @@ exports[`(2) Dialog 1`] = `
               <span
                 className="input-group-text"
               >
-                @
+                #
               </span>
             </div>
             <input

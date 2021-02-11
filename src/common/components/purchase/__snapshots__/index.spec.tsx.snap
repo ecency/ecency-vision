@@ -220,7 +220,7 @@ exports[`(2) Should switch to transfer 1`] = `
               <span
                 className="input-group-text"
               >
-                @
+                #
               </span>
             </div>
             <input
