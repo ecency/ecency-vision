@@ -143,6 +143,9 @@
     "confirm-ok": "Зарепостить",
     "success": "Репостнуто!"
   },
+  "entry-tip": {
+    "title": "Tip"
+  },
   "entry-payout": {
     "pending-payout": "Ожидаемая выплата",
     "promoted": "Продвигаемое",
