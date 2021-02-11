@@ -48,7 +48,7 @@ export class TippingDialog extends Component<DialogProps> {
         }
 
         const to = entry.author;
-        const memo = `Tip for ${entry.author}/${entry.permlink}`
+        const memo = `Tip for @${entry.author}/${entry.permlink}`
         const transactions = {
             list: [],
             loading: false,

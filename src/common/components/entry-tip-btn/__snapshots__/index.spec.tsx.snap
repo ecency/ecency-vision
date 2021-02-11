@@ -223,7 +223,7 @@ exports[`(2) Dialog 1`] = `
             className="form-control"
             onChange={[Function]}
             placeholder="enter your notes here"
-            value="Tip for good-karma/awesome-hive"
+            value="Tip for @good-karma/awesome-hive"
           />
         </div>
       </div>
