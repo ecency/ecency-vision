@@ -143,6 +143,9 @@
     "confirm-ok": "Reblog",
     "success": "Reblogged!"
   },
+  "entry-tip": {
+    "title": "Tip"
+  },
   "entry-payout": {
     "pending-payout": "Puenayah nyang gohlom di jok",
     "promoted": "Nyang di promosi",
