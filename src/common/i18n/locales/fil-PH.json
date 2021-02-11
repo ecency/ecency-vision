@@ -143,6 +143,9 @@
     "confirm-ok": "I-blog muli",
     "success": "Muling nai-blog!"
   },
+  "entry-tip": {
+    "title": "Tip"
+  },
   "entry-payout": {
     "pending-payout": "Nakabinbin na Gantimpala",
     "promoted": "Naisulong",
