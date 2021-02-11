@@ -38,6 +38,7 @@
     "webpack",
     "jest",
     "razzle.config.js",
+    "healthCheck.js",
     "src/desktop/**/*.js"
   ],
   "types": [

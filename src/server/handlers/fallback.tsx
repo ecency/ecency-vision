@@ -19,3 +19,12 @@ export default async (req: express.Request, res: express.Response) => {
 
     res.send(render(req, preLoadedState));
 };
+
+export const healthCheck = async (req: express.Request, res: express.Response) => {
+    res.send({
+        status: 200,
+        body: {
+            status: 'ok'
+        }
+    })
+}
