@@ -6,6 +6,12 @@ COPY package.json yarn.lock ./
 
 RUN yarn install --non-interactive --frozen-lockfile --ignore-optional
 
+WORKDIR /var/app/src/desktop
+
+RUN yarn install --non-interactive --frozen-lockfile --ignore-optional
+
+WORKDIR /var/app
+
 COPY . .
 
 RUN yarn build
