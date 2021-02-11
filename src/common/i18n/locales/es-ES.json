@@ -795,9 +795,9 @@
     "updated": "¡Contraseña actualizada correctamente!"
   },
   "add-image": {
-    "title": "Add Image",
-    "text-label": "Image Text",
-    "link-label": "Image Link"
+    "title": "Añadir imagen",
+    "text-label": "Texto de la imagen",
+    "link-label": "Enlace de la imagen"
   },
   "scroll-to-top": {
     "title": "Ir arriba"
