@@ -798,9 +798,9 @@
     "updated": "Kata Sandi berhasil diperbaharui!"
   },
   "add-image": {
-    "title": "Add Image",
-    "text-label": "Image Text",
-    "link-label": "Image Link"
+    "title": "Tambahkan gambar",
+    "text-label": "Teks Gambar",
+    "link-label": "Link Gambar"
   },
   "scroll-to-top": {
     "title": "Gulir ke Atas"
