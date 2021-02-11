@@ -27,4 +27,4 @@ export const healthCheck = async (req: express.Request, res: express.Response) =
             status: 'ok'
         }
     })
-}
+};
