@@ -143,6 +143,9 @@
     "confirm-ok": "Репост",
     "success": "Репостнуто!"
   },
+  "entry-tip": {
+    "title": "Tip"
+  },
   "entry-payout": {
     "pending-payout": "Відмовитися від виплати",
     "promoted": "Просувається",
