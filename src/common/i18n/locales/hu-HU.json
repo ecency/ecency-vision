@@ -143,6 +143,9 @@
     "confirm-ok": "Megosztás",
     "success": "Megosztva!"
   },
+  "entry-tip": {
+    "title": "Tip"
+  },
   "entry-payout": {
     "pending-payout": "Függőben lévő kifizetés",
     "promoted": "Támogatott",
