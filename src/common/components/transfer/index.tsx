@@ -726,7 +726,7 @@ export class Transfer extends BaseComponent<Props, State> {
                             <Col sm="10" className="d-flex align-items-center">
                                 <InputGroup>
                                     <InputGroup.Prepend>
-                                        <InputGroup.Text>@</InputGroup.Text>
+                                        <InputGroup.Text>#</InputGroup.Text>
                                     </InputGroup.Prepend>
                                     <Form.Control
                                         type="text"

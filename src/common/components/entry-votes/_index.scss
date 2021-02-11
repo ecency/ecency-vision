@@ -77,6 +77,10 @@
     font-weight: 500;
   }
 
+  &:hover {
+    color: $dark-sky-blue;
+  }
+
   svg {
     height: 14px;
     opacity: 0.5;

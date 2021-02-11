@@ -1,102 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`(1) Purchase 1`] = `
+exports[`(1) Default render 1`] = `
 <div
-  className="purchase-dialog-content"
+  className="entry-tip-btn"
+  onClick={[Function]}
 >
-  <div
-    className="curr-select"
+  <span
+    className="inner-btn"
+    title="Tip"
   >
-    <div
-      className="curr-label"
+    <svg
+      viewBox="0 0 24 24"
     >
-      Select Asset
-    </div>
-    <div
-      className="nav nav-pills"
-    >
-      <div
-        className="nav-item"
-      >
-        <a
-          className="nav-link active"
-          href="#"
-          onClick={[Function]}
-        >
-          HIVE
-        </a>
-      </div>
-      <div
-        className="nav-item"
-      >
-        <a
-          className="nav-link"
-          href="#"
-          onClick={[Function]}
-        >
-          HBD
-        </a>
-      </div>
-    </div>
-  </div>
-  <div
-    className="input-amounts"
-  >
-    <div
-      className="asset-amount"
-    >
-      250.000 HIVE
-    </div>
-    <div
-      className="usd-amount"
-    >
-      62.381
-       
-      $
-    </div>
-  </div>
-  <div
-    className="slider-area"
-  >
-    <input
-      autoFocus={true}
-      className="custom-range"
-      max={10000}
-      min={1}
-      onChange={[Function]}
-      step={1}
-      type="range"
-      value={250}
-    />
-    <small
-      className="text-muted form-text"
-    >
-      Drag the slider to adjust the amount.
-    </small>
-  </div>
-  <div
-    className="point-amount"
-  >
-    31,190.641
-     
-    POINTS
-  </div>
-  <div
-    className="text-center"
-  >
-    <button
-      className="btn btn-primary"
-      disabled={false}
-      onClick={[Function]}
-      type="button"
-    >
-      Purchase
-    </button>
-  </div>
+      <path
+        d="M22,12V20A2,2 0 0,1 20,22H4A2,2 0 0,1 2,20V12A1,1 0 0,1 1,11V8A2,2 0 0,1 3,6H6.17C6.06,5.69 6,5.35 6,5A3,3 0 0,1 9,2C10,2 10.88,2.5 11.43,3.24V3.23L12,4L12.57,3.23V3.24C13.12,2.5 14,2 15,2A3,3 0 0,1 18,5C18,5.35 17.94,5.69 17.83,6H21A2,2 0 0,1 23,8V11A1,1 0 0,1 22,12M4,20H11V12H4V20M20,20V12H13V20H20M9,4A1,1 0 0,0 8,5A1,1 0 0,0 9,6A1,1 0 0,0 10,5A1,1 0 0,0 9,4M15,4A1,1 0 0,0 14,5A1,1 0 0,0 15,6A1,1 0 0,0 16,5A1,1 0 0,0 15,4M3,8V10H11V8H3M13,8V10H21V8H13Z"
+        fill="currentColor"
+      />
+    </svg>
+  </span>
 </div>
 `;
 
-exports[`(2) Should switch to transfer 1`] = `
+exports[`(2) Dialog 1`] = `
 <div
   className="transfer-dialog-content"
 >
@@ -117,7 +42,7 @@ exports[`(2) Should switch to transfer 1`] = `
         <div
           className="main-title"
         >
-          Transfer to Account
+          Gift to Account
         </div>
         <div
           className="sub-title"
@@ -192,7 +117,7 @@ exports[`(2) Should switch to transfer 1`] = `
                 onChange={[Function]}
                 placeholder="username"
                 type="text"
-                value="esteem.app"
+                value="good-karma"
               />
             </div>
           </div>
@@ -225,18 +150,18 @@ exports[`(2) Should switch to transfer 1`] = `
             </div>
             <input
               autoFocus={false}
-              className="is-invalid form-control"
+              className="form-control"
               onChange={[Function]}
               placeholder="amount"
               type="text"
-              value="250.000"
+              value="100.000"
             />
           </div>
           <div
             className="asset-switch"
           >
             <a
-              className="asset selected"
+              className="asset "
               onClick={[Function]}
             >
               HIVE
@@ -248,7 +173,7 @@ exports[`(2) Should switch to transfer 1`] = `
               HBD
             </a>
             <a
-              className="asset "
+              className="asset selected"
               onClick={[Function]}
             >
               POINT
@@ -256,19 +181,7 @@ exports[`(2) Should switch to transfer 1`] = `
           </div>
         </div>
       </div>
-      <div
-        className="row"
-      >
-        <div
-          className="col-md-10 offset-md-2"
-        >
-          <small
-            className="text-danger tr-form-text form-text"
-          >
-            Insufficient funds
-          </small>
-        </div>
-      </div>
+      
       <div
         className="row"
       >
@@ -288,9 +201,9 @@ exports[`(2) Should switch to transfer 1`] = `
               className="balance-num"
               onClick={[Function]}
             >
-              12.234
+              200.000
                
-              HIVE
+              POINT
             </span>
           </div>
         </div>
@@ -310,7 +223,7 @@ exports[`(2) Should switch to transfer 1`] = `
             className="form-control"
             onChange={[Function]}
             placeholder="enter your notes here"
-            value="estm-purchase"
+            value="Tip for @good-karma/awesome-hive"
           />
         </div>
       </div>
@@ -335,7 +248,7 @@ exports[`(2) Should switch to transfer 1`] = `
         >
           <button
             className="btn btn-primary"
-            disabled={true}
+            disabled={false}
             onClick={[Function]}
             type="button"
           >

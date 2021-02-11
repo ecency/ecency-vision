@@ -124,7 +124,7 @@ exports[`(1) Transfer HIVE (1) Step 1 1`] = `
               <span
                 className="input-group-text"
               >
-                @
+                #
               </span>
             </div>
             <input
@@ -672,7 +672,7 @@ exports[`(2) Transfer HBD (1) Step 1 1`] = `
               <span
                 className="input-group-text"
               >
-                @
+                #
               </span>
             </div>
             <input
@@ -1103,7 +1103,7 @@ exports[`(3) Transfer POINT (1) Step 1 1`] = `
               <span
                 className="input-group-text"
               >
-                @
+                #
               </span>
             </div>
             <input
@@ -1530,7 +1530,7 @@ exports[`(4) Transfer to Savings - HBD (1) Step 1 1`] = `
               <span
                 className="input-group-text"
               >
-                @
+                #
               </span>
             </div>
             <input
@@ -1951,7 +1951,7 @@ exports[`(5) Withdraw Savings - HIVE (1) Step 1 1`] = `
               <span
                 className="input-group-text"
               >
-                @
+                #
               </span>
             </div>
             <input
@@ -2332,7 +2332,7 @@ exports[`(6) Convert (1) Step 1 1`] = `
               <span
                 className="input-group-text"
               >
-                @
+                #
               </span>
             </div>
             <input
@@ -2681,7 +2681,7 @@ exports[`(7) Power up (1) Step 1 1`] = `
               <span
                 className="input-group-text"
               >
-                @
+                #
               </span>
             </div>
             <input
@@ -3054,7 +3054,7 @@ exports[`(8) Delegate (1) Step 1 1`] = `
               <span
                 className="input-group-text"
               >
-                @
+                #
               </span>
             </div>
             <input
@@ -3397,7 +3397,7 @@ exports[`(9) Power down (1) Step 1 1`] = `
               <span
                 className="input-group-text"
               >
-                @
+                #
               </span>
             </div>
             <input
