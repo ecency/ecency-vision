@@ -143,6 +143,9 @@
     "confirm-ok": "Pasidalinti",
     "success": "Pasidalinta!"
   },
+  "entry-tip": {
+    "title": "Tip"
+  },
   "entry-payout": {
     "pending-payout": "Laukiamas Išmokėjimas",
     "promoted": "Paremti",
