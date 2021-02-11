@@ -143,6 +143,9 @@
     "confirm-ok": "Reblog",
     "success": "Geteilt!"
   },
+  "entry-tip": {
+    "title": "Tip"
+  },
   "entry-payout": {
     "pending-payout": "Ausstehende Vergütung",
     "promoted": "Beworben",
