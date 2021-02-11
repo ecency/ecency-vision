@@ -143,6 +143,9 @@
     "confirm-ok": "Reblogar",
     "success": "Reblogado!"
   },
+  "entry-tip": {
+    "title": "Tip"
+  },
   "entry-payout": {
     "pending-payout": "Pagamento Pendente",
     "promoted": "Promovido",
