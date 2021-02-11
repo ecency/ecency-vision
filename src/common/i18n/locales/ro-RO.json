@@ -143,6 +143,9 @@
     "confirm-ok": "Reblog",
     "success": "Redistribuit!"
   },
+  "entry-tip": {
+    "title": "Tip"
+  },
   "entry-payout": {
     "pending-payout": "Plată în așteptare",
     "promoted": "Promovat",
