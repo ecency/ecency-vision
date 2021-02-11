@@ -143,6 +143,9 @@
     "confirm-ok": "Podeli",
     "success": "Podeljeno!"
   },
+  "entry-tip": {
+    "title": "Tip"
+  },
   "entry-payout": {
     "pending-payout": "Na čekanju za isplatu",
     "promoted": "Promovisano",
