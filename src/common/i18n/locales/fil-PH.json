@@ -380,7 +380,7 @@
     "delegate": "Magpahiram",
     "power-down": "Magpahina",
     "withdraw-routes": "Ilabas ang mga ruta",
-    "converting-hbd-amount": "Converting to HIVE"
+    "converting-hbd-amount": "Ipinapalit sa Hive"
   },
   "withdraw-routes": {
     "title": "Alisin ang mga account",
@@ -561,57 +561,57 @@
   },
   "emoji-picker": {
     "filter-placeholder": "Salaan",
-    "filter-no-match": "No match",
-    "recently-used": "Recently Used"
+    "filter-no-match": "Walang katugma",
+    "recently-used": "Nagamit kamakailan lang"
   },
   "submit": {
-    "page-title": "Create a post",
-    "page-description": "Publish an article, earn reward, uncensored, immutable, decentralized content!",
-    "title-placeholder": "Title",
-    "body-placeholder": "Post Content",
-    "reward": "Reward",
-    "reward-hint": "Set author reward ratio for liquid and staked tokens",
+    "page-title": "Gumawa ng post",
+    "page-description": "Maglathala ng artikulo, kumita ng gantimpala, censored, hindi nababago, decentralisadong nilalaman!",
+    "title-placeholder": "Titulo",
+    "body-placeholder": "Mag-post ng Content",
+    "reward": "Gantimpala",
+    "reward-hint": "Itakda ang rasyo ng gantimpala ng may-akda para sa likido at naipuhunang mga tokens",
     "reward-default": "Default 50% / 50%",
-    "reward-sp": "Power Up 100%",
-    "reward-dp": "Decline Payout",
+    "reward-sp": "Magpalakas 100%",
+    "reward-dp": "Tanggihan ang Payout",
     "preview": "Preview",
-    "publish": "Publish",
-    "update": "Update",
+    "publish": "Ilathala",
+    "update": "I-update",
     "save-draft": "I-imbak ang banghay",
     "draft-saved": "Matagumpay na nai-imbak ang banghay",
     "update-draft": "Baguhin ang Banghay",
     "draft-updated": "Ang banghay ay matagumpay na nabago",
-    "cancel-update": "Cancel",
-    "clear": "Clear",
-    "published": "Post Published",
-    "updated": "Post Updated",
+    "cancel-update": "Kanselahin",
+    "clear": "Burahin",
+    "published": "Ang post ay nailathala",
+    "updated": "Ang post ay matagumpay na na-update",
     "advanced": "Advanced",
     "beneficiaries": "Beneficiaries",
     "beneficiaries-hint": "Set beneficiaries to share author reward with other accounts",
-    "reblog": "Reblog",
-    "reblog-hint": "Auto share content to your blog",
-    "schedule": "Schedule",
-    "schedule-hint": "Auto publish content on specific time",
-    "scheduled": "Post scheduled"
+    "reblog": "I-blog muli",
+    "reblog-hint": "I-share ng awtomatiko sa iyong blog",
+    "schedule": "Iskedyul",
+    "schedule-hint": "Ilathala ng awtomatiko ang content sa espesipikong oras",
+    "scheduled": "Mga naka-iskedyul na post"
   },
   "tag-selector": {
     "placeholder-empty": "Tags. First tag is main category. Sortable.",
-    "placeholder-focus": "Enter tag",
-    "placeholder-has-tags": "Add More",
-    "suggestion-header": "Tags",
+    "placeholder-focus": "Ipasok ang tag",
+    "placeholder-has-tags": "Magdagdag pa",
+    "suggestion-header": "Mga tag",
     "error-max": "Max {{n}} tags"
   },
   "community-selector": {
-    "my-blog": "My Blog",
-    "search-placeholder": "Search Communities"
+    "my-blog": "Aking Blog",
+    "search-placeholder": "Maghanap sa pamayanan"
   },
   "word-count": {
-    "label": "{{n}} words",
-    "read-time-less-1-min": "< 1 min read",
-    "read-time-n-min": "~ {{n}} min read"
+    "label": "{{n}} mga salita",
+    "read-time-less-1-min": "< 1 minutong pagbasa",
+    "read-time-n-min": "~ {{n}} minutong pagbasa"
   },
   "beneficiary-editor": {
-    "title": "Beneficiaries",
+    "title": "Mga benipesyaryo",
     "btn-label": "Set Beneficiaries",
     "btn-label-n": "Set Beneficiaries ({{n}})",
     "username": "Username",
@@ -725,25 +725,25 @@
     "page-description": "Consensus block producers selection",
     "page-description-long": "Role of witnesses or block producers in Hive blockchain is to act as the network's governance body. Community elects them to represent their voice and each user can elect up to 30 witnesses. Top 20 witnesses are producing blocks every minute while rest remain as backup witness and gets randomized chance every minute. This role is integral part of consensus mechanism blockchain runs on and recommend user engagement to vote on trusted witnesses.",
     "remaining": "<span>{{n}}</span> of {{max}} votes remaining",
-    "list-rank": "Rank",
-    "list-witness": "Witness",
-    "list-miss": "Miss",
+    "list-rank": "Ranko",
+    "list-witness": "Saksi",
+    "list-miss": "Mintis",
     "list-url": "URL",
-    "list-fee": "Fee",
+    "list-fee": "Bayad",
     "list-feed": "Feed",
-    "list-version": "Version",
+    "list-version": "Bersyon",
     "username-placeholder": "bansag",
     "extra-description": "Ilagay ang pangalan ng account sa ibaba na nais mong ihalal na testigo na wala sa Top 50",
-    "proxy-description": "You can also choose a proxy that will vote for witnesses for you. This will reset your current witness selection.",
-    "proxy-btn-label": "Set Proxy",
-    "proxy-active-description": "You have set a voting proxy. If you would like to re-enable manual voting, please clear your proxy.",
-    "proxy-active-current": "Your current proxy is",
-    "proxy-active-btn-label": "Clear Proxy",
-    "proxy-votes-for": "@{{username}} votes for"
+    "proxy-description": "Puwede kang pumili ng kinatawan na boboto ng saksi para sa iyo. Ito ay ire-reset ang iyong kasalukuyang mga piniling saksi.",
+    "proxy-btn-label": "Magtalaga ng Kinatawan",
+    "proxy-active-description": "Nagtalaga ka ng kinatawan. Kung gusto mong i-enable muli ang iyong manual na pagboto, maaring tanggalin ang iyong kinatawan.",
+    "proxy-active-current": "Ang iyong kasalukuyang kinatawan ay",
+    "proxy-active-btn-label": "Tanggalin ang Kinatawan",
+    "proxy-votes-for": "@{{username}} ibinoto si"
   },
   "proposals": {
-    "page-title": "Proposals",
-    "page-description": "The Decentralized Hive Fund (DHF) is an on-chain funding mechanism that allows anyone to submit a proposal and get funding once community votes pass certain threshold. To learn more read our <a href=\"/faq#how-dhf-work\">FAQ</a>.",
+    "page-title": "Mga panukala",
+    "page-description": "Ang Desentralisadong Hive na Pondo (Deccentralized Hive Fund or DHF) ay isang \nmekanismong pagpopondo sa loob ng blockchain na pinapayagan ang sinuman na magpasa ng panukala at makakuha ng pondo sa oras na ang pamayanan ay bumoto sa loob ng nakatakdang panahon. Para matuto pa ng ibayo basahin ang aming <a href=\"/faq#how-dhf-work\">FAQ</a>.",
     "by": "by",
     "for": "for",
     "duration-days": "{{n}} days",
@@ -753,48 +753,48 @@
     "status-expired": "expired",
     "status-inactive": "upcoming",
     "remaining-days": "Remaining: {{n}} days",
-    "filter-all": "All",
-    "filter-active": "Active",
-    "filter-inactive": "Upcoming",
-    "filter-team": "Ecency Projects",
-    "return-description": "This is the base return proposal. Every proposal with less votes will not receive funds.",
-    "votes-dialog-title": "Votes on Proposal #{{n}}",
-    "see-all": "see all proposals"
+    "filter-all": "Lahat",
+    "filter-active": "Aktibo",
+    "filter-inactive": "Parating",
+    "filter-team": "Proyektong Ecency",
+    "return-description": "Ito ang basehan ng pagbabalik ng panukala. Bawat panukala na may maliit na boto ay hindi makakatanggap ng pondo.",
+    "votes-dialog-title": "Mga boto sa Panukala #{{n}}",
+    "see-all": "tingnan ang lahat ng panukala"
   },
   "gallery": {
-    "title": "Gallery",
-    "copied": "Copied to clipboard"
+    "title": "Galeriya",
+    "copied": "Nakopya sa clipboard"
   },
   "drafts": {
     "title": "Mga banghay",
-    "filter": "Search by title"
+    "filter": "Maghanap gamit ang titulo"
   },
   "schedules": {
-    "title": "Scheduled Posts",
+    "title": "Mga naka-eskedyul na mga Post",
     "move": "Ilipat sa mga draft"
   },
   "bookmarks": {
     "title": "Bookmarks"
   },
   "favorites": {
-    "title": "Favorites"
+    "title": "Mga Pabortio"
   },
   "fragments": {
     "title": "Snippets",
-    "create-first": "Create your first snippet",
-    "filter": "Search by title",
-    "form-title": "Title",
-    "form-body": "Body"
+    "create-first": "Lumikha ng iyong unang snippet",
+    "filter": "Maghanap gamit ang titulo",
+    "form-title": "Titulo",
+    "form-body": "Katawan"
   },
   "password-update": {
-    "title": "Change Password",
+    "title": "Palitan ang Password",
     "account": "Account",
-    "cur-pass": "Current password",
-    "new-pass": "New password",
-    "new-pass2": "Confirm new password",
-    "error-new2": "Passwords must be same",
-    "pass-gen": "Click to generate password",
-    "label-check": "I have securely saved my generated password",
+    "cur-pass": "Kasalukuyang password",
+    "new-pass": "Bagong password",
+    "new-pass2": "Kumpirmahin ang bagong password",
+    "error-new2": "Ang password ay parehas dapat",
+    "pass-gen": "Click para mag-generate ng password",
+    "label-check": "Matiwasay kong nai-imbak ang aking na-generate na password",
     "updated": "Password updated successfully!"
   },
   "add-image": {
@@ -858,8 +858,8 @@
       "how-boost-account-body": "<p>Ang iyong account ay mababa sa <a href=\"/faq#what-are-rc\">Resource Credits</a>, puwede kang humiling ng pagsulong sa Ecency. Ikaw ay makakatanggap ng pansamantalang delegasyon na magsusulong sa iyong account para makagawa ka ng mga gawain sa blockchain. Masusumpungan mo ang katangian na ito sa Puntos</p>",
       "what-spam-abuse-header": "What is considered spam or abuse?",
       "what-spam-abuse-body": "<p><img src=\"https://images.ecency.com/p/3jpR3paJ37V8XPrHkfZdMt57jY6pRt6zEt5iRJV9pSw4Mez3Hut8U6RWvWLA7cFYEa1bxveXeasNfZApzrcLYLx8cz84kBEKak1KkewE2ZqE1QRRkF4eqRH3vWVqZB9WuNbzE?format=match&mode=fit\"/></p><p><ul><li>Plagiarized posts or copied content.</li><li>Leaving nearly identical or materially similar comments on multiple posts.</li><li>Using tags that are unrelated to the post.</li><li>Threatening users with any type of physical violence.</li><li>Not citing sources when using someone else’s material.</li><li>Posting ‘not safe for work’ content without using the “nsfw” tag.</li><li>Scams or Fraudulent offers.</li></ul></p>",
-      "can-link-post-header": "Can I request adding backlink to my website from Ecency team?",
-      "can-link-post-body": "<p>All the content on our site is created by our users and we don't modify or able to add backlinks. You are free to contact author of the post or <a href=\"/signup?referral=ecency\" class=\"push-link\">Signup</a> to open your own blog and community, publish articles to create backlinks for free.</p>",
+      "can-link-post-header": "Puwede ba akong humiling na magdagdag ng backlink sa aking website na galing sa Ecency team?",
+      "can-link-post-body": "<p>Ang lahat nga content sa aming website ay nilikha ng aming mga gumagamit hindi namin binabago o may kakayahan kaming baguhin ang mga backlink. Ikaw ay malayang kontakin ang mag-akda ng content o <a href=\"/signup?referral=ecency\" class=\"push-link\">Signup</a> para buksan ang iyong sariling blog at pamayanan, maglathala ng artikulo para makalikha ng backlinks ng libre.</p>",
       "can-guest-post-header": "Is it possible to guest post on your website?",
       "can-guest-post-body": "<p>Posting on Ecency is simple and easy, <a href=\"/signup?referral=ecency\" class=\"push-link\">Signup</a> to open your own blog and community, start posting your content.</p>",
       "source-label-header": "Content source labels, what are those?",
