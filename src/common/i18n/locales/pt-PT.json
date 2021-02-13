@@ -144,7 +144,7 @@
     "success": "Reblogado!"
   },
   "entry-tip": {
-    "title": "Tip"
+    "title": "Dica"
   },
   "entry-payout": {
     "pending-payout": "Pagamento Pendente",
@@ -798,9 +798,9 @@
     "updated": "Senha atualizada com sucesso!"
   },
   "add-image": {
-    "title": "Add Image",
-    "text-label": "Image Text",
-    "link-label": "Image Link"
+    "title": "Adicionar imagem",
+    "text-label": "Texto da Imagem",
+    "link-label": "Link da Imagem"
   },
   "scroll-to-top": {
     "title": "Ir para o topo"
