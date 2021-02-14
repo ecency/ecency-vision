@@ -21,7 +21,6 @@ jobs:
         cd src/desktop
         yarn
         cd ../../
-        cp src/config.example.ts src/config.ts
         yarn test --runInBand --updateSnapshot
       env:
         CI: true
@@ -43,8 +42,7 @@ jobs:
         script: |
           cd ~/vision-staging
           git pull origin development
-          docker build . -t vision -f Dockerfile --no-cache
-          docker image tag vision localhost:5000/vision:latest
-          docker push localhost:5000/vision:latest
+          docker build . -t ecency/vision:development -f Dockerfile --no-cache
+          docker push ecency/vision:development
           docker stack deploy -c docker-compose.yml vision
           docker system prune -f
