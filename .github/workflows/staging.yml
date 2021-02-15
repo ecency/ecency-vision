@@ -54,7 +54,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: SSH and deploy node app
-      uses: appleboy/ssh-action@5711a203b3207eb1c6cebec6ac2152ab210ec3ae
+      uses: appleboy/ssh-action@master
       env:
         STAGING_PORT: ${{secrets.STAGING_PORT}}
         PRIVATE_API_ADDR: ${{secrets.PRIVATE_API_ADDR}}
@@ -67,7 +67,13 @@ jobs:
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         port: ${{ secrets.SSH_PORT }}
+        envs: STAGING_PORT,PRIVATE_API_ADDR,PRIVATE_API_AUTH,HIVESIGNER_CLIENT_SECRET,SEARCH_API_ADDR,SEARCH_API_SECRET
         script: |
+          export PRIVATE_API_ADDR=$PRIVATE_API_ADDR
+          export PRIVATE_API_AUTH=$PRIVATE_API_AUTH
+          export HIVESIGNER_CLIENT_SECRET=$HIVESIGNER_CLIENT_SECRET
+          export SEARCH_API_ADDR=$SEARCH_API_ADDR
+          export SEARCH_API_SECRET=$SEARCH_API_SECRET
           cd ~/vision-staging
           git pull origin development
           docker pull ecency/vision:development
