@@ -38,8 +38,8 @@ Feel free to test it out and submit improvements and pull requests.
 ##### Install dependencies
 `$ yarn`
 
-##### Make your config file
-`$ cp src/config.example.json src/config.json`
+##### Edit config file or define environment variables
+`$ nano src/config.ts`
 
 ##### Start website in dev
 `$ yarn start`
@@ -54,6 +54,33 @@ Feel free to test it out and submit improvements and pull requests.
 - Make sure to branch off your changes from `development` branch.
 - Make sure to run `yarn test` and add tests to your changes.
 - Code on!
+
+## Docker
+
+You can use official `ecency/vision:latest` image to run Vision locally, deploy it to staging or even production environment. The simplest way is to run it with following command:
+
+```bash
+docker run -it --rm -p 3000:3000 ecency/vision:latest
+```
+
+Configure the instance using following environment variables:
+ * `PRIVATE_API_ADDR`
+ * `PRIVATE_API_PASSWORD`
+ * `HIVESIGNER_CLIENT_SECRET`
+ * `SEARCH_API_ADDR`
+ * `SEARCH_API_SECRET`
+
+```bash
+docker run -it --rm -p 3000:3000 -e PRIVATE_API_ADDR=https://api.example.com -e PRIVATE_API_PASSWORD=verysecretpassword ecency/vision:latest
+```
+
+### Swarm
+
+You can easily deploy a set of vision instances to your production environment, using example `docker-compose.yml` file. Docker Swarm will automatically keep it alive and load balance incoming traffic between the containers:
+
+```bash
+docker stack deploy -c docker-compose.yml -c docker-compose.production.yml vision
+```
 
 ## Issues
 

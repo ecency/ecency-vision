@@ -1,11 +1,16 @@
 version: '3.7'
 
 services:
-  nodejs:
-    image: localhost:5000/vision:latest
+  app:
+    image: ecency/vision:development
+    environment:
+      - PRIVATE_API_ADDR
+      - PRIVATE_API_PASSWORD
+      - HIVESIGNER_CLIENT_SECRET
+      - SEARCH_API_ADDR
+      - SEARCH_API_SECRET
     ports:
       - "3000:3000"
-    command: node build/server.js
     deploy:
       replicas: 4
       resources:
