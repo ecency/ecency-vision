@@ -57,12 +57,18 @@ jobs:
       uses: appleboy/ssh-action@5711a203b3207eb1c6cebec6ac2152ab210ec3ae
       env:
         STAGING_PORT: ${{secrets.STAGING_PORT}}
+        PRIVATE_API_ADDR: ${{secrets.PRIVATE_API_ADDR}}
+        PRIVATE_API_PASSWORD: ${{secrets.PRIVATE_API_PASSWORD}}
+        PRIVATE_API_AGENT: ${{secrets.PRIVATE_API_AGENT}}
+        HIVESIGNER_CLIENT_SECRET: ${{secrets.HIVESIGNER_CLIENT_SECRET}}
+        SEARCH_API_ADDR: ${{secrets.SEARCH_API_ADDR}}
+        SEARCH_API_SECRET: ${{secrets.SEARCH_API_SECRET}}
       with:
         host: ${{ secrets.SSH_STAGING_HOST }}
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         port: ${{ secrets.SSH_PORT }}
-        envs: STAGING_PORT
+        envs: STAGING_PORT,PRIVATE_API_ADDR,PRIVATE_API_PASSWORD,PRIVATE_API_AGENT,HIVESIGNER_CLIENT_SECRET,SEARCH_API_ADDR,SEARCH_API_SECRET
         script: |
           cd ~/vision-staging
           git pull origin development
