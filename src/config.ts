@@ -3,7 +3,8 @@
 export default {
     privateApiAddr: process.env.PRIVATE_API_ADDR || "https://domain.com/api",
     privateApiAuth: {
-        user: process.env.PRIVATE_API_PASSWORD || "pass"
+        "Authorization": `Basic ${process.env.PRIVATE_API_PASSWORD || "pass"}`,
+        "User-Agent": process.env.PRIVATE_API_AGENT || "Chrome",
     },
     hsClientSecret: process.env.HIVESIGNER_CLIENT_SECRET || "hivesignerclientsecret",
     searchApiAddr: process.env.SEARCH_API_ADDR || "https://api.search.com",
