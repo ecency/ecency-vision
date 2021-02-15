@@ -65,13 +65,13 @@ docker run -it --rm -p 3000:3000 ecency/vision:latest
 
 Configure the instance using following environment variables:
  * `PRIVATE_API_ADDR`
- * `PRIVATE_API_PASSWORD`
+ * `PRIVATE_API_AUTH`
  * `HIVESIGNER_CLIENT_SECRET`
  * `SEARCH_API_ADDR`
  * `SEARCH_API_SECRET`
 
 ```bash
-docker run -it --rm -p 3000:3000 -e PRIVATE_API_ADDR=https://api.example.com -e PRIVATE_API_PASSWORD=verysecretpassword ecency/vision:latest
+docker run -it --rm -p 3000:3000 -e PRIVATE_API_ADDR=https://api.example.com -e PRIVATE_API_AUTH=verysecretpassword ecency/vision:latest
 ```
 
 ### Swarm
