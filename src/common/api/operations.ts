@@ -742,6 +742,22 @@ export const boostKc = (user: string, author: string, permlink: string, amount: 
     return keychain.customJson(user, "esteem_boost", "Active", json, "Boost");
 }
 
+export const communityRewardsRegister = (key: PrivateKey, name: string): Promise<TransactionConfirmation> => {
+    const json = JSON.stringify({
+        name,
+    });
+
+    const op = {
+        id: 'ecen_community_registration',
+        json,
+        required_auths: [name],
+        required_posting_auths: []
+    };
+
+    return hiveClient.broadcast.json(op, key);
+}
+
+
 export const updateProfile = (account: Account, newProfile: {
     name: string,
     about: string,

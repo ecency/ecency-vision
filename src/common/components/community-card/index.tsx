@@ -18,6 +18,7 @@ import BaseComponent from "../base";
 import UserAvatar from "../user-avatar";
 import ProfileLink from "../profile-link";
 import CommunitySettings from "../community-settings";
+import CommunityRewardsRegistrationDialog from "../community-rewards-registration";
 import ImageUploadDialog from "../image-upload";
 import Tooltip from "../tooltip";
 import {error, success} from "../feedback";
@@ -126,6 +127,8 @@ interface Props {
     account: Account;
     users: User[];
     activeUser: ActiveUser | null;
+    signingKey: string;
+    setSigningKey: (key: string) => void;
     addAccount: (data: Account) => void;
     addCommunity: (data: Community) => void;
 }
@@ -138,6 +141,7 @@ interface DialogInfo {
 interface State {
     info: DialogInfo | null;
     settings: boolean;
+    rewards: boolean;
     useNewImage: boolean;
 }
 
@@ -145,6 +149,7 @@ export class CommunityCard extends Component<Props, State> {
     state: State = {
         info: null,
         settings: false,
+        rewards: false,
         useNewImage: false
     }
 
@@ -165,8 +170,13 @@ export class CommunityCard extends Component<Props, State> {
         this.setState({settings: !settings});
     }
 
+    toggleRewards = () => {
+        const {rewards} = this.state;
+        this.setState({rewards: !rewards});
+    }
+
     render() {
-        const {info, settings, useNewImage} = this.state;
+        const {info, settings, rewards, useNewImage} = this.state;
         const {community, activeUser, users, account} = this.props;
 
         const role = community.team.find(x => x[0] === activeUser?.username);
@@ -262,7 +272,11 @@ export class CommunityCard extends Component<Props, State> {
                         </p>)}
                     </div>
                 )}
-
+                {roleInTeam === ROLES.OWNER.toString() && (
+                    <p><a href="#" onClick={() => {
+                        this.toggleRewards();
+                    }}>Community Rewards</a></p>
+                )}
                 {info && (
                     <Modal show={true} centered={true} onHide={() => {
                         this.toggleInfo(null);
@@ -275,6 +289,8 @@ export class CommunityCard extends Component<Props, State> {
                 )}
 
                 {settings && <CommunitySettings {...this.props} activeUser={activeUser!} community={community} onHide={this.toggleSettings}/>}
+
+                {rewards && <CommunityRewardsRegistrationDialog  {...this.props} activeUser={activeUser!} community={community} onHide={this.toggleRewards}/>}
             </div>
         );
     }
@@ -287,6 +303,8 @@ export default (p: Props) => {
         community: p.community,
         account: p.account,
         users: p.users,
+        signingKey: p.signingKey,
+        setSigningKey: p.setSigningKey,
         activeUser: p.activeUser,
         addAccount: p.addAccount,
         addCommunity: p.addCommunity
