@@ -292,7 +292,7 @@
     "username-available": "Saatavilla.",
     "username-not-available": "Ei saatavilla.",
     "username-wrong-format": "Muoto ei kelpaa. hive-1xxxxx muoto vaaditaan.",
-    "password": "Master password",
+    "password": "Pääsalasana",
     "confirmation": "Olen tallentanut turvallisesti omistajan käyttäjätunnuksen ja salasanan.",
     "submit": "Luo yhteisö",
     "progress-account": "Luodaan tiliä...",
