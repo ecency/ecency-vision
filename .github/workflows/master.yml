@@ -21,30 +21,61 @@ jobs:
         cd src/desktop
         yarn
         cd ../../
-        cp src/config.example.ts src/config.ts
         yarn test --runInBand --updateSnapshot
       env:
         CI: true
-
-  deploy:
+  build:
     needs: tests
     runs-on: ubuntu-latest
     steps:
+      - name: Check Out Repo
+        uses: actions/checkout@v2
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
+      - name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          context: ./
+          file: ./Dockerfile
+          push: true
+          tags: ecency/vision:latest
+
+      - name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
     - name: SSH and deploy node app
-      uses: appleboy/ssh-action@5711a203b3207eb1c6cebec6ac2152ab210ec3ae
+      uses: appleboy/ssh-action@master
       env:
         STAGING_PORT: ${{secrets.STAGING_PORT}}
+        PRIVATE_API_ADDR: ${{secrets.PRIVATE_API_ADDR}}
+        PRIVATE_API_AUTH: ${{secrets.PRIVATE_API_AUTH}}
+        HIVESIGNER_CLIENT_SECRET: ${{secrets.HIVESIGNER_CLIENT_SECRET}}
+        SEARCH_API_ADDR: ${{secrets.SEARCH_API_ADDR}}
+        SEARCH_API_SECRET: ${{secrets.SEARCH_API_SECRET}}
       with:
-        host: ${{ secrets.SSH_PRODUCTION_HOST }}
+        host: ${{ secrets.SSH_STAGING_HOST }}
         username: ${{ secrets.SSH_USERNAME }}
-        key: ${{ secrets.SSH_PRODUCTION_KEY }}
+        key: ${{ secrets.SSH_KEY }}
         port: ${{ secrets.SSH_PORT }}
-        envs: STAGING_PORT
+        envs: STAGING_PORT,PRIVATE_API_ADDR,PRIVATE_API_AUTH,HIVESIGNER_CLIENT_SECRET,SEARCH_API_ADDR,SEARCH_API_SECRET
         script: |
+          export PRIVATE_API_ADDR=$PRIVATE_API_ADDR
+          export PRIVATE_API_AUTH=$PRIVATE_API_AUTH
+          export HIVESIGNER_CLIENT_SECRET=$HIVESIGNER_CLIENT_SECRET
+          export SEARCH_API_ADDR=$SEARCH_API_ADDR
+          export SEARCH_API_SECRET=$SEARCH_API_SECRET
           cd ~/vision-production
           git pull origin master
-          docker build . -t vision -f Dockerfile --no-cache
-          docker image tag vision localhost:5000/vision:latest
-          docker push localhost:5000/vision:latest
-          docker stack deploy -c docker-compose.yml vision
+          docker pull ecency/vision:latest
+          docker stack deploy -c docker-compose.yml -c docker-compose.production.yml vision
           docker system prune -f

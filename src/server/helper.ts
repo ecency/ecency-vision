@@ -32,11 +32,29 @@ export const baseApiRequest = (url: string, method: Method, headers: any = {}, p
     return axios(requestConf)
 }
 
-export const apiRequest = (endpoint: string, method: Method, extraHeaders: any = {}, payload: any = {}): Promise<AxiosResponse> => {
+const makeApiAuth = () => {
+    try {
+        const auth = new Buffer(config.privateApiAuth, "base64").toString("utf-8");
+        return JSON.parse(auth);
+    } catch (e) {
+        return null;
+    }
+}
+
+export const apiRequest = (endpoint: string, method: Method, extraHeaders: any = {}, payload: any = {}): Promise<AxiosResponse> | Promise<any> => {
+    const apiAuth = makeApiAuth();
+    if (!apiAuth) {
+        return new Promise((resolve, reject) => {
+            console.error("Api auth couldn't be create!");
+            reject("Api auth couldn't be create!");
+        })
+    }
+
     const url = `${config.privateApiAddr}/${endpoint}`;
+
     const headers = {
         "Content-Type": "application/json",
-        ...config.privateApiAuth,
+        ...makeApiAuth(),
         ...extraHeaders
     }
 
