@@ -17,7 +17,10 @@ it("(1) Default render", () => {
             name: communityInstance1.name
         },
         users: [],
+        signingKey: "",
         activeUser: null,
+        setSigningKey: () => {
+        },
         addAccount: () => {
         },
         addCommunity: () => {
@@ -37,7 +40,10 @@ it("(2) Should show edit buttons with nsfw label", () => {
             name: communityInstance1.name
         },
         users: [],
+        signingKey: "",
         activeUser: activeUserMaker("hive-148441"),
+        setSigningKey: () => {
+        },
         addAccount: () => {
         },
         addCommunity: () => {
