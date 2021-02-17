@@ -422,6 +422,7 @@
     "transfer-incoming-list-desc": "Transfer from {{n}}",
     "delegation-list-desc": "Delegation reward",
     "referral-list-desc": "Referral reward",
+    "community-list-desc": "Community reward",
     "transfer": "Gift to someone",
     "claim-ok": "Points claimed",
     "promote": "Promote",

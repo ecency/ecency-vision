@@ -35,6 +35,7 @@ import {
     starOutlineSvg,
     ticketSvg,
     gpsSvg,
+    accountGroupSvg,
     compareHorizontalSvg,
     cashSvg
 } from "../../img/svg";
@@ -85,6 +86,10 @@ export class TransactionRow extends Component<{ tr: PointTransaction }> {
             case TransactionType.REFERRAL:
                 icon = gpsSvg;
                 lKey = 'referral';
+                break;
+            case TransactionType.COMMUNITY:
+                icon = accountGroupSvg;
+                lKey = 'community';
                 break;
             case TransactionType.TRANSFER_SENT:
                 icon = compareHorizontalSvg;
