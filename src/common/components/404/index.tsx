@@ -12,7 +12,19 @@ interface Props {
     history: History;
 }
 
-export class NotFound extends Component<Props> {
+interface State {
+    loaded: boolean
+}
+
+export class NotFound extends Component<Props, State> {
+    state: State = {
+        loaded: false
+    }
+
+    componentDidMount() {
+        this.setState({loaded: true});
+    }
+
     goBack = () => {
         const {history} = this.props;
 
@@ -20,6 +32,11 @@ export class NotFound extends Component<Props> {
     };
 
     render() {
+        const {loaded} = this.state;
+        if (!loaded) {
+            return ''
+        }
+
         const metaProps = {
             title: "404",
         };
