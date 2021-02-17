@@ -321,6 +321,12 @@ export class WalletEcency extends BaseComponent<Props, State> {
                                                 <span className="reward-num">5</span>
                                             </div>
                                         </Tooltip>
+                                        <Tooltip content={_t('points.community-desc')}>
+                                            <div className="point-reward-type">
+                                                {accountGroupSvg}
+                                                <span className="reward-num">20</span>
+                                            </div>
+                                        </Tooltip>
                                     </div>
                                 </div>
                                 {isMyPage && (
