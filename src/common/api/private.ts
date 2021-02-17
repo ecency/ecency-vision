@@ -35,6 +35,15 @@ export const getReceivedVestingShares = (username: string): Promise<ReceivedVest
     axios.get(_u(`/api/received-vesting/${username}`)).then((resp) => resp.data.list);
 
 
+export interface RewardedCommunity {
+    start_date: string;
+    total_rewards: string;
+    name: string;
+}
+
+export const getRewardedCommunities = (): Promise<RewardedCommunity[]> =>
+    axios.get(_u(`/api/rewarded-communities`)).then((resp) => resp.data);
+
 export interface LeaderBoardItem {
     _id: string;
     count: number;

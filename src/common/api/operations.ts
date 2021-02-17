@@ -748,13 +748,27 @@ export const communityRewardsRegister = (key: PrivateKey, name: string): Promise
     });
 
     const op = {
-        id: 'ecen_community_registration',
+        id: 'esteem_register',
         json,
         required_auths: [name],
         required_posting_auths: []
     };
 
     return hiveClient.broadcast.json(op, key);
+}
+
+export const communityRewardsRegisterHot = (name: string) => {
+    const params = {
+        authority: "active",
+        required_auths: `["${name}"]`,
+        required_posting_auths: "[]",
+        id: "esteem_register",
+        json: JSON.stringify({
+            name
+        })
+    }
+
+    hotSign("custom-json", params, `/`);
 }
 
 

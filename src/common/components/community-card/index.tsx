@@ -273,9 +273,10 @@ export class CommunityCard extends Component<Props, State> {
                     </div>
                 )}
                 {roleInTeam === ROLES.OWNER.toString() && (
-                    <p><a href="#" onClick={() => {
+                    <p className="community-rewards"><a href="#" onClick={(e) => {
+                        e.preventDefault();
                         this.toggleRewards();
-                    }}>Community Rewards</a></p>
+                    }}>{_t('community-card.community-rewards')}</a></p>
                 )}
                 {info && (
                     <Modal show={true} centered={true} onHide={() => {

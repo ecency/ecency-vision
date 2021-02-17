@@ -247,6 +247,7 @@
     "team": "Leadership",
     "edit": "Edit settings",
     "edit-team": "Edit roles",
+    "community-rewards": "Community Rewards",
     "profile-image": "Community profile image",
     "profile-image-edit": "Edit profile image",
     "profile-image-updated": "Profile image updated!"
@@ -301,6 +302,13 @@
     "progress-props": "Updating community settings...",
     "done": "Your community was created 🎉",
     "done-link-label": "Get started."
+  },
+  "community-rewards-registration": {
+    "title": "Community Rewards",
+    "body-text": "Register your community to get Ecency POINTS",
+    "btn-next-label": "Register",
+    "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.",
+    "conflict-body-text": "This community is already registered."
   },
   "pin-btn": {
     "pin": "Pin",
