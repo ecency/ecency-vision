@@ -748,7 +748,7 @@ export const communityRewardsRegister = (key: PrivateKey, name: string): Promise
     });
 
     const op = {
-        id: 'esteem_register',
+        id: 'esteem_registration',
         json,
         required_auths: [name],
         required_posting_auths: []
@@ -762,13 +762,21 @@ export const communityRewardsRegisterHot = (name: string) => {
         authority: "active",
         required_auths: `["${name}"]`,
         required_posting_auths: "[]",
-        id: "esteem_register",
+        id: "esteem_registration",
         json: JSON.stringify({
             name
         })
     }
 
-    hotSign("custom-json", params, `/`);
+    hotSign("custom-json", params, `created/${name}`);
+}
+
+export const communityRewardsRegisterKc = (name: string) => {
+    const json = JSON.stringify({
+        name
+    });
+
+    return keychain.customJson(name, "esteem_registration", "Active", json, "Community Registration");
 }
 
 

@@ -14,8 +14,7 @@ import {error} from "../feedback";
 import KeyOrHot from "../key-or-hot";
 import LinearProgress from "../linear-progress";
 
-
-import {communityRewardsRegister, communityRewardsRegisterHot, formatError} from "../../api/operations";
+import {communityRewardsRegister, communityRewardsRegisterHot, communityRewardsRegisterKc, formatError} from "../../api/operations";
 import {getRewardedCommunities} from "../../api/private";
 
 import {_t} from "../../i18n";
@@ -78,12 +77,26 @@ export class CommunityRewardsRegistration extends BaseComponent<Props, State> {
 
     hotSign = () => {
         const {community} = this.props;
-
-        communityRewardsRegisterHot(community.name)
+        communityRewardsRegisterHot(community.name);
+        this.hide();
     }
 
     signKs = () => {
+        const {community} = this.props;
 
+        this.stateSet({inProgress: true});
+        communityRewardsRegisterKc(community.name).then(r => {
+            this.stateSet({done: true});
+        }).catch(err => {
+            error(formatError(err));
+        }).finally(() => {
+            this.setState({inProgress: false});
+        });
+    }
+
+    hide = () => {
+        const {onHide} = this.props;
+        onHide();
     }
 
     render() {
@@ -96,6 +109,7 @@ export class CommunityRewardsRegistration extends BaseComponent<Props, State> {
         if (done) {
             return <div className="dialog-content">
                 <p className="text-info">{_t("community-rewards-registration.done-body-text")}</p>
+                <Button size="sm" onClick={this.hide}>{_t("g.close")}</Button>
             </div>
         }
 
