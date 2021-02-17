@@ -100,16 +100,20 @@ export class CommunityRewardsRegistration extends BaseComponent<Props, State> {
     }
 
     render() {
+        const {community} = this.props;
         const {inProgress, loading, registered, form, done} = this.state;
 
         if (loading) {
             return <LinearProgress/>
         }
 
+        const btnClose = <Button size="sm" onClick={this.hide}>{_t("g.close")}</Button>;
+        const btnNext = <Button size="sm" onClick={this.next}>{_t("community-rewards-registration.btn-next-label")}</Button>;
+
         if (done) {
             return <div className="dialog-content">
                 <p className="text-info">{_t("community-rewards-registration.done-body-text")}</p>
-                <Button size="sm" onClick={this.hide}>{_t("g.close")}</Button>
+                {btnClose}
             </div>
         }
 
@@ -128,12 +132,21 @@ export class CommunityRewardsRegistration extends BaseComponent<Props, State> {
         if (registered) {
             return <div className="dialog-content">
                 <p className="text-info">{_t("community-rewards-registration.conflict-body-text")}</p>
+                {btnClose}
             </div>
         }
 
+        /*
+        if (community.subscribers < 100) {
+            return <div className="dialog-content">
+                <p className="text-danger">{_t("community-rewards-registration.min-required-body-text")}</p>
+                {btnClose}
+            </div>
+        }*/
+
         return <div className="dialog-content">
             <p>{_t("community-rewards-registration.body-text")}</p>
-            <Button size="sm" onClick={this.next}>{_t("community-rewards-registration.btn-next-label")}</Button>
+            {btnNext}
         </div>
     }
 }
@@ -142,10 +155,8 @@ export default class CommunityRewardsRegistrationDialog extends Component<Props>
     render() {
         const {onHide} = this.props;
         return (
-            <Modal animation={false} show={true} centered={true} onHide={onHide} keyboard={false} className="community-rewards-registration-dialog">
-                <Modal.Header closeButton={true}>
-                    <Modal.Title>{_t('community-rewards-registration.title')}</Modal.Title>
-                </Modal.Header>
+            <Modal animation={false} show={true} centered={true} onHide={onHide} keyboard={false} className="community-rewards-registration-dialog modal-thin-header">
+                <Modal.Header closeButton={true}/>
                 <Modal.Body>
                     <CommunityRewardsRegistration {...this.props} />
                 </Modal.Body>
