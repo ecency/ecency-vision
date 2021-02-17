@@ -136,13 +136,12 @@ export class CommunityRewardsRegistration extends BaseComponent<Props, State> {
             </div>
         }
 
-        /*
         if (community.subscribers < 100) {
             return <div className="dialog-content">
                 <p className="text-danger">{_t("community-rewards-registration.min-required-body-text")}</p>
                 {btnClose}
             </div>
-        }*/
+        }
 
         return <div className="dialog-content">
             <p>{_t("community-rewards-registration.body-text")}</p>
