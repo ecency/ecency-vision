@@ -10,6 +10,7 @@ import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
 import {ActiveUser} from "../../store/active-user/types";
+import {Entry} from "../../store/entries/types";
 
 import BaseComponent from "../base";
 import LinearProgress from "../linear-progress";
@@ -152,7 +153,13 @@ export class Boost extends BaseComponent<Props, State> {
         this.stateSet({inProgress: true});
 
         // Check if post is valid
-        const post = await getPost(author, permlink);
+        let post: Entry | null;
+        try {
+            post = await getPost(author, permlink);
+        } catch (e) {
+            post = null;
+        }
+
         if (!post) {
             this.stateSet({postError: _t("redeem-common.post-error"), inProgress: false});
             return;
