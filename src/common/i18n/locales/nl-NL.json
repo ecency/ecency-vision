@@ -247,6 +247,7 @@
     "team": "Leiding",
     "edit": "Instellingen bewerken",
     "edit-team": "Bewerk functies",
+    "community-rewards": "Community Rewards",
     "profile-image": "Gemeenschap profiel afbeelding",
     "profile-image-edit": "Profielafbeelding bewerken",
     "profile-image-updated": "Profielafbeelding bijgewerkt!"
@@ -301,6 +302,13 @@
     "progress-props": "Instellingen gemeenschap bijwerken...",
     "done": "Jouw gemeenschap is aangemaakt 🎉",
     "done-link-label": "Aan de slag."
+  },
+  "community-rewards-registration": {
+    "body-text": "Register your community to get Ecency POINTS",
+    "btn-next-label": "Register",
+    "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.",
+    "conflict-body-text": "This community is already registered.",
+    "min-required-body-text": "Minimum 100 subscribers required to register."
   },
   "pin-btn": {
     "pin": "Vastzetten",
@@ -398,10 +406,11 @@
     "comment-desc": "Ieder antwoord die je geeft helpt je om je publiek te laten groeien en vriendschappen te maken, maar je verdient ook 5 punten.",
     "checkin-desc": "Inchecken op de Ecency geeft je 0.25 punten en helpt je om in contact te blijven met je vrienden.",
     "vote-desc": "By voting you give reward to other creators and show your appreciation but also earn 0.01 x vote weight points.",
-    "reblog-desc": "  Share what post you like with your friends and earn 1 points.",
+    "reblog-desc": "Share what post you like with your friends and earn 1 points.",
     "login-desc": "When you login into Ecency you are entitled to earn 100 points automatically.",
     "checkin-extra-desc": "Consistent use of app gives you extra chances to earn more 10 points, be more active and earn more.",
     "delegation-desc": "You can earn ~50 points per day for each 1000HP delegation.",
+    "community-desc": "Register your community to get 20 points for per post published with Ecency applications.",
     "history": "History",
     "post-list-desc": "Points for post",
     "comment-list-desc": "Points for comment",
@@ -414,6 +423,7 @@
     "transfer-incoming-list-desc": "Transfer from {{n}}",
     "delegation-list-desc": "Delegation reward",
     "referral-list-desc": "Referral reward",
+    "community-list-desc": "Community reward",
     "transfer": "Gift to someone",
     "claim-ok": "Points claimed",
     "promote": "Promote",
