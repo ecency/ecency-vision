@@ -247,6 +247,7 @@
     "team": "Pamunuan",
     "edit": "Baguhin ang mga settings",
     "edit-team": "Baguhin ang mga katungkulan",
+    "community-rewards": "Community Rewards",
     "profile-image": "Imaheng Pagkakakilanlan ng Pamayanan",
     "profile-image-edit": "Baguhin ang Imaheng Pagkakakilanlan",
     "profile-image-updated": "Matagumpay na nai-upload ang imahe ng pagkakakilanlan!"
@@ -301,6 +302,13 @@
     "progress-props": "Binabago ang settings ng komunidad...",
     "done": "Ang pamayanan mo ay nagawa na",
     "done-link-label": "Magsimula."
+  },
+  "community-rewards-registration": {
+    "body-text": "Register your community to get Ecency POINTS",
+    "btn-next-label": "Register",
+    "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.",
+    "conflict-body-text": "This community is already registered.",
+    "min-required-body-text": "Minimum 100 subscribers required to register."
   },
   "pin-btn": {
     "pin": "I-aspile",
@@ -398,10 +406,11 @@
     "comment-desc": "Ang mga mga komentong iyong gagawin ay nakakatulong para lumago ang iyong tagasunod at magkaroon ng mga kaibigan at kikita ka din g 5 puntos.",
     "checkin-desc": "Bawat pasok mo sa Ecency ay magkakaron ka ng 0.25 na puntos na makakatulong sayo para ay manatiling konektado sa iyong mga kaibigan.",
     "vote-desc": "Sa pamamagitan ng pagboto nagbibigay ka ng gantimpala sa ibang mga taga-likha na nagpapakita ng iyong pagpapahala at kikita ka din ng 0.01 x boto timbang ng boto.",
-    "reblog-desc": "  Ibahagi ang mga post na gusto mo sa iyong mga kaibigan at kumita ng 1 puntos.",
+    "reblog-desc": "Share what post you like with your friends and earn 1 points.",
     "login-desc": "Kapag ikaw ay pumasok sa Ecency ikaw ay awtomatikong magkakaroon ng 100 na puntos.",
     "checkin-extra-desc": "Ang palagiang paggamit ng app ay magbibigay sayo ng karagdagang tsansa na kumita ng dagdag na 10 puntos, maging aktibo at kumita pa ng mas marami.",
     "delegation-desc": "Puwede kang kumita ~50 puntos bawat araw sa bawat 1000HP na delegsayon.",
+    "community-desc": "Register your community to get 20 points for per post published with Ecency applications.",
     "history": "Kasaysayan",
     "post-list-desc": "Puntos para sa post",
     "comment-list-desc": "Puntos para sa komento",
@@ -414,6 +423,7 @@
     "transfer-incoming-list-desc": "Inilipat galing kay {{n}}",
     "delegation-list-desc": "Delegasyon na gantimpala",
     "referral-list-desc": "Gantimpala sa mga Referral",
+    "community-list-desc": "Community reward",
     "transfer": "I-regalo sa iba",
     "claim-ok": "Mga puntos na naangkin",
     "promote": "Isulong",
