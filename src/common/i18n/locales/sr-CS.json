@@ -247,6 +247,7 @@
     "team": "Vođstvo",
     "edit": "Uredi podešavanja",
     "edit-team": "Uredite uloge",
+    "community-rewards": "Community Rewards",
     "profile-image": "Profilna slika zajednice",
     "profile-image-edit": "Uredite profilnu sliku",
     "profile-image-updated": "Profilna slika ažurirana!"
@@ -301,6 +302,13 @@
     "progress-props": "Ažuriranje podešavanja zajednice...",
     "done": "Vaša zajednica je kreirana 🎉",
     "done-link-label": "Počni."
+  },
+  "community-rewards-registration": {
+    "body-text": "Register your community to get Ecency POINTS",
+    "btn-next-label": "Register",
+    "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.",
+    "conflict-body-text": "This community is already registered.",
+    "min-required-body-text": "Minimum 100 subscribers required to register."
   },
   "pin-btn": {
     "pin": "Zakačiti",
@@ -398,10 +406,11 @@
     "comment-desc": "Svaki vaš komentar pomaže da povećate svoju publiku i steknete prijateljstvo, ali takođe vam donosi i 5 poena.",
     "checkin-desc": "Prijavljivanje na Ecency vam daje 0.25 poena i pomaže vam da ostanete povezani sa prijateljima.",
     "vote-desc": "Glasanjem dajete nagradu drugim autorima i pokazujete svoju zahvalnost, ali i takođe zarađujete 0.01 x težina glasa poena.",
-    "reblog-desc": "  Podelite objavu koju volite sa prijateljima i zaradite 1 poen.",
+    "reblog-desc": "Share what post you like with your friends and earn 1 points.",
     "login-desc": "Kada se prijavite u Ecency imate pravo da automatski zaradite 100 poena.",
     "checkin-extra-desc": "Dosledno korišćenje aplikacije pruža vam dodatne šanse da zaradite dodatnih 10 poena, budete aktivniji i zaradite više.",
     "delegation-desc": "Možete zaraditi ~50 poena dnevno za svaku delegaciju od 1000HP.",
+    "community-desc": "Register your community to get 20 points for per post published with Ecency applications.",
     "history": "Istorija",
     "post-list-desc": "Poeni za objavu",
     "comment-list-desc": "Poeni za komentar",
@@ -414,6 +423,7 @@
     "transfer-incoming-list-desc": "Prebaciti sa {{n}}",
     "delegation-list-desc": "Nagrada delegacije",
     "referral-list-desc": "Nagrada preporuke",
+    "community-list-desc": "Community reward",
     "transfer": "Pokloni nekome",
     "claim-ok": "Potvrđeni poeni",
     "promote": "Promoviši",
