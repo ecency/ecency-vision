@@ -247,6 +247,7 @@
     "team": "Leadership",
     "edit": "Edit settings",
     "edit-team": "Edit roles",
+    "community-rewards": "Community Rewards",
     "profile-image": "Community profile image",
     "profile-image-edit": "Edit profile image",
     "profile-image-updated": "Profile image updated!"
@@ -301,6 +302,13 @@
     "progress-props": "Mise à jour des paramètres de la communauté...",
     "done": "Votre communauté a été créée 🎉",
     "done-link-label": "C'est parti !"
+  },
+  "community-rewards-registration": {
+    "body-text": "Register your community to get Ecency POINTS",
+    "btn-next-label": "Register",
+    "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.",
+    "conflict-body-text": "This community is already registered.",
+    "min-required-body-text": "Minimum 100 subscribers required to register."
   },
   "pin-btn": {
     "pin": "Épingler",
@@ -398,10 +406,11 @@
     "comment-desc": "Each comment you make helps you to grow your audience and make friendship but also earns you 5 points.",
     "checkin-desc": "Checking in on Ecency gives you 0.25 points and helps you stay connected with your friends.",
     "vote-desc": "By voting you give reward to other creators and show your appreciation but also earn 0.01 x vote weight points.",
-    "reblog-desc": "  Share what post you like with your friends and earn 1 points.",
+    "reblog-desc": "Share what post you like with your friends and earn 1 points.",
     "login-desc": "When you login into Ecency you are entitled to earn 100 points automatically.",
     "checkin-extra-desc": "Consistent use of app gives you extra chances to earn more 10 points, be more active and earn more.",
     "delegation-desc": "You can earn ~50 points per day for each 1000HP delegation.",
+    "community-desc": "Register your community to get 20 points for per post published with Ecency applications.",
     "history": "History",
     "post-list-desc": "Points for post",
     "comment-list-desc": "Points for comment",
@@ -414,6 +423,7 @@
     "transfer-incoming-list-desc": "Transférer depuis {{n}}",
     "delegation-list-desc": "Récompense de délégation",
     "referral-list-desc": "Récompense de parrainage",
+    "community-list-desc": "Community reward",
     "transfer": "Offrir à quelqu'un",
     "claim-ok": "Points réclamés",
     "promote": "Promouvoir",
