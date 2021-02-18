@@ -2,10 +2,13 @@ import React, {Component} from "react";
 
 import moment from "moment";
 
+import {History} from "history";
+
 import {DynamicProps} from "../../store/dynamic-props/types";
 import {Transaction, Transactions} from "../../store/transactions/types";
 
 import LinearProgress from "../linear-progress";
+import EntryLink from "../entry-link";
 
 import parseAsset from "../../helper/parse-asset";
 import parseDate from "../../helper/parse-date";
@@ -18,6 +21,7 @@ import {ticketSvg, commentSvg, compareHorizontalSvg, cashSvg, reOrderHorizontalS
 import {_t} from "../../i18n";
 
 interface RowProps {
+    history: History;
     dynamicProps: DynamicProps;
     transaction: Transaction;
 }
@@ -36,11 +40,15 @@ export class TransactionRow extends Component<RowProps> {
             flag = true;
 
             numbers = <>{formattedNumber(vestsToHp(parseAsset(tr.reward).amount, hivePerMVests), {suffix: "HP"})}</>;
-            details = (
-                <span>
-          <a href={`/curation/@${tr.comment_author}/${tr.comment_permlink}`}>@{tr.comment_author}/{tr.comment_permlink}</a>
-        </span>
-            );
+            details = EntryLink({
+                ...this.props,
+                entry: {
+                    category: "ecency",
+                    author: tr.comment_author,
+                    permlink: tr.comment_permlink
+                },
+                children: <span>{"@"}{tr.comment_author}/{tr.comment_permlink}</span>
+            })
         }
 
         if (tr.type === "author_reward" || tr.type === "comment_benefactor_reward") {
@@ -63,11 +71,15 @@ export class TransactionRow extends Component<RowProps> {
                 </>
             );
 
-            details = (
-                <span>
-          <a href={`/reward/@${tr.author}/${tr.permlink}`}>@{tr.author}/{tr.permlink}</a>
-        </span>
-            );
+            details = EntryLink({
+                ...this.props,
+                entry: {
+                    category: "ecency",
+                    author: tr.author,
+                    permlink: tr.permlink
+                },
+                children: <span>{"@"}{tr.author}/{tr.permlink}</span>
+            });
         }
 
         if (tr.type === "comment_benefactor_reward") {
@@ -161,6 +173,7 @@ export class TransactionRow extends Component<RowProps> {
 }
 
 interface Props {
+    history: History;
     dynamicProps: DynamicProps;
     transactions: Transactions;
 }
@@ -189,6 +202,7 @@ export class TransactionList extends Component<Props> {
 
 export default (p: Props) => {
     const props: Props = {
+        history: p.history,
         dynamicProps: p.dynamicProps,
         transactions: p.transactions
     }
