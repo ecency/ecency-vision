@@ -247,6 +247,7 @@
     "team": "Lider",
     "edit": "Editează setările",
     "edit-team": "Editează rolurile",
+    "community-rewards": "Community Rewards",
     "profile-image": "Community profile image",
     "profile-image-edit": "Editați imaginea de profil",
     "profile-image-updated": "Profil actualizat!"
@@ -301,6 +302,13 @@
     "progress-props": "Actualizarea setărilor comunității...",
     "done": "Comunitatea ta a fost creată 🎉",
     "done-link-label": "Începe."
+  },
+  "community-rewards-registration": {
+    "body-text": "Register your community to get Ecency POINTS",
+    "btn-next-label": "Register",
+    "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.",
+    "conflict-body-text": "This community is already registered.",
+    "min-required-body-text": "Minimum 100 subscribers required to register."
   },
   "pin-btn": {
     "pin": "Pin",
@@ -398,10 +406,11 @@
     "comment-desc": "Fiecare comentariu te ajută să îți crești audiența și să iti faci prieteni. De asemenea, câștigi 5 puncte.",
     "checkin-desc": "Autentificarea prin aplicația Ecency îți aduce 0.25 puncte și te ajută să rămâi conectat cu prietenii tăi și comunitatea.",
     "vote-desc": "Votând oferi recompense altor creatori de conținut și le arăți aprecierea ta. De asemenea, câștigi 0.01 din valoarea votului în puncte.",
-    "reblog-desc": "  Distribuie postările care îți plac pentru prietenii tăi și câștigă 1 punct.",
+    "reblog-desc": "Share what post you like with your friends and earn 1 points.",
     "login-desc": "Când te autentifici în aplicația Ecency câștigi 100 de puncte automat.",
     "checkin-extra-desc": "Utilizarea constantă a aplicației îți oferă șanse în plus pentru câștigarea a 10 puncte. Fii cât mai activ și câștigă mai mult.",
     "delegation-desc": "Poți câștiga 50 punct zilnic pentru fiecare 1000HP delegat.",
+    "community-desc": "Register your community to get 20 points for per post published with Ecency applications.",
     "history": "Istoric",
     "post-list-desc": "Puncte pentru postare",
     "comment-list-desc": "Puncte pentru comentariu",
@@ -414,6 +423,7 @@
     "transfer-incoming-list-desc": "Transfer de la {{n}}",
     "delegation-list-desc": "Recompensă delegare",
     "referral-list-desc": "Premiu pentru referenți",
+    "community-list-desc": "Community reward",
     "transfer": "Dăruiește cuiva",
     "claim-ok": "Puncte colectate",
     "promote": "Promovează",
