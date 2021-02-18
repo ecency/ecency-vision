@@ -247,6 +247,7 @@
     "team": "Vezetőség",
     "edit": "Beállítások szerkesztése",
     "edit-team": "Szerepkör szerkesztése",
+    "community-rewards": "Community Rewards",
     "profile-image": "Közösségi profil kép",
     "profile-image-edit": "Profilkép szerkesztése",
     "profile-image-updated": "Profil frissítve!"
@@ -301,6 +302,13 @@
     "progress-props": "Közösségi beállítások frissítése...",
     "done": "A közösséged létrejött 🎉",
     "done-link-label": "Kezdés."
+  },
+  "community-rewards-registration": {
+    "body-text": "Register your community to get Ecency POINTS",
+    "btn-next-label": "Register",
+    "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.",
+    "conflict-body-text": "This community is already registered.",
+    "min-required-body-text": "Minimum 100 subscribers required to register."
   },
   "pin-btn": {
     "pin": "Kitűzés",
@@ -398,10 +406,11 @@
     "comment-desc": "Minden hozzászólásod segít abban, hogy növeld a táborod és követőket szerezz, továbbá 5 pontot hoz neked.",
     "checkin-desc": "Az Ecency alkalmazásba történő bejelentkezés 0,25 pontot ér és segít abban, hogy kapcsolatban maradj a barátaiddal.",
     "vote-desc": "Szavazás által megjutalmazol más alkotókat és elismerésed fejezed ki, de kaphatsz 0,01 x a szavazás értékéből.",
-    "reblog-desc": "  Ossz meg a barátaiddal bármilyen bejegyzést, ami tetszik és nyerj 1 pontot.",
+    "reblog-desc": "Share what post you like with your friends and earn 1 points.",
     "login-desc": "Minden Ecency bejelentkezés alkalmával automatikusan 100 pontra vagy jogosult.",
     "checkin-extra-desc": "Az alkalmazás következetes használata extra esélyt kínál arra, hogy több 10 pontot nyerj, légy aktívabb és nyerj többet.",
     "delegation-desc": "Minen 1000HP delegálásért napi ~50 pontot kaphatsz.",
+    "community-desc": "Register your community to get 20 points for per post published with Ecency applications.",
     "history": "Előzmény",
     "post-list-desc": "Bejegyzés pontok",
     "comment-list-desc": "Hozzászólás pontok",
@@ -414,6 +423,7 @@
     "transfer-incoming-list-desc": "Átutalás innen {{n}}",
     "delegation-list-desc": "Delegálási jutalom",
     "referral-list-desc": "Ajánlói jutalom",
+    "community-list-desc": "Community reward",
     "transfer": "Ajándékozz meg valakit",
     "claim-ok": "Pontok átvéve",
     "promote": "Támogatás",
