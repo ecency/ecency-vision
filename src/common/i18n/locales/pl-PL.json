@@ -247,6 +247,7 @@
     "team": "Przywództwo",
     "edit": "Edytuj ustawienia",
     "edit-team": "Edytuj rolę",
+    "community-rewards": "Community Rewards",
     "profile-image": "Obraz okładki społeczności",
     "profile-image-edit": "Edytuj obraz profilu",
     "profile-image-updated": "Zdjęcie profilowe zaktualizowane!"
@@ -301,6 +302,13 @@
     "progress-props": "Aktualizowanie ustawień społeczności...",
     "done": "Twoja społeczność została utworzona 🎉",
     "done-link-label": "Rozpocznij."
+  },
+  "community-rewards-registration": {
+    "body-text": "Register your community to get Ecency POINTS",
+    "btn-next-label": "Register",
+    "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.",
+    "conflict-body-text": "This community is already registered.",
+    "min-required-body-text": "Minimum 100 subscribers required to register."
   },
   "pin-btn": {
     "pin": "Przypnij",
@@ -398,10 +406,11 @@
     "comment-desc": "Każdy komentarz, który dodajesz pomaga Ci rozwijać swoich odbiorców i przyjaźni, ale także daje 5 punktów.",
     "checkin-desc": "Sprawdzanie Ecencji daje Ci 0.25 punktów i pomaga Ci pozostać w kontakcie z przyjaciółmi.",
     "vote-desc": "Głosując dajesz nagrodę innym twórcom i pokazujesz swoją wdzięczność, ale także zarabiasz 0,01 x punktów wagowych.",
-    "reblog-desc": "  Podziel się, jaki post lubisz ze znajomymi i zdobądź 1 punkt.",
+    "reblog-desc": "Share what post you like with your friends and earn 1 points.",
     "login-desc": "Po zalogowaniu się do Ecencji masz prawo zarobić 100 punktów automatycznie.",
     "checkin-extra-desc": "Spójne korzystanie z aplikacji daje dodatkowe szanse na zdobycie więcej 10 punktów, bądź bardziej aktywny i zyskaj więcej.",
     "delegation-desc": "Za każdą delegację możesz zarobić ~50 punktów dziennie.",
+    "community-desc": "Register your community to get 20 points for per post published with Ecency applications.",
     "history": "Historia",
     "post-list-desc": "Punkty za wpis",
     "comment-list-desc": "Punkty za komentarz",
@@ -414,6 +423,7 @@
     "transfer-incoming-list-desc": "Przelew z {{n}}",
     "delegation-list-desc": "Nagroda za delegację",
     "referral-list-desc": "Nagrody dla polecanych",
+    "community-list-desc": "Community reward",
     "transfer": "Prezent dla kogoś",
     "claim-ok": "Punkty otrzymane",
     "promote": "Promować",
