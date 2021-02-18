@@ -247,6 +247,7 @@
     "team": "Leadership",
     "edit": "Tənzimləmələrə düzəliş et",
     "edit-team": "Rollara düzəliş et",
+    "community-rewards": "Community Rewards",
     "profile-image": "Cəmiyyət profil şəkli",
     "profile-image-edit": "Profil şəklinə düzəliş et",
     "profile-image-updated": "Profil şəkli yeniləndi!"
@@ -301,6 +302,13 @@
     "progress-props": "Cəmiyyət tənzimləmələri yenilənir...",
     "done": "Your community was created 🎉",
     "done-link-label": "Get started."
+  },
+  "community-rewards-registration": {
+    "body-text": "Register your community to get Ecency POINTS",
+    "btn-next-label": "Register",
+    "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.",
+    "conflict-body-text": "This community is already registered.",
+    "min-required-body-text": "Minimum 100 subscribers required to register."
   },
   "pin-btn": {
     "pin": "Pin",
@@ -398,10 +406,11 @@
     "comment-desc": "Bildirdiyiniz hər bir rəy əhatənizi genişləndirməyə və dostluqlar qurmağa kömək edər, həmçinin 5 xal qazandırar.",
     "checkin-desc": "Ecency-də yoxlamaq sizə 0.25 xal qazandırar və dostlarla əlaqədə qalmağınıza kömək edər.",
     "vote-desc": "Səs verərək digər yaradıcılara da mükafat verə və minnətdarlığınızı göstərə bilərsiniz, beləcə 0.01 x səsvermə ağırlıq xal qazanarsınız.",
-    "reblog-desc": "  Bəyəndiyiniz göndərişləri dostlarınızla paylaşın və 1 xal qazanın.",
+    "reblog-desc": "Share what post you like with your friends and earn 1 points.",
     "login-desc": "Ecency-ə giriş etdikdə avtomatik olaraq 100 xal qazanma haqqı əldə edirsiniz.",
     "checkin-extra-desc": "Tətbiqin davamlı istifadəsi sizə daha 10 xal qazanma şansı verər, daha çox fəal olun və daha çox qazanın.",
     "delegation-desc": "You can earn ~50 points per day for each 1000HP delegation.",
+    "community-desc": "Register your community to get 20 points for per post published with Ecency applications.",
     "history": "Tarixçə",
     "post-list-desc": "Göndəriş üçün xal",
     "comment-list-desc": "Rəy üçün xal",
@@ -414,6 +423,7 @@
     "transfer-incoming-list-desc": "{{n}} mənbəsindən köçürmə",
     "delegation-list-desc": "Delegation reward",
     "referral-list-desc": "Yönləndirmə mükafatları",
+    "community-list-desc": "Community reward",
     "transfer": "Kiməsə hədiyyə et",
     "claim-ok": "Xallar götürüldü",
     "promote": "Tanıt",
