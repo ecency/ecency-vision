@@ -35,6 +35,7 @@ import {
     starOutlineSvg,
     ticketSvg,
     gpsSvg,
+    accountGroupSvg,
     compareHorizontalSvg,
     cashSvg
 } from "../../img/svg";
@@ -85,6 +86,10 @@ export class TransactionRow extends Component<{ tr: PointTransaction }> {
             case TransactionType.REFERRAL:
                 icon = gpsSvg;
                 lKey = 'referral';
+                break;
+            case TransactionType.COMMUNITY:
+                icon = accountGroupSvg;
+                lKey = 'community';
                 break;
             case TransactionType.TRANSFER_SENT:
                 icon = compareHorizontalSvg;
@@ -314,6 +319,12 @@ export class WalletEcency extends BaseComponent<Props, State> {
                                             <div className="point-reward-type">
                                                 {ticketSvg}
                                                 <span className="reward-num">5</span>
+                                            </div>
+                                        </Tooltip>
+                                        <Tooltip content={_t('points.community-desc')}>
+                                            <div className="point-reward-type">
+                                                {accountGroupSvg}
+                                                <span className="reward-num">20</span>
                                             </div>
                                         </Tooltip>
                                     </div>

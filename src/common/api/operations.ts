@@ -742,6 +742,44 @@ export const boostKc = (user: string, author: string, permlink: string, amount: 
     return keychain.customJson(user, "esteem_boost", "Active", json, "Boost");
 }
 
+export const communityRewardsRegister = (key: PrivateKey, name: string): Promise<TransactionConfirmation> => {
+    const json = JSON.stringify({
+        name,
+    });
+
+    const op = {
+        id: 'esteem_registration',
+        json,
+        required_auths: [name],
+        required_posting_auths: []
+    };
+
+    return hiveClient.broadcast.json(op, key);
+}
+
+export const communityRewardsRegisterHot = (name: string) => {
+    const params = {
+        authority: "active",
+        required_auths: `["${name}"]`,
+        required_posting_auths: "[]",
+        id: "esteem_registration",
+        json: JSON.stringify({
+            name
+        })
+    }
+
+    hotSign("custom-json", params, `created/${name}`);
+}
+
+export const communityRewardsRegisterKc = (name: string) => {
+    const json = JSON.stringify({
+        name
+    });
+
+    return keychain.customJson(name, "esteem_registration", "Active", json, "Community Registration");
+}
+
+
 export const updateProfile = (account: Account, newProfile: {
     name: string,
     about: string,
