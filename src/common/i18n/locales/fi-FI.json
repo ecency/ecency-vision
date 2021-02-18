@@ -247,6 +247,7 @@
     "team": "Vetäjät",
     "edit": "Muokkaa asetuksia",
     "edit-team": "Muokkaa rooleja",
+    "community-rewards": "Community Rewards",
     "profile-image": "Yhteisön profiilikuva",
     "profile-image-edit": "Muokkaa profiilikuvaa",
     "profile-image-updated": "Profiilikuva päivitetty!"
@@ -301,6 +302,13 @@
     "progress-props": "Päivitetään yhteisöasetuksia...",
     "done": "Yhteisösi luotiin 🎉",
     "done-link-label": "Aloitetaan."
+  },
+  "community-rewards-registration": {
+    "body-text": "Register your community to get Ecency POINTS",
+    "btn-next-label": "Register",
+    "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.",
+    "conflict-body-text": "This community is already registered.",
+    "min-required-body-text": "Minimum 100 subscribers required to register."
   },
   "pin-btn": {
     "pin": "Kiinnitä",
@@ -398,10 +406,11 @@
     "comment-desc": "Jokainen kommenttisi helpottaa kasvattamaan yleisöäsi ja lisää kontakteja, sekä saat 5 pistettä.",
     "checkin-desc": "Ecencyyn kirjautumisesta saa 0.25 pistettä ja auttaa pysymään yhteydessä ystäviisi.",
     "vote-desc": "Äänestämällä palkitset muita luojia ja osoitat arvostusta, mutta saat myös 0.01 x äänipainopisteitä.",
-    "reblog-desc": "  Jaa haluamasi julkaisu ystävillesi ja saat 1 pisteen.",
+    "reblog-desc": "Share what post you like with your friends and earn 1 points.",
     "login-desc": "Ensikirjauksella Ecencyyn saat automaattisesti 100 pistettä.",
     "checkin-extra-desc": "Toistuva dappin käyttö voi johtaa 10 lisäpisteeseen, ole aktiivinen ja saat enemmän.",
     "delegation-desc": "Voit ansaita ~ 50 pistettä päivässä jokaisesta 1000HP valtuutuksesta.",
+    "community-desc": "Register your community to get 20 points for per post published with Ecency applications.",
     "history": "Historia",
     "post-list-desc": "Pisteitä julkaisuista",
     "comment-list-desc": "Pisteitä kommenteista",
@@ -414,6 +423,7 @@
     "transfer-incoming-list-desc": "Siirrä käyttäjältä {{n}}",
     "delegation-list-desc": "Valtuutuspalkkio",
     "referral-list-desc": "Suosittelupalkkio",
+    "community-list-desc": "Community reward",
     "transfer": "Lahjoita",
     "claim-ok": "Pisteitä lunastettu",
     "promote": "Korosta",
