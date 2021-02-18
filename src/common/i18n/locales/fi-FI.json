@@ -308,7 +308,7 @@
     "btn-next-label": "Rekisteröidy",
     "done-body-text": "Rekisteröinti onnistui. Yhteisösi saa POINT-palkkioita, kun jäsenesi julkaisevat viestejä Ecency -sovelluksilla.",
     "conflict-body-text": "Tämä yhteisö on jo rekisteröity.",
-    "min-required-body-text": "Minimum 100 subscribers required to register."
+    "min-required-body-text": "Vähintään 100 tilaajaa vaaditaan rekisteröintiin."
   },
   "pin-btn": {
     "pin": "Kiinnitä",
@@ -406,11 +406,11 @@
     "comment-desc": "Jokainen kommenttisi helpottaa kasvattamaan yleisöäsi ja lisää kontakteja, sekä saat 5 pistettä.",
     "checkin-desc": "Ecencyyn kirjautumisesta saa 0.25 pistettä ja auttaa pysymään yhteydessä ystäviisi.",
     "vote-desc": "Äänestämällä palkitset muita luojia ja osoitat arvostusta, mutta saat myös 0.01 x äänipainopisteitä.",
-    "reblog-desc": "Share what post you like with your friends and earn 1 points.",
+    "reblog-desc": "Jaa haluamasi julkaisu ystävillesi ja saat 1 pisteen.",
     "login-desc": "Ensikirjauksella Ecencyyn saat automaattisesti 100 pistettä.",
     "checkin-extra-desc": "Toistuva dappin käyttö voi johtaa 10 lisäpisteeseen, ole aktiivinen ja saat enemmän.",
     "delegation-desc": "Voit ansaita ~ 50 pistettä päivässä jokaisesta 1000HP valtuutuksesta.",
-    "community-desc": "Register your community to get 20 points for per post published with Ecency applications.",
+    "community-desc": "Rekisteröi yhteisösi saadaksesi 20 pistettä julkaisuista Ecency-sovelluksessa.",
     "history": "Historia",
     "post-list-desc": "Pisteitä julkaisuista",
     "comment-list-desc": "Pisteitä kommenteista",
@@ -423,7 +423,7 @@
     "transfer-incoming-list-desc": "Siirrä käyttäjältä {{n}}",
     "delegation-list-desc": "Valtuutuspalkkio",
     "referral-list-desc": "Suosittelupalkkio",
-    "community-list-desc": "Community reward",
+    "community-list-desc": "Yhteisöpalkkio",
     "transfer": "Lahjoita",
     "claim-ok": "Pisteitä lunastettu",
     "promote": "Korosta",
