@@ -18,6 +18,10 @@ import Tooltip from "../tooltip";
 import Purchase from "../purchase";
 import Promote from "../promote";
 import Boost from "../boost";
+
+import WalletMenu from "../wallet-menu";
+import EntryLink from "../entry-link";
+
 import {success, error} from "../feedback";
 
 import {_t} from "../../i18n";
@@ -39,10 +43,39 @@ import {
     compareHorizontalSvg,
     cashSvg
 } from "../../img/svg";
-import WalletMenu from "../wallet-menu";
 
+interface TransactionRowProps {
+    history: History;
+    tr: PointTransaction;
+}
 
-export class TransactionRow extends Component<{ tr: PointTransaction }> {
+export class TransactionRow extends Component<TransactionRowProps> {
+
+    memo = () => {
+        const {tr} = this.props;
+        if (tr.memo && tr.type === TransactionType.COMMUNITY) {
+            const memoSplit = tr.memo.split("@");
+
+            // make sure split has 2 element and second element is a link
+            if (memoSplit.length !== 2 || memoSplit[1].indexOf("/") === -1) {
+                return tr.memo;
+            }
+
+            const text = memoSplit[0];
+            const link = memoSplit[1];
+
+            const [author, permlink] = link.split("/");
+
+            return <>{text} {EntryLink({
+                ...this.props,
+                entry: {category: "ecency", author, permlink},
+                children: <span>{"@"}{link}</span>
+            })}</>
+        }
+
+        return tr.memo;
+    }
+
     render() {
         const {tr} = this.props;
 
@@ -122,10 +155,9 @@ export class TransactionRow extends Component<{ tr: PointTransaction }> {
                         {dateRelative}
                     </div>
                 </div>
-
                 {tr.memo && (
                     <div className="transaction-details user-selectable">
-                        {tr.memo}
+                        {this.memo()}
                     </div>
                 )}
                 <div className="transaction-numbers">{tr.amount}</div>
@@ -342,7 +374,7 @@ export class WalletEcency extends BaseComponent<Props, State> {
                                         <h2>{_t('points.history')}</h2>
                                     </div>
                                     <div className="transaction-list-body">
-                                        {points.transactions.map(tr => <TransactionRow tr={tr} key={tr.id}/>)}
+                                        {points.transactions.map(tr => <TransactionRow history={this.props.history} tr={tr} key={tr.id}/>)}
                                     </div>
                                 </div>
                             )}
