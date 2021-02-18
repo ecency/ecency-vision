@@ -247,6 +247,7 @@
     "team": "Dirigenza",
     "edit": "Modifica impostazioni",
     "edit-team": "Modifica Ruoli",
+    "community-rewards": "Community Rewards",
     "profile-image": "Immagine del profilo della community",
     "profile-image-edit": "Modifica immagine del profilo",
     "profile-image-updated": "Immagine del Profilo aggiornata!"
@@ -301,6 +302,13 @@
     "progress-props": "Sto aggiornando le impostazioni della community...",
     "done": "La tua community è stata creata con successo 🎉",
     "done-link-label": "Inizia."
+  },
+  "community-rewards-registration": {
+    "body-text": "Register your community to get Ecency POINTS",
+    "btn-next-label": "Register",
+    "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.",
+    "conflict-body-text": "This community is already registered.",
+    "min-required-body-text": "Minimum 100 subscribers required to register."
   },
   "pin-btn": {
     "pin": "Fissa",
@@ -398,10 +406,11 @@
     "comment-desc": "Ogni commento che fai ti aiuta a far crescere la tua audience e creare amicizie, oltre a farti anche guadagnare 5 punti.",
     "checkin-desc": "Accedere giornalmente ad Ecency ti da diritto a 0.25 punti e ti aiuta a rimanere in contatto con i tuoi amici.",
     "vote-desc": "Votando, dai una ricompensa agli altri creatori e mostri il tuo apprezzamento, ma guadagni anche 0.01 punti moltiplicati per il peso percentuale del tuo voto.",
-    "reblog-desc": "  Condividi con i tuoi amici i post che ti piacciono e guadagna 1 punto.",
+    "reblog-desc": "Share what post you like with your friends and earn 1 points.",
     "login-desc": "Quando accedi a Ecency per la prima volta, hai automaticamente diritto a 100 punti.",
     "checkin-extra-desc": "Un uso costante dell'app ti da ulteriori possibilità di guadagnare altri 10 punti, essere più attivo e guadagnare di più.",
     "delegation-desc": "Puoi guadagnare fino a un massimo di 50 punti al giorno per ogni delegazione di 1000 Hp fatta lo stesso giorno.",
+    "community-desc": "Register your community to get 20 points for per post published with Ecency applications.",
     "history": "Cronologia",
     "post-list-desc": "Punti per post",
     "comment-list-desc": "Punti per commento",
@@ -414,6 +423,7 @@
     "transfer-incoming-list-desc": "Trasferisci da {{n}}",
     "delegation-list-desc": "Ricompensa dalla delega",
     "referral-list-desc": "Ricompense da raccomandazioni",
+    "community-list-desc": "Community reward",
     "transfer": "Fai un regalo a qualcuno",
     "claim-ok": "Punti richiesti",
     "promote": "Promuovi",
