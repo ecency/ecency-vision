@@ -247,6 +247,7 @@
     "team": "Руководство",
     "edit": "Изменить настройки",
     "edit-team": "Изменить роли",
+    "community-rewards": "Community Rewards",
     "profile-image": "Обложка профиля сообщества",
     "profile-image-edit": "Изменить обложку профиля",
     "profile-image-updated": "Обложка профиля обновлена!"
@@ -301,6 +302,13 @@
     "progress-props": "Обновление настроек сообщества...",
     "done": "Ваше сообщество создано 🎉",
     "done-link-label": "Начните работу."
+  },
+  "community-rewards-registration": {
+    "body-text": "Register your community to get Ecency POINTS",
+    "btn-next-label": "Register",
+    "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.",
+    "conflict-body-text": "This community is already registered.",
+    "min-required-body-text": "Minimum 100 subscribers required to register."
   },
   "pin-btn": {
     "pin": "Закрепить",
@@ -398,10 +406,11 @@
     "comment-desc": "Каждый коммент помогает набирать аудиторию, завязывает дружбу и приносит 5 очков.",
     "checkin-desc": "Нахождение на Ecency дает вам 0.25 очков и помогает оставаться на связи с вашими друзьями.",
     "vote-desc": "Голосуя, вы награждаете других и выказываете своё уважение, а также получаете 0.01 х очки силы.",
-    "reblog-desc": "  Делитесь постами с друзьями и получайте по 1 очку.",
+    "reblog-desc": "Share what post you like with your friends and earn 1 points.",
     "login-desc": "При первой авторизации в приложении вы получите 100 очков.",
     "checkin-extra-desc": "Активное использование приложения даёт вам дополнительный шанс получить 10 очков.",
     "delegation-desc": "Вы можете заработать ~50 очков в день за каждое делегирование в 1000HP.",
+    "community-desc": "Register your community to get 20 points for per post published with Ecency applications.",
     "history": "История",
     "post-list-desc": "Очки за пост",
     "comment-list-desc": "Очки за комментарий",
@@ -414,6 +423,7 @@
     "transfer-incoming-list-desc": "Перевод с {{n}}",
     "delegation-list-desc": "Награда за делегирование",
     "referral-list-desc": "Реферальная награда",
+    "community-list-desc": "Community reward",
     "transfer": "Подарить кому-то",
     "claim-ok": "Очки зачислены",
     "promote": "Продвинуть",
