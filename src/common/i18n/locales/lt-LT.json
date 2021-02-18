@@ -247,6 +247,7 @@
     "team": "Vadovavimas",
     "edit": "Keisti nustatymus",
     "edit-team": "Keisti roles",
+    "community-rewards": "Community Rewards",
     "profile-image": "Bendruomenės proflio nuotrauka",
     "profile-image-edit": "Redaguoti profilio nuotrauką",
     "profile-image-updated": "Profilio nuotrauka atnaujinta!"
@@ -301,6 +302,13 @@
     "progress-props": "Atnaujinami bendruomenės nustatymai...",
     "done": "Tavo bendruomenė sukurta 🎉",
     "done-link-label": "Pradėkite."
+  },
+  "community-rewards-registration": {
+    "body-text": "Register your community to get Ecency POINTS",
+    "btn-next-label": "Register",
+    "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.",
+    "conflict-body-text": "This community is already registered.",
+    "min-required-body-text": "Minimum 100 subscribers required to register."
   },
   "pin-btn": {
     "pin": "Prisegti",
@@ -398,10 +406,11 @@
     "comment-desc": "Komentarai padeda tau augti, galbūt rasti bendraminčių ir apdovanoja 5 taškais už kiekvieną parašytą komentarą.",
     "checkin-desc": "Reguliarus tikrinimas ir aktyvumo palaikymas tau duos 0.25 taško už kiekvieną prisijungimą.",
     "vote-desc": "Balsuodamas tu įvertinti kitų kūrėjų darbą ir skiri jiem atlygį. Tu taipogi už tai gausi 0.01 x balso galios taškų.",
-    "reblog-desc": "  Pasidalink su draugais įrašais kurie tau patinka ir gauk 1 tašką.",
+    "reblog-desc": "Share what post you like with your friends and earn 1 points.",
     "login-desc": "Kai jūs pirma kartą prisijungiate prie eSteem, jūs automatiškai būsite apdovanotas 100 taškų.",
     "checkin-extra-desc": "Reguliarus programos naudojimasis suteikia jums papildomą šansą gauti dar 10 taškų. Kuo aktyvesnis esi, tuo daugiau taškų surinksi.",
     "delegation-desc": "You can earn ~50 points per day for each 1000HP delegation.",
+    "community-desc": "Register your community to get 20 points for per post published with Ecency applications.",
     "history": "Istorija",
     "post-list-desc": "Taškai už įrašą",
     "comment-list-desc": "Taškai už komentarą",
@@ -414,6 +423,7 @@
     "transfer-incoming-list-desc": "Pervesti iš {{n}}",
     "delegation-list-desc": "Delegacijos atlygis",
     "referral-list-desc": "Rekomendacijos atlygis",
+    "community-list-desc": "Community reward",
     "transfer": "Padovanoti kažkam",
     "claim-ok": "Taškai atsiimti",
     "promote": "Reklamuoti",
