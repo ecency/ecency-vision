@@ -247,6 +247,7 @@
     "team": "Ηγεσία",
     "edit": "Επεξεργασία Ιδιοτήτων",
     "edit-team": "Επεξεργασία ρόλών",
+    "community-rewards": "Community Rewards",
     "profile-image": "Φωτογραφία προφίλ κοινότητας",
     "profile-image-edit": "Επεξεργαστείτε την φωτογραφία προφίλ",
     "profile-image-updated": "Η φωτογραφία προφίλ ενημερώθηκε!"
@@ -301,6 +302,13 @@
     "progress-props": "Ενημέρωση ρυθμίσεων κοινότητας...",
     "done": "Η κοινότητα σας δημιουργήθηκε 🎉",
     "done-link-label": "Ξεκινήστε."
+  },
+  "community-rewards-registration": {
+    "body-text": "Register your community to get Ecency POINTS",
+    "btn-next-label": "Register",
+    "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.",
+    "conflict-body-text": "This community is already registered.",
+    "min-required-body-text": "Minimum 100 subscribers required to register."
   },
   "pin-btn": {
     "pin": "Καρφιτσώστε",
@@ -398,10 +406,11 @@
     "comment-desc": "Κάθε σχόλιο που κάνετε σας βοηθάει να μεγαλώσετε το ακροατήριο σας και να κάνετε φιλίες αλλά σας δίνει και 5 πόντους.",
     "checkin-desc": "Μπαίνωντας στο Ecency σας δίνονται 0.25 πόντοι και σας βοηθάει να μείνετε συνδεδεμένοι με τους φίλους σας.",
     "vote-desc": "Με το να ψηφίζετε δίνετε ανταμοιβή σε άλλους δημιουργούς και δείχνετε την εκτίμησή σας, αλλά κερδίζετε επίσης 0,01 x επί την βαρύτητα ψήφου πόντους.",
-    "reblog-desc": "  Μοιραστείτε την ανάρτηση που σας αρέσει με τους φίλους σας και κερδίστε 1 πόντο.",
+    "reblog-desc": "Share what post you like with your friends and earn 1 points.",
     "login-desc": "Όταν συνδέεστε στο Ecency έχετε το δικαίωμα να κερδίσετε 100 πόντους αυτόματα.",
     "checkin-extra-desc": "Η συνεπής χρήση της εφαρμογής σας δίνει επιπλέον πιθανότητες να κερδίσετε περισσότερους από 10 πόντους, να είστε πιο δραστήριοι και να κερδίσετε περισσότερα.",
     "delegation-desc": "Μπορείς να κερδίσεις ~50 πόντους κάθε μέρα για κάθε 1000HP που εξουσιοδοτείς.",
+    "community-desc": "Register your community to get 20 points for per post published with Ecency applications.",
     "history": "Ιστορικό",
     "post-list-desc": "Πόντοι για δημοσίευση",
     "comment-list-desc": "Πόντοι για σχόλιο",
@@ -414,6 +423,7 @@
     "transfer-incoming-list-desc": "Μεταφορά από {{n}}",
     "delegation-list-desc": "Αμοιβή εξουσιοδότησης",
     "referral-list-desc": "Αμοιβή προτεινόμενων",
+    "community-list-desc": "Community reward",
     "transfer": "Δώρο σε κάποιον",
     "claim-ok": "Πόντοι διεκδικήθηκαν",
     "promote": "Προώθηση",
