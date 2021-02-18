@@ -247,6 +247,7 @@
     "team": "Kepemimpinan",
     "edit": "Edit pengaturan",
     "edit-team": "Sunting peran",
+    "community-rewards": "Community Rewards",
     "profile-image": "Gambar profil komunitas",
     "profile-image-edit": "Edit gambar profil",
     "profile-image-updated": "Gambar profil diperbaharui!"
@@ -301,6 +302,13 @@
     "progress-props": "Sedang memperbaharui pengaturan komunitas...",
     "done": "Komunitas Anda sudah dibuat 🎉",
     "done-link-label": "Mulai."
+  },
+  "community-rewards-registration": {
+    "body-text": "Register your community to get Ecency POINTS",
+    "btn-next-label": "Register",
+    "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.",
+    "conflict-body-text": "This community is already registered.",
+    "min-required-body-text": "Minimum 100 subscribers required to register."
   },
   "pin-btn": {
     "pin": "Sematkan",
@@ -398,10 +406,11 @@
     "comment-desc": "Setiap komentar yang Anda buat membantu Anda mengembangkan audiens dan menjalin persahabatan, tetapi juga memberi Anda 5 poin.",
     "checkin-desc": "Periksa di Ecency yang memberikan Anda 0.25 poin dan membantu Anda tetap terhubung dengan teman-teman Anda.",
     "vote-desc": "Dengan melakukan voting, Anda memberikan hadiah kepada penulis lain dan menunjukkan penghargaan Anda, tetapi juga mendapatkan 0,01 poin.",
-    "reblog-desc": "  Bagikan postingan yang Anda sukai dengan teman dan dapatkan 1 poin.",
+    "reblog-desc": "Share what post you like with your friends and earn 1 points.",
     "login-desc": "Ketika Anda masuk ke aplikasi Ecency, Anda berhak mendapatkan 100 poin secara otomatis.",
     "checkin-extra-desc": "Penggunaan aplikasi yang konsisten memberi Anda peluang ekstra untuk mendapatkan 10 poin tambahan, jadilah lebih aktif dan hasilkan lebih banyak poin.",
     "delegation-desc": "Anda bisa mendapatkan ~ 50 poin per hari untuk setiap delegasi sejumlah 1000HP.",
+    "community-desc": "Register your community to get 20 points for per post published with Ecency applications.",
     "history": "Riwayat",
     "post-list-desc": "Poin postingan",
     "comment-list-desc": "Poin untuk komentar",
@@ -414,6 +423,7 @@
     "transfer-incoming-list-desc": "Transfer dari {{n}}",
     "delegation-list-desc": "Reward delegasi",
     "referral-list-desc": "Reward referral",
+    "community-list-desc": "Community reward",
     "transfer": "Hadiah untuk seseorang",
     "claim-ok": "Poin yang diklaim",
     "promote": "Promosikan",
