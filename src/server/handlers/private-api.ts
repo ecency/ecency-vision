@@ -8,8 +8,7 @@ import {getTokenUrl, decodeToken} from "../../common/helper/hive-signer";
 
 import {apiRequest, baseApiRequest, getPromotedEntries} from "../helper";
 
-import * as hs from 'hivesigner-sdk';
-//const hs = require("hivesigner-sdk");
+const hs = require("hivesigner");
 
 const validateCode = async (req: express.Request, res: express.Response): Promise<string | false> => {
     const {code} = req.body;
