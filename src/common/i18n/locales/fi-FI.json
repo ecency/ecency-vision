@@ -247,7 +247,7 @@
     "team": "Vetäjät",
     "edit": "Muokkaa asetuksia",
     "edit-team": "Muokkaa rooleja",
-    "community-rewards": "Community Rewards",
+    "community-rewards": "Yhteisöpalkkiot",
     "profile-image": "Yhteisön profiilikuva",
     "profile-image-edit": "Muokkaa profiilikuvaa",
     "profile-image-updated": "Profiilikuva päivitetty!"
@@ -304,10 +304,10 @@
     "done-link-label": "Aloitetaan."
   },
   "community-rewards-registration": {
-    "body-text": "Register your community to get Ecency POINTS",
-    "btn-next-label": "Register",
-    "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.",
-    "conflict-body-text": "This community is already registered.",
+    "body-text": "Rekisteröi yhteisösi saadaksesi Ecency POINTS",
+    "btn-next-label": "Rekisteröidy",
+    "done-body-text": "Rekisteröinti onnistui. Yhteisösi saa POINT-palkkioita, kun jäsenesi julkaisevat viestejä Ecency -sovelluksilla.",
+    "conflict-body-text": "Tämä yhteisö on jo rekisteröity.",
     "min-required-body-text": "Minimum 100 subscribers required to register."
   },
   "pin-btn": {
