@@ -1,6 +1,7 @@
 const hs = require("hivesigner");
 
 import {PrivateKey, Operation, TransactionConfirmation, AccountUpdateOperation} from '@hiveio/dhive';
+import {Parameters} from 'hive-uri';
 
 import {client as hiveClient} from "./hive";
 
@@ -122,7 +123,7 @@ export const deleteComment = (username: string, author: string, permlink: string
         permlink,
     };
 
-    const opArray = [["delete_comment", params]];
+    const opArray: Operation[] = [["delete_comment", params]];
 
     return client.broadcast(opArray).then((r: any) => r.result)
 };
@@ -190,15 +191,15 @@ export const transfer = (from: string, key: PrivateKey, to: string, amount: stri
 
 export const transferHot = (from: string, to: string, amount: string, memo: string) => {
 
-    const op = ['transfer', {
+    const op: Operation = ['transfer', {
         from,
         to,
         amount,
         memo
     }];
+    const params: Parameters = {callback: `https://ecency.com/@${from}/wallet`};
 
-    return hs.sendOperation(op, {callback: `https://ecency.com/@${from}/wallet`}, () => {
-    });
+    return hs.sendOperation(op, params, () => {});
 }
 
 export const transferKc = (from: string, to: string, amount: string, memo: string) => {
@@ -269,16 +270,15 @@ export const transferToSavings = (from: string, key: PrivateKey, to: string, amo
 
 export const transferToSavingsHot = (from: string, to: string, amount: string, memo: string) => {
 
-    const op = ['transfer_to_savings', {
+    const op: Operation = ['transfer_to_savings', {
         from,
         to,
         amount,
         memo
     }];
+    const params: Parameters = {callback: `https://ecency.com/@${from}/wallet`};
 
-    return hs.sendOperation(op, {callback: `https://ecency.com/@${from}/wallet`}, () => {
-    }, () => {
-    });
+    return hs.sendOperation(op, params, () => {});
 }
 
 export const transferToSavingsKc = (from: string, to: string, amount: string, memo: string) => {
@@ -310,15 +310,14 @@ export const convert = (owner: string, key: PrivateKey, amount: string): Promise
 
 export const convertHot = (owner: string, amount: string) => {
 
-    const op = ['convert', {
+    const op: Operation = ['convert', {
         owner,
         amount,
         requestid: new Date().getTime() >>> 0
     }];
+    const params: Parameters = {callback: `https://ecency.com/@${owner}/wallet`};
 
-    return hs.sendOperation(op, {callback: `https://ecency.com/@${owner}/wallet`}, () => {
-    }, () => {
-    });
+    return hs.sendOperation(op, params, () => {});
 }
 
 export const convertKc = (owner: string, amount: string) => {
@@ -351,17 +350,16 @@ export const transferFromSavings = (from: string, key: PrivateKey, to: string, a
 
 export const transferFromSavingsHot = (from: string, to: string, amount: string, memo: string) => {
 
-    const op = ['transfer_from_savings', {
+    const op: Operation = ['transfer_from_savings', {
         from,
         to,
         amount,
         memo,
         request_id: new Date().getTime() >>> 0
     }];
+    const params: Parameters = {callback: `https://ecency.com/@${from}/wallet`};
 
-    return hs.sendOperation(op, {callback: `https://ecency.com/@${from}/wallet`}, () => {
-    }, () => {
-    });
+    return hs.sendOperation(op, params, () => {});
 }
 
 export const transferFromSavingsKc = (from: string, to: string, amount: string, memo: string) => {
@@ -394,15 +392,14 @@ export const transferToVesting = (from: string, key: PrivateKey, to: string, amo
 
 export const transferToVestingHot = (from: string, to: string, amount: string) => {
 
-    const op = ['transfer_to_vesting', {
+    const op: Operation = ['transfer_to_vesting', {
         from,
         to,
         amount
     }];
+    const params: Parameters = {callback: `https://ecency.com/@${from}/wallet`};
 
-    return hs.sendOperation(op, {callback: `https://ecency.com/@${from}/wallet`}, () => {
-    }, () => {
-    });
+    return hs.sendOperation(op, params, () => {});
 }
 
 export const transferToVestingKc = (from: string, to: string, amount: string) => {
@@ -437,10 +434,9 @@ export const delegateVestingSharesHot = (delegator: string, delegatee: string, v
         delegatee,
         vesting_shares: vestingShares
     }];
+    const params: Parameters = {callback: `https://ecency.com/@${delegator}/wallet`};
 
-    return hs.sendOperation(op, {callback: `https://ecency.com/@${delegator}/wallet`}, () => {
-    }, () => {
-    });
+    return hs.sendOperation(op, params, () => {});
 }
 
 export const delegateVestingSharesKc = (delegator: string, delegatee: string, vestingShares: string) => {
@@ -473,10 +469,9 @@ export const withdrawVestingHot = (account: string, vestingShares: string) => {
         account,
         vesting_shares: vestingShares
     }];
+    const params: Parameters = {callback: `https://ecency.com/@${account}/wallet`};
 
-    return hs.sendOperation(op, {callback: `https://ecency.com/@${account}/wallet`}, () => {
-    }, () => {
-    });
+    return hs.sendOperation(op, params, () => {});
 }
 
 export const withdrawVestingKc = (account: string, vestingShares: string) => {
@@ -512,10 +507,9 @@ export const setWithdrawVestingRouteHot = (from: string, to: string, percent: nu
         percent,
         auto_vest: autoVest
     }];
+    const params: Parameters = {callback: `https://ecency.com/@${from}/wallet`};
 
-    return hs.sendOperation(op, {callback: `https://ecency.com/@${from}/wallet`}, () => {
-    }, () => {
-    });
+    return hs.sendOperation(op, params, () => {});
 }
 
 export const setWithdrawVestingRouteKc = (from: string, to: string, percent: number, autoVest: boolean) => {
@@ -761,7 +755,7 @@ export const updateProfile = (account: Account, newProfile: {
         extensions: []
     };
 
-    const opArray = [["account_update2", params]];
+    const opArray: Operation[] = [["account_update2", params]];
 
     return client.broadcast(opArray).then((r: any) => r.result)
 }
