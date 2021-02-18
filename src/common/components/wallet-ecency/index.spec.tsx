@@ -6,7 +6,7 @@ import {StaticRouter} from "react-router-dom";
 
 import {createBrowserHistory} from "history";
 
-import {WalletEcency} from "./index";
+import {WalletEcency, formatMemo} from "./index";
 
 import {initialState as transactionsInitialState} from "../../store/transactions/index";
 
@@ -86,4 +86,22 @@ it("(3) Active user with unclaimed points", () => {
             <WalletEcency {...props} />
         </StaticRouter>);
     expect(renderer.toJSON()).toMatchSnapshot();
+});
+
+it("(4) Format memo", () => {
+    const history = createBrowserHistory()
+
+    expect(formatMemo("", history)).toMatchSnapshot();
+
+    expect(formatMemo("transfer", history)).toMatchSnapshot();
+
+    expect(formatMemo("thank you!", history)).toMatchSnapshot();
+
+    expect(formatMemo("Promotion price for foo/bar", history)).toMatchSnapshot();
+
+    expect(formatMemo("Refund for foo/bar", history)).toMatchSnapshot();
+
+    expect(formatMemo("Community reward for @foo/bar", history)).toMatchSnapshot();
+
+    expect(formatMemo("lorem foo/bar ipsum", history)).toMatchSnapshot();
 });
