@@ -143,6 +143,9 @@
     "confirm-ok": "Reblog",
     "success": "Reblogged!"
   },
+  "entry-tip": {
+    "title": "Tip"
+  },
   "entry-payout": {
     "pending-payout": "Pending Payout",
     "promoted": "Tanıdılan",
@@ -244,6 +247,7 @@
     "team": "Leadership",
     "edit": "Tənzimləmələrə düzəliş et",
     "edit-team": "Rollara düzəliş et",
+    "community-rewards": "Community Rewards",
     "profile-image": "Cəmiyyət profil şəkli",
     "profile-image-edit": "Profil şəklinə düzəliş et",
     "profile-image-updated": "Profil şəkli yeniləndi!"
@@ -289,7 +293,7 @@
     "username-available": "Available.",
     "username-not-available": "Not available.",
     "username-wrong-format": "Not a valid format. hive-1xxxxx format required.",
-    "password": "Owner password",
+    "password": "Master password",
     "confirmation": "I have securely saved my owner username and password.",
     "submit": "Create Community",
     "progress-account": "Creating account...",
@@ -298,6 +302,13 @@
     "progress-props": "Cəmiyyət tənzimləmələri yenilənir...",
     "done": "Your community was created 🎉",
     "done-link-label": "Get started."
+  },
+  "community-rewards-registration": {
+    "body-text": "Register your community to get Ecency POINTS",
+    "btn-next-label": "Register",
+    "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.",
+    "conflict-body-text": "This community is already registered.",
+    "min-required-body-text": "Minimum 100 subscribers required to register."
   },
   "pin-btn": {
     "pin": "Pin",
@@ -395,10 +406,11 @@
     "comment-desc": "Bildirdiyiniz hər bir rəy əhatənizi genişləndirməyə və dostluqlar qurmağa kömək edər, həmçinin 5 xal qazandırar.",
     "checkin-desc": "Ecency-də yoxlamaq sizə 0.25 xal qazandırar və dostlarla əlaqədə qalmağınıza kömək edər.",
     "vote-desc": "Səs verərək digər yaradıcılara da mükafat verə və minnətdarlığınızı göstərə bilərsiniz, beləcə 0.01 x səsvermə ağırlıq xal qazanarsınız.",
-    "reblog-desc": "  Bəyəndiyiniz göndərişləri dostlarınızla paylaşın və 1 xal qazanın.",
+    "reblog-desc": "Share what post you like with your friends and earn 1 points.",
     "login-desc": "Ecency-ə giriş etdikdə avtomatik olaraq 100 xal qazanma haqqı əldə edirsiniz.",
     "checkin-extra-desc": "Tətbiqin davamlı istifadəsi sizə daha 10 xal qazanma şansı verər, daha çox fəal olun və daha çox qazanın.",
     "delegation-desc": "You can earn ~50 points per day for each 1000HP delegation.",
+    "community-desc": "Register your community to get 20 points for per post published with Ecency applications.",
     "history": "Tarixçə",
     "post-list-desc": "Göndəriş üçün xal",
     "comment-list-desc": "Rəy üçün xal",
@@ -411,6 +423,7 @@
     "transfer-incoming-list-desc": "{{n}} mənbəsindən köçürmə",
     "delegation-list-desc": "Delegation reward",
     "referral-list-desc": "Yönləndirmə mükafatları",
+    "community-list-desc": "Community reward",
     "transfer": "Kiməsə hədiyyə et",
     "claim-ok": "Xallar götürüldü",
     "promote": "Tanıt",
@@ -794,6 +807,11 @@
     "label-check": "I have securely saved my generated password",
     "updated": "Password updated successfully!"
   },
+  "add-image": {
+    "title": "Add Image",
+    "text-label": "Image Text",
+    "link-label": "Image Link"
+  },
   "scroll-to-top": {
     "title": "Yuxarı sürüşdür"
   },
@@ -823,7 +841,7 @@
       "how-ecency-works-header": "Ecency necə işləyir?",
       "how-ecency-works-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjuZ3ksaZqEjfd9GadyKFE4bT7UP8qM1sF5W6U3cst4ekDsXfrQdcrjtdz6b5Ye2AfWNwGA5f8QqVXmed6NRfg1U?format=match&mode=fit\"/></p><p>Ecency stores and reads data from the blockchain, and thus data is accessible and uncensored. Ecency rewards content creators with built-in incentive mechanism of blockchain, with tokens (HIVE, HIVE DOLLARS, HIVE POWER) as well as Points. Tokens can be purchased and sold in major cryptocurrency exchanges (e.g. Binance, Bittrex). Points could be utilized within platform and traded for goods, services.</p>",
       "how-to-join-header": "Ecency-ə necə qoşulmaq olar?",
-      "how-to-join-body": "<p>Go to <a class=\"push-link\" href=\"/signup?referral=ecency\">https://ecency.com/signup?referral=ecency</a> and create an account. After signup you will receive email with further instructions. Your password is your master key to your account. Please store it safely, if you loose your password, you ultimately loose access to your account and your funds. Accounts cannot be deactivated or deleted, account names can not be changed as well. The account along with all of its activity is permanently stored in the blockchain. Without password, accounts cannot be restored, store your keys safely.</p>",
+      "how-to-join-body": "<p>Go to <a class=\"push-link\" href=\"/signup?referral=ecency\">https://ecency.com/signup?referral=ecency</a> and create an account. After signup you will receive email with further instructions. Your password is your master password to your account. Please store it safely, if you loose your password, you ultimately loose access to your account and your funds. Accounts cannot be deactivated or deleted, account names can not be changed as well. The account along with all of its activity is permanently stored in the blockchain. Without password, accounts cannot be restored, store your keys safely.</p>",
       "how-to-signin-header": "Ecency-ə necə daxil olmaq olar?",
       "how-to-signin-body": "<p><img src=\"https://images.ecency.com/p/7258xSVeJbKmTr9Z4jhbPhjS9pMWA2mTwBMDbXqk9G9wdMw2bwR4hXqRQt9S7UBFrBAWCYWddjn3G34ETv5KWB5KGmuZ8ixBB9oKHTFvjjnTkRLp4ttrFQtpgtNnRUEA9NtmyFmgyuuK4?format=match&mode=fit\"/></p><p>You can sign-in to Ecency by using your Username and Master password or by using Active Private Keys. We take security very seriously, that's why we never store your private keys, on mobile app they are encrypted with extra PIN code of your choice, on website they are never stored. You can also use <a href=\"https://hivesigner.com\" target=\"_blank\" rel=\"noopener noreferrer\">Hivesigner OAuth2</a> authentication service to easily login, manage and perform actions.</p>",
       "how-referrals-work-header": "Ecency-də yönləndirmə sistemi necə işləyir?",

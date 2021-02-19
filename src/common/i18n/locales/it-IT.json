@@ -143,6 +143,9 @@
     "confirm-ok": "Reblogga",
     "success": "Rebloggato!"
   },
+  "entry-tip": {
+    "title": "Tip"
+  },
   "entry-payout": {
     "pending-payout": "Pagamento in Attesa",
     "promoted": "Promosso",
@@ -244,6 +247,7 @@
     "team": "Dirigenza",
     "edit": "Modifica impostazioni",
     "edit-team": "Modifica Ruoli",
+    "community-rewards": "Community Rewards",
     "profile-image": "Immagine del profilo della community",
     "profile-image-edit": "Modifica immagine del profilo",
     "profile-image-updated": "Immagine del Profilo aggiornata!"
@@ -289,7 +293,7 @@
     "username-available": "Disponibile.",
     "username-not-available": "Non Disponibile.",
     "username-wrong-format": "Non è un formato valido. Richiesto il formato hive-1xxxxx.",
-    "password": "Chiave Privata Proprietaria",
+    "password": "Master password",
     "confirmation": "Ho salvato in un luogo sicuro nome utente e chiave proprietaria della community.",
     "submit": "Crea Community",
     "progress-account": "Account in creazione...",
@@ -298,6 +302,13 @@
     "progress-props": "Sto aggiornando le impostazioni della community...",
     "done": "La tua community è stata creata con successo 🎉",
     "done-link-label": "Inizia."
+  },
+  "community-rewards-registration": {
+    "body-text": "Register your community to get Ecency POINTS",
+    "btn-next-label": "Register",
+    "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.",
+    "conflict-body-text": "This community is already registered.",
+    "min-required-body-text": "Minimum 100 subscribers required to register."
   },
   "pin-btn": {
     "pin": "Fissa",
@@ -395,10 +406,11 @@
     "comment-desc": "Ogni commento che fai ti aiuta a far crescere la tua audience e creare amicizie, oltre a farti anche guadagnare 5 punti.",
     "checkin-desc": "Accedere giornalmente ad Ecency ti da diritto a 0.25 punti e ti aiuta a rimanere in contatto con i tuoi amici.",
     "vote-desc": "Votando, dai una ricompensa agli altri creatori e mostri il tuo apprezzamento, ma guadagni anche 0.01 punti moltiplicati per il peso percentuale del tuo voto.",
-    "reblog-desc": "  Condividi con i tuoi amici i post che ti piacciono e guadagna 1 punto.",
+    "reblog-desc": "Share what post you like with your friends and earn 1 points.",
     "login-desc": "Quando accedi a Ecency per la prima volta, hai automaticamente diritto a 100 punti.",
     "checkin-extra-desc": "Un uso costante dell'app ti da ulteriori possibilità di guadagnare altri 10 punti, essere più attivo e guadagnare di più.",
     "delegation-desc": "Puoi guadagnare fino a un massimo di 50 punti al giorno per ogni delegazione di 1000 Hp fatta lo stesso giorno.",
+    "community-desc": "Register your community to get 20 points for per post published with Ecency applications.",
     "history": "Cronologia",
     "post-list-desc": "Punti per post",
     "comment-list-desc": "Punti per commento",
@@ -411,6 +423,7 @@
     "transfer-incoming-list-desc": "Trasferisci da {{n}}",
     "delegation-list-desc": "Ricompensa dalla delega",
     "referral-list-desc": "Ricompense da raccomandazioni",
+    "community-list-desc": "Community reward",
     "transfer": "Fai un regalo a qualcuno",
     "claim-ok": "Punti richiesti",
     "promote": "Promuovi",
@@ -794,6 +807,11 @@
     "label-check": "I have securely saved my generated password",
     "updated": "Password updated successfully!"
   },
+  "add-image": {
+    "title": "Add Image",
+    "text-label": "Image Text",
+    "link-label": "Image Link"
+  },
   "scroll-to-top": {
     "title": "Scorri verso l'alto"
   },
@@ -823,7 +841,7 @@
       "how-ecency-works-header": "Come funziona Ecency?",
       "how-ecency-works-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjuZ3ksaZqEjfd9GadyKFE4bT7UP8qM1sF5W6U3cst4ekDsXfrQdcrjtdz6b5Ye2AfWNwGA5f8QqVXmed6NRfg1U?format=match&mode=fit\"/></p><p>Ecency custodisce e legge i dati che arrivano dalla blockchain, e ognuno di questi dati è accessibile e incensurato. Ecency ricompensa i creatori di contenuti con un meccanismo di incentivo integrato nella blockchain, attraverso i token (HIVE, HIVE DOLLARS, HIVE POWER) come anche attraverso i propri Punti. I token possono essere acquistati e venduti su alcuni dei maggiori exchange di criptovaluta (ad esempio Binance e Bittrex). I punti possono essere utilizzati all'interno della piattaforma e scambiati per prodotti o servizi.</p>",
       "how-to-join-header": "Come unirsi a Ecency?",
-      "how-to-join-body": "<p>Vai a <a class=\"push-link\" href=\"/signup?referral=ecency\">https://ecency.com/signup?referral=ecency</a> e crea un account. Dopo la registrazione riceverai un'email con più istruzioni. La tua password è la chiave maestra del tuo account. Fondamentale che tu la custodisca in sicurezza, se la perdessi perderesti irrimediabilmente l'accesso al tuo account e ai tuoi fondi. Gli account non possono essere disattivati o rimossi, e i nomi degli account non possono essere cambiati. Gli account - con tutte le attività ad essi correlate - sono permanentemente memorizzati nella blockchain. Senza password, gli account non possono essere recuperati o ripristinati: custodisci in sicurezza le tue chiavi di accesso.</p>",
+      "how-to-join-body": "<p>Go to <a class=\"push-link\" href=\"/signup?referral=ecency\">https://ecency.com/signup?referral=ecency</a> and create an account. After signup you will receive email with further instructions. Your password is your master password to your account. Please store it safely, if you loose your password, you ultimately loose access to your account and your funds. Accounts cannot be deactivated or deleted, account names can not be changed as well. The account along with all of its activity is permanently stored in the blockchain. Without password, accounts cannot be restored, store your keys safely.</p>",
       "how-to-signin-header": "Come accedere a Ecency?",
       "how-to-signin-body": "<p><img src=\"https://images.ecency.com/p/7258xSVeJbKmTr9Z4jhbPhjS9pMWA2mTwBMDbXqk9G9wdMw2bwR4hXqRQt9S7UBFrBAWCYWddjn3G34ETv5KWB5KGmuZ8ixBB9oKHTFvjjnTkRLp4ttrFQtpgtNnRUEA9NtmyFmgyuuK4?format=match&mode=fit\"/></p><p>Puoi accedere a Ecency usando il tuo nome utente e la tua chiave maestra o usando la Chiave Privata Attiva. Noi prendiamo la sicurezza molto sul serio, e questo è il motivo per il quale non memorizziamo mai le tue chiavi private; sull'app mobile vengono criptate con un codice PIN aggiuntivo a tua scelta, sul sito web non sono mai memorizzate. Puoi anche usare il servizio di autenticazione <a href=\"https://hivesigner.com\" target=\"_blank\" rel=\"noopener noreferrer\">Hivesigner OAuth2</a> per accedere facilmente, gestire e compiere azioni.</p>",
       "how-referrals-work-header": "Come funziona il sistema di raccomandazione su Ecency?",
