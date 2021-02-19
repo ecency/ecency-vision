@@ -1279,7 +1279,9 @@ Array [
     >
       <span>
         @
-        foo/bar
+        foo
+        /
+        bar
       </span>
     </EntryLink>
      
@@ -1329,7 +1331,9 @@ Array [
     >
       <span>
         @
-        foo/bar
+        foo
+        /
+        bar
       </span>
     </EntryLink>
      
@@ -1383,7 +1387,9 @@ Array [
     >
       <span>
         @
-        @foo/bar
+        foo
+        /
+        bar
       </span>
     </EntryLink>
      
@@ -1429,7 +1435,9 @@ Array [
     >
       <span>
         @
-        foo/bar
+        foo
+        /
+        bar
       </span>
     </EntryLink>
      
