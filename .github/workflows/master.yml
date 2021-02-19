@@ -63,7 +63,7 @@ jobs:
         SEARCH_API_ADDR: ${{secrets.SEARCH_API_ADDR}}
         SEARCH_API_SECRET: ${{secrets.SEARCH_API_SECRET}}
       with:
-        host: ${{ secrets.SSH_STAGING_HOST }}
+        host: ${{ secrets.SSH_PRODUCTION_HOST }}
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         port: ${{ secrets.SSH_PORT }}
