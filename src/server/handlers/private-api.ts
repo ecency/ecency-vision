@@ -38,6 +38,11 @@ export const receivedVesting = async (req: express.Request, res: express.Respons
     pipe(apiRequest(`delegatee_vesting_shares/${username}`, "GET"), res);
 };
 
+export const rewardedCommunities = async (req: express.Request, res: express.Response) => {
+    pipe(apiRequest(`rewarded-communities`, "GET"), res);
+}
+
+
 export const leaderboard = async (req: express.Request, res: express.Response) => {
     const {duration} = req.params;
     pipe(apiRequest(`leaderboard?duration=${duration}`, "GET"), res);

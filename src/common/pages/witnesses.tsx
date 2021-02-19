@@ -1,9 +1,10 @@
-import React, {Component} from "react";
+import React from "react";
 
 import {connect} from "react-redux";
 
 import {pathToRegexp} from "path-to-regexp";
 
+import BaseComponent from "../components/base";
 import Meta from "../components/meta";
 import Feedback from "../components/feedback";
 import ScrollToTop from "../components/scroll-to-top";
@@ -93,7 +94,7 @@ interface State {
     loading: boolean;
 }
 
-class WitnessesPage extends Component<PageProps, State> {
+class WitnessesPage extends BaseComponent<PageProps, State> {
     state: State = {
         witnesses: [],
         witnessVotes: [],
@@ -101,14 +102,8 @@ class WitnessesPage extends Component<PageProps, State> {
         loading: true
     }
 
-    _mounted: boolean = true;
-
     componentDidMount() {
         this.load();
-    }
-
-    componentWillUnmount() {
-        this._mounted = false;
     }
 
     componentDidUpdate(prevProps: Readonly<PageProps>, prevState: Readonly<State>, snapshot?: any) {
@@ -119,12 +114,6 @@ class WitnessesPage extends Component<PageProps, State> {
             })
         }
     }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     load = async () => {
         this.stateSet({loading: true});

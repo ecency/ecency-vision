@@ -8,6 +8,7 @@ export enum TransactionType {
     REBLOG = 130,
     DELEGATION = 150,
     REFERRAL = 160,
+    COMMUNITY=170,
     TRANSFER_SENT = 998,
     TRANSFER_INCOMING = 999,
     MINTED = 991

@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 
 import {Button} from "react-bootstrap";
 
@@ -7,6 +7,7 @@ import {ActiveUser} from "../../store/active-user/types";
 import {ToggleType, UI} from "../../store/ui/types";
 import {User} from "../../store/users/types";
 
+import BaseComponent from "../base";
 import Tooltip from "../tooltip";
 import LoginRequired from "../login-required";
 import {error, success} from "../feedback";
@@ -33,13 +34,11 @@ export interface State {
     inProgress: boolean
 }
 
-export class FavoriteBtn extends Component<Props, State> {
+export class FavoriteBtn extends BaseComponent<Props, State> {
     state: State = {
         favorited: false,
         inProgress: false
     }
-
-    _mounted: boolean = true;
 
     componentDidMount() {
         this.detect();
@@ -60,7 +59,7 @@ export class FavoriteBtn extends Component<Props, State> {
     detect = () => {
         const {targetUsername, activeUser} = this.props;
         if (!activeUser) {
-            this.stateSet({bookmarked: false});
+            this.stateSet({favorited: false});
             return;
         }
 
@@ -69,16 +68,6 @@ export class FavoriteBtn extends Component<Props, State> {
             this.stateSet({favorited: r});
         }).finally(() => this.stateSet({inProgress: false}));
     }
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     add = () => {
         const {activeUser, targetUsername} = this.props;

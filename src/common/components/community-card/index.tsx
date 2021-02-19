@@ -14,9 +14,11 @@ import {Community, roleMap, ROLES} from "../../store/communities/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {User} from "../../store/users/types";
 
+import BaseComponent from "../base";
 import UserAvatar from "../user-avatar";
 import ProfileLink from "../profile-link";
 import CommunitySettings from "../community-settings";
+import CommunityRewardsRegistrationDialog from "../community-rewards-registration";
 import ImageUploadDialog from "../image-upload";
 import Tooltip from "../tooltip";
 import {error, success} from "../feedback";
@@ -45,24 +47,12 @@ interface EditPicState {
     inProgress: boolean;
 }
 
-class EditPic extends React.Component<EditPicProps, EditPicState> {
+class EditPic extends BaseComponent<EditPicProps, EditPicState> {
     state: EditPicState = {
         account: null,
         dialog: false,
         inProgress: false
     }
-
-    _mounted: boolean = true;
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     toggleDialog = () => {
         const {dialog} = this.state;
@@ -137,6 +127,8 @@ interface Props {
     account: Account;
     users: User[];
     activeUser: ActiveUser | null;
+    signingKey: string;
+    setSigningKey: (key: string) => void;
     addAccount: (data: Account) => void;
     addCommunity: (data: Community) => void;
 }
@@ -149,6 +141,7 @@ interface DialogInfo {
 interface State {
     info: DialogInfo | null;
     settings: boolean;
+    rewards: boolean;
     useNewImage: boolean;
 }
 
@@ -156,20 +149,9 @@ export class CommunityCard extends Component<Props, State> {
     state: State = {
         info: null,
         settings: false,
+        rewards: false,
         useNewImage: false
     }
-
-    _mounted: boolean = true;
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
         return !isEqual(this.props.community, nextProps.community)
@@ -188,8 +170,13 @@ export class CommunityCard extends Component<Props, State> {
         this.setState({settings: !settings});
     }
 
+    toggleRewards = () => {
+        const {rewards} = this.state;
+        this.setState({rewards: !rewards});
+    }
+
     render() {
-        const {info, settings, useNewImage} = this.state;
+        const {info, settings, rewards, useNewImage} = this.state;
         const {community, activeUser, users, account} = this.props;
 
         const role = community.team.find(x => x[0] === activeUser?.username);
@@ -228,7 +215,7 @@ export class CommunityCard extends Component<Props, State> {
             <div className="community-card">
                 <div className="community-avatar">
                     {canUpdatePic && (<EditPic {...this.props} account={account as FullAccount} activeUser={activeUser!} onUpdate={() => {
-                        this.stateSet({useNewImage: true});
+                        this.setState({useNewImage: true});
                     }}/>)}
                     {UserAvatar({
                         ...this.props,
@@ -285,7 +272,12 @@ export class CommunityCard extends Component<Props, State> {
                         </p>)}
                     </div>
                 )}
-
+                {roleInTeam === ROLES.OWNER.toString() && (
+                    <p className="community-rewards"><a href="#" onClick={(e) => {
+                        e.preventDefault();
+                        this.toggleRewards();
+                    }}>{_t('community-card.community-rewards')}</a></p>
+                )}
                 {info && (
                     <Modal show={true} centered={true} onHide={() => {
                         this.toggleInfo(null);
@@ -298,6 +290,8 @@ export class CommunityCard extends Component<Props, State> {
                 )}
 
                 {settings && <CommunitySettings {...this.props} activeUser={activeUser!} community={community} onHide={this.toggleSettings}/>}
+
+                {rewards && <CommunityRewardsRegistrationDialog  {...this.props} activeUser={activeUser!} community={community} onHide={this.toggleRewards}/>}
             </div>
         );
     }
@@ -310,6 +304,8 @@ export default (p: Props) => {
         community: p.community,
         account: p.account,
         users: p.users,
+        signingKey: p.signingKey,
+        setSigningKey: p.setSigningKey,
         activeUser: p.activeUser,
         addAccount: p.addAccount,
         addCommunity: p.addCommunity

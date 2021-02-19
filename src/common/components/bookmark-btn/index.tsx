@@ -1,9 +1,10 @@
-import React, {Component} from "react";
+import React from "react";
 import {Entry} from "../../store/entries/types";
 import {ActiveUser} from "../../store/active-user/types";
 
 import {getBookmarks, addBookmark, deleteBookmark} from "../../api/private";
 
+import BaseComponent from "../base";
 import LoginRequired from "../login-required";
 import {User} from "../../store/users/types";
 import {ToggleType, UI} from "../../store/ui/types";
@@ -33,13 +34,11 @@ export interface State {
     inProgress: boolean
 }
 
-export class BookmarkBtn extends Component<Props> {
+export class BookmarkBtn extends BaseComponent<Props> {
     state: State = {
         bookmarkId: null,
         inProgress: false
     }
-
-    _mounted: boolean = true;
 
     componentDidMount() {
         this.detect();
@@ -74,16 +73,6 @@ export class BookmarkBtn extends Component<Props> {
             }
         }).finally(() => this.stateSet({inProgress: false}));
     }
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     add = () => {
         const {activeUser, entry} = this.props;

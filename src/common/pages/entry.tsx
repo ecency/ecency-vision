@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from "react";
+import React, {Fragment} from "react";
 
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
@@ -26,6 +26,7 @@ import {FullAccount} from "../store/accounts/types";
 
 import {makePath as makeEntryPath} from "../components/entry-link";
 
+import BaseComponent from "../components/base";
 import ProfileLink from "../components/profile-link";
 import UserAvatar from "../components/user-avatar";
 import Tag from "../components/tag";
@@ -54,6 +55,7 @@ import NotFound from "../components/404";
 import ScrollToTop from "../components/scroll-to-top";
 import EntryBodyExtra from "../components/entry-body-extra";
 import Tooltip from "../components/tooltip";
+import EntryTipBtn from "../components/entry-tip-btn";
 
 import * as bridgeApi from "../api/bridge";
 import {comment, formatError} from "../api/operations";
@@ -98,14 +100,12 @@ interface State {
     showIfHidden: boolean;
 }
 
-class EntryPage extends Component<Props, State> {
+class EntryPage extends BaseComponent<Props, State> {
     state: State = {
         loading: false,
         replying: false,
         showIfHidden: false,
     };
-
-    _mounted: boolean = true;
 
     componentDidMount() {
         this.ensureEntry();
@@ -117,16 +117,6 @@ class EntryPage extends Component<Props, State> {
             this.ensureEntry();
         }
     }
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (obj: {}, cb = undefined) => {
-        if (this._mounted) {
-            this.setState(obj, cb);
-        }
-    };
 
     ensureEntry = () => {
         const {match, addEntry, updateEntry, addCommunity, activeUser} = this.props;
@@ -220,13 +210,18 @@ class EntryPage extends Component<Props, State> {
         window.open(u, "_blank");
     };
 
-    afterVote = (votes: EntryVote[]) => {
+    afterVote = (votes: EntryVote[], estimated: number) => {
         const entry = this.getEntry()!;
         const {updateEntry} = this.props;
 
+        const {payout} = entry;
+        const newPayout = payout + estimated;
+
         updateEntry({
             ...entry,
-            active_votes: votes
+            active_votes: votes,
+            payout: newPayout,
+            pending_payout_value: String(newPayout)
         });
     };
 
@@ -555,6 +550,11 @@ class EntryPage extends Component<Props, State> {
                                                 ...this.props,
                                                 entry
                                             })}
+                                            {EntryTipBtn({
+                                                ...this.props,
+                                                entry
+                                            })}
+
                                             <div className="sub-menu">
                                                 {global.isElectron && (
                                                     <Tooltip content={_t("entry.address-copy")}>

@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, Fragment} from "react";
 
 import moment from "moment";
 
@@ -11,12 +11,17 @@ import {DynamicProps} from "../../store/dynamic-props/types";
 import {Transactions} from "../../store/transactions/types";
 import {Points, PointTransaction, TransactionType} from "../../store/points/types"
 
+import BaseComponent from "../base";
 import DropDown from "../dropdown";
 import Transfer from "../transfer";
 import Tooltip from "../tooltip";
 import Purchase from "../purchase";
 import Promote from "../promote";
 import Boost from "../boost";
+
+import WalletMenu from "../wallet-menu";
+import EntryLink from "../entry-link";
+
 import {success, error} from "../feedback";
 
 import {_t} from "../../i18n";
@@ -34,15 +39,36 @@ import {
     starOutlineSvg,
     ticketSvg,
     gpsSvg,
+    accountGroupSvg,
     compareHorizontalSvg,
     cashSvg
 } from "../../img/svg";
-import WalletMenu from "../wallet-menu";
 
 
-export class TransactionRow extends Component<{ tr: PointTransaction }> {
+export const formatMemo = (memo: string, history: History) => {
+
+    return memo.split(" ").map(x => {
+        if (x.indexOf("/") >= 3) {
+            const [author, permlink] = x.split("/");
+            return <Fragment key={x}>{EntryLink({
+                history: history,
+                entry: {category: "ecency", author: author.replace("@", ""), permlink},
+                children: <span>{"@"}{x}</span>
+            })}{" "}</Fragment>
+        }
+
+        return <Fragment key={x}>{x}{" "}</Fragment>;
+    });
+}
+
+interface TransactionRowProps {
+    history: History;
+    tr: PointTransaction;
+}
+
+export class TransactionRow extends Component<TransactionRowProps> {
     render() {
-        const {tr} = this.props;
+        const {tr, history} = this.props;
 
         let icon: JSX.Element | null = null;
         let lKey = '';
@@ -85,6 +111,10 @@ export class TransactionRow extends Component<{ tr: PointTransaction }> {
                 icon = gpsSvg;
                 lKey = 'referral';
                 break;
+            case TransactionType.COMMUNITY:
+                icon = accountGroupSvg;
+                lKey = 'community';
+                break;
             case TransactionType.TRANSFER_SENT:
                 icon = compareHorizontalSvg;
                 lKey = 'transfer-sent';
@@ -116,10 +146,9 @@ export class TransactionRow extends Component<{ tr: PointTransaction }> {
                         {dateRelative}
                     </div>
                 </div>
-
                 {tr.memo && (
                     <div className="transaction-details user-selectable">
-                        {tr.memo}
+                        {formatMemo(tr.memo, history)}
                     </div>
                 )}
                 <div className="transaction-numbers">{tr.amount}</div>
@@ -151,7 +180,7 @@ interface State {
     transfer: boolean;
 }
 
-export class WalletEcency extends Component<Props, State> {
+export class WalletEcency extends BaseComponent<Props, State> {
     state: State = {
         claiming: false,
         purchase: false,
@@ -159,18 +188,6 @@ export class WalletEcency extends Component<Props, State> {
         boost: false,
         transfer: false
     }
-
-    _mounted: boolean = true;
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     claim = (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
@@ -327,6 +344,12 @@ export class WalletEcency extends Component<Props, State> {
                                                 <span className="reward-num">5</span>
                                             </div>
                                         </Tooltip>
+                                        <Tooltip content={_t('points.community-desc')}>
+                                            <div className="point-reward-type">
+                                                {accountGroupSvg}
+                                                <span className="reward-num">20</span>
+                                            </div>
+                                        </Tooltip>
                                     </div>
                                 </div>
                                 {isMyPage && (
@@ -342,7 +365,7 @@ export class WalletEcency extends Component<Props, State> {
                                         <h2>{_t('points.history')}</h2>
                                     </div>
                                     <div className="transaction-list-body">
-                                        {points.transactions.map(tr => <TransactionRow tr={tr} key={tr.id}/>)}
+                                        {points.transactions.map(tr => <TransactionRow history={this.props.history} tr={tr} key={tr.id}/>)}
                                     </div>
                                 </div>
                             )}

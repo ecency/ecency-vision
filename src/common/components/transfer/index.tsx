@@ -16,6 +16,7 @@ import {Account} from '../../store/accounts/types'
 import {ActiveUser} from "../../store/active-user/types";
 import {Transactions} from "../../store/transactions/types";
 
+import BaseComponent from "../base";
 import LinearProgress from "../linear-progress";
 import UserAvatar from "../user-avatar";
 import SuggestionList from "../suggestion-list";
@@ -159,11 +160,10 @@ const pureState = (props: Props): State => {
     }
 }
 
-export class Transfer extends Component<Props, State> {
+export class Transfer extends BaseComponent<Props, State> {
     state: State = pureState(this.props);
 
     _timer: any = null;
-    _mounted: boolean = true;
 
     componentDidMount() {
         this.checkAmount();
@@ -177,16 +177,6 @@ export class Transfer extends Component<Props, State> {
             this.checkAmount();
         }
     }
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     formatNumber = (num: number | string, precision: number) => {
         const format = `0.${"0".repeat(precision)}`;
@@ -736,7 +726,7 @@ export class Transfer extends Component<Props, State> {
                             <Col sm="10" className="d-flex align-items-center">
                                 <InputGroup>
                                     <InputGroup.Prepend>
-                                        <InputGroup.Text>@</InputGroup.Text>
+                                        <InputGroup.Text>#</InputGroup.Text>
                                     </InputGroup.Prepend>
                                     <Form.Control
                                         type="text"

@@ -1,9 +1,10 @@
-import React, {Component} from "react";
+import React from "react";
 import {History} from "history";
 
 import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 
+import BaseComponent from "../base";
 import UserAvatar from "../user-avatar";
 import ProfileLink from "../profile-link"
 
@@ -30,7 +31,7 @@ interface State {
     loading: boolean
 }
 
-export class LeaderBoard extends Component <Props, State> {
+export class LeaderBoard extends BaseComponent<Props, State> {
 
     state: State = {
         data: [],
@@ -38,21 +39,9 @@ export class LeaderBoard extends Component <Props, State> {
         loading: true
     }
 
-    _mounted: boolean = true;
-
     componentDidMount() {
         this.fetch();
     }
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     fetch = () => {
         const {period} = this.state;
@@ -73,7 +62,7 @@ export class LeaderBoard extends Component <Props, State> {
                 return {
                     label: _t(`leaderboard.period-${f}`),
                     onClick: () => {
-                        this.stateSet({period: f});
+                        this.stateSet({period: f as LeaderBoardDuration});
                         this.fetch();
                     }
                 }

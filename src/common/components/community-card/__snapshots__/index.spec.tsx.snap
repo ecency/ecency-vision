@@ -323,5 +323,15 @@ exports[`(2) Should show edit buttons with nsfw label 1`] = `
       </a>
     </p>
   </div>
+  <p
+    className="community-rewards"
+  >
+    <a
+      href="#"
+      onClick={[Function]}
+    >
+      Community Rewards
+    </a>
+  </p>
 </div>
 `;

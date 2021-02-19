@@ -38,16 +38,15 @@ exports[`(1) curation_reward 1`] = `
   <div
     className="transaction-details"
   >
-    <span>
-      <a
-        href="/curation/@user2/hquwxmvg"
-      >
-        @
-        user2
-        /
-        hquwxmvg
-      </a>
-    </span>
+    <a
+      href="/ecency/@user2/hquwxmvg"
+      onClick={[Function]}
+    >
+      @
+      user2
+      /
+      hquwxmvg
+    </a>
   </div>
 </div>
 `;
@@ -100,16 +99,15 @@ exports[`(2) author_reward 1`] = `
   <div
     className="transaction-details"
   >
-    <span>
-      <a
-        href="/reward/@user1/lorem-ipsum-dolor"
-      >
-        @
-        user1
-        /
-        lorem-ipsum-dolor
-      </a>
-    </span>
+    <a
+      href="/ecency/@user1/lorem-ipsum-dolor"
+      onClick={[Function]}
+    >
+      @
+      user1
+      /
+      lorem-ipsum-dolor
+    </a>
   </div>
 </div>
 `;
@@ -157,21 +155,20 @@ exports[`(3) comment_benefactor_reward 1`] = `
   <div
     className="transaction-details"
   >
-    <span>
-      <a
-        href="/reward/@xxxthorxxx/re-nonameslefttouse-2020530t135919321z"
-      >
-        @
-        xxxthorxxx
-        /
-        re-nonameslefttouse-2020530t135919321z
-      </a>
-    </span>
+    <a
+      href="/ecency/@xxxthorxxx/re-nonameslefttouse-2020530t135919321z"
+      onClick={[Function]}
+    >
+      @
+      xxxthorxxx
+      /
+      re-nonameslefttouse-2020530t135919321z
+    </a>
   </div>
 </div>
 `;
 
-exports[`(4) comment_benefactor_reward 1`] = `
+exports[`(4) claim_reward_balance 1`] = `
 <div
   className="transaction-list-item"
 >

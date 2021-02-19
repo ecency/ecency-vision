@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 
 import {Entry} from "../../store/entries/types";
 
@@ -6,6 +6,7 @@ import Tooltip from "../tooltip";
 
 import {_t} from "../../i18n";
 
+import BaseComponent from "../base";
 import EditHistory from "../edit-history";
 
 import {historySvg} from "../../img/svg";
@@ -20,13 +21,11 @@ interface State {
     dialog: boolean
 }
 
-export default class EditHistoryBtn extends Component<Props, State> {
+export default class EditHistoryBtn extends BaseComponent<Props, State> {
     state: State = {
         visible: false,
         dialog: false
     }
-
-    _mounted: boolean = true;
 
     componentDidMount() {
         this.detect();
@@ -38,16 +37,6 @@ export default class EditHistoryBtn extends Component<Props, State> {
             this.detect();
         }
     }
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     detect = () => {
         const {entry} = this.props;

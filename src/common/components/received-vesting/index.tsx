@@ -8,6 +8,7 @@ import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
 
+import BaseComponent from "../base";
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 import Tooltip from "../tooltip";
@@ -38,26 +39,14 @@ interface State {
     data: ReceivedVestingShare[];
 }
 
-export class List extends Component<Props, State> {
+export class List extends BaseComponent<Props, State> {
     state: State = {
         loading: false,
         data: [],
     };
 
-    _mounted: boolean = true;
-
     componentDidMount() {
         this.fetch().then();
-    };
-
-    componentWillUnmount() {
-        this._mounted = false;
-    };
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
     };
 
     fetch = () => {

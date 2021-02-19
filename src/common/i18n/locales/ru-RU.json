@@ -143,6 +143,9 @@
     "confirm-ok": "Зарепостить",
     "success": "Репостнуто!"
   },
+  "entry-tip": {
+    "title": "Tip"
+  },
   "entry-payout": {
     "pending-payout": "Ожидаемая выплата",
     "promoted": "Продвигаемое",
@@ -244,6 +247,7 @@
     "team": "Руководство",
     "edit": "Изменить настройки",
     "edit-team": "Изменить роли",
+    "community-rewards": "Community Rewards",
     "profile-image": "Обложка профиля сообщества",
     "profile-image-edit": "Изменить обложку профиля",
     "profile-image-updated": "Обложка профиля обновлена!"
@@ -289,7 +293,7 @@
     "username-available": "Доступно.",
     "username-not-available": "Недоступно.",
     "username-wrong-format": "Неверный формат. Требуется формат hive-1xxxxx.",
-    "password": "Пароль владельца",
+    "password": "Master password",
     "confirmation": "Я надёжно сохранил имя владельца и пароль.",
     "submit": "Создать сообщество",
     "progress-account": "Создание учетной записи...",
@@ -298,6 +302,13 @@
     "progress-props": "Обновление настроек сообщества...",
     "done": "Ваше сообщество создано 🎉",
     "done-link-label": "Начните работу."
+  },
+  "community-rewards-registration": {
+    "body-text": "Register your community to get Ecency POINTS",
+    "btn-next-label": "Register",
+    "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.",
+    "conflict-body-text": "This community is already registered.",
+    "min-required-body-text": "Minimum 100 subscribers required to register."
   },
   "pin-btn": {
     "pin": "Закрепить",
@@ -395,10 +406,11 @@
     "comment-desc": "Каждый коммент помогает набирать аудиторию, завязывает дружбу и приносит 5 очков.",
     "checkin-desc": "Нахождение на Ecency дает вам 0.25 очков и помогает оставаться на связи с вашими друзьями.",
     "vote-desc": "Голосуя, вы награждаете других и выказываете своё уважение, а также получаете 0.01 х очки силы.",
-    "reblog-desc": "  Делитесь постами с друзьями и получайте по 1 очку.",
+    "reblog-desc": "Share what post you like with your friends and earn 1 points.",
     "login-desc": "При первой авторизации в приложении вы получите 100 очков.",
     "checkin-extra-desc": "Активное использование приложения даёт вам дополнительный шанс получить 10 очков.",
     "delegation-desc": "Вы можете заработать ~50 очков в день за каждое делегирование в 1000HP.",
+    "community-desc": "Register your community to get 20 points for per post published with Ecency applications.",
     "history": "История",
     "post-list-desc": "Очки за пост",
     "comment-list-desc": "Очки за комментарий",
@@ -411,6 +423,7 @@
     "transfer-incoming-list-desc": "Перевод с {{n}}",
     "delegation-list-desc": "Награда за делегирование",
     "referral-list-desc": "Реферальная награда",
+    "community-list-desc": "Community reward",
     "transfer": "Подарить кому-то",
     "claim-ok": "Очки зачислены",
     "promote": "Продвинуть",
@@ -794,6 +807,11 @@
     "label-check": "I have securely saved my generated password",
     "updated": "Password updated successfully!"
   },
+  "add-image": {
+    "title": "Add Image",
+    "text-label": "Image Text",
+    "link-label": "Image Link"
+  },
   "scroll-to-top": {
     "title": "Scroll to Top"
   },
@@ -823,7 +841,7 @@
       "how-ecency-works-header": "How does Ecency work?",
       "how-ecency-works-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjuZ3ksaZqEjfd9GadyKFE4bT7UP8qM1sF5W6U3cst4ekDsXfrQdcrjtdz6b5Ye2AfWNwGA5f8QqVXmed6NRfg1U?format=match&mode=fit\"/></p><p>Ecency stores and reads data from the blockchain, and thus data is accessible and uncensored. Ecency rewards content creators with built-in incentive mechanism of blockchain, with tokens (HIVE, HIVE DOLLARS, HIVE POWER) as well as Points. Tokens can be purchased and sold in major cryptocurrency exchanges (e.g. Binance, Bittrex). Points could be utilized within platform and traded for goods, services.</p>",
       "how-to-join-header": "How to join Ecency?",
-      "how-to-join-body": "<p>Go to <a class=\"push-link\" href=\"/signup?referral=ecency\">https://ecency.com/signup?referral=ecency</a> and create an account. After signup you will receive email with further instructions. Your password is your master key to your account. Please store it safely, if you loose your password, you ultimately loose access to your account and your funds. Accounts cannot be deactivated or deleted, account names can not be changed as well. The account along with all of its activity is permanently stored in the blockchain. Without password, accounts cannot be restored, store your keys safely.</p>",
+      "how-to-join-body": "<p>Go to <a class=\"push-link\" href=\"/signup?referral=ecency\">https://ecency.com/signup?referral=ecency</a> and create an account. After signup you will receive email with further instructions. Your password is your master password to your account. Please store it safely, if you loose your password, you ultimately loose access to your account and your funds. Accounts cannot be deactivated or deleted, account names can not be changed as well. The account along with all of its activity is permanently stored in the blockchain. Without password, accounts cannot be restored, store your keys safely.</p>",
       "how-to-signin-header": "How to sign in to Ecency?",
       "how-to-signin-body": "<p><img src=\"https://images.ecency.com/p/7258xSVeJbKmTr9Z4jhbPhjS9pMWA2mTwBMDbXqk9G9wdMw2bwR4hXqRQt9S7UBFrBAWCYWddjn3G34ETv5KWB5KGmuZ8ixBB9oKHTFvjjnTkRLp4ttrFQtpgtNnRUEA9NtmyFmgyuuK4?format=match&mode=fit\"/></p><p>You can sign-in to Ecency by using your Username and Master password or by using Active Private Keys. We take security very seriously, that's why we never store your private keys, on mobile app they are encrypted with extra PIN code of your choice, on website they are never stored. You can also use <a href=\"https://hivesigner.com\" target=\"_blank\" rel=\"noopener noreferrer\">Hivesigner OAuth2</a> authentication service to easily login, manage and perform actions.</p>",
       "how-referrals-work-header": "How referral system work on Ecency?",

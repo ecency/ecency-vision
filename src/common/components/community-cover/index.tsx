@@ -22,6 +22,7 @@ import {
 
 setProxyBase(defaults.imageServer);
 
+import BaseComponent from "../base";
 import SubscriptionBtn from "../subscription-btn";
 import CommunityPostBtn from "../community-post-btn";
 import Tooltip from "../tooltip";
@@ -52,23 +53,11 @@ interface EditCoverImageState {
     inProgress: boolean;
 }
 
-class EditCoverImage extends React.Component<EditCoverImageProps, EditCoverImageState> {
+class EditCoverImage extends BaseComponent<EditCoverImageProps, EditCoverImageState> {
     state: EditCoverImageState = {
         dialog: false,
         inProgress: false
     }
-
-    _mounted: boolean = true;
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     toggleDialog = () => {
         const {dialog} = this.state;

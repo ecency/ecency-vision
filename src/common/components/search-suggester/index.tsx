@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 
 import {History, Location} from "history";
 
@@ -6,7 +6,7 @@ import {Global} from "../../store/global/types";
 import {Community} from "../../store/communities/types";
 import {TrendingTags} from "../../store/trending-tags/types";
 
-
+import BaseComponent from "../base";
 import UserAvatar from "../user-avatar";
 import SuggestionList from "../suggestion-list";
 import {makePath as makePathTag} from "../tag";
@@ -35,7 +35,7 @@ interface State {
     mode: string;
 }
 
-export class SearchSuggester extends Component<Props, State> {
+export class SearchSuggester extends BaseComponent<Props, State> {
     state: State = {
         suggestions: [],
         loading: false,
@@ -43,15 +43,6 @@ export class SearchSuggester extends Component<Props, State> {
     };
 
     _timer: any = null;
-    _mounted: boolean = true;
-
-    componentDidMount() {
-
-    }
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
 
     componentDidUpdate(prevProps: Readonly<Props>): void {
         if (this.props.location.pathname !== prevProps.location.pathname) {
@@ -67,12 +58,6 @@ export class SearchSuggester extends Component<Props, State> {
             this.trigger();
         }
     }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     fetchSuggestions = () => {
         const {value, trendingTags} = this.props;
@@ -182,7 +167,6 @@ export class SearchSuggester extends Component<Props, State> {
                     },
                     onSelect: (i: string) => {
                         this.accountSelected(i.replace("@", ""));
-                        this.stateSet({query: ""});
                     },
                 };
                 break;
@@ -191,7 +175,6 @@ export class SearchSuggester extends Component<Props, State> {
                     header: _t("search.header-tag"),
                     onSelect: (i: string) => {
                         this.tagSelected(i.replace("#", ""));
-                        this.stateSet({query: ""});
                     },
                 };
                 break;
@@ -203,7 +186,6 @@ export class SearchSuggester extends Component<Props, State> {
                     },
                     onSelect: (i: Community) => {
                         this.communitySelected(i);
-                        this.stateSet({query: ""});
                     },
                 };
                 break;

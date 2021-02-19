@@ -9,6 +9,7 @@ import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
 
+import BaseComponent from "../base";
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 import LinearProgress from "../linear-progress";
@@ -42,27 +43,15 @@ interface State {
     voters: Voter[]
 }
 
-export class ProposalVotesDetail extends Component<Props, State> {
+export class ProposalVotesDetail extends BaseComponent<Props, State> {
     state: State = {
         loading: true,
         voters: []
     }
 
-    _mounted: boolean = true;
-
     componentDidMount() {
         this.load();
     }
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     load = () => {
         const {proposal, dynamicProps} = this.props;

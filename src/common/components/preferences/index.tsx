@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 
 import i18n from "i18next";
 
@@ -6,6 +6,7 @@ import {Global} from "../../store/global/types";
 
 import {Col, Form, FormControl} from "react-bootstrap";
 
+import BaseComponent from "../base";
 import {success} from "../feedback";
 
 import {_t} from "../../i18n";
@@ -30,22 +31,10 @@ interface State {
     inProgress: boolean
 }
 
-export class Preferences extends Component<Props, State> {
+export class Preferences extends BaseComponent<Props, State> {
     state: State = {
         inProgress: false,
     }
-
-    _mounted: boolean = true;
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     notificationsChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
         const {muteNotifications, unMuteNotifications} = this.props;

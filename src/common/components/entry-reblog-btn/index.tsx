@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 
 import {Entry} from "../../store/entries/types";
 import {Account} from "../../store/accounts/types";
@@ -7,6 +7,7 @@ import {ActiveUser} from "../../store/active-user/types";
 import {Reblog} from "../../store/reblogs/types";
 import {UI, ToggleType} from "../../store/ui/types";
 
+import BaseComponent from "../base";
 import Tooltip from "../tooltip";
 import LoginRequired from "../login-required";
 import PopoverConfirm from "../popover-confirm";
@@ -38,22 +39,9 @@ interface State {
     inProgress: boolean;
 }
 
-export class EntryReblogBtn extends Component<Props> {
+export class EntryReblogBtn extends BaseComponent<Props> {
     state: State = {
         inProgress: false,
-    };
-
-    _mounted: boolean = true;
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (obj: {}, cb: () => void = () => {
-    }) => {
-        if (this._mounted) {
-            this.setState(obj, cb);
-        }
     };
 
     reblog = () => {

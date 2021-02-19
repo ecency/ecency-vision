@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from "react";
+import React from "react";
 
 import isEqual from "react-fast-compare";
 
@@ -10,6 +10,7 @@ import {Community, roleMap} from "../../store/communities/types";
 import {Subscription} from "../../store/subscriptions/types";
 import {ActiveUser} from "../../store/active-user/types";
 
+import BaseComponent from "../base";
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 import LinearProgress from "../linear-progress";
@@ -46,15 +47,13 @@ interface State {
     accounts: MinifiedAccount[];
 }
 
-export class Subscribers extends Component<Props, State> {
+export class Subscribers extends BaseComponent<Props, State> {
     state: State = {
         loading: true,
         subscribers: [],
         editingSubscriber: null,
         accounts: []
     }
-
-    _mounted: boolean = true;
 
     componentDidMount() {
         this.fetch().then();
@@ -66,16 +65,6 @@ export class Subscribers extends Component<Props, State> {
             this.fetch().then();
         }
     }
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     fetch = () => {
         const {community} = this.props;

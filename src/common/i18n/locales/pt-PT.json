@@ -143,6 +143,9 @@
     "confirm-ok": "Reblogar",
     "success": "Reblogado!"
   },
+  "entry-tip": {
+    "title": "Dica"
+  },
   "entry-payout": {
     "pending-payout": "Pagamento Pendente",
     "promoted": "Promovido",
@@ -244,6 +247,7 @@
     "team": "Liderança",
     "edit": "Editar configurações",
     "edit-team": "Editar funções",
+    "community-rewards": "Community Rewards",
     "profile-image": "Imagem de perfil da comunidade",
     "profile-image-edit": "Editar imagem do perfil",
     "profile-image-updated": "Imagem de perfil atualizada!"
@@ -289,7 +293,7 @@
     "username-available": "Disponível.",
     "username-not-available": "Não disponível.",
     "username-wrong-format": "Não é um formato válido. É necessário um formato hive-1xxxxx.",
-    "password": "Senha do proprietário",
+    "password": "Master password",
     "confirmation": "Eu guardei seguramente o meu utilizador e password.",
     "submit": "Criar Comunidade",
     "progress-account": "Criar conta...",
@@ -298,6 +302,13 @@
     "progress-props": "Actualizando as configuraões das comunidade...",
     "done": "A sua comunidade foi criada 🎉",
     "done-link-label": "Vamos começar."
+  },
+  "community-rewards-registration": {
+    "body-text": "Register your community to get Ecency POINTS",
+    "btn-next-label": "Register",
+    "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.",
+    "conflict-body-text": "This community is already registered.",
+    "min-required-body-text": "Minimum 100 subscribers required to register."
   },
   "pin-btn": {
     "pin": "Fixar",
@@ -395,10 +406,11 @@
     "comment-desc": "Cada comentário que faz ajuda a aumentar seu público e a fazer amizades, mas também ganha 5 pontos.",
     "checkin-desc": "Fazendo o check-in na Ecency dá 0.25 pontos a você e ajuda você a se conectar com seus amigos.",
     "vote-desc": "Ao votar, você recompensa outros criadores e mostra sua apreciação, mas também ganha 0,01 x pontos de peso de voto.",
-    "reblog-desc": "  Compartilhe o que gosta com seus amigos e ganhe 1 pontos.",
+    "reblog-desc": "Share what post you like with your friends and earn 1 points.",
     "login-desc": "Quando você faz login em Ecency você tem direito de ganhar 100 pontos automaticamente.",
     "checkin-extra-desc": "O uso consistente da aplicação dá mais chances de ganhar mais 10 pontos, seja mais ativo e ganhe mais.",
     "delegation-desc": "Você pode ganhar ~50 pontos por dia para cada delegação de 1000HP.",
+    "community-desc": "Register your community to get 20 points for per post published with Ecency applications.",
     "history": "Hitórico",
     "post-list-desc": "Pontos para postar",
     "comment-list-desc": "Pontos por comentário",
@@ -411,6 +423,7 @@
     "transfer-incoming-list-desc": "Transferir de {{n}}",
     "delegation-list-desc": "Recompensa da Delegação",
     "referral-list-desc": "Recompensa de referência",
+    "community-list-desc": "Community reward",
     "transfer": "Presente para alguém",
     "claim-ok": "Pontos reivindicados",
     "promote": "Promover",
@@ -794,6 +807,11 @@
     "label-check": "Eu guardei com segurança minha nova senha gerada",
     "updated": "Senha atualizada com sucesso!"
   },
+  "add-image": {
+    "title": "Adicionar imagem",
+    "text-label": "Texto da Imagem",
+    "link-label": "Link da Imagem"
+  },
   "scroll-to-top": {
     "title": "Ir para o topo"
   },
@@ -816,14 +834,14 @@
       "what-is-ecency-body": "<p>A Ecency é uma <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">rede social</a> baseada em blockchain - alimentada pela rede da <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>A Ecency é a casa de recompensastes comunidades com liberdade de expressão, onde criadores de conteúdo são recompensados pelo seu trabalho.</p><p>O projeto foi fundado por <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> em agosto de 2016, como uma rede social alternativa e incensurável, controlada pelos usuários, imutável e de código aberto. Atualmente há <a class=\"push-link\" href=\"/contributors\">muitos colaboradores voluntários e independentes</a> desejando fortalecer nossa visão e contribuir para o crescimento do espírito da liberdade de expressão.</p><p>A Ecency contribui para a integração em massa da tecnologia Blockchain, para que usuários sejam pagos por seu tempo, recursos e aprendam enquanto desfrutam dos aspectos sociais derivados da blockchain. Através do uso fácil e simples, os usuários não apenas aprendem, mas também se tornam inovadores e investidores da nova internet.</p>",
       "what-is-hive-header": "O que é a Hive blockchain?",
       "what-is-hive-body": "<p>Hive é uma blockchain projetada para ser rápida, tranquila, descentralizada e não censurada para a Web3.0 aplicações, com recursos internos onde pessoas interessdas podem ganhar recompensas participando, curando, jogando, negociando - tudo sem qualquer intermediário (descentralizado). Tokens na blockchain da Hive chamado HIVE, HIVE DOLARS, HIVE POWER.</p>",
-      "what-is-difference-header": "What's the difference from other Social Networks?",
-      "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\"/></p><p>The primary difference, Ecency is based on a blockchain which means content is immutable and uncensorable. You own your community and account, nobody but you have full control of your data. Empowering true free speech. Ecency is also opensource, rewarding and innovative, built and owned by users. Aspire for greatness!</p>",
+      "what-is-difference-header": "Qual a diferença das outras Redes Sociais?",
+      "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\"/></p><p>A maior diferença é que a Ecency é conectada à blockchain da Hive, o que significa que o conteúdo é imutável e incensurável. Você é dono da sua comunidade e conta, e ninguém além de você terá total acesso a seus dados. Fortalecendo de verdade a liberdade de expressão. A Ecency possui código aberto. É inovadora, sendo pertencente e construída pelos seus próprios usuários. Pense grande!</p>",
       "why-choose-ecency-header": "Por que eu escolheria a Ecency?",
       "why-choose-ecency-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjrzJAcJ4DvxvtqoPdzS9Aygf4MZ1PeE4goH6zWaeEFvafr9vGXWuou67Pbn44GweMyHV5DupM5q1cRvU85qdver?format=match&mode=fit\"/></p><p>Recursos sob medida, criados para facilitar você a criar e inspirar sua audiência e comunidade. O aplicativo móvel dando a você a solução em movimento. No aplicativo para computador, encontre sempre conteúdos incensensuráveis diretamente da blockchain, alcançando à milhares de leitores ao redor do mundo com o melhor conteúdo nos buscadores da internet. Segurança com tecnologia de ponta, mantendo suas chaves privadas sempre encriptadas e fora do alcance de pessoas mal-intencionadas. Um site lindo e veloz ajuda você a ser descoberto na internet e ganhar exposição pelo seu conteúdo, obtendo leais seguidores e leitores. Construa sua comunidade com a Ecency hoje mesmo e obtenha todas as vantagens da emergente tecnologia blockchain, associada a conteúdos incensuráveis e de verdadeira liberdade de expressão!</p>",
       "how-ecency-works-header": "Como é que o Ecency funciona?",
       "how-ecency-works-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjuZ3ksaZqEjfd9GadyKFE4bT7UP8qM1sF5W6U3cst4ekDsXfrQdcrjtdz6b5Ye2AfWNwGA5f8QqVXmed6NRfg1U?format=match&mode=fit\"/></p><p>A Ecency lê e mantém as informações da blockchain, mantendo a acessibilidade dos dados de forma incensurável. A Ecency recompensa criadores de conteúdo com de um mecanismo de incentivo pertencente à blockchain, através dos Tokens (HIVE, DÓLARES HIVE, HIVE POWER), e também através de Pontuações. Os Tokens podem ser comprados e vendidos nas maiores corretoras de criptomoedas do mundo (como Binance e Bittrex, por exemplo). Já os Pontos podem ser utilizados dentro da plataforma ou trocados por coisas ou serviços.</p>",
       "how-to-join-header": "Como se juntar à Ecency?",
-      "how-to-join-body": "<p>Acesse <a class=\"push-link\" href=\"/signup?referral=ecency\">https://ecency.com/signup?referral=xmauron3</a> e crie uma conta. Após o cadastro você receberá um e-mail com as instruções. Para acessar sua conta, utilize a chave mestra como senha. Por favor, guarde-a num lugar seguro. Caso a senha seja perdida, você perderá acesso a sua conta e dinheiro. As contas não podem ser desativadas ou deletadas, e os nomes das contas não podem ser trocados. O perfil e atividade da conta são guardados permanentemente na blockchain. Sem a senha, as contas não podem ser restauradas, portanto as guarde com cuidado.</p>",
+      "how-to-join-body": "<p>Go to <a class=\"push-link\" href=\"/signup?referral=ecency\">https://ecency.com/signup?referral=ecency</a> and create an account. After signup you will receive email with further instructions. Your password is your master password to your account. Please store it safely, if you loose your password, you ultimately loose access to your account and your funds. Accounts cannot be deactivated or deleted, account names can not be changed as well. The account along with all of its activity is permanently stored in the blockchain. Without password, accounts cannot be restored, store your keys safely.</p>",
       "how-to-signin-header": "Como entrar na Ecency?",
       "how-to-signin-body": "<p><img src=\"https://images.ecency.com/p/7258xSVeJbKmTr9Z4jhbPhjS9pMWA2mTwBMDbXqk9G9wdMw2bwR4hXqRQt9S7UBFrBAWCYWddjn3G34ETv5KWB5KGmuZ8ixBB9oKHTFvjjnTkRLp4ttrFQtpgtNnRUEA9NtmyFmgyuuK4?format=match&mode=fit\"/></p><p>Você pode fazer login através do seu Nome de Usuário e Chave Mestra. Nós levamos segurança a sério, e por isso nunca guardamos suas chaves privadas. No aplicativo móvel, elas são encriptadas com um código PIN escolhido por você. Já no website, elas nunca são salvas. Você também pode usar o <a href=\"https://hivesigner.com\" target=\"_blank\" rel=\"noopener noreferrer\">Hivesigner OAuth2</a> que é um serviço de autenticação para fazer o login, administrar e realizar suas ações de forma simples e fácil.</p>",
       "how-referrals-work-header": "Como funciona o sistema de referência da Ecency?",
@@ -854,8 +872,8 @@
       "can-link-post-body": "<p>Todo o conteúdo no nosso site é criado pelos usuários. Nós não modificamos ou adicionamos links. Você é livre para contatar o autor do post ou <a href=\"/signup?referral=ecency\" class=\"push-link\">Cadastre-se</a> para abrir seu blog e comunidades, publicar artigos, e divulgar suas páginas criadas de graça.</p>",
       "can-guest-post-header": "É possível visitar a postagem em seu site?",
       "can-guest-post-body": "<p>Postar na Ecency é simples e fácil, <a href=\"/signup?referral=ecency\" class=\"push-link\">Cadastre-se</a> para criar seu próprio blog e comunidades. Comece a postar o seu conteúdo.</p>",
-      "source-label-header": "Content source labels, what are those?",
-      "source-label-body": "<p>Content source helps you understand how content was published. In some cases you may see a third-party client name, which indicates the Content came from a non-Ecency application. Authors sometimes use third-party client applications to manage their blogs, communities. Third-party clients are software tools used by authors and therefore are not affiliated with, nor do they reflect the views of, the content. Content can be directly created by humans or, in some circumstances, automated by an application.</p>",
+      "source-label-header": "O que são cabeçalhos para fonte de conteúdo?",
+      "source-label-body": "<p>Fontes de conteúdo ajudam você a compreender como algo foi publicado. Em alguns casos você pode ver nome de terceiros, o que indica que o Conteúdo veio de uma aplicação externa à Ecency. Autores eventualmente utilizam aplicativos de terceiros para administrar seus blogs e comunidades. Clientes de terceiros são ferramentas de software usadas por autores individuais, e dessa maneira, não estão afiliados com, nem refletem a abrangência dos conteúdos em questão. Materiais podem ser diretamente criados por humanos, ou, em algumas circunstâncias, automatizados por uma aplicação.</p>",
       "how-to-contribute-header": "Como contribuir para a Ecency?",
       "how-to-contribute-body": "<p>Nossos <a href=\"/contributors\" class=\"push-link\">incríveis colaboradores</a> nos ajudando a aprimorar a Ecency. Você pode se tornar parte desse grande movimento se juntando ao nosso time de tradutores<a href=\"https://translate-desktop.ecency.com\" target=\"_blank\" rel=\"noopener noreferrer\">Website</a>, <a href=\"https://translate-mobile.ecency.com\" target=\"_blank\" rel=\"noopener noreferrer\">Mobile</a> ou através da contribuição de idéias, desenvolvimento, design e habilidades em divulgação nas redes sociais. Nos fazemos o possível para apoiar nossos colaboradores!</p>"
     }

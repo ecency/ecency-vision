@@ -969,10 +969,10 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
-"@ecency/render-helper@^2.0.16":
-  version "2.0.16"
-  resolved "https://registry.yarnpkg.com/@ecency/render-helper/-/render-helper-2.0.16.tgz#f67a6ffde8557e2b21d5bebf887570052376f42b"
-  integrity sha512-Km+KhjVSLV10Ogql3Xv8VCKQQmbZwIE54LW2dtn3MezrqZmrGTB4Dcf/8JJAN0CKvKqd17EXsfm/ybHwE+DSZA==
+"@ecency/render-helper@^2.0.17":
+  version "2.0.17"
+  resolved "https://registry.yarnpkg.com/@ecency/render-helper/-/render-helper-2.0.17.tgz#4111f83fb0881ac00598ea17bf0c52b3ea393623"
+  integrity sha512-b/aPql6CcMc7C7a7Lq5pTCXVZaSAwHRJ/ugLskiJ0v9FLDNVm5T/E6DPsYa8noi9gXtqU6qf+XEd8YU/hsbBKQ==
   dependencies:
     he "^1.2.0"
     lru-cache "^5.1.1"
@@ -5033,6 +5033,11 @@ hive-uri@^0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/hive-uri/-/hive-uri-0.2.2.tgz#60d57a77a2c7a6394471f700e436f3f9822c737d"
   integrity sha512-95XH50GsJ+ZuWsLQaNcqYiZ6lmoVDawjG+BCgERqOkoy57b+OgHeNDPeYYY9qkNIi0ThcaYRi6RHVcLbI5EfBw==
+
+hive-uri@^0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/hive-uri/-/hive-uri-0.2.3.tgz#a0d9bc69d44423e660c84dd57fdadb6994481b8d"
+  integrity sha512-q6zp2sh5fjs6cf4T2oHvXt4IFNMmGBTRT5uKuxK/y//5XXCSbOGY/B/DKfK+7hwT8arMhcnbtKdlKarZu2SsXA==
 
 hivesigner@^3.2.1:
   version "3.2.1"
@@ -9346,7 +9351,7 @@ redux-thunk@^2.3.0:
   resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.3.0.tgz#51c2c19a185ed5187aaa9a2d08b666d0d6467622"
   integrity sha512-km6dclyFnmcvxhAcrQV2AkZmPQjzPDjgVlQtR0EQjxZPyJ0BnMf3in1ryuR8A2qU0HldVRfxYXbFSKlI3N7Slw==
 
-redux@^4.0.0:
+redux@4.0.5, redux@^4.0.0:
   version "4.0.5"
   resolved "https://registry.yarnpkg.com/redux/-/redux-4.0.5.tgz#4db5de5816e17891de8a80c424232d06f051d93f"
   integrity sha512-VSz1uMAH24DM6MF72vcojpYPtrTUu3ByVWfPL1nPfVRb5mZVTve5GnNCUV53QM/BZ66xfWrm0CTWoM+Xlz8V1w==

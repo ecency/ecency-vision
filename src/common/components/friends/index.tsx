@@ -7,6 +7,7 @@ import {Modal, Button, FormControl} from "react-bootstrap";
 import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 
+import BaseComponent from "../base";
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 import LinearProgress from "../linear-progress";
@@ -42,7 +43,7 @@ interface ListState {
 
 const loadLimit = 30;
 
-export class List extends Component<ListProps, ListState> {
+export class List extends BaseComponent<ListProps, ListState> {
     state: ListState = {
         loading: false,
         data: [],
@@ -52,21 +53,10 @@ export class List extends Component<ListProps, ListState> {
     };
 
     _timer: any = null;
-    _mounted: boolean = true;
 
     componentDidMount() {
         this.fetchFirst().then();
     }
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     fKey = () => {
         const {mode} = this.props;

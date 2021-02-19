@@ -10,6 +10,7 @@ import {ActiveUser} from "../../store/active-user/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
 import {UI, ToggleType} from "../../store/ui/types";
 
+import BaseComponent from "../base";
 import FormattedCurrency from "../formatted-currency";
 import LoginRequired from "../login-required";
 import {error} from "../feedback";
@@ -40,7 +41,7 @@ interface VoteDialogProps {
     activeUser: ActiveUser;
     dynamicProps: DynamicProps;
     entry: Entry;
-    onClick: (percent: number) => void;
+    onClick: (percent: number, estimated: number) => void;
 }
 
 interface VoteDialogState {
@@ -132,13 +133,15 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     upVoteClicked = () => {
         const {onClick} = this.props;
         const {upSliderVal} = this.state;
-        onClick(upSliderVal);
+        const estimated = Number(this.estimate(upSliderVal).toFixed(3));
+        onClick(upSliderVal, estimated);
     };
 
     downVoteClicked = () => {
         const {onClick} = this.props;
         const {downSliderVal} = this.state;
-        onClick(downSliderVal);
+        const estimated = Number(this.estimate(downSliderVal).toFixed(3));
+        onClick(downSliderVal, estimated);
     };
 
     render() {
@@ -222,7 +225,7 @@ interface Props {
     updateActiveUser: (data?: Account) => void;
     deleteUser: (username: string) => void;
     toggleUIProp: (what: ToggleType) => void;
-    afterVote: (votes: EntryVote[]) => void;
+    afterVote: (votes: EntryVote[], estimated: number) => void;
 }
 
 interface State {
@@ -230,25 +233,13 @@ interface State {
     inProgress: boolean;
 }
 
-export class EntryVoteBtn extends Component<Props, State> {
+export class EntryVoteBtn extends BaseComponent<Props, State> {
     state: State = {
         dialog: false,
         inProgress: false,
     };
 
-    _mounted: boolean = true;
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
-
-    vote = (percent: number) => {
+    vote = (percent: number, estimated: number) => {
         this.toggleDialog();
 
         const {entry, activeUser, afterVote, updateActiveUser} = this.props;
@@ -264,7 +255,7 @@ export class EntryVoteBtn extends Component<Props, State> {
                     {rshares: weight, voter: username}
                 ];
 
-                afterVote(votes);
+                afterVote(votes, estimated);
                 updateActiveUser(); // refresh voting power
             })
             .catch((e) => {

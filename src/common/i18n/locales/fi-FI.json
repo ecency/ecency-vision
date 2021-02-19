@@ -143,6 +143,9 @@
     "confirm-ok": "Jaa",
     "success": "Jaettu!"
   },
+  "entry-tip": {
+    "title": "Vinkki"
+  },
   "entry-payout": {
     "pending-payout": "Odottava tulo",
     "promoted": "Korostettu",
@@ -244,6 +247,7 @@
     "team": "Vetäjät",
     "edit": "Muokkaa asetuksia",
     "edit-team": "Muokkaa rooleja",
+    "community-rewards": "Yhteisöpalkkiot",
     "profile-image": "Yhteisön profiilikuva",
     "profile-image-edit": "Muokkaa profiilikuvaa",
     "profile-image-updated": "Profiilikuva päivitetty!"
@@ -289,7 +293,7 @@
     "username-available": "Saatavilla.",
     "username-not-available": "Ei saatavilla.",
     "username-wrong-format": "Muoto ei kelpaa. hive-1xxxxx muoto vaaditaan.",
-    "password": "Omistajan salasana",
+    "password": "Pääsalasana",
     "confirmation": "Olen tallentanut turvallisesti omistajan käyttäjätunnuksen ja salasanan.",
     "submit": "Luo yhteisö",
     "progress-account": "Luodaan tiliä...",
@@ -298,6 +302,13 @@
     "progress-props": "Päivitetään yhteisöasetuksia...",
     "done": "Yhteisösi luotiin 🎉",
     "done-link-label": "Aloitetaan."
+  },
+  "community-rewards-registration": {
+    "body-text": "Rekisteröi yhteisösi saadaksesi Ecency POINTS",
+    "btn-next-label": "Rekisteröidy",
+    "done-body-text": "Rekisteröinti onnistui. Yhteisösi saa POINT-palkkioita, kun jäsenesi julkaisevat viestejä Ecency -sovelluksilla.",
+    "conflict-body-text": "Tämä yhteisö on jo rekisteröity.",
+    "min-required-body-text": "Vähintään 100 tilaajaa vaaditaan rekisteröintiin."
   },
   "pin-btn": {
     "pin": "Kiinnitä",
@@ -395,10 +406,11 @@
     "comment-desc": "Jokainen kommenttisi helpottaa kasvattamaan yleisöäsi ja lisää kontakteja, sekä saat 5 pistettä.",
     "checkin-desc": "Ecencyyn kirjautumisesta saa 0.25 pistettä ja auttaa pysymään yhteydessä ystäviisi.",
     "vote-desc": "Äänestämällä palkitset muita luojia ja osoitat arvostusta, mutta saat myös 0.01 x äänipainopisteitä.",
-    "reblog-desc": "  Jaa haluamasi julkaisu ystävillesi ja saat 1 pisteen.",
+    "reblog-desc": "Jaa haluamasi julkaisu ystävillesi ja saat 1 pisteen.",
     "login-desc": "Ensikirjauksella Ecencyyn saat automaattisesti 100 pistettä.",
     "checkin-extra-desc": "Toistuva dappin käyttö voi johtaa 10 lisäpisteeseen, ole aktiivinen ja saat enemmän.",
     "delegation-desc": "Voit ansaita ~ 50 pistettä päivässä jokaisesta 1000HP valtuutuksesta.",
+    "community-desc": "Rekisteröi yhteisösi saadaksesi 20 pistettä julkaisuista Ecency-sovelluksessa.",
     "history": "Historia",
     "post-list-desc": "Pisteitä julkaisuista",
     "comment-list-desc": "Pisteitä kommenteista",
@@ -411,6 +423,7 @@
     "transfer-incoming-list-desc": "Siirrä käyttäjältä {{n}}",
     "delegation-list-desc": "Valtuutuspalkkio",
     "referral-list-desc": "Suosittelupalkkio",
+    "community-list-desc": "Yhteisöpalkkio",
     "transfer": "Lahjoita",
     "claim-ok": "Pisteitä lunastettu",
     "promote": "Korosta",
@@ -794,6 +807,11 @@
     "label-check": "Olen tallentanut turvallisesti salasanani",
     "updated": "Salasana on tallennettu onnistuneesti!"
   },
+  "add-image": {
+    "title": "Lisää kuva",
+    "text-label": "Kuvateksti",
+    "link-label": "Kuvan linkki"
+  },
   "scroll-to-top": {
     "title": "Vieritä ylös"
   },
@@ -816,14 +834,14 @@
       "what-is-ecency-body": "<p>Ecency on <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">lohkoketju</a> -pohjainen sosiaalinen verkosto, jonka on mahdollistaa <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency tarjoaa sensuroimattoman, vapaan, rajattoman ja palkitsevan alustan sisällön luojille.</p><p>Hankkeen käynnisti ja perusti Elokuussa 2016 <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> vaihtoehtoiseksi sensuurivapaaksi, käyttäjän hallittavaksi avoimen lähdekoodin sosiaaliseksi verkostoksi. On <a class=\"push-link\" href=\"/contributors\"> monia itsenäisiä vapaaehtoisia osallistujia </a> jotka haluavat pitää sananvapauden vision ja hengen yllä. </p><p>Ecency auttaa ihmisiä opettelemaan Lohkoketjuteknologian käyttöä, jossa käyttäjiä palkitaan ajastaan sekä resursseista oppien lohkoketjun sosiaalisia ominaisuuksia. Käytön helppouden ansiosta käyttäjät oppivat ja tulevat samalla uuden internetin sijoittajiksi ja kehittäjiksi.</p>",
       "what-is-hive-header": "Mikä on Hive-lohkoketju?",
       "what-is-hive-body": "<p>Hive on lohkoketju, joka oli suunniteltu olemaan nopea, ilmainen, hajautettu sekä sensuroimaton alusta Web3- sovelluksineen, joissa on sisäänrakennettuja ominaisuuksia, joissa omistajat voivat ansaita palkintoja panostamalla, tarkastamalla, pelaamalla sekä vaihtamalla - ilman välikäsiä (hajautettu). Hive-lohkoketjun yleisimmät merkit ovat HIVE, HIVE DOLLARS, HIVE POWER.</p>",
-      "what-is-difference-header": "What's the difference from other Social Networks?",
-      "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\"/></p><p>The primary difference, Ecency is based on a blockchain which means content is immutable and uncensorable. You own your community and account, nobody but you have full control of your data. Empowering true free speech. Ecency is also opensource, rewarding and innovative, built and owned by users. Aspire for greatness!</p>",
+      "what-is-difference-header": "Mitä eroa on muihin sosiaalisiin verkostoihin?",
+      "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\"/></p><p>Ensisimmäisenä erona Ecency perustuu lohkoketjuun, mikä tarkoittaa, että sisältö on muuttumaton ja sensuroimaton. Hallitset yhteisöäsi ja tiliäsi, eikä kukaan muu pääse muokkaamaan tietojasi. Oikea sananvapaus on mahdollista. Ecency on myös avointa lähdekoodia, palkitseva ja innovatiivinen, sekä käyttäjien rakentama ja omistama. Tavoittele suuria!</p>",
       "why-choose-ecency-header": "Miksi valitsisin Ecencyn?",
       "why-choose-ecency-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjrzJAcJ4DvxvtqoPdzS9Aygf4MZ1PeE4goH6zWaeEFvafr9vGXWuou67Pbn44GweMyHV5DupM5q1cRvU85qdver?format=match&mode=fit\"/></p><p>Räätälöityjen ominaisuuksien avulla voit luovasti inspiroida yleisöä ja yhteisöjä. Ecency-mobiilisovellusta voit käyttää missä vain. Työpöytäsovelluksella voit löytää varmasti sensuroimatonta sisältöä suoraan lohkoketjusta, sekä nettisivusto saavuttaa tuhansia lukijoita maailman ympäri parhaiten sijoitettujen hakukoneiden sisällöistä. Huipputason turvaominaisuuksien kautta avaimesi pysyvät aina salattuna ja epärehellisten ihmisten ulottumattomissa. Nopea ja kaunis sivusto auttaa löytämistäsi verkossa ja saat näkyvyyttä sisällöllesi, sekä uskollisia seuraajia ja lukijoita. Rakenna yhteisöäsi Ecencyn avulla ja hyödynnä uutta lohkoketjuteknologiaa, sekä sensuroimatonta sisältöä, todellista sananvapautta!</p>",
       "how-ecency-works-header": "Kuinka Ecency toimii?",
       "how-ecency-works-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjuZ3ksaZqEjfd9GadyKFE4bT7UP8qM1sF5W6U3cst4ekDsXfrQdcrjtdz6b5Ye2AfWNwGA5f8QqVXmed6NRfg1U?format=match&mode=fit\"/></p><p>Ecency tallentaa ja lukee tietoja lohkoketjussa, joten data on saatavilla sensuroimattomana. Ecency palkitsee sisällönluojat, joilla on sisäänrakennettu kannustinmekanismi lohkoketjussa, Merkintöineen (HIVE, HIVE DOLLARS, HIVE POWER) sekä pisteineen. Merkkejä voidaan ostaa ja myydä suurissa kryptovaluuttapörsseissä (esim. Binance, Bittrex). Pisteitä voi käyttää järjestelmässä, sekä palveluiden ja hyvikkeiden vaihdossa.</p>",
       "how-to-join-header": "Miten liittyä Ecencyyn?",
-      "how-to-join-body": "<p>Siirry <a class=\"push-link\" href=\"/signup?referral=ecency\">https://ecency.com/signup?referral=ecency</a> luodaksesi tilin. Rekisteröitymisen jälkeen saat sähköpostilla lisäohjeita. Salasanasi on master-avain tilillesi. Säilytä se turvallisesti ja jos olet hukannut salasanasi, olet lopullisesti menettänyt pääsyn tilillesi ja varoihisi. Tilejä ei voi poistaa käytöstä tai hävittää, tilin nimiä ei voi myöskään muuttaa. Tili ja kaikki sen toiminta on tallennettu pysyvästi lohkoketjuun. Ilman salasanaa tilejä ei voi myöskään palauttaa, joten tallenna avaimesi turvallisesti.</p>",
+      "how-to-join-body": "<p>Siirry <a class=\"push-link\" href=\"/signup?referral=ecency\">https://ecency.com/signup?referral=ecency</a> luodaksesi tilin. Rekisteröitymisen jälkeen saat sähköpostilla lisäohjeita. Salasanasi on pääavain tilillesi. Säilytä se turvallisesti ja jos olet hukannut salasanasi, olet lopullisesti menettänyt pääsyn tilillesi ja varoihisi. Tilejä ei voi poistaa käytöstä tai hävittää, tilin nimiä ei voi myöskään muuttaa. Tili ja kaikki sen toiminta on tallennettu pysyvästi lohkoketjuun. Ilman salasanaa tilejä ei voi myöskään palauttaa, joten tallenna avaimesi turvallisesti.</p>",
       "how-to-signin-header": "Miten kirjautua sisään Ecencyyn?",
       "how-to-signin-body": "<p><img src=\"https://images.ecency.com/p/7258xSVeJbKmTr9Z4jhbPhjS9pMWA2mTwBMDbXqk9G9wdMw2bwR4hXqRQt9S7UBFrBAWCYWddjn3G34ETv5KWB5KGmuZ8ixBB9oKHTFvjjnTkRLp4ttrFQtpgtNnRUEA9NtmyFmgyuuK4?format=match&mode=fit\"/></p><p>Voit kirjautua Ecencyyn käyttämällä käyttäjätunnusta ja master-salasanaa tai käyttämällä Aktiivisia Privaattiavaimia. Suhtaudumme turvallisuuteen hyvin vakavasti, siksi emme koskaan säilytä yksityisiä avaimiasi, mobiilisovelluksissa ne on salattu valitsemallasi ylimääräisellä PIN-koodilla, verkkosivustolla niitä ei koskaan ole tallenneta. Voit myös käyttää <a href=\"https://hivesigner.com\" target=\"_blank\" rel=\"noopener noreferrer\">Hivesigner OAuth2</a> -todennuspalvelua kirjautumiseen, sekä hallinnoidaksesi ja suorittaaksesi toimintoja.</p>",
       "how-referrals-work-header": "Kuinka suositusjärjestelmä toimii Ecencyssä?",
@@ -854,8 +872,8 @@
       "can-link-post-body": "<p>Kaikki sivustollamme oleva sisältö on käyttäjien luomaa, emmekä voi muokata tai lisätä käänteislinkkejä. Ota yhteyttä julkaisun tekijään tai <a href=\"/signup?referral=ecency\" class=\"push-link\">Rekisteröidy</a> avataksesi oman blogisi ja yhteisösi, sekä tehden käänteislinkkejä julkaisuillesi ilmaiseksi.</p>",
       "can-guest-post-header": "Onko vieralilijoiden mahdollista julkaista sivustolle?",
       "can-guest-post-body": "<p>Ecencyssä julkaiseminen on yksinkertaista ja helppoa, <a href=\"/signup?referral=ecency\" class=\"push-link\">Rekisteröidy</a> avataksesi oman blogin ja yhteisön, sekä aloittaaksesi sisällön julkaisemisen.</p>",
-      "source-label-header": "Content source labels, what are those?",
-      "source-label-body": "<p>Content source helps you understand how content was published. In some cases you may see a third-party client name, which indicates the Content came from a non-Ecency application. Authors sometimes use third-party client applications to manage their blogs, communities. Third-party clients are software tools used by authors and therefore are not affiliated with, nor do they reflect the views of, the content. Content can be directly created by humans or, in some circumstances, automated by an application.</p>",
+      "source-label-header": "Sisällön lähdemerkinnät, mitä ne ovat?",
+      "source-label-body": "<p>Sisällön lähde auttaa sinua ymmärtämään, miten sisältö on julkaistu. Joissain tapauksissa saatat nähdä kolmannen osapuolen asiakkaan nimen, joka ilmaisee, että Sisältö tuli Ecencyn uklkopuolelta. Tekijät joskus käyttävät kolmannen osapuolen asiakassovelluksia hallitsemaan blogeja ja yhteisöjä. Kolmannen osapuolen asiakkaat ovat julkaisijoiden käyttämiä ohjelmistotyökaluja, eivätkä ne näin ollen ole sidoksissa sisältöön, eivätkä kuvasta sen näkemyksiä. Sisältö voidaan luoda suoraan ihmisten toimesta tai joissain tapauksissa sovelluksen automatisoimana.</p>",
       "how-to-contribute-header": "Kuinka osallistua Ecencyn parantamiseen?",
       "how-to-contribute-body": "<p>Meidän <a href=\"/contributors\" class=\"push-link\">>mahtavat jäsenemme</a> auttavat meitä muokkaamaan Ecencyä. Voit olla osana tätä hienoa liikettä, liittymällä Käännöstiimimme:<a href=\"https://translate-desktop.ecency.com\" target=\"_blank\" rel=\"noopener noreferrer\">Verkkosivusto</a>, <a href=\"https://translate-mobile.ecency.com\" target=\"_blank\" rel=\"noopener noreferrer\">Mobiili</a> tai osallistumalla ideointiin, kehittämiseen, suunnitteluun ja sosiaalisen median tavoitettavuuteen. Teemme parhaamme tukeaksemme osallistujia!</p>"
     }

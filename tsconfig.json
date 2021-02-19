@@ -17,7 +17,7 @@
       "esnext"
     ],
     "module": "esnext",
-    "moduleResolution": "Node",
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
@@ -38,6 +38,7 @@
     "webpack",
     "jest",
     "razzle.config.js",
+    "healthCheck.js",
     "src/desktop/**/*.js"
   ],
   "types": [

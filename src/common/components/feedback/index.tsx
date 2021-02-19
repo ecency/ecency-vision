@@ -1,4 +1,6 @@
-import React, {Component} from "react";
+import React from "react";
+
+import BaseComponent from "../base";
 
 import random from "../../util/rnd";
 
@@ -39,28 +41,20 @@ interface State {
     list: FeedbackObject[];
 }
 
-export default class Feedback extends Component<Props, State> {
+export default class Feedback extends BaseComponent<Props, State> {
     state: State = {
         list: [],
     };
-
-    _mounted: boolean = true;
 
     componentDidMount() {
         window.addEventListener("feedback", this.onFeedback);
     }
 
     componentWillUnmount() {
+        super.componentWillUnmount();
+
         window.removeEventListener("feedback", this.onFeedback);
-
-        this._mounted = false;
     }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     onFeedback = (e: Event) => {
         const detail: FeedbackObject = (e as CustomEvent).detail;

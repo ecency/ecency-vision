@@ -6,6 +6,8 @@ import moment, {Moment} from "moment";
 
 import {Button, Modal} from "react-bootstrap";
 
+import BaseComponent from "../base";
+
 import {_t} from "../../i18n";
 
 import {closeSvg, timeSvg} from "../../img/svg";
@@ -23,22 +25,10 @@ interface DialogBodyState {
     date: Moment,
 }
 
-export class DialogBody extends Component<DialogBodyProps, DialogBodyState> {
+export class DialogBody extends BaseComponent<DialogBodyProps, DialogBodyState> {
     state: DialogBodyState = {
         date: this.props.date || moment().add(2, "hour")
     }
-
-    _mounted: boolean = true;
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     render() {
         const {date} = this.state;

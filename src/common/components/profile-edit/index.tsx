@@ -1,10 +1,11 @@
-import React, {Component} from "react";
+import React from "react";
 
 import {Form, FormControl, InputGroup, Button, Spinner, Col} from "react-bootstrap";
 
 import {ActiveUser} from "../../store/active-user/types";
 import {Account} from "../../store/accounts/types";
 
+import BaseComponent from "../base";
 import UploadButton from "../image-upload-button";
 import {error, success} from "../feedback";
 
@@ -47,25 +48,14 @@ const pureState = (props: Props): State => {
     }
 }
 
-export default class ProfileEdit extends Component<Props, State> {
+export default class ProfileEdit extends BaseComponent<Props, State> {
     state: State = pureState(this.props);
-
-    _mounted: boolean = true;
-
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    stateSet = (state: {}, cb?: () => void) => {
-        if (this._mounted) {
-            this.setState(state, cb);
-        }
-    };
 
     valueChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
         const id = e.target.getAttribute('data-var') as string;
         const {value} = e.target;
 
+        // @ts-ignore
         this.stateSet({[id]: value, changed: true});
     };
 
