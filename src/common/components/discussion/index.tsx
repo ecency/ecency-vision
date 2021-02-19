@@ -115,12 +115,17 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
         showIfHidden: false
     }
 
-    afterVote = (votes: EntryVote[]) => {
+    afterVote = (votes: EntryVote[], estimated: number) => {
         const {entry, updateReply} = this.props;
+
+        const {payout} = entry;
+        const newPayout = payout + estimated;
 
         updateReply({
             ...entry,
-            active_votes: votes
+            active_votes: votes,
+            payout: newPayout,
+            pending_payout_value: String(newPayout)
         });
     }
 

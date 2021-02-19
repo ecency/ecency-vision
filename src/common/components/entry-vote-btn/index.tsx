@@ -41,7 +41,7 @@ interface VoteDialogProps {
     activeUser: ActiveUser;
     dynamicProps: DynamicProps;
     entry: Entry;
-    onClick: (percent: number) => void;
+    onClick: (percent: number, estimated: number) => void;
 }
 
 interface VoteDialogState {
@@ -133,13 +133,15 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     upVoteClicked = () => {
         const {onClick} = this.props;
         const {upSliderVal} = this.state;
-        onClick(upSliderVal);
+        const estimated = Number(this.estimate(upSliderVal).toFixed(3));
+        onClick(upSliderVal, estimated);
     };
 
     downVoteClicked = () => {
         const {onClick} = this.props;
         const {downSliderVal} = this.state;
-        onClick(downSliderVal);
+        const estimated = Number(this.estimate(downSliderVal).toFixed(3));
+        onClick(downSliderVal, estimated);
     };
 
     render() {
@@ -223,7 +225,7 @@ interface Props {
     updateActiveUser: (data?: Account) => void;
     deleteUser: (username: string) => void;
     toggleUIProp: (what: ToggleType) => void;
-    afterVote: (votes: EntryVote[]) => void;
+    afterVote: (votes: EntryVote[], estimated: number) => void;
 }
 
 interface State {
@@ -237,7 +239,7 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
         inProgress: false,
     };
 
-    vote = (percent: number) => {
+    vote = (percent: number, estimated: number) => {
         this.toggleDialog();
 
         const {entry, activeUser, afterVote, updateActiveUser} = this.props;
@@ -253,7 +255,7 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
                     {rshares: weight, voter: username}
                 ];
 
-                afterVote(votes);
+                afterVote(votes, estimated);
                 updateActiveUser(); // refresh voting power
             })
             .catch((e) => {
