@@ -53,7 +53,7 @@ export const formatMemo = (memo: string, history: History) => {
             return <Fragment key={x}>{EntryLink({
                 history: history,
                 entry: {category: "ecency", author: author.replace("@", ""), permlink},
-                children: <span>{"@"}{x}</span>
+                children: <span>{"@"}{author.replace("@", "")}/{permlink}</span>
             })}{" "}</Fragment>
         }
 
