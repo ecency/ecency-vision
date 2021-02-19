@@ -247,7 +247,7 @@
     "team": "Líderes",
     "edit": "Editar ajustes",
     "edit-team": "Editar Roles",
-    "community-rewards": "Community Rewards",
+    "community-rewards": "Recompensas de comunidad",
     "profile-image": "Portada de la Comunidad",
     "profile-image-edit": "Editar imagen de perfil",
     "profile-image-updated": "¡Perfil actualizado!"
@@ -304,11 +304,11 @@
     "done-link-label": "Empieza ya."
   },
   "community-rewards-registration": {
-    "body-text": "Register your community to get Ecency POINTS",
-    "btn-next-label": "Register",
-    "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.",
-    "conflict-body-text": "This community is already registered.",
-    "min-required-body-text": "Minimum 100 subscribers required to register."
+    "body-text": "Registra tu comunidad para obtener POINTS de Ecency",
+    "btn-next-label": "Registrarse",
+    "done-body-text": "Registro completado. Tu comunidad recibirá recompensas POINT a medida que tus miembros publiquen mensajes con aplicaciones de Ecency.",
+    "conflict-body-text": "Esta comunidad ya está registrada.",
+    "min-required-body-text": "Se requiere un mínimo de 100 suscriptores para registrarse."
   },
   "pin-btn": {
     "pin": "Anclar arriba",
@@ -406,11 +406,11 @@
     "comment-desc": "Cada comentario que hagas ayuda a crecer tu audiencia y a hacer amistades, pero también te da 5 puntos.",
     "checkin-desc": "Cuando te registras en Ecency te da 0.25 puntos y te ayuda a estar conectado con tus amigos.",
     "vote-desc": "Al votar das recompensas a otros creadores y muestra tu aprecio, pero también te da 0,01 puntos x valor del voto.",
-    "reblog-desc": "Share what post you like with your friends and earn 1 points.",
+    "reblog-desc": "Comparte lo que te gusta con tus amigos y gana 1 punto.",
     "login-desc": "Cuando inicies sesión en Ecency tienes derecho a recibir 100 puntos automáticamente.",
     "checkin-extra-desc": "El uso consistente de la aplicación te otorga más posibilidades de generar más de 10 puntos, se más activo y gana más.",
     "delegation-desc": "Puedes ganar 50 puntos por día por cada delegación de 100HP.",
-    "community-desc": "Register your community to get 20 points for per post published with Ecency applications.",
+    "community-desc": "Registra tu comunidad para obtener 20 puntos por cada publicación publicada con aplicaciones de Ecency.",
     "history": "Historial",
     "post-list-desc": "Puntos por publicar",
     "comment-list-desc": "Puntos por comentar",
@@ -423,7 +423,7 @@
     "transfer-incoming-list-desc": "Transferencia de {{n}}",
     "delegation-list-desc": "Recompensa por delegación",
     "referral-list-desc": "Recompensa por referido",
-    "community-list-desc": "Community reward",
+    "community-list-desc": "Recompensa de la comunidad",
     "transfer": "Regalar a alguien",
     "claim-ok": "Puntos reclamados",
     "promote": "Promocionar",
