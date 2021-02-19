@@ -247,7 +247,7 @@
     "team": "Liderança",
     "edit": "Editar configurações",
     "edit-team": "Editar funções",
-    "community-rewards": "Community Rewards",
+    "community-rewards": "Recompensas da Comunidade",
     "profile-image": "Imagem de perfil da comunidade",
     "profile-image-edit": "Editar imagem do perfil",
     "profile-image-updated": "Imagem de perfil atualizada!"
@@ -293,7 +293,7 @@
     "username-available": "Disponível.",
     "username-not-available": "Não disponível.",
     "username-wrong-format": "Não é um formato válido. É necessário um formato hive-1xxxxx.",
-    "password": "Master password",
+    "password": "Senha Mestra",
     "confirmation": "Eu guardei seguramente o meu utilizador e password.",
     "submit": "Criar Comunidade",
     "progress-account": "Criar conta...",
@@ -305,7 +305,7 @@
   },
   "community-rewards-registration": {
     "body-text": "Register your community to get Ecency POINTS",
-    "btn-next-label": "Register",
+    "btn-next-label": "Cadastrar",
     "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.",
     "conflict-body-text": "This community is already registered.",
     "min-required-body-text": "Minimum 100 subscribers required to register."
