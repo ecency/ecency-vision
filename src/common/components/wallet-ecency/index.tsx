@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, Fragment} from "react";
 
 import moment from "moment";
 
@@ -50,14 +50,14 @@ export const formatMemo = (memo: string, history: History) => {
     return memo.split(" ").map(x => {
         if (x.indexOf("/") >= 3) {
             const [author, permlink] = x.split("/");
-            return <>{EntryLink({
+            return <Fragment key={x}>{EntryLink({
                 history: history,
                 entry: {category: "ecency", author: author.replace("@", ""), permlink},
                 children: <span>{"@"}{x}</span>
-            })}{" "}</>
+            })}{" "}</Fragment>
         }
 
-        return `${x} `;
+        return <Fragment key={x}>{x}{" "}</Fragment>;
     });
 }
 

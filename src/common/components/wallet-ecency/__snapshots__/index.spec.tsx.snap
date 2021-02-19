@@ -1204,28 +1204,49 @@ exports[`(3) Active user with unclaimed points 1`] = `
 
 exports[`(4) Format memo 1`] = `
 Array [
-  " ",
+  <React.Fragment>
+    
+     
+  </React.Fragment>,
 ]
 `;
 
 exports[`(4) Format memo 2`] = `
 Array [
-  "transfer ",
+  <React.Fragment>
+    transfer
+     
+  </React.Fragment>,
 ]
 `;
 
 exports[`(4) Format memo 3`] = `
 Array [
-  "thank ",
-  "you! ",
+  <React.Fragment>
+    thank
+     
+  </React.Fragment>,
+  <React.Fragment>
+    you!
+     
+  </React.Fragment>,
 ]
 `;
 
 exports[`(4) Format memo 4`] = `
 Array [
-  "Promotion ",
-  "price ",
-  "for ",
+  <React.Fragment>
+    Promotion
+     
+  </React.Fragment>,
+  <React.Fragment>
+    price
+     
+  </React.Fragment>,
+  <React.Fragment>
+    for
+     
+  </React.Fragment>,
   <React.Fragment>
     <EntryLink
       entry={
@@ -1268,8 +1289,14 @@ Array [
 
 exports[`(4) Format memo 5`] = `
 Array [
-  "Refund ",
-  "for ",
+  <React.Fragment>
+    Refund
+     
+  </React.Fragment>,
+  <React.Fragment>
+    for
+     
+  </React.Fragment>,
   <React.Fragment>
     <EntryLink
       entry={
@@ -1312,9 +1339,18 @@ Array [
 
 exports[`(4) Format memo 6`] = `
 Array [
-  "Community ",
-  "reward ",
-  "for ",
+  <React.Fragment>
+    Community
+     
+  </React.Fragment>,
+  <React.Fragment>
+    reward
+     
+  </React.Fragment>,
+  <React.Fragment>
+    for
+     
+  </React.Fragment>,
   <React.Fragment>
     <EntryLink
       entry={
@@ -1357,7 +1393,10 @@ Array [
 
 exports[`(4) Format memo 7`] = `
 Array [
-  "lorem ",
+  <React.Fragment>
+    lorem
+     
+  </React.Fragment>,
   <React.Fragment>
     <EntryLink
       entry={
@@ -1395,6 +1434,9 @@ Array [
     </EntryLink>
      
   </React.Fragment>,
-  "ipsum ",
+  <React.Fragment>
+    ipsum
+     
+  </React.Fragment>,
 ]
 `;
