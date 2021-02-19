@@ -144,7 +144,7 @@
     "success": "रीब्लॉग हो गया"
   },
   "entry-tip": {
-    "title": "Tip"
+    "title": "टिप"
   },
   "entry-payout": {
     "pending-payout": "अनिर्णीत भुगतान",
@@ -247,7 +247,7 @@
     "team": "नेतृत्व",
     "edit": "सेटिंग्स बदलें",
     "edit-team": "भूमिकाएं संपादित करें",
-    "community-rewards": "Community Rewards",
+    "community-rewards": "सामुदायिक पुरस्कार",
     "profile-image": "सामुदायिक प्रोफ़ाइल छवि",
     "profile-image-edit": "प्रोफ़ाइल छवि संपादित करें",
     "profile-image-updated": "प्रोफ़ाइल छवि अपडेट हो गई!"
@@ -293,7 +293,7 @@
     "username-available": "उपलब्ध।",
     "username-not-available": "उपलब्ध नहीं है।",
     "username-wrong-format": "मान्य प्रारूप नहीं। छत्ता -1xxxxx प्रारूप की आवश्यकता है।",
-    "password": "Master password",
+    "password": "मास्टर पासवर्ड",
     "confirmation": "मैंने अपने स्वामी उपयोगकर्ता नाम और पासवर्ड को सुरक्षित रूप से सहेजा है।",
     "submit": "समुदाय बनाएँ",
     "progress-account": "खाता बनाना...",
@@ -304,11 +304,11 @@
     "done-link-label": "शुरू हो जाओ।"
   },
   "community-rewards-registration": {
-    "body-text": "Register your community to get Ecency POINTS",
-    "btn-next-label": "Register",
-    "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.",
-    "conflict-body-text": "This community is already registered.",
-    "min-required-body-text": "Minimum 100 subscribers required to register."
+    "body-text": "इसेंसी अंक प्राप्त करने के लिए अपने समुदाय को पंजीकृत करें",
+    "btn-next-label": "पंजीकरण",
+    "done-body-text": "पंजीकरण पूरा हुआ। आपके समुदाय को इसेंसी ऐप के साथ पोस्ट प्रकाशित करने वाले सदस्यों के रूप में अंक पुरस्कार प्राप्त होगा।",
+    "conflict-body-text": "यह समुदाय पहले से पंजीकृत है।",
+    "min-required-body-text": "पंजीकरण के लिए न्यूनतम 100 ग्राहक चाहिए।"
   },
   "pin-btn": {
     "pin": "पिन",
@@ -406,11 +406,11 @@
     "comment-desc": "आपके द्वारा की गई प्रत्येक टिप्पणी से आपको अपने दर्शकों को विकसित करने और दोस्ती करने में मदद मिलती है, लेकिन आपको 5 अंक भी मिलते हैं।",
     "checkin-desc": "इसेंसी पर जाँच करने से आपको 0.25 अंक मिलते हैं और आपको अपने दोस्तों के साथ जुड़े रहने में मदद मिलती है।",
     "vote-desc": "मतदान करके आप अन्य रचनाकारों को इनाम देते हैं और अपनी प्रशंसा दिखाते हैं, लेकिन 0.01 x वोट वेट अंक भी अर्जित करते हैं।",
-    "reblog-desc": "Share what post you like with your friends and earn 1 points.",
+    "reblog-desc": "आप अपने दोस्तों के साथ जो पोस्ट पसंद करते हैं उसे साझा करें और 1 अंक अर्जित करें।",
     "login-desc": "जब आप इसेंसी में लॉगिन करते हैं तो आप 100 अंक अपने आप अर्जित करने के हकदार हैं।",
     "checkin-extra-desc": "ऐप के लगातार उपयोग से आपको अधिक 10 अंक अर्जित करने, अधिक सक्रिय होने और अधिक कमाई करने के अतिरिक्त अवसर मिलते हैं।",
     "delegation-desc": "आप प्रत्येक 1000HP प्रतिनिधिमंडल के लिए प्रति दिन ~ 50 अंक कमा सकते हैं।",
-    "community-desc": "Register your community to get 20 points for per post published with Ecency applications.",
+    "community-desc": "इसेंसी अनुप्रयोगों के साथ प्रकाशित प्रति पद के लिए 20 अंक प्राप्त करने के लिए अपने समुदाय को पंजीकृत करें।",
     "history": "इतिहास",
     "post-list-desc": "पोस्ट के लिए अंक",
     "comment-list-desc": "टिप्पणी के लिए अंक",
@@ -423,7 +423,7 @@
     "transfer-incoming-list-desc": "{{n}} से स्थानांतरण",
     "delegation-list-desc": "प्रत्यायोजित इनाम",
     "referral-list-desc": "रेफरल इनाम",
-    "community-list-desc": "Community reward",
+    "community-list-desc": "सामुदायिक पुरस्कार",
     "transfer": "किसी को उपहार दे",
     "claim-ok": "अंक अर्जित किये",
     "promote": "बढ़ावा देना",
@@ -808,9 +808,9 @@
     "updated": "पासवर्ड सफलतापूर्वक अपडेट किया गया!"
   },
   "add-image": {
-    "title": "Add Image",
-    "text-label": "Image Text",
-    "link-label": "Image Link"
+    "title": "छवि जोड़ें",
+    "text-label": "छवि पाठ",
+    "link-label": "छवि लिंक"
   },
   "scroll-to-top": {
     "title": "शीर्ष तक स्क्रॉल करें"
@@ -834,14 +834,14 @@
       "what-is-ecency-body": "<p>इसेंसी एक है <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">ब्लॉकचेन</a> आधारित सामाजिक नेटवर्क - द्वारा संचालित<a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">हाइव</a>.</p><p>इसेंसी सामग्री रचनाकारों के लिए मुक्त भाषण और पुरस्कृत समुदायों का घर है।</p><p>द्वारा स्थापित किया गया है <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a>अगस्त 2016 में एक वैकल्पिक सामाजिक नेटवर्क के रूप में जो बिना सेंसर किया हुआ है, उपयोगकर्ता नियंत्रित, अपरिवर्तनीय और ओपनसोर्स है। वर्तमान में हैं<a class=\"push-link\" href=\"/contributors\">कई स्वतंत्र और स्वैच्छिक योगदानकर्ता</a> मुक्त भाषण की दृष्टि और भावना रखना चाहते हैं।</p><p>इसेंसी, ब्लॉकचेन तकनीक में उन लोगों की मदद करने में मदद करती है, जहां उपयोगकर्ता अपने समय, संसाधनों के लिए भुगतान कर रहे हैं और ब्लॉकचेन के सामाजिक पहलुओं का आनंद लेते हुए सीखते हैं। उपयोग में आसानी के माध्यम से, उपयोगकर्ता न केवल सीखते हैं, बल्कि नए इंटरनेट के निवेशक, इनोवेटर भी बन जाते हैं।</p>",
       "what-is-hive-header": "हाइव ब्लॉकचेन क्या है?",
       "what-is-hive-body": "<p>हाइव एक ब्लॉकचेन है जिसे Web3.0 अनुप्रयोगों के लिए तेज, महसूस, विकेन्द्रीकृत, बिना सेंसर वाले प्लेटफॉर्म के साथ बनाया गया था, जिसमें बिल्ट-इन फीचर्स हैं जहां स्टेक होल्डर स्टेकिंग, क्यूरेटिंग, पोस्टिंग, गेम खेल, ट्रेडिंग - सभी के द्वारा पुरस्कार अर्जित कर सकते हैं बिना किसी मध्य पुरुष (विकेंद्रीकृत) के। हाइव ब्लॉकचैन पर टोकन को हाइव, हाइव डॉलर, हाइव पावर कहा जाता है|</p>",
-      "what-is-difference-header": "What's the difference from other Social Networks?",
-      "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\"/></p><p>The primary difference, Ecency is based on a blockchain which means content is immutable and uncensorable. You own your community and account, nobody but you have full control of your data. Empowering true free speech. Ecency is also opensource, rewarding and innovative, built and owned by users. Aspire for greatness!</p>",
+      "what-is-difference-header": "अन्य सामाजिक नेटवर्क से क्या अंतर है?",
+      "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\"/></p><p>प्राथमिक अंतर, ईक्विटी एक ब्लॉकचेन पर आधारित है जिसका अर्थ है कि सामग्री अपरिवर्तनीय और असंवेदनशील है। आप अपने समुदाय और खाते के मालिक हैं, कोई नहीं बल्कि आपके पास अपने डेटा का पूरा नियंत्रण है। सच्चा मुक्त भाषण देना। इसेंसी भी ओपनसोर्स, पुरस्कृत और नवीन, उपयोगकर्ताओं द्वारा निर्मित और स्वामित्व में है। महानता की ख्वाहिश!</p>",
       "why-choose-ecency-header": "मैं इसेंसी को क्यों चुनूंगा?",
       "why-choose-ecency-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjrzJAcJ4DvxvtqoPdzS9Aygf4MZ1PeE4goH6zWaeEFvafr9vGXWuou67Pbn44GweMyHV5DupM5q1cRvU85qdver?format=match&mode=fit\"/></p><p>अपने दर्शकों और समुदाय को प्रेरित करने के लिए आपको सशक्त बनाने के लिए निर्धारित टेलेंटेड फीचर। निःशुल्क आप चलते-फिरते समाधान देने के लिए एकांत मोबाइल एप्लिकेशन। डेस्कटॉप ऐप के साथ आपको हमेशा ब्लॉकचेन से अनसेंसर्ड कंटेंट मिलना निश्चित है, वेबसाइट तक पहुँचने के लिए हजारों पाठक सर्च इंजन पर सर्वश्रेष्ठ रैंक वाले कंटेंट के साथ ग्लोब पर पहुंचते हैं। अत्याधुनिक सुरक्षा उपायों के कारण आपकी चाबियां हमेशा गैर-इरादतन व्यक्तियों के लिए एन्क्रिप्टेड और पहुंच से बाहर रहेंगी। तेज़ और सुंदर वेबसाइट, आपको ऑनलाइन खोज करने और अपनी सामग्री के लिए एक्सपोज़र प्राप्त करने और वफादार अनुयायियों और पाठकों को प्राप्त करने में मदद करती है। आज अपने समुदाय का निर्माण करें और उभरती हुई ब्लॉकचेन प्रौद्योगिकी और बिना सेंसर की सामग्री, सच्चे मुक्त भाषण के लाभ उठाएं!</p>",
       "how-ecency-works-header": "इसेंसी काम कैसे करता है?",
       "how-ecency-works-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjuZ3ksaZqEjfd9GadyKFE4bT7UP8qM1sF5W6U3cst4ekDsXfrQdcrjtdz6b5Ye2AfWNwGA5f8QqVXmed6NRfg1U?format=match&mode=fit\"/></p><p>इक्वेंसी स्टोर और ब्लॉकचेन से डेटा पढ़ती है, और इस तरह डेटा सुलभ और बिना सेंसर किया जाता है। इक्वेंसी, ब्लॉकचेन के अंतर्निर्मित प्रोत्साहन तंत्र, टोकन (HIVE, HOL DOLLARS, HIVE POWER) के साथ-साथ पॉइंट्स के साथ सामग्री रचनाकारों को पुरस्कृत करती है। टोकन प्रमुख क्रिप्टोक्यूरेंसी एक्सचेंजों में खरीदे और बेचे जा सकते हैं (जैसे बिनेंस, बिट्रेक्स)। अंक प्लेटफॉर्म के भीतर उपयोग किए जा सकते हैं और माल, सेवाओं के लिए कारोबार किए जाते हैं।</p>",
       "how-to-join-header": "इसेंसी में कैसे शामिल हों?",
-      "how-to-join-body": "<p>Go to <a class=\"push-link\" href=\"/signup?referral=ecency\">https://ecency.com/signup?referral=ecency</a> and create an account. After signup you will receive email with further instructions. Your password is your master password to your account. Please store it safely, if you loose your password, you ultimately loose access to your account and your funds. Accounts cannot be deactivated or deleted, account names can not be changed as well. The account along with all of its activity is permanently stored in the blockchain. Without password, accounts cannot be restored, store your keys safely.</p>",
+      "how-to-join-body": "<p>के लिए जाओ <a class=\"push-link\" href=\"/signup?referral=ecency\">https://ecency.com/signup?referral=ecency</a> और एक खाता बनाएँ। साइनअप के बाद आपको आगे के निर्देशों के साथ ईमेल प्राप्त होगा। आपका पासवर्ड आपके खाते के लिए आपका मास्टर पासवर्ड है। कृपया इसे सुरक्षित रूप से संग्रहीत करें, यदि आप अपना पासवर्ड ढीला करते हैं, तो आप अंततः अपने खाते और अपने फंड तक पहुंच ढीली कर सकते हैं। खातों को निष्क्रिय या हटाया नहीं जा सकता है, खाता नाम भी नहीं बदले जा सकते हैं। इसकी सभी गतिविधि के साथ खाता स्थायी रूप से ब्लॉकचेन में संग्रहीत किया जाता है। पासवर्ड के बिना, खातों को पुनर्स्थापित नहीं किया जा सकता है, अपनी कुंजियों को सुरक्षित रूप से संग्रहीत करें।</p>",
       "how-to-signin-header": "इसेंसी साइन इन कैसे करें?",
       "how-to-signin-body": "<p><img src=\"https://images.ecency.com/p/7258xSVeJbKmTr9Z4jhbPhjS9pMWA2mTwBMDbXqk9G9wdMw2bwR4hXqRQt9S7UBFrBAWCYWddjn3G34ETv5KWB5KGmuZ8ixBB9oKHTFvjjnTkRLp4ttrFQtpgtNnRUEA9NtmyFmgyuuK4?format=match&mode=fit\"/></p><p>आप अपने उपयोगकर्ता नाम और मास्टर पासवर्ड का उपयोग करके या सक्रिय निजी कुंजी का उपयोग करके इसेंसी में साइन-इन कर सकते हैं। हम सुरक्षा को बहुत गंभीरता से लेते हैं, इसीलिए हम कभी भी आपकी निजी कुंजी को संग्रहीत नहीं करते हैं, मोबाइल ऐप पर उन्हें आपकी पसंद के अतिरिक्त पिन कोड के साथ एन्क्रिप्ट किया जाता है, वेबसाइट पर वे कभी संग्रहीत नहीं होते हैं। आप भी उपयोग कर सकते हैं <a href=\"https://hivesigner.com\" target=\"_blank\" rel=\"noopener noreferrer\">Hivesigner OAuth2</a> प्रमाणीकरण सेवा आसानी से लॉगिन, प्रबंधन और कार्य करने के लिए।</p>",
       "how-referrals-work-header": "रेफरल सिस्टम इसेंसी मै कैसे काम करता हैं?",
@@ -872,8 +872,8 @@
       "can-link-post-body": "<p>हमारी साइट की सभी सामग्री हमारे उपयोगकर्ताओं द्वारा बनाई गई है और हम संशोधित या बैकलिंक जोड़ने में सक्षम नहीं हैं। आप पोस्ट के लेखक से संपर्क करने के लिए स्वतंत्र हैं या<a href=\"/signup?referral=ecency\" class=\"push-link\">साइन अप करें</a> अपने ब्लॉग और समुदाय को खोलने के लिए, मुफ्त में बैकलिंक्स बनाने के लिए लेख प्रकाशित करें।</p>",
       "can-guest-post-header": "क्या आपकी वेबसाइट पर पोस्ट करना संभव है?",
       "can-guest-post-body": "<p>इसेंसी पर पोस्टिंग सरल और आसान है, <a href=\"/signup?referral=ecency\" class=\"push-link\">साइन अप करें</a> अपना ब्लॉग और समुदाय खोलने के लिए, अपनी सामग्री पोस्ट करना शुरू करें।</p>",
-      "source-label-header": "Content source labels, what are those?",
-      "source-label-body": "<p>Content source helps you understand how content was published. In some cases you may see a third-party client name, which indicates the Content came from a non-Ecency application. Authors sometimes use third-party client applications to manage their blogs, communities. Third-party clients are software tools used by authors and therefore are not affiliated with, nor do they reflect the views of, the content. Content can be directly created by humans or, in some circumstances, automated by an application.</p>",
+      "source-label-header": "सामग्री स्रोत लेबल, वे क्या हैं?",
+      "source-label-body": "<p>सामग्री स्रोत आपको यह समझने में मदद करता है कि सामग्री कैसे प्रकाशित की गई थी। कुछ मामलों में आप एक तृतीय-पक्ष क्लाइंट नाम देख सकते हैं, जो इंगित करता है कि सामग्री गैर-इसेंसी अनुप्रयोग से आई है। लेखक अपने ब्लॉग, समुदायों का प्रबंधन करने के लिए कभी-कभी तृतीय-पक्ष क्लाइंट एप्लिकेशन का उपयोग करते हैं। तृतीय-पक्ष क्लाइंट लेखकों द्वारा उपयोग किए जाने वाले सॉफ़्टवेयर उपकरण हैं और इसलिए इसके साथ संबद्ध नहीं हैं, और न ही वे सामग्री के विचारों को दर्शाते हैं। सामग्री सीधे मनुष्यों द्वारा बनाई जा सकती है या, कुछ परिस्थितियों में, किसी एप्लिकेशन द्वारा स्वचालित।</p>",
       "how-to-contribute-header": "इसेंसी में योगदान कैसे करें?",
       "how-to-contribute-body": "<p>हमारे<a href=\"/contributors\" class=\"push-link\">बहुत बढ़िया योगदानकर्ता</a>इसेंसी को आकार देने में हमारी मदद करना। हमारी अनुवाद टीम में शामिल होकर आप इस महान आंदोलन का हिस्सा बन सकते हैं: <a href=\"https://translate-desktop.ecency.com\" target=\"_blank\" rel=\"noopener noreferrer\">वेबसाइट</a>, <a href=\"https://translate-mobile.ecency.com\" target=\"_blank\" rel=\"noopener noreferrer\">मोबाइल</a> या विचारों, विकास, डिजाइन, सामाजिक मीडिया आउटरीच कौशल के साथ योगदान करके। हम अपने योगदानकर्ताओं का समर्थन करने की पूरी कोशिश करते हैं!</p>"
     }
