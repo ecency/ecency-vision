@@ -210,13 +210,18 @@ class EntryPage extends BaseComponent<Props, State> {
         window.open(u, "_blank");
     };
 
-    afterVote = (votes: EntryVote[]) => {
+    afterVote = (votes: EntryVote[], estimated: number) => {
         const entry = this.getEntry()!;
         const {updateEntry} = this.props;
 
+        const {payout} = entry;
+        const newPayout = payout + estimated;
+
         updateEntry({
             ...entry,
-            active_votes: votes
+            active_votes: votes,
+            payout: newPayout,
+            pending_payout_value: String(newPayout)
         });
     };
 

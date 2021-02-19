@@ -1201,3 +1201,242 @@ exports[`(3) Active user with unclaimed points 1`] = `
   </div>
 </div>
 `;
+
+exports[`(4) Format memo 1`] = `
+Array [
+  <React.Fragment>
+    
+     
+  </React.Fragment>,
+]
+`;
+
+exports[`(4) Format memo 2`] = `
+Array [
+  <React.Fragment>
+    transfer
+     
+  </React.Fragment>,
+]
+`;
+
+exports[`(4) Format memo 3`] = `
+Array [
+  <React.Fragment>
+    thank
+     
+  </React.Fragment>,
+  <React.Fragment>
+    you!
+     
+  </React.Fragment>,
+]
+`;
+
+exports[`(4) Format memo 4`] = `
+Array [
+  <React.Fragment>
+    Promotion
+     
+  </React.Fragment>,
+  <React.Fragment>
+    price
+     
+  </React.Fragment>,
+  <React.Fragment>
+    for
+     
+  </React.Fragment>,
+  <React.Fragment>
+    <EntryLink
+      entry={
+        Object {
+          "author": "foo",
+          "category": "ecency",
+          "permlink": "bar",
+        }
+      }
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <span>
+        @
+        foo/bar
+      </span>
+    </EntryLink>
+     
+  </React.Fragment>,
+]
+`;
+
+exports[`(4) Format memo 5`] = `
+Array [
+  <React.Fragment>
+    Refund
+     
+  </React.Fragment>,
+  <React.Fragment>
+    for
+     
+  </React.Fragment>,
+  <React.Fragment>
+    <EntryLink
+      entry={
+        Object {
+          "author": "foo",
+          "category": "ecency",
+          "permlink": "bar",
+        }
+      }
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <span>
+        @
+        foo/bar
+      </span>
+    </EntryLink>
+     
+  </React.Fragment>,
+]
+`;
+
+exports[`(4) Format memo 6`] = `
+Array [
+  <React.Fragment>
+    Community
+     
+  </React.Fragment>,
+  <React.Fragment>
+    reward
+     
+  </React.Fragment>,
+  <React.Fragment>
+    for
+     
+  </React.Fragment>,
+  <React.Fragment>
+    <EntryLink
+      entry={
+        Object {
+          "author": "foo",
+          "category": "ecency",
+          "permlink": "bar",
+        }
+      }
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <span>
+        @
+        @foo/bar
+      </span>
+    </EntryLink>
+     
+  </React.Fragment>,
+]
+`;
+
+exports[`(4) Format memo 7`] = `
+Array [
+  <React.Fragment>
+    lorem
+     
+  </React.Fragment>,
+  <React.Fragment>
+    <EntryLink
+      entry={
+        Object {
+          "author": "foo",
+          "category": "ecency",
+          "permlink": "bar",
+        }
+      }
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <span>
+        @
+        foo/bar
+      </span>
+    </EntryLink>
+     
+  </React.Fragment>,
+  <React.Fragment>
+    ipsum
+     
+  </React.Fragment>,
+]
+`;

@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, Fragment} from "react";
 
 import moment from "moment";
 
@@ -44,40 +44,31 @@ import {
     cashSvg
 } from "../../img/svg";
 
+
+export const formatMemo = (memo: string, history: History) => {
+
+    return memo.split(" ").map(x => {
+        if (x.indexOf("/") >= 3) {
+            const [author, permlink] = x.split("/");
+            return <Fragment key={x}>{EntryLink({
+                history: history,
+                entry: {category: "ecency", author: author.replace("@", ""), permlink},
+                children: <span>{"@"}{x}</span>
+            })}{" "}</Fragment>
+        }
+
+        return <Fragment key={x}>{x}{" "}</Fragment>;
+    });
+}
+
 interface TransactionRowProps {
     history: History;
     tr: PointTransaction;
 }
 
 export class TransactionRow extends Component<TransactionRowProps> {
-
-    memo = () => {
-        const {tr} = this.props;
-        if (tr.memo && tr.type === TransactionType.COMMUNITY) {
-            const memoSplit = tr.memo.split("@");
-
-            // make sure split has 2 element and second element is a link
-            if (memoSplit.length !== 2 || memoSplit[1].indexOf("/") === -1) {
-                return tr.memo;
-            }
-
-            const text = memoSplit[0];
-            const link = memoSplit[1];
-
-            const [author, permlink] = link.split("/");
-
-            return <>{text} {EntryLink({
-                ...this.props,
-                entry: {category: "ecency", author, permlink},
-                children: <span>{"@"}{link}</span>
-            })}</>
-        }
-
-        return tr.memo;
-    }
-
     render() {
-        const {tr} = this.props;
+        const {tr, history} = this.props;
 
         let icon: JSX.Element | null = null;
         let lKey = '';
@@ -157,7 +148,7 @@ export class TransactionRow extends Component<TransactionRowProps> {
                 </div>
                 {tr.memo && (
                     <div className="transaction-details user-selectable">
-                        {this.memo()}
+                        {formatMemo(tr.memo, history)}
                     </div>
                 )}
                 <div className="transaction-numbers">{tr.amount}</div>

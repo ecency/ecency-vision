@@ -88,12 +88,17 @@ export default class EntryListItem extends Component<Props> {
         );
     }
 
-    afterVote = (votes: EntryVote[]) => {
+    afterVote = (votes: EntryVote[], estimated: number) => {
         const {entry, updateEntry} = this.props;
+
+        const {payout} = entry;
+        const newPayout = payout + estimated;
 
         updateEntry({
             ...entry,
-            active_votes: votes
+            active_votes: votes,
+            payout: newPayout,
+            pending_payout_value: String(newPayout)
         });
     };
 
