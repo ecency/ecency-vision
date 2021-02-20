@@ -652,6 +652,7 @@
     "type-follows": "अनुगमन",
     "type-reblogs": "रिब्लॉग्स",
     "type-transfers": "स्थानांतरण",
+    "group-title-recent": "Recent",
     "vote-str": "{{p}}% आपकी पोस्ट को पसंद किया है:",
     "reply-str": "आपके पोस्ट का जवाब दिया:",
     "mention-str": "में आपका उल्लेख किया:",

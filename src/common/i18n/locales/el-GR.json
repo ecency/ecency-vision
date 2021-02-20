@@ -652,6 +652,7 @@
     "type-follows": "Ακολουθεί",
     "type-reblogs": "Αναδημοσιεύσεις",
     "type-transfers": "Μεταφορές",
+    "group-title-recent": "Recent",
     "vote-str": "{{p}}% του αρέσει η δημοσίευση σας:",
     "reply-str": "απάντησε στην δημοσίευση σας:",
     "mention-str": "σε ανέφερε σε:",

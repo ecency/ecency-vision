@@ -652,6 +652,7 @@
     "type-follows": "Sui seguaci",
     "type-reblogs": "Reblogga",
     "type-transfers": "Trasferimenti",
+    "group-title-recent": "Recent",
     "vote-str": "{{p}}% di gradimento del tuo post:",
     "reply-str": "ha risposto al tuo post:",
     "mention-str": "ti ha menzionato in:",

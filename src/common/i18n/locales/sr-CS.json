@@ -652,6 +652,7 @@
     "type-follows": "Pratioci",
     "type-reblogs": "Deljenja",
     "type-transfers": "Prenosi",
+    "group-title-recent": "Recent",
     "vote-str": "{{p}}% se sviđa vaša objava:",
     "reply-str": "je odgovorio na vaš post:",
     "mention-str": "spomenuo vas je u:",
