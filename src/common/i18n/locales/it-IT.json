@@ -77,7 +77,7 @@
     "drafts": "Bozze",
     "bookmarks": "Segnalibri",
     "schedules": "Programmi",
-    "fragments": "Snippets",
+    "fragments": "Ritagli",
     "settings": "Impostazioni",
     "logout": "Esci",
     "vote-power": "Potere di Voto:"
@@ -106,8 +106,8 @@
     "sign-up-text-2": "Registrati ora!"
   },
   "sign-up": {
-    "header": "Join",
-    "description": "<h3>Home of Free speech and Rewarding communities!</h3><br>One account to manage everything on <b>Blockchain</b> and <b>Ecency</b>.<br><br>Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
+    "header": "Unisciti",
+    "description": "<h3>Dimora della libertà di parola e delle community ricompensate!</h3><br>Un account per gestire ogni cosa sulla <b>Blockchain</b> e su <b>Ecency</b>.<br><br>Impara di più sui benefici nelle nostre <a href=\"/faq#how-to-join\">FAQ</a>",
     "username": "Scegli un nome utente",
     "email": "Inserisci il tuo indirizzo email",
     "ref": "Utente raccomandante (opzionale)",
@@ -144,7 +144,7 @@
     "success": "Rebloggato!"
   },
   "entry-tip": {
-    "title": "Tip"
+    "title": "Invia omaggio"
   },
   "entry-payout": {
     "pending-payout": "Pagamento in Attesa",
@@ -247,7 +247,7 @@
     "team": "Dirigenza",
     "edit": "Modifica impostazioni",
     "edit-team": "Modifica Ruoli",
-    "community-rewards": "Community Rewards",
+    "community-rewards": "Ricompense della community",
     "profile-image": "Immagine del profilo della community",
     "profile-image-edit": "Modifica immagine del profilo",
     "profile-image-updated": "Immagine del Profilo aggiornata!"
@@ -293,7 +293,7 @@
     "username-available": "Disponibile.",
     "username-not-available": "Non Disponibile.",
     "username-wrong-format": "Non è un formato valido. Richiesto il formato hive-1xxxxx.",
-    "password": "Master password",
+    "password": "Chiave maestra",
     "confirmation": "Ho salvato in un luogo sicuro nome utente e chiave proprietaria della community.",
     "submit": "Crea Community",
     "progress-account": "Account in creazione...",
@@ -304,11 +304,11 @@
     "done-link-label": "Inizia."
   },
   "community-rewards-registration": {
-    "body-text": "Register your community to get Ecency POINTS",
-    "btn-next-label": "Register",
-    "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.",
-    "conflict-body-text": "This community is already registered.",
-    "min-required-body-text": "Minimum 100 subscribers required to register."
+    "body-text": "Registra la tua community per ottenere PUNTI Ecency",
+    "btn-next-label": "Registra",
+    "done-body-text": "Registrazione completata. La tua community riceverà ricompense in PUNTI quando i suoi membri pubblicano con una delle app Ecency.",
+    "conflict-body-text": "Questa community è già stata registrata.",
+    "min-required-body-text": "Necessario un minimo di 100 iscritti per registrarsi."
   },
   "pin-btn": {
     "pin": "Fissa",
@@ -388,7 +388,7 @@
     "delegate": "Delega",
     "power-down": "Depotenziamento",
     "withdraw-routes": "Ricompense assegnate",
-    "converting-hbd-amount": "Converting to HIVE"
+    "converting-hbd-amount": "In attesa di conversione in HIVE"
   },
   "withdraw-routes": {
     "title": "Account beneficianti delle ricompense assegnate",
@@ -406,11 +406,11 @@
     "comment-desc": "Ogni commento che fai ti aiuta a far crescere la tua audience e creare amicizie, oltre a farti anche guadagnare 5 punti.",
     "checkin-desc": "Accedere giornalmente ad Ecency ti da diritto a 0.25 punti e ti aiuta a rimanere in contatto con i tuoi amici.",
     "vote-desc": "Votando, dai una ricompensa agli altri creatori e mostri il tuo apprezzamento, ma guadagni anche 0.01 punti moltiplicati per il peso percentuale del tuo voto.",
-    "reblog-desc": "Share what post you like with your friends and earn 1 points.",
+    "reblog-desc": "Condividi il post che ti piace con i tuoi amici e guadagna 1 punto.",
     "login-desc": "Quando accedi a Ecency per la prima volta, hai automaticamente diritto a 100 punti.",
     "checkin-extra-desc": "Un uso costante dell'app ti da ulteriori possibilità di guadagnare altri 10 punti, essere più attivo e guadagnare di più.",
     "delegation-desc": "Puoi guadagnare fino a un massimo di 50 punti al giorno per ogni delegazione di 1000 Hp fatta lo stesso giorno.",
-    "community-desc": "Register your community to get 20 points for per post published with Ecency applications.",
+    "community-desc": "Registra la tua community per ottenere 20 punti per ogni post pubblicato dalle applicazioni Ecency.",
     "history": "Cronologia",
     "post-list-desc": "Punti per post",
     "comment-list-desc": "Punti per commento",
@@ -423,7 +423,7 @@
     "transfer-incoming-list-desc": "Trasferisci da {{n}}",
     "delegation-list-desc": "Ricompensa dalla delega",
     "referral-list-desc": "Ricompense da raccomandazioni",
-    "community-list-desc": "Community reward",
+    "community-list-desc": "Ricompensa della community",
     "transfer": "Fai un regalo a qualcuno",
     "claim-ok": "Punti richiesti",
     "promote": "Promuovi",
@@ -567,7 +567,7 @@
     "emoji": "Emoji",
     "image-error": "Impossibile caricare l'immagine.",
     "image-error-size": "Le dimensioni dell'immagine sono troppo grandi, prova di nuovo con un'immagine più piccola.",
-    "fragments": "Snippets"
+    "fragments": "Ritagli"
   },
   "emoji-picker": {
     "filter-placeholder": "Filtro",
@@ -652,7 +652,7 @@
     "type-follows": "Sui seguaci",
     "type-reblogs": "Reblogga",
     "type-transfers": "Trasferimenti",
-    "group-title-recent": "Recent",
+    "group-title-recent": "Recenti",
     "vote-str": "{{p}}% di gradimento del tuo post:",
     "reply-str": "ha risposto al tuo post:",
     "mention-str": "ti ha menzionato in:",
@@ -694,42 +694,42 @@
     "description": "Trova contenuti incensurati, community e utenti"
   },
   "search-comment": {
-    "title": "Results",
-    "matches": "{{n}} matches",
-    "matches-singular": "1 match",
-    "advanced": "Advanced",
-    "search": "Search",
-    "search-placeholder": "search phrase",
-    "author": "Author",
-    "author-placeholder": "username",
+    "title": "Risultati",
+    "matches": "{{n}} corrispondenze",
+    "matches-singular": "1 corrispondenza",
+    "advanced": "Avanzate",
+    "search": "Cerca",
+    "search-placeholder": "cerca frase",
+    "author": "Autore",
+    "author-placeholder": "nome utente",
     "type": "Type",
-    "type-": "All",
+    "type-": "Tutti",
     "type-post": "Post",
     "type-comment": "Comment",
-    "category": "Category",
-    "category-placeholder": "category",
-    "tags": "Tags",
-    "tags-placeholder": "comma separated tags",
-    "date": "Date",
-    "date-week": "Week",
-    "date-month": "Month",
-    "date-year": "Year",
-    "date-all": "All",
-    "sort": "Sort",
-    "sort-popularity": "Popularity",
-    "sort-relevance": "Relevance",
-    "sort-newest": "Recent",
-    "hide-low": "Hide low payout content",
-    "show-more": "show more"
+    "category": "Categoria",
+    "category-placeholder": "categoria",
+    "tags": "Etichette",
+    "tags-placeholder": "etichette separate da virgole",
+    "date": "Data",
+    "date-week": "Settimana",
+    "date-month": "Mese",
+    "date-year": "Anno",
+    "date-all": "Sempre",
+    "sort": "Ordina",
+    "sort-popularity": "Popolarità",
+    "sort-relevance": "Rilevanza",
+    "sort-newest": "Recenti",
+    "hide-low": "Nascondi contenuto a bassa ricompensa",
+    "show-more": "mostra altro"
   },
   "search-people": {
-    "title": "People"
+    "title": "Persone"
   },
   "search-topics": {
-    "title": "Topics"
+    "title": "Argomenti"
   },
   "search-communities": {
-    "title": "Communities"
+    "title": "Community"
   },
   "witnesses": {
     "page-title": "Convalidatori",
@@ -778,7 +778,7 @@
   },
   "drafts": {
     "title": "Bozze",
-    "filter": "Search by title"
+    "filter": "Cerca per titolo"
   },
   "schedules": {
     "title": "Post Programmati",
@@ -791,27 +791,27 @@
     "title": "Favoriti"
   },
   "fragments": {
-    "title": "Snippets",
-    "create-first": "Create your first snippet",
-    "filter": "Search by title",
-    "form-title": "Title",
-    "form-body": "Body"
+    "title": "Ritagli",
+    "create-first": "Crea il tuo primo ritaglio",
+    "filter": "Cerca per titolo",
+    "form-title": "Titolo",
+    "form-body": "Corpo"
   },
   "password-update": {
-    "title": "Change Password",
+    "title": "Cambia Chiave d'Accesso",
     "account": "Account",
-    "cur-pass": "Current password",
-    "new-pass": "New password",
-    "new-pass2": "Confirm new password",
-    "error-new2": "Passwords must be same",
-    "pass-gen": "Click to generate password",
-    "label-check": "I have securely saved my generated password",
-    "updated": "Password updated successfully!"
+    "cur-pass": "Chiave d'accesso attuale",
+    "new-pass": "Nuova chiave d'accesso",
+    "new-pass2": "Conferma la mia chiave d'accesso",
+    "error-new2": "Le chiavi d'accesso devono essere le stesse",
+    "pass-gen": "Clicca per generare chiave d'accesso",
+    "label-check": "Ho salvato correttamente e in maniera sicura la mia chiave d'accesso",
+    "updated": "Chiave d'accesso aggiornata con successo!"
   },
   "add-image": {
-    "title": "Add Image",
-    "text-label": "Image Text",
-    "link-label": "Image Link"
+    "title": "Aggiungi immagine",
+    "text-label": "Testo dell'immagine",
+    "link-label": "Collegamento all'immagine"
   },
   "scroll-to-top": {
     "title": "Scorri verso l'alto"
@@ -835,7 +835,7 @@
       "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based social network - powered by <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency is home of free speech and rewarding communities for content creators.</p><p>Project is founded by <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> in August 2016 as an alternative social network that's uncensored, user controled, immutable and opensource. Currently there are <a class=\"push-link\" href=\"/contributors\">many independent and voluntary contributors</a> wanting to keep vision and spirit of free speech.</p><p>Ecency helps onboarding masses into Blockchain technology where users are getting paid for their time, resources and learn while enjoying social aspects of blockchain. Through ease of use, users not only learn but also become investors, innovators of the new internet.</p>",
       "what-is-hive-header": "Che cos'è la blockchain Hive?",
       "what-is-hive-body": "<p>Hive è una blockchain disegnata per essere una piattaforma veloce, economica, non censurabile e decentralizzata adatta alle applicazioni per il Web3.0, dotata di strumenti nativi dove i titolari dell'investimento possono guadagnare bloccando in stake, curando contenuti, postando, giocando, scambiando asset - il tutto senza alcun intermediario (concetto di decentralizzazione). I token della blockchain Hive si chiamano HIVE, HIVE DOLLARS, e HIVE POWER.</p>",
-      "what-is-difference-header": "What's the difference from other Social Networks?",
+      "what-is-difference-header": "Qual'è la differenza dagli altri Social Network?",
       "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\"/></p><p>The primary difference, Ecency is based on a blockchain which means content is immutable and uncensorable. You own your community and account, nobody but you have full control of your data. Empowering true free speech. Ecency is also opensource, rewarding and innovative, built and owned by users. Aspire for greatness!</p>",
       "why-choose-ecency-header": "Perché dovrei scegliere Ecency?",
       "why-choose-ecency-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjrzJAcJ4DvxvtqoPdzS9Aygf4MZ1PeE4goH6zWaeEFvafr9vGXWuou67Pbn44GweMyHV5DupM5q1cRvU85qdver?format=match&mode=fit\"/></p><p>Impostazioni su misura per agevolarti nella creazione, ispirando i tuoi ascoltatori e la tua community. L'app mobile Ecency ti fornisce una soluzione dinamica. Con l'app desktop sei sempre sicuro di avere i giusti contenuti non censurati dalla blockchain. Con il sito web raggiungi migliaia di lettori sparsi per il globo, con i migliori post addirittura indicizzati sui motori di ricerca. Misure di sicurezza all'avanguardia così che le tue chiavi rimangano sempre criptate e non raggiungibili da utenti malintenzionati. Un gradevole e veloce sito web ti aiuta a essere trovato online e a ottenere visibilità, guadagnando lettori e seguaci fedeli. Costruisci la tua community con Ecency oggi e ottieni i vantaggi dall'emergente tecnologia blockchain e dai contenuti incensurati, vero esempio di libertà di espressione!</p>",
