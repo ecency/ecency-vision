@@ -652,6 +652,7 @@
     "type-follows": "Követések",
     "type-reblogs": "Megosztások",
     "type-transfers": "Átutalások",
+    "group-title-recent": "Recent",
     "vote-str": "{{p}}% kedvencelte a bejegyzésed:",
     "reply-str": "válaszolt a bejegyzésedre:",
     "mention-str": "megemlített téged itt:",
