@@ -45,6 +45,11 @@ export const date2key = (s: string): string => {
         return moment.utc(s).fromNow()
     }
 
+    const gt = _t(`notifications.group-title-${s.toLowerCase()}`);
+    if (gt) {
+        return gt;
+    }
+
     return s;
 };
 
