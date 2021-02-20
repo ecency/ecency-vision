@@ -153,6 +153,10 @@ a[target="_blank"] {
 
       .sub-title {
         font-weight: 300;
+        width: 90%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
 
         @include themify(day) {
           color: $steel-grey;
@@ -173,7 +177,11 @@ a[target="_blank"] {
     margin: 1px 0 0 0;
 
     .form-group {
-      margin: 16px 0 0 0;
+      margin: 6px 0 0 0;
+
+      @media (min-width: $sm-break) {
+        margin: 16px 0 0 0;
+      }
     }
   }
 
