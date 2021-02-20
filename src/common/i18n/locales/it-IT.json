@@ -20,7 +20,7 @@
     "back": "Indietro",
     "load-more": "Carica Altro",
     "empty-list": "Pagina vuota",
-    "no-matches": "No matches",
+    "no-matches": "Nessuna corrispondenza",
     "save": "Salva",
     "try-again": "Prova di nuovo",
     "show": "Mostra",
@@ -29,8 +29,8 @@
     "yes": "Si",
     "no": "No",
     "done": "Fatto",
-    "apply": "Apply",
-    "close": "Close"
+    "apply": "Applica",
+    "close": "Chiudi"
   },
   "confirm": {
     "title": "Sei sicuro?",
@@ -78,7 +78,7 @@
     "bookmarks": "Segnalibri",
     "schedules": "Programmi",
     "fragments": "Snippets",
-    "settings": "Settings",
+    "settings": "Impostazioni",
     "logout": "Esci",
     "vote-power": "Potere di Voto:"
   },
