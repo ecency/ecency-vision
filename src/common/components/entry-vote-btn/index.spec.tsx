@@ -86,7 +86,7 @@ describe('(3) Btn - Up voted', () => {
         global: globalInstance,
         dynamicProps: dynamicPropsIntance1,
         entry: entryInstance1,
-        users: [{username: 'user1', accessToken: 's', refreshToken: 'b', expiresIn: 1}],
+        users: [{username: 'user1', accessToken: 's', refreshToken: 'b', expiresIn: 1, postingKey: null}],
         activeUser: activeUserMaker("user1"),
         ui: UiInstance,
         setActiveUser: () => {

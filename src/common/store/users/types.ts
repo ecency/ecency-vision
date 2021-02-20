@@ -3,6 +3,7 @@ export interface User {
     accessToken: string;
     refreshToken: string;
     expiresIn: number;
+    postingKey: null | undefined | string;
 }
 
 export enum ActionTypes {
