@@ -20,17 +20,17 @@
     "back": "Geri",
     "load-more": "Daha çox yüklə",
     "empty-list": "Burada heç nə yoxdur",
-    "no-matches": "No matches",
+    "no-matches": "Uyğunluq yoxdur",
     "save": "Saxla",
     "try-again": "Yenidən sına",
     "show": "Göstər",
-    "on": "On",
-    "off": "Off",
-    "yes": "Yes",
-    "no": "No",
-    "done": "Done",
-    "apply": "Apply",
-    "close": "Close"
+    "on": "Açıq",
+    "off": "Bağlı",
+    "yes": "Bəli",
+    "no": "Xeyr",
+    "done": "Hazırdır",
+    "apply": "Tətbiq et",
+    "close": "Bağla"
   },
   "confirm": {
     "title": "Əminsiniz?",
@@ -64,7 +64,7 @@
     "header-community": "Cəmiyyətlər"
   },
   "switch-lang": {
-    "contributors": "Contributors"
+    "contributors": "Töhfə verənlər"
   },
   "user-nav": {
     "wallet": "Pulqabı",
@@ -76,11 +76,11 @@
     "gallery": "Qalereya",
     "drafts": "Qaralamalar",
     "bookmarks": "Əlfəcinlər",
-    "schedules": "Schedules",
+    "schedules": "Cədvəllər",
     "fragments": "Snippets",
-    "settings": "Settings",
+    "settings": "Tənzimləmələr",
     "logout": "Çıxış",
-    "vote-power": "Vote Power:"
+    "vote-power": "Səsvermə gücü:"
   },
   "intro": {
     "title": "Aspire to greatness",
@@ -106,7 +106,7 @@
     "sign-up-text-2": "İndi qeydiyyatdan keç!"
   },
   "sign-up": {
-    "header": "Join",
+    "header": "Qoşul",
     "description": "<h3>Home of Free speech and Rewarding communities!</h3><br>One account to manage everything on <b>Blockchain</b> and <b>Ecency</b>.<br><br>Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
     "username": "Bir istifadəçi adı götür",
     "email": "E-poçt ünvanını daxil et",
@@ -138,13 +138,13 @@
     "deleted": "Əlfəcinlərdən çıxarıldı"
   },
   "entry-reblog": {
-    "reblog": "Reblog",
+    "reblog": "Təkrar paylaş",
     "confirm-title": "Reblog to @{{n}}'s blog?",
-    "confirm-ok": "Reblog",
-    "success": "Reblogged!"
+    "confirm-ok": "Təkrar paylaş",
+    "success": "Təkrar paylaşıldı!"
   },
   "entry-tip": {
-    "title": "Tip"
+    "title": "Məsləhət"
   },
   "entry-payout": {
     "pending-payout": "Pending Payout",
@@ -875,12 +875,12 @@
       "can-guest-post-body": "<p>Posting on Ecency is simple and easy, <a href=\"/signup?referral=ecency\" class=\"push-link\">Signup</a> to open your own blog and community, start posting your content.</p>",
       "source-label-header": "Content source labels, what are those?",
       "source-label-body": "<p>Content source helps you understand how content was published. In some cases you may see a third-party client name, which indicates the Content came from a non-Ecency application. Authors sometimes use third-party client applications to manage their blogs, communities. Third-party clients are software tools used by authors and therefore are not affiliated with, nor do they reflect the views of, the content. Content can be directly created by humans or, in some circumstances, automated by an application.</p>",
-      "how-to-contribute-header": "How to contribute to the Ecency?",
+      "how-to-contribute-header": "Ecency-ə necə töhfə vermək olar?",
       "how-to-contribute-body": "<p>Our <a href=\"/contributors\" class=\"push-link\">awesome contributors</a> helping us to shape Ecency. You can be part of this great movement, by joining our Translation team: <a href=\"https://translate-desktop.ecency.com\" target=\"_blank\" rel=\"noopener noreferrer\">Website</a>, <a href=\"https://translate-mobile.ecency.com\" target=\"_blank\" rel=\"noopener noreferrer\">Mobile</a> or by contributing with Ideas, Developing, Designing, Social media outreach skills. We try our best to support our contributors!</p>"
     }
   },
   "contributors": {
-    "title": "Contributors",
+    "title": "Töhfə verənlər",
     "description": "These great people contributed in one way or another to Ecency, we would like to thank them all. If you want to join our team by contributing with Translation, Ideas, Development, Designing, Social awareness, feel free to join. To learn more read our <a href=\"/faq#how-to-contribute\">FAQ</a>."
   },
   "context-menu": {
@@ -892,7 +892,7 @@
   },
   "updater": {
     "new-version-available": "Yeni versiya əlçatandır",
-    "download": "Download",
+    "download": "Endir",
     "update": "Yenilə",
     "dismiss": "Bağla",
     "downloading": "Yeni versiya endirilir...",
