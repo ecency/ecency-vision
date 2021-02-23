@@ -813,6 +813,11 @@
     "text-label": "Teks Gambar",
     "link-label": "Link Gambar"
   },
+  "add-link": {
+    "title": "Add Link",
+    "text-label": "Text",
+    "link-label": "https://"
+  },
   "scroll-to-top": {
     "title": "Gulir ke Atas"
   },
