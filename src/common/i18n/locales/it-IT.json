@@ -91,7 +91,7 @@
     "title": "Bentornato!",
     "with-user-pass": "Entra con il tuo nome utente e la tua chiave privata.",
     "username-placeholder": "nome utente",
-    "key-placeholder": "master / active / posting private key",
+    "key-placeholder": "password / private key",
     "login-info-1": "Noi non memorizziamo le tue chiavi private.",
     "login-info-2": "Più informazioni",
     "error-fields-required": "Inserisci nome utente e chiave privata",
