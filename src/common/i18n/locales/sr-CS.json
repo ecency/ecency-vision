@@ -91,7 +91,7 @@
     "title": "Dobrodošli nazad!",
     "with-user-pass": "Prijavi se sa korisničkim imenom i privatnim ključem.",
     "username-placeholder": "korisničko ime",
-    "key-placeholder": "master / active / posting private key",
+    "key-placeholder": "password / private key",
     "login-info-1": "Mi ne čuvamo vaše privatne ključeve.",
     "login-info-2": "Više informacija",
     "error-fields-required": "Molimo Vas da unesete korisničko ime i privatan ključ",
