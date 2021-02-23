@@ -91,7 +91,7 @@
     "title": "Bem vindo de Volta!",
     "with-user-pass": "Faça login com seu nome de usuário e chave privada.",
     "username-placeholder": "usuário",
-    "key-placeholder": "master / active / posting private key",
+    "key-placeholder": "password / private key",
     "login-info-1": "Nós não armazenamos suas chaves privadas.",
     "login-info-2": "Mais informação",
     "error-fields-required": "Por favor insira um nome de usuário e palavra passe /WIF",
