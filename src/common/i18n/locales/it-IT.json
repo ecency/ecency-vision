@@ -898,5 +898,13 @@
     "downloading": "Scarica la nuova versione...",
     "download-completed": "Download completato",
     "restart": "Ricomincia"
+  },
+  "chain-error": {
+    "min-root-comment": "You may only post once every five minutes.",
+    "identical-vote": "Your current vote on this content is identical to this vote.",
+    "insufficient-resource": "Insufficient Resource Credits. Please wait to transact, or power up HIVE.",
+    "delete-comment-with-vote": "Can't delete a content with votes.",
+    "comment-cashout": "Content cashout.",
+    "paid-out-post-forbidden": "Voting for paid out content is not available."
   }
 }
