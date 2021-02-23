@@ -91,7 +91,7 @@
     "title": "Καλώς ήρθατε και πάλι!",
     "with-user-pass": "Συνδεθείτε με το όνομα χρήστη και το ιδιωτικό κλειδί.",
     "username-placeholder": "όνομα χρήστη",
-    "key-placeholder": "master / active / posting private key",
+    "key-placeholder": "password / private key",
     "login-info-1": "Δεν αποθηκεύουμε τα ιδιωτικά κλειδιά σας.",
     "login-info-2": "Περισσότερες πληροφορίες",
     "error-fields-required": "Παρακαλώ γράψτε όνομα χρήστη και ιδιωτικό κλειδί",
