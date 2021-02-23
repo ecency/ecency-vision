@@ -361,21 +361,21 @@ export class Login extends BaseComponent<LoginProps, State> {
         // Posting public key of the account
         const postingPublic = account?.posting!.key_auths.map(x => x[0]);
 
-        // Is plain password
-        const isMasterKey = !cryptoUtils.isWif(key);
+        const isPlainPassword = !cryptoUtils.isWif(key);
 
         let thePrivateKey: PrivateKey;
 
         // Whether using posting private key to login
         let withPostingKey = false;
 
-        if (!isMasterKey && postingPublic.includes(PrivateKey.fromString(key).createPublic().toString())) {
-            // Login with posting key
+        if (!isPlainPassword && postingPublic.includes(PrivateKey.fromString(key).createPublic().toString())) {
+            // Login with posting private key
             withPostingKey = true;
             thePrivateKey = PrivateKey.fromString(key);
         } else {
+            // Login with master or active private key
             // Get active private key from user entered code
-            if (isMasterKey) {
+            if (isPlainPassword) {
                 thePrivateKey = PrivateKey.fromLogin(account.name, key, 'active');
             } else {
                 thePrivateKey = PrivateKey.fromString(key);
