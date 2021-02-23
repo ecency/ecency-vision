@@ -91,7 +91,7 @@
     "title": "आपका पुनः स्वागत है!",
     "with-user-pass": "अपने उपयोगकर्ता नाम और निजी कुंजी के साथ लॉगिन करें।",
     "username-placeholder": "प्रयोक्ता नाम",
-    "key-placeholder": "master / active / posting private key",
+    "key-placeholder": "password / private key",
     "login-info-1": "हम आपकी निजी कुंजियाँ संग्रहीत नहीं करते हैं।",
     "login-info-2": "अधिक जानकारी",
     "error-fields-required": "कृपया उपयोगकर्ता नाम और निजी कुंजी दर्ज करें",
