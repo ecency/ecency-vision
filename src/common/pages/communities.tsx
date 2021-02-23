@@ -430,6 +430,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                 accessToken: x.access_token,
                 refreshToken: x.refresh_token,
                 expiresIn: x.expires_in,
+                postingKey: null
             }));
         } catch (e) {
             error(formatError(e));
@@ -706,6 +707,7 @@ class CommunityCreateHSPage extends BaseComponent<PageProps, CreateHsState> {
                 accessToken: x.access_token,
                 refreshToken: x.refresh_token,
                 expiresIn: x.expires_in,
+                postingKey: null
             }));
         } catch (e) {
             error(formatError(e));
