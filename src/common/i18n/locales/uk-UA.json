@@ -91,7 +91,7 @@
     "title": "З поверненням!",
     "with-user-pass": "Увійдіть за допомогою вашого логіну та приватного ключа.",
     "username-placeholder": "ім'я користувача",
-    "key-placeholder": "master / active / posting private key",
+    "key-placeholder": "password / private key",
     "login-info-1": "Ми не зберігаємо ваші приватні ключі.",
     "login-info-2": "Детальніше",
     "error-fields-required": "Будь ласка, введіть ім'я користувача та приватний ключ",
