@@ -49,7 +49,7 @@ const keyChainLogo = require("../../img/keychain.png");
 
 interface LoginKcProps {
     toggleUIProp: (what: ToggleType) => void;
-    doLogin: (hsCode: string, postingKey: null | string, account: Account) => Promise<void>;
+    doLogin: (hsCode: string, postingKey: null | undefined | string, account: Account) => Promise<void>;
 }
 
 interface LoginKcState {
@@ -231,7 +231,7 @@ interface LoginProps {
     setActiveUser: (username: string | null) => void;
     deleteUser: (username: string) => void;
     toggleUIProp: (what: ToggleType) => void;
-    doLogin: (hsCode: string, postingKey: null | string, account: Account) => Promise<void>;
+    doLogin: (hsCode: string, postingKey: null | undefined | string, account: Account) => Promise<void>;
 }
 
 interface State {
@@ -265,7 +265,7 @@ export class Login extends BaseComponent<LoginProps, State> {
 
         getAccount(user.username)
             .then((account) => {
-                return doLogin(getRefreshToken(user.username), null, account);
+                return doLogin(getRefreshToken(user.username), user.postingKey, account);
             })
             .then(() => {
                 this.hide();
@@ -555,7 +555,7 @@ export default class LoginDialog extends Component<Props> {
         }
     }
 
-    doLogin = async (hsCode: string, postingKey: null | string, account: Account) => {
+    doLogin = async (hsCode: string, postingKey: null | undefined | string, account: Account) => {
         // get access token from code
         return hsTokenRenew(hsCode).then(x => {
             const {setActiveUser, updateActiveUser, addUser} = this.props;
