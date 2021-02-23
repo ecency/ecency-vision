@@ -79,7 +79,10 @@ export class EditorToolbar extends Component<Props> {
         this.setState({fragments: !fragments});
     }
 
-    toggleImage = () => {
+    toggleImage = (e?: React.MouseEvent<HTMLElement>) => {
+        if (e) {
+            e.stopPropagation();
+        }
         const {image} = this.state;
         this.setState({image: !image});
     }
@@ -377,9 +380,7 @@ export class EditorToolbar extends Component<Props> {
                     <Tooltip content={_t("editor-toolbar.image")}>
                         <div
                             className="editor-tool"
-                            onClick={() => {
-                                this.toggleImage();
-                            }}>
+                            onClick={this.toggleImage}>
                             {imageSvg}
 
                             {activeUser && (

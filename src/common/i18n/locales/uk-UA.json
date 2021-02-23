@@ -652,6 +652,7 @@
     "type-follows": "Слідкують",
     "type-reblogs": "Розповсюдження",
     "type-transfers": "Перекази",
+    "group-title-recent": "Recent",
     "vote-str": "{{p}}% подобається ваш допис:",
     "reply-str": "відповів(-ла) на ваш допис:",
     "mention-str": "згадав(-ла) вас у:",
