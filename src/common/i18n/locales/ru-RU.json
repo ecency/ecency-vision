@@ -91,7 +91,7 @@
     "title": "С возвращением!",
     "with-user-pass": "Войти с вашим именем пользователя и приватным ключом.",
     "username-placeholder": "пользователь",
-    "key-placeholder": "password / private key",
+    "key-placeholder": "пароль / закрытый ключ",
     "login-info-1": "Мы не храним ваши закрытые ключи.",
     "login-info-2": "Подробнее",
     "error-fields-required": "Пожалуйста, введите имя пользователя и пароль/ключ",
@@ -99,7 +99,7 @@
     "error-user-fetch": "Не удалось получить данные пользователя",
     "error-user-not-found": "Такого пользователя не существует",
     "error-permission": "Не удалось получить разрешение на запись",
-    "error-authenticate": "Wrong private key. Master or active or posting private key required.",
+    "error-authenticate": "Неверный закрытый ключ. Требуется мастер-пароль, активный или закрытый постинг ключ.",
     "with-hive-signer": "Войти с помощью hivesigner",
     "with-keychain": "Войти с помощью keychain",
     "sign-up-text-1": "У вас нет учетной записи?",
@@ -304,11 +304,11 @@
     "done-link-label": "Начните работу."
   },
   "community-rewards-registration": {
-    "body-text": "Register your community to get Ecency POINTS",
+    "body-text": "Зарегистрируйте свое сообщество, чтобы получить Ecency баллы",
     "btn-next-label": "Register",
     "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.",
-    "conflict-body-text": "This community is already registered.",
-    "min-required-body-text": "Minimum 100 subscribers required to register."
+    "conflict-body-text": "Такое сообщество уже зарегистрировано.",
+    "min-required-body-text": "Для регистрации требуется не менее 100 подписчиков."
   },
   "pin-btn": {
     "pin": "Закрепить",
@@ -605,29 +605,29 @@
     "scheduled": "Post scheduled"
   },
   "tag-selector": {
-    "placeholder-empty": "Tags. First tag is main category. Sortable.",
-    "placeholder-focus": "Enter tag",
-    "placeholder-has-tags": "Add More",
-    "suggestion-header": "Tags",
-    "error-max": "Max {{n}} tags"
+    "placeholder-empty": "Тэги. Первый тэг является основной категорией. Для сортировки.",
+    "placeholder-focus": "Введите тэг",
+    "placeholder-has-tags": "Добавить еще",
+    "suggestion-header": "Тэги",
+    "error-max": "Максимум {{n}} тегов"
   },
   "community-selector": {
-    "my-blog": "My Blog",
+    "my-blog": "Мой блог",
     "search-placeholder": "Search Communities"
   },
   "word-count": {
-    "label": "{{n}} words",
-    "read-time-less-1-min": "< 1 min read",
-    "read-time-n-min": "~ {{n}} min read"
+    "label": "{{n}} слов",
+    "read-time-less-1-min": "< 1 мин. чтения",
+    "read-time-n-min": "~ {{n}} мин. чтения"
   },
   "beneficiary-editor": {
-    "title": "Beneficiaries",
-    "btn-label": "Set Beneficiaries",
-    "btn-label-n": "Set Beneficiaries ({{n}})",
-    "username": "Username",
-    "reward": "Reward",
-    "user-error": "{{n}} is not a valid user.",
-    "user-exists-error": "{{n}} is already in the list"
+    "title": "Бенефициары",
+    "btn-label": "Установить бенефициаров",
+    "btn-label-n": "Установить бенефициаров ({{n}})",
+    "username": "Пользователь",
+    "reward": "Вознаграждение",
+    "user-error": "Нет такого пользователя {{n}}.",
+    "user-exists-error": "{{n}} уже в списке"
   },
   "post-scheduler": {
     "title": "Schedule",
@@ -653,7 +653,7 @@
     "type-reblogs": "Репосты",
     "type-transfers": "Переводы",
     "group-title-recent": "Recent",
-    "vote-str": "{{p}}% likes your post:",
+    "vote-str": "{{p}}% проголосовал за ваш пост:",
     "reply-str": "ответил на ваш пост:",
     "mention-str": "упомянул вас в:",
     "followed-str": "подписался на",
@@ -745,15 +745,15 @@
     "list-version": "Version",
     "username-placeholder": "username",
     "extra-description": "Enter account name below to vote for a witness outside of Top 50",
-    "proxy-description": "You can also choose a proxy that will vote for witnesses for you. This will reset your current witness selection.",
-    "proxy-btn-label": "Set Proxy",
-    "proxy-active-description": "You have set a voting proxy. If you would like to re-enable manual voting, please clear your proxy.",
-    "proxy-active-current": "Your current proxy is",
-    "proxy-active-btn-label": "Clear Proxy",
-    "proxy-votes-for": "@{{username}} votes for"
+    "proxy-description": "Вы также можете выбрать прокси (доверенного), который будет голосовать вместо вас. Это сбросит ваш текущий выбор делегатов.",
+    "proxy-btn-label": "Установить прокси",
+    "proxy-active-description": "У вас установлен прокси для голосования. Если вы хотите вернуть голосование вручную, пожалуйста, очистите ваш прокси.",
+    "proxy-active-current": "Ваш действующий прокси",
+    "proxy-active-btn-label": "Очистить прокси",
+    "proxy-votes-for": "@{{username}} голосует за"
   },
   "proposals": {
-    "page-title": "Proposals",
+    "page-title": "Предложения",
     "page-description": "The Decentralized Hive Fund (DHF) is an on-chain funding mechanism that allows anyone to submit a proposal and get funding once community votes pass certain threshold. To learn more read our <a href=\"/faq#how-dhf-work\">FAQ</a>.",
     "by": "by",
     "for": "for",
