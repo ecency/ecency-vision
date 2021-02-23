@@ -813,6 +813,11 @@
     "text-label": "छवि पाठ",
     "link-label": "छवि लिंक"
   },
+  "add-link": {
+    "title": "Add Link",
+    "text-label": "Text",
+    "link-label": "https://"
+  },
   "scroll-to-top": {
     "title": "शीर्ष तक स्क्रॉल करें"
   },
