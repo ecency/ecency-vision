@@ -18,6 +18,8 @@ import parseAsset from "../helper/parse-asset";
 
 import {hotSign} from "../helper/hive-signer";
 
+import {_t} from "../i18n";
+
 export interface MetaData {
     links?: string[];
     image?: string[];
@@ -46,6 +48,21 @@ export interface CommentOptions {
 export type RewardType = "default" | "sp" | "dp";
 
 export const formatError = (err: any): string => {
+
+    const strErr = err.toString();
+
+    if (/You may only post once every/.test(strErr)) {
+        return _t("chain-error.min-root-comment");
+    } else if (/Your current vote on this comment is identical/.test(strErr)) {
+        return _t("chain-error.identical-vote");
+    } else if (/Please wait to transact, or power up/.test(strErr)) {
+        return _t("chain-error.insufficient-resource");
+    } else if (/Cannot delete a comment with net positive/.test(strErr)) {
+        return _t("chain-error.delete-comment-with-vote");
+    } else if(/comment_cashout/.test(strErr)){
+        return _t("chain-error.comment-cashout");
+    }
+
     if (err.error_description) {
         return err.error_description.substring(0, 80);
     }
@@ -675,7 +692,7 @@ export const subscribe = (username: string, community: string): Promise<Transact
         'subscribe', {community}
     ];
 
-    return broadcastPostingJSON(username,"community", json);
+    return broadcastPostingJSON(username, "community", json);
 }
 
 export const unSubscribe = (username: string, community: string): Promise<TransactionConfirmation> => {
@@ -683,7 +700,7 @@ export const unSubscribe = (username: string, community: string): Promise<Transa
         'unsubscribe', {community}
     ]
 
-    return broadcastPostingJSON(username,"community", json);
+    return broadcastPostingJSON(username, "community", json);
 }
 
 export const promote = (key: PrivateKey, user: string, author: string, permlink: string, duration: number): Promise<TransactionConfirmation> => {
