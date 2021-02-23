@@ -91,7 +91,7 @@
     "title": "Willkommen zurück!",
     "with-user-pass": "Melde dich mit deinen Zugangsdaten an.",
     "username-placeholder": "benutzername",
-    "key-placeholder": "master / active / posting private key",
+    "key-placeholder": "password / private key",
     "login-info-1": "Wir speichern keine Private Keys.",
     "login-info-2": "Mehr Infos",
     "error-fields-required": "Bitte Benutzername und Private Key eingeben",
