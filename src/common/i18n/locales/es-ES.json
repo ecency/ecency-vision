@@ -91,7 +91,7 @@
     "title": "¡Bienvenido de nuevo!",
     "with-user-pass": "Inicia sesión con tu nombre de usuario y clave privada.",
     "username-placeholder": "nombre de Usuario",
-    "key-placeholder": "password / private key",
+    "key-placeholder": "Contraseña / clave privada",
     "login-info-1": "No almacenamos sus claves privadas.",
     "login-info-2": "Más información",
     "error-fields-required": "Por favor introduce el usuario y la contraseña",
