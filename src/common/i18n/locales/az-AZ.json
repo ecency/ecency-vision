@@ -91,7 +91,7 @@
     "title": "Yenidən Xoş Gəldiniz!",
     "with-user-pass": "İstifadəçi adınız və gizli açarınızla giriş edin.",
     "username-placeholder": "istifadəçi adı",
-    "key-placeholder": "master / active / posting private key",
+    "key-placeholder": "password / private key",
     "login-info-1": "Gizli açarlarınızı saxlamırıq.",
     "login-info-2": "Ətraflı məlumat",
     "error-fields-required": "Zəhmət olmasa istifadəçi adı və gizli açarı daxil edin",
