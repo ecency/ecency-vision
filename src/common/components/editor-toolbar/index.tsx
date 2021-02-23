@@ -238,8 +238,8 @@ export class EditorToolbar extends Component<Props> {
         this.insertText(`[${text}`, `](${url})`);
     };
 
-    image = (name = "", url = "url") => {
-        this.insertText(`![${name}`, `](${url})`);
+    image = (text: string, url: string) => {
+        this.insertText(`![${text}`, `](${url})`);
     };
 
     table = (e: React.MouseEvent<HTMLElement>) => {
