@@ -91,7 +91,7 @@
     "title": "Добре дошли отново!",
     "with-user-pass": "Влезте с потребителското си име и личния си ключ.",
     "username-placeholder": "потребителско име",
-    "key-placeholder": "master / active / posting private key",
+    "key-placeholder": "password / private key",
     "login-info-1": "Ние не съхраняваме личните ви ключове.",
     "login-info-2": "Повече информация",
     "error-fields-required": "Моля въведете потребителското си име и личния си ключ",
