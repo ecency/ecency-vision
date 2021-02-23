@@ -91,7 +91,7 @@
     "title": "Üdv újra!",
     "with-user-pass": "Jelentkezz be felhasználónévvel és private kulccsal.",
     "username-placeholder": "felhasználónév",
-    "key-placeholder": "master / active / posting private key",
+    "key-placeholder": "password / private key",
     "login-info-1": "Mi nem tároljuk a kulcsaidat.",
     "login-info-2": "Több infó",
     "error-fields-required": "Kérjük add meg felhasználóneved és jelszavad/wif-ed",
