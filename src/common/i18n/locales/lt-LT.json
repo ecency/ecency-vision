@@ -91,7 +91,7 @@
     "title": "Sveiki sugrįžę!",
     "with-user-pass": "Prisijunkite naudodami vartotojo vardą ir privatų raktą.",
     "username-placeholder": "vartotojo vardas",
-    "key-placeholder": "master / active / posting private key",
+    "key-placeholder": "password / private key",
     "login-info-1": "Mes nelaikome jūsų privačių raktų.",
     "login-info-2": "Daugiau Informacijos",
     "error-fields-required": "Prašome įvesti vartotojo vardą ir privatųjį raktą",
