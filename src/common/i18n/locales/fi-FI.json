@@ -91,7 +91,7 @@
     "title": "Tervetuloa takaisin!",
     "with-user-pass": "Kirjaudu käyttäjätunnuksellasi ja yksityisellä avaimellasi.",
     "username-placeholder": "käyttäjänimi",
-    "key-placeholder": "password / private key",
+    "key-placeholder": "salasana / yksityinen avain",
     "login-info-1": "Emme tallenna yksityisiä avaimiasi.",
     "login-info-2": "Lisätietoja",
     "error-fields-required": "Syötä käyttäjänimi ja yksityinen avain",
