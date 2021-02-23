@@ -47,10 +47,7 @@ export interface CommentOptions {
 
 export type RewardType = "default" | "sp" | "dp";
 
-export const formatError = (err: any): string => {
-
-    const strErr = err.toString();
-
+const handleChainError = (strErr: string) => {
     if (/You may only post once every/.test(strErr)) {
         return _t("chain-error.min-root-comment");
     } else if (/Your current vote on this comment is identical/.test(strErr)) {
@@ -59,15 +56,37 @@ export const formatError = (err: any): string => {
         return _t("chain-error.insufficient-resource");
     } else if (/Cannot delete a comment with net positive/.test(strErr)) {
         return _t("chain-error.delete-comment-with-vote");
-    } else if(/comment_cashout/.test(strErr)){
+    } else if (/comment_cashout/.test(strErr)) {
         return _t("chain-error.comment-cashout");
+    } else if (/Votes evaluating for comment that is paid out is forbidden/.test(strErr)) {
+        return _t("chain-error.paid-out-post-forbidden");
     }
 
-    if (err.error_description) {
+    return null;
+}
+
+export const formatError = (err: any): string => {
+
+    let chainErr = handleChainError(err.toString());
+    if (chainErr) {
+        return chainErr;
+    }
+
+    if (err.error_description && typeof err.error_description === "string") {
+        let chainErr = handleChainError(err.error_description);
+        if (chainErr) {
+            return chainErr;
+        }
+
         return err.error_description.substring(0, 80);
     }
 
-    if (err.message) {
+    if (err.message && typeof err.message === "string") {
+        let chainErr = handleChainError(err.message);
+        if (chainErr) {
+            return chainErr;
+        }
+
         return err.message.substring(0, 80);
     }
 
