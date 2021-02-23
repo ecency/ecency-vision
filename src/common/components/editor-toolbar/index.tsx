@@ -10,6 +10,7 @@ import EmojiPicker from "../emoji-picker";
 import Gallery from "../gallery";
 import Fragments from "../fragments";
 import AddImage from "../add-image";
+import AddLink from "../add-link";
 
 import {uploadImage} from "../../api/misc";
 
@@ -44,13 +45,14 @@ import {
 interface Props {
     users: User[];
     activeUser: ActiveUser | null;
-    sm?: boolean
+    sm?: boolean;
 }
 
 interface State {
-    gallery: boolean
-    fragments: boolean
-    image: boolean
+    gallery: boolean;
+    fragments: boolean;
+    image: boolean;
+    link: boolean;
 }
 
 export class EditorToolbar extends Component<Props> {
@@ -58,6 +60,7 @@ export class EditorToolbar extends Component<Props> {
         gallery: false,
         fragments: false,
         image: false,
+        link: false,
     }
 
     holder = React.createRef<HTMLDivElement>();
@@ -85,6 +88,14 @@ export class EditorToolbar extends Component<Props> {
         }
         const {image} = this.state;
         this.setState({image: !image});
+    }
+
+    toggleLink = (e?: React.MouseEvent<HTMLElement>) => {
+        if (e) {
+            e.stopPropagation();
+        }
+        const {link} = this.state;
+        this.setState({link: !link});
     }
 
     componentDidMount() {
@@ -223,8 +234,8 @@ export class EditorToolbar extends Component<Props> {
         this.insertText("* item1\n* item2\n* item3");
     };
 
-    link = () => {
-        this.insertText("[", "](https://)");
+    link = (text: string, url: string) => {
+        this.insertText(`[${text}`, `](${url})`);
     };
 
     image = (name = "", url = "url") => {
@@ -309,7 +320,7 @@ export class EditorToolbar extends Component<Props> {
     };
 
     render() {
-        const {gallery, fragments, image} = this.state;
+        const {gallery, fragments, image, link} = this.state;
         const {sm, activeUser} = this.props;
 
         return (
@@ -373,7 +384,7 @@ export class EditorToolbar extends Component<Props> {
                     </Tooltip>
                     <div className="tool-separator"/>
                     <Tooltip content={_t("editor-toolbar.link")}>
-                        <div className="editor-tool" onClick={this.link}>
+                        <div className="editor-tool" onClick={this.toggleLink}>
                             {linkSvg}
                         </div>
                     </Tooltip>
@@ -459,9 +470,13 @@ export class EditorToolbar extends Component<Props> {
                     this.image(text, link);
                     this.toggleImage();
                 }}/>}
+                {link && <AddLink onHide={this.toggleLink} onSubmit={(text: string, link: string) => {
+                    this.link(text, link);
+                    this.toggleLink();
+                }}/>}
             </>
         );
-    };
+    }
 }
 
 export default (props: Props) => {
