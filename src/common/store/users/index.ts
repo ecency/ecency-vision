@@ -18,9 +18,10 @@ export default (state: User[] = initialState, action: Actions): User[] => {
                     username: u.username,
                     refreshToken: '',
                     accessToken: '',
-                    expiresIn: u.expiresIn
+                    expiresIn: u.expiresIn,
+                    postingKey: u.postingKey
                 }
-            }) as User[];
+            });
         }
         default:
             return state;
