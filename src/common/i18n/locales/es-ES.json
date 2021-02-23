@@ -813,6 +813,11 @@
     "text-label": "Texto de la imagen",
     "link-label": "Enlace de la imagen"
   },
+  "add-link": {
+    "title": "Add Link",
+    "text-label": "Text",
+    "link-label": "https://"
+  },
   "scroll-to-top": {
     "title": "Ir arriba"
   },
