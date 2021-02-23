@@ -91,7 +91,7 @@
     "title": "Witaj ponownie!",
     "with-user-pass": "Zaloguj się za pomocą nazwy użytkownika i klucza prywatnego.",
     "username-placeholder": "nazwa użytkownika",
-    "key-placeholder": "master / active / posting private key",
+    "key-placeholder": "password / private key",
     "login-info-1": "Nie przechowujemy Twoich kluczy prywatnych.",
     "login-info-2": "Więcej informacji",
     "error-fields-required": "Wprowadź nazwę użytkownika i klucz prywatny",
