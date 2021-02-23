@@ -91,7 +91,7 @@
     "title": "Bine ai revenit!",
     "with-user-pass": "Login with your username and private key.",
     "username-placeholder": "nume utilizator",
-    "key-placeholder": "master / active / posting private key",
+    "key-placeholder": "password / private key",
     "login-info-1": "We don't store your private keys.",
     "login-info-2": "Mai mult",
     "error-fields-required": "Introdu numele de utilizator și parola",
