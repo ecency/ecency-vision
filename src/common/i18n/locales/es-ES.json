@@ -814,8 +814,8 @@
     "link-label": "Enlace de la imagen"
   },
   "add-link": {
-    "title": "Add Link",
-    "text-label": "Text",
+    "title": "Añadir enlace",
+    "text-label": "Texto",
     "link-label": "https://"
   },
   "scroll-to-top": {
