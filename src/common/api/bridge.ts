@@ -81,7 +81,7 @@ export const getCommunity = (name: string, observer: string | undefined = ""): P
 export const getCommunities = (
     last: string = "",
     limit: number = 100,
-    query: string = "",
+    query?: string | null,
     sort: string = "rank",
     observer: string = ""
 ): Promise<Community[] | null> =>
