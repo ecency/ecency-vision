@@ -98,7 +98,7 @@ class CommunitiesPage extends BaseComponent<PageProps, State> {
         const {query, sort} = this.state;
         this.stateSet({loading: true});
 
-        getCommunities("", 100, query, (sort === "hot" ? "rank" : sort))
+        getCommunities("", 100, query?query:null, (sort === "hot" ? "rank" : sort))
             .then((r) => {
                 if (r) {
                     const list = sort === "hot" ? r.sort(() => Math.random() - 0.5) : r;
