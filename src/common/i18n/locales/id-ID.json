@@ -91,7 +91,7 @@
     "title": "Selamat datang kembali!",
     "with-user-pass": "Masuk dengan nama pengguna dan Private Key Anda.",
     "username-placeholder": "nama pengguna",
-    "key-placeholder": "password / private key",
+    "key-placeholder": "password / kunci pribadi",
     "login-info-1": "Kami tidak menyimpan private key Anda.",
     "login-info-2": "Info lebih lanjut",
     "error-fields-required": "Silahkan masukkan nama pengguna dan private key",
