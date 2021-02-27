@@ -84,8 +84,8 @@ export class ProposalListItem extends Component<Props, State> {
 
         const allPayment = dailyPayment * duration;
         const strAllPayment = numeral(allPayment).format("0.0a");
-
-        const remaining = endDate.diff(moment(now()), 'days');
+        const diff = endDate.diff(moment(now()), 'days');
+        const remaining = diff < 0 ? 0 : diff;
 
         return (
             <div className="proposal-list-item">

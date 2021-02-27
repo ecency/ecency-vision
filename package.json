@@ -30,7 +30,7 @@
     "express": "^4.17.1",
     "history": "^4.7.2",
     "hive-uri": "^0.2.3",
-    "hivesigner": "^3.2.2",
+    "hivesigner": "^3.2.3",
     "html-react-parser": "^1.2.1",
     "i18next": "^19.4.4",
     "i18next-browser-languagedetector": "^4.2.0",

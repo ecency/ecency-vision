@@ -5028,10 +5028,10 @@ hive-uri@^0.2.3:
   resolved "https://registry.yarnpkg.com/hive-uri/-/hive-uri-0.2.3.tgz#a0d9bc69d44423e660c84dd57fdadb6994481b8d"
   integrity sha512-q6zp2sh5fjs6cf4T2oHvXt4IFNMmGBTRT5uKuxK/y//5XXCSbOGY/B/DKfK+7hwT8arMhcnbtKdlKarZu2SsXA==
 
-hivesigner@^3.2.2:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/hivesigner/-/hivesigner-3.2.2.tgz#c9a5bcbcf1e591f0bc8b5d3307b13928692b6961"
-  integrity sha512-S8Xk2KZTpLNXo1oW8P6XNKodFOxWzvnspqRJtU2O7h1RI9ffyGTE63E3S/tEpJpirTRbvif88Vp4t1hJGvIS0w==
+hivesigner@^3.2.3:
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/hivesigner/-/hivesigner-3.2.3.tgz#f7d19d72cde26b9aec7fdeb44ef234a0607ad4d1"
+  integrity sha512-qDPl2wdggp1b8LA7gAWbyFdPSNWkUOorTgor2owP6IEZbxK1vFM3oFwdxxwlaBPAhNjQeJEkSPmRDBP85vv7Zg==
   dependencies:
     cross-fetch "^3.0.6"
     hive-uri "^0.2.3"
