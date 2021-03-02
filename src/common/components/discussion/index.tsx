@@ -8,11 +8,7 @@ import {Button, Form, FormControl} from "react-bootstrap";
 
 import defaults from "../../constants/defaults.json";
 
-import {
-    renderPostBody,
-    setProxyBase,
-    // @ts-ignore
-} from "@ecency/render-helper";
+import {renderPostBody, setProxyBase} from "@ecency/render-helper";
 
 setProxyBase(defaults.imageServer);
 

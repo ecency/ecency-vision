@@ -19,10 +19,7 @@ import LinearProgress from "../linear-progress";
 import DropDown from "../dropdown";
 import Tooltip from "../tooltip";
 
-import {
-    postBodySummary,
-    // @ts-ignore
-} from "@ecency/render-helper";
+import {postBodySummary} from "@ecency/render-helper";
 
 import {_t} from "../../i18n";
 

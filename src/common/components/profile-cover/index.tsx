@@ -10,11 +10,7 @@ import {UI, ToggleType} from "../../store/ui/types";
 
 import defaults from "../../constants/defaults.json";
 
-import {
-    proxifyImageSrc,
-    setProxyBase,
-    // @ts-ignore
-} from "@ecency/render-helper";
+import {proxifyImageSrc, setProxyBase} from "@ecency/render-helper";
 
 setProxyBase(defaults.imageServer);
 

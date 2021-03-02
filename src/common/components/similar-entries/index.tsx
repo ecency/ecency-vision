@@ -8,11 +8,7 @@ import isEqual from "react-fast-compare";
 
 import defaults from "../../constants/defaults.json";
 
-import {
-    catchPostImage,
-    setProxyBase,
-    // @ts-ignore
-} from "@ecency/render-helper";
+import {catchPostImage, setProxyBase} from "@ecency/render-helper";
 
 setProxyBase(defaults.imageServer);
 
