@@ -17,12 +17,7 @@ import {UI, ToggleType} from "../../store/ui/types";
 
 import defaults from "../../constants/defaults.json";
 
-import {
-    catchPostImage,
-    postBodySummary,
-    setProxyBase,
-    // @ts-ignore
-} from "@ecency/render-helper";
+import {catchPostImage, postBodySummary, setProxyBase} from "@ecency/render-helper";
 
 setProxyBase(defaults.imageServer);
 

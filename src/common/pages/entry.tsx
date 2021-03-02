@@ -10,13 +10,7 @@ import {Button} from "react-bootstrap";
 
 import defaults from "../constants/defaults.json";
 
-import {
-    renderPostBody,
-    setProxyBase,
-    catchPostImage,
-    postBodySummary,
-    // @ts-ignore
-} from "@ecency/render-helper";
+import {renderPostBody, setProxyBase, catchPostImage, postBodySummary} from "@ecency/render-helper";
 
 setProxyBase(defaults.imageServer);
 

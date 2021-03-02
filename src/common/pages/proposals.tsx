@@ -12,12 +12,7 @@ import moment from "moment";
 
 import defaults from "../constants/defaults.json";
 
-import {
-    renderPostBody,
-    setProxyBase,
-    catchPostImage,
-    // @ts-ignore
-} from "@ecency/render-helper";
+import {renderPostBody, setProxyBase, catchPostImage} from "@ecency/render-helper";
 
 setProxyBase(defaults.imageServer);
 

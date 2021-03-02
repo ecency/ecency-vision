@@ -6,12 +6,7 @@ import {Entry} from "../../common/store/entries/types";
 
 import defaults from "../../common/constants/defaults.json";
 
-import {
-    catchPostImage,
-    postBodySummary,
-    setProxyBase,
-    // @ts-ignore
-} from "@ecency/render-helper";
+import {catchPostImage, postBodySummary, setProxyBase} from "@ecency/render-helper";
 
 setProxyBase(defaults.imageServer);
 
