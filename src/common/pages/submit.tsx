@@ -77,6 +77,13 @@ interface PostBase {
     body: string;
 }
 
+interface Advanced {
+    reward: RewardType;
+    beneficiaries: BeneficiaryRoute[];
+    schedule: string | null,
+    reblogSwitch: boolean;
+}
+
 interface PreviewProps extends PostBase {
     history: History;
     global: Global;
@@ -131,17 +138,13 @@ interface Props extends PageProps {
     match: match<MatchParams>;
 }
 
-interface State extends PostBase {
-    reward: RewardType;
+interface State extends PostBase, Advanced {
     preview: PostBase;
     posting: boolean;
     editingEntry: Entry | null;
     saving: boolean;
     editingDraft: Draft | null;
     advanced: boolean;
-    beneficiaries: BeneficiaryRoute[];
-    schedule: Moment | null,
-    reblogSwitch: boolean;
 }
 
 class SubmitPage extends BaseComponent<Props, State> {
@@ -169,6 +172,8 @@ class SubmitPage extends BaseComponent<Props, State> {
 
     componentDidMount = (): void => {
         this.loadLocalDraft();
+
+        this.loadAdvanced();
 
         this.detectCommunity();
 
@@ -312,6 +317,34 @@ class SubmitPage extends BaseComponent<Props, State> {
         ls.set("local_draft", localDraft);
     };
 
+    loadAdvanced = (): void => {
+        const advanced = ls.get("local_advanced") as Advanced;
+        if (!advanced) {
+            return;
+        }
+
+        this.stateSet({...advanced});
+    }
+
+    saveAdvanced = (): void => {
+        const {reward, beneficiaries, schedule, reblogSwitch} = this.state;
+
+        const advanced: Advanced = {
+            reward,
+            beneficiaries,
+            schedule,
+            reblogSwitch
+        }
+
+        ls.set("local_advanced", advanced);
+    }
+
+    hasAdvanced = (): boolean => {
+        const {reward, beneficiaries, schedule, reblogSwitch} = this.state;
+
+        return reward !== "default" || beneficiaries.length > 0 || schedule !== null || reblogSwitch;
+    }
+
     titleChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
         const {value: title} = e.target;
         this.stateSet({title}, () => {
@@ -330,6 +363,16 @@ class SubmitPage extends BaseComponent<Props, State> {
         this.stateSet({tags}, () => {
             this.updatePreview();
         });
+
+        // Toggle off reblog switch if it is true and the first tag is not community tag.
+        const {reblogSwitch} = this.state;
+        if (reblogSwitch) {
+            const isCommunityTag = tags.length > 0 && isCommunity(tags[0]);
+
+            if (!isCommunityTag) {
+                this.stateSet({reblogSwitch: false}, this.saveAdvanced);
+            }
+        }
     };
 
     bodyChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
@@ -341,16 +384,34 @@ class SubmitPage extends BaseComponent<Props, State> {
 
     rewardChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
         const reward = e.target.value as RewardType;
-        this.stateSet({reward});
+        this.stateSet({reward}, this.saveAdvanced);
     };
 
+    beneficiaryAdded = (item: BeneficiaryRoute) => {
+        const {beneficiaries} = this.state;
+        const b = [...beneficiaries, item].sort((a, b) => a.account < b.account ? -1 : 1);
+        this.stateSet({beneficiaries: b}, this.saveAdvanced);
+    }
+
+    beneficiaryDeleted = (username: string) => {
+        const {beneficiaries} = this.state;
+        const b = [...beneficiaries.filter(x => x.account !== username)];
+        this.stateSet({beneficiaries: b}, this.saveAdvanced);
+    }
+
+    scheduleChanged = (d: Moment | null) => {
+        this.stateSet({schedule: d ? d.toISOString(true) : null}, this.saveAdvanced)
+    }
+
     reblogSwitchChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
-        this.stateSet({reblogSwitch: e.target.checked});
+        this.stateSet({reblogSwitch: e.target.checked}, this.saveAdvanced);
     }
 
     clear = (): void => {
-        this.stateSet({title: "", tags: [], body: "", reward: "default", advanced: false, beneficiaries: [], schedule: null, reblogSwitch: false});
-        this.updatePreview();
+        this.stateSet({title: "", tags: [], body: "", reward: "default", advanced: false, beneficiaries: [], schedule: null, reblogSwitch: false}, () => {
+            this.updatePreview();
+            this.saveAdvanced();
+        });
 
         const {editingDraft} = this.state;
         if (editingDraft) {
@@ -566,11 +627,10 @@ class SubmitPage extends BaseComponent<Props, State> {
         const jsonMeta = makeJsonMetaData(meta, tags, version);
         const options = makeCommentOptions(author, permlink, reward, beneficiaries);
 
-        const date = schedule.toISOString(true);
         const reblog = isCommunity(tags[0]) && reblogSwitch;
 
         this.stateSet({posting: true});
-        addSchedule(author, permlink, title, body, jsonMeta, options, date, reblog).then(resp => {
+        addSchedule(author, permlink, title, body, jsonMeta, options, schedule, reblog).then(resp => {
             success(_t('submit.scheduled'));
             this.clear();
         }).catch((e) => {
@@ -662,7 +722,12 @@ class SubmitPage extends BaseComponent<Props, State> {
                                     {_t("submit.clear")}
                                 </Button>
                                 <Button variant="outline-primary" onClick={this.toggleAdvanced}>
-                                    {advanced ? _t("submit.preview") : _t("submit.advanced")}
+                                    {advanced ?
+                                        _t("submit.preview") :
+                                        <>
+                                            {_t("submit.advanced")}
+                                            {this.hasAdvanced() ? " •••" : null}
+                                        </>}
                                 </Button>
                             </div>
                         )}
@@ -752,13 +817,8 @@ class SubmitPage extends BaseComponent<Props, State> {
                                                 {_t("submit.beneficiaries")}
                                             </Form.Label>
                                             <Col sm="9">
-                                                <BeneficiaryEditor author={activeUser?.username} list={beneficiaries} onAdd={(item) => {
-                                                    const b = [...beneficiaries, item].sort((a, b) => a.account < b.account ? -1 : 1);
-                                                    this.stateSet({beneficiaries: b});
-                                                }} onDelete={(username) => {
-                                                    const b = [...beneficiaries.filter(x => x.account !== username)];
-                                                    this.stateSet({beneficiaries: b});
-                                                }}/>
+                                                <BeneficiaryEditor author={activeUser?.username} list={beneficiaries} onAdd={this.beneficiaryAdded}
+                                                                   onDelete={this.beneficiaryDeleted}/>
                                                 <Form.Text muted={true}>{_t("submit.beneficiaries-hint")}</Form.Text>
                                             </Col>
                                         </Form.Group>
@@ -767,9 +827,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                                                 {_t("submit.schedule")}
                                             </Form.Label>
                                             <Col sm="9">
-                                                <PostScheduler date={schedule} onChange={(d) => {
-                                                    this.stateSet({schedule: d})
-                                                }}/>
+                                                <PostScheduler date={schedule ? moment(schedule) : null} onChange={this.scheduleChanged}/>
                                                 <Form.Text muted={true}>{_t("submit.schedule-hint")}</Form.Text>
                                             </Col>
                                         </Form.Group>
