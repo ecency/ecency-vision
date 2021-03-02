@@ -21,6 +21,7 @@ const validateCode = async (req: express.Request, res: express.Response): Promis
     try {
         return await (new hs.Client({accessToken: code}).me().then((r: { name: string }) => r.name));
     } catch (e) {
+        res.status(401).send("Unauthorized");
         return false;
     }
 };
