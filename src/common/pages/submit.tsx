@@ -408,7 +408,7 @@ class SubmitPage extends BaseComponent<Props, State> {
     }
 
     clear = (): void => {
-        this.stateSet({title: "", tags: [], body: "", reward: "default", advanced: false, beneficiaries: [], schedule: null, reblogSwitch: false}, () => {
+        this.stateSet({title: "", tags: [], body: "", advanced: false, reward: "default", beneficiaries: [], schedule: null, reblogSwitch: false}, () => {
             this.updatePreview();
             this.saveAdvanced();
         });
@@ -419,6 +419,12 @@ class SubmitPage extends BaseComponent<Props, State> {
             history.push('/submit');
         }
     };
+
+    clearAdvanced = (): void => {
+        this.stateSet({advanced: false, reward: "default", beneficiaries: [], schedule: null, reblogSwitch: false}, () => {
+            this.saveAdvanced();
+        });
+    }
 
     toggleAdvanced = (): void => {
         const {advanced} = this.state;
@@ -479,6 +485,8 @@ class SubmitPage extends BaseComponent<Props, State> {
         this.stateSet({posting: true});
         comment(author, "", parentPermlink, permlink, title, body, jsonMeta, options, true)
             .then(() => {
+
+                this.clearAdvanced();
 
                 // Create entry object in store
                 const entry = {
