@@ -246,7 +246,7 @@ export const ignore = (follower: string, following: string): Promise<Transaction
 
 export const claimRewardBalance = (username: string, rewardHive: string, rewardHbd: string, rewardVests: string): Promise<TransactionConfirmation> => {
     const params = {
-        username,
+        account: username,
         reward_hive: rewardHive,
         reward_hbd: rewardHbd,
         reward_vests: rewardVests
