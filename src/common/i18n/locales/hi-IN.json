@@ -147,6 +147,8 @@
     "title": "टिप"
   },
   "entry-payout": {
+    "reward": "Reward",
+    "full-power": "Power Up 100%",
     "pending-payout": "अनिर्णीत भुगतान",
     "promoted": "पदोन्नत",
     "author-payout": "लेखक भुगतान",
