@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-import {History} from "history";
+import {History, Location} from "history";
 
 import moment from "moment";
 
@@ -78,6 +78,7 @@ export class ItemBody extends Component<ItemBodyProps> {
 
 interface ItemProps {
     history: History;
+    location: Location;
     global: Global;
     dynamicProps: DynamicProps;
     users: User[];
@@ -253,7 +254,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
     }
 
     render() {
-        const {entry, activeUser, community} = this.props;
+        const {entry, activeUser, community, location} = this.props;
         const {reply, edit, inProgress, showIfHidden} = this.state;
 
         const created = moment(parseDate(entry.created));
@@ -269,8 +270,13 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
 
         const isHidden = !!entry.stats?.gray && !showIfHidden;
 
+        const anchorId = `anchor-@${entry.author}/${entry.permlink}`;
+
+        const selected = location.hash && location.hash.replace("#", "") === `@${entry.author}/${entry.permlink}`;
+
         return (
-            <div className={_c(`discussion-item depth-${entry.depth} ${isHidden ? "hidden-item" : ""}`)}>
+            <div className={_c(`discussion-item depth-${entry.depth} ${isHidden ? "hidden-item" : ""} ${selected ? "selected-item" : ""}`)}>
+                <div className="item-anchor" id={anchorId}/>
                 <div className="item-inner">
                     <div className="item-figure">
                         {ProfileLink({...this.props, username: entry.author, children: <a>{UserAvatar({...this.props, username: entry.author, size: "medium"})}</a>})}
@@ -392,6 +398,7 @@ export class Item extends BaseComponent<ItemProps, ItemState> {
 
 interface ListProps {
     history: History;
+    location: Location;
     global: Global;
     dynamicProps: DynamicProps;
     users: User[];
@@ -437,6 +444,7 @@ export class List extends Component<ListProps> {
 
 interface Props {
     history: History;
+    location: Location
     global: Global;
     dynamicProps: DynamicProps;
     users: User[];
@@ -478,6 +486,19 @@ export class Discussion extends Component<Props, State> {
         const {parent} = this.props;
         if (parent.url !== prevProps.parent.url) { // url changed
             this.fetch();
+        }
+
+        const {discussion} = this.props;
+        if (prevProps.discussion.list.length === 0 && discussion.list.length > 0) {
+            const {location} = this.props;
+            if (location.hash) {
+                const permlink = location.hash.replace("#", "");
+                const anchorId = `anchor-${permlink}`;
+                const anchorEl = document.getElementById(anchorId);
+                if (anchorEl) {
+                    anchorEl.scrollIntoView();
+                }
+            }
         }
     }
 
@@ -567,6 +588,7 @@ export class Discussion extends Component<Props, State> {
 export default (p: Props) => {
     const props: Props = {
         history: p.history,
+        location: p.location,
         global: p.global,
         dynamicProps: p.dynamicProps,
         users: p.users,

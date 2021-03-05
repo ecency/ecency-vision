@@ -6,9 +6,9 @@ import {Discussion as DiscussionType, SortOrder} from '../../store/discussion/ty
 
 import renderer from "react-test-renderer";
 
-import {createBrowserHistory} from "history";
+import {createBrowserHistory, createLocation} from "history";
 
-import {globalInstance, discussionInstace1, dynamicPropsIntance1, communityInstance1, activeUserMaker, UiInstance} from "../../helper/test-helper";
+import {globalInstance, discussionInstace1, dynamicPropsIntance1, activeUserMaker, UiInstance} from "../../helper/test-helper";
 
 jest.mock("moment", () => () => ({
     fromNow: () => "3 days ago",
@@ -27,6 +27,7 @@ const discussion: DiscussionType = {
 
 const defProps = {
     history: createBrowserHistory(),
+    location: createLocation({}),
     global: globalInstance,
     dynamicProps: dynamicPropsIntance1,
     users: [],
@@ -72,6 +73,16 @@ it("(2) Full render with no active user", () => {
     const component = renderer.create(<Discussion {...props} />);
     expect(component.toJSON()).toMatchSnapshot();
 });
+
+it("(3) With selected item", () => {
+    const props = {
+        ...defProps,
+        location: createLocation({hash: "#@forykw/re-esteemapp-202067t12246786z"}),
+    }
+    const component = renderer.create(<Discussion {...props} />);
+    expect(component.toJSON()).toMatchSnapshot();
+});
+
 
 /*
 it("(3) Show mute button, muted comment", () => {
