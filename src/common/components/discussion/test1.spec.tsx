@@ -8,7 +8,7 @@ import renderer from "react-test-renderer";
 
 import {createBrowserHistory, createLocation} from "history";
 
-import {globalInstance, discussionInstace1, dynamicPropsIntance1, activeUserMaker, UiInstance} from "../../helper/test-helper";
+import {globalInstance, discussionInstace1, dynamicPropsIntance1, activeUserMaker, communityInstance1, UiInstance} from "../../helper/test-helper";
 
 jest.mock("moment", () => () => ({
     fromNow: () => "3 days ago",
@@ -84,10 +84,9 @@ it("(3) With selected item", () => {
 });
 
 
-/*
-it("(3) Show mute button, muted comment", () => {
+it("(4) Show mute button, muted comment", () => {
     let [reply] = replies;
-    reply = {...reply, stats: {...reply.stats, gray: true}}
+    reply = {...reply, stats: {hide: false, gray: true, total_votes: 180, flag_weight: 0}}
 
     const discussion: DiscussionType = {
         list: [reply, replies[1]],
@@ -103,7 +102,6 @@ it("(3) Show mute button, muted comment", () => {
         community: communityInstance1
     }
 
-    //   const component = renderer.create(<Discussion {...nProps} />);
-    //   expect(component.toJSON()).toMatchSnapshot();
+    const component = renderer.create(<Discussion {...nProps} />);
+    expect(component.toJSON()).toMatchSnapshot();
 });
-*/
