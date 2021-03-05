@@ -147,6 +147,8 @@
     "title": "Dica"
   },
   "entry-payout": {
+    "reward": "Reward",
+    "full-power": "Power Up 100%",
     "pending-payout": "Pagamento Pendente",
     "promoted": "Promovido",
     "author-payout": "Pagamento do Autor",
