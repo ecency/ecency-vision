@@ -147,6 +147,8 @@
     "title": "Tip"
   },
   "entry-payout": {
+    "reward": "Reward",
+    "full-power": "Power Up 100%",
     "pending-payout": "Függőben lévő kifizetés",
     "promoted": "Támogatott",
     "author-payout": "Szerzői Kifizetés",
