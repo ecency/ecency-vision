@@ -91,7 +91,7 @@
     "title": "Bem vindo de Volta!",
     "with-user-pass": "Faça login com seu nome de usuário e chave privada.",
     "username-placeholder": "usuário",
-    "key-placeholder": "password / private key",
+    "key-placeholder": "senha / chave privada",
     "login-info-1": "Nós não armazenamos suas chaves privadas.",
     "login-info-2": "Mais informação",
     "error-fields-required": "Por favor insira um nome de usuário e palavra passe /WIF",
@@ -99,7 +99,7 @@
     "error-user-fetch": "Dados de usuário não foram encontrados",
     "error-user-not-found": "Usuário não existe",
     "error-permission": "Não foi possível obter permissão de postagem",
-    "error-authenticate": "Wrong private key. Master or active or posting private key required.",
+    "error-authenticate": "Chave privada incorreta. Chave master ou ativa ou de publicar são necessárias.",
     "with-hive-signer": "Entre com o Hivesigner",
     "with-keychain": "Entrar com o keychain",
     "sign-up-text-1": "Não tem uma conta?",
@@ -814,8 +814,8 @@
     "link-label": "Link da Imagem"
   },
   "add-link": {
-    "title": "Add Link",
-    "text-label": "Text",
+    "title": "Adicionar Link",
+    "text-label": "Texto",
     "link-label": "https://"
   },
   "scroll-to-top": {
@@ -905,11 +905,11 @@
     "restart": "Reiniciar"
   },
   "chain-error": {
-    "min-root-comment": "You may only post once every five minutes.",
-    "identical-vote": "Your current vote on this content is identical to this vote.",
-    "insufficient-resource": "Insufficient Resource Credits. Please wait to transact, or power up HIVE.",
-    "delete-comment-with-vote": "Can't delete a content with votes.",
-    "comment-cashout": "Content cashout.",
-    "paid-out-post-forbidden": "Voting for paid out content is not available."
+    "min-root-comment": "Você só pode postar a cada 5 minutos.",
+    "identical-vote": "O teu voto actual neste conteúdo é idêntico a este voto.",
+    "insufficient-resource": "Créditos de Recursos insuficientes. Por favor, espere para realizar transações ou aumente o HIVE.",
+    "delete-comment-with-vote": "Não pode apagar conteúdo com votos.",
+    "comment-cashout": "Retiro de conteúdo.",
+    "paid-out-post-forbidden": "Votação de conteúdo pago não está disponível."
   }
 }
