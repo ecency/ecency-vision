@@ -147,6 +147,8 @@
     "title": "Tip"
   },
   "entry-payout": {
+    "reward": "Reward",
+    "full-power": "Power Up 100%",
     "pending-payout": "Puenayah nyang gohlom di jok",
     "promoted": "Nyang di promosi",
     "author-payout": "Peunayah nyang tuleeh",
