@@ -7,7 +7,7 @@ import {UiInstance} from "../../helper/test-helper";
 
 import renderer from "react-test-renderer";
 
-import {createBrowserHistory} from "history";
+import {createBrowserHistory, createLocation} from "history";
 
 import {globalInstance, discussionInstace1, dynamicPropsIntance1, activeUserMaker} from "../../helper/test-helper";
 
@@ -22,6 +22,7 @@ const discussion: DiscussionType = {
 
 const defProps = {
     history: createBrowserHistory(),
+    location: createLocation({}),
     global: globalInstance,
     dynamicProps: dynamicPropsIntance1,
     users: [],
