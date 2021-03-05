@@ -75,3 +75,76 @@ exports[`(2) Detail render 1`] = `
   </p>
 </div>
 `;
+
+exports[`(3) Detail render with full power 1`] = `
+<div
+  className="payout-popover-content"
+>
+  <p>
+    <span
+      className="label"
+    >
+      Reward
+    </span>
+    <span
+      className="value"
+    >
+      Power Up 100%
+    </span>
+  </p>
+  <p>
+    <span
+      className="label"
+    >
+      Pending Payout
+    </span>
+    <span
+      className="value"
+    >
+      $ 14.264
+    </span>
+  </p>
+  <p>
+    <span
+      className="label"
+    >
+      Beneficiary
+    </span>
+    <span
+      className="value"
+    >
+      esteemapp
+      : 
+      3
+      % 
+      <br />
+    </span>
+  </p>
+  <p>
+    <span
+      className="label"
+    >
+      Breakdown
+    </span>
+    <span
+      className="value"
+    >
+      56.603 HP
+       
+      <br />
+    </span>
+  </p>
+  <p>
+    <span
+      className="label"
+    >
+      Payout
+    </span>
+    <span
+      className="value"
+    >
+      in 4 days
+    </span>
+  </p>
+</div>
+`;

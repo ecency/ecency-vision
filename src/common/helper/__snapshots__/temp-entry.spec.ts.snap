@@ -6,12 +6,7 @@ Object {
   "author": "foo",
   "author_payout_value": "0.000 HBD",
   "author_reputation": 6550853848,
-  "beneficiaries": Array [
-    Object {
-      "account": "ecency",
-      "weight": 100,
-    },
-  ],
+  "beneficiaries": Array [],
   "blacklists": Array [],
   "body": "lorem ipsum dolor sit amet",
   "category": "ecency",
