@@ -342,6 +342,10 @@
     "witnesses": "Witnesses",
     "proposals": "Proposals"
   },
+  "profile-info": {
+    "joined": "Joined: {{n}}",
+    "last-active": "Last active: {{n}}"
+  },
   "profile-edit": {
     "title": "Profile",
     "name": "Display Name",

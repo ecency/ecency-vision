@@ -16,6 +16,7 @@ setProxyBase(defaults.imageServer);
 
 import FollowControls from "../follow-controls";
 import FavoriteBtn from "../favorite-btn";
+import ProfileInfo from "../profile-info";
 
 const coverFallbackDay = require("../../img/cover-fallback-day.png");
 const coverFallbackNight = require("../../img/cover-fallback-night.png");
@@ -64,6 +65,7 @@ export class ProfileCover extends Component<Props> {
             <div className="profile-cover">
                 <div className="cover-image" style={style}/>
                 <div className="follow-controls-holder">
+                    <ProfileInfo account={account} />
                     {!hideControls && <>
                       <FollowControls {...this.props} targetUsername={account.name}/>
                       <FavoriteBtn {...this.props} targetUsername={account.name}/>

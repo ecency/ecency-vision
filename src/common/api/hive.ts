@@ -92,6 +92,8 @@ export const getAccounts = (usernames: string[]): Promise<FullAccount[]> => {
                 created: x.created,
                 reputation: x.reputation,
                 posting_json_metadata: x.posting_json_metadata,
+                last_vote_time: x.last_vote_time,
+                last_post: x.last_post,
                 json_metadata: x.json_metadata,
                 reward_hive_balance: x.reward_hive_balance,
                 reward_hbd_balance: x.reward_hbd_balance,
