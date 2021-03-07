@@ -85,6 +85,13 @@ export const fullAccountInstance: FullAccount = {
     "follow_stats": {"account": "talhasch", "following_count": 27, "follower_count": 232}
 }
 
+export const RcAccountInstance = {
+    "account": "foo",
+    "rc_manabar": {"current_mana": "11657596161418", "last_update_time": 1615134327},
+    "max_rc_creation_adjustment": {"amount": "2020748973", "precision": 6, "nai": "@@000000037"},
+    "max_rc": "11657682161151"
+}
+
 export const activeUserInstance: ActiveUser = activeUserMaker("foo");
 
 export const UiInstance: UI = {

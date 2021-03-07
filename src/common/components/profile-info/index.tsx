@@ -1,12 +1,12 @@
-import moment from "moment";
-
-import {RCAccount} from "@hiveio/dhive/lib/chain/rc";
-
 import React from "react";
 
 import {OverlayTrigger, Tooltip} from "react-bootstrap";
 
-import {Account} from "../../store/accounts/types";
+import moment from "moment";
+
+import {RCAccount} from "@hiveio/dhive/lib/chain/rc";
+
+import {Account, FullAccount} from "../../store/accounts/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
 
 import BaseComponent from "../base";
@@ -17,33 +17,15 @@ import {_t} from "../../i18n";
 
 import {informationVariantSvg, hiveSvg} from "../../img/svg";
 
-interface Props {
-    account: Account;
+interface ContentProps {
+    account: FullAccount;
     dynamicProps: DynamicProps;
+    rcAccount: RCAccount;
 }
 
-interface State {
-    rcAccount: null | RCAccount;
-}
-
-export class ProfileInfo extends BaseComponent<Props, State> {
-    state: State = {
-        rcAccount: null
-    }
-
-    componentDidMount() {
-        const {account} = this.props;
-        findRcAccounts(account.name).then(r => {
-            this.stateSet({rcAccount: r[0]});
-        })
-    }
-
+export class InfoContent extends BaseComponent<ContentProps> {
     render() {
-        const {account, dynamicProps} = this.props;
-        if (!account.__loaded) {
-            return null;
-        }
-
+        const {account, dynamicProps, rcAccount} = this.props;
 
         const vPower = votingPower(account, false);
         const vPowerFixed = (vPower / 100).toFixed(2);
@@ -61,47 +43,74 @@ export class ProfileInfo extends BaseComponent<Props, State> {
 
         const dvPower = downVotingPower(account);
 
-        const tooltip = <Tooltip id="profile-tooltip" style={{zIndex: 10}}>
-            <div className="profile-info-tooltip-content">
-                <p>{_t("profile-info.joined", {n: created})}</p>
-                <p>{_t("profile-info.last-active", {n: lastActive.fromNow()})}</p>
-                <p>
-                    {_t("profile-info.vote-value", {n: vValue})}
-                    {hiveSvg}
-                    {vValue !== vValueFull && <small>{_t("profile-info.vote-value-max", {n: vValueFull})}</small>}
-                </p>
-                <p>{_t("profile-info.vote-power", {n: vPowerFixed})}
-                    {vPowerFixed !== "100.00" && <small>
-                        {_t("profile-info.recharge-time", {n: vPowerRechargeDate.fromNow()})}
+        return <div className="profile-info-tooltip-content">
+            <p>{_t("profile-info.joined", {n: created})}</p>
+            <p>{_t("profile-info.last-active", {n: lastActive.fromNow()})}</p>
+            <p>
+                {_t("profile-info.vote-value", {n: vValue})}
+                {hiveSvg}
+                {vValue !== vValueFull && <small>{_t("profile-info.vote-value-max", {n: vValueFull})}</small>}
+            </p>
+            <p>{_t("profile-info.vote-power", {n: vPowerFixed})}
+                {vPowerFixed !== "100.00" && <small>
+                    {_t("profile-info.recharge-time", {n: vPowerRechargeDate.fromNow()})}
+                </small>}
+            </p>
+            <p>{_t("profile-info.down-vote-power", {n: dvPower.toFixed(2)})}</p>
+            {(() => {
+                const rcp = rcPower(rcAccount);
+                const rcpFixed = rcp.toFixed(2);
+                const rcpRecharge = powerRechargeTime(rcp);
+                const rcpRechargeDate = moment().add(rcpRecharge, "seconds");
+
+                return <p>
+                    {_t("profile-info.rc-power", {n: rcp})}
+                    {rcpFixed !== "100.00" && <small>
+                        {_t("profile-info.recharge-time", {n: rcpRechargeDate.fromNow()})}
                     </small>}
-                </p>
-                <p>{_t("profile-info.down-vote-power", {n: dvPower.toFixed(2)})}</p>
-                {(() => {
-                    const {rcAccount} = this.state;
-                    if (!rcAccount) {
-                        return null;
-                    }
+                </p>;
+            })()}
+        </div>
+    }
+}
 
-                    const rcp = rcPower(rcAccount);
-                    const rcpFixed = rcp.toFixed(2);
-                    const rcpRecharge = powerRechargeTime(rcp);
-                    const rcpRechargeDate = moment().add(rcpRecharge, "seconds");
+interface Props {
+    account: Account;
+    dynamicProps: DynamicProps;
+}
 
-                    return <p>
-                        {_t("profile-info.rc-power", {n: rcp})}
-                        {rcpFixed !== "100.00" && <small>
-                            {_t("profile-info.recharge-time", {n: rcpRechargeDate.fromNow()})}
-                        </small>}
-                    </p>;
-                })()}
-            </div>
-        </Tooltip>
+interface State {
+    rcAccount: null | RCAccount;
+}
 
-        return <span className="profile-info">
-            <OverlayTrigger placement="bottom" overlay={tooltip}>{informationVariantSvg}</OverlayTrigger>
-        </span>
+export class ProfileInfo extends BaseComponent<Props, State> {
+    state: State = {
+        rcAccount: null
     }
 
+    componentDidMount() {
+        const {account} = this.props;
+
+        findRcAccounts(account.name).then(r => {
+            this.stateSet({rcAccount: r[0]});
+        });
+    }
+
+    render() {
+        const {account} = this.props;
+        const {rcAccount} = this.state;
+        if (account.__loaded && rcAccount) {
+            const tooltip = <Tooltip id="profile-tooltip" style={{zIndex: 10}}>
+                <InfoContent {...this.props} account={account} rcAccount={rcAccount}/>
+            </Tooltip>
+
+            return <span className="profile-info">
+                <OverlayTrigger placement="bottom" overlay={tooltip}>{informationVariantSvg}</OverlayTrigger>
+            </span>
+        }
+
+        return <span className="profile-info">{informationVariantSvg}</span>
+    }
 }
 
 export default (p: Props) => {
