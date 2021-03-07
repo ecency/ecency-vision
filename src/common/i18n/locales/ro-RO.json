@@ -342,6 +342,16 @@
     "witnesses": "Martori",
     "proposals": "Propuneri"
   },
+  "profile-info": {
+    "joined": "Joined: {{n}}",
+    "last-active": "Last active: {{n}}",
+    "vote-value": "Vote value: {{n}}",
+    "vote-value-max": "(out of max {{n}})",
+    "vote-power": "Vote Power: {{n}}%",
+    "rc-power": "Resource Credits: {{n}}%",
+    "recharge-time": "(fully charged {{n}})",
+    "down-vote-power": "Downvote Power: {{n}}%"
+  },
   "profile-edit": {
     "title": "Profil",
     "name": "Nume afișat",
