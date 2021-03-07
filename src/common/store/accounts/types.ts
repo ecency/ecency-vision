@@ -31,6 +31,8 @@ export interface FullAccount {
     reputation: string | number;
     json_metadata: string;
     posting_json_metadata: string;
+    last_vote_time: string;
+    last_post: string
     reward_hbd_balance: string;
     reward_vesting_hive: string;
     reward_hive_balance: string;

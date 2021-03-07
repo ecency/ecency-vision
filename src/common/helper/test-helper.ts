@@ -50,6 +50,8 @@ export const fullAccountInstance: FullAccount = {
     "reputation": "1021265023022",
     "posting_json_metadata": "{\"profile\":{\"name\":\"Talha B.\",\"about\":\"Founder @runkod, Software Developer @ecency, Lifelong Learner\",\"cover_image\":\"https://images.ecency.com/DQmTsFJJV7gXpsHNatEWz1vgzykaM4WByxAgLMzWshmXNrj/cover.jpg\",\"profile_image\":\"https://images.ecency.com/DQmV2J1oAUoKxjyJQTu3TcZfGxDr5fzajMGhHEd1e1GALca/ben.jpg\",\"website\":\"https://github.com/talhasch\",\"location\":\"Istanbul\",\"version\":2}}",
     "json_metadata": "{\"profile\":{\"name\":\"Talha B.\",\"about\":\"Founder @runkod, Software Developer @esteemapp, Lifelong Learner\",\"cover_image\":\"https://img.esteem.app/rwd380.jpg\",\"profile_image\":\"https://img.esteem.app/821e0q.jpg\",\"website\":\"https://github.com/talhasch\",\"location\":\"Istanbul\"},\"escrow\":{\"fees\":{\"STEEM\":\"1.000\",\"SBD\":\"3.000\"},\"terms\":\"lorem ipsum dolor sit amet\"}}",
+    "last_vote_time": "2020-06-01T22:22:22",
+    "last_post": "2020-06-01T05:53:33",
     "reward_hive_balance": "0.000 HIVE",
     "reward_hbd_balance": "0.000 HBD",
     "reward_vesting_hive": "0.000 HIVE",
@@ -81,6 +83,13 @@ export const fullAccountInstance: FullAccount = {
         "location": "Istanbul"
     },
     "follow_stats": {"account": "talhasch", "following_count": 27, "follower_count": 232}
+}
+
+export const RcAccountInstance = {
+    "account": "foo",
+    "rc_manabar": {"current_mana": "11657596161418", "last_update_time": 1615134327},
+    "max_rc_creation_adjustment": {"amount": "2020748973", "precision": 6, "nai": "@@000000037"},
+    "max_rc": "11657682161151"
 }
 
 export const activeUserInstance: ActiveUser = activeUserMaker("foo");

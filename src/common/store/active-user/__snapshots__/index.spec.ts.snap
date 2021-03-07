@@ -43,6 +43,8 @@ Object {
     },
     "hbd_balance": "0.311 HBD",
     "json_metadata": "{\\"profile\\":{\\"name\\":\\"Talha B.\\",\\"about\\":\\"Founder @runkod, Software Developer @esteemapp, Lifelong Learner\\",\\"cover_image\\":\\"https://img.esteem.app/rwd380.jpg\\",\\"profile_image\\":\\"https://img.esteem.app/821e0q.jpg\\",\\"website\\":\\"https://github.com/talhasch\\",\\"location\\":\\"Istanbul\\"},\\"escrow\\":{\\"fees\\":{\\"STEEM\\":\\"1.000\\",\\"SBD\\":\\"3.000\\"},\\"terms\\":\\"lorem ipsum dolor sit amet\\"}}",
+    "last_post": "2020-06-01T05:53:33",
+    "last_vote_time": "2020-06-01T22:22:22",
     "memo_key": "STM7rioGL7NopT2Zo446hnzAiHLp5sJ1gS55xu3NikmxfQnEznsue",
     "name": "foo",
     "next_vesting_withdrawal": "1969-12-31T23:59:59",
