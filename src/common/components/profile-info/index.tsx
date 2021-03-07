@@ -11,7 +11,7 @@ import {DynamicProps} from "../../store/dynamic-props/types";
 
 import BaseComponent from "../base";
 
-import {findRcAccounts, votingPower, votingValue, powerRechargeTime, rcPower} from "../../api/hive";
+import {findRcAccounts, votingPower, downVotingPower, votingValue, powerRechargeTime, rcPower} from "../../api/hive";
 
 import {_t} from "../../i18n";
 
@@ -59,6 +59,8 @@ export class ProfileInfo extends BaseComponent<Props, State> {
         const lastPostDate = moment.utc(account.last_post);
         const lastActive = moment.max(lastVoteDate, lastPostDate);
 
+        const dvPower = downVotingPower(account);
+
         const tooltip = <Tooltip id="profile-tooltip" style={{zIndex: 10}}>
             <div className="profile-info-tooltip-content">
                 <p>{_t("profile-info.joined", {n: created})}</p>
@@ -73,6 +75,7 @@ export class ProfileInfo extends BaseComponent<Props, State> {
                         {_t("profile-info.recharge-time", {n: vPowerRechargeDate.fromNow()})}
                     </small>}
                 </p>
+                <p>{_t("profile-info.down-vote-power", {n: dvPower.toFixed(2)})}</p>
                 {(() => {
                     const {rcAccount} = this.state;
                     if (!rcAccount) {
