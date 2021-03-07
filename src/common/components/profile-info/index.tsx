@@ -7,11 +7,11 @@ import {OverlayTrigger, Tooltip} from "react-bootstrap";
 import {Account} from "../../store/accounts/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
 
+import {votingPower, votingValue, rechargeTime} from "../../api/hive";
+
 import {_t} from "../../i18n"
 
 import {informationVariantSvg, hiveSvg} from "../../img/svg";
-import {votingPower, votingValue} from "../../api/hive";
-
 
 interface Props {
     account: Account;
@@ -34,6 +34,9 @@ export class ProfileInfo extends Component<Props, State> {
         }
 
         const vPower = votingPower(account, false);
+        const vPowerFixed = (vPower / 100).toFixed(2);
+
+        const rechargeDate = moment().add(rechargeTime(account), "seconds");
 
         const vValue = votingValue(account, dynamicProps, vPower).toFixed(3)
         const vValueFull = votingValue(account, dynamicProps, 10000).toFixed(3)
@@ -52,6 +55,11 @@ export class ProfileInfo extends Component<Props, State> {
                     {_t("profile-info.vote-value", {n: vValue})}
                     {hiveSvg}
                     {vValue !== vValueFull && <small>{_t("profile-info.vote-value-max", {n: vValueFull})}</small>}
+                </p>
+                <p>{_t("profile-info.vote-power", {n: vPowerFixed})}
+                    {vPowerFixed !== "100.00" && <small>
+                        {_t("profile-info.vote-power-recharge", {n: rechargeDate.fromNow()})}
+                    </small>}
                 </p>
             </div>
         </Tooltip>

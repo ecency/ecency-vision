@@ -302,6 +302,11 @@ export const votingPower = (account: FullAccount, humanized = true): number => {
     return percentage;
 };
 
+export const rechargeTime = (account: FullAccount) => {
+    const missingVp = 100 - votingPower(account);
+    return missingVp * 100 * 432000 / 10000;
+}
+
 export const votingValue = (account: FullAccount, dynamicProps: DynamicProps, votingPower: number, weight: number = 10000): number => {
     const {fundRecentClaims, fundRewardBalance, base, quote} = dynamicProps;
 

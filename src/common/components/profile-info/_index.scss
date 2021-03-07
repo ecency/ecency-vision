@@ -27,12 +27,16 @@
     margin-bottom: 4px;
     display: flex;
     align-items: center;
-    flex-flow:row nowrap;
+    flex-flow: row nowrap;
 
     svg {
       height: 12px;
-      margin: 0 4px;
+      margin-left: 4px;
       color: $white;
+    }
+
+    small {
+      margin-left: 4px;
     }
 
     &:last-child {
