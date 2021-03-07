@@ -6,7 +6,7 @@ import renderer from "react-test-renderer";
 import {Theme} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 
-import {globalInstance, UiInstance, fullAccountInstance} from "../../helper/test-helper";
+import {globalInstance, UiInstance, fullAccountInstance, dynamicPropsIntance1} from "../../helper/test-helper";
 
 jest.mock("../../constants/defaults.json", () => ({
     imageServer: "https://images.ecency.com",
@@ -22,6 +22,7 @@ jest.mock("../../api/hive", () => ({
 
 const defProps = {
     global: {...globalInstance},
+    dynamicProps: dynamicPropsIntance1,
     users: [],
     activeUser: null,
     ui: UiInstance,
