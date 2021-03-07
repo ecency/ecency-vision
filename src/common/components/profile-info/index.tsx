@@ -1,13 +1,15 @@
+import moment from "moment";
+
 import React, {Component} from "react";
 
 import {OverlayTrigger, Tooltip} from "react-bootstrap";
+
 import {Account} from "../../store/accounts/types";
 
 import {_t} from "../../i18n"
-import {informationVariantSvg} from "../../img/svg";
-import moment from "moment";
 
-import {votingPower} from "../../api/hive";
+import {informationVariantSvg} from "../../img/svg";
+
 
 interface InfoProps {
     account: Account;
@@ -29,15 +31,13 @@ export default class ProfileInfo extends Component<InfoProps, InfoState> {
             return null;
         }
 
+
         const created = moment.utc(account.created).format("LL");
 
         const lastVoteDate = moment.utc(account.last_vote_time);
         const lastPostDate = moment.utc(account.last_post);
         const lastActive = moment.max(lastVoteDate, lastPostDate);
 
-        const voteMana = votingPower(account);
-
-        console.log(voteMana);
 
         const tooltip = <Tooltip id="profile-tooltip" style={{zIndex: 1, marginTop: "6px"}}>
             <div className="profile-info-tooltip-content">

@@ -344,7 +344,9 @@
   },
   "profile-info": {
     "joined": "Joined: {{n}}",
-    "last-active": "Last active: {{n}}"
+    "last-active": "Last active: {{n}}",
+    "vote-power": "Vote Power: {{n}}%",
+    "down-vote-power": "Downvote Power: {{n}}%"
   },
   "profile-edit": {
     "title": "Profile",
