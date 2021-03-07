@@ -1,12 +1,11 @@
 import React, {Component} from "react";
 
-import isEqual from "react-fast-compare";
-
 import {Global} from "../../store/global/types";
 import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {Account} from "../../store/accounts/types";
 import {UI, ToggleType} from "../../store/ui/types";
+import {DynamicProps} from "../../store/dynamic-props/types";
 
 import defaults from "../../constants/defaults.json";
 
@@ -23,6 +22,7 @@ const coverFallbackNight = require("../../img/cover-fallback-night.png");
 
 interface Props {
     global: Global;
+    dynamicProps: DynamicProps;
     account: Account;
     users: User[];
     activeUser: ActiveUser | null;
@@ -34,15 +34,6 @@ interface Props {
 }
 
 export class ProfileCover extends Component<Props> {
-
-    shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
-        return !isEqual(this.props.global, nextProps.global)
-            || !isEqual(this.props.account, nextProps.account)
-            || !isEqual(this.props.users, nextProps.users)
-            || !isEqual(this.props.activeUser, nextProps.activeUser)
-            || !isEqual(this.props.ui, nextProps.ui)
-    }
-
     render() {
         const {global, account, activeUser} = this.props;
         let bgImage = "";
@@ -65,7 +56,7 @@ export class ProfileCover extends Component<Props> {
             <div className="profile-cover">
                 <div className="cover-image" style={style}/>
                 <div className="follow-controls-holder">
-                    <ProfileInfo account={account} />
+                    {ProfileInfo(this.props)}
                     {!hideControls && <>
                       <FollowControls {...this.props} targetUsername={account.name}/>
                       <FavoriteBtn {...this.props} targetUsername={account.name}/>
@@ -79,6 +70,7 @@ export class ProfileCover extends Component<Props> {
 export default (p: Props) => {
     const props: Props = {
         global: p.global,
+        dynamicProps: p.dynamicProps,
         account: p.account,
         users: p.users,
         activeUser: p.activeUser,

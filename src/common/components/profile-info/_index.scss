@@ -25,6 +25,15 @@
 
   p {
     margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    flex-flow:row nowrap;
+
+    svg {
+      height: 12px;
+      margin: 0 4px;
+      color: $white;
+    }
 
     &:last-child {
       margin-bottom: 0;

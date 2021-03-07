@@ -5,7 +5,7 @@ import {DynamicProps} from "../store/dynamic-props/types";
 import {FullAccount, AccountProfile, AccountFollowStats} from "../store/accounts/types";
 
 import parseAsset from "../helper/parse-asset";
-
+import {vestsToRshares} from "../helper/vesting";
 import isCommunity from "../helper/is-community";
 
 import SERVERS from "../constants/servers.json";
@@ -290,12 +290,30 @@ export interface WithdrawRoute {
 export const getWithdrawRoutes = (account: string): Promise<WithdrawRoute[]> =>
     client.database.call("get_withdraw_routes", [account, "outgoing"]);
 
-export const votingPower = (account: FullAccount): number => {
+export const votingPower = (account: FullAccount, humanized = true): number => {
     // @ts-ignore "Account" is compatible with dhive's "ExtendedAccount"
     const calc = client.rc.calculateVPMana(account);
     const {percentage} = calc;
-    return percentage / 100;
+
+    if (humanized) {
+        return percentage / 100;
+    }
+
+    return percentage;
 };
+
+export const votingValue = (account: FullAccount, dynamicProps: DynamicProps, votingPower: number, weight: number = 10000): number => {
+    const {fundRecentClaims, fundRewardBalance, base, quote} = dynamicProps;
+
+    const total_vests =
+        parseAsset(account.vesting_shares).amount +
+        parseAsset(account.received_vesting_shares).amount -
+        parseAsset(account.delegated_vesting_shares).amount;
+
+    const rShares = vestsToRshares(total_vests, votingPower, weight);
+
+    return rShares / fundRecentClaims * fundRewardBalance * (base / quote);
+}
 
 export const downVotingPower = (account: FullAccount): number => {
     const curMana = Number(account.voting_manabar.current_mana);
