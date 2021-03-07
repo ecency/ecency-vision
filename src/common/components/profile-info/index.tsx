@@ -27,21 +27,32 @@ export class InfoContent extends BaseComponent<ContentProps> {
     render() {
         const {account, dynamicProps, rcAccount} = this.props;
 
+        // Voting power
         const vPower = votingPower(account, false);
         const vPowerFixed = (vPower / 100).toFixed(2);
         const vPowerRecharge = powerRechargeTime(vPower);
         const vPowerRechargeDate = moment().add(vPowerRecharge, "seconds");
 
+        // Voting value
         const vValue = votingValue(account, dynamicProps, vPower).toFixed(3)
         const vValueFull = votingValue(account, dynamicProps, 10000).toFixed(3)
 
+        // Join date
         const created = moment.utc(account.created).format("LL");
 
+        // Last active
         const lastVoteDate = moment.utc(account.last_vote_time);
         const lastPostDate = moment.utc(account.last_post);
         const lastActive = moment.max(lastVoteDate, lastPostDate);
 
+        // Down vote power
         const dvPower = downVotingPower(account);
+
+        // Resource credits
+        const rcp = rcPower(rcAccount);
+        const rcpFixed = rcp.toFixed(2);
+        const rcpRecharge = powerRechargeTime(rcp);
+        const rcpRechargeDate = moment().add(rcpRecharge, "seconds");
 
         return <div className="profile-info-tooltip-content">
             <p>{_t("profile-info.joined", {n: created})}</p>
@@ -57,19 +68,12 @@ export class InfoContent extends BaseComponent<ContentProps> {
                 </small>}
             </p>
             <p>{_t("profile-info.down-vote-power", {n: dvPower.toFixed(2)})}</p>
-            {(() => {
-                const rcp = rcPower(rcAccount);
-                const rcpFixed = rcp.toFixed(2);
-                const rcpRecharge = powerRechargeTime(rcp);
-                const rcpRechargeDate = moment().add(rcpRecharge, "seconds");
-
-                return <p>
-                    {_t("profile-info.rc-power", {n: rcp})}
-                    {rcpFixed !== "100.00" && <small>
-                        {_t("profile-info.recharge-time", {n: rcpRechargeDate.fromNow()})}
-                    </small>}
-                </p>;
-            })()}
+            <p>
+                {_t("profile-info.rc-power", {n: rcp})}
+                {rcpFixed !== "100.00" && <small>
+                    {_t("profile-info.recharge-time", {n: rcpRechargeDate.fromNow()})}
+                </small>}
+            </p>
         </div>
     }
 }
