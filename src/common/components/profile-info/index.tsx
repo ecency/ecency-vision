@@ -47,7 +47,7 @@ export class ProfileInfo extends Component<Props, State> {
         const lastPostDate = moment.utc(account.last_post);
         const lastActive = moment.max(lastVoteDate, lastPostDate);
 
-        const tooltip = <Tooltip id="profile-tooltip" style={{zIndex: 1, marginTop: "6px"}}>
+        const tooltip = <Tooltip id="profile-tooltip" style={{zIndex: 10}}>
             <div className="profile-info-tooltip-content">
                 <p>{_t("profile-info.joined", {n: created})}</p>
                 <p>{_t("profile-info.last-active", {n: lastActive.fromNow()})}</p>
