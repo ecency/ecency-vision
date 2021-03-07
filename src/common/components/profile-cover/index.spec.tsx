@@ -17,6 +17,9 @@ jest.mock("../../api/hive", () => ({
         new Promise((resolve) => {
             resolve([]);
         }),
+
+    votingPower: () => 0,
+    votingValue: () => 0
 }));
 
 
