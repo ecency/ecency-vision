@@ -1,15 +1,19 @@
 import moment from "moment";
 
-import React, {Component} from "react";
+import {RCAccount} from "@hiveio/dhive/lib/chain/rc";
+
+import React from "react";
 
 import {OverlayTrigger, Tooltip} from "react-bootstrap";
 
 import {Account} from "../../store/accounts/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
 
-import {votingPower, votingValue, rechargeTime} from "../../api/hive";
+import BaseComponent from "../base";
 
-import {_t} from "../../i18n"
+import {findRcAccounts, votingPower, votingValue, powerRechargeTime, rcPower} from "../../api/hive";
+
+import {_t} from "../../i18n";
 
 import {informationVariantSvg, hiveSvg} from "../../img/svg";
 
@@ -19,12 +23,19 @@ interface Props {
 }
 
 interface State {
-    show: boolean;
+    rcAccount: null | RCAccount;
 }
 
-export class ProfileInfo extends Component<Props, State> {
+export class ProfileInfo extends BaseComponent<Props, State> {
     state: State = {
-        show: false
+        rcAccount: null
+    }
+
+    componentDidMount() {
+        const {account} = this.props;
+        findRcAccounts(account.name).then(r => {
+            this.stateSet({rcAccount: r[0]});
+        })
     }
 
     render() {
@@ -33,10 +44,11 @@ export class ProfileInfo extends Component<Props, State> {
             return null;
         }
 
+
         const vPower = votingPower(account, false);
         const vPowerFixed = (vPower / 100).toFixed(2);
-
-        const rechargeDate = moment().add(rechargeTime(account), "seconds");
+        const vPowerRecharge = powerRechargeTime(vPower);
+        const vPowerRechargeDate = moment().add(vPowerRecharge, "seconds");
 
         const vValue = votingValue(account, dynamicProps, vPower).toFixed(3)
         const vValueFull = votingValue(account, dynamicProps, 10000).toFixed(3)
@@ -58,9 +70,27 @@ export class ProfileInfo extends Component<Props, State> {
                 </p>
                 <p>{_t("profile-info.vote-power", {n: vPowerFixed})}
                     {vPowerFixed !== "100.00" && <small>
-                        {_t("profile-info.vote-power-recharge", {n: rechargeDate.fromNow()})}
+                        {_t("profile-info.recharge-time", {n: vPowerRechargeDate.fromNow()})}
                     </small>}
                 </p>
+                {(() => {
+                    const {rcAccount} = this.state;
+                    if (!rcAccount) {
+                        return null;
+                    }
+
+                    const rcp = rcPower(rcAccount);
+                    const rcpFixed = rcp.toFixed(2);
+                    const rcpRecharge = powerRechargeTime(rcp);
+                    const rcpRechargeDate = moment().add(rcpRecharge, "seconds");
+
+                    return <p>
+                        {_t("profile-info.rc-power", {n: rcp})}
+                        {rcpFixed !== "100.00" && <small>
+                            {_t("profile-info.recharge-time", {n: rcpRechargeDate.fromNow()})}
+                        </small>}
+                    </p>;
+                })()}
             </div>
         </Tooltip>
 

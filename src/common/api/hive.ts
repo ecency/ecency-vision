@@ -1,4 +1,6 @@
-import {Client} from "@hiveio/dhive";
+import {Client, RCAPI} from "@hiveio/dhive";
+
+import {RCAccount} from "@hiveio/dhive/lib/chain/rc";
 
 import {TrendingTag} from "../store/trending-tags/types";
 import {DynamicProps} from "../store/dynamic-props/types";
@@ -179,6 +181,9 @@ export const getFollowers = (
     limit = 100
 ): Promise<Follow[]> => client.database.call("get_followers", [following, startFollowing, followType, limit]);
 
+export const findRcAccounts = (username: string): Promise<RCAccount[]> =>
+    new RCAPI(client).findRCAccounts([username])
+
 export const getDynamicGlobalProperties = (): Promise<DynamicGlobalProperties> =>
     client.database.getDynamicGlobalProperties().then((r: any) => ({
         total_vesting_fund_hive: r.total_vesting_fund_hive || r.total_vesting_fund_steem,
@@ -302,9 +307,9 @@ export const votingPower = (account: FullAccount, humanized = true): number => {
     return percentage;
 };
 
-export const rechargeTime = (account: FullAccount) => {
-    const missingVp = 100 - votingPower(account);
-    return missingVp * 100 * 432000 / 10000;
+export const powerRechargeTime = (power: number) => {
+    const missingPower = 100 - power
+    return missingPower * 100 * 432000 / 10000;
 }
 
 export const votingValue = (account: FullAccount, dynamicProps: DynamicProps, votingPower: number, weight: number = 10000): number => {
@@ -340,6 +345,11 @@ export const downVotingPower = (account: FullAccount): number => {
     return rv;
 };
 
+export const rcPower = (account: RCAccount): number => {
+    const calc = client.rc.calculateRCMana(account);
+    const {percentage} = calc;
+    return percentage / 100;
+};
 
 export interface ConversionRequest {
     amount: string;
