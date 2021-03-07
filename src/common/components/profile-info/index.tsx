@@ -28,13 +28,13 @@ export class InfoContent extends BaseComponent<ContentProps> {
         const {account, dynamicProps, rcAccount} = this.props;
 
         // Voting power
-        const vPower = votingPower(account, false);
-        const vPowerFixed = (vPower / 100).toFixed(2);
+        const vPower = votingPower(account);
+        const vPowerFixed = (vPower).toFixed(2);
         const vPowerRecharge = powerRechargeTime(vPower);
         const vPowerRechargeDate = moment().add(vPowerRecharge, "seconds");
 
         // Voting value
-        const vValue = votingValue(account, dynamicProps, vPower).toFixed(3)
+        const vValue = votingValue(account, dynamicProps, vPower * 100).toFixed(3)
         const vValueFull = votingValue(account, dynamicProps, 10000).toFixed(3)
 
         // Join date
@@ -69,7 +69,7 @@ export class InfoContent extends BaseComponent<ContentProps> {
             </p>
             <p>{_t("profile-info.down-vote-power", {n: dvPower.toFixed(2)})}</p>
             <p>
-                {_t("profile-info.rc-power", {n: rcp})}
+                {_t("profile-info.rc-power", {n: rcpFixed})}
                 {rcpFixed !== "100.00" && <small>
                     {_t("profile-info.recharge-time", {n: rcpRechargeDate.fromNow()})}
                 </small>}

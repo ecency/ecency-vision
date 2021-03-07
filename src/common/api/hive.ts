@@ -295,16 +295,12 @@ export interface WithdrawRoute {
 export const getWithdrawRoutes = (account: string): Promise<WithdrawRoute[]> =>
     client.database.call("get_withdraw_routes", [account, "outgoing"]);
 
-export const votingPower = (account: FullAccount, humanized = true): number => {
+export const votingPower = (account: FullAccount): number => {
     // @ts-ignore "Account" is compatible with dhive's "ExtendedAccount"
     const calc = client.rc.calculateVPMana(account);
     const {percentage} = calc;
 
-    if (humanized) {
-        return percentage / 100;
-    }
-
-    return percentage;
+    return percentage / 100;
 };
 
 export const powerRechargeTime = (power: number) => {

@@ -28,7 +28,7 @@ exports[`(1) Render 1`] = `
     Downvote Power: 100.00%
   </p>
   <p>
-    Resource Credits: 100%
+    Resource Credits: 100.00%
   </p>
 </div>
 `;
