@@ -576,3 +576,285 @@ exports[`(2) Render with converting HBD 1`] = `
   </div>
 </div>
 `;
+
+exports[`(3) usePrivate = false 1`] = `
+<div
+  className="wallet-hive"
+>
+  <div
+    className="wallet-main"
+  >
+    <div
+      className="wallet-info"
+    >
+      <div
+        className="unclaimed-rewards"
+      >
+        <div
+          className="title"
+        >
+          Unclaimed rewards
+        </div>
+        <div
+          className="rewards"
+        >
+          <span
+            className="reward-type"
+          >
+            10.207 HP
+          </span>
+        </div>
+      </div>
+      <div
+        className="balance-row estimated alternative"
+      >
+        <div
+          className="balance-info"
+        >
+          <div
+            className="title"
+          >
+            Estimated Account Value
+          </div>
+          <div
+            className="description"
+          >
+            The estimated value is based on a 7 day average value of HIVE.
+          </div>
+        </div>
+        <div
+          className="balance-values"
+        >
+          <div
+            className="amount amount-bold"
+          >
+            $ 11,264.462
+          </div>
+        </div>
+      </div>
+      <div
+        className="balance-row hive"
+      >
+        <div
+          className="balance-info"
+        >
+          <div
+            className="title"
+          >
+            HIVE
+          </div>
+          <div
+            className="description"
+          >
+            HIVE are tradeable tokens that may be transferred at anytime.HIVE can be converted to Hive Power in a process called powering up.
+          </div>
+        </div>
+        <div
+          className="balance-values"
+        >
+          <div
+            className="amount"
+          >
+            <span>
+              0.000 HIVE
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="balance-row hive-power alternative"
+      >
+        <div
+          className="balance-info"
+        >
+          <div
+            className="title"
+          >
+            HIVE POWER
+          </div>
+          <div
+            className="description"
+          >
+            Hive Power are influence tokens that earn more power for holding long term and voting on posts. The more Hive Power one holds, the more one can influence other’s rewards and earn rewards for accurate voting.
+          </div>
+        </div>
+        <div
+          className="balance-values"
+        >
+          <div
+            className="amount"
+          >
+            42,924.395 HP
+          </div>
+          <div
+            className="amount amount-passive received-shares"
+          >
+            <span
+              className="amount"
+              title="Received Hive Power"
+            >
+              + 5.095 HP
+            </span>
+          </div>
+          <div
+            className="amount amount-passive next-power-down-amount"
+          >
+            <span
+              title="Next power down amount"
+            >
+              - 3,626.559 HP
+            </span>
+          </div>
+          <div
+            className="amount total-hive-power"
+          >
+            <span
+              title="Total Hive Power"
+            >
+              = 39,302.931 HP
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="balance-row hive-dollars"
+      >
+        <div
+          className="balance-info"
+        >
+          <div
+            className="title"
+          >
+            HIVE DOLLARS
+          </div>
+          <div
+            className="description"
+          >
+            Tokens worth about $1.00 of HIVE.
+          </div>
+        </div>
+        <div
+          className="balance-values"
+        >
+          <div
+            className="amount"
+          >
+            <span>
+              $ 447.514
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="balance-row savings alternative"
+      >
+        <div
+          className="balance-info"
+        >
+          <div
+            className="title"
+          >
+            SAVINGS
+          </div>
+          <div
+            className="description"
+          >
+            Balance subject to 3 day withdraw waiting period.
+          </div>
+        </div>
+        <div
+          className="balance-values"
+        >
+          <div
+            className="amount"
+          >
+            <span>
+              0.001 HIVE
+            </span>
+          </div>
+          <div
+            className="amount"
+          >
+            <span>
+              0.000 $
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="next-power-down"
+      >
+        The next power down is in 5 days, 3,626.559 HIVE
+      </div>
+      <div
+        className="transaction-list"
+      >
+        <div
+          className="transaction-list-header"
+        >
+          <h2>
+            History
+             
+          </h2>
+        </div>
+      </div>
+    </div>
+    <div
+      className="wallet-menu"
+    >
+      <a
+        className="menu-item hive active"
+        href="/@user1/wallet"
+        onClick={[Function]}
+      >
+        <span
+          className="title"
+        >
+          Hive
+        </span>
+        <span
+          className="sub-title"
+        >
+          Wallet
+        </span>
+        <span
+          className="platform-logo"
+        >
+          <svg
+            viewBox="0 0 512 512"
+          >
+            <path
+              d="M260.353,254.878,131.538,33.1a2.208,2.208,0,0,0-3.829.009L.3,254.887A2.234,2.234,0,0,0,.3,257.122L129.116,478.9a2.208,2.208,0,0,0,3.83-.009L260.358,257.113A2.239,2.239,0,0,0,260.353,254.878Zm39.078-25.713a2.19,2.19,0,0,0,1.9,1.111h66.509a2.226,2.226,0,0,0,1.9-3.341L259.115,33.111a2.187,2.187,0,0,0-1.9-1.111H190.707a2.226,2.226,0,0,0-1.9,3.341ZM511.7,254.886,384.9,33.112A2.2,2.2,0,0,0,382.99,32h-66.6a2.226,2.226,0,0,0-1.906,3.34L440.652,256,314.481,476.66a2.226,2.226,0,0,0,1.906,3.34h66.6a2.2,2.2,0,0,0,1.906-1.112L511.7,257.114A2.243,2.243,0,0,0,511.7,254.886ZM366.016,284.917H299.508a2.187,2.187,0,0,0-1.9,1.111l-108.8,190.631a2.226,2.226,0,0,0,1.9,3.341h66.509a2.187,2.187,0,0,0,1.9-1.111l108.8-190.631A2.226,2.226,0,0,0,366.016,284.917Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+      </a>
+      <a
+        className="menu-item ecency"
+        href="/@user1/points"
+        onClick={[Function]}
+      >
+        <span
+          className="title"
+        >
+          Ecency
+        </span>
+        <span
+          className="sub-title"
+        >
+          Points
+        </span>
+        <span
+          className="platform-logo"
+        >
+          <img
+            alt="ecency"
+            src="logo-small-transparent.png"
+          />
+        </span>
+      </a>
+    </div>
+  </div>
+</div>
+`;

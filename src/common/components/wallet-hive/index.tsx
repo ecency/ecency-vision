@@ -151,7 +151,7 @@ export class WalletHive extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {dynamicProps, account, activeUser} = this.props;
+        const {global, dynamicProps, account, activeUser} = this.props;
         const {claiming, claimed, transfer, transferAsset, transferMode, converting} = this.state;
 
         if (!account.__loaded) {
@@ -307,15 +307,27 @@ export class WalletHive extends BaseComponent<Props, State> {
                                     </div>
                                 )}
 
-                                {w.vestingSharesReceived > 0 && (
-                                    <div className="amount amount-passive received-shares">
+                                {(() => {
+                                    if (w.vestingSharesReceived <= 0) {
+                                        return null;
+                                    }
+
+                                    const strReceived = formattedNumber(vestsToHp(w.vestingSharesReceived, hivePerMVests), {prefix: "+", suffix: "HP"});
+
+                                    if (global.usePrivate) {
+                                        return <div className="amount amount-passive received-shares">
+                                            <Tooltip content={_t("wallet.hive-power-received")}>
+                                                <span className="amount-btn" onClick={this.toggleReceivedList}>{strReceived}</span>
+                                            </Tooltip>
+                                        </div>;
+                                    }
+
+                                    return <div className="amount amount-passive received-shares">
                                         <Tooltip content={_t("wallet.hive-power-received")}>
-                                  <span className="amount-btn" onClick={this.toggleReceivedList}>
-                                    {formattedNumber(vestsToHp(w.vestingSharesReceived, hivePerMVests), {prefix: "+", suffix: "HP"})}
-                                  </span>
+                                            <span className="amount">{strReceived}</span>
                                         </Tooltip>
-                                    </div>
-                                )}
+                                    </div>;
+                                })()}
 
                                 {w.nextVestingSharesWithdrawal > 0 && (
                                     <div className="amount amount-passive next-power-down-amount">
