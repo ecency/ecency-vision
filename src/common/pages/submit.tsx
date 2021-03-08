@@ -758,9 +758,10 @@ class SubmitPage extends BaseComponent<Props, State> {
                                     <>
                                         <span/>
                                         <div>
-                                            <Button variant="outline-primary" style={{marginRight: "6px"}} onClick={this.saveDraft} disabled={!canPublish || saving || posting}>
-                                                {contentSaveSvg} {editingDraft === null ? _t("submit.save-draft") : _t("submit.update-draft")}
-                                            </Button>
+                                            {global.usePrivate && (
+                                                <Button variant="outline-primary" style={{marginRight: "6px"}} onClick={this.saveDraft} disabled={!canPublish || saving || posting}>
+                                                    {contentSaveSvg} {editingDraft === null ? _t("submit.save-draft") : _t("submit.update-draft")}
+                                                </Button>)}
                                             {LoginRequired({
                                                 ...this.props,
                                                 children: <Button
