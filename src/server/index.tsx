@@ -11,6 +11,7 @@ import entryHandler from "./handlers/entry";
 import fallbackHandler, {healthCheck} from "./handlers/fallback";
 import {entryRssHandler, authorRssHandler} from "./handlers/rss";
 import * as pApi from "./handlers/private-api";
+import * as searchApi from "./handlers/search-api";
 
 const server = express();
 
@@ -22,6 +23,8 @@ server
     .use(express.static(process.env.RAZZLE_PUBLIC_DIR!))
     .use(express.json())
     .use(cookieParser())
+
+    // Common backend
     .get(
         [
             `^/:filter(${entryFilters.join("|")})/:tag/rss.xml$`, // /trending/esteem/rss.xml
@@ -64,21 +67,26 @@ server
         ],
         entryHandler
     )
+
+    // Search Api
+    .post("^/api/search$", searchApi.search)
+    .post("^/api/search-follower$", searchApi.searchFollower)
+    .post("^/api/search-following$", searchApi.searchFollowing)
+    .post("^/api/search-account$", searchApi.searchAccount)
+    .post("^/api/search-tag$", searchApi.searchTag)
+    .post("^/api/search-path$", searchApi.searchPath)
+
+    // Private Api
     .get("^/api/received-vesting/:username$", pApi.receivedVesting)
     .get("^/api/rewarded-communities$", pApi.rewardedCommunities)
     .get("^/api/leaderboard/:duration(day|week|month)$", pApi.leaderboard)
     .get("^/api/promoted-entries$", pApi.promotedEntries)
     .post("^/api/comment-history$", pApi.commentHistory)
-    .post("^/api/search$", pApi.search)
-    .post("^/api/search-follower$", pApi.searchFollower)
-    .post("^/api/search-following$", pApi.searchFollowing)
-    .post("^/api/search-account$", pApi.searchAccount)
-    .post("^/api/search-tag$", pApi.searchTag)
     .post("^/api/points$", pApi.points)
     .post("^/api/point-list$", pApi.pointList)
     .post("^/api/account-create$", pApi.createAccount)
     .post("^/api/hs-token-refresh$", pApi.hsTokenRefresh)
-    /* Login required endpoints */
+    /* Login required private api endpoints */
     .post("^/api/notifications$", pApi.notifications)
     .post("^/api/notifications/unread$", pApi.unreadNotifications)
     .post("^/api/notifications/mark$", pApi.markNotifications)
@@ -109,7 +117,6 @@ server
     .post("^/api/points-calc$", pApi.pointsCalc)
     .post("^/api/promote-price$", pApi.promotePrice)
     .post("^/api/promoted-post$", pApi.promotedPost)
-    .post("^/api/search-path$", pApi.searchPath)
     .post("^/api/boost-options$", pApi.boostOptions)
     .post("^/api/boosted-post$", pApi.boostedPost)
     .get("^/healthcheck.json$", healthCheck)

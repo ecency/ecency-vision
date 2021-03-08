@@ -341,11 +341,6 @@ export const getBoostedPost = (username: string, author: string, permlink: strin
     return axios.post(_u(`/api/boosted-post`), data).then(resp => resp.data);
 }
 
-export const searchPath = (username: string, q: string): Promise<string[]> => {
-    const data = {code: getAccessToken(username), q};
-    return axios.post(_u(`/api/search-path`), data).then(resp => resp.data);
-}
-
 export interface CommentHistoryListItem {
     title: string;
     body: string;
@@ -449,4 +444,7 @@ export const searchTag = (q: string = "", limit: number = 20, random: number = 0
     return axios.post(_u(`/api/search-tag`), data).then(resp => resp.data);
 }
 
-
+export const searchPath = (username: string, q: string): Promise<string[]> => {
+    const data = {q};
+    return axios.post(_u(`/api/search-path`), data).then(resp => resp.data);
+}
