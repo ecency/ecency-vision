@@ -7,7 +7,7 @@ import {activeUserInstance, fullAccountInstance, communityInstance1, allOver} fr
 
 let TEST_MODE = 0
 
-jest.mock("../../api/private", () => ({
+jest.mock("../../api/private-api", () => ({
     getFragments: () =>
         new Promise((resolve) => {
             if (TEST_MODE === 0) {

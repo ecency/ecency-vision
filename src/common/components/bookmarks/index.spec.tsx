@@ -9,7 +9,7 @@ import {globalInstance, activeUserInstance, allOver} from "../../helper/test-hel
 
 let TEST_MODE = 0
 
-jest.mock("../../api/private", () => ({
+jest.mock("../../api/private-api", () => ({
     getBookmarks: () =>
         new Promise((resolve) => {
             if (TEST_MODE === 0) {

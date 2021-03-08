@@ -6,7 +6,7 @@ import TestRenderer from "react-test-renderer";
 
 import {globalInstance, allOver} from "../../helper/test-helper";
 
-jest.mock("../../api/private", () => ({
+jest.mock("../../api/private-api", () => ({
     getPromotePrice: () =>
         new Promise((resolve) => {
             resolve(

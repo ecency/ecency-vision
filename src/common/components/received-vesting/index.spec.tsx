@@ -12,7 +12,7 @@ jest.mock("../../constants/defaults.json", () => ({
 
 let MOCK_MODE = 1;
 
-jest.mock("../../api/private", () => ({
+jest.mock("../../api/private-api", () => ({
     getReceivedVestingShares: () =>
         new Promise((resolve) => {
             if (MOCK_MODE === 1) {

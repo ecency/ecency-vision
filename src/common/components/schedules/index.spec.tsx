@@ -9,7 +9,7 @@ import {globalInstance, activeUserInstance, fullAccountInstance, communityInstan
 
 let TEST_MODE = 0
 
-jest.mock("../../api/private", () => ({
+jest.mock("../../api/private-api", () => ({
     getSchedules: () =>
         new Promise((resolve) => {
             if (TEST_MODE === 0) {

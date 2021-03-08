@@ -6,7 +6,7 @@ import TestRenderer from "react-test-renderer";
 
 import {dynamicPropsIntance1, globalInstance, allOver} from "../../helper/test-helper";
 
-jest.mock("../../api/private", () => ({
+jest.mock("../../api/private-api", () => ({
     getBoostOptions: () =>
         new Promise((resolve) => {
             resolve([150, 200, 250, 300, 350, 400, 450, 500, 550]);
