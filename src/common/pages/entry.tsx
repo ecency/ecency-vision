@@ -482,7 +482,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                                 )}
                                             </div>
                                             <div className="right-side">
-                                                <EditHistoryBtn entry={entry} append={<span className="separator"/>}/>
+                                                {global.usePrivate && <EditHistoryBtn entry={entry} append={<span className="separator"/>}/>}
                                                 {ownEntry && (
                                                     <>
                                                         {editable && EntryEditBtn({entry})}
