@@ -9,7 +9,7 @@ export const hsTokenRenew = (code: string): Promise<{
     expires_in: number;
 }> =>
     axios
-        .post(apiBase(`/api/hs-token-refresh`), {
+        .post(apiBase(`/auth-api/hs-token-refresh`), {
             code,
         })
         .then((resp) => resp.data);
