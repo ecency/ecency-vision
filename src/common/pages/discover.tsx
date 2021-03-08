@@ -40,9 +40,9 @@ class DiscoverPage extends Component<PageProps> {
                     }) :
                     NavBar({...this.props})}
                 <div className="app-content discover-page">
-                    <div className="top-users">
+                    {global.usePrivate && (<div className="top-users">
                         {LeaderBoard({...this.props})}
-                    </div>
+                    </div>)}
                     <div className="popular-users">
                         {PopularUsers({...this.props})}
                     </div>
