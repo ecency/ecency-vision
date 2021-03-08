@@ -189,6 +189,13 @@ export class WalletEcency extends BaseComponent<Props, State> {
         transfer: false
     }
 
+    componentDidMount() {
+        const {global, history} = this.props;
+        if (!global.usePrivate) {
+            history.push("/");
+        }
+    }
+
     claim = (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
 
@@ -231,7 +238,11 @@ export class WalletEcency extends BaseComponent<Props, State> {
 
     render() {
         const {claiming, transfer, purchase, promote, boost} = this.state;
-        const {activeUser, account, points} = this.props;
+        const {global, activeUser, account, points} = this.props;
+
+        if (!global.usePrivate) {
+            return null;
+        }
 
         const isMyPage = activeUser && activeUser.username === account.name;
 
@@ -372,7 +383,7 @@ export class WalletEcency extends BaseComponent<Props, State> {
 
                         </div>
 
-                        <WalletMenu username={account.name} active="ecency"/>
+                        <WalletMenu global={global} username={account.name} active="ecency"/>
                     </div>
 
                     {transfer && (<Transfer

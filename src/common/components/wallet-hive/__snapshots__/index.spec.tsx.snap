@@ -830,30 +830,6 @@ exports[`(3) usePrivate = false 1`] = `
           </svg>
         </span>
       </a>
-      <a
-        className="menu-item ecency"
-        href="/@user1/points"
-        onClick={[Function]}
-      >
-        <span
-          className="title"
-        >
-          Ecency
-        </span>
-        <span
-          className="sub-title"
-        >
-          Points
-        </span>
-        <span
-          className="platform-logo"
-        >
-          <img
-            alt="ecency"
-            src="logo-small-transparent.png"
-          />
-        </span>
-      </a>
     </div>
   </div>
 </div>
