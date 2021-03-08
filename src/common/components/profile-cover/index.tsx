@@ -59,7 +59,7 @@ export class ProfileCover extends Component<Props> {
                     {ProfileInfo(this.props)}
                     {!hideControls && <>
                       <FollowControls {...this.props} targetUsername={account.name}/>
-                      <FavoriteBtn {...this.props} targetUsername={account.name}/>
+                        {global.usePrivate && <FavoriteBtn {...this.props} targetUsername={account.name}/>}
                     </>}
                 </div>
             </div>
