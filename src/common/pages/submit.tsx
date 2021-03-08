@@ -826,15 +826,15 @@ class SubmitPage extends BaseComponent<Props, State> {
                                                 <Form.Text muted={true}>{_t("submit.beneficiaries-hint")}</Form.Text>
                                             </Col>
                                         </Form.Group>
-                                        <Form.Group as={Row}>
-                                            <Form.Label column={true} sm="3">
-                                                {_t("submit.schedule")}
-                                            </Form.Label>
-                                            <Col sm="9">
-                                                <PostScheduler date={schedule ? moment(schedule) : null} onChange={this.scheduleChanged}/>
-                                                <Form.Text muted={true}>{_t("submit.schedule-hint")}</Form.Text>
-                                            </Col>
-                                        </Form.Group>
+                                        {global.usePrivate && <Form.Group as={Row}>
+                                          <Form.Label column={true} sm="3">
+                                              {_t("submit.schedule")}
+                                          </Form.Label>
+                                          <Col sm="9">
+                                            <PostScheduler date={schedule ? moment(schedule) : null} onChange={this.scheduleChanged}/>
+                                            <Form.Text muted={true}>{_t("submit.schedule-hint")}</Form.Text>
+                                          </Col>
+                                        </Form.Group>}
                                         {tags.length > 0 && isCommunity(tags[0]) && (
                                             <Form.Group as={Row}>
                                                 <Col sm="3"/>
