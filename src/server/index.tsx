@@ -120,7 +120,11 @@ server
     .post("^/api/promoted-post$", privateApi.promotedPost)
     .post("^/api/boost-options$", privateApi.boostOptions)
     .post("^/api/boosted-post$", privateApi.boostedPost)
-    .get("^/healthcheck.json$", healthCheck)
-    .get("*", fallbackHandler);
+
+    // For all others paths
+    .get("*", fallbackHandler)
+
+    // Health check script for docker swarm
+    .get("^/healthcheck.json$", healthCheck);
 
 export default server;
