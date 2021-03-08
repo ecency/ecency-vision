@@ -343,14 +343,14 @@
     "proposals": "Ehdotukset"
   },
   "profile-info": {
-    "joined": "Joined: {{n}}",
-    "last-active": "Last active: {{n}}",
-    "vote-value": "Vote value: {{n}}",
-    "vote-value-max": "(out of max {{n}})",
-    "vote-power": "Vote Power: {{n}}%",
-    "rc-power": "Resource Credits: {{n}}%",
-    "recharge-time": "(fully charged {{n}})",
-    "down-vote-power": "Downvote Power: {{n}}%"
+    "joined": "Liittynyt: {{n}}",
+    "last-active": "Viimeksi aktiivinen: {{n}}",
+    "vote-value": "Äänestysarvo: {{n}}",
+    "vote-value-max": "(enintään {{n}})",
+    "vote-power": "Äänenteho: {{n}}%",
+    "rc-power": "Resurssihyvitykset: {{n}}%",
+    "recharge-time": "(täysin veloitettu {{n}})",
+    "down-vote-power": "Äänen laskuteho: {{n}}%"
   },
   "profile-edit": {
     "title": "Profiili",
