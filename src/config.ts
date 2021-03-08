@@ -1,7 +1,7 @@
 /* !!! DO NOT IMPORT config.js TO FRONTEND CODE !!! */
 
 export default {
-    privateApi: process.env.PRIVATE_API || "0",    // "1" | "0"
+    usePrivate: process.env.USE_PRIVATE || "0",    // "1" | "0"
     privateApiAddr: process.env.PRIVATE_API_ADDR || "https://domain.com/api",
     privateApiAuth: process.env.PRIVATE_API_AUTH || "privateapiauth",
     hsClientSecret: process.env.HIVESIGNER_CLIENT_SECRET || "hivesignerclientsecret",

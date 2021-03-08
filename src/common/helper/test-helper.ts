@@ -117,7 +117,7 @@ export const globalInstance: Global = {
     isMobile: false,
     notifications: true,
     newVersion: null,
-    privateApi: true
+    usePrivate: true
 };
 
 export const TrendingTagsInstance: TrendingTags = {

@@ -47,7 +47,7 @@ export const initialState: Global = {
     newVersion: null,
     notifications: true,
     isMobile: false,
-    privateApi: true
+    usePrivate: true
 };
 
 export default (state: Global = initialState, action: Actions): Global => {

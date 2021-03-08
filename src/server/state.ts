@@ -32,7 +32,7 @@ export const makePreloadedState = async (req: express.Request): Promise<AppState
         searchIndexCount: await getSearchIndexCount(),
         canUseWebp: req.headers.accept !== undefined && req.headers.accept.indexOf("image/webp") !== -1,
         isMobile: !!(req.headers["user-agent"] && ["iOS", "AndroidOS"].includes(getOperatingSystem(req.headers["user-agent"]))),
-        privateApi: Boolean(parseInt(config.privateApi, 10))
+        usePrivate: Boolean(parseInt(config.usePrivate, 10))
     };
 
     return {
