@@ -47,7 +47,7 @@ const tags = [
         icon: virusOutline
     },
     {
-        label: "Election 2020",
+        label: "Election",
         tag: "election",
         icon: voteOutline
     },
