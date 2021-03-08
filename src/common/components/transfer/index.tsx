@@ -66,7 +66,7 @@ import badActors from '../../constants/bad-actors.json';
 import {arrowRightSvg} from "../../img/svg";
 
 export type TransferMode = "transfer" | "transfer-saving" | "withdraw-saving" | "convert" | "power-up" | "power-down" | "delegate";
-export type TransferAsset = "HIVE" | "HBD" | "HP" | "POINT" ;
+export type TransferAsset = "HIVE" | "HBD" | "HP" | "POINT";
 
 interface AssetSwitchProps {
     options: TransferAsset[];
@@ -543,7 +543,7 @@ export class Transfer extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {mode, activeUser, transactions, dynamicProps} = this.props;
+        const {global, mode, activeUser, transactions, dynamicProps} = this.props;
         const {step, asset, to, toError, toWarning, amount, amountError, memo, inProgress} = this.state;
 
         const recent = [...new Set(
@@ -572,7 +572,11 @@ export class Transfer extends BaseComponent<Props, State> {
         let assets: TransferAsset[] = [];
         switch (mode) {
             case "transfer":
-                assets = ["HIVE", "HBD", "POINT"];
+                if (global.usePrivate) {
+                    assets = ["HIVE", "HBD", "POINT"];
+                } else {
+                    assets = ["HIVE", "HBD"];
+                }
                 break;
             case "transfer-saving":
             case "withdraw-saving":
