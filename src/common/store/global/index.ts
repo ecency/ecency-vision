@@ -46,7 +46,8 @@ export const initialState: Global = {
     isElectron: false,
     newVersion: null,
     notifications: true,
-    isMobile: false
+    isMobile: false,
+    privateApi: true
 };
 
 export default (state: Global = initialState, action: Actions): Global => {

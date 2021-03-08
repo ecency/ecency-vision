@@ -56,6 +56,7 @@ export interface Global {
     newVersion: string | null;
     notifications: boolean;
     isMobile: boolean;
+    privateApi: boolean
 }
 
 export enum ActionTypes {
