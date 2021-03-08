@@ -335,3 +335,182 @@ exports[`(2) Should show edit buttons with nsfw label 1`] = `
   </p>
 </div>
 `;
+
+exports[`(3) usePrivate = false 1`] = `
+<div
+  className="community-card"
+>
+  <div
+    className="community-avatar"
+  >
+    <span
+      className="user-avatar xLarge"
+      style={
+        Object {
+          "backgroundImage": "url(https://images.ecency.com/u/hive-148441/avatar/large)",
+        }
+      }
+    />
+  </div>
+  <div
+    className="community-info"
+  >
+    <h1>
+      <div
+        className="title"
+      >
+        GEMS
+      </div>
+    </h1>
+    <div
+      className="about"
+    >
+      To highlight true Gems of Hive community with User Retention as primary objective.
+    </div>
+    <span
+      className="nsfw"
+    >
+      nsfw
+    </span>
+  </div>
+  <div
+    className="community-sections"
+  >
+    <div
+      className="community-section"
+    >
+      <div
+        className="section-header"
+        onClick={[Function]}
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+            fill="currentColor"
+          />
+        </svg>
+         
+        Description
+      </div>
+      <div
+        className="section-content"
+      >
+        <p>
+          This is a collective curation community formed by @appreciator, @rocky1 and @upmewhale. You can post your genuine and creative content in this community to get more support.
+        </p>
+        <p>
+          You can post in languages other than English.
+        </p>
+        <p>
+          There are not many restrictions but just few simple ones and we expect you to adhere to them
+        </p>
+        <p>
+          Join our discord group to keep yourself updated:
+        </p>
+        <p>
+          https://discord.gg/n98Kpmm
+        </p>
+      </div>
+    </div>
+    <div
+      className="community-section"
+    >
+      <div
+        className="section-header"
+        onClick={[Function]}
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M15,20A1,1 0 0,0 16,19V4H8A1,1 0 0,0 7,5V16H5V5A3,3 0 0,1 8,2H19A3,3 0 0,1 22,5V6H20V5A1,1 0 0,0 19,4A1,1 0 0,0 18,5V9L18,19A3,3 0 0,1 15,22H5A3,3 0 0,1 2,19V18H13A2,2 0 0,0 15,20M9,6H14V8H9V6M9,10H14V12H9V10M9,14H14V16H9V14Z"
+            fill="currentColor"
+          />
+        </svg>
+         
+        Rules
+      </div>
+      <div
+        className="section-content"
+      >
+        <p>
+          - 
+          Plagiarism will be highly discouraged.
+        </p>
+        <p>
+          - 
+          Hate Speech is not allowed
+        </p>
+      </div>
+    </div>
+    <div
+      className="community-section section-team"
+    >
+      <div
+        className="section-header"
+        onClick={[Function]}
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M12,5.5A3.5,3.5 0 0,1 15.5,9A3.5,3.5 0 0,1 12,12.5A3.5,3.5 0 0,1 8.5,9A3.5,3.5 0 0,1 12,5.5M5,8C5.56,8 6.08,8.15 6.53,8.42C6.38,9.85 6.8,11.27 7.66,12.38C7.16,13.34 6.16,14 5,14A3,3 0 0,1 2,11A3,3 0 0,1 5,8M19,8A3,3 0 0,1 22,11A3,3 0 0,1 19,14C17.84,14 16.84,13.34 16.34,12.38C17.2,11.27 17.62,9.85 17.47,8.42C17.92,8.15 18.44,8 19,8M5.5,18.25C5.5,16.18 8.41,14.5 12,14.5C15.59,14.5 18.5,16.18 18.5,18.25V20H5.5V18.25M0,20V18.5C0,17.11 1.89,15.94 4.45,15.6C3.86,16.28 3.5,17.22 3.5,18.25V20H0M24,20H20.5V18.25C20.5,17.22 20.14,16.28 19.55,15.6C22.11,15.94 24,17.11 24,18.5V20Z"
+            fill="currentColor"
+          />
+        </svg>
+         
+        Leadership
+      </div>
+      <div
+        className="section-content"
+      >
+        <div
+          className="team-member"
+        >
+          <a
+            className="username"
+            href="/@bluemist"
+            onClick={[Function]}
+          >
+            @bluemist
+          </a>
+          <span
+            className="role"
+          >
+            admin
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="community-controls"
+  >
+    <p
+      className="community-control"
+      onClick={[Function]}
+    >
+      <button
+        className="btn btn-primary btn-sm"
+        disabled={false}
+        type="button"
+      >
+        Edit settings
+      </button>
+    </p>
+    <p
+      className="community-control"
+    >
+      <a
+        className="btn btn-sm btn-primary"
+        href="/roles/hive-148441"
+        onClick={[Function]}
+      >
+        Edit roles
+      </a>
+    </p>
+  </div>
+</div>
+`;

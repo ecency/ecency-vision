@@ -56,3 +56,32 @@ it("(2) Should show edit buttons with nsfw label", () => {
         </StaticRouter>);
     expect(component.toJSON()).toMatchSnapshot();
 });
+
+it("(3) usePrivate = false", () => {
+    const props = {
+        history: createBrowserHistory(),
+        global: {
+            ...globalInstance,
+            usePrivate: false
+        },
+        community: {...communityInstance1, is_nsfw: true},
+        account: {
+            name: communityInstance1.name
+        },
+        users: [],
+        signingKey: "",
+        activeUser: activeUserMaker("hive-148441"),
+        setSigningKey: () => {
+        },
+        addAccount: () => {
+        },
+        addCommunity: () => {
+        },
+    };
+
+    const component = renderer.create(
+        <StaticRouter location="/hive-148441" context={{}}>
+            <CommunityCard {...props} />
+        </StaticRouter>);
+    expect(component.toJSON()).toMatchSnapshot();
+});
