@@ -1,4 +1,4 @@
-import axios, {AxiosRequestConfig, AxiosResponse, Method} from "axios";
+import axios, {AxiosResponse, Method} from "axios";
 
 import {Entry} from "../common/store/entries/types";
 
@@ -7,6 +7,8 @@ import {getPost} from "../common/api/bridge";
 import {cache} from "./cache";
 
 import config from "../config";
+
+import {baseApiRequest} from "./util";
 
 export const optimizeEntries = (entries: Entry[]): Entry[] => {
     return entries;
@@ -18,19 +20,6 @@ export const optimizeEntries = (entries: Entry[]): Entry[] => {
         };
     }); */
 };
-
-export const baseApiRequest = (url: string, method: Method, headers: any = {}, payload: any = {}): Promise<AxiosResponse> => {
-    const requestConf: AxiosRequestConfig = {
-        url,
-        method,
-        validateStatus: () => true,
-        responseType: "json",
-        headers: {...headers},
-        data: {...payload}
-    }
-
-    return axios(requestConf)
-}
 
 const makeApiAuth = () => {
     try {
@@ -87,7 +76,6 @@ export const getPromotedEntries = async (): Promise<Entry[]> => {
 
     return promoted.sort(() => Math.random() - 0.5);
 }
-
 
 export const getSearchIndexCount = async (): Promise<number> => {
     let indexCount: number | undefined = cache.get("index-count");

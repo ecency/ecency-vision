@@ -1,12 +1,12 @@
 import express from "express";
 
-import {AxiosResponse} from "axios";
-
 import config from "../../config";
 
 import {getTokenUrl, decodeToken} from "../../common/helper/hive-signer";
 
-import {apiRequest, baseApiRequest, getPromotedEntries} from "../helper";
+import {apiRequest, getPromotedEntries} from "../helper";
+
+import {baseApiRequest, pipe} from "../util";
 
 const hs = require("hivesigner");
 
@@ -26,14 +26,6 @@ const validateCode = async (req: express.Request, res: express.Response): Promis
     }
 };
 
-const pipe = (promise: Promise<AxiosResponse>, res: express.Response) => {
-    promise.then(r => {
-        res.status(r.status).send(r.data);
-    }).catch(() => {
-        res.status(500).send("Server Error");
-    });
-};
-
 export const receivedVesting = async (req: express.Request, res: express.Response) => {
     const {username} = req.params;
     pipe(apiRequest(`delegatee_vesting_shares/${username}`, "GET"), res);
@@ -42,7 +34,6 @@ export const receivedVesting = async (req: express.Request, res: express.Respons
 export const rewardedCommunities = async (req: express.Request, res: express.Response) => {
     pipe(apiRequest(`rewarded-communities`, "GET"), res);
 }
-
 
 export const leaderboard = async (req: express.Request, res: express.Response) => {
     const {duration} = req.params;
