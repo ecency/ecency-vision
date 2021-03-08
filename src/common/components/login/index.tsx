@@ -28,7 +28,8 @@ import {getAuthUrl, makeHsCode} from "../../helper/hive-signer";
 import {hsLogin} from "../../../desktop/app/helper/hive-signer";
 
 import {getAccount} from "../../api/hive";
-import {hsTokenRenew, usrActivity} from "../../api/private-api";
+import {usrActivity} from "../../api/private-api";
+import {hsTokenRenew} from "../../api/auth-api";
 import {formatError, grantPostingPermission, revokePostingPermission} from "../../api/operations";
 
 import {getRefreshToken} from "../../helper/user-token";

@@ -56,19 +56,6 @@ export const getLeaderboard = (duration: LeaderBoardDuration): Promise<LeaderBoa
     return axios.get(_u(`/api/leaderboard/${duration}`)).then(resp => resp.data);
 };
 
-export const hsTokenRenew = (code: string): Promise<{
-    username: string;
-    access_token: string;
-    refresh_token: string;
-    expires_in: number;
-}> =>
-    axios
-        .post(_u(`/api/hs-token-refresh`), {
-            code,
-        })
-        .then((resp) => resp.data);
-
-
 export const signUp = (username: string, email: string, referral: string): Promise<any> =>
     axios
         .post(_u(`/api/account-create`), {

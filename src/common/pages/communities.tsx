@@ -37,7 +37,7 @@ import {_t} from "../i18n";
 import {getAccount} from "../api/hive";
 import {getCommunities, getSubscriptions} from "../api/bridge";
 import {formatError, updateCommunity, setUserRole} from "../api/operations";
-import {hsTokenRenew} from "../api/private-api";
+import {hsTokenRenew} from "../api/auth-api";
 
 import {client} from "../api/hive";
 
