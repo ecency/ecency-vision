@@ -12,7 +12,7 @@ import Tooltip from "../tooltip";
 import LoginRequired from "../login-required";
 import {error, success} from "../feedback";
 
-import {checkFavorite, addFavorite, deleteFavorite} from "../../api/private";
+import {checkFavorite, addFavorite, deleteFavorite} from "../../api/private-api";
 
 import {_t} from "../../i18n";
 

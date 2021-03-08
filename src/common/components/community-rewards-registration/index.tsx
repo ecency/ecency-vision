@@ -15,7 +15,7 @@ import KeyOrHot from "../key-or-hot";
 import LinearProgress from "../linear-progress";
 
 import {communityRewardsRegister, communityRewardsRegisterHot, communityRewardsRegisterKc, formatError} from "../../api/operations";
-import {getRewardedCommunities} from "../../api/private";
+import {getRewardedCommunities} from "../../api/private-api";
 
 import {_t} from "../../i18n";
 

@@ -14,7 +14,7 @@ import {addUser} from "../store/users";
 import {setActiveUser, updateActiveUser} from "../store/active-user";
 
 import {getAccount} from "../api/hive";
-import {hsTokenRenew, usrActivity} from "../api/private";
+import {hsTokenRenew, usrActivity} from "../api/private-api";
 
 
 interface Props {

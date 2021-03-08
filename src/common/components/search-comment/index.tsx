@@ -20,7 +20,7 @@ import DetectBottom from "../detect-bottom";
 
 import SearchQuery, {SearchType} from "../../helper/search-query";
 
-import {search, SearchResult} from "../../api/private";
+import {search, SearchResult} from "../../api/private-api";
 
 import {_t} from "../../i18n";
 

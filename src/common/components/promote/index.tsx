@@ -17,7 +17,7 @@ import SuggestionList from "../suggestion-list";
 import KeyOrHot from "../key-or-hot";
 import {error} from "../feedback";
 
-import {searchPath, getPromotePrice, PromotePrice, getPromotedPost} from "../../api/private";
+import {searchPath, getPromotePrice, PromotePrice, getPromotedPost} from "../../api/private-api";
 import {getPost} from "../../api/bridge";
 import {promote, promoteHot, promoteKc, formatError} from "../../api/operations";
 

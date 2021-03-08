@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import defaults from "../constants/defaults.json";
 
-import {_u} from "./private";
+import {_u} from "./private-api";
 
 export const getEmojiData = () => fetch(_u("/emoji.json")).then((response) => response.json());
 

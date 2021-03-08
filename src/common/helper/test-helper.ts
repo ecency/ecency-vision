@@ -6,7 +6,7 @@ import {DynamicProps} from "../store/dynamic-props/types";
 import {UI} from "../store/ui/types";
 import {PointTransaction} from "../store/points/types";
 import {Vote, DelegatedVestingShare, Proposal} from "../api/hive";
-import {AccountSearchResult, ReceivedVestingShare} from "../api/private";
+import {AccountSearchResult, ReceivedVestingShare} from "../api/private-api";
 import {
     ApiFollowNotification,
     ApiMentionNotification,
@@ -18,7 +18,7 @@ import {
 } from "../store/notifications/types";
 import {ActiveUser} from "../store/active-user/types";
 import {FullAccount} from "../store/accounts/types";
-import {SearchResponse} from "../api/private";
+import {SearchResponse} from "../api/private-api";
 
 export const allOver = () => new Promise((resolve) => setImmediate(resolve));
 

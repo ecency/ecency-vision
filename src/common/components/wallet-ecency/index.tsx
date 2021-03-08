@@ -26,7 +26,7 @@ import {success, error} from "../feedback";
 
 import {_t} from "../../i18n";
 
-import {claimPoints} from "../../api/private";
+import {claimPoints} from "../../api/private-api";
 
 import {
     accountOutlineSvg,

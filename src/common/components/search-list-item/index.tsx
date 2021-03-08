@@ -25,7 +25,7 @@ setProxyBase(defaults.imageServer);
 
 import accountReputation from "../../helper/account-reputation";
 
-import {SearchResult} from "../../api/private";
+import {SearchResult} from "../../api/private-api";
 
 import {peopleSvg, commentSvg} from "../../img/svg";
 

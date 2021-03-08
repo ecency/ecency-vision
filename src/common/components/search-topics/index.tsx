@@ -12,7 +12,7 @@ import {makePath} from "../tag";
 
 import SearchQuery from "../../helper/search-query";
 
-import {searchTag, TagSearchResult} from "../../api/private";
+import {searchTag, TagSearchResult} from "../../api/private-api";
 
 import {_t} from "../../i18n";
 

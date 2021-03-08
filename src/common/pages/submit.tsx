@@ -43,7 +43,7 @@ import MdHandler from "../components/md-handler";
 import BeneficiaryEditor from "../components/beneficiary-editor";
 import PostScheduler from "../components/post-scheduler";
 
-import {getDrafts, addDraft, updateDraft, addSchedule, Draft} from "../api/private";
+import {getDrafts, addDraft, updateDraft, addSchedule, Draft} from "../api/private-api";
 
 import {createPermlink, extractMetaData, makeJsonMetaData, makeCommentOptions, createPatch} from "../helper/posting";
 

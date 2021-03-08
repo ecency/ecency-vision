@@ -8,7 +8,7 @@ import {client as hiveClient} from "./hive";
 
 import {Account} from "../store/accounts/types";
 
-import {usrActivity} from "./private";
+import {usrActivity} from "./private-api";
 
 import {getAccessToken, getPostingKey} from "../helper/user-token";
 

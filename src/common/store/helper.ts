@@ -9,7 +9,7 @@ import {ActiveUser, UserPoints} from "./active-user/types";
 import {loginAct as loginActiveUser, logoutAct as logoutActiveUser, updateAct as updateActiveUserAct} from "./active-user";
 
 import {getAccount, getDynamicProps} from "../api/hive";
-import {getPoints, usrActivity, getPromotedEntries} from "../api/private";
+import {getPoints, usrActivity, getPromotedEntries} from "../api/private-api";
 import {reloadAct as reloadUsers} from "./users";
 import {reloadAct as reloadReblogs} from "./reblogs";
 import {fetchedAct as loadDynamicProps} from "./dynamic-props";

@@ -14,7 +14,7 @@ import AddLink from "../add-link";
 
 import {uploadImage} from "../../api/misc";
 
-import {addImage} from "../../api/private";
+import {addImage} from "../../api/private-api";
 
 import {error} from "../feedback";
 

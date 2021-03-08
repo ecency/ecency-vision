@@ -15,7 +15,7 @@ import NavBarElectron from "../../desktop/app/components/navbar";
 import Feedback, {error} from "../components/feedback";
 import ScrollToTop from "../components/scroll-to-top";
 
-import {signUp} from "../api/private";
+import {signUp} from "../api/private-api";
 
 import {_t} from "../i18n";
 

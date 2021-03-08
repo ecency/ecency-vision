@@ -14,7 +14,7 @@ import UserAvatar from "../user-avatar";
 import Tooltip from "../tooltip";
 import LinearProgress from "../linear-progress";
 
-import {ReceivedVestingShare, getReceivedVestingShares} from "../../api/private";
+import {ReceivedVestingShare, getReceivedVestingShares} from "../../api/private-api";
 
 import {_t} from "../../i18n";
 

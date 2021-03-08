@@ -2,7 +2,7 @@ import React from "react";
 import {Entry} from "../../store/entries/types";
 import {ActiveUser} from "../../store/active-user/types";
 
-import {getBookmarks, addBookmark, deleteBookmark} from "../../api/private";
+import {getBookmarks, addBookmark, deleteBookmark} from "../../api/private-api";
 
 import BaseComponent from "../base";
 import LoginRequired from "../login-required";

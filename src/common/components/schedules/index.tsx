@@ -20,7 +20,7 @@ import {error} from "../feedback";
 
 import {_t} from "../../i18n";
 
-import {getSchedules, Schedule, deleteSchedule, moveSchedule} from "../../api/private";
+import {getSchedules, Schedule, deleteSchedule, moveSchedule} from "../../api/private-api";
 
 import accountReputation from "../../helper/account-reputation";
 

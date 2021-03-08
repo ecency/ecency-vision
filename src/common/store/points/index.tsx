@@ -9,7 +9,7 @@ import {
     FetchedAction,
 } from "./types";
 
-import {getPoints, getPointTransactions} from "../../api/private";
+import {getPoints, getPointTransactions} from "../../api/private-api";
 
 export const initialState: Points = {
     points: "0.000",
