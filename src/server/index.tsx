@@ -13,6 +13,7 @@ import {entryRssHandler, authorRssHandler} from "./handlers/rss";
 
 import * as privateApi from "./handlers/private-api";
 import * as searchApi from "./handlers/search-api";
+import * as authApi from "./handlers/auth-api";
 
 const server = express();
 
@@ -77,6 +78,9 @@ server
     .post("^/api/search-tag$", searchApi.searchTag)
     .post("^/api/search-path$", searchApi.searchPath)
 
+    // Auth Api
+    .post("^/api/hs-token-refresh$", authApi.hsTokenRefresh)
+
     // Private Api
     .get("^/api/received-vesting/:username$", privateApi.receivedVesting)
     .get("^/api/rewarded-communities$", privateApi.rewardedCommunities)
@@ -86,7 +90,6 @@ server
     .post("^/api/points$", privateApi.points)
     .post("^/api/point-list$", privateApi.pointList)
     .post("^/api/account-create$", privateApi.createAccount)
-    .post("^/api/hs-token-refresh$", privateApi.hsTokenRefresh)
     /* Login required private api endpoints */
     .post("^/api/notifications$", privateApi.notifications)
     .post("^/api/notifications/unread$", privateApi.unreadNotifications)

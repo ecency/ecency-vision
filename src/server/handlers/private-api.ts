@@ -1,12 +1,8 @@
 import express from "express";
 
-import config from "../../config";
-
-import {getTokenUrl, decodeToken} from "../../common/helper/hive-signer";
-
 import {apiRequest, getPromotedEntries} from "../helper";
 
-import {baseApiRequest, pipe} from "../util";
+import {pipe} from "../util";
 
 const hs = require("hivesigner");
 
@@ -73,13 +69,6 @@ export const createAccount = async (req: express.Request, res: express.Response)
     const payload = {username, email, referral};
 
     pipe(apiRequest(`signup/account-create`, "POST", headers, payload), res);
-};
-
-export const hsTokenRefresh = async (req: express.Request, res: express.Response) => {
-    const {code} = req.body;
-    if (!decodeToken(code)) return;
-
-    pipe(baseApiRequest(getTokenUrl(code, config.hsClientSecret), "GET"), res);
 };
 
 /* Login required endpoints */
