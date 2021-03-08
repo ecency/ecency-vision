@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import {_u} from "./private-api";
+import {apiBase} from "./helper";
 
 export interface SearchResult {
     id: number;
@@ -36,7 +36,7 @@ export const search = (q: string, sort: string, hideLow: string, since?: string,
     if (since) data.since = since;
     if (scroll_id) data.scroll_id = scroll_id;
 
-    return axios.post(_u(`/api/search`), data).then(resp => resp.data);
+    return axios.post(apiBase(`/api/search`), data).then(resp => resp.data);
 }
 
 export interface FriendSearchResult {
@@ -48,13 +48,13 @@ export interface FriendSearchResult {
 export const searchFollower = (following: string, q: string): Promise<FriendSearchResult[]> => {
     const data = {following, q};
 
-    return axios.post(_u(`/api/search-follower`), data).then(resp => resp.data);
+    return axios.post(apiBase(`/api/search-follower`), data).then(resp => resp.data);
 }
 
 export const searchFollowing = (follower: string, q: string): Promise<FriendSearchResult[]> => {
     const data = {follower, q};
 
-    return axios.post(_u(`/api/search-following`), data).then(resp => resp.data);
+    return axios.post(apiBase(`/api/search-following`), data).then(resp => resp.data);
 }
 
 export interface AccountSearchResult {
@@ -67,7 +67,7 @@ export interface AccountSearchResult {
 export const searchAccount = (q: string = "", limit: number = 20, random: number = 1): Promise<AccountSearchResult[]> => {
     const data = {q, limit, random};
 
-    return axios.post(_u(`/api/search-account`), data).then(resp => resp.data);
+    return axios.post(apiBase(`/api/search-account`), data).then(resp => resp.data);
 }
 
 export interface TagSearchResult {
@@ -78,10 +78,10 @@ export interface TagSearchResult {
 export const searchTag = (q: string = "", limit: number = 20, random: number = 0): Promise<TagSearchResult[]> => {
     const data = {q, limit, random};
 
-    return axios.post(_u(`/api/search-tag`), data).then(resp => resp.data);
+    return axios.post(apiBase(`/api/search-tag`), data).then(resp => resp.data);
 }
 
 export const searchPath = (username: string, q: string): Promise<string[]> => {
     const data = {q};
-    return axios.post(_u(`/api/search-path`), data).then(resp => resp.data);
+    return axios.post(apiBase(`/api/search-path`), data).then(resp => resp.data);
 }

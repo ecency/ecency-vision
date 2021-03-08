@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import {_u} from "./private-api";
+import {apiBase} from "./helper";
 
 export const hsTokenRenew = (code: string): Promise<{
     username: string;
@@ -9,7 +9,7 @@ export const hsTokenRenew = (code: string): Promise<{
     expires_in: number;
 }> =>
     axios
-        .post(_u(`/api/hs-token-refresh`), {
+        .post(apiBase(`/api/hs-token-refresh`), {
             code,
         })
         .then((resp) => resp.data);
