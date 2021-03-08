@@ -426,7 +426,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                             <span className="separator"/>
                                             <span className="date" title={published.format("LLLL")}>{published.fromNow()}</span>
                                             <span className="flex-spacer"/>
-                                            {BookmarkBtn({
+                                            {global.usePrivate && BookmarkBtn({
                                                 ...this.props,
                                                 entry: entry
                                             })}

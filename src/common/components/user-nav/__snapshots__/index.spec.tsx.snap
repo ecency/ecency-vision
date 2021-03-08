@@ -137,3 +137,40 @@ exports[`(2) Has rewards  1`] = `
   </div>
 </div>
 `;
+
+exports[`(3) usePrivate = false 1`] = `
+<div
+  className="user-nav"
+>
+  <a
+    className="user-wallet"
+    href="/@foo/wallet"
+    onClick={[Function]}
+    title="Wallet"
+  >
+    <svg
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M20,8H4V6H20M20,18H4V12H20M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"
+        fill="currentColor"
+      />
+    </svg>
+  </a>
+  <div
+    className="custom-dropdown float-right"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+  >
+    <span
+      className="user-avatar medium"
+      style={
+        Object {
+          "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+        }
+      }
+    />
+  </div>
+</div>
+`;

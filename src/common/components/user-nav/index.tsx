@@ -164,14 +164,13 @@ export default class UserNav extends Component<Props, State> {
             </div>
         </div> : undefined;
 
-        const dropDownConfig = {
-            history: this.props.history,
-            label: UserAvatar({...this.props, username: activeUser.username, size: "medium"}),
-            items: [
-                {
-                    label: _t('user-nav.profile'),
-                    href: `/@${activeUser.username}`,
-                },
+
+        const dropDownItems = [
+            {
+                label: _t('user-nav.profile'),
+                href: `/@${activeUser.username}`,
+            },
+            ...global.usePrivate ? [
                 {
                     label: _t('user-nav.drafts'),
                     onClick: this.toggleDrafts,
@@ -191,32 +190,40 @@ export default class UserNav extends Component<Props, State> {
                 {
                     label: _t('user-nav.fragments'),
                     onClick: this.toggleFragments,
+                }
+            ] : [],
+            {
+                label: _t('user-nav.settings'),
+                onClick: this.goToSettings,
+            },
+            {
+                label: _t('g.login-as'),
+                onClick: this.toggleLogin,
+            },
+            {
+                label: _t('user-nav.logout'),
+                onClick: () => {
+                    const {setActiveUser} = this.props;
+                    setActiveUser(null);
                 },
-                {
-                    label: _t('user-nav.settings'),
-                    onClick: this.goToSettings,
-                },
-                {
-                    label: _t('g.login-as'),
-                    onClick: this.toggleLogin,
-                },
-                {
-                    label: _t('user-nav.logout'),
-                    onClick: () => {
-                        const {setActiveUser} = this.props;
-                        setActiveUser(null);
-                    },
-                },
-            ],
+            }
+        ];
+
+        const dropDownConfig = {
+            history: this.props.history,
+            label: UserAvatar({...this.props, username: activeUser.username, size: "medium"}),
+            items: dropDownItems,
             preElem: preDropDownElem,
         };
 
         return (
             <>
                 <div className="user-nav">
-                    <PointsBadge activeUser={activeUser}/>
+                    {global.usePrivate && <PointsBadge activeUser={activeUser}/>}
+
                     <WalletBadge activeUser={activeUser} dynamicProps={dynamicProps}/>
-                    <ToolTip content={_t("user-nav.notifications")}>
+
+                    {global.usePrivate && (<ToolTip content={_t("user-nav.notifications")}>
                         <span className="notifications" onClick={this.toggleNotifications}>
                              {unread > 0 && (
                                  <span className="notifications-badge notranslate">
@@ -225,7 +232,8 @@ export default class UserNav extends Component<Props, State> {
                              )}
                             {global.notifications ? bellSvg : bellOffSvg}
                         </span>
-                    </ToolTip>
+                    </ToolTip>)}
+
                     <DropDown
                         {...dropDownConfig}
                         float="right"
