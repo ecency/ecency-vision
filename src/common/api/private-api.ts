@@ -288,8 +288,14 @@ export const getPoints = (username: string): Promise<{
 }
 
 export const getPointTransactions = (username: string): Promise<PointTransaction[]> => {
-    const data = {username};
-    return axios.post(apiBase(`/private-api/point-list`), data).then(resp => resp.data);
+    if (window.usePrivate) {
+        const data = {username};
+        return axios.post(apiBase(`/private-api/point-list`), data).then(resp => resp.data);
+    }
+
+    return new Promise((resolve) => {
+        resolve([]);
+    });
 }
 
 export const claimPoints = (username: string): Promise<any> => {
