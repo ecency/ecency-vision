@@ -13,7 +13,7 @@ import UserAvatar from "../user-avatar";
 import LinearProgress from "../linear-progress";
 
 import {getFollowing, getFollowers, getAccounts} from "../../api/hive";
-import {searchFollowing, searchFollower, FriendSearchResult} from "../../api/private-api";
+import {searchFollowing, searchFollower, FriendSearchResult} from "../../api/search-api";
 
 import {_t} from "../../i18n";
 
