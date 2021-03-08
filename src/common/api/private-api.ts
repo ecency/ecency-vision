@@ -8,6 +8,10 @@ import {getAccessToken} from "../helper/user-token";
 
 import {apiBase} from "./helper";
 
+import {AppWindow} from "../../client/window";
+
+declare var window: AppWindow;
+
 export interface ReceivedVestingShare {
     delegatee: string;
     delegator: string;
@@ -330,8 +334,13 @@ export const commentHistory = (author: string, permlink: string, onlyMeta: boole
     return axios.post(apiBase(`/private-api/comment-history`), data).then(resp => resp.data);
 }
 
-export const getPromotedEntries = (): Promise<Entry[]> =>
-    axios.get(apiBase(`/private-api/promoted-entries`)).then((resp) => resp.data);
+export const getPromotedEntries = (): Promise<Entry[]> => {
+    if (window.usePrivate) {
+        return axios.get(apiBase(`/private-api/promoted-entries`)).then((resp) => resp.data);
+    }
+
+    return new Promise(resolve => resolve([]));
+}
 
 
 
