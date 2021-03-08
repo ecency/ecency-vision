@@ -58,7 +58,7 @@ export const signUp = (username: string, email: string, referral: string): Promi
 
 export const usrActivity = (username: string, ty: number, bl: string | number = '', tx: string | number = '') => {
     if (!window.usePrivate) {
-        return;
+        return new Promise((resolve) => resolve(null));
     }
 
     const params: {
