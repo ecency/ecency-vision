@@ -1,4 +1,4 @@
-const hs = require("hivesigner");
+import hs from "hivesigner";
 
 import {PrivateKey, Operation, TransactionConfirmation, AccountUpdateOperation, CustomJsonOperation} from '@hiveio/dhive';
 
