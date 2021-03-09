@@ -28,7 +28,7 @@ exports[`(1) Default render 1`] = `
   </a>
   <a
     className="tag-list-item"
-    href="/created/hive-129768"
+    href="/hot/covid-19"
     onClick={[Function]}
   >
     <span>
@@ -57,7 +57,7 @@ exports[`(1) Default render 1`] = `
           fill="currentColor"
         />
       </svg>
-      Election 2020
+      Election
     </span>
   </a>
   <a
@@ -278,7 +278,7 @@ exports[`(2) Selected tag 1`] = `
   </a>
   <a
     className="tag-list-item"
-    href="/created/hive-129768"
+    href="/hot/covid-19"
     onClick={[Function]}
   >
     <span>
@@ -307,7 +307,7 @@ exports[`(2) Selected tag 1`] = `
           fill="currentColor"
         />
       </svg>
-      Election 2020
+      Election
     </span>
   </a>
   <a
