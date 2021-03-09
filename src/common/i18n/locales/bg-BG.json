@@ -91,7 +91,7 @@
     "title": "Добре дошли отново!",
     "with-user-pass": "Влезте с потребителското си име и личния си ключ.",
     "username-placeholder": "потребителско име",
-    "key-placeholder": "password / private key",
+    "key-placeholder": "пароли / лични ключове",
     "login-info-1": "Ние не съхраняваме личните ви ключове.",
     "login-info-2": "Повече информация",
     "error-fields-required": "Моля въведете потребителското си име и личния си ключ",
@@ -99,7 +99,7 @@
     "error-user-fetch": "Данните за потребителят немогат да бъдат заредени",
     "error-user-not-found": "Потребителят не съществува",
     "error-permission": "Неможахме да получим право да публикуваме",
-    "error-authenticate": "Wrong private key. Master or active or posting private key required.",
+    "error-authenticate": "Грешен личен ключ. Нужен е главен или активен личен ключ.",
     "with-hive-signer": "Влез чрез hivesigner",
     "with-keychain": "Влез с KeyChain",
     "sign-up-text-1": "Нямате акаунт?",
@@ -144,11 +144,11 @@
     "success": "Споделено!"
   },
   "entry-tip": {
-    "title": "Tip"
+    "title": "Бакшиш"
   },
   "entry-payout": {
-    "reward": "Reward",
-    "full-power": "Power Up 100%",
+    "reward": "Награда",
+    "full-power": "100% Увеличаване на силата",
     "pending-payout": "Чакащо плащане",
     "promoted": "Промотирано",
     "author-payout": "Възнаграждение на автора",
@@ -249,7 +249,7 @@
     "team": "Лидерство",
     "edit": "Редактирай настройките",
     "edit-team": "Редактиране на роли",
-    "community-rewards": "Community Rewards",
+    "community-rewards": "Общностни награди",
     "profile-image": "Обществена профилна снимка",
     "profile-image-edit": "Редактирай профилната снимка ",
     "profile-image-updated": "Профилната снимка е обновена!"
@@ -295,7 +295,7 @@
     "username-available": "Достъпно.",
     "username-not-available": "Не е достъпно.",
     "username-wrong-format": "Не е валиден формат. hive-1xxxxx формат е задължителен.",
-    "password": "Master password",
+    "password": "Главна парола",
     "confirmation": "Безопасно си запазих потребителското име на собственика и паролата.",
     "submit": "Създаване на общност",
     "progress-account": "Създаване на акаунт...",
@@ -306,10 +306,10 @@
     "done-link-label": "Започнете."
   },
   "community-rewards-registration": {
-    "body-text": "Register your community to get Ecency POINTS",
-    "btn-next-label": "Register",
-    "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.",
-    "conflict-body-text": "This community is already registered.",
+    "body-text": "Регистрирай своята общност за да получиш Ecency ТОЧКИ",
+    "btn-next-label": "Регистрация",
+    "done-body-text": "Регистрацията е завършена. Вашата общност ще получава ТОЧКИ като награди когато членовете на групата правят публикации с приложенията на Ecency.",
+    "conflict-body-text": "Тази общност е вече регистрирана.",
     "min-required-body-text": "Minimum 100 subscribers required to register."
   },
   "pin-btn": {
