@@ -147,8 +147,8 @@
     "title": "Tip"
   },
   "entry-payout": {
-    "reward": "Reward",
-    "full-power": "Power Up 100%",
+    "reward": "Вознаграждение",
+    "full-power": "100% в Силу",
     "pending-payout": "Ожидаемая выплата",
     "promoted": "Продвигаемое",
     "author-payout": "Автору",
@@ -295,7 +295,7 @@
     "username-available": "Доступно.",
     "username-not-available": "Недоступно.",
     "username-wrong-format": "Неверный формат. Требуется формат hive-1xxxxx.",
-    "password": "Master password",
+    "password": "Мастер-пароль",
     "confirmation": "Я надёжно сохранил имя владельца и пароль.",
     "submit": "Создать сообщество",
     "progress-account": "Создание учетной записи...",
@@ -664,7 +664,7 @@
     "type-follows": "Подписки",
     "type-reblogs": "Репосты",
     "type-transfers": "Переводы",
-    "group-title-recent": "Recent",
+    "group-title-recent": "Недавние",
     "vote-str": "{{p}}% проголосовал за ваш пост:",
     "reply-str": "ответил на ваш пост:",
     "mention-str": "упомянул вас в:",
@@ -695,7 +695,7 @@
     "header-reward": "Вознаграждение"
   },
   "popular-users": {
-    "title": "Popular Users"
+    "title": "Популярные пользователи"
   },
   "discover": {
     "title": "Discover",
@@ -748,15 +748,15 @@
     "page-description": "Consensus block producers selection",
     "page-description-long": "Role of witnesses or block producers in Hive blockchain is to act as the network's governance body. Community elects them to represent their voice and each user can elect up to 30 witnesses. Top 20 witnesses are producing blocks every minute while rest remain as backup witness and gets randomized chance every minute. This role is integral part of consensus mechanism blockchain runs on and recommend user engagement to vote on trusted witnesses.",
     "remaining": "<span>{{n}}</span> of {{max}} votes remaining",
-    "list-rank": "Rank",
+    "list-rank": "Рейтинг",
     "list-witness": "Witness",
     "list-miss": "Пропущено",
     "list-url": "URL",
-    "list-fee": "Fee",
-    "list-feed": "Feed",
-    "list-version": "Version",
-    "username-placeholder": "username",
-    "extra-description": "Enter account name below to vote for a witness outside of Top 50",
+    "list-fee": "Комиссия",
+    "list-feed": "Ценовой фид",
+    "list-version": "Версия",
+    "username-placeholder": "пользователь",
+    "extra-description": "Чтобы проголосовать за делегата вне Топ 50, введите имя аккаунта ниже",
     "proxy-description": "Вы также можете выбрать прокси (доверенного), который будет голосовать вместо вас. Это сбросит ваш текущий выбор делегатов.",
     "proxy-btn-label": "Установить прокси",
     "proxy-active-description": "У вас установлен прокси для голосования. Если вы хотите вернуть голосование вручную, пожалуйста, очистите ваш прокси.",
@@ -768,39 +768,39 @@
     "page-title": "Предложения",
     "page-description": "The Decentralized Hive Fund (DHF) is an on-chain funding mechanism that allows anyone to submit a proposal and get funding once community votes pass certain threshold. To learn more read our <a href=\"/faq#how-dhf-work\">FAQ</a>.",
     "by": "by",
-    "for": "for",
-    "duration-days": "{{n}} days",
-    "daily-pay": "Daily {{n}}",
-    "votes": "Votes: {{n}}",
-    "status-active": "active",
-    "status-expired": "expired",
-    "status-inactive": "upcoming",
-    "remaining-days": "Remaining: {{n}} days",
-    "filter-all": "All",
-    "filter-active": "Active",
-    "filter-inactive": "Upcoming",
-    "filter-team": "Ecency Projects",
+    "for": "за",
+    "duration-days": "{{n}} дня(ей)",
+    "daily-pay": "Ежедневно {{n}}",
+    "votes": "Голосов: {{n}}",
+    "status-active": "активные",
+    "status-expired": "срок истек",
+    "status-inactive": "предстоящие",
+    "remaining-days": "Осталось: {{n}} дней",
+    "filter-all": "Все",
+    "filter-active": "Активные",
+    "filter-inactive": "Предстоящие",
+    "filter-team": "Проекты Ecency",
     "return-description": "This is the base return proposal. Every proposal with less votes will not receive funds.",
-    "votes-dialog-title": "Votes on Proposal #{{n}}",
-    "see-all": "see all proposals"
+    "votes-dialog-title": "Голосов за Предложение #{{n}}",
+    "see-all": "посмотреть все предложения"
   },
   "gallery": {
-    "title": "Gallery",
-    "copied": "Copied to clipboard"
+    "title": "Галерея",
+    "copied": "Скопировано в буфер обмена"
   },
   "drafts": {
-    "title": "Drafts",
-    "filter": "Search by title"
+    "title": "Черновики",
+    "filter": "Поиск по названию"
   },
   "schedules": {
-    "title": "Scheduled Posts",
-    "move": "Move to drafts"
+    "title": "Отложенные посты",
+    "move": "Переместить в черновики"
   },
   "bookmarks": {
-    "title": "Bookmarks"
+    "title": "Закладки"
   },
   "favorites": {
-    "title": "Favorites"
+    "title": "Избранное"
   },
   "fragments": {
     "title": "Snippets",
@@ -827,7 +827,7 @@
   },
   "add-link": {
     "title": "Add Link",
-    "text-label": "Text",
+    "text-label": "Текст",
     "link-label": "https://"
   },
   "scroll-to-top": {
@@ -850,7 +850,7 @@
       "page-sub-title": "Table of Contents",
       "what-is-ecency-header": "Что такое Ecency?",
       "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based social network - powered by <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency is home of free speech and rewarding communities for content creators.</p><p>Project is founded by <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> in August 2016 as an alternative social network that's uncensored, user controled, immutable and opensource. Currently there are <a class=\"push-link\" href=\"/contributors\">many independent and voluntary contributors</a> wanting to keep vision and spirit of free speech.</p><p>Ecency helps onboarding masses into Blockchain technology where users are getting paid for their time, resources and learn while enjoying social aspects of blockchain. Through ease of use, users not only learn but also become investors, innovators of the new internet.</p>",
-      "what-is-hive-header": "What is Hive blockchain?",
+      "what-is-hive-header": "Что такое Hive блокчейн?",
       "what-is-hive-body": "<p>Hive is a blockchain that was designed to be fast, feeless, decentralized, uncensored platform for Web3.0 applications, with built-in features where stake holders can earn rewards by staking, curating, posting, playing games, trading - all without any middle man (decentralized). Tokens on Hive blockchain called HIVE, HIVE DOLLARS, HIVE POWER.</p>",
       "what-is-difference-header": "What's the difference from other Social Networks?",
       "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\"/></p><p>The primary difference, Ecency is based on a blockchain which means content is immutable and uncensorable. You own your community and account, nobody but you have full control of your data. Empowering true free speech. Ecency is also opensource, rewarding and innovative, built and owned by users. Aspire for greatness!</p>",
@@ -888,7 +888,7 @@
       "what-spam-abuse-body": "<p><img src=\"https://images.ecency.com/p/3jpR3paJ37V8XPrHkfZdMt57jY6pRt6zEt5iRJV9pSw4Mez3Hut8U6RWvWLA7cFYEa1bxveXeasNfZApzrcLYLx8cz84kBEKak1KkewE2ZqE1QRRkF4eqRH3vWVqZB9WuNbzE?format=match&mode=fit\"/></p><p><ul><li>Plagiarized posts or copied content.</li><li>Leaving nearly identical or materially similar comments on multiple posts.</li><li>Using tags that are unrelated to the post.</li><li>Threatening users with any type of physical violence.</li><li>Not citing sources when using someone else’s material.</li><li>Posting ‘not safe for work’ content without using the “nsfw” tag.</li><li>Scams or Fraudulent offers.</li></ul></p>",
       "can-link-post-header": "Can I request adding backlink to my website from Ecency team?",
       "can-link-post-body": "<p>All the content on our site is created by our users and we don't modify or able to add backlinks. You are free to contact author of the post or <a href=\"/signup?referral=ecency\" class=\"push-link\">Signup</a> to open your own blog and community, publish articles to create backlinks for free.</p>",
-      "can-guest-post-header": "Is it possible to guest post on your website?",
+      "can-guest-post-header": "Можно ли постить на сайте с гостевого аккаунта?",
       "can-guest-post-body": "<p>Posting on Ecency is simple and easy, <a href=\"/signup?referral=ecency\" class=\"push-link\">Signup</a> to open your own blog and community, start posting your content.</p>",
       "source-label-header": "Content source labels, what are those?",
       "source-label-body": "<p>Content source helps you understand how content was published. In some cases you may see a third-party client name, which indicates the Content came from a non-Ecency application. Authors sometimes use third-party client applications to manage their blogs, communities. Third-party clients are software tools used by authors and therefore are not affiliated with, nor do they reflect the views of, the content. Content can be directly created by humans or, in some circumstances, automated by an application.</p>",
@@ -898,30 +898,30 @@
   },
   "contributors": {
     "title": "Contributors",
-    "description": "These great people contributed in one way or another to Ecency, we would like to thank them all. If you want to join our team by contributing with Translation, Ideas, Development, Designing, Social awareness, feel free to join. To learn more read our <a href=\"/faq#how-to-contribute\">FAQ</a>."
+    "description": "Тем или иным образом эти замечательные люди внесли свой вклад в Ecency, и мы хотели бы поблагодарить их всех. Если вы хотите присоединиться к нашей команде, участвуя в переводе, идеях, разработке, дизайне, продвижении в соцсетях, не стесняйтесь. Подробности ищите в <a href=\"/faq#how-to-contribute\">FAQ</a>."
   },
   "context-menu": {
-    "cut": "Cut",
-    "copy": "Copy",
-    "paste": "Paste",
-    "open-image-browser": "Open image in browser",
-    "copy-image-url": "Copy image url"
+    "cut": "Вырезать",
+    "copy": "Скопировать",
+    "paste": "Вставить",
+    "open-image-browser": "Открыть изображение в браузере",
+    "copy-image-url": "Копировать url изображения"
   },
   "updater": {
-    "new-version-available": "New version is available",
-    "download": "Download",
-    "update": "Update",
-    "dismiss": "Dismiss",
-    "downloading": "Downloading new version...",
-    "download-completed": "Download is completed",
-    "restart": "Restart"
+    "new-version-available": "Доступна новая версия",
+    "download": "Загрузить",
+    "update": "Обновить",
+    "dismiss": "Отклонить",
+    "downloading": "Загрузка новой версии...",
+    "download-completed": "Загрузка завершена",
+    "restart": "Перезапустить"
   },
   "chain-error": {
-    "min-root-comment": "You may only post once every five minutes.",
+    "min-root-comment": "Вы можете писать только раз в пять минут.",
     "identical-vote": "Your current vote on this content is identical to this vote.",
-    "insufficient-resource": "Insufficient Resource Credits. Please wait to transact, or power up HIVE.",
-    "delete-comment-with-vote": "Can't delete a content with votes.",
-    "comment-cashout": "Content cashout.",
-    "paid-out-post-forbidden": "Voting for paid out content is not available."
+    "insufficient-resource": "Недостаточно Ресурс Кредитов. Пожалуйста, подождите с транзакцией или сделайте power up HIVE.",
+    "delete-comment-with-vote": "Нельзя удалить контент, получивший голоса.",
+    "comment-cashout": "Выплата уже прошла.",
+    "paid-out-post-forbidden": "Нельзя голосовать за контент, по которому уже прошла выплата."
   }
 }
