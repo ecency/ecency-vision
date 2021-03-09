@@ -343,12 +343,12 @@
     "proposals": "Предложения"
   },
   "profile-info": {
-    "joined": "Joined: {{n}}",
-    "last-active": "Last active: {{n}}",
+    "joined": "Присоединился: {{n}}",
+    "last-active": "Последняя активность: {{n}}",
     "vote-value": "Vote value: {{n}}",
     "vote-value-max": "(out of max {{n}})",
-    "vote-power": "Vote Power: {{n}}%",
-    "rc-power": "Resource Credits: {{n}}%",
+    "vote-power": "Сила голоса: {{n}}%",
+    "rc-power": "Ресурс Кредиты: {{n}}%",
     "recharge-time": "(fully charged {{n}})",
     "down-vote-power": "Downvote Power: {{n}}%"
   },
@@ -400,7 +400,7 @@
     "delegate": "Делегировать",
     "power-down": "Понижение Силы",
     "withdraw-routes": "Пути вывода",
-    "converting-hbd-amount": "Converting to HIVE"
+    "converting-hbd-amount": "Конвертация в HIVE"
   },
   "withdraw-routes": {
     "title": "Аккаунты для вывода",
@@ -418,11 +418,11 @@
     "comment-desc": "Каждый коммент помогает набирать аудиторию, завязывает дружбу и приносит 5 очков.",
     "checkin-desc": "Нахождение на Ecency дает вам 0.25 очков и помогает оставаться на связи с вашими друзьями.",
     "vote-desc": "Голосуя, вы награждаете других и выказываете своё уважение, а также получаете 0.01 х очки силы.",
-    "reblog-desc": "Share what post you like with your friends and earn 1 points.",
+    "reblog-desc": "Делитесь постами, что вам нравятся, с друзьями и зарабатывайте по 1 баллу.",
     "login-desc": "При первой авторизации в приложении вы получите 100 очков.",
     "checkin-extra-desc": "Активное использование приложения даёт вам дополнительный шанс получить 10 очков.",
     "delegation-desc": "Вы можете заработать ~50 очков в день за каждое делегирование в 1000HP.",
-    "community-desc": "Register your community to get 20 points for per post published with Ecency applications.",
+    "community-desc": "Зарегистрируйте свое сообщество, чтобы получать 20 баллов за пост, опубликованный с помощью приложений Ecency.",
     "history": "История",
     "post-list-desc": "Очки за пост",
     "comment-list-desc": "Очки за комментарий",
@@ -750,7 +750,7 @@
     "remaining": "<span>{{n}}</span> of {{max}} votes remaining",
     "list-rank": "Rank",
     "list-witness": "Witness",
-    "list-miss": "Miss",
+    "list-miss": "Пропущено",
     "list-url": "URL",
     "list-fee": "Fee",
     "list-feed": "Feed",
