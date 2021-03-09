@@ -18,7 +18,7 @@ import {
 
 import {AppState} from "../index";
 
-import {getNotifications, getUnreadNotificationCount, markNotifications as markNotificationsFn} from "../../api/private";
+import {getNotifications, getUnreadNotificationCount, markNotifications as markNotificationsFn} from "../../api/private-api";
 
 export const initialState: Notifications = {
     filter: null,

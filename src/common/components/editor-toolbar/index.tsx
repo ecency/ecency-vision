@@ -4,6 +4,7 @@ import isEqual from "react-fast-compare";
 
 import {ActiveUser} from "../../store/active-user/types";
 import {User} from "../../store/users/types";
+import {Global} from "../../store/global/types";
 
 import Tooltip from "../tooltip";
 import EmojiPicker from "../emoji-picker";
@@ -14,7 +15,7 @@ import AddLink from "../add-link";
 
 import {uploadImage} from "../../api/misc";
 
-import {addImage} from "../../api/private";
+import {addImage} from "../../api/private-api";
 
 import {error} from "../feedback";
 
@@ -43,6 +44,7 @@ import {
 
 
 interface Props {
+    global: Global;
     users: User[];
     activeUser: ActiveUser | null;
     sm?: boolean;
@@ -284,7 +286,7 @@ export class EditorToolbar extends Component<Props> {
     };
 
     upload = async (file: File) => {
-        const {activeUser, users} = this.props;
+        const {activeUser, global} = this.props;
 
         const username = activeUser?.username!;
 
@@ -306,7 +308,9 @@ export class EditorToolbar extends Component<Props> {
             return;
         }
 
-        addImage(username, imageUrl).then();
+        if (global.usePrivate) {
+            addImage(username, imageUrl).then();
+        }
 
         const imageName = imageUrl.split('/').pop();
         const imgTag = `![${imageName}](${imageUrl})\n\n`;
@@ -321,7 +325,7 @@ export class EditorToolbar extends Component<Props> {
 
     render() {
         const {gallery, fragments, image, link} = this.state;
-        const {sm, activeUser} = this.props;
+        const {global, sm, activeUser} = this.props;
 
         return (
             <>
@@ -405,15 +409,15 @@ export class EditorToolbar extends Component<Props> {
                                         }}>
                                         {_t("editor-toolbar.upload")}
                                     </div>
-                                    <div
-                                        className="sub-tool-menu-item"
-                                        onClick={(e: React.MouseEvent<HTMLElement>) => {
-                                            e.stopPropagation();
-                                            this.toggleGallery();
-                                        }}
+                                    {global.usePrivate && <div
+                                      className="sub-tool-menu-item"
+                                      onClick={(e: React.MouseEvent<HTMLElement>) => {
+                                          e.stopPropagation();
+                                          this.toggleGallery();
+                                      }}
                                     >
                                         {_t("editor-toolbar.gallery")}
-                                    </div>
+                                    </div>}
                                 </div>
                             )}
                         </div>
@@ -442,11 +446,11 @@ export class EditorToolbar extends Component<Props> {
                             }}/>
                         </div>
                     </Tooltip>
-                    <Tooltip content={_t("editor-toolbar.fragments")}>
-                        <div className="editor-tool" onClick={this.toggleFragments}>
-                            {textShortSvg}
-                        </div>
-                    </Tooltip>
+                    {global.usePrivate && <Tooltip content={_t("editor-toolbar.fragments")}>
+                      <div className="editor-tool" onClick={this.toggleFragments}>
+                          {textShortSvg}
+                      </div>
+                    </Tooltip>}
                 </div>
                 <input
                     onChange={this.fileInputChanged}
@@ -481,6 +485,7 @@ export class EditorToolbar extends Component<Props> {
 
 export default (props: Props) => {
     const p: Props = {
+        global: props.global,
         users: props.users,
         activeUser: props.activeUser,
         sm: props.sm

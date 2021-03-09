@@ -8,7 +8,7 @@ import {globalInstance, communityInstance1, activeUserMaker, allOver} from "../.
 
 let MOCK_MODE = 1;
 
-jest.mock("../../api/private", () => ({
+jest.mock("../../api/private-api", () => ({
     getRewardedCommunities: () =>
         new Promise((resolve) => {
             if (MOCK_MODE === 1) {

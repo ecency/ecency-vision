@@ -18,6 +18,7 @@ Object {
   "searchIndexCount": 0,
   "tag": "",
   "theme": "day",
+  "usePrivate": true,
 }
 `;
 
@@ -39,6 +40,7 @@ Object {
   "searchIndexCount": 0,
   "tag": "bitcoin",
   "theme": "day",
+  "usePrivate": true,
 }
 `;
 
@@ -60,6 +62,7 @@ Object {
   "searchIndexCount": 0,
   "tag": "bitcoin",
   "theme": "night",
+  "usePrivate": true,
 }
 `;
 
@@ -81,6 +84,7 @@ Object {
   "searchIndexCount": 0,
   "tag": "bitcoin",
   "theme": "night",
+  "usePrivate": true,
 }
 `;
 
@@ -102,6 +106,7 @@ Object {
   "searchIndexCount": 0,
   "tag": "bitcoin",
   "theme": "night",
+  "usePrivate": true,
 }
 `;
 
@@ -123,6 +128,7 @@ Object {
   "searchIndexCount": 0,
   "tag": "bitcoin",
   "theme": "night",
+  "usePrivate": true,
 }
 `;
 
@@ -144,6 +150,7 @@ Object {
   "searchIndexCount": 0,
   "tag": "bitcoin",
   "theme": "night",
+  "usePrivate": true,
 }
 `;
 
@@ -165,6 +172,7 @@ Object {
   "searchIndexCount": 0,
   "tag": "bitcoin",
   "theme": "night",
+  "usePrivate": true,
 }
 `;
 
@@ -186,5 +194,6 @@ Object {
   "searchIndexCount": 0,
   "tag": "bitcoin",
   "theme": "night",
+  "usePrivate": true,
 }
 `;

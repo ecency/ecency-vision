@@ -7,7 +7,7 @@ import {entryInstance1, allOver} from "../../helper/test-helper";
 
 let TEST_MODE = 0
 
-jest.mock("../../api/private", () => ({
+jest.mock("../../api/private-api", () => ({
     commentHistory: () =>
         new Promise((resolve) => {
             if (TEST_MODE === 0) {

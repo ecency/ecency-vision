@@ -8,7 +8,7 @@ import {UiInstance, activeUserInstance, allOver} from "../../helper/test-helper"
 
 let TEST_MODE = 0
 
-jest.mock("../../api/private", () => ({
+jest.mock("../../api/private-api", () => ({
     checkFavorite: () =>
         new Promise((resolve) => {
             if (TEST_MODE === 0) {

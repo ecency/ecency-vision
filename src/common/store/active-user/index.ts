@@ -9,7 +9,7 @@ import {Actions, ActionTypes, ActiveUser, UserPoints, LoginAction, LogoutAction,
 import * as ls from "../../util/local-storage";
 
 import {getAccount} from "../../api/hive";
-import {getPoints} from "../../api/private";
+import {getPoints} from "../../api/private-api";
 
 import {activeUserMaker} from "../helper";
 

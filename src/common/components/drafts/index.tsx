@@ -20,7 +20,7 @@ import {error} from "../feedback";
 
 import {_t} from "../../i18n";
 
-import {getDrafts, Draft, deleteDraft} from "../../api/private";
+import {getDrafts, Draft, deleteDraft} from "../../api/private-api";
 
 import accountReputation from "../../helper/account-reputation";
 

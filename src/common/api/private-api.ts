@@ -6,23 +6,11 @@ import {Entry} from "../store/entries/types";
 
 import {getAccessToken} from "../helper/user-token";
 
-import isElectron from "../util/is-electron";
+import {apiBase} from "./helper";
 
-import defaults from "../constants/defaults.json";
+import {AppWindow} from "../../client/window";
 
-export const _u = (endpoint: string): string => {
-    let base = '';
-
-    if (isElectron()) {
-        if (process.env.NODE_ENV === "development") {
-            base = "http://localhost:3000";
-        } else {
-            base = defaults.base;
-        }
-    }
-
-    return `${base}${endpoint}`;
-}
+declare var window: AppWindow;
 
 export interface ReceivedVestingShare {
     delegatee: string;
@@ -32,7 +20,7 @@ export interface ReceivedVestingShare {
 }
 
 export const getReceivedVestingShares = (username: string): Promise<ReceivedVestingShare[]> =>
-    axios.get(_u(`/api/received-vesting/${username}`)).then((resp) => resp.data.list);
+    axios.get(apiBase(`/private-api/received-vesting/${username}`)).then((resp) => resp.data.list);
 
 
 export interface RewardedCommunity {
@@ -42,7 +30,7 @@ export interface RewardedCommunity {
 }
 
 export const getRewardedCommunities = (): Promise<RewardedCommunity[]> =>
-    axios.get(_u(`/api/rewarded-communities`)).then((resp) => resp.data);
+    axios.get(apiBase(`/private-api/rewarded-communities`)).then((resp) => resp.data);
 
 export interface LeaderBoardItem {
     _id: string;
@@ -53,25 +41,12 @@ export interface LeaderBoardItem {
 export type LeaderBoardDuration = "day" | "week" | "month";
 
 export const getLeaderboard = (duration: LeaderBoardDuration): Promise<LeaderBoardItem[]> => {
-    return axios.get(_u(`/api/leaderboard/${duration}`)).then(resp => resp.data);
+    return axios.get(apiBase(`/private-api/leaderboard/${duration}`)).then(resp => resp.data);
 };
-
-export const hsTokenRenew = (code: string): Promise<{
-    username: string;
-    access_token: string;
-    refresh_token: string;
-    expires_in: number;
-}> =>
-    axios
-        .post(_u(`/api/hs-token-refresh`), {
-            code,
-        })
-        .then((resp) => resp.data);
-
 
 export const signUp = (username: string, email: string, referral: string): Promise<any> =>
     axios
-        .post(_u(`/api/account-create`), {
+        .post(apiBase(`/private-api/account-create`), {
             username: username,
             email: email,
             referral: referral
@@ -82,6 +57,10 @@ export const signUp = (username: string, email: string, referral: string): Promi
 
 
 export const usrActivity = (username: string, ty: number, bl: string | number = '', tx: string | number = '') => {
+    if (!window.usePrivate) {
+        return new Promise((resolve) => resolve(null));
+    }
+
     const params: {
         code: string;
         ty: number;
@@ -92,7 +71,7 @@ export const usrActivity = (username: string, ty: number, bl: string | number = 
     if (bl) params.bl = bl;
     if (tx) params.tx = tx;
 
-    return axios.post(_u(`/api/usr-activity`), params);
+    return axios.post(apiBase(`/private-api/usr-activity`), params);
 };
 
 export const getNotifications = (username: string, filter: NotificationFilter | null, since: string | null = null): Promise<ApiNotification[]> => {
@@ -107,17 +86,16 @@ export const getNotifications = (username: string, filter: NotificationFilter | 
         data.since = since;
     }
 
-    return axios.post(_u(`/api/notifications`), data).then(resp => resp.data);
+    return axios.post(apiBase(`/private-api/notifications`), data).then(resp => resp.data);
 };
 
 export const getUnreadNotificationCount = (username: string): Promise<number> => {
     const data = {code: getAccessToken(username)};
 
     return axios
-        .post(_u(`/api/notifications/unread`), data)
+        .post(apiBase(`/private-api/notifications/unread`), data)
         .then(resp => resp.data.count);
 }
-
 
 export const markNotifications = (username: string, id: string | null = null) => {
     const data: { code: string; id?: string } = {code: getAccessToken(username)}
@@ -125,9 +103,8 @@ export const markNotifications = (username: string, id: string | null = null) =>
         data.id = id;
     }
 
-    return axios.post(_u(`/api/notifications/mark`), data);
+    return axios.post(apiBase(`/private-api/notifications/mark`), data);
 };
-
 
 export interface UserImage {
     created: string
@@ -138,17 +115,17 @@ export interface UserImage {
 
 export const getImages = (username: string): Promise<UserImage[]> => {
     const data = {code: getAccessToken(username)};
-    return axios.post(_u(`/api/images`), data).then(resp => resp.data);
+    return axios.post(apiBase(`/private-api/images`), data).then(resp => resp.data);
 }
 
 export const deleteImage = (username: string, imageID: string): Promise<any> => {
     const data = {code: getAccessToken(username), id: imageID};
-    return axios.post(_u(`/api/images-delete`), data).then(resp => resp.data);
+    return axios.post(apiBase(`/private-api/images-delete`), data).then(resp => resp.data);
 }
 
 export const addImage = (username: string, url: string): Promise<any> => {
     const data = {code: getAccessToken(username), url: url};
-    return axios.post(_u(`/api/images-add`), data).then(resp => resp.data);
+    return axios.post(apiBase(`/private-api/images-add`), data).then(resp => resp.data);
 }
 
 export interface Draft {
@@ -163,22 +140,22 @@ export interface Draft {
 
 export const getDrafts = (username: string): Promise<Draft[]> => {
     const data = {code: getAccessToken(username)};
-    return axios.post(_u(`/api/drafts`), data).then(resp => resp.data);
+    return axios.post(apiBase(`/private-api/drafts`), data).then(resp => resp.data);
 }
 
 export const addDraft = (username: string, title: string, body: string, tags: string): Promise<{ drafts: Draft[] }> => {
     const data = {code: getAccessToken(username), title, body, tags};
-    return axios.post(_u(`/api/drafts-add`), data).then(resp => resp.data);
+    return axios.post(apiBase(`/private-api/drafts-add`), data).then(resp => resp.data);
 }
 
 export const updateDraft = (username: string, draftId: string, title: string, body: string, tags: string): Promise<any> => {
     const data = {code: getAccessToken(username), id: draftId, title, body, tags};
-    return axios.post(_u(`/api/drafts-update`), data).then(resp => resp.data);
+    return axios.post(apiBase(`/private-api/drafts-update`), data).then(resp => resp.data);
 }
 
 export const deleteDraft = (username: string, draftId: string): Promise<any> => {
     const data = {code: getAccessToken(username), id: draftId};
-    return axios.post(_u(`/api/drafts-delete`), data).then(resp => resp.data);
+    return axios.post(apiBase(`/private-api/drafts-delete`), data).then(resp => resp.data);
 }
 
 export interface Schedule {
@@ -198,22 +175,22 @@ export interface Schedule {
 
 export const getSchedules = (username: string): Promise<Schedule[]> => {
     const data = {code: getAccessToken(username)};
-    return axios.post(_u(`/api/schedules`), data).then(resp => resp.data);
+    return axios.post(apiBase(`/private-api/schedules`), data).then(resp => resp.data);
 }
 
 export const addSchedule = (username: string, permlink: string, title: string, body: string, meta: {}, options: {}, schedule: string, reblog: boolean): Promise<any> => {
     const data = {code: getAccessToken(username), permlink, title, body, meta, options, schedule, reblog}
-    return axios.post(_u(`/api/schedules-add`), data).then(resp => resp.data);
+    return axios.post(apiBase(`/private-api/schedules-add`), data).then(resp => resp.data);
 }
 
 export const deleteSchedule = (username: string, id: string): Promise<any> => {
     const data = {code: getAccessToken(username), id};
-    return axios.post(_u(`/api/schedules-delete`), data).then(resp => resp.data);
+    return axios.post(apiBase(`/private-api/schedules-delete`), data).then(resp => resp.data);
 }
 
 export const moveSchedule = (username: string, id: string): Promise<any> => {
     const data = {code: getAccessToken(username), id};
-    return axios.post(_u(`/api/schedules-move`), data).then(resp => resp.data);
+    return axios.post(apiBase(`/private-api/schedules-move`), data).then(resp => resp.data);
 }
 
 export interface Bookmark {
@@ -226,17 +203,17 @@ export interface Bookmark {
 
 export const getBookmarks = (username: string): Promise<Bookmark[]> => {
     const data = {code: getAccessToken(username)};
-    return axios.post(_u(`/api/bookmarks`), data).then(resp => resp.data);
+    return axios.post(apiBase(`/private-api/bookmarks`), data).then(resp => resp.data);
 }
 
 export const addBookmark = (username: string, author: string, permlink: string): Promise<{ bookmarks: Bookmark[] }> => {
     const data = {code: getAccessToken(username), author, permlink};
-    return axios.post(_u(`/api/bookmarks-add`), data).then(resp => resp.data);
+    return axios.post(apiBase(`/private-api/bookmarks-add`), data).then(resp => resp.data);
 }
 
 export const deleteBookmark = (username: string, bookmarkId: string): Promise<any> => {
     const data = {code: getAccessToken(username), id: bookmarkId};
-    return axios.post(_u(`/api/bookmarks-delete`), data).then(resp => resp.data);
+    return axios.post(apiBase(`/private-api/bookmarks-delete`), data).then(resp => resp.data);
 }
 
 export interface Favorite {
@@ -247,22 +224,22 @@ export interface Favorite {
 
 export const getFavorites = (username: string): Promise<Favorite[]> => {
     const data = {code: getAccessToken(username)};
-    return axios.post(_u(`/api/favorites`), data).then(resp => resp.data);
+    return axios.post(apiBase(`/private-api/favorites`), data).then(resp => resp.data);
 }
 
 export const checkFavorite = (username: string, account: string): Promise<boolean> => {
     const data = {code: getAccessToken(username), account};
-    return axios.post(_u(`/api/favorites-check`), data).then(resp => resp.data);
+    return axios.post(apiBase(`/private-api/favorites-check`), data).then(resp => resp.data);
 }
 
 export const addFavorite = (username: string, account: string): Promise<{ favorites: Favorite[] }> => {
     const data = {code: getAccessToken(username), account};
-    return axios.post(_u(`/api/favorites-add`), data).then(resp => resp.data);
+    return axios.post(apiBase(`/private-api/favorites-add`), data).then(resp => resp.data);
 }
 
 export const deleteFavorite = (username: string, account: string): Promise<any> => {
     const data = {code: getAccessToken(username), account};
-    return axios.post(_u(`/api/favorites-delete`), data).then(resp => resp.data);
+    return axios.post(apiBase(`/private-api/favorites-delete`), data).then(resp => resp.data);
 }
 
 export interface Fragment {
@@ -275,45 +252,60 @@ export interface Fragment {
 
 export const getFragments = (username: string): Promise<Fragment[]> => {
     const data = {code: getAccessToken(username)};
-    return axios.post(_u(`/api/fragments`), data).then(resp => resp.data);
+    return axios.post(apiBase(`/private-api/fragments`), data).then(resp => resp.data);
 }
 
 export const addFragment = (username: string, title: string, body: string): Promise<{ fragments: Fragment[] }> => {
     const data = {code: getAccessToken(username), title, body};
-    return axios.post(_u(`/api/fragments-add`), data).then(resp => resp.data);
+    return axios.post(apiBase(`/private-api/fragments-add`), data).then(resp => resp.data);
 }
 
 export const updateFragment = (username: string, fragmentId: string, title: string, body: string): Promise<any> => {
     const data = {code: getAccessToken(username), id: fragmentId, title, body};
-    return axios.post(_u(`/api/fragments-update`), data).then(resp => resp.data);
+    return axios.post(apiBase(`/private-api/fragments-update`), data).then(resp => resp.data);
 }
 
 export const deleteFragment = (username: string, fragmentId: string): Promise<any> => {
     const data = {code: getAccessToken(username), id: fragmentId};
-    return axios.post(_u(`/api/fragments-delete`), data).then(resp => resp.data);
+    return axios.post(apiBase(`/private-api/fragments-delete`), data).then(resp => resp.data);
 }
 
 export const getPoints = (username: string): Promise<{
     points: string;
     unclaimed_points: string;
 }> => {
-    const data = {username};
-    return axios.post(_u(`/api/points`), data).then(resp => resp.data);
+    if (window.usePrivate) {
+        const data = {username};
+        return axios.post(apiBase(`/private-api/points`), data).then(resp => resp.data);
+    }
+
+    return new Promise((resolve) => {
+        resolve({
+            points: "0.000",
+            unclaimed_points: "0.000"
+        })
+    });
 }
 
 export const getPointTransactions = (username: string): Promise<PointTransaction[]> => {
-    const data = {username};
-    return axios.post(_u(`/api/point-list`), data).then(resp => resp.data);
+    if (window.usePrivate) {
+        const data = {username};
+        return axios.post(apiBase(`/private-api/point-list`), data).then(resp => resp.data);
+    }
+
+    return new Promise((resolve) => {
+        resolve([]);
+    });
 }
 
 export const claimPoints = (username: string): Promise<any> => {
     const data = {code: getAccessToken(username)};
-    return axios.post(_u(`/api/points-claim`), data).then(resp => resp.data);
+    return axios.post(apiBase(`/private-api/points-claim`), data).then(resp => resp.data);
 }
 
 export const calcPoints = (username: string, amount: string): Promise<{ usd: number, estm: number }> => {
     const data = {code: getAccessToken(username), amount};
-    return axios.post(_u(`/api/points-calc`), data).then(resp => resp.data);
+    return axios.post(apiBase(`/private-api/points-calc`), data).then(resp => resp.data);
 }
 
 export interface PromotePrice {
@@ -323,27 +315,22 @@ export interface PromotePrice {
 
 export const getPromotePrice = (username: string): Promise<PromotePrice[]> => {
     const data = {code: getAccessToken(username)};
-    return axios.post(_u(`/api/promote-price`), data).then(resp => resp.data);
+    return axios.post(apiBase(`/private-api/promote-price`), data).then(resp => resp.data);
 }
 
 export const getPromotedPost = (username: string, author: string, permlink: string): Promise<{ author: string, permlink: string } | ''> => {
     const data = {code: getAccessToken(username), author, permlink};
-    return axios.post(_u(`/api/promoted-post`), data).then(resp => resp.data);
+    return axios.post(apiBase(`/private-api/promoted-post`), data).then(resp => resp.data);
 }
 
 export const getBoostOptions = (username: string): Promise<number[]> => {
     const data = {code: getAccessToken(username)};
-    return axios.post(_u(`/api/boost-options`), data).then(resp => resp.data);
+    return axios.post(apiBase(`/private-api/boost-options`), data).then(resp => resp.data);
 }
 
 export const getBoostedPost = (username: string, author: string, permlink: string): Promise<{ author: string, permlink: string } | ''> => {
     const data = {code: getAccessToken(username), author, permlink};
-    return axios.post(_u(`/api/boosted-post`), data).then(resp => resp.data);
-}
-
-export const searchPath = (username: string, q: string): Promise<string[]> => {
-    const data = {code: getAccessToken(username), q};
-    return axios.post(_u(`/api/search-path`), data).then(resp => resp.data);
+    return axios.post(apiBase(`/private-api/boosted-post`), data).then(resp => resp.data);
 }
 
 export interface CommentHistoryListItem {
@@ -363,90 +350,17 @@ interface CommentHistory {
 
 export const commentHistory = (author: string, permlink: string, onlyMeta: boolean = false): Promise<CommentHistory> => {
     const data = {author, permlink, onlyMeta: onlyMeta ? '1' : ''};
-    return axios.post(_u(`/api/comment-history`), data).then(resp => resp.data);
+    return axios.post(apiBase(`/private-api/comment-history`), data).then(resp => resp.data);
 }
 
-export interface SearchResult {
-    id: number;
-    title: string;
-    title_marked: string | null;
-    category: string;
-    author: string;
-    permlink: string;
-    author_rep: number | string;
-    children: number;
-    body: string;
-    body_marked: string | null;
-    img_url: string;
-    created_at: string;
-    payout: number;
-    total_votes: number;
-    up_votes: number;
-    tags: string[];
-    depth: number;
-    app: string;
+export const getPromotedEntries = (): Promise<Entry[]> => {
+    if (window.usePrivate) {
+        return axios.get(apiBase(`/private-api/promoted-entries`)).then((resp) => resp.data);
+    }
+
+    return new Promise(resolve => resolve([]));
 }
 
-export interface SearchResponse {
-    hits: number;
-    results: SearchResult[];
-    scroll_id?: string;
-    took: number;
-}
 
-export const search = (q: string, sort: string, hideLow: string, since?: string, scroll_id?: string): Promise<SearchResponse> => {
-    const data: { q: string, sort: string, hide_low: string, since?: string, scroll_id?: string } = {q, sort, hide_low: hideLow};
-
-    if (since) data.since = since;
-    if (scroll_id) data.scroll_id = scroll_id;
-
-    return axios.post(_u(`/api/search`), data).then(resp => resp.data);
-}
-
-export const getPromotedEntries = (): Promise<Entry[]> =>
-    axios.get(_u(`/api/promoted-entries`)).then((resp) => resp.data);
-
-
-export interface FriendSearchResult {
-    name: string;
-    full_name: string;
-    reputation: number
-}
-
-export const searchFollower = (following: string, q: string): Promise<FriendSearchResult[]> => {
-    const data = {following, q};
-
-    return axios.post(_u(`/api/search-follower`), data).then(resp => resp.data);
-}
-
-export const searchFollowing = (follower: string, q: string): Promise<FriendSearchResult[]> => {
-    const data = {follower, q};
-
-    return axios.post(_u(`/api/search-following`), data).then(resp => resp.data);
-}
-
-export interface AccountSearchResult {
-    name: string;
-    full_name: string;
-    about: string;
-    reputation: number
-}
-
-export const searchAccount = (q: string = "", limit: number = 20, random: number = 1): Promise<AccountSearchResult[]> => {
-    const data = {q, limit, random};
-
-    return axios.post(_u(`/api/search-account`), data).then(resp => resp.data);
-}
-
-export interface TagSearchResult {
-    tag: string;
-    repeat: number;
-}
-
-export const searchTag = (q: string = "", limit: number = 20, random: number = 0): Promise<TagSearchResult[]> => {
-    const data = {q, limit, random};
-
-    return axios.post(_u(`/api/search-tag`), data).then(resp => resp.data);
-}
 
 

@@ -9,7 +9,7 @@ import {SearchPeople} from "./index"
 
 let TEST_MODE = 0;
 
-jest.mock("../../api/private", () => ({
+jest.mock("../../api/search-api", () => ({
     searchAccount: () =>
         new Promise((resolve) => {
             if (TEST_MODE === 0) {

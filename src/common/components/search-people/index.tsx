@@ -14,7 +14,7 @@ import SearchQuery from "../../helper/search-query";
 import ProfileLink from "../profile-link";
 import UserAvatar from "../user-avatar";
 
-import {searchAccount, AccountSearchResult} from "../../api/private";
+import {searchAccount, AccountSearchResult} from "../../api/search-api";
 
 import {_t} from "../../i18n";
 

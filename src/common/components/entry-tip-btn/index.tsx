@@ -41,7 +41,7 @@ interface DialogProps extends Props {
 
 export class TippingDialog extends Component<DialogProps> {
     render() {
-        const {entry, activeUser} = this.props;
+        const {global, entry, activeUser} = this.props;
 
         if (!activeUser) {
             return null;
@@ -59,9 +59,9 @@ export class TippingDialog extends Component<DialogProps> {
             {...this.props}
             activeUser={activeUser}
             transactions={transactions}
-            asset="POINT"
+            asset={global.usePrivate ? "POINT" : "HIVE"}
             mode="transfer"
-            amount={`100.000`}
+            amount={global.usePrivate ? "100.000" : "1.000"}
             to={to}
             memo={memo}
         />

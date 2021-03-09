@@ -8,7 +8,7 @@ import {entryInstance1, UiInstance, activeUserInstance, allOver} from "../../hel
 
 let TEST_MODE = 0
 
-jest.mock("../../api/private", () => ({
+jest.mock("../../api/private-api", () => ({
     getBookmarks: () =>
         new Promise((resolve) => {
             if (TEST_MODE === 0) {

@@ -14,7 +14,7 @@ import UserAvatar from "../user-avatar";
 import LinearProgress from "../linear-progress";
 import {error} from "../feedback";
 
-import {getBookmarks, Bookmark, getFavorites, Favorite} from "../../api/private";
+import {getBookmarks, Bookmark, getFavorites, Favorite} from "../../api/private-api";
 
 import {_t} from "../../i18n";
 

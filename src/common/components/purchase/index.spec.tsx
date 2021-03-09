@@ -6,7 +6,7 @@ import {globalInstance, dynamicPropsIntance1, fullAccountInstance, allOver} from
 
 import TestRenderer from "react-test-renderer";
 
-jest.mock("../../api/private", () => ({
+jest.mock("../../api/private-api", () => ({
     calcPoints: () =>
         new Promise((resolve) => {
             resolve({"usd": 62.381282337, "estm": 31190.6411685});

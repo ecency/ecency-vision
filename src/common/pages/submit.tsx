@@ -43,7 +43,7 @@ import MdHandler from "../components/md-handler";
 import BeneficiaryEditor from "../components/beneficiary-editor";
 import PostScheduler from "../components/post-scheduler";
 
-import {getDrafts, addDraft, updateDraft, addSchedule, Draft} from "../api/private";
+import {getDrafts, addDraft, updateDraft, addSchedule, Draft} from "../api/private-api";
 
 import {createPermlink, extractMetaData, makeJsonMetaData, makeCommentOptions, createPatch} from "../helper/posting";
 
@@ -758,9 +758,10 @@ class SubmitPage extends BaseComponent<Props, State> {
                                     <>
                                         <span/>
                                         <div>
-                                            <Button variant="outline-primary" style={{marginRight: "6px"}} onClick={this.saveDraft} disabled={!canPublish || saving || posting}>
-                                                {contentSaveSvg} {editingDraft === null ? _t("submit.save-draft") : _t("submit.update-draft")}
-                                            </Button>
+                                            {global.usePrivate && (
+                                                <Button variant="outline-primary" style={{marginRight: "6px"}} onClick={this.saveDraft} disabled={!canPublish || saving || posting}>
+                                                    {contentSaveSvg} {editingDraft === null ? _t("submit.save-draft") : _t("submit.update-draft")}
+                                                </Button>)}
                                             {LoginRequired({
                                                 ...this.props,
                                                 children: <Button
@@ -826,15 +827,15 @@ class SubmitPage extends BaseComponent<Props, State> {
                                                 <Form.Text muted={true}>{_t("submit.beneficiaries-hint")}</Form.Text>
                                             </Col>
                                         </Form.Group>
-                                        <Form.Group as={Row}>
-                                            <Form.Label column={true} sm="3">
-                                                {_t("submit.schedule")}
-                                            </Form.Label>
-                                            <Col sm="9">
-                                                <PostScheduler date={schedule ? moment(schedule) : null} onChange={this.scheduleChanged}/>
-                                                <Form.Text muted={true}>{_t("submit.schedule-hint")}</Form.Text>
-                                            </Col>
-                                        </Form.Group>
+                                        {global.usePrivate && <Form.Group as={Row}>
+                                          <Form.Label column={true} sm="3">
+                                              {_t("submit.schedule")}
+                                          </Form.Label>
+                                          <Col sm="9">
+                                            <PostScheduler date={schedule ? moment(schedule) : null} onChange={this.scheduleChanged}/>
+                                            <Form.Text muted={true}>{_t("submit.schedule-hint")}</Form.Text>
+                                          </Col>
+                                        </Form.Group>}
                                         {tags.length > 0 && isCommunity(tags[0]) && (
                                             <Form.Group as={Row}>
                                                 <Col sm="3"/>

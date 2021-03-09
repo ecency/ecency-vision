@@ -14,7 +14,7 @@ mockDate.set(1591398131174);
 
 let TEST_MODE = 0;
 
-jest.mock("../../api/private", () => ({
+jest.mock("../../api/search-api", () => ({
     search: () =>
         new Promise((resolve) => {
             if (TEST_MODE === 0) {

@@ -12,7 +12,7 @@ import {_t} from "../../i18n";
 
 import {postBodySummary} from "@ecency/render-helper";
 
-import {getFragments, Fragment, addFragment, deleteFragment, updateFragment} from "../../api/private";
+import {getFragments, Fragment, addFragment, deleteFragment, updateFragment} from "../../api/private-api";
 
 import PopoverConfirm from "../popover-confirm";
 

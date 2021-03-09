@@ -8,7 +8,7 @@ import LinearProgress from "../linear-progress";
 import PopoverConfirm from "../popover-confirm";
 import Tooltip from "../tooltip";
 
-import {getImages, deleteImage, UserImage} from "../../api/private";
+import {getImages, deleteImage, UserImage} from "../../api/private-api";
 
 import {success, error} from "../feedback";
 

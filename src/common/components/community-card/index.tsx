@@ -177,7 +177,7 @@ export class CommunityCard extends Component<Props, State> {
 
     render() {
         const {info, settings, rewards, useNewImage} = this.state;
-        const {community, activeUser, users, account} = this.props;
+        const {global, community, activeUser, users, account} = this.props;
 
         const role = community.team.find(x => x[0] === activeUser?.username);
         const roleInTeam = role ? role[1] : null;
@@ -272,7 +272,7 @@ export class CommunityCard extends Component<Props, State> {
                         </p>)}
                     </div>
                 )}
-                {roleInTeam === ROLES.OWNER.toString() && (
+                {(global.usePrivate && roleInTeam === ROLES.OWNER.toString()) && (
                     <p className="community-rewards"><a href="#" onClick={(e) => {
                         e.preventDefault();
                         this.toggleRewards();

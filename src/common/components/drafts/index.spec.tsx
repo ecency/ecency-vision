@@ -15,7 +15,7 @@ jest.mock("../../api/bridge", () => ({
     })
 }));
 
-jest.mock("../../api/private", () => ({
+jest.mock("../../api/private-api", () => ({
     getDrafts: () =>
         new Promise((resolve) => {
             if (TEST_MODE === 0) {

@@ -23,7 +23,7 @@ import {_t} from "../../i18n";
 
 import _c from "../../util/fix-class-names";
 
-import {commentHistory, CommentHistoryListItem} from "../../api/private";
+import {commentHistory, CommentHistoryListItem} from "../../api/private-api";
 
 import {historySvg, tagSvg} from "../../img/svg";
 

@@ -85,3 +85,21 @@ it("(2) Has rewards ", () => {
         </StaticRouter>);
     expect(component.toJSON()).toMatchSnapshot();
 });
+
+
+it("(3) usePrivate = false", () => {
+
+    const props = {
+        ...defProps,
+        global: {
+            ...globalInstance,
+            usePrivate: false
+        }
+    }
+
+    const component = renderer.create(
+        <StaticRouter location="/@username" context={{}}>
+            <UserNav {...props} />
+        </StaticRouter>);
+    expect(component.toJSON()).toMatchSnapshot();
+});

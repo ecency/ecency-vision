@@ -2,9 +2,9 @@ import axios from 'axios';
 
 import defaults from "../constants/defaults.json";
 
-import {_u} from "./private";
+import {apiBase} from "./helper";
 
-export const getEmojiData = () => fetch(_u("/emoji.json")).then((response) => response.json());
+export const getEmojiData = () => fetch(apiBase("/emoji.json")).then((response) => response.json());
 
 export const uploadImage = async (file: File, token: string): Promise<{
     url: string

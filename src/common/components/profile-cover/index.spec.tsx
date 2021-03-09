@@ -112,3 +112,25 @@ it("(4) No bg image - Night theme", async () => {
     expect(component.toJSON()).toMatchSnapshot();
 });
 
+it("(5) usePrivate = false", async () => {
+    const account: Account = {
+        ...fullAccountInstance,
+        name: "user1",
+        profile: {
+            cover_image: "https://img.esteem.app/rwd380.jpg",
+        }
+    };
+
+    const props = {
+        ...defProps,
+        account,
+        global: {
+            ...globalInstance,
+            usePrivate: false
+        }
+    };
+
+    const component = renderer.create(<ProfileCover {...props} />);
+    await allOver();
+    expect(component.toJSON()).toMatchSnapshot();
+});

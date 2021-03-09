@@ -6,7 +6,7 @@ import {globalInstance, allOver} from "../../helper/test-helper";
 
 import {LeaderBoard} from './index';
 
-jest.mock("../../api/private", () => ({
+jest.mock("../../api/private-api", () => ({
     getLeaderboard: (duration: string) =>
         new Promise((resolve) => {
             resolve([

@@ -1,12 +1,8 @@
 import express from "express";
 
-import {AxiosResponse} from "axios";
+import {apiRequest, getPromotedEntries} from "../helper";
 
-import config from "../../config";
-
-import {getTokenUrl, decodeToken} from "../../common/helper/hive-signer";
-
-import {apiRequest, baseApiRequest, getPromotedEntries} from "../helper";
+import {pipe} from "../util";
 
 const hs = require("hivesigner");
 
@@ -26,14 +22,6 @@ const validateCode = async (req: express.Request, res: express.Response): Promis
     }
 };
 
-const pipe = (promise: Promise<AxiosResponse>, res: express.Response) => {
-    promise.then(r => {
-        res.status(r.status).send(r.data);
-    }).catch(() => {
-        res.status(500).send("Server Error");
-    });
-};
-
 export const receivedVesting = async (req: express.Request, res: express.Response) => {
     const {username} = req.params;
     pipe(apiRequest(`delegatee_vesting_shares/${username}`, "GET"), res);
@@ -41,8 +29,7 @@ export const receivedVesting = async (req: express.Request, res: express.Respons
 
 export const rewardedCommunities = async (req: express.Request, res: express.Response) => {
     pipe(apiRequest(`rewarded-communities`, "GET"), res);
-}
-
+};
 
 export const leaderboard = async (req: express.Request, res: express.Response) => {
     const {duration} = req.params;
@@ -52,7 +39,7 @@ export const leaderboard = async (req: express.Request, res: express.Response) =
 export const promotedEntries = async (req: express.Request, res: express.Response) => {
     const posts = await getPromotedEntries();
     res.send(posts);
-}
+};
 
 export const commentHistory = async (req: express.Request, res: express.Response) => {
     const {author, permlink, onlyMeta} = req.body;
@@ -63,67 +50,17 @@ export const commentHistory = async (req: express.Request, res: express.Response
     }
 
     pipe(apiRequest(u, "GET"), res);
-}
-
-export const search = async (req: express.Request, res: express.Response) => {
-    const {q, sort, hide_low, since, scroll_id} = req.body;
-
-    const url = `${config.searchApiAddr}/search`;
-    const headers = {'Authorization': config.searchApiToken};
-
-    const payload: { q: string, sort: string, hide_low: string, since?: string, scroll_id?: string } = {q, sort, hide_low};
-
-    if (since) payload.since = since;
-    if (scroll_id) payload.scroll_id = scroll_id;
-
-    pipe(baseApiRequest(url, "POST", headers, payload), res);
-}
-
-export const searchFollower = async (req: express.Request, res: express.Response) => {
-    const {q, following} = req.body;
-
-    const url = `${config.searchApiAddr}/search-follower/${following}`;
-    const headers = {'Authorization': config.searchApiToken};
-
-    pipe(baseApiRequest(url, "POST", headers, {q: q}), res);
-}
-
-export const searchFollowing = async (req: express.Request, res: express.Response) => {
-    const {follower, q} = req.body;
-
-    const url = `${config.searchApiAddr}/search-following/${follower}`;
-    const headers = {'Authorization': config.searchApiToken};
-
-    pipe(baseApiRequest(url, "POST", headers, {q}), res);
-}
-
-export const searchAccount = async (req: express.Request, res: express.Response) => {
-    const {q, limit, random} = req.body;
-
-    const url = `${config.searchApiAddr}/search-account`;
-    const headers = {'Authorization': config.searchApiToken};
-
-    pipe(baseApiRequest(url, "POST", headers, {q, limit, random}), res);
-}
-
-export const searchTag = async (req: express.Request, res: express.Response) => {
-    const {q, limit, random} = req.body;
-
-    const url = `${config.searchApiAddr}/search-tag`;
-    const headers = {'Authorization': config.searchApiToken};
-
-    pipe(baseApiRequest(url, "POST", headers, {q, limit, random}), res);
-}
+};
 
 export const points = async (req: express.Request, res: express.Response) => {
     const {username} = req.body;
     pipe(apiRequest(`users/${username}`, "GET"), res);
-}
+};
 
 export const pointList = async (req: express.Request, res: express.Response) => {
     const {username} = req.body;
     pipe(apiRequest(`users/${username}/points?size=50`, "GET"), res);
-}
+};
 
 export const createAccount = async (req: express.Request, res: express.Response) => {
     const {username, email, referral} = req.body;
@@ -132,13 +69,6 @@ export const createAccount = async (req: express.Request, res: express.Response)
     const payload = {username, email, referral};
 
     pipe(apiRequest(`signup/account-create`, "POST", headers, payload), res);
-};
-
-export const hsTokenRefresh = async (req: express.Request, res: express.Response) => {
-    const {code} = req.body;
-    if (!decodeToken(code)) return;
-
-    pipe(baseApiRequest(getTokenUrl(code, config.hsClientSecret), "GET"), res);
 };
 
 /* Login required endpoints */
@@ -381,18 +311,6 @@ export const promotedPost = async (req: express.Request, res: express.Response) 
     if (!username) return;
     const {author, permlink} = req.body;
     pipe(apiRequest(`promoted-posts/${author}/${permlink}`, "GET"), res);
-}
-
-export const searchPath = async (req: express.Request, res: express.Response) => {
-    const username = await validateCode(req, res);
-    if (!username) return;
-
-    const {q} = req.body;
-
-    const url = `${config.searchApiAddr}/search-path`;
-    const headers = {'Authorization': config.searchApiToken};
-
-    pipe(baseApiRequest(url, "POST", headers, {q}), res);
 }
 
 export const boostOptions = async (req: express.Request, res: express.Response) => {
