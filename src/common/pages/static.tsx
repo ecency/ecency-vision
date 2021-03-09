@@ -14,9 +14,9 @@ import Contributors from "../components/contributors";
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
 import {_t} from "../i18n";
+import {Tsx} from "../i18n/helper";
 
 import {blogSvg, newsSvg, mailSvg, twitterSvg, githubSvg, telegramSvg, discordSvg} from "../img/svg";
-import FullHeight from "../components/full-height";
 
 const surferSs = require("../img/surfer-ss.jpg");
 const mobileSs = require("../img/mobile-ss.jpg");
@@ -78,7 +78,7 @@ class AboutPage extends Component<PageProps> {
                             <div className="about-content">
                                 <div className="arrow-1"/>
                                 <div className="arrow-2"/>
-                                <h1 className="about-title" dangerouslySetInnerHTML={{__html: _t('static.about.intro-title')}}/>
+                                <Tsx k="static.about.intro-title"><h1 className="about-title" /></Tsx>
                                 <p>{_t('static.about.intro-content')}</p>
                             </div>
                             <div className="sub-cloud">
@@ -838,7 +838,7 @@ class FaqPage extends Component<PageProps> {
                                     <span className="anchor" id={x}/>
                                     <h4 className="faq-item-header" itemProp="name">{_t(`static.faq.${x}-header`)}</h4>
                                     <div itemScope={true} itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
-                                        <div className="faq-item-body" itemProp="text" dangerouslySetInnerHTML={{__html: _t(`static.faq.${x}-body`)}}/>
+                                        <Tsx k={`static.faq.${x}-body`}><div className="faq-item-body" itemProp="text" /></Tsx>
                                     </div>
                                 </div>
                             })}
