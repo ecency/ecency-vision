@@ -1,17 +1,50 @@
 import React from "react";
 
+import xss from "xss";
+
 import {_t} from "./index";
+
+export const HTML_WHITELIST = {
+    "a": [
+        "class",
+        "href",
+        "target",
+        "rel"
+    ],
+    "span": [
+        "class"
+    ],
+    "h3": [],
+    "p": [],
+    "strong": [],
+    "img": ["src", "alt"],
+    "ul": [],
+    "li": []
+}
+
+export const safeHtml = (html: string): string => {
+    return xss(html, {
+        whiteList: HTML_WHITELIST,
+        stripIgnoreTagBody: true,
+        stripIgnoreTag: true,
+        css: false,
+    })
+}
 
 interface Props {
     k: string,
-    args: {},
+    args?: {},
     children: JSX.Element
 }
 
 export class Tsx extends React.Component<Props> {
     render() {
         const {k, args} = this.props;
+
         const {children} = this.props;
-        return React.cloneElement(children, {dangerouslySetInnerHTML: {__html: _t(k, args)}});
+
+        const html = safeHtml(_t(k, args));
+
+        return React.cloneElement(children, {dangerouslySetInnerHTML: {__html: html}});
     }
 }
