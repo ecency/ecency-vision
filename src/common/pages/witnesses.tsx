@@ -246,7 +246,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
             <div className="header-title">
                 {_t('witnesses.page-title')}
             </div>
-            <div className="header-description" dangerouslySetInnerHTML={{__html: _t(`witnesses.page-description-long`)}}/>
+            <Tsx k="witnesses.page-description-long"><div className="header-description" /></Tsx>
             {activeUser && (
                 <Tsx k="witnesses.remaining" args={{n: 30 - witnessVotes.length, max: 30}}>
                     <div className="remaining"/>

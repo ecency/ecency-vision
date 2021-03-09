@@ -73,6 +73,7 @@ import clipboard from "../util/clipboard";
 import {timeSvg, redditSvg, facebookSvg, twitterSvg, deleteForeverSvg, linkSvg} from "../img/svg";
 
 import {_t} from "../i18n";
+import {Tsx} from "../i18n/helper";
 
 import {version} from "../../../package.json";
 
@@ -476,7 +477,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                                             <meta itemProp="name" content={entry.author}/>
                                                         </span>
                                                         <div className="app">
-                                                            <a href="/faq#source-label" dangerouslySetInnerHTML={{__html: _t("entry.via-app", {app})}}/>
+                                                            <Tsx k="entry.via-app" args={{app}}><a href="/faq#source-label" /></Tsx>
                                                         </div>
                                                     </>
                                                 )}

@@ -60,13 +60,14 @@ import {
 } from "../../api/operations";
 
 import {_t} from "../../i18n";
+import {Tsx} from "../../i18n/helper";
 
 import badActors from '../../constants/bad-actors.json';
 
 import {arrowRightSvg} from "../../img/svg";
 
 export type TransferMode = "transfer" | "transfer-saving" | "withdraw-saving" | "convert" | "power-up" | "power-down" | "delegate";
-export type TransferAsset = "HIVE" | "HBD" | "HP" | "POINT" ;
+export type TransferAsset = "HIVE" | "HBD" | "HP" | "POINT";
 
 interface AssetSwitchProps {
     options: TransferAsset[];
@@ -865,8 +866,9 @@ export class Transfer extends BaseComponent<Props, State> {
                 <div className="transaction-form">
                     {formHeader4}
                     <div className="transaction-form-body">
-                        <div className="success"
-                             dangerouslySetInnerHTML={{__html: _t(`transfer.${summaryLngKey}`, {amount: `${amount} ${asset}`, from: activeUser.username, to})}}/>
+                        <Tsx k={`transfer.${summaryLngKey}`} args={{amount: `${amount} ${asset}`, from: activeUser.username, to}}>
+                            <div className="success"/>
+                        </Tsx>
                         <div className="d-flex justify-content-center">
                             <Button variant="outline-secondary" onClick={this.reset}>
                                 {_t("transfer.reset")}

@@ -17,9 +17,11 @@ export const HTML_WHITELIST = {
     "h3": [],
     "p": [],
     "strong": [],
+    "b": [],
     "img": ["src", "alt"],
     "ul": [],
-    "li": []
+    "li": [],
+    "br": []
 }
 
 export const safeHtml = (html: string): string => {

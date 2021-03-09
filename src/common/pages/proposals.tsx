@@ -30,6 +30,7 @@ import ProposalListItem from "../components/proposal-list-item";
 import NotFound from "../components/404";
 
 import {_t} from "../i18n";
+import {Tsx} from "../i18n/helper";
 
 import {getProposals, Proposal, getPost, getAccount} from "../api/hive";
 
@@ -166,7 +167,7 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
                         <h1 className="header-title">
                             {_t("proposals.page-title")}
                         </h1>
-                        <div className="header-description" dangerouslySetInnerHTML={{__html: _t(`proposals.page-description`)}}/>
+                        <Tsx k="proposals.page-description"><div className="header-description" /></Tsx>
                         <div className="funding-numbers">
                             <div className="funding-number">
                                 <div className="value">
