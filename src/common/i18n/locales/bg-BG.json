@@ -310,7 +310,7 @@
     "btn-next-label": "Регистрация",
     "done-body-text": "Регистрацията е завършена. Вашата общност ще получава ТОЧКИ като награди когато членовете на групата правят публикации с приложенията на Ecency.",
     "conflict-body-text": "Тази общност е вече регистрирана.",
-    "min-required-body-text": "Minimum 100 subscribers required to register."
+    "min-required-body-text": "Нужни са минимум 100 члена за да се регистрира."
   },
   "pin-btn": {
     "pin": "Закачи",
@@ -343,14 +343,14 @@
     "proposals": "Предложения"
   },
   "profile-info": {
-    "joined": "Joined: {{n}}",
-    "last-active": "Last active: {{n}}",
-    "vote-value": "Vote value: {{n}}",
-    "vote-value-max": "(out of max {{n}})",
-    "vote-power": "Vote Power: {{n}}%",
-    "rc-power": "Resource Credits: {{n}}%",
-    "recharge-time": "(fully charged {{n}})",
-    "down-vote-power": "Downvote Power: {{n}}%"
+    "joined": "Присъединил: {{n}}",
+    "last-active": "Последно активен: {{n}}",
+    "vote-value": "Стойност на гласа: {{n}}",
+    "vote-value-max": "(от максимум {{n}})",
+    "vote-power": "Сила на гласа: {{n}}%",
+    "rc-power": "Ресурс кредити: {{n}}%",
+    "recharge-time": "(напълно заредени {{n}})",
+    "down-vote-power": "Сила за отрицателно гласуване: {{n}}%"
   },
   "profile-edit": {
     "title": "Профил",
@@ -418,11 +418,11 @@
     "comment-desc": "Всеки коментар които правите ви помага да развиете аудиторията си и да създадавате приятелства, но и също така печелите 5 точки.",
     "checkin-desc": "Проверката в приложението на Ecency ви вада 0.25 точки и ви помага да останете свързан с приятелите си.",
     "vote-desc": "Като гласувате давате награди на други създатели и покачвате своята признателност, но и печелите 0.01 x силата на точките за гласуване.",
-    "reblog-desc": "Share what post you like with your friends and earn 1 points.",
+    "reblog-desc": "Споделете каква публикация харесвате с приятелите си и спечелете 1 точка.",
     "login-desc": "Когат влезете в Ecency, имате правото да вземете 100 точки автоматично.",
     "checkin-extra-desc": "Честата употреба на приложението ви дава допълнителни шансове да спечелите още 10 точки, бъдете по-активни и да печелете повече.",
     "delegation-desc": "Можете да спечелите ~50 точки на ден за всека 1000HP Делегирация.",
-    "community-desc": "Register your community to get 20 points for per post published with Ecency applications.",
+    "community-desc": "Регистрирай общност за да получиш 20 точки за направена публикация с приложенията на Ecency.",
     "history": "История",
     "post-list-desc": "Точки за пост",
     "comment-list-desc": "Точки за коментар",
@@ -435,7 +435,7 @@
     "transfer-incoming-list-desc": "Прехвърлянe от {{n}}",
     "delegation-list-desc": "Награда за Делегиран Hive",
     "referral-list-desc": "Награда на реферала",
-    "community-list-desc": "Community reward",
+    "community-list-desc": "Общностнa наградa",
     "transfer": "Подари на някого",
     "claim-ok": "Взети точки",
     "promote": "Промотиране",
@@ -664,7 +664,7 @@
     "type-follows": "Последвания",
     "type-reblogs": "Споделяния",
     "type-transfers": "Преводи",
-    "group-title-recent": "Recent",
+    "group-title-recent": "Скорошни",
     "vote-str": "{{p}}% хареса вашия пост:",
     "reply-str": "отговори на твоя пост:",
     "mention-str": "ви спомена в:",
@@ -780,7 +780,7 @@
     "filter-active": "Активни",
     "filter-inactive": "Предстоящи",
     "filter-team": "Ecency Проекти",
-    "return-description": "This is the base return proposal. Every proposal with less votes will not receive funds.",
+    "return-description": "Това е мининималната стойност за осъществяване на предложение. Всяко предложение с по-малко гласове няма да получи средства.",
     "votes-dialog-title": "Гласове на Предложение #{{n}}",
     "see-all": "виж всички предложения"
   },
@@ -821,13 +821,13 @@
     "updated": "Паролата беше успешно променена!"
   },
   "add-image": {
-    "title": "Add Image",
-    "text-label": "Image Text",
-    "link-label": "Image Link"
+    "title": "Добави Снимка",
+    "text-label": "Текст на снимката",
+    "link-label": "Линк към снимката"
   },
   "add-link": {
-    "title": "Add Link",
-    "text-label": "Text",
+    "title": "Добави линк",
+    "text-label": "Текст",
     "link-label": "https://"
   },
   "scroll-to-top": {
@@ -852,7 +852,7 @@
       "what-is-ecency-body": "<p>Ecency е <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">блокчейн</a> социална мрежа управлявана от <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency e домът на свободата на словото и награждаващите общности за създателите на съдържание.</p><p>Проектът е създаден от <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> през Август 2016 като алтернативна социална мрежа, която е нецензурирана, контролирана от потребителите, незаглушаваща и с отворен код. В момента има много <a class=\"push-link\" href=\"/contributors\">много независими и доброволни сътрудници</a> които искат да поддържата визията и духа на свободното слово.</p><p>Ecency помага да се вкарат маси от хора в Блокчейн технологиите, където на потребителите им се заплаща за времето, ресурсите, и да се учат докато се наслаждават на социалните аспекти на блокчейн. Чрез улесненото използване, потребителите не само се учат, но и също така стават инвеститори, иноватори на новият интернет.</p>",
       "what-is-hive-header": "Какво е Hive блокчейн?",
       "what-is-hive-body": "<p>Hive е блокчейн който е създаден да бъде бърза, без такси, децентрализирана, нецензурирана платформа за Web 3.0 приложения, със вградени черти където заинтересованите страни могат да залагат, гласуват, постват, играят игри, търгуват - всичко това без посредници(децентрализирано). Жетоните в Hive блокчейн се наричат HIVE, HIVE ДОЛАРИ, HIVE Стойност/сила.</p>",
-      "what-is-difference-header": "What's the difference from other Social Networks?",
+      "what-is-difference-header": "Каква е разликата от други Социални Мрежи?",
       "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\"/></p><p>The primary difference, Ecency is based on a blockchain which means content is immutable and uncensorable. You own your community and account, nobody but you have full control of your data. Empowering true free speech. Ecency is also opensource, rewarding and innovative, built and owned by users. Aspire for greatness!</p>",
       "why-choose-ecency-header": "Защо бих избрал Ecency?",
       "why-choose-ecency-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjrzJAcJ4DvxvtqoPdzS9Aygf4MZ1PeE4goH6zWaeEFvafr9vGXWuou67Pbn44GweMyHV5DupM5q1cRvU85qdver?format=match&mode=fit\"/></p><p>Персонализирани функции за да те подсилят да създаваш, да вдъхновяваш публиката си и обществото. Мобилното приложение на Ecency те улеснява когато си в движение. Със настолното приложение си осигурен винаги да получаваш нецензурирано съдържание директно от блокчейна, като уебсайтовете достигат до хиляди читатели по цялото кълбо със най-добре класираното съдържание от търсещите платформи. Съвременно-технологични мерки за сигурност, така че ключовете ти винаги ще бъдат закодирани и извън обсега на зло-мислещи личности. Бърз и красив уебсайт, който ти помага да бъдеш открит онлайн и да получиш изложение на съдържанието си и да получиш лоялни последователи и читатели. Създай своето общество със Ecency днес и се възползвай от преимуществата на подрастващата блокчейн технология и нецензурирано съдържание, истинска свобода на словото!</p>",
