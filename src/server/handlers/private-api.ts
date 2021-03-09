@@ -1,10 +1,10 @@
 import express from "express";
 
+import hs from "hivesigner";
+
 import {apiRequest, getPromotedEntries} from "../helper";
 
 import {pipe} from "../util";
-
-const hs = require("hivesigner");
 
 const validateCode = async (req: express.Request, res: express.Response): Promise<string | false> => {
     const {code} = req.body;
