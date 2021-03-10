@@ -7,12 +7,14 @@ Array [
   Object {
     "accessToken": "",
     "expiresIn": "a date",
+    "postingKey": null,
     "refreshToken": "",
     "username": "user1",
   },
   Object {
     "accessToken": "",
     "expiresIn": "a date",
+    "postingKey": null,
     "refreshToken": "",
     "username": "user2",
   },

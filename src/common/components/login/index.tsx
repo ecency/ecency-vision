@@ -28,7 +28,8 @@ import {getAuthUrl, makeHsCode} from "../../helper/hive-signer";
 import {hsLogin} from "../../../desktop/app/helper/hive-signer";
 
 import {getAccount} from "../../api/hive";
-import {hsTokenRenew, usrActivity} from "../../api/private";
+import {usrActivity} from "../../api/private-api";
+import {hsTokenRenew} from "../../api/auth-api";
 import {formatError, grantPostingPermission, revokePostingPermission} from "../../api/operations";
 
 import {getRefreshToken} from "../../helper/user-token";
@@ -49,7 +50,7 @@ const keyChainLogo = require("../../img/keychain.png");
 
 interface LoginKcProps {
     toggleUIProp: (what: ToggleType) => void;
-    doLogin: (hsCode: string, account: Account) => Promise<void>;
+    doLogin: (hsCode: string, postingKey: null | undefined | string, account: Account) => Promise<void>;
 }
 
 interface LoginKcState {
@@ -134,7 +135,7 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
 
         const {doLogin} = this.props;
 
-        doLogin(code, account)
+        doLogin(code, null, account)
             .then(() => {
                 this.hide();
             })
@@ -231,7 +232,7 @@ interface LoginProps {
     setActiveUser: (username: string | null) => void;
     deleteUser: (username: string) => void;
     toggleUIProp: (what: ToggleType) => void;
-    doLogin: (hsCode: string, account: Account) => Promise<void>;
+    doLogin: (hsCode: string, postingKey: null | undefined | string, account: Account) => Promise<void>;
 }
 
 interface State {
@@ -265,7 +266,7 @@ export class Login extends BaseComponent<LoginProps, State> {
 
         getAccount(user.username)
             .then((account) => {
-                return doLogin(getRefreshToken(user.username), account);
+                return doLogin(getRefreshToken(user.username), user.postingKey, account);
             })
             .then(() => {
                 this.hide();
@@ -340,8 +341,6 @@ export class Login extends BaseComponent<LoginProps, State> {
         } catch (e) {
         }
 
-        const isMasterKey = !cryptoUtils.isWif(key);
-
         let account: Account;
 
         this.stateSet({inProgress: true});
@@ -360,44 +359,60 @@ export class Login extends BaseComponent<LoginProps, State> {
             return;
         }
 
-        // Active public key of the account
-        const activePublic = account?.active!.key_auths.map(x => x[0]);
+        // Posting public key of the account
+        const postingPublic = account?.posting!.key_auths.map(x => x[0]);
 
-        // Get active private key from user entered code
-        let activePrivateKey: PrivateKey;
-        if (isMasterKey) {
-            activePrivateKey = PrivateKey.fromLogin(account.name, key, 'active');
+        const isPlainPassword = !cryptoUtils.isWif(key);
+
+        let thePrivateKey: PrivateKey;
+
+        // Whether using posting private key to login
+        let withPostingKey = false;
+
+        if (!isPlainPassword && postingPublic.includes(PrivateKey.fromString(key).createPublic().toString())) {
+            // Login with posting private key
+            withPostingKey = true;
+            thePrivateKey = PrivateKey.fromString(key);
         } else {
-            activePrivateKey = PrivateKey.fromString(key);
-        }
+            // Login with master or active private key
+            // Get active private key from user entered code
+            if (isPlainPassword) {
+                thePrivateKey = PrivateKey.fromLogin(account.name, key, 'active');
+            } else {
+                thePrivateKey = PrivateKey.fromString(key);
+            }
 
-        // Generate public key from the private key
-        const activePublicInput = activePrivateKey.createPublic().toString();
+            // Generate public key from the private key
+            const activePublicInput = thePrivateKey.createPublic().toString();
 
-        // Compare keys
-        if (!activePublic.includes(activePublicInput)) {
-            error(_t('login.error-authenticate')); // enter master or active key
-            return;
-        }
+            // Active public key of the account
+            const activePublic = account?.active!.key_auths.map(x => x[0]);
 
-        const hasPostingPerm = account?.posting!.account_auths.filter(x => x[0] === "ecency.app").length > 0;
-
-        if (!hasPostingPerm) {
-            this.stateSet({inProgress: true});
-            try {
-                await grantPostingPermission(activePrivateKey, account, "ecency.app")
-            } catch (err) {
-                error(_t('login.error-permission'));
+            // Compare keys
+            if (!activePublic.includes(activePublicInput)) {
+                error(_t('login.error-authenticate')); // enter master or active key
                 return;
-            } finally {
-                this.stateSet({inProgress: false});
+            }
+
+            const hasPostingPerm = account?.posting!.account_auths.filter(x => x[0] === "ecency.app").length > 0;
+
+            if (!hasPostingPerm) {
+                this.stateSet({inProgress: true});
+                try {
+                    await grantPostingPermission(thePrivateKey, account, "ecency.app")
+                } catch (err) {
+                    error(_t('login.error-permission'));
+                    return;
+                } finally {
+                    this.stateSet({inProgress: false});
+                }
             }
         }
 
         // Prepare hivesigner code
         const signer = (message: string): Promise<string> => {
             const hash = cryptoUtils.sha256(message);
-            return new Promise<string>((resolve) => resolve(activePrivateKey.sign(hash).toString()));
+            return new Promise<string>((resolve) => resolve(thePrivateKey.sign(hash).toString()));
         }
         const code = await makeHsCode(account.name, signer);
 
@@ -405,7 +420,7 @@ export class Login extends BaseComponent<LoginProps, State> {
 
         const {doLogin} = this.props;
 
-        doLogin(code, account)
+        doLogin(code, (withPostingKey ? key : null), account)
             .then(() => {
                 this.hide();
             })
@@ -541,7 +556,7 @@ export default class LoginDialog extends Component<Props> {
         }
     }
 
-    doLogin = async (hsCode: string, account: Account) => {
+    doLogin = async (hsCode: string, postingKey: null | undefined | string, account: Account) => {
         // get access token from code
         return hsTokenRenew(hsCode).then(x => {
             const {setActiveUser, updateActiveUser, addUser} = this.props;
@@ -550,6 +565,7 @@ export default class LoginDialog extends Component<Props> {
                 accessToken: x.access_token,
                 refreshToken: x.refresh_token,
                 expiresIn: x.expires_in,
+                postingKey
             };
 
             // add / update user data

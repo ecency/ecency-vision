@@ -37,7 +37,7 @@ import {_t} from "../i18n";
 import {getAccount} from "../api/hive";
 import {getCommunities, getSubscriptions} from "../api/bridge";
 import {formatError, updateCommunity, setUserRole} from "../api/operations";
-import {hsTokenRenew} from "../api/private";
+import {hsTokenRenew} from "../api/auth-api";
 
 import {client} from "../api/hive";
 
@@ -430,6 +430,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                 accessToken: x.access_token,
                 refreshToken: x.refresh_token,
                 expiresIn: x.expires_in,
+                postingKey: null
             }));
         } catch (e) {
             error(formatError(e));
@@ -706,6 +707,7 @@ class CommunityCreateHSPage extends BaseComponent<PageProps, CreateHsState> {
                 accessToken: x.access_token,
                 refreshToken: x.refresh_token,
                 expiresIn: x.expires_in,
+                postingKey: null
             }));
         } catch (e) {
             error(formatError(e));

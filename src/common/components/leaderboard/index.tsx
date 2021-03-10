@@ -8,7 +8,7 @@ import BaseComponent from "../base";
 import UserAvatar from "../user-avatar";
 import ProfileLink from "../profile-link"
 
-import {getLeaderboard, LeaderBoardDuration, LeaderBoardItem} from "../../api/private";
+import {getLeaderboard, LeaderBoardDuration, LeaderBoardItem} from "../../api/private-api";
 
 import {informationSvg} from "../../img/svg";
 import DropDown from "../dropdown";

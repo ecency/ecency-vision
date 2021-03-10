@@ -21,6 +21,7 @@ import {
 } from "../../api/operations";
 
 import {_t} from "../../i18n";
+import {Tsx} from "../../i18n/helper";
 
 interface Props {
     global: Global;
@@ -143,7 +144,7 @@ export class CommunityRoleEdit extends BaseComponent<Props, State> {
                     <Button type="button" onClick={this.submit} disabled={inProgress}>{_t('g.save')}</Button>
                 </div>
             </div>
-            <div className="explanations" dangerouslySetInnerHTML={{__html: _t("community-role-edit.explanations")}}/>
+            <Tsx k="community-role-edit.explanations"><div className="explanations"/></Tsx>
         </div>
     }
 }

@@ -16,11 +16,7 @@ import moment, {Moment} from "moment";
 
 import defaults from "../constants/defaults.json";
 
-import {
-    renderPostBody,
-    setProxyBase,
-    // @ts-ignore
-} from "@ecency/render-helper";
+import {renderPostBody, setProxyBase} from "@ecency/render-helper";
 
 setProxyBase(defaults.imageServer);
 
@@ -47,7 +43,7 @@ import MdHandler from "../components/md-handler";
 import BeneficiaryEditor from "../components/beneficiary-editor";
 import PostScheduler from "../components/post-scheduler";
 
-import {getDrafts, addDraft, updateDraft, addSchedule, Draft} from "../api/private";
+import {getDrafts, addDraft, updateDraft, addSchedule, Draft} from "../api/private-api";
 
 import {createPermlink, extractMetaData, makeJsonMetaData, makeCommentOptions, createPatch} from "../helper/posting";
 
@@ -75,6 +71,13 @@ interface PostBase {
     title: string;
     tags: string[];
     body: string;
+}
+
+interface Advanced {
+    reward: RewardType;
+    beneficiaries: BeneficiaryRoute[];
+    schedule: string | null,
+    reblogSwitch: boolean;
 }
 
 interface PreviewProps extends PostBase {
@@ -131,17 +134,13 @@ interface Props extends PageProps {
     match: match<MatchParams>;
 }
 
-interface State extends PostBase {
-    reward: RewardType;
+interface State extends PostBase, Advanced {
     preview: PostBase;
     posting: boolean;
     editingEntry: Entry | null;
     saving: boolean;
     editingDraft: Draft | null;
     advanced: boolean;
-    beneficiaries: BeneficiaryRoute[];
-    schedule: Moment | null,
-    reblogSwitch: boolean;
 }
 
 class SubmitPage extends BaseComponent<Props, State> {
@@ -169,6 +168,8 @@ class SubmitPage extends BaseComponent<Props, State> {
 
     componentDidMount = (): void => {
         this.loadLocalDraft();
+
+        this.loadAdvanced();
 
         this.detectCommunity();
 
@@ -312,6 +313,34 @@ class SubmitPage extends BaseComponent<Props, State> {
         ls.set("local_draft", localDraft);
     };
 
+    loadAdvanced = (): void => {
+        const advanced = ls.get("local_advanced") as Advanced;
+        if (!advanced) {
+            return;
+        }
+
+        this.stateSet({...advanced});
+    }
+
+    saveAdvanced = (): void => {
+        const {reward, beneficiaries, schedule, reblogSwitch} = this.state;
+
+        const advanced: Advanced = {
+            reward,
+            beneficiaries,
+            schedule,
+            reblogSwitch
+        }
+
+        ls.set("local_advanced", advanced);
+    }
+
+    hasAdvanced = (): boolean => {
+        const {reward, beneficiaries, schedule, reblogSwitch} = this.state;
+
+        return reward !== "default" || beneficiaries.length > 0 || schedule !== null || reblogSwitch;
+    }
+
     titleChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
         const {value: title} = e.target;
         this.stateSet({title}, () => {
@@ -330,6 +359,16 @@ class SubmitPage extends BaseComponent<Props, State> {
         this.stateSet({tags}, () => {
             this.updatePreview();
         });
+
+        // Toggle off reblog switch if it is true and the first tag is not community tag.
+        const {reblogSwitch} = this.state;
+        if (reblogSwitch) {
+            const isCommunityTag = tags.length > 0 && isCommunity(tags[0]);
+
+            if (!isCommunityTag) {
+                this.stateSet({reblogSwitch: false}, this.saveAdvanced);
+            }
+        }
     };
 
     bodyChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
@@ -341,16 +380,34 @@ class SubmitPage extends BaseComponent<Props, State> {
 
     rewardChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
         const reward = e.target.value as RewardType;
-        this.stateSet({reward});
+        this.stateSet({reward}, this.saveAdvanced);
     };
 
+    beneficiaryAdded = (item: BeneficiaryRoute) => {
+        const {beneficiaries} = this.state;
+        const b = [...beneficiaries, item].sort((a, b) => a.account < b.account ? -1 : 1);
+        this.stateSet({beneficiaries: b}, this.saveAdvanced);
+    }
+
+    beneficiaryDeleted = (username: string) => {
+        const {beneficiaries} = this.state;
+        const b = [...beneficiaries.filter(x => x.account !== username)];
+        this.stateSet({beneficiaries: b}, this.saveAdvanced);
+    }
+
+    scheduleChanged = (d: Moment | null) => {
+        this.stateSet({schedule: d ? d.toISOString(true) : null}, this.saveAdvanced)
+    }
+
     reblogSwitchChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
-        this.stateSet({reblogSwitch: e.target.checked});
+        this.stateSet({reblogSwitch: e.target.checked}, this.saveAdvanced);
     }
 
     clear = (): void => {
-        this.stateSet({title: "", tags: [], body: "", reward: "default", advanced: false, beneficiaries: [], schedule: null, reblogSwitch: false});
-        this.updatePreview();
+        this.stateSet({title: "", tags: [], body: "", advanced: false, reward: "default", beneficiaries: [], schedule: null, reblogSwitch: false}, () => {
+            this.updatePreview();
+            this.saveAdvanced();
+        });
 
         const {editingDraft} = this.state;
         if (editingDraft) {
@@ -358,6 +415,12 @@ class SubmitPage extends BaseComponent<Props, State> {
             history.push('/submit');
         }
     };
+
+    clearAdvanced = (): void => {
+        this.stateSet({advanced: false, reward: "default", beneficiaries: [], schedule: null, reblogSwitch: false}, () => {
+            this.saveAdvanced();
+        });
+    }
 
     toggleAdvanced = (): void => {
         const {advanced} = this.state;
@@ -418,6 +481,8 @@ class SubmitPage extends BaseComponent<Props, State> {
         this.stateSet({posting: true});
         comment(author, "", parentPermlink, permlink, title, body, jsonMeta, options, true)
             .then(() => {
+
+                this.clearAdvanced();
 
                 // Create entry object in store
                 const entry = {
@@ -566,11 +631,10 @@ class SubmitPage extends BaseComponent<Props, State> {
         const jsonMeta = makeJsonMetaData(meta, tags, version);
         const options = makeCommentOptions(author, permlink, reward, beneficiaries);
 
-        const date = schedule.toISOString(true);
         const reblog = isCommunity(tags[0]) && reblogSwitch;
 
         this.stateSet({posting: true});
-        addSchedule(author, permlink, title, body, jsonMeta, options, date, reblog).then(resp => {
+        addSchedule(author, permlink, title, body, jsonMeta, options, schedule, reblog).then(resp => {
             success(_t('submit.scheduled'));
             this.clear();
         }).catch((e) => {
@@ -662,7 +726,12 @@ class SubmitPage extends BaseComponent<Props, State> {
                                     {_t("submit.clear")}
                                 </Button>
                                 <Button variant="outline-primary" onClick={this.toggleAdvanced}>
-                                    {advanced ? _t("submit.preview") : _t("submit.advanced")}
+                                    {advanced ?
+                                        _t("submit.preview") :
+                                        <>
+                                            {_t("submit.advanced")}
+                                            {this.hasAdvanced() ? " •••" : null}
+                                        </>}
                                 </Button>
                             </div>
                         )}
@@ -689,9 +758,10 @@ class SubmitPage extends BaseComponent<Props, State> {
                                     <>
                                         <span/>
                                         <div>
-                                            <Button variant="outline-primary" style={{marginRight: "6px"}} onClick={this.saveDraft} disabled={!canPublish || saving || posting}>
-                                                {contentSaveSvg} {editingDraft === null ? _t("submit.save-draft") : _t("submit.update-draft")}
-                                            </Button>
+                                            {global.usePrivate && (
+                                                <Button variant="outline-primary" style={{marginRight: "6px"}} onClick={this.saveDraft} disabled={!canPublish || saving || posting}>
+                                                    {contentSaveSvg} {editingDraft === null ? _t("submit.save-draft") : _t("submit.update-draft")}
+                                                </Button>)}
                                             {LoginRequired({
                                                 ...this.props,
                                                 children: <Button
@@ -752,27 +822,20 @@ class SubmitPage extends BaseComponent<Props, State> {
                                                 {_t("submit.beneficiaries")}
                                             </Form.Label>
                                             <Col sm="9">
-                                                <BeneficiaryEditor author={activeUser?.username} list={beneficiaries} onAdd={(item) => {
-                                                    const b = [...beneficiaries, item].sort((a, b) => a.account < b.account ? -1 : 1);
-                                                    this.stateSet({beneficiaries: b});
-                                                }} onDelete={(username) => {
-                                                    const b = [...beneficiaries.filter(x => x.account !== username)];
-                                                    this.stateSet({beneficiaries: b});
-                                                }}/>
+                                                <BeneficiaryEditor author={activeUser?.username} list={beneficiaries} onAdd={this.beneficiaryAdded}
+                                                                   onDelete={this.beneficiaryDeleted}/>
                                                 <Form.Text muted={true}>{_t("submit.beneficiaries-hint")}</Form.Text>
                                             </Col>
                                         </Form.Group>
-                                        <Form.Group as={Row}>
-                                            <Form.Label column={true} sm="3">
-                                                {_t("submit.schedule")}
-                                            </Form.Label>
-                                            <Col sm="9">
-                                                <PostScheduler date={schedule} onChange={(d) => {
-                                                    this.stateSet({schedule: d})
-                                                }}/>
-                                                <Form.Text muted={true}>{_t("submit.schedule-hint")}</Form.Text>
-                                            </Col>
-                                        </Form.Group>
+                                        {global.usePrivate && <Form.Group as={Row}>
+                                          <Form.Label column={true} sm="3">
+                                              {_t("submit.schedule")}
+                                          </Form.Label>
+                                          <Col sm="9">
+                                            <PostScheduler date={schedule ? moment(schedule) : null} onChange={this.scheduleChanged}/>
+                                            <Form.Text muted={true}>{_t("submit.schedule-hint")}</Form.Text>
+                                          </Col>
+                                        </Form.Group>}
                                         {tags.length > 0 && isCommunity(tags[0]) && (
                                             <Form.Group as={Row}>
                                                 <Col sm="3"/>

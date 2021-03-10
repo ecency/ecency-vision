@@ -19,18 +19,13 @@ import FormattedCurrency from "../formatted-currency";
 
 import defaults from "../../constants/defaults.json";
 
-import {
-    catchPostImage,
-    postBodySummary,
-    setProxyBase,
-    // @ts-ignore
-} from "@ecency/render-helper";
+import {catchPostImage, postBodySummary, setProxyBase} from "@ecency/render-helper";
 
 setProxyBase(defaults.imageServer);
 
 import accountReputation from "../../helper/account-reputation";
 
-import {SearchResult} from "../../api/private";
+import {SearchResult} from "../../api/search-api";
 
 import {peopleSvg, commentSvg} from "../../img/svg";
 

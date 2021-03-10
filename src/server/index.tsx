@@ -10,7 +10,12 @@ import profileHandler from "./handlers/profile";
 import entryHandler from "./handlers/entry";
 import fallbackHandler, {healthCheck} from "./handlers/fallback";
 import {entryRssHandler, authorRssHandler} from "./handlers/rss";
-import * as pApi from "./handlers/private-api";
+
+import * as privateApi from "./handlers/private-api";
+import * as searchApi from "./handlers/search-api";
+import * as authApi from "./handlers/auth-api";
+
+import config from "../config";
 
 const server = express();
 
@@ -22,6 +27,8 @@ server
     .use(express.static(process.env.RAZZLE_PUBLIC_DIR!))
     .use(express.json())
     .use(cookieParser())
+
+    // Common backend
     .get(
         [
             `^/:filter(${entryFilters.join("|")})/:tag/rss.xml$`, // /trending/esteem/rss.xml
@@ -64,55 +71,75 @@ server
         ],
         entryHandler
     )
-    .get("^/api/received-vesting/:username$", pApi.receivedVesting)
-    .get("^/api/rewarded-communities$", pApi.rewardedCommunities)
-    .get("^/api/leaderboard/:duration(day|week|month)$", pApi.leaderboard)
-    .get("^/api/promoted-entries$", pApi.promotedEntries)
-    .post("^/api/comment-history$", pApi.commentHistory)
-    .post("^/api/search$", pApi.search)
-    .post("^/api/search-follower$", pApi.searchFollower)
-    .post("^/api/search-following$", pApi.searchFollowing)
-    .post("^/api/search-account$", pApi.searchAccount)
-    .post("^/api/search-tag$", pApi.searchTag)
-    .post("^/api/points$", pApi.points)
-    .post("^/api/point-list$", pApi.pointList)
-    .post("^/api/account-create$", pApi.createAccount)
-    .post("^/api/hs-token-refresh$", pApi.hsTokenRefresh)
-    /* Login required endpoints */
-    .post("^/api/notifications$", pApi.notifications)
-    .post("^/api/notifications/unread$", pApi.unreadNotifications)
-    .post("^/api/notifications/mark$", pApi.markNotifications)
-    .post("^/api/usr-activity$", pApi.usrActivity)
-    .post("^/api/images$", pApi.images)
-    .post("^/api/images-delete$", pApi.imagesDelete)
-    .post("^/api/images-add$", pApi.imagesAdd)
-    .post("^/api/drafts$", pApi.drafts)
-    .post("^/api/drafts-add$", pApi.draftsAdd)
-    .post("^/api/drafts-update$", pApi.draftsUpdate)
-    .post("^/api/drafts-delete$", pApi.draftsDelete)
-    .post("^/api/bookmarks$", pApi.bookmarks)
-    .post("^/api/bookmarks-add$", pApi.bookmarksAdd)
-    .post("^/api/bookmarks-delete$", pApi.bookmarksDelete)
-    .post("^/api/schedules$", pApi.schedules)
-    .post("^/api/schedules-add$", pApi.schedulesAdd)
-    .post("^/api/schedules-delete$", pApi.schedulesDelete)
-    .post("^/api/schedules-move$", pApi.schedulesMove)
-    .post("^/api/favorites$", pApi.favorites)
-    .post("^/api/favorites-check$", pApi.favoritesCheck)
-    .post("^/api/favorites-add$", pApi.favoritesAdd)
-    .post("^/api/favorites-delete$", pApi.favoritesDelete)
-    .post("^/api/fragments$", pApi.fragments)
-    .post("^/api/fragments-add$", pApi.fragmentsAdd)
-    .post("^/api/fragments-update$", pApi.fragmentsUpdate)
-    .post("^/api/fragments-delete$", pApi.fragmentsDelete)
-    .post("^/api/points-claim$", pApi.pointsClaim)
-    .post("^/api/points-calc$", pApi.pointsCalc)
-    .post("^/api/promote-price$", pApi.promotePrice)
-    .post("^/api/promoted-post$", pApi.promotedPost)
-    .post("^/api/search-path$", pApi.searchPath)
-    .post("^/api/boost-options$", pApi.boostOptions)
-    .post("^/api/boosted-post$", pApi.boostedPost)
-    .get("^/healthcheck.json$", healthCheck)
-    .get("*", fallbackHandler);
+
+    // Search Api
+    .post("^/search-api/search$", searchApi.search)
+    .post("^/search-api/search-follower$", searchApi.searchFollower)
+    .post("^/search-api/search-following$", searchApi.searchFollowing)
+    .post("^/search-api/search-account$", searchApi.searchAccount)
+    .post("^/search-api/search-tag$", searchApi.searchTag)
+    .post("^/search-api/search-path$", searchApi.searchPath)
+
+    // Auth Api
+    .post("^/auth-api/hs-token-refresh$", authApi.hsTokenRefresh)
+
+    // Private api check middleware
+    .use((req: express.Request, res: express.Response, next: express.NextFunction) => {
+
+        if (req.path.startsWith("/private-api/") && config.usePrivate !== "1") {
+            res.status(403).send("Forbidden");
+            return;
+        }
+
+        next();
+    })
+    // Private Api
+    .get("^/private-api/received-vesting/:username$", privateApi.receivedVesting)
+    .get("^/private-api/rewarded-communities$", privateApi.rewardedCommunities)
+    .get("^/private-api/leaderboard/:duration(day|week|month)$", privateApi.leaderboard)
+    .get("^/private-api/promoted-entries$", privateApi.promotedEntries)
+    .post("^/private-api/comment-history$", privateApi.commentHistory)
+    .post("^/private-api/points$", privateApi.points)
+    .post("^/private-api/point-list$", privateApi.pointList)
+    .post("^/private-api/account-create$", privateApi.createAccount)
+    /* Login required private api endpoints */
+    .post("^/private-api/notifications$", privateApi.notifications)
+    .post("^/private-api/notifications/unread$", privateApi.unreadNotifications)
+    .post("^/private-api/notifications/mark$", privateApi.markNotifications)
+    .post("^/private-api/usr-activity$", privateApi.usrActivity)
+    .post("^/private-api/images$", privateApi.images)
+    .post("^/private-api/images-delete$", privateApi.imagesDelete)
+    .post("^/private-api/images-add$", privateApi.imagesAdd)
+    .post("^/private-api/drafts$", privateApi.drafts)
+    .post("^/private-api/drafts-add$", privateApi.draftsAdd)
+    .post("^/private-api/drafts-update$", privateApi.draftsUpdate)
+    .post("^/private-api/drafts-delete$", privateApi.draftsDelete)
+    .post("^/private-api/bookmarks$", privateApi.bookmarks)
+    .post("^/private-api/bookmarks-add$", privateApi.bookmarksAdd)
+    .post("^/private-api/bookmarks-delete$", privateApi.bookmarksDelete)
+    .post("^/private-api/schedules$", privateApi.schedules)
+    .post("^/private-api/schedules-add$", privateApi.schedulesAdd)
+    .post("^/private-api/schedules-delete$", privateApi.schedulesDelete)
+    .post("^/private-api/schedules-move$", privateApi.schedulesMove)
+    .post("^/private-api/favorites$", privateApi.favorites)
+    .post("^/private-api/favorites-check$", privateApi.favoritesCheck)
+    .post("^/private-api/favorites-add$", privateApi.favoritesAdd)
+    .post("^/private-api/favorites-delete$", privateApi.favoritesDelete)
+    .post("^/private-api/fragments$", privateApi.fragments)
+    .post("^/private-api/fragments-add$", privateApi.fragmentsAdd)
+    .post("^/private-api/fragments-update$", privateApi.fragmentsUpdate)
+    .post("^/private-api/fragments-delete$", privateApi.fragmentsDelete)
+    .post("^/private-api/points-claim$", privateApi.pointsClaim)
+    .post("^/private-api/points-calc$", privateApi.pointsCalc)
+    .post("^/private-api/promote-price$", privateApi.promotePrice)
+    .post("^/private-api/promoted-post$", privateApi.promotedPost)
+    .post("^/private-api/boost-options$", privateApi.boostOptions)
+    .post("^/private-api/boosted-post$", privateApi.boostedPost)
+
+    // For all others paths
+    .get("*", fallbackHandler)
+
+    // Health check script for docker swarm
+    .get("^/healthcheck.json$", healthCheck);
 
 export default server;

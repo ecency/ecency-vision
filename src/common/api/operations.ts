@@ -1,6 +1,6 @@
-const hs = require("hivesigner");
+import hs from "hivesigner";
 
-import {PrivateKey, Operation, TransactionConfirmation, AccountUpdateOperation} from '@hiveio/dhive';
+import {PrivateKey, Operation, TransactionConfirmation, AccountUpdateOperation, CustomJsonOperation} from '@hiveio/dhive';
 
 import {Parameters} from 'hive-uri';
 
@@ -8,15 +8,17 @@ import {client as hiveClient} from "./hive";
 
 import {Account} from "../store/accounts/types";
 
-import {usrActivity} from "./private";
+import {usrActivity} from "./private-api";
 
-import {getAccessToken} from "../helper/user-token";
+import {getAccessToken, getPostingKey} from "../helper/user-token";
 
 import * as keychain from "../helper/keychain";
 
 import parseAsset from "../helper/parse-asset";
 
 import {hotSign} from "../helper/hive-signer";
+
+import {_t} from "../i18n";
 
 export interface MetaData {
     links?: string[];
@@ -45,29 +47,105 @@ export interface CommentOptions {
 
 export type RewardType = "default" | "sp" | "dp";
 
+const handleChainError = (strErr: string) => {
+    if (/You may only post once every/.test(strErr)) {
+        return _t("chain-error.min-root-comment");
+    } else if (/Your current vote on this comment is identical/.test(strErr)) {
+        return _t("chain-error.identical-vote");
+    } else if (/Please wait to transact, or power up/.test(strErr)) {
+        return _t("chain-error.insufficient-resource");
+    } else if (/Cannot delete a comment with net positive/.test(strErr)) {
+        return _t("chain-error.delete-comment-with-vote");
+    } else if (/comment_cashout/.test(strErr)) {
+        return _t("chain-error.comment-cashout");
+    } else if (/Votes evaluating for comment that is paid out is forbidden/.test(strErr)) {
+        return _t("chain-error.paid-out-post-forbidden");
+    }
+
+    return null;
+}
+
 export const formatError = (err: any): string => {
-    if (err.error_description) {
+
+    let chainErr = handleChainError(err.toString());
+    if (chainErr) {
+        return chainErr;
+    }
+
+    if (err.error_description && typeof err.error_description === "string") {
+        let chainErr = handleChainError(err.error_description);
+        if (chainErr) {
+            return chainErr;
+        }
+
         return err.error_description.substring(0, 80);
     }
 
-    if (err.message) {
+    if (err.message && typeof err.message === "string") {
+        let chainErr = handleChainError(err.message);
+        if (chainErr) {
+            return chainErr;
+        }
+
         return err.message.substring(0, 80);
     }
 
     return '';
 };
 
-export const reblog = (username: string, author: string, permlink: string): Promise<TransactionConfirmation> => {
-    const client = new hs.Client({
-        accessToken: getAccessToken(username),
-    });
+const broadcastPostingJSON = (username: string, id: string, json: {}): Promise<TransactionConfirmation> => {
 
-    return client.reblog(username, author, permlink)
-        .then((r: any) => r.result)
+    // With posting private key
+    const postingKey = getPostingKey(username);
+    if (postingKey) {
+        const privateKey = PrivateKey.fromString(postingKey);
+
+        const operation: CustomJsonOperation[1] = {
+            id,
+            required_auths: [],
+            required_posting_auths: [username],
+            json: JSON.stringify(json)
+        }
+
+        return hiveClient.broadcast.json(operation, privateKey);
+    }
+
+    // With hivesigner access token
+    return new hs.Client({
+        accessToken: getAccessToken(username),
+    }).customJson([], [username], id, JSON.stringify(json))
+        .then((r: any) => r.result);
+}
+
+const broadcastPostingOperations = (username: string, operations: Operation[]): Promise<TransactionConfirmation> => {
+
+    // With posting private key
+    const postingKey = getPostingKey(username);
+    if (postingKey) {
+        const privateKey = PrivateKey.fromString(postingKey);
+
+        return hiveClient.broadcast.sendOperations(operations, privateKey);
+    }
+
+    // With hivesigner access token
+    return new hs.Client({
+        accessToken: getAccessToken(username),
+    }).broadcast(operations)
+        .then((r: any) => r.result);
+}
+
+export const reblog = (username: string, author: string, permlink: string): Promise<TransactionConfirmation> => {
+    const json = ["reblog", {
+        account: username,
+        author,
+        permlink
+    }];
+
+    return broadcastPostingJSON(username, "follow", json)
         .then((r: TransactionConfirmation) => {
             usrActivity(username, 130, r.block_num, r.id).then();
             return r;
-        })
+        });
 };
 
 export const comment = (
@@ -81,11 +159,6 @@ export const comment = (
     options: CommentOptions | null,
     point: boolean = false
 ): Promise<TransactionConfirmation> => {
-
-    const client = new hs.Client({
-        accessToken: getAccessToken(username),
-    });
-
     const params = {
         parent_author: parentAuthor,
         parent_permlink: parentPermlink,
@@ -96,16 +169,15 @@ export const comment = (
         json_metadata: JSON.stringify(jsonMetadata),
     };
 
-    const opArray: any[] = [["comment", params]];
+    const opArray: Operation[] = [["comment", params]];
 
     if (options) {
-        const e = ["comment_options", options];
+        const e: Operation = ["comment_options", options];
         opArray.push(e);
     }
 
-    return client.broadcast(opArray)
-        .then((r: any) => r.result)
-        .then((r: TransactionConfirmation) => {
+    return broadcastPostingOperations(username, opArray)
+        .then((r) => {
             if (point) {
                 const t = title ? 100 : 110;
                 usrActivity(username, t, r.block_num, r.id).then();
@@ -115,10 +187,6 @@ export const comment = (
 };
 
 export const deleteComment = (username: string, author: string, permlink: string): Promise<TransactionConfirmation> => {
-    const client = new hs.Client({
-        accessToken: getAccessToken(username)
-    });
-
     const params = {
         author,
         permlink,
@@ -126,57 +194,67 @@ export const deleteComment = (username: string, author: string, permlink: string
 
     const opArray: Operation[] = [["delete_comment", params]];
 
-    return client.broadcast(opArray).then((r: any) => r.result)
+    return broadcastPostingOperations(username, opArray);
 };
 
 export const vote = (username: string, author: string, permlink: string, weight: number): Promise<TransactionConfirmation> => {
-    const client = new hs.Client({
-        accessToken: getAccessToken(username),
-    });
+    const params = {
+        voter: username,
+        author,
+        permlink,
+        weight
+    }
 
-    return client.vote(username, author, permlink, weight)
-        .then((r: any) => r.result)
+    const opArray: Operation[] = [["vote", params]];
+
+    return broadcastPostingOperations(username, opArray)
         .then((r: TransactionConfirmation) => {
             usrActivity(username, 120, r.block_num, r.id).then();
             return r;
-        })
+        });
 };
 
 export const follow = (follower: string, following: string): Promise<TransactionConfirmation> => {
-    const client = new hs.Client({
-        accessToken: getAccessToken(follower),
-    });
+    const json = ["follow", {
+        follower,
+        following,
+        what: ["blog"]
+    }];
 
-    return client.follow(follower, following).then((r: any) => r.result);
+    return broadcastPostingJSON(follower, "follow", json);
 }
 
 export const unFollow = (follower: string, following: string): Promise<TransactionConfirmation> => {
-    const client = new hs.Client({
-        accessToken: getAccessToken(follower),
-    });
+    const json = ["follow", {
+        follower,
+        following,
+        what: []
+    }];
 
-    return client.unfollow(follower, following).then((r: any) => r.result);
+    return broadcastPostingJSON(follower, "follow", json);
 }
 
 export const ignore = (follower: string, following: string): Promise<TransactionConfirmation> => {
-    const client = new hs.Client({
-        accessToken: getAccessToken(follower),
-    });
+    const json = ["follow", {
+        follower,
+        following,
+        what: ["ignore"]
+    }];
 
-    return client.ignore(follower, following).then((r: any) => r.result);
+    return broadcastPostingJSON(follower, "follow", json);
 }
 
 export const claimRewardBalance = (username: string, rewardHive: string, rewardHbd: string, rewardVests: string): Promise<TransactionConfirmation> => {
-    const client = new hs.Client({
-        accessToken: getAccessToken(username),
-    });
+    const params = {
+        account: username,
+        reward_hive: rewardHive,
+        reward_hbd: rewardHbd,
+        reward_vests: rewardVests
+    }
 
-    return client.claimRewardBalance(
-        username,
-        rewardHive,
-        rewardHbd,
-        rewardVests
-    ).then((r: any) => r.result);
+    const opArray: Operation[] = [['claim_reward_balance', params]];
+
+    return broadcastPostingOperations(username, opArray);
 }
 
 export const transfer = (from: string, key: PrivateKey, to: string, amount: string, memo: string): Promise<TransactionConfirmation> => {
@@ -200,7 +278,8 @@ export const transferHot = (from: string, to: string, amount: string, memo: stri
     }];
 
     const params: Parameters = {callback: `https://ecency.com/@${from}/wallet`};
-    return hs.sendOperation(op, params, () => {});
+    return hs.sendOperation(op, params, () => {
+    });
 }
 
 export const transferKc = (from: string, to: string, amount: string, memo: string) => {
@@ -279,7 +358,8 @@ export const transferToSavingsHot = (from: string, to: string, amount: string, m
     }];
 
     const params: Parameters = {callback: `https://ecency.com/@${from}/wallet`};
-    return hs.sendOperation(op, params, () => {});
+    return hs.sendOperation(op, params, () => {
+    });
 }
 
 export const transferToSavingsKc = (from: string, to: string, amount: string, memo: string) => {
@@ -318,7 +398,8 @@ export const convertHot = (owner: string, amount: string) => {
     }];
 
     const params: Parameters = {callback: `https://ecency.com/@${owner}/wallet`};
-    return hs.sendOperation(op, params, () => {});
+    return hs.sendOperation(op, params, () => {
+    });
 }
 
 export const convertKc = (owner: string, amount: string) => {
@@ -360,7 +441,8 @@ export const transferFromSavingsHot = (from: string, to: string, amount: string,
     }];
 
     const params: Parameters = {callback: `https://ecency.com/@${from}/wallet`};
-    return hs.sendOperation(op, params, () => {});
+    return hs.sendOperation(op, params, () => {
+    });
 }
 
 export const transferFromSavingsKc = (from: string, to: string, amount: string, memo: string) => {
@@ -400,7 +482,8 @@ export const transferToVestingHot = (from: string, to: string, amount: string) =
     }];
 
     const params: Parameters = {callback: `https://ecency.com/@${from}/wallet`};
-    return hs.sendOperation(op, params, () => {});
+    return hs.sendOperation(op, params, () => {
+    });
 }
 
 export const transferToVestingKc = (from: string, to: string, amount: string) => {
@@ -437,7 +520,8 @@ export const delegateVestingSharesHot = (delegator: string, delegatee: string, v
     }];
 
     const params: Parameters = {callback: `https://ecency.com/@${delegator}/wallet`};
-    return hs.sendOperation(op, params, () => {});
+    return hs.sendOperation(op, params, () => {
+    });
 }
 
 export const delegateVestingSharesKc = (delegator: string, delegatee: string, vestingShares: string) => {
@@ -472,7 +556,8 @@ export const withdrawVestingHot = (account: string, vestingShares: string) => {
     }];
 
     const params: Parameters = {callback: `https://ecency.com/@${account}/wallet`};
-    return hs.sendOperation(op, params, () => {});
+    return hs.sendOperation(op, params, () => {
+    });
 }
 
 export const withdrawVestingKc = (account: string, vestingShares: string) => {
@@ -510,7 +595,8 @@ export const setWithdrawVestingRouteHot = (from: string, to: string, percent: nu
     }];
 
     const params: Parameters = {callback: `https://ecency.com/@${from}/wallet`};
-    return hs.sendOperation(op, params, () => {});
+    return hs.sendOperation(op, params, () => {
+    });
 }
 
 export const setWithdrawVestingRouteKc = (from: string, to: string, percent: number, autoVest: boolean) => {
@@ -621,27 +707,19 @@ export const proposalVoteKc = (account: string, proposal: number, approve: boole
 }
 
 export const subscribe = (username: string, community: string): Promise<TransactionConfirmation> => {
-    const client = new hs.Client({
-        accessToken: getAccessToken(username),
-    });
-
-    const json = JSON.stringify([
+    const json = [
         'subscribe', {community}
-    ]);
+    ];
 
-    return client.customJson([], [username], 'community', json);
+    return broadcastPostingJSON(username, "community", json);
 }
 
 export const unSubscribe = (username: string, community: string): Promise<TransactionConfirmation> => {
-    const client = new hs.Client({
-        accessToken: getAccessToken(username),
-    });
-
-    const json = JSON.stringify([
+    const json = [
         'unsubscribe', {community}
-    ]);
+    ]
 
-    return client.customJson([], [username], 'community', json);
+    return broadcastPostingJSON(username, "community", json);
 }
 
 export const promote = (key: PrivateKey, user: string, author: string, permlink: string, duration: number): Promise<TransactionConfirmation> => {
@@ -774,7 +852,6 @@ export const communityRewardsRegisterKc = (name: string) => {
     return keychain.customJson(name, "esteem_registration", "Active", json, "Community Registration");
 }
 
-
 export const updateProfile = (account: Account, newProfile: {
     name: string,
     about: string,
@@ -783,10 +860,6 @@ export const updateProfile = (account: Account, newProfile: {
     cover_image: string,
     profile_image: string,
 }): Promise<TransactionConfirmation> => {
-    const client = new hs.Client({
-        accessToken: getAccessToken(account.name)
-    });
-
     const params = {
         account: account.name,
         json_metadata: '',
@@ -796,7 +869,7 @@ export const updateProfile = (account: Account, newProfile: {
 
     const opArray: Operation[] = [["account_update2", params]];
 
-    return client.broadcast(opArray).then((r: any) => r.result)
+    return broadcastPostingOperations(account.name, opArray);
 }
 
 export const grantPostingPermission = (key: PrivateKey, account: Account, pAccount: string) => {
@@ -852,51 +925,35 @@ export const revokePostingPermission = (key: PrivateKey, account: Account, pAcco
 };
 
 export const setUserRole = (username: string, community: string, account: string, role: string): Promise<TransactionConfirmation> => {
-    const client = new hs.Client({
-        accessToken: getAccessToken(username),
-    });
-
-    const json = JSON.stringify([
+    const json = [
         'setRole', {community, account, role}
-    ]);
+    ]
 
-    return client.customJson([], [username], 'community', json);
+    return broadcastPostingJSON(username, "community", json);
 }
 
 export const updateCommunity = (username: string, community: string, props: { title: string, about: string, lang: string, description: string, flag_text: string, is_nsfw: boolean }): Promise<TransactionConfirmation> => {
-    const client = new hs.Client({
-        accessToken: getAccessToken(username),
-    });
-
-    const json = JSON.stringify([
+    const json = [
         'updateProps', {community, props}
-    ]);
+    ];
 
-    return client.customJson([], [username], 'community', json);
+    return broadcastPostingJSON(username, "community", json);
 }
 
 export const pinPost = (username: string, community: string, account: string, permlink: string, pin: boolean): Promise<TransactionConfirmation> => {
-    const client = new hs.Client({
-        accessToken: getAccessToken(username),
-    });
-
-    const json = JSON.stringify([
+    const json = [
         pin ? 'pinPost' : 'unpinPost', {community, account, permlink}
-    ]);
+    ]
 
-    return client.customJson([], [username], 'community', json);
+    return broadcastPostingJSON(username, "community", json);
 }
 
 export const mutePost = (username: string, community: string, account: string, permlink: string, notes: string, mute: boolean): Promise<TransactionConfirmation> => {
-    const client = new hs.Client({
-        accessToken: getAccessToken(username),
-    });
-
-    const json = JSON.stringify([
+    const json = [
         mute ? 'mutePost' : 'unmutePost', {community, account, permlink, notes}
-    ]);
+    ];
 
-    return client.customJson([], [username], 'community', json);
+    return broadcastPostingJSON(username, "community", json);
 }
 
 export const updatePassword = (update: AccountUpdateOperation[1], ownerKey: PrivateKey): Promise<TransactionConfirmation> => hiveClient.broadcast.updateAccount(update, ownerKey)

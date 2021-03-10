@@ -104,3 +104,26 @@ it("(3) With active user", () => {
 
     expect(renderer.toJSON()).toMatchSnapshot();
 });
+
+it("(4) With active user && usePrivate = false", () => {
+    const props = {
+        ...defProps,
+        ...{
+            activeUser: {...activeUserInstance}
+        },
+        global: {
+            ...globalInstance,
+            usePrivate: false
+        }
+    }
+
+    const component = <NavBar {...props} />;
+
+    const renderer = TestRenderer.create(
+        <StaticRouter location="/" context={{}}>
+            {component}
+        </StaticRouter>
+    );
+
+    expect(renderer.toJSON()).toMatchSnapshot();
+});

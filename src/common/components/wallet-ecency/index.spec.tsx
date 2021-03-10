@@ -105,3 +105,19 @@ it("(4) Format memo", () => {
 
     expect(formatMemo("lorem foo/bar ipsum", history)).toMatchSnapshot();
 });
+
+it("(5) usePrivate = false", () => {
+    const props = {
+        ...defProps,
+        global: {
+            ...globalInstance,
+            usePrivate: false
+        }
+    };
+
+    const renderer = TestRenderer.create(
+        <StaticRouter location="/" context={{}}>
+            <WalletEcency {...props} />
+        </StaticRouter>);
+    expect(renderer.toJSON()).toMatchSnapshot();
+});

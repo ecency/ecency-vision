@@ -19,5 +19,7 @@ export const getUser = (username: string): User => {
 
 export const getAccessToken = (username: string): string => getUser(username).accessToken;
 
+export const getPostingKey = (username: string): null | undefined | string => getUser(username).postingKey;
+
 export const getRefreshToken = (username: string): string => getUser(username).refreshToken;
 

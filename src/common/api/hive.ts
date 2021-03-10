@@ -1,11 +1,13 @@
-import {Client} from "@hiveio/dhive";
+import {Client, RCAPI} from "@hiveio/dhive";
+
+import {RCAccount} from "@hiveio/dhive/lib/chain/rc";
 
 import {TrendingTag} from "../store/trending-tags/types";
 import {DynamicProps} from "../store/dynamic-props/types";
 import {FullAccount, AccountProfile, AccountFollowStats} from "../store/accounts/types";
 
 import parseAsset from "../helper/parse-asset";
-
+import {vestsToRshares} from "../helper/vesting";
 import isCommunity from "../helper/is-community";
 
 import SERVERS from "../constants/servers.json";
@@ -92,6 +94,8 @@ export const getAccounts = (usernames: string[]): Promise<FullAccount[]> => {
                 created: x.created,
                 reputation: x.reputation,
                 posting_json_metadata: x.posting_json_metadata,
+                last_vote_time: x.last_vote_time,
+                last_post: x.last_post,
                 json_metadata: x.json_metadata,
                 reward_hive_balance: x.reward_hive_balance,
                 reward_hbd_balance: x.reward_hbd_balance,
@@ -176,6 +180,9 @@ export const getFollowers = (
     followType = "blog",
     limit = 100
 ): Promise<Follow[]> => client.database.call("get_followers", [following, startFollowing, followType, limit]);
+
+export const findRcAccounts = (username: string): Promise<RCAccount[]> =>
+    new RCAPI(client).findRCAccounts([username])
 
 export const getDynamicGlobalProperties = (): Promise<DynamicGlobalProperties> =>
     client.database.getDynamicGlobalProperties().then((r: any) => ({
@@ -292,8 +299,27 @@ export const votingPower = (account: FullAccount): number => {
     // @ts-ignore "Account" is compatible with dhive's "ExtendedAccount"
     const calc = client.rc.calculateVPMana(account);
     const {percentage} = calc;
+
     return percentage / 100;
 };
+
+export const powerRechargeTime = (power: number) => {
+    const missingPower = 100 - power
+    return missingPower * 100 * 432000 / 10000;
+}
+
+export const votingValue = (account: FullAccount, dynamicProps: DynamicProps, votingPower: number, weight: number = 10000): number => {
+    const {fundRecentClaims, fundRewardBalance, base, quote} = dynamicProps;
+
+    const total_vests =
+        parseAsset(account.vesting_shares).amount +
+        parseAsset(account.received_vesting_shares).amount -
+        parseAsset(account.delegated_vesting_shares).amount;
+
+    const rShares = vestsToRshares(total_vests, votingPower, weight);
+
+    return rShares / fundRecentClaims * fundRewardBalance * (base / quote);
+}
 
 export const downVotingPower = (account: FullAccount): number => {
     const curMana = Number(account.voting_manabar.current_mana);
@@ -315,6 +341,11 @@ export const downVotingPower = (account: FullAccount): number => {
     return rv;
 };
 
+export const rcPower = (account: RCAccount): number => {
+    const calc = client.rc.calculateRCMana(account);
+    const {percentage} = calc;
+    return percentage / 100;
+};
 
 export interface ConversionRequest {
     amount: string;

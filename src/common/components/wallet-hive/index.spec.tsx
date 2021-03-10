@@ -91,3 +91,18 @@ it("(2) Render with converting HBD", async () => {
     await allOver();
     expect(renderer.toJSON()).toMatchSnapshot();
 });
+
+it("(3) usePrivate = false", () => {
+    const props = {
+        ...defProps,
+        global: {
+            ...globalInstance,
+            usePrivate: false
+        }
+    }
+    const renderer = TestRenderer.create(
+        <StaticRouter location="/" context={{}}>
+            <Wallet {...props} />
+        </StaticRouter>);
+    expect(renderer.toJSON()).toMatchSnapshot();
+});

@@ -10,7 +10,7 @@ import UserAvatar from "../user-avatar";
 import ProfileLink from "../profile-link";
 import BaseComponent from "../base";
 
-import {searchAccount, AccountSearchResult} from "../../api/private";
+import {searchAccount, AccountSearchResult} from "../../api/search-api";
 
 import _c from "../../util/fix-class-names";
 

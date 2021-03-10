@@ -1,6 +1,6 @@
 {
   "name": "ecency-vision",
-  "version": "3.0.14",
+  "version": "3.0.15",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -10,7 +10,7 @@
     "start:prod": "NODE_ENV=production node build/server.js"
   },
   "dependencies": {
-    "@ecency/render-helper": "^2.0.18",
+    "@ecency/render-helper": "^2.1.0",
     "@hiveio/dhive": "^0.14.12",
     "@hiveio/hivescript": "^1.2.1",
     "@types/bs58": "^4.0.1",
@@ -30,7 +30,7 @@
     "express": "^4.17.1",
     "history": "^4.7.2",
     "hive-uri": "^0.2.3",
-    "hivesigner": "^3.2.1",
+    "hivesigner": "^3.2.5",
     "html-react-parser": "^1.2.1",
     "i18next": "^19.4.4",
     "i18next-browser-languagedetector": "^4.2.0",
@@ -59,7 +59,8 @@
     "redux-thunk": "^2.3.0",
     "rss": "^1.2.2",
     "serialize-javascript": "^3.1.0",
-    "speakingurl": "^14.0.1"
+    "speakingurl": "^14.0.1",
+    "xss": "^1.0.8"
   },
   "devDependencies": {
     "@types/bytebuffer": "^5.0.41",

@@ -6,7 +6,7 @@ import {PopularUsers} from './index';
 
 import {globalInstance, allOver, accountSearchResultInstance} from "../../helper/test-helper";
 
-jest.mock("../../api/private", () => ({
+jest.mock("../../api/search-api", () => ({
     searchAccount: (duration: string) =>
         new Promise((resolve) => {
             resolve(accountSearchResultInstance);

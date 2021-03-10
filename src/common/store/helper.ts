@@ -9,7 +9,7 @@ import {ActiveUser, UserPoints} from "./active-user/types";
 import {loginAct as loginActiveUser, logoutAct as logoutActiveUser, updateAct as updateActiveUserAct} from "./active-user";
 
 import {getAccount, getDynamicProps} from "../api/hive";
-import {getPoints, usrActivity, getPromotedEntries} from "../api/private";
+import {getPoints, usrActivity, getPromotedEntries} from "../api/private-api";
 import {reloadAct as reloadUsers} from "./users";
 import {reloadAct as reloadReblogs} from "./reblogs";
 import {fetchedAct as loadDynamicProps} from "./dynamic-props";
@@ -21,6 +21,10 @@ import {getCurrencyRate} from "../api/misc";
 import currencies from "../constants/currencies.json";
 
 import * as ls from "../../common/util/local-storage";
+
+import {AppWindow} from "../../client/window";
+
+declare var window: AppWindow;
 
 export const activeUserMaker = (name: string, points: string = "0.000", uPoints: string = "0.000"): ActiveUser => {
     return {
@@ -87,6 +91,10 @@ export const syncActiveUser = (store: Store<AppState>) => {
 }
 
 export const clientStoreTasks = (store: Store<AppState>) => {
+
+    // To use in places where we can't access to store
+    window.usePrivate = store.getState().global.usePrivate;
+
     // Initial state from browser's local storage
     store.dispatch(reloadUsers());
     store.dispatch(loginActiveUser());

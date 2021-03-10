@@ -207,7 +207,7 @@ export class NavBar extends Component<Props, State> {
                         {activeUser && <UserNav {...this.props} activeUser={activeUser}/>}
                     </div>
                     {ui.login && <Login {...this.props} />}
-                    <NotificationHandler {...this.props} />
+                    {global.usePrivate && <NotificationHandler {...this.props} />}
                 </div>
             </>
         );

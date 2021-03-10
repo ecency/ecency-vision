@@ -91,7 +91,7 @@
     "title": "Selamat datang kembali!",
     "with-user-pass": "Masuk dengan nama pengguna dan Private Key Anda.",
     "username-placeholder": "nama pengguna",
-    "key-placeholder": "master atau active private key",
+    "key-placeholder": "password / kunci pribadi",
     "login-info-1": "Kami tidak menyimpan private key Anda.",
     "login-info-2": "Info lebih lanjut",
     "error-fields-required": "Silahkan masukkan nama pengguna dan private key",
@@ -99,7 +99,7 @@
     "error-user-fetch": "Data pengguna tidak dapat diambil",
     "error-user-not-found": "Pengguna tidak ada",
     "error-permission": "Tidak ditemukan ijin postingan",
-    "error-authenticate": "Private Key salah. Master atau Active Key yang diperlukan.",
+    "error-authenticate": "Kunci pribadi salah. Kunci pribadi posting atau kunci pribadi aktif atau kunci utama diperlukan.",
     "with-hive-signer": "Masuk dengan hivesigner",
     "with-keychain": "Masuk dengan keychain",
     "sign-up-text-1": "Tidak memiliki akun?",
@@ -147,6 +147,8 @@
     "title": "Tip"
   },
   "entry-payout": {
+    "reward": "Imbalan",
+    "full-power": "Lakukan Power Up 100%",
     "pending-payout": "Pembayaran yang Ditunda",
     "promoted": "Dipromosikan",
     "author-payout": "Pembayaran Penulis",
@@ -247,7 +249,7 @@
     "team": "Kepemimpinan",
     "edit": "Edit pengaturan",
     "edit-team": "Sunting peran",
-    "community-rewards": "Community Rewards",
+    "community-rewards": "Rewards Komunitas",
     "profile-image": "Gambar profil komunitas",
     "profile-image-edit": "Edit gambar profil",
     "profile-image-updated": "Gambar profil diperbaharui!"
@@ -304,11 +306,11 @@
     "done-link-label": "Mulai."
   },
   "community-rewards-registration": {
-    "body-text": "Register your community to get Ecency POINTS",
-    "btn-next-label": "Register",
-    "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.",
-    "conflict-body-text": "This community is already registered.",
-    "min-required-body-text": "Minimum 100 subscribers required to register."
+    "body-text": "Daftarkan komunitas Anda untuk mendapatkan POIN Ecency",
+    "btn-next-label": "Daftarkan",
+    "done-body-text": "Pendaftaran selesai. Komunitas Anda akan menerima rewards POIN ketika anggota komunitas Anda mempublikasikan postingan dengan Aplikasi Ecency.",
+    "conflict-body-text": "Komunitas ini telah terdaftar.",
+    "min-required-body-text": "Minimum memiliki 100 orang subscriber untuk mendaftar."
   },
   "pin-btn": {
     "pin": "Sematkan",
@@ -339,6 +341,16 @@
     "create-community": "Buatlah sebuah komunitas",
     "witnesses": "Saksi",
     "proposals": "Proposal"
+  },
+  "profile-info": {
+    "joined": "Joined: {{n}}",
+    "last-active": "Last active: {{n}}",
+    "vote-value": "Vote value: {{n}}",
+    "vote-value-max": "(out of max {{n}})",
+    "vote-power": "Vote Power: {{n}}%",
+    "rc-power": "Resource Credits: {{n}}%",
+    "recharge-time": "(fully charged {{n}})",
+    "down-vote-power": "Downvote Power: {{n}}%"
   },
   "profile-edit": {
     "title": "Profil",
@@ -406,11 +418,11 @@
     "comment-desc": "Setiap komentar yang Anda buat membantu Anda mengembangkan audiens dan menjalin persahabatan, tetapi juga memberi Anda 5 poin.",
     "checkin-desc": "Periksa di Ecency yang memberikan Anda 0.25 poin dan membantu Anda tetap terhubung dengan teman-teman Anda.",
     "vote-desc": "Dengan melakukan voting, Anda memberikan hadiah kepada penulis lain dan menunjukkan penghargaan Anda, tetapi juga mendapatkan 0,01 poin.",
-    "reblog-desc": "Share what post you like with your friends and earn 1 points.",
+    "reblog-desc": "Bagikan postingan apa yang kamu suka dengan teman-temanmu dan dapatkan 1 poin.",
     "login-desc": "Ketika Anda masuk ke aplikasi Ecency, Anda berhak mendapatkan 100 poin secara otomatis.",
     "checkin-extra-desc": "Penggunaan aplikasi yang konsisten memberi Anda peluang ekstra untuk mendapatkan 10 poin tambahan, jadilah lebih aktif dan hasilkan lebih banyak poin.",
     "delegation-desc": "Anda bisa mendapatkan ~ 50 poin per hari untuk setiap delegasi sejumlah 1000HP.",
-    "community-desc": "Register your community to get 20 points for per post published with Ecency applications.",
+    "community-desc": "Daftarkan komunnitas Anda untuk mendapatkan 20 poin untuk setiap postingan yang dipublikasikan dengan aplikasi Ecency.",
     "history": "Riwayat",
     "post-list-desc": "Poin postingan",
     "comment-list-desc": "Poin untuk komentar",
@@ -423,7 +435,7 @@
     "transfer-incoming-list-desc": "Transfer dari {{n}}",
     "delegation-list-desc": "Reward delegasi",
     "referral-list-desc": "Reward referral",
-    "community-list-desc": "Community reward",
+    "community-list-desc": "Rewards komunitas",
     "transfer": "Hadiah untuk seseorang",
     "claim-ok": "Poin yang diklaim",
     "promote": "Promosikan",
@@ -652,7 +664,7 @@
     "type-follows": "Ikuti",
     "type-reblogs": "Tampilkan kembali",
     "type-transfers": "Transfer",
-    "group-title-recent": "Recent",
+    "group-title-recent": "Terbaru",
     "vote-str": "{{p}}% menyukai postingan Anda:",
     "reply-str": "membalas postingan Anda:",
     "mention-str": "menyebut Anda dalam:",
@@ -813,6 +825,11 @@
     "text-label": "Teks Gambar",
     "link-label": "Link Gambar"
   },
+  "add-link": {
+    "title": "Tambahkan Tautan",
+    "text-label": "Teks",
+    "link-label": "https://"
+  },
   "scroll-to-top": {
     "title": "Gulir ke Atas"
   },
@@ -842,7 +859,7 @@
       "how-ecency-works-header": "Bagaimana Ecency bekerja?",
       "how-ecency-works-body": "<img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjuZ3ksaZqEjfd9GadyKFE4bT7UP8qM1sF5W6U3cst4ekDsXfrQdcrjtdz6b5Ye2AfWNwGA5f8QqVXmed6NRfg1U?format=match&mode=fit\"/></p><p>Ecency menyimpan dan membaca data dari blockchain, dan dengan demikian data dapat diakses dan tidak disensor. Ecency memberikan reward kepada pembuat konten dengan mekanisme insentif bawaan dari blockchain, dengan token (HIVE, HIVE DOLLAR, HIVE POWER) serta ada Poinnya juga. Token dapat dibeli dan dijual di bursa mata uang kripto besar (contohnya seperti Binance, Bittrex).Poin dapat digunakan dalam platform dan diperdagangkan untuk barang, jasa.</p>",
       "how-to-join-header": "Bagaimana bergabung dengan Ecency?",
-      "how-to-join-body": "<p>Go to <a class=\"push-link\" href=\"/signup?referral=ecency\">https://ecency.com/signup?referral=ecency</a> and create an account. After signup you will receive email with further instructions. Your password is your master password to your account. Please store it safely, if you loose your password, you ultimately loose access to your account and your funds. Accounts cannot be deactivated or deleted, account names can not be changed as well. The account along with all of its activity is permanently stored in the blockchain. Without password, accounts cannot be restored, store your keys safely.</p>",
+      "how-to-join-body": "<p>Buka <a class=\"push-link\" href=\"/signup?referral=ecency\">https://ecency.com/signup?referral=ecency</a> dan buatlah akunnya. Setelah mendaftar Anda akan menerima email untuk petunjuk selanjutnya. Password Anda adalah password utama untuk akun Anda. Tolong disimpan dengan baik, jika Anda kehilangan password, Anda akan kehilangan akses sepenuhnya terhadap akun Anda dan dana Anda. Akun tidak dapat dinon-aktifkan atau pun dihapus, nama akun tidak dapat diubah juga. Semua aktivitas dari kun tersebut tersimpan di Blockchain. Tanpa password, akun tidak akan dipulihkan, simpan kata kunci Anda dengan aman.</p>",
       "how-to-signin-header": "Bagaimana masuk ke Ecency?",
       "how-to-signin-body": "<img src=\"https://images.ecency.com/p/7258xSVeJbKmTr9Z4jhbPhjS9pMWA2mTwBMDbXqk9G9wdMw2bwR4hXqRQt9S7UBFrBAWCYWddjn3G34ETv5KWB5KGmuZ8ixBB9oKHTFvjjnTkRLp4ttrFQtpgtNnRUEA9NtmyFmgyuuK4?format=match&mode=fit\"/>Anda dapat masuk ke Ecency dengan menggunakan nama pengguna dan kata sandi utama Anda atau dengan menggunakan kunci pribadi aktif. Kami menjaga keamanan dengan sangat serius, itulah mengapa kami tidak pernah menyimpan kunci pribadi Anda, di aplikasi seluler kunci tersebut dienkripsi dengan kode PIN tambahan pilihan Anda, di situs web kunci tersebut tidak pernah disimpan. Anda juga dapat menggunakan layanan autentikasi<a href=\"https://hivesigner.com\" target=\"_blank\" rel=\"noopener noreferrer\">Hivesigner OAuth2</a>untuk masuk, mengelola, dan melakukan tindakan dengan mudah.</p>",
       "how-referrals-work-header": "Bagaimana sistem referal bekerja pada Ecency?",
@@ -898,5 +915,13 @@
     "downloading": "Sedang mengunduh versi terbaru...",
     "download-completed": "Unduhan selesai",
     "restart": "Restart"
+  },
+  "chain-error": {
+    "min-root-comment": "Anda hanya dapat mempublikasikan satu konten saja setiap lima menit.",
+    "identical-vote": "Voting terbaru Anda pada konten ini sudah dilakukan.",
+    "insufficient-resource": "Kekuatan Anda tidak cukup. Silakan tunggu transaksi berikutnya, atau tambahkan kekuatan HIVE Anda.",
+    "delete-comment-with-vote": "Tidak dapat menghapus konten yang sudah ada votingnya.",
+    "comment-cashout": "Konten dibayar.",
+    "paid-out-post-forbidden": "Voting untuk konten yang sudah dibayar tidak bisa dilakukan lagi."
   }
 }

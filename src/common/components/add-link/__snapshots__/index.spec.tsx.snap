@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+<div
+  className="dialog-content"
+>
+  <form
+    className=""
+    onSubmit={[Function]}
+  >
+    <div
+      className="form-group"
+    >
+      <input
+        autoComplete="off"
+        autoFocus={true}
+        className="form-control"
+        onChange={[Function]}
+        placeholder="Text"
+        required={true}
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="form-group"
+    >
+      <input
+        autoComplete="off"
+        className="form-control"
+        onChange={[Function]}
+        placeholder="https://"
+        required={true}
+        type="text"
+        value="https://"
+      />
+    </div>
+    <div
+      className="d-flex justify-content-end"
+    >
+      <button
+        className="btn btn-primary"
+        disabled={false}
+        type="submit"
+      >
+        Add
+      </button>
+    </div>
+  </form>
+</div>
+`;

@@ -49,3 +49,24 @@ it("(2) Detail render", () => {
   const renderer = TestRenderer.create(<EntryPayoutDetail {...props} />);
   expect(renderer.toJSON()).toMatchSnapshot();
 });
+
+it("(3) Detail render with full power", () => {
+  const props = {
+    global: { ...globalInstance },
+    dynamicProps: { ...dynamicPropsIntance1 },
+    entry: {
+      ...entryInstance1,
+      ...{
+        percent_hbd: 0,
+        pending_payout_value: "14.264 HBD",
+        promoted: "0.000 HBD",
+        author_payout_value: "0.000 HBD",
+        curator_payout_value: "0.000 HBD",
+        payout_at: "2020-06-03T15:15:24",
+      },
+    },
+  };
+
+  const renderer = TestRenderer.create(<EntryPayoutDetail {...props} />);
+  expect(renderer.toJSON()).toMatchSnapshot();
+});

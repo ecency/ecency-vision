@@ -43,7 +43,7 @@ Array [
         className="form-control"
         onChange={[Function]}
         onKeyDown={[Function]}
-        placeholder="master or active private key"
+        placeholder="password / private key"
         type="password"
         value=""
       />
@@ -231,7 +231,7 @@ Array [
         className="form-control"
         onChange={[Function]}
         onKeyDown={[Function]}
-        placeholder="master or active private key"
+        placeholder="password / private key"
         type="password"
         value=""
       />
@@ -422,7 +422,7 @@ Array [
         className="form-control"
         onChange={[Function]}
         onKeyDown={[Function]}
-        placeholder="master or active private key"
+        placeholder="password / private key"
         type="password"
         value=""
       />
@@ -515,7 +515,7 @@ Array [
         className="form-control"
         onChange={[Function]}
         onKeyDown={[Function]}
-        placeholder="master or active private key"
+        placeholder="password / private key"
         type="password"
         value=""
       />

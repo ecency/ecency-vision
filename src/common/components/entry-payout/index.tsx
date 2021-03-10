@@ -37,6 +37,7 @@ export class EntryPayoutDetail extends Component<Props> {
         const promotedPayout = parseAsset(entry.promoted).amount;
         const authorPayout = parseAsset(entry.author_payout_value).amount;
         const curatorPayout = parseAsset(entry.curator_payout_value).amount;
+        const fullPower = entry.percent_hbd === 0;
 
         const HBD_PRINT_RATE_MAX = 10000;
         const percentHiveDollars = (entry.percent_hbd) / 20000;
@@ -63,6 +64,12 @@ export class EntryPayoutDetail extends Component<Props> {
 
         return (
             <div className="payout-popover-content">
+                {fullPower &&
+                <p>
+                  <span className="label">{_t("entry-payout.reward")}</span>
+                  <span className="value">{_t("entry-payout.full-power")}</span>
+                </p>
+                }
                 {pendingPayout > 0 &&
                 <p>
                   <span className="label">{_t("entry-payout.pending-payout")}</span>

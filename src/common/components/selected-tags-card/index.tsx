@@ -43,11 +43,11 @@ const tags = [
     },
     {
         label: "Coronavirus",
-        tag: "hive-129768",
+        tag: "covid-19",
         icon: virusOutline
     },
     {
-        label: "Election 2020",
+        label: "Election",
         tag: "election",
         icon: voteOutline
     },

@@ -54,7 +54,7 @@ export class DialogBody extends BaseComponent<DialogBodyProps, DialogBodyState> 
                     const {onChange, onHide} = this.props;
                     onChange(date);
                     onHide();
-                }}>{_t("post-scheduler.btn-label")}</Button>
+                }}>{_t("g.apply")}</Button>
             </div>
         </>;
     }

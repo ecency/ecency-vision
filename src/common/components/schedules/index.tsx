@@ -20,7 +20,7 @@ import {error} from "../feedback";
 
 import {_t} from "../../i18n";
 
-import {getSchedules, Schedule, deleteSchedule, moveSchedule} from "../../api/private";
+import {getSchedules, Schedule, deleteSchedule, moveSchedule} from "../../api/private-api";
 
 import accountReputation from "../../helper/account-reputation";
 
@@ -28,12 +28,7 @@ import defaults from "../../constants/defaults.json";
 
 import {deleteForeverSvg, timeSvg, checkAllSvg, alertCircleSvg, textBoxOutline} from "../../img/svg";
 
-import {
-    catchPostImage,
-    postBodySummary,
-    setProxyBase,
-    // @ts-ignore
-} from "@ecency/render-helper";
+import {catchPostImage, postBodySummary, setProxyBase} from "@ecency/render-helper";
 
 setProxyBase(defaults.imageServer);
 

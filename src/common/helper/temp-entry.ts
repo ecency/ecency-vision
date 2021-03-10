@@ -32,7 +32,7 @@ export default (p: TempEntryProps): Entry => {
         author: p.author.name,
         author_payout_value: "0.000 HBD",
         author_reputation: Number(p.author.reputation!),
-        beneficiaries: [{"account": "ecency", "weight": 100}],
+        beneficiaries: [],
         blacklists: [],
         body: p.body,
         category,

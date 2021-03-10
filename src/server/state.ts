@@ -9,6 +9,8 @@ import {activeUserMaker} from "../common/store/helper";
 
 import defaults from "../common/constants/defaults.json";
 
+import config from "../config";
+
 import {getSearchIndexCount} from "./helper";
 
 import {getOperatingSystem} from "../common/util/platform";
@@ -29,7 +31,8 @@ export const makePreloadedState = async (req: express.Request): Promise<AppState
         intro,
         searchIndexCount: await getSearchIndexCount(),
         canUseWebp: req.headers.accept !== undefined && req.headers.accept.indexOf("image/webp") !== -1,
-        isMobile: !!(req.headers["user-agent"] && ["iOS", "AndroidOS"].includes(getOperatingSystem(req.headers["user-agent"])))
+        isMobile: !!(req.headers["user-agent"] && ["iOS", "AndroidOS"].includes(getOperatingSystem(req.headers["user-agent"]))),
+        usePrivate: Boolean(parseInt(config.usePrivate, 10))
     };
 
     return {

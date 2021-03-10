@@ -10,13 +10,7 @@ import {Button} from "react-bootstrap";
 
 import defaults from "../constants/defaults.json";
 
-import {
-    renderPostBody,
-    setProxyBase,
-    catchPostImage,
-    postBodySummary,
-    // @ts-ignore
-} from "@ecency/render-helper";
+import {renderPostBody, setProxyBase, catchPostImage, postBodySummary} from "@ecency/render-helper";
 
 setProxyBase(defaults.imageServer);
 
@@ -79,6 +73,7 @@ import clipboard from "../util/clipboard";
 import {timeSvg, redditSvg, facebookSvg, twitterSvg, deleteForeverSvg, linkSvg} from "../img/svg";
 
 import {_t} from "../i18n";
+import {Tsx} from "../i18n/helper";
 
 import {version} from "../../../package.json";
 
@@ -432,7 +427,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                             <span className="separator"/>
                                             <span className="date" title={published.format("LLLL")}>{published.fromNow()}</span>
                                             <span className="flex-spacer"/>
-                                            {BookmarkBtn({
+                                            {global.usePrivate && BookmarkBtn({
                                                 ...this.props,
                                                 entry: entry
                                             })}
@@ -482,13 +477,13 @@ class EntryPage extends BaseComponent<Props, State> {
                                                             <meta itemProp="name" content={entry.author}/>
                                                         </span>
                                                         <div className="app">
-                                                            <a href="/faq#source-label" dangerouslySetInnerHTML={{__html: _t("entry.via-app", {app})}}/>
+                                                            <Tsx k="entry.via-app" args={{app}}><a href="/faq#source-label" /></Tsx>
                                                         </div>
                                                     </>
                                                 )}
                                             </div>
                                             <div className="right-side">
-                                                <EditHistoryBtn entry={entry} append={<span className="separator"/>}/>
+                                                {global.usePrivate && <EditHistoryBtn entry={entry} append={<span className="separator"/>}/>}
                                                 {ownEntry && (
                                                     <>
                                                         {editable && EntryEditBtn({entry})}

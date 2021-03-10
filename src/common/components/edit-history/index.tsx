@@ -8,11 +8,7 @@ import {Modal, Form, FormControl} from "react-bootstrap";
 
 import defaults from "../../constants/defaults.json";
 
-import {
-    renderPostBody,
-    setProxyBase,
-    // @ts-ignore
-} from "@ecency/render-helper";
+import {renderPostBody, setProxyBase} from "@ecency/render-helper";
 
 setProxyBase(defaults.imageServer);
 
@@ -27,7 +23,7 @@ import {_t} from "../../i18n";
 
 import _c from "../../util/fix-class-names";
 
-import {commentHistory, CommentHistoryListItem} from "../../api/private";
+import {commentHistory, CommentHistoryListItem} from "../../api/private-api";
 
 import {historySvg, tagSvg} from "../../img/svg";
 

@@ -19,7 +19,8 @@ import KeyOrHot from "../key-or-hot";
 import {error} from "../feedback";
 
 import {getPost} from "../../api/bridge";
-import {getBoostOptions, getBoostedPost, searchPath} from "../../api/private";
+import {getBoostOptions, getBoostedPost} from "../../api/private-api";
+import { searchPath} from "../../api/search-api";
 import {boost, boostHot, boostKc, formatError} from "../../api/operations";
 
 import {_t} from "../../i18n";

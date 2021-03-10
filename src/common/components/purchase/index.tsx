@@ -11,7 +11,7 @@ import {Account} from "../../store/accounts/types";
 import BaseComponent from "../base";
 import {Transfer, TransferAsset} from "../transfer";
 
-import {calcPoints} from "../../api/private";
+import {calcPoints} from "../../api/private-api";
 
 import {_t} from "../../i18n";
 

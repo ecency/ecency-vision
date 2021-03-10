@@ -15,9 +15,10 @@ import NavBarElectron from "../../desktop/app/components/navbar";
 import Feedback, {error} from "../components/feedback";
 import ScrollToTop from "../components/scroll-to-top";
 
-import {signUp} from "../api/private";
+import {signUp} from "../api/private-api";
 
 import {_t} from "../i18n";
+import {Tsx} from "../i18n/helper";
 
 import {checkSvg} from "../img/svg";
 
@@ -128,7 +129,7 @@ class SignUpPage extends Component<PageProps, State> {
                                 <div className="header-title">
                                     {_t('sign-up.header')}
                                 </div>
-                                <div className="header-description" dangerouslySetInnerHTML={{__html: _t('sign-up.description')}} />
+                                <Tsx k="sign-up.description"><div className="header-description" /></Tsx>
                             </div>
                             <div className="sign-up-form">
                                 <Form ref={this.form} onSubmit={(e: React.FormEvent) => {

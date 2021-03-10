@@ -36,12 +36,14 @@ it("(2) With users", () => {
             accessToken: "aa",
             refreshToken: "bb",
             expiresIn: 2,
+            postingKey: null
         },
         {
             username: "user2",
             accessToken: "aa",
             refreshToken: "bb",
             expiresIn: 2,
+            postingKey: null
         },
     ];
 
@@ -58,12 +60,14 @@ it("(3) With users and active user", () => {
             accessToken: "aa",
             refreshToken: "bb",
             expiresIn: 2,
+            postingKey: null
         },
         {
             username: "user2",
             accessToken: "aa",
             refreshToken: "bb",
             expiresIn: 2,
+            postingKey: null
         },
     ];
 

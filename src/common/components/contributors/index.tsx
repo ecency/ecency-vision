@@ -7,9 +7,9 @@ import UserAvatar from "../user-avatar";
 import {History} from "history";
 import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
+
 import {_t} from "../../i18n";
-import _c from "../../util/fix-class-names";
-import {syncSvg} from "../../img/svg";
+import {Tsx} from "../../i18n/helper";
 
 interface Props {
     history: History;
@@ -26,7 +26,7 @@ export class Contributors extends Component<Props> {
                         <div className="list-title">
                             {_t('contributors.title')}
                         </div>
-                        <div className="list-description" dangerouslySetInnerHTML={{__html: _t('contributors.description')}} />
+                        <Tsx k="contributors.description"><div className="list-description" /></Tsx>
                     </div>
                     <div className="list-body">
                         {contributors.map(c => {

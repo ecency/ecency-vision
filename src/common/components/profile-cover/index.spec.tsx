@@ -6,7 +6,7 @@ import renderer from "react-test-renderer";
 import {Theme} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 
-import {globalInstance, UiInstance, fullAccountInstance} from "../../helper/test-helper";
+import {globalInstance, UiInstance, fullAccountInstance, dynamicPropsIntance1, RcAccountInstance, allOver} from "../../helper/test-helper";
 
 jest.mock("../../constants/defaults.json", () => ({
     imageServer: "https://images.ecency.com",
@@ -17,11 +17,16 @@ jest.mock("../../api/hive", () => ({
         new Promise((resolve) => {
             resolve([]);
         }),
+
+    votingPower: () => 0,
+    votingValue: () => 0,
+    findRcAccounts: () => new Promise((resolve) => resolve([RcAccountInstance]))
 }));
 
 
 const defProps = {
     global: {...globalInstance},
+    dynamicProps: dynamicPropsIntance1,
     users: [],
     activeUser: null,
     ui: UiInstance,
@@ -36,7 +41,7 @@ const defProps = {
     }
 };
 
-it("(1) Render with loaded account object", () => {
+it("(1) Render with loaded account object", async () => {
     const account: Account = {
         ...fullAccountInstance,
         name: "user1",
@@ -51,11 +56,12 @@ it("(1) Render with loaded account object", () => {
     };
 
     const component = renderer.create(<ProfileCover {...props} />);
+    await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });
 
 
-it("(2) Render with mot loaded account object", () => {
+it("(2) Render with mot loaded account object", async () => {
     const account: Account = {
         name: "user1",
     };
@@ -66,11 +72,12 @@ it("(2) Render with mot loaded account object", () => {
     };
 
     const component = renderer.create(<ProfileCover {...props} />);
+    await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });
 
 
-it("(3) No bg image - Day theme", () => {
+it("(3) No bg image - Day theme", async () => {
     const account: Account = {
         ...fullAccountInstance,
         name: "user1",
@@ -83,10 +90,11 @@ it("(3) No bg image - Day theme", () => {
     };
 
     const component = renderer.create(<ProfileCover {...props} />);
+    await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });
 
-it("(4) No bg image - Night theme", () => {
+it("(4) No bg image - Night theme", async () => {
     const account: Account = {
         ...fullAccountInstance,
         name: "user1",
@@ -100,6 +108,29 @@ it("(4) No bg image - Night theme", () => {
     };
 
     const component = renderer.create(<ProfileCover {...props} />);
+    await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });
 
+it("(5) usePrivate = false", async () => {
+    const account: Account = {
+        ...fullAccountInstance,
+        name: "user1",
+        profile: {
+            cover_image: "https://img.esteem.app/rwd380.jpg",
+        }
+    };
+
+    const props = {
+        ...defProps,
+        account,
+        global: {
+            ...globalInstance,
+            usePrivate: false
+        }
+    };
+
+    const component = renderer.create(<ProfileCover {...props} />);
+    await allOver();
+    expect(component.toJSON()).toMatchSnapshot();
+});

@@ -6,7 +6,7 @@ import TestRenderer from "react-test-renderer";
 
 import {entryInstance1, allOver} from "../../helper/test-helper";
 
-jest.mock("../../api/private", () => ({
+jest.mock("../../api/private-api", () => ({
     commentHistory: () =>
         new Promise((resolve) => {
             resolve(
