@@ -91,7 +91,7 @@
     "title": "Willkommen zurück!",
     "with-user-pass": "Melde dich mit deinen Zugangsdaten an.",
     "username-placeholder": "benutzername",
-    "key-placeholder": "Master oder Active Private Key",
+    "key-placeholder": "password / private key",
     "login-info-1": "Wir speichern keine Private Keys.",
     "login-info-2": "Mehr Infos",
     "error-fields-required": "Bitte Benutzername und Private Key eingeben",
@@ -99,7 +99,7 @@
     "error-user-fetch": "Benutzerdaten konnten nicht abgerufen werden",
     "error-user-not-found": "Benutzer existiert nicht",
     "error-permission": "Konnte keine Beitragsberechtigung erhalten",
-    "error-authenticate": "Falscher privater Schlüssel. Master oder Active Private Key erforderlich.",
+    "error-authenticate": "Wrong private key. Master or active or posting private key required.",
     "with-hive-signer": "Mit Hivesigner anmelden",
     "with-keychain": "Anmelden mit KeyChain",
     "sign-up-text-1": "Noch keinen Account?",
@@ -147,6 +147,8 @@
     "title": "Tip"
   },
   "entry-payout": {
+    "reward": "Reward",
+    "full-power": "Power Up 100%",
     "pending-payout": "Ausstehende Vergütung",
     "promoted": "Beworben",
     "author-payout": "Autoren Auszahlung",
@@ -339,6 +341,16 @@
     "create-community": "Community erstellen",
     "witnesses": "Witnesses",
     "proposals": "Anträge"
+  },
+  "profile-info": {
+    "joined": "Joined: {{n}}",
+    "last-active": "Last active: {{n}}",
+    "vote-value": "Vote value: {{n}}",
+    "vote-value-max": "(out of max {{n}})",
+    "vote-power": "Vote Power: {{n}}%",
+    "rc-power": "Resource Credits: {{n}}%",
+    "recharge-time": "(fully charged {{n}})",
+    "down-vote-power": "Downvote Power: {{n}}%"
   },
   "profile-edit": {
     "title": "Profil",
@@ -813,6 +825,11 @@
     "text-label": "Image Text",
     "link-label": "Image Link"
   },
+  "add-link": {
+    "title": "Add Link",
+    "text-label": "Text",
+    "link-label": "https://"
+  },
   "scroll-to-top": {
     "title": "Scrolle zum Anfang"
   },
@@ -898,5 +915,13 @@
     "downloading": "Neue Version herunterladen...",
     "download-completed": "Download ist abgeschlossen",
     "restart": "Neustarten"
+  },
+  "chain-error": {
+    "min-root-comment": "You may only post once every five minutes.",
+    "identical-vote": "Your current vote on this content is identical to this vote.",
+    "insufficient-resource": "Insufficient Resource Credits. Please wait to transact, or power up HIVE.",
+    "delete-comment-with-vote": "Can't delete a content with votes.",
+    "comment-cashout": "Content cashout.",
+    "paid-out-post-forbidden": "Voting for paid out content is not available."
   }
 }

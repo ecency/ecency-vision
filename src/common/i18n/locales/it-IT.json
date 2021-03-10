@@ -20,7 +20,7 @@
     "back": "Indietro",
     "load-more": "Carica Altro",
     "empty-list": "Pagina vuota",
-    "no-matches": "No matches",
+    "no-matches": "Nessuna corrispondenza",
     "save": "Salva",
     "try-again": "Prova di nuovo",
     "show": "Mostra",
@@ -29,8 +29,8 @@
     "yes": "Si",
     "no": "No",
     "done": "Fatto",
-    "apply": "Apply",
-    "close": "Close"
+    "apply": "Applica",
+    "close": "Chiudi"
   },
   "confirm": {
     "title": "Sei sicuro?",
@@ -77,8 +77,8 @@
     "drafts": "Bozze",
     "bookmarks": "Segnalibri",
     "schedules": "Programmi",
-    "fragments": "Snippets",
-    "settings": "Settings",
+    "fragments": "Ritagli",
+    "settings": "Impostazioni",
     "logout": "Esci",
     "vote-power": "Potere di Voto:"
   },
@@ -91,7 +91,7 @@
     "title": "Bentornato!",
     "with-user-pass": "Entra con il tuo nome utente e la tua chiave privata.",
     "username-placeholder": "nome utente",
-    "key-placeholder": "chiave privata attiva oppure maestra",
+    "key-placeholder": "password / private key",
     "login-info-1": "Noi non memorizziamo le tue chiavi private.",
     "login-info-2": "Più informazioni",
     "error-fields-required": "Inserisci nome utente e chiave privata",
@@ -99,15 +99,15 @@
     "error-user-fetch": "I dati dell'utente non possono essere recuperati",
     "error-user-not-found": "L'utente non esiste",
     "error-permission": "Non hai l'autorizzazione per pubblicare",
-    "error-authenticate": "Chiave privata errata. Richiesta chiave privata maestra o attiva.",
+    "error-authenticate": "Wrong private key. Master or active or posting private key required.",
     "with-hive-signer": "Accedi tramite hivesigner",
     "with-keychain": "Accedi tramite keychain",
     "sign-up-text-1": "Non hai un account?",
     "sign-up-text-2": "Registrati ora!"
   },
   "sign-up": {
-    "header": "Join",
-    "description": "<h3>Home of Free speech and Rewarding communities!</h3><br>One account to manage everything on <b>Blockchain</b> and <b>Ecency</b>.<br><br>Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
+    "header": "Unisciti",
+    "description": "<h3>Dimora della libertà di parola e delle community ricompensate!</h3><br>Un account per gestire ogni cosa sulla <b>Blockchain</b> e su <b>Ecency</b>.<br><br>Impara di più sui benefici nelle nostre <a href=\"/faq#how-to-join\">FAQ</a>",
     "username": "Scegli un nome utente",
     "email": "Inserisci il tuo indirizzo email",
     "ref": "Utente raccomandante (opzionale)",
@@ -144,9 +144,11 @@
     "success": "Rebloggato!"
   },
   "entry-tip": {
-    "title": "Tip"
+    "title": "Invia omaggio"
   },
   "entry-payout": {
+    "reward": "Reward",
+    "full-power": "Power Up 100%",
     "pending-payout": "Pagamento in Attesa",
     "promoted": "Promosso",
     "author-payout": "Ricompensa dell'Autore",
@@ -247,7 +249,7 @@
     "team": "Dirigenza",
     "edit": "Modifica impostazioni",
     "edit-team": "Modifica Ruoli",
-    "community-rewards": "Community Rewards",
+    "community-rewards": "Ricompense della community",
     "profile-image": "Immagine del profilo della community",
     "profile-image-edit": "Modifica immagine del profilo",
     "profile-image-updated": "Immagine del Profilo aggiornata!"
@@ -293,7 +295,7 @@
     "username-available": "Disponibile.",
     "username-not-available": "Non Disponibile.",
     "username-wrong-format": "Non è un formato valido. Richiesto il formato hive-1xxxxx.",
-    "password": "Master password",
+    "password": "Chiave maestra",
     "confirmation": "Ho salvato in un luogo sicuro nome utente e chiave proprietaria della community.",
     "submit": "Crea Community",
     "progress-account": "Account in creazione...",
@@ -304,11 +306,11 @@
     "done-link-label": "Inizia."
   },
   "community-rewards-registration": {
-    "body-text": "Register your community to get Ecency POINTS",
-    "btn-next-label": "Register",
-    "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.",
-    "conflict-body-text": "This community is already registered.",
-    "min-required-body-text": "Minimum 100 subscribers required to register."
+    "body-text": "Registra la tua community per ottenere PUNTI Ecency",
+    "btn-next-label": "Registra",
+    "done-body-text": "Registrazione completata. La tua community riceverà ricompense in PUNTI quando i suoi membri pubblicano con una delle app Ecency.",
+    "conflict-body-text": "Questa community è già stata registrata.",
+    "min-required-body-text": "Necessario un minimo di 100 iscritti per registrarsi."
   },
   "pin-btn": {
     "pin": "Fissa",
@@ -339,6 +341,16 @@
     "create-community": "Crea una community",
     "witnesses": "Convalidatori",
     "proposals": "Propositi"
+  },
+  "profile-info": {
+    "joined": "Joined: {{n}}",
+    "last-active": "Last active: {{n}}",
+    "vote-value": "Vote value: {{n}}",
+    "vote-value-max": "(out of max {{n}})",
+    "vote-power": "Vote Power: {{n}}%",
+    "rc-power": "Resource Credits: {{n}}%",
+    "recharge-time": "(fully charged {{n}})",
+    "down-vote-power": "Downvote Power: {{n}}%"
   },
   "profile-edit": {
     "title": "Profilo",
@@ -388,7 +400,7 @@
     "delegate": "Delega",
     "power-down": "Depotenziamento",
     "withdraw-routes": "Ricompense assegnate",
-    "converting-hbd-amount": "Converting to HIVE"
+    "converting-hbd-amount": "In attesa di conversione in HIVE"
   },
   "withdraw-routes": {
     "title": "Account beneficianti delle ricompense assegnate",
@@ -406,11 +418,11 @@
     "comment-desc": "Ogni commento che fai ti aiuta a far crescere la tua audience e creare amicizie, oltre a farti anche guadagnare 5 punti.",
     "checkin-desc": "Accedere giornalmente ad Ecency ti da diritto a 0.25 punti e ti aiuta a rimanere in contatto con i tuoi amici.",
     "vote-desc": "Votando, dai una ricompensa agli altri creatori e mostri il tuo apprezzamento, ma guadagni anche 0.01 punti moltiplicati per il peso percentuale del tuo voto.",
-    "reblog-desc": "Share what post you like with your friends and earn 1 points.",
+    "reblog-desc": "Condividi il post che ti piace con i tuoi amici e guadagna 1 punto.",
     "login-desc": "Quando accedi a Ecency per la prima volta, hai automaticamente diritto a 100 punti.",
     "checkin-extra-desc": "Un uso costante dell'app ti da ulteriori possibilità di guadagnare altri 10 punti, essere più attivo e guadagnare di più.",
     "delegation-desc": "Puoi guadagnare fino a un massimo di 50 punti al giorno per ogni delegazione di 1000 Hp fatta lo stesso giorno.",
-    "community-desc": "Register your community to get 20 points for per post published with Ecency applications.",
+    "community-desc": "Registra la tua community per ottenere 20 punti per ogni post pubblicato dalle applicazioni Ecency.",
     "history": "Cronologia",
     "post-list-desc": "Punti per post",
     "comment-list-desc": "Punti per commento",
@@ -423,7 +435,7 @@
     "transfer-incoming-list-desc": "Trasferisci da {{n}}",
     "delegation-list-desc": "Ricompensa dalla delega",
     "referral-list-desc": "Ricompense da raccomandazioni",
-    "community-list-desc": "Community reward",
+    "community-list-desc": "Ricompensa della community",
     "transfer": "Fai un regalo a qualcuno",
     "claim-ok": "Punti richiesti",
     "promote": "Promuovi",
@@ -567,7 +579,7 @@
     "emoji": "Emoji",
     "image-error": "Impossibile caricare l'immagine.",
     "image-error-size": "Le dimensioni dell'immagine sono troppo grandi, prova di nuovo con un'immagine più piccola.",
-    "fragments": "Snippets"
+    "fragments": "Ritagli"
   },
   "emoji-picker": {
     "filter-placeholder": "Filtro",
@@ -652,7 +664,7 @@
     "type-follows": "Sui seguaci",
     "type-reblogs": "Reblogga",
     "type-transfers": "Trasferimenti",
-    "group-title-recent": "Recent",
+    "group-title-recent": "Recenti",
     "vote-str": "{{p}}% di gradimento del tuo post:",
     "reply-str": "ha risposto al tuo post:",
     "mention-str": "ti ha menzionato in:",
@@ -694,42 +706,42 @@
     "description": "Trova contenuti incensurati, community e utenti"
   },
   "search-comment": {
-    "title": "Results",
-    "matches": "{{n}} matches",
-    "matches-singular": "1 match",
-    "advanced": "Advanced",
-    "search": "Search",
-    "search-placeholder": "search phrase",
-    "author": "Author",
-    "author-placeholder": "username",
-    "type": "Type",
-    "type-": "All",
+    "title": "Risultati",
+    "matches": "{{n}} corrispondenze",
+    "matches-singular": "1 corrispondenza",
+    "advanced": "Avanzate",
+    "search": "Cerca",
+    "search-placeholder": "cerca frase",
+    "author": "Autore",
+    "author-placeholder": "nome utente",
+    "type": "Per tipo",
+    "type-": "Tutti",
     "type-post": "Post",
-    "type-comment": "Comment",
-    "category": "Category",
-    "category-placeholder": "category",
-    "tags": "Tags",
-    "tags-placeholder": "comma separated tags",
-    "date": "Date",
-    "date-week": "Week",
-    "date-month": "Month",
-    "date-year": "Year",
-    "date-all": "All",
-    "sort": "Sort",
-    "sort-popularity": "Popularity",
-    "sort-relevance": "Relevance",
-    "sort-newest": "Recent",
-    "hide-low": "Hide low payout content",
-    "show-more": "show more"
+    "type-comment": "Commenti",
+    "category": "Categoria",
+    "category-placeholder": "categoria",
+    "tags": "Etichette",
+    "tags-placeholder": "etichette separate da virgole",
+    "date": "Data",
+    "date-week": "Settimana",
+    "date-month": "Mese",
+    "date-year": "Anno",
+    "date-all": "Sempre",
+    "sort": "Ordina",
+    "sort-popularity": "Popolarità",
+    "sort-relevance": "Rilevanza",
+    "sort-newest": "Recenti",
+    "hide-low": "Nascondi contenuto a bassa ricompensa",
+    "show-more": "mostra altro"
   },
   "search-people": {
-    "title": "People"
+    "title": "Persone"
   },
   "search-topics": {
-    "title": "Topics"
+    "title": "Argomenti"
   },
   "search-communities": {
-    "title": "Communities"
+    "title": "Community"
   },
   "witnesses": {
     "page-title": "Convalidatori",
@@ -778,7 +790,7 @@
   },
   "drafts": {
     "title": "Bozze",
-    "filter": "Search by title"
+    "filter": "Cerca per titolo"
   },
   "schedules": {
     "title": "Post Programmati",
@@ -791,27 +803,32 @@
     "title": "Favoriti"
   },
   "fragments": {
-    "title": "Snippets",
-    "create-first": "Create your first snippet",
-    "filter": "Search by title",
-    "form-title": "Title",
-    "form-body": "Body"
+    "title": "Ritagli",
+    "create-first": "Crea il tuo primo ritaglio",
+    "filter": "Cerca per titolo",
+    "form-title": "Titolo",
+    "form-body": "Corpo"
   },
   "password-update": {
-    "title": "Change Password",
+    "title": "Cambia Chiave d'Accesso",
     "account": "Account",
-    "cur-pass": "Current password",
-    "new-pass": "New password",
-    "new-pass2": "Confirm new password",
-    "error-new2": "Passwords must be same",
-    "pass-gen": "Click to generate password",
-    "label-check": "I have securely saved my generated password",
-    "updated": "Password updated successfully!"
+    "cur-pass": "Chiave d'accesso attuale",
+    "new-pass": "Nuova chiave d'accesso",
+    "new-pass2": "Conferma la mia chiave d'accesso",
+    "error-new2": "Le chiavi d'accesso devono essere le stesse",
+    "pass-gen": "Clicca per generare chiave d'accesso",
+    "label-check": "Ho salvato correttamente e in maniera sicura la mia chiave d'accesso",
+    "updated": "Chiave d'accesso aggiornata con successo!"
   },
   "add-image": {
-    "title": "Add Image",
-    "text-label": "Image Text",
-    "link-label": "Image Link"
+    "title": "Aggiungi immagine",
+    "text-label": "Testo dell'immagine",
+    "link-label": "Collegamento all'immagine"
+  },
+  "add-link": {
+    "title": "Add Link",
+    "text-label": "Text",
+    "link-label": "https://"
   },
   "scroll-to-top": {
     "title": "Scorri verso l'alto"
@@ -832,17 +849,17 @@
       "page-title": "Domande frequenti su Ecency",
       "page-sub-title": "Indice",
       "what-is-ecency-header": "Che cos'è Ecency?",
-      "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based social network - powered by <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency is home of free speech and rewarding communities for content creators.</p><p>Project is founded by <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> in August 2016 as an alternative social network that's uncensored, user controled, immutable and opensource. Currently there are <a class=\"push-link\" href=\"/contributors\">many independent and voluntary contributors</a> wanting to keep vision and spirit of free speech.</p><p>Ecency helps onboarding masses into Blockchain technology where users are getting paid for their time, resources and learn while enjoying social aspects of blockchain. Through ease of use, users not only learn but also become investors, innovators of the new internet.</p>",
+      "what-is-ecency-body": "<p>Ecency è un social network basato su <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> - messo in moto dalla blockchain <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency è un luogo di ritrovo per la libertà di parola e dove le community di creatori di contenuti vengono ricompensate.</p><p>Il progetto è stato fondato da <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> nell'Agosto 2016 come un social network alternativo, incensurato, controllato dagli utenti, immutabile e a licenza open-source. Attualmente ci sono <a class=\"push-link\" href=\"/contributors\">molti collaboratori volontari e indipendenti</a> che vogliono mantenere questa visione, nello spirito di una completa libertà di parola.</p><p>Ecency tenta inoltre di aiutare i gruppi di persone che stanno muovendo i primi passi nella tecnologia blockchain, andando a ricompensare gli utenti per il loro tempo, le loro risorse, e dove si può beneficiare degli aspetti più social della tecnologia blockchain. Attraverso la semplicità di utilizzo, gli utenti non imparano soltanto, ma possono anche diventare investitori e innovatori all'interno della nuova era di internet.</p>",
       "what-is-hive-header": "Che cos'è la blockchain Hive?",
       "what-is-hive-body": "<p>Hive è una blockchain disegnata per essere una piattaforma veloce, economica, non censurabile e decentralizzata adatta alle applicazioni per il Web3.0, dotata di strumenti nativi dove i titolari dell'investimento possono guadagnare bloccando in stake, curando contenuti, postando, giocando, scambiando asset - il tutto senza alcun intermediario (concetto di decentralizzazione). I token della blockchain Hive si chiamano HIVE, HIVE DOLLARS, e HIVE POWER.</p>",
-      "what-is-difference-header": "What's the difference from other Social Networks?",
-      "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\"/></p><p>The primary difference, Ecency is based on a blockchain which means content is immutable and uncensorable. You own your community and account, nobody but you have full control of your data. Empowering true free speech. Ecency is also opensource, rewarding and innovative, built and owned by users. Aspire for greatness!</p>",
+      "what-is-difference-header": "Qual'è la differenza dagli altri Social Network?",
+      "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\"/></p><p>Per prima cosa, Ecency è basato su una blockchain: ciò significa che ogni contenuto della blockchain è immutabile e incensurato. Tu possiedi il tuo account e la tua community, nessun altro tranne te ha il controllo sui tuoi dati. Fortifichiamo la vera libertà di parola. Ecency è anche open-source, innovativo, capace di generare ricompense, costruito dagli utenti e di loro proprietà. Aspira alla grandezza!</p>",
       "why-choose-ecency-header": "Perché dovrei scegliere Ecency?",
       "why-choose-ecency-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjrzJAcJ4DvxvtqoPdzS9Aygf4MZ1PeE4goH6zWaeEFvafr9vGXWuou67Pbn44GweMyHV5DupM5q1cRvU85qdver?format=match&mode=fit\"/></p><p>Impostazioni su misura per agevolarti nella creazione, ispirando i tuoi ascoltatori e la tua community. L'app mobile Ecency ti fornisce una soluzione dinamica. Con l'app desktop sei sempre sicuro di avere i giusti contenuti non censurati dalla blockchain. Con il sito web raggiungi migliaia di lettori sparsi per il globo, con i migliori post addirittura indicizzati sui motori di ricerca. Misure di sicurezza all'avanguardia così che le tue chiavi rimangano sempre criptate e non raggiungibili da utenti malintenzionati. Un gradevole e veloce sito web ti aiuta a essere trovato online e a ottenere visibilità, guadagnando lettori e seguaci fedeli. Costruisci la tua community con Ecency oggi e ottieni i vantaggi dall'emergente tecnologia blockchain e dai contenuti incensurati, vero esempio di libertà di espressione!</p>",
       "how-ecency-works-header": "Come funziona Ecency?",
       "how-ecency-works-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjuZ3ksaZqEjfd9GadyKFE4bT7UP8qM1sF5W6U3cst4ekDsXfrQdcrjtdz6b5Ye2AfWNwGA5f8QqVXmed6NRfg1U?format=match&mode=fit\"/></p><p>Ecency custodisce e legge i dati che arrivano dalla blockchain, e ognuno di questi dati è accessibile e incensurato. Ecency ricompensa i creatori di contenuti con un meccanismo di incentivo integrato nella blockchain, attraverso i token (HIVE, HIVE DOLLARS, HIVE POWER) come anche attraverso i propri Punti. I token possono essere acquistati e venduti su alcuni dei maggiori exchange di criptovaluta (ad esempio Binance e Bittrex). I punti possono essere utilizzati all'interno della piattaforma e scambiati per prodotti o servizi.</p>",
       "how-to-join-header": "Come unirsi a Ecency?",
-      "how-to-join-body": "<p>Go to <a class=\"push-link\" href=\"/signup?referral=ecency\">https://ecency.com/signup?referral=ecency</a> and create an account. After signup you will receive email with further instructions. Your password is your master password to your account. Please store it safely, if you loose your password, you ultimately loose access to your account and your funds. Accounts cannot be deactivated or deleted, account names can not be changed as well. The account along with all of its activity is permanently stored in the blockchain. Without password, accounts cannot be restored, store your keys safely.</p>",
+      "how-to-join-body": "<p>Vai a <a class=\"push-link\" href=\"/signup?referral=ecency\">https://ecency.com/signup?referral=ecency</a> e crea un account. Dopo la registrazione riceverai un'email con ulteriori informazioni. La tua chiave di accesso è la Chiave Maestra del tuo account. Ti preghiamo di custodirla in sicurezza, se la perdessi perderesti irrimediabilmente l'accesso al tuo account e ai tuoi fondi. Gli account non possono essere disattivati o cancellati, e i nomi degli account non possono essere modificati. L'account con tutte le sue attività viene registrato permanentemente sulla blockchain. Senza la chiave di accesso, gli account non possono essere recuperati: custodisci le tue chiavi in sicurezza!</p>",
       "how-to-signin-header": "Come accedere a Ecency?",
       "how-to-signin-body": "<p><img src=\"https://images.ecency.com/p/7258xSVeJbKmTr9Z4jhbPhjS9pMWA2mTwBMDbXqk9G9wdMw2bwR4hXqRQt9S7UBFrBAWCYWddjn3G34ETv5KWB5KGmuZ8ixBB9oKHTFvjjnTkRLp4ttrFQtpgtNnRUEA9NtmyFmgyuuK4?format=match&mode=fit\"/></p><p>Puoi accedere a Ecency usando il tuo nome utente e la tua chiave maestra o usando la Chiave Privata Attiva. Noi prendiamo la sicurezza molto sul serio, e questo è il motivo per il quale non memorizziamo mai le tue chiavi private; sull'app mobile vengono criptate con un codice PIN aggiuntivo a tua scelta, sul sito web non sono mai memorizzate. Puoi anche usare il servizio di autenticazione <a href=\"https://hivesigner.com\" target=\"_blank\" rel=\"noopener noreferrer\">Hivesigner OAuth2</a> per accedere facilmente, gestire e compiere azioni.</p>",
       "how-referrals-work-header": "Come funziona il sistema di raccomandazione su Ecency?",
@@ -873,8 +890,8 @@
       "can-link-post-body": "<p>Tutti i contenuti del nostro sito vengono creati dai nostri utenti e noi né modifichiamo né siamo autorizzati ad aggiungere link di ritorno. Sei libero di contattare l'autore del post o <a href=\"/signup?referral=ecency\" class=\"push-link\">Registrarti</a> per aprire il tuo blog e la tua community, pubblicare articoli così da generare link di ritorno gratuitamente.</p>",
       "can-guest-post-header": "È possibile ospitare post sul tuo sito web?",
       "can-guest-post-body": "<p>Postare su Ecency è semplice e veloce, <a href=\"/signup?referral=ecency\" class=\"push-link\">Registrati</a> per aprire il tuo blog e la tua community, iniziando a postare i tuoi contenuti.</p>",
-      "source-label-header": "Content source labels, what are those?",
-      "source-label-body": "<p>Content source helps you understand how content was published. In some cases you may see a third-party client name, which indicates the Content came from a non-Ecency application. Authors sometimes use third-party client applications to manage their blogs, communities. Third-party clients are software tools used by authors and therefore are not affiliated with, nor do they reflect the views of, the content. Content can be directly created by humans or, in some circumstances, automated by an application.</p>",
+      "source-label-header": "Le etichette sulle fonti del contenuto, che cosa sarebbero?",
+      "source-label-body": "<p>La fonte del contenuto ti aiuta a capire come un contenuto è stato pubblicato. In alcuni casi potresti vedere i nomi di terze parti: significa che il contenuto proviene da applicazioni non sotto controllo di Ecency. Gli autori utilizzano talvolta applicazioni di terze parti per gestire i loro blog o le loro community. I client di terze parti sono solo strumenti utilizzati dagli autori: non sono loro affiliati, né rispecchiano ciò che il contenuto mostra al suo interno. Un contenuto può essere creato direttamente da una persona fisica o, in certi casi, automatizzato attraverso un'applicazione.</p>",
       "how-to-contribute-header": "Come collaborare con Ecency?",
       "how-to-contribute-body": "<p>I nostri <a href=\"/contributors\" class=\"push-link\">fantastici collaboratori</a> ci aiutano a dar forma a Ecency. Puoi essere parte di questo grande movimento prendendo parte al nostro gruppo di traduzione: <a href=\"https://translate-desktop.ecency.com\" target=\"_blank\" rel=\"noopener noreferrer\">Sito Web</a>, <a href=\"https://translate-mobile.ecency.com\" target=\"_blank\" rel=\"noopener noreferrer\">App Mobile</a> o contribuendo con idee, sviluppo, design, trasmissione di conoscenze in ambito Social Media. Noi proviamo a fare del nostro meglio per supportare i nostri collaboratori!</p>"
     }
@@ -898,5 +915,13 @@
     "downloading": "Scarica la nuova versione...",
     "download-completed": "Download completato",
     "restart": "Ricomincia"
+  },
+  "chain-error": {
+    "min-root-comment": "You may only post once every five minutes.",
+    "identical-vote": "Your current vote on this content is identical to this vote.",
+    "insufficient-resource": "Insufficient Resource Credits. Please wait to transact, or power up HIVE.",
+    "delete-comment-with-vote": "Can't delete a content with votes.",
+    "comment-cashout": "Content cashout.",
+    "paid-out-post-forbidden": "Voting for paid out content is not available."
   }
 }
