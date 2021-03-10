@@ -9,6 +9,7 @@ services:
       - HIVESIGNER_CLIENT_SECRET
       - SEARCH_API_ADDR
       - SEARCH_API_SECRET
+      - USE_PRIVATE
     ports:
       - "3000:3000"
     deploy:
@@ -28,5 +29,5 @@ services:
       restart_policy:
         condition: any
         delay: 5s
-        max_attempts: 3
-        window: 120s
+        max_attempts: 5
+        window: 60s
