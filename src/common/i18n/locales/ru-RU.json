@@ -20,7 +20,7 @@
     "back": "Назад",
     "load-more": "Загрузить больше",
     "empty-list": "Здесь пусто",
-    "no-matches": "No matches",
+    "no-matches": "Нет совпадений",
     "save": "Сохранить",
     "try-again": "Попрoбуйте снова",
     "show": "Показать",
@@ -29,8 +29,8 @@
     "yes": "Да",
     "no": "Нет",
     "done": "Готово",
-    "apply": "Apply",
-    "close": "Close"
+    "apply": "Применить",
+    "close": "Закрыть"
   },
   "confirm": {
     "title": "Вы уверены?",
@@ -78,7 +78,7 @@
     "bookmarks": "Закладки",
     "schedules": "Отложенные",
     "fragments": "Snippets",
-    "settings": "Settings",
+    "settings": "Настройки",
     "logout": "Выйти",
     "vote-power": "Сила голоса:"
   },
@@ -91,7 +91,7 @@
     "title": "С возвращением!",
     "with-user-pass": "Войти с вашим именем пользователя и приватным ключом.",
     "username-placeholder": "пользователь",
-    "key-placeholder": "мастер-или активный закрытый ключ",
+    "key-placeholder": "пароль / закрытый ключ",
     "login-info-1": "Мы не храним ваши закрытые ключи.",
     "login-info-2": "Подробнее",
     "error-fields-required": "Пожалуйста, введите имя пользователя и пароль/ключ",
@@ -99,7 +99,7 @@
     "error-user-fetch": "Не удалось получить данные пользователя",
     "error-user-not-found": "Такого пользователя не существует",
     "error-permission": "Не удалось получить разрешение на запись",
-    "error-authenticate": "Неправильный приватный ключ. Требуется мастер- или активный закрытый ключ.",
+    "error-authenticate": "Неверный закрытый ключ. Требуется мастер-пароль, активный или закрытый постинг ключ.",
     "with-hive-signer": "Войти с помощью hivesigner",
     "with-keychain": "Войти с помощью keychain",
     "sign-up-text-1": "У вас нет учетной записи?",
@@ -147,6 +147,8 @@
     "title": "Tip"
   },
   "entry-payout": {
+    "reward": "Вознаграждение",
+    "full-power": "100% в Силу",
     "pending-payout": "Ожидаемая выплата",
     "promoted": "Продвигаемое",
     "author-payout": "Автору",
@@ -293,7 +295,7 @@
     "username-available": "Доступно.",
     "username-not-available": "Недоступно.",
     "username-wrong-format": "Неверный формат. Требуется формат hive-1xxxxx.",
-    "password": "Master password",
+    "password": "Мастер-пароль",
     "confirmation": "Я надёжно сохранил имя владельца и пароль.",
     "submit": "Создать сообщество",
     "progress-account": "Создание учетной записи...",
@@ -304,11 +306,11 @@
     "done-link-label": "Начните работу."
   },
   "community-rewards-registration": {
-    "body-text": "Register your community to get Ecency POINTS",
+    "body-text": "Зарегистрируйте свое сообщество, чтобы получить Ecency баллы",
     "btn-next-label": "Register",
     "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.",
-    "conflict-body-text": "This community is already registered.",
-    "min-required-body-text": "Minimum 100 subscribers required to register."
+    "conflict-body-text": "Такое сообщество уже зарегистрировано.",
+    "min-required-body-text": "Для регистрации требуется не менее 100 подписчиков."
   },
   "pin-btn": {
     "pin": "Закрепить",
@@ -339,6 +341,16 @@
     "create-community": "Создать сообщество",
     "witnesses": "Заверители",
     "proposals": "Предложения"
+  },
+  "profile-info": {
+    "joined": "Присоединился: {{n}}",
+    "last-active": "Последняя активность: {{n}}",
+    "vote-value": "Vote value: {{n}}",
+    "vote-value-max": "(out of max {{n}})",
+    "vote-power": "Сила голоса: {{n}}%",
+    "rc-power": "Ресурс Кредиты: {{n}}%",
+    "recharge-time": "(fully charged {{n}})",
+    "down-vote-power": "Downvote Power: {{n}}%"
   },
   "profile-edit": {
     "title": "Профиль",
@@ -388,7 +400,7 @@
     "delegate": "Делегировать",
     "power-down": "Понижение Силы",
     "withdraw-routes": "Пути вывода",
-    "converting-hbd-amount": "Converting to HIVE"
+    "converting-hbd-amount": "Конвертация в HIVE"
   },
   "withdraw-routes": {
     "title": "Аккаунты для вывода",
@@ -406,11 +418,11 @@
     "comment-desc": "Каждый коммент помогает набирать аудиторию, завязывает дружбу и приносит 5 очков.",
     "checkin-desc": "Нахождение на Ecency дает вам 0.25 очков и помогает оставаться на связи с вашими друзьями.",
     "vote-desc": "Голосуя, вы награждаете других и выказываете своё уважение, а также получаете 0.01 х очки силы.",
-    "reblog-desc": "Share what post you like with your friends and earn 1 points.",
+    "reblog-desc": "Делитесь постами, что вам нравятся, с друзьями и зарабатывайте по 1 баллу.",
     "login-desc": "При первой авторизации в приложении вы получите 100 очков.",
     "checkin-extra-desc": "Активное использование приложения даёт вам дополнительный шанс получить 10 очков.",
     "delegation-desc": "Вы можете заработать ~50 очков в день за каждое делегирование в 1000HP.",
-    "community-desc": "Register your community to get 20 points for per post published with Ecency applications.",
+    "community-desc": "Зарегистрируйте свое сообщество, чтобы получать 20 баллов за пост, опубликованный с помощью приложений Ecency.",
     "history": "История",
     "post-list-desc": "Очки за пост",
     "comment-list-desc": "Очки за комментарий",
@@ -577,57 +589,57 @@
   "submit": {
     "page-title": "Создать пост",
     "page-description": "Publish an article, earn reward, uncensored, immutable, decentralized content!",
-    "title-placeholder": "Title",
-    "body-placeholder": "Post Content",
-    "reward": "Reward",
+    "title-placeholder": "Заголовок",
+    "body-placeholder": "Содержание поста",
+    "reward": "Вознаграждение",
     "reward-hint": "Set author reward ratio for liquid and staked tokens",
-    "reward-default": "Default 50% / 50%",
-    "reward-sp": "Power Up 100%",
-    "reward-dp": "Decline Payout",
-    "preview": "Preview",
-    "publish": "Publish",
-    "update": "Update",
-    "save-draft": "Save Draft",
-    "draft-saved": "Draft saved",
-    "update-draft": "Update Draft",
-    "draft-updated": "Draft updated",
-    "cancel-update": "Cancel",
-    "clear": "Clear",
-    "published": "Post Published",
-    "updated": "Post Updated",
-    "advanced": "Advanced",
-    "beneficiaries": "Beneficiaries",
-    "beneficiaries-hint": "Set beneficiaries to share author reward with other accounts",
-    "reblog": "Reblog",
+    "reward-default": "По умолчанию 50% / 50%",
+    "reward-sp": "100% в Силу",
+    "reward-dp": "Отказаться от выплаты",
+    "preview": "Предварительный просмотр",
+    "publish": "Опубликовать",
+    "update": "Обновить",
+    "save-draft": "Сохранить черновик",
+    "draft-saved": "Черновик сохранён",
+    "update-draft": "Обновить черновик",
+    "draft-updated": "Черновик обновлён",
+    "cancel-update": "Отменить",
+    "clear": "Очистить",
+    "published": "Пост опубликован",
+    "updated": "Пост обновлён",
+    "advanced": "Расширенный режим",
+    "beneficiaries": "Бенефициары",
+    "beneficiaries-hint": "Установите бенефициаров чтобы поделиться авторским вознаграждением с другими аккаунтами",
+    "reblog": "Репост",
     "reblog-hint": "Auto share content to your blog",
     "schedule": "Schedule",
     "schedule-hint": "Auto publish content on specific time",
     "scheduled": "Post scheduled"
   },
   "tag-selector": {
-    "placeholder-empty": "Tags. First tag is main category. Sortable.",
-    "placeholder-focus": "Enter tag",
-    "placeholder-has-tags": "Add More",
-    "suggestion-header": "Tags",
-    "error-max": "Max {{n}} tags"
+    "placeholder-empty": "Тэги. Первый тэг является основной категорией. Для сортировки.",
+    "placeholder-focus": "Введите тэг",
+    "placeholder-has-tags": "Добавить еще",
+    "suggestion-header": "Тэги",
+    "error-max": "Максимум {{n}} тегов"
   },
   "community-selector": {
-    "my-blog": "My Blog",
+    "my-blog": "Мой блог",
     "search-placeholder": "Search Communities"
   },
   "word-count": {
-    "label": "{{n}} words",
-    "read-time-less-1-min": "< 1 min read",
-    "read-time-n-min": "~ {{n}} min read"
+    "label": "{{n}} слов",
+    "read-time-less-1-min": "< 1 мин. чтения",
+    "read-time-n-min": "~ {{n}} мин. чтения"
   },
   "beneficiary-editor": {
-    "title": "Beneficiaries",
-    "btn-label": "Set Beneficiaries",
-    "btn-label-n": "Set Beneficiaries ({{n}})",
-    "username": "Username",
-    "reward": "Reward",
-    "user-error": "{{n}} is not a valid user.",
-    "user-exists-error": "{{n}} is already in the list"
+    "title": "Бенефициары",
+    "btn-label": "Установить бенефициаров",
+    "btn-label-n": "Установить бенефициаров ({{n}})",
+    "username": "Пользователь",
+    "reward": "Вознаграждение",
+    "user-error": "Нет такого пользователя {{n}}.",
+    "user-exists-error": "{{n}} уже в списке"
   },
   "post-scheduler": {
     "title": "Schedule",
@@ -652,8 +664,8 @@
     "type-follows": "Подписки",
     "type-reblogs": "Репосты",
     "type-transfers": "Переводы",
-    "group-title-recent": "Recent",
-    "vote-str": "{{p}}% likes your post:",
+    "group-title-recent": "Недавние",
+    "vote-str": "{{p}}% проголосовал за ваш пост:",
     "reply-str": "ответил на ваш пост:",
     "mention-str": "упомянул вас в:",
     "followed-str": "подписался на",
@@ -661,9 +673,9 @@
     "ignored-str": "заглушил",
     "reblog-str": "сделал репост вашего поста:",
     "transfer-str": "отправил вам",
-    "spin-str": "Time to earn more Points, Play Spin on Ecency Mobile app",
-    "inactive-str": "Be active! Write a post, continue earning",
-    "referral-str": "joined with your referral, welcome them",
+    "spin-str": "Пора заработать больше баллов, сыграйте в Рулетку в мобильном приложении Ecency",
+    "inactive-str": "Будьте активны! Напишите пост, продолжайте зарабатывать",
+    "referral-str": "присоединился по вашей ссылке. Поприветствуйте его",
     "refresh": "Обновить",
     "mark-all-read": "Пометить всё как прочитанное",
     "mark-read": "Пометить как прочитанное",
@@ -671,169 +683,174 @@
     "unmute": "Включить уведомления"
   },
   "leaderboard": {
-    "title": "Leaderboard",
-    "title-day": "Daily top users",
-    "title-week": "Weekly top users",
-    "title-month": "Monthly top users",
-    "period-day": "Daily",
-    "period-week": "Weekly",
-    "period-month": "Monthly",
-    "header-score": "Activities",
-    "header-score-tip": "Post + comments made by a user for selected period",
-    "header-reward": "Reward"
+    "title": "Таблица лидеров",
+    "title-day": "Ежедневный топ пользователей",
+    "title-week": "Еженедельный топ пользователей",
+    "title-month": "Ежемесячный топ пользователей",
+    "period-day": "За день",
+    "period-week": "За неделю",
+    "period-month": "За месяц",
+    "header-score": "Действия",
+    "header-score-tip": "Посты + комментарии, сделанные пользователем за выбранный период",
+    "header-reward": "Вознаграждение"
   },
   "popular-users": {
-    "title": "Popular Users"
+    "title": "Популярные пользователи"
   },
   "discover": {
     "title": "Discover",
     "description": "Discover top online users"
   },
   "search-page": {
-    "title": "Search",
+    "title": "Поиск",
     "description": "Find uncensored content, communities and users"
   },
   "search-comment": {
-    "title": "Results",
-    "matches": "{{n}} matches",
-    "matches-singular": "1 match",
-    "advanced": "Advanced",
+    "title": "Результаты",
+    "matches": "{{n}} совпадений",
+    "matches-singular": "1 совпадение",
+    "advanced": "Расширенный режим",
     "search": "Search",
-    "search-placeholder": "search phrase",
-    "author": "Author",
-    "author-placeholder": "username",
-    "type": "Type",
-    "type-": "All",
-    "type-post": "Post",
-    "type-comment": "Comment",
-    "category": "Category",
-    "category-placeholder": "category",
-    "tags": "Tags",
-    "tags-placeholder": "comma separated tags",
-    "date": "Date",
-    "date-week": "Week",
-    "date-month": "Month",
-    "date-year": "Year",
-    "date-all": "All",
-    "sort": "Sort",
-    "sort-popularity": "Popularity",
-    "sort-relevance": "Relevance",
-    "sort-newest": "Recent",
-    "hide-low": "Hide low payout content",
-    "show-more": "show more"
+    "search-placeholder": "поисковый запрос",
+    "author": "Автор",
+    "author-placeholder": "пользователь",
+    "type": "Тип",
+    "type-": "Все",
+    "type-post": "Пост",
+    "type-comment": "Комментарий",
+    "category": "Категория",
+    "category-placeholder": "категория",
+    "tags": "Тэги",
+    "tags-placeholder": "тэги через запятую",
+    "date": "Дата",
+    "date-week": "Неделя",
+    "date-month": "Месяц",
+    "date-year": "Год",
+    "date-all": "Все",
+    "sort": "Сортировка",
+    "sort-popularity": "Популярность",
+    "sort-relevance": "Релевантность",
+    "sort-newest": "Недавние",
+    "hide-low": "Скрыть контент с низкой выплатой",
+    "show-more": "показать еще"
   },
   "search-people": {
-    "title": "People"
+    "title": "Люди"
   },
   "search-topics": {
-    "title": "Topics"
+    "title": "Темы"
   },
   "search-communities": {
-    "title": "Communities"
+    "title": "Сообщества"
   },
   "witnesses": {
     "page-title": "Witnesses",
     "page-description": "Consensus block producers selection",
     "page-description-long": "Role of witnesses or block producers in Hive blockchain is to act as the network's governance body. Community elects them to represent their voice and each user can elect up to 30 witnesses. Top 20 witnesses are producing blocks every minute while rest remain as backup witness and gets randomized chance every minute. This role is integral part of consensus mechanism blockchain runs on and recommend user engagement to vote on trusted witnesses.",
     "remaining": "<span>{{n}}</span> of {{max}} votes remaining",
-    "list-rank": "Rank",
+    "list-rank": "Рейтинг",
     "list-witness": "Witness",
-    "list-miss": "Miss",
+    "list-miss": "Пропущено",
     "list-url": "URL",
-    "list-fee": "Fee",
-    "list-feed": "Feed",
-    "list-version": "Version",
-    "username-placeholder": "username",
-    "extra-description": "Enter account name below to vote for a witness outside of Top 50",
-    "proxy-description": "You can also choose a proxy that will vote for witnesses for you. This will reset your current witness selection.",
-    "proxy-btn-label": "Set Proxy",
-    "proxy-active-description": "You have set a voting proxy. If you would like to re-enable manual voting, please clear your proxy.",
-    "proxy-active-current": "Your current proxy is",
-    "proxy-active-btn-label": "Clear Proxy",
-    "proxy-votes-for": "@{{username}} votes for"
+    "list-fee": "Комиссия",
+    "list-feed": "Ценовой фид",
+    "list-version": "Версия",
+    "username-placeholder": "пользователь",
+    "extra-description": "Чтобы проголосовать за делегата вне Топ 50, введите имя аккаунта ниже",
+    "proxy-description": "Вы также можете выбрать прокси (доверенного), который будет голосовать вместо вас. Это сбросит ваш текущий выбор делегатов.",
+    "proxy-btn-label": "Установить прокси",
+    "proxy-active-description": "У вас установлен прокси для голосования. Если вы хотите вернуть голосование вручную, пожалуйста, очистите ваш прокси.",
+    "proxy-active-current": "Ваш действующий прокси",
+    "proxy-active-btn-label": "Очистить прокси",
+    "proxy-votes-for": "@{{username}} голосует за"
   },
   "proposals": {
-    "page-title": "Proposals",
+    "page-title": "Предложения",
     "page-description": "The Decentralized Hive Fund (DHF) is an on-chain funding mechanism that allows anyone to submit a proposal and get funding once community votes pass certain threshold. To learn more read our <a href=\"/faq#how-dhf-work\">FAQ</a>.",
     "by": "by",
-    "for": "for",
-    "duration-days": "{{n}} days",
-    "daily-pay": "Daily {{n}}",
-    "votes": "Votes: {{n}}",
-    "status-active": "active",
-    "status-expired": "expired",
-    "status-inactive": "upcoming",
-    "remaining-days": "Remaining: {{n}} days",
-    "filter-all": "All",
-    "filter-active": "Active",
-    "filter-inactive": "Upcoming",
-    "filter-team": "Ecency Projects",
+    "for": "за",
+    "duration-days": "{{n}} дня(ей)",
+    "daily-pay": "Ежедневно {{n}}",
+    "votes": "Голосов: {{n}}",
+    "status-active": "активные",
+    "status-expired": "срок истек",
+    "status-inactive": "предстоящие",
+    "remaining-days": "Осталось: {{n}} дней",
+    "filter-all": "Все",
+    "filter-active": "Активные",
+    "filter-inactive": "Предстоящие",
+    "filter-team": "Проекты Ecency",
     "return-description": "This is the base return proposal. Every proposal with less votes will not receive funds.",
-    "votes-dialog-title": "Votes on Proposal #{{n}}",
-    "see-all": "see all proposals"
+    "votes-dialog-title": "Голосов за Предложение #{{n}}",
+    "see-all": "посмотреть все предложения"
   },
   "gallery": {
-    "title": "Gallery",
-    "copied": "Copied to clipboard"
+    "title": "Галерея",
+    "copied": "Скопировано в буфер обмена"
   },
   "drafts": {
-    "title": "Drafts",
-    "filter": "Search by title"
+    "title": "Черновики",
+    "filter": "Поиск по названию"
   },
   "schedules": {
-    "title": "Scheduled Posts",
-    "move": "Move to drafts"
+    "title": "Отложенные посты",
+    "move": "Переместить в черновики"
   },
   "bookmarks": {
-    "title": "Bookmarks"
+    "title": "Закладки"
   },
   "favorites": {
-    "title": "Favorites"
+    "title": "Избранное"
   },
   "fragments": {
     "title": "Snippets",
     "create-first": "Create your first snippet",
-    "filter": "Search by title",
+    "filter": "Поиск по названию",
     "form-title": "Title",
     "form-body": "Body"
   },
   "password-update": {
-    "title": "Change Password",
-    "account": "Account",
-    "cur-pass": "Current password",
-    "new-pass": "New password",
-    "new-pass2": "Confirm new password",
-    "error-new2": "Passwords must be same",
-    "pass-gen": "Click to generate password",
-    "label-check": "I have securely saved my generated password",
-    "updated": "Password updated successfully!"
+    "title": "Смена пароля",
+    "account": "Aккаунт",
+    "cur-pass": "Действующий пароль",
+    "new-pass": "Новый пароль",
+    "new-pass2": "Подтвердите новый пароль",
+    "error-new2": "Пароли должны совпадать",
+    "pass-gen": "Нажмите, чтобы сгененировать пароль",
+    "label-check": "Я надежно сохранил сгенерированный пароль",
+    "updated": "Пароль успешно обновлен!"
   },
   "add-image": {
-    "title": "Add Image",
+    "title": "Добавить изображение",
     "text-label": "Image Text",
     "link-label": "Image Link"
   },
+  "add-link": {
+    "title": "Add Link",
+    "text-label": "Текст",
+    "link-label": "https://"
+  },
   "scroll-to-top": {
-    "title": "Scroll to Top"
+    "title": "Прокрутка вверх"
   },
   "static": {
     "about": {
       "page-title": "About",
-      "intro-title": "What is <span>Ecency</span>",
-      "intro-content": "Ecency is beautiful and handy wrapper interface around the Hive blockchain network allowing you to create your own posts, surf your feeds, vote what you like, write comments, read replies, do all major Hive functions in your daily social surfing as well as wallet actions and other extras such as search, discover different tags etc.",
+      "intro-title": "Что такое <span>Ecency</span>",
+      "intro-content": "Ecency - это красивый и удобный внешний интерфейс вокруг Hive блокчейна, позволяющий создавать свои посты, листать ленту, голосовать за понравившееся, писать комментарии, читать ответы, выполнять все основные функции Hive в повседневном социальном сёрфинге, а также действия с кошельком и другие дополнительные функции, такие как поиск и т. д.",
       "faq-title": "FAQ",
       "faqs": "All FAQs",
-      "contact-title": "Contacts",
-      "contact-blog": "Founder's blog",
-      "contact-news": "News on Hive",
-      "contact-email": "Email us"
+      "contact-title": "Контакты",
+      "contact-blog": "Блог разработчика",
+      "contact-news": "Новости Hive",
+      "contact-email": "Напишите нам"
     },
     "faq": {
       "page-title": "Ecency FAQ",
       "page-sub-title": "Table of Contents",
-      "what-is-ecency-header": "What is Ecency?",
+      "what-is-ecency-header": "Что такое Ecency?",
       "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based social network - powered by <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency is home of free speech and rewarding communities for content creators.</p><p>Project is founded by <a class=\"push-link\" href=\"/@good-karma\">@good-karma</a> in August 2016 as an alternative social network that's uncensored, user controled, immutable and opensource. Currently there are <a class=\"push-link\" href=\"/contributors\">many independent and voluntary contributors</a> wanting to keep vision and spirit of free speech.</p><p>Ecency helps onboarding masses into Blockchain technology where users are getting paid for their time, resources and learn while enjoying social aspects of blockchain. Through ease of use, users not only learn but also become investors, innovators of the new internet.</p>",
-      "what-is-hive-header": "What is Hive blockchain?",
+      "what-is-hive-header": "Что такое Hive блокчейн?",
       "what-is-hive-body": "<p>Hive is a blockchain that was designed to be fast, feeless, decentralized, uncensored platform for Web3.0 applications, with built-in features where stake holders can earn rewards by staking, curating, posting, playing games, trading - all without any middle man (decentralized). Tokens on Hive blockchain called HIVE, HIVE DOLLARS, HIVE POWER.</p>",
       "what-is-difference-header": "What's the difference from other Social Networks?",
       "what-is-difference-body": "<p><img src=\"https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmYA8P4owBo9oWxcMGn6gmQvHncjypdb9PSojKWVLshswt5uKaViRT49wfufJGLWW7t3nxQYS4Lv?format=match&mode=fit\"/></p><p>The primary difference, Ecency is based on a blockchain which means content is immutable and uncensorable. You own your community and account, nobody but you have full control of your data. Empowering true free speech. Ecency is also opensource, rewarding and innovative, built and owned by users. Aspire for greatness!</p>",
@@ -859,20 +876,20 @@
       "how-to-transfer-body": "<p>After login, you will find Wallet page in top header on website and desktop app or in Profile page, bottom navigation bar on mobile app. In wallet page you can initiate transfer of any token you hold to another user or exchange accounts, click on arrow next to your balance and find transfer operations. Transfers are irreversible because they are registered on blockchain, make sure to send correct recipient.</p>",
       "how-see-rewards-header": "How do I see my post rewards?",
       "how-see-rewards-body": "<p><img src=\"https://images.ecency.com/p/3W72119s5BjW4PvRk9nXBzqrPWMsMTjNrXDPFFf11iYhySeELMe77idrZHBPmyaqFX6CV72hBLB5qFhwVhGoAATydoFxAF7oCwBt1ztp6eS9r5us4pm7iN?format=match&mode=fit\"/></p><p>In Wallet page (in top header on website and desktop app, bottom navigation bar on mobile app), you can see Curation rewards (the rewards earned for upvoting posts and comments) and Author rewards (the rewards earned by your own posts and comments)</p><p>You can also view the same information for other users by visiting their wallet profile.</p>",
-      "how-dhf-work-header": "How DHF works?",
+      "how-dhf-work-header": "Как работает DHF (Децентрализованый Hive Фонд)?",
       "how-dhf-work-body": "<p>Anyone can create a proposal and convince community to vote on their proposal to get funded. Before creating proposal, normal post should be published on blockchain and it is recommended to gather feedback before creating proposal. Proposal creation has fee of 10 HBD + 1 HBD for each day it lasts over 60 days.</p><p>Once proposal reaches certain threshold of tallied votes, it will start receiving funds each hour. If proposal falls below threshold, system will halt funding for that proposal. You can vote as many proposals as you want, there are no limits. Proposal cannot be edited, but can be deleted/withdrawn by creator.</p>",
-      "when-claim-rewards-header": "When can I claim my rewards?",
-      "when-claim-rewards-body": "<p>Posts and comments remain active for 7 days and rewards are fluctuates depending on votes and market price of token, that is why rewards are approximated as pending reward. When the period is over, pending reward changes to actual reward and you are able to claim earned rewards. In your Wallet, click the Claim Rewards button to add the tokens to your account.</p>",
+      "when-claim-rewards-header": "Когда я смогу получить вознаграждение?",
+      "when-claim-rewards-body": "<p>Посты и комментарии остаются активными в течение 7 дней, а сумма вознаграждения колеблется в зависимости от количества голосов и рыночной цены токена, вот почему вознаграждения отображаются как выплаты в ожидании. По истечении этого периода выплата в ожидании превращается в фактическое вознаграждение, и вы можете получить заработанные награды. Чтобы зачислить токены на аккаунт, нажмите кнопку \"Получить Вознаграждение\" в своем кошельке.</p>",
       "what-are-rc-header": "What are Resource Credits?",
       "what-are-rc-body": "<p>Transacting on the Hive blockchain has zero fees, transaction rate-limiting is employed to safeguard the blockchain from spam attacks. Every action that you take on the blockchain will consume a small amount of Resource Credits. This includes posting, commenting, voting, transferring tokens, etc. Viewing content does not consume Resource Credits.</p><p>Every user has a limited amount of Resource Credits to use each week. The more transactions a user does, the less Resource Credits they will have left (until they recharge). Users with more HIVE POWER will have more Resource Credits.</p><p>If you run out of Resource Credits, you will be unable to transact with the blockchain until your Resource Credits recharge (happens automatically) or you acquire additional HIVE POWER to increase your Resource Credit balance or you can <a href=\"/faq#how-boost-account\">request Boosting account from Ecency</a> to receive temporary delegation.</p>",
       "how-boost-account-header": "How to request account boosting?",
       "how-boost-account-body": "<p>If your account is low on <a href=\"/faq#what-are-rc\">Resource Credits</a>, you can request account boosting from Ecency. You will receive temporary delegation which should boost your account to perform more activities on blockchain. You can find account boosting feature in Points options.</p>",
-      "what-spam-abuse-header": "What is considered spam or abuse?",
-      "what-spam-abuse-body": "<p><img src=\"https://images.ecency.com/p/3jpR3paJ37V8XPrHkfZdMt57jY6pRt6zEt5iRJV9pSw4Mez3Hut8U6RWvWLA7cFYEa1bxveXeasNfZApzrcLYLx8cz84kBEKak1KkewE2ZqE1QRRkF4eqRH3vWVqZB9WuNbzE?format=match&mode=fit\"/></p><p><ul><li>Plagiarized posts or copied content.</li><li>Leaving nearly identical or materially similar comments on multiple posts.</li><li>Using tags that are unrelated to the post.</li><li>Threatening users with any type of physical violence.</li><li>Not citing sources when using someone else’s material.</li><li>Posting ‘not safe for work’ content without using the “nsfw” tag.</li><li>Scams or Fraudulent offers.</li></ul></p>",
-      "can-link-post-header": "Can I request adding backlink to my website from Ecency team?",
-      "can-link-post-body": "<p>All the content on our site is created by our users and we don't modify or able to add backlinks. You are free to contact author of the post or <a href=\"/signup?referral=ecency\" class=\"push-link\">Signup</a> to open your own blog and community, publish articles to create backlinks for free.</p>",
-      "can-guest-post-header": "Is it possible to guest post on your website?",
-      "can-guest-post-body": "<p>Posting on Ecency is simple and easy, <a href=\"/signup?referral=ecency\" class=\"push-link\">Signup</a> to open your own blog and community, start posting your content.</p>",
+      "what-spam-abuse-header": "Что считается спамом или злоупотреблением?",
+      "what-spam-abuse-body": "<p><img src=\"https://images.ecency.com/p/3jpR3paJ37V8XPrHkfZdMt57jY6pRt6zEt5iRJV9pSw4Mez3Hut8U6RWvWLA7cFYEa1bxveXeasNfZApzrcLYLx8cz84kBEKak1KkewE2ZqE1QRRkF4eqRH3vWVqZB9WuNbzE?format=match&mode=fit\"/></p><p><ul><li>Посты с признаками плагиата или копирования контента</li><li>Массовая публикация похожих или практически идентичных комментариев</li><li>Использование тегов, не имеющих отношения к посту.</li><li>Угрозы любой формой физического насилия.</li><li>Не указание источника при использовании чужого материала.</li><li>Публикация коннтента \"18+\" без использования тега \"nsfw\".</li><li>Мошенничество или сомнительные предложения</li></ul></p>",
+      "can-link-post-header": "Могу ли я попросить у команды Ecence добавить обратную ссылку на мой сайт?",
+      "can-link-post-body": "<p>Весь контент на нашем сайте создается пользователями, и мы не можем изменять его или добавлять обратные ссылки. Вы можете связаться с автором поста или<a href=\"/signup?referral=ecency\" class=\"push-link\">Зарегистрироваться</a> чтобы создать свой блог или сообщество, и публиковать статьи с бесплатным размещением ссылок.</p>",
+      "can-guest-post-header": "Можно ли постить на сайте с гостевого аккаунта?",
+      "can-guest-post-body": "<p> Постить на Ecency легко и просто, <a href=\"/signup?referral=ecency\" class=\"push-link\">Зарегистрируйтесь</a> чтобы создать свой блог или сообщество, и начинайте публиковать свой контент.</p>",
       "source-label-header": "Content source labels, what are those?",
       "source-label-body": "<p>Content source helps you understand how content was published. In some cases you may see a third-party client name, which indicates the Content came from a non-Ecency application. Authors sometimes use third-party client applications to manage their blogs, communities. Third-party clients are software tools used by authors and therefore are not affiliated with, nor do they reflect the views of, the content. Content can be directly created by humans or, in some circumstances, automated by an application.</p>",
       "how-to-contribute-header": "How to contribute to the Ecency?",
@@ -881,22 +898,30 @@
   },
   "contributors": {
     "title": "Contributors",
-    "description": "These great people contributed in one way or another to Ecency, we would like to thank them all. If you want to join our team by contributing with Translation, Ideas, Development, Designing, Social awareness, feel free to join. To learn more read our <a href=\"/faq#how-to-contribute\">FAQ</a>."
+    "description": "Тем или иным образом эти замечательные люди внесли свой вклад в Ecency, и мы хотели бы поблагодарить их всех. Если вы хотите присоединиться к нашей команде, участвуя в переводе, идеях, разработке, дизайне, продвижении в соцсетях, не стесняйтесь. Подробности ищите в <a href=\"/faq#how-to-contribute\">FAQ</a>."
   },
   "context-menu": {
-    "cut": "Cut",
-    "copy": "Copy",
-    "paste": "Paste",
-    "open-image-browser": "Open image in browser",
-    "copy-image-url": "Copy image url"
+    "cut": "Вырезать",
+    "copy": "Скопировать",
+    "paste": "Вставить",
+    "open-image-browser": "Открыть изображение в браузере",
+    "copy-image-url": "Копировать url изображения"
   },
   "updater": {
-    "new-version-available": "New version is available",
-    "download": "Download",
-    "update": "Update",
-    "dismiss": "Dismiss",
-    "downloading": "Downloading new version...",
-    "download-completed": "Download is completed",
-    "restart": "Restart"
+    "new-version-available": "Доступна новая версия",
+    "download": "Загрузить",
+    "update": "Обновить",
+    "dismiss": "Отклонить",
+    "downloading": "Загрузка новой версии...",
+    "download-completed": "Загрузка завершена",
+    "restart": "Перезапустить"
+  },
+  "chain-error": {
+    "min-root-comment": "Вы можете писать только раз в пять минут.",
+    "identical-vote": "Your current vote on this content is identical to this vote.",
+    "insufficient-resource": "Недостаточно Ресурс Кредитов. Пожалуйста, подождите с транзакцией или сделайте power up HIVE.",
+    "delete-comment-with-vote": "Нельзя удалить контент, получивший голоса.",
+    "comment-cashout": "Выплата уже прошла.",
+    "paid-out-post-forbidden": "Нельзя голосовать за контент, по которому уже прошла выплата."
   }
 }

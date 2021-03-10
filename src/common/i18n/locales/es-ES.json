@@ -91,7 +91,7 @@
     "title": "¡Bienvenido de nuevo!",
     "with-user-pass": "Inicia sesión con tu nombre de usuario y clave privada.",
     "username-placeholder": "nombre de Usuario",
-    "key-placeholder": "clave privada maestra o activa",
+    "key-placeholder": "Contraseña / clave privada",
     "login-info-1": "No almacenamos sus claves privadas.",
     "login-info-2": "Más información",
     "error-fields-required": "Por favor introduce el usuario y la contraseña",
@@ -99,7 +99,7 @@
     "error-user-fetch": "Los datos del usuario no se pudieron recuperar",
     "error-user-not-found": "El usuario no existe",
     "error-permission": "No se pudo obtener el permiso de publicación",
-    "error-authenticate": "Clave privada incorrecta. Se requiere clave privada maestra o activa.",
+    "error-authenticate": "Clave privada incorrecta. Se requiere clave maestra o activa o de publicación.",
     "with-hive-signer": "Iniciar Sesión con hivesigner",
     "with-keychain": "Iniciar sesión con KeyChain",
     "sign-up-text-1": "¿No tienes una cuenta?",
@@ -147,6 +147,8 @@
     "title": "Sugerencia"
   },
   "entry-payout": {
+    "reward": "Recompensa",
+    "full-power": "Potenciar al 100%",
     "pending-payout": "Pago Pendiente",
     "promoted": "Promocionado",
     "author-payout": "Pagos de Autor",
@@ -339,6 +341,16 @@
     "create-community": "Crear una Comunidad",
     "witnesses": "Testigos",
     "proposals": "Propuestas"
+  },
+  "profile-info": {
+    "joined": "Se unió: {{n}}",
+    "last-active": "Última actividad: {{n}}",
+    "vote-value": "Valor del voto: {{n}}",
+    "vote-value-max": "(de un máximo de {{n}})",
+    "vote-power": "Poder de voto: {{n}}%",
+    "rc-power": "Créditos de recursos: {{n}}%",
+    "recharge-time": "(Cargado completamente en {{n}})",
+    "down-vote-power": "Poder de Votos Negativos: {{n}}%"
   },
   "profile-edit": {
     "title": "Perfil",
@@ -652,7 +664,7 @@
     "type-follows": "Seguidores",
     "type-reblogs": "Reblogueos",
     "type-transfers": "Transacciones",
-    "group-title-recent": "Recent",
+    "group-title-recent": "Recientes",
     "vote-str": "A {{p}}% le gusta tu publicación:",
     "reply-str": "contestó a tu publicación:",
     "mention-str": "te mencionó en:",
@@ -813,6 +825,11 @@
     "text-label": "Texto de la imagen",
     "link-label": "Enlace de la imagen"
   },
+  "add-link": {
+    "title": "Añadir enlace",
+    "text-label": "Texto",
+    "link-label": "https://"
+  },
   "scroll-to-top": {
     "title": "Ir arriba"
   },
@@ -898,5 +915,13 @@
     "downloading": "Descargando nueva versión...",
     "download-completed": "La descarga esta completa",
     "restart": "Reiniciar"
+  },
+  "chain-error": {
+    "min-root-comment": "Sólo puedes publicar una vez cada cinco minutos.",
+    "identical-vote": "Tu voto actual sobre este contenido es idéntico a esta votación.",
+    "insufficient-resource": "Créditos de recursos insuficientes. Por favor espere para transaccionar o Incrementa tus HIVE por Power Up.",
+    "delete-comment-with-vote": "No se puede eliminar un contenido con votos.",
+    "comment-cashout": "Retiro de contenido.",
+    "paid-out-post-forbidden": "La votación por el contenido pagado no está disponible."
   }
 }

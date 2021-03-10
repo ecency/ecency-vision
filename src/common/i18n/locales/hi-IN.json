@@ -91,7 +91,7 @@
     "title": "आपका पुनः स्वागत है!",
     "with-user-pass": "अपने उपयोगकर्ता नाम और निजी कुंजी के साथ लॉगिन करें।",
     "username-placeholder": "प्रयोक्ता नाम",
-    "key-placeholder": "master or active private key",
+    "key-placeholder": "password / private key",
     "login-info-1": "हम आपकी निजी कुंजियाँ संग्रहीत नहीं करते हैं।",
     "login-info-2": "अधिक जानकारी",
     "error-fields-required": "कृपया उपयोगकर्ता नाम और निजी कुंजी दर्ज करें",
@@ -99,7 +99,7 @@
     "error-user-fetch": "उपयोगकर्ता डेटा प्राप्त नहीं किया जा सका",
     "error-user-not-found": "उपयोगकर्ता उपलब्ध नहीं है",
     "error-permission": "पोस्टिंग की अनुमति नहीं मिल सकी",
-    "error-authenticate": "गलत निजी कुंजी। मास्टर या सक्रिय निजी कुंजी की आवश्यकता है।",
+    "error-authenticate": "Wrong private key. Master or active or posting private key required.",
     "with-hive-signer": "हाइवेसाईनर के साथ लॉगिन करें",
     "with-keychain": "कीचैन के साथ लॉगिन करें",
     "sign-up-text-1": "खाता नहीं है?",
@@ -147,6 +147,8 @@
     "title": "टिप"
   },
   "entry-payout": {
+    "reward": "Reward",
+    "full-power": "Power Up 100%",
     "pending-payout": "अनिर्णीत भुगतान",
     "promoted": "पदोन्नत",
     "author-payout": "लेखक भुगतान",
@@ -339,6 +341,16 @@
     "create-community": "एक समुदाय बनाएँ",
     "witnesses": "गवाहों",
     "proposals": "प्रस्ताव"
+  },
+  "profile-info": {
+    "joined": "Joined: {{n}}",
+    "last-active": "Last active: {{n}}",
+    "vote-value": "Vote value: {{n}}",
+    "vote-value-max": "(out of max {{n}})",
+    "vote-power": "Vote Power: {{n}}%",
+    "rc-power": "Resource Credits: {{n}}%",
+    "recharge-time": "(fully charged {{n}})",
+    "down-vote-power": "Downvote Power: {{n}}%"
   },
   "profile-edit": {
     "title": "रूपरेखा",
@@ -813,6 +825,11 @@
     "text-label": "छवि पाठ",
     "link-label": "छवि लिंक"
   },
+  "add-link": {
+    "title": "Add Link",
+    "text-label": "Text",
+    "link-label": "https://"
+  },
   "scroll-to-top": {
     "title": "शीर्ष तक स्क्रॉल करें"
   },
@@ -898,5 +915,13 @@
     "downloading": "नया संस्करण डाउनलोड हो रहा है...",
     "download-completed": "डाउनलोड पूरा हो गया है",
     "restart": "पुन: शुरू करें"
+  },
+  "chain-error": {
+    "min-root-comment": "You may only post once every five minutes.",
+    "identical-vote": "Your current vote on this content is identical to this vote.",
+    "insufficient-resource": "Insufficient Resource Credits. Please wait to transact, or power up HIVE.",
+    "delete-comment-with-vote": "Can't delete a content with votes.",
+    "comment-cashout": "Content cashout.",
+    "paid-out-post-forbidden": "Voting for paid out content is not available."
   }
 }

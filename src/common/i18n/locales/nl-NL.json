@@ -91,7 +91,7 @@
     "title": "Welkom terug!",
     "with-user-pass": "Aanmelden met jouw gebruikersnaam en privé sleutel.",
     "username-placeholder": "gebruikersnaam",
-    "key-placeholder": "hoofd of privé sleutel",
+    "key-placeholder": "password / private key",
     "login-info-1": "We slaan je privé sleutels niet op.",
     "login-info-2": "Meer info",
     "error-fields-required": "Voer aub gebruikersnaam en prive sleutel in",
@@ -99,7 +99,7 @@
     "error-user-fetch": "Gebruikersgegevens konden niet worden opgehaald",
     "error-user-not-found": "Gebruiker bestaat niet",
     "error-permission": "Kon geen toestemming krijgen voor publiceren",
-    "error-authenticate": "Verkeerde privé sleutel. Hoofd of actieve sleutel is nodig.",
+    "error-authenticate": "Wrong private key. Master or active or posting private key required.",
     "with-hive-signer": "Aanmelden via HiveSigner",
     "with-keychain": "Aanmelden via KeyChain",
     "sign-up-text-1": "Nog geen lid?",
@@ -147,6 +147,8 @@
     "title": "Tip"
   },
   "entry-payout": {
+    "reward": "Reward",
+    "full-power": "Power Up 100%",
     "pending-payout": "Uitbetaling In Behandeling",
     "promoted": "Gesponsord",
     "author-payout": "Auteur Uitbetaling",
@@ -339,6 +341,16 @@
     "create-community": "Maak een gemeenschap aan",
     "witnesses": "Getuigen",
     "proposals": "Voorstellen"
+  },
+  "profile-info": {
+    "joined": "Joined: {{n}}",
+    "last-active": "Last active: {{n}}",
+    "vote-value": "Vote value: {{n}}",
+    "vote-value-max": "(out of max {{n}})",
+    "vote-power": "Vote Power: {{n}}%",
+    "rc-power": "Resource Credits: {{n}}%",
+    "recharge-time": "(fully charged {{n}})",
+    "down-vote-power": "Downvote Power: {{n}}%"
   },
   "profile-edit": {
     "title": "Profiel",
@@ -813,6 +825,11 @@
     "text-label": "Image Text",
     "link-label": "Image Link"
   },
+  "add-link": {
+    "title": "Add Link",
+    "text-label": "Text",
+    "link-label": "https://"
+  },
   "scroll-to-top": {
     "title": "Scroll to Top"
   },
@@ -898,5 +915,13 @@
     "downloading": "Downloading new version...",
     "download-completed": "Download is completed",
     "restart": "Restart"
+  },
+  "chain-error": {
+    "min-root-comment": "You may only post once every five minutes.",
+    "identical-vote": "Your current vote on this content is identical to this vote.",
+    "insufficient-resource": "Insufficient Resource Credits. Please wait to transact, or power up HIVE.",
+    "delete-comment-with-vote": "Can't delete a content with votes.",
+    "comment-cashout": "Content cashout.",
+    "paid-out-post-forbidden": "Voting for paid out content is not available."
   }
 }
