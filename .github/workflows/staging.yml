@@ -62,18 +62,20 @@ jobs:
         HIVESIGNER_CLIENT_SECRET: ${{secrets.HIVESIGNER_CLIENT_SECRET}}
         SEARCH_API_ADDR: ${{secrets.SEARCH_API_ADDR}}
         SEARCH_API_SECRET: ${{secrets.SEARCH_API_SECRET}}
+        USE_PRIVATE: ${{secrets.USE_PRIVATE}}
       with:
         host: ${{ secrets.SSH_STAGING_HOST }}
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         port: ${{ secrets.SSH_PORT }}
-        envs: STAGING_PORT,PRIVATE_API_ADDR,PRIVATE_API_AUTH,HIVESIGNER_CLIENT_SECRET,SEARCH_API_ADDR,SEARCH_API_SECRET
+        envs: STAGING_PORT,PRIVATE_API_ADDR,PRIVATE_API_AUTH,HIVESIGNER_CLIENT_SECRET,SEARCH_API_ADDR,SEARCH_API_SECRET,USE_PRIVATE
         script: |
           export PRIVATE_API_ADDR=$PRIVATE_API_ADDR
           export PRIVATE_API_AUTH=$PRIVATE_API_AUTH
           export HIVESIGNER_CLIENT_SECRET=$HIVESIGNER_CLIENT_SECRET
           export SEARCH_API_ADDR=$SEARCH_API_ADDR
           export SEARCH_API_SECRET=$SEARCH_API_SECRET
+          export USE_PRIVATE=$USE_PRIVATE
           cd ~/vision-staging
           git pull origin development
           docker pull ecency/vision:development
