@@ -35,6 +35,6 @@ COPY --from=dependencies /var/app/public /var/app/public
 COPY --from=dependencies /var/app/build /var/app/build
 COPY --from=dependencies /var/app/node_modules /var/app/node_modules
 
-HEALTHCHECK --interval=60s --timeout=5s --start-period=30s --retries=3 CMD node /var/app/healthCheck.js
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 CMD node /var/app/healthCheck.js
 
 CMD [ "yarn", "run", "start:prod" ]
