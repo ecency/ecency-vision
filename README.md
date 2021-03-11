@@ -41,6 +41,15 @@ Feel free to test it out and submit improvements and pull requests.
 ##### Edit config file or define environment variables
 `$ nano src/config.ts`
 
+##### Environment variables
+
+USE_PRIVATE -  if instance has private api address and auth (0 or 1 value)
+PRIVATE_API_ADDR - private api endpoint
+PRIVATE_API_AUTH - private api auth
+HIVESIGNER_CLIENT_SECRET -  hivesigner client secret
+SEARCH_API_ADDR - hivesearcher api endpoint
+SEARCH_API_SECRET - hivesearcher api auth token
+
 ##### Start website in dev
 `$ yarn start`
 
