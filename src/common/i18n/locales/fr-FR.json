@@ -1,6 +1,6 @@
 {
   "g": {
-    "add": "Add",
+    "add": "Ajouter",
     "edit": "Éditer",
     "search": "Rechercher",
     "downloads": "Téléchargements",
@@ -20,17 +20,17 @@
     "back": "Précédent",
     "load-more": "Afficher plus",
     "empty-list": "Il n'y a rien ici",
-    "no-matches": "No matches",
+    "no-matches": "Aucune correspondance",
     "save": "Sauvegarder",
     "try-again": "Réessayer ",
     "show": "Montrer",
     "on": "On",
     "off": "Off",
-    "yes": "Yes",
-    "no": "No",
-    "done": "Done",
-    "apply": "Apply",
-    "close": "Close"
+    "yes": "Oui",
+    "no": "Non",
+    "done": "Terminé",
+    "apply": "Appliquer",
+    "close": "Fermer"
   },
   "confirm": {
     "title": "Êtes-vous sûr ?",
@@ -45,8 +45,8 @@
     "filter-payout": "Récompenses",
     "filter-muted": "Silencieux",
     "filter-feed": "Fil d'actualités",
-    "filter-feed-friends": "Friends",
-    "filter-feed-subscriptions": "Communities"
+    "filter-feed-friends": "Amis",
+    "filter-feed-subscriptions": "Communautés"
   },
   "navbar": {
     "discover": "Découvrir",
@@ -64,52 +64,52 @@
     "header-community": "Communautés"
   },
   "switch-lang": {
-    "contributors": "Contributors"
+    "contributors": "Contributeurs"
   },
   "user-nav": {
     "wallet": "Portefeuille",
     "unclaimed-reward-notice": "Vous avez des récompenses non réclamées",
     "points": "Points",
-    "unclaimed-points-notice": "You have unclaimed points",
+    "unclaimed-points-notice": "Vous avez des récompenses non réclamées",
     "notifications": "Notifications",
-    "profile": "Profile",
-    "gallery": "Gallery",
-    "drafts": "Drafts",
-    "bookmarks": "Bookmarks",
-    "schedules": "Schedules",
-    "fragments": "Snippets",
-    "settings": "Settings",
-    "logout": "Logout",
-    "vote-power": "Vote Power:"
+    "profile": "Profil",
+    "gallery": "Gallerie",
+    "drafts": "Brouillons",
+    "bookmarks": "Signets",
+    "schedules": "Planifications",
+    "fragments": "Extraits de texte",
+    "settings": "Paramètres",
+    "logout": "Déconnexion",
+    "vote-power": "Puissance de vote:"
   },
   "intro": {
-    "title": "Aspire to greatness",
-    "sub-title": "rewarding communities",
-    "c2a": "Get Started"
+    "title": "Aspirer à la grandeur",
+    "sub-title": "communautés gratifiantes",
+    "c2a": "Démarrez"
   },
   "login": {
-    "title": "Welcome back!",
-    "with-user-pass": "Login with your username and private key.",
-    "username-placeholder": "username",
-    "key-placeholder": "password / private key",
-    "login-info-1": "We don't store your private keys.",
-    "login-info-2": "More info",
-    "error-fields-required": "Please enter username and private key",
-    "error-public-key": "You entered a public key. Password/WIF required",
-    "error-user-fetch": "User data could not be fetched",
-    "error-user-not-found": "User does not exist",
-    "error-permission": "Couldn't get posting permission",
-    "error-authenticate": "Wrong private key. Master or active or posting private key required.",
-    "with-hive-signer": "Login with hivesigner",
-    "with-keychain": "Login with keychain",
-    "sign-up-text-1": "Don't have an account?",
-    "sign-up-text-2": "Sign up now!"
+    "title": "Bienvenue à nouveau!",
+    "with-user-pass": "Connectez-vous avec votre nom d'utilisateur et votre clé privée.",
+    "username-placeholder": "nom d'utilisateur",
+    "key-placeholder": "mot de passe / clé privée",
+    "login-info-1": "Nous ne stockons pas vos clés privées.",
+    "login-info-2": "Plus d'infos",
+    "error-fields-required": "Entrez le nom d'utilisateur et le mot de passe",
+    "error-public-key": "Vous avez entré une clé publique. Mot de passe/WIF requis",
+    "error-user-fetch": "Les données utilisateur n'ont pas pu être récupérés",
+    "error-user-not-found": "L'utilisateur n'existe pas",
+    "error-permission": "Impossible d'obtenir l'autorisation de publication",
+    "error-authenticate": "Mauvaise clé privée. Master ou active ou post clé privée requise.",
+    "with-hive-signer": "Connexion avec hivesigner",
+    "with-keychain": "Login avec KeyChain",
+    "sign-up-text-1": "Vous n'avez pas encore de compte?",
+    "sign-up-text-2": "Enregistrez-vous maintenant !"
   },
   "sign-up": {
-    "header": "Join",
-    "description": "<h3>Home of Free speech and Rewarding communities!</h3><br>One account to manage everything on <b>Blockchain</b> and <b>Ecency</b>.<br><br>Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
-    "username": "Pick a username",
-    "email": "Enter your email address",
+    "header": "Rejoindre",
+    "description": "<h3>Maison de la liberté d'expression et de la récompense des communautés !</h3><br>Un compte pour tout gérer sur <b>la Blockchain</b> et <b>Ecency</b>.<br><br>En savoir plus sur les avantages dans notre <a href=\"/faq#how-to-join\">FAQ</a>",
+    "username": "Choisissez un nom d’utilisateur",
+    "email": "Entrez votre adresse mail",
     "ref": "Referred user (optional)",
     "submit": "Continue",
     "success": "We've sent an email to {{email}}.",
