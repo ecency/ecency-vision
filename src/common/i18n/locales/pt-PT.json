@@ -147,8 +147,8 @@
     "title": "Dica"
   },
   "entry-payout": {
-    "reward": "Reward",
-    "full-power": "Power Up 100%",
+    "reward": "Recompensa",
+    "full-power": "Receber em Hive Power",
     "pending-payout": "Pagamento Pendente",
     "promoted": "Promovido",
     "author-payout": "Pagamento do Autor",
@@ -333,7 +333,7 @@
     "section-blog": "Blog",
     "section-posts": "Publicações",
     "section-comments": "Comentários",
-    "section-replies": "Respsotas",
+    "section-replies": "Respostas",
     "section-communities": "Comunidades",
     "section-wallet": "Carteira",
     "section-settings": "Definições",
@@ -897,7 +897,7 @@
     }
   },
   "contributors": {
-    "title": "Colaboradoes",
+    "title": "Colaboradores",
     "description": "Estas grandes pessoas contribuíram de uma forma ou de outra para a Ecency, gostaríamos de agradecer a todos. Se você quiser se juntar a nossa equipe contribuindo com Tradução, Idéias, Desenvolvimento, Design, Conscientização social, sinta-se livre para participar. Para saber mais, leia as nossas <a href=\"/faq#how-to-contribute\">Perguntas Frequentes</a>."
   },
   "context-menu": {
