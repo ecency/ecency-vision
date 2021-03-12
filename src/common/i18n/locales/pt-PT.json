@@ -343,14 +343,14 @@
     "proposals": "Propostas"
   },
   "profile-info": {
-    "joined": "Joined: {{n}}",
-    "last-active": "Last active: {{n}}",
-    "vote-value": "Vote value: {{n}}",
-    "vote-value-max": "(out of max {{n}})",
-    "vote-power": "Vote Power: {{n}}%",
-    "rc-power": "Resource Credits: {{n}}%",
-    "recharge-time": "(fully charged {{n}})",
-    "down-vote-power": "Downvote Power: {{n}}%"
+    "joined": "Entrou: {{n}}",
+    "last-active": "Último acesso: {{n}}",
+    "vote-value": "Valor do voto: {{n}}",
+    "vote-value-max": "(do máximo {{n}})",
+    "vote-power": "Poder de Voto: {{n}}%",
+    "rc-power": "Créditos de Recursos: {{n}}%",
+    "recharge-time": "( {{n}} para carregamento completo)",
+    "down-vote-power": "Poder de Voto Negativo: {{n}}%"
   },
   "profile-edit": {
     "title": "Perfil",
