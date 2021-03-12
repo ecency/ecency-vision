@@ -54,7 +54,7 @@ class SignUpPage extends Component<PageProps, State> {
 
     usernameChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
         const {value: username} = e.target;
-        this.setState({username});
+        this.setState({username: username.toLowerCase()});
     }
 
     emailChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
@@ -64,7 +64,7 @@ class SignUpPage extends Component<PageProps, State> {
 
     refCodeChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
         const {value: referral} = e.target;
-        this.setState({referral});
+        this.setState({referral: referral.toLowerCase()});
     }
 
     submit = () => {
