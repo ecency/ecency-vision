@@ -346,11 +346,11 @@
     "joined": "में शामिल हो गए {{n}}",
     "last-active": "अंतिम सक्रिय: {{n}}",
     "vote-value": "वोट मूल्य: {{n}}",
-    "vote-value-max": "(out of max {{n}})",
-    "vote-power": "Vote Power: {{n}}%",
-    "rc-power": "Resource Credits: {{n}}%",
-    "recharge-time": "(fully charged {{n}})",
-    "down-vote-power": "Downvote Power: {{n}}%"
+    "vote-value-max": "(अधिकतम से {{n}})",
+    "vote-power": "वोट शक्ति: {{n}}%",
+    "rc-power": "संसाधन क्रेडिट: {{n}}%",
+    "recharge-time": "(पूर्णतःउर्जित {{n}})",
+    "down-vote-power": "डाउनवोट पावर: {{n}}%"
   },
   "profile-edit": {
     "title": "रूपरेखा",
@@ -664,7 +664,7 @@
     "type-follows": "अनुगमन",
     "type-reblogs": "रिब्लॉग्स",
     "type-transfers": "स्थानांतरण",
-    "group-title-recent": "Recent",
+    "group-title-recent": "ताजा",
     "vote-str": "{{p}}% आपकी पोस्ट को पसंद किया है:",
     "reply-str": "आपके पोस्ट का जवाब दिया:",
     "mention-str": "में आपका उल्लेख किया:",
@@ -826,8 +826,8 @@
     "link-label": "छवि लिंक"
   },
   "add-link": {
-    "title": "Add Link",
-    "text-label": "Text",
+    "title": "लिंक जोड़ें",
+    "text-label": "टेक्स्ट",
     "link-label": "https://"
   },
   "scroll-to-top": {
@@ -917,11 +917,11 @@
     "restart": "पुन: शुरू करें"
   },
   "chain-error": {
-    "min-root-comment": "You may only post once every five minutes.",
-    "identical-vote": "Your current vote on this content is identical to this vote.",
-    "insufficient-resource": "Insufficient Resource Credits. Please wait to transact, or power up HIVE.",
-    "delete-comment-with-vote": "Can't delete a content with votes.",
-    "comment-cashout": "Content cashout.",
-    "paid-out-post-forbidden": "Voting for paid out content is not available."
+    "min-root-comment": "आप हर पांच मिनट में केवल एक बार पोस्ट कर सकते हैं।",
+    "identical-vote": "इस सामग्री पर आपका वर्तमान वोट इस वोट के समान है।",
+    "insufficient-resource": "अपर्याप्त संसाधन क्रेडिट। कृपया लेनदेन करने के लिए प्रतीक्षा करें, या HIVE को शक्ति दें।",
+    "delete-comment-with-vote": "वोटों के साथ एक सामग्री नहीं हटा सकते।",
+    "comment-cashout": "सामग्री कैशआउट।",
+    "paid-out-post-forbidden": "सशुल्क सामग्री के लिए मतदान उपलब्ध नहीं है।"
   }
 }
