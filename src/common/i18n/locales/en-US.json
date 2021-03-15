@@ -129,7 +129,11 @@
     "pinned": "Pinned Post",
     "replies": "1 response. Click to respond.",
     "replies-n": "{{n}} responses. Click to respond.",
-    "no-replies": "No responses yet. Click to respond."
+    "no-replies": "No responses yet. Click to respond.",
+    "nsfw-reveal": "Reveal this post",
+    "nsfw-signup": "<a href=\"/signup\" class=\"push-link\">create an account</a> to save your preferences",
+    "nsfw-settings-1": "adjust your",
+    "nsfw-settings-2": "display preferences"
   },
   "bookmark-btn": {
     "add": "Add to bookmarks",

@@ -5,6 +5,8 @@ import moment from "moment";
 
 import isEqual from "react-fast-compare";
 
+import {catchPostImage, postBodySummary, setProxyBase} from "@ecency/render-helper";
+
 import {Entry, EntryVote} from "../../store/entries/types";
 import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
@@ -17,10 +19,6 @@ import {UI, ToggleType} from "../../store/ui/types";
 
 import defaults from "../../constants/defaults.json";
 
-import {catchPostImage, postBodySummary, setProxyBase} from "@ecency/render-helper";
-
-setProxyBase(defaults.imageServer);
-
 import ProfileLink from "../profile-link/index";
 import Tag from "../tag";
 import UserAvatar from "../user-avatar/index";
@@ -32,16 +30,21 @@ import EntryVotes from "../entry-votes";
 import Tooltip from "../tooltip";
 
 import parseDate from "../../helper/parse-date";
+import accountReputation from '../../helper/account-reputation';
 
 import {_t} from "../../i18n";
+import {Tsx} from "../../i18n/helper";
 
 import _c from "../../util/fix-class-names";
 
 import {repeatSvg, pinSvg, commentSvg} from "../../img/svg";
-import accountReputation from '../../helper/account-reputation';
 
 const fallbackImage = require("../../img/fallback.png");
 const noImage = require("../../img/noimage.png");
+const nsfwImage = require("../../img/nsfw.png");
+
+setProxyBase(defaults.imageServer);
+
 
 interface Props {
     history: History;
@@ -66,20 +69,29 @@ interface Props {
     toggleUIProp: (what: ToggleType) => void;
 }
 
-export default class EntryListItem extends Component<Props> {
+interface State {
+    showNsfw: boolean
+}
+
+export default class EntryListItem extends Component<Props, State> {
+    state: State = {
+        showNsfw: false
+    }
+
     public static defaultProps = {
         asAuthor: "",
         promoted: false,
     };
 
-    shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
+    shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
         return (
             !isEqual(this.props.entry, nextProps.entry) ||
             !isEqual(this.props.community, nextProps.community) ||
             !isEqual(this.props.global, nextProps.global) ||
             !isEqual(this.props.dynamicProps, nextProps.dynamicProps) ||
             !isEqual(this.props.activeUser, nextProps.activeUser) ||
-            !isEqual(this.props.reblogs, nextProps.reblogs)
+            !isEqual(this.props.reblogs, nextProps.reblogs) ||
+            !isEqual(this.state, nextState)
         );
     }
 
@@ -97,9 +109,13 @@ export default class EntryListItem extends Component<Props> {
         });
     };
 
+    toggleNsfw = () => {
+        this.setState({showNsfw: true});
+    }
+
     render() {
 
-        const {entry, community, asAuthor, promoted, global} = this.props;
+        const {entry, community, asAuthor, promoted, global, activeUser, history} = this.props;
 
         const imgGrid: string = (global.canUseWebp ? catchPostImage(entry, 600, 500, 'webp') : catchPostImage(entry, 600, 500)) || noImage;
         const imgRow: string = (global.canUseWebp ? catchPostImage(entry, 260, 200, 'webp') : catchPostImage(entry, 260, 200)) || noImage;
@@ -148,6 +164,9 @@ export default class EntryListItem extends Component<Props> {
                 </picture>
             );
         }
+
+        const nsfw = entry.json_metadata.tags && entry.json_metadata.tags.includes("nsfw");
+
         const cls = `entry-list-item ${promoted ? "promoted-item" : ""}`;
         return (
             <div className={_c(cls)}>
@@ -192,27 +211,62 @@ export default class EntryListItem extends Component<Props> {
                     </div>
                 </div>
                 <div className="item-body">
-                    <div className="item-image">
-                        {EntryLink({
-                            ...this.props,
-                            entry,
-                            children: <div>
-                                {thumb}
+                    {(() => {
+                        if (nsfw && !this.state.showNsfw) {
+                            return <>
+                                <div className="item-image">
+                                    <img src={nsfwImage} alt={title}/>
+                                </div>
+                                <div className="item-summary">
+                                    <div className="item-nsfw"><span className="nsfw-badge">NSFW</span></div>
+                                    <div className="item-nsfw-options">
+                                        <a href="#" onClick={(e) => {
+                                            e.preventDefault();
+                                            this.toggleNsfw();
+                                        }}>{_t("entry-list-item.nsfw-reveal")}</a>
+                                        {" "} {_t("g.or").toLowerCase()} {" "}
+
+                                        {activeUser && <>
+                                            {_t("entry-list-item.nsfw-settings-1")}
+                                            {" "}
+                                          <a href="#" onClick={(e) => {
+                                              e.preventDefault();
+                                              history.push(`/@${activeUser.username}/settings`);
+                                          }}>{_t("entry-list-item.nsfw-settings-2")}</a>
+                                        </>}
+
+                                        {!activeUser && <>
+                                          <Tsx k="entry-list-item.nsfw-signup"><span/></Tsx>
+                                        </>}
+                                    </div>
+                                </div>
+                            </>
+                        }
+
+                        return <>
+                            <div className="item-image">
+                                {EntryLink({
+                                    ...this.props,
+                                    entry,
+                                    children: <div>
+                                        {thumb}
+                                    </div>
+                                })}
                             </div>
-                        })}
-                    </div>
-                    <div className="item-summary">
-                        {EntryLink({
-                            ...this.props,
-                            entry,
-                            children: <div className="item-title">{title}</div>
-                        })}
-                        {EntryLink({
-                            ...this.props,
-                            entry,
-                            children: <div className="item-body">{summary}</div>
-                        })}
-                    </div>
+                            <div className="item-summary">
+                                {EntryLink({
+                                    ...this.props,
+                                    entry,
+                                    children: <div className="item-title">{title}</div>
+                                })}
+                                {EntryLink({
+                                    ...this.props,
+                                    entry,
+                                    children: <div className="item-body">{summary}</div>
+                                })}
+                            </div>
+                        </>
+                    })()}
                     <div className="item-controls">
                         {EntryVoteBtn({
                             ...this.props,

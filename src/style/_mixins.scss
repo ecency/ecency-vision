@@ -261,6 +261,23 @@
         text-overflow: ellipsis;
         white-space: nowrap;
       }
+
+      .item-nsfw {
+        margin-bottom: 9px;
+
+        .nsfw-badge {
+          color: $red2;
+          border: 1px solid $red2;
+          padding: 2px 4px;
+          font-size: 13px;
+          border-radius: 6px;
+
+        }
+      }
+
+      .item-nsfw-options {
+        margin-bottom: 13px;
+      }
     }
 
     .item-controls {
