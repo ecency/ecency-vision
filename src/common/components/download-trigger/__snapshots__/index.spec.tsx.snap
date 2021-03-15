@@ -19,7 +19,7 @@ exports[`(1) Mac. 1`] = `
   >
     <a
       className="download-button btn-desktop"
-      href="https://github.com/ecency/ecency-vision/releases/download/3.0.13/Ecency-3.0.13.dmg"
+      href="https://github.com/ecency/ecency-vision/releases/download/3.0.15/Ecency-3.0.15.dmg"
       rel="noopener noreferrer"
       target="_blank"
     >
@@ -64,7 +64,7 @@ exports[`(2) Windows. 1`] = `
   >
     <a
       className="download-button btn-desktop"
-      href="https://github.com/ecency/ecency-vision/releases/download/3.0.13/Ecency-Setup-3.0.13.exe"
+      href="https://github.com/ecency/ecency-vision/releases/download/3.0.15/Ecency-Setup-3.0.15.exe"
       rel="noopener noreferrer"
       target="_blank"
     >
@@ -109,7 +109,7 @@ exports[`(3) Linux. 1`] = `
   >
     <a
       className="download-button btn-desktop"
-      href="https://github.com/ecency/ecency-vision/releases/download/3.0.13/ecency-surfer-3.0.13.tar.gz"
+      href="https://github.com/ecency/ecency-vision/releases/download/3.0.15/ecency-surfer-3.0.15.tar.gz"
       rel="noopener noreferrer"
       target="_blank"
     >
@@ -212,7 +212,7 @@ exports[`(6) Other. 1`] = `
   >
     <a
       className="download-button btn-desktop"
-      href="https://github.com/ecency/ecency-vision/releases/download/3.0.13/Ecency-Setup-3.0.13.exe"
+      href="https://github.com/ecency/ecency-vision/releases/download/3.0.15/Ecency-Setup-3.0.15.exe"
       rel="noopener noreferrer"
       target="_blank"
     >

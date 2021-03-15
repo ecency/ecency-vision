@@ -255,5 +255,39 @@ exports[`(1) Default render 1`] = `
       </div>
     </div>
   </div>
+  <div
+    className="form-row"
+  >
+    <div
+      className="col-xl-4 col-lg-6"
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          className="form-label"
+        >
+          Show NSFW content
+        </label>
+        <select
+          className="form-control"
+          onChange={[Function]}
+          type="text"
+          value={0}
+        >
+          <option
+            value={1}
+          >
+            On
+          </option>
+          <option
+            value={0}
+          >
+            Off
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
 </div>
 `;
