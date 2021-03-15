@@ -212,7 +212,7 @@ export default class EntryListItem extends Component<Props, State> {
                 </div>
                 <div className="item-body">
                     {(() => {
-                        if (nsfw && !this.state.showNsfw) {
+                        if (nsfw && !this.state.showNsfw && !global.nsfw) {
                             return <>
                                 <div className="item-image">
                                     <img src={nsfwImage} alt={title}/>

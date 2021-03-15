@@ -374,6 +374,7 @@
     "notifications": "Notification alerts",
     "currency": "Currency",
     "language": "Language",
+    "nsfw": "Show NSFW content",
     "updated": "Preference updated!"
   },
   "wallet": {

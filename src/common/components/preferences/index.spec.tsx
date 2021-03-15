@@ -17,6 +17,9 @@ it("(1) Default render", () => {
         setCurrency: () => {
         },
         setLang: () => {
+        },
+        setNsfw: () => {
+
         }
     };
 
