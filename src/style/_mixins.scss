@@ -194,7 +194,10 @@
     @include clearfix();
 
     .item-image {
-      cursor: pointer;
+      &:not(.item-image-nsfw) {
+        cursor: pointer;
+      }
+
       margin: 0 0 10px 0;
       max-height: 300px;
       overflow: hidden;

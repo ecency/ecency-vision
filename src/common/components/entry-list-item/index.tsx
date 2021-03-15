@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+
 import {History, Location} from "history";
 
 import moment from "moment";
@@ -16,8 +17,6 @@ import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {Reblog} from "../../store/reblogs/types";
 import {UI, ToggleType} from "../../store/ui/types";
-
-import defaults from "../../constants/defaults.json";
 
 import ProfileLink from "../profile-link/index";
 import Tag from "../tag";
@@ -42,6 +41,8 @@ import {repeatSvg, pinSvg, commentSvg} from "../../img/svg";
 const fallbackImage = require("../../img/fallback.png");
 const noImage = require("../../img/noimage.png");
 const nsfwImage = require("../../img/nsfw.png");
+
+import defaults from "../../constants/defaults.json";
 
 setProxyBase(defaults.imageServer);
 
@@ -214,7 +215,7 @@ export default class EntryListItem extends Component<Props, State> {
                     {(() => {
                         if (nsfw && !this.state.showNsfw && !global.nsfw) {
                             return <>
-                                <div className="item-image">
+                                <div className="item-image item-image-nsfw">
                                     <img src={nsfwImage} alt={title}/>
                                 </div>
                                 <div className="item-summary">
@@ -223,20 +224,20 @@ export default class EntryListItem extends Component<Props, State> {
                                         <a href="#" onClick={(e) => {
                                             e.preventDefault();
                                             this.toggleNsfw();
-                                        }}>{_t("entry-list-item.nsfw-reveal")}</a>
+                                        }}>{_t("nsfw.reveal")}</a>
                                         {" "} {_t("g.or").toLowerCase()} {" "}
 
                                         {activeUser && <>
-                                            {_t("entry-list-item.nsfw-settings-1")}
+                                            {_t("nsfw.settings-1")}
                                             {" "}
                                           <a href="#" onClick={(e) => {
                                               e.preventDefault();
                                               history.push(`/@${activeUser.username}/settings`);
-                                          }}>{_t("entry-list-item.nsfw-settings-2")}</a>
+                                          }}>{_t("nsfw.settings-2")}</a>
                                         </>}
 
                                         {!activeUser && <>
-                                          <Tsx k="entry-list-item.nsfw-signup"><span/></Tsx>
+                                          <Tsx k="nsfw.signup"><span/></Tsx>
                                         </>}
                                     </div>
                                 </div>
