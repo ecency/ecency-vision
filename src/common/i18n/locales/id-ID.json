@@ -343,14 +343,14 @@
     "proposals": "Proposal"
   },
   "profile-info": {
-    "joined": "Joined: {{n}}",
-    "last-active": "Last active: {{n}}",
-    "vote-value": "Vote value: {{n}}",
-    "vote-value-max": "(out of max {{n}})",
-    "vote-power": "Vote Power: {{n}}%",
-    "rc-power": "Resource Credits: {{n}}%",
-    "recharge-time": "(fully charged {{n}})",
-    "down-vote-power": "Downvote Power: {{n}}%"
+    "joined": "Terhubung: {{n}}",
+    "last-active": "Aktif terakhir: {{n}}",
+    "vote-value": "Nilai vote: {{n}}",
+    "vote-value-max": "(dari mak {{n}})",
+    "vote-power": "Power vote: {{n}}%",
+    "rc-power": "Sumber Kredit: {{n}}%",
+    "recharge-time": "(terisi penuh {{n}})",
+    "down-vote-power": "Power Downvote: {{n}}%"
   },
   "profile-edit": {
     "title": "Profil",
