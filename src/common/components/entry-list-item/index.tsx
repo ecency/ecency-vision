@@ -233,11 +233,11 @@ export default class EntryListItem extends Component<Props, State> {
                                           <a href="#" onClick={(e) => {
                                               e.preventDefault();
                                               history.push(`/@${activeUser.username}/settings`);
-                                          }}>{_t("nsfw.settings-2")}</a>
+                                          }}>{_t("nsfw.settings-2")}</a>{"."}
                                         </>}
 
                                         {!activeUser && <>
-                                          <Tsx k="nsfw.signup"><span/></Tsx>
+                                          <Tsx k="nsfw.signup"><span/></Tsx>{"."}
                                         </>}
                                     </div>
                                 </div>
