@@ -23,7 +23,7 @@ export const initialState: Points = {
 export default (state: Points = initialState, action: Actions): Points => {
     switch (action.type) {
         case ActionTypes.FETCH: {
-            return {...state, loading: true}
+            return {...state, transactions: [], loading: true}
         }
         case ActionTypes.FETCHED: {
             return {
@@ -58,8 +58,6 @@ export const fetchPoints = (username: string, type?: number) => async (dispatch:
         dispatch(errorAct());
         return;
     }
-
-    dispatch(fetchedAct(points.points, points.unclaimed_points));
 
     let transactions;
     try {

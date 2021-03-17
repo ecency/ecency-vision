@@ -4,6 +4,8 @@ import moment from "moment";
 
 import {History} from "history";
 
+import {FormControl} from "react-bootstrap";
+
 import {ActiveUser} from "../../store/active-user/types";
 import {Account} from "../../store/accounts/types";
 import {Global} from "../../store/global/types";
@@ -19,6 +21,7 @@ import Purchase from "../purchase";
 import Promote from "../promote";
 import Boost from "../boost";
 
+import LinearProgress from "../linear-progress";
 import WalletMenu from "../wallet-menu";
 import EntryLink from "../entry-link";
 
@@ -43,7 +46,6 @@ import {
     starOutlineSvg,
     ticketSvg
 } from "../../img/svg";
-import {FormControl} from "react-bootstrap";
 
 
 export const formatMemo = (memo: string, history: History) => {
@@ -387,6 +389,7 @@ export class WalletEcency extends BaseComponent<Props, State> {
                                 )}
                             </div>
 
+
                             <div className="p-transaction-list">
                                 <div className="transaction-list-header">
                                     <h2>{_t('points.history')}</h2>
@@ -395,10 +398,17 @@ export class WalletEcency extends BaseComponent<Props, State> {
                                         {filterTypes.map(x => <option key={x} value={x}>{_t(`points.type-${x}`)}</option>)}
                                     </FormControl>
                                 </div>
-                                <div className="transaction-list-body">
-                                    {points.transactions.map(tr => <TransactionRow history={this.props.history} tr={tr} key={tr.id}/>)}
-                                    {(!points.loading && points.transactions.length === 0) && <p className="text-muted empty-list">{_t('g.empty-list')}</p>}
-                                </div>
+
+                                {(() => {
+                                    if (points.loading) {
+                                        return <LinearProgress/>
+                                    }
+
+                                    return <div className="transaction-list-body">
+                                        {points.transactions.map(tr => <TransactionRow history={this.props.history} tr={tr} key={tr.id}/>)}
+                                        {(!points.loading && points.transactions.length === 0) && <p className="text-muted empty-list">{_t('g.empty-list')}</p>}
+                                    </div>
+                                })()}
                             </div>
                         </div>
 
