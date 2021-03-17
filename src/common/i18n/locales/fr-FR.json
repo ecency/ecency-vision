@@ -131,6 +131,12 @@
     "replies-n": "{{n}} responses. Click to respond.",
     "no-replies": "No responses yet. Click to respond."
   },
+  "nsfw": {
+    "reveal": "Reveal this post",
+    "signup": "<a href=\"/signup\" class=\"push-link\">create an account</a> to save your preferences",
+    "settings-1": "adjust your",
+    "settings-2": "display preferences"
+  },
   "bookmark-btn": {
     "add": "Add to bookmarks",
     "added": "Added to bookmarks",
@@ -370,6 +376,7 @@
     "notifications": "Notification alerts",
     "currency": "Currency",
     "language": "Language",
+    "nsfw": "Show NSFW content",
     "updated": "Preference updated!"
   },
   "wallet": {
