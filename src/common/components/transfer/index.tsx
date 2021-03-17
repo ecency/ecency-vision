@@ -62,7 +62,7 @@ import {
 import {_t} from "../../i18n";
 import {Tsx} from "../../i18n/helper";
 
-import badActors from '../../constants/bad-actors.json';
+import badActors from '@hiveio/hivescript/bad-actors.json';
 
 import {arrowRightSvg} from "../../img/svg";
 
