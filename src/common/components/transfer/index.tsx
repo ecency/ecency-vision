@@ -10,6 +10,8 @@ import isEqual from "react-fast-compare";
 
 import {Modal, Form, Row, Col, InputGroup, FormControl, Button} from "react-bootstrap";
 
+import badActors from '@hiveio/hivescript/bad-actors.json';
+
 import {Global} from "../../store/global/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
 import {Account} from '../../store/accounts/types'
@@ -61,8 +63,6 @@ import {
 
 import {_t} from "../../i18n";
 import {Tsx} from "../../i18n/helper";
-
-import badActors from '@hiveio/hivescript/bad-actors.json';
 
 import {arrowRightSvg} from "../../img/svg";
 
