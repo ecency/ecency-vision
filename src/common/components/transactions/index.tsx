@@ -4,6 +4,8 @@ import moment from "moment";
 
 import {History} from "history";
 
+import {FormControl} from "react-bootstrap";
+
 import {DynamicProps} from "../../store/dynamic-props/types";
 import {Transaction, Transactions} from "../../store/transactions/types";
 
@@ -172,24 +174,54 @@ export class TransactionRow extends Component<RowProps> {
     }
 }
 
+
+const ALL_TYPES = [
+    "curation_reward", "author_reward", "comment_benefactor_reward",
+    "claim_reward_balance", "transfer", "transfer_to_vesting", "withdraw_vesting",
+    "fill_order"
+];
+
 interface Props {
     history: History;
     dynamicProps: DynamicProps;
     transactions: Transactions;
 }
 
-export class TransactionList extends Component<Props> {
+interface State {
+    type: string
+}
+
+export class TransactionList extends Component<Props, State> {
+    state: State = {
+        type: ""
+    }
+
+    typeChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+        this.setState({type: e.target.value});
+    }
+
     render() {
         const {transactions} = this.props;
+        const {type} = this.state;
         const {list, loading} = transactions;
 
+        let trList: Transaction[] = list.sort((a: any, b: any) => b.num - a.num);
+
+        if (type) {
+            trList = trList.filter(x => x.type === type);
+        }
+
         // Top 50 transaction sorted by id
-        const trList = list.slice(Math.max(list.length - 50, 0)).sort((a: any, b: any) => b.num - a.num);
+        trList = trList.slice(Math.max(trList.length - 50, 0));
 
         return (
             <div className="transaction-list">
                 <div className="transaction-list-header">
                     <h2>{_t("transactions.title")} </h2>
+                    <FormControl as="select" value={type} onChange={this.typeChanged}>
+                        <option value="">{_t("transactions.type-all")}</option>
+                        {ALL_TYPES.map(x => <option key={x} value={x}>{_t(`transactions.type-${x}`)}</option>)}
+                    </FormControl>
                 </div>
                 {loading && <LinearProgress/>}
                 {trList.map((x, k) => (
