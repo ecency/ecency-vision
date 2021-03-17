@@ -131,6 +131,12 @@
     "replies-n": "{{n}} respostas. Clique para responder.",
     "no-replies": "Nenhuma resposta ainda. Clique para responder."
   },
+  "nsfw": {
+    "reveal": "Reveal this post",
+    "signup": "<a href=\"/signup\" class=\"push-link\">create an account</a> to save your preferences",
+    "settings-1": "adjust your",
+    "settings-2": "display preferences"
+  },
   "bookmark-btn": {
     "add": "Adicionar aos favoritos",
     "added": "Adicionado aos favoritos",
@@ -370,6 +376,7 @@
     "notifications": "Alertas de Notificações",
     "currency": "Moeda",
     "language": "Língua",
+    "nsfw": "Show NSFW content",
     "updated": "Preferências atualizadas!"
   },
   "wallet": {
