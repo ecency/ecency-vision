@@ -132,10 +132,10 @@
     "no-replies": "Ei vielä vastauksia. Klikkaa vastataksesi."
   },
   "nsfw": {
-    "reveal": "Reveal this post",
-    "signup": "<a href=\"/signup\" class=\"push-link\">create an account</a> to save your preferences",
-    "settings-1": "adjust your",
-    "settings-2": "display preferences"
+    "reveal": "Paljasta julkaisu",
+    "signup": "<a href=\"/signup\" class=\"push-link\">luo tili</a> tallentaaksesi asetuksesi",
+    "settings-1": "määrittele",
+    "settings-2": "ulkoasuasetukset"
   },
   "bookmark-btn": {
     "add": "Lisää kirjanmerkkeihin",
@@ -376,7 +376,7 @@
     "notifications": "Ilmoitukset",
     "currency": "Valuutta",
     "language": "Kieli",
-    "nsfw": "Show NSFW content",
+    "nsfw": "Näytä NSFW-sisältö",
     "updated": "Asetukset päivitetty!"
   },
   "wallet": {
