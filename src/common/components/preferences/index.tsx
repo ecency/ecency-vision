@@ -25,6 +25,7 @@ interface Props {
     unMuteNotifications: () => void;
     setCurrency: (currency: string, rate: number, symbol: string) => void;
     setLang: (lang: string) => void;
+    setNsfw: (value: boolean) => void;
 }
 
 interface State {
@@ -75,6 +76,14 @@ export class Preferences extends BaseComponent<Props, State> {
         });
     }
 
+    nsfwChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+        const {setNsfw} = this.props;
+        const {value} = e.target;
+
+        setNsfw(Boolean(Number(value)));
+        success(_t('preferences.updated'));
+    }
+
     render() {
         const {global} = this.props;
         const {inProgress} = this.state;
@@ -110,6 +119,17 @@ export class Preferences extends BaseComponent<Props, State> {
                         </Form.Group>
                     </Col>
                 </Form.Row>
+                <Form.Row>
+                    <Col lg={6} xl={4}>
+                        <Form.Group>
+                            <Form.Label>{_t('preferences.nsfw')}</Form.Label>
+                            <Form.Control type="text" value={global.nsfw ? 1 : 0} as="select" onChange={this.nsfwChanged}>
+                                <option value={1}>{_t('g.on')}</option>
+                                <option value={0}>{_t('g.off')}</option>
+                            </Form.Control>
+                        </Form.Group>
+                    </Col>
+                </Form.Row>
             </div>
         </>
     }
@@ -122,7 +142,8 @@ export default (p: Props) => {
         muteNotifications: p.muteNotifications,
         unMuteNotifications: p.unMuteNotifications,
         setCurrency: p.setCurrency,
-        setLang: p.setLang
+        setLang: p.setLang,
+        setNsfw: p.setNsfw
     }
 
     return <Preferences {...props} />

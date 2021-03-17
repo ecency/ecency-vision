@@ -20,6 +20,7 @@ import {
     NotificationsUnMuteAction,
     CurrencySetAction,
     LangSetAction,
+    NsfwSetAction,
     Theme,
     ThemeChangeAction
 } from "./types";
@@ -46,6 +47,7 @@ export const initialState: Global = {
     isElectron: false,
     newVersion: null,
     notifications: true,
+    nsfw: false,
     isMobile: false,
     usePrivate: true
 };
@@ -92,6 +94,10 @@ export default (state: Global = initialState, action: Actions): Global => {
         case ActionTypes.LANG_SET: {
             const {lang} = action
             return {...state, lang}
+        }
+        case ActionTypes.NSFW_SET: {
+            const {value} = action
+            return {...state, nsfw: value}
         }
         case ActionTypes.HAS_KEYCHAIN: {
             return {...state, hasKeyChain: true};
@@ -161,6 +167,12 @@ export const setLang = (lang: string) => (dispatch: Dispatch) => {
     dispatch(setLangAct(lang));
 };
 
+export const setNsfw = (value: boolean) => (dispatch: Dispatch) => {
+    ls.set("nsfw", value);
+
+    dispatch(setNsfwAct(value));
+};
+
 
 /* Action Creators */
 export const themeChangeAct = (theme: Theme): ThemeChangeAction => {
@@ -215,6 +227,13 @@ export const setLangAct = (lang: string): LangSetAction => {
     return {
         type: ActionTypes.LANG_SET,
         lang
+    };
+}
+
+export const setNsfwAct = (value: boolean): NsfwSetAction => {
+    return {
+        type: ActionTypes.NSFW_SET,
+        value
     };
 }
 

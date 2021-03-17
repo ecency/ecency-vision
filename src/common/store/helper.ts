@@ -14,7 +14,7 @@ import {reloadAct as reloadUsers} from "./users";
 import {reloadAct as reloadReblogs} from "./reblogs";
 import {fetchedAct as loadDynamicProps} from "./dynamic-props";
 import {fetchedAct as entriesFetchedAct} from "./entries";
-import {setCurrencyAct as setCurrency, muteNotificationsAct as muteNotifications, setLangAct as setLang} from "./global";
+import {setCurrencyAct as setCurrency, muteNotificationsAct as muteNotifications, setLangAct as setLang, setNsfwAct as setNsfw} from "./global";
 
 import {getCurrencyRate} from "../api/misc";
 
@@ -161,5 +161,10 @@ export const clientStoreTasks = (store: Store<AppState>) => {
                 store.dispatch(setLang(lang));
             });
         }
+    }
+
+    // NSFW
+    if (ls.get("nsfw") === true) {
+        store.dispatch(setNsfw(true));
     }
 }

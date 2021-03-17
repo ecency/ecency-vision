@@ -55,6 +55,7 @@ export interface Global {
     isElectron: boolean;
     newVersion: string | null;
     notifications: boolean;
+    nsfw: boolean;
     isMobile: boolean;
     usePrivate: boolean
 }
@@ -69,6 +70,7 @@ export enum ActionTypes {
     CURRENCY_SET = "@global/CURRENCY_SET",
     LANG_SET = "@global/LANG_SET",
     NEW_VERSION_CHANGE = "@global/NEW_VERSION_CHANGE",
+    NSFW_SET = "@global/NSFW_SET",
 }
 
 export interface ThemeChangeAction {
@@ -110,6 +112,11 @@ export interface LangSetAction {
     lang: string;
 }
 
+export interface NsfwSetAction {
+    type: ActionTypes.NSFW_SET;
+    value: boolean;
+}
+
 export interface HasKeyChainAction {
     type: ActionTypes.HAS_KEYCHAIN;
 }
@@ -124,4 +131,5 @@ export type Actions =
     | NotificationsUnMuteAction
     | CurrencySetAction
     | LangSetAction
+    | NsfwSetAction
     | HasKeyChainAction;

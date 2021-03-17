@@ -93,6 +93,7 @@ interface State {
     loading: boolean;
     replying: boolean;
     showIfHidden: boolean;
+    showIfNsfw: boolean;
 }
 
 class EntryPage extends BaseComponent<Props, State> {
@@ -100,6 +101,7 @@ class EntryPage extends BaseComponent<Props, State> {
         loading: false,
         replying: false,
         showIfHidden: false,
+        showIfNsfw: false
     };
 
     componentDidMount() {
@@ -299,8 +301,8 @@ class EntryPage extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {loading, replying, showIfHidden} = this.state;
-        const {global} = this.props;
+        const {loading, replying, showIfHidden, showIfNsfw} = this.state;
+        const {global, history} = this.props;
 
         const navBar = global.isElectron ? NavBarElectron({
             ...this.props,
@@ -347,6 +349,8 @@ class EntryPage extends BaseComponent<Props, State> {
         //  Meta config
         const url = entryCanonical(entry) || "";
 
+        const nsfw = entry.json_metadata.tags && entry.json_metadata.tags.includes("nsfw");
+
         const metaProps = {
             title: `${truncate(entry.title, 67)}`,
             description: `${truncate(postBodySummary(entry.body, 210), 140)} by @${entry.author}`,
@@ -377,6 +381,32 @@ class EntryPage extends BaseComponent<Props, State> {
                                         <Button variant="danger" size="sm" onClick={() => {
                                             this.stateSet({showIfHidden: true});
                                         }}>{_t('g.show')}</Button>
+                                    </div>
+                                }
+
+                                if (nsfw && !showIfNsfw && !global.nsfw) {
+                                    return <div className="nsfw-warning">
+                                        <div className="nsfw-title"><span className="nsfw-badge">NSFW</span></div>
+                                        <div className="nsfw-body">
+                                            <a href="#" onClick={(e) => {
+                                                e.preventDefault();
+                                                this.stateSet({showIfNsfw: true});
+                                            }}>{_t("nsfw.reveal")}</a>
+                                            {" "} {_t("g.or").toLowerCase()} {" "}
+
+                                            {activeUser && <>
+                                                {_t("nsfw.settings-1")}
+                                                {" "}
+                                              <a href="#" onClick={(e) => {
+                                                  e.preventDefault();
+                                                  history.push(`/@${activeUser.username}/settings`);
+                                              }}>{_t("nsfw.settings-2")}</a>{"."}
+                                            </>}
+
+                                            {!activeUser && <>
+                                              <Tsx k="nsfw.signup"><span/></Tsx>{"."}
+                                            </>}
+                                        </div>
                                     </div>
                                 }
 
@@ -477,7 +507,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                                             <meta itemProp="name" content={entry.author}/>
                                                         </span>
                                                         <div className="app">
-                                                            <Tsx k="entry.via-app" args={{app}}><a href="/faq#source-label" /></Tsx>
+                                                            <Tsx k="entry.via-app" args={{app}}><a href="/faq#source-label"/></Tsx>
                                                         </div>
                                                     </>
                                                 )}
