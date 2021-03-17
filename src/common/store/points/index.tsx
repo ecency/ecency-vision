@@ -6,7 +6,8 @@ import {
     Actions,
     ActionTypes,
     ResetAction,
-    FetchedAction,
+    FetchAction,
+    FetchedAction
 } from "./types";
 
 import {getPoints, getPointTransactions} from "../../api/private-api";
@@ -14,16 +15,21 @@ import {getPoints, getPointTransactions} from "../../api/private-api";
 export const initialState: Points = {
     points: "0.000",
     uPoints: "0.000",
-    transactions: []
+    transactions: [],
+    loading: false
 };
 
 export default (state: Points = initialState, action: Actions): Points => {
     switch (action.type) {
+        case ActionTypes.FETCH: {
+            return {...state, loading: true}
+        }
         case ActionTypes.FETCHED: {
             return {
                 points: action.points,
                 uPoints: action.uPoints,
-                transactions: action.transactions || [...state.transactions]
+                transactions: action.transactions || [...state.transactions],
+                loading: false
             }
         }
         case ActionTypes.RESET: {
@@ -37,6 +43,8 @@ export default (state: Points = initialState, action: Actions): Points => {
 /* Actions */
 
 export const fetchPoints = (username: string) => async (dispatch: Dispatch) => {
+    dispatch(fetchAct());
+
     const name = username.replace("@", "");
 
     let points;
@@ -68,6 +76,12 @@ export const resetPoints = () => (dispatch: Dispatch) => {
 export const resetAct = (): ResetAction => {
     return {
         type: ActionTypes.RESET,
+    };
+};
+
+export const fetchAct = (): FetchAction => {
+    return {
+        type: ActionTypes.FETCH,
     };
 };
 
