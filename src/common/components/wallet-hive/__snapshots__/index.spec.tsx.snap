@@ -220,6 +220,57 @@ exports[`(1) Default Render 1`] = `
             History
              
           </h2>
+          <select
+            className="form-control"
+            onChange={[Function]}
+            value=""
+          >
+            <option
+              value=""
+            >
+              All Transactions
+            </option>
+            <option
+              value="curation_reward"
+            >
+              Curation Reward
+            </option>
+            <option
+              value="author_reward"
+            >
+              Author Reward
+            </option>
+            <option
+              value="comment_benefactor_reward"
+            >
+              Comment Benefactor Reward
+            </option>
+            <option
+              value="claim_reward_balance"
+            >
+              Claim rewards
+            </option>
+            <option
+              value="transfer"
+            >
+              Transfer
+            </option>
+            <option
+              value="transfer_to_vesting"
+            >
+              Transfer to vesting
+            </option>
+            <option
+              value="withdraw_vesting"
+            >
+              Withdraw vesting
+            </option>
+            <option
+              value="fill_order"
+            >
+              Fill order
+            </option>
+          </select>
         </div>
       </div>
     </div>
@@ -514,6 +565,57 @@ exports[`(2) Render with converting HBD 1`] = `
             History
              
           </h2>
+          <select
+            className="form-control"
+            onChange={[Function]}
+            value=""
+          >
+            <option
+              value=""
+            >
+              All Transactions
+            </option>
+            <option
+              value="curation_reward"
+            >
+              Curation Reward
+            </option>
+            <option
+              value="author_reward"
+            >
+              Author Reward
+            </option>
+            <option
+              value="comment_benefactor_reward"
+            >
+              Comment Benefactor Reward
+            </option>
+            <option
+              value="claim_reward_balance"
+            >
+              Claim rewards
+            </option>
+            <option
+              value="transfer"
+            >
+              Transfer
+            </option>
+            <option
+              value="transfer_to_vesting"
+            >
+              Transfer to vesting
+            </option>
+            <option
+              value="withdraw_vesting"
+            >
+              Withdraw vesting
+            </option>
+            <option
+              value="fill_order"
+            >
+              Fill order
+            </option>
+          </select>
         </div>
       </div>
     </div>
@@ -796,6 +898,57 @@ exports[`(3) usePrivate = false 1`] = `
             History
              
           </h2>
+          <select
+            className="form-control"
+            onChange={[Function]}
+            value=""
+          >
+            <option
+              value=""
+            >
+              All Transactions
+            </option>
+            <option
+              value="curation_reward"
+            >
+              Curation Reward
+            </option>
+            <option
+              value="author_reward"
+            >
+              Author Reward
+            </option>
+            <option
+              value="comment_benefactor_reward"
+            >
+              Comment Benefactor Reward
+            </option>
+            <option
+              value="claim_reward_balance"
+            >
+              Claim rewards
+            </option>
+            <option
+              value="transfer"
+            >
+              Transfer
+            </option>
+            <option
+              value="transfer_to_vesting"
+            >
+              Transfer to vesting
+            </option>
+            <option
+              value="withdraw_vesting"
+            >
+              Withdraw vesting
+            </option>
+            <option
+              value="fill_order"
+            >
+              Fill order
+            </option>
+          </select>
         </div>
       </div>
     </div>
