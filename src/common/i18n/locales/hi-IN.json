@@ -131,6 +131,12 @@
     "replies-n": "{{n}} प्रतिक्रियाएं। जवाब देने के लिए क्लिक करें।",
     "no-replies": "अभी तक कोई प्रतिक्रिया नहीं। जवाब देने के लिए क्लिक करें।"
   },
+  "nsfw": {
+    "reveal": "Reveal this post",
+    "signup": "<a href=\"/signup\" class=\"push-link\">create an account</a> to save your preferences",
+    "settings-1": "adjust your",
+    "settings-2": "display preferences"
+  },
   "bookmark-btn": {
     "add": "पृष्ठ स्मृति में जोड़ें",
     "added": "पृष्ठ स्मृति में जुड़ गया",
@@ -370,6 +376,7 @@
     "notifications": "अधिसूचना अलर्ट",
     "currency": "करेंसी",
     "language": "भाषा",
+    "nsfw": "Show NSFW content",
     "updated": "वरीयता अद्यतन!"
   },
   "wallet": {
