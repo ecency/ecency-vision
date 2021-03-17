@@ -227,6 +227,7 @@ export class TransactionList extends Component<Props, State> {
                 {trList.map((x, k) => (
                     <TransactionRow {...this.props} key={k} transaction={x}/>
                 ))}
+                {(!loading && trList.length === 0) && <p className="text-muted empty-list">{_t('g.empty-list')}</p>}
             </div>
         );
     }
