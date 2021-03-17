@@ -54,3 +54,21 @@ Object {
   "uPoints": "0.000",
 }
 `;
+
+exports[`5- fetchAct 1`] = `
+Object {
+  "loading": true,
+  "points": "0.000",
+  "transactions": Array [],
+  "uPoints": "0.000",
+}
+`;
+
+exports[`6- errorAct 1`] = `
+Object {
+  "loading": false,
+  "points": "0.000",
+  "transactions": Array [],
+  "uPoints": "0.000",
+}
+`;

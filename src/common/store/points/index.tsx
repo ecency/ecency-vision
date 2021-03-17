@@ -7,7 +7,8 @@ import {
     ActionTypes,
     ResetAction,
     FetchAction,
-    FetchedAction
+    FetchedAction,
+    ErrorAction
 } from "./types";
 
 import {getPoints, getPointTransactions} from "../../api/private-api";
@@ -32,6 +33,9 @@ export default (state: Points = initialState, action: Actions): Points => {
                 loading: false
             }
         }
+        case ActionTypes.ERROR: {
+            return {...state, loading: false}
+        }
         case ActionTypes.RESET: {
             return {...initialState};
         }
@@ -51,6 +55,7 @@ export const fetchPoints = (username: string) => async (dispatch: Dispatch) => {
     try {
         points = await getPoints(name);
     } catch (e) {
+        dispatch(errorAct());
         return;
     }
 
@@ -60,6 +65,7 @@ export const fetchPoints = (username: string) => async (dispatch: Dispatch) => {
     try {
         transactions = await getPointTransactions(name);
     } catch (e) {
+        dispatch(errorAct());
         return;
     }
 
@@ -78,6 +84,13 @@ export const resetAct = (): ResetAction => {
         type: ActionTypes.RESET,
     };
 };
+
+export const errorAct = (): ErrorAction => {
+    return {
+        type: ActionTypes.ERROR,
+    };
+};
+
 
 export const fetchAct = (): FetchAction => {
     return {
