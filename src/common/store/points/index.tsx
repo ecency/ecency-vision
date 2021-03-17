@@ -46,7 +46,7 @@ export default (state: Points = initialState, action: Actions): Points => {
 
 /* Actions */
 
-export const fetchPoints = (username: string) => async (dispatch: Dispatch) => {
+export const fetchPoints = (username: string, type?: number) => async (dispatch: Dispatch) => {
     dispatch(fetchAct());
 
     const name = username.replace("@", "");
@@ -63,7 +63,7 @@ export const fetchPoints = (username: string) => async (dispatch: Dispatch) => {
 
     let transactions;
     try {
-        transactions = await getPointTransactions(name);
+        transactions = await getPointTransactions(name, type);
     } catch (e) {
         dispatch(errorAct());
         return;

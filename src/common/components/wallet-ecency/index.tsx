@@ -22,27 +22,28 @@ import Boost from "../boost";
 import WalletMenu from "../wallet-menu";
 import EntryLink from "../entry-link";
 
-import {success, error} from "../feedback";
+import {error, success} from "../feedback";
 
 import {_t} from "../../i18n";
 
 import {claimPoints} from "../../api/private-api";
 
 import {
+    accountGroupSvg,
     accountOutlineSvg,
+    cashSvg,
     checkAllSvg,
     chevronUpSvg,
     commentSvg,
+    compareHorizontalSvg,
+    gpsSvg,
     pencilOutlineSvg,
     plusCircle,
     repeatSvg,
     starOutlineSvg,
-    ticketSvg,
-    gpsSvg,
-    accountGroupSvg,
-    compareHorizontalSvg,
-    cashSvg
+    ticketSvg
 } from "../../img/svg";
+import {FormControl} from "react-bootstrap";
 
 
 export const formatMemo = (memo: string, history: History) => {
@@ -166,7 +167,7 @@ interface Props {
     points: Points;
     signingKey: string;
     transactions: Transactions;
-    fetchPoints: (username: string) => void;
+    fetchPoints: (username: string, type?: number) => void;
     addAccount: (data: Account) => void;
     updateActiveUser: (data?: Account) => void;
     setSigningKey: (key: string) => void;
@@ -178,6 +179,7 @@ interface State {
     promote: boolean;
     boost: boolean;
     transfer: boolean;
+    type: number;
 }
 
 export class WalletEcency extends BaseComponent<Props, State> {
@@ -186,7 +188,8 @@ export class WalletEcency extends BaseComponent<Props, State> {
         purchase: false,
         promote: false,
         boost: false,
-        transfer: false
+        transfer: false,
+        type: 0
     }
 
     componentDidMount() {
@@ -236,8 +239,16 @@ export class WalletEcency extends BaseComponent<Props, State> {
         this.setState({boost: !boost});
     }
 
+    typeChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+        const type = Number(e.target.value);
+        this.setState({type}, () => {
+            const {fetchPoints, account} = this.props;
+            fetchPoints(account.name, type);
+        });
+    }
+
     render() {
-        const {claiming, transfer, purchase, promote, boost} = this.state;
+        const {claiming, transfer, purchase, promote, boost, type} = this.state;
         const {global, activeUser, account, points} = this.props;
 
         if (!global.usePrivate) {
@@ -260,6 +271,12 @@ export class WalletEcency extends BaseComponent<Props, State> {
                 onClick: this.toggleBoost
             }]
         };
+
+        const filterTypes = [
+            TransactionType.CHECKIN, TransactionType.LOGIN, TransactionType.CHECKIN_EXTRA,
+            TransactionType.POST, TransactionType.COMMENT, TransactionType.VOTE,
+            TransactionType.REBLOG, TransactionType.DELEGATION, TransactionType.REFERRAL,
+            TransactionType.COMMUNITY];
 
         return (
             <>
@@ -370,17 +387,19 @@ export class WalletEcency extends BaseComponent<Props, State> {
                                 )}
                             </div>
 
-                            {points.transactions.length > 0 && (
-                                <div className="p-transaction-list">
-                                    <div className="transaction-list-header">
-                                        <h2>{_t('points.history')}</h2>
-                                    </div>
-                                    <div className="transaction-list-body">
-                                        {points.transactions.map(tr => <TransactionRow history={this.props.history} tr={tr} key={tr.id}/>)}
-                                    </div>
+                            <div className="p-transaction-list">
+                                <div className="transaction-list-header">
+                                    <h2>{_t('points.history')}</h2>
+                                    <FormControl as="select" value={type} onChange={this.typeChanged}>
+                                        <option value="0">{_t("transactions.type-all")}</option>
+                                        {filterTypes.map(x => <option key={x} value={x}>{_t(`points.type-${x}`)}</option>)}
+                                    </FormControl>
                                 </div>
-                            )}
-
+                                <div className="transaction-list-body">
+                                    {points.transactions.map(tr => <TransactionRow history={this.props.history} tr={tr} key={tr.id}/>)}
+                                    {(!points.loading && points.transactions.length === 0) && <p className="text-muted empty-list">{_t('g.empty-list')}</p>}
+                                </div>
+                            </div>
                         </div>
 
                         <WalletMenu global={global} username={account.name} active="ecency"/>

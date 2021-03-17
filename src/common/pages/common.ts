@@ -103,7 +103,7 @@ export interface PageProps {
     markNotifications: (id: string | null) => void;
 
     points: Points;
-    fetchPoints: (username: string) => void;
+    fetchPoints: (username: string, type?: number) => void;
     resetPoints: () => void
 
     signingKey: string;

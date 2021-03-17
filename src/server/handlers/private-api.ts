@@ -58,8 +58,12 @@ export const points = async (req: express.Request, res: express.Response) => {
 };
 
 export const pointList = async (req: express.Request, res: express.Response) => {
-    const {username} = req.body;
-    pipe(apiRequest(`users/${username}/points?size=50`, "GET"), res);
+    const {username, type} = req.body;
+    let u = `users/${username}/points?size=50`;
+    if (type) {
+        u += `&type=${type}`;
+    }
+    pipe(apiRequest(u, "GET"), res);
 };
 
 export const createAccount = async (req: express.Request, res: express.Response) => {

@@ -446,7 +446,20 @@
     "transfer": "Gift to someone",
     "claim-ok": "Points claimed",
     "promote": "Promote",
-    "boost": "Boost"
+    "boost": "Boost",
+    "type-all": "All Transactions",
+    "type-10": "Points for heartbeat",
+    "type-20": "Points for login",
+    "type-30": "Usage bonus",
+    "type-100": "Points for post",
+    "type-110": "Points for comment",
+    "type-120": "Points for vote",
+    "type-130": "Points for reblog",
+    "type-150": "Delegation reward",
+    "type-160": "Referral reward",
+    "type-170": "Community reward",
+    "type-998": "Incoming transfer",
+    "type-999": "Outgoing transfer"
   },
   "purchase": {
     "select-asset": "Select Asset",
