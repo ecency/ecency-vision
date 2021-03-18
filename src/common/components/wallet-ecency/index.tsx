@@ -278,7 +278,7 @@ export class WalletEcency extends BaseComponent<Props, State> {
             TransactionType.CHECKIN, TransactionType.LOGIN, TransactionType.CHECKIN_EXTRA,
             TransactionType.POST, TransactionType.COMMENT, TransactionType.VOTE,
             TransactionType.REBLOG, TransactionType.DELEGATION, TransactionType.REFERRAL,
-            TransactionType.COMMUNITY];
+            TransactionType.COMMUNITY, TransactionType.TRANSFER_SENT, TransactionType.TRANSFER_INCOMING];
 
         return (
             <>

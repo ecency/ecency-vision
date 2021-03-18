@@ -287,6 +287,16 @@ exports[`(1) Default Render 1`] = `
             >
               Community reward
             </option>
+            <option
+              value={998}
+            >
+              Outgoing transfer
+            </option>
+            <option
+              value={999}
+            >
+              Incoming transfer
+            </option>
           </select>
         </div>
         <div
@@ -750,6 +760,16 @@ exports[`(2) With active user 1`] = `
               value={170}
             >
               Community reward
+            </option>
+            <option
+              value={998}
+            >
+              Outgoing transfer
+            </option>
+            <option
+              value={999}
+            >
+              Incoming transfer
             </option>
           </select>
         </div>
@@ -1246,6 +1266,16 @@ exports[`(3) Active user with unclaimed points 1`] = `
               value={170}
             >
               Community reward
+            </option>
+            <option
+              value={998}
+            >
+              Outgoing transfer
+            </option>
+            <option
+              value={999}
+            >
+              Incoming transfer
             </option>
           </select>
         </div>

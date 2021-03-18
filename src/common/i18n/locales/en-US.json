@@ -458,8 +458,8 @@
     "type-150": "Delegation reward",
     "type-160": "Referral reward",
     "type-170": "Community reward",
-    "type-998": "Incoming transfer",
-    "type-999": "Outgoing transfer"
+    "type-998": "Outgoing transfer",
+    "type-999": "Incoming transfer"
   },
   "purchase": {
     "select-asset": "Select Asset",
