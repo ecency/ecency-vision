@@ -181,7 +181,6 @@ interface State {
     promote: boolean;
     boost: boolean;
     transfer: boolean;
-    type: number;
 }
 
 export class WalletEcency extends BaseComponent<Props, State> {
@@ -190,8 +189,7 @@ export class WalletEcency extends BaseComponent<Props, State> {
         purchase: false,
         promote: false,
         boost: false,
-        transfer: false,
-        type: 0
+        transfer: false
     }
 
     componentDidMount() {
@@ -241,16 +239,14 @@ export class WalletEcency extends BaseComponent<Props, State> {
         this.setState({boost: !boost});
     }
 
-    typeChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
-        const type = Number(e.target.value);
-        this.setState({type}, () => {
-            const {fetchPoints, account} = this.props;
-            fetchPoints(account.name, type);
-        });
+    filterChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+        const filter = Number(e.target.value);
+        const {fetchPoints, account} = this.props;
+        fetchPoints(account.name, filter);
     }
 
     render() {
-        const {claiming, transfer, purchase, promote, boost, type} = this.state;
+        const {claiming, transfer, purchase, promote, boost} = this.state;
         const {global, activeUser, account, points} = this.props;
 
         if (!global.usePrivate) {
@@ -274,7 +270,7 @@ export class WalletEcency extends BaseComponent<Props, State> {
             }]
         };
 
-        const filterTypes = [
+        const txFilters = [
             TransactionType.CHECKIN, TransactionType.LOGIN, TransactionType.CHECKIN_EXTRA,
             TransactionType.POST, TransactionType.COMMENT, TransactionType.VOTE,
             TransactionType.REBLOG, TransactionType.DELEGATION, TransactionType.REFERRAL,
@@ -389,13 +385,12 @@ export class WalletEcency extends BaseComponent<Props, State> {
                                 )}
                             </div>
 
-
                             <div className="p-transaction-list">
                                 <div className="transaction-list-header">
                                     <h2>{_t('points.history')}</h2>
-                                    <FormControl as="select" value={type} onChange={this.typeChanged}>
-                                        <option value="0">{_t("transactions.type-all")}</option>
-                                        {filterTypes.map(x => <option key={x} value={x}>{_t(`points.type-${x}`)}</option>)}
+                                    <FormControl as="select" value={points.filter} onChange={this.filterChanged}>
+                                        <option value="0">{_t("points.filter-all")}</option>
+                                        {txFilters.map(x => <option key={x} value={x}>{_t(`points.filter-${x}`)}</option>)}
                                     </FormControl>
                                 </div>
 

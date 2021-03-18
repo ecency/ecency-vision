@@ -28,7 +28,8 @@ const defProps = {
         points: "12.010",
         uPoints: "0.000",
         transactions: [...pointTransactionsInstance],
-        loading: false
+        loading: false,
+        filter: 0
     },
     signingKey: '',
     transactions: transactionsInitialState,
@@ -79,7 +80,8 @@ it("(3) Active user with unclaimed points", () => {
             points: "12.010",
             uPoints: "6.200",
             transactions: [...pointTransactionsInstance],
-            loading: false
+            loading: false,
+            filter: 0
         },
     };
 

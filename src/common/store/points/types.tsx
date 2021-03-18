@@ -29,6 +29,7 @@ export interface Points {
     uPoints: string;
     transactions: PointTransaction[];
     loading: boolean;
+    filter: number;
 }
 
 export enum ActionTypes {
@@ -51,6 +52,7 @@ export interface ErrorAction {
 
 export interface FetchAction {
     type: ActionTypes.FETCH;
+    filter: number;
 }
 
 export interface ResetAction {

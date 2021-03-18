@@ -9,7 +9,7 @@ it("1- default state", () => {
 });
 
 it("2- fetchAct", () => {
-    state = reducer(state, fetchAct());
+    state = reducer(state, fetchAct(0));
     expect(state).toMatchSnapshot();
 });
 
@@ -25,7 +25,7 @@ it("4- resetAct", () => {
 });
 
 it("5- fetchAct", () => {
-    state = reducer(state, fetchAct());
+    state = reducer(state, fetchAct(10));
     expect(state).toMatchSnapshot();
 });
 

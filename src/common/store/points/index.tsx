@@ -17,16 +17,18 @@ export const initialState: Points = {
     points: "0.000",
     uPoints: "0.000",
     transactions: [],
-    loading: false
+    loading: false,
+    filter: 0
 };
 
 export default (state: Points = initialState, action: Actions): Points => {
     switch (action.type) {
         case ActionTypes.FETCH: {
-            return {...state, transactions: [], loading: true}
+            return {...state, filter: action.filter, transactions: [], loading: true}
         }
         case ActionTypes.FETCHED: {
             return {
+                ...state,
                 points: action.points,
                 uPoints: action.uPoints,
                 transactions: action.transactions || [...state.transactions],
@@ -46,8 +48,8 @@ export default (state: Points = initialState, action: Actions): Points => {
 
 /* Actions */
 
-export const fetchPoints = (username: string, type?: number) => async (dispatch: Dispatch) => {
-    dispatch(fetchAct());
+export const fetchPoints = (username: string, filter: number = 0) => async (dispatch: Dispatch) => {
+    dispatch(fetchAct(filter));
 
     const name = username.replace("@", "");
 
@@ -61,7 +63,7 @@ export const fetchPoints = (username: string, type?: number) => async (dispatch:
 
     let transactions;
     try {
-        transactions = await getPointTransactions(name, type);
+        transactions = await getPointTransactions(name, filter);
     } catch (e) {
         dispatch(errorAct());
         return;
@@ -90,9 +92,10 @@ export const errorAct = (): ErrorAction => {
 };
 
 
-export const fetchAct = (): FetchAction => {
+export const fetchAct = (filter: number): FetchAction => {
     return {
         type: ActionTypes.FETCH,
+        filter,
     };
 };
 

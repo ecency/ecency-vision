@@ -235,7 +235,7 @@ exports[`(1) Default Render 1`] = `
             <option
               value="0"
             >
-              All Transactions
+              All History
             </option>
             <option
               value={10}
@@ -709,7 +709,7 @@ exports[`(2) With active user 1`] = `
             <option
               value="0"
             >
-              All Transactions
+              All History
             </option>
             <option
               value={10}
@@ -1215,7 +1215,7 @@ exports[`(3) Active user with unclaimed points 1`] = `
             <option
               value="0"
             >
-              All Transactions
+              All History
             </option>
             <option
               value={10}
