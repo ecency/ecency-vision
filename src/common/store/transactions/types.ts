@@ -99,6 +99,11 @@ export interface FillConvertRequest extends BaseTransaction {
     amount_out: string,
 }
 
+export interface ReturnVestingDelegation extends BaseTransaction {
+    type: "return_vesting_delegation"
+    vesting_shares: string
+}
+
 export type Transaction =
     | CurationReward
     | AuthorReward
@@ -112,7 +117,8 @@ export type Transaction =
     | FillOrder
     | ProducerReward
     | Interest
-    | FillConvertRequest;
+    | FillConvertRequest
+    | ReturnVestingDelegation;
 
 export type OperationGroup = "transfers" | "escrow-transfers" | "market-orders" | "interests" | "stake-operations" | "rewards";
 

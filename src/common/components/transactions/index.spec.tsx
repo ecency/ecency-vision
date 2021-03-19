@@ -17,7 +17,8 @@ import {
     Interest,
     TransferToSavings,
     FillConvertRequest,
-    CancelTransferFromSavings
+    CancelTransferFromSavings,
+    ReturnVestingDelegation
 } from "../../store/transactions/types";
 
 import {dynamicPropsIntance1} from "../../helper/test-helper";
@@ -270,6 +271,23 @@ it("(13) cancel_transfer_from_savings", () => {
         request_id: 1612448772,
         timestamp: "2021-02-06T09:00:51",
         type: "cancel_transfer_from_savings",
+    };
+
+    const props = {
+        ...defProps,
+        transaction,
+    };
+
+    const renderer = TestRenderer.create(<TransactionRow {...props} />);
+    expect(renderer.toJSON()).toMatchSnapshot();
+});
+
+it("(14) return_vesting_delegation", () => {
+    const transaction: ReturnVestingDelegation = {
+        num: 6233,
+        timestamp: "2021-01-18T07:13:09",
+        type: "return_vesting_delegation",
+        vesting_shares: "3825.116651 VESTS",
     };
 
     const props = {

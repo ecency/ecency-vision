@@ -672,3 +672,44 @@ exports[`(13) cancel_transfer_from_savings 1`] = `
   </div>
 </div>
 `;
+
+exports[`(14) return_vesting_delegation 1`] = `
+<div
+  className="transaction-list-item"
+>
+  <div
+    className="transaction-icon"
+  >
+    <svg
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"
+        fill="currentColor"
+      />
+    </svg>
+  </div>
+  <div
+    className="transaction-title"
+  >
+    <div
+      className="transaction-name"
+    >
+      Return vesting delegation
+    </div>
+    <div
+      className="transaction-date"
+    >
+      2 hours ago
+    </div>
+  </div>
+  <div
+    className="transaction-numbers"
+  >
+    1.965 HP
+  </div>
+  <div
+    className="transaction-details"
+  />
+</div>
+`;

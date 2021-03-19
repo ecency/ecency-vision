@@ -19,7 +19,7 @@ import {vestsToHp} from "../../helper/vesting";
 
 import formattedNumber from "../../util/formatted-number";
 
-import {ticketSvg, commentSvg, compareHorizontalSvg, cashSvg, cashMultiple, reOrderHorizontalSvg, pickAxeSvg, closeSvg} from "../../img/svg";
+import {ticketSvg, commentSvg, compareHorizontalSvg, cashSvg, cashMultiple, reOrderHorizontalSvg, pickAxeSvg, closeSvg, arrowRightSvg} from "../../img/svg";
 
 import {_t} from "../../i18n";
 import {Tsx} from "../../i18n/helper";
@@ -185,6 +185,13 @@ export class TransactionRow extends Component<RowProps> {
             icon = reOrderHorizontalSvg;
 
             numbers = <span className="number">{tr.amount_in} = {tr.amount_out}</span>
+        }
+
+        if (tr.type === "return_vesting_delegation") {
+            flag = true;
+            icon = arrowRightSvg;
+
+            numbers = <>{formattedNumber(vestsToHp(parseAsset(tr.vesting_shares).amount, hivePerMVests), {suffix: "HP"})}</>
         }
 
         if (flag) {
