@@ -14,7 +14,8 @@ import {
     WithdrawVesting,
     FillOrder,
     ProducerReward,
-    Interest
+    Interest,
+    TransferToSavings
 } from "../../store/transactions/types";
 
 import {dynamicPropsIntance1} from "../../helper/test-helper";
@@ -211,6 +212,26 @@ it("(10) interest", () => {
         owner: "foo",
         interest: "0.570 HBD",
         type: "interest",
+    };
+
+    const props = {
+        ...defProps,
+        transaction,
+    };
+
+    const renderer = TestRenderer.create(<TransactionRow {...props} />);
+    expect(renderer.toJSON()).toMatchSnapshot();
+});
+
+it("(11) transfer_to_savings", () => {
+    const transaction: TransferToSavings = {
+        amount: "0.001 HIVE",
+        from: "talhasch",
+        memo: "test memo",
+        num: 6621,
+        timestamp: "2021-03-19T11:31:33",
+        to: "talhasch",
+        type: "transfer_to_savings",
     };
 
     const props = {

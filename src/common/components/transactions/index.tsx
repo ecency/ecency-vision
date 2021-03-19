@@ -111,7 +111,7 @@ export class TransactionRow extends Component<RowProps> {
             );
         }
 
-        if (tr.type === "transfer" || tr.type === "transfer_to_vesting") {
+        if (tr.type === "transfer" || tr.type === "transfer_to_vesting" || tr.type == "transfer_to_savings") {
             flag = true;
             icon = compareHorizontalSvg;
 

@@ -512,3 +512,65 @@ exports[`(10) interest 1`] = `
   />
 </div>
 `;
+
+exports[`(11) transfer_to_savings 1`] = `
+<div
+  className="transaction-list-item"
+>
+  <div
+    className="transaction-icon"
+  >
+    <svg
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M9 14H2V16H9V19L13 15L9 11V14M15 13V10H22V8H15V5L11 9L15 13Z"
+        fill="currentColor"
+      />
+    </svg>
+  </div>
+  <div
+    className="transaction-title"
+  >
+    <div
+      className="transaction-name"
+    >
+      Transfer to savings
+    </div>
+    <div
+      className="transaction-date"
+    >
+      2 hours ago
+    </div>
+  </div>
+  <div
+    className="transaction-numbers"
+  >
+    <span
+      className="number"
+    >
+      0.001 HIVE
+    </span>
+  </div>
+  <div
+    className="transaction-details"
+  >
+    <span>
+      test memo
+       
+      <br />
+       
+      <br />
+      <strong>
+        @
+        talhasch
+      </strong>
+       -&gt; 
+      <strong>
+        @
+        talhasch
+      </strong>
+    </span>
+  </div>
+</div>
+`;

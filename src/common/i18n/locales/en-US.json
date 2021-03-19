@@ -557,7 +557,8 @@
     "type-withdraw_vesting": "Withdraw vesting",
     "type-fill_order": "Fill order",
     "type-producer_reward": "Producer reward",
-    "type-interest": "Interest"
+    "type-interest": "Interest",
+    "type-transfer_to_savings": "Transfer to savings"
   },
   "key-or-hot": {
     "sign": "Sign",

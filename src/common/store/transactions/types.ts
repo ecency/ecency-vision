@@ -55,6 +55,14 @@ export interface TransferToVesting extends BaseTransaction {
     to: string;
 }
 
+export interface TransferToSavings extends BaseTransaction {
+    type: "transfer_to_savings";
+    amount: string;
+    memo?: string;
+    from: string;
+    to: string;
+}
+
 export interface WithdrawVesting extends BaseTransaction {
     type: "withdraw_vesting";
     acc: string;
@@ -75,7 +83,7 @@ export interface ProducerReward extends BaseTransaction {
 
 export interface Interest extends BaseTransaction {
     type: "interest";
-    owner:string;
+    owner: string;
     interest: string
 }
 
@@ -86,6 +94,7 @@ export type Transaction =
     | ClaimRewardBalance
     | Transfer
     | TransferToVesting
+    | TransferToSavings
     | WithdrawVesting
     | FillOrder
     | ProducerReward
