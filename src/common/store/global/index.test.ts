@@ -1,4 +1,4 @@
-import reducer, {initialState, themeChangeAct, hideIntroAct, listStyleChangeAct, muteNotificationsAct, unMuteNotificationsAct, setLangAct, hasKeyChainAct} from "./index";
+import reducer, {initialState, themeChangeAct, hideIntroAct, listStyleChangeAct, muteNotificationsAct, unMuteNotificationsAct, setLangAct, setNsfwAct, hasKeyChainAct} from "./index";
 
 import {Theme, ListStyle} from "./types";
 import {locationChangeAct} from "../common";
@@ -46,5 +46,10 @@ it("8- Unmute notifications act", () => {
 
 it("9- Set lang act", () => {
     state = reducer(state, setLangAct("tr-TR"));
+    expect(state).toMatchSnapshot();
+});
+
+it("10- Set nsfw act", () => {
+    state = reducer(state, setNsfwAct(true));
     expect(state).toMatchSnapshot();
 });

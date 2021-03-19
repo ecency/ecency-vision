@@ -91,7 +91,7 @@
     "title": "आपका पुनः स्वागत है!",
     "with-user-pass": "अपने उपयोगकर्ता नाम और निजी कुंजी के साथ लॉगिन करें।",
     "username-placeholder": "प्रयोक्ता नाम",
-    "key-placeholder": "password / private key",
+    "key-placeholder": "पासवर्ड / निजी कुंजी",
     "login-info-1": "हम आपकी निजी कुंजियाँ संग्रहीत नहीं करते हैं।",
     "login-info-2": "अधिक जानकारी",
     "error-fields-required": "कृपया उपयोगकर्ता नाम और निजी कुंजी दर्ज करें",
@@ -99,7 +99,7 @@
     "error-user-fetch": "उपयोगकर्ता डेटा प्राप्त नहीं किया जा सका",
     "error-user-not-found": "उपयोगकर्ता उपलब्ध नहीं है",
     "error-permission": "पोस्टिंग की अनुमति नहीं मिल सकी",
-    "error-authenticate": "Wrong private key. Master or active or posting private key required.",
+    "error-authenticate": "गलत निजी कुंजी। मास्टर या सक्रिय या निजी कुंजी पोस्ट करना आवश्यक है।",
     "with-hive-signer": "हाइवेसाईनर के साथ लॉगिन करें",
     "with-keychain": "कीचैन के साथ लॉगिन करें",
     "sign-up-text-1": "खाता नहीं है?",
@@ -131,6 +131,12 @@
     "replies-n": "{{n}} प्रतिक्रियाएं। जवाब देने के लिए क्लिक करें।",
     "no-replies": "अभी तक कोई प्रतिक्रिया नहीं। जवाब देने के लिए क्लिक करें।"
   },
+  "nsfw": {
+    "reveal": "Reveal this post",
+    "signup": "<a href=\"/signup\" class=\"push-link\">create an account</a> to save your preferences",
+    "settings-1": "adjust your",
+    "settings-2": "display preferences"
+  },
   "bookmark-btn": {
     "add": "पृष्ठ स्मृति में जोड़ें",
     "added": "पृष्ठ स्मृति में जुड़ गया",
@@ -147,8 +153,8 @@
     "title": "टिप"
   },
   "entry-payout": {
-    "reward": "Reward",
-    "full-power": "Power Up 100%",
+    "reward": "इनाम",
+    "full-power": "पावर अप 100%",
     "pending-payout": "अनिर्णीत भुगतान",
     "promoted": "पदोन्नत",
     "author-payout": "लेखक भुगतान",
@@ -343,14 +349,14 @@
     "proposals": "प्रस्ताव"
   },
   "profile-info": {
-    "joined": "Joined: {{n}}",
-    "last-active": "Last active: {{n}}",
-    "vote-value": "Vote value: {{n}}",
-    "vote-value-max": "(out of max {{n}})",
-    "vote-power": "Vote Power: {{n}}%",
-    "rc-power": "Resource Credits: {{n}}%",
-    "recharge-time": "(fully charged {{n}})",
-    "down-vote-power": "Downvote Power: {{n}}%"
+    "joined": "में शामिल हो गए {{n}}",
+    "last-active": "अंतिम सक्रिय: {{n}}",
+    "vote-value": "वोट मूल्य: {{n}}",
+    "vote-value-max": "(अधिकतम से {{n}})",
+    "vote-power": "वोट शक्ति: {{n}}%",
+    "rc-power": "संसाधन क्रेडिट: {{n}}%",
+    "recharge-time": "(पूर्णतःउर्जित {{n}})",
+    "down-vote-power": "डाउनवोट पावर: {{n}}%"
   },
   "profile-edit": {
     "title": "रूपरेखा",
@@ -370,6 +376,7 @@
     "notifications": "अधिसूचना अलर्ट",
     "currency": "करेंसी",
     "language": "भाषा",
+    "nsfw": "Show NSFW content",
     "updated": "वरीयता अद्यतन!"
   },
   "wallet": {
@@ -664,7 +671,7 @@
     "type-follows": "अनुगमन",
     "type-reblogs": "रिब्लॉग्स",
     "type-transfers": "स्थानांतरण",
-    "group-title-recent": "Recent",
+    "group-title-recent": "ताजा",
     "vote-str": "{{p}}% आपकी पोस्ट को पसंद किया है:",
     "reply-str": "आपके पोस्ट का जवाब दिया:",
     "mention-str": "में आपका उल्लेख किया:",
@@ -826,8 +833,8 @@
     "link-label": "छवि लिंक"
   },
   "add-link": {
-    "title": "Add Link",
-    "text-label": "Text",
+    "title": "लिंक जोड़ें",
+    "text-label": "टेक्स्ट",
     "link-label": "https://"
   },
   "scroll-to-top": {
@@ -917,11 +924,11 @@
     "restart": "पुन: शुरू करें"
   },
   "chain-error": {
-    "min-root-comment": "You may only post once every five minutes.",
-    "identical-vote": "Your current vote on this content is identical to this vote.",
-    "insufficient-resource": "Insufficient Resource Credits. Please wait to transact, or power up HIVE.",
-    "delete-comment-with-vote": "Can't delete a content with votes.",
-    "comment-cashout": "Content cashout.",
-    "paid-out-post-forbidden": "Voting for paid out content is not available."
+    "min-root-comment": "आप हर पांच मिनट में केवल एक बार पोस्ट कर सकते हैं।",
+    "identical-vote": "इस सामग्री पर आपका वर्तमान वोट इस वोट के समान है।",
+    "insufficient-resource": "अपर्याप्त संसाधन क्रेडिट। कृपया लेनदेन करने के लिए प्रतीक्षा करें, या HIVE को शक्ति दें।",
+    "delete-comment-with-vote": "वोटों के साथ एक सामग्री नहीं हटा सकते।",
+    "comment-cashout": "सामग्री कैशआउट।",
+    "paid-out-post-forbidden": "सशुल्क सामग्री के लिए मतदान उपलब्ध नहीं है।"
   }
 }

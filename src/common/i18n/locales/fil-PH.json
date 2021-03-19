@@ -131,6 +131,12 @@
     "replies-n": "{{n}} mga kasagutan. Pindutin para sumagot.",
     "no-replies": "Walang pang mga kasagutan. Pindutin para sumagot."
   },
+  "nsfw": {
+    "reveal": "Reveal this post",
+    "signup": "<a href=\"/signup\" class=\"push-link\">create an account</a> to save your preferences",
+    "settings-1": "adjust your",
+    "settings-2": "display preferences"
+  },
   "bookmark-btn": {
     "add": "Idagdag sa bookmarks",
     "added": "Naidagdag sa bookmarks",
@@ -370,6 +376,7 @@
     "notifications": "Mga abiso",
     "currency": "Salapi",
     "language": "Lingguwahe",
+    "nsfw": "Show NSFW content",
     "updated": "Matagumpay na nabago ang mga kagustuhan!"
   },
   "wallet": {

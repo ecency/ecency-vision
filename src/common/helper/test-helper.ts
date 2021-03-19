@@ -116,6 +116,7 @@ export const globalInstance: Global = {
     isElectron: false,
     isMobile: false,
     notifications: true,
+    nsfw: false,
     newVersion: null,
     usePrivate: true
 };

@@ -53,6 +53,26 @@
       }
     }
 
+    .nsfw-warning {
+      .nsfw-title {
+        margin-bottom: 20px;
+        text-align: center;
+
+        .nsfw-badge {
+          color: $red2;
+          border: 1px solid $red2;
+          padding: 2px 4px;
+          border-radius: 6px;
+          font-size: 32px;
+        }
+      }
+
+      .nsfw-body {
+        text-align: center;
+        font-size: 20px;
+      }
+    }
+
     .comment-entry-header {
       border-radius: 10px;
       padding: 20px;
@@ -355,6 +375,7 @@
 
           .app {
             font-weight: 700;
+
             a {
               text-decoration: none;
               color: $steel-grey;
