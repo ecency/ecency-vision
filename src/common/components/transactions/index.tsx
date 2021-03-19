@@ -167,7 +167,7 @@ export class TransactionRow extends Component<RowProps> {
             flag = true;
             icon = cashMultiple;
 
-            numbers = <>{formattedNumber(parseAsset(tr.interest).amount, {suffix: "HBD"})}</>
+            numbers = <span className="number">{tr.interest}</span>
         }
 
         if (tr.type === "fill_convert_request") {

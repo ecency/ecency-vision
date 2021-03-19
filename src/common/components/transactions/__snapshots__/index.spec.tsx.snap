@@ -505,7 +505,11 @@ exports[`(10) interest 1`] = `
   <div
     className="transaction-numbers"
   >
-    0.570 HBD
+    <span
+      className="number"
+    >
+      0.570 HBD
+    </span>
   </div>
   <div
     className="transaction-details"
