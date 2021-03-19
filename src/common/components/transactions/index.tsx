@@ -243,8 +243,6 @@ export class TransactionList extends Component<Props> {
         const {transactions} = this.props;
         const {list, loading, group} = transactions;
 
-        let trList: Transaction[] = list.sort((a: any, b: any) => b.num - a.num);
-
         return (
             <div className="transaction-list">
                 <div className="transaction-list-header">
@@ -256,10 +254,10 @@ export class TransactionList extends Component<Props> {
                     </FormControl>
                 </div>
                 {loading && <LinearProgress/>}
-                {trList.map((x, k) => (
+                {list.map((x, k) => (
                     <TransactionRow {...this.props} key={k} transaction={x}/>
                 ))}
-                {(!loading && trList.length === 0) && <p className="text-muted empty-list">{_t('g.empty-list')}</p>}
+                {(!loading && list.length === 0) && <p className="text-muted empty-list">{_t('g.empty-list')}</p>}
             </div>
         );
     }
