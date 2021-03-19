@@ -26,6 +26,7 @@ it("4- fetch", () => {
 it("5- fetched", () => {
   const list: Transaction[] = [
     {
+      trx_id: "0x123123",
       type: "curation_reward",
       comment_author: "user1",
       comment_permlink: "re-foo-qb4wuu",
@@ -35,6 +36,7 @@ it("5- fetched", () => {
       timestamp: "2020-06-06T07:59:18",
     },
     {
+      trx_id: "0x123124",
       amount: "43.101 HIVE",
       from: "user3",
       num: 3204009,
