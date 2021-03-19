@@ -131,6 +131,12 @@
     "replies-n": "{{n}} ответов. Нажмите для ответа.",
     "no-replies": "Ответов пока нет. Нажмите чтобы ответить."
   },
+  "nsfw": {
+    "reveal": "Reveal this post",
+    "signup": "<a href=\"/signup\" class=\"push-link\">create an account</a> to save your preferences",
+    "settings-1": "adjust your",
+    "settings-2": "display preferences"
+  },
   "bookmark-btn": {
     "add": "Добавить в закладки",
     "added": "Добавлено в закладки",
@@ -370,6 +376,7 @@
     "notifications": "Уведомления",
     "currency": "Валюта",
     "language": "Язык",
+    "nsfw": "Show NSFW content",
     "updated": "Настройки обновлены!"
   },
   "wallet": {

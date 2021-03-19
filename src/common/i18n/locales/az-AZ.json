@@ -131,6 +131,12 @@
     "replies-n": "{{n}} cavab. Cavablamaq üçün klikləyin.",
     "no-replies": "Hələ ki, cavab yoxdur. Cavablamaq üçün klikləyin."
   },
+  "nsfw": {
+    "reveal": "Reveal this post",
+    "signup": "<a href=\"/signup\" class=\"push-link\">create an account</a> to save your preferences",
+    "settings-1": "adjust your",
+    "settings-2": "display preferences"
+  },
   "bookmark-btn": {
     "add": "Əlfəcinlərə əlavə et",
     "added": "Əlfəcinlərə əlavə edildi",
@@ -370,6 +376,7 @@
     "notifications": "Bildiriş xəbərdarlıqları",
     "currency": "Pul vahidi",
     "language": "Dil",
+    "nsfw": "Show NSFW content",
     "updated": "Tərcih yeniləndi!"
   },
   "wallet": {

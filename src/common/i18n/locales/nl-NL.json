@@ -131,6 +131,12 @@
     "replies-n": "{{n}} reacties. Klik om te antwoorden.",
     "no-replies": "Nog geen reacties. Klik om te antwoorden."
   },
+  "nsfw": {
+    "reveal": "Reveal this post",
+    "signup": "<a href=\"/signup\" class=\"push-link\">create an account</a> to save your preferences",
+    "settings-1": "adjust your",
+    "settings-2": "display preferences"
+  },
   "bookmark-btn": {
     "add": "Voeg toe aan bladwijzers",
     "added": "Toegevoegd aan bladwijzers",
@@ -370,6 +376,7 @@
     "notifications": "Melding waarschuwingen",
     "currency": "Valuta",
     "language": "Taal",
+    "nsfw": "Show NSFW content",
     "updated": "Voorkeuren bijgewerkt!"
   },
   "wallet": {

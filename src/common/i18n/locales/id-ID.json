@@ -131,6 +131,12 @@
     "replies-n": "{{n}} respon. Klik untuk merespon.",
     "no-replies": "Belum ada respon. Klik untuk merespon."
   },
+  "nsfw": {
+    "reveal": "Reveal this post",
+    "signup": "<a href=\"/signup\" class=\"push-link\">create an account</a> to save your preferences",
+    "settings-1": "adjust your",
+    "settings-2": "display preferences"
+  },
   "bookmark-btn": {
     "add": "Tambahkan ke penanda",
     "added": "Ditambahkan ke penanda",
@@ -343,14 +349,14 @@
     "proposals": "Proposal"
   },
   "profile-info": {
-    "joined": "Joined: {{n}}",
-    "last-active": "Last active: {{n}}",
-    "vote-value": "Vote value: {{n}}",
-    "vote-value-max": "(out of max {{n}})",
-    "vote-power": "Vote Power: {{n}}%",
-    "rc-power": "Resource Credits: {{n}}%",
-    "recharge-time": "(fully charged {{n}})",
-    "down-vote-power": "Downvote Power: {{n}}%"
+    "joined": "Terhubung: {{n}}",
+    "last-active": "Aktif terakhir: {{n}}",
+    "vote-value": "Nilai vote: {{n}}",
+    "vote-value-max": "(dari mak {{n}})",
+    "vote-power": "Power vote: {{n}}%",
+    "rc-power": "Sumber Kredit: {{n}}%",
+    "recharge-time": "(terisi penuh {{n}})",
+    "down-vote-power": "Power Downvote: {{n}}%"
   },
   "profile-edit": {
     "title": "Profil",
@@ -370,6 +376,7 @@
     "notifications": "Peringatan notifikasi",
     "currency": "Mata uang",
     "language": "Bahasa",
+    "nsfw": "Show NSFW content",
     "updated": "Preferensi diperbaharui!"
   },
   "wallet": {

@@ -131,6 +131,12 @@
     "replies-n": "{{n}} respostas. Clique para responder.",
     "no-replies": "Nenhuma resposta ainda. Clique para responder."
   },
+  "nsfw": {
+    "reveal": "Reveal this post",
+    "signup": "<a href=\"/signup\" class=\"push-link\">create an account</a> to save your preferences",
+    "settings-1": "adjust your",
+    "settings-2": "display preferences"
+  },
   "bookmark-btn": {
     "add": "Adicionar aos favoritos",
     "added": "Adicionado aos favoritos",
@@ -147,8 +153,8 @@
     "title": "Dica"
   },
   "entry-payout": {
-    "reward": "Reward",
-    "full-power": "Power Up 100%",
+    "reward": "Recompensa",
+    "full-power": "Receber em Hive Power",
     "pending-payout": "Pagamento Pendente",
     "promoted": "Promovido",
     "author-payout": "Pagamento do Autor",
@@ -333,7 +339,7 @@
     "section-blog": "Blog",
     "section-posts": "Publicações",
     "section-comments": "Comentários",
-    "section-replies": "Respsotas",
+    "section-replies": "Respostas",
     "section-communities": "Comunidades",
     "section-wallet": "Carteira",
     "section-settings": "Definições",
@@ -343,14 +349,14 @@
     "proposals": "Propostas"
   },
   "profile-info": {
-    "joined": "Joined: {{n}}",
-    "last-active": "Last active: {{n}}",
-    "vote-value": "Vote value: {{n}}",
-    "vote-value-max": "(out of max {{n}})",
-    "vote-power": "Vote Power: {{n}}%",
-    "rc-power": "Resource Credits: {{n}}%",
-    "recharge-time": "(fully charged {{n}})",
-    "down-vote-power": "Downvote Power: {{n}}%"
+    "joined": "Entrou: {{n}}",
+    "last-active": "Último acesso: {{n}}",
+    "vote-value": "Valor do voto: {{n}}",
+    "vote-value-max": "(do máximo {{n}})",
+    "vote-power": "Poder de Voto: {{n}}%",
+    "rc-power": "Créditos de Recursos: {{n}}%",
+    "recharge-time": "( {{n}} para carregamento completo)",
+    "down-vote-power": "Poder de Voto Negativo: {{n}}%"
   },
   "profile-edit": {
     "title": "Perfil",
@@ -370,6 +376,7 @@
     "notifications": "Alertas de Notificações",
     "currency": "Moeda",
     "language": "Língua",
+    "nsfw": "Show NSFW content",
     "updated": "Preferências atualizadas!"
   },
   "wallet": {
@@ -897,7 +904,7 @@
     }
   },
   "contributors": {
-    "title": "Colaboradoes",
+    "title": "Colaboradores",
     "description": "Estas grandes pessoas contribuíram de uma forma ou de outra para a Ecency, gostaríamos de agradecer a todos. Se você quiser se juntar a nossa equipe contribuindo com Tradução, Idéias, Desenvolvimento, Design, Conscientização social, sinta-se livre para participar. Para saber mais, leia as nossas <a href=\"/faq#how-to-contribute\">Perguntas Frequentes</a>."
   },
   "context-menu": {

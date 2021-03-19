@@ -131,6 +131,12 @@
     "replies-n": "{{n}} απαντήσεις. Κάντε κλικ για να απαντήσετε.",
     "no-replies": "Καμία απάντηση ακόμα. Κάντε κλικ για να απαντήσετε."
   },
+  "nsfw": {
+    "reveal": "Reveal this post",
+    "signup": "<a href=\"/signup\" class=\"push-link\">create an account</a> to save your preferences",
+    "settings-1": "adjust your",
+    "settings-2": "display preferences"
+  },
   "bookmark-btn": {
     "add": "Προσθήκη στους σελιδοδείκτες",
     "added": "Έγινε προσθήκη στους σελιδοδείκτες",
@@ -370,6 +376,7 @@
     "notifications": "Γνωστοποιήσεις & ειδοποιήσεις",
     "currency": "Νόμισμα",
     "language": "Γλώσσα",
+    "nsfw": "Show NSFW content",
     "updated": "Οι προτιμήσεις ενημερώθηκαν!"
   },
   "wallet": {
