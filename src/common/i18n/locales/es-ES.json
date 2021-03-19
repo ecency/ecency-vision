@@ -446,7 +446,20 @@
     "transfer": "Regalar a alguien",
     "claim-ok": "Puntos reclamados",
     "promote": "Promocionar",
-    "boost": "Boost"
+    "boost": "Boost",
+    "filter-all": "All History",
+    "filter-10": "Points for heartbeat",
+    "filter-20": "Points for login",
+    "filter-30": "Usage bonus",
+    "filter-100": "Points for post",
+    "filter-110": "Points for comment",
+    "filter-120": "Points for vote",
+    "filter-130": "Points for reblog",
+    "filter-150": "Delegation reward",
+    "filter-160": "Referral reward",
+    "filter-170": "Community reward",
+    "filter-998": "Outgoing transfer",
+    "filter-999": "Incoming transfer"
   },
   "purchase": {
     "select-asset": "Seleccionar activos",
@@ -528,6 +541,12 @@
   },
   "transactions": {
     "title": "Historial",
+    "group-all": "All History",
+    "group-transfers": "Transfers",
+    "group-market-orders": "Market Orders",
+    "group-interests": "Interests",
+    "group-stake-operations": "Stake operations",
+    "group-rewards": "Rewards",
     "type-curation_reward": "Recompensa de curación",
     "type-author_reward": "Recompensa de autor",
     "type-comment_benefactor_reward": "Recompensas de benefactor del comentario",
@@ -535,7 +554,15 @@
     "type-transfer": "Transferir",
     "type-transfer_to_vesting": "Transferir a ahorros",
     "type-withdraw_vesting": "Retirar ahorros",
-    "type-fill_order": "Completar orden"
+    "type-fill_order": "Completar orden",
+    "type-producer_reward": "Producer reward",
+    "type-interest": "Interest",
+    "type-transfer_to_savings": "Transfer to savings",
+    "type-fill_convert_request": "Fill convert request",
+    "type-cancel_transfer_from_savings": "Cancel transfer from savings",
+    "type-cancel_transfer_from_savings-detail": "From: <strong>@{{from}}</strong> <br/> Request id: <strong>{{request}}</strong>",
+    "type-return_vesting_delegation": "Return vesting delegation",
+    "type-proposal_pay": "Proposal pay"
   },
   "key-or-hot": {
     "sign": "Firmar",
