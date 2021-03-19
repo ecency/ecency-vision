@@ -18,7 +18,8 @@ import {
     TransferToSavings,
     FillConvertRequest,
     CancelTransferFromSavings,
-    ReturnVestingDelegation
+    ReturnVestingDelegation,
+    ProposalPay
 } from "../../store/transactions/types";
 
 import {dynamicPropsIntance1} from "../../helper/test-helper";
@@ -303,6 +304,24 @@ it("(14) return_vesting_delegation", () => {
         type: "return_vesting_delegation",
         vesting_shares: "3825.116651 VESTS",
     };
+
+    const props = {
+        ...defProps,
+        transaction,
+    };
+
+    const renderer = TestRenderer.create(<TransactionRow {...props} />);
+    expect(renderer.toJSON()).toMatchSnapshot();
+});
+
+it("(15) proposal_pay", () => {
+    const transaction: ProposalPay = {
+        "num": 151892,
+        "type": "proposal_pay",
+        "timestamp": "2021-03-19T12:29:51",
+        "trx_id": "0000000000000000000000000000000000000000",
+        "payment": "14.560 HBD"
+    }
 
     const props = {
         ...defProps,

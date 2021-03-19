@@ -43,6 +43,7 @@ Object {
       "num": 3204035,
       "reward": "12061.044067 VESTS",
       "timestamp": "2020-06-06T07:59:18",
+      "trx_id": "0x123123",
       "type": "curation_reward",
     },
     Object {
@@ -51,6 +52,7 @@ Object {
       "num": 3204009,
       "timestamp": "2020-06-06T07:46:06",
       "to": "user4",
+      "trx_id": "0x123124",
       "type": "transfer_to_vesting",
     },
   ],

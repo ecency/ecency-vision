@@ -22,7 +22,7 @@ export const ACCOUNT_OPERATION_GROUPS: Record<OperationGroup, number[]> = {
     "market-orders": [ops.fill_convert_request, ops.fill_order],
     "interests": [ops.interest],
     "stake-operations": [ops.return_vesting_delegation, ops.withdraw_vesting, ops.transfer_to_vesting],
-    "rewards": [ops.author_reward, ops.curation_reward, ops.producer_reward, ops.claim_reward_balance, ops.comment_benefactor_reward, ops.sps_fund, ops.liquidity_reward]
+    "rewards": [ops.author_reward, ops.curation_reward, ops.producer_reward, ops.claim_reward_balance, ops.comment_benefactor_reward, ops.proposal_pay, ops.liquidity_reward]
 }
 
 const ALL_ACCOUNT_OPERATIONS = [...Object.values(ACCOUNT_OPERATION_GROUPS)].flat();

@@ -105,6 +105,11 @@ export interface ReturnVestingDelegation extends BaseTransaction {
     vesting_shares: string
 }
 
+export interface ProposalPay extends BaseTransaction {
+    type: "proposal_pay"
+    payment: string
+}
+
 export type Transaction =
     | CurationReward
     | AuthorReward
@@ -119,7 +124,8 @@ export type Transaction =
     | ProducerReward
     | Interest
     | FillConvertRequest
-    | ReturnVestingDelegation;
+    | ReturnVestingDelegation
+    | ProposalPay;
 
 export type OperationGroup = "transfers" | "market-orders" | "interests" | "stake-operations" | "rewards";
 

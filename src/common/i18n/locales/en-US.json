@@ -561,7 +561,8 @@
     "type-fill_convert_request": "Fill convert request",
     "type-cancel_transfer_from_savings": "Cancel transfer from savings",
     "type-cancel_transfer_from_savings-detail": "From: <strong>@{{from}}</strong> <br/> Request id: <strong>{{request}}</strong>",
-    "type-return_vesting_delegation": "Return vesting delegation"
+    "type-return_vesting_delegation": "Return vesting delegation",
+    "type-proposal_pay": "Proposal pay"
   },
   "key-or-hot": {
     "sign": "Sign",

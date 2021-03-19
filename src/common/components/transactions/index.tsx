@@ -194,6 +194,13 @@ export class TransactionRow extends Component<RowProps> {
             numbers = <>{formattedNumber(vestsToHp(parseAsset(tr.vesting_shares).amount, hivePerMVests), {suffix: "HP"})}</>
         }
 
+        if (tr.type === "proposal_pay") {
+            flag = true;
+            icon = ticketSvg;
+
+            numbers = <span className="number">{tr.payment}</span>
+        }
+
         if (flag) {
             const transDate = parseDate(tr.timestamp);
 
