@@ -15,7 +15,7 @@ interface ContentState {
 export class DialogContent extends BaseComponent<{}, ContentState> {
 
     state: ContentState = {
-        desktopTag: "3.0.14"
+        desktopTag: "3.0.15"
     }
 
     componentDidMount() {
