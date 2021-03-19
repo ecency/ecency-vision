@@ -193,7 +193,7 @@ export const getDynamicGlobalProperties = (): Promise<DynamicGlobalProperties> =
 
 export const getAccountHistory = (username: string, operations: number[]): Promise<any> => {
     const filters = utils.makeBitMaskFilter(operations);
-    return client.call("condenser_api", "get_account_history", [username, -1, 50, ...filters]);
+    return client.call("condenser_api", "get_account_history", [username, -1, 500, ...filters]);
 }
 
 export const getFeedHistory = (): Promise<FeedHistory> => client.database.call("get_feed_history");
