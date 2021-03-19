@@ -4,6 +4,8 @@ import {Purchase} from "./index";
 
 import {globalInstance, dynamicPropsIntance1, fullAccountInstance, allOver} from "../../helper/test-helper";
 
+import {initialState as transactionsInitialState} from "../../store/transactions/index";
+
 import TestRenderer from "react-test-renderer";
 
 jest.mock("../../api/private-api", () => ({
@@ -31,11 +33,7 @@ const defProps = {
             uPoints: "0.000"
         }
     },
-    transactions: {
-        list: [],
-        loading: false,
-        error: false
-    },
+    transactions: transactionsInitialState,
     signingKey: '',
     addAccount: () => {
     },

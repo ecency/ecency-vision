@@ -228,47 +228,37 @@ exports[`(1) Default Render 1`] = `
             <option
               value=""
             >
-              All Transactions
+              All History
             </option>
             <option
-              value="curation_reward"
+              value="transfers"
             >
-              Curation Reward
+              Transfers
             </option>
             <option
-              value="author_reward"
+              value="escrow-transfers"
             >
-              Author Reward
+              Escrow Transfers
             </option>
             <option
-              value="comment_benefactor_reward"
+              value="market-orders"
             >
-              Comment Benefactor Reward
+              Market Orders
             </option>
             <option
-              value="claim_reward_balance"
+              value="interests"
             >
-              Claim rewards
+              Interests
             </option>
             <option
-              value="transfer"
+              value="stake-operations"
             >
-              Transfer
+              Stake operations
             </option>
             <option
-              value="transfer_to_vesting"
+              value="rewards"
             >
-              Transfer to vesting
-            </option>
-            <option
-              value="withdraw_vesting"
-            >
-              Withdraw vesting
-            </option>
-            <option
-              value="fill_order"
-            >
-              Fill order
+              Rewards
             </option>
           </select>
         </div>
@@ -578,47 +568,37 @@ exports[`(2) Render with converting HBD 1`] = `
             <option
               value=""
             >
-              All Transactions
+              All History
             </option>
             <option
-              value="curation_reward"
+              value="transfers"
             >
-              Curation Reward
+              Transfers
             </option>
             <option
-              value="author_reward"
+              value="escrow-transfers"
             >
-              Author Reward
+              Escrow Transfers
             </option>
             <option
-              value="comment_benefactor_reward"
+              value="market-orders"
             >
-              Comment Benefactor Reward
+              Market Orders
             </option>
             <option
-              value="claim_reward_balance"
+              value="interests"
             >
-              Claim rewards
+              Interests
             </option>
             <option
-              value="transfer"
+              value="stake-operations"
             >
-              Transfer
+              Stake operations
             </option>
             <option
-              value="transfer_to_vesting"
+              value="rewards"
             >
-              Transfer to vesting
-            </option>
-            <option
-              value="withdraw_vesting"
-            >
-              Withdraw vesting
-            </option>
-            <option
-              value="fill_order"
-            >
-              Fill order
+              Rewards
             </option>
           </select>
         </div>
@@ -916,47 +896,37 @@ exports[`(3) usePrivate = false 1`] = `
             <option
               value=""
             >
-              All Transactions
+              All History
             </option>
             <option
-              value="curation_reward"
+              value="transfers"
             >
-              Curation Reward
+              Transfers
             </option>
             <option
-              value="author_reward"
+              value="escrow-transfers"
             >
-              Author Reward
+              Escrow Transfers
             </option>
             <option
-              value="comment_benefactor_reward"
+              value="market-orders"
             >
-              Comment Benefactor Reward
+              Market Orders
             </option>
             <option
-              value="claim_reward_balance"
+              value="interests"
             >
-              Claim rewards
+              Interests
             </option>
             <option
-              value="transfer"
+              value="stake-operations"
             >
-              Transfer
+              Stake operations
             </option>
             <option
-              value="transfer_to_vesting"
+              value="rewards"
             >
-              Transfer to vesting
-            </option>
-            <option
-              value="withdraw_vesting"
-            >
-              Withdraw vesting
-            </option>
-            <option
-              value="fill_order"
-            >
-              Fill order
+              Rewards
             </option>
           </select>
         </div>

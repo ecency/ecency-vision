@@ -2,7 +2,7 @@
 
 exports[`1- default state 1`] = `
 Object {
-  "error": false,
+  "group": "",
   "list": Array [],
   "loading": false,
 }
@@ -10,7 +10,7 @@ Object {
 
 exports[`2- fetch 1`] = `
 Object {
-  "error": false,
+  "group": "",
   "list": Array [],
   "loading": true,
 }
@@ -18,7 +18,7 @@ Object {
 
 exports[`3- fetch error 1`] = `
 Object {
-  "error": true,
+  "group": "",
   "list": Array [],
   "loading": false,
 }
@@ -26,7 +26,7 @@ Object {
 
 exports[`4- fetch 1`] = `
 Object {
-  "error": false,
+  "group": "transfers",
   "list": Array [],
   "loading": true,
 }
@@ -34,7 +34,7 @@ Object {
 
 exports[`5- fetched 1`] = `
 Object {
-  "error": false,
+  "group": "transfers",
   "list": Array [
     Object {
       "comment_author": "user1",
@@ -60,7 +60,7 @@ Object {
 
 exports[`6- reset 1`] = `
 Object {
-  "error": false,
+  "group": "",
   "list": Array [],
   "loading": false,
 }

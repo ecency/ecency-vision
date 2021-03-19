@@ -9,7 +9,7 @@ it("1- default state", () => {
 });
 
 it("2- fetch", () => {
-  state = reducer(state, fetchAct());
+  state = reducer(state, fetchAct(""));
   expect(state).toMatchSnapshot();
 });
 
@@ -19,7 +19,7 @@ it("3- fetch error", () => {
 });
 
 it("4- fetch", () => {
-  state = reducer(state, fetchAct());
+  state = reducer(state, fetchAct("transfers"));
   expect(state).toMatchSnapshot();
 });
 
