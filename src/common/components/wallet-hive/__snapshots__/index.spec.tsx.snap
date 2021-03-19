@@ -236,11 +236,6 @@ exports[`(1) Default Render 1`] = `
               Transfers
             </option>
             <option
-              value="escrow-transfers"
-            >
-              Escrow Transfers
-            </option>
-            <option
               value="market-orders"
             >
               Market Orders
@@ -576,11 +571,6 @@ exports[`(2) Render with converting HBD 1`] = `
               Transfers
             </option>
             <option
-              value="escrow-transfers"
-            >
-              Escrow Transfers
-            </option>
-            <option
               value="market-orders"
             >
               Market Orders
@@ -902,11 +892,6 @@ exports[`(3) usePrivate = false 1`] = `
               value="transfers"
             >
               Transfers
-            </option>
-            <option
-              value="escrow-transfers"
-            >
-              Escrow Transfers
             </option>
             <option
               value="market-orders"

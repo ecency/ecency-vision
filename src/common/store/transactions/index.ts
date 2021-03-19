@@ -19,7 +19,6 @@ import {getAccountHistory} from "../../api/hive";
 const ops = utils.operationOrders;
 export const ACCOUNT_OPERATION_GROUPS: Record<OperationGroup, number[]> = {
     "transfers": [ops.transfer, ops.transfer_to_savings, ops.cancel_transfer_from_savings],
-    "escrow-transfers": [ops.escrow_transfer, ops.escrow_approve, ops.escrow_dispute, ops.escrow_release],
     "market-orders": [ops.fill_convert_request, ops.fill_order],
     "interests": [ops.interest],
     "stake-operations": [ops.return_vesting_delegation, ops.withdraw_vesting, ops.transfer_to_vesting],

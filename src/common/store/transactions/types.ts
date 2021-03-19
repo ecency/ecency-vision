@@ -120,7 +120,7 @@ export type Transaction =
     | FillConvertRequest
     | ReturnVestingDelegation;
 
-export type OperationGroup = "transfers" | "escrow-transfers" | "market-orders" | "interests" | "stake-operations" | "rewards";
+export type OperationGroup = "transfers" | "market-orders" | "interests" | "stake-operations" | "rewards";
 
 export interface Transactions {
     list: Transaction[];

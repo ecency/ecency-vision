@@ -241,7 +241,7 @@ export class TransactionList extends Component<Props> {
                     <h2>{_t("transactions.title")} </h2>
                     <FormControl as="select" value={group} onChange={this.typeChanged}>
                         <option value="">{_t("transactions.group-all")}</option>
-                        {["transfers", "escrow-transfers", "market-orders", "interests", "stake-operations", "rewards"].map(x =>
+                        {["transfers", "market-orders", "interests", "stake-operations", "rewards"].map(x =>
                             <option key={x} value={x}>{_t(`transactions.group-${x}`)}</option>)}
                     </FormControl>
                 </div>
