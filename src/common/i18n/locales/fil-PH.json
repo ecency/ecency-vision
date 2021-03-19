@@ -446,7 +446,20 @@
     "transfer": "I-regalo sa iba",
     "claim-ok": "Mga puntos na naangkin",
     "promote": "Isulong",
-    "boost": "Palakasin"
+    "boost": "Palakasin",
+    "filter-all": "All History",
+    "filter-10": "Points for heartbeat",
+    "filter-20": "Points for login",
+    "filter-30": "Usage bonus",
+    "filter-100": "Points for post",
+    "filter-110": "Points for comment",
+    "filter-120": "Points for vote",
+    "filter-130": "Points for reblog",
+    "filter-150": "Delegation reward",
+    "filter-160": "Referral reward",
+    "filter-170": "Community reward",
+    "filter-998": "Outgoing transfer",
+    "filter-999": "Incoming transfer"
   },
   "purchase": {
     "select-asset": "Piliin ang ari-arian",
@@ -528,6 +541,12 @@
   },
   "transactions": {
     "title": "Kasaysayan",
+    "group-all": "All History",
+    "group-transfers": "Transfers",
+    "group-market-orders": "Market Orders",
+    "group-interests": "Interests",
+    "group-stake-operations": "Stake operations",
+    "group-rewards": "Rewards",
     "type-curation_reward": "Gantimpala ng tagapangalaga",
     "type-author_reward": "Gantimpala ng may-akda",
     "type-comment_benefactor_reward": "Comment Benefactor Reward",
@@ -535,7 +554,15 @@
     "type-transfer": "Ilipat",
     "type-transfer_to_vesting": "Ilipat sa vesting",
     "type-withdraw_vesting": "Ilabas ang puhunan",
-    "type-fill_order": "Lagyan ang utos"
+    "type-fill_order": "Lagyan ang utos",
+    "type-producer_reward": "Producer reward",
+    "type-interest": "Interest",
+    "type-transfer_to_savings": "Transfer to savings",
+    "type-fill_convert_request": "Fill convert request",
+    "type-cancel_transfer_from_savings": "Cancel transfer from savings",
+    "type-cancel_transfer_from_savings-detail": "From: <strong>@{{from}}</strong> <br/> Request id: <strong>{{request}}</strong>",
+    "type-return_vesting_delegation": "Return vesting delegation",
+    "type-proposal_pay": "Proposal pay"
   },
   "key-or-hot": {
     "sign": "Pirma",
