@@ -19,7 +19,7 @@ import {vestsToHp} from "../../helper/vesting";
 
 import formattedNumber from "../../util/formatted-number";
 
-import {ticketSvg, commentSvg, compareHorizontalSvg, cashSvg, reOrderHorizontalSvg} from "../../img/svg";
+import {ticketSvg, commentSvg, compareHorizontalSvg, cashSvg, reOrderHorizontalSvg, pickAxeSvg} from "../../img/svg";
 
 import {_t} from "../../i18n";
 
@@ -154,6 +154,13 @@ export class TransactionRow extends Component<RowProps> {
             numbers = (
                 <span className="number">{tr.current_pays} = {tr.open_pays}</span>
             );
+        }
+
+        if (tr.type === "producer_reward") {
+            flag = true;
+            icon = pickAxeSvg;
+
+            numbers = <>{formattedNumber(vestsToHp(parseAsset(tr.vesting_shares).amount, hivePerMVests), {suffix: "HP"})}</>
         }
 
         if (flag) {

@@ -22,7 +22,7 @@ export const ACCOUNT_OPERATION_GROUPS: Record<OperationGroup, number[]> = {
     "escrow-transfers": [ops.escrow_transfer, ops.escrow_approve, ops.escrow_dispute, ops.escrow_release],
     "market-orders": [ops.fill_convert_request, ops.fill_order],
     "interests": [ops.interest],
-    "stake-operations": [ops.return_vesting_delegation, ops.withdraw_vesting],
+    "stake-operations": [ops.return_vesting_delegation, ops.withdraw_vesting, ops.transfer_to_vesting],
     "rewards": [ops.author_reward, ops.curation_reward, ops.producer_reward, ops.claim_reward_balance, ops.comment_benefactor_reward, ops.sps_fund, ops.liquidity_reward]
 }
 

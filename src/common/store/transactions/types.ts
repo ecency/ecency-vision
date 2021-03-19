@@ -67,6 +67,12 @@ export interface FillOrder extends BaseTransaction {
     open_pays: string;
 }
 
+export interface ProducerReward extends BaseTransaction {
+    type: "producer_reward";
+    vesting_shares: string;
+    producer: string
+}
+
 export type Transaction =
     | CurationReward
     | AuthorReward
@@ -75,7 +81,8 @@ export type Transaction =
     | Transfer
     | TransferToVesting
     | WithdrawVesting
-    | FillOrder;
+    | FillOrder
+    | ProducerReward;
 
 export type OperationGroup = "transfers" | "escrow-transfers" | "market-orders" | "interests" | "stake-operations" | "rewards";
 

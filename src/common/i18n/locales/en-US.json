@@ -555,7 +555,8 @@
     "type-transfer": "Transfer",
     "type-transfer_to_vesting": "Transfer to vesting",
     "type-withdraw_vesting": "Withdraw vesting",
-    "type-fill_order": "Fill order"
+    "type-fill_order": "Fill order",
+    "type-producer_reward": "Producer reward"
   },
   "key-or-hot": {
     "sign": "Sign",
