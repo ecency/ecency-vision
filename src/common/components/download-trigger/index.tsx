@@ -2,10 +2,31 @@ import React, {Component, Fragment} from 'react';
 
 import {Modal} from 'react-bootstrap';
 
+import BaseComponent from "../base";
+
+import {geLatestDesktopTag} from "../../api/misc";
+
 import platform from '../../util/platform';
 
-export class DialogContent extends Component {
+interface ContentState {
+    desktopTag: string;
+}
+
+export class DialogContent extends BaseComponent<{}, ContentState> {
+
+    state: ContentState = {
+        desktopTag: "3.0.14"
+    }
+
+    componentDidMount() {
+        geLatestDesktopTag().then(r => {
+            this.stateSet({desktopTag: r});
+        })
+    }
+
     render() {
+        const {desktopTag} = this.state;
+
         const os = platform(window);
 
         return <div className="download-dialog-content">
@@ -14,15 +35,15 @@ export class DialogContent extends Component {
             <div className="download-buttons">
                 {(os !== 'iOS' && os !== 'AndroidOS' && os === 'WindowsOS') &&
                 <a className="download-button btn-desktop" target="_blank"
-                   href="https://github.com/ecency/ecency-vision/releases/download/3.0.15/Ecency-Setup-3.0.15.exe" rel="noopener noreferrer">Windows</a>
+                   href={`https://github.com/ecency/ecency-vision/releases/download/${desktopTag}/Ecency-Setup-${desktopTag}.exe`} rel="noopener noreferrer">Windows</a>
                 }
                 {(os !== 'iOS' && os !== 'AndroidOS' && os === 'MacOS') &&
                 <a className="download-button btn-desktop" target="_blank"
-                   href="https://github.com/ecency/ecency-vision/releases/download/3.0.15/Ecency-3.0.15.dmg" rel="noopener noreferrer">Mac</a>
+                   href={`https://github.com/ecency/ecency-vision/releases/download/${desktopTag}/Ecency-${desktopTag}.dmg`} rel="noopener noreferrer">Mac</a>
                 }
                 {(os !== 'iOS' && os !== 'AndroidOS' && (os === 'UnixOS' || os === 'LinuxOS')) &&
                 <a className="download-button btn-desktop" target="_blank"
-                   href="https://github.com/ecency/ecency-vision/releases/download/3.0.15/ecency-surfer-3.0.15.tar.gz" rel="noopener noreferrer">Linux</a>
+                   href={`https://github.com/ecency/ecency-vision/releases/download/${desktopTag}/ecency-surfer-${desktopTag}.tar.gz`} rel="noopener noreferrer">Linux</a>
                 }
                 {(os === 'AndroidOS' || os !== 'iOS') &&
                 <a className="download-button btn-android" target="_blank"
