@@ -13,7 +13,8 @@ import {
     TransferToVesting,
     WithdrawVesting,
     FillOrder,
-    ProducerReward
+    ProducerReward,
+    Interest
 } from "../../store/transactions/types";
 
 import {dynamicPropsIntance1} from "../../helper/test-helper";
@@ -192,6 +193,24 @@ it("(9) producer_reward", () => {
         producer: "good-karma",
         vesting_shares: "466.396582 VESTS",
         type: "producer_reward"
+    };
+
+    const props = {
+        ...defProps,
+        transaction,
+    };
+
+    const renderer = TestRenderer.create(<TransactionRow {...props} />);
+    expect(renderer.toJSON()).toMatchSnapshot();
+});
+
+it("(10) interest", () => {
+    const transaction: Interest = {
+        num: 4506230,
+        timestamp: "2021-03-11T13:04:57",
+        owner: "foo",
+        interest: "0.570 HBD",
+        type: "interest",
     };
 
     const props = {

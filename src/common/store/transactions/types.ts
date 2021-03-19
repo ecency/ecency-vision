@@ -73,6 +73,12 @@ export interface ProducerReward extends BaseTransaction {
     producer: string
 }
 
+export interface Interest extends BaseTransaction {
+    type: "interest";
+    owner:string;
+    interest: string
+}
+
 export type Transaction =
     | CurationReward
     | AuthorReward
@@ -82,7 +88,8 @@ export type Transaction =
     | TransferToVesting
     | WithdrawVesting
     | FillOrder
-    | ProducerReward;
+    | ProducerReward
+    | Interest;
 
 export type OperationGroup = "transfers" | "escrow-transfers" | "market-orders" | "interests" | "stake-operations" | "rewards";
 
