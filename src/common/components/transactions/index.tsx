@@ -19,9 +19,10 @@ import {vestsToHp} from "../../helper/vesting";
 
 import formattedNumber from "../../util/formatted-number";
 
-import {ticketSvg, commentSvg, compareHorizontalSvg, cashSvg, cashMultiple, reOrderHorizontalSvg, pickAxeSvg} from "../../img/svg";
+import {ticketSvg, commentSvg, compareHorizontalSvg, cashSvg, cashMultiple, reOrderHorizontalSvg, pickAxeSvg, closeSvg} from "../../img/svg";
 
 import {_t} from "../../i18n";
+import {Tsx} from "../../i18n/helper";
 
 interface RowProps {
     history: History;
@@ -127,6 +128,15 @@ export class TransactionRow extends Component<RowProps> {
             );
 
             numbers = <span className="number">{tr.amount}</span>;
+        }
+
+        if (tr.type === "cancel_transfer_from_savings") {
+            flag = true;
+            icon = closeSvg;
+
+            details = <Tsx k="transactions.type-cancel_transfer_from_savings-detail" args={{from: tr.from, request: tr.request_id}}>
+                <span/>
+            </Tsx>
         }
 
         if (tr.type === "withdraw_vesting") {

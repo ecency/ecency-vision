@@ -625,3 +625,50 @@ exports[`(12) fill_convert_request 1`] = `
   />
 </div>
 `;
+
+exports[`(13) cancel_transfer_from_savings 1`] = `
+<div
+  className="transaction-list-item"
+>
+  <div
+    className="transaction-icon"
+  >
+    <svg
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
+        fill="currentColor"
+      />
+    </svg>
+  </div>
+  <div
+    className="transaction-title"
+  >
+    <div
+      className="transaction-name"
+    >
+      Cancel transfer from savings
+    </div>
+    <div
+      className="transaction-date"
+    >
+      2 hours ago
+    </div>
+  </div>
+  <div
+    className="transaction-numbers"
+  />
+  <div
+    className="transaction-details"
+  >
+    <span
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "From: <strong>@foo</strong> <br /> Request id: <strong>1612448772</strong>",
+        }
+      }
+    />
+  </div>
+</div>
+`;

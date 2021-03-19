@@ -63,6 +63,12 @@ export interface TransferToSavings extends BaseTransaction {
     to: string;
 }
 
+export interface CancelTransferFromSavings extends BaseTransaction {
+    from: string,
+    request_id: number,
+    type: "cancel_transfer_from_savings",
+}
+
 export interface WithdrawVesting extends BaseTransaction {
     type: "withdraw_vesting";
     acc: string;
@@ -101,6 +107,7 @@ export type Transaction =
     | Transfer
     | TransferToVesting
     | TransferToSavings
+    | CancelTransferFromSavings
     | WithdrawVesting
     | FillOrder
     | ProducerReward

@@ -16,7 +16,8 @@ import {
     ProducerReward,
     Interest,
     TransferToSavings,
-    FillConvertRequest
+    FillConvertRequest,
+    CancelTransferFromSavings
 } from "../../store/transactions/types";
 
 import {dynamicPropsIntance1} from "../../helper/test-helper";
@@ -251,6 +252,24 @@ it("(12) fill_convert_request", () => {
         num: 6264,
         timestamp: "2021-01-29T21:27:00",
         type: "fill_convert_request"
+    };
+
+    const props = {
+        ...defProps,
+        transaction,
+    };
+
+    const renderer = TestRenderer.create(<TransactionRow {...props} />);
+    expect(renderer.toJSON()).toMatchSnapshot();
+});
+
+it("(13) cancel_transfer_from_savings", () => {
+    const transaction: CancelTransferFromSavings = {
+        from: "foo",
+        num: 22525,
+        request_id: 1612448772,
+        timestamp: "2021-02-06T09:00:51",
+        type: "cancel_transfer_from_savings",
     };
 
     const props = {
