@@ -170,6 +170,13 @@ export class TransactionRow extends Component<RowProps> {
             numbers = <>{formattedNumber(parseAsset(tr.interest).amount, {suffix: "HBD"})}</>
         }
 
+        if (tr.type === "fill_convert_request") {
+            flag = true;
+            icon = reOrderHorizontalSvg;
+
+            numbers = <span className="number">{tr.amount_in} = {tr.amount_out}</span>
+        }
+
         if (flag) {
             const transDate = parseDate(tr.timestamp);
 

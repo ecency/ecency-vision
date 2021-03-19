@@ -87,6 +87,12 @@ export interface Interest extends BaseTransaction {
     interest: string
 }
 
+export interface FillConvertRequest extends BaseTransaction {
+    type: "fill_convert_request",
+    amount_in: string,
+    amount_out: string,
+}
+
 export type Transaction =
     | CurationReward
     | AuthorReward
@@ -98,7 +104,8 @@ export type Transaction =
     | WithdrawVesting
     | FillOrder
     | ProducerReward
-    | Interest;
+    | Interest
+    | FillConvertRequest;
 
 export type OperationGroup = "transfers" | "escrow-transfers" | "market-orders" | "interests" | "stake-operations" | "rewards";
 

@@ -15,7 +15,8 @@ import {
     FillOrder,
     ProducerReward,
     Interest,
-    TransferToSavings
+    TransferToSavings,
+    FillConvertRequest
 } from "../../store/transactions/types";
 
 import {dynamicPropsIntance1} from "../../helper/test-helper";
@@ -232,6 +233,24 @@ it("(11) transfer_to_savings", () => {
         timestamp: "2021-03-19T11:31:33",
         to: "talhasch",
         type: "transfer_to_savings",
+    };
+
+    const props = {
+        ...defProps,
+        transaction,
+    };
+
+    const renderer = TestRenderer.create(<TransactionRow {...props} />);
+    expect(renderer.toJSON()).toMatchSnapshot();
+});
+
+it("(12) fill_convert_request", () => {
+    const transaction: FillConvertRequest = {
+        amount_in: "1.507 HBD",
+        amount_out: "10.920 HIVE",
+        num: 6264,
+        timestamp: "2021-01-29T21:27:00",
+        type: "fill_convert_request"
     };
 
     const props = {

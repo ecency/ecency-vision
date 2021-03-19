@@ -558,7 +558,8 @@
     "type-fill_order": "Fill order",
     "type-producer_reward": "Producer reward",
     "type-interest": "Interest",
-    "type-transfer_to_savings": "Transfer to savings"
+    "type-transfer_to_savings": "Transfer to savings",
+    "type-fill_convert_request": "Fill convert request"
   },
   "key-or-hot": {
     "sign": "Sign",
