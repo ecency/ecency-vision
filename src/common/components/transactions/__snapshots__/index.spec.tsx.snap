@@ -713,3 +713,15 @@ exports[`(14) return_vesting_delegation 1`] = `
   />
 </div>
 `;
+
+exports[`(30) fallback 1`] = `
+<div
+  className="transaction-list-item transaction-list-item-raw"
+>
+  <div
+    className="raw-code"
+  >
+    {"trx_id":"0x14123213","type":"unknown_operation"}
+  </div>
+</div>
+`;
