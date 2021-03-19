@@ -1,4 +1,4 @@
-import {Client, RCAPI} from "@hiveio/dhive";
+import {Client, RCAPI, utils} from "@hiveio/dhive";
 
 import {RCAccount} from "@hiveio/dhive/lib/chain/rc";
 
@@ -191,8 +191,10 @@ export const getDynamicGlobalProperties = (): Promise<DynamicGlobalProperties> =
         hbd_print_rate: r.hbd_print_rate || r.sbd_print_rate,
     }));
 
-export const getAccountHistory = (username: string): Promise<any> =>
-    client.call("condenser_api", "get_account_history", [username, -1, 1000]);
+export const getAccountHistory = (username: string, operations: number[]): Promise<any> => {
+    const filters = utils.makeBitMaskFilter(operations);
+    return client.call("condenser_api", "get_account_history", [username, -1, 50, ...filters]);
+}
 
 export const getFeedHistory = (): Promise<FeedHistory> => client.database.call("get_feed_history");
 

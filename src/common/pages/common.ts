@@ -15,7 +15,7 @@ import {DynamicProps} from "../store/dynamic-props/types";
 import {Entries, Entry} from "../store/entries/types";
 import {Reblog} from "../store/reblogs/types";
 import {Discussion as DiscussionType, SortOrder} from "../store/discussion/types";
-import {Transactions} from "../store/transactions/types";
+import {Transactions, OperationGroup} from "../store/transactions/types";
 import {Points} from "../store/points/types";
 
 
@@ -47,8 +47,8 @@ export interface PageProps {
     muteNotifications: () => void;
     unMuteNotifications: () => void;
     setCurrency: (currency: string, rate: number, symbol: string) => void;
-    setLang: (lang:string) => void;
-    setNsfw: (value:boolean) => void;
+    setLang: (lang: string) => void;
+    setNsfw: (value: boolean) => void;
 
     dynamicProps: DynamicProps;
 
@@ -79,7 +79,7 @@ export interface PageProps {
     addCommunity: (data: Community) => void;
 
     transactions: Transactions;
-    fetchTransactions: (username: string) => void;
+    fetchTransactions: (username: string, group?: OperationGroup | "") => void;
     resetTransactions: () => void;
 
     users: User[];
@@ -103,7 +103,7 @@ export interface PageProps {
     markNotifications: (id: string | null) => void;
 
     points: Points;
-    fetchPoints: (username: string, type?: number) => void;
+    fetchPoints: (username: string, filter?: number) => void;
     resetPoints: () => void
 
     signingKey: string;

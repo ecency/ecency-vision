@@ -9,6 +9,7 @@ import {Account} from "../../store/accounts/types";
 import {Entry} from "../../store/entries/types";
 import {User} from "../../store/users/types";
 import {ToggleType, UI} from "../../store/ui/types";
+import {Transactions} from "../../store/transactions/types";
 
 import LoginRequired from "../login-required";
 import {Transfer} from "../transfer";
@@ -49,10 +50,10 @@ export class TippingDialog extends Component<DialogProps> {
 
         const to = entry.author;
         const memo = `Tip for @${entry.author}/${entry.permlink}`
-        const transactions = {
+        const transactions: Transactions = {
             list: [],
             loading: false,
-            error: false
+            group: ""
         }
 
         return <Transfer

@@ -77,10 +77,12 @@ export type Transaction =
     | WithdrawVesting
     | FillOrder;
 
+export type OperationGroup = "transfers" | "escrow-transfers" | "market-orders" | "interests" | "stake-operations" | "rewards";
+
 export interface Transactions {
     list: Transaction[];
     loading: boolean;
-    error: boolean;
+    group: OperationGroup | ""
 }
 
 export enum ActionTypes {
@@ -92,6 +94,7 @@ export enum ActionTypes {
 
 export interface FetchAction {
     type: ActionTypes.FETCH;
+    group: OperationGroup | "";
 }
 
 export interface FetchedAction {

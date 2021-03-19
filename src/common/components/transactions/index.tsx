@@ -7,7 +7,8 @@ import {History} from "history";
 import {FormControl} from "react-bootstrap";
 
 import {DynamicProps} from "../../store/dynamic-props/types";
-import {Transaction, Transactions} from "../../store/transactions/types";
+import {OperationGroup, Transaction, Transactions} from "../../store/transactions/types";
+import {Account} from "../../store/accounts/types";
 
 import LinearProgress from "../linear-progress";
 import EntryLink from "../entry-link";
@@ -174,53 +175,36 @@ export class TransactionRow extends Component<RowProps> {
     }
 }
 
-
-const ALL_TYPES = [
-    "curation_reward", "author_reward", "comment_benefactor_reward",
-    "claim_reward_balance", "transfer", "transfer_to_vesting", "withdraw_vesting",
-    "fill_order"
-];
-
 interface Props {
     history: History;
     dynamicProps: DynamicProps;
     transactions: Transactions;
+    account: Account;
+    fetchTransactions: (username: string, group?: OperationGroup | "") => void;
 }
 
-interface State {
-    type: string
-}
-
-export class TransactionList extends Component<Props, State> {
-    state: State = {
-        type: ""
-    }
-
+export class TransactionList extends Component<Props> {
     typeChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
-        this.setState({type: e.target.value});
+        const {account, fetchTransactions} = this.props;
+        const group = e.target.value;
+
+        fetchTransactions(account.name, group as OperationGroup);
     }
 
     render() {
         const {transactions} = this.props;
-        const {type} = this.state;
-        const {list, loading} = transactions;
+        const {list, loading, group} = transactions;
 
         let trList: Transaction[] = list.sort((a: any, b: any) => b.num - a.num);
-
-        if (type) {
-            trList = trList.filter(x => x.type === type);
-        }
-
-        // Top 50 transaction sorted by id
-        trList = trList.slice(Math.max(trList.length - 50, 0));
 
         return (
             <div className="transaction-list">
                 <div className="transaction-list-header">
                     <h2>{_t("transactions.title")} </h2>
-                    <FormControl as="select" value={type} onChange={this.typeChanged}>
-                        <option value="">{_t("transactions.type-all")}</option>
-                        {ALL_TYPES.map(x => <option key={x} value={x}>{_t(`transactions.type-${x}`)}</option>)}
+                    <FormControl as="select" value={group} onChange={this.typeChanged}>
+                        <option value="">{_t("transactions.group-all")}</option>
+                        {["transfers", "escrow-transfers", "market-orders", "interests", "stake-operations", "rewards"].map(x =>
+                            <option key={x} value={x}>{_t(`transactions.group-${x}`)}</option>)}
                     </FormControl>
                 </div>
                 {loading && <LinearProgress/>}
@@ -237,7 +221,9 @@ export default (p: Props) => {
     const props: Props = {
         history: p.history,
         dynamicProps: p.dynamicProps,
-        transactions: p.transactions
+        transactions: p.transactions,
+        account: p.account,
+        fetchTransactions: p.fetchTransactions
     }
 
     return <TransactionList {...props} />
