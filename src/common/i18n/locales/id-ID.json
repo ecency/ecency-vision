@@ -132,10 +132,10 @@
     "no-replies": "Belum ada respon. Klik untuk merespon."
   },
   "nsfw": {
-    "reveal": "Reveal this post",
-    "signup": "<a href=\"/signup\" class=\"push-link\">create an account</a> to save your preferences",
-    "settings-1": "adjust your",
-    "settings-2": "display preferences"
+    "reveal": "Hapus postingan ini",
+    "signup": "<a href=\"/signup\" class=\"push-link\">buatlah sebuah akun</a> untuk menyimpan preferensi Anda",
+    "settings-1": "sesuaikan Anda",
+    "settings-2": "tampilkan preferensi"
   },
   "bookmark-btn": {
     "add": "Tambahkan ke penanda",
@@ -376,7 +376,7 @@
     "notifications": "Peringatan notifikasi",
     "currency": "Mata uang",
     "language": "Bahasa",
-    "nsfw": "Show NSFW content",
+    "nsfw": "Perlihatkan konten NSFW",
     "updated": "Preferensi diperbaharui!"
   },
   "wallet": {
@@ -447,19 +447,19 @@
     "claim-ok": "Poin yang diklaim",
     "promote": "Promosikan",
     "boost": "Tingkatkan",
-    "filter-all": "All History",
-    "filter-10": "Points for heartbeat",
-    "filter-20": "Points for login",
-    "filter-30": "Usage bonus",
-    "filter-100": "Points for post",
-    "filter-110": "Points for comment",
-    "filter-120": "Points for vote",
-    "filter-130": "Points for reblog",
-    "filter-150": "Delegation reward",
-    "filter-160": "Referral reward",
-    "filter-170": "Community reward",
-    "filter-998": "Outgoing transfer",
-    "filter-999": "Incoming transfer"
+    "filter-all": "Semua Riwayat",
+    "filter-10": "Poin kunjungan",
+    "filter-20": "Poin untuk masuk",
+    "filter-30": "Penggunaan bonus",
+    "filter-100": "Poin postingan",
+    "filter-110": "Poin komentar",
+    "filter-120": "Poin untuk vote",
+    "filter-130": "Poin reblog",
+    "filter-150": "Reward delegasi",
+    "filter-160": "Reward referal",
+    "filter-170": "Reward komunitas",
+    "filter-998": "Transfer keluar",
+    "filter-999": "Transfer masuk"
   },
   "purchase": {
     "select-asset": "Pilih Aset",
@@ -541,12 +541,12 @@
   },
   "transactions": {
     "title": "Riwayat",
-    "group-all": "All History",
-    "group-transfers": "Transfers",
-    "group-market-orders": "Market Orders",
-    "group-interests": "Interests",
-    "group-stake-operations": "Stake operations",
-    "group-rewards": "Rewards",
+    "group-all": "Semua riwayat",
+    "group-transfers": "Transfer",
+    "group-market-orders": "Pesanan Market",
+    "group-interests": "Bunga",
+    "group-stake-operations": "Operasi Stake",
+    "group-rewards": "Reward",
     "type-curation_reward": "Reward Kurasi",
     "type-author_reward": "Reward Penulis",
     "type-comment_benefactor_reward": "Reward Komentar Distributor",
@@ -555,14 +555,14 @@
     "type-transfer_to_vesting": "Transfer ke vesting",
     "type-withdraw_vesting": "Menarik vesting",
     "type-fill_order": "Isi pesanan",
-    "type-producer_reward": "Producer reward",
-    "type-interest": "Interest",
-    "type-transfer_to_savings": "Transfer to savings",
-    "type-fill_convert_request": "Fill convert request",
-    "type-cancel_transfer_from_savings": "Cancel transfer from savings",
-    "type-cancel_transfer_from_savings-detail": "From: <strong>@{{from}}</strong> <br/> Request id: <strong>{{request}}</strong>",
-    "type-return_vesting_delegation": "Return vesting delegation",
-    "type-proposal_pay": "Proposal pay"
+    "type-producer_reward": "Reward produser",
+    "type-interest": "Bunga",
+    "type-transfer_to_savings": "Transfer untuk tabungan",
+    "type-fill_convert_request": "Isi permintaan konversi",
+    "type-cancel_transfer_from_savings": "Batalkan transfer untuk tabungan",
+    "type-cancel_transfer_from_savings-detail": "Dari: <strong>@{{from}}</strong> <br/> Permintaan id: <strong>{{request}}</strong>",
+    "type-return_vesting_delegation": "Pengembalian vesting delegasi",
+    "type-proposal_pay": "Pembayaran proposal"
   },
   "key-or-hot": {
     "sign": "Masuk",
