@@ -92,9 +92,7 @@ export const fetchTransactions = (username: string, group: OperationGroup | "" =
 
         const transactions: Transaction[] = mapped
             .filter(x => x !== null)
-            .sort((a, b) => {
-                return a.num > b.num ? 1 : -1
-            });
+            .sort((a: any, b: any) => b.num - a.num);
 
         dispatch(fetchedAct(transactions));
     }).catch(() => {
