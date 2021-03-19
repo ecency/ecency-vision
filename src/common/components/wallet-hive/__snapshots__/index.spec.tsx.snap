@@ -220,7 +220,48 @@ exports[`(1) Default Render 1`] = `
             History
              
           </h2>
+          <select
+            className="form-control"
+            onChange={[Function]}
+            value=""
+          >
+            <option
+              value=""
+            >
+              All History
+            </option>
+            <option
+              value="transfers"
+            >
+              Transfers
+            </option>
+            <option
+              value="market-orders"
+            >
+              Market Orders
+            </option>
+            <option
+              value="interests"
+            >
+              Interests
+            </option>
+            <option
+              value="stake-operations"
+            >
+              Stake operations
+            </option>
+            <option
+              value="rewards"
+            >
+              Rewards
+            </option>
+          </select>
         </div>
+        <p
+          className="text-muted empty-list"
+        >
+          Nothing here
+        </p>
       </div>
     </div>
     <div
@@ -514,7 +555,48 @@ exports[`(2) Render with converting HBD 1`] = `
             History
              
           </h2>
+          <select
+            className="form-control"
+            onChange={[Function]}
+            value=""
+          >
+            <option
+              value=""
+            >
+              All History
+            </option>
+            <option
+              value="transfers"
+            >
+              Transfers
+            </option>
+            <option
+              value="market-orders"
+            >
+              Market Orders
+            </option>
+            <option
+              value="interests"
+            >
+              Interests
+            </option>
+            <option
+              value="stake-operations"
+            >
+              Stake operations
+            </option>
+            <option
+              value="rewards"
+            >
+              Rewards
+            </option>
+          </select>
         </div>
+        <p
+          className="text-muted empty-list"
+        >
+          Nothing here
+        </p>
       </div>
     </div>
     <div
@@ -796,7 +878,48 @@ exports[`(3) usePrivate = false 1`] = `
             History
              
           </h2>
+          <select
+            className="form-control"
+            onChange={[Function]}
+            value=""
+          >
+            <option
+              value=""
+            >
+              All History
+            </option>
+            <option
+              value="transfers"
+            >
+              Transfers
+            </option>
+            <option
+              value="market-orders"
+            >
+              Market Orders
+            </option>
+            <option
+              value="interests"
+            >
+              Interests
+            </option>
+            <option
+              value="stake-operations"
+            >
+              Stake operations
+            </option>
+            <option
+              value="rewards"
+            >
+              Rewards
+            </option>
+          </select>
         </div>
+        <p
+          className="text-muted empty-list"
+        >
+          Nothing here
+        </p>
       </div>
     </div>
     <div

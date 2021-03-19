@@ -287,9 +287,9 @@ export const getPoints = (username: string): Promise<{
     });
 }
 
-export const getPointTransactions = (username: string): Promise<PointTransaction[]> => {
+export const getPointTransactions = (username: string, type?: number): Promise<PointTransaction[]> => {
     if (window.usePrivate) {
-        const data = {username};
+        const data = {username, type};
         return axios.post(apiBase(`/private-api/point-list`), data).then(resp => resp.data);
     }
 

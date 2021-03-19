@@ -6,7 +6,9 @@ import {
     Actions,
     ActionTypes,
     ResetAction,
+    FetchAction,
     FetchedAction,
+    ErrorAction
 } from "./types";
 
 import {getPoints, getPointTransactions} from "../../api/private-api";
@@ -14,17 +16,27 @@ import {getPoints, getPointTransactions} from "../../api/private-api";
 export const initialState: Points = {
     points: "0.000",
     uPoints: "0.000",
-    transactions: []
+    transactions: [],
+    loading: false,
+    filter: 0
 };
 
 export default (state: Points = initialState, action: Actions): Points => {
     switch (action.type) {
+        case ActionTypes.FETCH: {
+            return {...state, filter: action.filter, transactions: [], loading: true}
+        }
         case ActionTypes.FETCHED: {
             return {
+                ...state,
                 points: action.points,
                 uPoints: action.uPoints,
-                transactions: action.transactions || [...state.transactions]
+                transactions: action.transactions || [...state.transactions],
+                loading: false
             }
+        }
+        case ActionTypes.ERROR: {
+            return {...state, loading: false}
         }
         case ActionTypes.RESET: {
             return {...initialState};
@@ -36,22 +48,24 @@ export default (state: Points = initialState, action: Actions): Points => {
 
 /* Actions */
 
-export const fetchPoints = (username: string) => async (dispatch: Dispatch) => {
+export const fetchPoints = (username: string, filter: number = 0) => async (dispatch: Dispatch) => {
+    dispatch(fetchAct(filter));
+
     const name = username.replace("@", "");
 
     let points;
     try {
         points = await getPoints(name);
     } catch (e) {
+        dispatch(errorAct());
         return;
     }
 
-    dispatch(fetchedAct(points.points, points.unclaimed_points));
-
     let transactions;
     try {
-        transactions = await getPointTransactions(name);
+        transactions = await getPointTransactions(name, filter);
     } catch (e) {
+        dispatch(errorAct());
         return;
     }
 
@@ -68,6 +82,20 @@ export const resetPoints = () => (dispatch: Dispatch) => {
 export const resetAct = (): ResetAction => {
     return {
         type: ActionTypes.RESET,
+    };
+};
+
+export const errorAct = (): ErrorAction => {
+    return {
+        type: ActionTypes.ERROR,
+    };
+};
+
+
+export const fetchAct = (filter: number): FetchAction => {
+    return {
+        type: ActionTypes.FETCH,
+        filter,
     };
 };
 

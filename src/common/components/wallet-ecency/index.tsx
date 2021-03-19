@@ -4,6 +4,8 @@ import moment from "moment";
 
 import {History} from "history";
 
+import {FormControl} from "react-bootstrap";
+
 import {ActiveUser} from "../../store/active-user/types";
 import {Account} from "../../store/accounts/types";
 import {Global} from "../../store/global/types";
@@ -19,29 +21,30 @@ import Purchase from "../purchase";
 import Promote from "../promote";
 import Boost from "../boost";
 
+import LinearProgress from "../linear-progress";
 import WalletMenu from "../wallet-menu";
 import EntryLink from "../entry-link";
 
-import {success, error} from "../feedback";
+import {error, success} from "../feedback";
 
 import {_t} from "../../i18n";
 
 import {claimPoints} from "../../api/private-api";
 
 import {
+    accountGroupSvg,
     accountOutlineSvg,
+    cashSvg,
     checkAllSvg,
     chevronUpSvg,
     commentSvg,
+    compareHorizontalSvg,
+    gpsSvg,
     pencilOutlineSvg,
     plusCircle,
     repeatSvg,
     starOutlineSvg,
-    ticketSvg,
-    gpsSvg,
-    accountGroupSvg,
-    compareHorizontalSvg,
-    cashSvg
+    ticketSvg
 } from "../../img/svg";
 
 
@@ -166,7 +169,7 @@ interface Props {
     points: Points;
     signingKey: string;
     transactions: Transactions;
-    fetchPoints: (username: string) => void;
+    fetchPoints: (username: string, type?: number) => void;
     addAccount: (data: Account) => void;
     updateActiveUser: (data?: Account) => void;
     setSigningKey: (key: string) => void;
@@ -236,6 +239,12 @@ export class WalletEcency extends BaseComponent<Props, State> {
         this.setState({boost: !boost});
     }
 
+    filterChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+        const filter = Number(e.target.value);
+        const {fetchPoints, account} = this.props;
+        fetchPoints(account.name, filter);
+    }
+
     render() {
         const {claiming, transfer, purchase, promote, boost} = this.state;
         const {global, activeUser, account, points} = this.props;
@@ -260,6 +269,12 @@ export class WalletEcency extends BaseComponent<Props, State> {
                 onClick: this.toggleBoost
             }]
         };
+
+        const txFilters = [
+            TransactionType.CHECKIN, TransactionType.LOGIN, TransactionType.CHECKIN_EXTRA,
+            TransactionType.POST, TransactionType.COMMENT, TransactionType.VOTE,
+            TransactionType.REBLOG, TransactionType.DELEGATION, TransactionType.REFERRAL,
+            TransactionType.COMMUNITY, TransactionType.TRANSFER_SENT, TransactionType.TRANSFER_INCOMING];
 
         return (
             <>
@@ -370,17 +385,26 @@ export class WalletEcency extends BaseComponent<Props, State> {
                                 )}
                             </div>
 
-                            {points.transactions.length > 0 && (
-                                <div className="p-transaction-list">
-                                    <div className="transaction-list-header">
-                                        <h2>{_t('points.history')}</h2>
-                                    </div>
-                                    <div className="transaction-list-body">
-                                        {points.transactions.map(tr => <TransactionRow history={this.props.history} tr={tr} key={tr.id}/>)}
-                                    </div>
+                            <div className="p-transaction-list">
+                                <div className="transaction-list-header">
+                                    <h2>{_t('points.history')}</h2>
+                                    <FormControl as="select" value={points.filter} onChange={this.filterChanged}>
+                                        <option value="0">{_t("points.filter-all")}</option>
+                                        {txFilters.map(x => <option key={x} value={x}>{_t(`points.filter-${x}`)}</option>)}
+                                    </FormControl>
                                 </div>
-                            )}
 
+                                {(() => {
+                                    if (points.loading) {
+                                        return <LinearProgress/>
+                                    }
+
+                                    return <div className="transaction-list-body">
+                                        {points.transactions.map(tr => <TransactionRow history={this.props.history} tr={tr} key={tr.id}/>)}
+                                        {(!points.loading && points.transactions.length === 0) && <p className="text-muted empty-list">{_t('g.empty-list')}</p>}
+                                    </div>
+                                })()}
+                            </div>
                         </div>
 
                         <WalletMenu global={global} username={account.name} active="ecency"/>
