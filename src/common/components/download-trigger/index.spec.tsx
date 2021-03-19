@@ -4,6 +4,8 @@ import renderer from "react-test-renderer";
 
 import {DialogContent} from './index';
 
+import {allOver} from "../../helper/test-helper";
+
 let MOCK: string = "";
 
 Object.defineProperty(
@@ -36,40 +38,51 @@ Object.defineProperty(
     }
 );
 
+jest.mock("../../api/misc", () => ({
+    geLatestDesktopTag: () => new Promise((resolve) => {
+        resolve("3.0.16")
+    })
+}));
 
 it('(1) Mac.', async () => {
     MOCK = "MacOS"
     const component = renderer.create(<DialogContent/>);
+    await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });
 
 it('(2) Windows.', async () => {
     MOCK = "WindowsOS"
     const component = renderer.create(<DialogContent/>);
+    await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });
 
 it('(3) Linux.', async () => {
     MOCK = "LinuxOS"
     const component = renderer.create(<DialogContent/>);
+    await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });
 
 it('(4) Android.', async () => {
     MOCK = "AndroidOS"
     const component = renderer.create(<DialogContent/>);
+    await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });
 
 it('(5) iOS.', async () => {
     MOCK = "iOS"
     const component = renderer.create(<DialogContent/>);
+    await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });
 
 it('(6) Other.', async () => {
     MOCK = ""
     const component = renderer.create(<DialogContent/>);
+    await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });
 
