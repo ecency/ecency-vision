@@ -2,6 +2,7 @@ interface BaseTransaction {
     num: number;
     type: string;
     timestamp: string;
+    trx_id: string
 }
 
 export interface CurationReward extends BaseTransaction {

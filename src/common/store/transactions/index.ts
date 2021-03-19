@@ -77,7 +77,7 @@ export const fetchTransactions = (username: string, group: OperationGroup | "" =
 
         const mapped: Transaction[] = r.map((x: any): Transaction[] | null => {
             const {op} = x[1];
-            const {timestamp} = x[1];
+            const {timestamp, trx_id} = x[1];
             const opName = op[0];
             const opData = op[1];
 
@@ -85,6 +85,7 @@ export const fetchTransactions = (username: string, group: OperationGroup | "" =
                 num: x[0],
                 type: opName,
                 timestamp,
+                trx_id,
                 ...opData,
             };
         });

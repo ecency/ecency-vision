@@ -209,7 +209,10 @@ export class TransactionRow extends Component<RowProps> {
                 </div>
             );
         }
-        return null;
+
+        return <div className="transaction-list-item transaction-list-item-raw">
+            <div className="raw-code">{JSON.stringify(tr)}</div>
+        </div>;
     }
 }
 

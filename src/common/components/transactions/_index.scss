@@ -161,6 +161,14 @@
     }
   }
 
+  .transaction-list-item-raw {
+    .raw-code {
+      color: $warm-grey;
+      word-break: break-all;
+      line-height: 150%;
+    }
+  }
+
   .empty-list {
     margin: 0 10px 0;
   }
