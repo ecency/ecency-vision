@@ -145,8 +145,6 @@ export const reblog = (username: string, author: string, permlink: string, _dele
         message["delete"] = "delete";
     }
 
-    console.log(message);
-
     const json = ["reblog", message];
 
     return broadcastPostingJSON(username, "follow", json)
