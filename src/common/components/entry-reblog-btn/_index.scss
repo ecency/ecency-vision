@@ -28,7 +28,12 @@
   }
 
   &.reblogged {
-    pointer-events: none;
+
+    &:hover {
+      .inner-btn {
+        color: $red2;
+      }
+    }
 
     svg {
       opacity: 1;

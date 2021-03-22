@@ -21,6 +21,8 @@ const defProps = {
     },
     addReblog: () => {
     },
+    deleteReblog: () => {
+    },
     toggleUIProp: () => {
 
     }

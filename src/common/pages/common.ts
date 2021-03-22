@@ -30,7 +30,7 @@ import {fetchTransactions, resetTransactions} from "../store/transactions";
 import {addUser, deleteUser} from "../store/users";
 import {setActiveUser, updateActiveUser} from "../store/active-user";
 import {toggleUIProp} from "../store/ui";
-import {addReblog} from "../store/reblogs";
+import {addReblog, deleteReblog} from "../store/reblogs";
 import {fetchNotifications, fetchUnreadNotificationCount, setNotificationsFilter, markNotifications} from "../store/notifications";
 import {fetchPoints, resetPoints} from "../store/points";
 import {setSigningKey} from "../store/signing-key";
@@ -95,6 +95,7 @@ export interface PageProps {
 
     reblogs: Reblog[];
     addReblog: (account: string, author: string, permlink: string) => void;
+    deleteReblog: (account: string, author: string, permlink: string) => void;
 
     notifications: Notifications;
     fetchNotifications: (since: string | null) => void;
@@ -148,6 +149,7 @@ export const pageMapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
             updateActiveUser,
             toggleUIProp,
             addReblog,
+            deleteReblog,
             fetchNotifications,
             fetchUnreadNotificationCount,
             setNotificationsFilter,

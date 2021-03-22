@@ -32,6 +32,7 @@ interface Props {
     updateActiveUser: (data?: Account) => void;
     deleteUser: (username: string) => void;
     addReblog: (account: string, author: string, permlink: string) => void;
+    deleteReblog: (account: string, author: string, permlink: string) => void;
     toggleUIProp: (what: ToggleType) => void;
 }
 
@@ -90,6 +91,7 @@ export default (p: Props) => {
         updateActiveUser: p.updateActiveUser,
         deleteUser: p.deleteUser,
         addReblog: p.addReblog,
+        deleteReblog: p.deleteReblog,
         toggleUIProp: p.toggleUIProp,
     }
 

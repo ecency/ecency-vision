@@ -32,6 +32,7 @@ interface Props {
     updateActiveUser: (data?: Account) => void;
     deleteUser: (username: string) => void;
     addReblog: (account: string, author: string, permlink: string) => void;
+    deleteReblog: (account: string, author: string, permlink: string) => void;
     toggleUIProp: (what: ToggleType) => void;
 }
 
@@ -61,6 +62,23 @@ export class EntryReblogBtn extends BaseComponent<Props> {
             });
     };
 
+    deleteReblog = () => {
+        const {entry, activeUser, deleteReblog} = this.props;
+
+        this.stateSet({inProgress: true});
+        reblog(activeUser?.username!, entry.author, entry.permlink, true)
+            .then(() => {
+                deleteReblog(activeUser?.username!, entry.author, entry.permlink);
+                success(_t("entry-reblog.delete-success"));
+            })
+            .catch((e) => {
+                error(formatError(e));
+            })
+            .finally(() => {
+                this.stateSet({inProgress: false});
+            });
+    }
+
     render() {
         const {text, activeUser, entry, reblogs} = this.props;
         const {inProgress} = this.state;
@@ -73,7 +91,7 @@ export class EntryReblogBtn extends BaseComponent<Props> {
 
         const content = (
             <div className={_c(`entry-reblog-btn ${reblogged ? "reblogged" : ""} ${inProgress ? "in-progress" : ""} `)}>
-                <Tooltip content={_t("entry-reblog.reblog")}>
+                <Tooltip content={reblogged ? _t("entry-reblog.delete-reblog") : _t("entry-reblog.reblog")}>
                     <a className="inner-btn">
                         {repeatSvg} {text ? _t("entry-reblog.reblog") : ""}
                     </a>
@@ -88,6 +106,18 @@ export class EntryReblogBtn extends BaseComponent<Props> {
             })
         }
 
+        // Delete reblog
+        if (reblogged) {
+            return <PopoverConfirm
+                onConfirm={this.deleteReblog}
+                titleText={_t("entry-reblog.delete-confirm-title")}
+                okText={_t("entry-reblog.delete-confirm-ok")}
+            >
+                {content}
+            </PopoverConfirm>
+        }
+
+        // Reblog
         return (
             <PopoverConfirm
                 onConfirm={this.reblog}
@@ -112,6 +142,7 @@ export default (p: Props) => {
         updateActiveUser: p.updateActiveUser,
         deleteUser: p.deleteUser,
         addReblog: p.addReblog,
+        deleteReblog: p.deleteReblog,
         toggleUIProp: p.toggleUIProp
     }
 

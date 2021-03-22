@@ -67,6 +67,7 @@ interface Props {
     updateActiveUser: (data?: Account) => void;
     deleteUser: (username: string) => void;
     addReblog: (account: string, author: string, permlink: string) => void;
+    deleteReblog: (account: string, author: string, permlink: string) => void;
     toggleUIProp: (what: ToggleType) => void;
 }
 
