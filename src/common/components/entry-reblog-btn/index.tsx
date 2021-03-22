@@ -11,7 +11,7 @@ import BaseComponent from "../base";
 import Tooltip from "../tooltip";
 import LoginRequired from "../login-required";
 import PopoverConfirm from "../popover-confirm";
-import {error, success} from "../feedback";
+import {error, success, info} from "../feedback";
 
 import {reblog, formatError} from "../../api/operations";
 
@@ -69,7 +69,7 @@ export class EntryReblogBtn extends BaseComponent<Props> {
         reblog(activeUser?.username!, entry.author, entry.permlink, true)
             .then(() => {
                 deleteReblog(activeUser?.username!, entry.author, entry.permlink);
-                success(_t("entry-reblog.delete-success"));
+                info(_t("entry-reblog.delete-success"));
             })
             .catch((e) => {
                 error(formatError(e));

@@ -151,7 +151,7 @@
     "delete-reblog": "Delete Reblog",
     "delete-confirm-title": "Delete reblog?",
     "delete-confirm-ok": "Delete",
-    "delete-success": "Reblog Deleted!"
+    "delete-success": "Reblog Deleted"
   },
   "entry-tip": {
     "title": "Tip"

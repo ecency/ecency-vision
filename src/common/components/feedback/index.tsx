@@ -4,7 +4,7 @@ import BaseComponent from "../base";
 
 import random from "../../util/rnd";
 
-import {checkSvg, alertCircleSvg} from "../../img/svg";
+import {checkSvg, alertCircleSvg, informationSvg} from "../../img/svg";
 
 export const error = (message: string) => {
     const detail: FeedbackObject = {
@@ -26,7 +26,17 @@ export const success = (message: string) => {
     window.dispatchEvent(ev);
 };
 
-type FeedbackType = "error" | "success";
+export const info = (message: string) => {
+    const detail: FeedbackObject = {
+        id: random(),
+        type: "info",
+        message,
+    };
+    const ev = new CustomEvent("feedback", {detail});
+    window.dispatchEvent(ev);
+};
+
+type FeedbackType = "error" | "success" | "info";
 
 export interface FeedbackObject {
     id: string;
@@ -94,6 +104,12 @@ export default class Feedback extends BaseComponent<Props, State> {
                             return (
                                 <div key={x.id} className="feedback-error">
                                     {alertCircleSvg} {x.message}
+                                </div>
+                            );
+                        case "info":
+                            return (
+                                <div key={x.id} className="feedback-info">
+                                    {informationSvg} {x.message}
                                 </div>
                             );
                         default:
