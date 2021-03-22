@@ -110,6 +110,7 @@ export class EntryReblogBtn extends BaseComponent<Props> {
         if (reblogged) {
             return <PopoverConfirm
                 onConfirm={this.deleteReblog}
+                okVariant="danger"
                 titleText={_t("entry-reblog.delete-confirm-title")}
                 okText={_t("entry-reblog.delete-confirm-ok")}
             >
