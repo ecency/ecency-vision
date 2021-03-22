@@ -76,7 +76,7 @@ exports[`(4) Active user. Reblogged 1`] = `
 >
   <a
     className="inner-btn"
-    title="Delete Reblog"
+    title="Undo Reblog"
   >
     <svg
       viewBox="0 0 24 24"
