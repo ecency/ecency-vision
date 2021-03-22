@@ -12,6 +12,8 @@ import numeral from "numeral";
 
 import queryString from "query-string";
 
+import hs from "hivesigner";
+
 import {PrivateKey, cryptoUtils, AccountCreateOperation, Authority} from "@hiveio/dhive";
 
 import {Community} from "../store/communities/types";
@@ -52,8 +54,6 @@ import random from "../util/rnd";
 import {checkSvg, alertCircleSvg} from "../img/svg";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
-
-const hs = require("hivesigner");
 
 interface State {
     list: Community[];
@@ -98,7 +98,7 @@ class CommunitiesPage extends BaseComponent<PageProps, State> {
         const {query, sort} = this.state;
         this.stateSet({loading: true});
 
-        getCommunities("", 100, query?query:null, (sort === "hot" ? "rank" : sort))
+        getCommunities("", 100, query ? query : null, (sort === "hot" ? "rank" : sort))
             .then((r) => {
                 if (r) {
                     const list = sort === "hot" ? r.sort(() => Math.random() - 0.5) : r;
@@ -195,7 +195,7 @@ class CommunitiesPage extends BaseComponent<PageProps, State> {
 
 export default connect(pageMapStateToProps, pageMapDispatchToProps)(CommunitiesPage);
 
-const namePattern = "^hive-1\\d{5}$";
+const namePattern = "^hive-[1]\\d{4,6}$";
 
 interface CreateState {
     fee: string;
@@ -489,10 +489,8 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
         const callback = `${window.location.origin}/communities/create-hs?code=${code}&title=${encodeURIComponent(title)}&about=${encodeURIComponent(about)}`;
 
         hs.sendOperation(operation, {callback}, () => {
-        }, () => {
         });
     }
-
 
     render() {
         //  Meta config
