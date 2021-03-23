@@ -49,6 +49,16 @@ export class EntryReblogBtn extends BaseComponent<Props> {
     componentDidMount() {
         const {activeUser, reblogs, fetchReblogs} = this.props;
         if (activeUser && reblogs.canFetch) {
+            // since @active-user/LOGIN resets reblogs reducer, wait 500 ms on first load
+            // to clientStoreTasks (store/helper.ts) finish its job with logging active user in.
+            // Otherwise condenser_api.get_blog_entries will be called 2 times on page load.
+            setTimeout(fetchReblogs, 500);
+        }
+    }
+
+    componentDidUpdate(prevProps: Readonly<Props>) {
+        const {activeUser, reblogs, fetchReblogs} = this.props;
+        if (activeUser && activeUser.username !== prevProps.activeUser?.username && reblogs.canFetch) {
             fetchReblogs();
         }
     }
