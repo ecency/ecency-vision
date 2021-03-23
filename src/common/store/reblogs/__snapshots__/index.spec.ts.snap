@@ -65,3 +65,24 @@ Object {
   ],
 }
 `;
+
+exports[`6- logoutAct 1`] = `
+Object {
+  "canFetch": true,
+  "list": Array [],
+}
+`;
+
+exports[`7- fetchAct 1`] = `
+Object {
+  "canFetch": false,
+  "list": Array [],
+}
+`;
+
+exports[`8- loginAct 1`] = `
+Object {
+  "canFetch": true,
+  "list": Array [],
+}
+`;

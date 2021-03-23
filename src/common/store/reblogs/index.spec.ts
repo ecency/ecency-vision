@@ -1,4 +1,5 @@
 import reducer, {initialState, fetchAct, fetchedAct, addAct, deleteAct} from "./index";
+import {logoutAct, loginAct} from "../active-user";
 
 let state = initialState;
 
@@ -31,5 +32,20 @@ it("5- deleteAct", () => {
     const item = {author: "baz", permlink: "gaz"};
 
     state = reducer(state, deleteAct(item));
+    expect(state).toMatchSnapshot();
+});
+
+it("6- logoutAct", () => {
+    state = reducer(state, logoutAct());
+    expect(state).toMatchSnapshot();
+});
+
+it("7- fetchAct", () => {
+    state = reducer(state, fetchAct());
+    expect(state).toMatchSnapshot();
+});
+
+it("8- loginAct", () => {
+    state = reducer(state, loginAct());
     expect(state).toMatchSnapshot();
 });

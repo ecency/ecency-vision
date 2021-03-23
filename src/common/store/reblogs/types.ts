@@ -1,4 +1,4 @@
-import {LogoutAction} from "../active-user/types";
+import {LoginAction, LogoutAction} from "../active-user/types";
 
 export interface Reblog {
     author: string;
@@ -41,4 +41,4 @@ export interface DeleteAction {
     item: Reblog
 }
 
-export type Actions = FetchAction | FetchedAction | FetchErrorAction | AddAction | DeleteAction | LogoutAction;
+export type Actions = FetchAction | FetchedAction | FetchErrorAction | AddAction | DeleteAction | LoginAction | LogoutAction;

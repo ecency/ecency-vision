@@ -42,6 +42,7 @@ export default (state: Reblogs = initialState, action: Actions): Reblogs => {
                 list: newList
             }
         }
+        case ActiveUserActionTypes.LOGIN:
         case ActiveUserActionTypes.LOGOUT: {
             return {...initialState}
         }
