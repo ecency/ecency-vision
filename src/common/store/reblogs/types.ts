@@ -1,15 +1,44 @@
+import {LogoutAction} from "../active-user/types";
+
 export interface Reblog {
-  account: string;
-  author: string;
-  permlink: string;
+    author: string;
+    permlink: string;
+}
+
+export interface Reblogs {
+    list: Reblog[],
+    canFetch: boolean
 }
 
 export enum ActionTypes {
-  RELOAD = "@reblogs/RELOAD",
+    FETCH = "@reblogs/FETCH",
+    FETCHED = "@reblogs/FETCHED",
+    FETCH_ERROR = "@reblogs/FETCH_ERROR",
+    ADD = "@reblogs/ADD",
+    DELETE = "@reblogs/DELETE",
 }
 
-export interface ReloadAction {
-  type: ActionTypes.RELOAD;
+export interface FetchAction {
+    type: ActionTypes.FETCH;
 }
 
-export type Actions = ReloadAction;
+export interface FetchedAction {
+    type: ActionTypes.FETCHED;
+    items: Reblog[]
+}
+
+export interface FetchErrorAction {
+    type: ActionTypes.FETCH_ERROR;
+}
+
+export interface AddAction {
+    type: ActionTypes.ADD;
+    item: Reblog
+}
+
+export interface DeleteAction {
+    type: ActionTypes.DELETE;
+    item: Reblog
+}
+
+export type Actions = FetchAction | FetchedAction | FetchErrorAction | AddAction | DeleteAction | LogoutAction;

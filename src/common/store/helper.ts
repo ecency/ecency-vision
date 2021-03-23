@@ -11,7 +11,6 @@ import {loginAct as loginActiveUser, logoutAct as logoutActiveUser, updateAct as
 import {getAccount, getDynamicProps} from "../api/hive";
 import {getPoints, usrActivity, getPromotedEntries} from "../api/private-api";
 import {reloadAct as reloadUsers} from "./users";
-import {reloadAct as reloadReblogs} from "./reblogs";
 import {fetchedAct as loadDynamicProps} from "./dynamic-props";
 import {fetchedAct as entriesFetchedAct} from "./entries";
 import {setCurrencyAct as setCurrency, muteNotificationsAct as muteNotifications, setLangAct as setLang, setNsfwAct as setNsfw} from "./global";
@@ -98,7 +97,6 @@ export const clientStoreTasks = (store: Store<AppState>) => {
     // Initial state from browser's local storage
     store.dispatch(reloadUsers());
     store.dispatch(loginActiveUser());
-    store.dispatch(reloadReblogs());
 
     // Load dynamic props
     getDynamicProps().then((resp) => {

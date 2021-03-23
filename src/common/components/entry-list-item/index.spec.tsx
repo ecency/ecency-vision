@@ -8,7 +8,7 @@ import {StaticRouter} from "react-router-dom";
 
 import TestRenderer from "react-test-renderer";
 
-import {globalInstance, dynamicPropsIntance1, entryInstance1, UiInstance, activeUserMaker} from "../../helper/test-helper";
+import {globalInstance, dynamicPropsIntance1, entryInstance1, UiInstance, emptyReblogs, activeUserMaker} from "../../helper/test-helper";
 
 import {ListStyle} from "../../store/global/types";
 
@@ -26,12 +26,11 @@ const defProps = {
     community: null,
     users: [],
     activeUser: null,
-    reblogs: [],
+    reblogs: emptyReblogs,
     entry: entryInstance1,
     ui: UiInstance,
     asAuthor: "",
     promoted: false,
-
     addAccount: () => {
     },
     updateEntry: () => {
@@ -41,6 +40,8 @@ const defProps = {
     updateActiveUser: () => {
     },
     deleteUser: () => {
+    },
+    fetchReblogs: () => {
     },
     addReblog: () => {
     },

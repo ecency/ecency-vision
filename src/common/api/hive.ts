@@ -359,3 +359,18 @@ export interface ConversionRequest {
 
 export const getConversionRequests = (account: string): Promise<ConversionRequest[]> =>
     client.database.call("get_conversion_requests", [account]);
+
+export interface BlogEntry {
+    blog: string,
+    entry_id: number,
+    author: string,
+    permlink: string,
+    reblogged_on: string
+}
+
+export const getBlogEntries = (username: string, limit: number = 50): Promise<BlogEntry[]> =>
+    client.call('condenser_api', 'get_blog_entries', [
+        username,
+        0,
+        limit
+    ]);

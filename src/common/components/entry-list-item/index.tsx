@@ -15,7 +15,7 @@ import {DynamicProps} from "../../store/dynamic-props/types";
 import {Community, Communities} from "../../store/communities/types";
 import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
-import {Reblog} from "../../store/reblogs/types";
+import {Reblogs} from "../../store/reblogs/types";
 import {UI, ToggleType} from "../../store/ui/types";
 
 import ProfileLink from "../profile-link/index";
@@ -56,7 +56,7 @@ interface Props {
     community?: Community | null;
     users: User[];
     activeUser: ActiveUser | null;
-    reblogs: Reblog[];
+    reblogs: Reblogs;
     entry: Entry;
     ui: UI;
     asAuthor: string;
@@ -66,8 +66,9 @@ interface Props {
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data?: Account) => void;
     deleteUser: (username: string) => void;
-    addReblog: (account: string, author: string, permlink: string) => void;
-    deleteReblog: (account: string, author: string, permlink: string) => void;
+    fetchReblogs: () => void;
+    addReblog: (author: string, permlink: string) => void;
+    deleteReblog: (author: string, permlink: string) => void;
     toggleUIProp: (what: ToggleType) => void;
 }
 
