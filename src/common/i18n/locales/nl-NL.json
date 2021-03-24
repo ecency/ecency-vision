@@ -147,7 +147,11 @@
     "reblog": "Herblog",
     "confirm-title": "Herbloggen op @{{n}}'s blog?",
     "confirm-ok": "Herblog",
-    "success": "Herblogged!"
+    "success": "Herblogged!",
+    "delete-reblog": "Undo Reblog",
+    "delete-confirm-title": "Undo reblog?",
+    "delete-confirm-ok": "Undo",
+    "delete-success": "Reblog removed"
   },
   "entry-tip": {
     "title": "Tip"
