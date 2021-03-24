@@ -147,7 +147,11 @@
     "reblog": "Сподели",
     "confirm-title": "Сподели в блога на @{{n}}?",
     "confirm-ok": "Сподели",
-    "success": "Споделено!"
+    "success": "Споделено!",
+    "delete-reblog": "Undo Reblog",
+    "delete-confirm-title": "Undo reblog?",
+    "delete-confirm-ok": "Undo",
+    "delete-success": "Reblog removed"
   },
   "entry-tip": {
     "title": "Бакшиш"
