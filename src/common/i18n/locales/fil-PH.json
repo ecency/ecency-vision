@@ -147,7 +147,11 @@
     "reblog": "Mga kondisyon ng serbisyo",
     "confirm-title": "I-reblog kay @{{n}}'s blog?",
     "confirm-ok": "I-blog muli",
-    "success": "Muling nai-blog!"
+    "success": "Muling nai-blog!",
+    "delete-reblog": "Undo Reblog",
+    "delete-confirm-title": "Undo reblog?",
+    "delete-confirm-ok": "Undo",
+    "delete-success": "Reblog removed"
   },
   "entry-tip": {
     "title": "Tip"
