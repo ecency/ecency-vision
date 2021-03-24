@@ -147,7 +147,11 @@
     "reblog": "Reblogga",
     "confirm-title": "Vuoi rebloggare sul blog di @{{n}}?",
     "confirm-ok": "Reblogga",
-    "success": "Rebloggato!"
+    "success": "Rebloggato!",
+    "delete-reblog": "Undo Reblog",
+    "delete-confirm-title": "Undo reblog?",
+    "delete-confirm-ok": "Undo",
+    "delete-success": "Reblog removed"
   },
   "entry-tip": {
     "title": "Invia omaggio"
