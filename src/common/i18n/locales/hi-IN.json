@@ -132,10 +132,10 @@
     "no-replies": "अभी तक कोई प्रतिक्रिया नहीं। जवाब देने के लिए क्लिक करें।"
   },
   "nsfw": {
-    "reveal": "Reveal this post",
-    "signup": "<a href=\"/signup\" class=\"push-link\">create an account</a> to save your preferences",
-    "settings-1": "adjust your",
-    "settings-2": "display preferences"
+    "reveal": "इस पोस्ट को प्रकट करें",
+    "signup": "<a href=\"/signup\" class=\"push-link\">create an account</a> अपनी वरीयताओं को बचाने के लिए",
+    "settings-1": "अपने को समायोजित करें",
+    "settings-2": "डिस्प्ले प्राथमिकताएं"
   },
   "bookmark-btn": {
     "add": "पृष्ठ स्मृति में जोड़ें",
@@ -148,10 +148,10 @@
     "confirm-title": "@ {{n}} के ब्लॉग पर रीब्लॉग करें?",
     "confirm-ok": "रीब्लॉग",
     "success": "रीब्लॉग हो गया",
-    "delete-reblog": "Undo Reblog",
-    "delete-confirm-title": "Undo reblog?",
-    "delete-confirm-ok": "Undo",
-    "delete-success": "Reblog removed"
+    "delete-reblog": "पूर्ववत करें",
+    "delete-confirm-title": "विद्रोह पूर्ववत करें?",
+    "delete-confirm-ok": "पूर्ववत् करें",
+    "delete-success": "रिबॉग हटाया गया"
   },
   "entry-tip": {
     "title": "टिप"
@@ -380,7 +380,7 @@
     "notifications": "अधिसूचना अलर्ट",
     "currency": "करेंसी",
     "language": "भाषा",
-    "nsfw": "Show NSFW content",
+    "nsfw": "NSFW सामग्री दिखाएं",
     "updated": "वरीयता अद्यतन!"
   },
   "wallet": {
@@ -451,19 +451,19 @@
     "claim-ok": "अंक अर्जित किये",
     "promote": "बढ़ावा देना",
     "boost": "बढ़ावा",
-    "filter-all": "All History",
-    "filter-10": "Points for heartbeat",
-    "filter-20": "Points for login",
-    "filter-30": "Usage bonus",
-    "filter-100": "Points for post",
-    "filter-110": "Points for comment",
-    "filter-120": "Points for vote",
-    "filter-130": "Points for reblog",
-    "filter-150": "Delegation reward",
-    "filter-160": "Referral reward",
-    "filter-170": "Community reward",
-    "filter-998": "Outgoing transfer",
-    "filter-999": "Incoming transfer"
+    "filter-all": "सारा इतिहास",
+    "filter-10": "हार्टबीट के लिए अंक",
+    "filter-20": "लॉगिन के लिए अंक",
+    "filter-30": "उपयोग बोनस",
+    "filter-100": "पद के लिए अंक",
+    "filter-110": "टिप्पणी के लिए अंक",
+    "filter-120": "वोट के लिए अंक",
+    "filter-130": "पुनर्प्रेशण के लिए अंक",
+    "filter-150": "प्रत्यायोजित इनाम",
+    "filter-160": "रेफरल इनाम",
+    "filter-170": "सामुदायिक पुरस्कार",
+    "filter-998": "निवर्तमान स्थानांतरण",
+    "filter-999": "आवक स्थानांतरण"
   },
   "purchase": {
     "select-asset": "असेट चुनें",
@@ -545,8 +545,8 @@
   },
   "transactions": {
     "title": "इतिहास",
-    "group-all": "All History",
-    "group-transfers": "Transfers",
+    "group-all": "सारा इतिहास",
+    "group-transfers": "स्थानांतरण",
     "group-market-orders": "Market Orders",
     "group-interests": "Interests",
     "group-stake-operations": "Stake operations",
