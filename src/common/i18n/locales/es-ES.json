@@ -148,10 +148,10 @@
     "confirm-title": "¿Rebloguear al blog de @{{n}}?",
     "confirm-ok": "Rebloguear",
     "success": "¡Reblogueado!",
-    "delete-reblog": "Undo Reblog",
-    "delete-confirm-title": "Undo reblog?",
-    "delete-confirm-ok": "Undo",
-    "delete-success": "Reblog removed"
+    "delete-reblog": "Deshacer Reblog",
+    "delete-confirm-title": "¿Deshacer reblog?",
+    "delete-confirm-ok": "Deshacer",
+    "delete-success": "Reblog eliminado"
   },
   "entry-tip": {
     "title": "Sugerencia"
