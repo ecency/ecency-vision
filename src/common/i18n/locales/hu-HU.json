@@ -147,7 +147,11 @@
     "reblog": "Megosztás",
     "confirm-title": "Reblog to @{{n}}'s blog?",
     "confirm-ok": "Megosztás",
-    "success": "Megosztva!"
+    "success": "Megosztva!",
+    "delete-reblog": "Undo Reblog",
+    "delete-confirm-title": "Undo reblog?",
+    "delete-confirm-ok": "Undo",
+    "delete-success": "Reblog removed"
   },
   "entry-tip": {
     "title": "Tip"
