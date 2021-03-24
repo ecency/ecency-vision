@@ -147,7 +147,11 @@
     "reblog": "Reblog",
     "confirm-title": "Teilen in @{{n}}'s blog?",
     "confirm-ok": "Reblog",
-    "success": "Geteilt!"
+    "success": "Geteilt!",
+    "delete-reblog": "Undo Reblog",
+    "delete-confirm-title": "Undo reblog?",
+    "delete-confirm-ok": "Undo",
+    "delete-success": "Reblog removed"
   },
   "entry-tip": {
     "title": "Tip"
