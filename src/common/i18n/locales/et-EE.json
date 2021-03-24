@@ -147,7 +147,11 @@
     "reblog": "Jaga",
     "confirm-title": "Jaga @{{n}} blogisse?",
     "confirm-ok": "Jaga",
-    "success": "Jagatud!"
+    "success": "Jagatud!",
+    "delete-reblog": "Undo Reblog",
+    "delete-confirm-title": "Undo reblog?",
+    "delete-confirm-ok": "Undo",
+    "delete-success": "Reblog removed"
   },
   "entry-tip": {
     "title": "Tip"
