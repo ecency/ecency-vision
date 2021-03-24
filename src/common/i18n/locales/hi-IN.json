@@ -147,7 +147,11 @@
     "reblog": "रीब्लॉग",
     "confirm-title": "@ {{n}} के ब्लॉग पर रीब्लॉग करें?",
     "confirm-ok": "रीब्लॉग",
-    "success": "रीब्लॉग हो गया"
+    "success": "रीब्लॉग हो गया",
+    "delete-reblog": "Undo Reblog",
+    "delete-confirm-title": "Undo reblog?",
+    "delete-confirm-ok": "Undo",
+    "delete-success": "Reblog removed"
   },
   "entry-tip": {
     "title": "टिप"
