@@ -147,7 +147,11 @@
     "reblog": "Jaa",
     "confirm-title": "Jaa @{{n}} blogiin?",
     "confirm-ok": "Jaa",
-    "success": "Jaettu!"
+    "success": "Jaettu!",
+    "delete-reblog": "Undo Reblog",
+    "delete-confirm-title": "Undo reblog?",
+    "delete-confirm-ok": "Undo",
+    "delete-success": "Reblog removed"
   },
   "entry-tip": {
     "title": "Vinkki"
