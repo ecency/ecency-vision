@@ -148,10 +148,10 @@
     "confirm-title": "Jaa @{{n}} blogiin?",
     "confirm-ok": "Jaa",
     "success": "Jaettu!",
-    "delete-reblog": "Undo Reblog",
-    "delete-confirm-title": "Undo reblog?",
-    "delete-confirm-ok": "Undo",
-    "delete-success": "Reblog removed"
+    "delete-reblog": "Kumoa uudelleenjako",
+    "delete-confirm-title": "Kumoa uudelleenjako?",
+    "delete-confirm-ok": "Kumoa",
+    "delete-success": "Uudelleenjako poistettu"
   },
   "entry-tip": {
     "title": "Vinkki"
