@@ -147,7 +147,11 @@
     "reblog": "Tampilkan kembali",
     "confirm-title": "Tampilkan ke blog @{{n}}?",
     "confirm-ok": "Tampilkan kembali",
-    "success": "Ditampilkan kembali!"
+    "success": "Ditampilkan kembali!",
+    "delete-reblog": "Undo Reblog",
+    "delete-confirm-title": "Undo reblog?",
+    "delete-confirm-ok": "Undo",
+    "delete-success": "Reblog removed"
   },
   "entry-tip": {
     "title": "Tip"
