@@ -147,7 +147,11 @@
     "reblog": "Pasidalinti",
     "confirm-title": "Pasidalinti @{{n}} įrašu?",
     "confirm-ok": "Pasidalinti",
-    "success": "Pasidalinta!"
+    "success": "Pasidalinta!",
+    "delete-reblog": "Undo Reblog",
+    "delete-confirm-title": "Undo reblog?",
+    "delete-confirm-ok": "Undo",
+    "delete-success": "Reblog removed"
   },
   "entry-tip": {
     "title": "Tip"
