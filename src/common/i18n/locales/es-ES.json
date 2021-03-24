@@ -147,7 +147,11 @@
     "reblog": "Rebloguear",
     "confirm-title": "¿Rebloguear al blog de @{{n}}?",
     "confirm-ok": "Rebloguear",
-    "success": "¡Reblogueado!"
+    "success": "¡Reblogueado!",
+    "delete-reblog": "Undo Reblog",
+    "delete-confirm-title": "Undo reblog?",
+    "delete-confirm-ok": "Undo",
+    "delete-success": "Reblog removed"
   },
   "entry-tip": {
     "title": "Sugerencia"
