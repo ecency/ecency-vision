@@ -147,7 +147,11 @@
     "reblog": "Репост",
     "confirm-title": "Поделиться этим постом?",
     "confirm-ok": "Зарепостить",
-    "success": "Репостнуто!"
+    "success": "Репостнуто!",
+    "delete-reblog": "Undo Reblog",
+    "delete-confirm-title": "Undo reblog?",
+    "delete-confirm-ok": "Undo",
+    "delete-success": "Reblog removed"
   },
   "entry-tip": {
     "title": "Tip"
