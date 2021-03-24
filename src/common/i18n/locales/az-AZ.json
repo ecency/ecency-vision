@@ -147,7 +147,11 @@
     "reblog": "Təkrar paylaş",
     "confirm-title": "Reblog to @{{n}}'s blog?",
     "confirm-ok": "Təkrar paylaş",
-    "success": "Təkrar paylaşıldı!"
+    "success": "Təkrar paylaşıldı!",
+    "delete-reblog": "Undo Reblog",
+    "delete-confirm-title": "Undo reblog?",
+    "delete-confirm-ok": "Undo",
+    "delete-success": "Reblog removed"
   },
   "entry-tip": {
     "title": "Məsləhət"
