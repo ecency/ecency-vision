@@ -147,7 +147,11 @@
     "reblog": "Podeli",
     "confirm-title": "Podeli na @{{n}} blog?",
     "confirm-ok": "Podeli",
-    "success": "Podeljeno!"
+    "success": "Podeljeno!",
+    "delete-reblog": "Undo Reblog",
+    "delete-confirm-title": "Undo reblog?",
+    "delete-confirm-ok": "Undo",
+    "delete-success": "Reblog removed"
   },
   "entry-tip": {
     "title": "Tip"
