@@ -13,7 +13,7 @@ import {NotificationFilter, Notifications} from "../store/notifications/types";
 import {Subscription} from "../store/subscriptions/types";
 import {DynamicProps} from "../store/dynamic-props/types";
 import {Entries, Entry} from "../store/entries/types";
-import {Reblog} from "../store/reblogs/types";
+import {Reblogs} from "../store/reblogs/types";
 import {Discussion as DiscussionType, SortOrder} from "../store/discussion/types";
 import {Transactions, OperationGroup} from "../store/transactions/types";
 import {Points} from "../store/points/types";
@@ -30,7 +30,7 @@ import {fetchTransactions, resetTransactions} from "../store/transactions";
 import {addUser, deleteUser} from "../store/users";
 import {setActiveUser, updateActiveUser} from "../store/active-user";
 import {toggleUIProp} from "../store/ui";
-import {addReblog} from "../store/reblogs";
+import {fetchReblogs, addReblog, deleteReblog} from "../store/reblogs";
 import {fetchNotifications, fetchUnreadNotificationCount, setNotificationsFilter, markNotifications} from "../store/notifications";
 import {fetchPoints, resetPoints} from "../store/points";
 import {setSigningKey} from "../store/signing-key";
@@ -93,8 +93,10 @@ export interface PageProps {
     ui: UI;
     toggleUIProp: (what: ToggleType) => void;
 
-    reblogs: Reblog[];
-    addReblog: (account: string, author: string, permlink: string) => void;
+    reblogs: Reblogs;
+    fetchReblogs: () => void;
+    addReblog: (author: string, permlink: string) => void;
+    deleteReblog: (author: string, permlink: string) => void;
 
     notifications: Notifications;
     fetchNotifications: (since: string | null) => void;
@@ -148,6 +150,8 @@ export const pageMapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
             updateActiveUser,
             toggleUIProp,
             addReblog,
+            deleteReblog,
+            fetchReblogs,
             fetchNotifications,
             fetchUnreadNotificationCount,
             setNotificationsFilter,

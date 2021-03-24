@@ -4,14 +4,14 @@ import {EntryReblogBtn} from "./index";
 
 import TestRenderer from "react-test-renderer";
 
-import {entryInstance1, UiInstance, activeUserMaker} from "../../helper/test-helper";
+import {entryInstance1, UiInstance, emptyReblogs, activeUserMaker} from "../../helper/test-helper";
 
 const defProps = {
     text: false,
     entry: {...entryInstance1},
     users: [],
     activeUser: null,
-    reblogs: [],
+    reblogs: emptyReblogs,
     ui: UiInstance,
     setActiveUser: () => {
     },
@@ -19,7 +19,11 @@ const defProps = {
     },
     deleteUser: () => {
     },
+    fetchReblogs: () => {
+    },
     addReblog: () => {
+    },
+    deleteReblog: () => {
     },
     toggleUIProp: () => {
 
@@ -48,7 +52,10 @@ it("(4) Active user. Reblogged", () => {
     const props = {
         ...defProps,
         activeUser: activeUserMaker("user1"),
-        reblogs: [{account: "user1", author: entryInstance1.author, permlink: entryInstance1.permlink}],
+        reblogs: {
+            list: [{account: "user1", author: entryInstance1.author, permlink: entryInstance1.permlink}],
+            canFetch: false
+        },
     };
     const renderer = TestRenderer.create(<EntryReblogBtn {...props} />);
     expect(renderer.toJSON()).toMatchSnapshot();
