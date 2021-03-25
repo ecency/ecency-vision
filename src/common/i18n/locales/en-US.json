@@ -124,6 +124,7 @@
     "title": "Featured"
   },
   "entry-list-item": {
+    "cross-posted": "cross-posted",
     "reblogged": "{{n}} reblogged",
     "promoted": "promoted",
     "pinned": "Pinned Post",

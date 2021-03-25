@@ -36,7 +36,7 @@ import {Tsx} from "../../i18n/helper";
 
 import _c from "../../util/fix-class-names";
 
-import {repeatSvg, pinSvg, commentSvg} from "../../img/svg";
+import {repeatSvg, pinSvg, commentSvg, shuffleVariantSvg} from "../../img/svg";
 
 const fallbackImage = require("../../img/fallback.png");
 const noImage = require("../../img/noimage.png");
@@ -117,8 +117,10 @@ export default class EntryListItem extends Component<Props, State> {
     }
 
     render() {
+        const {entry: theEntry, community, asAuthor, promoted, global, activeUser, history} = this.props;
+        const crossPost = !!(theEntry.original_entry);
 
-        const {entry, community, asAuthor, promoted, global, activeUser, history} = this.props;
+        const entry = theEntry.original_entry || theEntry;
 
         const imgGrid: string = (global.canUseWebp ? catchPostImage(entry, 600, 500, 'webp') : catchPostImage(entry, 600, 500)) || noImage;
         const imgRow: string = (global.canUseWebp ? catchPostImage(entry, 260, 200, 'webp') : catchPostImage(entry, 260, 200)) || noImage;
@@ -173,6 +175,36 @@ export default class EntryListItem extends Component<Props, State> {
         const cls = `entry-list-item ${promoted ? "promoted-item" : ""}`;
         return (
             <div className={_c(cls)}>
+
+                {(() => {
+                    if (crossPost) {
+
+                        return <div className="cross-item">
+                            <div className="cross-item-icon">
+                                {shuffleVariantSvg}
+                            </div>
+
+                            <div className="cross-item-content">
+                                {ProfileLink({
+                                    ...this.props,
+                                    username: theEntry.author,
+                                    children: <a className="cross-item-author notranslate">{`@${theEntry.author}`}</a>
+                                })}
+                                {_t("entry-list-item.cross-posted")}
+                                {EntryLink({
+                                    ...this.props,
+                                    entry: theEntry.original_entry!,
+                                    children: <a className="cross-item-link">
+                                        {`@${theEntry.original_entry!.author}/${theEntry.original_entry!.permlink}`}
+                                    </a>
+                                })}
+                            </div>
+                        </div>
+                    }
+
+                    return null;
+                })()}
+
                 <div className="item-header">
                     <div className="item-header-main">
                         <div className="author-part">
@@ -250,7 +282,7 @@ export default class EntryListItem extends Component<Props, State> {
                             <div className="item-image">
                                 {EntryLink({
                                     ...this.props,
-                                    entry,
+                                    entry: (crossPost ? theEntry : entry),
                                     children: <div>
                                         {thumb}
                                     </div>
@@ -259,12 +291,12 @@ export default class EntryListItem extends Component<Props, State> {
                             <div className="item-summary">
                                 {EntryLink({
                                     ...this.props,
-                                    entry,
+                                    entry: (crossPost ? theEntry : entry),
                                     children: <div className="item-title">{title}</div>
                                 })}
                                 {EntryLink({
                                     ...this.props,
-                                    entry,
+                                    entry: (crossPost ? theEntry : entry),
                                     children: <div className="item-body">{summary}</div>
                                 })}
                             </div>
@@ -285,7 +317,7 @@ export default class EntryListItem extends Component<Props, State> {
                         })}
                         {EntryLink({
                             ...this.props,
-                            entry,
+                            entry: (crossPost ? theEntry : entry),
                             children: <a className="replies notranslate">
                                 <Tooltip
                                     content={
