@@ -289,6 +289,7 @@
 
   iframe {
     max-width: 100% !important;
+    display: block;
     @media (min-width: $xsm-break) {
       width: 360px;
       height: 205px;
