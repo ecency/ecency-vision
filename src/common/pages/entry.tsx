@@ -469,9 +469,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                                         })}
                                                     </div>
                                                 </div>
-                                                <meta itemProp="headline name" content={originalEntry.title}/>
                                                 <div itemProp="articleBody" className="entry-body markdown-view user-selectable" dangerouslySetInnerHTML={renderedBody}/>
-                                                <meta itemProp="image" content={metaProps.image}/>
                                             </>;
                                         }
 
