@@ -19,6 +19,8 @@ const resolvePost = (post: Entry, observer: string): Promise<Entry> => {
             }
 
             return post;
+        }).catch(() => {
+            return post;
         })
     }
 
