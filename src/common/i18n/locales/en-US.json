@@ -30,7 +30,8 @@
     "no": "No",
     "done": "Done",
     "apply": "Apply",
-    "close": "Close"
+    "close": "Close",
+    "in": "In"
   },
   "confirm": {
     "title": "Are you sure?",

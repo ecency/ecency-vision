@@ -209,61 +209,80 @@
           color: $pinkish-grey;
         }
 
-        .author-part {
-          align-items: center;
-          cursor: pointer;
-          display: flex;
+        .author-avatar1 {
+          width: 40px;
+          margin-right: 6px;
 
-          .author-avatar {
-            margin-right: 6px;
-
-            .user-avatar {
-              width: 24px;
-              height: 24px;
-
-              @media (min-width: $sm-break) {
-                width: 40px;
-                height: 40px;
-              }
-            }
-          }
-
-          .author {
-            align-items: center;
-            display: inline-flex;
-
-            .author-name {
-              font-weight: 700;
-              margin-right: 2px;
-              word-break: keep-all;
-            }
-
-            @include themify(day) {
-              color: $charcoal-grey;
-            }
-
-            @include themify(night) {
-              color: $pinkish-grey;
-            }
-
-            .author-reputation {
-              color: $steel-grey;
-              font-size: 14px;
-              font-weight: 500;
-
-              &::before {
-                content: "(";
-              }
-
-              &::after {
-                content: ")";
-              }
-            }
+          .user-avatar {
+            width: 40px;
+            height: 40px;
           }
         }
 
-        .separator {
-          @extend .circle-separator;
+        .entry-info-inner {
+          .info-line-1 {
+            margin-bottom: 4px;
+
+            .author {
+              align-items: center;
+              display: inline-flex;
+
+              .author-name {
+                font-weight: 700;
+                margin-right: 2px;
+                word-break: keep-all;
+              }
+
+              @include themify(day) {
+                color: $charcoal-grey;
+              }
+
+              @include themify(night) {
+                color: $pinkish-grey;
+              }
+
+              .author-reputation {
+                color: $steel-grey;
+                font-size: 14px;
+                font-weight: 500;
+
+                &::before {
+                  content: "(";
+                }
+
+                &::after {
+                  content: ")";
+                }
+              }
+            }
+          }
+
+          .info-line-2 {
+            display: flex;
+            align-items: center;
+            font-size: 90%;
+
+            .separator {
+              @extend .circle-separator;
+            }
+
+            .in-tag {
+              margin-right: 4px;
+              text-transform: lowercase;
+            }
+
+            .entry-tag {
+              font-weight: 500;
+
+              @include themify(day) {
+                color: $steel-grey;
+              }
+
+              @include themify(night) {
+                color: $pinkish-grey;
+              }
+            }
+          }
         }
       }
     }

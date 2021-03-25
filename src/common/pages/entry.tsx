@@ -444,24 +444,45 @@ class EntryPage extends BaseComponent<Props, State> {
                                                         {ProfileLink({
                                                             ...this.props,
                                                             username: originalEntry.author,
-                                                            children: <div className="author-part">
-                                                                <div className="author-avatar">
-                                                                    {UserAvatar({...this.props, username: originalEntry.author, size: "medium"})}
-                                                                </div>
-                                                                <div className="author notranslate">
-                                                                <span className="author-name">
-                                                                    <span itemProp="author" itemScope={true} itemType="http://schema.org/Person">
-                                                                        <span itemProp="name">
-                                                                            {originalEntry.author}
-                                                                        </span>
-                                                                    </span>
-                                                                </span>
-                                                                    <span className="author-reputation">{reputation}</span>
-                                                                </div>
-                                                            </div>
+                                                            children: <div className="author-avatar1">{UserAvatar({
+                                                                ...this.props,
+                                                                username: originalEntry.author,
+                                                                size: "medium"
+                                                            })}</div>
                                                         })}
-                                                        <span className="separator"/>
-                                                        <span className="date" title={published.format("LLLL")}>{published.fromNow()}</span>
+
+                                                        <div className="entry-info-inner">
+                                                            <div className="info-line-1">
+                                                                {ProfileLink({
+                                                                    ...this.props,
+                                                                    username: originalEntry.author,
+                                                                    children: <div className="author notranslate">
+                                                                                <span className="author-name">
+                                                                                    <span itemProp="author" itemScope={true} itemType="http://schema.org/Person">
+                                                                                        <span itemProp="name">
+                                                                                            {originalEntry.author}
+                                                                                        </span>
+                                                                                    </span>
+                                                                                </span>
+                                                                        <span className="author-reputation">{reputation}</span>
+                                                                    </div>
+                                                                })}
+                                                            </div>
+
+                                                            <div className="info-line-2">
+                                                                <span className="in-tag">{_t("g.in")}</span>
+                                                                {Tag({
+                                                                    ...this.props,
+                                                                    tag: entry.category,
+                                                                    type: "link",
+                                                                    children: <div className="entry-tag">
+                                                                        {originalEntry.community ? originalEntry.community_title : `#${originalEntry.category}`}
+                                                                    </div>
+                                                                })}
+                                                                <span className="separator"/>
+                                                                <span className="date" title={published.format("LLLL")}>{published.fromNow()}</span>
+                                                            </div>
+                                                        </div>
                                                         <span className="flex-spacer"/>
                                                         {global.usePrivate && BookmarkBtn({
                                                             ...this.props,
@@ -502,28 +523,49 @@ class EntryPage extends BaseComponent<Props, State> {
                                                     {ProfileLink({
                                                         ...this.props,
                                                         username: entry.author,
-                                                        children: <div className="author-part">
-                                                            <div className="author-avatar">
-                                                                {UserAvatar({...this.props, username: entry.author, size: "medium"})}
-                                                            </div>
-                                                            <div className="author notranslate">
-                                                                <span className="author-name">
-                                                                    <span itemProp="author" itemScope={true} itemType="http://schema.org/Person">
-                                                                        <span itemProp="name">
-                                                                            {entry.author}
-                                                                        </span>
-                                                                    </span>
-                                                                </span>
-                                                                <span className="author-reputation">{reputation}</span>
-                                                            </div>
-                                                        </div>
+                                                        children: <div className="author-avatar1">{UserAvatar({
+                                                            ...this.props,
+                                                            username: entry.author,
+                                                            size: "medium"
+                                                        })}</div>
                                                     })}
-                                                    <span className="separator"/>
-                                                    <span className="date" title={published.format("LLLL")}>{published.fromNow()}</span>
+
+                                                    <div className="entry-info-inner">
+                                                        <div className="info-line-1">
+                                                            {ProfileLink({
+                                                                ...this.props,
+                                                                username: entry.author,
+                                                                children: <div className="author notranslate">
+                                                                                <span className="author-name">
+                                                                                    <span itemProp="author" itemScope={true} itemType="http://schema.org/Person">
+                                                                                        <span itemProp="name">
+                                                                                            {entry.author}
+                                                                                        </span>
+                                                                                    </span>
+                                                                                </span>
+                                                                    <span className="author-reputation">{reputation}</span>
+                                                                </div>
+                                                            })}
+                                                        </div>
+
+                                                        <div className="info-line-2">
+                                                            <span className="in-tag">{_t("g.in")}</span>
+                                                            {Tag({
+                                                                ...this.props,
+                                                                tag: entry.category,
+                                                                type: "link",
+                                                                children: <div className="entry-tag">
+                                                                    {entry.community ? entry.community_title : `#${entry.category}`}
+                                                                </div>
+                                                            })}
+                                                            <span className="separator"/>
+                                                            <span className="date" title={published.format("LLLL")}>{published.fromNow()}</span>
+                                                        </div>
+                                                    </div>
                                                     <span className="flex-spacer"/>
                                                     {global.usePrivate && BookmarkBtn({
                                                         ...this.props,
-                                                        entry: entry
+                                                        entry
                                                     })}
                                                 </div>
                                             </div>
