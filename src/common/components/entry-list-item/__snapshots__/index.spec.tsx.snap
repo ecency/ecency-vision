@@ -1011,3 +1011,239 @@ exports[`(5) Nsfw but allowed 1`] = `
   </div>
 </div>
 `;
+
+exports[`(6) Cross post 1`] = `
+<div
+  className="entry-list-item"
+>
+  <div
+    className="cross-item"
+  >
+    <div
+      className="cross-item-icon"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M17,3L22.25,7.5L17,12L22.25,16.5L17,21V18H14.26L11.44,15.18L13.56,13.06L15.5,15H17V12L17,9H15.5L6.5,18H2V15H5.26L14.26,6H17V3M2,6H6.5L9.32,8.82L7.2,10.94L5.26,9H2V6Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+    <div
+      className="cross-item-content"
+    >
+      <a
+        className="cross-item-author notranslate"
+        href="/@regenerette"
+        onClick={[Function]}
+      >
+        @regenerette
+      </a>
+      cross-posted
+      <a
+        className="cross-item-link"
+        href="/hive-167922/@regenerette/we-need-each-one-of-you-sos-financial-advice-for-hive-newcomers"
+        onClick={[Function]}
+      >
+        @regenerette/we-need-each-one-of-you-sos-financial-advice-for-hive-newcomers
+      </a>
+    </div>
+  </div>
+  <div
+    className="item-header"
+  >
+    <div
+      className="item-header-main"
+    >
+      <div
+        className="author-part"
+      >
+        <a
+          className="author-avatar"
+          href="/@regenerette"
+          onClick={[Function]}
+        >
+          <span
+            className="user-avatar small"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/regenerette/avatar/small)",
+              }
+            }
+          />
+        </a>
+        <a
+          className="author notranslate"
+          href="/@regenerette"
+          onClick={[Function]}
+        >
+          regenerette
+          <span
+            className="author-reputation"
+          >
+            56
+          </span>
+        </a>
+      </div>
+      <a
+        className="category"
+        href="/created/hive-167922"
+        onClick={[Function]}
+      >
+        LeoFinance
+      </a>
+      <span
+        className="read-mark"
+      />
+      <span
+        className="date"
+        title="Wednesday, March 24, 2021 7:14 PM"
+      >
+        10 months
+      </span>
+    </div>
+    <div
+      className="item-header-features"
+    />
+  </div>
+  <div
+    className="item-body"
+  >
+    <div
+      className="item-image"
+    >
+      <a
+        href="/hive-125125/@regenerette/we-need-each-one-of-you-sos-financial-advice-for-hive-newcomers-hive-125125"
+        onClick={[Function]}
+      >
+        <picture>
+          <source
+            media="(min-width: 576px)"
+            srcSet="https://images.ecency.com/p/9vWp6aU4y8kx949aDJ3YMzVLdPdgysaSmkB2s8acZPD2wLP9kmCfwvS7WXuviKVy7E4FQ9wVh4WA5pjURA85T8j9DcDS9aEKz33L2pEvgMVY6NyQE6wbedsZUqtk4KWeEB65eM5jx2qshJNei?format=match&mode=fit&width=260&height=200"
+          />
+          <img
+            alt="WE NEED EACH ONE OF YOU - SOS Financial Advice For Hive Newcomers "
+            onError={[Function]}
+            srcSet="https://images.ecency.com/p/9vWp6aU4y8kx949aDJ3YMzVLdPdgysaSmkB2s8acZPD2wLP9kmCfwvS7WXuviKVy7E4FQ9wVh4WA5pjURA85T8j9DcDS9aEKz33L2pEvgMVY6NyQE6wbedsZUqtk4KWeEB65eM5jx2qshJNei?format=match&mode=fit&width=600&height=500"
+          />
+        </picture>
+      </a>
+    </div>
+    <div
+      className="item-summary"
+    >
+      <a
+        className="item-title"
+        href="/hive-125125/@regenerette/we-need-each-one-of-you-sos-financial-advice-for-hive-newcomers-hive-125125"
+        onClick={[Function]}
+      >
+        WE NEED EACH ONE OF YOU - SOS Financial Advice For Hive Newcomers 
+      </a>
+      <a
+        className="item-body"
+        href="/hive-125125/@regenerette/we-need-each-one-of-you-sos-financial-advice-for-hive-newcomers-hive-125125"
+        onClick={[Function]}
+      >
+        Hi I have decided to write this article for newcomers (that need some guidance), for more experienced ones (that can contribute with input, commenting, and helping with suggestions for this article), 
+      </a>
+    </div>
+    <div
+      className="item-controls"
+    >
+      <div
+        className="entry-vote-btn"
+        onClick={[Function]}
+      >
+        <div
+          className="btn-vote btn-up-vote"
+        >
+          <span
+            className="btn-inner"
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+      <div
+        className="entry-payout  notranslate"
+        onBlur={[Function]}
+        onFocus={[Function]}
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+      >
+        $ 5.95
+      </div>
+      <div
+        className="entry-votes notranslate"
+      >
+        <span
+          className="inner-btn"
+          onClick={[Function]}
+          title="59 Votes"
+        >
+          <svg
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M16 17V19H2V17S2 13 9 13 16 17 16 17M12.5 7.5A3.5 3.5 0 1 0 9 11A3.5 3.5 0 0 0 12.5 7.5M15.94 13A5.32 5.32 0 0 1 18 17V19H22V17S22 13.37 15.94 13M15 4A3.39 3.39 0 0 0 13.07 4.59A5 5 0 0 1 13.07 10.41A3.39 3.39 0 0 0 15 11A3.5 3.5 0 0 0 15 4Z"
+              fill="currentColor"
+            />
+          </svg>
+           
+          59
+        </span>
+      </div>
+      <a
+        className="replies notranslate"
+        href="/hive-125125/@regenerette/we-need-each-one-of-you-sos-financial-advice-for-hive-newcomers-hive-125125"
+        onClick={[Function]}
+      >
+        <span
+          className="inner"
+          title="10 responses. Click to respond."
+        >
+          <svg
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M18,8H6V6H18V8M18,11H6V9H18V11M18,14H6V12H18V14M22,4A2,2 0 0,0 20,2H4A2,2 0 0,0 2,4V16A2,2 0 0,0 4,18H18L22,22V4Z"
+              fill="currentColor"
+            />
+          </svg>
+           
+          10
+        </span>
+      </a>
+      <div
+        className="entry-reblog-btn"
+        onClick={[Function]}
+      >
+        <a
+          className="inner-btn"
+          title="Reblog"
+        >
+          <svg
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M17,17H7V14L3,18L7,22V19H19V13H17M7,7H17V10L21,6L17,2V5H5V11H7V7Z"
+              fill="currentColor"
+            />
+          </svg>
+           
+          
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;

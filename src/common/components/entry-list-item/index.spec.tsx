@@ -8,7 +8,7 @@ import {StaticRouter} from "react-router-dom";
 
 import TestRenderer from "react-test-renderer";
 
-import {globalInstance, dynamicPropsIntance1, entryInstance1, UiInstance, emptyReblogs, activeUserMaker} from "../../helper/test-helper";
+import {globalInstance, dynamicPropsIntance1, entryInstance1, UiInstance, emptyReblogs, activeUserMaker, crossEntryInstance} from "../../helper/test-helper";
 
 import {ListStyle} from "../../store/global/types";
 
@@ -135,3 +135,16 @@ it("(5) Nsfw but allowed", () => {
         </StaticRouter>);
     expect(renderer.toJSON()).toMatchSnapshot();
 });
+
+it("(6) Cross post", () => {
+    const props = {
+        ...defProps,
+        entry: crossEntryInstance
+    }
+
+    const renderer = TestRenderer.create(
+        <StaticRouter location="/" context={{}}>
+            <EntryListItem {...props} />
+        </StaticRouter>);
+    expect(renderer.toJSON()).toMatchSnapshot();
+})
