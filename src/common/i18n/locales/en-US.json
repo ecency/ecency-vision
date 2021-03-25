@@ -204,7 +204,10 @@
     "show-history": "Show edit history",
     "hidden-warning": "This post was hidden due to low ratings.",
     "address-copy": "Copy post address",
-    "address-copied": "Post address copied to clipboard."
+    "address-copied": "Post address copied to clipboard.",
+    "browse-original": "Browse to the original post by @{{n}}",
+    "cross-post-by": "Cross post by",
+    "cross-post-community": "<strong>{{n}}</strong> community"
   },
   "edit-history": {
     "title": "Edit History",

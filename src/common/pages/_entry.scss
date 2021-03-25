@@ -35,6 +35,47 @@
       max-width: 800px;
     }
 
+    .cross-post {
+      padding: 10px 4px;
+      border-radius: 6px;
+
+      @include themify(day) {
+        background: lighten($dark-sky-blue, 42);
+      }
+
+      @include themify(night) {
+        background: $dark-grey-blue;
+      }
+
+      .cross-post-info {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 10px;
+
+        .cross-post-author {
+          display: flex;
+          align-items: center;
+          margin-left: 4px;
+
+          .user-avatar {
+            width: 20px;
+            height: 20px;
+            margin-right: 4px;
+          }
+        }
+      }
+
+      .cross-post-community {
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      .cross-post-message {
+        text-align: center;
+      }
+    }
+
     .hidden-warning {
       padding: 20px;
       display: flex;
@@ -466,6 +507,11 @@
           }
         }
       }
+    }
+
+    .browse-original {
+      padding: 40px 0;
+      text-align: center;
     }
   }
 }
