@@ -124,6 +124,8 @@
     "title": "Suositellut"
   },
   "entry-list-item": {
+    "cross-posted": "cross-posted",
+    "cross-posted-to": "to",
     "reblogged": "{{n}} uudelleenjaettu",
     "promoted": "korostettu",
     "pinned": "Kiinnitetty julkaisu",
@@ -203,7 +205,11 @@
     "show-history": "Näytä muokkaushistoria",
     "hidden-warning": "Tämä viesti oli piilotettu alhaisten arvostelujen vuoksi.",
     "address-copy": "Kopioi osoite",
-    "address-copied": "Osoite kopioitu leikepöydälle."
+    "address-copied": "Osoite kopioitu leikepöydälle.",
+    "browse-original": "Open original post",
+    "cross-post-by": "Cross post by",
+    "cross-post-community": "community",
+    "community-in": "in"
   },
   "edit-history": {
     "title": "Muokkaushistoria",
