@@ -35,6 +35,7 @@ import {_t} from "../../i18n";
 import {Tsx} from "../../i18n/helper";
 
 import _c from "../../util/fix-class-names";
+import truncate from "../../util/truncate";
 
 import {repeatSvg, pinSvg, commentSvg, shuffleVariantSvg} from "../../img/svg";
 
@@ -180,25 +181,30 @@ export default class EntryListItem extends Component<Props, State> {
                     if (crossPost) {
 
                         return <div className="cross-item">
-                            <div className="cross-item-icon">
-                                {shuffleVariantSvg}
-                            </div>
-
-                            <div className="cross-item-content">
-                                {ProfileLink({
-                                    ...this.props,
-                                    username: theEntry.author,
-                                    children: <a className="cross-item-author notranslate">{`@${theEntry.author}`}</a>
-                                })}
-                                {_t("entry-list-item.cross-posted")}
-                                {EntryLink({
-                                    ...this.props,
-                                    entry: theEntry.original_entry!,
-                                    children: <a className="cross-item-link">
-                                        {`@${theEntry.original_entry!.author}/${theEntry.original_entry!.permlink}`}
-                                    </a>
-                                })}
-                            </div>
+                            {ProfileLink({
+                                ...this.props,
+                                username: theEntry.author,
+                                children: <a className="cross-item-author notranslate">{`@${theEntry.author}`}</a>
+                            })}
+                            {" "}
+                            {_t("entry-list-item.cross-posted")}
+                            {" "}
+                            {EntryLink({
+                                ...this.props,
+                                entry: theEntry.original_entry!,
+                                children: <a className="cross-item-link">
+                                    {truncate(`@${theEntry.original_entry!.author}/${theEntry.original_entry!.permlink}`, 40)}
+                                </a>
+                            })}
+                            {" "}
+                            {_t("entry-list-item.cross-posted-to")}
+                            {" "}
+                            {Tag({
+                                ...this.props,
+                                tag: theEntry.community && theEntry.community_title ? {name: theEntry.community, title: theEntry.community_title} : theEntry.category,
+                                type: "link",
+                                children: <a className="community-name">{theEntry.community_title || theEntry.category}</a>
+                            })}
                         </div>
                     }
 

@@ -384,9 +384,17 @@ class EntryPage extends BaseComponent<Props, State> {
                                         </div>
                                     })}
                                 </div>
-                                <Tsx k="entry.cross-post-community" args={{n: entry.community_title}}>
-                                    <div className="cross-post-community"/>
-                                </Tsx>
+                                <div className="cross-post-community">
+                                    {Tag({
+                                        ...this.props,
+                                        tag: entry.category,
+                                        type: "link",
+                                        children: <div className="community-link">
+                                            {entry.community_title}
+                                        </div>
+                                    })}
+                                    {_t("entry.cross-post-community")}
+                                </div>
                                 <div className="cross-post-message">{'"'}{crossPostMessage(entry.body)}{'"'}</div>
                             </div>
                         )}
@@ -444,7 +452,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                                         {ProfileLink({
                                                             ...this.props,
                                                             username: originalEntry.author,
-                                                            children: <div className="author-avatar1">{UserAvatar({
+                                                            children: <div className="author-avatar">{UserAvatar({
                                                                 ...this.props,
                                                                 username: originalEntry.author,
                                                                 size: "medium"
@@ -470,10 +478,10 @@ class EntryPage extends BaseComponent<Props, State> {
                                                             </div>
 
                                                             <div className="info-line-2">
-                                                                <span className="in-tag">{_t("g.in")}</span>
+                                                                <span className="in-tag">{_t("entry.community-in")}</span>
                                                                 {Tag({
                                                                     ...this.props,
-                                                                    tag: entry.category,
+                                                                    tag: originalEntry.category,
                                                                     type: "link",
                                                                     children: <div className="entry-tag">
                                                                         {originalEntry.community ? originalEntry.community_title : `#${originalEntry.category}`}
@@ -523,7 +531,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                                     {ProfileLink({
                                                         ...this.props,
                                                         username: entry.author,
-                                                        children: <div className="author-avatar1">{UserAvatar({
+                                                        children: <div className="author-avatar">{UserAvatar({
                                                             ...this.props,
                                                             username: entry.author,
                                                             size: "medium"
@@ -549,7 +557,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                                         </div>
 
                                                         <div className="info-line-2">
-                                                            <span className="in-tag">{_t("g.in")}</span>
+                                                            <span className="in-tag">{_t("entry.community-in")}</span>
                                                             {Tag({
                                                                 ...this.props,
                                                                 tag: entry.category,

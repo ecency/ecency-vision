@@ -3,12 +3,9 @@
 
   .cross-item {
     font-size: 84%;
-    display: grid;
     padding: 6px;
     border-radius: 6px;
     margin-bottom: 10px;
-    align-items: center;
-    grid-template-columns: 20px 1fr;
 
     @include themify(day) {
       background: lighten($dark-sky-blue, 42);
@@ -19,42 +16,10 @@
       background: $dark-grey-blue;
     }
 
-    .cross-item-icon {
-      display: flex;
-      align-items: center;
-
-      @include themify(day) {
-        color: $pinkish-grey;
-      }
-
-      @include themify(night) {
-        color: $dark-indigo;
-      }
-
-      svg {
-        height: 14px;
-      }
-    }
-
-    .cross-item-content {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-
-      .cross-item-author {
-        margin-right: 2px;
-
-        @include themify(day) {
-          color: $steel-grey;
-        }
-
-        @include themify(night) {
-          color: $light-periwinkle;
-        }
-      }
-
-      .cross-item-link {
-        margin-left: 2px;
+    .cross-item-link {
+      display: none;
+      @media (min-width: $sm-break) {
+        display: inline-block;
       }
     }
   }

@@ -69,6 +69,11 @@
       .cross-post-community {
         text-align: center;
         margin-bottom: 10px;
+
+        .community-link {
+          font-weight: 500;
+          margin-right: 6px;
+        }
       }
 
       .cross-post-message {
@@ -209,7 +214,7 @@
           color: $pinkish-grey;
         }
 
-        .author-avatar1 {
+        .author-avatar {
           width: 40px;
           margin-right: 6px;
 
@@ -268,7 +273,6 @@
 
             .in-tag {
               margin-right: 4px;
-              text-transform: lowercase;
             }
 
             .entry-tag {
