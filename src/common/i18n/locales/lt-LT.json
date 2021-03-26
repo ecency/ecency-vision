@@ -124,6 +124,8 @@
     "title": "Featured"
   },
   "entry-list-item": {
+    "cross-posted": "cross-posted",
+    "cross-posted-to": "to",
     "reblogged": "{{n}} reblogged",
     "promoted": "paremti",
     "pinned": "Prisegtas Įrašas",
@@ -203,7 +205,11 @@
     "show-history": "Rodyti redagavimo istoriją",
     "hidden-warning": "Įrašas buvo paslėptas dėl per žemo reitingo.",
     "address-copy": "Copy post address",
-    "address-copied": "Post address copied to clipboard."
+    "address-copied": "Post address copied to clipboard.",
+    "browse-original": "Open original post",
+    "cross-post-by": "Cross post by",
+    "cross-post-community": "community",
+    "community-in": "in"
   },
   "edit-history": {
     "title": "Redagavimo Istorija",
