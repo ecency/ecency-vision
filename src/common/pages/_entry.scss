@@ -35,6 +35,52 @@
       max-width: 800px;
     }
 
+    .cross-post {
+      padding: 10px 4px;
+      border-radius: 6px;
+
+      @include themify(day) {
+        background: lighten($dark-sky-blue, 42);
+      }
+
+      @include themify(night) {
+        background: $dark-grey-blue;
+      }
+
+      .cross-post-info {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 10px;
+
+        .cross-post-author {
+          display: flex;
+          align-items: center;
+          margin-left: 4px;
+
+          .user-avatar {
+            width: 20px;
+            height: 20px;
+            margin-right: 4px;
+          }
+        }
+      }
+
+      .cross-post-community {
+        text-align: center;
+        margin-bottom: 10px;
+
+        .community-link {
+          font-weight: 500;
+          margin-right: 6px;
+        }
+      }
+
+      .cross-post-message {
+        text-align: center;
+      }
+    }
+
     .hidden-warning {
       padding: 20px;
       display: flex;
@@ -168,61 +214,79 @@
           color: $pinkish-grey;
         }
 
-        .author-part {
-          align-items: center;
-          cursor: pointer;
-          display: flex;
+        .author-avatar {
+          width: 40px;
+          margin-right: 6px;
 
-          .author-avatar {
-            margin-right: 6px;
-
-            .user-avatar {
-              width: 24px;
-              height: 24px;
-
-              @media (min-width: $sm-break) {
-                width: 40px;
-                height: 40px;
-              }
-            }
-          }
-
-          .author {
-            align-items: center;
-            display: inline-flex;
-
-            .author-name {
-              font-weight: 700;
-              margin-right: 2px;
-              word-break: keep-all;
-            }
-
-            @include themify(day) {
-              color: $charcoal-grey;
-            }
-
-            @include themify(night) {
-              color: $pinkish-grey;
-            }
-
-            .author-reputation {
-              color: $steel-grey;
-              font-size: 14px;
-              font-weight: 500;
-
-              &::before {
-                content: "(";
-              }
-
-              &::after {
-                content: ")";
-              }
-            }
+          .user-avatar {
+            width: 40px;
+            height: 40px;
           }
         }
 
-        .separator {
-          @extend .circle-separator;
+        .entry-info-inner {
+          .info-line-1 {
+            margin-bottom: 4px;
+
+            .author {
+              align-items: center;
+              display: inline-flex;
+
+              .author-name {
+                font-weight: 700;
+                margin-right: 2px;
+                word-break: keep-all;
+              }
+
+              @include themify(day) {
+                color: $charcoal-grey;
+              }
+
+              @include themify(night) {
+                color: $pinkish-grey;
+              }
+
+              .author-reputation {
+                color: $steel-grey;
+                font-size: 14px;
+                font-weight: 500;
+
+                &::before {
+                  content: "(";
+                }
+
+                &::after {
+                  content: ")";
+                }
+              }
+            }
+          }
+
+          .info-line-2 {
+            display: flex;
+            align-items: center;
+            font-size: 90%;
+
+            .separator {
+              @extend .circle-separator;
+            }
+
+            .in-tag {
+              margin-right: 4px;
+            }
+
+            .entry-tag {
+              font-weight: 500;
+
+              @include themify(day) {
+                color: $steel-grey;
+              }
+
+              @include themify(night) {
+                color: $pinkish-grey;
+              }
+            }
+          }
         }
       }
     }
@@ -466,6 +530,11 @@
           }
         }
       }
+    }
+
+    .browse-original {
+      padding: 40px 0;
+      text-align: center;
     }
   }
 }

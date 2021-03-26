@@ -6,6 +6,35 @@ import {client as hiveClient} from "./hive";
 
 const bridgeApiCall = <T>(endpoint: string, params: {}): Promise<T> => hiveClient.call("bridge", endpoint, params);
 
+const resolvePost = (post: Entry, observer: string): Promise<Entry> => {
+    const {json_metadata: json} = post;
+
+    if (json.original_author && json.original_permlink && json.tags && json.tags[0] === "cross-post") {
+        return getPost(json.original_author, json.original_permlink, observer).then(resp => {
+            if (resp) {
+                return {
+                    ...post,
+                    original_entry: resp
+                }
+            }
+
+            return post;
+        }).catch(() => {
+            return post;
+        })
+    }
+
+    return new Promise((resolve) => {
+        resolve(post);
+    });
+}
+
+const resolvePosts = (posts: Entry[], observer: string): Promise<Entry[]> => {
+    const promises = posts.map(p => resolvePost(p, observer));
+
+    return Promise.all(promises);
+}
+
 export const getPostsRanked = (
     sort: string,
     start_author: string = "",
@@ -13,15 +42,22 @@ export const getPostsRanked = (
     limit: number = 20,
     tag: string = "",
     observer: string = ""
-): Promise<Entry[] | null> =>
-    bridgeApiCall<Entry[] | null>("get_ranked_posts", {
+): Promise<Entry[] | null> => {
+    return bridgeApiCall<Entry[] | null>("get_ranked_posts", {
         sort,
         start_author,
         start_permlink,
         limit,
         tag,
         observer,
-    });
+    }).then(resp => {
+        if (resp) {
+            return resolvePosts(resp, observer);
+        }
+
+        return resp;
+    })
+}
 
 export const getAccountPosts = (
     sort: string,
@@ -30,16 +66,36 @@ export const getAccountPosts = (
     start_permlink: string = "",
     limit: number = 20,
     observer: string = ""
-): Promise<Entry[] | null> =>
-    bridgeApiCall<Entry[] | null>("get_account_posts", {
+): Promise<Entry[] | null> => {
+    return bridgeApiCall<Entry[] | null>("get_account_posts", {
         sort,
         account,
         start_author,
         start_permlink,
         limit,
         observer,
-    });
+    }).then(resp => {
+        if (resp) {
+            return resolvePosts(resp, observer);
+        }
 
+        return resp;
+    })
+}
+
+export const getPost = (author: string = "", permlink: string = "", observer: string = ""): Promise<Entry | null> => {
+    return bridgeApiCall<Entry | null>("get_post", {
+        author,
+        permlink,
+        observer,
+    }).then(resp => {
+        if (resp) {
+            return resolvePost(resp, observer);
+        }
+
+        return resp;
+    })
+}
 
 export interface AccountNotification {
     date: string;
@@ -61,13 +117,6 @@ export const getAccountNotifications = (account: string, lastId: number | null =
 
     return bridgeApiCall<AccountNotification[] | null>("account_notifications", params);
 }
-
-export const getPost = (author: string = "", permlink: string = "", observer: string = ""): Promise<Entry | null> =>
-    bridgeApiCall<Entry | null>("get_post", {
-        author,
-        permlink,
-        observer,
-    });
 
 export const getDiscussion = (author: string, permlink: string): Promise<Record<string, Entry> | null> =>
     bridgeApiCall<Record<string, Entry> | null>("get_discussion", {
