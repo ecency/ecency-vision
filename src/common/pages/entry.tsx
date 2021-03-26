@@ -722,7 +722,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                                 ...this.props,
                                                 entry: originalEntry,
                                                 children: <a className="btn btn-primary">
-                                                    {_t('entry.browse-original', {n: originalEntry.author})}
+                                                    {_t('entry.browse-original')}
                                                 </a>
                                             })}
                                         </div>
