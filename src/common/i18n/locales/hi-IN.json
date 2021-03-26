@@ -124,6 +124,8 @@
     "title": "विशेष रुप से प्रदर्शित"
   },
   "entry-list-item": {
+    "cross-posted": "cross-posted",
+    "cross-posted-to": "to",
     "reblogged": "{{n}} रीब्लॉगड",
     "promoted": "पदोन्नत",
     "pinned": "पिन की गई पोस्ट",
@@ -203,7 +205,11 @@
     "show-history": "संपादित इतिहास दिखाएं",
     "hidden-warning": "यह पोस्ट गुप्त था निम्न मूल्यांकन के कारण.",
     "address-copy": "पोस्ट पता कापी करे",
-    "address-copied": "क्लिपबोर्ड पर पोस्ट पता कॉपी किया गया।"
+    "address-copied": "क्लिपबोर्ड पर पोस्ट पता कॉपी किया गया।",
+    "browse-original": "Open original post",
+    "cross-post-by": "Cross post by",
+    "cross-post-community": "community",
+    "community-in": "in"
   },
   "edit-history": {
     "title": "इतिहास संपादित करें",
