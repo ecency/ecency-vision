@@ -6,7 +6,7 @@ import BaseComponent from "../base";
 
 import DropDown from "../dropdown";
 
-import {dotsHorizontal,  deleteForeverSvg, pencilOutlineSvg} from "../../img/svg";
+import {dotsHorizontal, deleteForeverSvg, pencilOutlineSvg} from "../../img/svg";
 import {ActiveUser} from "../../store/active-user/types";
 import {Entry} from "../../store/entries/types";
 import {Community, ROLES} from "../../store/communities/types";
@@ -17,7 +17,6 @@ import clipboard from "../../util/clipboard";
 import {success} from "../feedback";
 import {_t} from "../../i18n";
 
-import EntryEditBtn from "../entry-edit-btn/index";
 import EntryDeleteBtn from "../entry-delete-btn";
 
 import PinBtn from "../pin-btn";
@@ -69,6 +68,13 @@ class EntryMenu extends BaseComponent<Props, State> {
         success(_t("entry.address-copied"));
     };
 
+    edit = () => {
+        const {entry, history} = this.props;
+
+        const u = `/@${entry.author}/${entry.permlink}/edit`;
+        history.push(u);
+    }
+
     render() {
         const {global, activeUser, entry, community} = this.props;
 
@@ -96,9 +102,7 @@ class EntryMenu extends BaseComponent<Props, State> {
                 ...[
                     {
                         label: "Edit",
-                        onClick: () => {
-
-                        }
+                        onClick: this.edit
                     },
                     {
                         label: "Delete",
