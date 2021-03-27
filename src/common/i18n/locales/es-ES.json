@@ -124,8 +124,8 @@
     "title": "Destacado"
   },
   "entry-list-item": {
-    "cross-posted": "cross-posted",
-    "cross-posted-to": "to",
+    "cross-posted": "publicación-cruzada",
+    "cross-posted-to": "para",
     "reblogged": "{{n}} reblogueado",
     "promoted": "promocionado",
     "pinned": "Publicación fijada",
@@ -206,9 +206,9 @@
     "hidden-warning": "El post ha sido ocultado por bajas calificaciones.",
     "address-copy": "Copiar la dirección de la Publicación",
     "address-copied": "Dirección de publicación copiada al portapapeles.",
-    "browse-original": "Open original post",
-    "cross-post-by": "Cross post by",
-    "cross-post-community": "community",
+    "browse-original": "Abrir publicación original",
+    "cross-post-by": "Publicación cruzada por",
+    "cross-post-community": "comunidad",
     "community-in": "in"
   },
   "edit-history": {
