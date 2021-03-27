@@ -14,13 +14,15 @@ import EditHistory from "../edit-history";
 import EntryShare from "../entry-share";
 import {Global} from "../../store/global/types";
 import clipboard from "../../util/clipboard";
-import {success} from "../feedback";
+import {error, success} from "../feedback";
 import {_t} from "../../i18n";
 
-import EntryDeleteBtn from "../entry-delete-btn";
+import ModalConfirm from "../modal-confirm";
 
 import PinBtn from "../pin-btn";
 import MuteBtn from "../mute-btn";
+
+import {deleteComment, formatError} from "../../api/operations";
 
 interface Props {
     history: History;
@@ -33,12 +35,14 @@ interface Props {
 interface State {
     share: boolean;
     editHistory: boolean;
+    delete_: boolean;
 }
 
 class EntryMenu extends BaseComponent<Props, State> {
     state: State = {
         share: false,
-        editHistory: false
+        editHistory: false,
+        delete_: false,
     }
 
     toggleShare = () => {
@@ -49,6 +53,11 @@ class EntryMenu extends BaseComponent<Props, State> {
     toggleEditHistory = () => {
         const {editHistory} = this.state;
         this.stateSet({editHistory: !editHistory});
+    }
+
+    toggleDelete = () => {
+        const {delete_} = this.state;
+        this.stateSet({delete_: !delete_});
     }
 
     canPinOrMute = () => {
@@ -73,6 +82,17 @@ class EntryMenu extends BaseComponent<Props, State> {
 
         const u = `/@${entry.author}/${entry.permlink}/edit`;
         history.push(u);
+    }
+
+    delete = () => {
+        const {history, activeUser, entry} = this.props;
+        deleteComment(activeUser?.username!, entry.author, entry.permlink)
+            .then(() => {
+                history.push('/');
+            })
+            .catch((e) => {
+                error(formatError(e));
+            })
     }
 
     render() {
@@ -106,9 +126,7 @@ class EntryMenu extends BaseComponent<Props, State> {
                     },
                     {
                         label: "Delete",
-                        onClick: () => {
-
-                        }
+                        onClick: this.toggleDelete
                     }
                 ]
             ];
@@ -128,15 +146,20 @@ class EntryMenu extends BaseComponent<Props, State> {
             items: menuItems
         };
 
-        const {share, editHistory} = this.state;
+        const {share, editHistory, delete_} = this.state;
 
         return <div className="entry-menu">
             <DropDown {...menuConfig} float="right"/>
 
             {share && <EntryShare entry={entry} onHide={this.toggleShare}/>}
             {editHistory && <EditHistory entry={entry} onHide={this.toggleEditHistory}/>}
+            {delete_ && <ModalConfirm onConfirm={() => {
+                this.delete();
+                this.toggleDelete();
+            }} onCancel={this.toggleDelete}/>}
         </div>;
     }
+
 }
 
 

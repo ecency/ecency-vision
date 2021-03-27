@@ -262,11 +262,6 @@ class EntryPage extends BaseComponent<Props, State> {
         ls.set(`reply_draft_${entry.author}_${entry.permlink}`, text);
     }
 
-    deleted = () => {
-        const {history} = this.props;
-        history.push('/');
-    }
-
     reload = () => {
         this.stateSet({loading: true});
         this.ensureEntry();
