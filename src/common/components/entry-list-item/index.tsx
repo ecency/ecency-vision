@@ -340,8 +340,7 @@ export default class EntryListItem extends Component<Props, State> {
                             </a>
                         })}
                         {EntryReblogBtn({
-                            ...this.props,
-                            text: false
+                            ...this.props
                         })}
                     </div>
                 </div>

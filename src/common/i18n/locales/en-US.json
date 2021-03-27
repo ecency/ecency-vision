@@ -158,6 +158,13 @@
   "entry-tip": {
     "title": "Tip"
   },
+  "entry-share": {
+    "title": "Share"
+  },
+  "entry-menu": {
+    "share": "Share",
+    "edit-history": "Edit History"
+  },
   "entry-payout": {
     "reward": "Reward",
     "full-power": "Power Up 100%",
@@ -202,7 +209,6 @@
     "comment-entry-title": "You are viewing a single comment's thread from: ",
     "comment-entry-go-root": "View the full context",
     "comment-entry-go-parent": "View the direct parent",
-    "show-history": "Show edit history",
     "hidden-warning": "This post was hidden due to low ratings.",
     "address-copy": "Copy post address",
     "address-copied": "Post address copied to clipboard.",

@@ -11,7 +11,7 @@ import {Button} from "react-bootstrap";
 import {renderPostBody, setProxyBase, catchPostImage, postBodySummary} from "@ecency/render-helper";
 
 import {Entry, EntryVote} from "../store/entries/types";
-import {Community, ROLES} from "../store/communities/types";
+import {Community} from "../store/communities/types";
 import {FullAccount} from "../store/accounts/types";
 
 import EntryLink, {makePath as makeEntryPath} from "../components/entry-link";
@@ -27,15 +27,11 @@ import Discussion from "../components/discussion";
 import MdHandler from "../components/md-handler";
 import LinearProgress from "../components/linear-progress";
 import EntryReblogBtn from "../components/entry-reblog-btn/index";
-import EntryEditBtn from "../components/entry-edit-btn/index";
-import EntryDeleteBtn from "../components/entry-delete-btn";
 import Comment from "../components/comment"
 import SimilarEntries from "../components/similar-entries";
 import BookmarkBtn from "../components/bookmark-btn";
-import EditHistoryBtn from "../components/edit-history-btn";
-import PinBtn from "../components/pin-btn";
-import MuteBtn from "../components/mute-btn";
-import {error, success} from "../components/feedback";
+
+import {error} from "../components/feedback";
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
 import Feedback from "../components/feedback";
@@ -55,16 +51,14 @@ import entryCanonical from "../helper/entry-canonical";
 import tempEntry from "../helper/temp-entry"
 import appName from "../helper/app-name";
 import {makeJsonMetaDataReply, createReplyPermlink} from "../helper/posting";
-import {makeShareUrlReddit, makeShareUrlTwitter, makeShareUrlFacebook} from "../helper/url-share";
 import isCommunity from "../helper/is-community";
 import accountReputation from '../helper/account-reputation';
 
 import truncate from "../util/truncate";
 import * as ls from "../util/local-storage";
-import clipboard from "../util/clipboard";
 import {crossPostMessage} from "../util/cross-post";
 
-import {timeSvg, redditSvg, facebookSvg, twitterSvg, deleteForeverSvg, linkSvg} from "../img/svg";
+import {timeSvg} from "../img/svg";
 
 import {_t} from "../i18n";
 import {Tsx} from "../i18n/helper";
@@ -74,6 +68,7 @@ import {version} from "../../../package.json";
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
 import defaults from "../constants/defaults.json";
+import EntryMenu from "../components/entry-menu";
 
 setProxyBase(defaults.imageServer);
 
@@ -183,27 +178,6 @@ class EntryPage extends BaseComponent<Props, State> {
         const {category} = match.params;
         return communities.find((x) => x.name === category) || null;
     }
-
-    copyAddress = (entry: Entry) => {
-        const u = `https://ecency.com/${entry.category}/@${entry.author}/${entry.permlink}`
-        clipboard(u);
-        success(_t("entry.address-copied"));
-    };
-
-    shareReddit = (entry: Entry) => {
-        const u = makeShareUrlReddit(entry.category, entry.author, entry.permlink, entry.title);
-        window.open(u, "_blank");
-    };
-
-    shareTwitter = (entry: Entry) => {
-        const u = makeShareUrlTwitter(entry.category, entry.author, entry.permlink, entry.title);
-        window.open(u, "_blank");
-    };
-
-    shareFacebook = (entry: Entry) => {
-        const u = makeShareUrlFacebook(entry.category, entry.author, entry.permlink);
-        window.open(u, "_blank");
-    };
 
     afterVote = (votes: EntryVote[], estimated: number) => {
         const entry = this.getEntry()!;
@@ -335,12 +309,6 @@ class EntryPage extends BaseComponent<Props, State> {
         const {activeUser} = this.props;
 
         const ownEntry = activeUser && activeUser.username === entry.author;
-        const editable = ownEntry && !isComment;
-
-        const canPinOrMute = activeUser && community ? !!community.team.find(m => {
-            return m[0] === activeUser.username &&
-                [ROLES.OWNER.toString(), ROLES.ADMIN.toString(), ROLES.MOD.toString()].includes(m[1])
-        }) : false;
 
         const isHidden = entry?.stats?.gray;
 
@@ -597,80 +565,30 @@ class EntryPage extends BaseComponent<Props, State> {
                                             ))}
                                         </div>
                                         <div className="entry-info">
-                                            <div className="left-side">
-                                                <div className="date" title={published.format("LLLL")}>
-                                                    {timeSvg}
-                                                    {published.fromNow()}
+                                            <div className="date" title={published.format("LLLL")}>
+                                                {timeSvg}
+                                                {published.fromNow()}
+                                            </div>
+                                            <span className="separator"/>
+                                            {ProfileLink({
+                                                ...this.props,
+                                                username: entry.author,
+                                                children: <div className="author notranslate">
+                                                    <span className="author-name">{entry.author}</span>
+                                                    <span className="author-reputation">{reputation}</span>
                                                 </div>
-                                                <span className="separator"/>
-                                                {ProfileLink({
-                                                    ...this.props,
-                                                    username: entry.author,
-                                                    children: <div className="author notranslate">
-                                                        <span className="author-name">{entry.author}</span>
-                                                        <span className="author-reputation">{reputation}</span>
-                                                    </div>
-                                                })}
-                                                {app && (
-                                                    <>
-                                                        <span className="separator"/>
-                                                        <span itemProp="publisher" itemScope={true} itemType="http://schema.org/Person">
+                                            })}
+                                            {app && (
+                                                <>
+                                                    <span className="separator"/>
+                                                    <span itemProp="publisher" itemScope={true} itemType="http://schema.org/Person">
                                                             <meta itemProp="name" content={entry.author}/>
                                                         </span>
-                                                        <div className="app">
-                                                            <Tsx k="entry.via-app" args={{app}}><a href="/faq#source-label"/></Tsx>
-                                                        </div>
-                                                    </>
-                                                )}
-                                            </div>
-                                            <div className="right-side">
-                                                {global.usePrivate && <EditHistoryBtn entry={entry} append={<span className="separator"/>}/>}
-                                                {ownEntry && (
-                                                    <>
-                                                        {editable && EntryEditBtn({entry})}
-                                                        <span className="separator"/>
-                                                        {EntryDeleteBtn({
-                                                            ...this.props,
-                                                            entry,
-                                                            onSuccess: this.deleted,
-                                                            children: <a title={_t('g.delete')} className="delete-btn">{deleteForeverSvg}</a>
-                                                        })}
-                                                    </>
-                                                )}
-                                                {!ownEntry && (
-                                                    <>
-                                                        {EntryReblogBtn({
-                                                            ...this.props,
-                                                            text: true,
-                                                            entry
-                                                        })}
-                                                    </>
-                                                )}
-                                                {(community && canPinOrMute) && (
-                                                    <>
-                                                        <span className="separator"/>
-                                                        {PinBtn({
-                                                            community,
-                                                            entry,
-                                                            activeUser: activeUser!,
-                                                            onSuccess: (entry) => {
-                                                                const {updateEntry} = this.props;
-                                                                updateEntry(entry);
-                                                            }
-                                                        })}
-                                                        <span className="separator"/>
-                                                        {MuteBtn({
-                                                            community,
-                                                            entry,
-                                                            activeUser: activeUser!,
-                                                            onSuccess: (entry) => {
-                                                                const {updateEntry} = this.props;
-                                                                updateEntry(entry);
-                                                            }
-                                                        })}
-                                                    </>
-                                                )}
-                                            </div>
+                                                    <div className="app">
+                                                        <Tsx k="entry.via-app" args={{app}}><a href="/faq#source-label"/></Tsx>
+                                                    </div>
+                                                </>
+                                            )}
                                         </div>
                                         <div className="entry-controls">
                                             {EntryVoteBtn({
@@ -690,37 +608,22 @@ class EntryPage extends BaseComponent<Props, State> {
                                                 ...this.props,
                                                 entry
                                             })}
+                                            {!ownEntry && (
+                                                <>
+                                                    {EntryReblogBtn({
+                                                        ...this.props,
+                                                        entry
+                                                    })}
+                                                </>
+                                            )}
 
-                                            <div className="sub-menu">
-                                                {global.isElectron && (
-                                                    <Tooltip content={_t("entry.address-copy")}>
-                                                        <a className="sub-menu-item"
-                                                           onClick={() => {
-                                                               this.copyAddress(entry!);
-                                                           }}>
-                                                            {linkSvg}
-                                                        </a>
-                                                    </Tooltip>
-                                                )}
-                                                <a className="sub-menu-item"
-                                                   onClick={() => {
-                                                       this.shareReddit(entry!);
-                                                   }}>
-                                                    {redditSvg}
-                                                </a>
-                                                <a className="sub-menu-item"
-                                                   onClick={() => {
-                                                       this.shareTwitter(entry!);
-                                                   }}>
-                                                    {twitterSvg}
-                                                </a>
-                                                <a className="sub-menu-item"
-                                                   onClick={() => {
-                                                       this.shareFacebook(entry!);
-                                                   }}>
-                                                    {facebookSvg}
-                                                </a>
-                                            </div>
+                                            {EntryMenu({
+                                                ...this.props,
+                                                entry,
+                                                community
+                                            })}
+
+
                                         </div>
                                     </div>
 

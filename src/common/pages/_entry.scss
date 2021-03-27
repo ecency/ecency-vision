@@ -354,15 +354,11 @@
         @include clearfix();
         color: $steel-grey;
         margin-bottom: 30px;
+        align-items: center;
         display: flex;
-        justify-content: space-between;
-        flex-direction: column;
+        flex-grow: 1;
+        flex-shrink: 0;
 
-        svg {
-          width: 16px;
-          height: 16px;
-          margin-right: 4px;
-        }
 
         @media (min-width: $md-break) {
           flex-direction: row;
@@ -378,105 +374,73 @@
 
         .separator {
           @extend .circle-separator;
-        }
 
-        .left-side {
-          align-items: center;
-          display: flex;
-          flex-grow: 1;
-          flex-shrink: 0;
-
-          .separator {
-            &:first-of-type {
-              display: none;
-
-              @media (min-width: $sm-break) {
-                display: block;
-              }
-            }
-          }
-
-          .date {
-            align-items: center;
-            display: inline-flex;
-          }
-
-          .author {
-            align-items: center;
-            cursor: pointer;
+          &:first-of-type {
             display: none;
 
             @media (min-width: $sm-break) {
-              display: inline-flex;
-            }
-
-            .author-name {
-              font-weight: 700;
-              margin-right: 2px;
-            }
-
-            @include themify(day) {
-              color: $charcoal-grey;
-            }
-
-            @include themify(night) {
-              color: $pinkish-grey;
-            }
-
-            .author-reputation {
-              color: $steel-grey;
-              font-weight: 500;
-
-              &::before {
-                content: "(";
-              }
-
-              &::after {
-                content: ")";
-              }
-            }
-          }
-
-          .app {
-            font-weight: 700;
-
-            a {
-              text-decoration: none;
-              color: $steel-grey;
-            }
-
-            .app-name {
-              font-weight: 400;
+              display: block;
             }
           }
         }
 
-        .right-side {
-          display: flex;
+        .date {
           align-items: center;
-          flex-grow: 0;
-          flex-shrink: 0;
-          margin-top: 20px;
+          display: inline-flex;
 
-          @media (min-width: $md-break) {
-            justify-content: flex-end;
-            margin-top: 0;
+          svg {
+            width: 16px;
+            height: 16px;
+            margin-right: 4px;
+          }
+        }
+
+        .author {
+          align-items: center;
+          cursor: pointer;
+          display: none;
+
+          @media (min-width: $sm-break) {
+            display: inline-flex;
           }
 
-          .delete-btn {
-            color: lighten($steel-grey, 10);
-            display: flex;
-            align-items: center;
-            cursor: pointer;
+          .author-name {
+            font-weight: 700;
+            margin-right: 2px;
+          }
 
-            svg {
-              height: 16px;
+          @include themify(day) {
+            color: $charcoal-grey;
+          }
+
+          @include themify(night) {
+            color: $pinkish-grey;
+          }
+
+          .author-reputation {
+            color: $steel-grey;
+            font-weight: 500;
+
+            &::before {
+              content: "(";
             }
 
-            &.in-progress {
-              animation: anim-fadein-out 5s infinite;
-              cursor: default;
+            &::after {
+              content: ")";
             }
+          }
+        }
+
+        .app {
+          font-weight: 700;
+
+          a {
+            text-decoration: none;
+            color: $steel-grey;
+          }
+
+          .app-name {
+            font-weight: 400;
           }
         }
       }
@@ -486,49 +450,18 @@
         display: flex;
         width: 100%;
 
-        .sub-menu {
-          align-items: center;
-          display: flex;
-          justify-content: flex-end;
-          flex-grow: 1;
-
-          @media (min-width: $sm-break) {
-            margin-left: 5%;
-          }
+        .entry-reblog-btn {
+          margin-top: -2px;
 
           svg {
-            height: 18px;
-            width: 18px;
-          }
-
-          @include themify(day) {
-            color: $steel-grey;
-          }
-
-          @include themify(night) {
-            color: $pinkish-grey;
-          }
-
-          .sub-menu-item {
-            align-items: center;
-            display: flex;
-            height: 100%;
-            color: $primary;
-            cursor: pointer;
-
-            &:not(:last-child) {
-              margin-right: 14px;
-
-              @media (min-width: $sm-break) {
-                margin-right: 16px;
-              }
-            }
-
-            &:hover {
-              opacity: 0.7 !important;
-            }
+            height: 17px;
           }
         }
+      }
+
+
+      .entry-menu {
+        margin-left: 25px;
       }
     }
 
