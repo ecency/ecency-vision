@@ -6,10 +6,12 @@ import BaseComponent from "../base";
 
 import DropDown from "../dropdown";
 
+import isEqual from "react-fast-compare";
+
 import {dotsHorizontal, deleteForeverSvg, pencilOutlineSvg} from "../../img/svg";
 import {ActiveUser} from "../../store/active-user/types";
 import {Entry} from "../../store/entries/types";
-import {Community, ROLES} from "../../store/communities/types";
+import {Communities, Community, ROLES} from "../../store/communities/types";
 import EditHistory from "../edit-history";
 import EntryShare from "../entry-share";
 import {Global} from "../../store/global/types";
@@ -23,6 +25,7 @@ import PinBtn from "../pin-btn";
 import MuteBtn from "../mute-btn";
 
 import {deleteComment, formatError} from "../../api/operations";
+import {EntryPinTracker} from "../../store/entry-pin-tracker/types";
 
 interface Props {
     history: History;
@@ -30,6 +33,9 @@ interface Props {
     activeUser: ActiveUser | null;
     entry: Entry;
     community: Community | null;
+    communities: Communities;
+    entryPinTracker: EntryPinTracker;
+    trackEntryPin: (entry: Entry) => void;
 }
 
 interface State {
@@ -43,6 +49,28 @@ class EntryMenu extends BaseComponent<Props, State> {
         share: false,
         editHistory: false,
         delete_: false,
+    }
+
+    componentDidMount() {
+        const {entry, trackEntryPin} = this.props;
+
+        if (this.canPinOrMute()) {
+            // since @active-user/LOGIN resets reblogs reducer, wait 500 ms on first load
+            // to clientStoreTasks (store/helper.ts) finish its job with logging active user in.
+            // Otherwise condenser_api.get_blog_entries will be called 2 times on page load.
+            setTimeout(() => {
+                // trackEntryPin(entry);
+            }, 500);
+        }
+    }
+
+    componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>, snapshot?: any) {
+        const {entry, trackEntryPin, activeUser} = this.props;
+
+        if (!isEqual(this.props.communities, prevProps.communities) ||
+            activeUser?.username !== prevProps.activeUser?.username) {
+            trackEntryPin(entry);
+        }
     }
 
     toggleShare = () => {
@@ -96,7 +124,7 @@ class EntryMenu extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {global, activeUser, entry, community} = this.props;
+        const {global, activeUser, entry, entryPinTracker} = this.props;
 
         const canPinOrMute = this.canPinOrMute();
 
@@ -130,6 +158,24 @@ class EntryMenu extends BaseComponent<Props, State> {
                     }
                 ]
             ];
+        }
+
+        if (this.canPinOrMute()) {
+            const isMuted = !!entry.stats?.gray;
+
+            menuItems = [...menuItems,
+                ...[
+                    {
+                        label: (entryPinTracker.pinned ? "Unpin" : "Pin"),
+                        onClick: this.edit
+                    },
+                    {
+                        label: (isMuted ? "Unmute" : "Mute"),
+                        onClick: this.edit
+                    }
+                ]
+            ];
+
         }
 
         if (global.isElectron) {
@@ -170,6 +216,9 @@ export default (p: Props) => {
         activeUser: p.activeUser,
         entry: p.entry,
         community: p.community,
+        communities: p.communities,
+        entryPinTracker: p.entryPinTracker,
+        trackEntryPin: p.trackEntryPin,
     }
 
     return <EntryMenu {...props} />

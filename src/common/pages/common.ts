@@ -17,6 +17,7 @@ import {Reblogs} from "../store/reblogs/types";
 import {Discussion as DiscussionType, SortOrder} from "../store/discussion/types";
 import {Transactions, OperationGroup} from "../store/transactions/types";
 import {Points} from "../store/points/types";
+import {EntryPinTracker} from "../store/entry-pin-tracker/types";
 
 
 import {toggleTheme, hideIntro, toggleListStyle, dismissNewVersion, muteNotifications, unMuteNotifications, setCurrency, setLang, setNsfw} from "../store/global";
@@ -34,6 +35,8 @@ import {fetchReblogs, addReblog, deleteReblog} from "../store/reblogs";
 import {fetchNotifications, fetchUnreadNotificationCount, setNotificationsFilter, markNotifications} from "../store/notifications";
 import {fetchPoints, resetPoints} from "../store/points";
 import {setSigningKey} from "../store/signing-key";
+import {trackEntryPin} from "../store/entry-pin-tracker";
+
 
 export interface PageProps {
     history: History;
@@ -110,6 +113,9 @@ export interface PageProps {
 
     signingKey: string;
     setSigningKey: (key: string) => void;
+
+    entryPinTracker: EntryPinTracker;
+    trackEntryPin: (entry: Entry) => void;
 }
 
 export const pageMapStateToProps = (state: AppState) => ({
@@ -158,7 +164,8 @@ export const pageMapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
             markNotifications,
             fetchPoints,
             resetPoints,
-            setSigningKey
+            setSigningKey,
+            trackEntryPin
         },
         dispatch
     );

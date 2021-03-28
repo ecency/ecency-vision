@@ -21,6 +21,7 @@ import subscriptions from "./subscriptions";
 import notifications from "./notifications";
 import points from "./points";
 import signingKey from "./signing-key";
+import entryPinTracker from "./entry-pin-tracker";
 
 import filterTagExtract from "../helper/filter-tag-extract";
 
@@ -40,7 +41,8 @@ let reducers = {
     subscriptions,
     notifications,
     points,
-    signingKey
+    signingKey,
+    entryPinTracker
 };
 
 export let history: History | undefined;
