@@ -119,8 +119,16 @@
         margin-left: 20px;
         padding: 8px 20px;
         border-radius: 25px;
-        display: block;
+        display: flex;
         white-space: nowrap;
+        align-items: center;
+
+        .item-icon {
+          svg {
+            height: 14px;
+            margin-right: 6px;
+          }
+        }
       }
 
       &.active {

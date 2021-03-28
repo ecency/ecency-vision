@@ -9,6 +9,7 @@ export interface MenuItem {
     onClick?: () => void;
     active?: boolean;
     id?: string;
+    icon?: JSX.Element
 }
 
 interface Props {
@@ -121,7 +122,9 @@ export default class MyDropDown extends Component<Props> {
                                                 this.itemClicked(i);
                                             }}
                                         >
-                                            <span className="item-inner">{i.label}</span>
+                                            <span className="item-inner">
+                                                {i.icon ? <span className="item-icon">{i.icon}{" "}</span> : ""}{i.label}
+                                            </span>
                                         </div>
                                     );
                                 })}

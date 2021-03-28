@@ -8,7 +8,7 @@ import DropDown from "../dropdown";
 
 import isEqual from "react-fast-compare";
 
-import {dotsHorizontal, deleteForeverSvg, pencilOutlineSvg} from "../../img/svg";
+import {dotsHorizontal, deleteForeverSvg, pencilOutlineSvg, pinSvg, historySvg, shareVariantSvg, linkVariantSvg} from "../../img/svg";
 import {ActiveUser} from "../../store/active-user/types";
 import {Entry} from "../../store/entries/types";
 import {Communities, Community, ROLES} from "../../store/communities/types";
@@ -148,7 +148,9 @@ class EntryMenu extends BaseComponent<Props, State> {
                 }
 
             })
-            .catch(err => error(formatError(err)))
+            .catch(err => {
+                error(formatError(err));
+            })
     }
 
     render() {
@@ -163,11 +165,13 @@ class EntryMenu extends BaseComponent<Props, State> {
         let menuItems = [
             {
                 label: _t("entry-menu.share"),
-                onClick: this.toggleShare
+                onClick: this.toggleShare,
+                icon: shareVariantSvg
             },
             {
                 label: _t("entry-menu.edit-history"),
-                onClick: this.toggleEditHistory
+                onClick: this.toggleEditHistory,
+                icon: historySvg
             }
         ];
 
@@ -176,11 +180,13 @@ class EntryMenu extends BaseComponent<Props, State> {
                 ...[
                     {
                         label: _t("g.edit"),
-                        onClick: this.edit
+                        onClick: this.edit,
+                        icon: pencilOutlineSvg
                     },
                     {
                         label: _t("g.delete"),
-                        onClick: this.toggleDelete
+                        onClick: this.toggleDelete,
+                        icon: deleteForeverSvg
                     }
                 ]
             ];
@@ -190,12 +196,14 @@ class EntryMenu extends BaseComponent<Props, State> {
             if (entryPinTracker.pinned) {
                 menuItems = [...menuItems, {
                     label: _t("entry-menu.unpin"),
-                    onClick: this.toggleUnpin
+                    onClick: this.toggleUnpin,
+                    icon: pinSvg
                 }];
             } else {
                 menuItems = [...menuItems, {
                     label: _t("entry-menu.pin"),
-                    onClick: this.togglePin
+                    onClick: this.togglePin,
+                    icon: pinSvg
                 }];
             }
 
@@ -204,23 +212,19 @@ class EntryMenu extends BaseComponent<Props, State> {
             menuItems = [...menuItems,
                 ...[
                     {
-                        label: (entryPinTracker.pinned ? "Unpin" : "Pin"),
-                        onClick: this.edit
-                    },
-                    {
                         label: (isMuted ? "Unmute" : "Mute"),
                         onClick: this.edit
                     }
                 ]
             ];
            */
-
         }
 
         if (global.isElectron) {
             menuItems = [...menuItems, {
                 label: _t("entry.address-copy"),
-                onClick: this.copyAddress
+                onClick: this.copyAddress,
+                icon: linkVariantSvg
             }]
         }
 
