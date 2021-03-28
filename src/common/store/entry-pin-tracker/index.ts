@@ -70,6 +70,10 @@ export const trackEntryPin = (entry: Entry) => (dispatch: Dispatch, getState: ()
         });
 }
 
+export const setEntryPin = (pin: boolean) => (dispatch: Dispatch) => {
+    dispatch(setAct(pin));
+}
+
 /* Action Creators */
 export const fetchAct = (): FetchAction => {
     return {

@@ -35,7 +35,7 @@ import {fetchReblogs, addReblog, deleteReblog} from "../store/reblogs";
 import {fetchNotifications, fetchUnreadNotificationCount, setNotificationsFilter, markNotifications} from "../store/notifications";
 import {fetchPoints, resetPoints} from "../store/points";
 import {setSigningKey} from "../store/signing-key";
-import {trackEntryPin} from "../store/entry-pin-tracker";
+import {trackEntryPin, setEntryPin} from "../store/entry-pin-tracker";
 
 
 export interface PageProps {
@@ -116,6 +116,7 @@ export interface PageProps {
 
     entryPinTracker: EntryPinTracker;
     trackEntryPin: (entry: Entry) => void;
+    setEntryPin: (pin: boolean) => void;
 }
 
 export const pageMapStateToProps = (state: AppState) => ({
@@ -165,7 +166,8 @@ export const pageMapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
             fetchPoints,
             resetPoints,
             setSigningKey,
-            trackEntryPin
+            trackEntryPin,
+            setEntryPin
         },
         dispatch
     );

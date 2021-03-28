@@ -21,10 +21,9 @@ import {_t} from "../../i18n";
 
 import ModalConfirm from "../modal-confirm";
 
-import PinBtn from "../pin-btn";
 import MuteBtn from "../mute-btn";
 
-import {deleteComment, formatError} from "../../api/operations";
+import {deleteComment, formatError, pinPost} from "../../api/operations";
 import {EntryPinTracker} from "../../store/entry-pin-tracker/types";
 
 interface Props {
@@ -36,12 +35,15 @@ interface Props {
     communities: Communities;
     entryPinTracker: EntryPinTracker;
     trackEntryPin: (entry: Entry) => void;
+    setEntryPin: (pin: boolean) => void;
 }
 
 interface State {
     share: boolean;
     editHistory: boolean;
     delete_: boolean;
+    pin: boolean;
+    unpin: boolean
 }
 
 class EntryMenu extends BaseComponent<Props, State> {
@@ -49,17 +51,16 @@ class EntryMenu extends BaseComponent<Props, State> {
         share: false,
         editHistory: false,
         delete_: false,
+        pin: false,
+        unpin: false,
     }
 
     componentDidMount() {
         const {entry, trackEntryPin} = this.props;
 
         if (this.canPinOrMute()) {
-            // since @active-user/LOGIN resets reblogs reducer, wait 500 ms on first load
-            // to clientStoreTasks (store/helper.ts) finish its job with logging active user in.
-            // Otherwise condenser_api.get_blog_entries will be called 2 times on page load.
             setTimeout(() => {
-                // trackEntryPin(entry);
+                trackEntryPin(entry);
             }, 500);
         }
     }
@@ -88,6 +89,16 @@ class EntryMenu extends BaseComponent<Props, State> {
         this.stateSet({delete_: !delete_});
     }
 
+    togglePin = () => {
+        const {pin} = this.state;
+        this.stateSet({pin: !pin});
+    }
+
+    toggleUnpin = () => {
+        const {unpin} = this.state;
+        this.stateSet({unpin: !unpin});
+    }
+
     canPinOrMute = () => {
         const {activeUser, community} = this.props;
 
@@ -114,7 +125,7 @@ class EntryMenu extends BaseComponent<Props, State> {
 
     delete = () => {
         const {history, activeUser, entry} = this.props;
-        deleteComment(activeUser?.username!, entry.author, entry.permlink)
+        deleteComment(activeUser!.username, entry.author, entry.permlink)
             .then(() => {
                 history.push('/');
             })
@@ -123,10 +134,25 @@ class EntryMenu extends BaseComponent<Props, State> {
             })
     }
 
+    pin = (pin: boolean) => {
+        const {entry, community, activeUser, setEntryPin} = this.props;
+
+        pinPost(activeUser!.username, community!.name, entry.author, entry.permlink, pin)
+            .then(() => {
+                setEntryPin(pin);
+
+                if (pin) {
+                    success(_t("entry-menu.pin-success"));
+                } else {
+                    success(_t("entry-menu.unpin-success"));
+                }
+
+            })
+            .catch(err => error(formatError(err)))
+    }
+
     render() {
         const {global, activeUser, entry, entryPinTracker} = this.props;
-
-        const canPinOrMute = this.canPinOrMute();
 
         const isComment = !!entry.parent_author;
 
@@ -149,11 +175,11 @@ class EntryMenu extends BaseComponent<Props, State> {
             menuItems = [...menuItems,
                 ...[
                     {
-                        label: "Edit",
+                        label: _t("g.edit"),
                         onClick: this.edit
                     },
                     {
-                        label: "Delete",
+                        label: _t("g.delete"),
                         onClick: this.toggleDelete
                     }
                 ]
@@ -161,8 +187,20 @@ class EntryMenu extends BaseComponent<Props, State> {
         }
 
         if (this.canPinOrMute()) {
-            const isMuted = !!entry.stats?.gray;
+            if (entryPinTracker.pinned) {
+                menuItems = [...menuItems, {
+                    label: _t("entry-menu.unpin"),
+                    onClick: this.toggleUnpin
+                }];
+            } else {
+                menuItems = [...menuItems, {
+                    label: _t("entry-menu.pin"),
+                    onClick: this.togglePin
+                }];
+            }
 
+            /*
+            const isMuted = !!entry.stats?.gray;
             menuItems = [...menuItems,
                 ...[
                     {
@@ -175,6 +213,7 @@ class EntryMenu extends BaseComponent<Props, State> {
                     }
                 ]
             ];
+           */
 
         }
 
@@ -192,7 +231,7 @@ class EntryMenu extends BaseComponent<Props, State> {
             items: menuItems
         };
 
-        const {share, editHistory, delete_} = this.state;
+        const {share, editHistory, delete_, pin, unpin} = this.state;
 
         return <div className="entry-menu">
             <DropDown {...menuConfig} float="right"/>
@@ -203,9 +242,16 @@ class EntryMenu extends BaseComponent<Props, State> {
                 this.delete();
                 this.toggleDelete();
             }} onCancel={this.toggleDelete}/>}
+            {pin && <ModalConfirm onConfirm={() => {
+                this.pin(true);
+                this.togglePin();
+            }} onCancel={this.togglePin}/>}
+            {unpin && <ModalConfirm onConfirm={() => {
+                this.pin(false);
+                this.toggleUnpin();
+            }} onCancel={this.toggleUnpin}/>}
         </div>;
     }
-
 }
 
 
@@ -219,6 +265,7 @@ export default (p: Props) => {
         communities: p.communities,
         entryPinTracker: p.entryPinTracker,
         trackEntryPin: p.trackEntryPin,
+        setEntryPin: p.setEntryPin
     }
 
     return <EntryMenu {...props} />

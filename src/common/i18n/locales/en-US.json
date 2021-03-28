@@ -163,7 +163,11 @@
   },
   "entry-menu": {
     "share": "Share",
-    "edit-history": "Edit History"
+    "edit-history": "Edit History",
+    "pin": "Pin",
+    "pin-success": "Post pinned",
+    "unpin": "Unpin",
+    "unpin-success": "Post Unpinned"
   },
   "entry-payout": {
     "reward": "Reward",
@@ -333,10 +337,6 @@
     "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.",
     "conflict-body-text": "This community is already registered.",
     "min-required-body-text": "Minimum 100 subscribers required to register."
-  },
-  "pin-btn": {
-    "pin": "Pin",
-    "unpin": "Unpin"
   },
   "mute-btn": {
     "mute": "Mute",
