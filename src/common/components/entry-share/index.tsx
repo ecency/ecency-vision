@@ -17,23 +17,33 @@ interface Props {
     onHide: () => void;
 }
 
+export const shareReddit = (entry: Entry) => {
+    const u = makeShareUrlReddit(entry.category, entry.author, entry.permlink, entry.title);
+    window.open(u, "_blank");
+}
+
+export const shareTwitter = (entry: Entry) => {
+    const u = makeShareUrlTwitter(entry.category, entry.author, entry.permlink, entry.title);
+    window.open(u, "_blank");
+}
+
+export const shareFacebook = (entry: Entry) => {
+    const u = makeShareUrlFacebook(entry.category, entry.author, entry.permlink);
+    window.open(u, "_blank");
+}
+
+
 export default class EntryShare extends BaseComponent<Props> {
     reddit = () => {
-        const {entry} = this.props;
-        const u = makeShareUrlReddit(entry.category, entry.author, entry.permlink, entry.title);
-        window.open(u, "_blank");
+        shareReddit(this.props.entry)
     };
 
     twitter = () => {
-        const {entry} = this.props;
-        const u = makeShareUrlTwitter(entry.category, entry.author, entry.permlink, entry.title);
-        window.open(u, "_blank");
+        shareTwitter(this.props.entry);
     };
 
     facebook = () => {
-        const {entry} = this.props;
-        const u = makeShareUrlFacebook(entry.category, entry.author, entry.permlink);
-        window.open(u, "_blank");
+        shareFacebook(this.props.entry);
     };
 
     render() {

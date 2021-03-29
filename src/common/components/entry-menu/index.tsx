@@ -4,8 +4,6 @@ import {History} from "history";
 
 import BaseComponent from "../base";
 
-import DropDown from "../dropdown";
-
 import isEqual from "react-fast-compare";
 
 import {ActiveUser} from "../../store/active-user/types";
@@ -15,10 +13,11 @@ import {EntryPinTracker} from "../../store/entry-pin-tracker/types";
 import {Global} from "../../store/global/types";
 
 import EditHistory from "../edit-history";
-import EntryShare from "../entry-share";
+import EntryShare, {shareReddit, shareTwitter, shareFacebook} from "../entry-share";
 import MuteBtn from "../mute-btn";
 import ModalConfirm from "../modal-confirm";
 import {error, success} from "../feedback";
+import DropDown, {MenuItem} from "../dropdown";
 
 import {_t} from "../../i18n";
 
@@ -26,7 +25,11 @@ import clipboard from "../../util/clipboard";
 
 import {deleteComment, formatError, pinPost} from "../../api/operations";
 
-import {dotsHorizontal, deleteForeverSvg, pencilOutlineSvg, pinSvg, historySvg, shareVariantSvg, linkVariantSvg, volumeOffSvg} from "../../img/svg";
+import {
+    dotsHorizontal, deleteForeverSvg,
+    pencilOutlineSvg, pinSvg, historySvg, shareVariantSvg, linkVariantSvg,
+    volumeOffSvg, redditSvg, twitterSvg, facebookSvg
+} from "../../img/svg";
 
 interface Props {
     history: History;
@@ -36,6 +39,7 @@ interface Props {
     community: Community | null;
     communities: Communities;
     entryPinTracker: EntryPinTracker;
+    separatedShare?: boolean;
     updateEntry: (entry: Entry) => void;
     trackEntryPin: (entry: Entry) => void;
     setEntryPin: (pin: boolean) => void;
@@ -164,7 +168,7 @@ class EntryMenu extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {global, activeUser, community, entry, entryPinTracker} = this.props;
+        const {global, activeUser, community, entry, entryPinTracker, separatedShare} = this.props;
 
         const isComment = !!entry.parent_author;
 
@@ -172,12 +176,20 @@ class EntryMenu extends BaseComponent<Props, State> {
 
         const editable = ownEntry && !isComment;
 
-        let menuItems = [
-            {
-                label: _t("entry-menu.share"),
-                onClick: this.toggleShare,
-                icon: shareVariantSvg
-            },
+        let menuItems: MenuItem[] = [];
+
+        if (!separatedShare) {
+            menuItems = [
+                {
+                    label: _t("entry-menu.share"),
+                    onClick: this.toggleShare,
+                    icon: shareVariantSvg
+                }
+            ]
+        }
+
+        menuItems = [
+            ...menuItems,
             {
                 label: _t("entry-menu.edit-history"),
                 onClick: this.toggleEditHistory,
@@ -247,6 +259,23 @@ class EntryMenu extends BaseComponent<Props, State> {
         const {share, editHistory, delete_, pin, unpin, mute} = this.state;
 
         return <div className="entry-menu">
+            {separatedShare && (
+                <div className="separated-share">
+                    <div className="share-button single-button" onClick={this.toggleShare}>{shareVariantSvg}</div>
+                    <div className="all-buttons">
+                        <div className="share-button" onClick={() => {
+                            shareReddit(entry);
+                        }}>{redditSvg}</div>
+                        <div className="share-button" onClick={() => {
+                            shareTwitter(entry);
+                        }}>{twitterSvg}</div>
+                        <div className="share-button share-button-facebook" onClick={() => {
+                            shareFacebook(entry);
+                        }}>{facebookSvg}</div>
+                    </div>
+                </div>
+            )}
+
             <DropDown {...menuConfig} float="right" alignBottom={true}/>
 
             {share && <EntryShare entry={entry} onHide={this.toggleShare}/>}
@@ -289,6 +318,7 @@ export default (p: Props) => {
         community: p.community,
         communities: p.communities,
         entryPinTracker: p.entryPinTracker,
+        separatedShare: p.separatedShare,
         updateEntry: p.updateEntry,
         trackEntryPin: p.trackEntryPin,
         setEntryPin: p.setEntryPin

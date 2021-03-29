@@ -611,14 +611,13 @@ class EntryPage extends BaseComponent<Props, State> {
                                                     })}
                                                 </>
                                             )}
-
+                                            <span className="flex-spacer"/>
                                             {EntryMenu({
                                                 ...this.props,
                                                 entry,
-                                                community
+                                                community,
+                                                separatedShare: true
                                             })}
-
-
                                         </div>
                                     </div>
 
