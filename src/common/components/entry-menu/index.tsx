@@ -39,7 +39,7 @@ interface Props {
     community: Community | null;
     communities: Communities;
     entryPinTracker: EntryPinTracker;
-    separatedShare?: boolean;
+    separatedSharing?: boolean;
     updateEntry: (entry: Entry) => void;
     trackEntryPin: (entry: Entry) => void;
     setEntryPin: (pin: boolean) => void;
@@ -168,7 +168,7 @@ class EntryMenu extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {global, activeUser, community, entry, entryPinTracker, separatedShare} = this.props;
+        const {global, activeUser, community, entry, entryPinTracker, separatedSharing} = this.props;
 
         const isComment = !!entry.parent_author;
 
@@ -178,7 +178,7 @@ class EntryMenu extends BaseComponent<Props, State> {
 
         let menuItems: MenuItem[] = [];
 
-        if (!separatedShare) {
+        if (!separatedSharing) {
             menuItems = [
                 {
                     label: _t("entry-menu.share"),
@@ -259,7 +259,7 @@ class EntryMenu extends BaseComponent<Props, State> {
         const {share, editHistory, delete_, pin, unpin, mute} = this.state;
 
         return <div className="entry-menu">
-            {separatedShare && (
+            {separatedSharing && (
                 <div className="separated-share">
                     <div className="share-button single-button" onClick={this.toggleShare}>{shareVariantSvg}</div>
                     <div className="all-buttons">
@@ -318,7 +318,7 @@ export default (p: Props) => {
         community: p.community,
         communities: p.communities,
         entryPinTracker: p.entryPinTracker,
-        separatedShare: p.separatedShare,
+        separatedSharing: p.separatedSharing,
         updateEntry: p.updateEntry,
         trackEntryPin: p.trackEntryPin,
         setEntryPin: p.setEntryPin

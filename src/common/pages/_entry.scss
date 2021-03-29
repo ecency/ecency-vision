@@ -264,26 +264,44 @@
 
           .info-line-2 {
             display: flex;
-            align-items: center;
             font-size: 90%;
+            flex-direction: column;
 
             .separator {
               @extend .circle-separator;
+              display: none;
             }
 
-            .in-tag {
-              margin-right: 4px;
+            @media (min-width: $sm-break) {
+              flex-direction: row;
+              align-items: center;
+
+              .separator {
+                display: block;
+              }
             }
 
             .entry-tag {
-              font-weight: 500;
-
-              @include themify(day) {
-                color: $steel-grey;
+              .in-tag {
+                margin-right: 4px;
               }
 
-              @include themify(night) {
-                color: $pinkish-grey;
+              .tag-name {
+                font-weight: 500;
+
+                @include themify(day) {
+                  color: $steel-grey;
+                }
+
+                @include themify(night) {
+                  color: $pinkish-grey;
+                }
+              }
+            }
+
+            .date {
+              @media (max-width: $sm-break - 1px) {
+                font-size: 90%;
               }
             }
           }

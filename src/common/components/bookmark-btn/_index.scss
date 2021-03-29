@@ -1,6 +1,7 @@
 .bookmark-btn {
   cursor: pointer;
-  color: $silver;
+  color: lighten($steel-grey, 4);
+  margin-right: 14px;
 
   svg {
     height: 20px;

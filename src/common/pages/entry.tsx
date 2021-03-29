@@ -441,15 +441,17 @@ class EntryPage extends BaseComponent<Props, State> {
                                                             </div>
 
                                                             <div className="info-line-2">
-                                                                <span className="in-tag">{_t("entry.community-in")}</span>
-                                                                {Tag({
-                                                                    ...this.props,
-                                                                    tag: originalEntry.category,
-                                                                    type: "link",
-                                                                    children: <div className="entry-tag">
-                                                                        {originalEntry.community ? originalEntry.community_title : `#${originalEntry.category}`}
-                                                                    </div>
-                                                                })}
+                                                                <div className="entry-tag">
+                                                                    <span className="in-tag">{_t("entry.community-in")}</span>
+                                                                    {Tag({
+                                                                        ...this.props,
+                                                                        tag: originalEntry.category,
+                                                                        type: "link",
+                                                                        children: <div className="tag-name">
+                                                                            {originalEntry.community ? originalEntry.community_title : `#${originalEntry.category}`}
+                                                                        </div>
+                                                                    })}
+                                                                </div>
                                                                 <span className="separator"/>
                                                                 <span className="date" title={published.format("LLLL")}>{published.fromNow()}</span>
                                                             </div>
@@ -458,6 +460,12 @@ class EntryPage extends BaseComponent<Props, State> {
                                                         {global.usePrivate && BookmarkBtn({
                                                             ...this.props,
                                                             entry: originalEntry
+                                                        })}
+                                                        {EntryMenu({
+                                                            ...this.props,
+                                                            entry,
+                                                            community,
+                                                            separatedSharing: true
                                                         })}
                                                     </div>
                                                 </div>
@@ -520,15 +528,17 @@ class EntryPage extends BaseComponent<Props, State> {
                                                         </div>
 
                                                         <div className="info-line-2">
-                                                            <span className="in-tag">{_t("entry.community-in")}</span>
-                                                            {Tag({
-                                                                ...this.props,
-                                                                tag: entry.category,
-                                                                type: "link",
-                                                                children: <div className="entry-tag">
-                                                                    {entry.community ? entry.community_title : `#${entry.category}`}
-                                                                </div>
-                                                            })}
+                                                            <div className="entry-tag">
+                                                                <span className="in-tag">{_t("entry.community-in")}</span>
+                                                                {Tag({
+                                                                    ...this.props,
+                                                                    tag: entry.category,
+                                                                    type: "link",
+                                                                    children: <div className="tag-name">
+                                                                        {entry.community ? entry.community_title : `#${entry.category}`}
+                                                                    </div>
+                                                                })}
+                                                            </div>
                                                             <span className="separator"/>
                                                             <span className="date" title={published.format("LLLL")}>{published.fromNow()}</span>
                                                         </div>
@@ -537,6 +547,12 @@ class EntryPage extends BaseComponent<Props, State> {
                                                     {global.usePrivate && BookmarkBtn({
                                                         ...this.props,
                                                         entry
+                                                    })}
+                                                    {EntryMenu({
+                                                        ...this.props,
+                                                        entry,
+                                                        community,
+                                                        separatedSharing: true
                                                     })}
                                                 </div>
                                             </div>
