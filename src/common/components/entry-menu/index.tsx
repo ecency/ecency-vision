@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React from "react";
 
 import {History} from "history";
 
@@ -8,23 +8,25 @@ import DropDown from "../dropdown";
 
 import isEqual from "react-fast-compare";
 
-import {dotsHorizontal, deleteForeverSvg, pencilOutlineSvg, pinSvg, historySvg, shareVariantSvg, linkVariantSvg} from "../../img/svg";
 import {ActiveUser} from "../../store/active-user/types";
 import {Entry} from "../../store/entries/types";
 import {Communities, Community, ROLES} from "../../store/communities/types";
+import {EntryPinTracker} from "../../store/entry-pin-tracker/types";
+import {Global} from "../../store/global/types";
+
 import EditHistory from "../edit-history";
 import EntryShare from "../entry-share";
-import {Global} from "../../store/global/types";
-import clipboard from "../../util/clipboard";
+import MuteBtn from "../mute-btn";
+import ModalConfirm from "../modal-confirm";
 import {error, success} from "../feedback";
+
 import {_t} from "../../i18n";
 
-import ModalConfirm from "../modal-confirm";
-
-import MuteBtn from "../mute-btn";
+import clipboard from "../../util/clipboard";
 
 import {deleteComment, formatError, pinPost} from "../../api/operations";
-import {EntryPinTracker} from "../../store/entry-pin-tracker/types";
+
+import {dotsHorizontal, deleteForeverSvg, pencilOutlineSvg, pinSvg, historySvg, shareVariantSvg, linkVariantSvg, volumeOffSvg} from "../../img/svg";
 
 interface Props {
     history: History;
@@ -34,6 +36,7 @@ interface Props {
     community: Community | null;
     communities: Communities;
     entryPinTracker: EntryPinTracker;
+    updateEntry: (entry: Entry) => void;
     trackEntryPin: (entry: Entry) => void;
     setEntryPin: (pin: boolean) => void;
 }
@@ -43,7 +46,8 @@ interface State {
     editHistory: boolean;
     delete_: boolean;
     pin: boolean;
-    unpin: boolean
+    unpin: boolean;
+    mute: boolean
 }
 
 class EntryMenu extends BaseComponent<Props, State> {
@@ -53,6 +57,7 @@ class EntryMenu extends BaseComponent<Props, State> {
         delete_: false,
         pin: false,
         unpin: false,
+        mute: false
     }
 
     componentDidMount() {
@@ -97,6 +102,11 @@ class EntryMenu extends BaseComponent<Props, State> {
     toggleUnpin = () => {
         const {unpin} = this.state;
         this.stateSet({unpin: !unpin});
+    }
+
+    toggleMute = () => {
+        const {mute} = this.state;
+        this.stateSet({mute: !mute});
     }
 
     canPinOrMute = () => {
@@ -154,7 +164,7 @@ class EntryMenu extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {global, activeUser, entry, entryPinTracker} = this.props;
+        const {global, activeUser, community, entry, entryPinTracker} = this.props;
 
         const isComment = !!entry.parent_author;
 
@@ -207,17 +217,16 @@ class EntryMenu extends BaseComponent<Props, State> {
                 }];
             }
 
-            /*
             const isMuted = !!entry.stats?.gray;
             menuItems = [...menuItems,
                 ...[
                     {
-                        label: (isMuted ? "Unmute" : "Mute"),
-                        onClick: this.edit
+                        label: (isMuted ? _t("entry-menu.unmute") : _t("entry-menu.mute")),
+                        onClick: this.toggleMute,
+                        icon: volumeOffSvg
                     }
                 ]
             ];
-           */
         }
 
         if (global.isElectron) {
@@ -235,7 +244,7 @@ class EntryMenu extends BaseComponent<Props, State> {
             items: menuItems
         };
 
-        const {share, editHistory, delete_, pin, unpin} = this.state;
+        const {share, editHistory, delete_, pin, unpin, mute} = this.state;
 
         return <div className="entry-menu">
             <DropDown {...menuConfig} float="right"/>
@@ -254,6 +263,18 @@ class EntryMenu extends BaseComponent<Props, State> {
                 this.pin(false);
                 this.toggleUnpin();
             }} onCancel={this.toggleUnpin}/>}
+            {(community && activeUser && mute) && MuteBtn({
+                community,
+                entry,
+                activeUser: activeUser,
+                onlyDialog: true,
+                onSuccess: (entry) => {
+                    const {updateEntry} = this.props;
+                    updateEntry(entry);
+                    this.toggleMute();
+                },
+                onCancel: this.toggleMute
+            })}
         </div>;
     }
 }
@@ -268,6 +289,7 @@ export default (p: Props) => {
         community: p.community,
         communities: p.communities,
         entryPinTracker: p.entryPinTracker,
+        updateEntry: p.updateEntry,
         trackEntryPin: p.trackEntryPin,
         setEntryPin: p.setEntryPin
     }

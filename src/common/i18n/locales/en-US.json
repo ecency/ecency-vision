@@ -167,7 +167,9 @@
     "pin": "Pin",
     "pin-success": "Post pinned",
     "unpin": "Unpin",
-    "unpin-success": "Post Unpinned"
+    "unpin-success": "Post Unpinned",
+    "mute": "Mute",
+    "unmute": "Unmute"
   },
   "entry-payout": {
     "reward": "Reward",
