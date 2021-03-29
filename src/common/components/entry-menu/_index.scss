@@ -1,0 +1,11 @@
+.entry-menu {
+  .custom-dropdown {
+    .dropdown-btn {
+      color: lighten($steel-grey, 4);
+
+      &:hover {
+        color: $dark-sky-blue;
+      }
+    }
+  }
+}
