@@ -36,30 +36,30 @@ export default class MyDropDown extends Component<Props> {
     _timer: any = null;
 
     mouseClick = () => {
+        this.mouseIn();
+    };
+
+    mouseEnter = () => {
+        this.mouseIn();
+    };
+
+    mouseIn = () => {
+        if (this._timer) {
+            clearTimeout(this._timer);
+        }
+
         const {menu} = this.state;
         if (menu) {
             return;
         }
 
-        if (this._timer) {
-            clearTimeout(this._timer);
-        }
-
         this.showMenu();
-    };
+    }
 
-    mouseEnter = () => {
+    mouseOut = () => {
         this._timer = setTimeout(() => {
-            this.showMenu();
-        }, 500);
-    };
-
-    mouseLeave = () => {
-        if (this._timer) {
-            clearTimeout(this._timer);
-        }
-
-        this.hideMenu();
+            this.hideMenu();
+        }, 300);
     };
 
     showMenu = () => {
@@ -106,7 +106,7 @@ export default class MyDropDown extends Component<Props> {
                 className={menuCls}
                 onClick={this.mouseClick}
                 onMouseEnter={this.mouseEnter}
-                onMouseLeave={this.mouseLeave}
+                onMouseLeave={this.mouseOut}
             >
                 {child}
 
