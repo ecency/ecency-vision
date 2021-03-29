@@ -632,6 +632,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                                 ...this.props,
                                                 entry,
                                                 community,
+                                                alignBottom: true,
                                                 separatedSharing: true
                                             })}
                                         </div>

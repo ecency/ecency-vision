@@ -40,6 +40,7 @@ interface Props {
     communities: Communities;
     entryPinTracker: EntryPinTracker;
     separatedSharing?: boolean;
+    alignBottom?: boolean,
     updateEntry: (entry: Entry) => void;
     trackEntryPin: (entry: Entry) => void;
     setEntryPin: (pin: boolean) => void;
@@ -168,7 +169,7 @@ class EntryMenu extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {global, activeUser, community, entry, entryPinTracker, separatedSharing} = this.props;
+        const {global, activeUser, community, entry, entryPinTracker, alignBottom, separatedSharing} = this.props;
 
         const isComment = !!entry.parent_author;
 
@@ -276,7 +277,7 @@ class EntryMenu extends BaseComponent<Props, State> {
                 </div>
             )}
 
-            <DropDown {...menuConfig} float="right" alignBottom={true}/>
+            <DropDown {...menuConfig} float="right" alignBottom={alignBottom}/>
 
             {share && <EntryShare entry={entry} onHide={this.toggleShare}/>}
             {editHistory && <EditHistory entry={entry} onHide={this.toggleEditHistory}/>}
@@ -319,6 +320,7 @@ export default (p: Props) => {
         communities: p.communities,
         entryPinTracker: p.entryPinTracker,
         separatedSharing: p.separatedSharing,
+        alignBottom: p.alignBottom,
         updateEntry: p.updateEntry,
         trackEntryPin: p.trackEntryPin,
         setEntryPin: p.setEntryPin
