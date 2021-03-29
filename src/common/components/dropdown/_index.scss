@@ -58,6 +58,13 @@
     z-index: 111;
   }
 
+  &.align-bottom {
+    .the-menu {
+      top: auto;
+      bottom: 100%;
+    }
+  }
+
   &.float-left {
     .the-menu {
       left: 0;

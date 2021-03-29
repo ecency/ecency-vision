@@ -15,6 +15,7 @@ export interface MenuItem {
 interface Props {
     history: History;
     float: "left" | "right";
+    alignBottom?: boolean,
     header?: string;
     preElem?: JSX.Element;
     postElem?: JSX.Element;
@@ -85,7 +86,7 @@ export default class MyDropDown extends Component<Props> {
     };
 
     render() {
-        const {label, icon, float, header, preElem, postElem, items} = this.props;
+        const {label, icon, float, alignBottom, header, preElem, postElem, items} = this.props;
         const {menu} = this.state;
 
         const child =
@@ -98,9 +99,11 @@ export default class MyDropDown extends Component<Props> {
                 label
             );
 
+        const menuCls = `custom-dropdown float-${float} ${alignBottom ? "align-bottom" : ""}`;
+
         return (
             <div
-                className={`custom-dropdown float-${float}`}
+                className={menuCls}
                 onClick={this.mouseClick}
                 onMouseEnter={this.mouseEnter}
                 onMouseLeave={this.mouseLeave}

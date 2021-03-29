@@ -247,7 +247,7 @@ class EntryMenu extends BaseComponent<Props, State> {
         const {share, editHistory, delete_, pin, unpin, mute} = this.state;
 
         return <div className="entry-menu">
-            <DropDown {...menuConfig} float="right"/>
+            <DropDown {...menuConfig} float="right" alignBottom={true}/>
 
             {share && <EntryShare entry={entry} onHide={this.toggleShare}/>}
             {editHistory && <EditHistory entry={entry} onHide={this.toggleEditHistory}/>}
