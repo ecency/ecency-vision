@@ -452,6 +452,11 @@
 
         .entry-reblog-btn {
           margin-top: -2px;
+          margin-right: 15px;
+
+          @media (min-width: $sm-break) {
+            margin-right: 25px;
+          }
 
           svg {
             height: 17px;
@@ -459,9 +464,8 @@
         }
       }
 
-
       .entry-menu {
-
+        color: red;
       }
     }
 
