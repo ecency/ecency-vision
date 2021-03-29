@@ -15,6 +15,8 @@ import {Global} from "../../store/global/types";
 import EditHistory from "../edit-history";
 import EntryShare, {shareReddit, shareTwitter, shareFacebook} from "../entry-share";
 import MuteBtn from "../mute-btn";
+import Promote from "../promote";
+import Boost from "../boost";
 import ModalConfirm from "../modal-confirm";
 import {error, success} from "../feedback";
 import DropDown, {MenuItem} from "../dropdown";
@@ -30,10 +32,13 @@ import {
     pencilOutlineSvg, pinSvg, historySvg, shareVariantSvg, linkVariantSvg,
     volumeOffSvg, redditSvg, twitterSvg, facebookSvg
 } from "../../img/svg";
+import {Account} from "../../store/accounts/types";
+import {DynamicProps} from "../../store/dynamic-props/types";
 
 interface Props {
     history: History;
     global: Global;
+    dynamicProps: DynamicProps;
     activeUser: ActiveUser | null;
     entry: Entry;
     community: Community | null;
@@ -41,6 +46,9 @@ interface Props {
     entryPinTracker: EntryPinTracker;
     separatedSharing?: boolean;
     alignBottom?: boolean,
+    signingKey: string;
+    setSigningKey: (key: string) => void;
+    updateActiveUser: (data?: Account) => void;
     updateEntry: (entry: Entry) => void;
     trackEntryPin: (entry: Entry) => void;
     setEntryPin: (pin: boolean) => void;
@@ -52,7 +60,9 @@ interface State {
     delete_: boolean;
     pin: boolean;
     unpin: boolean;
-    mute: boolean
+    mute: boolean;
+    promote: boolean;
+    boost: boolean;
 }
 
 class EntryMenu extends BaseComponent<Props, State> {
@@ -62,7 +72,9 @@ class EntryMenu extends BaseComponent<Props, State> {
         delete_: false,
         pin: false,
         unpin: false,
-        mute: false
+        mute: false,
+        promote: false,
+        boost: false,
     }
 
     componentDidMount() {
@@ -112,6 +124,16 @@ class EntryMenu extends BaseComponent<Props, State> {
     toggleMute = () => {
         const {mute} = this.state;
         this.stateSet({mute: !mute});
+    }
+
+    togglePromote = () => {
+        const {promote} = this.state;
+        this.stateSet({promote: !promote});
+    }
+
+    toggleBoost = () => {
+        const {boost} = this.state;
+        this.stateSet({boost: !boost});
     }
 
     canPinOrMute = () => {
@@ -231,7 +253,8 @@ class EntryMenu extends BaseComponent<Props, State> {
             }
 
             const isMuted = !!entry.stats?.gray;
-            menuItems = [...menuItems,
+            menuItems = [
+                ...menuItems,
                 ...[
                     {
                         label: (isMuted ? _t("entry-menu.unmute") : _t("entry-menu.mute")),
@@ -242,12 +265,29 @@ class EntryMenu extends BaseComponent<Props, State> {
             ];
         }
 
+        menuItems = [
+            ...menuItems,
+            ...[
+                {
+                    label: "Promote",
+                    onClick: this.togglePromote
+                },
+                {
+                    label: "Boost",
+                    onClick: this.toggleBoost
+                }
+            ]
+        ];
+
         if (global.isElectron) {
-            menuItems = [...menuItems, {
-                label: _t("entry.address-copy"),
-                onClick: this.copyAddress,
-                icon: linkVariantSvg
-            }]
+            menuItems = [
+                ...menuItems,
+                {
+                    label: _t("entry.address-copy"),
+                    onClick: this.copyAddress,
+                    icon: linkVariantSvg
+                }
+            ]
         }
 
         const menuConfig = {
@@ -257,7 +297,7 @@ class EntryMenu extends BaseComponent<Props, State> {
             items: menuItems
         };
 
-        const {share, editHistory, delete_, pin, unpin, mute} = this.state;
+        const {share, editHistory, delete_, pin, unpin, mute, promote, boost} = this.state;
 
         return <div className="entry-menu">
             {separatedSharing && (
@@ -305,6 +345,12 @@ class EntryMenu extends BaseComponent<Props, State> {
                 },
                 onCancel: this.toggleMute
             })}
+            {(activeUser && promote) && (
+                <Promote {...this.props} activeUser={activeUser} entry={entry} onHide={this.togglePromote}/>
+            )}
+            {(activeUser && boost) && (
+                <Boost {...this.props} activeUser={activeUser} entry={entry} onHide={this.toggleBoost}/>
+            )}
         </div>;
     }
 }
@@ -314,6 +360,7 @@ export default (p: Props) => {
     const props: Props = {
         history: p.history,
         global: p.global,
+        dynamicProps: p.dynamicProps,
         activeUser: p.activeUser,
         entry: p.entry,
         community: p.community,
@@ -321,6 +368,9 @@ export default (p: Props) => {
         entryPinTracker: p.entryPinTracker,
         separatedSharing: p.separatedSharing,
         alignBottom: p.alignBottom,
+        signingKey: p.signingKey,
+        setSigningKey: p.setSigningKey,
+        updateActiveUser: p.updateActiveUser,
         updateEntry: p.updateEntry,
         trackEntryPin: p.trackEntryPin,
         setEntryPin: p.setEntryPin
