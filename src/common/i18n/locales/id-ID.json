@@ -125,7 +125,7 @@
   },
   "entry-list-item": {
     "cross-posted": "cross-posted",
-    "cross-posted-to": "to",
+    "cross-posted-to": "ke",
     "reblogged": "{{n}} Dibagikan",
     "promoted": "dipromosikan",
     "pinned": "Postingan Disematkan",
@@ -206,10 +206,10 @@
     "hidden-warning": "Posting ini tersembunyi dikarenakan peringkat rendah.",
     "address-copy": "Salin alamat postingan",
     "address-copied": "Tempel alamat yang disalin ke papan klip.",
-    "browse-original": "Open original post",
+    "browse-original": "Tampilan tulisan asli",
     "cross-post-by": "Cross post by",
-    "cross-post-community": "community",
-    "community-in": "in"
+    "cross-post-community": "komunitas",
+    "community-in": "di"
   },
   "edit-history": {
     "title": "Riwayat Penyuntingan",
