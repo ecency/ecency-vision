@@ -11,6 +11,8 @@ import {Entry} from "../../store/entries/types";
 import {Communities, Community, ROLES} from "../../store/communities/types";
 import {EntryPinTracker} from "../../store/entry-pin-tracker/types";
 import {Global} from "../../store/global/types";
+import {Account} from "../../store/accounts/types";
+import {DynamicProps} from "../../store/dynamic-props/types";
 
 import EditHistory from "../edit-history";
 import EntryShare, {shareReddit, shareTwitter, shareFacebook} from "../entry-share";
@@ -32,8 +34,7 @@ import {
     pencilOutlineSvg, pinSvg, historySvg, shareVariantSvg, linkVariantSvg,
     volumeOffSvg, redditSvg, twitterSvg, facebookSvg, bullHornSvg, rocketLaunchSvg
 } from "../../img/svg";
-import {Account} from "../../store/accounts/types";
-import {DynamicProps} from "../../store/dynamic-props/types";
+
 
 interface Props {
     history: History;
