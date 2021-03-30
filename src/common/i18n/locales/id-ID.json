@@ -124,7 +124,7 @@
     "title": "Sorotan"
   },
   "entry-list-item": {
-    "cross-posted": "cross-posted",
+    "cross-posted": "diposting bersilangan",
     "cross-posted-to": "ke",
     "reblogged": "{{n}} Dibagikan",
     "promoted": "dipromosikan",
@@ -207,7 +207,7 @@
     "address-copy": "Salin alamat postingan",
     "address-copied": "Tempel alamat yang disalin ke papan klip.",
     "browse-original": "Tampilan tulisan asli",
-    "cross-post-by": "Cross post by",
+    "cross-post-by": "Postingan bersilangan dengan",
     "cross-post-community": "komunitas",
     "community-in": "di"
   },
