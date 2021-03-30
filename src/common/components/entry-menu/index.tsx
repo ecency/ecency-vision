@@ -30,7 +30,7 @@ import {deleteComment, formatError, pinPost} from "../../api/operations";
 import {
     dotsHorizontal, deleteForeverSvg,
     pencilOutlineSvg, pinSvg, historySvg, shareVariantSvg, linkVariantSvg,
-    volumeOffSvg, redditSvg, twitterSvg, facebookSvg
+    volumeOffSvg, redditSvg, twitterSvg, facebookSvg, bullHornSvg, rocketLaunchSvg
 } from "../../img/svg";
 import {Account} from "../../store/accounts/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
@@ -269,12 +269,14 @@ class EntryMenu extends BaseComponent<Props, State> {
             ...menuItems,
             ...[
                 {
-                    label: "Promote",
-                    onClick: this.togglePromote
+                    label: _t("entry-menu.promote"),
+                    onClick: this.togglePromote,
+                    icon: bullHornSvg
                 },
                 {
-                    label: "Boost",
-                    onClick: this.toggleBoost
+                    label: _t("entry-menu.boost"),
+                    onClick: this.toggleBoost,
+                    icon: rocketLaunchSvg
                 }
             ]
         ];

@@ -169,7 +169,9 @@
     "unpin": "Unpin",
     "unpin-success": "Post Unpinned",
     "mute": "Mute",
-    "unmute": "Unmute"
+    "unmute": "Unmute",
+    "promote": "Promote",
+    "boost": "Boost"
   },
   "entry-payout": {
     "reward": "Reward",
