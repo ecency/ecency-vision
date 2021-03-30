@@ -3,6 +3,8 @@ import {History} from "history";
 
 import {menuDownSvg} from "../../img/svg";
 
+import _c from "../../util/fix-class-names"
+
 export interface MenuItem {
     label: string;
     href?: string;
@@ -99,7 +101,7 @@ export default class MyDropDown extends Component<Props> {
                 label
             );
 
-        const menuCls = `custom-dropdown float-${float} ${alignBottom ? "align-bottom" : ""}`;
+        const menuCls = _c(`custom-dropdown float-${float} ${alignBottom ? "align-bottom" : ""}`);
 
         return (
             <div
