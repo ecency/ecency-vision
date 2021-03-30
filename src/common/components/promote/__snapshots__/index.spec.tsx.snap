@@ -307,3 +307,155 @@ exports[`(2) Insufficient Funds 1`] = `
   </div>
 </div>
 `;
+
+exports[`(3) With entry 1`] = `
+<div
+  className="promote-dialog-content"
+>
+  <div
+    className="transaction-form "
+  >
+    <div
+      className="transaction-form-header"
+    >
+      <div
+        className="step-no"
+      >
+        1
+      </div>
+      <div
+        className="box-titles"
+      >
+        <div
+          className="main-title"
+        >
+          Promote
+        </div>
+        <div
+          className="sub-title"
+        >
+          Promote your post
+        </div>
+      </div>
+    </div>
+    <div
+      className="transaction-form-body"
+    >
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          Balance
+        </label>
+        <div
+          className="col-sm-10"
+        >
+          <input
+            className="balance-input form-control-plaintext"
+            readOnly={true}
+            value="500.000 POINTS"
+          />
+          
+        </div>
+      </div>
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          Post
+        </label>
+        <div
+          className="col-sm-10"
+        >
+          <div
+            className="suggestion"
+          >
+            <input
+              className="form-control"
+              disabled={false}
+              onChange={[Function]}
+              placeholder="username/permlink"
+              type="text"
+              value="good-karma/awesome-hive"
+            />
+          </div>
+          
+          <small
+            className="text-muted form-text"
+          >
+            Autocomplete input
+          </small>
+        </div>
+      </div>
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        >
+          Duration
+        </label>
+        <div
+          className="col-sm-10"
+        >
+          <select
+            className="form-control"
+            disabled={false}
+            onChange={[Function]}
+            value={2}
+          >
+            <option
+              value={1}
+            >
+              1 day - 150 POINTS
+            </option>
+            <option
+              value={2}
+            >
+              2 days - 250 POINTS
+            </option>
+            <option
+              value={3}
+            >
+              3 days - 350 POINTS
+            </option>
+            <option
+              value={7}
+            >
+              7 days - 500 POINTS
+            </option>
+            <option
+              value={14}
+            >
+              14 days - 1000 POINTS
+            </option>
+          </select>
+        </div>
+      </div>
+      <div
+        className="form-group row"
+      >
+        <label
+          className="form-label col-form-label col-sm-2"
+        />
+        <div
+          className="col-sm-10"
+        >
+          <button
+            className="btn btn-primary"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
