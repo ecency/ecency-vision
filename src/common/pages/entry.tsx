@@ -568,7 +568,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                                 <Fragment key={t}>
                                                     {Tag({
                                                         ...this.props,
-                                                        tag: t,
+                                                        tag: t.trim(),
                                                         type: "link",
                                                         children: <div className="entry-tag">{t}</div>
                                                     })}
