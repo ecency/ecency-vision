@@ -66,7 +66,7 @@ interface State {
     boost: boolean;
 }
 
-class EntryMenu extends BaseComponent<Props, State> {
+export class EntryMenu extends BaseComponent<Props, State> {
     state: State = {
         share: false,
         editHistory: false,
