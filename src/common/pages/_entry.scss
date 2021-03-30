@@ -296,6 +296,10 @@
                 @include themify(night) {
                   color: $pinkish-grey;
                 }
+
+                &:hover {
+                  color: $dark-sky-blue;
+                }
               }
             }
 
