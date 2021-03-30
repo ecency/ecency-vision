@@ -192,8 +192,6 @@ exports[`(1) Default render 1`] = `
               fill="currentColor"
             />
           </svg>
-           
-          
         </a>
       </div>
     </div>
@@ -387,8 +385,6 @@ exports[`(2) Grid view 1`] = `
               fill="currentColor"
             />
           </svg>
-           
-          
         </a>
       </div>
     </div>
@@ -594,8 +590,6 @@ exports[`(3) Nsfw 1`] = `
               fill="currentColor"
             />
           </svg>
-           
-          
         </a>
       </div>
     </div>
@@ -802,8 +796,6 @@ exports[`(4) Nsfw with active user 1`] = `
               fill="currentColor"
             />
           </svg>
-           
-          
         </a>
       </div>
     </div>
@@ -1003,8 +995,6 @@ exports[`(5) Nsfw but allowed 1`] = `
               fill="currentColor"
             />
           </svg>
-           
-          
         </a>
       </div>
     </div>
@@ -1235,8 +1225,6 @@ exports[`(6) Cross post 1`] = `
               fill="currentColor"
             />
           </svg>
-           
-          
         </a>
       </div>
     </div>
