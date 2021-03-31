@@ -12,6 +12,7 @@ import {Reblogs} from "../../store/reblogs/types";
 import {UI, ToggleType} from "../../store/ui/types";
 
 import EntryListItem from "../entry-list-item/index";
+import {EntryPinTracker} from "../../store/entry-pin-tracker/types";
 
 interface Props {
     history: History;
@@ -26,6 +27,8 @@ interface Props {
     activeUser: ActiveUser | null;
     reblogs: Reblogs;
     ui: UI;
+    entryPinTracker: EntryPinTracker;
+    signingKey: string;
     addAccount: (data: Account) => void;
     updateEntry: (entry: Entry) => void;
     setActiveUser: (username: string | null) => void;
@@ -35,6 +38,10 @@ interface Props {
     addReblog: (author: string, permlink: string) => void;
     deleteReblog: (author: string, permlink: string) => void;
     toggleUIProp: (what: ToggleType) => void;
+    addCommunity: (data: Community) => void;
+    trackEntryPin: (entry: Entry) => void;
+    setSigningKey: (key: string) => void;
+    setEntryPin: (pin: boolean) => void;
 }
 
 export class EntryListContent extends Component<Props> {
@@ -86,6 +93,8 @@ export default (p: Props) => {
         activeUser: p.activeUser,
         reblogs: p.reblogs,
         ui: p.ui,
+        entryPinTracker: p.entryPinTracker,
+        signingKey: p.signingKey,
         addAccount: p.addAccount,
         updateEntry: p.updateEntry,
         setActiveUser: p.setActiveUser,
@@ -95,6 +104,10 @@ export default (p: Props) => {
         addReblog: p.addReblog,
         deleteReblog: p.deleteReblog,
         toggleUIProp: p.toggleUIProp,
+        addCommunity: p.addCommunity,
+        trackEntryPin: p.trackEntryPin,
+        setSigningKey: p.setSigningKey,
+        setEntryPin: p.setEntryPin,
     }
 
     return <EntryListContent {...props} />;

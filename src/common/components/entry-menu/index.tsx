@@ -29,6 +29,8 @@ import clipboard from "../../util/clipboard";
 
 import {deleteComment, formatError, pinPost} from "../../api/operations";
 
+import * as bridgeApi from "../../api/bridge";
+
 import {
     dotsHorizontal, deleteForeverSvg,
     pencilOutlineSvg, pinSvg, historySvg, shareVariantSvg, linkVariantSvg,
@@ -50,6 +52,7 @@ interface Props {
     setSigningKey: (key: string) => void;
     updateActiveUser: (data?: Account) => void;
     updateEntry: (entry: Entry) => void;
+    addCommunity: (data: Community) => void;
     trackEntryPin: (entry: Entry) => void;
     setEntryPin: (pin: boolean) => void;
 }
@@ -384,6 +387,7 @@ export default (p: Props) => {
         setSigningKey: p.setSigningKey,
         updateActiveUser: p.updateActiveUser,
         updateEntry: p.updateEntry,
+        addCommunity: p.addCommunity,
         trackEntryPin: p.trackEntryPin,
         setEntryPin: p.setEntryPin
     }

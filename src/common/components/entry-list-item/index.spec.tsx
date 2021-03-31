@@ -13,6 +13,8 @@ import {globalInstance, dynamicPropsIntance1, entryInstance1, UiInstance, emptyR
 import {ListStyle} from "../../store/global/types";
 
 import EntryListItem from "./index";
+import {Community} from "../../store/communities/types";
+import {Entry} from "../../store/entries/types";
 
 
 mockDate.set(1591398131174);
@@ -29,6 +31,11 @@ const defProps = {
     reblogs: emptyReblogs,
     entry: entryInstance1,
     ui: UiInstance,
+    entryPinTracker: {
+        pinned: false,
+        canFetch: false
+    },
+    signingKey: "",
     asAuthor: "",
     promoted: false,
     addAccount: () => {
@@ -48,6 +55,14 @@ const defProps = {
     deleteReblog: () => {
     },
     toggleUIProp: () => {
+    },
+    addCommunity: () => {
+    },
+    trackEntryPin: () => {
+    },
+    setSigningKey: () => {
+    },
+    setEntryPin: () => {
     },
 }
 

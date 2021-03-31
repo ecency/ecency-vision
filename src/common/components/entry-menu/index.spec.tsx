@@ -26,6 +26,8 @@ const defProps = {
     },
     updateEntry: () => {
     },
+    addCommunity: () => {
+    },
     trackEntryPin: () => {
     },
     setEntryPin: () => {

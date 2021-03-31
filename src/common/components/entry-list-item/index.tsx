@@ -17,6 +17,7 @@ import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {Reblogs} from "../../store/reblogs/types";
 import {UI, ToggleType} from "../../store/ui/types";
+import {EntryPinTracker} from "../../store/entry-pin-tracker/types";
 
 import ProfileLink from "../profile-link/index";
 import Tag from "../tag";
@@ -27,6 +28,7 @@ import EntryReblogBtn from "../entry-reblog-btn/index";
 import EntryPayout from "../entry-payout/index";
 import EntryVotes from "../entry-votes";
 import Tooltip from "../tooltip";
+import EntryMenu from "../entry-menu";
 
 import parseDate from "../../helper/parse-date";
 import accountReputation from '../../helper/account-reputation';
@@ -60,6 +62,8 @@ interface Props {
     reblogs: Reblogs;
     entry: Entry;
     ui: UI;
+    entryPinTracker: EntryPinTracker;
+    signingKey: string;
     asAuthor: string;
     promoted: boolean;
     addAccount: (data: Account) => void;
@@ -71,6 +75,10 @@ interface Props {
     addReblog: (author: string, permlink: string) => void;
     deleteReblog: (author: string, permlink: string) => void;
     toggleUIProp: (what: ToggleType) => void;
+    addCommunity: (data: Community) => void;
+    trackEntryPin: (entry: Entry) => void;
+    setSigningKey: (key: string) => void;
+    setEntryPin: (pin: boolean) => void;
 }
 
 interface State {
@@ -341,6 +349,11 @@ export default class EntryListItem extends Component<Props, State> {
                         })}
                         {EntryReblogBtn({
                             ...this.props
+                        })}
+                        <div className="flex-spacer" />
+                        {EntryMenu({
+                            ...this.props,
+                            entry,
                         })}
                     </div>
                 </div>
