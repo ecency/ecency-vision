@@ -56,7 +56,7 @@ interface Props {
     updateEntry: (entry: Entry) => void;
     addCommunity: (data: Community) => void;
     trackEntryPin: (entry: Entry) => void;
-    setEntryPin: (pin: boolean) => void;
+    setEntryPin: (entry: Entry, pin: boolean) => void;
 }
 
 interface State {
@@ -191,7 +191,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
 
         pinPost(activeUser!.username, community!.name, entry.author, entry.permlink, pin)
             .then(() => {
-                setEntryPin(pin);
+                setEntryPin(entry, pin);
 
                 if (pin) {
                     success(_t("entry-menu.pin-success"));
@@ -271,7 +271,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
         }
 
         if (this.canPinOrMute()) {
-            if (entryPinTracker.pinned) {
+            if (entryPinTracker[`${entry.author}-${entry.permlink}`]) {
                 menuItems = [...menuItems, {
                     label: _t("entry-menu.unpin"),
                     onClick: this.toggleUnpin,

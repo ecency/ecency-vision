@@ -15,10 +15,7 @@ const defProps = {
     activeUser: null,
     entry: entryInstance1,
     communities: [],
-    entryPinTracker: {
-        pinned: false,
-        canFetch: false,
-    },
+    entryPinTracker: {},
     signingKey: "",
     setSigningKey: () => {
     },

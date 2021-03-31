@@ -11,25 +11,22 @@ import {CommonActionTypes} from "../common";
 import {getPostsRanked} from "../../api/bridge";
 
 
-export const initialState: EntryPinTracker = {
-    pinned: false,
-    canFetch: true
-};
+export const initialState: EntryPinTracker = {};
 
 export default (state: EntryPinTracker = initialState, action: Actions): EntryPinTracker => {
     switch (action.type) {
         case ActionTypes.FETCH: {
+            const key = `${action.author}-${action.permlink}`;
             return {
                 ...state,
-                pinned: false,
-                canFetch: false
+                [key]: false,
             };
         }
         case ActionTypes.SET: {
+            const key = `${action.author}-${action.permlink}`;
             return {
                 ...state,
-                pinned: action.pinned,
-                canFetch: true
+                [key]: action.pinned,
             };
         }
         case CommonActionTypes.LOCATION_CHANGE:
@@ -45,7 +42,12 @@ export default (state: EntryPinTracker = initialState, action: Actions): EntryPi
 export const trackEntryPin = (entry: Entry) => (dispatch: Dispatch, getState: () => AppState) => {
     const {activeUser, entryPinTracker} = getState();
 
-    if (!activeUser || !entryPinTracker.canFetch) {
+    if (!activeUser) {
+        return;
+    }
+
+    const key = `${entry.author}-${entry.permlink}`;
+    if (entryPinTracker[key] !== undefined) {
         return;
     }
 
@@ -53,37 +55,41 @@ export const trackEntryPin = (entry: Entry) => (dispatch: Dispatch, getState: ()
         return;
     }
 
-    dispatch(fetchAct());
+    dispatch(fetchAct(entry));
 
     getPostsRanked("created", "", "", 20, entry.category)
         .then(r => {
             if (r) {
                 const isPinned = r.find(x => x.author === entry.author && x.permlink === entry.permlink && x.stats?.is_pinned === true) !== undefined;
-                dispatch(setAct(isPinned));
+                dispatch(setAct(entry, isPinned));
                 return;
             }
 
-            dispatch(setAct(false));
+            dispatch(setAct(entry, false));
         })
         .catch(() => {
-            dispatch(setAct(false));
+            dispatch(setAct(entry, false));
         });
 }
 
-export const setEntryPin = (pin: boolean) => (dispatch: Dispatch) => {
-    dispatch(setAct(pin));
+export const setEntryPin = (entry: Entry, pin: boolean) => (dispatch: Dispatch) => {
+    dispatch(setAct(entry, pin));
 }
 
 /* Action Creators */
-export const fetchAct = (): FetchAction => {
+export const fetchAct = (entry: Entry): FetchAction => {
     return {
         type: ActionTypes.FETCH,
+        author: entry.author,
+        permlink: entry.permlink
     };
 };
 
-export const setAct = (pinned: boolean): SetAction => {
+export const setAct = (entry: Entry, pinned: boolean): SetAction => {
     return {
         type: ActionTypes.SET,
+        author: entry.author,
+        permlink: entry.permlink,
         pinned
     };
 };

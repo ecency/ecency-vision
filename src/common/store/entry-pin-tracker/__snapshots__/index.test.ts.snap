@@ -1,29 +1,30 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`1- default state 1`] = `
-Object {
-  "canFetch": true,
-  "pinned": false,
-}
-`;
+exports[`1- default state 1`] = `Object {}`;
 
 exports[`2- fetchAct 1`] = `
 Object {
-  "canFetch": false,
-  "pinned": false,
+  "good-karma-awesome-hive": false,
 }
 `;
 
-exports[`3- setAct 1`] = `
+exports[`3- fetchAct 1`] = `
 Object {
-  "canFetch": true,
-  "pinned": true,
+  "foo-bar": false,
+  "good-karma-awesome-hive": false,
 }
 `;
 
 exports[`4- setAct 1`] = `
 Object {
-  "canFetch": true,
-  "pinned": false,
+  "foo-bar": false,
+  "good-karma-awesome-hive": true,
+}
+`;
+
+exports[`5- setAct 1`] = `
+Object {
+  "foo-bar": false,
+  "good-karma-awesome-hive": false,
 }
 `;

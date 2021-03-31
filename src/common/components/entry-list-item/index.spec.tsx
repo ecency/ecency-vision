@@ -31,10 +31,7 @@ const defProps = {
     reblogs: emptyReblogs,
     entry: entryInstance1,
     ui: UiInstance,
-    entryPinTracker: {
-        pinned: false,
-        canFetch: false
-    },
+    entryPinTracker: {},
     signingKey: "",
     asAuthor: "",
     promoted: false,

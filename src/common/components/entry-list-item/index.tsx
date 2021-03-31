@@ -78,7 +78,7 @@ interface Props {
     addCommunity: (data: Community) => void;
     trackEntryPin: (entry: Entry) => void;
     setSigningKey: (key: string) => void;
-    setEntryPin: (pin: boolean) => void;
+    setEntryPin: (entry: Entry, pin: boolean) => void;
 }
 
 interface State {

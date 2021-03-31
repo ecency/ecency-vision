@@ -116,7 +116,7 @@ export interface PageProps {
 
     entryPinTracker: EntryPinTracker;
     trackEntryPin: (entry: Entry) => void;
-    setEntryPin: (pin: boolean) => void;
+    setEntryPin: (entry: Entry, pin: boolean) => void;
 }
 
 export const pageMapStateToProps = (state: AppState) => ({
