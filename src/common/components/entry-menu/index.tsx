@@ -42,7 +42,6 @@ interface Props {
     dynamicProps: DynamicProps;
     activeUser: ActiveUser | null;
     entry: Entry;
-    community: Community | null;
     communities: Communities;
     entryPinTracker: EntryPinTracker;
     separatedSharing?: boolean;
@@ -137,8 +136,16 @@ export class EntryMenu extends BaseComponent<Props, State> {
         this.stateSet({boost: !boost});
     }
 
+    getCommunity = (): Community | null => {
+        const {communities, entry} = this.props;
+
+        return communities.find((x) => x.name === entry.category) || null
+    }
+
     canPinOrMute = () => {
-        const {activeUser, community} = this.props;
+        const {activeUser} = this.props;
+
+        const community = this.getCommunity();
 
         return activeUser && community ? !!community.team.find(m => {
             return m[0] === activeUser.username &&
@@ -173,7 +180,9 @@ export class EntryMenu extends BaseComponent<Props, State> {
     }
 
     pin = (pin: boolean) => {
-        const {entry, community, activeUser, setEntryPin} = this.props;
+        const {entry, activeUser, setEntryPin} = this.props;
+
+        const community = this.getCommunity();
 
         pinPost(activeUser!.username, community!.name, entry.author, entry.permlink, pin)
             .then(() => {
@@ -192,7 +201,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {global, activeUser, community, entry, entryPinTracker, alignBottom, separatedSharing} = this.props;
+        const {global, activeUser, communities, entry, entryPinTracker, alignBottom, separatedSharing} = this.props;
 
         const isComment = !!entry.parent_author;
 
@@ -301,6 +310,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
         };
 
         const {share, editHistory, delete_, pin, unpin, mute, promote, boost} = this.state;
+        const community = this.getCommunity();
 
         return <div className="entry-menu">
             {separatedSharing && (
@@ -366,7 +376,6 @@ export default (p: Props) => {
         dynamicProps: p.dynamicProps,
         activeUser: p.activeUser,
         entry: p.entry,
-        community: p.community,
         communities: p.communities,
         entryPinTracker: p.entryPinTracker,
         separatedSharing: p.separatedSharing,

@@ -14,7 +14,6 @@ const defProps = {
     dynamicProps: dynamicPropsIntance1,
     activeUser: null,
     entry: entryInstance1,
-    community: null,
     communities: [],
     entryPinTracker: {
         pinned: false,
