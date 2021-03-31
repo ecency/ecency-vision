@@ -24,6 +24,8 @@ interface Props {
     icon?: JSX.Element;
     label: string | JSX.Element;
     items: MenuItem[];
+    onShow?: () => void;
+    onHide?: () => void;
 }
 
 interface State {
@@ -65,11 +67,21 @@ export default class MyDropDown extends Component<Props> {
     };
 
     showMenu = () => {
-        this.setState({menu: true});
+        this.setState({menu: true}, () => {
+            const {onShow} = this.props;
+            if (onShow) {
+                onShow();
+            }
+        });
     };
 
     hideMenu = () => {
-        this.setState({menu: false});
+        this.setState({menu: false}, () => {
+            const {onHide} = this.props;
+            if (onHide) {
+                onHide();
+            }
+        });
     };
 
     itemClicked = (i: MenuItem) => {
