@@ -194,6 +194,37 @@ exports[`(1) Default render 1`] = `
           </svg>
         </a>
       </div>
+      <div
+        className="flex-spacer"
+      />
+      <div
+        className="entry-menu"
+      >
+        <div
+          className="custom-dropdown float-right"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <div
+            className="dropdown-btn "
+          >
+            
+            <div
+              className="menu-down"
+            >
+              <svg
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -386,6 +417,37 @@ exports[`(2) Grid view 1`] = `
             />
           </svg>
         </a>
+      </div>
+      <div
+        className="flex-spacer"
+      />
+      <div
+        className="entry-menu"
+      >
+        <div
+          className="custom-dropdown float-right"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <div
+            className="dropdown-btn "
+          >
+            
+            <div
+              className="menu-down"
+            >
+              <svg
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -591,6 +653,37 @@ exports[`(3) Nsfw 1`] = `
             />
           </svg>
         </a>
+      </div>
+      <div
+        className="flex-spacer"
+      />
+      <div
+        className="entry-menu"
+      >
+        <div
+          className="custom-dropdown float-right"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <div
+            className="dropdown-btn "
+          >
+            
+            <div
+              className="menu-down"
+            >
+              <svg
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -798,6 +891,37 @@ exports[`(4) Nsfw with active user 1`] = `
           </svg>
         </a>
       </div>
+      <div
+        className="flex-spacer"
+      />
+      <div
+        className="entry-menu"
+      >
+        <div
+          className="custom-dropdown float-right"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <div
+            className="dropdown-btn "
+          >
+            
+            <div
+              className="menu-down"
+            >
+              <svg
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -996,6 +1120,37 @@ exports[`(5) Nsfw but allowed 1`] = `
             />
           </svg>
         </a>
+      </div>
+      <div
+        className="flex-spacer"
+      />
+      <div
+        className="entry-menu"
+      >
+        <div
+          className="custom-dropdown float-right"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <div
+            className="dropdown-btn "
+          >
+            
+            <div
+              className="menu-down"
+            >
+              <svg
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1226,6 +1381,37 @@ exports[`(6) Cross post 1`] = `
             />
           </svg>
         </a>
+      </div>
+      <div
+        className="flex-spacer"
+      />
+      <div
+        className="entry-menu"
+      >
+        <div
+          className="custom-dropdown float-right"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <div
+            className="dropdown-btn "
+          >
+            
+            <div
+              className="menu-down"
+            >
+              <svg
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
