@@ -23,6 +23,8 @@ import ModalConfirm from "../modal-confirm";
 import {error, success} from "../feedback";
 import DropDown, {MenuItem} from "../dropdown";
 
+import isCommunity from "../../helper/is-community";
+
 import {_t} from "../../i18n";
 
 import clipboard from "../../util/clipboard";
@@ -203,8 +205,26 @@ export class EntryMenu extends BaseComponent<Props, State> {
             })
     }
 
+    onMenuShow = () => {
+        const {activeUser} = this.props;
+
+        if (!activeUser || this.getCommunity()) {
+            return;
+        }
+
+        const {entry, addCommunity} = this.props;
+
+        if (isCommunity(entry.category)) {
+            bridgeApi.getCommunity(entry.category, activeUser.username).then(r => {
+                if (r) {
+                    addCommunity(r);
+                }
+            })
+        }
+    }
+
     render() {
-        const {global, activeUser, communities, entry, entryPinTracker, alignBottom, separatedSharing} = this.props;
+        const {global, activeUser, entry, entryPinTracker, alignBottom, separatedSharing} = this.props;
 
         const isComment = !!entry.parent_author;
 
@@ -333,7 +353,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
                 </div>
             )}
 
-            <DropDown {...menuConfig} float="right" alignBottom={alignBottom}/>
+            <DropDown {...menuConfig} float="right" alignBottom={alignBottom} onShow={this.onMenuShow}/>
 
             {share && <EntryShare entry={entry} onHide={this.toggleShare}/>}
             {editHistory && <EditHistory entry={entry} onHide={this.toggleEditHistory}/>}

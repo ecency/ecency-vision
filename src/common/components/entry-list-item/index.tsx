@@ -103,6 +103,8 @@ export default class EntryListItem extends Component<Props, State> {
             !isEqual(this.props.dynamicProps, nextProps.dynamicProps) ||
             !isEqual(this.props.activeUser, nextProps.activeUser) ||
             !isEqual(this.props.reblogs, nextProps.reblogs) ||
+            !isEqual(this.props.communities, nextProps.communities) ||
+            !isEqual(this.props.entryPinTracker, nextProps.entryPinTracker) ||
             !isEqual(this.state, nextState)
         );
     }
@@ -350,7 +352,7 @@ export default class EntryListItem extends Component<Props, State> {
                         {EntryReblogBtn({
                             ...this.props
                         })}
-                        <div className="flex-spacer" />
+                        <div className="flex-spacer"/>
                         {EntryMenu({
                             ...this.props,
                             entry,
