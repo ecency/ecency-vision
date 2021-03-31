@@ -3,6 +3,10 @@
   color: lighten($steel-grey, 4);
   margin-right: 14px;
 
+  @media (min-width: $sm-break) {
+    margin-top: 3px;
+  }
+
   svg {
     height: 20px;
   }
