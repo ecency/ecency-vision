@@ -158,6 +158,23 @@
   "entry-tip": {
     "title": "Dica"
   },
+  "entry-share": {
+    "title": "Share"
+  },
+  "entry-menu": {
+    "share": "Share",
+    "edit-history": "Edit History",
+    "pin": "Pin",
+    "pin-success": "Post pinned",
+    "unpin": "Unpin",
+    "unpin-success": "Post Unpinned",
+    "mute": "Mute",
+    "mute-success": "Post muted",
+    "unmute": "Unmute",
+    "unmute-success": "Post unmuted",
+    "promote": "Promote",
+    "boost": "Boost"
+  },
   "entry-payout": {
     "reward": "Recompensa",
     "full-power": "Receber em Hive Power",
@@ -202,7 +219,6 @@
     "comment-entry-title": "Está visualizando o segmento da um único comentário desde: ",
     "comment-entry-go-root": "Ver o contexto completo",
     "comment-entry-go-parent": "Ver o comentário relacionado",
-    "show-history": "Mostrar histórico de edição",
     "hidden-warning": "Esta publicação foi ocultada devido a baixas classificações.",
     "address-copy": "Copiar endereço do post",
     "address-copied": "Endereço do post copiado.",
@@ -327,10 +343,6 @@
     "done-body-text": "Registro concluído. Sua comunidade receberá recompensas em PONTOS quando seus membros postarem utilizando aplicativos de Ecency.",
     "conflict-body-text": "Esta comunidade já está registrada.",
     "min-required-body-text": "Mínimo de 100 assinantes necessários para se registrar."
-  },
-  "pin-btn": {
-    "pin": "Fixar",
-    "unpin": "Desafixar"
   },
   "mute-btn": {
     "mute": "Silenciar",
