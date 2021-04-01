@@ -1157,7 +1157,7 @@ exports[`(5) Nsfw but allowed 1`] = `
 </div>
 `;
 
-exports[`(6) Cross post 1`] = `
+exports[`(6) Cross post. Bottom menu 1`] = `
 <div
   className="entry-list-item"
 >
@@ -1389,7 +1389,7 @@ exports[`(6) Cross post 1`] = `
         className="entry-menu"
       >
         <div
-          className="custom-dropdown float-right"
+          className="custom-dropdown float-right align-bottom"
           onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}

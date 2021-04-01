@@ -35,7 +35,7 @@ const defProps = {
     signingKey: "",
     asAuthor: "",
     promoted: false,
-    order: 1,
+    order: 0,
     addAccount: () => {
     },
     updateEntry: () => {
@@ -149,10 +149,11 @@ it("(5) Nsfw but allowed", () => {
     expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it("(6) Cross post", () => {
+it("(6) Cross post. Bottom menu", () => {
     const props = {
         ...defProps,
-        entry: crossEntryInstance
+        entry: crossEntryInstance,
+        order: 2
     }
 
     const renderer = TestRenderer.create(
