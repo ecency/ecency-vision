@@ -158,6 +158,23 @@
   "entry-tip": {
     "title": "Tip"
   },
+  "entry-share": {
+    "title": "Share"
+  },
+  "entry-menu": {
+    "share": "Share",
+    "edit-history": "Edit History",
+    "pin": "Pin",
+    "pin-success": "Post pinned",
+    "unpin": "Unpin",
+    "unpin-success": "Post Unpinned",
+    "mute": "Mute",
+    "mute-success": "Post muted",
+    "unmute": "Unmute",
+    "unmute-success": "Post unmuted",
+    "promote": "Promote",
+    "boost": "Boost"
+  },
   "entry-payout": {
     "reward": "Вознаграждение",
     "full-power": "100% в Силу",
@@ -202,7 +219,6 @@
     "comment-entry-title": "Вы просматриваете один комментарий ветки: ",
     "comment-entry-go-root": "Полный контекст",
     "comment-entry-go-parent": "Просмотр прямого родителя",
-    "show-history": "История",
     "hidden-warning": "Скрыто из-за низкого рейтинга.",
     "address-copy": "Скопировать адрес поста",
     "address-copied": "Адрес поста скопирован в буфер обмена.",
@@ -327,10 +343,6 @@
     "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.",
     "conflict-body-text": "Такое сообщество уже зарегистрировано.",
     "min-required-body-text": "Для регистрации требуется не менее 100 подписчиков."
-  },
-  "pin-btn": {
-    "pin": "Закрепить",
-    "unpin": "Открепить"
   },
   "mute-btn": {
     "mute": "Заглушить",
