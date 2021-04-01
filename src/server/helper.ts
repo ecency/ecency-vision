@@ -1,8 +1,13 @@
 import axios, {AxiosResponse, Method} from "axios";
 
 import {Entry} from "../common/store/entries/types";
+import {DynamicProps} from "../common/store/dynamic-props/types";
+
+import {initialState as dynamicPropsInitialState} from "../common/store/dynamic-props";
 
 import {getPost} from "../common/api/bridge";
+
+import * as hiveApi from "../common/api/hive";
 
 import {cache} from "./cache";
 
@@ -90,4 +95,18 @@ export const getSearchIndexCount = async (): Promise<number> => {
     }
 
     return indexCount;
+}
+
+export const getDynamicProps = async (): Promise<DynamicProps> => {
+    let props: DynamicProps | undefined = cache.get("dynamic-props");
+    if (props === undefined) {
+        try {
+            props = await hiveApi.getDynamicProps();
+            cache.set("dynamic-props", props, 120);
+        } catch (e) {
+            props = {...dynamicPropsInitialState};
+        }
+    }
+
+    return props;
 }
