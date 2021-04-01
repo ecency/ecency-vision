@@ -159,21 +159,21 @@
     "title": "Vinkki"
   },
   "entry-share": {
-    "title": "Share"
+    "title": "Jaa"
   },
   "entry-menu": {
-    "share": "Share",
-    "edit-history": "Edit History",
-    "pin": "Pin",
-    "pin-success": "Post pinned",
-    "unpin": "Unpin",
-    "unpin-success": "Post Unpinned",
-    "mute": "Mute",
-    "mute-success": "Post muted",
-    "unmute": "Unmute",
-    "unmute-success": "Post unmuted",
-    "promote": "Promote",
-    "boost": "Boost"
+    "share": "Jaa",
+    "edit-history": "Muokkaushistoria",
+    "pin": "Kiinnitä",
+    "pin-success": "Julkaisu kiinnitetty",
+    "unpin": "Irrota",
+    "unpin-success": "Julkaisu irrotettu",
+    "mute": "Mykistä",
+    "mute-success": "Julkaisu mykistetty",
+    "unmute": "Poista mykistys",
+    "unmute-success": "Julkaisu näkyvillä",
+    "promote": "Korosta",
+    "boost": "Tehosta"
   },
   "entry-payout": {
     "reward": "Palkkio",
