@@ -158,6 +158,23 @@
   "entry-tip": {
     "title": "टिप"
   },
+  "entry-share": {
+    "title": "Share"
+  },
+  "entry-menu": {
+    "share": "Share",
+    "edit-history": "Edit History",
+    "pin": "Pin",
+    "pin-success": "Post pinned",
+    "unpin": "Unpin",
+    "unpin-success": "Post Unpinned",
+    "mute": "Mute",
+    "mute-success": "Post muted",
+    "unmute": "Unmute",
+    "unmute-success": "Post unmuted",
+    "promote": "Promote",
+    "boost": "Boost"
+  },
   "entry-payout": {
     "reward": "इनाम",
     "full-power": "पावर अप 100%",
@@ -202,7 +219,6 @@
     "comment-entry-title": "आप किसी एकल टिप्पणी के सूत्र को देख रहे हैं: ",
     "comment-entry-go-root": "पूरा संदर्भ देखें",
     "comment-entry-go-parent": "सीधा मूल जनक को देखें",
-    "show-history": "संपादित इतिहास दिखाएं",
     "hidden-warning": "यह पोस्ट गुप्त था निम्न मूल्यांकन के कारण.",
     "address-copy": "पोस्ट पता कापी करे",
     "address-copied": "क्लिपबोर्ड पर पोस्ट पता कॉपी किया गया।",
@@ -327,10 +343,6 @@
     "done-body-text": "पंजीकरण पूरा हुआ। आपके समुदाय को इसेंसी ऐप के साथ पोस्ट प्रकाशित करने वाले सदस्यों के रूप में अंक पुरस्कार प्राप्त होगा।",
     "conflict-body-text": "यह समुदाय पहले से पंजीकृत है।",
     "min-required-body-text": "पंजीकरण के लिए न्यूनतम 100 ग्राहक चाहिए।"
-  },
-  "pin-btn": {
-    "pin": "पिन",
-    "unpin": "अनपिन"
   },
   "mute-btn": {
     "mute": "मौन",
