@@ -64,14 +64,14 @@ export class EntryListContent extends Component<Props> {
                                     <EntryListItem
                                         key={`${p.author}-${p.permlink}`}
                                         {...Object.assign({}, this.props, {entry: p})}
-                                        promoted={true}
+                                        promoted={true} order={3}
                                     />
                                 );
                             }
                         }
                     }
 
-                    l.push(<EntryListItem key={`${e.author}-${e.permlink}`} {...this.props} entry={e}/>);
+                    l.push(<EntryListItem key={`${e.author}-${e.permlink}`} {...this.props} entry={e} order={i}/>);
                     return [...l];
                 })}
             </>

@@ -66,6 +66,7 @@ interface Props {
     signingKey: string;
     asAuthor: string;
     promoted: boolean;
+    order: number;
     addAccount: (data: Account) => void;
     updateEntry: (entry: Entry) => void;
     setActiveUser: (username: string | null) => void;
@@ -128,7 +129,7 @@ export default class EntryListItem extends Component<Props, State> {
     }
 
     render() {
-        const {entry: theEntry, community, asAuthor, promoted, global, activeUser, history} = this.props;
+        const {entry: theEntry, community, asAuthor, promoted, global, activeUser, history, order} = this.props;
         const crossPost = !!(theEntry.original_entry);
 
         const entry = theEntry.original_entry || theEntry;
@@ -355,6 +356,7 @@ export default class EntryListItem extends Component<Props, State> {
                         <div className="flex-spacer"/>
                         {EntryMenu({
                             ...this.props,
+                            alignBottom: order >= 1,
                             entry,
                         })}
                     </div>

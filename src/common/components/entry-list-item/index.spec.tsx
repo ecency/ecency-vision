@@ -35,6 +35,7 @@ const defProps = {
     signingKey: "",
     asAuthor: "",
     promoted: false,
+    order: 1,
     addAccount: () => {
     },
     updateEntry: () => {
