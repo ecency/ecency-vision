@@ -1,9 +1,10 @@
 import React from "react";
 
-import {MuteBtn, DialogBody, DialogMode} from "./index";
+import {MuteBtn, DialogBody} from "./index";
 import TestRenderer from "react-test-renderer";
 
 import {entryInstance1, communityInstance1, activeUserMaker} from "../../helper/test-helper";
+import {Entry, EntryStat} from "../../store/entries/types";
 
 const defProps = {
     entry: {...entryInstance1},
@@ -32,7 +33,7 @@ it("(2) Should show 'unmute' label", () => {
 it("(3) Dialog body for 'mute'", () => {
     const props = {
         entry: {...entryInstance1},
-        mode: "mute" as DialogMode,
+        inProgress: false,
         onSubmit: () => {
         }
     }
@@ -41,9 +42,19 @@ it("(3) Dialog body for 'mute'", () => {
 });
 
 it("(4) Dialog body for 'unmute'", () => {
+    const stats: EntryStat = {
+        hide: false,
+        gray: true,
+        total_votes: 10,
+        flag_weight: 1.0,
+    }
+
     const props = {
-        entry: {...entryInstance1},
-        mode: "unmute" as DialogMode,
+        entry: {
+            ...entryInstance1,
+            stats
+        },
+        inProgress: false,
         onSubmit: () => {
         }
     }

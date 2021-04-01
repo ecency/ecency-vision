@@ -17,7 +17,7 @@ exports[`(1) Render 1`] = `
         onMouseLeave={[Function]}
       >
         <div
-          className="dropdown-btn "
+          className="dropdown-btn"
         >
           <div
             className="label"
@@ -92,7 +92,7 @@ exports[`(2) With active user 1`] = `
         onMouseLeave={[Function]}
       >
         <div
-          className="dropdown-btn "
+          className="dropdown-btn"
         >
           <div
             className="label"

@@ -22,7 +22,6 @@ import _c from "../../util/fix-class-names";
 import {repeatSvg} from "../../img/svg";
 
 interface Props {
-    text: boolean;
     entry: Entry;
     users: User[];
     activeUser: ActiveUser | null;
@@ -98,7 +97,7 @@ export class EntryReblogBtn extends BaseComponent<Props> {
     }
 
     render() {
-        const {text, activeUser, entry, reblogs} = this.props;
+        const {activeUser, entry, reblogs} = this.props;
         const {inProgress} = this.state;
 
         const reblogged =
@@ -109,7 +108,7 @@ export class EntryReblogBtn extends BaseComponent<Props> {
             <div className={_c(`entry-reblog-btn ${reblogged ? "reblogged" : ""} ${inProgress ? "in-progress" : ""} `)}>
                 <Tooltip content={reblogged ? _t("entry-reblog.delete-reblog") : _t("entry-reblog.reblog")}>
                     <a className="inner-btn">
-                        {repeatSvg} {text ? _t("entry-reblog.reblog") : ""}
+                        {repeatSvg}
                     </a>
                 </Tooltip>
             </div>
@@ -149,7 +148,6 @@ export class EntryReblogBtn extends BaseComponent<Props> {
 
 export default (p: Props) => {
     const props: Props = {
-        text: p.text,
         entry: p.entry,
         users: p.users,
         activeUser: p.activeUser,

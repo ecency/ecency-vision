@@ -17,7 +17,7 @@ exports[`(1) Default render 1`] = `
         onMouseLeave={[Function]}
       >
         <div
-          className="dropdown-btn "
+          className="dropdown-btn"
         >
           <div
             className="label"
@@ -92,7 +92,7 @@ exports[`(2) Hot filter 1`] = `
         onMouseLeave={[Function]}
       >
         <div
-          className="dropdown-btn "
+          className="dropdown-btn"
         >
           <div
             className="label"
@@ -167,7 +167,7 @@ exports[`(3) In section 1`] = `
         onMouseLeave={[Function]}
       >
         <div
-          className="dropdown-btn "
+          className="dropdown-btn"
         >
           <div
             className="label"

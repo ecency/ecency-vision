@@ -3,23 +3,29 @@ import {History} from "history";
 
 import {menuDownSvg} from "../../img/svg";
 
+import _c from "../../util/fix-class-names"
+
 export interface MenuItem {
     label: string;
     href?: string;
     onClick?: () => void;
     active?: boolean;
     id?: string;
+    icon?: JSX.Element
 }
 
 interface Props {
     history: History;
     float: "left" | "right";
+    alignBottom?: boolean,
     header?: string;
     preElem?: JSX.Element;
     postElem?: JSX.Element;
     icon?: JSX.Element;
     label: string | JSX.Element;
     items: MenuItem[];
+    onShow?: () => void;
+    onHide?: () => void;
 }
 
 interface State {
@@ -34,38 +40,48 @@ export default class MyDropDown extends Component<Props> {
     _timer: any = null;
 
     mouseClick = () => {
+        this.mouseIn();
+    };
+
+    mouseEnter = () => {
+        this.mouseIn();
+    };
+
+    mouseIn = () => {
+        if (this._timer) {
+            clearTimeout(this._timer);
+        }
+
         const {menu} = this.state;
         if (menu) {
             return;
         }
 
-        if (this._timer) {
-            clearTimeout(this._timer);
-        }
-
         this.showMenu();
-    };
+    }
 
-    mouseEnter = () => {
+    mouseOut = () => {
         this._timer = setTimeout(() => {
-            this.showMenu();
-        }, 500);
-    };
-
-    mouseLeave = () => {
-        if (this._timer) {
-            clearTimeout(this._timer);
-        }
-
-        this.hideMenu();
+            this.hideMenu();
+        }, 300);
     };
 
     showMenu = () => {
-        this.setState({menu: true});
+        this.setState({menu: true}, () => {
+            const {onShow} = this.props;
+            if (onShow) {
+                onShow();
+            }
+        });
     };
 
     hideMenu = () => {
-        this.setState({menu: false});
+        this.setState({menu: false}, () => {
+            const {onHide} = this.props;
+            if (onHide) {
+                onHide();
+            }
+        });
     };
 
     itemClicked = (i: MenuItem) => {
@@ -84,12 +100,12 @@ export default class MyDropDown extends Component<Props> {
     };
 
     render() {
-        const {label, icon, float, header, preElem, postElem, items} = this.props;
+        const {label, icon, float, alignBottom, header, preElem, postElem, items} = this.props;
         const {menu} = this.state;
 
         const child =
             typeof label === "string" ? (
-                <div className={`dropdown-btn ${menu ? "hover" : ""}`}>
+                <div className={_c(`dropdown-btn ${menu ? "hover" : ""}`)}>
                     {label && <div className="label">{label}</div>}
                     <div className="menu-down">{icon || menuDownSvg}</div>
                 </div>
@@ -97,12 +113,14 @@ export default class MyDropDown extends Component<Props> {
                 label
             );
 
+        const menuCls = _c(`custom-dropdown float-${float} ${alignBottom ? "align-bottom" : ""}`);
+
         return (
             <div
-                className={`custom-dropdown float-${float}`}
+                className={menuCls}
                 onClick={this.mouseClick}
                 onMouseEnter={this.mouseEnter}
-                onMouseLeave={this.mouseLeave}
+                onMouseLeave={this.mouseOut}
             >
                 {child}
 
@@ -121,7 +139,9 @@ export default class MyDropDown extends Component<Props> {
                                                 this.itemClicked(i);
                                             }}
                                         >
-                                            <span className="item-inner">{i.label}</span>
+                                            <span className="item-inner">
+                                                {i.icon ? <span className="item-icon">{i.icon}{" "}</span> : ""}{i.label}
+                                            </span>
                                         </div>
                                     );
                                 })}

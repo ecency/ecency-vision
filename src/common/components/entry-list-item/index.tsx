@@ -17,6 +17,7 @@ import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {Reblogs} from "../../store/reblogs/types";
 import {UI, ToggleType} from "../../store/ui/types";
+import {EntryPinTracker} from "../../store/entry-pin-tracker/types";
 
 import ProfileLink from "../profile-link/index";
 import Tag from "../tag";
@@ -27,6 +28,7 @@ import EntryReblogBtn from "../entry-reblog-btn/index";
 import EntryPayout from "../entry-payout/index";
 import EntryVotes from "../entry-votes";
 import Tooltip from "../tooltip";
+import EntryMenu from "../entry-menu";
 
 import parseDate from "../../helper/parse-date";
 import accountReputation from '../../helper/account-reputation';
@@ -60,8 +62,11 @@ interface Props {
     reblogs: Reblogs;
     entry: Entry;
     ui: UI;
+    entryPinTracker: EntryPinTracker;
+    signingKey: string;
     asAuthor: string;
     promoted: boolean;
+    order: number;
     addAccount: (data: Account) => void;
     updateEntry: (entry: Entry) => void;
     setActiveUser: (username: string | null) => void;
@@ -71,6 +76,10 @@ interface Props {
     addReblog: (author: string, permlink: string) => void;
     deleteReblog: (author: string, permlink: string) => void;
     toggleUIProp: (what: ToggleType) => void;
+    addCommunity: (data: Community) => void;
+    trackEntryPin: (entry: Entry) => void;
+    setSigningKey: (key: string) => void;
+    setEntryPin: (entry: Entry, pin: boolean) => void;
 }
 
 interface State {
@@ -95,6 +104,8 @@ export default class EntryListItem extends Component<Props, State> {
             !isEqual(this.props.dynamicProps, nextProps.dynamicProps) ||
             !isEqual(this.props.activeUser, nextProps.activeUser) ||
             !isEqual(this.props.reblogs, nextProps.reblogs) ||
+            !isEqual(this.props.communities, nextProps.communities) ||
+            !isEqual(this.props.entryPinTracker, nextProps.entryPinTracker) ||
             !isEqual(this.state, nextState)
         );
     }
@@ -118,7 +129,7 @@ export default class EntryListItem extends Component<Props, State> {
     }
 
     render() {
-        const {entry: theEntry, community, asAuthor, promoted, global, activeUser, history} = this.props;
+        const {entry: theEntry, community, asAuthor, promoted, global, activeUser, history, order} = this.props;
         const crossPost = !!(theEntry.original_entry);
 
         const entry = theEntry.original_entry || theEntry;
@@ -340,8 +351,13 @@ export default class EntryListItem extends Component<Props, State> {
                             </a>
                         })}
                         {EntryReblogBtn({
+                            ...this.props
+                        })}
+                        <div className="flex-spacer"/>
+                        {EntryMenu({
                             ...this.props,
-                            text: false
+                            alignBottom: order >= 1,
+                            entry,
                         })}
                     </div>
                 </div>

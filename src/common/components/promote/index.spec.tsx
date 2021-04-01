@@ -4,7 +4,7 @@ import {Promote} from "./index";
 
 import TestRenderer from "react-test-renderer";
 
-import {globalInstance, allOver} from "../../helper/test-helper";
+import {globalInstance, entryInstance1, allOver} from "../../helper/test-helper";
 
 jest.mock("../../api/private-api", () => ({
     getPromotePrice: () =>
@@ -83,3 +83,33 @@ it("(2) Insufficient Funds", async () => {
     expect(renderer.toJSON()).toMatchSnapshot();
 });
 
+it("(3) With entry", async () => {
+    const props = {
+        global: globalInstance,
+        activeUser: {
+            username: 'foo',
+            data: {
+                name: 'foo',
+                balance: '12.234 HIVE',
+                hbd_balance: '4321.212',
+                savings_balance: '2123.000 HIVE'
+            },
+            points: {
+                points: "500.000",
+                uPoints: "0.000"
+            }
+        },
+        signingKey: '',
+        entry: entryInstance1,
+        updateActiveUser: () => {
+        },
+        setSigningKey: () => {
+        },
+        onHide: () => {
+        }
+    };
+
+    const renderer = TestRenderer.create(<Promote {...props} />);
+    await allOver();
+    expect(renderer.toJSON()).toMatchSnapshot();
+});

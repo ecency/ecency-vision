@@ -8,7 +8,7 @@ exports[`(1) Default render 1`] = `
   onMouseLeave={[Function]}
 >
   <div
-    className="dropdown-btn "
+    className="dropdown-btn"
   >
     <div
       className="label"
@@ -75,6 +75,7 @@ exports[`(2) Show menu 1`] = `
           <span
             className="item-inner"
           >
+            
             Trending
           </span>
         </div>
@@ -85,6 +86,7 @@ exports[`(2) Show menu 1`] = `
           <span
             className="item-inner"
           >
+            
             Hot
           </span>
         </div>
@@ -102,7 +104,7 @@ exports[`(3) Hide menu 1`] = `
   onMouseLeave={[Function]}
 >
   <div
-    className="dropdown-btn "
+    className="dropdown-btn"
   >
     <div
       className="label"
@@ -156,6 +158,7 @@ exports[`(4) With custom label and header text 1`] = `
           <span
             className="item-inner"
           >
+            
             Trending
           </span>
         </div>
@@ -166,6 +169,7 @@ exports[`(4) With custom label and header text 1`] = `
           <span
             className="item-inner"
           >
+            
             Hot
           </span>
         </div>

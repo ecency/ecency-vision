@@ -478,7 +478,7 @@ exports[`(2) With active user 1`] = `
                 onMouseLeave={[Function]}
               >
                 <div
-                  className="dropdown-btn "
+                  className="dropdown-btn"
                 >
                   
                   <div
@@ -984,7 +984,7 @@ exports[`(3) Active user with unclaimed points 1`] = `
                 onMouseLeave={[Function]}
               >
                 <div
-                  className="dropdown-btn "
+                  className="dropdown-btn"
                 >
                   
                   <div

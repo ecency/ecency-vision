@@ -1,5 +1,10 @@
 .entry-tip-btn {
   margin-top: -1px;
+  margin-right: 15px;
+
+  @media (min-width: $sm-break) {
+    margin-right: 25px;
+  }
 
   .inner-btn {
     cursor: pointer;

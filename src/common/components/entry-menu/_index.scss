@@ -1,0 +1,52 @@
+.entry-menu {
+  display: flex;
+  align-items: center;
+
+  .custom-dropdown {
+    .dropdown-btn {
+      color: lighten($steel-grey, 4);
+
+      &:hover {
+        color: $dark-sky-blue;
+      }
+    }
+  }
+
+  .separated-share {
+    .share-button {
+      color: lighten($steel-grey, 4);
+      cursor: pointer;
+      margin-right: 14px;
+
+      &:hover {
+        color: $dark-sky-blue;
+      }
+
+      svg {
+        height: 18px;
+        width: 18px;
+      }
+
+      &.share-button-facebook, &.single-button {
+        svg {
+          margin-top: -1px;
+          height: 17px;
+          width: 17px;
+        }
+      }
+    }
+
+    .single-button {
+      @media (min-width: $sm-break) {
+        display: none;
+      }
+    }
+
+    .all-buttons {
+      display: none;
+      @media (min-width: $sm-break) {
+        display: flex;
+      }
+    }
+  }
+}

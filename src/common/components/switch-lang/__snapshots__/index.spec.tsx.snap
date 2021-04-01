@@ -11,7 +11,7 @@ exports[`(1) Default Render 1`] = `
     onMouseLeave={[Function]}
   >
     <div
-      className="dropdown-btn "
+      className="dropdown-btn"
     >
       
       <div

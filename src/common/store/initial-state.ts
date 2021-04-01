@@ -16,6 +16,7 @@ import {initialState as notificationsInitialState} from "./notifications";
 import {initialState as entriesInitialState} from "./entries";
 import {initialState as pointsInitialState} from "./points";
 import {initialState as signingKeyInitialState} from "./signing-key";
+import {initialState as entryPinTrackerInitialState} from "./entry-pin-tracker";
 
 const initialState: AppState = {
     global: globalInitialState,
@@ -33,7 +34,8 @@ const initialState: AppState = {
     notifications: notificationsInitialState,
     entries: entriesInitialState,
     points: pointsInitialState,
-    signingKey: signingKeyInitialState
+    signingKey: signingKeyInitialState,
+    entryPinTracker: entryPinTrackerInitialState
 }
 
 

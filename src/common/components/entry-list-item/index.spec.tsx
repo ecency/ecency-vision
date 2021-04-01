@@ -13,6 +13,8 @@ import {globalInstance, dynamicPropsIntance1, entryInstance1, UiInstance, emptyR
 import {ListStyle} from "../../store/global/types";
 
 import EntryListItem from "./index";
+import {Community} from "../../store/communities/types";
+import {Entry} from "../../store/entries/types";
 
 
 mockDate.set(1591398131174);
@@ -29,8 +31,11 @@ const defProps = {
     reblogs: emptyReblogs,
     entry: entryInstance1,
     ui: UiInstance,
+    entryPinTracker: {},
+    signingKey: "",
     asAuthor: "",
     promoted: false,
+    order: 0,
     addAccount: () => {
     },
     updateEntry: () => {
@@ -48,6 +53,14 @@ const defProps = {
     deleteReblog: () => {
     },
     toggleUIProp: () => {
+    },
+    addCommunity: () => {
+    },
+    trackEntryPin: () => {
+    },
+    setSigningKey: () => {
+    },
+    setEntryPin: () => {
     },
 }
 
@@ -136,10 +149,11 @@ it("(5) Nsfw but allowed", () => {
     expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it("(6) Cross post", () => {
+it("(6) Cross post. Bottom menu", () => {
     const props = {
         ...defProps,
-        entry: crossEntryInstance
+        entry: crossEntryInstance,
+        order: 2
     }
 
     const renderer = TestRenderer.create(

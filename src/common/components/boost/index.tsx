@@ -20,7 +20,7 @@ import {error} from "../feedback";
 
 import {getPost} from "../../api/bridge";
 import {getBoostOptions, getBoostedPost} from "../../api/private-api";
-import { searchPath} from "../../api/search-api";
+import {searchPath} from "../../api/search-api";
 import {boost, boostHot, boostKc, formatError} from "../../api/operations";
 
 import {_t} from "../../i18n";
@@ -36,6 +36,7 @@ interface Props {
     dynamicProps: DynamicProps;
     activeUser: ActiveUser;
     signingKey: string;
+    entry?: Entry;
     updateActiveUser: (data?: Account) => void;
     setSigningKey: (key: string) => void;
     onHide: () => void;
@@ -73,6 +74,12 @@ export class Boost extends BaseComponent<Props, State> {
         this.init().then(() => {
             const {updateActiveUser} = this.props;
             updateActiveUser();
+        }).then(() => {
+            const {entry} = this.props;
+
+            if (entry) {
+                this.stateSet({path: `${entry.author}/${entry.permlink}`});
+            }
         })
     }
 
