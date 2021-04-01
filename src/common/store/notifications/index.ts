@@ -25,7 +25,8 @@ export const initialState: Notifications = {
     unread: 0,
     list: [],
     loading: false,
-    hasMore: true
+    hasMore: true,
+    unreadFetchFlag: true
 };
 
 export default (state: Notifications = initialState, action: Actions): Notifications => {
@@ -82,7 +83,8 @@ export default (state: Notifications = initialState, action: Actions): Notificat
         case ActionTypes.SET_UNREAD_COUNT: {
             return {
                 ...state,
-                unread: action.count
+                unread: action.count,
+                unreadFetchFlag: false
             };
         }
         case ActionTypes.MARK: {
