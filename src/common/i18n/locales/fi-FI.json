@@ -158,6 +158,23 @@
   "entry-tip": {
     "title": "Vinkki"
   },
+  "entry-share": {
+    "title": "Share"
+  },
+  "entry-menu": {
+    "share": "Share",
+    "edit-history": "Edit History",
+    "pin": "Pin",
+    "pin-success": "Post pinned",
+    "unpin": "Unpin",
+    "unpin-success": "Post Unpinned",
+    "mute": "Mute",
+    "mute-success": "Post muted",
+    "unmute": "Unmute",
+    "unmute-success": "Post unmuted",
+    "promote": "Promote",
+    "boost": "Boost"
+  },
   "entry-payout": {
     "reward": "Palkkio",
     "full-power": "Power Up 100%",
@@ -202,7 +219,6 @@
     "comment-entry-title": "Katselet yhtä kommenttiketjua: ",
     "comment-entry-go-root": "Katso kaikki",
     "comment-entry-go-parent": "Näytä vanhempi",
-    "show-history": "Näytä muokkaushistoria",
     "hidden-warning": "Tämä viesti oli piilotettu alhaisten arvostelujen vuoksi.",
     "address-copy": "Kopioi osoite",
     "address-copied": "Osoite kopioitu leikepöydälle.",
@@ -327,10 +343,6 @@
     "done-body-text": "Rekisteröinti onnistui. Yhteisösi saa POINT-palkkioita, kun jäsenesi julkaisevat viestejä Ecency -sovelluksilla.",
     "conflict-body-text": "Tämä yhteisö on jo rekisteröity.",
     "min-required-body-text": "Vähintään 100 tilaajaa vaaditaan rekisteröintiin."
-  },
-  "pin-btn": {
-    "pin": "Kiinnitä",
-    "unpin": "Irrota"
   },
   "mute-btn": {
     "mute": "Mykistä",
