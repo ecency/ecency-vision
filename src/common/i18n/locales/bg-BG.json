@@ -158,6 +158,23 @@
   "entry-tip": {
     "title": "Бакшиш"
   },
+  "entry-share": {
+    "title": "Share"
+  },
+  "entry-menu": {
+    "share": "Share",
+    "edit-history": "Edit History",
+    "pin": "Pin",
+    "pin-success": "Post pinned",
+    "unpin": "Unpin",
+    "unpin-success": "Post Unpinned",
+    "mute": "Mute",
+    "mute-success": "Post muted",
+    "unmute": "Unmute",
+    "unmute-success": "Post unmuted",
+    "promote": "Promote",
+    "boost": "Boost"
+  },
   "entry-payout": {
     "reward": "Награда",
     "full-power": "100% Увеличаване на силата",
@@ -202,7 +219,6 @@
     "comment-entry-title": "Разглеждате само този коментар от поста на: ",
     "comment-entry-go-root": "Покажи целия контекст",
     "comment-entry-go-parent": "Покажи коментара",
-    "show-history": "Покажи историята на редактиране",
     "hidden-warning": "Този пост е скрит поради ниски рейтинги.",
     "address-copy": "Копирай адреса",
     "address-copied": "Адресът е копиран в клипборда.",
@@ -327,10 +343,6 @@
     "done-body-text": "Регистрацията е завършена. Вашата общност ще получава ТОЧКИ като награди когато членовете на групата правят публикации с приложенията на Ecency.",
     "conflict-body-text": "Тази общност е вече регистрирана.",
     "min-required-body-text": "Нужни са минимум 100 члена за да се регистрира."
-  },
-  "pin-btn": {
-    "pin": "Закачи",
-    "unpin": "Откачи"
   },
   "mute-btn": {
     "mute": "Заглуши",
