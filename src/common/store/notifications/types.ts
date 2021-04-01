@@ -202,7 +202,8 @@ export interface Notifications {
     unread: number;
     list: ApiNotification[];
     loading: boolean,
-    hasMore: boolean
+    hasMore: boolean,
+    unreadFetchFlag: boolean,
 }
 
 export enum ActionTypes {
