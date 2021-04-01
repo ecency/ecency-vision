@@ -150,30 +150,30 @@
     "confirm-title": "Tampilkan ke blog @{{n}}?",
     "confirm-ok": "Tampilkan kembali",
     "success": "Ditampilkan kembali!",
-    "delete-reblog": "Undo Reblog",
-    "delete-confirm-title": "Undo reblog?",
-    "delete-confirm-ok": "Undo",
-    "delete-success": "Reblog removed"
+    "delete-reblog": "Batalkan Menampilkan Kembali",
+    "delete-confirm-title": "Batalkan Menampilkan Kembali?",
+    "delete-confirm-ok": "Batalkan",
+    "delete-success": "Menampilkan kembali dihilangkan"
   },
   "entry-tip": {
     "title": "Tip"
   },
   "entry-share": {
-    "title": "Share"
+    "title": "Bagikan"
   },
   "entry-menu": {
-    "share": "Share",
-    "edit-history": "Edit History",
-    "pin": "Pin",
-    "pin-success": "Post pinned",
-    "unpin": "Unpin",
-    "unpin-success": "Post Unpinned",
-    "mute": "Mute",
-    "mute-success": "Post muted",
-    "unmute": "Unmute",
-    "unmute-success": "Post unmuted",
-    "promote": "Promote",
-    "boost": "Boost"
+    "share": "Bagikan",
+    "edit-history": "Edit Riwayat",
+    "pin": "Sematkan",
+    "pin-success": "Postingan disematkan",
+    "unpin": "Lepas sematan",
+    "unpin-success": "Postingan Sudah Tidak Disematkan",
+    "mute": "Senyapkan",
+    "mute-success": "Postingan disenyapkan",
+    "unmute": "Hidupkan",
+    "unmute-success": "Postingan ditayangkan",
+    "promote": "Promosikan",
+    "boost": "Tingkatkan Nilai Postingan"
   },
   "entry-payout": {
     "reward": "Imbalan",
