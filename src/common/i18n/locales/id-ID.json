@@ -158,6 +158,23 @@
   "entry-tip": {
     "title": "Tip"
   },
+  "entry-share": {
+    "title": "Share"
+  },
+  "entry-menu": {
+    "share": "Share",
+    "edit-history": "Edit History",
+    "pin": "Pin",
+    "pin-success": "Post pinned",
+    "unpin": "Unpin",
+    "unpin-success": "Post Unpinned",
+    "mute": "Mute",
+    "mute-success": "Post muted",
+    "unmute": "Unmute",
+    "unmute-success": "Post unmuted",
+    "promote": "Promote",
+    "boost": "Boost"
+  },
   "entry-payout": {
     "reward": "Imbalan",
     "full-power": "Lakukan Power Up 100%",
@@ -202,7 +219,6 @@
     "comment-entry-title": "Anda melihat sebuah komentar tunggal dari: ",
     "comment-entry-go-root": "Lihat konteks lengkapnya",
     "comment-entry-go-parent": "Lihat sumber utamanya",
-    "show-history": "Tampilkan riwayat edit",
     "hidden-warning": "Posting ini tersembunyi dikarenakan peringkat rendah.",
     "address-copy": "Salin alamat postingan",
     "address-copied": "Tempel alamat yang disalin ke papan klip.",
@@ -327,10 +343,6 @@
     "done-body-text": "Pendaftaran selesai. Komunitas Anda akan menerima rewards POIN ketika anggota komunitas Anda mempublikasikan postingan dengan Aplikasi Ecency.",
     "conflict-body-text": "Komunitas ini telah terdaftar.",
     "min-required-body-text": "Minimum memiliki 100 orang subscriber untuk mendaftar."
-  },
-  "pin-btn": {
-    "pin": "Sematkan",
-    "unpin": "Lepaskan"
   },
   "mute-btn": {
     "mute": "Bisukan",
