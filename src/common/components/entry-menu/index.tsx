@@ -12,6 +12,8 @@ import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
 
+import {clone} from "../../store/util";
+
 import EditHistory from "../edit-history";
 import EntryShare, {shareReddit, shareTwitter, shareFacebook} from "../entry-share";
 import MuteBtn from "../mute-btn";
@@ -36,8 +38,6 @@ import {
     pencilOutlineSvg, pinSvg, historySvg, shareVariantSvg, linkVariantSvg,
     volumeOffSvg, redditSvg, twitterSvg, facebookSvg, bullHornSvg, rocketLaunchSvg
 } from "../../img/svg";
-import {clone} from "../../store/util";
-
 
 interface Props {
     history: History;
