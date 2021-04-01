@@ -366,10 +366,16 @@ export class EntryMenu extends BaseComponent<Props, State> {
                 entry,
                 activeUser: activeUser,
                 onlyDialog: true,
-                onSuccess: (entry) => {
+                onSuccess: (entry, mute) => {
                     const {updateEntry} = this.props;
                     updateEntry(entry);
                     this.toggleMute();
+
+                    if (pin) {
+                        success(_t("entry-menu.mute-success"));
+                    } else {
+                        success(_t("entry-menu.unmute-success"));
+                    }
                 },
                 onCancel: this.toggleMute
             })}

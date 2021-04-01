@@ -84,7 +84,7 @@ interface Props {
     community: Community;
     activeUser: ActiveUser;
     onlyDialog?: boolean;
-    onSuccess: (entry: Entry) => void;
+    onSuccess: (entry: Entry, mute: boolean) => void;
     onCancel?: () => void;
 }
 
@@ -119,7 +119,7 @@ export class MuteBtn extends BaseComponent<Props, State> {
             .then(() => {
                 const nStats: EntryStat = {...clone(entry.stats), gray: mute}
                 const nEntry: Entry = {...clone(entry), stats: nStats};
-                onSuccess(nEntry);
+                onSuccess(nEntry, mute);
             })
             .catch(err => error(formatError(err)))
             .finally(() => this.stateSet({inProgress: false}));

@@ -169,7 +169,9 @@
     "unpin": "Unpin",
     "unpin-success": "Post Unpinned",
     "mute": "Mute",
+    "mute-success": "Post muted",
     "unmute": "Unmute",
+    "unmute-success": "Post unmuted",
     "promote": "Promote",
     "boost": "Boost"
   },
