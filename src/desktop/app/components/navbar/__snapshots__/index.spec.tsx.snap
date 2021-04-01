@@ -119,7 +119,7 @@ exports[`(1) Default render 1`] = `
         onMouseLeave={[Function]}
       >
         <div
-          className="dropdown-btn "
+          className="dropdown-btn"
         >
           
           <div
@@ -147,7 +147,7 @@ exports[`(1) Default render 1`] = `
         onMouseLeave={[Function]}
       >
         <div
-          className="dropdown-btn "
+          className="dropdown-btn"
         >
           
           <div
@@ -352,7 +352,7 @@ Array [
           onMouseLeave={[Function]}
         >
           <div
-            className="dropdown-btn "
+            className="dropdown-btn"
           >
             
             <div
@@ -380,7 +380,7 @@ Array [
           onMouseLeave={[Function]}
         >
           <div
-            className="dropdown-btn "
+            className="dropdown-btn"
           >
             
             <div
@@ -616,7 +616,7 @@ exports[`(3) Night Theme 1`] = `
         onMouseLeave={[Function]}
       >
         <div
-          className="dropdown-btn "
+          className="dropdown-btn"
         >
           
           <div
@@ -644,7 +644,7 @@ exports[`(3) Night Theme 1`] = `
         onMouseLeave={[Function]}
       >
         <div
-          className="dropdown-btn "
+          className="dropdown-btn"
         >
           
           <div
@@ -848,7 +848,7 @@ exports[`(4) With active user 1`] = `
         onMouseLeave={[Function]}
       >
         <div
-          className="dropdown-btn "
+          className="dropdown-btn"
         >
           
           <div
@@ -876,7 +876,7 @@ exports[`(4) With active user 1`] = `
         onMouseLeave={[Function]}
       >
         <div
-          className="dropdown-btn "
+          className="dropdown-btn"
         >
           
           <div
@@ -1127,7 +1127,7 @@ exports[`(5) With active user && usePrivate = false 1`] = `
         onMouseLeave={[Function]}
       >
         <div
-          className="dropdown-btn "
+          className="dropdown-btn"
         >
           
           <div
@@ -1155,7 +1155,7 @@ exports[`(5) With active user && usePrivate = false 1`] = `
         onMouseLeave={[Function]}
       >
         <div
-          className="dropdown-btn "
+          className="dropdown-btn"
         >
           
           <div

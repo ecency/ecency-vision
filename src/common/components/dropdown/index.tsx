@@ -105,7 +105,7 @@ export default class MyDropDown extends Component<Props> {
 
         const child =
             typeof label === "string" ? (
-                <div className={`dropdown-btn ${menu ? "hover" : ""}`}>
+                <div className={_c(`dropdown-btn ${menu ? "hover" : ""}`)}>
                     {label && <div className="label">{label}</div>}
                     <div className="menu-down">{icon || menuDownSvg}</div>
                 </div>

@@ -11,7 +11,7 @@ exports[`(1) Default render 1`] = `
     onMouseLeave={[Function]}
   >
     <div
-      className="dropdown-btn "
+      className="dropdown-btn"
     >
       
       <div
@@ -104,7 +104,7 @@ exports[`(2) Separated sharing buttons 1`] = `
     onMouseLeave={[Function]}
   >
     <div
-      className="dropdown-btn "
+      className="dropdown-btn"
     >
       
       <div
