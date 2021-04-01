@@ -799,7 +799,8 @@ export const notificationsInstance1: Notifications = {
     unread: 0,
     list: [],
     loading: false,
-    hasMore: true
+    hasMore: true,
+    unreadFetchFlag: true
 }
 
 export const apiVoteNotification: ApiVoteNotification = {
