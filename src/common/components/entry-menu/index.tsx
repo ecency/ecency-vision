@@ -4,10 +4,8 @@ import {History} from "history";
 
 import BaseComponent from "../base";
 
-import isEqual from "react-fast-compare";
-
 import {ActiveUser} from "../../store/active-user/types";
-import {Entry} from "../../store/entries/types";
+import {Entry, EntryStat} from "../../store/entries/types";
 import {Communities, Community, ROLES} from "../../store/communities/types";
 import {EntryPinTracker} from "../../store/entry-pin-tracker/types";
 import {Global} from "../../store/global/types";
@@ -38,6 +36,7 @@ import {
     pencilOutlineSvg, pinSvg, historySvg, shareVariantSvg, linkVariantSvg,
     volumeOffSvg, redditSvg, twitterSvg, facebookSvg, bullHornSvg, rocketLaunchSvg
 } from "../../img/svg";
+import {clone} from "../../store/util";
 
 
 interface Props {
@@ -80,25 +79,6 @@ export class EntryMenu extends BaseComponent<Props, State> {
         mute: false,
         promote: false,
         boost: false,
-    }
-
-    componentDidMount() {
-        const {entry, trackEntryPin} = this.props;
-
-        if (this.canPinOrMute()) {
-            setTimeout(() => {
-                trackEntryPin(entry);
-            }, 500);
-        }
-    }
-
-    componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>, snapshot?: any) {
-        const {entry, trackEntryPin, activeUser} = this.props;
-
-        if (!isEqual(this.props.communities, prevProps.communities) ||
-            activeUser?.username !== prevProps.activeUser?.username) {
-            trackEntryPin(entry);
-        }
     }
 
     toggleShare = () => {
@@ -185,13 +165,18 @@ export class EntryMenu extends BaseComponent<Props, State> {
     }
 
     pin = (pin: boolean) => {
-        const {entry, activeUser, setEntryPin} = this.props;
+        const {entry, activeUser, setEntryPin, updateEntry} = this.props;
 
         const community = this.getCommunity();
 
         pinPost(activeUser!.username, community!.name, entry.author, entry.permlink, pin)
             .then(() => {
                 setEntryPin(entry, pin);
+
+                // Update the entry in store
+                const nStats: EntryStat = {...clone(entry.stats), is_pinned: pin}
+                const nEntry: Entry = {...clone(entry), stats: nStats};
+                updateEntry(nEntry);
 
                 if (pin) {
                     success(_t("entry-menu.pin-success"));
@@ -208,11 +193,18 @@ export class EntryMenu extends BaseComponent<Props, State> {
     onMenuShow = () => {
         const {activeUser} = this.props;
 
-        if (!activeUser || this.getCommunity()) {
+        if (!activeUser) {
             return;
         }
 
-        const {entry, addCommunity} = this.props;
+        const {trackEntryPin, entry} = this.props;
+        trackEntryPin(entry);
+
+        if (this.getCommunity()) {
+            return;
+        }
+
+        const {addCommunity} = this.props;
 
         if (isCommunity(entry.category)) {
             bridgeApi.getCommunity(entry.category, activeUser.username).then(r => {
