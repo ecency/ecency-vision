@@ -158,6 +158,23 @@
   "entry-tip": {
     "title": "Tip"
   },
+  "entry-share": {
+    "title": "Share"
+  },
+  "entry-menu": {
+    "share": "Share",
+    "edit-history": "Edit History",
+    "pin": "Pin",
+    "pin-success": "Post pinned",
+    "unpin": "Unpin",
+    "unpin-success": "Post Unpinned",
+    "mute": "Mute",
+    "mute-success": "Post muted",
+    "unmute": "Unmute",
+    "unmute-success": "Post unmuted",
+    "promote": "Promote",
+    "boost": "Boost"
+  },
   "entry-payout": {
     "reward": "Reward",
     "full-power": "Power Up 100%",
@@ -202,7 +219,6 @@
     "comment-entry-title": "You are viewing a single comment's thread from: ",
     "comment-entry-go-root": "View the full context",
     "comment-entry-go-parent": "View the direct parent",
-    "show-history": "Show edit history",
     "hidden-warning": "This post was hidden due to low ratings.",
     "address-copy": "Copy post address",
     "address-copied": "Post address copied to clipboard.",
@@ -327,10 +343,6 @@
     "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.",
     "conflict-body-text": "This community is already registered.",
     "min-required-body-text": "Minimum 100 subscribers required to register."
-  },
-  "pin-btn": {
-    "pin": "Pin",
-    "unpin": "Unpin"
   },
   "mute-btn": {
     "mute": "Mute",
