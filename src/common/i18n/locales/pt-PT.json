@@ -159,21 +159,21 @@
     "title": "Dica"
   },
   "entry-share": {
-    "title": "Share"
+    "title": "Compartilhar"
   },
   "entry-menu": {
-    "share": "Share",
-    "edit-history": "Edit History",
-    "pin": "Pin",
-    "pin-success": "Post pinned",
-    "unpin": "Unpin",
-    "unpin-success": "Post Unpinned",
-    "mute": "Mute",
-    "mute-success": "Post muted",
-    "unmute": "Unmute",
-    "unmute-success": "Post unmuted",
-    "promote": "Promote",
-    "boost": "Boost"
+    "share": "Compartilhar",
+    "edit-history": "Editar Histórico",
+    "pin": "Fixar",
+    "pin-success": "Postagem fixada",
+    "unpin": "Desafixar",
+    "unpin-success": "Publicação desafixada",
+    "mute": "Silenciar",
+    "mute-success": "Publicação silenciada",
+    "unmute": "Reativar",
+    "unmute-success": "Publicação não silenciada",
+    "promote": "Promover",
+    "boost": "Impulso"
   },
   "entry-payout": {
     "reward": "Recompensa",
