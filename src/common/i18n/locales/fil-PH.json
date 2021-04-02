@@ -125,7 +125,7 @@
   },
   "entry-list-item": {
     "cross-posted": "cross-posted",
-    "cross-posted-to": "to",
+    "cross-posted-to": "sa",
     "reblogged": "{{n}} I-blog muli",
     "promoted": "mga isinulong",
     "pinned": "Naka-pin na post",
@@ -134,9 +134,9 @@
     "no-replies": "Walang pang mga kasagutan. Pindutin para sumagot."
   },
   "nsfw": {
-    "reveal": "Reveal this post",
+    "reveal": "Ipakita ang post na ito",
     "signup": "<a href=\"/signup\" class=\"push-link\">create an account</a> to save your preferences",
-    "settings-1": "adjust your",
+    "settings-1": "baguhin ang iyong",
     "settings-2": "display preferences"
   },
   "bookmark-btn": {
@@ -152,18 +152,18 @@
     "success": "Muling nai-blog!",
     "delete-reblog": "Undo Reblog",
     "delete-confirm-title": "Undo reblog?",
-    "delete-confirm-ok": "Undo",
-    "delete-success": "Reblog removed"
+    "delete-confirm-ok": "Ibalik",
+    "delete-success": "Tinanggal ang reblog"
   },
   "entry-tip": {
     "title": "Tip"
   },
   "entry-share": {
-    "title": "Share"
+    "title": "Ibahagi"
   },
   "entry-menu": {
-    "share": "Share",
-    "edit-history": "Edit History",
+    "share": "Ibahagi",
+    "edit-history": "Kasaysayan ng pagbabago",
     "pin": "Pin",
     "pin-success": "Post pinned",
     "unpin": "Unpin",
@@ -176,7 +176,7 @@
     "boost": "Boost"
   },
   "entry-payout": {
-    "reward": "Reward",
+    "reward": "Gantimpala",
     "full-power": "Power Up 100%",
     "pending-payout": "Nakabinbin na Gantimpala",
     "promoted": "Naisulong",
@@ -224,8 +224,8 @@
     "address-copied": "Ang post address ay nakopya na sa clipboard.",
     "browse-original": "Open original post",
     "cross-post-by": "Cross post by",
-    "cross-post-community": "community",
-    "community-in": "in"
+    "cross-post-community": "pamayanan",
+    "community-in": "sa"
   },
   "edit-history": {
     "title": "Baguhin ang Kasaysayan",
@@ -233,7 +233,7 @@
     "version": "Bersyon {{n}}"
   },
   "similar-entries": {
-    "title": "More from @{{n}}"
+    "title": "Iba pa mula kay @{{n}}"
   },
   "comment": {
     "body-placeholder": "Isulat ang iyong tugon o tugon dito",
@@ -281,7 +281,7 @@
     "team": "Pamunuan",
     "edit": "Baguhin ang mga settings",
     "edit-team": "Baguhin ang mga katungkulan",
-    "community-rewards": "Community Rewards",
+    "community-rewards": "Mga gantimpala sa pamayanan",
     "profile-image": "Imaheng Pagkakakilanlan ng Pamayanan",
     "profile-image-edit": "Baguhin ang Imaheng Pagkakakilanlan",
     "profile-image-updated": "Matagumpay na nai-upload ang imahe ng pagkakakilanlan!"
@@ -339,7 +339,7 @@
   },
   "community-rewards-registration": {
     "body-text": "Register your community to get Ecency POINTS",
-    "btn-next-label": "Register",
+    "btn-next-label": "Sumali",
     "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.",
     "conflict-body-text": "This community is already registered.",
     "min-required-body-text": "Minimum 100 subscribers required to register."
