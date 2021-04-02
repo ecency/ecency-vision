@@ -670,7 +670,10 @@
     "reblog-hint": "Inhalt automatisch mit Ihrem Blog teilen",
     "schedule": "Zeitplan",
     "schedule-hint": "Inhalt automatisch zu einer bestimmten Zeit veröffentlichen",
-    "scheduled": "Beitrag erfolgreich geplant"
+    "scheduled": "Beitrag erfolgreich geplant",
+    "empty-title-alert": "Enter post title",
+    "empty-tags-alert": "Enter post tags",
+    "empty-body-alert": "Enter post body"
   },
   "tag-selector": {
     "placeholder-empty": "Tags. Erster Tag ist die Hauptkategorie. Sortierbar.",
