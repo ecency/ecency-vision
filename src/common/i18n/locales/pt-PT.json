@@ -670,7 +670,10 @@
     "reblog-hint": "Compartilhar conteúdo automaticamente no seu blog",
     "schedule": "Agendar",
     "schedule-hint": "Publicação automática de conteúdo em um horário específico",
-    "scheduled": "Post agendado"
+    "scheduled": "Post agendado",
+    "empty-title-alert": "Enter post title",
+    "empty-tags-alert": "Enter post tags",
+    "empty-body-alert": "Enter post body"
   },
   "tag-selector": {
     "placeholder-empty": "Etiquetas. A primeira etiqueta é a categoria principal. Ordenável.",
