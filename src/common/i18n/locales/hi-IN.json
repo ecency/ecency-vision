@@ -670,7 +670,10 @@
     "reblog-hint": "ऑटो अपने ब्लॉग में सामग्री साझा करें",
     "schedule": "अनुसूची",
     "schedule-hint": "ऑटो विशिष्ट समय पर सामग्री प्रकाशित करता है",
-    "scheduled": "पोस्ट अनुसूचित करें"
+    "scheduled": "पोस्ट अनुसूचित करें",
+    "empty-title-alert": "Enter post title",
+    "empty-tags-alert": "Enter post tags",
+    "empty-body-alert": "Enter post body"
   },
   "tag-selector": {
     "placeholder-empty": "टैग। पहला टैग मुख्य श्रेणी है। क्रमित करने योग्य।",
