@@ -233,7 +233,7 @@
     "version": "Versión {{n}}"
   },
   "similar-entries": {
-    "title": "Post recientes de @{{n}}"
+    "title": "More from @{{n}}"
   },
   "comment": {
     "body-placeholder": "Escribir tu comentario aquí...",
