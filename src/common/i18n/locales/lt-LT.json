@@ -233,7 +233,7 @@
     "version": "Versija {{n}}"
   },
   "similar-entries": {
-    "title": "Nauji @{{n}} įrašai"
+    "title": "More from @{{n}}"
   },
   "comment": {
     "body-placeholder": "Rašykite savo atsakymą čia",
