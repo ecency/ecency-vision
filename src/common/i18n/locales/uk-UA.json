@@ -670,7 +670,10 @@
     "reblog-hint": "Автоматично публікувати вміст для вашого блогу",
     "schedule": "Запланувати",
     "schedule-hint": "Автоматично публікувати вміст в певний час",
-    "scheduled": "Допис заплановано"
+    "scheduled": "Допис заплановано",
+    "empty-title-alert": "Enter post title",
+    "empty-tags-alert": "Enter post tags",
+    "empty-body-alert": "Enter post body"
   },
   "tag-selector": {
     "placeholder-empty": "Теги. Першим тегом є основна категорія, а наступні є для сортування.",
