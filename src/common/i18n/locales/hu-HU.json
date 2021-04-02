@@ -233,7 +233,7 @@
     "version": "{{n}} Verzió"
   },
   "similar-entries": {
-    "title": "@{{n}} friss bejegyzései"
+    "title": "More from @{{n}}"
   },
   "comment": {
     "body-placeholder": "Ide írd a választ",
