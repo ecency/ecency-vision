@@ -233,7 +233,7 @@
     "version": "Versiya {{n}}"
   },
   "similar-entries": {
-    "title": "@{{n}} - son göndərişlər"
+    "title": "More from @{{n}}"
   },
   "comment": {
     "body-placeholder": "Cavabınızı bura yazın",
