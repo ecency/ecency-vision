@@ -233,7 +233,7 @@
     "version": "Versiunea {{n}}"
   },
   "similar-entries": {
-    "title": "Postări recente de @{{n}}"
+    "title": "More from @{{n}}"
   },
   "comment": {
     "body-placeholder": "Scrie răspunsul tău aici",
