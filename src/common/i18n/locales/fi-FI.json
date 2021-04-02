@@ -671,9 +671,9 @@
     "schedule": "Ajasta",
     "schedule-hint": "Julkaise sisältö automaattisesti tiettyyn aikaan",
     "scheduled": "Julkaisu ajastettu",
-    "empty-title-alert": "Enter post title",
-    "empty-tags-alert": "Enter post tags",
-    "empty-body-alert": "Enter post body"
+    "empty-title-alert": "Syötä julkaisun otsikko",
+    "empty-tags-alert": "Syötä julkaisun tagit",
+    "empty-body-alert": "Syötä julkaisun runko"
   },
   "tag-selector": {
     "placeholder-empty": "Tunnisteet. Ensimmäisenä pääkategoria. Lajiteltava.",
