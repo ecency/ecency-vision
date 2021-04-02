@@ -233,7 +233,7 @@
     "version": "Versi {{n}}"
   },
   "similar-entries": {
-    "title": "Postingan terbaru dari @{{n}}"
+    "title": "More from @{{n}}"
   },
   "comment": {
     "body-placeholder": "Tulis balasan Anda disini",
