@@ -670,7 +670,10 @@
     "reblog-hint": "Auto share content to your blog",
     "schedule": "Schedule",
     "schedule-hint": "Auto publish content on specific time",
-    "scheduled": "Post scheduled"
+    "scheduled": "Post scheduled",
+    "empty-title-alert": "Enter post title",
+    "empty-tags-alert": "Enter post tags",
+    "empty-body-alert": "Enter post body"
   },
   "tag-selector": {
     "placeholder-empty": "Tagi. Pierwszy tag jest kategorią główną. Tagi można sortować.",
