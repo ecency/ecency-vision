@@ -233,7 +233,7 @@
     "version": "Версия {{n}}"
   },
   "similar-entries": {
-    "title": "Скорошни постове от @{{n}}"
+    "title": "More from @{{n}}"
   },
   "comment": {
     "body-placeholder": "Напишете вашият отговор тук",
