@@ -670,7 +670,10 @@
     "reblog-hint": "Bagi otomatis konten ke blog Anda",
     "schedule": "Jadwal",
     "schedule-hint": "Terbitkan konten otomatis pada waktu tertentu",
-    "scheduled": "Postingan yang dijadwalkan"
+    "scheduled": "Postingan yang dijadwalkan",
+    "empty-title-alert": "Enter post title",
+    "empty-tags-alert": "Enter post tags",
+    "empty-body-alert": "Enter post body"
   },
   "tag-selector": {
     "placeholder-empty": "Tagar. Tagar pertama adalah kategori utama. Mudah disortir.",
