@@ -442,7 +442,42 @@ class SubmitPage extends BaseComponent<Props, State> {
         }, 500);
     };
 
+    focusInput = (parentSelector: string): void => {
+        const el = document.querySelector(`${parentSelector} .form-control`) as HTMLInputElement;
+        if (el) {
+            el.focus();
+        }
+    }
+
+    validate = (): boolean => {
+        const {title, tags, body} = this.state;
+
+        if (title.trim() === "") {
+            this.focusInput(".title-input");
+            error(_t("submit.empty-title-alert"));
+            return false;
+        }
+
+        if (tags.length === 0) {
+            this.focusInput(".tag-input");
+            error(_t("submit.empty-tags-alert"));
+            return false;
+        }
+
+        if (body.trim() === "") {
+            this.focusInput(".body-input");
+            error(_t("submit.empty-body-alert"));
+            return false;
+        }
+
+        return true;
+    }
+
     publish = async (): Promise<void> => {
+        if (!this.validate()) {
+            return;
+        }
+
         const {activeUser, history, addEntry} = this.props;
         const {title, tags, body, reward, reblogSwitch, beneficiaries} = this.state;
 
@@ -518,6 +553,10 @@ class SubmitPage extends BaseComponent<Props, State> {
     };
 
     update = async (): Promise<void> => {
+        if (!this.validate()) {
+            return;
+        }
+
         const {activeUser, updateEntry, history} = this.props;
         const {title, tags, body, editingEntry} = this.state;
 
@@ -574,6 +613,10 @@ class SubmitPage extends BaseComponent<Props, State> {
     };
 
     saveDraft = () => {
+        if (!this.validate()) {
+            return;
+        }
+
         const {activeUser, history} = this.props;
         const {title, body, tags, editingDraft} = this.state;
         const tagJ = tags.join(' ');
@@ -601,6 +644,10 @@ class SubmitPage extends BaseComponent<Props, State> {
     }
 
     schedule = async () => {
+        if (!this.validate()) {
+            return;
+        }
+
         const {activeUser} = this.props;
         const {title, tags, body, reward, reblogSwitch, beneficiaries, schedule} = this.state;
 
@@ -657,7 +704,6 @@ class SubmitPage extends BaseComponent<Props, State> {
 
         const {global, activeUser} = this.props;
 
-        const canPublish = title.trim() !== "" && tags.length > 0 && tags.length <= 10 && body.trim() !== "";
         const spinner = <Spinner animation="grow" variant="light" size="sm" style={{marginRight: "6px"}}/>;
 
         return (
@@ -746,7 +792,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                                     children: <Button
                                         className="d-inline-flex align-items-center"
                                         onClick={this.schedule}
-                                        disabled={!canPublish || posting}
+                                        disabled={posting}
                                     >
                                         {posting && spinner}
                                         {_t("submit.schedule")}
@@ -759,7 +805,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                                         <span/>
                                         <div>
                                             {global.usePrivate && (
-                                                <Button variant="outline-primary" style={{marginRight: "6px"}} onClick={this.saveDraft} disabled={!canPublish || saving || posting}>
+                                                <Button variant="outline-primary" style={{marginRight: "6px"}} onClick={this.saveDraft} disabled={saving || posting}>
                                                     {contentSaveSvg} {editingDraft === null ? _t("submit.save-draft") : _t("submit.update-draft")}
                                                 </Button>)}
                                             {LoginRequired({
@@ -767,7 +813,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                                                 children: <Button
                                                     className="d-inline-flex align-items-center"
                                                     onClick={this.publish}
-                                                    disabled={!canPublish || posting || saving}
+                                                    disabled={posting || saving}
                                                 >
                                                     {posting && spinner}
                                                     {_t("submit.publish")}
@@ -787,7 +833,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                                             children: <Button
                                                 className="d-inline-flex align-items-center"
                                                 onClick={this.update}
-                                                disabled={!canPublish || posting}
+                                                disabled={posting}
                                             >
                                                 {posting && spinner}
                                                 {_t("submit.update")}

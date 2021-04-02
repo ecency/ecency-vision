@@ -63,7 +63,8 @@ export class TagSelector extends Component<Props, State> {
     };
 
     onKeyDown = (e: React.KeyboardEvent) => {
-        if (e.keyCode === 13) {
+        if ([13, 32, 188].includes(e.keyCode)) {
+            e.preventDefault();
             const {value} = this.state;
             this.add(value);
         }
