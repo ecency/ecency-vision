@@ -670,7 +670,10 @@
     "reblog-hint": "Jaa sisältö automaattisesti blogiisi",
     "schedule": "Ajasta",
     "schedule-hint": "Julkaise sisältö automaattisesti tiettyyn aikaan",
-    "scheduled": "Julkaisu ajastettu"
+    "scheduled": "Julkaisu ajastettu",
+    "empty-title-alert": "Enter post title",
+    "empty-tags-alert": "Enter post tags",
+    "empty-body-alert": "Enter post body"
   },
   "tag-selector": {
     "placeholder-empty": "Tunnisteet. Ensimmäisenä pääkategoria. Lajiteltava.",
