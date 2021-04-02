@@ -233,7 +233,7 @@
     "version": "Verzija {{n}}"
   },
   "similar-entries": {
-    "title": "Skorašnje objave od @{{n}}"
+    "title": "More from @{{n}}"
   },
   "comment": {
     "body-placeholder": "Napišite svoj odgovor ovde",
