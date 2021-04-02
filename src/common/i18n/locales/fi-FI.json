@@ -233,7 +233,7 @@
     "version": "Versio {{n}}"
   },
   "similar-entries": {
-    "title": "More from @{{n}}"
+    "title": "Lisää käyttäjältä @{{n}}"
   },
   "comment": {
     "body-placeholder": "Kirjoita vastauksesi tähän",
