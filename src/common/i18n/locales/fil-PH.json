@@ -670,7 +670,10 @@
     "reblog-hint": "I-share ng awtomatiko sa iyong blog",
     "schedule": "Iskedyul",
     "schedule-hint": "Ilathala ng awtomatiko ang content sa espesipikong oras",
-    "scheduled": "Mga naka-iskedyul na post"
+    "scheduled": "Mga naka-iskedyul na post",
+    "empty-title-alert": "Enter post title",
+    "empty-tags-alert": "Enter post tags",
+    "empty-body-alert": "Enter post body"
   },
   "tag-selector": {
     "placeholder-empty": "Tags. First tag is main category. Sortable.",
