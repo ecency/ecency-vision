@@ -233,7 +233,7 @@
     "version": "Variant {{n}}"
   },
   "similar-entries": {
-    "title": "Hiljutised postitused kasutajalt @{{n}}"
+    "title": "More from @{{n}}"
   },
   "comment": {
     "body-placeholder": "Kirjuta oma vastus siia",
