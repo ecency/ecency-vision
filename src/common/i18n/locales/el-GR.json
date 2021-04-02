@@ -233,7 +233,7 @@
     "version": "Εκδοχή {{n}}"
   },
   "similar-entries": {
-    "title": "Πρόσφατες δημοσιεύσεις από @{{n}}"
+    "title": "More from @{{n}}"
   },
   "comment": {
     "body-placeholder": "Γράψτε την απάντηση σας εδώ",
