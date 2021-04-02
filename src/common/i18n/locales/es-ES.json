@@ -670,7 +670,10 @@
     "reblog-hint": "Auto compartir contenido en tu blog",
     "schedule": "Programar",
     "schedule-hint": "Auto publicar contenido en tiempo específico",
-    "scheduled": "Publicación Programada"
+    "scheduled": "Publicación Programada",
+    "empty-title-alert": "Enter post title",
+    "empty-tags-alert": "Enter post tags",
+    "empty-body-alert": "Enter post body"
   },
   "tag-selector": {
     "placeholder-empty": "Etiquetas. Primera etiqueta es la categoría principal. Seleccionable.",
