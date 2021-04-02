@@ -670,7 +670,10 @@
     "reblog-hint": "Αυτόματη κοινοποίηση περιεχομένου στο ιστολόγιό σας",
     "schedule": "Χρονοδιάγραμμα",
     "schedule-hint": "Αυτόματη δημοσίευση περιεχομένου σε συγκεκριμένη ώρα",
-    "scheduled": "Προγραμματισμένη δημοσίευση"
+    "scheduled": "Προγραμματισμένη δημοσίευση",
+    "empty-title-alert": "Enter post title",
+    "empty-tags-alert": "Enter post tags",
+    "empty-body-alert": "Enter post body"
   },
   "tag-selector": {
     "placeholder-empty": "Ετικέτες. Η πρώτη ετικέτα είναι η κύρια κατηγορία. Tαξινομήσιμο.",
