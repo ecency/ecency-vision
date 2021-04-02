@@ -670,7 +670,10 @@
     "reblog-hint": "Автоматично сподели в моя блог",
     "schedule": "График",
     "schedule-hint": "Автоматично сподели съдържание в определено време",
-    "scheduled": "Публикацията е планирана"
+    "scheduled": "Публикацията е планирана",
+    "empty-title-alert": "Enter post title",
+    "empty-tags-alert": "Enter post tags",
+    "empty-body-alert": "Enter post body"
   },
   "tag-selector": {
     "placeholder-empty": "Тагове. Първия таг е главната категория. Сортируемо.",
