@@ -92,9 +92,6 @@
 
   img {
     max-width: 100%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto
   }
 
   a {
@@ -227,8 +224,6 @@
     height: 200px;
     width: 100%;
     position: relative;
-    margin-left: auto;
-    margin-right: auto;
 
     @media (min-width: $xsm-break) {
       width: 360px;
