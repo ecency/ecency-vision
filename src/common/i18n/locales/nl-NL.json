@@ -233,7 +233,7 @@
     "version": "Versie {{n}}"
   },
   "similar-entries": {
-    "title": "Recente publicaties van @{{n}}"
+    "title": "More from @{{n}}"
   },
   "comment": {
     "body-placeholder": "Schrijf jouw reactie hier",
