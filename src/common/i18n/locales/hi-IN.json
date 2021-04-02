@@ -233,7 +233,7 @@
     "version": "संस्करण {{n}}"
   },
   "similar-entries": {
-    "title": "@{{n}} द्वारा हाल की पोस्ट"
+    "title": "More from @{{n}}"
   },
   "comment": {
     "body-placeholder": "अपना उत्तर यहाँ लिखें",
