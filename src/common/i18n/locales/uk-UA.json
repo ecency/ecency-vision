@@ -233,7 +233,7 @@
     "version": "Версія {{n}}"
   },
   "similar-entries": {
-    "title": "Останні публікації від @{{n}}"
+    "title": "More from @{{n}}"
   },
   "comment": {
     "body-placeholder": "Напишіть свою відповідь тут",
