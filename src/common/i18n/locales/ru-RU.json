@@ -233,7 +233,7 @@
     "version": "Версия {{n}}"
   },
   "similar-entries": {
-    "title": "Последние сообщения @{{n}}"
+    "title": "More from @{{n}}"
   },
   "comment": {
     "body-placeholder": "Впишите свой ответ",
