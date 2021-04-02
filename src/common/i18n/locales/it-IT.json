@@ -670,7 +670,10 @@
     "reblog-hint": "Condividi automaticamente il contenuto sul tuo blog",
     "schedule": "Pianifica",
     "schedule-hint": "Pubblica automaticamente il contenuto in un giorno e un'ora prefissati",
-    "scheduled": "Post programmato"
+    "scheduled": "Post programmato",
+    "empty-title-alert": "Enter post title",
+    "empty-tags-alert": "Enter post tags",
+    "empty-body-alert": "Enter post body"
   },
   "tag-selector": {
     "placeholder-empty": "Etichette. La prima etichetta è la categoria principale che classificherà il post.",
