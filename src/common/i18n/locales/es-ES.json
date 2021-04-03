@@ -159,18 +159,18 @@
     "title": "Sugerencia"
   },
   "entry-share": {
-    "title": "Share"
+    "title": "Compartir"
   },
   "entry-menu": {
-    "share": "Share",
-    "edit-history": "Edit History",
-    "pin": "Pin",
-    "pin-success": "Post pinned",
-    "unpin": "Unpin",
-    "unpin-success": "Post Unpinned",
-    "mute": "Mute",
-    "mute-success": "Post muted",
-    "unmute": "Unmute",
+    "share": "Compartir",
+    "edit-history": "Editar historial",
+    "pin": "Anclar arriba",
+    "pin-success": "Mensaje anclado",
+    "unpin": "Desanclar",
+    "unpin-success": "Mensaje Desanclado",
+    "mute": "Silenciar",
+    "mute-success": "Post silenciado",
+    "unmute": "Quitar silencio",
     "unmute-success": "Post unmuted",
     "promote": "Promote",
     "boost": "Boost"
