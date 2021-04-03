@@ -171,9 +171,9 @@
     "mute": "Silenciar",
     "mute-success": "Post silenciado",
     "unmute": "Quitar silencio",
-    "unmute-success": "Post unmuted",
-    "promote": "Promote",
-    "boost": "Boost"
+    "unmute-success": "Post no silenciado",
+    "promote": "Promocionar",
+    "boost": "Impulsar"
   },
   "entry-payout": {
     "reward": "Recompensa",
@@ -233,7 +233,7 @@
     "version": "Versión {{n}}"
   },
   "similar-entries": {
-    "title": "More from @{{n}}"
+    "title": "Más de @{{n}}"
   },
   "comment": {
     "body-placeholder": "Escribir tu comentario aquí...",
@@ -671,9 +671,9 @@
     "schedule": "Programar",
     "schedule-hint": "Auto publicar contenido en tiempo específico",
     "scheduled": "Publicación Programada",
-    "empty-title-alert": "Enter post title",
-    "empty-tags-alert": "Enter post tags",
-    "empty-body-alert": "Enter post body"
+    "empty-title-alert": "Introduce título de la publicación",
+    "empty-tags-alert": "Introducir etiquetas de la publicación",
+    "empty-body-alert": "Introducir cuerpo de la publicación"
   },
   "tag-selector": {
     "placeholder-empty": "Etiquetas. Primera etiqueta es la categoría principal. Seleccionable.",
