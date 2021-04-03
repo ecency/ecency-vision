@@ -162,6 +162,7 @@
     "title": "Share"
   },
   "entry-menu": {
+    "cross-post": "Cross post in ...",
     "share": "Share",
     "edit-history": "Edit History",
     "pin": "Pin",
@@ -174,6 +175,14 @@
     "unmute-success": "Post unmuted",
     "promote": "Promote",
     "boost": "Boost"
+  },
+  "cross-post": {
+    "title": "Cross Post",
+    "community-label": "Where to share this post:",
+    "community-placeholder": "Select a Community",
+    "message-label": "Your message to the community:",
+    "message-placeholder": "Start the conversation with a message",
+    "submit-label": "Confirm"
   },
   "entry-payout": {
     "reward": "Reward",
