@@ -182,7 +182,8 @@
     "community-placeholder": "Select a Community",
     "message-label": "Your message to the community:",
     "message-placeholder": "Start the conversation with a message",
-    "submit-label": "Confirm"
+    "submit-label": "Confirm",
+    "published": "Post Published"
   },
   "entry-payout": {
     "reward": "Reward",

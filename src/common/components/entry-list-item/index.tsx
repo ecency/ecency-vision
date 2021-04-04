@@ -39,7 +39,7 @@ import {Tsx} from "../../i18n/helper";
 import _c from "../../util/fix-class-names";
 import truncate from "../../util/truncate";
 
-import {repeatSvg, pinSvg, commentSvg, shuffleVariantSvg} from "../../img/svg";
+import {repeatSvg, pinSvg, commentSvg} from "../../img/svg";
 
 const fallbackImage = require("../../img/fallback.png");
 const noImage = require("../../img/noimage.png");

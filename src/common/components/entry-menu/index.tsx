@@ -37,7 +37,8 @@ import * as bridgeApi from "../../api/bridge";
 import {
     dotsHorizontal, deleteForeverSvg,
     pencilOutlineSvg, pinSvg, historySvg, shareVariantSvg, linkVariantSvg,
-    volumeOffSvg, redditSvg, twitterSvg, facebookSvg, bullHornSvg, rocketLaunchSvg
+    volumeOffSvg, redditSvg, twitterSvg, facebookSvg, bullHornSvg, rocketLaunchSvg,
+    shuffleVariantSvg
 } from "../../img/svg";
 
 interface Props {
@@ -234,12 +235,12 @@ export class EntryMenu extends BaseComponent<Props, State> {
 
         let menuItems: MenuItem[] = [];
 
-        if (activeUser) {
+        if (activeUser && !isComment) {
             menuItems = [
                 {
                     label: _t("entry-menu.cross-post"),
                     onClick: this.toggleCross,
-                    icon: <></>
+                    icon: shuffleVariantSvg
                 }
             ]
         }
@@ -310,21 +311,23 @@ export class EntryMenu extends BaseComponent<Props, State> {
             ];
         }
 
-        menuItems = [
-            ...menuItems,
-            ...[
-                {
-                    label: _t("entry-menu.promote"),
-                    onClick: this.togglePromote,
-                    icon: bullHornSvg
-                },
-                {
-                    label: _t("entry-menu.boost"),
-                    onClick: this.toggleBoost,
-                    icon: rocketLaunchSvg
-                }
-            ]
-        ];
+        if(!isComment){
+            menuItems = [
+                ...menuItems,
+                ...[
+                    {
+                        label: _t("entry-menu.promote"),
+                        onClick: this.togglePromote,
+                        icon: bullHornSvg
+                    },
+                    {
+                        label: _t("entry-menu.boost"),
+                        onClick: this.toggleBoost,
+                        icon: rocketLaunchSvg
+                    }
+                ]
+            ];
+        }
 
         if (global.isElectron) {
             menuItems = [
@@ -366,7 +369,13 @@ export class EntryMenu extends BaseComponent<Props, State> {
             )}
 
             <DropDown {...menuConfig} float="right" alignBottom={alignBottom} onShow={this.onMenuShow}/>
-            {(activeUser && cross) && <CrossPost entry={entry} activeUser={activeUser} onHide={this.toggleCross}/>}
+            {(activeUser && cross) && <CrossPost entry={entry} activeUser={activeUser} onHide={this.toggleCross}
+                                                 onSuccess={(community) => {
+                                                     this.toggleCross();
+
+                                                     const {history} = this.props;
+                                                     history.push(`/created/${community}`);
+                                                 }}/>}
             {share && <EntryShare entry={entry} onHide={this.toggleShare}/>}
             {editHistory && <EditHistory entry={entry} onHide={this.toggleEditHistory}/>}
             {delete_ && <ModalConfirm onConfirm={() => {
