@@ -233,7 +233,7 @@
     "version": "Versi {{n}}"
   },
   "similar-entries": {
-    "title": "More from @{{n}}"
+    "title": "Lebih banyak lagi dari @{{n}}"
   },
   "comment": {
     "body-placeholder": "Tulis balasan Anda disini",
@@ -671,9 +671,9 @@
     "schedule": "Jadwal",
     "schedule-hint": "Terbitkan konten otomatis pada waktu tertentu",
     "scheduled": "Postingan yang dijadwalkan",
-    "empty-title-alert": "Enter post title",
-    "empty-tags-alert": "Enter post tags",
-    "empty-body-alert": "Enter post body"
+    "empty-title-alert": "Tambahkan judul postingan",
+    "empty-tags-alert": "Tambahkan tagar postingan",
+    "empty-body-alert": "Tambahkan isi postingan"
   },
   "tag-selector": {
     "placeholder-empty": "Tagar. Tagar pertama adalah kategori utama. Mudah disortir.",
