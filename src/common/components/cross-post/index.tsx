@@ -136,9 +136,9 @@ export class CrossPost extends BaseComponent<Props, State> {
                 </>
             </Form.Group>
             <Form.Group controlId="message">
-                <Form.Label>{_t("cross-post.message-label")}</Form.Label>
                 <Form.Control value={message} onChange={this.messageChanged} maxLength={200} placeholder={_t("cross-post.message-placeholder")}/>
             </Form.Group>
+            <p className="small text-muted">{_t("cross-post.info")}</p>
             <div className="d-flex justify-content-between">
                 <Button variant="outline-secondary" onClick={this.hide} disabled={posting}>{_t("g.cancel")}</Button>
                 <Button variant="primary" disabled={!canSubmit || posting} onClick={this.submit}>
