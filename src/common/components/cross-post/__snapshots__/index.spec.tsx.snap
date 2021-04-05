@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+Array [
+  <div
+    className="form-group"
+  >
+    <label
+      className="form-label"
+      htmlFor="community"
+    >
+      Where to share this post:
+    </label>
+    <select
+      autoFocus={true}
+      className="form-control"
+      id="community"
+      onChange={[Function]}
+      value=""
+    >
+      <option
+        value=""
+      >
+        Select a Community
+      </option>
+      <option
+        value="hive-125125"
+      >
+        Ecency
+      </option>
+      <option
+        value="hive-252252"
+      >
+        Foo
+      </option>
+    </select>
+  </div>,
+  <div
+    className="form-group"
+  >
+    <label
+      className="form-label"
+      htmlFor="message"
+    >
+      Your message to the community:
+    </label>
+    <input
+      className="form-control"
+      id="message"
+      maxLength={200}
+      onChange={[Function]}
+      placeholder="Start the conversation with a message"
+      value=""
+    />
+  </div>,
+  <div
+    className="d-flex justify-content-between"
+  >
+    <button
+      className="btn btn-outline-secondary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Cancel
+    </button>
+    <button
+      className="btn btn-primary"
+      disabled={true}
+      onClick={[Function]}
+      type="button"
+    >
+      Confirm
+       
+      
+    </button>
+  </div>,
+]
+`;

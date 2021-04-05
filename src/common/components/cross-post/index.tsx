@@ -63,7 +63,6 @@ export class CrossPost extends BaseComponent<Props, State> {
         this.stateSet({message: e.target.value})
     }
 
-
     submit = () => {
         const {entry, activeUser} = this.props;
         const {community, message} = this.state;
