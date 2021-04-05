@@ -11,29 +11,19 @@ Array [
     >
       Where to share this post:
     </label>
-    <select
-      autoFocus={true}
-      className="form-control"
-      id="community"
-      onChange={[Function]}
-      value=""
+    <div
+      className="suggestion"
     >
-      <option
+      <input
+        autoFocus={true}
+        className="form-control"
+        id="community"
+        onChange={[Function]}
+        placeholder="Choose a community"
+        type="text"
         value=""
-      >
-        Select a Community
-      </option>
-      <option
-        value="hive-125125"
-      >
-        Ecency
-      </option>
-      <option
-        value="hive-252252"
-      >
-        Foo
-      </option>
-    </select>
+      />
+    </div>
   </div>,
   <div
     className="form-group"
