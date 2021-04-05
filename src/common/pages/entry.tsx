@@ -30,6 +30,7 @@ import EntryReblogBtn from "../components/entry-reblog-btn/index";
 import Comment from "../components/comment"
 import SimilarEntries from "../components/similar-entries";
 import BookmarkBtn from "../components/bookmark-btn";
+import EditHistory from "../components/edit-history";
 
 import {error} from "../components/feedback";
 import Meta from "../components/meta";
@@ -86,6 +87,7 @@ interface State {
     replying: boolean;
     showIfHidden: boolean;
     showIfNsfw: boolean;
+    editHistory: boolean;
 }
 
 class EntryPage extends BaseComponent<Props, State> {
@@ -93,11 +95,17 @@ class EntryPage extends BaseComponent<Props, State> {
         loading: false,
         replying: false,
         showIfHidden: false,
-        showIfNsfw: false
+        showIfNsfw: false,
+        editHistory: false
     };
 
     componentDidMount() {
         this.ensureEntry();
+
+        const {location, global} = this.props;
+        if (global.usePrivate && location.search === "?history") {
+            this.toggleEditHistory();
+        }
     }
 
     componentDidUpdate(prevProps: Readonly<Props>): void {
@@ -105,6 +113,11 @@ class EntryPage extends BaseComponent<Props, State> {
         if (location.pathname !== prevProps.location.pathname) {
             this.ensureEntry();
         }
+    }
+
+    toggleEditHistory = () => {
+        const {editHistory} = this.state;
+        this.stateSet({editHistory: !editHistory});
     }
 
     ensureEntry = () => {
@@ -267,7 +280,7 @@ class EntryPage extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {loading, replying, showIfHidden, showIfNsfw} = this.state;
+        const {loading, replying, showIfHidden, showIfNsfw, editHistory} = this.state;
         const {global, history} = this.props;
 
         const navBar = global.isElectron ? NavBarElectron({
@@ -670,6 +683,7 @@ class EntryPage extends BaseComponent<Props, State> {
                         </span>
                     </div>
                 </div>
+                {editHistory && <EditHistory entry={entry} onHide={this.toggleEditHistory}/>}
                 <EntryBodyExtra entry={entry}/>
             </>
         );

@@ -124,6 +124,8 @@
     "title": "Destacado"
   },
   "entry-list-item": {
+    "cross-posted": "publicación-cruzada",
+    "cross-posted-to": "para",
     "reblogged": "{{n}} reblogueado",
     "promoted": "promocionado",
     "pinned": "Publicación fijada",
@@ -147,10 +149,41 @@
     "reblog": "Rebloguear",
     "confirm-title": "¿Rebloguear al blog de @{{n}}?",
     "confirm-ok": "Rebloguear",
-    "success": "¡Reblogueado!"
+    "success": "¡Reblogueado!",
+    "delete-reblog": "Deshacer Reblog",
+    "delete-confirm-title": "¿Deshacer reblog?",
+    "delete-confirm-ok": "Deshacer",
+    "delete-success": "Reblog eliminado"
   },
   "entry-tip": {
     "title": "Sugerencia"
+  },
+  "entry-share": {
+    "title": "Compartir"
+  },
+  "entry-menu": {
+    "cross-post": "Cross post",
+    "share": "Compartir",
+    "edit-history": "Editar historial",
+    "pin": "Anclar arriba",
+    "pin-success": "Mensaje anclado",
+    "unpin": "Desanclar",
+    "unpin-success": "Mensaje Desanclado",
+    "mute": "Silenciar",
+    "mute-success": "Post silenciado",
+    "unmute": "Quitar silencio",
+    "unmute-success": "Post no silenciado",
+    "promote": "Promocionar",
+    "boost": "Impulsar"
+  },
+  "cross-post": {
+    "title": "Cross Post",
+    "community-placeholder": "Choose a community",
+    "message-placeholder": "Start the conversation with a message",
+    "submit-label": "Confirm",
+    "published": "Post Published",
+    "no-subscription": "You don't have any community subscription to cross post.",
+    "info": "Rewards are automatically declined for the cross post and discussions under cross post will be different and will follow different community guidelines."
   },
   "entry-payout": {
     "reward": "Recompensa",
@@ -196,10 +229,13 @@
     "comment-entry-title": "Estás viendo los comentarios relacionados de: ",
     "comment-entry-go-root": "Ver los demas comentarios",
     "comment-entry-go-parent": "Ver el comentario relacionado",
-    "show-history": "Mostrar historial de ediciones",
     "hidden-warning": "El post ha sido ocultado por bajas calificaciones.",
     "address-copy": "Copiar la dirección de la Publicación",
-    "address-copied": "Dirección de publicación copiada al portapapeles."
+    "address-copied": "Dirección de publicación copiada al portapapeles.",
+    "browse-original": "Abrir publicación original",
+    "cross-post-by": "Publicación cruzada por",
+    "cross-post-community": "comunidad",
+    "community-in": "en"
   },
   "edit-history": {
     "title": "Editar historial",
@@ -207,7 +243,7 @@
     "version": "Versión {{n}}"
   },
   "similar-entries": {
-    "title": "Post recientes de @{{n}}"
+    "title": "Más de @{{n}}"
   },
   "comment": {
     "body-placeholder": "Escribir tu comentario aquí...",
@@ -317,10 +353,6 @@
     "done-body-text": "Registro completado. Tu comunidad recibirá recompensas POINT a medida que tus miembros publiquen mensajes con aplicaciones de Ecency.",
     "conflict-body-text": "Esta comunidad ya está registrada.",
     "min-required-body-text": "Se requiere un mínimo de 100 suscriptores para registrarse."
-  },
-  "pin-btn": {
-    "pin": "Anclar arriba",
-    "unpin": "Desanclar"
   },
   "mute-btn": {
     "mute": "Silenciar",
@@ -446,7 +478,20 @@
     "transfer": "Regalar a alguien",
     "claim-ok": "Puntos reclamados",
     "promote": "Promocionar",
-    "boost": "Boost"
+    "boost": "Boost",
+    "filter-all": "Todo el historial",
+    "filter-10": "Puntos por latido",
+    "filter-20": "Puntos por iniciar sesión",
+    "filter-30": "Bono de uso",
+    "filter-100": "Puntos por publicar",
+    "filter-110": "Puntos por comentar",
+    "filter-120": "Puntos por votar",
+    "filter-130": "Puntos por rebloguear",
+    "filter-150": "Recompensa de delegación",
+    "filter-160": "Recompensa por referido",
+    "filter-170": "Recompensa de la comunidad",
+    "filter-998": "Transferencia enviada",
+    "filter-999": "Transferencia recibida"
   },
   "purchase": {
     "select-asset": "Seleccionar activos",
@@ -528,6 +573,12 @@
   },
   "transactions": {
     "title": "Historial",
+    "group-all": "Todo el historial",
+    "group-transfers": "Transferencias",
+    "group-market-orders": "Órdenes de Mercado",
+    "group-interests": "Intereses",
+    "group-stake-operations": "Operaciones de estaca",
+    "group-rewards": "Recompensas",
     "type-curation_reward": "Recompensa de curación",
     "type-author_reward": "Recompensa de autor",
     "type-comment_benefactor_reward": "Recompensas de benefactor del comentario",
@@ -535,7 +586,15 @@
     "type-transfer": "Transferir",
     "type-transfer_to_vesting": "Transferir a ahorros",
     "type-withdraw_vesting": "Retirar ahorros",
-    "type-fill_order": "Completar orden"
+    "type-fill_order": "Completar orden",
+    "type-producer_reward": "Recompensa del productor",
+    "type-interest": "Interés",
+    "type-transfer_to_savings": "Transferir a ahorros",
+    "type-fill_convert_request": "Rellenar solicitud de conversión",
+    "type-cancel_transfer_from_savings": "Cancelar transferencia de ahorros",
+    "type-cancel_transfer_from_savings-detail": "De: <strong>@{{from}}</strong> <br/> Solicitud id: <strong>{{request}}</strong>",
+    "type-return_vesting_delegation": "Devolución de la delegación",
+    "type-proposal_pay": "Propuesta de pago"
   },
   "key-or-hot": {
     "sign": "Firmar",
@@ -621,7 +680,10 @@
     "reblog-hint": "Auto compartir contenido en tu blog",
     "schedule": "Programar",
     "schedule-hint": "Auto publicar contenido en tiempo específico",
-    "scheduled": "Publicación Programada"
+    "scheduled": "Publicación Programada",
+    "empty-title-alert": "Introduce título de la publicación",
+    "empty-tags-alert": "Introducir etiquetas de la publicación",
+    "empty-body-alert": "Introducir cuerpo de la publicación"
   },
   "tag-selector": {
     "placeholder-empty": "Etiquetas. Primera etiqueta es la categoría principal. Seleccionable.",

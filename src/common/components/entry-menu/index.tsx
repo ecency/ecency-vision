@@ -257,14 +257,16 @@ export class EntryMenu extends BaseComponent<Props, State> {
             ]
         }
 
-        menuItems = [
-            ...menuItems,
-            {
-                label: _t("entry-menu.edit-history"),
-                onClick: this.toggleEditHistory,
-                icon: historySvg
-            }
-        ];
+        if (global.usePrivate) {
+            menuItems = [
+                ...menuItems,
+                {
+                    label: _t("entry-menu.edit-history"),
+                    onClick: this.toggleEditHistory,
+                    icon: historySvg
+                }
+            ];
+        }
 
         if (editable) {
             menuItems = [...menuItems,
@@ -311,7 +313,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
             ];
         }
 
-        if(!isComment){
+        if (global.usePrivate && !isComment) {
             menuItems = [
                 ...menuItems,
                 ...[
