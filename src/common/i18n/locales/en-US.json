@@ -178,7 +178,6 @@
   },
   "cross-post": {
     "title": "Cross Post",
-    "community-label": "Where to share this post:",
     "community-placeholder": "Choose a community",
     "message-placeholder": "Start the conversation with a message",
     "submit-label": "Confirm",

@@ -5,12 +5,6 @@ Array [
   <div
     className="form-group"
   >
-    <label
-      className="form-label"
-      htmlFor="community"
-    >
-      Where to share this post:
-    </label>
     <div
       className="suggestion"
     >
