@@ -102,8 +102,8 @@ class EntryPage extends BaseComponent<Props, State> {
     componentDidMount() {
         this.ensureEntry();
 
-        const {location} = this.props;
-        if (location.search === "?history") {
+        const {location, global} = this.props;
+        if (global.usePrivate && location.search === "?history") {
             this.toggleEditHistory();
         }
     }
