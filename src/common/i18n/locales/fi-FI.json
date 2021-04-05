@@ -124,6 +124,8 @@
     "title": "Suositellut"
   },
   "entry-list-item": {
+    "cross-posted": "ristiinlähetetty",
+    "cross-posted-to": "saaja",
     "reblogged": "{{n}} uudelleenjaettu",
     "promoted": "korostettu",
     "pinned": "Kiinnitetty julkaisu",
@@ -147,10 +149,41 @@
     "reblog": "Jaa",
     "confirm-title": "Jaa @{{n}} blogiin?",
     "confirm-ok": "Jaa",
-    "success": "Jaettu!"
+    "success": "Jaettu!",
+    "delete-reblog": "Kumoa uudelleenjako",
+    "delete-confirm-title": "Kumoa uudelleenjako?",
+    "delete-confirm-ok": "Kumoa",
+    "delete-success": "Uudelleenjako poistettu"
   },
   "entry-tip": {
     "title": "Vinkki"
+  },
+  "entry-share": {
+    "title": "Jaa"
+  },
+  "entry-menu": {
+    "cross-post": "Cross post",
+    "share": "Jaa",
+    "edit-history": "Muokkaushistoria",
+    "pin": "Kiinnitä",
+    "pin-success": "Julkaisu kiinnitetty",
+    "unpin": "Irrota",
+    "unpin-success": "Julkaisu irrotettu",
+    "mute": "Mykistä",
+    "mute-success": "Julkaisu mykistetty",
+    "unmute": "Poista mykistys",
+    "unmute-success": "Julkaisu näkyvillä",
+    "promote": "Korosta",
+    "boost": "Tehosta"
+  },
+  "cross-post": {
+    "title": "Cross Post",
+    "community-placeholder": "Choose a community",
+    "message-placeholder": "Start the conversation with a message",
+    "submit-label": "Confirm",
+    "published": "Post Published",
+    "no-subscription": "You don't have any community subscription to cross post.",
+    "info": "Rewards are automatically declined for the cross post and discussions under cross post will be different and will follow different community guidelines."
   },
   "entry-payout": {
     "reward": "Palkkio",
@@ -196,10 +229,13 @@
     "comment-entry-title": "Katselet yhtä kommenttiketjua: ",
     "comment-entry-go-root": "Katso kaikki",
     "comment-entry-go-parent": "Näytä vanhempi",
-    "show-history": "Näytä muokkaushistoria",
     "hidden-warning": "Tämä viesti oli piilotettu alhaisten arvostelujen vuoksi.",
     "address-copy": "Kopioi osoite",
-    "address-copied": "Osoite kopioitu leikepöydälle."
+    "address-copied": "Osoite kopioitu leikepöydälle.",
+    "browse-original": "Näytä alkuperäinen julkaisu",
+    "cross-post-by": "Ristilähettäjä",
+    "cross-post-community": "yhteisö",
+    "community-in": "tässä"
   },
   "edit-history": {
     "title": "Muokkaushistoria",
@@ -207,7 +243,7 @@
     "version": "Versio {{n}}"
   },
   "similar-entries": {
-    "title": "Viimeisimmät viestit käyttäjältä @{{n}}"
+    "title": "Lisää käyttäjältä @{{n}}"
   },
   "comment": {
     "body-placeholder": "Kirjoita vastauksesi tähän",
@@ -317,10 +353,6 @@
     "done-body-text": "Rekisteröinti onnistui. Yhteisösi saa POINT-palkkioita, kun jäsenesi julkaisevat viestejä Ecency -sovelluksilla.",
     "conflict-body-text": "Tämä yhteisö on jo rekisteröity.",
     "min-required-body-text": "Vähintään 100 tilaajaa vaaditaan rekisteröintiin."
-  },
-  "pin-btn": {
-    "pin": "Kiinnitä",
-    "unpin": "Irrota"
   },
   "mute-btn": {
     "mute": "Mykistä",
@@ -446,7 +478,20 @@
     "transfer": "Lahjoita",
     "claim-ok": "Pisteitä lunastettu",
     "promote": "Korosta",
-    "boost": "Tehosta"
+    "boost": "Tehosta",
+    "filter-all": "Koko Historia",
+    "filter-10": "Pisteitä sydämestä",
+    "filter-20": "Pisteitä sisäänkirjautumisesta",
+    "filter-30": "Käyttöbonus",
+    "filter-100": "Pisteitä julkaisusta",
+    "filter-110": "Pisteitä kommentista",
+    "filter-120": "Pisteitä äänistä",
+    "filter-130": "Pisteitä jaosta",
+    "filter-150": "Valtuutuspalkkio",
+    "filter-160": "Suosittelupalkkio",
+    "filter-170": "Yhteisöpalkkio",
+    "filter-998": "Lähtevä siirto",
+    "filter-999": "Tuleva siirto"
   },
   "purchase": {
     "select-asset": "Valitse etu",
@@ -528,6 +573,12 @@
   },
   "transactions": {
     "title": "Historia",
+    "group-all": "Koko Historia",
+    "group-transfers": "Siirrot",
+    "group-market-orders": "Markkinatilaukset",
+    "group-interests": "Korot",
+    "group-stake-operations": "Panostustoiminnot",
+    "group-rewards": "Palkkiot",
     "type-curation_reward": "Tarkastuspalkkio",
     "type-author_reward": "Julkaisupalkkio",
     "type-comment_benefactor_reward": "Kommentin hyötyjäpalkkio",
@@ -535,7 +586,15 @@
     "type-transfer": "Siirto",
     "type-transfer_to_vesting": "Siirrä ansaintaan",
     "type-withdraw_vesting": "Kotiuta ansainta",
-    "type-fill_order": "Täytä tilaus"
+    "type-fill_order": "Täytä tilaus",
+    "type-producer_reward": "Tuottajapalkkio",
+    "type-interest": "Korot",
+    "type-transfer_to_savings": "Siirrä säästöihin",
+    "type-fill_convert_request": "Täytä muunnospyyntö",
+    "type-cancel_transfer_from_savings": "Peruuta siirto säästöistä",
+    "type-cancel_transfer_from_savings-detail": "Alkaen: <strong>@{{from}}</strong> <br/> Pyynnön id: <strong>{{request}}</strong>",
+    "type-return_vesting_delegation": "Palautusvaltuutus",
+    "type-proposal_pay": "Ehdotusten palkkio"
   },
   "key-or-hot": {
     "sign": "Allekirjoita",
@@ -621,7 +680,10 @@
     "reblog-hint": "Jaa sisältö automaattisesti blogiisi",
     "schedule": "Ajasta",
     "schedule-hint": "Julkaise sisältö automaattisesti tiettyyn aikaan",
-    "scheduled": "Julkaisu ajastettu"
+    "scheduled": "Julkaisu ajastettu",
+    "empty-title-alert": "Syötä julkaisun otsikko",
+    "empty-tags-alert": "Syötä julkaisun tagit",
+    "empty-body-alert": "Syötä julkaisun runko"
   },
   "tag-selector": {
     "placeholder-empty": "Tunnisteet. Ensimmäisenä pääkategoria. Lajiteltava.",
