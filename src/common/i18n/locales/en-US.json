@@ -162,7 +162,7 @@
     "title": "Share"
   },
   "entry-menu": {
-    "cross-post": "Cross post in ...",
+    "cross-post": "Cross post",
     "share": "Share",
     "edit-history": "Edit History",
     "pin": "Pin",
@@ -179,7 +179,7 @@
   "cross-post": {
     "title": "Cross Post",
     "community-label": "Where to share this post:",
-    "community-placeholder": "Select a Community",
+    "community-placeholder": "Choose a community",
     "message-label": "Your message to the community:",
     "message-placeholder": "Start the conversation with a message",
     "submit-label": "Confirm",

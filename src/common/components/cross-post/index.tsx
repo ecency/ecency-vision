@@ -8,6 +8,7 @@ import {Subscription} from "../../store/subscriptions/types";
 import {ActiveUser} from "../../store/active-user/types";
 
 import {error, success} from "../feedback";
+import SuggestionList from "../suggestion-list";
 
 import {comment, formatError} from "../../api/operations";
 import {getSubscriptions} from "../../api/bridge";
@@ -28,7 +29,10 @@ interface Props {
 }
 
 interface State {
-    subscriptions: Subscription[];
+    communities: {
+        id: string;
+        name: string;
+    }[];
     community: string;
     message: string;
     posting: boolean
@@ -36,7 +40,7 @@ interface State {
 
 export class CrossPost extends BaseComponent<Props, State> {
     state: State = {
-        subscriptions: [],
+        communities: [],
         community: "",
         message: "",
         posting: false
@@ -46,7 +50,9 @@ export class CrossPost extends BaseComponent<Props, State> {
         const {activeUser} = this.props;
         getSubscriptions(activeUser.username).then(r => {
             if (r) {
-                this.stateSet({subscriptions: r})
+                const communities = r.map((x) => ({id: x[0], name: x[1]}));
+
+                this.stateSet({communities});
             }
         })
     }
@@ -65,11 +71,16 @@ export class CrossPost extends BaseComponent<Props, State> {
 
     submit = () => {
         const {entry, activeUser} = this.props;
-        const {community, message} = this.state;
+        const {community, communities, message} = this.state;
+
+        const theCommunity = communities.find(x => x.name.toLowerCase() === community.toLowerCase());
+        if (!theCommunity) {
+            return;
+        }
 
         const {title} = entry;
         const author = activeUser.username;
-        const permlink = `${entry.permlink}-${community}`;
+        const permlink = `${entry.permlink}-${theCommunity.id}`;
 
         const body = makeCrossPostMessage(entry, author, message);
         const jsonMeta = {
@@ -85,10 +96,10 @@ export class CrossPost extends BaseComponent<Props, State> {
         };
 
         this.stateSet({posting: true});
-        comment(author, "", community, permlink, title, body, jsonMeta, options)
+        comment(author, "", theCommunity.id, permlink, title, body, jsonMeta, options)
             .then(() => {
                 success(_t("cross-post.published"));
-                this.props.onSuccess(community);
+                this.props.onSuccess(theCommunity.id);
             })
             .catch((e) => {
                 error(formatError(e));
@@ -98,17 +109,23 @@ export class CrossPost extends BaseComponent<Props, State> {
             });
     }
 
+    communitySelected = (item: any) => {
+        this.stateSet({community: item.name});
+    }
+
     render() {
-        const {subscriptions, community, message, posting} = this.state;
-        const canSubmit = community !== "" && message.trim() !== "";
+        const {communities, community, message, posting} = this.state;
+
+        const suggestions = communities.filter(x => x.name.toLowerCase().indexOf(community.toLowerCase()) !== -1);
+        const theCommunity = communities.find(x => x.name.toLowerCase() === community.toLowerCase());
+        const canSubmit = theCommunity && message.trim() !== "";
 
         return <>
             <Form.Group controlId="community">
                 <Form.Label>{_t("cross-post.community-label")}</Form.Label>
-                <Form.Control as="select" value={community} onChange={this.communityChanged} autoFocus={true}>
-                    <option value="">{_t("cross-post.community-placeholder")}</option>
-                    {subscriptions.map(x => <option key={x[0]} value={x[0]}>{x[1]}</option>)}
-                </Form.Control>
+                <SuggestionList items={suggestions} onSelect={this.communitySelected} renderer={(x) => x.name}>
+                    <Form.Control value={community} onChange={this.communityChanged} type="text" autoFocus={true} placeholder={_t("cross-post.community-placeholder")}/>
+                </SuggestionList>
             </Form.Group>
             <Form.Group controlId="message">
                 <Form.Label>{_t("cross-post.message-label")}</Form.Label>
