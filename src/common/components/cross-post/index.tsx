@@ -131,7 +131,7 @@ export class CrossPost extends BaseComponent<Props, State> {
                 <>
                     <Form.Label>{_t("cross-post.community-label")}</Form.Label>
                     <SuggestionList items={suggestions} onSelect={this.communitySelected} renderer={(x) => x.name}>
-                        <Form.Control value={community} onChange={this.communityChanged} type="text" autoFocus={true} placeholder={_t("cross-post.community-placeholder")}/>
+                        <Form.Control value={community} onChange={this.communityChanged} type="text" placeholder={_t("cross-post.community-placeholder")}/>
                     </SuggestionList>
                 </>
             </Form.Group>
