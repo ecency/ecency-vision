@@ -236,14 +236,16 @@ export class EntryMenu extends BaseComponent<Props, State> {
             ]
         }
 
-        menuItems = [
-            ...menuItems,
-            {
-                label: _t("entry-menu.edit-history"),
-                onClick: this.toggleEditHistory,
-                icon: historySvg
-            }
-        ];
+        if (global.usePrivate) {
+            menuItems = [
+                ...menuItems,
+                {
+                    label: _t("entry-menu.edit-history"),
+                    onClick: this.toggleEditHistory,
+                    icon: historySvg
+                }
+            ];
+        }
 
         if (editable) {
             menuItems = [...menuItems,
@@ -290,21 +292,23 @@ export class EntryMenu extends BaseComponent<Props, State> {
             ];
         }
 
-        menuItems = [
-            ...menuItems,
-            ...[
-                {
-                    label: _t("entry-menu.promote"),
-                    onClick: this.togglePromote,
-                    icon: bullHornSvg
-                },
-                {
-                    label: _t("entry-menu.boost"),
-                    onClick: this.toggleBoost,
-                    icon: rocketLaunchSvg
-                }
-            ]
-        ];
+        if (global.usePrivate && !isComment) {
+            menuItems = [
+                ...menuItems,
+                ...[
+                    {
+                        label: _t("entry-menu.promote"),
+                        onClick: this.togglePromote,
+                        icon: bullHornSvg
+                    },
+                    {
+                        label: _t("entry-menu.boost"),
+                        onClick: this.toggleBoost,
+                        icon: rocketLaunchSvg
+                    }
+                ]
+            ];
+        }
 
         if (global.isElectron) {
             menuItems = [
