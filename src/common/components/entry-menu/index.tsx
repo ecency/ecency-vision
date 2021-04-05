@@ -22,6 +22,7 @@ import Boost from "../boost";
 import ModalConfirm from "../modal-confirm";
 import {error, success} from "../feedback";
 import DropDown, {MenuItem} from "../dropdown";
+import CrossPost from "../cross-post";
 
 import isCommunity from "../../helper/is-community";
 
@@ -36,7 +37,8 @@ import * as bridgeApi from "../../api/bridge";
 import {
     dotsHorizontal, deleteForeverSvg,
     pencilOutlineSvg, pinSvg, historySvg, shareVariantSvg, linkVariantSvg,
-    volumeOffSvg, redditSvg, twitterSvg, facebookSvg, bullHornSvg, rocketLaunchSvg
+    volumeOffSvg, redditSvg, twitterSvg, facebookSvg, bullHornSvg, rocketLaunchSvg,
+    shuffleVariantSvg
 } from "../../img/svg";
 
 interface Props {
@@ -59,6 +61,7 @@ interface Props {
 }
 
 interface State {
+    cross: boolean;
     share: boolean;
     editHistory: boolean;
     delete_: boolean;
@@ -71,6 +74,7 @@ interface State {
 
 export class EntryMenu extends BaseComponent<Props, State> {
     state: State = {
+        cross: false,
         share: false,
         editHistory: false,
         delete_: false,
@@ -79,6 +83,11 @@ export class EntryMenu extends BaseComponent<Props, State> {
         mute: false,
         promote: false,
         boost: false,
+    }
+
+    toggleCross = () => {
+        const {cross} = this.state;
+        this.stateSet({cross: !cross});
     }
 
     toggleShare = () => {
@@ -226,8 +235,20 @@ export class EntryMenu extends BaseComponent<Props, State> {
 
         let menuItems: MenuItem[] = [];
 
+        if (activeUser && !isComment) {
+            menuItems = [
+                {
+                    label: _t("entry-menu.cross-post"),
+                    onClick: this.toggleCross,
+                    icon: shuffleVariantSvg
+                }
+            ]
+        }
+
+
         if (!separatedSharing) {
             menuItems = [
+                ...menuItems,
                 {
                     label: _t("entry-menu.share"),
                     onClick: this.toggleShare,
@@ -290,21 +311,23 @@ export class EntryMenu extends BaseComponent<Props, State> {
             ];
         }
 
-        menuItems = [
-            ...menuItems,
-            ...[
-                {
-                    label: _t("entry-menu.promote"),
-                    onClick: this.togglePromote,
-                    icon: bullHornSvg
-                },
-                {
-                    label: _t("entry-menu.boost"),
-                    onClick: this.toggleBoost,
-                    icon: rocketLaunchSvg
-                }
-            ]
-        ];
+        if(!isComment){
+            menuItems = [
+                ...menuItems,
+                ...[
+                    {
+                        label: _t("entry-menu.promote"),
+                        onClick: this.togglePromote,
+                        icon: bullHornSvg
+                    },
+                    {
+                        label: _t("entry-menu.boost"),
+                        onClick: this.toggleBoost,
+                        icon: rocketLaunchSvg
+                    }
+                ]
+            ];
+        }
 
         if (global.isElectron) {
             menuItems = [
@@ -324,7 +347,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
             items: menuItems
         };
 
-        const {share, editHistory, delete_, pin, unpin, mute, promote, boost} = this.state;
+        const {cross, share, editHistory, delete_, pin, unpin, mute, promote, boost} = this.state;
         const community = this.getCommunity();
 
         return <div className="entry-menu">
@@ -346,7 +369,13 @@ export class EntryMenu extends BaseComponent<Props, State> {
             )}
 
             <DropDown {...menuConfig} float="right" alignBottom={alignBottom} onShow={this.onMenuShow}/>
+            {(activeUser && cross) && <CrossPost entry={entry} activeUser={activeUser} onHide={this.toggleCross}
+                                                 onSuccess={(community) => {
+                                                     this.toggleCross();
 
+                                                     const {history} = this.props;
+                                                     history.push(`/created/${community}`);
+                                                 }}/>}
             {share && <EntryShare entry={entry} onHide={this.toggleShare}/>}
             {editHistory && <EditHistory entry={entry} onHide={this.toggleEditHistory}/>}
             {delete_ && <ModalConfirm onConfirm={() => {

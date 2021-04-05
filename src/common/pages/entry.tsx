@@ -56,7 +56,7 @@ import accountReputation from '../helper/account-reputation';
 
 import truncate from "../util/truncate";
 import * as ls from "../util/local-storage";
-import {crossPostMessage} from "../util/cross-post";
+import {crossPostMessage} from "../helper/cross-post";
 
 import {timeSvg} from "../img/svg";
 
