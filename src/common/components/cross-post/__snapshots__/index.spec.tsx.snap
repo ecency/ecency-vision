@@ -67,3 +67,11 @@ Array [
   </div>,
 ]
 `;
+
+exports[`(2) No subscription 1`] = `
+<span
+  className="text-info"
+>
+  You don't have any community subscription to cross post.
+</span>
+`;

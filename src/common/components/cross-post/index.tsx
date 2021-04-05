@@ -4,7 +4,6 @@ import React, {Component} from "react";
 import {Button, Form, FormControl, Modal} from "react-bootstrap";
 
 import {Entry} from "../../store/entries/types";
-import {Subscription} from "../../store/subscriptions/types";
 import {ActiveUser} from "../../store/active-user/types";
 
 import {error, success} from "../feedback";
@@ -35,7 +34,8 @@ interface State {
     }[];
     community: string;
     message: string;
-    posting: boolean
+    posting: boolean;
+    loading: boolean;
 }
 
 export class CrossPost extends BaseComponent<Props, State> {
@@ -43,7 +43,8 @@ export class CrossPost extends BaseComponent<Props, State> {
         communities: [],
         community: "",
         message: "",
-        posting: false
+        posting: false,
+        loading: true
     }
 
     componentDidMount() {
@@ -51,10 +52,11 @@ export class CrossPost extends BaseComponent<Props, State> {
         getSubscriptions(activeUser.username).then(r => {
             if (r) {
                 const communities = r.map((x) => ({id: x[0], name: x[1]}));
-
                 this.stateSet({communities});
             }
-        })
+        }).finally(() => {
+            this.stateSet({loading: false});
+        });
     }
 
     hide = () => {
@@ -114,18 +116,24 @@ export class CrossPost extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {communities, community, message, posting} = this.state;
+        const {communities, community, message, posting, loading} = this.state;
 
         const suggestions = communities.filter(x => x.name.toLowerCase().indexOf(community.toLowerCase()) !== -1);
         const theCommunity = communities.find(x => x.name.toLowerCase() === community.toLowerCase());
         const canSubmit = theCommunity && message.trim() !== "";
 
+        if (!loading && communities.length === 0) {
+            return <span className="text-info">{_t("cross-post.no-subscription")}</span>;
+        }
+
         return <>
             <Form.Group controlId="community">
-                <Form.Label>{_t("cross-post.community-label")}</Form.Label>
-                <SuggestionList items={suggestions} onSelect={this.communitySelected} renderer={(x) => x.name}>
-                    <Form.Control value={community} onChange={this.communityChanged} type="text" autoFocus={true} placeholder={_t("cross-post.community-placeholder")}/>
-                </SuggestionList>
+                <>
+                    <Form.Label>{_t("cross-post.community-label")}</Form.Label>
+                    <SuggestionList items={suggestions} onSelect={this.communitySelected} renderer={(x) => x.name}>
+                        <Form.Control value={community} onChange={this.communityChanged} type="text" autoFocus={true} placeholder={_t("cross-post.community-placeholder")}/>
+                    </SuggestionList>
+                </>
             </Form.Group>
             <Form.Group controlId="message">
                 <Form.Label>{_t("cross-post.message-label")}</Form.Label>

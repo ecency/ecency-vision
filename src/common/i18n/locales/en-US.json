@@ -183,7 +183,8 @@
     "message-label": "Your message to the community:",
     "message-placeholder": "Start the conversation with a message",
     "submit-label": "Confirm",
-    "published": "Post Published"
+    "published": "Post Published",
+    "no-subscription": "You don't have any community subscription to cross post."
   },
   "entry-payout": {
     "reward": "Reward",
