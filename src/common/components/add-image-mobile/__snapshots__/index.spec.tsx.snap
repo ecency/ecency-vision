@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render. 1`] = `
+<div
+  className="dialog-content"
+>
+  <div
+    className="recent-list"
+  >
+    <div
+      className="recent-list-title"
+    >
+      Recently uploaded
+    </div>
+    <div
+      className="recent-list-body"
+    >
+      <div
+        className="recent-list-item"
+        onClick={[Function]}
+        style={
+          Object {
+            "backgroundImage": "url('https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfsxYg31uVU2qaAJMbxLA5QC3UVPLuv3NgD6kUmbm4uwJEjM2p6HEJn3TeZdk26UewZU2EMYeTAuU?format=match&mode=fit&width=600&height=500')",
+          }
+        }
+      />
+      <div
+        className="recent-list-item"
+        onClick={[Function]}
+        style={
+          Object {
+            "backgroundImage": "url('https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmsW5UVxK6wdRfC1pbPyM9xzYn5qraeesECP66rZ9edokgbrjcFaFjLZiaf41MhwjB1wzgzXk33t?format=match&mode=fit&width=600&height=500')",
+          }
+        }
+      />
+      <div
+        className="recent-list-item"
+        onClick={[Function]}
+        style={
+          Object {
+            "backgroundImage": "url('https://images.ecency.com/p/Zskj9C56UonZ32EJw6nMcm9UJXZFc4FvMtk6wyeAL2B2wn9sAe3xBkALEsfvhmDDq8UH7NwCDzBBoR2vndSdSHCkePRgrRjUjQGUWLjZrw3f2WethBCr?format=match&mode=fit&width=600&height=500')",
+          }
+        }
+      />
+    </div>
+  </div>
+  <div
+    className="d-flex justify-content-between"
+  >
+    <button
+      className="btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Gallery
+    </button>
+    <button
+      className="btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Upload image
+    </button>
+  </div>
+</div>
+`;
+
+exports[`(2) Empty gallery. 1`] = `
+<div
+  className="dialog-content"
+>
+  <div
+    className="recent-list"
+  />
+  <div
+    className="d-flex justify-content-center"
+  >
+    <button
+      className="btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Upload image
+    </button>
+  </div>
+</div>
+`;
