@@ -894,6 +894,12 @@
     "text-label": "छवि पाठ",
     "link-label": "छवि लिंक"
   },
+  "add-image-mobile": {
+    "title": "Add Image",
+    "recent-title": "Recently uploaded",
+    "gallery": "Gallery",
+    "upload": "Upload image"
+  },
   "add-link": {
     "title": "लिंक जोड़ें",
     "text-label": "टेक्स्ट",
