@@ -9,5 +9,7 @@ export default (str: string) => {
 }
 
 export const readClipboard = (): Promise<string> => {
-    return navigator.clipboard.readText().then(r => r).catch(() => "");
+    return navigator.clipboard ?
+        navigator.clipboard.readText().then(r => r).catch(() => "") :
+        new Promise((resolve) => resolve(""));
 }
