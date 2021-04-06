@@ -7,6 +7,7 @@ import {proxifyImageSrc, setProxyBase} from "@ecency/render-helper";
 import {Global} from "../../store/global/types";
 import {ActiveUser} from "../../store/active-user/types";
 
+import BaseComponent from "../base";
 import LinearProgress from "../linear-progress";
 
 import {getImages, UserImage} from "../../api/private-api";
@@ -15,8 +16,10 @@ import {error} from "../feedback";
 
 import {_t} from "../../i18n";
 
+import _c from "../../util/fix-class-names"
+
 import defaults from "../../constants/defaults.json";
-import BaseComponent from "../base";
+
 
 setProxyBase(defaults.imageServer);
 
@@ -45,7 +48,12 @@ export class AddImage extends BaseComponent<Props, State> {
     }
 
     fetch = () => {
-        const {activeUser} = this.props;
+        const {activeUser, global} = this.props;
+
+        if (!global.usePrivate) {
+            this.stateSet({loading: false});
+            return;
+        }
 
         this.stateSet({loading: true});
         getImages(activeUser?.username!).then(items => {
@@ -83,7 +91,7 @@ export class AddImage extends BaseComponent<Props, State> {
             </div>
         }
 
-        const btnGallery = <Button onClick={this.gallery}>{_t('add-image-mobile.gallery')}</Button>;
+        const btnGallery = global.usePrivate ? <Button onClick={this.gallery}>{_t('add-image-mobile.gallery')}</Button> : null;
         const btnUpload = <Button onClick={this.upload}>{_t('add-image-mobile.upload')}</Button>;
 
         if (items.length === 0) {

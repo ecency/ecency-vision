@@ -62,10 +62,25 @@ it("(1) Default render.", async () => {
     expect(component.toJSON()).toMatchSnapshot();
 });
 
-it("(2) Empty gallery.", async () => {
+it("(2) usePrivate = 1", async () => {
+    const props = {
+        ...defProps,
+        global: {
+            ...globalInstance,
+            usePrivate: false
+        }
+    }
+    const component = renderer.create(<AddImage {...props}/>);
+    await allOver();
+    expect(component.toJSON()).toMatchSnapshot();
+});
+
+it("(3) Empty gallery.", async () => {
     TEST_MODE = 1;
 
     const component = renderer.create(<AddImage {...defProps}/>);
     await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });
+
+

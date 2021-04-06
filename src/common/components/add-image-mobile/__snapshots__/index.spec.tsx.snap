@@ -67,7 +67,29 @@ exports[`(1) Default render. 1`] = `
 </div>
 `;
 
-exports[`(2) Empty gallery. 1`] = `
+exports[`(2) usePrivate = 1 1`] = `
+<div
+  className="dialog-content"
+>
+  <div
+    className="recent-list"
+  />
+  <div
+    className="d-flex justify-content-center"
+  >
+    <button
+      className="btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Upload image
+    </button>
+  </div>
+</div>
+`;
+
+exports[`(3) Empty gallery. 1`] = `
 <div
   className="dialog-content"
 >
