@@ -26,7 +26,7 @@ exports[`(2) Test with data. 1`] = `
         className="gallery-list-item"
         style={
           Object {
-            "backgroundImage": "url('https://images.ecency.com/DQmce1GReq9pwLiEHLsf2hKhAmouZnNSgnH95udH4g2VzAH/test-8.jpg')",
+            "backgroundImage": "url('https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfsxYg31uVU2qaAJMbxLA5QC3UVPLuv3NgD6kUmbm4uwJEjM2p6HEJn3TeZdk26UewZU2EMYeTAuU?format=match&mode=fit&width=600&height=500')",
           }
         }
       >
@@ -57,7 +57,7 @@ exports[`(2) Test with data. 1`] = `
         className="gallery-list-item"
         style={
           Object {
-            "backgroundImage": "url('https://images.ecency.com/DQmRJdj2PZmKHz3zZ31CUC6fpHuQaxsQCvpEp15rX3RpTFG/test-9.jpg')",
+            "backgroundImage": "url('https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmsW5UVxK6wdRfC1pbPyM9xzYn5qraeesECP66rZ9edokgbrjcFaFjLZiaf41MhwjB1wzgzXk33t?format=match&mode=fit&width=600&height=500')",
           }
         }
       >
@@ -88,7 +88,7 @@ exports[`(2) Test with data. 1`] = `
         className="gallery-list-item"
         style={
           Object {
-            "backgroundImage": "url('https://images.ecency.com/DQmYFWxjApdbdFVYdG6RMGh1vHQdAsAek38ePF3UsRbUYJv/test-10.jpg')",
+            "backgroundImage": "url('https://images.ecency.com/p/Zskj9C56UonZ32EJw6nMcm9UJXZFc4FvMtk6wyeAL2B2wn9sAe3xBkALEsfvhmDDq8UH7NwCDzBBoR2vndSdSHCkePRgrRjUjQGUWLjZrw3f2WethBCr?format=match&mode=fit&width=600&height=500')",
           }
         }
       >
@@ -119,7 +119,7 @@ exports[`(2) Test with data. 1`] = `
         className="gallery-list-item"
         style={
           Object {
-            "backgroundImage": "url('https://images.ecency.com/DQmSoXUteHvx1evzu27Xn5xbf6Mrn29L9Swn2yH2h4keuSQ/test-3.jpg')",
+            "backgroundImage": "url('https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfnH81mLRpXX88tDivAQ4rQeRnNaczmNwEK11cKdMzpuZk5EM7GrPsjaRQspjAUX4xHJoXXVEWyvn?format=match&mode=fit&width=600&height=500')",
           }
         }
       >

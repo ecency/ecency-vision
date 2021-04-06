@@ -499,7 +499,7 @@ export class EditorToolbar extends Component<Props> {
                     multiple={true}
                     style={{display: 'none'}}
                 />
-                {(gallery && activeUser) && <Gallery activeUser={activeUser} onHide={this.toggleGallery} onPick={(url: string) => {
+                {(gallery && activeUser) && <Gallery global={global} activeUser={activeUser} onHide={this.toggleGallery} onPick={(url: string) => {
                     const fileName = url.split("/").pop() || "";
                     this.image(fileName, url);
                     this.toggleGallery();
