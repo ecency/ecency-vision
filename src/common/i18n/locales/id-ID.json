@@ -894,6 +894,12 @@
     "text-label": "Teks Gambar",
     "link-label": "Link Gambar"
   },
+  "add-image-mobile": {
+    "title": "Add Image",
+    "recent-title": "Recently uploaded",
+    "gallery": "Gallery",
+    "upload": "Upload image"
+  },
   "add-link": {
     "title": "Tambahkan Tautan",
     "text-label": "Teks",
