@@ -894,6 +894,12 @@
     "text-label": "Texto da Imagem",
     "link-label": "Link da Imagem"
   },
+  "add-image-mobile": {
+    "title": "Add Image",
+    "recent-title": "Recently uploaded",
+    "gallery": "Gallery",
+    "upload": "Upload image"
+  },
   "add-link": {
     "title": "Adicionar Link",
     "text-label": "Texto",
