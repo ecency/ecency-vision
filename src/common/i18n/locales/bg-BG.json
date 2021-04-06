@@ -894,6 +894,12 @@
     "text-label": "Текст на снимката",
     "link-label": "Линк към снимката"
   },
+  "add-image-mobile": {
+    "title": "Add Image",
+    "recent-title": "Recently uploaded",
+    "gallery": "Gallery",
+    "upload": "Upload image"
+  },
   "add-link": {
     "title": "Добави линк",
     "text-label": "Текст",
