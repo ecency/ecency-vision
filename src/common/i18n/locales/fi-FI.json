@@ -895,10 +895,10 @@
     "link-label": "Kuvan linkki"
   },
   "add-image-mobile": {
-    "title": "Add Image",
-    "recent-title": "Recently uploaded",
-    "gallery": "Gallery",
-    "upload": "Upload image"
+    "title": "Lisää kuva",
+    "recent-title": "Äskettäin lähetetty",
+    "gallery": "Galleria",
+    "upload": "Lataa kuva"
   },
   "add-link": {
     "title": "Add Link",
