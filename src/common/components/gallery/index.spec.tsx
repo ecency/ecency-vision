@@ -3,7 +3,7 @@ import renderer from "react-test-renderer";
 
 import {Gallery} from './index';
 
-import {activeUserInstance, allOver} from "../../helper/test-helper";
+import {activeUserInstance, globalInstance, allOver} from "../../helper/test-helper";
 
 
 let TEST_MODE = 0
@@ -44,6 +44,7 @@ jest.mock("../../api/private-api", () => ({
 
 it('(1) Default render.', async () => {
     const props = {
+        global: globalInstance,
         users: [],
         activeUser: {...activeUserInstance},
         onHide: () => {
@@ -59,6 +60,7 @@ it('(2) Test with data.', async () => {
     TEST_MODE = 1;
 
     const props = {
+        global: globalInstance,
         users: [],
         activeUser: {...activeUserInstance},
         onHide: () => {
