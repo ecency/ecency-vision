@@ -11,6 +11,7 @@ import EmojiPicker from "../emoji-picker";
 import Gallery from "../gallery";
 import Fragments from "../fragments";
 import AddImage from "../add-image";
+import AddImageMobile from "../add-image-mobile";
 import AddLink from "../add-link";
 
 import {uploadImage} from "../../api/misc";
@@ -59,6 +60,7 @@ interface State {
     fragments: boolean;
     image: boolean;
     link: boolean;
+    mobileImage: boolean;
 }
 
 export class EditorToolbar extends Component<Props> {
@@ -67,6 +69,7 @@ export class EditorToolbar extends Component<Props> {
         fragments: false,
         image: false,
         link: false,
+        mobileImage: false
     }
 
     holder = React.createRef<HTMLDivElement>();
@@ -94,6 +97,14 @@ export class EditorToolbar extends Component<Props> {
         }
         const {image} = this.state;
         this.setState({image: !image});
+    }
+
+    toggleMobileImage = (e?: React.MouseEvent<HTMLElement>) => {
+        if (e) {
+            e.stopPropagation();
+        }
+        const {mobileImage} = this.state;
+        this.setState({mobileImage: !mobileImage});
     }
 
     toggleLink = async (e?: React.MouseEvent<HTMLElement>) => {
@@ -339,7 +350,7 @@ export class EditorToolbar extends Component<Props> {
     };
 
     render() {
-        const {gallery, fragments, image, link} = this.state;
+        const {gallery, fragments, image, link, mobileImage} = this.state;
         const {global, sm, activeUser} = this.props;
 
         return (
@@ -407,36 +418,48 @@ export class EditorToolbar extends Component<Props> {
                             {linkSvg}
                         </div>
                     </Tooltip>
-                    <Tooltip content={_t("editor-toolbar.image")}>
-                        <div
-                            className="editor-tool"
-                            onClick={this.toggleImage}>
-                            {imageSvg}
 
-                            {activeUser && (
-                                <div className="sub-tool-menu">
-                                    <div
-                                        className="sub-tool-menu-item"
-                                        onClick={(e: React.MouseEvent<HTMLElement>) => {
-                                            e.stopPropagation();
-                                            const el = this.fileInput.current;
-                                            if (el) el.click();
-                                        }}>
-                                        {_t("editor-toolbar.upload")}
-                                    </div>
-                                    {global.usePrivate && <div
-                                      className="sub-tool-menu-item"
-                                      onClick={(e: React.MouseEvent<HTMLElement>) => {
-                                          e.stopPropagation();
-                                          this.toggleGallery();
-                                      }}
-                                    >
-                                        {_t("editor-toolbar.gallery")}
-                                    </div>}
+                    {(() => {
+                        if (activeUser && global.isMobile) {
+                            return <Tooltip content={_t("editor-toolbar.image")}>
+                                <div className="editor-tool" onClick={this.toggleMobileImage}>
+                                    {imageSvg}
                                 </div>
-                            )}
-                        </div>
-                    </Tooltip>
+                            </Tooltip>
+                        }
+
+                        return <Tooltip content={_t("editor-toolbar.image")}>
+                            <div
+                                className="editor-tool"
+                                onClick={this.toggleImage}>
+                                {imageSvg}
+
+                                {activeUser && (
+                                    <div className="sub-tool-menu">
+                                        <div
+                                            className="sub-tool-menu-item"
+                                            onClick={(e: React.MouseEvent<HTMLElement>) => {
+                                                e.stopPropagation();
+                                                const el = this.fileInput.current;
+                                                if (el) el.click();
+                                            }}>
+                                            {_t("editor-toolbar.upload")}
+                                        </div>
+                                        {global.usePrivate && <div
+                                          className="sub-tool-menu-item"
+                                          onClick={(e: React.MouseEvent<HTMLElement>) => {
+                                              e.stopPropagation();
+                                              this.toggleGallery();
+                                          }}
+                                        >
+                                            {_t("editor-toolbar.gallery")}
+                                        </div>}
+                                    </div>
+                                )}
+                            </div>
+                        </Tooltip>
+                    })()}
+
                     <Tooltip content={_t("editor-toolbar.table")}>
                         <div className="editor-tool" onClick={this.table}>
                             {gridSvg}
@@ -493,9 +516,30 @@ export class EditorToolbar extends Component<Props> {
                     this.link(text, link);
                     this.toggleLink();
                 }}/>}
+                {mobileImage && (
+                    <AddImageMobile global={global}
+                                    activeUser={activeUser}
+                                    onHide={this.toggleMobileImage}
+                                    onPick={(url) => {
+                                        const fileName = url.split("/").pop() || "";
+                                        this.image(fileName, url);
+                                        this.toggleMobileImage();
+                                    }}
+                                    onGallery={() => {
+                                        this.toggleMobileImage();
+                                        this.toggleGallery();
+                                    }}
+                                    onUpload={() => {
+                                        this.toggleMobileImage();
+                                        const el = this.fileInput.current;
+                                        if (el) el.click();
+                                    }}
+                    />
+                )}
             </>
         );
     }
+
 }
 
 export default (props: Props) => {
