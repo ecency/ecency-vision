@@ -262,11 +262,10 @@
     }
 
     .video-thumbnail {
-      width: 100%;
+      width: auto;
       height: 100%;
-      position: absolute;
-      left: 0;
-      top: 0;
+      display: block;
+      margin: auto;
     }
 
     &.markdown-video-link-dtube {
