@@ -1,55 +1,119 @@
 .sign-up-page {
   display: block;
 
-  .page-header {
-    padding: 16px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-
-    .header-title {
-      color: $dark-sky-blue;
-      font-size: 26px;
-      font-weight: 500;
-      text-align: center;
-    }
-
-    .header-description {
-      margin: 16px 0 0 0;
-      opacity: 0.7;
-      text-align: center;
-    }
-  }
-
-  .sign-up-form {
-    max-width: 500px;
-    box-shadow: $box-shadow-alt;
+  .sign-up {
+    max-width: 1400px;
     margin: auto;
-    border-radius: 6px;
-    padding: 16px;
 
-    @include themify(day) {
-      background: lighten($white-three, 2);
+    @media (min-width: $xl-break) {
+      display: flex;
+      margin-top: 120px;
     }
 
-    @include themify(night) {
-      background: lighten($dark-six, 4);
+    .left-image {
+      display: none;
+
+      @media (min-width: $xl-break) {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        img {
+          width: 80%
+        }
+      }
     }
-  }
 
-  .do-login {
-    margin-top: 20px;
-    text-align: center;
-    font-size: 14px;
-    opacity: 0.8;
-  }
+    .the-form {
+      @media (min-width: $xl-break) {
+        width: 500px;
+        flex-grow: 0;
+        flex-shrink: 0;
+      }
 
-  .done-form {
-    text-align: center;
+      .form-title {
+        font-size: 28px;
+        font-weight: 500;
+        text-align: center;
+        margin-bottom: 10px;
 
-    svg {
-      color: $green;
-      height: 20px;
-      margin-right: 10px;
+        @media (min-width: $xl-break) {
+          font-size: 32px;
+        }
+      }
+
+      .form-sub-title {
+        opacity: 0.7;
+        text-align: center;
+      }
+
+      .form-icons {
+        text-align: center;
+        margin: 22px 0 12px 0;
+
+        @media (min-width: $xl-break) {
+          margin: 56px 0;
+        }
+
+        img, svg {
+          height: 44px;
+        }
+
+        img {
+          margin-right: 60px;
+        }
+
+        svg {
+          color: #D2323E;
+        }
+      }
+
+      .form-image {
+        margin-bottom: 6px;
+        text-align: center;
+
+        @media (min-width: $xl-break) {
+          display: none;
+        }
+
+        img {
+          width: 90%;
+          max-width: 400px;
+        }
+      }
+
+      .form-done {
+        text-align: center;
+        color: $green;
+        margin: 20px 0;
+      }
+
+      .form-content {
+        max-width: 460px;
+        margin: auto;
+        @media (min-width: $xl-break) {
+          width: 290px;
+        }
+
+        form {
+          margin-bottom: 26px;
+        }
+
+        .form-do-login, .form-bottom-description, .form-faq {
+          font-size: 90%;
+          opacity: 0.7;
+          text-align: center;
+          margin-bottom: 22px;
+        }
+
+        .form-do-login {
+
+        }
+
+        .form-bottom-description {
+
+        }
+      }
     }
   }
 }
