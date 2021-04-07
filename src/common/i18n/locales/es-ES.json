@@ -106,8 +106,10 @@
     "sign-up-text-2": "¡Regístrate ahora!"
   },
   "sign-up": {
-    "header": "Unirse",
-    "description": "<h3>¡Hogar de las comunidades de expresión gratuita y de recompensas!</h3><br>Una cuenta para administrar todo en <b>Blockchain</b> y <b>Ecency</b>.<br><br>Más información sobre beneficios en nuestra sección de <a href=\"/faq#how-to-join\">Preguntas Frecuentes</a>",
+    "header": "Welcome to Ecency",
+    "description": "Home of Free speech and Rewarding communities!",
+    "bottom-description": "Every account is created on a blockchain and only you have control over that account. One account to manage everything on Blockchain and Ecency.",
+    "learn-more": "Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
     "username": "Elige un nombre de usuario",
     "email": "Ingresa tu dirección de email",
     "ref": "Usuario Referido (Opcional)",
