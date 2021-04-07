@@ -106,8 +106,10 @@
     "sign-up-text-2": "Регистрирай се сега!"
   },
   "sign-up": {
-    "header": "Присъединете се",
-    "description": "<h3>Домът на Свободната реч и Награждаващите общности!</h3><br>Един акаунт за да управлявате всичко в<b>Blockchain</b> и <b>Ecency</b>.<br><br>Научи повече за всички плюсове на <a href=\"/faq#how-to-join\">FAQ</a>",
+    "header": "Welcome to Ecency",
+    "description": "Home of Free speech and Rewarding communities!",
+    "bottom-description": "Every account is created on a blockchain and only you have control over that account. One account to manage everything on Blockchain and Ecency.",
+    "learn-more": "Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
     "username": "Изберете потребителско име",
     "email": "Въведете вашия имейл адрес",
     "ref": "Кой ви покани в платформата(Опция)",
