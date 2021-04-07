@@ -194,7 +194,7 @@ exports[`(1) Default Render 1`] = `
               <span
                 className="reward-num"
               >
-                5
+                10
               </span>
             </div>
             <div
@@ -657,7 +657,7 @@ exports[`(2) With active user 1`] = `
               <span
                 className="reward-num"
               >
-                5
+                10
               </span>
             </div>
             <div
@@ -1163,7 +1163,7 @@ exports[`(3) Active user with unclaimed points 1`] = `
               <span
                 className="reward-num"
               >
-                5
+                10
               </span>
             </div>
             <div
