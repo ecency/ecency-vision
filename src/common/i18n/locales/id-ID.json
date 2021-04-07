@@ -895,10 +895,10 @@
     "link-label": "Link Gambar"
   },
   "add-image-mobile": {
-    "title": "Add Image",
-    "recent-title": "Recently uploaded",
-    "gallery": "Gallery",
-    "upload": "Upload image"
+    "title": "Tambahkan Gambar",
+    "recent-title": "Terakhir diunduh",
+    "gallery": "Galeri",
+    "upload": "Unggah gambar"
   },
   "add-link": {
     "title": "Tambahkan Tautan",
