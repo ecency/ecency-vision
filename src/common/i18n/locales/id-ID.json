@@ -106,8 +106,10 @@
     "sign-up-text-2": "Daftar sekarang!"
   },
   "sign-up": {
-    "header": "Bergabunglah",
-    "description": "<h3>Rumah Bebas bicara dan memberikan imbalan kepada komunitas!</h3><br>Satu akun untuk mengatur semuanya di<b>Blockchain</b>dan<b>Ecency</b>.<br><br>Pelajari lebih banyak tentang keuntungannya di FAQ<a href=\"/faq#how-to-join\">kami</a>",
+    "header": "Welcome to Ecency",
+    "description": "Home of Free speech and Rewarding communities!",
+    "bottom-description": "Every account is created on a blockchain and only you have control over that account. One account to manage everything on Blockchain and Ecency.",
+    "learn-more": "Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
     "username": "Pilih nama pengguna",
     "email": "Masukkan alamat email Anda",
     "ref": "Pengguna rujukan (opsional)",
