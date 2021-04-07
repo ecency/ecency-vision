@@ -182,8 +182,8 @@
     "message-placeholder": "Iniciar la conversación con un mensaje",
     "submit-label": "Confirmar",
     "published": "La publicación fue enviada",
-    "no-subscription": "You don't have any community subscription to cross post.",
-    "info": "Rewards are automatically declined for the cross post and discussions under cross post will be different and will follow different community guidelines."
+    "no-subscription": "No tienes ninguna suscripción comunitaria para enviar mensajes cruzados.",
+    "info": "Las recompensas se rechazan automáticamente para la publicación cruzada y las discusiones bajo la publicación cruzada serán diferentes y seguirán diferentes pautas comunitarias."
   },
   "entry-payout": {
     "reward": "Recompensa",
@@ -895,10 +895,10 @@
     "link-label": "Enlace de la imagen"
   },
   "add-image-mobile": {
-    "title": "Add Image",
-    "recent-title": "Recently uploaded",
-    "gallery": "Gallery",
-    "upload": "Upload image"
+    "title": "Añadir imagen",
+    "recent-title": "Subido recientemente",
+    "gallery": "Galería",
+    "upload": "Subir imagen"
   },
   "add-link": {
     "title": "Añadir enlace",
