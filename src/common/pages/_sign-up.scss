@@ -83,9 +83,32 @@
       }
 
       .form-done {
+        margin: 20px auto;
         text-align: center;
-        color: $green;
-        margin: 20px 0;
+        background: lighten($dark-sky-blue, 36);
+        border-radius: 25px;
+        padding: 12px;
+        max-width: 420px;
+
+        .done-icon {
+          width: 40px;
+          height: 40px;
+          margin: 0 auto 20px auto;
+          background: $dark-sky-blue;
+          border-radius: 50%;
+          color: $white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          svg {
+            height: 24px;
+          }
+        }
+
+        .done-text {
+          color: $dark-sky-blue;
+        }
       }
 
       .form-content {

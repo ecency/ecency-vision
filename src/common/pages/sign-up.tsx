@@ -20,7 +20,7 @@ import {signUp} from "../api/private-api";
 import {_t} from "../i18n";
 import {Tsx} from "../i18n/helper";
 
-import {hiveSvg} from "../img/svg";
+import {hiveSvg, checkSvg} from "../img/svg";
 
 const signupSvg = require("../img/signup.svg");
 const logoCircle = require("../img/logo-circle.svg");
@@ -134,17 +134,20 @@ class SignUpPage extends Component<PageProps, State> {
                             </div>
 
                             {(() => {
-                                //const done = true;
-                                //const email = "loremipsum@gmail.com";
+                                // A test helper to simulate a successful form response.
+                                // const done = true;
+                                // const email = "loremipsum@gmail.com";
 
                                 if (done) {
-
                                     return <div className="form-done">
-                                        <p>{_t('sign-up.success', {email})}</p>
-                                        <p>{_t('sign-up.success-2')}</p>
+                                        <div className="done-icon">{checkSvg}</div>
+                                        <div className="done-text">
+                                            <p>{_t('sign-up.success', {email})}</p>
+                                            <p>{_t('sign-up.success-2')}</p>
+                                        </div>
                                     </div>
-
                                 }
+
                                 return <div className="form-content">
                                     <Tsx k="sign-up.learn-more">
                                         <div className="form-faq"/>
