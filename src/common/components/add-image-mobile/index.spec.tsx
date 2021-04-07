@@ -1,10 +1,10 @@
-import * as React from 'react';
+import * as React from "react";
+
 import renderer from "react-test-renderer";
 
-import {Gallery} from './index';
+import {AddImage} from "./index";
 
 import {activeUserInstance, globalInstance, allOver} from "../../helper/test-helper";
-
 
 let TEST_MODE = 0
 
@@ -12,10 +12,6 @@ jest.mock("../../api/private-api", () => ({
     getImages: () =>
         new Promise((resolve) => {
             if (TEST_MODE === 0) {
-                resolve([]);
-            }
-
-            if (TEST_MODE === 1) {
                 resolve([{
                     "created": "Sat Aug 08 2020 12:50:55 GMT+0200 (Central European Summer Time)",
                     "url": "https://images.ecency.com/DQmSoXUteHvx1evzu27Xn5xbf6Mrn29L9Swn2yH2h4keuSQ/test-3.jpg",
@@ -38,36 +34,53 @@ jest.mock("../../api/private-api", () => ({
                     "timestamp": 1596884295409
                 }])
             }
+
+            if (TEST_MODE === 1) {
+                resolve([]);
+            }
+
         }),
 }));
 
+const defProps = {
+    global: globalInstance,
+    activeUser: {...activeUserInstance},
+    onHide: () => {
+    },
+    onPick: () => {
+    },
+    onGallery: () => {
+    },
+    onUpload: () => {
+    }
+};
 
-it('(1) Default render.', async () => {
-    const props = {
-        global: globalInstance,
-        users: [],
-        activeUser: {...activeUserInstance},
-        onHide: () => {
-        }
-    };
 
-    const component = renderer.create(<Gallery {...props}/>);
+it("(1) Default render.", async () => {
+    const component = renderer.create(<AddImage {...defProps}/>);
     await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });
 
-it('(2) Test with data.', async () => {
+it("(2) usePrivate = 1", async () => {
+    const props = {
+        ...defProps,
+        global: {
+            ...globalInstance,
+            usePrivate: false
+        }
+    }
+    const component = renderer.create(<AddImage {...props}/>);
+    await allOver();
+    expect(component.toJSON()).toMatchSnapshot();
+});
+
+it("(3) Empty gallery.", async () => {
     TEST_MODE = 1;
 
-    const props = {
-        global: globalInstance,
-        users: [],
-        activeUser: {...activeUserInstance},
-        onHide: () => {
-        }
-    };
-
-    const component = renderer.create(<Gallery {...props}/>);
+    const component = renderer.create(<AddImage {...defProps}/>);
     await allOver();
     expect(component.toJSON()).toMatchSnapshot();
 });
+
+
