@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 
 import queryString from "query-string";
 
-import {Button, Form, FormControl, Spinner} from "react-bootstrap";
+import {Button, Form, FormControl, Spinner, Row, Col} from "react-bootstrap";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
@@ -20,7 +20,10 @@ import {signUp} from "../api/private-api";
 import {_t} from "../i18n";
 import {Tsx} from "../i18n/helper";
 
-import {checkSvg} from "../img/svg";
+import {hiveSvg, checkSvg} from "../img/svg";
+
+const signupSvg = require("../img/signup.svg");
+const logoCircle = require("../img/logo-circle.svg");
 
 interface State {
     username: string;
@@ -109,66 +112,90 @@ class SignUpPage extends Component<PageProps, State> {
                     }) :
                     NavBar({...this.props})}
                 <div className="app-content sign-up-page">
-                    {(() => {
-                        if (done) {
-                            return <>
-                                <div className="page-header">
-                                    <div className="header-title">
-                                        {_t('sign-up.header')}
+
+                    <div className="sign-up">
+                        <div className="left-image">
+                            <img src={signupSvg} alt="Signup"/>
+                        </div>
+                        <div className="the-form">
+                            <div className="form-title">
+                                {_t('sign-up.header')}
+                            </div>
+                            <div className="form-sub-title">
+                                {_t('sign-up.description')}
+                            </div>
+                            <div className="form-icons">
+                                <img src={logoCircle} alt="Ecency" title="Ecency"/>
+                                <span title="Hive">{hiveSvg}</span>
+                            </div>
+
+                            <div className="form-image">
+                                <img src={signupSvg} alt="Signup"/>
+                            </div>
+
+                            {(() => {
+                                // A test helper to simulate a successful form response.
+                                // const done = true;
+                                // const email = "loremipsum@gmail.com";
+
+                                if (done) {
+                                    return <div className="form-done">
+                                        <div className="done-icon">{checkSvg}</div>
+                                        <div className="done-text">
+                                            <p>{_t('sign-up.success', {email})}</p>
+                                            <p>{_t('sign-up.success-2')}</p>
+                                        </div>
+                                    </div>
+                                }
+
+                                return <div className="form-content">
+                                    <Tsx k="sign-up.learn-more">
+                                        <div className="form-faq"/>
+                                    </Tsx>
+
+                                    <Form ref={this.form} onSubmit={(e: React.FormEvent) => {
+                                        e.preventDefault();
+                                        e.stopPropagation();
+
+                                        if (!this.form.current?.checkValidity()) {
+                                            return;
+                                        }
+
+                                        this.submit();
+                                    }}>
+                                        <Form.Group>
+                                            <Form.Control type="text" placeholder={_t('sign-up.username')} value={username} onChange={this.usernameChanged} autoFocus={true}
+                                                          required={true}/>
+                                        </Form.Group>
+                                        <Form.Group>
+                                            <Form.Control type="email" placeholder={_t('sign-up.email')} value={email} onChange={this.emailChanged} required={true}/>
+                                        </Form.Group>
+                                        <Form.Group>
+                                            <Form.Control type="text" placeholder={_t('sign-up.ref')} value={referral} onChange={this.refCodeChanged} disabled={lockReferral}/>
+                                        </Form.Group>
+                                        <div className="d-flex justify-content-center">
+                                            <Button variant="primary" block={true} type="submit" disabled={inProgress}>
+                                                {inProgress && spinner} {_t('sign-up.submit')}
+                                            </Button>
+                                        </div>
+                                    </Form>
+
+                                    <div className="form-do-login">
+                                        {_t("sign-up.login-text-1")}
+                                        <a href="#" onClick={(e) => {
+                                            e.preventDefault();
+                                            const {toggleUIProp} = this.props;
+                                            toggleUIProp("login");
+                                        }}>{" "}{_t("sign-up.login-text-2")}</a>
+                                    </div>
+
+                                    <div className="form-bottom-description">
+                                        {_t("sign-up.bottom-description")}
                                     </div>
                                 </div>
-                                <div className="done-form">
-                                    <p>{checkSvg} {_t('sign-up.success', {email})}</p>
-                                    <p>{_t('sign-up.success-2')}</p>
-                                </div>
-                            </>;
-                        }
-
-                        return <>
-                            <div className="page-header">
-                                <div className="header-title">
-                                    {_t('sign-up.header')}
-                                </div>
-                                <Tsx k="sign-up.description"><div className="header-description" /></Tsx>
-                            </div>
-                            <div className="sign-up-form">
-                                <Form ref={this.form} onSubmit={(e: React.FormEvent) => {
-                                    e.preventDefault();
-                                    e.stopPropagation();
-
-                                    if (!this.form.current?.checkValidity()) {
-                                        return;
-                                    }
-
-                                    this.submit();
-                                }}>
-                                    <Form.Group>
-                                        <Form.Control type="text" placeholder={_t('sign-up.username')} value={username} onChange={this.usernameChanged} autoFocus={true}
-                                                      required={true}/>
-                                    </Form.Group>
-                                    <Form.Group>
-                                        <Form.Control type="email" placeholder={_t('sign-up.email')} value={email} onChange={this.emailChanged} required={true}/>
-                                    </Form.Group>
-                                    <Form.Group>
-                                        <Form.Control type="text" placeholder={_t('sign-up.ref')} value={referral} onChange={this.refCodeChanged} disabled={lockReferral}/>
-                                    </Form.Group>
-                                    <div className="d-flex justify-content-center">
-                                        <Button variant="primary" type="submit" disabled={inProgress}>
-                                            {inProgress && spinner} {_t('sign-up.submit')}
-                                        </Button>
-                                    </div>
-                                </Form>
-                            </div>
-                            <div className="do-login">
-                                {_t("sign-up.login-text-1")}
-                                <a href="#" onClick={(e) => {
-                                    e.preventDefault();
-                                    const {toggleUIProp} = this.props;
-                                    toggleUIProp("login");
-                                }}>{" "}{_t("sign-up.login-text-2")}</a>
-                            </div>
-                        </>
-                    })()}
+                            })()}
+                        </div>
+                    </div>
                 </div>
             </>
         )
