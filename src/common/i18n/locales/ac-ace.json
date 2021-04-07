@@ -106,8 +106,10 @@
     "sign-up-text-2": "Peugot jinoe!"
   },
   "sign-up": {
-    "header": "Gabong",
-    "description": "<h3>Rumoh teumpat bebah puegah haba ngon komunitah nyang na peunayah</h3><br>Saboh akun untuk menej bandum nyang na di <b>Blockchain</b> ngon <b>Ecency</b>.<br><br>meurnoe leubeeh lee hai laba bak kamo<a href=\"/faq#how-to-join\">Pertanyaan nyang Sereng di Tanyong (PST) </a>",
+    "header": "Welcome to Ecency",
+    "description": "Home of Free speech and Rewarding communities!",
+    "bottom-description": "Every account is created on a blockchain and only you have control over that account. One account to manage everything on Blockchain and Ecency.",
+    "learn-more": "Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
     "username": "Pileeh nan nyang neu pakek",
     "email": "Peutamong alamat email droeneuh",
     "ref": "Rujukan nyang pakek (jeut hana pasoe)",
