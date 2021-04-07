@@ -106,8 +106,10 @@
     "sign-up-text-2": "Nu registreren!"
   },
   "sign-up": {
-    "header": "Deelnemen",
-    "description": "<h3>De plek van de vrije expressie en belonende gemeenschappen!</h3><br>Een lidmaatschap om alles mee te beheren op de <b>blockchain</b> en <b>Ecency</b>.<br><br>Leer meer over de voordelen in onze <a href=\"/faq#how-to-join\">FAQ</a>",
+    "header": "Welcome to Ecency",
+    "description": "Home of Free speech and Rewarding communities!",
+    "bottom-description": "Every account is created on a blockchain and only you have control over that account. One account to manage everything on Blockchain and Ecency.",
+    "learn-more": "Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
     "username": "Kies een gebruikersnaam",
     "email": "Vul jouw email adres in",
     "ref": "Doorverwezen via lid (optie)",
