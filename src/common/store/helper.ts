@@ -2,8 +2,6 @@ import {Store} from "redux";
 
 import i18n from 'i18next';
 
-const getSymbolFromCurrency = require("currency-symbol-map");
-
 import {AppState} from "./index";
 import {ActiveUser, UserPoints} from "./active-user/types";
 import {loginAct as loginActiveUser, logoutAct as logoutActiveUser, updateAct as updateActiveUserAct} from "./active-user";
@@ -20,6 +18,8 @@ import {getCurrencyRate} from "../api/misc";
 import currencies from "../constants/currencies.json";
 
 import * as ls from "../../common/util/local-storage";
+
+import currencySymbol from "../../common/helper/currency-symbol";
 
 import {AppWindow} from "../../client/window";
 
@@ -140,7 +140,7 @@ export const clientStoreTasks = (store: Store<AppState>) => {
     // Currency
     const currency = ls.get("currency");
     if (currency && currencies.find(x => x.id === currency)) {
-        const symbol = getSymbolFromCurrency(currency);
+        const symbol = currencySymbol(currency);
         getCurrencyRate(currency).then(rate => {
             store.dispatch(setCurrency(currency, rate, symbol));
         });

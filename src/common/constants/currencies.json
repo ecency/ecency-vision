@@ -4,6 +4,10 @@
     "name": "BTC"
   },
   {
+    "id": "hbd",
+    "name": "Hive Based Dollar"
+  },
+  {
     "id": "usd",
     "name": "USD"
   },
