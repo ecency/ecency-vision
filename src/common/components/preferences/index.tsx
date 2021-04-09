@@ -15,9 +15,9 @@ import {langOptions} from "../../i18n";
 
 import {getCurrencyRate} from "../../api/misc";
 
-import currencies from "../../constants/currencies.json";
+import currencySymbol from "../../helper/currency-symbol";
 
-const getSymbolFromCurrency = require("currency-symbol-map");
+import currencies from "../../constants/currencies.json";
 
 interface Props {
     global: Global;
@@ -56,7 +56,7 @@ export class Preferences extends BaseComponent<Props, State> {
 
         this.stateSet({inProgress: true});
         getCurrencyRate(currency).then(rate => {
-            const symbol = getSymbolFromCurrency(currency);
+            const symbol = currencySymbol(currency);
             const {setCurrency} = this.props;
 
             setCurrency(currency, rate, symbol);

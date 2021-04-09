@@ -3,7 +3,7 @@
 exports[`1- default state 1`] = `
 Object {
   "canUseWebp": false,
-  "currency": "usd",
+  "currency": "hbd",
   "currencyRate": 1,
   "currencySymbol": "$",
   "filter": "hot",
@@ -26,7 +26,7 @@ Object {
 exports[`2- location change. should change filter and tag 1`] = `
 Object {
   "canUseWebp": false,
-  "currency": "usd",
+  "currency": "hbd",
   "currencyRate": 1,
   "currencySymbol": "$",
   "filter": "trending",
@@ -49,7 +49,7 @@ Object {
 exports[`3- theme change 1`] = `
 Object {
   "canUseWebp": false,
-  "currency": "usd",
+  "currency": "hbd",
   "currencyRate": 1,
   "currencySymbol": "$",
   "filter": "trending",
@@ -72,7 +72,7 @@ Object {
 exports[`4- hide intro 1`] = `
 Object {
   "canUseWebp": false,
-  "currency": "usd",
+  "currency": "hbd",
   "currencyRate": 1,
   "currencySymbol": "$",
   "filter": "trending",
@@ -95,7 +95,7 @@ Object {
 exports[`5- list style change 1`] = `
 Object {
   "canUseWebp": false,
-  "currency": "usd",
+  "currency": "hbd",
   "currencyRate": 1,
   "currencySymbol": "$",
   "filter": "trending",
@@ -118,7 +118,7 @@ Object {
 exports[`6- Has keychain act 1`] = `
 Object {
   "canUseWebp": false,
-  "currency": "usd",
+  "currency": "hbd",
   "currencyRate": 1,
   "currencySymbol": "$",
   "filter": "trending",
@@ -141,7 +141,7 @@ Object {
 exports[`7- Mute notifications act 1`] = `
 Object {
   "canUseWebp": false,
-  "currency": "usd",
+  "currency": "hbd",
   "currencyRate": 1,
   "currencySymbol": "$",
   "filter": "trending",
@@ -164,7 +164,7 @@ Object {
 exports[`8- Unmute notifications act 1`] = `
 Object {
   "canUseWebp": false,
-  "currency": "usd",
+  "currency": "hbd",
   "currencyRate": 1,
   "currencySymbol": "$",
   "filter": "trending",
@@ -187,7 +187,7 @@ Object {
 exports[`9- Set lang act 1`] = `
 Object {
   "canUseWebp": false,
-  "currency": "usd",
+  "currency": "hbd",
   "currencyRate": 1,
   "currencySymbol": "$",
   "filter": "trending",
@@ -210,7 +210,7 @@ Object {
 exports[`10- Set nsfw act 1`] = `
 Object {
   "canUseWebp": false,
-  "currency": "usd",
+  "currency": "hbd",
   "currencyRate": 1,
   "currencySymbol": "$",
   "filter": "trending",

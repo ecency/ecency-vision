@@ -26,7 +26,11 @@ export const getMarketData = (coin: string, vsCurrency: string, fromTs: string, 
     return axios.get(u).then(r => r.data);
 }
 
-export const getCurrencyRate = (cur: string) => {
+export const getCurrencyRate = (cur: string): Promise<number> => {
+    if (cur === "hbd") {
+        return new Promise((resolve) => resolve(1));
+    }
+
     const u = `https://api.coingecko.com/api/v3/simple/price?ids=hive_dollar&vs_currencies=${cur}`;
     return axios.get(u).then(r => r.data).then(r => r.hive_dollar[cur]);
 }

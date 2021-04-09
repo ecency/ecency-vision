@@ -66,6 +66,11 @@ exports[`(1) Default render 1`] = `
             BTC
           </option>
           <option
+            value="hbd"
+          >
+            Hive Based Dollar
+          </option>
+          <option
             value="usd"
           >
             USD
