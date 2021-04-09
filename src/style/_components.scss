@@ -12,8 +12,6 @@
 @import "../common/components/entry-vote-btn";
 @import "../common/components/entry-payout";
 @import "../common/components/entry-reblog-btn";
-@import "../common/components/entry-edit-btn";
-@import "../common/components/edit-history-btn";
 @import "../common/components/edit-history";
 @import "../common/components/dropdown";
 @import "../common/components/search-box";
@@ -73,7 +71,6 @@
 @import "../common/components/community-role-edit";
 @import "../common/components/community-settings";
 @import "../common/components/scroll-to-top";
-@import "../common/components/pin-btn";
 @import "../common/components/mute-btn";
 @import "../common/components/search-list-item";
 @import "../common/components/witness-vote-btn";
@@ -99,6 +96,9 @@
 @import "../common/components/password-update";
 @import "../common/components/entry-tip-btn";
 @import "../common/components/community-rewards-registration";
+@import "../common/components/entry-share";
+@import "../common/components/entry-menu";
+@import "../common/components/add-image-mobile";
 
 @import "../desktop/app/components/navbar";
 @import "../desktop/app/components/updater";

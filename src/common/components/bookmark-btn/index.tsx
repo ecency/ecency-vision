@@ -16,7 +16,7 @@ import {_t} from "../../i18n";
 
 import _c from "../../util/fix-class-names";
 
-import {bookmarkSvg} from "../../img/svg";
+import {bookmarkOutlineSvg, bookmarkSvg} from "../../img/svg";
 
 export interface Props {
     entry: Entry;
@@ -111,7 +111,7 @@ export class BookmarkBtn extends BaseComponent<Props> {
             return LoginRequired({
                 ...this.props,
                 children: <div className="bookmark-btn">
-                    <Tooltip content={_t('bookmark-btn.add')}><span>{bookmarkSvg}</span></Tooltip>
+                    <Tooltip content={_t('bookmark-btn.add')}><span>{bookmarkOutlineSvg}</span></Tooltip>
                 </div>
             })
         }
@@ -128,7 +128,7 @@ export class BookmarkBtn extends BaseComponent<Props> {
 
         return (
             <div className={_c(`bookmark-btn ${inProgress ? "in-progress" : ""}`)} onClick={this.add}>
-                <Tooltip content={_t('bookmark-btn.add')}><span>{bookmarkSvg}</span></Tooltip>
+                <Tooltip content={_t('bookmark-btn.add')}><span>{bookmarkOutlineSvg}</span></Tooltip>
             </div>
         );
     }

@@ -35,6 +35,52 @@
       max-width: 800px;
     }
 
+    .cross-post {
+      padding: 10px 4px;
+      border-radius: 6px;
+
+      @include themify(day) {
+        background: lighten($dark-sky-blue, 42);
+      }
+
+      @include themify(night) {
+        background: $dark-grey-blue;
+      }
+
+      .cross-post-info {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 10px;
+
+        .cross-post-author {
+          display: flex;
+          align-items: center;
+          margin-left: 4px;
+
+          .user-avatar {
+            width: 20px;
+            height: 20px;
+            margin-right: 4px;
+          }
+        }
+      }
+
+      .cross-post-community {
+        text-align: center;
+        margin-bottom: 10px;
+
+        .community-link {
+          font-weight: 500;
+          margin-right: 6px;
+        }
+      }
+
+      .cross-post-message {
+        text-align: center;
+      }
+    }
+
     .hidden-warning {
       padding: 20px;
       display: flex;
@@ -131,6 +177,7 @@
 
       h1.entry-title {
         font-size: 30px;
+        font-weight: 650;
         margin: 16px 0 22px 0;
 
         @media (min-width: $md-break) {
@@ -168,61 +215,101 @@
           color: $pinkish-grey;
         }
 
-        .author-part {
-          align-items: center;
-          cursor: pointer;
-          display: flex;
+        .author-avatar {
+          width: 40px;
+          margin-right: 6px;
 
-          .author-avatar {
-            margin-right: 6px;
-
-            .user-avatar {
-              width: 24px;
-              height: 24px;
-
-              @media (min-width: $sm-break) {
-                width: 40px;
-                height: 40px;
-              }
-            }
-          }
-
-          .author {
-            align-items: center;
-            display: inline-flex;
-
-            .author-name {
-              font-weight: 700;
-              margin-right: 2px;
-              word-break: keep-all;
-            }
-
-            @include themify(day) {
-              color: $charcoal-grey;
-            }
-
-            @include themify(night) {
-              color: $pinkish-grey;
-            }
-
-            .author-reputation {
-              color: $steel-grey;
-              font-size: 14px;
-              font-weight: 500;
-
-              &::before {
-                content: "(";
-              }
-
-              &::after {
-                content: ")";
-              }
-            }
+          .user-avatar {
+            width: 40px;
+            height: 40px;
           }
         }
 
-        .separator {
-          @extend .circle-separator;
+        .entry-info-inner {
+          .info-line-1 {
+            margin-bottom: 4px;
+
+            .author {
+              align-items: center;
+              display: inline-flex;
+
+              .author-name {
+                font-weight: 700;
+                margin-right: 2px;
+                word-break: keep-all;
+              }
+
+              @include themify(day) {
+                color: $charcoal-grey;
+              }
+
+              @include themify(night) {
+                color: $pinkish-grey;
+              }
+
+              .author-reputation {
+                color: $steel-grey;
+                font-size: 14px;
+                font-weight: 500;
+
+                &::before {
+                  content: "(";
+                }
+
+                &::after {
+                  content: ")";
+                }
+              }
+            }
+          }
+
+          .info-line-2 {
+            display: flex;
+            font-size: 90%;
+            flex-direction: column;
+
+            .separator {
+              @extend .circle-separator;
+              display: none;
+            }
+
+            @media (min-width: $sm-break) {
+              flex-direction: row;
+              align-items: center;
+
+              .separator {
+                display: block;
+              }
+            }
+
+            .entry-tag {
+              .in-tag {
+                margin-right: 4px;
+              }
+
+              .tag-name {
+                font-weight: 500;
+
+                @include themify(day) {
+                  color: $steel-grey;
+                }
+
+                @include themify(night) {
+                  color: $pinkish-grey;
+                }
+
+                &:hover {
+                  color: $dark-sky-blue;
+                }
+              }
+            }
+
+            .date {
+              @media (max-width: $sm-break - 1px) {
+                font-size: 90%;
+              }
+            }
+          }
         }
       }
     }
@@ -290,15 +377,11 @@
         @include clearfix();
         color: $steel-grey;
         margin-bottom: 30px;
+        align-items: center;
         display: flex;
-        justify-content: space-between;
-        flex-direction: column;
+        flex-grow: 1;
+        flex-shrink: 0;
 
-        svg {
-          width: 16px;
-          height: 16px;
-          margin-right: 4px;
-        }
 
         @media (min-width: $md-break) {
           flex-direction: row;
@@ -314,105 +397,73 @@
 
         .separator {
           @extend .circle-separator;
-        }
 
-        .left-side {
-          align-items: center;
-          display: flex;
-          flex-grow: 1;
-          flex-shrink: 0;
-
-          .separator {
-            &:first-of-type {
-              display: none;
-
-              @media (min-width: $sm-break) {
-                display: block;
-              }
-            }
-          }
-
-          .date {
-            align-items: center;
-            display: inline-flex;
-          }
-
-          .author {
-            align-items: center;
-            cursor: pointer;
+          &:first-of-type {
             display: none;
 
             @media (min-width: $sm-break) {
-              display: inline-flex;
-            }
-
-            .author-name {
-              font-weight: 700;
-              margin-right: 2px;
-            }
-
-            @include themify(day) {
-              color: $charcoal-grey;
-            }
-
-            @include themify(night) {
-              color: $pinkish-grey;
-            }
-
-            .author-reputation {
-              color: $steel-grey;
-              font-weight: 500;
-
-              &::before {
-                content: "(";
-              }
-
-              &::after {
-                content: ")";
-              }
-            }
-          }
-
-          .app {
-            font-weight: 700;
-
-            a {
-              text-decoration: none;
-              color: $steel-grey;
-            }
-
-            .app-name {
-              font-weight: 400;
+              display: block;
             }
           }
         }
 
-        .right-side {
-          display: flex;
+        .date {
           align-items: center;
-          flex-grow: 0;
-          flex-shrink: 0;
-          margin-top: 20px;
+          display: inline-flex;
 
-          @media (min-width: $md-break) {
-            justify-content: flex-end;
-            margin-top: 0;
+          svg {
+            width: 16px;
+            height: 16px;
+            margin-right: 4px;
+          }
+        }
+
+        .author {
+          align-items: center;
+          cursor: pointer;
+          display: none;
+
+          @media (min-width: $sm-break) {
+            display: inline-flex;
           }
 
-          .delete-btn {
-            color: lighten($steel-grey, 10);
-            display: flex;
-            align-items: center;
-            cursor: pointer;
+          .author-name {
+            font-weight: 700;
+            margin-right: 2px;
+          }
 
-            svg {
-              height: 16px;
+          @include themify(day) {
+            color: $charcoal-grey;
+          }
+
+          @include themify(night) {
+            color: $pinkish-grey;
+          }
+
+          .author-reputation {
+            color: $steel-grey;
+            font-weight: 500;
+
+            &::before {
+              content: "(";
             }
 
-            &.in-progress {
-              animation: anim-fadein-out 5s infinite;
-              cursor: default;
+            &::after {
+              content: ")";
             }
+          }
+        }
+
+        .app {
+          font-weight: 700;
+
+          a {
+            text-decoration: none;
+            color: $steel-grey;
+          }
+
+          .app-name {
+            font-weight: 400;
           }
         }
       }
@@ -422,50 +473,24 @@
         display: flex;
         width: 100%;
 
-        .sub-menu {
-          align-items: center;
-          display: flex;
-          justify-content: flex-end;
-          flex-grow: 1;
+        .entry-reblog-btn {
+          margin-top: -2px;
+          margin-right: 15px;
 
           @media (min-width: $sm-break) {
-            margin-left: 5%;
+            margin-right: 25px;
           }
 
           svg {
-            height: 18px;
-            width: 18px;
-          }
-
-          @include themify(day) {
-            color: $steel-grey;
-          }
-
-          @include themify(night) {
-            color: $pinkish-grey;
-          }
-
-          .sub-menu-item {
-            align-items: center;
-            display: flex;
-            height: 100%;
-            color: $primary;
-            cursor: pointer;
-
-            &:not(:last-child) {
-              margin-right: 14px;
-
-              @media (min-width: $sm-break) {
-                margin-right: 16px;
-              }
-            }
-
-            &:hover {
-              opacity: 0.7 !important;
-            }
+            height: 17px;
           }
         }
       }
+    }
+
+    .browse-original {
+      padding: 40px 0;
+      text-align: center;
     }
   }
 }

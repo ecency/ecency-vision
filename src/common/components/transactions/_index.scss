@@ -1,11 +1,24 @@
 .transaction-list {
   .transaction-list-header {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 10px 16px;
+    align-items: center;
+    flex-direction: column;
+
+    @media (min-width: $sm-break) {
+      flex-direction: row;
+    }
+
     h2 {
       font-size: 20px;
       font-weight: 500;
-      margin: 30px 10px 16px;
-      text-align: center;
+      margin: 0 0 10px 0;
       text-transform: uppercase;
+
+      @media (min-width: $sm-break) {
+        margin-bottom: 0;
+      }
 
       @include themify(day) {
         color: $charcoal-grey;
@@ -14,10 +27,10 @@
       @include themify(night) {
         color: $powder-blue;
       }
+    }
 
-      @media (min-width: $lg-break) {
-        text-align: left;
-      }
+    select {
+      width: 240px;
     }
   }
 
@@ -146,5 +159,17 @@
         }
       }
     }
+  }
+
+  .transaction-list-item-raw {
+    .raw-code {
+      color: $warm-grey;
+      word-break: break-all;
+      line-height: 150%;
+    }
+  }
+
+  .empty-list {
+    margin: 0 10px 0;
   }
 }

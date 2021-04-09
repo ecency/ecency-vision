@@ -70,6 +70,9 @@ const defProps = {
     updateActiveUser: () => {
     },
     setSigningKey: () => {
+    },
+    fetchTransactions: () => {
+
     }
 }
 

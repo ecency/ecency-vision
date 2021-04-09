@@ -262,11 +262,10 @@
     }
 
     .video-thumbnail {
-      width: 100%;
+      width: auto;
       height: 100%;
-      position: absolute;
-      left: 0;
-      top: 0;
+      display: block;
+      margin: auto;
     }
 
     &.markdown-video-link-dtube {
@@ -289,6 +288,7 @@
 
   iframe {
     max-width: 100% !important;
+    display: block;
     @media (min-width: $xsm-break) {
       width: 360px;
       height: 205px;

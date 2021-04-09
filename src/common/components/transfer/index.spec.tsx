@@ -2,6 +2,8 @@ import React from "react";
 
 import {Transfer, TransferAsset, TransferMode} from "./index";
 
+import {initialState as transactionsInitialState} from "../../store/transactions/index";
+
 import {globalInstance, dynamicPropsIntance1, fullAccountInstance} from "../../helper/test-helper";
 
 import TestRenderer from "react-test-renderer";
@@ -26,11 +28,7 @@ const defProps = {
             uPoints: "0.000"
         }
     },
-    transactions: {
-        list: [],
-        loading: false,
-        error: false
-    },
+    transactions: transactionsInitialState,
     signingKey: '',
     addAccount: () => {
     },

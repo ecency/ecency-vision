@@ -13,14 +13,14 @@
   position: fixed;
   z-index: 9000;
   right: 20px;
-  bottom: 20px;
+  bottom: 60px;
   width: 260px;
 
   @media (min-width: $md-break) {
     width: 500px;
   }
 
-  .feedback-success, .feedback-error {
+  .feedback-success, .feedback-error, .feedback-info {
     box-shadow: $box-shadow;
     border-radius: 6px;
     padding: 8px 6px;
@@ -38,7 +38,7 @@
     @include themify(night) {
       background: $white-four;
       border: 1px solid $warm-grey;
-      color: $dark
+      color: $dark;
     }
 
     svg {
@@ -56,6 +56,12 @@
   .feedback-error {
     svg {
       color: $red2;
+    }
+  }
+
+  .feedback-info {
+    svg {
+      color: $duck-egg-blue;
     }
   }
 }

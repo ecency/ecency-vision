@@ -74,7 +74,7 @@ export class TagLink extends Component<Props> {
     _mounted: boolean = true;
 
     shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
-        return !isEqual(this.props.children, nextProps.children);
+        return !isEqual(this.props.children, nextProps.children) || !isEqual(this.props.communities, nextProps.communities);
     }
 
     componentDidMount() {

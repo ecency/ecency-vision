@@ -2,6 +2,7 @@ interface BaseTransaction {
     num: number;
     type: string;
     timestamp: string;
+    trx_id: string
 }
 
 export interface CurationReward extends BaseTransaction {
@@ -55,6 +56,20 @@ export interface TransferToVesting extends BaseTransaction {
     to: string;
 }
 
+export interface TransferToSavings extends BaseTransaction {
+    type: "transfer_to_savings";
+    amount: string;
+    memo?: string;
+    from: string;
+    to: string;
+}
+
+export interface CancelTransferFromSavings extends BaseTransaction {
+    from: string,
+    request_id: number,
+    type: "cancel_transfer_from_savings",
+}
+
 export interface WithdrawVesting extends BaseTransaction {
     type: "withdraw_vesting";
     acc: string;
@@ -67,6 +82,34 @@ export interface FillOrder extends BaseTransaction {
     open_pays: string;
 }
 
+export interface ProducerReward extends BaseTransaction {
+    type: "producer_reward";
+    vesting_shares: string;
+    producer: string
+}
+
+export interface Interest extends BaseTransaction {
+    type: "interest";
+    owner: string;
+    interest: string
+}
+
+export interface FillConvertRequest extends BaseTransaction {
+    type: "fill_convert_request",
+    amount_in: string,
+    amount_out: string,
+}
+
+export interface ReturnVestingDelegation extends BaseTransaction {
+    type: "return_vesting_delegation"
+    vesting_shares: string
+}
+
+export interface ProposalPay extends BaseTransaction {
+    type: "proposal_pay"
+    payment: string
+}
+
 export type Transaction =
     | CurationReward
     | AuthorReward
@@ -74,13 +117,22 @@ export type Transaction =
     | ClaimRewardBalance
     | Transfer
     | TransferToVesting
+    | TransferToSavings
+    | CancelTransferFromSavings
     | WithdrawVesting
-    | FillOrder;
+    | FillOrder
+    | ProducerReward
+    | Interest
+    | FillConvertRequest
+    | ReturnVestingDelegation
+    | ProposalPay;
+
+export type OperationGroup = "transfers" | "market-orders" | "interests" | "stake-operations" | "rewards";
 
 export interface Transactions {
     list: Transaction[];
     loading: boolean;
-    error: boolean;
+    group: OperationGroup | ""
 }
 
 export enum ActionTypes {
@@ -92,6 +144,7 @@ export enum ActionTypes {
 
 export interface FetchAction {
     type: ActionTypes.FETCH;
+    group: OperationGroup | "";
 }
 
 export interface FetchedAction {

@@ -61,6 +61,16 @@
         background: transparent;
         border: none;
 
+        &:focus {
+          @include themify(day) {
+            background: lighten($yellow, 46);
+          }
+
+          @include themify(night) {
+            background: lighten($dark-six, 10);
+          }
+        }
+
         @include themify(night) {
           color: $silver;
         }

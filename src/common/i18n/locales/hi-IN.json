@@ -106,8 +106,10 @@
     "sign-up-text-2": "अभी साइनअप करें!"
   },
   "sign-up": {
-    "header": "शामिल हों",
-    "description": "<h3>नि: शुल्क भाषण और पुरस्कृत समुदायों का घर!</h3><br>एक खाते पर सब कुछ का प्रबंधन करने के लिए<b>Blockchain</b> और<b>इसेंसी</b>.<br><br>हमारे लाभ के बारे में अधिक जानें <a href=\"/faq#how-to-join\">अकसर किये गए सवाल</a>",
+    "header": "इसेंसी में आपका स्वागत है",
+    "description": "नि: शुल्क भाषण और पुरस्कृत समुदायों का घर!",
+    "bottom-description": "प्रत्येक खाता एक ब्लॉकचेन पर बनाया गया है और केवल उस खाते पर आपका नियंत्रण है। ब्लॉकचेन और इसेंसी पर सब कुछ प्रबंधित करने के लिए एक खाता।",
+    "learn-more": "हमारे लाभ के बारे में अधिक जानें <a href=\"/faq#how-to-join\">अकसर किये गए सवाल</a>",
     "username": "एक उपयोगकर्ता नाम चुनें",
     "email": "अपना ईमेल पता दर्ज करें",
     "ref": "संदर्भित उपयोगकर्ता (वैकल्पिक)",
@@ -124,6 +126,8 @@
     "title": "विशेष रुप से प्रदर्शित"
   },
   "entry-list-item": {
+    "cross-posted": "पोस्ट की गई",
+    "cross-posted-to": "को",
     "reblogged": "{{n}} रीब्लॉगड",
     "promoted": "पदोन्नत",
     "pinned": "पिन की गई पोस्ट",
@@ -132,10 +136,10 @@
     "no-replies": "अभी तक कोई प्रतिक्रिया नहीं। जवाब देने के लिए क्लिक करें।"
   },
   "nsfw": {
-    "reveal": "Reveal this post",
-    "signup": "<a href=\"/signup\" class=\"push-link\">create an account</a> to save your preferences",
-    "settings-1": "adjust your",
-    "settings-2": "display preferences"
+    "reveal": "इस पोस्ट को प्रकट करें",
+    "signup": "<a href=\"/signup\" class=\"push-link\">create an account</a> अपनी वरीयताओं को बचाने के लिए",
+    "settings-1": "अपने को समायोजित करें",
+    "settings-2": "डिस्प्ले प्राथमिकताएं"
   },
   "bookmark-btn": {
     "add": "पृष्ठ स्मृति में जोड़ें",
@@ -147,10 +151,41 @@
     "reblog": "रीब्लॉग",
     "confirm-title": "@ {{n}} के ब्लॉग पर रीब्लॉग करें?",
     "confirm-ok": "रीब्लॉग",
-    "success": "रीब्लॉग हो गया"
+    "success": "रीब्लॉग हो गया",
+    "delete-reblog": "पूर्ववत करें",
+    "delete-confirm-title": "विद्रोह पूर्ववत करें?",
+    "delete-confirm-ok": "पूर्ववत् करें",
+    "delete-success": "रिबॉग हटाया गया"
   },
   "entry-tip": {
     "title": "टिप"
+  },
+  "entry-share": {
+    "title": "सांझा करें"
+  },
+  "entry-menu": {
+    "cross-post": "क्रॉस पोस्ट",
+    "share": "सांझा करें",
+    "edit-history": "इतिहास संपादित करें",
+    "pin": "पिन",
+    "pin-success": "पोस्ट पिन किया गया",
+    "unpin": "अनपिन",
+    "unpin-success": "पोस्ट अनपिन किया गया",
+    "mute": "म्यूट करें",
+    "mute-success": "पोस्ट म्यूट किया गया",
+    "unmute": "अनम्यूट करें",
+    "unmute-success": "पोस्ट अनम्यूट नहीं किया गया",
+    "promote": "प्रचार करना",
+    "boost": "बूस्ट"
+  },
+  "cross-post": {
+    "title": "क्रॉस पोस्ट",
+    "community-placeholder": "एक समुदाय चुनें",
+    "message-placeholder": "एक संदेश के साथ बातचीत शुरू करें",
+    "submit-label": "पुष्टी करें",
+    "published": "पोस्ट प्रकाशित",
+    "no-subscription": "आपके पास पोस्ट पार करने के लिए कोई सामुदायिक सदस्यता नहीं है।",
+    "info": "क्रॉस पोस्ट के लिए पुरस्कारों को स्वचालित रूप से अस्वीकार कर दिया जाता है और क्रॉस पोस्ट के तहत चर्चा अलग-अलग होगी और विभिन्न सामुदायिक दिशानिर्देशों का पालन करेगी।"
   },
   "entry-payout": {
     "reward": "इनाम",
@@ -196,10 +231,13 @@
     "comment-entry-title": "आप किसी एकल टिप्पणी के सूत्र को देख रहे हैं: ",
     "comment-entry-go-root": "पूरा संदर्भ देखें",
     "comment-entry-go-parent": "सीधा मूल जनक को देखें",
-    "show-history": "संपादित इतिहास दिखाएं",
     "hidden-warning": "यह पोस्ट गुप्त था निम्न मूल्यांकन के कारण.",
     "address-copy": "पोस्ट पता कापी करे",
-    "address-copied": "क्लिपबोर्ड पर पोस्ट पता कॉपी किया गया।"
+    "address-copied": "क्लिपबोर्ड पर पोस्ट पता कॉपी किया गया।",
+    "browse-original": "मूल पोस्ट खोलें",
+    "cross-post-by": "द्वारा क्रॉस पोस्ट",
+    "cross-post-community": "समुदाय",
+    "community-in": "में"
   },
   "edit-history": {
     "title": "इतिहास संपादित करें",
@@ -207,7 +245,7 @@
     "version": "संस्करण {{n}}"
   },
   "similar-entries": {
-    "title": "@{{n}} द्वारा हाल की पोस्ट"
+    "title": "से अधिक@{{n}}"
   },
   "comment": {
     "body-placeholder": "अपना उत्तर यहाँ लिखें",
@@ -318,10 +356,6 @@
     "conflict-body-text": "यह समुदाय पहले से पंजीकृत है।",
     "min-required-body-text": "पंजीकरण के लिए न्यूनतम 100 ग्राहक चाहिए।"
   },
-  "pin-btn": {
-    "pin": "पिन",
-    "unpin": "अनपिन"
-  },
   "mute-btn": {
     "mute": "मौन",
     "unmute": "अनम्यूट करें",
@@ -376,7 +410,7 @@
     "notifications": "अधिसूचना अलर्ट",
     "currency": "करेंसी",
     "language": "भाषा",
-    "nsfw": "Show NSFW content",
+    "nsfw": "NSFW सामग्री दिखाएं",
     "updated": "वरीयता अद्यतन!"
   },
   "wallet": {
@@ -446,7 +480,20 @@
     "transfer": "किसी को उपहार दे",
     "claim-ok": "अंक अर्जित किये",
     "promote": "बढ़ावा देना",
-    "boost": "बढ़ावा"
+    "boost": "बढ़ावा",
+    "filter-all": "सारा इतिहास",
+    "filter-10": "हार्टबीट के लिए अंक",
+    "filter-20": "लॉगिन के लिए अंक",
+    "filter-30": "उपयोग बोनस",
+    "filter-100": "पद के लिए अंक",
+    "filter-110": "टिप्पणी के लिए अंक",
+    "filter-120": "वोट के लिए अंक",
+    "filter-130": "पुनर्प्रेशण के लिए अंक",
+    "filter-150": "प्रत्यायोजित इनाम",
+    "filter-160": "रेफरल इनाम",
+    "filter-170": "सामुदायिक पुरस्कार",
+    "filter-998": "निवर्तमान स्थानांतरण",
+    "filter-999": "आवक स्थानांतरण"
   },
   "purchase": {
     "select-asset": "असेट चुनें",
@@ -528,6 +575,12 @@
   },
   "transactions": {
     "title": "इतिहास",
+    "group-all": "सारा इतिहास",
+    "group-transfers": "स्थानांतरण",
+    "group-market-orders": "बाजार आदेश",
+    "group-interests": "ब्याज",
+    "group-stake-operations": "स्टेक ऑपरेशन",
+    "group-rewards": "पुरस्कार",
     "type-curation_reward": "क्यूरेशन रिवार्ड",
     "type-author_reward": "लेखक इनाम",
     "type-comment_benefactor_reward": "टिप्पणी लाभकारी पुरस्कार",
@@ -535,7 +588,15 @@
     "type-transfer": "स्थानांतरण",
     "type-transfer_to_vesting": "अधिकार निधान में स्थांतरण करें",
     "type-withdraw_vesting": "अधिकार निधान निकालें",
-    "type-fill_order": "आर्डर भरें"
+    "type-fill_order": "आर्डर भरें",
+    "type-producer_reward": "निर्माता इनाम",
+    "type-interest": "ब्याज",
+    "type-transfer_to_savings": "बचत खाते में स्थांतरण करें",
+    "type-fill_convert_request": "कन्वर्ट अनुरोध भरें",
+    "type-cancel_transfer_from_savings": "बचत से स्थान्तरण रद्द करें",
+    "type-cancel_transfer_from_savings-detail": "से: <strong>@{{from}}</strong> <br/> अनुरोध आईडी:<strong>{{request}}</strong>",
+    "type-return_vesting_delegation": "लौटते हुए प्रतिनिधिमंडल",
+    "type-proposal_pay": "प्रस्ताव का भुगतान"
   },
   "key-or-hot": {
     "sign": "साइन करें",
@@ -621,7 +682,10 @@
     "reblog-hint": "ऑटो अपने ब्लॉग में सामग्री साझा करें",
     "schedule": "अनुसूची",
     "schedule-hint": "ऑटो विशिष्ट समय पर सामग्री प्रकाशित करता है",
-    "scheduled": "पोस्ट अनुसूचित करें"
+    "scheduled": "पोस्ट अनुसूचित करें",
+    "empty-title-alert": "पोस्ट का शीर्षक दर्ज करें",
+    "empty-tags-alert": "पोस्ट टैग दर्ज करें",
+    "empty-body-alert": "पोस्ट बॉडी दर्ज करें"
   },
   "tag-selector": {
     "placeholder-empty": "टैग। पहला टैग मुख्य श्रेणी है। क्रमित करने योग्य।",
@@ -831,6 +895,12 @@
     "title": "छवि जोड़ें",
     "text-label": "छवि पाठ",
     "link-label": "छवि लिंक"
+  },
+  "add-image-mobile": {
+    "title": "छवि जोड़ें",
+    "recent-title": "हाल ही में अपलोड किया गया",
+    "gallery": "गैलरी",
+    "upload": "तस्वीर अपलोड करें"
   },
   "add-link": {
     "title": "लिंक जोड़ें",

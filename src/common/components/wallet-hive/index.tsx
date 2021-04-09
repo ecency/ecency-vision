@@ -7,7 +7,7 @@ import moment from "moment";
 import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
-import {Transactions} from "../../store/transactions/types";
+import {OperationGroup, Transactions} from "../../store/transactions/types";
 import {ActiveUser} from "../../store/active-user/types";
 
 import BaseComponent from "../base";
@@ -49,6 +49,7 @@ interface Props {
     addAccount: (data: Account) => void;
     updateActiveUser: (data?: Account) => void;
     setSigningKey: (key: string) => void;
+    fetchTransactions: (username: string, group?: OperationGroup | "") => void;
 }
 
 interface State {
@@ -508,7 +509,8 @@ export default (p: Props) => {
         signingKey: p.signingKey,
         addAccount: p.addAccount,
         updateActiveUser: p.updateActiveUser,
-        setSigningKey: p.setSigningKey
+        setSigningKey: p.setSigningKey,
+        fetchTransactions: p.fetchTransactions
     }
 
     return <WalletHive {...props} />;

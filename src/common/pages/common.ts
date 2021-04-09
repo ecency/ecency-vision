@@ -13,10 +13,11 @@ import {NotificationFilter, Notifications} from "../store/notifications/types";
 import {Subscription} from "../store/subscriptions/types";
 import {DynamicProps} from "../store/dynamic-props/types";
 import {Entries, Entry} from "../store/entries/types";
-import {Reblog} from "../store/reblogs/types";
+import {Reblogs} from "../store/reblogs/types";
 import {Discussion as DiscussionType, SortOrder} from "../store/discussion/types";
-import {Transactions} from "../store/transactions/types";
+import {Transactions, OperationGroup} from "../store/transactions/types";
 import {Points} from "../store/points/types";
+import {EntryPinTracker} from "../store/entry-pin-tracker/types";
 
 
 import {toggleTheme, hideIntro, toggleListStyle, dismissNewVersion, muteNotifications, unMuteNotifications, setCurrency, setLang, setNsfw} from "../store/global";
@@ -30,10 +31,12 @@ import {fetchTransactions, resetTransactions} from "../store/transactions";
 import {addUser, deleteUser} from "../store/users";
 import {setActiveUser, updateActiveUser} from "../store/active-user";
 import {toggleUIProp} from "../store/ui";
-import {addReblog} from "../store/reblogs";
+import {fetchReblogs, addReblog, deleteReblog} from "../store/reblogs";
 import {fetchNotifications, fetchUnreadNotificationCount, setNotificationsFilter, markNotifications} from "../store/notifications";
 import {fetchPoints, resetPoints} from "../store/points";
 import {setSigningKey} from "../store/signing-key";
+import {trackEntryPin, setEntryPin} from "../store/entry-pin-tracker";
+
 
 export interface PageProps {
     history: History;
@@ -47,8 +50,8 @@ export interface PageProps {
     muteNotifications: () => void;
     unMuteNotifications: () => void;
     setCurrency: (currency: string, rate: number, symbol: string) => void;
-    setLang: (lang:string) => void;
-    setNsfw: (value:boolean) => void;
+    setLang: (lang: string) => void;
+    setNsfw: (value: boolean) => void;
 
     dynamicProps: DynamicProps;
 
@@ -79,7 +82,7 @@ export interface PageProps {
     addCommunity: (data: Community) => void;
 
     transactions: Transactions;
-    fetchTransactions: (username: string) => void;
+    fetchTransactions: (username: string, group?: OperationGroup | "") => void;
     resetTransactions: () => void;
 
     users: User[];
@@ -93,8 +96,10 @@ export interface PageProps {
     ui: UI;
     toggleUIProp: (what: ToggleType) => void;
 
-    reblogs: Reblog[];
-    addReblog: (account: string, author: string, permlink: string) => void;
+    reblogs: Reblogs;
+    fetchReblogs: () => void;
+    addReblog: (author: string, permlink: string) => void;
+    deleteReblog: (author: string, permlink: string) => void;
 
     notifications: Notifications;
     fetchNotifications: (since: string | null) => void;
@@ -103,11 +108,15 @@ export interface PageProps {
     markNotifications: (id: string | null) => void;
 
     points: Points;
-    fetchPoints: (username: string) => void;
+    fetchPoints: (username: string, filter?: number) => void;
     resetPoints: () => void
 
     signingKey: string;
     setSigningKey: (key: string) => void;
+
+    entryPinTracker: EntryPinTracker;
+    trackEntryPin: (entry: Entry) => void;
+    setEntryPin: (entry: Entry, pin: boolean) => void;
 }
 
 export const pageMapStateToProps = (state: AppState) => ({
@@ -148,13 +157,17 @@ export const pageMapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
             updateActiveUser,
             toggleUIProp,
             addReblog,
+            deleteReblog,
+            fetchReblogs,
             fetchNotifications,
             fetchUnreadNotificationCount,
             setNotificationsFilter,
             markNotifications,
             fetchPoints,
             resetPoints,
-            setSigningKey
+            setSigningKey,
+            trackEntryPin,
+            setEntryPin
         },
         dispatch
     );

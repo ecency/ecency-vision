@@ -133,12 +133,26 @@
     margin: 0 0 20px 0;
 
     .transaction-list-header {
+      margin: 30px 10px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: column;
+
+      @media (min-width: $sm-break) {
+        flex-direction: row;
+      }
+
       h2 {
         font-size: 20px;
         font-weight: 500;
-        margin: 30px 10px 16px;
+        margin: 0 0 10px 0;
         text-align: center;
         text-transform: uppercase;
+
+        @media (min-width: $sm-break) {
+          margin-bottom: 0;
+        }
 
         @include themify(day) {
           color: $charcoal-grey;
@@ -147,10 +161,10 @@
         @include themify(night) {
           color: $powder-blue;
         }
+      }
 
-        @media (min-width: $lg-break) {
-          text-align: left;
-        }
+      select {
+        width: 240px;
       }
     }
 
@@ -251,6 +265,10 @@
           }
         }
       }
+    }
+
+    .empty-list {
+      margin: 0 10px 0;
     }
   }
 }

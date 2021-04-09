@@ -5,13 +5,14 @@ import {AppState} from "../common/store";
 import initialState from "../common/store/initial-state";
 
 import {Global, ListStyle, Theme} from "../common/store/global/types";
+
 import {activeUserMaker} from "../common/store/helper";
 
 import defaults from "../common/constants/defaults.json";
 
 import config from "../config";
 
-import {getSearchIndexCount} from "./helper";
+import {getSearchIndexCount, getDynamicProps} from "./helper";
 
 import {getOperatingSystem} from "../common/util/platform";
 
@@ -35,9 +36,12 @@ export const makePreloadedState = async (req: express.Request): Promise<AppState
         usePrivate: Boolean(parseInt(config.usePrivate, 10))
     };
 
+    const dynamicProps = await getDynamicProps();
+
     return {
         ...initialState,
         global: globalState,
+        dynamicProps,
         activeUser: activeUser ? activeUserMaker(activeUser) : initialState.activeUser,
     }
 }

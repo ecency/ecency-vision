@@ -13,6 +13,13 @@ import {
     TransferToVesting,
     WithdrawVesting,
     FillOrder,
+    ProducerReward,
+    Interest,
+    TransferToSavings,
+    FillConvertRequest,
+    CancelTransferFromSavings,
+    ReturnVestingDelegation,
+    ProposalPay
 } from "../../store/transactions/types";
 
 import {dynamicPropsIntance1} from "../../helper/test-helper";
@@ -28,6 +35,7 @@ const defProps = {
 
 it("(1) curation_reward", () => {
     const transaction: CurationReward = {
+        trx_id: "0x14123213",
         comment_author: "user2",
         comment_permlink: "hquwxmvg",
         curator: "user1",
@@ -48,6 +56,7 @@ it("(1) curation_reward", () => {
 
 it("(2) author_reward", () => {
     const transaction: AuthorReward = {
+        trx_id: "0x14123213",
         author: "user1",
         num: 358711,
         permlink: "lorem-ipsum-dolor",
@@ -69,6 +78,7 @@ it("(2) author_reward", () => {
 
 it("(3) comment_benefactor_reward", () => {
     const transaction: CommentBenefactor = {
+        trx_id: "0x14123213",
         author: "xxxthorxxx",
         benefactor: "esteemapp",
         num: 2623508,
@@ -91,6 +101,7 @@ it("(3) comment_benefactor_reward", () => {
 
 it("(4) claim_reward_balance", () => {
     const transaction: ClaimRewardBalance = {
+        trx_id: "0x14123213",
         account: "user1",
         num: 359042,
         reward_hbd: "0.000 HBD",
@@ -111,6 +122,7 @@ it("(4) claim_reward_balance", () => {
 
 it("(5) transfer", () => {
     const transaction: Transfer = {
+        trx_id: "0x14123213",
         amount: "192.425 HIVE",
         from: "user1",
         memo: "lorem-ipsum-dolor",
@@ -131,6 +143,7 @@ it("(5) transfer", () => {
 
 it("(6) transfer_to_vesting", () => {
     const transaction: TransferToVesting = {
+        trx_id: "0x14123213",
         amount: "82.203 HIVE",
         from: "user1",
         num: 3204242,
@@ -150,6 +163,7 @@ it("(6) transfer_to_vesting", () => {
 
 it("(7) withdraw_vesting", () => {
     const transaction: WithdrawVesting = {
+        trx_id: "0x14123213",
         num: 3204242,
         timestamp: "2020-06-06T10:14:33",
         acc: "user1",
@@ -168,12 +182,159 @@ it("(7) withdraw_vesting", () => {
 
 it("(8) fill_order", () => {
     const transaction: FillOrder = {
+        trx_id: "0x14123213",
         num: 3204242,
         timestamp: "2020-06-06T10:14:33",
         current_pays: "foo",
         open_pays: "bar",
         type: "fill_order",
     };
+
+    const props = {
+        ...defProps,
+        transaction,
+    };
+
+    const renderer = TestRenderer.create(<TransactionRow {...props} />);
+    expect(renderer.toJSON()).toMatchSnapshot();
+});
+
+it("(9) producer_reward", () => {
+    const transaction: ProducerReward = {
+        trx_id: "0x14123213",
+        num: 4506230,
+        timestamp: "2020-06-06T10:14:33",
+        producer: "good-karma",
+        vesting_shares: "466.396582 VESTS",
+        type: "producer_reward"
+    };
+
+    const props = {
+        ...defProps,
+        transaction,
+    };
+
+    const renderer = TestRenderer.create(<TransactionRow {...props} />);
+    expect(renderer.toJSON()).toMatchSnapshot();
+});
+
+it("(10) interest", () => {
+    const transaction: Interest = {
+        trx_id: "0x14123213",
+        num: 4506230,
+        timestamp: "2021-03-11T13:04:57",
+        owner: "foo",
+        interest: "0.570 HBD",
+        type: "interest",
+    };
+
+    const props = {
+        ...defProps,
+        transaction,
+    };
+
+    const renderer = TestRenderer.create(<TransactionRow {...props} />);
+    expect(renderer.toJSON()).toMatchSnapshot();
+});
+
+it("(11) transfer_to_savings", () => {
+    const transaction: TransferToSavings = {
+        trx_id: "0x14123213",
+        amount: "0.001 HIVE",
+        from: "talhasch",
+        memo: "test memo",
+        num: 6621,
+        timestamp: "2021-03-19T11:31:33",
+        to: "talhasch",
+        type: "transfer_to_savings",
+    };
+
+    const props = {
+        ...defProps,
+        transaction,
+    };
+
+    const renderer = TestRenderer.create(<TransactionRow {...props} />);
+    expect(renderer.toJSON()).toMatchSnapshot();
+});
+
+it("(12) fill_convert_request", () => {
+    const transaction: FillConvertRequest = {
+        trx_id: "0x14123213",
+        amount_in: "1.507 HBD",
+        amount_out: "10.920 HIVE",
+        num: 6264,
+        timestamp: "2021-01-29T21:27:00",
+        type: "fill_convert_request"
+    };
+
+    const props = {
+        ...defProps,
+        transaction,
+    };
+
+    const renderer = TestRenderer.create(<TransactionRow {...props} />);
+    expect(renderer.toJSON()).toMatchSnapshot();
+});
+
+it("(13) cancel_transfer_from_savings", () => {
+    const transaction: CancelTransferFromSavings = {
+        trx_id: "0x14123213",
+        from: "foo",
+        num: 22525,
+        request_id: 1612448772,
+        timestamp: "2021-02-06T09:00:51",
+        type: "cancel_transfer_from_savings",
+    };
+
+    const props = {
+        ...defProps,
+        transaction,
+    };
+
+    const renderer = TestRenderer.create(<TransactionRow {...props} />);
+    expect(renderer.toJSON()).toMatchSnapshot();
+});
+
+it("(14) return_vesting_delegation", () => {
+    const transaction: ReturnVestingDelegation = {
+        trx_id: "0x14123213",
+        num: 6233,
+        timestamp: "2021-01-18T07:13:09",
+        type: "return_vesting_delegation",
+        vesting_shares: "3825.116651 VESTS",
+    };
+
+    const props = {
+        ...defProps,
+        transaction,
+    };
+
+    const renderer = TestRenderer.create(<TransactionRow {...props} />);
+    expect(renderer.toJSON()).toMatchSnapshot();
+});
+
+it("(15) proposal_pay", () => {
+    const transaction: ProposalPay = {
+        "num": 151892,
+        "type": "proposal_pay",
+        "timestamp": "2021-03-19T12:29:51",
+        "trx_id": "0000000000000000000000000000000000000000",
+        "payment": "14.560 HBD"
+    }
+
+    const props = {
+        ...defProps,
+        transaction,
+    };
+
+    const renderer = TestRenderer.create(<TransactionRow {...props} />);
+    expect(renderer.toJSON()).toMatchSnapshot();
+});
+
+it("(30) fallback", () => {
+    // @ts-ignore
+    const transaction: ReturnVestingDelegation = {trx_id: "0x14123213", type: "unknown_operation"};
 
     const props = {
         ...defProps,

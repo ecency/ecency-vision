@@ -430,3 +430,343 @@ exports[`(8) fill_order 1`] = `
   />
 </div>
 `;
+
+exports[`(9) producer_reward 1`] = `
+<div
+  className="transaction-list-item"
+>
+  <div
+    className="transaction-icon"
+  >
+    <svg
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M14.79,10.62L3.5,21.9L2.1,20.5L13.38,9.21L14.79,10.62M19.27,7.73L19.86,7.14L19.07,6.35L19.71,5.71L18.29,4.29L17.65,4.93L16.86,4.14L16.27,4.73C14.53,3.31 12.57,2.17 10.47,1.37L9.64,3.16C11.39,4.08 13,5.19 14.5,6.5L14,7L17,10L17.5,9.5C18.81,11 19.92,12.61 20.84,14.36L22.63,13.53C21.83,11.43 20.69,9.47 19.27,7.73Z"
+        fill="currentColor"
+      />
+    </svg>
+  </div>
+  <div
+    className="transaction-title"
+  >
+    <div
+      className="transaction-name"
+    >
+      Producer reward
+    </div>
+    <div
+      className="transaction-date"
+    >
+      2 hours ago
+    </div>
+  </div>
+  <div
+    className="transaction-numbers"
+  >
+    0.240 HP
+  </div>
+  <div
+    className="transaction-details"
+  />
+</div>
+`;
+
+exports[`(10) interest 1`] = `
+<div
+  className="transaction-list-item"
+>
+  <div
+    className="transaction-icon"
+  >
+    <svg
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M5,6H23V18H5V6M14,9A3,3 0 0,1 17,12A3,3 0 0,1 14,15A3,3 0 0,1 11,12A3,3 0 0,1 14,9M9,8A2,2 0 0,1 7,10V14A2,2 0 0,1 9,16H19A2,2 0 0,1 21,14V10A2,2 0 0,1 19,8H9M1,10H3V20H19V22H1V10Z"
+        fill="currentColor"
+      />
+    </svg>
+  </div>
+  <div
+    className="transaction-title"
+  >
+    <div
+      className="transaction-name"
+    >
+      Interest
+    </div>
+    <div
+      className="transaction-date"
+    >
+      2 hours ago
+    </div>
+  </div>
+  <div
+    className="transaction-numbers"
+  >
+    <span
+      className="number"
+    >
+      0.570 HBD
+    </span>
+  </div>
+  <div
+    className="transaction-details"
+  />
+</div>
+`;
+
+exports[`(11) transfer_to_savings 1`] = `
+<div
+  className="transaction-list-item"
+>
+  <div
+    className="transaction-icon"
+  >
+    <svg
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M9 14H2V16H9V19L13 15L9 11V14M15 13V10H22V8H15V5L11 9L15 13Z"
+        fill="currentColor"
+      />
+    </svg>
+  </div>
+  <div
+    className="transaction-title"
+  >
+    <div
+      className="transaction-name"
+    >
+      Transfer to savings
+    </div>
+    <div
+      className="transaction-date"
+    >
+      2 hours ago
+    </div>
+  </div>
+  <div
+    className="transaction-numbers"
+  >
+    <span
+      className="number"
+    >
+      0.001 HIVE
+    </span>
+  </div>
+  <div
+    className="transaction-details"
+  >
+    <span>
+      test memo
+       
+      <br />
+       
+      <br />
+      <strong>
+        @
+        talhasch
+      </strong>
+       -&gt; 
+      <strong>
+        @
+        talhasch
+      </strong>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`(12) fill_convert_request 1`] = `
+<div
+  className="transaction-list-item"
+>
+  <div
+    className="transaction-icon"
+  >
+    <svg
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M3,15H21V13H3V15M3,19H21V17H3V19M3,11H21V9H3V11M3,5V7H21V5H3Z"
+        fill="currentColor"
+      />
+    </svg>
+  </div>
+  <div
+    className="transaction-title"
+  >
+    <div
+      className="transaction-name"
+    >
+      Fill convert request
+    </div>
+    <div
+      className="transaction-date"
+    >
+      2 hours ago
+    </div>
+  </div>
+  <div
+    className="transaction-numbers"
+  >
+    <span
+      className="number"
+    >
+      1.507 HBD
+       = 
+      10.920 HIVE
+    </span>
+  </div>
+  <div
+    className="transaction-details"
+  />
+</div>
+`;
+
+exports[`(13) cancel_transfer_from_savings 1`] = `
+<div
+  className="transaction-list-item"
+>
+  <div
+    className="transaction-icon"
+  >
+    <svg
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
+        fill="currentColor"
+      />
+    </svg>
+  </div>
+  <div
+    className="transaction-title"
+  >
+    <div
+      className="transaction-name"
+    >
+      Cancel transfer from savings
+    </div>
+    <div
+      className="transaction-date"
+    >
+      2 hours ago
+    </div>
+  </div>
+  <div
+    className="transaction-numbers"
+  />
+  <div
+    className="transaction-details"
+  >
+    <span
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "From: <strong>@foo</strong> <br /> Request id: <strong>1612448772</strong>",
+        }
+      }
+    />
+  </div>
+</div>
+`;
+
+exports[`(14) return_vesting_delegation 1`] = `
+<div
+  className="transaction-list-item"
+>
+  <div
+    className="transaction-icon"
+  >
+    <svg
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"
+        fill="currentColor"
+      />
+    </svg>
+  </div>
+  <div
+    className="transaction-title"
+  >
+    <div
+      className="transaction-name"
+    >
+      Return vesting delegation
+    </div>
+    <div
+      className="transaction-date"
+    >
+      2 hours ago
+    </div>
+  </div>
+  <div
+    className="transaction-numbers"
+  >
+    1.965 HP
+  </div>
+  <div
+    className="transaction-details"
+  />
+</div>
+`;
+
+exports[`(15) proposal_pay 1`] = `
+<div
+  className="transaction-list-item"
+>
+  <div
+    className="transaction-icon"
+  >
+    <svg
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M15.58,16.8L12,14.5L8.42,16.8L9.5,12.68L6.21,10L10.46,9.74L12,5.8L13.54,9.74L17.79,10L14.5,12.68M20,12C20,10.89 20.9,10 22,10V6C22,4.89 21.1,4 20,4H4A2,2 0 0,0 2,6V10C3.11,10 4,10.9 4,12A2,2 0 0,1 2,14V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V14A2,2 0 0,1 20,12Z"
+        fill="currentColor"
+      />
+    </svg>
+  </div>
+  <div
+    className="transaction-title"
+  >
+    <div
+      className="transaction-name"
+    >
+      Proposal pay
+    </div>
+    <div
+      className="transaction-date"
+    >
+      2 hours ago
+    </div>
+  </div>
+  <div
+    className="transaction-numbers"
+  >
+    <span
+      className="number"
+    >
+      14.560 HBD
+    </span>
+  </div>
+  <div
+    className="transaction-details"
+  />
+</div>
+`;
+
+exports[`(30) fallback 1`] = `
+<div
+  className="transaction-list-item transaction-list-item-raw"
+>
+  <div
+    className="raw-code"
+  >
+    {"trx_id":"0x14123213","type":"unknown_operation"}
+  </div>
+</div>
+`;

@@ -1,0 +1,42 @@
+.add-image-mobile-modal {
+  .modal-body {
+    padding-top: 0;
+  }
+
+  .dialog-placeholder {
+    height: 215px;
+  }
+
+  .dialog-content {
+    .recent-list {
+      height: 162px;
+      margin-bottom: 20px;
+
+      .recent-list-title {
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 12px;
+        height: 20px;
+      }
+
+      .recent-list-body {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 10px;
+        height: 130px;
+
+        .recent-list-item {
+          align-items: center;
+          background-color: $white-four;
+          background-position: 50% 50%;
+          background-repeat: no-repeat;
+          background-size: cover;
+          border-radius: 8px;
+          cursor: pointer;
+          display: flex;
+          height: 100%;
+        }
+      }
+    }
+  }
+}

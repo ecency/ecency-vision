@@ -1,0 +1,30 @@
+.entry-share-dialog {
+  .share-buttons {
+    display: grid;
+    grid-template-columns: 60px 60px 60px;
+    grid-gap: 10px;
+    width: 210px;
+    margin: auto auto 20px auto;
+
+    .share-button {
+      width: 60px;
+      height: 60px;
+      background: $dark-sky-blue;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+
+      &:hover {
+        background: lighten($dark-sky-blue, 10);
+      }
+
+      svg {
+        width: 28px;
+        height: 28px;
+        color: $white;
+      }
+    }
+  }
+}

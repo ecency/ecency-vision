@@ -7,3 +7,9 @@ export default (str: string) => {
     document.execCommand('Copy');
     document.body.removeChild(i);
 }
+
+export const readClipboard = (): Promise<string> => {
+    return navigator.clipboard ?
+        navigator.clipboard.readText().then(r => r).catch(() => "") :
+        new Promise((resolve) => resolve(""));
+}

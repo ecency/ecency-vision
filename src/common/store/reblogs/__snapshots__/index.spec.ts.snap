@@ -1,18 +1,88 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`1- default state 1`] = `Array []`;
+exports[`1- default state 1`] = `
+Object {
+  "canFetch": true,
+  "list": Array [],
+}
+`;
 
-exports[`2- reloadAct 1`] = `
-Array [
-  Object {
-    "account": "lorem",
-    "author": "ipsum",
-    "permlink": "dolor",
-  },
-  Object {
-    "account": "foo",
-    "author": "bar",
-    "permlink": "baz",
-  },
-]
+exports[`2- fetchAct 1`] = `
+Object {
+  "canFetch": false,
+  "list": Array [],
+}
+`;
+
+exports[`3- fetchedAct 1`] = `
+Object {
+  "canFetch": false,
+  "list": Array [
+    Object {
+      "author": "foo",
+      "permlink": "bar",
+    },
+    Object {
+      "author": "baz",
+      "permlink": "gaz",
+    },
+  ],
+}
+`;
+
+exports[`4- addAct 1`] = `
+Object {
+  "canFetch": false,
+  "list": Array [
+    Object {
+      "author": "foo",
+      "permlink": "bar",
+    },
+    Object {
+      "author": "baz",
+      "permlink": "gaz",
+    },
+    Object {
+      "author": "lorem",
+      "permlink": "ipsum",
+    },
+  ],
+}
+`;
+
+exports[`5- deleteAct 1`] = `
+Object {
+  "canFetch": false,
+  "list": Array [
+    Object {
+      "author": "foo",
+      "permlink": "bar",
+    },
+    Object {
+      "author": "lorem",
+      "permlink": "ipsum",
+    },
+  ],
+}
+`;
+
+exports[`6- logoutAct 1`] = `
+Object {
+  "canFetch": true,
+  "list": Array [],
+}
+`;
+
+exports[`7- fetchAct 1`] = `
+Object {
+  "canFetch": false,
+  "list": Array [],
+}
+`;
+
+exports[`8- loginAct 1`] = `
+Object {
+  "canFetch": true,
+  "list": Array [],
+}
 `;

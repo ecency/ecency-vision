@@ -194,7 +194,7 @@ exports[`(1) Default Render 1`] = `
               <span
                 className="reward-num"
               >
-                5
+                10
               </span>
             </div>
             <div
@@ -227,6 +227,77 @@ exports[`(1) Default Render 1`] = `
           <h2>
             History
           </h2>
+          <select
+            className="form-control"
+            onChange={[Function]}
+            value={0}
+          >
+            <option
+              value="0"
+            >
+              All History
+            </option>
+            <option
+              value={10}
+            >
+              Points for heartbeat
+            </option>
+            <option
+              value={20}
+            >
+              Points for login
+            </option>
+            <option
+              value={30}
+            >
+              Usage bonus
+            </option>
+            <option
+              value={100}
+            >
+              Points for post
+            </option>
+            <option
+              value={110}
+            >
+              Points for comment
+            </option>
+            <option
+              value={120}
+            >
+              Points for vote
+            </option>
+            <option
+              value={130}
+            >
+              Points for reblog
+            </option>
+            <option
+              value={150}
+            >
+              Delegation reward
+            </option>
+            <option
+              value={160}
+            >
+              Referral reward
+            </option>
+            <option
+              value={170}
+            >
+              Community reward
+            </option>
+            <option
+              value={998}
+            >
+              Outgoing transfer
+            </option>
+            <option
+              value={999}
+            >
+              Incoming transfer
+            </option>
+          </select>
         </div>
         <div
           className="transaction-list-body"
@@ -407,7 +478,7 @@ exports[`(2) With active user 1`] = `
                 onMouseLeave={[Function]}
               >
                 <div
-                  className="dropdown-btn "
+                  className="dropdown-btn"
                 >
                   
                   <div
@@ -586,7 +657,7 @@ exports[`(2) With active user 1`] = `
               <span
                 className="reward-num"
               >
-                5
+                10
               </span>
             </div>
             <div
@@ -630,6 +701,77 @@ exports[`(2) With active user 1`] = `
           <h2>
             History
           </h2>
+          <select
+            className="form-control"
+            onChange={[Function]}
+            value={0}
+          >
+            <option
+              value="0"
+            >
+              All History
+            </option>
+            <option
+              value={10}
+            >
+              Points for heartbeat
+            </option>
+            <option
+              value={20}
+            >
+              Points for login
+            </option>
+            <option
+              value={30}
+            >
+              Usage bonus
+            </option>
+            <option
+              value={100}
+            >
+              Points for post
+            </option>
+            <option
+              value={110}
+            >
+              Points for comment
+            </option>
+            <option
+              value={120}
+            >
+              Points for vote
+            </option>
+            <option
+              value={130}
+            >
+              Points for reblog
+            </option>
+            <option
+              value={150}
+            >
+              Delegation reward
+            </option>
+            <option
+              value={160}
+            >
+              Referral reward
+            </option>
+            <option
+              value={170}
+            >
+              Community reward
+            </option>
+            <option
+              value={998}
+            >
+              Outgoing transfer
+            </option>
+            <option
+              value={999}
+            >
+              Incoming transfer
+            </option>
+          </select>
         </div>
         <div
           className="transaction-list-body"
@@ -842,7 +984,7 @@ exports[`(3) Active user with unclaimed points 1`] = `
                 onMouseLeave={[Function]}
               >
                 <div
-                  className="dropdown-btn "
+                  className="dropdown-btn"
                 >
                   
                   <div
@@ -1021,7 +1163,7 @@ exports[`(3) Active user with unclaimed points 1`] = `
               <span
                 className="reward-num"
               >
-                5
+                10
               </span>
             </div>
             <div
@@ -1065,6 +1207,77 @@ exports[`(3) Active user with unclaimed points 1`] = `
           <h2>
             History
           </h2>
+          <select
+            className="form-control"
+            onChange={[Function]}
+            value={0}
+          >
+            <option
+              value="0"
+            >
+              All History
+            </option>
+            <option
+              value={10}
+            >
+              Points for heartbeat
+            </option>
+            <option
+              value={20}
+            >
+              Points for login
+            </option>
+            <option
+              value={30}
+            >
+              Usage bonus
+            </option>
+            <option
+              value={100}
+            >
+              Points for post
+            </option>
+            <option
+              value={110}
+            >
+              Points for comment
+            </option>
+            <option
+              value={120}
+            >
+              Points for vote
+            </option>
+            <option
+              value={130}
+            >
+              Points for reblog
+            </option>
+            <option
+              value={150}
+            >
+              Delegation reward
+            </option>
+            <option
+              value={160}
+            >
+              Referral reward
+            </option>
+            <option
+              value={170}
+            >
+              Community reward
+            </option>
+            <option
+              value={998}
+            >
+              Outgoing transfer
+            </option>
+            <option
+              value={999}
+            >
+              Incoming transfer
+            </option>
+          </select>
         </div>
         <div
           className="transaction-list-body"

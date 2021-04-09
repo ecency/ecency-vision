@@ -106,8 +106,10 @@
     "sign-up-text-2": "Daftar sekarang!"
   },
   "sign-up": {
-    "header": "Bergabunglah",
-    "description": "<h3>Rumah Bebas bicara dan memberikan imbalan kepada komunitas!</h3><br>Satu akun untuk mengatur semuanya di<b>Blockchain</b>dan<b>Ecency</b>.<br><br>Pelajari lebih banyak tentang keuntungannya di FAQ<a href=\"/faq#how-to-join\">kami</a>",
+    "header": "Welcome to Ecency",
+    "description": "Home of Free speech and Rewarding communities!",
+    "bottom-description": "Every account is created on a blockchain and only you have control over that account. One account to manage everything on Blockchain and Ecency.",
+    "learn-more": "Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
     "username": "Pilih nama pengguna",
     "email": "Masukkan alamat email Anda",
     "ref": "Pengguna rujukan (opsional)",
@@ -124,6 +126,8 @@
     "title": "Sorotan"
   },
   "entry-list-item": {
+    "cross-posted": "diposting bersilangan",
+    "cross-posted-to": "ke",
     "reblogged": "{{n}} Dibagikan",
     "promoted": "dipromosikan",
     "pinned": "Postingan Disematkan",
@@ -132,10 +136,10 @@
     "no-replies": "Belum ada respon. Klik untuk merespon."
   },
   "nsfw": {
-    "reveal": "Reveal this post",
-    "signup": "<a href=\"/signup\" class=\"push-link\">create an account</a> to save your preferences",
-    "settings-1": "adjust your",
-    "settings-2": "display preferences"
+    "reveal": "Hapus postingan ini",
+    "signup": "<a href=\"/signup\" class=\"push-link\">buatlah sebuah akun</a> untuk menyimpan preferensi Anda",
+    "settings-1": "sesuaikan Anda",
+    "settings-2": "tampilkan preferensi"
   },
   "bookmark-btn": {
     "add": "Tambahkan ke penanda",
@@ -147,10 +151,41 @@
     "reblog": "Tampilkan kembali",
     "confirm-title": "Tampilkan ke blog @{{n}}?",
     "confirm-ok": "Tampilkan kembali",
-    "success": "Ditampilkan kembali!"
+    "success": "Ditampilkan kembali!",
+    "delete-reblog": "Batalkan Menampilkan Kembali",
+    "delete-confirm-title": "Batalkan Menampilkan Kembali?",
+    "delete-confirm-ok": "Batalkan",
+    "delete-success": "Menampilkan kembali dihilangkan"
   },
   "entry-tip": {
     "title": "Tip"
+  },
+  "entry-share": {
+    "title": "Bagikan"
+  },
+  "entry-menu": {
+    "cross-post": "Silangkan Postingan",
+    "share": "Bagikan",
+    "edit-history": "Edit Riwayat",
+    "pin": "Sematkan",
+    "pin-success": "Postingan disematkan",
+    "unpin": "Lepas sematan",
+    "unpin-success": "Postingan Sudah Tidak Disematkan",
+    "mute": "Senyapkan",
+    "mute-success": "Postingan disenyapkan",
+    "unmute": "Hidupkan",
+    "unmute-success": "Postingan ditayangkan",
+    "promote": "Promosikan",
+    "boost": "Tingkatkan Nilai Postingan"
+  },
+  "cross-post": {
+    "title": "Postingan Bersilangan",
+    "community-placeholder": "Pilih komunitas",
+    "message-placeholder": "Mulai percakapan dengan sebuah pesan",
+    "submit-label": "Korfirmasi",
+    "published": "Postingan yang diterbitkan",
+    "no-subscription": "Anda belum bergabung ke satu komunitas pun untuk menyilangkan postingan.",
+    "info": "Reward secara otomatis ditolak untuk lintas posting dan diskusi dalam postingan silang akan berbeda dan akan mengikuti pedoman komunitas yang berbeda."
   },
   "entry-payout": {
     "reward": "Imbalan",
@@ -196,10 +231,13 @@
     "comment-entry-title": "Anda melihat sebuah komentar tunggal dari: ",
     "comment-entry-go-root": "Lihat konteks lengkapnya",
     "comment-entry-go-parent": "Lihat sumber utamanya",
-    "show-history": "Tampilkan riwayat edit",
     "hidden-warning": "Posting ini tersembunyi dikarenakan peringkat rendah.",
     "address-copy": "Salin alamat postingan",
-    "address-copied": "Tempel alamat yang disalin ke papan klip."
+    "address-copied": "Tempel alamat yang disalin ke papan klip.",
+    "browse-original": "Tampilan tulisan asli",
+    "cross-post-by": "Postingan bersilangan dengan",
+    "cross-post-community": "komunitas",
+    "community-in": "di"
   },
   "edit-history": {
     "title": "Riwayat Penyuntingan",
@@ -207,7 +245,7 @@
     "version": "Versi {{n}}"
   },
   "similar-entries": {
-    "title": "Postingan terbaru dari @{{n}}"
+    "title": "Lebih banyak lagi dari @{{n}}"
   },
   "comment": {
     "body-placeholder": "Tulis balasan Anda disini",
@@ -318,10 +356,6 @@
     "conflict-body-text": "Komunitas ini telah terdaftar.",
     "min-required-body-text": "Minimum memiliki 100 orang subscriber untuk mendaftar."
   },
-  "pin-btn": {
-    "pin": "Sematkan",
-    "unpin": "Lepaskan"
-  },
   "mute-btn": {
     "mute": "Bisukan",
     "unmute": "Bisukan postingan/komentar",
@@ -376,7 +410,7 @@
     "notifications": "Peringatan notifikasi",
     "currency": "Mata uang",
     "language": "Bahasa",
-    "nsfw": "Show NSFW content",
+    "nsfw": "Perlihatkan konten NSFW",
     "updated": "Preferensi diperbaharui!"
   },
   "wallet": {
@@ -446,7 +480,20 @@
     "transfer": "Hadiah untuk seseorang",
     "claim-ok": "Poin yang diklaim",
     "promote": "Promosikan",
-    "boost": "Tingkatkan"
+    "boost": "Tingkatkan",
+    "filter-all": "Semua Riwayat",
+    "filter-10": "Poin kunjungan",
+    "filter-20": "Poin untuk masuk",
+    "filter-30": "Penggunaan bonus",
+    "filter-100": "Poin postingan",
+    "filter-110": "Poin komentar",
+    "filter-120": "Poin untuk vote",
+    "filter-130": "Poin reblog",
+    "filter-150": "Reward delegasi",
+    "filter-160": "Reward referal",
+    "filter-170": "Reward komunitas",
+    "filter-998": "Transfer keluar",
+    "filter-999": "Transfer masuk"
   },
   "purchase": {
     "select-asset": "Pilih Aset",
@@ -528,6 +575,12 @@
   },
   "transactions": {
     "title": "Riwayat",
+    "group-all": "Semua riwayat",
+    "group-transfers": "Transfer",
+    "group-market-orders": "Pesanan Market",
+    "group-interests": "Bunga",
+    "group-stake-operations": "Operasi Stake",
+    "group-rewards": "Reward",
     "type-curation_reward": "Reward Kurasi",
     "type-author_reward": "Reward Penulis",
     "type-comment_benefactor_reward": "Reward Komentar Distributor",
@@ -535,7 +588,15 @@
     "type-transfer": "Transfer",
     "type-transfer_to_vesting": "Transfer ke vesting",
     "type-withdraw_vesting": "Menarik vesting",
-    "type-fill_order": "Isi pesanan"
+    "type-fill_order": "Isi pesanan",
+    "type-producer_reward": "Reward produser",
+    "type-interest": "Bunga",
+    "type-transfer_to_savings": "Transfer untuk tabungan",
+    "type-fill_convert_request": "Isi permintaan konversi",
+    "type-cancel_transfer_from_savings": "Batalkan transfer untuk tabungan",
+    "type-cancel_transfer_from_savings-detail": "Dari: <strong>@{{from}}</strong> <br/> Permintaan id: <strong>{{request}}</strong>",
+    "type-return_vesting_delegation": "Pengembalian vesting delegasi",
+    "type-proposal_pay": "Pembayaran proposal"
   },
   "key-or-hot": {
     "sign": "Masuk",
@@ -621,7 +682,10 @@
     "reblog-hint": "Bagi otomatis konten ke blog Anda",
     "schedule": "Jadwal",
     "schedule-hint": "Terbitkan konten otomatis pada waktu tertentu",
-    "scheduled": "Postingan yang dijadwalkan"
+    "scheduled": "Postingan yang dijadwalkan",
+    "empty-title-alert": "Tambahkan judul postingan",
+    "empty-tags-alert": "Tambahkan tagar postingan",
+    "empty-body-alert": "Tambahkan isi postingan"
   },
   "tag-selector": {
     "placeholder-empty": "Tagar. Tagar pertama adalah kategori utama. Mudah disortir.",
@@ -831,6 +895,12 @@
     "title": "Tambahkan gambar",
     "text-label": "Teks Gambar",
     "link-label": "Link Gambar"
+  },
+  "add-image-mobile": {
+    "title": "Tambahkan Gambar",
+    "recent-title": "Terakhir diunduh",
+    "gallery": "Galeri",
+    "upload": "Unggah gambar"
   },
   "add-link": {
     "title": "Tambahkan Tautan",

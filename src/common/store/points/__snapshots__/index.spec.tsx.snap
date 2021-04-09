@@ -2,14 +2,28 @@
 
 exports[`1- default state 1`] = `
 Object {
+  "filter": 0,
+  "loading": false,
   "points": "0.000",
   "transactions": Array [],
   "uPoints": "0.000",
 }
 `;
 
-exports[`2- fetched 1`] = `
+exports[`2- fetchAct 1`] = `
 Object {
+  "filter": 0,
+  "loading": true,
+  "points": "0.000",
+  "transactions": Array [],
+  "uPoints": "0.000",
+}
+`;
+
+exports[`3- fetched 1`] = `
+Object {
+  "filter": 0,
+  "loading": false,
   "points": "1.000",
   "transactions": Array [
     Object {
@@ -35,8 +49,30 @@ Object {
 }
 `;
 
-exports[`3- resetAct 1`] = `
+exports[`4- resetAct 1`] = `
 Object {
+  "filter": 0,
+  "loading": false,
+  "points": "0.000",
+  "transactions": Array [],
+  "uPoints": "0.000",
+}
+`;
+
+exports[`5- fetchAct 1`] = `
+Object {
+  "filter": 10,
+  "loading": true,
+  "points": "0.000",
+  "transactions": Array [],
+  "uPoints": "0.000",
+}
+`;
+
+exports[`6- errorAct 1`] = `
+Object {
+  "filter": 10,
+  "loading": false,
   "points": "0.000",
   "transactions": Array [],
   "uPoints": "0.000",

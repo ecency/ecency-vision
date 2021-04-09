@@ -30,3 +30,8 @@ export const getCurrencyRate = (cur: string) => {
     const u = `https://api.coingecko.com/api/v3/simple/price?ids=hive_dollar&vs_currencies=${cur}`;
     return axios.get(u).then(r => r.data).then(r => r.hive_dollar[cur]);
 }
+
+export const geLatestDesktopTag = (): Promise<string> =>
+    axios.get("https://api.github.com/repos/ecency/ecency-vision/releases/latest")
+        .then(r => r.data)
+        .then(r => r.tag_name);

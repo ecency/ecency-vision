@@ -15,8 +15,9 @@ import {DynamicProps} from "../../store/dynamic-props/types";
 import {Community, Communities} from "../../store/communities/types";
 import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
-import {Reblog} from "../../store/reblogs/types";
+import {Reblogs} from "../../store/reblogs/types";
 import {UI, ToggleType} from "../../store/ui/types";
+import {EntryPinTracker} from "../../store/entry-pin-tracker/types";
 
 import ProfileLink from "../profile-link/index";
 import Tag from "../tag";
@@ -27,6 +28,7 @@ import EntryReblogBtn from "../entry-reblog-btn/index";
 import EntryPayout from "../entry-payout/index";
 import EntryVotes from "../entry-votes";
 import Tooltip from "../tooltip";
+import EntryMenu from "../entry-menu";
 
 import parseDate from "../../helper/parse-date";
 import accountReputation from '../../helper/account-reputation';
@@ -35,6 +37,7 @@ import {_t} from "../../i18n";
 import {Tsx} from "../../i18n/helper";
 
 import _c from "../../util/fix-class-names";
+import truncate from "../../util/truncate";
 
 import {repeatSvg, pinSvg, commentSvg} from "../../img/svg";
 
@@ -56,18 +59,27 @@ interface Props {
     community?: Community | null;
     users: User[];
     activeUser: ActiveUser | null;
-    reblogs: Reblog[];
+    reblogs: Reblogs;
     entry: Entry;
     ui: UI;
+    entryPinTracker: EntryPinTracker;
+    signingKey: string;
     asAuthor: string;
     promoted: boolean;
+    order: number;
     addAccount: (data: Account) => void;
     updateEntry: (entry: Entry) => void;
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data?: Account) => void;
     deleteUser: (username: string) => void;
-    addReblog: (account: string, author: string, permlink: string) => void;
+    fetchReblogs: () => void;
+    addReblog: (author: string, permlink: string) => void;
+    deleteReblog: (author: string, permlink: string) => void;
     toggleUIProp: (what: ToggleType) => void;
+    addCommunity: (data: Community) => void;
+    trackEntryPin: (entry: Entry) => void;
+    setSigningKey: (key: string) => void;
+    setEntryPin: (entry: Entry, pin: boolean) => void;
 }
 
 interface State {
@@ -92,6 +104,8 @@ export default class EntryListItem extends Component<Props, State> {
             !isEqual(this.props.dynamicProps, nextProps.dynamicProps) ||
             !isEqual(this.props.activeUser, nextProps.activeUser) ||
             !isEqual(this.props.reblogs, nextProps.reblogs) ||
+            !isEqual(this.props.communities, nextProps.communities) ||
+            !isEqual(this.props.entryPinTracker, nextProps.entryPinTracker) ||
             !isEqual(this.state, nextState)
         );
     }
@@ -115,8 +129,10 @@ export default class EntryListItem extends Component<Props, State> {
     }
 
     render() {
+        const {entry: theEntry, community, asAuthor, promoted, global, activeUser, history, order} = this.props;
+        const crossPost = !!(theEntry.original_entry);
 
-        const {entry, community, asAuthor, promoted, global, activeUser, history} = this.props;
+        const entry = theEntry.original_entry || theEntry;
 
         const imgGrid: string = (global.canUseWebp ? catchPostImage(entry, 600, 500, 'webp') : catchPostImage(entry, 600, 500)) || noImage;
         const imgRow: string = (global.canUseWebp ? catchPostImage(entry, 260, 200, 'webp') : catchPostImage(entry, 260, 200)) || noImage;
@@ -171,6 +187,41 @@ export default class EntryListItem extends Component<Props, State> {
         const cls = `entry-list-item ${promoted ? "promoted-item" : ""}`;
         return (
             <div className={_c(cls)}>
+
+                {(() => {
+                    if (crossPost) {
+
+                        return <div className="cross-item">
+                            {ProfileLink({
+                                ...this.props,
+                                username: theEntry.author,
+                                children: <a className="cross-item-author notranslate">{`@${theEntry.author}`}</a>
+                            })}
+                            {" "}
+                            {_t("entry-list-item.cross-posted")}
+                            {" "}
+                            {EntryLink({
+                                ...this.props,
+                                entry: theEntry.original_entry!,
+                                children: <a className="cross-item-link">
+                                    {truncate(`@${theEntry.original_entry!.author}/${theEntry.original_entry!.permlink}`, 40)}
+                                </a>
+                            })}
+                            {" "}
+                            {_t("entry-list-item.cross-posted-to")}
+                            {" "}
+                            {Tag({
+                                ...this.props,
+                                tag: theEntry.community && theEntry.community_title ? {name: theEntry.community, title: theEntry.community_title} : theEntry.category,
+                                type: "link",
+                                children: <a className="community-name">{theEntry.community_title || theEntry.category}</a>
+                            })}
+                        </div>
+                    }
+
+                    return null;
+                })()}
+
                 <div className="item-header">
                     <div className="item-header-main">
                         <div className="author-part">
@@ -248,7 +299,7 @@ export default class EntryListItem extends Component<Props, State> {
                             <div className="item-image">
                                 {EntryLink({
                                     ...this.props,
-                                    entry,
+                                    entry: (crossPost ? theEntry : entry),
                                     children: <div>
                                         {thumb}
                                     </div>
@@ -257,12 +308,12 @@ export default class EntryListItem extends Component<Props, State> {
                             <div className="item-summary">
                                 {EntryLink({
                                     ...this.props,
-                                    entry,
+                                    entry: (crossPost ? theEntry : entry),
                                     children: <div className="item-title">{title}</div>
                                 })}
                                 {EntryLink({
                                     ...this.props,
-                                    entry,
+                                    entry: (crossPost ? theEntry : entry),
                                     children: <div className="item-body">{summary}</div>
                                 })}
                             </div>
@@ -283,7 +334,7 @@ export default class EntryListItem extends Component<Props, State> {
                         })}
                         {EntryLink({
                             ...this.props,
-                            entry,
+                            entry: (crossPost ? theEntry : entry),
                             children: <a className="replies notranslate">
                                 <Tooltip
                                     content={
@@ -300,8 +351,13 @@ export default class EntryListItem extends Component<Props, State> {
                             </a>
                         })}
                         {EntryReblogBtn({
+                            ...this.props
+                        })}
+                        <div className="flex-spacer"/>
+                        {EntryMenu({
                             ...this.props,
-                            text: false
+                            alignBottom: order >= 1,
+                            entry,
                         })}
                     </div>
                 </div>

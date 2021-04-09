@@ -1,6 +1,9 @@
 import {Dispatch} from "redux";
 
+import {utils} from "@hiveio/dhive";
+
 import {
+    OperationGroup,
     Transaction,
     Transactions,
     Actions,
@@ -13,33 +16,45 @@ import {
 
 import {getAccountHistory} from "../../api/hive";
 
+const ops = utils.operationOrders;
+export const ACCOUNT_OPERATION_GROUPS: Record<OperationGroup, number[]> = {
+    "transfers": [ops.transfer, ops.transfer_to_savings, ops.cancel_transfer_from_savings],
+    "market-orders": [ops.fill_convert_request, ops.fill_order],
+    "interests": [ops.interest],
+    "stake-operations": [ops.return_vesting_delegation, ops.withdraw_vesting, ops.transfer_to_vesting],
+    "rewards": [ops.author_reward, ops.curation_reward, ops.producer_reward, ops.claim_reward_balance, ops.comment_benefactor_reward, ops.proposal_pay, ops.liquidity_reward]
+}
+
+const ALL_ACCOUNT_OPERATIONS = [...Object.values(ACCOUNT_OPERATION_GROUPS)].flat();
+
 export const initialState: Transactions = {
     list: [],
     loading: false,
-    error: false,
+    group: ""
 };
 
 export default (state: Transactions = initialState, action: Actions): Transactions => {
     switch (action.type) {
         case ActionTypes.FETCH: {
             return {
+                ...state,
+                group: action.group,
                 list: [],
                 loading: true,
-                error: false,
             };
         }
         case ActionTypes.FETCHED: {
             return {
+                ...state,
                 list: action.transactions,
                 loading: false,
-                error: false,
             };
         }
         case ActionTypes.FETCH_ERROR: {
             return {
+                ...state,
                 list: [],
                 loading: false,
-                error: true,
             };
         }
         case ActionTypes.RESET: {
@@ -51,46 +66,37 @@ export default (state: Transactions = initialState, action: Actions): Transactio
 };
 
 /* Actions */
-export const fetchTransactions = (username: string) => (dispatch: Dispatch) => {
-    dispatch(fetchAct());
+export const fetchTransactions = (username: string, group: OperationGroup | "" = "") => (dispatch: Dispatch) => {
+    dispatch(fetchAct(group));
 
     const name = username.replace("@", "");
 
-    getAccountHistory(name).then(r => {
+    const operations = group ? ACCOUNT_OPERATION_GROUPS[group] : ALL_ACCOUNT_OPERATIONS;
+
+    getAccountHistory(name, operations).then(r => {
 
         const mapped: Transaction[] = r.map((x: any): Transaction[] | null => {
             const {op} = x[1];
-            const {timestamp} = x[1];
+            const {timestamp, trx_id} = x[1];
             const opName = op[0];
             const opData = op[1];
 
-            if (["curation_reward",
-                "author_reward",
-                "comment_benefactor_reward",
-                "claim_reward_balance",
-                "transfer",
-                "transfer_to_vesting",
-                "withdraw_vesting",
-                "fill_order"].includes(opName)) {
-                return {
-                    num: x[0],
-                    type: opName,
-                    timestamp,
-                    ...opData,
-                };
-            }
-
-            return null;
+            return {
+                num: x[0],
+                type: opName,
+                timestamp,
+                trx_id,
+                ...opData,
+            };
         });
 
         const transactions: Transaction[] = mapped
             .filter(x => x !== null)
-            .sort((a, b) => {
-                return a.num > b.num ? 1 : -1
-            });
+            .sort((a: any, b: any) => b.num - a.num);
 
         dispatch(fetchedAct(transactions));
     }).catch(() => {
+        console.log("catch")
         dispatch(fetchErrorAct());
     });
 };
@@ -100,9 +106,10 @@ export const resetTransactions = () => (dispatch: Dispatch) => {
 };
 
 /* Action Creators */
-export const fetchAct = (): FetchAction => {
+export const fetchAct = (group: OperationGroup | ""): FetchAction => {
     return {
         type: ActionTypes.FETCH,
+        group
     };
 };
 

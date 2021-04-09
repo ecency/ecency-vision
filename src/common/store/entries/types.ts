@@ -22,7 +22,9 @@ export interface JsonMetadata {
     tags?: string[];
     app?: any;
     canonical_url?: string;
-    format?: string
+    format?: string;
+    original_author?: string;
+    original_permlink?: string;
 }
 
 export interface Entry {
@@ -61,6 +63,7 @@ export interface Entry {
     title: string;
     updated: string;
     url: string;
+    original_entry?: Entry;
 }
 
 export interface EntryGroup {

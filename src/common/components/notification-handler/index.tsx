@@ -5,7 +5,7 @@ import {AppWindow} from "../../../client/window";
 import {Global} from "../../store/global/types";
 import {ActiveUser} from "../../store/active-user/types";
 import {ToggleType, UI} from "../../store/ui/types";
-import {WsNotification} from "../../store/notifications/types";
+import {Notifications, WsNotification} from "../../store/notifications/types";
 
 import defaults from "../../constants/defaults.json"
 
@@ -45,6 +45,7 @@ interface Props {
     global: Global;
     activeUser: ActiveUser | null;
     ui: UI;
+    notifications: Notifications;
     fetchNotifications: (since: string | null) => void;
     fetchUnreadNotificationCount: () => void;
     toggleUIProp: (what: ToggleType) => void;
@@ -54,8 +55,8 @@ export default class NotificationHandler extends Component<Props> {
     componentDidMount() {
         this.nwsConnect();
 
-        const {activeUser, fetchUnreadNotificationCount} = this.props;
-        if (activeUser) {
+        const {activeUser, notifications, fetchUnreadNotificationCount} = this.props;
+        if (activeUser && notifications.unreadFetchFlag) {
             fetchUnreadNotificationCount();
         }
     }

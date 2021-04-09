@@ -8,11 +8,13 @@ import {StaticRouter} from "react-router-dom";
 
 import TestRenderer from "react-test-renderer";
 
-import {globalInstance, dynamicPropsIntance1, entryInstance1, UiInstance, activeUserMaker} from "../../helper/test-helper";
+import {globalInstance, dynamicPropsIntance1, entryInstance1, UiInstance, emptyReblogs, activeUserMaker, crossEntryInstance} from "../../helper/test-helper";
 
 import {ListStyle} from "../../store/global/types";
 
 import EntryListItem from "./index";
+import {Community} from "../../store/communities/types";
+import {Entry} from "../../store/entries/types";
 
 
 mockDate.set(1591398131174);
@@ -26,12 +28,14 @@ const defProps = {
     community: null,
     users: [],
     activeUser: null,
-    reblogs: [],
+    reblogs: emptyReblogs,
     entry: entryInstance1,
     ui: UiInstance,
+    entryPinTracker: {},
+    signingKey: "",
     asAuthor: "",
     promoted: false,
-
+    order: 0,
     addAccount: () => {
     },
     updateEntry: () => {
@@ -42,9 +46,21 @@ const defProps = {
     },
     deleteUser: () => {
     },
+    fetchReblogs: () => {
+    },
     addReblog: () => {
     },
+    deleteReblog: () => {
+    },
     toggleUIProp: () => {
+    },
+    addCommunity: () => {
+    },
+    trackEntryPin: () => {
+    },
+    setSigningKey: () => {
+    },
+    setEntryPin: () => {
     },
 }
 
@@ -132,3 +148,17 @@ it("(5) Nsfw but allowed", () => {
         </StaticRouter>);
     expect(renderer.toJSON()).toMatchSnapshot();
 });
+
+it("(6) Cross post. Bottom menu", () => {
+    const props = {
+        ...defProps,
+        entry: crossEntryInstance,
+        order: 2
+    }
+
+    const renderer = TestRenderer.create(
+        <StaticRouter location="/" context={{}}>
+            <EntryListItem {...props} />
+        </StaticRouter>);
+    expect(renderer.toJSON()).toMatchSnapshot();
+})

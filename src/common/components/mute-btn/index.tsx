@@ -18,12 +18,10 @@ import {_t} from "../../i18n";
 
 import _c from "../../util/fix-class-names";
 
-export type DialogMode = "mute" | "unmute";
-
 interface DialogProps {
     entry: Entry;
-    mode: DialogMode;
-    onSubmit: (notes: string) => void
+    inProgress: boolean;
+    onSubmit: (notes: string) => void;
 }
 
 interface DialogState {
@@ -41,8 +39,11 @@ export class DialogBody extends React.Component<DialogProps, DialogState> {
     }
 
     render() {
-        const {mode, entry} = this.props;
+        const {entry, inProgress} = this.props;
         const {value} = this.state;
+
+        const isMuted = !!entry.stats?.gray;
+
         return <div className="mute-form">
             <Form.Group>
                 <div className="entry-title">@{entry.author}/{entry.permlink}</div>
@@ -58,19 +59,20 @@ export class DialogBody extends React.Component<DialogProps, DialogState> {
                     />
                 </InputGroup>
                 <Form.Text>
-                    {mode === "mute" && _t('mute-btn.note-placeholder-mute')}
-                    {mode === "unmute" && _t('mute-btn.note-placeholder-unmute')}
+                    {!isMuted && _t('mute-btn.note-placeholder-mute')}
+                    {isMuted && "unmute" && _t('mute-btn.note-placeholder-unmute')}
                 </Form.Text>
             </Form.Group>
             <div>
                 <Button
-                    disabled={value.trim().length === 0}
+                    disabled={(value.trim().length === 0) || inProgress}
                     onClick={() => {
                         const {onSubmit} = this.props;
                         onSubmit(value);
                     }}>
-                    {mode === "mute" && _t("mute-btn.mute")}
-                    {mode === "unmute" && _t("mute-btn.unmute")}
+                    {!isMuted && _t("mute-btn.mute")}
+                    {isMuted && "unmute" && _t("mute-btn.unmute")}
+                    {inProgress && " ..."}
                 </Button>
             </div>
         </div>
@@ -81,19 +83,19 @@ interface Props {
     entry: Entry;
     community: Community;
     activeUser: ActiveUser;
-    onSuccess: (entry: Entry) => void;
+    onlyDialog?: boolean;
+    onSuccess: (entry: Entry, mute: boolean) => void;
+    onCancel?: () => void;
 }
 
 interface State {
     dialog: boolean;
-    dialogMode: DialogMode | null;
     inProgress: boolean;
 }
 
 export class MuteBtn extends BaseComponent<Props, State> {
     state: State = {
         dialog: false,
-        dialogMode: null,
         inProgress: false
     }
 
@@ -104,14 +106,9 @@ export class MuteBtn extends BaseComponent<Props, State> {
             !isEqual(this.props.activeUser?.username, nextProps.activeUser?.username)
     }
 
-    toggleDialog = (mode?: DialogMode) => {
+    toggleDialog = () => {
         const {dialog} = this.state;
-
-        if (dialog) {
-            this.stateSet({dialog: false, dialogMode: null});
-        } else {
-            this.stateSet({dialog: true, dialogMode: mode as DialogMode});
-        }
+        this.stateSet({dialog: !dialog});
     }
 
     mute = (mute: boolean, notes: string) => {
@@ -122,35 +119,45 @@ export class MuteBtn extends BaseComponent<Props, State> {
             .then(() => {
                 const nStats: EntryStat = {...clone(entry.stats), gray: mute}
                 const nEntry: Entry = {...clone(entry), stats: nStats};
-                onSuccess(nEntry);
+                onSuccess(nEntry, mute);
             })
             .catch(err => error(formatError(err)))
             .finally(() => this.stateSet({inProgress: false}));
     }
 
     render() {
-        const {entry} = this.props;
-        const {inProgress, dialog, dialogMode} = this.state;
+        const {entry, onlyDialog} = this.props;
+        const {inProgress, dialog} = this.state;
         const isMuted = !!entry.stats?.gray;
 
         const cls = _c(`mute-btn ${inProgress ? "in-progress" : ""}`);
 
-        const modal = (dialog && dialogMode) ?
-            <Modal animation={false} show={true} centered={true} onHide={this.toggleDialog} keyboard={false} className="mute-dialog modal-thin-header" size="lg">
+        const modal = (dialog || onlyDialog) ?
+            <Modal animation={false} show={true} centered={true} onHide={() => {
+                const {onCancel} = this.props;
+                if (onCancel) {
+                    onCancel();
+                }
+                this.toggleDialog();
+            }} keyboard={false} className="mute-dialog modal-thin-header" size="lg">
                 <Modal.Header closeButton={true}/>
                 <Modal.Body>
-                    <DialogBody entry={entry} mode={dialogMode} onSubmit={(value) => {
+                    <DialogBody entry={entry} inProgress={inProgress} onSubmit={(value) => {
                         this.toggleDialog();
-                        this.mute(dialogMode === "mute", value);
+                        this.mute(!isMuted, value);
                     }}/>
                 </Modal.Body>
             </Modal> : null;
+
+        if (onlyDialog) {
+            return modal;
+        }
 
         if (isMuted) {
             return <>
                 <a href="#" className={cls} onClick={(e) => {
                     e.preventDefault();
-                    this.toggleDialog("unmute");
+                    this.toggleDialog();
                 }}>{_t("mute-btn.unmute")}</a>
                 {modal}
             </>
@@ -159,7 +166,7 @@ export class MuteBtn extends BaseComponent<Props, State> {
         return <>
             <a href="#" className={cls} onClick={(e) => {
                 e.preventDefault();
-                this.toggleDialog("mute");
+                this.toggleDialog();
             }}>{_t("mute-btn.mute")}</a>
             {modal}
         </>
@@ -171,7 +178,9 @@ export default (p: Props) => {
         entry: p.entry,
         community: p.community,
         activeUser: p.activeUser,
-        onSuccess: p.onSuccess
+        onlyDialog: p.onlyDialog,
+        onSuccess: p.onSuccess,
+        onCancel: p.onCancel
     }
 
     return <MuteBtn {...props} />;

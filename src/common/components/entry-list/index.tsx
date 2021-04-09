@@ -8,10 +8,11 @@ import {Entry} from "../../store/entries/types";
 import {Community, Communities} from "../../store/communities/types";
 import {User} from "../../store/users/types";
 import {ActiveUser} from "../../store/active-user/types";
-import {Reblog} from "../../store/reblogs/types";
+import {Reblogs} from "../../store/reblogs/types";
 import {UI, ToggleType} from "../../store/ui/types";
 
 import EntryListItem from "../entry-list-item/index";
+import {EntryPinTracker} from "../../store/entry-pin-tracker/types";
 
 interface Props {
     history: History;
@@ -24,15 +25,23 @@ interface Props {
     community?: Community | null;
     users: User[];
     activeUser: ActiveUser | null;
-    reblogs: Reblog[];
+    reblogs: Reblogs;
     ui: UI;
+    entryPinTracker: EntryPinTracker;
+    signingKey: string;
     addAccount: (data: Account) => void;
     updateEntry: (entry: Entry) => void;
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data?: Account) => void;
     deleteUser: (username: string) => void;
-    addReblog: (account: string, author: string, permlink: string) => void;
+    fetchReblogs: () => void;
+    addReblog: (author: string, permlink: string) => void;
+    deleteReblog: (author: string, permlink: string) => void;
     toggleUIProp: (what: ToggleType) => void;
+    addCommunity: (data: Community) => void;
+    trackEntryPin: (entry: Entry) => void;
+    setSigningKey: (key: string) => void;
+    setEntryPin: (entry: Entry, pin: boolean) => void;
 }
 
 export class EntryListContent extends Component<Props> {
@@ -55,14 +64,14 @@ export class EntryListContent extends Component<Props> {
                                     <EntryListItem
                                         key={`${p.author}-${p.permlink}`}
                                         {...Object.assign({}, this.props, {entry: p})}
-                                        promoted={true}
+                                        promoted={true} order={3}
                                     />
                                 );
                             }
                         }
                     }
 
-                    l.push(<EntryListItem key={`${e.author}-${e.permlink}`} {...this.props} entry={e}/>);
+                    l.push(<EntryListItem key={`${e.author}-${e.permlink}`} {...this.props} entry={e} order={i}/>);
                     return [...l];
                 })}
             </>
@@ -84,13 +93,21 @@ export default (p: Props) => {
         activeUser: p.activeUser,
         reblogs: p.reblogs,
         ui: p.ui,
+        entryPinTracker: p.entryPinTracker,
+        signingKey: p.signingKey,
         addAccount: p.addAccount,
         updateEntry: p.updateEntry,
         setActiveUser: p.setActiveUser,
         updateActiveUser: p.updateActiveUser,
         deleteUser: p.deleteUser,
+        fetchReblogs: p.fetchReblogs,
         addReblog: p.addReblog,
+        deleteReblog: p.deleteReblog,
         toggleUIProp: p.toggleUIProp,
+        addCommunity: p.addCommunity,
+        trackEntryPin: p.trackEntryPin,
+        setSigningKey: p.setSigningKey,
+        setEntryPin: p.setEntryPin,
     }
 
     return <EntryListContent {...props} />;

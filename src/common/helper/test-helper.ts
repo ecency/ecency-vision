@@ -2,6 +2,7 @@ import {Global, EntryFilter, Theme, ListStyle} from "../store/global/types";
 import {TrendingTags} from "../store/trending-tags/types";
 import {Entry} from "../store/entries/types";
 import {Community} from "../store/communities/types";
+import {Reblogs} from "../store/reblogs/types";
 import {DynamicProps} from "../store/dynamic-props/types";
 import {UI} from "../store/ui/types";
 import {PointTransaction} from "../store/points/types";
@@ -212,6 +213,137 @@ export const entryInstance1: Entry = {
     url: "/hive/@good-karma/awesome-hive",
     blacklists: [],
 };
+
+
+export const crossEntryInstance: Entry = {
+    "post_id": 102577753,
+    "author": "regenerette",
+    "permlink": "we-need-each-one-of-you-sos-financial-advice-for-hive-newcomers-hive-125125",
+    "category": "hive-125125",
+    "title": "WE NEED EACH ONE OF YOU - SOS Financial Advice For Hive Newcomers ",
+    "body": "This is a cross post of [@regenerette/we-need-each-one-of-you-sos-financial-advice-for-hive-newcomers](/hive-167922/@regenerette/we-need-each-one-of-you-sos-financial-advice-for-hive-newcomers) by @regenerette.<br><br>Newcommers Call = Could You See It?",
+    "json_metadata": {
+        "app": "peakd/2021.03.7",
+        "tags": ["cross-post"],
+        "original_author": "regenerette",
+        "original_permlink": "we-need-each-one-of-you-sos-financial-advice-for-hive-newcomers"
+    },
+    "created": "2021-03-24T20:21:45",
+    "updated": "2021-03-24T20:21:45",
+    "depth": 0,
+    "children": 1,
+    "net_rshares": 0,
+    "is_paidout": false,
+    "payout_at": "2021-03-31T20:21:45",
+    "payout": 0,
+    "pending_payout_value": "0.000 HBD",
+    "author_payout_value": "0.000 HBD",
+    "curator_payout_value": "0.000 HBD",
+    "promoted": "0.000 HBD",
+    "replies": [],
+    "author_reputation": 56.64,
+    "stats": {"hide": false, "gray": false, "total_votes": 0, "flag_weight": 0},
+    "url": "/hive-125125/@regenerette/we-need-each-one-of-you-sos-financial-advice-for-hive-newcomers-hive-125125",
+    "beneficiaries": [],
+    "max_accepted_payout": "0.000 HBD",
+    "percent_hbd": 10000,
+    "active_votes": [],
+    "blacklists": [],
+    "community": "hive-125125",
+    "community_title": "Ecency",
+    "author_role": "guest",
+    "author_title": "",
+    "original_entry": {
+        "post_id": 102573102,
+        "author": "regenerette",
+        "permlink": "we-need-each-one-of-you-sos-financial-advice-for-hive-newcomers",
+        "category": "hive-167922",
+        "title": "WE NEED EACH ONE OF YOU - SOS Financial Advice For Hive Newcomers ",
+        "body": "Hi\n\nI have decided to write this article for newcomers (that need some guidance), for more experienced ones (that can contribute with input, commenting, and helping with suggestions for this article), and for myself. So, please, keep this in mind, as you read it.\n***If you’re already in Hive and wish to help with an idea, your comment could make you a benefactor for me and for others. So, I am thanking you right from the start for reading and helping us with a suggestion, advice, anything.***\n\n![regenerette_bannerleofinance.png](https://images.ecency.com/DQmSCnuynBe64vowY7Q87JwDJPQN6iaArnCU9vPbsdWzyCw/regenerette_bannerleofinance.png)\n\n\n\nHive eco-system is the source of our crypto funds, a win-win social tool that provides you with great opportunities to reach your goals. ***But do you know how to manage these crypto funds in the most efficient way so that you really achieve more soon? ***\n\n\n![stage_with_hologram3_min.png](https://images.ecency.com/DQmQYZdH6qJQMxSaZYoCSCzSXmRn4qVGJBg6iinHBU1wH2M/stage_with_hologram3_min.png)\n\n\nWouldn’t it be nice if there were a magic formula or simple trick that allowed you never to worry about your daily “hiving around” or manage your crypto finances better?\n \nI’d like to show you a simple Hive mindset for myself, a newbie. I’d love it if others could help me understand more practical ways to enrich my strategy for HIVING AROUND and making more per day. \nHere I have uncovered 5 key approaches to self-financing that help me and might help you improve your crypto skills in Hive:\n\n**1** **Sort it all out and prioritize**:\n\nTake time to think about your final goal, which dream would you like to realize? How you can achieve it, obviously it would require a certain time and healthy use of funds you receive from HIVE.\n\nSet long-term and short-term goals. Think about what you can do today to come closer to the desired result.\n\n\n**2 Define time-bounds**:\n\nBoth long-term and short-term goals should be specific, have a date, be measurable and realistic. Do you have debts? Pay them off to be free of any hurdles on the way towards your financial achievements. Create a sample plan a monthly budget and a spending plan to obtain full control of the situation.\n\nBy the way, you can track all funds that you raise here on your Hive account that is integrated into your personal account. Keep analyzing the money you make weekly, monitor your progress, and see where you are from the final goal.\n\n\n**3 Create an emergency fund**:\n\nIt's no surprise that when life presents an emergency, it threatens your financial well-being and causes stress. If you're living without a safety net, you're living on the \"financial\" edge, hoping to get by without running into a crisis.\n\nBeing prepared with an emergency crypto fund gives you confidence that you can tackle any of life's unexpected events without adding money worries to your list. You can always count on the power of our community, there are so many people ready to help you out, still, it is always better to create \"a safety bag\".\nPeople in Hive now have the option to use https://buymeberries.com/ to donate for others. \n#bmbhome\n\n\n**4 Budget is always important**:\n\nYou can make your budget as detailed as you want, as long as it helps you reach the ultimate Hive goal of spending less than you make, always save for the future. Stake maybe?\n\nA crypto budget will also help you decide how to spend your crypto, and what to invest in over the coming months and years. Without the plan, you might spend liquidity on things that seem important now, but don't offer much in terms of enhancing your future.\n\n\n**5 Seek advice**:\n\nIf you feel a lack of practical skills, if you don't know how to manage Hive tokens, don't be afraid to seek Hive advice. \n\nI am asking HIVE more experienced users to give any advice to new users by commenting on this post. Let us know what to do besides just posting and answering other people's posts. What else can we do to get more tokens, more HP, and more…anything? Contest? Farming? – How does one farm? Delegating and who? What else?\n\n@regenerette\n\n![banner_laleo.png](https://images.ecency.com/DQmXqfSMryc41TJAmD85CSrxrNqKzMntu6EDss8xnMSXQXt/banner_laleo.png)\n\n\nThank you for reading!\n~ I live today for me and for others ~\nWhy not join [JOIN HIVE](https://peakd.com/register?ref=regenerette) and become part of this amazing community!!!?\n\n\n![loepng.png](https://images.ecency.com/DQmdfMBTEXfzHRiVLq53vcPwfa1saXBhKcDKr1eqeg9P2Jr/loepng.png)\n\n![fxx5caie56ynwsjysm2xunozdmysq1yndrbt9x9veernm1981q9qbbm7xzs6mzhztz7px8zewhj4dosulcvjgksndfg731eqtdzgoj35wnxx.gif](https://images.ecency.com/DQmQLVPEJy2gTRgnK73SpAHuQbWguZkoAQLcM5dqhsEKHgr/fxx5caie56ynwsjysm2xunozdmysq1yndrbt9x9veernm1981q9qbbm7xzs6mzhztz7px8zewhj4dosulcvjgksndfg731eqtdzgoj35wnxx.gif)\n\n\n\n\n\n\nPosted Using [LeoFinance <sup>Beta</sup>](https://leofinance.io/@regenerette/we-need-each-one-of-you-sos-financial-advice-for-hive-newcomers)",
+        "json_metadata": {
+            "app": "leofinance/0.2",
+            "format": "markdown",
+            "tags": ["leofinance", "ctp", "proofofbrain", "archon", "neoxian", "creativecoin", "palnet", "chary", "bilpcoin", "ocd"],
+            "canonical_url": "https://leofinance.io/@regenerette/we-need-each-one-of-you-sos-financial-advice-for-hive-newcomers",
+        },
+        "created": "2021-03-24T16:14:42",
+        "updated": "2021-03-24T16:19:36",
+        "depth": 0,
+        "children": 10,
+        "net_rshares": 8394534391123,
+        "is_paidout": false,
+        "payout_at": "2021-03-31T16:14:42",
+        "payout": 5.946,
+        "pending_payout_value": "5.946 HBD",
+        "author_payout_value": "0.000 HBD",
+        "curator_payout_value": "0.000 HBD",
+        "promoted": "0.000 HBD",
+        "replies": [],
+        "author_reputation": 56.64,
+        "stats": {"hide": false, "gray": false, "total_votes": 59, "flag_weight": 0},
+        "url": "/hive-167922/@regenerette/we-need-each-one-of-you-sos-financial-advice-for-hive-newcomers",
+        "beneficiaries": [],
+        "max_accepted_payout": "1000000.000 HBD",
+        "percent_hbd": 10000,
+        "active_votes": [{"rshares": 308271008130, "voter": "svamiva"}, {"rshares": 882060063768, "voter": "ausbitbank"}, {
+            "rshares": 41179914713,
+            "voter": "krystle"
+        }, {"rshares": 10184621620, "voter": "anarcist69"}, {"rshares": 60754236643, "voter": "scaredycatguide"}, {
+            "rshares": 30379382731,
+            "voter": "jlufer"
+        }, {"rshares": 20624058840, "voter": "clayboyn"}, {"rshares": 59031515005, "voter": "r0nd0n"}, {
+            "rshares": 13366123570,
+            "voter": "mitchelljaworski"
+        }, {"rshares": 3763903058, "voter": "ma1neevent"}, {"rshares": 59192409376, "voter": "amberyooper"}, {
+            "rshares": 1119195703381,
+            "voter": "followbtcnews"
+        }, {"rshares": 770968428854, "voter": "isaria"}, {"rshares": 2448954060270, "voter": "minnowsupport"}, {
+            "rshares": 357915457366,
+            "voter": "crimsonclad"
+        }, {"rshares": 19833307049, "voter": "vachemorte"}, {"rshares": 266458345307, "voter": "juliakponsford"}, {
+            "rshares": 2451612319,
+            "voter": "auditoryorgasms"
+        }, {"rshares": 10510733533, "voter": "st3llar"}, {"rshares": 1096800958, "voter": "koh"}, {"rshares": 7480530904, "voter": "bex-dk"}, {
+            "rshares": 24232431632,
+            "voter": "dinshatech"
+        }, {"rshares": 1328531906, "voter": "digitalpnut"}, {"rshares": 1593592511, "voter": "run-the-bits"}, {
+            "rshares": 1464842216323,
+            "voter": "msp-curation"
+        }, {"rshares": 32218931639, "voter": "aagabriel"}, {"rshares": 23456628498, "voter": "flaxz"}, {"rshares": 872056776, "voter": "alitavirgen"}, {
+            "rshares": 697663478,
+            "voter": "therabbitzone"
+        }, {"rshares": 4734033244, "voter": "franz54"}, {"rshares": 49345291774, "voter": "blarchive"}, {"rshares": 2023866799, "voter": "anarcist"}, {
+            "rshares": 26565771,
+            "voter": "adumbrate"
+        }, {"rshares": 1845176869, "voter": "catarafa"}, {"rshares": 127865883, "voter": "tankadiary"}, {"rshares": 519158925, "voter": "bearableguy123"}, {
+            "rshares": 2045810365,
+            "voter": "creary"
+        }, {"rshares": 5048296448, "voter": "nftshowroom"}, {"rshares": 1146516946, "voter": "peachymod"}, {
+            "rshares": 108815286965,
+            "voter": "lisamgentile1961"
+        }, {"rshares": 6717937187, "voter": "rootdraws"}, {"rshares": 15421562, "voter": "rpi"}, {"rshares": 141605135, "voter": "toni.curation"}, {
+            "rshares": 98456195,
+            "voter": "faireye"
+        }, {"rshares": 910253967, "voter": "julesquirin"}, {"rshares": 846225189, "voter": "almightymelon"}, {
+            "rshares": 2027225084,
+            "voter": "localgrower"
+        }, {"rshares": 109893171681, "voter": "tanjakolader"}, {"rshares": 842827730, "voter": "flaxz.ctp"}, {"rshares": 5766385063, "voter": "leoschein"}, {
+            "rshares": 38796762150,
+            "voter": "unorgmilitia"
+        }, {"rshares": 0, "voter": "regeneretta"}, {"rshares": 1398441903, "voter": "megaleoschein"}, {"rshares": 1707971814, "voter": "dugsix"}, {
+            "rshares": 1996427811,
+            "voter": "bhealy"
+        }, {"rshares": 1364612442, "voter": "generatornation"}, {"rshares": 1740006545, "voter": "darinapogodina"}, {"rshares": 0, "voter": "bbananass"}, {
+            "rshares": 1678519518,
+            "voter": "maurofolco"
+        }],
+        "blacklists": [],
+        "community": "hive-167922",
+        "community_title": "LeoFinance",
+        "author_role": "guest",
+        "author_title": ""
+    }
+}
 
 export const votesInstance1: Vote[] = [
     {
@@ -667,7 +799,8 @@ export const notificationsInstance1: Notifications = {
     unread: 0,
     list: [],
     loading: false,
-    hasMore: true
+    hasMore: true,
+    unreadFetchFlag: true
 }
 
 export const apiVoteNotification: ApiVoteNotification = {
@@ -995,9 +1128,10 @@ export const searchResponseInstance: SearchResponse = {
     }]
 }
 
-
 export const accountSearchResultInstance: AccountSearchResult[] = [
     {"name": "foo", "full_name": "Foo", "about": "Lorem ipsum dolor sit amet", "reputation": 70.44},
     {"name": "bar", "full_name": "Bar", "about": "Lorem ipsum dolor sit amet", "reputation": 72.44},
     {"name": "baz", "full_name": "Baz", "about": "Lorem ipsum dolor sit amet", "reputation": 74.44},
 ]
+
+export const emptyReblogs: Reblogs = {list: [], canFetch: true}

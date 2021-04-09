@@ -4,8 +4,11 @@ import moment from "moment";
 
 import {History} from "history";
 
+import {FormControl} from "react-bootstrap";
+
 import {DynamicProps} from "../../store/dynamic-props/types";
-import {Transaction, Transactions} from "../../store/transactions/types";
+import {OperationGroup, Transaction, Transactions} from "../../store/transactions/types";
+import {Account} from "../../store/accounts/types";
 
 import LinearProgress from "../linear-progress";
 import EntryLink from "../entry-link";
@@ -16,9 +19,10 @@ import {vestsToHp} from "../../helper/vesting";
 
 import formattedNumber from "../../util/formatted-number";
 
-import {ticketSvg, commentSvg, compareHorizontalSvg, cashSvg, reOrderHorizontalSvg} from "../../img/svg";
+import {ticketSvg, commentSvg, compareHorizontalSvg, cashSvg, cashMultiple, reOrderHorizontalSvg, pickAxeSvg, closeSvg, arrowRightSvg} from "../../img/svg";
 
 import {_t} from "../../i18n";
+import {Tsx} from "../../i18n/helper";
 
 interface RowProps {
     history: History;
@@ -108,7 +112,7 @@ export class TransactionRow extends Component<RowProps> {
             );
         }
 
-        if (tr.type === "transfer" || tr.type === "transfer_to_vesting") {
+        if (tr.type === "transfer" || tr.type === "transfer_to_vesting" || tr.type == "transfer_to_savings") {
             flag = true;
             icon = compareHorizontalSvg;
 
@@ -124,6 +128,15 @@ export class TransactionRow extends Component<RowProps> {
             );
 
             numbers = <span className="number">{tr.amount}</span>;
+        }
+
+        if (tr.type === "cancel_transfer_from_savings") {
+            flag = true;
+            icon = closeSvg;
+
+            details = <Tsx k="transactions.type-cancel_transfer_from_savings-detail" args={{from: tr.from, request: tr.request_id}}>
+                <span/>
+            </Tsx>
         }
 
         if (tr.type === "withdraw_vesting") {
@@ -153,6 +166,41 @@ export class TransactionRow extends Component<RowProps> {
             );
         }
 
+        if (tr.type === "producer_reward") {
+            flag = true;
+            icon = pickAxeSvg;
+
+            numbers = <>{formattedNumber(vestsToHp(parseAsset(tr.vesting_shares).amount, hivePerMVests), {suffix: "HP"})}</>
+        }
+
+        if (tr.type === "interest") {
+            flag = true;
+            icon = cashMultiple;
+
+            numbers = <span className="number">{tr.interest}</span>
+        }
+
+        if (tr.type === "fill_convert_request") {
+            flag = true;
+            icon = reOrderHorizontalSvg;
+
+            numbers = <span className="number">{tr.amount_in} = {tr.amount_out}</span>
+        }
+
+        if (tr.type === "return_vesting_delegation") {
+            flag = true;
+            icon = arrowRightSvg;
+
+            numbers = <>{formattedNumber(vestsToHp(parseAsset(tr.vesting_shares).amount, hivePerMVests), {suffix: "HP"})}</>
+        }
+
+        if (tr.type === "proposal_pay") {
+            flag = true;
+            icon = ticketSvg;
+
+            numbers = <span className="number">{tr.payment}</span>
+        }
+
         if (flag) {
             const transDate = parseDate(tr.timestamp);
 
@@ -168,7 +216,10 @@ export class TransactionRow extends Component<RowProps> {
                 </div>
             );
         }
-        return null;
+
+        return <div className="transaction-list-item transaction-list-item-raw">
+            <div className="raw-code">{JSON.stringify(tr)}</div>
+        </div>;
     }
 }
 
@@ -176,25 +227,37 @@ interface Props {
     history: History;
     dynamicProps: DynamicProps;
     transactions: Transactions;
+    account: Account;
+    fetchTransactions: (username: string, group?: OperationGroup | "") => void;
 }
 
 export class TransactionList extends Component<Props> {
+    typeChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+        const {account, fetchTransactions} = this.props;
+        const group = e.target.value;
+
+        fetchTransactions(account.name, group as OperationGroup);
+    }
+
     render() {
         const {transactions} = this.props;
-        const {list, loading} = transactions;
-
-        // Top 50 transaction sorted by id
-        const trList = list.slice(Math.max(list.length - 50, 0)).sort((a: any, b: any) => b.num - a.num);
+        const {list, loading, group} = transactions;
 
         return (
             <div className="transaction-list">
                 <div className="transaction-list-header">
                     <h2>{_t("transactions.title")} </h2>
+                    <FormControl as="select" value={group} onChange={this.typeChanged}>
+                        <option value="">{_t("transactions.group-all")}</option>
+                        {["transfers", "market-orders", "interests", "stake-operations", "rewards"].map(x =>
+                            <option key={x} value={x}>{_t(`transactions.group-${x}`)}</option>)}
+                    </FormControl>
                 </div>
                 {loading && <LinearProgress/>}
-                {trList.map((x, k) => (
+                {list.map((x, k) => (
                     <TransactionRow {...this.props} key={k} transaction={x}/>
                 ))}
+                {(!loading && list.length === 0) && <p className="text-muted empty-list">{_t('g.empty-list')}</p>}
             </div>
         );
     }
@@ -204,7 +267,9 @@ export default (p: Props) => {
     const props: Props = {
         history: p.history,
         dynamicProps: p.dynamicProps,
-        transactions: p.transactions
+        transactions: p.transactions,
+        account: p.account,
+        fetchTransactions: p.fetchTransactions
     }
 
     return <TransactionList {...props} />

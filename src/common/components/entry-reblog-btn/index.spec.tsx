@@ -4,14 +4,13 @@ import {EntryReblogBtn} from "./index";
 
 import TestRenderer from "react-test-renderer";
 
-import {entryInstance1, UiInstance, activeUserMaker} from "../../helper/test-helper";
+import {entryInstance1, UiInstance, emptyReblogs, activeUserMaker} from "../../helper/test-helper";
 
 const defProps = {
-    text: false,
     entry: {...entryInstance1},
     users: [],
     activeUser: null,
-    reblogs: [],
+    reblogs: emptyReblogs,
     ui: UiInstance,
     setActiveUser: () => {
     },
@@ -19,7 +18,11 @@ const defProps = {
     },
     deleteUser: () => {
     },
+    fetchReblogs: () => {
+    },
     addReblog: () => {
+    },
+    deleteReblog: () => {
     },
     toggleUIProp: () => {
 
@@ -32,29 +35,26 @@ it("(1) No active user", () => {
     expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it("(2) With text", () => {
-    const props = {...defProps, text: true};
-    const renderer = TestRenderer.create(<EntryReblogBtn {...props} />);
-    expect(renderer.toJSON()).toMatchSnapshot();
-});
-
-it("(3) Active user. Not reblogged", () => {
+it("(2) Active user. Not reblogged", () => {
     const props = {...defProps, activeUser: activeUserMaker("user1")};
     const renderer = TestRenderer.create(<EntryReblogBtn {...props} />);
     expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it("(4) Active user. Reblogged", () => {
+it("(3) Active user. Reblogged", () => {
     const props = {
         ...defProps,
         activeUser: activeUserMaker("user1"),
-        reblogs: [{account: "user1", author: entryInstance1.author, permlink: entryInstance1.permlink}],
+        reblogs: {
+            list: [{account: "user1", author: entryInstance1.author, permlink: entryInstance1.permlink}],
+            canFetch: false
+        },
     };
     const renderer = TestRenderer.create(<EntryReblogBtn {...props} />);
     expect(renderer.toJSON()).toMatchSnapshot();
 });
 
-it("(5) Reblogging", () => {
+it("(4) Reblogging", () => {
     const props = {...defProps, activeUser: activeUserMaker("user1")};
     const component = TestRenderer.create(<EntryReblogBtn {...props} />);
     const instance: any = component.getInstance();

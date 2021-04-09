@@ -134,12 +134,18 @@ const broadcastPostingOperations = (username: string, operations: Operation[]): 
         .then((r: any) => r.result);
 }
 
-export const reblog = (username: string, author: string, permlink: string): Promise<TransactionConfirmation> => {
-    const json = ["reblog", {
+export const reblog = (username: string, author: string, permlink: string, _delete: boolean = false): Promise<TransactionConfirmation> => {
+    const message = {
         account: username,
         author,
         permlink
-    }];
+    };
+
+    if (_delete) {
+        message["delete"] = "delete";
+    }
+
+    const json = ["reblog", message];
 
     return broadcastPostingJSON(username, "follow", json)
         .then((r: TransactionConfirmation) => {

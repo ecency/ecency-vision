@@ -106,8 +106,10 @@
     "sign-up-text-2": "Εγγραφείτε τώρα!"
   },
   "sign-up": {
-    "header": "Join",
-    "description": "<h3>Home of Free speech and Rewarding communities!</h3><br>One account to manage everything on <b>Blockchain</b> and <b>Ecency</b>.<br><br>Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
+    "header": "Welcome to Ecency",
+    "description": "Home of Free speech and Rewarding communities!",
+    "bottom-description": "Every account is created on a blockchain and only you have control over that account. One account to manage everything on Blockchain and Ecency.",
+    "learn-more": "Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
     "username": "Διαλέξτε όνομα χρήστη",
     "email": "Εισάγετε την ηλεκτρονική σας διεύθυνση",
     "ref": "Συστημένος χρήστης (προαιρετικό)",
@@ -124,6 +126,8 @@
     "title": "Προτεινόμενα"
   },
   "entry-list-item": {
+    "cross-posted": "cross-posted",
+    "cross-posted-to": "to",
     "reblogged": "{{n}} αναδημοσιεύτηκε",
     "promoted": "προωθούμενα",
     "pinned": "Καρφιτσωμένη Δημοσίευση",
@@ -147,10 +151,41 @@
     "reblog": "Αναδημοσίευση",
     "confirm-title": "Αναδημοσίευση στο @{{n}}'s ιστολόγιο;",
     "confirm-ok": "Αναδημοσίευση",
-    "success": "Αναδημοσιεύτηκε!"
+    "success": "Αναδημοσιεύτηκε!",
+    "delete-reblog": "Undo Reblog",
+    "delete-confirm-title": "Undo reblog?",
+    "delete-confirm-ok": "Undo",
+    "delete-success": "Reblog removed"
   },
   "entry-tip": {
     "title": "Tip"
+  },
+  "entry-share": {
+    "title": "Share"
+  },
+  "entry-menu": {
+    "cross-post": "Cross post",
+    "share": "Share",
+    "edit-history": "Edit History",
+    "pin": "Pin",
+    "pin-success": "Post pinned",
+    "unpin": "Unpin",
+    "unpin-success": "Post Unpinned",
+    "mute": "Mute",
+    "mute-success": "Post muted",
+    "unmute": "Unmute",
+    "unmute-success": "Post unmuted",
+    "promote": "Promote",
+    "boost": "Boost"
+  },
+  "cross-post": {
+    "title": "Cross Post",
+    "community-placeholder": "Choose a community",
+    "message-placeholder": "Start the conversation with a message",
+    "submit-label": "Confirm",
+    "published": "Post Published",
+    "no-subscription": "You don't have any community subscription to cross post.",
+    "info": "Rewards are automatically declined for the cross post and discussions under cross post will be different and will follow different community guidelines."
   },
   "entry-payout": {
     "reward": "Reward",
@@ -196,10 +231,13 @@
     "comment-entry-title": "Βλέπετε ένα μοναδικό νήμα απο: ",
     "comment-entry-go-root": "Δείτε το πλήρες κείμενο",
     "comment-entry-go-parent": "Δείτε το άμεσο σχόλιο",
-    "show-history": "Προβολή ιστορικού επεξεργασίας",
     "hidden-warning": "Η δημοσίευση έχει αποκρυφτεί λόγω χαμηλής βαθμολογίας.",
     "address-copy": "Copy post address",
-    "address-copied": "Post address copied to clipboard."
+    "address-copied": "Post address copied to clipboard.",
+    "browse-original": "Open original post",
+    "cross-post-by": "Cross post by",
+    "cross-post-community": "community",
+    "community-in": "in"
   },
   "edit-history": {
     "title": "Ιστορικό Επεξεργασίας",
@@ -207,7 +245,7 @@
     "version": "Εκδοχή {{n}}"
   },
   "similar-entries": {
-    "title": "Πρόσφατες δημοσιεύσεις από @{{n}}"
+    "title": "More from @{{n}}"
   },
   "comment": {
     "body-placeholder": "Γράψτε την απάντηση σας εδώ",
@@ -317,10 +355,6 @@
     "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.",
     "conflict-body-text": "This community is already registered.",
     "min-required-body-text": "Minimum 100 subscribers required to register."
-  },
-  "pin-btn": {
-    "pin": "Καρφιτσώστε",
-    "unpin": "Ξεκαρφιτσώστε"
   },
   "mute-btn": {
     "mute": "Σίγαση",
@@ -446,7 +480,20 @@
     "transfer": "Δώρο σε κάποιον",
     "claim-ok": "Πόντοι διεκδικήθηκαν",
     "promote": "Προώθηση",
-    "boost": "Ενίσχυση"
+    "boost": "Ενίσχυση",
+    "filter-all": "All History",
+    "filter-10": "Points for heartbeat",
+    "filter-20": "Points for login",
+    "filter-30": "Usage bonus",
+    "filter-100": "Points for post",
+    "filter-110": "Points for comment",
+    "filter-120": "Points for vote",
+    "filter-130": "Points for reblog",
+    "filter-150": "Delegation reward",
+    "filter-160": "Referral reward",
+    "filter-170": "Community reward",
+    "filter-998": "Outgoing transfer",
+    "filter-999": "Incoming transfer"
   },
   "purchase": {
     "select-asset": "Επιλογή αντικειμένου",
@@ -528,6 +575,12 @@
   },
   "transactions": {
     "title": "Ιστορικό",
+    "group-all": "All History",
+    "group-transfers": "Transfers",
+    "group-market-orders": "Market Orders",
+    "group-interests": "Interests",
+    "group-stake-operations": "Stake operations",
+    "group-rewards": "Rewards",
     "type-curation_reward": "Ανταμοιβή επμέλειας",
     "type-author_reward": "Ανταμοιβή συγγραφέα",
     "type-comment_benefactor_reward": "Σχόλιο Ανταμοιβής Benefactor",
@@ -535,7 +588,15 @@
     "type-transfer": "Μεταφορά",
     "type-transfer_to_vesting": "Μεταφορά σε κατοχυρωμένα",
     "type-withdraw_vesting": "Ανάληψη κατοχυρωμένων",
-    "type-fill_order": "Συμπλήρωση παραγγελίας"
+    "type-fill_order": "Συμπλήρωση παραγγελίας",
+    "type-producer_reward": "Producer reward",
+    "type-interest": "Interest",
+    "type-transfer_to_savings": "Transfer to savings",
+    "type-fill_convert_request": "Fill convert request",
+    "type-cancel_transfer_from_savings": "Cancel transfer from savings",
+    "type-cancel_transfer_from_savings-detail": "From: <strong>@{{from}}</strong> <br/> Request id: <strong>{{request}}</strong>",
+    "type-return_vesting_delegation": "Return vesting delegation",
+    "type-proposal_pay": "Proposal pay"
   },
   "key-or-hot": {
     "sign": "Υπογραφή",
@@ -621,7 +682,10 @@
     "reblog-hint": "Αυτόματη κοινοποίηση περιεχομένου στο ιστολόγιό σας",
     "schedule": "Χρονοδιάγραμμα",
     "schedule-hint": "Αυτόματη δημοσίευση περιεχομένου σε συγκεκριμένη ώρα",
-    "scheduled": "Προγραμματισμένη δημοσίευση"
+    "scheduled": "Προγραμματισμένη δημοσίευση",
+    "empty-title-alert": "Enter post title",
+    "empty-tags-alert": "Enter post tags",
+    "empty-body-alert": "Enter post body"
   },
   "tag-selector": {
     "placeholder-empty": "Ετικέτες. Η πρώτη ετικέτα είναι η κύρια κατηγορία. Tαξινομήσιμο.",
@@ -831,6 +895,12 @@
     "title": "Add Image",
     "text-label": "Image Text",
     "link-label": "Image Link"
+  },
+  "add-image-mobile": {
+    "title": "Add Image",
+    "recent-title": "Recently uploaded",
+    "gallery": "Gallery",
+    "upload": "Upload image"
   },
   "add-link": {
     "title": "Add Link",

@@ -4,6 +4,9 @@ import {Modal} from "react-bootstrap";
 
 import {ActiveUser} from "../../store/active-user/types";
 
+import {proxifyImageSrc, setProxyBase} from "@ecency/render-helper";
+
+import BaseComponent from "../base";
 import LinearProgress from "../linear-progress";
 import PopoverConfirm from "../popover-confirm";
 import Tooltip from "../tooltip";
@@ -18,7 +21,13 @@ import {deleteForeverSvg} from "../../img/svg";
 
 import clipboard from "../../util/clipboard";
 
+import defaults from "../../constants/defaults.json";
+import {Global} from "../../store/global/types";
+
+setProxyBase(defaults.imageServer);
+
 interface Props {
+    global: Global;
     activeUser: ActiveUser | null;
     onHide: () => void;
     onPick?: (url: string) => void;
@@ -29,7 +38,7 @@ interface State {
     items: UserImage[]
 }
 
-export class Gallery extends Component<Props, State> {
+export class Gallery extends BaseComponent<Props, State> {
     state: State = {
         loading: true,
         items: []
@@ -42,11 +51,11 @@ export class Gallery extends Component<Props, State> {
     fetch = () => {
         const {activeUser} = this.props;
 
-        this.setState({loading: true});
+        this.stateSet({loading: true});
         getImages(activeUser?.username!).then(items => {
-            this.setState({items: this.sort(items), loading: false});
+            this.stateSet({items: this.sort(items), loading: false});
         }).catch(() => {
-            this.setState({loading: false});
+            this.stateSet({loading: false});
             error(_t('g.server-error'));
         })
     }
@@ -73,13 +82,14 @@ export class Gallery extends Component<Props, State> {
         deleteImage(activeUser?.username!, item._id).then(() => {
             const {items} = this.state;
             const nItems = [...items].filter(x => x._id !== item._id);
-            this.setState({items: this.sort(nItems)});
+            this.stateSet({items: this.sort(nItems)});
         }).catch(() => {
             error(_t('g.server-error'));
         })
     }
 
     render() {
+        const {global} = this.props;
         const {items, loading} = this.state;
 
         return <div className="dialog-content">
@@ -87,10 +97,11 @@ export class Gallery extends Component<Props, State> {
             {items.length > 0 && (
                 <div className="gallery-list">
                     <div className="gallery-list-body">
-                        {items.map(item => (
-                            <div
+                        {items.map(item => {
+                            const src = proxifyImageSrc(item.url, 600, 500, global.canUseWebp ? 'webp' : 'match');
+                            return <div
                                 className="gallery-list-item"
-                                style={{backgroundImage: `url('${item.url}')`}}
+                                style={{backgroundImage: `url('${src}')`}}
                                 key={item._id}>
                                 <div className="item-inner"
                                      onClick={() => {
@@ -106,7 +117,7 @@ export class Gallery extends Component<Props, State> {
                                     </PopoverConfirm>
                                 </div>
                             </div>
-                        ))}
+                        })}
                     </div>
                 </div>
             )}

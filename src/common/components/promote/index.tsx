@@ -32,6 +32,7 @@ interface Props {
     global: Global;
     activeUser: ActiveUser;
     signingKey: string;
+    entry?: Entry;
     updateActiveUser: (data?: Account) => void;
     setSigningKey: (key: string) => void;
     onHide: () => void;
@@ -69,6 +70,12 @@ export class Promote extends BaseComponent<Props, State> {
         this.init().then(() => {
             const {updateActiveUser} = this.props;
             updateActiveUser();
+        }).then(() => {
+            const {entry} = this.props;
+
+            if (entry) {
+                this.stateSet({path: `${entry.author}/${entry.permlink}`});
+            }
         })
     }
 
