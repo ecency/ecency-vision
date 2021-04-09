@@ -106,8 +106,10 @@
     "sign-up-text-2": "Registe-se agora!"
   },
   "sign-up": {
-    "header": "Juntar-se",
-    "description": "<h3>Casa das gratificantes comunidades com liberdade de expressão!</h3><br>Uma conta para gerenciar tudo na <b>Blockchain</b> e <b>na Ecency</b>.<br><br>Saiba mais sobre benefícios acessando a seção <a href=\"/faq#how-to-join\">Perguntas Frequentes</a>",
+    "header": "Welcome to Ecency",
+    "description": "Home of Free speech and Rewarding communities!",
+    "bottom-description": "Every account is created on a blockchain and only you have control over that account. One account to manage everything on Blockchain and Ecency.",
+    "learn-more": "Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
     "username": "Escolha um nome de usuário",
     "email": "Insira o seu email",
     "ref": "Usuário referenciado (opcional)",
@@ -893,6 +895,12 @@
     "title": "Adicionar imagem",
     "text-label": "Texto da Imagem",
     "link-label": "Link da Imagem"
+  },
+  "add-image-mobile": {
+    "title": "Add Image",
+    "recent-title": "Recently uploaded",
+    "gallery": "Gallery",
+    "upload": "Upload image"
   },
   "add-link": {
     "title": "Adicionar Link",

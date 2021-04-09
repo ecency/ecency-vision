@@ -106,8 +106,10 @@
     "sign-up-text-2": "Daftar sekarang!"
   },
   "sign-up": {
-    "header": "Bergabunglah",
-    "description": "<h3>Rumah Bebas bicara dan memberikan imbalan kepada komunitas!</h3><br>Satu akun untuk mengatur semuanya di<b>Blockchain</b>dan<b>Ecency</b>.<br><br>Pelajari lebih banyak tentang keuntungannya di FAQ<a href=\"/faq#how-to-join\">kami</a>",
+    "header": "Welcome to Ecency",
+    "description": "Home of Free speech and Rewarding communities!",
+    "bottom-description": "Every account is created on a blockchain and only you have control over that account. One account to manage everything on Blockchain and Ecency.",
+    "learn-more": "Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
     "username": "Pilih nama pengguna",
     "email": "Masukkan alamat email Anda",
     "ref": "Pengguna rujukan (opsional)",
@@ -162,7 +164,7 @@
     "title": "Bagikan"
   },
   "entry-menu": {
-    "cross-post": "Cross post",
+    "cross-post": "Silangkan Postingan",
     "share": "Bagikan",
     "edit-history": "Edit Riwayat",
     "pin": "Sematkan",
@@ -177,13 +179,13 @@
     "boost": "Tingkatkan Nilai Postingan"
   },
   "cross-post": {
-    "title": "Cross Post",
-    "community-placeholder": "Choose a community",
-    "message-placeholder": "Start the conversation with a message",
-    "submit-label": "Confirm",
-    "published": "Post Published",
-    "no-subscription": "You don't have any community subscription to cross post.",
-    "info": "Rewards are automatically declined for the cross post and discussions under cross post will be different and will follow different community guidelines."
+    "title": "Postingan Bersilangan",
+    "community-placeholder": "Pilih komunitas",
+    "message-placeholder": "Mulai percakapan dengan sebuah pesan",
+    "submit-label": "Korfirmasi",
+    "published": "Postingan yang diterbitkan",
+    "no-subscription": "Anda belum bergabung ke satu komunitas pun untuk menyilangkan postingan.",
+    "info": "Reward secara otomatis ditolak untuk lintas posting dan diskusi dalam postingan silang akan berbeda dan akan mengikuti pedoman komunitas yang berbeda."
   },
   "entry-payout": {
     "reward": "Imbalan",
@@ -893,6 +895,12 @@
     "title": "Tambahkan gambar",
     "text-label": "Teks Gambar",
     "link-label": "Link Gambar"
+  },
+  "add-image-mobile": {
+    "title": "Tambahkan Gambar",
+    "recent-title": "Terakhir diunduh",
+    "gallery": "Galeri",
+    "upload": "Unggah gambar"
   },
   "add-link": {
     "title": "Tambahkan Tautan",

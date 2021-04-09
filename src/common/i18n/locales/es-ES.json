@@ -106,8 +106,10 @@
     "sign-up-text-2": "¡Regístrate ahora!"
   },
   "sign-up": {
-    "header": "Unirse",
-    "description": "<h3>¡Hogar de las comunidades de expresión gratuita y de recompensas!</h3><br>Una cuenta para administrar todo en <b>Blockchain</b> y <b>Ecency</b>.<br><br>Más información sobre beneficios en nuestra sección de <a href=\"/faq#how-to-join\">Preguntas Frecuentes</a>",
+    "header": "Bienvenido a Ecency",
+    "description": "Hogar de comunidades de libre comunicación y de recompensa por ello!",
+    "bottom-description": "Cada cuenta es creada en un blockchain y sólo tú tienes el control sobre esa cuenta. Una cuenta para administrar todo en Blockchain y Ecency.",
+    "learn-more": "Obtenga más información sobre los beneficios en nuestras <a href=\"/faq#how-to-join\">Preguntas frecuentes</a>",
     "username": "Elige un nombre de usuario",
     "email": "Ingresa tu dirección de email",
     "ref": "Usuario Referido (Opcional)",
@@ -162,7 +164,7 @@
     "title": "Compartir"
   },
   "entry-menu": {
-    "cross-post": "Cross post",
+    "cross-post": "Publicación cruzada",
     "share": "Compartir",
     "edit-history": "Editar historial",
     "pin": "Anclar arriba",
@@ -177,13 +179,13 @@
     "boost": "Impulsar"
   },
   "cross-post": {
-    "title": "Cross Post",
-    "community-placeholder": "Choose a community",
-    "message-placeholder": "Start the conversation with a message",
-    "submit-label": "Confirm",
-    "published": "Post Published",
-    "no-subscription": "You don't have any community subscription to cross post.",
-    "info": "Rewards are automatically declined for the cross post and discussions under cross post will be different and will follow different community guidelines."
+    "title": "Publicación cruzada",
+    "community-placeholder": "Elige una comunidad",
+    "message-placeholder": "Iniciar la conversación con un mensaje",
+    "submit-label": "Confirmar",
+    "published": "La publicación fue enviada",
+    "no-subscription": "No tienes ninguna suscripción comunitaria para enviar mensajes cruzados.",
+    "info": "Las recompensas se rechazan automáticamente para la publicación cruzada y las discusiones bajo la publicación cruzada serán diferentes y seguirán diferentes pautas comunitarias."
   },
   "entry-payout": {
     "reward": "Recompensa",
@@ -893,6 +895,12 @@
     "title": "Añadir imagen",
     "text-label": "Texto de la imagen",
     "link-label": "Enlace de la imagen"
+  },
+  "add-image-mobile": {
+    "title": "Añadir imagen",
+    "recent-title": "Subido recientemente",
+    "gallery": "Galería",
+    "upload": "Subir imagen"
   },
   "add-link": {
     "title": "Añadir enlace",

@@ -106,8 +106,10 @@
     "sign-up-text-2": "अभी साइनअप करें!"
   },
   "sign-up": {
-    "header": "शामिल हों",
-    "description": "<h3>नि: शुल्क भाषण और पुरस्कृत समुदायों का घर!</h3><br>एक खाते पर सब कुछ का प्रबंधन करने के लिए<b>Blockchain</b> और<b>इसेंसी</b>.<br><br>हमारे लाभ के बारे में अधिक जानें <a href=\"/faq#how-to-join\">अकसर किये गए सवाल</a>",
+    "header": "इसेंसी में आपका स्वागत है",
+    "description": "नि: शुल्क भाषण और पुरस्कृत समुदायों का घर!",
+    "bottom-description": "प्रत्येक खाता एक ब्लॉकचेन पर बनाया गया है और केवल उस खाते पर आपका नियंत्रण है। ब्लॉकचेन और इसेंसी पर सब कुछ प्रबंधित करने के लिए एक खाता।",
+    "learn-more": "हमारे लाभ के बारे में अधिक जानें <a href=\"/faq#how-to-join\">अकसर किये गए सवाल</a>",
     "username": "एक उपयोगकर्ता नाम चुनें",
     "email": "अपना ईमेल पता दर्ज करें",
     "ref": "संदर्भित उपयोगकर्ता (वैकल्पिक)",
@@ -124,8 +126,8 @@
     "title": "विशेष रुप से प्रदर्शित"
   },
   "entry-list-item": {
-    "cross-posted": "cross-posted",
-    "cross-posted-to": "to",
+    "cross-posted": "पोस्ट की गई",
+    "cross-posted-to": "को",
     "reblogged": "{{n}} रीब्लॉगड",
     "promoted": "पदोन्नत",
     "pinned": "पिन की गई पोस्ट",
@@ -159,31 +161,31 @@
     "title": "टिप"
   },
   "entry-share": {
-    "title": "Share"
+    "title": "सांझा करें"
   },
   "entry-menu": {
-    "cross-post": "Cross post",
-    "share": "Share",
-    "edit-history": "Edit History",
-    "pin": "Pin",
-    "pin-success": "Post pinned",
-    "unpin": "Unpin",
-    "unpin-success": "Post Unpinned",
-    "mute": "Mute",
-    "mute-success": "Post muted",
-    "unmute": "Unmute",
-    "unmute-success": "Post unmuted",
-    "promote": "Promote",
-    "boost": "Boost"
+    "cross-post": "क्रॉस पोस्ट",
+    "share": "सांझा करें",
+    "edit-history": "इतिहास संपादित करें",
+    "pin": "पिन",
+    "pin-success": "पोस्ट पिन किया गया",
+    "unpin": "अनपिन",
+    "unpin-success": "पोस्ट अनपिन किया गया",
+    "mute": "म्यूट करें",
+    "mute-success": "पोस्ट म्यूट किया गया",
+    "unmute": "अनम्यूट करें",
+    "unmute-success": "पोस्ट अनम्यूट नहीं किया गया",
+    "promote": "प्रचार करना",
+    "boost": "बूस्ट"
   },
   "cross-post": {
-    "title": "Cross Post",
-    "community-placeholder": "Choose a community",
-    "message-placeholder": "Start the conversation with a message",
-    "submit-label": "Confirm",
-    "published": "Post Published",
-    "no-subscription": "You don't have any community subscription to cross post.",
-    "info": "Rewards are automatically declined for the cross post and discussions under cross post will be different and will follow different community guidelines."
+    "title": "क्रॉस पोस्ट",
+    "community-placeholder": "एक समुदाय चुनें",
+    "message-placeholder": "एक संदेश के साथ बातचीत शुरू करें",
+    "submit-label": "पुष्टी करें",
+    "published": "पोस्ट प्रकाशित",
+    "no-subscription": "आपके पास पोस्ट पार करने के लिए कोई सामुदायिक सदस्यता नहीं है।",
+    "info": "क्रॉस पोस्ट के लिए पुरस्कारों को स्वचालित रूप से अस्वीकार कर दिया जाता है और क्रॉस पोस्ट के तहत चर्चा अलग-अलग होगी और विभिन्न सामुदायिक दिशानिर्देशों का पालन करेगी।"
   },
   "entry-payout": {
     "reward": "इनाम",
@@ -232,10 +234,10 @@
     "hidden-warning": "यह पोस्ट गुप्त था निम्न मूल्यांकन के कारण.",
     "address-copy": "पोस्ट पता कापी करे",
     "address-copied": "क्लिपबोर्ड पर पोस्ट पता कॉपी किया गया।",
-    "browse-original": "Open original post",
-    "cross-post-by": "Cross post by",
-    "cross-post-community": "community",
-    "community-in": "in"
+    "browse-original": "मूल पोस्ट खोलें",
+    "cross-post-by": "द्वारा क्रॉस पोस्ट",
+    "cross-post-community": "समुदाय",
+    "community-in": "में"
   },
   "edit-history": {
     "title": "इतिहास संपादित करें",
@@ -243,7 +245,7 @@
     "version": "संस्करण {{n}}"
   },
   "similar-entries": {
-    "title": "More from @{{n}}"
+    "title": "से अधिक@{{n}}"
   },
   "comment": {
     "body-placeholder": "अपना उत्तर यहाँ लिखें",
@@ -681,9 +683,9 @@
     "schedule": "अनुसूची",
     "schedule-hint": "ऑटो विशिष्ट समय पर सामग्री प्रकाशित करता है",
     "scheduled": "पोस्ट अनुसूचित करें",
-    "empty-title-alert": "Enter post title",
-    "empty-tags-alert": "Enter post tags",
-    "empty-body-alert": "Enter post body"
+    "empty-title-alert": "पोस्ट का शीर्षक दर्ज करें",
+    "empty-tags-alert": "पोस्ट टैग दर्ज करें",
+    "empty-body-alert": "पोस्ट बॉडी दर्ज करें"
   },
   "tag-selector": {
     "placeholder-empty": "टैग। पहला टैग मुख्य श्रेणी है। क्रमित करने योग्य।",
@@ -893,6 +895,12 @@
     "title": "छवि जोड़ें",
     "text-label": "छवि पाठ",
     "link-label": "छवि लिंक"
+  },
+  "add-image-mobile": {
+    "title": "छवि जोड़ें",
+    "recent-title": "हाल ही में अपलोड किया गया",
+    "gallery": "गैलरी",
+    "upload": "तस्वीर अपलोड करें"
   },
   "add-link": {
     "title": "लिंक जोड़ें",
