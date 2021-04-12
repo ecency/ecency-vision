@@ -108,8 +108,8 @@
   "sign-up": {
     "header": "Selamat datang di Ecency",
     "description": "Rumah Berkebebasan bicara dan Komunitas yang bermanfaat!",
-    "bottom-description": "Every account is created on a blockchain and only you have control over that account. One account to manage everything on Blockchain and Ecency.",
-    "learn-more": "Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
+    "bottom-description": "Setiap akun yang dibuat di blockhain dan hanya anda yang memiliki kendali atas akun tersebut. Satu akun untuk mengelola semuanya di Blockhain dan Ecency.",
+    "learn-more": "Pelajari selengkapnya tentang keuntungan di <a href=\"/faq#how-to-join\">FAQ</a> kami",
     "username": "Pilih nama pengguna",
     "email": "Masukkan alamat email Anda",
     "ref": "Pengguna rujukan (opsional)",
