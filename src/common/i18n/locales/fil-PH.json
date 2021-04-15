@@ -695,6 +695,7 @@
     "error-max": "Max {{n}} tags"
   },
   "community-selector": {
+    "choose": "Choose a community",
     "my-blog": "Aking Blog",
     "search-placeholder": "Maghanap sa pamayanan"
   },
