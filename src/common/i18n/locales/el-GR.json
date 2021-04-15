@@ -695,6 +695,7 @@
     "error-max": "Μέγιστες {{n}} ετικέτες"
   },
   "community-selector": {
+    "choose": "Choose a community",
     "my-blog": "Το Blog μου",
     "search-placeholder": "Αναζήτησε Κοινότητες"
   },
