@@ -7,17 +7,9 @@ exports[`(1) Empty tags. 1`] = `
   onClick={[Function]}
 >
   <span
-    className="user-avatar small"
-    style={
-      Object {
-        "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/small)",
-      }
-    }
-  />
-  <span
     className="label"
   >
-    My Blog
+    Choose a community
   </span>
    
   <svg
