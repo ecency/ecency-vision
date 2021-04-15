@@ -695,6 +695,7 @@
     "error-max": "Maksimum {{n}} tagar"
   },
   "community-selector": {
+    "choose": "Choose a community",
     "my-blog": "Blog saya",
     "search-placeholder": "Cari Komunitas"
   },
