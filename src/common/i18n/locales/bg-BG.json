@@ -695,6 +695,7 @@
     "error-max": "Максимум {{n}} тагa"
   },
   "community-selector": {
+    "choose": "Choose a community",
     "my-blog": "Моят блог",
     "search-placeholder": "Търси Общности"
   },
