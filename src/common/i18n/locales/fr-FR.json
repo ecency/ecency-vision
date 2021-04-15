@@ -695,6 +695,7 @@
     "error-max": "Max {{n}} mots-clés"
   },
   "community-selector": {
+    "choose": "Choose a community",
     "my-blog": "My Blog",
     "search-placeholder": "Search Communities"
   },
