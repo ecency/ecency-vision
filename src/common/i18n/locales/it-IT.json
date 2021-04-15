@@ -695,6 +695,7 @@
     "error-max": "Al massimo {{n}} etichette"
   },
   "community-selector": {
+    "choose": "Choose a community",
     "my-blog": "Il mio blog",
     "search-placeholder": "Cerca Community"
   },
