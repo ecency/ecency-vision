@@ -1,7 +1,5 @@
 import {Dispatch} from "redux";
 
-import {utils} from "@hiveio/dhive";
-
 import {
     OperationGroup,
     Transaction,
@@ -16,7 +14,13 @@ import {
 
 import {getAccountHistory} from "../../api/hive";
 
+
+/* No need for now but keeping for future reference
+
+import {utils} from "@hiveio/dhive";
+
 const ops = utils.operationOrders;
+
 export const ACCOUNT_OPERATION_GROUPS: Record<OperationGroup, number[]> = {
     "transfers": [ops.transfer, ops.transfer_to_savings, ops.cancel_transfer_from_savings],
     "market-orders": [ops.fill_convert_request, ops.fill_order],
@@ -26,6 +30,7 @@ export const ACCOUNT_OPERATION_GROUPS: Record<OperationGroup, number[]> = {
 }
 
 const ALL_ACCOUNT_OPERATIONS = [...Object.values(ACCOUNT_OPERATION_GROUPS)].flat();
+ */
 
 export const initialState: Transactions = {
     list: [],
@@ -71,9 +76,28 @@ export const fetchTransactions = (username: string, group: OperationGroup | "" =
 
     const name = username.replace("@", "");
 
-    const operations = group ? ACCOUNT_OPERATION_GROUPS[group] : ALL_ACCOUNT_OPERATIONS;
+    let filters: any[] = [];
+    switch (group) {
+        case "transfers":
+            filters = ["21474836484", null];
+            break;
+        case "market-orders":
+            filters = ["36310271995674624", null];
+            break;
+        case "interests":
+            filters = ["9007199254740992", null];
+            break;
+        case "stake-operations":
+            filters = ["1152921504606847000", null];
+            break;
+        case "rewards":
+            filters = ["6923722026884530176", "1"];
+            break;
+        default:
+            filters = ["8121961024216629276", "1"]; // all
+    }
 
-    getAccountHistory(name, operations).then(r => {
+    getAccountHistory(name, filters).then(r => {
 
         const mapped: Transaction[] = r.map((x: any): Transaction[] | null => {
             const {op} = x[1];
