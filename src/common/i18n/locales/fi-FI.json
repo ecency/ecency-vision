@@ -695,6 +695,7 @@
     "error-max": "Enintään {{n}} tunnistetta"
   },
   "community-selector": {
+    "choose": "Choose a community",
     "my-blog": "Oma Blogi",
     "search-placeholder": "Etsi Yhteisöjä"
   },
