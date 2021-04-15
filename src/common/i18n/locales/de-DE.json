@@ -695,6 +695,7 @@
     "error-max": "Max. {{n}} Tags"
   },
   "community-selector": {
+    "choose": "Choose a community",
     "my-blog": "Mein Blog",
     "search-placeholder": "Communities suchen"
   },
