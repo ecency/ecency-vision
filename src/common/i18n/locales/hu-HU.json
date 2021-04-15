@@ -695,6 +695,7 @@
     "error-max": "Maximum {{n}} címke"
   },
   "community-selector": {
+    "choose": "Choose a community",
     "my-blog": "Saját blog",
     "search-placeholder": "Search Communities"
   },
