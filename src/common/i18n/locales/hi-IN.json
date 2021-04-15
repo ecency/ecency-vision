@@ -695,6 +695,7 @@
     "error-max": "अधिकतम {{n}} टैग"
   },
   "community-selector": {
+    "choose": "Choose a community",
     "my-blog": "मेरा ब्लॉग",
     "search-placeholder": "समुदाय खोजें"
   },
