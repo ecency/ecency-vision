@@ -59,8 +59,6 @@ import truncate from "../util/truncate";
 import * as ls from "../util/local-storage";
 import {crossPostMessage} from "../helper/cross-post";
 
-import {timeSvg} from "../img/svg";
-
 import {_t} from "../i18n";
 import {Tsx} from "../i18n/helper";
 
@@ -603,7 +601,6 @@ class EntryPage extends BaseComponent<Props, State> {
                                         </div>
                                         <div className="entry-info">
                                             <div className="date" title={published.format("LLLL")}>
-                                                {timeSvg}
                                                 {published.fromNow()}
                                             </div>
                                             <span className="separator"/>
