@@ -165,12 +165,9 @@
 
       @media (min-width: $md-break) {
         font-size: 26px;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
 
         .title {
-          margin: 0;
+          margin-bottom: 18px;
         }
       }
 
