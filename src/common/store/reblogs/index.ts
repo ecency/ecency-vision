@@ -36,7 +36,7 @@ export default (state: Reblogs = initialState, action: Actions): Reblogs => {
         }
         case ActionTypes.DELETE: {
             const {item} = action;
-            const newList = state.list.filter(x => x.author !== item.author && x.permlink !== item.permlink)
+            const newList = state.list.filter(x => !(x.author === item.author && x.permlink === item.permlink));
             return {
                 ...state,
                 list: newList
