@@ -78,6 +78,7 @@ export class NotificationListItem extends Component<{
 
     render() {
         const {notification} = this.props;
+
         const sourceLinkMain = ProfileLink({
             ...this.props,
             username: notification.source,
@@ -93,7 +94,7 @@ export class NotificationListItem extends Component<{
         });
 
         return <>
-            <div className={_c(`list-item ${notification.read === 0 ? 'not-read' : ' '}`)}>
+            <div title={notification.timestamp} className={_c(`list-item ${notification.read === 0 ? 'not-read' : ' '}`)}>
                 <div className="item-inner">
                     <div className="item-control">
                         {notification.read === 0 && (
