@@ -595,8 +595,8 @@
     "type-fill_convert_request": "Inserisci la richiesta di conversione",
     "type-cancel_transfer_from_savings": "Rimuovi i trasferiti dai risparmi",
     "type-cancel_transfer_from_savings-detail": "Da: <strong>@{{from}}</strong> <br/> IDentificativo di richiesta: <strong>{{request}}</strong>",
-    "type-return_vesting_delegation": "Return vesting delegation",
-    "type-proposal_pay": "Proposal pay"
+    "type-return_vesting_delegation": "Richiama la delega investita",
+    "type-proposal_pay": "Pagamento della proposta"
   },
   "key-or-hot": {
     "sign": "Accesso",
@@ -683,9 +683,9 @@
     "schedule": "Pianifica",
     "schedule-hint": "Pubblica automaticamente il contenuto in un giorno e un'ora prefissati",
     "scheduled": "Post programmato",
-    "empty-title-alert": "Enter post title",
-    "empty-tags-alert": "Enter post tags",
-    "empty-body-alert": "Enter post body"
+    "empty-title-alert": "Inserisci titolo del post",
+    "empty-tags-alert": "Inserisci etichette del post",
+    "empty-body-alert": "Inserisci corpo del testo"
   },
   "tag-selector": {
     "placeholder-empty": "Etichette. La prima etichetta è la categoria principale che classificherà il post.",
@@ -695,7 +695,7 @@
     "error-max": "Al massimo {{n}} etichette"
   },
   "community-selector": {
-    "choose": "Choose a community",
+    "choose": "Scegli una community",
     "my-blog": "Il mio blog",
     "search-placeholder": "Cerca Community"
   },
@@ -898,14 +898,14 @@
     "link-label": "Collegamento all'immagine"
   },
   "add-image-mobile": {
-    "title": "Add Image",
-    "recent-title": "Recently uploaded",
-    "gallery": "Gallery",
-    "upload": "Upload image"
+    "title": "Aggiungi immagine",
+    "recent-title": "Caricati di recente",
+    "gallery": "Galleria",
+    "upload": "Carica Immagine"
   },
   "add-link": {
-    "title": "Add Link",
-    "text-label": "Text",
+    "title": "Aggiungi Link",
+    "text-label": "Testo",
     "link-label": "https://"
   },
   "scroll-to-top": {
@@ -995,11 +995,11 @@
     "restart": "Ricomincia"
   },
   "chain-error": {
-    "min-root-comment": "You may only post once every five minutes.",
-    "identical-vote": "Your current vote on this content is identical to this vote.",
-    "insufficient-resource": "Insufficient Resource Credits. Please wait to transact, or power up HIVE.",
-    "delete-comment-with-vote": "Can't delete a content with votes.",
-    "comment-cashout": "Content cashout.",
-    "paid-out-post-forbidden": "Voting for paid out content is not available."
+    "min-root-comment": "Puoi pubblicare soltanto una volta ogni cinque minuti.",
+    "identical-vote": "Il tuo voto attuale sul contenuto corrente è identico a questo voto.",
+    "insufficient-resource": "Crediti di Riserva insufficienti. Attendi per effettuare la transazione, oppure completa un nuovo power-up di HIVE.",
+    "delete-comment-with-vote": "Non puoi rimuovere un contenuto con voti.",
+    "comment-cashout": "Incasso del contenuto.",
+    "paid-out-post-forbidden": "Non è disponibile il voto per contenuti già pagati."
   }
 }
