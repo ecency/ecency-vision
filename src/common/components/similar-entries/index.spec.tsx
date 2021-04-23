@@ -24,7 +24,16 @@ jest.mock("../../api/search-api", () => ({
             }
 
             if (TEST_MODE === 2) {
-                const resp = {...searchResponseInstance, results: [searchResponseInstance.results[0], searchResponseInstance.results[1], searchResponseInstance.results[2]]}
+                const resp = {
+                    ...searchResponseInstance, results: [
+                        searchResponseInstance.results[0],
+                        searchResponseInstance.results[1],
+                        {
+                            ...searchResponseInstance.results[2],
+                            author: "good-karmax"
+                        }
+                    ]
+                }
                 resolve(resp);
             }
         }),

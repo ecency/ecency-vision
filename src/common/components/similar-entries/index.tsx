@@ -56,20 +56,20 @@ export class SimilarEntries extends BaseComponent<Props, State> {
         }
     }
 
-    buildQuery = (entry :Entry) => {
-        const {json_metadata, permlink} = entry; 
+    buildQuery = (entry: Entry) => {
+        const {json_metadata, permlink} = entry;
         let q = "*";
         q += ` type:post`;
         let tags;
 
         if (json_metadata && json_metadata.tags) {
-            tags = json_metadata.tags.filter((x :string) => x !== "").filter((x :string) => !isCommunity(x)).filter((x :string, ind :number) => ind < 3).join(',');
+            tags = json_metadata.tags.filter((x: string) => x !== "").filter((x: string) => !isCommunity(x)).filter((x: string, ind: number) => ind < 3).join(',');
         }
         if (tags && tags.length > 0) {
             q += ` tag:${tags}`;
         } else {
             const fperm = permlink.split('-');
-            tags = fperm.filter((x :string) => x !== "").filter((x :string) => !(/^-?\d+$/.test(x))).filter((x :string) => x.length > 2).join(',');
+            tags = fperm.filter((x: string) => x !== "").filter((x: string) => !(/^-?\d+$/.test(x))).filter((x: string) => x.length > 2).join(',');
             q += ` tag:${tags}`;
         }
         return q;
@@ -83,11 +83,18 @@ export class SimilarEntries extends BaseComponent<Props, State> {
         this.stateSet({loading: true});
         const query = this.buildQuery(entry);
         search(query, "newest", "0", undefined, undefined).then(r => {
-            let entries: SearchResult[];
 
-            entries = r.results
-                            .filter(r => r.permlink !== permlink)
-                            .slice(0, limit);
+            const rawEntries: SearchResult[] = r.results.filter(r => r.permlink !== permlink);
+
+            let entries: SearchResult[] = [];
+
+            rawEntries.forEach(x => {
+                if (entries.find(y => y.author === x.author) === undefined) {
+                    entries.push(x)
+                }
+            })
+
+            entries = entries.slice(0, limit);
 
             this.stateSet({entries});
         }).finally(() => {

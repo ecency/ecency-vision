@@ -98,7 +98,7 @@ exports[`(3) Should render entries 1`] = `
       className="similar-entries-list-item"
     >
       <a
-        href="/relevant/@good-karma/from-esteem-search-to-hivesearcher"
+        href="/relevant/@good-karmax/from-esteem-search-to-hivesearcher"
         onClick={[Function]}
       >
         <div
@@ -121,7 +121,7 @@ exports[`(3) Should render entries 1`] = `
           <span
             className="item-footer-author"
           >
-            good-karma
+            good-karmax
           </span>
           <span
             className="item-footer-date"
