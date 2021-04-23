@@ -47,23 +47,26 @@ export class SimilarEntries extends BaseComponent<Props, State> {
     }
 
     componentDidMount() {
-        this.fetch();
+        this.fetch(false);
     }
 
     componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>, snapshot?: any) {
         if (!isEqual(this.props.location, prevProps.location)) {
-            this.fetch();
+            this.fetch(false);
         }
     }
 
-    buildQuery = (entry: Entry) => {
+    buildQuery = (entry: Entry, retry: Boolean) => {
         const {json_metadata, permlink} = entry;
         let q = "*";
         q += ` type:post`;
         let tags;
 
         if (json_metadata && json_metadata.tags) {
-            tags = json_metadata.tags.filter((x: string) => x !== "").filter((x: string) => !isCommunity(x)).filter((x: string, ind: number) => ind < 3).join(',');
+            tags = json_metadata.tags
+                    .filter((x: string) => x !== "")
+                    .filter((x: string) => !isCommunity(x))
+                    .filter((x: string, ind: number) => (retry?ind < 2:ind < 3)).join(',');
         }
         if (tags && tags.length > 0) {
             q += ` tag:${tags}`;
@@ -75,13 +78,13 @@ export class SimilarEntries extends BaseComponent<Props, State> {
         return q;
     }
 
-    fetch = () => {
+    fetch = (retry: Boolean) => {
         const {entry} = this.props;
         const {permlink} = entry;
         const limit = 3;
 
         this.stateSet({loading: true});
-        const query = this.buildQuery(entry);
+        const query = this.buildQuery(entry, retry);
         search(query, "newest", "0", undefined, undefined).then(r => {
 
             const rawEntries: SearchResult[] = r.results.filter(r => r.permlink !== permlink);
@@ -93,8 +96,11 @@ export class SimilarEntries extends BaseComponent<Props, State> {
                     entries.push(x)
                 }
             })
-
-            entries = entries.slice(0, limit);
+            if (entries.length < limit) {
+                this.fetch(true);
+            } else {
+                entries = entries.slice(0, limit);    
+            }
 
             this.stateSet({entries});
         }).finally(() => {
