@@ -14,16 +14,7 @@ exports[`(3) Should render entries 1`] = `
     <div
       className="list-header-text"
     >
-      <svg
-        viewBox="0 0 24 24"
-      >
-        <path
-          d="M7,5H21V7H7V5M7,13V11H21V13H7M4,4.5A1.5,1.5 0 0,1 5.5,6A1.5,1.5 0 0,1 4,7.5A1.5,1.5 0 0,1 2.5,6A1.5,1.5 0 0,1 4,4.5M4,10.5A1.5,1.5 0 0,1 5.5,12A1.5,1.5 0 0,1 4,13.5A1.5,1.5 0 0,1 2.5,12A1.5,1.5 0 0,1 4,10.5M7,19V17H21V19H7M4,16.5A1.5,1.5 0 0,1 5.5,18A1.5,1.5 0 0,1 4,19.5A1.5,1.5 0 0,1 2.5,18A1.5,1.5 0 0,1 4,16.5Z"
-          fill="currentColor"
-        />
-      </svg>
-       
-      More from @good-karma
+      Read next
     </div>
   </div>
   <div
@@ -33,44 +24,35 @@ exports[`(3) Should render entries 1`] = `
       className="similar-entries-list-item"
     >
       <a
-        href="/foo/@good-karma/foo1"
+        href="/relevant/@good-karma/imagehoster-hivesigner-and-condenser-bounty"
         onClick={[Function]}
       >
-        <div
-          className="item-title"
-        >
-          Awesome Hive
-        </div>
         <div
           className="item-image"
         >
           <img
-            alt="Awesome Hive"
+            alt="Imagehoster + Hivesigner and Condenser bounty"
             onError={[Function]}
-            src="https://images.ecency.com/p/HNWT6DgoBc1692QWn5trsGLxi44TrGuNZJMEdibBBbUKuho3EaW43JV4QzaQ258PEGNV2u43KAhU8r3Vjno4cBP8JeTFkbS2SCMjZZPprKzfMSdteRxSZxuPku4?format=match&mode=fit&width=600&height=500"
+            src="noimage.png"
           />
+        </div>
+        <div
+          className="item-title"
+        >
+          Imagehoster + Hivesigner and Condenser bounty
         </div>
         <div
           className="item-footer"
         >
           <span
+            className="item-footer-author"
+          >
+            good-karma
+          </span>
+          <span
             className="item-footer-date"
           >
             3 days ago
-          </span>
-          <span
-            className="item-footer-comment-count"
-          >
-            <svg
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M18,8H6V6H18V8M18,11H6V9H18V11M18,14H6V12H18V14M22,4A2,2 0 0,0 20,2H4A2,2 0 0,0 2,4V16A2,2 0 0,0 4,18H18L22,22V4Z"
-                fill="currentColor"
-              />
-            </svg>
-             
-            31
           </span>
         </div>
       </a>
@@ -79,44 +61,35 @@ exports[`(3) Should render entries 1`] = `
       className="similar-entries-list-item"
     >
       <a
-        href="/foo/@good-karma/foo2"
+        href="/relevant/@ecency/ecency-vision-no-beneficiaries-drafts-gallery-bookmarks"
         onClick={[Function]}
       >
-        <div
-          className="item-title"
-        >
-          Awesome Hive
-        </div>
         <div
           className="item-image"
         >
           <img
-            alt="Awesome Hive"
+            alt="Ecency Vision - No beneficiaries, Drafts, Gallery, Bookmarks"
             onError={[Function]}
-            src="https://images.ecency.com/p/HNWT6DgoBc1692QWn5trsGLxi44TrGuNZJMEdibBBbUKuho3EaW43JV4QzaQ258PEGNV2u43KAhU8r3Vjno4cBP8JeTFkbS2SCMjZZPprKzfMSdteRxSZxuPku4?format=match&mode=fit&width=600&height=500"
+            src="https://images.ecency.com/p/qjrE4yyfw5pJD9LKQ1BG3BAmr5TYaANmrJEBZ9YMFm1JzaDyFrs2gybkt9EkQpcw34nTWFHD2XRVqvYde75Xjcbva4CmKgJf229A1udyqYXoE3PChHh5GC6a?format=match&mode=fit&width=600&height=500"
           />
+        </div>
+        <div
+          className="item-title"
+        >
+          Ecency Vision - No beneficiaries, Drafts, Gallery, Bookmarks
         </div>
         <div
           className="item-footer"
         >
           <span
+            className="item-footer-author"
+          >
+            ecency
+          </span>
+          <span
             className="item-footer-date"
           >
             3 days ago
-          </span>
-          <span
-            className="item-footer-comment-count"
-          >
-            <svg
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M18,8H6V6H18V8M18,11H6V9H18V11M18,14H6V12H18V14M22,4A2,2 0 0,0 20,2H4A2,2 0 0,0 2,4V16A2,2 0 0,0 4,18H18L22,22V4Z"
-                fill="currentColor"
-              />
-            </svg>
-             
-            31
           </span>
         </div>
       </a>
@@ -125,44 +98,35 @@ exports[`(3) Should render entries 1`] = `
       className="similar-entries-list-item"
     >
       <a
-        href="/foo/@good-karma/foo3"
+        href="/relevant/@good-karma/from-esteem-search-to-hivesearcher"
         onClick={[Function]}
       >
-        <div
-          className="item-title"
-        >
-          Awesome Hive
-        </div>
         <div
           className="item-image"
         >
           <img
-            alt="Awesome Hive"
+            alt="From Esteem Search to Hivesearcher"
             onError={[Function]}
-            src="https://images.ecency.com/p/HNWT6DgoBc1692QWn5trsGLxi44TrGuNZJMEdibBBbUKuho3EaW43JV4QzaQ258PEGNV2u43KAhU8r3Vjno4cBP8JeTFkbS2SCMjZZPprKzfMSdteRxSZxuPku4?format=match&mode=fit&width=600&height=500"
+            src="https://images.ecency.com/p/C3TZR1g81UNbFzApDTmvFYMje8p1iesaAcNjSh7JWYRiPQRX52L6rNRZipeiaBkx9daTxCyJyVvcKo3QMC9tjfRvNzgHxYuYyj6AFmCrd98w27oav6Nh8m4?format=match&mode=fit&width=600&height=500"
           />
+        </div>
+        <div
+          className="item-title"
+        >
+          From Esteem Search to Hivesearcher
         </div>
         <div
           className="item-footer"
         >
           <span
+            className="item-footer-author"
+          >
+            good-karma
+          </span>
+          <span
             className="item-footer-date"
           >
             3 days ago
-          </span>
-          <span
-            className="item-footer-comment-count"
-          >
-            <svg
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M18,8H6V6H18V8M18,11H6V9H18V11M18,14H6V12H18V14M22,4A2,2 0 0,0 20,2H4A2,2 0 0,0 2,4V16A2,2 0 0,0 4,18H18L22,22V4Z"
-                fill="currentColor"
-              />
-            </svg>
-             
-            31
           </span>
         </div>
       </a>
