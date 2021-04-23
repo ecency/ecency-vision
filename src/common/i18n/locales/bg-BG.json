@@ -245,7 +245,7 @@
     "version": "Версия {{n}}"
   },
   "similar-entries": {
-    "title": "More from @{{n}}"
+    "title": "Read next"
   },
   "comment": {
     "body-placeholder": "Напишете вашият отговор тук",
