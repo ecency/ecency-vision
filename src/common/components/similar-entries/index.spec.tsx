@@ -5,31 +5,36 @@ import {createBrowserHistory, createLocation} from "history";
 
 import {SimilarEntries} from './index';
 
-import {globalInstance, entryInstance1, allOver} from "../../helper/test-helper";
+import {globalInstance, entryInstance1, allOver, searchResponseInstance} from "../../helper/test-helper";
 
-import {Entry} from "../../store/entries/types";
+let TEST_MODE = 0;
 
-let TEST_MODE = 0
 
-jest.mock("../../api/bridge", () => ({
-    getAccountPosts: () =>
+jest.mock("../../api/search-api", () => ({
+    search: () =>
         new Promise((resolve) => {
-            const p1: Entry = {...entryInstance1, permlink: "foo1"}
-            const p2: Entry = {...entryInstance1, permlink: "foo2"}
-            const p3: Entry = {...entryInstance1, permlink: "foo3"}
-            const p4: Entry = {...entryInstance1, permlink: "foo4"}
-            const p5: Entry = {...entryInstance1, permlink: "foo5"}
 
             if (TEST_MODE === 0) {
-                resolve([]);
+                resolve({...searchResponseInstance, results: []});
             }
 
             if (TEST_MODE === 1) {
-                resolve([p1, p2]);
+                const resp = {...searchResponseInstance, results: [searchResponseInstance.results[0], searchResponseInstance.results[1]]}
+                resolve(resp);
             }
 
             if (TEST_MODE === 2) {
-                resolve([p1, p2, p3, p4, p5]);
+                const resp = {
+                    ...searchResponseInstance, results: [
+                        searchResponseInstance.results[0],
+                        searchResponseInstance.results[1],
+                        {
+                            ...searchResponseInstance.results[2],
+                            author: "good-karmax"
+                        }
+                    ]
+                }
+                resolve(resp);
             }
         }),
 }));

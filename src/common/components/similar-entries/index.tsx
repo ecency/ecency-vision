@@ -18,13 +18,12 @@ import {Entry} from "../../store/entries/types";
 import BaseComponent from "../base";
 import EntryLink from "../entry-link";
 
-import *  as bridgeApi from "../../api/bridge";
+import {search, SearchResult} from "../../api/search-api";
 
 import {_t} from "../../i18n";
 
 import parseDate from "../../helper/parse-date";
-
-import {formatListBulletedSvg, commentSvg} from "../../img/svg";
+import isCommunity from "../../helper/is-community";
 
 const fallbackImage = require("../../img/fallback.png");
 const noImage = require("../../img/noimage.png");
@@ -38,7 +37,7 @@ interface Props {
 
 interface State {
     loading: boolean;
-    entries: Entry[]
+    entries: SearchResult[]
 }
 
 export class SimilarEntries extends BaseComponent<Props, State> {
@@ -57,31 +56,56 @@ export class SimilarEntries extends BaseComponent<Props, State> {
         }
     }
 
+    buildQuery = (entry: Entry) => {
+        const {json_metadata, permlink} = entry;
+        let q = "*";
+        q += ` type:post`;
+        let tags;
+
+        if (json_metadata && json_metadata.tags) {
+            tags = json_metadata.tags.filter((x: string) => x !== "").filter((x: string) => !isCommunity(x)).filter((x: string, ind: number) => ind < 3).join(',');
+        }
+        if (tags && tags.length > 0) {
+            q += ` tag:${tags}`;
+        } else {
+            const fperm = permlink.split('-');
+            tags = fperm.filter((x: string) => x !== "").filter((x: string) => !(/^-?\d+$/.test(x))).filter((x: string) => x.length > 2).join(',');
+            q += ` tag:${tags}`;
+        }
+        return q;
+    }
+
     fetch = () => {
         const {entry} = this.props;
-        const {author, permlink} = entry;
+        const {permlink} = entry;
+        const limit = 3;
 
         this.stateSet({loading: true});
-        bridgeApi.getAccountPosts('posts', author, '', '', 6)
-            .then((resp) => {
+        const query = this.buildQuery(entry);
+        search(query, "newest", "0", undefined, undefined).then(r => {
 
-                if (resp) {
-                    const entries = resp
-                        .filter(r => r.permlink !== permlink)
-                        .filter(r => r.author === author)
-                        // Get top 3
-                        .slice(0, 3)
+            const rawEntries: SearchResult[] = r.results.filter(r => r.permlink !== permlink);
 
-                    this.stateSet({entries});
+            let entries: SearchResult[] = [];
+
+            rawEntries.forEach(x => {
+                if (entries.find(y => y.author === x.author) === undefined) {
+                    entries.push(x)
                 }
             })
-            .finally(() => {
-                this.stateSet({loading: false});
-            });
+
+            entries = entries.slice(0, limit);
+
+            this.stateSet({entries});
+        }).finally(() => {
+            this.stateSet({
+                loading: false,
+            })
+        });
     }
 
     render() {
-        const {entry, global} = this.props
+        const {global} = this.props
         const {entries} = this.state;
         if (entries.length !== 3) {
             return null;
@@ -92,21 +116,20 @@ export class SimilarEntries extends BaseComponent<Props, State> {
                 <div className="similar-entries-list">
                     <div className="similar-entries-list-header">
                         <div className="list-header-text">
-                            {formatListBulletedSvg} {_t('similar-entries.title', {n: entry.author})}
+                            {_t('similar-entries.title')}
                         </div>
                     </div>
                     <div className="similar-entries-list-body">
                         {entries.map((en, i) => {
-                            const img = catchPostImage(en, 600, 500, global.canUseWebp ? 'webp' : 'match') || noImage;
-                            const date = moment(parseDate(en.created));
+                            const img = catchPostImage(en.img_url, 600, 500, global.canUseWebp ? 'webp' : 'match') || noImage;
+                            const date = moment(parseDate(`${en.created_at.replace('+00:00', '')}`));
                             const dateRelative = date.fromNow();
 
                             return <div className="similar-entries-list-item" key={i}>
                                 {EntryLink({
                                     ...this.props,
-                                    entry: {category: "foo", author: en.author, permlink: en.permlink},
+                                    entry: {category: "relevant", author: en.author, permlink: en.permlink},
                                     children: <>
-                                        <div className="item-title">{en.title}</div>
                                         <div className="item-image">
                                             <img
                                                 src={img}
@@ -117,11 +140,12 @@ export class SimilarEntries extends BaseComponent<Props, State> {
                                                 }}
                                             />
                                         </div>
+                                        <div className="item-title">{en.title}</div>
                                         <div className="item-footer">
-                                            <span className="item-footer-date">
-                                                {dateRelative}
+                                            <span className="item-footer-author">
+                                                {en.author}
                                             </span>
-                                            {en.children > 0 && (<span className="item-footer-comment-count">{commentSvg} {en.children}</span>)}
+                                            <span className="item-footer-date">{dateRelative}</span>
                                         </div>
                                     </>
                                 })}

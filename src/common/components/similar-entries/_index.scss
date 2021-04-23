@@ -15,21 +15,17 @@
 
     .list-header-text {
       @include themify(day) {
-        color: $dusk-blue;
+        color: $charcoal-grey;
       }
 
       @include themify(night) {
-        color: $dark-sky-blue;
+        color: $pinkish-grey;
       }
 
       font-weight: 500;
+      font-size: 28px;
       display: flex;
       align-items: center;
-
-      svg {
-        height: 16px;
-        margin-right: 4px;
-      }
     }
   }
 
@@ -50,7 +46,7 @@
 
       .item-title {
         display: block;
-        font-size: 15px;
+        font-size: 16px;
         font-weight: 500;
         margin-bottom: 5px;
         overflow: hidden;
@@ -93,7 +89,7 @@
       }
 
       .item-footer {
-        font-size: 12px;
+        font-size: 13px;
 
         @include themify(day) {
           color: $steel-grey;
@@ -104,15 +100,10 @@
           color: lighten($steel-grey, 16);
         }
 
-        .item-footer-comment-count {
+        .item-footer-date {
           float: right;
           display: flex;
           align-items: center;
-
-          svg {
-            height: 12px;
-            margin-right: 4px;
-          }
         }
       }
     }
