@@ -245,7 +245,7 @@
     "version": "Version {{n}}"
   },
   "similar-entries": {
-    "title": "More from @{{n}}"
+    "title": "Read next"
   },
   "comment": {
     "body-placeholder": "Écrivez votre réponse ici",
