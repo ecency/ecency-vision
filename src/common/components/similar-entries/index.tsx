@@ -37,13 +37,15 @@ interface Props {
 
 interface State {
     loading: boolean;
-    entries: SearchResult[]
+    entries: SearchResult[];
+    retry: number;
 }
 
 export class SimilarEntries extends BaseComponent<Props, State> {
     state: State = {
         loading: false,
-        entries: []
+        entries: [],
+        retry: 3,
     }
 
     componentDidMount() {
@@ -58,16 +60,23 @@ export class SimilarEntries extends BaseComponent<Props, State> {
 
     buildQuery = (entry: Entry) => {
         const {json_metadata, permlink} = entry;
+        const {retry} = this.state;
+
         let q = "*";
         q += ` type:post`;
         let tags;
-
+        // 3 tags and decrease until there is enough relevant posts
         if (json_metadata && json_metadata.tags) {
-            tags = json_metadata.tags.filter((x: string) => x !== "").filter((x: string) => !isCommunity(x)).filter((x: string, ind: number) => ind < 3).join(',');
+            tags = json_metadata.tags
+                    .filter((x: string) => x !== "")
+                    .filter((x: string) => !isCommunity(x))
+                    .filter((x: string, ind: number) => (ind < retry)).join(',');
         }
+        // check to make sure tags are not empty
         if (tags && tags.length > 0) {
             q += ` tag:${tags}`;
         } else {
+        // no tags in post, try with permlink
             const fperm = permlink.split('-');
             tags = fperm.filter((x: string) => x !== "").filter((x: string) => !(/^-?\d+$/.test(x))).filter((x: string) => x.length > 2).join(',');
             q += ` tag:${tags}`;
@@ -78,30 +87,38 @@ export class SimilarEntries extends BaseComponent<Props, State> {
     fetch = () => {
         const {entry} = this.props;
         const {permlink} = entry;
+        const {retry} = this.state;
         const limit = 3;
+        if (retry > 0) {
+            this.stateSet({loading: true});
+            const query = this.buildQuery(entry);
+            search(query, "newest", "0", undefined, undefined).then(r => {
 
-        this.stateSet({loading: true});
-        const query = this.buildQuery(entry);
-        search(query, "newest", "0", undefined, undefined).then(r => {
+                const rawEntries: SearchResult[] = r.results.filter(r => r.permlink !== permlink);
 
-            const rawEntries: SearchResult[] = r.results.filter(r => r.permlink !== permlink);
+                let entries: SearchResult[] = [];
 
-            let entries: SearchResult[] = [];
-
-            rawEntries.forEach(x => {
-                if (entries.find(y => y.author === x.author) === undefined) {
-                    entries.push(x)
+                rawEntries.forEach(x => {
+                    if (entries.find(y => y.author === x.author) === undefined) {
+                        entries.push(x)
+                    }
+                })
+                if (entries.length < limit) {
+                    this.setState((state) => ({
+                        retry: state.retry - 1
+                    }));
+                    this.fetch();
+                } else {
+                    entries = entries.slice(0, limit);
                 }
-            })
 
-            entries = entries.slice(0, limit);
-
-            this.stateSet({entries});
-        }).finally(() => {
-            this.stateSet({
-                loading: false,
-            })
-        });
+                this.stateSet({entries});
+            }).finally(() => {
+                this.stateSet({
+                    loading: false,
+                })
+            });
+        }
     }
 
     render() {
