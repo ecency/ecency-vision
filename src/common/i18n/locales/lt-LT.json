@@ -196,7 +196,8 @@
     "curators-payout": "Kuracijos Užmokestis",
     "payout-date": "Užmokestis",
     "beneficiary": "Gavėjas",
-    "breakdown": "Išskaidyti"
+    "breakdown": "Išskaidyti",
+    "max-accepted": "Max accepted"
   },
   "entry-index": {
     "feed": "Pagrindinis",
