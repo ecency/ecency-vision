@@ -196,7 +196,8 @@
     "curators-payout": "Curator Uitbetaling",
     "payout-date": "Uitbetaling",
     "beneficiary": "Begunstigde",
-    "breakdown": "Uiteenzetting"
+    "breakdown": "Uiteenzetting",
+    "max-accepted": "Max accepted"
   },
   "entry-index": {
     "feed": "Kanaal",
