@@ -196,7 +196,8 @@
     "curators-payout": "Pembayaran Kurator",
     "payout-date": "Pembayaran",
     "beneficiary": "Penerima",
-    "breakdown": "Kerusakan"
+    "breakdown": "Kerusakan",
+    "max-accepted": "Max accepted"
   },
   "entry-index": {
     "feed": "Umpan",
