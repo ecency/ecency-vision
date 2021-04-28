@@ -196,7 +196,8 @@
     "curators-payout": "Кураторська винагорода",
     "payout-date": "Виплата",
     "beneficiary": "Бенефіціар (отримувач)",
-    "breakdown": "Упс... щось Зламалося"
+    "breakdown": "Упс... щось Зламалося",
+    "max-accepted": "Max accepted"
   },
   "entry-index": {
     "feed": "Стрічка",
