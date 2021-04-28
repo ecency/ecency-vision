@@ -196,7 +196,8 @@
     "curators-payout": "Isplata glasačima",
     "payout-date": "Isplata",
     "beneficiary": "Primalac (Beneficiary)",
-    "breakdown": "Presek"
+    "breakdown": "Presek",
+    "max-accepted": "Max accepted"
   },
   "entry-index": {
     "feed": "Novosti",
