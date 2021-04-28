@@ -196,7 +196,8 @@
     "curators-payout": "Kabayaran ng tagasinop",
     "payout-date": "Kabayaran",
     "beneficiary": "Benepisyaryo",
-    "breakdown": "Pagkakapangkat-pangkat"
+    "breakdown": "Pagkakapangkat-pangkat",
+    "max-accepted": "Max accepted"
   },
   "entry-index": {
     "feed": "Feed",
