@@ -196,7 +196,8 @@
     "curators-payout": "Pagamento de curadores",
     "payout-date": "Pagamento",
     "beneficiary": "Beneficiário",
-    "breakdown": "Decomposição"
+    "breakdown": "Decomposição",
+    "max-accepted": "Max accepted"
   },
   "entry-index": {
     "feed": "Conteúdo de notícias",
