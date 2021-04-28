@@ -196,7 +196,8 @@
     "curators-payout": "Gain des curateurs",
     "payout-date": "Gain",
     "beneficiary": "Bénéficiaire",
-    "breakdown": "Répartition"
+    "breakdown": "Répartition",
+    "max-accepted": "Max accepted"
   },
   "entry-index": {
     "feed": "Fil d'actualités",
