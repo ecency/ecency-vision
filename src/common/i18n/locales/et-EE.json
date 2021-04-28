@@ -196,7 +196,8 @@
     "curators-payout": "Hääletajate tasu",
     "payout-date": "Väljamakse",
     "beneficiary": "Kasusaaja",
-    "breakdown": "Analüüs"
+    "breakdown": "Analüüs",
+    "max-accepted": "Max accepted"
   },
   "entry-index": {
     "feed": "Voog",
