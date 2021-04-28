@@ -196,7 +196,8 @@
     "curators-payout": "Kurátori Kifizetés",
     "payout-date": "Kifizetés",
     "beneficiary": "Kedvezményezett",
-    "breakdown": "Lebontás"
+    "breakdown": "Lebontás",
+    "max-accepted": "Max accepted"
   },
   "entry-index": {
     "feed": "Hírfolyam",
