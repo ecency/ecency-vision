@@ -196,7 +196,8 @@
     "curators-payout": "Πληρωμή Επιμελητή",
     "payout-date": "Πληρωμή",
     "beneficiary": "Δικαιούχος",
-    "breakdown": "Ανάλυση"
+    "breakdown": "Ανάλυση",
+    "max-accepted": "Max accepted"
   },
   "entry-index": {
     "feed": "Ροή",
