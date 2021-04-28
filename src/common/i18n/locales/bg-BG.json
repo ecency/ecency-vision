@@ -196,7 +196,8 @@
     "curators-payout": "Възнаграждение на гласувалите",
     "payout-date": "Изплащане",
     "beneficiary": "Бенефициент",
-    "breakdown": "Разбивка"
+    "breakdown": "Разбивка",
+    "max-accepted": "Max accepted"
   },
   "entry-index": {
     "feed": "Моят поток",
