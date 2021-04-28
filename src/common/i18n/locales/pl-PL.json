@@ -196,7 +196,8 @@
     "curators-payout": "Wypłata Kuratorska",
     "payout-date": "Wypłata",
     "beneficiary": "Beneficjant",
-    "breakdown": "Podział"
+    "breakdown": "Podział",
+    "max-accepted": "Max accepted"
   },
   "entry-index": {
     "feed": "Aktualności",
