@@ -196,7 +196,8 @@
     "curators-payout": "Выплата Кураторам: {amount}",
     "payout-date": "Выплата",
     "beneficiary": "Бенефициар",
-    "breakdown": "Разбивка"
+    "breakdown": "Разбивка",
+    "max-accepted": "Max accepted"
   },
   "entry-index": {
     "feed": "Лента",
