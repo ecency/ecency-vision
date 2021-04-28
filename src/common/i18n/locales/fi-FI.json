@@ -196,7 +196,8 @@
     "curators-payout": "Tarkastajan tulo",
     "payout-date": "Tulot",
     "beneficiary": "Hyötyjä",
-    "breakdown": "Erittely"
+    "breakdown": "Erittely",
+    "max-accepted": "Max accepted"
   },
   "entry-index": {
     "feed": "Syöte",
