@@ -196,7 +196,8 @@
     "curators-payout": "Plată de curare",
     "payout-date": "Plată",
     "beneficiary": "Beneficiar",
-    "breakdown": "Defalcare"
+    "breakdown": "Defalcare",
+    "max-accepted": "Max accepted"
   },
   "entry-index": {
     "feed": "Flux",
