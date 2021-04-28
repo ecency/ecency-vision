@@ -196,7 +196,8 @@
     "curators-payout": "Kuratoren Auszahlung",
     "payout-date": "Auszahlung",
     "beneficiary": "Begünstigter",
-    "breakdown": "Breakdown"
+    "breakdown": "Breakdown",
+    "max-accepted": "Max accepted"
   },
   "entry-index": {
     "feed": "Feed",
