@@ -196,7 +196,8 @@
     "curators-payout": "Ricompensa dei Curatori",
     "payout-date": "Ricompensa",
     "beneficiary": "Beneficiari",
-    "breakdown": "Guadagni Ripartiti"
+    "breakdown": "Guadagni Ripartiti",
+    "max-accepted": "Max accepted"
   },
   "entry-index": {
     "feed": "Feed",
