@@ -196,7 +196,8 @@
     "curators-payout": "Curators Payout",
     "payout-date": "Payout",
     "beneficiary": "Beneficiary",
-    "breakdown": "Breakdown"
+    "breakdown": "Breakdown",
+    "max-accepted": "Max accepted"
   },
   "entry-index": {
     "feed": "Axın",
