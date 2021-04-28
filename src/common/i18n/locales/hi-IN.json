@@ -196,7 +196,8 @@
     "curators-payout": "अध्यक्ष्ता भुगतान",
     "payout-date": "भुगतान",
     "beneficiary": "लाभार्थी",
-    "breakdown": "विश्लेषण"
+    "breakdown": "विश्लेषण",
+    "max-accepted": "Max accepted"
   },
   "entry-index": {
     "feed": "फ़ीड",
