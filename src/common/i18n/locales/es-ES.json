@@ -196,7 +196,8 @@
     "curators-payout": "Pagos de Curación",
     "payout-date": "Pago",
     "beneficiary": "Beneficiario",
-    "breakdown": "Intermedio"
+    "breakdown": "Intermedio",
+    "max-accepted": "Max accepted"
   },
   "entry-index": {
     "feed": "Canal de noticias",
