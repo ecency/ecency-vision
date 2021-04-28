@@ -2,7 +2,7 @@
 
 exports[`(1) Default render 1`] = `
 <div
-  className="entry-payout  notranslate"
+  className="entry-payout notranslate"
   onBlur={[Function]}
   onFocus={[Function]}
   onMouseOut={[Function]}

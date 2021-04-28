@@ -15,6 +15,11 @@
     color: lighten($steel-grey, 15);
     text-decoration: line-through;
   }
+
+  &.payout-limit-hit {
+    color: lighten($steel-grey, 15);
+    opacity: .8;
+  }
 }
 
 .payout-popover {

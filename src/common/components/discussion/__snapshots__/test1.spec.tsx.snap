@@ -159,7 +159,7 @@ exports[`(1) Full render with active user 1`] = `
               </div>
             </div>
             <div
-              className="entry-payout  notranslate"
+              className="entry-payout notranslate"
               onBlur={[Function]}
               onFocus={[Function]}
               onMouseOut={[Function]}
@@ -290,7 +290,7 @@ exports[`(1) Full render with active user 1`] = `
               </div>
             </div>
             <div
-              className="entry-payout  notranslate"
+              className="entry-payout notranslate"
               onBlur={[Function]}
               onFocus={[Function]}
               onMouseOut={[Function]}
@@ -423,7 +423,7 @@ exports[`(1) Full render with active user 1`] = `
                   </div>
                 </div>
                 <div
-                  className="entry-payout  notranslate"
+                  className="entry-payout notranslate"
                   onBlur={[Function]}
                   onFocus={[Function]}
                   onMouseOut={[Function]}
@@ -556,7 +556,7 @@ exports[`(1) Full render with active user 1`] = `
               </div>
             </div>
             <div
-              className="entry-payout  notranslate"
+              className="entry-payout notranslate"
               onBlur={[Function]}
               onFocus={[Function]}
               onMouseOut={[Function]}
@@ -689,7 +689,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               </div>
             </div>
             <div
-              className="entry-payout  notranslate"
+              className="entry-payout notranslate"
               onBlur={[Function]}
               onFocus={[Function]}
               onMouseOut={[Function]}
@@ -820,7 +820,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               </div>
             </div>
             <div
-              className="entry-payout  notranslate"
+              className="entry-payout notranslate"
               onBlur={[Function]}
               onFocus={[Function]}
               onMouseOut={[Function]}
@@ -952,7 +952,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               </div>
             </div>
             <div
-              className="entry-payout  notranslate"
+              className="entry-payout notranslate"
               onBlur={[Function]}
               onFocus={[Function]}
               onMouseOut={[Function]}
@@ -1084,7 +1084,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               </div>
             </div>
             <div
-              className="entry-payout  notranslate"
+              className="entry-payout notranslate"
               onBlur={[Function]}
               onFocus={[Function]}
               onMouseOut={[Function]}
@@ -1216,7 +1216,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               </div>
             </div>
             <div
-              className="entry-payout  notranslate"
+              className="entry-payout notranslate"
               onBlur={[Function]}
               onFocus={[Function]}
               onMouseOut={[Function]}
@@ -1453,7 +1453,7 @@ exports[`(3) With selected item 1`] = `
               </div>
             </div>
             <div
-              className="entry-payout  notranslate"
+              className="entry-payout notranslate"
               onBlur={[Function]}
               onFocus={[Function]}
               onMouseOut={[Function]}
@@ -1584,7 +1584,7 @@ exports[`(3) With selected item 1`] = `
               </div>
             </div>
             <div
-              className="entry-payout  notranslate"
+              className="entry-payout notranslate"
               onBlur={[Function]}
               onFocus={[Function]}
               onMouseOut={[Function]}
@@ -1717,7 +1717,7 @@ exports[`(3) With selected item 1`] = `
                   </div>
                 </div>
                 <div
-                  className="entry-payout  notranslate"
+                  className="entry-payout notranslate"
                   onBlur={[Function]}
                   onFocus={[Function]}
                   onMouseOut={[Function]}
@@ -1850,7 +1850,7 @@ exports[`(3) With selected item 1`] = `
               </div>
             </div>
             <div
-              className="entry-payout  notranslate"
+              className="entry-payout notranslate"
               onBlur={[Function]}
               onFocus={[Function]}
               onMouseOut={[Function]}
@@ -1983,7 +1983,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               </div>
             </div>
             <div
-              className="entry-payout  notranslate"
+              className="entry-payout notranslate"
               onBlur={[Function]}
               onFocus={[Function]}
               onMouseOut={[Function]}
@@ -2114,7 +2114,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               </div>
             </div>
             <div
-              className="entry-payout  notranslate"
+              className="entry-payout notranslate"
               onBlur={[Function]}
               onFocus={[Function]}
               onMouseOut={[Function]}
@@ -2246,7 +2246,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               </div>
             </div>
             <div
-              className="entry-payout  notranslate"
+              className="entry-payout notranslate"
               onBlur={[Function]}
               onFocus={[Function]}
               onMouseOut={[Function]}
@@ -2378,7 +2378,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               </div>
             </div>
             <div
-              className="entry-payout  notranslate"
+              className="entry-payout notranslate"
               onBlur={[Function]}
               onFocus={[Function]}
               onMouseOut={[Function]}
@@ -2510,7 +2510,7 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
               </div>
             </div>
             <div
-              className="entry-payout  notranslate"
+              className="entry-payout notranslate"
               onBlur={[Function]}
               onFocus={[Function]}
               onMouseOut={[Function]}
@@ -2787,7 +2787,7 @@ exports[`(4) Show mute button, muted comment 1`] = `
               </div>
             </div>
             <div
-              className="entry-payout  notranslate"
+              className="entry-payout notranslate"
               onBlur={[Function]}
               onFocus={[Function]}
               onMouseOut={[Function]}
