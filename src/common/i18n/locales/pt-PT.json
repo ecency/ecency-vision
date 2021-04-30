@@ -126,8 +126,8 @@
     "title": "Destaque"
   },
   "entry-list-item": {
-    "cross-posted": "cross-posted",
-    "cross-posted-to": "to",
+    "cross-posted": "republicado",
+    "cross-posted-to": "para",
     "reblogged": "{{n}} reblogou",
     "promoted": "promovidos",
     "pinned": "Postagem Fixada",
@@ -136,10 +136,10 @@
     "no-replies": "Nenhuma resposta ainda. Clique para responder."
   },
   "nsfw": {
-    "reveal": "Reveal this post",
-    "signup": "<a href=\"/signup\" class=\"push-link\">create an account</a> to save your preferences",
-    "settings-1": "adjust your",
-    "settings-2": "display preferences"
+    "reveal": "Revelar esta publicação",
+    "signup": "<a href=\"/signup\" class=\"push-link\">crie uma conta</a> para salvar suas preferências",
+    "settings-1": "ajuste sua",
+    "settings-2": "visualizar preferências"
   },
   "bookmark-btn": {
     "add": "Adicionar aos favoritos",
@@ -152,10 +152,10 @@
     "confirm-title": "Reblogar para o blog de @{{n}}?",
     "confirm-ok": "Reblogar",
     "success": "Reblogado!",
-    "delete-reblog": "Undo Reblog",
-    "delete-confirm-title": "Undo reblog?",
-    "delete-confirm-ok": "Undo",
-    "delete-success": "Reblog removed"
+    "delete-reblog": "Desfazer Repostagem",
+    "delete-confirm-title": "Desfazer repostagem?",
+    "delete-confirm-ok": "Desfazer",
+    "delete-success": "Repostagem removida"
   },
   "entry-tip": {
     "title": "Dica"
@@ -235,10 +235,10 @@
     "hidden-warning": "Esta publicação foi ocultada devido a baixas classificações.",
     "address-copy": "Copiar endereço do post",
     "address-copied": "Endereço do post copiado.",
-    "browse-original": "Open original post",
-    "cross-post-by": "Cross post by",
-    "cross-post-community": "community",
-    "community-in": "in"
+    "browse-original": "Abrir publicação original",
+    "cross-post-by": "Repostado por",
+    "cross-post-community": "comunidade",
+    "community-in": "em"
   },
   "edit-history": {
     "title": "Editar Histórico",
@@ -411,7 +411,7 @@
     "notifications": "Alertas de Notificações",
     "currency": "Moeda",
     "language": "Língua",
-    "nsfw": "Show NSFW content",
+    "nsfw": "Mostrar conteúdo adulto",
     "updated": "Preferências atualizadas!"
   },
   "wallet": {
@@ -482,19 +482,19 @@
     "claim-ok": "Pontos reivindicados",
     "promote": "Promover",
     "boost": "Impulsionar",
-    "filter-all": "All History",
-    "filter-10": "Points for heartbeat",
-    "filter-20": "Points for login",
-    "filter-30": "Usage bonus",
-    "filter-100": "Points for post",
-    "filter-110": "Points for comment",
-    "filter-120": "Points for vote",
-    "filter-130": "Points for reblog",
-    "filter-150": "Delegation reward",
-    "filter-160": "Referral reward",
-    "filter-170": "Community reward",
-    "filter-998": "Outgoing transfer",
-    "filter-999": "Incoming transfer"
+    "filter-all": "Todo o histórico",
+    "filter-10": "Pontos por coração",
+    "filter-20": "Pontos por Login",
+    "filter-30": "Bônus de uso",
+    "filter-100": "Pontos pela postagem",
+    "filter-110": "Pontos pelo comentário",
+    "filter-120": "Pontos pelo voto",
+    "filter-130": "Pontos por repostagem",
+    "filter-150": "Recompensa da delegação",
+    "filter-160": "Recompensa por indicação",
+    "filter-170": "Recompensa da comunidade",
+    "filter-998": "Transferência de saída",
+    "filter-999": "Depósitos"
   },
   "purchase": {
     "select-asset": "Selecionar ativo",
@@ -576,12 +576,12 @@
   },
   "transactions": {
     "title": "Histórico",
-    "group-all": "All History",
-    "group-transfers": "Transfers",
-    "group-market-orders": "Market Orders",
-    "group-interests": "Interests",
-    "group-stake-operations": "Stake operations",
-    "group-rewards": "Rewards",
+    "group-all": "Todo o histórico",
+    "group-transfers": "Transferências",
+    "group-market-orders": "Ordens do Mercado",
+    "group-interests": "Interesses",
+    "group-stake-operations": "Operações de Stake",
+    "group-rewards": "Recompensas",
     "type-curation_reward": "Recompensa de Curadoria",
     "type-author_reward": "Recompensa do Autor",
     "type-comment_benefactor_reward": "Recompensa do benficiário de comentário",
@@ -590,14 +590,14 @@
     "type-transfer_to_vesting": "Transferir para o investimento",
     "type-withdraw_vesting": "Retirar investimento",
     "type-fill_order": "Preencher pedido",
-    "type-producer_reward": "Producer reward",
-    "type-interest": "Interest",
-    "type-transfer_to_savings": "Transfer to savings",
-    "type-fill_convert_request": "Fill convert request",
-    "type-cancel_transfer_from_savings": "Cancel transfer from savings",
-    "type-cancel_transfer_from_savings-detail": "From: <strong>@{{from}}</strong> <br/> Request id: <strong>{{request}}</strong>",
-    "type-return_vesting_delegation": "Return vesting delegation",
-    "type-proposal_pay": "Proposal pay"
+    "type-producer_reward": "Recompensa de criador",
+    "type-interest": "Rendimentos",
+    "type-transfer_to_savings": "Transferir para a poupança",
+    "type-fill_convert_request": "Solicitação para conversão",
+    "type-cancel_transfer_from_savings": "Cancelar a transferência da poupança",
+    "type-cancel_transfer_from_savings-detail": "De: <strong>@{{from}}</strong> <br/> ID da solicitação: <strong>{{request}}</strong>",
+    "type-return_vesting_delegation": "Retornar delegação de HP",
+    "type-proposal_pay": "Proposta de pagamento"
   },
   "key-or-hot": {
     "sign": "Assinar",
@@ -696,7 +696,7 @@
     "error-max": "Máximo de etiquetas {{n}}"
   },
   "community-selector": {
-    "choose": "Choose a community",
+    "choose": "Escolher uma comunidade",
     "my-blog": "Meu Blog",
     "search-placeholder": "Pesquisar comunidades"
   },
