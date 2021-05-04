@@ -246,7 +246,7 @@
     "version": "Versi {{n}}"
   },
   "similar-entries": {
-    "title": "Read next"
+    "title": "Baca berikutnya"
   },
   "comment": {
     "body-placeholder": "Tulis balasan Anda disini",
@@ -696,7 +696,7 @@
     "error-max": "Maksimum {{n}} tagar"
   },
   "community-selector": {
-    "choose": "Choose a community",
+    "choose": "Pilih sebuah komunitas",
     "my-blog": "Blog saya",
     "search-placeholder": "Cari Komunitas"
   },
