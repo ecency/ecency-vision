@@ -97,6 +97,7 @@ server
     .get("^/private-api/received-vesting/:username$", privateApi.receivedVesting)
     .get("^/private-api/rewarded-communities$", privateApi.rewardedCommunities)
     .get("^/private-api/leaderboard/:duration(day|week|month)$", privateApi.leaderboard)
+    .get("^/private-api/curation/:duration(day|week|month)$", privateApi.curation)
     .get("^/private-api/promoted-entries$", privateApi.promotedEntries)
     .post("^/private-api/comment-history$", privateApi.commentHistory)
     .post("^/private-api/points$", privateApi.points)
