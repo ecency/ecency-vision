@@ -767,6 +767,18 @@
     "header-score-tip": "Пост + коментари направени от потребителя за избрания период",
     "header-reward": "Награда"
   },
+  "curation": {
+    "title": "Leaderboard",
+    "title-day": "Daily top curators",
+    "title-week": "Weekly top curators",
+    "title-month": "Monthly top curators",
+    "period-day": "Daily",
+    "period-week": "Weekly",
+    "period-month": "Monthly",
+    "header-score": "Votes",
+    "header-score-tip": "Number of votes in this period",
+    "header-reward": "Reward"
+  },
   "popular-users": {
     "title": "Известни Потребители"
   },
