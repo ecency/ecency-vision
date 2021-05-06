@@ -768,16 +768,16 @@
     "header-reward": "Recompensa"
   },
   "curation": {
-    "title": "Leaderboard",
-    "title-day": "Daily top curators",
-    "title-week": "Weekly top curators",
-    "title-month": "Monthly top curators",
-    "period-day": "Daily",
-    "period-week": "Weekly",
-    "period-month": "Monthly",
-    "header-score": "Votes",
-    "header-score-tip": "Number of votes in this period",
-    "header-reward": "Reward"
+    "title": "Tabla de clasificación",
+    "title-day": "Mejores curadores del día",
+    "title-week": "Mejores curadores de la semana",
+    "title-month": "Mejores curadores del mes",
+    "period-day": "Diariamente",
+    "period-week": "Semanalmente",
+    "period-month": "Mensualmente",
+    "header-score": "Votos",
+    "header-score-tip": "Número de votos en este período",
+    "header-reward": "Recompensa"
   },
   "popular-users": {
     "title": "Usuarios populares"
