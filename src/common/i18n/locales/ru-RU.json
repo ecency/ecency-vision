@@ -767,6 +767,18 @@
     "header-score-tip": "Посты + комментарии, сделанные пользователем за выбранный период",
     "header-reward": "Вознаграждение"
   },
+  "curation": {
+    "title": "Leaderboard",
+    "title-day": "Daily top curators",
+    "title-week": "Weekly top curators",
+    "title-month": "Monthly top curators",
+    "period-day": "Daily",
+    "period-week": "Weekly",
+    "period-month": "Monthly",
+    "header-score": "Votes",
+    "header-score-tip": "Number of votes in this period",
+    "header-reward": "Reward"
+  },
   "popular-users": {
     "title": "Популярные пользователи"
   },
