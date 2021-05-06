@@ -36,6 +36,11 @@ export const leaderboard = async (req: express.Request, res: express.Response) =
     pipe(apiRequest(`leaderboard?duration=${duration}`, "GET"), res);
 };
 
+export const curation = async (req: express.Request, res: express.Response) => {
+    const {duration} = req.params;
+    pipe(apiRequest(`curation?duration=${duration}`, "GET"), res);
+};
+
 export const promotedEntries = async (req: express.Request, res: express.Response) => {
     const posts = await getPromotedEntries();
     res.send(posts);

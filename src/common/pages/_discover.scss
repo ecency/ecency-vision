@@ -9,6 +9,7 @@
   }
 
   .top-users,
+  .curation-users,
   .popular-users {
     padding: 0 10px;
     height: 460px;
@@ -31,6 +32,22 @@
 
     @include themify(night) {
       background: $dark;
+    }
+  }
+
+  .curation-users {
+    flex-basis: 440px;
+    flex-shrink: 0;
+
+    @include themify(day) {
+      background: lighten($dark-sky-blue, 40);
+    }
+
+    @include themify(night) {
+      background: $dark;
+    }
+    @media (min-width: $lg-break) {
+      margin-left: 10px;
     }
   }
 

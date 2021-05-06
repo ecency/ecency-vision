@@ -290,24 +290,58 @@
     max-width: 100% !important;
     display: block;
     @media (min-width: $xsm-break) {
+      width: 320px;
+      height: 180px;
+    }
+    @media (min-width: $xs-break) {
       width: 360px;
-      height: 205px;
+      height: 202px;
     }
     @media (min-width: $sm-break) {
       width: 420px;
-      height: 238px;
+      height: 236px;
     }
     @media (min-width: $md-break) {
       width: 480px;
-      height: 271px;
+      height: 270px;
     }
     @media (min-width: $lg-break) {
       width: 640px;
-      height: 362px;
+      height: 360px;
     }
     @media (min-width: $xl-break) {
       width: 100%;
       height: 500px;
+    }
+    @media (min-width: $xxl-break) {
+      width: 1440px;
+      height: 810px;
+    }
+    @media (min-width: $xxxl-break) {
+      width: 1600px;
+      height: 900px;
+    }
+    &.portrait-embed {
+      @media (min-width: $xsm-break) {
+        width: 180px;
+        height: 320px;
+      }
+      @media (min-width: $xs-break) {
+        width: 202px;
+        height: 360px;
+      }
+      @media (min-width: $sm-break) {
+        width: 236px;
+        height: 420px;
+      }
+      @media (min-width: $md-break) {
+        width: 270px;
+        height: 480px;
+      }
+      @media (min-width: $lg-break) {
+        width: 360px;
+        height: 640px;
+      }
     }
   }
 

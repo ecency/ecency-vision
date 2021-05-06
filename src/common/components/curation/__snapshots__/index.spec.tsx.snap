@@ -1,0 +1,260 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Render with data. 1`] = `
+<div
+  className="leaderboard-list"
+>
+  <div
+    className="list-header"
+  >
+    <div
+      className="list-filter"
+    >
+      Leaderboard
+       
+      <div
+        className="custom-dropdown float-left"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        <div
+          className="dropdown-btn"
+        >
+          
+          <div
+            className="menu-down"
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7,10L12,15L17,10H7Z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="list-title"
+    >
+      Daily top curators
+    </div>
+  </div>
+  <div
+    className="list-body"
+  >
+    <div
+      className="list-body-header"
+    >
+      <span />
+      <span
+        className="score"
+        title="Number of votes in this period"
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
+            fill="currentColor"
+          />
+        </svg>
+         
+        Votes
+      </span>
+      <span
+        className="points"
+      >
+        Reward
+      </span>
+    </div>
+    <div
+      className="list-item"
+    >
+      <div
+        className="index"
+      >
+        1
+      </div>
+      <div
+        className="avatar"
+      >
+        <a
+          href="/@foo"
+          onClick={[Function]}
+        >
+          <span
+            className="user-avatar medium"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+              }
+            }
+          />
+        </a>
+      </div>
+      <div
+        className="username"
+      >
+        <a
+          href="/@foo"
+          onClick={[Function]}
+        >
+          foo
+        </a>
+      </div>
+      <div
+        className="score"
+      >
+        42
+      </div>
+      <div
+        className="points"
+      >
+        0.062 HP
+      </div>
+    </div>
+    <div
+      className="list-item"
+    >
+      <div
+        className="index"
+      >
+        2
+      </div>
+      <div
+        className="avatar"
+      >
+        <a
+          href="/@bar"
+          onClick={[Function]}
+        >
+          <span
+            className="user-avatar medium"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
+              }
+            }
+          />
+        </a>
+      </div>
+      <div
+        className="username"
+      >
+        <a
+          href="/@bar"
+          onClick={[Function]}
+        >
+          bar
+        </a>
+      </div>
+      <div
+        className="score"
+      >
+        40
+      </div>
+      <div
+        className="points"
+      >
+        0.031 HP
+      </div>
+    </div>
+    <div
+      className="list-item"
+    >
+      <div
+        className="index"
+      >
+        3
+      </div>
+      <div
+        className="avatar"
+      >
+        <a
+          href="/@baz"
+          onClick={[Function]}
+        >
+          <span
+            className="user-avatar medium"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/baz/avatar/medium)",
+              }
+            }
+          />
+        </a>
+      </div>
+      <div
+        className="username"
+      >
+        <a
+          href="/@baz"
+          onClick={[Function]}
+        >
+          baz
+        </a>
+      </div>
+      <div
+        className="score"
+      >
+        26
+      </div>
+      <div
+        className="points"
+      >
+        0.023 HP
+      </div>
+    </div>
+    <div
+      className="list-item"
+    >
+      <div
+        className="index"
+      >
+        4
+      </div>
+      <div
+        className="avatar"
+      >
+        <a
+          href="/@zoo"
+          onClick={[Function]}
+        >
+          <span
+            className="user-avatar medium"
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/zoo/avatar/medium)",
+              }
+            }
+          />
+        </a>
+      </div>
+      <div
+        className="username"
+      >
+        <a
+          href="/@zoo"
+          onClick={[Function]}
+        >
+          zoo
+        </a>
+      </div>
+      <div
+        className="score"
+      >
+        22
+      </div>
+      <div
+        className="points"
+      >
+        0.028 HP
+      </div>
+    </div>
+  </div>
+</div>
+`;
