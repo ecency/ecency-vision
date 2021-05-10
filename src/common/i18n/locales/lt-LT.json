@@ -756,28 +756,19 @@
     "unmute": "Turn on notification alerts"
   },
   "leaderboard": {
-    "title": "Lyderių lentelė",
-    "title-day": "Dienos Top vartotojai",
-    "title-week": "Savaitės Top vartotojai",
-    "title-month": "Mėnesio Top vartotojai",
+    "title-stars": "Ecency Stars",
+    "title-curators": "Curators",
+    "title-day": "Daily leaders",
+    "title-week": "Weekly leaders",
+    "title-month": "Monthly leaders",
     "period-day": "Kas dieną",
     "period-week": "Kas savaitę",
     "period-month": "Kas mėnesį",
     "header-score": "Veikla",
     "header-score-tip": "Irašas + komentarai padaryti vartotojo per tam tikrą laikotarpį",
-    "header-reward": "Atlygis"
-  },
-  "curation": {
-    "title": "Leaderboard",
-    "title-day": "Daily top curators",
-    "title-week": "Weekly top curators",
-    "title-month": "Monthly top curators",
-    "period-day": "Daily",
-    "period-week": "Weekly",
-    "period-month": "Monthly",
-    "header-score": "Votes",
-    "header-score-tip": "Number of votes in this period",
-    "header-reward": "Reward"
+    "header-reward": "Atlygis",
+    "header-votes": "Votes",
+    "header-votes-tip": "Number of votes in this period"
   },
   "popular-users": {
     "title": "Populiarūs Vartotojai"
