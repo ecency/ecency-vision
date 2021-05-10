@@ -756,28 +756,19 @@
     "unmute": "Hidupkan pemberitahuan notifikasi"
   },
   "leaderboard": {
-    "title": "Papan Peringkat",
-    "title-day": "Pengguna teratas harian",
-    "title-week": "Pengguna teratas mingguan",
-    "title-month": "Pengguna teratas bulanan",
+    "title-stars": "Ecency Stars",
+    "title-curators": "Curators",
+    "title-day": "Daily leaders",
+    "title-week": "Weekly leaders",
+    "title-month": "Monthly leaders",
     "period-day": "Harian",
     "period-week": "Mingguan",
     "period-month": "Bulanan",
     "header-score": "Aktifitas",
     "header-score-tip": "Posting + komentar yang dibuat oleh pengguna untuk periode yang dipilih",
-    "header-reward": "Imbalan"
-  },
-  "curation": {
-    "title": "Leaderboard",
-    "title-day": "Daily top curators",
-    "title-week": "Weekly top curators",
-    "title-month": "Monthly top curators",
-    "period-day": "Daily",
-    "period-week": "Weekly",
-    "period-month": "Monthly",
-    "header-score": "Votes",
-    "header-score-tip": "Number of votes in this period",
-    "header-reward": "Reward"
+    "header-reward": "Imbalan",
+    "header-votes": "Votes",
+    "header-votes-tip": "Number of votes in this period"
   },
   "popular-users": {
     "title": "Pengguna Populer"
