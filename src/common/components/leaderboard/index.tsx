@@ -79,7 +79,7 @@ export class LeaderBoard extends BaseComponent<Props, State> {
             <div className={_c(`leaderboard-list ${loading ? "loading" : ""}`)}>
                 <div className="list-header">
                     <div className="list-filter">
-                        {_t('leaderboard.title')} <DropDown {...dropDownConfig} float="left"/>
+                        {_t('leaderboard.title-stars')} <DropDown {...dropDownConfig} float="left"/>
                     </div>
                     <div className="list-title">
                         {_t(`leaderboard.title-${period}`)}

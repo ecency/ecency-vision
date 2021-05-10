@@ -100,10 +100,10 @@ export class Curation extends BaseComponent<Props, State> {
             <div className={_c(`leaderboard-list ${loading ? "loading" : ""}`)}>
                 <div className="list-header">
                     <div className="list-filter">
-                        {_t('curation.title')} <DropDown {...dropDownConfig} float="left"/>
+                        {_t('leaderboard.title-curators')} <DropDown {...dropDownConfig} float="left"/>
                     </div>
                     <div className="list-title">
-                        {_t(`curation.title-${period}`)}
+                        {_t(`leaderboard.title-${period}`)}
                     </div>
                 </div>
                 {loading && <LinearProgress/>}
@@ -111,13 +111,13 @@ export class Curation extends BaseComponent<Props, State> {
                     <div className="list-body">
                         <div className="list-body-header">
                             <span/>
-                            <Tooltip content={_t('curation.header-score-tip')}>
+                            <Tooltip content={_t('leaderboard.header-votes-tip')}>
                             <span className="score">
-                                {informationSvg} {_t('curation.header-score')}
+                                {informationSvg} {_t('leaderboard.header-votes')}
                             </span>
                             </Tooltip>
                             <span className="points">
-                               {_t('curation.header-reward')}
+                               {_t('leaderboard.header-reward')}
                             </span>
                         </div>
 
