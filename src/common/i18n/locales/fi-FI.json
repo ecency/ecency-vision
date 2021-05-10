@@ -756,28 +756,19 @@
     "unmute": "Ota ilmoitukset käyttöön"
   },
   "leaderboard": {
-    "title": "Tulostaulukko",
-    "title-day": "Päivän kovimmat käyttäjät",
-    "title-week": "Viikon kovimmat käyttäjät",
-    "title-month": "Kuukauden kovimmat käyttäjät",
+    "title-stars": "Ecency Stars",
+    "title-curators": "Curators",
+    "title-day": "Daily leaders",
+    "title-week": "Weekly leaders",
+    "title-month": "Monthly leaders",
     "period-day": "Päivittäin",
     "period-week": "Viikottain",
     "period-month": "Kuukausittain",
     "header-score": "Toiminnat",
     "header-score-tip": "Julkaisu + kommentit käyttäjältä valitulta ajalta",
-    "header-reward": "Palkkio"
-  },
-  "curation": {
-    "title": "Leaderboard",
-    "title-day": "Daily top curators",
-    "title-week": "Weekly top curators",
-    "title-month": "Monthly top curators",
-    "period-day": "Daily",
-    "period-week": "Weekly",
-    "period-month": "Monthly",
-    "header-score": "Votes",
-    "header-score-tip": "Number of votes in this period",
-    "header-reward": "Reward"
+    "header-reward": "Palkkio",
+    "header-votes": "Votes",
+    "header-votes-tip": "Number of votes in this period"
   },
   "popular-users": {
     "title": "Suositut käyttäjät"
