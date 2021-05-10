@@ -756,28 +756,19 @@
     "unmute": "Turn on notification alerts"
   },
   "leaderboard": {
-    "title": "Leaderboard",
-    "title-day": "Daily top users",
-    "title-week": "Weekly top users",
-    "title-month": "Aylıq ən yaxşı istifadəçilər",
+    "title-stars": "Ecency Stars",
+    "title-curators": "Curators",
+    "title-day": "Daily leaders",
+    "title-week": "Weekly leaders",
+    "title-month": "Monthly leaders",
     "period-day": "Günlük",
     "period-week": "Həftəlik",
     "period-month": "Aylıq",
     "header-score": "Fəaliyyətlər",
     "header-score-tip": "Seçilmiş dövr üçün bir istifadəçi tərəfindən yazılan göndəriş və rəylər",
-    "header-reward": "Mükafat"
-  },
-  "curation": {
-    "title": "Leaderboard",
-    "title-day": "Daily top curators",
-    "title-week": "Weekly top curators",
-    "title-month": "Monthly top curators",
-    "period-day": "Daily",
-    "period-week": "Weekly",
-    "period-month": "Monthly",
-    "header-score": "Votes",
-    "header-score-tip": "Number of votes in this period",
-    "header-reward": "Reward"
+    "header-reward": "Mükafat",
+    "header-votes": "Votes",
+    "header-votes-tip": "Number of votes in this period"
   },
   "popular-users": {
     "title": "Məşhur istifadəçilər"
