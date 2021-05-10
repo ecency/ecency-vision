@@ -756,28 +756,19 @@
     "unmute": "Activati alertele de notificare"
   },
   "leaderboard": {
-    "title": "Clasament",
-    "title-day": "Utilizatori de top zilnic",
-    "title-week": "Utilizatori de top săptămânal",
-    "title-month": "Utilizatori de top lunar",
+    "title-stars": "Ecency Stars",
+    "title-curators": "Curators",
+    "title-day": "Daily leaders",
+    "title-week": "Weekly leaders",
+    "title-month": "Monthly leaders",
     "period-day": "Zilnic",
     "period-week": "Săptămânal",
     "period-month": "Lunar",
     "header-score": "Activități",
     "header-score-tip": "Post + comments made by a user for selected period",
-    "header-reward": "Recompensă"
-  },
-  "curation": {
-    "title": "Leaderboard",
-    "title-day": "Daily top curators",
-    "title-week": "Weekly top curators",
-    "title-month": "Monthly top curators",
-    "period-day": "Daily",
-    "period-week": "Weekly",
-    "period-month": "Monthly",
-    "header-score": "Votes",
-    "header-score-tip": "Number of votes in this period",
-    "header-reward": "Reward"
+    "header-reward": "Recompensă",
+    "header-votes": "Votes",
+    "header-votes-tip": "Number of votes in this period"
   },
   "popular-users": {
     "title": "Popular Users"
