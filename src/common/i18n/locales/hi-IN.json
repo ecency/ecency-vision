@@ -756,28 +756,19 @@
     "unmute": "अधिसूचना अलर्ट चालू करें"
   },
   "leaderboard": {
-    "title": "लीडरबोर्ड",
-    "title-day": "दैनिक शीर्ष उपयोगकर्ता",
-    "title-week": "साप्ताहिक शीर्ष उपयोगकर्ता",
-    "title-month": "मासिक शीर्ष उपयोगकर्ता",
+    "title-stars": "Ecency Stars",
+    "title-curators": "Curators",
+    "title-day": "Daily leaders",
+    "title-week": "Weekly leaders",
+    "title-month": "Monthly leaders",
     "period-day": "रोजाना",
     "period-week": "साप्ताहिक",
     "period-month": "मासिक",
     "header-score": "क्रियाएँ",
     "header-score-tip": "उपयोगकर्ता द्वारा चयनित अवधि के लिए पोस्ट + टिप्पणियाँ",
-    "header-reward": "इनाम"
-  },
-  "curation": {
-    "title": "Leaderboard",
-    "title-day": "Daily top curators",
-    "title-week": "Weekly top curators",
-    "title-month": "Monthly top curators",
-    "period-day": "Daily",
-    "period-week": "Weekly",
-    "period-month": "Monthly",
-    "header-score": "Votes",
-    "header-score-tip": "Number of votes in this period",
-    "header-reward": "Reward"
+    "header-reward": "इनाम",
+    "header-votes": "Votes",
+    "header-votes-tip": "Number of votes in this period"
   },
   "popular-users": {
     "title": "लोकप्रिय उपयोगकर्ता"
