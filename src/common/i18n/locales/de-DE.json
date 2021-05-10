@@ -756,28 +756,19 @@
     "unmute": "Benachrichtigungen aktivieren"
   },
   "leaderboard": {
-    "title": "Rangliste",
-    "title-day": "Tägliche Top-User",
-    "title-week": "Wöchentliche Top-Benutzer",
-    "title-month": "Monatliche Top-Benutzer",
+    "title-stars": "Ecency Stars",
+    "title-curators": "Curators",
+    "title-day": "Daily leaders",
+    "title-week": "Weekly leaders",
+    "title-month": "Monthly leaders",
     "period-day": "Täglich",
     "period-week": "Wöchentlich",
     "period-month": "Monatlich",
     "header-score": "Aktivitäten",
     "header-score-tip": "Beiträge + Kommentare eines Benutzers für den gewählten Zeitraum",
-    "header-reward": "Belohnung"
-  },
-  "curation": {
-    "title": "Leaderboard",
-    "title-day": "Daily top curators",
-    "title-week": "Weekly top curators",
-    "title-month": "Monthly top curators",
-    "period-day": "Daily",
-    "period-week": "Weekly",
-    "period-month": "Monthly",
-    "header-score": "Votes",
-    "header-score-tip": "Number of votes in this period",
-    "header-reward": "Reward"
+    "header-reward": "Belohnung",
+    "header-votes": "Votes",
+    "header-votes-tip": "Number of votes in this period"
   },
   "popular-users": {
     "title": "Beliebte Benutzer"
