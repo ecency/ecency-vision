@@ -756,28 +756,19 @@
     "unmute": "Włącz powiadomienia"
   },
   "leaderboard": {
-    "title": "Ranking",
-    "title-day": "Dzienni najlepsi użytkownicy",
-    "title-week": "Tygodniowo najlepsi użytkownicy",
-    "title-month": "Miesięcznie najlepsi użytkownicy",
+    "title-stars": "Ecency Stars",
+    "title-curators": "Curators",
+    "title-day": "Daily leaders",
+    "title-week": "Weekly leaders",
+    "title-month": "Monthly leaders",
     "period-day": "Codziennie",
     "period-week": "Co tydzień",
     "period-month": "Co miesiąc",
     "header-score": "Aktywności",
     "header-score-tip": "Post + komentarze użytkownika dla wybranego okresu",
-    "header-reward": "Wynagrodzenie"
-  },
-  "curation": {
-    "title": "Leaderboard",
-    "title-day": "Daily top curators",
-    "title-week": "Weekly top curators",
-    "title-month": "Monthly top curators",
-    "period-day": "Daily",
-    "period-week": "Weekly",
-    "period-month": "Monthly",
-    "header-score": "Votes",
-    "header-score-tip": "Number of votes in this period",
-    "header-reward": "Reward"
+    "header-reward": "Wynagrodzenie",
+    "header-votes": "Votes",
+    "header-votes-tip": "Number of votes in this period"
   },
   "popular-users": {
     "title": "Popularni użytkownicy"
