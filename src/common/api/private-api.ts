@@ -45,6 +45,7 @@ export const getLeaderboard = (duration: LeaderBoardDuration): Promise<LeaderBoa
 };
 
 export interface CurationItem {
+    efficiency: number;
     account: string;
     vests: number;
     votes: number;

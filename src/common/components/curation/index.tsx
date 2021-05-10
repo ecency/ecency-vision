@@ -21,6 +21,7 @@ import {_t} from "../../i18n";
 import _c from "../../util/fix-class-names"
 import {vestsToHp} from "../../helper/vesting";
 import formattedNumber from "../../util/formatted-number";
+import { getAccounts } from '../../api/hive';
 
 interface Props {
     global: Global;
@@ -47,13 +48,27 @@ export class Curation extends BaseComponent<Props, State> {
         this.fetch();
     }
 
+    compare = (a: CurationItem, b: CurationItem) => {
+        return b.efficiency - a.efficiency;
+    }
+
     fetch = () => {
         const {period} = this.state;
         this.stateSet({loading: true, data: []});
 
         getCuration(period).then(data => {
-            this.stateSet({data});
-            this.stateSet({loading: false});
+            const accounts = data.map((item) => item.account);
+            getAccounts(accounts).then(res => {
+                for (let index = 0; index < res.length; index++) {
+                    const element = res[index];
+                    const curator = data[index];
+                    const effectiveVest: number = parseFloat(element.vesting_shares) + parseFloat(element.received_vesting_shares) - parseFloat(element.delegated_vesting_shares) - parseFloat(element.vesting_withdraw_rate);
+                    curator.efficiency = curator.vests / effectiveVest;
+                }
+                data.sort(this.compare);
+                this.stateSet({data});
+                this.stateSet({loading: false});
+            });
         });
     }
 
@@ -62,7 +77,7 @@ export class Curation extends BaseComponent<Props, State> {
         const {data, period, loading} = this.state;
         const {dynamicProps} = this.props;
         const {hivePerMVests} = dynamicProps;
-        
+
         const menuItems = [
             ...["day", "week", "month"].map((f => {
                 return {
