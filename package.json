@@ -28,7 +28,6 @@
     "currency-symbol-map": "^4.0.4",
     "diff-match-patch": "^1.0.5",
     "express": "^4.17.1",
-    "express-lowercase-urls": "^1.0.4",
     "history": "^4.7.2",
     "hive-uri": "^0.2.3",
     "hivesigner": "^3.2.5",

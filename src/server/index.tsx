@@ -1,7 +1,6 @@
 import express from "express";
 
 import cookieParser from "cookie-parser";
-import lowercaseUrls from 'express-lowercase-urls';
 
 import {EntryFilter, ProfileFilter} from "../common/store/global/types";
 
@@ -23,12 +22,21 @@ const server = express();
 const entryFilters = Object.values(EntryFilter);
 const profileFilters = Object.values(ProfileFilter);
 
+const lowerCase = (req: any, res: any, next: any) => {
+    if (req.url !== req.url.toLowerCase()) {
+        res.redirect(301, req.url.toLowerCase());
+    }
+    else {
+        next();
+    }
+}
+
 server
     .disable("x-powered-by")
     .use(express.static(process.env.RAZZLE_PUBLIC_DIR!))
     .use(express.json())
     .use(cookieParser())
-    .use(lowercaseUrls)
+    .use(lowerCase)
 
     // Common backend
     .get(
