@@ -1,6 +1,7 @@
 import express from "express";
 
 import cookieParser from "cookie-parser";
+import lowercaseUrls from 'express-lowercase-urls';
 
 import {EntryFilter, ProfileFilter} from "../common/store/global/types";
 
@@ -27,6 +28,7 @@ server
     .use(express.static(process.env.RAZZLE_PUBLIC_DIR!))
     .use(express.json())
     .use(cookieParser())
+    .use(lowercaseUrls)
 
     // Common backend
     .get(
