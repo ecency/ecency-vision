@@ -169,7 +169,7 @@ export class ProfileCard extends Component<Props, State> {
                     {account.profile?.website && (
                         <div className="prop">
                             {earthSvg}
-                            <a target="_external" className="website-link" href={account.profile.website}>
+                            <a target="_external" className="website-link" href={`https://${account.profile.website.replace(/^(https?|ftp):\/\//,"")}`}>
                                 {account.profile.website}
                             </a>
                         </div>
