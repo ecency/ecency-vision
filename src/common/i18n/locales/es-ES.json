@@ -756,19 +756,19 @@
     "unmute": "Activar notificaciones"
   },
   "leaderboard": {
-    "title-stars": "Most active",
-    "title-curators": "Curators",
-    "title-day": "Daily leaders",
-    "title-week": "Weekly leaders",
-    "title-month": "Monthly leaders",
+    "title-stars": "Más activo",
+    "title-curators": "Curadores",
+    "title-day": "Líderes diarios",
+    "title-week": "Líderes semanales",
+    "title-month": "Líderes mensuales",
     "period-day": "Diario",
     "period-week": "Semanalmente",
     "period-month": "Mensualmente",
     "header-score": "Actividades",
     "header-score-tip": "Publicaciones + comentarios realizados por un usuario en el período seleccionado",
     "header-reward": "Recompensa",
-    "header-votes": "Votes",
-    "header-votes-tip": "Number of votes in this period"
+    "header-votes": "Votos",
+    "header-votes-tip": "Número de votos en este período"
   },
   "popular-users": {
     "title": "Usuarios populares"
