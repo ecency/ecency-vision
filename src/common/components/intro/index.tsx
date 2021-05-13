@@ -2,11 +2,15 @@ import React, { useEffect, useState } from 'react';
 
 import {Link} from "react-router-dom";
 
+import {connect} from "react-redux";
+
 import {Global} from '../../store/global/types';
 
 import {_t} from "../../i18n";
 
 import {closeSvg} from '../../img/svg';
+
+import { pageMapDispatchToProps, pageMapStateToProps } from "../../pages/common";
 
 const friends = require('../../img/welcome_community.png');
 const friendsWebp = require('../../img/welcome_community.webp');
@@ -14,16 +18,17 @@ const friendsWebp = require('../../img/welcome_community.webp');
 interface Props {
     global: Global
     hideIntro: () => any
+    activeUser: any
 }
 
-export default (props: Props) => {
+const Intro = (props: Props) => {
     const hideIntro = () => props.hideIntro();
 
     const [isLoggedIn, setIsLoggedIn] = useState(false)
 
     useEffect(() => {
-        const verification = localStorage.getItem("ecency_active_user")
-        if( verification === null){
+        const { activeUser } = props
+        if( activeUser === null){
             setIsLoggedIn(false)
         } else setIsLoggedIn(true)
     })
@@ -48,3 +53,5 @@ export default (props: Props) => {
         <img alt="Friends" className="friends" src={props.global.canUseWebp ? friendsWebp : friends}/>
     </div>;
 };
+
+export default connect(pageMapStateToProps, pageMapDispatchToProps)(Intro);
