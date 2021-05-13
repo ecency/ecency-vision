@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {Link} from "react-router-dom";
 
@@ -19,7 +19,17 @@ interface Props {
 export default (props: Props) => {
     const hideIntro = () => props.hideIntro();
 
-    if (!props.global.intro) {
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+    useEffect(() => {
+        const verification = localStorage.getItem("ecency_active_user")
+        if( verification === null){
+            setIsLoggedIn(false)
+        } else setIsLoggedIn(true)
+    })
+
+
+    if (!props.global.intro || isLoggedIn) {
         return null;
     }
 
