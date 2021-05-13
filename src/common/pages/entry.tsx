@@ -518,6 +518,8 @@ class EntryPage extends BaseComponent<Props, State> {
                                                         })}</div>
                                                     })}
 
+                                                    
+
                                                     <div className="entry-info-inner">
                                                         <div className="info-line-1">
                                                             {ProfileLink({
@@ -569,7 +571,9 @@ class EntryPage extends BaseComponent<Props, State> {
                                             <meta itemProp="image" content={metaProps.image}/>
                                         </>
                                     })()}
-
+                                    <div className="avatar-fixed">
+                                        Le delectus. Veniam, pers minus adipisci blanditiis? Estia dolorum perspiciatis eum consequatur i repellem illum.
+                                    </div>
                                     <div className="entry-footer">
                                         <div className="entry-tags">
                                             {tags.map((t) => {

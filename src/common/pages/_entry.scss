@@ -202,7 +202,7 @@
         height: 40px;
         line-height: 100%;
         margin-bottom: 15px;
-
+        position: relative;
         @media (min-width: $sm-break) {
           font-size: 18px;
         }
@@ -313,7 +313,20 @@
         }
       }
     }
-
+    .avatar-fixed {
+      position: fixed;
+      display: flex;
+      top: 120px;
+      left: 7vw;
+      height: 200px;
+      width: 200px;
+      background-color: inherit;
+      color: inherit;
+      font-size: inherit;
+      @media (max-width: 1400px) {
+        display: none;
+      }
+    }
     .entry-body {
       @include clearfix();
       padding: 0 0 2em 0;
