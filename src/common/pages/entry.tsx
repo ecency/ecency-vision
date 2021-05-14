@@ -357,8 +357,6 @@ class EntryPage extends BaseComponent<Props, State> {
 
         const {activeUser} = this.props;
 
-        // console.log("authorInfo", authorInfo, "activeUser", activeUser, "state", this);
-
         const ownEntry = activeUser && activeUser.username === entry.author;
 
         const isHidden = entry?.stats?.gray;
