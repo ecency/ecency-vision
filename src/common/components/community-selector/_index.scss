@@ -24,19 +24,66 @@
 }
 
 .community-selector-modal {
+  .modal-header{
+    button {
+      position: absolute;
+      right: 10px;
+      top: -5px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: $metallic-blue;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: $box-shadow-alt;
+      color: $white;
+      outline: none;
+      border: none;
+      opacity: 1;
+      span:first-child{
+        font-size: 1.5rem;
+        line-height: normal;
+        padding: 0;
+
+      }
+    }
+  }
   .modal-body {
     .browser {
+      width: 90%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin: auto;
       .search {
-        margin-bottom: 10px;
+        width: 100%;
+        margin: 0 auto 50px;
+        input {
+          border-radius: 25px !important;
+          padding-left: 1rem;
+          width: 100%;
+          margin: auto;
+        }
       }
 
       .browser-list {
         height: 340px;
-        overflow: auto;
+        width: 100%;
+        
         @include user-grid-list(1, 1, 2);
 
         .list-body .list-item:hover .item-main .item-info .item-name {
           color: $dark-sky-blue !important;
+          height: fit-content;
+        }
+        .list-body {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          flex-wrap: wrap;
+          overflow: auto;
         }
       }
     }
