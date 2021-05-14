@@ -1,16 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import {Link} from "react-router-dom";
-
-import {connect} from "react-redux";
 
 import {Global} from '../../store/global/types';
 
 import {_t} from "../../i18n";
 
 import {closeSvg} from '../../img/svg';
-
-import { pageMapDispatchToProps, pageMapStateToProps } from "../../pages/common";
 
 const friends = require('../../img/welcome_community.png');
 const friendsWebp = require('../../img/welcome_community.webp');
