@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AACA,AACE,iBADe,CACf,WAAW,CAAC;EACV,WAAW,EAAE,IAAI;CAClB",
-    "sources": [
-        "index.scss"
-    ],
-    "names": [],
-    "file": "index.css"
-}
