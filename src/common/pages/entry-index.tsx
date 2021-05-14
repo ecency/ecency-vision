@@ -135,7 +135,7 @@ class EntryIndexPage extends Component<PageProps> {
                         reloading: loading,
                     }) :
                     NavBar({...this.props})}
-                <Intro global={this.props.global} hideIntro={this.props.hideIntro}/>
+                {activeUser === null && <Intro global={this.props.global} hideIntro={this.props.hideIntro}/>}
                 <div className="app-content entry-index-page">
                     <div className="tags-side">
                         {!global.isMobile && (

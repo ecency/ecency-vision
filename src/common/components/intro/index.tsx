@@ -18,23 +18,12 @@ const friendsWebp = require('../../img/welcome_community.webp');
 interface Props {
     global: Global
     hideIntro: () => any
-    activeUser: any
 }
 
 const Intro = (props: Props) => {
     const hideIntro = () => props.hideIntro();
 
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
-
-    useEffect(() => {
-        const { activeUser } = props
-        if( activeUser === null){
-            setIsLoggedIn(false)
-        } else setIsLoggedIn(true)
-    })
-
-
-    if (!props.global.intro || isLoggedIn) {
+    if (!props.global.intro) {
         return null;
     }
 
@@ -54,4 +43,4 @@ const Intro = (props: Props) => {
     </div>;
 };
 
-export default connect(pageMapStateToProps, pageMapDispatchToProps)(Intro);
+export default Intro;
