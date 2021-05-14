@@ -68,6 +68,11 @@ import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
 import defaults from "../constants/defaults.json";
 
+import { getAccount } from "../api/hive";
+import FavoriteBtn from "../components/favorite-btn";
+import FollowControls from "../components/follow-controls";
+
+
 setProxyBase(defaults.imageServer);
 
 interface MatchParams {
@@ -80,12 +85,19 @@ interface Props extends PageProps {
     match: match<MatchParams>;
 }
 
+interface AuthorInfo {
+    name: string;
+    about: string;
+}
+
 interface State {
     loading: boolean;
     replying: boolean;
     showIfHidden: boolean;
     showIfNsfw: boolean;
     editHistory: boolean;
+    showProfileBox: boolean;
+    authorInfo: AuthorInfo;
 }
 
 class EntryPage extends BaseComponent<Props, State> {
@@ -94,7 +106,12 @@ class EntryPage extends BaseComponent<Props, State> {
         replying: false,
         showIfHidden: false,
         showIfNsfw: false,
-        editHistory: false
+        editHistory: false,
+        showProfileBox: false,
+        authorInfo: {
+            name: "",
+            about: ""
+        }
     };
 
     componentDidMount() {
@@ -104,6 +121,9 @@ class EntryPage extends BaseComponent<Props, State> {
         if (global.usePrivate && location.search === "?history") {
             this.toggleEditHistory();
         }
+
+        window.addEventListener("scroll", this.detect);
+        window.addEventListener("resize", this.detect);
     }
 
     componentDidUpdate(prevProps: Readonly<Props>): void {
@@ -113,16 +133,40 @@ class EntryPage extends BaseComponent<Props, State> {
         }
     }
 
+    componentWillUnmount():void {
+        window.removeEventListener("scroll", this.detect);
+        window.removeEventListener("resize", this.detect);
+    }
+
+    detect = () => {
+
+       const infoCard:HTMLElement | null = document.getElementById("avatar-fixed");
+
+       if(infoCard != null && window.scrollY > 180) {
+            infoCard.classList.add('visible')
+       } else if( infoCard != null && window.scrollY <= 180) {
+            infoCard.classList.remove('visible')
+       } else return
+
+    }
+
     toggleEditHistory = () => {
         const {editHistory} = this.state;
         this.stateSet({editHistory: !editHistory});
     }
 
-    ensureEntry = () => {
+    ensureEntry = async () => {
         const {match, addEntry, updateEntry, addCommunity, activeUser} = this.props;
         const entry = this.getEntry();
         const {category, username, permlink} = match.params;
         const author = username.replace("@", "");
+
+        // For fetching authors about and display name information -- start
+        const authorInfo = JSON.parse((await getAccount(author))?.json_metadata)?.profile || {}
+        this.setState({
+            authorInfo
+        })
+        // For fetching authors about and display name information -- end
 
         let reducerFn = updateEntry;
 
@@ -278,7 +322,7 @@ class EntryPage extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {loading, replying, showIfHidden, showIfNsfw, editHistory} = this.state;
+        const {loading, replying, showIfHidden, showIfNsfw, editHistory, authorInfo} = this.state;
         const {global, history} = this.props;
 
         const navBar = global.isElectron ? NavBarElectron({
@@ -312,6 +356,8 @@ class EntryPage extends BaseComponent<Props, State> {
         const isComment = !!entry.parent_author;
 
         const {activeUser} = this.props;
+
+        // console.log("authorInfo", authorInfo, "activeUser", activeUser, "state", this);
 
         const ownEntry = activeUser && activeUser.username === entry.author;
 
@@ -571,9 +617,59 @@ class EntryPage extends BaseComponent<Props, State> {
                                             <meta itemProp="image" content={metaProps.image}/>
                                         </>
                                     })()}
-                                    <div className="avatar-fixed">
-                                        Le delectus. Veniam, pers minus adipisci blanditiis? Estia dolorum perspiciatis eum consequatur i repellem illum.
+
+
+                                    <div className="avatar-fixed" id="avatar-fixed">
+                                        <div className="first-line">
+                                            <span className="avatar">
+                                                {ProfileLink({
+                                                        ...this.props,
+                                                        username: entry.author,
+                                                        children: <div className="author-avatar">{UserAvatar({
+                                                            ...this.props,
+                                                            username: entry.author,
+                                                            size: "medium"
+                                                        })}</div>
+                                                    })}
+                                            </span>
+                                            <span className="user-info">
+                                                <div className="info-line-1">
+                                                    {ProfileLink({
+                                                        ...this.props,
+                                                        username: entry.author,
+                                                        children: <div className="author notranslate">
+                                                                        <span className="author-name">
+                                                                            <span itemProp="author" itemScope={true} itemType="http://schema.org/Person">
+                                                                                <span itemProp="name">
+                                                                                    {entry.author}
+                                                                                </span>
+                                                                            </span>
+                                                                        </span>
+                                                            <span className="author-reputation">({reputation})</span>
+                                                        </div>
+                                                    })}
+                                                </div>
+                                            </span>
+                                        </div>
+                                        <div className="second-line">
+                                            <div className="entry-tag">
+                                                {authorInfo?.name && <div className="name" >{authorInfo.name}</div>}
+                                                {authorInfo?.about && <p className="description" >{authorInfo.about}</p>}
+                                            </div>
+                                        </div>
+                                        <div className="social-wrapper">
+                                            {entry.author && <FollowControls {...this.props} targetUsername={entry.author}/>}
+                                            
+                                            {global.usePrivate && <FavoriteBtn {...this.props} targetUsername={entry.author}/>}
+
+                                            {global.usePrivate && BookmarkBtn({
+                                                ...this.props,
+                                                entry
+                                            })}
+                                        </div>
                                     </div>
+
+
                                     <div className="entry-footer">
                                         <div className="entry-tags">
                                             {tags.map((t) => {

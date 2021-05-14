@@ -305,7 +305,7 @@
             }
 
             .date {
-              @media (max-width: $sm-break - 1px) {
+              @media (max-width: $xs-break - 1px) {
                 font-size: 90%;
               }
             }
@@ -313,20 +313,80 @@
         }
       }
     }
+
+
     .avatar-fixed {
       position: fixed;
       display: flex;
+      flex-direction: column;
       top: 120px;
       left: 7vw;
       height: 200px;
-      width: 200px;
+      width: 230px;
       background-color: inherit;
       color: inherit;
       font-size: inherit;
-      @media (max-width: 1400px) {
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+      &.visible {
+        opacity: 1;
+      }
+      @media (max-width: $xxl-break) {
         display: none;
       }
+      a {
+        color: inherit;
+      }
+      .first-line, .second-line {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+        padding: 0 0 1rem 0;
+        .user-info {
+          margin-left: 1rem;
+          font-weight: 700;
+          word-break: keep-all;
+          .author-reputation{
+            font-weight: 500;
+            margin-left: 0.5rem;
+          }
+        }
+        .entry-tag {
+          .name, .description {
+            font-weight: 400;
+          }
+          .name {
+            text-transform: capitalize;
+            margin-bottom: 0.5rem;
+          }
+        }
+      }
+      .second-line {
+        border-bottom: 1px solid $white-four;
+      }
+      
+     .social-wrapper{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        margin-top: 1rem;
+        .bookmark-btn {
+          margin-left: 1.5rem;
+          display: none;
+        }
+        .btn.btn-primary:nth-child(2) {
+          display: none;
+        }
+        .custom-dropdown {
+          display: none;
+        }
+     }
     }
+
+
     .entry-body {
       @include clearfix();
       padding: 0 0 2em 0;
