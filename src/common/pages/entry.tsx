@@ -113,6 +113,8 @@ class EntryPage extends BaseComponent<Props, State> {
             about: ""
         }
     };
+    
+    viewElement: HTMLDivElement | undefined;
 
     componentDidMount() {
         this.ensureEntry();
@@ -124,6 +126,7 @@ class EntryPage extends BaseComponent<Props, State> {
 
         window.addEventListener("scroll", this.detect);
         window.addEventListener("resize", this.detect);
+
     }
 
     componentDidUpdate(prevProps: Readonly<Props>): void {
@@ -138,17 +141,22 @@ class EntryPage extends BaseComponent<Props, State> {
         window.removeEventListener("resize", this.detect);
     }
 
+    // detects distance between title and comments section sets visibility of profile card
     detect = () => {
 
        const infoCard:HTMLElement | null = document.getElementById("avatar-fixed");
+       const top = this?.viewElement?.getBoundingClientRect()?.top;
 
-       if(infoCard != null && window.scrollY > 180) {
+       if(infoCard != null && window.scrollY > 180  && top && !(top <= 0)) {
             infoCard.classList.add('visible')
        } else if( infoCard != null && window.scrollY <= 180) {
+            infoCard.classList.remove('visible')
+       } else if(top && top <= 0 && infoCard !== null){
             infoCard.classList.remove('visible')
        } else return
 
     }
+    
 
     toggleEditHistory = () => {
         const {editHistory} = this.state;
@@ -340,6 +348,10 @@ class EntryPage extends BaseComponent<Props, State> {
         if (!entry) {
             return NotFound({...this.props});
         }
+
+        let setRef = (el:HTMLDivElement) => {
+            this.viewElement = el;
+        };
 
         const originalEntry = entry.original_entry || null;
 
@@ -722,7 +734,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                                 </>
                                             )}
                                         </div>
-                                        <div className="entry-controls">
+                                        <div className="entry-controls" ref={setRef}>
                                             {EntryVoteBtn({
                                                 ...this.props,
                                                 entry,
