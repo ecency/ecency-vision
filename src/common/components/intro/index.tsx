@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import {Link} from "react-router-dom";
 
@@ -16,20 +16,10 @@ interface Props {
     hideIntro: () => any
 }
 
-export default (props: Props) => {
+const Intro = (props: Props) => {
     const hideIntro = () => props.hideIntro();
 
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
-
-    useEffect(() => {
-        const verification = localStorage.getItem("ecency_active_user")
-        if( verification === null){
-            setIsLoggedIn(false)
-        } else setIsLoggedIn(true)
-    })
-
-
-    if (!props.global.intro || isLoggedIn) {
+    if (!props.global.intro) {
         return null;
     }
 
@@ -48,3 +38,5 @@ export default (props: Props) => {
         <img alt="Friends" className="friends" src={props.global.canUseWebp ? friendsWebp : friends}/>
     </div>;
 };
+
+export default Intro;
