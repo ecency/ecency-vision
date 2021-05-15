@@ -285,7 +285,7 @@ export class CommunityCard extends Component<Props, State> {
                         <Modal.Header closeButton={true}>
                             <Modal.Title>{info.title}</Modal.Title>
                         </Modal.Header>
-                        <Modal.Body>{info.content}</Modal.Body>
+                        <Modal.Body><div className="description-wrapper">{info.content}</div></Modal.Body>
                     </Modal>
                 )}
 

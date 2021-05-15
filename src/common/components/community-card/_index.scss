@@ -201,4 +201,11 @@
       border-radius: 6px;
     }
   }
+  .description-wrapper {
+    height: auto;
+    max-height: 500px;
+    overflow-y: auto;
+    border-radius: 10px;
+    padding: 0.5rem ;
+  }
 }
