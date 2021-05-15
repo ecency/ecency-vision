@@ -354,8 +354,15 @@
     width: 100%;
     padding: 10px;
 
+  
     .page-title {
       color: $dark-sky-blue !important;
+    }
+
+    .static-last-updated {
+      margin-bottom: 2.3rem;
+      font-size: 0.9rem;
+      opacity: 0.6;
     }
 
     img {
@@ -364,16 +371,24 @@
     }
 
     h1 {
-      font-size: 32px;
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 4rem;
     }
+
 
     h2 {
       font-size: 28px;
+      margin: 2.3rem 0 1.2rem 0;
     }
 
     h3 {
       font-size: 24px;
       font-weight: 400;
+    }
+
+    p {
+      line-height: 1.7rem;
     }
   }
 
