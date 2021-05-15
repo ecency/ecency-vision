@@ -57,7 +57,7 @@ export interface Global {
     notifications: boolean;
     nsfw: boolean;
     isMobile: boolean;
-    usePrivate: boolean
+    usePrivate: boolean;
 }
 
 export enum ActionTypes {

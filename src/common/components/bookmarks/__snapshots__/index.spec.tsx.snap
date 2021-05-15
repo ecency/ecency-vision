@@ -189,6 +189,18 @@ exports[`(3) Favorites - No data. 1`] = `
 </div>
 `;
 
+exports[`(3) Favorites - No data. 2`] = `
+<div
+  className="dialog-content"
+>
+  <div
+    className="dialog-list"
+  >
+    Nothing here
+  </div>
+</div>
+`;
+
 exports[`(4) Favorites - Test with data. 1`] = `
 <div
   className="dialog-content"
