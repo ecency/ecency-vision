@@ -318,10 +318,12 @@
     .avatar-fixed {
       position: fixed;
       display: flex;
+      flex-grow: 1;
       flex-direction: column;
       top: 120px;
       left: 90px;
-      height: 200px;
+      height: auto;
+      max-height: 300px;
       width: 230px;
       background-color: inherit;
       color: inherit;
@@ -331,8 +333,23 @@
       &.visible {
         opacity: 1;
       }
-      @media (max-width: $xxl-break) {
+      @media (max-width: $xl-break) {
         display: none;
+      }
+      @media (max-width: $xxl-break) {
+        left: 2.5%;
+        width: 180px;
+        overflow-x: hidden;
+        font-size: inherit;
+        .user-info {
+          margin-left: 0.5rem!important;
+        }
+        .author-name {
+          font-size: 0.8rem;
+        }
+        .author-reputation {
+          font-size: 0.8rem;
+        }
       }
       @media (min-width: $xxl-break) {
         left: 6%;
@@ -372,23 +389,23 @@
           margin-left: 1rem;
           font-weight: 700;
           word-break: keep-all;
-          .author-reputation{
-            font-weight: 500;
-            margin-left: 0.5rem;
-          }
+        }
+        .author-reputation{
+          font-weight: 500;
+          margin-left: 0.5rem;
         }
         .entry-tag {
           width: 100%;
-          .name, .description {
-            font-weight: 400;
-            max-width: 100%;
-            width: 100%;
-            overflow-x: hidden;
-          }
-          .name {
-            text-transform: capitalize;
-            margin-bottom: 0.5rem;
-          }
+        }
+        .name, .description {
+          font-weight: 400;
+          max-width: 100%;
+          width: 100%;
+          overflow-x: hidden;
+        }
+        .name {
+          text-transform: capitalize;
+          margin-bottom: 0.5rem;
         }
       }
       .second-line {
