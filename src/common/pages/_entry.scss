@@ -320,7 +320,7 @@
       display: flex;
       flex-direction: column;
       top: 120px;
-      left: 7vw;
+      left: 90px;
       height: 200px;
       width: 230px;
       background-color: inherit;
@@ -328,11 +328,36 @@
       font-size: inherit;
       opacity: 0;
       transition: opacity 0.3s ease-in-out;
+      transition: left 0.2s ease-in-out;
       &.visible {
         opacity: 1;
       }
       @media (max-width: $xxl-break) {
         display: none;
+      }
+      @media (min-width: $xxl-break) {
+        left: 6%;
+      }
+      @media (min-width: 1600px) {
+        left: 7.5%;
+      }
+      @media (min-width: 1700px) {
+        left: 8.5%;
+      }
+      @media (min-width: 1800px) {
+        left: 9.5%;
+      }
+      @media (min-width: 2000px) {
+        left: 11.5%;
+      }
+      @media (min-width: 2200px) {
+        left: 14.5%;
+      }
+      @media (min-width: 2500px) {
+        left: 17.5%;
+      }
+      @media (min-width: 3000px) {
+        left: 25%;
       }
       a {
         color: inherit;
@@ -354,8 +379,12 @@
           }
         }
         .entry-tag {
+          width: 100%;
           .name, .description {
             font-weight: 400;
+            max-width: 100%;
+            width: 100%;
+            overflow-x: hidden;
           }
           .name {
             text-transform: capitalize;

@@ -664,7 +664,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                         <div className="second-line">
                                             <div className="entry-tag">
                                                 {authorInfo?.name && <div className="name" >{authorInfo.name}</div>}
-                                                {authorInfo?.about && <p className="description" >{authorInfo.about}</p>}
+                                                {authorInfo?.about && <p className="description" >{`${truncate(authorInfo.about, 130)}`}</p>}
                                             </div>
                                         </div>
                                         <div className="social-wrapper">
