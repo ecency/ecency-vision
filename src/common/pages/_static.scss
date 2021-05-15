@@ -318,8 +318,9 @@
       margin-bottom: 40px;
 
       li {
-        padding: 6px 0;
-
+        line-height: 1.7rem;
+        margin-bottom: 1rem;
+     
         a {
           font-size: 18px;
         }
@@ -374,6 +375,9 @@
       font-size: 3rem;
       font-weight: 800;
       line-height: 4rem;
+      @media(max-width: $md-break) {
+        font-size: 2rem;
+      }
     }
 
 
@@ -385,10 +389,17 @@
     h3 {
       font-size: 24px;
       font-weight: 400;
+      margin-top: 1rem;
     }
 
     p {
       line-height: 1.7rem;
+    }
+  }
+  &.contribute-page {
+    li {
+      line-height: 1.7rem;
+      margin-bottom: 1rem;
     }
   }
 
@@ -401,6 +412,10 @@
     .contributors {
       flex-grow: 1;
       margin-bottom: 40px;
+      .list-description {
+        line-height: 1.7;
+        font-size: 1rem;
+      }
     }
   }
 }
