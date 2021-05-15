@@ -27,8 +27,8 @@
   .modal-header{
     button {
       position: absolute;
-      right: 10px;
-      top: -5px;
+      right: 13px;
+      top: -3px;
       width: 26px;
       height: 26px;
       border-radius: 50%;
@@ -45,7 +45,8 @@
         font-size: 1.5rem;
         line-height: normal;
         padding: 0;
-
+        margin-top: -4px;
+        font-weight: 400;
       }
     }
   }
@@ -57,6 +58,7 @@
       align-items: center;
       flex-direction: column;
       margin: auto;
+      margin-bottom: 1.4rem;
       .search {
         width: 100%;
         margin: 0 auto 50px;
@@ -69,8 +71,9 @@
       }
 
       .browser-list {
-        height: 340px;
+        min-height: 340px;
         width: 100%;
+        height: auto;
         
         @include user-grid-list(1, 1, 2);
 
