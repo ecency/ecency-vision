@@ -41,6 +41,7 @@
       outline: none;
       border: none;
       opacity: 1;
+     
       span:first-child{
         font-size: 1.5rem;
         line-height: normal;
@@ -48,6 +49,9 @@
         margin-top: -4px;
         font-weight: 400;
       }
+    }
+    button:hover {
+      opacity: 1!important;
     }
   }
   .modal-body {
