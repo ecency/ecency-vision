@@ -1,14 +1,14 @@
 {
   "g": {
-    "add": "Add",
-    "edit": "Edit",
-    "search": "Search",
-    "downloads": "Downloads",
-    "login": "Login",
-    "login-as": "Login As",
-    "signup": "Signup",
-    "delete": "Delete",
-    "cancel": "Cancel",
+    "add": "اضف",
+    "edit": "تعديل",
+    "search": "بحث",
+    "downloads": "التنزيلات",
+    "login": "تسجيل الدخول",
+    "login-as": "تسجيل الدخول كـ",
+    "signup": "إنشاء حساب",
+    "delete": "حذف",
+    "cancel": "إلغاء",
     "reply": "Reply",
     "update": "Update",
     "or": "OR",
@@ -64,7 +64,7 @@
     "header-community": "Communities"
   },
   "switch-lang": {
-    "contributors": "Contributors"
+    "contributors": "المساهمون"
   },
   "user-nav": {
     "wallet": "Wallet",
