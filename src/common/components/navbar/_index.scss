@@ -68,6 +68,12 @@
     @media (min-width: $sm-break) {
       margin-left: 0;
     }
+    @media (max-width: $sm-break) {
+      font-size: 1.3rem;
+    }
+    @media (max-width: $xsm-break) {
+      font-size: 1rem;
+    }
   }
 }
 

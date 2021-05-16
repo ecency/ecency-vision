@@ -229,7 +229,6 @@ export class Promote extends BaseComponent<Props, State> {
 
     render() {
         const {activeUser} = this.props;
-
         const {prices, balanceError, path, paths, postError, duration, inProgress, step} = this.state;
 
         const canSubmit = !postError && !balanceError && this.isValidPath(path);
@@ -336,6 +335,7 @@ export class Promote extends BaseComponent<Props, State> {
 }
 
 export default class PromoteDialog extends Component<Props> {
+    
     render() {
         const {onHide} = this.props;
         return (

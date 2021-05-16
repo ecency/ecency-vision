@@ -1,6 +1,9 @@
 .entry-vote-btn {
   margin-right: 10px;
 
+  @media (max-width: $xxsm-break) {
+    margin-right: 5px;
+  }
   .btn-vote {
     @include btn-vote;
   }

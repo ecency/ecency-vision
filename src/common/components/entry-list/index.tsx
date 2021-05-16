@@ -47,7 +47,7 @@ interface Props {
 export class EntryListContent extends Component<Props> {
     render() {
         const {entries, promotedEntries} = this.props;
-
+        
         return (
             <>
                 {entries.map((e, i) => {
