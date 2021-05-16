@@ -31,7 +31,6 @@ import Comment from "../components/comment"
 import SimilarEntries from "../components/similar-entries";
 import BookmarkBtn from "../components/bookmark-btn";
 import EditHistory from "../components/edit-history";
-
 import {error} from "../components/feedback";
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
@@ -43,9 +42,12 @@ import ScrollToTop from "../components/scroll-to-top";
 import EntryBodyExtra from "../components/entry-body-extra";
 import EntryTipBtn from "../components/entry-tip-btn";
 import EntryMenu from "../components/entry-menu";
+import FavoriteBtn from "../components/favorite-btn";
+import FollowControls from "../components/follow-controls";
 
 import * as bridgeApi from "../api/bridge";
 import {comment, formatError} from "../api/operations";
+import { getAccountFull } from "../api/hive";
 
 import parseDate from "../helper/parse-date";
 import entryCanonical from "../helper/entry-canonical";
@@ -68,9 +70,6 @@ import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
 import defaults from "../constants/defaults.json";
 
-import { getAccount } from "../api/hive";
-import FavoriteBtn from "../components/favorite-btn";
-import FollowControls from "../components/follow-controls";
 
 
 setProxyBase(defaults.imageServer);
@@ -86,8 +85,8 @@ interface Props extends PageProps {
 }
 
 interface AuthorInfo {
-    name: string;
-    about: string;
+    name: string | null;
+    about: string | null;
 }
 
 interface State {
@@ -109,8 +108,8 @@ class EntryPage extends BaseComponent<Props, State> {
         editHistory: false,
         showProfileBox: false,
         authorInfo: {
-            name: "",
-            about: ""
+            name: null,
+            about: null
         }
     };
     
@@ -170,9 +169,13 @@ class EntryPage extends BaseComponent<Props, State> {
         const author = username.replace("@", "");
 
         // For fetching authors about and display name information -- start
-        const authorInfo = JSON.parse((await getAccount(author))?.json_metadata)?.profile || {}
-        this.setState({
-            authorInfo
+        const authorInfo = (await getAccountFull(author))?.profile || {name: "", about: ""}
+        authorInfo && this.stateSet({
+            authorInfo: {
+                ...this.state.authorInfo,
+                name: authorInfo?.name || "",
+                about: authorInfo?.about || ""
+            }
         })
         // For fetching authors about and display name information -- end
 
@@ -629,55 +632,58 @@ class EntryPage extends BaseComponent<Props, State> {
                                     })()}
 
 
-                                    <div className="avatar-fixed" id="avatar-fixed">
-                                        <div className="first-line">
-                                            <span className="avatar">
-                                                {ProfileLink({
-                                                        ...this.props,
-                                                        username: entry.author,
-                                                        children: <div className="author-avatar">{UserAvatar({
-                                                            ...this.props,
-                                                            username: entry.author,
-                                                            size: "medium"
-                                                        })}</div>
-                                                    })}
-                                            </span>
-                                            <span className="user-info">
-                                                <div className="info-line-1">
-                                                    {ProfileLink({
-                                                        ...this.props,
-                                                        username: entry.author,
-                                                        children: <div className="author notranslate">
-                                                                        <span className="author-name">
-                                                                            <span itemProp="author" itemScope={true} itemType="http://schema.org/Person">
-                                                                                <span itemProp="name">
-                                                                                    {entry.author}
+                                    {
+                                        (this.state.authorInfo.name !== null || this.state.authorInfo.about !== null) &&
+                                            <div className="avatar-fixed" id="avatar-fixed">
+                                                <div className="first-line">
+                                                    <span className="avatar">
+                                                        {ProfileLink({
+                                                                ...this.props,
+                                                                username: entry.author,
+                                                                children: <div className="author-avatar">{UserAvatar({
+                                                                    ...this.props,
+                                                                    username: entry.author,
+                                                                    size: "medium"
+                                                                })}</div>
+                                                            })}
+                                                    </span>
+                                                    <span className="user-info">
+                                                        <div className="info-line-1">
+                                                            {ProfileLink({
+                                                                ...this.props,
+                                                                username: entry.author,
+                                                                children: <div className="author notranslate">
+                                                                                <span className="author-name">
+                                                                                    <span itemProp="author" itemScope={true} itemType="http://schema.org/Person">
+                                                                                        <span itemProp="name">
+                                                                                            {entry.author}
+                                                                                        </span>
+                                                                                    </span>
                                                                                 </span>
-                                                                            </span>
-                                                                        </span>
-                                                            <span className="author-reputation">({reputation})</span>
+                                                                    <span className="author-reputation">({reputation})</span>
+                                                                </div>
+                                                            })}
                                                         </div>
+                                                    </span>
+                                                </div>
+                                                <div className="second-line">
+                                                    <div className="entry-tag">
+                                                        <div className="name" >{authorInfo.name}</div>
+                                                        {authorInfo?.about && authorInfo?.about !== null && <p className="description" >{`${truncate(authorInfo.about, 130)}`}</p>}
+                                                    </div>
+                                                </div>
+                                                <div className="social-wrapper">
+                                                    {entry.author && <FollowControls {...this.props} targetUsername={entry.author}/>}
+                                                    
+                                                    {global.usePrivate && <FavoriteBtn {...this.props} targetUsername={entry.author}/>}
+
+                                                    {global.usePrivate && BookmarkBtn({
+                                                        ...this.props,
+                                                        entry
                                                     })}
                                                 </div>
-                                            </span>
-                                        </div>
-                                        <div className="second-line">
-                                            <div className="entry-tag">
-                                                {authorInfo?.name && <div className="name" >{authorInfo.name}</div>}
-                                                {authorInfo?.about && <p className="description" >{`${truncate(authorInfo.about, 130)}`}</p>}
                                             </div>
-                                        </div>
-                                        <div className="social-wrapper">
-                                            {entry.author && <FollowControls {...this.props} targetUsername={entry.author}/>}
-                                            
-                                            {global.usePrivate && <FavoriteBtn {...this.props} targetUsername={entry.author}/>}
-
-                                            {global.usePrivate && BookmarkBtn({
-                                                ...this.props,
-                                                entry
-                                            })}
-                                        </div>
-                                    </div>
+                                    }
 
 
                                     <div className="entry-footer">
