@@ -23,9 +23,9 @@ export class Contributors extends Component<Props> {
             <div className="contributors">
                 <div className="contributors-list">
                     <div className="list-header">
-                        <div className="list-title">
+                        <h1 className="list-title">
                             {_t('contributors.title')}
-                        </div>
+                        </h1>
                         <Tsx k="contributors.description"><div className="list-description" /></Tsx>
                     </div>
                     <div className="list-body">
