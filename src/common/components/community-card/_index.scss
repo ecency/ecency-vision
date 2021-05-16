@@ -82,6 +82,7 @@
   .community-sections {
     @media (max-width: $md-break - 1px) {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
     }
 
@@ -203,7 +204,7 @@
   }
   .description-wrapper {
     height: auto;
-    max-height: 500px;
+    max-height: 350px;
     overflow-y: auto;
     border-radius: 10px;
     padding: 0.5rem ;
