@@ -229,6 +229,7 @@
   },
   "entry": {
     "via-app": "<span class=\"app-name\">{{app}}</span>-n keresztül",
+    "author-reputation": "Author's reputation",
     "comment-entry-title": "Egy hozzászólásos vonal innen: ",
     "comment-entry-go-root": "Teljes kontextus megtekintése",
     "comment-entry-go-parent": "Direkt felmenő megtekintése",
