@@ -229,7 +229,7 @@
   },
   "entry": {
     "via-app": "via <span class=\"app-name\">{{app}}</span>",
-    "author-reputation": "Author's reputation",
+    "author-reputation": "Reputação do autor",
     "comment-entry-title": "Está visualizando o segmento da um único comentário desde: ",
     "comment-entry-go-root": "Ver o contexto completo",
     "comment-entry-go-parent": "Ver o comentário relacionado",
