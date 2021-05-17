@@ -229,6 +229,7 @@
   },
   "entry": {
     "via-app": "per <span class=\"app-name\">{{app}}</span>",
+    "author-reputation": "Author's reputation",
     "comment-entry-title": "Jūs skaitote komentarą iš: ",
     "comment-entry-go-root": "Peržiūrėti visą kontekstą",
     "comment-entry-go-parent": "Peržiūrėti pirminį",
