@@ -229,6 +229,7 @@
   },
   "entry": {
     "via-app": "über <span class=\"app-name\">{{app}}</span>",
+    "author-reputation": "Author's reputation",
     "comment-entry-title": "Du siehst das Thema eines einzelnen Kommentars von: ",
     "comment-entry-go-root": "kompletten Inhalt anzeigen",
     "comment-entry-go-parent": "Übergeordneten Beitrag ansehen",
