@@ -307,7 +307,7 @@ class EntryPage extends BaseComponent<Props, State> {
 
         // Sometimes tag list comes with duplicate items
         const tags = [...new Set(entry.json_metadata.tags)];
-        const app = appName(entry.json_metadata.app);
+        const [app] = appName(entry.json_metadata.app).split('/');
 
         const isComment = !!entry.parent_author;
 
