@@ -28,7 +28,9 @@ const defProps = {
     trackEntryPin: () => {
     },
     setEntryPin: () => {
-    }
+    },
+    toggleUIProp: () => {  
+    },
 };
 
 
