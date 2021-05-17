@@ -757,18 +757,18 @@
   },
   "leaderboard": {
     "title-stars": "Most active",
-    "title-curators": "Curators",
-    "title-day": "Daily leaders",
-    "title-week": "Weekly leaders",
-    "title-month": "Monthly leaders",
+    "title-curators": "Kurator",
+    "title-day": "Pemimpin Harian",
+    "title-week": "Pemimpin Mingguan",
+    "title-month": "Pemimpin Bulanan",
     "period-day": "Harian",
     "period-week": "Mingguan",
     "period-month": "Bulanan",
     "header-score": "Aktifitas",
     "header-score-tip": "Posting + komentar yang dibuat oleh pengguna untuk periode yang dipilih",
     "header-reward": "Imbalan",
-    "header-votes": "Votes",
-    "header-votes-tip": "Number of votes in this period"
+    "header-votes": "Vote",
+    "header-votes-tip": "Jumlah vote dalam priode ini"
   },
   "popular-users": {
     "title": "Pengguna Populer"
