@@ -233,7 +233,7 @@ export default class EntryListItem extends Component<Props, State> {
                             {ProfileLink({
                                 ...this.props,
                                 username: entry.author,
-                                children: <div className="author notranslate">{entry.author}<span className="author-reputation">{reputation}</span></div>
+                                children: <div className="author notranslate">{entry.author}<span className="author-reputation" title={_t("entry.author-reputation")}>{reputation}</span></div>
                             })}
                         </div>
                         {Tag({

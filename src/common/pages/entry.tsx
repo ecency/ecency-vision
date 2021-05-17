@@ -307,7 +307,8 @@ class EntryPage extends BaseComponent<Props, State> {
 
         // Sometimes tag list comes with duplicate items
         const tags = [...new Set(entry.json_metadata.tags)];
-        const [app] = appName(entry.json_metadata.app).split('/');
+        const app = appName(entry.json_metadata.app);
+        const appShort = app.split('/')[0];
 
         const isComment = !!entry.parent_author;
 
@@ -445,7 +446,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                                                                         </span>
                                                                                     </span>
                                                                                 </span>
-                                                                        <span className="author-reputation">{reputation}</span>
+                                                                        <span className="author-reputation" title={_t("entry.author-reputation")}>{reputation}</span>
                                                                     </div>
                                                                 })}
                                                             </div>
@@ -531,7 +532,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                                                                         </span>
                                                                                     </span>
                                                                                 </span>
-                                                                    <span className="author-reputation">{reputation}</span>
+                                                                    <span className="author-reputation" title={_t("entry.author-reputation")}>{reputation}</span>
                                                                 </div>
                                                             })}
                                                         </div>
@@ -609,7 +610,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                                 username: entry.author,
                                                 children: <div className="author notranslate">
                                                     <span className="author-name">{entry.author}</span>
-                                                    <span className="author-reputation">{reputation}</span>
+                                                    <span className="author-reputation" title={_t("entry.author-reputation")}>{reputation}</span>
                                                 </div>
                                             })}
                                             {app && (
@@ -618,8 +619,8 @@ class EntryPage extends BaseComponent<Props, State> {
                                                     <span itemProp="publisher" itemScope={true} itemType="http://schema.org/Person">
                                                             <meta itemProp="name" content={entry.author}/>
                                                         </span>
-                                                    <div className="app">
-                                                        <Tsx k="entry.via-app" args={{app}}><a href="/faq#source-label"/></Tsx>
+                                                    <div className="app" title={app}>
+                                                        <Tsx k="entry.via-app" args={{app: appShort}}><a href="/faq#source-label"/></Tsx>
                                                     </div>
                                                 </>
                                             )}
