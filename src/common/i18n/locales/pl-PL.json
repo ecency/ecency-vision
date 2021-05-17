@@ -229,6 +229,7 @@
   },
   "entry": {
     "via-app": "przez <span class=\"app-name\">{{app}}</span>",
+    "author-reputation": "Author's reputation",
     "comment-entry-title": "Oglądasz wątek pojedynczego komentarza z: ",
     "comment-entry-go-root": "Zobacz pełny kontekst",
     "comment-entry-go-parent": "Zobacz bezpośredni nadrzędny",
