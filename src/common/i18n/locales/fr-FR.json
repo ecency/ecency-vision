@@ -229,6 +229,7 @@
   },
   "entry": {
     "via-app": "via <span class=\"app-name\">{{app}}</span>",
+    "author-reputation": "Author's reputation",
     "comment-entry-title": "Vous visualisez le fil de discussion d'un seul commentaire à partir de : ",
     "comment-entry-go-root": "Voir le contexte entier",
     "comment-entry-go-parent": "Voir le message parent",
