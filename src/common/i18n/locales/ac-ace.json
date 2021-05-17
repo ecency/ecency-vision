@@ -229,6 +229,7 @@
   },
   "entry": {
     "via-app": "root <span class=\"app-name\">{{app}}</span>",
+    "author-reputation": "Author's reputation",
     "comment-entry-title": "Teungoh neu kalon komen saboh utas dari: ",
     "comment-entry-go-root": "Kalon konteks punoh",
     "comment-entry-go-parent": "Kalon ureung chik langsong",
