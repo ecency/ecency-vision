@@ -229,6 +229,7 @@
   },
   "entry": {
     "via-app": "чрез <span class=\"app-name\">{{app}}</span>",
+    "author-reputation": "Author's reputation",
     "comment-entry-title": "Разглеждате само този коментар от поста на: ",
     "comment-entry-go-root": "Покажи целия контекст",
     "comment-entry-go-parent": "Покажи коментара",
