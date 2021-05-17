@@ -229,6 +229,7 @@
   },
   "entry": {
     "via-app": "putem <span class=\"app-name\">{{app}}</span>",
+    "author-reputation": "Author's reputation",
     "comment-entry-title": "Gledate nit jednog komentara sa: ",
     "comment-entry-go-root": "Pogledaj ceo kontekst",
     "comment-entry-go-parent": "Pogledaj nadređeni komentar",
