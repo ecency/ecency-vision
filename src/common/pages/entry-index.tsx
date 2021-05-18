@@ -20,7 +20,6 @@ import EntryListLoadingItem from "../components/entry-list-loading-item";
 import DetectBottom from "../components/detect-bottom";
 import EntryListContent from "../components/entry-list";
 import TrendingTagsCard from "../components/trending-tags-card";
-import SelectedTagsCard from "../components/selected-tags-card";
 import ScrollToTop from "../components/scroll-to-top";
 import MarketData from "../components/market-data";
 import DownloadTrigger from "../components/download-trigger";
@@ -140,7 +139,6 @@ class EntryIndexPage extends Component<PageProps> {
                     <div className="tags-side">
                         {!global.isMobile && (
                             <>
-                                {SelectedTagsCard({...this.props})}
                                 {TrendingTagsCard({...this.props})}
                             </>
                         )}

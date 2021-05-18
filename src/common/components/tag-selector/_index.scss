@@ -8,7 +8,7 @@
     padding: 0;
 
     .tag-item {
-      color: $white;
+      //color: $white;
       padding: 4px 8px 4px 12px;
       margin: 0 4px 2px 0;
       border-radius: 12px;
@@ -22,13 +22,7 @@
         background-color: $primary !important;
       }
 
-      @include themify(day) {
-        background-color: $silver;
-      }
-
-      @include themify(night) {
-        background-color: $metallic-blue;
-      }
+      @include tag;
 
       .item-inner {
         cursor: move;
