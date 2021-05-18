@@ -128,8 +128,8 @@
   "entry-list-item": {
     "cross-posted": "cross-posted",
     "cross-posted-to": "to",
-    "reblogged": "Репостнуто {{n}}",
-    "promoted": "продвигаемое",
+    "reblogged": "{{n}} Reblogged",
+    "promoted": "Promoted",
     "pinned": "Прикреплено",
     "replies": "1 ответ. Нажмите чтобы ответить.",
     "replies-n": "{{n}} ответов. Нажмите для ответа.",
