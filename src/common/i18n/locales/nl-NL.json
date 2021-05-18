@@ -128,8 +128,8 @@
   "entry-list-item": {
     "cross-posted": "cross-posted",
     "cross-posted-to": "to",
-    "reblogged": "{{n}} herblogged",
-    "promoted": "gesponsord",
+    "reblogged": "{{n}} Reblogged",
+    "promoted": "Promoted",
     "pinned": "Vastgezet bericht",
     "replies": "1 reactie. Klik om te antwoorden.",
     "replies-n": "{{n}} reacties. Klik om te antwoorden.",
