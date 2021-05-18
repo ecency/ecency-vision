@@ -128,8 +128,8 @@
   "entry-list-item": {
     "cross-posted": "cross-posted",
     "cross-posted-to": "to",
-    "reblogged": "{{n}} jagatud",
-    "promoted": "sponsitud",
+    "reblogged": "{{n}} Reblogged",
+    "promoted": "Promoted",
     "pinned": "Kinnitatud postitus",
     "replies": "1 vastus. Vajuta, et vastata.",
     "replies-n": "{{n}} vastust. Vajuta, et vastata.",
