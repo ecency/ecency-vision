@@ -128,8 +128,8 @@
   "entry-list-item": {
     "cross-posted": "cross-posted",
     "cross-posted-to": "sa",
-    "reblogged": "{{n}} I-blog muli",
-    "promoted": "mga isinulong",
+    "reblogged": "{{n}} Reblogged",
+    "promoted": "Promoted",
     "pinned": "Naka-pin na post",
     "replies": "1 kasagutan. Pindutin para sumagot.",
     "replies-n": "{{n}} mga kasagutan. Pindutin para sumagot.",
