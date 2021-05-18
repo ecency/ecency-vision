@@ -128,8 +128,8 @@
   "entry-list-item": {
     "cross-posted": "cross-posted",
     "cross-posted-to": "to",
-    "reblogged": "{{n}} megosztva",
-    "promoted": "támogatott",
+    "reblogged": "{{n}} Reblogged",
+    "promoted": "Promoted",
     "pinned": "Kitűzött Poszt",
     "replies": "1 válasz. Kattints ide és válaszolj.",
     "replies-n": "{{n}} válasz. Kattints ide és válaszolj.",
