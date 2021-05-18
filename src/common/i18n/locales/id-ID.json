@@ -128,8 +128,8 @@
   "entry-list-item": {
     "cross-posted": "diposting bersilangan",
     "cross-posted-to": "ke",
-    "reblogged": "{{n}} Dibagikan",
-    "promoted": "dipromosikan",
+    "reblogged": "{{n}} Reblogged",
+    "promoted": "Promoted",
     "pinned": "Postingan Disematkan",
     "replies": "1 respon, Klik untuk merespon.",
     "replies-n": "{{n}} respon. Klik untuk merespon.",
