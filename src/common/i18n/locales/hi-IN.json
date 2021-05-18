@@ -128,8 +128,8 @@
   "entry-list-item": {
     "cross-posted": "पोस्ट की गई",
     "cross-posted-to": "को",
-    "reblogged": "{{n}} रीब्लॉगड",
-    "promoted": "पदोन्नत",
+    "reblogged": "{{n}} Reblogged",
+    "promoted": "Promoted",
     "pinned": "पिन की गई पोस्ट",
     "replies": "१ प्रतिक्रिया| क्लिक करें जबाब के लिए|",
     "replies-n": "{{n}} प्रतिक्रियाएं। जवाब देने के लिए क्लिक करें।",
