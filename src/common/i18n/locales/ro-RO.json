@@ -128,8 +128,8 @@
   "entry-list-item": {
     "cross-posted": "cross-posted",
     "cross-posted-to": "to",
-    "reblogged": "{{n}} reblogged",
-    "promoted": "promovat",
+    "reblogged": "{{n}} Reblogged",
+    "promoted": "Promoted",
     "pinned": "Postare Fixată",
     "replies": "1 răspuns. Apasă pentru a răspunde.",
     "replies-n": "{{n}} răspunsuri. Apasă pentru a răspunde.",
