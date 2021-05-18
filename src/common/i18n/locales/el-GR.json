@@ -128,8 +128,8 @@
   "entry-list-item": {
     "cross-posted": "cross-posted",
     "cross-posted-to": "to",
-    "reblogged": "{{n}} αναδημοσιεύτηκε",
-    "promoted": "προωθούμενα",
+    "reblogged": "{{n}} Reblogged",
+    "promoted": "Promoted",
     "pinned": "Καρφιτσωμένη Δημοσίευση",
     "replies": "1 απάντηση. Κάντε κλικ για να απαντήσετε.",
     "replies-n": "{{n}} απαντήσεις. Κάντε κλικ για να απαντήσετε.",
