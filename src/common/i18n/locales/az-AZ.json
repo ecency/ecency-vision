@@ -128,8 +128,8 @@
   "entry-list-item": {
     "cross-posted": "cross-posted",
     "cross-posted-to": "to",
-    "reblogged": "{{n}} reblogged",
-    "promoted": "tanıdılan",
+    "reblogged": "{{n}} Reblogged",
+    "promoted": "Promoted",
     "pinned": "Sancaqlanmış Göndəriş",
     "replies": "1 cavab. Cavablamaq üçün klikləyin.",
     "replies-n": "{{n}} cavab. Cavablamaq üçün klikləyin.",
