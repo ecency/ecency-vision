@@ -128,8 +128,8 @@
   "entry-list-item": {
     "cross-posted": "cross-posted",
     "cross-posted-to": "to",
-    "reblogged": "{{n}} reblogged",
-    "promoted": "promoted",
+    "reblogged": "{{n}} Reblogged",
+    "promoted": "Promoted",
     "pinned": "Pinned Post",
     "replies": "1 response. Click to respond.",
     "replies-n": "{{n}} responses. Click to respond.",
