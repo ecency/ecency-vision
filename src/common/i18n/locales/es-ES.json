@@ -128,8 +128,8 @@
   "entry-list-item": {
     "cross-posted": "publicación-cruzada",
     "cross-posted-to": "para",
-    "reblogged": "{{n}} reblogueado",
-    "promoted": "promocionado",
+    "reblogged": "{{n}} Reblogged",
+    "promoted": "Promoted",
     "pinned": "Publicación fijada",
     "replies": "1 respuesta. Haga clic para responder.",
     "replies-n": "{{n}} respuestas. Haga clic para responder.",
