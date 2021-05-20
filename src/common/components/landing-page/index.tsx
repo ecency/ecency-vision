@@ -8,7 +8,7 @@ const Decentralization = require("../../img/illustration_decentralization.png");
 const MechanicFish = require("../../img/illustration_open_source.png");
 
 const LandingPage = (props: any) => {
-//   console.log("props", props);
+  //   console.log("props", props);
   return (
     <div className="landing-wrapper">
       <div className="top-bg" />
@@ -113,12 +113,32 @@ const LandingPage = (props: any) => {
 
       <div className="sections fourth-section">
         <div className="part-top">
-            <div className="inner">asdasda</div>
+          <div className="inner">
+            <ul>
+              <li>
+                <h2>92M</h2>
+                <p>Posts</p>
+              </li>
+              <li>
+                <h2>300K</h2>
+                <p>Unique visitors</p>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <h2>15M</h2>
+                <p>Points distributed</p>
+              </li>
+              <li>
+                <h2>25K</h2>
+                <p>New users</p>
+              </li>
+            </ul>
+          </div>
         </div>
         <div className="part-bottom">
-            <div className="inner">
-                asdasdasdasdasda
-            </div>
+          <div className="inner">
+          </div>
         </div>
       </div>
     </div>
