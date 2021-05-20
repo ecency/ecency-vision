@@ -82,7 +82,7 @@
   margin-bottom: 20px;
   position: relative;
   padding: 10px 0;
-
+  z-index: 2;
   &:not(.visible-sm) {
     display: none;
   }

@@ -23,6 +23,7 @@ import TrendingTagsCard from "../components/trending-tags-card";
 import ScrollToTop from "../components/scroll-to-top";
 import MarketData from "../components/market-data";
 import DownloadTrigger from "../components/download-trigger";
+import LandingPage from "../components/landing-page";
 
 import {_t} from "../i18n";
 
@@ -36,11 +37,23 @@ import {appleSvg, desktopSvg, googleSvg} from "../img/svg";
 
 import {pageMapDispatchToProps, pageMapStateToProps, PageProps} from "./common";
 
+interface State {
+    step: number
+}
 
-class EntryIndexPage extends Component<PageProps> {
+interface Landing {
+    setState: void
+}
+class EntryIndexPage extends Component<PageProps, State> {
+
+    state:State = {
+        step: 1
+    }
+
     componentDidMount() {
         const {global, fetchEntries} = this.props;
         fetchEntries(global.filter, global.tag, false);
+        this.props.activeUser !== null ? this.changeStepTwo() :this.changeStepOne() 
     }
 
     componentDidUpdate(prevProps: Readonly<PageProps>): void {
@@ -55,6 +68,7 @@ class EntryIndexPage extends Component<PageProps> {
         if (!(global.filter === pGlobal.filter && global.tag === pGlobal.tag)) {
             fetchEntries(global.filter, global.tag, false);
         }
+
     }
 
     bottomReached = () => {
@@ -74,6 +88,18 @@ class EntryIndexPage extends Component<PageProps> {
         const {global, fetchEntries, invalidateEntries} = this.props;
         invalidateEntries(makeGroupKey(global.filter, global.tag));
         fetchEntries(global.filter, global.tag, false);
+    }
+
+    changeStepOne = () => {
+        this.setState({
+            step: 1
+        })
+    }
+
+    changeStepTwo = () => {
+        this.setState({
+            step: 2
+        })
     }
 
     render() {
@@ -134,61 +160,65 @@ class EntryIndexPage extends Component<PageProps> {
                         reloading: loading,
                     }) :
                     NavBar({...this.props})}
-                {activeUser === null && <Intro global={this.props.global} hideIntro={this.props.hideIntro}/>}
-                <div className="app-content entry-index-page">
-                    <div className="tags-side">
-                        {!global.isMobile && (
-                            <>
-                                {TrendingTagsCard({...this.props})}
-                            </>
-                        )}
-                    </div>
-                    <div className={_c(`entry-page-content ${loading ? "loading" : ""}`)}>
-                        <div className="page-tools">
-                            {EntryIndexMenu({...this.props})}
+                { this.state.step === 1  &&  activeUser === null &&  <LandingPage {...this.props} changeState={this.changeStepTwo}/> }
+                {/* { this.state.step === 2 && activeUser === null && <Intro global={this.props.global} hideIntro={this.props.hideIntro} /> } */}
+                {
+                    (this.state.step === 2 || activeUser !== null) &&
+                    <div className="app-content entry-index-page">
+                        <div className="tags-side">
+                            {!global.isMobile && (
+                                <>
+                                    {TrendingTagsCard({...this.props})}
+                                </>
+                            )}
                         </div>
-                        {loading && entryList.length === 0 ? <LinearProgress/> : ""}
-                        <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>
-                            <div className={_c(`entry-list-body limited-area ${global.listStyle === ListStyle.grid ? "grid-view" : ""}`)}>
-                                {loading && entryList.length === 0 && <EntryListLoadingItem/>}
-                                {EntryListContent({...this.props, entries: entryList, promotedEntries: promoted})}
+                        <div className={_c(`entry-page-content ${loading ? "loading" : ""}`)}>
+                            <div className="page-tools">
+                                {EntryIndexMenu({...this.props})}
                             </div>
-                        </div>
-                        {loading && entryList.length > 0 ? <LinearProgress/> : ""}
-                    </div>
-                    <div className="side-menu">
-                        {!global.isMobile && (
-                            <>
-                                <MarketData/>
-
-                                <div className="menu-nav">
-                                    <DownloadTrigger>
-                                        <div className="downloads">
-                                            <span className="label">{_t("g.downloads")}</span>
-                                            <span className="icons">
-                                                <span className="img-apple">{appleSvg}</span>
-                                                <span className="img-google">{googleSvg}</span>
-                                                <span className="img-desktop">{desktopSvg}</span>
-                                            </span>
-                                        </div>
-                                    </DownloadTrigger>
-
-                                    <div className="text-menu">
-                                        <Link className="menu-item" to="/faq">
-                                            {_t("entry-index.faq")}
-                                        </Link>
-                                        <Link className="menu-item" to="/terms-of-service">
-                                            {_t("entry-index.tos")}
-                                        </Link>
-                                        <Link className="menu-item" to="/privacy-policy">
-                                            {_t("entry-index.pp")}
-                                        </Link>
-                                    </div>
+                            {loading && entryList.length === 0 ? <LinearProgress/> : ""}
+                            <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>
+                                <div className={_c(`entry-list-body limited-area ${global.listStyle === ListStyle.grid ? "grid-view" : ""}`)}>
+                                    {loading && entryList.length === 0 && <EntryListLoadingItem/>}
+                                    {EntryListContent({...this.props, entries: entryList, promotedEntries: promoted})}
                                 </div>
-                            </>
-                        )}
+                            </div>
+                            {loading && entryList.length > 0 ? <LinearProgress/> : ""}
+                        </div>
+                        <div className="side-menu">
+                            {!global.isMobile && (
+                                <>
+                                    <MarketData/>
+
+                                    <div className="menu-nav">
+                                        <DownloadTrigger>
+                                            <div className="downloads">
+                                                <span className="label">{_t("g.downloads")}</span>
+                                                <span className="icons">
+                                                    <span className="img-apple">{appleSvg}</span>
+                                                    <span className="img-google">{googleSvg}</span>
+                                                    <span className="img-desktop">{desktopSvg}</span>
+                                                </span>
+                                            </div>
+                                        </DownloadTrigger>
+
+                                        <div className="text-menu">
+                                            <Link className="menu-item" to="/faq">
+                                                {_t("entry-index.faq")}
+                                            </Link>
+                                            <Link className="menu-item" to="/terms-of-service">
+                                                {_t("entry-index.tos")}
+                                            </Link>
+                                            <Link className="menu-item" to="/privacy-policy">
+                                                {_t("entry-index.pp")}
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </>
+                            )}
+                        </div>
                     </div>
-                </div>
+                }
                 <DetectBottom onBottom={this.bottomReached}/>
             </>
         );
