@@ -128,8 +128,8 @@
   "entry-list-item": {
     "cross-posted": "पोस्ट की गई",
     "cross-posted-to": "को",
-    "reblogged": "{{n}} Reblogged",
-    "promoted": "Promoted",
+    "reblogged": "{{n}} रीब्लॉगड",
+    "promoted": "प्रचारित",
     "pinned": "पिन की गई पोस्ट",
     "replies": "१ प्रतिक्रिया| क्लिक करें जबाब के लिए|",
     "replies-n": "{{n}} प्रतिक्रियाएं। जवाब देने के लिए क्लिक करें।",
@@ -197,7 +197,7 @@
     "payout-date": "भुगतान",
     "beneficiary": "लाभार्थी",
     "breakdown": "विश्लेषण",
-    "max-accepted": "Max accepted"
+    "max-accepted": "अधिकतम स्वीकृत"
   },
   "entry-index": {
     "feed": "फ़ीड",
@@ -229,7 +229,7 @@
   },
   "entry": {
     "via-app": "<span class=\"app-name\"> {{app}} </span> के माध्यम से",
-    "author-reputation": "Author's reputation",
+    "author-reputation": "लेखक की प्रतिष्ठा",
     "comment-entry-title": "आप किसी एकल टिप्पणी के सूत्र को देख रहे हैं: ",
     "comment-entry-go-root": "पूरा संदर्भ देखें",
     "comment-entry-go-parent": "सीधा मूल जनक को देखें",
@@ -247,7 +247,7 @@
     "version": "संस्करण {{n}}"
   },
   "similar-entries": {
-    "title": "Read next"
+    "title": "आगे पढ़िए"
   },
   "comment": {
     "body-placeholder": "अपना उत्तर यहाँ लिखें",
@@ -757,19 +757,19 @@
     "unmute": "अधिसूचना अलर्ट चालू करें"
   },
   "leaderboard": {
-    "title-stars": "Most active",
-    "title-curators": "Curators",
-    "title-day": "Daily leaders",
-    "title-week": "Weekly leaders",
-    "title-month": "Monthly leaders",
+    "title-stars": "सर्वाधिक क्रियाशील",
+    "title-curators": "क्यूरेटर",
+    "title-day": "दैनिक नेता",
+    "title-week": "साप्ताहिक नेता",
+    "title-month": "मासिक नेता",
     "period-day": "रोजाना",
     "period-week": "साप्ताहिक",
     "period-month": "मासिक",
     "header-score": "क्रियाएँ",
     "header-score-tip": "उपयोगकर्ता द्वारा चयनित अवधि के लिए पोस्ट + टिप्पणियाँ",
     "header-reward": "इनाम",
-    "header-votes": "Votes",
-    "header-votes-tip": "Number of votes in this period"
+    "header-votes": "वोटस",
+    "header-votes-tip": "इस अवधि में वोटों की संख्या"
   },
   "popular-users": {
     "title": "लोकप्रिय उपयोगकर्ता"
@@ -800,9 +800,9 @@
     "tags": "टैग्स",
     "tags-placeholder": "अल्पविराम अलग टैग",
     "date": "दिनांक",
-    "date-week": "Last Week",
-    "date-month": "Last Month",
-    "date-year": "Last Year",
+    "date-week": "पिछले सप्ताह",
+    "date-month": "पिछले महीने",
+    "date-year": "पिछले वर्ष",
     "date-all": "सभी",
     "sort": "क्रम",
     "sort-popularity": "लोकप्रियता",
