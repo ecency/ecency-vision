@@ -6,6 +6,16 @@ const EarnMoney = require("../../img/illustration_earn_money.jpg");
 const WhaleCatchsFish = require("../../img/illustration_true_ownership.png");
 const Decentralization = require("../../img/illustration_decentralization.png");
 const MechanicFish = require("../../img/illustration_open_source.png");
+const FishOne = require("../../img/fish-1.png");
+const FishTwo = require("../../img/fish-2.png");
+const FishThree = require("../../img/fish-3.png");
+const FishFour = require("../../img/fish-4.png");
+const FishFive = require("../../img/fish-5.png");
+const DownloadAndroid = require("../../img/icon_android.png");
+const DownloadIPhone = require("../../img/icon_apple.svg");
+const DownloadWindows = require("../../img/icon_windows.svg");
+const OurHistory = require("../../img/our-history.png");
+const OurVision = require("../../img/our-vision.png");
 
 const LandingPage = (props: any) => {
   //   console.log("props", props);
@@ -114,23 +124,32 @@ const LandingPage = (props: any) => {
       <div className="sections fourth-section">
         <div className="part-top">
           <div className="inner">
+            <div className="fish-container">
+              <img className="fish three" src={FishThree} alt="earn-money" />
+              <img className="fish five" src={FishFive} alt="earn-money" />
+              <img className="fish four" src={FishFour} alt="earn-money" />
+            </div>
+            <div className="fish-container">
+              <img className="fish one" src={FishOne} alt="earn-money" />
+              <img className="fish two" src={FishTwo} alt="earn-money" />
+            </div>
             <ul>
               <li>
-                <h2>92M</h2>
+                <h3>92M</h3>
                 <p>Posts</p>
               </li>
               <li>
-                <h2>300K</h2>
+                <h3>300K</h3>
                 <p>Unique visitors</p>
               </li>
             </ul>
             <ul>
               <li>
-                <h2>15M</h2>
+                <h3>15M</h3>
                 <p>Points distributed</p>
               </li>
               <li>
-                <h2>25K</h2>
+                <h3>25K</h3>
                 <p>New users</p>
               </li>
             </ul>
@@ -138,6 +157,79 @@ const LandingPage = (props: any) => {
         </div>
         <div className="part-bottom">
           <div className="inner">
+            <span />
+            <span />
+            <div className="text-group">
+              <h2>Download our application</h2>
+              <p>
+                Looking for a unique experience? The social network with real
+                free speech experience on your mobile phone or desktop.
+                Blockchain's powerful benefits now always under your fingertips.
+              </p>
+              <a className="windows" href="#">
+                <img src={DownloadWindows} alt="" />
+                Download for Windows
+              </a>
+              <a href="#">
+                <img src={DownloadIPhone} alt="" />
+                Download for IPhone
+              </a>
+              <a href="#">
+                <img src={DownloadAndroid} alt="" />
+                Download for Android
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="sections fifth-section">
+        <div className="part-top">
+          <div className="inner">
+            <div className="text-group">
+              <h2>Our History</h2>
+              <p>
+                <b>Ecency</b> (previously Esteem) was rebranded in 2020,
+                initially starting out in 2016, founder{" "}
+                <span>
+                  <a href="#">@good-karma</a>
+                </span>{" "}
+                started implementing a mobile application that would
+                revolutionize the way you interact and create, build, engage
+                online.
+              </p>
+              <p>
+                Since then we have been continuing to build for Web 3.0 and
+                improve our blockchain-based social network, making sure apps
+                are as accessible as possible, secure in many languages the
+                world speaks.
+              </p>
+            </div>
+            <img className="our-history" src={OurHistory} alt="Our History" />
+          </div>
+        </div>
+        <div className="part-bottom">
+          <div className="inner">
+            <img className="our-vision" src={OurVision} alt="Our Vision" />
+
+            <div className="text-group">
+              <h2>Our Vision</h2>
+              <p>
+                We want to bring a secure and rewarding blockchain experience to
+                all people. Social media without any limits and censorship,
+                where only you control your own account and communities. Top
+                security of your account with {" "}
+                <span>
+                  <a href="#">Hivesigner</a>
+                </span>
+                .
+              </p>
+              <p>
+                <b>Our main principles:</b> Bring rewarding communities, true
+                ownership, empowered creators, free speech into the hands of
+                millions.
+              </p>
+            </div>
           </div>
         </div>
       </div>

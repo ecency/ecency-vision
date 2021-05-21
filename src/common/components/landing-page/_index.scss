@@ -48,7 +48,7 @@
     line-height: 27px;
   }
   .no-break {
-      white-space: nowrap;
+    white-space: nowrap;
   }
   .sections {
     display: flex;
@@ -184,15 +184,15 @@
     right: 10%;
     z-index: 1;
     @media (max-width: $lg-break) {
-        width: 50%;
-        height: auto;
-        bottom: 28%;
-        &.mechanic {
-            width: auto;
-            right: 17%;
-            height: 200px;
-        }
+      width: 50%;
+      height: auto;
+      bottom: 28%;
+      &.mechanic {
+        width: auto;
+        right: 17%;
+        height: 200px;
       }
+    }
     @media (max-width: $md-break) {
       width: 70%;
       height: auto;
@@ -230,7 +230,7 @@
         visibility: visible !important;
         @media (max-width: $xxl-break) {
           width: 30%;
-          h2 { 
+          h2 {
             font-weight: 800;
             font-size: 31px;
             line-height: 37px;
@@ -254,23 +254,91 @@
   .third-section {
     height: 1100px;
     .decentralization-img {
-        height: 382px;
-        width: auto;
-        @media (max-width: $md-break) {
-            height: 20px;
-        }
+      height: 382px;
+      width: auto;
+      @media (max-width: $md-break) {
+        height: 20px;
+      }
     }
   }
 
   .fourth-section {
-    height: 1100px;
-    .inner {
+    height: 2080px;
+    .part-top {
+      height: 940px;
+      .inner {
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
-    }
-    ul{
+        position: relative;
+      }
+      .fish-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: unset;
+        bottom: o;
+        width: 200px;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: transparent;
+  
+        &:last-of-type {
+          right: 0;
+          left: unset;
+        }
+        .fish {
+          width: 152px;
+          height: auto;
+          position: absolute;
+        }
+        .one {
+          width: 79px;
+          height: auto;
+          right: 40%;
+          top: 110px;
+        }
+        .two {
+          width: 152px;
+          height: auto;
+          right: 23%;
+          bottom: 3px;
+        }
+        .three {
+          width: 108px;
+          height: auto;
+          left: 30%;
+          top: 70px;
+        }
+        .four {
+          width: 110px;
+          height: auto;
+          left: 10%;
+          bottom: 100px;
+        }
+        .five {
+          width: 66px;
+          height: auto;
+          left: 10%;
+          bottom: 50%;
+        }
+        @media (max-width: $lg-break) {
+          .fish {
+            display: none;
+          }
+          .five {
+            display: inline-block;
+          }
+        }
+        @media (min-width: $lg-break) {
+          .five {
+            display: none;
+          }
+        }
+      }
+      ul {
         list-style: none;
         width: 100%;
         height: 50%;
@@ -278,25 +346,242 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        margin: 0;
+        padding: 0;
         li {
-            display: flex;
-            flex-direction: column;
-            width: 50%;
-            justify-content: center;
-            align-items: center;
+          display: flex;
+          flex-direction: column;
+          width: 50%;
+          justify-content: center;
+          align-items: center;
         }
-        h2 {
+        h3 {
+          font-weight: bold;
+          font-size: 59px;
+          line-height: 78px;
+          color: $blue;
+          @media (max-width: $lg-break) {
+            font-weight: 800;
+            font-size: 31px;
+            line-height: 37px;
+          }
+        }
+        p {
+          font-weight: 300;
+          font-size: 24px;
+          line-height: 135%;
+          color: $dusk-blue;
+          @media (max-width: $lg-break) {
+            font-weight: 300;
+            font-size: 15px;
+            line-height: 25px;
+          }
+        }
+      }
+      @media (max-width: $lg-break) {
+        height: 400px;
+       
+      }
+    }
+    .part-bottom {
+      height: 1140px;
+      background-image: url("../../img/bg-download-tiny.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+      @media (max-width: $lg-break) {
+        height: 500px;
+        background-image: url("../../img/bg-download-mob-light.jpg");
+        .inner > span {
+          display: flex;
+          position: absolute;
+          width: 100%;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 154px;
+          background-image: url("../../img/download-algae.png");
+          background-size: 100% 100%;
+          background-position: bottom;
+          background-repeat: no-repeat;
+        }
+        
+      }
+      .inner {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        position: relative;
+        height: 719px;
+        .text-group{
+          margin: 0;
+          width: 756px;
+          max-width: 756px;
+          h2 {
             font-weight: bold;
             font-size: 59px;
             line-height: 78px;
             color: $blue;
-        }
-        p {
+          }
+          p, a {
             font-weight: 300;
             font-size: 24px;
-            line-height: 135%;
-            color: $dusk-blue;
+            line-height: 140%;
+            color: $blue;
+            display: flex;
+            align-items: center;
+            line-height: 2;
+            img {
+              margin-right: 0.5rem;
+              width: 25px;
+              height: 25px;
+            }
+          }
+          @media (max-width: $lg-break) {
+            margin: 1rem;
+            h2 {
+              font-weight: 800;
+              font-size: 31px;
+              line-height: 37px;
+              text-align: center;
+            }
+            p, a {
+              font-weight: 300;
+              font-size: 15px;
+              line-height: 25px;
+              z-index: 1;
+            }
+            a {
+              margin-top: 1rem;
+            }
+            .windows {
+              display: none;
+            }
+          }
         }
+        @media (max-width: $lg-break) {
+          height: 100%;
+          span:last-of-type {
+              display: flex;
+              width: 95%;
+              height: 70px;
+              position: absolute;
+              bottom: 50px;
+              right: 17%;
+              background-image: url("../../img/fish-2.png");
+              background-size: contain;
+              background-repeat: no-repeat;
+              background-position-x: right;
+          }
+          .text-group{
+            width: 100%;
+            justify-content: flex-start;
+          }
+        }
+        @media (max-width: $sm-break) {
+          span:last-of-type {
+            height: 50px;
+          }
+        }
+      }
+    }
+   
+    @media (max-width: $lg-break) {
+      height: 800px;
+    }
+  }
+
+  .fifth-section {
+    .part-top {
+      .inner {
+        width: 100%;
+        flex-wrap: nowrap;
+      }
+      .text-group {
+        width: 100%;
+        max-width: 600px;
+      }
+      .our-history {
+        width: 500px;
+        height: auto;
+        margin: 0;
+      }
+      p {
+        margin-top: 1.5rem;
+      }
+      
+
+    }
+    .part-bottom {
+      .inner {
+        justify-content: space-between;
+        .our-vision {
+          max-width: 90%;
+          height: auto;
+          width: 300px;
+          height: auto;
+          margin: 1rem;
+        }
+        .text-group {
+          max-width: unset;
+          margin-right: 0;
+          width: 50%;
+        }
+      }
+    }
+
+    @media (max-width: $lg-break) {
+      height: 1800px;
+      margin: 0;
+      justify-content: space-around;
+      .part-top {
+        height: 1200px;
+        margin: 0;
+        .inner {
+          margin: 0;
+          height: 1200px;
+          flex-direction: column-reverse;
+          justify-content: space-around;
+  
+          .text-group {
+            width: 100%;
+            max-width: unset;
+            margin: 4rem 1rem 22rem;
+            padding: 1rem;
+            height: auto;
+            max-width: unset;
+          }
+          .our-history {
+            margin-top: 4rem ;
+            max-width: 90%;
+            height: auto;
+          }
+        }
+      }
+      .part-bottom {
+        height: 600px;
+        margin: 0;
+      }
+      
+      .part-bottom {
+        .inner {
+          flex-direction: column;
+          align-items: center;
+          .our-vision {
+            max-width: 270px;
+            height: auto;
+            margin: -32rem 0;
+
+          }
+          .text-group {
+            width: 100%;
+            margin: -10rem 0;
+            padding: 0  1rem;
+          }
+        }
+      }
     }
 
   }
