@@ -4,11 +4,6 @@ services:
   app:
     image: ecency/vision:development
     environment:
-      - PRIVATE_API_ADDR
-      - PRIVATE_API_AUTH
-      - HIVESIGNER_CLIENT_SECRET
-      - SEARCH_API_ADDR
-      - SEARCH_API_SECRET
       - USE_PRIVATE
     ports:
       - "3000:3000"
