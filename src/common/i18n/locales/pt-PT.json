@@ -759,17 +759,17 @@
   "leaderboard": {
     "title-stars": "Mais ativo",
     "title-curators": "Curadores",
-    "title-day": "Daily leaders",
-    "title-week": "Weekly leaders",
-    "title-month": "Monthly leaders",
+    "title-day": "Líderes do dia",
+    "title-week": "Líderes da semana",
+    "title-month": "Líderes do mês",
     "period-day": "Diariamente",
     "period-week": "Semanalmente",
     "period-month": "Mensalmente",
     "header-score": "Atividades",
     "header-score-tip": "Postar + comentários de um usuário para o período selecionado",
     "header-reward": "Recompensa",
-    "header-votes": "Votes",
-    "header-votes-tip": "Number of votes in this period"
+    "header-votes": "Votos",
+    "header-votes-tip": "Número de votos neste período"
   },
   "popular-users": {
     "title": "Utilizadores Populares"
@@ -800,9 +800,9 @@
     "tags": "Etiquetas",
     "tags-placeholder": "etiquetas separadas por vírgulas",
     "date": "Data",
-    "date-week": "Last Week",
-    "date-month": "Last Month",
-    "date-year": "Last Year",
+    "date-week": "Semana Passada",
+    "date-month": "Mês Passado",
+    "date-year": "Ano Passado",
     "date-all": "Todos",
     "sort": "Ordenar",
     "sort-popularity": "Popularidade",
