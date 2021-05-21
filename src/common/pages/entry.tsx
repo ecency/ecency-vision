@@ -163,20 +163,22 @@ class EntryPage extends BaseComponent<Props, State> {
     }
 
     ensureEntry = async () => {
-        const {match, addEntry, updateEntry, addCommunity, activeUser} = this.props;
+        const {match, addEntry, updateEntry, addCommunity, activeUser, global} = this.props;
         const entry = this.getEntry();
         const {category, username, permlink} = match.params;
         const author = username.replace("@", "");
 
         // For fetching authors about and display name information -- start
-        const authorInfo = (await getAccountFull(author))?.profile || {name: "", about: ""}
-        authorInfo && this.stateSet({
-            authorInfo: {
-                ...this.state.authorInfo,
-                name: authorInfo?.name || "",
-                about: authorInfo?.about || ""
-            }
-        })
+        if (!global.isMobile) {
+            const authorInfo = (await getAccountFull(author))?.profile || {name: "", about: ""}
+            authorInfo && this.stateSet({
+                authorInfo: {
+                    ...this.state.authorInfo,
+                    name: authorInfo?.name || "",
+                    about: authorInfo?.about || ""
+                }
+            })    
+        }
         // For fetching authors about and display name information -- end
 
         let reducerFn = updateEntry;
@@ -632,8 +634,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                     })()}
 
 
-                                    {
-                                        (this.state.authorInfo.name !== null || this.state.authorInfo.about !== null) &&
+                                    { !global.isMobile && (this.state.authorInfo.name !== null || this.state.authorInfo.about !== null) &&
                                             <div className="avatar-fixed" id="avatar-fixed">
                                                 <div className="first-line">
                                                     <span className="avatar">
