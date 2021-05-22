@@ -1,7 +1,6 @@
 import express from "express";
 
 import cookieParser from "cookie-parser";
-const cors = require("cors")
 
 import {EntryFilter, ProfileFilter} from "../common/store/global/types";
 
@@ -42,7 +41,6 @@ server
     .use(cookieParser())
     .use(lowerCase)
     .use(stripSlash)
-    .use(cors())
 
     // Common backend
     .get(
