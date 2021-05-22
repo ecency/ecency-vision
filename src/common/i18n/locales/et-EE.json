@@ -234,6 +234,7 @@
     "comment-entry-go-root": "Vaata kogu konteksti",
     "comment-entry-go-parent": "Vaata eelmist kommentaari",
     "hidden-warning": "See postitus on madala hinnangu tõttu peidetud.",
+    "muted-warning": "This post was muted for not following {{community}} community guidelines.",
     "address-copy": "Copy post address",
     "address-copied": "Post address copied to clipboard.",
     "browse-original": "Open original post",
