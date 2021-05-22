@@ -234,6 +234,7 @@
     "comment-entry-go-root": "Katso kaikki",
     "comment-entry-go-parent": "Näytä vanhempi",
     "hidden-warning": "Tämä viesti oli piilotettu alhaisten arvostelujen vuoksi.",
+    "muted-warning": "This post was muted for not following {{community}} community guidelines.",
     "address-copy": "Kopioi osoite",
     "address-copied": "Osoite kopioitu leikepöydälle.",
     "browse-original": "Näytä alkuperäinen julkaisu",
