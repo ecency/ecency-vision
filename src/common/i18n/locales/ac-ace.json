@@ -234,6 +234,7 @@
     "comment-entry-go-root": "Kalon konteks punoh",
     "comment-entry-go-parent": "Kalon ureung chik langsong",
     "hidden-warning": "Post nyoe ka di peusom sabab rating nyang rendah.",
+    "muted-warning": "This post was muted for not following {{community}} community guidelines.",
     "address-copy": "Salen alamat posting",
     "address-copied": "Alamat post di salen u clipboard.",
     "browse-original": "Open original post",
