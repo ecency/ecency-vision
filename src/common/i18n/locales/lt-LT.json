@@ -234,6 +234,7 @@
     "comment-entry-go-root": "Peržiūrėti visą kontekstą",
     "comment-entry-go-parent": "Peržiūrėti pirminį",
     "hidden-warning": "Įrašas buvo paslėptas dėl per žemo reitingo.",
+    "muted-warning": "This post was muted for not following {{community}} community guidelines.",
     "address-copy": "Copy post address",
     "address-copied": "Post address copied to clipboard.",
     "browse-original": "Open original post",
