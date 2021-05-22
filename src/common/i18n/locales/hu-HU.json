@@ -234,6 +234,7 @@
     "comment-entry-go-root": "Teljes kontextus megtekintése",
     "comment-entry-go-parent": "Direkt felmenő megtekintése",
     "hidden-warning": "Ez a bejegyzés alacsony reputáció miatt rejtett.",
+    "muted-warning": "This post was muted for not following {{community}} community guidelines.",
     "address-copy": "Copy post address",
     "address-copied": "Post address copied to clipboard.",
     "browse-original": "Open original post",
