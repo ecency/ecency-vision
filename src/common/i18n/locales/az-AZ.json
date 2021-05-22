@@ -234,6 +234,7 @@
     "comment-entry-go-root": "Tam məzmuna bax",
     "comment-entry-go-parent": "View the direct parent",
     "hidden-warning": "This post was hidden due to low ratings.",
+    "muted-warning": "This post was muted for not following {{community}} community guidelines.",
     "address-copy": "Copy post address",
     "address-copied": "Post address copied to clipboard.",
     "browse-original": "Open original post",
