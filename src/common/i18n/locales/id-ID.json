@@ -234,6 +234,7 @@
     "comment-entry-go-root": "Lihat konteks lengkapnya",
     "comment-entry-go-parent": "Lihat sumber utamanya",
     "hidden-warning": "Posting ini tersembunyi dikarenakan peringkat rendah.",
+    "muted-warning": "This post was muted for not following {{community}} community guidelines.",
     "address-copy": "Salin alamat postingan",
     "address-copied": "Tempel alamat yang disalin ke papan klip.",
     "browse-original": "Tampilan tulisan asli",
