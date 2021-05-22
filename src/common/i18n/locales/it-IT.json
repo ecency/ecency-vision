@@ -234,6 +234,7 @@
     "comment-entry-go-root": "Vedi l'intero Post",
     "comment-entry-go-parent": "Vedi commento genitore",
     "hidden-warning": "Questo post è stato nascosto a causa dello scarso punteggio qualità.",
+    "muted-warning": "This post was muted for not following {{community}} community guidelines.",
     "address-copy": "Copia l'indirizzo del Post",
     "address-copied": "Indirizzo del post copiato negli appunti.",
     "browse-original": "Apri post originale",
