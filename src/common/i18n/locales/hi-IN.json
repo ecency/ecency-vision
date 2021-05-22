@@ -234,6 +234,7 @@
     "comment-entry-go-root": "पूरा संदर्भ देखें",
     "comment-entry-go-parent": "सीधा मूल जनक को देखें",
     "hidden-warning": "यह पोस्ट गुप्त था निम्न मूल्यांकन के कारण.",
+    "muted-warning": "This post was muted for not following {{community}} community guidelines.",
     "address-copy": "पोस्ट पता कापी करे",
     "address-copied": "क्लिपबोर्ड पर पोस्ट पता कॉपी किया गया।",
     "browse-original": "मूल पोस्ट खोलें",
