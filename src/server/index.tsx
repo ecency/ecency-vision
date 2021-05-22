@@ -86,10 +86,10 @@ server
         entryHandler
     )
 
-    // For all others paths
-    .get("*", fallbackHandler)
-
     // Health check script for docker swarm
-    .get("^/healthcheck.json$", healthCheck);
+    .get("^/healthcheck.json$", healthCheck)
+
+    // For all others paths
+    .get("*", fallbackHandler);
 
 export default server;
