@@ -43,6 +43,9 @@
       line-height: 25px;
     }
   }
+  ul {
+    list-style: none;
+  }
   .link-read-more {
     font-size: 18px;
     line-height: 27px;
@@ -284,7 +287,7 @@
         margin: 0;
         padding: 0;
         background-color: transparent;
-  
+
         &:last-of-type {
           right: 0;
           left: unset;
@@ -380,7 +383,6 @@
       }
       @media (max-width: $lg-break) {
         height: 400px;
-       
       }
     }
     .part-bottom {
@@ -406,7 +408,6 @@
           background-position: bottom;
           background-repeat: no-repeat;
         }
-        
       }
       .inner {
         display: flex;
@@ -415,7 +416,7 @@
         align-items: center;
         position: relative;
         height: 719px;
-        .text-group{
+        .text-group {
           margin: 0;
           width: 756px;
           max-width: 756px;
@@ -425,7 +426,8 @@
             line-height: 78px;
             color: $blue;
           }
-          p, a {
+          p,
+          a {
             font-weight: 300;
             font-size: 24px;
             line-height: 140%;
@@ -447,7 +449,8 @@
               line-height: 37px;
               text-align: center;
             }
-            p, a {
+            p,
+            a {
               font-weight: 300;
               font-size: 15px;
               line-height: 25px;
@@ -464,18 +467,18 @@
         @media (max-width: $lg-break) {
           height: 100%;
           span:last-of-type {
-              display: flex;
-              width: 95%;
-              height: 70px;
-              position: absolute;
-              bottom: 50px;
-              right: 17%;
-              background-image: url("../../img/fish-2.png");
-              background-size: contain;
-              background-repeat: no-repeat;
-              background-position-x: right;
+            display: flex;
+            width: 95%;
+            height: 70px;
+            position: absolute;
+            bottom: 50px;
+            right: 17%;
+            background-image: url("../../img/fish-2.png");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position-x: right;
           }
-          .text-group{
+          .text-group {
             width: 100%;
             justify-content: flex-start;
           }
@@ -487,7 +490,7 @@
         }
       }
     }
-   
+
     @media (max-width: $lg-break) {
       height: 800px;
     }
@@ -511,8 +514,6 @@
       p {
         margin-top: 1.5rem;
       }
-      
-
     }
     .part-bottom {
       .inner {
@@ -544,7 +545,7 @@
           height: 1200px;
           flex-direction: column-reverse;
           justify-content: space-around;
-  
+
           .text-group {
             width: 100%;
             max-width: unset;
@@ -554,7 +555,7 @@
             max-width: unset;
           }
           .our-history {
-            margin-top: 4rem ;
+            margin-top: 4rem;
             max-width: 90%;
             height: auto;
           }
@@ -564,7 +565,7 @@
         height: 600px;
         margin: 0;
       }
-      
+
       .part-bottom {
         .inner {
           flex-direction: column;
@@ -573,17 +574,241 @@
             max-width: 270px;
             height: auto;
             margin: -32rem 0;
-
           }
           .text-group {
             width: 100%;
             margin: -10rem 0;
-            padding: 0  1rem;
+            padding: 0 1rem;
           }
         }
       }
     }
+  }
 
+  .sixth-section {
+    height: auto;
+    .part-top {
+      height: 750px;
+      .inner {
+        justify-content: space-between;
+        height: 100%;
+        .text-group {
+          margin: 1rem;
+          width: 45%;
+          height: 80%;
+          max-height: unset;
+          h2 {
+            margin-bottom: 2rem;
+          }
+          ul {
+            width: 270px;
+            height: 520px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-direction: column;
+            margin: 0;
+            padding: 0;
+            img {
+              margin: 0;
+              padding: 0;
+            }
+            li {
+              width: 100%;
+              display: flex;
+              flex-direction: row;
+              align-items: flex-start;
+              justify-content: flex-start;
+              height: 80px;
+              margin-bottom: 1rem;
+              .text-wrapper {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                margin-left: 1rem;
+                align-items: flex-start;
+                justify-content: center;
+                p,
+                a {
+                  margin: 0;
+                  padding: 0;
+                  font-weight: 300;
+                  font-size: 24px;
+                  line-height: 140%;
+                }
+              }
+              &.last-element {
+                flex-direction: column;
+                align-items: flex-start;
+                margin-top: 2rem;
+                a {
+                  margin-bottom: 1rem;
+                  font-weight: 300;
+                  font-size: 24px;
+                  line-height: 140%;
+                }
+              }
+            }
+          }
+        }
+        .image-container {
+          width: 45%;
+          margin: 1rem;
+        }
+        .junior,
+        .senior {
+          display: none;
+        }
+        .together {
+          display: inline-block;
+          height: auto;
+          width: 100%;
+        }
+      }
+    }
+    .part-bottom {
+      height: 750px!important;
+      max-height: unset;
+      background: rgb(232, 239, 249);
+      background: radial-gradient(
+        circle,
+        rgba(232, 239, 249, 1) 0%,
+        rgba(121, 166, 223, 1) 100%
+      );
+      background-size: 100% 100%;
+      background-position: center;
+      position: relative;
+      .left-fishes {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-image: url("../../img/left-fishes.png") ;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        height: 350px;
+        width: 350px;
+      }
+      .main-fish {
+        position: absolute;
+        right: 50px;
+        bottom: 0;
+        background-image: url("../../img/footer-main-fish.png") ;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        width: 400px;
+        height: 700px;
+      }
+      .inner {
+      }
+    }
+    @media (max-width: $lg-break) {
+      .part-top {
+        .inner {
+          .text-group {
+            align-items: center;
+            margin-right: 0;
+            height: 70%;
+            h2 {
+              font-weight: 800;
+              font-size: 31px;
+              line-height: 37px;
+              text-align: start;
+            }
+            ul {
+              width: 155px;
+              height: 100%;
+              li {
+                height: max-content;
+                margin-left: 0.5rem;
+                &.last-element {
+                  margin-top: 1.5rem;
+                  align-items: flex-start;
+                  justify-content: flex-start;
+                  width: 180px;
+                  a {
+                    font-weight: 300;
+                    font-size: 13px;
+                    line-height: 24px;
+                    text-align: start;
+                  }
+                }
+                img {
+                  height: 44px;
+                  width: 44px;
+                }
+                .text-wrapper {
+                  margin-left: 0.5rem;
+                  a,
+                  p {
+                    font-weight: 300;
+                    font-size: 15px;
+                    line-height: 24px;
+                  }
+                }
+              }
+            }
+          }
+          .image-container {
+            height: 70%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            width: 43%;
+            margin: 0 0.5rem 0 0;
+            img {
+              justify-self: center;
+              margin: 0;
+            }
+            .together {
+              display: none;
+            }
+            .junior,
+            .senior {
+              display: flex;
+              width: auto;
+            }
+            .junior {
+              height: 112px;
+            }
+            .senior {
+              height: 195px;
+            }
+          }
+        }
+      }
+      .part-bottom {
+        background: rgb(89, 163, 254);
+        background: -moz-linear-gradient(
+          1deg,
+          rgba(89, 163, 254, 1) 0%,
+          rgba(201, 234, 251, 1) 100%
+        );
+        background: -webkit-linear-gradient(
+          1deg,
+          rgba(89, 163, 254, 1) 0%,
+          rgba(201, 234, 251, 1) 100%
+        );
+        background: linear-gradient(
+          1deg,
+          rgba(89, 163, 254, 1) 0%,
+          rgba(201, 234, 251, 1) 100%
+        );
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#59a3fe",endColorstr="#c9eafb",GradientType=1);
+      }
+    }
+    @media (max-width: $sm-break) {
+      .part-top {
+        .junior {
+          height: 82px !important;
+        }
+        .senior {
+          height: 145px !important;
+        }
+      }
+    }
   }
 
   @keyframes bounce {

@@ -16,6 +16,17 @@ const DownloadIPhone = require("../../img/icon_apple.svg");
 const DownloadWindows = require("../../img/icon_windows.svg");
 const OurHistory = require("../../img/our-history.png");
 const OurVision = require("../../img/our-vision.png");
+const OurTeam = require("../../img/our-team.png");
+const JuniorFish = require("../../img/fish-junior.png");
+const SeniorFish = require("../../img/fish-senior.png");
+const FounderImg = require("../../img/feruz.png");
+const DevopsImg = require("../../img/talhasch.png");
+const DesignGuru = require("../../img/design-guru.png");
+const FooterYoutube = require("../../img/footer-youtube.svg");
+const FooterTwitter = require("../../img/footer-twitter.svg");
+const FooterTelegram = require("../../img/footer-telegram.svg");
+const FooterDiscord = require("../../img/footer-discord.svg");
+const LogoCircle = require("../../img/logo-circle.svg");
 
 const LandingPage = (props: any) => {
   //   console.log("props", props);
@@ -218,7 +229,7 @@ const LandingPage = (props: any) => {
                 We want to bring a secure and rewarding blockchain experience to
                 all people. Social media without any limits and censorship,
                 where only you control your own account and communities. Top
-                security of your account with {" "}
+                security of your account with{" "}
                 <span>
                   <a href="#">Hivesigner</a>
                 </span>
@@ -231,6 +242,139 @@ const LandingPage = (props: any) => {
               </p>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div className="sections sixth-section">
+        <div className="part-top">
+          <div className="inner">
+            <div className="text-group">
+              <h2>Our Team</h2>
+              <ul>
+                <li>
+                  <img src={FounderImg} alt="Founder" />
+                  <div className="text-wrapper">
+                    <a href="#">@good-karma</a>
+                    <p>Founder</p>
+                  </div>
+                </li>
+                <li>
+                  <img src={DevopsImg} alt="Devops" />
+                  <div className="text-wrapper">
+                    <a href="#">@talhasch</a>
+                    <p>Devops guru</p>
+                  </div>
+                </li>
+                <li>
+                  <img src={DesignGuru} alt="Designer" />
+                  <div className="text-wrapper">
+                    <a href="#">@dunsky</a>
+                    <p>Design guru</p>
+                  </div>
+                </li>
+                <li className="last-element">
+                  <a href="#">Community Contributors</a>
+                  <a href="#">Blockchain Witnesses</a>
+                </li>
+              </ul>
+            </div>
+
+            <div className="image-container">
+              <img className="our-team together" src={OurTeam} alt="Our Team" />
+              <img
+                className="our-team senior"
+                src={SeniorFish}
+                alt="Senior Fish"
+              />
+              <img
+                className="our-team junior"
+                src={JuniorFish}
+                alt="Junior Fish"
+              />
+            </div>
+          </div>
+        </div>
+        <div className="part-bottom">
+          <div className="inner">
+            <div className="links-and-form">
+              <div className="links">
+                <ul className="first-column">
+                  <li>
+                    <a href="#">About Us</a>
+                  </li>
+                  <li>
+                    <a href="#">FAQ</a>
+                  </li>
+                  <li>
+                    <a href="#">Terms of Service</a>
+                  </li>
+                  <li>
+                    <a href="#">Privacy Policy</a>
+                  </li>
+                </ul>
+                <ul className="second-column">
+                  <li>
+                    <a href="#">Discover</a>
+                  </li>
+                  <li>
+                    <a href="#">Sign in</a>
+                  </li>
+                  <li>
+                    <a href="#">Communities</a>
+                  </li>
+                  <li>
+                    <a href="#">Help</a>
+                  </li>
+                </ul>
+                <div className="subscribe-form">
+                  <h2>Subscribe Us</h2>
+                  <form>
+                    <input
+                      type="email"
+                      placeholder="Enter your email adress"
+                      required
+                    />
+                    <button>Send</button>
+                  </form>
+                  <div className="socials">
+                    <p>
+                      Be first to know what's happening in decentralized web.
+                    </p>
+                    <ul>
+                      <li>
+                        <a href="#">
+                          <img src={FooterYoutube} alt="youtube" />
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <img src={FooterTwitter} alt="twitter" />
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <img src={FooterTelegram} alt="telegram" />
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <img src={FooterDiscord} alt="discord" />
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="site-icon">
+              <a href="#">
+                <img src={LogoCircle} alt="ecency logo" />
+              </a>
+              <div className="copy-right">©2021 Ecency. All right reserved.</div>
+            </div>
+          </div>
+          <span className="left-fishes" />
+          <span className="main-fish" />
         </div>
       </div>
     </div>
