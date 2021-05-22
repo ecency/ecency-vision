@@ -376,8 +376,8 @@ class EntryPage extends BaseComponent<Props, State> {
         const {activeUser} = this.props;
 
         const ownEntry = activeUser && activeUser.username === entry.author;
-
-        const isHidden = entry?.stats?.gray;
+        const isHidden = entry?.net_rshares < 0;
+        const isMuted = entry?.stats?.gray && entry?.net_rshares >= 0;
 
         //  Meta config
         const url = entryCanonical(entry) || "";
@@ -545,8 +545,12 @@ class EntryPage extends BaseComponent<Props, State> {
                                         }
 
                                         const renderedBody = {__html: renderPostBody(entry.body, false, global.canUseWebp)};
+                                        const ctitle = entry.community ? entry.community_title : "";
                                         return <>
                                             <div className="entry-header">
+                                                {isMuted && (<div className="hidden-warning">
+                                                    <span><Tsx k="entry.muted-warning" args={{community: ctitle}}><span/></Tsx></span>
+                                                </div>)}
                                                 {isComment && (
                                                     <div className="comment-entry-header">
                                                         <div className="comment-entry-header-title">RE: {entry.title}</div>
