@@ -234,6 +234,7 @@
     "comment-entry-go-root": "Voir le contexte entier",
     "comment-entry-go-parent": "Voir le message parent",
     "hidden-warning": "Ce message a été masqué en raison de notes faibles.",
+    "muted-warning": "This post was muted for not following {{community}} community guidelines.",
     "address-copy": "Copy post address",
     "address-copied": "Post address copied to clipboard.",
     "browse-original": "Open original post",
