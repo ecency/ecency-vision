@@ -234,6 +234,7 @@
     "comment-entry-go-root": "Tingnan ang buong konteksto",
     "comment-entry-go-parent": "Tingnan ang direktang puno",
     "hidden-warning": "Ang post na ito na nakatago dahil sa mababang antas ng katayuan.",
+    "muted-warning": "This post was muted for not following {{community}} community guidelines.",
     "address-copy": "Kopyahin ang post address",
     "address-copied": "Ang post address ay nakopya na sa clipboard.",
     "browse-original": "Open original post",
