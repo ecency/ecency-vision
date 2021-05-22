@@ -234,6 +234,7 @@
     "comment-entry-go-root": "Полный контекст",
     "comment-entry-go-parent": "Просмотр прямого родителя",
     "hidden-warning": "Скрыто из-за низкого рейтинга.",
+    "muted-warning": "This post was muted for not following {{community}} community guidelines.",
     "address-copy": "Скопировать адрес поста",
     "address-copied": "Адрес поста скопирован в буфер обмена.",
     "browse-original": "Open original post",
