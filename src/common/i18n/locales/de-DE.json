@@ -234,6 +234,7 @@
     "comment-entry-go-root": "kompletten Inhalt anzeigen",
     "comment-entry-go-parent": "Übergeordneten Beitrag ansehen",
     "hidden-warning": "Dieser Beitrag wurde aufgrund niedriger Bewertungen ausgeblendet.",
+    "muted-warning": "This post was muted for not following {{community}} community guidelines.",
     "address-copy": "Adresse des Post kopieren",
     "address-copied": "Post Adresse in die Zwischenablage kopiert.",
     "browse-original": "Open original post",
