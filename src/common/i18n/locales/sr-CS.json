@@ -234,6 +234,7 @@
     "comment-entry-go-root": "Pogledaj ceo kontekst",
     "comment-entry-go-parent": "Pogledaj nadređeni komentar",
     "hidden-warning": "Ova objava je sakrivena zbog niske ocene.",
+    "muted-warning": "This post was muted for not following {{community}} community guidelines.",
     "address-copy": "Copy post address",
     "address-copied": "Post address copied to clipboard.",
     "browse-original": "Open original post",
