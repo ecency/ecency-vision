@@ -234,7 +234,7 @@
     "comment-entry-go-root": "Ver los demas comentarios",
     "comment-entry-go-parent": "Ver el comentario relacionado",
     "hidden-warning": "El post ha sido ocultado por bajas calificaciones.",
-    "muted-warning": "This post was muted for not following {{community}} community guidelines.",
+    "muted-warning": "Esta publicación fue silenciada por no seguir las pautas de la comunidad {{community}}.",
     "address-copy": "Copiar la dirección de la Publicación",
     "address-copied": "Dirección de publicación copiada al portapapeles.",
     "browse-original": "Abrir publicación original",
