@@ -234,6 +234,7 @@
     "comment-entry-go-root": "Δείτε το πλήρες κείμενο",
     "comment-entry-go-parent": "Δείτε το άμεσο σχόλιο",
     "hidden-warning": "Η δημοσίευση έχει αποκρυφτεί λόγω χαμηλής βαθμολογίας.",
+    "muted-warning": "This post was muted for not following {{community}} community guidelines.",
     "address-copy": "Copy post address",
     "address-copied": "Post address copied to clipboard.",
     "browse-original": "Open original post",
