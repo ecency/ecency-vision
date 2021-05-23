@@ -5,22 +5,126 @@
   margin-top: -200px;
   z-index: 0;
   .top-bg {
+    @include themify(day) {
+      background: rgb(255, 255, 255);
+      background: -moz-linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(124, 190, 241, 1) 100%
+      );
+      background: -webkit-linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(124, 190, 241, 1) 100%
+      );
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(124, 190, 241, 1) 100%
+      );
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#7cbef1",GradientType=1);
+    }
+    @include themify(night) {
+      background: rgb(166, 172, 175);
+      background: -moz-linear-gradient(
+        180deg,
+        rgba(166, 172, 175, 1) 0%,
+        rgba(23, 40, 61, 1) 100%
+      );
+      background: -webkit-linear-gradient(
+        180deg,
+        rgba(166, 172, 175, 1) 0%,
+        rgba(23, 40, 61, 1) 100%
+      );
+      background: linear-gradient(
+        180deg,
+        rgba(166, 172, 175, 1) 0%,
+        rgba(23, 40, 61, 1) 100%
+      );
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#a6acaf",endColorstr="#17283d",GradientType=1);
+    }
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    background-image: url("../../img/bg-top.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: top;
     pointer-events: none;
     width: 100%;
     height: 1100px;
     @media (max-width: $md-break) {
-      background-image: url("../../img/bg-mobile.svg");
       height: 1100px;
-      background-size: cover;
-      background-position: center;
+    }
+  }
+  .tob-bg-illustration {
+    @include themify(night) {
+      background-image: url("../../img/illustration-hero.png");
+    }
+    @include themify(day) {
+      background-image: url("../../img/illustration-hero-day.png");
+    }
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 1100px;
+    @media (max-width: $md-break) {
+      height: 1100px;
+    }
+  }
+  .tob-bg-algae {
+    display: none;
+    @include themify(night) {
+      background-image: url("../../img/hero-algae-dark.svg");
+    }
+    @include themify(day) {
+      background-image: url("../../img/hero-algae-light.svg");
+    }
+    background-position: 100% 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 29%;
+    @media (max-width: $md-break) {
+      display: block;
+    }
+  }
+  .tob-bg-fishes {
+    display: none;
+    background-image: url("../../img/hero-fishes.svg");
+    background-position: 100% 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 34%;
+    bottom: 10px;
+    width: 200px;
+    height: 280px;
+    @media (max-width: $md-break) {
+      display: block;
+    }
+  }
+  h1 {
+    font-weight: 800;
+    font-size: 76px;
+    line-height: 91px;
+    text-align: center;
+    @media (max-width: $md-break) {
+      font-size: 31px;
+      line-height: 37px;
+    }
+    @include themify(day) {
+      color: $dark-sky-blue;
+    }
+
+    @include themify(night) {
+      color: $white;
     }
   }
   h2 {
@@ -31,6 +135,12 @@
       font-weight: 800;
       font-size: 31px;
       line-height: 37px;
+    }
+    @include themify(day) {
+      color: $dark-sky-blue;
+    }
+    @include themify(night) {
+      color: $white;
     }
   }
   p {
@@ -62,20 +172,16 @@
     position: relative;
   }
   .first-section {
-    color: $blue;
+    @include themify(day) {
+      color: $dark-sky-blue;
+    }
+    @include themify(night) {
+      color: $white;
+    }
     @media (max-width: $md-break) {
       margin-top: -400px;
     }
-    h1 {
-      font-weight: 800;
-      font-size: 76px;
-      line-height: 91px;
-      text-align: center;
-      @media (max-width: $md-break) {
-        font-size: 31px;
-        line-height: 37px;
-      }
-    }
+    
     p {
       font-weight: 300;
       font-size: 24px;
@@ -667,7 +773,7 @@
       }
     }
     .part-bottom {
-      height: 750px!important;
+      height: 750px !important;
       max-height: unset;
       background: rgb(232, 239, 249);
       background: radial-gradient(
@@ -682,13 +788,13 @@
         position: absolute;
         top: 0;
         left: 0;
-        background-image: url("../../img/left-fishes.png") ;
+        background-image: url("../../img/left-fishes.png");
         background-repeat: no-repeat;
         background-position: center;
         background-size: contain;
         height: 350px;
         width: 350px;
-        @media (max-width:$xxxl-break) {
+        @media (max-width: $xxxl-break) {
           display: none;
         }
       }
@@ -696,7 +802,7 @@
         position: absolute;
         right: 50px;
         bottom: 0;
-        background-image: url("../../img/footer-main-fish.png") ;
+        background-image: url("../../img/footer-main-fish.png");
         background-repeat: no-repeat;
         background-position: center;
         background-size: contain;
@@ -711,7 +817,8 @@
         position: relative;
         margin: 0;
         height: 100%;
-        a, p {
+        a,
+        p {
           font-size: 18px;
           line-height: 27px;
           color: $white;
@@ -735,14 +842,14 @@
               flex-direction: column;
               width: 100%;
               justify-content: space-between;
-            } 
+            }
           }
           .subscribe-form {
             height: 226px;
             width: 60%;
             display: flex;
             flex-direction: column;
-            h2 {
+            h2  {
               font-weight: bold;
               font-size: 43px;
               line-height: 51px;
@@ -784,8 +891,7 @@
             .socials {
               margin: 1rem 0;
               p {
-
-              } 
+              }
               ul {
                 margin: 1rem 0;
                 padding: 0;
@@ -810,7 +916,7 @@
           flex-direction: column;
           align-items: center;
           justify-content: space-between;
-          img{
+          img {
             height: 48px;
             width: 48px;
           }
@@ -838,10 +944,10 @@
           1deg,
           rgba(89, 163, 254, 1) 0%,
           rgba(201, 234, 251, 1) 100%
-          );
-          filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#59a3fe",endColorstr="#c9eafb",GradientType=1);
-          
-          height: 1000px !important;
+        );
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#59a3fe",endColorstr="#c9eafb",GradientType=1);
+
+        height: 1000px !important;
         .main-fish {
           width: 600px;
           height: 950px;
@@ -864,10 +970,10 @@
                 li {
                   margin-bottom: 0.5rem;
                 }
-              } 
+              }
             }
             .subscribe-form {
-              h2 {
+              h2  {
                 font-size: 38px;
                 line-height: 45px;
               }
@@ -879,8 +985,7 @@
               }
               .socials {
                 p {
-  
-                } 
+                }
                 ul {
                   li {
                   }
@@ -889,7 +994,6 @@
             }
           }
         }
-       
       }
     }
     @media (max-width: $lg-break) {
@@ -986,7 +1090,7 @@
             .subscribe-form {
               width: 100%;
               height: auto;
-              h2 {
+              h2  {
               }
               form {
                 width: 97%;

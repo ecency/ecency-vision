@@ -33,6 +33,9 @@ const LandingPage = (props: any) => {
   return (
     <div className="landing-wrapper">
       <div className="top-bg" />
+      <div className="tob-bg-illustration" />
+      <div className="tob-bg-algae" />
+      <div className="tob-bg-fishes" />
       <div className="sections first-section">
         <h1>Welcome to Ecency!</h1>
         <div>
@@ -45,11 +48,11 @@ const LandingPage = (props: any) => {
         >
           Get started
         </button>
-        <button className="scroll-down">{scrollDown}</button>
+        <a className="scroll-down" href="#earn-money">{scrollDown}</a>
       </div>
-      <div className="sections second-section">
+      <div className="sections second-section" id="earn-money">
         <div className="part-top">
-          <div className="inner">
+          <div className="inner" >
             <img src={EarnMoney} alt="earn-money" />
             <div className="text-group visible">
               <h2>Earn money</h2>
