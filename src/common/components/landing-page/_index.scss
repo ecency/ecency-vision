@@ -4,6 +4,7 @@
   height: 1100px;
   margin-top: -200px;
   z-index: 0;
+  transition: all 0.3s ease-in-out;
   .top-bg {
     @include themify(day) {
       background: rgb(255, 255, 255);
@@ -314,11 +315,16 @@
   .part-bottom {
     height: 450px;
     width: 100%;
-    background-color: #e8f0fb;
     display: flex;
     position: relative;
     justify-content: center;
     align-items: center;
+    @include themify(night) {
+      background-color: $dark-six;
+    }
+    @include themify(day) {
+      background-color: $faded-blue;
+    }
     .inner {
       display: flex;
       flex-wrap: wrap;

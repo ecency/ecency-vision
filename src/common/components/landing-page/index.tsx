@@ -2,7 +2,7 @@ import React from "react";
 
 import { scrollDown } from "../../img/svg";
 
-const EarnMoney = require("../../img/illustration_earn_money.jpg");
+const EarnMoney = require("../../img/illustration_earn_money.png");
 const WhaleCatchsFish = require("../../img/illustration_true_ownership.png");
 const Decentralization = require("../../img/illustration_decentralization.png");
 const MechanicFish = require("../../img/illustration_open_source.png");
@@ -59,12 +59,12 @@ const LandingPage = (props: any) => {
               <p>
                 Blockchain-based social network,{" "}
                 <span>
-                  <a href="#">join us</a>
+                  <a href="/signup?referral=ecency">join us</a>
                 </span>{" "}
                 and earn various digital tokens, reward others and build a
                 rewarding community.
               </p>
-              <a className="link-read-more" href="#">
+              <a className="link-read-more" href="/faq">
                 Read more
               </a>
             </div>
@@ -90,6 +90,7 @@ const LandingPage = (props: any) => {
           </div>
         </div>
       </div>
+      
       <div className="sections third-section">
         <div className="part-top">
           <div className="inner">
@@ -102,7 +103,7 @@ const LandingPage = (props: any) => {
               <h2>Decentralization</h2>
               <p>
                 <span>
-                  <a href="#">Hive blockchain</a>
+                  <a href="https://hive.io" target="_blank">Hive blockchain</a>
                 </span>{" "}
                 has many social and gaming apps that you can access with a
                 single account you own. Access your social network account and
@@ -125,7 +126,7 @@ const LandingPage = (props: any) => {
                 that we build is blockchain-based and open source. We welcome
                 tech talents, developers, creators, entrepreneurs{" "}
                 <span>
-                  <a className="no-break" href="#">
+                  <a className="no-break" href="/signup?referral=ecency">
                     feel free to join us!
                   </a>
                 </span>
@@ -180,16 +181,16 @@ const LandingPage = (props: any) => {
                 free speech experience on your mobile phone or desktop.
                 Blockchain's powerful benefits now always under your fingertips.
               </p>
-              <a className="windows" href="#">
-                <img src={DownloadWindows} alt="" />
+              <a className="windows" href="https://desktop.ecency.com/" target="blank">
+                <img src={DownloadWindows} alt="Download for Windows" />
                 Download for Windows
               </a>
-              <a href="#">
-                <img src={DownloadIPhone} alt="" />
+              <a href="https://ios.ecency.com/" target="blank">
+                <img src={DownloadIPhone} alt="Download for IOS" />
                 Download for IPhone
               </a>
-              <a href="#">
-                <img src={DownloadAndroid} alt="" />
+              <a href="https://android.ecency.com/" target="blank">
+                <img src={DownloadAndroid} alt="Download for Android" />
                 Download for Android
               </a>
             </div>
@@ -206,7 +207,7 @@ const LandingPage = (props: any) => {
                 <b>Ecency</b> (previously Esteem) was rebranded in 2020,
                 initially starting out in 2016, founder{" "}
                 <span>
-                  <a href="#">@good-karma</a>
+                  <a href="/@good-karma">@good-karma</a>
                 </span>{" "}
                 started implementing a mobile application that would
                 revolutionize the way you interact and create, build, engage
@@ -257,27 +258,27 @@ const LandingPage = (props: any) => {
                 <li>
                   <img src={FounderImg} alt="Founder" />
                   <div className="text-wrapper">
-                    <a href="#">@good-karma</a>
+                    <a href="/@good-karma">@good-karma</a>
                     <p>Founder</p>
                   </div>
                 </li>
                 <li>
                   <img src={DevopsImg} alt="Devops" />
                   <div className="text-wrapper">
-                    <a href="#">@talhasch</a>
+                    <a href="/@talhasch">@talhasch</a>
                     <p>Devops guru</p>
                   </div>
                 </li>
                 <li>
                   <img src={DesignGuru} alt="Designer" />
                   <div className="text-wrapper">
-                    <a href="#">@dunsky</a>
+                    <a href="/@dunsky">@dunsky</a>
                     <p>Design guru</p>
                   </div>
                 </li>
                 <li className="last-element">
-                  <a href="#">Community Contributors</a>
-                  <a href="#">Blockchain Witnesses</a>
+                  <a href="/contributors">Community Contributors</a>
+                  <a href="/witnesses">Blockchain Witnesses</a>
                 </li>
               </ul>
             </div>
@@ -305,30 +306,30 @@ const LandingPage = (props: any) => {
               <div className="links">
                 <ul className="first-column">
                   <li>
-                    <a href="#">About Us</a>
+                    <a href="/about">About Us</a>
                   </li>
                   <li>
-                    <a href="#">FAQ</a>
+                    <a href="/faq">FAQ</a>
                   </li>
                   <li>
-                    <a href="#">Terms of Service</a>
+                    <a href="/terms-of-service">Terms of Service</a>
                   </li>
                   <li>
-                    <a href="#">Privacy Policy</a>
+                    <a href="/privacy-policy">Privacy Policy</a>
                   </li>
                 </ul>
                 <ul className="second-column">
                   <li>
-                    <a href="#">Discover</a>
+                    <a href="/discover">Discover</a>
                   </li>
                   <li>
-                    <a href="#">Sign in</a>
+                    <a href="/sign-in">Sign in</a>
                   </li>
                   <li>
-                    <a href="#">Communities</a>
+                    <a href="/communities">Communities</a>
                   </li>
                   <li>
-                    <a href="#">Help</a>
+                    <a href="/faq">Help</a>
                   </li>
                 </ul>
               </div>
