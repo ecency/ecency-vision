@@ -295,6 +295,8 @@ const LandingPage = (props: any) => {
           </div>
         </div>
         <div className="part-bottom">
+          <span className="left-fishes" />
+          <span className="main-fish" />
           <div className="inner">
             <div className="links-and-form">
               <div className="links">
@@ -326,43 +328,41 @@ const LandingPage = (props: any) => {
                     <a href="#">Help</a>
                   </li>
                 </ul>
-                <div className="subscribe-form">
-                  <h2>Subscribe Us</h2>
-                  <form>
-                    <input
-                      type="email"
-                      placeholder="Enter your email adress"
-                      required
-                    />
-                    <button>Send</button>
-                  </form>
-                  <div className="socials">
-                    <p>
-                      Be first to know what's happening in decentralized web.
-                    </p>
-                    <ul>
-                      <li>
-                        <a href="#">
-                          <img src={FooterYoutube} alt="youtube" />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img src={FooterTwitter} alt="twitter" />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img src={FooterTelegram} alt="telegram" />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img src={FooterDiscord} alt="discord" />
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
+              </div>
+              <div className="subscribe-form">
+                <h2>Subscribe Us</h2>
+                <form>
+                  <input
+                    type="email"
+                    placeholder="Enter your email adress"
+                    required={true}
+                  />
+                  <button>Send</button>
+                </form>
+                <div className="socials">
+                  <p>Be first to know what's happening in decentralized web.</p>
+                  <ul>
+                    <li>
+                      <a href="#">
+                        <img src={FooterYoutube} alt="youtube" />
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <img src={FooterTwitter} alt="twitter" />
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <img src={FooterTelegram} alt="telegram" />
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <img src={FooterDiscord} alt="discord" />
+                      </a>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -370,11 +370,11 @@ const LandingPage = (props: any) => {
               <a href="#">
                 <img src={LogoCircle} alt="ecency logo" />
               </a>
-              <div className="copy-right">©2021 Ecency. All right reserved.</div>
+              <p className="copy-right">
+                ©2021 Ecency. All right reserved.
+              </p>
             </div>
           </div>
-          <span className="left-fishes" />
-          <span className="main-fish" />
         </div>
       </div>
     </div>

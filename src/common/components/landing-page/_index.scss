@@ -688,6 +688,9 @@
         background-size: contain;
         height: 350px;
         width: 350px;
+        @media (max-width:$xxxl-break) {
+          display: none;
+        }
       }
       .main-fish {
         position: absolute;
@@ -701,6 +704,192 @@
         height: 700px;
       }
       .inner {
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        margin: 0;
+        height: 100%;
+        a, p {
+          font-size: 18px;
+          line-height: 27px;
+          color: $white;
+        }
+        .links-and-form {
+          display: flex;
+          flex-direction: row;
+          width: 100%;
+          height: auto;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0 0 4rem 0;
+          .links {
+            display: flex;
+            flex-direction: row;
+            width: 40%;
+            height: 162px;
+            ul {
+              padding: 0;
+              display: flex;
+              flex-direction: column;
+              width: 100%;
+              justify-content: space-between;
+            } 
+          }
+          .subscribe-form {
+            height: 226px;
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            h2 {
+              font-weight: bold;
+              font-size: 43px;
+              line-height: 51px;
+              color: $blue;
+            }
+            form {
+              margin: 1rem 0;
+              width: 100%;
+              display: flex;
+              align-items: center;
+              input {
+                background: $dark-sky-blue;
+                backdrop-filter: blur(500px);
+                border-radius: 50px 0 0 50px;
+                height: 50px;
+                box-sizing: border-box;
+                outline: none;
+                border: none;
+                width: 70%;
+                max-width: 295px;
+                padding-left: 2rem;
+                color: $white;
+                &::placeholder {
+                  color: $white;
+                }
+              }
+              button {
+                background: $dusk-blue;
+                border-radius: 0 50px 50px 0;
+                height: 50px;
+                box-sizing: border-box;
+                outline: none;
+                border: none;
+                width: 30%;
+                max-width: 113px;
+                color: $white;
+              }
+            }
+            .socials {
+              margin: 1rem 0;
+              p {
+
+              } 
+              ul {
+                margin: 1rem 0;
+                padding: 0;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                li {
+                  margin-right: 1.5rem;
+                }
+              }
+            }
+          }
+        }
+        .site-icon {
+          position: absolute;
+          bottom: 70px;
+          right: 0;
+          left: 0;
+          height: 95px;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-between;
+          img{
+            height: 48px;
+            width: 48px;
+          }
+          .copy-right {
+            margin-top: 1rem;
+          }
+        }
+      }
+    }
+
+    @media (max-width: $xxl-break) {
+      .part-bottom {
+        background: rgb(89, 163, 254);
+        background: -moz-linear-gradient(
+          1deg,
+          rgba(89, 163, 254, 1) 0%,
+          rgba(201, 234, 251, 1) 100%
+        );
+        background: -webkit-linear-gradient(
+          1deg,
+          rgba(89, 163, 254, 1) 0%,
+          rgba(201, 234, 251, 1) 100%
+        );
+        background: linear-gradient(
+          1deg,
+          rgba(89, 163, 254, 1) 0%,
+          rgba(201, 234, 251, 1) 100%
+          );
+          filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#59a3fe",endColorstr="#c9eafb",GradientType=1);
+          
+          height: 1000px !important;
+        .main-fish {
+          width: 600px;
+          height: 950px;
+        }
+        .inner {
+          align-items: flex-start;
+          .links-and-form {
+            flex-direction: column-reverse;
+            width: 70%;
+            height: 800px;
+            justify-content: center;
+            align-items: flex-start;
+            padding-left: 1rem;
+            margin-top: -200px;
+            .links {
+              flex-direction: column;
+              margin-top: 3rem;
+              ul {
+                margin-bottom: 0;
+                li {
+                  margin-bottom: 0.5rem;
+                }
+              } 
+            }
+            .subscribe-form {
+              h2 {
+                font-size: 38px;
+                line-height: 45px;
+              }
+              form {
+                input {
+                }
+                button {
+                }
+              }
+              .socials {
+                p {
+  
+                } 
+                ul {
+                  li {
+                  }
+                }
+              }
+            }
+          }
+        }
+       
       }
     }
     @media (max-width: $lg-break) {
@@ -780,23 +969,50 @@
         }
       }
       .part-bottom {
-        background: rgb(89, 163, 254);
-        background: -moz-linear-gradient(
-          1deg,
-          rgba(89, 163, 254, 1) 0%,
-          rgba(201, 234, 251, 1) 100%
-        );
-        background: -webkit-linear-gradient(
-          1deg,
-          rgba(89, 163, 254, 1) 0%,
-          rgba(201, 234, 251, 1) 100%
-        );
-        background: linear-gradient(
-          1deg,
-          rgba(89, 163, 254, 1) 0%,
-          rgba(201, 234, 251, 1) 100%
-        );
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#59a3fe",endColorstr="#c9eafb",GradientType=1);
+        overflow-x: hidden;
+        .main-fish {
+          width: 400px;
+          overflow-x: hidden;
+          right: -78px;
+        }
+        .inner {
+          align-items: center;
+          .links-and-form {
+            width: 90%;
+            padding: 0;
+            .links {
+              height: auto;
+            }
+            .subscribe-form {
+              width: 100%;
+              height: auto;
+              h2 {
+              }
+              form {
+                width: 97%;
+                input {
+                  font-weight: 300;
+                  font-size: 14px;
+                  line-height: 23px;
+                  padding-left: 1rem;
+                }
+                button {
+                  font-weight: 300;
+                  font-size: 14px;
+                  line-height: 23px;
+                }
+              }
+            }
+          }
+          .site-icon {
+            width: 100%;
+            height: 120px;
+            text-align: center;
+            p {
+              max-width: 90%;
+            }
+          }
+        }
       }
     }
     @media (max-width: $sm-break) {
@@ -806,6 +1022,12 @@
         }
         .senior {
           height: 145px !important;
+        }
+      }
+      .part-bottom {
+        .main-fish {
+          right: -84px;
+          width: 285px;
         }
       }
     }
