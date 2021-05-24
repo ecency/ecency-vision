@@ -1007,5 +1007,13 @@
     "delete-comment-with-vote": "Can't delete a content with votes.",
     "comment-cashout": "Content cashout.",
     "paid-out-post-forbidden": "Voting for paid out content is not available."
+  },
+  "landing-page": {
+    "welcome-text": "Welcome to Ecency!",
+    "what-is-ecency": "Blockchain-based social network",
+    "powered-by-hive": "powered by Hive",
+    "get-started": "Get started",
+    "earn-money": "Earn money",
+    "earn-money-description": "<p class=\"earn-money-description\">Blockchain-based social network, <span> <a href=\"/signup?referral=ecency\">join us</a> </span> and earn various digital tokens, reward others and build a rewarding community.</p>"
   }
 }

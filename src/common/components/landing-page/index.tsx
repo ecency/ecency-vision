@@ -2,6 +2,9 @@ import React, { FormEvent, useState, useEffect } from "react";
 
 import { scrollDown } from "../../img/svg";
 
+import {_t} from "../../i18n";
+
+
 const EarnMoney = require("../../img/illustration_earn_money.png");
 const WhaleCatchsFish = require("../../img/illustration_true_ownership.png");
 const Decentralization = require("../../img/illustration_decentralization.png");
@@ -57,16 +60,16 @@ const LandingPage = (props: any) => {
       <div className="tob-bg-algae" />
       <div className="tob-bg-fishes" />
       <div className="sections first-section">
-        <h1>Welcome to Ecency!</h1>
+        <h1>{_t("landing-page.welcome-text")}</h1>
         <div>
-          <p>Blockchain-based social network</p>
-          <p>powered by Hive</p>
+          <p>{_t("landing-page.what-is-ecency")}</p>
+          <p>{_t("landing-page.powered-by-hive")}</p>
         </div>
         <button
           className="get-started"
           onClick={() => props.changeState({ step: 2 })}
         >
-          Get started
+          {_t("landing-page.get-started")}
         </button>
         <a className="scroll-down" href="#earn-money">
           {scrollDown}
@@ -77,7 +80,7 @@ const LandingPage = (props: any) => {
           <div className="inner">
             <img src={EarnMoney} alt="earn-money" />
             <div className="text-group visible">
-              <h2>Earn money</h2>
+              <h2>{_t("landing-page.earn-money")}</h2>
               <p>
                 Blockchain-based social network,{" "}
                 <span>
