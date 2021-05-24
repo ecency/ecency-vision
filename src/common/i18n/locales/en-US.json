@@ -128,8 +128,8 @@
   "entry-list-item": {
     "cross-posted": "cross-posted",
     "cross-posted-to": "to",
-    "reblogged": "{{n}} reblogged",
-    "promoted": "promoted",
+    "reblogged": "{{n}} Reblogged",
+    "promoted": "Promoted",
     "pinned": "Pinned Post",
     "replies": "1 response. Click to respond.",
     "replies-n": "{{n}} responses. Click to respond.",
@@ -196,7 +196,8 @@
     "curators-payout": "Curators Payout",
     "payout-date": "Payout",
     "beneficiary": "Beneficiary",
-    "breakdown": "Breakdown"
+    "breakdown": "Breakdown",
+    "max-accepted": "Max accepted"
   },
   "entry-index": {
     "feed": "Feed",
@@ -228,10 +229,12 @@
   },
   "entry": {
     "via-app": "via <span class=\"app-name\">{{app}}</span>",
+    "author-reputation": "Author's reputation",
     "comment-entry-title": "You are viewing a single comment's thread from: ",
     "comment-entry-go-root": "View the full context",
     "comment-entry-go-parent": "View the direct parent",
     "hidden-warning": "This post was hidden due to low ratings.",
+    "muted-warning": "This post was muted for not following {{community}} community guidelines.",
     "address-copy": "Copy post address",
     "address-copied": "Post address copied to clipboard.",
     "browse-original": "Open original post",
@@ -245,7 +248,7 @@
     "version": "Version {{n}}"
   },
   "similar-entries": {
-    "title": "More from @{{n}}"
+    "title": "Read next"
   },
   "comment": {
     "body-placeholder": "Write your reply here",
@@ -755,16 +758,19 @@
     "unmute": "Turn on notification alerts"
   },
   "leaderboard": {
-    "title": "Leaderboard",
-    "title-day": "Daily top users",
-    "title-week": "Weekly top users",
-    "title-month": "Monthly top users",
+    "title-stars": "Most active",
+    "title-curators": "Curators",
+    "title-day": "Daily leaders",
+    "title-week": "Weekly leaders",
+    "title-month": "Monthly leaders",
     "period-day": "Daily",
     "period-week": "Weekly",
     "period-month": "Monthly",
     "header-score": "Activities",
     "header-score-tip": "Post + comments made by a user for selected period",
-    "header-reward": "Reward"
+    "header-reward": "Reward",
+    "header-votes": "Votes",
+    "header-votes-tip": "Number of votes in this period"
   },
   "popular-users": {
     "title": "Popular Users"
@@ -795,9 +801,9 @@
     "tags": "Tags",
     "tags-placeholder": "comma separated tags",
     "date": "Date",
-    "date-week": "Week",
-    "date-month": "Month",
-    "date-year": "Year",
+    "date-week": "Last Week",
+    "date-month": "Last Month",
+    "date-year": "Last Year",
     "date-all": "All",
     "sort": "Sort",
     "sort-popularity": "Popularity",
