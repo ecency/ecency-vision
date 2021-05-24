@@ -182,7 +182,7 @@
     @media (max-width: $md-break) {
       margin-top: -400px;
     }
-    
+
     p {
       font-weight: 300;
       font-size: 24px;
@@ -380,7 +380,9 @@
   .fourth-section {
     height: 2080px;
     .part-top {
+      
       height: 940px;
+      
       .inner {
         display: flex;
         flex-direction: row;
@@ -463,6 +465,7 @@
         justify-content: space-between;
         margin: 0;
         padding: 0;
+
         li {
           display: flex;
           flex-direction: column;
@@ -474,7 +477,12 @@
           font-weight: bold;
           font-size: 59px;
           line-height: 78px;
-          color: $blue;
+          @include themify(night) {
+            color: $white;
+          }
+          @include themify(day) {
+            color: $blue;
+          }
           @media (max-width: $lg-break) {
             font-weight: 800;
             font-size: 31px;
@@ -485,7 +493,7 @@
           font-weight: 300;
           font-size: 24px;
           line-height: 135%;
-          color: $dusk-blue;
+          color: inherit;
           @media (max-width: $lg-break) {
             font-weight: 300;
             font-size: 15px;
@@ -499,14 +507,24 @@
     }
     .part-bottom {
       height: 1140px;
-      background-image: url("../../img/bg-download-tiny.jpg");
+      @include themify(night) {
+        background-image: url("../../img/bg-download-tiny-dark.svg");
+      }
+      @include themify(day) {
+        background-image: url("../../img/bg-download-tiny.jpg");
+      }
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       position: relative;
       @media (max-width: $lg-break) {
         height: 500px;
-        background-image: url("../../img/bg-download-mob-light.jpg");
+        @include themify(night) {
+          background-image: url("../../img/bg-download-mob-dark.jpg");
+        }
+        @include themify(day) {
+          background-image: url("../../img/bg-download-mob-light.jpg");
+        }
         .inner > span {
           display: flex;
           position: absolute;
@@ -515,10 +533,15 @@
           left: 0;
           right: 0;
           height: 154px;
-          background-image: url("../../img/download-algae.png");
           background-size: 100% 100%;
           background-position: bottom;
           background-repeat: no-repeat;
+          @include themify(night) {
+            background-image: url("../../img/download-algae-dark.png");
+          }
+          @include themify(day) {
+            background-image: url("../../img/download-algae.png");
+          }
         }
       }
       .inner {
@@ -536,17 +559,27 @@
             font-weight: bold;
             font-size: 59px;
             line-height: 78px;
-            color: $blue;
+            @include themify(night) {
+              color: $white;
+            }
+            @include themify(day) {
+              color: $blue;
+            }
           }
           p,
           a {
             font-weight: 300;
             font-size: 24px;
             line-height: 140%;
-            color: $blue;
-            display: flex;
             align-items: center;
             line-height: 2;
+            @include themify(night) {
+              color: $white;
+            }
+            @include themify(day) {
+              color: $blue;
+            }
+            display: flex;
             img {
               margin-right: 0.5rem;
               width: 25px;
@@ -781,12 +814,17 @@
     .part-bottom {
       height: 750px !important;
       max-height: unset;
-      background: rgb(232, 239, 249);
-      background: radial-gradient(
-        circle,
-        rgba(232, 239, 249, 1) 0%,
-        rgba(121, 166, 223, 1) 100%
-      );
+      @include themify(night) {
+        background: #161d26;
+      }
+      @include themify(day) {
+        background: rgb(232, 239, 249);
+        background: radial-gradient(
+          circle,
+          rgba(232, 239, 249, 1) 0%,
+          rgba(121, 166, 223, 1) 100%
+        );
+      }
       background-size: 100% 100%;
       background-position: center;
       position: relative;
@@ -828,6 +866,8 @@
           font-size: 18px;
           line-height: 27px;
           color: $white;
+          margin: 0;
+          cursor: pointer;
         }
         .links-and-form {
           display: flex;
@@ -859,7 +899,12 @@
               font-weight: bold;
               font-size: 43px;
               line-height: 51px;
-              color: $blue;
+              @include themify(night) {
+                color: $white;
+              }
+              @include themify(day) {
+                color: $blue;
+              }
             }
             form {
               margin: 1rem 0;

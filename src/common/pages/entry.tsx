@@ -135,9 +135,14 @@ class EntryPage extends BaseComponent<Props, State> {
         }
     }
 
-    componentWillUnmount():void {
-        window.removeEventListener("scroll", this.detect);
-        window.removeEventListener("resize", this.detect);
+    componentWillUnmount() {
+        const p1 = new Promise((resolve, reject) => {    
+            resolve(window.removeEventListener("scroll", this.detect))
+        });
+        const p2 = new Promise((resolve, reject) => {    
+            resolve(window.removeEventListener("resize", this.detect))
+        });
+        Promise.all([p1, p2])
     }
 
     // detects distance between title and comments section sets visibility of profile card

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FormEvent, useState, useEffect } from "react";
 
 import { scrollDown } from "../../img/svg";
 
@@ -12,8 +12,11 @@ const FishThree = require("../../img/fish-3.png");
 const FishFour = require("../../img/fish-4.png");
 const FishFive = require("../../img/fish-5.png");
 const DownloadAndroid = require("../../img/icon_android.png");
+const DownloadAndroidWhite = require("../../img/icon_android-white.svg");
 const DownloadIPhone = require("../../img/icon_apple.svg");
+const DownloadIPhoneWhite = require("../../img/icon_apple-white.svg");
 const DownloadWindows = require("../../img/icon_windows.svg");
+const DownloadWindowsWhite = require("../../img/icon_windows-white.svg");
 const OurHistory = require("../../img/our-history.png");
 const OurVision = require("../../img/our-vision.png");
 const OurTeam = require("../../img/our-team.png");
@@ -29,7 +32,24 @@ const FooterDiscord = require("../../img/footer-discord.svg");
 const LogoCircle = require("../../img/logo-circle.svg");
 
 const LandingPage = (props: any) => {
-  //   console.log("props", props);
+
+  const [email, setEmail] = useState("");
+  const [isSent, setIsSent] = useState(false);
+
+  const handleSubsccribe = (e: FormEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    console.log("Form Submitted", email);
+    setIsSent(true);
+    setEmail("");
+  };
+
+  useEffect(() => {
+    isSent &&
+      setTimeout(() => {
+        setIsSent(false);
+      }, 2000);
+  }, [isSent]);
+
   return (
     <div className="landing-wrapper">
       <div className="top-bg" />
@@ -48,11 +68,13 @@ const LandingPage = (props: any) => {
         >
           Get started
         </button>
-        <a className="scroll-down" href="#earn-money">{scrollDown}</a>
+        <a className="scroll-down" href="#earn-money">
+          {scrollDown}
+        </a>
       </div>
       <div className="sections second-section" id="earn-money">
         <div className="part-top">
-          <div className="inner" >
+          <div className="inner">
             <img src={EarnMoney} alt="earn-money" />
             <div className="text-group visible">
               <h2>Earn money</h2>
@@ -90,7 +112,7 @@ const LandingPage = (props: any) => {
           </div>
         </div>
       </div>
-      
+
       <div className="sections third-section">
         <div className="part-top">
           <div className="inner">
@@ -103,7 +125,9 @@ const LandingPage = (props: any) => {
               <h2>Decentralization</h2>
               <p>
                 <span>
-                  <a href="https://hive.io" target="_blank">Hive blockchain</a>
+                  <a href="https://hive.io" target="_blank">
+                    Hive blockchain
+                  </a>
                 </span>{" "}
                 has many social and gaming apps that you can access with a
                 single account you own. Access your social network account and
@@ -181,16 +205,41 @@ const LandingPage = (props: any) => {
                 free speech experience on your mobile phone or desktop.
                 Blockchain's powerful benefits now always under your fingertips.
               </p>
-              <a className="windows" href="https://desktop.ecency.com/" target="blank">
-                <img src={DownloadWindows} alt="Download for Windows" />
+              <a
+                className="windows"
+                href="https://desktop.ecency.com/"
+                target="blank"
+              >
+                <img
+                  src={
+                    props?.global?.theme === "day"
+                      ? DownloadWindows
+                      : DownloadWindowsWhite
+                  }
+                  alt="Download for Windows"
+                />
                 Download for Windows
               </a>
               <a href="https://ios.ecency.com/" target="blank">
-                <img src={DownloadIPhone} alt="Download for IOS" />
+                <img
+                  src={
+                    props?.global?.theme === "day"
+                      ? DownloadIPhone
+                      : DownloadIPhoneWhite
+                  }
+                  alt="Download for IOS"
+                />
                 Download for IPhone
               </a>
               <a href="https://android.ecency.com/" target="blank">
-                <img src={DownloadAndroid} alt="Download for Android" />
+                <img
+                  src={
+                    props?.global?.theme === "day"
+                      ? DownloadAndroid
+                      : DownloadAndroidWhite
+                  }
+                  alt="Download for Android"
+                />
                 Download for Android
               </a>
             </div>
@@ -323,7 +372,7 @@ const LandingPage = (props: any) => {
                     <a href="/discover">Discover</a>
                   </li>
                   <li>
-                    <a href="/sign-in">Sign in</a>
+                    <p onClick={() => props.toggleUIProp("login")}>Sign in</p>
                   </li>
                   <li>
                     <a href="/communities">Communities</a>
@@ -333,12 +382,14 @@ const LandingPage = (props: any) => {
                   </li>
                 </ul>
               </div>
-              <div className="subscribe-form">
+              <div className="subscribe-form" onSubmit={handleSubsccribe}>
                 <h2>Subscribe Us</h2>
                 <form>
                   <input
                     type="email"
                     placeholder="Enter your email adress"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     required={true}
                   />
                   <button>Send</button>
@@ -347,22 +398,22 @@ const LandingPage = (props: any) => {
                   <p>Be first to know what's happening in decentralized web.</p>
                   <ul>
                     <li>
-                      <a href="#">
+                      <a href="https://youtube.com/ecency" >
                         <img src={FooterYoutube} alt="youtube" />
                       </a>
                     </li>
                     <li>
-                      <a href="#">
+                      <a href="https://twitter.com/ecency_official" >
                         <img src={FooterTwitter} alt="twitter" />
                       </a>
                     </li>
                     <li>
-                      <a href="#">
+                      <a href="https://t.me/ecency" >
                         <img src={FooterTelegram} alt="telegram" />
                       </a>
                     </li>
                     <li>
-                      <a href="#">
+                      <a href="https://discord.me/ecency" >
                         <img src={FooterDiscord} alt="discord" />
                       </a>
                     </li>
@@ -374,9 +425,7 @@ const LandingPage = (props: any) => {
               <a href="#">
                 <img src={LogoCircle} alt="ecency logo" />
               </a>
-              <p className="copy-right">
-                ©2021 Ecency. All right reserved.
-              </p>
+              <p className="copy-right">©2021 Ecency. All right reserved.</p>
             </div>
           </div>
         </div>
