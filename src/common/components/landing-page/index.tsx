@@ -1,9 +1,9 @@
 import React, { FormEvent, useState, useEffect } from "react";
+import htmlParse from 'html-react-parser';
 
 import { scrollDown } from "../../img/svg";
 
-import {_t} from "../../i18n";
-
+import { _t } from "../../i18n";
 
 const EarnMoney = require("../../img/illustration_earn_money.png");
 const WhaleCatchsFish = require("../../img/illustration_true_ownership.png");
@@ -35,7 +35,6 @@ const FooterDiscord = require("../../img/footer-discord.svg");
 const LogoCircle = require("../../img/logo-circle.svg");
 
 const LandingPage = (props: any) => {
-
   const [email, setEmail] = useState("");
   const [isSent, setIsSent] = useState(false);
 
@@ -82,15 +81,16 @@ const LandingPage = (props: any) => {
             <div className="text-group visible">
               <h2>{_t("landing-page.earn-money")}</h2>
               <p>
-                Blockchain-based social network,{" "}
+                {_t("landing-page.earn-money-block-chain-based")}
                 <span>
-                  <a href="/signup?referral=ecency">join us</a>
-                </span>{" "}
-                and earn various digital tokens, reward others and build a
-                rewarding community.
+                  <a href="/signup?referral=ecency">
+                    {_t("landing-page.join-us")}
+                  </a>
+                </span>
+                {_t("landing-page.various-digital-tokens")}
               </p>
               <a className="link-read-more" href="/faq">
-                Read more
+                {_t("landing-page.read-more")}
               </a>
             </div>
           </div>
@@ -104,13 +104,8 @@ const LandingPage = (props: any) => {
         <div className="part-bottom">
           <div className="inner">
             <div className="text-group">
-              <h2>True ownership</h2>
-              <p>
-                Ecency is the next generation social network for Web 3.0.
-                Blockchain technology gives you a real free speech experience,
-                without any censorship or banning. Only you control your own
-                account, content, communities.
-              </p>
+              <h2>{_t("landing-page.true-ownership")}</h2>
+              <p>{_t("landing-page.true-ownership-desc")}</p>
             </div>
           </div>
         </div>
@@ -125,16 +120,14 @@ const LandingPage = (props: any) => {
               alt="decentralization"
             />
             <div className="text-group visible">
-              <h2>Decentralization</h2>
+              <h2>{_t("landing-page.decentralization")}</h2>
               <p>
                 <span>
                   <a href="https://hive.io" target="_blank">
-                    Hive blockchain
+                    {_t("landing-page.hive-blockchain")}
                   </a>
                 </span>{" "}
-                has many social and gaming apps that you can access with a
-                single account you own. Access your social network account and
-                content from any other 3rd party apps.
+                {_t("landing-page.decentralization-desc")}
               </p>
             </div>
           </div>
@@ -147,14 +140,12 @@ const LandingPage = (props: any) => {
         <div className="part-bottom">
           <div className="inner">
             <div className="text-group">
-              <h2>Open source</h2>
+              <h2>{_t("landing-page.open-source")}</h2>
               <p>
-                Join and be part of the building team on Web 3.0. Everything
-                that we build is blockchain-based and open source. We welcome
-                tech talents, developers, creators, entrepreneurs{" "}
+                {_t("landing-page.open-source-desc")}
                 <span>
                   <a className="no-break" href="/signup?referral=ecency">
-                    feel free to join us!
+                    {_t("landing-page.feel-free-join")}
                   </a>
                 </span>
               </p>
@@ -178,21 +169,21 @@ const LandingPage = (props: any) => {
             <ul>
               <li>
                 <h3>92M</h3>
-                <p>Posts</p>
+                <p>{_t("landing-page.posts")}</p>
               </li>
               <li>
                 <h3>300K</h3>
-                <p>Unique visitors</p>
+                <p>{_t("landing-page.unique-visitors")}</p>
               </li>
             </ul>
             <ul>
               <li>
                 <h3>15M</h3>
-                <p>Points distributed</p>
+                <p>{_t("landing-page.points-distrubuted")}</p>
               </li>
               <li>
                 <h3>25K</h3>
-                <p>New users</p>
+                <p>{_t("landing-page.new-users")}</p>
               </li>
             </ul>
           </div>
@@ -202,12 +193,8 @@ const LandingPage = (props: any) => {
             <span />
             <span />
             <div className="text-group">
-              <h2>Download our application</h2>
-              <p>
-                Looking for a unique experience? The social network with real
-                free speech experience on your mobile phone or desktop.
-                Blockchain's powerful benefits now always under your fingertips.
-              </p>
+              <h2>{_t("landing-page.download-our-application")}</h2>
+              <p>{_t("landing-page.download-our-application-desc")}</p>
               <a
                 className="windows"
                 href="https://desktop.ecency.com/"
@@ -221,7 +208,7 @@ const LandingPage = (props: any) => {
                   }
                   alt="Download for Windows"
                 />
-                Download for Windows
+                {_t("landing-page.download-for-windows")}
               </a>
               <a href="https://ios.ecency.com/" target="blank">
                 <img
@@ -232,7 +219,7 @@ const LandingPage = (props: any) => {
                   }
                   alt="Download for IOS"
                 />
-                Download for IPhone
+                {_t("landing-page.download-for-ios")}
               </a>
               <a href="https://android.ecency.com/" target="blank">
                 <img
@@ -243,7 +230,7 @@ const LandingPage = (props: any) => {
                   }
                   alt="Download for Android"
                 />
-                Download for Android
+                {_t("landing-page.download-for-android")}
               </a>
             </div>
           </div>
@@ -254,23 +241,9 @@ const LandingPage = (props: any) => {
         <div className="part-top">
           <div className="inner">
             <div className="text-group">
-              <h2>Our History</h2>
-              <p>
-                <b>Ecency</b> (previously Esteem) was rebranded in 2020,
-                initially starting out in 2016, founder{" "}
-                <span>
-                  <a href="/@good-karma">@good-karma</a>
-                </span>{" "}
-                started implementing a mobile application that would
-                revolutionize the way you interact and create, build, engage
-                online.
-              </p>
-              <p>
-                Since then we have been continuing to build for Web 3.0 and
-                improve our blockchain-based social network, making sure apps
-                are as accessible as possible, secure in many languages the
-                world speaks.
-              </p>
+              <h2>{_t("landing-page.our-history")}</h2>
+              <p>{htmlParse(_t('landing-page.our-history-p-one'))}</p>
+              <p>{_t("landing-page.our-history-p-two")}</p>
             </div>
             <img className="our-history" src={OurHistory} alt="Our History" />
           </div>
@@ -280,22 +253,9 @@ const LandingPage = (props: any) => {
             <img className="our-vision" src={OurVision} alt="Our Vision" />
 
             <div className="text-group">
-              <h2>Our Vision</h2>
-              <p>
-                We want to bring a secure and rewarding blockchain experience to
-                all people. Social media without any limits and censorship,
-                where only you control your own account and communities. Top
-                security of your account with{" "}
-                <span>
-                  <a href="#">Hivesigner</a>
-                </span>
-                .
-              </p>
-              <p>
-                <b>Our main principles:</b> Bring rewarding communities, true
-                ownership, empowered creators, free speech into the hands of
-                millions.
-              </p>
+              <h2>{_t("landing-page.our-vision")}</h2>
+              <p>{htmlParse(_t('landing-page.our-vision-p-one'))}</p>
+              <p>{htmlParse(_t('landing-page.our-vision-p-two'))}</p>
             </div>
           </div>
         </div>
@@ -305,32 +265,32 @@ const LandingPage = (props: any) => {
         <div className="part-top">
           <div className="inner">
             <div className="text-group">
-              <h2>Our Team</h2>
+              <h2>{_t("landing-page.our-team")}</h2>
               <ul>
                 <li>
                   <img src={FounderImg} alt="Founder" />
                   <div className="text-wrapper">
                     <a href="/@good-karma">@good-karma</a>
-                    <p>Founder</p>
+                    <p>{_t("landing-page.founder")}</p>
                   </div>
                 </li>
                 <li>
                   <img src={DevopsImg} alt="Devops" />
                   <div className="text-wrapper">
                     <a href="/@talhasch">@talhasch</a>
-                    <p>Devops guru</p>
+                    <p>{_t("landing-page.devops-guru")}</p>
                   </div>
                 </li>
                 <li>
                   <img src={DesignGuru} alt="Designer" />
                   <div className="text-wrapper">
                     <a href="/@dunsky">@dunsky</a>
-                    <p>Design guru</p>
+                    <p>{_t("landing-page.design-guru")}</p>
                   </div>
                 </li>
                 <li className="last-element">
-                  <a href="/contributors">Community Contributors</a>
-                  <a href="/witnesses">Blockchain Witnesses</a>
+                  <a href="/contributors">{_t("landing-page.community-contributors")}</a>
+                  <a href="/witnesses">{_t("landing-page.blockchain-witnesses")}</a>
                 </li>
               </ul>
             </div>
@@ -358,65 +318,65 @@ const LandingPage = (props: any) => {
               <div className="links">
                 <ul className="first-column">
                   <li>
-                    <a href="/about">About Us</a>
+                    <a href="/about">{_t("landing-page.about")}</a>
                   </li>
                   <li>
-                    <a href="/faq">FAQ</a>
+                    <a href="/faq">{_t("landing-page.faq")}</a>
                   </li>
                   <li>
-                    <a href="/terms-of-service">Terms of Service</a>
+                    <a href="/terms-of-service">{_t("landing-page.terms-of-service")}</a>
                   </li>
                   <li>
-                    <a href="/privacy-policy">Privacy Policy</a>
+                    <a href="/privacy-policy">{_t("landing-page.privacy-policy")}</a>
                   </li>
                 </ul>
                 <ul className="second-column">
                   <li>
-                    <a href="/discover">Discover</a>
+                    <a href="/discover">{_t("landing-page.discover")}</a>
                   </li>
                   <li>
-                    <p onClick={() => props.toggleUIProp("login")}>Sign in</p>
+                    <p onClick={() => props.toggleUIProp("login")}>{_t("landing-page.sign-in")}</p>
                   </li>
                   <li>
-                    <a href="/communities">Communities</a>
+                    <a href="/communities">{_t("landing-page.communities")}</a>
                   </li>
                   <li>
-                    <a href="/faq">Help</a>
+                    <a href="/faq">{_t("landing-page.help")}</a>
                   </li>
                 </ul>
               </div>
               <div className="subscribe-form" onSubmit={handleSubsccribe}>
-                <h2>Subscribe Us</h2>
+                <h2>{_t("landing-page.subscribe-us")}</h2>
                 <form>
                   <input
                     type="email"
-                    placeholder="Enter your email adress"
+                    placeholder={_t("landing-page.enter-your-email-adress")}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required={true}
                   />
-                  <button>Send</button>
+                  <button>{_t("landing-page.send")}</button>
                 </form>
                 <div className="socials">
-                  <p>Be first to know what's happening in decentralized web.</p>
+                  <p>{_t("landing-page.subscribe-paragraph")}</p>
                   <ul>
                     <li>
-                      <a href="https://youtube.com/ecency" >
+                      <a href="https://youtube.com/ecency">
                         <img src={FooterYoutube} alt="youtube" />
                       </a>
                     </li>
                     <li>
-                      <a href="https://twitter.com/ecency_official" >
+                      <a href="https://twitter.com/ecency_official">
                         <img src={FooterTwitter} alt="twitter" />
                       </a>
                     </li>
                     <li>
-                      <a href="https://t.me/ecency" >
+                      <a href="https://t.me/ecency">
                         <img src={FooterTelegram} alt="telegram" />
                       </a>
                     </li>
                     <li>
-                      <a href="https://discord.me/ecency" >
+                      <a href="https://discord.me/ecency">
                         <img src={FooterDiscord} alt="discord" />
                       </a>
                     </li>
@@ -428,7 +388,7 @@ const LandingPage = (props: any) => {
               <a href="#">
                 <img src={LogoCircle} alt="ecency logo" />
               </a>
-              <p className="copy-right">©2021 Ecency. All right reserved.</p>
+              <p className="copy-right">{_t("landing-page.copy-rights")}</p>
             </div>
           </div>
         </div>
