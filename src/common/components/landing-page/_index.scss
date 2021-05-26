@@ -581,8 +581,8 @@
             }
             display: flex;
             img {
-              margin-right: 0.5rem;
-              width: 25px;
+              margin-right: 0.7rem;
+              width: 20px;
               height: 25px;
             }
           }
@@ -821,8 +821,8 @@
         background: rgb(232, 239, 249);
         background: radial-gradient(
           circle,
-          rgba(232, 239, 249, 1) 0%,
-          rgba(121, 166, 223, 1) 100%
+          #b1bfde 0%,
+          #5a88c1 100%
         );
       }
       background-size: 100% 100%;

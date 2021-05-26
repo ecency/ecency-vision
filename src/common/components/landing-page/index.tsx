@@ -47,7 +47,6 @@ const LandingPage = (props: any) => {
 
     try {
       const response = await subscribeEmail(email);
-
       if(200 == response?.status) {
         success(_t("landing-page.success-message-subscribe"))
       } 
@@ -58,7 +57,7 @@ const LandingPage = (props: any) => {
     setEmail("");
     setLoading(false)
   };
-
+  
   return (
     <div className="landing-wrapper">
       <div className="top-bg" />
