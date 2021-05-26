@@ -69,6 +69,14 @@ export const signUp = (username: string, email: string, referral: string): Promi
             return resp;
         });
 
+export const subscribeEmail = (email: string): Promise<any> =>
+    axios
+        .post(apiBase(`/private-api/subscribe`), {
+            email: email
+        })
+        .then(resp => {
+            return resp;
+        });
 
 export const usrActivity = (username: string, ty: number, bl: string | number = '', tx: string | number = '') => {
     if (!window.usePrivate) {
