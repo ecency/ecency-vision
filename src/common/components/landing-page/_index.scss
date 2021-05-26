@@ -937,6 +937,15 @@
                 width: 30%;
                 max-width: 113px;
                 color: $white;
+                position: relative;
+                span {
+                  width: 80%;
+                  height: 100%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  margin-left: 0.5rem;
+                }
               }
             }
             .socials {

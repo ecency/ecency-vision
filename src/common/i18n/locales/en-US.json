@@ -1059,6 +1059,8 @@
     "enter-your-email-adress":"Enter your email adress",
     "send":"Send",
     "subscribe-paragraph": "Be first to know what's happening in decentralized web.",
-    "copy-rights": "©2021 Ecency. All right reserved."
+    "copy-rights": "©2021 Ecency. All right reserved.",
+    "success-message-subscribe": "A verification link has been sent to your email account!",
+    "error-occured": "A server error has been occured."
   }
 }

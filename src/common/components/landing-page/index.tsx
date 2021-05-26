@@ -4,6 +4,9 @@ import htmlParse from 'html-react-parser';
 import { scrollDown } from "../../img/svg";
 
 import { _t } from "../../i18n";
+import { subscribeEmail } from "../../api/private-api";
+import { error, success } from "../feedback";
+import LinearProgress from "../linear-progress";
 
 const EarnMoney = require("../../img/illustration_earn_money.png");
 const WhaleCatchsFish = require("../../img/illustration_true_ownership.png");
@@ -36,21 +39,25 @@ const LogoCircle = require("../../img/logo-circle.svg");
 
 const LandingPage = (props: any) => {
   const [email, setEmail] = useState("");
-  const [isSent, setIsSent] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubsccribe = (e: FormEvent<HTMLDivElement>) => {
+  const handleSubsccribe = async (e: FormEvent<HTMLDivElement>) => {
     e.preventDefault();
-    console.log("Form Submitted", email);
-    setIsSent(true);
-    setEmail("");
-  };
+    setLoading(true);
 
-  useEffect(() => {
-    isSent &&
-      setTimeout(() => {
-        setIsSent(false);
-      }, 2000);
-  }, [isSent]);
+    try {
+      const response = await subscribeEmail(email);
+
+      if(200 == response?.status) {
+        success(_t("landing-page.success-message-subscribe"))
+      } 
+    } catch (err) {
+      error(_t('landing-page.error-occured'));
+    }
+
+    setEmail("");
+    setLoading(false)
+  };
 
   return (
     <div className="landing-wrapper">
@@ -355,7 +362,7 @@ const LandingPage = (props: any) => {
                     onChange={(e) => setEmail(e.target.value)}
                     required={true}
                   />
-                  <button>{_t("landing-page.send")}</button>
+                  <button disabled={loading}>{ loading ? <span><LinearProgress /></span>  : _t("landing-page.send")}</button>
                 </form>
                 <div className="socials">
                   <p>{_t("landing-page.subscribe-paragraph")}</p>
