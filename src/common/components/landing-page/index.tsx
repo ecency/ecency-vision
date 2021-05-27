@@ -1,10 +1,8 @@
-import React, { FormEvent, useState, useEffect } from "react";
+import React, { FormEvent, useState } from "react";
 import htmlParse from 'html-react-parser';
-
-import { scrollDown } from "../../img/svg";
-
-import { _t } from "../../i18n";
 import { subscribeEmail } from "../../api/private-api";
+import { _t } from "../../i18n";
+import { scrollDown } from "../../img/svg";
 import { error, success } from "../feedback";
 import LinearProgress from "../linear-progress";
 
@@ -361,7 +359,7 @@ const LandingPage = (props: any) => {
                     onChange={(e) => setEmail(e.target.value)}
                     required={true}
                   />
-                  <button disabled={loading}>{ loading ? <span><LinearProgress /></span>  : _t("landing-page.send")}</button>
+                  <button disabled={loading}>{loading ? <span><LinearProgress /></span>  : _t("landing-page.send")}</button>
                 </form>
                 <div className="socials">
                   <p>{_t("landing-page.subscribe-paragraph")}</p>

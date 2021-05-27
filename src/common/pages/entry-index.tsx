@@ -159,9 +159,8 @@ class EntryIndexPage extends Component<PageProps, State> {
                         reloadFn: this.reload,
                         reloading: loading,
                     }) :
-                    NavBar({...this.props})}
+                    NavBar({...this.props, step:this.state.step, setStepOne:this.changeStepOne})}
                 {this.state.step === 1  &&  activeUser === null &&  <LandingPage {...this.props} changeState={this.changeStepTwo}/>}
-                {/* { this.state.step === 2 && activeUser === null && <Intro global={this.props.global} hideIntro={this.props.hideIntro} /> } */}
                 {
                     (this.state.step === 2 || activeUser !== null) &&
                     <div className="app-content entry-index-page">
