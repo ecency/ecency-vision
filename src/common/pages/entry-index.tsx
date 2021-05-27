@@ -160,9 +160,19 @@ class EntryIndexPage extends Component<PageProps, State> {
                         reloading: loading,
                     }) :
                     NavBar({...this.props, step:this.state.step, setStepOne:this.changeStepOne})}
-                {this.state.step === 1  &&  activeUser === null &&  <LandingPage {...this.props} changeState={this.changeStepTwo}/>}
                 {
-                    (this.state.step === 2 || activeUser !== null) &&
+                    this.state.step === 1  &&
+                    activeUser === null &&
+                    location && "/" === location?.pathname &&
+                    <LandingPage {...this.props} changeState={this.changeStepTwo}/>
+                }
+                {
+                    (   this.state.step === 2 
+                        || activeUser !== null
+                        || location?.pathname?.startsWith("/hot")
+                        || location?.pathname?.startsWith("/created")
+                        || location?.pathname?.startsWith("/trending")
+                    ) &&
                     <div className="app-content entry-index-page">
                         <div className="tags-side">
                             {!global.isMobile && (

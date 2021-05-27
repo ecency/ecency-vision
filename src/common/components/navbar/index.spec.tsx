@@ -20,6 +20,7 @@ const defProps = {
     activeUser: null,
     ui: UiInstance,
     notifications: notificationsInstance1,
+    step: 2,
     fetchTrendingTags: () => {
     },
     toggleTheme: () => {
@@ -49,7 +50,9 @@ const defProps = {
     unMuteNotifications: () => {
     },
     setLang: () => {
-    }
+    },
+    setStepOne: () => {
+    },
 };
 
 it("(1) Default render", () => {

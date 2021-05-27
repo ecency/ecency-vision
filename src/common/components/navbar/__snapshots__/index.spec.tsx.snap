@@ -21,16 +21,12 @@ Array [
     <div
       className="brand"
     >
-      <a
-        href="/"
+      <img
+        alt="Logo"
+        className="logo"
         onClick={[Function]}
-      >
-        <img
-          alt="Logo"
-          className="logo"
-          src="logo-circle.svg"
-        />
-      </a>
+        src="logo-circle.svg"
+      />
     </div>
     <div
       className="text-menu"
@@ -60,16 +56,12 @@ Array [
       <div
         className="brand"
       >
-        <a
-          href="/"
+        <img
+          alt="Logo"
+          className="logo"
           onClick={[Function]}
-        >
-          <img
-            alt="Logo"
-            className="logo"
-            src="logo-circle.svg"
-          />
-        </a>
+          src="logo-circle.svg"
+        />
       </div>
       <div
         className="text-menu"
@@ -140,7 +132,11 @@ Array [
             <div
               className="dropdown-btn"
             >
-              
+              <div
+                className="label"
+              >
+                EN
+              </div>
               <div
                 className="menu-down"
               >
@@ -148,7 +144,7 @@ Array [
                   viewBox="0 0 24 24"
                 >
                   <path
-                    d="M12.87,15.07L10.33,12.56L10.36,12.53C12.1,10.59 13.34,8.36 14.07,6H17V4H10V2H8V4H1V6H12.17C11.5,7.92 10.44,9.75 9,11.35C8.07,10.32 7.3,9.19 6.69,8H4.69C5.42,9.63 6.42,11.17 7.67,12.56L2.58,17.58L4,19L9,14L12.11,17.11L12.87,15.07M18.5,10H16.5L12,22H14L15.12,19H19.87L21,22H23L18.5,10M15.88,17L17.5,12.67L19.12,17H15.88Z"
+                    d="M7,10L12,15L17,10H7Z"
                     fill="currentColor"
                   />
                 </svg>
@@ -169,6 +165,25 @@ Array [
               fill="currentColor"
             />
           </svg>
+        </div>
+        <div
+          className="submit-post"
+        >
+          <a
+            className="btn btn-outline-primary"
+            href="/submit"
+            onClick={[Function]}
+            title="Create Post"
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"
+                fill="currentColor"
+              />
+            </svg>
+          </a>
         </div>
       </div>
       <div
@@ -191,25 +206,6 @@ Array [
             onClick={[Function]}
           >
             Signup
-          </a>
-        </div>
-        <div
-          className="submit-post"
-        >
-          <a
-            className="btn btn-outline-primary"
-            href="/submit"
-            onClick={[Function]}
-            title="Create Post"
-          >
-            <svg
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"
-                fill="currentColor"
-              />
-            </svg>
           </a>
         </div>
       </div>
@@ -250,16 +246,12 @@ Array [
     <div
       className="brand"
     >
-      <a
-        href="/"
+      <img
+        alt="Logo"
+        className="logo"
         onClick={[Function]}
-      >
-        <img
-          alt="Logo"
-          className="logo"
-          src="logo-circle.svg"
-        />
-      </a>
+        src="logo-circle.svg"
+      />
     </div>
     <div
       className="text-menu"
@@ -289,16 +281,12 @@ Array [
       <div
         className="brand"
       >
-        <a
-          href="/"
+        <img
+          alt="Logo"
+          className="logo"
           onClick={[Function]}
-        >
-          <img
-            alt="Logo"
-            className="logo"
-            src="logo-circle.svg"
-          />
-        </a>
+          src="logo-circle.svg"
+        />
       </div>
       <div
         className="text-menu"
@@ -369,7 +357,11 @@ Array [
             <div
               className="dropdown-btn"
             >
-              
+              <div
+                className="label"
+              >
+                EN
+              </div>
               <div
                 className="menu-down"
               >
@@ -377,7 +369,7 @@ Array [
                   viewBox="0 0 24 24"
                 >
                   <path
-                    d="M12.87,15.07L10.33,12.56L10.36,12.53C12.1,10.59 13.34,8.36 14.07,6H17V4H10V2H8V4H1V6H12.17C11.5,7.92 10.44,9.75 9,11.35C8.07,10.32 7.3,9.19 6.69,8H4.69C5.42,9.63 6.42,11.17 7.67,12.56L2.58,17.58L4,19L9,14L12.11,17.11L12.87,15.07M18.5,10H16.5L12,22H14L15.12,19H19.87L21,22H23L18.5,10M15.88,17L17.5,12.67L19.12,17H15.88Z"
+                    d="M7,10L12,15L17,10H7Z"
                     fill="currentColor"
                   />
                 </svg>
@@ -398,6 +390,25 @@ Array [
               fill="currentColor"
             />
           </svg>
+        </div>
+        <div
+          className="submit-post"
+        >
+          <a
+            className="btn btn-outline-primary"
+            href="/submit"
+            onClick={[Function]}
+            title="Create Post"
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"
+                fill="currentColor"
+              />
+            </svg>
+          </a>
         </div>
       </div>
       <div
@@ -420,25 +431,6 @@ Array [
             onClick={[Function]}
           >
             Signup
-          </a>
-        </div>
-        <div
-          className="submit-post"
-        >
-          <a
-            className="btn btn-outline-primary"
-            href="/submit"
-            onClick={[Function]}
-            title="Create Post"
-          >
-            <svg
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"
-                fill="currentColor"
-              />
-            </svg>
           </a>
         </div>
       </div>
@@ -598,7 +590,11 @@ Array [
             <div
               className="dropdown-btn"
             >
-              
+              <div
+                className="label"
+              >
+                EN
+              </div>
               <div
                 className="menu-down"
               >
@@ -606,7 +602,7 @@ Array [
                   viewBox="0 0 24 24"
                 >
                   <path
-                    d="M12.87,15.07L10.33,12.56L10.36,12.53C12.1,10.59 13.34,8.36 14.07,6H17V4H10V2H8V4H1V6H12.17C11.5,7.92 10.44,9.75 9,11.35C8.07,10.32 7.3,9.19 6.69,8H4.69C5.42,9.63 6.42,11.17 7.67,12.56L2.58,17.58L4,19L9,14L12.11,17.11L12.87,15.07M18.5,10H16.5L12,22H14L15.12,19H19.87L21,22H23L18.5,10M15.88,17L17.5,12.67L19.12,17H15.88Z"
+                    d="M7,10L12,15L17,10H7Z"
                     fill="currentColor"
                   />
                 </svg>
@@ -628,10 +624,6 @@ Array [
             />
           </svg>
         </div>
-      </div>
-      <div
-        className="btn-menu"
-      >
         <div
           className="submit-post"
         >
@@ -652,6 +644,9 @@ Array [
           </a>
         </div>
       </div>
+      <div
+        className="btn-menu"
+      />
       <div
         className="user-nav"
       >
@@ -874,7 +869,11 @@ Array [
             <div
               className="dropdown-btn"
             >
-              
+              <div
+                className="label"
+              >
+                EN
+              </div>
               <div
                 className="menu-down"
               >
@@ -882,7 +881,7 @@ Array [
                   viewBox="0 0 24 24"
                 >
                   <path
-                    d="M12.87,15.07L10.33,12.56L10.36,12.53C12.1,10.59 13.34,8.36 14.07,6H17V4H10V2H8V4H1V6H12.17C11.5,7.92 10.44,9.75 9,11.35C8.07,10.32 7.3,9.19 6.69,8H4.69C5.42,9.63 6.42,11.17 7.67,12.56L2.58,17.58L4,19L9,14L12.11,17.11L12.87,15.07M18.5,10H16.5L12,22H14L15.12,19H19.87L21,22H23L18.5,10M15.88,17L17.5,12.67L19.12,17H15.88Z"
+                    d="M7,10L12,15L17,10H7Z"
                     fill="currentColor"
                   />
                 </svg>
@@ -904,10 +903,6 @@ Array [
             />
           </svg>
         </div>
-      </div>
-      <div
-        className="btn-menu"
-      >
         <div
           className="submit-post"
         >
@@ -928,6 +923,9 @@ Array [
           </a>
         </div>
       </div>
+      <div
+        className="btn-menu"
+      />
       <div
         className="user-nav"
       >

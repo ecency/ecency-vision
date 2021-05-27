@@ -44,7 +44,7 @@ interface Props {
     activeUser: ActiveUser | null;
     ui: UI;
     notifications: Notifications;
-    step: number;
+    step?: number;
     fetchTrendingTags: () => void;
     toggleTheme: () => void;
     addUser: (user: User) => void;
@@ -60,7 +60,7 @@ interface Props {
     muteNotifications: () => void;
     unMuteNotifications: () => void;
     setLang: (lang: string) => void;
-    setStepOne:() => void;
+    setStepOne?:() => void;
 }
 
 interface State {
@@ -141,7 +141,9 @@ export class NavBar extends Component<Props, State> {
         if("/" !== location?.pathname) {
             return this.props.history.push("/")
         }
-        return this.props.setStepOne()
+        if(this.props.setStepOne) {
+            return this.props.setStepOne()
+        }
     }
 
     render() {
