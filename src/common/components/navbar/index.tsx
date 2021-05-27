@@ -137,6 +137,13 @@ export class NavBar extends Component<Props, State> {
         this.setState({smVisible: !smVisible})
     }
 
+    handleIconClick = () => {
+        if("/" !== location?.pathname) {
+            return this.props.history.push("/")
+        }
+        return this.props.setStepOne()
+    }
+
     render() {
         const {global, activeUser, ui, step, setStepOne} = this.props;
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
@@ -152,7 +159,7 @@ export class NavBar extends Component<Props, State> {
                 {_t("navbar.communities")}
             </Link>
         </div>
-        
+
         return (
             <>
                 {floating && (<div className="nav-bar-rep"/>)}
@@ -167,7 +174,7 @@ export class NavBar extends Component<Props, State> {
                                     </Link>
                                 ) :
                                 (
-                                    <img src={logo} className="logo" alt="Logo" onClick={setStepOne}/>
+                                    <img src={logo} className="logo" alt="Logo" onClick={this.handleIconClick}/>
                                 )
                             }
                         </div>
@@ -185,7 +192,7 @@ export class NavBar extends Component<Props, State> {
                                     </Link>
                                 ) :
                                 (
-                                    <img src={logo} className="logo" alt="Logo" onClick={setStepOne}/>
+                                    <img src={logo} className="logo" alt="Logo" onClick={this.handleIconClick}/>
                                 )
                             }
                         </div>
