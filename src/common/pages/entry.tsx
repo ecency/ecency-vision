@@ -180,7 +180,7 @@ class EntryPage extends BaseComponent<Props, State> {
                 authorInfo: {
                     ...this.state.authorInfo,
                     name: authorInfo?.name || "",
-                    about: authorInfo?.about || ""
+                    about: authorInfo?.about || authorInfo?.location || ""
                 }
             })    
         }
