@@ -394,7 +394,7 @@ class EntryPage extends BaseComponent<Props, State> {
             description: `${truncate(postBodySummary(entry.body, 210), 140)} by @${entry.author}`,
             url: entry.url,
             canonical: url,
-            image: catchPostImage(entry.body, 600, 500, global.canUseWebp ? 'webp' : 'match'),
+            image: catchPostImage(entry, 600, 500, global.canUseWebp ? 'webp' : 'match'),
             published: published.toISOString(),
             modified: modified.toISOString(),
             tag: tags[0],
