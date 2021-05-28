@@ -138,8 +138,8 @@ export class NavBar extends Component<Props, State> {
     }
 
     handleIconClick = () => {
-        if(
-            this.props?.location?.pathname?.startsWith("/hot")
+        if( "/" !== location?.pathname
+            || this.props?.location?.pathname?.startsWith("/hot")
             || this.props?.location?.pathname?.startsWith("/created")
             || this.props?.location?.pathname?.startsWith("/trending")
         ) {
