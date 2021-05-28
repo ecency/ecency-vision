@@ -147,6 +147,13 @@ class EntryIndexPage extends Component<PageProps, State> {
 
         const promoted = entries['__promoted__'].entries;
 
+        const showEntryPage = this.state.step === 2 
+        || activeUser !== null
+        || location?.pathname?.startsWith("/hot")
+        || location?.pathname?.startsWith("/created")
+        || location?.pathname?.startsWith("/trending")
+    
+
         return (
             <>
                 <Meta {...metaProps} />
@@ -167,13 +174,7 @@ class EntryIndexPage extends Component<PageProps, State> {
                     <LandingPage {...this.props} changeState={this.changeStepTwo}/>
                 }
                 {
-                    (   this.state.step === 2 
-                        || activeUser !== null
-                        || location?.pathname?.startsWith("/hot")
-                        || location?.pathname?.startsWith("/created")
-                        || location?.pathname?.startsWith("/trending")
-                    ) &&
-                    <div className="app-content entry-index-page">
+                    <div className="app-content entry-index-page" style={{ display: showEntryPage ? "flex" : "none"}}>
                         <div className="tags-side">
                             {!global.isMobile && (
                                 <>
@@ -197,7 +198,7 @@ class EntryIndexPage extends Component<PageProps, State> {
                         <div className="side-menu">
                             {!global.isMobile && (
                                 <>
-                                    <MarketData/>
+                                    { 1 !== this.state.step && <MarketData />}
 
                                     <div className="menu-nav">
                                         <DownloadTrigger>
