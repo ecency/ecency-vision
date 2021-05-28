@@ -138,8 +138,12 @@ export class NavBar extends Component<Props, State> {
     }
 
     handleIconClick = () => {
-        if("/" !== location?.pathname) {
-            return this.props.history.push("/")
+        if(
+            this.props?.location?.pathname?.startsWith("/hot")
+            || this.props?.location?.pathname?.startsWith("/created")
+            || this.props?.location?.pathname?.startsWith("/trending")
+        ) {
+            this.props.history.push("/");
         }
         if(this.props.setStepOne) {
             return this.props.setStepOne()
@@ -152,6 +156,10 @@ export class NavBar extends Component<Props, State> {
         const logoHref = activeUser ? `/@${activeUser.username}/feed` : '/';
 
         const {smVisible, floating} = this.state;
+
+        const transparentVerify = this.props?.location?.pathname?.startsWith("/hot")
+        || this.props?.location?.pathname?.startsWith("/created")
+        || this.props?.location?.pathname?.startsWith("/trending")
 
         const textMenu = <div className="text-menu">
             <Link className="menu-item" to="/discover">
@@ -184,7 +192,7 @@ export class NavBar extends Component<Props, State> {
                         {textMenu}
                     </div>
                 )}
-                <div ref={this.nav} className={_c(`nav-bar ${(smVisible ? "visible-sm" : "")} ${(step === 1 ? "transparent" : "")}`)}>
+                <div ref={this.nav} className={_c(`nav-bar ${(smVisible ? "visible-sm" : "")} ${(!transparentVerify && step === 1 ? "transparent" : "")}`)}>
                     <div className="nav-bar-inner">
                         <div className="brand">
                             {
@@ -201,7 +209,7 @@ export class NavBar extends Component<Props, State> {
                         {textMenu}
                         <div className="flex-spacer"/>
                         {
-                            step !== 1 &&
+                            (step !== 1 || transparentVerify) &&
                                 <div className="search-bar">
                                     {Search({...this.props})}
                                 </div>
@@ -209,7 +217,7 @@ export class NavBar extends Component<Props, State> {
                         <div className="switch-menu">
                             {SwitchLang({...this.props})}
                             {
-                                step !== 1 &&
+                                (step !== 1 || transparentVerify) &&
                                     <ToolTip content={themeText}>
                                         <div className="switch-theme" onClick={this.changeTheme}>
                                             {brightnessSvg}
@@ -217,7 +225,7 @@ export class NavBar extends Component<Props, State> {
                                     </ToolTip>
                             }
                             {
-                                step !== 1 &&
+                                (step !== 1 || transparentVerify) &&
                                     <div className="submit-post">
                                         <ToolTip content={_t("navbar.post")}>
                                             <Link className="btn btn-outline-primary" to="/submit">
@@ -230,7 +238,7 @@ export class NavBar extends Component<Props, State> {
                         <div className="btn-menu">
                             {!activeUser && (
                                 <div className="login-required">
-                                    <Button className="btn-login" variant="outline-primary" onClick={() => {
+                                    <Button className="btn-login btn-primary" onClick={() => {
                                         const {toggleUIProp} = this.props;
                                         toggleUIProp('login');
                                     }}>{_t("g.login")}</Button>
