@@ -193,7 +193,7 @@ Array [
           className="login-required"
         >
           <button
-            className="btn-login btn btn-outline-primary"
+            className="btn-login btn-primary btn btn-primary"
             disabled={false}
             onClick={[Function]}
             type="button"
@@ -418,7 +418,7 @@ Array [
           className="login-required"
         >
           <button
-            className="btn-login btn btn-outline-primary"
+            className="btn-login btn-primary btn btn-primary"
             disabled={false}
             onClick={[Function]}
             type="button"
