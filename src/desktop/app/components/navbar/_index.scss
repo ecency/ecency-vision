@@ -3,7 +3,7 @@
   margin-bottom: 30px;
   height: 64px;
   position: relative;
-
+  z-index: 2;
   @include themify(day) {
     background: $white-two;
     box-shadow: 0 0 2px 1px $white-six;
