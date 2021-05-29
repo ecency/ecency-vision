@@ -1052,15 +1052,15 @@
     "terms-of-service": "Términos del servicio",
     "faq": "Preguntas Frecuentes (FAQ)",
     "discover": "Descubrir",
-    "sign-in": "Sign in",
-    "communities": "Communities",
-    "help": "Help",
-    "subscribe-us": "Subscribe Us",
-    "enter-your-email-adress": "Enter your email adress",
-    "send": "Send",
-    "subscribe-paragraph": "Be first to know what's happening in decentralized web.",
-    "copy-rights": "©2021 Ecency. All right reserved.",
-    "success-message-subscribe": "A verification link has been sent to your email account!",
-    "error-occured": "A server error has been occured."
+    "sign-in": "Iniciar sesión",
+    "communities": "Comunidades",
+    "help": "Ayuda",
+    "subscribe-us": "Suscribirse",
+    "enter-your-email-adress": "Introduce tu correo electrónico",
+    "send": "Enviar",
+    "subscribe-paragraph": "Sé el primero en saber lo que está pasando en la web descentralizada.",
+    "copy-rights": "©2021 Ecency. Todos los derechos reservados.",
+    "success-message-subscribe": "¡Se ha enviado un enlace de verificación a tu cuenta de correo electrónico!",
+    "error-occured": "Se ha producido un error en el servidor."
   }
 }
