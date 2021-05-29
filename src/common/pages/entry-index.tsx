@@ -79,7 +79,7 @@ class EntryIndexPage extends Component<PageProps, State> {
         const data = entries[groupKey];
         const {loading, hasMore} = data;
 
-        if (!loading && hasMore) {
+        if (!loading && hasMore && 1 !== this.state.step) {
             fetchEntries(filter, tag, true);
         }
     };
