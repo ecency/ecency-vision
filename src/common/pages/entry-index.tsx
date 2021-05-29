@@ -79,7 +79,7 @@ class EntryIndexPage extends Component<PageProps, State> {
         const data = entries[groupKey];
         const {loading, hasMore} = data;
 
-        if (!loading && hasMore) {
+        if (!loading && hasMore && 1 !== this.state.step) {
             fetchEntries(filter, tag, true);
         }
     };
@@ -174,7 +174,7 @@ class EntryIndexPage extends Component<PageProps, State> {
                     <LandingPage {...this.props} changeState={this.changeStepTwo}/>
                 }
                 {
-                    <div className="app-content entry-index-page" style={{ display: showEntryPage ? "flex" : "none"}}>
+                    showEntryPage && <div className="app-content entry-index-page">
                         <div className="tags-side">
                             {!global.isMobile && (
                                 <>
