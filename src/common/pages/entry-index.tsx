@@ -174,7 +174,7 @@ class EntryIndexPage extends Component<PageProps, State> {
                     <LandingPage {...this.props} changeState={this.changeStepTwo}/>
                 }
                 {
-                    <div className="app-content entry-index-page" style={{ display: showEntryPage ? "flex" : "none"}}>
+                    showEntryPage && <div className="app-content entry-index-page">
                         <div className="tags-side">
                             {!global.isMobile && (
                                 <>
@@ -198,7 +198,7 @@ class EntryIndexPage extends Component<PageProps, State> {
                         <div className="side-menu">
                             {!global.isMobile && (
                                 <>
-                                    { 1 !== this.state.step && <MarketData />}
+                                    {1 !== this.state.step && <MarketData />}
 
                                     <div className="menu-nav">
                                         <DownloadTrigger>
