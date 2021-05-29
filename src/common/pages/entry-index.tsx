@@ -198,7 +198,7 @@ class EntryIndexPage extends Component<PageProps, State> {
                         <div className="side-menu">
                             {!global.isMobile && (
                                 <>
-                                    { 1 !== this.state.step && <MarketData />}
+                                    {1 !== this.state.step && <MarketData />}
 
                                     <div className="menu-nav">
                                         <DownloadTrigger>
