@@ -5,30 +5,31 @@ import { _t } from "../../i18n";
 import { scrollDown } from "../../img/svg";
 import { error, success } from "../feedback";
 import LinearProgress from "../linear-progress";
+import { apiBaseImage } from "../../api/helper";
 
-const EarnMoney = require("../../img/illustration_earn_money.png");
-const WhaleCatchsFish = require("../../img/illustration_true_ownership.png");
-const Decentralization = require("../../img/illustration_decentralization.png");
-const MechanicFish = require("../../img/illustration_open_source.png");
-const FishOne = require("../../img/fish-1.png");
-const FishTwo = require("../../img/fish-2.png");
-const FishThree = require("../../img/fish-3.png");
-const FishFour = require("../../img/fish-4.png");
-const FishFive = require("../../img/fish-5.png");
-const DownloadAndroid = require("../../img/icon_android.png");
+const EarnMoney = `${apiBaseImage('/DQmWqBCSpWSxZFxFMdmWUzC3ngiWP3wDPtE4hNyz3AWAWdK/illustration_earn_money.png')}`;
+const WhaleCatchsFish = `${apiBaseImage('/DQmYmfUK6KAkKCvTwe8HbqfjzqZD6sJ4MjeTK4ut28EtUFo/illustration_true_ownership.png')}`;
+const Decentralization = `${apiBaseImage('/DQmVYrYuz8i5sY9Yxt1e8YavSstVDWEhVqn9AymAZ6ekJZK/illustration_decentralization.png')}`;
+const MechanicFish = `${apiBaseImage('/DQmNbTAdK5YDpFHmgNMZ3G7ZsGgcgrdXiagJvMcJyQBRkLN/illustration_open_source.png')}`;
+const FishOne = `${apiBaseImage('/DQmX35iBQH1g1pKiRQE7Uboe6UbQhgzXRqWdByR4V6rLM3c/fish_1.png')}`;
+const FishTwo = `${apiBaseImage('/DQmQdnoUM4qDiga4GjtJZgpmJ4k1N6FyzqMhTMactP4YJJi/fish_2.png')}`;
+const FishThree = `${apiBaseImage('/DQmTud3BpqaMQfUFJ8VZwMLZExEVsr2H8936nsCcSbjjxb3/fish_3.png')}`;
+const FishFour = `${apiBaseImage('/DQmengzEQWy6FYwpvXBTjnsQ3wAqnmBVcQV7p4L6nvukWBZ/fish_4.png')}`;
+const FishFive = `${apiBaseImage('/DQmZD7CzVNQjEahxdN1Ef5o6oVhcmFpq6AbUayLMnMQhQ3G/fish_5.png')}`;
+const DownloadAndroid = `${apiBaseImage('/DQmUTPYFBFwmWwZLCJAoBP25BbfthmaqY8BUFuDja1NB9te/icon_android.png')}`;
+const OurHistory = `${apiBaseImage('/DQmXb46RziM5tMqfGdoJKQrvej3rFEUYs9gg7rPW5xtsDUt/our_history.png')}`;
+const OurTeam = `${apiBaseImage('/DQmU2qoujkLKErYN1S9gcsPq9wtgYtxZbNeuAF7WudRSGFw/our_team.png')}`;
+const JuniorFish = `${apiBaseImage('/DQmZMhmqdnVLEiSXRqBFQ1vYupsdGCRfLpUNXM2zhMxx4Ph/fish_junior.png')}`;
+const SeniorFish = `${apiBaseImage('/DQmTbpVjvv3ybGcWsPw7Xba74cky9X1Sivb93425tvyWNBM/fish_senior.png')}`;
+const FounderImg = `${apiBaseImage('/u/good-karma/avatar/large')}`;
+const DevopsImg = `${apiBaseImage('/u/talhasch/avatar/large')}`;
+const DesignGuru = `${apiBaseImage('/u/dunsky/avatar/large')}`;
 const DownloadAndroidWhite = require("../../img/icon_android-white.svg");
 const DownloadIPhone = require("../../img/icon_apple.svg");
 const DownloadIPhoneWhite = require("../../img/icon_apple-white.svg");
 const DownloadWindows = require("../../img/icon_windows.svg");
 const DownloadWindowsWhite = require("../../img/icon_windows-white.svg");
-const OurHistory = require("../../img/our-history.png");
 const OurVision = require("../../img/our-vision.png");
-const OurTeam = require("../../img/our-team.png");
-const JuniorFish = require("../../img/fish-junior.png");
-const SeniorFish = require("../../img/fish-senior.png");
-const FounderImg = require("../../img/feruz.png");
-const DevopsImg = require("../../img/talhasch.png");
-const DesignGuru = require("../../img/design-guru.png");
 const FooterYoutube = require("../../img/footer-youtube.svg");
 const FooterTwitter = require("../../img/footer-twitter.svg");
 const FooterTelegram = require("../../img/footer-telegram.svg");
@@ -42,7 +43,6 @@ const LandingPage = (props: any) => {
   const handleSubsccribe = async (e: FormEvent<HTMLDivElement>) => {
     e.preventDefault();
     setLoading(true);
-
     try {
       const response = await subscribeEmail(email);
       if(200 == response?.status) {
@@ -81,7 +81,7 @@ const LandingPage = (props: any) => {
       <div className="sections second-section" id="earn-money">
         <div className="part-top">
           <div className="inner">
-            <img src={EarnMoney} alt="earn-money" />
+            <img src={EarnMoney} alt="earn-money" loading="lazy" />
             <div className="text-group visible">
               <h2>{_t("landing-page.earn-money")}</h2>
               <p>
@@ -103,6 +103,7 @@ const LandingPage = (props: any) => {
           className="landing-floating-image"
           src={WhaleCatchsFish}
           alt="whale"
+          loading="lazy"
         />
 
         <div className="part-bottom">
@@ -122,6 +123,7 @@ const LandingPage = (props: any) => {
               className="decentralization-img"
               src={Decentralization}
               alt="decentralization"
+              loading="lazy"
             />
             <div className="text-group visible">
               <h2>{_t("landing-page.decentralization")}</h2>
@@ -140,6 +142,7 @@ const LandingPage = (props: any) => {
           className="landing-floating-image mechanic"
           src={MechanicFish}
           alt="mechanic"
+          loading="lazy"
         />
         <div className="part-bottom">
           <div className="inner">
@@ -162,13 +165,13 @@ const LandingPage = (props: any) => {
         <div className="part-top">
           <div className="inner">
             <div className="fish-container">
-              <img className="fish three" src={FishThree} alt="earn-money" />
-              <img className="fish five" src={FishFive} alt="earn-money" />
-              <img className="fish four" src={FishFour} alt="earn-money" />
+              <img className="fish three" src={FishThree} alt="earn-money" loading="lazy" />
+              <img className="fish five" src={FishFive} alt="earn-money" loading="lazy" />
+              <img className="fish four" src={FishFour} alt="earn-money" loading="lazy" />
             </div>
             <div className="fish-container">
-              <img className="fish one" src={FishOne} alt="earn-money" />
-              <img className="fish two" src={FishTwo} alt="earn-money" />
+              <img className="fish one" src={FishOne} alt="earn-money" loading="lazy" />
+              <img className="fish two" src={FishTwo} alt="earn-money" loading="lazy" />
             </div>
             <ul>
               <li>
@@ -249,7 +252,7 @@ const LandingPage = (props: any) => {
               <p>{htmlParse(_t('landing-page.our-history-p-one'))}</p>
               <p>{_t("landing-page.our-history-p-two")}</p>
             </div>
-            <img className="our-history" src={OurHistory} alt="Our History" />
+            <img className="our-history" src={OurHistory} alt="Our History" loading="lazy"/>
           </div>
         </div>
         <div className="part-bottom">
@@ -272,21 +275,21 @@ const LandingPage = (props: any) => {
               <h2>{_t("landing-page.our-team")}</h2>
               <ul>
                 <li>
-                  <img src={FounderImg} alt="Founder" />
+                  <img src={FounderImg} alt="Founder" loading="lazy" />
                   <div className="text-wrapper">
                     <a href="/@good-karma">@good-karma</a>
                     <p>{_t("landing-page.founder")}</p>
                   </div>
                 </li>
                 <li>
-                  <img src={DevopsImg} alt="Devops" />
+                  <img src={DevopsImg} alt="Devops" loading="lazy"/>
                   <div className="text-wrapper">
                     <a href="/@talhasch">@talhasch</a>
                     <p>{_t("landing-page.devops-guru")}</p>
                   </div>
                 </li>
                 <li>
-                  <img src={DesignGuru} alt="Designer" />
+                  <img src={DesignGuru} alt="Designer" loading="lazy"/>
                   <div className="text-wrapper">
                     <a href="/@dunsky">@dunsky</a>
                     <p>{_t("landing-page.design-guru")}</p>
@@ -300,7 +303,7 @@ const LandingPage = (props: any) => {
             </div>
 
             <div className="image-container">
-              <img className="our-team together" src={OurTeam} alt="Our Team" />
+              <img className="our-team together" src={OurTeam} alt="Our Team" loading="lazy" />
               <img
                 className="our-team senior"
                 src={SeniorFish}
@@ -310,6 +313,7 @@ const LandingPage = (props: any) => {
                 className="our-team junior"
                 src={JuniorFish}
                 alt="Junior Fish"
+                loading="lazy"
               />
             </div>
           </div>
