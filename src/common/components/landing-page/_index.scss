@@ -57,10 +57,10 @@
   }
   .tob-bg-illustration {
     @include themify(night) {
-      background-image: url("../../img/illustration-hero.png");
+      background-image: url("https://images.ecency.com/DQmV6Udt64yRp4NHys5et6DV4YKfFDjeReDERKxxN67KjkD/illustration_hero.png");
     }
     @include themify(day) {
-      background-image: url("../../img/illustration-hero-day.png");
+      background-image: url("https://images.ecency.com/DQmen6goXPVdszUgDUSQeQHhDUbhjtcsgFouz8efu3NVzEN/illustration_hero_day.png");
     }
     background-position: center;
     background-size: cover;
@@ -511,7 +511,7 @@
         background-image: url("../../img/bg-download-tiny-dark.svg");
       }
       @include themify(day) {
-        background-image: url("../../img/bg-download-tiny.jpg");
+        background-image: url("https://images.ecency.com/DQmNe47DFdjSKYrwYKfD6etCbjeqB4CfDc62Kt37D8pRitX/bg_download_tiny.jpg");
       }
       background-size: cover;
       background-position: center;
@@ -520,10 +520,10 @@
       @media (max-width: $lg-break) {
         height: 500px;
         @include themify(night) {
-          background-image: url("../../img/bg-download-mob-dark.jpg");
+          background-image: url("https://images.ecency.com/DQmePcPb9n1LidPc56SEnoKsUCiUeh8a3qabW7DbES1nodc/bg_download_mob_dark.jpg");
         }
         @include themify(day) {
-          background-image: url("../../img/bg-download-mob-light.jpg");
+          background-image: url("https://images.ecency.com/DQmUGFw4J4J52sa1w5QvZamZQB9oqEWjWf9bAEpwyMETxWH/bg_download_mob_light.jpg");
         }
         .inner > span {
           display: flex;
@@ -537,10 +537,10 @@
           background-position: bottom;
           background-repeat: no-repeat;
           @include themify(night) {
-            background-image: url("../../img/download-algae-dark.png");
+            background-image: url("https://images.ecency.com/DQmTJZwbhqqRmVjMciEcsm3gwYcG3mfg6gb75NS3UBCR4Ye/download_algae_dark.png");
           }
           @include themify(day) {
-            background-image: url("../../img/download-algae.png");
+            background-image: url("https://images.ecency.com/DQmUBKDPAW61LYwYxChyeufpd3hZJR1sBtdJ66YF5Z62hif/download_algae.png");
           }
         }
       }
@@ -618,7 +618,7 @@
             position: absolute;
             bottom: 50px;
             right: 17%;
-            background-image: url("../../img/fish-2.png");
+            background-image: url("https://images.ecency.com/DQmQdnoUM4qDiga4GjtJZgpmJ4k1N6FyzqMhTMactP4YJJi/fish_2.png");
             background-size: contain;
             background-repeat: no-repeat;
             background-position-x: right;
@@ -757,6 +757,7 @@
             img {
               margin: 0;
               padding: 0;
+              border-radius: 50%;
             }
             li {
               width: 100%;
@@ -832,7 +833,7 @@
         position: absolute;
         top: 0;
         left: 0;
-        background-image: url("../../img/left-fishes.png");
+        background-image: url("https://images.ecency.com/DQmTa4cf4fDmm7gvRRtBFCuJb3AFCcraKL2PediVVh9yHum/left_fishes.png");
         background-repeat: no-repeat;
         background-position: center;
         background-size: contain;
@@ -846,7 +847,7 @@
         position: absolute;
         right: 50px;
         bottom: 0;
-        background-image: url("../../img/footer-main-fish.png");
+        background-image: url("https://images.ecency.com/DQmbrTbtnt9Y6wmWXAGxsgaGB6vfMKAW6uHHBbeHCLMoTQP/footer_main_fish.png");
         background-repeat: no-repeat;
         background-position: center;
         background-size: contain;
