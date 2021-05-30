@@ -89,6 +89,7 @@
     }
     @include themify(day) {
       display: block;
+      opacity: 0.3;
     }
     position: absolute;
     top: 0;
