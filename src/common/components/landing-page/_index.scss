@@ -55,24 +55,38 @@
       height: 1100px;
     }
   }
-  .tob-bg-illustration {
+  .tob-bg-illustration-dark {
     @include themify(night) {
-      background-image: url("https://images.ecency.com/DQmV6Udt64yRp4NHys5et6DV4YKfFDjeReDERKxxN67KjkD/illustration_hero.png");
+      display: block;
     }
     @include themify(day) {
-      background-image: url("https://images.ecency.com/DQmen6goXPVdszUgDUSQeQHhDUbhjtcsgFouz8efu3NVzEN/illustration_hero_day.png");
+      display: none;
     }
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     width: 100%;
     height: 1100px;
-    @media (max-width: $md-break) {
-      height: 1100px;
+    @media (max-width: $xl-break) {
+      display: none!important;
+    }
+  }
+  .tob-bg-illustration-light {
+    @include themify(night) {
+      display: none;
+    }
+    @include themify(day) {
+      display: block;
+    }
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 1100px;
+    @media (max-width: $xl-break) {
+      display: none!important;
     }
   }
   .tob-bg-algae {
@@ -373,6 +387,33 @@
       width: auto;
       @media (max-width: $md-break) {
         height: 20px;
+      }
+    }
+    .part-bottom {
+      width: 100%;
+      .inner {
+        width: 100%;
+        .text-group {
+          width: 100%;
+          padding: 1rem;
+          width: auto;
+          min-width: unset;
+          height: auto;
+        }
+        @media (max-width: $sm-break) {
+          .text-group {
+            margin: 0;
+            padding: 3rem 1rem 0;
+            width: 100%;
+            height: fit-content;
+            p {
+              width: -webkit-fill-available;
+              span {
+                display: block;
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -847,12 +888,11 @@
         position: absolute;
         right: 50px;
         bottom: 0;
-        background-image: url("https://images.ecency.com/DQmbrTbtnt9Y6wmWXAGxsgaGB6vfMKAW6uHHBbeHCLMoTQP/footer_main_fish.png");
         background-repeat: no-repeat;
         background-position: center;
         background-size: contain;
         width: 400px;
-        height: 700px;
+        height: 600px;
       }
       .inner {
         justify-content: center;
@@ -1011,7 +1051,7 @@
         height: 1000px !important;
         .main-fish {
           width: 600px;
-          height: 950px;
+          height: 750px;
         }
         .inner {
           align-items: flex-start;
@@ -1136,7 +1176,8 @@
       .part-bottom {
         overflow-x: hidden;
         .main-fish {
-          width: 400px;
+          width: 500px;
+          height: 700px;
           overflow-x: hidden;
           right: -78px;
         }
@@ -1193,6 +1234,7 @@
         .main-fish {
           right: -84px;
           width: 285px;
+          height: 600px;
         }
       }
     }
