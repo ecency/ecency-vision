@@ -18,9 +18,6 @@ import {Tsx} from "../i18n/helper";
 
 import {blogSvg, newsSvg, mailSvg, twitterSvg, githubSvg, telegramSvg, discordSvg} from "../img/svg";
 
-const surferSs = require("../img/surfer-ss.jpg");
-const mobileSs = require("../img/mobile-ss.jpg");
-
 const faq = require("../img/FAQ4.jpg");
 const faqWebp = require("../img/FAQ4-webp.webp");
 
@@ -90,8 +87,6 @@ class AboutPage extends Component<PageProps> {
                         <div className="down-cloud"/>
                     </div>
 
-                    <img src={surferSs} loading="lazy" className="surfer-ss" alt="Esteem Surfer"/>
-
                     <div className="downloads" id="downloads">
                         <h2 className="downloads-title">Downloads</h2>
                         <div className="downloads-text">
@@ -124,8 +119,6 @@ class AboutPage extends Component<PageProps> {
                             </a>
                         </div>
                     </div>
-
-                    <img src={mobileSs} loading="lazy" className="mobile-ss" alt="Ecency Mobile"/>
 
                     <div className="faq">
                         <h2 className="faq-title">{_t('static.about.faq-title')}</h2>
