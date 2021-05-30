@@ -1142,6 +1142,7 @@
               display: -webkit-box;
               display: -ms-flexbox;
               display: flex;
+              min-height: 140px;;
               -webkit-box-orient: vertical;
               -webkit-box-direction: normal;
                   -ms-flex-direction: column;
@@ -1340,6 +1341,9 @@
                   -ms-flex-direction: column;
                       flex-direction: column;
               margin-top: 3rem;
+              min-height: 350px;
+              align-items: flex-start;
+              justify-content: flex-start;
               ul {
                 margin-bottom: 0;
                 li {
