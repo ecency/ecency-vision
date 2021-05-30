@@ -13,7 +13,6 @@ import Theme from "../components/theme";
 import Feedback from "../components/feedback";
 import NavBar from "../components/navbar";
 import NavBarElectron from "../../desktop/app/components/navbar";
-import Intro from "../components/intro";
 import EntryIndexMenu from "../components/entry-index-menu";
 import LinearProgress from "../components/linear-progress";
 import EntryListLoadingItem from "../components/entry-list-loading-item";
