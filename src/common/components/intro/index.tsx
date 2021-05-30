@@ -8,8 +8,8 @@ import {_t} from "../../i18n";
 
 import {closeSvg} from '../../img/svg';
 
-const friends = require('../../img/welcome_community.png');
-const friendsWebp = require('../../img/welcome_community.webp');
+// const friends = require('../../img/welcome_community.png');
+// const friendsWebp = require('../../img/welcome_community.webp');
 
 interface Props {
     global: Global
@@ -35,7 +35,7 @@ const Intro = (props: Props) => {
         <div className="cloud-1"/>
         <div className="cloud-2"/>
         <div className="cloud-3"/>
-        <img alt="Friends" className="friends" src={props.global.canUseWebp ? friendsWebp : friends}/>
+        {/* <img alt="Friends" className="friends" src={props.global.canUseWebp ? friendsWebp : friends}/> */}
     </div>;
 };
 
