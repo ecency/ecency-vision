@@ -16,6 +16,8 @@ const LandingPage = (props: any) => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const BgHeroDark = proxifyImageSrc(`${apiBaseImage('/DQmV6Udt64yRp4NHys5et6DV4YKfFDjeReDERKxxN67KjkD/illustration_hero.png')}`, 0, 0, global.canUseWebp ? 'webp' : 'match');
+  const BgHeroLight = proxifyImageSrc(`${apiBaseImage('/DQmen6goXPVdszUgDUSQeQHhDUbhjtcsgFouz8efu3NVzEN/illustration_hero_day.png')}`, 0, 0, global.canUseWebp ? 'webp' : 'match');
   const EarnMoney = proxifyImageSrc(`${apiBaseImage('/DQmWqBCSpWSxZFxFMdmWUzC3ngiWP3wDPtE4hNyz3AWAWdK/illustration_earn_money.png')}`, 0, 0, global.canUseWebp ? 'webp' : 'match');
   const WhaleCatchsFish = proxifyImageSrc(`${apiBaseImage('/DQmYmfUK6KAkKCvTwe8HbqfjzqZD6sJ4MjeTK4ut28EtUFo/illustration_true_ownership.png')}`, 0, 0, global.canUseWebp ? 'webp' : 'match');
   const Decentralization = proxifyImageSrc(`${apiBaseImage('/DQmVYrYuz8i5sY9Yxt1e8YavSstVDWEhVqn9AymAZ6ekJZK/illustration_decentralization.png')}`, 0, 0, global.canUseWebp ? 'webp' : 'match');
@@ -25,12 +27,13 @@ const LandingPage = (props: any) => {
   const FishThree = proxifyImageSrc(`${apiBaseImage('/DQmTud3BpqaMQfUFJ8VZwMLZExEVsr2H8936nsCcSbjjxb3/fish_3.png')}`, 0, 0, global.canUseWebp ? 'webp' : 'match');
   const FishFour = proxifyImageSrc(`${apiBaseImage('/DQmengzEQWy6FYwpvXBTjnsQ3wAqnmBVcQV7p4L6nvukWBZ/fish_4.png')}`, 0, 0, global.canUseWebp ? 'webp' : 'match');
   const FishFive = proxifyImageSrc(`${apiBaseImage('/DQmZD7CzVNQjEahxdN1Ef5o6oVhcmFpq6AbUayLMnMQhQ3G/fish_5.png')}`, 0, 0, global.canUseWebp ? 'webp' : 'match');
+  const JuniorFish = proxifyImageSrc(`${apiBaseImage('/DQmZMhmqdnVLEiSXRqBFQ1vYupsdGCRfLpUNXM2zhMxx4Ph/fish_junior.png')}`, 0, 0, global.canUseWebp ? 'webp' : 'match');
+  const SeniorFish = proxifyImageSrc(`${apiBaseImage('/DQmTbpVjvv3ybGcWsPw7Xba74cky9X1Sivb93425tvyWNBM/fish_senior.png')}`, 0, 0, global.canUseWebp ? 'webp' : 'match');
   const DownloadAndroid = proxifyImageSrc(`${apiBaseImage('/DQmUTPYFBFwmWwZLCJAoBP25BbfthmaqY8BUFuDja1NB9te/icon_android.png')}`, 0, 0, global.canUseWebp ? 'webp' : 'match');
   const OurHistory = proxifyImageSrc(`${apiBaseImage('/DQmXb46RziM5tMqfGdoJKQrvej3rFEUYs9gg7rPW5xtsDUt/our_history.png')}`, 0, 0, global.canUseWebp ? 'webp' : 'match');
   const OurTeam = proxifyImageSrc(`${apiBaseImage('/DQmU2qoujkLKErYN1S9gcsPq9wtgYtxZbNeuAF7WudRSGFw/our_team.png')}`, 0, 0, global.canUseWebp ? 'webp' : 'match');
-  const JuniorFish = proxifyImageSrc(`${apiBaseImage('/DQmZMhmqdnVLEiSXRqBFQ1vYupsdGCRfLpUNXM2zhMxx4Ph/fish_junior.png')}`, 0, 0, global.canUseWebp ? 'webp' : 'match');
-  const SeniorFish = proxifyImageSrc(`${apiBaseImage('/DQmTbpVjvv3ybGcWsPw7Xba74cky9X1Sivb93425tvyWNBM/fish_senior.png')}`, 0, 0, global.canUseWebp ? 'webp' : 'match');
   const OurVision = proxifyImageSrc(`${apiBaseImage('/DQme1GzMpaGgPzcxqHracBX7Rvt7oSorjEJsDyTqV5617UT/our_vision.png')}`, 0, 0, global.canUseWebp ? 'webp' : 'match');
+  const FooterMainFish = proxifyImageSrc(`${apiBaseImage('/DQmbrTbtnt9Y6wmWXAGxsgaGB6vfMKAW6uHHBbeHCLMoTQP/footer_main_fish.png')}`, 0, 0, global.canUseWebp ? 'webp' : 'match');
   const FounderImg = proxifyImageSrc(`${apiBaseImage('/u/good-karma/avatar/large')}`, 0, 0, global.canUseWebp ? 'webp' : 'match');
   const DevopsImg = proxifyImageSrc(`${apiBaseImage('/u/talhasch/avatar/large')}`, 0, 0, global.canUseWebp ? 'webp' : 'match');
   const DesignGuru = proxifyImageSrc(`${apiBaseImage('/u/dunsky/avatar/large')}`, 0, 0, global.canUseWebp ? 'webp' : 'match');
@@ -64,7 +67,16 @@ const LandingPage = (props: any) => {
   return (
     <div className="landing-wrapper">
       <div className="top-bg" />
-      <div className="tob-bg-illustration" />
+      <img 
+        className="tob-bg-illustration-light" 
+        src={BgHeroLight}
+        alt="algaes"
+        loading="lazy"/>
+      <img 
+        className="tob-bg-illustration-dark" 
+        src={BgHeroDark}
+        alt="algaes"
+        loading="lazy"/>
       <div className="tob-bg-algae" />
       <div className="tob-bg-fishes" />
       <div className="sections first-section">
@@ -325,7 +337,7 @@ const LandingPage = (props: any) => {
         </div>
         <div className="part-bottom">
           <span className="left-fishes" />
-          <span className="main-fish" />
+          <img src={FooterMainFish} alt="Big fish" loading="lazy" className="main-fish" />
           <div className="inner">
             <div className="links-and-form">
               <div className="links">
