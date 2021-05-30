@@ -21,6 +21,7 @@ const OurHistory = `${apiBaseImage('/DQmXb46RziM5tMqfGdoJKQrvej3rFEUYs9gg7rPW5xt
 const OurTeam = `${apiBaseImage('/DQmU2qoujkLKErYN1S9gcsPq9wtgYtxZbNeuAF7WudRSGFw/our_team.png')}`;
 const JuniorFish = `${apiBaseImage('/DQmZMhmqdnVLEiSXRqBFQ1vYupsdGCRfLpUNXM2zhMxx4Ph/fish_junior.png')}`;
 const SeniorFish = `${apiBaseImage('/DQmTbpVjvv3ybGcWsPw7Xba74cky9X1Sivb93425tvyWNBM/fish_senior.png')}`;
+const OurVision = `${apiBaseImage('/DQme1GzMpaGgPzcxqHracBX7Rvt7oSorjEJsDyTqV5617UT/our_vision.png')}`;
 const FounderImg = `${apiBaseImage('/u/good-karma/avatar/large')}`;
 const DevopsImg = `${apiBaseImage('/u/talhasch/avatar/large')}`;
 const DesignGuru = `${apiBaseImage('/u/dunsky/avatar/large')}`;
@@ -29,7 +30,6 @@ const DownloadIPhone = require("../../img/icon_apple.svg");
 const DownloadIPhoneWhite = require("../../img/icon_apple-white.svg");
 const DownloadWindows = require("../../img/icon_windows.svg");
 const DownloadWindowsWhite = require("../../img/icon_windows-white.svg");
-const OurVision = require("../../img/our-vision.png");
 const FooterYoutube = require("../../img/footer-youtube.svg");
 const FooterTwitter = require("../../img/footer-twitter.svg");
 const FooterTelegram = require("../../img/footer-telegram.svg");
@@ -257,7 +257,7 @@ const LandingPage = (props: any) => {
         </div>
         <div className="part-bottom">
           <div className="inner">
-            <img className="our-vision" src={OurVision} alt="Our Vision" />
+            <img className="our-vision" src={OurVision} alt="Our Vision" loading="lazy" />
 
             <div className="text-group">
               <h2>{_t("landing-page.our-vision")}</h2>
