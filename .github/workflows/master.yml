@@ -81,3 +81,36 @@ jobs:
           docker pull ecency/vision:latest
           docker stack deploy -c docker-compose.yml -c docker-compose.production.yml vision
           docker system prune -f
+
+  deploy-US:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: SSH and deploy node app
+      uses: appleboy/ssh-action@master
+      env:
+        STAGING_PORT: ${{secrets.STAGING_PORT}}
+        PRIVATE_API_ADDR: ${{secrets.PRIVATE_API_ADDR}}
+        PRIVATE_API_AUTH: ${{secrets.PRIVATE_API_AUTH}}
+        HIVESIGNER_CLIENT_SECRET: ${{secrets.HIVESIGNER_CLIENT_SECRET}}
+        SEARCH_API_ADDR: ${{secrets.SEARCH_API_ADDR}}
+        SEARCH_API_SECRET: ${{secrets.SEARCH_API_SECRET}}
+        USE_PRIVATE: ${{secrets.USE_PRIVATE}}
+      with:
+        host: ${{ secrets.SSH_HOST_US }}
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.SSH_PORT }}
+        envs: STAGING_PORT,PRIVATE_API_ADDR,PRIVATE_API_AUTH,HIVESIGNER_CLIENT_SECRET,SEARCH_API_ADDR,SEARCH_API_SECRET,USE_PRIVATE
+        script: |
+          export PRIVATE_API_ADDR=$PRIVATE_API_ADDR
+          export PRIVATE_API_AUTH=$PRIVATE_API_AUTH
+          export HIVESIGNER_CLIENT_SECRET=$HIVESIGNER_CLIENT_SECRET
+          export SEARCH_API_ADDR=$SEARCH_API_ADDR
+          export SEARCH_API_SECRET=$SEARCH_API_SECRET
+          export USE_PRIVATE=$USE_PRIVATE
+          cd ~/vision-production
+          git pull origin master
+          docker pull ecency/vision:latest
+          docker stack deploy -c docker-compose.yml -c docker-compose.production.yml vision
+          docker system prune -f    
