@@ -5,9 +5,7 @@ import { _t } from "../../i18n";
 import { scrollDown } from "../../img/svg";
 import { error, success } from "../feedback";
 import LinearProgress from "../linear-progress";
-import { apiBaseImage, apiBase } from "../../api/helper";
-import { proxifyImageSrc } from "@ecency/render-helper";
-
+import { apiBase } from "../../api/helper";
 
 const LandingPage = (props: any) => {
 
@@ -34,9 +32,6 @@ const LandingPage = (props: any) => {
   const OurTeam = apiBase(`/assets/our-team.${global.canUseWebp?"webp":"png"}`);
   const OurVision = apiBase(`/assets/our-vision.${global.canUseWebp?"webp":"png"}`);
   const FooterMainFish = apiBase(`/assets/footer-main-fish.${global.canUseWebp?"webp":"png"}`);
-  const FounderImg = proxifyImageSrc(`${apiBaseImage('/u/good-karma/avatar/large')}`, 0, 0, global.canUseWebp ? 'webp' : 'match');
-  const DevopsImg = proxifyImageSrc(`${apiBaseImage('/u/talhasch/avatar/large')}`, 0, 0, global.canUseWebp ? 'webp' : 'match');
-  const DesignGuru = proxifyImageSrc(`${apiBaseImage('/u/dunsky/avatar/large')}`, 0, 0, global.canUseWebp ? 'webp' : 'match');
   const DownloadAndroidWhite = apiBase(`/assets/icon-android-white.svg`);
   const DownloadIPhone = apiBase(`/assets/icon-apple.svg`);
   const DownloadIPhoneWhite = apiBase(`/assets/icon-apple-white.svg`);
@@ -46,6 +41,10 @@ const LandingPage = (props: any) => {
   const FooterTwitter = apiBase(`/assets/footer-twitter.svg`);
   const FooterTelegram = apiBase(`/assets/footer-telegram.svg`);
   const FooterDiscord = apiBase(`/assets/footer-discord.svg`);
+
+  const FounderImg = apiBase(`/assets/good-karma.${global.canUseWebp?"webp":"jpeg"}`);
+  const DevopsImg = apiBase(`/assets/talhasch.${global.canUseWebp?"webp":"jpeg"}`);
+  const DesignGuru = apiBase(`/assets/dunsky.${global.canUseWebp?"webp":"jpeg"}`);;
 
   const LogoCircle = require("../../img/logo-circle.svg");
 
