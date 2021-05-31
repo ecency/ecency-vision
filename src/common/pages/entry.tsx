@@ -173,19 +173,6 @@ class EntryPage extends BaseComponent<Props, State> {
         const {category, username, permlink} = match.params;
         const author = username.replace("@", "");
 
-        // For fetching authors about and display name information -- start
-        if (!global.isMobile) {
-            const authorInfo = (await getAccountFull(author))?.profile || {name: "", about: ""}
-            authorInfo && this.stateSet({
-                authorInfo: {
-                    ...this.state.authorInfo,
-                    name: authorInfo?.name || "",
-                    about: authorInfo?.about || authorInfo?.location || ""
-                }
-            })    
-        }
-        // For fetching authors about and display name information -- end
-
         let reducerFn = updateEntry;
 
         if (!entry) {
@@ -225,6 +212,19 @@ class EntryPage extends BaseComponent<Props, State> {
             .finally(() => {
                 this.stateSet({loading: false});
             });
+
+        // For fetching authors about and display name information -- start
+        if (!global.isMobile) {
+            const authorInfo = (await getAccountFull(author))?.profile || {name: "", about: ""}
+            authorInfo && this.stateSet({
+                authorInfo: {
+                    ...this.state.authorInfo,
+                    name: authorInfo?.name || "",
+                    about: authorInfo?.about || authorInfo?.location || ""
+                }
+            })
+        }
+        // For fetching authors about and display name information -- end
     };
 
     getEntry = (): Entry | undefined => {
