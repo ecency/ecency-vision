@@ -1,6 +1,21 @@
 {
   "short_name": "Ecency",
   "name": "Ecency",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "related_applications":[
+    {
+     "platform": "play",
+     "url": "https://play.google.com/store/apps/details?id=app.esteem.mobile.android",
+     "id": "app.esteem.mobile.android"
+    },
+    {
+     "platform": "itunes",
+     "url":"https://itunes.apple.com/app/ecency-app/id1451896376"
+    }
+  ],
   "icons": [
     {
       "src": "favicon.png",
@@ -16,10 +31,26 @@
       "src": "logo512.png",
       "type": "image/png",
       "sizes": "512x512"
+    },
+    {
+      "src": "illustration-hero-day.png",
+      "type": "image/png",
+      "sizes": "1921x1080"
+    },
+    {
+      "src": "illustration-hero-day.webp",
+      "type": "image/webp",
+      "sizes": "1921x1080"
+    },
+    {
+      "src": "illustration_earn_money.png",
+      "type": "image/png",
+      "sizes": "373x442"
+    },
+    {
+      "src": "illustration_earn_money.webp",
+      "type": "image/webp",
+      "sizes": "373x442"
     }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  ]
 }
