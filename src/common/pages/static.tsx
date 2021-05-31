@@ -17,9 +17,7 @@ import {_t} from "../i18n";
 import {Tsx} from "../i18n/helper";
 
 import {blogSvg, newsSvg, mailSvg, twitterSvg, githubSvg, telegramSvg, discordSvg} from "../img/svg";
-
-const faq = require("../img/FAQ4.jpg");
-const faqWebp = require("../img/FAQ4-webp.webp");
+import { apiBase } from '../api/helper';
 
 const faqKeys = [
     'what-is-ecency',
@@ -803,6 +801,7 @@ class FaqPage extends Component<PageProps> {
         };
 
         const {global} = this.props;
+        const imgs = apiBase(`/assets/ecency-faq.${this.props.global.canUseWebp ? 'webp' : 'jpg'}`);
 
         return (
             <>
@@ -818,7 +817,7 @@ class FaqPage extends Component<PageProps> {
                 <div className="app-content static-page faq-page" itemScope={true} itemType="https://schema.org/FAQPage">
                     <div className="static-content">
                         <h1 className="page-title">{_t('static.faq.page-title')}</h1>
-                        <img src={this.props.global.canUseWebp ? faqWebp : faq}/>
+                        <img src={imgs}/>
                         <h3>{_t('static.faq.page-sub-title')}</h3>
                         <ul className="table-contents">
                             {faqKeys.map(x => {

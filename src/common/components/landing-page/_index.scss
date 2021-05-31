@@ -750,7 +750,7 @@
         background-image: url("../../img/bg-download-tiny-dark.svg");
       }
       @include themify(day) {
-        background-image: url("https://images.ecency.com/DQmNe47DFdjSKYrwYKfD6etCbjeqB4CfDc62Kt37D8pRitX/bg_download_tiny.jpg");
+        background-image: url("https://ecency.com/assets/bg-download-tiny.png");
       }
       background-size: cover;
       background-position: center;
@@ -760,10 +760,10 @@
       @media (max-width: $lg-break) {
         height: 500px;
         @include themify(night) {
-          background-image: url("https://images.ecency.com/DQmePcPb9n1LidPc56SEnoKsUCiUeh8a3qabW7DbES1nodc/bg_download_mob_dark.jpg");
+          background-image: url("https://ecency.com/assets/bg-download-mob-dark.png");
         }
         @include themify(day) {
-          background-image: url("https://images.ecency.com/DQmUGFw4J4J52sa1w5QvZamZQB9oqEWjWf9bAEpwyMETxWH/bg_download_mob_light.jpg");
+          background-image: url("https://ecency.com/assets/bg-download-mob-light.png");
         }
         .inner > span {
           display: -webkit-box;
@@ -779,10 +779,10 @@
           background-position: bottom;
           background-repeat: no-repeat;
           @include themify(night) {
-            background-image: url("https://images.ecency.com/DQmTJZwbhqqRmVjMciEcsm3gwYcG3mfg6gb75NS3UBCR4Ye/download_algae_dark.png");
+            background-image: url("https://ecency.com/assets/download-algae-dark.png");
           }
           @include themify(day) {
-            background-image: url("https://images.ecency.com/DQmUBKDPAW61LYwYxChyeufpd3hZJR1sBtdJ66YF5Z62hif/download_algae.png");
+            background-image: url("https://ecency.com/assets/download-algae.png");
           }
         }
       }
@@ -872,7 +872,7 @@
             position: absolute;
             bottom: 50px;
             right: 17%;
-            background-image: url("https://images.ecency.com/DQmQdnoUM4qDiga4GjtJZgpmJ4k1N6FyzqMhTMactP4YJJi/fish_2.png");
+            background-image: url("https://ecency.com/assets/fish-2.png");
             background-size: contain;
             background-repeat: no-repeat;
             background-position-x: right;
@@ -1141,7 +1141,7 @@
         position: absolute;
         top: 0;
         left: 0;
-        background-image: url("https://images.ecency.com/DQmTa4cf4fDmm7gvRRtBFCuJb3AFCcraKL2PediVVh9yHum/left_fishes.png");
+        background-image: url("https://ecency.com/assets/left-fishes.png");
         background-repeat: no-repeat;
         background-position: center;
         background-size: contain;
