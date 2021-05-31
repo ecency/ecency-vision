@@ -37,6 +37,7 @@ const stripSlash = (req: any, res: any, next: any) => {
 server
     .disable("x-powered-by")
     .use(express.static(process.env.RAZZLE_PUBLIC_DIR!))
+    .use("/assets", express.static(`${process.env.RAZZLE_PUBLIC_DIR!}/assets`))
     .use(express.json())
     .use(cookieParser())
     .use(lowerCase)
