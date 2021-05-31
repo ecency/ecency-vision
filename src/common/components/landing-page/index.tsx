@@ -163,12 +163,10 @@ const LandingPage = (props: any) => {
               <h2>{_t("landing-page.open-source")}</h2>
               <p>
                 {_t("landing-page.open-source-desc")}
-                <span>
-                  <a className="no-break" href="/signup?referral=ecency">
-                    {_t("landing-page.feel-free-join")}
-                  </a>
-                </span>
               </p>
+              <a className="no-break" href="/signup?referral=ecency">
+                {_t("landing-page.feel-free-join")}
+              </a>
             </div>
             <div className="img-wrapper">
               <img
@@ -184,6 +182,7 @@ const LandingPage = (props: any) => {
 
       <div className="sections fourth-section">
         <div className="part-top">
+          <span className="mask" />
           <div className="inner">
             <div className="fish-container">
               <img className="fish three" src={FishThree} alt="earn-money" loading="lazy" />
@@ -427,3 +426,4 @@ const LandingPage = (props: any) => {
 };
 
 export default LandingPage;
+

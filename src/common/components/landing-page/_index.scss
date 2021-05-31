@@ -1,10 +1,3 @@
-/*
-* Prefixed by https://autoprefixer.github.io
-* PostCSS: v7.0.29,
-* Autoprefixer: v9.7.6
-* Browsers: last 4 version
-*/
-
 .landing-wrapper {
   position: relative;
   width: 100%;
@@ -17,16 +10,16 @@
   .top-bg {
     @include themify(day) {
       background: rgb(255, 255, 255);
+      background: -o-linear-gradient(
+        top,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(124, 190, 241, 1) 100%
+      );
       background: -webkit-gradient(
         linear,
         left top, left bottom,
         from(rgba(255, 255, 255, 1)),
         to(rgba(124, 190, 241, 1))
-      );
-      background: -o-linear-gradient(
-        top,
-        rgba(255, 255, 255, 1) 0%,
-        rgba(124, 190, 241, 1) 100%
       );
       background: linear-gradient(
         180deg,
@@ -37,16 +30,16 @@
     }
     @include themify(night) {
       background: rgb(166, 172, 175);
+      background: -o-linear-gradient(
+        top,
+        rgba(166, 172, 175, 1) 0%,
+        rgba(23, 40, 61, 1) 100%
+      );
       background: -webkit-gradient(
         linear,
         left top, left bottom,
         from(rgba(166, 172, 175, 1)),
         to(rgba(23, 40, 61, 1))
-      );
-      background: -o-linear-gradient(
-        top,
-        rgba(166, 172, 175, 1) 0%,
-        rgba(23, 40, 61, 1) 100%
       );
       background: linear-gradient(
         180deg,
@@ -69,6 +62,9 @@
   .tob-bg-illustration-dark {
     @include themify(night) {
       display: block;
+      background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.5)));
+      background: -o-linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
     }
     @include themify(day) {
       display: none;
@@ -78,7 +74,9 @@
     left: 0;
     right: 0;
     width: 100%;
-    height: 1100px;
+    height: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
     @media (max-width: $xl-break) {
       display: none!important;
     }
@@ -192,6 +190,14 @@
   }
   .no-break {
     white-space: nowrap;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 135%;
+    @media (max-width: $md-break) {
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 25px;
+    }
   }
   .sections {
     display: -webkit-box;
@@ -270,9 +276,7 @@
     }
   }
 
-  .second-section  {
-    height: 1100px;
-  }
+  
   .part-top {
     height: 650px;
     width: 100%;
@@ -289,6 +293,7 @@
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+   
     .inner {
       display: -webkit-box;
       display: -ms-flexbox;
@@ -307,7 +312,15 @@
       -webkit-box-align: center;
           -ms-flex-align: center;
               align-items: center;
-      height: 441px;
+      @media (min-width: $md-break) {
+        height: 550px;
+        ul > li:first-of-type {
+          padding-right: 4rem;
+        }
+        ul > li:last-of-type {
+          padding-left: 4rem;
+        }
+      }
       @media (max-width: $md-break) {
         -webkit-box-pack: center;
             -ms-flex-pack: center;
@@ -315,6 +328,8 @@
         -webkit-box-align: center;
             -ms-flex-align: center;
                 align-items: center;
+                height: 441px;
+
       }
       img {
         margin: auto 3% auto auto;
@@ -468,14 +483,29 @@
       }
     }
   }
+  
+  .second-section  {
+    height: 1100px;
+    .part-top {
+      @include themify(night) {
+        background-color: #131a29;
+      }
+    }
+  }
 
   .third-section {
     height: auto;
     .img-wrapper {
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
       width: 50%;
-      align-items: center;
-      justify-content: center;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
       height: 100%;
       .decentralization-img {
         width: 70%;
@@ -484,12 +514,22 @@
       }
     }
     .part-top {
+      @include themify(night) {
+        background-color: #131a29;
+      }
       @media (max-width:$lg-break) {
       height: auto;
       .inner {
-          justify-content: flex-start;
-          align-items: center;
-          flex-direction: column;
+          -webkit-box-pack: start;
+              -ms-flex-pack: start;
+                  justify-content: flex-start;
+          -webkit-box-align: center;
+              -ms-flex-align: center;
+                  align-items: center;
+          -webkit-box-orient: vertical;
+          -webkit-box-direction: normal;
+              -ms-flex-direction: column;
+                  flex-direction: column;
           width: 100%;
           margin: 0;
           padding: 0;
@@ -533,6 +573,7 @@
       @media (max-width: $lg-break) {
         height: 700px;
       }
+    
       .inner {
         width: 100%;
         height: auto;
@@ -547,10 +588,19 @@
           width: 50%;
           margin: 0;
           padding: 0;
+          display: -webkit-box;
+          display: -ms-flexbox;
           display: flex;
-          flex-direction: row;
-          align-items: center;
-          justify-content: center;
+          -webkit-box-orient: horizontal;
+          -webkit-box-direction: normal;
+              -ms-flex-direction: row;
+                  flex-direction: row;
+          -webkit-box-align: center;
+              -ms-flex-align: center;
+                  align-items: center;
+          -webkit-box-pack: center;
+              -ms-flex-pack: center;
+                  justify-content: center;
           .mechanic {
             width: 400px;
             max-width: 400px !important;
@@ -560,7 +610,10 @@
           }
         }
         @media (max-width: $lg-break) {
-          flex-direction: column-reverse;
+          -webkit-box-orient: vertical;
+          -webkit-box-direction: reverse;
+              -ms-flex-direction: column-reverse;
+                  flex-direction: column-reverse;
           height: auto;
           .text-group {
             margin: 0;
@@ -594,9 +647,12 @@
   .fourth-section {
     height: 2080px;
     .part-top {
-      
       height: 940px;
-      
+      @include themify(night) {
+        background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.5)));
+        background: -o-linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+      } 
       .inner {
         display: -webkit-box;
         display: -ms-flexbox;
@@ -612,6 +668,7 @@
             -ms-flex-align: center;
                 align-items: center;
         position: relative;
+        
       }
       .fish-container {
         position: absolute;
@@ -624,7 +681,6 @@
         margin: 0;
         padding: 0;
         background-color: transparent;
-
         &:last-of-type {
           right: 0;
           left: unset;
@@ -633,6 +689,7 @@
           width: 152px;
           height: auto;
           position: absolute;
+             
         }
         .one {
           width: 79px;
@@ -678,6 +735,24 @@
           }
         }
       }
+      .mask {
+        @include themify(night) {
+          display: none;
+        } 
+        @include themify(night) {
+          z-index: 1;
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 940px;
+          background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.5)));
+          background: -o-linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+          background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+          pointer-events: none;
+        } 
+      }
       ul {
         list-style: none;
         width: 100%;
@@ -686,6 +761,7 @@
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
+        z-index: 2;
         -webkit-box-orient: horizontal;
         -webkit-box-direction: normal;
             -ms-flex-direction: row;
@@ -806,6 +882,7 @@
           margin: 0;
           width: 756px;
           max-width: 756px;
+          z-index: 2;
           h2 {
             @include themify(night) {
               color: $white;
@@ -814,11 +891,33 @@
               color: $blue;
             }
           }
-          p,
+          p {
+            font-weight: 300;
+            font-size: 24px;
+            line-height: 140%!important;
+            -webkit-box-align: center;
+                -ms-flex-align: center;
+                    align-items: center;
+            line-height: 2;
+            @include themify(night) {
+              color: $white;
+            }
+            @include themify(day) {
+              color: $blue;
+            }
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            img {
+              margin-right: 0.7rem;
+              width: 20px;
+              height: 25px;
+            }
+          }
           a {
             font-weight: 300;
             font-size: 24px;
-            line-height: 140%;
+            line-height: 180%;
             -webkit-box-align: center;
                 -ms-flex-align: center;
                     align-items: center;
@@ -918,6 +1017,9 @@
       }
     }
     .part-bottom {
+      @include themify(night) {
+        background-color: #131a29;
+      }
       .inner {
         -webkit-box-pack: justify;
             -ms-flex-pack: justify;
@@ -1004,9 +1106,9 @@
     .part-top {
       height: 750px;
       .inner {
-        -webkit-box-pack: justify;
-            -ms-flex-pack: justify;
-                justify-content: space-between;
+                -webkit-box-pack: center;
+                    -ms-flex-pack: center;
+                        justify-content: center;
         height: 100%;
         .text-group {
           margin: 1rem;
@@ -1017,7 +1119,7 @@
             margin-bottom: 2rem;
           }
           ul {
-            width: 270px;
+            width: 370px;
             height: 520px;
             display: -webkit-box;
             display: -ms-flexbox;
@@ -1218,7 +1320,6 @@
               display: -webkit-box;
               display: -ms-flexbox;
               display: flex;
-              min-height: 140px;;
               -webkit-box-orient: vertical;
               -webkit-box-direction: normal;
                   -ms-flex-direction: column;
@@ -1418,8 +1519,12 @@
                       flex-direction: column;
               margin-top: 3rem;
               min-height: 350px;
-              align-items: flex-start;
-              justify-content: flex-start;
+              -webkit-box-align: start;
+                  -ms-flex-align: start;
+                      align-items: flex-start;
+              -webkit-box-pack: start;
+                  -ms-flex-pack: start;
+                      justify-content: flex-start;
               ul {
                 margin-bottom: 0;
                 li {
