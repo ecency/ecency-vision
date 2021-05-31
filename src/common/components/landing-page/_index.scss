@@ -136,6 +136,9 @@
     @media (max-width: $md-break) {
       display: block;
     }
+    @media (max-width: $sm-break) {
+      left: 23%;
+    }
   }
   h1 {
     font-weight: 800;
@@ -378,11 +381,6 @@
       width: 50%;
       height: auto;
       bottom: 28%;
-      &.mechanic {
-        width: auto;
-        right: 17%;
-        height: 200px;
-      }
     }
     @media (max-width: $md-break) {
       width: 70%;
@@ -390,7 +388,7 @@
       bottom: 28%;
     }
     @media (max-width: $sm-break) {
-      bottom: 33%;
+      bottom: 31%;
     }
   }
   .part-bottom {
@@ -411,6 +409,9 @@
     }
     @include themify(day) {
       background-color: $faded-blue;
+    }
+    @media (max-width: $lg-break) {
+      height: 700px;
     }
     .inner {
       display: -webkit-box;
@@ -449,13 +450,7 @@
         visibility: visible !important;
         @media (max-width: $xxl-break) {
           width: 30%;
-          h2 {
-            font-weight: 800;
-            font-size: 31px;
-            line-height: 37px;
-          }
           p {
-            font-size: 18px;
             line-height: 140%;
           }
         }
@@ -475,18 +470,72 @@
   }
 
   .third-section {
-    height: 1100px;
-    .decentralization-img {
-      height: 382px;
-      width: auto;
-      @media (max-width: $md-break) {
-        height: 20px;
+    height: auto;
+    .img-wrapper {
+      display: flex;
+      width: 50%;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      .decentralization-img {
+        width: 70%;
+        height: auto;
+        margin: 0;
+      }
+    }
+    .part-top {
+      @media (max-width:$lg-break) {
+      height: auto;
+      .inner {
+          justify-content: flex-start;
+          align-items: center;
+          flex-direction: column;
+          width: 100%;
+          margin: 0;
+          padding: 0;
+          height: auto;
+          .img-wrapper {
+            width: 100%;
+            height: 300px;
+            margin-top: 3rem;
+
+            .decentralization-img {
+              height: 90%;
+              width: auto;
+            }
+
+          }
+          .text-group {
+            height: 450px;
+            width: 100%;
+            margin: 0;
+            padding: 4rem 1rem;
+            max-height: unset;
+          }
+        }
+      }
+      @media (max-width:$sm-break) {
+        .inner {
+          .img-wrapper {
+            width: 90%;
+            height: auto;
+            .decentralization-img {
+              width: 90%;
+            }
+          }
+        }
       }
     }
     .part-bottom {
       width: 100%;
+      height: auto;
+      min-height: 400px;
+      @media (max-width: $lg-break) {
+        height: 700px;
+      }
       .inner {
         width: 100%;
+        height: auto;
         .text-group {
           width: 100%;
           padding: 1rem;
@@ -494,7 +543,25 @@
           min-width: unset;
           height: auto;
         }
-        @media (max-width: $sm-break) {
+        .img-wrapper {
+          width: 50%;
+          margin: 0;
+          padding: 0;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+          .mechanic {
+            width: 400px;
+            max-width: 400px !important;
+            height: auto;
+            margin: 0;
+            margin-top: -200px;
+          }
+        }
+        @media (max-width: $lg-break) {
+          flex-direction: column-reverse;
+          height: auto;
           .text-group {
             margin: 0;
             padding: 3rem 1rem 0;
@@ -502,11 +569,21 @@
             height: -webkit-fit-content;
             height: -moz-fit-content;
             height: fit-content;
+            max-width: unset;
             p {
               width: -webkit-fill-available;
               span {
                 display: block;
               }
+            }
+          }
+          .img-wrapper {
+            width: 90%;
+            height: auto;
+            .mechanic {
+              margin-top: 2rem;
+              width: 90%;
+              height: auto;
             }
           }
         }
@@ -679,6 +756,7 @@
       background-position: center;
       background-repeat: no-repeat;
       position: relative;
+
       @media (max-width: $lg-break) {
         height: 500px;
         @include themify(night) {
@@ -729,9 +807,6 @@
           width: 756px;
           max-width: 756px;
           h2 {
-            font-weight: bold;
-            font-size: 59px;
-            line-height: 78px;
             @include themify(night) {
               color: $white;
             }
@@ -1386,9 +1461,6 @@
             margin-right: 0;
             height: 70%;
             h2 {
-              font-weight: 800;
-              font-size: 31px;
-              line-height: 37px;
               text-align: start;
             }
             ul {

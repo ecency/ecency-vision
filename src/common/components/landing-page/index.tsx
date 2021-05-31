@@ -136,12 +136,14 @@ const LandingPage = (props: any) => {
       <div className="sections third-section">
         <div className="part-top">
           <div className="inner">
-            <img
-              className="decentralization-img"
-              src={Decentralization}
-              alt="decentralization"
-              loading="lazy"
-            />
+            <div className="img-wrapper">
+              <img
+                className="decentralization-img"
+                src={Decentralization}
+                alt="decentralization"
+                loading="lazy"
+              />
+            </div>
             <div className="text-group visible">
               <h2>{_t("landing-page.decentralization")}</h2>
               <p>
@@ -155,12 +157,6 @@ const LandingPage = (props: any) => {
             </div>
           </div>
         </div>
-        <img
-          className="landing-floating-image mechanic"
-          src={MechanicFish}
-          alt="mechanic"
-          loading="lazy"
-        />
         <div className="part-bottom">
           <div className="inner">
             <div className="text-group">
@@ -173,6 +169,14 @@ const LandingPage = (props: any) => {
                   </a>
                 </span>
               </p>
+            </div>
+            <div className="img-wrapper">
+              <img
+                className="mechanic"
+                src={MechanicFish}
+                alt="mechanic"
+                loading="lazy"
+              />
             </div>
           </div>
         </div>
