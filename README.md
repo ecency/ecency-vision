@@ -1,6 +1,6 @@
 # [Ecency vision][ecency_vision] – Ecency Web/Desktop client
 
-![ecency](https://raw.githubusercontent.com/ecency/ecency-vision/development/public/github-cover.png?token=AAI7QTDQXRWRZFJ2W4QH6LC7VVA3I)
+![ecency](https://ecency.com/assets/github-cover.png)
 
 Immutable, decentralized, uncensored, rewarding communities powered by Hive.
 
@@ -44,11 +44,6 @@ Feel free to test it out and submit improvements and pull requests.
 ##### Environment variables
 
 * `USE_PRIVATE` -  if instance has private api address and auth (0 or 1 value)
-* `PRIVATE_API_ADDR` - private api endpoint
-* `PRIVATE_API_AUTH` - private api auth
-* `HIVESIGNER_CLIENT_SECRET` -  hivesigner client secret
-* `SEARCH_API_ADDR` - hivesearcher api endpoint
-* `SEARCH_API_SECRET` - hivesearcher api auth token
 
 ##### Start website in dev
 `$ yarn start`
@@ -74,14 +69,9 @@ docker run -it --rm -p 3000:3000 ecency/vision:latest
 
 Configure the instance using following environment variables:
  * `USE_PRIVATE`
- * `PRIVATE_API_ADDR`
- * `PRIVATE_API_AUTH`
- * `HIVESIGNER_CLIENT_SECRET`
- * `SEARCH_API_ADDR`
- * `SEARCH_API_SECRET`
 
 ```bash
-docker run -it --rm -p 3000:3000 -e PRIVATE_API_ADDR=https://api.example.com -e PRIVATE_API_AUTH=verysecretpassword ecency/vision:latest
+docker run -it --rm -p 3000:3000 -e USE_PRIVATE=1 ecency/vision:latest
 ```
 
 ### Swarm
