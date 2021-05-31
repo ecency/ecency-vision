@@ -55,10 +55,5 @@ exports[`(1) Render 1`] = `
   <div
     className="cloud-3"
   />
-  <img
-    alt="Friends"
-    className="friends"
-    src="welcome_community.png"
-  />
 </div>
 `;
