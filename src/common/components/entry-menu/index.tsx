@@ -11,6 +11,7 @@ import {EntryPinTracker} from "../../store/entry-pin-tracker/types";
 import {Global} from "../../store/global/types";
 import {Account} from "../../store/accounts/types";
 import {DynamicProps} from "../../store/dynamic-props/types";
+import {ToggleType} from "../../store/ui/types";
 
 import {clone} from "../../store/util";
 
@@ -58,6 +59,7 @@ interface Props {
     addCommunity: (data: Community) => void;
     trackEntryPin: (entry: Entry) => void;
     setEntryPin: (entry: Entry, pin: boolean) => void;
+    toggleUIProp: (what: ToggleType) => void;
 }
 
 interface State {
@@ -224,9 +226,13 @@ export class EntryMenu extends BaseComponent<Props, State> {
         }
     }
 
+    toggleLoginModal = () => {
+        this.props.toggleUIProp("login")
+    }
+
     render() {
         const {global, activeUser, entry, entryPinTracker, alignBottom, separatedSharing} = this.props;
-
+       
         const isComment = !!entry.parent_author;
 
         const ownEntry = activeUser && activeUser.username === entry.author;
@@ -319,12 +325,12 @@ export class EntryMenu extends BaseComponent<Props, State> {
                 ...[
                     {
                         label: _t("entry-menu.promote"),
-                        onClick: this.togglePromote,
+                        onClick: activeUser !== null ? this.togglePromote : this.toggleLoginModal,
                         icon: bullHornSvg
                     },
                     {
                         label: _t("entry-menu.boost"),
-                        onClick: this.toggleBoost,
+                        onClick: activeUser !== null ? this.toggleBoost : this.toggleLoginModal,
                         icon: rocketLaunchSvg
                     }
                 ]
@@ -351,7 +357,7 @@ export class EntryMenu extends BaseComponent<Props, State> {
 
         const {cross, share, editHistory, delete_, pin, unpin, mute, promote, boost} = this.state;
         const community = this.getCommunity();
-
+        
         return <div className="entry-menu">
             {separatedSharing && (
                 <div className="separated-share">
@@ -438,7 +444,8 @@ export default (p: Props) => {
         updateEntry: p.updateEntry,
         addCommunity: p.addCommunity,
         trackEntryPin: p.trackEntryPin,
-        setEntryPin: p.setEntryPin
+        setEntryPin: p.setEntryPin,
+        toggleUIProp: p.toggleUIProp
     }
 
     return <EntryMenu {...props} />

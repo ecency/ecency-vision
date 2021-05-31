@@ -1,4 +1,6 @@
-$xsm-break: 360px;
+$xxsm-break: 300px;
+$xsm-break: 320px;
+$xs-break: map-get($grid-breakpoints, "xs");
 $sm-break: map-get($grid-breakpoints, "sm");
 $md-break: map-get($grid-breakpoints, "md");
 $lg-break: map-get($grid-breakpoints, "lg");

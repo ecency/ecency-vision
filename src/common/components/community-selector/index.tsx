@@ -46,6 +46,7 @@ export class Browser extends BaseComponent<BrowserProps, BrowserState> {
 
     componentDidMount() {
         this.fetchSubscriptions().then();
+        document.getElementById("search-communities-input")?.focus()
     }
 
     fetchSubscriptions = () => {
@@ -86,7 +87,7 @@ export class Browser extends BaseComponent<BrowserProps, BrowserState> {
         const {subscriptions, results, query} = this.state;
 
         const search = <div className="search">
-            <FormControl type="text" size="sm" placeholder={_t("community-selector.search-placeholder")} value={query} onChange={this.queryChanged}/>
+            <FormControl type="text" size="sm" placeholder={_t("community-selector.search-placeholder")} value={query} onChange={this.queryChanged} id="search-communities-input" />
         </div>
 
         if (query) {
@@ -167,12 +168,14 @@ interface Props {
 interface State {
     community: Community | null;
     visible: boolean;
+    picked: boolean
 }
 
 export class CommunitySelector extends BaseComponent<Props, State> {
     state: State = {
         community: null,
-        visible: false
+        visible: false,
+        picked: false
     }
 
     componentDidMount() {
@@ -225,8 +228,8 @@ export class CommunitySelector extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {activeUser, onSelect} = this.props;
-        const {community, visible} = this.state;
+        const {activeUser, tags, onSelect} = this.props;
+        const {community, visible, picked} = this.state;
 
         let content;
         if (community) {
@@ -235,10 +238,15 @@ export class CommunitySelector extends BaseComponent<Props, State> {
                 <span className="label">{community.title}</span> {menuDownSvg}
             </>;
         } else {
-            content = <>
-                {UserAvatar({...this.props, username: activeUser.username, size: "small"})}
-                <span className="label">{_t("community-selector.my-blog")}</span> {menuDownSvg}
-            </>
+
+            if (tags.length > 0 || picked) {
+                content = <>
+                    {UserAvatar({...this.props, username: activeUser.username, size: "small"})}
+                    <span className="label">{_t("community-selector.my-blog")}</span> {menuDownSvg}
+                </>
+            } else {
+                content = <><span className="label">{_t("community-selector.choose")}</span> {menuDownSvg}</>
+            }
         }
 
         return <>
@@ -248,11 +256,14 @@ export class CommunitySelector extends BaseComponent<Props, State> {
             }}>{content}</a>
 
             {visible && (
-                <Modal onHide={this.toggle} show={true} centered={true} animation={false} className="community-selector-modal">
-                    <Modal.Body>
+                <Modal onHide={this.toggle} show={true} centered={true} animation={false} className="community-selector-modal" >
+                    <Modal.Header closeButton={true}/>
+
+                    <Modal.Body >
                         <Browser {...this.props} onHide={this.toggle} onSelect={(name: string | null) => {
                             const prev = this.extractCommunityName();
                             onSelect(prev, name);
+                            this.stateSet({picked: true});
                         }}/>
                     </Modal.Body>
                 </Modal>

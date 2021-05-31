@@ -44,6 +44,20 @@ export const getLeaderboard = (duration: LeaderBoardDuration): Promise<LeaderBoa
     return axios.get(apiBase(`/private-api/leaderboard/${duration}`)).then(resp => resp.data);
 };
 
+export interface CurationItem {
+    efficiency: number;
+    account: string;
+    vests: number;
+    votes: number;
+    uniques: number;
+}
+
+export type CurationDuration = "day" | "week" | "month";
+
+export const getCuration = (duration: CurationDuration): Promise<CurationItem[]> => {
+    return axios.get(apiBase(`/private-api/curation/${duration}`)).then(resp => resp.data);
+};
+
 export const signUp = (username: string, email: string, referral: string): Promise<any> =>
     axios
         .post(apiBase(`/private-api/account-create`), {
@@ -55,6 +69,14 @@ export const signUp = (username: string, email: string, referral: string): Promi
             return resp;
         });
 
+export const subscribeEmail = (email: string): Promise<any> =>
+    axios
+        .post(apiBase(`/private-api/subscribe`), {
+            email: email
+        })
+        .then(resp => {
+            return resp;
+        });
 
 export const usrActivity = (username: string, ty: number, bl: string | number = '', tx: string | number = '') => {
     if (!window.usePrivate) {

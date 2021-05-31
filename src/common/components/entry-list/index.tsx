@@ -47,14 +47,14 @@ interface Props {
 export class EntryListContent extends Component<Props> {
     render() {
         const {entries, promotedEntries} = this.props;
-
+        
         return (
             <>
                 {entries.map((e, i) => {
                     const l = [];
 
-                    if (i % 3 === 0 && i > 0) {
-                        const ix = i / 3 - 1;
+                    if (i % 4 === 0 && i > 0) {
+                        const ix = i / 4 - 1;
 
                         if (promotedEntries[ix]) {
                             const p = promotedEntries[ix];
@@ -64,7 +64,7 @@ export class EntryListContent extends Component<Props> {
                                     <EntryListItem
                                         key={`${p.author}-${p.permlink}`}
                                         {...Object.assign({}, this.props, {entry: p})}
-                                        promoted={true} order={3}
+                                        promoted={true} order={4}
                                     />
                                 );
                             }

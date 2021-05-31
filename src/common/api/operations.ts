@@ -962,4 +962,15 @@ export const mutePost = (username: string, community: string, account: string, p
     return broadcastPostingJSON(username, "community", json);
 }
 
+export const hiveNotifySetLastRead = (username: string): Promise<TransactionConfirmation> => {
+    const now = new Date().toISOString();
+    const date = now.split(".")[0];
+
+    const json = [
+        'setLastRead', {date}
+    ];
+
+    return broadcastPostingJSON(username, "notify", json);
+}
+
 export const updatePassword = (update: AccountUpdateOperation[1], ownerKey: PrivateKey): Promise<TransactionConfirmation> => hiveClient.broadcast.updateAccount(update, ownerKey)

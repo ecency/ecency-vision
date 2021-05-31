@@ -16,6 +16,7 @@ import {langOptions} from "../../i18n";
 
 import {translateSvg} from "../../img/svg";
 
+import * as ls from "../../util/local-storage";
 
 interface Props {
     history: History;
@@ -28,10 +29,12 @@ export class SwitchLang extends Component<Props> {
     render() {
         const {global, setLang} = this.props;
 
+        const languageFromLS = ls && ls.get("lang");
+        const lang = languageFromLS !== null ? languageFromLS.slice(0, 2).toUpperCase() : "EN";
+
         const langMenuConfig = {
             history: this.props.history,
-            label: '',
-            icon: translateSvg,
+            label: lang,
             items: langOptions.map((f => {
                 return {
                     label: f.name,
@@ -47,6 +50,7 @@ export class SwitchLang extends Component<Props> {
                 <Link to="/contributors">{_t("switch-lang.contributors")}</Link>
             </div>
         };
+       
 
         return (
             <div className="switch-language">

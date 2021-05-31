@@ -27,6 +27,9 @@ import _c from '../../util/fix-class-names'
 
 import {syncSvg, checkSvg, bellOffSvg, bellCheckSvg} from "../../img/svg";
 
+import {hiveNotifySetLastRead} from "../../api/operations";
+import {ActiveUser} from "../../store/active-user/types";
+
 export const date2key = (s: string): string => {
     if (s === 'Yesterday') {
         return moment().subtract(1, 'days').fromNow();
@@ -75,6 +78,7 @@ export class NotificationListItem extends Component<{
 
     render() {
         const {notification} = this.props;
+
         const sourceLinkMain = ProfileLink({
             ...this.props,
             username: notification.source,
@@ -90,7 +94,7 @@ export class NotificationListItem extends Component<{
         });
 
         return <>
-            <div className={_c(`list-item ${notification.read === 0 ? 'not-read' : ' '}`)}>
+            <div title={notification.timestamp} className={_c(`list-item ${notification.read === 0 ? 'not-read' : ' '}`)}>
                 <div className="item-inner">
                     <div className="item-control">
                         {notification.read === 0 && (
@@ -261,6 +265,7 @@ export class NotificationListItem extends Component<{
 interface NotificationProps {
     global: Global;
     history: History;
+    activeUser: ActiveUser;
     notifications: Notifications;
     fetchNotifications: (since: string | null) => void;
     fetchUnreadNotificationCount: () => void;
@@ -304,8 +309,9 @@ export class DialogContent extends Component<NotificationProps> {
     }
 
     markAsRead = () => {
-        const {markNotifications} = this.props;
+        const {markNotifications, activeUser} = this.props;
         markNotifications(null);
+        hiveNotifySetLastRead(activeUser.username).then();
     }
 
     hide = () => {
@@ -417,6 +423,7 @@ export class DialogContent extends Component<NotificationProps> {
 interface Props {
     global: Global;
     history: History;
+    activeUser: ActiveUser;
     notifications: Notifications;
     fetchNotifications: (since: string | null) => void;
     fetchUnreadNotificationCount: () => void;

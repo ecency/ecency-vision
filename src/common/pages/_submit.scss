@@ -169,19 +169,12 @@
 
       .preview-tag {
         border-radius: 25px;
-        color: $white;
         font-size: 14px;
         line-height: 1em;
         margin: 0 4px 2px 0;
         padding: 4px 12px;
 
-        @include themify(day) {
-          background-color: $silver;
-        }
-
-        @include themify(night) {
-          background-color: $metallic-blue;
-        }
+        @include tag;
       }
     }
 

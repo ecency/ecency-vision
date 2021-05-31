@@ -35,6 +35,7 @@ exports[`(1) Default render 1`] = `
           good-karma
           <span
             className="author-reputation"
+            title="Author's reputation"
           >
             76
           </span>
@@ -127,7 +128,7 @@ exports[`(1) Default render 1`] = `
         </div>
       </div>
       <div
-        className="entry-payout  notranslate"
+        className="entry-payout notranslate"
         onBlur={[Function]}
         onFocus={[Function]}
         onMouseOut={[Function]}
@@ -265,6 +266,7 @@ exports[`(2) Grid view 1`] = `
           good-karma
           <span
             className="author-reputation"
+            title="Author's reputation"
           >
             76
           </span>
@@ -351,7 +353,7 @@ exports[`(2) Grid view 1`] = `
         </div>
       </div>
       <div
-        className="entry-payout  notranslate"
+        className="entry-payout notranslate"
         onBlur={[Function]}
         onFocus={[Function]}
         onMouseOut={[Function]}
@@ -489,6 +491,7 @@ exports[`(3) Nsfw 1`] = `
           good-karma
           <span
             className="author-reputation"
+            title="Author's reputation"
           >
             76
           </span>
@@ -587,7 +590,7 @@ exports[`(3) Nsfw 1`] = `
         </div>
       </div>
       <div
-        className="entry-payout  notranslate"
+        className="entry-payout notranslate"
         onBlur={[Function]}
         onFocus={[Function]}
         onMouseOut={[Function]}
@@ -725,6 +728,7 @@ exports[`(4) Nsfw with active user 1`] = `
           good-karma
           <span
             className="author-reputation"
+            title="Author's reputation"
           >
             76
           </span>
@@ -824,7 +828,7 @@ exports[`(4) Nsfw with active user 1`] = `
         </div>
       </div>
       <div
-        className="entry-payout  notranslate"
+        className="entry-payout notranslate"
         onBlur={[Function]}
         onFocus={[Function]}
         onMouseOut={[Function]}
@@ -962,6 +966,7 @@ exports[`(5) Nsfw but allowed 1`] = `
           good-karma
           <span
             className="author-reputation"
+            title="Author's reputation"
           >
             76
           </span>
@@ -1054,7 +1059,7 @@ exports[`(5) Nsfw but allowed 1`] = `
         </div>
       </div>
       <div
-        className="entry-payout  notranslate"
+        className="entry-payout notranslate"
         onBlur={[Function]}
         onFocus={[Function]}
         onMouseOut={[Function]}
@@ -1223,6 +1228,7 @@ exports[`(6) Cross post. Bottom menu 1`] = `
           regenerette
           <span
             className="author-reputation"
+            title="Author's reputation"
           >
             56
           </span>
@@ -1240,7 +1246,7 @@ exports[`(6) Cross post. Bottom menu 1`] = `
       />
       <span
         className="date"
-        title="Wednesday, March 24, 2021 7:14 PM"
+        title="Wednesday, March 24, 2021 6:14 PM"
       >
         10 months
       </span>
@@ -1315,7 +1321,7 @@ exports[`(6) Cross post. Bottom menu 1`] = `
         </div>
       </div>
       <div
-        className="entry-payout  notranslate"
+        className="entry-payout notranslate"
         onBlur={[Function]}
         onFocus={[Function]}
         onMouseOut={[Function]}

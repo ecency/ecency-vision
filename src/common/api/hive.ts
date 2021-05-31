@@ -191,8 +191,8 @@ export const getDynamicGlobalProperties = (): Promise<DynamicGlobalProperties> =
         hbd_print_rate: r.hbd_print_rate || r.sbd_print_rate,
     }));
 
-export const getAccountHistory = (username: string, operations: number[]): Promise<any> => {
-    const filters = utils.makeBitMaskFilter(operations);
+export const getAccountHistory = (username: string, filters: any[]): Promise<any> => {
+
     return client.call("condenser_api", "get_account_history", [username, -1, 500, ...filters]);
 }
 

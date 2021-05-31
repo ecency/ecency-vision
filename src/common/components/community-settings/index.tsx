@@ -7,6 +7,7 @@ import {Community} from "../../store/communities/types";
 import {ActiveUser} from "../../store/active-user/types";
 
 import {clone} from "../../store/util";
+import cleanString from "../../util/clean-string";
 
 import BaseComponent from "../base";
 import LinearProgress from "../linear-progress";
@@ -143,11 +144,11 @@ const pureState = (props: Props): State => {
     const {community: c} = props;
 
     return {
-        title: c.title,
-        about: c.about,
+        title: cleanString(c.title),
+        about: cleanString(c.about),
         lang: c.lang || "en",
-        description: c.description,
-        flag_text: c.flag_text,
+        description: cleanString(c.description),
+        flag_text: cleanString(c.flag_text),
         is_nsfw: c.is_nsfw,
         inProgress: false
     }
@@ -161,7 +162,7 @@ export class CommunitySettings extends BaseComponent<Props, State> {
     onChange = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
         const {target: el} = e;
         const key = el.name;
-        const val = el.hasOwnProperty("checked") ? el.checked : el.value;
+        const val = el.hasOwnProperty("checked") ? el.checked : cleanString(el.value);
 
         // @ts-ignore
         this.stateSet({[key]: val});

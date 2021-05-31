@@ -44,6 +44,7 @@ interface Props {
     activeUser: ActiveUser | null;
     ui: UI;
     notifications: Notifications;
+    step?: number;
     fetchTrendingTags: () => void;
     toggleTheme: () => void;
     addUser: (user: User) => void;
@@ -59,6 +60,7 @@ interface Props {
     muteNotifications: () => void;
     unMuteNotifications: () => void;
     setLang: (lang: string) => void;
+    setStepOne?:() => void;
 }
 
 interface State {
@@ -101,6 +103,7 @@ export class NavBar extends Component<Props, State> {
             || !isEqual(this.props.ui, nextProps.ui)
             || !isEqual(this.props.notifications, nextProps.notifications)
             || !isEqual(this.props.location, nextProps.location)
+            || !isEqual(this.props.step, nextProps.step)
             || !isEqual(this.state, nextState)
     }
 
@@ -134,12 +137,29 @@ export class NavBar extends Component<Props, State> {
         this.setState({smVisible: !smVisible})
     }
 
+    handleIconClick = () => {
+        if( "/" !== this.props?.location?.pathname
+            || this.props?.location?.pathname?.startsWith("/hot")
+            || this.props?.location?.pathname?.startsWith("/created")
+            || this.props?.location?.pathname?.startsWith("/trending")
+        ) {
+            this.props.history.push("/");
+        }
+        if(this.props.setStepOne) {
+            return this.props.setStepOne()
+        }
+    }
+
     render() {
-        const {global, activeUser, ui} = this.props;
+        const {global, activeUser, ui, step, setStepOne} = this.props;
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
         const logoHref = activeUser ? `/@${activeUser.username}/feed` : '/';
 
         const {smVisible, floating} = this.state;
+
+        const transparentVerify = this.props?.location?.pathname?.startsWith("/hot")
+        || this.props?.location?.pathname?.startsWith("/created")
+        || this.props?.location?.pathname?.startsWith("/trending")
 
         const textMenu = <div className="text-menu">
             <Link className="menu-item" to="/discover">
@@ -157,38 +177,68 @@ export class NavBar extends Component<Props, State> {
                 {!smVisible && (
                     <div className="nav-bar-sm">
                         <div className="brand">
-                            <Link to={logoHref}>
-                                <img src={logo} className="logo" alt="Logo"/>
-                            </Link>
+                            {
+                                activeUser !== null ? (
+                                    <Link to={logoHref}>
+                                        <img src={logo} className="logo" alt="Logo"/>
+                                    </Link>
+                                ) :
+                                (
+                                    <img src={logo} className="logo" alt="Logo" onClick={this.handleIconClick}/>
+                                )
+                            }
                         </div>
 
                         {textMenu}
                     </div>
                 )}
-                <div ref={this.nav} className={_c(`nav-bar ${smVisible ? "visible-sm" : ""}`)}>
+                <div ref={this.nav} className={_c(`nav-bar ${(smVisible ? "visible-sm" : "")} ${(!transparentVerify && step === 1 ? "transparent" : "")}`)}>
                     <div className="nav-bar-inner">
                         <div className="brand">
-                            <Link to={logoHref}>
-                                <img src={logo} className="logo" alt="Logo"/>
-                            </Link>
+                            {
+                                activeUser !== null ? (
+                                    <Link to={logoHref}>
+                                        <img src={logo} className="logo" alt="Logo" />
+                                    </Link>
+                                ) :
+                                (
+                                    <img src={logo} className="logo" alt="Logo" onClick={this.handleIconClick}/>
+                                )
+                            }
                         </div>
                         {textMenu}
                         <div className="flex-spacer"/>
-                        <div className="search-bar">
-                            {Search({...this.props})}
-                        </div>
+                        {
+                            (step !== 1 || transparentVerify) &&
+                                <div className="search-bar">
+                                    {Search({...this.props})}
+                                </div>
+                        }
                         <div className="switch-menu">
                             {SwitchLang({...this.props})}
-                            <ToolTip content={themeText}>
-                                <div className="switch-theme" onClick={this.changeTheme}>
-                                    {brightnessSvg}
-                                </div>
-                            </ToolTip>
+                            {
+                                (step !== 1 || transparentVerify) &&
+                                    <ToolTip content={themeText}>
+                                        <div className="switch-theme" onClick={this.changeTheme}>
+                                            {brightnessSvg}
+                                        </div>
+                                    </ToolTip>
+                            }
+                            {
+                                (step !== 1 || transparentVerify) &&
+                                    <div className="submit-post">
+                                        <ToolTip content={_t("navbar.post")}>
+                                            <Link className="btn btn-outline-primary" to="/submit">
+                                                {pencilOutlineSvg}
+                                            </Link>
+                                        </ToolTip>
+                                    </div>
+                            }
                         </div>
                         <div className="btn-menu">
                             {!activeUser && (
                                 <div className="login-required">
-                                    <Button className="btn-login" variant="outline-primary" onClick={() => {
+                                    <Button className="btn-login btn-primary" onClick={() => {
                                         const {toggleUIProp} = this.props;
                                         toggleUIProp('login');
                                     }}>{_t("g.login")}</Button>
@@ -196,13 +246,7 @@ export class NavBar extends Component<Props, State> {
                                     <Link className="btn btn-primary" to="/signup">{_t("g.signup")}</Link>
                                 </div>
                             )}
-                            <div className="submit-post">
-                                <ToolTip content={_t("navbar.post")}>
-                                    <Link className="btn btn-outline-primary" to="/submit">
-                                        {pencilOutlineSvg}
-                                    </Link>
-                                </ToolTip>
-                            </div>
+                            
                         </div>
                         {activeUser && <UserNav {...this.props} activeUser={activeUser}/>}
                     </div>
@@ -225,6 +269,7 @@ export default (p: Props) => {
         activeUser: p.activeUser,
         ui: p.ui,
         notifications: p.notifications,
+        step: p.step,
         fetchTrendingTags: p.fetchTrendingTags,
         toggleTheme: p.toggleTheme,
         addUser: p.addUser,
@@ -239,7 +284,8 @@ export default (p: Props) => {
         toggleUIProp: p.toggleUIProp,
         muteNotifications: p.muteNotifications,
         unMuteNotifications: p.unMuteNotifications,
-        setLang: p.setLang
+        setLang: p.setLang,
+        setStepOne: p.setStepOne,
     }
 
     return <NavBar {...props} />;

@@ -128,8 +128,8 @@
   "entry-list-item": {
     "cross-posted": "cross-posted",
     "cross-posted-to": "to",
-    "reblogged": "{{n}} reblogged",
-    "promoted": "promovat",
+    "reblogged": "{{n}} Reblogged",
+    "promoted": "Promoted",
     "pinned": "Postare Fixată",
     "replies": "1 răspuns. Apasă pentru a răspunde.",
     "replies-n": "{{n}} răspunsuri. Apasă pentru a răspunde.",
@@ -196,7 +196,8 @@
     "curators-payout": "Plată de curare",
     "payout-date": "Plată",
     "beneficiary": "Beneficiar",
-    "breakdown": "Defalcare"
+    "breakdown": "Defalcare",
+    "max-accepted": "Max accepted"
   },
   "entry-index": {
     "feed": "Flux",
@@ -228,10 +229,12 @@
   },
   "entry": {
     "via-app": "via <span class=\"app-name\">{{app}}</span>",
+    "author-reputation": "Author's reputation",
     "comment-entry-title": "Vizualizezi șirul unui singur comentariu de la: ",
     "comment-entry-go-root": "Vezi contextul complet",
     "comment-entry-go-parent": "Vizualizează postarea principală",
     "hidden-warning": "Această postare a fost ascunsă din cauza ratingului scăzut.",
+    "muted-warning": "This post was muted for not following {{community}} community guidelines.",
     "address-copy": "Copy post address",
     "address-copied": "Post address copied to clipboard.",
     "browse-original": "Open original post",
@@ -245,7 +248,7 @@
     "version": "Versiunea {{n}}"
   },
   "similar-entries": {
-    "title": "More from @{{n}}"
+    "title": "Read next"
   },
   "comment": {
     "body-placeholder": "Scrie răspunsul tău aici",
@@ -695,6 +698,7 @@
     "error-max": "Maximum {{n}} tag-uri"
   },
   "community-selector": {
+    "choose": "Choose a community",
     "my-blog": "My Blog",
     "search-placeholder": "Search Communities"
   },
@@ -754,16 +758,19 @@
     "unmute": "Activati alertele de notificare"
   },
   "leaderboard": {
-    "title": "Clasament",
-    "title-day": "Utilizatori de top zilnic",
-    "title-week": "Utilizatori de top săptămânal",
-    "title-month": "Utilizatori de top lunar",
+    "title-stars": "Most active",
+    "title-curators": "Curators",
+    "title-day": "Daily leaders",
+    "title-week": "Weekly leaders",
+    "title-month": "Monthly leaders",
     "period-day": "Zilnic",
     "period-week": "Săptămânal",
     "period-month": "Lunar",
     "header-score": "Activități",
     "header-score-tip": "Post + comments made by a user for selected period",
-    "header-reward": "Recompensă"
+    "header-reward": "Recompensă",
+    "header-votes": "Votes",
+    "header-votes-tip": "Number of votes in this period"
   },
   "popular-users": {
     "title": "Popular Users"
@@ -794,9 +801,9 @@
     "tags": "Tags",
     "tags-placeholder": "comma separated tags",
     "date": "Date",
-    "date-week": "Week",
-    "date-month": "Month",
-    "date-year": "Year",
+    "date-week": "Last Week",
+    "date-month": "Last Month",
+    "date-year": "Last Year",
     "date-all": "All",
     "sort": "Sort",
     "sort-popularity": "Popularity",
@@ -1000,5 +1007,60 @@
     "delete-comment-with-vote": "Can't delete a content with votes.",
     "comment-cashout": "Content cashout.",
     "paid-out-post-forbidden": "Voting for paid out content is not available."
+  },
+  "landing-page": {
+    "welcome-text": "Welcome to Ecency!",
+    "what-is-ecency": "Blockchain-based social network",
+    "powered-by-hive": "powered by Hive",
+    "get-started": "Get started",
+    "earn-money": "Earn money",
+    "earn-money-block-chain-based": "Blockchain-based social network, ",
+    "join-us": "join-us",
+    "various-digital-tokens": " and earn various digital tokens, reward others and build a rewarding community.",
+    "read-more": "Read more",
+    "true-ownership": "True ownership",
+    "true-ownership-desc": "Ecency is the next generation social network for Web 3.0. Blockchain technology gives you a real free speech, without any censorship or banning. Only you control your own account, content and communities.",
+    "decentralization": "Decentralization",
+    "hive-blockchain": "Hive blockchain",
+    "decentralization-desc": " has many social, gaming and financial apps that you can access with a single account you own. Access your social network account and content from any other 3rd party apps in decentralized way.",
+    "open-source": "Open source",
+    "open-source-desc": "Join and be part of the building team on Web 3.0. Everything that we build is blockchain-based and open source. We welcome tech talents, developers, creators and entrepreneurs.",
+    "feel-free-join": " Join and lets build together!",
+    "posts": "Posts",
+    "unique-visitors": "Unique visitors",
+    "points-distrubuted": "Points distributed",
+    "new-users": "New users",
+    "download-our-application": "Download our application",
+    "download-our-application-desc": "Looking for a unique experience? The social network with real free speech experience on your mobile phone or desktop. Blockchain's powerful benefits now always under your fingertips.",
+    "download-for-windows": "Download for Computer",
+    "download-for-ios": "Download for IOS",
+    "download-for-android": "Download for Android",
+    "our-history": "Our History",
+    "our-history-p-one": "<b>Ecency</b> (previously Esteem) started out in 2016, founder <span> <a href=\"/@good-karma\" class=\"push-link\"> @good-karma </a></span> started implementing a mobile application that would revolutionize the way you interact and create, build, engage online. With time grew to something much bigger.",
+    "our-history-p-two": "Since then we have been continuing to build for Web 3.0 and improve our blockchain-based social network, making sure apps are as accessible as possible, secure and in many languages the world speaks.",
+    "our-vision": "Our Vision",
+    "our-vision-p-one": "We want to bring a secure and rewarding blockchain experience to all people. Social media without any limits and censorship, where only you control your own account and your communities. Secured by blockchain, powered by people.",
+    "our-vision-p-two": "<b>Our main principles</b> : Bring rewarding communities, true ownership, empowered creators, free speech into the hands of millions.",
+    "our-team": "Our Team",
+    "founder": "Founder",
+    "devops-guru": "Devops master",
+    "design-guru": "Design guru",
+    "community-contributors": "Community Contributors",
+    "blockchain-witnesses": "Blockchain Witnesses",
+    "about": "About Us",
+    "privacy-policy": "Privacy Policy",
+    "terms-of-service": "Terms of Service",
+    "faq": "FAQ",
+    "discover": "Discover",
+    "sign-in": "Sign in",
+    "communities": "Communities",
+    "help": "Help",
+    "subscribe-us": "Subscribe Us",
+    "enter-your-email-adress": "Enter your email adress",
+    "send": "Send",
+    "subscribe-paragraph": "Be first to know what's happening in decentralized web.",
+    "copy-rights": "©2021 Ecency. All right reserved.",
+    "success-message-subscribe": "A verification link has been sent to your email account!",
+    "error-occured": "A server error has been occured."
   }
 }

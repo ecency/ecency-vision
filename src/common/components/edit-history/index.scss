@@ -33,8 +33,14 @@
         }
 
         .diff-select {
-          width: 200px;
+          width: 55%;
           flex-shrink: 0;
+          label {
+            font-size: 0.9rem;
+          }
+        }
+        select {
+          font-size: 0.9rem;
         }
       }
 

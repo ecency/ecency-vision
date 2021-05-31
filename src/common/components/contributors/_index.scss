@@ -17,11 +17,12 @@
 
       .list-title {
         color: $dark-sky-blue;
-        font-weight: 500;
-        font-size: 18px;
-        display: flex;
-        align-items: center;
-        margin-bottom: 10px;
+        font-size: 3rem;
+        font-weight: 800;
+        line-height: 4rem;
+        @media(max-width: $md-break) {
+          font-size: 2rem;
+        }
       }
 
       .list-description {

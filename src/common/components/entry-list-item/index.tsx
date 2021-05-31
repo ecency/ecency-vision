@@ -75,7 +75,7 @@ interface Props {
     fetchReblogs: () => void;
     addReblog: (author: string, permlink: string) => void;
     deleteReblog: (author: string, permlink: string) => void;
-    toggleUIProp: (what: ToggleType) => void;
+    toggleUIProp: (what: ToggleType | "login") => void;
     addCommunity: (data: Community) => void;
     trackEntryPin: (entry: Entry) => void;
     setSigningKey: (key: string) => void;
@@ -181,10 +181,10 @@ export default class EntryListItem extends Component<Props, State> {
                 </picture>
             );
         }
-
         const nsfw = entry.json_metadata.tags && entry.json_metadata.tags.includes("nsfw");
 
         const cls = `entry-list-item ${promoted ? "promoted-item" : ""}`;
+
         return (
             <div className={_c(cls)}>
 
@@ -233,7 +233,7 @@ export default class EntryListItem extends Component<Props, State> {
                             {ProfileLink({
                                 ...this.props,
                                 username: entry.author,
-                                children: <div className="author notranslate">{entry.author}<span className="author-reputation">{reputation}</span></div>
+                                children: <div className="author notranslate">{entry.author}<span className="author-reputation" title={_t("entry.author-reputation")}>{reputation}</span></div>
                             })}
                         </div>
                         {Tag({
