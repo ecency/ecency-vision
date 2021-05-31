@@ -91,7 +91,7 @@
     "title": "Bentornato!",
     "with-user-pass": "Entra con il tuo nome utente e la tua chiave privata.",
     "username-placeholder": "nome utente",
-    "key-placeholder": "password / private key",
+    "key-placeholder": "password / chiave privata",
     "login-info-1": "Noi non memorizziamo le tue chiavi private.",
     "login-info-2": "Più informazioni",
     "error-fields-required": "Inserisci nome utente e chiave privata",
@@ -99,17 +99,17 @@
     "error-user-fetch": "I dati dell'utente non possono essere recuperati",
     "error-user-not-found": "L'utente non esiste",
     "error-permission": "Non hai l'autorizzazione per pubblicare",
-    "error-authenticate": "Wrong private key. Master or active or posting private key required.",
+    "error-authenticate": "Chiave Privata Errata. Richiesta chiave maestra o chiave attiva o chiave privata di pubblicazione.",
     "with-hive-signer": "Accedi tramite hivesigner",
     "with-keychain": "Accedi tramite keychain",
     "sign-up-text-1": "Non hai un account?",
     "sign-up-text-2": "Registrati ora!"
   },
   "sign-up": {
-    "header": "Welcome to Ecency",
-    "description": "Home of Free speech and Rewarding communities!",
-    "bottom-description": "Every account is created on a blockchain and only you have control over that account. One account to manage everything on Blockchain and Ecency.",
-    "learn-more": "Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
+    "header": "Benvenuto in Ecency",
+    "description": "Casa della libertà di parola e delle community ricompensate!",
+    "bottom-description": "Ogni account viene creato sulla blockchain e solo tu ne hai il controllo. Un account per gestire ogni cosa sulla blockchain e su Ecency.",
+    "learn-more": "Leggi di più sui benefici nelle nostre <a href=\"/faq#how-to-join\">FAQ</a>",
     "username": "Scegli un nome utente",
     "email": "Inserisci il tuo indirizzo email",
     "ref": "Utente raccomandante (opzionale)",
@@ -126,20 +126,20 @@
     "title": "In primo piano"
   },
   "entry-list-item": {
-    "cross-posted": "cross-posted",
-    "cross-posted-to": "to",
-    "reblogged": "{{n}} rebloggati",
-    "promoted": "promosso",
+    "cross-posted": "postato trasversalmente",
+    "cross-posted-to": "a",
+    "reblogged": "{{n}} Reblogged",
+    "promoted": "Promoted",
     "pinned": "Post Fissato",
     "replies": "1 risposta. Clicca per rispondere.",
     "replies-n": "{{n}} risposte. Clicca per rispondere.",
     "no-replies": "Ancora nessuna risposta. Clicca per rispondere."
   },
   "nsfw": {
-    "reveal": "Reveal this post",
-    "signup": "<a href=\"/signup\" class=\"push-link\">create an account</a> to save your preferences",
-    "settings-1": "adjust your",
-    "settings-2": "display preferences"
+    "reveal": "Mostra questo post",
+    "signup": "<a href=\"/signup\" class=\"push-link\">crea un account</a> per salvare le tue preferenze",
+    "settings-1": "modifica le tue",
+    "settings-2": "preferenze di visualizzazione"
   },
   "bookmark-btn": {
     "add": "Aggiungi ai segnalibri",
@@ -152,43 +152,43 @@
     "confirm-title": "Vuoi rebloggare sul blog di @{{n}}?",
     "confirm-ok": "Reblogga",
     "success": "Rebloggato!",
-    "delete-reblog": "Undo Reblog",
-    "delete-confirm-title": "Undo reblog?",
-    "delete-confirm-ok": "Undo",
-    "delete-success": "Reblog removed"
+    "delete-reblog": "Rimuovi reblog",
+    "delete-confirm-title": "Rimuovi Reblog?",
+    "delete-confirm-ok": "Rimuovi",
+    "delete-success": "Reblog rimosso"
   },
   "entry-tip": {
     "title": "Invia omaggio"
   },
   "entry-share": {
-    "title": "Share"
+    "title": "Condividi"
   },
   "entry-menu": {
-    "cross-post": "Cross post",
-    "share": "Share",
-    "edit-history": "Edit History",
-    "pin": "Pin",
-    "pin-success": "Post pinned",
-    "unpin": "Unpin",
-    "unpin-success": "Post Unpinned",
-    "mute": "Mute",
-    "mute-success": "Post muted",
-    "unmute": "Unmute",
-    "unmute-success": "Post unmuted",
-    "promote": "Promote",
-    "boost": "Boost"
+    "cross-post": "Cross-Post (Pubblicazione Trasversale)",
+    "share": "Condividi",
+    "edit-history": "Modifica Cronologia",
+    "pin": "Fissa in alto",
+    "pin-success": "Post fissato",
+    "unpin": "Rimuovi dai post fissati",
+    "unpin-success": "Post rimosso dai fissati",
+    "mute": "Silenzia",
+    "mute-success": "Post silenziato",
+    "unmute": "Riattiva",
+    "unmute-success": "Post riattivato",
+    "promote": "Promuovi",
+    "boost": "Potenzia"
   },
   "cross-post": {
     "title": "Cross Post",
-    "community-placeholder": "Choose a community",
-    "message-placeholder": "Start the conversation with a message",
-    "submit-label": "Confirm",
-    "published": "Post Published",
-    "no-subscription": "You don't have any community subscription to cross post.",
-    "info": "Rewards are automatically declined for the cross post and discussions under cross post will be different and will follow different community guidelines."
+    "community-placeholder": "Scegli una community",
+    "message-placeholder": "Inizia la conversazione con un messaggio",
+    "submit-label": "Conferma",
+    "published": "Post pubblicato",
+    "no-subscription": "Non hai nessuna iscrizione a community nelle quali postare.",
+    "info": "Le ricompense vengono automaticamente rifiutate per i cross post e le discussioni sotto le pubblicazioni trasversali saranno diverse e seguiranno linee guida differenti, dipendenti dalle varie community."
   },
   "entry-payout": {
-    "reward": "Reward",
+    "reward": "Ricompensa",
     "full-power": "Power Up 100%",
     "pending-payout": "Pagamento in Attesa",
     "promoted": "Promosso",
@@ -196,7 +196,8 @@
     "curators-payout": "Ricompensa dei Curatori",
     "payout-date": "Ricompensa",
     "beneficiary": "Beneficiari",
-    "breakdown": "Guadagni Ripartiti"
+    "breakdown": "Guadagni Ripartiti",
+    "max-accepted": "Max accepted"
   },
   "entry-index": {
     "feed": "Feed",
@@ -228,14 +229,16 @@
   },
   "entry": {
     "via-app": "attraverso <span class=\"app-name\">{{app}}</span>",
+    "author-reputation": "Author's reputation",
     "comment-entry-title": "Stai guardando un singolo thread del commento da: ",
     "comment-entry-go-root": "Vedi l'intero Post",
     "comment-entry-go-parent": "Vedi commento genitore",
     "hidden-warning": "Questo post è stato nascosto a causa dello scarso punteggio qualità.",
+    "muted-warning": "This post was muted for not following {{community}} community guidelines.",
     "address-copy": "Copia l'indirizzo del Post",
     "address-copied": "Indirizzo del post copiato negli appunti.",
-    "browse-original": "Open original post",
-    "cross-post-by": "Cross post by",
+    "browse-original": "Apri post originale",
+    "cross-post-by": "Postato trasversalmente da",
     "cross-post-community": "community",
     "community-in": "in"
   },
@@ -245,7 +248,7 @@
     "version": "Versione {{n}}"
   },
   "similar-entries": {
-    "title": "More from @{{n}}"
+    "title": "Read next"
   },
   "comment": {
     "body-placeholder": "Scrivi la tua risposta qui",
@@ -383,14 +386,14 @@
     "proposals": "Propositi"
   },
   "profile-info": {
-    "joined": "Joined: {{n}}",
-    "last-active": "Last active: {{n}}",
-    "vote-value": "Vote value: {{n}}",
-    "vote-value-max": "(out of max {{n}})",
-    "vote-power": "Vote Power: {{n}}%",
-    "rc-power": "Resource Credits: {{n}}%",
-    "recharge-time": "(fully charged {{n}})",
-    "down-vote-power": "Downvote Power: {{n}}%"
+    "joined": "Iscritto: {{n}}",
+    "last-active": "Ultimo attivo: {{n}}",
+    "vote-value": "Valore del voto: {{n}}",
+    "vote-value-max": "(oltre il massimo {{n}})",
+    "vote-power": "Potenza di Voto: {{n}}%",
+    "rc-power": "Crediti di Riserva: {{n}}%",
+    "recharge-time": "(completamente ricaricato {{n}})",
+    "down-vote-power": "Potenza di Disapprovazione: {{n}}%"
   },
   "profile-edit": {
     "title": "Profilo",
@@ -410,7 +413,7 @@
     "notifications": "Avvisi di Notifica",
     "currency": "Valuta",
     "language": "Lingua",
-    "nsfw": "Show NSFW content",
+    "nsfw": "Mostra Contenuti NSFW",
     "updated": "Preferenza aggiornata!"
   },
   "wallet": {
@@ -462,7 +465,7 @@
     "reblog-desc": "Condividi il post che ti piace con i tuoi amici e guadagna 1 punto.",
     "login-desc": "Quando accedi a Ecency per la prima volta, hai automaticamente diritto a 100 punti.",
     "checkin-extra-desc": "Un uso costante dell'app ti da ulteriori possibilità di guadagnare altri 10 punti, essere più attivo e guadagnare di più.",
-    "delegation-desc": "You can earn ~100 points per day for each 1000HP delegation.",
+    "delegation-desc": "Puoi guadagnare ~100 punti al giorno ogni 1000HP delegati.",
     "community-desc": "Registra la tua community per ottenere 20 punti per ogni post pubblicato dalle applicazioni Ecency.",
     "history": "Cronologia",
     "post-list-desc": "Punti per post",
@@ -481,19 +484,19 @@
     "claim-ok": "Punti richiesti",
     "promote": "Promuovi",
     "boost": "Boost",
-    "filter-all": "All History",
-    "filter-10": "Points for heartbeat",
-    "filter-20": "Points for login",
-    "filter-30": "Usage bonus",
-    "filter-100": "Points for post",
-    "filter-110": "Points for comment",
-    "filter-120": "Points for vote",
-    "filter-130": "Points for reblog",
-    "filter-150": "Delegation reward",
-    "filter-160": "Referral reward",
-    "filter-170": "Community reward",
-    "filter-998": "Outgoing transfer",
-    "filter-999": "Incoming transfer"
+    "filter-all": "Tutta la cronologia",
+    "filter-10": "Punti per battito cardiaco",
+    "filter-20": "Punti per accesso",
+    "filter-30": "Bonus di utilizzo",
+    "filter-100": "Punti per post",
+    "filter-110": "Punti per commento",
+    "filter-120": "Punti per voto",
+    "filter-130": "Punti per reblog",
+    "filter-150": "Ricompensa dalla delega",
+    "filter-160": "Ricompensa dalle referenze",
+    "filter-170": "Ricompensa della community",
+    "filter-998": "Trasferimento in uscita",
+    "filter-999": "Trasferimento in entrata"
   },
   "purchase": {
     "select-asset": "Seleziona risorsa",
@@ -575,12 +578,12 @@
   },
   "transactions": {
     "title": "Cronologia",
-    "group-all": "All History",
-    "group-transfers": "Transfers",
-    "group-market-orders": "Market Orders",
-    "group-interests": "Interests",
-    "group-stake-operations": "Stake operations",
-    "group-rewards": "Rewards",
+    "group-all": "Tutta la cronologia",
+    "group-transfers": "Trasferimenti",
+    "group-market-orders": "Ordini a mercato",
+    "group-interests": "Interessi",
+    "group-stake-operations": "Operazioni di investimento",
+    "group-rewards": "Ricompense",
     "type-curation_reward": "Ricompensa da curatore",
     "type-author_reward": "Ricompensa come autore",
     "type-comment_benefactor_reward": "Ricompense come beneficiario del commento",
@@ -589,14 +592,14 @@
     "type-transfer_to_vesting": "Trasferisci nelle Maturazioni",
     "type-withdraw_vesting": "Trasferisci maturazione",
     "type-fill_order": "Completa l'ordine",
-    "type-producer_reward": "Producer reward",
-    "type-interest": "Interest",
-    "type-transfer_to_savings": "Transfer to savings",
-    "type-fill_convert_request": "Fill convert request",
-    "type-cancel_transfer_from_savings": "Cancel transfer from savings",
-    "type-cancel_transfer_from_savings-detail": "From: <strong>@{{from}}</strong> <br/> Request id: <strong>{{request}}</strong>",
-    "type-return_vesting_delegation": "Return vesting delegation",
-    "type-proposal_pay": "Proposal pay"
+    "type-producer_reward": "Ricompense da produttore",
+    "type-interest": "Interessi",
+    "type-transfer_to_savings": "Trasferisci nei risparmi",
+    "type-fill_convert_request": "Inserisci la richiesta di conversione",
+    "type-cancel_transfer_from_savings": "Rimuovi i trasferiti dai risparmi",
+    "type-cancel_transfer_from_savings-detail": "Da: <strong>@{{from}}</strong> <br/> IDentificativo di richiesta: <strong>{{request}}</strong>",
+    "type-return_vesting_delegation": "Richiama la delega investita",
+    "type-proposal_pay": "Pagamento della proposta"
   },
   "key-or-hot": {
     "sign": "Accesso",
@@ -683,9 +686,9 @@
     "schedule": "Pianifica",
     "schedule-hint": "Pubblica automaticamente il contenuto in un giorno e un'ora prefissati",
     "scheduled": "Post programmato",
-    "empty-title-alert": "Enter post title",
-    "empty-tags-alert": "Enter post tags",
-    "empty-body-alert": "Enter post body"
+    "empty-title-alert": "Inserisci titolo del post",
+    "empty-tags-alert": "Inserisci etichette del post",
+    "empty-body-alert": "Inserisci corpo del testo"
   },
   "tag-selector": {
     "placeholder-empty": "Etichette. La prima etichetta è la categoria principale che classificherà il post.",
@@ -695,6 +698,7 @@
     "error-max": "Al massimo {{n}} etichette"
   },
   "community-selector": {
+    "choose": "Scegli una community",
     "my-blog": "Il mio blog",
     "search-placeholder": "Cerca Community"
   },
@@ -754,16 +758,19 @@
     "unmute": "Attiva gli avvisi di notifica"
   },
   "leaderboard": {
-    "title": "Classifica",
-    "title-day": "Migliori Utenti di giornata",
-    "title-week": "Migliori utenti della settimana",
-    "title-month": "Migliori utenti del mese",
+    "title-stars": "Most active",
+    "title-curators": "Curators",
+    "title-day": "Daily leaders",
+    "title-week": "Weekly leaders",
+    "title-month": "Monthly leaders",
     "period-day": "Di giornata",
     "period-week": "Della settimana",
     "period-month": "Del mese",
     "header-score": "Attività",
     "header-score-tip": "Post + commenti fatti da un utente nel periodo selezionato",
-    "header-reward": "Ricompensa"
+    "header-reward": "Ricompensa",
+    "header-votes": "Votes",
+    "header-votes-tip": "Number of votes in this period"
   },
   "popular-users": {
     "title": "Utenti popolari"
@@ -794,9 +801,9 @@
     "tags": "Etichette",
     "tags-placeholder": "etichette separate da virgole",
     "date": "Data",
-    "date-week": "Settimana",
-    "date-month": "Mese",
-    "date-year": "Anno",
+    "date-week": "Last Week",
+    "date-month": "Last Month",
+    "date-year": "Last Year",
     "date-all": "Sempre",
     "sort": "Ordina",
     "sort-popularity": "Popolarità",
@@ -897,14 +904,14 @@
     "link-label": "Collegamento all'immagine"
   },
   "add-image-mobile": {
-    "title": "Add Image",
-    "recent-title": "Recently uploaded",
-    "gallery": "Gallery",
-    "upload": "Upload image"
+    "title": "Aggiungi immagine",
+    "recent-title": "Caricati di recente",
+    "gallery": "Galleria",
+    "upload": "Carica Immagine"
   },
   "add-link": {
-    "title": "Add Link",
-    "text-label": "Text",
+    "title": "Aggiungi Link",
+    "text-label": "Testo",
     "link-label": "https://"
   },
   "scroll-to-top": {
@@ -994,11 +1001,66 @@
     "restart": "Ricomincia"
   },
   "chain-error": {
-    "min-root-comment": "You may only post once every five minutes.",
-    "identical-vote": "Your current vote on this content is identical to this vote.",
-    "insufficient-resource": "Insufficient Resource Credits. Please wait to transact, or power up HIVE.",
-    "delete-comment-with-vote": "Can't delete a content with votes.",
-    "comment-cashout": "Content cashout.",
-    "paid-out-post-forbidden": "Voting for paid out content is not available."
+    "min-root-comment": "Puoi pubblicare soltanto una volta ogni cinque minuti.",
+    "identical-vote": "Il tuo voto attuale sul contenuto corrente è identico a questo voto.",
+    "insufficient-resource": "Crediti di Riserva insufficienti. Attendi per effettuare la transazione, oppure completa un nuovo power-up di HIVE.",
+    "delete-comment-with-vote": "Non puoi rimuovere un contenuto con voti.",
+    "comment-cashout": "Incasso del contenuto.",
+    "paid-out-post-forbidden": "Non è disponibile il voto per contenuti già pagati."
+  },
+  "landing-page": {
+    "welcome-text": "Welcome to Ecency!",
+    "what-is-ecency": "Blockchain-based social network",
+    "powered-by-hive": "powered by Hive",
+    "get-started": "Get started",
+    "earn-money": "Earn money",
+    "earn-money-block-chain-based": "Blockchain-based social network, ",
+    "join-us": "join-us",
+    "various-digital-tokens": " and earn various digital tokens, reward others and build a rewarding community.",
+    "read-more": "Read more",
+    "true-ownership": "True ownership",
+    "true-ownership-desc": "Ecency is the next generation social network for Web 3.0. Blockchain technology gives you a real free speech, without any censorship or banning. Only you control your own account, content and communities.",
+    "decentralization": "Decentralization",
+    "hive-blockchain": "Hive blockchain",
+    "decentralization-desc": " has many social, gaming and financial apps that you can access with a single account you own. Access your social network account and content from any other 3rd party apps in decentralized way.",
+    "open-source": "Open source",
+    "open-source-desc": "Join and be part of the building team on Web 3.0. Everything that we build is blockchain-based and open source. We welcome tech talents, developers, creators and entrepreneurs.",
+    "feel-free-join": " Join and lets build together!",
+    "posts": "Posts",
+    "unique-visitors": "Unique visitors",
+    "points-distrubuted": "Points distributed",
+    "new-users": "New users",
+    "download-our-application": "Download our application",
+    "download-our-application-desc": "Looking for a unique experience? The social network with real free speech experience on your mobile phone or desktop. Blockchain's powerful benefits now always under your fingertips.",
+    "download-for-windows": "Download for Computer",
+    "download-for-ios": "Download for IOS",
+    "download-for-android": "Download for Android",
+    "our-history": "Our History",
+    "our-history-p-one": "<b>Ecency</b> (previously Esteem) started out in 2016, founder <span> <a href=\"/@good-karma\" class=\"push-link\"> @good-karma </a></span> started implementing a mobile application that would revolutionize the way you interact and create, build, engage online. With time grew to something much bigger.",
+    "our-history-p-two": "Since then we have been continuing to build for Web 3.0 and improve our blockchain-based social network, making sure apps are as accessible as possible, secure and in many languages the world speaks.",
+    "our-vision": "Our Vision",
+    "our-vision-p-one": "We want to bring a secure and rewarding blockchain experience to all people. Social media without any limits and censorship, where only you control your own account and your communities. Secured by blockchain, powered by people.",
+    "our-vision-p-two": "<b>Our main principles</b> : Bring rewarding communities, true ownership, empowered creators, free speech into the hands of millions.",
+    "our-team": "Our Team",
+    "founder": "Founder",
+    "devops-guru": "Devops master",
+    "design-guru": "Design guru",
+    "community-contributors": "Community Contributors",
+    "blockchain-witnesses": "Blockchain Witnesses",
+    "about": "About Us",
+    "privacy-policy": "Privacy Policy",
+    "terms-of-service": "Terms of Service",
+    "faq": "FAQ",
+    "discover": "Discover",
+    "sign-in": "Sign in",
+    "communities": "Communities",
+    "help": "Help",
+    "subscribe-us": "Subscribe Us",
+    "enter-your-email-adress": "Enter your email adress",
+    "send": "Send",
+    "subscribe-paragraph": "Be first to know what's happening in decentralized web.",
+    "copy-rights": "©2021 Ecency. All right reserved.",
+    "success-message-subscribe": "A verification link has been sent to your email account!",
+    "error-occured": "A server error has been occured."
   }
 }

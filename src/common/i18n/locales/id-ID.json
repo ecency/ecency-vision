@@ -91,7 +91,7 @@
     "title": "Selamat datang kembali!",
     "with-user-pass": "Masuk dengan nama pengguna dan Private Key Anda.",
     "username-placeholder": "nama pengguna",
-    "key-placeholder": "password / kunci pribadi",
+    "key-placeholder": "password/kunci pribadi",
     "login-info-1": "Kami tidak menyimpan private key Anda.",
     "login-info-2": "Info lebih lanjut",
     "error-fields-required": "Silahkan masukkan nama pengguna dan private key",
@@ -128,8 +128,8 @@
   "entry-list-item": {
     "cross-posted": "diposting bersilangan",
     "cross-posted-to": "ke",
-    "reblogged": "{{n}} Dibagikan",
-    "promoted": "dipromosikan",
+    "reblogged": "{{n}} Reblogged",
+    "promoted": "Promoted",
     "pinned": "Postingan Disematkan",
     "replies": "1 respon, Klik untuk merespon.",
     "replies-n": "{{n}} respon. Klik untuk merespon.",
@@ -196,7 +196,8 @@
     "curators-payout": "Pembayaran Kurator",
     "payout-date": "Pembayaran",
     "beneficiary": "Penerima",
-    "breakdown": "Kerusakan"
+    "breakdown": "Kerusakan",
+    "max-accepted": "Jumlah maksimum yang diterima"
   },
   "entry-index": {
     "feed": "Umpan",
@@ -228,10 +229,12 @@
   },
   "entry": {
     "via-app": "melalui <span class=\"app-name\">{{app}}</span>",
+    "author-reputation": "Author's reputation",
     "comment-entry-title": "Anda melihat sebuah komentar tunggal dari: ",
     "comment-entry-go-root": "Lihat konteks lengkapnya",
     "comment-entry-go-parent": "Lihat sumber utamanya",
     "hidden-warning": "Posting ini tersembunyi dikarenakan peringkat rendah.",
+    "muted-warning": "This post was muted for not following {{community}} community guidelines.",
     "address-copy": "Salin alamat postingan",
     "address-copied": "Tempel alamat yang disalin ke papan klip.",
     "browse-original": "Tampilan tulisan asli",
@@ -245,7 +248,7 @@
     "version": "Versi {{n}}"
   },
   "similar-entries": {
-    "title": "Lebih banyak lagi dari @{{n}}"
+    "title": "Baca berikutnya"
   },
   "comment": {
     "body-placeholder": "Tulis balasan Anda disini",
@@ -695,6 +698,7 @@
     "error-max": "Maksimum {{n}} tagar"
   },
   "community-selector": {
+    "choose": "Pilih sebuah komunitas",
     "my-blog": "Blog saya",
     "search-placeholder": "Cari Komunitas"
   },
@@ -754,16 +758,19 @@
     "unmute": "Hidupkan pemberitahuan notifikasi"
   },
   "leaderboard": {
-    "title": "Papan Peringkat",
-    "title-day": "Pengguna teratas harian",
-    "title-week": "Pengguna teratas mingguan",
-    "title-month": "Pengguna teratas bulanan",
+    "title-stars": "Paling Aktif",
+    "title-curators": "Kurator",
+    "title-day": "Pemimpin Harian",
+    "title-week": "Pemimpin Mingguan",
+    "title-month": "Pemimpin Bulanan",
     "period-day": "Harian",
     "period-week": "Mingguan",
     "period-month": "Bulanan",
     "header-score": "Aktifitas",
     "header-score-tip": "Posting + komentar yang dibuat oleh pengguna untuk periode yang dipilih",
-    "header-reward": "Imbalan"
+    "header-reward": "Imbalan",
+    "header-votes": "Vote",
+    "header-votes-tip": "Jumlah vote dalam priode ini"
   },
   "popular-users": {
     "title": "Pengguna Populer"
@@ -794,9 +801,9 @@
     "tags": "Tagar",
     "tags-placeholder": "koma memisahkan tagar",
     "date": "Tanggal",
-    "date-week": "Minggu",
-    "date-month": "Bulan",
-    "date-year": "Tahun",
+    "date-week": "Last Week",
+    "date-month": "Last Month",
+    "date-year": "Last Year",
     "date-all": "Semua",
     "sort": "Urutkan",
     "sort-popularity": "Popularitas",
@@ -1000,5 +1007,60 @@
     "delete-comment-with-vote": "Tidak dapat menghapus konten yang sudah ada votingnya.",
     "comment-cashout": "Konten dibayar.",
     "paid-out-post-forbidden": "Voting untuk konten yang sudah dibayar tidak bisa dilakukan lagi."
+  },
+  "landing-page": {
+    "welcome-text": "Welcome to Ecency!",
+    "what-is-ecency": "Blockchain-based social network",
+    "powered-by-hive": "powered by Hive",
+    "get-started": "Get started",
+    "earn-money": "Earn money",
+    "earn-money-block-chain-based": "Blockchain-based social network, ",
+    "join-us": "join-us",
+    "various-digital-tokens": " and earn various digital tokens, reward others and build a rewarding community.",
+    "read-more": "Read more",
+    "true-ownership": "True ownership",
+    "true-ownership-desc": "Ecency is the next generation social network for Web 3.0. Blockchain technology gives you a real free speech, without any censorship or banning. Only you control your own account, content and communities.",
+    "decentralization": "Decentralization",
+    "hive-blockchain": "Hive blockchain",
+    "decentralization-desc": " has many social, gaming and financial apps that you can access with a single account you own. Access your social network account and content from any other 3rd party apps in decentralized way.",
+    "open-source": "Open source",
+    "open-source-desc": "Join and be part of the building team on Web 3.0. Everything that we build is blockchain-based and open source. We welcome tech talents, developers, creators and entrepreneurs.",
+    "feel-free-join": " Join and lets build together!",
+    "posts": "Posts",
+    "unique-visitors": "Unique visitors",
+    "points-distrubuted": "Points distributed",
+    "new-users": "New users",
+    "download-our-application": "Download our application",
+    "download-our-application-desc": "Looking for a unique experience? The social network with real free speech experience on your mobile phone or desktop. Blockchain's powerful benefits now always under your fingertips.",
+    "download-for-windows": "Download for Computer",
+    "download-for-ios": "Download for IOS",
+    "download-for-android": "Download for Android",
+    "our-history": "Our History",
+    "our-history-p-one": "<b>Ecency</b> (previously Esteem) started out in 2016, founder <span> <a href=\"/@good-karma\" class=\"push-link\"> @good-karma </a></span> started implementing a mobile application that would revolutionize the way you interact and create, build, engage online. With time grew to something much bigger.",
+    "our-history-p-two": "Since then we have been continuing to build for Web 3.0 and improve our blockchain-based social network, making sure apps are as accessible as possible, secure and in many languages the world speaks.",
+    "our-vision": "Our Vision",
+    "our-vision-p-one": "We want to bring a secure and rewarding blockchain experience to all people. Social media without any limits and censorship, where only you control your own account and your communities. Secured by blockchain, powered by people.",
+    "our-vision-p-two": "<b>Our main principles</b> : Bring rewarding communities, true ownership, empowered creators, free speech into the hands of millions.",
+    "our-team": "Our Team",
+    "founder": "Founder",
+    "devops-guru": "Devops master",
+    "design-guru": "Design guru",
+    "community-contributors": "Community Contributors",
+    "blockchain-witnesses": "Blockchain Witnesses",
+    "about": "About Us",
+    "privacy-policy": "Privacy Policy",
+    "terms-of-service": "Terms of Service",
+    "faq": "FAQ",
+    "discover": "Discover",
+    "sign-in": "Sign in",
+    "communities": "Communities",
+    "help": "Help",
+    "subscribe-us": "Subscribe Us",
+    "enter-your-email-adress": "Enter your email adress",
+    "send": "Send",
+    "subscribe-paragraph": "Be first to know what's happening in decentralized web.",
+    "copy-rights": "©2021 Ecency. All right reserved.",
+    "success-message-subscribe": "A verification link has been sent to your email account!",
+    "error-occured": "A server error has been occured."
   }
 }

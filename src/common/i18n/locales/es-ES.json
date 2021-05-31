@@ -128,8 +128,8 @@
   "entry-list-item": {
     "cross-posted": "publicación-cruzada",
     "cross-posted-to": "para",
-    "reblogged": "{{n}} reblogueado",
-    "promoted": "promocionado",
+    "reblogged": "{{n}} Reblogueado",
+    "promoted": "Promocionado",
     "pinned": "Publicación fijada",
     "replies": "1 respuesta. Haga clic para responder.",
     "replies-n": "{{n}} respuestas. Haga clic para responder.",
@@ -196,7 +196,8 @@
     "curators-payout": "Pagos de Curación",
     "payout-date": "Pago",
     "beneficiary": "Beneficiario",
-    "breakdown": "Intermedio"
+    "breakdown": "Intermedio",
+    "max-accepted": "Máximo aceptado"
   },
   "entry-index": {
     "feed": "Canal de noticias",
@@ -228,10 +229,12 @@
   },
   "entry": {
     "via-app": "a través de <span class=\"app-name\">{{app}}</span>",
+    "author-reputation": "Reputación del Autor",
     "comment-entry-title": "Estás viendo los comentarios relacionados de: ",
     "comment-entry-go-root": "Ver los demas comentarios",
     "comment-entry-go-parent": "Ver el comentario relacionado",
     "hidden-warning": "El post ha sido ocultado por bajas calificaciones.",
+    "muted-warning": "Esta publicación fue silenciada por no seguir las pautas de la comunidad {{community}}.",
     "address-copy": "Copiar la dirección de la Publicación",
     "address-copied": "Dirección de publicación copiada al portapapeles.",
     "browse-original": "Abrir publicación original",
@@ -245,7 +248,7 @@
     "version": "Versión {{n}}"
   },
   "similar-entries": {
-    "title": "Más de @{{n}}"
+    "title": "Leer siguiente"
   },
   "comment": {
     "body-placeholder": "Escribir tu comentario aquí...",
@@ -695,6 +698,7 @@
     "error-max": "Máximo {{n}} etiquetas"
   },
   "community-selector": {
+    "choose": "Elige una comunidad",
     "my-blog": "Mi blog",
     "search-placeholder": "Buscar comunidades"
   },
@@ -754,16 +758,19 @@
     "unmute": "Activar notificaciones"
   },
   "leaderboard": {
-    "title": "Clasificación",
-    "title-day": "Mejores usuarios del día",
-    "title-week": "Mejores usuarios de la semana",
-    "title-month": "Mejores usuarios del mes",
+    "title-stars": "Más activo",
+    "title-curators": "Curadores",
+    "title-day": "Líderes diarios",
+    "title-week": "Líderes semanales",
+    "title-month": "Líderes mensuales",
     "period-day": "Diario",
     "period-week": "Semanalmente",
     "period-month": "Mensualmente",
     "header-score": "Actividades",
     "header-score-tip": "Publicaciones + comentarios realizados por un usuario en el período seleccionado",
-    "header-reward": "Recompensa"
+    "header-reward": "Recompensa",
+    "header-votes": "Votos",
+    "header-votes-tip": "Número de votos en este período"
   },
   "popular-users": {
     "title": "Usuarios populares"
@@ -794,9 +801,9 @@
     "tags": "Etiquetas",
     "tags-placeholder": "etiquetas separadas por comas",
     "date": "Fecha",
-    "date-week": "Semana",
-    "date-month": "Mes",
-    "date-year": "Año",
+    "date-week": "La semana pasada",
+    "date-month": "Mes anterior",
+    "date-year": "El año pasado",
     "date-all": "Todo",
     "sort": "Ordenar por",
     "sort-popularity": "Popularidad",
@@ -1000,5 +1007,60 @@
     "delete-comment-with-vote": "No se puede eliminar un contenido con votos.",
     "comment-cashout": "Retiro de contenido.",
     "paid-out-post-forbidden": "La votación por el contenido pagado no está disponible."
+  },
+  "landing-page": {
+    "welcome-text": "¡Bienvenido a Ecency!",
+    "what-is-ecency": "Red social basada en Blockchain",
+    "powered-by-hive": "sustentado en Hive",
+    "get-started": "Empieza ya",
+    "earn-money": "Gana dinero",
+    "earn-money-block-chain-based": "Red social basada en Blockchain, ",
+    "join-us": "únete a nosotros",
+    "various-digital-tokens": " y gana varios tokens digitales, premia a otros y construye una comunidad de recompensas.",
+    "read-more": "Leer Más",
+    "true-ownership": "Propiedad real",
+    "true-ownership-desc": "Ecency es la red social de próxima generación para Web 3.0. La tecnología Blockchain le da una verdadera libertad de expresión, sin censura ni prohibición. Sólo tú controlas tu cuenta, contenido y comunidades.",
+    "decentralization": "Descentralización",
+    "hive-blockchain": "Cadena de bloques Hive",
+    "decentralization-desc": " tiene muchas aplicaciones sociales, de juegos y financieras a las que puedes acceder con una sola cuenta propia. Accede a tu cuenta de red social y al contenido de cualquier otra aplicación de terceros de forma descentralizada.",
+    "open-source": "Código abierto",
+    "open-source-desc": "Únete y sé parte del equipo de construcción en la Web 3.0. Todo lo que construimos es basado en blockchain y código abierto. Damos la bienvenida a talentos tecnológicos, desarrolladores, creadores y emprendedores.",
+    "feel-free-join": " ¡Únete y construyamos juntos!",
+    "posts": "Publicaciones",
+    "unique-visitors": "Visitantes únicos",
+    "points-distrubuted": "Puntos distribuidos",
+    "new-users": "Nuevos usuarios",
+    "download-our-application": "Descargar nuestra aplicación",
+    "download-our-application-desc": "¿Buscas una experiencia única? La red social con una experiencia real de libertad de expresión en tu teléfono móvil o en tu ordenador. Los poderosos beneficios de Blockchain ahora siempre están bajo tus dedos.",
+    "download-for-windows": "Descargar para ordenador",
+    "download-for-ios": "Descargar para IOS",
+    "download-for-android": "Descargar para Android",
+    "our-history": "Nuestra historia",
+    "our-history-p-one": "<b>Ecency</b> (anteriormente Esteem) comenzó en 2016, fundador <span> <a href=\"/@good-karma\" class=\"push-link\"> @good-karma </a></span> comenzó a implementar una aplicación móvil que revolucionaría la forma en que interactúas y creas, construir, involucrarse en línea. Con el tiempo creció hasta convertirse en algo mucho más grande.",
+    "our-history-p-two": "Desde entonces hemos estado construyendo para la Web 3. y mejorar nuestra red social basada en blockchain, asegurándose de que las aplicaciones sean lo más accesibles posible, seguras y en muchos de los idiomas hablados en el mundo.",
+    "our-vision": "Nuestra Visión",
+    "our-vision-p-one": "Queremos llevar una experiencia segura y gratificante de blockchain a todas las personas. Medios de comunicación social sin límites y sin censura, donde sólo usted controla su propia cuenta y sus comunidades. Seguro por la blockchain, sustentado por la gente.",
+    "our-vision-p-two": "<b>Nuestros principios centrales</b> : Brindar a las comunidades de recompensas, verdadera propiedad, empoderamiento de los creadores, libertad de expresión en manos de millones.",
+    "our-team": "Nuestro equipo",
+    "founder": "Fundador",
+    "devops-guru": "DevOps Maestro",
+    "design-guru": "Guru diseñador",
+    "community-contributors": "Colaboradores de la comunidad",
+    "blockchain-witnesses": "Testigos de la cadena de bloques",
+    "about": "Acerca de nosotros",
+    "privacy-policy": "Política de privacidad",
+    "terms-of-service": "Términos del servicio",
+    "faq": "Preguntas Frecuentes (FAQ)",
+    "discover": "Descubrir",
+    "sign-in": "Iniciar sesión",
+    "communities": "Comunidades",
+    "help": "Ayuda",
+    "subscribe-us": "Suscribirse",
+    "enter-your-email-adress": "Introduce tu correo electrónico",
+    "send": "Enviar",
+    "subscribe-paragraph": "Sé el primero en saber lo que está pasando en la web descentralizada.",
+    "copy-rights": "©2021 Ecency. Todos los derechos reservados.",
+    "success-message-subscribe": "¡Se ha enviado un enlace de verificación a tu cuenta de correo electrónico!",
+    "error-occured": "Se ha producido un error en el servidor."
   }
 }
