@@ -104,10 +104,10 @@
   .tob-bg-algae {
     display: none;
     @include themify(night) {
-      background-image: url("../../img/hero-algae-dark.svg");
+      background-image: url("https://ecency.com/assets/hero-algae-dark.svg");
     }
     @include themify(day) {
-      background-image: url("../../img/hero-algae-light.svg");
+      background-image: url("https://ecency.com/assets/hero-algae-light.svg");
     }
     background-position: 100% 100%;
     background-size: contain;
@@ -124,7 +124,7 @@
   }
   .tob-bg-fishes {
     display: none;
-    background-image: url("../../img/hero-fishes.svg");
+    background-image: url("https://ecency.com/assets/hero-fishes.svg");
     background-position: 100% 100%;
     background-size: contain;
     background-repeat: no-repeat;
@@ -747,7 +747,7 @@
     .part-bottom {
       height: 1140px;
       @include themify(night) {
-        background-image: url("../../img/bg-download-tiny-dark.svg");
+        background-image: url("https://ecency.com/assets/bg-download-tiny-dark.svg");
       }
       @include themify(day) {
         background-image: url("https://ecency.com/assets/bg-download-tiny.png");

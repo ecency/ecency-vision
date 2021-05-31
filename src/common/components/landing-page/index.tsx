@@ -37,15 +37,16 @@ const LandingPage = (props: any) => {
   const FounderImg = proxifyImageSrc(`${apiBaseImage('/u/good-karma/avatar/large')}`, 0, 0, global.canUseWebp ? 'webp' : 'match');
   const DevopsImg = proxifyImageSrc(`${apiBaseImage('/u/talhasch/avatar/large')}`, 0, 0, global.canUseWebp ? 'webp' : 'match');
   const DesignGuru = proxifyImageSrc(`${apiBaseImage('/u/dunsky/avatar/large')}`, 0, 0, global.canUseWebp ? 'webp' : 'match');
-  const DownloadAndroidWhite = require("../../img/icon_android-white.svg");
-  const DownloadIPhone = require("../../img/icon_apple.svg");
-  const DownloadIPhoneWhite = require("../../img/icon_apple-white.svg");
-  const DownloadWindows = require("../../img/icon_windows.svg");
-  const DownloadWindowsWhite = require("../../img/icon_windows-white.svg");
-  const FooterYoutube = require("../../img/footer-youtube.svg");
-  const FooterTwitter = require("../../img/footer-twitter.svg");
-  const FooterTelegram = require("../../img/footer-telegram.svg");
-  const FooterDiscord = require("../../img/footer-discord.svg");
+  const DownloadAndroidWhite = apiBase(`/assets/icon-android-white.svg`);
+  const DownloadIPhone = apiBase(`/assets/icon-apple.svg`);
+  const DownloadIPhoneWhite = apiBase(`/assets/icon-apple-white.svg`);
+  const DownloadWindows = apiBase(`/assets/icon-windows.svg`);
+  const DownloadWindowsWhite = apiBase(`/assets/icon-windows-white.svg`);
+  const FooterYoutube = apiBase(`/assets/footer-youtube.svg`);
+  const FooterTwitter = apiBase(`/assets/footer-twitter.svg`);
+  const FooterTelegram = apiBase(`/assets/footer-telegram.svg`);
+  const FooterDiscord = apiBase(`/assets/footer-discord.svg`);
+
   const LogoCircle = require("../../img/logo-circle.svg");
 
   const handleSubsccribe = async (e: FormEvent<HTMLDivElement>) => {
