@@ -265,7 +265,7 @@ const LandingPage = (props: any) => {
         </div>
       </div>
 
-      <div className="sections fifth-section">
+      <div className="sections fifth-section" id="about">
         <div className="part-top">
           <div className="inner">
             <div className="text-group">
@@ -347,7 +347,7 @@ const LandingPage = (props: any) => {
               <div className="links">
                 <ul className="first-column">
                   <li>
-                    <a href="/about">{_t("landing-page.about")}</a>
+                    <a href="#about">{_t("landing-page.about")}</a>
                   </li>
                   <li>
                     <a href="/faq">{_t("landing-page.faq")}</a>
