@@ -122,7 +122,12 @@
   }
   .tob-bg-fishes {
     display: none;
-    background-image: url("https://ecency.com/assets/hero-fishes.svg");
+    @include themify(night) {
+      background-image: url("https://ecency.com/assets/hero-fishes-dark.png");
+    }
+    @include themify(day) {
+      background-image: url("https://ecency.com/assets/hero-fishes.svg");
+    }
     background-position: 100% 100%;
     background-size: contain;
     background-repeat: no-repeat;
@@ -491,6 +496,11 @@
         background-color: #131a29;
       }
     }
+    .part-bottom {
+      @media (max-width:$sm-break) {
+        height: 470px;
+      }
+    }
   }
 
   .third-section {
@@ -560,8 +570,13 @@
             width: 90%;
             height: auto;
             .decentralization-img {
-              width: 90%;
+              max-height: 270px;
+              height: auto;
+              width: 70%;
             }
+          }
+          .text-group {
+            height: 320px;
           }
         }
       }
@@ -636,6 +651,29 @@
             .mechanic {
               margin-top: 2rem;
               width: 90%;
+              height: auto;
+            }
+          }
+        }
+        
+      }
+      @media (max-width: $sm-break) {
+        height: 630px;
+        .inner {
+          .text-group {
+            
+            p {
+              line-height: 25px;
+              font-size: 15px;
+              span {
+              }
+            }
+          }
+          .img-wrapper {
+            width: 100%;
+            .mechanic {
+              margin-top: 2rem;
+              width: 60%;
               height: auto;
             }
           }
@@ -733,6 +771,9 @@
           .five {
             display: none;
           }
+        }
+        @media (max-width: $sm-break) {
+          transform: scale(0.7);
         }
       }
       .mask {
@@ -963,18 +1004,7 @@
         @media (max-width: $lg-break) {
           height: 100%;
           span:last-of-type {
-            display: -webkit-box;
-            display: -ms-flexbox;
-            display: flex;
-            width: 95%;
-            height: 70px;
-            position: absolute;
-            bottom: 50px;
-            right: 17%;
-            background-image: url("https://ecency.com/assets/fish-2.png");
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position-x: right;
+            display: none;
           }
           .text-group {
             width: 100%;
@@ -998,6 +1028,11 @@
 
   .fifth-section {
     .part-top {
+      @include themify(night) {
+        background-color: #131B2A;
+        z-index: 1;
+      }
+    
       .inner {
         width: 100%;
         -ms-flex-wrap: nowrap;
@@ -1018,6 +1053,7 @@
     }
     .part-bottom {
       @include themify(night) {
+        z-index: 1;
         background-color: #131a29;
       }
       .inner {
@@ -1028,7 +1064,6 @@
           max-width: 90%;
           height: auto;
           width: 300px;
-          height: auto;
           margin: 1rem;
         }
         .text-group {
@@ -1158,6 +1193,7 @@
                       justify-content: flex-start;
               height: 80px;
               margin-bottom: 1rem;
+              
               .text-wrapper {
                 height: 100%;
                 display: -webkit-box;
@@ -1201,6 +1237,9 @@
               }
             }
           }
+          ul > li:last-of-type {
+            padding-left: 0;
+          }
         }
         .image-container {
           width: 45%;
@@ -1214,6 +1253,7 @@
           display: inline-block;
           height: auto;
           width: 100%;
+          margin-left: -6rem;
         }
       }
     }
@@ -1241,14 +1281,14 @@
       position: relative;
       .left-fishes {
         position: absolute;
-        top: 0;
-        left: 0;
+        top: 90px;
+        left: 50px;
         background-image: url("https://ecency.com/assets/left-fishes.png");
         background-repeat: no-repeat;
         background-position: center;
         background-size: contain;
-        height: 350px;
-        width: 350px;
+        height: 270px;
+        width: 270px;
         @media (max-width: $xxxl-break) {
           display: none;
         }
@@ -1260,7 +1300,7 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: contain;
-        width: 400px;
+        width: 500px;
         height: 600px;
       }
       .inner {
