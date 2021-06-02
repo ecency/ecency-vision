@@ -14,7 +14,7 @@ const LandingPage = (props: any) => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const BgHeroDark = apiBase(`/assets/illustration-hero.${global.canUseWebp?"webp":"png"}`);
+  const BgHeroDark = "/../../assets/illustration-hero.webp"
   const BgHeroLight = apiBase(`/assets/illustration-hero-day.${global.canUseWebp?"webp":"png"}`);
   const EarnMoney = apiBase(`/assets/illustration-earn-money.${global.canUseWebp?"webp":"png"}`);
   const WhaleCatchsFish = apiBase(`/assets/illustration-true-ownership.${global.canUseWebp?"webp":"png"}`);
@@ -116,18 +116,20 @@ const LandingPage = (props: any) => {
             </div>
           </div>
         </div>
-        <img
-          className="landing-floating-image"
-          src={WhaleCatchsFish}
-          alt="whale"
-          loading="lazy"
-        />
 
         <div className="part-bottom">
           <div className="inner">
             <div className="text-group">
               <h2>{_t("landing-page.true-ownership")}</h2>
               <p>{_t("landing-page.true-ownership-desc")}</p>
+            </div>
+            <div className="image-wrapper">
+              <img
+                className="landing-floating-image"
+                src={WhaleCatchsFish}
+                alt="whale"
+                loading="lazy"
+              />
             </div>
           </div>
         </div>
