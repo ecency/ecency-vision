@@ -373,6 +373,10 @@ class EntryPage extends BaseComponent<Props, State> {
 
         // Sometimes tag list comes with duplicate items
         const tags = [...new Set(entry.json_metadata.tags)];
+        // If category is not present in tags then add
+        if (entry.category && tags[0] !== entry.category) {
+            tags.splice(0, 0, entry.category);
+        }
         const app = appName(entry.json_metadata.app);
         const appShort = app.split('/')[0];
 
@@ -397,7 +401,7 @@ class EntryPage extends BaseComponent<Props, State> {
             image: catchPostImage(entry, 600, 500, global.canUseWebp ? 'webp' : 'match'),
             published: published.toISOString(),
             modified: modified.toISOString(),
-            tag: tags[0],
+            tag: isCommunity(tags[0]) ? tags[1] : tags[0],
             keywords: tags.join(", "),
         };
 
