@@ -353,7 +353,6 @@ export default class EntryListItem extends Component<Props, State> {
                         {EntryReblogBtn({
                             ...this.props
                         })}
-                        <div className="flex-spacer"/>
                         {EntryMenu({
                             ...this.props,
                             alignBottom: order >= 1,
