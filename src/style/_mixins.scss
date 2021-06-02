@@ -4,6 +4,15 @@
   }
 }
 
+@mixin multiLineEllipsis($lineHeight: 1.2em, $lineCount: 1){
+  overflow: hidden;
+  position: relative;
+  line-height: $lineHeight;
+  max-height: $lineHeight * $lineCount;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+
 @mixin entry-list-item {
   margin-top: 20px;
   padding: 0 6px 16px 6px;
@@ -189,11 +198,11 @@
         border-radius: 4px;
         display: flex;
         float: left;
-        height: 77px;
+        height: 85px;
         max-height: none;
         justify-content: center;
         margin-right: 17px;
-        width: 130px;
+        width: 150px;
       }
 
       img {
@@ -211,7 +220,7 @@
 
       @media (min-width: $sm-break) {
         float: right;
-        width: calc(100% - 147px);
+        width: calc(100% - 167px);
       }
 
       .item-title {
@@ -245,8 +254,8 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        @include multiLineEllipsis($lineHeight: 1.5em, $lineCount: 2);
       }
-
       .item-nsfw {
         margin-bottom: 9px;
 
@@ -273,7 +282,7 @@
 
       @media (min-width: $sm-break) {
         float: right;
-        width: calc(100% - 147px);
+        width: calc(100% - 1px);
       }
 
       svg {
