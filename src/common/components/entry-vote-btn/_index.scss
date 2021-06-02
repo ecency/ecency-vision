@@ -61,7 +61,6 @@
 
 .voting-controls-up,
 .voting-controls-down {
-
   .btn-vote {
     @include btn-vote;
   }
@@ -232,4 +231,82 @@
   input[type="range"]::-ms-thumb {
     background: $red4;
   }
+}
+
+.tooltip-vote {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-vote .tooltiptext {
+  width: 32vw;
+  background-color: rgb(255, 255, 255);
+  color: black;
+  text-align: center;
+  border-radius: 6px;
+  padding: 10px;
+  position: absolute;
+  z-index: 1;
+  top: 150%;
+  left: 50%;
+  margin-left: -60px;
+  box-shadow: 0px 1px 4px 1px #d8d8d8;
+}
+
+.primary-btn {
+  color: white !important;
+  background-color: #357ce6 !important;
+}
+
+.primary-btn-vote {
+  color: #357ce6 !important;
+  background-color: white !important;
+
+  .btn-inner {
+    color: #357ce6 !important;
+    background-color: white !important;
+  }
+
+  &:hover {
+    background-color: #357ce6 !important;
+    color: white !important;
+
+    .btn-inner {
+      color: white !important;
+      background-color: #357ce6 !important;
+    }
+  }
+}
+.secondary-btn-vote {
+  color: #bf3030 !important;
+  background-color: white !important;
+  svg {
+    width: 19px !important;
+  }
+
+  .btn-inner {
+    color: #bf3030 !important;
+    background-color: white !important;
+  }
+
+  &:hover {
+    background-color: #bf3030 !important;
+    color: white !important;
+
+    .btn-inner {
+      color: white !important;
+      background-color: #bf3030 !important;
+    }
+  }
+}
+
+.tooltip-vote .tooltiptext::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 12%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent rgb(255, 255, 255) transparent;
 }
