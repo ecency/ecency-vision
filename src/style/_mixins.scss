@@ -282,7 +282,7 @@
 
       @media (min-width: $sm-break) {
         float: right;
-        width: calc(100% - 1px);
+        width: 100%;
       }
 
       svg {
