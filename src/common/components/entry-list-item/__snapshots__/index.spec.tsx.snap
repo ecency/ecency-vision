@@ -100,7 +100,7 @@ exports[`(1) Default render 1`] = `
         href="/hive/@good-karma/awesome-hive"
         onClick={[Function]}
       >
-        Hey developers, I just created Awesome-Hive, list of services and apps on Hive. If you don't know about Awesome project, take a look at here: Project contains list of services and links to various too
+        Hey developers, I just created Awesome-Hive, list of services and apps on Hive. If you don't know about Awesome project, take a look at here: Project contains list of services and links to various tools
       </a>
     </div>
     <div
@@ -195,9 +195,6 @@ exports[`(1) Default render 1`] = `
           </svg>
         </a>
       </div>
-      <div
-        className="flex-spacer"
-      />
       <div
         className="entry-menu"
       >
@@ -325,7 +322,7 @@ exports[`(2) Grid view 1`] = `
         href="/hive/@good-karma/awesome-hive"
         onClick={[Function]}
       >
-        Hey developers, I just created Awesome-Hive, list of services and apps on Hive. If you don't know about Awesome project, take a look at here: Project contains list of services and links to various too
+        Hey developers, I just created Awesome-Hive, list of services and apps on Hive. If you don't know about Awesome project, take a look at here: Project contains list of services and links to various tools
       </a>
     </div>
     <div
@@ -420,9 +417,6 @@ exports[`(2) Grid view 1`] = `
           </svg>
         </a>
       </div>
-      <div
-        className="flex-spacer"
-      />
       <div
         className="entry-menu"
       >
@@ -657,9 +651,6 @@ exports[`(3) Nsfw 1`] = `
           </svg>
         </a>
       </div>
-      <div
-        className="flex-spacer"
-      />
       <div
         className="entry-menu"
       >
@@ -896,9 +887,6 @@ exports[`(4) Nsfw with active user 1`] = `
         </a>
       </div>
       <div
-        className="flex-spacer"
-      />
-      <div
         className="entry-menu"
       >
         <div
@@ -1031,7 +1019,7 @@ exports[`(5) Nsfw but allowed 1`] = `
         href="/hive/@good-karma/awesome-hive"
         onClick={[Function]}
       >
-        Hey developers, I just created Awesome-Hive, list of services and apps on Hive. If you don't know about Awesome project, take a look at here: Project contains list of services and links to various too
+        Hey developers, I just created Awesome-Hive, list of services and apps on Hive. If you don't know about Awesome project, take a look at here: Project contains list of services and links to various tools
       </a>
     </div>
     <div
@@ -1126,9 +1114,6 @@ exports[`(5) Nsfw but allowed 1`] = `
           </svg>
         </a>
       </div>
-      <div
-        className="flex-spacer"
-      />
       <div
         className="entry-menu"
       >
@@ -1293,7 +1278,7 @@ exports[`(6) Cross post. Bottom menu 1`] = `
         href="/hive-125125/@regenerette/we-need-each-one-of-you-sos-financial-advice-for-hive-newcomers-hive-125125"
         onClick={[Function]}
       >
-        Hi I have decided to write this article for newcomers (that need some guidance), for more experienced ones (that can contribute with input, commenting, and helping with suggestions for this article), 
+        Hi I have decided to write this article for newcomers (that need some guidance), for more experienced ones (that can contribute with input, commenting, and helping with suggestions for this article), and
       </a>
     </div>
     <div
@@ -1388,9 +1373,6 @@ exports[`(6) Cross post. Bottom menu 1`] = `
           </svg>
         </a>
       </div>
-      <div
-        className="flex-spacer"
-      />
       <div
         className="entry-menu"
       >
