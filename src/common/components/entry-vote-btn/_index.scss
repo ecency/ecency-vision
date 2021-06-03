@@ -260,6 +260,16 @@
 }
 
 .primary-btn {
+  color: #357ce6 !important;
+  background-color: white !important;
+}
+
+.entry-list-item .item-body .item-controls svg {
+  width: 12px !important;
+  height: 12px !important;
+}
+
+.primary-btn-done {
   color: white !important;
   background-color: #357ce6 !important;
 }
@@ -283,6 +293,7 @@
     }
   }
 }
+
 .secondary-btn-vote {
   color: #bf3030 !important;
   background-color: white !important;

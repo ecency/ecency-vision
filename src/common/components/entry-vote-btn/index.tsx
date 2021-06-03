@@ -335,16 +335,26 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
 
     if (upVoted || downVoted) {
       cls = _c(
-        `btn-vote ${upVoted ? "btn-up-vote" : "btn-down-vote"} ${
-          inProgress ? "in-progress" : ""
-        } voted`
+        `btn-vote ${
+          upVoted ? "btn-up-vote primary-btn-done" : "btn-down-vote"
+        } ${inProgress ? "in-progress" : ""} voted`
       );
     }
     let tooltipClass = "";
     if (dialog) {
+      if (!upVoted || !downVoted) {
+        cls = cls + " primary-btn secondary-btn";
+      }
       tooltipClass = "tooltip-vote";
-      cls = cls + " primary-btn secondary-btn";
     }
+    const voteBtnClass = `btn-inner ${
+      tooltipClass.length > 0
+        ? upVoted || downVoted
+          ? "primary-btn-done"
+          : "primary-btn"
+        : ""
+    }`;
+    debugger;
     return (
       <>
         {LoginRequired({
@@ -354,13 +364,7 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
               <div className="entry-vote-btn" onClick={this.toggleDialog}>
                 <div className={cls}>
                   <div className={tooltipClass}>
-                    <span
-                      className={`btn-inner ${
-                        tooltipClass.length > 0 ? "primary-btn" : ""
-                      }`}
-                    >
-                      {chevronUpSvg}
-                    </span>
+                    <span className={voteBtnClass}>{chevronUpSvg}</span>
                     {tooltipClass.length > 0 && (
                       <span
                         className="tooltiptext"
