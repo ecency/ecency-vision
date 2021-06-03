@@ -354,7 +354,7 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
           : "primary-btn"
         : ""
     }`;
-    debugger;
+
     return (
       <>
         {LoginRequired({
