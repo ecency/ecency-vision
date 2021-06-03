@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import { Modal, Form, FormControl } from "react-bootstrap";
+import ClickAwayListener from "react-click-away-listener";
 
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
@@ -321,6 +322,10 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
     this.stateSet({ dialog: !dialog });
   };
 
+  handleClickAway = () => {
+    this.stateSet({ dialog: false });
+  };
+
   render() {
     const { activeUser } = this.props;
     const { dialog, inProgress } = this.state;
@@ -345,35 +350,37 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
         {LoginRequired({
           ...this.props,
           children: (
-            <div className="entry-vote-btn" onClick={this.toggleDialog}>
-              <div className={cls}>
-                <div className={tooltipClass}>
-                  <span
-                    className={`btn-inner ${
-                      tooltipClass.length > 0 ? "primary-btn" : ""
-                    }`}
-                  >
-                    {chevronUpSvg}
-                  </span>
-                  {tooltipClass.length > 0 && (
+            <ClickAwayListener onClickAway={this.handleClickAway}>
+              <div className="entry-vote-btn" onClick={this.toggleDialog}>
+                <div className={cls}>
+                  <div className={tooltipClass}>
                     <span
-                      className="tooltiptext"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                      }}
+                      className={`btn-inner ${
+                        tooltipClass.length > 0 ? "primary-btn" : ""
+                      }`}
                     >
-                      {activeUser && (
-                        <VoteDialog
-                          {...this.props}
-                          activeUser={activeUser}
-                          onClick={this.vote}
-                        />
-                      )}
+                      {chevronUpSvg}
                     </span>
-                  )}
+                    {tooltipClass.length > 0 && (
+                      <span
+                        className="tooltiptext"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                        }}
+                      >
+                        {activeUser && (
+                          <VoteDialog
+                            {...this.props}
+                            activeUser={activeUser}
+                            onClick={this.vote}
+                          />
+                        )}
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
+            </ClickAwayListener>
           ),
         })}
       </>

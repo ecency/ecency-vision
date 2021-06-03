@@ -9044,6 +9044,11 @@ react-chartist@^0.14.3:
   dependencies:
     prop-types "^15.5.8"
 
+react-click-away-listener@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/react-click-away-listener/-/react-click-away-listener-2.0.3.tgz#3d032603cff8c1d66a9107f6908695df04db34a8"
+  integrity sha512-buvbebDZ10me+ConatrMcv33BNH6D+3HvEjztiNdz6LvDvyEYHxD0QLXw9aaO7bXjz2YPC7zbgIxLX+cEsFjkA==
+
 react-datetime@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-datetime/-/react-datetime-3.0.4.tgz#176159d08d35c9e750f0be2f0b974e4f9532ffa5"
