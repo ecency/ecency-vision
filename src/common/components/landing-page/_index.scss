@@ -17,8 +17,7 @@
       );
       background: -webkit-gradient(
         linear,
-        left top,
-        left bottom,
+        left top, left bottom,
         from(rgba(255, 255, 255, 1)),
         to(rgba(124, 190, 241, 1))
       );
@@ -38,8 +37,7 @@
       );
       background: -webkit-gradient(
         linear,
-        left top,
-        left bottom,
+        left top, left bottom,
         from(rgba(166, 172, 175, 1)),
         to(rgba(23, 40, 61, 1))
       );
@@ -65,13 +63,7 @@
     @include themify(night) {
       display: block;
       background: -o-linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
-      background: -webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        from(rgba(0, 0, 0, 0.5)),
-        to(rgba(0, 0, 0, 0.5))
-      );
+      background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.5)));
       background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
       top: 100px;
       -o-object-fit: unset;
@@ -523,12 +515,16 @@
       height: auto;
       .inner {
         height: auto;
-        justify-content: center;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
         .text-group {
           width: 45%;
           margin-top: 4rem;
           margin-bottom: 4rem;
-          justify-content: center !important;
+          -webkit-box-pack: center !important;
+              -ms-flex-pack: center !important;
+                  justify-content: center !important;
         }
         .image-wrapper {
           width: 50%;
@@ -616,7 +612,9 @@
             margin-top: 0;
             margin-bottom: -3rem;
             padding: 0 1rem;
-            justify-content: flex-start !important;
+            -webkit-box-pack: start !important;
+                -ms-flex-pack: start !important;
+                    justify-content: flex-start !important;
           }
           .image-wrapper {
             height: 400px;
@@ -663,16 +661,27 @@
       .inner > .text-group {
         width: 50%;
         margin: 0 1rem !important;
-        align-items: flex-start;
-        justify-content: center;
+        -webkit-box-align: start;
+            -ms-flex-align: start;
+                align-items: flex-start;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
         text-align: start;
       }
       @media (max-width: 766px) {
         height: auto;
         .inner {
-          justify-content: flex-start;
-          align-items: center;
-          flex-direction: column;
+          -webkit-box-pack: start;
+              -ms-flex-pack: start;
+                  justify-content: flex-start;
+          -webkit-box-align: center;
+              -ms-flex-align: center;
+                  align-items: center;
+          -webkit-box-orient: vertical;
+          -webkit-box-direction: normal;
+              -ms-flex-direction: column;
+                  flex-direction: column;
           width: 100%;
           margin: 0;
           padding: 0;
@@ -694,7 +703,9 @@
             padding: 4rem 1rem;
             max-height: unset;
             text-align: center;
-            align-items: center;
+            -webkit-box-align: center;
+                -ms-flex-align: center;
+                    align-items: center;
           }
         }
       }
@@ -724,14 +735,18 @@
         height: auto;
         margin-bottom: 4rem;
         margin-top: 4rem;
-        justify-content: center;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
         .text-group {
           max-width: 45%;
           padding: 1rem;
           width: auto;
           min-width: unset;
           height: auto;
-          align-items: flex-start;
+          -webkit-box-align: start;
+              -ms-flex-align: start;
+                  align-items: flex-start;
           text-align: start;
         }
         .img-wrapper {
@@ -774,7 +789,9 @@
             height: -moz-fit-content;
             height: fit-content;
             max-width: unset;
-            align-items: center;
+            -webkit-box-align: center;
+                -ms-flex-align: center;
+                    align-items: center;
             text-align: center;
             p {
               width: -webkit-fill-available;
@@ -824,13 +841,7 @@
       height: 940px;
       @include themify(night) {
         background: -o-linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
-        background: -webkit-gradient(
-          linear,
-          left top,
-          left bottom,
-          from(rgba(0, 0, 0, 0.5)),
-          to(rgba(0, 0, 0, 0.5))
-        );
+        background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.5)));
         background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
       }
       .inner {
@@ -934,13 +945,8 @@
             rgba(0, 0, 0, 0.5),
             rgba(0, 0, 0, 0.5)
           );
-          background: -webkit-gradient(
-            linear,
-            left top,
-            left bottom,
-            from(rgba(0, 0, 0, 0.5)),
-            to(rgba(0, 0, 0, 0.5))
-          );
+          background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.5)));
+          background: -o-linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
           background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
           pointer-events: none;
         }
@@ -1152,7 +1158,9 @@
           }
         }
         @media (max-width: $lg-break) {
-          justify-content: flex-end;
+          -webkit-box-pack: end;
+              -ms-flex-pack: end;
+                  justify-content: flex-end;
           height: 100%;
           padding-left: 2rem;
 
@@ -1165,7 +1173,9 @@
             -ms-flex-pack: start;
             justify-content: flex-start;
             text-align: start;
-            align-items: flex-start;
+            -webkit-box-align: start;
+                -ms-flex-align: start;
+                    align-items: flex-start;
             width: 60%;
             p, a {
               font-weight: 300;
@@ -1182,14 +1192,22 @@
           }
         }
         @media (max-width: 766px) {
-          justify-content: center;
+          -webkit-box-pack: center;
+              -ms-flex-pack: center;
+                  justify-content: center;
           padding-left: unset;
           .text-group {
             width: 100%;
            
-            justify-content: center;
+            -webkit-box-pack: center;
+           
+                -ms-flex-pack: center;
+           
+                    justify-content: center;
             text-align: center;
-            align-items: center;
+            -webkit-box-align: center;
+                -ms-flex-align: center;
+                    align-items: center;
             p, a {
               font-weight: unset;
               line-height: 25px;
@@ -1230,7 +1248,9 @@
         width: 45%;
         height: 100%;
         max-height: unset;
-        align-items: flex-start;
+        -webkit-box-align: start;
+            -ms-flex-align: start;
+                align-items: flex-start;
         text-align: start;
         max-width: 600px;
       }
@@ -1252,7 +1272,9 @@
         -webkit-box-pack: justify;
         -ms-flex-pack: justify;
         justify-content: space-between;
-        align-items: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
         .our-vision {
           height: auto;
           width: 280px;
@@ -1265,7 +1287,9 @@
           margin-right: 0;
           width: 45%;
           max-height: unset;
-          align-items: flex-start;
+          -webkit-box-align: start;
+              -ms-flex-align: start;
+                  align-items: flex-start;
           text-align: start;
           height: 100%;
           margin-right: 2rem;
@@ -1299,7 +1323,9 @@
             max-width: unset;
             height: auto;
             max-height: unset;
-            align-items: center;
+            -webkit-box-align: center;
+                -ms-flex-align: center;
+                    align-items: center;
             text-align: center;
             
           }
@@ -1332,7 +1358,9 @@
             width: 100%;
             margin: -10rem 0;
             padding: 0 1rem;
-            align-items: center;
+            -webkit-box-align: center;
+                -ms-flex-align: center;
+                    align-items: center;
             text-align: center;            
           }
         }
@@ -1818,6 +1846,8 @@
                 height: -webkit-max-content;
                 height: -moz-max-content;
                 height: max-content;
+                width: -webkit-max-content;
+                width: -moz-max-content;
                 width: max-content;
                 margin-left: 0.5rem;
                 margin-bottom: 0.5rem;
