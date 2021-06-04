@@ -430,6 +430,7 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
                   <div className={tooltipClass}>
                     <span className={voteBtnClass}>{chevronUpSvg}</span>
                     {tooltipClass.length > 0 && (
+                      <div>
                       <span
                         className="tooltiptext"
                         onClick={(e) => {
@@ -444,7 +445,7 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
                           />
                         )}
                       </span>
-                    )}
+                    </div>)}
                   </div>
                 </div>
               </div>
