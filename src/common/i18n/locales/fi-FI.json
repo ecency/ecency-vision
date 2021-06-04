@@ -63,6 +63,10 @@
     "header-account": "Käyttäjät",
     "header-community": "Yhteisöt"
   },
+  "tag": {
+    "unmoderated": "Unmoderated topics",
+    "moderated": "Moderated community"
+  },
   "switch-lang": {
     "contributors": "Osallistujat"
   },
