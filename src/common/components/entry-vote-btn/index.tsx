@@ -166,9 +166,9 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     if (upSliderVal !== initialVoteValues.up) {
       const estimated = Number(this.estimate(upSliderVal).toFixed(3));
       onClick(upSliderVal, estimated);
-      this.setState({ wrongValueUp: false });
+      this.setState({ wrongValueUp: false, wrongValueDown: false });
     } else {
-      this.setState({ wrongValueUp: true });
+      this.setState({ wrongValueUp: true, wrongValueDown: false });
     }
   };
 
@@ -178,9 +178,9 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     if (initialVoteValues.down !== downSliderVal) {
       const estimated = Number(this.estimate(downSliderVal).toFixed(3));
       onClick(downSliderVal, estimated);
-      this.setState({ wrongValueDown: false });
+      this.setState({ wrongValueDown: false, wrongValueUp: false });
     } else {
-      this.setState({ wrongValueDown: true });
+      this.setState({ wrongValueDown: true, wrongValueUp: false });
     }
   };
 

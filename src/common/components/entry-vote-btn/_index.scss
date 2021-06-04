@@ -242,7 +242,6 @@
   width: 32vw;
   top: 150%;
   left: 3vw;
-  background-color: rgb(255, 255, 255);
   color: black;
   text-align: center;
   border-radius: 6px;
@@ -250,7 +249,18 @@
   position: absolute;
   z-index: 1;
   margin-left: -60px;
-  box-shadow: 0px 1px 4px 1px #d8d8d8;
+
+  @include themify(day) {
+    box-shadow: 0px 1px 4px 1px #d8d8d8;
+    background-color: white;
+    color: black;
+  }
+
+  @include themify(night) {
+    box-shadow: 0px 1px 4px 1px #2f2e2e;
+    background-color: #161d26;
+    color: white;
+  }
 
   @media screen and (max-width: 540px) {
     width: 90vw;
@@ -260,8 +270,15 @@
 }
 
 .primary-btn {
-  color: #357ce6 !important;
-  background-color: white !important;
+  @include themify(night) {
+    color: #357ce6 !important;
+    background-color: transparent !important;
+  }
+
+  @include themify(day) {
+    color: #357ce6 !important;
+    background-color: white !important;
+  }
 }
 
 .entry-list-item .item-body .item-controls svg {
@@ -270,17 +287,38 @@
 }
 
 .primary-btn-done {
-  color: white !important;
-  background-color: #357ce6 !important;
+  @include themify(night) {
+    color: white !important;
+    background-color: #357ce6 !important;
+  }
+
+  @include themify(day) {
+    color: white !important;
+    background-color: #357ce6 !important;
+  }
 }
 
 .primary-btn-vote {
-  color: #357ce6 !important;
-  background-color: white !important;
+  @include themify(night) {
+    color: #357ce6 !important;
+    background-color: transparent !important;
+  }
 
-  .btn-inner {
+  @include themify(day) {
     color: #357ce6 !important;
     background-color: white !important;
+  }
+
+  .btn-inner {
+    @include themify(night) {
+      color: #357ce6 !important;
+      background-color: transparent !important;
+    }
+
+    @include themify(day) {
+      color: #357ce6 !important;
+      background-color: white !important;
+    }
   }
 
   &:hover {
@@ -296,14 +334,28 @@
 
 .secondary-btn-vote {
   color: #bf3030 !important;
-  background-color: white !important;
+
+  @include themify(night) {
+    background-color: transparent !important;
+  }
+
+  @include themify(day) {
+    background-color: white !important;
+  }
+
   svg {
     width: 19px !important;
   }
 
   .btn-inner {
     color: #bf3030 !important;
-    background-color: white !important;
+
+    @include themify(night) {
+      background-color: transparent !important;
+    }
+    @include themify(day) {
+      background-color: white !important;
+    }
   }
 
   &:hover {
@@ -326,6 +378,14 @@
   border-width: 5px;
   border-style: solid;
   border-color: transparent transparent rgb(255, 255, 255) transparent;
+
+  @include themify(day) {
+    border-color: transparent transparent rgb(255, 255, 255) transparent;
+  }
+
+  @include themify(night) {
+    border-color: transparent transparent #161d26 transparent;
+  }
 
   @media screen and (max-width: 480px) {
     left: 4%;
