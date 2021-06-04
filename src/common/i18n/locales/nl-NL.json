@@ -63,6 +63,10 @@
     "header-account": "Gebruikers",
     "header-community": "Gemeenschappen"
   },
+  "tag": {
+    "unmoderated": "Unmoderated topics",
+    "moderated": "Moderated community"
+  },
   "switch-lang": {
     "contributors": "Bijdragers"
   },
