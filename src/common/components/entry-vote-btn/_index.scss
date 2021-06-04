@@ -68,7 +68,7 @@
   input[type="range"] {
     width: 100%;
     margin: 5.5px 0;
-    background-color: transparent;
+    background-color: $transparent;
     -webkit-appearance: none;
   }
 
@@ -151,10 +151,10 @@
   }
 
   input[type="range"]::-ms-track {
-    background: transparent;
-    border-color: transparent;
+    background: $transparent;
+    border-color: $transparent;
     border-width: 6.4px 0;
-    color: transparent;
+    color: $transparent;
     width: 100%;
     height: 9px;
     cursor: pointer;
@@ -242,7 +242,7 @@
   width: 32vw;
   top: 150%;
   left: 4vw;
-  color: black;
+  color: $dark-two;
   text-align: center;
   border-radius: 6px;
   padding: 10px;
@@ -251,15 +251,15 @@
   margin-left: -60px;
 
   @include themify(day) {
-    box-shadow: 0px 1px 4px 1px #d8d8d8;
-    background-color: white;
-    color: black;
+    box-shadow: 0px 1px 4px 1px $white-four;
+    background-color: $white;
+    color: $dark-two;
   }
 
   @include themify(night) {
-    box-shadow: 0px 1px 4px 1px #2f2e2e;
-    background-color: #161d26;
-    color: white;
+    box-shadow: 0px 1px 4px 1px $dark;
+    background-color: $dark-two;
+    color: $white;
   }
 
   @media screen and (max-width: 540px) {
@@ -270,8 +270,8 @@
 }
 
 .primary-btn {
-  color: #357ce6 !important;
-  background-color: transparent !important;
+  color: $dark-sky-blue !important;
+  background-color: $transparent !important;
 }
 
 .entry-list-item .item-body .item-controls svg {
@@ -281,59 +281,59 @@
 
 .primary-btn-done {
   @include themify(night) {
-    color: white !important;
-    background-color: #357ce6 !important;
+    color: $white !important;
+    background-color: $dark-sky-blue !important;
   }
 
   @include themify(day) {
-    color: white !important;
-    background-color: #357ce6 !important;
+    color: $white !important;
+    background-color: $dark-sky-blue !important;
   }
 }
 
 .primary-btn-vote {
   @include themify(night) {
-    color: #357ce6 !important;
-    background-color: transparent !important;
+    color: $dark-sky-blue !important;
+    background-color: $transparent !important;
   }
 
   @include themify(day) {
-    color: #357ce6 !important;
-    background-color: white !important;
+    color: $dark-sky-blue !important;
+    background-color: $white !important;
   }
 
   .btn-inner {
     @include themify(night) {
-      color: #357ce6 !important;
-      background-color: transparent !important;
+      color: $dark-sky-blue !important;
+      background-color: $transparent !important;
     }
 
     @include themify(day) {
-      color: #357ce6 !important;
-      background-color: white !important;
+      color: $dark-sky-blue !important;
+      background-color: $white !important;
     }
   }
 
   &:hover {
-    background-color: #357ce6 !important;
-    color: white !important;
+    background-color: $dark-sky-blue !important;
+    color: $white !important;
 
     .btn-inner {
-      color: white !important;
-      background-color: #357ce6 !important;
+      color: $white !important;
+      background-color: $dark-sky-blue !important;
     }
   }
 }
 
 .secondary-btn-vote {
-  color: #bf3030 !important;
+  color: $red2 !important;
 
   @include themify(night) {
-    background-color: transparent !important;
+    background-color: $transparent !important;
   }
 
   @include themify(day) {
-    background-color: white !important;
+    background-color: $white !important;
   }
 
   svg {
@@ -341,23 +341,23 @@
   }
 
   .btn-inner {
-    color: #bf3030 !important;
+    color: $red2 !important;
 
     @include themify(night) {
-      background-color: transparent !important;
+      background-color: $transparent !important;
     }
     @include themify(day) {
-      background-color: white !important;
+      background-color: $white !important;
     }
   }
 
   &:hover {
-    background-color: #bf3030 !important;
-    color: white !important;
+    background-color: $red2 !important;
+    color: $white !important;
 
     .btn-inner {
-      color: white !important;
-      background-color: #bf3030 !important;
+      color: $white !important;
+      background-color: $red2 !important;
     }
   }
 }

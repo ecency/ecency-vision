@@ -311,5 +311,11 @@ body.medium-zoom--opened {
 }
 
 .pencil {
-  color: #828282 !important;
+  @include themify(day) {
+    color: $warm-grey;
+  }
+
+  @include themify(night) {
+    color: $duck-egg-blue;
+  }
 }
