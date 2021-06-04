@@ -63,6 +63,10 @@
     "header-account": "Kasutajad",
     "header-community": "Kogukonnad"
   },
+  "tag": {
+    "unmoderated": "Unmoderated topics",
+    "moderated": "Moderated community"
+  },
   "switch-lang": {
     "contributors": "Panustajad"
   },
