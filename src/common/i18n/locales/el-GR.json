@@ -63,6 +63,10 @@
     "header-account": "Χρήστες",
     "header-community": "Κοινότητες"
   },
+  "tag": {
+    "unmoderated": "Unmoderated topics",
+    "moderated": "Moderated community"
+  },
   "switch-lang": {
     "contributors": "Συνεισφέροντες"
   },
