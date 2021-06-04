@@ -64,8 +64,8 @@
     "header-community": "Comunidades"
   },
   "tag": {
-    "unmoderated": "Unmoderated topics",
-    "moderated": "Moderated community"
+    "unmoderated": "Temas no moderados",
+    "moderated": "Comunidad moderada"
   },
   "switch-lang": {
     "contributors": "Colaboradores"
