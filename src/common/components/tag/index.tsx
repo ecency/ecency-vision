@@ -14,6 +14,7 @@ import {getCommunity} from "../../api/bridge";
 import defaults from "../../constants/defaults.json";
 
 import isCommunity from "../../helper/is-community";
+import {_t} from "../../i18n";
 
 export const makePath = (filter: string, tag: string): string => {
     // created is default filter for community pages
@@ -147,10 +148,11 @@ export class TagLink extends Component<Props> {
                 if (comTagGet(tag)) {
                     props.children = comTagGet(tag);
                 }
+                props.title = _t('tag.unmoderated');
             } else {
                 props.children = tag.title;
+                props.title = _t('tag.moderated');
             }
-
 
             return createElement("a", props);
         } else if (type === "span") {
@@ -160,8 +162,10 @@ export class TagLink extends Component<Props> {
                 if (comTagGet(tag)) {
                     props.children = comTagGet(tag);
                 }
+                props.title = _t('tag.unmoderated');
             } else {
                 props.children = tag.title;
+                props.title = _t('tag.moderated');   
             }
 
             return createElement("span", props);
