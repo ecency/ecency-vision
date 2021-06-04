@@ -63,6 +63,10 @@
     "header-account": "उपयोगकर्ता",
     "header-community": "समुदाय"
   },
+  "tag": {
+    "unmoderated": "Unmoderated topics",
+    "moderated": "Moderated community"
+  },
   "switch-lang": {
     "contributors": "योगदानकर्ता"
   },
