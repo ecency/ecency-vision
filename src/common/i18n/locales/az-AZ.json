@@ -63,6 +63,10 @@
     "header-account": "İstifadəçilər",
     "header-community": "Cəmiyyətlər"
   },
+  "tag": {
+    "unmoderated": "Unmoderated topics",
+    "moderated": "Moderated community"
+  },
   "switch-lang": {
     "contributors": "Töhfə verənlər"
   },
