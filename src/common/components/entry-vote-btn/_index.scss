@@ -240,8 +240,8 @@
 
 .tooltip-vote .tooltiptext {
   width: 32vw;
-  top: 150%;
   left: 4vw;
+  top: 150%;
   color: $dark-two;
   text-align: center;
   border-radius: 6px;
@@ -249,6 +249,38 @@
   position: absolute;
   z-index: 1;
   margin-left: -60px;
+
+  @media screen and (max-width: 1200px) {
+    width: 65vw;
+    left: 5vw;
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 80vw;
+    left: 7.5vw;
+  }
+
+  @media screen and (max-width: 720px) {
+    width: 90vw;
+    left: 9vw;
+  }
+
+  @media screen and (max-width: 580px) {
+    left: 11vw;
+  }
+
+  @media screen and (max-width: 420px) {
+    left: 13vw;
+  }
+
+  @media screen and (max-width: 390px) {
+    left: 15vw;
+  }
+
+  @media screen and (max-width: 320px) {
+    width: 94vw;
+    left: 17vw;
+  }
 
   @include themify(day) {
     box-shadow: 0px 1px 4px 1px $white-four;
@@ -260,12 +292,6 @@
     box-shadow: 0px 1px 4px 1px $dark;
     background-color: $dark-two;
     color: $white;
-  }
-
-  @media screen and (max-width: 540px) {
-    width: 90vw;
-    top: 170%;
-    left: 13vw;
   }
 }
 
