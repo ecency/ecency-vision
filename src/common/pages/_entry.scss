@@ -477,16 +477,6 @@
           }
 
           @include tag;
-
-          &:first-child {
-            @include themify(day) {
-              background: $white-six;
-            }
-      
-            @include themify(night) {
-              background: lighten($dark-six, 1);
-            }
-          }
         }
       }
 
