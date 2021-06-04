@@ -70,6 +70,7 @@ exports[`(2) Test with data. 1`] = `
             </div>
             <span
               className="category"
+              title="Unmoderated topics"
             >
               photofeed
             </span>
@@ -200,6 +201,7 @@ exports[`(2) Test with data. 1`] = `
             </div>
             <span
               className="category"
+              title="Unmoderated topics"
             >
               ecency
             </span>
@@ -330,6 +332,7 @@ exports[`(2) Test with data. 1`] = `
             </div>
             <span
               className="category"
+              title="Moderated community"
             >
               GEMS
             </span>
