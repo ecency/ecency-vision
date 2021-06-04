@@ -63,6 +63,10 @@
     "header-account": "Користувачі",
     "header-community": "Спільноти"
   },
+  "tag": {
+    "unmoderated": "Unmoderated topics",
+    "moderated": "Moderated community"
+  },
   "switch-lang": {
     "contributors": "Учасники перекладу"
   },
