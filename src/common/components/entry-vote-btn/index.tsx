@@ -160,10 +160,31 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     this.setState({ mode: m });
   };
 
+  isVoted = () => {
+    const { activeUser } = this.props;
+
+    if (!activeUser) {
+      return { upVoted: false, downVoted: false };
+    }
+
+    const { active_votes: votes } = this.props.entry;
+
+    const upVoted = votes.some(
+      (v) => v.voter === activeUser.username && v.rshares > 0
+    );
+
+    const downVoted = votes.some(
+      (v) => v.voter === activeUser.username && v.rshares < 0
+    );
+
+    return { upVoted, downVoted };
+  };
+
   upVoteClicked = () => {
     const { onClick } = this.props;
     const { upSliderVal, initialVoteValues } = this.state;
-    if (upSliderVal !== initialVoteValues.up) {
+    const { upVoted } = this.isVoted();
+    if (upSliderVal !== initialVoteValues.up && !upVoted) {
       const estimated = Number(this.estimate(upSliderVal).toFixed(3));
       onClick(upSliderVal, estimated);
       this.setState({ wrongValueUp: false, wrongValueDown: false });
@@ -175,7 +196,8 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
   downVoteClicked = () => {
     const { onClick } = this.props;
     const { downSliderVal, initialVoteValues } = this.state;
-    if (initialVoteValues.down !== downSliderVal) {
+    const { downVoted } = this.isVoted();
+    if (initialVoteValues.down !== downSliderVal && !downVoted) {
       const estimated = Number(this.estimate(downSliderVal).toFixed(3));
       onClick(downSliderVal, estimated);
       this.setState({ wrongValueDown: false, wrongValueUp: false });
