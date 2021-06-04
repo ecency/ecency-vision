@@ -14,7 +14,7 @@ const LandingPage = (props: any) => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const BgHeroDark = "/../../assets/illustration-hero.webp"
+  const BgHeroDark = apiBase(`/assets/illustration-hero.${global.canUseWebp?"webp":"png"}`);
   const BgHeroLight = apiBase(`/assets/illustration-hero-day.${global.canUseWebp?"webp":"png"}`);
   const EarnMoney = apiBase(`/assets/illustration-earn-money.${global.canUseWebp?"webp":"png"}`);
   const WhaleCatchsFish = apiBase(`/assets/illustration-true-ownership.${global.canUseWebp?"webp":"png"}`);
@@ -32,6 +32,7 @@ const LandingPage = (props: any) => {
   const OurTeam = apiBase(`/assets/our-team.${global.canUseWebp?"webp":"png"}`);
   const OurVision = apiBase(`/assets/our-vision.${global.canUseWebp?"webp":"png"}`);
   const FooterMainFish = apiBase(`/assets/footer-main-fish.${global.canUseWebp?"webp":"png"}`);
+  const LeftFishes = apiBase(`/assets/left-fishes.${global.canUseWebp?"webp":"png"}`);
   const DownloadAndroidWhite = apiBase(`/assets/icon-android-white.svg`);
   const DownloadIPhone = apiBase(`/assets/icon-apple.svg`);
   const DownloadIPhoneWhite = apiBase(`/assets/icon-apple-white.svg`);
@@ -41,6 +42,29 @@ const LandingPage = (props: any) => {
   const FooterTwitter = apiBase(`/assets/footer-twitter.svg`);
   const FooterTelegram = apiBase(`/assets/footer-telegram.svg`);
   const FooterDiscord = apiBase(`/assets/footer-discord.svg`);
+
+  // const PhoneDarkTablet = apiBase(`/assets/phone-dark-tablet.${global.canUseWebp?"webp":"png"}`);
+  // const PhoneLightTablet = apiBase(`/assets/phone-light-tablet.${global.canUseWebp?"webp":"png"}`);
+  // const PhoneDarkPc = apiBase(`/assets/phone-dark-pc.${global.canUseWebp?"webp":"png"}`);
+  // const PhoneLightPc = apiBase(`/assets/phone-light-pc.${global.canUseWebp?"webp":"png"}`);
+
+  const PhoneDarkTablet = require(`../../../../public/assets/phone-dark-tablet.png`);
+  const PhoneLightTablet = require(`../../../../public/assets/phone-light-tablet.png`);
+  const PhoneDarkPc = require(`../../../../public/assets/phone-dark-pc.png`);
+  const PhoneLightPc = require(`../../../../public/assets/phone-light-pc.png`);
+
+  // const BubbleLeftTop = apiBase(`/assets/bubble-left-top.${global.canUseWebp?"webp":"png"}`);
+  // const BubbleLeftBottom = apiBase(`/assets/bubble-left-bottom.${global.canUseWebp?"webp":"png"}`);
+  // const BubbleRightTop = apiBase(`/assets/bubble-right-top.${global.canUseWebp?"webp":"png"}`);
+  // const BubbleLRightBottom = apiBase(`/assets/bubble-right-bottom.${global.canUseWebp?"webp":"png"}`);
+  // const BubbleLCenter = apiBase(`/assets/bubble-center.${global.canUseWebp?"webp":"png"}`);
+
+  const BubbleLeftTop = require(`../../../../public/assets/bubble-left-top.png`);
+  const BubbleLeftBottom = require(`../../../../public/assets/bubble-left-bottom.png`);
+  const BubbleRightTop = require(`../../../../public/assets/bubble-right-top.png`);
+  const BubbleLRightBottom = require(`../../../../public/assets/bubble-right-bottom.png`);
+  const BubbleLCenter = require(`../../../../public/assets/bubble-center.png`);
+  
 
   const FounderImg = apiBase(`/assets/good-karma.${global.canUseWebp?"webp":"jpeg"}`);
   const DevopsImg = apiBase(`/assets/talhasch.${global.canUseWebp?"webp":"jpeg"}`);
@@ -221,6 +245,21 @@ const LandingPage = (props: any) => {
           <div className="inner">
             <span />
             <span />
+            <img src={PhoneDarkPc} alt="dark phone image" className="phone-bg phone-dark-pc" loading="lazy" />
+            <img src={PhoneDarkTablet} alt="dark phone image" className="phone-bg phone-dark-tablet" loading="lazy" />
+            <img src={PhoneLightPc} alt="light phone image" className="phone-bg phone-light-pc" loading="lazy" />
+            <img src={PhoneLightTablet} alt="light phone image" className="phone-bg phone-light-tablet"  loading="lazy"/>
+
+            <img src={BubbleLeftTop} alt="bubble" className="bubble-bg bubble-left-top" loading="lazy" />
+            <img src={BubbleLeftBottom} alt="bubble" className="bubble-bg bubble-left-bottom" loading="lazy" />
+            <img src={BubbleLCenter} alt="bubble" className="bubble-bg bubble-center" loading="lazy" />
+            <img src={BubbleRightTop} alt="bubble" className="bubble-bg bubble-right-top"  loading="lazy"/>
+            <img src={BubbleLRightBottom} alt="bubble" className="bubble-bg bubble-right-bottom"  loading="lazy"/>
+
+            <img src={LeftFishes} alt="fishes" className="download-fishes left-fishes"  loading="lazy"/>           
+            <img src={FishOne} alt="fish" className="download-fishes right-small"  loading="lazy"/>
+            <img src={FishTwo} alt="fish" className="download-fishes right-big"  loading="lazy"/>
+
             <div className="text-group">
               <h2>{_t("landing-page.download-our-application")}</h2>
               <p>{_t("landing-page.download-our-application-desc")}</p>

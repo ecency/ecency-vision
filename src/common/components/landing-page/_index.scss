@@ -1020,24 +1020,154 @@
     }
     .part-bottom {
       height: 1140px;
+      overflow: hidden;
       @include themify(night) {
-        background-image: url("https://ecency.com/assets/bg-download-tiny-dark.svg");
+        background: rgb(23,30,38);
+        background: -moz-linear-gradient(177deg, rgba(23,30,38,1) 0%, rgba(71,77,84,1) 100%);
+        background: -webkit-linear-gradient(177deg, rgba(23,30,38,1) 0%, rgba(71,77,84,1) 100%);
+        background: linear-gradient(177deg, rgba(23,30,38,1) 0%, rgba(71,77,84,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#171e26",endColorstr="#474d54",GradientType=1);  
       }
       @include themify(day) {
-        background-image: url("https://ecency.com/assets/bg-download-tiny.png");
+        background: rgb(196,219,235);
+        background: -moz-linear-gradient(177deg, rgba(196,219,235,1) 0%, rgba(113,180,255,1) 100%);
+        background: -webkit-linear-gradient(177deg, rgba(196,219,235,1) 0%, rgba(113,180,255,1) 100%);
+        background: linear-gradient(177deg, rgba(196,219,235,1) 0%, rgba(113,180,255,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#c4dbeb",endColorstr="#71b4ff",GradientType=1);
+
       }
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
       position: relative;
 
-      @media (max-width: $lg-break) {
-        height: 500px;
+      .download-fishes {
+        display: inline-block;
+        position: absolute;
+        &.left-fishes {
+          left: -18%;
+          top: 14%;
+          @media (max-width: $lg-break) {
+            left: -22%;
+            top: 9%;
+            transform: scale(0.5);
+          }
+        }
+        &.right-big {
+          transform: rotate(-23deg);
+          bottom: 0;
+          @media (max-width: $lg-break) {
+            transform: rotate(-23deg) scale(0.5);
+          }
+        }
+        &.right-small {
+          bottom: 150px;
+          right: 110px;
+          @media (max-width: $lg-break) {
+            transform: scale(0.5);
+            bottom: 103px;
+            right: 59px;
+          }
+        }
         @include themify(night) {
-          background-image: url("https://ecency.com/assets/bg-download-mob-dark.png");
+          &.right-small, &.right-small {
+            opacity: 0.5;
+          }
+        }
+      }
+
+      .phone-bg {
+        position: absolute;
+        height: 740px;
+        width: 375px;
+        display: none;
+        left:100px;
+        top:auto;
+        bottom:auto;
+        z-index: 1;
+        @include themify(day) {
+          @media (min-width: $lg-break) {
+            &.phone-light-pc {
+              display: block;
+            }
+          }
+          @media (max-width: $lg-break) {
+            &.phone-light-tablet {
+              display: block;
+            }
+          }
+        }
+        @include themify(night) {
+          @media (min-width: $lg-break) {
+            &.phone-dark-pc {
+              display: block;
+            }
+          }
+          @media (max-width: $lg-break) {
+            &.phone-dark-tablet {
+              display: block;
+            }
+          }
+        }
+
+        @media (max-width: $lg-break) {
+          height: 450px;
+          width: auto;
+          padding: 3rem 1rem;
+          left: 50px;
+        }
+        @media (max-width: 766px) {
+          display: none !important;
+        }
+        
+      }
+
+      .bubble-bg {
+        position: absolute;
+        max-height: 59px;
+        max-width: 59px;
+        display: inline-block;
+        z-index: 0;
+        &.bubble-left-top {
+          top: -5%;
+          left: -15%;
+        }
+        &.bubble-left-bottom {
+          bottom: 25%;
+          left: -15%;
+        }
+        &.bubble-center {
+          top: -7%;
+          left: 62%;
+        }
+        &.bubble-right-bottom {
+          bottom: -7%;
+          right: -12%;
+        }
+        &.bubble-right-top {
+          top: 6%;
+          right: -12%;
+        }
+        @include themify(night) {
+          display: none;
+        }
+      }
+
+      @media (max-width: 766px) {
+        height: 500px;
+        .phone-bg, .bubble-bg, .download-fishes {
+          display: none;
+        }
+        @include themify(night) {
+          background: rgb(23,30,38);
+          background: -moz-linear-gradient(177deg, rgba(23,30,38,1) 0%, rgba(71,77,84,1) 100%);
+          background: -webkit-linear-gradient(177deg, rgba(23,30,38,1) 0%, rgba(71,77,84,1) 100%);
+          background: linear-gradient(177deg, rgba(23,30,38,1) 0%, rgba(71,77,84,1) 100%);
+          filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#171e26",endColorstr="#474d54",GradientType=1);        
         }
         @include themify(day) {
-          background-image: url("https://ecency.com/assets/bg-download-mob-light.png");
+          background: rgb(196,219,235);
+          background: -moz-linear-gradient(177deg, rgba(196,219,235,1) 0%, rgba(113,180,255,1) 100%);
+          background: -webkit-linear-gradient(177deg, rgba(196,219,235,1) 0%, rgba(113,180,255,1) 100%);
+          background: linear-gradient(177deg, rgba(196,219,235,1) 0%, rgba(113,180,255,1) 100%);
+          filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#c4dbeb",endColorstr="#71b4ff",GradientType=1);
         }
         .inner > span {
           display: -webkit-box;
@@ -1049,9 +1179,6 @@
           left: 0;
           right: 0;
           height: 154px;
-          background-size: 100% 100%;
-          background-position: bottom;
-          background-repeat: no-repeat;
           @include themify(night) {
             background-image: url("https://ecency.com/assets/download-algae-dark.png");
           }
@@ -1076,9 +1203,10 @@
         align-items: center;
         position: relative;
         height: 719px;
+        z-index: 2;
         .text-group {
           margin: 0;
-          width: 756px;
+          width: 50%;
           max-width: 756px;
           z-index: 2;
           h2 {
@@ -1135,8 +1263,15 @@
               height: 25px;
             }
           }
+          @media (max-width: $lg-break) {
+            justify-content: center!important;
+            padding: 0 50px;
+            width: 43%;
+
+          }
           @media (max-width: 766px) {
             margin: 1rem;
+            padding: unset;
 
             h2 {
               font-weight: 800;
