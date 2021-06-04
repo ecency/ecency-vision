@@ -241,7 +241,7 @@
 .tooltip-vote .tooltiptext {
   width: 32vw;
   top: 150%;
-  left: 3vw;
+  left: 4vw;
   color: black;
   text-align: center;
   border-radius: 6px;
@@ -270,15 +270,8 @@
 }
 
 .primary-btn {
-  @include themify(night) {
-    color: #357ce6 !important;
-    background-color: transparent !important;
-  }
-
-  @include themify(day) {
-    color: #357ce6 !important;
-    background-color: white !important;
-  }
+  color: #357ce6 !important;
+  background-color: transparent !important;
 }
 
 .entry-list-item .item-body .item-controls svg {
@@ -366,29 +359,6 @@
       color: white !important;
       background-color: #bf3030 !important;
     }
-  }
-}
-
-.tooltip-vote .tooltiptext::after {
-  content: "";
-  position: absolute;
-  bottom: 100%;
-  left: 4%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: transparent transparent rgb(255, 255, 255) transparent;
-
-  @include themify(day) {
-    border-color: transparent transparent rgb(255, 255, 255) transparent;
-  }
-
-  @include themify(night) {
-    border-color: transparent transparent #161d26 transparent;
-  }
-
-  @media screen and (max-width: 480px) {
-    left: 4%;
   }
 }
 
