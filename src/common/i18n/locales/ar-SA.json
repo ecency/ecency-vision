@@ -63,6 +63,10 @@
     "header-account": "المستخدمون",
     "header-community": "المجتمعات"
   },
+  "tag": {
+    "unmoderated": "Unmoderated topics",
+    "moderated": "Moderated community"
+  },
   "switch-lang": {
     "contributors": "المساهمون"
   },
