@@ -43,27 +43,27 @@ const LandingPage = (props: any) => {
   const FooterTelegram = apiBase(`/assets/footer-telegram.svg`);
   const FooterDiscord = apiBase(`/assets/footer-discord.svg`);
 
-  // const PhoneDarkTablet = apiBase(`/assets/phone-dark-tablet.${global.canUseWebp?"webp":"png"}`);
-  // const PhoneLightTablet = apiBase(`/assets/phone-light-tablet.${global.canUseWebp?"webp":"png"}`);
-  // const PhoneDarkPc = apiBase(`/assets/phone-dark-pc.${global.canUseWebp?"webp":"png"}`);
-  // const PhoneLightPc = apiBase(`/assets/phone-light-pc.${global.canUseWebp?"webp":"png"}`);
+  const PhoneDarkTablet = apiBase(`/assets/phone-dark-tablet.${global.canUseWebp?"webp":"png"}`);
+  const PhoneLightTablet = apiBase(`/assets/phone-light-tablet.${global.canUseWebp?"webp":"png"}`);
+  const PhoneDarkPc = apiBase(`/assets/phone-dark-pc.${global.canUseWebp?"webp":"png"}`);
+  const PhoneLightPc = apiBase(`/assets/phone-light-pc.${global.canUseWebp?"webp":"png"}`);
 
-  const PhoneDarkTablet = require(`../../../../public/assets/phone-dark-tablet.png`);
-  const PhoneLightTablet = require(`../../../../public/assets/phone-light-tablet.png`);
-  const PhoneDarkPc = require(`../../../../public/assets/phone-dark-pc.png`);
-  const PhoneLightPc = require(`../../../../public/assets/phone-light-pc.png`);
+  // const PhoneDarkTablet = require(`../../../../public/assets/phone-dark-tablet.png`);
+  // const PhoneLightTablet = require(`../../../../public/assets/phone-light-tablet.png`);
+  // const PhoneDarkPc = require(`../../../../public/assets/phone-dark-pc.png`);
+  // const PhoneLightPc = require(`../../../../public/assets/phone-light-pc.png`);
 
-  // const BubbleLeftTop = apiBase(`/assets/bubble-left-top.${global.canUseWebp?"webp":"png"}`);
-  // const BubbleLeftBottom = apiBase(`/assets/bubble-left-bottom.${global.canUseWebp?"webp":"png"}`);
-  // const BubbleRightTop = apiBase(`/assets/bubble-right-top.${global.canUseWebp?"webp":"png"}`);
-  // const BubbleLRightBottom = apiBase(`/assets/bubble-right-bottom.${global.canUseWebp?"webp":"png"}`);
-  // const BubbleLCenter = apiBase(`/assets/bubble-center.${global.canUseWebp?"webp":"png"}`);
+  const BubbleLeftTop = apiBase(`/assets/bubble-left-top.${global.canUseWebp?"webp":"png"}`);
+  const BubbleLeftBottom = apiBase(`/assets/bubble-left-bottom.${global.canUseWebp?"webp":"png"}`);
+  const BubbleRightTop = apiBase(`/assets/bubble-right-top.${global.canUseWebp?"webp":"png"}`);
+  const BubbleLRightBottom = apiBase(`/assets/bubble-right-bottom.${global.canUseWebp?"webp":"png"}`);
+  const BubbleLCenter = apiBase(`/assets/bubble-center.${global.canUseWebp?"webp":"png"}`);
 
-  const BubbleLeftTop = require(`../../../../public/assets/bubble-left-top.png`);
-  const BubbleLeftBottom = require(`../../../../public/assets/bubble-left-bottom.png`);
-  const BubbleRightTop = require(`../../../../public/assets/bubble-right-top.png`);
-  const BubbleLRightBottom = require(`../../../../public/assets/bubble-right-bottom.png`);
-  const BubbleLCenter = require(`../../../../public/assets/bubble-center.png`);
+  // const BubbleLeftTop = require(`../../../../public/assets/bubble-left-top.png`);
+  // const BubbleLeftBottom = require(`../../../../public/assets/bubble-left-bottom.png`);
+  // const BubbleRightTop = require(`../../../../public/assets/bubble-right-top.png`);
+  // const BubbleLRightBottom = require(`../../../../public/assets/bubble-right-bottom.png`);
+  // const BubbleLCenter = require(`../../../../public/assets/bubble-center.png`);
   
 
   const FounderImg = apiBase(`/assets/good-karma.${global.canUseWebp?"webp":"jpeg"}`);
