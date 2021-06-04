@@ -28,7 +28,7 @@ exports[`(3) Community as Link 1`] = `
 
 exports[`(4) Should use default filter if the globl filter is 'feed' 1`] = `
 <a
-  href="/hot/bitcoin"
+  href="/created/bitcoin"
   onClick={[Function]}
   title="Unmoderated topics"
 >

@@ -23,7 +23,7 @@ export const makePath = (filter: string, tag: string): string => {
     }
 
     if (EntryFilter[filter] === undefined) {
-        return `/${defaults.filter}/${tag}`;
+        return `/${EntryFilter.created}/${tag}`;
     }
 
     return `/${filter}/${tag}`;
