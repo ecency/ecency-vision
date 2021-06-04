@@ -63,6 +63,10 @@
     "header-account": "Korisnici",
     "header-community": "Zajednice"
   },
+  "tag": {
+    "unmoderated": "Unmoderated topics",
+    "moderated": "Moderated community"
+  },
   "switch-lang": {
     "contributors": "Contributors"
   },
