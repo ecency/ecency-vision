@@ -184,11 +184,12 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     const { onClick } = this.props;
     const { upSliderVal, initialVoteValues } = this.state;
     const { upVoted } = this.isVoted();
-    if (upSliderVal !== initialVoteValues.up && !upVoted) {
+    
+    if (!upVoted || (upVoted && initialVoteValues.up !== upSliderVal)) {
       const estimated = Number(this.estimate(upSliderVal).toFixed(3));
       onClick(upSliderVal, estimated);
       this.setState({ wrongValueUp: false, wrongValueDown: false });
-    } else {
+    } else if(upVoted && initialVoteValues.up === upSliderVal){
       this.setState({ wrongValueUp: true, wrongValueDown: false });
     }
   };
@@ -197,11 +198,12 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     const { onClick } = this.props;
     const { downSliderVal, initialVoteValues } = this.state;
     const { downVoted } = this.isVoted();
-    if (initialVoteValues.down !== downSliderVal && !downVoted) {
+
+    if (!downVoted || (downVoted && initialVoteValues.down !== downSliderVal)) {
       const estimated = Number(this.estimate(downSliderVal).toFixed(3));
       onClick(downSliderVal, estimated);
       this.setState({ wrongValueDown: false, wrongValueUp: false });
-    } else {
+    } else if(downVoted && initialVoteValues.down === downSliderVal){
       this.setState({ wrongValueDown: true, wrongValueUp: false });
     }
   };
@@ -254,7 +256,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
             </div>
             {wrongValueUp && (
               <div className="vote-error">
-                Previous value is not acceptable. Vote with a different value
+                <p>Previous value is not acceptable. Vote with a different value</p>
               </div>
             )}
           </>
@@ -299,7 +301,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
         )}
         {wrongValueDown && (
           <div className="vote-error">
-            Previous value is not acceptable. Vote with a different value
+          <p>Previous value is not acceptable. Vote with a different value</p>
           </div>
         )}
       </>
