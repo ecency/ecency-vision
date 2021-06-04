@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
 import { Modal, Form, FormControl } from "react-bootstrap";
-import ClickAwayListener from "react-click-away-listener";
 
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
@@ -26,6 +25,7 @@ import * as ls from "../../util/local-storage";
 import _c from "../../util/fix-class-names";
 
 import { chevronUpSvg } from "../../img/svg";
+import ClickAwayListener from "../clickaway-listener";
 
 const setVoteValue = (type: "up" | "down", username: string, value: number) => {
   ls.set(`vote-value-${type}-${username}`, value);
@@ -400,7 +400,7 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
         {LoginRequired({
           ...this.props,
           children: (
-            <ClickAwayListener onClickAway={this.handleClickAway}>
+            <ClickAwayListener onClickAway={()=>{dialog && this.setState({dialog:false})}}>
               <div className="entry-vote-btn" onClick={this.toggleDialog}>
                 <div className={cls}>
                   <div className={tooltipClass}>
