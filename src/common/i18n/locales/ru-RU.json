@@ -63,6 +63,10 @@
     "header-account": "Пользователи",
     "header-community": "Сообщества"
   },
+  "tag": {
+    "unmoderated": "Unmoderated topics",
+    "moderated": "Moderated community"
+  },
   "switch-lang": {
     "contributors": "Contributors"
   },
