@@ -1,23 +1,23 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 
-import {History, Location} from "history";
+import { History, Location } from "history";
 
-import {Button} from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import isEqual from "react-fast-compare";
 
 import queryString from "query-string";
 
-import {Global, Theme} from "../../store/global/types";
-import {TrendingTags} from "../../store/trending-tags/types";
-import {Account} from "../../store/accounts/types";
-import {User} from "../../store/users/types";
-import {ActiveUser} from "../../store/active-user/types";
-import {UI, ToggleType} from "../../store/ui/types";
-import {NotificationFilter, Notifications} from "../../store/notifications/types";
-import {DynamicProps} from "../../store/dynamic-props/types";
+import { Global, Theme } from "../../store/global/types";
+import { TrendingTags } from "../../store/trending-tags/types";
+import { Account } from "../../store/accounts/types";
+import { User } from "../../store/users/types";
+import { ActiveUser } from "../../store/active-user/types";
+import { UI, ToggleType } from "../../store/ui/types";
+import { NotificationFilter, Notifications } from "../../store/notifications/types";
+import { DynamicProps } from "../../store/dynamic-props/types";
 import NotificationHandler from "../notification-handler";
 import SwitchLang from "../switch-lang";
 
@@ -26,11 +26,11 @@ import Search from "../search";
 import Login from "../login";
 import UserNav from "../user-nav";
 
-import {_t} from "../../i18n";
+import { _t } from "../../i18n";
 
 import _c from "../../util/fix-class-names";
 
-import {brightnessSvg, pencilOutlineSvg, menuSvg, closeSvg} from "../../img/svg";
+import { brightnessSvg, pencilOutlineSvg, menuSvg, closeSvg } from "../../img/svg";
 
 const logo = require('../../img/logo-circle.svg');
 
@@ -60,7 +60,7 @@ interface Props {
     muteNotifications: () => void;
     unMuteNotifications: () => void;
     setLang: (lang: string) => void;
-    setStepOne?:() => void;
+    setStepOne?: () => void;
 }
 
 interface State {
@@ -83,7 +83,7 @@ export class NavBar extends Component<Props, State> {
         window.addEventListener("resize", this.scrollChanged);
 
         // referral check / redirect
-        const {location, history} = this.props;
+        const { location, history } = this.props;
         const qs = queryString.parse(location.search);
         if (!location.pathname.startsWith("/signup") && qs.referral) {
             history.push(`/signup?referral=${qs.referral}`)
@@ -125,7 +125,7 @@ export class NavBar extends Component<Props, State> {
             nav.classList.remove("can-float");
         }
 
-        this.setState({floating});
+        this.setState({ floating });
     }
 
     changeTheme = () => {
@@ -133,33 +133,33 @@ export class NavBar extends Component<Props, State> {
     };
 
     toggleSmVisible = () => {
-        const {smVisible} = this.state;
-        this.setState({smVisible: !smVisible})
+        const { smVisible } = this.state;
+        this.setState({ smVisible: !smVisible })
     }
 
     handleIconClick = () => {
-        if( "/" !== this.props?.location?.pathname
+        if ("/" !== this.props?.location?.pathname
             || this.props?.location?.pathname?.startsWith("/hot")
             || this.props?.location?.pathname?.startsWith("/created")
             || this.props?.location?.pathname?.startsWith("/trending")
         ) {
             this.props.history.push("/");
         }
-        if(this.props.setStepOne) {
+        if (this.props.setStepOne) {
             return this.props.setStepOne()
         }
     }
 
     render() {
-        const {global, activeUser, ui, step, setStepOne} = this.props;
+        const { global, activeUser, ui, step, setStepOne } = this.props;
         const themeText = global.theme == Theme.day ? _t("navbar.night-theme") : _t("navbar.day-theme");
         const logoHref = activeUser ? `/@${activeUser.username}/feed` : '/';
 
-        const {smVisible, floating} = this.state;
+        const { smVisible, floating } = this.state;
 
         const transparentVerify = this.props?.location?.pathname?.startsWith("/hot")
-        || this.props?.location?.pathname?.startsWith("/created")
-        || this.props?.location?.pathname?.startsWith("/trending")
+            || this.props?.location?.pathname?.startsWith("/created")
+            || this.props?.location?.pathname?.startsWith("/trending")
 
         const textMenu = <div className="text-menu">
             <Link className="menu-item" to="/discover">
@@ -172,7 +172,7 @@ export class NavBar extends Component<Props, State> {
 
         return (
             <>
-                {floating && (<div className="nav-bar-rep"/>)}
+                {floating && (<div className="nav-bar-rep" />)}
                 <div className="nav-bar-toggle" onClick={this.toggleSmVisible}>{smVisible ? closeSvg : menuSvg}</div>
                 {!smVisible && (
                     <div className="nav-bar-sm">
@@ -180,12 +180,12 @@ export class NavBar extends Component<Props, State> {
                             {
                                 activeUser !== null ? (
                                     <Link to={logoHref}>
-                                        <img src={logo} className="logo" alt="Logo"/>
+                                        <img src={logo} className="logo" alt="Logo" />
                                     </Link>
                                 ) :
-                                (
-                                    <img src={logo} className="logo" alt="Logo" onClick={this.handleIconClick}/>
-                                )
+                                    (
+                                        <img src={logo} className="logo" alt="Logo" onClick={this.handleIconClick} />
+                                    )
                             }
                         </div>
 
@@ -201,54 +201,52 @@ export class NavBar extends Component<Props, State> {
                                         <img src={logo} className="logo" alt="Logo" />
                                     </Link>
                                 ) :
-                                (
-                                    <img src={logo} className="logo" alt="Logo" onClick={this.handleIconClick}/>
-                                )
+                                    (
+                                        <img src={logo} className="logo" alt="Logo" onClick={this.handleIconClick} />
+                                    )
                             }
                         </div>
                         {textMenu}
-                        <div className="flex-spacer"/>
+                        <div className="flex-spacer" />
                         {
                             (step !== 1 || transparentVerify) &&
-                                <div className="search-bar">
-                                    {Search({...this.props})}
-                                </div>
+                            <div className="search-bar">
+                                {Search({ ...this.props })}
+                            </div>
                         }
                         <div className="switch-menu">
-                            {SwitchLang({...this.props})}
+                            {SwitchLang({ ...this.props })}
                             {
                                 (step !== 1 || transparentVerify) &&
-                                    <ToolTip content={themeText}>
-                                        <div className="switch-theme" onClick={this.changeTheme}>
-                                            {brightnessSvg}
-                                        </div>
-                                    </ToolTip>
+                                <ToolTip content={themeText}>
+                                    <div className="switch-theme" onClick={this.changeTheme}>
+                                        {brightnessSvg}
+                                    </div>
+                                </ToolTip>
                             }
                             {
                                 (step !== 1 || transparentVerify) &&
-                                    <div className="submit-post">
-                                        <ToolTip content={_t("navbar.post")}>
-                                            <Link className="btn btn-outline-primary" to="/submit">
-                                                {pencilOutlineSvg}
-                                            </Link>
-                                        </ToolTip>
-                                    </div>
+                                <ToolTip content={_t("navbar.post")}>
+                                    <Link className="switch-theme pencil" to="/submit">
+                                        {pencilOutlineSvg}
+                                    </Link>
+                                </ToolTip>
                             }
                         </div>
                         <div className="btn-menu">
                             {!activeUser && (
                                 <div className="login-required">
                                     <Button className="btn-login btn-primary" onClick={() => {
-                                        const {toggleUIProp} = this.props;
+                                        const { toggleUIProp } = this.props;
                                         toggleUIProp('login');
                                     }}>{_t("g.login")}</Button>
 
                                     <Link className="btn btn-primary" to="/signup">{_t("g.signup")}</Link>
                                 </div>
                             )}
-                            
+
                         </div>
-                        {activeUser && <UserNav {...this.props} activeUser={activeUser}/>}
+                        {activeUser && <UserNav {...this.props} activeUser={activeUser} />}
                     </div>
                     {ui.login && <Login {...this.props} />}
                     {global.usePrivate && <NotificationHandler {...this.props} />}

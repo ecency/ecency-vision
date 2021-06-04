@@ -226,7 +226,7 @@
       }
     }
     .submit-post {
-      margin-left: 1rem ;
+      margin-left: 1rem;
     }
     .btn-menu {
       display: flex;
@@ -258,11 +258,11 @@
       top: 0;
       height: 64px;
       width: 100%;
-      animation: anim-fadein .3s;
+      animation: anim-fadein 0.3s;
 
       @include themify(day) {
         background: $white-two;
-        box-shadow: 0 .5rem 1rem rgba($gray-500, .15)
+        box-shadow: 0 0.5rem 1rem rgba($gray-500, 0.15);
       }
 
       @include themify(night) {
@@ -278,7 +278,8 @@
 }
 
 // Custom dropdown colors
-.nav-bar, .nav-bar-sm {
+.nav-bar,
+.nav-bar-sm {
   .custom-dropdown {
     .dropdown-btn {
       @include themify(day) {
@@ -307,4 +308,8 @@ body.medium-zoom--opened {
   .nav-bar {
     display: none !important;
   }
+}
+
+.pencil {
+  color: #828282 !important;
 }
