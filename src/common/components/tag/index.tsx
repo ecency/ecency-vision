@@ -145,10 +145,11 @@ export class TagLink extends Component<Props> {
             const props = Object.assign({}, children.props, {href, onClick: this.clicked});
 
             if (typeof tag === "string") {
+                props.title = _t('tag.unmoderated');
                 if (comTagGet(tag)) {
                     props.children = comTagGet(tag);
+                    props.title = _t('tag.moderated');
                 }
-                props.title = _t('tag.unmoderated');
             } else {
                 props.children = tag.title;
                 props.title = _t('tag.moderated');
@@ -159,10 +160,11 @@ export class TagLink extends Component<Props> {
             const props = Object.assign({}, children.props);
 
             if (typeof tag === "string") {
+                props.title = _t('tag.unmoderated');
                 if (comTagGet(tag)) {
                     props.children = comTagGet(tag);
+                    props.title = _t('tag.moderated');
                 }
-                props.title = _t('tag.unmoderated');
             } else {
                 props.children = tag.title;
                 props.title = _t('tag.moderated');   

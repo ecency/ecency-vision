@@ -70,6 +70,7 @@ exports[`(2) With data 1`] = `
             </div>
             <span
               className="category"
+              title="Moderated community"
             >
               GEMS
             </span>
@@ -199,6 +200,7 @@ exports[`(2) With data 1`] = `
             </div>
             <span
               className="category"
+              title="Moderated community"
             >
               GEMS
             </span>
@@ -330,6 +332,7 @@ exports[`(2) With data 1`] = `
             </div>
             <span
               className="category"
+              title="Moderated community"
             >
               GEMS
             </span>
@@ -464,6 +467,7 @@ exports[`(2) With data 1`] = `
             </div>
             <span
               className="category"
+              title="Moderated community"
             >
               GEMS
             </span>

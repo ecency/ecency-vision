@@ -45,6 +45,7 @@ exports[`(1) Default render 1`] = `
         className="category"
         href="/hot/hive"
         onClick={[Function]}
+        title="Unmoderated topics"
       >
         hive
       </a>
@@ -273,6 +274,7 @@ exports[`(2) Grid view 1`] = `
         className="category"
         href="/hot/hive"
         onClick={[Function]}
+        title="Unmoderated topics"
       >
         hive
       </a>
@@ -495,6 +497,7 @@ exports[`(3) Nsfw 1`] = `
         className="category"
         href="/hot/hive"
         onClick={[Function]}
+        title="Unmoderated topics"
       >
         hive
       </a>
@@ -729,6 +732,7 @@ exports[`(4) Nsfw with active user 1`] = `
         className="category"
         href="/hot/hive"
         onClick={[Function]}
+        title="Unmoderated topics"
       >
         hive
       </a>
@@ -964,6 +968,7 @@ exports[`(5) Nsfw but allowed 1`] = `
         className="category"
         href="/hot/hive"
         onClick={[Function]}
+        title="Unmoderated topics"
       >
         hive
       </a>
@@ -1178,6 +1183,7 @@ exports[`(6) Cross post. Bottom menu 1`] = `
       className="community-name"
       href="/created/hive-125125"
       onClick={[Function]}
+      title="Moderated community"
     >
       Ecency
     </a>
@@ -1223,6 +1229,7 @@ exports[`(6) Cross post. Bottom menu 1`] = `
         className="category"
         href="/created/hive-167922"
         onClick={[Function]}
+        title="Moderated community"
       >
         LeoFinance
       </a>
