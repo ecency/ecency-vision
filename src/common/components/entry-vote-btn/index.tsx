@@ -54,6 +54,9 @@ interface VoteDialogState {
   downSliderVal: number;
   estimated: number;
   mode: Mode;
+  wrongValueUp: boolean;
+  wrongValueDown: boolean;
+  initialVoteValues: { up: any; down: any };
 }
 
 export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
@@ -62,6 +65,12 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     downSliderVal: getVoteValue("down", this.props.activeUser?.username!, -100),
     estimated: 0,
     mode: "up",
+    wrongValueUp: false,
+    wrongValueDown: false,
+    initialVoteValues: {
+      up: getVoteValue("up", this.props.activeUser?.username!, 100),
+      down: getVoteValue("down", this.props.activeUser?.username!, -100),
+    },
   };
 
   estimate = (percent: number): number => {
@@ -123,7 +132,11 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
 
   upSliderChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
     const upSliderVal = Number(e.target.value);
-    this.setState({ upSliderVal });
+    const { initialVoteValues } = this.state;
+    this.setState({
+      upSliderVal,
+      wrongValueUp: upSliderVal === initialVoteValues.up,
+    });
 
     const { activeUser } = this.props;
     setVoteValue("up", activeUser?.username!, upSliderVal);
@@ -133,7 +146,11 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     e: React.ChangeEvent<FormControl & HTMLInputElement>
   ) => {
     const downSliderVal = Number(e.target.value);
-    this.setState({ downSliderVal });
+    const { initialVoteValues } = this.state;
+    this.setState({
+      downSliderVal,
+      wrongValueDown: downSliderVal === initialVoteValues.up,
+    });
 
     const { activeUser } = this.props;
     setVoteValue("down", activeUser?.username!, downSliderVal);
@@ -145,62 +162,80 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
 
   upVoteClicked = () => {
     const { onClick } = this.props;
-    const { upSliderVal } = this.state;
-    const estimated = Number(this.estimate(upSliderVal).toFixed(3));
-    onClick(upSliderVal, estimated);
+    const { upSliderVal, initialVoteValues } = this.state;
+    if (upSliderVal !== initialVoteValues.up) {
+      const estimated = Number(this.estimate(upSliderVal).toFixed(3));
+      onClick(upSliderVal, estimated);
+      this.setState({ wrongValueUp: false });
+    } else {
+      this.setState({ wrongValueUp: true });
+    }
   };
 
   downVoteClicked = () => {
     const { onClick } = this.props;
-    const { downSliderVal } = this.state;
-    const estimated = Number(this.estimate(downSliderVal).toFixed(3));
-    onClick(downSliderVal, estimated);
+    const { downSliderVal, initialVoteValues } = this.state;
+    if (initialVoteValues.down !== downSliderVal) {
+      const estimated = Number(this.estimate(downSliderVal).toFixed(3));
+      onClick(downSliderVal, estimated);
+      this.setState({ wrongValueDown: false });
+    } else {
+      this.setState({ wrongValueDown: true });
+    }
   };
 
   render() {
-    const { upSliderVal, downSliderVal, mode } = this.state;
+    const { upSliderVal, downSliderVal, mode, wrongValueUp, wrongValueDown } =
+      this.state;
 
     return (
       <>
         {mode === "up" && (
-          <div className="voting-controls voting-controls-up">
-            <div
-              className="btn-vote btn-up-vote vote-btn-lg primary-btn-vote"
-              onClick={this.upVoteClicked}
-            >
-              <span className="btn-inner">{chevronUpSvg}</span>
+          <>
+            <div className="voting-controls voting-controls-up">
+              <div
+                className="btn-vote btn-up-vote vote-btn-lg primary-btn-vote"
+                onClick={this.upVoteClicked}
+              >
+                <span className="btn-inner">{chevronUpSvg}</span>
+              </div>
+              <div className="estimated">
+                <FormattedCurrency
+                  {...this.props}
+                  value={this.estimate(upSliderVal)}
+                  fixAt={3}
+                />
+              </div>
+              <div className="slider slider-up">
+                <Form.Control
+                  autoFocus={true}
+                  type="range"
+                  custom={true}
+                  step={0.1}
+                  min={0}
+                  max={100}
+                  value={upSliderVal}
+                  onChange={this.upSliderChanged}
+                />
+              </div>
+              <div className="percentage">{`${
+                upSliderVal && upSliderVal.toFixed(1)
+              }%`}</div>
+              <div
+                className="btn-vote btn-down-vote vote-btn-lg secondary-btn-vote"
+                onClick={() => {
+                  this.changeMode("down");
+                }}
+              >
+                <span className="btn-inner">{chevronUpSvg}</span>
+              </div>
             </div>
-            <div className="estimated">
-              <FormattedCurrency
-                {...this.props}
-                value={this.estimate(upSliderVal)}
-                fixAt={3}
-              />
-            </div>
-            <div className="slider slider-up">
-              <Form.Control
-                autoFocus={true}
-                type="range"
-                custom={true}
-                step={0.1}
-                min={0}
-                max={100}
-                value={upSliderVal}
-                onChange={this.upSliderChanged}
-              />
-            </div>
-            <div className="percentage">{`${
-              upSliderVal && upSliderVal.toFixed(1)
-            }%`}</div>
-            <div
-              className="btn-vote btn-down-vote vote-btn-lg secondary-btn-vote"
-              onClick={() => {
-                this.changeMode("down");
-              }}
-            >
-              <span className="btn-inner">{chevronUpSvg}</span>
-            </div>
-          </div>
+            {wrongValueUp && (
+              <div className="vote-error">
+                Previous value is not acceptable. Vote with a different value
+              </div>
+            )}
+          </>
         )}
 
         {mode === "down" && (
@@ -238,6 +273,11 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
             >
               <span className="btn-inner">{chevronUpSvg}</span>
             </div>
+          </div>
+        )}
+        {wrongValueDown && (
+          <div className="vote-error">
+            Previous value is not acceptable. Vote with a different value
           </div>
         )}
       </>
