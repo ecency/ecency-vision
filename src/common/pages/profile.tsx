@@ -235,7 +235,7 @@ class ProfilePage extends BaseComponent<Props, State> {
                             ...this.props,
                             username,
                             section,
-                            data: data.entries
+                            data: data && data.entries || []
                         })}
                         {[...Object.keys(ProfileFilter), "communities"].includes(section) && ProfileCover({
                             ...this.props,

@@ -68,9 +68,8 @@ export class ProfileMenu extends Component<Props> {
         };
 
         let active = menuConfig.items.filter(x=>x.active)[0];
-        if(active.label.toLowerCase()!==section.toLowerCase()){
-           active.href && history.push(active.href)
-            debugger
+        if(active && active.label.toLowerCase()!==section.toLowerCase()){
+           active.href && history.push(active.href);
         }
 
         return (
