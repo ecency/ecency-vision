@@ -192,7 +192,6 @@ class ProfilePage extends BaseComponent<Props, State> {
         const username = match.params.username.replace("@", "");
         const {section = ProfileFilter.blog} = match.params;
         const account = accounts.find((x) => x.name === username);
-
         if (!account) {
             return NotFound({...this.props});
         }
@@ -208,6 +207,10 @@ class ProfilePage extends BaseComponent<Props, State> {
             rss: `${defaults.base}/@${username}/rss`,
             keywords: `${username}, ${username}'s blog`,
         } : {};
+
+        const {filter, tag} = global;
+        const groupKey = makeGroupKey(filter, tag);
+        const data = entries[groupKey];
 
         return (
             <>
@@ -231,7 +234,8 @@ class ProfilePage extends BaseComponent<Props, State> {
                         {ProfileMenu({
                             ...this.props,
                             username,
-                            section
+                            section,
+                            data: data.entries
                         })}
                         {[...Object.keys(ProfileFilter), "communities"].includes(section) && ProfileCover({
                             ...this.props,
@@ -266,10 +270,6 @@ class ProfilePage extends BaseComponent<Props, State> {
                                     account
                                 })
                             }
-
-                            const {filter, tag} = global;
-                            const groupKey = makeGroupKey(filter, tag);
-                            const data = entries[groupKey];
 
                             if (data !== undefined) {
                                 const entryList = data?.entries;
