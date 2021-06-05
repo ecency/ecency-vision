@@ -57,13 +57,13 @@
         display: flex;
         align-items: center;
 
-        @include themify(day) {
-          border-left: 1px solid $white-three;
-        }
+        // @include themify(day) {
+        //   border-left: 1px solid $white-three;
+        // }
 
-        @include themify(night) {
-          border-left: 1px solid $dark-two;
-        }
+        // @include themify(night) {
+        //   border-left: 1px solid $dark-two;
+        // }
       }
 
       .nav-link {
@@ -71,8 +71,6 @@
         display: flex;
         align-items: center;
         font-weight: 500;
-        padding: 6px 12px;
-        font-size: 90%;
       }
     }
   }

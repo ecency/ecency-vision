@@ -35,7 +35,8 @@ export class EntryIndexMenu extends Component<Props> {
         const {activeUser, global} = this.props;
         const {filter, tag} = global;
 
-        const isMy = isMyPage(global, activeUser);
+        // const isMy = isMyPage(global, activeUser);
+        const isMy = true;
 
         const menuConfig: {
             history: History,
@@ -45,16 +46,7 @@ export class EntryIndexMenu extends Component<Props> {
             history: this.props.history,
             label: isMy ? _t("entry-filter.filter-feed") : _t(`entry-filter.filter-${filter}`),
             items: [
-                ...(activeUser
-                    ? [
-                        {
-                            label: _t("entry-filter.filter-feed"),
-                            href: `/@${activeUser.username}/feed`,
-                            active: isMy,
-                            id: "feed"
-                        },
-                    ]
-                    : []),
+            
                 ...[EntryFilter.trending, EntryFilter.hot, EntryFilter.created].map((x) => {
                     return {
                         label: _t(`entry-filter.filter-${x}`),
@@ -68,22 +60,7 @@ export class EntryIndexMenu extends Component<Props> {
 
         return <div className="entry-index-menu">
             <div className="the-menu">
-                <div className="main-menu">
-                    <div className="sm-menu">
-                        <DropDown {...menuConfig} float="left"/>
-                    </div>
-                    <div className="lg-menu">
-                        <ul className="nav nav-pills nav-fill">
-                            {menuConfig.items.map((i, k) => {
-                                return <li key={k} className="nav-item">
-                                    <Link to={i.href!} className={_c(`nav-link link-${i.id} ${i.active ? "active" : ""}`)}>{i.label}</Link>
-                                </li>
-                            })}
-                        </ul>
-                    </div>
-                </div>
-
-                {isMy && (
+            {isMy && (
                     <div className="sub-menu">
                         <ul className="nav nav-pills nav-fill">
                             <li className="nav-item">
@@ -99,6 +76,21 @@ export class EntryIndexMenu extends Component<Props> {
                         </ul>
                     </div>
                 )}
+                <div className="main-menu">
+                    <div className="sm-menu">
+                        <DropDown {...menuConfig} float="left"/>
+                    </div>
+                    <div className="lg-menu">
+                        <ul className="nav nav-pills nav-fill">
+                            {menuConfig.items.map((i, k) => {
+                                return <li key={k} className="nav-item">
+                                    <Link to={i.href!} className={_c(`nav-link link-${i.id} ${i.active ? "active" : ""}`)}>{i.label}</Link>
+                                </li>
+                            })}
+                        </ul>
+                    </div>
+                </div>
+
             </div>
 
             <ListStyleToggle global={this.props.global} toggleListStyle={this.props.toggleListStyle}/>
