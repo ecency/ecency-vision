@@ -394,3 +394,14 @@ p {
     }
   }
 }
+
+.voting-controls-up .btn-vote.vote-btn-lg svg, .voting-controls-down .btn-vote.vote-btn-lg svg {
+  width:15px !important;
+  height:15px !important;
+}
+
+.entry-vote-btn .btn-vote svg {
+  width:11px !important;
+  height:11px !important;
+
+}
