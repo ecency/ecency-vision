@@ -1023,9 +1023,9 @@
       overflow: hidden;
       @include themify(night) {
         background: rgb(23,30,38);
-        background: -moz-linear-gradient(177deg, rgba(23,30,38,1) 0%, rgba(71,77,84,1) 100%);
-        background: -webkit-linear-gradient(177deg, rgba(23,30,38,1) 0%, rgba(71,77,84,1) 100%);
-        background: linear-gradient(177deg, rgba(23,30,38,1) 0%, rgba(71,77,84,1) 100%);
+        background: -moz-linear-gradient(177deg, rgba(23,30,38,1) 0%, rgb(86, 100, 116) 100%);
+        background: -webkit-linear-gradient(177deg, rgba(23,30,38,1) 0%, rgb(95, 103, 118) 100%);
+        background: linear-gradient(177deg, rgba(23,30,38,1) 0%, rgb(105, 117, 133) 100%);
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#171e26",endColorstr="#474d54",GradientType=1);  
       }
       @include themify(day) {
@@ -1066,9 +1066,24 @@
             right: 59px;
           }
         }
+        &.right-dark-fishes {
+          display: none;
+          bottom: 5%;
+          transform: scale(1.5);
+          @media (max-width: $lg-break) {
+            transform: scale(1);
+            right: 5%;
+          }
+        }
         @include themify(night) {
-          &.right-small, &.right-small {
-            opacity: 0.5;
+          &.right-small, &.right-big {
+            display: none;
+          }
+          &.right-dark-fishes {
+            display: inline-block;
+            @media (max-width: 766px) {
+              display: none;
+            }
           }
         }
       }
@@ -1393,9 +1408,6 @@
         width: 45%;
         height: auto;
         margin: 0;
-      }
-      p {
-        margin-top: 1.5rem;
       }
     }
     .part-bottom {
@@ -1962,6 +1974,20 @@
         }
       }
     }
+    @media (max-width: $xl-break) {
+      .part-bottom > .inner > .links-and-form > .links {
+          .first-column,
+          .second-column {
+            height: auto;
+            li {
+              margin-top: 1rem;
+            }
+          }
+          height: auto;
+        
+      }
+    }
+
     @media (max-width: $lg-break) {
       .part-top {
         .inner {
@@ -2107,16 +2133,6 @@
             }
           }
         }
-        .inner > .links-and-form > .links {
-          .first-column,
-          .second-column {
-            height: auto;
-            li {
-              margin-top: 1rem;
-            }
-          }
-          height: auto;
-        }
       }
     }
     @media (max-width: $sm-break) {
@@ -2149,16 +2165,6 @@
           font-weight: 800;
           font-size: 31px;
           line-height: 37px;
-        }
-        .inner > .links-and-form > .links {
-          .first-column,
-          .second-column {
-            height: auto;
-            li {
-              margin-top: 1rem;
-            }
-          }
-          height: auto;
         }
         .main-fish {
           right: -114px;

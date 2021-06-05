@@ -58,12 +58,14 @@ const LandingPage = (props: any) => {
   const BubbleRightTop = apiBase(`/assets/bubble-right-top.${global.canUseWebp?"webp":"png"}`);
   const BubbleLRightBottom = apiBase(`/assets/bubble-right-bottom.${global.canUseWebp?"webp":"png"}`);
   const BubbleLCenter = apiBase(`/assets/bubble-center.${global.canUseWebp?"webp":"png"}`);
+  const DownloadDarkFishes = apiBase(`/assets/download-dark-fishes.${global.canUseWebp?"webp":"png"}`);
 
   // const BubbleLeftTop = require(`../../../../public/assets/bubble-left-top.png`);
   // const BubbleLeftBottom = require(`../../../../public/assets/bubble-left-bottom.png`);
   // const BubbleRightTop = require(`../../../../public/assets/bubble-right-top.png`);
   // const BubbleLRightBottom = require(`../../../../public/assets/bubble-right-bottom.png`);
   // const BubbleLCenter = require(`../../../../public/assets/bubble-center.png`);
+  // const DownloadDarkFishes = require(`../../../../public/assets/download-dark-fishes.png`);
   
 
   const FounderImg = apiBase(`/assets/good-karma.${global.canUseWebp?"webp":"jpeg"}`);
@@ -257,6 +259,7 @@ const LandingPage = (props: any) => {
             <img src={BubbleLRightBottom} alt="bubble" className="bubble-bg bubble-right-bottom"  loading="lazy"/>
 
             <img src={LeftFishes} alt="fishes" className="download-fishes left-fishes"  loading="lazy"/>           
+            <img src={DownloadDarkFishes} alt="fish" className="download-fishes right-dark-fishes"  loading="lazy"/>
             <img src={FishOne} alt="fish" className="download-fishes right-small"  loading="lazy"/>
             <img src={FishTwo} alt="fish" className="download-fishes right-big"  loading="lazy"/>
 
