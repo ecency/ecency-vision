@@ -92,7 +92,6 @@ interface AuthorInfo {
 interface State {
     loading: boolean;
     replying: boolean;
-    showIfHidden: boolean;
     showIfNsfw: boolean;
     editHistory: boolean;
     showProfileBox: boolean;
@@ -103,7 +102,6 @@ class EntryPage extends BaseComponent<Props, State> {
     state: State = {
         loading: false,
         replying: false,
-        showIfHidden: false,
         showIfNsfw: false,
         editHistory: false,
         showProfileBox: false,
@@ -340,7 +338,7 @@ class EntryPage extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {loading, replying, showIfHidden, showIfNsfw, editHistory, authorInfo} = this.state;
+        const {loading, replying, showIfNsfw, editHistory, authorInfo} = this.state;
         const {global, history} = this.props;
 
         const navBar = global.isElectron ? NavBarElectron({
@@ -373,6 +371,10 @@ class EntryPage extends BaseComponent<Props, State> {
 
         // Sometimes tag list comes with duplicate items
         const tags = [...new Set(entry.json_metadata.tags)];
+        // If category is not present in tags then add
+        if (entry.category && tags[0] !== entry.category) {
+            tags.splice(0, 0, entry.category);
+        }
         const app = appName(entry.json_metadata.app);
         const appShort = app.split('/')[0];
 
@@ -397,7 +399,7 @@ class EntryPage extends BaseComponent<Props, State> {
             image: catchPostImage(entry, 600, 500, global.canUseWebp ? 'webp' : 'match'),
             published: published.toISOString(),
             modified: modified.toISOString(),
-            tag: tags[0],
+            tag: isCommunity(tags[0]) ? tags[1] : tags[0],
             keywords: tags.join(", "),
         };
 
@@ -440,15 +442,6 @@ class EntryPage extends BaseComponent<Props, State> {
                         )}
                         <span itemScope={true} itemType="http://schema.org/Article">
                             {(() => {
-                                if (isHidden && !showIfHidden) {
-                                    return <div className="hidden-warning">
-                                        <span>{_t('entry.hidden-warning')}</span>
-                                        <Button variant="danger" size="sm" onClick={() => {
-                                            this.stateSet({showIfHidden: true});
-                                        }}>{_t('g.show')}</Button>
-                                    </div>
-                                }
-
                                 if (nsfw && !showIfNsfw && !global.nsfw) {
                                     return <div className="nsfw-warning">
                                         <div className="nsfw-title"><span className="nsfw-badge">NSFW</span></div>
@@ -556,6 +549,11 @@ class EntryPage extends BaseComponent<Props, State> {
                                                 {isMuted && (<div className="hidden-warning">
                                                     <span><Tsx k="entry.muted-warning" args={{community: ctitle}}><span/></Tsx></span>
                                                 </div>)}
+
+                                                {isHidden && (<div className="hidden-warning">
+                                                    <span>{_t('entry.hidden-warning')}</span>
+                                                </div>)}
+
                                                 {isComment && (
                                                     <div className="comment-entry-header">
                                                         <div className="comment-entry-header-title">RE: {entry.title}</div>

@@ -1,7 +1,11 @@
 .entry-menu {
   display: flex;
   align-items: center;
-
+  margin-left: 15px;
+  @media (max-width: $xxsm-break) {
+    font-size: 12px;
+    margin-left: 5px;
+  }
   .custom-dropdown {
     .dropdown-btn {
       color: lighten($steel-grey, 4);
