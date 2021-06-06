@@ -32,6 +32,7 @@ const LandingPage = (props: any) => {
   const OurTeam = apiBase(`/assets/our-team.${global.canUseWebp?"webp":"png"}`);
   const OurVision = apiBase(`/assets/our-vision.${global.canUseWebp?"webp":"png"}`);
   const FooterMainFish = apiBase(`/assets/footer-main-fish.${global.canUseWebp?"webp":"png"}`);
+  const LeftFishes = apiBase(`/assets/left-fishes.${global.canUseWebp?"webp":"png"}`);
   const DownloadAndroidWhite = apiBase(`/assets/icon-android-white.svg`);
   const DownloadIPhone = apiBase(`/assets/icon-apple.svg`);
   const DownloadIPhoneWhite = apiBase(`/assets/icon-apple-white.svg`);
@@ -41,6 +42,18 @@ const LandingPage = (props: any) => {
   const FooterTwitter = apiBase(`/assets/footer-twitter.svg`);
   const FooterTelegram = apiBase(`/assets/footer-telegram.svg`);
   const FooterDiscord = apiBase(`/assets/footer-discord.svg`);
+
+  const PhoneDarkTablet = apiBase(`/assets/phone-dark-tablet.${global.canUseWebp?"webp":"png"}`);
+  const PhoneLightTablet = apiBase(`/assets/phone-light-tablet.${global.canUseWebp?"webp":"png"}`);
+  const PhoneDarkPc = apiBase(`/assets/phone-dark-pc.${global.canUseWebp?"webp":"png"}`);
+  const PhoneLightPc = apiBase(`/assets/phone-light-pc.${global.canUseWebp?"webp":"png"}`);
+
+  const BubbleLeftTop = apiBase(`/assets/bubble-left-top.${global.canUseWebp?"webp":"png"}`);
+  const BubbleLeftBottom = apiBase(`/assets/bubble-left-bottom.${global.canUseWebp?"webp":"png"}`);
+  const BubbleRightTop = apiBase(`/assets/bubble-right-top.${global.canUseWebp?"webp":"png"}`);
+  const BubbleLRightBottom = apiBase(`/assets/bubble-right-bottom.${global.canUseWebp?"webp":"png"}`);
+  const BubbleLCenter = apiBase(`/assets/bubble-center.${global.canUseWebp?"webp":"png"}`);
+  const DownloadDarkFishes = apiBase(`/assets/download-dark-fishes.${global.canUseWebp?"webp":"png"}`);  
 
   const FounderImg = apiBase(`/assets/good-karma.${global.canUseWebp?"webp":"jpeg"}`);
   const DevopsImg = apiBase(`/assets/talhasch.${global.canUseWebp?"webp":"jpeg"}`);
@@ -116,18 +129,20 @@ const LandingPage = (props: any) => {
             </div>
           </div>
         </div>
-        <img
-          className="landing-floating-image"
-          src={WhaleCatchsFish}
-          alt="whale"
-          loading="lazy"
-        />
 
         <div className="part-bottom">
           <div className="inner">
             <div className="text-group">
               <h2>{_t("landing-page.true-ownership")}</h2>
               <p>{_t("landing-page.true-ownership-desc")}</p>
+            </div>
+            <div className="image-wrapper">
+              <img
+                className="landing-floating-image"
+                src={WhaleCatchsFish}
+                alt="whale"
+                loading="lazy"
+              />
             </div>
           </div>
         </div>
@@ -163,12 +178,10 @@ const LandingPage = (props: any) => {
               <h2>{_t("landing-page.open-source")}</h2>
               <p>
                 {_t("landing-page.open-source-desc")}
-                <span>
-                  <a className="no-break" href="/signup?referral=ecency">
-                    {_t("landing-page.feel-free-join")}
-                  </a>
-                </span>
               </p>
+              <a className="no-break" href="/signup?referral=ecency">
+                {_t("landing-page.feel-free-join")}
+              </a>
             </div>
             <div className="img-wrapper">
               <img
@@ -184,6 +197,7 @@ const LandingPage = (props: any) => {
 
       <div className="sections fourth-section">
         <div className="part-top">
+          <span className="mask" />
           <div className="inner">
             <div className="fish-container">
               <img className="fish three" src={FishThree} alt="earn-money" loading="lazy" />
@@ -220,6 +234,22 @@ const LandingPage = (props: any) => {
           <div className="inner">
             <span />
             <span />
+            <img src={PhoneDarkPc} alt="dark phone image" className="phone-bg phone-dark-pc" loading="lazy" />
+            <img src={PhoneDarkTablet} alt="dark phone image" className="phone-bg phone-dark-tablet" loading="lazy" />
+            <img src={PhoneLightPc} alt="light phone image" className="phone-bg phone-light-pc" loading="lazy" />
+            <img src={PhoneLightTablet} alt="light phone image" className="phone-bg phone-light-tablet"  loading="lazy"/>
+
+            <img src={BubbleLeftTop} alt="bubble" className="bubble-bg bubble-left-top" loading="lazy" />
+            <img src={BubbleLeftBottom} alt="bubble" className="bubble-bg bubble-left-bottom" loading="lazy" />
+            <img src={BubbleLCenter} alt="bubble" className="bubble-bg bubble-center" loading="lazy" />
+            <img src={BubbleRightTop} alt="bubble" className="bubble-bg bubble-right-top"  loading="lazy"/>
+            <img src={BubbleLRightBottom} alt="bubble" className="bubble-bg bubble-right-bottom"  loading="lazy"/>
+
+            <img src={LeftFishes} alt="fishes" className="download-fishes left-fishes"  loading="lazy"/>           
+            <img src={DownloadDarkFishes} alt="fish" className="download-fishes right-dark-fishes"  loading="lazy"/>
+            <img src={FishOne} alt="fish" className="download-fishes right-small"  loading="lazy"/>
+            <img src={FishTwo} alt="fish" className="download-fishes right-big"  loading="lazy"/>
+
             <div className="text-group">
               <h2>{_t("landing-page.download-our-application")}</h2>
               <p>{_t("landing-page.download-our-application-desc")}</p>
@@ -427,3 +457,4 @@ const LandingPage = (props: any) => {
 };
 
 export default LandingPage;
+
