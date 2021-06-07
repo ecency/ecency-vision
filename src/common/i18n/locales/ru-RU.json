@@ -28,6 +28,11 @@
     "off": "Выкл",
     "yes": "Да",
     "no": "Нет",
+    "found": "found",
+    "blog": "blogs",
+    "posts": "posts",
+    "comments": "comments",
+    "replies": "replies",
     "done": "Готово",
     "apply": "Применить",
     "close": "Закрыть"
@@ -397,7 +402,10 @@
     "vote-power": "Сила голоса: {{n}}%",
     "rc-power": "Ресурс Кредиты: {{n}}%",
     "recharge-time": "(fully charged {{n}})",
-    "down-vote-power": "Downvote Power: {{n}}%"
+    "down-vote-power": "Downvote Power: {{n}}%",
+    "no-posts": "Here you will see your posts, looks like no content exists.",
+    "create-posts": "Let's create a new post",
+    "no-posts-found": "Found nothing!"
   },
   "profile-edit": {
     "title": "Профиль",
