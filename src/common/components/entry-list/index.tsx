@@ -13,6 +13,8 @@ import {UI, ToggleType} from "../../store/ui/types";
 
 import EntryListItem from "../entry-list-item/index";
 import {EntryPinTracker} from "../../store/entry-pin-tracker/types";
+import MessageNoData from "../message-no-data";
+import { Link } from "react-router-dom";
 
 interface Props {
     history: History;
@@ -46,9 +48,9 @@ interface Props {
 
 export class EntryListContent extends Component<Props> {
     render() {
-        const {entries, promotedEntries} = this.props;
+        const {entries, promotedEntries, global, activeUser } = this.props;
         
-        return (
+        return entries.length > 0 ?(
             <>
                 {entries.map((e, i) => {
                     const l = [];
@@ -75,7 +77,7 @@ export class EntryListContent extends Component<Props> {
                     return [...l];
                 })}
             </>
-        );
+        ): <MessageNoData>{(global.tag===`@${activeUser?.username}` && global.filter === "posts") ? <Link to='/submit'><b>Lets post something</b></Link>:'No Data Found'}</MessageNoData>;
     }
 }
 

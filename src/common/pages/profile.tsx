@@ -36,6 +36,7 @@ import defaults from "../constants/defaults.json";
 import _c from "../util/fix-class-names";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
+import { History } from "history";
 
 interface MatchParams {
     username: string;
@@ -44,6 +45,7 @@ interface MatchParams {
 
 interface Props extends PageProps {
     match: match<MatchParams>;
+    history: History
 }
 
 interface State {
@@ -74,8 +76,8 @@ class ProfilePage extends BaseComponent<Props, State> {
     }
 
     componentDidUpdate(prevProps: Readonly<Props>): void {
-        const {match, global, fetchEntries, fetchTransactions, resetTransactions, fetchPoints, resetPoints} = this.props;
-        const {match: prevMatch} = prevProps;
+        const {match, global, fetchEntries, fetchTransactions, resetTransactions, fetchPoints, resetPoints, history } = this.props;
+        const {match: prevMatch, entries} = prevProps;
 
         const {username, section} = match.params;
 
@@ -99,6 +101,18 @@ class ProfilePage extends BaseComponent<Props, State> {
         if (section !== prevMatch.params.section || username !== prevMatch.params.username) {
             fetchEntries(global.filter, global.tag, false);
         }
+
+        if(entries){
+        const { filter, tag } = global;
+        const groupKey = makeGroupKey(filter, tag);
+        const prevData = entries[groupKey];
+        if(prevData){
+        const data = this.props.entries[groupKey];
+        const { loading } = data;
+        const { loading: prevLoading } = prevData;
+        if(loading !== prevLoading && !loading && data.entries.length === 0 && groupKey === `blog-${username}`){
+            history.push(`/${username}/posts`);}
+        }}
     }
 
     componentWillUnmount() {
@@ -176,9 +190,8 @@ class ProfilePage extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {global, entries, accounts, match} = this.props;
+        const {global, entries, accounts, match } = this.props;
         const {loading} = this.state;
-
         const navBar = global.isElectron ? NavBarElectron({
             ...this.props,
             reloadFn: this.reload,
@@ -235,8 +248,7 @@ class ProfilePage extends BaseComponent<Props, State> {
                         {ProfileMenu({
                             ...this.props,
                             username,
-                            section,
-                            data: data && data.entries || []
+                            section
                         })}
                         {[...Object.keys(ProfileFilter), "communities"].includes(section) && ProfileCover({
                             ...this.props,
