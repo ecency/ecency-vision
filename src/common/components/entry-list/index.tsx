@@ -50,6 +50,7 @@ interface Props {
 export class EntryListContent extends Component<Props> {
     render() {
         const {entries, promotedEntries, global, activeUser } = this.props;
+        const {filter} = global;
         
         return entries.length > 0 ?(
             <>
@@ -84,7 +85,7 @@ export class EntryListContent extends Component<Props> {
                     <div className="info">{_t("profile-info.no-posts")}</div>
                     <Link to='/submit' className="action"><b>{_t("profile-info.create-posts")}</b></Link>
                 </div>:
-                <div className="info">{_t("profile-info.no-posts-found")}</div>}
+                <div className="info">{`${_t("g.no")} ${_t(`g.${filter}`)} ${_t("g.found")}.`}</div>}
             </MessageNoData>;
     }
 }

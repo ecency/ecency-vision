@@ -28,6 +28,11 @@
     "off": "Off",
     "yes": "Yes",
     "no": "No",
+    "found": "found",
+    "blog": "blogs",
+    "posts": "posts",
+    "comments": "comments",
+    "replies": "replies",
     "done": "Done",
     "apply": "Apply",
     "close": "Close"
