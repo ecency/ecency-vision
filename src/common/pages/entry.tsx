@@ -511,6 +511,8 @@ class EntryPage extends BaseComponent<Props, State> {
                                                             </div>
 
                                                             <div className="info-line-2">
+                                                                <span className="date" title={published.format("LLLL")}>{published.fromNow()}</span>
+                                                                <span className="separator"/>
                                                                 <div className="entry-tag">
                                                                     <span className="in-tag">{_t("entry.community-in")}</span>
                                                                     {Tag({
@@ -522,8 +524,6 @@ class EntryPage extends BaseComponent<Props, State> {
                                                                         </div>
                                                                     })}
                                                                 </div>
-                                                                <span className="separator"/>
-                                                                <span className="date" title={published.format("LLLL")}>{published.fromNow()}</span>
                                                             </div>
                                                         </div>
                                                         <span className="flex-spacer"/>
@@ -608,6 +608,8 @@ class EntryPage extends BaseComponent<Props, State> {
                                                         </div>
 
                                                         <div className="info-line-2">
+                                                            <span className="date" title={published.format("LLLL")}>{published.fromNow()}</span>
+                                                            <span className="separator"/>
                                                             <div className="entry-tag">
                                                                 <span className="in-tag">{_t("entry.community-in")}</span>
                                                                 {Tag({
@@ -619,8 +621,6 @@ class EntryPage extends BaseComponent<Props, State> {
                                                                     </div>
                                                                 })}
                                                             </div>
-                                                            <span className="separator"/>
-                                                            <span className="date" title={published.format("LLLL")}>{published.fromNow()}</span>
                                                         </div>
                                                     </div>
                                                     <span className="flex-spacer"/>
