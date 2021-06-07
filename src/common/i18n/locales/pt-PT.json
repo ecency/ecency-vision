@@ -28,6 +28,11 @@
     "off": "Desligar",
     "yes": "Sim",
     "no": "Não",
+    "found": "found",
+    "blog": "blogs",
+    "posts": "posts",
+    "comments": "comments",
+    "replies": "replies",
     "done": "Feito",
     "apply": "Aplicar",
     "close": "Fechar"
@@ -397,7 +402,10 @@
     "vote-power": "Poder de Voto: {{n}}%",
     "rc-power": "Créditos de Recursos: {{n}}%",
     "recharge-time": "( {{n}} para carregamento completo)",
-    "down-vote-power": "Poder de Voto Negativo: {{n}}%"
+    "down-vote-power": "Poder de Voto Negativo: {{n}}%",
+    "no-posts": "Here you will see your posts, looks like no content exists.",
+    "create-posts": "Let's create a new post",
+    "no-posts-found": "Found nothing!"
   },
   "profile-edit": {
     "title": "Perfil",
