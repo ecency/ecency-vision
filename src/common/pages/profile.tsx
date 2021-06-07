@@ -50,11 +50,13 @@ interface Props extends PageProps {
 
 interface State {
     loading: boolean;
+    isDefaultPost:boolean;
 }
 
 class ProfilePage extends BaseComponent<Props, State> {
     state: State = {
-        loading: false
+        loading: false,
+        isDefaultPost:false
     };
 
     async componentDidMount() {
@@ -80,6 +82,7 @@ class ProfilePage extends BaseComponent<Props, State> {
         const {match: prevMatch, entries} = prevProps;
 
         const {username, section} = match.params;
+        const { isDefaultPost } = this.state;
 
         // username changed. re-fetch wallet transactions and points
         if (username !== prevMatch.params.username) {
@@ -110,7 +113,8 @@ class ProfilePage extends BaseComponent<Props, State> {
         const data = this.props.entries[groupKey];
         const { loading } = data;
         const { loading: prevLoading } = prevData;
-        if(loading !== prevLoading && !loading && data.entries.length === 0 && groupKey === `blog-${username}`){
+        if(loading !== prevLoading && !loading && data.entries.length === 0 && groupKey === `blog-${username}` && !isDefaultPost){
+            this.setState({isDefaultPost:true})
             history.push(`/${username}/posts`);}
         }}
     }
