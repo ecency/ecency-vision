@@ -28,6 +28,11 @@
     "off": "Изкл.",
     "yes": "Да",
     "no": "Не",
+    "found": "found",
+    "blog": "blogs",
+    "posts": "posts",
+    "comments": "comments",
+    "replies": "replies",
     "done": "Готово",
     "apply": "Потвърди",
     "close": "Затвори"
@@ -397,7 +402,10 @@
     "vote-power": "Сила на гласа: {{n}}%",
     "rc-power": "Ресурс кредити: {{n}}%",
     "recharge-time": "(напълно заредени {{n}})",
-    "down-vote-power": "Сила за отрицателно гласуване: {{n}}%"
+    "down-vote-power": "Сила за отрицателно гласуване: {{n}}%",
+    "no-posts": "Here you will see your posts, looks like no content exists.",
+    "create-posts": "Let's create a new post",
+    "no-posts-found": "Found nothing!"
   },
   "profile-edit": {
     "title": "Профил",
