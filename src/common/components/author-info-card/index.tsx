@@ -23,8 +23,8 @@ interface Props extends PageProps {
 
 const AuthorInfoCard = (props: Props) => {
 
-  const reputation = accountReputation(props.entry.author_reputation);
-  const { username } = props.match.params;
+  const reputation = accountReputation(props?.entry?.author_reputation);
+  const { username } = props?.match?.params;
   const author = username.replace("@", "");
 
   const [authorInfo, setAuthorInfo] = useState({
@@ -38,10 +38,7 @@ const AuthorInfoCard = (props: Props) => {
 
   // For fetching authors about and display name information
   const getAuthorInfo = async () => {
-    const _authorInfo = (await getAccountFull(author))?.profile || {
-      name: "",
-      about: "",
-    };
+    const _authorInfo = (await getAccountFull(author))?.profile;
 
     setAuthorInfo({
       name: _authorInfo?.name || "",
@@ -72,7 +69,7 @@ const AuthorInfoCard = (props: Props) => {
           <div className="info-line-1">
             {ProfileLink({
               ...props,
-              username: props?.entry.author,
+              username: props?.entry?.author,
               children: (
                 <div className="author notranslate">
                   <span className="author-name">

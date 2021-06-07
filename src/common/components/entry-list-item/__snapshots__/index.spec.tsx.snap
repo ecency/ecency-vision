@@ -101,7 +101,7 @@ exports[`(1) Default render 1`] = `
         href="/hive/@good-karma/awesome-hive"
         onClick={[Function]}
       >
-        Hey developers, I just created Awesome-Hive, list of services and apps on Hive. If you don't know about Awesome project, take a look at here: Project contains list of services and links to various tools
+        Hey developers, I just created Awesome-Hive, list of services and apps on Hive. If you don't know about Awesome project, take a look at here: Project contains list of services and links to various too
       </a>
     </div>
     <div
@@ -324,7 +324,7 @@ exports[`(2) Grid view 1`] = `
         href="/hive/@good-karma/awesome-hive"
         onClick={[Function]}
       >
-        Hey developers, I just created Awesome-Hive, list of services and apps on Hive. If you don't know about Awesome project, take a look at here: Project contains list of services and links to various tools
+        Hey developers, I just created Awesome-Hive, list of services and apps on Hive. If you don't know about Awesome project, take a look at here: Project contains list of services and links to various too
       </a>
     </div>
     <div
@@ -1024,7 +1024,7 @@ exports[`(5) Nsfw but allowed 1`] = `
         href="/hive/@good-karma/awesome-hive"
         onClick={[Function]}
       >
-        Hey developers, I just created Awesome-Hive, list of services and apps on Hive. If you don't know about Awesome project, take a look at here: Project contains list of services and links to various tools
+        Hey developers, I just created Awesome-Hive, list of services and apps on Hive. If you don't know about Awesome project, take a look at here: Project contains list of services and links to various too
       </a>
     </div>
     <div
@@ -1238,7 +1238,7 @@ exports[`(6) Cross post. Bottom menu 1`] = `
       />
       <span
         className="date"
-        title="Wednesday, March 24, 2021 6:14 PM"
+        title="Wednesday, March 24, 2021 7:14 PM"
       >
         10 months
       </span>
@@ -1285,7 +1285,7 @@ exports[`(6) Cross post. Bottom menu 1`] = `
         href="/hive-125125/@regenerette/we-need-each-one-of-you-sos-financial-advice-for-hive-newcomers-hive-125125"
         onClick={[Function]}
       >
-        Hi I have decided to write this article for newcomers (that need some guidance), for more experienced ones (that can contribute with input, commenting, and helping with suggestions for this article), and
+        Hi I have decided to write this article for newcomers (that need some guidance), for more experienced ones (that can contribute with input, commenting, and helping with suggestions for this article), 
       </a>
     </div>
     <div
