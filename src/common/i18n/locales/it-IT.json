@@ -28,6 +28,11 @@
     "off": "Spegni",
     "yes": "Si",
     "no": "No",
+    "found": "found",
+    "blog": "blogs",
+    "posts": "posts",
+    "comments": "comments",
+    "replies": "replies",
     "done": "Fatto",
     "apply": "Applica",
     "close": "Chiudi"
@@ -397,7 +402,10 @@
     "vote-power": "Potenza di Voto: {{n}}%",
     "rc-power": "Crediti di Riserva: {{n}}%",
     "recharge-time": "(completamente ricaricato {{n}})",
-    "down-vote-power": "Potenza di Disapprovazione: {{n}}%"
+    "down-vote-power": "Potenza di Disapprovazione: {{n}}%",
+    "no-posts": "Here you will see your posts, looks like no content exists.",
+    "create-posts": "Let's create a new post",
+    "no-posts-found": "Found nothing!"
   },
   "profile-edit": {
     "title": "Profilo",
