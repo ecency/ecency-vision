@@ -28,6 +28,11 @@
     "off": "बंद",
     "yes": "हाँ",
     "no": "नहीं",
+    "found": "found",
+    "blog": "blogs",
+    "posts": "posts",
+    "comments": "comments",
+    "replies": "replies",
     "done": "पूर्ण हुवा",
     "apply": "लागू करें",
     "close": "बंद करें"
@@ -397,7 +402,10 @@
     "vote-power": "वोट शक्ति: {{n}}%",
     "rc-power": "संसाधन क्रेडिट: {{n}}%",
     "recharge-time": "(पूर्णतःउर्जित {{n}})",
-    "down-vote-power": "डाउनवोट पावर: {{n}}%"
+    "down-vote-power": "डाउनवोट पावर: {{n}}%",
+    "no-posts": "Here you will see your posts, looks like no content exists.",
+    "create-posts": "Let's create a new post",
+    "no-posts-found": "Found nothing!"
   },
   "profile-edit": {
     "title": "रूपरेखा",
