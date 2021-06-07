@@ -48,14 +48,14 @@ export class ProfileMenu extends Component<Props> {
             items: [
                 ...[ProfileFilter.blog, ProfileFilter.posts, ProfileFilter.comments, ProfileFilter.replies].map((x) => {
                     let isActive = false;
-                        if(section===x && section ==='blog' && data.length!==0){
+                        if(section === x && section === 'blog' && data.length !== 0){
                             isActive = true
                         }
-                        else if(x === 'posts' && section === 'blog' && data.length===0){
+                        else if(x === 'posts' && section === 'blog' && data.length === 0){
                             isActive = true
                         }
-                        else if(section!=='blog'){
-                            isActive = section===x;
+                        else if(section !== 'blog'){
+                            isActive = section ===x ;
                         }
                     
                     return {
@@ -66,8 +66,8 @@ export class ProfileMenu extends Component<Props> {
                 }),
             ],
         };
-        let active = menuConfig.items.filter(x=>x.active)[0];
-        if(active && active.label.toLowerCase()!==section.toLowerCase()){
+        let active = menuConfig.items.filter(x => x.active)[0];
+        if(active && active.label.toLowerCase() !== section.toLowerCase()){
            active.href && history.push(active.href);
         }
         return (
