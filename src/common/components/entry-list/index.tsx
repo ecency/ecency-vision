@@ -51,7 +51,7 @@ export class EntryListContent extends Component<Props> {
     render() {
         const {entries, promotedEntries, global, activeUser } = this.props;
         
-        return entries.length > 0 ?(
+        return entries.length > 0 ? (
             <>
                 {entries.map((e, i) => {
                     const l = [];
@@ -78,7 +78,7 @@ export class EntryListContent extends Component<Props> {
                     return [...l];
                 })}
             </>
-        ): <MessageNoData>
+        ) : <MessageNoData>
                 {(global.tag===`@${activeUser?.username}` && global.filter === "posts") ? 
                 <div className='text-center'>
                     <div className="info">{_t("profile-info.no-posts")}</div>

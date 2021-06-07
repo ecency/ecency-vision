@@ -36,7 +36,7 @@ import defaults from "../constants/defaults.json";
 import _c from "../util/fix-class-names";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
-import { History } from "history";
+import {History} from "history";
 
 interface MatchParams {
     username: string;
@@ -45,7 +45,7 @@ interface MatchParams {
 
 interface Props extends PageProps {
     match: match<MatchParams>;
-    history: History
+    history: History;
 }
 
 interface State {
@@ -194,7 +194,7 @@ class ProfilePage extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {global, entries, accounts, match } = this.props;
+        const {global, entries, accounts, match} = this.props;
         const {loading} = this.state;
         const navBar = global.isElectron ? NavBarElectron({
             ...this.props,
