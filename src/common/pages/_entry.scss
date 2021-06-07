@@ -1,3 +1,5 @@
+@import "fonts";
+
 .circle-separator {
   border-radius: 50%;
   height: 4px;
@@ -18,6 +20,8 @@
 }
 
 .entry-page {
+  font-family: charter, Georgia, -apple-system, BlinkMacSystemFont, sans-serif;
+
   .the-entry {
     margin: 0 auto 90px auto;
     width: 100%;
@@ -176,8 +180,7 @@
       }
 
       h1.entry-title {
-        font-size: 30px;
-        font-weight: 650;
+        font-size: 42px;
         margin: 16px 0 22px 0;
 
         @media (min-width: $md-break) {
@@ -435,7 +438,7 @@
     .entry-body {
       @include clearfix();
       padding: 0 0 2em 0;
-      font-size: 1.2rem;
+      font-size: 21px;
 
       @include themify(day) {
         color: $tundora;
