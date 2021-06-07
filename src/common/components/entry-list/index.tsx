@@ -15,6 +15,7 @@ import EntryListItem from "../entry-list-item/index";
 import {EntryPinTracker} from "../../store/entry-pin-tracker/types";
 import MessageNoData from "../message-no-data";
 import { Link } from "react-router-dom";
+import { _t } from "../../i18n";
 
 interface Props {
     history: History;
@@ -77,7 +78,14 @@ export class EntryListContent extends Component<Props> {
                     return [...l];
                 })}
             </>
-        ): <MessageNoData>{(global.tag===`@${activeUser?.username}` && global.filter === "posts") ? <Link to='/submit'><b>Lets post something</b></Link>:'No Data Found'}</MessageNoData>;
+        ): <MessageNoData>
+                {(global.tag===`@${activeUser?.username}` && global.filter === "posts") ? 
+                <div className='text-center'>
+                    <div className="info">{_t("profile-info.no-posts")}</div>
+                    <Link to='/submit' className="action"><b>{_t("profile-info.create-posts")}</b></Link>
+                </div>:
+                <div className="info">{_t("profile-info.no-posts-found")}</div>}
+            </MessageNoData>;
     }
 }
 
