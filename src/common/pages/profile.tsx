@@ -209,6 +209,10 @@ class ProfilePage extends BaseComponent<Props, State> {
             keywords: `${username}, ${username}'s blog`,
         } : {};
 
+        const {filter, tag} = global;
+        const groupKey = makeGroupKey(filter, tag);
+        const data = entries[groupKey];
+
         return (
             <>
                 <Meta {...metaProps} />
@@ -231,7 +235,8 @@ class ProfilePage extends BaseComponent<Props, State> {
                         {ProfileMenu({
                             ...this.props,
                             username,
-                            section
+                            section,
+                            data: data && data.entries || []
                         })}
                         {[...Object.keys(ProfileFilter), "communities"].includes(section) && ProfileCover({
                             ...this.props,
@@ -267,9 +272,6 @@ class ProfilePage extends BaseComponent<Props, State> {
                                 })
                             }
 
-                            const {filter, tag} = global;
-                            const groupKey = makeGroupKey(filter, tag);
-                            const data = entries[groupKey];
 
                             if (data !== undefined) {
                                 const entryList = data?.entries;

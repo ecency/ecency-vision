@@ -23,6 +23,7 @@ interface Props {
     username: string;
     section: string;
     activeUser: ActiveUser | null;
+    data: any[];
     toggleListStyle: () => void;
 }
 
@@ -34,8 +35,8 @@ export class ProfileMenu extends Component<Props> {
     }
 
     render() {
-        const {username, section} = this.props;
-        const {activeUser} = this.props;
+        const {username, section, history} = this.props;
+        const {activeUser, data} = this.props;
 
         const menuConfig: {
             history: History,
@@ -46,15 +47,29 @@ export class ProfileMenu extends Component<Props> {
             label: ProfileFilter[section] ? _t(`profile.section-${section}`) : '',
             items: [
                 ...[ProfileFilter.blog, ProfileFilter.posts, ProfileFilter.comments, ProfileFilter.replies].map((x) => {
+                    let isActive = false;
+                        if(section===x && section ==='blog' && data.length!==0){
+                            isActive = true
+                        }
+                        else if(x === 'posts' && section === 'blog' && data.length===0){
+                            isActive = true
+                        }
+                        else if(section!=='blog'){
+                            isActive = section===x;
+                        }
+                    
                     return {
                         label: _t(`profile.section-${x}`),
                         href: `/@${username}/${x}`,
-                        active: section === x,
+                        active: isActive,
                     };
                 }),
             ],
         };
-
+        let active = menuConfig.items.filter(x=>x.active)[0];
+        if(active && active.label.toLowerCase()!==section.toLowerCase()){
+           active.href && history.push(active.href);
+        }
         return (
             <div className="profile-menu">
                 <div className="profile-menu-items">
@@ -94,6 +109,7 @@ export default (p: Props) => {
         username: p.username,
         section: p.section,
         activeUser: p.activeUser,
+        data:p.data,
         toggleListStyle: p.toggleListStyle,
     }
 
