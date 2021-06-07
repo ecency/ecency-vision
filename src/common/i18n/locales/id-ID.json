@@ -28,6 +28,11 @@
     "off": "Off",
     "yes": "Ya",
     "no": "Tidak",
+    "found": "found",
+    "blog": "blogs",
+    "posts": "posts",
+    "comments": "comments",
+    "replies": "replies",
     "done": "Selesai",
     "apply": "Terapkan",
     "close": "Tutup"
@@ -397,7 +402,10 @@
     "vote-power": "Power vote: {{n}}%",
     "rc-power": "Sumber Kredit: {{n}}%",
     "recharge-time": "(terisi penuh {{n}})",
-    "down-vote-power": "Power Downvote: {{n}}%"
+    "down-vote-power": "Power Downvote: {{n}}%",
+    "no-posts": "Here you will see your posts, looks like no content exists.",
+    "create-posts": "Let's create a new post",
+    "no-posts-found": "Found nothing!"
   },
   "profile-edit": {
     "title": "Profil",
