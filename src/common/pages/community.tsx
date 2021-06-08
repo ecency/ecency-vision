@@ -256,7 +256,7 @@ class CommunityPage extends BaseComponent<Props, State> {
                                         <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>
                                             <div className={_c(`entry-list-body ${global.listStyle === ListStyle.grid ? "grid-view" : ""}`)}>
                                                 {loading && entryList.length === 0 && <EntryListLoadingItem/>}
-                                                {EntryListContent({...this.props, entries: entryList, promotedEntries: promoted, community})}
+                                                {!loading && EntryListContent({...this.props, entries: entryList, promotedEntries: promoted, community})}
                                             </div>
                                         </div>
                                         {loading && entryList.length > 0 ? <LinearProgress/> : ""}
