@@ -482,7 +482,7 @@
 
 @mixin tag {
   @include themify(day) {
-    background: $white;
+    background: $white-six;
     color: darken($silver, 35);
     border: solid 1px $white-four;
   }

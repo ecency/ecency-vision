@@ -13,6 +13,7 @@ exports[`(1) Default render 1`] = `
     className="tag-list-item"
     href="/hot/art"
     onClick={[Function]}
+    title="Unmoderated topics"
   >
     art
   </a>
@@ -20,6 +21,7 @@ exports[`(1) Default render 1`] = `
     className="tag-list-item"
     href="/hot/hive"
     onClick={[Function]}
+    title="Unmoderated topics"
   >
     hive
   </a>
@@ -27,6 +29,7 @@ exports[`(1) Default render 1`] = `
     className="tag-list-item"
     href="/hot/news"
     onClick={[Function]}
+    title="Unmoderated topics"
   >
     news
   </a>
@@ -46,6 +49,7 @@ exports[`(2) Selected tag 1`] = `
     className="tag-list-item"
     href="/hot/art"
     onClick={[Function]}
+    title="Unmoderated topics"
   >
     art
   </a>
@@ -53,6 +57,7 @@ exports[`(2) Selected tag 1`] = `
     className="tag-list-item selected-item"
     href="/hot/hive"
     onClick={[Function]}
+    title="Unmoderated topics"
   >
     hive
   </a>
@@ -60,6 +65,7 @@ exports[`(2) Selected tag 1`] = `
     className="tag-list-item"
     href="/hot/news"
     onClick={[Function]}
+    title="Unmoderated topics"
   >
     news
   </a>

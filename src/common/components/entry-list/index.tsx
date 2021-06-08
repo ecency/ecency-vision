@@ -13,6 +13,9 @@ import {UI, ToggleType} from "../../store/ui/types";
 
 import EntryListItem from "../entry-list-item/index";
 import {EntryPinTracker} from "../../store/entry-pin-tracker/types";
+import MessageNoData from "../message-no-data";
+import { Link } from "react-router-dom";
+import { _t } from "../../i18n";
 
 interface Props {
     history: History;
@@ -46,9 +49,10 @@ interface Props {
 
 export class EntryListContent extends Component<Props> {
     render() {
-        const {entries, promotedEntries} = this.props;
+        const {entries, promotedEntries, global, activeUser } = this.props;
+        const {filter} = global;
         
-        return (
+        return entries.length > 0 ? (
             <>
                 {entries.map((e, i) => {
                     const l = [];
@@ -75,7 +79,14 @@ export class EntryListContent extends Component<Props> {
                     return [...l];
                 })}
             </>
-        );
+        ) : <MessageNoData>
+                {(global.tag===`@${activeUser?.username}` && global.filter === "posts") ? 
+                <div className='text-center'>
+                    <div className="info">{_t("profile-info.no-posts")}</div>
+                    <Link to='/submit' className="action"><b>{_t("profile-info.create-posts")}</b></Link>
+                </div>:
+                <div className="info">{`${_t("g.no")} ${_t(`g.${filter}`)} ${_t("g.found")}.`}</div>}
+            </MessageNoData>;
     }
 }
 

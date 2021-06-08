@@ -92,7 +92,6 @@ interface AuthorInfo {
 interface State {
     loading: boolean;
     replying: boolean;
-    showIfHidden: boolean;
     showIfNsfw: boolean;
     editHistory: boolean;
     showProfileBox: boolean;
@@ -103,7 +102,6 @@ class EntryPage extends BaseComponent<Props, State> {
     state: State = {
         loading: false,
         replying: false,
-        showIfHidden: false,
         showIfNsfw: false,
         editHistory: false,
         showProfileBox: false,
@@ -340,7 +338,7 @@ class EntryPage extends BaseComponent<Props, State> {
     }
 
     render() {
-        const {loading, replying, showIfHidden, showIfNsfw, editHistory, authorInfo} = this.state;
+        const {loading, replying, showIfNsfw, editHistory, authorInfo} = this.state;
         const {global, history} = this.props;
 
         const navBar = global.isElectron ? NavBarElectron({
@@ -444,15 +442,6 @@ class EntryPage extends BaseComponent<Props, State> {
                         )}
                         <span itemScope={true} itemType="http://schema.org/Article">
                             {(() => {
-                                if (isHidden && !showIfHidden) {
-                                    return <div className="hidden-warning">
-                                        <span>{_t('entry.hidden-warning')}</span>
-                                        <Button variant="danger" size="sm" onClick={() => {
-                                            this.stateSet({showIfHidden: true});
-                                        }}>{_t('g.show')}</Button>
-                                    </div>
-                                }
-
                                 if (nsfw && !showIfNsfw && !global.nsfw) {
                                     return <div className="nsfw-warning">
                                         <div className="nsfw-title"><span className="nsfw-badge">NSFW</span></div>
@@ -522,6 +511,8 @@ class EntryPage extends BaseComponent<Props, State> {
                                                             </div>
 
                                                             <div className="info-line-2">
+                                                                <span className="date" title={published.format("LLLL")}>{published.fromNow()}</span>
+                                                                <span className="separator"/>
                                                                 <div className="entry-tag">
                                                                     <span className="in-tag">{_t("entry.community-in")}</span>
                                                                     {Tag({
@@ -533,8 +524,6 @@ class EntryPage extends BaseComponent<Props, State> {
                                                                         </div>
                                                                     })}
                                                                 </div>
-                                                                <span className="separator"/>
-                                                                <span className="date" title={published.format("LLLL")}>{published.fromNow()}</span>
                                                             </div>
                                                         </div>
                                                         <span className="flex-spacer"/>
@@ -560,6 +549,11 @@ class EntryPage extends BaseComponent<Props, State> {
                                                 {isMuted && (<div className="hidden-warning">
                                                     <span><Tsx k="entry.muted-warning" args={{community: ctitle}}><span/></Tsx></span>
                                                 </div>)}
+
+                                                {isHidden && (<div className="hidden-warning">
+                                                    <span>{_t('entry.hidden-warning')}</span>
+                                                </div>)}
+
                                                 {isComment && (
                                                     <div className="comment-entry-header">
                                                         <div className="comment-entry-header-title">RE: {entry.title}</div>
@@ -614,6 +608,8 @@ class EntryPage extends BaseComponent<Props, State> {
                                                         </div>
 
                                                         <div className="info-line-2">
+                                                            <span className="date" title={published.format("LLLL")}>{published.fromNow()}</span>
+                                                            <span className="separator"/>
                                                             <div className="entry-tag">
                                                                 <span className="in-tag">{_t("entry.community-in")}</span>
                                                                 {Tag({
@@ -625,8 +621,6 @@ class EntryPage extends BaseComponent<Props, State> {
                                                                     </div>
                                                                 })}
                                                             </div>
-                                                            <span className="separator"/>
-                                                            <span className="date" title={published.format("LLLL")}>{published.fromNow()}</span>
                                                         </div>
                                                     </div>
                                                     <span className="flex-spacer"/>

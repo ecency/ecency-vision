@@ -321,6 +321,11 @@
     @include themify(night) {
       color: $dark-sky-blue !important;
       background-color: $transparent !important;
+
+
+    @media screen and (max-width: 480px) {
+      left: -1px !important;
+    }
     }
 
     @include themify(day) {
@@ -357,6 +362,9 @@
 
   .btn-inner {
     color: $red2 !important;
+    position: relative;
+    top: 1px !important;
+    left: 0.43px !important;
 
     @include themify(night) {
       background-color: $transparent !important;
@@ -404,4 +412,9 @@ p {
   width:11px !important;
   height:11px !important;
 
+}
+
+.entry-vote-btn .btn-inner {
+  position: relative;
+  top: -0.2px;
 }

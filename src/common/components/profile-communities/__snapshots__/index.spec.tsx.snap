@@ -14,6 +14,7 @@ exports[`(1) Default render - With data. 1`] = `
       <a
         href="/created/hive-125125"
         onClick={[Function]}
+        title="Unmoderated topics"
       >
         Ecency
       </a>
@@ -28,6 +29,7 @@ exports[`(1) Default render - With data. 1`] = `
       <a
         href="/created/hive-139531"
         onClick={[Function]}
+        title="Unmoderated topics"
       >
         HiveDevs
       </a>
@@ -42,6 +44,7 @@ exports[`(1) Default render - With data. 1`] = `
       <a
         href="/created/hive-102930"
         onClick={[Function]}
+        title="Unmoderated topics"
       >
         Hive Improvement
       </a>
@@ -70,6 +73,7 @@ exports[`(2) Should show create community link 1`] = `
       <a
         href="/created/hive-125125"
         onClick={[Function]}
+        title="Unmoderated topics"
       >
         Ecency
       </a>
@@ -84,6 +88,7 @@ exports[`(2) Should show create community link 1`] = `
       <a
         href="/created/hive-139531"
         onClick={[Function]}
+        title="Unmoderated topics"
       >
         HiveDevs
       </a>
@@ -98,6 +103,7 @@ exports[`(2) Should show create community link 1`] = `
       <a
         href="/created/hive-102930"
         onClick={[Function]}
+        title="Unmoderated topics"
       >
         Hive Improvement
       </a>
