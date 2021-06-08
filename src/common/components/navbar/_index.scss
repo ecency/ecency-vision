@@ -225,9 +225,17 @@
         color: $duck-egg-blue;
       }
     }
+
     .submit-post {
-      margin-left: 1rem ;
+      display: flex;
+      justify-content: center;
+      margin-top: 0.5rem;
+
+      @media (min-width: $md-break) {
+        display: none;
+      }
     }
+
     .btn-menu {
       display: flex;
 
@@ -316,5 +324,9 @@ body.medium-zoom--opened {
 
   @include themify(night) {
     color: $duck-egg-blue;
+  }
+
+  @media (max-width: $md-break) {
+    display: none;
   }
 }

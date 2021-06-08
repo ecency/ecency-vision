@@ -235,6 +235,7 @@ export class NavBar extends Component<Props, State> {
                         </div>
                         <div className="btn-menu">
                             {!activeUser && (
+                                <div>
                                 <div className="login-required">
                                     <Button className="btn-login btn-primary" onClick={() => {
                                         const {toggleUIProp} = this.props;
@@ -242,6 +243,14 @@ export class NavBar extends Component<Props, State> {
                                     }}>{_t("g.login")}</Button>
 
                                     <Link className="btn btn-primary" to="/signup">{_t("g.signup")}</Link>
+                                </div>
+                                <div className="submit-post">
+                                        <ToolTip content={_t("navbar.post")}>
+                                            <Link className="btn btn-outline-primary" to="/submit">
+                                                {pencilOutlineSvg}
+                                            </Link>
+                                        </ToolTip>
+                                    </div>
                                 </div>
                             )}
                             
