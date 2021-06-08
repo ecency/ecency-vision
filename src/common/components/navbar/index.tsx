@@ -226,13 +226,11 @@ export class NavBar extends Component<Props, State> {
                             }
                             {
                                 (step !== 1 || transparentVerify) &&
-                                    <div className="submit-post">
-                                        <ToolTip content={_t("navbar.post")}>
-                                            <Link className="btn btn-outline-primary" to="/submit">
-                                                {pencilOutlineSvg}
-                                            </Link>
-                                        </ToolTip>
-                                    </div>
+                                <ToolTip content={_t("navbar.post")}>
+                                    <Link className="switch-theme pencil" to="/submit">
+                                        {pencilOutlineSvg}
+                                    </Link>
+                                </ToolTip>
                             }
                         </div>
                         <div className="btn-menu">

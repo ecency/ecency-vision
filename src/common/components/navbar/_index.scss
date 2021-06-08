@@ -308,3 +308,13 @@ body.medium-zoom--opened {
     display: none !important;
   }
 }
+
+.pencil {
+  @include themify(day) {
+    color: $warm-grey;
+  }
+
+  @include themify(night) {
+    color: $duck-egg-blue;
+  }
+}
