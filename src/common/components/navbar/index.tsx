@@ -225,26 +225,26 @@ export class NavBar extends Component<Props, State> {
                                     </ToolTip>
                             }
                             {
-                                (step !== 1 || transparentVerify) &&
+                                (step !== 1 || transparentVerify) && (
                                 <ToolTip content={_t("navbar.post")}>
                                     <Link className="switch-theme pencil" to="/submit">
                                         {pencilOutlineSvg}
                                     </Link>
                                 </ToolTip>
-                            }
+                            )}
                         </div>
                         <div className="btn-menu">
                             {!activeUser && (
                                 <div>
-                                <div className="login-required">
-                                    <Button className="btn-login btn-primary" onClick={() => {
-                                        const {toggleUIProp} = this.props;
-                                        toggleUIProp('login');
-                                    }}>{_t("g.login")}</Button>
+                                    <div className="login-required">
+                                        <Button className="btn-login btn-primary" onClick={() => {
+                                            const {toggleUIProp} = this.props;
+                                            toggleUIProp('login');
+                                        }}>{_t("g.login")}</Button>
 
-                                    <Link className="btn btn-primary" to="/signup">{_t("g.signup")}</Link>
-                                </div>
-                                <div className="submit-post">
+                                        <Link className="btn btn-primary" to="/signup">{_t("g.signup")}</Link>
+                                    </div>
+                                    <div className="submit-post">
                                         <ToolTip content={_t("navbar.post")}>
                                             <Link className="btn btn-outline-primary" to="/submit">
                                                 {pencilOutlineSvg}
@@ -255,7 +255,18 @@ export class NavBar extends Component<Props, State> {
                             )}
                             
                         </div>
-                        {activeUser && <UserNav {...this.props} activeUser={activeUser}/>}
+                        {activeUser && (
+                        <div>
+                            <UserNav {...this.props} activeUser={activeUser}/>
+                            <div className="submit-post">
+                                <ToolTip content={_t("navbar.post")}>
+                                    <Link className="btn btn-outline-primary" to="/submit">
+                                        {pencilOutlineSvg}
+                                    </Link>
+                                </ToolTip>
+                            </div>
+                        </div>
+                        )}
                     </div>
                     {ui.login && <Login {...this.props} />}
                     {global.usePrivate && <NotificationHandler {...this.props} />}
