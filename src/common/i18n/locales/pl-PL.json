@@ -28,15 +28,15 @@
     "off": "Wył",
     "yes": "Tak",
     "no": "Nie",
-    "found": "found",
-    "feed": "feed",
-    "blog": "blogs",
-    "posts": "posts",
-    "comments": "comments",
-    "replies": "replies",
-    "done": "Done",
-    "apply": "Apply",
-    "close": "Close"
+    "found": "znaleziono",
+    "feed": "aktualności",
+    "blog": "blog",
+    "posts": "wpisy",
+    "comments": "komentarze",
+    "replies": "odpowiedzi",
+    "done": "Zakończono",
+    "apply": "Zastosuj",
+    "close": "Zamknij"
   },
   "confirm": {
     "title": "Jesteś pewien?",
@@ -70,11 +70,11 @@
     "header-community": "Społeczności"
   },
   "tag": {
-    "unmoderated": "Unmoderated topics",
-    "moderated": "Moderated community"
+    "unmoderated": "Bez moderacji",
+    "moderated": "Społeczność moderowana"
   },
   "switch-lang": {
-    "contributors": "Contributors"
+    "contributors": "Współtwórcy"
   },
   "user-nav": {
     "wallet": "Portfel",
@@ -86,14 +86,14 @@
     "gallery": "Galeria",
     "drafts": "Szkice",
     "bookmarks": "Zakładki",
-    "schedules": "Schedules",
-    "fragments": "Snippets",
-    "settings": "Settings",
+    "schedules": "Zaplanowane",
+    "fragments": "Fragmenty",
+    "settings": "Ustawienia",
     "logout": "Wyloguj",
-    "vote-power": "Vote Power:"
+    "vote-power": "Siła głosu:"
   },
   "intro": {
-    "title": "Aspire to greatness",
+    "title": "Dla wielkich aspiracji",
     "sub-title": "nagradzanie społeczności",
     "c2a": "Wprowadzenie"
   },
@@ -101,7 +101,7 @@
     "title": "Witaj ponownie!",
     "with-user-pass": "Zaloguj się za pomocą nazwy użytkownika i klucza prywatnego.",
     "username-placeholder": "nazwa użytkownika",
-    "key-placeholder": "password / private key",
+    "key-placeholder": "hasło / klucz prywatny",
     "login-info-1": "Nie przechowujemy Twoich kluczy prywatnych.",
     "login-info-2": "Więcej informacji",
     "error-fields-required": "Wprowadź nazwę użytkownika i klucz prywatny",
@@ -109,17 +109,17 @@
     "error-user-fetch": "Nie można pobrać danych użytkownika",
     "error-user-not-found": "Użytkownik nie istnieje",
     "error-permission": "Nie można uzyskać pozwolenia na publikację",
-    "error-authenticate": "Wrong private key. Master or active or posting private key required.",
+    "error-authenticate": "Nieprawidłowy klucz prywatny. Wymagany jest główny lub aktywny klucz prywatny.",
     "with-hive-signer": "Zaloguj się przez hivesigner",
     "with-keychain": "Zaloguj z keychain",
     "sign-up-text-1": "Nie masz konta?",
     "sign-up-text-2": "Zarejestruj się teraz!"
   },
   "sign-up": {
-    "header": "Welcome to Ecency",
-    "description": "Home of Free speech and Rewarding communities!",
-    "bottom-description": "Every account is created on a blockchain and only you have control over that account. One account to manage everything on Blockchain and Ecency.",
-    "learn-more": "Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
+    "header": "Witaj w Ecency",
+    "description": "Dom wolności słowa oraz wynagradzających społeczności!",
+    "bottom-description": "Każde konto tworzone jest w sieci blockchain i tylko ty masz nad nim kontrolę. Konto pozwala zarządzać wszystkim w sieci blockchain oraz Ecency,.",
+    "learn-more": "Dowiedz się więcej o korzyściach w <a href=\"/faq#how-to-join\">sekcji pytań i odpowiedzi</a>",
     "username": "Wybierz nazwę użytkownika",
     "email": "Podaj swój adres e-mail",
     "ref": "Użytkownik rekomendowany (opcjonalnie)",
@@ -136,20 +136,20 @@
     "title": "Polecane"
   },
   "entry-list-item": {
-    "cross-posted": "cross-posted",
-    "cross-posted-to": "to",
-    "reblogged": "{{n}} Reblogged",
-    "promoted": "Promoted",
+    "cross-posted": "udostępnił(a)",
+    "cross-posted-to": "do",
+    "reblogged": "{{n}} Reblogowany",
+    "promoted": "Promowane",
     "pinned": "Przypięty post",
     "replies": "1 odpowiedź. Kliknij aby odpowiedzieć.",
     "replies-n": "{{n}} odpowiedzi. Kliknij aby odpowiedzieć.",
     "no-replies": "Brak odpowiedzi. Kliknij aby odpowiedzieć."
   },
   "nsfw": {
-    "reveal": "Reveal this post",
-    "signup": "<a href=\"/signup\" class=\"push-link\">create an account</a> to save your preferences",
-    "settings-1": "adjust your",
-    "settings-2": "display preferences"
+    "reveal": "Pokaż ten post",
+    "signup": "<a href=\"/signup\" class=\"push-link\">zarejestruj się</a> aby zapisać swoje ustawienia",
+    "settings-1": "dostosuj",
+    "settings-2": "ustawienia wyświetlania"
   },
   "bookmark-btn": {
     "add": "Dodaj do zakładek",
@@ -162,30 +162,30 @@
     "confirm-title": "Reblog do bloga @{{n}}?",
     "confirm-ok": "Rebloguj",
     "success": "Rebloggowany!",
-    "delete-reblog": "Undo Reblog",
-    "delete-confirm-title": "Undo reblog?",
-    "delete-confirm-ok": "Undo",
-    "delete-success": "Reblog removed"
+    "delete-reblog": "Cofnij reblogowanie",
+    "delete-confirm-title": "Czy chcesz cofnąć reblogowanie?",
+    "delete-confirm-ok": "Cofnij",
+    "delete-success": "Reblog usunięty"
   },
   "entry-tip": {
-    "title": "Tip"
+    "title": "Napiwek"
   },
   "entry-share": {
-    "title": "Share"
+    "title": "Udostępnij"
   },
   "entry-menu": {
-    "cross-post": "Cross post",
-    "share": "Share",
-    "edit-history": "Edit History",
-    "pin": "Pin",
-    "pin-success": "Post pinned",
-    "unpin": "Unpin",
-    "unpin-success": "Post Unpinned",
-    "mute": "Mute",
-    "mute-success": "Post muted",
-    "unmute": "Unmute",
-    "unmute-success": "Post unmuted",
-    "promote": "Promote",
+    "cross-post": "Udostępnij wpis",
+    "share": "Udostępnij",
+    "edit-history": "Historia edycji",
+    "pin": "Przypnij",
+    "pin-success": "Przypięty wpis",
+    "unpin": "Odepnij",
+    "unpin-success": "Post został odpięty",
+    "mute": "Wycisz",
+    "mute-success": "Wpis został wyciszony",
+    "unmute": "Wyłącz wyciszenie",
+    "unmute-success": "Wyciszenie wpisu zostało wyłączone",
+    "promote": "Promuj",
     "boost": "Boost"
   },
   "cross-post": {
@@ -502,14 +502,14 @@
     "filter-20": "Points for login",
     "filter-30": "Usage bonus",
     "filter-100": "Points for post",
-    "filter-110": "Points for comment",
-    "filter-120": "Points for vote",
-    "filter-130": "Points for reblog",
-    "filter-150": "Delegation reward",
-    "filter-160": "Referral reward",
-    "filter-170": "Community reward",
-    "filter-998": "Outgoing transfer",
-    "filter-999": "Incoming transfer"
+    "filter-110": "Punkty za komentarz",
+    "filter-120": "Punkty za głos",
+    "filter-130": "Punkty za reblog",
+    "filter-150": "Nagroda za delegację",
+    "filter-160": "Nagrody za polecenie",
+    "filter-170": "Nagroda za społeczności",
+    "filter-998": "Przelew wychodzący",
+    "filter-999": "Przelew przychodzący"
   },
   "purchase": {
     "select-asset": "Wybierz zasób",
@@ -591,12 +591,12 @@
   },
   "transactions": {
     "title": "Historia",
-    "group-all": "All History",
-    "group-transfers": "Transfers",
-    "group-market-orders": "Market Orders",
-    "group-interests": "Interests",
-    "group-stake-operations": "Stake operations",
-    "group-rewards": "Rewards",
+    "group-all": "Cała historia",
+    "group-transfers": "Przelewy",
+    "group-market-orders": "Zlecenia giełdowe",
+    "group-interests": "Odsetki",
+    "group-stake-operations": "Operacje związane z zastawem",
+    "group-rewards": "Nagrody",
     "type-curation_reward": "Nagroda kuratorska",
     "type-author_reward": "Nagroda autora",
     "type-comment_benefactor_reward": "Nagroda dla beneficjenta komentarza",
@@ -606,10 +606,10 @@
     "type-withdraw_vesting": "Wycofaj udziały",
     "type-fill_order": "Wypełnij zamówienie",
     "type-producer_reward": "Producer reward",
-    "type-interest": "Interest",
-    "type-transfer_to_savings": "Transfer to savings",
+    "type-interest": "Odsetki",
+    "type-transfer_to_savings": "Przenieś do oszczędności",
     "type-fill_convert_request": "Fill convert request",
-    "type-cancel_transfer_from_savings": "Cancel transfer from savings",
+    "type-cancel_transfer_from_savings": "Anuluj transfer z oszczędności",
     "type-cancel_transfer_from_savings-detail": "From: <strong>@{{from}}</strong> <br/> Request id: <strong>{{request}}</strong>",
     "type-return_vesting_delegation": "Return vesting delegation",
     "type-proposal_pay": "Proposal pay"
@@ -663,7 +663,7 @@
     "emoji": "Emotikony",
     "image-error": "Nie udało się przesłać obrazu",
     "image-error-size": "Rozmiar obrazu jest zbyt duży, spróbuj ponownie mniejszych rozmiarów.",
-    "fragments": "Snippets"
+    "fragments": "Fragmenty"
   },
   "emoji-picker": {
     "filter-placeholder": "Filtruj",
@@ -676,7 +676,7 @@
     "title-placeholder": "Tytuł",
     "body-placeholder": "Treść wpisu",
     "reward": "Nagroda",
-    "reward-hint": "Set author reward ratio for liquid and staked tokens",
+    "reward-hint": "Ustaw współczynnik nagród autorskich dla płynnych i zastawionych tokenów",
     "reward-default": "Domyślnie 50% / 50%",
     "reward-sp": "Zwiększ moc 100%",
     "reward-dp": "Odmów wynagrodzenia",
@@ -691,17 +691,17 @@
     "clear": "Wyczyść",
     "published": "Wpis został opublikowany",
     "updated": "Wpis został zaktualizowany",
-    "advanced": "Advanced",
-    "beneficiaries": "Beneficiaries",
-    "beneficiaries-hint": "Set beneficiaries to share author reward with other accounts",
-    "reblog": "Reblog",
-    "reblog-hint": "Auto share content to your blog",
-    "schedule": "Schedule",
-    "schedule-hint": "Auto publish content on specific time",
-    "scheduled": "Post scheduled",
-    "empty-title-alert": "Enter post title",
-    "empty-tags-alert": "Enter post tags",
-    "empty-body-alert": "Enter post body"
+    "advanced": "Zaawansowane",
+    "beneficiaries": "Beneficjenci",
+    "beneficiaries-hint": "Ustaw beneficjentów, aby podzielić się nagrodami autorskimi z innymi użytkownikami",
+    "reblog": "Rebloguj",
+    "reblog-hint": "Automatyczne udostępnij wpis do swojego bloga",
+    "schedule": "Zaplanuj",
+    "schedule-hint": "Automatycznie opublikuj w podanym czasie",
+    "scheduled": "Post zaplanowany",
+    "empty-title-alert": "Dodaj tytuł swojego wpisu",
+    "empty-tags-alert": "Dodaj tagi do wpisu",
+    "empty-body-alert": "Wprowadź treść wpisu"
   },
   "tag-selector": {
     "placeholder-empty": "Tagi. Pierwszy tag jest kategorią główną. Tagi można sortować.",
@@ -711,7 +711,7 @@
     "error-max": "Maksymalnie {{n}} tagów"
   },
   "community-selector": {
-    "choose": "Choose a community",
+    "choose": "Wybierz społeczność",
     "my-blog": "Mój blog",
     "search-placeholder": "Szukaj społeczności"
   },
@@ -721,17 +721,17 @@
     "read-time-n-min": "~ {{n}} min czytania"
   },
   "beneficiary-editor": {
-    "title": "Beneficiaries",
-    "btn-label": "Set Beneficiaries",
-    "btn-label-n": "Set Beneficiaries ({{n}})",
-    "username": "Username",
-    "reward": "Reward",
-    "user-error": "{{n}} is not a valid user.",
-    "user-exists-error": "{{n}} is already in the list"
+    "title": "Beneficjenci",
+    "btn-label": "Ustaw beneficjentów",
+    "btn-label-n": "Ustaw beneficjentów ({{n}})",
+    "username": "Nazwa użytkownika",
+    "reward": "Nagroda",
+    "user-error": "Użytkownik {{n}} nie istnieje.",
+    "user-exists-error": "Użytkownik {{n}} został już dodany"
   },
   "post-scheduler": {
-    "title": "Schedule",
-    "btn-label": "Schedule"
+    "title": "Zaplanuj",
+    "btn-label": "Zaplanuj"
   },
   "notification": {
     "popup-title": "Masz nowe powiadomienie",
@@ -752,7 +752,7 @@
     "type-follows": "Obserwują cię",
     "type-reblogs": "Reblogi",
     "type-transfers": "Przelewy",
-    "group-title-recent": "Recent",
+    "group-title-recent": "Ostatnie",
     "vote-str": "{{p}}% lubi Twój wpis:",
     "reply-str": "odpowiedział na twój post:",
     "mention-str": "wspomniał o Tobie w:",
@@ -771,10 +771,10 @@
     "unmute": "Włącz powiadomienia"
   },
   "leaderboard": {
-    "title-stars": "Most active",
-    "title-curators": "Curators",
-    "title-day": "Daily leaders",
-    "title-week": "Weekly leaders",
+    "title-stars": "Najbardziej aktywne",
+    "title-curators": "Kuratorzy",
+    "title-day": "Dzisiejsi liderzy",
+    "title-week": "Liderzy tygodnia",
     "title-month": "Monthly leaders",
     "period-day": "Codziennie",
     "period-week": "Co tydzień",
