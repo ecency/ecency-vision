@@ -61,7 +61,6 @@
 
 .voting-controls-up,
 .voting-controls-down {
-
   .btn-vote {
     @include btn-vote;
   }
@@ -69,7 +68,7 @@
   input[type="range"] {
     width: 100%;
     margin: 5.5px 0;
-    background-color: transparent;
+    background-color: $transparent;
     -webkit-appearance: none;
   }
 
@@ -152,10 +151,10 @@
   }
 
   input[type="range"]::-ms-track {
-    background: transparent;
-    border-color: transparent;
+    background: $transparent;
+    border-color: $transparent;
     border-width: 6.4px 0;
-    color: transparent;
+    color: $transparent;
     width: 100%;
     height: 9px;
     cursor: pointer;
@@ -232,4 +231,190 @@
   input[type="range"]::-ms-thumb {
     background: $red4;
   }
+}
+
+.tooltip-vote {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-vote .tooltiptext {
+  width: 32vw;
+  left: 0px;
+  top: 150%;
+  color: $dark-two;
+  text-align: center;
+  border-radius: 6px;
+  padding: 10px;
+  position: absolute;
+  z-index: 1;
+
+  @media screen and (max-width: 1100px) {
+    width: 65vw;
+  }
+
+  @media screen and (max-width: 560px) {
+    width: 93vw;
+    left: auto;
+    right: auto;
+  }
+
+  @media screen and (max-width: 420px) {
+    width: 91vw;
+  }
+
+  @media screen and (max-width: 375px) {
+    width: 90vw;
+  }
+
+  @media screen and (max-width: 320px) {
+    width: 88vw;
+  }
+
+  @include themify(day) {
+    box-shadow: 0px 1px 4px 1px $white-four;
+    background-color: $white;
+    color: $dark-two;
+  }
+
+  @include themify(night) {
+    box-shadow: 0px 1px 4px 1px $dark;
+    background-color: $dark-two;
+    color: $white;
+  }
+}
+
+.primary-btn {
+  color: $dark-sky-blue !important;
+  background-color: $transparent !important;
+}
+
+.entry-list-item .item-body .item-controls svg {
+  width: 12px !important;
+  height: 12px !important;
+}
+
+.primary-btn-done {
+  @include themify(night) {
+    color: $white !important;
+    background-color: $dark-sky-blue !important;
+  }
+
+  @include themify(day) {
+    color: $white !important;
+    background-color: $dark-sky-blue !important;
+  }
+}
+
+.primary-btn-vote {
+  @include themify(night) {
+    color: $dark-sky-blue !important;
+    background-color: $transparent !important;
+  }
+
+  @include themify(day) {
+    color: $dark-sky-blue !important;
+    background-color: $white !important;
+  }
+
+  .btn-inner {
+    @include themify(night) {
+      color: $dark-sky-blue !important;
+      background-color: $transparent !important;
+
+
+    @media screen and (max-width: 480px) {
+      left: -1px !important;
+    }
+    }
+
+    @include themify(day) {
+      color: $dark-sky-blue !important;
+      background-color: $white !important;
+    }
+  }
+
+  &:hover {
+    background-color: $dark-sky-blue !important;
+    color: $white !important;
+
+    .btn-inner {
+      color: $white !important;
+      background-color: $dark-sky-blue !important;
+    }
+  }
+}
+
+.secondary-btn-vote {
+  color: $red2 !important;
+
+  @include themify(night) {
+    background-color: $transparent !important;
+  }
+
+  @include themify(day) {
+    background-color: $white !important;
+  }
+
+  svg {
+    width: 19px !important;
+  }
+
+  .btn-inner {
+    color: $red2 !important;
+    position: relative;
+    top: 1px !important;
+    left: 0.43px !important;
+
+    @include themify(night) {
+      background-color: $transparent !important;
+    }
+    @include themify(day) {
+      background-color: $white !important;
+    }
+  }
+
+  &:hover {
+    background-color: $red2 !important;
+    color: $white !important;
+
+    .btn-inner {
+      color: $white !important;
+      background-color: $red2 !important;
+    }
+  }
+}
+
+.vote-error {
+  font-size: 12px;
+  color: $red;
+  display: flex;
+  justify-content: center;
+p {
+  margin:0px;
+}
+
+  @media screen and (max-width: 480px) {
+    p {
+      width: 90%;
+      text-align: center;
+      white-space: pre-wrap;
+    }
+  }
+}
+
+.voting-controls-up .btn-vote.vote-btn-lg svg, .voting-controls-down .btn-vote.vote-btn-lg svg {
+  width:15px !important;
+  height:15px !important;
+}
+
+.entry-vote-btn .btn-vote svg {
+  width:11px !important;
+  height:11px !important;
+
+}
+
+.entry-vote-btn .btn-inner {
+  position: relative;
+  top: -0.2px;
 }
