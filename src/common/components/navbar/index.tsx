@@ -226,11 +226,11 @@ export class NavBar extends Component<Props, State> {
                             }
                             {
                                 (step !== 1 || transparentVerify) && (
-                                <ToolTip content={_t("navbar.post")}>
-                                    <Link className="switch-theme pencil" to="/submit">
-                                        {pencilOutlineSvg}
-                                    </Link>
-                                </ToolTip>
+                                    <ToolTip content={_t("navbar.post")}>
+                                        <Link className="switch-theme pencil" to="/submit">
+                                            {pencilOutlineSvg}
+                                        </Link>
+                                    </ToolTip>
                             )}
                         </div>
                         <div className="btn-menu">
@@ -256,16 +256,16 @@ export class NavBar extends Component<Props, State> {
                             
                         </div>
                         {activeUser && (
-                        <div>
-                            <UserNav {...this.props} activeUser={activeUser}/>
-                            <div className="submit-post">
-                                <ToolTip content={_t("navbar.post")}>
-                                    <Link className="btn btn-outline-primary" to="/submit">
-                                        {pencilOutlineSvg}
-                                    </Link>
-                                </ToolTip>
+                            <div>
+                                <UserNav {...this.props} activeUser={activeUser}/>
+                                <div className="submit-post">
+                                    <ToolTip content={_t("navbar.post")}>
+                                        <Link className="btn btn-outline-primary" to="/submit">
+                                            {pencilOutlineSvg}
+                                        </Link>
+                                    </ToolTip>
+                                </div>
                             </div>
-                        </div>
                         )}
                     </div>
                     {ui.login && <Login {...this.props} />}
