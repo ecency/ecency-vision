@@ -51,7 +51,7 @@ export class EntryListContent extends Component<Props> {
     render() {
         const {entries, promotedEntries, global, activeUser } = this.props;
         const {filter} = global;
-
+        
         return entries.length > 0 ? (
             <>
                 {entries.map((e, i) => {
