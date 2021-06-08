@@ -28,11 +28,11 @@
     "off": "Off",
     "yes": "Ya",
     "no": "Tidak",
-    "found": "found",
-    "blog": "blogs",
-    "posts": "posts",
-    "comments": "comments",
-    "replies": "replies",
+    "found": "ditemukan",
+    "blog": "blog",
+    "posts": "postingan",
+    "comments": "komentar",
+    "replies": "balasan",
     "done": "Selesai",
     "apply": "Terapkan",
     "close": "Tutup"
@@ -69,8 +69,8 @@
     "header-community": "Komunitas"
   },
   "tag": {
-    "unmoderated": "Unmoderated topics",
-    "moderated": "Moderated community"
+    "unmoderated": "Topik yang tidak dimoderasi",
+    "moderated": "Komunitas yang dimoderasi"
   },
   "switch-lang": {
     "contributors": "Kontributor"
@@ -115,10 +115,10 @@
     "sign-up-text-2": "Daftar sekarang!"
   },
   "sign-up": {
-    "header": "Selamat datang di Ecency",
-    "description": "Rumah Berkebebasan bicara dan Komunitas yang bermanfaat!",
-    "bottom-description": "Setiap akun yang dibuat di blockhain dan hanya anda yang memiliki kendali atas akun tersebut. Satu akun untuk mengelola semuanya di Blockhain dan Ecency.",
-    "learn-more": "Pelajari selengkapnya tentang keuntungan di <a href=\"/faq#how-to-join\">FAQ</a> kami",
+    "header": "Selamat datang ke Ecency",
+    "description": "Tempat yang Bebas bicara dan Komunitas yang mendapatkan reward!",
+    "bottom-description": "Setiap akun yang dibuat di blockchain dan hanya anda yang memiliki kendali atas akun tersebut. Satu akun untuk mengelola semuanya di Blockchain dan Ecency.",
+    "learn-more": "Pelajari selengkapnya tentang keuntungan di <a href=\"/faq#how-to-join\">FAQ</a>",
     "username": "Pilih nama pengguna",
     "email": "Masukkan alamat email Anda",
     "ref": "Pengguna rujukan (opsional)",
@@ -173,7 +173,7 @@
     "title": "Bagikan"
   },
   "entry-menu": {
-    "cross-post": "Silangkan Postingan",
+    "cross-post": "Postingan berseberangan",
     "share": "Bagikan",
     "edit-history": "Edit Riwayat",
     "pin": "Sematkan",
@@ -242,8 +242,8 @@
     "comment-entry-title": "Anda melihat sebuah komentar tunggal dari: ",
     "comment-entry-go-root": "Lihat konteks lengkapnya",
     "comment-entry-go-parent": "Lihat sumber utamanya",
-    "hidden-warning": "This content got low rating by people. Proceed with caution.",
-    "muted-warning": "This content was muted by {{community}} moderators for not following community guidelines.",
+    "hidden-warning": "Konten ini mendapat peringkat rendah oleh pengguna lain. Lanjutkan dengan hati hati.",
+    "muted-warning": "Konten ini dibisukan oleh moderator {{community}} karena tidak mengikuti pedoman komunitas.",
     "address-copy": "Salin alamat postingan",
     "address-copied": "Tempel alamat yang disalin ke papan klip.",
     "browse-original": "Tampilan tulisan asli",
@@ -403,9 +403,9 @@
     "rc-power": "Sumber Kredit: {{n}}%",
     "recharge-time": "(terisi penuh {{n}})",
     "down-vote-power": "Power Downvote: {{n}}%",
-    "no-posts": "Here you will see your posts, looks like no content exists.",
-    "create-posts": "Let's create a new post",
-    "no-posts-found": "Found nothing!"
+    "no-posts": "Di sini Anda akan melihat postingan Anda, sepertinya tidak ada konten.",
+    "create-posts": "Mari kita buat postingan baru",
+    "no-posts-found": "Tidak ditemukan apa-apa!"
   },
   "profile-edit": {
     "title": "Profil",
@@ -782,7 +782,7 @@
     "header-score-tip": "Posting + komentar yang dibuat oleh pengguna untuk periode yang dipilih",
     "header-reward": "Imbalan",
     "header-votes": "Vote",
-    "header-votes-tip": "Jumlah vote dalam priode ini"
+    "header-votes-tip": "Jumlah vote dalam periode ini"
   },
   "popular-users": {
     "title": "Pengguna Populer"
