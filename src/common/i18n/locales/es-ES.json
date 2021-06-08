@@ -28,11 +28,11 @@
     "off": "Desactivado",
     "yes": "Si",
     "no": "No",
-    "found": "found",
+    "found": "encontrado",
     "blog": "blogs",
-    "posts": "posts",
-    "comments": "comments",
-    "replies": "replies",
+    "posts": "publicaciones",
+    "comments": "comentarios",
+    "replies": "respuestas",
     "done": "Completado",
     "apply": "Aplicar",
     "close": "Cerrar"
@@ -403,9 +403,9 @@
     "rc-power": "Créditos de recursos: {{n}}%",
     "recharge-time": "(Cargado completamente en {{n}})",
     "down-vote-power": "Poder de Votos Negativos: {{n}}%",
-    "no-posts": "Here you will see your posts, looks like no content exists.",
-    "create-posts": "Let's create a new post",
-    "no-posts-found": "Found nothing!"
+    "no-posts": "Aquí verás tus mensajes, parece que no existe contenido.",
+    "create-posts": "Vamos a crear una nueva publicación",
+    "no-posts-found": "¡No se encontró nada!"
   },
   "profile-edit": {
     "title": "Perfil",
