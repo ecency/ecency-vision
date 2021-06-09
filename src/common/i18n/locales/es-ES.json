@@ -28,6 +28,12 @@
     "off": "Desactivado",
     "yes": "Si",
     "no": "No",
+    "found": "encontrado",
+    "feed": "inicio",
+    "blog": "blogs",
+    "posts": "publicaciones",
+    "comments": "comentarios",
+    "replies": "respuestas",
     "done": "Completado",
     "apply": "Aplicar",
     "close": "Cerrar"
@@ -62,6 +68,10 @@
     "header-tag": "Etiquetas",
     "header-account": "Usuarios",
     "header-community": "Comunidades"
+  },
+  "tag": {
+    "unmoderated": "Temas no moderados",
+    "moderated": "Comunidad moderada"
   },
   "switch-lang": {
     "contributors": "Colaboradores"
@@ -233,8 +243,8 @@
     "comment-entry-title": "Estás viendo los comentarios relacionados de: ",
     "comment-entry-go-root": "Ver los demas comentarios",
     "comment-entry-go-parent": "Ver el comentario relacionado",
-    "hidden-warning": "El post ha sido ocultado por bajas calificaciones.",
-    "muted-warning": "Esta publicación fue silenciada por no seguir las pautas de la comunidad {{community}}.",
+    "hidden-warning": "Este contenido obtuvo baja calificación por la gente. Proceda con precaución.",
+    "muted-warning": "Este contenido fue silenciado por los moderadores de {{community}} por no seguir las pautas de la comunidad.",
     "address-copy": "Copiar la dirección de la Publicación",
     "address-copied": "Dirección de publicación copiada al portapapeles.",
     "browse-original": "Abrir publicación original",
@@ -393,7 +403,10 @@
     "vote-power": "Poder de voto: {{n}}%",
     "rc-power": "Créditos de recursos: {{n}}%",
     "recharge-time": "(Cargado completamente en {{n}})",
-    "down-vote-power": "Poder de Votos Negativos: {{n}}%"
+    "down-vote-power": "Poder de Votos Negativos: {{n}}%",
+    "no-posts": "Aquí verás tus mensajes, parece que no existe contenido.",
+    "create-posts": "Vamos a crear una nueva publicación",
+    "no-posts-found": "¡No se encontró nada!"
   },
   "profile-edit": {
     "title": "Perfil",

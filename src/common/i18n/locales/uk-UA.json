@@ -28,6 +28,12 @@
     "off": "Вимкнути",
     "yes": "Так",
     "no": "Ні",
+    "found": "found",
+    "feed": "feed",
+    "blog": "blogs",
+    "posts": "posts",
+    "comments": "comments",
+    "replies": "replies",
     "done": "Виконано",
     "apply": "Apply",
     "close": "Close"
@@ -62,6 +68,10 @@
     "header-tag": "Мітки",
     "header-account": "Користувачі",
     "header-community": "Спільноти"
+  },
+  "tag": {
+    "unmoderated": "Unmoderated topics",
+    "moderated": "Moderated community"
   },
   "switch-lang": {
     "contributors": "Учасники перекладу"
@@ -233,8 +243,8 @@
     "comment-entry-title": "Ви переглядаєте гілку одного коментаря з: ",
     "comment-entry-go-root": "Переглянути повний контекст",
     "comment-entry-go-parent": "Дивитись батьківський коментар",
-    "hidden-warning": "Цей допис було приховано через низький рейтинг.",
-    "muted-warning": "This post was muted for not following {{community}} community guidelines.",
+    "hidden-warning": "This content got low rating by people. Proceed with caution.",
+    "muted-warning": "This content was muted by {{community}} moderators for not following community guidelines.",
     "address-copy": "Скопіювати адресу",
     "address-copied": "Адреса скопійована в буфер обміну.",
     "browse-original": "Open original post",
@@ -393,7 +403,10 @@
     "vote-power": "Vote Power: {{n}}%",
     "rc-power": "Resource Credits: {{n}}%",
     "recharge-time": "(fully charged {{n}})",
-    "down-vote-power": "Downvote Power: {{n}}%"
+    "down-vote-power": "Downvote Power: {{n}}%",
+    "no-posts": "Here you will see your posts, looks like no content exists.",
+    "create-posts": "Let's create a new post",
+    "no-posts-found": "Found nothing!"
   },
   "profile-edit": {
     "title": "Профіль",

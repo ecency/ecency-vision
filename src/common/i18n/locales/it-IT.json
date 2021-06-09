@@ -28,6 +28,12 @@
     "off": "Spegni",
     "yes": "Si",
     "no": "No",
+    "found": "found",
+    "feed": "feed",
+    "blog": "blogs",
+    "posts": "posts",
+    "comments": "comments",
+    "replies": "replies",
     "done": "Fatto",
     "apply": "Applica",
     "close": "Chiudi"
@@ -62,6 +68,10 @@
     "header-tag": "Tag",
     "header-account": "Utenti",
     "header-community": "Communities"
+  },
+  "tag": {
+    "unmoderated": "Unmoderated topics",
+    "moderated": "Moderated community"
   },
   "switch-lang": {
     "contributors": "Hanno collaborato"
@@ -233,8 +243,8 @@
     "comment-entry-title": "Stai guardando un singolo thread del commento da: ",
     "comment-entry-go-root": "Vedi l'intero Post",
     "comment-entry-go-parent": "Vedi commento genitore",
-    "hidden-warning": "Questo post è stato nascosto a causa dello scarso punteggio qualità.",
-    "muted-warning": "This post was muted for not following {{community}} community guidelines.",
+    "hidden-warning": "This content got low rating by people. Proceed with caution.",
+    "muted-warning": "This content was muted by {{community}} moderators for not following community guidelines.",
     "address-copy": "Copia l'indirizzo del Post",
     "address-copied": "Indirizzo del post copiato negli appunti.",
     "browse-original": "Apri post originale",
@@ -393,7 +403,10 @@
     "vote-power": "Potenza di Voto: {{n}}%",
     "rc-power": "Crediti di Riserva: {{n}}%",
     "recharge-time": "(completamente ricaricato {{n}})",
-    "down-vote-power": "Potenza di Disapprovazione: {{n}}%"
+    "down-vote-power": "Potenza di Disapprovazione: {{n}}%",
+    "no-posts": "Here you will see your posts, looks like no content exists.",
+    "create-posts": "Let's create a new post",
+    "no-posts-found": "Found nothing!"
   },
   "profile-edit": {
     "title": "Profilo",
