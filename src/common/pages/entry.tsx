@@ -615,7 +615,7 @@ class EntryPage extends BaseComponent<Props, State> {
                                     })()}
 
 
-                                    { !global.isMobile && <AuthorInfoCard {...this.props} entry={entry} /> }
+                                    {!global.isMobile && <AuthorInfoCard {...this.props} entry={entry} />}
 
                                     <div className="entry-footer">
                                         <div className="entry-tags">
