@@ -36,6 +36,7 @@ import defaults from "../constants/defaults.json";
 import _c from "../util/fix-class-names";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
+import {History} from "history";
 
 interface MatchParams {
     username: string;
@@ -44,15 +45,18 @@ interface MatchParams {
 
 interface Props extends PageProps {
     match: match<MatchParams>;
+    history: History;
 }
 
 interface State {
     loading: boolean;
+    isDefaultPost:boolean;
 }
 
 class ProfilePage extends BaseComponent<Props, State> {
     state: State = {
-        loading: false
+        loading: false,
+        isDefaultPost:false
     };
 
     async componentDidMount() {
@@ -74,10 +78,11 @@ class ProfilePage extends BaseComponent<Props, State> {
     }
 
     componentDidUpdate(prevProps: Readonly<Props>): void {
-        const {match, global, fetchEntries, fetchTransactions, resetTransactions, fetchPoints, resetPoints} = this.props;
-        const {match: prevMatch} = prevProps;
+        const {match, global, fetchEntries, fetchTransactions, resetTransactions, fetchPoints, resetPoints, history } = this.props;
+        const {match: prevMatch, entries} = prevProps;
 
         const {username, section} = match.params;
+        const { isDefaultPost } = this.state;
 
         // username changed. re-fetch wallet transactions and points
         if (username !== prevMatch.params.username) {
@@ -99,6 +104,19 @@ class ProfilePage extends BaseComponent<Props, State> {
         if (section !== prevMatch.params.section || username !== prevMatch.params.username) {
             fetchEntries(global.filter, global.tag, false);
         }
+
+        if(entries){
+        const { filter, tag } = global;
+        const groupKey = makeGroupKey(filter, tag);
+        const prevData = entries[groupKey];
+        if(prevData){
+        const data = this.props.entries[groupKey];
+        const { loading } = data;
+        const { loading: prevLoading } = prevData;
+        if(loading !== prevLoading && !loading && data.entries.length === 0 && groupKey === `blog-${username}` && !isDefaultPost){
+            this.setState({isDefaultPost:true})
+            history.push(`/${username}/posts`);}
+        }}
     }
 
     componentWillUnmount() {
@@ -178,7 +196,6 @@ class ProfilePage extends BaseComponent<Props, State> {
     render() {
         const {global, entries, accounts, match} = this.props;
         const {loading} = this.state;
-
         const navBar = global.isElectron ? NavBarElectron({
             ...this.props,
             reloadFn: this.reload,
@@ -208,6 +225,10 @@ class ProfilePage extends BaseComponent<Props, State> {
             rss: `${defaults.base}/@${username}/rss`,
             keywords: `${username}, ${username}'s blog`,
         } : {};
+
+        const {filter, tag} = global;
+        const groupKey = makeGroupKey(filter, tag);
+        const data = entries[groupKey];
 
         return (
             <>
@@ -267,20 +288,16 @@ class ProfilePage extends BaseComponent<Props, State> {
                                 })
                             }
 
-                            const {filter, tag} = global;
-                            const groupKey = makeGroupKey(filter, tag);
-                            const data = entries[groupKey];
 
                             if (data !== undefined) {
                                 const entryList = data?.entries;
                                 const loading = data?.loading;
-
                                 return (
                                     <>
                                         <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>
                                             <div className={_c(`entry-list-body ${global.listStyle === ListStyle.grid ? "grid-view" : ""}`)}>
                                                 {loading && entryList.length === 0 && <EntryListLoadingItem/>}
-                                                {EntryListContent({...this.props, entries: entryList, promotedEntries: []})}
+                                                {!loading && EntryListContent({...this.props, entries: entryList, promotedEntries: []})}
                                             </div>
                                         </div>
                                         {loading && entryList.length > 0 ? <LinearProgress/> : ""}

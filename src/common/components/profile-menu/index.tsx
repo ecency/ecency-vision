@@ -34,8 +34,7 @@ export class ProfileMenu extends Component<Props> {
     }
 
     render() {
-        const {username, section} = this.props;
-        const {activeUser} = this.props;
+        const {username, section, activeUser} = this.props;
 
         const menuConfig: {
             history: History,

@@ -536,6 +536,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                 addEntry(entry);
 
                 success(_t("submit.published"));
+                this.clear();
                 const newLoc = makePathEntry(parentPermlink, author, permlink);
                 history.push(newLoc);
             })

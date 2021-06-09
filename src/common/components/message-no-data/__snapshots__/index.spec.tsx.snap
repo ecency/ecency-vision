@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders a message 1`] = `
+<div
+  className="container-no-message"
+>
+  No data found!
+</div>
+`;
