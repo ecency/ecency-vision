@@ -171,11 +171,36 @@ export const repeatSvg = (
 );
 
 export const chevronUpSvg = (
-  <svg viewBox="6 8 12 7.41">
+  <svg viewBox="0 0 24 24">
     <path
       fill="currentColor"
       d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
     />
+  </svg>
+);
+
+export const chevronUpSvgForVote = (
+  <svg viewBox="6 8 12 7.41" className="vote-svg">
+    <path
+      fill="currentColor"
+      d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+    />
+  </svg>
+);
+
+export const chevronUpSvgForSlider = (
+  <svg viewBox="6 8 12 7.41" className="slider-svg-up">
+    <path
+      fill="currentColor"
+      d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+    />
+  </svg>
+);
+
+export const chevronDownSvgForSlider = (
+  <svg viewBox="6 8.59 12 7.41" className="slider-svg-down">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
   </svg>
 );
 

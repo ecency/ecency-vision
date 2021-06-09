@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Modal, Form, FormControl } from "react-bootstrap";
+import { Form, FormControl } from "react-bootstrap";
 
 import { Global } from "../../store/global/types";
 import { Account } from "../../store/accounts/types";
@@ -24,7 +24,7 @@ import * as ls from "../../util/local-storage";
 
 import _c from "../../util/fix-class-names";
 
-import { chevronUpSvg } from "../../img/svg";
+import { chevronDownSvgForSlider, chevronUpSvgForSlider, chevronUpSvgForVote } from "../../img/svg";
 import ClickAwayListener from "../clickaway-listener";
 
 const setVoteValue = (type: "up" | "down", username: string, value: number) => {
@@ -221,7 +221,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                 className="btn-vote btn-up-vote vote-btn-lg primary-btn-vote"
                 onClick={this.upVoteClicked}
               >
-                <span className="btn-inner">{chevronUpSvg}</span>
+                <span className="btn-inner">{chevronUpSvgForSlider}</span>
               </div>
               <div className="estimated">
                 <FormattedCurrency
@@ -251,7 +251,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                   this.changeMode("down");
                 }}
               >
-                <span className="btn-inner">{chevronUpSvg}</span>
+                <span className="btn-inner">{chevronDownSvgForSlider}</span>
               </div>
             </div>
             {wrongValueUp && (
@@ -270,7 +270,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                 this.changeMode("up");
               }}
             >
-              <span className="btn-inner">{chevronUpSvg}</span>
+              <span className="btn-inner">{chevronUpSvgForSlider}</span>
             </div>
             <div className="estimated">
               <FormattedCurrency
@@ -295,7 +295,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
               className="btn-vote btn-down-vote vote-btn-lg secondary-btn-vote"
               onClick={this.downVoteClicked}
             >
-              <span className="btn-inner">{chevronUpSvg}</span>
+              <span className="btn-inner">{chevronDownSvgForSlider}</span>
             </div>
           </div>
         )}
@@ -428,7 +428,7 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
               <div className="entry-vote-btn" onClick={this.toggleDialog}>
                 <div className={cls}>
                   <div className={tooltipClass}>
-                    <span className={voteBtnClass}>{chevronUpSvg}</span>
+                    <span className={voteBtnClass}>{chevronUpSvgForVote}</span>
                     {tooltipClass.length > 0 && (
                       <div>
                       <span

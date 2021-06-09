@@ -289,23 +289,6 @@
   background-color: $transparent !important;
 }
 
-.entry-list-item .item-body .item-controls svg {
-  width: 9px !important;
-  height: 9px !important;
-}
-
-.primary-btn-done {
-  @include themify(night) {
-    color: $white !important;
-    background-color: $dark-sky-blue !important;
-  }
-
-  @include themify(day) {
-    color: $white !important;
-    background-color: $dark-sky-blue !important;
-  }
-}
-
 .primary-btn-vote {
   @include themify(night) {
     color: $dark-sky-blue !important;
@@ -340,6 +323,18 @@
   }
 }
 
+.primary-btn-done {
+  @include themify(night) {
+    color: $white !important;
+    background-color: $dark-sky-blue !important;
+  }
+
+  @include themify(day) {
+    color: $white !important;
+    background-color: $dark-sky-blue !important;
+  }
+}
+
 .secondary-btn-vote {
   color: $red2 !important;
 
@@ -352,7 +347,8 @@
   }
 
   svg {
-    width: 19px !important;
+    fill: $red2 !important;
+    transform: none !important;
   }
 
   .btn-inner {
@@ -373,7 +369,11 @@
     .btn-inner {
       color: $white !important;
       background-color: $red2 !important;
+
+    svg {
+      fill: $white !important;
     }
+  }
   }
 }
 
@@ -395,12 +395,19 @@ p {
   }
 }
 
-.voting-controls-up .btn-vote.vote-btn-lg svg, .voting-controls-down .btn-vote.vote-btn-lg svg {
-  width:15px !important;
-  height:15px !important;
+.entry-list-item .item-body .item-controls .vote-svg{
+  width:9px !important;
+  height:9px !important;
 }
 
-.entry-vote-btn .btn-vote svg {
-  width:11px !important;
-  height:11px !important;
+.entry-list-item .item-body .item-controls .slider-svg-up{
+  width:12.5px !important;
+  height:9px !important;
+  margin-top: -0.65px;
+}
+
+.entry-list-item .item-body .item-controls .slider-svg-down{
+  width:13px !important;
+  height:9px !important;
+  margin-top: 0.65px;
 }
