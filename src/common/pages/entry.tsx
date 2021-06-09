@@ -40,6 +40,7 @@ import ScrollToTop from "../components/scroll-to-top";
 import EntryBodyExtra from "../components/entry-body-extra";
 import EntryTipBtn from "../components/entry-tip-btn";
 import EntryMenu from "../components/entry-menu";
+import AuthorInfoCard from "../components/author-info-card";
 
 import * as bridgeApi from "../api/bridge";
 import {comment, formatError} from "../api/operations";
@@ -64,9 +65,6 @@ import {version} from "../../../package.json";
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
 
 import defaults from "../constants/defaults.json";
-import AuthorInfoCard from "../components/author-info-card";
-
-
 
 setProxyBase(defaults.imageServer);
 
