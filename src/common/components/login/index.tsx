@@ -559,70 +559,37 @@ export default class LoginDialog extends Component<Props> {
     doLogin = async (hsCode: string, postingKey: null | undefined | string, account: Account) => {
         const {global, setActiveUser, updateActiveUser, addUser} = this.props;
 
-        if (postingKey) {
-            return new Promise((resolve, reject) => {
-                const user: User = {
-                    username: account.name,
-                    accessToken: "",
-                    refreshToken: "",
-                    expiresIn: 10,
-                    postingKey
-                };
-                // add / update user data
-                addUser(user);
+        // get access token from code
+        return hsTokenRenew(hsCode).then(x => {
+            const user: User = {
+                username: x.username,
+                accessToken: x.access_token,
+                refreshToken: x.refresh_token,
+                expiresIn: x.expires_in,
+                postingKey
+            };
 
-                // activate user
-                setActiveUser(user.username);
+            // add / update user data
+            addUser(user);
 
-                // add account data of the user to the reducer
-                updateActiveUser(account);
+            // activate user
+            setActiveUser(user.username);
 
-                if (global.usePrivate) {
-                    // login activity
-                    usrActivity(user.username, 20);
-                }
+            // add account data of the user to the reducer
+            updateActiveUser(account);
 
-                // redirection based on path name
-                const {location, history} = this.props;
-                if (location.pathname.startsWith("/signup")) {
-                    const u = `/@${x.username}/feed`;
-                    history.push(u);
-                }
-                resolve(true);
-            });
-        } else {
-            // get access token from code
-            return hsTokenRenew(hsCode).then(x => {
-                const user: User = {
-                    username: x.username,
-                    accessToken: x.access_token,
-                    refreshToken: x.refresh_token,
-                    expiresIn: x.expires_in,
-                    postingKey
-                };
+            if (global.usePrivate) {
+                // login activity
+                usrActivity(user.username, 20);
+            }
 
-                // add / update user data
-                addUser(user);
-
-                // activate user
-                setActiveUser(user.username);
-
-                // add account data of the user to the reducer
-                updateActiveUser(account);
-
-                if (global.usePrivate) {
-                    // login activity
-                    usrActivity(user.username, 20);
-                }
-
-                // redirection based on path name
-                const {location, history} = this.props;
-                if (location.pathname.startsWith("/signup")) {
-                    const u = `/@${x.username}/feed`;
-                    history.push(u);
-                }
-            });   
-        }
+            // redirection based on path name
+            const {location, history} = this.props;
+            if (location.pathname.startsWith("/signup")) {
+                const u = `/@${x.username}/feed`;
+                history.push(u);
+            }
+        });
     }
 
     render() {
