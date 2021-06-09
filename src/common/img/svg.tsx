@@ -171,7 +171,7 @@ export const repeatSvg = (
 );
 
 export const chevronUpSvg = (
-  <svg viewBox="0 0 24 24">
+  <svg viewBox="6 8 12 7.41">
     <path
       fill="currentColor"
       d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
