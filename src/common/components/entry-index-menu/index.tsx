@@ -58,6 +58,7 @@ export class EntryIndexMenu extends Component<Props> {
 
         return <div className="entry-index-menu">
             <div className="the-menu">
+               {isMy &&
                     <div className="sub-menu">
                         <ul className="nav nav-pills nav-fill">
                             <li className="nav-item">
@@ -72,7 +73,7 @@ export class EntryIndexMenu extends Component<Props> {
                             </li>
                         </ul>
                     </div>
-                
+                }
                 <div className="main-menu">
                     <div className="sm-menu">
                         <DropDown {...menuConfig} float="left"/>
