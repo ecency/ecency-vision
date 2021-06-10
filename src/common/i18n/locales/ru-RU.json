@@ -74,7 +74,7 @@
   },
   "tag": {
     "unmoderated": "Немодерированные темы",
-    "moderated": "Moderated community"
+    "moderated": "Модерированное сообщество"
   },
   "switch-lang": {
     "contributors": "Соавторы"
@@ -90,14 +90,14 @@
     "drafts": "Черновики",
     "bookmarks": "Закладки",
     "schedules": "Отложенные",
-    "fragments": "Snippets",
+    "fragments": "Источники",
     "settings": "Настройки",
     "logout": "Выйти",
     "vote-power": "Сила голоса:"
   },
   "intro": {
     "title": "Стремитесь к величию",
-    "sub-title": "rewarding communities",
+    "sub-title": "вознаграждающие сообщества",
     "c2a": "Начните"
   },
   "login": {
@@ -119,10 +119,10 @@
     "sign-up-text-2": "Зарегистрируйтесь сейчас!"
   },
   "sign-up": {
-    "header": "Welcome to Ecency",
-    "description": "Home of Free speech and Rewarding communities!",
-    "bottom-description": "Every account is created on a blockchain and only you have control over that account. One account to manage everything on Blockchain and Ecency.",
-    "learn-more": "Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
+    "header": "Добро пожаловать в Ecency",
+    "description": "Место, где люди свободно общаются, а сообщества приносят пользу.",
+    "bottom-description": "Каждый аккаунт создается в блокчейне, и только вы его контролируете. Одна и та же учётная запись для управления всем в блокчейне и в Ecency.",
+    "learn-more": "Узнайте больше о преимуществах <a href=\"/faq#how-to-join\">FAQ</a>",
     "username": "Выберите имя пользователя",
     "email": "Введите свой email адрес",
     "ref": "Реферал (необязательно)",
@@ -139,7 +139,7 @@
     "title": "Рекомендуем"
   },
   "entry-list-item": {
-    "cross-posted": "cross-posted",
+    "cross-posted": "Опубликовано через кросс-пост",
     "cross-posted-to": "to",
     "reblogged": "{{n}} Reblogged",
     "promoted": "Promoted",
