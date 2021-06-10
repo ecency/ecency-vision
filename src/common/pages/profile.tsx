@@ -105,18 +105,18 @@ class ProfilePage extends BaseComponent<Props, State> {
             fetchEntries(global.filter, global.tag, false);
         }
 
-        if(entries){
-        const { filter, tag } = global;
-        const groupKey = makeGroupKey(filter, tag);
-        const prevData = entries[groupKey];
-        if(prevData){
-        const data = this.props.entries[groupKey];
-        const { loading } = data;
-        const { loading: prevLoading } = prevData;
-        if(loading !== prevLoading && !loading && data.entries.length === 0 && groupKey === `blog-${username}` && !isDefaultPost){
-            this.setState({isDefaultPost:true})
-            history.push(`/${username}/posts`);}
-        }}
+        // if(entries){
+        // const { filter, tag } = global;
+        // const groupKey = makeGroupKey(filter, tag);
+        // const prevData = entries[groupKey];
+        // if(prevData){
+        // const data = this.props.entries[groupKey];
+        // const { loading } = data;
+        // const { loading: prevLoading } = prevData;
+        // if(loading !== prevLoading && !loading && data.entries.length === 0 && groupKey === `blog-${username}` && !isDefaultPost){
+        //     this.setState({isDefaultPost:true})
+        //     history.push(`/${username}/posts`);}
+        // }}
     }
 
     componentWillUnmount() {
@@ -297,7 +297,7 @@ class ProfilePage extends BaseComponent<Props, State> {
                                         <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>
                                             <div className={_c(`entry-list-body ${global.listStyle === ListStyle.grid ? "grid-view" : ""}`)}>
                                                 {loading && entryList.length === 0 && <EntryListLoadingItem/>}
-                                                {!loading && EntryListContent({...this.props, entries: entryList, promotedEntries: []})}
+                                                {EntryListContent({...this.props, entries: entryList, promotedEntries: [], loading})}
                                             </div>
                                         </div>
                                         {loading && entryList.length > 0 ? <LinearProgress/> : ""}
