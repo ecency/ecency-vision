@@ -28,15 +28,15 @@
     "off": "Выкл",
     "yes": "Да",
     "no": "Нет",
-    "hot": "feed",
-    "trending": "feed",
-    "created": "feed",
-    "found": "found",
-    "feed": "feed",
-    "blog": "blogs",
-    "posts": "posts",
-    "comments": "comments",
-    "replies": "replies",
+    "hot": "лента",
+    "trending": "лента",
+    "created": "лента",
+    "found": "Найденное",
+    "feed": "лента",
+    "blog": "блоги",
+    "posts": "посты",
+    "comments": "комментарии",
+    "replies": "ответы",
     "done": "Готово",
     "apply": "Применить",
     "close": "Закрыть"
@@ -73,11 +73,11 @@
     "header-community": "Сообщества"
   },
   "tag": {
-    "unmoderated": "Unmoderated topics",
+    "unmoderated": "Немодерированные темы",
     "moderated": "Moderated community"
   },
   "switch-lang": {
-    "contributors": "Contributors"
+    "contributors": "Соавторы"
   },
   "user-nav": {
     "wallet": "Кошелек",
