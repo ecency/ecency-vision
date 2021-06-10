@@ -28,6 +28,12 @@
     "off": "Peu matee",
     "yes": "Nyoe",
     "no": "Koen",
+    "found": "found",
+    "feed": "feed",
+    "blog": "blogs",
+    "posts": "posts",
+    "comments": "comments",
+    "replies": "replies",
     "done": "Seuleuso",
     "apply": "Meupakek",
     "close": "Teubiet"
@@ -62,6 +68,10 @@
     "header-tag": "Tagging",
     "header-account": "Ureung pakek",
     "header-community": "Komunitaeh"
+  },
+  "tag": {
+    "unmoderated": "Unmoderated topics",
+    "moderated": "Moderated community"
   },
   "switch-lang": {
     "contributors": "Ureung Sumbang"
@@ -233,8 +243,8 @@
     "comment-entry-title": "Teungoh neu kalon komen saboh utas dari: ",
     "comment-entry-go-root": "Kalon konteks punoh",
     "comment-entry-go-parent": "Kalon ureung chik langsong",
-    "hidden-warning": "Post nyoe ka di peusom sabab rating nyang rendah.",
-    "muted-warning": "This post was muted for not following {{community}} community guidelines.",
+    "hidden-warning": "This content got low rating by people. Proceed with caution.",
+    "muted-warning": "This content was muted by {{community}} moderators for not following community guidelines.",
     "address-copy": "Salen alamat posting",
     "address-copied": "Alamat post di salen u clipboard.",
     "browse-original": "Open original post",
@@ -393,7 +403,10 @@
     "vote-power": "Vote Power: {{n}}%",
     "rc-power": "Resource Credits: {{n}}%",
     "recharge-time": "(fully charged {{n}})",
-    "down-vote-power": "Downvote Power: {{n}}%"
+    "down-vote-power": "Downvote Power: {{n}}%",
+    "no-posts": "Here you will see your posts, looks like no content exists.",
+    "create-posts": "Let's create a new post",
+    "no-posts-found": "Found nothing!"
   },
   "profile-edit": {
     "title": "Profile",

@@ -292,13 +292,12 @@ class ProfilePage extends BaseComponent<Props, State> {
                             if (data !== undefined) {
                                 const entryList = data?.entries;
                                 const loading = data?.loading;
-
                                 return (
                                     <>
                                         <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>
                                             <div className={_c(`entry-list-body ${global.listStyle === ListStyle.grid ? "grid-view" : ""}`)}>
                                                 {loading && entryList.length === 0 && <EntryListLoadingItem/>}
-                                                {EntryListContent({...this.props, entries: entryList, promotedEntries: []})}
+                                                {EntryListContent({...this.props, entries: entryList, promotedEntries: [], loading})}
                                             </div>
                                         </div>
                                         {loading && entryList.length > 0 ? <LinearProgress/> : ""}

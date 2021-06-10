@@ -28,6 +28,12 @@
     "off": "Pois",
     "yes": "Kyllä",
     "no": "Ei",
+    "found": "found",
+    "feed": "feed",
+    "blog": "blogs",
+    "posts": "posts",
+    "comments": "comments",
+    "replies": "replies",
     "done": "Valmis",
     "apply": "Käytä",
     "close": "Sulje"
@@ -62,6 +68,10 @@
     "header-tag": "Tunnisteet",
     "header-account": "Käyttäjät",
     "header-community": "Yhteisöt"
+  },
+  "tag": {
+    "unmoderated": "Unmoderated topics",
+    "moderated": "Moderated community"
   },
   "switch-lang": {
     "contributors": "Osallistujat"
@@ -233,8 +243,8 @@
     "comment-entry-title": "Katselet yhtä kommenttiketjua: ",
     "comment-entry-go-root": "Katso kaikki",
     "comment-entry-go-parent": "Näytä vanhempi",
-    "hidden-warning": "Tämä viesti oli piilotettu alhaisten arvostelujen vuoksi.",
-    "muted-warning": "This post was muted for not following {{community}} community guidelines.",
+    "hidden-warning": "This content got low rating by people. Proceed with caution.",
+    "muted-warning": "This content was muted by {{community}} moderators for not following community guidelines.",
     "address-copy": "Kopioi osoite",
     "address-copied": "Osoite kopioitu leikepöydälle.",
     "browse-original": "Näytä alkuperäinen julkaisu",
@@ -393,7 +403,10 @@
     "vote-power": "Äänenteho: {{n}}%",
     "rc-power": "Resurssihyvitykset: {{n}}%",
     "recharge-time": "(täysin veloitettu {{n}})",
-    "down-vote-power": "Äänen laskuteho: {{n}}%"
+    "down-vote-power": "Äänen laskuteho: {{n}}%",
+    "no-posts": "Here you will see your posts, looks like no content exists.",
+    "create-posts": "Let's create a new post",
+    "no-posts-found": "Found nothing!"
   },
   "profile-edit": {
     "title": "Profiili",
