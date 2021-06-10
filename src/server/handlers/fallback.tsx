@@ -36,7 +36,23 @@ export const appURI = async (req: express.Request, res: express.Response) => {
             "details":[
                 {
                     "appID":"75B6RXTKGT.app.esteem.mobile.ios",
-                    "paths":["*"]
+                    "paths":[
+                        "/@*/wallet",
+                        "/@*/points",
+                        "/@*/comments",
+                        "/@*/replies",
+                        "/@*/posts",
+                        "/@*/communities",
+                        "/@*/*",
+                        "/@*/",
+                        "/tag/@*/*",
+                        "/hot/*",
+                        "/trending/*",
+                        "/created/*",
+                        "/hot",
+                        "/trending",
+                        "/created"
+                    ]
                 }
             ]
         }
