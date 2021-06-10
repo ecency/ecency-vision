@@ -45,16 +45,6 @@ export class EntryIndexMenu extends Component<Props> {
             history: this.props.history,
             label: isMy ? _t("entry-filter.filter-feed") : _t(`entry-filter.filter-${filter}`),
             items: [
-                ...(activeUser
-                    ? [
-                        {
-                            label: _t("entry-filter.filter-feed"),
-                            href: `/@${activeUser.username}/feed`,
-                            active: isMy,
-                            id: "feed"
-                        },
-                    ]
-                    : []),
                 ...[EntryFilter.trending, EntryFilter.hot, EntryFilter.created].map((x) => {
                     return {
                         label: _t(`entry-filter.filter-${x}`),
@@ -68,6 +58,21 @@ export class EntryIndexMenu extends Component<Props> {
 
         return <div className="entry-index-menu">
             <div className="the-menu">
+                    <div className="sub-menu">
+                        <ul className="nav nav-pills nav-fill">
+                            <li className="nav-item">
+                                <Link to={`/@${activeUser?.username}/feed`} className={_c(`nav-link link-my ${filter === "feed" ? "active" : ""}`)}>
+                                    {_t("entry-filter.filter-feed-friends")}
+                                </Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link to={`/${EntryFilter.created}/my`} className={_c(`nav-link link-my ${tag === "my" ? "active" : ""}`)}>
+                                    {_t("entry-filter.filter-feed-subscriptions")}
+                                </Link>
+                            </li>
+                        </ul>
+                    </div>
+                
                 <div className="main-menu">
                     <div className="sm-menu">
                         <DropDown {...menuConfig} float="left"/>
@@ -82,23 +87,6 @@ export class EntryIndexMenu extends Component<Props> {
                         </ul>
                     </div>
                 </div>
-
-                {isMy && (
-                    <div className="sub-menu">
-                        <ul className="nav nav-pills nav-fill">
-                            <li className="nav-item">
-                                <Link to={`/@${activeUser?.username}/feed`} className={_c(`nav-link ${filter === "feed" ? "active" : ""}`)}>
-                                    {_t("entry-filter.filter-feed-friends")}
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link to={`/${EntryFilter.created}/my`} className={_c(`nav-link ${tag === "my" ? "active" : ""}`)}>
-                                    {_t("entry-filter.filter-feed-subscriptions")}
-                                </Link>
-                            </li>
-                        </ul>
-                    </div>
-                )}
             </div>
 
             <ListStyleToggle global={this.props.global} toggleListStyle={this.props.toggleListStyle}/>

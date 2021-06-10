@@ -56,14 +56,6 @@
         margin-left: 6px;
         display: flex;
         align-items: center;
-
-        @include themify(day) {
-          border-left: 1px solid $white-three;
-        }
-
-        @include themify(night) {
-          border-left: 1px solid $dark-two;
-        }
       }
 
       .nav-link {
@@ -80,4 +72,9 @@
   @media (min-width: $md-break) {
     justify-content: space-between;
   }
+}
+
+.link-my {
+  padding: 0.5rem 1rem !important;
+  font-size: 1rem !important;
 }
