@@ -30,12 +30,17 @@ export const isMyPage = (global: Global, activeUser: ActiveUser | null) => {
         );
 }
 
+export const isActiveUser = ( activeUser: ActiveUser | null) => {
+    return activeUser !== null;
+}
+
 export class EntryIndexMenu extends Component<Props> {
     render() {
         const {activeUser, global} = this.props;
         const {filter, tag} = global;
 
         const isMy = isMyPage(global, activeUser);
+        const isActive = isActiveUser(activeUser);
 
         const menuConfig: {
             history: History,
@@ -58,7 +63,7 @@ export class EntryIndexMenu extends Component<Props> {
 
         return <div className="entry-index-menu">
             <div className="the-menu">
-               {isMy &&
+               {isActive &&
                     <div className="sub-menu">
                         <ul className="nav nav-pills nav-fill">
                             <li className="nav-item">
