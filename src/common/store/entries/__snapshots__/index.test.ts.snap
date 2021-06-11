@@ -35,7 +35,7 @@ Object {
     "entries": Array [],
     "error": null,
     "hasMore": false,
-    "loading": false,
+    "loading": true,
   },
 }
 `;
@@ -58,13 +58,13 @@ Object {
     "entries": Array [],
     "error": null,
     "hasMore": false,
-    "loading": false,
+    "loading": true,
   },
   "trending-bitcoin": Object {
     "entries": Array [],
     "error": null,
     "hasMore": false,
-    "loading": false,
+    "loading": true,
   },
 }
 `;
@@ -87,13 +87,13 @@ Object {
     "entries": Array [],
     "error": null,
     "hasMore": false,
-    "loading": false,
+    "loading": true,
   },
   "trending-bitcoin": Object {
     "entries": Array [],
     "error": null,
     "hasMore": false,
-    "loading": false,
+    "loading": true,
   },
 }
 `;
@@ -122,7 +122,7 @@ Object {
     "entries": Array [],
     "error": null,
     "hasMore": false,
-    "loading": false,
+    "loading": true,
   },
 }
 `;
@@ -151,7 +151,7 @@ Object {
     "entries": Array [],
     "error": null,
     "hasMore": false,
-    "loading": false,
+    "loading": true,
   },
 }
 `;
@@ -358,7 +358,7 @@ Object {
     "entries": Array [],
     "error": null,
     "hasMore": false,
-    "loading": false,
+    "loading": true,
   },
   "hot": Object {
     "entries": Array [],
