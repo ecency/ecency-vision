@@ -29,6 +29,7 @@ interface Props {
     users: User[];
     activeUser: ActiveUser | null;
     reblogs: Reblogs;
+    loading: boolean;
     ui: UI;
     entryPinTracker: EntryPinTracker;
     signingKey: string;
@@ -49,11 +50,12 @@ interface Props {
 
 export class EntryListContent extends Component<Props> {
     render() {
-        const {entries, promotedEntries, global, activeUser } = this.props;
+        const {entries, promotedEntries, global, activeUser, loading } = this.props;
         const {filter} = global;
 
+         
         return entries.length > 0 ? (
-            <>
+              <>
                 {entries.map((e, i) => {
                     const l = [];
 
@@ -79,7 +81,7 @@ export class EntryListContent extends Component<Props> {
                     return [...l];
                 })}
             </>
-        ) : <MessageNoData>
+        ) : !loading && <MessageNoData>
                 {(global.tag===`@${activeUser?.username}` && global.filter === "posts") ? 
                 <div className='text-center'>
                     <div className="info">{_t("profile-info.no-posts")}</div>
@@ -119,6 +121,7 @@ export default (p: Props) => {
         trackEntryPin: p.trackEntryPin,
         setSigningKey: p.setSigningKey,
         setEntryPin: p.setEntryPin,
+        loading: p.loading
     }
 
     return <EntryListContent {...props} />;
