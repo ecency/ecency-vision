@@ -45,7 +45,7 @@ export const appURI = async (req: express.Request, res: express.Response) => {
                         "/@*/communities",
                         "/@*/*",
                         "/@*/",
-                        "/tag/@*/*",
+                        "/*/@*/*",
                         "/hot/*",
                         "/trending/*",
                         "/created/*",
