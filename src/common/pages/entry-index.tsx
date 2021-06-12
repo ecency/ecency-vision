@@ -37,16 +37,15 @@ import {appleSvg, desktopSvg, googleSvg} from "../img/svg";
 import {pageMapDispatchToProps, pageMapStateToProps, PageProps} from "./common";
 
 interface State {
-    step: number
+    step: number;
+    isTopic: boolean;
 }
 
-interface Landing {
-    setState: void
-}
 class EntryIndexPage extends Component<PageProps, State> {
 
     state:State = {
-        step: 1
+        step: 1,
+        isTopic: false
     }
 
     componentDidMount() {
@@ -104,6 +103,7 @@ class EntryIndexPage extends Component<PageProps, State> {
     render() {
         const {global, activeUser, entries, location} = this.props;
         const {filter, tag} = global;
+        const { isTopic } = this.state;
 
         const groupKey = makeGroupKey(filter, tag);
 
@@ -177,13 +177,13 @@ class EntryIndexPage extends Component<PageProps, State> {
                         <div className="tags-side">
                             {!global.isMobile && (
                                 <>
-                                    {TrendingTagsCard({...this.props})}
+                                    {TrendingTagsCard({...this.props, onSelectionChange: (selection: boolean) => this.setState({ isTopic: selection })})}
                                 </>
                             )}
                         </div>
                         <div className={_c(`entry-page-content ${loading ? "loading" : ""}`)}>
                             <div className="page-tools">
-                                {EntryIndexMenu({...this.props})}
+                                {EntryIndexMenu({...this.props, isTopic})}
                             </div>
                             {loading && entryList.length === 0 ? <LinearProgress/> : ""}
                             <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>

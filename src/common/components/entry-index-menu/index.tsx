@@ -20,10 +20,12 @@ interface Props {
     global: Global;
     activeUser: ActiveUser | null;
     toggleListStyle: () => void;
+    isTopic: boolean;
 }
 
 interface States {
     isGlobal: boolean;
+    isTopicApplied: boolean;
 }
 
 export const isMyPage = (global: Global, activeUser: ActiveUser | null) => {
@@ -42,12 +44,14 @@ export const isActiveUser = ( activeUser: ActiveUser | null) => {
 export class EntryIndexMenu extends Component<Props, States> {
     constructor(props:Props){
         super(props)
-        const { activeUser } = props;
-        let isGlobal = !this.props.history.location.pathname.includes('/my');
-        if(activeUser && isActiveUser(activeUser) && this.props.history.location.pathname.includes(activeUser.username)){
+        const { activeUser, history: { location: { pathname} }, global } = props;
+        const { tag } = global;
+        let isGlobal = !pathname.includes('/my');
+        let isTopicApplied = (pathname.includes('/trending') || pathname.includes('/created') || pathname.includes('/hot')) && (tag !== "" && tag !== "my");
+        if(activeUser && isActiveUser(activeUser) && pathname.includes(activeUser.username)){
             isGlobal = false;
         }
-        this.state={ isGlobal };
+        this.state={ isGlobal, isTopicApplied };
         this.onChange = this.onChange.bind(this)
     }
 
@@ -62,7 +66,7 @@ export class EntryIndexMenu extends Component<Props, States> {
     }
 
     componentDidUpdate(prevProps:Props){
-        const { history, activeUser } = this.props;
+        const { history, activeUser, isTopic } = this.props;
         if(history.location.pathname.includes('/my') && !isActiveUser(activeUser)){
             history.push(history.location.pathname.replace('/my', ''))
         }
@@ -70,13 +74,16 @@ export class EntryIndexMenu extends Component<Props, States> {
             this.setState({isGlobal:false});
             history.push(history.location.pathname + '/my');
         }
+        if(prevProps.isTopic !== isTopic){
+            this.setState({isTopicApplied: isTopic})
+        }
     }
 
     render() {
         const { activeUser, global } = this.props;
         const { isGlobal } = this.state;
         const { filter, tag } = global;
-
+debugger
         const isMy = isMyPage(global, activeUser);
         const isActive = isActiveUser(activeUser);
 
@@ -150,7 +157,8 @@ export default (p: Props) => {
         history: p.history,
         global: p.global,
         activeUser: p.activeUser,
-        toggleListStyle: p.toggleListStyle
+        toggleListStyle: p.toggleListStyle,
+        isTopic: p.isTopic
     }
 
     return <EntryIndexMenu {...props} />

@@ -15,25 +15,36 @@ interface Props {
     history: History;
     global: Global;
     trendingTags: TrendingTags;
+    onSelectionChange: (selection: boolean) => void;
 }
 
 export class TrendingTagsCard extends Component<Props> {
     render() {
-        const {trendingTags, global} = this.props;
+        const {trendingTags, global, onSelectionChange} = this.props;
 
         return (
             <div className="trending-tags-card">
                 <h2 className="list-header">{_t('trending-tags.title')}</h2>
                 {trendingTags.list.slice(0, 30).map((t) => {
-                    const cls = _c(`tag-list-item ${global.tag === t ? "selected-item" : ""}`);
+                    const cls = _c(`tag-list-item ${global.tag === t ? "selected-item" : ""} d-flex align-items-center`);
 
                     return <Fragment key={t}>
-                        {Tag({
-                            ...this.props,
-                            tag: t,
-                            type: "link",
-                            children: <a href={makePath(global.filter, t)} className={cls}>{t}</a>
-                        })}
+                        <div className="d-flex" onClick={() => {debugger;onSelectionChange(true)}}>
+                            {Tag({
+                                ...this.props,
+                                tag: t,
+                                type: "link",
+                                children: 
+                                <a href={makePath(global.filter, t)} className={cls}>
+                                    {t}
+                                    {global.tag === t && <div className="text-secondary ml-4 pointer" onClick={(e) => {
+                                        onSelectionChange(false);
+                                        debugger;
+                                        e.stopPropagation();
+                                        }}>✖</div>}
+                                </a>
+                            })}
+                        </div>
                     </Fragment>
                 })}
             </div>
@@ -45,7 +56,9 @@ export default (p: Props) => {
     const props = {
         history: p.history,
         global: p.global,
-        trendingTags: p.trendingTags
+        trendingTags: p.trendingTags,
+        onSelectionChange: p.onSelectionChange
     }
+
     return <TrendingTagsCard {...props} />
 }
