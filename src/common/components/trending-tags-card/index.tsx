@@ -50,7 +50,7 @@ export class TrendingTagsCard extends Component<Props> {
                                             onClick={(e) => {
                                                 e.stopPropagation();
                                                 e.preventDefault();
-                                                this.handleUnselection
+                                                this.handleUnselection()
                                                 }}
                                         >
                                             ✖
