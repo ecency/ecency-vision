@@ -28,15 +28,15 @@
     "off": "关闭",
     "yes": "是",
     "no": "否",
-    "hot": "feed",
-    "trending": "feed",
-    "created": "feed",
-    "found": "found",
-    "feed": "feed",
-    "blog": "blogs",
-    "posts": "posts",
-    "comments": "comments",
-    "replies": "replies",
+    "hot": "订阅源",
+    "trending": "订阅源",
+    "created": "订阅源",
+    "found": "发现",
+    "feed": "订阅源",
+    "blog": "博客",
+    "posts": "帖子",
+    "comments": "评论",
+    "replies": "回复",
     "done": "完成",
     "apply": "应用",
     "close": "关闭"
@@ -246,8 +246,8 @@
     "comment-entry-title": "您正在查看的评论来自： ",
     "comment-entry-go-root": "查看完整内容",
     "comment-entry-go-parent": "查看直接上级",
-    "hidden-warning": "This content got low rating by people. Proceed with caution.",
-    "muted-warning": "This content was muted by {{community}} moderators for not following community guidelines.",
+    "hidden-warning": "人们对此内容评分较低，请谨慎行事。",
+    "muted-warning": "此内容被 {{community}} 版主禁言，因为他们不遵守社区指南。",
     "address-copy": "复制帖子地址",
     "address-copied": "帖子地址已复制到剪贴板。",
     "browse-original": "打开原始帖子",
@@ -256,36 +256,36 @@
     "community-in": "在"
   },
   "edit-history": {
-    "title": "Edit History",
-    "show-diff": "Show Difference",
-    "version": "Version {{n}}"
+    "title": "编辑历史记录",
+    "show-diff": "显示差异",
+    "version": "版本 {{n}}"
   },
   "similar-entries": {
-    "title": "Read next"
+    "title": "阅读下一页"
   },
   "comment": {
-    "body-placeholder": "Write your reply here",
-    "preview": "Preview"
+    "body-placeholder": "在此处写下您的回复",
+    "preview": "预览"
   },
   "discussion": {
-    "join": "Join the conversion now",
+    "join": "立即加入转换",
     "btn-join": "加入",
     "replies": "1 条评论",
     "n-replies": "{{n}} 条评论",
     "order": "排序顺序",
-    "order-trending": "Trending",
-    "order-reputation": "Reputation",
-    "order-votes": "Votes",
-    "order-created": "Age",
-    "read-more": "...read more replies...",
-    "reveal": "Reveal comment"
+    "order-trending": "热门主题",
+    "order-reputation": "信誉积分",
+    "order-votes": "所得票数",
+    "order-created": "年龄",
+    "read-more": "...阅读更多回复...",
+    "reveal": "显示评论"
   },
   "community": {
-    "page-description": "{{f}} topics",
-    "subscribe": "Join",
-    "subscribed": "Joined",
-    "unsubscribe": "Leave",
-    "post": "New Post",
+    "page-description": "{{f}} 个主题",
+    "subscribe": "加入",
+    "subscribed": "已加入",
+    "unsubscribe": "退出",
+    "post": "新的文章",
     "posts": "Posts",
     "subscribers": "Members",
     "activities": "Activities",
