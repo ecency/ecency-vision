@@ -66,16 +66,25 @@ export class EntryIndexMenu extends Component<Props, States> {
 
     componentDidUpdate(prevProps:Props){
         const { history, activeUser, global: { tag, filter } } = this.props;
+
+        debugger
         if(history.location.pathname.includes('/my') && !isActiveUser(activeUser)){
             history.push(history.location.pathname.replace('/my', ''))
         }
-        if(!isActiveUser(prevProps.activeUser) !== !isActiveUser(activeUser) && filter !== 'feed'){
+        else if(!isActiveUser(prevProps.activeUser) !== !isActiveUser(activeUser) && filter !== 'feed'){
             this.setState({isGlobal:tag.length > 0});
             history.push(history.location.pathname + (tag.length > 0 ? "" : '/my'));
         }
-        if(prevProps.global.tag !== tag && filter !== 'feed' && tag !== ""){
+        else if(prevProps.global.tag !== tag && filter !== 'feed' && tag !== ""){
             let isGlobal = tag !== "my"
             this.setState({isGlobal})
+        }
+        else if(prevProps.global.tag !== tag && filter !== 'feed' && tag === ""){
+            if(prevProps.global.tag !== "my"){
+                let isGlobal = false
+            history.push(history.location.pathname + '/my');
+            this.setState({isGlobal})
+        }
         }
     }
 
