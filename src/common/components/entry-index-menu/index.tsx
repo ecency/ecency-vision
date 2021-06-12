@@ -42,17 +42,22 @@ export const isActiveUser = ( activeUser: ActiveUser | null) => {
 export class EntryIndexMenu extends Component<Props, States> {
     constructor(props:Props){
         super(props)
-        this.state={ isGlobal: !this.props.history.location.pathname.includes('/my') };
+        const { activeUser } = props;
+        let isGlobal = !this.props.history.location.pathname.includes('/my');
+        if(activeUser && isActiveUser(activeUser) && this.props.history.location.pathname.includes(activeUser.username)){
+            isGlobal = false;
+        }
+        this.state={ isGlobal };
         this.onChange = this.onChange.bind(this)
     }
 
     onChange() {
-        const { history } = this.props;
+        const { history, activeUser } = this.props;
         this.setState({ isGlobal: !this.state.isGlobal });
         if(history.location.pathname.includes('/my')){
             history.push(history.location.pathname.replace('/my', ''))
         } else {
-            history.push(history.location.pathname + '/my')
+            activeUser && isActiveUser(activeUser) && !history.location.pathname.includes(activeUser.username) && history.push(history.location.pathname + '/my')
         }
     }
 
@@ -60,6 +65,10 @@ export class EntryIndexMenu extends Component<Props, States> {
         const { history, activeUser } = this.props;
         if(history.location.pathname.includes('/my') && !isActiveUser(activeUser)){
             history.push(history.location.pathname.replace('/my', ''))
+        }
+        if(!isActiveUser(prevProps.activeUser) !== !isActiveUser(activeUser)){
+            this.setState({isGlobal:false});
+            history.push(history.location.pathname + '/my');
         }
     }
 
@@ -126,6 +135,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                         className="d-flex align-items-center ml-5 border-left pl-5"
                         checked={isGlobal}
                         onChange={this.onChange}
+                        custom
                     />
                 }
             </div>
