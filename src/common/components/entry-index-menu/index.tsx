@@ -55,19 +55,18 @@ export class EntryIndexMenu extends Component<Props, States> {
     }
 
     onChange() {
-        const { history, activeUser, global : { tag } } = this.props;
+        const { history, global : { tag, filter } } = this.props;
         this.setState({ isGlobal: !this.state.isGlobal });
         if(history.location.pathname.includes('/my')){
             history.push(history.location.pathname.replace('/my', ''))
         } else {
-            activeUser && isActiveUser(activeUser) && !history.location.pathname.includes(activeUser.username) && history.push(history.location.pathname + (tag.length > 0 ? "" : '/my'))
+             filter!=='feed' && history.push('/' + filter + (tag.length > 0 ? "" : '/my'))
         }
     }
 
     componentDidUpdate(prevProps:Props){
         const { history, activeUser, global: { tag, filter } } = this.props;
 
-        debugger
         if(history.location.pathname.includes('/my') && !isActiveUser(activeUser)){
             history.push(history.location.pathname.replace('/my', ''))
         }
@@ -79,12 +78,12 @@ export class EntryIndexMenu extends Component<Props, States> {
             let isGlobal = tag !== "my"
             this.setState({isGlobal})
         }
-        else if(prevProps.global.tag !== tag && filter !== 'feed' && tag === ""){
+        else if(prevProps.global.filter !== 'feed' && prevProps.global.tag !== tag && filter !== 'feed' && tag === ""){
             if(prevProps.global.tag !== "my"){
                 let isGlobal = false
-            history.push(history.location.pathname + '/my');
-            this.setState({isGlobal})
-        }
+                history.push(history.location.pathname + '/my');
+                this.setState({isGlobal})
+            }
         }
     }
 
