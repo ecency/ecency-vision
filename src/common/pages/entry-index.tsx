@@ -38,14 +38,12 @@ import {pageMapDispatchToProps, pageMapStateToProps, PageProps} from "./common";
 
 interface State {
     step: number;
-    isTopic: boolean;
 }
 
 class EntryIndexPage extends Component<PageProps, State> {
 
     state:State = {
-        step: 1,
-        isTopic: false
+        step: 1
     }
 
     componentDidMount() {
@@ -103,7 +101,6 @@ class EntryIndexPage extends Component<PageProps, State> {
     render() {
         const {global, activeUser, entries, location} = this.props;
         const {filter, tag} = global;
-        const { isTopic } = this.state;
 
         const groupKey = makeGroupKey(filter, tag);
 
@@ -177,13 +174,13 @@ class EntryIndexPage extends Component<PageProps, State> {
                         <div className="tags-side">
                             {!global.isMobile && (
                                 <>
-                                    {TrendingTagsCard({...this.props, onSelectionChange: (selection: boolean) => this.setState({ isTopic: selection })})}
+                                    {TrendingTagsCard({...this.props})}
                                 </>
                             )}
                         </div>
                         <div className={_c(`entry-page-content ${loading ? "loading" : ""}`)}>
                             <div className="page-tools">
-                                {EntryIndexMenu({...this.props, isTopic})}
+                                {EntryIndexMenu({...this.props})}
                             </div>
                             {loading && entryList.length === 0 ? <LinearProgress/> : ""}
                             <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>

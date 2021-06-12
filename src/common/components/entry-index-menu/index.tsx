@@ -20,7 +20,6 @@ interface Props {
     global: Global;
     activeUser: ActiveUser | null;
     toggleListStyle: () => void;
-    isTopic: boolean;
 }
 
 interface States {
@@ -66,7 +65,7 @@ export class EntryIndexMenu extends Component<Props, States> {
     }
 
     componentDidUpdate(prevProps:Props){
-        const { history, activeUser, isTopic } = this.props;
+        const { history, activeUser, global: { tag } } = this.props;
         if(history.location.pathname.includes('/my') && !isActiveUser(activeUser)){
             history.push(history.location.pathname.replace('/my', ''))
         }
@@ -74,8 +73,8 @@ export class EntryIndexMenu extends Component<Props, States> {
             this.setState({isGlobal:false});
             history.push(history.location.pathname + '/my');
         }
-        if(prevProps.isTopic !== isTopic){
-            this.setState({isTopicApplied: isTopic})
+        if(prevProps.global.tag !== tag && tag !== "my"){
+            this.setState({isTopicApplied: tag !== ""})
         }
     }
 
@@ -157,8 +156,7 @@ export default (p: Props) => {
         history: p.history,
         global: p.global,
         activeUser: p.activeUser,
-        toggleListStyle: p.toggleListStyle,
-        isTopic: p.isTopic
+        toggleListStyle: p.toggleListStyle
     }
 
     return <EntryIndexMenu {...props} />
