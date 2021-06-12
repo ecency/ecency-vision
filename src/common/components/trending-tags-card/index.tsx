@@ -20,8 +20,14 @@ interface Props {
 }
 
 export class TrendingTagsCard extends Component<Props> {
+
+    handleUnselection = () => {
+        const { history, global: { filter }, activeUser } = this.props;
+        history.push('/' + filter + (activeUser && activeUser.username && "/my" || "" ));
+    }
+
     render() {
-        const { trendingTags, global, history, activeUser } = this.props;
+        const { trendingTags, global } = this.props;
 
         return (
             <div className="trending-tags-card">
@@ -38,7 +44,17 @@ export class TrendingTagsCard extends Component<Props> {
                                 children: 
                                 <a href={makePath(global.filter, t)} className={cls}>
                                     {t}
-                                    {global.tag === t && <div className="text-secondary ml-4 pointer" onClick={(e) => {history.push('/' + global.filter +(activeUser && activeUser.username && "/my" || "" ));e.stopPropagation();e.preventDefault();}}>✖</div>}
+                                    {global.tag === t &&
+                                        <div
+                                            className="text-secondary ml-4 pointer"
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                e.preventDefault();
+                                                this.handleUnselection
+                                                }}
+                                        >
+                                            ✖
+                                        </div>}
                                 </a>
                             })}
                         </div>

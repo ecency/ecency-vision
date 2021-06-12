@@ -24,7 +24,6 @@ interface Props {
 
 interface States {
     isGlobal: boolean;
-    isTopicApplied: boolean;
 }
 
 export const isMyPage = (global: Global, activeUser: ActiveUser | null) => {
@@ -46,15 +45,14 @@ export class EntryIndexMenu extends Component<Props, States> {
         const { activeUser, history: { location: { pathname} }, global } = props;
         const { tag } = global;
         let isGlobal = !pathname.includes('/my');
-        let isTopicApplied = (pathname.includes('/trending') || pathname.includes('/created') || pathname.includes('/hot')) && (tag !== "" && tag !== "my");
         if(activeUser && isActiveUser(activeUser) && pathname.includes(activeUser.username)){
             isGlobal = false;
         }
-        this.state={ isGlobal, isTopicApplied };
-        this.onChange = this.onChange.bind(this)
+        this.state={ isGlobal };
+        this.onChangeGlobal = this.onChangeGlobal.bind(this)
     }
 
-    onChange() {
+    onChangeGlobal() {
         const { history, global : { tag, filter } } = this.props;
         this.setState({ isGlobal: !this.state.isGlobal });
         if(history.location.pathname.includes('/my')){
@@ -64,14 +62,14 @@ export class EntryIndexMenu extends Component<Props, States> {
         }
     }
 
-    componentDidUpdate(prevProps:Props){
+    componentDidUpdate(prevProps: Props){
         const { history, activeUser, global: { tag, filter } } = this.props;
 
         if(history.location.pathname.includes('/my') && !isActiveUser(activeUser)){
             history.push(history.location.pathname.replace('/my', ''))
         }
         else if(!isActiveUser(prevProps.activeUser) !== !isActiveUser(activeUser) && filter !== 'feed'){
-            this.setState({isGlobal:tag.length > 0});
+            this.setState({isGlobal: tag.length > 0});
             history.push(history.location.pathname + (tag.length > 0 ? "" : '/my'));
         }
         else if(prevProps.global.tag !== tag && filter !== 'feed' && tag !== ""){
@@ -82,7 +80,7 @@ export class EntryIndexMenu extends Component<Props, States> {
             if(prevProps.global.tag !== "my"){
                 let isGlobal = false
                 history.push(history.location.pathname + '/my');
-                this.setState({isGlobal})
+                this.setState({ isGlobal })
             }
         }
     }
@@ -90,7 +88,7 @@ export class EntryIndexMenu extends Component<Props, States> {
     render() {
         const { activeUser, global } = this.props;
         const { isGlobal } = this.state;
-        const { filter, tag } = global;
+        const { filter } = global;
         const isMy = isMyPage(global, activeUser);
         const isActive = isActiveUser(activeUser);
         const menuConfig: {
@@ -114,17 +112,17 @@ export class EntryIndexMenu extends Component<Props, States> {
 
         return <div className="entry-index-menu">
             <div className="the-menu">
-               {isActive &&
-                    <div className="sub-menu">
-                        <ul className="nav nav-pills nav-fill">
-                            <li className="nav-item">
-                                <Link to={`/@${activeUser?.username}/feed`} className={_c(`nav-link link-my ${filter === "feed" ? "active" : ""}`)}>
-                                    {_t("entry-filter.filter-feed-friends")}
-                                </Link>
-                            </li>
-                        </ul>
-                    </div>
-                }
+            {isActive &&
+                <div className="sub-menu">
+                    <ul className="nav nav-pills nav-fill">
+                        <li className="nav-item">
+                            <Link to={`/@${activeUser?.username}/feed`} className={_c(`nav-link my-link ${filter === "feed" ? "active" : ""}`)}>
+                                {_t("entry-filter.filter-feed-friends")}
+                            </Link>
+                        </li>
+                    </ul>
+                </div>
+            }
                 <div className="main-menu">
                     <div className="sm-menu">
                         <DropDown {...menuConfig} float="left"/>
@@ -147,7 +145,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                         name="isGlobal"
                         className="d-flex align-items-center ml-5 border-left pl-5"
                         checked={isGlobal}
-                        onChange={this.onChange}
+                        onChange={this.onChangeGlobal}
                         custom
                     />
                 }
