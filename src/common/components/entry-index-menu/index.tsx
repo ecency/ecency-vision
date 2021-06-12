@@ -55,26 +55,27 @@ export class EntryIndexMenu extends Component<Props, States> {
     }
 
     onChange() {
-        const { history, activeUser } = this.props;
+        const { history, activeUser, global : { tag } } = this.props;
         this.setState({ isGlobal: !this.state.isGlobal });
         if(history.location.pathname.includes('/my')){
             history.push(history.location.pathname.replace('/my', ''))
         } else {
-            activeUser && isActiveUser(activeUser) && !history.location.pathname.includes(activeUser.username) && history.push(history.location.pathname + '/my')
+            activeUser && isActiveUser(activeUser) && !history.location.pathname.includes(activeUser.username) && history.push(history.location.pathname + (tag.length > 0 ? "" : '/my'))
         }
     }
 
     componentDidUpdate(prevProps:Props){
-        const { history, activeUser, global: { tag } } = this.props;
+        const { history, activeUser, global: { tag, filter } } = this.props;
         if(history.location.pathname.includes('/my') && !isActiveUser(activeUser)){
             history.push(history.location.pathname.replace('/my', ''))
         }
-        if(!isActiveUser(prevProps.activeUser) !== !isActiveUser(activeUser)){
-            this.setState({isGlobal:false});
-            history.push(history.location.pathname + '/my');
+        if(!isActiveUser(prevProps.activeUser) !== !isActiveUser(activeUser) && filter !== 'feed'){
+            this.setState({isGlobal:tag.length > 0});
+            history.push(history.location.pathname + (tag.length > 0 ? "" : '/my'));
         }
-        if(prevProps.global.tag !== tag && tag !== "my"){
-            this.setState({isTopicApplied: tag !== ""})
+        if(prevProps.global.tag !== tag && filter !== 'feed' && tag !== ""){
+            let isGlobal = tag !== "my"
+            this.setState({isGlobal})
         }
     }
 
@@ -82,10 +83,8 @@ export class EntryIndexMenu extends Component<Props, States> {
         const { activeUser, global } = this.props;
         const { isGlobal } = this.state;
         const { filter, tag } = global;
-debugger
         const isMy = isMyPage(global, activeUser);
         const isActive = isActiveUser(activeUser);
-
         const menuConfig: {
             history: History,
             label: string,
@@ -132,7 +131,7 @@ debugger
                         </ul>
                     </div>
                 </div>
-                {isActive && 
+                {isActive && filter !== "feed" &&
                     <Form.Check
                         id="check-isGlobal"
                         type="checkbox"
