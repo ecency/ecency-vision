@@ -117,7 +117,7 @@ export class EntryIndexMenu extends Component<Props, States> {
             active: filter === 'feed',
             id: 'feed'
         }, ...menuConfig.items]}
-        debugger;
+
         return <div>
                     <div className="entry-index-menu">
                         <div className="the-menu align-items-center">
