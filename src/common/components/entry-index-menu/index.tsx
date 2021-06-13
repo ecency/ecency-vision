@@ -111,9 +111,9 @@ export class EntryIndexMenu extends Component<Props, States> {
         };
 
         return <div className="entry-index-menu">
-            <div className="the-menu">
+            <div className="the-menu align-items-center">
             {isActive &&
-                <div className="sub-menu">
+                <div className="sub-menu mb-3 mb-md-0">
                     <ul className="nav nav-pills nav-fill">
                         <li className="nav-item">
                             <Link to={`/@${activeUser?.username}/feed`} className={_c(`nav-link my-link ${filter === "feed" ? "active" : ""}`)}>
@@ -123,6 +123,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                     </ul>
                 </div>
             }
+            <div className='d-flex align-items-center'>
                 <div className="main-menu">
                     <div className="sm-menu">
                         <DropDown {...menuConfig} float="left"/>
@@ -143,12 +144,13 @@ export class EntryIndexMenu extends Component<Props, States> {
                         type="checkbox"
                         label="Global"
                         name="isGlobal"
-                        className="d-flex align-items-center ml-5 border-left pl-5"
+                        className="d-flex align-items-center ml-3 ml-md-5 border-left pl-5"
                         checked={isGlobal}
                         onChange={this.onChangeGlobal}
                         custom
                     />
                 }
+                </div>
             </div>
 
             <ListStyleToggle global={this.props.global} toggleListStyle={this.props.toggleListStyle}/>

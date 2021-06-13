@@ -56,6 +56,10 @@
         align-items: center;
       }
 
+      @media (min-width: $md-break) and (max-width: $lg-break) {
+        margin-right: 1em;
+      }
+
       .nav-link {
         border-radius: 24px;
         display: flex;
