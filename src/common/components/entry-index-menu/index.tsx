@@ -134,7 +134,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                         }
                         <div className='d-flex align-items-center'>
 
-                            <div className="main-menu d-none d-md-flex">
+                            <div className="main-menu d-none d-lg-flex">
                                 <div className="sm-menu">
                                     <DropDown {...menuConfig} float="left"/>
                                 </div>
@@ -149,7 +149,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                                 </div>
                             </div>
 
-                            <div className="main-menu d-flex d-md-none">
+                            <div className="main-menu d-flex d-lg-none">
                                 <div className="sm-menu">
                                     <DropDown {...mobileMenuConfig} float="left"/>
                                 </div>
@@ -182,7 +182,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                     </div>
                     
                     <div className='my-3 alert alert-primary'>
-                        {_t('entry-filter.filter-global-part1')} 
+                        {_t('entry-filter.filter-global-part1')}
                         <span className="text-capitalize">
                             {_t(`entry-filter.filter-${filter}`)}
                         </span>

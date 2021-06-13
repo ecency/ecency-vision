@@ -64,7 +64,7 @@
 
     .sub-menu {
       display: none;
-      @media (min-width: $md-break) {
+      @media (min-width: $lg-break) {
         display: flex;
         align-items: center;
       }
