@@ -91,13 +91,14 @@ export class EntryIndexMenu extends Component<Props, States> {
         const { filter } = global;
         const isMy = isMyPage(global, activeUser);
         const isActive = isActiveUser(activeUser);
+
         const menuConfig: {
             history: History,
             label: string,
             items: MenuItem[]
         } = {
             history: this.props.history,
-            label: isMy ? _t("entry-filter.filter-feed") : _t(`entry-filter.filter-${filter}`),
+            label: isMy && filter === "feed" ? _t("entry-filter.filter-feed-friends") : _t(`entry-filter.filter-${filter}`),
             items: [
                 ...[EntryFilter.trending, EntryFilter.hot, EntryFilter.created].map((x) => {
                     return {
@@ -110,6 +111,13 @@ export class EntryIndexMenu extends Component<Props, States> {
             ],
         };
 
+        const mobileMenuConfig = {...menuConfig, items:[...menuConfig.items, {
+            label: _t(`entry-filter.filter-feed-friends`),
+            href: `/@${activeUser?.username}/feed`,
+            active: filter === 'feed',
+            id: 'feed'
+        }]}
+        
         return <div>
                     <div className="entry-index-menu">
                         <div className="the-menu align-items-center">
@@ -125,7 +133,8 @@ export class EntryIndexMenu extends Component<Props, States> {
                             </div>
                         }
                         <div className='d-flex align-items-center'>
-                            <div className="main-menu">
+
+                            <div className="main-menu d-none d-md-flex">
                                 <div className="sm-menu">
                                     <DropDown {...menuConfig} float="left"/>
                                 </div>
@@ -139,6 +148,22 @@ export class EntryIndexMenu extends Component<Props, States> {
                                     </ul>
                                 </div>
                             </div>
+
+                            <div className="main-menu d-flex d-md-none">
+                                <div className="sm-menu">
+                                    <DropDown {...mobileMenuConfig} float="left"/>
+                                </div>
+                                <div className="lg-menu">
+                                    <ul className="nav nav-pills nav-fill">
+                                        {mobileMenuConfig.items.map((i, k) => {
+                                            return <li key={k} className="nav-item">
+                                                <Link to={i.href!} className={_c(`nav-link link-${i.id} ${i.active ? "active" : ""}`)}>{i.label}</Link>
+                                            </li>
+                                        })}
+                                    </ul>
+                                </div>
+                            </div>
+
                             {isActive && filter !== "feed" &&
                                 <Form.Check
                                     id="check-isGlobal"
@@ -157,9 +182,9 @@ export class EntryIndexMenu extends Component<Props, States> {
                     </div>
                     
                     <div className='my-3 alert alert-primary'>
-                        This feed contains <span className="text-capitalize">{filter==="created"?"new":filter}</span> content {isGlobal ? "on entire platform" :
+                        This feed contains <span className="text-capitalize">{filter === "created" ? "new" : filter }</span> content {(isGlobal || filter === "feed") ? "on entire platform." :
                         "from Your communities. You can join communities that interest you to fill up this feed."} 
-                        {!isGlobal && <Link to='/communities'> Join</Link>}
+                        {(!isGlobal) && filter !== "feed" && <Link to='/communities'> Join</Link>}
                     </div>
             </div>}
 }
