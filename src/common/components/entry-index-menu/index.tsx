@@ -113,7 +113,7 @@ export class EntryIndexMenu extends Component<Props, States> {
         return <div className="entry-index-menu">
             <div className="the-menu align-items-center">
             {isActive &&
-                <div className="sub-menu mb-3 mb-md-0">
+                <div className="sub-menu mt-3 mt-md-0">
                     <ul className="nav nav-pills nav-fill">
                         <li className="nav-item">
                             <Link to={`/@${activeUser?.username}/feed`} className={_c(`nav-link my-link ${filter === "feed" ? "active" : ""}`)}>

@@ -11,7 +11,7 @@
 
   .the-menu {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
 
     @media (min-width: $md-break) {
       flex-direction: row;
@@ -20,8 +20,6 @@
     .main-menu {
       display: flex;
       justify-content: center;
-      margin-bottom: 10px;
-
 
       @media (min-width: $md-break) {
         margin-bottom: 0;
@@ -79,4 +77,12 @@
 .my-link {
   padding: 0.5rem 1rem !important;
   font-size: 1rem !important;
+
+
+  @media (max-width: $md-break) {
+    padding: 6px 12px !important;
+    font-size: 90% !important;
+    margin-bottom: 0.5em;
+  }
+
 }
