@@ -110,52 +110,58 @@ export class EntryIndexMenu extends Component<Props, States> {
             ],
         };
 
-        return <div className="entry-index-menu">
-            <div className="the-menu align-items-center">
-            {isActive &&
-                <div className="sub-menu mt-3 mt-md-0">
-                    <ul className="nav nav-pills nav-fill">
-                        <li className="nav-item">
-                            <Link to={`/@${activeUser?.username}/feed`} className={_c(`nav-link my-link ${filter === "feed" ? "active" : ""}`)}>
-                                {_t("entry-filter.filter-feed-friends")}
-                            </Link>
-                        </li>
-                    </ul>
-                </div>
-            }
-            <div className='d-flex align-items-center'>
-                <div className="main-menu">
-                    <div className="sm-menu">
-                        <DropDown {...menuConfig} float="left"/>
+        return <div>
+                    <div className="entry-index-menu">
+                        <div className="the-menu align-items-center">
+                        {isActive &&
+                            <div className="sub-menu mt-3 mt-md-0">
+                                <ul className="nav nav-pills nav-fill">
+                                    <li className="nav-item">
+                                        <Link to={`/@${activeUser?.username}/feed`} className={_c(`nav-link my-link ${filter === "feed" ? "active" : ""}`)}>
+                                            {_t("entry-filter.filter-feed-friends")}
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </div>
+                        }
+                        <div className='d-flex align-items-center'>
+                            <div className="main-menu">
+                                <div className="sm-menu">
+                                    <DropDown {...menuConfig} float="left"/>
+                                </div>
+                                <div className="lg-menu">
+                                    <ul className="nav nav-pills nav-fill">
+                                        {menuConfig.items.map((i, k) => {
+                                            return <li key={k} className="nav-item">
+                                                <Link to={i.href!} className={_c(`nav-link link-${i.id} ${i.active ? "active" : ""}`)}>{i.label}</Link>
+                                            </li>
+                                        })}
+                                    </ul>
+                                </div>
+                            </div>
+                            {isActive && filter !== "feed" &&
+                                <Form.Check
+                                    id="check-isGlobal"
+                                    type="checkbox"
+                                    label="Global"
+                                    name="isGlobal"
+                                    className="d-flex align-items-center ml-3 ml-md-5 border-left pl-5"
+                                    checked={isGlobal}
+                                    onChange={this.onChangeGlobal}
+                                    custom
+                                />
+                            }
+                            </div>
+                        </div>
+                        <ListStyleToggle global={this.props.global} toggleListStyle={this.props.toggleListStyle}/>
                     </div>
-                    <div className="lg-menu">
-                        <ul className="nav nav-pills nav-fill">
-                            {menuConfig.items.map((i, k) => {
-                                return <li key={k} className="nav-item">
-                                    <Link to={i.href!} className={_c(`nav-link link-${i.id} ${i.active ? "active" : ""}`)}>{i.label}</Link>
-                                </li>
-                            })}
-                        </ul>
+                    
+                    <div className='my-3 alert alert-primary'>
+                        This feed contains <span className="text-capitalize">{filter==="created"?"new":filter}</span> content {isGlobal ? "on entire platform" :
+                        "from Your communities. You can join communities that interest you to fill up this feed."} 
+                        {!isGlobal && <Link to='/communities'> Join</Link>}
                     </div>
-                </div>
-                {isActive && filter !== "feed" &&
-                    <Form.Check
-                        id="check-isGlobal"
-                        type="checkbox"
-                        label="Global"
-                        name="isGlobal"
-                        className="d-flex align-items-center ml-3 ml-md-5 border-left pl-5"
-                        checked={isGlobal}
-                        onChange={this.onChangeGlobal}
-                        custom
-                    />
-                }
-                </div>
-            </div>
-
-            <ListStyleToggle global={this.props.global} toggleListStyle={this.props.toggleListStyle}/>
-        </div>;
-    }
+            </div>}
 }
 
 export default (p: Props) => {

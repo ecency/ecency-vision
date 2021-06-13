@@ -2,7 +2,21 @@
   align-items: center;
   display: flex;
   justify-content: center;
-  padding-bottom: 10px;
+  padding-bottom: 70px;
+
+
+  @media (max-width: $md-break) {
+    padding: 10px;
+  }
+
+   
+  @include themify(day) {
+    border-bottom: 1px solid $white-three;
+  }
+
+  @include themify(night) {
+    border-bottom: 1px solid $dark-two;
+  }
 
   @media (min-width: $md-break) {
     height: 50px;
@@ -84,5 +98,4 @@
     font-size: 90% !important;
     margin-bottom: 0.5em;
   }
-
 }

@@ -17,17 +17,6 @@
 
   .entry-page-content {
     flex-grow: 1;
-    padding-bottom: 60px;
-
-    .page-tools {
-      @include themify(day) {
-        border-bottom: 1px solid $white-three;
-      }
-
-      @include themify(night) {
-        border-bottom: 1px solid $dark-two;
-      }
-    }
 
     &.loading {
       .page-tools {
