@@ -168,7 +168,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                                 <Form.Check
                                     id="check-isGlobal"
                                     type="checkbox"
-                                    label="Global"
+                                    label={_t('entry-filter.filter-global')}
                                     name="isGlobal"
                                     className="d-flex align-items-center ml-3 ml-md-5 border-left pl-5"
                                     checked={isGlobal}
@@ -182,9 +182,12 @@ export class EntryIndexMenu extends Component<Props, States> {
                     </div>
                     
                     <div className='my-3 alert alert-primary'>
-                        This feed contains <span className="text-capitalize">{filter === "created" ? "new" : filter }</span> content {(isGlobal || filter === "feed") ? "on entire platform." :
-                        "from Your communities. You can join communities that interest you to fill up this feed."} 
-                        {(!isGlobal) && filter !== "feed" && <Link to='/communities'> Join</Link>}
+                        {_t('entry-filter.filter-global-part1')} 
+                        <span className="text-capitalize">
+                            {_t(`entry-filter.filter-${filter}`)}
+                        </span>
+                        {(isGlobal || filter === "feed") ? _t('entry-filter.filter-global-part2') : _t('entry-filter.filter-global-part3')} 
+                        {!isGlobal && filter !== "feed" && <Link to='/communities'> {_t('discussion.btn-join')}</Link>}
                     </div>
             </div>}
 }

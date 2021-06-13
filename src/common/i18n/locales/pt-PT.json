@@ -55,7 +55,11 @@
     "filter-muted": "Silenciado",
     "filter-feed": "Conteúdo de notícias",
     "filter-feed-friends": "Amigos",
-    "filter-feed-subscriptions": "Comunidades"
+    "filter-feed-subscriptions": "Comunidades",
+    "filter-global": "Global",
+    "filter-global-part1": "This feed contains ",
+    "filter-global-part2": "content on entire platform.",
+    "filter-global-part3": "content from Your communities. You can join communities that interest you to fill up this feed."
   },
   "navbar": {
     "discover": "Descubra",

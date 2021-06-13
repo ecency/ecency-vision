@@ -55,7 +55,11 @@
     "filter-muted": "已屏蔽",
     "filter-feed": "已关注",
     "filter-feed-friends": "朋友圈",
-    "filter-feed-subscriptions": "社区"
+    "filter-feed-subscriptions": "社区",
+    "filter-global": "Global",
+    "filter-global-part1": "This feed contains ",
+    "filter-global-part2": "content on entire platform.",
+    "filter-global-part3": "content from Your communities. You can join communities that interest you to fill up this feed."
   },
   "navbar": {
     "discover": "发现",
