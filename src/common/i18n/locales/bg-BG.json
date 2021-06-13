@@ -55,11 +55,7 @@
     "filter-muted": "Заглушени",
     "filter-feed": "Моят поток",
     "filter-feed-friends": "Приятели",
-    "filter-feed-subscriptions": "Общности",
-    "filter-global": "Global",
-    "filter-global-part1": "This feed contains ",
-    "filter-global-part2": "content on entire platform.",
-    "filter-global-part3": "content from Your communities. You can join communities that interest you to fill up this feed."
+    "filter-feed-subscriptions": "Общности"
   },
   "navbar": {
     "discover": "Открийте",
