@@ -111,13 +111,13 @@ export class EntryIndexMenu extends Component<Props, States> {
             ],
         };
 
-        const mobileMenuConfig = {...menuConfig, items:[...menuConfig.items, {
+        const mobileMenuConfig = !isActive ? menuConfig : {...menuConfig, items:[{
             label: _t(`entry-filter.filter-feed-friends`),
             href: `/@${activeUser?.username}/feed`,
             active: filter === 'feed',
             id: 'feed'
-        }]}
-        
+        }, ...menuConfig.items]}
+        debugger;
         return <div>
                     <div className="entry-index-menu">
                         <div className="the-menu align-items-center">
