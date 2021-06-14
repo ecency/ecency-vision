@@ -492,6 +492,11 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
         });
     }
 
+    handleInvalid = (e: any, localID: string) => {
+        e.target.setCustomValidity(_t('communities-create.' + localID));
+    }
+    
+
     render() {
         //  Meta config
         const metaProps = {
@@ -530,7 +535,8 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                         }
 
                         this.toggleKeyDialog();
-                    }}>
+                    }}
+                    >
                         <h1 className="form-title">{_t("communities-create.page-title")}</h1>
                         {(() => {
                             if (done) {
@@ -553,7 +559,10 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                                         maxLength={20}
                                         onChange={this.onInput}
                                         required={true}
+                                        onInvalid={(e:any) => this.handleInvalid(e,'title-validation')}
+                                        onInput={(e:any) => e.target.setCustomValidity("")}
                                         name="title"
+                                        isValid={title.length > 2 && title.length < 21}
                                     />
                                 </Form.Group>
                                 <Form.Group>
@@ -602,7 +611,13 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                                                 <pre className="password"><span>{wif}</span></pre>
                                             </Form.Group>
                                             <Form.Group>
-                                                <label><input type="checkbox" required={true} onInvalid={(e)=>{e.target.setCustomValidity("Hello")}}/> {_t("communities-create.confirmation")}</label>
+                                                <label>
+                                                    <input
+                                                        type="checkbox"
+                                                        required={true} 
+                                                        onInvalid={(e:any) => this.handleInvalid(e,'checkbox-validation')}
+                                                        onInput={(e:any) => e.target.setCustomValidity("")}
+                                                        /> {_t("communities-create.confirmation")}</label>
                                             </Form.Group>
                                             <Form.Group>
                                                 <Button type="submit" disabled={inProgress}>

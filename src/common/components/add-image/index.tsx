@@ -30,6 +30,10 @@ export class AddImage extends Component<Props, State> {
         this.setState({link: e.target.value});
     }
 
+    handleInvalid = (e: any, localID: string) => {
+        e.target.setCustomValidity(_t('add-image.' + localID));
+    }
+
     render() {
         const {text, link} = this.state;
 
@@ -55,6 +59,8 @@ export class AddImage extends Component<Props, State> {
                         onChange={this.textChanged}
                         autoFocus={true}
                         required={true}
+                        onInvalid={(e:any) => this.handleInvalid(e,'validation-text')}
+                        onInput={(e:any) => e.target.setCustomValidity("")}
                     />
                 </Form.Group>
                 <Form.Group>
@@ -65,6 +71,8 @@ export class AddImage extends Component<Props, State> {
                         placeholder={_t("add-image.link-label")}
                         onChange={this.linkChanged}
                         required={true}
+                        onInvalid={(e:any) => this.handleInvalid(e,'validation-image')}
+                        onInput={(e:any) => e.target.setCustomValidity("")}
                     />
                 </Form.Group>
                 <div className="d-flex justify-content-end">

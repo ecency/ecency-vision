@@ -355,6 +355,8 @@
     "username-available": "Available.",
     "username-not-available": "Not available.",
     "username-wrong-format": "Not a valid format. hive-1xxxxx format required.",
+    "checkbox-validation": "Please tick this box if you want to proceed.",
+    "title-validation": "Please fill in this field.",
     "password": "Master password",
     "confirmation": "I have securely saved my owner username and password.",
     "submit": "Create Community",
@@ -917,7 +919,9 @@
   "add-image": {
     "title": "Add Image",
     "text-label": "Image Text",
-    "link-label": "Image Link"
+    "link-label": "Image Link",
+    "validation-text": "Please add text to your image.",
+    "validation-image": "Please choose an image"
   },
   "add-image-mobile": {
     "title": "Add Image",
