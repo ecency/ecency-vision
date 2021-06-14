@@ -127,6 +127,8 @@
     "email": "Insira o seu email",
     "ref": "Usuário referenciado (opcional)",
     "submit": "Continuar",
+    "validation-username": "Username is required.",
+    "validation-email": "Email is required.",
     "success": "Enviamos um e-mail para {{email}}.",
     "success-2": "Siga as instruções para concluir o processo de inscrição.",
     "login-text-1": "Você tem conta?",
@@ -328,7 +330,8 @@
     "lang": "Idioma",
     "description": "Descrição",
     "rules": "Regras",
-    "rules-help": "Um por linha"
+    "rules-help": "Um por linha",
+    "validation-title": "Title is required."
   },
   "communities": {
     "title": "Comunidades",
@@ -355,6 +358,8 @@
     "username-available": "Disponível.",
     "username-not-available": "Não disponível.",
     "username-wrong-format": "Não é um formato válido. É necessário um formato hive-1xxxxx.",
+    "checkbox-validation": "Please tick this box if you want to proceed.",
+    "title-validation": "Please fill in this field.",
     "password": "Senha Mestra",
     "confirmation": "Eu guardei seguramente o meu utilizador e password.",
     "submit": "Criar Comunidade",
@@ -466,6 +471,8 @@
     "title": "Contas de saque",
     "account": "Conta",
     "percent": "Percentagem",
+    "validation-account": "Account is required.",
+    "validation-percent": "Percentage is required.",
     "auto-power-up": "Aumentar poder automaticamente"
   },
   "points": {
@@ -730,6 +737,8 @@
     "username": "Usuário",
     "reward": "Recompensa",
     "user-error": "{{n}} não é um usuário válido.",
+    "validation-percentage": "Percentage is required.",
+    "validation-username": "Username is required.",
     "user-exists-error": "{{n}} já está na lista"
   },
   "post-scheduler": {
@@ -901,6 +910,9 @@
     "create-first": "Crie seu primeiro fragmento de informação",
     "filter": "Pesquisar por título",
     "form-title": "Título",
+    "validation-title": "Title is required.",
+    "validation-value": "Value is required.",
+    "validation-body": "Body is required.",
     "form-body": "Conteúdo"
   },
   "password-update": {
@@ -912,12 +924,16 @@
     "error-new2": "As senhas devem ser iguais",
     "pass-gen": "Clique para gerar a senha",
     "label-check": "Eu guardei com segurança minha nova senha gerada",
+    "validation-password": "Password is invalid.",
+    "validation-label": "Please tick this box to proceed.",
     "updated": "Senha atualizada com sucesso!"
   },
   "add-image": {
     "title": "Adicionar imagem",
     "text-label": "Texto da Imagem",
-    "link-label": "Link da Imagem"
+    "link-label": "Link da Imagem",
+    "validation-text": "Text is required.",
+    "validation-image": "Image is required."
   },
   "add-image-mobile": {
     "title": "Adicionar Imagem",
@@ -928,7 +944,9 @@
   "add-link": {
     "title": "Adicionar Link",
     "text-label": "Texto",
-    "link-label": "https://"
+    "link-label": "https://",
+    "validation-text": "Text is required.",
+    "validation-link": "Link is required."
   },
   "scroll-to-top": {
     "title": "Ir para o topo"
@@ -1077,6 +1095,7 @@
     "subscribe-paragraph": "Seja o primeiro a saber o que está acontecendo na internet descentralizada.",
     "copy-rights": "© 2021 Ecency. Todos os direitos reservados.",
     "success-message-subscribe": "Um link de verificação foi enviado para o seu e-mail!",
+    "validation-email": "A valid email is required",
     "error-occured": "Ocorreu um erro no servidor."
   }
 }
