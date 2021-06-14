@@ -127,6 +127,8 @@
     "email": "E-poçt ünvanını daxil et",
     "ref": "Referred user (optional)",
     "submit": "Davam",
+    "validation-username": "Username is required.",
+    "validation-email": "Email is required.",
     "success": "{{email}} ünvanına bir e-poçt göndərdik.",
     "success-2": "Qeydiyyat prosesini tamamlamaq üçün təlimatları izləyin.",
     "login-text-1": "Hesabınız yoxdur?",
@@ -328,7 +330,8 @@
     "lang": "Dil",
     "description": "Açıqlama",
     "rules": "Qaydalar",
-    "rules-help": "One per line"
+    "rules-help": "One per line",
+    "validation-title": "Title is required."
   },
   "communities": {
     "title": "Cəmiyyətlər",
@@ -355,6 +358,8 @@
     "username-available": "Available.",
     "username-not-available": "Not available.",
     "username-wrong-format": "Not a valid format. hive-1xxxxx format required.",
+    "checkbox-validation": "Please tick this box if you want to proceed.",
+    "title-validation": "Please fill in this field.",
     "password": "Master password",
     "confirmation": "I have securely saved my owner username and password.",
     "submit": "Create Community",
@@ -466,6 +471,8 @@
     "title": "Withdraw accounts",
     "account": "Hesab",
     "percent": "Faiz",
+    "validation-account": "Account is required.",
+    "validation-percent": "Percentage is required.",
     "auto-power-up": "Automatically power up"
   },
   "points": {
@@ -730,6 +737,8 @@
     "username": "Username",
     "reward": "Reward",
     "user-error": "{{n}} is not a valid user.",
+    "validation-percentage": "Percentage is required.",
+    "validation-username": "Username is required.",
     "user-exists-error": "{{n}} is already in the list"
   },
   "post-scheduler": {
@@ -901,6 +910,9 @@
     "create-first": "Create your first snippet",
     "filter": "Search by title",
     "form-title": "Title",
+    "validation-title": "Title is required.",
+    "validation-value": "Value is required.",
+    "validation-body": "Body is required.",
     "form-body": "Body"
   },
   "password-update": {
@@ -912,12 +924,16 @@
     "error-new2": "Passwords must be same",
     "pass-gen": "Click to generate password",
     "label-check": "I have securely saved my generated password",
+    "validation-password": "Password is invalid.",
+    "validation-label": "Please tick this box to proceed.",
     "updated": "Password updated successfully!"
   },
   "add-image": {
     "title": "Add Image",
     "text-label": "Image Text",
-    "link-label": "Image Link"
+    "link-label": "Image Link",
+    "validation-text": "Text is required.",
+    "validation-image": "Image is required."
   },
   "add-image-mobile": {
     "title": "Add Image",
@@ -928,7 +944,9 @@
   "add-link": {
     "title": "Add Link",
     "text-label": "Text",
-    "link-label": "https://"
+    "link-label": "https://",
+    "validation-text": "Text is required.",
+    "validation-link": "Link is required."
   },
   "scroll-to-top": {
     "title": "Yuxarı sürüşdür"
@@ -1077,6 +1095,7 @@
     "subscribe-paragraph": "Be first to know what's happening in decentralized web.",
     "copy-rights": "©2021 Ecency. All right reserved.",
     "success-message-subscribe": "A verification link has been sent to your email account!",
+    "validation-email": "A valid email is required",
     "error-occured": "A server error has been occured."
   }
 }
