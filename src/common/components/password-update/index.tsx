@@ -18,6 +18,7 @@ import random from "../../util/rnd";
 import {_t} from "../../i18n";
 
 import {keySvg} from "../../img/svg";
+import { handleInvalid, handleOnInput } from "../../util/input-util";
 
 interface Props {
     activeUser: ActiveUser;
@@ -132,7 +133,16 @@ export class PasswordUpdate extends BaseComponent<Props, State> {
                 </Form.Group>
                 <Form.Group controlId="cur-pass">
                     <Form.Label>{_t("password-update.cur-pass")}</Form.Label>
-                    <Form.Control value={curPass} onChange={this.curPassChanged} required={true} type="password" autoFocus={true} autoComplete="off"/>
+                    <Form.Control 
+                        value={curPass} 
+                        onChange={this.curPassChanged} 
+                        required={true} 
+                        onInvalid={(e:any) => handleInvalid(e,"password-update.",'validation-password')}
+                        onInput={handleOnInput}
+                        type="password" 
+                        autoFocus={true} 
+                        autoComplete="off"
+                    />
                 </Form.Group>
                 <Form.Group controlId="new-pass">
                     <Form.Label>{_t("password-update.new-pass")}</Form.Label>
@@ -143,10 +153,24 @@ export class PasswordUpdate extends BaseComponent<Props, State> {
                 </Form.Group>
                 <Form.Group controlId="re-new-pass">
                     <Form.Label>{_t("password-update.new-pass2")}</Form.Label>
-                    <Form.Control value={newPass2} onChange={this.newPass2Changed} required={true} type="password" autoComplete="off"/>
+                    <Form.Control 
+                        value={newPass2} 
+                        onChange={this.newPass2Changed} 
+                        required={true} 
+                        type="password" 
+                        autoComplete="off"
+                        onInvalid={(e:any) => handleInvalid(e,"password-update.",'validation-password')}
+                        onInput={handleOnInput}
+                    />
                 </Form.Group>
                 <Form.Group controlId="accept">
-                    <Form.Check required={true} type="checkbox" label={_t("password-update.label-check")}/>
+                    <Form.Check 
+                        required={true} 
+                        type="checkbox" 
+                        label={_t("password-update.label-check")}
+                        onInvalid={(e:any) => handleInvalid(e,"password-update.",'validation-label')}
+                        onInput={handleOnInput}
+                    />
                 </Form.Group>
                 <Button variant="primary" type="submit" disabled={inProgress}>
                     {inProgress && (<Spinner animation="grow" variant="light" size="sm" style={{marginRight: "6px"}}/>)}

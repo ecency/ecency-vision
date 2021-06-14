@@ -127,6 +127,8 @@
     "email": "Enter your email address",
     "ref": "Referred user (optional)",
     "submit": "Continue",
+    "validation-username": "Username is required.",
+    "validation-email": "Email is required.",
     "success": "We've sent an email to {{email}}.",
     "success-2": "Follow instructions to complete signup process.",
     "login-text-1": "Do you have an account?",
@@ -328,7 +330,8 @@
     "lang": "Language",
     "description": "Description",
     "rules": "Rules",
-    "rules-help": "One per line"
+    "rules-help": "One per line",
+    "validation-title": "Invalid text is typed."
   },
   "communities": {
     "title": "Communities",
@@ -468,6 +471,8 @@
     "title": "Withdraw accounts",
     "account": "Account",
     "percent": "Percent",
+    "validation-account": "Account is required",
+    "validation-percent": "Percentage is required",
     "auto-power-up": "Automatically power up"
   },
   "points": {
@@ -732,6 +737,8 @@
     "username": "Username",
     "reward": "Reward",
     "user-error": "{{n}} is not a valid user.",
+    "validation-percentage": "Invalid percentage.",
+    "validation-username": "Username is invalid.",
     "user-exists-error": "{{n}} is already in the list"
   },
   "post-scheduler": {
@@ -903,6 +910,9 @@
     "create-first": "Create your first snippet",
     "filter": "Search by title",
     "form-title": "Title",
+    "validation-title": "Title is required.",
+    "validation-value": "Value is required.",
+    "validation-body": "Body is required.",
     "form-body": "Body"
   },
   "password-update": {
@@ -914,6 +924,8 @@
     "error-new2": "Passwords must be same",
     "pass-gen": "Click to generate password",
     "label-check": "I have securely saved my generated password",
+    "validation-password": "Password is invalid",
+    "validation-label": "Please tick this box to proceed",
     "updated": "Password updated successfully!"
   },
   "add-image": {
@@ -932,7 +944,9 @@
   "add-link": {
     "title": "Add Link",
     "text-label": "Text",
-    "link-label": "https://"
+    "link-label": "https://",
+    "validation-text": "Please add text.",
+    "validation-link": "Please add link."
   },
   "scroll-to-top": {
     "title": "Scroll to Top"
@@ -1081,6 +1095,7 @@
     "subscribe-paragraph": "Be first to know what's happening in decentralized web.",
     "copy-rights": "©2021 Ecency. All right reserved.",
     "success-message-subscribe": "A verification link has been sent to your email account!",
+    "validation-email": "Email is invalid",
     "error-occured": "A server error has been occured."
   }
 }

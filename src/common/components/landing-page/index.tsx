@@ -6,6 +6,7 @@ import { scrollDown } from "../../img/svg";
 import { error, success } from "../feedback";
 import LinearProgress from "../linear-progress";
 import { apiBase } from "../../api/helper";
+import { handleInvalid, handleOnInput } from "../../util/input-util";
 
 const LandingPage = (props: any) => {
 
@@ -413,6 +414,8 @@ const LandingPage = (props: any) => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required={true}
+                    onInvalid={(e:any) => handleInvalid(e,"landing-page.",'validation-email')} 
+                    onInput={handleOnInput}
                   />
                   <button disabled={loading}>{loading ? <span><LinearProgress /></span>  : _t("landing-page.send")}</button>
                 </form>
