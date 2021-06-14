@@ -127,8 +127,8 @@
     "email": "Ingresa tu dirección de email",
     "ref": "Usuario Referido (Opcional)",
     "submit": "Siguiente",
-    "validation-username": "Username is required.",
-    "validation-email": "Email is required.",
+    "validation-username": "Se requiere nombre de usuario.",
+    "validation-email": "Se requiere un correo electrónico.",
     "success": "Hemos enviado un correo electrónico a {{email}}.",
     "success-2": "Siga las instrucciones para completar el proceso de registro.",
     "login-text-1": "¿Tienes una cuenta?",
@@ -331,7 +331,7 @@
     "description": "Descripción",
     "rules": "Reglas",
     "rules-help": "(uno por línea)",
-    "validation-title": "Title is required."
+    "validation-title": "Se requiere un título."
   },
   "communities": {
     "title": "Comunidades",
@@ -358,8 +358,8 @@
     "username-available": "Disponible.",
     "username-not-available": "No disponible.",
     "username-wrong-format": "Formato no válido. Formato hive-1xxxxx necesario.",
-    "checkbox-validation": "Please tick this box if you want to proceed.",
-    "title-validation": "Please fill in this field.",
+    "checkbox-validation": "Marque esta casilla si desea continuar.",
+    "title-validation": "Por favor, rellene este campo.",
     "password": "Contraseña maestra",
     "confirmation": "He guardado con seguridad mi contraseña generada.",
     "submit": "Crear comunidad",
@@ -471,8 +471,8 @@
     "title": "Cuentas de retirada",
     "account": "Cuenta",
     "percent": "Porcentaje",
-    "validation-account": "Account is required.",
-    "validation-percent": "Percentage is required.",
+    "validation-account": "Se requiere una cuenta.",
+    "validation-percent": "Porcentaje requerido.",
     "auto-power-up": "Encender automáticamente"
   },
   "points": {
@@ -737,8 +737,8 @@
     "username": "Nombre de Usuario",
     "reward": "Recompensa",
     "user-error": "{{n}} no es un usuario válido.",
-    "validation-percentage": "Percentage is required.",
-    "validation-username": "Username is required.",
+    "validation-percentage": "Porcentaje requerido.",
+    "validation-username": "Se requiere un nombre de usuario.",
     "user-exists-error": "{{n}} ya está en la lista"
   },
   "post-scheduler": {
@@ -910,9 +910,9 @@
     "create-first": "Crea tu primer fragmento de código",
     "filter": "Buscar por título",
     "form-title": "Título",
-    "validation-title": "Title is required.",
-    "validation-value": "Value is required.",
-    "validation-body": "Body is required.",
+    "validation-title": "Se requiere un título.",
+    "validation-value": "Se requiere un valor.",
+    "validation-body": "Se requiere cuerpo del mensaje.",
     "form-body": "Cuerpo"
   },
   "password-update": {
@@ -924,16 +924,16 @@
     "error-new2": "Las contraseñas deben ser iguales",
     "pass-gen": "Haga clic para generar la contraseña",
     "label-check": "He guardado con seguridad mi contraseña generada",
-    "validation-password": "Password is invalid.",
-    "validation-label": "Please tick this box to proceed.",
+    "validation-password": "Contraseña no válida.",
+    "validation-label": "Marque esta casilla para continuar.",
     "updated": "¡Contraseña actualizada correctamente!"
   },
   "add-image": {
     "title": "Añadir imagen",
     "text-label": "Texto de la imagen",
     "link-label": "Enlace de la imagen",
-    "validation-text": "Text is required.",
-    "validation-image": "Image is required."
+    "validation-text": "El texto es obligatorio.",
+    "validation-image": "La imagen es obligatoria."
   },
   "add-image-mobile": {
     "title": "Añadir imagen",
@@ -945,8 +945,8 @@
     "title": "Añadir enlace",
     "text-label": "Texto",
     "link-label": "https://",
-    "validation-text": "Text is required.",
-    "validation-link": "Link is required."
+    "validation-text": "Se requiere un texto.",
+    "validation-link": "Enlace requerido."
   },
   "scroll-to-top": {
     "title": "Ir arriba"
@@ -1095,7 +1095,7 @@
     "subscribe-paragraph": "Sé el primero en saber lo que está pasando en la web descentralizada.",
     "copy-rights": "©2021 Ecency. Todos los derechos reservados.",
     "success-message-subscribe": "¡Se ha enviado un enlace de verificación a tu cuenta de correo electrónico!",
-    "validation-email": "A valid email is required",
+    "validation-email": "Se requiere un email válido",
     "error-occured": "Se ha producido un error en el servidor."
   }
 }
