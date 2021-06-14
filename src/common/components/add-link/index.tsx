@@ -56,7 +56,7 @@ export class AddLink extends Component<Props, State> {
                         onChange={this.textChanged}
                         autoFocus={true}
                         required={true}
-                        onInvalid={(e:any) => handleInvalid(e, 'add-link', 'validation-text')}
+                        onInvalid={(e:any) => handleInvalid(e, 'add-link.', 'validation-text')}
                         onInput={handleOnInput}
                     />
                 </Form.Group>
@@ -68,7 +68,7 @@ export class AddLink extends Component<Props, State> {
                         placeholder={_t("add-link.link-label")}
                         onChange={this.linkChanged}
                         required={true}
-                        onInvalid={(e:any) => handleInvalid(e, 'add-link', 'validation-link')}
+                        onInvalid={(e:any) => handleInvalid(e, 'add-link.', 'validation-link')}
                         onInput={handleOnInput}
                     />
                 </Form.Group>
