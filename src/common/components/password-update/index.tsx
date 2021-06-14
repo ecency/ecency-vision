@@ -168,7 +168,7 @@ export class PasswordUpdate extends BaseComponent<Props, State> {
                         required={true} 
                         type="checkbox" 
                         label={_t("password-update.label-check")}
-                        onInvalid={(e:any) => handleInvalid(e,"password-update.",'validation-label')}
+                        onInvalid={(e: any) => handleInvalid(e, "password-update.", 'validation-label')}
                         onInput={handleOnInput}
                     />
                 </Form.Group>

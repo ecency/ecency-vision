@@ -331,7 +331,7 @@
     "description": "Description",
     "rules": "Rules",
     "rules-help": "One per line",
-    "validation-title": "Invalid text is typed."
+    "validation-title": "Title is required."
   },
   "communities": {
     "title": "Communities",
@@ -471,8 +471,8 @@
     "title": "Withdraw accounts",
     "account": "Account",
     "percent": "Percent",
-    "validation-account": "Account is required",
-    "validation-percent": "Percentage is required",
+    "validation-account": "Account is required.",
+    "validation-percent": "Percentage is required.",
     "auto-power-up": "Automatically power up"
   },
   "points": {
@@ -737,8 +737,8 @@
     "username": "Username",
     "reward": "Reward",
     "user-error": "{{n}} is not a valid user.",
-    "validation-percentage": "Invalid percentage.",
-    "validation-username": "Username is invalid.",
+    "validation-percentage": "Percentage is required.",
+    "validation-username": "Username is required.",
     "user-exists-error": "{{n}} is already in the list"
   },
   "post-scheduler": {
@@ -924,8 +924,8 @@
     "error-new2": "Passwords must be same",
     "pass-gen": "Click to generate password",
     "label-check": "I have securely saved my generated password",
-    "validation-password": "Password is invalid",
-    "validation-label": "Please tick this box to proceed",
+    "validation-password": "Password is invalid.",
+    "validation-label": "Please tick this box to proceed.",
     "updated": "Password updated successfully!"
   },
   "add-image": {
@@ -1095,7 +1095,7 @@
     "subscribe-paragraph": "Be first to know what's happening in decentralized web.",
     "copy-rights": "©2021 Ecency. All right reserved.",
     "success-message-subscribe": "A verification link has been sent to your email account!",
-    "validation-email": "Email is invalid",
+    "validation-email": "A valid email is required",
     "error-occured": "A server error has been occured."
   }
 }

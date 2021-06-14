@@ -414,7 +414,7 @@ const LandingPage = (props: any) => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required={true}
-                    onInvalid={(e:any) => handleInvalid(e,"landing-page.",'validation-email')} 
+                    onInvalid={(e: any) => handleInvalid(e, "landing-page.", 'validation-email')} 
                     onInput={handleOnInput}
                   />
                   <button disabled={loading}>{loading ? <span><LinearProgress /></span>  : _t("landing-page.send")}</button>

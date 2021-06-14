@@ -83,14 +83,14 @@ export class AddFragment extends BaseComponent<AddProps, AddState> {
                         type="text" 
                         maxLength={255} 
                         autoFocus={true}
-                        onInvalid={(e:any) => handleInvalid(e,"fragments.",'validation-title')} 
+                        onInvalid={(e: any) => handleInvalid(e, "fragments.", 'validation-title')} 
                         onInput={handleOnInput}
                     />
                 </Form.Group>
                 <Form.Group controlId="body">
                     <Form.Label>{_t("fragments.form-body")}</Form.Label>
                     <Form.Control
-                        onInvalid={(e:any) => handleInvalid(e,"fragments.",'validation-value')} 
+                        onInvalid={(e: any) => handleInvalid(e, "fragments.", 'validation-value')} 
                         onInput={handleOnInput}
                         as="textarea" 
                         style={{height: "300px"}} 
@@ -194,7 +194,7 @@ export class EditFragment extends BaseComponent<EditProps, EditState> {
                     type="text" 
                     maxLength={255} 
                     autoFocus={true}
-                    onInvalid={(e:any) => handleInvalid(e,'fragments.','validation-title')} 
+                    onInvalid={(e: any) => handleInvalid(e, 'fragments.', 'validation-title')} 
                     onInput={handleOnInput}
                 />
                 </Form.Group>
@@ -208,7 +208,7 @@ export class EditFragment extends BaseComponent<EditProps, EditState> {
                         required={true} 
                         type="text" 
                         maxLength={5000}
-                        onInvalid={(e:any) => handleInvalid(e,'fragments.','validation-body')} 
+                        onInvalid={(e: any) => handleInvalid(e, 'fragments.', 'validation-body')} 
                         onInput={handleOnInput}
                     />
                 </Form.Group>

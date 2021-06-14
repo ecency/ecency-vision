@@ -212,7 +212,7 @@ export class CommunitySettings extends BaseComponent<Props, State> {
                                 name="title"
                                 onChange={this.onChange}
                                 required={true}
-                                onInvalid={(e:any) => handleInvalid(e,'community-settings','validation-title')}
+                                onInvalid={(e: any) => handleInvalid(e, 'community-settings.', 'validation-title')}
                                 onInput={handleOnInput}
                             />
                         </InputGroup>
