@@ -30,7 +30,7 @@
     "no": "Tidak",
     "hot": "Umpan",
     "trending": "Umpan",
-    "created": "feed",
+    "created": "umpan",
     "found": "ditemukan",
     "feed": "umpan",
     "blog": "blog",
@@ -472,7 +472,7 @@
     "account": "Akun",
     "percent": "Persen",
     "validation-account": "Akun diperlukan.",
-    "validation-percent": "Percentage is required.",
+    "validation-percent": "Diperlukan persentase.",
     "auto-power-up": "Power Up otomatis"
   },
   "points": {
@@ -737,8 +737,8 @@
     "username": "Nama Pengguna",
     "reward": "Imbalan",
     "user-error": "{{n}} bukan pengguna sah.",
-    "validation-percentage": "Percentage is required.",
-    "validation-username": "Username is required.",
+    "validation-percentage": "Diperlukan persentase.",
+    "validation-username": "Nama pengguna diperlukan.",
     "user-exists-error": "{{n}} sudah ada dalam daftar"
   },
   "post-scheduler": {
@@ -910,9 +910,9 @@
     "create-first": "Buat catatan pertama Anda",
     "filter": "Cari berdasarkan judul",
     "form-title": "Judul",
-    "validation-title": "Title is required.",
-    "validation-value": "Value is required.",
-    "validation-body": "Body is required.",
+    "validation-title": "Judul diperlukan.",
+    "validation-value": "Nilai Dibutuhkan.",
+    "validation-body": "Tubuh diperlukan.",
     "form-body": "Isi"
   },
   "password-update": {
@@ -924,16 +924,16 @@
     "error-new2": "Kata sandi harus sama",
     "pass-gen": "Klik untuk membuat kata sandi baru",
     "label-check": "Saya telah menyimpan kata sandi saya dengan aman",
-    "validation-password": "Password is invalid.",
-    "validation-label": "Please tick this box to proceed.",
+    "validation-password": "Kata sandi tidak valid.",
+    "validation-label": "Centang kotak ini untuk melanjutkan.",
     "updated": "Kata Sandi berhasil diperbaharui!"
   },
   "add-image": {
     "title": "Tambahkan gambar",
     "text-label": "Teks Gambar",
     "link-label": "Link Gambar",
-    "validation-text": "Text is required.",
-    "validation-image": "Image is required."
+    "validation-text": "Judul diperlukan.",
+    "validation-image": "Gambar diperlukan."
   },
   "add-image-mobile": {
     "title": "Tambahkan Gambar",
@@ -945,8 +945,8 @@
     "title": "Tambahkan Tautan",
     "text-label": "Teks",
     "link-label": "https://",
-    "validation-text": "Text is required.",
-    "validation-link": "Link is required."
+    "validation-text": "Judul diperlukan.",
+    "validation-link": "Link diperlukan."
   },
   "scroll-to-top": {
     "title": "Gulir ke Atas"
@@ -1095,7 +1095,7 @@
     "subscribe-paragraph": "Jadilah yang pertama mengetahui apa yang terjadi di web terdesentralisasi.",
     "copy-rights": "Ecenxy @2021. Hak cipta dilindungi Undang-undang.",
     "success-message-subscribe": "Tautan verifikasi telah dikirim ke akun email Anda!",
-    "validation-email": "A valid email is required",
+    "validation-email": "Email valid diperlukan",
     "error-occured": "Terjadi kesalahan server."
   }
 }
