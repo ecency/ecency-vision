@@ -613,7 +613,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                                                         required={true} 
                                                         onInvalid={(e: any) => handleInvalid(e, 'communities-create.', 'checkbox-validation')}
                                                         onInput={handleOnInput}
-                                                    />{_t("communities-create.confirmation")}</label>
+                                                    /> {_t("communities-create.confirmation")}</label>
                                             </Form.Group>
                                             <Form.Group>
                                                 <Button type="submit" disabled={inProgress}>
