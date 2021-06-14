@@ -54,6 +54,7 @@ import random from "../util/rnd";
 import {checkSvg, alertCircleSvg} from "../img/svg";
 
 import {PageProps, pageMapDispatchToProps, pageMapStateToProps} from "./common";
+import { handleInvalid, handleOnInput } from "../util/input-util";
 
 interface State {
     list: Community[];
@@ -492,11 +493,6 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
         });
     }
 
-    handleInvalid = (e: any, localID: string) => {
-        e.target.setCustomValidity(_t('communities-create.' + localID));
-    }
-    
-
     render() {
         //  Meta config
         const metaProps = {
@@ -559,7 +555,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                                         maxLength={20}
                                         onChange={this.onInput}
                                         required={true}
-                                        onInvalid={(e:any) => this.handleInvalid(e,'title-validation')}
+                                        onInvalid={(e: any) => handleInvalid(e, 'communities-create.', 'title-validation')}
                                         onInput={(e:any) => e.target.setCustomValidity("")}
                                         name="title"
                                         isValid={title.length > 2 && title.length < 21}
@@ -615,9 +611,9 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                                                     <input
                                                         type="checkbox"
                                                         required={true} 
-                                                        onInvalid={(e:any) => this.handleInvalid(e,'checkbox-validation')}
-                                                        onInput={(e:any) => e.target.setCustomValidity("")}
-                                                        /> {_t("communities-create.confirmation")}</label>
+                                                        onInvalid={(e: any) => handleInvalid(e, 'communities-create.', 'checkbox-validation')}
+                                                        onInput={handleOnInput}
+                                                    />{_t("communities-create.confirmation")}</label>
                                             </Form.Group>
                                             <Form.Group>
                                                 <Button type="submit" disabled={inProgress}>

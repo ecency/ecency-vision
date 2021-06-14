@@ -160,7 +160,7 @@ export class WithdrawRoutes extends BaseComponent<Props, State> {
                             value={account} 
                             name="account" 
                             onChange={this.onInput}
-                            onInvalid={(e:any) => handleInvalid(e,"withdraw-routes.",'validation-account')}
+                            onInvalid={(e: any) => handleInvalid(e, "withdraw-routes.", 'validation-account')}
                             onInput={handleOnInput}
                         />
                     </Form.Group>
@@ -176,7 +176,7 @@ export class WithdrawRoutes extends BaseComponent<Props, State> {
                             value={percent} 
                             name="percent"
                             onChange={this.onInput}
-                            onInvalid={(e:any) => handleInvalid(e,"withdraw-routes.",'validation-percent')}
+                            onInvalid={(e: any) => handleInvalid(e, "withdraw-routes.", 'validation-percent')}
                             onInput={handleOnInput}
                         />
                     </Form.Group>

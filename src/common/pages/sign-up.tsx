@@ -172,7 +172,7 @@ class SignUpPage extends Component<PageProps, State> {
                                                 onChange={this.usernameChanged} 
                                                 autoFocus={true}
                                                 required={true}
-                                                onInvalid={(e:any) => handleInvalid(e,'sign-up.','validation-username')}
+                                                onInvalid={(e: any) => handleInvalid(e, 'sign-up.', 'validation-username')}
                                                 onInput={handleOnInput}
                                             />
                                         </Form.Group>
@@ -183,7 +183,7 @@ class SignUpPage extends Component<PageProps, State> {
                                                 value={email} 
                                                 onChange={this.emailChanged} 
                                                 required={true}
-                                                onInvalid={(e:any) => handleInvalid(e,'sign-up.','validation-email')}
+                                                onInvalid={(e: any) => handleInvalid(e, 'sign-up.', 'validation-email')}
                                                 onInput={handleOnInput}
                                             />
                                         </Form.Group>
