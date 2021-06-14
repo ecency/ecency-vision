@@ -113,7 +113,7 @@ export class DialogBody extends BaseComponent<Props, DialogBodyState> {
                                     minLength={3}
                                     maxLength={20}
                                     value={username} 
-                                    onInvalid={(e:any) => handleInvalid(e,'beneficiary-editor','validation-username')} 
+                                    onInvalid={(e:any) => handleInvalid(e, 'beneficiary-editor.', 'validation-username')} 
                                     onInput={handleOnInput}
                                     onChange={this.usernameChanged}
                                 />
@@ -131,7 +131,7 @@ export class DialogBody extends BaseComponent<Props, DialogBodyState> {
                                     step={1}
                                     value={percentage} 
                                     onChange={this.percentageChanged}
-                                    onInvalid={(e:any) => handleInvalid(e,'beneficiary-editor','validation-percentage')} 
+                                    onInvalid={(e:any) => handleInvalid(e, 'beneficiary-editor.', 'validation-percentage')} 
                                     onInput={handleOnInput}
                                 />
                                 <InputGroup.Append>

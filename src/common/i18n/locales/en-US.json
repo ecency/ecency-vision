@@ -932,8 +932,8 @@
     "title": "Add Image",
     "text-label": "Image Text",
     "link-label": "Image Link",
-    "validation-text": "Please add text to your image.",
-    "validation-image": "Please choose an image"
+    "validation-text": "Text is required.",
+    "validation-image": "Image is required."
   },
   "add-image-mobile": {
     "title": "Add Image",
@@ -945,8 +945,8 @@
     "title": "Add Link",
     "text-label": "Text",
     "link-label": "https://",
-    "validation-text": "Please add text.",
-    "validation-link": "Please add link."
+    "validation-text": "Text is required.",
+    "validation-link": "Link is required."
   },
   "scroll-to-top": {
     "title": "Scroll to Top"
