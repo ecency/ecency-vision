@@ -127,6 +127,8 @@
     "email": "Syötä sähköpostiosoitteesi",
     "ref": "Suosittelija (valinnainen)",
     "submit": "Jatka",
+    "validation-username": "Username is required.",
+    "validation-email": "Email is required.",
     "success": "Olemme lähettäneet vahvistuksen sähköpostiin {{email}}.",
     "success-2": "Seuraa ohjeita suorittaaksesi rekisteröinti.",
     "login-text-1": "Onko sinulla jo käyttäjätili?",
@@ -328,7 +330,8 @@
     "lang": "Kieli",
     "description": "Kuvaus",
     "rules": "Säännöt",
-    "rules-help": "Yksi per rivi"
+    "rules-help": "Yksi per rivi",
+    "validation-title": "Title is required."
   },
   "communities": {
     "title": "Yhteisöt",
@@ -355,6 +358,8 @@
     "username-available": "Saatavilla.",
     "username-not-available": "Ei saatavilla.",
     "username-wrong-format": "Muoto ei kelpaa. hive-1xxxxx muoto vaaditaan.",
+    "checkbox-validation": "Please tick this box if you want to proceed.",
+    "title-validation": "Please fill in this field.",
     "password": "Pääsalasana",
     "confirmation": "Olen tallentanut turvallisesti omistajan käyttäjätunnuksen ja salasanan.",
     "submit": "Luo yhteisö",
@@ -466,6 +471,8 @@
     "title": "Palauta tilit",
     "account": "Tili",
     "percent": "Prosentti",
+    "validation-account": "Account is required.",
+    "validation-percent": "Percentage is required.",
     "auto-power-up": "Automaattinen power up"
   },
   "points": {
@@ -730,6 +737,8 @@
     "username": "Käyttäjänimi",
     "reward": "Palkkio",
     "user-error": "{{n}} ei ole kelvollinen käyttäjä.",
+    "validation-percentage": "Percentage is required.",
+    "validation-username": "Username is required.",
     "user-exists-error": "{{n}} on jo luettelossa"
   },
   "post-scheduler": {
@@ -901,6 +910,9 @@
     "create-first": "Luo ensimmäinen katkelmasi",
     "filter": "Etsi otsikon mukaan",
     "form-title": "Otsikko",
+    "validation-title": "Title is required.",
+    "validation-value": "Value is required.",
+    "validation-body": "Body is required.",
     "form-body": "Sisältö"
   },
   "password-update": {
@@ -912,12 +924,16 @@
     "error-new2": "Salasanojen on oltava samat",
     "pass-gen": "Klikkaa luodaksesi salasanan",
     "label-check": "Olen tallentanut turvallisesti salasanani",
+    "validation-password": "Password is invalid.",
+    "validation-label": "Please tick this box to proceed.",
     "updated": "Salasana on tallennettu onnistuneesti!"
   },
   "add-image": {
     "title": "Lisää kuva",
     "text-label": "Kuvateksti",
-    "link-label": "Kuvan linkki"
+    "link-label": "Kuvan linkki",
+    "validation-text": "Text is required.",
+    "validation-image": "Image is required."
   },
   "add-image-mobile": {
     "title": "Lisää kuva",
@@ -928,7 +944,9 @@
   "add-link": {
     "title": "Add Link",
     "text-label": "Text",
-    "link-label": "https://"
+    "link-label": "https://",
+    "validation-text": "Text is required.",
+    "validation-link": "Link is required."
   },
   "scroll-to-top": {
     "title": "Vieritä ylös"
@@ -1077,6 +1095,7 @@
     "subscribe-paragraph": "Be first to know what's happening in decentralized web.",
     "copy-rights": "©2021 Ecency. All right reserved.",
     "success-message-subscribe": "A verification link has been sent to your email account!",
+    "validation-email": "A valid email is required",
     "error-occured": "A server error has been occured."
   }
 }
