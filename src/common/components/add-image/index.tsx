@@ -3,6 +3,7 @@ import React, {Component} from "react";
 import {Button, Form, FormControl, Modal} from "react-bootstrap";
 
 import {_t} from "../../i18n";
+import { handleInvalid, handleOnInput } from "../../util/input-util";
 
 interface Props {
     onHide: () => void;
@@ -30,10 +31,6 @@ export class AddImage extends Component<Props, State> {
         this.setState({link: e.target.value});
     }
 
-    handleInvalid = (e: any, localID: string) => {
-        e.target.setCustomValidity(_t('add-image.' + localID));
-    }
-
     render() {
         const {text, link} = this.state;
 
@@ -59,8 +56,8 @@ export class AddImage extends Component<Props, State> {
                         onChange={this.textChanged}
                         autoFocus={true}
                         required={true}
-                        onInvalid={(e:any) => this.handleInvalid(e,'validation-text')}
-                        onInput={(e:any) => e.target.setCustomValidity("")}
+                        onInvalid={(e:any) => handleInvalid(e, 'add-image.', 'validation-text')}
+                        onInput={handleOnInput}
                     />
                 </Form.Group>
                 <Form.Group>
@@ -71,8 +68,8 @@ export class AddImage extends Component<Props, State> {
                         placeholder={_t("add-image.link-label")}
                         onChange={this.linkChanged}
                         required={true}
-                        onInvalid={(e:any) => this.handleInvalid(e,'validation-image')}
-                        onInput={(e:any) => e.target.setCustomValidity("")}
+                        onInvalid={(e:any) => handleInvalid(e, 'add-image.', 'validation-image')}
+                        onInput={handleOnInput}
                     />
                 </Form.Group>
                 <div className="d-flex justify-content-end">
