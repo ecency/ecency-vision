@@ -602,7 +602,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
                                                 <pre className="password"><span>{wif}</span></pre>
                                             </Form.Group>
                                             <Form.Group>
-                                                <label><input type="checkbox" required={true}/> {_t("communities-create.confirmation")}</label>
+                                                <label><input type="checkbox" required={true} onInvalid={(e)=>{e.target.setCustomValidity("Hello")}}/> {_t("communities-create.confirmation")}</label>
                                             </Form.Group>
                                             <Form.Group>
                                                 <Button type="submit" disabled={inProgress}>
