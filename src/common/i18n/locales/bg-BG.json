@@ -127,6 +127,8 @@
     "email": "Въведете вашия имейл адрес",
     "ref": "Кой ви покани в платформата(Опция)",
     "submit": "Продължи",
+    "validation-username": "Username is required.",
+    "validation-email": "Email is required.",
     "success": "Изпратихме имейл на {{email}}.",
     "success-2": "Следвайте инструкциите за да завършите регистрирането.",
     "login-text-1": "Имате ли акаунт?",
@@ -328,7 +330,8 @@
     "lang": "Език",
     "description": "Описание",
     "rules": "Правила",
-    "rules-help": "По едно на ред"
+    "rules-help": "По едно на ред",
+    "validation-title": "Title is required."
   },
   "communities": {
     "title": "Общности",
@@ -355,6 +358,8 @@
     "username-available": "Достъпно.",
     "username-not-available": "Не е достъпно.",
     "username-wrong-format": "Не е валиден формат. hive-1xxxxx формат е задължителен.",
+    "checkbox-validation": "Please tick this box if you want to proceed.",
+    "title-validation": "Please fill in this field.",
     "password": "Главна парола",
     "confirmation": "Безопасно си запазих потребителското име на собственика и паролата.",
     "submit": "Създаване на общност",
@@ -466,6 +471,8 @@
     "title": "Акаунти за теглене",
     "account": "Акаунт",
     "percent": "Процент",
+    "validation-account": "Account is required.",
+    "validation-percent": "Percentage is required.",
     "auto-power-up": "Автоматично увеличаване на силата"
   },
   "points": {
@@ -730,6 +737,8 @@
     "username": "Потребителско име",
     "reward": "Награда",
     "user-error": "{{n}} не е валиден потребител.",
+    "validation-percentage": "Percentage is required.",
+    "validation-username": "Username is required.",
     "user-exists-error": "{{n}} е вече в избран"
   },
   "post-scheduler": {
@@ -901,6 +910,9 @@
     "create-first": "Създайте своя първи откъс",
     "filter": "Търси по заглавие",
     "form-title": "Заглавие",
+    "validation-title": "Title is required.",
+    "validation-value": "Value is required.",
+    "validation-body": "Body is required.",
     "form-body": "Основа"
   },
   "password-update": {
@@ -912,12 +924,16 @@
     "error-new2": "Паролите трябва да са същите",
     "pass-gen": "Натисни за да създадеш парола",
     "label-check": "Безопасно си запазих създадената паролата",
+    "validation-password": "Password is invalid.",
+    "validation-label": "Please tick this box to proceed.",
     "updated": "Паролата беше успешно променена!"
   },
   "add-image": {
     "title": "Добави Снимка",
     "text-label": "Текст на снимката",
-    "link-label": "Линк към снимката"
+    "link-label": "Линк към снимката",
+    "validation-text": "Text is required.",
+    "validation-image": "Image is required."
   },
   "add-image-mobile": {
     "title": "Add Image",
@@ -928,7 +944,9 @@
   "add-link": {
     "title": "Добави линк",
     "text-label": "Текст",
-    "link-label": "https://"
+    "link-label": "https://",
+    "validation-text": "Text is required.",
+    "validation-link": "Link is required."
   },
   "scroll-to-top": {
     "title": "Прелистване до горе"
@@ -1077,6 +1095,7 @@
     "subscribe-paragraph": "Be first to know what's happening in decentralized web.",
     "copy-rights": "©2021 Ecency. All right reserved.",
     "success-message-subscribe": "A verification link has been sent to your email account!",
+    "validation-email": "A valid email is required",
     "error-occured": "A server error has been occured."
   }
 }
