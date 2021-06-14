@@ -12,6 +12,7 @@ import {getAccount} from "../../api/hive";
 import {_t} from "../../i18n";
 
 import {plusSvg, deleteForeverSvg, accountMultipleSvg} from "../../img/svg";
+import { handleInvalid, handleOnInput } from "../../util/input-util";
 
 interface Props {
     author?: string;
@@ -105,14 +106,34 @@ export class DialogBody extends BaseComponent<Props, DialogBodyState> {
                                 <InputGroup.Prepend>
                                     <InputGroup.Text>@</InputGroup.Text>
                                 </InputGroup.Prepend>
-                                <Form.Control disabled={inProgress} autoFocus={true} required={true} minLength={3} maxLength={20} value={username}
-                                              onChange={this.usernameChanged}/>
+                                <Form.Control 
+                                    disabled={inProgress}
+                                    autoFocus={true}
+                                    required={true}
+                                    minLength={3}
+                                    maxLength={20}
+                                    value={username} 
+                                    onInvalid={(e:any) => handleInvalid(e, 'beneficiary-editor.', 'validation-username')} 
+                                    onInput={handleOnInput}
+                                    onChange={this.usernameChanged}
+                                />
                             </InputGroup>
                         </td>
                         <td>
                             <InputGroup size="sm">
-                                <Form.Control disabled={inProgress} required={true} type="number" size="sm" min={1} max={available} step={1}
-                                              value={percentage} onChange={this.percentageChanged}/>
+                                <Form.Control 
+                                    disabled={inProgress} 
+                                    required={true} 
+                                    type="number" 
+                                    size="sm" 
+                                    min={1} 
+                                    max={available} 
+                                    step={1}
+                                    value={percentage} 
+                                    onChange={this.percentageChanged}
+                                    onInvalid={(e: any) => handleInvalid(e, 'beneficiary-editor.', 'validation-percentage')} 
+                                    onInput={handleOnInput}
+                                />
                                 <InputGroup.Append>
                                     <InputGroup.Text>%</InputGroup.Text>
                                 </InputGroup.Append>
