@@ -42,7 +42,7 @@ interface Props {
     global: Global;
     history: History;
     activeUser: ActiveUser | null;
-    account: Account;
+    account: any;
     addAccount: (data: Account) => void;
     updateActiveUser: (data?: Account) => void;
 }
@@ -55,7 +55,7 @@ interface State {
 export class ProfileCard extends Component<Props, State> {
     state: State = {
         followersList: false,
-        followingList: false,
+        followingList: false
     };
 
     componentDidUpdate(prevProps: Readonly<Props>): void {
@@ -83,8 +83,7 @@ export class ProfileCard extends Component<Props, State> {
     };
     
     render() {
-        const {account, activeUser,} = this.props;
-
+        const {account, activeUser} = this.props;
         if (!account.__loaded) {
             return <div className="profile-card">
                 <div className="profile-avatar">
@@ -104,7 +103,7 @@ export class ProfileCard extends Component<Props, State> {
         return (
             <div className="profile-card">
                 <div className="profile-avatar">
-                    {UserAvatar({...this.props, username: account.name, size: "xLarge", src:account.profile?.profile_image})}
+                    {UserAvatar({...this.props, username: account.name, size: "xLarge", src: account.profile?.profile_image})}
                     {isMyProfile && <EditPic {...this.props} account={account as FullAccount} activeUser={activeUser!}/>}
                     {account.__loaded && <div className="reputation">{accountReputation(account.reputation!)}</div>}
                 </div>

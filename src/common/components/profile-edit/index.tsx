@@ -64,7 +64,6 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
         if(prevProps.account!.profile!.profile_image !== this.props.account!.profile!.profile_image){
             let newImage = this.props.account!.profile!.profile_image;
             this.setState({profileImage:newImage||this.state.profileImage});
-
             this.props.updateActiveUser(this.props.account);
         }
     }
@@ -97,12 +96,12 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
         }).then((account) => {
 
             // reload page to refresh profile image
-            if (activeUser.data.__loaded && activeUser.data.profile?.profile_image !== account.profile?.profile_image) {
-                setTimeout(() => {
-                    window.location.reload();
-                }, 500);
-                return;
-            }
+            // if (activeUser.data.__loaded && activeUser.data.profile?.profile_image !== account.profile?.profile_image) {
+            //     setTimeout(() => {
+            //         window.location.reload();
+            //     }, 500);
+            //     return;
+            // }
 
             // update reducers
             addAccount(account);
