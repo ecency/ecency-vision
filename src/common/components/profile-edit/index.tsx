@@ -16,6 +16,7 @@ import {getAccount} from "../../api/hive";
 
 interface Props {
     activeUser: ActiveUser;
+    account: any;
     addAccount: (data: Account) => void;
     updateActiveUser: (data?: Account) => void;
 }
@@ -58,6 +59,15 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
         // @ts-ignore
         this.stateSet({[id]: value, changed: true});
     };
+
+    componentDidUpdate(prevProps:Props){
+        if(prevProps.account!.profile!.profile_image !== this.props.account!.profile!.profile_image){
+            let newImage = this.props.account!.profile!.profile_image;
+            this.setState({profileImage:newImage||this.state.profileImage});
+
+            this.props.updateActiveUser(this.props.account);
+        }
+    }
 
     update = () => {
         const {activeUser, addAccount, updateActiveUser} = this.props;

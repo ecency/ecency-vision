@@ -9,7 +9,7 @@ import isEqual from "react-fast-compare";
 import moment from "moment";
 
 import {Global} from "../../store/global/types";
-import {Account} from "../../store/accounts/types";
+import {Account, FullAccount} from "../../store/accounts/types";
 import {ActiveUser} from "../../store/active-user/types";
 
 import UserAvatar from "../user-avatar";
@@ -35,6 +35,8 @@ import {
     calendarRangeSvg,
     rssSvg,
 } from "../../img/svg";
+
+import { EditPic } from '../community-card'
 
 interface Props {
     global: Global;
@@ -79,9 +81,9 @@ export class ProfileCard extends Component<Props, State> {
         const {followingList} = this.state;
         this.setState({followingList: !followingList});
     };
-
+    
     render() {
-        const {account, activeUser} = this.props;
+        const {account, activeUser,} = this.props;
 
         if (!account.__loaded) {
             return <div className="profile-card">
@@ -102,7 +104,8 @@ export class ProfileCard extends Component<Props, State> {
         return (
             <div className="profile-card">
                 <div className="profile-avatar">
-                    {UserAvatar({...this.props, username: account.name, size: "xLarge"})}
+                    {UserAvatar({...this.props, username: account.name, size: "xLarge", src:account.profile?.profile_image})}
+                    {isMyProfile && <EditPic {...this.props} account={account as FullAccount} activeUser={activeUser!}/>}
                     {account.__loaded && <div className="reputation">{accountReputation(account.reputation!)}</div>}
                 </div>
 
