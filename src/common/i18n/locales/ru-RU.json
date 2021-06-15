@@ -331,7 +331,7 @@
     "description": "Описание",
     "rules": "Правила",
     "rules-help": "По одному в строке",
-    "validation-title": "Title is required."
+    "validation-title": "Отсутствует заголовок."
   },
   "communities": {
     "title": "Сообщества",
@@ -1088,14 +1088,14 @@
     "discover": "Discover",
     "sign-in": "Sign in",
     "communities": "Communities",
-    "help": "Help",
-    "subscribe-us": "Subscribe Us",
-    "enter-your-email-adress": "Enter your email adress",
-    "send": "Send",
-    "subscribe-paragraph": "Be first to know what's happening in decentralized web.",
-    "copy-rights": "©2021 Ecency. All right reserved.",
-    "success-message-subscribe": "A verification link has been sent to your email account!",
-    "validation-email": "A valid email is required",
-    "error-occured": "A server error has been occured."
+    "help": "Помощь",
+    "subscribe-us": "Подпишитесь на нас",
+    "enter-your-email-adress": "Введите свой email адрес",
+    "send": "Отправить",
+    "subscribe-paragraph": "Будьте первым, кто узнает, что происходит в децентрализованном интернет-сообществе.",
+    "copy-rights": "©2021 Ecency. Все права защищены.",
+    "success-message-subscribe": "Ссылка для подтверждения была отправлена на ваш адрес электронной почты!",
+    "validation-email": "Требуется действительный адрес электронной почты",
+    "error-occured": "Произошла ошибка сервера."
   }
 }
