@@ -127,8 +127,8 @@
     "email": "Peutamong alamat email droeneuh",
     "ref": "Rujukan nyang pakek (jeut hana pasoe)",
     "submit": "Lanjot",
-    "validation-username": "Username is required.",
-    "validation-email": "Email is required.",
+    "validation-username": "Perle nan.",
+    "validation-email": "Perle Email.",
     "success": "Kamoe ka meu kireem email ke {{email}}.",
     "success-2": "Ikot lagee nyang di yue untok peselesoe proses daftar.",
     "login-text-1": "Droneuh kana akun?",
@@ -141,18 +141,18 @@
     "title": "Unggulan"
   },
   "entry-list-item": {
-    "cross-posted": "cross-posted",
-    "cross-posted-to": "to",
-    "reblogged": "{{n}} Reblogged",
-    "promoted": "Promoted",
+    "cross-posted": "pos silang",
+    "cross-posted-to": "keu",
+    "reblogged": "Ka diriblog",
+    "promoted": "Dipromo",
     "pinned": "Posting nyang diboh tanda",
     "replies": "1 tanggapan. klik untuk respon.",
     "replies-n": "{{n}} tanggapan. Klik untuk merespon.",
     "no-replies": "Goh lom na tanggapan. Klik untuk respon."
   },
   "nsfw": {
-    "reveal": "Reveal this post",
-    "signup": "<a href=\"/signup\" class=\"push-link\">create an account</a> to save your preferences",
+    "reveal": "Sampoh pos nyoe",
+    "signup": "<a href=\"/signup\" class=\"push-link\">peugoet saboh akun</a> untuk tasimpan pilihan",
     "settings-1": "adjust your",
     "settings-2": "display preferences"
   },
