@@ -8,7 +8,7 @@ exports[`(1) Render with loaded account object 1`] = `
     className="cover-image"
     style={
       Object {
-        "backgroundImage": "url('https://images.ecency.com/p/Y2iXpRRkNSnseh3NuL6KUBitJTXrc5K3Kfvsq9JK3SkbY?format=match&mode=fit')",
+        "backgroundImage": "url('https://images.ecency.com/p/Y2iXpRRkNSnseh3NuL6KUBitJTXrc5K3Kfvsq9JK3SkbY.png?format=match&mode=fit')",
       }
     }
   />
