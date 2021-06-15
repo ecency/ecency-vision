@@ -79,7 +79,7 @@ interface Props {
     location: Location;
     users: User[];
     ui: UI;
-    activeUser: ActiveUser;
+    activeUser: any;
     notifications: Notifications;
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data?: Account) => void;
@@ -155,7 +155,6 @@ export default class UserNav extends Component<Props, State> {
         const {gallery, drafts, bookmarks, schedules, fragments} = this.state;
         const {activeUser, ui, notifications, global, dynamicProps} = this.props;
         const {unread} = notifications;
-
         const preDropDownElem = activeUser.data.__loaded ? <div className="drop-down-menu-power">
             <div className="label">{_t("user-nav.vote-power")}</div>
             <div className="power">
@@ -211,7 +210,7 @@ export default class UserNav extends Component<Props, State> {
 
         const dropDownConfig = {
             history: this.props.history,
-            label: UserAvatar({...this.props, username: activeUser.username, size: "medium"}),
+            label: UserAvatar({...this.props, username: activeUser.username, size: "medium", src: activeUser.data.profile && activeUser.data.profile.profile_image || ""}),
             items: dropDownItems,
             preElem: preDropDownElem,
         };
