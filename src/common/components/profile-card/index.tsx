@@ -104,7 +104,7 @@ export class ProfileCard extends Component<Props, State> {
             <div className="profile-card">
                 <div className="profile-avatar">
                     {UserAvatar({...this.props, username: account.name, size: "xLarge", src: account.profile?.profile_image})}
-                    {isMyProfile && <EditPic {...this.props} account={account as FullAccount} activeUser={activeUser!}/>}
+                    {isMyProfile && <EditPic {...this.props} account={account as FullAccount} activeUser={activeUser!} onUpdate={this.forceUpdate} />}
                     {account.__loaded && <div className="reputation">{accountReputation(account.reputation!)}</div>}
                 </div>
 

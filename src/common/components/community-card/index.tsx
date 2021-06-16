@@ -38,7 +38,7 @@ interface EditPicProps {
     community?: Community;
     account: FullAccount;
     addAccount: (data: Account) => void;
-    onUpdate?: () => void
+    onUpdate: () => void
 }
 
 interface EditPicState {
@@ -87,10 +87,9 @@ export class EditPic extends BaseComponent<EditPicProps, EditPicState> {
             // update reducer
             addAccount(account);
 
-            onUpdate && onUpdate();
-
             // close dialog
             this.toggleDialog();
+            onUpdate();
         }).catch(() => {
             error(_t('g.server-error'));
         }).finally(() => {
