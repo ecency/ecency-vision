@@ -15,6 +15,7 @@ import {postBodySummary} from "@ecency/render-helper";
 import {getFragments, Fragment, addFragment, deleteFragment, updateFragment} from "../../api/private-api";
 
 import PopoverConfirm from "../popover-confirm";
+import { handleInvalid, handleOnInput } from "../../util/input-util";
 
 // ADD
 interface AddProps {
@@ -75,11 +76,30 @@ export class AddFragment extends BaseComponent<AddProps, AddState> {
             }}>
                 <Form.Group controlId="title">
                     <Form.Label>{_t("fragments.form-title")}</Form.Label>
-                    <Form.Control value={title} onChange={this.titleChanged} required={true} type="text" maxLength={255} autoFocus={true}/>
+                    <Form.Control 
+                        value={title} 
+                        onChange={this.titleChanged} 
+                        required={true} 
+                        type="text" 
+                        maxLength={255} 
+                        autoFocus={true}
+                        onInvalid={(e: any) => handleInvalid(e, "fragments.", 'validation-title')} 
+                        onInput={handleOnInput}
+                    />
                 </Form.Group>
                 <Form.Group controlId="body">
                     <Form.Label>{_t("fragments.form-body")}</Form.Label>
-                    <Form.Control as="textarea" style={{height: "300px"}} value={body} onChange={this.bodyChanged} required={true} type="text" maxLength={5000}/>
+                    <Form.Control
+                        onInvalid={(e: any) => handleInvalid(e, "fragments.", 'validation-value')} 
+                        onInput={handleOnInput}
+                        as="textarea" 
+                        style={{height: "300px"}} 
+                        value={body} 
+                        onChange={this.bodyChanged} 
+                        required={true} 
+                        type="text" 
+                        maxLength={5000}
+                    />
                 </Form.Group>
                 <div className="d-flex justify-content-between">
                     <Button variant="outline-primary" type="button" disabled={inProgress} onClick={this.back}>
@@ -167,11 +187,30 @@ export class EditFragment extends BaseComponent<EditProps, EditState> {
             }}>
                 <Form.Group controlId="title">
                     <Form.Label>{_t("fragments.form-title")}</Form.Label>
-                    <Form.Control value={title} onChange={this.titleChanged} required={true} type="text" maxLength={255} autoFocus={true}/>
+                    <Form.Control 
+                    value={title} 
+                    onChange={this.titleChanged} 
+                    required={true} 
+                    type="text" 
+                    maxLength={255} 
+                    autoFocus={true}
+                    onInvalid={(e: any) => handleInvalid(e, 'fragments.', 'validation-title')} 
+                    onInput={handleOnInput}
+                />
                 </Form.Group>
                 <Form.Group controlId="body">
                     <Form.Label>{_t("fragments.form-body")}</Form.Label>
-                    <Form.Control as="textarea" style={{height: "300px"}} value={body} onChange={this.bodyChanged} required={true} type="text" maxLength={5000}/>
+                    <Form.Control 
+                        as="textarea" 
+                        style={{height: "300px"}} 
+                        value={body} 
+                        onChange={this.bodyChanged} 
+                        required={true} 
+                        type="text" 
+                        maxLength={5000}
+                        onInvalid={(e: any) => handleInvalid(e, 'fragments.', 'validation-body')} 
+                        onInput={handleOnInput}
+                    />
                 </Form.Group>
                 <div className="d-flex justify-content-between">
                     <div>
