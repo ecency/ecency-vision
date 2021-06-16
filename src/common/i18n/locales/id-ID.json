@@ -472,7 +472,7 @@
     "account": "Akun",
     "percent": "Persen",
     "validation-account": "Akun diperlukan.",
-    "validation-percent": "Diperlukan persentase.",
+    "validation-percent": "Persentase diperlukan.",
     "auto-power-up": "Power Up otomatis"
   },
   "points": {
@@ -912,7 +912,7 @@
     "form-title": "Judul",
     "validation-title": "Judul diperlukan.",
     "validation-value": "Nilai Dibutuhkan.",
-    "validation-body": "Tubuh diperlukan.",
+    "validation-body": "Isi konten diperlukan.",
     "form-body": "Isi"
   },
   "password-update": {
