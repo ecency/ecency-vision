@@ -46,6 +46,8 @@ interface VoteDialogProps {
   activeUser: ActiveUser;
   dynamicProps: DynamicProps;
   entry: Entry;
+  downVoted: boolean;
+  upVoted: boolean;
   onClick: (percent: number, estimated: number) => void;
 }
 
@@ -61,15 +63,15 @@ interface VoteDialogState {
 
 export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
   state: VoteDialogState = {
-    upSliderVal: getVoteValue("up", this.props.activeUser?.username!, 100),
-    downSliderVal: getVoteValue("down", this.props.activeUser?.username!, -100),
+    upSliderVal: getVoteValue("up", this.props.activeUser?.username! + '-' + this.props.entry.post_id, 100),
+    downSliderVal: getVoteValue("down", this.props.activeUser?.username! + '-' + this.props.entry.post_id, -100),
     estimated: 0,
-    mode: "up",
+    mode: this.props.downVoted ? "down" : "up",
     wrongValueUp: false,
     wrongValueDown: false,
     initialVoteValues: {
-      up: getVoteValue("up", this.props.activeUser?.username!, 100),
-      down: getVoteValue("down", this.props.activeUser?.username!, -100),
+      up: getVoteValue("up", this.props.activeUser?.username! + '-' + this.props.entry.post_id, 100),
+      down: getVoteValue("down", this.props.activeUser?.username!+ '-' + this.props.entry.post_id, -100),
     },
   };
 
@@ -131,21 +133,23 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
   };
 
   upSliderChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
-    const upSliderVal = Number(e.target.value);
+    const { target: { id, value} } = e;
+    const upSliderVal = Number(value);
     const { initialVoteValues } = this.state;
     this.setState({
       upSliderVal,
       wrongValueUp: upSliderVal === initialVoteValues.up,
     });
-
     const { activeUser } = this.props;
-    setVoteValue("up", activeUser?.username!, upSliderVal);
+    setVoteValue("up", `${activeUser?.username!}-${id}`, upSliderVal);
   };
 
   downSliderChanged = (
     e: React.ChangeEvent<FormControl & HTMLInputElement>
   ) => {
-    const downSliderVal = Number(e.target.value);
+    const { target: { id, value} } = e;
+
+    const downSliderVal = Number(value);
     const { initialVoteValues } = this.state;
     this.setState({
       downSliderVal,
@@ -153,7 +157,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     });
 
     const { activeUser } = this.props;
-    setVoteValue("down", activeUser?.username!, downSliderVal);
+    setVoteValue("down", `${activeUser?.username!}-${id}`, downSliderVal);
   };
 
   changeMode = (m: Mode) => {
@@ -188,7 +192,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     if (!upVoted || (upVoted && initialVoteValues.up !== upSliderVal)) {
       const estimated = Number(this.estimate(upSliderVal).toFixed(3));
       onClick(upSliderVal, estimated);
-      this.setState({ wrongValueUp: false, wrongValueDown: false });
+      this.setState({ wrongValueUp: false, wrongValueDown: false, });
     } else if(upVoted && initialVoteValues.up === upSliderVal){
       this.setState({ wrongValueUp: true, wrongValueDown: false });
     }
@@ -209,9 +213,9 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
   };
 
   render() {
-    const { upSliderVal, downSliderVal, mode, wrongValueUp, wrongValueDown } =
-      this.state;
-
+    const { upSliderVal, downSliderVal, mode, wrongValueUp, wrongValueDown } = this.state;
+    const { entry: { post_id } } = this.props;
+    debugger
     return (
       <>
         {mode === "up" && (
@@ -240,6 +244,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                   max={100}
                   value={upSliderVal}
                   onChange={this.upSliderChanged}
+                  id={post_id.toString()}
                 />
               </div>
               <div className="percentage">{`${
@@ -288,6 +293,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                 max={-0.1}
                 value={downSliderVal}
                 onChange={this.downSliderChanged}
+                id={post_id.toString()}
               />
             </div>
             <div className="percentage">{`${downSliderVal.toFixed(1)}%`}</div>
@@ -377,7 +383,7 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
     const downVoted = votes.some(
       (v) => v.voter === activeUser.username && v.rshares < 0
     );
-
+    
     return { upVoted, downVoted };
   };
 
@@ -400,7 +406,7 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
     if (upVoted || downVoted) {
       cls = _c(
         `btn-vote ${
-          upVoted ? "btn-up-vote primary-btn-done" : "btn-down-vote"
+          upVoted ? "btn-up-vote primary-btn-done" : "btn-down-vote secondary-btn-done"
         } ${inProgress ? "in-progress" : ""} voted`
       );
     }
@@ -411,10 +417,11 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
       }
       tooltipClass = "tooltip-vote";
     }
+
     const voteBtnClass = `btn-inner ${
       tooltipClass.length > 0
-        ? upVoted || downVoted
-          ? "primary-btn-done"
+        ? upVoted ? "primary-btn-done" : downVoted
+          ? "secondary-btn-done"
           : "primary-btn"
         : ""
     }`;
@@ -442,6 +449,8 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
                             {...this.props}
                             activeUser={activeUser}
                             onClick={this.vote}
+                            upVoted={upVoted}
+                            downVoted={downVoted}
                           />
                         )}
                       </span>

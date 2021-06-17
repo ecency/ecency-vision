@@ -335,6 +335,18 @@
   }
 }
 
+.secondary-btn-done {
+  @include themify(night) {
+    color: $white !important;
+    background-color: $red2 !important;
+  }
+
+  @include themify(day) {
+    color: $white !important;
+    background-color: $red2 !important;
+  }
+}
+
 .secondary-btn-vote {
   color: $red2 !important;
 
