@@ -94,15 +94,6 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
             success(_t('profile-edit.updated'));
             return getAccount(activeUser.username);
         }).then((account) => {
-
-            // reload page to refresh profile image
-            // if (activeUser.data.__loaded && activeUser.data.profile?.profile_image !== account.profile?.profile_image) {
-            //     setTimeout(() => {
-            //         window.location.reload();
-            //     }, 500);
-            //     return;
-            // }
-
             // update reducers
             addAccount(account);
             updateActiveUser(account);
