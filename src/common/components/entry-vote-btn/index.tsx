@@ -215,7 +215,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
   render() {
     const { upSliderVal, downSliderVal, mode, wrongValueUp, wrongValueDown } = this.state;
     const { entry: { post_id } } = this.props;
-    debugger
+
     return (
       <>
         {mode === "up" && (
