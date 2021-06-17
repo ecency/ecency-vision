@@ -179,7 +179,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                             }
                             </div>
                         </div>
-                        <div className="d-flex align-items-center">
+                        <div className="d-flex align-items-center ml-auto ml-md-0">
                             <OverlayTrigger
                                 delay={{ hide: 1500 }}
                                 key={'bottom'}
@@ -195,7 +195,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                                     </Tooltip>
                                 }
                                 >
-                                <span className="info-icon mr-2">{informationVariantSvg}</span>
+                                <span className="info-icon mr-0 mr-md-2">{informationVariantSvg}</span>
                             </OverlayTrigger>
                             <ListStyleToggle global={this.props.global} toggleListStyle={this.props.toggleListStyle}/>
                         </div>
