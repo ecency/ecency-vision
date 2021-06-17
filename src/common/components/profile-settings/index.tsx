@@ -3,7 +3,7 @@ import React, {Component} from "react";
 import {History} from "history";
 
 import {ActiveUser} from "../../store/active-user/types";
-import {Account, BaseAccount, FullAccount} from "../../store/accounts/types";
+import {Account} from "../../store/accounts/types";
 import {Global} from "../../store/global/types";
 
 import ProfileEdit from "../profile-edit";
@@ -14,7 +14,7 @@ interface Props {
     history: History;
     global: Global;
     activeUser: ActiveUser | null;
-    account: FullAccount | BaseAccount;
+    account: Account;
     addAccount: (data: Account) => void;
     updateActiveUser: (data?: Account) => void;
     muteNotifications: () => void;

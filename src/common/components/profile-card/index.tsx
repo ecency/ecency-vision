@@ -42,7 +42,7 @@ interface Props {
     global: Global;
     history: History;
     activeUser: ActiveUser | null;
-    account: any;
+    account: Account;
     addAccount: (data: Account) => void;
     updateActiveUser: (data?: Account) => void;
 }

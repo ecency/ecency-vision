@@ -16,7 +16,7 @@ import {getAccount} from "../../api/hive";
 
 interface Props {
     activeUser: ActiveUser;
-    account: any;
+    account: Account;
     addAccount: (data: Account) => void;
     updateActiveUser: (data?: Account) => void;
 }
