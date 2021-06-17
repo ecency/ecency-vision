@@ -1,3 +1,8 @@
 .trending-tags-card {
   @include side-tag-list;
 }
+
+.pointer {
+  cursor: pointer;
+  pointer-events: auto !important;
+}
