@@ -13,7 +13,8 @@ import ListStyleToggle from "../list-style-toggle";
 import {_t} from "../../i18n";
 
 import _c from "../../util/fix-class-names"
-import { Form } from "react-bootstrap";
+import { Form, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { informationVariantSvg } from "../../img/svg";
 
 interface Props {
     history: History;
@@ -178,16 +179,26 @@ export class EntryIndexMenu extends Component<Props, States> {
                             }
                             </div>
                         </div>
-                        <ListStyleToggle global={this.props.global} toggleListStyle={this.props.toggleListStyle}/>
-                    </div>
-                    
-                    <div className='my-3 alert alert-primary'>
-                        {_t('entry-filter.filter-global-part1')}
-                        <span className="text-capitalize">
-                            {_t(`entry-filter.filter-${filter}`)}
-                        </span>
-                        {(isGlobal || filter === "feed") ? _t('entry-filter.filter-global-part2') : _t('entry-filter.filter-global-part3')} 
-                        {!isGlobal && filter !== "feed" && <Link to='/communities'> {_t('discussion.btn-join')}</Link>}
+                        <div className="d-flex align-items-center">
+                            <OverlayTrigger
+                                delay={{ hide: 1500 }}
+                                key={'bottom'}
+                                placement={'bottom'}
+                                overlay={
+                                    <Tooltip id={`tooltip-${'bottom'}`}>
+                                        {_t('entry-filter.filter-global-part1')}
+                                        <span className="text-capitalize">
+                                            {_t(`entry-filter.filter-${filter}`)}
+                                        </span>
+                                        {(isGlobal || filter === "feed") ? _t('entry-filter.filter-global-part2') : _t('entry-filter.filter-global-part3')} 
+                                        {!isGlobal && filter !== "feed" && <Link to='/communities'> {_t('discussion.btn-join')}</Link>}
+                                    </Tooltip>
+                                }
+                                >
+                                <span className="info-icon mr-2">{informationVariantSvg}</span>
+                            </OverlayTrigger>
+                            <ListStyleToggle global={this.props.global} toggleListStyle={this.props.toggleListStyle}/>
+                        </div>
                     </div>
             </div>}
 }

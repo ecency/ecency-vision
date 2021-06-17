@@ -100,3 +100,37 @@
     margin-bottom: 0.5em;
   }
 }
+
+.info-icon {
+  height: 15px;
+  width: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+  border-radius: 50%;
+  border: 1px solid $warm-grey;
+  cursor: pointer;
+  &:hover {
+    opacity: 1;
+  }
+
+  svg {
+    color: $black;
+  }
+}
+
+.theme-day .tooltip-inner {
+  max-width: 380px;
+  padding: 0.25rem 0.5rem;
+  color: #000000;
+  text-align: center;
+  background-color: #c2d4f5;
+  border-radius: 0.25rem;
+}
+
+.theme-day .bs-tooltip-bottom .arrow::before, .theme-day .bs-tooltip-auto[x-placement^="bottom"] .arrow::before {
+  bottom: 0;
+  border-width: 0 0.4rem 0.4rem;
+  border-bottom-color: #c2d4f5;
+}
