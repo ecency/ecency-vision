@@ -181,7 +181,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                         </div>
                         <div className="d-flex align-items-center ml-auto ml-md-0">
                             <OverlayTrigger
-                                delay={{ hide: 1500 }}
+                                delay={{ show: 0, hide: 1500 }}
                                 key={'bottom'}
                                 placement={'bottom'}
                                 overlay={
