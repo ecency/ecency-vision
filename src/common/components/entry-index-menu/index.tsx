@@ -174,7 +174,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                                     className="d-flex align-items-center ml-3 ml-md-5 border-left pl-5"
                                     checked={isGlobal}
                                     onChange={this.onChangeGlobal}
-                                    custom
+                                    custom={true}
                                 />
                             }
                             </div>
