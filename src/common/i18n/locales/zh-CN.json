@@ -56,10 +56,10 @@
     "filter-feed": "已关注",
     "filter-feed-friends": "朋友圈",
     "filter-feed-subscriptions": "社区",
-    "filter-global": "Global",
-    "filter-global-part1": "This feed contains ",
-    "filter-global-part2": " content on entire platform.",
-    "filter-global-part3": " content from Your communities. You can join communities that interest you to fill up this feed."
+    "filter-global": "通用",
+    "filter-global-part1": "这种订阅包含 ",
+    "filter-global-part2": " 整个平台上的内容。",
+    "filter-global-part3": " 您的社区的内容。您可以加入您感兴趣的社区来填写此种订阅。"
   },
   "navbar": {
     "discover": "发现",
@@ -131,8 +131,8 @@
     "email": "输入您的电子邮件地址",
     "ref": "推荐用户 (可选)",
     "submit": "继续",
-    "validation-username": "Username is required.",
-    "validation-email": "Email is required.",
+    "validation-username": "用户名是必需的。",
+    "validation-email": "电子邮件是必需的。",
     "success": "我们已经向 {{email}} 发送了一封电子邮件。",
     "success-2": "按照说明完成注册过程。",
     "login-text-1": "您是否有账户？",
@@ -317,14 +317,14 @@
     "edit-team": "编辑身份",
     "community-rewards": "社区奖励",
     "profile-image": "社区个人资料图片",
-    "profile-image-edit": "Edit profile image",
-    "profile-image-updated": "Profile image updated!"
+    "profile-image-edit": "编辑个人资料图片",
+    "profile-image-updated": "个人资料图片已更新！"
   },
   "community-role-edit": {
-    "title": "Set user role",
-    "username": "Username",
-    "role": "Role",
-    "user-not-found": "The user does not exist!",
+    "title": "设置用户角色",
+    "username": "用户名",
+    "role": "身份",
+    "user-not-found": "用户不存在！",
     "explanations": "<h3>Role Permissions</h3><p><strong>Owner</strong> - assign admins</p><p><strong>Admin</strong> - edit settings, assign mods</p><p><strong>Moderator</strong> - mute, pin, set user titles</p><p><strong>Member</strong> - listed on leadership team</p><p><strong>Guest</strong> - default; can post and comment</p><p><strong>Muted</strong> - new posts automatically muted</p>"
   },
   "community-settings": {
