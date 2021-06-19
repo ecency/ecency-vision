@@ -97,7 +97,7 @@ export class Preferences extends BaseComponent<Props, State> {
     }
 
     render() {
-        const { global, activeUser: { username } } = this.props;
+        const { global, activeUser } = this.props;
         const { inProgress } = this.state;
 
         return <>
@@ -142,18 +142,19 @@ export class Preferences extends BaseComponent<Props, State> {
                         </Form.Group>
                     </Col>
 
+                    {activeUser && activeUser.username && 
                     <Col lg={6} xl={4}>
                         <Form.Group>
                             <Form.Label>{_t('preferences.referral-link')}</Form.Label>
                             <Form.Control 
                                 type="text" 
-                                value={`https://ecency.com/signup?referral=${username}`} 
+                                value={`https://ecency.com/signup?referral=${activeUser!.username}`} 
                                 
                                 className="text-primary pointer"
-                                onClick={() => this.copyToClipboard(`https://ecency.com/signup?referral=${username}`)}
+                                onClick={() => this.copyToClipboard(`https://ecency.com/signup?referral=${activeUser!.username}`)}
                             />
                         </Form.Group>
-                    </Col>
+                    </Col>}
                 </Form.Row>
             </div>
         </>
