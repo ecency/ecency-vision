@@ -184,6 +184,9 @@ export class CommunitySelector extends BaseComponent<Props, State> {
 
     componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>) {
         if (!isEqual(this.props.tags, prevProps.tags)) {
+            if(this.props.tags.length > 0){
+                this.setState({ picked: false });
+            }
             this.detectCommunity().then();
         }
     }
@@ -232,6 +235,7 @@ export class CommunitySelector extends BaseComponent<Props, State> {
         const {community, visible, picked} = this.state;
 
         let content;
+        debugger
         if (community) {
             content = <>
                 {UserAvatar({...this.props, username: community.name, size: "small"})}
