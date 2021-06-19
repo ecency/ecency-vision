@@ -335,6 +335,18 @@
   }
 }
 
+.secondary-btn-done {
+  @include themify(night) {
+    color: $white !important;
+    background-color: $red2 !important;
+  }
+
+  @include themify(day) {
+    color: $white !important;
+    background-color: $red2 !important;
+  }
+}
+
 .secondary-btn-vote {
   color: $red2 !important;
 
@@ -393,4 +405,8 @@ p {
       white-space: pre-wrap;
     }
   }
+}
+
+.no-rotate svg{
+  transform: rotate(0deg) !important;
 }
