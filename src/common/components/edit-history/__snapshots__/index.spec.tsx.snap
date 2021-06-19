@@ -79,7 +79,7 @@ exports[`(1) Render with data 1`] = `
       <div
         className="item-date"
       >
-        August 22, 2020 5:20 PM
+        August 22, 2020 7:20 PM
       </div>
     </div>
     <div
@@ -106,7 +106,7 @@ exports[`(1) Render with data 1`] = `
       <div
         className="item-date"
       >
-        August 26, 2020 2:50 PM
+        August 26, 2020 4:50 PM
       </div>
     </div>
   </div>
