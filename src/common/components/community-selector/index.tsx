@@ -235,7 +235,6 @@ export class CommunitySelector extends BaseComponent<Props, State> {
         const {community, visible, picked} = this.state;
 
         let content;
-        debugger
         if (community) {
             content = <>
                 {UserAvatar({...this.props, username: community.name, size: "small"})}
