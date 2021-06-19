@@ -43,6 +43,7 @@ interface Props {
     history: History;
     activeUser: ActiveUser | null;
     account: Account;
+    section?: string;
     addAccount: (data: Account) => void;
     updateActiveUser: (data?: Account) => void;
 }
@@ -69,6 +70,7 @@ export class ProfileCard extends Component<Props, State> {
     shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
         return !isEqual(this.props.account, nextProps.account)
             || !isEqual(this.props.activeUser, nextProps.activeUser)
+            || !isEqual(this.props.section, nextProps.section)
             || !isEqual(this.state, nextState);
     }
 
@@ -83,7 +85,8 @@ export class ProfileCard extends Component<Props, State> {
     };
     
     render() {
-        const {account, activeUser} = this.props;
+        const {account, activeUser, section} = this.props;
+
         if (!account.__loaded) {
             return <div className="profile-card">
                 <div className="profile-avatar">
@@ -99,12 +102,13 @@ export class ProfileCard extends Component<Props, State> {
         const vPower = votingPower(account);
 
         const isMyProfile = activeUser && activeUser.username === account.name && activeUser.data.__loaded && activeUser.data.profile;
+        const isSettings = section === 'settings'
 
         return (
             <div className="profile-card">
                 <div className="profile-avatar">
                     {UserAvatar({...this.props, username: account.name, size: "xLarge", src: account.profile?.profile_image})}
-                    {isMyProfile && 
+                    {isMyProfile && isSettings &&
                         <EditPic 
                             {...this.props} 
                             account={account as FullAccount} 
@@ -220,6 +224,7 @@ export default (p: Props) => {
         history: p.history,
         activeUser: p.activeUser,
         account: p.account,
+        section: p.section,
         addAccount: p.addAccount,
         updateActiveUser: p.updateActiveUser
     }

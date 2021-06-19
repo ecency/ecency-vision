@@ -79,7 +79,7 @@ interface Props {
     location: Location;
     users: User[];
     ui: UI;
-    activeUser: any;
+    activeUser: ActiveUser;
     notifications: Notifications;
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data?: Account) => void;
@@ -210,7 +210,7 @@ export default class UserNav extends Component<Props, State> {
 
         const dropDownConfig = {
             history: this.props.history,
-            label: UserAvatar({...this.props, username: activeUser.username, size: "medium", src: activeUser.data.profile && activeUser.data.profile.profile_image || ""}),
+            label: UserAvatar({...this.props, username: activeUser.username, size: "medium"}),
             items: dropDownItems,
             preElem: preDropDownElem,
         };

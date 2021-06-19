@@ -3,7 +3,7 @@ import React from "react";
 import {Form, FormControl, InputGroup, Button, Spinner, Col} from "react-bootstrap";
 
 import {ActiveUser} from "../../store/active-user/types";
-import {Account} from "../../store/accounts/types";
+import {Account, FullAccount} from "../../store/accounts/types";
 
 import BaseComponent from "../base";
 import UploadButton from "../image-upload-button";
@@ -16,7 +16,7 @@ import {getAccount} from "../../api/hive";
 
 interface Props {
     activeUser: ActiveUser;
-    account: Account;
+    account: FullAccount;
     addAccount: (data: Account) => void;
     updateActiveUser: (data?: Account) => void;
 }
