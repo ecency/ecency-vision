@@ -26,6 +26,7 @@ import _c from "../../util/fix-class-names";
 
 import { chevronDownSvgForSlider, chevronUpSvgForSlider, chevronUpSvgForVote } from "../../img/svg";
 import ClickAwayListener from "../clickaway-listener";
+import { _t } from "../../i18n";
 
 const setVoteValue = (type: "up" | "down", username: string, value: number) => {
   ls.set(`vote-value-${type}-${username}`, value);
@@ -142,7 +143,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     this.setState({
       upSliderVal,
       wrongValueUp: upSliderVal === initialVoteValues.up,
-      showWarning: upSliderVal < this.state.upSliderVal && (upVoted)
+      showWarning: upSliderVal < this.state.upSliderVal && (upVoted || downVoted) 
     });
     const { activeUser } = this.props;
     setVoteValue("up", `${activeUser?.username!}-${id}`, upSliderVal);
@@ -159,7 +160,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     this.setState({
       downSliderVal,
       wrongValueDown: downSliderVal === initialVoteValues.up,
-      showWarning: downSliderVal < this.state.downSliderVal && (downVoted)
+      showWarning: downSliderVal < this.state.downSliderVal && (upVoted || downVoted)
     });
 
     const { activeUser } = this.props;
@@ -267,12 +268,12 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
             </div>
             {wrongValueUp && (
               <div className="vote-error">
-                <p>Previous value is not acceptable. Vote with a different value</p>
+                <p>{_t('entry-list-item.vote-error')}</p>
               </div>
             )}
             {showWarning && (
               <div className="vote-warning">
-                <p><b>Warning: </b>Downvoting to 0 unvotes this post</p>
+                <p><b>{_t('g.warning')}: </b>{_t('entry-list-item.vote-warning')}</p>
               </div>
             )}
           </>
@@ -280,54 +281,54 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
 
         {mode === "down" && (
           <>
-          <div className="voting-controls voting-controls-down">
-            <div
-              className="btn-vote btn-up-vote vote-btn-lg primary-btn-vote"
-              onClick={() => {
-                this.changeMode("up");
-              }}
-            >
-              <span className="btn-inner no-rotate">{chevronUpSvgForSlider}</span>
+            <div className="voting-controls voting-controls-down">
+              <div
+                className="btn-vote btn-up-vote vote-btn-lg primary-btn-vote"
+                onClick={() => {
+                  this.changeMode("up");
+                }}
+              >
+                <span className="btn-inner no-rotate">{chevronUpSvgForSlider}</span>
+              </div>
+              <div className="estimated">
+                <FormattedCurrency
+                  {...this.props}
+                  value={this.estimate(downSliderVal)}
+                  fixAt={3}
+                />
+              </div>
+              <div className="slider slider-down">
+                <Form.Control
+                  type="range"
+                  custom={true}
+                  step={0.1}
+                  min={-100}
+                  max={-0.1}
+                  value={downSliderVal}
+                  onChange={this.downSliderChanged}
+                  id={post_id.toString()}
+                />
+              </div>
+              <div className="percentage">{`${downSliderVal.toFixed(1)}%`}</div>
+              <div
+                className="btn-vote btn-down-vote vote-btn-lg secondary-btn-vote"
+                onClick={this.downVoteClicked}
+              >
+                <span className="btn-inner">{chevronDownSvgForSlider}</span>
+              </div>
             </div>
-            <div className="estimated">
-              <FormattedCurrency
-                {...this.props}
-                value={this.estimate(downSliderVal)}
-                fixAt={3}
-              />
-            </div>
-            <div className="slider slider-down">
-              <Form.Control
-                type="range"
-                custom={true}
-                step={0.1}
-                min={-100}
-                max={-0.1}
-                value={downSliderVal}
-                onChange={this.downSliderChanged}
-                id={post_id.toString()}
-              />
-            </div>
-            <div className="percentage">{`${downSliderVal.toFixed(1)}%`}</div>
-            <div
-              className="btn-vote btn-down-vote vote-btn-lg secondary-btn-vote"
-              onClick={this.downVoteClicked}
-            >
-              <span className="btn-inner">{chevronDownSvgForSlider}</span>
-            </div>
-          </div>
-        
-          {wrongValueDown && (
-          <div className="vote-error">
-          <p>Previous value is not acceptable. Vote with a different value</p>
-          </div>
-        )}
-        {showWarning && (
-          <div className="vote-warning">
-            <p>Downvoting to 0 unvotes this post</p>
-          </div>
-        )}
-        </>
+          
+            {wrongValueDown && (
+              <div className="vote-error">
+              <p>{_t('entry-list-item.vote-error')}</p>
+              </div>
+            )}
+            {showWarning && (
+              <div className="vote-warning">
+                <p><b>{_t('g.warning')}: </b>{_t('entry-list-item.vote-warning')}</p>
+              </div>
+            )}
+          </>
         )}
       </>
     );
