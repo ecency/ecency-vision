@@ -406,3 +406,7 @@ p {
     }
   }
 }
+
+.no-rotate svg{
+  transform: rotate(0deg) !important;
+}

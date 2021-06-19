@@ -275,7 +275,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                 this.changeMode("up");
               }}
             >
-              <span className="btn-inner">{chevronUpSvgForSlider}</span>
+              <span className="btn-inner no-rotate">{chevronUpSvgForSlider}</span>
             </div>
             <div className="estimated">
               <FormattedCurrency
