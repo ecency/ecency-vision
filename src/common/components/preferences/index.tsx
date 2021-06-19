@@ -18,6 +18,8 @@ import {getCurrencyRate} from "../../api/misc";
 import currencySymbol from "../../helper/currency-symbol";
 
 import currencies from "../../constants/currencies.json";
+import activeUser from "../../store/active-user";
+import { ActiveUser } from "../../store/active-user/types";
 
 interface Props {
     global: Global;
@@ -26,6 +28,7 @@ interface Props {
     setCurrency: (currency: string, rate: number, symbol: string) => void;
     setLang: (lang: string) => void;
     setNsfw: (value: boolean) => void;
+    activeUser: ActiveUser;
 }
 
 interface State {
@@ -84,9 +87,18 @@ export class Preferences extends BaseComponent<Props, State> {
         success(_t('preferences.updated'));
     }
 
+    copyToClipboard = (text: string) => {
+        const textField = document.createElement('textarea');
+        textField.innerText = text;
+        document.body.appendChild(textField);
+        textField.select();
+        document.execCommand('copy');
+        textField.remove();
+    }
+
     render() {
-        const {global} = this.props;
-        const {inProgress} = this.state;
+        const { global, activeUser: { username } } = this.props;
+        const { inProgress } = this.state;
 
         return <>
             <div className="preferences">
@@ -129,6 +141,19 @@ export class Preferences extends BaseComponent<Props, State> {
                             </Form.Control>
                         </Form.Group>
                     </Col>
+
+                    <Col lg={6} xl={4}>
+                        <Form.Group>
+                            <Form.Label>{_t('preferences.referral-link')}</Form.Label>
+                            <Form.Control 
+                                type="text" 
+                                value={`https://ecency.com/signup?referral=${username}`} 
+                                
+                                className="text-primary pointer"
+                                onClick={() => this.copyToClipboard(`https://ecency.com/signup?referral=${username}`)}
+                            />
+                        </Form.Group>
+                    </Col>
                 </Form.Row>
             </div>
         </>
@@ -139,6 +164,7 @@ export class Preferences extends BaseComponent<Props, State> {
 export default (p: Props) => {
     const props: Props = {
         global: p.global,
+        activeUser: p.activeUser,
         muteNotifications: p.muteNotifications,
         unMuteNotifications: p.unMuteNotifications,
         setCurrency: p.setCurrency,

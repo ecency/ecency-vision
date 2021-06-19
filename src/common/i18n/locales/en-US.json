@@ -439,6 +439,7 @@
     "currency": "Currency",
     "language": "Language",
     "nsfw": "Show NSFW content",
+    "referral-link": "Referral link",
     "updated": "Preference updated!"
   },
   "wallet": {
