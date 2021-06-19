@@ -155,6 +155,7 @@ export default class UserNav extends Component<Props, State> {
         const {gallery, drafts, bookmarks, schedules, fragments} = this.state;
         const {activeUser, ui, notifications, global, dynamicProps} = this.props;
         const {unread} = notifications;
+
         const preDropDownElem = activeUser.data.__loaded ? <div className="drop-down-menu-power">
             <div className="label">{_t("user-nav.vote-power")}</div>
             <div className="power">
@@ -214,7 +215,7 @@ export default class UserNav extends Component<Props, State> {
             items: dropDownItems,
             preElem: preDropDownElem,
         };
-        
+
         return (
             <>
                 <div className="user-nav">

@@ -83,7 +83,7 @@ export class ProfileCard extends Component<Props, State> {
         const {followingList} = this.state;
         this.setState({followingList: !followingList});
     };
-    
+
     render() {
         const {account, activeUser, section} = this.props;
 
