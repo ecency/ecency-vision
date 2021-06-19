@@ -37,12 +37,9 @@ import {appleSvg, desktopSvg, googleSvg} from "../img/svg";
 import {pageMapDispatchToProps, pageMapStateToProps, PageProps} from "./common";
 
 interface State {
-    step: number
+    step: number;
 }
 
-interface Landing {
-    setState: void
-}
 class EntryIndexPage extends Component<PageProps, State> {
 
     state:State = {

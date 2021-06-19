@@ -55,7 +55,11 @@
     "filter-muted": "Muted",
     "filter-feed": "Feed",
     "filter-feed-friends": "Friends",
-    "filter-feed-subscriptions": "Communities"
+    "filter-feed-subscriptions": "Communities",
+    "filter-global": "Global",
+    "filter-global-part1": "This feed contains ",
+    "filter-global-part2": " content on entire platform.",
+    "filter-global-part3": " content from Your communities. You can join communities that interest you to fill up this feed."
   },
   "navbar": {
     "discover": "Discover",
@@ -312,7 +316,7 @@
     "edit": "Edit settings",
     "edit-team": "Edit roles",
     "community-rewards": "Community Rewards",
-    "profile-image": "Community profile image",
+    "profile-image": "Profile image",
     "profile-image-edit": "Edit profile image",
     "profile-image-updated": "Profile image updated!"
   },

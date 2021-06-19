@@ -1,253 +1,425 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`(1) No active user. Default filter 1`] = `
-<div
-  className="entry-index-menu"
->
+<div>
   <div
-    className="the-menu"
+    className="entry-index-menu"
   >
     <div
-      className="main-menu"
+      className="the-menu align-items-center"
     >
       <div
-        className="sm-menu"
+        className="d-flex align-items-center"
       >
         <div
-          className="custom-dropdown float-left"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
+          className="main-menu d-none d-lg-flex"
         >
           <div
-            className="dropdown-btn"
+            className="sm-menu"
           >
             <div
-              className="label"
+              className="custom-dropdown float-left"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
-              Hot
-            </div>
-            <div
-              className="menu-down"
-            >
-              <svg
-                viewBox="0 0 24 24"
+              <div
+                className="dropdown-btn"
               >
-                <path
-                  d="M7,10L12,15L17,10H7Z"
-                  fill="currentColor"
-                />
-              </svg>
+                <div
+                  className="label"
+                >
+                  Hot
+                </div>
+                <div
+                  className="menu-down"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7,10L12,15L17,10H7Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </div>
+              </div>
             </div>
+          </div>
+          <div
+            className="lg-menu"
+          >
+            <ul
+              className="nav nav-pills nav-fill"
+            >
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-trending"
+                  href="/trending"
+                  onClick={[Function]}
+                >
+                  Trending
+                </a>
+              </li>
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-hot active"
+                  href="/hot"
+                  onClick={[Function]}
+                >
+                  Hot
+                </a>
+              </li>
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-created"
+                  href="/created"
+                  onClick={[Function]}
+                >
+                  New
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          className="main-menu d-flex d-lg-none"
+        >
+          <div
+            className="sm-menu"
+          >
+            <div
+              className="custom-dropdown float-left"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+            >
+              <div
+                className="dropdown-btn"
+              >
+                <div
+                  className="label"
+                >
+                  Hot
+                </div>
+                <div
+                  className="menu-down"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7,10L12,15L17,10H7Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="lg-menu"
+          >
+            <ul
+              className="nav nav-pills nav-fill"
+            >
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-trending"
+                  href="/trending"
+                  onClick={[Function]}
+                >
+                  Trending
+                </a>
+              </li>
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-hot active"
+                  href="/hot"
+                  onClick={[Function]}
+                >
+                  Hot
+                </a>
+              </li>
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-created"
+                  href="/created"
+                  onClick={[Function]}
+                >
+                  New
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
-      <div
-        className="lg-menu"
+    </div>
+    <div
+      className="d-flex align-items-center ml-auto ml-md-0"
+    >
+      <span
+        className="info-icon mr-0 mr-md-2"
+        onBlur={[Function]}
+        onFocus={[Function]}
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
       >
-        <ul
-          className="nav nav-pills nav-fill"
+        <svg
+          viewBox="0 0 24 24"
         >
-          <li
-            className="nav-item"
-          >
-            <a
-              className="nav-link link-trending"
-              href="/trending"
-              onClick={[Function]}
-            >
-              Trending
-            </a>
-          </li>
-          <li
-            className="nav-item"
-          >
-            <a
-              className="nav-link link-hot active"
-              href="/hot"
-              onClick={[Function]}
-            >
-              Hot
-            </a>
-          </li>
-          <li
-            className="nav-item"
-          >
-            <a
-              className="nav-link link-created"
-              href="/created"
-              onClick={[Function]}
-            >
-              New
-            </a>
-          </li>
-        </ul>
-      </div>
+          <path
+            d="M13.5,4A1.5,1.5 0 0,0 12,5.5A1.5,1.5 0 0,0 13.5,7A1.5,1.5 0 0,0 15,5.5A1.5,1.5 0 0,0 13.5,4M13.14,8.77C11.95,8.87 8.7,11.46 8.7,11.46C8.5,11.61 8.56,11.6 8.72,11.88C8.88,12.15 8.86,12.17 9.05,12.04C9.25,11.91 9.58,11.7 10.13,11.36C12.25,10 10.47,13.14 9.56,18.43C9.2,21.05 11.56,19.7 12.17,19.3C12.77,18.91 14.38,17.8 14.54,17.69C14.76,17.54 14.6,17.42 14.43,17.17C14.31,17 14.19,17.12 14.19,17.12C13.54,17.55 12.35,18.45 12.19,17.88C12,17.31 13.22,13.4 13.89,10.71C14,10.07 14.3,8.67 13.14,8.77Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+      <span
+        className="list-style-toggle"
+        onClick={[Function]}
+        title="Toggle list style"
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M16,5V11H21V5M10,11H15V5H10M16,18H21V12H16M10,18H15V12H10M4,18H9V12H4M4,11H9V5H4V11Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
     </div>
   </div>
-  <span
-    className="list-style-toggle"
-    onClick={[Function]}
-    title="Toggle list style"
-  >
-    <svg
-      viewBox="0 0 24 24"
-    >
-      <path
-        d="M16,5V11H21V5M10,11H15V5H10M16,18H21V12H16M10,18H15V12H10M4,18H9V12H4M4,11H9V5H4V11Z"
-        fill="currentColor"
-      />
-    </svg>
-  </span>
 </div>
 `;
 
 exports[`(2) No active user. Trending filter 1`] = `
-<div
-  className="entry-index-menu"
->
+<div>
   <div
-    className="the-menu"
+    className="entry-index-menu"
   >
     <div
-      className="main-menu"
+      className="the-menu align-items-center"
     >
       <div
-        className="sm-menu"
+        className="d-flex align-items-center"
       >
         <div
-          className="custom-dropdown float-left"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
+          className="main-menu d-none d-lg-flex"
         >
           <div
-            className="dropdown-btn"
+            className="sm-menu"
           >
             <div
-              className="label"
+              className="custom-dropdown float-left"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
-              Trending
-            </div>
-            <div
-              className="menu-down"
-            >
-              <svg
-                viewBox="0 0 24 24"
+              <div
+                className="dropdown-btn"
               >
-                <path
-                  d="M7,10L12,15L17,10H7Z"
-                  fill="currentColor"
-                />
-              </svg>
+                <div
+                  className="label"
+                >
+                  Trending
+                </div>
+                <div
+                  className="menu-down"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7,10L12,15L17,10H7Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </div>
+              </div>
             </div>
+          </div>
+          <div
+            className="lg-menu"
+          >
+            <ul
+              className="nav nav-pills nav-fill"
+            >
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-trending active"
+                  href="/trending"
+                  onClick={[Function]}
+                >
+                  Trending
+                </a>
+              </li>
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-hot"
+                  href="/hot"
+                  onClick={[Function]}
+                >
+                  Hot
+                </a>
+              </li>
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-created"
+                  href="/created"
+                  onClick={[Function]}
+                >
+                  New
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          className="main-menu d-flex d-lg-none"
+        >
+          <div
+            className="sm-menu"
+          >
+            <div
+              className="custom-dropdown float-left"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+            >
+              <div
+                className="dropdown-btn"
+              >
+                <div
+                  className="label"
+                >
+                  Trending
+                </div>
+                <div
+                  className="menu-down"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7,10L12,15L17,10H7Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="lg-menu"
+          >
+            <ul
+              className="nav nav-pills nav-fill"
+            >
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-trending active"
+                  href="/trending"
+                  onClick={[Function]}
+                >
+                  Trending
+                </a>
+              </li>
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-hot"
+                  href="/hot"
+                  onClick={[Function]}
+                >
+                  Hot
+                </a>
+              </li>
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-created"
+                  href="/created"
+                  onClick={[Function]}
+                >
+                  New
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
-      <div
-        className="lg-menu"
+    </div>
+    <div
+      className="d-flex align-items-center ml-auto ml-md-0"
+    >
+      <span
+        className="info-icon mr-0 mr-md-2"
+        onBlur={[Function]}
+        onFocus={[Function]}
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
       >
-        <ul
-          className="nav nav-pills nav-fill"
+        <svg
+          viewBox="0 0 24 24"
         >
-          <li
-            className="nav-item"
-          >
-            <a
-              className="nav-link link-trending active"
-              href="/trending"
-              onClick={[Function]}
-            >
-              Trending
-            </a>
-          </li>
-          <li
-            className="nav-item"
-          >
-            <a
-              className="nav-link link-hot"
-              href="/hot"
-              onClick={[Function]}
-            >
-              Hot
-            </a>
-          </li>
-          <li
-            className="nav-item"
-          >
-            <a
-              className="nav-link link-created"
-              href="/created"
-              onClick={[Function]}
-            >
-              New
-            </a>
-          </li>
-        </ul>
-      </div>
+          <path
+            d="M13.5,4A1.5,1.5 0 0,0 12,5.5A1.5,1.5 0 0,0 13.5,7A1.5,1.5 0 0,0 15,5.5A1.5,1.5 0 0,0 13.5,4M13.14,8.77C11.95,8.87 8.7,11.46 8.7,11.46C8.5,11.61 8.56,11.6 8.72,11.88C8.88,12.15 8.86,12.17 9.05,12.04C9.25,11.91 9.58,11.7 10.13,11.36C12.25,10 10.47,13.14 9.56,18.43C9.2,21.05 11.56,19.7 12.17,19.3C12.77,18.91 14.38,17.8 14.54,17.69C14.76,17.54 14.6,17.42 14.43,17.17C14.31,17 14.19,17.12 14.19,17.12C13.54,17.55 12.35,18.45 12.19,17.88C12,17.31 13.22,13.4 13.89,10.71C14,10.07 14.3,8.67 13.14,8.77Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+      <span
+        className="list-style-toggle"
+        onClick={[Function]}
+        title="Toggle list style"
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M16,5V11H21V5M10,11H15V5H10M16,18H21V12H16M10,18H15V12H10M4,18H9V12H4M4,11H9V5H4V11Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
     </div>
   </div>
-  <span
-    className="list-style-toggle"
-    onClick={[Function]}
-    title="Toggle list style"
-  >
-    <svg
-      viewBox="0 0 24 24"
-    >
-      <path
-        d="M16,5V11H21V5M10,11H15V5H10M16,18H21V12H16M10,18H15V12H10M4,18H9V12H4M4,11H9V5H4V11Z"
-        fill="currentColor"
-      />
-    </svg>
-  </span>
 </div>
 `;
 
 exports[`(3) Active user. Trending filter 1`] = `
-<div
-  className="entry-index-menu"
->
+<div>
   <div
-    className="the-menu"
+    className="entry-index-menu"
   >
     <div
-      className="main-menu"
+      className="the-menu align-items-center"
     >
       <div
-        className="sm-menu"
-      >
-        <div
-          className="custom-dropdown float-left"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div
-            className="dropdown-btn"
-          >
-            <div
-              className="label"
-            >
-              Trending
-            </div>
-            <div
-              className="menu-down"
-            >
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M7,10L12,15L17,10H7Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        className="lg-menu"
+        className="sub-menu mt-3 mt-md-0"
       >
         <ul
           className="nav nav-pills nav-fill"
@@ -256,111 +428,253 @@ exports[`(3) Active user. Trending filter 1`] = `
             className="nav-item"
           >
             <a
-              className="nav-link link-feed"
+              className="nav-link my-link"
               href="/@foo/feed"
               onClick={[Function]}
             >
-              Feed
-            </a>
-          </li>
-          <li
-            className="nav-item"
-          >
-            <a
-              className="nav-link link-trending active"
-              href="/trending"
-              onClick={[Function]}
-            >
-              Trending
-            </a>
-          </li>
-          <li
-            className="nav-item"
-          >
-            <a
-              className="nav-link link-hot"
-              href="/hot"
-              onClick={[Function]}
-            >
-              Hot
-            </a>
-          </li>
-          <li
-            className="nav-item"
-          >
-            <a
-              className="nav-link link-created"
-              href="/created"
-              onClick={[Function]}
-            >
-              New
+              Friends
             </a>
           </li>
         </ul>
       </div>
+      <div
+        className="d-flex align-items-center"
+      >
+        <div
+          className="main-menu d-none d-lg-flex"
+        >
+          <div
+            className="sm-menu"
+          >
+            <div
+              className="custom-dropdown float-left"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+            >
+              <div
+                className="dropdown-btn"
+              >
+                <div
+                  className="label"
+                >
+                  Trending
+                </div>
+                <div
+                  className="menu-down"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7,10L12,15L17,10H7Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="lg-menu"
+          >
+            <ul
+              className="nav nav-pills nav-fill"
+            >
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-trending active"
+                  href="/trending"
+                  onClick={[Function]}
+                >
+                  Trending
+                </a>
+              </li>
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-hot"
+                  href="/hot"
+                  onClick={[Function]}
+                >
+                  Hot
+                </a>
+              </li>
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-created"
+                  href="/created"
+                  onClick={[Function]}
+                >
+                  New
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          className="main-menu d-flex d-lg-none"
+        >
+          <div
+            className="sm-menu"
+          >
+            <div
+              className="custom-dropdown float-left"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+            >
+              <div
+                className="dropdown-btn"
+              >
+                <div
+                  className="label"
+                >
+                  Trending
+                </div>
+                <div
+                  className="menu-down"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7,10L12,15L17,10H7Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="lg-menu"
+          >
+            <ul
+              className="nav nav-pills nav-fill"
+            >
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-feed"
+                  href="/@foo/feed"
+                  onClick={[Function]}
+                >
+                  Friends
+                </a>
+              </li>
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-trending active"
+                  href="/trending"
+                  onClick={[Function]}
+                >
+                  Trending
+                </a>
+              </li>
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-hot"
+                  href="/hot"
+                  onClick={[Function]}
+                >
+                  Hot
+                </a>
+              </li>
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-created"
+                  href="/created"
+                  onClick={[Function]}
+                >
+                  New
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          className="d-flex align-items-center ml-3 ml-md-5 border-left pl-5 custom-control custom-checkbox"
+        >
+          <input
+            checked={true}
+            className="custom-control-input"
+            disabled={false}
+            id="check-isGlobal"
+            name="isGlobal"
+            onChange={[Function]}
+            type="checkbox"
+          />
+          <label
+            className="custom-control-label"
+            htmlFor="check-isGlobal"
+            title=""
+          >
+            Global
+          </label>
+        </div>
+      </div>
+    </div>
+    <div
+      className="d-flex align-items-center ml-auto ml-md-0"
+    >
+      <span
+        className="info-icon mr-0 mr-md-2"
+        onBlur={[Function]}
+        onFocus={[Function]}
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M13.5,4A1.5,1.5 0 0,0 12,5.5A1.5,1.5 0 0,0 13.5,7A1.5,1.5 0 0,0 15,5.5A1.5,1.5 0 0,0 13.5,4M13.14,8.77C11.95,8.87 8.7,11.46 8.7,11.46C8.5,11.61 8.56,11.6 8.72,11.88C8.88,12.15 8.86,12.17 9.05,12.04C9.25,11.91 9.58,11.7 10.13,11.36C12.25,10 10.47,13.14 9.56,18.43C9.2,21.05 11.56,19.7 12.17,19.3C12.77,18.91 14.38,17.8 14.54,17.69C14.76,17.54 14.6,17.42 14.43,17.17C14.31,17 14.19,17.12 14.19,17.12C13.54,17.55 12.35,18.45 12.19,17.88C12,17.31 13.22,13.4 13.89,10.71C14,10.07 14.3,8.67 13.14,8.77Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+      <span
+        className="list-style-toggle"
+        onClick={[Function]}
+        title="Toggle list style"
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M16,5V11H21V5M10,11H15V5H10M16,18H21V12H16M10,18H15V12H10M4,18H9V12H4M4,11H9V5H4V11Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
     </div>
   </div>
-  <span
-    className="list-style-toggle"
-    onClick={[Function]}
-    title="Toggle list style"
-  >
-    <svg
-      viewBox="0 0 24 24"
-    >
-      <path
-        d="M16,5V11H21V5M10,11H15V5H10M16,18H21V12H16M10,18H15V12H10M4,18H9V12H4M4,11H9V5H4V11Z"
-        fill="currentColor"
-      />
-    </svg>
-  </span>
 </div>
 `;
 
 exports[`(4) Active user. Friends 1`] = `
-<div
-  className="entry-index-menu"
->
+<div>
   <div
-    className="the-menu"
+    className="entry-index-menu"
   >
     <div
-      className="main-menu"
+      className="the-menu align-items-center"
     >
       <div
-        className="sm-menu"
-      >
-        <div
-          className="custom-dropdown float-left"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div
-            className="dropdown-btn"
-          >
-            <div
-              className="label"
-            >
-              Feed
-            </div>
-            <div
-              className="menu-down"
-            >
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M7,10L12,15L17,10H7Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        className="lg-menu"
+        className="sub-menu mt-3 mt-md-0"
       >
         <ul
           className="nav nav-pills nav-fill"
@@ -369,141 +683,233 @@ exports[`(4) Active user. Friends 1`] = `
             className="nav-item"
           >
             <a
-              className="nav-link link-feed active"
+              className="nav-link my-link active"
               href="/@foo/feed"
               onClick={[Function]}
             >
-              Feed
-            </a>
-          </li>
-          <li
-            className="nav-item"
-          >
-            <a
-              className="nav-link link-trending"
-              href="/trending"
-              onClick={[Function]}
-            >
-              Trending
-            </a>
-          </li>
-          <li
-            className="nav-item"
-          >
-            <a
-              className="nav-link link-hot"
-              href="/hot"
-              onClick={[Function]}
-            >
-              Hot
-            </a>
-          </li>
-          <li
-            className="nav-item"
-          >
-            <a
-              className="nav-link link-created"
-              href="/created"
-              onClick={[Function]}
-            >
-              New
+              Friends
             </a>
           </li>
         </ul>
       </div>
+      <div
+        className="d-flex align-items-center"
+      >
+        <div
+          className="main-menu d-none d-lg-flex"
+        >
+          <div
+            className="sm-menu"
+          >
+            <div
+              className="custom-dropdown float-left"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+            >
+              <div
+                className="dropdown-btn"
+              >
+                <div
+                  className="label"
+                >
+                  Friends
+                </div>
+                <div
+                  className="menu-down"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7,10L12,15L17,10H7Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="lg-menu"
+          >
+            <ul
+              className="nav nav-pills nav-fill"
+            >
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-trending"
+                  href="/trending"
+                  onClick={[Function]}
+                >
+                  Trending
+                </a>
+              </li>
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-hot"
+                  href="/hot"
+                  onClick={[Function]}
+                >
+                  Hot
+                </a>
+              </li>
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-created"
+                  href="/created"
+                  onClick={[Function]}
+                >
+                  New
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          className="main-menu d-flex d-lg-none"
+        >
+          <div
+            className="sm-menu"
+          >
+            <div
+              className="custom-dropdown float-left"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+            >
+              <div
+                className="dropdown-btn"
+              >
+                <div
+                  className="label"
+                >
+                  Friends
+                </div>
+                <div
+                  className="menu-down"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7,10L12,15L17,10H7Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="lg-menu"
+          >
+            <ul
+              className="nav nav-pills nav-fill"
+            >
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-feed active"
+                  href="/@foo/feed"
+                  onClick={[Function]}
+                >
+                  Friends
+                </a>
+              </li>
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-trending"
+                  href="/trending"
+                  onClick={[Function]}
+                >
+                  Trending
+                </a>
+              </li>
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-hot"
+                  href="/hot"
+                  onClick={[Function]}
+                >
+                  Hot
+                </a>
+              </li>
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-created"
+                  href="/created"
+                  onClick={[Function]}
+                >
+                  New
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
     <div
-      className="sub-menu"
+      className="d-flex align-items-center ml-auto ml-md-0"
     >
-      <ul
-        className="nav nav-pills nav-fill"
+      <span
+        className="info-icon mr-0 mr-md-2"
+        onBlur={[Function]}
+        onFocus={[Function]}
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
       >
-        <li
-          className="nav-item"
+        <svg
+          viewBox="0 0 24 24"
         >
-          <a
-            className="nav-link active"
-            href="/@foo/feed"
-            onClick={[Function]}
-          >
-            Friends
-          </a>
-        </li>
-        <li
-          className="nav-item"
+          <path
+            d="M13.5,4A1.5,1.5 0 0,0 12,5.5A1.5,1.5 0 0,0 13.5,7A1.5,1.5 0 0,0 15,5.5A1.5,1.5 0 0,0 13.5,4M13.14,8.77C11.95,8.87 8.7,11.46 8.7,11.46C8.5,11.61 8.56,11.6 8.72,11.88C8.88,12.15 8.86,12.17 9.05,12.04C9.25,11.91 9.58,11.7 10.13,11.36C12.25,10 10.47,13.14 9.56,18.43C9.2,21.05 11.56,19.7 12.17,19.3C12.77,18.91 14.38,17.8 14.54,17.69C14.76,17.54 14.6,17.42 14.43,17.17C14.31,17 14.19,17.12 14.19,17.12C13.54,17.55 12.35,18.45 12.19,17.88C12,17.31 13.22,13.4 13.89,10.71C14,10.07 14.3,8.67 13.14,8.77Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+      <span
+        className="list-style-toggle"
+        onClick={[Function]}
+        title="Toggle list style"
+      >
+        <svg
+          viewBox="0 0 24 24"
         >
-          <a
-            className="nav-link"
-            href="/created/my"
-            onClick={[Function]}
-          >
-            Communities
-          </a>
-        </li>
-      </ul>
+          <path
+            d="M16,5V11H21V5M10,11H15V5H10M16,18H21V12H16M10,18H15V12H10M4,18H9V12H4M4,11H9V5H4V11Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
     </div>
   </div>
-  <span
-    className="list-style-toggle"
-    onClick={[Function]}
-    title="Toggle list style"
-  >
-    <svg
-      viewBox="0 0 24 24"
-    >
-      <path
-        d="M16,5V11H21V5M10,11H15V5H10M16,18H21V12H16M10,18H15V12H10M4,18H9V12H4M4,11H9V5H4V11Z"
-        fill="currentColor"
-      />
-    </svg>
-  </span>
 </div>
 `;
 
 exports[`(5) Active user. Communities 1`] = `
-<div
-  className="entry-index-menu"
->
+<div>
   <div
-    className="the-menu"
+    className="entry-index-menu"
   >
     <div
-      className="main-menu"
+      className="the-menu align-items-center"
     >
       <div
-        className="sm-menu"
-      >
-        <div
-          className="custom-dropdown float-left"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div
-            className="dropdown-btn"
-          >
-            <div
-              className="label"
-            >
-              Feed
-            </div>
-            <div
-              className="menu-down"
-            >
-              <svg
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M7,10L12,15L17,10H7Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        className="lg-menu"
+        className="sub-menu mt-3 mt-md-0"
       >
         <ul
           className="nav nav-pills nav-fill"
@@ -512,195 +918,444 @@ exports[`(5) Active user. Communities 1`] = `
             className="nav-item"
           >
             <a
-              className="nav-link link-feed active"
+              className="nav-link my-link"
               href="/@foo/feed"
               onClick={[Function]}
             >
-              Feed
-            </a>
-          </li>
-          <li
-            className="nav-item"
-          >
-            <a
-              className="nav-link link-trending"
-              href="/trending"
-              onClick={[Function]}
-            >
-              Trending
-            </a>
-          </li>
-          <li
-            className="nav-item"
-          >
-            <a
-              className="nav-link link-hot"
-              href="/hot"
-              onClick={[Function]}
-            >
-              Hot
-            </a>
-          </li>
-          <li
-            className="nav-item"
-          >
-            <a
-              className="nav-link link-created"
-              href="/created"
-              onClick={[Function]}
-            >
-              New
+              Friends
             </a>
           </li>
         </ul>
       </div>
+      <div
+        className="d-flex align-items-center"
+      >
+        <div
+          className="main-menu d-none d-lg-flex"
+        >
+          <div
+            className="sm-menu"
+          >
+            <div
+              className="custom-dropdown float-left"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+            >
+              <div
+                className="dropdown-btn"
+              >
+                <div
+                  className="label"
+                >
+                  Trending
+                </div>
+                <div
+                  className="menu-down"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7,10L12,15L17,10H7Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="lg-menu"
+          >
+            <ul
+              className="nav nav-pills nav-fill"
+            >
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-trending active"
+                  href="/trending"
+                  onClick={[Function]}
+                >
+                  Trending
+                </a>
+              </li>
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-hot"
+                  href="/hot"
+                  onClick={[Function]}
+                >
+                  Hot
+                </a>
+              </li>
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-created"
+                  href="/created"
+                  onClick={[Function]}
+                >
+                  New
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          className="main-menu d-flex d-lg-none"
+        >
+          <div
+            className="sm-menu"
+          >
+            <div
+              className="custom-dropdown float-left"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+            >
+              <div
+                className="dropdown-btn"
+              >
+                <div
+                  className="label"
+                >
+                  Trending
+                </div>
+                <div
+                  className="menu-down"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7,10L12,15L17,10H7Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="lg-menu"
+          >
+            <ul
+              className="nav nav-pills nav-fill"
+            >
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-feed"
+                  href="/@foo/feed"
+                  onClick={[Function]}
+                >
+                  Friends
+                </a>
+              </li>
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-trending active"
+                  href="/trending"
+                  onClick={[Function]}
+                >
+                  Trending
+                </a>
+              </li>
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-hot"
+                  href="/hot"
+                  onClick={[Function]}
+                >
+                  Hot
+                </a>
+              </li>
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-created"
+                  href="/created"
+                  onClick={[Function]}
+                >
+                  New
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          className="d-flex align-items-center ml-3 ml-md-5 border-left pl-5 custom-control custom-checkbox"
+        >
+          <input
+            checked={true}
+            className="custom-control-input"
+            disabled={false}
+            id="check-isGlobal"
+            name="isGlobal"
+            onChange={[Function]}
+            type="checkbox"
+          />
+          <label
+            className="custom-control-label"
+            htmlFor="check-isGlobal"
+            title=""
+          >
+            Global
+          </label>
+        </div>
+      </div>
     </div>
     <div
-      className="sub-menu"
+      className="d-flex align-items-center ml-auto ml-md-0"
     >
-      <ul
-        className="nav nav-pills nav-fill"
+      <span
+        className="info-icon mr-0 mr-md-2"
+        onBlur={[Function]}
+        onFocus={[Function]}
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
       >
-        <li
-          className="nav-item"
+        <svg
+          viewBox="0 0 24 24"
         >
-          <a
-            className="nav-link"
-            href="/@foo/feed"
-            onClick={[Function]}
-          >
-            Friends
-          </a>
-        </li>
-        <li
-          className="nav-item"
+          <path
+            d="M13.5,4A1.5,1.5 0 0,0 12,5.5A1.5,1.5 0 0,0 13.5,7A1.5,1.5 0 0,0 15,5.5A1.5,1.5 0 0,0 13.5,4M13.14,8.77C11.95,8.87 8.7,11.46 8.7,11.46C8.5,11.61 8.56,11.6 8.72,11.88C8.88,12.15 8.86,12.17 9.05,12.04C9.25,11.91 9.58,11.7 10.13,11.36C12.25,10 10.47,13.14 9.56,18.43C9.2,21.05 11.56,19.7 12.17,19.3C12.77,18.91 14.38,17.8 14.54,17.69C14.76,17.54 14.6,17.42 14.43,17.17C14.31,17 14.19,17.12 14.19,17.12C13.54,17.55 12.35,18.45 12.19,17.88C12,17.31 13.22,13.4 13.89,10.71C14,10.07 14.3,8.67 13.14,8.77Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+      <span
+        className="list-style-toggle"
+        onClick={[Function]}
+        title="Toggle list style"
+      >
+        <svg
+          viewBox="0 0 24 24"
         >
-          <a
-            className="nav-link active"
-            href="/created/my"
-            onClick={[Function]}
-          >
-            Communities
-          </a>
-        </li>
-      </ul>
+          <path
+            d="M16,5V11H21V5M10,11H15V5H10M16,18H21V12H16M10,18H15V12H10M4,18H9V12H4M4,11H9V5H4V11Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
     </div>
   </div>
-  <span
-    className="list-style-toggle"
-    onClick={[Function]}
-    title="Toggle list style"
-  >
-    <svg
-      viewBox="0 0 24 24"
-    >
-      <path
-        d="M16,5V11H21V5M10,11H15V5H10M16,18H21V12H16M10,18H15V12H10M4,18H9V12H4M4,11H9V5H4V11Z"
-        fill="currentColor"
-      />
-    </svg>
-  </span>
 </div>
 `;
 
 exports[`(6) No active user. Communities 1`] = `
-<div
-  className="entry-index-menu"
->
+<div>
   <div
-    className="the-menu"
+    className="entry-index-menu"
   >
     <div
-      className="main-menu"
+      className="the-menu align-items-center"
     >
       <div
-        className="sm-menu"
+        className="d-flex align-items-center"
       >
         <div
-          className="custom-dropdown float-left"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
+          className="main-menu d-none d-lg-flex"
         >
           <div
-            className="dropdown-btn"
+            className="sm-menu"
           >
             <div
-              className="label"
+              className="custom-dropdown float-left"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
-              Trending
-            </div>
-            <div
-              className="menu-down"
-            >
-              <svg
-                viewBox="0 0 24 24"
+              <div
+                className="dropdown-btn"
               >
-                <path
-                  d="M7,10L12,15L17,10H7Z"
-                  fill="currentColor"
-                />
-              </svg>
+                <div
+                  className="label"
+                >
+                  Trending
+                </div>
+                <div
+                  className="menu-down"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7,10L12,15L17,10H7Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </div>
+              </div>
             </div>
+          </div>
+          <div
+            className="lg-menu"
+          >
+            <ul
+              className="nav nav-pills nav-fill"
+            >
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-trending active"
+                  href="/trending"
+                  onClick={[Function]}
+                >
+                  Trending
+                </a>
+              </li>
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-hot"
+                  href="/hot"
+                  onClick={[Function]}
+                >
+                  Hot
+                </a>
+              </li>
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-created"
+                  href="/created"
+                  onClick={[Function]}
+                >
+                  New
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          className="main-menu d-flex d-lg-none"
+        >
+          <div
+            className="sm-menu"
+          >
+            <div
+              className="custom-dropdown float-left"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+            >
+              <div
+                className="dropdown-btn"
+              >
+                <div
+                  className="label"
+                >
+                  Trending
+                </div>
+                <div
+                  className="menu-down"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7,10L12,15L17,10H7Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="lg-menu"
+          >
+            <ul
+              className="nav nav-pills nav-fill"
+            >
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-trending active"
+                  href="/trending"
+                  onClick={[Function]}
+                >
+                  Trending
+                </a>
+              </li>
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-hot"
+                  href="/hot"
+                  onClick={[Function]}
+                >
+                  Hot
+                </a>
+              </li>
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link link-created"
+                  href="/created"
+                  onClick={[Function]}
+                >
+                  New
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
-      <div
-        className="lg-menu"
+    </div>
+    <div
+      className="d-flex align-items-center ml-auto ml-md-0"
+    >
+      <span
+        className="info-icon mr-0 mr-md-2"
+        onBlur={[Function]}
+        onFocus={[Function]}
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
       >
-        <ul
-          className="nav nav-pills nav-fill"
+        <svg
+          viewBox="0 0 24 24"
         >
-          <li
-            className="nav-item"
-          >
-            <a
-              className="nav-link link-trending active"
-              href="/trending"
-              onClick={[Function]}
-            >
-              Trending
-            </a>
-          </li>
-          <li
-            className="nav-item"
-          >
-            <a
-              className="nav-link link-hot"
-              href="/hot"
-              onClick={[Function]}
-            >
-              Hot
-            </a>
-          </li>
-          <li
-            className="nav-item"
-          >
-            <a
-              className="nav-link link-created"
-              href="/created"
-              onClick={[Function]}
-            >
-              New
-            </a>
-          </li>
-        </ul>
-      </div>
+          <path
+            d="M13.5,4A1.5,1.5 0 0,0 12,5.5A1.5,1.5 0 0,0 13.5,7A1.5,1.5 0 0,0 15,5.5A1.5,1.5 0 0,0 13.5,4M13.14,8.77C11.95,8.87 8.7,11.46 8.7,11.46C8.5,11.61 8.56,11.6 8.72,11.88C8.88,12.15 8.86,12.17 9.05,12.04C9.25,11.91 9.58,11.7 10.13,11.36C12.25,10 10.47,13.14 9.56,18.43C9.2,21.05 11.56,19.7 12.17,19.3C12.77,18.91 14.38,17.8 14.54,17.69C14.76,17.54 14.6,17.42 14.43,17.17C14.31,17 14.19,17.12 14.19,17.12C13.54,17.55 12.35,18.45 12.19,17.88C12,17.31 13.22,13.4 13.89,10.71C14,10.07 14.3,8.67 13.14,8.77Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+      <span
+        className="list-style-toggle"
+        onClick={[Function]}
+        title="Toggle list style"
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M16,5V11H21V5M10,11H15V5H10M16,18H21V12H16M10,18H15V12H10M4,18H9V12H4M4,11H9V5H4V11Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
     </div>
   </div>
-  <span
-    className="list-style-toggle"
-    onClick={[Function]}
-    title="Toggle list style"
-  >
-    <svg
-      viewBox="0 0 24 24"
-    >
-      <path
-        d="M16,5V11H21V5M10,11H15V5H10M16,18H21V12H16M10,18H15V12H10M4,18H9V12H4M4,11H9V5H4V11Z"
-        fill="currentColor"
-      />
-    </svg>
-  </span>
 </div>
 `;
