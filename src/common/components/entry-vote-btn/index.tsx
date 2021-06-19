@@ -57,6 +57,7 @@ interface VoteDialogState {
   estimated: number;
   mode: Mode;
   wrongValueUp: boolean;
+  showWarning: boolean;
   wrongValueDown: boolean;
   initialVoteValues: { up: any; down: any };
 }
@@ -69,6 +70,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     mode: this.props.downVoted ? "down" : "up",
     wrongValueUp: false,
     wrongValueDown: false,
+    showWarning: false,
     initialVoteValues: {
       up: getVoteValue("up", this.props.activeUser?.username! + '-' + this.props.entry.post_id, 100),
       down: getVoteValue("down", this.props.activeUser?.username!+ '-' + this.props.entry.post_id, -100),
@@ -136,9 +138,11 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     const { target: { id, value} } = e;
     const upSliderVal = Number(value);
     const { initialVoteValues } = this.state;
+    const { upVoted, downVoted } = this.props;
     this.setState({
       upSliderVal,
       wrongValueUp: upSliderVal === initialVoteValues.up,
+      showWarning: upSliderVal < this.state.upSliderVal && (upVoted)
     });
     const { activeUser } = this.props;
     setVoteValue("up", `${activeUser?.username!}-${id}`, upSliderVal);
@@ -151,9 +155,11 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
 
     const downSliderVal = Number(value);
     const { initialVoteValues } = this.state;
+    const { upVoted, downVoted } = this.props;
     this.setState({
       downSliderVal,
       wrongValueDown: downSliderVal === initialVoteValues.up,
+      showWarning: downSliderVal < this.state.downSliderVal && (downVoted)
     });
 
     const { activeUser } = this.props;
@@ -213,7 +219,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
   };
 
   render() {
-    const { upSliderVal, downSliderVal, mode, wrongValueUp, wrongValueDown } = this.state;
+    const { upSliderVal, downSliderVal, mode, wrongValueUp, wrongValueDown, showWarning } = this.state;
     const { entry: { post_id } } = this.props;
 
     return (
@@ -264,10 +270,16 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                 <p>Previous value is not acceptable. Vote with a different value</p>
               </div>
             )}
+            {showWarning && (
+              <div className="vote-warning">
+                <p><b>Warning: </b>Downvoting to 0 unvotes this post</p>
+              </div>
+            )}
           </>
         )}
 
         {mode === "down" && (
+          <>
           <div className="voting-controls voting-controls-down">
             <div
               className="btn-vote btn-up-vote vote-btn-lg primary-btn-vote"
@@ -304,11 +316,18 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
               <span className="btn-inner">{chevronDownSvgForSlider}</span>
             </div>
           </div>
-        )}
-        {wrongValueDown && (
+        
+          {wrongValueDown && (
           <div className="vote-error">
           <p>Previous value is not acceptable. Vote with a different value</p>
           </div>
+        )}
+        {showWarning && (
+          <div className="vote-warning">
+            <p>Downvoting to 0 unvotes this post</p>
+          </div>
+        )}
+        </>
         )}
       </>
     );
