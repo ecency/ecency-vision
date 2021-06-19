@@ -55,7 +55,11 @@
     "filter-muted": "म्यूट है",
     "filter-feed": "संभरण",
     "filter-feed-friends": "दोस्त",
-    "filter-feed-subscriptions": "समुदाय"
+    "filter-feed-subscriptions": "समुदाय",
+    "filter-global": "Global",
+    "filter-global-part1": "This feed contains ",
+    "filter-global-part2": " content on entire platform.",
+    "filter-global-part3": " content from Your communities. You can join communities that interest you to fill up this feed."
   },
   "navbar": {
     "discover": "खोजिए",
@@ -127,6 +131,8 @@
     "email": "अपना ईमेल पता दर्ज करें",
     "ref": "संदर्भित उपयोगकर्ता (वैकल्पिक)",
     "submit": "जारी रखें",
+    "validation-username": "Username is required.",
+    "validation-email": "Email is required.",
     "success": "हमने {{email}} को एक ईमेल भेजा है।",
     "success-2": "साइनअप प्रक्रिया को पूरा करने के लिए निर्देशों का पालन करें।",
     "login-text-1": "क्या आपका अकाउंट है?",
@@ -310,7 +316,7 @@
     "edit": "सेटिंग्स बदलें",
     "edit-team": "भूमिकाएं संपादित करें",
     "community-rewards": "सामुदायिक पुरस्कार",
-    "profile-image": "सामुदायिक प्रोफ़ाइल छवि",
+    "profile-image": "Profile image",
     "profile-image-edit": "प्रोफ़ाइल छवि संपादित करें",
     "profile-image-updated": "प्रोफ़ाइल छवि अपडेट हो गई!"
   },
@@ -328,7 +334,8 @@
     "lang": "भाषा",
     "description": "विवरण",
     "rules": "नियम",
-    "rules-help": "प्रति पंक्ति एक"
+    "rules-help": "प्रति पंक्ति एक",
+    "validation-title": "Title is required."
   },
   "communities": {
     "title": "समुदाय",
@@ -355,6 +362,8 @@
     "username-available": "उपलब्ध।",
     "username-not-available": "उपलब्ध नहीं है।",
     "username-wrong-format": "मान्य प्रारूप नहीं। छत्ता -1xxxxx प्रारूप की आवश्यकता है।",
+    "checkbox-validation": "Please tick this box if you want to proceed.",
+    "title-validation": "Please fill in this field.",
     "password": "मास्टर पासवर्ड",
     "confirmation": "मैंने अपने स्वामी उपयोगकर्ता नाम और पासवर्ड को सुरक्षित रूप से सहेजा है।",
     "submit": "समुदाय बनाएँ",
@@ -466,6 +475,8 @@
     "title": "निकाशी खाता",
     "account": "खाता",
     "percent": "प्रतिशत",
+    "validation-account": "Account is required.",
+    "validation-percent": "Percentage is required.",
     "auto-power-up": "स्वचालित रूप पावर उप"
   },
   "points": {
@@ -730,6 +741,8 @@
     "username": "प्रयोक्ता नाम",
     "reward": "इनाम",
     "user-error": "{{n}} वैध उपयोगकर्ता नहीं है।",
+    "validation-percentage": "Percentage is required.",
+    "validation-username": "Username is required.",
     "user-exists-error": "{{n}} पहले से सूची में है"
   },
   "post-scheduler": {
@@ -901,6 +914,9 @@
     "create-first": "अपना पहला स्निपेट बनाएं",
     "filter": "शीर्षक से खोजें",
     "form-title": "शीर्षक",
+    "validation-title": "Title is required.",
+    "validation-value": "Value is required.",
+    "validation-body": "Body is required.",
     "form-body": "बॉडी"
   },
   "password-update": {
@@ -912,12 +928,16 @@
     "error-new2": "पासवर्ड समान होना चाहिए",
     "pass-gen": "पासवर्ड तैयार करने के लिए यहां क्लिक करें",
     "label-check": "मैंने अपने जनरेट किए गए पासवर्ड को सुरक्षित रूप से सहेजा है",
+    "validation-password": "Password is invalid.",
+    "validation-label": "Please tick this box to proceed.",
     "updated": "पासवर्ड सफलतापूर्वक अपडेट किया गया!"
   },
   "add-image": {
     "title": "छवि जोड़ें",
     "text-label": "छवि पाठ",
-    "link-label": "छवि लिंक"
+    "link-label": "छवि लिंक",
+    "validation-text": "Text is required.",
+    "validation-image": "Image is required."
   },
   "add-image-mobile": {
     "title": "छवि जोड़ें",
@@ -928,7 +948,9 @@
   "add-link": {
     "title": "लिंक जोड़ें",
     "text-label": "टेक्स्ट",
-    "link-label": "https://"
+    "link-label": "https://",
+    "validation-text": "Text is required.",
+    "validation-link": "Link is required."
   },
   "scroll-to-top": {
     "title": "शीर्ष तक स्क्रॉल करें"
@@ -1077,6 +1099,7 @@
     "subscribe-paragraph": "विकेंद्रीकृत वेब में क्या हो रहा है, यह जानने के लिए पहले बनें।",
     "copy-rights": "©२०११ इसेंसी। सर्वाधिकार सुरक्षित।",
     "success-message-subscribe": "आपके ईमेल खाते पर एक सत्यापन लिंक भेज दिया गया है!",
+    "validation-email": "A valid email is required",
     "error-occured": "एक सर्वर त्रुटि हुई है।"
   }
 }
