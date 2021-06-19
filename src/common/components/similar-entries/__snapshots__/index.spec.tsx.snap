@@ -70,7 +70,7 @@ exports[`(3) Should render entries 1`] = `
           <img
             alt="Ecency Vision - No beneficiaries, Drafts, Gallery, Bookmarks"
             onError={[Function]}
-            src="https://images.ecency.com/p/qjrE4yyfw5pJD9LKQ1BG3BAmr5TYaANmrJEBZ9YMFm1JzaDyFrs2gybkt9EkQpcw34nTWFHD2XRVqvYde75Xjcbva4CmKgJf229A1udyqYXoE3PChHh5GC6a.png?format=match&mode=fit&width=600&height=500"
+            src="https://images.ecency.com/p/qjrE4yyfw5pJD9LKQ1BG3BAmr5TYaANmrJEBZ9YMFm1JzaDyFrs2gybkt9EkQpcw34nTWFHD2XRVqvYde75Xjcbva4CmKgJf229A1udyqYXoE3PChHh5GC6a?format=match&mode=fit&width=600&height=500"
           />
         </div>
         <div
@@ -107,7 +107,7 @@ exports[`(3) Should render entries 1`] = `
           <img
             alt="From Esteem Search to Hivesearcher"
             onError={[Function]}
-            src="https://images.ecency.com/p/C3TZR1g81UNbFzApDTmvFYMje8p1iesaAcNjSh7JWYRiPQRX52L6rNRZipeiaBkx9daTxCyJyVvcKo3QMC9tjfRvNzgHxYuYyj6AFmCrd98w27oav6Nh8m4.png?format=match&mode=fit&width=600&height=500"
+            src="https://images.ecency.com/p/C3TZR1g81UNbFzApDTmvFYMje8p1iesaAcNjSh7JWYRiPQRX52L6rNRZipeiaBkx9daTxCyJyVvcKo3QMC9tjfRvNzgHxYuYyj6AFmCrd98w27oav6Nh8m4?format=match&mode=fit&width=600&height=500"
           />
         </div>
         <div
