@@ -273,7 +273,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
             )}
             {showWarning && (
               <div className="vote-warning">
-                <p><b>{_t('g.warning')}: </b>{_t('entry-list-item.vote-warning')}</p>
+                <p>{_t('entry-list-item.vote-warning')}</p>
               </div>
             )}
           </>
@@ -325,7 +325,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
             )}
             {showWarning && (
               <div className="vote-warning">
-                <p><b>{_t('g.warning')}: </b>{_t('entry-list-item.vote-warning')}</p>
+                <p>{_t('entry-list-item.vote-warning')}</p>
               </div>
             )}
           </>
