@@ -20,7 +20,7 @@ exports[`(1) Default render. 1`] = `
         onClick={[Function]}
         style={
           Object {
-            "backgroundImage": "url('https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfsxYg31uVU2qaAJMbxLA5QC3UVPLuv3NgD6kUmbm4uwJEjM2p6HEJn3TeZdk26UewZU2EMYeTAuU.png?format=match&mode=fit&width=600&height=500')",
+            "backgroundImage": "url('https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfsxYg31uVU2qaAJMbxLA5QC3UVPLuv3NgD6kUmbm4uwJEjM2p6HEJn3TeZdk26UewZU2EMYeTAuU?format=match&mode=fit&width=600&height=500')",
           }
         }
       />
@@ -29,7 +29,7 @@ exports[`(1) Default render. 1`] = `
         onClick={[Function]}
         style={
           Object {
-            "backgroundImage": "url('https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmsW5UVxK6wdRfC1pbPyM9xzYn5qraeesECP66rZ9edokgbrjcFaFjLZiaf41MhwjB1wzgzXk33t.png?format=match&mode=fit&width=600&height=500')",
+            "backgroundImage": "url('https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmsW5UVxK6wdRfC1pbPyM9xzYn5qraeesECP66rZ9edokgbrjcFaFjLZiaf41MhwjB1wzgzXk33t?format=match&mode=fit&width=600&height=500')",
           }
         }
       />
@@ -38,7 +38,7 @@ exports[`(1) Default render. 1`] = `
         onClick={[Function]}
         style={
           Object {
-            "backgroundImage": "url('https://images.ecency.com/p/Zskj9C56UonZ32EJw6nMcm9UJXZFc4FvMtk6wyeAL2B2wn9sAe3xBkALEsfvhmDDq8UH7NwCDzBBoR2vndSdSHCkePRgrRjUjQGUWLjZrw3f2WethBCr.png?format=match&mode=fit&width=600&height=500')",
+            "backgroundImage": "url('https://images.ecency.com/p/Zskj9C56UonZ32EJw6nMcm9UJXZFc4FvMtk6wyeAL2B2wn9sAe3xBkALEsfvhmDDq8UH7NwCDzBBoR2vndSdSHCkePRgrRjUjQGUWLjZrw3f2WethBCr?format=match&mode=fit&width=600&height=500')",
           }
         }
       />
