@@ -55,7 +55,11 @@
     "filter-muted": "Silenciado",
     "filter-feed": "Inicio",
     "filter-feed-friends": "Amigos",
-    "filter-feed-subscriptions": "Comunidades"
+    "filter-feed-subscriptions": "Comunidades",
+    "filter-global": "Global",
+    "filter-global-part1": "Este feed contiene ",
+    "filter-global-part2": " contenido en toda la plataforma.",
+    "filter-global-part3": " contenido de tus comunidades. Puedes unirte a las comunidades que te interesen para llenar esta fuente."
   },
   "navbar": {
     "discover": "Descubrir",
@@ -127,6 +131,8 @@
     "email": "Ingresa tu dirección de email",
     "ref": "Usuario Referido (Opcional)",
     "submit": "Siguiente",
+    "validation-username": "Se requiere nombre de usuario.",
+    "validation-email": "Se requiere un correo electrónico.",
     "success": "Hemos enviado un correo electrónico a {{email}}.",
     "success-2": "Siga las instrucciones para completar el proceso de registro.",
     "login-text-1": "¿Tienes una cuenta?",
@@ -310,7 +316,7 @@
     "edit": "Editar ajustes",
     "edit-team": "Editar Roles",
     "community-rewards": "Recompensas de comunidad",
-    "profile-image": "Portada de la Comunidad",
+    "profile-image": "Imagen de perfil",
     "profile-image-edit": "Editar imagen de perfil",
     "profile-image-updated": "¡Perfil actualizado!"
   },
@@ -328,7 +334,8 @@
     "lang": "Idioma",
     "description": "Descripción",
     "rules": "Reglas",
-    "rules-help": "(uno por línea)"
+    "rules-help": "(uno por línea)",
+    "validation-title": "Se requiere un título."
   },
   "communities": {
     "title": "Comunidades",
@@ -355,6 +362,8 @@
     "username-available": "Disponible.",
     "username-not-available": "No disponible.",
     "username-wrong-format": "Formato no válido. Formato hive-1xxxxx necesario.",
+    "checkbox-validation": "Marque esta casilla si desea continuar.",
+    "title-validation": "Por favor, rellene este campo.",
     "password": "Contraseña maestra",
     "confirmation": "He guardado con seguridad mi contraseña generada.",
     "submit": "Crear comunidad",
@@ -466,6 +475,8 @@
     "title": "Cuentas de retirada",
     "account": "Cuenta",
     "percent": "Porcentaje",
+    "validation-account": "Se requiere una cuenta.",
+    "validation-percent": "Porcentaje requerido.",
     "auto-power-up": "Encender automáticamente"
   },
   "points": {
@@ -730,6 +741,8 @@
     "username": "Nombre de Usuario",
     "reward": "Recompensa",
     "user-error": "{{n}} no es un usuario válido.",
+    "validation-percentage": "Porcentaje requerido.",
+    "validation-username": "Se requiere un nombre de usuario.",
     "user-exists-error": "{{n}} ya está en la lista"
   },
   "post-scheduler": {
@@ -901,6 +914,9 @@
     "create-first": "Crea tu primer fragmento de código",
     "filter": "Buscar por título",
     "form-title": "Título",
+    "validation-title": "Se requiere un título.",
+    "validation-value": "Se requiere un valor.",
+    "validation-body": "Se requiere cuerpo del mensaje.",
     "form-body": "Cuerpo"
   },
   "password-update": {
@@ -912,12 +928,16 @@
     "error-new2": "Las contraseñas deben ser iguales",
     "pass-gen": "Haga clic para generar la contraseña",
     "label-check": "He guardado con seguridad mi contraseña generada",
+    "validation-password": "Contraseña no válida.",
+    "validation-label": "Marque esta casilla para continuar.",
     "updated": "¡Contraseña actualizada correctamente!"
   },
   "add-image": {
     "title": "Añadir imagen",
     "text-label": "Texto de la imagen",
-    "link-label": "Enlace de la imagen"
+    "link-label": "Enlace de la imagen",
+    "validation-text": "El texto es obligatorio.",
+    "validation-image": "La imagen es obligatoria."
   },
   "add-image-mobile": {
     "title": "Añadir imagen",
@@ -928,7 +948,9 @@
   "add-link": {
     "title": "Añadir enlace",
     "text-label": "Texto",
-    "link-label": "https://"
+    "link-label": "https://",
+    "validation-text": "Se requiere un texto.",
+    "validation-link": "Enlace requerido."
   },
   "scroll-to-top": {
     "title": "Ir arriba"
@@ -1077,6 +1099,7 @@
     "subscribe-paragraph": "Sé el primero en saber lo que está pasando en la web descentralizada.",
     "copy-rights": "©2021 Ecency. Todos los derechos reservados.",
     "success-message-subscribe": "¡Se ha enviado un enlace de verificación a tu cuenta de correo electrónico!",
+    "validation-email": "Se requiere un email válido",
     "error-occured": "Se ha producido un error en el servidor."
   }
 }
