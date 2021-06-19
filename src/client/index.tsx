@@ -36,11 +36,13 @@ clientStoreTasks(store);
 
 // Check & activate keychain support
 window.addEventListener("load", () => {
-    if (window.hive_keychain) {
-        window.hive_keychain.requestHandshake(() => {
-            store.dispatch(hasKeyChainAct());
-        });
-    }
+    setTimeout(() => {
+        if (window.hive_keychain) {
+            window.hive_keychain.requestHandshake(() => {
+                store.dispatch(hasKeyChainAct());
+            });
+        }
+    }, 50);
 });
 
 if (module.hot) {
