@@ -259,7 +259,7 @@ exports[`(1) Default render 1`] = `
           <option
             value="zh-CN"
           >
-            汉语 - 简体字
+            简体字
           </option>
         </select>
       </div>
