@@ -28,15 +28,15 @@
     "off": "बंद",
     "yes": "हाँ",
     "no": "नहीं",
-    "hot": "feed",
-    "trending": "feed",
-    "created": "feed",
-    "found": "found",
-    "feed": "feed",
-    "blog": "blogs",
-    "posts": "posts",
-    "comments": "comments",
-    "replies": "replies",
+    "hot": "फ़ीड",
+    "trending": "फ़ीड",
+    "created": "फ़ीड",
+    "found": "मिला",
+    "feed": "फ़ीड",
+    "blog": "ब्लॉगस",
+    "posts": "लेख",
+    "comments": "टिप्पणियाँ",
+    "replies": "जवाब",
     "done": "पूर्ण हुवा",
     "apply": "लागू करें",
     "close": "बंद करें"
@@ -56,10 +56,10 @@
     "filter-feed": "संभरण",
     "filter-feed-friends": "दोस्त",
     "filter-feed-subscriptions": "समुदाय",
-    "filter-global": "Global",
-    "filter-global-part1": "This feed contains ",
-    "filter-global-part2": " content on entire platform.",
-    "filter-global-part3": " content from Your communities. You can join communities that interest you to fill up this feed."
+    "filter-global": "ग्लोबल",
+    "filter-global-part1": "इस फ़ीड में शामिल हैं ",
+    "filter-global-part2": " पूरे मंच पर सामग्री।",
+    "filter-global-part3": " आपके समुदायों की सामग्री। आप इस फ़ीड को भरने के लिए रुचि रखने वाले समुदायों से जुड़ सकते हैं।"
   },
   "navbar": {
     "discover": "खोजिए",
@@ -77,8 +77,8 @@
     "header-community": "समुदाय"
   },
   "tag": {
-    "unmoderated": "Unmoderated topics",
-    "moderated": "Moderated community"
+    "unmoderated": "अनियंत्रित विषय",
+    "moderated": "मॉडरेट किया गया समुदाय"
   },
   "switch-lang": {
     "contributors": "योगदानकर्ता"
@@ -131,8 +131,8 @@
     "email": "अपना ईमेल पता दर्ज करें",
     "ref": "संदर्भित उपयोगकर्ता (वैकल्पिक)",
     "submit": "जारी रखें",
-    "validation-username": "Username is required.",
-    "validation-email": "Email is required.",
+    "validation-username": "यूज़रनेम आवश्यक है",
+    "validation-email": "ईमेल जरुरी है।",
     "success": "हमने {{email}} को एक ईमेल भेजा है।",
     "success-2": "साइनअप प्रक्रिया को पूरा करने के लिए निर्देशों का पालन करें।",
     "login-text-1": "क्या आपका अकाउंट है?",
@@ -252,8 +252,8 @@
     "comment-entry-title": "आप किसी एकल टिप्पणी के सूत्र को देख रहे हैं: ",
     "comment-entry-go-root": "पूरा संदर्भ देखें",
     "comment-entry-go-parent": "सीधा मूल जनक को देखें",
-    "hidden-warning": "This content got low rating by people. Proceed with caution.",
-    "muted-warning": "This content was muted by {{community}} moderators for not following community guidelines.",
+    "hidden-warning": "इस सामग्री को लोगों द्वारा कम रेटिंग मिली है। सावधानी के साथ आगे बढ़ें।",
+    "muted-warning": "इस सामग्री को {{community}} मॉडरेटर द्वारा सामुदायिक दिशानिर्देशों का पालन न करने के कारण म्यूट कर दिया गया था।",
     "address-copy": "पोस्ट पता कापी करे",
     "address-copied": "क्लिपबोर्ड पर पोस्ट पता कॉपी किया गया।",
     "browse-original": "मूल पोस्ट खोलें",
@@ -316,7 +316,7 @@
     "edit": "सेटिंग्स बदलें",
     "edit-team": "भूमिकाएं संपादित करें",
     "community-rewards": "सामुदायिक पुरस्कार",
-    "profile-image": "Profile image",
+    "profile-image": "प्रोफ़ाइल तसवीर",
     "profile-image-edit": "प्रोफ़ाइल छवि संपादित करें",
     "profile-image-updated": "प्रोफ़ाइल छवि अपडेट हो गई!"
   },
@@ -335,7 +335,7 @@
     "description": "विवरण",
     "rules": "नियम",
     "rules-help": "प्रति पंक्ति एक",
-    "validation-title": "Title is required."
+    "validation-title": "शीर्षक आवश्यक है।"
   },
   "communities": {
     "title": "समुदाय",
@@ -362,8 +362,8 @@
     "username-available": "उपलब्ध।",
     "username-not-available": "उपलब्ध नहीं है।",
     "username-wrong-format": "मान्य प्रारूप नहीं। छत्ता -1xxxxx प्रारूप की आवश्यकता है।",
-    "checkbox-validation": "Please tick this box if you want to proceed.",
-    "title-validation": "Please fill in this field.",
+    "checkbox-validation": "अगर आप आगे बढ़ना चाहते हैं तो कृपया इस बॉक्स को चेक करें।",
+    "title-validation": "कृपया इस फील्ड को भरें",
     "password": "मास्टर पासवर्ड",
     "confirmation": "मैंने अपने स्वामी उपयोगकर्ता नाम और पासवर्ड को सुरक्षित रूप से सहेजा है।",
     "submit": "समुदाय बनाएँ",
@@ -416,9 +416,9 @@
     "rc-power": "संसाधन क्रेडिट: {{n}}%",
     "recharge-time": "(पूर्णतःउर्जित {{n}})",
     "down-vote-power": "डाउनवोट पावर: {{n}}%",
-    "no-posts": "Here you will see your posts, looks like no content exists.",
-    "create-posts": "Let's create a new post",
-    "no-posts-found": "Found nothing!"
+    "no-posts": "यहां आप अपनी पोस्ट देखेंगे, ऐसा लगता है कि कोई सामग्री मौजूद नहीं है।",
+    "create-posts": "आइए एक नई पोस्ट बनाएं",
+    "no-posts-found": "कुछ भी नहीं मिला!"
   },
   "profile-edit": {
     "title": "रूपरेखा",
@@ -475,8 +475,8 @@
     "title": "निकाशी खाता",
     "account": "खाता",
     "percent": "प्रतिशत",
-    "validation-account": "Account is required.",
-    "validation-percent": "Percentage is required.",
+    "validation-account": "खाते की आवश्यकता है।",
+    "validation-percent": "प्रतिशत आवश्यक है।",
     "auto-power-up": "स्वचालित रूप पावर उप"
   },
   "points": {
@@ -741,8 +741,8 @@
     "username": "प्रयोक्ता नाम",
     "reward": "इनाम",
     "user-error": "{{n}} वैध उपयोगकर्ता नहीं है।",
-    "validation-percentage": "Percentage is required.",
-    "validation-username": "Username is required.",
+    "validation-percentage": "प्रतिशत आवश्यक है।",
+    "validation-username": "यूज़रनेम आवश्यक है",
     "user-exists-error": "{{n}} पहले से सूची में है"
   },
   "post-scheduler": {
@@ -914,9 +914,9 @@
     "create-first": "अपना पहला स्निपेट बनाएं",
     "filter": "शीर्षक से खोजें",
     "form-title": "शीर्षक",
-    "validation-title": "Title is required.",
-    "validation-value": "Value is required.",
-    "validation-body": "Body is required.",
+    "validation-title": "शीर्षक आवश्यक है।",
+    "validation-value": "मान आवश्यक है",
+    "validation-body": "शरीर की आवश्यकता है।",
     "form-body": "बॉडी"
   },
   "password-update": {
@@ -928,16 +928,16 @@
     "error-new2": "पासवर्ड समान होना चाहिए",
     "pass-gen": "पासवर्ड तैयार करने के लिए यहां क्लिक करें",
     "label-check": "मैंने अपने जनरेट किए गए पासवर्ड को सुरक्षित रूप से सहेजा है",
-    "validation-password": "Password is invalid.",
-    "validation-label": "Please tick this box to proceed.",
+    "validation-password": "पासवर्ड गलत है।",
+    "validation-label": "आगे बढ़ने के लिए कृपया इस बॉक्स को चेक करें।",
     "updated": "पासवर्ड सफलतापूर्वक अपडेट किया गया!"
   },
   "add-image": {
     "title": "छवि जोड़ें",
     "text-label": "छवि पाठ",
     "link-label": "छवि लिंक",
-    "validation-text": "Text is required.",
-    "validation-image": "Image is required."
+    "validation-text": "टेक्स्ट आवश्यक है",
+    "validation-image": "छवि की आवश्यकता है।"
   },
   "add-image-mobile": {
     "title": "छवि जोड़ें",
@@ -949,8 +949,8 @@
     "title": "लिंक जोड़ें",
     "text-label": "टेक्स्ट",
     "link-label": "https://",
-    "validation-text": "Text is required.",
-    "validation-link": "Link is required."
+    "validation-text": "टेक्स्ट आवश्यक है",
+    "validation-link": "लिंक आवश्यक है।"
   },
   "scroll-to-top": {
     "title": "शीर्ष तक स्क्रॉल करें"
@@ -1099,7 +1099,7 @@
     "subscribe-paragraph": "विकेंद्रीकृत वेब में क्या हो रहा है, यह जानने के लिए पहले बनें।",
     "copy-rights": "©२०११ इसेंसी। सर्वाधिकार सुरक्षित।",
     "success-message-subscribe": "आपके ईमेल खाते पर एक सत्यापन लिंक भेज दिया गया है!",
-    "validation-email": "A valid email is required",
+    "validation-email": "एक मान्य ईमेल पते की आवश्यक है।",
     "error-occured": "एक सर्वर त्रुटि हुई है।"
   }
 }
