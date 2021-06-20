@@ -45,7 +45,7 @@ export const langOptions = [
     },
     {
         code: "zh-CN",
-        name: "汉语 - 简体字"
+        name: "简体字"
     }
 ];
 
