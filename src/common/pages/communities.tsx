@@ -402,7 +402,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
         try {
             await keychain.addAccount(username, {
                 active: keys.activeKey.toString(),
-                posting: keys.activeKey.toString(),
+                posting: keys.postingKey.toString(),
                 memo: keys.memoKey.toString()
             });
         } catch (e) {
