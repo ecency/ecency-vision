@@ -135,3 +135,30 @@
   border-width: 0 0.4rem 0.4rem;
   border-bottom-color: #c2d4f5;
 }
+
+.flash {
+  -webkit-box-shadow: 0 0 15px $white;
+  box-shadow: 0 0 30px $white;
+  z-index: 2;
+  border-radius: 24px;
+}
+
+.intro-popup {
+    position: absolute;
+    height: 300px;
+    width: 300px;
+    background-color: $white;
+    left: 50%;
+    top: 100px;
+}
+
+.intro-popup:before {
+  border-left: 0px solid $transparent;
+  border-right: 43px solid $transparent;
+  border-bottom: 83px solid $white;
+  content: '';
+  position: absolute;
+  top: -70px;
+  margin-left: 17%;
+  transform: rotateZ(-15deg);
+}

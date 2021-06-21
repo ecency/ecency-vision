@@ -13,7 +13,7 @@ import ListStyleToggle from "../list-style-toggle";
 import {_t} from "../../i18n";
 
 import _c from "../../util/fix-class-names"
-import { Form, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Form, } from "react-bootstrap";
 import { informationVariantSvg } from "../../img/svg";
 
 interface Props {
@@ -25,6 +25,7 @@ interface Props {
 
 interface States {
     isGlobal: boolean;
+    introduction: string[];
 }
 
 export const isMyPage = (global: Global, activeUser: ActiveUser | null) => {
@@ -49,7 +50,7 @@ export class EntryIndexMenu extends Component<Props, States> {
         if(activeUser && isActiveUser(activeUser) && pathname.includes(activeUser.username)){
             isGlobal = false;
         }
-        this.state={ isGlobal };
+        this.state = { isGlobal, introduction: [] };
         this.onChangeGlobal = this.onChangeGlobal.bind(this)
     }
 
@@ -88,7 +89,7 @@ export class EntryIndexMenu extends Component<Props, States> {
 
     render() {
         const { activeUser, global } = this.props;
-        const { isGlobal } = this.state;
+        const { isGlobal, introduction } = this.state;
         const { filter } = global;
         const isMy = isMyPage(global, activeUser);
         const isActive = isActiveUser(activeUser);
@@ -124,13 +125,15 @@ export class EntryIndexMenu extends Component<Props, States> {
                         <div className="the-menu align-items-center">
                         {isActive &&
                             <div className="sub-menu mt-3 mt-md-0">
-                                <ul className="nav nav-pills nav-fill">
+                                <ul className={`nav nav-pills position-relative nav-fill ${introduction.includes('feed') ? "flash" : ""}`}>
                                     <li className="nav-item">
                                         <Link to={`/@${activeUser?.username}/feed`} className={_c(`nav-link my-link ${filter === "feed" ? "active" : ""}`)}>
                                             {_t("entry-filter.filter-feed-friends")}
                                         </Link>
                                     </li>
+                                    <div className="intro-popup"></div>
                                 </ul>
+                                {introduction.includes('feed') && <div style={{backgroundColor:'rgb(0 0 0 / 48%)', position:'absolute',inset:0}}></div>}
                             </div>
                         }
                         <div className='d-flex align-items-center'>
@@ -180,7 +183,14 @@ export class EntryIndexMenu extends Component<Props, States> {
                             </div>
                         </div>
                         <div className="d-flex align-items-center ml-auto ml-md-0">
-                            <OverlayTrigger
+                            <span className="info-icon mr-0 mr-md-2"
+                                onClick={() => 
+                                    this.setState({ introduction: Array.from(new Set([...this.state.introduction, filter])) })
+                                }
+                            >
+                                {informationVariantSvg}
+                            </span>
+                            {/* <OverlayTrigger
                                 delay={{ show: 0, hide: 1500 }}
                                 key={'bottom'}
                                 placement={'bottom'}
@@ -196,7 +206,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                                 }
                                 >
                                 <span className="info-icon mr-0 mr-md-2">{informationVariantSvg}</span>
-                            </OverlayTrigger>
+                            </OverlayTrigger> */}
                             <ListStyleToggle global={this.props.global} toggleListStyle={this.props.toggleListStyle}/>
                         </div>
                     </div>
