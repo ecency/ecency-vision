@@ -25,9 +25,17 @@ interface Props {
     toggleListStyle: () => void;
 }
 
+enum IntroductionType {
+    FRIENDS = 'FRIENDS',
+    TRENDING = 'TRENDING',
+    HOT = 'HOT',
+    NEW = 'NEW',
+    NONE = "NONE"
+}
+
 interface States {
     isGlobal: boolean;
-    introduction: string[];
+    introduction:  IntroductionType;
 }
 
 export const isMyPage = (global: Global, activeUser: ActiveUser | null) => {
@@ -47,12 +55,11 @@ export class EntryIndexMenu extends Component<Props, States> {
     constructor(props:Props){
         super(props)
         const { activeUser, history: { location: { pathname} }, global } = props;
-        const { tag } = global;
         let isGlobal = !pathname.includes('/my');
         if(activeUser && isActiveUser(activeUser) && pathname.includes(activeUser.username)){
             isGlobal = false;
         }
-        this.state = { isGlobal, introduction: [] };
+        this.state = { isGlobal, introduction: IntroductionType.NONE };
         this.onChangeGlobal = this.onChangeGlobal.bind(this)
     }
 
@@ -122,24 +129,24 @@ export class EntryIndexMenu extends Component<Props, States> {
             active: filter === 'feed',
             id: 'feed'
         }, ...menuConfig.items]}
-
+debugger
         return <div>
-                    {introduction.length > 0 &&  <div className="overlay"></div>}
+                    {introduction !== IntroductionType.NONE &&  <div className="overlay"></div>}
                     <div className="entry-index-menu">
                         <div className="the-menu align-items-center">
                         {isActive &&
                             <div className="sub-menu mt-3 mt-md-0">
-                                <ul className={`nav nav-pills position-relative nav-fill ${introduction.includes('feed') ? "flash" : ""}`}>
+                                <ul className={`nav nav-pills position-relative nav-fill ${introduction !== null && introduction === IntroductionType.FRIENDS ? "flash" : ""}`}>
                                     <li className="nav-item">
                                         <Link to={`/@${activeUser?.username}/feed`} className={_c(`nav-link my-link ${filter === "feed" ? "active" : ""}`)}>
                                             {_t("entry-filter.filter-feed-friends")}
                                         </Link>
                                     </li>
-                                {introduction.includes('feed') && 
+                                {introduction !== IntroductionType.NONE  && introduction === IntroductionType.FRIENDS && 
                                     <Introduction
                                         title={_t('entry-filter.filter-trending')}
                                         media={OurVision}
-                                        onClose={() => this.setState({introduction:[]})}
+                                        onClose={() => this.setState({introduction: IntroductionType.NONE})}
                                         description={<>{_t('entry-filter.filter-global-part1')}
                                         <span className="text-capitalize">
                                             {_t(`entry-filter.filter-${filter === 'feed' ? "trending" : filter}`)}
@@ -159,12 +166,42 @@ export class EntryIndexMenu extends Component<Props, States> {
                                     <DropDown {...menuConfig} float="left"/>
                                 </div>
                                 <div className="lg-menu">
-                                    <ul className="nav nav-pills nav-fill">
+                                    <ul className="nav nav-pills position-relative nav-fill">
                                         {menuConfig.items.map((i, k) => {
                                             return <li key={k} className="nav-item">
                                                 <Link to={i.href!} className={_c(`nav-link link-${i.id} ${i.active ? "active" : ""}`)}>{i.label}</Link>
                                             </li>
                                         })}
+                                        {introduction !== IntroductionType.NONE && introduction !== IntroductionType.FRIENDS && (introduction === IntroductionType.HOT || introduction === IntroductionType.TRENDING || introduction === IntroductionType.NEW) &&
+                                    <Introduction
+                                        title={_t(`entry-filter.filter-${filter}`)}
+                                        media={OurVision}
+                                        onNext={() => {
+                                            let value = introduction;
+                                            switch(value){
+                                                case IntroductionType.TRENDING:
+                                                    value = IntroductionType.HOT;
+                                                    break;
+                                                case IntroductionType.HOT:
+                                                    value = IntroductionType.NEW;
+                                                    break;
+                                                case IntroductionType.NEW:
+                                                    value = IntroductionType.NONE;
+                                                    break;
+                                                default:
+                                                    return null;
+                                            } 
+                                            this.setState({ introduction: value })}}
+                                        // onPrevious={() => this.setState({ introduction: introduction !== null ? introduction === IntroductionType.ZERO ? null : introduction - 1 === })}
+                                        onClose={() => this.setState({ introduction: IntroductionType.NONE })}
+                                        description={<>{_t('entry-filter.filter-global-part1')}
+                                        <span className="text-capitalize">
+                                            {_t(`entry-filter.filter-${filter === 'feed' ? "trending" : filter}`)}
+                                        </span>
+                                        {(isGlobal || filter === "feed") ? _t('entry-filter.filter-global-part2') : _t('entry-filter.filter-global-part3')} 
+                                        {!isGlobal && filter !== "feed" && <Link to='/communities'> {_t('discussion.btn-join')}</Link>}<Link to='/communities'> {_t('discussion.btn-join')} {_t('communities.title')}</Link></>}
+                                    />
+                                }
                                     </ul>
                                 </div>
                             </div>
@@ -201,7 +238,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                         <div className="d-flex align-items-center ml-auto ml-md-0">
                             <span className="info-icon mr-0 mr-md-2"
                                 onClick={() => 
-                                    this.setState({ introduction: Array.from(new Set([...this.state.introduction, filter])) })
+                                    this.setState({ introduction: filter === 'feed' ? IntroductionType.FRIENDS : filter === 'trending' ? IntroductionType.TRENDING : filter === 'hot' ? IntroductionType.HOT : filter === 'created' ? IntroductionType.NEW : IntroductionType.NONE })
                                 }
                             >
                                 {informationVariantSvg}
