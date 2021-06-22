@@ -96,6 +96,26 @@ export class EntryIndexMenu extends Component<Props, States> {
         }
     }
 
+
+   getPopupTitle(){
+        let value = '';
+        switch(this.state.introduction){
+            case IntroductionType.TRENDING:
+                value = 'filter-trending';
+                break;
+            case IntroductionType.HOT:
+                value = 'filter-hot';
+                break;
+            case IntroductionType.NEW:
+                value = 'filter-created';
+                break;
+            default:
+                value = value;
+
+            }
+        return _t(`entry-filter.${value}`)
+}
+
     render() {
         const { activeUser, global } = this.props;
         const { isGlobal, introduction } = this.state;
@@ -144,7 +164,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                                     </li>
                                 {introduction !== IntroductionType.NONE  && introduction === IntroductionType.FRIENDS && 
                                     <Introduction
-                                        title={_t('entry-filter.filter-trending')}
+                                        title={_t('entry-filter.filter-feed-friends')}
                                         media={OurVision}
                                         onNext={() => {
                                             let value = IntroductionType.TRENDING;
@@ -157,7 +177,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                                         onClose={() => this.setState({introduction: IntroductionType.NONE})}
                                         description={<>{_t('entry-filter.filter-global-part1')}
                                         <span className="text-capitalize">
-                                            {_t(`entry-filter.filter-${filter === 'feed' ? "trending" : filter}`)}
+                                            {_t(`entry-filter.filter-feed-friends`)}
                                         </span>
                                         {(isGlobal || filter === "feed") ? _t('entry-filter.filter-global-part2') : _t('entry-filter.filter-global-part3')} 
                                         {!isGlobal && filter !== "feed" && <Link to='/communities'> {_t('discussion.btn-join')}</Link>}<Link to='/communities'> {_t('discussion.btn-join')} {_t('communities.title')}</Link></>}
@@ -182,7 +202,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                                         })}
                                         {introduction !== IntroductionType.NONE && introduction !== IntroductionType.FRIENDS && (introduction === IntroductionType.HOT || introduction === IntroductionType.TRENDING || introduction === IntroductionType.NEW) &&
                                     <Introduction
-                                        title={_t(`entry-filter.filter-${filter}`)}
+                                        title={this.getPopupTitle()}
                                         media={OurVision}
                                         onNext={() => {
                                             let value = introduction;
