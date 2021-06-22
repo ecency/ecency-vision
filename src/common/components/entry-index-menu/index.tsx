@@ -129,7 +129,7 @@ export class EntryIndexMenu extends Component<Props, States> {
             active: filter === 'feed',
             id: 'feed'
         }, ...menuConfig.items]}
-debugger
+
         return <div>
                     {introduction !== IntroductionType.NONE &&  <div className="overlay"></div>}
                     <div className="entry-index-menu">
@@ -146,6 +146,14 @@ debugger
                                     <Introduction
                                         title={_t('entry-filter.filter-trending')}
                                         media={OurVision}
+                                        onNext={() => {
+                                            let value = IntroductionType.TRENDING;
+                                            this.setState({ introduction: value })}
+                                        }
+                                        onPrevious={() => {
+                                            let value = IntroductionType.NONE;
+                                            this.setState({ introduction: value })}
+                                        }
                                         onClose={() => this.setState({introduction: IntroductionType.NONE})}
                                         description={<>{_t('entry-filter.filter-global-part1')}
                                         <span className="text-capitalize">
@@ -189,10 +197,27 @@ debugger
                                                     value = IntroductionType.NONE;
                                                     break;
                                                 default:
-                                                    return null;
+                                                    value = value;
                                             } 
-                                            this.setState({ introduction: value })}}
-                                        // onPrevious={() => this.setState({ introduction: introduction !== null ? introduction === IntroductionType.ZERO ? null : introduction - 1 === })}
+                                            this.setState({ introduction: value })}
+                                        }
+                                        onPrevious={() => {
+                                            let value = introduction;
+                                            switch(value){
+                                                case IntroductionType.NEW:
+                                                    value = IntroductionType.HOT;
+                                                    break;
+                                                case IntroductionType.HOT:
+                                                    value = IntroductionType.TRENDING;
+                                                    break;
+                                                case IntroductionType.TRENDING:
+                                                    value = IntroductionType.FRIENDS;
+                                                    break;
+                                                default:
+                                                    value = value;
+                                            } 
+                                            this.setState({ introduction: value })}
+                                        }
                                         onClose={() => this.setState({ introduction: IntroductionType.NONE })}
                                         description={<>{_t('entry-filter.filter-global-part1')}
                                         <span className="text-capitalize">
