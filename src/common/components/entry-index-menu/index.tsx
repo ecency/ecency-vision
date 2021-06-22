@@ -13,9 +13,10 @@ import ListStyleToggle from "../list-style-toggle";
 import {_t} from "../../i18n";
 
 import _c from "../../util/fix-class-names"
-import { Col, Container, Form, Row, Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { informationVariantSvg } from "../../img/svg";
 import { apiBase } from "../../api/helper";
+import { Introduction } from "../introduction";
 
 interface Props {
     history: History;
@@ -123,6 +124,7 @@ export class EntryIndexMenu extends Component<Props, States> {
         }, ...menuConfig.items]}
 
         return <div>
+                    {introduction.length > 0 &&  <div className="overlay"></div>}
                     <div className="entry-index-menu">
                         <div className="the-menu align-items-center">
                         {isActive &&
@@ -133,37 +135,21 @@ export class EntryIndexMenu extends Component<Props, States> {
                                             {_t("entry-filter.filter-feed-friends")}
                                         </Link>
                                     </li>
-                                    <div className="intro-popup">
-                                        <Container className="h-100">
-                                            <Row className="justify-content-end mt-2">
-                                                <Col xs={1}>
-                                                    <button type="button" className="close" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </Col>
-                                            </Row>
-                                            <Row className="justify-content-center h-100 align-items-center">
-                                                <Col xs={12} md={3}>
-                                                    <img width="100%" src={OurVision} />
-                                                </Col>
-                                                <Col xs={12} md={5}>
-                                                    <h1 className="mb-4 text-dark font-weight-bold">{_t('entry-filter.filter-trending')}</h1>
-                                                    <p className="text-muted paragraph">{_t('entry-filter.filter-global-part1')}
-                                                    <span className="text-capitalize">
-                                                        {_t(`entry-filter.filter-${filter === 'feed' ? "trending" : filter}`)}
-                                                    </span>
-                                                    {(isGlobal || filter === "feed") ? _t('entry-filter.filter-global-part2') : _t('entry-filter.filter-global-part3')} 
-                                                    {!isGlobal && filter !== "feed" && <Link to='/communities'> {_t('discussion.btn-join')}</Link>}<Link to='/communities'> {_t('discussion.btn-join')} {_t('communities.title')}</Link></p>
-                                                    <div className='d-flex'>
-                                                        <Button variant="outline-primary" className="mr-3">{_t('g.previous')}</Button>
-                                                        <Button variant="primary">{_t('g.next')}</Button>
-                                                    </div>
-                                                </Col>
-                                            </Row>
-                                        </Container>
-                                    </div>
-                                </ul>
-                                {introduction.includes('feed') && <div className="overlay"></div>}
+                                {introduction.includes('feed') && 
+                                    <Introduction
+                                        title={_t('entry-filter.filter-trending')}
+                                        media={OurVision}
+                                        onClose={() => this.setState({introduction:[]})}
+                                        description={<>{_t('entry-filter.filter-global-part1')}
+                                        <span className="text-capitalize">
+                                            {_t(`entry-filter.filter-${filter === 'feed' ? "trending" : filter}`)}
+                                        </span>
+                                        {(isGlobal || filter === "feed") ? _t('entry-filter.filter-global-part2') : _t('entry-filter.filter-global-part3')} 
+                                        {!isGlobal && filter !== "feed" && <Link to='/communities'> {_t('discussion.btn-join')}</Link>}<Link to='/communities'> {_t('discussion.btn-join')} {_t('communities.title')}</Link></>}
+                                    />
+                                }
+                                  </ul>
+                                  
                             </div>
                         }
                         <div className='d-flex align-items-center'>
