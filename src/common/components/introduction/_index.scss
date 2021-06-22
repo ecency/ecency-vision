@@ -1,0 +1,49 @@
+.flash {
+    -webkit-box-shadow: 0 2px 24px $white;
+    box-shadow: 0px 2px 24px $white;
+    z-index: 5;
+    border-radius: 24px;
+}
+  
+.intro-popup {
+    position: absolute;
+    height: 55vh;
+    width: 55vw;
+    background-color: $white;
+    left: 50%;
+    top: 100px;
+    z-index: 5;
+}
+  
+.intro-popup:before {
+    border-left: 0px solid $transparent;
+    border-right: 43px solid $transparent;
+    border-bottom: 83px solid $white;
+    content: '';
+    position: absolute;
+    top: -70px;
+    margin-left: 5%;
+    transform: rotateZ(-15deg);
+}
+  
+.overlay {
+    background-color: rgba(0, 0, 0, 0.48);
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+}
+  
+.paragraph {
+    font-weight: 300;
+    margin-bottom: 35px;
+    line-height: 26px;
+}
+
+.close-btn {
+    right: 14px;
+    top: 7px;
+}
+
+.intro-btn {
+    border-radius: 25px !important;
+}
