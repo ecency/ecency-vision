@@ -39,6 +39,7 @@
     "replies": "odpowiedzi",
     "done": "Zakończono",
     "apply": "Zastosuj",
+    "warning": "Warning",
     "close": "Zamknij"
   },
   "confirm": {
@@ -152,6 +153,8 @@
     "pinned": "Przypięty post",
     "replies": "1 odpowiedź. Kliknij aby odpowiedzieć.",
     "replies-n": "{{n}} odpowiedzi. Kliknij aby odpowiedzieć.",
+    "vote-error": "Previous value is not acceptable. Vote with a different value.",
+    "vote-warning": "Voting 0% unvotes the content.",
     "no-replies": "Brak odpowiedzi. Kliknij aby odpowiedzieć."
   },
   "nsfw": {
