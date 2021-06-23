@@ -11,7 +11,7 @@ import DropDown, {MenuItem} from "../dropdown";
 import ListStyleToggle from "../list-style-toggle";
 
 import {_t} from "../../i18n";
-
+import * as ls from "../../util/local-storage";
 import _c from "../../util/fix-class-names"
 import { Form } from "react-bootstrap";
 import { informationVariantSvg } from "../../img/svg";
@@ -59,7 +59,12 @@ export class EntryIndexMenu extends Component<Props, States> {
         if(activeUser && isActiveUser(activeUser) && pathname.includes(activeUser.username)){
             isGlobal = false;
         }
-        this.state = { isGlobal, introduction: global.intro ? IntroductionType.FRIENDS : IntroductionType.NONE };
+        let showInitialIntroductionJourney = activeUser && isActiveUser(activeUser) && ls.get(`${activeUser.username}HadTutorial`);
+        if(activeUser && isActiveUser(activeUser) && (showInitialIntroductionJourney==='false' || showInitialIntroductionJourney===null)){
+            showInitialIntroductionJourney = true;
+            ls.set(`${activeUser.username}HadTutorial`, 'true');
+        }
+        this.state = { isGlobal, introduction: showInitialIntroductionJourney === true ? IntroductionType.FRIENDS : IntroductionType.NONE };
         this.onChangeGlobal = this.onChangeGlobal.bind(this)
     }
 
@@ -75,13 +80,15 @@ export class EntryIndexMenu extends Component<Props, States> {
 
     componentDidUpdate(prevProps: Props){
         const { history, activeUser, global: { tag, filter } } = this.props;
-
+        
         if(history.location.pathname.includes('/my') && !isActiveUser(activeUser)){
             history.push(history.location.pathname.replace('/my', ''))
         }
         else if(!isActiveUser(prevProps.activeUser) !== !isActiveUser(activeUser) && filter !== 'feed'){
             this.setState({isGlobal: tag.length > 0});
-            history.push(history.location.pathname + (tag.length > 0 ? "" : '/my'));
+            let path = history.location.pathname + (tag.length > 0 ? "" : '/');
+            path = path.replace('//',"/");
+            history.push(path);
         }
         else if(prevProps.global.tag !== tag && filter !== 'feed' && tag !== ""){
             let isGlobal = tag !== "my"
@@ -93,6 +100,14 @@ export class EntryIndexMenu extends Component<Props, States> {
                 history.push(history.location.pathname + '/my');
                 this.setState({ isGlobal })
             }
+        }
+
+        let showInitialIntroductionJourney = activeUser && isActiveUser(activeUser) && ls.get(`${activeUser.username}HadTutorial`);
+        if(prevProps.activeUser !==activeUser && activeUser && isActiveUser(activeUser) && (showInitialIntroductionJourney==='false' || showInitialIntroductionJourney===null)){
+            
+            showInitialIntroductionJourney = true;
+            ls.set(`${activeUser.username}HadTutorial`, 'true');
+            this.setState({introduction: showInitialIntroductionJourney ? IntroductionType.FRIENDS : IntroductionType.NONE})
         }
     }
 
