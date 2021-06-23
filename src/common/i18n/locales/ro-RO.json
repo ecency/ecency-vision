@@ -428,6 +428,7 @@
     "profile-image": "Imaginea de profil",
     "website": "Website",
     "location": "Locație",
+    "copied": "Referral link copied to clipboard.",
     "updated": "Profilul a fost actualizat cu succes!"
   },
   "image-upload-button": {
@@ -439,6 +440,7 @@
     "currency": "Monedă",
     "language": "Limbă",
     "nsfw": "Show NSFW content",
+    "referral-link": "Referral link",
     "updated": "Preferințe actualizate!"
   },
   "wallet": {
