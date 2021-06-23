@@ -39,7 +39,7 @@
     "replies": "respuestas",
     "done": "Completado",
     "apply": "Aplicar",
-    "warning": "Warning",
+    "warning": "Advertencia",
     "close": "Cerrar"
   },
   "confirm": {
@@ -153,8 +153,8 @@
     "pinned": "Publicación fijada",
     "replies": "1 respuesta. Haga clic para responder.",
     "replies-n": "{{n}} respuestas. Haga clic para responder.",
-    "vote-error": "Previous value is not acceptable. Vote with a different value.",
-    "vote-warning": "Voting 0% unvotes the content.",
+    "vote-error": "El valor anterior no es aceptable. Votar con un valor diferente.",
+    "vote-warning": "Votar 0% desvota el contenido.",
     "no-replies": "Aún no hay respuestas. Haga clic para responder."
   },
   "nsfw": {
@@ -431,7 +431,7 @@
     "profile-image": "Imagen de perfil",
     "website": "Página Web",
     "location": "Localización",
-    "copied": "Referral link copied to clipboard.",
+    "copied": "El enlace de referencia se ha copiado en el portapapeles.",
     "updated": "¡Perfil actualizado exitosamente!"
   },
   "image-upload-button": {
@@ -443,7 +443,7 @@
     "currency": "Divisa",
     "language": "Idioma",
     "nsfw": "Mostrar contenido NSFW",
-    "referral-link": "Referral link",
+    "referral-link": "Enlace de referencia",
     "updated": "Preferencias actualizadas!"
   },
   "wallet": {
@@ -938,12 +938,12 @@
     "updated": "¡Contraseña actualizada correctamente!"
   },
   "view-keys": {
-    "title": "View Private keys",
-    "account": "Account",
-    "cur-pass": "Current password",
-    "owner": "Owner",
-    "active": "Active",
-    "posting": "Posting",
+    "title": "Ver claves privadas",
+    "account": "Cuenta",
+    "cur-pass": "Contraseña actual",
+    "owner": "Propietario",
+    "active": "Activa",
+    "posting": "Publicación",
     "memo": "Memo",
     "view-keys": "Click to view keys",
     "copied": "Private key copied into clipboard",
