@@ -39,6 +39,7 @@
     "replies": "replies",
     "done": "Done",
     "apply": "Apply",
+    "warning": "Warning",
     "close": "Close"
   },
   "confirm": {
@@ -152,6 +153,8 @@
     "pinned": "Prisegtas Įrašas",
     "replies": "1 atsakymas. Spauskite, jeigu norite atsakyti.",
     "replies-n": "{{n}} atsakymų. Spauskite, jeigu norite atsakyti.",
+    "vote-error": "Previous value is not acceptable. Vote with a different value.",
+    "vote-warning": "Voting 0% unvotes the content.",
     "no-replies": "Jokių atsakymų kolkas. Spauskite, jeigu norite atsakyti."
   },
   "nsfw": {
