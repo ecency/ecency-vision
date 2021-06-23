@@ -428,6 +428,7 @@
     "profile-image": "Imahe ng pagkakakilanlan",
     "website": "Website",
     "location": "Lokasyon",
+    "copied": "Referral link copied to clipboard.",
     "updated": "Matagumpay na nabago ang pagkakakilanlan!"
   },
   "image-upload-button": {
@@ -439,6 +440,7 @@
     "currency": "Salapi",
     "language": "Lingguwahe",
     "nsfw": "Show NSFW content",
+    "referral-link": "Referral link",
     "updated": "Matagumpay na nabago ang mga kagustuhan!"
   },
   "wallet": {
