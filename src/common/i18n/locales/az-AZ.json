@@ -28,15 +28,15 @@
     "off": "Bağlı",
     "yes": "Bəli",
     "no": "Xeyr",
-    "hot": "feed",
-    "trending": "feed",
-    "created": "feed",
-    "found": "found",
-    "feed": "feed",
-    "blog": "blogs",
-    "posts": "posts",
-    "comments": "comments",
-    "replies": "replies",
+    "hot": "axın",
+    "trending": "axın",
+    "created": "axın",
+    "found": "tapıldı",
+    "feed": "axın",
+    "blog": "bloq",
+    "posts": "göndərişlər",
+    "comments": "rəylər",
+    "replies": "cavablar",
     "done": "Hazırdır",
     "apply": "Tətbiq et",
     "close": "Bağla"
@@ -47,8 +47,8 @@
     "cancel": "İmtina"
   },
   "entry-filter": {
-    "filter-trending": "Trending",
-    "filter-hot": "Hot",
+    "filter-trending": "Trend",
+    "filter-hot": "Gündəm",
     "filter-created": "Yeni",
     "filter-promoted": "Tanıdılan",
     "filter-payout": "Ödəmələr",
@@ -56,9 +56,9 @@
     "filter-feed": "Axın",
     "filter-feed-friends": "Dostlar",
     "filter-feed-subscriptions": "Cəmiyyətlər",
-    "filter-global": "Global",
-    "filter-global-part1": "This feed contains ",
-    "filter-global-part2": " content on entire platform.",
+    "filter-global": "Qlobal",
+    "filter-global-part1": "Bu axın ehtiva edir ",
+    "filter-global-part2": " bütün platformadakı məzmun.",
     "filter-global-part3": " content from Your communities. You can join communities that interest you to fill up this feed."
   },
   "navbar": {
@@ -77,8 +77,8 @@
     "header-community": "Cəmiyyətlər"
   },
   "tag": {
-    "unmoderated": "Unmoderated topics",
-    "moderated": "Moderated community"
+    "unmoderated": "İdarə edilməyən mövzular",
+    "moderated": "İdarə edilən cəmiyyət"
   },
   "switch-lang": {
     "contributors": "Töhfə verənlər"
