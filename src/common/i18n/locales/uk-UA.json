@@ -428,6 +428,7 @@
     "profile-image": "Зображення профілю",
     "website": "Веб-сторінка",
     "location": "Місцеперебування",
+    "copied": "Referral link copied to clipboard.",
     "updated": "Профіль успішно оновлено!"
   },
   "image-upload-button": {
@@ -439,6 +440,7 @@
     "currency": "Валюта",
     "language": "Мова",
     "nsfw": "Show NSFW content",
+    "referral-link": "Referral link",
     "updated": "Налаштування оновлено!"
   },
   "wallet": {
