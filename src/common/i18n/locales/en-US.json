@@ -155,7 +155,6 @@
     "replies-n": "{{n}} responses. Click to respond.",
     "vote-error": "Previous value is not acceptable. Vote with a different value.",
     "vote-warning": "Voting 0% unvotes the content.",
-    "vote-warning-2": "Voting -100% unvotes the content.",
     "no-replies": "No responses yet. Click to respond."
   },
   "nsfw": {

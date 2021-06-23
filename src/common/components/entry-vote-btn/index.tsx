@@ -139,7 +139,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     const { target: { id, value} } = e;
     const upSliderVal = Number(value);
     const { initialVoteValues } = this.state;
-    const { upVoted, downVoted } = this.props;
+    const { upVoted } = this.props;
     this.setState({
       upSliderVal,
       wrongValueUp: upSliderVal === initialVoteValues.up && upVoted,
@@ -160,7 +160,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     this.setState({
       downSliderVal,
       wrongValueDown: downSliderVal === initialVoteValues.up,
-      showWarning: downSliderVal < initialVoteValues.down && (downVoted)
+      showWarning: downSliderVal > initialVoteValues.down && (downVoted)
     });
 
     const { activeUser } = this.props;
@@ -325,7 +325,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
             )}
             {showWarning && (
               <div className="vote-warning">
-                <p>{_t('entry-list-item.vote-warning-2')}</p>
+                <p>{_t('entry-list-item.vote-warning')}</p>
               </div>
             )}
           </>
