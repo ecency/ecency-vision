@@ -21,6 +21,7 @@ import {_t} from "../i18n";
 import {Tsx} from "../i18n/helper";
 
 import {hiveSvg, checkSvg} from "../img/svg";
+import { handleInvalid, handleOnInput } from "../util/input-util";
 
 const signupSvg = require("../img/signup.svg");
 const logoCircle = require("../img/logo-circle.svg");
@@ -164,11 +165,27 @@ class SignUpPage extends Component<PageProps, State> {
                                         this.submit();
                                     }}>
                                         <Form.Group>
-                                            <Form.Control type="text" placeholder={_t('sign-up.username')} value={username} onChange={this.usernameChanged} autoFocus={true}
-                                                          required={true}/>
+                                            <Form.Control 
+                                                type="text" 
+                                                placeholder={_t('sign-up.username')} 
+                                                value={username} 
+                                                onChange={this.usernameChanged} 
+                                                autoFocus={true}
+                                                required={true}
+                                                onInvalid={(e: any) => handleInvalid(e, 'sign-up.', 'validation-username')}
+                                                onInput={handleOnInput}
+                                            />
                                         </Form.Group>
                                         <Form.Group>
-                                            <Form.Control type="email" placeholder={_t('sign-up.email')} value={email} onChange={this.emailChanged} required={true}/>
+                                            <Form.Control 
+                                                type="email" 
+                                                placeholder={_t('sign-up.email')} 
+                                                value={email} 
+                                                onChange={this.emailChanged} 
+                                                required={true}
+                                                onInvalid={(e: any) => handleInvalid(e, 'sign-up.', 'validation-email')}
+                                                onInput={handleOnInput}
+                                            />
                                         </Form.Group>
                                         <Form.Group>
                                             <Form.Control type="text" placeholder={_t('sign-up.ref')} value={referral} onChange={this.refCodeChanged} disabled={lockReferral}/>

@@ -34,12 +34,12 @@ export class ProfileSettings extends Component<Props> {
     }
 
     render() {
-        const {activeUser} = this.props;
+        const { activeUser } = this.props;
 
         if (activeUser) {
             return <>
                 {activeUser.data.__loaded && <ProfileEdit {...this.props} activeUser={activeUser}/>}
-                <Preferences {...this.props}  />
+                <Preferences {...this.props} activeUser={activeUser} />
                 <PasswordUpdate activeUser={activeUser}/>
                 <ViewKeys activeUser={activeUser}/>
             </>

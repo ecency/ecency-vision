@@ -256,6 +256,11 @@ exports[`(1) Default render 1`] = `
           >
             Български
           </option>
+          <option
+            value="zh-CN"
+          >
+            简体字
+          </option>
         </select>
       </div>
     </div>
@@ -291,6 +296,55 @@ exports[`(1) Default render 1`] = `
             Off
           </option>
         </select>
+      </div>
+    </div>
+    <div
+      className="col-xl-4 col-lg-6"
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          className="form-label"
+        >
+          Referral link
+        </label>
+        <div
+          className="mb-3 input-group"
+          onClick={[Function]}
+        >
+          <input
+            className="text-primary pointer form-control"
+            disabled={true}
+            value="https://ecency.com/signup?referral=foo"
+          />
+          <div
+            className="input-group-append"
+          >
+            <button
+              className="copy-to-clipboard btn btn-primary btn-sm"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              <svg
+                fill="#FFFFFF"
+                height="24px"
+                viewBox="0 0 24 24"
+                width="24px"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0 0h24v24H0V0z"
+                  fill="none"
+                />
+                <path
+                  d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

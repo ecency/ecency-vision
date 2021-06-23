@@ -66,10 +66,10 @@ export const extractMetaData = (body: string): MetaData => {
     }
 
     if (matchedLinks.length) {
-        out.links = matchedLinks;
+        out.links = matchedLinks.slice(0,10);
     }
     if (matchedImages.length) {
-        out.image = matchedImages;
+        out.image = matchedImages.slice(0,10);
     }
 
     if (mUsers) {
@@ -79,7 +79,7 @@ export const extractMetaData = (body: string): MetaData => {
     }
 
     if (matchedUsers.length) {
-        out.users = matchedUsers;
+        out.users = matchedUsers.slice(0,10);
     }
 
     return out;

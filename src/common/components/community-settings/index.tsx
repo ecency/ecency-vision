@@ -19,6 +19,7 @@ import {
 } from "../../api/operations";
 
 import {_t} from "../../i18n";
+import { handleInvalid, handleOnInput } from "../../util/input-util";
 
 const langOpts = [
     {id: "af", name: "Afrikaans"},
@@ -211,6 +212,8 @@ export class CommunitySettings extends BaseComponent<Props, State> {
                                 name="title"
                                 onChange={this.onChange}
                                 required={true}
+                                onInvalid={(e: any) => handleInvalid(e, 'community-settings.', 'validation-title')}
+                                onInput={handleOnInput}
                             />
                         </InputGroup>
                     </Col>

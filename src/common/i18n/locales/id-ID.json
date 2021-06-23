@@ -28,6 +28,15 @@
     "off": "Off",
     "yes": "Ya",
     "no": "Tidak",
+    "hot": "Umpan",
+    "trending": "Umpan",
+    "created": "umpan",
+    "found": "ditemukan",
+    "feed": "umpan",
+    "blog": "blog",
+    "posts": "postingan",
+    "comments": "komentar",
+    "replies": "balasan",
     "done": "Selesai",
     "apply": "Terapkan",
     "close": "Tutup"
@@ -46,7 +55,11 @@
     "filter-muted": "Didiamkan",
     "filter-feed": "Umpan",
     "filter-feed-friends": "Teman",
-    "filter-feed-subscriptions": "Komunitas"
+    "filter-feed-subscriptions": "Komunitas",
+    "filter-global": "Global",
+    "filter-global-part1": "This feed contains ",
+    "filter-global-part2": " content on entire platform.",
+    "filter-global-part3": " content from Your communities. You can join communities that interest you to fill up this feed."
   },
   "navbar": {
     "discover": "Jelajahi",
@@ -62,6 +75,10 @@
     "header-tag": "Label",
     "header-account": "Pengguna",
     "header-community": "Komunitas"
+  },
+  "tag": {
+    "unmoderated": "Topik yang tidak dimoderasi",
+    "moderated": "Komunitas yang dimoderasi"
   },
   "switch-lang": {
     "contributors": "Kontributor"
@@ -106,14 +123,16 @@
     "sign-up-text-2": "Daftar sekarang!"
   },
   "sign-up": {
-    "header": "Selamat datang di Ecency",
-    "description": "Rumah Berkebebasan bicara dan Komunitas yang bermanfaat!",
-    "bottom-description": "Setiap akun yang dibuat di blockhain dan hanya anda yang memiliki kendali atas akun tersebut. Satu akun untuk mengelola semuanya di Blockhain dan Ecency.",
-    "learn-more": "Pelajari selengkapnya tentang keuntungan di <a href=\"/faq#how-to-join\">FAQ</a> kami",
+    "header": "Selamat datang ke Ecency",
+    "description": "Tempat yang Bebas bicara dan Komunitas yang mendapatkan reward!",
+    "bottom-description": "Setiap akun yang dibuat di blockchain dan hanya anda yang memiliki kendali atas akun tersebut. Satu akun untuk mengelola semuanya di Blockchain dan Ecency.",
+    "learn-more": "Pelajari selengkapnya tentang keuntungan di <a href=\"/faq#how-to-join\">FAQ</a>",
     "username": "Pilih nama pengguna",
     "email": "Masukkan alamat email Anda",
     "ref": "Pengguna rujukan (opsional)",
     "submit": "Lanjutkan",
+    "validation-username": "Nama pengguna diperlukan.",
+    "validation-email": "Email diperlukan.",
     "success": "Kami sudah mengirimkan email ke {{email}}.",
     "success-2": "Ikuti petunjuk melengkapi proses pendaftaran.",
     "login-text-1": "Apakah anda memiliki akun?",
@@ -128,8 +147,8 @@
   "entry-list-item": {
     "cross-posted": "diposting bersilangan",
     "cross-posted-to": "ke",
-    "reblogged": "{{n}} Reblogged",
-    "promoted": "Promoted",
+    "reblogged": "{{n}} dibagikan dihalaman blog",
+    "promoted": "Dipromosikan",
     "pinned": "Postingan Disematkan",
     "replies": "1 respon, Klik untuk merespon.",
     "replies-n": "{{n}} respon. Klik untuk merespon.",
@@ -164,7 +183,7 @@
     "title": "Bagikan"
   },
   "entry-menu": {
-    "cross-post": "Silangkan Postingan",
+    "cross-post": "Postingan berseberangan",
     "share": "Bagikan",
     "edit-history": "Edit Riwayat",
     "pin": "Sematkan",
@@ -229,12 +248,12 @@
   },
   "entry": {
     "via-app": "melalui <span class=\"app-name\">{{app}}</span>",
-    "author-reputation": "Author's reputation",
+    "author-reputation": "Reputasi pengarang",
     "comment-entry-title": "Anda melihat sebuah komentar tunggal dari: ",
     "comment-entry-go-root": "Lihat konteks lengkapnya",
     "comment-entry-go-parent": "Lihat sumber utamanya",
-    "hidden-warning": "Posting ini tersembunyi dikarenakan peringkat rendah.",
-    "muted-warning": "This post was muted for not following {{community}} community guidelines.",
+    "hidden-warning": "Konten ini mendapat peringkat rendah oleh pengguna lain. Lanjutkan dengan hati hati.",
+    "muted-warning": "Konten ini dibisukan oleh moderator {{community}} karena tidak mengikuti pedoman komunitas.",
     "address-copy": "Salin alamat postingan",
     "address-copied": "Tempel alamat yang disalin ke papan klip.",
     "browse-original": "Tampilan tulisan asli",
@@ -297,7 +316,7 @@
     "edit": "Edit pengaturan",
     "edit-team": "Sunting peran",
     "community-rewards": "Rewards Komunitas",
-    "profile-image": "Gambar profil komunitas",
+    "profile-image": "Foto profil",
     "profile-image-edit": "Edit gambar profil",
     "profile-image-updated": "Gambar profil diperbaharui!"
   },
@@ -315,7 +334,8 @@
     "lang": "Bahasa",
     "description": "Deskripsi",
     "rules": "Aturan",
-    "rules-help": "Satu per baris"
+    "rules-help": "Satu per baris",
+    "validation-title": "Judul diperlukan."
   },
   "communities": {
     "title": "Komunitas",
@@ -342,6 +362,8 @@
     "username-available": "Tersedia.",
     "username-not-available": "Tidak tersedia.",
     "username-wrong-format": "Bukan format yang valid. format hive-1xxxxx yang diperlukan.",
+    "checkbox-validation": "Centang kotak ini untuk melanjutkan.",
+    "title-validation": "Silahkan isi dalam kolom ini.",
     "password": "Password Utama",
     "confirmation": "Saya telah menyimpan nama pengguna dan kata sandi saya dengan aman.",
     "submit": "Buatlah komunitas",
@@ -393,7 +415,10 @@
     "vote-power": "Power vote: {{n}}%",
     "rc-power": "Sumber Kredit: {{n}}%",
     "recharge-time": "(terisi penuh {{n}})",
-    "down-vote-power": "Power Downvote: {{n}}%"
+    "down-vote-power": "Power Downvote: {{n}}%",
+    "no-posts": "Di sini Anda akan melihat postingan Anda, sepertinya tidak ada konten.",
+    "create-posts": "Mari kita buat postingan baru",
+    "no-posts-found": "Tidak ditemukan apa-apa!"
   },
   "profile-edit": {
     "title": "Profil",
@@ -450,6 +475,8 @@
     "title": "Akun penarikan",
     "account": "Akun",
     "percent": "Persen",
+    "validation-account": "Akun diperlukan.",
+    "validation-percent": "Persentase diperlukan.",
     "auto-power-up": "Power Up otomatis"
   },
   "points": {
@@ -714,6 +741,8 @@
     "username": "Nama Pengguna",
     "reward": "Imbalan",
     "user-error": "{{n}} bukan pengguna sah.",
+    "validation-percentage": "Diperlukan persentase.",
+    "validation-username": "Nama pengguna diperlukan.",
     "user-exists-error": "{{n}} sudah ada dalam daftar"
   },
   "post-scheduler": {
@@ -770,7 +799,7 @@
     "header-score-tip": "Posting + komentar yang dibuat oleh pengguna untuk periode yang dipilih",
     "header-reward": "Imbalan",
     "header-votes": "Vote",
-    "header-votes-tip": "Jumlah vote dalam priode ini"
+    "header-votes-tip": "Jumlah vote dalam periode ini"
   },
   "popular-users": {
     "title": "Pengguna Populer"
@@ -801,9 +830,9 @@
     "tags": "Tagar",
     "tags-placeholder": "koma memisahkan tagar",
     "date": "Tanggal",
-    "date-week": "Last Week",
-    "date-month": "Last Month",
-    "date-year": "Last Year",
+    "date-week": "Minggu lalu",
+    "date-month": "Bulan Lalu",
+    "date-year": "Tahun Lalu",
     "date-all": "Semua",
     "sort": "Urutkan",
     "sort-popularity": "Popularitas",
@@ -885,6 +914,9 @@
     "create-first": "Buat catatan pertama Anda",
     "filter": "Cari berdasarkan judul",
     "form-title": "Judul",
+    "validation-title": "Judul diperlukan.",
+    "validation-value": "Nilai Dibutuhkan.",
+    "validation-body": "Isi konten diperlukan.",
     "form-body": "Isi"
   },
   "password-update": {
@@ -896,12 +928,16 @@
     "error-new2": "Kata sandi harus sama",
     "pass-gen": "Klik untuk membuat kata sandi baru",
     "label-check": "Saya telah menyimpan kata sandi saya dengan aman",
+    "validation-password": "Kata sandi tidak valid.",
+    "validation-label": "Centang kotak ini untuk melanjutkan.",
     "updated": "Kata Sandi berhasil diperbaharui!"
   },
   "add-image": {
     "title": "Tambahkan gambar",
     "text-label": "Teks Gambar",
-    "link-label": "Link Gambar"
+    "link-label": "Link Gambar",
+    "validation-text": "Judul diperlukan.",
+    "validation-image": "Gambar diperlukan."
   },
   "add-image-mobile": {
     "title": "Tambahkan Gambar",
@@ -912,7 +948,9 @@
   "add-link": {
     "title": "Tambahkan Tautan",
     "text-label": "Teks",
-    "link-label": "https://"
+    "link-label": "https://",
+    "validation-text": "Judul diperlukan.",
+    "validation-link": "Link diperlukan."
   },
   "scroll-to-top": {
     "title": "Gulir ke Atas"
@@ -1009,58 +1047,59 @@
     "paid-out-post-forbidden": "Voting untuk konten yang sudah dibayar tidak bisa dilakukan lagi."
   },
   "landing-page": {
-    "welcome-text": "Welcome to Ecency!",
-    "what-is-ecency": "Blockchain-based social network",
-    "powered-by-hive": "powered by Hive",
-    "get-started": "Get started",
-    "earn-money": "Earn money",
-    "earn-money-block-chain-based": "Blockchain-based social network, ",
-    "join-us": "join-us",
-    "various-digital-tokens": " and earn various digital tokens, reward others and build a rewarding community.",
-    "read-more": "Read more",
-    "true-ownership": "True ownership",
-    "true-ownership-desc": "Ecency is the next generation social network for Web 3.0. Blockchain technology gives you a real free speech, without any censorship or banning. Only you control your own account, content and communities.",
-    "decentralization": "Decentralization",
-    "hive-blockchain": "Hive blockchain",
-    "decentralization-desc": " has many social, gaming and financial apps that you can access with a single account you own. Access your social network account and content from any other 3rd party apps in decentralized way.",
-    "open-source": "Open source",
-    "open-source-desc": "Join and be part of the building team on Web 3.0. Everything that we build is blockchain-based and open source. We welcome tech talents, developers, creators and entrepreneurs.",
-    "feel-free-join": " Join and lets build together!",
-    "posts": "Posts",
-    "unique-visitors": "Unique visitors",
-    "points-distrubuted": "Points distributed",
-    "new-users": "New users",
-    "download-our-application": "Download our application",
-    "download-our-application-desc": "Looking for a unique experience? The social network with real free speech experience on your mobile phone or desktop. Blockchain's powerful benefits now always under your fingertips.",
-    "download-for-windows": "Download for Computer",
-    "download-for-ios": "Download for IOS",
-    "download-for-android": "Download for Android",
-    "our-history": "Our History",
-    "our-history-p-one": "<b>Ecency</b> (previously Esteem) started out in 2016, founder <span> <a href=\"/@good-karma\" class=\"push-link\"> @good-karma </a></span> started implementing a mobile application that would revolutionize the way you interact and create, build, engage online. With time grew to something much bigger.",
-    "our-history-p-two": "Since then we have been continuing to build for Web 3.0 and improve our blockchain-based social network, making sure apps are as accessible as possible, secure and in many languages the world speaks.",
-    "our-vision": "Our Vision",
-    "our-vision-p-one": "We want to bring a secure and rewarding blockchain experience to all people. Social media without any limits and censorship, where only you control your own account and your communities. Secured by blockchain, powered by people.",
-    "our-vision-p-two": "<b>Our main principles</b> : Bring rewarding communities, true ownership, empowered creators, free speech into the hands of millions.",
-    "our-team": "Our Team",
-    "founder": "Founder",
-    "devops-guru": "Devops master",
-    "design-guru": "Design guru",
-    "community-contributors": "Community Contributors",
-    "blockchain-witnesses": "Blockchain Witnesses",
-    "about": "About Us",
-    "privacy-policy": "Privacy Policy",
-    "terms-of-service": "Terms of Service",
-    "faq": "FAQ",
-    "discover": "Discover",
-    "sign-in": "Sign in",
-    "communities": "Communities",
-    "help": "Help",
-    "subscribe-us": "Subscribe Us",
-    "enter-your-email-adress": "Enter your email adress",
-    "send": "Send",
-    "subscribe-paragraph": "Be first to know what's happening in decentralized web.",
-    "copy-rights": "©2021 Ecency. All right reserved.",
-    "success-message-subscribe": "A verification link has been sent to your email account!",
-    "error-occured": "A server error has been occured."
+    "welcome-text": "Selamat datang ke Ecency!",
+    "what-is-ecency": "Jaringan sosial berbasis blockchain",
+    "powered-by-hive": "diberdayakan oleh Hive",
+    "get-started": "Yuk mulai",
+    "earn-money": "Mendapatkan uang",
+    "earn-money-block-chain-based": "Jaringan sosial berbasis blockchain, ",
+    "join-us": "bergabunglah dengan kami",
+    "various-digital-tokens": " dan dapatkan token digital beragam, imbalan lain dan bangunlah sebuah komunitas yang mendapatkan imbalan.",
+    "read-more": "Lebih lanjut",
+    "true-ownership": "Kepemilikan nyata",
+    "true-ownership-desc": "Ecency adalah jaringan sosial generasi berikutnya untuk Web 3.0. Teknologi Blockchain memberi Anda kebebasan berbicara yang nyata, tanpa sensor atau larangan apa pun. Hanya Anda yang mengontrol akun, konten, dan komunitas Anda sendiri.",
+    "decentralization": "Desentralisasi",
+    "hive-blockchain": "Blockchain Hive",
+    "decentralization-desc": " memiliki banyak aplikasi sosial, game, dan keuangan yang dapat Anda akses dengan satu akun yang Anda miliki. Akses akun dan konten jejaring sosial Anda dari aplikasi pihak ketiga lainnya dengan cara terdesentralisasi.",
+    "open-source": "Sumber terbuka",
+    "open-source-desc": "Bergabunglah dan jadilah bagian dari tim pembangun di Web 3.0. Semua yang kami bangun berbasis blockchain dan open source. Kami menyambut talenta teknologi, pengembang, pembuat konten, dan pengusaha.",
+    "feel-free-join": " Bergabunglah dan marilah membangunnya bersama-sama!",
+    "posts": "Postingan",
+    "unique-visitors": "Pengunjung tamu",
+    "points-distrubuted": "Poin yang didistribusikan",
+    "new-users": "Pengguna baru",
+    "download-our-application": "Unduh aplikasi kami",
+    "download-our-application-desc": "Mencari pengalaman unik? Jejaring sosial dengan pengalaman berbicara bebas yang nyata di ponsel atau desktop Anda. Manfaat kuat Blockchain sekarang selalu di bawah ujung jari Anda.",
+    "download-for-windows": "Unduh untuk Komputer",
+    "download-for-ios": "Unduh untuk IOS",
+    "download-for-android": "Unduh untuk Android",
+    "our-history": "Sejarah Kami",
+    "our-history-p-one": "<b>Ecency</b>(sebelumnya Esteem) dimulai pada 2016, penciptanya adalah <span> <a href=\"/@good-karma\" class=\"push-link\"> @good-karma </a></span> mulai menerapkan aplikasi seluler yang akan merevolusi cara Anda berinteraksi dan berkreasi, membangun, terlibat secara online. Dengan waktu tumbuh menjadi sesuatu yang jauh lebih besar.",
+    "our-history-p-two": "Sejak itu kami terus membangun untuk Web 3.0 dan meningkatkan jaringan sosial berbasis blockchain kami, memastikan aplikasi dapat diakses semudah mungkin, aman, dan dalam banyak bahasa yang digunakan dunia.",
+    "our-vision": "Visi Kami",
+    "our-vision-p-one": "Kami ingin menghadirkan pengalaman blockchain yang aman dan bermanfaat bagi semua orang. Media sosial tanpa batas dan sensor, di mana hanya Anda yang mengontrol akun dan komunitas Anda sendiri. Diamankan oleh blockchain, didukung oleh orang-orang.",
+    "our-vision-p-two": "<b>Prinsip utama kami</b> : Hadirkan komunitas yang bermanfaat, kepemilikan sejati, pembuat konten yang diberdayakan, kebebasan berbicara ke tangan jutaan orang.",
+    "our-team": "Tim Kami",
+    "founder": "Pencipta",
+    "devops-guru": "Kepala Pengembang",
+    "design-guru": "Guru desain",
+    "community-contributors": "Kontributor Komunitas",
+    "blockchain-witnesses": "Saksi Blockchain",
+    "about": "Tentang Kami",
+    "privacy-policy": "Kebijakan Privasi",
+    "terms-of-service": "Ketentuan Layanan",
+    "faq": "Pertanyaan yang sering ditanyakan",
+    "discover": "Jelajahi",
+    "sign-in": "Masuk",
+    "communities": "Komunitas",
+    "help": "Bantuan",
+    "subscribe-us": "Berlangganan dengan kami",
+    "enter-your-email-adress": "Masukkan email Anda",
+    "send": "Kirim",
+    "subscribe-paragraph": "Jadilah yang pertama mengetahui apa yang terjadi di web terdesentralisasi.",
+    "copy-rights": "Ecenxy @2021. Hak cipta dilindungi Undang-undang.",
+    "success-message-subscribe": "Tautan verifikasi telah dikirim ke akun email Anda!",
+    "validation-email": "Email valid diperlukan",
+    "error-occured": "Terjadi kesalahan server."
   }
 }

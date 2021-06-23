@@ -64,7 +64,7 @@ export default (state: Entries = initialState, action: Actions): Entries => {
             if (state[`${groupKey}`] === undefined || action.payload.action === 'PUSH') {
                 return update(state, {
                     [`${groupKey}`]: {
-                        $set: {entries: [], error: null, loading: false, hasMore: false},
+                        $set: {entries: [], error: null, loading: true, hasMore: false},
                     },
                 });
             }

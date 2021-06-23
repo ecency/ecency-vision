@@ -1,6 +1,5 @@
 .nav-bar-toggle {
   position: absolute;
-  z-index: 1;
   top: 18px;
   right: 10px;
   width: 30px;
@@ -71,7 +70,7 @@
       margin-left: 0;
     }
     @media (max-width: $sm-break) {
-      font-size: 1.3rem;
+      font-size: 1rem;
     }
     @media (max-width: $xsm-break) {
       font-size: 1rem;
@@ -84,7 +83,7 @@
   margin-bottom: 20px;
   position: relative;
   padding: 10px 0;
-  z-index: 3;
+  z-index: 4;
   &:not(.visible-sm) {
     display: none;
   }

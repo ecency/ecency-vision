@@ -37,12 +37,9 @@ import {appleSvg, desktopSvg, googleSvg} from "../img/svg";
 import {pageMapDispatchToProps, pageMapStateToProps, PageProps} from "./common";
 
 interface State {
-    step: number
+    step: number;
 }
 
-interface Landing {
-    setState: void
-}
 class EntryIndexPage extends Component<PageProps, State> {
 
     state:State = {
@@ -189,7 +186,7 @@ class EntryIndexPage extends Component<PageProps, State> {
                             <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>
                                 <div className={_c(`entry-list-body limited-area ${global.listStyle === ListStyle.grid ? "grid-view" : ""}`)}>
                                     {loading && entryList.length === 0 && <EntryListLoadingItem/>}
-                                    {!loading && EntryListContent({...this.props, entries: entryList, promotedEntries: promoted})}
+                                    {EntryListContent({...this.props, entries: entryList, promotedEntries: promoted, loading})}
                                 </div>
                             </div>
                             {loading && entryList.length > 0 ? <LinearProgress/> : ""}

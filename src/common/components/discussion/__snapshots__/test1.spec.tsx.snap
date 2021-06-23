@@ -137,25 +137,32 @@ exports[`(1) Full render with active user 1`] = `
           <div
             className="item-controls"
           >
-            <div
-              className="entry-vote-btn"
-              onClick={[Function]}
-            >
+            <div>
               <div
-                className="btn-vote btn-up-vote"
+                className="entry-vote-btn"
+                onClick={[Function]}
               >
-                <span
-                  className="btn-inner"
+                <div
+                  className="btn-vote btn-up-vote"
                 >
-                  <svg
-                    viewBox="0 0 24 24"
+                  <div
+                    className=""
                   >
-                    <path
-                      d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </span>
+                    <span
+                      className="btn-inner "
+                    >
+                      <svg
+                        className="vote-svg"
+                        viewBox="6 8 12 7.41"
+                      >
+                        <path
+                          d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
             <div
@@ -268,25 +275,32 @@ exports[`(1) Full render with active user 1`] = `
           <div
             className="item-controls"
           >
-            <div
-              className="entry-vote-btn"
-              onClick={[Function]}
-            >
+            <div>
               <div
-                className="btn-vote btn-up-vote"
+                className="entry-vote-btn"
+                onClick={[Function]}
               >
-                <span
-                  className="btn-inner"
+                <div
+                  className="btn-vote btn-up-vote"
                 >
-                  <svg
-                    viewBox="0 0 24 24"
+                  <div
+                    className=""
                   >
-                    <path
-                      d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </span>
+                    <span
+                      className="btn-inner "
+                    >
+                      <svg
+                        className="vote-svg"
+                        viewBox="6 8 12 7.41"
+                      >
+                        <path
+                          d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
             <div
@@ -401,25 +415,32 @@ exports[`(1) Full render with active user 1`] = `
               <div
                 className="item-controls"
               >
-                <div
-                  className="entry-vote-btn"
-                  onClick={[Function]}
-                >
+                <div>
                   <div
-                    className="btn-vote btn-up-vote"
+                    className="entry-vote-btn"
+                    onClick={[Function]}
                   >
-                    <span
-                      className="btn-inner"
+                    <div
+                      className="btn-vote btn-up-vote"
                     >
-                      <svg
-                        viewBox="0 0 24 24"
+                      <div
+                        className=""
                       >
-                        <path
-                          d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-                          fill="currentColor"
-                        />
-                      </svg>
-                    </span>
+                        <span
+                          className="btn-inner "
+                        >
+                          <svg
+                            className="vote-svg"
+                            viewBox="6 8 12 7.41"
+                          >
+                            <path
+                              d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                              fill="currentColor"
+                            />
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div
@@ -534,25 +555,32 @@ exports[`(1) Full render with active user 1`] = `
           <div
             className="item-controls"
           >
-            <div
-              className="entry-vote-btn"
-              onClick={[Function]}
-            >
+            <div>
               <div
-                className="btn-vote btn-up-vote"
+                className="entry-vote-btn"
+                onClick={[Function]}
               >
-                <span
-                  className="btn-inner"
+                <div
+                  className="btn-vote btn-up-vote"
                 >
-                  <svg
-                    viewBox="0 0 24 24"
+                  <div
+                    className=""
                   >
-                    <path
-                      d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </span>
+                    <span
+                      className="btn-inner "
+                    >
+                      <svg
+                        className="vote-svg"
+                        viewBox="6 8 12 7.41"
+                      >
+                        <path
+                          d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
             <div
@@ -667,25 +695,32 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
           <div
             className="item-controls"
           >
-            <div
-              className="entry-vote-btn"
-              onClick={[Function]}
-            >
+            <div>
               <div
-                className="btn-vote btn-up-vote"
+                className="entry-vote-btn"
+                onClick={[Function]}
               >
-                <span
-                  className="btn-inner"
+                <div
+                  className="btn-vote btn-up-vote"
                 >
-                  <svg
-                    viewBox="0 0 24 24"
+                  <div
+                    className=""
                   >
-                    <path
-                      d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </span>
+                    <span
+                      className="btn-inner "
+                    >
+                      <svg
+                        className="vote-svg"
+                        viewBox="6 8 12 7.41"
+                      >
+                        <path
+                          d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
             <div
@@ -798,25 +833,32 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
           <div
             className="item-controls"
           >
-            <div
-              className="entry-vote-btn"
-              onClick={[Function]}
-            >
+            <div>
               <div
-                className="btn-vote btn-up-vote"
+                className="entry-vote-btn"
+                onClick={[Function]}
               >
-                <span
-                  className="btn-inner"
+                <div
+                  className="btn-vote btn-up-vote"
                 >
-                  <svg
-                    viewBox="0 0 24 24"
+                  <div
+                    className=""
                   >
-                    <path
-                      d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </span>
+                    <span
+                      className="btn-inner "
+                    >
+                      <svg
+                        className="vote-svg"
+                        viewBox="6 8 12 7.41"
+                      >
+                        <path
+                          d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
             <div
@@ -930,25 +972,32 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
           <div
             className="item-controls"
           >
-            <div
-              className="entry-vote-btn"
-              onClick={[Function]}
-            >
+            <div>
               <div
-                className="btn-vote btn-up-vote"
+                className="entry-vote-btn"
+                onClick={[Function]}
               >
-                <span
-                  className="btn-inner"
+                <div
+                  className="btn-vote btn-up-vote"
                 >
-                  <svg
-                    viewBox="0 0 24 24"
+                  <div
+                    className=""
                   >
-                    <path
-                      d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </span>
+                    <span
+                      className="btn-inner "
+                    >
+                      <svg
+                        className="vote-svg"
+                        viewBox="6 8 12 7.41"
+                      >
+                        <path
+                          d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
             <div
@@ -1062,25 +1111,32 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
           <div
             className="item-controls"
           >
-            <div
-              className="entry-vote-btn"
-              onClick={[Function]}
-            >
+            <div>
               <div
-                className="btn-vote btn-up-vote voted"
+                className="entry-vote-btn"
+                onClick={[Function]}
               >
-                <span
-                  className="btn-inner"
+                <div
+                  className="btn-vote btn-up-vote primary-btn-done voted"
                 >
-                  <svg
-                    viewBox="0 0 24 24"
+                  <div
+                    className=""
                   >
-                    <path
-                      d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </span>
+                    <span
+                      className="btn-inner "
+                    >
+                      <svg
+                        className="vote-svg"
+                        viewBox="6 8 12 7.41"
+                      >
+                        <path
+                          d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
             <div
@@ -1194,25 +1250,32 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
           <div
             className="item-controls"
           >
-            <div
-              className="entry-vote-btn"
-              onClick={[Function]}
-            >
+            <div>
               <div
-                className="btn-vote btn-up-vote"
+                className="entry-vote-btn"
+                onClick={[Function]}
               >
-                <span
-                  className="btn-inner"
+                <div
+                  className="btn-vote btn-up-vote"
                 >
-                  <svg
-                    viewBox="0 0 24 24"
+                  <div
+                    className=""
                   >
-                    <path
-                      d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </span>
+                    <span
+                      className="btn-inner "
+                    >
+                      <svg
+                        className="vote-svg"
+                        viewBox="6 8 12 7.41"
+                      >
+                        <path
+                          d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
             <div
@@ -1431,25 +1494,32 @@ exports[`(3) With selected item 1`] = `
           <div
             className="item-controls"
           >
-            <div
-              className="entry-vote-btn"
-              onClick={[Function]}
-            >
+            <div>
               <div
-                className="btn-vote btn-up-vote"
+                className="entry-vote-btn"
+                onClick={[Function]}
               >
-                <span
-                  className="btn-inner"
+                <div
+                  className="btn-vote btn-up-vote"
                 >
-                  <svg
-                    viewBox="0 0 24 24"
+                  <div
+                    className=""
                   >
-                    <path
-                      d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </span>
+                    <span
+                      className="btn-inner "
+                    >
+                      <svg
+                        className="vote-svg"
+                        viewBox="6 8 12 7.41"
+                      >
+                        <path
+                          d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
             <div
@@ -1562,25 +1632,32 @@ exports[`(3) With selected item 1`] = `
           <div
             className="item-controls"
           >
-            <div
-              className="entry-vote-btn"
-              onClick={[Function]}
-            >
+            <div>
               <div
-                className="btn-vote btn-up-vote"
+                className="entry-vote-btn"
+                onClick={[Function]}
               >
-                <span
-                  className="btn-inner"
+                <div
+                  className="btn-vote btn-up-vote"
                 >
-                  <svg
-                    viewBox="0 0 24 24"
+                  <div
+                    className=""
                   >
-                    <path
-                      d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </span>
+                    <span
+                      className="btn-inner "
+                    >
+                      <svg
+                        className="vote-svg"
+                        viewBox="6 8 12 7.41"
+                      >
+                        <path
+                          d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
             <div
@@ -1695,25 +1772,32 @@ exports[`(3) With selected item 1`] = `
               <div
                 className="item-controls"
               >
-                <div
-                  className="entry-vote-btn"
-                  onClick={[Function]}
-                >
+                <div>
                   <div
-                    className="btn-vote btn-up-vote"
+                    className="entry-vote-btn"
+                    onClick={[Function]}
                   >
-                    <span
-                      className="btn-inner"
+                    <div
+                      className="btn-vote btn-up-vote"
                     >
-                      <svg
-                        viewBox="0 0 24 24"
+                      <div
+                        className=""
                       >
-                        <path
-                          d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-                          fill="currentColor"
-                        />
-                      </svg>
-                    </span>
+                        <span
+                          className="btn-inner "
+                        >
+                          <svg
+                            className="vote-svg"
+                            viewBox="6 8 12 7.41"
+                          >
+                            <path
+                              d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                              fill="currentColor"
+                            />
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div
@@ -1828,25 +1912,32 @@ exports[`(3) With selected item 1`] = `
           <div
             className="item-controls"
           >
-            <div
-              className="entry-vote-btn"
-              onClick={[Function]}
-            >
+            <div>
               <div
-                className="btn-vote btn-up-vote"
+                className="entry-vote-btn"
+                onClick={[Function]}
               >
-                <span
-                  className="btn-inner"
+                <div
+                  className="btn-vote btn-up-vote"
                 >
-                  <svg
-                    viewBox="0 0 24 24"
+                  <div
+                    className=""
                   >
-                    <path
-                      d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </span>
+                    <span
+                      className="btn-inner "
+                    >
+                      <svg
+                        className="vote-svg"
+                        viewBox="6 8 12 7.41"
+                      >
+                        <path
+                          d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
             <div
@@ -1961,25 +2052,32 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
           <div
             className="item-controls"
           >
-            <div
-              className="entry-vote-btn"
-              onClick={[Function]}
-            >
+            <div>
               <div
-                className="btn-vote btn-up-vote"
+                className="entry-vote-btn"
+                onClick={[Function]}
               >
-                <span
-                  className="btn-inner"
+                <div
+                  className="btn-vote btn-up-vote"
                 >
-                  <svg
-                    viewBox="0 0 24 24"
+                  <div
+                    className=""
                   >
-                    <path
-                      d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </span>
+                    <span
+                      className="btn-inner "
+                    >
+                      <svg
+                        className="vote-svg"
+                        viewBox="6 8 12 7.41"
+                      >
+                        <path
+                          d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
             <div
@@ -2092,25 +2190,32 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
           <div
             className="item-controls"
           >
-            <div
-              className="entry-vote-btn"
-              onClick={[Function]}
-            >
+            <div>
               <div
-                className="btn-vote btn-up-vote"
+                className="entry-vote-btn"
+                onClick={[Function]}
               >
-                <span
-                  className="btn-inner"
+                <div
+                  className="btn-vote btn-up-vote"
                 >
-                  <svg
-                    viewBox="0 0 24 24"
+                  <div
+                    className=""
                   >
-                    <path
-                      d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </span>
+                    <span
+                      className="btn-inner "
+                    >
+                      <svg
+                        className="vote-svg"
+                        viewBox="6 8 12 7.41"
+                      >
+                        <path
+                          d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
             <div
@@ -2224,25 +2329,32 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
           <div
             className="item-controls"
           >
-            <div
-              className="entry-vote-btn"
-              onClick={[Function]}
-            >
+            <div>
               <div
-                className="btn-vote btn-up-vote"
+                className="entry-vote-btn"
+                onClick={[Function]}
               >
-                <span
-                  className="btn-inner"
+                <div
+                  className="btn-vote btn-up-vote"
                 >
-                  <svg
-                    viewBox="0 0 24 24"
+                  <div
+                    className=""
                   >
-                    <path
-                      d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </span>
+                    <span
+                      className="btn-inner "
+                    >
+                      <svg
+                        className="vote-svg"
+                        viewBox="6 8 12 7.41"
+                      >
+                        <path
+                          d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
             <div
@@ -2356,25 +2468,32 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
           <div
             className="item-controls"
           >
-            <div
-              className="entry-vote-btn"
-              onClick={[Function]}
-            >
+            <div>
               <div
-                className="btn-vote btn-up-vote voted"
+                className="entry-vote-btn"
+                onClick={[Function]}
               >
-                <span
-                  className="btn-inner"
+                <div
+                  className="btn-vote btn-up-vote primary-btn-done voted"
                 >
-                  <svg
-                    viewBox="0 0 24 24"
+                  <div
+                    className=""
                   >
-                    <path
-                      d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </span>
+                    <span
+                      className="btn-inner "
+                    >
+                      <svg
+                        className="vote-svg"
+                        viewBox="6 8 12 7.41"
+                      >
+                        <path
+                          d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
             <div
@@ -2488,25 +2607,32 @@ Bug report <a href=\\"/esteem/@iliyan90/bug-report-to-esteemapp\\" class=\\"mark
           <div
             className="item-controls"
           >
-            <div
-              className="entry-vote-btn"
-              onClick={[Function]}
-            >
+            <div>
               <div
-                className="btn-vote btn-up-vote"
+                className="entry-vote-btn"
+                onClick={[Function]}
               >
-                <span
-                  className="btn-inner"
+                <div
+                  className="btn-vote btn-up-vote"
                 >
-                  <svg
-                    viewBox="0 0 24 24"
+                  <div
+                    className=""
                   >
-                    <path
-                      d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </span>
+                    <span
+                      className="btn-inner "
+                    >
+                      <svg
+                        className="vote-svg"
+                        viewBox="6 8 12 7.41"
+                      >
+                        <path
+                          d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
             <div
@@ -2765,25 +2891,32 @@ exports[`(4) Show mute button, muted comment 1`] = `
           <div
             className="item-controls"
           >
-            <div
-              className="entry-vote-btn"
-              onClick={[Function]}
-            >
+            <div>
               <div
-                className="btn-vote btn-up-vote"
+                className="entry-vote-btn"
+                onClick={[Function]}
               >
-                <span
-                  className="btn-inner"
+                <div
+                  className="btn-vote btn-up-vote"
                 >
-                  <svg
-                    viewBox="0 0 24 24"
+                  <div
+                    className=""
                   >
-                    <path
-                      d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </span>
+                    <span
+                      className="btn-inner "
+                    >
+                      <svg
+                        className="vote-svg"
+                        viewBox="6 8 12 7.41"
+                      >
+                        <path
+                          d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
             <div

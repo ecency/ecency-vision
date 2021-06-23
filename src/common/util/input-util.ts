@@ -1,3 +1,5 @@
+import { _t } from "../i18n";
+
 export const insertOrReplace = (txtEl: HTMLInputElement, before: string, after: string = "") => {
     const startPos = txtEl.selectionStart;
     const endPos = txtEl.selectionEnd;
@@ -57,3 +59,11 @@ export const replace = (txtEl: HTMLInputElement, find: string, rep: string) => {
 
     txtEl.dispatchEvent(new Event("change", {bubbles: true}));
 }
+
+export const handleInvalid = (e: any, parentKey: string, childKey:string) => {
+    e.target.setCustomValidity(_t(parentKey + childKey));
+}
+
+export const handleOnInput = (e:any) => e.target.setCustomValidity("")
+
+

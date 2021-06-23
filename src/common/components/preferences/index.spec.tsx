@@ -4,7 +4,7 @@ import {Preferences} from "./index";
 
 import renderer from "react-test-renderer";
 
-import {globalInstance} from "../../helper/test-helper";
+import {activeUserInstance, globalInstance} from "../../helper/test-helper";
 
 
 it("(1) Default render", () => {
@@ -23,6 +23,6 @@ it("(1) Default render", () => {
         }
     };
 
-    const component = renderer.create(<Preferences {...props} />);
+    const component = renderer.create(<Preferences {...props}  activeUser={activeUserInstance}/>);
     expect(component.toJSON()).toMatchSnapshot();
 });

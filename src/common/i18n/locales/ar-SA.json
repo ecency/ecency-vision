@@ -28,6 +28,15 @@
     "off": "إيقاف",
     "yes": "نعم",
     "no": "لا",
+    "hot": "feed",
+    "trending": "feed",
+    "created": "feed",
+    "found": "found",
+    "feed": "feed",
+    "blog": "blogs",
+    "posts": "posts",
+    "comments": "comments",
+    "replies": "replies",
     "done": "تم",
     "apply": "تطبيق",
     "close": "إغلاق"
@@ -46,7 +55,11 @@
     "filter-muted": "كتم",
     "filter-feed": "المستجدات",
     "filter-feed-friends": "الأصدقاء",
-    "filter-feed-subscriptions": "المجتمعات"
+    "filter-feed-subscriptions": "المجتمعات",
+    "filter-global": "Global",
+    "filter-global-part1": "This feed contains ",
+    "filter-global-part2": " content on entire platform.",
+    "filter-global-part3": " content from Your communities. You can join communities that interest you to fill up this feed."
   },
   "navbar": {
     "discover": "إكتشف",
@@ -62,6 +75,10 @@
     "header-tag": "الوسوم",
     "header-account": "المستخدمون",
     "header-community": "المجتمعات"
+  },
+  "tag": {
+    "unmoderated": "Unmoderated topics",
+    "moderated": "Moderated community"
   },
   "switch-lang": {
     "contributors": "المساهمون"
@@ -114,6 +131,8 @@
     "email": "Enter your email address",
     "ref": "Referred user (optional)",
     "submit": "Continue",
+    "validation-username": "Username is required.",
+    "validation-email": "Email is required.",
     "success": "We've sent an email to {{email}}.",
     "success-2": "Follow instructions to complete signup process.",
     "login-text-1": "Do you have an account?",
@@ -233,8 +252,8 @@
     "comment-entry-title": "You are viewing a single comment's thread from: ",
     "comment-entry-go-root": "View the full context",
     "comment-entry-go-parent": "View the direct parent",
-    "hidden-warning": "This post was hidden due to low ratings.",
-    "muted-warning": "This post was muted for not following {{community}} community guidelines.",
+    "hidden-warning": "This content got low rating by people. Proceed with caution.",
+    "muted-warning": "This content was muted by {{community}} moderators for not following community guidelines.",
     "address-copy": "Copy post address",
     "address-copied": "Post address copied to clipboard.",
     "browse-original": "Open original post",
@@ -297,7 +316,7 @@
     "edit": "Edit settings",
     "edit-team": "Edit roles",
     "community-rewards": "Community Rewards",
-    "profile-image": "Community profile image",
+    "profile-image": "Profile image",
     "profile-image-edit": "Edit profile image",
     "profile-image-updated": "Profile image updated!"
   },
@@ -315,7 +334,8 @@
     "lang": "Language",
     "description": "Description",
     "rules": "Rules",
-    "rules-help": "One per line"
+    "rules-help": "One per line",
+    "validation-title": "Title is required."
   },
   "communities": {
     "title": "Communities",
@@ -342,6 +362,8 @@
     "username-available": "Available.",
     "username-not-available": "Not available.",
     "username-wrong-format": "Not a valid format. hive-1xxxxx format required.",
+    "checkbox-validation": "Please tick this box if you want to proceed.",
+    "title-validation": "Please fill in this field.",
     "password": "Master password",
     "confirmation": "I have securely saved my owner username and password.",
     "submit": "Create Community",
@@ -393,7 +415,10 @@
     "vote-power": "Vote Power: {{n}}%",
     "rc-power": "Resource Credits: {{n}}%",
     "recharge-time": "(fully charged {{n}})",
-    "down-vote-power": "Downvote Power: {{n}}%"
+    "down-vote-power": "Downvote Power: {{n}}%",
+    "no-posts": "Here you will see your posts, looks like no content exists.",
+    "create-posts": "Let's create a new post",
+    "no-posts-found": "Found nothing!"
   },
   "profile-edit": {
     "title": "Profile",
@@ -450,6 +475,8 @@
     "title": "Withdraw accounts",
     "account": "Account",
     "percent": "Percent",
+    "validation-account": "Account is required.",
+    "validation-percent": "Percentage is required.",
     "auto-power-up": "Automatically power up"
   },
   "points": {
@@ -714,6 +741,8 @@
     "username": "Username",
     "reward": "Reward",
     "user-error": "{{n}} is not a valid user.",
+    "validation-percentage": "Percentage is required.",
+    "validation-username": "Username is required.",
     "user-exists-error": "{{n}} is already in the list"
   },
   "post-scheduler": {
@@ -885,6 +914,9 @@
     "create-first": "Create your first snippet",
     "filter": "Search by title",
     "form-title": "Title",
+    "validation-title": "Title is required.",
+    "validation-value": "Value is required.",
+    "validation-body": "Body is required.",
     "form-body": "Body"
   },
   "password-update": {
@@ -896,12 +928,16 @@
     "error-new2": "Passwords must be same",
     "pass-gen": "Click to generate password",
     "label-check": "I have securely saved my generated password",
+    "validation-password": "Password is invalid.",
+    "validation-label": "Please tick this box to proceed.",
     "updated": "Password updated successfully!"
   },
   "add-image": {
     "title": "Add Image",
     "text-label": "Image Text",
-    "link-label": "Image Link"
+    "link-label": "Image Link",
+    "validation-text": "Text is required.",
+    "validation-image": "Image is required."
   },
   "add-image-mobile": {
     "title": "Add Image",
@@ -912,7 +948,9 @@
   "add-link": {
     "title": "Add Link",
     "text-label": "Text",
-    "link-label": "https://"
+    "link-label": "https://",
+    "validation-text": "Text is required.",
+    "validation-link": "Link is required."
   },
   "scroll-to-top": {
     "title": "Scroll to Top"
@@ -1061,6 +1099,7 @@
     "subscribe-paragraph": "Be first to know what's happening in decentralized web.",
     "copy-rights": "©2021 Ecency. All right reserved.",
     "success-message-subscribe": "A verification link has been sent to your email account!",
+    "validation-email": "A valid email is required",
     "error-occured": "A server error has been occured."
   }
 }

@@ -347,7 +347,7 @@ class EntryPage extends BaseComponent<Props, State> {
             tags.splice(0, 0, entry.category);
         }
         const app = appName(entry.json_metadata.app);
-        const appShort = app.split('/')[0];
+        const appShort = app.split('/')[0].split(' ')[0];
 
         const isComment = !!entry.parent_author;
 

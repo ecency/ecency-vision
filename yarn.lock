@@ -976,10 +976,10 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
-"@ecency/render-helper@^2.1.8":
-  version "2.1.8"
-  resolved "https://registry.yarnpkg.com/@ecency/render-helper/-/render-helper-2.1.8.tgz#c30508abe46e1a8e146eefe93cee5c6b2b31ce27"
-  integrity sha512-AKEJ0hgzd5IL8+11ofqUS2QR/yJtVWcnkonudkazEmK/xpvLzQEeQmGq2iSp8yDmhHRx1zxM2Kznk+hZFCyKZQ==
+"@ecency/render-helper@^2.1.15":
+  version "2.1.15"
+  resolved "https://registry.yarnpkg.com/@ecency/render-helper/-/render-helper-2.1.15.tgz#f6d9e8754daaf13f2209d131a9da143946367bf7"
+  integrity sha512-yozrZd+cUfbYPZbPzvYb17S6m87g2sq5989EJ4lnAHV2l/TeKUVPB9PYUW9NrhlmGvTczM43RqLkhBbClpQeEg==
   dependencies:
     he "^1.2.0"
     lru-cache "^5.1.1"
@@ -11528,9 +11528,9 @@ write-file-atomic@^3.0.0:
     typedarray-to-buffer "^3.1.5"
 
 ws@^6.2.1:
-  version "6.2.1"
-  resolved "https://registry.yarnpkg.com/ws/-/ws-6.2.1.tgz#442fdf0a47ed64f59b6a5d8ff130f4748ed524fb"
-  integrity sha512-GIyAXC2cB7LjvpgMt9EKS2ldqr0MTrORaleiOno6TweZ6r3TKtoFQWay/2PceJ3RuBasOHzXNn5Lrw1X0bEjqA==
+  version "6.2.2"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-6.2.2.tgz#dd5cdbd57a9979916097652d78f1cc5faea0c32e"
+  integrity sha512-zmhltoSR8u1cnDsD43TX59mzoMZsLKqUweyYBAIvTngR3shc0W6aOZylZmq/7hqyVxPdi+5Ud2QInblgyE72fw==
   dependencies:
     async-limiter "~1.0.0"
 

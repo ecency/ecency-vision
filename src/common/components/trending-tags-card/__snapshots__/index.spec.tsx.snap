@@ -9,30 +9,42 @@ exports[`(1) Default render 1`] = `
   >
     Topics
   </h2>
-  <a
-    className="tag-list-item"
-    href="/hot/art"
-    onClick={[Function]}
-    title="Unmoderated topics"
+  <div
+    className="d-flex"
   >
-    art
-  </a>
-  <a
-    className="tag-list-item"
-    href="/hot/hive"
-    onClick={[Function]}
-    title="Unmoderated topics"
+    <a
+      className="tag-list-item d-flex align-items-center"
+      href="/hot/art"
+      onClick={[Function]}
+      title="Unmoderated topics"
+    >
+      art
+    </a>
+  </div>
+  <div
+    className="d-flex"
   >
-    hive
-  </a>
-  <a
-    className="tag-list-item"
-    href="/hot/news"
-    onClick={[Function]}
-    title="Unmoderated topics"
+    <a
+      className="tag-list-item d-flex align-items-center"
+      href="/hot/hive"
+      onClick={[Function]}
+      title="Unmoderated topics"
+    >
+      hive
+    </a>
+  </div>
+  <div
+    className="d-flex"
   >
-    news
-  </a>
+    <a
+      className="tag-list-item d-flex align-items-center"
+      href="/hot/news"
+      onClick={[Function]}
+      title="Unmoderated topics"
+    >
+      news
+    </a>
+  </div>
 </div>
 `;
 
@@ -45,29 +57,47 @@ exports[`(2) Selected tag 1`] = `
   >
     Topics
   </h2>
-  <a
-    className="tag-list-item"
-    href="/hot/art"
-    onClick={[Function]}
-    title="Unmoderated topics"
+  <div
+    className="d-flex"
   >
-    art
-  </a>
-  <a
-    className="tag-list-item selected-item"
-    href="/hot/hive"
-    onClick={[Function]}
-    title="Unmoderated topics"
+    <a
+      className="tag-list-item d-flex align-items-center"
+      href="/hot/art"
+      onClick={[Function]}
+      title="Unmoderated topics"
+    >
+      art
+    </a>
+  </div>
+  <div
+    className="d-flex"
   >
-    hive
-  </a>
-  <a
-    className="tag-list-item"
-    href="/hot/news"
-    onClick={[Function]}
-    title="Unmoderated topics"
+    <a
+      className="tag-list-item selected-item d-flex align-items-center"
+      href="/hot/hive"
+      onClick={[Function]}
+      title="Unmoderated topics"
+    >
+      hive
+      <div
+        className="text-secondary ml-4 pointer"
+        onClick={[Function]}
+      >
+        ✖
+      </div>
+    </a>
+  </div>
+  <div
+    className="d-flex"
   >
-    news
-  </a>
+    <a
+      className="tag-list-item d-flex align-items-center"
+      href="/hot/news"
+      onClick={[Function]}
+      title="Unmoderated topics"
+    >
+      news
+    </a>
+  </div>
 </div>
 `;

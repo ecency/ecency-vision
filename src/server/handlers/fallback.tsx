@@ -28,3 +28,26 @@ export const healthCheck = async (req: express.Request, res: express.Response) =
         }
     })
 };
+
+export const appURI = async (req: express.Request, res: express.Response) => {
+    res.send({
+        "applinks":{
+            "apps":[],
+            "details":[
+                {
+                    "appID":"75B6RXTKGT.app.esteem.mobile.ios",
+                    "paths":[
+                        "/@*",
+                        "/*/@*/*",
+                        "/hot/*",
+                        "/trending/*",
+                        "/created/*",
+                        "/hot",
+                        "/trending",
+                        "/created"
+                    ]
+                }
+            ]
+        }
+    })
+};

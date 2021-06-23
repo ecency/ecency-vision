@@ -6,7 +6,7 @@ import { createBrowserHistory } from "history";
 
 import { EntryFilter } from "../../store/global/types";
 
-import { globalInstance } from "../../helper/test-helper";
+import { activeUserInstance, globalInstance } from "../../helper/test-helper";
 
 it("(1) Default render", () => {
   const props = {
@@ -17,6 +17,7 @@ it("(1) Default render", () => {
       loading: false,
       error: false,
     },
+    activeUser: activeUserInstance
   };
 
   const renderer = TestRenderer.create(<TrendingTags {...props} />);
@@ -32,6 +33,7 @@ it("(2) Selected tag", () => {
       loading: false,
       error: false,
     },
+    activeUser: null
   };
 
   const renderer = TestRenderer.create(<TrendingTags {...props} />);

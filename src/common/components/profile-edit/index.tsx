@@ -3,7 +3,7 @@ import React from "react";
 import {Form, FormControl, InputGroup, Button, Spinner, Col} from "react-bootstrap";
 
 import {ActiveUser} from "../../store/active-user/types";
-import {Account} from "../../store/accounts/types";
+import {Account, FullAccount} from "../../store/accounts/types";
 
 import BaseComponent from "../base";
 import UploadButton from "../image-upload-button";
@@ -16,6 +16,7 @@ import {getAccount} from "../../api/hive";
 
 interface Props {
     activeUser: ActiveUser;
+    account: Account;
     addAccount: (data: Account) => void;
     updateActiveUser: (data?: Account) => void;
 }
@@ -59,6 +60,16 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
         this.stateSet({[id]: value, changed: true});
     };
 
+    componentDidUpdate(prevProps:Props){
+        let currentAccount = this.props.account as FullAccount;
+        let prevAccount = prevProps.account as FullAccount;
+        if(prevAccount!.profile!.profile_image !== currentAccount!.profile!.profile_image){
+            let newImage = currentAccount!.profile!.profile_image;
+            this.setState({profileImage:newImage||this.state.profileImage});
+            this.props.updateActiveUser(this.props.account);
+        }
+    }
+
     update = () => {
         const {activeUser, addAccount, updateActiveUser} = this.props;
 
@@ -85,15 +96,6 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
             success(_t('profile-edit.updated'));
             return getAccount(activeUser.username);
         }).then((account) => {
-
-            // reload page to refresh profile image
-            if (activeUser.data.__loaded && activeUser.data.profile?.profile_image !== account.profile?.profile_image) {
-                setTimeout(() => {
-                    window.location.reload();
-                }, 500);
-                return;
-            }
-
             // update reducers
             addAccount(account);
             updateActiveUser(account);

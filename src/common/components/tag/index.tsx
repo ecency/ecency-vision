@@ -11,8 +11,6 @@ import {Community, Communities} from "../../store/communities/types";
 
 import {getCommunity} from "../../api/bridge";
 
-import defaults from "../../constants/defaults.json";
-
 import isCommunity from "../../helper/is-community";
 import {_t} from "../../i18n";
 

@@ -179,6 +179,31 @@ export const chevronUpSvg = (
   </svg>
 );
 
+export const chevronUpSvgForVote = (
+  <svg viewBox="6 8 12 7.41" className="vote-svg">
+    <path
+      fill="currentColor"
+      d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+    />
+  </svg>
+);
+
+export const chevronUpSvgForSlider = (
+  <svg viewBox="6 8 12 7.41" className="slider-svg-up">
+    <path
+      fill="currentColor"
+      d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+    />
+  </svg>
+);
+
+export const chevronDownSvgForSlider = (
+  <svg viewBox="6 8.59 12 7.41" className="slider-svg-down">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+  </svg>
+);
+
 export const peopleSvg = (
   <svg viewBox="0 0 24 24">
     <path
@@ -983,4 +1008,10 @@ export const scrollDown = (
   </svg>
 );
 
+export const copyContent = (
+<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF">
+  <path d="M0 0h24v24H0V0z" fill="none"/>
+  <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+</svg>
+);
 
