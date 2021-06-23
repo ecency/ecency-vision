@@ -39,6 +39,7 @@
     "replies": "replies",
     "done": "Виконано",
     "apply": "Apply",
+    "warning": "Warning",
     "close": "Close"
   },
   "confirm": {
@@ -152,6 +153,8 @@
     "pinned": "Закріплена публікація",
     "replies": "1 відповідь. Натисніть, щоб відповісти.",
     "replies-n": "{{n}} відповідей. Натисніть, щоб відповісти.",
+    "vote-error": "Previous value is not acceptable. Vote with a different value.",
+    "vote-warning": "Voting 0% unvotes the content.",
     "no-replies": "Ще немає відповідей. Натисніть, щоб відповісти."
   },
   "nsfw": {
