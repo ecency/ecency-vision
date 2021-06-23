@@ -945,9 +945,9 @@
     "active": "Activa",
     "posting": "Publicación",
     "memo": "Memo",
-    "view-keys": "Click to view keys",
-    "copied": "Private key copied into clipboard",
-    "error": "Password seem incorrect, please double check!"
+    "view-keys": "Haga clic para ver las llaves",
+    "copied": "Clave privada copiada en el portapapeles",
+    "error": "La contraseña parece incorrecta, ¡por favor compruébela!"
   },
   "add-image": {
     "title": "Añadir imagen",
