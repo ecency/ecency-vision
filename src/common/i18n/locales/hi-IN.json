@@ -39,6 +39,7 @@
     "replies": "जवाब",
     "done": "पूर्ण हुवा",
     "apply": "लागू करें",
+    "warning": "Warning",
     "close": "बंद करें"
   },
   "confirm": {
@@ -152,6 +153,8 @@
     "pinned": "पिन की गई पोस्ट",
     "replies": "१ प्रतिक्रिया| क्लिक करें जबाब के लिए|",
     "replies-n": "{{n}} प्रतिक्रियाएं। जवाब देने के लिए क्लिक करें।",
+    "vote-error": "Previous value is not acceptable. Vote with a different value.",
+    "vote-warning": "Voting 0% unvotes the content.",
     "no-replies": "अभी तक कोई प्रतिक्रिया नहीं। जवाब देने के लिए क्लिक करें।"
   },
   "nsfw": {
