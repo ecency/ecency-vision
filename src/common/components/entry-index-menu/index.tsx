@@ -59,7 +59,7 @@ export class EntryIndexMenu extends Component<Props, States> {
         if(activeUser && isActiveUser(activeUser) && pathname.includes(activeUser.username)){
             isGlobal = false;
         }
-        this.state = { isGlobal, introduction: IntroductionType.NONE };
+        this.state = { isGlobal, introduction: global.intro ? IntroductionType.FRIENDS : IntroductionType.NONE };
         this.onChangeGlobal = this.onChangeGlobal.bind(this)
     }
 
@@ -235,12 +235,15 @@ export class EntryIndexMenu extends Component<Props, States> {
             id: 'feed'
         }, ...menuConfig.items]}
 
-        const introductionDescription = <>{_t('entry-filter.filter-global-part1')}
-        <span className="text-capitalize">
-            {_t(`${this.getPopupTitle()}`)}
-        </span>
-        {(isGlobal || filter === "feed") ? _t('entry-filter.filter-global-part2') : _t('entry-filter.filter-global-part3')} 
-        {!isGlobal && filter !== "feed" && <Link to='/communities'> {_t('discussion.btn-join')}</Link>}<Link to='/communities'> {_t('discussion.btn-join')} {_t('communities.title')}</Link></>;
+        const introductionDescription = <>
+                                            {_t('entry-filter.filter-global-part1')}
+                                            <span className="text-capitalize">
+                                                {_t(`${this.getPopupTitle()}`)}
+                                            </span>
+                                            {(isGlobal || filter === "feed") ? _t('entry-filter.filter-global-part2') : _t('entry-filter.filter-global-part3')} 
+                                            {!isGlobal && filter !== "feed" && <Link to='/communities'> {_t('discussion.btn-join')}</Link>}
+                                            <Link to='/communities'> {_t('discussion.btn-join')} {_t('communities.title')}</Link>
+                                        </>;
 
         return <div>
                     {introduction !== IntroductionType.NONE &&  <div className="overlay"></div>}
