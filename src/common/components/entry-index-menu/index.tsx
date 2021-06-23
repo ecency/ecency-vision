@@ -162,6 +162,7 @@ export class EntryIndexMenu extends Component<Props, States> {
     }
 
     onPreviousWeb = () => {
+        const { activeUser } = this.props;
         let value: IntroductionType = this.state.introduction;
         switch(value){
             case IntroductionType.NEW:
@@ -171,7 +172,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                 value = IntroductionType.TRENDING;
                 break;
             case IntroductionType.TRENDING:
-                value = IntroductionType.FRIENDS;
+                value = activeUser && isActiveUser(activeUser) ? IntroductionType.FRIENDS: IntroductionType.NONE;
                 break;
             default:
                 value = value;
@@ -180,6 +181,7 @@ export class EntryIndexMenu extends Component<Props, States> {
     }
     
     onPreviousMobile = () => {
+        const { activeUser } = this.props;
         let value : IntroductionType = this.state.introduction;
         switch(value){
             case IntroductionType.NEW:
@@ -189,7 +191,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                 value = IntroductionType.TRENDING;
                 break;
             case IntroductionType.TRENDING:
-                value = IntroductionType.FRIENDS;
+                value = activeUser && isActiveUser(activeUser) ? IntroductionType.FRIENDS: IntroductionType.NONE;
                 break;
             case IntroductionType.FRIENDS:
                 value = IntroductionType.NONE;
