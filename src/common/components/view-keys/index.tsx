@@ -1,23 +1,20 @@
 import React from "react";
 
-import {Button, Form, FormControl, Modal, Spinner} from "react-bootstrap";
+import {Button, Form, FormControl, InputGroup, Modal} from "react-bootstrap";
 
-import {PrivateKey, KeyRole, cryptoUtils} from "@hiveio/dhive";
-
-import base58 from "bs58";
+import {PrivateKey, KeyRole} from "@hiveio/dhive";
 
 import {ActiveUser} from "../../store/active-user/types";
 
 import BaseComponent from "../base";
 import {error, success} from "../feedback";
 
-import {updatePassword, formatError} from "../../api/operations";
-
-import random from "../../util/rnd";
+import {formatError} from "../../api/operations";
 
 import {_t} from "../../i18n";
 
-import {keySvg} from "../../img/svg";
+import {eyeSvg, copyContent} from "../../img/svg";
+import truncate from '../../util/truncate';
 
 interface Props {
     activeUser: ActiveUser;
@@ -44,7 +41,7 @@ export class ViewKeys extends BaseComponent<Props, State> {
     }
 
     genKeys = () => {
-        const {activeUser, onUpdate} = this.props;
+        const {activeUser} = this.props;
         const {curPass} = this.state;
 
         if (!activeUser.data.__loaded) {
@@ -54,22 +51,39 @@ export class ViewKeys extends BaseComponent<Props, State> {
         this.stateSet({inProgress: true});
 
         const newPrivateKeys = {active: "", memo: "", owner: "", posting: ""};
+        let keyCheck = "";
 
         try {
             ['owner', 'active', 'posting', 'memo'].forEach(r => {
                 const k = PrivateKey.fromLogin(activeUser.username, curPass, r as KeyRole);
                 newPrivateKeys[r] = k.toString();
+                if (r === 'memo') keyCheck = k.createPublic().toString();
             });    
         } catch (error) {
             error(formatError(error));
         }
         
-        this.stateSet({inProgress: false, keys: newPrivateKeys});
+        if (activeUser.data.memo_key !== keyCheck) {
+            error(_t("view-keys.error"));
+            this.stateSet({inProgress: false, keys: {}});
+        } else {
+            this.stateSet({inProgress: false, keys: newPrivateKeys});
+        }
+    }
+
+    copyToClipboard = (text: string) => {
+        const textField = document.createElement('textarea');
+        textField.innerText = text;
+        document.body.appendChild(textField);
+        textField.select();
+        document.execCommand('copy');
+        textField.remove();
+        success(_t('view-keys.copied'));
     }
 
     render() {
         const {activeUser} = this.props;
-        const {curPass, keys, inProgress} = this.state;
+        const {curPass, keys} = this.state;
 
         return <div className="dialog-content">
             <Form ref={this.form} onSubmit={(e: React.FormEvent) => {
@@ -90,14 +104,93 @@ export class ViewKeys extends BaseComponent<Props, State> {
                     <Form.Label>{_t("view-keys.cur-pass")}</Form.Label>
                     <Form.Control value={curPass} onChange={this.curPassChanged} required={true} type="password" autoFocus={true} autoComplete="off"/>
                 </Form.Group>
-                <Form.Group controlId="new-pass">
-                    <Form.Label>{_t("view-keys.keys")}</Form.Label>
+                <Form.Group controlId="keys-view">
                     <div>
-                        {!keys.posting && (<Button variant="outline-primary" onClick={this.genKeys}>{_t("view-keys.view-keys")}</Button>)}
-                        {keys.owner && <p className="pass-generated">{`${_t("view-keys.owner")}: ${keys.owner}`}</p>}
-                        {keys.active && <p className="pass-generated">{`${_t("view-keys.active")}: ${keys.active}`}</p>}
-                        {keys.posting && <p className="pass-generated">{`${_t("view-keys.posting")}: ${keys.posting}`}</p>}
-                        {keys.posting && <p className="pass-generated">{`${_t("view-keys.memo")}: ${keys.memo}`}</p>}
+                        {!keys.memo && (<Button variant="outline-primary" onClick={this.genKeys}>{_t("view-keys.view-keys")}</Button>)}
+                        {keys.memo && (
+                        <div>
+                            <Form.Group>
+                                <Form.Label>{_t("view-keys.owner")}</Form.Label>
+                                <InputGroup onClick={() => this.copyToClipboard(keys.owner)}>
+                                    <Form.Control
+                                        value={truncate(keys.owner, 30)}
+                                        disabled={true}
+                                        className="text-primary pointer"
+                                    />
+                                    <InputGroup.Append>
+                                        <Button
+                                            variant="primary"
+                                            size="sm"
+                                            className="copy-to-clipboard"
+                                            onClick={() => this.copyToClipboard(keys.owner)}
+                                        >
+                                            {copyContent}
+                                        </Button>
+                                    </InputGroup.Append>
+                                </InputGroup>
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Label>{_t("view-keys.active")}</Form.Label>
+                                <InputGroup onClick={() => this.copyToClipboard(keys.active)}>
+                                    <Form.Control
+                                        value={truncate(keys.active, 30)}
+                                        disabled={true}
+                                        className="text-primary pointer"
+                                    />
+                                    <InputGroup.Append>
+                                        <Button
+                                            variant="primary"
+                                            size="sm"
+                                            className="copy-to-clipboard"
+                                            onClick={() => this.copyToClipboard(keys.active)}
+                                        >
+                                            {copyContent}
+                                        </Button>
+                                    </InputGroup.Append>
+                                </InputGroup>
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Label>{_t("view-keys.posting")}</Form.Label>
+                                <InputGroup onClick={() => this.copyToClipboard(keys.posting)}>
+                                    <Form.Control
+                                        value={truncate(keys.posting, 30)}
+                                        disabled={true}
+                                        className="text-primary pointer"
+                                    />
+                                    <InputGroup.Append>
+                                        <Button
+                                            variant="primary"
+                                            size="sm"
+                                            className="copy-to-clipboard"
+                                            onClick={() => this.copyToClipboard(keys.posting)}
+                                        >
+                                            {copyContent}
+                                        </Button>
+                                    </InputGroup.Append>
+                                </InputGroup>
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Label>{_t("view-keys.memo")}</Form.Label>
+                                <InputGroup onClick={() => this.copyToClipboard(keys.memo)}>
+                                    <Form.Control
+                                        value={truncate(keys.memo, 30)}
+                                        disabled={true}
+                                        className="text-primary pointer"
+                                    />
+                                    <InputGroup.Append>
+                                        <Button
+                                            variant="primary"
+                                            size="sm"
+                                            className="copy-to-clipboard"
+                                            onClick={() => this.copyToClipboard(keys.memo)}
+                                        >
+                                            {copyContent}
+                                        </Button>
+                                    </InputGroup.Append>
+                                </InputGroup>
+                            </Form.Group>
+                        </div>
+                        )}
                     </div>
                 </Form.Group>
             </Form>
@@ -129,10 +222,10 @@ export default class ViewKeysDialog extends BaseComponent<DialogProps, DialogSta
         const {dialog} = this.state;
 
         return <>
-            <Button onClick={this.toggleDialog} size="sm">{keySvg} {_t('view-keys.title')}</Button>
+            <Button onClick={this.toggleDialog} size="sm" className="view-keys-btn">{eyeSvg} {_t('view-keys.title')}</Button>
 
             {dialog && (
-                <Modal show={true} centered={true} onHide={this.toggleDialog} animation={false} backdrop="static" keyboard={false} className="password-update-modal">
+                <Modal show={true} centered={true} onHide={this.toggleDialog} animation={false} backdrop="static" keyboard={false} className="view-keys-modal">
                     <Modal.Header closeButton={true}>
                         <Modal.Title>{_t('view-keys.title')}</Modal.Title>
                     </Modal.Header>
@@ -144,4 +237,3 @@ export default class ViewKeysDialog extends BaseComponent<DialogProps, DialogSta
         </>
     }
 }
-

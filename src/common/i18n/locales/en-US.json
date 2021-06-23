@@ -938,12 +938,13 @@
     "title": "View Private keys",
     "account": "Account",
     "cur-pass": "Current password",
-    "keys": "Private keys",
     "owner": "Owner",
     "active": "Active",
     "posting": "Posting",
     "memo": "Memo",
-    "view-keys": "Click to view keys"
+    "view-keys": "Click to view keys",
+    "copied": "Private key copied into clipboard",
+    "error": "Password seem incorrect, please double check!"
   },
   "add-image": {
     "title": "Add Image",

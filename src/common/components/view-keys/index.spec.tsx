@@ -2,7 +2,7 @@ import React from "react";
 
 import TestRenderer from "react-test-renderer";
 
-import PasswordUpdateDialog, {PasswordUpdate} from "./index";
+import ViewKeysDialog, {ViewKeys} from "./index";
 
 import {activeUserMaker} from "../../helper/test-helper";
 
@@ -11,7 +11,7 @@ it("(1) Default render", () => {
         activeUser: activeUserMaker("foo"),
 
     };
-    const renderer = TestRenderer.create(<PasswordUpdateDialog {...props} />);
+    const renderer = TestRenderer.create(<ViewKeysDialog {...props} />);
     expect(renderer.toJSON()).toMatchSnapshot();
 });
 
@@ -22,6 +22,6 @@ it("(2) Dialog content", () => {
         onUpdate: () => {
         }
     };
-    const renderer = TestRenderer.create(<PasswordUpdate {...props} />);
+    const renderer = TestRenderer.create(<ViewKeys {...props} />);
     expect(renderer.toJSON()).toMatchSnapshot();
 });
