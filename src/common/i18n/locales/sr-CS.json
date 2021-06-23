@@ -39,6 +39,7 @@
     "replies": "replies",
     "done": "Gotovo",
     "apply": "Apply",
+    "warning": "Warning",
     "close": "Close"
   },
   "confirm": {
@@ -152,6 +153,8 @@
     "pinned": "Zakačena objava",
     "replies": "1 odgovor. Kliknite da odgovorite.",
     "replies-n": "{{n}} odgovora. Kliknite da odgovorite.",
+    "vote-error": "Previous value is not acceptable. Vote with a different value.",
+    "vote-warning": "Voting 0% unvotes the content.",
     "no-replies": "Još nema odgovora. Kliknite da odgovorite."
   },
   "nsfw": {
