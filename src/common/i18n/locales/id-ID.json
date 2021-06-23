@@ -428,6 +428,7 @@
     "profile-image": "Gambar Profil",
     "website": "Website",
     "location": "Lokasi",
+    "copied": "Referral link copied to clipboard.",
     "updated": "Profil diperbaharui dengan sukses!"
   },
   "image-upload-button": {
@@ -439,6 +440,7 @@
     "currency": "Mata uang",
     "language": "Bahasa",
     "nsfw": "Perlihatkan konten NSFW",
+    "referral-link": "Referral link",
     "updated": "Preferensi diperbaharui!"
   },
   "wallet": {
