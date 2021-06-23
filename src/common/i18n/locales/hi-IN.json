@@ -934,6 +934,18 @@
     "validation-label": "आगे बढ़ने के लिए कृपया इस बॉक्स को चेक करें।",
     "updated": "पासवर्ड सफलतापूर्वक अपडेट किया गया!"
   },
+  "view-keys": {
+    "title": "View Private keys",
+    "account": "Account",
+    "cur-pass": "Current password",
+    "owner": "Owner",
+    "active": "Active",
+    "posting": "Posting",
+    "memo": "Memo",
+    "view-keys": "Click to view keys",
+    "copied": "Private key copied into clipboard",
+    "error": "Password seem incorrect, please double check!"
+  },
   "add-image": {
     "title": "छवि जोड़ें",
     "text-label": "छवि पाठ",
