@@ -934,6 +934,18 @@
     "validation-label": "Please tick this box to proceed.",
     "updated": "Senha atualizada com sucesso!"
   },
+  "view-keys": {
+    "title": "View Private keys",
+    "account": "Account",
+    "cur-pass": "Current password",
+    "owner": "Owner",
+    "active": "Active",
+    "posting": "Posting",
+    "memo": "Memo",
+    "view-keys": "Click to view keys",
+    "copied": "Private key copied into clipboard",
+    "error": "Password seem incorrect, please double check!"
+  },
   "add-image": {
     "title": "Adicionar imagem",
     "text-label": "Texto da Imagem",
