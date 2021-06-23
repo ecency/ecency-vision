@@ -428,6 +428,7 @@
     "profile-image": "Imagem de Perfil",
     "website": "Website",
     "location": "Localização",
+    "copied": "Referral link copied to clipboard.",
     "updated": "Perfil atualizado com sucesso!"
   },
   "image-upload-button": {
@@ -439,6 +440,7 @@
     "currency": "Moeda",
     "language": "Língua",
     "nsfw": "Mostrar conteúdo adulto",
+    "referral-link": "Referral link",
     "updated": "Preferências atualizadas!"
   },
   "wallet": {
