@@ -39,6 +39,7 @@
     "replies": "balasan",
     "done": "Selesai",
     "apply": "Terapkan",
+    "warning": "Warning",
     "close": "Tutup"
   },
   "confirm": {
@@ -152,6 +153,8 @@
     "pinned": "Postingan Disematkan",
     "replies": "1 respon, Klik untuk merespon.",
     "replies-n": "{{n}} respon. Klik untuk merespon.",
+    "vote-error": "Previous value is not acceptable. Vote with a different value.",
+    "vote-warning": "Voting 0% unvotes the content.",
     "no-replies": "Belum ada respon. Klik untuk merespon."
   },
   "nsfw": {
