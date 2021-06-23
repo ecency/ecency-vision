@@ -445,6 +445,7 @@ exports[`(3) Active user. Trending filter 1`] = `
             >
               <button
                 className="close position-absolute close-btn"
+                id="close-btn"
                 onClick={[Function]}
                 type="button"
               >
@@ -462,6 +463,7 @@ exports[`(3) Active user. Trending filter 1`] = `
                 >
                   <img
                     className="media-intro"
+                    id="media"
                     src="https://ecency.com/assets/our-vision.png"
                     width="100%"
                   />
@@ -471,11 +473,13 @@ exports[`(3) Active user. Trending filter 1`] = `
                 >
                   <h1
                     className="mb-2 mb-md-4 text-dark font-weight-bold title"
+                    id="title"
                   >
                     Friends
                   </h1>
                   <p
                     className="text-muted paragraph mt-2 mt-md-0"
+                    id="description"
                   >
                     This feed contains 
                     <span
@@ -647,6 +651,7 @@ exports[`(3) Active user. Trending filter 1`] = `
               >
                 <button
                   className="close position-absolute close-btn"
+                  id="close-btn"
                   onClick={[Function]}
                   type="button"
                 >
@@ -664,6 +669,7 @@ exports[`(3) Active user. Trending filter 1`] = `
                   >
                     <img
                       className="media-intro"
+                      id="media"
                       src="https://ecency.com/assets/our-vision.png"
                       width="100%"
                     />
@@ -673,11 +679,13 @@ exports[`(3) Active user. Trending filter 1`] = `
                   >
                     <h1
                       className="mb-2 mb-md-4 text-dark font-weight-bold title"
+                      id="title"
                     >
                       Friends
                     </h1>
                     <p
                       className="text-muted paragraph mt-2 mt-md-0"
+                      id="description"
                     >
                       This feed contains 
                       <span

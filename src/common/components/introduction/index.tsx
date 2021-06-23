@@ -26,16 +26,16 @@ export const Introduction = ({ title, description, media, onClose, onPrevious, o
     return <>
     <div className="intro-popup p-4 p-lg-0" style={{left: placement}}>
     <Container className="h-100">
-        <button type="button" className="close position-absolute close-btn" onClick={onClose}>
+        <button type="button" className="close position-absolute close-btn" onClick={onClose} id="close-btn">
             <span aria-hidden="true">&times;</span>
         </button>
         <Row className="justify-content-center h-100 align-items-center mt-4 mt-md-0">
             <Col xs={12} md={3} className="p-0 px-md-3">
-                <img width="100%" src={media} className='media-intro'/>
+                <img width="100%" src={media} className='media-intro' id="media"/>
             </Col>
             <Col xs={12} md={5} className="p-0 px-md-3">
-                <h1 className="mb-2 mb-md-4 text-dark font-weight-bold title">{title}</h1>
-                <p className="text-muted paragraph mt-2 mt-md-0">{description}</p>
+                <h1 className="mb-2 mb-md-4 text-dark font-weight-bold title" id="title">{title}</h1>
+                <p className="text-muted paragraph mt-2 mt-md-0" id="description">{description}</p>
                 <div className='d-flex flex-column flex-md-row'>
                     {onPrevious && <Button size="lg" variant="outline-primary" className="mr-0 mr-md-3 w-100 w-md-50 intro-btn mb-3 mb-md-0" onClick={()=>{onPrevious()}}>{_t('g.previous')}</Button>}
                     {onNext && <Button size="lg" variant="primary" className="w-50 w-100 w-md-50 intro-btn" onClick={()=>{onNext()}}>{_t(showFinish ? "g.finish" : 'g.next')}</Button>}
