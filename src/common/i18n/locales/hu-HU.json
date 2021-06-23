@@ -428,6 +428,7 @@
     "profile-image": "Profil kép",
     "website": "Weboldal",
     "location": "Tartózkodási hely",
+    "copied": "Referral link copied to clipboard.",
     "updated": "Profil frissítése sikeresen megtörtént!"
   },
   "image-upload-button": {
@@ -439,6 +440,7 @@
     "currency": "Pénznem",
     "language": "Nyelv",
     "nsfw": "Show NSFW content",
+    "referral-link": "Referral link",
     "updated": "Preference updated!"
   },
   "wallet": {
