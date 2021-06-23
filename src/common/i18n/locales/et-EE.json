@@ -39,6 +39,7 @@
     "replies": "replies",
     "done": "Valmis",
     "apply": "Kinnita",
+    "warning": "Warning",
     "close": "Sulge"
   },
   "confirm": {
@@ -152,6 +153,8 @@
     "pinned": "Kinnitatud postitus",
     "replies": "1 vastus. Vajuta, et vastata.",
     "replies-n": "{{n}} vastust. Vajuta, et vastata.",
+    "vote-error": "Previous value is not acceptable. Vote with a different value.",
+    "vote-warning": "Voting 0% unvotes the content.",
     "no-replies": "Vastused puuduvad. Vajuta, et vastata."
   },
   "nsfw": {
