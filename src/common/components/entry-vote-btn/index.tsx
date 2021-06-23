@@ -142,7 +142,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     const { upVoted, downVoted } = this.props;
     this.setState({
       upSliderVal,
-      wrongValueUp: upSliderVal === initialVoteValues.up,
+      wrongValueUp: upSliderVal === initialVoteValues.up && upVoted,
       showWarning: upSliderVal < initialVoteValues.up && (upVoted || downVoted) 
     });
     const { activeUser } = this.props;
