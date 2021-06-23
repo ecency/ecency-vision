@@ -9,6 +9,7 @@ export interface MenuItem {
     href?: string;
     onClick?: () => void;
     active?: boolean;
+    flash?: boolean;
     id?: string;
     icon?: JSX.Element
 }

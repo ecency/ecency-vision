@@ -137,7 +137,8 @@ export class EntryIndexMenu extends Component<Props, States> {
                         label: _t(`entry-filter.filter-${x}`),
                         href: isActive ? isGlobal ? `/${x}` : `/${x}/my` : `/${x}`,
                         active: filter === x || filter === x + '/my',
-                        id: x
+                        id: x,
+                        flash: (x === 'trending' && introduction === IntroductionType.TRENDING) || (x === 'hot' && introduction === IntroductionType.HOT) || (x === 'created' && introduction === IntroductionType.NEW)
                     };
                 }),
             ],
@@ -156,9 +157,9 @@ export class EntryIndexMenu extends Component<Props, States> {
                         <div className="the-menu align-items-center">
                         {isActive &&
                             <div className="sub-menu mt-3 mt-md-0">
-                                <ul className={`nav nav-pills position-relative nav-fill ${introduction !== null && introduction === IntroductionType.FRIENDS ? "flash" : ""}`}>
-                                    <li className="nav-item">
-                                        <Link to={`/@${activeUser?.username}/feed`} className={_c(`nav-link my-link ${filter === "feed" ? "active" : ""}`)}>
+                                <ul className={`nav nav-pills position-relative nav-fill ${introduction !== IntroductionType.NONE && introduction === IntroductionType.FRIENDS ? "flash" : ""}`}>
+                                    <li className={`nav-item`}>
+                                        <Link to={`/@${activeUser?.username}/feed`} className={_c(`nav-link my-link ${(filter === "feed" && (introduction === IntroductionType.NONE || introduction === IntroductionType.FRIENDS) ) ? "active" : ""}   ${introduction !== IntroductionType.NONE && introduction === IntroductionType.FRIENDS ? "active" : ""}`)}>
                                             {_t("entry-filter.filter-feed-friends")}
                                         </Link>
                                     </li>
@@ -194,10 +195,10 @@ export class EntryIndexMenu extends Component<Props, States> {
                                     <DropDown {...menuConfig} float="left"/>
                                 </div>
                                 <div className="lg-menu">
-                                    <ul className="nav nav-pills position-relative nav-fill">
+                                    <ul className={`nav nav-pills position-relative nav-fill`}>
                                         {menuConfig.items.map((i, k) => {
-                                            return <li key={k} className="nav-item">
-                                                <Link to={i.href!} className={_c(`nav-link link-${i.id} ${i.active ? "active" : ""}`)}>{i.label}</Link>
+                                            return <li key={k} className={`nav-item ${i.flash ? "flash" : ""}`}>
+                                                <Link to={i.href!} className={_c(`nav-link link-${i.id} ${(introduction!==IntroductionType.NONE && !i.flash && i.active)?"":(i.active || i.flash) ? "active" : ""}`)}>{i.label}</Link>
                                             </li>
                                         })}
                                         {introduction !== IntroductionType.NONE && introduction !== IntroductionType.FRIENDS && (introduction === IntroductionType.HOT || introduction === IntroductionType.TRENDING || introduction === IntroductionType.NEW) &&
@@ -288,23 +289,6 @@ export class EntryIndexMenu extends Component<Props, States> {
                             >
                                 {informationVariantSvg}
                             </span>
-                            {/* <OverlayTrigger
-                                delay={{ show: 0, hide: 1500 }}
-                                key={'bottom'}
-                                placement={'bottom'}
-                                overlay={
-                                    <Tooltip id={`tooltip-${'bottom'}`}>
-                                        {_t('entry-filter.filter-global-part1')}
-                                        <span className="text-capitalize">
-                                            {_t(`entry-filter.filter-${filter}`)}
-                                        </span>
-                                        {(isGlobal || filter === "feed") ? _t('entry-filter.filter-global-part2') : _t('entry-filter.filter-global-part3')} 
-                                        {!isGlobal && filter !== "feed" && <Link to='/communities'> {_t('discussion.btn-join')}</Link>}
-                                    </Tooltip>
-                                }
-                                >
-                                <span className="info-icon mr-0 mr-md-2">{informationVariantSvg}</span>
-                            </OverlayTrigger> */}
                             <ListStyleToggle global={this.props.global} toggleListStyle={this.props.toggleListStyle}/>
                         </div>
                     </div>
