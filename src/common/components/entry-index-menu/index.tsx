@@ -96,8 +96,11 @@ export class EntryIndexMenu extends Component<Props, States> {
         }
     }
 
+    onClosePopup = () => {
+        this.setState({introduction: IntroductionType.NONE})
+    }
 
-   getPopupTitle(){
+    getPopupTitle = () => {
         let value = '';
         switch(this.state.introduction){
             case IntroductionType.TRENDING:
@@ -109,12 +112,93 @@ export class EntryIndexMenu extends Component<Props, States> {
             case IntroductionType.NEW:
                 value = 'filter-created';
                 break;
+            case IntroductionType.FRIENDS:
+                value = 'filter-feed-friends';
+                break;
             default:
                 value = value;
 
             }
         return _t(`entry-filter.${value}`)
-}
+    }
+
+    onNextWeb = () => {
+        let value: IntroductionType = this.state.introduction;
+        switch(value){
+            case IntroductionType.TRENDING:
+                value = IntroductionType.HOT;
+                break;
+            case IntroductionType.HOT:
+                value = IntroductionType.NEW;
+                break;
+            case IntroductionType.NEW:
+                value = IntroductionType.NONE;
+                break;
+            default:
+                value = value;
+        } 
+        this.setState({ introduction: value })
+    }
+
+    onNextMobile = () => {
+        let value : IntroductionType = this.state.introduction;
+        switch(value){
+            case IntroductionType.TRENDING:
+                value = IntroductionType.HOT;
+                break;
+            case IntroductionType.HOT:
+                value = IntroductionType.NEW;
+                break;
+            case IntroductionType.FRIENDS:
+                value = IntroductionType.TRENDING;
+                break;
+            case IntroductionType.NEW:
+                value = IntroductionType.NONE;
+                break;
+            default:
+                value = value;
+        } 
+        this.setState({ introduction: value })
+    }
+
+    onPreviousWeb = () => {
+        let value: IntroductionType = this.state.introduction;
+        switch(value){
+            case IntroductionType.NEW:
+                value = IntroductionType.HOT;
+                break;
+            case IntroductionType.HOT:
+                value = IntroductionType.TRENDING;
+                break;
+            case IntroductionType.TRENDING:
+                value = IntroductionType.FRIENDS;
+                break;
+            default:
+                value = value;
+        } 
+        this.setState({ introduction: value })
+    }
+    
+    onPreviousMobile = () => {
+        let value : IntroductionType = this.state.introduction;
+        switch(value){
+            case IntroductionType.NEW:
+                value = IntroductionType.HOT;
+                break;
+            case IntroductionType.HOT:
+                value = IntroductionType.TRENDING;
+                break;
+            case IntroductionType.TRENDING:
+                value = IntroductionType.FRIENDS;
+                break;
+            case IntroductionType.FRIENDS:
+                value = IntroductionType.NONE;
+                break;
+            default:
+                value = value;
+        } 
+        this.setState({ introduction: value })
+    }
 
     render() {
         const { activeUser, global } = this.props;
@@ -151,6 +235,13 @@ export class EntryIndexMenu extends Component<Props, States> {
             id: 'feed'
         }, ...menuConfig.items]}
 
+        const introductionDescription = <>{_t('entry-filter.filter-global-part1')}
+        <span className="text-capitalize">
+            {_t(`${this.getPopupTitle()}`)}
+        </span>
+        {(isGlobal || filter === "feed") ? _t('entry-filter.filter-global-part2') : _t('entry-filter.filter-global-part3')} 
+        {!isGlobal && filter !== "feed" && <Link to='/communities'> {_t('discussion.btn-join')}</Link>}<Link to='/communities'> {_t('discussion.btn-join')} {_t('communities.title')}</Link></>;
+
         return <div>
                     {introduction !== IntroductionType.NONE &&  <div className="overlay"></div>}
                     <div className="entry-index-menu">
@@ -175,13 +266,8 @@ export class EntryIndexMenu extends Component<Props, States> {
                                             let value = IntroductionType.NONE;
                                             this.setState({ introduction: value })}
                                         }
-                                        onClose={() => this.setState({introduction: IntroductionType.NONE})}
-                                        description={<>{_t('entry-filter.filter-global-part1')}
-                                        <span className="text-capitalize">
-                                            {_t(`entry-filter.filter-feed-friends`)}
-                                        </span>
-                                        {(isGlobal || filter === "feed") ? _t('entry-filter.filter-global-part2') : _t('entry-filter.filter-global-part3')} 
-                                        {!isGlobal && filter !== "feed" && <Link to='/communities'> {_t('discussion.btn-join')}</Link>}<Link to='/communities'> {_t('discussion.btn-join')} {_t('communities.title')}</Link></>}
+                                        onClose={this.onClosePopup}
+                                        description={introductionDescription}
                                     />
                                 }
                                   </ul>
@@ -205,47 +291,10 @@ export class EntryIndexMenu extends Component<Props, States> {
                                             title={this.getPopupTitle()}
                                             media={OurVision}
                                             placement={introduction === IntroductionType.TRENDING ? "25%" :  introduction === IntroductionType.HOT ? "50%" : "75%"}
-                                            onNext={() => {
-                                                let value = introduction;
-                                                switch(value){
-                                                    case IntroductionType.TRENDING:
-                                                        value = IntroductionType.HOT;
-                                                        break;
-                                                    case IntroductionType.HOT:
-                                                        value = IntroductionType.NEW;
-                                                        break;
-                                                    case IntroductionType.NEW:
-                                                        value = IntroductionType.NONE;
-                                                        break;
-                                                    default:
-                                                        value = value;
-                                                } 
-                                                this.setState({ introduction: value })}
-                                            }
-                                            onPrevious={() => {
-                                                let value = introduction;
-                                                switch(value){
-                                                    case IntroductionType.NEW:
-                                                        value = IntroductionType.HOT;
-                                                        break;
-                                                    case IntroductionType.HOT:
-                                                        value = IntroductionType.TRENDING;
-                                                        break;
-                                                    case IntroductionType.TRENDING:
-                                                        value = IntroductionType.FRIENDS;
-                                                        break;
-                                                    default:
-                                                        value = value;
-                                                } 
-                                                this.setState({ introduction: value })}
-                                            }
-                                            onClose={() => this.setState({ introduction: IntroductionType.NONE })}
-                                            description={<>{_t('entry-filter.filter-global-part1')}
-                                            <span className="text-capitalize">
-                                                {_t(`entry-filter.filter-${filter === 'feed' ? "trending" : filter}`)}
-                                            </span>
-                                            {(isGlobal || filter === "feed") ? _t('entry-filter.filter-global-part2') : _t('entry-filter.filter-global-part3')} 
-                                            {!isGlobal && filter !== "feed" && <Link to='/communities'> {_t('discussion.btn-join')}</Link>}<Link to='/communities'> {_t('discussion.btn-join')} {_t('communities.title')}</Link></>}
+                                            onNext={this.onNextWeb}
+                                            onPrevious={this.onPreviousWeb}
+                                            onClose={this.onClosePopup}
+                                            description={introductionDescription}
                                         />
                                 }
                                     </ul>
@@ -255,52 +304,14 @@ export class EntryIndexMenu extends Component<Props, States> {
                             <div className="main-menu d-flex d-lg-none">
                                 <div className="sm-menu position-relative">
                                     <DropDown {...mobileMenuConfig} float="left"/>
-                                    {introduction !== IntroductionType.NONE && introduction !== IntroductionType.FRIENDS && (introduction === IntroductionType.HOT || introduction === IntroductionType.TRENDING || introduction === IntroductionType.NEW) &&
+                                    {introduction !== IntroductionType.NONE &&
                                     <Introduction
                                         title={this.getPopupTitle()}
                                         media={OurVision}
-                                        onNext={() => {
-                                            let value = introduction;
-                                            switch(value){
-                                                case IntroductionType.TRENDING:
-                                                    value = IntroductionType.HOT;
-                                                    break;
-                                                case IntroductionType.HOT:
-                                                    value = IntroductionType.NEW;
-                                                    break;
-                                                case IntroductionType.NEW:
-                                                    value = IntroductionType.NONE;
-                                                    break;
-                                                default:
-                                                    value = value;
-                                            } 
-                                            this.setState({ introduction: value })}
-                                        }
-                                        onPrevious={() => {
-                                            let value = introduction;
-                                            switch(value){
-                                                case IntroductionType.NEW:
-                                                    value = IntroductionType.HOT;
-                                                    break;
-                                                case IntroductionType.HOT:
-                                                    value = IntroductionType.TRENDING;
-                                                    break;
-                                                case IntroductionType.TRENDING:
-                                                    value = IntroductionType.FRIENDS;
-                                                    break;
-                                                default:
-                                                    value = value;
-                                            } 
-                                            this.setState({ introduction: value })}
-                                        }
-                                        onClose={() => this.setState({ introduction: IntroductionType.NONE })}
-                                        description={<>{_t('entry-filter.filter-global-part1')}
-                                        <span className="text-capitalize">
-                                            {_t(`entry-filter.filter-${filter === 'feed' ? "trending" : filter}`)}
-                                        </span>
-                                        {(isGlobal || filter === "feed") ? _t('entry-filter.filter-global-part2') : _t('entry-filter.filter-global-part3')} 
-                                        {!isGlobal && filter !== "feed" && <Link to='/communities'> {_t('discussion.btn-join')}</Link>}<Link to='/communities'> {_t('discussion.btn-join')} {_t('communities.title')}</Link></>}
-                                        />
+                                        onNext={this.onNextMobile}
+                                        onPrevious={this.onPreviousMobile}
+                                        onClose={this.onClosePopup}
+                                        description={introductionDescription} />
                                         }
                                 </div>
                                 <div className="lg-menu position-relative">
