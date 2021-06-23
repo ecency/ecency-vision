@@ -428,6 +428,7 @@
     "profile-image": "Профилна снимка",
     "website": "Уебсайт",
     "location": "Местоположение",
+    "copied": "Referral link copied to clipboard.",
     "updated": "Профила е актуализиран успешно!"
   },
   "image-upload-button": {
@@ -439,6 +440,7 @@
     "currency": "Валутa",
     "language": "Език",
     "nsfw": "Show NSFW content",
+    "referral-link": "Referral link",
     "updated": "Предпочитанията са обновени!"
   },
   "wallet": {
