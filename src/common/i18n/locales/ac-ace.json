@@ -39,6 +39,7 @@
     "replies": "replies",
     "done": "Seuleuso",
     "apply": "Meupakek",
+    "warning": "Warning",
     "close": "Teubiet"
   },
   "confirm": {
@@ -152,6 +153,8 @@
     "pinned": "Posting nyang diboh tanda",
     "replies": "1 tanggapan. klik untuk respon.",
     "replies-n": "{{n}} tanggapan. Klik untuk merespon.",
+    "vote-error": "Previous value is not acceptable. Vote with a different value.",
+    "vote-warning": "Voting 0% unvotes the content.",
     "no-replies": "Goh lom na tanggapan. Klik untuk respon."
   },
   "nsfw": {
