@@ -428,6 +428,7 @@
     "profile-image": "Profilio Nuotrauka",
     "website": "Svetainė",
     "location": "Vietovė",
+    "copied": "Referral link copied to clipboard.",
     "updated": "Profilis sėkmingai atnaujintas!"
   },
   "image-upload-button": {
@@ -439,6 +440,7 @@
     "currency": "Currency",
     "language": "Language",
     "nsfw": "Show NSFW content",
+    "referral-link": "Referral link",
     "updated": "Preference updated!"
   },
   "wallet": {
