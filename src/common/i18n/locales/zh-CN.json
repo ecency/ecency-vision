@@ -39,6 +39,7 @@
     "replies": "回复",
     "done": "完成",
     "apply": "应用",
+    "warning": "Warning",
     "close": "关闭"
   },
   "confirm": {
@@ -152,6 +153,8 @@
     "pinned": "置顶帖",
     "replies": "1个回复。请点击回复。",
     "replies-n": "{{n}} 个回复。点击进行回复。",
+    "vote-error": "Previous value is not acceptable. Vote with a different value.",
+    "vote-warning": "Voting 0% unvotes the content.",
     "no-replies": "还没有回复。点击进行回复。"
   },
   "nsfw": {
