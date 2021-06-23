@@ -39,6 +39,7 @@
     "replies": "cavablar",
     "done": "Hazırdır",
     "apply": "Tətbiq et",
+    "warning": "Warning",
     "close": "Bağla"
   },
   "confirm": {
@@ -152,6 +153,8 @@
     "pinned": "Sancaqlanmış Göndəriş",
     "replies": "1 cavab. Cavablamaq üçün klikləyin.",
     "replies-n": "{{n}} cavab. Cavablamaq üçün klikləyin.",
+    "vote-error": "Previous value is not acceptable. Vote with a different value.",
+    "vote-warning": "Voting 0% unvotes the content.",
     "no-replies": "Hələ ki, cavab yoxdur. Cavablamaq üçün klikləyin."
   },
   "nsfw": {
