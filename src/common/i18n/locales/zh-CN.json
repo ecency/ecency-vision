@@ -428,6 +428,7 @@
     "profile-image": "用戶头像",
     "website": "网址",
     "location": "所在地",
+    "copied": "Referral link copied to clipboard.",
     "updated": "资料更新成功"
   },
   "image-upload-button": {
@@ -439,6 +440,7 @@
     "currency": "货币",
     "language": "语言",
     "nsfw": "显示 NSFW 内容",
+    "referral-link": "Referral link",
     "updated": "首选项已更新！"
   },
   "wallet": {
