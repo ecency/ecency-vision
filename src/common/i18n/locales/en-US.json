@@ -428,6 +428,7 @@
     "profile-image": "Profile Image",
     "website": "Website",
     "location": "Location",
+    "copied": "Referral link copied to clipboard.",
     "updated": "Profile updated successfully!"
   },
   "image-upload-button": {

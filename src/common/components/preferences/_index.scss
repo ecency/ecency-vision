@@ -16,3 +16,9 @@
   cursor: pointer;
   pointer-events: auto !important;
 }
+
+.copy-to-clipboard{
+  svg {
+    height: 18px;
+  }
+}

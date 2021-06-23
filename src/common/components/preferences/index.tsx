@@ -4,7 +4,7 @@ import i18n from "i18next";
 
 import {Global} from "../../store/global/types";
 
-import {Col, Form, FormControl} from "react-bootstrap";
+import {Col, Form, FormControl, InputGroup, Button} from "react-bootstrap";
 
 import BaseComponent from "../base";
 import {success} from "../feedback";
@@ -20,6 +20,7 @@ import currencySymbol from "../../helper/currency-symbol";
 import currencies from "../../constants/currencies.json";
 import activeUser from "../../store/active-user";
 import { ActiveUser } from "../../store/active-user/types";
+import { copyContent } from "../../img/svg";
 
 interface Props {
     global: Global;
@@ -94,6 +95,8 @@ export class Preferences extends BaseComponent<Props, State> {
         textField.select();
         document.execCommand('copy');
         textField.remove();
+        success(_t('profile-edit.copied'));
+
     }
 
     render() {
@@ -146,13 +149,26 @@ export class Preferences extends BaseComponent<Props, State> {
                     <Col lg={6} xl={4}>
                         <Form.Group>
                             <Form.Label>{_t('preferences.referral-link')}</Form.Label>
-                            <Form.Control 
-                                type="text" 
-                                value={`https://ecency.com/signup?referral=${activeUser!.username}`} 
-                                
-                                className="text-primary pointer"
+                            <InputGroup 
+                                className="mb-3"
                                 onClick={() => this.copyToClipboard(`https://ecency.com/signup?referral=${activeUser!.username}`)}
-                            />
+                            >
+                                <Form.Control 
+                                    value={`https://ecency.com/signup?referral=${activeUser!.username}`} 
+                                    disabled={true}
+                                    className="text-primary pointer"
+                                />
+                                <InputGroup.Append>
+                                    <Button
+                                        variant="primary"
+                                        size="sm"
+                                        className="copy-to-clipboard"
+                                        onClick={() => this.copyToClipboard(`https://ecency.com/signup?referral=${activeUser!.username}`)}
+                                    >
+                                        {copyContent}
+                                    </Button>
+                                </InputGroup.Append>
+                            </InputGroup>
                         </Form.Group>
                     </Col>}
                 </Form.Row>
