@@ -911,6 +911,17 @@
     "label-check": "I have securely saved my generated password",
     "updated": "Password updated successfully!"
   },
+  "view-keys": {
+    "title": "View Private keys",
+    "account": "Account",
+    "cur-pass": "Current password",
+    "keys": "Private keys",
+    "owner": "Owner",
+    "active": "Active",
+    "posting": "Posting",
+    "memo": "Memo",
+    "view-keys": "Click to view keys"
+  },
   "add-image": {
     "title": "Add Image",
     "text-label": "Image Text",
