@@ -934,6 +934,18 @@
     "validation-label": "Centang kotak ini untuk melanjutkan.",
     "updated": "Kata Sandi berhasil diperbaharui!"
   },
+  "view-keys": {
+    "title": "View Private keys",
+    "account": "Account",
+    "cur-pass": "Current password",
+    "owner": "Owner",
+    "active": "Active",
+    "posting": "Posting",
+    "memo": "Memo",
+    "view-keys": "Click to view keys",
+    "copied": "Private key copied into clipboard",
+    "error": "Password seem incorrect, please double check!"
+  },
   "add-image": {
     "title": "Tambahkan gambar",
     "text-label": "Teks Gambar",
