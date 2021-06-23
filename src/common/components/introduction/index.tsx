@@ -1,4 +1,3 @@
-import { Node } from 'html-react-parser';
 import React from 'react';
 import { useEffect } from 'react';
 import { Col, Container, Row, Button } from "react-bootstrap";
@@ -11,9 +10,10 @@ export interface Props {
     onClose: () => void;
     onNext?: () => void;
     onPrevious?: () => void;
+    placement?: string
 }
 
-export const Introduction = ({title, description, media, onClose, onPrevious, onNext}: Props) => {
+export const Introduction = ({ title, description, media, onClose, onPrevious, onNext, placement }: Props) => {
     useEffect(() => {
         let body = document.getElementsByTagName('body')[0];
         body.classList.add("overflow-hidden");
@@ -23,7 +23,7 @@ export const Introduction = ({title, description, media, onClose, onPrevious, on
     },[]);
 
     return <>
-    <div className="intro-popup">
+    <div className="intro-popup" style={{left: placement}}>
     <Container className="h-100">
        
         <button type="button" className="close position-absolute close-btn" onClick={onClose}>
