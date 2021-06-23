@@ -295,6 +295,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                                             onPrevious={this.onPreviousWeb}
                                             onClose={this.onClosePopup}
                                             description={introductionDescription}
+                                            showFinish={introduction === IntroductionType.NEW}
                                         />
                                 }
                                     </ul>
@@ -305,14 +306,16 @@ export class EntryIndexMenu extends Component<Props, States> {
                                 <div className="sm-menu position-relative">
                                     <DropDown {...mobileMenuConfig} float="left"/>
                                     {introduction !== IntroductionType.NONE &&
-                                    <Introduction
-                                        title={this.getPopupTitle()}
-                                        media={OurVision}
-                                        onNext={this.onNextMobile}
-                                        onPrevious={this.onPreviousMobile}
-                                        onClose={this.onClosePopup}
-                                        description={introductionDescription} />
-                                        }
+                                        <Introduction
+                                            title={this.getPopupTitle()}
+                                            media={OurVision}
+                                            onNext={this.onNextMobile}
+                                            onPrevious={this.onPreviousMobile}
+                                            onClose={this.onClosePopup}
+                                            description={introductionDescription}
+                                            showFinish={introduction === IntroductionType.NEW}
+                                        />
+                                    }
                                 </div>
                                 <div className="lg-menu position-relative">
                                     <ul className="nav nav-pills nav-fill">

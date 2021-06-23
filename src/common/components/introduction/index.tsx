@@ -11,9 +11,10 @@ export interface Props {
     onNext?: () => void;
     onPrevious?: () => void;
     placement?: string
+    showFinish?: boolean;
 }
 
-export const Introduction = ({ title, description, media, onClose, onPrevious, onNext, placement }: Props) => {
+export const Introduction = ({ title, description, media, onClose, onPrevious, onNext, placement, showFinish }: Props) => {
     useEffect(() => {
         let body = document.getElementsByTagName('body')[0];
         body.classList.add("overflow-hidden");
@@ -37,7 +38,7 @@ export const Introduction = ({ title, description, media, onClose, onPrevious, o
                 <p className="text-muted paragraph mt-2 mt-md-0">{description}</p>
                 <div className='d-flex flex-column flex-md-row'>
                     {onPrevious && <Button size="lg" variant="outline-primary" className="mr-0 mr-md-3 w-100 w-md-50 intro-btn mb-3 mb-md-0" onClick={()=>{onPrevious()}}>{_t('g.previous')}</Button>}
-                    {onNext && <Button size="lg" variant="primary" className="w-50 w-100 w-md-50 intro-btn" onClick={()=>{onNext()}}>{_t('g.next')}</Button>}
+                    {onNext && <Button size="lg" variant="primary" className="w-50 w-100 w-md-50 intro-btn" onClick={()=>{onNext()}}>{_t(showFinish ? "g.finish" : 'g.next')}</Button>}
                 </div>
             </Col>
         </Row>
