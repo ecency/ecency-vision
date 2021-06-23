@@ -55,7 +55,11 @@
     "filter-muted": "Pinatahimik",
     "filter-feed": "Feed",
     "filter-feed-friends": "Mga kaibigan",
-    "filter-feed-subscriptions": "Mga pamayanan"
+    "filter-feed-subscriptions": "Mga pamayanan",
+    "filter-global": "Global",
+    "filter-global-part1": "This feed contains ",
+    "filter-global-part2": " content on entire platform.",
+    "filter-global-part3": " content from Your communities. You can join communities that interest you to fill up this feed."
   },
   "navbar": {
     "discover": "Tuklasin",
@@ -127,6 +131,8 @@
     "email": "Ilagay ang iyong email address",
     "ref": "Itinukoy na mga gumagamit (hindi kinakailangan)",
     "submit": "Magpatuloy",
+    "validation-username": "Username is required.",
+    "validation-email": "Email is required.",
     "success": "Nagpadala kami ng email sa {{email}}.",
     "success-2": "Sundin ang mga panuntunan para makumpleto ang proseso ng pag-sign up.",
     "login-text-1": "May account ka ba?",
@@ -310,7 +316,7 @@
     "edit": "Baguhin ang mga settings",
     "edit-team": "Baguhin ang mga katungkulan",
     "community-rewards": "Mga gantimpala sa pamayanan",
-    "profile-image": "Imaheng Pagkakakilanlan ng Pamayanan",
+    "profile-image": "Profile image",
     "profile-image-edit": "Baguhin ang Imaheng Pagkakakilanlan",
     "profile-image-updated": "Matagumpay na nai-upload ang imahe ng pagkakakilanlan!"
   },
@@ -328,7 +334,8 @@
     "lang": "Linguwahe",
     "description": "Paglalarawan",
     "rules": "Patakaran",
-    "rules-help": "Isa bawat linya"
+    "rules-help": "Isa bawat linya",
+    "validation-title": "Title is required."
   },
   "communities": {
     "title": "Pamayanan",
@@ -355,6 +362,8 @@
     "username-available": "Umiiral.",
     "username-not-available": "Hindi available.",
     "username-wrong-format": "Hindi wastong balangkas. hive-1xxxxx na balangkas ang kailangan.",
+    "checkbox-validation": "Please tick this box if you want to proceed.",
+    "title-validation": "Please fill in this field.",
     "password": "Master password",
     "confirmation": "Maingat at ligtas kong naiimbak ang aking bansag ng may-ari.",
     "submit": "Gumawa ng pamayanan",
@@ -466,6 +475,8 @@
     "title": "Alisin ang mga account",
     "account": "Account",
     "percent": "Porsyento",
+    "validation-account": "Account is required.",
+    "validation-percent": "Percentage is required.",
     "auto-power-up": "Awtomatikong magpalakas"
   },
   "points": {
@@ -730,6 +741,8 @@
     "username": "Username",
     "reward": "Reward",
     "user-error": "{{n}} is not a valid user.",
+    "validation-percentage": "Percentage is required.",
+    "validation-username": "Username is required.",
     "user-exists-error": "{{n}} is already in the list"
   },
   "post-scheduler": {
@@ -901,6 +914,9 @@
     "create-first": "Lumikha ng iyong unang snippet",
     "filter": "Maghanap gamit ang titulo",
     "form-title": "Titulo",
+    "validation-title": "Title is required.",
+    "validation-value": "Value is required.",
+    "validation-body": "Body is required.",
     "form-body": "Katawan"
   },
   "password-update": {
@@ -912,12 +928,16 @@
     "error-new2": "Ang password ay parehas dapat",
     "pass-gen": "Click para mag-generate ng password",
     "label-check": "Matiwasay kong nai-imbak ang aking na-generate na password",
+    "validation-password": "Password is invalid.",
+    "validation-label": "Please tick this box to proceed.",
     "updated": "Password updated successfully!"
   },
   "add-image": {
     "title": "Add Image",
     "text-label": "Image Text",
-    "link-label": "Image Link"
+    "link-label": "Image Link",
+    "validation-text": "Text is required.",
+    "validation-image": "Image is required."
   },
   "add-image-mobile": {
     "title": "Add Image",
@@ -928,7 +948,9 @@
   "add-link": {
     "title": "Add Link",
     "text-label": "Text",
-    "link-label": "https://"
+    "link-label": "https://",
+    "validation-text": "Text is required.",
+    "validation-link": "Link is required."
   },
   "scroll-to-top": {
     "title": "Scroll to Top"
@@ -1077,6 +1099,7 @@
     "subscribe-paragraph": "Be first to know what's happening in decentralized web.",
     "copy-rights": "©2021 Ecency. All right reserved.",
     "success-message-subscribe": "A verification link has been sent to your email account!",
+    "validation-email": "A valid email is required",
     "error-occured": "A server error has been occured."
   }
 }

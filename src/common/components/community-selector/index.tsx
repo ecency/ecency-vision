@@ -184,6 +184,9 @@ export class CommunitySelector extends BaseComponent<Props, State> {
 
     componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>) {
         if (!isEqual(this.props.tags, prevProps.tags)) {
+            if(this.props.tags.length > 0){
+                this.setState({ picked: false });
+            }
             this.detectCommunity().then();
         }
     }

@@ -143,7 +143,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     this.setState({
       upSliderVal,
       wrongValueUp: upSliderVal === initialVoteValues.up,
-      showWarning: upSliderVal < this.state.upSliderVal && (upVoted || downVoted) 
+      showWarning: upSliderVal < initialVoteValues.up && (upVoted || downVoted) 
     });
     const { activeUser } = this.props;
     setVoteValue("up", `${activeUser?.username!}-${id}`, upSliderVal);
@@ -160,7 +160,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     this.setState({
       downSliderVal,
       wrongValueDown: downSliderVal === initialVoteValues.up,
-      showWarning: downSliderVal < this.state.downSliderVal && (upVoted || downVoted)
+      showWarning: downSliderVal < initialVoteValues.down && (upVoted || downVoted)
     });
 
     const { activeUser } = this.props;

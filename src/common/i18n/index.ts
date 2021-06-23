@@ -42,6 +42,10 @@ export const langOptions = [
     {
         code: "bg-BG",
         name: "Български"
+    },
+    {
+        code: "zh-CN",
+        name: "简体字"
     }
 ];
 
@@ -55,6 +59,7 @@ const ptPT = require("./locales/pt-PT.json");
 const srCS = require("./locales/sr-CS.json");
 const ukUA = require("./locales/uk-UA.json");
 const bgBG = require("./locales/bg-BG.json");
+const zhCN = require("./locales/zh-CN.json");
 
 const resources = {
     ["en-US"]: {
@@ -86,6 +91,9 @@ const resources = {
     },
     ["bg-BG"]: {
         translation: bgBG
+    },
+    ["zh-CN"]: {
+        translation: zhCN
     }
 };
 

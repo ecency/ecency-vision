@@ -256,6 +256,11 @@ exports[`(1) Default render 1`] = `
           >
             Български
           </option>
+          <option
+            value="zh-CN"
+          >
+            简体字
+          </option>
         </select>
       </div>
     </div>

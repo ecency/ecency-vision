@@ -55,7 +55,11 @@
     "filter-muted": "Silenziati",
     "filter-feed": "Feed",
     "filter-feed-friends": "Amici",
-    "filter-feed-subscriptions": "Community"
+    "filter-feed-subscriptions": "Community",
+    "filter-global": "Global",
+    "filter-global-part1": "This feed contains ",
+    "filter-global-part2": " content on entire platform.",
+    "filter-global-part3": " content from Your communities. You can join communities that interest you to fill up this feed."
   },
   "navbar": {
     "discover": "Scopri",
@@ -127,6 +131,8 @@
     "email": "Inserisci il tuo indirizzo email",
     "ref": "Utente raccomandante (opzionale)",
     "submit": "Continua",
+    "validation-username": "Username is required.",
+    "validation-email": "Email is required.",
     "success": "Abbiamo inviato un'email a {{email}}.",
     "success-2": "Segui le istruzioni per completare il processo di registrazione.",
     "login-text-1": "Hai già un account?",
@@ -310,7 +316,7 @@
     "edit": "Modifica impostazioni",
     "edit-team": "Modifica Ruoli",
     "community-rewards": "Ricompense della community",
-    "profile-image": "Immagine del profilo della community",
+    "profile-image": "Profile image",
     "profile-image-edit": "Modifica immagine del profilo",
     "profile-image-updated": "Immagine del Profilo aggiornata!"
   },
@@ -328,7 +334,8 @@
     "lang": "Lingua",
     "description": "Descrizione",
     "rules": "Regole",
-    "rules-help": "Uno per fila"
+    "rules-help": "Uno per fila",
+    "validation-title": "Title is required."
   },
   "communities": {
     "title": "Community",
@@ -355,6 +362,8 @@
     "username-available": "Disponibile.",
     "username-not-available": "Non Disponibile.",
     "username-wrong-format": "Non è un formato valido. Richiesto il formato hive-1xxxxx.",
+    "checkbox-validation": "Please tick this box if you want to proceed.",
+    "title-validation": "Please fill in this field.",
     "password": "Chiave maestra",
     "confirmation": "Ho salvato in un luogo sicuro nome utente e chiave proprietaria della community.",
     "submit": "Crea Community",
@@ -466,6 +475,8 @@
     "title": "Account beneficianti delle ricompense assegnate",
     "account": "Account",
     "percent": "Percentuale",
+    "validation-account": "Account is required.",
+    "validation-percent": "Percentage is required.",
     "auto-power-up": "Potenzia automaticamente"
   },
   "points": {
@@ -730,6 +741,8 @@
     "username": "Nome utente",
     "reward": "Ricompensa",
     "user-error": "{{n}} non è un utente valido.",
+    "validation-percentage": "Percentage is required.",
+    "validation-username": "Username is required.",
     "user-exists-error": "{{n}} è già nella lista"
   },
   "post-scheduler": {
@@ -901,6 +914,9 @@
     "create-first": "Crea il tuo primo ritaglio",
     "filter": "Cerca per titolo",
     "form-title": "Titolo",
+    "validation-title": "Title is required.",
+    "validation-value": "Value is required.",
+    "validation-body": "Body is required.",
     "form-body": "Corpo"
   },
   "password-update": {
@@ -912,12 +928,16 @@
     "error-new2": "Le chiavi d'accesso devono essere le stesse",
     "pass-gen": "Clicca per generare chiave d'accesso",
     "label-check": "Ho salvato correttamente e in maniera sicura la mia chiave d'accesso",
+    "validation-password": "Password is invalid.",
+    "validation-label": "Please tick this box to proceed.",
     "updated": "Chiave d'accesso aggiornata con successo!"
   },
   "add-image": {
     "title": "Aggiungi immagine",
     "text-label": "Testo dell'immagine",
-    "link-label": "Collegamento all'immagine"
+    "link-label": "Collegamento all'immagine",
+    "validation-text": "Text is required.",
+    "validation-image": "Image is required."
   },
   "add-image-mobile": {
     "title": "Aggiungi immagine",
@@ -928,7 +948,9 @@
   "add-link": {
     "title": "Aggiungi Link",
     "text-label": "Testo",
-    "link-label": "https://"
+    "link-label": "https://",
+    "validation-text": "Text is required.",
+    "validation-link": "Link is required."
   },
   "scroll-to-top": {
     "title": "Scorri verso l'alto"
@@ -1077,6 +1099,7 @@
     "subscribe-paragraph": "Be first to know what's happening in decentralized web.",
     "copy-rights": "©2021 Ecency. All right reserved.",
     "success-message-subscribe": "A verification link has been sent to your email account!",
+    "validation-email": "A valid email is required",
     "error-occured": "A server error has been occured."
   }
 }

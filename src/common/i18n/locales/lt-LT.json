@@ -55,7 +55,11 @@
     "filter-muted": "Nutildyta",
     "filter-feed": "Pagrindinis",
     "filter-feed-friends": "Friends",
-    "filter-feed-subscriptions": "Communities"
+    "filter-feed-subscriptions": "Communities",
+    "filter-global": "Global",
+    "filter-global-part1": "This feed contains ",
+    "filter-global-part2": " content on entire platform.",
+    "filter-global-part3": " content from Your communities. You can join communities that interest you to fill up this feed."
   },
   "navbar": {
     "discover": "Atrasti",
@@ -127,6 +131,8 @@
     "email": "Įveskite savo el. pašto adresą",
     "ref": "Rekomendavęs vartotojas (pasirinktinai)",
     "submit": "Tęsti",
+    "validation-username": "Username is required.",
+    "validation-email": "Email is required.",
     "success": "Išsiuntėme patvirtinimo laišką {{email}}.",
     "success-2": "Sekite instrukcijas, kad sėkmingai prisiregistruotumėte.",
     "login-text-1": "Do you have an account?",
@@ -310,7 +316,7 @@
     "edit": "Keisti nustatymus",
     "edit-team": "Keisti roles",
     "community-rewards": "Community Rewards",
-    "profile-image": "Bendruomenės proflio nuotrauka",
+    "profile-image": "Profile image",
     "profile-image-edit": "Redaguoti profilio nuotrauką",
     "profile-image-updated": "Profilio nuotrauka atnaujinta!"
   },
@@ -328,7 +334,8 @@
     "lang": "Kalba",
     "description": "Aprašmas",
     "rules": "Taisyklės",
-    "rules-help": "Vienas per eilę"
+    "rules-help": "Vienas per eilę",
+    "validation-title": "Title is required."
   },
   "communities": {
     "title": "Bendruomenės",
@@ -355,6 +362,8 @@
     "username-available": "Galimas.",
     "username-not-available": "Negalimas.",
     "username-wrong-format": "Netinkamas formatas. reikalingas hive-1xxxxx formatas.",
+    "checkbox-validation": "Please tick this box if you want to proceed.",
+    "title-validation": "Please fill in this field.",
     "password": "Master password",
     "confirmation": "Aš saugiai išsisaugojau savo vartotojo vardą ir slaptažodį.",
     "submit": "Sukurti Bendruomenę",
@@ -466,6 +475,8 @@
     "title": "Withdraw accounts",
     "account": "Account",
     "percent": "Percent",
+    "validation-account": "Account is required.",
+    "validation-percent": "Percentage is required.",
     "auto-power-up": "Automatically power up"
   },
   "points": {
@@ -730,6 +741,8 @@
     "username": "Username",
     "reward": "Reward",
     "user-error": "{{n}} is not a valid user.",
+    "validation-percentage": "Percentage is required.",
+    "validation-username": "Username is required.",
     "user-exists-error": "{{n}} is already in the list"
   },
   "post-scheduler": {
@@ -901,6 +914,9 @@
     "create-first": "Create your first snippet",
     "filter": "Search by title",
     "form-title": "Title",
+    "validation-title": "Title is required.",
+    "validation-value": "Value is required.",
+    "validation-body": "Body is required.",
     "form-body": "Body"
   },
   "password-update": {
@@ -912,12 +928,16 @@
     "error-new2": "Passwords must be same",
     "pass-gen": "Click to generate password",
     "label-check": "I have securely saved my generated password",
+    "validation-password": "Password is invalid.",
+    "validation-label": "Please tick this box to proceed.",
     "updated": "Password updated successfully!"
   },
   "add-image": {
     "title": "Add Image",
     "text-label": "Image Text",
-    "link-label": "Image Link"
+    "link-label": "Image Link",
+    "validation-text": "Text is required.",
+    "validation-image": "Image is required."
   },
   "add-image-mobile": {
     "title": "Add Image",
@@ -928,7 +948,9 @@
   "add-link": {
     "title": "Add Link",
     "text-label": "Text",
-    "link-label": "https://"
+    "link-label": "https://",
+    "validation-text": "Text is required.",
+    "validation-link": "Link is required."
   },
   "scroll-to-top": {
     "title": "Keliauti iki puslapio viršaus"
@@ -1077,6 +1099,7 @@
     "subscribe-paragraph": "Be first to know what's happening in decentralized web.",
     "copy-rights": "©2021 Ecency. All right reserved.",
     "success-message-subscribe": "A verification link has been sent to your email account!",
+    "validation-email": "A valid email is required",
     "error-occured": "A server error has been occured."
   }
 }

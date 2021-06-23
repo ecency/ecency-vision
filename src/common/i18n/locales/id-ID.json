@@ -28,9 +28,9 @@
     "off": "Off",
     "yes": "Ya",
     "no": "Tidak",
-    "hot": "feed",
-    "trending": "feed",
-    "created": "feed",
+    "hot": "Umpan",
+    "trending": "Umpan",
+    "created": "umpan",
     "found": "ditemukan",
     "feed": "umpan",
     "blog": "blog",
@@ -55,7 +55,11 @@
     "filter-muted": "Didiamkan",
     "filter-feed": "Umpan",
     "filter-feed-friends": "Teman",
-    "filter-feed-subscriptions": "Komunitas"
+    "filter-feed-subscriptions": "Komunitas",
+    "filter-global": "Global",
+    "filter-global-part1": "This feed contains ",
+    "filter-global-part2": " content on entire platform.",
+    "filter-global-part3": " content from Your communities. You can join communities that interest you to fill up this feed."
   },
   "navbar": {
     "discover": "Jelajahi",
@@ -127,6 +131,8 @@
     "email": "Masukkan alamat email Anda",
     "ref": "Pengguna rujukan (opsional)",
     "submit": "Lanjutkan",
+    "validation-username": "Nama pengguna diperlukan.",
+    "validation-email": "Email diperlukan.",
     "success": "Kami sudah mengirimkan email ke {{email}}.",
     "success-2": "Ikuti petunjuk melengkapi proses pendaftaran.",
     "login-text-1": "Apakah anda memiliki akun?",
@@ -310,7 +316,7 @@
     "edit": "Edit pengaturan",
     "edit-team": "Sunting peran",
     "community-rewards": "Rewards Komunitas",
-    "profile-image": "Gambar profil komunitas",
+    "profile-image": "Foto profil",
     "profile-image-edit": "Edit gambar profil",
     "profile-image-updated": "Gambar profil diperbaharui!"
   },
@@ -328,7 +334,8 @@
     "lang": "Bahasa",
     "description": "Deskripsi",
     "rules": "Aturan",
-    "rules-help": "Satu per baris"
+    "rules-help": "Satu per baris",
+    "validation-title": "Judul diperlukan."
   },
   "communities": {
     "title": "Komunitas",
@@ -355,6 +362,8 @@
     "username-available": "Tersedia.",
     "username-not-available": "Tidak tersedia.",
     "username-wrong-format": "Bukan format yang valid. format hive-1xxxxx yang diperlukan.",
+    "checkbox-validation": "Centang kotak ini untuk melanjutkan.",
+    "title-validation": "Silahkan isi dalam kolom ini.",
     "password": "Password Utama",
     "confirmation": "Saya telah menyimpan nama pengguna dan kata sandi saya dengan aman.",
     "submit": "Buatlah komunitas",
@@ -466,6 +475,8 @@
     "title": "Akun penarikan",
     "account": "Akun",
     "percent": "Persen",
+    "validation-account": "Akun diperlukan.",
+    "validation-percent": "Persentase diperlukan.",
     "auto-power-up": "Power Up otomatis"
   },
   "points": {
@@ -730,6 +741,8 @@
     "username": "Nama Pengguna",
     "reward": "Imbalan",
     "user-error": "{{n}} bukan pengguna sah.",
+    "validation-percentage": "Diperlukan persentase.",
+    "validation-username": "Nama pengguna diperlukan.",
     "user-exists-error": "{{n}} sudah ada dalam daftar"
   },
   "post-scheduler": {
@@ -901,6 +914,9 @@
     "create-first": "Buat catatan pertama Anda",
     "filter": "Cari berdasarkan judul",
     "form-title": "Judul",
+    "validation-title": "Judul diperlukan.",
+    "validation-value": "Nilai Dibutuhkan.",
+    "validation-body": "Isi konten diperlukan.",
     "form-body": "Isi"
   },
   "password-update": {
@@ -912,12 +928,16 @@
     "error-new2": "Kata sandi harus sama",
     "pass-gen": "Klik untuk membuat kata sandi baru",
     "label-check": "Saya telah menyimpan kata sandi saya dengan aman",
+    "validation-password": "Kata sandi tidak valid.",
+    "validation-label": "Centang kotak ini untuk melanjutkan.",
     "updated": "Kata Sandi berhasil diperbaharui!"
   },
   "add-image": {
     "title": "Tambahkan gambar",
     "text-label": "Teks Gambar",
-    "link-label": "Link Gambar"
+    "link-label": "Link Gambar",
+    "validation-text": "Judul diperlukan.",
+    "validation-image": "Gambar diperlukan."
   },
   "add-image-mobile": {
     "title": "Tambahkan Gambar",
@@ -928,7 +948,9 @@
   "add-link": {
     "title": "Tambahkan Tautan",
     "text-label": "Teks",
-    "link-label": "https://"
+    "link-label": "https://",
+    "validation-text": "Judul diperlukan.",
+    "validation-link": "Link diperlukan."
   },
   "scroll-to-top": {
     "title": "Gulir ke Atas"
@@ -1077,6 +1099,7 @@
     "subscribe-paragraph": "Jadilah yang pertama mengetahui apa yang terjadi di web terdesentralisasi.",
     "copy-rights": "Ecenxy @2021. Hak cipta dilindungi Undang-undang.",
     "success-message-subscribe": "Tautan verifikasi telah dikirim ke akun email Anda!",
+    "validation-email": "Email valid diperlukan",
     "error-occured": "Terjadi kesalahan server."
   }
 }

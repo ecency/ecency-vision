@@ -63,7 +63,7 @@ export class SimilarEntries extends BaseComponent<Props, State> {
         const {retry} = this.state;
 
         let q = "*";
-        q += ` type:post`;
+        q += ` -dporn type:post`;
         let tags;
         // 3 tags and decrease until there is enough relevant posts
         if (json_metadata && json_metadata.tags) {
