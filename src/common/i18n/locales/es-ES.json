@@ -39,6 +39,7 @@
     "replies": "respuestas",
     "done": "Completado",
     "apply": "Aplicar",
+    "warning": "Warning",
     "close": "Cerrar"
   },
   "confirm": {
@@ -152,6 +153,8 @@
     "pinned": "Publicación fijada",
     "replies": "1 respuesta. Haga clic para responder.",
     "replies-n": "{{n}} respuestas. Haga clic para responder.",
+    "vote-error": "Previous value is not acceptable. Vote with a different value.",
+    "vote-warning": "Voting 0% unvotes the content.",
     "no-replies": "Aún no hay respuestas. Haga clic para responder."
   },
   "nsfw": {
