@@ -428,6 +428,7 @@
     "profile-image": "Εικόνα Προφίλ",
     "website": "Ιστοσελίδα",
     "location": "Τοποθεσία",
+    "copied": "Referral link copied to clipboard.",
     "updated": "Ενημέρωση προφίλ με επιτυχία!"
   },
   "image-upload-button": {
@@ -439,6 +440,7 @@
     "currency": "Νόμισμα",
     "language": "Γλώσσα",
     "nsfw": "Show NSFW content",
+    "referral-link": "Referral link",
     "updated": "Οι προτιμήσεις ενημερώθηκαν!"
   },
   "wallet": {
