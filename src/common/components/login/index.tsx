@@ -557,9 +557,10 @@ export default class LoginDialog extends Component<Props> {
     }
 
     doLogin = async (hsCode: string, postingKey: null | undefined | string, account: Account) => {
+        const {global, setActiveUser, updateActiveUser, addUser} = this.props;
+
         // get access token from code
         return hsTokenRenew(hsCode).then(x => {
-            const {setActiveUser, updateActiveUser, addUser} = this.props;
             const user: User = {
                 username: x.username,
                 accessToken: x.access_token,
@@ -577,8 +578,10 @@ export default class LoginDialog extends Component<Props> {
             // add account data of the user to the reducer
             updateActiveUser(account);
 
-            // login activity
-            usrActivity(user.username, 20);
+            if (global.usePrivate) {
+                // login activity
+                usrActivity(user.username, 20);
+            }
 
             // redirection based on path name
             const {location, history} = this.props;
