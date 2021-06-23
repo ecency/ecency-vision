@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`(1) Introduction (1) renders successfully with minimal props 1`] = `
+exports[`Introduction component (1) renders successfully with minimal props 1`] = `
 <div
   className="intro-popup p-4 p-lg-0"
   style={

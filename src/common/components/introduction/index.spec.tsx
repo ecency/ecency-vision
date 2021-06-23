@@ -2,7 +2,7 @@ import React from "react";
 import { Introduction } from "./index";
 import renderer from "react-test-renderer";
 
-describe('(1) Introduction', () => {
+describe('Introduction component', () => {
     const props = {
         title: 'Test Title',
         description: "Test decription",
