@@ -428,6 +428,7 @@
     "profile-image": "प्रोफ़ाइल तसवीर",
     "website": "वेबसाइट",
     "location": "स्थान",
+    "copied": "Referral link copied to clipboard.",
     "updated": "प्रोफाइल को सफलतापूर्वक अपडेट किया गया!"
   },
   "image-upload-button": {
@@ -439,6 +440,7 @@
     "currency": "करेंसी",
     "language": "भाषा",
     "nsfw": "NSFW सामग्री दिखाएं",
+    "referral-link": "Referral link",
     "updated": "वरीयता अद्यतन!"
   },
   "wallet": {
