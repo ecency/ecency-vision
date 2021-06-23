@@ -428,6 +428,7 @@
     "profile-image": "Profiilikuva",
     "website": "Sivusto",
     "location": "Sijainti",
+    "copied": "Referral link copied to clipboard.",
     "updated": "Profiili on päivitetty onnistuneesti!"
   },
   "image-upload-button": {
@@ -439,6 +440,7 @@
     "currency": "Valuutta",
     "language": "Kieli",
     "nsfw": "Näytä NSFW-sisältö",
+    "referral-link": "Referral link",
     "updated": "Asetukset päivitetty!"
   },
   "wallet": {
