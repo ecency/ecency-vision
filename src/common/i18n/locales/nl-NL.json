@@ -428,6 +428,7 @@
     "profile-image": "Profiel afbeelding",
     "website": "Website",
     "location": "Locatie",
+    "copied": "Referral link copied to clipboard.",
     "updated": "Profiel succesvol bijgewerkt!"
   },
   "image-upload-button": {
@@ -439,6 +440,7 @@
     "currency": "Valuta",
     "language": "Taal",
     "nsfw": "Show NSFW content",
+    "referral-link": "Referral link",
     "updated": "Voorkeuren bijgewerkt!"
   },
   "wallet": {
