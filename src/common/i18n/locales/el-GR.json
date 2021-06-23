@@ -39,6 +39,7 @@
     "replies": "replies",
     "done": "Έτοιμο",
     "apply": "Apply",
+    "warning": "Warning",
     "close": "Close"
   },
   "confirm": {
@@ -152,6 +153,8 @@
     "pinned": "Καρφιτσωμένη Δημοσίευση",
     "replies": "1 απάντηση. Κάντε κλικ για να απαντήσετε.",
     "replies-n": "{{n}} απαντήσεις. Κάντε κλικ για να απαντήσετε.",
+    "vote-error": "Previous value is not acceptable. Vote with a different value.",
+    "vote-warning": "Voting 0% unvotes the content.",
     "no-replies": "Καμία απάντηση ακόμα. Κάντε κλικ για να απαντήσετε."
   },
   "nsfw": {
