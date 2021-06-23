@@ -39,6 +39,7 @@
     "replies": "replies",
     "done": "Klaar",
     "apply": "Toepassen",
+    "warning": "Warning",
     "close": "Sluiten"
   },
   "confirm": {
@@ -152,6 +153,8 @@
     "pinned": "Vastgezet bericht",
     "replies": "1 reactie. Klik om te antwoorden.",
     "replies-n": "{{n}} reacties. Klik om te antwoorden.",
+    "vote-error": "Previous value is not acceptable. Vote with a different value.",
+    "vote-warning": "Voting 0% unvotes the content.",
     "no-replies": "Nog geen reacties. Klik om te antwoorden."
   },
   "nsfw": {
