@@ -39,6 +39,7 @@
     "replies": "replies",
     "done": "Tapos",
     "apply": "I-apply",
+    "warning": "Warning",
     "close": "Isarado"
   },
   "confirm": {
@@ -152,6 +153,8 @@
     "pinned": "Naka-pin na post",
     "replies": "1 kasagutan. Pindutin para sumagot.",
     "replies-n": "{{n}} mga kasagutan. Pindutin para sumagot.",
+    "vote-error": "Previous value is not acceptable. Vote with a different value.",
+    "vote-warning": "Voting 0% unvotes the content.",
     "no-replies": "Walang pang mga kasagutan. Pindutin para sumagot."
   },
   "nsfw": {
