@@ -428,6 +428,7 @@
     "profile-image": "Фото профиля",
     "website": "Вебсайт",
     "location": "Локация",
+    "copied": "Referral link copied to clipboard.",
     "updated": "Профиль обновлен!"
   },
   "image-upload-button": {
@@ -439,6 +440,7 @@
     "currency": "Валюта",
     "language": "Язык",
     "nsfw": "Показать NSFW контент",
+    "referral-link": "Referral link",
     "updated": "Настройки обновлены!"
   },
   "wallet": {
