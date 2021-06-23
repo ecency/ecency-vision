@@ -428,6 +428,7 @@
     "profile-image": "Profilna slika",
     "website": "Web stranica",
     "location": "Lokacija",
+    "copied": "Referral link copied to clipboard.",
     "updated": "Profil je uspešno ažuriran!"
   },
   "image-upload-button": {
@@ -439,6 +440,7 @@
     "currency": "Valuta",
     "language": "Jezik",
     "nsfw": "Show NSFW content",
+    "referral-link": "Referral link",
     "updated": "Podešavanja su ažurirana!"
   },
   "wallet": {
