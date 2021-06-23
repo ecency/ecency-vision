@@ -428,6 +428,7 @@
     "profile-image": "Profile Image",
     "website": "Website",
     "location": "Yerləşmə",
+    "copied": "Referral link copied to clipboard.",
     "updated": "Profil uğurla yeniləndi!"
   },
   "image-upload-button": {
@@ -439,6 +440,7 @@
     "currency": "Pul vahidi",
     "language": "Dil",
     "nsfw": "Show NSFW content",
+    "referral-link": "Referral link",
     "updated": "Tərcih yeniləndi!"
   },
   "wallet": {
