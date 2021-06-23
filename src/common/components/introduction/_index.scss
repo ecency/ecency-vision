@@ -78,7 +78,7 @@
 
 .media-intro {
     width: 100%;
-    @media screen and (max-width: $sm-break) {
+    @media screen and (max-width: $md-break) {
         width: 25%;
       }
 }
