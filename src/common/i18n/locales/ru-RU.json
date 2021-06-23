@@ -39,6 +39,7 @@
     "replies": "ответы",
     "done": "Готово",
     "apply": "Применить",
+    "warning": "Warning",
     "close": "Закрыть"
   },
   "confirm": {
@@ -152,6 +153,8 @@
     "pinned": "Прикреплено",
     "replies": "1 ответ. Нажмите чтобы ответить.",
     "replies-n": "{{n}} ответов. Нажмите для ответа.",
+    "vote-error": "Previous value is not acceptable. Vote with a different value.",
+    "vote-warning": "Voting 0% unvotes the content.",
     "no-replies": "Ответов пока нет. Нажмите чтобы ответить."
   },
   "nsfw": {
