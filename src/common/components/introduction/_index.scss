@@ -13,6 +13,19 @@
     left: 50%;
     top: 100px;
     z-index: 5;
+    @media screen and (max-width: $lg-break) {
+        height: 64vh;
+    }
+    @media screen and (max-width: $md-break) {
+        height: auto;
+        width: 70vw;
+        left: 20% !important;
+    }
+    @media screen and (max-width: $xsm-break) {
+        height: auto;
+        width: 80vw;
+        left: 10% !important;
+    }
 }
   
 .intro-popup:before {
@@ -37,6 +50,16 @@
     font-weight: 300;
     margin-bottom: 35px;
     line-height: 26px;
+
+    @media screen and (max-width: $md-break) {
+        margin-bottom: 16px;
+    }
+
+    @media screen and (max-width: $sm-break) {
+        margin-bottom: 16px;
+        line-height: 19px;
+        font-size: 12px;
+    }
 }
 
 .close-btn {
@@ -46,4 +69,30 @@
 
 .intro-btn {
     border-radius: 25px !important;
+    @media screen and (max-width: $sm-break) {
+        padding: 0.25rem 0.5rem !important;
+        font-size: 1rem !important;
+        line-height: 1.5 !important;
+    }
+}
+
+.media-intro {
+    width: 100%;
+    @media screen and (max-width: $sm-break) {
+        width: 25%;
+      }
+}
+
+.sm-menu {
+    position: relative;
+}
+
+.lg-menu {
+    position: relative;
+}
+
+.title {
+    @media screen and (max-width: $sm-break) {
+        font-size: 20px;
+    }
 }

@@ -185,13 +185,12 @@ export class EntryIndexMenu extends Component<Props, States> {
                                     />
                                 }
                                   </ul>
-                                  
                             </div>
                         }
                         <div className='d-flex align-items-center'>
 
                             <div className="main-menu d-none d-lg-flex">
-                                <div className="sm-menu">
+                                <div className="sm-menu position-relative">
                                     <DropDown {...menuConfig} float="left"/>
                                 </div>
                                 <div className="lg-menu position-relative">
@@ -254,10 +253,57 @@ export class EntryIndexMenu extends Component<Props, States> {
                             </div>
 
                             <div className="main-menu d-flex d-lg-none">
-                                <div className="sm-menu">
+                                <div className="sm-menu position-relative">
                                     <DropDown {...mobileMenuConfig} float="left"/>
+                                    {introduction !== IntroductionType.NONE && introduction !== IntroductionType.FRIENDS && (introduction === IntroductionType.HOT || introduction === IntroductionType.TRENDING || introduction === IntroductionType.NEW) &&
+                                    <Introduction
+                                        title={this.getPopupTitle()}
+                                        media={OurVision}
+                                        onNext={() => {
+                                            let value = introduction;
+                                            switch(value){
+                                                case IntroductionType.TRENDING:
+                                                    value = IntroductionType.HOT;
+                                                    break;
+                                                case IntroductionType.HOT:
+                                                    value = IntroductionType.NEW;
+                                                    break;
+                                                case IntroductionType.NEW:
+                                                    value = IntroductionType.NONE;
+                                                    break;
+                                                default:
+                                                    value = value;
+                                            } 
+                                            this.setState({ introduction: value })}
+                                        }
+                                        onPrevious={() => {
+                                            let value = introduction;
+                                            switch(value){
+                                                case IntroductionType.NEW:
+                                                    value = IntroductionType.HOT;
+                                                    break;
+                                                case IntroductionType.HOT:
+                                                    value = IntroductionType.TRENDING;
+                                                    break;
+                                                case IntroductionType.TRENDING:
+                                                    value = IntroductionType.FRIENDS;
+                                                    break;
+                                                default:
+                                                    value = value;
+                                            } 
+                                            this.setState({ introduction: value })}
+                                        }
+                                        onClose={() => this.setState({ introduction: IntroductionType.NONE })}
+                                        description={<>{_t('entry-filter.filter-global-part1')}
+                                        <span className="text-capitalize">
+                                            {_t(`entry-filter.filter-${filter === 'feed' ? "trending" : filter}`)}
+                                        </span>
+                                        {(isGlobal || filter === "feed") ? _t('entry-filter.filter-global-part2') : _t('entry-filter.filter-global-part3')} 
+                                        {!isGlobal && filter !== "feed" && <Link to='/communities'> {_t('discussion.btn-join')}</Link>}<Link to='/communities'> {_t('discussion.btn-join')} {_t('communities.title')}</Link></>}
+                                        />
+                                        }
                                 </div>
-                                <div className="lg-menu">
+                                <div className="lg-menu position-relative">
                                     <ul className="nav nav-pills nav-fill">
                                         {mobileMenuConfig.items.map((i, k) => {
                                             return <li key={k} className="nav-item">
