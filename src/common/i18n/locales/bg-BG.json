@@ -39,6 +39,7 @@
     "replies": "replies",
     "done": "Готово",
     "apply": "Потвърди",
+    "warning": "Warning",
     "close": "Затвори"
   },
   "confirm": {
@@ -152,6 +153,8 @@
     "pinned": "Закачен пост",
     "replies": "1 отговор. Натисни да отговориш.",
     "replies-n": "{{n}} отговори. Натисни за да отговориш.",
+    "vote-error": "Previous value is not acceptable. Vote with a different value.",
+    "vote-warning": "Voting 0% unvotes the content.",
     "no-replies": "Няма отговори все още. Натисни за да отговориш."
   },
   "nsfw": {
