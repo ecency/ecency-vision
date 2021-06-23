@@ -4,7 +4,7 @@ import i18n from "i18next";
 
 import {Global} from "../../store/global/types";
 
-import {Col, Form, FormControl} from "react-bootstrap";
+import {Col, Form, FormControl, InputGroup, Button} from "react-bootstrap";
 
 import BaseComponent from "../base";
 import {success} from "../feedback";
@@ -18,6 +18,9 @@ import {getCurrencyRate} from "../../api/misc";
 import currencySymbol from "../../helper/currency-symbol";
 
 import currencies from "../../constants/currencies.json";
+import activeUser from "../../store/active-user";
+import { ActiveUser } from "../../store/active-user/types";
+import { copyContent } from "../../img/svg";
 
 interface Props {
     global: Global;
@@ -26,6 +29,7 @@ interface Props {
     setCurrency: (currency: string, rate: number, symbol: string) => void;
     setLang: (lang: string) => void;
     setNsfw: (value: boolean) => void;
+    activeUser: ActiveUser;
 }
 
 interface State {
@@ -84,9 +88,20 @@ export class Preferences extends BaseComponent<Props, State> {
         success(_t('preferences.updated'));
     }
 
+    copyToClipboard = (text: string) => {
+        const textField = document.createElement('textarea');
+        textField.innerText = text;
+        document.body.appendChild(textField);
+        textField.select();
+        document.execCommand('copy');
+        textField.remove();
+        success(_t('profile-edit.copied'));
+
+    }
+
     render() {
-        const {global} = this.props;
-        const {inProgress} = this.state;
+        const { global, activeUser } = this.props;
+        const { inProgress } = this.state;
 
         return <>
             <div className="preferences">
@@ -129,6 +144,33 @@ export class Preferences extends BaseComponent<Props, State> {
                             </Form.Control>
                         </Form.Group>
                     </Col>
+
+                    {activeUser && activeUser.username && 
+                    <Col lg={6} xl={4}>
+                        <Form.Group>
+                            <Form.Label>{_t('preferences.referral-link')}</Form.Label>
+                            <InputGroup 
+                                className="mb-3"
+                                onClick={() => this.copyToClipboard(`https://ecency.com/signup?referral=${activeUser!.username}`)}
+                            >
+                                <Form.Control 
+                                    value={`https://ecency.com/signup?referral=${activeUser!.username}`} 
+                                    disabled={true}
+                                    className="text-primary pointer"
+                                />
+                                <InputGroup.Append>
+                                    <Button
+                                        variant="primary"
+                                        size="sm"
+                                        className="copy-to-clipboard"
+                                        onClick={() => this.copyToClipboard(`https://ecency.com/signup?referral=${activeUser!.username}`)}
+                                    >
+                                        {copyContent}
+                                    </Button>
+                                </InputGroup.Append>
+                            </InputGroup>
+                        </Form.Group>
+                    </Col>}
                 </Form.Row>
             </div>
         </>
@@ -139,6 +181,7 @@ export class Preferences extends BaseComponent<Props, State> {
 export default (p: Props) => {
     const props: Props = {
         global: p.global,
+        activeUser: p.activeUser,
         muteNotifications: p.muteNotifications,
         unMuteNotifications: p.unMuteNotifications,
         setCurrency: p.setCurrency,
