@@ -108,35 +108,35 @@ export class SearchComment extends BaseComponent<Props, State> {
         this.stateSet({advanced: !advanced});
     }
 
-    searchChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+    searchChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         this.stateSet({search: e.target.value});
     }
 
-    authorChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+    authorChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         this.stateSet({author: e.target.value.trim()});
     }
 
-    typeChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+    typeChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         this.stateSet({type: e.target.value as SearchType});
     }
 
-    categoryChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+    categoryChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         this.stateSet({category: e.target.value.trim()});
     }
 
-    tagsChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+    tagsChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         this.stateSet({tags: e.target.value.trim()});
     }
 
-    dateChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+    dateChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         this.stateSet({date: e.target.value as DateOpt});
     }
 
-    sortChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+    sortChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         this.stateSet({sort: e.target.value as SearchSort});
     }
 
-    hideLowChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+    hideLowChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         this.stateSet({hideLow: e.target.checked});
     }
 

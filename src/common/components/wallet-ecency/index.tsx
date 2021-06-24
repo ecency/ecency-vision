@@ -239,7 +239,7 @@ export class WalletEcency extends BaseComponent<Props, State> {
         this.setState({boost: !boost});
     }
 
-    filterChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    filterChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         const filter = Number(e.target.value);
         const {fetchPoints, account} = this.props;
         fetchPoints(account.name, filter);

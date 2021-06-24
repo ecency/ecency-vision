@@ -94,7 +94,7 @@ export class EntryVotesDetail extends BaseComponent<DetailProps, DetailState> {
         this.stateSet({votes: prepareVotes(entry, data), loading: false});
     };
 
-    sortChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    sortChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         this.stateSet({sort: e.target.value as SortOption});
     };
 

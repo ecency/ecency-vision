@@ -52,7 +52,7 @@ const pureState = (props: Props): State => {
 export default class ProfileEdit extends BaseComponent<Props, State> {
     state: State = pureState(this.props);
 
-    valueChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+    valueChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         const id = e.target.getAttribute('data-var') as string;
         const {value} = e.target;
 

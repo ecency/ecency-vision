@@ -37,7 +37,7 @@ export class KeyOrHot extends Component<Props, State> {
         key: this.props.signingKey
     }
 
-    keyChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+    keyChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         const {value: key} = e.target;
         this.setState({key});
     }

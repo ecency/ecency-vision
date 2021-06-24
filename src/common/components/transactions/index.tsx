@@ -232,7 +232,7 @@ interface Props {
 }
 
 export class TransactionList extends Component<Props> {
-    typeChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    typeChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         const {account, fetchTransactions} = this.props;
         const group = e.target.value;
 

@@ -47,11 +47,11 @@ export class PasswordUpdate extends BaseComponent<Props, State> {
         this.stateSet({newPass});
     }
 
-    curPassChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    curPassChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         this.stateSet({curPass: e.target.value});
     }
 
-    newPass2Changed = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    newPass2Changed = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         this.stateSet({newPass2: e.target.value});
     }
 

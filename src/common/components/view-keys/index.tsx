@@ -36,7 +36,7 @@ export class ViewKeys extends BaseComponent<Props, State> {
 
     form = React.createRef<HTMLFormElement>();
 
-    curPassChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    curPassChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         this.stateSet({curPass: e.target.value});
     }
 

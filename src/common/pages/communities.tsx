@@ -111,7 +111,7 @@ class CommunitiesPage extends BaseComponent<PageProps, State> {
             });
     };
 
-    queryChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    queryChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         if (this._timer) {
             clearTimeout(this._timer);
             this._timer = null;
@@ -124,7 +124,7 @@ class CommunitiesPage extends BaseComponent<PageProps, State> {
         });
     };
 
-    sortChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    sortChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         this.stateSet({sort: e.target.value}, (): void => {
             this.fetch();
         });
@@ -247,7 +247,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
         return 'P' + base58.encode(cryptoUtils.sha256(random()));
     };
 
-    onInput = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+    onInput = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         const {target: el} = e;
         const {name: key, value} = el;
 
@@ -255,7 +255,7 @@ class CommunityCreatePage extends BaseComponent<PageProps, CreateState> {
         this.stateSet({[key]: value});
     }
 
-    usernameChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+    usernameChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         const {value: username} = e.target;
         this.stateSet({username}, () => {
             clearTimeout(this._timer);

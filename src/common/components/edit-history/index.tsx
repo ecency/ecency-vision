@@ -122,11 +122,11 @@ export class EditHistory extends BaseComponent<Props, State> {
         this.setState({selected: i.v});
     };
 
-    versionChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    versionChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         this.setState({selected: Number(e.target.value)});
     }
 
-    diffChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    diffChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         this.setState({showDiff: e.target.checked});
     };
 

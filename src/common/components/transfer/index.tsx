@@ -191,7 +191,7 @@ export class Transfer extends BaseComponent<Props, State> {
         });
     };
 
-    toChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    toChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         const {value: to} = e.target;
         this.stateSet({to}, this.handleTo);
     };
@@ -200,14 +200,14 @@ export class Transfer extends BaseComponent<Props, State> {
         this.stateSet({to}, this.handleTo);
     }
 
-    amountChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+    amountChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         const {value: amount} = e.target;
         this.stateSet({amount}, () => {
             this.checkAmount();
         });
     };
 
-    memoChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+    memoChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         const {value: memo} = e.target;
         this.stateSet({memo});
     };
