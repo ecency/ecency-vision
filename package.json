@@ -92,7 +92,7 @@
     "typescript": "^3.5.3"
   },
   "resolutions": {
-    "jest": "^26.0.0",
+    "jest": "^24.9.0",
     "@types/react": "^16.8.23"
   },
   "jest": {
