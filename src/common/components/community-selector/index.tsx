@@ -58,7 +58,7 @@ export class Browser extends BaseComponent<BrowserProps, BrowserState> {
         })
     }
 
-    queryChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    queryChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         if (this._timer) {
             clearTimeout(this._timer);
             this._timer = null;

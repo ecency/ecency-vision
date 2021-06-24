@@ -60,7 +60,7 @@ export class Purchase extends BaseComponent<Props, State> {
         });
     }
 
-    sliderChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    sliderChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         const amount = Number(e.target.value);
         this.stateSet({amount});
 

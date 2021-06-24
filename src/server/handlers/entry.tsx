@@ -1,4 +1,4 @@
-import express from "express";
+import {Request, Response} from "express";
 
 import {AppState} from "../../common/store";
 import {Entry} from "../../common/store/entries/types";
@@ -9,13 +9,14 @@ import {makePreloadedState} from "../state";
 
 import {render} from "../template";
 
-export default async (req: express.Request, res: express.Response) => {
+export default async (req: Request, res: Response) => {
     const {category, author, permlink} = req.params;
     let entry: Entry | null = null;
 
     try {
         entry = await bridgeApi.getPost(author, permlink);
     } catch (e) {
+        console.error('ERROR', e);
     }
 
     let entries = {};

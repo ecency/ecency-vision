@@ -160,7 +160,7 @@ export class CommunitySettings extends BaseComponent<Props, State> {
 
     form = React.createRef<HTMLFormElement>();
 
-    onChange = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+    onChange = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         const {target: el} = e;
         const key = el.name;
         const val = el.hasOwnProperty("checked") ? el.checked : cleanString(el.value);

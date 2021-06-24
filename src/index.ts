@@ -18,11 +18,7 @@ const port = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 
 const server = express()
     .use((req, res) => app.handle(req, res))
-    .listen(port, (err: Error) => {
-        if (err) {
-            console.error(err);
-            return;
-        }
+    .listen(port, () => {
         console.log(`> Started on port ${port}`);
     });
 

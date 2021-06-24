@@ -39,11 +39,11 @@ export class AddFragment extends BaseComponent<AddProps, AddState> {
 
     form = React.createRef<HTMLFormElement>();
 
-    titleChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    titleChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         this.stateSet({title: e.target.value});
     }
 
-    bodyChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    bodyChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         this.stateSet({body: e.target.value});
     }
 
@@ -138,11 +138,11 @@ export class EditFragment extends BaseComponent<EditProps, EditState> {
 
     form = React.createRef<HTMLFormElement>();
 
-    titleChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    titleChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         this.stateSet({title: e.target.value});
     }
 
-    bodyChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    bodyChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         this.stateSet({body: e.target.value});
     }
 
@@ -281,7 +281,7 @@ export class Fragments extends BaseComponent<Props, State> {
             return new Date(b.created).getTime() > new Date(a.created).getTime() ? 1 : -1;
         });
 
-    filterChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+    filterChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         const {value} = e.target;
         this.stateSet({filter: value});
     }

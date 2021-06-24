@@ -64,7 +64,7 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
         inProgress: false
     }
 
-    usernameChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+    usernameChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         const {value: username} = e.target;
         this.stateSet({username: username.trim().toLowerCase()});
     }
@@ -289,12 +289,12 @@ export class Login extends BaseComponent<LoginProps, State> {
         }
     }
 
-    usernameChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+    usernameChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         const {value: username} = e.target;
         this.stateSet({username: username.trim().toLowerCase()});
     }
 
-    keyChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+    keyChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         const {value: key} = e.target;
         this.stateSet({key: key.trim()});
     }

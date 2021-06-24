@@ -41,7 +41,7 @@ export class Preferences extends BaseComponent<Props, State> {
         inProgress: false,
     }
 
-    notificationsChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    notificationsChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         const {muteNotifications, unMuteNotifications} = this.props;
 
         if (e.target.value === "1") {
@@ -55,7 +55,7 @@ export class Preferences extends BaseComponent<Props, State> {
         success(_t('preferences.updated'));
     }
 
-    currencyChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    currencyChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         const {value: currency} = e.target;
 
         this.stateSet({inProgress: true});
@@ -70,7 +70,7 @@ export class Preferences extends BaseComponent<Props, State> {
         })
     }
 
-    languageChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    languageChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         const {setLang} = this.props;
         const {value: code} = e.target;
 
@@ -80,7 +80,7 @@ export class Preferences extends BaseComponent<Props, State> {
         });
     }
 
-    nsfwChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    nsfwChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         const {setNsfw} = this.props;
         const {value} = e.target;
 

@@ -56,17 +56,17 @@ class SignUpPage extends Component<PageProps, State> {
         }
     }
 
-    usernameChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    usernameChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         const {value: username} = e.target;
         this.setState({username: username.toLowerCase()});
     }
 
-    emailChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    emailChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         const {value: email} = e.target;
         this.setState({email});
     }
 
-    refCodeChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    refCodeChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         const {value: referral} = e.target;
         this.setState({referral: referral.toLowerCase()});
     }

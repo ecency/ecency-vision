@@ -135,7 +135,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     return voteValue * sign;
   };
 
-  upSliderChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+  upSliderChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
     const { target: { id, value} } = e;
     const upSliderVal = Number(value);
     const { initialVoteValues } = this.state;
@@ -150,7 +150,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
   };
 
   downSliderChanged = (
-    e: React.ChangeEvent<FormControl & HTMLInputElement>
+    e: React.ChangeEvent<typeof FormControl & HTMLInputElement>
   ) => {
     const { target: { id, value} } = e;
 

@@ -228,7 +228,7 @@ export class Schedules extends BaseComponent<Props, State> {
         })
     }
 
-    filterChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+    filterChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         const {value} = e.target;
         this.stateSet({filter: value});
     }

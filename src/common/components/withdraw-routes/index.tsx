@@ -70,7 +70,7 @@ export class WithdrawRoutes extends BaseComponent<Props, State> {
         });
     }
 
-    onInput = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+    onInput = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         const {target: el} = e;
         const {name: key, value} = el;
 

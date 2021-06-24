@@ -88,7 +88,7 @@ export class Comment extends Component<Props, State> {
         }
     }
 
-    textChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+    textChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         const {value: text} = e.target;
         this.setState({text}, () => {
             const {onChange} = this.props;
