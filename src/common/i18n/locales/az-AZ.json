@@ -39,7 +39,7 @@
     "replies": "cavablar",
     "done": "Hazırdır",
     "apply": "Tətbiq et",
-    "warning": "Warning",
+    "warning": "Xəbərdarlıq",
     "close": "Bağla"
   },
   "confirm": {
@@ -130,10 +130,10 @@
     "learn-more": "Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
     "username": "Bir istifadəçi adı götür",
     "email": "E-poçt ünvanını daxil et",
-    "ref": "Referred user (optional)",
+    "ref": "Referal istifadəçi (ixtiyari)",
     "submit": "Davam",
-    "validation-username": "Username is required.",
-    "validation-email": "Email is required.",
+    "validation-username": "İstifadəçi adı lazımdır.",
+    "validation-email": "E-poçt lazımdır.",
     "success": "{{email}} ünvanına bir e-poçt göndərdik.",
     "success-2": "Qeydiyyat prosesini tamamlamaq üçün təlimatları izləyin.",
     "login-text-1": "Hesabınız yoxdur?",
@@ -161,7 +161,7 @@
     "reveal": "Reveal this post",
     "signup": "<a href=\"/signup\" class=\"push-link\">create an account</a> to save your preferences",
     "settings-1": "adjust your",
-    "settings-2": "display preferences"
+    "settings-2": "görüntü tərcihləri"
   },
   "bookmark-btn": {
     "add": "Əlfəcinlərə əlavə et",
@@ -176,36 +176,36 @@
     "success": "Təkrar paylaşıldı!",
     "delete-reblog": "Undo Reblog",
     "delete-confirm-title": "Undo reblog?",
-    "delete-confirm-ok": "Undo",
+    "delete-confirm-ok": "Geri al",
     "delete-success": "Reblog removed"
   },
   "entry-tip": {
     "title": "Məsləhət"
   },
   "entry-share": {
-    "title": "Share"
+    "title": "Paylaş"
   },
   "entry-menu": {
     "cross-post": "Cross post",
-    "share": "Share",
-    "edit-history": "Edit History",
-    "pin": "Pin",
-    "pin-success": "Post pinned",
-    "unpin": "Unpin",
-    "unpin-success": "Post Unpinned",
-    "mute": "Mute",
-    "mute-success": "Post muted",
-    "unmute": "Unmute",
-    "unmute-success": "Post unmuted",
-    "promote": "Promote",
-    "boost": "Boost"
+    "share": "Paylaş",
+    "edit-history": "Tarixçəyə düzəliş et",
+    "pin": "Sancaqla",
+    "pin-success": "Göndəriş sancaqlandı",
+    "unpin": "Sancağı götür",
+    "unpin-success": "Göndərişin sancağı götürüldü",
+    "mute": "Səsi kəs",
+    "mute-success": "Göndərişin səssizə alında",
+    "unmute": "Səsi aç",
+    "unmute-success": "Göndəriş səssizdən çıxarıldı",
+    "promote": "Tanıt",
+    "boost": "Gücləndir"
   },
   "cross-post": {
     "title": "Cross Post",
-    "community-placeholder": "Choose a community",
-    "message-placeholder": "Start the conversation with a message",
-    "submit-label": "Confirm",
-    "published": "Post Published",
+    "community-placeholder": "Bir cəmiyyət seçin",
+    "message-placeholder": "Danışığa başlamaq üçün bir mesaj yazın",
+    "submit-label": "Təsdiqlə",
+    "published": "Göndəriş dərc olundu",
     "no-subscription": "You don't have any community subscription to cross post.",
     "info": "Rewards are automatically declined for the cross post and discussions under cross post will be different and will follow different community guidelines."
   },
@@ -259,9 +259,9 @@
     "muted-warning": "This content was muted by {{community}} moderators for not following community guidelines.",
     "address-copy": "Copy post address",
     "address-copied": "Post address copied to clipboard.",
-    "browse-original": "Open original post",
+    "browse-original": "Orijinal göndərişi aç",
     "cross-post-by": "Cross post by",
-    "cross-post-community": "community",
+    "cross-post-community": "cəmiyyət",
     "community-in": "in"
   },
   "edit-history": {
@@ -270,7 +270,7 @@
     "version": "Versiya {{n}}"
   },
   "similar-entries": {
-    "title": "Read next"
+    "title": "Növbətini oxu"
   },
   "comment": {
     "body-placeholder": "Cavabınızı bura yazın",
@@ -281,13 +281,13 @@
     "btn-join": "Qoşul",
     "replies": "1 Rəy",
     "n-replies": "{{n}} Rəy",
-    "order": "Sort Order",
-    "order-trending": "Trending",
+    "order": "Sifarişi sırala",
+    "order-trending": "Trend",
     "order-reputation": "Nüfuz",
     "order-votes": "Səslər",
     "order-created": "Yaş",
     "read-more": "...daha çox cavabı oxu...",
-    "reveal": "Reveal comment"
+    "reveal": "Rəyi açın"
   },
   "community": {
     "page-description": "{{f}} mövzu",
@@ -315,11 +315,11 @@
   "community-card": {
     "description": "Açıqlama",
     "rules": "Qaydalar",
-    "team": "Leadership",
+    "team": "Liderlik",
     "edit": "Tənzimləmələrə düzəliş et",
     "edit-team": "Rollara düzəliş et",
-    "community-rewards": "Community Rewards",
-    "profile-image": "Profile image",
+    "community-rewards": "Cəmiyyət Mükafatları",
+    "profile-image": "Profil şəkli",
     "profile-image-edit": "Profil şəklinə düzəliş et",
     "profile-image-updated": "Profil şəkli yeniləndi!"
   },
@@ -337,8 +337,8 @@
     "lang": "Dil",
     "description": "Açıqlama",
     "rules": "Qaydalar",
-    "rules-help": "One per line",
-    "validation-title": "Title is required."
+    "rules-help": "Hər sətirdə biri",
+    "validation-title": "Başlıq lazımdır."
   },
   "communities": {
     "title": "Cəmiyyətlər",
@@ -347,7 +347,7 @@
     "n-authors": "{{n}} poster",
     "n-posts": "{{n}} göndəriş",
     "admins": "adminlər:",
-    "sort-hot": "Hot",
+    "sort-hot": "Gündəm",
     "sort-rank": "Sıra",
     "sort-subs": "Üzvlər",
     "sort-new": "Yeni",
@@ -359,16 +359,16 @@
     "title": "Başlıq",
     "about": "Haqqında",
     "description": "Create a best, decentralized, immutable, rewarding communities",
-    "fee": "Operation fee",
-    "creator": "Creator",
-    "username": "Owner username",
-    "username-available": "Available.",
-    "username-not-available": "Not available.",
+    "fee": "Əməliyyat haqqı",
+    "creator": "Yaradıcı",
+    "username": "Sahib istifadəçi adı",
+    "username-available": "Mövcud.",
+    "username-not-available": "Mövcud deyil.",
     "username-wrong-format": "Not a valid format. hive-1xxxxx format required.",
     "checkbox-validation": "Please tick this box if you want to proceed.",
-    "title-validation": "Please fill in this field.",
-    "password": "Master password",
-    "confirmation": "I have securely saved my owner username and password.",
+    "title-validation": "Bu sahəni doldurun.",
+    "password": "Usta şifrəsi",
+    "confirmation": "Sahib istifadəçi adımı və şifrəmi təhlükəsiz olaraq yaddaşa yazdım.",
     "submit": "Create Community",
     "progress-account": "Creating account...",
     "progress-user": "Preparing user data...",
