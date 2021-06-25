@@ -39,7 +39,7 @@
     "replies": "回复",
     "done": "完成",
     "apply": "应用",
-    "warning": "Warning",
+    "warning": "警告",
     "close": "关闭"
   },
   "confirm": {
@@ -153,8 +153,8 @@
     "pinned": "置顶帖",
     "replies": "1个回复。请点击回复。",
     "replies-n": "{{n}} 个回复。点击进行回复。",
-    "vote-error": "Previous value is not acceptable. Vote with a different value.",
-    "vote-warning": "Voting 0% unvotes the content.",
+    "vote-error": "之前的投票数值没有被接受。请更换数值重新投票。",
+    "vote-warning": "使用0%的投票能量，取消投票。",
     "no-replies": "还没有回复。点击进行回复。"
   },
   "nsfw": {
@@ -431,7 +431,7 @@
     "profile-image": "用戶头像",
     "website": "网址",
     "location": "所在地",
-    "copied": "Referral link copied to clipboard.",
+    "copied": "邀请链接已复制到剪贴板",
     "updated": "资料更新成功"
   },
   "image-upload-button": {
@@ -443,7 +443,7 @@
     "currency": "货币",
     "language": "语言",
     "nsfw": "显示 NSFW 内容",
-    "referral-link": "Referral link",
+    "referral-link": "邀请链接",
     "updated": "首选项已更新！"
   },
   "wallet": {
@@ -938,16 +938,16 @@
     "updated": "密码更新成功！"
   },
   "view-keys": {
-    "title": "View Private keys",
-    "account": "Account",
-    "cur-pass": "Current password",
-    "owner": "Owner",
-    "active": "Active",
-    "posting": "Posting",
-    "memo": "Memo",
-    "view-keys": "Click to view keys",
-    "copied": "Private key copied into clipboard",
-    "error": "Password seem incorrect, please double check!"
+    "title": "查看私钥",
+    "account": "账户",
+    "cur-pass": "当前密码",
+    "owner": "所有者",
+    "active": "活动",
+    "posting": "发送中",
+    "memo": "备注",
+    "view-keys": "点击查看密钥",
+    "copied": "私钥已复制到剪贴板",
+    "error": "密码似乎不正确，请重复检查！"
   },
   "add-image": {
     "title": "添加图像",
