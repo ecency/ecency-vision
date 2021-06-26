@@ -616,9 +616,9 @@
     "group-interests": "Bunga",
     "group-stake-operations": "Operasi Stake",
     "group-rewards": "Reward",
-    "type-curation_reward": "Reward Kurasi",
-    "type-author_reward": "Reward Penulis",
-    "type-comment_benefactor_reward": "Reward Komentar Distributor",
+    "type-curation_reward": "Curation reward",
+    "type-author_reward": "Author reward",
+    "type-comment_benefactor_reward": "Comment benefactor reward",
     "type-claim_reward_balance": "Klaim reward",
     "type-transfer": "Transfer",
     "type-transfer_to_vesting": "Transfer ke vesting",
@@ -631,7 +631,10 @@
     "type-cancel_transfer_from_savings": "Batalkan transfer untuk tabungan",
     "type-cancel_transfer_from_savings-detail": "Dari: <strong>@{{from}}</strong> <br/> Permintaan id: <strong>{{request}}</strong>",
     "type-return_vesting_delegation": "Pengembalian vesting delegasi",
-    "type-proposal_pay": "Pembayaran proposal"
+    "type-proposal_pay": "Pembayaran proposal",
+    "type-comment_payout_update": "Content payout update",
+    "type-comment_reward": "Content reward",
+    "type-effective_comment_vote": "Effective Vote"
   },
   "key-or-hot": {
     "sign": "Masuk",
