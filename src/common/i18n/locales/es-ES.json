@@ -616,9 +616,9 @@
     "group-interests": "Intereses",
     "group-stake-operations": "Operaciones de estaca",
     "group-rewards": "Recompensas",
-    "type-curation_reward": "Recompensa de curación",
-    "type-author_reward": "Recompensa de autor",
-    "type-comment_benefactor_reward": "Recompensas de benefactor del comentario",
+    "type-curation_reward": "Curation reward",
+    "type-author_reward": "Author reward",
+    "type-comment_benefactor_reward": "Comment benefactor reward",
     "type-claim_reward_balance": "Reclamar recompensas",
     "type-transfer": "Transferir",
     "type-transfer_to_vesting": "Transferir a ahorros",
@@ -631,7 +631,10 @@
     "type-cancel_transfer_from_savings": "Cancelar transferencia de ahorros",
     "type-cancel_transfer_from_savings-detail": "De: <strong>@{{from}}</strong> <br/> Solicitud id: <strong>{{request}}</strong>",
     "type-return_vesting_delegation": "Devolución de la delegación",
-    "type-proposal_pay": "Propuesta de pago"
+    "type-proposal_pay": "Propuesta de pago",
+    "type-comment_payout_update": "Content payout update",
+    "type-comment_reward": "Content reward",
+    "type-effective_comment_vote": "Effective Vote"
   },
   "key-or-hot": {
     "sign": "Firmar",
