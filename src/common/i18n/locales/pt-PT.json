@@ -39,7 +39,7 @@
     "replies": "respostas",
     "done": "Feito",
     "apply": "Aplicar",
-    "warning": "Warning",
+    "warning": "Aviso",
     "close": "Fechar"
   },
   "confirm": {
@@ -58,7 +58,7 @@
     "filter-feed-friends": "Amigos",
     "filter-feed-subscriptions": "Comunidades",
     "filter-global": "Global",
-    "filter-global-part1": "This feed contains ",
+    "filter-global-part1": "Este feed contém ",
     "filter-global-part2": " content on entire platform.",
     "filter-global-part3": " content from Your communities. You can join communities that interest you to fill up this feed."
   },
@@ -924,7 +924,7 @@
     "form-title": "Título",
     "validation-title": "Title is required.",
     "validation-value": "Value is required.",
-    "validation-body": "Body is required.",
+    "validation-body": "Corpo obrigatório.",
     "form-body": "Conteúdo"
   },
   "password-update": {
@@ -936,13 +936,13 @@
     "error-new2": "As senhas devem ser iguais",
     "pass-gen": "Clique para gerar a senha",
     "label-check": "Eu guardei com segurança minha nova senha gerada",
-    "validation-password": "Password is invalid.",
+    "validation-password": "Senha inválida.",
     "validation-label": "Please tick this box to proceed.",
     "updated": "Senha atualizada com sucesso!"
   },
   "view-keys": {
     "title": "View Private keys",
-    "account": "Account",
+    "account": "Conta",
     "cur-pass": "Current password",
     "owner": "Owner",
     "active": "Active",
