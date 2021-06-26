@@ -47,7 +47,7 @@ export class TransactionRow extends Component<RowProps> {
             details = EntryLink({
                 ...this.props,
                 entry: {
-                    category: "ecency",
+                    category: "history",
                     author: tr.comment_author,
                     permlink: tr.comment_permlink
                 },
@@ -78,7 +78,7 @@ export class TransactionRow extends Component<RowProps> {
             details = EntryLink({
                 ...this.props,
                 entry: {
-                    category: "ecency",
+                    category: "history",
                     author: tr.author,
                     permlink: tr.permlink
                 },
@@ -199,6 +199,69 @@ export class TransactionRow extends Component<RowProps> {
             icon = ticketSvg;
 
             numbers = <span className="number">{tr.payment}</span>
+        }
+
+        if (tr.type === "comment_payout_update") {
+            flag = true;
+            icon = ticketSvg;
+
+            details = EntryLink({
+                ...this.props,
+                entry: {
+                    category: "history",
+                    author: tr.author,
+                    permlink: tr.permlink
+                },
+                children: <span>{"@"}{tr.author}/{tr.permlink}</span>
+            })
+        }
+
+        if (tr.type === "comment_reward") {
+            flag = true;
+
+            const payout = parseAsset(tr.payout);
+
+            numbers = (
+                <>
+                    {payout.amount > 0 && (
+                        <span className="number">{formattedNumber(payout.amount, {suffix: "HBD"})}</span>
+                    )}
+                </>
+            );
+
+            details = EntryLink({
+                ...this.props,
+                entry: {
+                    category: "history",
+                    author: tr.author,
+                    permlink: tr.permlink
+                },
+                children: <span>{"@"}{tr.author}/{tr.permlink}</span>
+            });
+        }
+
+        if (tr.type === "effective_comment_vote") {
+            flag = true;
+
+            const payout = parseAsset(tr.pending_payout);
+
+            numbers = (
+                <>
+                    {payout.amount > 0 && (
+                        <span className="number">{formattedNumber(payout.amount, {suffix: "HBD"})}</span>
+                    )}
+                </>
+            );
+
+            details = EntryLink({
+                ...this.props,
+                entry: {
+                    category: "history",
+                    author: tr.author,
+                    permlink: tr.permlink
+                },
+                children: <span>{"@"}{tr.author}/{tr.permlink}</span>
+            });
         }
 
         if (flag) {
