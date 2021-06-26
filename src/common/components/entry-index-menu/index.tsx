@@ -54,18 +54,32 @@ export const isActiveUser = ( activeUser: ActiveUser | null) => {
 export class EntryIndexMenu extends Component<Props, States> {
     constructor(props:Props){
         super(props)
-        const { activeUser, history: { location: { pathname} }, global } = props;
+        const { activeUser, history: { location: { pathname} }, global : { filter } } = props;
         let isGlobal = !pathname.includes('/my');
         if(activeUser && isActiveUser(activeUser) && pathname.includes(activeUser.username)){
             isGlobal = false;
         }
         let showInitialIntroductionJourney = activeUser && isActiveUser(activeUser) && ls.get(`${activeUser.username}HadTutorial`);
-        if(activeUser && isActiveUser(activeUser) && (showInitialIntroductionJourney==='false' || showInitialIntroductionJourney===null)){
+        if(activeUser && isActiveUser(activeUser) && (showInitialIntroductionJourney === 'false' || showInitialIntroductionJourney===null)){
             showInitialIntroductionJourney = true;
             ls.set(`${activeUser.username}HadTutorial`, 'true');
         }
-        this.state = { isGlobal, introduction: showInitialIntroductionJourney === true ? IntroductionType.FRIENDS : IntroductionType.NONE };
-        this.onChangeGlobal = this.onChangeGlobal.bind(this)
+        if(showInitialIntroductionJourney === true){
+            showInitialIntroductionJourney = IntroductionType.FRIENDS
+        }
+        else {
+            showInitialIntroductionJourney = IntroductionType.NONE
+        }
+        this.state = { isGlobal, introduction: showInitialIntroductionJourney };
+        this.onChangeGlobal = this.onChangeGlobal.bind(this);
+        if(showInitialIntroductionJourney === IntroductionType.NONE){
+            if (typeof window !== 'undefined') {
+                document.getElementById('overlay') && document.getElementById('overlay')!.classList.remove("overlay-for-introduction");
+                document.getElementById('feed') && document.getElementById('feed')!.classList.remove("active");
+                document.getElementById(filter) && document.getElementById(filter)!.classList.add("active");
+                document.getElementsByTagName('ul') && document.getElementsByTagName('ul')[0]!.classList.remove("flash");
+            }
+        }
     }
 
     onChangeGlobal() {
@@ -104,7 +118,6 @@ export class EntryIndexMenu extends Component<Props, States> {
 
         let showInitialIntroductionJourney = activeUser && isActiveUser(activeUser) && ls.get(`${activeUser.username}HadTutorial`);
         if(prevProps.activeUser !==activeUser && activeUser && isActiveUser(activeUser) && (showInitialIntroductionJourney==='false' || showInitialIntroductionJourney===null)){
-            
             showInitialIntroductionJourney = true;
             ls.set(`${activeUser.username}HadTutorial`, 'true');
             this.setState({introduction: showInitialIntroductionJourney ? IntroductionType.FRIENDS : IntroductionType.NONE})
@@ -261,16 +274,17 @@ export class EntryIndexMenu extends Component<Props, States> {
                                             {!isGlobal && filter !== "feed" && <Link to='/communities'> {_t('discussion.btn-join')}</Link>}
                                             <Link to='/communities'> {_t('discussion.btn-join')} {_t('communities.title')}</Link>
                                         </>;
+        const introductionOverlayClass = introduction === IntroductionType.NONE ? "d-none" : "overlay-for-introduction"
 
         return <div>
-                    {introduction !== IntroductionType.NONE &&  <div className="overlay"></div>}
+                    <div className={introductionOverlayClass} id="overlay"/>
                     <div className="entry-index-menu">
                         <div className="the-menu align-items-center">
                         {isActive &&
                             <div className="sub-menu mt-3 mt-md-0">
-                                <ul className={`nav nav-pills position-relative nav-fill ${introduction !== IntroductionType.NONE && introduction === IntroductionType.FRIENDS ? "flash" : ""}`}>
+                                <ul className={`nav nav-pills position-relative nav-fill ${introduction === IntroductionType.NONE ? "" : introduction === IntroductionType.FRIENDS ? "flash" : ""}`}>
                                     <li className={`nav-item`}>
-                                        <Link to={`/@${activeUser?.username}/feed`} className={_c(`nav-link my-link ${(filter === "feed" && (introduction === IntroductionType.NONE || introduction === IntroductionType.FRIENDS) ) ? "active" : ""}   ${introduction !== IntroductionType.NONE && introduction === IntroductionType.FRIENDS ? "active" : ""}`)}>
+                                        <Link to={`/@${activeUser?.username}/feed`} className={_c(`nav-link my-link ${(filter === "feed" && (introduction === IntroductionType.NONE || introduction === IntroductionType.FRIENDS) ) ? "active" : ""}   ${introduction !== IntroductionType.NONE && introduction === IntroductionType.FRIENDS ? "active" : ""}`)} id='feed'>
                                             {_t("entry-filter.filter-feed-friends")}
                                         </Link>
                                     </li>
@@ -303,7 +317,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                                     <ul className={`nav nav-pills nav-fill`}>
                                         {menuConfig.items.map((i, k) => {
                                             return <li key={k} className={`nav-item ${i.flash ? "flash" : ""}`}>
-                                                <Link to={i.href!} className={_c(`nav-link link-${i.id} ${(introduction!==IntroductionType.NONE && !i.flash && i.active)?"":(i.active || i.flash) ? "active" : ""}`)}>{i.label}</Link>
+                                                <Link to={i.href!} className={_c(`nav-link link-${i.id} ${(introduction!==IntroductionType.NONE && !i.flash && i.active)?"":(i.active || i.flash) ? "active" : ""}`)} id={i.id}>{i.label}</Link>
                                             </li>
                                         })}
                                         {introduction !== IntroductionType.NONE && introduction !== IntroductionType.FRIENDS && (introduction === IntroductionType.HOT || introduction === IntroductionType.TRENDING || introduction === IntroductionType.NEW) &&
