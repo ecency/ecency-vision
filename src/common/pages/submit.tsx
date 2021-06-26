@@ -765,6 +765,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                                 placeholder={_t("submit.body-placeholder")}
                                 value={body}
                                 onChange={this.bodyChanged}
+                                rows={10}
                             />
                         </div>
                         {editingEntry === null && (
