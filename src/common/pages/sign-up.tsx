@@ -112,7 +112,7 @@ class SignUpPage extends Component<PageProps, State> {
                         ...this.props,
                     }) :
                     NavBar({...this.props})}
-                <div className="app-content sign-up-page">
+                <div className="app-content sign-up-page mb-lg-0">
 
                     <div className="sign-up">
                         <div className="left-image">

@@ -7,7 +7,7 @@
 
     @media (min-width: $xl-break) {
       display: flex;
-      margin-top: 60px;
+      margin-top: 50px;
     }
 
     .left-image {
@@ -20,7 +20,7 @@
         justify-content: flex-end;
 
         img {
-          width: 80%
+          width: 100%
         }
       }
     }
