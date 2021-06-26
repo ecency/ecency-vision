@@ -616,9 +616,9 @@
     "group-interests": "兴趣",
     "group-stake-operations": "质押操作",
     "group-rewards": "奖励",
-    "type-curation_reward": "审查奖励",
-    "type-author_reward": "作者奖励",
-    "type-comment_benefactor_reward": "内容受益人奖励",
+    "type-curation_reward": "Curation reward",
+    "type-author_reward": "Author reward",
+    "type-comment_benefactor_reward": "Comment benefactor reward",
     "type-claim_reward_balance": "认领奖励",
     "type-transfer": "转帐",
     "type-transfer_to_vesting": "转为 Hive Power",
@@ -631,7 +631,10 @@
     "type-cancel_transfer_from_savings": "取消从储蓄账户中的转移",
     "type-cancel_transfer_from_savings-detail": "来自： <strong>@{{from}}</strong> <br/> 请求 id: <strong>{{request}}</strong>",
     "type-return_vesting_delegation": "退回Hive Power的委托",
-    "type-proposal_pay": "建议支付"
+    "type-proposal_pay": "建议支付",
+    "type-comment_payout_update": "Content payout update",
+    "type-comment_reward": "Content reward",
+    "type-effective_comment_vote": "Effective Vote"
   },
   "key-or-hot": {
     "sign": "签名",
