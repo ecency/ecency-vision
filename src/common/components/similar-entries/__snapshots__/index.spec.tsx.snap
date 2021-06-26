@@ -33,7 +33,7 @@ exports[`(3) Should render entries 1`] = `
           <img
             alt="Imagehoster + Hivesigner and Condenser bounty"
             onError={[Function]}
-            src="noimage.png"
+            src="noimage.svg"
           />
         </div>
         <div

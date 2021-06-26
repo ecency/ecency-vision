@@ -42,7 +42,7 @@ import truncate from "../../util/truncate";
 import {repeatSvg, pinSvg, commentSvg} from "../../img/svg";
 
 const fallbackImage = require("../../img/fallback.png");
-const noImage = require("../../img/noimage.png");
+const noImage = require("../../img/noimage.svg");
 const nsfwImage = require("../../img/nsfw.png");
 
 import defaults from "../../constants/defaults.json";
@@ -136,6 +136,9 @@ export default class EntryListItem extends Component<Props, State> {
 
         const imgGrid: string = (global.canUseWebp ? catchPostImage(entry, 600, 500, 'webp') : catchPostImage(entry, 600, 500)) || noImage;
         const imgRow: string = (global.canUseWebp ? catchPostImage(entry, 260, 200, 'webp') : catchPostImage(entry, 260, 200)) || noImage;
+        let svgSizeRow = imgRow === noImage ? "45px" : "auto";
+        let svgSizeGrid = imgGrid === noImage ? "172px" : "auto";
+        
 
         const summary: string = postBodySummary(entry, 200);
 
@@ -163,7 +166,7 @@ export default class EntryListItem extends Component<Props, State> {
         let thumb: JSX.Element | null = null;
         if (global.listStyle === 'grid') {
             thumb = (
-                <img src={imgGrid} alt={title} onError={(e: React.SyntheticEvent) => {
+                <img src={imgGrid} alt={title} style={{ width: svgSizeGrid }} onError={(e: React.SyntheticEvent) => {
                     const target = e.target as HTMLImageElement;
                     target.src = fallbackImage;
                 }}
@@ -174,7 +177,7 @@ export default class EntryListItem extends Component<Props, State> {
             thumb = (
                 <picture>
                     <source srcSet={imgRow} media="(min-width: 576px)"/>
-                    <img srcSet={imgGrid} alt={title} onError={(e: React.SyntheticEvent) => {
+                    <img srcSet={imgGrid} alt={title} style={{ width: svgSizeRow }} onError={(e: React.SyntheticEvent) => {
                         const target = e.target as HTMLImageElement;
                         target.src = fallbackImage;
                     }}/>
@@ -300,7 +303,7 @@ export default class EntryListItem extends Component<Props, State> {
                                 {EntryLink({
                                     ...this.props,
                                     entry: (crossPost ? theEntry : entry),
-                                    children: <div>
+                                    children: <div className="d-flex justify-content-center">
                                         {thumb}
                                     </div>
                                 })}

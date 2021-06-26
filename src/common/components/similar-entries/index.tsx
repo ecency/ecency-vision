@@ -26,7 +26,7 @@ import parseDate from "../../helper/parse-date";
 import isCommunity from "../../helper/is-community";
 
 const fallbackImage = require("../../img/fallback.png");
-const noImage = require("../../img/noimage.png");
+const noImage = require("../../img/noimage.svg");
 
 interface Props {
     history: History;
