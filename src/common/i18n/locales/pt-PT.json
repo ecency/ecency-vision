@@ -616,9 +616,9 @@
     "group-interests": "Interesses",
     "group-stake-operations": "Operações de Stake",
     "group-rewards": "Recompensas",
-    "type-curation_reward": "Recompensa de Curadoria",
-    "type-author_reward": "Recompensa do Autor",
-    "type-comment_benefactor_reward": "Recompensa do benficiário de comentário",
+    "type-curation_reward": "Curation reward",
+    "type-author_reward": "Author reward",
+    "type-comment_benefactor_reward": "Comment benefactor reward",
     "type-claim_reward_balance": "Reivindicar recompensas",
     "type-transfer": "Transferir",
     "type-transfer_to_vesting": "Transferir para o investimento",
@@ -631,7 +631,10 @@
     "type-cancel_transfer_from_savings": "Cancelar a transferência da poupança",
     "type-cancel_transfer_from_savings-detail": "De: <strong>@{{from}}</strong> <br/> ID da solicitação: <strong>{{request}}</strong>",
     "type-return_vesting_delegation": "Retornar delegação de HP",
-    "type-proposal_pay": "Proposta de pagamento"
+    "type-proposal_pay": "Proposta de pagamento",
+    "type-comment_payout_update": "Content payout update",
+    "type-comment_reward": "Content reward",
+    "type-effective_comment_vote": "Effective Vote"
   },
   "key-or-hot": {
     "sign": "Assinar",
