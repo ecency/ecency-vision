@@ -57,15 +57,18 @@ export class ProfileMenu extends Component<Props> {
         return (
             <div className="profile-menu">
                 <div className="profile-menu-items">
-                    {(() => {
-                        if (ProfileFilter[section]) {
-                            return <span className="profile-menu-item selected-item"><DropDown {...menuConfig} float="left"/></span>;
-                        }
-
-                        return <Link className="profile-menu-item" to={`/@${username}`}>
-                            {_t(`profile.section-blog`)}
-                        </Link>;
-                    })()}
+                    <>
+                        <span className="d-flex d-lg-none profile-menu-item selected-item">
+                            <DropDown {...menuConfig} float="left"/>
+                        </span>
+                        <div className="d-none d-lg-flex align-items-center">
+                            {menuConfig.items.map(menuItem => 
+                                <Link className={_c(`profile-menu-item ${menuItem.active ? "selected-item" : ""}`)} to={menuItem.href!}>
+                                {menuItem.label}
+                            </Link>)}
+                        </div>
+                    </>
+ 
                     <Link className={_c(`profile-menu-item ${section === "communities" ? "selected-item" : ""}`)} to={`/@${username}/communities`}>
                         {_t(`profile.section-communities`)}
                     </Link>
