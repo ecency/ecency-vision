@@ -91,7 +91,7 @@ export default class EmojiPicker extends BaseComponent<Props> {
         this.stateSet({data, cache});
     };
 
-    filterChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    filterChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         this.setState({filter: e.target.value});
     };
 

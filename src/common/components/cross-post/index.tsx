@@ -63,11 +63,11 @@ export class CrossPost extends BaseComponent<Props, State> {
         this.props.onHide();
     }
 
-    communityChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    communityChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         this.stateSet({community: e.target.value});
     }
 
-    messageChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    messageChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         this.stateSet({message: e.target.value})
     }
 

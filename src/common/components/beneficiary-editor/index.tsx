@@ -36,12 +36,12 @@ export class DialogBody extends BaseComponent<Props, DialogBodyState> {
 
     form = React.createRef<HTMLFormElement>();
 
-    usernameChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+    usernameChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         const username = e.target.value.trim().toLowerCase();
         this.stateSet({username});
     }
 
-    percentageChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+    percentageChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         this.stateSet({percentage: e.target.value});
     }
 

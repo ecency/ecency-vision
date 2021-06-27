@@ -7,7 +7,7 @@
 
     @media (min-width: $xl-break) {
       display: flex;
-      margin-top: 60px;
+      margin-top: 35px;
     }
 
     .left-image {
@@ -20,7 +20,7 @@
         justify-content: flex-end;
 
         img {
-          width: 80%
+          width: 100%
         }
       }
     }
@@ -124,12 +124,10 @@
           margin-bottom: 22px;
         }
 
-        .form-do-login {
-
-        }
-
         .form-bottom-description {
-          text-align: left;
+          margin-bottom: 0px;
+          margin-top: 16px;
+          line-height: 22px;
         }
       }
     }

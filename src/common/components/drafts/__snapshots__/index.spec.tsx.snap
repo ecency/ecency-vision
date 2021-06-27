@@ -93,7 +93,7 @@ exports[`(2) Test with data. 1`] = `
               <img
                 alt="Aliquam luctus egestas enim"
                 onError={[Function]}
-                src="noimage.png"
+                src="noimage.svg"
               />
             </div>
           </div>
@@ -224,7 +224,7 @@ exports[`(2) Test with data. 1`] = `
               <img
                 alt="Nam vel tincidunt ante, in mattis velit"
                 onError={[Function]}
-                src="noimage.png"
+                src="noimage.svg"
               />
             </div>
           </div>
@@ -355,7 +355,7 @@ exports[`(2) Test with data. 1`] = `
               <img
                 alt="Nam quis enim laoreet"
                 onError={[Function]}
-                src="noimage.png"
+                src="noimage.svg"
               />
             </div>
           </div>

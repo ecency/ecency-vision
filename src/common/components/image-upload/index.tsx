@@ -29,7 +29,7 @@ export class ImageUpload extends BaseComponent<Props, State> {
         uploading: false,
     }
 
-    imageChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+    imageChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         const {value: image} = e.target;
 
         this.stateSet({image});

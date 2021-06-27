@@ -40,7 +40,7 @@ export class WitnessesExtra extends BaseComponent<Props, State> {
         inProgress: false
     }
 
-    usernameChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    usernameChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         this.setState({username: e.target.value.trim()});
     }
 

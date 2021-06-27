@@ -33,7 +33,7 @@ export class DialogBody extends React.Component<DialogProps, DialogState> {
         value: ''
     }
 
-    valueChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+    valueChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         const {value} = e.target;
         this.setState({value});
     }

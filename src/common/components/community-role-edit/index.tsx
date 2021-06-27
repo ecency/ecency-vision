@@ -51,12 +51,12 @@ export class CommunityRoleEdit extends BaseComponent<Props, State> {
 
     _input = React.createRef<HTMLInputElement>();
 
-    userChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    userChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         const {value: user} = e.target;
         this.stateSet({user});
     };
 
-    roleChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    roleChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         const {value: role} = e.target;
         this.stateSet({role});
     };

@@ -55,7 +55,11 @@
     "filter-muted": "Iskljuci Notifikacije",
     "filter-feed": "Novosti",
     "filter-feed-friends": "Prijatelji",
-    "filter-feed-subscriptions": "Zajednice"
+    "filter-feed-subscriptions": "Zajednice",
+    "filter-global": "Global",
+    "filter-global-part1": "This feed contains ",
+    "filter-global-part2": " content on entire platform.",
+    "filter-global-part3": " content from Your communities. You can join communities that interest you to fill up this feed."
   },
   "navbar": {
     "discover": "Otkrijte",
@@ -127,6 +131,8 @@
     "email": "Unesite svoju e-mail adresu",
     "ref": "Preporučeni korisnik (opcionalno)",
     "submit": "Nastavi",
+    "validation-username": "Username is required.",
+    "validation-email": "Email is required.",
     "success": "Poslali smo email za potvrdu na {{email}}.",
     "success-2": "Sledite uputstva da biste dovršili postupak registracije.",
     "login-text-1": "Da li imate nalog?",
@@ -310,7 +316,7 @@
     "edit": "Uredi podešavanja",
     "edit-team": "Uredite uloge",
     "community-rewards": "Community Rewards",
-    "profile-image": "Profilna slika zajednice",
+    "profile-image": "Profile image",
     "profile-image-edit": "Uredite profilnu sliku",
     "profile-image-updated": "Profilna slika ažurirana!"
   },
@@ -328,7 +334,8 @@
     "lang": "Jezik",
     "description": "Opis",
     "rules": "Pravila",
-    "rules-help": "Po jedan u liniji"
+    "rules-help": "Po jedan u liniji",
+    "validation-title": "Title is required."
   },
   "communities": {
     "title": "Zajednice",
@@ -355,6 +362,8 @@
     "username-available": "Dostupno.",
     "username-not-available": "Nedostupno.",
     "username-wrong-format": "Nije važeći format. Potreban hive-1xxxxx format.",
+    "checkbox-validation": "Please tick this box if you want to proceed.",
+    "title-validation": "Please fill in this field.",
     "password": "Master password",
     "confirmation": "Sigurno sam sačuvao svoje korisničko ime i lozinku vlasnika.",
     "submit": "Napravi Zajednicu",
@@ -466,6 +475,8 @@
     "title": "Povucite račune",
     "account": "Račun",
     "percent": "Procenat",
+    "validation-account": "Account is required.",
+    "validation-percent": "Percentage is required.",
     "auto-power-up": "Automatsko povećanje snage"
   },
   "points": {
@@ -730,6 +741,8 @@
     "username": "Korisničko ime",
     "reward": "Nagrada",
     "user-error": "{{n}} is not a valid user.",
+    "validation-percentage": "Percentage is required.",
+    "validation-username": "Username is required.",
     "user-exists-error": "{{n}} is already in the list"
   },
   "post-scheduler": {
@@ -901,6 +914,9 @@
     "create-first": "Create your first snippet",
     "filter": "Search by title",
     "form-title": "Title",
+    "validation-title": "Title is required.",
+    "validation-value": "Value is required.",
+    "validation-body": "Body is required.",
     "form-body": "Body"
   },
   "password-update": {
@@ -912,12 +928,16 @@
     "error-new2": "Passwords must be same",
     "pass-gen": "Click to generate password",
     "label-check": "I have securely saved my generated password",
+    "validation-password": "Password is invalid.",
+    "validation-label": "Please tick this box to proceed.",
     "updated": "Password updated successfully!"
   },
   "add-image": {
     "title": "Add Image",
     "text-label": "Image Text",
-    "link-label": "Image Link"
+    "link-label": "Image Link",
+    "validation-text": "Text is required.",
+    "validation-image": "Image is required."
   },
   "add-image-mobile": {
     "title": "Add Image",
@@ -928,7 +948,9 @@
   "add-link": {
     "title": "Add Link",
     "text-label": "Text",
-    "link-label": "https://"
+    "link-label": "https://",
+    "validation-text": "Text is required.",
+    "validation-link": "Link is required."
   },
   "scroll-to-top": {
     "title": "Idi na vrh"
@@ -1077,6 +1099,7 @@
     "subscribe-paragraph": "Be first to know what's happening in decentralized web.",
     "copy-rights": "©2021 Ecency. All right reserved.",
     "success-message-subscribe": "A verification link has been sent to your email account!",
+    "validation-email": "A valid email is required",
     "error-occured": "A server error has been occured."
   }
 }

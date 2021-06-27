@@ -156,7 +156,7 @@ export class List extends BaseComponent<ListProps, ListState> {
         });
     };
 
-    searchChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    searchChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         clearTimeout(this._timer);
 
         this.stateSet({search: e.target.value.trim(), loading: true}, () => {

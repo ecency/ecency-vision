@@ -65,7 +65,7 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
         inProgress: false
     }
 
-    usernameChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+    usernameChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         const {value: username} = e.target;
         this.stateSet({username: username.trim().toLowerCase()});
     }
@@ -295,12 +295,12 @@ export class Login extends BaseComponent<LoginProps, State> {
         }
     }
 
-    usernameChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+    usernameChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         const {value: username} = e.target;
         this.stateSet({username: username.trim().toLowerCase()});
     }
 
-    keyChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+    keyChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         const {value: key} = e.target;
         this.stateSet({key: key.trim()});
     }
@@ -572,9 +572,10 @@ export default class LoginDialog extends Component<Props> {
     }
 
     doLogin = async (hsCode: string, postingKey: null | undefined | string, account: Account) => {
+        const {global, setActiveUser, updateActiveUser, addUser} = this.props;
+
         // get access token from code
         return hsTokenRenew(hsCode).then(x => {
-            const {setActiveUser, updateActiveUser, addUser} = this.props;
             const user: User = {
                 username: x.username,
                 accessToken: x.access_token,
@@ -592,8 +593,10 @@ export default class LoginDialog extends Component<Props> {
             // add account data of the user to the reducer
             updateActiveUser(account);
 
-            // login activity
-            usrActivity(user.username, 20);
+            if (global.usePrivate) {
+                // login activity
+                usrActivity(user.username, 20);
+            }
 
             // redirection based on path name
             const {location, history} = this.props;

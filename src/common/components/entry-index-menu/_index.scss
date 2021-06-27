@@ -114,10 +114,18 @@
   &:hover {
     opacity: 1;
   }
+  @include themify(day) {
+    svg {
+      color: $charcoal-grey;
+      height: 100%;
+    }
+  }
 
-  svg {
-    color: $black;
-    height: 100%;
+  @include themify(night) {
+    svg {
+      color: $warm-grey;
+      height: 100%;
+    }
   }
 }
 

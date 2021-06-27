@@ -513,7 +513,7 @@ export class Discussion extends Component<Props, State> {
         fetchDiscussion(author, permlink);
     };
 
-    orderChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    orderChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         const order = e.target.value as SortOrder;
         const {sortDiscussion} = this.props;
         sortDiscussion(SortOrder[order]);

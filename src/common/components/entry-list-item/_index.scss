@@ -105,3 +105,19 @@
     }
   }
 }
+
+.noImage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img {
+    width: 45px;
+    @media (max-width: $sm-break) {
+      width: 90px;
+    }
+  }
+
+  @media (max-width: $sm-break) {
+    min-height: 220px;
+  }
+}

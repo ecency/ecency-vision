@@ -23,11 +23,11 @@ export class AddLink extends Component<Props, State> {
 
     form = React.createRef<HTMLFormElement>();
 
-    textChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+    textChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         this.setState({text: e.target.value});
     }
 
-    linkChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+    linkChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         this.setState({link: e.target.value});
     }
 
