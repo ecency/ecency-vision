@@ -104,7 +104,7 @@ export class EntryVotesDetail extends BaseComponent<DetailProps, DetailState> {
 
     componentDidUpdate(prevProps: DetailProps){
         if(prevProps.searchText !== this.props.searchText){
-            this.setState({ votes: this.state.originalVotes.filter(item=>item.voter.toLocaleLowerCase().includes(this.props.searchText.toLocaleLowerCase())) })
+            this.setState({ votes: this.state.originalVotes.filter(item=>item.voter.toLocaleLowerCase().includes(this.props.searchText.toLocaleLowerCase())), page: 1 });
         }
     }
 
@@ -170,7 +170,7 @@ export class EntryVotesDetail extends BaseComponent<DetailProps, DetailState> {
 
                 <div className="list-tools">
                     <div className="pages">
-                        {votes.length > pageSize && <Pagination dataLength={votes.length} pageSize={pageSize} maxItems={4} onPageChange={(page) => {
+                        {votes.length > pageSize && <Pagination dataLength={votes.length} pageSize={pageSize} maxItems={4} page={page} onPageChange={(page) => {
                             this.stateSet({page});
                         }}/>}
                     </div>
