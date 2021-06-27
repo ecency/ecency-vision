@@ -22,7 +22,7 @@ const redisSetAsync = promisify(client.set).bind(client);
 
 export default async (req: Request, res: Response) => {
     const {category, author, permlink} = req.params;
-    const {isamp} = req.query;
+    const {amp} = req.query;
 
     let entry: Entry | null = null;
 
@@ -64,14 +64,14 @@ export default async (req: Request, res: Response) => {
         },
     }
 
-    if(isamp === "1"){
+    if(amp === "1"){
         const value = await redisGetAsync(`${category}_${author}_${permlink}`);
         if(value) return res.send(value);
 
-        const ampBody = await renderAmpBody(render(req, preLoadedState));
+        const ampBody = await renderAmpBody(render(req, preLoadedState), false, false, false);
         await redisSetAsync(`${category}_${author}_${permlink}`, ampBody);
 
-        return ampBody;
+        return res.send(ampBody);
     }
 
     res.send(render(req, preLoadedState));
