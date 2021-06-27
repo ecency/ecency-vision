@@ -54,7 +54,7 @@ exports[`(1) Default render 1`] = `
       />
       <span
         className="date"
-        title="Monday, June 1, 2020 8:53 AM"
+        title="Monday, June 1, 2020 10:53 AM"
       >
         5 days
       </span>
@@ -67,7 +67,7 @@ exports[`(1) Default render 1`] = `
     className="item-body"
   >
     <div
-      className="item-image"
+      className="item-image "
     >
       <a
         href="/hive/@good-karma/awesome-hive"
@@ -290,7 +290,7 @@ exports[`(2) Grid view 1`] = `
       />
       <span
         className="date"
-        title="Monday, June 1, 2020 8:53 AM"
+        title="Monday, June 1, 2020 10:53 AM"
       >
         5 days
       </span>
@@ -303,7 +303,7 @@ exports[`(2) Grid view 1`] = `
     className="item-body"
   >
     <div
-      className="item-image"
+      className="item-image "
     >
       <a
         href="/hive/@good-karma/awesome-hive"
@@ -313,6 +313,11 @@ exports[`(2) Grid view 1`] = `
           alt="Awesome Hive"
           onError={[Function]}
           src="https://images.ecency.com/p/HNWT6DgoBc1692QWn5trsGLxi44TrGuNZJMEdibBBbUKuho3EaW43JV4QzaQ258PEGNV2u43KAhU8r3Vjno4cBP8JeTFkbS2SCMjZZPprKzfMSdteRxSZxuPku4.png?format=match&mode=fit&width=600&height=500"
+          style={
+            Object {
+              "width": "auto",
+            }
+          }
         />
       </a>
     </div>
@@ -520,7 +525,7 @@ exports[`(3) Nsfw 1`] = `
       />
       <span
         className="date"
-        title="Monday, June 1, 2020 8:53 AM"
+        title="Monday, June 1, 2020 10:53 AM"
       >
         5 days
       </span>
@@ -762,7 +767,7 @@ exports[`(4) Nsfw with active user 1`] = `
       />
       <span
         className="date"
-        title="Monday, June 1, 2020 8:53 AM"
+        title="Monday, June 1, 2020 10:53 AM"
       >
         5 days
       </span>
@@ -1005,7 +1010,7 @@ exports[`(5) Nsfw but allowed 1`] = `
       />
       <span
         className="date"
-        title="Monday, June 1, 2020 8:53 AM"
+        title="Monday, June 1, 2020 10:53 AM"
       >
         5 days
       </span>
@@ -1018,7 +1023,7 @@ exports[`(5) Nsfw but allowed 1`] = `
     className="item-body"
   >
     <div
-      className="item-image"
+      className="item-image "
     >
       <a
         href="/hive/@good-karma/awesome-hive"
@@ -1273,7 +1278,7 @@ exports[`(6) Cross post. Bottom menu 1`] = `
       />
       <span
         className="date"
-        title="Wednesday, March 24, 2021 6:14 PM"
+        title="Wednesday, March 24, 2021 9:14 PM"
       >
         10 months
       </span>
@@ -1286,7 +1291,7 @@ exports[`(6) Cross post. Bottom menu 1`] = `
     className="item-body"
   >
     <div
-      className="item-image"
+      className="item-image "
     >
       <a
         href="/hive-125125/@regenerette/we-need-each-one-of-you-sos-financial-advice-for-hive-newcomers-hive-125125"
