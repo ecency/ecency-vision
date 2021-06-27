@@ -317,6 +317,10 @@ body.medium-zoom--opened {
 }
 
 .pencil {
+  svg {
+    width: 19px !important;
+    height: 19px !important;
+  }
   @include themify(day) {
     color: $warm-grey;
   }
