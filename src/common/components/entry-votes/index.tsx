@@ -58,11 +58,14 @@ interface DetailProps {
     global: Global;
     entry: Entry;
     addAccount: (data: Account) => void;
+    updateInputDisable: (value: boolean) => void;
+    searchText: string;
 }
 
 interface DetailState {
     loading: boolean;
     votes: Vote[];
+    originalVotes: Vote[];
     page: number;
     sort: SortOption
 }
@@ -71,12 +74,13 @@ export class EntryVotesDetail extends BaseComponent<DetailProps, DetailState> {
     state: DetailState = {
         loading: false,
         votes: [],
+        originalVotes: [],
         page: 1,
         sort: "reward"
     };
 
     componentDidMount() {
-        const {entry} = this.props;
+        const { entry, updateInputDisable } = this.props;
 
         this.stateSet({loading: true});
         getActiveVotes(entry.author, entry.permlink)
@@ -85,18 +89,24 @@ export class EntryVotesDetail extends BaseComponent<DetailProps, DetailState> {
             })
             .finally(() => {
                 this.stateSet({loading: false});
+                updateInputDisable(false)
             });
     }
 
     setVotes = (data: Vote[]) => {
         const {entry} = this.props;
-
-        this.stateSet({votes: prepareVotes(entry, data), loading: false});
+        this.stateSet({ votes: prepareVotes(entry, data), loading: false, originalVotes: prepareVotes(entry, data) });
     };
 
     sortChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         this.stateSet({sort: e.target.value as SortOption});
     };
+
+    componentDidUpdate(prevProps: DetailProps){
+        if(prevProps.searchText !== this.props.searchText){
+            this.setState({ votes: this.state.originalVotes.filter(item=>item.voter.toLocaleLowerCase().includes(this.props.searchText.toLocaleLowerCase())) })
+        }
+    }
 
     render() {
         const {loading, votes, page, sort} = this.state;
@@ -126,7 +136,7 @@ export class EntryVotesDetail extends BaseComponent<DetailProps, DetailState> {
             <>
                 <div className="voters-list">
                     <div className="list-body">
-                        {sliced.map(x => {
+                        {sliced && sliced.length > 0 ? sliced.map(x => {
                             return <div className="list-item" key={x.voter}>
                                 <div className="item-main">
                                     {ProfileLink({
@@ -154,7 +164,7 @@ export class EntryVotesDetail extends BaseComponent<DetailProps, DetailState> {
                                     </Tooltip>
                                 </div>
                             </div>;
-                        })}
+                        }): _t("communities.no-results")}
                     </div>
                 </div>
 
@@ -188,21 +198,25 @@ interface Props {
 
 interface State {
     visible: boolean;
+    searchText: string;
+    searchTextDisabled: boolean;
 }
 
 export class EntryVotes extends Component<Props, State> {
     state: State = {
         visible: false,
+        searchText: "",
+        searchTextDisabled: true
     };
 
     toggle = () => {
-        const {visible} = this.state;
-        this.setState({visible: !visible});
+        const { visible } = this.state;
+        this.setState({ visible: !visible, searchText: "" });
     };
 
     render() {
-        const {entry} = this.props;
-        const {visible} = this.state;
+        const { entry } = this.props;
+        const { visible, searchText, searchTextDisabled } = this.state;
         const totalVotes = entry.active_votes.length;
 
         const title =
@@ -235,11 +249,21 @@ export class EntryVotes extends Component<Props, State> {
                 </div>
                 {visible && (
                     <Modal onHide={this.toggle} show={true} centered={true} size="lg" animation={false} className="entry-votes-modal">
-                        <Modal.Header closeButton={true}>
+                        <Modal.Header closeButton={true} className="align-items-center mb-3">
                             <Modal.Title>{title}</Modal.Title>
+                            <Form.Group className="w-75 ml-3 mb-0">
+                                <Form.Control
+                                    type="text" 
+                                    placeholder={_t('friends.search-placeholder')} 
+                                    value={searchText} 
+                                    onChange={(e) => {
+                                    this.setState({ searchText: e.target.value });
+                                    }} 
+                                    disabled={searchTextDisabled}/>
+                            </Form.Group>
                         </Modal.Header>
                         <Modal.Body>
-                            <EntryVotesDetail {...this.props} entry={entry}/>
+                            <EntryVotesDetail {...this.props} entry={entry} searchText={searchText} updateInputDisable={(value:boolean)=>this.setState({searchTextDisabled: value})} />
                         </Modal.Body>
                     </Modal>
                 )}
