@@ -39,7 +39,7 @@
     "replies": "balasan",
     "done": "Selesai",
     "apply": "Terapkan",
-    "warning": "Warning",
+    "warning": "Peringatan",
     "close": "Tutup"
   },
   "confirm": {
@@ -58,9 +58,9 @@
     "filter-feed-friends": "Teman",
     "filter-feed-subscriptions": "Komunitas",
     "filter-global": "Global",
-    "filter-global-part1": "This feed contains ",
-    "filter-global-part2": " content on entire platform.",
-    "filter-global-part3": " content from Your communities. You can join communities that interest you to fill up this feed."
+    "filter-global-part1": "Umpan ini berisi ",
+    "filter-global-part2": " konten di seluruh platform.",
+    "filter-global-part3": " konten dari komunitas Anda. Anda dapat bergabung dengan komunitas yang Anda minati untuk mengisi umpan ini."
   },
   "navbar": {
     "discover": "Jelajahi",
@@ -153,8 +153,8 @@
     "pinned": "Postingan Disematkan",
     "replies": "1 respon, Klik untuk merespon.",
     "replies-n": "{{n}} respon. Klik untuk merespon.",
-    "vote-error": "Previous value is not acceptable. Vote with a different value.",
-    "vote-warning": "Voting 0% unvotes the content.",
+    "vote-error": "Nilai sebelumnya tidak dapat diterima. Pilih dengan nilai yang berbeda.",
+    "vote-warning": "Voting 0% membatalkan vote konten ini.",
     "no-replies": "Belum ada respon. Klik untuk merespon."
   },
   "nsfw": {
@@ -431,7 +431,7 @@
     "profile-image": "Gambar Profil",
     "website": "Website",
     "location": "Lokasi",
-    "copied": "Referral link copied to clipboard.",
+    "copied": "Link referral sudah tersalin.",
     "updated": "Profil diperbaharui dengan sukses!"
   },
   "image-upload-button": {
@@ -443,7 +443,7 @@
     "currency": "Mata uang",
     "language": "Bahasa",
     "nsfw": "Perlihatkan konten NSFW",
-    "referral-link": "Referral link",
+    "referral-link": "Link referral",
     "updated": "Preferensi diperbaharui!"
   },
   "wallet": {
@@ -617,8 +617,8 @@
     "group-stake-operations": "Operasi Stake",
     "group-rewards": "Reward",
     "type-curation_reward": "Hadiah kurasi",
-    "type-author_reward": "Author reward",
-    "type-comment_benefactor_reward": "Comment benefactor reward",
+    "type-author_reward": "Hadiah Penulis",
+    "type-comment_benefactor_reward": "Hadiah komentar kontributor",
     "type-claim_reward_balance": "Klaim reward",
     "type-transfer": "Transfer",
     "type-transfer_to_vesting": "Transfer ke vesting",
@@ -632,9 +632,9 @@
     "type-cancel_transfer_from_savings-detail": "Dari: <strong>@{{from}}</strong> <br/> Permintaan id: <strong>{{request}}</strong>",
     "type-return_vesting_delegation": "Pengembalian vesting delegasi",
     "type-proposal_pay": "Pembayaran proposal",
-    "type-comment_payout_update": "Content payout update",
-    "type-comment_reward": "Content reward",
-    "type-effective_comment_vote": "Effective Vote"
+    "type-comment_payout_update": "Update pembayaran konten",
+    "type-comment_reward": "Hadiah konten",
+    "type-effective_comment_vote": "Vote efektif"
   },
   "key-or-hot": {
     "sign": "Masuk",
@@ -941,16 +941,16 @@
     "updated": "Kata Sandi berhasil diperbaharui!"
   },
   "view-keys": {
-    "title": "View Private keys",
-    "account": "Account",
-    "cur-pass": "Current password",
-    "owner": "Owner",
-    "active": "Active",
-    "posting": "Posting",
+    "title": "Lihat Kunci Pribadi",
+    "account": "Akun",
+    "cur-pass": "Password terkini",
+    "owner": "Pemilik",
+    "active": "Aktif",
+    "posting": "Postingan",
     "memo": "Memo",
-    "view-keys": "Click to view keys",
-    "copied": "Private key copied into clipboard",
-    "error": "Password seem incorrect, please double check!"
+    "view-keys": "Klik untuk melihat kunci",
+    "copied": "Kunci pribadi telah disalin",
+    "error": "Password sepertinya salah, tolong periksa kembali!"
   },
   "add-image": {
     "title": "Tambahkan gambar",
