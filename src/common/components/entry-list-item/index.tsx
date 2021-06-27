@@ -136,7 +136,7 @@ export default class EntryListItem extends Component<Props, State> {
 
         const imgGrid: string = (global.canUseWebp ? catchPostImage(entry, 600, 500, 'webp') : catchPostImage(entry, 600, 500)) || noImage;
         const imgRow: string = (global.canUseWebp ? catchPostImage(entry, 260, 200, 'webp') : catchPostImage(entry, 260, 200)) || noImage;
-        let svgSizeRow = imgRow === noImage ? "45px" : "auto";
+        let svgSizeRow = imgRow === noImage ? "noImage" : "";
         let svgSizeGrid = imgGrid === noImage ? "172px" : "auto";
         
 
@@ -177,7 +177,7 @@ export default class EntryListItem extends Component<Props, State> {
             thumb = (
                 <picture>
                     <source srcSet={imgRow} media="(min-width: 576px)"/>
-                    <img srcSet={imgGrid} alt={title} style={{ width: svgSizeRow }} onError={(e: React.SyntheticEvent) => {
+                    <img srcSet={imgGrid} alt={title} onError={(e: React.SyntheticEvent) => {
                         const target = e.target as HTMLImageElement;
                         target.src = fallbackImage;
                     }}/>
@@ -299,11 +299,11 @@ export default class EntryListItem extends Component<Props, State> {
                         }
 
                         return <>
-                            <div className="item-image">
+                            <div className={"item-image " + svgSizeRow}>
                                 {EntryLink({
                                     ...this.props,
                                     entry: (crossPost ? theEntry : entry),
-                                    children: <div className="d-flex justify-content-center">
+                                    children: <div>
                                         {thumb}
                                     </div>
                                 })}
