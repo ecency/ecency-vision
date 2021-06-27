@@ -155,3 +155,31 @@
     }
   }
 }
+
+.info-icon {
+  height: 13px;
+  width: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+  border-radius: 50%;
+  border: 1px solid $warm-grey;
+  cursor: pointer;
+  &:hover {
+    opacity: 1;
+  }
+  @include themify(day) {
+    svg {
+      color: $charcoal-grey;
+      height: 100%;
+    }
+  }
+
+  @include themify(night) {
+    svg {
+      color: $warm-grey;
+      height: 100%;
+    }
+  }
+}

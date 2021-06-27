@@ -11,9 +11,9 @@ import ProfileLink from "../profile-link"
 
 import {getCuration, CurationDuration, CurationItem} from "../../api/private-api";
 
-import {informationSvg} from "../../img/svg";
+import {informationSvg, informationVariantSvg} from "../../img/svg";
 import DropDown from "../dropdown";
-import Tooltip from "../tooltip";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import LinearProgress from "../linear-progress";
 
 import {_t} from "../../i18n";
@@ -111,11 +111,23 @@ export class Curation extends BaseComponent<Props, State> {
                     <div className="list-body">
                         <div className="list-body-header">
                             <span/>
-                            <Tooltip content={_t('leaderboard.header-votes-tip')}>
-                            <span className="score">
-                                {informationSvg} {_t('leaderboard.header-votes')}
-                            </span>
-                            </Tooltip>
+                            <OverlayTrigger
+                                delay={{ show: 0, hide: 500 }}
+                                key={'bottom'}
+                                placement={'bottom'}
+                                overlay={
+                                    <Tooltip id={`tooltip-votes-${'bottom'}`}>
+                                        {_t('leaderboard.header-votes-tip')}
+                                    </Tooltip>
+                                }
+                                >
+                                <div className='d-flex align-items-center'>
+                                    <span className="info-icon mr-1">{informationVariantSvg}</span>
+                                    <span className="score">
+                                        {_t('leaderboard.header-votes')}
+                                    </span>
+                                </div>
+                            </OverlayTrigger>
                             <span className="points">
                                {_t('leaderboard.header-reward')}
                             </span>
