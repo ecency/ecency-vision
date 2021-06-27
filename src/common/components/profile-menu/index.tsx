@@ -49,17 +49,23 @@ export class ProfileMenu extends Component<Props> {
                         label: _t(`profile.section-${x}`),
                         href: `/@${username}/${x}`,
                         active: section === x,
+                        id: x
                     };
                 }),
             ],
         };
 
+        let showDropdown = menuConfig.items.filter(item => item.id === section).length > 0;
+
         return (
             <div className="profile-menu">
                 <div className="profile-menu-items">
                     <>
-                        <span className="d-flex d-lg-none profile-menu-item selected-item">
-                            <DropDown {...menuConfig} float="left"/>
+                        <span className={`d-flex d-lg-none ${showDropdown ? "selected-item profile-menu-item" : ""}`}>
+                            {showDropdown ? <DropDown {...menuConfig} float="left"/> :
+                            <Link className={_c(`${!showDropdown ? "profile-menu-item ": ""}${section === "blog" ? "selected-item" : ""}`)} to={`/@${username}/blog`}>
+                                {_t(`profile.section-blog`)}
+                            </Link>}
                         </span>
                         <div className="d-none d-lg-flex align-items-center">
                             {menuConfig.items.map(menuItem => 
