@@ -70,6 +70,11 @@
     cursor: pointer;
     position: relative;
 
+    svg {
+      height: 19px;
+      width: 19px !important;
+    }
+
     .notifications-badge {
       background: $red4;
       border-radius: 50%;
