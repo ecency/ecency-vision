@@ -78,7 +78,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                 document.getElementById('feed') && document.getElementById('feed')!.classList.remove("active");
                 document.getElementById(filter) && document.getElementById(filter)!.classList.add("active");
                 let entryIndexMenuElements = document.getElementsByClassName("entry-index-menu");
-                entryIndexMenuElements && entryIndexMenuElements[0].classList.remove("entry-index-menu");
+                entryIndexMenuElements && entryIndexMenuElements[0] && entryIndexMenuElements[0].classList.remove("entry-index-menu");
                 document.getElementsByTagName('ul') && document.getElementsByTagName('ul')[0] && document.getElementsByTagName('ul')[0]!.classList.remove("flash");
             }
         }

@@ -3,6 +3,10 @@
 exports[`(1) No active user. Default filter 1`] = `
 <div>
   <div
+    className="d-none"
+    id="overlay"
+  />
+  <div
     className="entry-index-menu"
   >
     <div
@@ -58,6 +62,7 @@ exports[`(1) No active user. Default filter 1`] = `
                 <a
                   className="nav-link link-trending"
                   href="/trending"
+                  id="trending"
                   onClick={[Function]}
                 >
                   Trending
@@ -69,6 +74,7 @@ exports[`(1) No active user. Default filter 1`] = `
                 <a
                   className="nav-link link-hot active"
                   href="/hot"
+                  id="hot"
                   onClick={[Function]}
                 >
                   Hot
@@ -80,6 +86,7 @@ exports[`(1) No active user. Default filter 1`] = `
                 <a
                   className="nav-link link-created"
                   href="/created"
+                  id="created"
                   onClick={[Function]}
                 >
                   New
@@ -205,6 +212,10 @@ exports[`(1) No active user. Default filter 1`] = `
 exports[`(2) No active user. Trending filter 1`] = `
 <div>
   <div
+    className="d-none"
+    id="overlay"
+  />
+  <div
     className="entry-index-menu"
   >
     <div
@@ -260,6 +271,7 @@ exports[`(2) No active user. Trending filter 1`] = `
                 <a
                   className="nav-link link-trending active"
                   href="/trending"
+                  id="trending"
                   onClick={[Function]}
                 >
                   Trending
@@ -271,6 +283,7 @@ exports[`(2) No active user. Trending filter 1`] = `
                 <a
                   className="nav-link link-hot"
                   href="/hot"
+                  id="hot"
                   onClick={[Function]}
                 >
                   Hot
@@ -282,6 +295,7 @@ exports[`(2) No active user. Trending filter 1`] = `
                 <a
                   className="nav-link link-created"
                   href="/created"
+                  id="created"
                   onClick={[Function]}
                 >
                   New
@@ -407,7 +421,8 @@ exports[`(2) No active user. Trending filter 1`] = `
 exports[`(3) Active user. Trending filter 1`] = `
 <div>
   <div
-    className="overlay"
+    className="overlay-for-introduction"
+    id="overlay"
   />
   <div
     className="entry-index-menu"
@@ -427,6 +442,7 @@ exports[`(3) Active user. Trending filter 1`] = `
             <a
               className="nav-link my-link active"
               href="/@foo/feed"
+              id="feed"
               onClick={[Function]}
             >
               Friends
@@ -574,6 +590,7 @@ exports[`(3) Active user. Trending filter 1`] = `
                 <a
                   className="nav-link link-trending"
                   href="/trending"
+                  id="trending"
                   onClick={[Function]}
                 >
                   Trending
@@ -585,6 +602,7 @@ exports[`(3) Active user. Trending filter 1`] = `
                 <a
                   className="nav-link link-hot"
                   href="/hot"
+                  id="hot"
                   onClick={[Function]}
                 >
                   Hot
@@ -596,6 +614,7 @@ exports[`(3) Active user. Trending filter 1`] = `
                 <a
                   className="nav-link link-created"
                   href="/created"
+                  id="created"
                   onClick={[Function]}
                 >
                   New
@@ -842,6 +861,10 @@ exports[`(3) Active user. Trending filter 1`] = `
 exports[`(4) Active user. Friends 1`] = `
 <div>
   <div
+    className="d-none"
+    id="overlay"
+  />
+  <div
     className="entry-index-menu"
   >
     <div
@@ -859,6 +882,7 @@ exports[`(4) Active user. Friends 1`] = `
             <a
               className="nav-link my-link active"
               href="/@foo/feed"
+              id="feed"
               onClick={[Function]}
             >
               Friends
@@ -916,6 +940,7 @@ exports[`(4) Active user. Friends 1`] = `
                 <a
                   className="nav-link link-trending"
                   href="/trending"
+                  id="trending"
                   onClick={[Function]}
                 >
                   Trending
@@ -927,6 +952,7 @@ exports[`(4) Active user. Friends 1`] = `
                 <a
                   className="nav-link link-hot"
                   href="/hot"
+                  id="hot"
                   onClick={[Function]}
                 >
                   Hot
@@ -938,6 +964,7 @@ exports[`(4) Active user. Friends 1`] = `
                 <a
                   className="nav-link link-created"
                   href="/created"
+                  id="created"
                   onClick={[Function]}
                 >
                   New
@@ -1074,6 +1101,10 @@ exports[`(4) Active user. Friends 1`] = `
 exports[`(5) Active user. Communities 1`] = `
 <div>
   <div
+    className="d-none"
+    id="overlay"
+  />
+  <div
     className="entry-index-menu"
   >
     <div
@@ -1091,6 +1122,7 @@ exports[`(5) Active user. Communities 1`] = `
             <a
               className="nav-link my-link"
               href="/@foo/feed"
+              id="feed"
               onClick={[Function]}
             >
               Friends
@@ -1148,6 +1180,7 @@ exports[`(5) Active user. Communities 1`] = `
                 <a
                   className="nav-link link-trending active"
                   href="/trending"
+                  id="trending"
                   onClick={[Function]}
                 >
                   Trending
@@ -1159,6 +1192,7 @@ exports[`(5) Active user. Communities 1`] = `
                 <a
                   className="nav-link link-hot"
                   href="/hot"
+                  id="hot"
                   onClick={[Function]}
                 >
                   Hot
@@ -1170,6 +1204,7 @@ exports[`(5) Active user. Communities 1`] = `
                 <a
                   className="nav-link link-created"
                   href="/created"
+                  id="created"
                   onClick={[Function]}
                 >
                   New
@@ -1326,6 +1361,10 @@ exports[`(5) Active user. Communities 1`] = `
 exports[`(6) No active user. Communities 1`] = `
 <div>
   <div
+    className="d-none"
+    id="overlay"
+  />
+  <div
     className="entry-index-menu"
   >
     <div
@@ -1381,6 +1420,7 @@ exports[`(6) No active user. Communities 1`] = `
                 <a
                   className="nav-link link-trending active"
                   href="/trending"
+                  id="trending"
                   onClick={[Function]}
                 >
                   Trending
@@ -1392,6 +1432,7 @@ exports[`(6) No active user. Communities 1`] = `
                 <a
                   className="nav-link link-hot"
                   href="/hot"
+                  id="hot"
                   onClick={[Function]}
                 >
                   Hot
@@ -1403,6 +1444,7 @@ exports[`(6) No active user. Communities 1`] = `
                 <a
                   className="nav-link link-created"
                   href="/created"
+                  id="created"
                   onClick={[Function]}
                 >
                   New
