@@ -197,7 +197,7 @@ class SignUpPage extends Component<PageProps, State> {
                                         </div>
                                     </Form>
 
-                                    <div>
+                                    <div className="text-center">
                                         {_t("sign-up.login-text-1")}
                                         <a href="#" onClick={(e) => {
                                             e.preventDefault();
@@ -206,7 +206,7 @@ class SignUpPage extends Component<PageProps, State> {
                                         }}>{" "}{_t("sign-up.login-text-2")}</a>
                                     </div>
 
-                                    <div className="form-bottom-description">
+                                    <div className="form-bottom-description text-center">
                                         {_t("sign-up.bottom-description")}
                                     </div>
                                 </div>
