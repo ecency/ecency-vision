@@ -33,7 +33,7 @@ import {catchPostImage, postBodySummary, setProxyBase} from "@ecency/render-help
 setProxyBase(defaults.imageServer);
 
 const fallbackImage = require("../../img/fallback.png");
-const noImage = require("../../img/noimage.png");
+const noImage = require("../../img/noimage.svg");
 
 interface ItemProps {
     history: History;

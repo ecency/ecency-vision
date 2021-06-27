@@ -26,7 +26,7 @@ import parseDate from "../../helper/parse-date";
 import isCommunity from "../../helper/is-community";
 
 const fallbackImage = require("../../img/fallback.png");
-const noImage = require("../../img/noimage.png");
+const noImage = require("../../img/noimage.svg");
 
 interface Props {
     history: History;
@@ -139,6 +139,7 @@ export class SimilarEntries extends BaseComponent<Props, State> {
                     <div className="similar-entries-list-body">
                         {entries.map((en, i) => {
                             const img = catchPostImage(en.img_url, 600, 500, global.canUseWebp ? 'webp' : 'match') || noImage;
+                            const imgSize = img == noImage ? "75px" : "auto";
                             const date = moment(parseDate(`${en.created_at.replace('+00:00', '')}`));
                             const dateRelative = date.fromNow();
 
@@ -155,6 +156,7 @@ export class SimilarEntries extends BaseComponent<Props, State> {
                                                     const target = e.target as HTMLImageElement;
                                                     target.src = fallbackImage;
                                                 }}
+                                                style={{ width: imgSize}}
                                             />
                                         </div>
                                         <div className="item-title">{en.title}</div>

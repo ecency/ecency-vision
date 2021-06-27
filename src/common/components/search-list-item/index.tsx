@@ -30,7 +30,7 @@ import {SearchResult} from "../../api/search-api";
 import {peopleSvg, commentSvg} from "../../img/svg";
 
 const fallbackImage = require("../../img/fallback.png");
-const noImage = require("../../img/noimage.png");
+const noImage = require("../../img/noimage.svg");
 
 
 interface Props {
