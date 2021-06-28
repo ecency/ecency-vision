@@ -251,7 +251,8 @@ export class EntryVotes extends Component<Props, State> {
                     <Modal onHide={this.toggle} show={true} centered={true} size="lg" animation={false} className="entry-votes-modal">
                         <Modal.Header closeButton={true} className="align-items-center mb-3">
                             <Modal.Title>{title}</Modal.Title>
-                            <Form.Group className="w-75 ml-3 mb-0">
+                        </Modal.Header>
+                        <Form.Group className="w-100 mx-3 mb-3">
                                 <Form.Control
                                     type="text" 
                                     placeholder={_t('friends.search-placeholder')} 
@@ -260,8 +261,7 @@ export class EntryVotes extends Component<Props, State> {
                                     this.setState({ searchText: e.target.value });
                                     }} 
                                     disabled={searchTextDisabled}/>
-                            </Form.Group>
-                        </Modal.Header>
+                        </Form.Group>
                         <Modal.Body>
                             <EntryVotesDetail {...this.props} entry={entry} searchText={searchText} updateInputDisable={(value:boolean)=>this.setState({searchTextDisabled: value})} />
                         </Modal.Body>
