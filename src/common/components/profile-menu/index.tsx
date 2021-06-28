@@ -69,7 +69,7 @@ export class ProfileMenu extends Component<Props> {
                         </span>
                         <div className="d-none d-lg-flex align-items-center">
                             {menuConfig.items.map(menuItem => 
-                                <Link className={_c(`profile-menu-item ${menuItem.active ? "selected-item" : ""}`)} to={menuItem.href!}>
+                                <Link className={_c(`profile-menu-item ${menuItem.active ? "selected-item" : ""}`)} to={menuItem.href!} key={`profile-menu-item-${menuItem.label}`}>
                                 {menuItem.label}
                             </Link>)}
                         </div>
