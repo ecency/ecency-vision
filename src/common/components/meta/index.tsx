@@ -29,7 +29,7 @@ export default class Meta extends Component<Props> {
     let { image } = this.props;
 
     if (!image) {
-      image = `${defaults.base}/placeholder.jpg`;
+      image = `${defaults.base}/og.jpg`;
     }
 
     return (
