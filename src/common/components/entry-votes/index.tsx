@@ -249,7 +249,7 @@ export class EntryVotes extends Component<Props, State> {
                 </div>
                 {visible && (
                     <Modal onHide={this.toggle} show={true} centered={true} size="lg" animation={false} className="entry-votes-modal">
-                        <Modal.Header closeButton={true} className="align-items-center mb-3">
+                        <Modal.Header closeButton={true} className="align-items-center">
                             <Modal.Title>{title}</Modal.Title>
                         </Modal.Header>
                         <Form.Group className="w-100 mx-3 mb-3">
