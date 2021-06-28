@@ -1065,10 +1065,10 @@
     xmldom "^0.5.0"
     xss "^1.0.8"
 
-"@hiveio/dhive@^0.14.12":
-  version "0.14.12"
-  resolved "https://registry.yarnpkg.com/@hiveio/dhive/-/dhive-0.14.12.tgz#1e0eddc7ad7c0e169fe8349fb302d108683cf251"
-  integrity sha512-jYbLrRX2Citax+IzVrM1f1RoyYEjwCnAPr9ZT+aMjrtYvYOjsxg46eGfO6m/tTB1PkhABRGyAbb1yBodNogjyw==
+"@hiveio/dhive@^0.14.14":
+  version "0.14.14"
+  resolved "https://registry.yarnpkg.com/@hiveio/dhive/-/dhive-0.14.14.tgz#c6ba3eec4189479b1011098a6c13d482e39de9af"
+  integrity sha512-KImfWCJ1QO8puI15AqmXUv3IzdQHt4c/IAUHliaKGLOjICF1eR72dtslgzSZXwttHA1AB/wkj7CbGo7TWhAJPg==
   dependencies:
     bs58 "^4.0.1"
     bytebuffer "^5.0.1"
