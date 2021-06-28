@@ -77,9 +77,9 @@ export class EntryIndexMenu extends Component<Props, States> {
                 document.getElementById('overlay') && document.getElementById('overlay')!.classList.remove("overlay-for-introduction");
                 document.getElementById('feed') && document.getElementById('feed')!.classList.remove("active");
                 document.getElementById(filter) && document.getElementById(filter)!.classList.add("active");
-                let entryIndexMenuElements = document.getElementsByClassName("entry-index-menu");
-                entryIndexMenuElements && entryIndexMenuElements[0] && entryIndexMenuElements[0].classList.remove("entry-index-menu");
                 document.getElementsByTagName('ul') && document.getElementsByTagName('ul')[0] && document.getElementsByTagName('ul')[0]!.classList.remove("flash");
+                let entryIndexMenuElements = document.getElementsByClassName("entry-index-menu");
+                entryIndexMenuElements && entryIndexMenuElements.length === 2 && entryIndexMenuElements[0] && entryIndexMenuElements[0].classList.remove("entry-index-menu");
             }
         }
     }
@@ -279,7 +279,7 @@ export class EntryIndexMenu extends Component<Props, States> {
         const introductionOverlayClass = introduction === IntroductionType.NONE ? "d-none" : "overlay-for-introduction"
 
         return <div>
-                    <div className={introductionOverlayClass} id="overlay"/>
+                    <div className={introductionOverlayClass} id="overlay" onClick={this.onClosePopup}/>
                     <div className="entry-index-menu">
                         <div className="the-menu align-items-center">
                         {isActive &&
