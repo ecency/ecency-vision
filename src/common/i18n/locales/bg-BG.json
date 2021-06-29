@@ -653,7 +653,7 @@
   "friends": {
     "followers": "Последователи ({{n}})",
     "following": "Следва ({{n}})",
-    "search-placeholder": "Търсене на потребители"
+    "search-placeholder": "Search"
   },
   "follow-controls": {
     "follow": "Последвай",
