@@ -653,7 +653,7 @@
   "friends": {
     "followers": "Ακόλουθοι ({{n}})",
     "following": "Ακολουθείτε ({{n}})",
-    "search-placeholder": "Αναζήτηση χρηστών"
+    "search-placeholder": "Search"
   },
   "follow-controls": {
     "follow": "Ακολούθησε",
