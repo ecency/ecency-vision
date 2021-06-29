@@ -653,7 +653,7 @@
   "friends": {
     "followers": "Читачів ({{n}})",
     "following": "Cлідкують ({{n}})",
-    "search-placeholder": "Пошук користувачів"
+    "search-placeholder": "Search"
   },
   "follow-controls": {
     "follow": "Слідкувати",
