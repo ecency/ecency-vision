@@ -653,7 +653,7 @@
   "friends": {
     "followers": "Pengikut ({{n}})",
     "following": "Mengikuti ({{n}})",
-    "search-placeholder": "Cari pengguna"
+    "search-placeholder": "Search"
   },
   "follow-controls": {
     "follow": "Ikuti",
