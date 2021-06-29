@@ -653,7 +653,7 @@
   "friends": {
     "followers": "Seuraajat ({{n}})",
     "following": "Seurataan ({{n}})",
-    "search-placeholder": "Hae käyttäjiä"
+    "search-placeholder": "Search"
   },
   "follow-controls": {
     "follow": "Seuraa",
