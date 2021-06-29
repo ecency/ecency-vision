@@ -31,6 +31,7 @@
     "hot": "inicio",
     "trending": "inicio",
     "created": "inicio",
+    "muted": "feed",
     "found": "encontrado",
     "feed": "inicio",
     "blog": "blogs",
