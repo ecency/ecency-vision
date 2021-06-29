@@ -51,6 +51,8 @@ const detailProps = {
   global: { ...globalInstance },
   entry: { ...entryInstance1 },
   addAccount: (data: any) => {},
+  updateInputDisable: (data: any) => {},
+  searchText: ""
 };
 
 const component = renderer.create(<EntryVotesDetail {...detailProps} />);
