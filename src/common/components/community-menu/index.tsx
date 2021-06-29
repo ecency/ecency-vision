@@ -61,13 +61,18 @@ export class CommunityMenu extends Component<Props> {
         return (
             <div className="community-menu">
                 <div className="menu-items">
-                    {(() => {
-                        if (EntryFilter[filter]) {
-                            return <span className="community-menu-item selected-item"><DropDown {...menuConfig} float="left"/></span>;
-                        }
+                    <>
+                        <span className="d-flex d-lg-none community-menu-item selected-item">
+                            <DropDown {...menuConfig} float="left"/>
+                        </span>
+                        <div className="d-none d-lg-flex align-items-center">
+                            {menuConfig.items.map(menuItem => 
+                                <Link className={_c(`community-menu-item ${menuItem.active ? "selected-item" : ""}`)} to={menuItem.href!} key={`community-menu-item-${menuItem.label}`}>
+                                    {menuItem.label}
+                                </Link>)}
+                        </div>
+                    </>
 
-                        return <Link to={`/created/${name}`} className="community-menu-item">{_t('community.posts')}</Link>;
-                    })()}
                     <Link to={`/subscribers/${name}`} className={_c(`community-menu-item ${filter === "subscribers" ? "selected-item" : ""}`)}>
                         {_t('community.subscribers')}
                     </Link>

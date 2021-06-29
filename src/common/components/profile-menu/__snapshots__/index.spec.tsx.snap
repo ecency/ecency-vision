@@ -8,7 +8,7 @@ exports[`(1) Render 1`] = `
     className="profile-menu-items"
   >
     <span
-      className="profile-menu-item selected-item"
+      className="d-flex d-lg-none selected-item profile-menu-item"
     >
       <div
         className="custom-dropdown float-left"
@@ -39,6 +39,38 @@ exports[`(1) Render 1`] = `
         </div>
       </div>
     </span>
+    <div
+      className="d-none d-lg-flex align-items-center"
+    >
+      <a
+        className="profile-menu-item"
+        href="/@username/blog"
+        onClick={[Function]}
+      >
+        Blog
+      </a>
+      <a
+        className="profile-menu-item selected-item"
+        href="/@username/posts"
+        onClick={[Function]}
+      >
+        Posts
+      </a>
+      <a
+        className="profile-menu-item"
+        href="/@username/comments"
+        onClick={[Function]}
+      >
+        Comments
+      </a>
+      <a
+        className="profile-menu-item"
+        href="/@username/replies"
+        onClick={[Function]}
+      >
+        Replies
+      </a>
+    </div>
     <a
       className="profile-menu-item"
       href="/@username/communities"
@@ -83,7 +115,7 @@ exports[`(2) With active user 1`] = `
     className="profile-menu-items"
   >
     <span
-      className="profile-menu-item selected-item"
+      className="d-flex d-lg-none selected-item profile-menu-item"
     >
       <div
         className="custom-dropdown float-left"
@@ -114,6 +146,38 @@ exports[`(2) With active user 1`] = `
         </div>
       </div>
     </span>
+    <div
+      className="d-none d-lg-flex align-items-center"
+    >
+      <a
+        className="profile-menu-item"
+        href="/@username/blog"
+        onClick={[Function]}
+      >
+        Blog
+      </a>
+      <a
+        className="profile-menu-item selected-item"
+        href="/@username/posts"
+        onClick={[Function]}
+      >
+        Posts
+      </a>
+      <a
+        className="profile-menu-item"
+        href="/@username/comments"
+        onClick={[Function]}
+      >
+        Comments
+      </a>
+      <a
+        className="profile-menu-item"
+        href="/@username/replies"
+        onClick={[Function]}
+      >
+        Replies
+      </a>
+    </div>
     <a
       className="profile-menu-item"
       href="/@username/communities"
