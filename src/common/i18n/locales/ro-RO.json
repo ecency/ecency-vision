@@ -653,7 +653,7 @@
   "friends": {
     "followers": "Urmăritori ({{n}})",
     "following": "Urmăriți ({{n}})",
-    "search-placeholder": "Caută utilizatori"
+    "search-placeholder": "Search"
   },
   "follow-controls": {
     "follow": "Urmărește",
