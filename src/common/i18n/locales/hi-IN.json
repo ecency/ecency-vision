@@ -653,7 +653,7 @@
   "friends": {
     "followers": "अनुयायी ({{n}})",
     "following": "निम्नलिखित ({{n}})",
-    "search-placeholder": "उपयोगकर्ताओं खोजें"
+    "search-placeholder": "Search"
   },
   "follow-controls": {
     "follow": "फॉलो करें",
