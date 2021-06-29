@@ -653,7 +653,7 @@
   "friends": {
     "followers": "Подписчики ({{n}})",
     "following": "Подписан на ({{n}})",
-    "search-placeholder": "Поиск пользователей"
+    "search-placeholder": "Search"
   },
   "follow-controls": {
     "follow": "Подписаться",
