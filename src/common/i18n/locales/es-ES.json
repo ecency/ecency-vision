@@ -31,7 +31,7 @@
     "hot": "inicio",
     "trending": "inicio",
     "created": "inicio",
-    "muted": "feed",
+    "muted": "inicio",
     "found": "encontrado",
     "feed": "inicio",
     "blog": "blogs",
@@ -653,7 +653,7 @@
   "friends": {
     "followers": "Seguidores ({{n}})",
     "following": "Siguiendo ({{n}})",
-    "search-placeholder": "Buscar usuarios"
+    "search-placeholder": "Search"
   },
   "follow-controls": {
     "follow": "Seguir",
