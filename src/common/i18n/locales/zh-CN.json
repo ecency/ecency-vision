@@ -653,7 +653,7 @@
   "friends": {
     "followers": "粉丝 ({{n}})",
     "following": "关注 ({{n}})",
-    "search-placeholder": "搜索用户"
+    "search-placeholder": "Search"
   },
   "follow-controls": {
     "follow": "关注",
