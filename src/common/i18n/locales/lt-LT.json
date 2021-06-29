@@ -653,7 +653,7 @@
   "friends": {
     "followers": "Sekėjai ({{n}})",
     "following": "Sekami ({{n}})",
-    "search-placeholder": "Ieškoti narių"
+    "search-placeholder": "Search"
   },
   "follow-controls": {
     "follow": "Sekti",
