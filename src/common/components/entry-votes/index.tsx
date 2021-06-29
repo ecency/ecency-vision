@@ -248,11 +248,11 @@ export class EntryVotes extends Component<Props, State> {
                     <Tooltip content={title}><span className="inner-btn" onClick={this.toggle}>{child}</span></Tooltip>
                 </div>
                 {visible && (
-                    <Modal onHide={this.toggle} show={true} centered={true} size="lg" animation={false} className="entry-votes-modal">
-                        <Modal.Header closeButton={true} className="align-items-center">
+                    <Modal onHide={this.toggle} show={true} centered={true} size="lg" animation={false} className="entry-votes-modal px-3">
+                        <Modal.Header closeButton={true} className="align-items-center px-0">
                             <Modal.Title>{title}</Modal.Title>
                         </Modal.Header>
-                        <Form.Group className="w-100 mx-3 mb-3">
+                        <Form.Group className="w-100 mb-3">
                                 <Form.Control
                                     type="text" 
                                     placeholder={_t('friends.search-placeholder')} 
@@ -262,7 +262,7 @@ export class EntryVotes extends Component<Props, State> {
                                     }} 
                                     disabled={searchTextDisabled}/>
                         </Form.Group>
-                        <Modal.Body>
+                        <Modal.Body className="px-0">
                             <EntryVotesDetail {...this.props} entry={entry} searchText={searchText} updateInputDisable={(value:boolean)=>this.setState({searchTextDisabled: value})} />
                         </Modal.Body>
                     </Modal>
