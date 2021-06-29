@@ -653,7 +653,7 @@
   "friends": {
     "followers": "Mga Tagasunod ({{n}})",
     "following": "Mga Sinusundan ({{n}})",
-    "search-placeholder": "Maghanap ng mga gumagamit"
+    "search-placeholder": "Search"
   },
   "follow-controls": {
     "follow": "Sundan",
