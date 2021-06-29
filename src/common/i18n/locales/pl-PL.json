@@ -653,7 +653,7 @@
   "friends": {
     "followers": "Obserwujący ({{n}})",
     "following": "Obserwujący ({{n}})",
-    "search-placeholder": "Wyszukaj użytkowników"
+    "search-placeholder": "Search"
   },
   "follow-controls": {
     "follow": "Obserwuj",
