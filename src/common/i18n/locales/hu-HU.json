@@ -653,7 +653,7 @@
   "friends": {
     "followers": "Követők ({{n}})",
     "following": "Követés ({{n}})",
-    "search-placeholder": "Tagok keresése"
+    "search-placeholder": "Search"
   },
   "follow-controls": {
     "follow": "Követés",
