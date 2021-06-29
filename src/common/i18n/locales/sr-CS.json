@@ -653,7 +653,7 @@
   "friends": {
     "followers": "Pratioci ({{n}})",
     "following": "Praćenja ({{n}})",
-    "search-placeholder": "Pretraži korisnike"
+    "search-placeholder": "Search"
   },
   "follow-controls": {
     "follow": "Zaprati",
