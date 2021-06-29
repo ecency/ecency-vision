@@ -31,7 +31,7 @@
     "hot": "Umpan",
     "trending": "Umpan",
     "created": "umpan",
-    "muted": "feed",
+    "muted": "umpan",
     "found": "ditemukan",
     "feed": "umpan",
     "blog": "blog",
@@ -653,7 +653,7 @@
   "friends": {
     "followers": "Pengikut ({{n}})",
     "following": "Mengikuti ({{n}})",
-    "search-placeholder": "Search"
+    "search-placeholder": "Mencari"
   },
   "follow-controls": {
     "follow": "Ikuti",
