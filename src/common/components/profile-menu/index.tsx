@@ -15,6 +15,7 @@ import ListStyleToggle from "../list-style-toggle/index";
 import {_t} from "../../i18n";
 
 import _c from "../../util/fix-class-names";
+import { menuDownSvg } from "../../img/svg";
 
 interface Props {
     history: History;
@@ -64,7 +65,7 @@ export class ProfileMenu extends Component<Props> {
                         <span className={`d-flex d-lg-none ${showDropdown ? "selected-item profile-menu-item" : ""}`}>
                             {showDropdown ? <DropDown {...menuConfig} float="left"/> :
                             <Link className={_c(`${!showDropdown ? "profile-menu-item ": ""}${section === "blog" ? "selected-item" : ""}`)} to={`/@${username}/blog`}>
-                                {_t(`profile.section-blog`)}
+                                {_t(`profile.section-blog`)} <span className="menu-down-icon">{menuDownSvg}</span>
                             </Link>}
                         </span>
                         <div className="d-none d-lg-flex align-items-center">

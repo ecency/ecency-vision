@@ -68,8 +68,8 @@ export class CommunityMenu extends Component<Props> {
                         <div className="d-none d-lg-flex align-items-center">
                             {menuConfig.items.map(menuItem => 
                                 <Link className={_c(`community-menu-item ${menuItem.active ? "selected-item" : ""}`)} to={menuItem.href!} key={`community-menu-item-${menuItem.label}`}>
-                                {menuItem.label}
-                            </Link>)}
+                                    {menuItem.label}
+                                </Link>)}
                         </div>
                     </>
 
