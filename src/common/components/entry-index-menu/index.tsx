@@ -36,7 +36,6 @@ export enum IntroductionType {
 interface States {
     isGlobal: boolean;
     introduction: IntroductionType;
-    isClient: boolean;
 }
 
 export const isMyPage = (global: Global, activeUser: ActiveUser | null) => {
@@ -71,7 +70,7 @@ export class EntryIndexMenu extends Component<Props, States> {
         else {
             showInitialIntroductionJourney = IntroductionType.NONE
         }
-        this.state = { isGlobal, introduction: showInitialIntroductionJourney, isClient: false };
+        this.state = { isGlobal, introduction: showInitialIntroductionJourney };
         this.onChangeGlobal = this.onChangeGlobal.bind(this);
     }
 
