@@ -35,6 +35,7 @@ export enum IntroductionType {
 
 interface States {
     isGlobal: boolean;
+    isMounted: boolean;
     introduction: IntroductionType;
 }
 
@@ -70,7 +71,7 @@ export class EntryIndexMenu extends Component<Props, States> {
         else {
             showInitialIntroductionJourney = IntroductionType.NONE
         }
-        this.state = { isGlobal, introduction: showInitialIntroductionJourney };
+        this.state = { isGlobal, introduction: showInitialIntroductionJourney, isMounted: false };
         this.onChangeGlobal = this.onChangeGlobal.bind(this);
     }
 
@@ -86,7 +87,8 @@ export class EntryIndexMenu extends Component<Props, States> {
                 let entryIndexMenuElements = document.getElementsByClassName("entry-index-menu");
                 entryIndexMenuElements && entryIndexMenuElements.length > 1 && entryIndexMenuElements[0] && entryIndexMenuElements[0].classList.remove("entry-index-menu");
             }
-        }         
+        }
+        this.setState({isMounted: true})         
     }
 
     onChangeGlobal() {
@@ -239,7 +241,7 @@ export class EntryIndexMenu extends Component<Props, States> {
 
     render() {
         const { activeUser, global } = this.props;
-        const { isGlobal, introduction } = this.state;
+        const { isGlobal, introduction, isMounted } = this.state;
         const { filter } = global;
         const isMy = isMyPage(global, activeUser);
         const isActive = isActiveUser(activeUser);
@@ -281,9 +283,8 @@ export class EntryIndexMenu extends Component<Props, States> {
                                             {!isGlobal && filter !== "feed" && <Link to='/communities'> {_t('discussion.btn-join')}</Link>}
                                             <Link to='/communities'> {_t('discussion.btn-join')} {_t('communities.title')}</Link>
                                         </>;
-        const introductionOverlayClass = introduction === IntroductionType.NONE ? "d-none" : "overlay-for-introduction"
-
-        return <div>
+        const introductionOverlayClass = (isMounted && introduction === IntroductionType.NONE) ? "d-none" : "overlay-for-introduction"
+        return isMounted ? <div>
                     <div className={introductionOverlayClass} id="overlay" onClick={this.onClosePopup}/>
                     <div className="entry-index-menu">
                         <div className="the-menu align-items-center">
@@ -295,7 +296,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                                             {_t("entry-filter.filter-feed-friends")}
                                         </Link>
                                     </li>
-                                {introduction !== IntroductionType.NONE  && introduction === IntroductionType.FRIENDS && 
+                                {isMounted && introduction !== IntroductionType.NONE && introduction === IntroductionType.FRIENDS ? 
                                     <Introduction
                                         title={_t('entry-filter.filter-feed-friends')}
                                         media={OurVision}
@@ -309,7 +310,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                                         }
                                         onClose={this.onClosePopup}
                                         description={introductionDescription}
-                                    />
+                                    /> : null
                                 }
                                   </ul>
                             </div>
@@ -327,7 +328,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                                                 <Link to={i.href!} className={_c(`nav-link link-${i.id} ${(introduction!==IntroductionType.NONE && !i.flash && i.active)?"":(i.active || i.flash) ? "active" : ""}`)} id={i.id}>{i.label}</Link>
                                             </li>
                                         })}
-                                        {introduction !== IntroductionType.NONE && introduction !== IntroductionType.FRIENDS && (introduction === IntroductionType.HOT || introduction === IntroductionType.TRENDING || introduction === IntroductionType.NEW) &&
+                                        {isMounted && introduction !== IntroductionType.NONE && introduction !== IntroductionType.FRIENDS && (introduction === IntroductionType.HOT || introduction === IntroductionType.TRENDING || introduction === IntroductionType.NEW) ?
                                         <Introduction
                                             title={this.getPopupTitle()}
                                             media={OurVision}
@@ -338,7 +339,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                                             description={introductionDescription}
                                             showFinish={introduction === IntroductionType.NEW}
                                         />
-                                }
+                                : null}
                                     </ul>
                                 </div>
                             </div>
@@ -346,7 +347,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                             <div className="main-menu d-flex d-lg-none">
                                 <div className="sm-menu position-relative">
                                     <DropDown {...mobileMenuConfig} float="left"/>
-                                    {introduction !== IntroductionType.NONE &&
+                                    {isMounted && introduction !== IntroductionType.NONE ?
                                         <Introduction
                                             title={this.getPopupTitle()}
                                             media={OurVision}
@@ -355,7 +356,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                                             onClose={this.onClosePopup}
                                             description={introductionDescription}
                                             showFinish={introduction === IntroductionType.NEW}
-                                        />
+                                        /> : null
                                     }
                                 </div>
                                 <div className="lg-menu position-relative">
@@ -394,7 +395,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                             <ListStyleToggle global={this.props.global} toggleListStyle={this.props.toggleListStyle}/>
                         </div>
                     </div>
-            </div>}
+            </div> : null}
 }
 
 export default (p: Props) => {
