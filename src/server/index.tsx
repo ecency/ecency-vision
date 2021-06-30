@@ -10,7 +10,6 @@ import profileHandler from "./handlers/profile";
 import entryHandler from "./handlers/entry";
 import fallbackHandler, {healthCheck, appURI} from "./handlers/fallback";
 import {entryRssHandler, authorRssHandler} from "./handlers/rss";
-//import * as authApi from "./handlers/auth-api";
 
 const server = express();
 
