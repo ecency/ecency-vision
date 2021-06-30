@@ -35,6 +35,6 @@ it("(1) Default render", () => {
         }
     };
 
-    const component = renderer.create(<ProfileEdit {...props} />);
+    const component = renderer.create(<ProfileEdit {...props} account={fullAccountInstance} />);
     expect(component.toJSON()).toMatchSnapshot();
 });

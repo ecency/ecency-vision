@@ -21,6 +21,7 @@ import {_t} from "../i18n";
 import {Tsx} from "../i18n/helper";
 
 import {hiveSvg, checkSvg} from "../img/svg";
+import { handleInvalid, handleOnInput } from "../util/input-util";
 
 const signupSvg = require("../img/signup.svg");
 const logoCircle = require("../img/logo-circle.svg");
@@ -55,17 +56,17 @@ class SignUpPage extends Component<PageProps, State> {
         }
     }
 
-    usernameChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    usernameChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         const {value: username} = e.target;
         this.setState({username: username.toLowerCase()});
     }
 
-    emailChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    emailChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         const {value: email} = e.target;
         this.setState({email});
     }
 
-    refCodeChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    refCodeChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         const {value: referral} = e.target;
         this.setState({referral: referral.toLowerCase()});
     }
@@ -111,7 +112,7 @@ class SignUpPage extends Component<PageProps, State> {
                         ...this.props,
                     }) :
                     NavBar({...this.props})}
-                <div className="app-content sign-up-page">
+                <div className="app-content sign-up-page mb-lg-0">
 
                     <div className="sign-up">
                         <div className="left-image">
@@ -164,11 +165,27 @@ class SignUpPage extends Component<PageProps, State> {
                                         this.submit();
                                     }}>
                                         <Form.Group>
-                                            <Form.Control type="text" placeholder={_t('sign-up.username')} value={username} onChange={this.usernameChanged} autoFocus={true}
-                                                          required={true}/>
+                                            <Form.Control 
+                                                type="text" 
+                                                placeholder={_t('sign-up.username')} 
+                                                value={username} 
+                                                onChange={this.usernameChanged} 
+                                                autoFocus={true}
+                                                required={true}
+                                                onInvalid={(e: any) => handleInvalid(e, 'sign-up.', 'validation-username')}
+                                                onInput={handleOnInput}
+                                            />
                                         </Form.Group>
                                         <Form.Group>
-                                            <Form.Control type="email" placeholder={_t('sign-up.email')} value={email} onChange={this.emailChanged} required={true}/>
+                                            <Form.Control 
+                                                type="email" 
+                                                placeholder={_t('sign-up.email')} 
+                                                value={email} 
+                                                onChange={this.emailChanged} 
+                                                required={true}
+                                                onInvalid={(e: any) => handleInvalid(e, 'sign-up.', 'validation-email')}
+                                                onInput={handleOnInput}
+                                            />
                                         </Form.Group>
                                         <Form.Group>
                                             <Form.Control type="text" placeholder={_t('sign-up.ref')} value={referral} onChange={this.refCodeChanged} disabled={lockReferral}/>
@@ -180,7 +197,7 @@ class SignUpPage extends Component<PageProps, State> {
                                         </div>
                                     </Form>
 
-                                    <div className="form-do-login">
+                                    <div className="text-center">
                                         {_t("sign-up.login-text-1")}
                                         <a href="#" onClick={(e) => {
                                             e.preventDefault();
@@ -189,7 +206,7 @@ class SignUpPage extends Component<PageProps, State> {
                                         }}>{" "}{_t("sign-up.login-text-2")}</a>
                                     </div>
 
-                                    <div className="form-bottom-description">
+                                    <div className="form-bottom-description text-center">
                                         {_t("sign-up.bottom-description")}
                                     </div>
                                 </div>

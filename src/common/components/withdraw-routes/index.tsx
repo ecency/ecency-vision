@@ -19,6 +19,7 @@ import {getWithdrawRoutes, WithdrawRoute} from "../../api/hive";
 import {formatError, setWithdrawVestingRoute, setWithdrawVestingRouteHot, setWithdrawVestingRouteKc} from "../../api/operations";
 
 import {deleteForeverSvg} from "../../img/svg";
+import { handleInvalid, handleOnInput } from "../../util/input-util";
 
 
 interface Props {
@@ -69,7 +70,7 @@ export class WithdrawRoutes extends BaseComponent<Props, State> {
         });
     }
 
-    onInput = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+    onInput = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         const {target: el} = e;
         const {name: key, value} = el;
 
@@ -148,16 +149,36 @@ export class WithdrawRoutes extends BaseComponent<Props, State> {
                 <Form.Row>
                     <Form.Group as={Col}>
                         <Form.Label>{_t("withdraw-routes.account")}</Form.Label>
-                        <Form.Control required={true} minLength={3} maxLength={20}
-                                      autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false"
-                                      value={account} name="account" onChange={this.onInput}/>
+                        <Form.Control 
+                            required={true} 
+                            minLength={3} 
+                            maxLength={20}
+                            autoComplete="off" 
+                            autoCorrect="off" 
+                            autoCapitalize="off" 
+                            spellCheck="false"
+                            value={account} 
+                            name="account" 
+                            onChange={this.onInput}
+                            onInvalid={(e: any) => handleInvalid(e, "withdraw-routes.", 'validation-account')}
+                            onInput={handleOnInput}
+                        />
                     </Form.Group>
                 </Form.Row>
                 <Form.Row>
                     <Form.Group as={Col} md={3}>
                         <Form.Label>{_t("withdraw-routes.percent")}</Form.Label>
-                        <Form.Control type="number" min={0} max={100} required={true} value={percent} name="percent"
-                                      onChange={this.onInput}/>
+                        <Form.Control 
+                            type="number" 
+                            min={0} 
+                            max={100} 
+                            required={true} 
+                            value={percent} 
+                            name="percent"
+                            onChange={this.onInput}
+                            onInvalid={(e: any) => handleInvalid(e, "withdraw-routes.", 'validation-percent')}
+                            onInput={handleOnInput}
+                        />
                     </Form.Group>
                     <Form.Group as={Col} md={7}>
                         <Form.Label>{_t("withdraw-routes.auto-power-up")}</Form.Label>

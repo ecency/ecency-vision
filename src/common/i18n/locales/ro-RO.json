@@ -17,6 +17,7 @@
     "days": "zile",
     "finish": "Finalizare",
     "next": "Următorul",
+    "previous": "Previous",
     "back": "Înapoi",
     "load-more": "Încarcă mai multe",
     "empty-list": "Nici un rezultat",
@@ -31,6 +32,7 @@
     "hot": "feed",
     "trending": "feed",
     "created": "feed",
+    "muted": "feed",
     "found": "found",
     "feed": "feed",
     "blog": "blogs",
@@ -39,6 +41,7 @@
     "replies": "replies",
     "done": "Done",
     "apply": "Apply",
+    "warning": "Warning",
     "close": "Close"
   },
   "confirm": {
@@ -55,7 +58,14 @@
     "filter-muted": "Dezactivat",
     "filter-feed": "Noutăți",
     "filter-feed-friends": "Friends",
-    "filter-feed-subscriptions": "Communities"
+    "filter-feed-subscriptions": "Communities",
+    "filter-global": "Global",
+    "filter-global-part1": "This feed contains ",
+    "filter-global-part2": " discussions on entire platform.",
+    "filter-global-part3": " discussions from Your subscribed communities. You can join more communities to fill up this feed.",
+    "filter-global-part4": " discussions from people you follow. You can follow more people to fill up this feed.",
+    "filter-global-discover": "Discover People",
+    "filter-global-join-communities": "Join Communities"
   },
   "navbar": {
     "discover": "Descoperă",
@@ -127,6 +137,8 @@
     "email": "Introdu adresa de e-mail",
     "ref": "Utilizator recomandat (opţional)",
     "submit": "Continuare",
+    "validation-username": "Username is required.",
+    "validation-email": "Email is required.",
     "success": "Ți-am trimis un e-mail la {{email}}.",
     "success-2": "Urmează instrucțiunile pentru a finaliza procesul de înscriere.",
     "login-text-1": "Am deja un cont?",
@@ -146,6 +158,8 @@
     "pinned": "Postare Fixată",
     "replies": "1 răspuns. Apasă pentru a răspunde.",
     "replies-n": "{{n}} răspunsuri. Apasă pentru a răspunde.",
+    "vote-error": "Previous value is not acceptable. Vote with a different value.",
+    "vote-warning": "Voting 0% unvotes the content.",
     "no-replies": "Nici un răspuns încă. Apasă pentru a răspunde."
   },
   "nsfw": {
@@ -310,7 +324,7 @@
     "edit": "Editează setările",
     "edit-team": "Editează rolurile",
     "community-rewards": "Community Rewards",
-    "profile-image": "Community profile image",
+    "profile-image": "Profile image",
     "profile-image-edit": "Editați imaginea de profil",
     "profile-image-updated": "Profil actualizat!"
   },
@@ -328,7 +342,8 @@
     "lang": "Limbă",
     "description": "Descriere",
     "rules": "Reguli",
-    "rules-help": "Câte unul pe rând"
+    "rules-help": "Câte unul pe rând",
+    "validation-title": "Title is required."
   },
   "communities": {
     "title": "Comunități",
@@ -355,6 +370,8 @@
     "username-available": "Disponibil.",
     "username-not-available": "Indisponibil.",
     "username-wrong-format": "Nu este un format valid. Format Hive-1xxxxx este necesar.",
+    "checkbox-validation": "Please tick this box if you want to proceed.",
+    "title-validation": "Please fill in this field.",
     "password": "Master password",
     "confirmation": "I have securely saved my owner username and password.",
     "submit": "Creeare comunitate",
@@ -419,6 +436,7 @@
     "profile-image": "Imaginea de profil",
     "website": "Website",
     "location": "Locație",
+    "copied": "Referral link copied to clipboard.",
     "updated": "Profilul a fost actualizat cu succes!"
   },
   "image-upload-button": {
@@ -430,6 +448,7 @@
     "currency": "Monedă",
     "language": "Limbă",
     "nsfw": "Show NSFW content",
+    "referral-link": "Referral link",
     "updated": "Preferințe actualizate!"
   },
   "wallet": {
@@ -466,6 +485,8 @@
     "title": "Withdraw accounts",
     "account": "Account",
     "percent": "Percent",
+    "validation-account": "Account is required.",
+    "validation-percent": "Percentage is required.",
     "auto-power-up": "Automatically power up"
   },
   "points": {
@@ -600,9 +621,9 @@
     "group-interests": "Interests",
     "group-stake-operations": "Stake operations",
     "group-rewards": "Rewards",
-    "type-curation_reward": "Recompensă de curare",
-    "type-author_reward": "Recompensă Autor",
-    "type-comment_benefactor_reward": "Recompensă Pentru Comentariu",
+    "type-curation_reward": "Curation reward",
+    "type-author_reward": "Author reward",
+    "type-comment_benefactor_reward": "Comment benefactor reward",
     "type-claim_reward_balance": "Cere plata",
     "type-transfer": "Transferul",
     "type-transfer_to_vesting": "Transfer la vesting",
@@ -615,7 +636,10 @@
     "type-cancel_transfer_from_savings": "Cancel transfer from savings",
     "type-cancel_transfer_from_savings-detail": "From: <strong>@{{from}}</strong> <br/> Request id: <strong>{{request}}</strong>",
     "type-return_vesting_delegation": "Return vesting delegation",
-    "type-proposal_pay": "Proposal pay"
+    "type-proposal_pay": "Proposal pay",
+    "type-comment_payout_update": "Content payout update",
+    "type-comment_reward": "Content reward",
+    "type-effective_comment_vote": "Effective Vote"
   },
   "key-or-hot": {
     "sign": "Semnare",
@@ -633,7 +657,7 @@
   "friends": {
     "followers": "Urmăritori ({{n}})",
     "following": "Urmăriți ({{n}})",
-    "search-placeholder": "Caută utilizatori"
+    "search-placeholder": "Search"
   },
   "follow-controls": {
     "follow": "Urmărește",
@@ -730,6 +754,8 @@
     "username": "Username",
     "reward": "Reward",
     "user-error": "{{n}} is not a valid user.",
+    "validation-percentage": "Percentage is required.",
+    "validation-username": "Username is required.",
     "user-exists-error": "{{n}} is already in the list"
   },
   "post-scheduler": {
@@ -901,6 +927,9 @@
     "create-first": "Create your first snippet",
     "filter": "Search by title",
     "form-title": "Title",
+    "validation-title": "Title is required.",
+    "validation-value": "Value is required.",
+    "validation-body": "Body is required.",
     "form-body": "Body"
   },
   "password-update": {
@@ -912,12 +941,28 @@
     "error-new2": "Passwords must be same",
     "pass-gen": "Click to generate password",
     "label-check": "I have securely saved my generated password",
+    "validation-password": "Password is invalid.",
+    "validation-label": "Please tick this box to proceed.",
     "updated": "Password updated successfully!"
+  },
+  "view-keys": {
+    "title": "View Private keys",
+    "account": "Account",
+    "cur-pass": "Current password",
+    "owner": "Owner",
+    "active": "Active",
+    "posting": "Posting",
+    "memo": "Memo",
+    "view-keys": "Click to view keys",
+    "copied": "Private key copied into clipboard",
+    "error": "Password seem incorrect, please double check!"
   },
   "add-image": {
     "title": "Add Image",
     "text-label": "Image Text",
-    "link-label": "Image Link"
+    "link-label": "Image Link",
+    "validation-text": "Text is required.",
+    "validation-image": "Image is required."
   },
   "add-image-mobile": {
     "title": "Add Image",
@@ -928,7 +973,9 @@
   "add-link": {
     "title": "Add Link",
     "text-label": "Text",
-    "link-label": "https://"
+    "link-label": "https://",
+    "validation-text": "Text is required.",
+    "validation-link": "Link is required."
   },
   "scroll-to-top": {
     "title": "Derulează până sus"
@@ -1077,6 +1124,7 @@
     "subscribe-paragraph": "Be first to know what's happening in decentralized web.",
     "copy-rights": "©2021 Ecency. All right reserved.",
     "success-message-subscribe": "A verification link has been sent to your email account!",
+    "validation-email": "A valid email is required",
     "error-occured": "A server error has been occured."
   }
 }

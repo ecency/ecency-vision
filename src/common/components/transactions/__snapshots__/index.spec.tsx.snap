@@ -22,7 +22,7 @@ exports[`(1) curation_reward 1`] = `
     <div
       className="transaction-name"
     >
-      Curation Reward
+      Curation reward
     </div>
     <div
       className="transaction-date"
@@ -39,7 +39,7 @@ exports[`(1) curation_reward 1`] = `
     className="transaction-details"
   >
     <a
-      href="/ecency/@user2/hquwxmvg"
+      href="/history/@user2/hquwxmvg"
       onClick={[Function]}
     >
       @
@@ -73,7 +73,7 @@ exports[`(2) author_reward 1`] = `
     <div
       className="transaction-name"
     >
-      Author Reward
+      Author reward
     </div>
     <div
       className="transaction-date"
@@ -100,7 +100,7 @@ exports[`(2) author_reward 1`] = `
     className="transaction-details"
   >
     <a
-      href="/ecency/@user1/lorem-ipsum-dolor"
+      href="/history/@user1/lorem-ipsum-dolor"
       onClick={[Function]}
     >
       @
@@ -134,7 +134,7 @@ exports[`(3) comment_benefactor_reward 1`] = `
     <div
       className="transaction-name"
     >
-      Comment Benefactor Reward
+      Comment benefactor reward
     </div>
     <div
       className="transaction-date"
@@ -156,7 +156,7 @@ exports[`(3) comment_benefactor_reward 1`] = `
     className="transaction-details"
   >
     <a
-      href="/ecency/@xxxthorxxx/re-nonameslefttouse-2020530t135919321z"
+      href="/history/@xxxthorxxx/re-nonameslefttouse-2020530t135919321z"
       onClick={[Function]}
     >
       @

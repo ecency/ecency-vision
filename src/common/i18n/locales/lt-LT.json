@@ -17,6 +17,7 @@
     "days": "d.",
     "finish": "Užbaigti",
     "next": "Kitas",
+    "previous": "Previous",
     "back": "Grįžti",
     "load-more": "Įkelti Daugiau",
     "empty-list": "Čia tuščia",
@@ -31,6 +32,7 @@
     "hot": "feed",
     "trending": "feed",
     "created": "feed",
+    "muted": "feed",
     "found": "found",
     "feed": "feed",
     "blog": "blogs",
@@ -39,6 +41,7 @@
     "replies": "replies",
     "done": "Done",
     "apply": "Apply",
+    "warning": "Warning",
     "close": "Close"
   },
   "confirm": {
@@ -55,7 +58,14 @@
     "filter-muted": "Nutildyta",
     "filter-feed": "Pagrindinis",
     "filter-feed-friends": "Friends",
-    "filter-feed-subscriptions": "Communities"
+    "filter-feed-subscriptions": "Communities",
+    "filter-global": "Global",
+    "filter-global-part1": "This feed contains ",
+    "filter-global-part2": " discussions on entire platform.",
+    "filter-global-part3": " discussions from Your subscribed communities. You can join more communities to fill up this feed.",
+    "filter-global-part4": " discussions from people you follow. You can follow more people to fill up this feed.",
+    "filter-global-discover": "Discover People",
+    "filter-global-join-communities": "Join Communities"
   },
   "navbar": {
     "discover": "Atrasti",
@@ -127,6 +137,8 @@
     "email": "Įveskite savo el. pašto adresą",
     "ref": "Rekomendavęs vartotojas (pasirinktinai)",
     "submit": "Tęsti",
+    "validation-username": "Username is required.",
+    "validation-email": "Email is required.",
     "success": "Išsiuntėme patvirtinimo laišką {{email}}.",
     "success-2": "Sekite instrukcijas, kad sėkmingai prisiregistruotumėte.",
     "login-text-1": "Do you have an account?",
@@ -146,6 +158,8 @@
     "pinned": "Prisegtas Įrašas",
     "replies": "1 atsakymas. Spauskite, jeigu norite atsakyti.",
     "replies-n": "{{n}} atsakymų. Spauskite, jeigu norite atsakyti.",
+    "vote-error": "Previous value is not acceptable. Vote with a different value.",
+    "vote-warning": "Voting 0% unvotes the content.",
     "no-replies": "Jokių atsakymų kolkas. Spauskite, jeigu norite atsakyti."
   },
   "nsfw": {
@@ -310,7 +324,7 @@
     "edit": "Keisti nustatymus",
     "edit-team": "Keisti roles",
     "community-rewards": "Community Rewards",
-    "profile-image": "Bendruomenės proflio nuotrauka",
+    "profile-image": "Profile image",
     "profile-image-edit": "Redaguoti profilio nuotrauką",
     "profile-image-updated": "Profilio nuotrauka atnaujinta!"
   },
@@ -328,7 +342,8 @@
     "lang": "Kalba",
     "description": "Aprašmas",
     "rules": "Taisyklės",
-    "rules-help": "Vienas per eilę"
+    "rules-help": "Vienas per eilę",
+    "validation-title": "Title is required."
   },
   "communities": {
     "title": "Bendruomenės",
@@ -355,6 +370,8 @@
     "username-available": "Galimas.",
     "username-not-available": "Negalimas.",
     "username-wrong-format": "Netinkamas formatas. reikalingas hive-1xxxxx formatas.",
+    "checkbox-validation": "Please tick this box if you want to proceed.",
+    "title-validation": "Please fill in this field.",
     "password": "Master password",
     "confirmation": "Aš saugiai išsisaugojau savo vartotojo vardą ir slaptažodį.",
     "submit": "Sukurti Bendruomenę",
@@ -419,6 +436,7 @@
     "profile-image": "Profilio Nuotrauka",
     "website": "Svetainė",
     "location": "Vietovė",
+    "copied": "Referral link copied to clipboard.",
     "updated": "Profilis sėkmingai atnaujintas!"
   },
   "image-upload-button": {
@@ -430,6 +448,7 @@
     "currency": "Currency",
     "language": "Language",
     "nsfw": "Show NSFW content",
+    "referral-link": "Referral link",
     "updated": "Preference updated!"
   },
   "wallet": {
@@ -466,6 +485,8 @@
     "title": "Withdraw accounts",
     "account": "Account",
     "percent": "Percent",
+    "validation-account": "Account is required.",
+    "validation-percent": "Percentage is required.",
     "auto-power-up": "Automatically power up"
   },
   "points": {
@@ -600,9 +621,9 @@
     "group-interests": "Interests",
     "group-stake-operations": "Stake operations",
     "group-rewards": "Rewards",
-    "type-curation_reward": "Kuracijos Atlygis",
-    "type-author_reward": "Autorius Atlygis",
-    "type-comment_benefactor_reward": "Atlygis už gerą komentarą",
+    "type-curation_reward": "Curation reward",
+    "type-author_reward": "Author reward",
+    "type-comment_benefactor_reward": "Comment benefactor reward",
     "type-claim_reward_balance": "Atsiimti atlygį",
     "type-transfer": "Pervesti",
     "type-transfer_to_vesting": "Pervesti į investicijas",
@@ -615,7 +636,10 @@
     "type-cancel_transfer_from_savings": "Cancel transfer from savings",
     "type-cancel_transfer_from_savings-detail": "From: <strong>@{{from}}</strong> <br/> Request id: <strong>{{request}}</strong>",
     "type-return_vesting_delegation": "Return vesting delegation",
-    "type-proposal_pay": "Proposal pay"
+    "type-proposal_pay": "Proposal pay",
+    "type-comment_payout_update": "Content payout update",
+    "type-comment_reward": "Content reward",
+    "type-effective_comment_vote": "Effective Vote"
   },
   "key-or-hot": {
     "sign": "Pasirašyti",
@@ -633,7 +657,7 @@
   "friends": {
     "followers": "Sekėjai ({{n}})",
     "following": "Sekami ({{n}})",
-    "search-placeholder": "Ieškoti narių"
+    "search-placeholder": "Search"
   },
   "follow-controls": {
     "follow": "Sekti",
@@ -730,6 +754,8 @@
     "username": "Username",
     "reward": "Reward",
     "user-error": "{{n}} is not a valid user.",
+    "validation-percentage": "Percentage is required.",
+    "validation-username": "Username is required.",
     "user-exists-error": "{{n}} is already in the list"
   },
   "post-scheduler": {
@@ -901,6 +927,9 @@
     "create-first": "Create your first snippet",
     "filter": "Search by title",
     "form-title": "Title",
+    "validation-title": "Title is required.",
+    "validation-value": "Value is required.",
+    "validation-body": "Body is required.",
     "form-body": "Body"
   },
   "password-update": {
@@ -912,12 +941,28 @@
     "error-new2": "Passwords must be same",
     "pass-gen": "Click to generate password",
     "label-check": "I have securely saved my generated password",
+    "validation-password": "Password is invalid.",
+    "validation-label": "Please tick this box to proceed.",
     "updated": "Password updated successfully!"
+  },
+  "view-keys": {
+    "title": "View Private keys",
+    "account": "Account",
+    "cur-pass": "Current password",
+    "owner": "Owner",
+    "active": "Active",
+    "posting": "Posting",
+    "memo": "Memo",
+    "view-keys": "Click to view keys",
+    "copied": "Private key copied into clipboard",
+    "error": "Password seem incorrect, please double check!"
   },
   "add-image": {
     "title": "Add Image",
     "text-label": "Image Text",
-    "link-label": "Image Link"
+    "link-label": "Image Link",
+    "validation-text": "Text is required.",
+    "validation-image": "Image is required."
   },
   "add-image-mobile": {
     "title": "Add Image",
@@ -928,7 +973,9 @@
   "add-link": {
     "title": "Add Link",
     "text-label": "Text",
-    "link-label": "https://"
+    "link-label": "https://",
+    "validation-text": "Text is required.",
+    "validation-link": "Link is required."
   },
   "scroll-to-top": {
     "title": "Keliauti iki puslapio viršaus"
@@ -1077,6 +1124,7 @@
     "subscribe-paragraph": "Be first to know what's happening in decentralized web.",
     "copy-rights": "©2021 Ecency. All right reserved.",
     "success-message-subscribe": "A verification link has been sent to your email account!",
+    "validation-email": "A valid email is required",
     "error-occured": "A server error has been occured."
   }
 }

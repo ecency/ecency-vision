@@ -341,7 +341,7 @@ class SubmitPage extends BaseComponent<Props, State> {
         return reward !== "default" || beneficiaries.length > 0 || schedule !== null || reblogSwitch;
     }
 
-    titleChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+    titleChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         const {value: title} = e.target;
         this.stateSet({title}, () => {
             this.updatePreview();
@@ -371,14 +371,14 @@ class SubmitPage extends BaseComponent<Props, State> {
         }
     };
 
-    bodyChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+    bodyChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         const {value: body} = e.target;
         this.stateSet({body}, () => {
             this.updatePreview();
         });
     };
 
-    rewardChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+    rewardChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         const reward = e.target.value as RewardType;
         this.stateSet({reward}, this.saveAdvanced);
     };
@@ -399,7 +399,7 @@ class SubmitPage extends BaseComponent<Props, State> {
         this.stateSet({schedule: d ? d.toISOString(true) : null}, this.saveAdvanced)
     }
 
-    reblogSwitchChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+    reblogSwitchChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         this.stateSet({reblogSwitch: e.target.checked}, this.saveAdvanced);
     }
 
@@ -765,6 +765,7 @@ class SubmitPage extends BaseComponent<Props, State> {
                                 placeholder={_t("submit.body-placeholder")}
                                 value={body}
                                 onChange={this.bodyChanged}
+                                rows={10}
                             />
                         </div>
                         {editingEntry === null && (

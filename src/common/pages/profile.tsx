@@ -242,7 +242,8 @@ class ProfilePage extends BaseComponent<Props, State> {
                     <div className="profile-side">
                         {ProfileCard({
                             ...this.props,
-                            account
+                            account,
+                            section
                         })}
                     </div>
                     <span itemScope={true} itemType="http://schema.org/Person">

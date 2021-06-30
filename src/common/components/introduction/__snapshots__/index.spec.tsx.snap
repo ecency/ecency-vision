@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Introduction component (1) renders successfully with minimal props 1`] = `
+<div
+  className="intro-popup p-4 p-lg-0"
+  style={
+    Object {
+      "left": undefined,
+    }
+  }
+>
+  <div
+    className="h-100 container"
+  >
+    <button
+      className="close position-absolute close-btn"
+      id="close-btn"
+      onClick={[Function]}
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+      >
+        ×
+      </span>
+    </button>
+    <div
+      className="justify-content-center h-100 align-items-center mt-4 mt-md-0 row"
+    >
+      <div
+        className="p-0 px-md-3 col-md-3 col-12"
+      >
+        <img
+          className="media-intro"
+          id="media"
+          src="https://propakistani.pk/wp-content/uploads/2019/12/Social-Media-Insight-top.png"
+          width="100%"
+        />
+      </div>
+      <div
+        className="p-0 px-md-3 col-md-5 col-12"
+      >
+        <h1
+          className="mb-2 mb-md-4 text-dark font-weight-bold title"
+          id="title"
+        >
+          Test Title
+        </h1>
+        <p
+          className="text-muted paragraph mt-2 mt-md-0"
+          id="description"
+        >
+          Test decription
+        </p>
+        <div
+          className="d-flex flex-column flex-md-row"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

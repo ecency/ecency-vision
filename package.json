@@ -1,6 +1,6 @@
 {
   "name": "ecency-vision",
-  "version": "3.0.17",
+  "version": "3.0.18",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -10,14 +10,15 @@
     "start:prod": "NODE_ENV=production node build/server.js"
   },
   "dependencies": {
-    "@ecency/render-helper": "^2.1.12",
-    "@hiveio/dhive": "^0.14.12",
+    "@ecency/render-helper": "^2.1.18",
+    "@hiveio/dhive": "^0.14.14",
     "@hiveio/hivescript": "^1.2.2",
     "@types/bs58": "^4.0.1",
     "@types/chartist": "^0.11.0",
     "@types/diff-match-patch": "^1.0.32",
     "@types/numeral": "^0.0.28",
     "@types/rss": "^0.0.28",
+    "@types/sortablejs": "^1.10.6",
     "@types/speakingurl": "^13.0.2",
     "axios": "^0.21.1",
     "bootstrap": "^4.5.0",
@@ -59,6 +60,7 @@
     "redux-thunk": "^2.3.0",
     "rss": "^1.2.2",
     "serialize-javascript": "^3.1.0",
+    "sortablejs": "^1.13.0",
     "speakingurl": "^14.0.1",
     "xss": "^1.0.8"
   },
@@ -78,6 +80,7 @@
     "@types/react-test-renderer": "^16.9.2",
     "@types/serialize-javascript": "^1.5.0",
     "@types/webpack-env": "^1.14.0",
+    "jest": "^26.0.0",
     "mockdate": "^3.0.2",
     "razzle": "^3.0.0",
     "razzle-plugin-scss": "^3.1.3",
@@ -89,7 +92,8 @@
     "typescript": "^3.5.3"
   },
   "resolutions": {
-    "jest": "^26.0.0"
+    "jest": "^24.9.0",
+    "@types/react": "^16.8.23"
   },
   "jest": {
     "transform": {

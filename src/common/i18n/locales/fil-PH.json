@@ -17,6 +17,7 @@
     "days": "mga araw",
     "finish": "Tapos na",
     "next": "Susunod",
+    "previous": "Previous",
     "back": "Bumalik",
     "load-more": "Ipakita pa ang iba",
     "empty-list": "Walang makita dito",
@@ -31,6 +32,7 @@
     "hot": "feed",
     "trending": "feed",
     "created": "feed",
+    "muted": "feed",
     "found": "found",
     "feed": "feed",
     "blog": "blogs",
@@ -39,6 +41,7 @@
     "replies": "replies",
     "done": "Tapos",
     "apply": "I-apply",
+    "warning": "Warning",
     "close": "Isarado"
   },
   "confirm": {
@@ -55,7 +58,14 @@
     "filter-muted": "Pinatahimik",
     "filter-feed": "Feed",
     "filter-feed-friends": "Mga kaibigan",
-    "filter-feed-subscriptions": "Mga pamayanan"
+    "filter-feed-subscriptions": "Mga pamayanan",
+    "filter-global": "Global",
+    "filter-global-part1": "This feed contains ",
+    "filter-global-part2": " discussions on entire platform.",
+    "filter-global-part3": " discussions from Your subscribed communities. You can join more communities to fill up this feed.",
+    "filter-global-part4": " discussions from people you follow. You can follow more people to fill up this feed.",
+    "filter-global-discover": "Discover People",
+    "filter-global-join-communities": "Join Communities"
   },
   "navbar": {
     "discover": "Tuklasin",
@@ -127,6 +137,8 @@
     "email": "Ilagay ang iyong email address",
     "ref": "Itinukoy na mga gumagamit (hindi kinakailangan)",
     "submit": "Magpatuloy",
+    "validation-username": "Username is required.",
+    "validation-email": "Email is required.",
     "success": "Nagpadala kami ng email sa {{email}}.",
     "success-2": "Sundin ang mga panuntunan para makumpleto ang proseso ng pag-sign up.",
     "login-text-1": "May account ka ba?",
@@ -146,6 +158,8 @@
     "pinned": "Naka-pin na post",
     "replies": "1 kasagutan. Pindutin para sumagot.",
     "replies-n": "{{n}} mga kasagutan. Pindutin para sumagot.",
+    "vote-error": "Previous value is not acceptable. Vote with a different value.",
+    "vote-warning": "Voting 0% unvotes the content.",
     "no-replies": "Walang pang mga kasagutan. Pindutin para sumagot."
   },
   "nsfw": {
@@ -310,7 +324,7 @@
     "edit": "Baguhin ang mga settings",
     "edit-team": "Baguhin ang mga katungkulan",
     "community-rewards": "Mga gantimpala sa pamayanan",
-    "profile-image": "Imaheng Pagkakakilanlan ng Pamayanan",
+    "profile-image": "Profile image",
     "profile-image-edit": "Baguhin ang Imaheng Pagkakakilanlan",
     "profile-image-updated": "Matagumpay na nai-upload ang imahe ng pagkakakilanlan!"
   },
@@ -328,7 +342,8 @@
     "lang": "Linguwahe",
     "description": "Paglalarawan",
     "rules": "Patakaran",
-    "rules-help": "Isa bawat linya"
+    "rules-help": "Isa bawat linya",
+    "validation-title": "Title is required."
   },
   "communities": {
     "title": "Pamayanan",
@@ -355,6 +370,8 @@
     "username-available": "Umiiral.",
     "username-not-available": "Hindi available.",
     "username-wrong-format": "Hindi wastong balangkas. hive-1xxxxx na balangkas ang kailangan.",
+    "checkbox-validation": "Please tick this box if you want to proceed.",
+    "title-validation": "Please fill in this field.",
     "password": "Master password",
     "confirmation": "Maingat at ligtas kong naiimbak ang aking bansag ng may-ari.",
     "submit": "Gumawa ng pamayanan",
@@ -419,6 +436,7 @@
     "profile-image": "Imahe ng pagkakakilanlan",
     "website": "Website",
     "location": "Lokasyon",
+    "copied": "Referral link copied to clipboard.",
     "updated": "Matagumpay na nabago ang pagkakakilanlan!"
   },
   "image-upload-button": {
@@ -430,6 +448,7 @@
     "currency": "Salapi",
     "language": "Lingguwahe",
     "nsfw": "Show NSFW content",
+    "referral-link": "Referral link",
     "updated": "Matagumpay na nabago ang mga kagustuhan!"
   },
   "wallet": {
@@ -466,6 +485,8 @@
     "title": "Alisin ang mga account",
     "account": "Account",
     "percent": "Porsyento",
+    "validation-account": "Account is required.",
+    "validation-percent": "Percentage is required.",
     "auto-power-up": "Awtomatikong magpalakas"
   },
   "points": {
@@ -600,9 +621,9 @@
     "group-interests": "Interests",
     "group-stake-operations": "Stake operations",
     "group-rewards": "Rewards",
-    "type-curation_reward": "Gantimpala ng tagapangalaga",
-    "type-author_reward": "Gantimpala ng may-akda",
-    "type-comment_benefactor_reward": "Comment Benefactor Reward",
+    "type-curation_reward": "Curation reward",
+    "type-author_reward": "Author reward",
+    "type-comment_benefactor_reward": "Comment benefactor reward",
     "type-claim_reward_balance": "Kunin ang gantimpala",
     "type-transfer": "Ilipat",
     "type-transfer_to_vesting": "Ilipat sa vesting",
@@ -615,7 +636,10 @@
     "type-cancel_transfer_from_savings": "Cancel transfer from savings",
     "type-cancel_transfer_from_savings-detail": "From: <strong>@{{from}}</strong> <br/> Request id: <strong>{{request}}</strong>",
     "type-return_vesting_delegation": "Return vesting delegation",
-    "type-proposal_pay": "Proposal pay"
+    "type-proposal_pay": "Proposal pay",
+    "type-comment_payout_update": "Content payout update",
+    "type-comment_reward": "Content reward",
+    "type-effective_comment_vote": "Effective Vote"
   },
   "key-or-hot": {
     "sign": "Pirma",
@@ -633,7 +657,7 @@
   "friends": {
     "followers": "Mga Tagasunod ({{n}})",
     "following": "Mga Sinusundan ({{n}})",
-    "search-placeholder": "Maghanap ng mga gumagamit"
+    "search-placeholder": "Search"
   },
   "follow-controls": {
     "follow": "Sundan",
@@ -730,6 +754,8 @@
     "username": "Username",
     "reward": "Reward",
     "user-error": "{{n}} is not a valid user.",
+    "validation-percentage": "Percentage is required.",
+    "validation-username": "Username is required.",
     "user-exists-error": "{{n}} is already in the list"
   },
   "post-scheduler": {
@@ -901,6 +927,9 @@
     "create-first": "Lumikha ng iyong unang snippet",
     "filter": "Maghanap gamit ang titulo",
     "form-title": "Titulo",
+    "validation-title": "Title is required.",
+    "validation-value": "Value is required.",
+    "validation-body": "Body is required.",
     "form-body": "Katawan"
   },
   "password-update": {
@@ -912,12 +941,28 @@
     "error-new2": "Ang password ay parehas dapat",
     "pass-gen": "Click para mag-generate ng password",
     "label-check": "Matiwasay kong nai-imbak ang aking na-generate na password",
+    "validation-password": "Password is invalid.",
+    "validation-label": "Please tick this box to proceed.",
     "updated": "Password updated successfully!"
+  },
+  "view-keys": {
+    "title": "View Private keys",
+    "account": "Account",
+    "cur-pass": "Current password",
+    "owner": "Owner",
+    "active": "Active",
+    "posting": "Posting",
+    "memo": "Memo",
+    "view-keys": "Click to view keys",
+    "copied": "Private key copied into clipboard",
+    "error": "Password seem incorrect, please double check!"
   },
   "add-image": {
     "title": "Add Image",
     "text-label": "Image Text",
-    "link-label": "Image Link"
+    "link-label": "Image Link",
+    "validation-text": "Text is required.",
+    "validation-image": "Image is required."
   },
   "add-image-mobile": {
     "title": "Add Image",
@@ -928,7 +973,9 @@
   "add-link": {
     "title": "Add Link",
     "text-label": "Text",
-    "link-label": "https://"
+    "link-label": "https://",
+    "validation-text": "Text is required.",
+    "validation-link": "Link is required."
   },
   "scroll-to-top": {
     "title": "Scroll to Top"
@@ -1077,6 +1124,7 @@
     "subscribe-paragraph": "Be first to know what's happening in decentralized web.",
     "copy-rights": "©2021 Ecency. All right reserved.",
     "success-message-subscribe": "A verification link has been sent to your email account!",
+    "validation-email": "A valid email is required",
     "error-occured": "A server error has been occured."
   }
 }

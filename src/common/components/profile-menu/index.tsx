@@ -15,6 +15,7 @@ import ListStyleToggle from "../list-style-toggle/index";
 import {_t} from "../../i18n";
 
 import _c from "../../util/fix-class-names";
+import { menuDownSvg } from "../../img/svg";
 
 interface Props {
     history: History;
@@ -49,23 +50,32 @@ export class ProfileMenu extends Component<Props> {
                         label: _t(`profile.section-${x}`),
                         href: `/@${username}/${x}`,
                         active: section === x,
+                        id: x
                     };
                 }),
             ],
         };
 
+        let showDropdown = menuConfig.items.filter(item => item.id === section).length > 0;
+
         return (
             <div className="profile-menu">
                 <div className="profile-menu-items">
-                    {(() => {
-                        if (ProfileFilter[section]) {
-                            return <span className="profile-menu-item selected-item"><DropDown {...menuConfig} float="left"/></span>;
-                        }
-
-                        return <Link className="profile-menu-item" to={`/@${username}`}>
-                            {_t(`profile.section-blog`)}
-                        </Link>;
-                    })()}
+                    <>
+                        <span className={`d-flex d-lg-none ${showDropdown ? "selected-item profile-menu-item" : ""}`}>
+                            {showDropdown ? <DropDown {...menuConfig} float="left"/> :
+                            <Link className={_c(`${!showDropdown ? "profile-menu-item ": ""}${section === "blog" ? "selected-item" : ""}`)} to={`/@${username}/blog`}>
+                                {_t(`profile.section-blog`)} <span className="menu-down-icon">{menuDownSvg}</span>
+                            </Link>}
+                        </span>
+                        <div className="d-none d-lg-flex align-items-center">
+                            {menuConfig.items.map(menuItem => 
+                                <Link className={_c(`profile-menu-item ${menuItem.active ? "selected-item" : ""}`)} to={menuItem.href!} key={`profile-menu-item-${menuItem.label}`}>
+                                {menuItem.label}
+                            </Link>)}
+                        </div>
+                    </>
+ 
                     <Link className={_c(`profile-menu-item ${section === "communities" ? "selected-item" : ""}`)} to={`/@${username}/communities`}>
                         {_t(`profile.section-communities`)}
                     </Link>

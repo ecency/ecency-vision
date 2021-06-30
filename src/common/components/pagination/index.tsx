@@ -5,6 +5,7 @@ interface Props {
     dataLength: number,
     pageSize: number,
     maxItems: number,
+    page?: number,
     onPageChange: (num: number) => void,
 }
 
@@ -14,13 +15,19 @@ interface State {
 
 export default class MyPagination extends Component<Props, State> {
     state: State = {
-        page: 1
+        page: this.props.page || 1
     }
 
     changePage = (num: number) => {
         const {onPageChange} = this.props;
         this.setState({page: num});
         onPageChange(num);
+    }
+
+    componentDidUpdate(prevProps: Props){
+        if(prevProps.page !== this.props.page && this.props.page){
+            this.setState({ page: this.props.page })
+        }
     }
 
     render() {

@@ -26,6 +26,7 @@ import _c from "../../util/fix-class-names";
 
 import { chevronDownSvgForSlider, chevronUpSvgForSlider, chevronUpSvgForVote } from "../../img/svg";
 import ClickAwayListener from "../clickaway-listener";
+import { _t } from "../../i18n";
 
 const setVoteValue = (type: "up" | "down", username: string, value: number) => {
   ls.set(`vote-value-${type}-${username}`, value);
@@ -46,6 +47,8 @@ interface VoteDialogProps {
   activeUser: ActiveUser;
   dynamicProps: DynamicProps;
   entry: Entry;
+  downVoted: boolean;
+  upVoted: boolean;
   onClick: (percent: number, estimated: number) => void;
 }
 
@@ -55,21 +58,23 @@ interface VoteDialogState {
   estimated: number;
   mode: Mode;
   wrongValueUp: boolean;
+  showWarning: boolean;
   wrongValueDown: boolean;
   initialVoteValues: { up: any; down: any };
 }
 
 export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
   state: VoteDialogState = {
-    upSliderVal: getVoteValue("up", this.props.activeUser?.username!, 100),
-    downSliderVal: getVoteValue("down", this.props.activeUser?.username!, -100),
+    upSliderVal: getVoteValue("up", this.props.activeUser?.username! + '-' + this.props.entry.post_id, 100),
+    downSliderVal: getVoteValue("down", this.props.activeUser?.username! + '-' + this.props.entry.post_id, -100),
     estimated: 0,
-    mode: "up",
+    mode: this.props.downVoted ? "down" : "up",
     wrongValueUp: false,
     wrongValueDown: false,
+    showWarning: false,
     initialVoteValues: {
-      up: getVoteValue("up", this.props.activeUser?.username!, 100),
-      down: getVoteValue("down", this.props.activeUser?.username!, -100),
+      up: getVoteValue("up", this.props.activeUser?.username! + '-' + this.props.entry.post_id, 100),
+      down: getVoteValue("down", this.props.activeUser?.username!+ '-' + this.props.entry.post_id, -100),
     },
   };
 
@@ -130,30 +135,36 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     return voteValue * sign;
   };
 
-  upSliderChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
-    const upSliderVal = Number(e.target.value);
+  upSliderChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+    const { target: { id, value} } = e;
+    const upSliderVal = Number(value);
     const { initialVoteValues } = this.state;
+    const { upVoted } = this.props;
     this.setState({
       upSliderVal,
-      wrongValueUp: upSliderVal === initialVoteValues.up,
+      wrongValueUp: upSliderVal === initialVoteValues.up && upVoted,
+      showWarning: upSliderVal < initialVoteValues.up && (upVoted) 
     });
-
     const { activeUser } = this.props;
-    setVoteValue("up", activeUser?.username!, upSliderVal);
+    setVoteValue("up", `${activeUser?.username!}-${id}`, upSliderVal);
   };
 
   downSliderChanged = (
-    e: React.ChangeEvent<FormControl & HTMLInputElement>
+    e: React.ChangeEvent<typeof FormControl & HTMLInputElement>
   ) => {
-    const downSliderVal = Number(e.target.value);
+    const { target: { id, value} } = e;
+
+    const downSliderVal = Number(value);
     const { initialVoteValues } = this.state;
+    const { upVoted, downVoted } = this.props;
     this.setState({
       downSliderVal,
       wrongValueDown: downSliderVal === initialVoteValues.up,
+      showWarning: downSliderVal > initialVoteValues.down && (downVoted)
     });
 
     const { activeUser } = this.props;
-    setVoteValue("down", activeUser?.username!, downSliderVal);
+    setVoteValue("down", `${activeUser?.username!}-${id}`, downSliderVal);
   };
 
   changeMode = (m: Mode) => {
@@ -209,8 +220,8 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
   };
 
   render() {
-    const { upSliderVal, downSliderVal, mode, wrongValueUp, wrongValueDown } =
-      this.state;
+    const { upSliderVal, downSliderVal, mode, wrongValueUp, wrongValueDown, showWarning } = this.state;
+    const { entry: { post_id } } = this.props;
 
     return (
       <>
@@ -240,6 +251,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                   max={100}
                   value={upSliderVal}
                   onChange={this.upSliderChanged}
+                  id={post_id.toString()}
                 />
               </div>
               <div className="percentage">{`${
@@ -256,53 +268,67 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
             </div>
             {wrongValueUp && (
               <div className="vote-error">
-                <p>Previous value is not acceptable. Vote with a different value</p>
+                <p>{_t('entry-list-item.vote-error')}</p>
+              </div>
+            )}
+            {showWarning && (
+              <div className="vote-warning">
+                <p>{_t('entry-list-item.vote-warning')}</p>
               </div>
             )}
           </>
         )}
 
         {mode === "down" && (
-          <div className="voting-controls voting-controls-down">
-            <div
-              className="btn-vote btn-up-vote vote-btn-lg primary-btn-vote"
-              onClick={() => {
-                this.changeMode("up");
-              }}
-            >
-              <span className="btn-inner">{chevronUpSvgForSlider}</span>
+          <>
+            <div className="voting-controls voting-controls-down">
+              <div
+                className="btn-vote btn-up-vote vote-btn-lg primary-btn-vote"
+                onClick={() => {
+                  this.changeMode("up");
+                }}
+              >
+                <span className="btn-inner no-rotate">{chevronUpSvgForSlider}</span>
+              </div>
+              <div className="estimated">
+                <FormattedCurrency
+                  {...this.props}
+                  value={this.estimate(downSliderVal)}
+                  fixAt={3}
+                />
+              </div>
+              <div className="slider slider-down">
+                <Form.Control
+                  type="range"
+                  custom={true}
+                  step={0.1}
+                  min={-100}
+                  max={-0.1}
+                  value={downSliderVal}
+                  onChange={this.downSliderChanged}
+                  id={post_id.toString()}
+                />
+              </div>
+              <div className="percentage">{`${downSliderVal.toFixed(1)}%`}</div>
+              <div
+                className="btn-vote btn-down-vote vote-btn-lg secondary-btn-vote"
+                onClick={this.downVoteClicked}
+              >
+                <span className="btn-inner">{chevronDownSvgForSlider}</span>
+              </div>
             </div>
-            <div className="estimated">
-              <FormattedCurrency
-                {...this.props}
-                value={this.estimate(downSliderVal)}
-                fixAt={3}
-              />
-            </div>
-            <div className="slider slider-down">
-              <Form.Control
-                type="range"
-                custom={true}
-                step={0.1}
-                min={-100}
-                max={-0.1}
-                value={downSliderVal}
-                onChange={this.downSliderChanged}
-              />
-            </div>
-            <div className="percentage">{`${downSliderVal.toFixed(1)}%`}</div>
-            <div
-              className="btn-vote btn-down-vote vote-btn-lg secondary-btn-vote"
-              onClick={this.downVoteClicked}
-            >
-              <span className="btn-inner">{chevronDownSvgForSlider}</span>
-            </div>
-          </div>
-        )}
-        {wrongValueDown && (
-          <div className="vote-error">
-          <p>Previous value is not acceptable. Vote with a different value</p>
-          </div>
+          
+            {wrongValueDown && (
+              <div className="vote-error">
+              <p>{_t('entry-list-item.vote-error')}</p>
+              </div>
+            )}
+            {showWarning && (
+              <div className="vote-warning">
+                <p>{_t('entry-list-item.vote-warning')}</p>
+              </div>
+            )}
+          </>
         )}
       </>
     );
@@ -377,7 +403,7 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
     const downVoted = votes.some(
       (v) => v.voter === activeUser.username && v.rshares < 0
     );
-
+    
     return { upVoted, downVoted };
   };
 
@@ -400,7 +426,7 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
     if (upVoted || downVoted) {
       cls = _c(
         `btn-vote ${
-          upVoted ? "btn-up-vote primary-btn-done" : "btn-down-vote"
+          upVoted ? "btn-up-vote primary-btn-done" : "btn-down-vote secondary-btn-done"
         } ${inProgress ? "in-progress" : ""} voted`
       );
     }
@@ -411,10 +437,11 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
       }
       tooltipClass = "tooltip-vote";
     }
+
     const voteBtnClass = `btn-inner ${
       tooltipClass.length > 0
-        ? upVoted || downVoted
-          ? "primary-btn-done"
+        ? upVoted ? "primary-btn-done" : downVoted
+          ? "secondary-btn-done"
           : "primary-btn"
         : ""
     }`;
@@ -442,6 +469,8 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
                             {...this.props}
                             activeUser={activeUser}
                             onClick={this.vote}
+                            upVoted={upVoted}
+                            downVoted={downVoted}
                           />
                         )}
                       </span>

@@ -9,7 +9,7 @@ import isEqual from "react-fast-compare";
 import moment from "moment";
 
 import {Global} from "../../store/global/types";
-import {Account} from "../../store/accounts/types";
+import {Account, FullAccount} from "../../store/accounts/types";
 import {ActiveUser} from "../../store/active-user/types";
 
 import UserAvatar from "../user-avatar";
@@ -36,11 +36,14 @@ import {
     rssSvg,
 } from "../../img/svg";
 
+import { EditPic } from '../community-card'
+
 interface Props {
     global: Global;
     history: History;
     activeUser: ActiveUser | null;
     account: Account;
+    section?: string;
     addAccount: (data: Account) => void;
     updateActiveUser: (data?: Account) => void;
 }
@@ -53,7 +56,7 @@ interface State {
 export class ProfileCard extends Component<Props, State> {
     state: State = {
         followersList: false,
-        followingList: false,
+        followingList: false
     };
 
     componentDidUpdate(prevProps: Readonly<Props>): void {
@@ -67,6 +70,7 @@ export class ProfileCard extends Component<Props, State> {
     shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
         return !isEqual(this.props.account, nextProps.account)
             || !isEqual(this.props.activeUser, nextProps.activeUser)
+            || !isEqual(this.props.section, nextProps.section)
             || !isEqual(this.state, nextState);
     }
 
@@ -81,7 +85,7 @@ export class ProfileCard extends Component<Props, State> {
     };
 
     render() {
-        const {account, activeUser} = this.props;
+        const {account, activeUser, section} = this.props;
 
         if (!account.__loaded) {
             return <div className="profile-card">
@@ -98,11 +102,22 @@ export class ProfileCard extends Component<Props, State> {
         const vPower = votingPower(account);
 
         const isMyProfile = activeUser && activeUser.username === account.name && activeUser.data.__loaded && activeUser.data.profile;
+        const isSettings = section === 'settings'
 
         return (
             <div className="profile-card">
                 <div className="profile-avatar">
-                    {UserAvatar({...this.props, username: account.name, size: "xLarge"})}
+                    {UserAvatar({...this.props, username: account.name, size: "xLarge", src: account.profile?.profile_image})}
+                    {isMyProfile && isSettings &&
+                        <EditPic 
+                            {...this.props} 
+                            account={account as FullAccount} 
+                            activeUser={activeUser!} 
+                            onUpdate={() => {
+                                this.forceUpdate();
+                            }} 
+                        />
+                    }
                     {account.__loaded && <div className="reputation">{accountReputation(account.reputation!)}</div>}
                 </div>
 
@@ -209,6 +224,7 @@ export default (p: Props) => {
         history: p.history,
         activeUser: p.activeUser,
         account: p.account,
+        section: p.section,
         addAccount: p.addAccount,
         updateActiveUser: p.updateActiveUser
     }

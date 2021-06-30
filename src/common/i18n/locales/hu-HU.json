@@ -17,6 +17,7 @@
     "days": "nap",
     "finish": "Befejezés",
     "next": "Következő",
+    "previous": "Previous",
     "back": "Vissza",
     "load-more": "További betöltés",
     "empty-list": "Itt nincs semmi",
@@ -31,6 +32,7 @@
     "hot": "feed",
     "trending": "feed",
     "created": "feed",
+    "muted": "feed",
     "found": "found",
     "feed": "feed",
     "blog": "blogs",
@@ -39,6 +41,7 @@
     "replies": "replies",
     "done": "Done",
     "apply": "Apply",
+    "warning": "Warning",
     "close": "Close"
   },
   "confirm": {
@@ -55,7 +58,14 @@
     "filter-muted": "Némítva",
     "filter-feed": "Hírfolyam",
     "filter-feed-friends": "Barátok",
-    "filter-feed-subscriptions": "Közösségek"
+    "filter-feed-subscriptions": "Közösségek",
+    "filter-global": "Global",
+    "filter-global-part1": "This feed contains ",
+    "filter-global-part2": " discussions on entire platform.",
+    "filter-global-part3": " discussions from Your subscribed communities. You can join more communities to fill up this feed.",
+    "filter-global-part4": " discussions from people you follow. You can follow more people to fill up this feed.",
+    "filter-global-discover": "Discover People",
+    "filter-global-join-communities": "Join Communities"
   },
   "navbar": {
     "discover": "Felfedezés",
@@ -127,6 +137,8 @@
     "email": "Add meg az e-mail címed",
     "ref": "Ajánló felhasználó (opcionális)",
     "submit": "Tovább",
+    "validation-username": "Username is required.",
+    "validation-email": "Email is required.",
     "success": "Küldtünk egy e-mailt ide {{email}}.",
     "success-2": "A sikeres regisztrációhoz kövesd az utasításokat.",
     "login-text-1": "Regisztráltál már?",
@@ -146,6 +158,8 @@
     "pinned": "Kitűzött Poszt",
     "replies": "1 válasz. Kattints ide és válaszolj.",
     "replies-n": "{{n}} válasz. Kattints ide és válaszolj.",
+    "vote-error": "Previous value is not acceptable. Vote with a different value.",
+    "vote-warning": "Voting 0% unvotes the content.",
     "no-replies": "Nincs válasz. Kattints ide és válaszolj."
   },
   "nsfw": {
@@ -310,7 +324,7 @@
     "edit": "Beállítások szerkesztése",
     "edit-team": "Szerepkör szerkesztése",
     "community-rewards": "Community Rewards",
-    "profile-image": "Közösségi profil kép",
+    "profile-image": "Profile image",
     "profile-image-edit": "Profilkép szerkesztése",
     "profile-image-updated": "Profil frissítve!"
   },
@@ -328,7 +342,8 @@
     "lang": "Nyelv",
     "description": "Leírás",
     "rules": "Szabályok",
-    "rules-help": "Soronként egy"
+    "rules-help": "Soronként egy",
+    "validation-title": "Title is required."
   },
   "communities": {
     "title": "Közösségek",
@@ -355,6 +370,8 @@
     "username-available": "Elérhető.",
     "username-not-available": "Nem elérhető.",
     "username-wrong-format": "Nem érvényes formátum. hive-1xxxxx formátum szükséges.",
+    "checkbox-validation": "Please tick this box if you want to proceed.",
+    "title-validation": "Please fill in this field.",
     "password": "Master password",
     "confirmation": "I have securely saved my owner username and password.",
     "submit": "Közösség létrehozása",
@@ -419,6 +436,7 @@
     "profile-image": "Profil kép",
     "website": "Weboldal",
     "location": "Tartózkodási hely",
+    "copied": "Referral link copied to clipboard.",
     "updated": "Profil frissítése sikeresen megtörtént!"
   },
   "image-upload-button": {
@@ -430,6 +448,7 @@
     "currency": "Pénznem",
     "language": "Nyelv",
     "nsfw": "Show NSFW content",
+    "referral-link": "Referral link",
     "updated": "Preference updated!"
   },
   "wallet": {
@@ -466,6 +485,8 @@
     "title": "Withdraw accounts",
     "account": "Fiók",
     "percent": "Százalék",
+    "validation-account": "Account is required.",
+    "validation-percent": "Percentage is required.",
     "auto-power-up": "Automatikus power up"
   },
   "points": {
@@ -600,9 +621,9 @@
     "group-interests": "Interests",
     "group-stake-operations": "Stake operations",
     "group-rewards": "Rewards",
-    "type-curation_reward": "Kurációs Jutalom",
-    "type-author_reward": "Szerzői Jutalom",
-    "type-comment_benefactor_reward": "Hozzászólás Támogatási Jutalom",
+    "type-curation_reward": "Curation reward",
+    "type-author_reward": "Author reward",
+    "type-comment_benefactor_reward": "Comment benefactor reward",
     "type-claim_reward_balance": "Jutalmak átvétele",
     "type-transfer": "Átutalás",
     "type-transfer_to_vesting": "Átutalás a veting-be",
@@ -615,7 +636,10 @@
     "type-cancel_transfer_from_savings": "Cancel transfer from savings",
     "type-cancel_transfer_from_savings-detail": "From: <strong>@{{from}}</strong> <br/> Request id: <strong>{{request}}</strong>",
     "type-return_vesting_delegation": "Return vesting delegation",
-    "type-proposal_pay": "Proposal pay"
+    "type-proposal_pay": "Proposal pay",
+    "type-comment_payout_update": "Content payout update",
+    "type-comment_reward": "Content reward",
+    "type-effective_comment_vote": "Effective Vote"
   },
   "key-or-hot": {
     "sign": "Jel",
@@ -633,7 +657,7 @@
   "friends": {
     "followers": "Követők ({{n}})",
     "following": "Követés ({{n}})",
-    "search-placeholder": "Tagok keresése"
+    "search-placeholder": "Search"
   },
   "follow-controls": {
     "follow": "Követés",
@@ -730,6 +754,8 @@
     "username": "Username",
     "reward": "Reward",
     "user-error": "{{n}} is not a valid user.",
+    "validation-percentage": "Percentage is required.",
+    "validation-username": "Username is required.",
     "user-exists-error": "{{n}} is already in the list"
   },
   "post-scheduler": {
@@ -901,6 +927,9 @@
     "create-first": "Create your first snippet",
     "filter": "Search by title",
     "form-title": "Title",
+    "validation-title": "Title is required.",
+    "validation-value": "Value is required.",
+    "validation-body": "Body is required.",
     "form-body": "Body"
   },
   "password-update": {
@@ -912,12 +941,28 @@
     "error-new2": "Passwords must be same",
     "pass-gen": "Click to generate password",
     "label-check": "I have securely saved my generated password",
+    "validation-password": "Password is invalid.",
+    "validation-label": "Please tick this box to proceed.",
     "updated": "Password updated successfully!"
+  },
+  "view-keys": {
+    "title": "View Private keys",
+    "account": "Account",
+    "cur-pass": "Current password",
+    "owner": "Owner",
+    "active": "Active",
+    "posting": "Posting",
+    "memo": "Memo",
+    "view-keys": "Click to view keys",
+    "copied": "Private key copied into clipboard",
+    "error": "Password seem incorrect, please double check!"
   },
   "add-image": {
     "title": "Add Image",
     "text-label": "Image Text",
-    "link-label": "Image Link"
+    "link-label": "Image Link",
+    "validation-text": "Text is required.",
+    "validation-image": "Image is required."
   },
   "add-image-mobile": {
     "title": "Add Image",
@@ -928,7 +973,9 @@
   "add-link": {
     "title": "Add Link",
     "text-label": "Text",
-    "link-label": "https://"
+    "link-label": "https://",
+    "validation-text": "Text is required.",
+    "validation-link": "Link is required."
   },
   "scroll-to-top": {
     "title": "Görgetés az oldal tetejére"
@@ -1077,6 +1124,7 @@
     "subscribe-paragraph": "Be first to know what's happening in decentralized web.",
     "copy-rights": "©2021 Ecency. All right reserved.",
     "success-message-subscribe": "A verification link has been sent to your email account!",
+    "validation-email": "A valid email is required",
     "error-occured": "A server error has been occured."
   }
 }

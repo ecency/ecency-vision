@@ -17,6 +17,7 @@
     "days": "dana/i",
     "finish": "Završi",
     "next": "Dalje",
+    "previous": "Previous",
     "back": "Nazad",
     "load-more": "Učitaj još",
     "empty-list": "Ovde nema nista",
@@ -31,6 +32,7 @@
     "hot": "feed",
     "trending": "feed",
     "created": "feed",
+    "muted": "feed",
     "found": "found",
     "feed": "feed",
     "blog": "blogs",
@@ -39,6 +41,7 @@
     "replies": "replies",
     "done": "Gotovo",
     "apply": "Apply",
+    "warning": "Warning",
     "close": "Close"
   },
   "confirm": {
@@ -55,7 +58,14 @@
     "filter-muted": "Iskljuci Notifikacije",
     "filter-feed": "Novosti",
     "filter-feed-friends": "Prijatelji",
-    "filter-feed-subscriptions": "Zajednice"
+    "filter-feed-subscriptions": "Zajednice",
+    "filter-global": "Global",
+    "filter-global-part1": "This feed contains ",
+    "filter-global-part2": " discussions on entire platform.",
+    "filter-global-part3": " discussions from Your subscribed communities. You can join more communities to fill up this feed.",
+    "filter-global-part4": " discussions from people you follow. You can follow more people to fill up this feed.",
+    "filter-global-discover": "Discover People",
+    "filter-global-join-communities": "Join Communities"
   },
   "navbar": {
     "discover": "Otkrijte",
@@ -127,6 +137,8 @@
     "email": "Unesite svoju e-mail adresu",
     "ref": "Preporučeni korisnik (opcionalno)",
     "submit": "Nastavi",
+    "validation-username": "Username is required.",
+    "validation-email": "Email is required.",
     "success": "Poslali smo email za potvrdu na {{email}}.",
     "success-2": "Sledite uputstva da biste dovršili postupak registracije.",
     "login-text-1": "Da li imate nalog?",
@@ -146,6 +158,8 @@
     "pinned": "Zakačena objava",
     "replies": "1 odgovor. Kliknite da odgovorite.",
     "replies-n": "{{n}} odgovora. Kliknite da odgovorite.",
+    "vote-error": "Previous value is not acceptable. Vote with a different value.",
+    "vote-warning": "Voting 0% unvotes the content.",
     "no-replies": "Još nema odgovora. Kliknite da odgovorite."
   },
   "nsfw": {
@@ -310,7 +324,7 @@
     "edit": "Uredi podešavanja",
     "edit-team": "Uredite uloge",
     "community-rewards": "Community Rewards",
-    "profile-image": "Profilna slika zajednice",
+    "profile-image": "Profile image",
     "profile-image-edit": "Uredite profilnu sliku",
     "profile-image-updated": "Profilna slika ažurirana!"
   },
@@ -328,7 +342,8 @@
     "lang": "Jezik",
     "description": "Opis",
     "rules": "Pravila",
-    "rules-help": "Po jedan u liniji"
+    "rules-help": "Po jedan u liniji",
+    "validation-title": "Title is required."
   },
   "communities": {
     "title": "Zajednice",
@@ -355,6 +370,8 @@
     "username-available": "Dostupno.",
     "username-not-available": "Nedostupno.",
     "username-wrong-format": "Nije važeći format. Potreban hive-1xxxxx format.",
+    "checkbox-validation": "Please tick this box if you want to proceed.",
+    "title-validation": "Please fill in this field.",
     "password": "Master password",
     "confirmation": "Sigurno sam sačuvao svoje korisničko ime i lozinku vlasnika.",
     "submit": "Napravi Zajednicu",
@@ -419,6 +436,7 @@
     "profile-image": "Profilna slika",
     "website": "Web stranica",
     "location": "Lokacija",
+    "copied": "Referral link copied to clipboard.",
     "updated": "Profil je uspešno ažuriran!"
   },
   "image-upload-button": {
@@ -430,6 +448,7 @@
     "currency": "Valuta",
     "language": "Jezik",
     "nsfw": "Show NSFW content",
+    "referral-link": "Referral link",
     "updated": "Podešavanja su ažurirana!"
   },
   "wallet": {
@@ -466,6 +485,8 @@
     "title": "Povucite račune",
     "account": "Račun",
     "percent": "Procenat",
+    "validation-account": "Account is required.",
+    "validation-percent": "Percentage is required.",
     "auto-power-up": "Automatsko povećanje snage"
   },
   "points": {
@@ -600,9 +621,9 @@
     "group-interests": "Interests",
     "group-stake-operations": "Stake operations",
     "group-rewards": "Rewards",
-    "type-curation_reward": "Nagrade za glasanje",
-    "type-author_reward": "Nagrada za autora",
-    "type-comment_benefactor_reward": "Komentar o dobijenom procentu od nagrade",
+    "type-curation_reward": "Curation reward",
+    "type-author_reward": "Author reward",
+    "type-comment_benefactor_reward": "Comment benefactor reward",
     "type-claim_reward_balance": "Preuzmi nagrade",
     "type-transfer": "Prenos",
     "type-transfer_to_vesting": "Premestite u vesting",
@@ -615,7 +636,10 @@
     "type-cancel_transfer_from_savings": "Cancel transfer from savings",
     "type-cancel_transfer_from_savings-detail": "From: <strong>@{{from}}</strong> <br/> Request id: <strong>{{request}}</strong>",
     "type-return_vesting_delegation": "Return vesting delegation",
-    "type-proposal_pay": "Proposal pay"
+    "type-proposal_pay": "Proposal pay",
+    "type-comment_payout_update": "Content payout update",
+    "type-comment_reward": "Content reward",
+    "type-effective_comment_vote": "Effective Vote"
   },
   "key-or-hot": {
     "sign": "Potpis",
@@ -633,7 +657,7 @@
   "friends": {
     "followers": "Pratioci ({{n}})",
     "following": "Praćenja ({{n}})",
-    "search-placeholder": "Pretraži korisnike"
+    "search-placeholder": "Search"
   },
   "follow-controls": {
     "follow": "Zaprati",
@@ -730,6 +754,8 @@
     "username": "Korisničko ime",
     "reward": "Nagrada",
     "user-error": "{{n}} is not a valid user.",
+    "validation-percentage": "Percentage is required.",
+    "validation-username": "Username is required.",
     "user-exists-error": "{{n}} is already in the list"
   },
   "post-scheduler": {
@@ -901,6 +927,9 @@
     "create-first": "Create your first snippet",
     "filter": "Search by title",
     "form-title": "Title",
+    "validation-title": "Title is required.",
+    "validation-value": "Value is required.",
+    "validation-body": "Body is required.",
     "form-body": "Body"
   },
   "password-update": {
@@ -912,12 +941,28 @@
     "error-new2": "Passwords must be same",
     "pass-gen": "Click to generate password",
     "label-check": "I have securely saved my generated password",
+    "validation-password": "Password is invalid.",
+    "validation-label": "Please tick this box to proceed.",
     "updated": "Password updated successfully!"
+  },
+  "view-keys": {
+    "title": "View Private keys",
+    "account": "Account",
+    "cur-pass": "Current password",
+    "owner": "Owner",
+    "active": "Active",
+    "posting": "Posting",
+    "memo": "Memo",
+    "view-keys": "Click to view keys",
+    "copied": "Private key copied into clipboard",
+    "error": "Password seem incorrect, please double check!"
   },
   "add-image": {
     "title": "Add Image",
     "text-label": "Image Text",
-    "link-label": "Image Link"
+    "link-label": "Image Link",
+    "validation-text": "Text is required.",
+    "validation-image": "Image is required."
   },
   "add-image-mobile": {
     "title": "Add Image",
@@ -928,7 +973,9 @@
   "add-link": {
     "title": "Add Link",
     "text-label": "Text",
-    "link-label": "https://"
+    "link-label": "https://",
+    "validation-text": "Text is required.",
+    "validation-link": "Link is required."
   },
   "scroll-to-top": {
     "title": "Idi na vrh"
@@ -1077,6 +1124,7 @@
     "subscribe-paragraph": "Be first to know what's happening in decentralized web.",
     "copy-rights": "©2021 Ecency. All right reserved.",
     "success-message-subscribe": "A verification link has been sent to your email account!",
+    "validation-email": "A valid email is required",
     "error-occured": "A server error has been occured."
   }
 }

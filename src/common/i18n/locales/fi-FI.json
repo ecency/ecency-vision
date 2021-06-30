@@ -17,6 +17,7 @@
     "days": "päivää",
     "finish": "Valmis",
     "next": "Seuraava",
+    "previous": "Previous",
     "back": "Takaisin",
     "load-more": "Lataa lisää",
     "empty-list": "Tyhjä",
@@ -31,6 +32,7 @@
     "hot": "feed",
     "trending": "feed",
     "created": "feed",
+    "muted": "feed",
     "found": "found",
     "feed": "feed",
     "blog": "blogs",
@@ -39,6 +41,7 @@
     "replies": "replies",
     "done": "Valmis",
     "apply": "Käytä",
+    "warning": "Warning",
     "close": "Sulje"
   },
   "confirm": {
@@ -55,7 +58,14 @@
     "filter-muted": "Mykistetty",
     "filter-feed": "Syöte",
     "filter-feed-friends": "Kaverit",
-    "filter-feed-subscriptions": "Yhteisöt"
+    "filter-feed-subscriptions": "Yhteisöt",
+    "filter-global": "Global",
+    "filter-global-part1": "This feed contains ",
+    "filter-global-part2": " discussions on entire platform.",
+    "filter-global-part3": " discussions from Your subscribed communities. You can join more communities to fill up this feed.",
+    "filter-global-part4": " discussions from people you follow. You can follow more people to fill up this feed.",
+    "filter-global-discover": "Discover People",
+    "filter-global-join-communities": "Join Communities"
   },
   "navbar": {
     "discover": "Löydä uutta",
@@ -127,6 +137,8 @@
     "email": "Syötä sähköpostiosoitteesi",
     "ref": "Suosittelija (valinnainen)",
     "submit": "Jatka",
+    "validation-username": "Username is required.",
+    "validation-email": "Email is required.",
     "success": "Olemme lähettäneet vahvistuksen sähköpostiin {{email}}.",
     "success-2": "Seuraa ohjeita suorittaaksesi rekisteröinti.",
     "login-text-1": "Onko sinulla jo käyttäjätili?",
@@ -146,6 +158,8 @@
     "pinned": "Kiinnitetty julkaisu",
     "replies": "1 vastaus. Klikkaa vastataksesi.",
     "replies-n": "{{n}} vastausta. Klikkaa vastataksesi.",
+    "vote-error": "Previous value is not acceptable. Vote with a different value.",
+    "vote-warning": "Voting 0% unvotes the content.",
     "no-replies": "Ei vielä vastauksia. Klikkaa vastataksesi."
   },
   "nsfw": {
@@ -310,7 +324,7 @@
     "edit": "Muokkaa asetuksia",
     "edit-team": "Muokkaa rooleja",
     "community-rewards": "Yhteisöpalkkiot",
-    "profile-image": "Yhteisön profiilikuva",
+    "profile-image": "Profile image",
     "profile-image-edit": "Muokkaa profiilikuvaa",
     "profile-image-updated": "Profiilikuva päivitetty!"
   },
@@ -328,7 +342,8 @@
     "lang": "Kieli",
     "description": "Kuvaus",
     "rules": "Säännöt",
-    "rules-help": "Yksi per rivi"
+    "rules-help": "Yksi per rivi",
+    "validation-title": "Title is required."
   },
   "communities": {
     "title": "Yhteisöt",
@@ -355,6 +370,8 @@
     "username-available": "Saatavilla.",
     "username-not-available": "Ei saatavilla.",
     "username-wrong-format": "Muoto ei kelpaa. hive-1xxxxx muoto vaaditaan.",
+    "checkbox-validation": "Please tick this box if you want to proceed.",
+    "title-validation": "Please fill in this field.",
     "password": "Pääsalasana",
     "confirmation": "Olen tallentanut turvallisesti omistajan käyttäjätunnuksen ja salasanan.",
     "submit": "Luo yhteisö",
@@ -419,6 +436,7 @@
     "profile-image": "Profiilikuva",
     "website": "Sivusto",
     "location": "Sijainti",
+    "copied": "Referral link copied to clipboard.",
     "updated": "Profiili on päivitetty onnistuneesti!"
   },
   "image-upload-button": {
@@ -430,6 +448,7 @@
     "currency": "Valuutta",
     "language": "Kieli",
     "nsfw": "Näytä NSFW-sisältö",
+    "referral-link": "Referral link",
     "updated": "Asetukset päivitetty!"
   },
   "wallet": {
@@ -466,6 +485,8 @@
     "title": "Palauta tilit",
     "account": "Tili",
     "percent": "Prosentti",
+    "validation-account": "Account is required.",
+    "validation-percent": "Percentage is required.",
     "auto-power-up": "Automaattinen power up"
   },
   "points": {
@@ -600,9 +621,9 @@
     "group-interests": "Korot",
     "group-stake-operations": "Panostustoiminnot",
     "group-rewards": "Palkkiot",
-    "type-curation_reward": "Tarkastuspalkkio",
-    "type-author_reward": "Julkaisupalkkio",
-    "type-comment_benefactor_reward": "Kommentin hyötyjäpalkkio",
+    "type-curation_reward": "Curation reward",
+    "type-author_reward": "Author reward",
+    "type-comment_benefactor_reward": "Comment benefactor reward",
     "type-claim_reward_balance": "Lunasta palkkiot",
     "type-transfer": "Siirto",
     "type-transfer_to_vesting": "Siirrä ansaintaan",
@@ -615,7 +636,10 @@
     "type-cancel_transfer_from_savings": "Peruuta siirto säästöistä",
     "type-cancel_transfer_from_savings-detail": "Alkaen: <strong>@{{from}}</strong> <br/> Pyynnön id: <strong>{{request}}</strong>",
     "type-return_vesting_delegation": "Palautusvaltuutus",
-    "type-proposal_pay": "Ehdotusten palkkio"
+    "type-proposal_pay": "Ehdotusten palkkio",
+    "type-comment_payout_update": "Content payout update",
+    "type-comment_reward": "Content reward",
+    "type-effective_comment_vote": "Effective Vote"
   },
   "key-or-hot": {
     "sign": "Allekirjoita",
@@ -633,7 +657,7 @@
   "friends": {
     "followers": "Seuraajat ({{n}})",
     "following": "Seurataan ({{n}})",
-    "search-placeholder": "Hae käyttäjiä"
+    "search-placeholder": "Search"
   },
   "follow-controls": {
     "follow": "Seuraa",
@@ -730,6 +754,8 @@
     "username": "Käyttäjänimi",
     "reward": "Palkkio",
     "user-error": "{{n}} ei ole kelvollinen käyttäjä.",
+    "validation-percentage": "Percentage is required.",
+    "validation-username": "Username is required.",
     "user-exists-error": "{{n}} on jo luettelossa"
   },
   "post-scheduler": {
@@ -901,6 +927,9 @@
     "create-first": "Luo ensimmäinen katkelmasi",
     "filter": "Etsi otsikon mukaan",
     "form-title": "Otsikko",
+    "validation-title": "Title is required.",
+    "validation-value": "Value is required.",
+    "validation-body": "Body is required.",
     "form-body": "Sisältö"
   },
   "password-update": {
@@ -912,12 +941,28 @@
     "error-new2": "Salasanojen on oltava samat",
     "pass-gen": "Klikkaa luodaksesi salasanan",
     "label-check": "Olen tallentanut turvallisesti salasanani",
+    "validation-password": "Password is invalid.",
+    "validation-label": "Please tick this box to proceed.",
     "updated": "Salasana on tallennettu onnistuneesti!"
+  },
+  "view-keys": {
+    "title": "View Private keys",
+    "account": "Account",
+    "cur-pass": "Current password",
+    "owner": "Owner",
+    "active": "Active",
+    "posting": "Posting",
+    "memo": "Memo",
+    "view-keys": "Click to view keys",
+    "copied": "Private key copied into clipboard",
+    "error": "Password seem incorrect, please double check!"
   },
   "add-image": {
     "title": "Lisää kuva",
     "text-label": "Kuvateksti",
-    "link-label": "Kuvan linkki"
+    "link-label": "Kuvan linkki",
+    "validation-text": "Text is required.",
+    "validation-image": "Image is required."
   },
   "add-image-mobile": {
     "title": "Lisää kuva",
@@ -928,7 +973,9 @@
   "add-link": {
     "title": "Add Link",
     "text-label": "Text",
-    "link-label": "https://"
+    "link-label": "https://",
+    "validation-text": "Text is required.",
+    "validation-link": "Link is required."
   },
   "scroll-to-top": {
     "title": "Vieritä ylös"
@@ -1077,6 +1124,7 @@
     "subscribe-paragraph": "Be first to know what's happening in decentralized web.",
     "copy-rights": "©2021 Ecency. All right reserved.",
     "success-message-subscribe": "A verification link has been sent to your email account!",
+    "validation-email": "A valid email is required",
     "error-occured": "A server error has been occured."
   }
 }

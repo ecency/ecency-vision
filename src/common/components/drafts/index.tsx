@@ -33,7 +33,7 @@ import {catchPostImage, postBodySummary, setProxyBase} from "@ecency/render-help
 setProxyBase(defaults.imageServer);
 
 const fallbackImage = require("../../img/fallback.png");
-const noImage = require("../../img/noimage.png");
+const noImage = require("../../img/noimage.svg");
 
 interface ItemProps {
     history: History;
@@ -203,7 +203,7 @@ export class Drafts extends BaseComponent<Props, State> {
         onHide();
     }
 
-    filterChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+    filterChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         const {value} = e.target;
         this.stateSet({filter: value});
     }

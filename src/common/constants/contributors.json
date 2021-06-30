@@ -1,5 +1,59 @@
 [
   {
+    "name": "noumantahir",
+    "contributes": [
+      "Developer (Mobile)"
+    ]
+  },
+  {
+    "name": "ghazanfar89",
+    "contributes": [
+      "Developer (Web)"
+    ]
+  },
+  {
+    "name": "zetrix",
+    "contributes": [
+      "Designer (Web/Mobile)"
+    ]
+  },
+  {
+    "name": "serkanakman",
+    "contributes": [
+      "Developer (Web)"
+    ]
+  },
+  {
+    "name": "furkankilic",
+    "contributes": [
+      "Developer (Mobile)"
+    ]
+  },
+  {
+    "name": "mistikk",
+    "contributes": [
+      "Developer (Mobile)"
+    ]
+  },
+  {
+    "name": "u-e",
+    "contributes": [
+      "Developer (Mobile)"
+    ]
+  },
+  {
+    "name": "hsynterkr",
+    "contributes": [
+      "Developer (Mobile)"
+    ]
+  },
+  {
+    "name": "davidke20",
+    "contributes":[
+      "Translation (Chinese)"
+    ]
+  },
+  {
     "name": "bhattg",
     "contributes": [
       "Translation (Hindi)"

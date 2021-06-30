@@ -7,6 +7,7 @@ import isEqual from "react-fast-compare";
 import {PrivateKey, PublicKey, cryptoUtils} from "@hiveio/dhive";
 
 import {History, Location} from "history";
+import * as ls from "../../util/local-storage";
 
 import {AppWindow} from "../../../client/window";
 
@@ -64,7 +65,7 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
         inProgress: false
     }
 
-    usernameChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+    usernameChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         const {value: username} = e.target;
         this.stateSet({username: username.trim().toLowerCase()});
     }
@@ -270,6 +271,11 @@ export class Login extends BaseComponent<LoginProps, State> {
             })
             .then(() => {
                 this.hide();
+                let shouldShowTutorialJourney = ls.get(`${user.username}HadTutorial`);
+                
+                if(!shouldShowTutorialJourney && (shouldShowTutorialJourney && shouldShowTutorialJourney!=='true')){
+                    ls.set(`${user.username}HadTutorial`, 'false');
+                }
             })
             .catch(() => {
                 error(_t('g.server-error'));
@@ -289,12 +295,12 @@ export class Login extends BaseComponent<LoginProps, State> {
         }
     }
 
-    usernameChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+    usernameChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         const {value: username} = e.target;
         this.stateSet({username: username.trim().toLowerCase()});
     }
 
-    keyChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+    keyChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
         const {value: key} = e.target;
         this.stateSet({key: key.trim()});
     }
@@ -422,6 +428,15 @@ export class Login extends BaseComponent<LoginProps, State> {
 
         doLogin(code, (withPostingKey ? key : null), account)
             .then(() => {
+                if(!ls.get(`${username}HadTutorial`) || ls.get(`${username}HadTutorial`) && ls.get(`${username}HadTutorial`)!=='true'){
+                    ls.set(`${username}HadTutorial`, 'false');
+                }
+
+                let shouldShowTutorialJourney = ls.get(`${username}HadTutorial`);
+                
+                if(!shouldShowTutorialJourney && (shouldShowTutorialJourney && shouldShowTutorialJourney==='false')){
+                    ls.set(`${username}HadTutorial`, 'false');
+                }
                 this.hide();
             })
             .catch(() => {
@@ -557,9 +572,10 @@ export default class LoginDialog extends Component<Props> {
     }
 
     doLogin = async (hsCode: string, postingKey: null | undefined | string, account: Account) => {
+        const {global, setActiveUser, updateActiveUser, addUser} = this.props;
+
         // get access token from code
         return hsTokenRenew(hsCode).then(x => {
-            const {setActiveUser, updateActiveUser, addUser} = this.props;
             const user: User = {
                 username: x.username,
                 accessToken: x.access_token,
@@ -577,8 +593,10 @@ export default class LoginDialog extends Component<Props> {
             // add account data of the user to the reducer
             updateActiveUser(account);
 
-            // login activity
-            usrActivity(user.username, 20);
+            if (global.usePrivate) {
+                // login activity
+                usrActivity(user.username, 20);
+            }
 
             // redirection based on path name
             const {location, history} = this.props;

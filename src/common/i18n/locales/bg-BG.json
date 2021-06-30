@@ -17,6 +17,7 @@
     "days": "дни",
     "finish": "Приключи",
     "next": "Напред",
+    "previous": "Previous",
     "back": "Назад",
     "load-more": "Зареди още",
     "empty-list": "Няма нищо тук",
@@ -31,6 +32,7 @@
     "hot": "feed",
     "trending": "feed",
     "created": "feed",
+    "muted": "feed",
     "found": "found",
     "feed": "feed",
     "blog": "blogs",
@@ -39,6 +41,7 @@
     "replies": "replies",
     "done": "Готово",
     "apply": "Потвърди",
+    "warning": "Warning",
     "close": "Затвори"
   },
   "confirm": {
@@ -55,7 +58,14 @@
     "filter-muted": "Заглушени",
     "filter-feed": "Моят поток",
     "filter-feed-friends": "Приятели",
-    "filter-feed-subscriptions": "Общности"
+    "filter-feed-subscriptions": "Общности",
+    "filter-global": "Global",
+    "filter-global-part1": "This feed contains ",
+    "filter-global-part2": " discussions on entire platform.",
+    "filter-global-part3": " discussions from Your subscribed communities. You can join more communities to fill up this feed.",
+    "filter-global-part4": " discussions from people you follow. You can follow more people to fill up this feed.",
+    "filter-global-discover": "Discover People",
+    "filter-global-join-communities": "Join Communities"
   },
   "navbar": {
     "discover": "Открийте",
@@ -127,6 +137,8 @@
     "email": "Въведете вашия имейл адрес",
     "ref": "Кой ви покани в платформата(Опция)",
     "submit": "Продължи",
+    "validation-username": "Username is required.",
+    "validation-email": "Email is required.",
     "success": "Изпратихме имейл на {{email}}.",
     "success-2": "Следвайте инструкциите за да завършите регистрирането.",
     "login-text-1": "Имате ли акаунт?",
@@ -146,6 +158,8 @@
     "pinned": "Закачен пост",
     "replies": "1 отговор. Натисни да отговориш.",
     "replies-n": "{{n}} отговори. Натисни за да отговориш.",
+    "vote-error": "Previous value is not acceptable. Vote with a different value.",
+    "vote-warning": "Voting 0% unvotes the content.",
     "no-replies": "Няма отговори все още. Натисни за да отговориш."
   },
   "nsfw": {
@@ -310,7 +324,7 @@
     "edit": "Редактирай настройките",
     "edit-team": "Редактиране на роли",
     "community-rewards": "Общностни награди",
-    "profile-image": "Обществена профилна снимка",
+    "profile-image": "Profile image",
     "profile-image-edit": "Редактирай профилната снимка ",
     "profile-image-updated": "Профилната снимка е обновена!"
   },
@@ -328,7 +342,8 @@
     "lang": "Език",
     "description": "Описание",
     "rules": "Правила",
-    "rules-help": "По едно на ред"
+    "rules-help": "По едно на ред",
+    "validation-title": "Title is required."
   },
   "communities": {
     "title": "Общности",
@@ -355,6 +370,8 @@
     "username-available": "Достъпно.",
     "username-not-available": "Не е достъпно.",
     "username-wrong-format": "Не е валиден формат. hive-1xxxxx формат е задължителен.",
+    "checkbox-validation": "Please tick this box if you want to proceed.",
+    "title-validation": "Please fill in this field.",
     "password": "Главна парола",
     "confirmation": "Безопасно си запазих потребителското име на собственика и паролата.",
     "submit": "Създаване на общност",
@@ -419,6 +436,7 @@
     "profile-image": "Профилна снимка",
     "website": "Уебсайт",
     "location": "Местоположение",
+    "copied": "Referral link copied to clipboard.",
     "updated": "Профила е актуализиран успешно!"
   },
   "image-upload-button": {
@@ -430,6 +448,7 @@
     "currency": "Валутa",
     "language": "Език",
     "nsfw": "Show NSFW content",
+    "referral-link": "Referral link",
     "updated": "Предпочитанията са обновени!"
   },
   "wallet": {
@@ -466,6 +485,8 @@
     "title": "Акаунти за теглене",
     "account": "Акаунт",
     "percent": "Процент",
+    "validation-account": "Account is required.",
+    "validation-percent": "Percentage is required.",
     "auto-power-up": "Автоматично увеличаване на силата"
   },
   "points": {
@@ -600,9 +621,9 @@
     "group-interests": "Interests",
     "group-stake-operations": "Stake operations",
     "group-rewards": "Rewards",
-    "type-curation_reward": "Награда за участие",
-    "type-author_reward": "Авторска награда",
-    "type-comment_benefactor_reward": "Награда от Благодетел за коментар",
+    "type-curation_reward": "Curation reward",
+    "type-author_reward": "Author reward",
+    "type-comment_benefactor_reward": "Comment benefactor reward",
     "type-claim_reward_balance": "Събиране на награди",
     "type-transfer": "Прехвърляне",
     "type-transfer_to_vesting": "Прехвърляне към придобивка",
@@ -615,7 +636,10 @@
     "type-cancel_transfer_from_savings": "Cancel transfer from savings",
     "type-cancel_transfer_from_savings-detail": "From: <strong>@{{from}}</strong> <br/> Request id: <strong>{{request}}</strong>",
     "type-return_vesting_delegation": "Return vesting delegation",
-    "type-proposal_pay": "Proposal pay"
+    "type-proposal_pay": "Proposal pay",
+    "type-comment_payout_update": "Content payout update",
+    "type-comment_reward": "Content reward",
+    "type-effective_comment_vote": "Effective Vote"
   },
   "key-or-hot": {
     "sign": "Вход",
@@ -633,7 +657,7 @@
   "friends": {
     "followers": "Последователи ({{n}})",
     "following": "Следва ({{n}})",
-    "search-placeholder": "Търсене на потребители"
+    "search-placeholder": "Search"
   },
   "follow-controls": {
     "follow": "Последвай",
@@ -730,6 +754,8 @@
     "username": "Потребителско име",
     "reward": "Награда",
     "user-error": "{{n}} не е валиден потребител.",
+    "validation-percentage": "Percentage is required.",
+    "validation-username": "Username is required.",
     "user-exists-error": "{{n}} е вече в избран"
   },
   "post-scheduler": {
@@ -901,6 +927,9 @@
     "create-first": "Създайте своя първи откъс",
     "filter": "Търси по заглавие",
     "form-title": "Заглавие",
+    "validation-title": "Title is required.",
+    "validation-value": "Value is required.",
+    "validation-body": "Body is required.",
     "form-body": "Основа"
   },
   "password-update": {
@@ -912,12 +941,28 @@
     "error-new2": "Паролите трябва да са същите",
     "pass-gen": "Натисни за да създадеш парола",
     "label-check": "Безопасно си запазих създадената паролата",
+    "validation-password": "Password is invalid.",
+    "validation-label": "Please tick this box to proceed.",
     "updated": "Паролата беше успешно променена!"
+  },
+  "view-keys": {
+    "title": "View Private keys",
+    "account": "Account",
+    "cur-pass": "Current password",
+    "owner": "Owner",
+    "active": "Active",
+    "posting": "Posting",
+    "memo": "Memo",
+    "view-keys": "Click to view keys",
+    "copied": "Private key copied into clipboard",
+    "error": "Password seem incorrect, please double check!"
   },
   "add-image": {
     "title": "Добави Снимка",
     "text-label": "Текст на снимката",
-    "link-label": "Линк към снимката"
+    "link-label": "Линк към снимката",
+    "validation-text": "Text is required.",
+    "validation-image": "Image is required."
   },
   "add-image-mobile": {
     "title": "Add Image",
@@ -928,7 +973,9 @@
   "add-link": {
     "title": "Добави линк",
     "text-label": "Текст",
-    "link-label": "https://"
+    "link-label": "https://",
+    "validation-text": "Text is required.",
+    "validation-link": "Link is required."
   },
   "scroll-to-top": {
     "title": "Прелистване до горе"
@@ -1077,6 +1124,7 @@
     "subscribe-paragraph": "Be first to know what's happening in decentralized web.",
     "copy-rights": "©2021 Ecency. All right reserved.",
     "success-message-subscribe": "A verification link has been sent to your email account!",
+    "validation-email": "A valid email is required",
     "error-occured": "A server error has been occured."
   }
 }

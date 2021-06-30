@@ -17,6 +17,7 @@
     "days": "ημέρες",
     "finish": "Ολοκλήρωση",
     "next": "Επόμενο",
+    "previous": "Previous",
     "back": "Πίσω",
     "load-more": "Φόρτωσε περισσότερα",
     "empty-list": "Δεν υπάρχει τίποτα εδώ",
@@ -31,6 +32,7 @@
     "hot": "feed",
     "trending": "feed",
     "created": "feed",
+    "muted": "feed",
     "found": "found",
     "feed": "feed",
     "blog": "blogs",
@@ -39,6 +41,7 @@
     "replies": "replies",
     "done": "Έτοιμο",
     "apply": "Apply",
+    "warning": "Warning",
     "close": "Close"
   },
   "confirm": {
@@ -55,7 +58,14 @@
     "filter-muted": "Σε σίγαση",
     "filter-feed": "Ροή",
     "filter-feed-friends": "Φίλοι",
-    "filter-feed-subscriptions": "Κοινότητες"
+    "filter-feed-subscriptions": "Κοινότητες",
+    "filter-global": "Global",
+    "filter-global-part1": "This feed contains ",
+    "filter-global-part2": " discussions on entire platform.",
+    "filter-global-part3": " discussions from Your subscribed communities. You can join more communities to fill up this feed.",
+    "filter-global-part4": " discussions from people you follow. You can follow more people to fill up this feed.",
+    "filter-global-discover": "Discover People",
+    "filter-global-join-communities": "Join Communities"
   },
   "navbar": {
     "discover": "Ανακαλύψτε",
@@ -127,6 +137,8 @@
     "email": "Εισάγετε την ηλεκτρονική σας διεύθυνση",
     "ref": "Συστημένος χρήστης (προαιρετικό)",
     "submit": "Συνέχεια",
+    "validation-username": "Username is required.",
+    "validation-email": "Email is required.",
     "success": "Έχουμε στείλει ένα email στο {{email}}.",
     "success-2": "Ακολουθήστε τις οδηγίες για να ολοκληρώσετε τη διαδικασία εγγραφής.",
     "login-text-1": "Έχετε λογαριασμό;",
@@ -146,6 +158,8 @@
     "pinned": "Καρφιτσωμένη Δημοσίευση",
     "replies": "1 απάντηση. Κάντε κλικ για να απαντήσετε.",
     "replies-n": "{{n}} απαντήσεις. Κάντε κλικ για να απαντήσετε.",
+    "vote-error": "Previous value is not acceptable. Vote with a different value.",
+    "vote-warning": "Voting 0% unvotes the content.",
     "no-replies": "Καμία απάντηση ακόμα. Κάντε κλικ για να απαντήσετε."
   },
   "nsfw": {
@@ -310,7 +324,7 @@
     "edit": "Επεξεργασία Ιδιοτήτων",
     "edit-team": "Επεξεργασία ρόλών",
     "community-rewards": "Community Rewards",
-    "profile-image": "Φωτογραφία προφίλ κοινότητας",
+    "profile-image": "Profile image",
     "profile-image-edit": "Επεξεργαστείτε την φωτογραφία προφίλ",
     "profile-image-updated": "Η φωτογραφία προφίλ ενημερώθηκε!"
   },
@@ -328,7 +342,8 @@
     "lang": "Γλώσσα",
     "description": "Περιγραφή",
     "rules": "Κανόνες",
-    "rules-help": "Ένα ανά γραμμή"
+    "rules-help": "Ένα ανά γραμμή",
+    "validation-title": "Title is required."
   },
   "communities": {
     "title": "Κοινότητες",
@@ -355,6 +370,8 @@
     "username-available": "Διαθέσιμο.",
     "username-not-available": "Μη διαθέσιμο.",
     "username-wrong-format": "Μή έγκυρη μορφή. hive-1xxxxx μορφή απαιτείται.",
+    "checkbox-validation": "Please tick this box if you want to proceed.",
+    "title-validation": "Please fill in this field.",
     "password": "Master password",
     "confirmation": "Έχω αποθηκεύσει το όνομα ιδιοκτήτη και τον κωδικό μου σε ασφαλές μέρος.",
     "submit": "Δημιουργήστε κοινότητα",
@@ -419,6 +436,7 @@
     "profile-image": "Εικόνα Προφίλ",
     "website": "Ιστοσελίδα",
     "location": "Τοποθεσία",
+    "copied": "Referral link copied to clipboard.",
     "updated": "Ενημέρωση προφίλ με επιτυχία!"
   },
   "image-upload-button": {
@@ -430,6 +448,7 @@
     "currency": "Νόμισμα",
     "language": "Γλώσσα",
     "nsfw": "Show NSFW content",
+    "referral-link": "Referral link",
     "updated": "Οι προτιμήσεις ενημερώθηκαν!"
   },
   "wallet": {
@@ -466,6 +485,8 @@
     "title": "Λογαριασμοί Ανάληψης",
     "account": "Λογαριασμός",
     "percent": "Ποσοστό",
+    "validation-account": "Account is required.",
+    "validation-percent": "Percentage is required.",
     "auto-power-up": "Αυτομάτως κάνε power up"
   },
   "points": {
@@ -600,9 +621,9 @@
     "group-interests": "Interests",
     "group-stake-operations": "Stake operations",
     "group-rewards": "Rewards",
-    "type-curation_reward": "Ανταμοιβή επμέλειας",
-    "type-author_reward": "Ανταμοιβή συγγραφέα",
-    "type-comment_benefactor_reward": "Σχόλιο Ανταμοιβής Benefactor",
+    "type-curation_reward": "Curation reward",
+    "type-author_reward": "Author reward",
+    "type-comment_benefactor_reward": "Comment benefactor reward",
     "type-claim_reward_balance": "Διεκδικήστε ανταμοιβές",
     "type-transfer": "Μεταφορά",
     "type-transfer_to_vesting": "Μεταφορά σε κατοχυρωμένα",
@@ -615,7 +636,10 @@
     "type-cancel_transfer_from_savings": "Cancel transfer from savings",
     "type-cancel_transfer_from_savings-detail": "From: <strong>@{{from}}</strong> <br/> Request id: <strong>{{request}}</strong>",
     "type-return_vesting_delegation": "Return vesting delegation",
-    "type-proposal_pay": "Proposal pay"
+    "type-proposal_pay": "Proposal pay",
+    "type-comment_payout_update": "Content payout update",
+    "type-comment_reward": "Content reward",
+    "type-effective_comment_vote": "Effective Vote"
   },
   "key-or-hot": {
     "sign": "Υπογραφή",
@@ -633,7 +657,7 @@
   "friends": {
     "followers": "Ακόλουθοι ({{n}})",
     "following": "Ακολουθείτε ({{n}})",
-    "search-placeholder": "Αναζήτηση χρηστών"
+    "search-placeholder": "Search"
   },
   "follow-controls": {
     "follow": "Ακολούθησε",
@@ -730,6 +754,8 @@
     "username": "Όνομα Χρήστη",
     "reward": "Ανταμοιβή",
     "user-error": "{{n}} δεν είναι έγκυρος χρήστη.",
+    "validation-percentage": "Percentage is required.",
+    "validation-username": "Username is required.",
     "user-exists-error": "{{n}} Το αρχείο υπάρχει ήδη στη λίστα"
   },
   "post-scheduler": {
@@ -901,6 +927,9 @@
     "create-first": "Create your first snippet",
     "filter": "Search by title",
     "form-title": "Title",
+    "validation-title": "Title is required.",
+    "validation-value": "Value is required.",
+    "validation-body": "Body is required.",
     "form-body": "Body"
   },
   "password-update": {
@@ -912,12 +941,28 @@
     "error-new2": "Passwords must be same",
     "pass-gen": "Click to generate password",
     "label-check": "I have securely saved my generated password",
+    "validation-password": "Password is invalid.",
+    "validation-label": "Please tick this box to proceed.",
     "updated": "Password updated successfully!"
+  },
+  "view-keys": {
+    "title": "View Private keys",
+    "account": "Account",
+    "cur-pass": "Current password",
+    "owner": "Owner",
+    "active": "Active",
+    "posting": "Posting",
+    "memo": "Memo",
+    "view-keys": "Click to view keys",
+    "copied": "Private key copied into clipboard",
+    "error": "Password seem incorrect, please double check!"
   },
   "add-image": {
     "title": "Add Image",
     "text-label": "Image Text",
-    "link-label": "Image Link"
+    "link-label": "Image Link",
+    "validation-text": "Text is required.",
+    "validation-image": "Image is required."
   },
   "add-image-mobile": {
     "title": "Add Image",
@@ -928,7 +973,9 @@
   "add-link": {
     "title": "Add Link",
     "text-label": "Text",
-    "link-label": "https://"
+    "link-label": "https://",
+    "validation-text": "Text is required.",
+    "validation-link": "Link is required."
   },
   "scroll-to-top": {
     "title": "Κύλιση στην αρχή"
@@ -1077,6 +1124,7 @@
     "subscribe-paragraph": "Be first to know what's happening in decentralized web.",
     "copy-rights": "©2021 Ecency. All right reserved.",
     "success-message-subscribe": "A verification link has been sent to your email account!",
+    "validation-email": "A valid email is required",
     "error-occured": "A server error has been occured."
   }
 }

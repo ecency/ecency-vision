@@ -17,6 +17,7 @@
     "days": "dni",
     "finish": "Zakończ",
     "next": "Dalej",
+    "previous": "Previous",
     "back": "Wstecz",
     "load-more": "Załaduj więcej",
     "empty-list": "Nic tu nie ma",
@@ -31,6 +32,7 @@
     "hot": "feed",
     "trending": "feed",
     "created": "feed",
+    "muted": "feed",
     "found": "znaleziono",
     "feed": "aktualności",
     "blog": "blog",
@@ -39,6 +41,7 @@
     "replies": "odpowiedzi",
     "done": "Zakończono",
     "apply": "Zastosuj",
+    "warning": "Warning",
     "close": "Zamknij"
   },
   "confirm": {
@@ -55,7 +58,14 @@
     "filter-muted": "Wyciszone",
     "filter-feed": "Aktualności",
     "filter-feed-friends": "Znajomi",
-    "filter-feed-subscriptions": "Społeczności"
+    "filter-feed-subscriptions": "Społeczności",
+    "filter-global": "Global",
+    "filter-global-part1": "This feed contains ",
+    "filter-global-part2": " discussions on entire platform.",
+    "filter-global-part3": " discussions from Your subscribed communities. You can join more communities to fill up this feed.",
+    "filter-global-part4": " discussions from people you follow. You can follow more people to fill up this feed.",
+    "filter-global-discover": "Discover People",
+    "filter-global-join-communities": "Join Communities"
   },
   "navbar": {
     "discover": "Odkrywaj",
@@ -127,6 +137,8 @@
     "email": "Podaj swój adres e-mail",
     "ref": "Użytkownik rekomendowany (opcjonalnie)",
     "submit": "Dalej",
+    "validation-username": "Username is required.",
+    "validation-email": "Email is required.",
     "success": "Wysłaliśmy e-mail weryfikacyjny na adres {{email}}.",
     "success-2": "Postępuj zgodnie z instrukcjami, aby dokończyć proces rejestracji.",
     "login-text-1": "Masz już konto?",
@@ -146,6 +158,8 @@
     "pinned": "Przypięty post",
     "replies": "1 odpowiedź. Kliknij aby odpowiedzieć.",
     "replies-n": "{{n}} odpowiedzi. Kliknij aby odpowiedzieć.",
+    "vote-error": "Previous value is not acceptable. Vote with a different value.",
+    "vote-warning": "Voting 0% unvotes the content.",
     "no-replies": "Brak odpowiedzi. Kliknij aby odpowiedzieć."
   },
   "nsfw": {
@@ -310,7 +324,7 @@
     "edit": "Edytuj ustawienia",
     "edit-team": "Edytuj rolę",
     "community-rewards": "Community Rewards",
-    "profile-image": "Obraz okładki społeczności",
+    "profile-image": "Profile image",
     "profile-image-edit": "Edytuj obraz profilu",
     "profile-image-updated": "Zdjęcie profilowe zaktualizowane!"
   },
@@ -328,7 +342,8 @@
     "lang": "Język",
     "description": "Opis",
     "rules": "Zasady",
-    "rules-help": "Jeden na linię"
+    "rules-help": "Jeden na linię",
+    "validation-title": "Title is required."
   },
   "communities": {
     "title": "Społeczności",
@@ -355,6 +370,8 @@
     "username-available": "Dostępny.",
     "username-not-available": "Niedostępny.",
     "username-wrong-format": "Nieprawidłowy format. hive-1xxxxx wymagany format.",
+    "checkbox-validation": "Please tick this box if you want to proceed.",
+    "title-validation": "Please fill in this field.",
     "password": "Hasło główne",
     "confirmation": "Bezpiecznie zapisałem nazwę użytkownika i hasło właściciela.",
     "submit": "Stwórz społeczność",
@@ -419,6 +436,7 @@
     "profile-image": "Zdjęcie profilowe",
     "website": "Strona internetowa",
     "location": "Lokalizacja",
+    "copied": "Referral link copied to clipboard.",
     "updated": "Pomyślnie zaktualizowano profil!"
   },
   "image-upload-button": {
@@ -430,6 +448,7 @@
     "currency": "Waluta",
     "language": "Język",
     "nsfw": "Show NSFW content",
+    "referral-link": "Referral link",
     "updated": "Ustawienia zostały zaktualizowane!"
   },
   "wallet": {
@@ -466,6 +485,8 @@
     "title": "Konta do wypłaty",
     "account": "Konto",
     "percent": "Procent",
+    "validation-account": "Account is required.",
+    "validation-percent": "Percentage is required.",
     "auto-power-up": "Automatycznie zwiększ moc"
   },
   "points": {
@@ -600,9 +621,9 @@
     "group-interests": "Odsetki",
     "group-stake-operations": "Operacje związane z zastawem",
     "group-rewards": "Nagrody",
-    "type-curation_reward": "Nagroda kuratorska",
-    "type-author_reward": "Nagroda autora",
-    "type-comment_benefactor_reward": "Nagroda dla beneficjenta komentarza",
+    "type-curation_reward": "Curation reward",
+    "type-author_reward": "Author reward",
+    "type-comment_benefactor_reward": "Comment benefactor reward",
     "type-claim_reward_balance": "Odbierz wynagrodzenia",
     "type-transfer": "Przelew",
     "type-transfer_to_vesting": "Transfer do udziałów",
@@ -615,7 +636,10 @@
     "type-cancel_transfer_from_savings": "Anuluj transfer z oszczędności",
     "type-cancel_transfer_from_savings-detail": "From: <strong>@{{from}}</strong> <br/> Request id: <strong>{{request}}</strong>",
     "type-return_vesting_delegation": "Return vesting delegation",
-    "type-proposal_pay": "Proposal pay"
+    "type-proposal_pay": "Proposal pay",
+    "type-comment_payout_update": "Content payout update",
+    "type-comment_reward": "Content reward",
+    "type-effective_comment_vote": "Effective Vote"
   },
   "key-or-hot": {
     "sign": "Podpis",
@@ -633,7 +657,7 @@
   "friends": {
     "followers": "Obserwujący ({{n}})",
     "following": "Obserwujący ({{n}})",
-    "search-placeholder": "Wyszukaj użytkowników"
+    "search-placeholder": "Search"
   },
   "follow-controls": {
     "follow": "Obserwuj",
@@ -730,6 +754,8 @@
     "username": "Nazwa użytkownika",
     "reward": "Nagroda",
     "user-error": "Użytkownik {{n}} nie istnieje.",
+    "validation-percentage": "Percentage is required.",
+    "validation-username": "Username is required.",
     "user-exists-error": "Użytkownik {{n}} został już dodany"
   },
   "post-scheduler": {
@@ -901,6 +927,9 @@
     "create-first": "Create your first snippet",
     "filter": "Search by title",
     "form-title": "Title",
+    "validation-title": "Title is required.",
+    "validation-value": "Value is required.",
+    "validation-body": "Body is required.",
     "form-body": "Body"
   },
   "password-update": {
@@ -912,12 +941,28 @@
     "error-new2": "Passwords must be same",
     "pass-gen": "Click to generate password",
     "label-check": "I have securely saved my generated password",
+    "validation-password": "Password is invalid.",
+    "validation-label": "Please tick this box to proceed.",
     "updated": "Password updated successfully!"
+  },
+  "view-keys": {
+    "title": "View Private keys",
+    "account": "Account",
+    "cur-pass": "Current password",
+    "owner": "Owner",
+    "active": "Active",
+    "posting": "Posting",
+    "memo": "Memo",
+    "view-keys": "Click to view keys",
+    "copied": "Private key copied into clipboard",
+    "error": "Password seem incorrect, please double check!"
   },
   "add-image": {
     "title": "Add Image",
     "text-label": "Image Text",
-    "link-label": "Image Link"
+    "link-label": "Image Link",
+    "validation-text": "Text is required.",
+    "validation-image": "Image is required."
   },
   "add-image-mobile": {
     "title": "Add Image",
@@ -928,7 +973,9 @@
   "add-link": {
     "title": "Add Link",
     "text-label": "Text",
-    "link-label": "https://"
+    "link-label": "https://",
+    "validation-text": "Text is required.",
+    "validation-link": "Link is required."
   },
   "scroll-to-top": {
     "title": "Powrót do góry"
@@ -1077,6 +1124,7 @@
     "subscribe-paragraph": "Be first to know what's happening in decentralized web.",
     "copy-rights": "©2021 Ecency. All right reserved.",
     "success-message-subscribe": "A verification link has been sent to your email account!",
+    "validation-email": "A valid email is required",
     "error-occured": "A server error has been occured."
   }
 }

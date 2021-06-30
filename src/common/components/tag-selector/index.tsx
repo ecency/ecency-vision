@@ -57,7 +57,7 @@ export class TagSelector extends Component<Props, State> {
         this.setState({hasFocus: false});
     };
 
-    onChange = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    onChange = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         const value = e.target.value.toLocaleLowerCase().trim();
         this.setState({value});
     };

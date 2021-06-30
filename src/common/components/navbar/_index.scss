@@ -70,7 +70,7 @@
       margin-left: 0;
     }
     @media (max-width: $sm-break) {
-      font-size: 1.3rem;
+      font-size: 1rem;
     }
     @media (max-width: $xsm-break) {
       font-size: 1rem;
@@ -317,6 +317,10 @@ body.medium-zoom--opened {
 }
 
 .pencil {
+  svg {
+    width: 19px !important;
+    height: 19px !important;
+  }
   @include themify(day) {
     color: $warm-grey;
   }

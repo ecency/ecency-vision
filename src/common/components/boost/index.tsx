@@ -101,7 +101,7 @@ export class Boost extends BaseComponent<Props, State> {
         });
     }
 
-    pathChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    pathChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         const path = e.target.value;
         this.stateSet({path, postError: ''});
 
@@ -145,7 +145,7 @@ export class Boost extends BaseComponent<Props, State> {
         return author.length >= 3 && permlink.length >= 3;
     };
 
-    sliderChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    sliderChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         const amount = Number(e.target.value);
         this.stateSet({amount}, () => {
             this.checkBalance();

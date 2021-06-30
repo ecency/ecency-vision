@@ -98,14 +98,14 @@ export class Promote extends BaseComponent<Props, State> {
         });
     }
 
-    durationChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    durationChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         const duration = Number(e.target.value);
         this.stateSet({duration}, () => {
             this.checkBalance();
         });
     }
 
-    pathChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    pathChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         const path = e.target.value;
         this.stateSet({path, postError: ''});
 

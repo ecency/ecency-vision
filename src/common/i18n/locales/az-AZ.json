@@ -17,6 +17,7 @@
     "days": "gün",
     "finish": "Bitir",
     "next": "Növbəti",
+    "previous": "Previous",
     "back": "Geri",
     "load-more": "Daha çox yüklə",
     "empty-list": "Burada heç nə yoxdur",
@@ -28,17 +29,19 @@
     "off": "Bağlı",
     "yes": "Bəli",
     "no": "Xeyr",
-    "hot": "feed",
-    "trending": "feed",
-    "created": "feed",
-    "found": "found",
-    "feed": "feed",
-    "blog": "blogs",
-    "posts": "posts",
-    "comments": "comments",
-    "replies": "replies",
+    "hot": "axın",
+    "trending": "axın",
+    "created": "axın",
+    "muted": "feed",
+    "found": "tapıldı",
+    "feed": "axın",
+    "blog": "bloq",
+    "posts": "göndərişlər",
+    "comments": "rəylər",
+    "replies": "cavablar",
     "done": "Hazırdır",
     "apply": "Tətbiq et",
+    "warning": "Xəbərdarlıq",
     "close": "Bağla"
   },
   "confirm": {
@@ -47,15 +50,22 @@
     "cancel": "İmtina"
   },
   "entry-filter": {
-    "filter-trending": "Trending",
-    "filter-hot": "Hot",
+    "filter-trending": "Trend",
+    "filter-hot": "Gündəm",
     "filter-created": "Yeni",
     "filter-promoted": "Tanıdılan",
     "filter-payout": "Ödəmələr",
     "filter-muted": "Səssizdə",
     "filter-feed": "Axın",
     "filter-feed-friends": "Dostlar",
-    "filter-feed-subscriptions": "Cəmiyyətlər"
+    "filter-feed-subscriptions": "Cəmiyyətlər",
+    "filter-global": "Qlobal",
+    "filter-global-part1": "Bu axın ehtiva edir ",
+    "filter-global-part2": " discussions on entire platform.",
+    "filter-global-part3": " discussions from Your subscribed communities. You can join more communities to fill up this feed.",
+    "filter-global-part4": " discussions from people you follow. You can follow more people to fill up this feed.",
+    "filter-global-discover": "Discover People",
+    "filter-global-join-communities": "Join Communities"
   },
   "navbar": {
     "discover": "Kəşf et",
@@ -73,8 +83,8 @@
     "header-community": "Cəmiyyətlər"
   },
   "tag": {
-    "unmoderated": "Unmoderated topics",
-    "moderated": "Moderated community"
+    "unmoderated": "İdarə edilməyən mövzular",
+    "moderated": "İdarə edilən cəmiyyət"
   },
   "switch-lang": {
     "contributors": "Töhfə verənlər"
@@ -125,8 +135,10 @@
     "learn-more": "Learn more about benefits in our <a href=\"/faq#how-to-join\">FAQ</a>",
     "username": "Bir istifadəçi adı götür",
     "email": "E-poçt ünvanını daxil et",
-    "ref": "Referred user (optional)",
+    "ref": "Referal istifadəçi (ixtiyari)",
     "submit": "Davam",
+    "validation-username": "İstifadəçi adı lazımdır.",
+    "validation-email": "E-poçt lazımdır.",
     "success": "{{email}} ünvanına bir e-poçt göndərdik.",
     "success-2": "Qeydiyyat prosesini tamamlamaq üçün təlimatları izləyin.",
     "login-text-1": "Hesabınız yoxdur?",
@@ -146,13 +158,15 @@
     "pinned": "Sancaqlanmış Göndəriş",
     "replies": "1 cavab. Cavablamaq üçün klikləyin.",
     "replies-n": "{{n}} cavab. Cavablamaq üçün klikləyin.",
+    "vote-error": "Previous value is not acceptable. Vote with a different value.",
+    "vote-warning": "Voting 0% unvotes the content.",
     "no-replies": "Hələ ki, cavab yoxdur. Cavablamaq üçün klikləyin."
   },
   "nsfw": {
     "reveal": "Reveal this post",
     "signup": "<a href=\"/signup\" class=\"push-link\">create an account</a> to save your preferences",
     "settings-1": "adjust your",
-    "settings-2": "display preferences"
+    "settings-2": "görüntü tərcihləri"
   },
   "bookmark-btn": {
     "add": "Əlfəcinlərə əlavə et",
@@ -167,36 +181,36 @@
     "success": "Təkrar paylaşıldı!",
     "delete-reblog": "Undo Reblog",
     "delete-confirm-title": "Undo reblog?",
-    "delete-confirm-ok": "Undo",
+    "delete-confirm-ok": "Geri al",
     "delete-success": "Reblog removed"
   },
   "entry-tip": {
     "title": "Məsləhət"
   },
   "entry-share": {
-    "title": "Share"
+    "title": "Paylaş"
   },
   "entry-menu": {
     "cross-post": "Cross post",
-    "share": "Share",
-    "edit-history": "Edit History",
-    "pin": "Pin",
-    "pin-success": "Post pinned",
-    "unpin": "Unpin",
-    "unpin-success": "Post Unpinned",
-    "mute": "Mute",
-    "mute-success": "Post muted",
-    "unmute": "Unmute",
-    "unmute-success": "Post unmuted",
-    "promote": "Promote",
-    "boost": "Boost"
+    "share": "Paylaş",
+    "edit-history": "Tarixçəyə düzəliş et",
+    "pin": "Sancaqla",
+    "pin-success": "Göndəriş sancaqlandı",
+    "unpin": "Sancağı götür",
+    "unpin-success": "Göndərişin sancağı götürüldü",
+    "mute": "Səsi kəs",
+    "mute-success": "Göndərişin səssizə alında",
+    "unmute": "Səsi aç",
+    "unmute-success": "Göndəriş səssizdən çıxarıldı",
+    "promote": "Tanıt",
+    "boost": "Gücləndir"
   },
   "cross-post": {
     "title": "Cross Post",
-    "community-placeholder": "Choose a community",
-    "message-placeholder": "Start the conversation with a message",
-    "submit-label": "Confirm",
-    "published": "Post Published",
+    "community-placeholder": "Bir cəmiyyət seçin",
+    "message-placeholder": "Danışığa başlamaq üçün bir mesaj yazın",
+    "submit-label": "Təsdiqlə",
+    "published": "Göndəriş dərc olundu",
     "no-subscription": "You don't have any community subscription to cross post.",
     "info": "Rewards are automatically declined for the cross post and discussions under cross post will be different and will follow different community guidelines."
   },
@@ -219,12 +233,12 @@
     "description": "{{f}} topics on a social network owned and operated by its users.",
     "description-tag": "{{f}} #{{t}} mövzu",
     "description-user-feed": "{{u}} - axınlar",
-    "faq": "FAQ",
-    "tos": "Terms of service",
-    "pp": "Privacy Policy"
+    "faq": "TSS",
+    "tos": "Xidmət şərtləri",
+    "pp": "Gizlilik Siyasəti"
   },
   "market-data": {
-    "title": "Market price",
+    "title": "Mağaza qiyməti",
     "credits": "data by <a href=\"https://www.coingecko.com/api\" target=\"_blank\" rel=\"noopener noreferrer\">Coingecko</a>"
   },
   "list-style": {
@@ -234,15 +248,15 @@
     "title": "1 Səs",
     "title-n": "{{n}} Səs",
     "title-empty": "Səs yoxdur",
-    "sort": "Sort",
-    "sort-reward": "Reward",
-    "sort-timestamp": "Time",
-    "sort-reputation": "Reputation",
-    "sort-percent": "Percentage"
+    "sort": "Sırala",
+    "sort-reward": "Mükafat",
+    "sort-timestamp": "Vaxt",
+    "sort-reputation": "Nüfuz",
+    "sort-percent": "Faiz"
   },
   "entry": {
     "via-app": "<span class=\"app-name\">{{app}}</span> ilə",
-    "author-reputation": "Author's reputation",
+    "author-reputation": "Müəllifin nüfuzu",
     "comment-entry-title": "You are viewing a single comment's thread from: ",
     "comment-entry-go-root": "Tam məzmuna bax",
     "comment-entry-go-parent": "View the direct parent",
@@ -250,9 +264,9 @@
     "muted-warning": "This content was muted by {{community}} moderators for not following community guidelines.",
     "address-copy": "Copy post address",
     "address-copied": "Post address copied to clipboard.",
-    "browse-original": "Open original post",
+    "browse-original": "Orijinal göndərişi aç",
     "cross-post-by": "Cross post by",
-    "cross-post-community": "community",
+    "cross-post-community": "cəmiyyət",
     "community-in": "in"
   },
   "edit-history": {
@@ -261,7 +275,7 @@
     "version": "Versiya {{n}}"
   },
   "similar-entries": {
-    "title": "Read next"
+    "title": "Növbətini oxu"
   },
   "comment": {
     "body-placeholder": "Cavabınızı bura yazın",
@@ -272,13 +286,13 @@
     "btn-join": "Qoşul",
     "replies": "1 Rəy",
     "n-replies": "{{n}} Rəy",
-    "order": "Sort Order",
-    "order-trending": "Trending",
+    "order": "Sifarişi sırala",
+    "order-trending": "Trend",
     "order-reputation": "Nüfuz",
     "order-votes": "Səslər",
     "order-created": "Yaş",
     "read-more": "...daha çox cavabı oxu...",
-    "reveal": "Reveal comment"
+    "reveal": "Rəyi açın"
   },
   "community": {
     "page-description": "{{f}} mövzu",
@@ -306,11 +320,11 @@
   "community-card": {
     "description": "Açıqlama",
     "rules": "Qaydalar",
-    "team": "Leadership",
+    "team": "Liderlik",
     "edit": "Tənzimləmələrə düzəliş et",
     "edit-team": "Rollara düzəliş et",
-    "community-rewards": "Community Rewards",
-    "profile-image": "Cəmiyyət profil şəkli",
+    "community-rewards": "Cəmiyyət Mükafatları",
+    "profile-image": "Profil şəkli",
     "profile-image-edit": "Profil şəklinə düzəliş et",
     "profile-image-updated": "Profil şəkli yeniləndi!"
   },
@@ -328,7 +342,8 @@
     "lang": "Dil",
     "description": "Açıqlama",
     "rules": "Qaydalar",
-    "rules-help": "One per line"
+    "rules-help": "Hər sətirdə biri",
+    "validation-title": "Başlıq lazımdır."
   },
   "communities": {
     "title": "Cəmiyyətlər",
@@ -337,7 +352,7 @@
     "n-authors": "{{n}} poster",
     "n-posts": "{{n}} göndəriş",
     "admins": "adminlər:",
-    "sort-hot": "Hot",
+    "sort-hot": "Gündəm",
     "sort-rank": "Sıra",
     "sort-subs": "Üzvlər",
     "sort-new": "Yeni",
@@ -349,61 +364,63 @@
     "title": "Başlıq",
     "about": "Haqqında",
     "description": "Create a best, decentralized, immutable, rewarding communities",
-    "fee": "Operation fee",
-    "creator": "Creator",
-    "username": "Owner username",
-    "username-available": "Available.",
-    "username-not-available": "Not available.",
+    "fee": "Əməliyyat haqqı",
+    "creator": "Yaradıcı",
+    "username": "Sahib istifadəçi adı",
+    "username-available": "Mövcud.",
+    "username-not-available": "Mövcud deyil.",
     "username-wrong-format": "Not a valid format. hive-1xxxxx format required.",
-    "password": "Master password",
-    "confirmation": "I have securely saved my owner username and password.",
-    "submit": "Create Community",
-    "progress-account": "Creating account...",
-    "progress-user": "Preparing user data...",
-    "progress-role": "Setting @{{u}} as admin...",
+    "checkbox-validation": "Please tick this box if you want to proceed.",
+    "title-validation": "Bu sahəni doldurun.",
+    "password": "Usta şifrəsi",
+    "confirmation": "Sahib istifadəçi adımı və şifrəmi təhlükəsiz olaraq yaddaşa yazdım.",
+    "submit": "Cəmiyyət yarat",
+    "progress-account": "Hesab yaradılır...",
+    "progress-user": "İstifadəçi verilənləri hazırlanır...",
+    "progress-role": "@{{u}} admin olaraq tənzimlənir...",
     "progress-props": "Cəmiyyət tənzimləmələri yenilənir...",
-    "done": "Your community was created 🎉",
-    "done-link-label": "Get started."
+    "done": "Cəmiyyətiniz yaradıldı 🎉",
+    "done-link-label": "Başlayaq."
   },
   "community-rewards-registration": {
     "body-text": "Register your community to get Ecency POINTS",
-    "btn-next-label": "Register",
-    "done-body-text": "Registration completed. Your community will receive POINT rewards as your members publish posts with Ecency apps.",
-    "conflict-body-text": "This community is already registered.",
-    "min-required-body-text": "Minimum 100 subscribers required to register."
+    "btn-next-label": "Qeydiyyat",
+    "done-body-text": "Qeydiyyat tamamlandı. Üzvləriniz Ecency tətbiqi ilə göndəriş dərc edəndə cəmiyyətiniz XAL mükafatları alacaq.",
+    "conflict-body-text": "Bu cəmiyyət artıq qeydiyyatdan keçib.",
+    "min-required-body-text": "Qeydiyyat üçün minimum 100 abunəçi lazımdır."
   },
   "mute-btn": {
-    "mute": "Mute",
-    "unmute": "Unmute",
-    "dialog-title-mute": "Mute post/comment",
-    "dialog-title-unmute": "Unmute post/comment",
-    "notes": "Notes",
+    "mute": "Səsi kəs",
+    "unmute": "Səsi aç",
+    "dialog-title-mute": "Göndərişin/rəyin səsini kəs",
+    "dialog-title-unmute": "Göndərişin/rəyin səsini aç",
+    "notes": "Notlar",
     "note-placeholder-mute": "Provide a note regarding your decision to mute this content.",
     "note-placeholder-unmute": "Provide a note regarding your decision to unmute this content."
   },
   "profile": {
-    "voting-power": "Voting Power",
-    "post-count": "Post Count",
-    "followers": "Followers",
-    "following": "Following",
-    "section-blog": "Blog",
-    "section-posts": "Posts",
-    "section-comments": "Comments",
-    "section-replies": "Replies",
-    "section-communities": "Communities",
-    "section-wallet": "Wallet",
-    "section-settings": "Settings",
-    "communities-title": "Membership",
-    "create-community": "Create a community",
-    "witnesses": "Witnesses",
+    "voting-power": "Səsvermə gücü",
+    "post-count": "Göndəriş Sayı",
+    "followers": "İzləyici",
+    "following": "İzlənilir",
+    "section-blog": "Bloq",
+    "section-posts": "Göndərişlər",
+    "section-comments": "Rəylər",
+    "section-replies": "Cavablar",
+    "section-communities": "Cəmiyyətlər",
+    "section-wallet": "Pulqabı",
+    "section-settings": "Tənzimləmələr",
+    "communities-title": "Üzvlük",
+    "create-community": "Bir cəmiyyət yarat",
+    "witnesses": "Şahidlər",
     "proposals": "Proposals"
   },
   "profile-info": {
-    "joined": "Joined: {{n}}",
-    "last-active": "Last active: {{n}}",
-    "vote-value": "Vote value: {{n}}",
-    "vote-value-max": "(out of max {{n}})",
-    "vote-power": "Vote Power: {{n}}%",
+    "joined": "Qoşuldu: {{n}}",
+    "last-active": "Son aktivlik: {{n}}",
+    "vote-value": "Səsvermə dəyəri: {{n}}",
+    "vote-value-max": "(maksimum {{n}} xaricində)",
+    "vote-power": "Səsvermə gücü: {{n}}%",
     "rc-power": "Resource Credits: {{n}}%",
     "recharge-time": "(fully charged {{n}})",
     "down-vote-power": "Downvote Power: {{n}}%",
@@ -415,10 +432,11 @@
     "title": "Profile",
     "name": "Display Name",
     "about": "Haqqında",
-    "cover-image": "Cover Image",
-    "profile-image": "Profile Image",
-    "website": "Website",
+    "cover-image": "Örtük şəkli",
+    "profile-image": "Profil şəkli",
+    "website": "Veb sayt",
     "location": "Yerləşmə",
+    "copied": "Yönləndirmə bağlantısı lövhəyə kopyalandı.",
     "updated": "Profil uğurla yeniləndi!"
   },
   "image-upload-button": {
@@ -430,6 +448,7 @@
     "currency": "Pul vahidi",
     "language": "Dil",
     "nsfw": "Show NSFW content",
+    "referral-link": "Yönləndirmə bağlantısı",
     "updated": "Tərcih yeniləndi!"
   },
   "wallet": {
@@ -437,12 +456,12 @@
     "claim-reward-balance": "Mükafat balansını götür",
     "claim-reward-balance-ok": "Mükafat balansı götürüldü",
     "estimated": "Təxmini Hesab Dəyəri",
-    "estimated-description": "The estimated value is based on a 7 day average value of HIVE.",
+    "estimated-description": "Təxmini dəyər, HIVE-ın 7 günlük ortalama dəyəri əsasında hesablanır.",
     "hive": "HIVE",
     "hive-description": "HIVE, istənilən vaxt köçürə biləcəyiniz ticarət tokenləridir. HIVE, gücləndirmə adlandırılan müddətdə HIVE Power-ə çevrilə bilər.",
     "hive-power": "HIVE GÜCÜ",
     "hive-power-description": "Hive Gücü, uzun müddət saxlamaq və göndərişlərdə səs vermək üçün daha çox güc qazandıran təsir tokenləridir. Daha çox Hive Gücü saxlayan şəxs digərlərinin də mükafatlarına təsir edə bilər və dəqiq səsvermələr üçün mükafatlar qazana bilər.",
-    "hive-power-delegated": "Delegated Hive Power",
+    "hive-power-delegated": "Səlahiyyət Verilmiş Hive Gücü",
     "hive-power-received": "Alınmış Hive Gücü",
     "next-power-down-amount": "Növbəti güc azaltma miqdarı",
     "hive-power-total": "Cəmi Hive Gücü",
@@ -457,31 +476,33 @@
     "power-up": "Gücü artır",
     "withdraw-hive": "Hive-ı çək",
     "withdraw-hbd": "Hive Dollarını çək",
-    "delegate": "Delegate",
+    "delegate": "Nümayəndə göndər",
     "power-down": "Gücü azalt",
     "withdraw-routes": "Withdraw Routes",
-    "converting-hbd-amount": "Converting to HIVE"
+    "converting-hbd-amount": "HIVE-a çevrilir"
   },
   "withdraw-routes": {
     "title": "Withdraw accounts",
     "account": "Hesab",
     "percent": "Faiz",
-    "auto-power-up": "Automatically power up"
+    "validation-account": "Hesab lazımdır.",
+    "validation-percent": "Faiz lazımdır.",
+    "auto-power-up": "Avtomatik gücləndirmə"
   },
   "points": {
     "get": "XALLAR SATIN AL",
     "unclaimed-points": "Götürülməmiş xallar",
     "claim-reward-points": "Mükafat xallarını götür",
     "main-description": "Points can be used for in-app services, like Promote, Boost, Gifting. Earn them just by using Ecency apps and improve your experience.",
-    "earn-points": "How to earn more Points",
+    "earn-points": "Necə daha çox xal qazanmaq olar",
     "post-desc": "Müntəzəm olaraq paylaşıb xal qazana bilərsiniz. Paylaşım sizə 15 xal verər.",
     "comment-desc": "Bildirdiyiniz hər bir rəy əhatənizi genişləndirməyə və dostluqlar qurmağa kömək edər, həmçinin 5 xal qazandırar.",
     "checkin-desc": "Ecency-də yoxlamaq sizə 0.25 xal qazandırar və dostlarla əlaqədə qalmağınıza kömək edər.",
     "vote-desc": "Səs verərək digər yaradıcılara da mükafat verə və minnətdarlığınızı göstərə bilərsiniz, beləcə 0.01 x səsvermə ağırlıq xal qazanarsınız.",
-    "reblog-desc": "Share what post you like with your friends and earn 1 points.",
+    "reblog-desc": "Bəyəndiyiniz göndərişləri dostlarınızla paylaşın və 1 xal qazanın.",
     "login-desc": "Ecency-ə giriş etdikdə avtomatik olaraq 100 xal qazanma haqqı əldə edirsiniz.",
     "checkin-extra-desc": "Tətbiqin davamlı istifadəsi sizə daha 10 xal qazanma şansı verər, daha çox fəal olun və daha çox qazanın.",
-    "delegation-desc": "You can earn ~100 points per day for each 1000HP delegation.",
+    "delegation-desc": "Hər 1000HP nümayəndə üçün gündəlik ~100 xal qazana bilərsiniz.",
     "community-desc": "Register your community to get 20 points for per post published with Ecency applications.",
     "history": "Tarixçə",
     "post-list-desc": "Göndəriş üçün xal",
@@ -493,26 +514,26 @@
     "checkin-extra-list-desc": "İstifadə bonusu",
     "transfer-sent-list-desc": "Köçürmə: {{n}}",
     "transfer-incoming-list-desc": "{{n}} mənbəsindən köçürmə",
-    "delegation-list-desc": "Delegation reward",
+    "delegation-list-desc": "Nümayəndə mükafatı",
     "referral-list-desc": "Yönləndirmə mükafatları",
-    "community-list-desc": "Community reward",
+    "community-list-desc": "Cəmiyyət mükafatı",
     "transfer": "Kiməsə hədiyyə et",
     "claim-ok": "Xallar götürüldü",
     "promote": "Tanıt",
     "boost": "Gücləndir",
-    "filter-all": "All History",
-    "filter-10": "Points for heartbeat",
-    "filter-20": "Points for login",
-    "filter-30": "Usage bonus",
-    "filter-100": "Points for post",
-    "filter-110": "Points for comment",
-    "filter-120": "Points for vote",
-    "filter-130": "Points for reblog",
-    "filter-150": "Delegation reward",
-    "filter-160": "Referral reward",
-    "filter-170": "Community reward",
-    "filter-998": "Outgoing transfer",
-    "filter-999": "Incoming transfer"
+    "filter-all": "Bütün tarixçə",
+    "filter-10": "Ürək döyüntüsü üçün xal",
+    "filter-20": "Giriş üçün xal",
+    "filter-30": "İstifadə bonusu",
+    "filter-100": "Göndəriş üçün xal",
+    "filter-110": "Rəy üçün xal",
+    "filter-120": "Səsvermə üçün xal",
+    "filter-130": "Təkrar paylaşma üçün xal",
+    "filter-150": "Nümayəndə mükafatı",
+    "filter-160": "Yönləndirmə mükafatları",
+    "filter-170": "Cəmiyyət mükafatı",
+    "filter-998": "Gedən köçürmə",
+    "filter-999": "Gələn köçürmə"
   },
   "purchase": {
     "select-asset": "Select Asset",
@@ -551,8 +572,8 @@
     "convert-title": "Convert",
     "power-up-sub-title": "Influence tokens which give you more control over post payouts and allow you to earn on curation rewards.",
     "convert-sub-title": "Only recommended when HBD is below $1. You will get $1 of HIVE in 3.5 days.",
-    "delegate-title": "Delegate",
-    "delegate-sub-title": "Delegate Hive Power",
+    "delegate-title": "Nümayəndə göndər",
+    "delegate-sub-title": "Nümayəndə Hive Gücü",
     "power-down-title": "Power Down",
     "power-down-sub-title": "Power Down Hive Power",
     "from": "From",
@@ -565,46 +586,46 @@
     "wrong-amount": "Wrong amount value",
     "amount-precision-error": "Use only 3 digits of precision",
     "balance": "Balance",
-    "power-down-estimated": "+ {{n}} Estimated Weekly",
+    "power-down-estimated": "+ {{n}} Həftəlik Təxmini",
     "memo": "Memo",
-    "memo-placeholder": "enter your notes here",
+    "memo-placeholder": "notlarınızı buraya daxil edin",
     "memo-help": "This memo is public",
     "available-hp-hint": "* available hive power",
-    "confirm-title": "Confirm your transaction",
-    "confirm-sub-title": "Please, check if everything is correct",
-    "confirm": "Confirm",
-    "recent-transfers": "Recent transfers",
+    "confirm-title": "Əməliyyatı təsdiqləyin",
+    "confirm-sub-title": "Hər şeyin doğru olduğunu yoxlayın",
+    "confirm": "Təsdiqlə",
+    "recent-transfers": "Son köçürmələr",
     "transfer-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "transfer-saving-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "withdraw-saving-summary": "<span class=\"amount\">{{amount}}</span> transferred from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
     "convert-summary": "<span class=\"amount\">{{amount}}</span> converted",
     "power-up-summary": "<span class=\"amount\">{{amount}}</span> staked from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
-    "delegate-summary": "<span class=\"amount\">{{amount}}</span> delegated from <span class=\"from-user\">{{from}}</span> to <span class=\"to-user\">{{to}}</span>",
+    "delegate-summary": "<span class=\"from-user\">{{from}}</span>, <span class=\"amount\">{{amount}}</span> <span class=\"to-user\">{{to}}</span> nümayəndə göndərdi",
     "power-down-summary": "Power down completed as <span class=\"amount\">{{amount}}</span>",
-    "reset": "Reset",
+    "reset": "Sıfırla",
     "powering-down": "You are currently powering down.",
-    "stop-power-down": "Stop"
+    "stop-power-down": "Dayandır"
   },
   "trx-common": {
-    "insufficient-funds": "Insufficient funds",
-    "sign-title": "Sign transaction",
-    "sign-sub-title": "Sign your transaction",
-    "success-title": "Success",
-    "success-sub-title": "Transaction successful"
+    "insufficient-funds": "Yetərsiz fond",
+    "sign-title": "Əməliyyatı imzala",
+    "sign-sub-title": "Əməliyyatınızı imzalayın",
+    "success-title": "Uğurlu",
+    "success-sub-title": "Uğurlu əməliyyat"
   },
   "transactions": {
-    "title": "History",
-    "group-all": "All History",
-    "group-transfers": "Transfers",
-    "group-market-orders": "Market Orders",
-    "group-interests": "Interests",
+    "title": "Tarixçə",
+    "group-all": "Bütün tarixçə",
+    "group-transfers": "Köçürmələr",
+    "group-market-orders": "Mağaza Sifarişləri",
+    "group-interests": "Maraqlar",
     "group-stake-operations": "Stake operations",
-    "group-rewards": "Rewards",
-    "type-curation_reward": "Curation Reward",
-    "type-author_reward": "Author Reward",
-    "type-comment_benefactor_reward": "Comment Benefactor Reward",
+    "group-rewards": "Mükafatlar",
+    "type-curation_reward": "Kurasiya mükafatı",
+    "type-author_reward": "Müəllif mükafatı",
+    "type-comment_benefactor_reward": "Comment benefactor reward",
     "type-claim_reward_balance": "Mükafatları götür",
-    "type-transfer": "Transfer",
+    "type-transfer": "Köçürmə",
     "type-transfer_to_vesting": "Transfer to vesting",
     "type-withdraw_vesting": "Withdraw vesting",
     "type-fill_order": "Fill order",
@@ -615,7 +636,10 @@
     "type-cancel_transfer_from_savings": "Cancel transfer from savings",
     "type-cancel_transfer_from_savings-detail": "From: <strong>@{{from}}</strong> <br/> Request id: <strong>{{request}}</strong>",
     "type-return_vesting_delegation": "Return vesting delegation",
-    "type-proposal_pay": "Proposal pay"
+    "type-proposal_pay": "Proposal pay",
+    "type-comment_payout_update": "Content payout update",
+    "type-comment_reward": "Content reward",
+    "type-effective_comment_vote": "Effective Vote"
   },
   "key-or-hot": {
     "sign": "Sign",
@@ -633,7 +657,7 @@
   "friends": {
     "followers": "Followers ({{n}})",
     "following": "Following ({{n}})",
-    "search-placeholder": "Search users"
+    "search-placeholder": "Search"
   },
   "follow-controls": {
     "follow": "Follow",
@@ -730,6 +754,8 @@
     "username": "Username",
     "reward": "Reward",
     "user-error": "{{n}} is not a valid user.",
+    "validation-percentage": "Percentage is required.",
+    "validation-username": "Username is required.",
     "user-exists-error": "{{n}} is already in the list"
   },
   "post-scheduler": {
@@ -901,6 +927,9 @@
     "create-first": "Create your first snippet",
     "filter": "Search by title",
     "form-title": "Title",
+    "validation-title": "Title is required.",
+    "validation-value": "Value is required.",
+    "validation-body": "Body is required.",
     "form-body": "Body"
   },
   "password-update": {
@@ -912,12 +941,28 @@
     "error-new2": "Passwords must be same",
     "pass-gen": "Click to generate password",
     "label-check": "I have securely saved my generated password",
+    "validation-password": "Password is invalid.",
+    "validation-label": "Please tick this box to proceed.",
     "updated": "Password updated successfully!"
+  },
+  "view-keys": {
+    "title": "View Private keys",
+    "account": "Account",
+    "cur-pass": "Current password",
+    "owner": "Owner",
+    "active": "Active",
+    "posting": "Posting",
+    "memo": "Memo",
+    "view-keys": "Click to view keys",
+    "copied": "Private key copied into clipboard",
+    "error": "Password seem incorrect, please double check!"
   },
   "add-image": {
     "title": "Add Image",
     "text-label": "Image Text",
-    "link-label": "Image Link"
+    "link-label": "Image Link",
+    "validation-text": "Text is required.",
+    "validation-image": "Image is required."
   },
   "add-image-mobile": {
     "title": "Add Image",
@@ -928,7 +973,9 @@
   "add-link": {
     "title": "Add Link",
     "text-label": "Text",
-    "link-label": "https://"
+    "link-label": "https://",
+    "validation-text": "Text is required.",
+    "validation-link": "Link is required."
   },
   "scroll-to-top": {
     "title": "Yuxarı sürüşdür"
@@ -959,11 +1006,11 @@
       "how-ecency-works-header": "Ecency necə işləyir?",
       "how-ecency-works-body": "<p><img src=\"https://images.ecency.com/p/6VvuHGsoU2QCK6yq1XKF2xrUpxynFs9SFNnn3DQjuZ3ksaZqEjfd9GadyKFE4bT7UP8qM1sF5W6U3cst4ekDsXfrQdcrjtdz6b5Ye2AfWNwGA5f8QqVXmed6NRfg1U?format=match&mode=fit\"/></p><p>Ecency stores and reads data from the blockchain, and thus data is accessible and uncensored. Ecency rewards content creators with built-in incentive mechanism of blockchain, with tokens (HIVE, HIVE DOLLARS, HIVE POWER) as well as Points. Tokens can be purchased and sold in major cryptocurrency exchanges (e.g. Binance, Bittrex). Points could be utilized within platform and traded for goods, services.</p>",
       "how-to-join-header": "Ecency-ə necə qoşulmaq olar?",
-      "how-to-join-body": "<p>Go to <a class=\"push-link\" href=\"/signup?referral=ecency\">https://ecency.com/signup?referral=ecency</a> and create an account. After signup you will receive email with further instructions. Your password is your master password to your account. Please store it safely, if you loose your password, you ultimately loose access to your account and your funds. Accounts cannot be deactivated or deleted, account names can not be changed as well. The account along with all of its activity is permanently stored in the blockchain. Without password, accounts cannot be restored, store your keys safely.</p>",
+      "how-to-join-body": "<p> <a class=\"push-link\" href=\"/signup?referral=ecency\">https://ecency.com/signup?referral=username</a> bağlantısına gedin və hesab açın. Qeydiyyatdan sonra növbəti təlimatlar üçün e-poçt alacaqsınız. Şifrəniz, hesabınızın ana şifrəsidir. Zəhmət olmasa etibarlı yerdə saxlayın, əgər şifrənizi itirsəniz, hesabınıza və fondunuza olan müraciəti də itirəcəksiniz. Hesablar deaktiv edilə və ya silinə bilməz, həmçinin hesab adları da dəyişdirilə bilməz. Hesab, bütün fəaliyyətləri ilə birgə blok zəncirində daimi olaraq saxlanılır. Şifrə olmadan hesablar bərpa edilə bilməz, açarlarınızı təhlükəsiz yerdə saxlayın.</p>",
       "how-to-signin-header": "Ecency-ə necə daxil olmaq olar?",
       "how-to-signin-body": "<p><img src=\"https://images.ecency.com/p/7258xSVeJbKmTr9Z4jhbPhjS9pMWA2mTwBMDbXqk9G9wdMw2bwR4hXqRQt9S7UBFrBAWCYWddjn3G34ETv5KWB5KGmuZ8ixBB9oKHTFvjjnTkRLp4ttrFQtpgtNnRUEA9NtmyFmgyuuK4?format=match&mode=fit\"/></p><p>You can sign-in to Ecency by using your Username and Master password or by using Active Private Keys. We take security very seriously, that's why we never store your private keys, on mobile app they are encrypted with extra PIN code of your choice, on website they are never stored. You can also use <a href=\"https://hivesigner.com\" target=\"_blank\" rel=\"noopener noreferrer\">Hivesigner OAuth2</a> authentication service to easily login, manage and perform actions.</p>",
       "how-referrals-work-header": "Ecency-də yönləndirmə sistemi necə işləyir?",
-      "how-referrals-work-body": "<p>Referral system is simple, you can invite your friends by adding your username in this link https://ecency.com/signup?referral=username and share it with your friends. Once your friends join Ecency and earn their first 250 Points, you will earn 100 Points. There is no limits on referrals and its reward.</p>",
+      "how-referrals-work-body": "<p>Yönləndirmə sistemi asandır, https://ecency.com/signup?referral=username bağlantısına istifadəçi adınızı əlavə edərək dostlarınızı dəvət edə və onlarla paylaşa bilərsiniz. Dostlarınız Ecency-ə qoşulub ilk 250 xalını qazananda, siz də 100 xal qazanacaqsınız. Yönləndirmələrdə və mükafatlarda limit yoxdur.</p>",
       "what-is-points-header": "What are Ecency Points and how to use them?",
       "what-is-points-body": "<p>Ecency Points are continually minted and rewarded for all users for various social activities they perform on website, mobile or desktop app. Points can be used for promoting, boosting your content, can even be transferred or gifted to another user. You can also purchase Points with our mobile apps.</p>",
       "where-tokens-come-header": "Where do the tokens come from?",
@@ -987,9 +1034,9 @@
       "what-spam-abuse-header": "What is considered spam or abuse?",
       "what-spam-abuse-body": "<p><img src=\"https://images.ecency.com/p/3jpR3paJ37V8XPrHkfZdMt57jY6pRt6zEt5iRJV9pSw4Mez3Hut8U6RWvWLA7cFYEa1bxveXeasNfZApzrcLYLx8cz84kBEKak1KkewE2ZqE1QRRkF4eqRH3vWVqZB9WuNbzE?format=match&mode=fit\"/></p><p><ul><li>Plagiarized posts or copied content.</li><li>Leaving nearly identical or materially similar comments on multiple posts.</li><li>Using tags that are unrelated to the post.</li><li>Threatening users with any type of physical violence.</li><li>Not citing sources when using someone else’s material.</li><li>Posting ‘not safe for work’ content without using the “nsfw” tag.</li><li>Scams or Fraudulent offers.</li></ul></p>",
       "can-link-post-header": "Can I request adding backlink to my website from Ecency team?",
-      "can-link-post-body": "<p>All the content on our site is created by our users and we don't modify or able to add backlinks. You are free to contact author of the post or <a href=\"/signup?referral=ecency\" class=\"push-link\">Signup</a> to open your own blog and community, publish articles to create backlinks for free.</p>",
+      "can-link-post-body": "<p>Saytımızdakı bütün məzmunlar istifadəçilərimiz tərəfindən yaradılır və biz dəyişdirə və geri bağlantı əlavə edə bilmirik. Göndərişin müəllifi ilə əlaqə saxlamaq sərbəstdir, həmçinin ödənişsiz geri bağlantılar yaradaraq məqalə dərc etmək, öz bloqunuzu və cəmiyyətinizi açmaq üçün <a href=\"/signup?referral=ecency\" class=\"push-link\">qeydiyyatdan</a> keçə bilərsiniz.</p>",
       "can-guest-post-header": "Is it possible to guest post on your website?",
-      "can-guest-post-body": "<p>Posting on Ecency is simple and easy, <a href=\"/signup?referral=ecency\" class=\"push-link\">Signup</a> to open your own blog and community, start posting your content.</p>",
+      "can-guest-post-body": "<p>Ecency-də göndəriş dərc etmək asan və sadədir, öz bloqunuzu və cəmiyyətinizi açmaq üçün <a href=\"/signup?referral=ecency\" class=\"push-link\">qeydiyyatdan keçin</a> və məzmunlarınızı dərc etməyə başlayın.</p>",
       "source-label-header": "Content source labels, what are those?",
       "source-label-body": "<p>Content source helps you understand how content was published. In some cases you may see a third-party client name, which indicates the Content came from a non-Ecency application. Authors sometimes use third-party client applications to manage their blogs, communities. Third-party clients are software tools used by authors and therefore are not affiliated with, nor do they reflect the views of, the content. Content can be directly created by humans or, in some circumstances, automated by an application.</p>",
       "how-to-contribute-header": "Ecency-ə necə töhfə vermək olar?",
@@ -1077,6 +1124,7 @@
     "subscribe-paragraph": "Be first to know what's happening in decentralized web.",
     "copy-rights": "©2021 Ecency. All right reserved.",
     "success-message-subscribe": "A verification link has been sent to your email account!",
+    "validation-email": "A valid email is required",
     "error-occured": "A server error has been occured."
   }
 }

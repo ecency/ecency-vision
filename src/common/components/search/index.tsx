@@ -69,7 +69,7 @@ export class Search extends BaseComponent<Props, State> {
 
     isSearchPage = () => this.props.location.pathname.startsWith('/search');
 
-    queryChanged = (e: React.ChangeEvent<FormControl & HTMLInputElement>) => {
+    queryChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
         const query = e.target.value;
         this.stateSet({query});
     };

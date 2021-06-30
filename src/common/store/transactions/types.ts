@@ -110,6 +110,30 @@ export interface ProposalPay extends BaseTransaction {
     payment: string
 }
 
+export interface CommentPayoutUpdate extends BaseTransaction {
+    type: "comment_payout_update"
+    author: string
+    permlink: string
+}
+
+export interface CommentReward extends BaseTransaction {
+    type: "comment_reward"
+    author: string
+    permlink: string
+    payout: string
+}
+
+export interface EffectiveCommentVote extends BaseTransaction {
+    type: "effective_comment_vote"
+    voter: string
+    author: string
+    permlink: string
+    pending_payout: string
+    total_vote_weight: number
+    rshares: number
+    weight: number
+}
+
 export type Transaction =
     | CurationReward
     | AuthorReward
@@ -125,7 +149,10 @@ export type Transaction =
     | Interest
     | FillConvertRequest
     | ReturnVestingDelegation
-    | ProposalPay;
+    | ProposalPay
+    | CommentPayoutUpdate
+    | CommentReward
+    | EffectiveCommentVote;
 
 export type OperationGroup = "transfers" | "market-orders" | "interests" | "stake-operations" | "rewards";
 

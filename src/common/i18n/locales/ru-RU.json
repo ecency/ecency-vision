@@ -17,6 +17,7 @@
     "days": "дн.",
     "finish": "Завершить",
     "next": "Далее",
+    "previous": "Previous",
     "back": "Назад",
     "load-more": "Загрузить больше",
     "empty-list": "Здесь пусто",
@@ -31,6 +32,7 @@
     "hot": "лента",
     "trending": "лента",
     "created": "лента",
+    "muted": "feed",
     "found": "Найденное",
     "feed": "лента",
     "blog": "блоги",
@@ -39,6 +41,7 @@
     "replies": "ответы",
     "done": "Готово",
     "apply": "Применить",
+    "warning": "Warning",
     "close": "Закрыть"
   },
   "confirm": {
@@ -55,7 +58,14 @@
     "filter-muted": "Игнорируется",
     "filter-feed": "Лента",
     "filter-feed-friends": "Друзья",
-    "filter-feed-subscriptions": "Сообщества"
+    "filter-feed-subscriptions": "Сообщества",
+    "filter-global": "Global",
+    "filter-global-part1": "This feed contains ",
+    "filter-global-part2": " discussions on entire platform.",
+    "filter-global-part3": " discussions from Your subscribed communities. You can join more communities to fill up this feed.",
+    "filter-global-part4": " discussions from people you follow. You can follow more people to fill up this feed.",
+    "filter-global-discover": "Discover People",
+    "filter-global-join-communities": "Join Communities"
   },
   "navbar": {
     "discover": "Подборка",
@@ -127,6 +137,8 @@
     "email": "Введите свой email адрес",
     "ref": "Реферал (необязательно)",
     "submit": "Далее",
+    "validation-username": "Требуется имя пользователя.",
+    "validation-email": "Требуется адрес эл. почты.",
     "success": "Мы отправили письмо на адрес {{email}}.",
     "success-2": "Следуйте инструкциям для завершения процесса регистрации.",
     "login-text-1": "Есть ли у вас учетная запись?",
@@ -146,6 +158,8 @@
     "pinned": "Прикреплено",
     "replies": "1 ответ. Нажмите чтобы ответить.",
     "replies-n": "{{n}} ответов. Нажмите для ответа.",
+    "vote-error": "Previous value is not acceptable. Vote with a different value.",
+    "vote-warning": "Voting 0% unvotes the content.",
     "no-replies": "Ответов пока нет. Нажмите чтобы ответить."
   },
   "nsfw": {
@@ -171,13 +185,13 @@
     "delete-success": "Реблог удален"
   },
   "entry-tip": {
-    "title": "Tip"
+    "title": "Чаевые"
   },
   "entry-share": {
     "title": "Поделиться"
   },
   "entry-menu": {
-    "cross-post": "Cross post",
+    "cross-post": "Кросс-пост",
     "share": "Поделиться",
     "edit-history": "Править Историю",
     "pin": "Закрепить",
@@ -192,13 +206,13 @@
     "boost": "Усилить"
   },
   "cross-post": {
-    "title": "Cross Post",
+    "title": "Кросс-пост",
     "community-placeholder": "Выбрать сообщество",
     "message-placeholder": "Начать разговор сообщением",
     "submit-label": "Подтвердить",
     "published": "Пост опубликован",
     "no-subscription": "У вас нет подписки на сообщество для перекрестного поста.",
-    "info": "Rewards are automatically declined for the cross post and discussions under cross post will be different and will follow different community guidelines."
+    "info": "Награды за кросс-пост автоматически отклоняются, а обсуждения зависят от правил сообществ."
   },
   "entry-payout": {
     "reward": "Вознаграждение",
@@ -210,7 +224,7 @@
     "payout-date": "Выплата",
     "beneficiary": "Бенефициар",
     "breakdown": "Разбивка",
-    "max-accepted": "Max accepted"
+    "max-accepted": "Задан максимум"
   },
   "entry-index": {
     "feed": "Лента",
@@ -251,7 +265,7 @@
     "address-copy": "Скопировать адрес поста",
     "address-copied": "Адрес поста скопирован в буфер обмена.",
     "browse-original": "Открыть оригинальный пост",
-    "cross-post-by": "Cross post by",
+    "cross-post-by": "Кросс-пост от",
     "cross-post-community": "сообщество",
     "community-in": "в"
   },
@@ -310,7 +324,7 @@
     "edit": "Изменить настройки",
     "edit-team": "Изменить роли",
     "community-rewards": "Награды сообщества",
-    "profile-image": "Обложка профиля сообщества",
+    "profile-image": "Фото профиля",
     "profile-image-edit": "Изменить обложку профиля",
     "profile-image-updated": "Обложка профиля обновлена!"
   },
@@ -328,7 +342,8 @@
     "lang": "Язык",
     "description": "Описание",
     "rules": "Правила",
-    "rules-help": "По одному в строке"
+    "rules-help": "По одному в строке",
+    "validation-title": "Отсутствует заголовок."
   },
   "communities": {
     "title": "Сообщества",
@@ -355,6 +370,8 @@
     "username-available": "Доступно.",
     "username-not-available": "Недоступно.",
     "username-wrong-format": "Неверный формат. Требуется формат hive-1xxxxx.",
+    "checkbox-validation": "Установите этот флажок, если вы хотите продолжить.",
+    "title-validation": "Пожалуйста, заполните это поле.",
     "password": "Мастер-пароль",
     "confirmation": "Я надёжно сохранил имя владельца и пароль.",
     "submit": "Создать сообщество",
@@ -406,10 +423,10 @@
     "vote-power": "Сила голоса: {{n}}%",
     "rc-power": "Ресурс Кредиты: {{n}}%",
     "recharge-time": "(полностью оплачено {{n}})",
-    "down-vote-power": "Downvote Power: {{n}}%",
-    "no-posts": "Here you will see your posts, looks like no content exists.",
-    "create-posts": "Let's create a new post",
-    "no-posts-found": "Found nothing!"
+    "down-vote-power": "Понижающая сила голоса: {{n}}%",
+    "no-posts": "Здесь вы увидите ваши посты, в которых, похоже, нет содержимого.",
+    "create-posts": "Давайте создадим новый пост",
+    "no-posts-found": "Ничего не найдено!"
   },
   "profile-edit": {
     "title": "Профиль",
@@ -419,6 +436,7 @@
     "profile-image": "Фото профиля",
     "website": "Вебсайт",
     "location": "Локация",
+    "copied": "Referral link copied to clipboard.",
     "updated": "Профиль обновлен!"
   },
   "image-upload-button": {
@@ -429,7 +447,8 @@
     "notifications": "Уведомления",
     "currency": "Валюта",
     "language": "Язык",
-    "nsfw": "Show NSFW content",
+    "nsfw": "Показать NSFW контент",
+    "referral-link": "Referral link",
     "updated": "Настройки обновлены!"
   },
   "wallet": {
@@ -466,6 +485,8 @@
     "title": "Аккаунты для вывода",
     "account": "Аккаунт",
     "percent": "Процент",
+    "validation-account": "Требуется учетная запись.",
+    "validation-percent": "Требуется указать процент.",
     "auto-power-up": "Автоматически Усиливать"
   },
   "points": {
@@ -481,7 +502,7 @@
     "reblog-desc": "Делитесь постами, что вам нравятся, с друзьями и зарабатывайте по 1 баллу.",
     "login-desc": "При первой авторизации в приложении вы получите 100 очков.",
     "checkin-extra-desc": "Активное использование приложения даёт вам дополнительный шанс получить 10 очков.",
-    "delegation-desc": "You can earn ~100 points per day for each 1000HP delegation.",
+    "delegation-desc": "Вы можете зарабатывать ~100 очков в день за каждое делегирование в 1000HP.",
     "community-desc": "Зарегистрируйте свое сообщество, чтобы получать 20 баллов за пост, опубликованный с помощью приложений Ecency.",
     "history": "История",
     "post-list-desc": "Очки за пост",
@@ -495,24 +516,24 @@
     "transfer-incoming-list-desc": "Перевод с {{n}}",
     "delegation-list-desc": "Награда за делегирование",
     "referral-list-desc": "Реферальная награда",
-    "community-list-desc": "Community reward",
+    "community-list-desc": "Награды сообщества",
     "transfer": "Подарить кому-то",
     "claim-ok": "Очки зачислены",
     "promote": "Продвинуть",
     "boost": "Усилить",
-    "filter-all": "All History",
-    "filter-10": "Points for heartbeat",
-    "filter-20": "Points for login",
-    "filter-30": "Usage bonus",
-    "filter-100": "Points for post",
-    "filter-110": "Points for comment",
-    "filter-120": "Points for vote",
-    "filter-130": "Points for reblog",
-    "filter-150": "Delegation reward",
-    "filter-160": "Referral reward",
-    "filter-170": "Community reward",
-    "filter-998": "Outgoing transfer",
-    "filter-999": "Incoming transfer"
+    "filter-all": "Вся история",
+    "filter-10": "Баллы за присутствие",
+    "filter-20": "Баллы за логин",
+    "filter-30": "Бонус за использование",
+    "filter-100": "Баллы за пост",
+    "filter-110": "Баллы за комментарий",
+    "filter-120": "Баллы за голос",
+    "filter-130": "Баллы за репост",
+    "filter-150": "Награда за делегирование",
+    "filter-160": "Реферальное вознаграждение",
+    "filter-170": "Награды сообщества",
+    "filter-998": "Исходящий перевод",
+    "filter-999": "Входящий перевод"
   },
   "purchase": {
     "select-asset": "Выбрать актив",
@@ -549,7 +570,7 @@
     "withdraw-saving-sub-title": "Снять средства после необходимого 3-дневного периода ожидания",
     "power-up-title": "Перевести Hive в Hive Силу",
     "convert-title": "Конвертировать",
-    "power-up-sub-title": "Influence tokens which give you more control over post payouts and allow you to earn on curation rewards.",
+    "power-up-sub-title": "Токены влияния, от которых зависит размер ваших выплат за пост и наград за курирование.",
     "convert-sub-title": "Рекомендуется только при цене HBD ниже $1. Вы получите $1 в токенах HIVE через 3,5 дня.",
     "delegate-title": "Делегировать",
     "delegate-sub-title": "Делегировать Hive Силу",
@@ -600,9 +621,9 @@
     "group-interests": "Interests",
     "group-stake-operations": "Stake operations",
     "group-rewards": "Rewards",
-    "type-curation_reward": "Кураторское вознаграждение",
-    "type-author_reward": "Авторское вознаграждение",
-    "type-comment_benefactor_reward": "Награда бенефициару",
+    "type-curation_reward": "Curation reward",
+    "type-author_reward": "Author reward",
+    "type-comment_benefactor_reward": "Comment benefactor reward",
     "type-claim_reward_balance": "Зачислить вознаграждения",
     "type-transfer": "Перевод",
     "type-transfer_to_vesting": "Повышение Силы",
@@ -615,7 +636,10 @@
     "type-cancel_transfer_from_savings": "Cancel transfer from savings",
     "type-cancel_transfer_from_savings-detail": "From: <strong>@{{from}}</strong> <br/> Request id: <strong>{{request}}</strong>",
     "type-return_vesting_delegation": "Return vesting delegation",
-    "type-proposal_pay": "Proposal pay"
+    "type-proposal_pay": "Proposal pay",
+    "type-comment_payout_update": "Content payout update",
+    "type-comment_reward": "Content reward",
+    "type-effective_comment_vote": "Effective Vote"
   },
   "key-or-hot": {
     "sign": "Подписать",
@@ -633,7 +657,7 @@
   "friends": {
     "followers": "Подписчики ({{n}})",
     "following": "Подписан на ({{n}})",
-    "search-placeholder": "Поиск пользователей"
+    "search-placeholder": "Search"
   },
   "follow-controls": {
     "follow": "Подписаться",
@@ -730,6 +754,8 @@
     "username": "Пользователь",
     "reward": "Вознаграждение",
     "user-error": "Нет такого пользователя {{n}}.",
+    "validation-percentage": "Percentage is required.",
+    "validation-username": "Username is required.",
     "user-exists-error": "{{n}} уже в списке"
   },
   "post-scheduler": {
@@ -900,7 +926,10 @@
     "title": "Snippets",
     "create-first": "Create your first snippet",
     "filter": "Поиск по названию",
-    "form-title": "Title",
+    "form-title": "Заголовок",
+    "validation-title": "Требуется заголовок.",
+    "validation-value": "Value is required.",
+    "validation-body": "Body is required.",
     "form-body": "Body"
   },
   "password-update": {
@@ -912,12 +941,28 @@
     "error-new2": "Пароли должны совпадать",
     "pass-gen": "Нажмите, чтобы сгененировать пароль",
     "label-check": "Я надежно сохранил сгенерированный пароль",
+    "validation-password": "Password is invalid.",
+    "validation-label": "Please tick this box to proceed.",
     "updated": "Пароль успешно обновлен!"
+  },
+  "view-keys": {
+    "title": "View Private keys",
+    "account": "Account",
+    "cur-pass": "Current password",
+    "owner": "Owner",
+    "active": "Active",
+    "posting": "Posting",
+    "memo": "Memo",
+    "view-keys": "Click to view keys",
+    "copied": "Private key copied into clipboard",
+    "error": "Password seem incorrect, please double check!"
   },
   "add-image": {
     "title": "Добавить изображение",
     "text-label": "Image Text",
-    "link-label": "Image Link"
+    "link-label": "Image Link",
+    "validation-text": "Text is required.",
+    "validation-image": "Image is required."
   },
   "add-image-mobile": {
     "title": "Add Image",
@@ -928,7 +973,9 @@
   "add-link": {
     "title": "Add Link",
     "text-label": "Текст",
-    "link-label": "https://"
+    "link-label": "https://",
+    "validation-text": "Text is required.",
+    "validation-link": "Link is required."
   },
   "scroll-to-top": {
     "title": "Прокрутка вверх"
@@ -1058,25 +1105,26 @@
     "our-vision-p-one": "We want to bring a secure and rewarding blockchain experience to all people. Social media without any limits and censorship, where only you control your own account and your communities. Secured by blockchain, powered by people.",
     "our-vision-p-two": "<b>Our main principles</b> : Bring rewarding communities, true ownership, empowered creators, free speech into the hands of millions.",
     "our-team": "Our Team",
-    "founder": "Founder",
+    "founder": "Основатель",
     "devops-guru": "Devops master",
-    "design-guru": "Design guru",
-    "community-contributors": "Community Contributors",
-    "blockchain-witnesses": "Blockchain Witnesses",
-    "about": "About Us",
-    "privacy-policy": "Privacy Policy",
-    "terms-of-service": "Terms of Service",
-    "faq": "FAQ",
+    "design-guru": "Гуру Дизайна",
+    "community-contributors": "Участники сообщества",
+    "blockchain-witnesses": "Свидетели",
+    "about": "О компании",
+    "privacy-policy": "Политика конфиденциальности",
+    "terms-of-service": "Условия использования",
+    "faq": "ЧаВо",
     "discover": "Discover",
-    "sign-in": "Sign in",
-    "communities": "Communities",
-    "help": "Help",
-    "subscribe-us": "Subscribe Us",
-    "enter-your-email-adress": "Enter your email adress",
-    "send": "Send",
-    "subscribe-paragraph": "Be first to know what's happening in decentralized web.",
-    "copy-rights": "©2021 Ecency. All right reserved.",
-    "success-message-subscribe": "A verification link has been sent to your email account!",
-    "error-occured": "A server error has been occured."
+    "sign-in": "Вход",
+    "communities": "Сообщества",
+    "help": "Помощь",
+    "subscribe-us": "Подпишитесь на нас",
+    "enter-your-email-adress": "Введите свой email адрес",
+    "send": "Отправить",
+    "subscribe-paragraph": "Будьте первым, кто узнает, что происходит в децентрализованном интернет-сообществе.",
+    "copy-rights": "©2021 Ecency. Все права защищены.",
+    "success-message-subscribe": "Ссылка для подтверждения была отправлена на ваш адрес электронной почты!",
+    "validation-email": "Требуется действительный адрес электронной почты",
+    "error-occured": "Произошла ошибка сервера."
   }
 }
