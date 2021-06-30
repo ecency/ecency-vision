@@ -88,8 +88,7 @@ if (typeof window !== "undefined") {
         if (pathname === prevPath) {
             return;
         }
-
-        _push(pathname, state);
+        _push(pathname.includes("//")?"/":pathname, state);
     }
 
     // scroll to top on every push action
