@@ -4,10 +4,11 @@ import {decodeObj} from "../util/encoder";
 
 import * as ls from "../util/local-storage";
 
-export const getUser = (username: string) : User => {
+export const getUser = (username: string) : User | null => {
     const raw = ls.get(`user_${username}`);
     if (!raw) {
         console.log("User does not exist!");
+        return null;
     }
 
     try {
@@ -22,5 +23,5 @@ export const getAccessToken = (username: string) => getUser(username) && getUser
 
 export const getPostingKey = (username: string): null | undefined | string => getUser(username) && getUser(username)!.postingKey;
 
-export const getRefreshToken = (username: string): string => getUser(username) && getUser(username)!.refreshToken;
+export const getRefreshToken = (username: string): string | null => getUser(username) && getUser(username)!.refreshToken;
 
