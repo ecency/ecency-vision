@@ -10,6 +10,7 @@ import profileHandler from "./handlers/profile";
 import entryHandler from "./handlers/entry";
 import fallbackHandler, {healthCheck, appURI} from "./handlers/fallback";
 import {entryRssHandler, authorRssHandler} from "./handlers/rss";
+//import * as authApi from "./handlers/auth-api";
 
 const server = express();
 
@@ -88,6 +89,9 @@ server
     )
     // apple-app-site-association
     .get("^/apple-app-site-association$", appURI)
+
+    // Auth Api
+    //.post("^/auth-api/hs-token-refresh$", authApi.hsTokenRefresh)
 
     // Health check script for docker swarm
     .get("^/healthcheck.json$", healthCheck)
