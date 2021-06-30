@@ -17,6 +17,7 @@
     "days": "d.",
     "finish": "Užbaigti",
     "next": "Kitas",
+    "previous": "Previous",
     "back": "Grįžti",
     "load-more": "Įkelti Daugiau",
     "empty-list": "Čia tuščia",
@@ -31,6 +32,7 @@
     "hot": "feed",
     "trending": "feed",
     "created": "feed",
+    "muted": "feed",
     "found": "found",
     "feed": "feed",
     "blog": "blogs",
@@ -39,6 +41,7 @@
     "replies": "replies",
     "done": "Done",
     "apply": "Apply",
+    "warning": "Warning",
     "close": "Close"
   },
   "confirm": {
@@ -58,8 +61,11 @@
     "filter-feed-subscriptions": "Communities",
     "filter-global": "Global",
     "filter-global-part1": "This feed contains ",
-    "filter-global-part2": " content on entire platform.",
-    "filter-global-part3": " content from Your communities. You can join communities that interest you to fill up this feed."
+    "filter-global-part2": " discussions on entire platform.",
+    "filter-global-part3": " discussions from Your subscribed communities. You can join more communities to fill up this feed.",
+    "filter-global-part4": " discussions from people you follow. You can follow more people to fill up this feed.",
+    "filter-global-discover": "Discover People",
+    "filter-global-join-communities": "Join Communities"
   },
   "navbar": {
     "discover": "Atrasti",
@@ -152,6 +158,8 @@
     "pinned": "Prisegtas Įrašas",
     "replies": "1 atsakymas. Spauskite, jeigu norite atsakyti.",
     "replies-n": "{{n}} atsakymų. Spauskite, jeigu norite atsakyti.",
+    "vote-error": "Previous value is not acceptable. Vote with a different value.",
+    "vote-warning": "Voting 0% unvotes the content.",
     "no-replies": "Jokių atsakymų kolkas. Spauskite, jeigu norite atsakyti."
   },
   "nsfw": {
@@ -428,6 +436,7 @@
     "profile-image": "Profilio Nuotrauka",
     "website": "Svetainė",
     "location": "Vietovė",
+    "copied": "Referral link copied to clipboard.",
     "updated": "Profilis sėkmingai atnaujintas!"
   },
   "image-upload-button": {
@@ -439,6 +448,7 @@
     "currency": "Currency",
     "language": "Language",
     "nsfw": "Show NSFW content",
+    "referral-link": "Referral link",
     "updated": "Preference updated!"
   },
   "wallet": {
@@ -611,9 +621,9 @@
     "group-interests": "Interests",
     "group-stake-operations": "Stake operations",
     "group-rewards": "Rewards",
-    "type-curation_reward": "Kuracijos Atlygis",
-    "type-author_reward": "Autorius Atlygis",
-    "type-comment_benefactor_reward": "Atlygis už gerą komentarą",
+    "type-curation_reward": "Curation reward",
+    "type-author_reward": "Author reward",
+    "type-comment_benefactor_reward": "Comment benefactor reward",
     "type-claim_reward_balance": "Atsiimti atlygį",
     "type-transfer": "Pervesti",
     "type-transfer_to_vesting": "Pervesti į investicijas",
@@ -626,7 +636,10 @@
     "type-cancel_transfer_from_savings": "Cancel transfer from savings",
     "type-cancel_transfer_from_savings-detail": "From: <strong>@{{from}}</strong> <br/> Request id: <strong>{{request}}</strong>",
     "type-return_vesting_delegation": "Return vesting delegation",
-    "type-proposal_pay": "Proposal pay"
+    "type-proposal_pay": "Proposal pay",
+    "type-comment_payout_update": "Content payout update",
+    "type-comment_reward": "Content reward",
+    "type-effective_comment_vote": "Effective Vote"
   },
   "key-or-hot": {
     "sign": "Pasirašyti",
@@ -644,7 +657,7 @@
   "friends": {
     "followers": "Sekėjai ({{n}})",
     "following": "Sekami ({{n}})",
-    "search-placeholder": "Ieškoti narių"
+    "search-placeholder": "Search"
   },
   "follow-controls": {
     "follow": "Sekti",
@@ -931,6 +944,18 @@
     "validation-password": "Password is invalid.",
     "validation-label": "Please tick this box to proceed.",
     "updated": "Password updated successfully!"
+  },
+  "view-keys": {
+    "title": "View Private keys",
+    "account": "Account",
+    "cur-pass": "Current password",
+    "owner": "Owner",
+    "active": "Active",
+    "posting": "Posting",
+    "memo": "Memo",
+    "view-keys": "Click to view keys",
+    "copied": "Private key copied into clipboard",
+    "error": "Password seem incorrect, please double check!"
   },
   "add-image": {
     "title": "Add Image",

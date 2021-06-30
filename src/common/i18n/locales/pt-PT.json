@@ -17,6 +17,7 @@
     "days": "dias",
     "finish": "Concluir",
     "next": "Seguinte",
+    "previous": "Previous",
     "back": "Anterior",
     "load-more": "Carregar mais",
     "empty-list": "Nada aqui",
@@ -31,6 +32,7 @@
     "hot": "novidades",
     "trending": "novidades",
     "created": "novidades",
+    "muted": "feed",
     "found": "encontrado",
     "feed": "novidades",
     "blog": "blogs",
@@ -39,6 +41,7 @@
     "replies": "respostas",
     "done": "Feito",
     "apply": "Aplicar",
+    "warning": "Aviso",
     "close": "Fechar"
   },
   "confirm": {
@@ -57,9 +60,12 @@
     "filter-feed-friends": "Amigos",
     "filter-feed-subscriptions": "Comunidades",
     "filter-global": "Global",
-    "filter-global-part1": "This feed contains ",
-    "filter-global-part2": " content on entire platform.",
-    "filter-global-part3": " content from Your communities. You can join communities that interest you to fill up this feed."
+    "filter-global-part1": "Este feed contém ",
+    "filter-global-part2": " discussions on entire platform.",
+    "filter-global-part3": " discussions from Your subscribed communities. You can join more communities to fill up this feed.",
+    "filter-global-part4": " discussions from people you follow. You can follow more people to fill up this feed.",
+    "filter-global-discover": "Discover People",
+    "filter-global-join-communities": "Join Communities"
   },
   "navbar": {
     "discover": "Descubra",
@@ -152,6 +158,8 @@
     "pinned": "Postagem Fixada",
     "replies": "1 resposta. Clica para responder.",
     "replies-n": "{{n}} respostas. Clique para responder.",
+    "vote-error": "Previous value is not acceptable. Vote with a different value.",
+    "vote-warning": "Voting 0% unvotes the content.",
     "no-replies": "Nenhuma resposta ainda. Clique para responder."
   },
   "nsfw": {
@@ -428,6 +436,7 @@
     "profile-image": "Imagem de Perfil",
     "website": "Website",
     "location": "Localização",
+    "copied": "Referral link copied to clipboard.",
     "updated": "Perfil atualizado com sucesso!"
   },
   "image-upload-button": {
@@ -439,6 +448,7 @@
     "currency": "Moeda",
     "language": "Língua",
     "nsfw": "Mostrar conteúdo adulto",
+    "referral-link": "Referral link",
     "updated": "Preferências atualizadas!"
   },
   "wallet": {
@@ -611,9 +621,9 @@
     "group-interests": "Interesses",
     "group-stake-operations": "Operações de Stake",
     "group-rewards": "Recompensas",
-    "type-curation_reward": "Recompensa de Curadoria",
-    "type-author_reward": "Recompensa do Autor",
-    "type-comment_benefactor_reward": "Recompensa do benficiário de comentário",
+    "type-curation_reward": "Recompensa por curadoria",
+    "type-author_reward": "Recompensa do autor",
+    "type-comment_benefactor_reward": "Recompensa por comentário",
     "type-claim_reward_balance": "Reivindicar recompensas",
     "type-transfer": "Transferir",
     "type-transfer_to_vesting": "Transferir para o investimento",
@@ -626,7 +636,10 @@
     "type-cancel_transfer_from_savings": "Cancelar a transferência da poupança",
     "type-cancel_transfer_from_savings-detail": "De: <strong>@{{from}}</strong> <br/> ID da solicitação: <strong>{{request}}</strong>",
     "type-return_vesting_delegation": "Retornar delegação de HP",
-    "type-proposal_pay": "Proposta de pagamento"
+    "type-proposal_pay": "Proposta de pagamento",
+    "type-comment_payout_update": "Atualização do pagamento de conteúdo",
+    "type-comment_reward": "Recompensa de conteúdo",
+    "type-effective_comment_vote": "Voto Efetivo"
   },
   "key-or-hot": {
     "sign": "Assinar",
@@ -644,7 +657,7 @@
   "friends": {
     "followers": "Seguidores ({{n}})",
     "following": "Seguindo ({{n}})",
-    "search-placeholder": "Procurar utilizadores"
+    "search-placeholder": "Search"
   },
   "follow-controls": {
     "follow": "Seguir",
@@ -916,7 +929,7 @@
     "form-title": "Título",
     "validation-title": "Title is required.",
     "validation-value": "Value is required.",
-    "validation-body": "Body is required.",
+    "validation-body": "Corpo obrigatório.",
     "form-body": "Conteúdo"
   },
   "password-update": {
@@ -928,9 +941,21 @@
     "error-new2": "As senhas devem ser iguais",
     "pass-gen": "Clique para gerar a senha",
     "label-check": "Eu guardei com segurança minha nova senha gerada",
-    "validation-password": "Password is invalid.",
+    "validation-password": "Senha inválida.",
     "validation-label": "Please tick this box to proceed.",
     "updated": "Senha atualizada com sucesso!"
+  },
+  "view-keys": {
+    "title": "View Private keys",
+    "account": "Conta",
+    "cur-pass": "Current password",
+    "owner": "Owner",
+    "active": "Active",
+    "posting": "Posting",
+    "memo": "Memo",
+    "view-keys": "Click to view keys",
+    "copied": "Private key copied into clipboard",
+    "error": "Password seem incorrect, please double check!"
   },
   "add-image": {
     "title": "Adicionar imagem",

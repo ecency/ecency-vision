@@ -17,6 +17,7 @@
     "days": "дн.",
     "finish": "Завершить",
     "next": "Далее",
+    "previous": "Previous",
     "back": "Назад",
     "load-more": "Загрузить больше",
     "empty-list": "Здесь пусто",
@@ -31,6 +32,7 @@
     "hot": "лента",
     "trending": "лента",
     "created": "лента",
+    "muted": "feed",
     "found": "Найденное",
     "feed": "лента",
     "blog": "блоги",
@@ -39,6 +41,7 @@
     "replies": "ответы",
     "done": "Готово",
     "apply": "Применить",
+    "warning": "Warning",
     "close": "Закрыть"
   },
   "confirm": {
@@ -58,8 +61,11 @@
     "filter-feed-subscriptions": "Сообщества",
     "filter-global": "Global",
     "filter-global-part1": "This feed contains ",
-    "filter-global-part2": " content on entire platform.",
-    "filter-global-part3": " content from Your communities. You can join communities that interest you to fill up this feed."
+    "filter-global-part2": " discussions on entire platform.",
+    "filter-global-part3": " discussions from Your subscribed communities. You can join more communities to fill up this feed.",
+    "filter-global-part4": " discussions from people you follow. You can follow more people to fill up this feed.",
+    "filter-global-discover": "Discover People",
+    "filter-global-join-communities": "Join Communities"
   },
   "navbar": {
     "discover": "Подборка",
@@ -152,6 +158,8 @@
     "pinned": "Прикреплено",
     "replies": "1 ответ. Нажмите чтобы ответить.",
     "replies-n": "{{n}} ответов. Нажмите для ответа.",
+    "vote-error": "Previous value is not acceptable. Vote with a different value.",
+    "vote-warning": "Voting 0% unvotes the content.",
     "no-replies": "Ответов пока нет. Нажмите чтобы ответить."
   },
   "nsfw": {
@@ -428,6 +436,7 @@
     "profile-image": "Фото профиля",
     "website": "Вебсайт",
     "location": "Локация",
+    "copied": "Referral link copied to clipboard.",
     "updated": "Профиль обновлен!"
   },
   "image-upload-button": {
@@ -439,6 +448,7 @@
     "currency": "Валюта",
     "language": "Язык",
     "nsfw": "Показать NSFW контент",
+    "referral-link": "Referral link",
     "updated": "Настройки обновлены!"
   },
   "wallet": {
@@ -611,9 +621,9 @@
     "group-interests": "Interests",
     "group-stake-operations": "Stake operations",
     "group-rewards": "Rewards",
-    "type-curation_reward": "Кураторское вознаграждение",
-    "type-author_reward": "Авторское вознаграждение",
-    "type-comment_benefactor_reward": "Награда бенефициару",
+    "type-curation_reward": "Curation reward",
+    "type-author_reward": "Author reward",
+    "type-comment_benefactor_reward": "Comment benefactor reward",
     "type-claim_reward_balance": "Зачислить вознаграждения",
     "type-transfer": "Перевод",
     "type-transfer_to_vesting": "Повышение Силы",
@@ -626,7 +636,10 @@
     "type-cancel_transfer_from_savings": "Cancel transfer from savings",
     "type-cancel_transfer_from_savings-detail": "From: <strong>@{{from}}</strong> <br/> Request id: <strong>{{request}}</strong>",
     "type-return_vesting_delegation": "Return vesting delegation",
-    "type-proposal_pay": "Proposal pay"
+    "type-proposal_pay": "Proposal pay",
+    "type-comment_payout_update": "Content payout update",
+    "type-comment_reward": "Content reward",
+    "type-effective_comment_vote": "Effective Vote"
   },
   "key-or-hot": {
     "sign": "Подписать",
@@ -644,7 +657,7 @@
   "friends": {
     "followers": "Подписчики ({{n}})",
     "following": "Подписан на ({{n}})",
-    "search-placeholder": "Поиск пользователей"
+    "search-placeholder": "Search"
   },
   "follow-controls": {
     "follow": "Подписаться",
@@ -931,6 +944,18 @@
     "validation-password": "Password is invalid.",
     "validation-label": "Please tick this box to proceed.",
     "updated": "Пароль успешно обновлен!"
+  },
+  "view-keys": {
+    "title": "View Private keys",
+    "account": "Account",
+    "cur-pass": "Current password",
+    "owner": "Owner",
+    "active": "Active",
+    "posting": "Posting",
+    "memo": "Memo",
+    "view-keys": "Click to view keys",
+    "copied": "Private key copied into clipboard",
+    "error": "Password seem incorrect, please double check!"
   },
   "add-image": {
     "title": "Добавить изображение",

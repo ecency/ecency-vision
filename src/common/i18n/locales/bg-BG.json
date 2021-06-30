@@ -17,6 +17,7 @@
     "days": "дни",
     "finish": "Приключи",
     "next": "Напред",
+    "previous": "Previous",
     "back": "Назад",
     "load-more": "Зареди още",
     "empty-list": "Няма нищо тук",
@@ -31,6 +32,7 @@
     "hot": "feed",
     "trending": "feed",
     "created": "feed",
+    "muted": "feed",
     "found": "found",
     "feed": "feed",
     "blog": "blogs",
@@ -39,6 +41,7 @@
     "replies": "replies",
     "done": "Готово",
     "apply": "Потвърди",
+    "warning": "Warning",
     "close": "Затвори"
   },
   "confirm": {
@@ -58,8 +61,11 @@
     "filter-feed-subscriptions": "Общности",
     "filter-global": "Global",
     "filter-global-part1": "This feed contains ",
-    "filter-global-part2": " content on entire platform.",
-    "filter-global-part3": " content from Your communities. You can join communities that interest you to fill up this feed."
+    "filter-global-part2": " discussions on entire platform.",
+    "filter-global-part3": " discussions from Your subscribed communities. You can join more communities to fill up this feed.",
+    "filter-global-part4": " discussions from people you follow. You can follow more people to fill up this feed.",
+    "filter-global-discover": "Discover People",
+    "filter-global-join-communities": "Join Communities"
   },
   "navbar": {
     "discover": "Открийте",
@@ -152,6 +158,8 @@
     "pinned": "Закачен пост",
     "replies": "1 отговор. Натисни да отговориш.",
     "replies-n": "{{n}} отговори. Натисни за да отговориш.",
+    "vote-error": "Previous value is not acceptable. Vote with a different value.",
+    "vote-warning": "Voting 0% unvotes the content.",
     "no-replies": "Няма отговори все още. Натисни за да отговориш."
   },
   "nsfw": {
@@ -428,6 +436,7 @@
     "profile-image": "Профилна снимка",
     "website": "Уебсайт",
     "location": "Местоположение",
+    "copied": "Referral link copied to clipboard.",
     "updated": "Профила е актуализиран успешно!"
   },
   "image-upload-button": {
@@ -439,6 +448,7 @@
     "currency": "Валутa",
     "language": "Език",
     "nsfw": "Show NSFW content",
+    "referral-link": "Referral link",
     "updated": "Предпочитанията са обновени!"
   },
   "wallet": {
@@ -611,9 +621,9 @@
     "group-interests": "Interests",
     "group-stake-operations": "Stake operations",
     "group-rewards": "Rewards",
-    "type-curation_reward": "Награда за участие",
-    "type-author_reward": "Авторска награда",
-    "type-comment_benefactor_reward": "Награда от Благодетел за коментар",
+    "type-curation_reward": "Curation reward",
+    "type-author_reward": "Author reward",
+    "type-comment_benefactor_reward": "Comment benefactor reward",
     "type-claim_reward_balance": "Събиране на награди",
     "type-transfer": "Прехвърляне",
     "type-transfer_to_vesting": "Прехвърляне към придобивка",
@@ -626,7 +636,10 @@
     "type-cancel_transfer_from_savings": "Cancel transfer from savings",
     "type-cancel_transfer_from_savings-detail": "From: <strong>@{{from}}</strong> <br/> Request id: <strong>{{request}}</strong>",
     "type-return_vesting_delegation": "Return vesting delegation",
-    "type-proposal_pay": "Proposal pay"
+    "type-proposal_pay": "Proposal pay",
+    "type-comment_payout_update": "Content payout update",
+    "type-comment_reward": "Content reward",
+    "type-effective_comment_vote": "Effective Vote"
   },
   "key-or-hot": {
     "sign": "Вход",
@@ -644,7 +657,7 @@
   "friends": {
     "followers": "Последователи ({{n}})",
     "following": "Следва ({{n}})",
-    "search-placeholder": "Търсене на потребители"
+    "search-placeholder": "Search"
   },
   "follow-controls": {
     "follow": "Последвай",
@@ -931,6 +944,18 @@
     "validation-password": "Password is invalid.",
     "validation-label": "Please tick this box to proceed.",
     "updated": "Паролата беше успешно променена!"
+  },
+  "view-keys": {
+    "title": "View Private keys",
+    "account": "Account",
+    "cur-pass": "Current password",
+    "owner": "Owner",
+    "active": "Active",
+    "posting": "Posting",
+    "memo": "Memo",
+    "view-keys": "Click to view keys",
+    "copied": "Private key copied into clipboard",
+    "error": "Password seem incorrect, please double check!"
   },
   "add-image": {
     "title": "Добави Снимка",

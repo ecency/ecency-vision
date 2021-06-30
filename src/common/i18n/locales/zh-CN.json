@@ -17,6 +17,7 @@
     "days": "天",
     "finish": "完成",
     "next": "下一步",
+    "previous": "Previous",
     "back": "返回",
     "load-more": "显示更多",
     "empty-list": "此处无内容",
@@ -31,6 +32,7 @@
     "hot": "订阅源",
     "trending": "订阅源",
     "created": "订阅源",
+    "muted": "feed",
     "found": "发现",
     "feed": "订阅源",
     "blog": "博客",
@@ -39,6 +41,7 @@
     "replies": "回复",
     "done": "完成",
     "apply": "应用",
+    "warning": "警告",
     "close": "关闭"
   },
   "confirm": {
@@ -58,8 +61,11 @@
     "filter-feed-subscriptions": "社区",
     "filter-global": "通用",
     "filter-global-part1": "这种订阅包含 ",
-    "filter-global-part2": " 整个平台上的内容。",
-    "filter-global-part3": " 您的社区的内容。您可以加入您感兴趣的社区来填写此种订阅。"
+    "filter-global-part2": " discussions on entire platform.",
+    "filter-global-part3": " discussions from Your subscribed communities. You can join more communities to fill up this feed.",
+    "filter-global-part4": " discussions from people you follow. You can follow more people to fill up this feed.",
+    "filter-global-discover": "Discover People",
+    "filter-global-join-communities": "Join Communities"
   },
   "navbar": {
     "discover": "发现",
@@ -152,6 +158,8 @@
     "pinned": "置顶帖",
     "replies": "1个回复。请点击回复。",
     "replies-n": "{{n}} 个回复。点击进行回复。",
+    "vote-error": "之前的投票数值没有被接受。请更换数值重新投票。",
+    "vote-warning": "使用0%的投票能量，取消投票。",
     "no-replies": "还没有回复。点击进行回复。"
   },
   "nsfw": {
@@ -316,7 +324,7 @@
     "edit": "编辑设置",
     "edit-team": "编辑身份",
     "community-rewards": "社区奖励",
-    "profile-image": "Profile image",
+    "profile-image": "用戶头像",
     "profile-image-edit": "编辑个人资料图片",
     "profile-image-updated": "个人资料图片已更新！"
   },
@@ -428,6 +436,7 @@
     "profile-image": "用戶头像",
     "website": "网址",
     "location": "所在地",
+    "copied": "邀请链接已复制到剪贴板",
     "updated": "资料更新成功"
   },
   "image-upload-button": {
@@ -439,6 +448,7 @@
     "currency": "货币",
     "language": "语言",
     "nsfw": "显示 NSFW 内容",
+    "referral-link": "邀请链接",
     "updated": "首选项已更新！"
   },
   "wallet": {
@@ -626,7 +636,10 @@
     "type-cancel_transfer_from_savings": "取消从储蓄账户中的转移",
     "type-cancel_transfer_from_savings-detail": "来自： <strong>@{{from}}</strong> <br/> 请求 id: <strong>{{request}}</strong>",
     "type-return_vesting_delegation": "退回Hive Power的委托",
-    "type-proposal_pay": "建议支付"
+    "type-proposal_pay": "建议支付",
+    "type-comment_payout_update": "更新内容收益",
+    "type-comment_reward": "内容奖励",
+    "type-effective_comment_vote": "有效投票"
   },
   "key-or-hot": {
     "sign": "签名",
@@ -644,7 +657,7 @@
   "friends": {
     "followers": "粉丝 ({{n}})",
     "following": "关注 ({{n}})",
-    "search-placeholder": "搜索用户"
+    "search-placeholder": "Search"
   },
   "follow-controls": {
     "follow": "关注",
@@ -931,6 +944,18 @@
     "validation-password": "密码无效。",
     "validation-label": "请勾选此框以继续。",
     "updated": "密码更新成功！"
+  },
+  "view-keys": {
+    "title": "查看私钥",
+    "account": "账户",
+    "cur-pass": "当前密码",
+    "owner": "所有者",
+    "active": "活动",
+    "posting": "发送中",
+    "memo": "备注",
+    "view-keys": "点击查看密钥",
+    "copied": "私钥已复制到剪贴板",
+    "error": "密码似乎不正确，请重复检查！"
   },
   "add-image": {
     "title": "添加图像",
