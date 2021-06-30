@@ -7,6 +7,7 @@ import isEqual from "react-fast-compare";
 import {PrivateKey, PublicKey, cryptoUtils} from "@hiveio/dhive";
 
 import {History, Location} from "history";
+import * as ls from "../../util/local-storage";
 
 import {AppWindow} from "../../../client/window";
 
@@ -270,6 +271,11 @@ export class Login extends BaseComponent<LoginProps, State> {
             })
             .then(() => {
                 this.hide();
+                let shouldShowTutorialJourney = ls.get(`${user.username}HadTutorial`);
+                
+                if(!shouldShowTutorialJourney && (shouldShowTutorialJourney && shouldShowTutorialJourney!=='true')){
+                    ls.set(`${user.username}HadTutorial`, 'false');
+                }
             })
             .catch(() => {
                 error(_t('g.server-error'));
@@ -422,6 +428,15 @@ export class Login extends BaseComponent<LoginProps, State> {
 
         doLogin(code, (withPostingKey ? key : null), account)
             .then(() => {
+                if(!ls.get(`${username}HadTutorial`) || ls.get(`${username}HadTutorial`) && ls.get(`${username}HadTutorial`)!=='true'){
+                    ls.set(`${username}HadTutorial`, 'false');
+                }
+
+                let shouldShowTutorialJourney = ls.get(`${username}HadTutorial`);
+                
+                if(!shouldShowTutorialJourney && (shouldShowTutorialJourney && shouldShowTutorialJourney==='false')){
+                    ls.set(`${username}HadTutorial`, 'false');
+                }
                 this.hide();
             })
             .catch(() => {
