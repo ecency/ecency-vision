@@ -5,6 +5,7 @@ exports[`(1) No active user. Default filter 1`] = `
   <div
     className="d-none"
     id="overlay"
+    onClick={[Function]}
   />
   <div
     className="entry-index-menu"
@@ -214,6 +215,7 @@ exports[`(2) No active user. Trending filter 1`] = `
   <div
     className="d-none"
     id="overlay"
+    onClick={[Function]}
   />
   <div
     className="entry-index-menu"
@@ -423,6 +425,7 @@ exports[`(3) Active user. Trending filter 1`] = `
   <div
     className="overlay-for-introduction"
     id="overlay"
+    onClick={[Function]}
   />
   <div
     className="entry-index-menu"
@@ -503,15 +506,13 @@ exports[`(3) Active user. Trending filter 1`] = `
                     >
                       Friends
                     </span>
-                     content on entire platform.
+                     discussions from people you follow. You can follow more people to fill up this feed.
                     <a
-                      href="/communities"
+                      href="/discover"
                       onClick={[Function]}
                     >
                        
-                      Join
-                       
-                      Communities
+                      Discover People
                     </a>
                   </p>
                   <div
@@ -712,15 +713,13 @@ exports[`(3) Active user. Trending filter 1`] = `
                       >
                         Friends
                       </span>
-                       content on entire platform.
+                       discussions from people you follow. You can follow more people to fill up this feed.
                       <a
-                        href="/communities"
+                        href="/discover"
                         onClick={[Function]}
                       >
                          
-                        Join
-                         
-                        Communities
+                        Discover People
                       </a>
                     </p>
                     <div
@@ -863,6 +862,7 @@ exports[`(4) Active user. Friends 1`] = `
   <div
     className="d-none"
     id="overlay"
+    onClick={[Function]}
   />
   <div
     className="entry-index-menu"
@@ -1103,6 +1103,7 @@ exports[`(5) Active user. Communities 1`] = `
   <div
     className="d-none"
     id="overlay"
+    onClick={[Function]}
   />
   <div
     className="entry-index-menu"
@@ -1363,6 +1364,7 @@ exports[`(6) No active user. Communities 1`] = `
   <div
     className="d-none"
     id="overlay"
+    onClick={[Function]}
   />
   <div
     className="entry-index-menu"

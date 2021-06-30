@@ -14,7 +14,7 @@ exports[`(1) Render list 1`] = `
         className="form-control"
         onChange={[Function]}
         onKeyDown={[Function]}
-        placeholder="Search users"
+        placeholder="Search"
         value=""
       />
     </div>

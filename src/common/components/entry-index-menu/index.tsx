@@ -279,9 +279,11 @@ export class EntryIndexMenu extends Component<Props, States> {
                                             <span className="text-capitalize">
                                                 {_t(`${this.getPopupTitle()}`)}
                                             </span>
-                                            {(isGlobal || filter === "feed") ? _t('entry-filter.filter-global-part2') : _t('entry-filter.filter-global-part3')} 
-                                            {!isGlobal && filter !== "feed" && <Link to='/communities'> {_t('discussion.btn-join')}</Link>}
-                                            <Link to='/communities'> {_t('discussion.btn-join')} {_t('communities.title')}</Link>
+                                            {(introduction === IntroductionType.FRIENDS) && _t('entry-filter.filter-global-part4')}
+                                            {(introduction === IntroductionType.FRIENDS) && <Link to='/discover'> {_t('entry-filter.filter-global-discover')}</Link>}
+                                            {(isGlobal && introduction !== IntroductionType.FRIENDS) && _t('entry-filter.filter-global-part2')}
+                                            {!isGlobal && introduction !== IntroductionType.FRIENDS && _t('entry-filter.filter-global-part3')}
+                                            {!isGlobal && introduction !== IntroductionType.FRIENDS && <Link to='/communities'> {_t('entry-filter.filter-global-join-communities')}</Link>}
                                         </>;
         const introductionOverlayClass = (isMounted && introduction === IntroductionType.NONE) ? "d-none" : "overlay-for-introduction"
         return isMounted ? <div>
