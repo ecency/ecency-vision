@@ -17,7 +17,7 @@
     "days": "días",
     "finish": "Finalizado",
     "next": "Siguiente",
-    "previous": "Previous",
+    "previous": "Anterior",
     "back": "Regresar",
     "load-more": "Cargar más",
     "empty-list": "Nada por aquí",
@@ -61,10 +61,10 @@
     "filter-feed-subscriptions": "Comunidades",
     "filter-global": "Global",
     "filter-global-part1": "Este feed contiene ",
-    "filter-global-part2": " discussions on entire platform.",
-    "filter-global-part3": " discussions from Your subscribed communities. You can join more communities to fill up this feed.",
-    "filter-global-part4": " discussions from people you follow. You can follow more people to fill up this feed.",
-    "filter-global-discover": "Discover People",
+    "filter-global-part2": " discusiones en toda la plataforma.",
+    "filter-global-part3": " discusiones de tus comunidades suscritas. Puedes unirte a más comunidades para llenar esta fuente.",
+    "filter-global-part4": " discusiones de personas que sigues. Puedes seguir a más personas para llenar esta fuente.",
+    "filter-global-discover": "Descubre a más personas",
     "filter-global-join-communities": "Join Communities"
   },
   "navbar": {
