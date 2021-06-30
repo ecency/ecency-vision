@@ -61,8 +61,11 @@
     "filter-feed-subscriptions": "Komunitas",
     "filter-global": "Global",
     "filter-global-part1": "Umpan ini berisi ",
-    "filter-global-part2": " konten di seluruh platform.",
-    "filter-global-part3": " konten dari komunitas Anda. Anda dapat bergabung dengan komunitas yang Anda minati untuk mengisi umpan ini."
+    "filter-global-part2": " discussions on entire platform.",
+    "filter-global-part3": " discussions from Your subscribed communities. You can join more communities to fill up this feed.",
+    "filter-global-part4": " discussions from people you follow. You can follow more people to fill up this feed.",
+    "filter-global-discover": "Discover People",
+    "filter-global-join-communities": "Join Communities"
   },
   "navbar": {
     "discover": "Jelajahi",
