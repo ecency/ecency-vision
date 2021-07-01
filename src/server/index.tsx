@@ -17,7 +17,7 @@ const entryFilters = Object.values(EntryFilter);
 const profileFilters = Object.values(ProfileFilter);
 
 const lowerCase = (req: any, res: any, next: any) => {
-    if (req.url !== req.url.toLowerCase()) {
+    if (req.url !== req.url.toLowerCase() && !req.url.includes('auth?code')) {
         res.redirect(301, req.url.toLowerCase());
     }
     else {
