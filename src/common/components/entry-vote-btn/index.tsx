@@ -291,7 +291,13 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                 <span className="btn-inner no-rotate">{chevronUpSvgForSlider}</span>
               </div>
 
-              <div className="percentage">{`${downSliderVal.toFixed(1)}%`}</div>
+              <div className="estimated">
+                <FormattedCurrency
+                  {...this.props}
+                  value={this.estimate(downSliderVal)}
+                  fixAt={3}
+                />
+              </div>
               <div className="slider slider-down">
                 <Form.Control
                   type="range"
@@ -305,13 +311,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                   className="reverse-range"
                 />
               </div>
-              <div className="estimated">
-                <FormattedCurrency
-                  {...this.props}
-                  value={this.estimate(downSliderVal)}
-                  fixAt={3}
-                />
-              </div>
+              <div className="percentage">{`${downSliderVal.toFixed(1)}%`}</div>
               <div
                 className="btn-vote btn-down-vote vote-btn-lg secondary-btn-vote"
                 onClick={this.downVoteClicked}
