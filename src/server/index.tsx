@@ -10,6 +10,8 @@ import profileHandler from "./handlers/profile";
 import entryHandler from "./handlers/entry";
 import fallbackHandler, {healthCheck, appURI} from "./handlers/fallback";
 import {entryRssHandler, authorRssHandler} from "./handlers/rss";
+import * as authApi from "./handlers/auth-api";
+import config from "../config";
 
 const server = express();
 
@@ -31,6 +33,14 @@ const stripSlash = (req: any, res: any, next: any) => {
         res.redirect(301, req.path.slice(0, -1) + query);
     } else {
         next();
+    }
+}
+
+const authCheck = (req: any, res: any, next: any) => {
+    if (config.hsClientSecret && config.usePrivate !== "1") {
+        next();
+    } else {
+        res.json({error: "Define HIVESIGNER_SECRET ENV variable or set USE_PRIVATE=1"});
     }
 }
 
@@ -90,7 +100,7 @@ server
     .get("^/apple-app-site-association$", appURI)
 
     // Auth Api
-    //.post("^/auth-api/hs-token-refresh$", authApi.hsTokenRefresh)
+    .post("^/auth-api/hs-token-refresh$", authCheck, authApi.hsTokenRefresh)
 
     // Health check script for docker swarm
     .get("^/healthcheck.json$", healthCheck)
