@@ -17,6 +17,7 @@ import {getMarketData} from "../../api/misc";
 import {_t} from "../../i18n";
 
 import {Tsx} from "../../i18n/helper";
+import * as ls from "../../util/local-storage";
 
 interface Price {
     time: number;
@@ -49,7 +50,15 @@ export class Market extends BaseComponent<Props, State> {
         getMarketData(coin, vsCurrency, fromTs, toTs).then((r) => {
             if (r && r.prices) {
                 const prices: Price[] = r.prices.map((x: any) => ({time: x[0], price: x[1]}));
+                ls.set("marketData", prices);
                 this.stateSet({prices}, () => {
+                    this.attachEvents();
+                });
+            }
+        }).catch(err => {
+            let cachedData = ls.get("marketData")
+            if(cachedData) {
+                this.stateSet({prices: cachedData}, () => {
                     this.attachEvents();
                 });
             }
