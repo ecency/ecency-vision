@@ -66,7 +66,7 @@ interface VoteDialogState {
 export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
   state: VoteDialogState = {
     upSliderVal: getVoteValue("up", this.props.activeUser?.username! + '-' + this.props.entry.post_id, 100),
-    downSliderVal: getVoteValue("down", this.props.activeUser?.username! + '-' + this.props.entry.post_id, -100),
+    downSliderVal: getVoteValue("down", this.props.activeUser?.username! + '-' + this.props.entry.post_id, -1),
     estimated: 0,
     mode: this.props.downVoted ? "down" : "up",
     wrongValueUp: false,
@@ -74,7 +74,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     showWarning: false,
     initialVoteValues: {
       up: getVoteValue("up", this.props.activeUser?.username! + '-' + this.props.entry.post_id, 100),
-      down: getVoteValue("down", this.props.activeUser?.username!+ '-' + this.props.entry.post_id, -100),
+      down: getVoteValue("down", this.props.activeUser?.username!+ '-' + this.props.entry.post_id, -1),
     },
   };
 
@@ -290,6 +290,21 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
               >
                 <span className="btn-inner no-rotate">{chevronUpSvgForSlider}</span>
               </div>
+
+              <div className="percentage">{`${downSliderVal.toFixed(1)}%`}</div>
+              <div className="slider slider-down">
+                <Form.Control
+                  type="range"
+                  custom={true}
+                  step={0.1}
+                  min={-100}
+                  max={-1}
+                  value={downSliderVal}
+                  onChange={this.downSliderChanged}
+                  id={post_id.toString()}
+                  className="reverse-range"
+                />
+              </div>
               <div className="estimated">
                 <FormattedCurrency
                   {...this.props}
@@ -297,19 +312,6 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                   fixAt={3}
                 />
               </div>
-              <div className="slider slider-down">
-                <Form.Control
-                  type="range"
-                  custom={true}
-                  step={0.1}
-                  min={-100}
-                  max={-0.1}
-                  value={downSliderVal}
-                  onChange={this.downSliderChanged}
-                  id={post_id.toString()}
-                />
-              </div>
-              <div className="percentage">{`${downSliderVal.toFixed(1)}%`}</div>
               <div
                 className="btn-vote btn-down-vote vote-btn-lg secondary-btn-vote"
                 onClick={this.downVoteClicked}
