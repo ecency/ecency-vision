@@ -290,7 +290,6 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
               >
                 <span className="btn-inner no-rotate">{chevronUpSvgForSlider}</span>
               </div>
-
               <div className="estimated">
                 <FormattedCurrency
                   {...this.props}
