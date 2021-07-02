@@ -1,4 +1,5 @@
 import {Dispatch} from "redux";
+import {utils} from "@hiveio/dhive";
 
 import {
     OperationGroup,
@@ -14,23 +15,17 @@ import {
 
 import {getAccountHistory} from "../../api/hive";
 
-
-/* No need for now but keeping for future reference
-
-import {utils} from "@hiveio/dhive";
-
 const ops = utils.operationOrders;
 
 export const ACCOUNT_OPERATION_GROUPS: Record<OperationGroup, number[]> = {
-    "transfers": [ops.transfer, ops.transfer_to_savings, ops.cancel_transfer_from_savings],
-    "market-orders": [ops.fill_convert_request, ops.fill_order],
+    "transfers": [ops.transfer, ops.transfer_to_savings, ops.cancel_transfer_from_savings, ops.recurrent_transfer, ops.fill_recurrent_transfer],
+    "market-orders": [ops.fill_convert_request, ops.fill_order, ops.fill_collateralized_convert_request, ops.limit_order_create2, ops.limit_order_create, ops.limit_order_cancel],
     "interests": [ops.interest],
-    "stake-operations": [ops.return_vesting_delegation, ops.withdraw_vesting, ops.transfer_to_vesting],
-    "rewards": [ops.author_reward, ops.curation_reward, ops.producer_reward, ops.claim_reward_balance, ops.comment_benefactor_reward, ops.proposal_pay, ops.liquidity_reward]
+    "stake-operations": [ops.return_vesting_delegation, ops.withdraw_vesting, ops.transfer_to_vesting, ops.set_withdraw_vesting_route, ops.update_proposal_votes, ops.fill_vesting_withdraw, ops.account_witness_proxy],
+    "rewards": [ops.author_reward, ops.curation_reward, ops.producer_reward, ops.claim_reward_balance, ops.comment_benefactor_reward, ops.proposal_pay, ops.liquidity_reward, ops.comment_reward]
 }
 
 const ALL_ACCOUNT_OPERATIONS = [...Object.values(ACCOUNT_OPERATION_GROUPS)].flat();
- */
 
 export const initialState: Transactions = {
     list: [],
@@ -79,22 +74,22 @@ export const fetchTransactions = (username: string, group: OperationGroup | "" =
     let filters: any[] = [];
     switch (group) {
         case "transfers":
-            filters = ["21474836484", null];
+            filters = utils.makeBitMaskFilter(ACCOUNT_OPERATION_GROUPS['transfers']);
             break;
         case "market-orders":
-            filters = ["36310271995674624", null];
+            filters = utils.makeBitMaskFilter(ACCOUNT_OPERATION_GROUPS['market-orders']);
             break;
         case "interests":
-            filters = ["9007199254740992", null];
+            filters = utils.makeBitMaskFilter(ACCOUNT_OPERATION_GROUPS['interests']);
             break;
         case "stake-operations":
-            filters = ["1152921504606847000", null];
+            filters = utils.makeBitMaskFilter(ACCOUNT_OPERATION_GROUPS['stake-operations']);
             break;
         case "rewards":
-            filters = ["6923722026884530176", "1"];
+            filters = utils.makeBitMaskFilter(ACCOUNT_OPERATION_GROUPS['rewards']);
             break;
         default:
-            filters = ["8121961024216629276", "1"]; // all
+            filters = utils.makeBitMaskFilter(ALL_ACCOUNT_OPERATIONS); // all
     }
 
     getAccountHistory(name, filters).then(r => {
