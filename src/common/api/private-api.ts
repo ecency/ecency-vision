@@ -84,7 +84,7 @@ export const usrActivity = (username: string, ty: number, bl: string | number = 
     }
 
     const params: {
-        code: string;
+        code: string | null;
         ty: number;
         bl?: string | number;
         tx?: string | number;
@@ -98,7 +98,7 @@ export const usrActivity = (username: string, ty: number, bl: string | number = 
 
 export const getNotifications = (username: string, filter: NotificationFilter | null, since: string | null = null): Promise<ApiNotification[]> => {
 
-    const data: { code: string; filter?: string, since?: string } = {code: getAccessToken(username)};
+    const data: { code: string | null; filter?: string, since?: string } = {code: getAccessToken(username)};
 
     if (filter) {
         data.filter = filter;
@@ -114,13 +114,13 @@ export const getNotifications = (username: string, filter: NotificationFilter | 
 export const getUnreadNotificationCount = (username: string): Promise<number> => {
     const data = {code: getAccessToken(username)};
 
-    return axios
+    return data.code ? axios
         .post(apiBase(`/private-api/notifications/unread`), data)
-        .then(resp => resp.data.count);
+        .then(resp => resp.data.count) : Promise.resolve(0);
 }
 
 export const markNotifications = (username: string, id: string | null = null) => {
-    const data: { code: string; id?: string } = {code: getAccessToken(username)}
+    const data: { code: string | null; id?: string } = {code: getAccessToken(username)}
     if (id) {
         data.id = id;
     }

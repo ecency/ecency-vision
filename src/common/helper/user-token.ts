@@ -1,3 +1,5 @@
+import { history } from "../store";
+import { setActiveUser } from "../store/active-user";
 import {User} from "../store/users/types";
 
 import {decodeObj} from "../util/encoder";
@@ -8,18 +10,19 @@ export const getUser = (username: string) : User | null => {
     const raw = ls.get(`user_${username}`);
     if (!raw) {
         console.log("User does not exist!");
-        return null;
+        setActiveUser(null);
     }
 
     try {
         return decodeObj(raw) as User;
     } catch (e) {
         console.log("User does not exist!");
+        setActiveUser(null)
         return decodeObj(username) as User;
     }
 }
 
-export const getAccessToken = (username: string) => getUser(username) && getUser(username)!.accessToken;
+export const getAccessToken = (username: string) => getUser(username) &&  getUser(username)!.accessToken;
 
 export const getPostingKey = (username: string): null | undefined | string => getUser(username) && getUser(username)!.postingKey;
 

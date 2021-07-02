@@ -29,7 +29,7 @@ interface States {
 
 export const isMyPage = (global: Global, activeUser: ActiveUser | null) => {
     const {filter, tag} = global;
-    return activeUser !== null &&
+    return activeUser && activeUser !== null &&
         (
             (activeUser.username === tag.replace("@", "") && filter === "feed") ||
             tag === "my"
