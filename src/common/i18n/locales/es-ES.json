@@ -640,14 +640,14 @@
     "type-proposal_pay": "Propuesta de pago",
     "type-comment_payout_update": "Actualización de pago de contenido",
     "type-comment_reward": "Recompensa de contenido",
-    "type-recurrent_transfer": "Transferencia recurriente",
-    "type-recurrent_transfer-detail": "{{executions}} transfers, each every {{recurrence}} hours",
-    "type-fill_recurrent_transfer": "Recurring transfer occurred",
-    "type-fill_recurrent_transfer-detail": "Remaining {{remaining_executions}} transfers",
-    "type-collateralized_convert": "Collateralized convert",
-    "type-collateralized_convert-detail": "Request id: <strong>{{request}}</strong>",
-    "type-limit_order_create": "New trade",
-    "type-effective_comment_vote": "Effective vote"
+    "type-recurrent_transfer": "Transferencia recurrente",
+    "type-recurrent_transfer-detail": "{{executions}} transferencias, cada una cada {{recurrence}} horas",
+    "type-fill_recurrent_transfer": "Se ha producido una transferencia recurrence",
+    "type-fill_recurrent_transfer-detail": "{{remaining_executions}} transferencias restantes",
+    "type-collateralized_convert": "Conversión Collateralizada",
+    "type-collateralized_convert-detail": "Identificación de solicitud: <strong>{{request}}</strong>",
+    "type-limit_order_create": "Nueva operación",
+    "type-effective_comment_vote": "Voto efectivo"
   },
   "key-or-hot": {
     "sign": "Firmar",
