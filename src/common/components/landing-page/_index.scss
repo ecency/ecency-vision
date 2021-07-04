@@ -178,15 +178,17 @@
       color: $dark-sky-blue;
     }
     @include themify(night) {
-      color: $white;
+      color: $pinkish-grey;
     }
   }
   p {
     font-weight: 300;
     font-size: 24px;
     line-height: 135%;
-    color: $dark-grey;
     margin-bottom: 8px;
+    @include themify(night) {
+      color: $dark-grey;
+    }
     @media (max-width: $md-break) {
       font-weight: 300;
       font-size: 15px;
@@ -690,6 +692,10 @@
       }
       height: auto;
 
+      @media (max-width: $sm-break) {
+        height: 45rem !important;
+      }
+
       .inner > .img-wrapper {
         display: -webkit-box;
         display: -ms-flexbox;
@@ -773,7 +779,7 @@
             .decentralization-img {
               max-height: 270px;
               height: auto;
-              width: 70%;
+              width: 80%;
             }
           }
           .text-group {
@@ -881,7 +887,7 @@
         }
       }
       @media (max-width: $sm-break) {
-        height: 630px;
+        height: 369px;
         .inner {
           .text-group {
             p {
@@ -892,8 +898,8 @@
           .img-wrapper {
             width: 100%;
             .mechanic {
-              margin-top: 2rem;
-              width: 60%;
+              margin-top: -9rem;
+              width: 74%;
               height: auto;
             }
           }
