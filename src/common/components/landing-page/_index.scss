@@ -1405,10 +1405,9 @@
   .fifth-section {
     .part-top {
       @include themify(night) {
-        background-color: #202834;
+        background-color: #171e26;
         z-index: 1;
       }
-
       .inner {
         width: 100%;
         -ms-flex-wrap: nowrap;
@@ -1433,7 +1432,7 @@
     .part-bottom {
       @include themify(night) {
         z-index: 1;
-        background-color: #131a29;
+        background-color: #202834;
       }
       .inner {
         -webkit-box-pack: justify;
@@ -1442,17 +1441,30 @@
         -webkit-box-align: center;
             -ms-flex-align: center;
                 align-items: center;
+        h2 {
+          @include themify(night) {
+            color: $pinkish-grey;
+          }
+        }
+        p {
+          @include themify(night) {
+            color: $dark-grey;
+          }
+          b {
+            font-weight: 700;
+          }
+        }
         .our-vision {
-          height: auto;
-          width: 280px;
-          max-width: 80%;
+          height: 425px;
+          width: 368px;
           margin: 1rem ;
           padding-left: 1rem;
+          margin-top: -52px;
         }
         .text-group {
           max-width: unset;
           margin-right: 0;
-          width: 45%;
+          width: 55%;
           max-height: unset;
           -webkit-box-align: start;
               -ms-flex-align: start;
