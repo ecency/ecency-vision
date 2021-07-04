@@ -105,7 +105,7 @@ const LandingPage = (props: any) => {
             <img src={EarnMoney} alt="earn-money" loading="lazy" />
             <div className="text-group visible">
               <h2>{_t("landing-page.earn-money")}</h2>
-              <p>
+              <p className="mt-2">
                 {_t("landing-page.earn-money-block-chain-based")}
                 <span>
                   <a href="/signup?referral=ecency">
@@ -125,7 +125,7 @@ const LandingPage = (props: any) => {
           <div className="inner">
             <div className="text-group">
               <h2>{_t("landing-page.true-ownership")}</h2>
-              <p>{_t("landing-page.true-ownership-desc")}</p>
+              <p className="mt-2">{_t("landing-page.true-ownership-desc")}</p>
             </div>
             <div className="image-wrapper">
               <img

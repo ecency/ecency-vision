@@ -263,7 +263,7 @@
       @media (max-width: $md-break) {
         font-size: 18px;
         display: block;
-        line-height: 140%;
+        line-height: 27px;
         &:last-child {
           padding-left: 0;
           line-height: 70%;
@@ -309,6 +309,9 @@
     height: 650px;
     width: 100%;
     padding-bottom: 75px;
+    @media (max-width: $md-break) {
+      padding-bottom: 0px;
+    }
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -474,6 +477,10 @@
           p {
             line-height: 140%;
             max-width: 84%;
+            @media (max-width: $md-break) {
+              max-width: 100%;
+              line-height: 27px;
+            }
           }
         }
         @media (max-width: $md-break) {
@@ -556,6 +563,10 @@
             height: 445px;
             margin-top: -10rem;
             margin-right: -5rem;
+            @media (max-width: $md-break) {
+              width: 342px;
+              height: 264px;
+            }
           }
         }
         @media (min-width: $md-break) {
