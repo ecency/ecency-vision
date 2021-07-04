@@ -1623,7 +1623,7 @@
         height: 100%;
         .text-group {
           margin: 1rem;
-          width: 45%;
+          width: 33%;
           height: 80%;
           max-height: unset;
           h2 {
@@ -2068,11 +2068,12 @@
           .text-group {
             -webkit-box-align: center;
             -ms-flex-align: center;
-            align-items: center;
+            align-items: flex-start;
             margin-right: 0;
-            height: 70%;
+            height: 55%;
             h2 {
               text-align: start;
+              color: $pinkish-grey;
             }
             ul {
               width: 155px;
@@ -2119,20 +2120,17 @@
             }
           }
           .image-container {
-            height: 70%;
+            height: 50%;
             display: -webkit-box;
             display: -ms-flexbox;
             display: flex;
             -webkit-box-orient: vertical;
             -webkit-box-direction: normal;
-            -ms-flex-direction: column;
-            flex-direction: column;
             -webkit-box-align: center;
             -ms-flex-align: center;
             align-items: center;
             -ms-flex-pack: distribute;
-            justify-content: space-around;
-            width: 43%;
+            width: 50%;
             margin: 0 0.5rem 0 0;
             img {
               -ms-grid-column-align: center;
