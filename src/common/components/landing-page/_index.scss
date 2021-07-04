@@ -370,7 +370,6 @@
           -webkit-box-pack: start;
           -ms-flex-pack: start;
           justify-content: flex-start;
-          margin: auto;
           width: auto;
           height: 200px;
         }
@@ -512,7 +511,9 @@
           text-align: start;
         }
         @media (min-width: $md-break) {
-          width: auto;
+          p {
+            width: 75%
+          }
         }
         @media (max-width: $md-break) {
           margin: 2rem 1rem 4rem 1rem !important;
