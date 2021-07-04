@@ -162,7 +162,7 @@
     }
 
     @include themify(night) {
-      color: $white;
+      color: $pinkish-grey;
     }
   }
   h2 {
@@ -185,6 +185,8 @@
     font-weight: 300;
     font-size: 24px;
     line-height: 135%;
+    color: $dark-grey;
+    margin-bottom: 8px;
     @media (max-width: $md-break) {
       font-weight: 300;
       font-size: 15px;
@@ -236,7 +238,7 @@
     }
     @include themify(night) {
     background-image: url('https://ecency.com/assets/illustration-hero.webp');
-    color: $white;
+    color: $pinkish-grey;
   }
   @media (max-width: $lg-break) {
     background-image: none !important;
@@ -301,6 +303,9 @@
 
       @media (max-width: $md-break) {
         left: 47%
+      }
+      @media (min-width: $xs-break) {
+        left: 44%
       }
     }
   }
