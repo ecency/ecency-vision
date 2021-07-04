@@ -1096,7 +1096,7 @@
         background: #161d26;
         background: -o-linear-gradient(180deg, #161d26 0%, #4d5356 100%);
         background: linear-gradient(180deg, #161d26 0%, #4d5356 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#161d26",endColorstr="#4d5356",GradientType=1);  
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#161d26",endColorstr="#4d5356",GradientType=1);
       }
       @include themify(day) {
         background: rgb(196,219,235);
@@ -1255,7 +1255,13 @@
           background: rgb(23,30,38);
           background: -o-linear-gradient(273deg, rgba(23,30,38,1) 0%, rgba(71,77,84,1) 100%);
           background: linear-gradient(177deg, rgba(23,30,38,1) 0%, rgba(71,77,84,1) 100%);
-          filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#171e26",endColorstr="#474d54",GradientType=1);        
+          filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#171e26",endColorstr="#474d54",GradientType=1); 
+          
+          @media (max-width: $sm-break) {
+            background: -o-linear-gradient(180deg, #A6ACAF 0%, #17283D 100%);
+            background: linear-gradient(180deg, #A6ACAF 0%, #17283D 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#A6ACAF",endColorstr="#17283D",GradientType=1);  
+            }       
         }
         @include themify(day) {
           background: rgb(196,219,235);
@@ -1275,9 +1281,13 @@
           height: 154px;
           @include themify(night) {
             background-image: url("https://ecency.com/assets/download-algae-dark.png");
+            background-position-y: bottom;
+            background-repeat: no-repeat;
           }
           @include themify(day) {
             background-image: url("https://ecency.com/assets/download-algae.png");
+            background-position-y: bottom;
+            background-repeat: no-repeat;
           }
         }
       }
