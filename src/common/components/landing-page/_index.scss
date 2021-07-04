@@ -781,10 +781,8 @@
           -ms-flex-pack: center;
           justify-content: center;
           .mechanic {
-            width: 90%;
-            max-width: 340px !important;
-            height: auto;
-            max-height: 250px;
+            width: 571px;
+            height: 460px;
             margin: 0;
             margin-top: -240px;
           }
@@ -821,6 +819,8 @@
               margin-top: 2rem;
               width: 90%;
               height: auto;
+              max-width: 340px !important;
+              max-height: 250px;
             }
           }
         }
@@ -832,8 +832,6 @@
             p {
               line-height: 25px;
               font-size: 15px;
-              span {
-              }
             }
           }
           .img-wrapper {
@@ -854,9 +852,7 @@
     .part-top {
       height: 940px;
       @include themify(night) {
-        background: -o-linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
-        background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.5)));
-        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+        background-color: #161D26;
       }
       .inner {
         display: -webkit-box;
@@ -1036,10 +1032,10 @@
       height: 1140px;
       overflow: hidden;
       @include themify(night) {
-        background: rgb(23,30,38);
-        background: -o-linear-gradient(273deg, rgba(23,30,38,1) 0%, rgb(105, 117, 133) 100%);
-        background: linear-gradient(177deg, rgba(23,30,38,1) 0%, rgb(105, 117, 133) 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#171e26",endColorstr="#474d54",GradientType=1);  
+        background: #161d26;
+        background: -o-linear-gradient(180deg, #161d26 0%, #4d5356 100%);
+        background: linear-gradient(180deg, #161d26 0%, #4d5356 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#161d26",endColorstr="#4d5356",GradientType=1);  
       }
       @include themify(day) {
         background: rgb(196,219,235);
@@ -1876,8 +1872,6 @@
             }
             .socials {
               margin: 1rem 0;
-              p {
-              }
               ul {
                 margin: 1rem 0;
                 padding: 0;
@@ -2130,8 +2124,6 @@
             .subscribe-form {
               width: 100%;
               height: auto;
-              h2 {
-              }
               form {
                 width: 97%;
                 input {

@@ -188,7 +188,6 @@ const LandingPage = (props: any) => {
 
       <div className="sections fourth-section">
         <div className="part-top">
-          <span className="mask" />
           <div className="inner">
             <div className="fish-container">
               <img className="fish three" src={FishThree} alt="earn-money" loading="lazy" />
