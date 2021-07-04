@@ -9,26 +9,24 @@
   transition: all 0.3s ease-in-out;
   .top-bg {
     @include themify(day) {
+      z-index: 1;
       background: rgb(255, 255, 255);
       background: -o-linear-gradient(
         top,
-        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 255, 255, 0) 0%,
         rgba(124, 190, 241, 1) 100%
       );
       background: -webkit-gradient(
         linear,
         left top, left bottom,
-        from(rgba(255, 255, 255, 1)),
+        from(rgba(255, 255, 255, 0)),
         to(rgba(124, 190, 241, 1))
       );
-      background: linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 1) 0%,
-        rgba(124, 190, 241, 1) 100%
-      );
+      background: linear-gradient(180deg, #ffffff6b 0%, #7cbef1 100%);
       filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#7cbef1",GradientType=1);
     }
     @include themify(night) {
+      z-index: 0;
       background: rgb(166, 172, 175);
       background: -o-linear-gradient(
         top,
@@ -58,6 +56,9 @@
     @media (max-width: $md-break) {
       height: 1100px;
     }
+  }
+  .text-container {
+    z-index: 2;
   }
   .tob-bg-illustration-dark {
     @include themify(night) {
@@ -225,15 +226,29 @@
     position: relative;
   }
   .first-section {
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
     @include themify(day) {
       color: $dark-sky-blue;
+      background-image: url('https://ecency.com/assets/illustration-hero-day.webp');
     }
     @include themify(night) {
-      color: $white;
-    }
-    @media (max-width: $md-break) {
-      margin-top: -400px;
-    }
+    background-image: url('https://ecency.com/assets/illustration-hero.webp');
+    color: $white;
+  }
+  @media (max-width: $lg-break) {
+    background-image: none !important;
+  }
+  @media (max-width: $xxl-break) and (min-width: $xl-break) {
+    background-position: 0% 28%;
+  }
+  @media (max-width: $xl-break) and (min-width: $lg-break) {
+    background-position: 0% 20%;
+  }
+  @media (max-width: $md-break) {
+    margin-top: -400px;
+  }
 
     p {
       font-weight: 300;

@@ -15,8 +15,6 @@ const LandingPage = (props: any) => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const BgHeroDark = apiBase(`/assets/illustration-hero.${global.canUseWebp?"webp":"png"}`);
-  const BgHeroLight = apiBase(`/assets/illustration-hero-day.${global.canUseWebp?"webp":"png"}`);
   const EarnMoney = apiBase(`/assets/illustration-earn-money.${global.canUseWebp?"webp":"png"}`);
   const WhaleCatchsFish = apiBase(`/assets/illustration-true-ownership.${global.canUseWebp?"webp":"png"}`);
   const Decentralization = apiBase(`/assets/illustration-decentralization.${global.canUseWebp?"webp":"png"}`);
@@ -81,33 +79,25 @@ const LandingPage = (props: any) => {
   return (
     <div className="landing-wrapper">
       <div className="top-bg" />
-      <img 
-        className="tob-bg-illustration-light" 
-        src={BgHeroLight}
-        alt="algaes"
-        loading="lazy"/>
-      <img 
-        className="tob-bg-illustration-dark" 
-        src={BgHeroDark}
-        alt="algaes"
-        loading="lazy"/>
       <div className="tob-bg-algae" />
       <div className="tob-bg-fishes" />
       <div className="sections first-section">
-        <h1>{_t("landing-page.welcome-text")}</h1>
-        <div>
-          <p>{_t("landing-page.what-is-ecency")}</p>
-          <p>{_t("landing-page.powered-by-hive")}</p>
+        <div className="text-container text-center">
+          <h1>{_t("landing-page.welcome-text")}</h1>
+          <div>
+            <p>{_t("landing-page.what-is-ecency")}</p>
+            <p>{_t("landing-page.powered-by-hive")}</p>
+          </div>
+          <button
+            className="get-started mx-auto"
+            onClick={() => props.changeState({ step: 2 })}
+          >
+            {_t("landing-page.get-started")}
+          </button>
+          <a className="scroll-down" href="#earn-money">
+            {scrollDown}
+          </a>
         </div>
-        <button
-          className="get-started"
-          onClick={() => props.changeState({ step: 2 })}
-        >
-          {_t("landing-page.get-started")}
-        </button>
-        <a className="scroll-down" href="#earn-money">
-          {scrollDown}
-        </a>
       </div>
       <div className="sections second-section" id="earn-money">
         <div className="part-top">
