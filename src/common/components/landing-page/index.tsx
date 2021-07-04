@@ -395,6 +395,7 @@ const LandingPage = (props: any) => {
                   </li>
                 </ul>
               </div>
+              
               <div className="subscribe-form" onSubmit={handleSubsccribe}>
                 <h2>{_t("landing-page.subscribe-us")}</h2>
                 <form>
@@ -409,9 +410,13 @@ const LandingPage = (props: any) => {
                   />
                   <button disabled={loading}>{loading ? <span><LinearProgress /></span>  : _t("landing-page.send")}</button>
                 </form>
-                <div className="socials">
-                  <p>{_t("landing-page.subscribe-paragraph")}</p>
-                  <ul>
+
+                <p>{_t("landing-page.subscribe-paragraph")}</p>
+                </div>
+            </div>
+
+            <div className="socials w-100">
+                  <ul className="p-0 my-5 d-flex d-sm-block justify-content-around w-88 mx-auto">
                     <li>
                       <a href="https://youtube.com/ecency">
                         <img src={FooterYoutube} alt="youtube" />
@@ -434,8 +439,6 @@ const LandingPage = (props: any) => {
                     </li>
                   </ul>
                 </div>
-              </div>
-            </div>
             <div className="site-icon">
               <a href="#">
                 <img src={LogoCircle} alt="ecency logo" />

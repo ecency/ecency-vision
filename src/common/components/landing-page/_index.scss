@@ -1553,6 +1553,9 @@
           text-align: start;
           height: 100%;
           margin-right: 2rem;
+          @media (max-width: $sm-break) {
+            margin-top: 1rem !important;
+          }
         }
       }
     }
@@ -1838,7 +1841,7 @@
         p {
           font-size: 18px;
           line-height: 27px;
-          color: $white;
+          color: $dark-grey;
           margin: 0;
           cursor: pointer;
         }
@@ -1899,7 +1902,7 @@
               font-size: 43px;
               line-height: 51px;
               @include themify(night) {
-                color: $white;
+                color: $pinkish-grey;
               }
               @include themify(day) {
                 color: $blue;
@@ -1996,7 +1999,7 @@
         }
         .site-icon {
           position: absolute;
-          bottom: 70px;
+          bottom: 15px;
           right: 0;
           left: 0;
           height: 95px;
@@ -2283,11 +2286,15 @@
           font-weight: 800;
           font-size: 31px;
           line-height: 37px;
+          @include themify(night) {
+            color: $pinkish-grey;
+          }
         }
+
         .main-fish {
           right: -114px;
-          width: 385px;
-          height: 550px;
+          width: 330px;
+          height: 440px;
         }
       }
     }
