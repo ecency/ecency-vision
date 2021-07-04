@@ -373,6 +373,7 @@
       .text-group {
         width: 52%;
         height: 100%;
+        max-width: 455px;
         max-height: 300px;
         display: -webkit-box;
         display: -ms-flexbox;
@@ -448,7 +449,6 @@
       .text-group {
         width: 50%;
         height: 100%;
-        max-width: 455px;
         max-height: 300px;
         display: -webkit-box;
         display: -ms-flexbox;
@@ -560,7 +560,7 @@
           -ms-flex-direction: row;
           flex-direction: row;
           .text-group {
-            width: 45%;
+            width: 38%;
             height: auto;
             margin: 4rem 1rem;
             -webkit-box-pack: start;
@@ -673,7 +673,7 @@
         }
       }
       .inner > .text-group {
-        width: 50%;
+        width: 52%;
         margin: 0 1rem !important;
         -webkit-box-align: start;
             -ms-flex-align: start;
@@ -832,6 +832,8 @@
             p {
               line-height: 25px;
               font-size: 15px;
+              span {
+              }
             }
           }
           .img-wrapper {
@@ -1874,6 +1876,8 @@
             }
             .socials {
               margin: 1rem 0;
+              p {
+              }
               ul {
                 margin: 1rem 0;
                 padding: 0;
@@ -2126,6 +2130,8 @@
             .subscribe-form {
               width: 100%;
               height: auto;
+              h2 {
+              }
               form {
                 width: 97%;
                 input {

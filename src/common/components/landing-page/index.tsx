@@ -150,7 +150,7 @@ const LandingPage = (props: any) => {
                 loading="lazy"
               />
             </div>
-            <div className="text-group visible">
+            <div className="text-group visible mw-100">
               <h2>{_t("landing-page.decentralization")}</h2>
               <p>
                 <span>
