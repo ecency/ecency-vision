@@ -2266,6 +2266,8 @@
         }
         .inner > .image-container {
           height: 340px;
+          flex-direction: column;
+          justify-content: space-around;
         }
         .inner > .image-container > .junior {
           height: 82px !important;
