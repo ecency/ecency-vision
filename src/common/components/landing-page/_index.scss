@@ -330,9 +330,9 @@
       flex-direction: row;
       max-width: 1200px;
       width: 100%;
-      -webkit-box-pack: start;
-      -ms-flex-pack: start;
-      justify-content: flex-start;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
       -webkit-box-align: center;
       -ms-flex-align: center;
       align-items: center;
@@ -371,9 +371,8 @@
         }
       }
       .text-group {
-        width: 50%;
+        width: 52%;
         height: 100%;
-        max-width: 455px;
         max-height: 300px;
         display: -webkit-box;
         display: -ms-flexbox;
