@@ -302,11 +302,8 @@
       outline: none;
       animation: bounce 0.7s infinite alternate;
       -webkit-animation: bounce 0.7s infinite alternate;
-
-      @media (max-width: $md-break) {
-        left: 47%
-      }
-      @media (min-width: $xs-break) {
+      left: 48%;
+      @media (max-width: $sm-break) {
         left: 44%
       }
     }
@@ -1650,9 +1647,15 @@
         }
       }
       .part-bottom > .inner > .our-vision {
-        width: 50%;
+        width: 27%;
         margin: 0;
         margin-top: -27rem;
+        @media (max-width: 375px) {
+          width: 50% !important;
+        }
+        @media (max-width: 420px) and (min-width:375px) {
+          width: 35%;
+        }
       }
       .part-bottom {
         height: 500px;

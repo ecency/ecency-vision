@@ -85,7 +85,7 @@ const LandingPage = (props: any) => {
         <div className="text-container text-center">
           <h1>{_t("landing-page.welcome-text")}</h1>
           <div className="d-flex flex-wrap justify-content-center align-items-center">
-            <p>{_t("landing-page.what-is-ecency")}</p>
+            <p className="mb-3">{_t("landing-page.what-is-ecency")}</p>
             <p className="ml-1 mb-3">{_t("landing-page.powered-by-hive")}</p>
           </div>
           <button
@@ -287,7 +287,7 @@ const LandingPage = (props: any) => {
       </div>
 
       <div className="sections fifth-section" id="about">
-        <div className="part-top">
+        <div className="part-top pt-5 pt-sm-0">
           <div className="inner">
             <div className="text-group">
               <h2>{_t("landing-page.our-history")}</h2>
@@ -360,7 +360,7 @@ const LandingPage = (props: any) => {
             </div>
           </div>
         </div>
-        <div className="part-bottom">
+        <div className="part-bottom pt-sm-5 pt-lg-0">
           <span className="left-fishes" />
           <img src={FooterMainFish} alt="Big fish" loading="lazy" className="main-fish" />
           <div className="inner">
@@ -416,7 +416,7 @@ const LandingPage = (props: any) => {
             </div>
 
             <div className="socials w-100">
-                  <ul className="p-0 my-5 d-flex d-sm-block justify-content-around w-88 mx-auto">
+                  <ul className="p-0 my-5 d-flex d-lg-block justify-content-around w-88 mx-auto">
                     <li>
                       <a href="https://youtube.com/ecency">
                         <img src={FooterYoutube} alt="youtube" />
