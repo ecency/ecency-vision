@@ -84,7 +84,7 @@ const LandingPage = (props: any) => {
       <div className="sections first-section">
         <div className="text-container text-center">
           <h1>{_t("landing-page.welcome-text")}</h1>
-          <div className="d-flex justify-content-center align-items-center">
+          <div className="d-flex flex-wrap justify-content-center align-items-center">
             <p>{_t("landing-page.what-is-ecency")}</p>
             <p className="ml-1">{_t("landing-page.powered-by-hive")}</p>
           </div>
