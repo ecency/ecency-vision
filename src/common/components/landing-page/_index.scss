@@ -1587,6 +1587,9 @@
                 -ms-flex-align: center;
                     align-items: center;
             text-align: center;
+            @media (max-width: $sm-break) {
+              margin-top: -1rem;
+            }
             
           }
           .our-history {
@@ -1594,6 +1597,9 @@
             margin-top: 13rem;
             max-width: 90%;
             height: auto;
+            @media (max-width: $sm-break) {
+              width: 100%;
+            }
           }
         }
       }
@@ -1633,6 +1639,7 @@
         .inner {
           height: 800px;
           .text-group {
+            margin-top: 2rem;
             p:first-of-type {
               margin-top: 0;
             }
@@ -1641,7 +1648,8 @@
       }
       .part-bottom > .inner > .our-vision {
         width: 50%;
-        margin-top: -23rem;
+        margin: 0;
+        margin-top: -27rem;
       }
       .part-bottom {
         height: 500px;
