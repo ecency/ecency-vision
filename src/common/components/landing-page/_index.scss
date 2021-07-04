@@ -764,14 +764,21 @@
       width: 100%;
       height: auto;
       min-height: 400px;
+      @media (max-width: $md-break) {
+        min-height: 320px;
+      }
       .inner {
         width: 100%;
         height: auto;
         margin-bottom: 4rem;
         margin-top: 4rem;
+        @media (max-width: $md-break) {
+          margin-bottom: 0px;
+          margin-top: 0px;
+        }
         -webkit-box-pack: center;
-            -ms-flex-pack: center;
-                justify-content: center;
+          -ms-flex-pack: center;
+              justify-content: center;
         .text-group {
           max-width: 45%;
           padding: 1rem;
@@ -805,6 +812,12 @@
             height: 460px;
             margin: 0;
             margin-top: -240px;
+            @media (max-width: $md-break) {
+              width: 327px;
+              height: 263px;
+              margin: 0;
+              margin-top: -160px;
+            }
           }
         }
         @media (max-width: 766px) {
