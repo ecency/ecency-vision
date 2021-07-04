@@ -126,6 +126,7 @@
   }
   .tob-bg-fishes {
     display: none;
+    z-index: 1;
     @include themify(night) {
       background-image: url("https://ecency.com/assets/hero-fishes-dark.png");
     }
@@ -297,6 +298,10 @@
       outline: none;
       animation: bounce 0.7s infinite alternate;
       -webkit-animation: bounce 0.7s infinite alternate;
+
+      @media (max-width: $md-break) {
+        left: 47%
+      }
     }
   }
 
