@@ -242,7 +242,8 @@ const LandingPage = (props: any) => {
 
             <div className="text-group">
               <h2>{_t("landing-page.download-our-application")}</h2>
-              <p>{_t("landing-page.download-our-application-desc")}</p>
+              <p className="mt-4">{_t("landing-page.download-our-application-desc-1")}</p>
+              <p>{_t("landing-page.download-our-application-desc-2")}</p>
               <a
                 className="windows"
                 href="https://desktop.ecency.com/"

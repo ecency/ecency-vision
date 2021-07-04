@@ -1239,12 +1239,12 @@
         z-index: 2;
         .text-group {
           margin: 0;
-          width: 50%;
+          width: 58%;
           max-width: 756px;
           z-index: 2;
           h2 {
             @include themify(night) {
-              color: $white;
+              color: $pinkish-grey;
             }
             @include themify(day) {
               color: $blue;
@@ -1259,7 +1259,7 @@
             align-items: center;
             line-height: 2;
             @include themify(night) {
-              color: $white;
+              color: $dark-grey;
             }
             @include themify(day) {
               color: $blue;
@@ -1282,7 +1282,7 @@
             align-items: center;
             line-height: 2;
             @include themify(night) {
-              color: $white;
+              color: $dark-grey;
             }
             @include themify(day) {
               color: $blue;
