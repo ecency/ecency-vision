@@ -12,6 +12,7 @@ import fallbackHandler, {healthCheck, appURI} from "./handlers/fallback";
 import {entryRssHandler, authorRssHandler} from "./handlers/rss";
 import * as authApi from "./handlers/auth-api";
 import config from "../config";
+import { getCachedCurrencyRate } from './handlers/external-api';
 
 const server = express();
 
@@ -96,6 +97,9 @@ server
         ],
         entryHandler
     )
+    // market-data
+    .get("^/external-api/currency-rate/:cur$", getCachedCurrencyRate)
+
     // apple-app-site-association
     .get("^/apple-app-site-association$", appURI)
 
