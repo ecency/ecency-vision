@@ -644,10 +644,10 @@
     "type-recurrent_transfer-detail": "{{executions}} transfer, berlangsung setiap jam {{recurrence}}",
     "type-fill_recurrent_transfer": "Transfer sedang terus berjalan",
     "type-fill_recurrent_transfer-detail": "Transfer {{remaining_executions}} yang tersisa",
-    "type-collateralized_convert": "Collateralized convert",
-    "type-collateralized_convert-detail": "Request id: <strong>{{request}}</strong>",
-    "type-limit_order_create": "New trade",
-    "type-effective_comment_vote": "Effective vote"
+    "type-collateralized_convert": "Konversi yang dijamin",
+    "type-collateralized_convert-detail": "Permintaan id: <strong>{{request}}</strong>",
+    "type-limit_order_create": "Perdagangan baru",
+    "type-effective_comment_vote": "Vote efektif"
   },
   "key-or-hot": {
     "sign": "Masuk",
