@@ -80,6 +80,8 @@
     "@types/react-test-renderer": "^16.9.2",
     "@types/serialize-javascript": "^1.5.0",
     "@types/webpack-env": "^1.14.0",
+    "ignore-loader": "^0.1.2",
+    "ignore-styles": "^5.0.1",
     "jest": "^26.0.0",
     "mockdate": "^3.0.2",
     "razzle": "^3.0.0",

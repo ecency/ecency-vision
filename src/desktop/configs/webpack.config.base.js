@@ -10,6 +10,10 @@ export default {
   externals: [...Object.keys(externals || {})],
 
   module: {
+      loaders: [
+        { test: /\.css$/, loader: 'ignore-loader' },
+        { test: /\.scss$/, loader: 'ignore-loader' }
+      ],
     rules: [
       {
         test: /\.tsx?$/,

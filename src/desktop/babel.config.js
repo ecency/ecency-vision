@@ -2,10 +2,10 @@
 
 const developmentEnvironments = ['development', 'test'];
 
-const developmentPlugins = [require('react-hot-loader/babel')];
+const developmentPlugins = [require('react-hot-loader/babel'), require('ignore-styles')];
 
 const productionPlugins = [
-  require('babel-plugin-dev-expression'),
+  require('babel-plugin-dev-expression'), require('ignore-styles'),
 
   // babel-preset-react-optimize
   require('@babel/plugin-transform-react-constant-elements'),
