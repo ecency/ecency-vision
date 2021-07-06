@@ -360,7 +360,7 @@ const LandingPage = (props: any) => {
             </div>
           </div>
         </div>
-        <div className="part-bottom pt-sm-5 pt-lg-0">
+        <div className="part-bottom pt-sm-5 pt-lg-auto">
           <span className="left-fishes" />
           <img src={FooterMainFish} alt="Big fish" loading="lazy" className="main-fish" />
           <div className="inner">
@@ -412,11 +412,10 @@ const LandingPage = (props: any) => {
                 </form>
 
                 <p>{_t("landing-page.subscribe-paragraph")}</p>
-                </div>
-            </div>
 
-            <div className="socials w-100">
-                  <ul className="p-0 my-5 d-flex d-lg-block justify-content-around w-88 mx-auto">
+
+            <div className="socials w-100 d-none d-lg-block">
+                  <ul className="p-0 m-0 d-flex justify-content-between w-50">
                     <li>
                       <a href="https://youtube.com/ecency">
                         <img src={FooterYoutube} alt="youtube" />
@@ -439,7 +438,9 @@ const LandingPage = (props: any) => {
                     </li>
                   </ul>
                 </div>
-            <div className="site-icon">
+            
+                </div>
+            </div><div className="site-icon">
               <a href="#">
                 <img src={LogoCircle} alt="ecency logo" />
               </a>
