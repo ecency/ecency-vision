@@ -179,15 +179,11 @@
         font-size: 28px;
       }
     }
-
-    .get-started-button {
-
-    }
   }
 
   .cloud-1 {
     animation: shake0 26s cubic-bezier(.36, .07, .19, .97) infinite;
-    // background: url(../common/img/cloud1.png) no-repeat;
+    background: url(../../img/cloud1.png) no-repeat;
     background-size: 100%;
     height: 35px;
     position: absolute;
@@ -215,7 +211,7 @@
 
   .cloud-2 {
     animation: shake1 26s cubic-bezier(.36, .07, .19, .97) infinite;
-    // background: url(../common/img/cloud2.png) no-repeat;
+    background: url(../../img/cloud2.png) no-repeat;
     background-size: 100%;
     height: 30px;
     left: 6%;
@@ -238,7 +234,7 @@
 
   .cloud-3 {
     animation: shake0 26s cubic-bezier(.36, .07, .19, .97) infinite;
-    // background: url(../common/img/cloud3.png) no-repeat;
+    background: url(../../img/cloud3.png) no-repeat;
     background-size: 100%;
     height: 84px;
     left: 0;
