@@ -262,6 +262,7 @@
     "comment-entry-go-parent": "Übergeordneten Beitrag ansehen",
     "hidden-warning": "This content got low rating by people. Proceed with caution.",
     "muted-warning": "This content was muted by {{community}} moderators for not following community guidelines.",
+    "lowrep-warning": "Author of this post has low reputation. Proceed with caution.",
     "address-copy": "Adresse des Post kopieren",
     "address-copied": "Post Adresse in die Zwischenablage kopiert.",
     "browse-original": "Open original post",

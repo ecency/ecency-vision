@@ -262,6 +262,7 @@
     "comment-entry-go-parent": "Просмотр прямого родителя",
     "hidden-warning": "Этот контент получил низкий рейтинг со стороны людей. Будьте осторожны.",
     "muted-warning": "Этот контент был заблокирован модераторами {{community}} за несоблюдение правил сообщества.",
+    "lowrep-warning": "Author of this post has low reputation. Proceed with caution.",
     "address-copy": "Скопировать адрес поста",
     "address-copied": "Адрес поста скопирован в буфер обмена.",
     "browse-original": "Открыть оригинальный пост",

@@ -262,6 +262,7 @@
     "comment-entry-go-parent": "सीधा मूल जनक को देखें",
     "hidden-warning": "इस सामग्री को लोगों द्वारा कम रेटिंग मिली है। सावधानी के साथ आगे बढ़ें।",
     "muted-warning": "इस सामग्री को {{community}} मॉडरेटर द्वारा सामुदायिक दिशानिर्देशों का पालन न करने के कारण म्यूट कर दिया गया था।",
+    "lowrep-warning": "Author of this post has low reputation. Proceed with caution.",
     "address-copy": "पोस्ट पता कापी करे",
     "address-copied": "क्लिपबोर्ड पर पोस्ट पता कॉपी किया गया।",
     "browse-original": "मूल पोस्ट खोलें",

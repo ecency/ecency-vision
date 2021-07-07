@@ -262,6 +262,7 @@
     "comment-entry-go-parent": "查看直接上级",
     "hidden-warning": "人们对此内容评分较低，请谨慎行事。",
     "muted-warning": "此内容被 {{community}} 版主禁言，因为他们不遵守社区指南。",
+    "lowrep-warning": "Author of this post has low reputation. Proceed with caution.",
     "address-copy": "复制帖子地址",
     "address-copied": "帖子地址已复制到剪贴板。",
     "browse-original": "打开原始帖子",
