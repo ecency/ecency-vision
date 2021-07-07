@@ -355,7 +355,8 @@ class EntryPage extends BaseComponent<Props, State> {
 
         const ownEntry = activeUser && activeUser.username === entry.author;
         const isHidden = entry?.net_rshares < 0;
-        const isMuted = entry?.stats?.gray && entry?.net_rshares >= 0;
+        const isMuted = entry?.stats?.gray && entry?.net_rshares >= 0 && entry?.author_reputation >= 0;
+        const isLowReputation = entry?.stats?.gray && entry?.net_rshares >= 0 && entry?.author_reputation < 0;
 
         //  Meta config
         const url = entryCanonical(entry) || "";
@@ -523,6 +524,10 @@ class EntryPage extends BaseComponent<Props, State> {
 
                                                 {isHidden && (<div className="hidden-warning">
                                                     <span>{_t('entry.hidden-warning')}</span>
+                                                </div>)}
+
+                                                {isLowReputation && (<div className="hidden-warning">
+                                                    <span>{_t('entry.lowrep-warning')}</span>
                                                 </div>)}
 
                                                 {isComment && (
