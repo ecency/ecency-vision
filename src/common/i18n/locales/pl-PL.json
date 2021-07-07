@@ -262,6 +262,7 @@
     "comment-entry-go-parent": "Zobacz bezpośredni nadrzędny",
     "hidden-warning": "Ta treść jest uzyskała niskie oceny społeczności. Zachowaj ostrożność.",
     "muted-warning": "Ta zawartość została wyciszona przez moderatorów {{community}} za nieprzestrzeganie wytycznych społeczności.",
+    "lowrep-warning": "Author of this post has low reputation. Proceed with caution.",
     "address-copy": "Kopiuj adres wpisu",
     "address-copied": "Adres wpisu został skopiowany do schowka.",
     "browse-original": "Otwórz oryginalny wpis",
