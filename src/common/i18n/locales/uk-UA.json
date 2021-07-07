@@ -262,6 +262,7 @@
     "comment-entry-go-parent": "Дивитись батьківський коментар",
     "hidden-warning": "This content got low rating by people. Proceed with caution.",
     "muted-warning": "This content was muted by {{community}} moderators for not following community guidelines.",
+    "lowrep-warning": "Author of this post has low reputation. Proceed with caution.",
     "address-copy": "Скопіювати адресу",
     "address-copied": "Адреса скопійована в буфер обміну.",
     "browse-original": "Open original post",
