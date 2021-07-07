@@ -2,8 +2,16 @@
 
 module.exports = {
   plugins: ['typescript', 'scss'],
-  modify: (config, { target, dev }) => {
-    config.devtool = dev ? 'source-map' : false;
-    return config;
+  modifyWebpackConfig({
+    env: {
+      dev
+    },
+    webpackConfig,
+  }) {
+    webpackConfig.devtool = dev ? 'source-map' : false;
+    return webpackConfig;
+  },
+  options: {
+    buildType: 'spa'
   },
 };
