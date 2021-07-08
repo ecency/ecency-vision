@@ -3,7 +3,7 @@
 module.exports = {
   plugins: ['typescript', 'scss'],
   options: {
-    buildType: 'spa'
+    buildType: 'iso'
   },
   modifyWebpackConfig({
     env: {
