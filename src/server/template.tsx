@@ -62,24 +62,29 @@ export const render = (req: express.Request, state: AppState) => {
                 ${headHelmet}
                 ${cssLinksFromAssets(assets, 'client')}
             </head>
-            <body class="${`theme-${state.global.theme}`}">
-                <div id="root">${markup}</div>
-                <script>
-                  window.__PRELOADED_STATE__ = ${serialize(finalState)}
-                </script>   
+            <body class="${`theme-${state.global.theme}`}" style="display: none;">
+                <div id="root">${markup}</div>  
                 ${jsScriptTagsFromAssets(assets, 'client', ' defer crossorigin')}
                 <script type="application/ld+json">
-                {
-                  "@context": "https://schema.org",
-                  "@type": "WebSite",
-                  "url": "https://ecency.com/",
-                  "potentialAction": {
-                    "@type": "SearchAction",
-                    "target": "https://ecency.com/search/?q={search_term_string}",
-                    "query-input": "required name=search_term_string"
+                  {
+                    "@context": "https://schema.org",
+                    "@type": "WebSite",
+                    "url": "https://ecency.com/",
+                    "potentialAction": {
+                      "@type": "SearchAction",
+                      "target": "https://ecency.com/search/?q={search_term_string}",
+                      "query-input": "required name=search_term_string"
+                    }
                   }
-                }
                 </script>
+                <script>
+                  window.__PRELOADED_STATE__ = ${serialize(finalState)}
+                </script>
+                <style>
+                    body {
+                      display: block !important;
+                    }
+                </style>
             </body>
         </html>`;
 };
