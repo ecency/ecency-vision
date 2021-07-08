@@ -53,13 +53,13 @@ export const render = (req: express.Request, state: AppState) => {
                 <link rel="apple-touch-icon" href="/logo192.png" />
                 <link rel="manifest" href="/manifest.json" />
                 ${headHelmet}
+                ${cssLinksFromAssets(assets, 'client')}
             </head>
             <body class="${`theme-${state.global.theme}`}">
                 <div id="root">${markup}</div>
                 <script>
                   window.__PRELOADED_STATE__ = ${serialize(finalState)}
                 </script>   
-            ${cssLinksFromAssets(assets, 'client')}
             ${
               process.env.NODE_ENV === "production"
                 ? `<script src="${assets.client.js}" defer></script>`
