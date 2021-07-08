@@ -24,6 +24,13 @@ const cssLinksFromAssets = (assets:any, entrypoint:string) => {
   ).join('') : '' : '';
 };
 
+const jsScriptTagsFromAssets = (assets: any, entrypoint: any, extra = '') => {
+  return assets[entrypoint] ? assets[entrypoint].js ?
+  assets[entrypoint].js.map((asset:any)=>
+    `<script src="${asset}"${extra}></script>`
+  ).join('') : '' : '';
+};
+
 export const render = (req: express.Request, state: AppState) => {
   const store = configureStore(state);
 
@@ -60,23 +67,19 @@ export const render = (req: express.Request, state: AppState) => {
                 <script>
                   window.__PRELOADED_STATE__ = ${serialize(finalState)}
                 </script>   
-            ${
-              process.env.NODE_ENV === "production"
-                ? `<script src="${assets.client.js}" defer></script>`
-                : `<script src="${assets.client.js}" defer crossorigin></script>`
-            }
-            <script type="application/ld+json">
-            {
-              "@context": "https://schema.org",
-              "@type": "WebSite",
-              "url": "https://ecency.com/",
-              "potentialAction": {
-                "@type": "SearchAction",
-                "target": "https://ecency.com/search/?q={search_term_string}",
-                "query-input": "required name=search_term_string"
-              }
-            }
-            </script>
+                ${jsScriptTagsFromAssets(assets, 'client', ' defer crossorigin')}
+                <script type="application/ld+json">
+                {
+                  "@context": "https://schema.org",
+                  "@type": "WebSite",
+                  "url": "https://ecency.com/",
+                  "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": "https://ecency.com/search/?q={search_term_string}",
+                    "query-input": "required name=search_term_string"
+                  }
+                }
+                </script>
             </body>
         </html>`;
 };
