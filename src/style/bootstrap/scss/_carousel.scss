@@ -10,6 +10,7 @@
 //    slide in its in-transition state. Only one of these occurs at a time.
 // 5. .carousel-item-next.carousel-item-left and .carousel-item-prev.carousel-item-right
 //    is the upcoming slide in transition.
+@use "sass:list";
 
 .carousel {
   position: relative;
@@ -127,7 +128,7 @@
   display: inline-block;
   width: $carousel-control-icon-width;
   height: $carousel-control-icon-width;
-  background: no-repeat 50% / 100% 100%;
+  background: no-repeat list.slash(50% , 100%) 100%;
 }
 .carousel-control-prev-icon {
   background-image: escape-svg($carousel-control-prev-icon-bg);
