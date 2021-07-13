@@ -131,6 +131,9 @@ export class EntryIndexMenu extends Component<Props, States> {
             ls.set(`${activeUser.username}HadTutorial`, 'true');
             this.setState({introduction: showInitialIntroductionJourney ? IntroductionType.FRIENDS : IntroductionType.NONE})
         }
+        if(prevProps.activeUser !== activeUser && !activeUser && !isActiveUser(activeUser) && ls.get(`${prevProps.activeUser!.username}HadTutorial`)){
+            this.setState({introduction: IntroductionType.NONE})
+        }
     }
 
     onClosePopup = () => {
@@ -285,7 +288,8 @@ export class EntryIndexMenu extends Component<Props, States> {
                                             {!isGlobal && introduction !== IntroductionType.FRIENDS && _t('entry-filter.filter-global-part3')}
                                             {!isGlobal && introduction !== IntroductionType.FRIENDS && <Link to='/communities'> {_t('entry-filter.filter-global-join-communities')}</Link>}
                                         </>;
-        const introductionOverlayClass = (isMounted && introduction === IntroductionType.NONE) ? "d-none" : "overlay-for-introduction"
+        const introductionOverlayClass = isMounted && (introduction === IntroductionType.NONE ? "d-none" : "overlay-for-introduction") || 'd-none';
+        debugger
         return isMounted ? <div>
                     <div className={introductionOverlayClass} id="overlay" onClick={this.onClosePopup}/>
                     <div className="entry-index-menu">
