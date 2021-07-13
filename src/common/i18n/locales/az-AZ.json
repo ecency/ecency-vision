@@ -121,6 +121,7 @@
     "error-public-key": "İctimai açar daxil etdiniz. Şifrə/WIF tələb olunur",
     "error-user-fetch": "İstifadəçi verilənləri alına bilmədi",
     "error-user-not-found": "İstifadəçi mövcud deyil",
+    "error-user-not-found-cache": "Cache inconsistency detected. Please retry login with your credentials.",
     "error-permission": "Göndəriş icazəsi alına bilmədi",
     "error-authenticate": "Wrong private key. Master or active or posting private key required.",
     "with-hive-signer": "Hivesigner ilə giriş et",
@@ -698,6 +699,7 @@
     "gallery": "Gallery",
     "emoji": "Emoji",
     "image-error": "Couldn't upload image.",
+    "image-error-cache": "Couldn't upload image. You seem to be signed out. Try signing in again.",
     "image-error-size": "Image size is too large, try smaller size image again.",
     "fragments": "Snippets"
   },

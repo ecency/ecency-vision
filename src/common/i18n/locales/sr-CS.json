@@ -121,6 +121,7 @@
     "error-public-key": "Uneli ste javni ključ. Potrebno je da unesete lozinku/WIF",
     "error-user-fetch": "Nemoguće je dobiti korisničke podatke",
     "error-user-not-found": "Korisnik ne postoji",
+    "error-user-not-found-cache": "Cache inconsistency detected. Please retry login with your credentials.",
     "error-permission": "Nismo moglu dobiti dozvolu za objavljivanje",
     "error-authenticate": "Wrong private key. Master or active or posting private key required.",
     "with-hive-signer": "Prijavi se sa hivesigner",
@@ -698,6 +699,7 @@
     "gallery": "Galerija",
     "emoji": "Emotikoni",
     "image-error": "Nije moguće dodati fotografiju.",
+    "image-error-cache": "Couldn't upload image. You seem to be signed out. Try signing in again.",
     "image-error-size": "Veličina slike je prevelika, pokušajte ponovo sa slikom manje veličine.",
     "fragments": "Snippets"
   },

@@ -121,6 +121,7 @@
     "error-public-key": "Du hast einen öffentlichen Schlüssel verwendet. Passwort/WIF erforderlich",
     "error-user-fetch": "Benutzerdaten konnten nicht abgerufen werden",
     "error-user-not-found": "Benutzer existiert nicht",
+    "error-user-not-found-cache": "Cache inconsistency detected. Please retry login with your credentials.",
     "error-permission": "Konnte keine Beitragsberechtigung erhalten",
     "error-authenticate": "Wrong private key. Master or active or posting private key required.",
     "with-hive-signer": "Mit Hivesigner anmelden",
@@ -698,6 +699,7 @@
     "gallery": "Galerie",
     "emoji": "Emoji",
     "image-error": "Das Bild konnte nicht hochgeladen werden.",
+    "image-error-cache": "Couldn't upload image. You seem to be signed out. Try signing in again.",
     "image-error-size": "Dateigröße überschritten, bitte kleineres Bild hochladen.",
     "fragments": "Snippets"
   },

@@ -121,6 +121,7 @@
     "error-public-key": "Você inseriu uma chave pública. Senha/WIF obrigatório",
     "error-user-fetch": "Dados de usuário não foram encontrados",
     "error-user-not-found": "Usuário não existe",
+    "error-user-not-found-cache": "Cache inconsistency detected. Please retry login with your credentials.",
     "error-permission": "Não foi possível obter permissão de postagem",
     "error-authenticate": "Chave privada incorreta. Chave master ou ativa ou de publicar são necessárias.",
     "with-hive-signer": "Entre com o Hivesigner",
@@ -698,6 +699,7 @@
     "gallery": "Galeria",
     "emoji": "Emoji",
     "image-error": "Não foi possível carregar imagem.",
+    "image-error-cache": "Couldn't upload image. You seem to be signed out. Try signing in again.",
     "image-error-size": "O tamanho da imagem é muito grande, tente novamente com uma imagem mais pequena.",
     "fragments": "Trechos"
   },

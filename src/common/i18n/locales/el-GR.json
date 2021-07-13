@@ -121,6 +121,7 @@
     "error-public-key": "Εισαγάγατε ένα δημόσιο κλειδί. Απαιτείται κωδικός πρόσβασης / WIF",
     "error-user-fetch": "Δεν είναι δυνατή η ανάκτηση δεδομένων χρήστη",
     "error-user-not-found": "Ο Χρήστης δεν υπάρχει",
+    "error-user-not-found-cache": "Cache inconsistency detected. Please retry login with your credentials.",
     "error-permission": "Δεν ήταν δυνατή η λήψη άδειας δημοσίευσης",
     "error-authenticate": "Wrong private key. Master or active or posting private key required.",
     "with-hive-signer": "Συνδεθείτε μέσω του hivesigner",
@@ -698,6 +699,7 @@
     "gallery": "Έκθεση",
     "emoji": "Εικονίδιο Emoji",
     "image-error": "Δεν ήταν δυνατό το ανέβασμα της εικόνας.",
+    "image-error-cache": "Couldn't upload image. You seem to be signed out. Try signing in again.",
     "image-error-size": "Το μέγεθος της εικόνας είναι πολύ μεγάλο, δοκιμάστε ξανα μικρότερο μέγεθος εικόνας.",
     "fragments": "Snippets"
   },
