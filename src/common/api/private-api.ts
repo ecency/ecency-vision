@@ -84,7 +84,7 @@ export const usrActivity = (username: string, ty: number, bl: string | number = 
     }
 
     const params: {
-        code: string | null;
+        code: string | undefined;
         ty: number;
         bl?: string | number;
         tx?: string | number;
@@ -98,7 +98,7 @@ export const usrActivity = (username: string, ty: number, bl: string | number = 
 
 export const getNotifications = (username: string, filter: NotificationFilter | null, since: string | null = null): Promise<ApiNotification[]> => {
 
-    const data: { code: string | null; filter?: string, since?: string } = {code: getAccessToken(username)};
+    const data: { code: string | undefined; filter?: string, since?: string } = {code: getAccessToken(username)};
 
     if (filter) {
         data.filter = filter;
@@ -120,7 +120,7 @@ export const getUnreadNotificationCount = (username: string): Promise<number> =>
 }
 
 export const markNotifications = (username: string, id: string | null = null) => {
-    const data: { code: string | null; id?: string } = {code: getAccessToken(username)}
+    const data: { code: string | undefined; id?: string } = {code: getAccessToken(username)}
     if (id) {
         data.id = id;
     }
