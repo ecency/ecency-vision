@@ -22,7 +22,7 @@ export const getUser = (username: string) : User | null => {
     }
 }
 
-export const getAccessToken = (username: string) => getUser(username) &&  getUser(username)!.accessToken;
+export const getAccessToken = (username: string) : string | null => getUser(username) &&  getUser(username)!.accessToken;
 
 export const getPostingKey = (username: string): null | undefined | string => getUser(username) && getUser(username)!.postingKey;
 

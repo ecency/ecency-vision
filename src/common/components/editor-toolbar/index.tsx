@@ -323,8 +323,23 @@ export class EditorToolbar extends Component<Props> {
 
         let imageUrl: string;
         try {
-            const resp = await uploadImage(file, getAccessToken(username))
-            imageUrl = resp.url;
+            let token = getAccessToken(username);
+            if(token) {
+                const resp = await uploadImage(file, token);
+                imageUrl = resp.url;
+
+            if (global.usePrivate && imageUrl.length > 0) {
+                addImage(username, imageUrl).then();
+            }
+
+            const imageName = imageUrl.length > 0 && imageUrl.split('/').pop();
+            const imgTag = imageUrl.length > 0 && `![${imageName}](${imageUrl})\n\n`;
+
+            imgTag && this.replaceText(tempImgTag, imgTag);
+            }
+            else {
+                error(_t("editor-toolbar.image-error-cache"))
+            }
         } catch (e) {
             if (e.response?.status === 413) {
                 error(_t("editor-toolbar.image-error-size"));
@@ -333,15 +348,6 @@ export class EditorToolbar extends Component<Props> {
             }
             return;
         }
-
-        if (global.usePrivate) {
-            addImage(username, imageUrl).then();
-        }
-
-        const imageName = imageUrl.split('/').pop();
-        const imgTag = `![${imageName}](${imageUrl})\n\n`;
-
-        this.replaceText(tempImgTag, imgTag);
     };
 
     checkFile = (filename: string) => {
