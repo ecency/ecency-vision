@@ -289,7 +289,6 @@ export class EntryIndexMenu extends Component<Props, States> {
                                             {!isGlobal && introduction !== IntroductionType.FRIENDS && <Link to='/communities'> {_t('entry-filter.filter-global-join-communities')}</Link>}
                                         </>;
         const introductionOverlayClass = isMounted && (introduction === IntroductionType.NONE ? "d-none" : "overlay-for-introduction") || 'd-none';
-        debugger
         return isMounted ? <div>
                     <div className={introductionOverlayClass} id="overlay" onClick={this.onClosePopup}/>
                     <div className="entry-index-menu">
