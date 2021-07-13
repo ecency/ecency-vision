@@ -452,12 +452,13 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
         {LoginRequired({
           ...this.props,
           children: (
+            <div>
             <ClickAwayListener onClickAway={()=>{dialog && this.setState({dialog:false})}}>
               <div className="entry-vote-btn" onClick={this.toggleDialog}>
                 <div className={cls}>
                   <div className={tooltipClass}>
                     <span className={voteBtnClass}>{chevronUpSvgForVote}</span>
-                    {tooltipClass.length > 0 && (
+                    {activeUser && tooltipClass.length > 0 && (
                       <div>
                       <span
                         className="tooltiptext"
@@ -465,21 +466,20 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
                           e.stopPropagation();
                         }}
                       >
-                        {activeUser && (
-                          <VoteDialog
-                            {...this.props}
-                            activeUser={activeUser}
-                            onClick={this.vote}
-                            upVoted={upVoted}
-                            downVoted={downVoted}
-                          />
-                        )}
+                        <VoteDialog
+                          {...this.props}
+                          activeUser={activeUser as any}
+                          onClick={this.vote}
+                          upVoted={upVoted}
+                          downVoted={downVoted}
+                        />
                       </span>
                     </div>)}
                   </div>
                 </div>
               </div>
             </ClickAwayListener>
+            </div>
           ),
         })}
       </>
