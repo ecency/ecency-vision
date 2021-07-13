@@ -63,6 +63,11 @@ export default merge(baseConfig, {
 
   module: {
     rules: [
+      {
+      test: /\.tsx?$/,
+      use: 'ts-loader',
+      exclude: /node_modules/
+    },
       // CSS
       {
         test: /\.*\.css$/,
@@ -84,6 +89,9 @@ export default merge(baseConfig, {
             loader: 'style-loader',
           },
           {
+            loader: 'sass-loader',
+          },
+          {
             loader: 'css-loader',
             options: {
               modules: {
@@ -92,9 +100,6 @@ export default merge(baseConfig, {
               importLoaders: 1,
               sourceMap: true
             },
-          },
-          {
-            loader: 'sass-loader',
           },
         ],
       },
